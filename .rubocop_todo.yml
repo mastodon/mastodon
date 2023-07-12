@@ -158,19 +158,6 @@ Naming/FileName:
   Exclude:
     - 'config/locales/sr-Latn.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyleForLeadingUnderscores.
-# SupportedStylesForLeadingUnderscores: disallowed, required, optional
-Naming/MemoizedInstanceVariableName:
-  Exclude:
-    - 'app/controllers/api/v1/bookmarks_controller.rb'
-    - 'app/controllers/api/v1/favourites_controller.rb'
-    - 'app/controllers/concerns/rate_limit_headers.rb'
-    - 'app/lib/activitypub/activity.rb'
-    - 'app/services/resolve_url_service.rb'
-    - 'app/services/search_service.rb'
-    - 'config/initializers/rack_attack.rb'
-
 # Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers, AllowedPatterns.
 # SupportedStyles: snake_case, normalcase, non_integer
 # AllowedIdentifiers: capture3, iso8601, rfc1123_date, rfc822, rfc2822, rfc3339, x86_64
