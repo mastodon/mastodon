@@ -5,7 +5,6 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import background from 'mastodon/../images/friends-cropped.png';
-
 import DismissableBanner from 'mastodon/components/dismissable_banner';
 
 

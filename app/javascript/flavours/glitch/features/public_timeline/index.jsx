@@ -13,8 +13,8 @@ import { expandPublicTimeline } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import DismissableBanner from 'flavours/glitch/components/dismissable_banner';
-import { domain } from 'flavours/glitch/initial_state';
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
+import { domain } from 'flavours/glitch/initial_state';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
 

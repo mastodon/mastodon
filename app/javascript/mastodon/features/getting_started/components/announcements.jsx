@@ -13,7 +13,6 @@ import spring from 'react-motion/lib/spring';
 import ReactSwipeableViews from 'react-swipeable-views';
 
 import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
-
 import { AnimatedNumber } from 'mastodon/components/animated_number';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';

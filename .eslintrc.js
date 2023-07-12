@@ -247,7 +247,12 @@ module.exports = {
           },
           // Internal packages
           {
-            pattern: '{mastodon/**,flavours/glitch-soc/**}',
+            pattern: '{mastodon/**}',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '{flavours/glitch-soc/**}',
             group: 'internal',
             position: 'after',
           },
