@@ -7,7 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { fetchTrendingLinks } from 'mastodon/actions/trends';
-import DismissableBanner from 'mastodon/components/dismissable_banner';
+import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 
 import Story from './components/story';

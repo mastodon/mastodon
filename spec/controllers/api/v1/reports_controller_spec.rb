@@ -23,8 +23,6 @@ RSpec.describe Api::V1::ReportsController do
     let(:rule_ids) { nil }
 
     before do
-      allow(AdminMailer).to receive(:new_report)
-        .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later: nil))
       post :create, params: { status_ids: [status.id], account_id: target_account.id, comment: 'reasons', category: category, rule_ids: rule_ids, forward: forward }
     end
 
@@ -41,7 +39,7 @@ RSpec.describe Api::V1::ReportsController do
     end
 
     it 'sends e-mails to admins' do
-      expect(AdminMailer).to have_received(:new_report).with(admin.account, Report)
+      expect(ActionMailer::Base.deliveries.first.to).to eq([admin.email])
     end
 
     context 'when a status does not belong to the reported account' do

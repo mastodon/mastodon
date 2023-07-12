@@ -24,7 +24,6 @@ AllCops:
   Exclude:
     - db/schema.rb
     - 'bin/*'
-    - 'Rakefile'
     - 'node_modules/**/*'
     - 'Vagrantfile'
     - 'vendor/**/*'
@@ -191,6 +190,11 @@ Style/RedundantBegin:
 # https://docs.rubocop.org/rubocop/cops_style.html#stylerescuestandarderror
 Style/RescueStandardError:
   EnforcedStyle: implicit
+
+# Reason: Simplify some spec layouts
+# https://docs.rubocop.org/rubocop/cops_style.html#stylesemicolon
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
 
 # Reason: Originally disabled for CodeClimate, and no config consensus has been found
 # https://docs.rubocop.org/rubocop/cops_style.html#stylesymbolarray

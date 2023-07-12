@@ -104,7 +104,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
               post :create,
                    params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
                    session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
-            end.to not_change { user.reload.otp_secret }
+            end.to(not_change { user.reload.otp_secret })
           end
 
           it 'renders the new view' do
