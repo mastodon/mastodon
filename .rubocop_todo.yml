@@ -367,17 +367,6 @@ RSpec/PendingWithoutReason:
   Exclude:
     - 'spec/models/account_spec.rb'
 
-RSpec/StubbedMock:
-  Exclude:
-    - 'spec/controllers/api/base_controller_spec.rb'
-    - 'spec/controllers/api/v1/media_controller_spec.rb'
-    - 'spec/controllers/auth/registrations_controller_spec.rb'
-    - 'spec/helpers/application_helper_spec.rb'
-    - 'spec/lib/status_filter_spec.rb'
-    - 'spec/lib/status_finder_spec.rb'
-    - 'spec/lib/webfinger_resource_spec.rb'
-    - 'spec/services/activitypub/process_collection_service_spec.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Rails/ApplicationController:
   Exclude:
