@@ -1670,10 +1670,6 @@ a.account__display-name {
   color: inherit;
 }
 
-.detailed-status .button.logo-button {
-  margin-bottom: 15px;
-}
-
 .detailed-status__display-name {
   color: $darker-text-color;
   display: flex;
@@ -5784,6 +5780,7 @@ a.status-card.compact:hover {
   &__toggle {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 
     & > span {
       font-size: 17px;
