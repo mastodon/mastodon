@@ -959,7 +959,7 @@ ar:
       new_trending_statuses:
         title: المنشورات الشائعة
       new_trending_tags:
-        no_approved_tags: لا توجد حاليًا هاشات شائعة موافق عليها.
+        no_approved_tags: لا توجد حاليًا وسوم شائعة موافق عليها.
         requirements: 'يمكن لأي من هؤلاء المرشحين أن يتجاوز علامة #%{rank} من الوسوم الموافق عليها، وهي حاليا #%{lowest_tag_name} مع نتيجة %{lowest_tag_score}.'
         title: الوسوم المتداولة
       subject: تداولات جديدة في انتظار المراجعة على %{instance}
@@ -986,6 +986,7 @@ ar:
     notification_preferences: تعديل تفضيلات البريد الإلكتروني
     salutation: "%{name}،"
     settings: 'تغيير تفضيلات البريد الإلكتروني: %{link}'
+    unsubscribe: إلغاء الاشتراك
     view: 'اعرض:'
     view_profile: اعرض الصفحة التعريفية
     view_status: عرض المنشور
@@ -999,6 +1000,8 @@ ar:
     your_token: رمز نفاذك
   auth:
     apply_for_account: اطلُب حسابًا
+    captcha_confirmation:
+      title: التحقق من الأمان
     confirmations:
       wrong_email_hint: إذا كان عنوان البريد الإلكتروني هذا غير صحيح، يمكنك تغييره في إعدادات الحساب.
     delete_account: حذف الحساب
@@ -1035,8 +1038,10 @@ ar:
     rules:
       accept: قبول
       back: العودة
+      invited_by: 'يمكنك الانضمام إلى %{domain} بفضل الدعوة التي تلقيتها من:'
       preamble: يتم تعيين هذه القوانين وفرضها من قبل مشرفي %{domain}.
       title: بعض القواعد الأساسية.
+      title_invited: لقد تلقيت دعوة.
     security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
     setup:
@@ -1149,6 +1154,9 @@ ar:
       your_appeal_rejected: تم رفض طعنك
   domain_validator:
     invalid_domain: ليس بإسم نطاق صالح
+  edit_profile:
+    other: أخرى
+    safety_and_privacy: الأمان والخصوصية
   errors:
     '400': الطلب الذي قدمته غير صالح أو أنّ شكله غير سليم.
     '403': ليس لك الصلاحيات الكافية لعرض هذه الصفحة.
