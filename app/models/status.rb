@@ -103,7 +103,11 @@ class Status < ApplicationRecord
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
   scope :tagged_with_all, lambda { |tag_ids|
     Array(tag_ids).map(&:to_i).reduce(self) do |result, id|
-      result.joins("INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}")
+      join_query_string = <<~SQL.squish
+        INNER JOIN statuses_tags t:tag_id ON t:tag_id.status_id = statuses.id AND t:tag_id.tag_id = :tag_id
+      SQL
+      sanitized_join_query = sanitize_sql_array([join_query_string, tag_id: id])
+      result.joins(sanitized_join_query)
     end
   }
   scope :tagged_with_none, lambda { |tag_ids|
