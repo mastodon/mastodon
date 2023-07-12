@@ -196,10 +196,10 @@ module Mastodon
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
-      Doorkeeper::Application.send :include, ApplicationExtension
-      Doorkeeper::AccessToken.send :include, AccessTokenExtension
-      Devise::FailureApp.send :include, AbstractController::Callbacks
-      Devise::FailureApp.send :include, Localized
+      Doorkeeper::Application.include ApplicationExtension
+      Doorkeeper::AccessToken.include AccessTokenExtension
+      Devise::FailureApp.include AbstractController::Callbacks
+      Devise::FailureApp.include Localized
     end
   end
 end
