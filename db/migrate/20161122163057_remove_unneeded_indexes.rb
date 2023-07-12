@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveUnneededIndexes < ActiveRecord::Migration[5.0]
   def change
     remove_index :notifications, name: 'index_notifications_on_account_id'

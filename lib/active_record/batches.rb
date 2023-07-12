@@ -29,7 +29,7 @@ module ActiveRecord
           if flatten
             yield record[1]
           else
-            yield record[1..-1]
+            yield record[1..]
           end
         end
 

@@ -52,7 +52,7 @@ RSpec.describe PostStatusService, type: :service do
     end
 
     it 'does not change statuses count' do
-      expect { subject.call(account, text: 'Hi future!', scheduled_at: future, thread: previous_status) }.to_not change { [account.statuses_count, previous_status.replies_count] }
+      expect { subject.call(account, text: 'Hi future!', scheduled_at: future, thread: previous_status) }.to_not(change { [account.statuses_count, previous_status.replies_count] })
     end
   end
 

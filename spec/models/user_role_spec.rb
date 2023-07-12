@@ -93,7 +93,7 @@ RSpec.describe UserRole do
 
   describe '#computed_permissions' do
     context 'when the role is nobody' do
-      let(:subject) { described_class.nobody }
+      subject { described_class.nobody }
 
       it 'returns none' do
         expect(subject.computed_permissions).to eq UserRole::Flags::NONE
@@ -101,7 +101,7 @@ RSpec.describe UserRole do
     end
 
     context 'when the role is everyone' do
-      let(:subject) { described_class.everyone }
+      subject { described_class.everyone }
 
       it 'returns permissions' do
         expect(subject.computed_permissions).to eq subject.permissions
