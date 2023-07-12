@@ -38,7 +38,7 @@ module Trends
       statuses = user.allows_trending_statuses_review_emails? ? statuses_requiring_review : []
       next if links.empty? && tags.empty? && statuses.empty?
 
-      AdminMailer.new_trends(user.account, links, tags, statuses).deliver_later!
+      AdminMailer.with(recipient: user.account).new_trends(links, tags, statuses).deliver_later! if user.allows_trends_review_emails?
     end
   end
 

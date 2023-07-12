@@ -32,9 +32,4 @@ class NotificationMailerPreview < ActionMailer::Preview
     r = Status.where.not(reblog_of_id: nil).first
     NotificationMailer.reblog(r.reblog.account, Notification.find_by(activity: r))
   end
-
-  # Preview this email at http://localhost:3000/rails/mailers/notification_mailer/digest
-  def digest
-    NotificationMailer.digest(Account.first, since: 90.days.ago)
-  end
 end

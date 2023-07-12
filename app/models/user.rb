@@ -475,7 +475,7 @@ class User < ApplicationRecord
     User.those_who_can(:manage_users).includes(:account).find_each do |u|
       next unless u.allows_pending_account_emails?
 
-      AdminMailer.new_pending_account(u.account, self).deliver_later
+      AdminMailer.with(recipient: u.account).new_pending_account(self).deliver_later
     end
   end
 
