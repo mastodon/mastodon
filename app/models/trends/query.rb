@@ -68,12 +68,10 @@ class Trends::Query
   alias to_a to_ary
 
   def to_arel
-    tmp_ids = ids
-
-    if tmp_ids.empty?
+    if ids_for_key.empty?
       klass.none
     else
-      scope = klass.joins("join unnest(array[#{tmp_ids.join(',')}]) with ordinality as x (id, ordering) on #{klass.table_name}.id = x.id").reorder('x.ordering')
+      scope = klass.joins(sanitized_join_sql).reorder('x.ordering')
       scope = scope.offset(@offset) if @offset.present?
       scope = scope.limit(@limit) if @limit.present?
       scope
@@ -95,8 +93,22 @@ class Trends::Query
     self
   end
 
-  def ids
-    redis.zrevrange(key, 0, -1).map(&:to_i)
+  def ids_for_key
+    @ids_for_key ||= redis.zrevrange(key, 0, -1).map(&:to_i)
+  end
+
+  def sanitized_join_sql
+    ActiveRecord::Base.sanitize_sql_array(join_sql_array)
+  end
+
+  def join_sql_array
+    [join_sql_query, ids_for_key]
+  end
+
+  def join_sql_query
+    <<~SQL.squish
+      JOIN unnest(array[?]) WITH ordinality AS x (id, ordering) ON #{klass.table_name}.id = x.id
+    SQL
   end
 
   def perform_queries
