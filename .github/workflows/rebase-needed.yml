@@ -1,17 +1,8 @@
 name: PR Needs Rebase
 
 on:
-  push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
-      - 'l10n_main'
-  pull_request_target:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
-      - 'l10n_main'
-    types: [synchronize]
+  schedule:
+    - cron: '0 * * * *'
 
 permissions:
   pull-requests: write
