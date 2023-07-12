@@ -10,7 +10,7 @@ import { addColumn } from 'mastodon/actions/columns';
 import { changeSetting } from 'mastodon/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';
 import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
-import DismissableBanner from 'mastodon/components/dismissable_banner';
+import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import initialState, { domain } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 

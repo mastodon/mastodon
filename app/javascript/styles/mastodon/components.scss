@@ -981,7 +981,8 @@ body > [data-popper-placement] {
   max-height: 22px * 15; // 15 lines is roughly above 500 characters
 }
 
-.status__content__read-more-button {
+.status__content__read-more-button,
+.status__content__translate-button {
   display: block;
   font-size: 15px;
   line-height: 22px;
@@ -1667,10 +1668,6 @@ a.account__display-name {
 .detailed-status__application,
 .detailed-status__datetime {
   color: inherit;
-}
-
-.detailed-status .button.logo-button {
-  margin-bottom: 15px;
 }
 
 .detailed-status__display-name {
@@ -4212,34 +4209,31 @@ a.status-card.compact:hover {
   }
 
   &__overlay {
-    display: block;
-    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($black, 0.5);
     width: 100%;
     height: 100%;
+    padding: 0;
+    margin: 0;
     border: 0;
+    border-radius: 4px;
 
     &__label {
-      display: inline-block;
-      background: rgba($base-overlay-background, 0.5);
-      border-radius: 8px;
-      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-direction: column;
       color: $primary-text-color;
       font-weight: 500;
       font-size: 14px;
     }
 
-    &:hover,
-    &:focus,
-    &:active {
-      .spoiler-button__overlay__label {
-        background: rgba($base-overlay-background, 0.8);
-      }
-    }
-
-    &:disabled {
-      .spoiler-button__overlay__label {
-        background: rgba($base-overlay-background, 0.5);
-      }
+    &__action {
+      font-weight: 400;
+      font-size: 13px;
     }
   }
 }
@@ -5786,6 +5780,7 @@ a.status-card.compact:hover {
   &__toggle {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 
     & > span {
       font-size: 17px;
@@ -9074,5 +9069,64 @@ noscript {
         text-overflow: ellipsis;
       }
     }
+  }
+}
+
+.notification-list {
+  position: fixed;
+  bottom: 2rem;
+  inset-inline-start: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.notification-bar {
+  flex: 0 0 auto;
+  position: relative;
+  inset-inline-start: -100%;
+  width: auto;
+  padding: 15px;
+  margin: 0;
+  color: $white;
+  background: rgba($black, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(lighten($classic-base-color, 4%), 0.85);
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba($base-shadow-color, 0.25),
+    0 4px 6px -4px rgba($base-shadow-color, 0.25);
+  cursor: default;
+  transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);
+  transform: translateZ(0);
+  font-size: 15px;
+  line-height: 21px;
+
+  &.notification-bar-active {
+    inset-inline-start: 1rem;
+  }
+}
+
+.notification-bar-title {
+  margin-inline-end: 5px;
+}
+
+.notification-bar-title,
+.notification-bar-action {
+  font-weight: 700;
+}
+
+.notification-bar-action {
+  text-transform: uppercase;
+  margin-inline-start: 10px;
+  cursor: pointer;
+  color: $blurple-300;
+  border-radius: 4px;
+  padding: 0 4px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: rgba($ui-base-color, 0.85);
   }
 }

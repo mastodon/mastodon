@@ -5,36 +5,40 @@
 class NotificationMailerPreview < ActionMailer::Preview
   # Preview this email at http://localhost:3000/rails/mailers/notification_mailer/mention
   def mention
-    m = Mention.last
-    NotificationMailer.mention(m.account, Notification.find_by(activity: m))
+    activity = Mention.last
+    mailer_for(activity.account, activity).mention
   end
 
   # Preview this email at http://localhost:3000/rails/mailers/notification_mailer/follow
   def follow
-    f = Follow.last
-    NotificationMailer.follow(f.target_account, Notification.find_by(activity: f))
+    activity = Follow.last
+    mailer_for(activity.target_account, activity).follow
   end
 
   # Preview this email at http://localhost:3000/rails/mailers/notification_mailer/follow_request
   def follow_request
-    f = Follow.last
-    NotificationMailer.follow_request(f.target_account, Notification.find_by(activity: f))
+    activity = Follow.last
+    mailer_for(activity.target_account, activity).follow_request
   end
 
   # Preview this email at http://localhost:3000/rails/mailers/notification_mailer/favourite
   def favourite
-    f = Favourite.last
-    NotificationMailer.favourite(f.status.account, Notification.find_by(activity: f))
+    activity = Favourite.last
+    mailer_for(activity.status.account, activity).favourite
   end
 
   # Preview this email at http://localhost:3000/rails/mailers/notification_mailer/reblog
   def reblog
-    r = Status.where.not(reblog_of_id: nil).first
-    NotificationMailer.reblog(r.reblog.account, Notification.find_by(activity: r))
+    activity = Status.where.not(reblog_of_id: nil).first
+    mailer_for(activity.reblog.account, activity).reblog
   end
 
-  # Preview this email at http://localhost:3000/rails/mailers/notification_mailer/digest
-  def digest
-    NotificationMailer.digest(Account.first, since: 90.days.ago)
+  private
+
+  def mailer_for(account, activity)
+    NotificationMailer.with(
+      recipient: account,
+      notification: Notification.find_by(activity: activity)
+    )
   end
 end

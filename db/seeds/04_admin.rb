@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if Rails.env.development?
   domain = ENV['LOCAL_DOMAIN'] || Rails.configuration.x.local_domain
 

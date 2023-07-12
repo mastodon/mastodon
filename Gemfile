@@ -11,7 +11,6 @@ gem 'rack', '~> 2.2.7'
 
 gem 'haml-rails', '~>2.0'
 gem 'pg', '~> 1.5'
-gem 'makara', '~> 0.5'
 gem 'pghero'
 gem 'dotenv-rails', '~> 2.8'
 
@@ -159,7 +158,7 @@ group :development do
   gem 'letter_opener_web', '~> 2.0'
 
   # Security analysis CLI tools
-  gem 'brakeman', '~> 5.4', require: false
+  gem 'brakeman', '~> 6.0', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
   # Linter CLI for HAML files
