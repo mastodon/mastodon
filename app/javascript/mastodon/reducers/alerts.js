@@ -1,4 +1,4 @@
-import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import { List as ImmutableList } from 'immutable';
 
 import {
   ALERT_SHOW,
@@ -8,17 +8,20 @@ import {
 
 const initialState = ImmutableList([]);
 
+let id = 0;
+
+const addAlert = (state, alert) =>
+  state.push({
+    key: id++,
+    ...alert,
+  });
+
 export default function alerts(state = initialState, action) {
   switch(action.type) {
   case ALERT_SHOW:
-    return state.push(ImmutableMap({
-      key: state.size > 0 ? state.last().get('key') + 1 : 0,
-      title: action.title,
-      message: action.message,
-      message_values: action.message_values,
-    }));
+    return addAlert(state, action.alert);
   case ALERT_DISMISS:
-    return state.filterNot(item => item.get('key') === action.alert.key);
+    return state.filterNot(item => item.key === action.alert.key);
   case ALERT_CLEAR:
     return state.clear();
   default:

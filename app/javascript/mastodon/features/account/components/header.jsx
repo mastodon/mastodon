@@ -290,7 +290,6 @@ class Header extends ImmutablePureComponent {
 
     if (isRemote) {
       menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: account.get('url') });
-      menu.push(null);
     }
 
     if ('share' in navigator) {

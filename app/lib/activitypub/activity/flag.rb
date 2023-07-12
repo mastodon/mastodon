@@ -4,13 +4,14 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
   def perform
     return if skip_reports?
 
-    target_accounts            = object_uris.filter_map { |uri| account_from_uri(uri) }.select(&:local?)
-    target_statuses_by_account = object_uris.filter_map { |uri| status_from_uri(uri) }.select(&:local?).group_by(&:account_id)
+    target_accounts            = object_uris.filter_map { |uri| account_from_uri(uri) }
+    target_statuses_by_account = object_uris.filter_map { |uri| status_from_uri(uri) }.group_by(&:account_id)
 
     target_accounts.each do |target_account|
-      target_statuses = target_statuses_by_account[target_account.id]
+      target_statuses     = target_statuses_by_account[target_account.id]
+      replied_to_accounts = Account.local.where(id: target_statuses.filter_map(&:in_reply_to_account_id))
 
-      next if target_account.suspended?
+      next if target_account.suspended? || (!target_account.local? && replied_to_accounts.none?)
 
       ReportService.new.call(
         @account,
