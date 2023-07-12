@@ -1337,13 +1337,6 @@ Style/SafeNavigation:
     - 'app/models/status.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowAsExpressionSeparator.
-Style/Semicolon:
-  Exclude:
-    - 'spec/services/activitypub/process_status_update_service_spec.rb'
-    - 'spec/validators/blacklisted_email_validator_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: only_raise, only_fail, semantic
 Style/SignalException:
