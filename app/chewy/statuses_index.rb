@@ -63,13 +63,14 @@ class StatusesIndex < Chewy::Index
   end
 
   root date_detection: false do
-    field :id, type: 'long'
-    field :account_id, type: 'long'
+    field(:id, type: 'long')
+    field(:account_id, type: 'long')
 
-    field :text, type: 'text', value: ->(status) { status.searchable_text } do
-      field :stemmed, type: 'text', analyzer: 'content'
+    field(:text, type: 'text', value: ->(status) { status.searchable_text }) do
+      field(:stemmed, type: 'text', analyzer: 'content')
     end
 
-    field :searchable_by, type: 'long', value: ->(status, crutches) { status.searchable_by(crutches) }
+    field(:searchable_by, type: 'long', value: ->(status, crutches) { status.searchable_by(crutches) })
+    field(:publicly_searchable, type: 'boolean', value: ->(status) { status.publicly_searchable? })
   end
 end

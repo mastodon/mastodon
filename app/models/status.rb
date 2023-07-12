@@ -37,6 +37,7 @@ class Status < ApplicationRecord
   include StatusSnapshotConcern
   include RateLimitable
   include StatusSafeReblogInsert
+  include StatusSearch
 
   rate_limit by: :account, family: :statuses
 
