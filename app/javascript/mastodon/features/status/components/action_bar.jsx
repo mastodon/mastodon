@@ -205,7 +205,7 @@ class ActionBar extends PureComponent {
       menu.push({ text: intl.formatMessage(messages.share), action: this.handleShare });
     }
 
-    if (publicStatus) {
+    if (publicStatus && (signedIn || !isRemote)) {
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
     }
 
