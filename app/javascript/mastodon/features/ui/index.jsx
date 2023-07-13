@@ -479,10 +479,12 @@ class UI extends PureComponent {
   };
 
   handleHotkeyBack = () => {
-    if (window.history && window.history.state) {
-      this.context.router.history.goBack();
+    const { router } = this.context;
+
+    if (router.history.location?.state?.fromMastodon) {
+      router.history.goBack();
     } else {
-      this.context.router.history.push('/');
+      router.history.push('/');
     }
   };
 
