@@ -6,7 +6,7 @@ import { toShortNumber, pluralReady, DECIMAL_UNITS } from '../utils/numbers';
 
 type ShortNumberRenderer = (
   displayNumber: JSX.Element,
-  pluralReady: number
+  pluralReady: number,
 ) => JSX.Element;
 
 interface ShortNumberProps {
@@ -25,7 +25,7 @@ export const ShortNumberRenderer: React.FC<ShortNumberProps> = ({
 
   if (children && renderer) {
     console.warn(
-      'Both renderer prop and renderer as a child provided. This is a mistake and you really should fix that. Only renderer passed as a child will be used.'
+      'Both renderer prop and renderer as a child provided. This is a mistake and you really should fix that. Only renderer passed as a child will be used.',
     );
   }
 
