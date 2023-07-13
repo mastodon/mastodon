@@ -5,7 +5,7 @@
                   -- the settings store is not yet typed */
 import { useCallback } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, defineMessages, useIntl } from 'react-intl';
 
 import SettingText from 'flavours/glitch/components/setting_text';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
@@ -13,8 +13,18 @@ import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 import { changeSetting } from '../../../actions/settings';
 import SettingToggle from '../../notifications/components/setting_toggle';
 
+const messages = defineMessages({
+  filter_regex: {
+    id: 'home.column_settings.filter_regex',
+    defaultMessage: 'Filter out by regular expressions',
+  },
+  settings: { id: 'home.settings', defaultMessage: 'Column settings' },
+});
+
 export const ColumnSettings: React.FC = () => {
   const settings = useAppSelector((state) => state.settings.get('home'));
+
+  const intl = useIntl();
 
   const dispatch = useAppDispatch();
   const onChange = useCallback(
@@ -91,12 +101,7 @@ export const ColumnSettings: React.FC = () => {
           settings={settings}
           settingPath={['regex', 'body']}
           onChange={onChange}
-          label={
-            <FormattedMessage
-              id='home.column_settings.filter_regex'
-              defaultMessage='Filter out by regular expressions'
-            />
-          }
+          label={intl.formatMessage(messages.filter_regex)}
         />
       </div>
     </div>
