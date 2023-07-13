@@ -2,10 +2,10 @@
 
 module DatabaseHelper
   def with_read_replica(&block)
-    ApplicationRecord.connected_to(role: :read, prevent_writes: true, &block)
+    ApplicationRecord.connected_to(role: :reading, prevent_writes: true, &block)
   end
 
   def with_primary(&block)
-    ApplicationRecord.connected_to(role: :primary, &block)
+    ApplicationRecord.connected_to(role: :writing, &block)
   end
 end
