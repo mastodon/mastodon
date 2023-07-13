@@ -99,7 +99,7 @@ const initialRootState = Object.fromEntries(
     reducer(undefined, {
       // empty action
     }),
-  ])
+  ]),
 );
 
 const RootStateRecord = ImmutableRecord(initialRootState, 'RootState');
