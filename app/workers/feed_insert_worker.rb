@@ -2,9 +2,10 @@
 
 class FeedInsertWorker
   include Sidekiq::Worker
+  include DatabaseHelper
 
   def perform(status_id, id, type = 'home', options = {})
-    ApplicationRecord.connected_to(role: :primary) do
+    with_primary do
       @type      = type.to_sym
       @status    = Status.find(status_id)
       @options   = options.symbolize_keys
@@ -20,7 +21,7 @@ class FeedInsertWorker
       end
     end
 
-    ApplicationRecord.connected_to(role: :read, prevent_writes: true) do
+    with_read_replica do
       check_and_insert
     end
   rescue ActiveRecord::RecordNotFound

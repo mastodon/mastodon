@@ -6,7 +6,7 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
   def show
-    ApplicationRecord.connected_to(role: :read, prevent_writes: true) do
+    with_read_replica do
       @statuses = load_statuses
       @relationships = StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
     end

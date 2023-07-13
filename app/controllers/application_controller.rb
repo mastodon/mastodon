@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   include CacheConcern
   include DomainControlHelper
   include ThemingConcern
+  include DatabaseHelper
 
   helper_method :current_account
   helper_method :current_session
