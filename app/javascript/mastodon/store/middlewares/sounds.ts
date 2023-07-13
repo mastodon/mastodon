@@ -38,7 +38,7 @@ export const soundsMiddleware = (): Middleware<
   Record<string, never>,
   RootState
 > => {
-  const soundCache: { [key: string]: HTMLAudioElement } = {};
+  const soundCache: Record<string, HTMLAudioElement> = {};
 
   void ready(() => {
     soundCache.boop = createAudio([
@@ -56,9 +56,9 @@ export const soundsMiddleware = (): Middleware<
   return () =>
     (next) =>
     (action: AnyAction & { meta?: { sound?: string } }) => {
-      const sound = action?.meta?.sound;
+      const sound = action.meta?.sound;
 
-      if (sound && soundCache[sound]) {
+      if (sound && Object.hasOwn(soundCache, sound)) {
         play(soundCache[sound]);
       }
 

@@ -28,9 +28,10 @@ export type SearchData = [
   Emoji['unified'],
 ];
 
-export interface ShortCodesToEmojiData {
-  [key: ShortCodesToEmojiDataKey]: [FilenameData, SearchData];
-}
+export type ShortCodesToEmojiData = Record<
+  ShortCodesToEmojiDataKey,
+  [FilenameData, SearchData]
+>;
 export type EmojisWithoutShortCodes = FilenameData[];
 
 export type EmojiCompressed = [

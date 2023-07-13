@@ -29,12 +29,12 @@ export const ShortNumberRenderer: React.FC<ShortNumberProps> = ({
     );
   }
 
-  const customRenderer = children || renderer || null;
+  const customRenderer = children ?? renderer ?? null;
 
   const displayNumber = <ShortNumberCounter value={shortNumber} />;
 
   return (
-    customRenderer?.(displayNumber, pluralReady(value, division)) ||
+    customRenderer?.(displayNumber, pluralReady(value, division)) ??
     displayNumber
   );
 };

@@ -24,6 +24,7 @@ export function loadPolyfills() {
   // Latest version of Firefox and Safari do not have IntersectionObserver.
   // Edge does not have requestIdleCallback.
   // This avoids shipping them all the polyfills.
+  /* eslint-disable @typescript-eslint/no-unnecessary-condition -- those properties might not exist in old browsers, even if they are always here in types */
   const needsExtraPolyfills = !(
     window.AbortController &&
     window.IntersectionObserver &&
@@ -31,6 +32,7 @@ export function loadPolyfills() {
     'isIntersecting' in IntersectionObserverEntry.prototype &&
     window.requestIdleCallback
   );
+  /* eslint-enable @typescript-eslint/no-unnecessary-condition */
 
   return Promise.all([
     loadIntlPolyfills(),
