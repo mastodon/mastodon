@@ -1746,7 +1746,10 @@ ja:
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
   verification:
-    instructions_html: 以下のコードをコピーしてウェブサイトのHTMLに貼り付けます。 次に「プロフィールの編集」タブから、プロフィールの追加フィールドのいずれかにウェブサイトのアドレスを追加し、保存します。
+    extra_instructions_html: <strong>ワンポイント:</strong> webサイト上にプロフィールへのリンクを表示したくない場合は、 <code>a</code> タグを配置する代わりに <code>link</code> タグをHTMLヘッダーに挿入することでも認証が可能です。重要な部分は <code>rel="me"</code> で、これはユーザーが自由にリンクを作成可能なサイトを悪用してなりすまされるのを防ぐための情報です。HTMLにはJavaScriptを使わなくてもアクセスできるようにしてください。
+    here_is_how: 認証方法
+    hint_html: "<strong>Mastodonの本人認証はすべてのユーザーが自由に利用できます。</strong>この機能はweb標準に基づいており、将来にわたり無料です。必要なものは自分のものと認知されている個人サイトだけです。プロフィールからwebサイトにリンクし、webサイトからもプロフィールへ相互にリンクすると、Mastodonがそれを検証し、認証済みであることを表示します。"
+    instructions_html: 以下のコードをコピーしてwebサイトのHTMLに貼り付けます。次に「プロフィールを編集」タブから、「プロフィール補足情報」のいずれかの欄にwebサイトのURLを記入し、「変更を保存」をクリックしてください。
     verification: 認証
     verified_links: 確認済みリンク
   webauthn_credentials:
