@@ -88,6 +88,13 @@
  * @property {string} default_content_type
  */
 
+/** @type {string} */
+const initialPath = document.querySelector("head meta[name=initialPath]")?.getAttribute("content") ?? '';
+/** @type {boolean} */
+export const hasMultiColumnPath = initialPath === '/'
+  || initialPath === '/getting-started'
+  || initialPath.startsWith('/deck');
+
 /**
  * @typedef InitialState
  * @property {Record<string, Account>} accounts
