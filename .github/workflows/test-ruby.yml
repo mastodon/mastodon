@@ -230,6 +230,8 @@ jobs:
           ruby-version: ${{ matrix.ruby-version}}
           bundler-cache: true
 
+      - run: yarn --frozen-lockfile
+
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
@@ -239,5 +241,5 @@ jobs:
         uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: e2e-logs
+          name: e2e-logs-${{ matrix.ruby-version }}
           path: log/
