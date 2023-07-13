@@ -6,7 +6,6 @@ import { LOCAL_SETTING_CHANGE, LOCAL_SETTING_DELETE } from 'flavours/glitch/acti
 import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 
 const initialState = ImmutableMap({
-  layout    : 'auto',
   stretch   : true,
   side_arm  : 'none',
   side_arm_reply_mode : 'keep',
