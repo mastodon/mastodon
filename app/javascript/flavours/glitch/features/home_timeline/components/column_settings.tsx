@@ -7,7 +7,8 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { useAppSelector, useAppDispatch } from 'mastodon/store';
+import SettingText from 'flavours/glitch/components/setting_text';
+import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 
 import { changeSetting } from '../../../actions/settings';
 import SettingToggle from '../../notifications/components/setting_toggle';
@@ -57,6 +58,43 @@ export const ColumnSettings: React.FC = () => {
             <FormattedMessage
               id='home.column_settings.show_replies'
               defaultMessage='Show replies'
+            />
+          }
+        />
+      </div>
+
+      <div className='column-settings__row'>
+        <SettingToggle
+          prefix='home_timeline'
+          settings={settings}
+          settingPath={['shows', 'direct']}
+          onChange={onChange}
+          label={
+            <FormattedMessage
+              id='home.column_settings.show_direct'
+              defaultMessage='Show private mentions'
+            />
+          }
+        />
+      </div>
+
+      <span className='column-settings__section'>
+        <FormattedMessage
+          id='home.column_settings.advanced'
+          defaultMessage='Advanced'
+        />
+      </span>
+
+      <div className='column-settings__row'>
+        <SettingText
+          prefix='home_timeline'
+          settings={settings}
+          settingPath={['regex', 'body']}
+          onChange={onChange}
+          label={
+            <FormattedMessage
+              id='home.column_settings.filter_regex'
+              defaultMessage='Filter out by regular expressions'
             />
           }
         />

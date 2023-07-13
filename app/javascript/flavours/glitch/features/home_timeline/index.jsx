@@ -22,8 +22,8 @@ import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
+import { ColumnSettings } from './components/column_settings';
 import { ExplorePrompt } from './components/explore_prompt';
-import ColumnSettingsContainer from './containers/column_settings_container';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -192,7 +192,7 @@ class HomeTimeline extends PureComponent {
           extraButton={announcementsButton}
           appendContent={hasAnnouncements && showAnnouncements && <AnnouncementsContainer />}
         >
-          <ColumnSettingsContainer />
+          <ColumnSettings />
         </ColumnHeader>
 
         {signedIn ? (
