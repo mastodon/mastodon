@@ -192,7 +192,7 @@ class GettingStarted extends ImmutablePureComponent {
             )}
           </div>
 
-          <LinkFooter />
+          <LinkFooter multiColumn />
         </div>
 
         {(multiColumn && showTrends) && <TrendsContainer />}
