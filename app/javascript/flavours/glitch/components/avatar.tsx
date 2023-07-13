@@ -33,7 +33,7 @@ export const Avatar: React.FC<Props> = ({
 
   if (account) {
     style.backgroundImage = `url(${account.get(
-      hovering ? 'avatar' : 'avatar_static'
+      hovering ? 'avatar' : 'avatar_static',
     )})`;
   }
 
@@ -42,7 +42,7 @@ export const Avatar: React.FC<Props> = ({
       className={classNames(
         'account__avatar',
         { 'account__avatar-inline': inline },
-        className
+        className,
       )}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

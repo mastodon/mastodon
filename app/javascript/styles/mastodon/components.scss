@@ -747,7 +747,9 @@ body > [data-popper-placement] {
 }
 
 .no-reduce-motion .spoiler-input {
-  transition: height 0.4s ease, opacity 0.4s ease;
+  transition:
+    height 0.4s ease,
+    opacity 0.4s ease;
 }
 
 .sign-in-banner {
@@ -3954,7 +3956,9 @@ a.status-card.compact:hover {
   overflow-y: auto;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   color: $darker-text-color;
-  transition: max-height 150ms ease-in-out, opacity 300ms linear;
+  transition:
+    max-height 150ms ease-in-out,
+    opacity 300ms linear;
   opacity: 1;
   z-index: 1;
   position: relative;
@@ -6935,7 +6939,8 @@ noscript {
   .navigation-bar {
     & > a:first-child {
       will-change: margin-top, margin-inline-start, margin-inline-end, width;
-      transition: margin-top $duration $delay,
+      transition:
+        margin-top $duration $delay,
         margin-inline-start $duration ($duration + $delay),
         margin-inline-end $duration ($duration + $delay);
     }
@@ -6948,12 +6953,15 @@ noscript {
     .navigation-bar__actions {
       & > .icon-button.close {
         will-change: opacity transform;
-        transition: opacity $duration * 0.5 $delay, transform $duration $delay;
+        transition:
+          opacity $duration * 0.5 $delay,
+          transform $duration $delay;
       }
 
       & > .compose__action-bar .icon-button {
         will-change: opacity transform;
-        transition: opacity $duration * 0.5 $delay + $duration * 0.5,
+        transition:
+          opacity $duration * 0.5 $delay + $duration * 0.5,
           transform $duration $delay;
       }
     }
@@ -9094,7 +9102,8 @@ noscript {
   backdrop-filter: blur(8px);
   border: 1px solid rgba(lighten($classic-base-color, 4%), 0.85);
   border-radius: 8px;
-  box-shadow: 0 10px 15px -3px rgba($base-shadow-color, 0.25),
+  box-shadow:
+    0 10px 15px -3px rgba($base-shadow-color, 0.25),
     0 4px 6px -4px rgba($base-shadow-color, 0.25);
   cursor: default;
   transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);

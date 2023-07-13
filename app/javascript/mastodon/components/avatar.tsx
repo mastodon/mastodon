@@ -5,7 +5,7 @@ import type { Account } from '../../types/resources';
 import { autoPlayGif } from '../initial_state';
 
 interface Props {
-  account: Account;
+  account: Account | undefined; // FIXME: remove `undefined` once we know for sure its always there
   size: number;
   style?: React.CSSProperties;
   inline?: boolean;

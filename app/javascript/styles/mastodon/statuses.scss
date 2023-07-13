@@ -77,6 +77,18 @@
   }
 }
 
+.button.logo-button svg {
+  width: 20px;
+  height: auto;
+  vertical-align: middle;
+  margin-inline-end: 5px;
+  fill: $primary-text-color;
+
+  @media screen and (max-width: $no-gap-breakpoint) {
+    display: none;
+  }
+}
+
 .embed {
   .status__content[data-spoiler='folded'] {
     .e-content {

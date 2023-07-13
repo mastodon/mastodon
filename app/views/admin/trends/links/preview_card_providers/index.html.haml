@@ -26,7 +26,7 @@
   - Trends::PreviewCardProviderFilter::KEYS.each do |key|
     = hidden_field_tag key, params[key] if params[key].present?
 
-  .batch-table.optional
+  .batch-table
     .batch-table__toolbar
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false

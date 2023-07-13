@@ -55,7 +55,7 @@ export function toShortNumber(sourceNumber: number): ShortNumber {
  */
 export function pluralReady(
   sourceNumber: number,
-  division: DecimalUnits
+  division: DecimalUnits | null,
 ): number {
   if (division == null || division < DECIMAL_UNITS.HUNDRED) {
     return sourceNumber;
