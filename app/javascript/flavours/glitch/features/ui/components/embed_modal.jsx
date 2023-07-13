@@ -14,7 +14,7 @@ const messages = defineMessages({
 class EmbedModal extends ImmutablePureComponent {
 
   static propTypes = {
-    url: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     onError: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -26,11 +26,11 @@ class EmbedModal extends ImmutablePureComponent {
   };
 
   componentDidMount () {
-    const { url } = this.props;
+    const { id } = this.props;
 
     this.setState({ loading: true });
 
-    api().post('/api/web/embed', { url }).then(res => {
+    api().get(`/api/web/embeds/${id}`).then(res => {
       this.setState({ loading: false, oembed: res.data });
 
       const iframeDocument = this.iframe.contentWindow.document;
