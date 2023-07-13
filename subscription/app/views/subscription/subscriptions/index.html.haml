@@ -8,16 +8,43 @@
       My Subscription
     .announcements-list__item__action-bar
       .announcements-list__item__meta
-        manage your current subscription & view past subscriptions
-    .announcements-list__item__permissions
-      %ul.permissions-list
         - if @subscriptions.empty?
-          .permissions-list__item
-            %br
-            %br
-            %li.permissions-list__item
-              No current subscription found
+          No subscription found.
+          %br
+          %br
+          = t('subscription.explain')
+          %br
+          Please choose a subscription option below:
         - else
+          manage your current subscription & view past subscriptions
+    .announcements-list__item__permissions
+      - if @subscriptions.empty?
+        .permissions-list__item
+          %ul.permissions-list
+            %li.permissions-list__item
+              %li.permissions-list__item
+                = t('subscription.description')
+              %li.permissions-list__item
+                .permissions-list__item__text__title
+                  = t('subscription.price')
+              %li.permissions-list__item
+                = link_to t('subscription.button'), settings_subscription.subscriptions_url, class: 'button', method: 'POST'
+          %ul.permissions-list
+            %li.permissions-list__item
+              %li.permissions-list__item
+                = t('subscription.description2')
+              %li.permissions-list__item
+                .permissions-list__item__text__title
+                  = t('subscription.small_group_price')
+                  %br
+                  = t('subscription.large_group_price')
+              %li.permissions-list__item
+                = form_with url: settings_subscription.subscriptions_url do |f|
+                  = f.hidden_field :group, value: true
+                  = f.select :quantity, 2..99
+                  = f.submit t('subscription.button2'), class: 'button'
+      - else
+        %ul.permissions-list
           - @subscriptions.each do |sub| 
             %li.permissions-list__item
               .permissions-list__item__icon
