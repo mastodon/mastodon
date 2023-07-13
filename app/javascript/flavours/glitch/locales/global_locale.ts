@@ -3,15 +3,19 @@ export interface LocaleData {
   messages: Record<string, string>;
 }
 
-let loadedLocale: LocaleData;
+let loadedLocale: LocaleData | undefined;
 
 export function setLocale(locale: LocaleData) {
   loadedLocale = locale;
 }
 
-export function getLocale() {
-  if (!loadedLocale && process.env.NODE_ENV === 'development') {
-    throw new Error('getLocale() called before any locale has been set');
+export function getLocale(): LocaleData {
+  if (!loadedLocale) {
+    if (process.env.NODE_ENV === 'development') {
+      throw new Error('getLocale() called before any locale has been set');
+    } else {
+      return { locale: 'unknown', messages: {} };
+    }
   }
 
   return loadedLocale;

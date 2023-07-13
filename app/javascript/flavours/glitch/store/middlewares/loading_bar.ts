@@ -16,7 +16,7 @@ const defaultTypeSuffixes: Config['promiseTypeSuffixes'] = [
 export const loadingBarMiddleware = (
   config: Config = {},
 ): Middleware<Record<string, never>, RootState> => {
-  const promiseTypeSuffixes = config.promiseTypeSuffixes || defaultTypeSuffixes;
+  const promiseTypeSuffixes = config.promiseTypeSuffixes ?? defaultTypeSuffixes;
 
   return ({ dispatch }) =>
     (next) =>
@@ -32,7 +32,7 @@ export const loadingBarMiddleware = (
           if (action.type.match(isPending)) {
             dispatch(showLoading());
           } else if (
-            action.type.match(isFulfilled) ||
+            action.type.match(isFulfilled) ??
             action.type.match(isRejected)
           ) {
             dispatch(hideLoading());

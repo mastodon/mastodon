@@ -82,7 +82,7 @@ export class DisplayName extends React.PureComponent<Props> {
     } else if (account) {
       let acct = account.get('acct');
 
-      if (acct.indexOf('@') === -1 && localDomain) {
+      if (!acct.includes('@') && localDomain) {
         acct = `${acct}@${localDomain}`;
       }
 

@@ -6,11 +6,11 @@ interface Props {
   tag: {
     name: string;
     url?: string;
-    history?: Array<{
+    history?: {
       uses: number;
       accounts: string;
       day: string;
-    }>;
+    }[];
     following?: boolean;
     type: 'hashtag';
   };
