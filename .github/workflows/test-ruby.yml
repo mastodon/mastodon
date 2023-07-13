@@ -234,3 +234,10 @@ jobs:
         run: './bin/rails db:create db:schema:load db:seed'
 
       - run: bundle exec rake spec:system
+
+      - name: Archive logs
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: e2e-logs
+          path: log/
