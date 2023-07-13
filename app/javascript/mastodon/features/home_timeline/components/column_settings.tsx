@@ -18,7 +18,7 @@ export const ColumnSettings: React.FC = () => {
   const dispatch = useAppDispatch();
   const onChange = useCallback(
     (key: string, checked: boolean) => {
-      void dispatch(changeSetting(['home', ...key], checked));
+      dispatch(changeSetting(['home', ...key], checked));
     },
     [dispatch],
   );
