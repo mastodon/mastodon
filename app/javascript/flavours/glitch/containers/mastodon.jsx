@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import { Helmet } from 'react-helmet';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { Provider as ReduxProvider } from 'react-redux';
 
@@ -13,6 +13,7 @@ import { checkDeprecatedLocalSettings } from 'flavours/glitch/actions/local_sett
 import { hydrateStore } from 'flavours/glitch/actions/store';
 import { connectUserStream } from 'flavours/glitch/actions/streaming';
 import ErrorBoundary from 'flavours/glitch/components/error_boundary';
+import { Router } from 'flavours/glitch/components/router';
 import UI from 'flavours/glitch/features/ui';
 import initialState, { title as siteTitle } from 'flavours/glitch/initial_state';
 import { IntlProvider } from 'flavours/glitch/locales';
@@ -79,11 +80,11 @@ export default class Mastodon extends PureComponent {
       <IntlProvider>
         <ReduxProvider store={store}>
           <ErrorBoundary>
-            <BrowserRouter>
+            <Router>
               <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
                 <Route path='/' component={UI} />
               </ScrollContext>
-            </BrowserRouter>
+            </Router>
 
             <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
           </ErrorBoundary>
