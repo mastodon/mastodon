@@ -33,7 +33,7 @@ export const GIFV: React.FC<Props> = ({
         onClick();
       }
     },
-    [onClick]
+    [onClick],
   );
 
   return (

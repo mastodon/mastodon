@@ -14,7 +14,7 @@ const defaultTypeSuffixes: Config['promiseTypeSuffixes'] = [
 ];
 
 export const loadingBarMiddleware = (
-  config: Config = {}
+  config: Config = {},
 ): Middleware<Record<string, never>, RootState> => {
   const promiseTypeSuffixes = config.promiseTypeSuffixes || defaultTypeSuffixes;
 

@@ -33,7 +33,7 @@ export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
   const willEnter = useCallback(() => ({ y: -1 * direction }), [direction]);
   const willLeave = useCallback(
     () => ({ y: spring(1 * direction, { damping: 35, stiffness: 400 }) }),
-    [direction]
+    [direction],
   );
 
   if (reduceMotion) {

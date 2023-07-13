@@ -480,7 +480,9 @@ $ui-header-height: 55px;
   overflow: hidden;
   overflow-y: auto;
   color: $darker-text-color;
-  transition: max-height 150ms ease-in-out, opacity 300ms linear;
+  transition:
+    max-height 150ms ease-in-out,
+    opacity 300ms linear;
   opacity: 1;
   z-index: 1;
   position: relative;

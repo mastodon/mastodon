@@ -3,12 +3,12 @@ const easingOutQuint = (
   t: number,
   b: number,
   c: number,
-  d: number
+  d: number,
 ) => c * ((t = t / d - 1) * t * t * t * t + 1) + b;
 const scroll = (
   node: Element,
   key: 'scrollTop' | 'scrollLeft',
-  target: number
+  target: number,
 ) => {
   const startTime = Date.now();
   const offset = node[key];

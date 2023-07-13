@@ -253,14 +253,16 @@
 @for $i from 0 through 3 {
   .mbstobon-#{$i} .drawer__inner__mastodon {
     @if $i == 3 {
-      background: url('~flavours/glitch/images/wave-drawer.png')
+      background:
+        url('~flavours/glitch/images/wave-drawer.png')
           no-repeat
           bottom /
           100%
           auto,
         lighten($ui-base-color, 13%);
     } @else {
-      background: url('~flavours/glitch/images/wave-drawer-glitched.png')
+      background:
+        url('~flavours/glitch/images/wave-drawer-glitched.png')
           no-repeat
           bottom /
           100%
