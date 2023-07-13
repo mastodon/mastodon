@@ -57,6 +57,7 @@ end
 
 class StreamingServerManager
   @running_thread = nil
+
   def initialize
     at_exit { stop }
   end
@@ -76,15 +77,15 @@ class StreamingServerManager
           'RAILS_ENV' => 'test',
           'NODE_ENV' => 'test',
         },
-        'yarn start',
+        'node index.js', # must not call yarn here, otherwise it will fail because yarn does not send signals to its child process
         chdir: Rails.root.join('streaming')
       ) do |_stdin, stdout_err, process_thread|
         status = :starting
 
         # Spawn a thread to listen on streaming server output
-        Thread.new do
+        output_thread = Thread.new do
           stdout_err.each_line do |line|
-            puts "Streaming server: #{line}"
+            Rails.logger.info "Streaming server: #{line}"
 
             if status == :starting && line.match('Streaming API now listening on')
               status = :started
@@ -100,10 +101,12 @@ class StreamingServerManager
           case msg
           when 'stop'
             # we need to properly stop the reading thread
-            # output_thread.kill
+            output_thread.kill
 
+            # Then stop the node process
             Process.kill('KILL', process_thread.pid)
 
+            # And we stop ourselves
             @running_thread.kill
           end
         end
