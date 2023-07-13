@@ -38,6 +38,7 @@ class LinkFooter extends PureComponent {
   };
 
   static propTypes = {
+    multiColumn: PropTypes.bool,
     onLogout: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
@@ -53,6 +54,7 @@ class LinkFooter extends PureComponent {
 
   render () {
     const { signedIn, permissions } = this.context.identity;
+    const { multiColumn } = this.props;
 
     const canInvite = signedIn && ((permissions & PERMISSION_INVITE_USERS) === PERMISSION_INVITE_USERS);
     const canProfileDirectory = profileDirectory;
@@ -64,7 +66,7 @@ class LinkFooter extends PureComponent {
         <p>
           <strong>{domain}</strong>:
           {' '}
-          <Link to='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
+          <Link to='/about' target={multiColumn ? '_blank' : undefined}><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
           {statusPageUrl && (
             <>
               {DividingCircle}
@@ -84,7 +86,7 @@ class LinkFooter extends PureComponent {
             </>
           )}
           {DividingCircle}
-          <Link to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
+          <Link to='/privacy-policy' target={multiColumn ? '_blank' : undefined}><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
         </p>
 
         <p>
