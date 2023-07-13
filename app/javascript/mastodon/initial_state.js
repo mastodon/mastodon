@@ -94,6 +94,13 @@ const element = document.getElementById('initial-state');
 /** @type {InitialState | undefined} */
 const initialState = element?.textContent && JSON.parse(element.textContent);
 
+/** @type {string} */
+const initialPath = document.querySelector("head meta[name=initialPath]")?.getAttribute("content") ?? '';
+/** @type {boolean} */
+export const hasMultiColumnPath = initialPath === '/'
+  || initialPath === '/getting-started'
+  || initialPath.startsWith('/deck');
+
 /**
  * @template {keyof InitialStateMeta} K
  * @param {K} prop
