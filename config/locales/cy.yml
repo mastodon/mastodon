@@ -412,6 +412,12 @@ cy:
       confirm_suspension:
         cancel: Canslo
         confirm: Atal
+        permanent_action: Ni fydd dadwneud yr atal yn adfer unrhyw ddata neu berthynas.
+        preamble_html: Rydych ar fin atal <strong>%{domain}</strong> a'i is-barthau.
+        remove_all_data: Bydd hyn yn dileu'r holl gynnwys, cyfryngau a data proffil ar gyfer cyfrifon y parth hwn o'ch gweinydd.
+        stop_communication: Bydd eich gweinydd yn peidio â chyfathrebu â'r gweinyddwyr hyn.
+        title: Cadarnhewch rwystro parth %{domain}
+        undo_relationships: Bydd hyn yn dad-wneud unrhyw berthynas dilyn rhwng cyfrifon y gweinyddwyr hyn a'ch un chi.
       created_msg: Mae'r bloc parth nawr yn cael ei brosesu
       destroyed_msg: Mae'r bloc parth wedi ei ddadwneud
       domain: Parth
@@ -789,6 +795,9 @@ cy:
       branding:
         preamble: Mae brandio eich gweinydd yn ei wahaniaethu oddi wrth weinyddion eraill yn y rhwydwaith. Gall y wybodaeth hon gael ei dangos ar draws amrywiaeth o amgylcheddau, megis rhyngwyneb gwe Mastodon, rhaglenni brodorol, mewn rhagolygon cyswllt ar wefannau eraill ac o fewn apiau negeseuon, ac ati. Am y rheswm hwn, mae'n well cadw'r wybodaeth hon yn glir, yn fyr ac yn gryno.
         title: Brandio
+      captcha_enabled:
+        desc_html: Mae hyn yn dibynnu ar sgriptiau allanol gan hCaptcha, a all fod yn bryder diogelwch a phreifatrwydd. Yn ogystal, <strong>gall hyn wneud y broses gofrestru yn llawer llai hygyrch i rai pobl (yn enwedig yr anabl)</strong>. Am y rhesymau hyn, ystyriwch fesurau eraill fel cofrestru ar sail cymeradwyaeth neu ar sail gwahoddiad.
+        title: Ei gwneud yn ofynnol i ddefnyddwyr newydd ddatrys CAPTCHA i gadarnhau eu cyfrif
       content_retention:
         preamble: Rheoli sut mae cynnwys sy'n cael ei gynhyrchu gan ddefnyddwyr yn cael ei storio yn Mastodon.
         title: Cadw cynnwys
@@ -1054,6 +1063,10 @@ cy:
     your_token: Eich tocyn mynediad
   auth:
     apply_for_account: Gofyn am gyfrif
+    captcha_confirmation:
+      help_html: Os oes gennych broblemau yn datrys y CAPTCHA, gallwch gysylltu â ni trwy %{email} a gallwn eich cynorthwyo.
+      hint_html: Un peth arall! Mae angen i ni gadarnhau eich bod yn ddynol (mae hyn er mwyn i ni allu cadw'r sbam allan!). Datryswch y CAPTCHA isod a chliciwch "Parhau".
+      title: Gwiriad diogelwch
     confirmations:
       wrong_email_hint: Os nad yw'r cyfeiriad e-bost hwnnw'n gywir, gallwch ei newid yng ngosodiadau'r cyfrif.
     delete_account: Dileu cyfrif
@@ -1090,8 +1103,11 @@ cy:
     rules:
       accept: Derbyn
       back: Nôl
+      invited_by: 'Gallwch ymuno â %{domain} diolch i''r gwahoddiad a gawsoch gan:'
       preamble: Mae'r rhain yn cael eu gosod a'u gorfodi gan y %{domain} cymedrolwyr.
+      preamble_invited: Cyn i chi barhau, ystyriwch y rheolau sylfaenol a osodwyd gan gymedrolwyr %{domain}.
       title: Rhai rheolau sylfaenol.
+      title_invited: Rydych wedi derbyn gwahoddiad.
     security: Diogelwch
     set_new_password: Gosod cyfrinair newydd
     setup:
@@ -1206,6 +1222,7 @@ cy:
     invalid_domain: ddim yn enw parth dilys
   edit_profile:
     basic_information: Gwybodaeth Sylfaenol
+    hint_html: "<strong>Addaswch yr hyn y mae pobl yn ei weld ar eich proffil cyhoeddus ac wrth ymyl eich postiadau.</strong> Mae pobl eraill yn fwy tebygol o'ch dilyn yn ôl a rhyngweithio â chi pan fydd gennych broffil wedi'i lenwi a llun proffil."
     other: Arall
     safety_and_privacy: Diogelwch a phreifatrwydd
   errors:
@@ -1436,6 +1453,18 @@ cy:
     title: Hanes dilysu
   mail_subscriptions:
     unsubscribe:
+      action: Iawn, dad-danysgrifio
+      complete: Dad-danysgrifiwyd
+      confirmation_html: Ydych chi'n siŵr eich bod am ddad-danysgrifo rhag derbyn %{type} Mastodon ar %{domain} i'ch e-bost %{email}? Gallwch bob amser ail-danysgrifio o'ch <a href="%{settings_path}">gosodiadau hysbysiadau e-byst</a>.
+      emails:
+        notification_emails:
+          favourite: hoff e-byst negeseuon hysbysu
+          follow: dilyn e-byst hysbysu
+          follow_request: dilyn e-byst ceisiadau
+          mention: e-byst negeseuon crybwyll
+          reblog: e-bost hysbysu hybu
+      resubscribe_html: Os ydych wedi dad-danysgrifio trwy gamgymeriad, gallwch ail-danysgrifio o'ch <a href="%{settings_path}">gosodiadau hysbysiadau e-bost</a> .
+      success_html: Os nad ydych bellach yn derbyn %{type} Mastodon %{domain} i'ch e-bost %{email}.
       title: Datdanysgrifio
   media_attachments:
     validations:
@@ -1552,6 +1581,7 @@ cy:
       expired: Mae'r arolwg eisoes wedi dod i ben
       invalid_choice: Nid yw'r dewis pleidlais hyn yn bodoli
       over_character_limit: ni all fod yn hwy na %{max} nod yr un
+      self_vote: Nid oes modd i chi bleidleisio yn eich polau eich hun
       too_few_options: rhaid cael mwy nag un eitem
       too_many_options: ni all gynnwys mwy na %{max} eitem
   preferences:
@@ -1615,7 +1645,7 @@ cy:
       micro_messenger: MicroMessenger
       nokia: Porwr Nokia S40 Ovi
       opera: Opera
-      otter: dyfrgi
+      otter: Dyfrgi
       phantom_js: PhantomJS
       qq: Porwr QQ
       safari: Agor yn Safari
@@ -1879,8 +1909,12 @@ cy:
     seamless_external_login: Yr ydych wedi'ch mewngofnodi drwy wasanaeth allanol, felly nid yw gosodiadau cyfrinair ac e-bost ar gael.
     signed_in_as: 'Wedi mewngofnodi fel:'
   verification:
+    extra_instructions_html: <strong>Awgrym:</strong> Gall y ddolen ar eich gwefan fod yn anweledig. Y rhan bwysig yw <code>rel="me"</code> sy'n atal dynwarediad ar wefannau gyda chynnwys sy'n cael ei gynyrchu gan ddefnyddwyr. Gallwch hyd yn oed ddefnyddio tag <code>link</code> ym mhennyn y dudalen yn lle <code>a</code>, ond rhaid i'r HTML fod yn hygyrch heb weithredu JavaScript.
     here_is_how: Dyma sut
+    hint_html: "<strong>Mae dilysu eich hunaniaeth ar Mastodon ar gyfer pawb.</strong> Mae'n seiliedig ar safonau gwe agored, nawr ac am byth, yn rhydd ac am ddim. Y cyfan sydd ei angen arnoch yw gwefan bersonol lle y mae pobl yn eich adnabod chi o'i herwydd. Pan fyddwch yn cysylltu â'r wefan hon o'ch proffil, byddwn yn gwirio bod y wefan yn cysylltu'n ôl â'ch proffil ac yn dangos dangosydd gweledol arni."
+    instructions_html: Copïwch a gludo'r cod isod i HTML eich gwefan. Yna ychwanegwch gyfeiriad eich gwefan i un o'r meysydd ychwanegol ar eich proffil o'r tab "Golygu proffil" a chadw'r newidiadau.
     verification: Dilysu
+    verified_links: Eich dolenni wedi'u dilysu
   webauthn_credentials:
     add: Ychwanegu allwedd ddiogelwch newydd
     create:
