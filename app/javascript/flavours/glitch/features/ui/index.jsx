@@ -79,7 +79,6 @@ const mapStateToProps = state => ({
   hasComposingText: state.getIn(['compose', 'text']).trim().length !== 0,
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 4,
-  layout_local_setting: state.getIn(['local_settings', 'layout']),
   isWide: state.getIn(['local_settings', 'stretch']),
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
   unreadNotifications: state.getIn(['notifications', 'unread']),
@@ -256,7 +255,6 @@ class UI extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
-    layout_local_setting: PropTypes.string,
     isWide: PropTypes.bool,
     systemFontUi: PropTypes.bool,
     isComposing: PropTypes.bool,
@@ -381,7 +379,7 @@ class UI extends Component {
   });
 
   handleResize = () => {
-    const layout = layoutFromWindow(this.props.layout_local_setting);
+    const layout = layoutFromWindow();
 
     if (layout !== this.props.layout) {
       this.handleLayoutChange.cancel();
@@ -442,19 +440,6 @@ class UI extends Component {
     if (this.visibilityChange !== undefined) {
       document.addEventListener(this.visibilityChange, this.handleVisibilityChange, false);
       this.handleVisibilityChange();
-    }
-  }
-
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    if (nextProps.layout_local_setting !== this.props.layout_local_setting) {
-      const layout = layoutFromWindow(nextProps.layout_local_setting);
-
-      if (layout !== this.props.layout) {
-        this.handleLayoutChange.cancel();
-        this.props.dispatch(changeLayout(layout));
-      } else {
-        this.handleLayoutChange();
-      }
     }
   }
 
