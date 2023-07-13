@@ -15,7 +15,6 @@
       // Ignore major version bumps for these node packages
       matchManagers: ['npm'],
       matchPackageNames: [
-        '@rails/ujs', // Needs to match the major Rails version
         'tesseract.js', // Requires code changes
         'react-hotkeys', // Requires code changes
 
@@ -51,12 +50,6 @@
         'sidekiq', // Requires manual upgrade
         'sidekiq-unique-jobs', // Requires manual upgrades and sync with Sidekiq version
         'redis', // Requires manual upgrade and sync with Sidekiq version
-        'fog-openstack', // TODO: was ignored in https://github.com/mastodon/mastodon/pull/13964
-
-        // Needs major Rails version bump
-        'rack',
-        'rails',
-        'rails-i18n',
       ],
       matchUpdateTypes: ['major'],
       enabled: false,
