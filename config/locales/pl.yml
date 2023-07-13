@@ -399,8 +399,11 @@ pl:
         cancel: Anuluj
         confirm: Zawieś
         permanent_action: Cofnięcie zawieszenia nie przywróci żadnych danych ani związków.
+        preamble_html: Zamierzasz zawiesić <strong>%{domain}</strong> wraz z subdomenami.
+        remove_all_data: Usunie to wszystkie treści, media, i dane profilów kont tej domeny z twojego serwera.
         stop_communication: Twój serwer przestanie komunikować się z tymi serwerami.
         title: Potwierdź blokadę domeny %{domain}
+        undo_relationships: To usunie wszystkie związki obserwowania między kontami na tych serwerach i twoim.
       created_msg: Blokada domen jest przetwarzana
       destroyed_msg: Blokada domeny nie może zostać odwrócona
       domain: Domena
@@ -764,6 +767,9 @@ pl:
       branding:
         preamble: Marka Twojego serwera odróżnia go od innych serwerów w sieci. Informacje te mogą być wyświetlane w różnych środowiskach, takich jak interfejs internetowy Mastodon, aplikacje natywne, w podglądzie linków na innych stronach internetowych i w aplikacjach do wysyłania wiadomości itd. Z tego względu najlepiej zachować jasną, krótką i zwięzłą informację.
         title: Marka
+      captcha_enabled:
+        desc_html: Wymaga użycia zewnętrznych skryptów hCaptcha, co może negatywnie wpływać na bezpieczeństwo i prywatność. <strong>Może również przyczynić się do znaczącego utrudnienia procesu rejestracji niektórym, np. niepełnosprawnym, osobom.</strong> Dlatego sugeruje się używanie zaproszeń bądź ręcznie potwierdzanie kont.
+        title: W celu potwierdzenia ich kont wymagaj rozwiązania zadania CAPTCHA przez nowych użytkowników
       content_retention:
         preamble: Kontroluj, jak treści generowane przez użytkownika są przechowywane w Mastodon.
         title: Retencja treści
@@ -1022,6 +1028,8 @@ pl:
   auth:
     apply_for_account: Poproś o założenie konta
     captcha_confirmation:
+      help_html: Jeżeli masz problemy z rozwiązywaniem zadań CAPTCHA, możemy pomóc ci po kontakcie z nami pod adresem %{email}.
+      hint_html: Jeszcze jedno! Potrzebujemy potwierdzić twoje człowieczeństwo, żeby ograniczyć spam. Rozwiąż poniższą CAPTCHA-ę i naciśnij "Kontynuuj".
       title: Kontrola bezpieczeństwa
     confirmations:
       wrong_email_hint: Jeśli ten adres e-mail nie jest poprawny, możesz go zmienić w ustawieniach konta.
@@ -1061,6 +1069,7 @@ pl:
       back: Wróć
       invited_by: 'Możesz dołączyć do %{domain} dzięki zaproszeniu, które otrzymano od:'
       preamble: Są one ustawione i wymuszone przez moderatorów %{domain}.
+      preamble_invited: Zanim przejdziesz dalej, rozważ zasady podstawowe ustalone przez moderatorów %{domain}.
       title: Kilka podstawowych zasad.
       title_invited: Otrzymano zaproszenie.
     security: Bezpieczeństwo
@@ -1315,6 +1324,16 @@ pl:
       overwrite_long: Zastąp obecne wpisy nowymi
     overwrite_preambles:
       blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
+      bookmarks_html: Zamierzasz <strong>zastąpić swoje zakładki</strong> maksymalnie <strong>%{total_items} wpisami</strong> z <strong>%{filename}</strong>.
+      domain_blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków domen</strong> maksymalnie <strong>%{total_items} domenami</strong> z <strong>%{filename}</strong>.
+      following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong> i <strong>przestać obserwować kogokolwiek innego</strong>.
+      muting_html: Zamierzasz <strong>zastąpić swoją wyciszonych</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
+      bookmarks_html: Zamierzasz dodać maksymalnie <strong>%{total_items} wpisów</strong> do twoich <strong>zakładek</strong> z <strong>%{filename}</strong>.
+      domain_blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} domen</strong> z <strong>%{filename}</strong>.
+      following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
+      muting_html: Zamierzasz <strong>wyciszyć</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
     preface: Możesz zaimportować pewne dane (np. lista kont, które obserwujesz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
     recent_imports: Ostatnie importy
     states:
@@ -1382,7 +1401,18 @@ pl:
     title: Historia uwierzytelniania
   mail_subscriptions:
     unsubscribe:
+      action: Tak, wypisuję się
       complete: Anulowano subskrypcję
+      confirmation_html: Czy na pewno chcesz wypisać się z otrzymywania %{type} z Mastodona na %{domain} na adres %{email}? Zawsze możesz zapisać się ponownie ze strony <a href="%{settings_path}">ustawień powiadomień mejlowych</a>.
+      emails:
+        notification_emails:
+          favourite: powiadomień mejlowych o polubieniach
+          follow: powiadomień mejlowych o obserwujących
+          follow_request: mejli o prośbach o możliwość obserwowania
+          mention: powiadomień mejlowych o wspomnieniach
+          reblog: powiadomień mejlowych o podbiciach
+      resubscribe_html: W przypadku przypadkowego wypisania możesz zapisać się ponownie z <a href="%{settings_path}">ustawień powiadomień mejlowych</a>.
+      success_html: Już nie będziesz otrzymywać %{type} z Mastodona na %{domain} na adres %{email}.
       title: Anuluj subskrypcję
   media_attachments:
     validations:
@@ -1815,7 +1845,10 @@ pl:
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowano jako:'
   verification:
+    extra_instructions_html: <strong>Wskazówka:</strong> link na twojej stronie może być niewidoczny. Istotną częścią, zapobiegającą podszywaniu na stronach z treściami dodawanymi przez użytkowników, jest <code>rel="me"</code>. Zamiast tagu <code>a</code> możesz w nagłówek osadzić tag <code>link</code>. Oba jednak muszą być dostępne bez JavaScriptu.
     here_is_how: Oto jak
+    hint_html: "<strong>Weryfikacja tożsamości na Mastodonie jest dla wszystkich,</strong> oparta na otwartych standardach, i darmowa. Potrzebna ci tylko osobista strona WWW po której inni cię rozpoznają – kiedy linkujesz do niej z twojego profilu, sprawdzamy czy ona linkuje doń z powrotem, i wskazujemy to wizualnie."
+    instructions_html: Skopiuj poniższy kod HTML i wklej go na swoją stronę. Potem dodaj link do twojej strony do jednego z wolnych pól na profilu z zakładki "Edytuj profil".
     verification: Weryfikacja
     verified_links: Twoje zweryfikowane linki
   webauthn_credentials:
