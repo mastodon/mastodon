@@ -22,7 +22,7 @@ module AccountsHelper
   def account_action_button(account)
     return if account.memorial? || account.moved?
 
-    link_to ActivityPub::TagManager.instance.url_for(account), class: 'button', target: '_new' do
+    link_to ActivityPub::TagManager.instance.url_for(account), class: 'button logo-button', target: '_new' do
       safe_join([logo_as_symbol, t('accounts.follow')])
     end
   end
