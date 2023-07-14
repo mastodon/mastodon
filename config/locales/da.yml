@@ -741,6 +741,7 @@ da:
         title: Branding
       captcha_enabled:
         desc_html: Dette er afhængig af eksterne scripts fra hCaptcha, som kan være en sikkerhed og privatlivets fred. Derudover kan <strong>dette gøre registreringsprocessen betydeligt mindre tilgængelig for nogle (især deaktiveret) personer</strong>. Af disse grunde bedes De overveje alternative foranstaltninger såsom godkendelsesbaseret eller inviteret til at blive registreret.
+        title: Kræv nye brugere for at løse en CAPTCHA for at bekræfte deres konto
       content_retention:
         preamble: Styr, hvordan Mastodon gemmer brugergenereret indhold.
         title: Indholdsopbevaring
@@ -976,6 +977,7 @@ da:
     notification_preferences: Skift e-mailpræferencer
     salutation: "%{name}"
     settings: 'Skift e-mailpræferencer: %{link}'
+    unsubscribe: Opsig abonnement
     view: 'Vis:'
     view_profile: Vis profil
     view_status: Vis status
@@ -989,6 +991,10 @@ da:
     your_token: Dit adgangstoken
   auth:
     apply_for_account: Anmod om en konto
+    captcha_confirmation:
+      help_html: Hvis du har problemer med at løse CAPTCHA, kan du komme i kontakt med os via %{email} og vi kan hjælpe dig.
+      hint_html: Bare en ting mere! Vi er nødt til at bekræfte, at du er et menneske (dette er, så vi kan holde spam ud!). Løs CAPTCHA nedenfor og klik på "Fortsæt".
+      title: Sikkerhedstjek
     confirmations:
       wrong_email_hint: Er denne e-mailadresse ikke korrekt, kan den ændres i kontoindstillinger.
     delete_account: Slet konto
@@ -1025,8 +1031,11 @@ da:
     rules:
       accept: Acceptér
       back: Tilbage
+      invited_by: 'Du kan tilmelde dig %{domain} takket være den invitation, du har modtaget fra:'
       preamble: Disse er opsat og håndhæves af %{domain}-moderatorerne.
+      preamble_invited: Før du fortsætter, bedes du overveje de grundregler, der er fastsat af moderatorerne af %{domain}.
       title: Nogle grundregler.
+      title_invited: Du er blevet spiddet!
     security: Sikkerhed
     set_new_password: Opsæt ny adgangskode
     setup:
@@ -1139,6 +1148,11 @@ da:
       your_appeal_rejected: Din appel er afvist
   domain_validator:
     invalid_domain: er ikke et gyldigt domænenavn
+  edit_profile:
+    basic_information: Oplysninger
+    hint_html: "<strong>Tilpas hvad folk ser på din offentlige profil og ved siden af dine indlæg.</strong> Andre personer vil mere sandsynligt følge dig tilbage og interagere med dig, når du har en udfyldt profil og et profilbillede."
+    other: Andre
+    safety_and_privacy: Sikkerhed og Privatliv
   errors:
     '400': Din indsendte anmodning er ugyldig eller fejlbehæftet.
     '403': Du har ikke tilladelse til at se denne side.
@@ -1333,6 +1347,18 @@ da:
     failed_sign_in_html: Mislykket indlogning med %{method} fra %{ip} (%{browser})
     successful_sign_in_html: Gennemført indlogning med %{method} fra %{ip} (%{browser})
     title: Godkendelseshistorik
+  mail_subscriptions:
+    unsubscribe:
+      action: Ja, afmeld
+      complete: Frameldt
+      confirmation_html: Er du sikker på, at du vil afmelde dig fra at modtage %{type} for Mastodon på %{domain} til din e-mail på %{email}? Du kan altid gentilmelde dig dine <a href="%{settings_path}">e-mail-notifikationsindstillinger</a>.
+      emails:
+        notification_emails:
+          favourite: favorit notifikations e-mails
+          follow: favorit notifikations e-mails
+          follow_request: følg anmodning e-mails
+          mention: favorit notifikations e-mails
+          reblog: favorit notifikations e-mails
   media_attachments:
     validations:
       images_and_video: En video kan ikke vedhæftes et indlæg med billedindhold
