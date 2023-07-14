@@ -29,6 +29,8 @@ module Subscription
       session = ::Stripe::Checkout::Session.create({
         line_items: items,
         mode: 'subscription',
+        client_reference_id: @user.id,
+        allow_promotion_codes: true,
         success_url: settings_subscription.subscriptions_url,
       })
       Subscription::CheckoutSession.create(session_id: session.id, user_id: @user.id)
