@@ -298,7 +298,7 @@ namespace :api, format: false do
 
   namespace :web do
     resource :settings, only: [:update]
-    resource :embed, only: [:create]
+    resources :embeds, only: [:show]
     resources :push_subscriptions, only: [:create] do
       member do
         put :update

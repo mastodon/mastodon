@@ -1,29 +1,6 @@
 {
   "ignored_warnings": [
     {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "19df3740b8d02a9fe0eb52c939b4b87d3a2a591162a6adfa8d64e9c26aeebe6d",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/models/status.rb",
-      "line": 106,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "result.joins(\"INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Status",
-        "method": null
-      },
-      "user_input": "id",
-      "confidence": "Weak",
-      "cwe_id": [
-        89
-      ],
-      "note": ""
-    },
-    {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 2,
       "fingerprint": "71cf98c8235b5cfa9946b5db8fdc1a2f3a862566abb34e4542be6f3acae78233",
@@ -206,6 +183,6 @@
       "note": ""
     }
   ],
-  "updated": "2023-07-11 16:08:58 +0200",
+  "updated": "2023-07-12 11:20:51 -0400",
   "brakeman_version": "6.0.0"
 }

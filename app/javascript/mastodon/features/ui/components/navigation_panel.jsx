@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { WordmarkLogo } from 'mastodon/components/logo';
 import NavigationPortal from 'mastodon/components/navigation_portal';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
+import { transientSingleColumn } from 'mastodon/is_mobile';
 
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
@@ -29,6 +30,7 @@ const messages = defineMessages({
   followsAndFollowers: { id: 'navigation_bar.follows_and_followers', defaultMessage: 'Follows and followers' },
   about: { id: 'navigation_bar.about', defaultMessage: 'About' },
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
+  advancedInterface: { id: 'navigation_bar.advanced_interface', defaultMessage: 'Open in advanced web interface' },
 });
 
 class NavigationPanel extends Component {
@@ -54,6 +56,12 @@ class NavigationPanel extends Component {
       <div className='navigation-panel'>
         <div className='navigation-panel__logo'>
           <Link to='/' className='column-link column-link--logo'><WordmarkLogo /></Link>
+
+          {transientSingleColumn && (
+            <a href={`/deck${location.pathname}`} className='button button--block'>
+              {intl.formatMessage(messages.advancedInterface)}
+            </a>
+          )}
           <hr />
         </div>
 

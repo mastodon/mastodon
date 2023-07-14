@@ -79,7 +79,6 @@ const mapStateToProps = state => ({
   hasComposingText: state.getIn(['compose', 'text']).trim().length !== 0,
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 4,
-  layout_local_setting: state.getIn(['local_settings', 'layout']),
   isWide: state.getIn(['local_settings', 'stretch']),
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
   unreadNotifications: state.getIn(['notifications', 'unread']),
@@ -134,11 +133,11 @@ class SwitchingColumnsArea extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     location: PropTypes.object,
-    mobile: PropTypes.bool,
+    singleColumn: PropTypes.bool,
   };
 
   UNSAFE_componentWillMount () {
-    if (this.props.mobile) {
+    if (this.props.singleColumn) {
       document.body.classList.toggle('layout-single-column', true);
       document.body.classList.toggle('layout-multiple-columns', false);
     } else {
@@ -152,9 +151,9 @@ class SwitchingColumnsArea extends PureComponent {
       this.node.handleChildrenContentChange();
     }
 
-    if (prevProps.mobile !== this.props.mobile) {
-      document.body.classList.toggle('layout-single-column', this.props.mobile);
-      document.body.classList.toggle('layout-multiple-columns', !this.props.mobile);
+    if (prevProps.singleColumn !== this.props.singleColumn) {
+      document.body.classList.toggle('layout-single-column', this.props.singleColumn);
+      document.body.classList.toggle('layout-multiple-columns', !this.props.singleColumn);
     }
   }
 
@@ -165,16 +164,17 @@ class SwitchingColumnsArea extends PureComponent {
   };
 
   render () {
-    const { children, mobile } = this.props;
+    const { children, singleColumn } = this.props;
     const { signedIn } = this.context.identity;
+    const pathName = this.props.location.pathname;
 
     let redirect;
 
     if (signedIn) {
-      if (mobile) {
+      if (singleColumn) {
         redirect = <Redirect from='/' to='/home' exact />;
       } else {
-        redirect = <Redirect from='/' to='/getting-started' exact />;
+        redirect = <Redirect from='/' to='/deck/getting-started' exact />;
       }
     } else if (singleUserMode && owner && initialState?.accounts[owner]) {
       redirect = <Redirect from='/' to={`/@${initialState.accounts[owner].username}`} exact />;
@@ -185,9 +185,12 @@ class SwitchingColumnsArea extends PureComponent {
     }
 
     return (
-      <ColumnsAreaContainer ref={this.setRef} singleColumn={mobile}>
+      <ColumnsAreaContainer ref={this.setRef} singleColumn={singleColumn}>
         <WrappedSwitch>
           {redirect}
+
+          {singleColumn ? <Redirect from='/deck' to='/home' exact /> : null}
+          {singleColumn && pathName.startsWith('/deck/') ? <Redirect from={pathName} to={pathName.slice(5)} /> : null}
 
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
@@ -256,7 +259,6 @@ class UI extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
-    layout_local_setting: PropTypes.string,
     isWide: PropTypes.bool,
     systemFontUi: PropTypes.bool,
     isComposing: PropTypes.bool,
@@ -381,7 +383,7 @@ class UI extends Component {
   });
 
   handleResize = () => {
-    const layout = layoutFromWindow(this.props.layout_local_setting);
+    const layout = layoutFromWindow();
 
     if (layout !== this.props.layout) {
       this.handleLayoutChange.cancel();
@@ -442,19 +444,6 @@ class UI extends Component {
     if (this.visibilityChange !== undefined) {
       document.addEventListener(this.visibilityChange, this.handleVisibilityChange, false);
       this.handleVisibilityChange();
-    }
-  }
-
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    if (nextProps.layout_local_setting !== this.props.layout_local_setting) {
-      const layout = layoutFromWindow(nextProps.layout_local_setting);
-
-      if (layout !== this.props.layout) {
-        this.handleLayoutChange.cancel();
-        this.props.dispatch(changeLayout(layout));
-      } else {
-        this.handleLayoutChange();
-      }
     }
   }
 
@@ -667,7 +656,7 @@ class UI extends Component {
 
           <Header />
 
-          <SwitchingColumnsArea location={location} mobile={layout === 'mobile' || layout === 'single-column'}>
+          <SwitchingColumnsArea location={location} singleColumn={layout === 'mobile' || layout === 'single-column'}>
             {children}
           </SwitchingColumnsArea>
 

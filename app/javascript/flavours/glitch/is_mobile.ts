@@ -1,30 +1,21 @@
 import { supportsPassiveEvents } from 'detect-passive-events';
 
-import { forceSingleColumn } from 'flavours/glitch/initial_state';
+import { forceSingleColumn, hasMultiColumnPath } from './initial_state';
 
 const LAYOUT_BREAKPOINT = 630;
 
 export const isMobile = (width: number) => width <= LAYOUT_BREAKPOINT;
 
+export const transientSingleColumn = !forceSingleColumn && !hasMultiColumnPath;
+
 export type LayoutType = 'mobile' | 'single-column' | 'multi-column';
-export const layoutFromWindow = (layout_local_setting: string): LayoutType => {
-  switch (layout_local_setting) {
-    case 'multiple':
-      return 'multi-column';
-    case 'single':
-      if (isMobile(window.innerWidth)) {
-        return 'mobile';
-      } else {
-        return 'single-column';
-      }
-    default:
-      if (isMobile(window.innerWidth)) {
-        return 'mobile';
-      } else if (forceSingleColumn) {
-        return 'single-column';
-      } else {
-        return 'multi-column';
-      }
+export const layoutFromWindow = (): LayoutType => {
+  if (isMobile(window.innerWidth)) {
+    return 'mobile';
+  } else if (!forceSingleColumn && !transientSingleColumn) {
+    return 'multi-column';
+  } else {
+    return 'single-column';
   }
 };
 

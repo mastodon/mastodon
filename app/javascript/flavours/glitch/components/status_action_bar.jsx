@@ -199,9 +199,8 @@ class StatusActionBar extends ImmutablePureComponent {
 
   render () {
     const { status, intl, withDismiss, withCounters, showReplyCount, scrollKey } = this.props;
-    const { permissions } = this.context.identity;
+    const { permissions, signedIn } = this.context.identity;
 
-    const anonymousAccess    = !me;
     const mutingConversation = status.get('muted');
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
     const pinnableStatus     = ['public', 'unlisted', 'private'].includes(status.get('visibility'));
@@ -225,53 +224,55 @@ class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.share), action: this.handleShareClick });
     }
 
-    if (publicStatus) {
+    if (publicStatus && (signedIn || !isRemote)) {
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
     }
 
-    menu.push(null);
-
-    if (writtenByMe && pinnableStatus) {
-      menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
-      menu.push(null);
-    }
-
-    if (writtenByMe || withDismiss) {
-      menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
-      menu.push(null);
-    }
-
-    if (writtenByMe) {
-      menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
-      menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick, dangerous: true });
-      menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick, dangerous: true });
-    } else {
-      menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
-      menu.push({ text: intl.formatMessage(messages.direct, { name: status.getIn(['account', 'username']) }), action: this.handleDirectClick });
+    if (signedIn) {
       menu.push(null);
 
-      if (!this.props.onFilter) {
-        menu.push({ text: intl.formatMessage(messages.filter), action: this.handleFilterClick, dangerous: true });
+      if (writtenByMe && pinnableStatus) {
+        menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
         menu.push(null);
       }
 
-      menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick, dangerous: true });
-      menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick, dangerous: true });
-      menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport, dangerous: true });
-
-      if (((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && (accountAdminLink || statusAdminLink)) || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION)) {
+      if (writtenByMe || withDismiss) {
+        menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
         menu.push(null);
-        if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
-          if (accountAdminLink !== undefined) {
-            menu.push({ text: intl.formatMessage(messages.admin_account, { name: status.getIn(['account', 'username']) }), href: accountAdminLink(status.getIn(['account', 'id'])) });
-          }
-          if (statusAdminLink !== undefined) {
-            menu.push({ text: intl.formatMessage(messages.admin_status), href: statusAdminLink(status.getIn(['account', 'id']), status.get('id')) });
-          }
+      }
+
+      if (writtenByMe) {
+        menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
+        menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick, dangerous: true });
+        menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick, dangerous: true });
+      } else {
+        menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
+        menu.push({ text: intl.formatMessage(messages.direct, { name: status.getIn(['account', 'username']) }), action: this.handleDirectClick });
+        menu.push(null);
+
+        if (!this.props.onFilter) {
+          menu.push({ text: intl.formatMessage(messages.filter), action: this.handleFilterClick, dangerous: true });
+          menu.push(null);
         }
-        if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
-          const domain = status.getIn(['account', 'acct']).split('@')[1];
-          menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: `/admin/instances/${domain}` });
+
+        menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick, dangerous: true });
+        menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick, dangerous: true });
+        menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport, dangerous: true });
+
+        if (((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && (accountAdminLink || statusAdminLink)) || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION)) {
+          menu.push(null);
+          if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
+            if (accountAdminLink !== undefined) {
+              menu.push({ text: intl.formatMessage(messages.admin_account, { name: status.getIn(['account', 'username']) }), href: accountAdminLink(status.getIn(['account', 'id'])) });
+            }
+            if (statusAdminLink !== undefined) {
+              menu.push({ text: intl.formatMessage(messages.admin_status), href: statusAdminLink(status.getIn(['account', 'id']), status.get('id')) });
+            }
+          }
+          if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
+            const domain = status.getIn(['account', 'acct']).split('@')[1];
+            menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: `/admin/instances/${domain}` });
+          }
         }
       }
     }
@@ -313,14 +314,13 @@ class StatusActionBar extends ImmutablePureComponent {
         />
         <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon={reblogIcon} onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
-        <IconButton className='status__action-bar-button bookmark-icon' disabled={anonymousAccess} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />
+        <IconButton className='status__action-bar-button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />
 
         {filterButton}
 
         <div className='status__action-bar-dropdown'>
           <DropdownMenuContainer
             scrollKey={scrollKey}
-            disabled={anonymousAccess}
             status={status}
             items={menu}
             icon='ellipsis-h'
