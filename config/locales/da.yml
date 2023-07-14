@@ -381,6 +381,15 @@ da:
       undo: Forbyd federering med domæne
     domain_blocks:
       add_new: Tilføj ny domæneblokering
+      confirm_suspension:
+        cancel: Fortryd
+        confirm: Suspendér
+        permanent_action: Fortrydelse af suspensionen vil ikke genoprette nogen data eller sammenhæng.
+        preamble_html: Du er ved at suspendere <strong>%{domain}</strong> og dets underdomæner.
+        remove_all_data: Dette vil fjerne alt indhold, medier og profildata for dette domænes konti fra din server.
+        stop_communication: Din server vil stoppe kommunikationen med disse servere.
+        title: Annullér domæneblokering for domænet %{domain}
+        undo_relationships: Dette vil fortryde ethvert følgeforhold mellem konti for disse servere og din.
       created_msg: Domæneblokering under behandling
       destroyed_msg: Domæneblokering er blevet fjernet
       domain: Domæne
@@ -730,6 +739,8 @@ da:
       branding:
         preamble: Serverens branding adskiller den fra andres i netværket. Oplysningerne kan vises på tværs af div. miljøer, såsom Mastodon-webgrænsefladen, dedikerede applikationer, i-link forhåndsvisninger på andre websteder og i besked-apps mv. Oplysningerne bør derfor være klare og detaljerede, men samtidig kortfattede.
         title: Branding
+      captcha_enabled:
+        desc_html: Dette er afhængig af eksterne scripts fra hCaptcha, som kan være en sikkerhed og privatlivets fred. Derudover kan <strong>dette gøre registreringsprocessen betydeligt mindre tilgængelig for nogle (især deaktiveret) personer</strong>. Af disse grunde bedes De overveje alternative foranstaltninger såsom godkendelsesbaseret eller inviteret til at blive registreret.
       content_retention:
         preamble: Styr, hvordan Mastodon gemmer brugergenereret indhold.
         title: Indholdsopbevaring
