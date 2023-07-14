@@ -1351,6 +1351,7 @@ fi:
     unsubscribe:
       action: Kyllä, peru tilaus
       complete: Tilaus lopetettiin
+      confirmation_html: Oletko varma, että haluat lopettaa käyttäjän %{type} vastaanottamisen Mastodonista %{domain} sähköpostiisi osoitteessa %{email}? Voit aina tilata <a href="%{settings_path}">sähköposti-ilmoitusasetuksesi</a> uudelleen .
       emails:
         notification_emails:
           favourite: sähköpostit ilmoituksille
@@ -1358,6 +1359,8 @@ fi:
           follow_request: seuraa pyyntöjä sähköpostiin
           mention: mainitse sähköpostin ilmoitukset
           reblog: tehosta sähköpostien ilmoituksia
+      resubscribe_html: Jos olet perunut tilauksen erehdyksellä, voit tilata uudelleen <a href="%{settings_path}">sähköpostin ilmoitusasetuksistasi</a>.
+      success_html: Et enää saa %{type} Mastodonilta %{domain} sähköpostiisi osoitteeseen %{email}.
       title: Lopeta tilaus
   media_attachments:
     validations:
@@ -1778,6 +1781,10 @@ fi:
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut tilillä:'
   verification:
+    extra_instructions_html: <strong>Vihje:</strong> Sivuston linkki voi olla näkymätön. Tärkeä osa on <code>rel="me"</code> joka estää personoinnin verkkosivustoilla, joilla on käyttäjän luomaa sisältöä. Voit jopa käyttää <code>linkkiä</code> tag sivun otsikossa sen sijaan <code>a</code>, mutta HTML:n on oltava käytettävissä suorittamatta JavaScriptiä.
+    here_is_how: Näin voit tehdä sen
+    hint_html: "<strong>Henkilöllisyytesi varmentaminen Mastodonissa on kaikille.</strong> Perustuu avoimiin web-standardeihin, nyt ja ikuisesti ilmaiseksi. Kaikki mitä tarvitset on henkilökohtainen sivusto, että ihmiset tunnistavat sinut. Kun linkit tälle sivustolle profiilistasi, tarkistamme, että sivusto linkit takaisin profiiliisi ja näyttää visuaalinen indikaattori sitä."
+    instructions_html: Kopioi ja liitä alla oleva koodi verkkosivusi HTML:ään. Lisää sitten sivustosi osoite johonkin ylimääräisestä kentästä profiilissasi "Muokkaa profiilia" -välilehdestä ja tallenna muutokset.
     verification: Vahvistus
     verified_links: Vahvistetut linkkisi
   webauthn_credentials:
