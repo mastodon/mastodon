@@ -339,7 +339,9 @@ body.layout-multiple-columns {
   width: 50px;
 }
 
-.layout-multiple-columns .ui__header__logo svg {
+.layout-multiple-columns .ui__header__logo img,
+.layout-multiple-columns .ui__header__logo svg,
+.layout-single-column .ui__header__logo .logo {
   display: none;
 }
 

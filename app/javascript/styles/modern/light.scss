@@ -19,6 +19,12 @@ $ui-primary-color: #9bcbed;
 $ui-secondary-color: $classic-base-color !default;
 $ui-highlight-color: #e7b01c;
 
+$ui-button-background-color: darken($ui-highlight-color, 2%) !default;
+$ui-button-focus-background-color: $ui-highlight-color !default;
+$ui-button-secondary-border-color: $ui-highlight-color !default;
+$ui-button-tertiary-color: $ui-highlight-color !default;
+$ui-button-tertiary-border-color: $ui-highlight-color !default;
+
 $primary-text-color: $black !default;
 $darker-text-color: $classic-base-color !default;
 $dark-text-color: #444b5d;
