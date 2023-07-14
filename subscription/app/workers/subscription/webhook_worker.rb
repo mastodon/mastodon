@@ -19,7 +19,7 @@ module Subscription
         Subscription::StripeSubscription.create(
           user_id: session.client_reference_id,
           customer_id: session.customer,
-          subscription_id: session.subscription,
+          subscription_id: session.subscription.id,
           status: subscription.status,
           invite_id: invite.id,
         )
