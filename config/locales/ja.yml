@@ -726,6 +726,7 @@ ja:
         preamble: サーバーのブランディングは、ネットワーク上の他のサーバーと区別するためのものです。この情報は、Mastodon の Web インターフェース、ネイティブアプリケーション、他の Web サイトやメッセージングアプリのリンクプレビューなど、様々な所で表示される可能性があります。このため、明確で短く、簡潔に記載することをおすすめします。
         title: ブランディング
       captcha_enabled:
+        desc_html: これは、セキュリティとプライバシーの懸念かもしれないhCaptcha から外部スクリプトに依存します。 加えて、 <strong>これは、登録プロセスを一部の人々(特に無効な)のアクセスが大幅に少ないようにすることができます</strong>. これらの理由から、承認ベースまたは招待状ベースの登録などの代替手段を検討してください。
         title: 新規ユーザーのアカウント確認にCHAPCHAを要求する
       content_retention:
         preamble: ユーザーが生成したコンテンツがどのように Mastodon に保存されるかを管理します。
@@ -1324,6 +1325,7 @@ ja:
     unsubscribe:
       action: はい、購読解除します
       complete: 購読解除済み
+      confirmation_html: Jeni i sigurt se doni të shpajtoheni prej marrjes së %{type} për Mastodon në %{domain} te email-i juaj në %{email}? Mundeni përherë të ripajtoheni, që prej <a href="%{settings_path}">rregullimeve tuaja për njoftime me email</a>.
       emails:
         notification_emails:
           favourite: お気に入りの通知メール
@@ -1332,6 +1334,7 @@ ja:
           mention: 返信通知のメール送信
           reblog: ブースト通知のメール送信
       resubscribe_html: 間違って配信を停止した場合は、 <a href="%{settings_path}">メール通知設定</a>から再登録できます。
+      success_html: '%{type} に %{domain} のMastodonから %{email}のメールが届かなくなりました。'
       title: 購読の解除
   media_attachments:
     validations:
