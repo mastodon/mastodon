@@ -1,0 +1,14 @@
+%tr
+  - if invite.valid_for_use?
+    %td
+      = fa_icon 'user fw'
+      = invite.uses
+      = " / #{invite.max_uses}" unless invite.max_uses.nil?
+      invites used
+  - else
+    %td{ colspan: 2 }
+      = t('invites.expired')
+  %td
+    %br
+    = public_invite_url(invite_code: invite.code)
+

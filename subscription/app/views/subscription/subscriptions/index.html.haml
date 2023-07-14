@@ -50,12 +50,14 @@
               .permissions-list__item__icon
                 = fa_icon('cc-stripe')
               .permissions-list__item__text
-                .permissions-list__item__text__title
-                  = sub.subscription_id
-              .permissions-list__item__text
                 .permissions-list__item__text__type
                   = sub.status
               .permissions-list__item__text
+                .permissions-list__item__text__title
+                  = sub.description
+                - if sub.size > 0 && sub.invite.present?
+                  .permissions-list__item__text
+                    = render sub.invite
+              .permissions-list__item__text
                 .permissions-list__item__text__type
                   = link_to "Manage", @urls[sub.id], class: 'button'
- 
