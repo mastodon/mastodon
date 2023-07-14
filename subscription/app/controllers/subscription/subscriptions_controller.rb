@@ -31,6 +31,7 @@ module Subscription
         mode: 'subscription',
         success_url: settings_subscription.subscriptions_url,
       })
+      Subscription::CheckoutSession.create(session_id: session.id, user_id: @user.id)
 
       redirect_to session.url, status: 303
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_30_235740) do
+ActiveRecord::Schema.define(version: 2023_07_14_000915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -988,6 +988,13 @@ ActiveRecord::Schema.define(version: 2023_06_30_235740) do
     t.bigint "tag_id", null: false
     t.index ["status_id"], name: "index_statuses_tags_on_status_id"
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true
+  end
+
+  create_table "subscription_checkout_sessions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "session_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "subscription_stripe_subscriptions", force: :cascade do |t|
