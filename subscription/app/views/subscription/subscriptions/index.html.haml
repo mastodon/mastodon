@@ -55,7 +55,7 @@
               .permissions-list__item__text
                 .permissions-list__item__text__title
                   = sub.description
-                - if sub.size > 0 && sub.invite.present?
+                - if sub.size > 1 && sub.invite.present?
                   .permissions-list__item__text
                     = render sub.invite
               .permissions-list__item__text
