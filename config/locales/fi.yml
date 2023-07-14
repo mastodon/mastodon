@@ -389,6 +389,7 @@ fi:
         remove_all_data: Tämä poistaa palvelimeltasi kaiken sisällön, median ja profiilitiedot tämän verkkotunnuksen tileiltä.
         stop_communication: Palvelimesi lopettaa näiden palvelinten viestinnän.
         title: Vahvista verkkotunnuksen %{domain} esto
+        undo_relationships: Tämä kumoaa näiden palvelimien ja sinun tilien välisen seurannan.
       created_msg: Verkkotunnuksen estoa käsitellään
       destroyed_msg: Verkkotunnuksen esto on peruttu
       domain: Verkkotunnus
@@ -739,6 +740,7 @@ fi:
         preamble: Palvelimesi brändäys erottaa sen muista verkon palvelimista. Nämä tiedot voidaan näyttää useissa eri ympäristöissä, kuten Mastodonin käyttöliittymässä, sovelluksissa, linkkien esikatselu muilla sivustoilla ja viestisovelluksien sisällä ja niin edelleen. Tästä syystä on parasta pitää nämä tiedot selkeinä, lyhyinä ja ytimekkäinä.
         title: Brändäys
       captcha_enabled:
+        desc_html: Tämä perustuu ulkoisiin skripteihin hCaptchasta, mikä voi olla turvallisuus- ja yksityisyysongelma. Lisäksi <strong>tämä voi tehdä rekisteröinnin ihmisille huomattavasti (erityisesti vammaisten) helpommaksi</strong>. Harkitse vaihtoehtoisia toimenpiteitä, kuten hyväksymisperusteista tai kutsupohjaista rekisteröintiä.
         title: Vaadi uusia käyttäjiä vahvistaamaan tilinsä ratkaisemalla CAPTCHA-vahvistus
       content_retention:
         preamble: Määritä, miten käyttäjän luoma sisältö tallennetaan Mastodoniin.
@@ -1148,6 +1150,7 @@ fi:
     invalid_domain: ei ole kelvollinen toimialueen nimi
   edit_profile:
     basic_information: Perustiedot
+    hint_html: "<strong>Mukauta mitä ihmiset näkevät julkisessa profiilissasi ja sinun julkaisujen vieressä.</strong> Ihmiset todennäköisesti seuraavat ja kirjoittavat sinulle, kun sinulla on täytetty profiili ja profiilikuva."
     other: Muu
     safety_and_privacy: Turvallisuus ja yksityisyys
   errors:
@@ -1348,6 +1351,13 @@ fi:
     unsubscribe:
       action: Kyllä, peru tilaus
       complete: Tilaus lopetettiin
+      emails:
+        notification_emails:
+          favourite: sähköpostit ilmoituksille
+          follow: seuraa sähköpostin ilmoituksia
+          follow_request: seuraa pyyntöjä sähköpostiin
+          mention: mainitse sähköpostin ilmoitukset
+          reblog: tehosta sähköpostien ilmoituksia
       title: Lopeta tilaus
   media_attachments:
     validations:
