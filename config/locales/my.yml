@@ -726,6 +726,7 @@ my:
         preamble: သင့်ဆာဗာအကြောင်းကို ကွန်ရက်အတွင်းရှိ အခြားဆာဗာများနှင့် ကွဲပြားစေရန်ဆောင်ရွက်ပါ။ Mastodon ၏ ဝဘ်အင်တာဖေ့စ်၊ မူရင်းအက်လီကေးရှင်းများ၊ အခြားဝဘ်ဆိုက်များပေါ်ရှိ လင့်ခ်အစမ်းကြည့်ရှုခြင်းများနှင့် မက်ဆေ့ခ်ျပေးပို့ခြင်းအက်ပ်များအတွင်း အစရှိသည့် အမျိုးမျိုးတွင် ဤအချက်အလက်များကို ပြသနိုင်ပါသည်။ ထို့ကြောင့် ဤအချက်အလက်များကို တိုတောင်းရှင်းလင်းစွာ ရေးသင့်ပါသည်။
         title: ခေါင်းစဉ်တပ်ခြင်း
       captcha_enabled:
+        desc_html: Гэта функцыянальнасць залежыць ад знешніх скрыптоў hCaptcha, што можа быць праблемай бяспекі і прыватнасці. Акрамя таго, <strong>гэта можа зрабіць працэс рэгістрацыі значна менш даступным для некаторых людзей, асабліва інвалідаў</strong>. Па гэтых прычынах, калі ласка, разгледзьце альтэрнатыўныя меры, такія як рэгістрацыя на аснове зацвярджэння або запрашэння.
         title: '၎င်းတို့၏အကောင့်ကိုအတည်ပြုရန်အတွက် CAPTCHA ဖြေရှင်းရန် အသုံးပြုသူအသစ်များ လိုအပ်သည်'
       content_retention:
         preamble: Mastodon တွင် အသုံးပြုသူဖန်တီးထားသော အကြောင်းအရာများ မည်သို့သိမ်းဆည်းမည်ကို ထိန်းချုပ်ပါ။
@@ -1748,7 +1749,9 @@ my:
     seamless_external_login: ပြင်ပဝန်ဆောင်မှုမှတစ်ဆင့် အကောင့်ဝင်ထားသောကြောင့် စကားဝှက်နှင့် အီးမေးလ်သတ်မှတ်ချက်များကို မရနိုင်ပါ။
     signed_in_as: 'အဖြစ် အကောင့်ဝင်ခဲ့သည် -'
   verification:
+    extra_instructions_html: <strong>Gliocas:</strong>Faodaidh an ceangal air an làrach-lìn agad a bhith do-fhaicsinneach. ’S e <code>rel="me"</code> a tha sa phàirt chudromach a bhacas riochd cuideigin eile air làraichean-lìn le susbaint air a gintinn o chleachdaiche. ’S urrainn dhut fiù taga <code>link</code> a chleachdadh ann am bann-cinn na duilleige seach <code>a</code> ach feumaidh sinn an HTML ruigsinn gun a bhith a’ ruith JavaScript.
     here_is_how: ဘယ်လိုလဲ
+    hint_html: "<strong>Gheibh duine sam bith dearbhadh an aithne air Mastodon.</strong> Tha seo stèidhichte air stannardan-lìn fosgailte agus bidh e saor ’s an-asgaidh gu bràth. Chan fheum thu dad ach làrach-lìn phearsanta leis an aithnich daoine thu. Nuair a nì thu ceangal dhan làrach-lìn sin on phròifil agad, dearbhaidh sinn gu bheil an làrach-lìn a’ ceangal air ais dhan phròifil agad agus seallaidh sinn taisbeanair lèirsinneach oirre."
     instructions_html: သင့်ဝဘ်ဆိုဒ်ရှိ HTML တွင် အောက်ပါကုဒ်ကို ကူးယူပြီး ထည့်ပါ။ ထို့နောက် "ပရိုဖိုင်တည်းဖြတ်ရန်" တက်ဘ်မှ သင့်ပရိုဖိုင်ရှိ အပိုအကွက်များထဲမှ တစ်ခုထဲသို့ သင့်ဝဘ်ဆိုက်လိပ်စာကို ထည့်ကာ အပြောင်းအလဲများကို သိမ်းဆည်းပါ။
     verification: စိစစ်ခြင်း
     verified_links: အတည်ပြုထားသောလင့်ခ်များ
