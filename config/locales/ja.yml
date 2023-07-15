@@ -1323,18 +1323,18 @@ ja:
     title: 認証履歴
   mail_subscriptions:
     unsubscribe:
-      action: はい、購読解除します
-      complete: 購読解除済み
-      confirmation_html: Jeni i sigurt se doni të shpajtoheni prej marrjes së %{type} për Mastodon në %{domain} te email-i juaj në %{email}? Mundeni përherë të ripajtoheni, që prej <a href="%{settings_path}">rregullimeve tuaja për njoftime me email</a>.
+      action: 購読を解除する
+      complete: 購読を解除しました
+      confirmation_html: '%{domain} の Mastodon による %{email} への%{type}を購読解除しますか？ 再購読が必要になった場合は<a href="%{settings_path}">メール通知の設定</a>からいつでも再開できます。'
       emails:
         notification_emails:
-          favourite: お気に入りの通知メール
-          follow: 通知メールをフォローする
-          follow_request: フォローリクエストのメール送信
-          mention: 返信通知のメール送信
-          reblog: ブースト通知のメール送信
+          favourite: お気に入り登録の通知メール
+          follow: フォロー通知メール
+          follow_request: フォローリクエスト通知メール
+          mention: 返信の通知メール
+          reblog: ブーストの通知メール
       resubscribe_html: 間違って配信を停止した場合は、 <a href="%{settings_path}">メール通知設定</a>から再登録できます。
-      success_html: '%{type} に %{domain} のMastodonから %{email}のメールが届かなくなりました。'
+      success_html: '%{domain} の Mastodon から %{email} への%{type}の配信が停止されました。'
       title: 購読の解除
   media_attachments:
     validations:
