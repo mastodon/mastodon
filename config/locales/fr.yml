@@ -1360,6 +1360,8 @@ fr:
           mention: e-mails de notifications de mentions
           reblog: e-mails de notifications de boost
       resubscribe_html: Si vous vous êtes désabonné par erreur, vous pouvez vous réinscrire à partir de vos <a href="%{settings_path}">paramètres de notification par e-mail</a>.
+      success_html: Vous ne serez plus inscrits aux %{type} du Mastodon installé sur %{domain} à votre adresse %{email}.
+      title: Se désinscrire
   media_attachments:
     validations:
       images_and_video: Impossible de joindre une vidéo à un message contenant déjà des images
@@ -1475,6 +1477,7 @@ fr:
       expired: Ce sondage est déjà terminé
       invalid_choice: L'option de vote choisie n'existe pas
       over_character_limit: ne peuvent être plus long que %{max} caractères chacun
+      self_vote: Vous ne pouvez pas voter à vos propres sondages
       too_few_options: doit avoir plus qu’une proposition
       too_many_options: ne peut contenir plus de %{max} propositions
   preferences:
@@ -1778,6 +1781,9 @@ fr:
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
   verification:
+    extra_instructions_html: <strong>Astuce :</strong> Le lien sur votre site Web peut être invisible. La partie importante est <code>rel="me"</code> qui évite que soient pris en compte d’autres liens provenant de contenu générés par des utilisateurs tiers. Vous pouvez même utiliser une balise <code>link</code> dans l’en-tête de la page au lieu de <code>a</code>, mais le HTML doit être accessible sans avoir besoin d’exécuter du JavaScript.
+    here_is_how: Voici comment
+    hint_html: "<strong>La vérification de son profil sur Mastodon est accessible à tous.</strong> Elle s’appuie sur des standards ouverts du web, gratuits aujourd’hui et pour toujours. Tout ce dont vous avez besoin, c’est d’un site web personnel qui vous est associé dans l’esprit des gens. Lorsque vous ajoutez un lien depuis votre profil, nous vérifierons que le site web renvoie à son tour à votre profil Mastodon et montrerons un indicateur visuel à côté du lien si c’est le cas."
     verification: Vérification
   webauthn_credentials:
     add: Ajouter une nouvelle clé de sécurité
