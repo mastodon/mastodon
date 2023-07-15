@@ -1039,12 +1039,16 @@ fr:
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
     setup:
+      email_below_hint_html: Vérifiez votre dossier de spam ou demandez qu’on vous le renvoie. Vous pouvez corriger votre adresse e-mail si elle est incorrecte.
+      email_settings_hint_html: Cliquez sur le lien que nous vous avons envoyé pour vérifier l’adresse %{email}. Nous vous attendons ici.
       link_not_received: Vous n'avez pas reçu de lien ?
+      new_confirmation_instructions_sent: Vous allez recevoir un nouvel e-mail de confirmation dans quelques minutes !
       title: Vérifiez votre boîte de réception
     sign_in:
       preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
       title: Se connecter à %{domain}
     sign_up:
+      manual_review: Les inscriptions sur %{domain} passent par une revue manuelle de nos modérateurs. Pour les aider, écrivez un peu plus sur vous et pourquoi vous souhaitez créer un compte sur %{domain}.
       preamble: Avec un compte sur ce serveur Mastodon, vous serez en mesure de suivre toute autre personne sur le réseau, quel que soit l’endroit où son compte est hébergé.
       title: Mettons les choses en place pour %{domain}.
     status:
@@ -1146,6 +1150,7 @@ fr:
     invalid_domain: n’est pas un nom de domaine valide
   edit_profile:
     basic_information: Informations de base
+    hint_html: "<strong>Personnalisez ce que les gens voient sur votre profil public et à côté de vos messages.</strong> Les autres personnes seront plus susceptibles de vous suivre et d’interagir avec vous lorsque vous avez un profil complet et une photo."
     other: Autre
     safety_and_privacy: Sécurité et confidentialité
   errors:
@@ -1255,15 +1260,50 @@ fr:
   imports:
     errors:
       empty: Fichier CSV vide
+      incompatible_type: Incompatible avec le type d’import sélectionné
       invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'
       over_rows_processing_limit: contient plus de %{count} lignes
+      too_large: Le fichier est trop lourd
+    failures: Échecs
+    imported: Importé
+    mismatched_types_warning: Il semblerait que vous avez sélectionné le mauvais type pour cet import, veuillez vérifier attentivement.
     modes:
       merge: Fusionner
       merge_long: Garder les enregistrements existants et ajouter les nouveaux
       overwrite: Écraser
       overwrite_long: Remplacer les enregistrements actuels par les nouveaux
+    overwrite_preambles:
+      blocking_html: Vous allez <strong>remplacer votre liste de blocage</strong> par près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+      bookmarks_html: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{total_items} posts</strong> tirés de <strong>%{filename}</strong>.
+      domain_blocking_html: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
+      following_html: Vous allez <strong>suivre</strong> jusqu’à <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
+      muting_html: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Vous allez <strong>bloquer</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+      bookmarks_html: Vous allez ajouter près de <strong>%{total_items} messages</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
+      domain_blocking_html: Vous allez <strong>bloquer</strong> près de <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
+      following_html: Vous allez <strong>suivre</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+      muting_html: Vous allez <strong>masquer</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
     preface: Vous pouvez importer certaines données que vous avez exporté d’un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
+    recent_imports: Récents imports
+    states:
+      finished: Terminé
+      in_progress: En cours
+      scheduled: Programmé
+      unconfirmed: Non confirmé
+    status: Statut
     success: Vos données ont été importées avec succès et seront traitées en temps et en heure
+    time_started: Démarré le
+    titles:
+      blocking: En cours d’importation des comptes bloqués
+      bookmarks: En cours d’importation des signets
+      domain_blocking: En cours d’importation des domaines bloqués
+      following: En cours d’importation des comptes suivis
+      muting: En cours d’importation des comptes masqués
+    type: Type d’import
+    type_groups:
+      constructive: Abonnements et signets
+      destructive: Blocages et masquages
     types:
       blocking: Liste de comptes bloqués
       bookmarks: Marque-pages
@@ -1307,6 +1347,19 @@ fr:
     failed_sign_in_html: Tentative de connexion échouée avec %{method} de %{ip} (%{browser})
     successful_sign_in_html: Connexion réussie avec %{method} de %{ip} (%{browser})
     title: Historique d'authentification
+  mail_subscriptions:
+    unsubscribe:
+      action: Oui, se désinscrire
+      complete: Désinscrit
+      confirmation_html: Êtes-vous sûr de vouloir vous désinscrire des %{type} de la part du Mastodon installé sur %{domain} vers votre adresse %{email}? Vous pouvez toujours vous réabonner à partir de vos <a href="%{settings_path}">paramètres de notification par e-mail</a>.
+      emails:
+        notification_emails:
+          favourite: e-mails de notifications de signets
+          follow: e-mails de notifications d’abonnements
+          follow_request: e-mails de demandes d’abonnements
+          mention: e-mails de notifications de mentions
+          reblog: e-mails de notifications de boost
+      resubscribe_html: Si vous vous êtes désabonné par erreur, vous pouvez vous réinscrire à partir de vos <a href="%{settings_path}">paramètres de notification par e-mail</a>.
   media_attachments:
     validations:
       images_and_video: Impossible de joindre une vidéo à un message contenant déjà des images
