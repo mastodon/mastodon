@@ -111,6 +111,7 @@ RSpec.configure do |config|
   end
 
   config.around :each, type: :system do |example|
+    # driven_by :selenium, using: :chrome, screen_size: [1600, 1200]
     driven_by :selenium, using: :headless_chrome, screen_size: [1600, 1200]
 
     # The streaming server needs access to the database
