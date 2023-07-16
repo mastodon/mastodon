@@ -200,6 +200,7 @@ module LanguagesHelper
     smj: ['Lule Sami', 'Julevsámegiella'].freeze,
     szl: ['Silesian', 'ślůnsko godka'].freeze,
     tok: ['Toki Pona', 'toki pona'].freeze,
+    xal: ['Kalmyk', 'Хальмг келн'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
