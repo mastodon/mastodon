@@ -243,3 +243,10 @@ jobs:
         with:
           name: e2e-logs-${{ matrix.ruby-version }}
           path: log/
+
+      - name: Archive test screenshots
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: e2e-screenshots
+          path: tmp/screenshots/
