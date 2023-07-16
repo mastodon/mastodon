@@ -1,7 +1,7 @@
-name: Build nightly container image
+name: Build container image for PR
 on:
-  schedule:
-    - cron: '0 2 * * *' # run at 2 AM UTC
+  pull_request:
+    types: [labeled, synchronize, reopened, ready_for_review, opened]
 
 permissions:
   contents: read
@@ -10,10 +10,11 @@ permissions:
 jobs:
   compute-suffix:
     runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft && contains(github.event.pull_request.labels.*.name, 'build-image') }}
     steps:
       - id: version_vars
         run: |
-          echo mastodon_version_suffix=+nightly-$(date +'%Y%m%d') >> $GITHUB_OUTPUT
+          echo mastodon_version_suffix=+pr-${{ github.event.pull_request.number }}-$(git rev-parse --short HEAD) >> $GITHUB_OUTPUT
     outputs:
       suffix: ${{ steps.version_vars.outputs.mastodon_version_suffix }}
 
@@ -23,15 +24,10 @@ jobs:
     with:
       platforms: linux/amd64,linux/arm64
       push_to_images: |
-        tootsuite/mastodon
         ghcr.io/mastodon/mastodon
       version_suffix: ${{ needs.compute-suffix.outputs.suffix }}
-      labels: |
-        org.opencontainers.image.description=Nightly build image used for testing purposes
       flavor: |
         latest=auto
       tags: |
-        type=raw,value=edge
-        type=raw,value=nightly
-        type=schedule,pattern=nightly-{{date 'YYYY-MM-DD' tz='Etc/UTC'}}
+        type=ref,event=pr
     secrets: inherit

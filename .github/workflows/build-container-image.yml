@@ -1,0 +1,68 @@
+on:
+  workflow_call:
+    inputs:
+      platforms:
+        required: true
+        type: string
+      push_to_images:
+        type: string
+      version_suffix:
+        type: string
+      flavor:
+        type: string
+      tags:
+        type: string
+      labels:
+        type: string
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: docker/setup-qemu-action@v2
+        if: contains(inputs.platforms, 'linux/arm64')
+
+      - uses: docker/setup-buildx-action@v2
+        id: buildx
+
+      - name: Log in to Docker Hub
+        if: contains(inputs.push_to_images, 'tootsuite')
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Log in to the Github Container registry
+        if: contains(inputs.push_to_images, 'ghcr.io')
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v4
+        id: meta
+        if: ${{ inputs.push_to_images != '' }}
+        with:
+          images: ${{ inputs.push_to_images }}
+          # Only tag with latest when ran against the latest stable branch
+          # This needs to be updated after each minor version release
+          flavor: ${{ inputs.flavor }}
+          tags: ${{ inputs.tags }}
+          labels: ${{ inputs.labels }}
+
+      - uses: docker/build-push-action@v4
+        with:
+          context: .
+          build-args: MASTODON_VERSION_SUFFIX=${{ inputs.version_suffix }}
+          platforms: ${{ inputs.platforms }}
+          provenance: false
+          builder: ${{ steps.buildx.outputs.name }}
+          push: ${{ inputs.push_to_images != '' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
