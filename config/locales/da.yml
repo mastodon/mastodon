@@ -1359,6 +1359,9 @@ da:
           follow_request: følg anmodning e-mails
           mention: favorit notifikations e-mails
           reblog: favorit notifikations e-mails
+      resubscribe_html: Hvis du ved en fejl har afmeldt dig, kan du gentilmelde dig dine <a href="%{settings_path}">e-mail-notifikationsindstillinger</a>.
+      success_html: Du vil ikke længere modtage %{type} for Mastodon på %{domain} til din e-mail på %{email}.
+      title: Opsig abonnement
   media_attachments:
     validations:
       images_and_video: En video kan ikke vedhæftes et indlæg med billedindhold
@@ -1474,6 +1477,7 @@ da:
       expired: Afstemningen er allerede afsluttet
       invalid_choice: Den valgte stemmemulighed findes ikke
       over_character_limit: må maks. udgøre %{max} tegn hver
+      self_vote: Du kan ikke stemme på dit eget indlæg.
       too_few_options: skal have flere end ét valg
       too_many_options: for mange svar (maks. %{max})
   preferences:
@@ -1777,7 +1781,12 @@ da:
     seamless_external_login: Du er logget ind via en ekstern tjeneste, så adgangskode- og e-mailindstillinger er utilgængelige.
     signed_in_as: 'Logget ind som:'
   verification:
+    extra_instructions_html: <strong>Tip:</strong> Linket på din hjemmeside kan være usynligt. Den vigtige del er <code>rel="me"</code> , som forhindrer impersonation på websteder med brugergenereret indhold. Du kan endda bruge et <code>link</code> tag i overskriften på siden i stedet for <code>a</code>, men HTML skal være tilgængelig uden at udføre JavaScript.
+    here_is_how: Sådan gør du
+    hint_html: "<strong>Bekræftelse af din identitet på Mastodon er for alle.</strong> Baseret på åbne webstandarder, nu og for evigt gratis. Alt du behøver er en personlig hjemmeside, som folk genkende dig ved. Når du linker til denne hjemmeside fra din profil, vi vil kontrollere, at hjemmesiden linker tilbage til din profil og vise en visuel indikator på det."
+    instructions_html: Kopier og indsæt koden nedenfor i HTML på din hjemmeside. Tilføj derefter adressen på dit websted i et af de ekstra felter på din profil fra fanen "Rediger profil" og gem ændringer.
     verification: Bekræftelse
+    verified_links: '%d bekræftede links'
   webauthn_credentials:
     add: Tilføj ny sikkerhedsnøgle
     create:
