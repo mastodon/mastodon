@@ -537,14 +537,14 @@ body > [data-popper-placement] {
 
 .dropdown-menu__separator {
   border-bottom: 1px solid var(--dropdown-border-color);
-  margin: 5px 0;
+  margin: 2px 0;
   height: 0;
 }
 
 .dropdown-menu {
   background: var(--dropdown-background-color);
   border: 1px solid var(--dropdown-border-color);
-  padding: 4px;
+  padding: 2px;
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
   z-index: 9999;
@@ -568,8 +568,8 @@ body > [data-popper-placement] {
   &__container {
     &__header {
       border-bottom: 1px solid var(--dropdown-border-color);
-      padding: 10px 14px;
-      padding-bottom: 14px;
+      padding: 6px 14px;
+      padding-bottom: 12px;
       margin-bottom: 4px;
       font-size: 13px;
       line-height: 18px;
@@ -609,7 +609,7 @@ body > [data-popper-placement] {
     font: inherit;
     display: block;
     width: 100%;
-    padding: 10px 14px;
+    padding: 6px 14px;
     border: 0;
     margin: 0;
     background: transparent;
