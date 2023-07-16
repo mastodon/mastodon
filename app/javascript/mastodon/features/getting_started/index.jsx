@@ -32,7 +32,7 @@ const messages = defineMessages({
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Blocked domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
