@@ -88,7 +88,7 @@ module LanguagesHelper
     ko: ['Korean', '한국어'].freeze,
     kr: ['Kanuri', 'Kanuri'].freeze,
     ks: ['Kashmiri', 'कश्मीरी'].freeze,
-    ku: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
+    ku: ['Kurmanji (Kurdish)', 'Kurdî'].freeze,
     kv: ['Komi', 'коми кыв'].freeze,
     kw: ['Cornish', 'Kernewek'].freeze,
     ky: ['Kyrgyz', 'Кыргызча'].freeze,
