@@ -188,6 +188,7 @@ module LanguagesHelper
 
   ISO_639_3 = {
     ast: ['Asturian', 'Asturianu'].freeze,
+    chr: ['Cherokee', 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ'].freeze,
     ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
     cnr: ['Montenegrin', 'crnogorski'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
