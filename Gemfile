@@ -7,7 +7,7 @@ gem 'puma', '~> 6.3'
 gem 'rails', '~> 7.0'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
-gem 'rack', '~> 2.2.7'
+gem 'rack', '~> 3.0.0'
 
 gem 'haml-rails', '~>2.0'
 gem 'pg', '~> 1.5'
