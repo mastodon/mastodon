@@ -31,6 +31,7 @@ const messages = defineMessages({
   about: { id: 'navigation_bar.about', defaultMessage: 'About' },
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
   advancedInterface: { id: 'navigation_bar.advanced_interface', defaultMessage: 'Open in advanced web interface' },
+  openedInClassicInterface: { id: 'navigation_bar.opened_in_classic_interface', defaultMessage: 'This page was opened in the classic web interface.' },
 });
 
 class NavigationPanel extends Component {
@@ -57,12 +58,18 @@ class NavigationPanel extends Component {
         <div className='navigation-panel__logo'>
           <Link to='/' className='column-link column-link--logo'><WordmarkLogo /></Link>
 
-          {transientSingleColumn && (
-            <a href={`/deck${location.pathname}`} className='button button--block'>
-              {intl.formatMessage(messages.advancedInterface)}
-            </a>
+          {transientSingleColumn ? (
+            <div class='switch-to-advanced'>
+              <div class='switch-to-advanced__label'>
+                {intl.formatMessage(messages.openedInClassicInterface)}
+              </div>
+              <a href={`/deck${location.pathname}`} className='button button-tertiary button--block'>
+                {intl.formatMessage(messages.advancedInterface)}
+              </a>
+            </div>
+          ) : (
+            <hr />
           )}
-          <hr />
         </div>
 
         {signedIn && (

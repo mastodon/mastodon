@@ -3270,6 +3270,21 @@ $ui-header-height: 55px;
   border-color: $ui-highlight-color;
 }
 
+.switch-to-advanced {
+  color: $classic-primary-color;
+  background-color: $classic-base-color;
+  padding: 15px;
+  border-radius: 4px;
+  font-size: 15px;
+  line-height: 22px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+
+  .switch-to-advanced__label {
+    margin-bottom: 8px;
+  }
+}
+
 .column-link {
   background: lighten($ui-base-color, 8%);
   color: $primary-text-color;
