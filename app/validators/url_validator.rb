@@ -16,7 +16,7 @@ class URLValidator < ActiveModel::EachValidator
   end
 
   def parsed_url
-    @parsed_url ||= Addressable::URI.parse(@value)
+    Addressable::URI.parse(@value)
   rescue Addressable::URI::InvalidURIError
     false
   end
