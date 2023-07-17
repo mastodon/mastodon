@@ -12,7 +12,7 @@
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :registrations_mode, collection: %w(open approved none), wrapper: :with_label, include_blank: false, label_method: lambda { |mode| I18n.t("admin.settings.registrations_mode.modes.#{mode}") }
+      = f.input :registrations_mode, collection: %w(open approved none), wrapper: :with_label, include_blank: false, label_method: ->(mode) { I18n.t("admin.settings.registrations_mode.modes.#{mode}") }
 
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :require_invite_text, as: :boolean, wrapper: :with_label, disabled: !approved_registrations?
