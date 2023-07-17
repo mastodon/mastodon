@@ -30,7 +30,7 @@
 
 %hr.spacer/
 
-= render 'sessions'
+= render 'sessions', sessions: @sessions
 
 - unless current_account.suspended?
   %hr.spacer/

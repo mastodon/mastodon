@@ -14,7 +14,7 @@
         %th= t 'sessions.activity'
         %th
     %tbody
-      - @sessions.each do |session|
+      - sessions.each do |session|
         %tr
           %td
             %span{ title: session.user_agent }<
