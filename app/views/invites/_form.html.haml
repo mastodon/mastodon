@@ -1,5 +1,5 @@
-= simple_form_for(@invite, url: controller.is_a?(Admin::InvitesController) ? admin_invites_path : invites_path) do |f|
-  = render 'shared/error_messages', object: @invite
+= simple_form_for(invite, url: controller.is_a?(Admin::InvitesController) ? admin_invites_path : invites_path) do |f|
+  = render 'shared/error_messages', object: invite
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group

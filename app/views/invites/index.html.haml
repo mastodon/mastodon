@@ -4,7 +4,7 @@
 - if policy(:invite).create?
   %p= t('invites.prompt')
 
-  = render 'form'
+  = render 'form', invite: @invite
 
   %hr.spacer/
 

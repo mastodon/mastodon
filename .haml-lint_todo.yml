@@ -26,7 +26,7 @@ linters:
       - 'app/views/admin/reports/show.html.haml'
       - 'app/views/disputes/strikes/show.html.haml'
 
-  # Offense count: 32
+  # Offense count: 30
   InstanceVariables:
     exclude:
       - 'app/views/admin/reports/_actions.html.haml'
@@ -35,7 +35,6 @@ linters:
       - 'app/views/auth/registrations/_status.html.haml'
       - 'app/views/auth/sessions/two_factor/_otp_authentication_form.html.haml'
       - 'app/views/authorize_interactions/_post_follow_actions.html.haml'
-      - 'app/views/invites/_form.html.haml'
       - 'app/views/relationships/_account.html.haml'
       - 'app/views/shared/_og.html.haml'
 
