@@ -63,7 +63,7 @@ RSpec.describe UnsuspendAccountService, type: :service do
   describe 'unsuspending a remote account' do
     include_examples 'with common context' do
       let!(:account)                 { Fabricate(:account, domain: 'bob.com', uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
-      let!(:resolve_account_service) { double }
+      let!(:resolve_account_service) { instance_double(ResolveAccountService) }
 
       before do
         allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service)

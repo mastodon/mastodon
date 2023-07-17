@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails'
@@ -28,6 +30,7 @@ require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
 require_relative '../lib/paperclip/lazy_thumbnail'
 require_relative '../lib/paperclip/gif_transcoder'
+require_relative '../lib/paperclip/media_type_spoof_detector_extensions'
 require_relative '../lib/paperclip/transcoder'
 require_relative '../lib/paperclip/type_corrector'
 require_relative '../lib/paperclip/response_with_limit_adapter'
@@ -57,7 +60,15 @@ require_relative '../lib/mastodon/redis_config'
 module Mastodon
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 7.0
+
+    # TODO: Release a version which uses the 7.0 defaults as specified above,
+    # but preserves the 6.1 cache format as set below. In a subsequent change,
+    # remove this line setting to 6.1 cache format, and then release another version.
+    # https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#new-activesupport-cache-serialization-format
+    # https://github.com/mastodon/mastodon/pull/24241#discussion_r1162890242
+    config.active_support.cache_format_version = 6.1
+
     config.add_autoload_paths_to_load_path = false
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -193,10 +204,10 @@ module Mastodon
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
-      Doorkeeper::Application.send :include, ApplicationExtension
-      Doorkeeper::AccessToken.send :include, AccessTokenExtension
-      Devise::FailureApp.send :include, AbstractController::Callbacks
-      Devise::FailureApp.send :include, Localized
+      Doorkeeper::Application.include ApplicationExtension
+      Doorkeeper::AccessToken.include AccessTokenExtension
+      Devise::FailureApp.include AbstractController::Callbacks
+      Devise::FailureApp.include Localized
     end
   end
 end

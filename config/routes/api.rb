@@ -81,6 +81,7 @@ namespace :api, format: false do
     resources :conversations, only: [:index, :destroy] do
       member do
         post :read
+        post :unread
       end
     end
 
@@ -295,7 +296,7 @@ namespace :api, format: false do
 
   namespace :web do
     resource :settings, only: [:update]
-    resource :embed, only: [:create]
+    resources :embeds, only: [:show]
     resources :push_subscriptions, only: [:create] do
       member do
         put :update

@@ -12,9 +12,9 @@ RSpec.describe FollowLimitValidator, type: :validator do
       described_class.new.validate(follow)
     end
 
-    let(:follow)  { double(account: account, errors: errors) }
-    let(:errors)  { double(add: nil) }
-    let(:account) { double(nil?: _nil, local?: local, following_count: 0, followers_count: 0) }
+    let(:follow)  { instance_double(Follow, account: account, errors: errors) }
+    let(:errors)  { instance_double(ActiveModel::Errors, add: nil) }
+    let(:account) { instance_double(Account, nil?: _nil, local?: local, following_count: 0, followers_count: 0) }
     let(:_nil)    { true }
     let(:local)   { false }
 

@@ -177,13 +177,13 @@ class Share extends PureComponent {
 
           <div className='onboarding__links'>
             <Link to='/home' className='onboarding__link'>
+              <FormattedMessage id='onboarding.actions.go_to_home' defaultMessage='Take me to my home feed' />
               <ArrowSmallRight />
-              <FormattedMessage id='onboarding.actions.go_to_home' defaultMessage='Go to your home feed' />
             </Link>
 
             <Link to='/explore' className='onboarding__link'>
+              <FormattedMessage id='onboarding.actions.go_to_explore' defaultMessage='Take me to trending' />
               <ArrowSmallRight />
-              <FormattedMessage id='onboarding.actions.go_to_explore' defaultMessage="See what's trending" />
             </Link>
           </div>
 

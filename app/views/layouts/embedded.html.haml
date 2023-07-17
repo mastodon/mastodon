@@ -15,7 +15,7 @@
     = stylesheet_pack_tag 'mastodon-light', media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous'
     = stylesheet_pack_tag 'default', media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
-    = preload_pack_asset "locale/#{I18n.locale}-json.js"
+    = preload_pack_asset "locale/#{I18n.locale}-json.js", crossorigin: 'anonymous'
     = render_initial_state
     = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
   %body.embed

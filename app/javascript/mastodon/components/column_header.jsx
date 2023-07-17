@@ -63,10 +63,12 @@ class ColumnHeader extends PureComponent {
   };
 
   handleBackClick = () => {
-    if (window.history && window.history.state) {
-      this.context.router.history.goBack();
+    const { router } = this.context;
+
+    if (router.history.location?.state?.fromMastodon) {
+      router.history.goBack();
     } else {
-      this.context.router.history.push('/');
+      router.history.push('/');
     }
   };
 
@@ -83,6 +85,7 @@ class ColumnHeader extends PureComponent {
   };
 
   render () {
+    const { router } = this.context;
     const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
     const { collapsed, animating } = this.state;
 
@@ -126,7 +129,7 @@ class ColumnHeader extends PureComponent {
       pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
-    if (!pinned && (multiColumn || showBackButton)) {
+    if (!pinned && ((multiColumn && router.history.location?.state?.fromMastodon) || showBackButton)) {
       backButton = (
         <button onClick={this.handleBackClick} className='column-header__back-button'>
           <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />

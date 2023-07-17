@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -8,15 +8,15 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { counterRenderer } from 'mastodon/components/common_counter';
 import { EmptyAccount } from 'mastodon/components/empty_account';
-import ShortNumber from 'mastodon/components/short_number';
+import { ShortNumber } from 'mastodon/components/short_number';
 import { VerifiedBadge } from 'mastodon/components/verified_badge';
 
 import { me } from '../initial_state';
 
 import { Avatar } from './avatar';
 import Button from './button';
+import { FollowersCounter } from './counters';
 import { DisplayName } from './display_name';
 import { IconButton } from './icon_button';
 import { RelativeTimestamp } from './relative_timestamp';
@@ -49,6 +49,7 @@ class Account extends ImmutablePureComponent {
     actionTitle: PropTypes.string,
     defaultAction: PropTypes.string,
     onActionClick: PropTypes.func,
+    withBio: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -80,7 +81,7 @@ class Account extends ImmutablePureComponent {
   };
 
   render () {
-    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction, size, minimal } = this.props;
+    const { account, intl, hidden, withBio, onActionClick, actionIcon, actionTitle, defaultAction, size, minimal } = this.props;
 
     if (!account) {
       return <EmptyAccount size={size} minimal={minimal} />;
@@ -159,7 +160,7 @@ class Account extends ImmutablePureComponent {
               <DisplayName account={account} />
               {!minimal && (
                 <div className='account__details'>
-                  <ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}
+                  <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} /> {verification} {muteTimeRemaining}
                 </div>
               )}
             </div>
@@ -171,6 +172,15 @@ class Account extends ImmutablePureComponent {
             </div>
           )}
         </div>
+
+        {withBio && (account.get('note').length > 0 ? (
+          <div
+            className='account__note translate'
+            dangerouslySetInnerHTML={{ __html: account.get('note_emojified') }}
+          />
+        ) : (
+          <div className='account__note account__note--missing'><FormattedMessage id='account.no_bio' defaultMessage='No description provided.' /></div>
+        ))}
       </div>
     );
   }

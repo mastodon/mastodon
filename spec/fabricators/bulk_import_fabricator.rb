@@ -8,5 +8,5 @@ Fabricator(:bulk_import) do
   imported_items  1
   finished_at     '2022-11-18 14:55:07'
   overwrite       false
-  account
+  account { Fabricate.build(:account) }
 end

@@ -2,6 +2,7 @@
 
 module CaptchaConcern
   extend ActiveSupport::Concern
+
   include Hcaptcha::Adapters::ViewMethods
 
   included do
@@ -35,18 +36,22 @@ module CaptchaConcern
         flash.delete(:hcaptcha_error)
         yield message
       end
+
       false
     end
   end
 
   def extend_csp_for_captcha!
     policy = request.content_security_policy
+
     return unless captcha_required? && policy.present?
 
     %w(script_src frame_src style_src connect_src).each do |directive|
       values = policy.send(directive)
+
       values << 'https://hcaptcha.com' unless values.include?('https://hcaptcha.com') || values.include?('https:')
       values << 'https://*.hcaptcha.com' unless values.include?('https://*.hcaptcha.com') || values.include?('https:')
+
       policy.send(directive, *values)
     end
   end

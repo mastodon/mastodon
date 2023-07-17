@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
   before do
-    double(api_oembed_url: '')
+    allow(view).to receive(:api_oembed_url).and_return('')
     allow(view).to receive(:show_landing_strip?).and_return(true)
     allow(view).to receive(:site_title).and_return('example site')
     allow(view).to receive(:site_hostname).and_return('example.com')

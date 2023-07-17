@@ -10,8 +10,8 @@ RSpec.describe URLValidator, type: :validator do
     end
 
     let(:validator) { described_class.new(attributes: [attribute]) }
-    let(:record)    { double(errors: errors) }
-    let(:errors)    { double(add: nil) }
+    let(:record)    { instance_double(Webhook, errors: errors) }
+    let(:errors)    { instance_double(ActiveModel::Errors, add: nil) }
     let(:value)     { '' }
     let(:attribute) { :foo }
 

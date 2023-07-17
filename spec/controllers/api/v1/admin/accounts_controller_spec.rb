@@ -15,22 +15,6 @@ RSpec.describe Api::V1::Admin::AccountsController do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
-    end
-  end
-
-  shared_examples 'forbidden for wrong role' do |wrong_role|
-    let(:role) { UserRole.find_by(name: wrong_role) }
-
-    it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
-    end
-  end
-
   describe 'GET #index' do
     let!(:remote_account)       { Fabricate(:account, domain: 'example.org') }
     let!(:other_remote_account) { Fabricate(:account, domain: 'foo.bar') }

@@ -16,7 +16,7 @@ RSpec.describe SessionActivation do
       allow(session_activation).to receive(:detection).and_return(detection)
     end
 
-    let(:detection)          { double(id: 1) }
+    let(:detection)          { instance_double(Browser::Chrome, id: 1) }
     let(:session_activation) { Fabricate(:session_activation) }
 
     it 'returns detection.id' do
@@ -30,7 +30,7 @@ RSpec.describe SessionActivation do
     end
 
     let(:session_activation) { Fabricate(:session_activation) }
-    let(:detection)          { double(platform: double(id: 1)) }
+    let(:detection)          { instance_double(Browser::Chrome, platform: instance_double(Browser::Platform, id: 1)) }
 
     it 'returns detection.platform.id' do
       expect(session_activation.platform).to be 1

@@ -67,24 +67,13 @@ RSpec.describe Api::V1::NotificationsController do
         get :index
       end
 
-      it 'returns http success' do
+      it 'returns expected notification types', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
 
-      it 'includes reblog' do
-        expect(body_as_json.pluck(:type)).to include 'reblog'
-      end
-
-      it 'includes mention' do
-        expect(body_as_json.pluck(:type)).to include 'mention'
-      end
-
-      it 'includes favourite' do
-        expect(body_as_json.pluck(:type)).to include 'favourite'
-      end
-
-      it 'includes follow' do
-        expect(body_as_json.pluck(:type)).to include 'follow'
+        expect(body_json_types).to include 'reblog'
+        expect(body_json_types).to include 'mention'
+        expect(body_json_types).to include 'favourite'
+        expect(body_json_types).to include 'follow'
       end
     end
 
@@ -93,12 +82,14 @@ RSpec.describe Api::V1::NotificationsController do
         get :index, params: { account_id: third.account.id }
       end
 
-      it 'returns http success' do
+      it 'returns only notifications from specified user', :aggregate_failures do
         expect(response).to have_http_status(200)
+
+        expect(body_json_account_ids.uniq).to eq [third.account.id.to_s]
       end
 
-      it 'returns only notifications from specified user' do
-        expect(body_as_json.map { |x| x[:account][:id] }.uniq).to eq [third.account.id.to_s]
+      def body_json_account_ids
+        body_as_json.map { |x| x[:account][:id] }
       end
     end
 
@@ -107,27 +98,23 @@ RSpec.describe Api::V1::NotificationsController do
         get :index, params: { account_id: 'foo' }
       end
 
-      it 'returns http success' do
+      it 'returns nothing', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
 
-      it 'returns nothing' do
         expect(body_as_json.size).to eq 0
       end
     end
 
-    describe 'with excluded_types param' do
+    describe 'with exclude_types param' do
       before do
         get :index, params: { exclude_types: %w(mention) }
       end
 
-      it 'returns http success' do
+      it 'returns everything but excluded type', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
 
-      it 'returns everything but excluded type' do
         expect(body_as_json.size).to_not eq 0
-        expect(body_as_json.pluck(:type).uniq).to_not include 'mention'
+        expect(body_json_types.uniq).to_not include 'mention'
       end
     end
 
@@ -136,13 +123,15 @@ RSpec.describe Api::V1::NotificationsController do
         get :index, params: { types: %w(mention) }
       end
 
-      it 'returns http success' do
+      it 'returns only requested type', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
 
-      it 'returns only requested type' do
-        expect(body_as_json.pluck(:type).uniq).to eq ['mention']
+        expect(body_json_types.uniq).to eq ['mention']
       end
+    end
+
+    def body_json_types
+      body_as_json.pluck(:type)
     end
   end
 end

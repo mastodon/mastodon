@@ -17,7 +17,7 @@ import { lookupAccount, fetchAccount } from '../../actions/accounts';
 import { fetchFeaturedTags } from '../../actions/featured_tags';
 import { expandAccountFeaturedTimeline, expandAccountTimeline, connectTimeline, disconnectTimeline } from '../../actions/timelines';
 import ColumnBackButton from '../../components/column_back_button';
-import LoadingIndicator from '../../components/loading_indicator';
+import { LoadingIndicator } from '../../components/loading_indicator';
 import StatusList from '../../components/status_list';
 import Column from '../ui/components/column';
 

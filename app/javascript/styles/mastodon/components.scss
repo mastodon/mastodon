@@ -47,11 +47,11 @@
 }
 
 .button {
-  background-color: darken($ui-highlight-color, 2%);
+  background-color: $ui-button-background-color;
   border: 10px none;
   border-radius: 4px;
   box-sizing: border-box;
-  color: $primary-text-color;
+  color: $ui-button-color;
   cursor: pointer;
   display: inline-block;
   font-family: inherit;
@@ -71,14 +71,14 @@
   &:active,
   &:focus,
   &:hover {
-    background-color: $ui-highlight-color;
+    background-color: $ui-button-focus-background-color;
   }
 
   &--destructive {
     &:active,
     &:focus,
     &:hover {
-      background-color: $error-red;
+      background-color: $ui-button-destructive-focus-background-color;
       transition: none;
     }
   }
@@ -108,38 +108,18 @@
     outline: 0 !important;
   }
 
-  &.button-alternative {
-    color: $inverted-text-color;
-    background: $ui-primary-color;
-
-    &:active,
-    &:focus,
-    &:hover {
-      background-color: lighten($ui-primary-color, 4%);
-    }
-  }
-
-  &.button-alternative-2 {
-    background: $ui-base-lighter-color;
-
-    &:active,
-    &:focus,
-    &:hover {
-      background-color: lighten($ui-base-lighter-color, 4%);
-    }
-  }
-
   &.button-secondary {
-    color: $darker-text-color;
+    color: $ui-button-secondary-color;
     background: transparent;
     padding: 6px 17px;
-    border: 1px solid $ui-primary-color;
+    border: 1px solid $ui-button-secondary-border-color;
 
     &:active,
     &:focus,
     &:hover {
-      border-color: lighten($ui-primary-color, 4%);
-      color: lighten($darker-text-color, 4%);
+      border-color: $ui-button-secondary-focus-background-color;
+      color: $ui-button-secondary-focus-color;
+      background-color: $ui-button-secondary-focus-background-color;
       text-decoration: none;
     }
 
@@ -151,14 +131,14 @@
   &.button-tertiary {
     background: transparent;
     padding: 6px 17px;
-    color: $highlight-text-color;
-    border: 1px solid $highlight-text-color;
+    color: $ui-button-tertiary-color;
+    border: 1px solid $ui-button-tertiary-border-color;
 
     &:active,
     &:focus,
     &:hover {
-      background: $ui-highlight-color;
-      color: $primary-text-color;
+      background-color: $ui-button-tertiary-focus-background-color;
+      color: $ui-button-tertiary-focus-color;
       border: 0;
       padding: 7px 18px;
     }
@@ -767,7 +747,9 @@ body > [data-popper-placement] {
 }
 
 .no-reduce-motion .spoiler-input {
-  transition: height 0.4s ease, opacity 0.4s ease;
+  transition:
+    height 0.4s ease,
+    opacity 0.4s ease;
 }
 
 .sign-in-banner {
@@ -1001,7 +983,8 @@ body > [data-popper-placement] {
   max-height: 22px * 15; // 15 lines is roughly above 500 characters
 }
 
-.status__content__read-more-button {
+.status__content__read-more-button,
+.status__content__translate-button {
   display: block;
   font-size: 15px;
   line-height: 22px;
@@ -1147,6 +1130,8 @@ body > [data-popper-placement] {
   }
 
   &--in-thread {
+    $thread-margin: 46px + 10px;
+
     border-bottom: 0;
 
     .status__content,
@@ -1157,8 +1142,12 @@ body > [data-popper-placement] {
     .attachment-list,
     .picture-in-picture-placeholder,
     .status-card {
-      margin-inline-start: 46px + 10px;
-      width: calc(100% - (46px + 10px));
+      margin-inline-start: $thread-margin;
+      width: calc(100% - ($thread-margin));
+    }
+
+    .status__content__read-more-button {
+      margin-inline-start: $thread-margin;
     }
   }
 
@@ -1434,6 +1423,7 @@ body > [data-popper-placement] {
 .detailed-status__link {
   color: inherit;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .detailed-status__favorites,
@@ -1514,12 +1504,37 @@ body > [data-popper-placement] {
   }
 
   &__note {
+    font-size: 14px;
+    font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    color: $ui-secondary-color;
+    margin-top: 10px;
+    color: $darker-text-color;
+
+    &--missing {
+      color: $dark-text-color;
+    }
+
+    p {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: inherit;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -1656,10 +1671,6 @@ a.account__display-name {
 .detailed-status__application,
 .detailed-status__datetime {
   color: inherit;
-}
-
-.detailed-status .button.logo-button {
-  margin-bottom: 15px;
 }
 
 .detailed-status__display-name {
@@ -2617,13 +2628,15 @@ $ui-header-height: 55px;
 .onboarding__link {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   color: $highlight-text-color;
   background: lighten($ui-base-color, 4%);
   border-radius: 8px;
-  padding: 10px;
+  padding: 10px 15px;
   box-sizing: border-box;
-  font-size: 17px;
+  font-size: 14px;
+  font-weight: 500;
   height: 56px;
   text-decoration: none;
 
@@ -2685,6 +2698,7 @@ $ui-header-height: 55px;
     align-items: center;
     gap: 10px;
     padding: 10px;
+    padding-inline-end: 15px;
     margin-bottom: 2px;
     text-decoration: none;
     text-align: start;
@@ -2697,14 +2711,14 @@ $ui-header-height: 55px;
 
     &__icon {
       flex: 0 0 auto;
-      background: $ui-base-color;
       border-radius: 50%;
       display: none;
       align-items: center;
       justify-content: center;
       width: 36px;
       height: 36px;
-      color: $dark-text-color;
+      color: $highlight-text-color;
+      font-size: 1.2rem;
 
       @media screen and (width >= 600px) {
         display: flex;
@@ -2728,16 +2742,33 @@ $ui-header-height: 55px;
       }
     }
 
+    &__go {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 21px;
+      height: 21px;
+      color: $highlight-text-color;
+      font-size: 17px;
+
+      svg {
+        height: 1.5em;
+        width: auto;
+      }
+    }
+
     &__description {
       flex: 1 1 auto;
-      line-height: 18px;
+      line-height: 20px;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
 
       h6 {
-        color: $primary-text-color;
-        font-weight: 700;
+        color: $highlight-text-color;
+        font-weight: 500;
+        font-size: 14px;
         overflow: hidden;
         text-overflow: ellipsis;
       }
@@ -3101,7 +3132,7 @@ $ui-header-height: 55px;
 .column-back-button {
   box-sizing: border-box;
   width: 100%;
-  background: lighten($ui-base-color, 4%);
+  background: $ui-base-color;
   border-radius: 4px 4px 0 0;
   color: $highlight-text-color;
   cursor: pointer;
@@ -3109,6 +3140,7 @@ $ui-header-height: 55px;
   font-size: 16px;
   line-height: inherit;
   border: 0;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   text-align: unset;
   padding: 15px;
   margin: 0;
@@ -3121,7 +3153,7 @@ $ui-header-height: 55px;
 }
 
 .column-header__back-button {
-  background: lighten($ui-base-color, 4%);
+  background: $ui-base-color;
   border: 0;
   font-family: inherit;
   color: $highlight-text-color;
@@ -3156,7 +3188,7 @@ $ui-header-height: 55px;
   padding: 15px;
   position: absolute;
   inset-inline-end: 0;
-  top: -48px;
+  top: -50px;
 }
 
 .react-toggle {
@@ -3837,7 +3869,8 @@ a.status-card.compact:hover {
 .column-header {
   display: flex;
   font-size: 16px;
-  background: lighten($ui-base-color, 4%);
+  background: $ui-base-color;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px 4px 0 0;
   flex: 0 0 auto;
   cursor: pointer;
@@ -3892,7 +3925,7 @@ a.status-card.compact:hover {
 }
 
 .column-header__button {
-  background: lighten($ui-base-color, 4%);
+  background: $ui-base-color;
   border: 0;
   color: $darker-text-color;
   cursor: pointer;
@@ -3900,16 +3933,15 @@ a.status-card.compact:hover {
   padding: 0 15px;
 
   &:hover {
-    color: lighten($darker-text-color, 7%);
+    color: lighten($darker-text-color, 4%);
   }
 
   &.active {
     color: $primary-text-color;
-    background: lighten($ui-base-color, 8%);
+    background: lighten($ui-base-color, 4%);
 
     &:hover {
       color: $primary-text-color;
-      background: lighten($ui-base-color, 8%);
     }
   }
 
@@ -3923,8 +3955,11 @@ a.status-card.compact:hover {
   max-height: 70vh;
   overflow: hidden;
   overflow-y: auto;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   color: $darker-text-color;
-  transition: max-height 150ms ease-in-out, opacity 300ms linear;
+  transition:
+    max-height 150ms ease-in-out,
+    opacity 300ms linear;
   opacity: 1;
   z-index: 1;
   position: relative;
@@ -3942,13 +3977,13 @@ a.status-card.compact:hover {
     height: 0;
     background: transparent;
     border: 0;
-    border-top: 1px solid lighten($ui-base-color, 12%);
+    border-top: 1px solid lighten($ui-base-color, 8%);
     margin: 10px 0;
   }
 }
 
 .column-header__collapsible-inner {
-  background: lighten($ui-base-color, 8%);
+  background: $ui-base-color;
   padding: 15px;
 }
 
@@ -4179,34 +4214,31 @@ a.status-card.compact:hover {
   }
 
   &__overlay {
-    display: block;
-    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($black, 0.5);
     width: 100%;
     height: 100%;
+    padding: 0;
+    margin: 0;
     border: 0;
+    border-radius: 4px;
 
     &__label {
-      display: inline-block;
-      background: rgba($base-overlay-background, 0.5);
-      border-radius: 8px;
-      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-direction: column;
       color: $primary-text-color;
       font-weight: 500;
       font-size: 14px;
     }
 
-    &:hover,
-    &:focus,
-    &:active {
-      .spoiler-button__overlay__label {
-        background: rgba($base-overlay-background, 0.8);
-      }
-    }
-
-    &:disabled {
-      .spoiler-button__overlay__label {
-        background: rgba($base-overlay-background, 0.5);
-      }
+    &__action {
+      font-weight: 400;
+      font-size: 13px;
     }
   }
 }
@@ -4358,20 +4390,16 @@ a.status-card.compact:hover {
 }
 
 .relationship-tag {
-  color: $primary-text-color;
+  color: $white;
   margin-bottom: 4px;
   display: block;
-  background-color: $base-overlay-background;
-  text-transform: uppercase;
+  background-color: rgba($black, 0.45);
+  backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
   font-size: 11px;
-  font-weight: 500;
-  padding: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 2px 6px;
   border-radius: 4px;
-  opacity: 0.7;
-
-  &:hover {
-    opacity: 1;
-  }
 }
 
 .setting-toggle {
@@ -4431,6 +4459,7 @@ a.status-card.compact:hover {
 
 .follow_requests-unlocked_explanation {
   background: darken($ui-base-color, 4%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   contain: initial;
   flex-grow: 0;
 }
@@ -5756,6 +5785,7 @@ a.status-card.compact:hover {
   &__toggle {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 
     & > span {
       font-size: 17px;
@@ -5765,15 +5795,15 @@ a.status-card.compact:hover {
   }
 
   .button.button-secondary {
-    border-color: $inverted-text-color;
-    color: $inverted-text-color;
+    border-color: $ui-button-secondary-border-color;
+    color: $ui-button-secondary-color;
     flex: 0 0 auto;
 
     &:hover,
     &:focus,
     &:active {
-      border-color: lighten($inverted-text-color, 15%);
-      color: lighten($inverted-text-color, 15%);
+      border-color: $ui-button-secondary-focus-background-color;
+      color: $ui-button-secondary-focus-color;
     }
   }
 
@@ -6115,6 +6145,7 @@ a.status-card.compact:hover {
   display: block;
   color: $white;
   background: rgba($black, 0.65);
+  backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 11px;
@@ -6792,24 +6823,6 @@ a.status-card.compact:hover {
       }
     }
   }
-
-  &.directory__section-headline {
-    background: darken($ui-base-color, 2%);
-    border-bottom-color: transparent;
-
-    a,
-    button {
-      &.active {
-        &::before {
-          display: none;
-        }
-
-        &::after {
-          border-color: transparent transparent darken($ui-base-color, 7%);
-        }
-      }
-    }
-  }
 }
 
 .filter-form {
@@ -6927,7 +6940,8 @@ noscript {
   .navigation-bar {
     & > a:first-child {
       will-change: margin-top, margin-inline-start, margin-inline-end, width;
-      transition: margin-top $duration $delay,
+      transition:
+        margin-top $duration $delay,
         margin-inline-start $duration ($duration + $delay),
         margin-inline-end $duration ($duration + $delay);
     }
@@ -6940,12 +6954,15 @@ noscript {
     .navigation-bar__actions {
       & > .icon-button.close {
         will-change: opacity transform;
-        transition: opacity $duration * 0.5 $delay, transform $duration $delay;
+        transition:
+          opacity $duration * 0.5 $delay,
+          transform $duration $delay;
       }
 
       & > .compose__action-bar .icon-button {
         will-change: opacity transform;
-        transition: opacity $duration * 0.5 $delay + $duration * 0.5,
+        transition:
+          opacity $duration * 0.5 $delay + $duration * 0.5,
           transform $duration $delay;
       }
     }
@@ -7324,7 +7341,6 @@ noscript {
 
 .account__header {
   overflow: hidden;
-  background: lighten($ui-base-color, 4%);
 
   &.inactive {
     opacity: 0.5;
@@ -7346,6 +7362,7 @@ noscript {
     height: 145px;
     position: relative;
     background: darken($ui-base-color, 4%);
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
 
     img {
       object-fit: cover;
@@ -7359,7 +7376,7 @@ noscript {
   &__bar {
     position: relative;
     padding: 0 20px;
-    border-bottom: 1px solid lighten($ui-base-color, 12%);
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
 
     .avatar {
       display: block;
@@ -7368,7 +7385,7 @@ noscript {
 
       .account__avatar {
         background: darken($ui-base-color, 8%);
-        border: 2px solid lighten($ui-base-color, 4%);
+        border: 2px solid $ui-base-color;
       }
     }
   }
@@ -8695,27 +8712,80 @@ noscript {
 }
 
 .dismissable-banner {
-  background: $ui-base-color;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  display: flex;
-  align-items: center;
-  gap: 30px;
+  position: relative;
+  margin: 10px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  border: 1px solid $highlight-text-color;
+  background: rgba($highlight-text-color, 0.15);
+  padding-inline-end: 45px;
+  overflow: hidden;
+
+  &__background-image {
+    width: 125%;
+    position: absolute;
+    bottom: -25%;
+    inset-inline-end: -25%;
+    z-index: -1;
+    opacity: 0.15;
+    mix-blend-mode: luminosity;
+  }
 
   &__message {
     flex: 1 1 auto;
-    padding: 20px 15px;
-    cursor: default;
-    font-size: 14px;
-    line-height: 18px;
+    padding: 15px;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 500;
     color: $primary-text-color;
+
+    p {
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    h1 {
+      color: $highlight-text-color;
+      font-size: 22px;
+      line-height: 33px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+
+      &__wrapper {
+        display: flex;
+        margin-top: 30px;
+      }
+
+      .button {
+        display: block;
+        flex-grow: 1;
+      }
+    }
+
+    .button-tertiary {
+      background: rgba($ui-base-color, 0.15);
+      backdrop-filter: blur(8px);
+    }
   }
 
   &__action {
-    padding: 15px;
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    inset-inline-end: 0;
+    top: 0;
+    padding: 10px;
+
+    .icon-button {
+      color: $highlight-text-color;
+    }
   }
 }
 
@@ -9008,5 +9078,65 @@ noscript {
         text-overflow: ellipsis;
       }
     }
+  }
+}
+
+.notification-list {
+  position: fixed;
+  bottom: 2rem;
+  inset-inline-start: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.notification-bar {
+  flex: 0 0 auto;
+  position: relative;
+  inset-inline-start: -100%;
+  width: auto;
+  padding: 15px;
+  margin: 0;
+  color: $white;
+  background: rgba($black, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(lighten($classic-base-color, 4%), 0.85);
+  border-radius: 8px;
+  box-shadow:
+    0 10px 15px -3px rgba($base-shadow-color, 0.25),
+    0 4px 6px -4px rgba($base-shadow-color, 0.25);
+  cursor: default;
+  transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);
+  transform: translateZ(0);
+  font-size: 15px;
+  line-height: 21px;
+
+  &.notification-bar-active {
+    inset-inline-start: 1rem;
+  }
+}
+
+.notification-bar-title {
+  margin-inline-end: 5px;
+}
+
+.notification-bar-title,
+.notification-bar-action {
+  font-weight: 700;
+}
+
+.notification-bar-action {
+  text-transform: uppercase;
+  margin-inline-start: 10px;
+  cursor: pointer;
+  color: $blurple-300;
+  border-radius: 4px;
+  padding: 0 4px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: rgba($ui-base-color, 0.85);
   }
 }

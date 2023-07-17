@@ -142,4 +142,59 @@ describe UserMailer do
       expect(mail.body.encoded).to include I18n.t('user_mailer.appeal_rejected.title')
     end
   end
+
+  describe 'two_factor_enabled' do
+    let(:mail) { described_class.two_factor_enabled(receiver) }
+
+    it 'renders two_factor_enabled mail' do
+      expect(mail.subject).to eq I18n.t('devise.mailer.two_factor_enabled.subject')
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.two_factor_enabled.explanation')
+    end
+  end
+
+  describe 'two_factor_disabled' do
+    let(:mail) { described_class.two_factor_disabled(receiver) }
+
+    it 'renders two_factor_disabled mail' do
+      expect(mail.subject).to eq I18n.t('devise.mailer.two_factor_disabled.subject')
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.two_factor_disabled.explanation')
+    end
+  end
+
+  describe 'webauthn_enabled' do
+    let(:mail) { described_class.webauthn_enabled(receiver) }
+
+    it 'renders webauthn_enabled mail' do
+      expect(mail.subject).to eq I18n.t('devise.mailer.webauthn_enabled.subject')
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.webauthn_enabled.explanation')
+    end
+  end
+
+  describe 'webauthn_disabled' do
+    let(:mail) { described_class.webauthn_disabled(receiver) }
+
+    it 'renders webauthn_disabled mail' do
+      expect(mail.subject).to eq I18n.t('devise.mailer.webauthn_disabled.subject')
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.webauthn_disabled.explanation')
+    end
+  end
+
+  describe 'two_factor_recovery_codes_changed' do
+    let(:mail) { described_class.two_factor_recovery_codes_changed(receiver) }
+
+    it 'renders two_factor_recovery_codes_changed mail' do
+      expect(mail.subject).to eq I18n.t('devise.mailer.two_factor_recovery_codes_changed.subject')
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.two_factor_recovery_codes_changed.explanation')
+    end
+  end
+
+  describe 'webauthn_credential_added' do
+    let(:credential) { Fabricate.build(:webauthn_credential) }
+    let(:mail) { described_class.webauthn_credential_added(receiver, credential) }
+
+    it 'renders webauthn_credential_added mail' do
+      expect(mail.subject).to eq I18n.t('devise.mailer.webauthn_credential.added.subject')
+      expect(mail.body.encoded).to include I18n.t('devise.mailer.webauthn_credential.added.explanation')
+    end
+  end
 end

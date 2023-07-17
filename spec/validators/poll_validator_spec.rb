@@ -9,8 +9,8 @@ RSpec.describe PollValidator, type: :validator do
     end
 
     let(:validator) { described_class.new }
-    let(:poll) { double(options: options, expires_at: expires_at, errors: errors) }
-    let(:errors) { double(add: nil) }
+    let(:poll) { instance_double(Poll, options: options, expires_at: expires_at, errors: errors) }
+    let(:errors) { instance_double(ActiveModel::Errors, add: nil) }
     let(:options) { %w(foo bar) }
     let(:expires_at) { 1.day.from_now }
 

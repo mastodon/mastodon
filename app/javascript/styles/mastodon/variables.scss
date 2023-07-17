@@ -1,8 +1,16 @@
 // Commonly used web colors
 $black: #000000; // Black
 $white: #ffffff; // White
+$red-600: #b7253d !default; // Deep Carmine
+$red-500: #df405a !default; // Cerise
+$blurple-600: #563acc; // Iris
+$blurple-500: #6364ff; // Brand purple
+$blurple-300: #858afa; // Faded Blue
+$grey-600: #4e4c5a; // Trout
+$grey-100: #dadaf3; // Topaz
+
 $success-green: #79bd9a !default; // Padua
-$error-red: #df405a !default; // Cerise
+$error-red: $red-500 !default; // Cerise
 $warning-red: #ff5050 !default; // Sunset Orange
 $gold-star: #ca8f04 !default; // Dark Goldenrod
 
@@ -31,6 +39,22 @@ $ui-base-lighter-color: lighten(
 $ui-primary-color: $classic-primary-color !default; // Lighter
 $ui-secondary-color: $classic-secondary-color !default; // Lightest
 $ui-highlight-color: $classic-highlight-color !default;
+$ui-button-color: $white !default;
+$ui-button-background-color: $blurple-500 !default;
+$ui-button-focus-background-color: $blurple-600 !default;
+
+$ui-button-secondary-color: $grey-100 !default;
+$ui-button-secondary-border-color: $grey-100 !default;
+$ui-button-secondary-focus-background-color: $grey-600 !default;
+$ui-button-secondary-focus-color: $white !default;
+
+$ui-button-tertiary-color: $blurple-300 !default;
+$ui-button-tertiary-border-color: $blurple-300 !default;
+$ui-button-tertiary-focus-background-color: $blurple-600 !default;
+$ui-button-tertiary-focus-color: $white !default;
+
+$ui-button-destructive-background-color: $red-500 !default;
+$ui-button-destructive-focus-background-color: $red-600 !default;
 
 // Variables for texts
 $primary-text-color: $white !default;
@@ -39,6 +63,7 @@ $dark-text-color: $ui-base-lighter-color !default;
 $secondary-text-color: $ui-secondary-color !default;
 $highlight-text-color: lighten($ui-highlight-color, 8%) !default;
 $action-button-color: $ui-base-lighter-color !default;
+$action-button-focus-color: lighten($ui-base-lighter-color, 4%) !default;
 $passive-text-color: $gold-star !default;
 $active-passive-text-color: $success-green !default;
 

@@ -23,22 +23,12 @@ module Mastodon::CLI
     def recount(type)
       case type
       when 'accounts'
-        processed, = parallelize_with_progress(Account.local.includes(:account_stat)) do |account|
-          account_stat                 = account.account_stat
-          account_stat.following_count = account.active_relationships.count
-          account_stat.followers_count = account.passive_relationships.count
-          account_stat.statuses_count  = account.statuses.where.not(visibility: :direct).count
-
-          account_stat.save if account_stat.changed?
+        processed, = parallelize_with_progress(accounts_with_stats) do |account|
+          recount_account_stats(account)
         end
       when 'statuses'
-        processed, = parallelize_with_progress(Status.includes(:status_stat)) do |status|
-          status_stat                  = status.status_stat
-          status_stat.replies_count    = status.replies.where.not(visibility: :direct).count
-          status_stat.reblogs_count    = status.reblogs.count
-          status_stat.favourites_count = status.favourites.count
-
-          status_stat.save if status_stat.changed?
+        processed, = parallelize_with_progress(statuses_with_stats) do |status|
+          recount_status_stats(status)
         end
       else
         say("Unknown type: #{type}", :red)
@@ -47,6 +37,36 @@ module Mastodon::CLI
 
       say
       say("OK, recounted #{processed} records", :green)
+    end
+
+    private
+
+    def accounts_with_stats
+      Account.local.includes(:account_stat)
+    end
+
+    def statuses_with_stats
+      Status.includes(:status_stat)
+    end
+
+    def recount_account_stats(account)
+      account.account_stat.tap do |account_stat|
+        account_stat.following_count = account.active_relationships.count
+        account_stat.followers_count = account.passive_relationships.count
+        account_stat.statuses_count  = account.statuses.where.not(visibility: :direct).count
+
+        account_stat.save if account_stat.changed?
+      end
+    end
+
+    def recount_status_stats(status)
+      status.status_stat.tap do |status_stat|
+        status_stat.replies_count    = status.replies.where.not(visibility: :direct).count
+        status_stat.reblogs_count    = status.reblogs.count
+        status_stat.favourites_count = status.favourites.count
+
+        status_stat.save if status_stat.changed?
+      end
     end
   end
 end

@@ -20,7 +20,9 @@ RSpec.describe Account do
       end
 
       context 'when the account is of a local user' do
-        let!(:subject) { Fabricate(:user, email: 'foo+bar@domain.org').account }
+        subject { local_user_account }
+
+        let!(:local_user_account) { Fabricate(:user, email: 'foo+bar@domain.org').account }
 
         it 'creates a canonical domain block' do
           subject.suspend!

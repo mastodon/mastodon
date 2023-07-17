@@ -11,12 +11,12 @@ RSpec.describe Trends::Statuses do
     let!(:query) { subject.query }
     let!(:today) { at_time }
 
-    let!(:status1) { Fabricate(:status, text: 'Foo', language: 'en', trendable: true, created_at: today) }
-    let!(:status2) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
+    let!(:status_foo) { Fabricate(:status, text: 'Foo', language: 'en', trendable: true, created_at: today) }
+    let!(:status_bar) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
 
     before do
-      15.times { reblog(status1, today) }
-      12.times { reblog(status2, today) }
+      default_threshold_value.times { reblog(status_foo, today) }
+      default_threshold_value.times { reblog(status_bar, today) }
 
       subject.refresh(today)
     end
@@ -29,18 +29,18 @@ RSpec.describe Trends::Statuses do
       end
 
       it 'filters out blocked accounts' do
-        account.block!(status1.account)
-        expect(query.filtered_for(account).to_a).to eq [status2]
+        account.block!(status_foo.account)
+        expect(query.filtered_for(account).to_a).to eq [status_bar]
       end
 
       it 'filters out muted accounts' do
-        account.mute!(status2.account)
-        expect(query.filtered_for(account).to_a).to eq [status1]
+        account.mute!(status_bar.account)
+        expect(query.filtered_for(account).to_a).to eq [status_foo]
       end
 
       it 'filters out blocked-by accounts' do
-        status1.account.block!(account)
-        expect(query.filtered_for(account).to_a).to eq [status2]
+        status_foo.account.block!(account)
+        expect(query.filtered_for(account).to_a).to eq [status_bar]
       end
     end
   end
@@ -71,14 +71,14 @@ RSpec.describe Trends::Statuses do
     let!(:today) { at_time }
     let!(:yesterday) { today - 1.day }
 
-    let!(:status1) { Fabricate(:status, text: 'Foo', language: 'en', trendable: true, created_at: yesterday) }
-    let!(:status2) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
-    let!(:status3) { Fabricate(:status, text: 'Baz', language: 'en', trendable: true, created_at: today) }
+    let!(:status_foo) { Fabricate(:status, text: 'Foo', language: 'en', trendable: true, created_at: yesterday) }
+    let!(:status_bar) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
+    let!(:status_baz) { Fabricate(:status, text: 'Baz', language: 'en', trendable: true, created_at: today) }
 
     before do
-      13.times { reblog(status1, today) }
-      13.times { reblog(status2, today) }
-      4.times { reblog(status3, today) }
+      default_threshold_value.times { reblog(status_foo, today) }
+      default_threshold_value.times { reblog(status_bar, today) }
+      (default_threshold_value - 1).times { reblog(status_baz, today) }
     end
 
     context 'when status trends are refreshed' do
@@ -86,21 +86,20 @@ RSpec.describe Trends::Statuses do
         subject.refresh(today)
       end
 
-      it 'calculates and re-calculates scores' do
-        expect(subject.query.limit(10).to_a).to eq [status2, status1]
-      end
+      it 'returns correct statuses from query' do
+        results = subject.query.limit(10).to_a
 
-      it 'omits statuses below threshold' do
-        expect(subject.query.limit(10).to_a).to_not include(status3)
+        expect(results).to eq [status_bar, status_foo]
+        expect(results).to_not include(status_baz)
       end
     end
 
     it 'decays scores' do
       subject.refresh(today)
-      original_score = status2.trend.score
+      original_score = status_bar.trend.score
       expect(original_score).to be_a Float
       subject.refresh(today + subject.options[:score_halflife])
-      decayed_score = status2.trend.reload.score
+      decayed_score = status_bar.trend.reload.score
       expect(decayed_score).to be <= original_score / 2
     end
   end
@@ -108,5 +107,9 @@ RSpec.describe Trends::Statuses do
   def reblog(status, at_time)
     reblog = Fabricate(:status, reblog: status, created_at: at_time)
     subject.add(status, reblog.account_id, at_time)
+  end
+
+  def default_threshold_value
+    described_class.default_options[:threshold]
   end
 end

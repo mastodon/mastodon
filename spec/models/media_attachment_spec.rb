@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe MediaAttachment do
+RSpec.describe MediaAttachment, paperclip_processing: true do
   describe 'local?' do
     subject { media_attachment.local? }
 
@@ -149,6 +149,26 @@ RSpec.describe MediaAttachment do
 
     it 'gives the file a random name' do
       expect(media.file_file_name).to_not eq 'boop.ogg'
+    end
+  end
+
+  describe 'mp3 with large cover art' do
+    let(:media) { described_class.create(account: Fabricate(:account), file: attachment_fixture('boop.mp3')) }
+
+    it 'detects it as an audio file' do
+      expect(media.type).to eq 'audio'
+    end
+
+    it 'sets meta for the duration' do
+      expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
+    end
+
+    it 'extracts thumbnail' do
+      expect(media.thumbnail.present?).to be true
+    end
+
+    it 'gives the file a random name' do
+      expect(media.file_file_name).to_not eq 'boop.mp3'
     end
   end
 

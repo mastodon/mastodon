@@ -53,7 +53,7 @@ describe 'blocking domains through the moderation interface' do
       # Confirming updates the block
       click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
 
-      expect(domain_block.reload.severity).to eq 'silence'
+      expect(domain_block.reload.severity).to eq 'suspend'
     end
   end
 
@@ -72,7 +72,7 @@ describe 'blocking domains through the moderation interface' do
       # Confirming updates the block
       click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
 
-      expect(domain_block.reload.severity).to eq 'silence'
+      expect(domain_block.reload.severity).to eq 'suspend'
     end
   end
 end

@@ -12,6 +12,9 @@ module.exports = (api) => {
     debug: false,
     include: [
       'transform-numeric-separator',
+      'transform-optional-chaining',
+      'transform-nullish-coalescing-operator',
+      'transform-class-properties',
     ],
   };
 
@@ -24,8 +27,6 @@ module.exports = (api) => {
     plugins: [
       ['formatjs'],
       'preval',
-      '@babel/plugin-transform-optional-chaining',
-      '@babel/plugin-transform-nullish-coalescing-operator',
     ],
     overrides: [
       {

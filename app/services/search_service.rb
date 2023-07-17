@@ -2,12 +2,13 @@
 
 class SearchService < BaseService
   def call(query, account, limit, options = {})
-    @query   = query&.strip
-    @account = account
-    @options = options
-    @limit   = limit.to_i
-    @offset  = options[:type].blank? ? 0 : options[:offset].to_i
-    @resolve = options[:resolve] || false
+    @query     = query&.strip
+    @account   = account
+    @options   = options
+    @limit     = limit.to_i
+    @offset    = options[:type].blank? ? 0 : options[:offset].to_i
+    @resolve   = options[:resolve] || false
+    @following = options[:following] || false
 
     default_results.tap do |results|
       next if @query.blank? || @limit.zero?
@@ -30,7 +31,10 @@ class SearchService < BaseService
       @account,
       limit: @limit,
       resolve: @resolve,
-      offset: @offset
+      offset: @offset,
+      use_searchable_text: true,
+      following: @following,
+      start_with_hashtag: @query.start_with?('#')
     )
   end
 
@@ -78,7 +82,7 @@ class SearchService < BaseService
   end
 
   def url_resource
-    @_url_resource ||= ResolveURLService.new.call(@query, on_behalf_of: @account)
+    @url_resource ||= ResolveURLService.new.call(@query, on_behalf_of: @account)
   end
 
   def url_resource_symbol
@@ -88,11 +92,11 @@ class SearchService < BaseService
   def full_text_searchable?
     return false unless Chewy.enabled?
 
-    statuses_search? && !@account.nil? && !((@query.start_with?('#') || @query.include?('@')) && !@query.include?(' '))
+    statuses_search? && !@account.nil? && !(@query.include?('@') && !@query.include?(' '))
   end
 
   def account_searchable?
-    account_search? && !(@query.start_with?('#') || (@query.include?('@') && @query.include?(' ')))
+    account_search? && !(@query.include?('@') && @query.include?(' '))
   end
 
   def hashtag_searchable?

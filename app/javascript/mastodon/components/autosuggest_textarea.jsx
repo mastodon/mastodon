@@ -10,7 +10,7 @@ import Textarea from 'react-textarea-autosize';
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
 
 import AutosuggestEmoji from './autosuggest_emoji';
-import AutosuggestHashtag from './autosuggest_hashtag';
+import { AutosuggestHashtag } from './autosuggest_hashtag';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;

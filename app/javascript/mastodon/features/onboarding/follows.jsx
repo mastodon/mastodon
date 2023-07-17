@@ -12,20 +12,11 @@ import Column from 'mastodon/components/column';
 import ColumnBackButton from 'mastodon/components/column_back_button';
 import { EmptyAccount } from 'mastodon/components/empty_account';
 import Account from 'mastodon/containers/account_container';
-import { me } from 'mastodon/initial_state';
-import { makeGetAccount } from 'mastodon/selectors';
 
-import ProgressIndicator from './components/progress_indicator';
-
-const mapStateToProps = () => {
-  const getAccount = makeGetAccount();
-
-  return state => ({
-    account: getAccount(state, me),
-    suggestions: state.getIn(['suggestions', 'items']),
-    isLoading: state.getIn(['suggestions', 'isLoading']),
-  });
-};
+const mapStateToProps = state => ({
+  suggestions: state.getIn(['suggestions', 'items']),
+  isLoading: state.getIn(['suggestions', 'isLoading']),
+});
 
 class Follows extends PureComponent {
 
@@ -33,7 +24,6 @@ class Follows extends PureComponent {
     onBack: PropTypes.func,
     dispatch: PropTypes.func.isRequired,
     suggestions: ImmutablePropTypes.list,
-    account: ImmutablePropTypes.map,
     isLoading: PropTypes.bool,
     multiColumn: PropTypes.bool,
   };
@@ -49,7 +39,7 @@ class Follows extends PureComponent {
   }
 
   render () {
-    const { onBack, isLoading, suggestions, account, multiColumn } = this.props;
+    const { onBack, isLoading, suggestions, multiColumn } = this.props;
 
     let loadedContent;
 
@@ -58,7 +48,7 @@ class Follows extends PureComponent {
     } else if (suggestions.isEmpty()) {
       loadedContent = <div className='follow-recommendations__empty'><FormattedMessage id='onboarding.follows.empty' defaultMessage='Unfortunately, no results can be shown right now. You can try using search or browsing the explore page to find people to follow, or try again later.' /></div>;
     } else {
-      loadedContent = suggestions.map(suggestion => <Account id={suggestion.get('account')} key={suggestion.get('account')} />);
+      loadedContent = suggestions.map(suggestion => <Account id={suggestion.get('account')} key={suggestion.get('account')} withBio />);
     }
 
     return (
@@ -70,8 +60,6 @@ class Follows extends PureComponent {
             <h3><FormattedMessage id='onboarding.follows.title' defaultMessage='Popular on Mastodon' /></h3>
             <p><FormattedMessage id='onboarding.follows.lead' defaultMessage='You curate your own home feed. The more people you follow, the more active and interesting it will be. These profiles may be a good starting point—you can always unfollow them later!' /></p>
           </div>
-
-          <ProgressIndicator steps={7} completed={account.get('following_count') * 1} />
 
           <div className='follow-recommendations'>
             {loadedContent}

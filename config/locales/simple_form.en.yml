@@ -2,6 +2,10 @@
 en:
   simple_form:
     hints:
+      account:
+        display_name: Your full name or your fun name.
+        fields: Your homepage, pronouns, age, anything you want.
+        note: 'You can @mention other people or #hashtags.'
       account_alias:
         acct: Specify the username@domain of the account you want to move from
       account_migration:
@@ -39,7 +43,6 @@ en:
         digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
         discoverable: Allow your account to be discovered by strangers through recommendations, trends and other features
         email: You will be sent a confirmation e-mail
-        fields: You can have up to 4 items displayed as a table on your profile
         header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         inbox_url: Copy the URL from the frontpage of the relay you want to use
         irreversible: Filtered posts will disappear irreversibly, even if filter is later removed
@@ -167,8 +170,8 @@ en:
         text: Explain why this decision should be reversed
       defaults:
         autofollow: Invite to follow your account
-        avatar: Avatar
-        bot: This is a bot account
+        avatar: Profile picture
+        bot: This is an automated account
         chosen_languages: Filter languages
         confirm_new_password: Confirm new password
         confirm_password: Confirm password
@@ -179,8 +182,8 @@ en:
         display_name: Display name
         email: E-mail address
         expires_in: Expire after
-        fields: Profile metadata
-        header: Header
+        fields: Extra fields
+        header: Header picture
         honeypot: "%{label} (do not fill in)"
         inbox_url: URL of the relay inbox
         irreversible: Drop instead of hide

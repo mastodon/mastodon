@@ -38,7 +38,7 @@ RSpec.describe Admin::ConfirmationsController do
     let!(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
 
     before do
-      allow(UserMailer).to receive(:confirmation_instructions) { double(:email, deliver_later: nil) }
+      allow(UserMailer).to receive(:confirmation_instructions) { instance_double(ActionMailer::MessageDelivery, deliver_later: nil) }
     end
 
     context 'when email is not confirmed' do

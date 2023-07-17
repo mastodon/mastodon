@@ -8,8 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
-import { CircularProgress } from 'mastodon/components/loading_indicator';
-
+import { CircularProgress } from "./circular_progress";
 import { IconButton } from './icon_button';
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;

@@ -15,22 +15,6 @@ RSpec.describe Api::V2::Admin::AccountsController do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
-    end
-  end
-
-  shared_examples 'forbidden for wrong role' do |wrong_role|
-    let(:role) { UserRole.find_by(name: wrong_role) }
-
-    it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
-    end
-  end
-
   describe 'GET #index' do
     let!(:remote_account)       { Fabricate(:account, domain: 'example.org') }
     let!(:other_remote_account) { Fabricate(:account, domain: 'foo.bar') }
@@ -69,6 +53,14 @@ RSpec.describe Api::V2::Admin::AccountsController do
 
           expect(json.map { |a| a[:id].to_i }).to eq(expected_results.map { |symbol| send(symbol).id })
         end
+      end
+    end
+
+    context 'with limit param' do
+      let(:params) { { limit: 1 } }
+
+      it 'sets the correct pagination headers' do
+        expect(response.headers['Link'].find_link(%w(rel next)).href).to eq api_v2_admin_accounts_url(limit: 1, max_id: admin_account.id)
       end
     end
   end

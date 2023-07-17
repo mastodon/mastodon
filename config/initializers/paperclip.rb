@@ -153,3 +153,10 @@ unless defined?(Seahorse)
     end
   end
 end
+
+# Set our ImageMagick security policy, but allow admins to override it
+ENV['MAGICK_CONFIGURE_PATH'] = begin
+  imagemagick_config_paths = ENV.fetch('MAGICK_CONFIGURE_PATH', '').split(File::PATH_SEPARATOR)
+  imagemagick_config_paths << Rails.root.join('config', 'imagemagick').expand_path.to_s
+  imagemagick_config_paths.join(File::PATH_SEPARATOR)
+end

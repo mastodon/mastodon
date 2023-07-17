@@ -36,7 +36,7 @@
                         %tbody
                           %tr
                             %td.column-cell.text-center
-                              %p= t 'user_mailer.appeal_rejected.explanation', appeal_date: l(@appeal.created_at.in_time_zone(@resource.time_zone)), strike_date: l(@appeal.strike.created_at.in_time_zone(@resource.time_zone))
+                              %p= t 'user_mailer.appeal_rejected.explanation', appeal_date: l(@appeal.created_at.in_time_zone(@resource.time_zone.presence)), strike_date: l(@appeal.strike.created_at.in_time_zone(@resource.time_zone.presence))
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody

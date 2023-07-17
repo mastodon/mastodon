@@ -117,42 +117,42 @@ describe StatusesHelper do
 
   describe '#style_classes' do
     it do
-      status = double(reblog?: false)
+      status = instance_double(Status, reblog?: false)
       classes = helper.style_classes(status, false, false, false)
 
       expect(classes).to eq 'entry'
     end
 
     it do
-      status = double(reblog?: true)
+      status = instance_double(Status, reblog?: true)
       classes = helper.style_classes(status, false, false, false)
 
       expect(classes).to eq 'entry entry-reblog'
     end
 
     it do
-      status = double(reblog?: false)
+      status = instance_double(Status, reblog?: false)
       classes = helper.style_classes(status, true, false, false)
 
       expect(classes).to eq 'entry entry-predecessor'
     end
 
     it do
-      status = double(reblog?: false)
+      status = instance_double(Status, reblog?: false)
       classes = helper.style_classes(status, false, true, false)
 
       expect(classes).to eq 'entry entry-successor'
     end
 
     it do
-      status = double(reblog?: false)
+      status = instance_double(Status, reblog?: false)
       classes = helper.style_classes(status, false, false, true)
 
       expect(classes).to eq 'entry entry-center'
     end
 
     it do
-      status = double(reblog?: true)
+      status = instance_double(Status, reblog?: true)
       classes = helper.style_classes(status, true, true, true)
 
       expect(classes).to eq 'entry entry-predecessor entry-reblog entry-successor entry-center'
@@ -161,35 +161,35 @@ describe StatusesHelper do
 
   describe '#microformats_classes' do
     it do
-      status = double(reblog?: false)
+      status = instance_double(Status, reblog?: false)
       classes = helper.microformats_classes(status, false, false)
 
       expect(classes).to eq ''
     end
 
     it do
-      status = double(reblog?: false)
+      status = instance_double(Status, reblog?: false)
       classes = helper.microformats_classes(status, true, false)
 
       expect(classes).to eq 'p-in-reply-to'
     end
 
     it do
-      status = double(reblog?: false)
+      status = instance_double(Status, reblog?: false)
       classes = helper.microformats_classes(status, false, true)
 
       expect(classes).to eq 'p-comment'
     end
 
     it do
-      status = double(reblog?: true)
+      status = instance_double(Status, reblog?: true)
       classes = helper.microformats_classes(status, true, false)
 
       expect(classes).to eq 'p-in-reply-to p-repost-of'
     end
 
     it do
-      status = double(reblog?: true)
+      status = instance_double(Status, reblog?: true)
       classes = helper.microformats_classes(status, true, true)
 
       expect(classes).to eq 'p-in-reply-to p-repost-of p-comment'
@@ -198,42 +198,42 @@ describe StatusesHelper do
 
   describe '#microformats_h_class' do
     it do
-      status = double(reblog?: false)
+      status = instance_double(Status, reblog?: false)
       css_class = helper.microformats_h_class(status, false, false, false)
 
       expect(css_class).to eq 'h-entry'
     end
 
     it do
-      status = double(reblog?: true)
+      status = instance_double(Status, reblog?: true)
       css_class = helper.microformats_h_class(status, false, false, false)
 
       expect(css_class).to eq 'h-cite'
     end
 
     it do
-      status = double(reblog?: false)
+      status = instance_double(Status, reblog?: false)
       css_class = helper.microformats_h_class(status, true, false, false)
 
       expect(css_class).to eq 'h-cite'
     end
 
     it do
-      status = double(reblog?: false)
+      status = instance_double(Status, reblog?: false)
       css_class = helper.microformats_h_class(status, false, true, false)
 
       expect(css_class).to eq 'h-cite'
     end
 
     it do
-      status = double(reblog?: false)
+      status = instance_double(Status, reblog?: false)
       css_class = helper.microformats_h_class(status, false, false, true)
 
       expect(css_class).to eq ''
     end
 
     it do
-      status = double(reblog?: true)
+      status = instance_double(Status, reblog?: true)
       css_class = helper.microformats_h_class(status, true, true, true)
 
       expect(css_class).to eq 'h-cite'
