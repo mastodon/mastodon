@@ -190,6 +190,7 @@ module LanguagesHelper
     ast: ['Asturian', 'Asturianu'].freeze,
     ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
     cnr: ['Montenegrin', 'crnogorski'].freeze,
+    csb: ['Kashubian', 'Kaszëbsczi'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     kmr: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
