@@ -1,6 +1,7 @@
-- show_results = (user_signed_in? && poll.voted?(current_account)) || poll.expired?
-- own_votes = user_signed_in? ? poll.own_votes(current_account) : []
-- total_votes_count = poll.voters_count || poll.votes_count
+:ruby
+  show_results = (user_signed_in? && poll.voted?(current_account)) || poll.expired?
+  own_votes = user_signed_in? ? poll.own_votes(current_account) : []
+  total_votes_count = poll.voters_count || poll.votes_count
 
 .poll
   %ul
