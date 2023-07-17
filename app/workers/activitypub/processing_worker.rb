@@ -12,6 +12,7 @@ class ActivityPub::ProcessingWorker
     end
 
     return if actor.nil?
+    return if body.nil?
 
     ActivityPub::ProcessCollectionService.new.call(body, actor, override_timestamps: true, delivered_to_account_id: delivered_to_account_id, delivery: true)
   rescue ActiveRecord::RecordInvalid => e
