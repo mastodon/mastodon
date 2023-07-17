@@ -36,7 +36,7 @@ describe 'Public' do
         it_behaves_like 'a successful request to the public timeline'
       end
 
-      context 'with an unauthorized user' do
+      context 'with an anonymous user' do
         let(:headers) { {} }
 
         it_behaves_like 'a successful request to the public timeline'
