@@ -9,7 +9,9 @@
   ],
   stabilityDays: 3, // Wait 3 days after the package has been published before upgrading it
   // packageRules order is important, they are applied from top to bottom and are merged,
-  // so for example grouping rules needs to be at the bottom
+  // meaning the most important ones must be at the bottom, for example grouping rules
+  // If we do not want a package to be grouped with others, we need to set its groupName
+  // to `null` after any other rule set it to something.
   packageRules: [
     {
       // Ignore major version bumps for these node packages
@@ -45,6 +47,7 @@
       // Ignore major version bumps for these Ruby packages
       matchManagers: ['bundler'],
       matchPackageNames: [
+        'rack', // Needs to be synced with Rails version
         'sprockets', // Requires manual upgrade https://github.com/rails/sprockets/blob/master/UPGRADING.md#guide-to-upgrading-from-sprockets-3x-to-4x
         'strong_migrations', // Requires manual upgrade
         'sidekiq', // Requires manual upgrade
@@ -84,11 +87,16 @@
       // Update devDependencies every week, with one grouped PR
       matchDepTypes: 'devDependencies',
       matchUpdateTypes: ['patch', 'minor'],
-      excludePackageNames: [
-        'typescript', // Typescript has many changes in minor versions, needs to be checked every time
-      ],
       groupName: 'devDependencies (non-major)',
       extends: ['schedule:weekly'],
+    },
+    {
+      // Group all eslint-related packages with `eslint` in the same PR
+      matchManagers: ['npm'],
+      matchPackageNames: ['eslint'],
+      matchPackagePrefixes: ['eslint-', '@typescript-eslint/'],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'eslint (non-major)',
     },
     {
       // Update @types/* packages every week, with one grouped PR
@@ -97,6 +105,14 @@
       groupName: 'DefinitelyTyped types (non-major)',
       extends: ['schedule:weekly'],
       addLabels: ['typescript'],
+    },
+    {
+      // We want those packages to always have their own PR
+      matchManagers: ['npm'],
+      matchPackageNames: [
+        'typescript', // Typescript has code-impacting changes in minor versions
+      ],
+      groupName: null, // We dont want them to belong to any group
     },
     // Add labels depending on package manager
     { matchManagers: ['npm', 'nvm'], addLabels: ['javascript'] },
