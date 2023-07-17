@@ -11,7 +11,7 @@
   %p.lead= t('admin.settings.appearance.preamble')
 
   .fields-group
-    = f.input :flavour_and_skin, collection: Themes.instance.flavours_and_skins, group_label_method: lambda { |(flavour, _)| I18n.t("flavours.#{flavour}.name", default: flavour) }, wrapper: :with_label, label: t('admin.settings.flavour_and_skin.title'), include_blank: false, as: :grouped_select, label_method: :last, value_method: lambda { |value| value.join('/') }, group_method: :last
+    = f.input :flavour_and_skin, collection: Themes.instance.flavours_and_skins, group_label_method: -> (flavour_and_skin) { I18n.t("flavours.#{flavour_and_skin}.name", default: flavour_and_skin) }, wrapper: :with_label, label: t('admin.settings.flavour_and_skin.title'), include_blank: false, as: :grouped_select, label_method: :last, value_method: lambda { |value| value.join('/') }, group_method: :last
 
   .fields-group
     = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }
