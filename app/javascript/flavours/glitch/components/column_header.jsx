@@ -65,9 +65,7 @@ class ColumnHeader extends PureComponent {
   handleBackClick = () => {
     const { router } = this.context;
 
-    // Check if there is a previous page in the app to go back to per https://stackoverflow.com/a/70532858/9703201
-    // When upgrading to V6, check `location.key !== 'default'` instead per https://github.com/remix-run/history/blob/main/docs/api-reference.md#location
-    if (router.route.location.key) {
+    if (router.history.location?.state?.fromMastodon) {
       router.history.goBack();
     } else {
       router.history.push('/');
@@ -87,6 +85,7 @@ class ColumnHeader extends PureComponent {
   };
 
   render () {
+    const { router } = this.context;
     const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
     const { collapsed, animating } = this.state;
 
@@ -130,7 +129,7 @@ class ColumnHeader extends PureComponent {
       pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
-    if (!pinned && (multiColumn || showBackButton)) {
+    if (!pinned && ((multiColumn && router.history.location?.state?.fromMastodon) || showBackButton)) {
       backButton = (
         <button onClick={this.handleBackClick} className='column-header__back-button'>
           <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
