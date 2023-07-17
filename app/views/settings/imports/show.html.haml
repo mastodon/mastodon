@@ -2,7 +2,7 @@
   = t("imports.titles.#{@bulk_import.type}")
 
 - if @bulk_import.likely_mismatched?
-  .flash-message.warning= t("imports.mismatched_types_warning")
+  .flash-message.warning= t('imports.mismatched_types_warning')
 
 - if @bulk_import.overwrite?
   %p.hint= t("imports.overwrite_preambles.#{@bulk_import.type}_html", filename: @bulk_import.original_filename, total_items: @bulk_import.total_items)
