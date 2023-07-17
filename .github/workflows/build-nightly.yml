@@ -1,5 +1,6 @@
 name: Build nightly container image
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 2 * * *' # run at 2 AM UTC
 
@@ -22,6 +23,7 @@ jobs:
     uses: ./.github/workflows/build-container-image.yml
     with:
       platforms: linux/amd64,linux/arm64
+      use_native_arm64_builder: true
       push_to_images: |
         tootsuite/mastodon
         ghcr.io/mastodon/mastodon

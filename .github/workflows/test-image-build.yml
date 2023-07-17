@@ -18,4 +18,4 @@ jobs:
 
     uses: ./.github/workflows/build-container-image.yml
     with:
-      platforms: linux/amd64,linux/arm64
+      platforms: linux/amd64 # Testing only on native platform so it is performant

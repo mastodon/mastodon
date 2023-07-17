@@ -4,6 +4,8 @@ on:
       platforms:
         required: true
         type: string
+      use_native_arm64_builder:
+        type: boolean
       push_to_images:
         type: string
       version_suffix:
@@ -23,10 +25,34 @@ jobs:
       - uses: actions/checkout@v3
 
       - uses: docker/setup-qemu-action@v2
-        if: contains(inputs.platforms, 'linux/arm64')
+        if: contains(inputs.platforms, 'linux/arm64') && !inputs.use_native_arm64_builder
 
       - uses: docker/setup-buildx-action@v2
         id: buildx
+        if: ${{ !(inputs.use_native_arm64_builder && contains(inputs.platforms, 'linux/arm64')) }}
+
+      - name: Start a local Docker Builder
+        if: inputs.use_native_arm64_builder && contains(inputs.platforms, 'linux/arm64')
+        run: |
+          docker run --rm -d --name buildkitd -p 1234:1234 --privileged moby/buildkit:latest --addr tcp://0.0.0.0:1234
+
+      - uses: docker/setup-buildx-action@v2
+        id: buildx-native
+        if: inputs.use_native_arm64_builder && contains(inputs.platforms, 'linux/arm64')
+        with:
+          driver: remote
+          endpoint: tcp://localhost:1234
+          platforms: linux/amd64
+          append: |
+            - endpoint: tcp://${{ vars.DOCKER_BUILDER_HETZNER_ARM64_01_HOST }}:13865
+              platforms: linux/arm64
+              name: mastodon-docker-builder-arm64-01
+              driver-opts:
+                - servername=mastodon-docker-builder-arm64-01
+        env:
+          BUILDER_NODE_1_AUTH_TLS_CACERT: ${{ secrets.DOCKER_BUILDER_HETZNER_ARM64_01_CACERT }}
+          BUILDER_NODE_1_AUTH_TLS_CERT: ${{ secrets.DOCKER_BUILDER_HETZNER_ARM64_01_CERT }}
+          BUILDER_NODE_1_AUTH_TLS_KEY: ${{ secrets.DOCKER_BUILDER_HETZNER_ARM64_01_KEY }}
 
       - name: Log in to Docker Hub
         if: contains(inputs.push_to_images, 'tootsuite')
@@ -60,7 +86,7 @@ jobs:
           build-args: MASTODON_VERSION_SUFFIX=${{ inputs.version_suffix }}
           platforms: ${{ inputs.platforms }}
           provenance: false
-          builder: ${{ steps.buildx.outputs.name }}
+          builder: ${{ steps.buildx.outputs.name || steps.buildx-native.outputs.name }}
           push: ${{ inputs.push_to_images != '' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
