@@ -2,6 +2,10 @@
 fo:
   simple_form:
     hints:
+      account:
+        display_name: Títt fulla navn og títt stuttliga navn.
+        fields: Heimasíðan hjá tær, fornøvn, aldur ella hvat tú vil.
+        note: 'Tú kanst @umrøða onnur fólk ella #frámerki.'
       account_alias:
         acct: Upplýs brúkaranavn@navnaøki á kontuni, sum tú vilt flyta frá
       account_migration:
@@ -130,6 +134,7 @@ fo:
         position: Hægri leiklutur er avgerandi fyri loysn av ósemjum í ávísum støðum. Ávísar atgerðir kunnu einans verða gjørdar móti leiklutum, sum hava eina lægri raðfesting
       webhook:
         events: Vel hendingar at senda
+        template: Samanset títt egna JSON farm við at brúka variabul-interpolasjón. Lat vera blankt fyri sjálvgaldandi JSON.
         url: Hvar hendingar verða sendar til
     labels:
       account:
@@ -295,6 +300,7 @@ fo:
         usable: Loyva uppsløgum at brúka hendan tvíkross
       user:
         role: Leiklutur
+        time_zone: Tíðarsona
       user_role:
         color: Litur á tignarmerki
         highlighted: Vís leiklut sum tignarmerki á brúkaravangum
@@ -303,6 +309,7 @@ fo:
         position: Raðfesting
       webhook:
         events: Virknar hendingar
+        template: Farmaformur
         url: Endapunkts-URLur
     'no': Nei
     not_recommended: Ikki viðmælt

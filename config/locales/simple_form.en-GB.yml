@@ -2,6 +2,10 @@
 en-GB:
   simple_form:
     hints:
+      account:
+        display_name: Your full name or your fun name.
+        fields: Your homepage, pronouns, age, anything you want.
+        note: 'You can @mention other people or #hashtags.'
       account_alias:
         acct: Specify the username@domain of the account you want to move from
       account_migration:
@@ -130,6 +134,7 @@ en-GB:
         position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
       webhook:
         events: Select events to send
+        template: Compose your own JSON payload using variable interpolation. Leave blank for default JSON.
         url: Where events will be sent to
     labels:
       account:
@@ -295,6 +300,7 @@ en-GB:
         usable: Allow posts to use this hashtag
       user:
         role: Role
+        time_zone: Time Zone
       user_role:
         color: Badge colour
         highlighted: Display role as badge on user profiles
@@ -303,6 +309,7 @@ en-GB:
         position: Priority
       webhook:
         events: Enabled events
+        template: Payload template
         url: Endpoint URL
     'no': 'No'
     not_recommended: Not recommended

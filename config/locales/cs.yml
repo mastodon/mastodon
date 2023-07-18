@@ -1263,7 +1263,9 @@ cs:
       many: "<strong>%{count}</strong> položek odpovídající vašemu hledání je vybráno."
       one: "<strong>%{count}</strong> položka odpovídající vašemu hledání je vybrána."
       other: Všech <strong>%{count}</strong> položek odpovídající vašemu hledání je vybráno.
+    cancel: Zrušit
     changes_saved_msg: Změny byly úspěšně uloženy!
+    confirm: Potvrdit
     copy: Kopírovat
     delete: Smazat
     deselect: Zrušit výběr všeho
@@ -1283,15 +1285,36 @@ cs:
       other: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyb uvedených níže
   imports:
     errors:
+      empty: Prázdný CSV soubor
+      incompatible_type: Nekompatibilní s vybraným typem importu
       invalid_csv_file: 'Neplatný soubor CSV. Chyba: %{error}'
       over_rows_processing_limit: obsahuje více než %{count} řádků
+      too_large: Soubor je příliš velký
+    failures: Chyby
+    imported: Importováno
+    mismatched_types_warning: Zdá se, že jste pro tento import vybrali nesprávný typ, zkontrolujte, prosím, znova.
     modes:
       merge: Sloučit
       merge_long: Ponechat existující záznamy a přidat nové
       overwrite: Přepsat
       overwrite_long: Nahradit aktuální záznamy novými
     preface: Můžete importovat data, která jste exportovali z jiného serveru, jako například seznam lidí, které sledujete či blokujete.
+    recent_imports: Nedávné importy
+    states:
+      finished: Dokončeno
+      in_progress: Probíhá
+      scheduled: Naplánováno
+      unconfirmed: Nepotvrzeno
+    status: Stav
     success: Vaše data byla úspěšně nahrána a budou zpracována v pravý čas
+    time_started: Zahájeno v
+    titles:
+      blocking: Import blokovaných účtů
+      bookmarks: Import záložek
+      domain_blocking: Import blokovaných domén
+      following: Import sledovaných účtů
+      muting: Import ztlumených účtů
+    type: Typ importu
     types:
       blocking: Seznam blokovaných
       bookmarks: Záložky
