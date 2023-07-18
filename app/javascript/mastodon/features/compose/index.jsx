@@ -31,7 +31,7 @@ const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
-  public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
+  public: { id: 'navigation_bar.firehose', defaultMessage: 'Live feeds' },
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
