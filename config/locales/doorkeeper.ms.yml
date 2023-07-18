@@ -1,3 +1,4 @@
+---
 ms:
   activerecord:
     attributes:
@@ -41,11 +42,11 @@ ms:
         search: Cari
         statuses: Hantaran
     scopes:
-      "admin:read": baca semua data pada pelayan
-      "admin:read:accounts": baca maklumat sensitif untuk semua akaun
-      "admin:read:reports": baca maklumat sensitif untuk semua laporan dan akaun-akaun yang dilaporkan
-      "admin:write": mengubah semua data pada pelayan
-      "read:statuses": lihat semua hantaran
-      "write:bookmarks": menandabuku hantaran
-      "write:favourites": hantaran kegemaran
-      "write:statuses": terbitkan hantaran
+      admin:read: baca semua data pada pelayan
+      admin:read:accounts: baca maklumat sensitif untuk semua akaun
+      admin:read:reports: baca maklumat sensitif untuk semua laporan dan akaun-akaun yang dilaporkan
+      admin:write: mengubah semua data pada pelayan
+      read:statuses: lihat semua hantaran
+      write:bookmarks: menandabuku hantaran
+      write:favourites: hantaran kegemaran
+      write:statuses: terbitkan hantaran

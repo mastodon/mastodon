@@ -1,3 +1,4 @@
+---
 is:
   about:
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
@@ -55,7 +56,7 @@ is:
       delete: Eyða gögnum
       deleted: Eytt
       demote: Lækka í tign
-      destroyed_msg: "Gögn notandans %{username} eru núna í bið eftir að vera endanlega eytt"
+      destroyed_msg: Gögn notandans %{username} eru núna í bið eftir að vera endanlega eytt
       disable: Gera óvirkt
       disable_sign_in_token_auth: Gera óvirka auðkenningu með teikni í tölvupósti
       disable_two_factor_authentication: Gera tveggja-þátta auðkenningu óvirka
@@ -556,11 +557,11 @@ is:
       no_ip_block_selected: Engum IP-reglum var breytt því ekkert var valið
       title: IP-reglur
     relationships:
-      title: "Vensl %{acct}"
+      title: Vensl %{acct}
     relays:
       add_new: Bæta við nýjum endurvarpa
       delete: Eyða
-      description_html: <strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra færslna við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum.
+      description_html: "<strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra færslna við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum."
       disable: Gera óvirkt
       disabled: Óvirkt
       enable: Virkja
@@ -740,7 +741,9 @@ is:
         preamble: Útlitsleg einkenni aðgreina netþjóninn þinn frá öðrum netþjónum á netkerfinu. Þessar upplýsingar geta birst á margvíslegum stöðum, eins og til dæmis í vefviðmóti Mastodon, einstökum forritum, í forskoðun tengla á öðrum vefsvæðum og innan samskiptaforrita, svo eitthvað sé talið. Þess vegna er vest að þessar upplýsingar séu skýrar, stuttar og tæmandi.
         title: Útlitsleg aðgreining
       captcha_enabled:
-        desc_html: "Þetta stuðlast á utanaðkomandi forskriftum frá hCaptcha, sem gæti haft í för með sér öryggisveikleika og vegið að friðhelgi notenda.\nAukinheldur <strong> gæti þetta gert nýskráningarferlið óaðgengilegra sumum (sérstaklega fyrir fatlaða)</strong>. Þess vegna er rétt að skoða aðra valmöguleika svo sem nýskráningar háðar samþykki eða boði."
+        desc_html: |-
+          Þetta stuðlast á utanaðkomandi forskriftum frá hCaptcha, sem gæti haft í för með sér öryggisveikleika og vegið að friðhelgi notenda.
+          Aukinheldur <strong> gæti þetta gert nýskráningarferlið óaðgengilegra sumum (sérstaklega fyrir fatlaða)</strong>. Þess vegna er rétt að skoða aðra valmöguleika svo sem nýskráningar háðar samþykki eða boði.
         title: Nýir notendur munu þurfa að standast Turing skynpróf til að staðfesta notendaaðganginn
       content_retention:
         preamble: Stýrðu hvernig efni frá notendum sé geymt í Mastodon.
@@ -906,7 +909,7 @@ is:
     webhooks:
       add_new: Bæta við endapunkti
       delete: Eyða
-      description_html: <strong>webhook-vefkrækja</strong> gerir Mastodon kleift að ýta <strong>rauntíma-tilkynningum</strong> um valda atburði til þinna eigin forrita, þannig að þau forrit getir <strong>sett sjálfvirk viðbrögð í gang</strong>.
+      description_html: "<strong>webhook-vefkrækja</strong> gerir Mastodon kleift að ýta <strong>rauntíma-tilkynningum</strong> um valda atburði til þinna eigin forrita, þannig að þau forrit getir <strong>sett sjálfvirk viðbrögð í gang</strong>."
       disable: Gera óvirkt
       disabled: Óvirkt
       edit: Breyta endapunkti
@@ -942,7 +945,7 @@ is:
     new_report:
       body: "%{reporter} hefur kært %{target}"
       body_remote: Einhver frá %{domain} hefur kært %{target}
-      subject: 'Ný kæra vegna %{instance} (#%{id})'
+      subject: Ný kæra vegna %{instance} (#%{id})
     new_trends:
       body: 'Eftirfarandi atriði þarfnast yfirferðar áður en hægt er að birta þau opinberlega:'
       new_trending_links:
@@ -993,7 +996,9 @@ is:
     apply_for_account: Biðja um notandaaðgang
     captcha_confirmation:
       help_html: Ef þú átt í erfiðleikum með að leysa Turing skynpróf, geturðu hafst samband við okkur á netfanginu %{email} og við munum aðstoða þig.
-      hint_html: "Bara eitt enn! Við þurfum að ganga úr skugga um að þú sért mennskur (þetta er gert til að draga úr amapósti).\nLeystu Turing skynprófið og smelltu á \"Áfram\"."
+      hint_html: |-
+        Bara eitt enn! Við þurfum að ganga úr skugga um að þú sért mennskur (þetta er gert til að draga úr amapósti).
+        Leystu Turing skynprófið og smelltu á "Áfram".
       title: Öryggisathugun
     confirmations:
       wrong_email_hint: Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
@@ -1427,13 +1432,13 @@ is:
       title: Ný beiðni um að fylgjast með
     mention:
       action: Svara
-      body: '%{name} minntist á þig í:'
-      subject: '%{name} minntist á þig'
+      body: "%{name} minntist á þig í:"
+      subject: "%{name} minntist á þig"
       title: Ný tilvísun
     poll:
       subject: Könnun frá %{name} er lokið
     reblog:
-      body: '%{name} endurbirti færsluna þína:'
+      body: "%{name} endurbirti færsluna þína:"
       subject: "%{name} endurbirti færsluna þína"
       title: Ný endurbirting
     status:
@@ -1634,7 +1639,7 @@ is:
     show_older: Sýna eldri
     show_thread: Birta þráð
     sign_in_to_participate: Skráðu þig inn til að taka þátt í samtalinu
-    title: '%{name}: „%{quote}‟'
+    title: "%{name}: „%{quote}‟"
     visibilities:
       direct: Beint
       private: Einungis fylgjendur

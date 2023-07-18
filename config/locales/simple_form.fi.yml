@@ -1,3 +1,4 @@
+---
 fi:
   simple_form:
     hints:
@@ -118,7 +119,7 @@ fi:
       rule:
         text: Kuvaile sääntöä tai vaatimusta tämän palvelimen käyttäjille. Yritä pitää se lyhyenä ja yksinkertaisena
       sessions:
-        otp: 'Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.'
+        otp: Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.
         webauthn: Jos kyseessä on USB-avain, muista laittaa se paikalleen ja tarvittaessa napauttaa sitä.
       tag:
         name: Voit muuttaa esimerkiksi kirjaimia paremmin luettavaksi
@@ -310,7 +311,7 @@ fi:
         events: Tapahtumat käytössä
         template: Maksun malli
         url: Päätepisteen URL
-    'no': 'Ei'
+    'no': Ei
     not_recommended: Ei suositella
     recommended: Suositeltu
     required:
@@ -319,4 +320,4 @@ fi:
     title:
       sessions:
         webauthn: Käytä jotakin suojausavainta kirjautuaksesi sisään
-    'yes': 'Kyllä'
+    'yes': Kyllä
