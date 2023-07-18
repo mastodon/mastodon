@@ -1,4 +1,3 @@
----
 sv:
   about:
     about_mastodon_html: 'Framtidens sociala medium: Ingen reklam. Ingen övervakning. Etisk design och decentralisering! Äg din data med Mastodon!'
@@ -33,7 +32,7 @@ sv:
     accounts:
       add_email_domain_block: Blockera e-postdomän
       approve: Godkänn
-      approved_msg: "%{username}s registreringsansökan godkändes"
+      approved_msg: '%{username}s registreringsansökan godkändes'
       are_you_sure: Är du säker?
       avatar: Profilbild
       by_domain: Domän
@@ -155,7 +154,7 @@ sv:
       suspension_reversible_hint_html: Kontot har stängts av och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       title: Konton
       unblock_email: Avblockera e-postadress
-      unblocked_email_msg: "%{username}s e-postadress avblockerad"
+      unblocked_email_msg: '%{username}s e-postadress avblockerad'
       unconfirmed_email: Obekräftad e-postadress
       undo_sensitized: Ångra tvinga känsligt
       undo_silenced: Ångra tystnad
@@ -382,6 +381,8 @@ sv:
       undo: Tag bort från vitlistan
     domain_blocks:
       add_new: Lägg till ny
+      confirm_suspension:
+        cancel: Avbryt
       created_msg: Domänblocket behandlas nu
       destroyed_msg: Domänblockering har återtagits
       domain: Domän
@@ -931,7 +932,7 @@ sv:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
-      subject: Ny rapport för %{instance} (#%{id})
+      subject: 'Ny rapport för %{instance} (#%{id})'
     new_trends:
       body: 'Följande objekt behöver granskas innan de kan visas publikt:'
       new_trending_links:
@@ -966,6 +967,7 @@ sv:
     notification_preferences: Ändra e-postinställningar
     salutation: "%{name},"
     settings: 'Ändra e-postinställningar: %{link}'
+    unsubscribe: Avprenumerera
     view: 'Granska:'
     view_profile: Visa profil
     view_status: Visa inlägg
@@ -1003,6 +1005,8 @@ sv:
     progress:
       confirm: Bekräfta e-postadress
       details: Dina uppgifter
+      review: Vår recension
+      rules: Acceptera regler
     providers:
       cas: CAS
       saml: SAML
@@ -1018,7 +1022,10 @@ sv:
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
+      email_below_hint_html: Kolla din skräppost-mapp eller begär en annan. Du kan korrigera din e-postadress om den är fel.
+      email_settings_hint_html: Klicka på länken som vi har skickat till dig för att bekräfta %{email}. Vi väntar här.
       link_not_received: Fick du ingen länk?
+      title: Kolla din inkorg
     sign_in:
       preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
       title: Logga in på %{domain}
@@ -1206,11 +1213,13 @@ sv:
     all: Alla
     all_items_on_page_selected_html:
       one: "<strong>%{count}</strong> objekt på denna sida valt."
-      other: "<strong>%{count}</strong> objekt på denna sida valda."
+      other: <strong>%{count}</strong> objekt på denna sida valda.
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> objekt som matchar din sökning är valt."
-      other: "<strong>%{count}</strong> objekt som matchar din sökning är valda."
+      other: <strong>%{count}</strong> objekt som matchar din sökning är valda.
+    cancel: Avbryt
     changes_saved_msg: Ändringar sparade!
+    confirm: Bekräfta
     copy: Kopiera
     delete: Radera
     deselect: Avmarkera alla
@@ -1226,15 +1235,27 @@ sv:
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
   imports:
     errors:
+      empty: Tom CSV-fil
       invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
       over_rows_processing_limit: innehåller fler än %{count} rader
+      too_large: Filen är för stor
     modes:
       merge: Slå ihop
       merge_long: Behåll befintliga uppgifter och lägg till nya
       overwrite: Skriv över
       overwrite_long: Ersätt de nuvarande uppgifterna med de nya
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
+    states:
+      in_progress: Pågår
+      unconfirmed: Obekräftade
+    status: Status
     success: Dina uppgifter har laddats upp och kommer att behandlas snarast
+    time_started: Började vid
+    titles:
+      blocking: Importerar blockerade konton
+      bookmarks: Importerar bokmärken
+      domain_blocking: Importerar blockerade domäner
+    type: Typ av import
     types:
       blocking: Lista av blockerade
       bookmarks: Bokmärken
