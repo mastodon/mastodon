@@ -1,4 +1,3 @@
----
 tr:
   activerecord:
     attributes:
@@ -53,3 +52,7 @@ tr:
             position:
               elevated: mevcut rolünüzden yüksek olamaz
               own_role: mevcut rolünüzle değiştirilemez
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: erişim hakkınız olmayan olayları içeremez
