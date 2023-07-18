@@ -1,7 +1,10 @@
----
 ja:
   simple_form:
     hints:
+      account:
+        display_name: フルネーム、ハンドルネームなど
+        fields: ホームページ、代名詞、年齢など何でも構いません。
+        note: '自己紹介には #ハッシュタグ や、ほかのアカウントのユーザー名 (@user) を使用できます'
       account_alias:
         acct: 引っ越し元のユーザー名@ドメインを指定してください
       account_migration:
@@ -13,7 +16,7 @@ ja:
         include_statuses: ユーザーは取られた制限や警告の原因となった投稿を確認できるようになります
         send_email_notification: ユーザーは自分のアカウントに何が起こったのか説明を受け取ります
         text_html: オプションです。投稿に用いる構文を使うことができます。簡略化のため<a href="%{path}">プリセット警告文を追加</a>することができます
-        type_html: "<strong>%{acct}</strong>さんに対し、何を行うか選択してください"
+        type_html: <strong>%{acct}</strong>さんに対し、何を行うか選択してください
         types:
           disable: ユーザーが自分のアカウントを使用できないようにします。コンテンツを削除したり非表示にすることはありません。
           none: これを使用すると、他の操作をせずにユーザーに警告を送信できます。
@@ -31,7 +34,7 @@ ja:
         text: 一度だけ異議を申し立てることができます
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
-        avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
+        avatar: '%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます'
         bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         context: フィルターを適用する対象 (複数選択可)
         current_password: 現在のアカウントのパスワードを入力してください
@@ -39,7 +42,7 @@ ja:
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         discoverable: レコメンド、トレンド、その他の機能により、あなたのアカウントを他の人から見つけられるようにします
         email: 確認のメールが送信されます
-        header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
+        header: '%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます'
         inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
         irreversible: フィルターが後で削除されても、除外された投稿は元に戻せなくなります
         locale: ユーザーインターフェース、メールやプッシュ通知の言語
@@ -66,7 +69,7 @@ ja:
         domain: 電子メールアドレスのドメイン名、または使用されるMXレコードを指定できます。新規登録時にチェックされます。
         with_dns_records: 指定したドメインのDNSレコードを取得し、その結果もメールドメインブロックに登録されます
       featured_tag:
-        name: 最近使用したハッシュタグ
+        name: '最近使用したハッシュタグ'
       filters:
         action: 投稿がフィルタに一致したときに実行するアクションを選択
         actions:
@@ -77,7 +80,7 @@ ja:
         backups_retention_period: 生成されたユーザーのアーカイブを指定した日数の間保持します。
         bootstrap_timeline_accounts: これらのアカウントは、新しいユーザー向けのおすすめユーザーの一番上にピン留めされます。
         closed_registrations_message: アカウント作成を停止している時に表示されます
-        content_cache_retention_period: 正の値に設定されている場合、他のサーバーの投稿は指定された日数の後に削除されます。元に戻せません。
+        content_cache_retention_period: 指定した日数が経過した他のサーバーの投稿とブーストを削除します。削除された投稿は再取得できない場合があります。削除された投稿についたブックマークやお気に入り、ブーストも失われ、元に戻せません。
         custom_css: ウェブ版のMastodonでカスタムスタイルを適用できます。
         mascot: 上級者向けWebインターフェースのイラストを上書きします。
         media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
@@ -130,6 +133,7 @@ ja:
         position: 場合により、より高いロールのユーザーが紛争の解決を決定します。特定のアクションは優先度が低いロールでのみ実行できます。
       webhook:
         events: 送信するイベントを選択
+        template: 変数補完を使用して、独自のJSONペイロードを構成できます。デフォルトのJSONを使用する場合は空白のままにします。
         url: イベントの送信先
     labels:
       account:
@@ -295,6 +299,7 @@ ja:
         usable: 投稿への使用を許可する
       user:
         role: ロール
+        time_zone: タイムゾーン
       user_role:
         color: バッジの色
         highlighted: プロフィールにロールのバッジを表示する
@@ -303,8 +308,9 @@ ja:
         position: 優先度
       webhook:
         events: 有効なイベント
+        template: ペイロードテンプレート
         url: エンドポイントURL
-    'no': いいえ
+    'no': 'いいえ'
     not_recommended: 非推奨
     recommended: おすすめ
     required:
@@ -313,4 +319,4 @@ ja:
     title:
       sessions:
         webauthn: セキュリティキーを使用してサインインする
-    'yes': はい
+    'yes': 'はい'
