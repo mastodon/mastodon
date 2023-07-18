@@ -31,7 +31,7 @@ const messages = defineMessages({
   about: { id: 'navigation_bar.about', defaultMessage: 'About' },
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
   advancedInterface: { id: 'navigation_bar.advanced_interface', defaultMessage: 'Open in advanced web interface' },
-  openedInClassicInterface: { id: 'navigation_bar.opened_in_classic_interface', defaultMessage: 'This page was opened in the classic web interface.' },
+  openedInClassicInterface: { id: 'navigation_bar.opened_in_classic_interface', defaultMessage: 'Posts, accounts, and other specific pages are opened by default in the classic web interface.' },
 });
 
 class NavigationPanel extends Component {
