@@ -23,6 +23,7 @@ jobs:
           git config --global http.version HTTP/1.1
           git config --global http.postBuffer 157286400
 
+      # Download the translation files from Crowdin
       - name: crowdin action
         uses: crowdin/github-action@v1
         with:
@@ -30,18 +31,42 @@ jobs:
           upload_translations: false
           download_translations: true
           crowdin_branch_name: main
-          localization_branch_name: i18n/crowdin/translations
-          create_pull_request: true
-          pull_request_title: 'New Crowdin Translations (automated)'
-          pull_request_body: |
-            New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)
-
-            See `.github/workflows/crowdin-download.yml
-
-            This PR will be updated every day with new translations.'
-          pull_request_labels: 'i18n'
-
+          push_translations: false
+          create_pull_request: false
         env:
           CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # As the files are extracted from a Docker container, they belong to root:root
+      # We need to fix this before the next steps
+      - name: Fix file permissions
+        run: sudo chown -R runner:docker .
+
+      # This is needed to run the normalize step
+      - name: Install native Ruby dependencies
+        run: sudo apt-get install -y libicu-dev libidn11-dev
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Run i18n normalize task
+        run: bundle exec i18n-tasks normalize
+
+      # Create or update the pull request
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5.0.2
+        with:
+          commit-message: 'New Crowdin translations'
+          title: 'New Crowdin Translations (automated)'
+          body: |
+            New Crowdin translations, automated with Github Actions
+
+            See `.github/workflows/crowdin-download.yml`
+
+            This PR will be updated every day with new translations.
+          branch: i18n/crowdin/translations
+          base: main
+          labels: i18n
