@@ -2,6 +2,10 @@
 fi:
   simple_form:
     hints:
+      account:
+        display_name: Koko nimesi tai lempinimesi.
+        fields: Kotisivusi, pronominit, ikä, mitä ikinä haluatkin.
+        note: 'Voit @mainita muita käyttäjiä tai #aihetunnisteita.'
       account_alias:
         acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, josta haluat siirtyä
       account_migration:
@@ -11,7 +15,7 @@ fi:
         title: Valinnainen. Ei näy vastaanottajalle
       admin_account_action:
         include_statuses: Käyttäjä näkee mitkä viestit johtivat toimenpiteeseen tai varoitukseen
-        send_email_notification: Käyttäjä saa selityksen mitä tapahtui hänen tililleen
+        send_email_notification: Käyttäjä saa selvityksen siitä, mitä hänen tililleen tapahtui
         text_html: Valinnainen. Voit käyttää julkaisun syntaksia. Voit <a href="%{path}">lisätä varoitusasetuksia</a> säästääksesi aikaa
         type_html: Valitse mitä teet käyttäjälle <strong>%{acct}</strong>
         types:
@@ -130,6 +134,7 @@ fi:
         position: Korkeampi rooli ratkaisee konfliktit tietyissä tilanteissa. Tiettyjä toimintoja voidaan suorittaa vain rooleille, joiden prioriteetti on pienempi
       webhook:
         events: Valitse lähetettävät tapahtumat
+        template: Luo oma JSON hyötykuorma käyttäen muuttujan interpolointia. Jätä tyhjäksi oletuksena JSON.
         url: Mihin tapahtumat lähetetään
     labels:
       account:
@@ -295,6 +300,7 @@ fi:
         usable: Salli julkaisujen käyttää tätä aihetunnistetta
       user:
         role: Rooli
+        time_zone: Aikavyöhyke
       user_role:
         color: Merkin väri
         highlighted: Näyttä rooli merkkinä käyttäjäprofiileissa
@@ -303,6 +309,7 @@ fi:
         position: Prioriteetti
       webhook:
         events: Tapahtumat käytössä
+        template: Maksun malli
         url: Päätepisteen URL
     'no': Ei
     not_recommended: Ei suositella

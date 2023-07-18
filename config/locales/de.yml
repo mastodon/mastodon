@@ -1,7 +1,7 @@
 ---
 de:
   about:
-    about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung, dafür dezentral und mit Anstand! Starte jetzt mit Mastodon!'
+    about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung durch Unternehmen, dafür dezentral und mit Anstand! Beherrsche deine Daten mit Mastodon!'
     contact_missing: Nicht festgelegt
     contact_unavailable: Nicht verfügbar
     hosted_on: Mastodon, gehostet auf %{domain}
@@ -51,7 +51,7 @@ de:
         title: Rolle für %{username} ändern
       confirm: Bestätigen
       confirmed: Bestätigt
-      confirming: Bestätigung
+      confirming: Auf Bestätigung wartend
       custom: Angepasst
       delete: Daten löschen
       deleted: Gelöscht
@@ -327,7 +327,7 @@ de:
       enabled: Aktiviert
       enabled_msg: Dieses Emoji wurde erfolgreich aktiviert
       image_hint: PNG oder GIF bis %{size}
-      list: Aufführen
+      list: Anzeigen
       listed: Angezeigt
       new:
         title: Benutzerdefiniertes Emoji hinzufügen
@@ -338,7 +338,7 @@ de:
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Eigene Emojis
       uncategorized: Unkategorisiert
-      unlist: Nicht Aufführen
+      unlist: Nicht anzeigen
       unlisted: Nicht aufgeführt
       update_failed_msg: Konnte dieses Emoji nicht bearbeiten
       updated_msg: Emoji erfolgreich bearbeitet!
@@ -348,7 +348,7 @@ de:
       interactions: Interaktionen
       media_storage: Medien
       new_users: neue Benutzer*innen
-      opened_reports: Erstellte Meldungen
+      opened_reports: ungelöste Meldungen
       pending_appeals_html:
         one: "<strong>%{count}</strong> ausstehender Einspruch"
         other: "<strong>%{count}</strong> ausstehende Einsprüche"
@@ -382,6 +382,15 @@ de:
       undo: Von der Föderation ausschließen
     domain_blocks:
       add_new: Neue Domain einschränken
+      confirm_suspension:
+        cancel: Abbrechen
+        confirm: Sperren
+        permanent_action: Das Aufheben der Sperre wird keine Daten oder Beziehungen wiederherstellen.
+        preamble_html: Du bist dabei, <strong>%{domain}</strong> und alle Subdomains zu sperren.
+        remove_all_data: Dadurch werden alle Inhalte, Medien und Profildaten für die Konten dieser Domain von deinem Server entfernt.
+        stop_communication: Dein Server wird die Kommunikation mit diesen Servern einstellen.
+        title: Sperre für Domain %{domain} bestätigen
+        undo_relationships: Dadurch wird jede Folgebeziehung zwischen den Konten dieser und deinem Server rückgängig gemacht.
       created_msg: Die Domain ist jetzt gesperrt bzw. eingeschränkt
       destroyed_msg: Die Einschränkungen zu dieser Domain wurde entfernt
       domain: Domain
@@ -440,7 +449,7 @@ de:
     export_domain_blocks:
       import:
         description_html: Du bist dabei, eine Liste von Domains zu importieren, die auf diesem Server gesperrt oder anderweitig eingeschränkt werden. Bitte überprüfe diese Liste sehr sorgfältig, insbesondere dann, wenn du sie nicht selbst erstellt hast.
-        existing_relationships_warning: Bestehende Folgebeziehungen
+        existing_relationships_warning: Vorhandene Follower-Beziehungen
         private_comment_description_html: 'Damit du später nachvollziehen kannst, woher die importierten Sperren stammen, werden sie mit diesem privaten Kommentar erstellt: <q>%{comment}</q>'
         private_comment_template: Importiert von %{source} am %{date}
         title: Domains importieren
@@ -516,7 +525,7 @@ de:
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
       purge: Säubern
-      purge_description_html: Wenn du glaubst, dass diese Domain endgültig offline ist, kannst du alle Account-Datensätze und zugehörigen Daten von diesem Server löschen. Das kann eine Weile dauern.
+      purge_description_html: Wenn du glaubst, dass diese Domain endgültig offline ist, dann kannst du alle Kontodatensätze und zugehörigen Daten dieser Domain löschen. Das kann eine Weile dauern.
       title: Föderation
       total_blocked_by_us: Von uns gesperrt
       total_followed_by_them: Gefolgt von denen
@@ -552,7 +561,7 @@ de:
     relays:
       add_new: Neues Relais hinzufügen
       delete: Entfernen
-      description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern austauscht, die es abonnieren und zu ihm veröffentlichen.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf entfernten Servern durch lokale Nutzer erfordern würde.
+      description_html: Ein <strong>Föderierungsrelai</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern, die das Relai abonnieren und zu ihm veröffentlichen, austauscht.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf entfernten Servern durch lokale Nutzer erfordern würde.
       disable: Ausschalten
       disabled: Ausgeschaltet
       enable: Einschalten
@@ -637,12 +646,12 @@ de:
           mark_as_sensitive_html: Medien der anstößigen Beiträge mit einer Inhaltswarnung versehen
           silence_html: Schränkt die Reichweite von <strong>@%{acct}</strong> stark ein, indem das Profil und dessen Inhalte nur für Personen sichtbar sind, die dem Profil bereits folgen oder es manuell aufrufen
           suspend_html: "<strong>@%{acct}</strong> sperren, sodass das Profil und dessen Inhalte nicht mehr zugänglich sind und keine Interaktion mehr möglich ist"
-        close_report: 'Meldung #%{id} als erledigt markieren'
+        close_report: Meldung Nr. %{id} als erledigt markieren
         close_reports_html: "<strong>Alle</strong> Meldungen gegen <strong>@%{acct}</strong> als erledigt markieren"
         delete_data_html: Das Profil und die Inhalte von <strong>@%{acct}</strong> werden in 30 Tagen gelöscht, es sei denn, sie werden in der Zwischenzeit entsperrt
         preview_preamble_html: "<strong>@%{acct}</strong> wird eine Warnung mit folgenden Inhalten erhalten:"
         record_strike_html: Einen Verstoß gegen <strong>@%{acct}</strong> eintragen, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können
-        send_email_html: "<strong>@%{acct}</strong> eine Verwarnung per E-Mail schicken"
+        send_email_html: "<strong>@%{acct}</strong> eine Verwarnung per E-Mail senden"
         warning_placeholder: Optional zusätzliche Begründung für die Moderationsmaßnahme.
       target_origin: Domain des gemeldeten Kontos
       title: Meldungen
@@ -731,6 +740,9 @@ de:
       branding:
         preamble: Das Branding deines Servers unterscheidet ihn von anderen Servern im Netzwerk. Diese Informationen können in einer Vielzahl von Umgebungen angezeigt werden, z. B. in der Weboberfläche von Mastodon, in nativen Anwendungen, in Linkvorschauen auf anderen Websites und in Messaging-Apps und so weiter. Aus diesem Grund ist es am besten, diese Informationen klar, kurz und prägnant zu halten.
         title: Branding
+      captcha_enabled:
+        desc_html: Dies beruht auf externen Skripten von hCaptcha, die ein Sicherheits- und Datenschutzproblem darstellen könnten. Darüber hinaus <strong>kann das den Registrierungsprozess für manche Menschen (insbesondere für Menschen mit Behinderung) erheblich erschweren</strong>. Aus diesen Gründen solltest du alternative Maßnahmen wie Zulassungs- oder Einladungs-basierte Registrierungen in Erwägung ziehen.
+        title: Neue Nutzer*innen müssen ein CAPTCHA lösen, um das Konto zu bestätigen
       content_retention:
         preamble: Lege fest, wie lange nutzergenerierte Inhalte auf deiner Mastodon-Instanz gespeichert werden.
         title: Cache & Archive
@@ -820,7 +832,7 @@ de:
         message_html: "<strong>Die Konfiguration deines Objektspeichers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
     tags:
       review: Prüfstatus
-      updated_msg: Hashtageinstellungen wurden erfolgreich aktualisiert
+      updated_msg: Hashtag-Einstellungen wurden erfolgreich aktualisiert
     title: Administration
     trends:
       allow: Erlauben
@@ -829,7 +841,7 @@ de:
       links:
         allow: Link erlauben
         allow_provider: Herausgeber*in erlauben
-        description_html: Dies sind Links, die derzeit von zahlreichen Accounts geteilt werden und die deinem Server aufgefallen sind. Die Benutzer*innen können darüber herausfinden, was in der Welt vor sich geht. Die Links werden allerdings erst dann öffentlich vorgeschlagen, wenn du die Herausgeber*innen genehmigt hast. Du kannst alternativ aber auch nur einzelne URLs zulassen oder ablehnen.
+        description_html: Dies sind Links, die derzeit von zahlreichen Konten geteilt werden und die deinem Server aufgefallen sind. Die Benutzer*innen können darüber herausfinden, was in der Welt vor sich geht. Die Links werden allerdings erst dann öffentlich vorgeschlagen, wenn du die Herausgeber*innen genehmigt hast. Du kannst alternativ aber auch nur einzelne URLs zulassen oder ablehnen.
         disallow: Link verbieten
         disallow_provider: Herausgeber*in verbieten
         no_link_selected: Keine Links wurden geändert, da keine ausgewählt wurden
@@ -839,7 +851,7 @@ de:
           one: In den vergangenen 7 Tagen von einem Profil geteilt
           other: In den vergangenen 7 Tagen von %{count} Profilen geteilt
         title: Angesagte Links
-        usage_comparison: Heute %{today} Mal geteilt, gestern %{yesterday} Mal
+        usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal geteilt
       not_allowed_to_trend: Darf nicht trenden
       only_allowed: Nur Genehmigte
       pending_review: Überprüfung ausstehend
@@ -880,10 +892,10 @@ de:
         trendable: Darf in den Trends erscheinen
         trending_rank: Platz %{rank}
         usable: Darf verwendet werden
-        usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal genutzt
+        usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal verwendet
         used_by_over_week:
-          one: In der letzten Woche von einer Person genutzt
-          other: In der letzten Woche von %{count} Personen genutzt
+          one: In der letzten Woche von einer Person verwendet
+          other: In der letzten Woche von %{count} Personen verwendet
       title: Trends
       trending: Angesagt
     warning_presets:
@@ -948,7 +960,7 @@ de:
     created_msg: Neuer Alias erfolgreich erstellt. Du kannst nun den Umzug vom alten zum neuen Konto starten.
     deleted_msg: Der Alias wurde erfolgreich entfernt. Aus jenem Konto zu diesem zu verschieben, ist nicht mehr möglich.
     empty: Du hast keine Aliase.
-    hint_html: Wenn du von einem Konto zu einem anderen Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird, bevor du deine Follower vom alten Account zu diesen migrierst. Die Aktion allein ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom alten Konto aus eingeleitet</strong>.
+    hint_html: Wenn du von einem anderen Konto auf dieses umziehen möchtest, dann kannst du hier einen Alias erstellen, der erforderlich ist, um deine Follower vom alten Konto auf dieses zu migrieren. Diese Aktion ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom alten Konto aus eingeleitet</strong>.
     remove: Alle Aliase aufheben
   appearance:
     advanced_web_interface: Erweitertes Webinterface
@@ -966,6 +978,7 @@ de:
     notification_preferences: E-Mail-Einstellungen ändern
     salutation: "%{name},"
     settings: 'E-Mail-Einstellungen ändern: %{link}'
+    unsubscribe: Abbestellen
     view: 'Hier überprüfen:'
     view_profile: Profil anzeigen
     view_status: Beitrag anschauen
@@ -979,6 +992,10 @@ de:
     your_token: Dein Zugangs-Token
   auth:
     apply_for_account: Konto beantragen
+    captcha_confirmation:
+      help_html: Falls du Probleme beim Lösen des CAPTCHA hast, dann kannst uns über %{email} kontaktieren und wir werden versuchen, dir zu helfen.
+      hint_html: Fast geschafft! Wir müssen uns vergewissern, dass du ein Mensch bist (damit wir Spam verhindern können!). Bitte löse das CAPTCHA und klicke auf „Weiter“.
+      title: Sicherheitsüberprüfung
     confirmations:
       wrong_email_hint: Sollte diese E-Mail-Adresse nicht korrekt sein, kannst du sie in den Kontoeinstellungen ändern.
     delete_account: Konto löschen
@@ -1015,8 +1032,11 @@ de:
     rules:
       accept: Akzeptieren
       back: Zurück
+      invited_by: 'Du kannst %{domain} beitreten – dank der Einladung von:'
       preamble: Diese werden von den %{domain}-Moderator*innen festgelegt und erzwungen.
+      preamble_invited: Bevor du fortfährst, beachte bitte die Grundregeln der Moderator*innen von %{domain}.
       title: Einige Grundregeln.
+      title_invited: Du wurdest eingeladen.
     security: Sicherheit
     set_new_password: Neues Passwort einrichten
     setup:
@@ -1030,7 +1050,7 @@ de:
       title: Bei %{domain} anmelden
     sign_up:
       manual_review: Registrierungen für den Server %{domain} werden manuell durch unsere Moderator*innen überprüft. Um uns dabei zu unterstützen, schreibe etwas über dich und sage uns, weshalb du ein Konto auf %{domain} anlegen möchtest.
-      preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Account gehostet ist.
+      preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Konto registriert ist.
       title: Okay, lass uns mit %{domain} anfangen.
     status:
       account_status: Kontostatus
@@ -1039,14 +1059,14 @@ de:
       pending: Die Prüfung deiner Bewerbung steht noch aus. Dies kann einige Zeit in Anspruch nehmen. Sobald deine Bewerbung genehmigt wurde, erhältst du eine E-Mail.
       redirecting_to: Dein Konto ist inaktiv, weil es zu %{acct} umgezogen ist.
       view_strikes: Vorherige Verstöße deines Kontos ansehen
-    too_fast: Formular zu schnell abgeschickt, versuche es erneut.
+    too_fast: Formular zu schnell übermittelt. Bitte versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
-    already_requested: Du hast bereits eine Folgeanfrage an dieses Konto gestellt
+    already_requested: Du hast bereits eine Anfrage zum Folgen an dieses Konto gestellt
     error: Bedauerlicherweise konnte das externe Konto nicht geladen werden
     follow: Folgen
-    follow_request: 'Du hast eine Folgeanfrage gestellt an:'
+    follow_request: 'Du hast eine Anfrage zum Folgen gestellt an:'
     following: 'Erfolg! Du folgst nun:'
     post_follow:
       close: Oder du schließt einfach dieses Fenster.
@@ -1091,7 +1111,7 @@ de:
       caches: Inhalte, die von anderen Servern zwischengespeichert wurden, können fortbestehen
       data_removal: Deine Beiträge und alle anderen Daten werden für immer entfernt
       email_change_html: Du kannst <a href="%{path}">deine E-Mail-Adresse ändern</a>, ohne dein Konto zu löschen
-      email_contact_html: Sollte sie noch immer nicht angekommen sein, kannst du eine E-Mail an <a href="mailto:%{email}">%{email}</a> schicken, um weitere Hilfe zu erhalten
+      email_contact_html: Sollte sie noch immer nicht angekommen sein, kannst du eine E-Mail an <a href="mailto:%{email}">%{email}</a> senden, um weitere Hilfe zu erhalten
       email_reconfirmation_html: Wenn du die Bestätigungs-E-Mail nicht erhalten hast, kannst du sie <a href="%{path}">erneut anfordern</a>
       irreversible: Du wirst dein Konto nicht mehr wiederherstellen oder reaktivieren können
       more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzerklärung</a>.
@@ -1129,6 +1149,11 @@ de:
       your_appeal_rejected: Dein Einspruch wurde abgelehnt
   domain_validator:
     invalid_domain: ist keine gültige Domain
+  edit_profile:
+    basic_information: Allgemeine Informationen
+    hint_html: "<strong>Bestimme, was andere auf deinem öffentlichen Profil und neben deinen Beiträgen sehen können.</strong> Wenn du ein Profilbild festlegst und dein Profil vervollständigst, werden andere eher mit dir interagieren und dir folgen."
+    other: Andere
+    safety_and_privacy: Sicherheit und Datenschutz
   errors:
     '400': Die Anfrage, die du gestellt hast, war ungültig oder fehlerhaft.
     '403': Dir fehlt die Berechtigung, diese Seite aufzurufen.
@@ -1136,7 +1161,7 @@ de:
     '406': Diese Seite ist im gewünschten Format nicht verfügbar.
     '410': Die Seite, nach der du gesucht hast, existiert hier nicht mehr.
     '422':
-      content: Sicherheitsüberprüfung fehlgeschlagen. Sperrst du Cookies aus?
+      content: Sicherheitsüberprüfung fehlgeschlagen. Blockierst du Cookies?
       title: Sicherheitsüberprüfung fehlgeschlagen
     '429': Zu viele Anfragen
     '500':
@@ -1155,10 +1180,10 @@ de:
       in_progress: Persönliches Archiv wird erstellt …
       request: Dein Archiv anfordern
       size: Dateigröße
-    blocks: Gesperrte Profile
+    blocks: Blockierte Profile
     bookmarks: Lesezeichen
     csv: CSV
-    domain_blocks: Gesperrte Domains
+    domain_blocks: Blockierte Domains
     lists: Listen
     mutes: Stummgeschaltete Profile
     storage: Medienspeicher
@@ -1166,7 +1191,7 @@ de:
     add_new: Neuen hinzufügen
     errors:
       limit: Du hast bereits die maximale Anzahl an Hashtags erreicht
-    hint_html: "<strong>Was sind empfohlene Hashtags?</strong> Sie werden in deinem öffentlichen Profil hervorgehoben und ermöglichen es den Menschen, deine öffentlichen Beiträge speziell unter diesen Hashtags zu durchsuchen. Sie sind ein großartiges Werkzeug, um kreative Werke oder langfristige Projekte zu verfolgen."
+    hint_html: "<strong>Präsentiere deine wichtigsten Hashtags auf deinem Profil.</strong> Vorgestellte Hashtags verschaffen einen Überblick über deine kreativen Werke und langfristigen Projekte. Sie werden gut sichtbar auf deinem Profil angezeigt und ermöglichen einen schnellen Zugriff auf deine eigenen Beiträge."
   filters:
     contexts:
       account: Profile
@@ -1215,9 +1240,11 @@ de:
       one: "<strong>%{count}</strong> Element auf dieser Seite ausgewählt."
       other: Alle <strong>%{count}</strong> Elemente auf dieser Seite ausgewählt.
     all_matching_items_selected_html:
-      one: "<strong>%{count}</strong> Element trifft auf ihre Suche zu."
-      other: Alle <strong>%{count}</strong> Elemente, die Ihrer Suche entsprechen, werden ausgewählt.
+      one: "<strong>%{count}</strong> Element, das den Suchkriterien entspricht, ist ausgewählt."
+      other: Alle <strong>%{count}</strong> Elemente, die den Suchkriterien entsprechen, sind ausgewählt.
+    cancel: Abbrechen
     changes_saved_msg: Änderungen erfolgreich gespeichert!
+    confirm: Bestätigen
     copy: Kopieren
     delete: Löschen
     deselect: Alle abwählen
@@ -1225,27 +1252,63 @@ de:
     order_by: Sortieren nach
     save_changes: Änderungen speichern
     select_all_matching_items:
-      one: Wähle %{count} Element, das deiner Suche entspricht.
-      other: Wählen Sie alle %{count} Elemente, die Ihrer Suche entsprechen.
+      one: Wähle %{count} Element, das deinen Suchkriterien entspricht.
+      other: Wähle alle %{count} Elemente, die deinen Suchkriterien entsprechen.
     today: heute
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
       other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
   imports:
     errors:
+      empty: Leere CSV-Datei
+      incompatible_type: Inkompatibel mit dem ausgewählten Importtyp
       invalid_csv_file: 'Ungültige CSV-Datei. Fehler: %{error}'
       over_rows_processing_limit: enthält mehr als %{count} Zeilen
+      too_large: Datei ist zu groß
+    failures: Fehler
+    imported: Importiert
+    mismatched_types_warning: Möglicherweise hast du den falschen Typ für diesen Import ausgewählt. Bitte überprüfe alles noch einmal.
     modes:
       merge: Zusammenführen
-      merge_long: Behalte existierende Datensätze und füge neue hinzu
+      merge_long: Bestehende Datensätze beibehalten und neue hinzufügen
       overwrite: Überschreiben
-      overwrite_long: Ersetze aktuelle Datensätze mit neuen
-    preface: Daten, die du von einem Mastodon-Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du gesperrt hast.
+      overwrite_long: Bestehende Datensätze durch neue ersetzen
+    overwrite_preambles:
+      blocking_html: Du bist dabei, <strong>deine Liste blockierter Konten</strong> durch bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
+      bookmarks_html: Du bist dabei, <strong>deine Lesezeichen</strong> durch bis zu <strong>%{total_items} Beiträge</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
+      domain_blocking_html: Du bist dabei, <strong>deine Liste blockierter Domains</strong> durch bis zu <strong>%{total_items} Domains</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
+      following_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu folgen und <strong>niemand anderes zu folgen</strong>.
+      muting_html: Du bist dabei, <strong>deine Liste stummgeschalteter Konten</strong> durch bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu ersetzen.
+    preambles:
+      blocking_html: Du bist dabei, bis zu <strong>%{total_items}%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+      bookmarks_html: Du bist dabei, bis zu <strong>%{total_items} Beiträge</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
+      domain_blocking_html: Du bist dabei, bis zu <strong>%{total_items} Domains</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+      following_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
+      muting_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename} stummzuschalten</strong>.
+    preface: Daten, die du von einem Mastodon-Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du blockiert hast.
+    recent_imports: Zuletzt importiert
+    states:
+      finished: Abgeschlossen
+      in_progress: In Bearbeitung
+      scheduled: Geplant
+      unconfirmed: Unbestätigt
+    status: Status
     success: Deine Daten wurden erfolgreich hochgeladen und werden in Kürze verarbeitet
+    time_started: Gestartet am
+    titles:
+      blocking: Blockierte Konten importieren
+      bookmarks: Lesezeichen importieren
+      domain_blocking: Blockierte Domains importieren
+      following: Gefolgte Konten importieren
+      muting: Stummgeschaltete Konten importieren
+    type: Importtyp
+    type_groups:
+      constructive: Folge ich & Lesezeichen
+      destructive: Blockierte & Stummgeschaltete
     types:
-      blocking: Gesperrte Profile
+      blocking: Blockierte Profile
       bookmarks: Lesezeichen
-      domain_blocking: Gesperrte Domains
+      domain_blocking: Blockierte Domains
       following: Folge ich
       muting: Stummgeschaltete Profile
     upload: Datei importieren
@@ -1263,13 +1326,13 @@ de:
     generate: Einladungslink erstellen
     invited_by: 'Du wurdest eingeladen von:'
     max_uses:
-      one: 1-mal verwendet
-      other: "%{count}-mal verwendet"
+      one: Eine Verwendung
+      other: "%{count} Verwendungen"
     max_uses_prompt: Keine Einschränkung
     prompt: Erstelle Einladungen und teile die dazugehörigen Links, um anderen einen Zugang zu diesem Server zu gewähren
     table:
       expires_at: Läuft ab
-      uses: Verwendet
+      uses: Verwendungen
     title: Einladungen
   lists:
     errors:
@@ -1285,6 +1348,21 @@ de:
     failed_sign_in_html: Fehler beim Anmeldeversuch mit %{method} von %{ip} (%{browser})
     successful_sign_in_html: Erfolgreiche Anmeldung mit %{method} von %{ip} (%{browser})
     title: Authentisierungsverlauf
+  mail_subscriptions:
+    unsubscribe:
+      action: Ja, abbestellen
+      complete: Abbestellt
+      confirmation_html: Bist du dir sicher, dass du %{type} für Mastodon auf %{domain} an deine E-Mail-Adresse %{email} abbestellen möchtest? Du kannst dies später in den Einstellungen <a href="%{settings_path}">Benachrichtigungen per E-Mail</a> rückgängig machen.
+      emails:
+        notification_emails:
+          favourite: E-Mail-Benachrichtigungen für Favoriten
+          follow: E-Mail-Benachrichtigungen für Follower
+          follow_request: E-Mail-Benachrichtigungen für Follower-Anfragen
+          mention: E-Mail-Benachrichtigungen für Erwähnungen
+          reblog: E-Mail-Benachrichtigungen für geteilte Beiträge
+      resubscribe_html: Falls du etwas irrtümlich abbestellt hast, kannst du das in den Einstellungen <a href="%{settings_path}">Benachrichtigungen per E-Mail</a> rückgängig machen.
+      success_html: Du wirst nicht länger %{type} für Mastodon auf %{domain} an deine E-Mail-Adresse %{email} erhalten.
+      title: Abbestellen
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
@@ -1292,26 +1370,26 @@ de:
       too_many: Es können nicht mehr als vier Medien angehängt werden
   migrations:
     acct: umgezogen nach
-    cancel: Umleitung beenden
-    cancel_explanation: Das Abbrechen der Umleitung wird dein aktuelles Konto erneut aktivieren, aber keine Follower, die auf dieses Konto verschoben wurden, zurückholen.
-    cancelled_msg: Die Umleitung wurde erfolgreich beendet.
+    cancel: Weiterleitung beenden
+    cancel_explanation: Das Abbrechen der Weiterleitung wird dein aktuelles Konto erneut aktivieren, aber keine Follower zurückholen, die auf dieses Konto verschoben wurden.
+    cancelled_msg: Die Weiterleitung wurde erfolgreich beendet.
     errors:
       already_moved: ist das gleiche Konto, zu dem du bereits umgezogen bist
       missing_also_known_as: referenziert nicht zurück auf dieses Konto
       move_to_self: darf nicht das aktuelles Konto sein
       not_found: konnte nicht gefunden werden
       on_cooldown: Die Abklingzeit läuft gerade
-    followers_count: Anzahl der Follower zum Zeitpunkt der Migration des Accounts
+    followers_count: Anzahl der Follower zum Zeitpunkt des Umzugs
     incoming_migrations: Von einem anderen Konto umziehen
     incoming_migrations_html: Um von einem anderen Konto zu diesem zu wechseln, musst du zuerst <a href="%{path}">einen Kontoalias</a> erstellen.
-    moved_msg: Dein altes Profil wird jetzt zum neuen Account %{acct} weitergeleitet und deine Follower werden übertragen.
+    moved_msg: Dein Konto wird jetzt auf %{acct} weitergeleitet und deine Follower werden übertragen.
     not_redirecting: Dein Konto wird derzeit nicht auf ein anderes Konto weitergeleitet.
     on_cooldown: Du hast dein Konto vor kurzem migriert. Diese Funktion wird in %{count} Tagen wieder verfügbar sein.
     past_migrations: Vorherige Umzüge
     proceed_with_move: Follower übertragen
     redirected_msg: Dein Konto wird nun zu %{acct} weitergeleitet.
     redirecting_to: Dein Konto wird zu %{acct} weitergeleitet.
-    set_redirect: Umleitung einrichten
+    set_redirect: Weiterleitung einrichten
     warning:
       backreference_required: Das neue Konto muss zuerst auf das alte Konto verweisen
       before: 'Bevor du fortfährst, lies bitte diese Hinweise sorgfältig durch:'
@@ -1320,11 +1398,11 @@ de:
       followers: Alle Follower werden vom alten zum neuen Konto übertragen
       only_redirect_html: Alternativ kannst du auch <a href="%{path}">nur eine Weiterleitung zu deinem neuen Profil</a> einrichten, ohne die Follower zu übertragen.
       other_data: Keine anderen Daten werden automatisch zum neuen Konto übertragen
-      redirect: Dein altes Konto wird einen Hinweis erhalten, dass Du umgezogen bist. Außerdem wird das Profil von Suchanfragen ausgeschlossen
+      redirect: Dein altes Konto wird einen Hinweis erhalten, dass du umgezogen bist. Außerdem wird das Profil von Suchanfragen ausgeschlossen
   moderation:
     title: Moderation
   move_handler:
-    carry_blocks_over_text: Dieses Konto ist von %{acct}, das du gesperrt hast, umgezogen.
+    carry_blocks_over_text: Dieses Konto ist von %{acct}, das du blockiert hast, umgezogen.
     carry_mutes_over_text: Dieses Konto ist von %{acct}, das du stummgeschaltet hast, umgezogen.
     copy_account_note_text: 'Dieses Konto ist von %{acct} umgezogen. Hier deine damals verfassten Notizen zum Profil:'
   navigation:
@@ -1338,16 +1416,16 @@ de:
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
       subject: "%{name} favorisierte deinen Beitrag"
-      title: Neue Favorisierung
+      title: Neuer Favorit
     follow:
       body: "%{name} folgt dir jetzt!"
       subject: "%{name} folgt dir jetzt"
       title: Neuer Follower
     follow_request:
-      action: Folgeanfragen verwalten
+      action: Follower-Anfragen verwalten
       body: "%{name} möchte dir folgen"
       subject: 'Ausstehende Folgeanfragen: %{name}'
-      title: Neue Folgeanfrage
+      title: Neue Follower-Anfrage
     mention:
       action: Antworten
       body: 'Du wurdest von %{name} erwähnt:'
@@ -1356,7 +1434,7 @@ de:
     poll:
       subject: Eine Umfrage von %{name} ist beendet
     reblog:
-      body: 'Deinen Beitrag hat %{name} geteilt:'
+      body: 'Dein Beitrag wurde von %{name} geteilt:'
       subject: "%{name} teilte deinen Beitrag"
       title: Dein Beitrag wurde geteilt
     status:
@@ -1400,6 +1478,7 @@ de:
       expired: Diese Umfrage ist bereits beendet
       invalid_choice: Diese Auswahl existiert nicht
       over_character_limit: kann nicht länger als jeweils %{max} Zeichen sein
+      self_vote: Du kannst an deinen eigenen Umfragen nicht selbst teilnehmen
       too_few_options: muss mindestens einen Eintrag haben
       too_many_options: kann nicht mehr als %{max} Einträge beinhalten
   preferences:
@@ -1415,8 +1494,8 @@ de:
   relationships:
     activity: Kontoaktivität
     confirm_follow_selected_followers: Bist du dir sicher, dass du den ausgewählten Followern folgen möchtest?
-    confirm_remove_selected_followers: Bist du sicher, dass du den ausgewählten Konten entfolgen möchtest?
-    confirm_remove_selected_follows: Bist du sicher, dass du den ausgewählten Konten entfolgen möchtest?
+    confirm_remove_selected_followers: Bist du dir sicher, dass du die ausgewählten Follower entfernen möchtest?
+    confirm_remove_selected_follows: Bist du dir sicher, dass du den ausgewählten Konten entfolgen möchtest?
     dormant: Inaktiv
     follow_failure: Einigen der ausgewählten Konten konnte nicht gefolgt werden.
     follow_selected_followers: Ausgewählten Followern folgen
@@ -1444,7 +1523,7 @@ de:
       account: Öffentliche Beiträge von @%{acct}
       tag: 'Öffentliche Beiträge mit dem Hashtag #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Du hast das heutige Limit für geplante Beiträge, das %{limit} beträgt, erreicht
+    over_daily_limit: Du hast das Limit von %{limit} geplanten Beiträgen für heute erreicht
     over_total_limit: Du hast das Limit für geplante Beiträge, das %{limit} beträgt, erreicht
     too_soon: Das geplante Datum muss in der Zukunft liegen
   sessions:
@@ -1497,19 +1576,19 @@ de:
     account_settings: Kontoeinstellungen
     aliases: Kontoaliase
     appearance: Design
-    authorized_apps: Genehmigte Apps
+    authorized_apps: Autorisierte Anwendungen
     back: Zurück zu Mastodon
     delete: Kontolöschung
     development: Entwicklung
     edit_profile: Profil bearbeiten
     export: Exportieren
-    featured_tags: Empfohlene Hashtags
+    featured_tags: Vorgestellte Hashtags
     import: Importieren
     import_and_export: Importieren und exportieren
     migrate: Kontoumzug
     notifications: Benachrichtigungen
     preferences: Einstellungen
-    profile: Profil
+    profile: Öffentliches Profil
     relationships: Follower und Folge ich
     statuses_cleanup: Automatische Löschung
     strikes: Maßnahmen
@@ -1573,18 +1652,18 @@ de:
     ignore_favs: Favoriten ignorieren
     ignore_reblogs: Geteilte Beiträge ignorieren
     interaction_exceptions: Ausnahmen basierend auf Interaktionen
-    interaction_exceptions_explanation: Beachte, dass Beiträge nicht gelöscht werden, sobald deine Grenzwerte für Favoriten oder geteilte Beiträge einmal überschritten worden sind – auch dann nicht, wenn diese Schwellenwerte mittlerweile nicht mehr erreicht werden.
+    interaction_exceptions_explanation: Beachte, dass Beiträge nicht gelöscht werden, sobald deine Grenzwerte für Favoriten oder geteilte Beiträge einmal überschritten wurden – auch dann nicht, wenn diese Schwellenwerte mittlerweile nicht mehr erreicht werden.
     keep_direct: Direktnachrichten behalten
     keep_direct_hint: Löscht keine deiner privaten Nachrichten
-    keep_media: Beiträge mit angehängten Medien-Dateien behalten
-    keep_media_hint: Löscht keinen deiner Beiträge mit angehängten Medien-Dateien
+    keep_media: Beiträge mit angehängten Mediendateien behalten
+    keep_media_hint: Löscht keinen deiner Beiträge mit angehängten Mediendateien
     keep_pinned: Angeheftete Beiträge behalten
     keep_pinned_hint: Löscht keinen deiner angehefteten Beiträge im Profil
     keep_polls: Umfragen behalten
     keep_polls_hint: Löscht keine deiner Umfragen
     keep_self_bookmark: Als Lesezeichen markierte Beiträge behalten
     keep_self_bookmark_hint: Löscht keinen deiner Beiträge, die du als Lesezeichen gesetzt hast
-    keep_self_fav: Behalte favorisierte Beiträge
+    keep_self_fav: Favorisierte Beiträge behalten
     keep_self_fav_hint: Löscht keinen deiner Beiträge, die du favorisiert hast
     min_age:
       '1209600': 2 Wochen
@@ -1598,7 +1677,7 @@ de:
     min_age_label: Altersgrenze
     min_favs: Behalte Beiträge, die häufiger favorisiert wurden als …
     min_favs_hint: Löscht keine Beiträge, die mindestens so oft favorisiert worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an Favoriten – zu löschen
-    min_reblogs: Behalte Beiträge, die öfter geteilt wurden als
+    min_reblogs: Beiträge behalten, die mindestens so oft geteilt wurden
     min_reblogs_hint: Löscht keine Beiträge, die mindestens so oft geteilt worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an geteilten Beiträgen – zu löschen
   stream_entries:
     pinned: Angehefteter Beitrag
@@ -1661,11 +1740,11 @@ de:
         spam: Spam
         violation: Inhalt verstößt gegen die folgenden Serverregeln
       explanation:
-        delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Gemeinschaftsrichtlinien erkannt und von den Moderator*innen von %{instance} entfernt.
+        delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Serverregeln erkannt und von den Moderator*innen von %{instance} entfernt.
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst eine Sicherung deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
         mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderator*innen von %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass Besucher*innen diese Medien in den Beiträgen zunächst antippen müssen, um die Vorschau anzuzeigen. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
         sensitive: Von nun an werden alle deine hochgeladenen Mediendateien mit einer Inhaltswarnung versehen und hinter einer Warnung versteckt.
-        silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen, und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
+        silence: Du kannst dein Konto weiterhin verwenden, aber nur Personen, die dir bereits folgen, sehen deine Beiträge auf diesem Server. Ebenso kannst du von verschiedenen Entdeckungsfunktionen ausgeschlossen werden. Andere können dir jedoch weiterhin manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um eine Sicherung deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
       reason: 'Begründung:'
       statuses: 'Betroffene Beiträge:'
@@ -1686,7 +1765,7 @@ de:
         silence: Konto stummgeschaltet
         suspend: Konto gesperrt
     welcome:
-      edit_profile_action: Profil bearbeiten
+      edit_profile_action: Profil einrichten
       edit_profile_step: Du kannst dein Profil anpassen, indem du ein Profilbild hochlädst, deinen Anzeigenamen änderst und vieles mehr. Du kannst dich dafür entscheiden, neue Follower zu überprüfen, bevor sie dir folgen dürfen.
       explanation: Hier sind ein paar Tipps, um loszulegen
       final_action: Mit erstem Beitrag starten
@@ -1703,7 +1782,12 @@ de:
     seamless_external_login: Du bist über einen externen Dienst angemeldet, daher sind Passwort- und E-Mail-Einstellungen nicht verfügbar.
     signed_in_as: 'Angemeldet als:'
   verification:
+    extra_instructions_html: <strong>Tipp:</strong> Der Link auf deiner Website kann unsichtbar sein. Der wichtige Teil ist <code>rel="me"</code>, wodurch das Nachahmen von Personen auf Websites mit nutzergenerierten Inhalten verhindert wird. Du kannst auch ein <code>link</code>-Tag statt <code>a</code> im Header auf der Seite verwenden, jedoch muss der HTML-Code ohne das Ausführen von JavaScript zugänglich sein.
+    here_is_how: So funktioniert's
+    hint_html: "<strong>Alle können ihre Identität auf Mastodon verifizieren.</strong> Basierend auf offenen Standards – jetzt und für immer kostenlos. Alles, was du brauchst, ist eine eigene Website. Wenn du von deinem Profil auf diese Website verlinkst, überprüfen wir, ob die Website zu deinem Profil zurückverlinkt und zeigen einen visuellen Hinweis an."
+    instructions_html: Kopiere und füge den untenstehenden Code in das HTML deiner Website ein. Füge anschließend die Adresse deiner Website in ein Zusatzfeld auf deinem Profil hinzu und speichere die Änderungen. Die Zusatzfelder befinden sich im Reiter „Profil bearbeiten“.
     verification: Verifizierung
+    verified_links: Deine verifizierten Links
   webauthn_credentials:
     add: Sicherheitsschlüssel hinzufügen
     create:

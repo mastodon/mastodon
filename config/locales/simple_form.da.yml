@@ -2,6 +2,10 @@
 da:
   simple_form:
     hints:
+      account:
+        display_name: Dit fulde navn eller dit sjove navn.
+        fields: Din hjemmeside, udtaler, alder, hvad du ønsker.
+        note: 'Du kan @nævne andre personer eller #hashtags.'
       account_alias:
         acct: Angiv brugernavn@domain for den konto, hvorfra du vil flytte
       account_migration:
@@ -130,6 +134,7 @@ da:
         position: Højere rolle bestemmer konfliktløsning i visse situationer. Visse handlinger kan kun udføres på roller med lavere prioritet
       webhook:
         events: Vælg begivenheder at sende
+        template: Skriv din egen JSON nyttelast ved hjælp af variabel interpolation. Lad feltet stå tomt for standard JSON.
         url: Hvor begivenheder sendes til
     labels:
       account:
@@ -295,6 +300,7 @@ da:
         usable: Tillad indlæg at benytte dette hashtag
       user:
         role: Rolle
+        time_zone: Tidszone
       user_role:
         color: Badge-farve
         highlighted: Vis rolle som badge på brugerprofiler
@@ -303,6 +309,7 @@ da:
         position: Prioritet
       webhook:
         events: Aktive begivenheder
+        template: Payload skabelon
         url: Endepunkts-URL
     'no': Nej
     not_recommended: Ikke anbefalet

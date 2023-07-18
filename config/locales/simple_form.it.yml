@@ -2,6 +2,10 @@
 it:
   simple_form:
     hints:
+      account:
+        display_name: Il tuo nome completo o il tuo soprannome.
+        fields: La tua homepage, i pronomi, l'età, tutto quello che vuoi.
+        note: 'Puoi @menzionare altre persone o usare gli #hashtags.'
       account_alias:
         acct: Indica il nomeutente@dominio dell'account dal quale vuoi trasferirti
       account_migration:
@@ -130,6 +134,7 @@ it:
         position: Un ruolo più alto decide la risoluzione dei conflitti in determinate situazioni. Alcune azioni possono essere eseguite solo su ruoli con priorità più bassa
       webhook:
         events: Seleziona eventi da inviare
+        template: Componi il tuo carico utile JSON utilizzando l'interpolazione variabile. Lascia vuoto per il JSON predefinito.
         url: Dove gli eventi saranno inviati
     labels:
       account:
@@ -295,6 +300,7 @@ it:
         usable: Permetti ai post di usare questo hashtag
       user:
         role: Ruolo
+        time_zone: Fuso orario
       user_role:
         color: Colore distintivo
         highlighted: Mostra il ruolo come distintivo sui profili utente
@@ -303,6 +309,7 @@ it:
         position: Priorità
       webhook:
         events: Eventi abilitati
+        template: Modello di carico utile
         url: URL endpoint
     'no': 'No'
     not_recommended: Non consigliato
