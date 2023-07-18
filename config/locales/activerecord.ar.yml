@@ -1,4 +1,3 @@
----
 ar:
   activerecord:
     attributes:
@@ -53,3 +52,7 @@ ar:
             position:
               elevated: لا يمكن أن يكون أعلى من دورك الحالي
               own_role: لا يمكن تغييرها مع دورك الحالي
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: لا يمكن إدراج الأحداث التي لا تمتلك حقوقها
