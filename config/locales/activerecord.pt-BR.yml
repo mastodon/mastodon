@@ -1,4 +1,3 @@
----
 pt-BR:
   activerecord:
     attributes:
@@ -53,3 +52,7 @@ pt-BR:
             position:
               elevated: não pode ser maior do que seu cargo atual
               own_role: não pode ser alterado com seu cargo atual
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: não pode incluir eventos que você não tem permissão para
