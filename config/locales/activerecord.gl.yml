@@ -1,4 +1,3 @@
----
 gl:
   activerecord:
     attributes:
@@ -53,3 +52,7 @@ gl:
             position:
               elevated: non pode superar ao teu rol actual
               own_role: non pode ser modificado co teu rol actual
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: non podes incluír eventos para os que non tes permiso
