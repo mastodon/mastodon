@@ -47,7 +47,7 @@
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
-        - if @accounts.any? { |account| account.user_pending? }
+        - if @accounts.any?(&:user_pending?)
           = f.button safe_join([fa_icon('check'), t('admin.accounts.approve')]), name: :approve, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
           = f.button safe_join([fa_icon('times'), t('admin.accounts.reject')]), name: :reject, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
