@@ -22,7 +22,7 @@
                               %h1= t 'notification_mailer.reblog.title'
                               %p.lead= t('notification_mailer.reblog.body', name: @account.pretty_acct)
 
-= render 'status', status: @status
+= render 'status', status: @status, time_zone: @me.user_time_zone
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody

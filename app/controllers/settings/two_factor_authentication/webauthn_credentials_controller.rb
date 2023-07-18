@@ -8,9 +8,8 @@ module Settings
       before_action :require_otp_enabled
       before_action :require_webauthn_enabled, only: [:index, :destroy]
 
-      def new; end
-
       def index; end
+      def new; end
 
       def options
         current_user.update(webauthn_id: WebAuthn.generate_user_id) unless current_user.webauthn_id

@@ -1,1 +1,59 @@
+---
 sa:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: समयसीमा
+        options: चयनानि
+      user:
+        agreement: सेवासम्मतिः
+        email: ई-पत्रसङ्केतः
+        locale: स्थलीयम्
+        password: गुप्तपदम्
+      user/account:
+        username: उपभोक्तृनाम
+      user/invite_request:
+        text: कारणम्
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: केवलमक्षराणि, संख्याः, अन्दर्स्कोरित्येतानि अवश्यानि लभ्येरन्।
+              reserved: आरक्षितम्
+        admin/webhook:
+          attributes:
+            url:
+              invalid: वैधं URL नास्ति
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: वैधं URL नास्ति
+        import:
+          attributes:
+            data:
+              malformed: विकृतम्
+        status:
+          attributes:
+            reblog:
+              taken: प्रेषणस्य पूर्णमेव विद्यते
+        user:
+          attributes:
+            email:
+              blocked: अस्वीकृतमीपत्रप्रदातारं प्रयोजयति
+              unreachable: नास्तीति प्रतीयते
+            role_id:
+              elevated: तव वर्तमानभूमिकाया उपरि न भवेत्
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: आधारभूमिकायै सुरक्षिता न सन्ति इति अनुमतिस्समावेशय
+              elevated: तव वर्तमानभूमिकायां नास्तीति अनुमतिस्समाविष्टुं न शक्नोति
+              own_role: तव वर्तमानभूमिकया परिवर्तुं न शक्यते
+            position:
+              elevated: तव वर्तमानभूमिकाया उपरि न भवेत्
+              own_role: तव वर्तमानभूमिकया परिवर्तुं न शक्यते
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: यस्या घटनाया अधिकारा न सन्ति ताः परिग्रहितुं न शक्यन्ते।

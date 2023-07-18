@@ -1,8 +1,8 @@
 const babel = require('./babel');
 const css = require('./css');
 const file = require('./file');
-const tesseract = require('./tesseract');
 const nodeModules = require('./node_modules');
+const tesseract = require('./tesseract');
 
 // Webpack loaders are processed in reverse order
 // https://webpack.js.org/concepts/loaders/#loader-features

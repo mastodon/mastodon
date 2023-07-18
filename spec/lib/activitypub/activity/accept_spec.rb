@@ -43,7 +43,7 @@ RSpec.describe ActivityPub::Activity::Accept do
     end
   end
 
-  context 'given a relay' do
+  context 'when given a relay' do
     subject { described_class.new(json, sender) }
 
     let!(:relay) { Fabricate(:relay, state: :pending, follow_activity_id: 'https://abc-123/456') }

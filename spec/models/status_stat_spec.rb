@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe StatusStat, type: :model do
+RSpec.describe StatusStat do
 end

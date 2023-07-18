@@ -155,8 +155,30 @@ module CacheConcern
     end
   end
 
+  class_methods do
+    def vary_by(value, **kwargs)
+      before_action(**kwargs) do |controller|
+        response.headers['Vary'] = value.respond_to?(:call) ? controller.instance_exec(&value) : value
+      end
+    end
+  end
+
+  included do
+    after_action :enforce_cache_control!
+  end
+
+  # Prevents high-entropy headers such as `Cookie`, `Signature` or `Authorization`
+  # from being used as cache keys, while allowing to `Vary` on them (to not serve
+  # anonymous cached data to authenticated requests when authentication matters)
+  def enforce_cache_control!
+    vary = response.headers['Vary']&.split&.map { |x| x.strip.downcase }
+    return unless vary.present? && %w(cookie authorization signature).any? { |header| vary.include?(header) && request.headers[header].present? }
+
+    response.cache_control.replace(private: true, no_store: true)
+  end
+
   def render_with_cache(**options)
-    raise ArgumentError, 'only JSON render calls are supported' unless options.key?(:json) || block_given?
+    raise ArgumentError, 'Only JSON render calls are supported' unless options.key?(:json) || block_given?
 
     key        = options.delete(:key) || [[params[:controller], params[:action]].join('/'), options[:json].respond_to?(:cache_key) ? options[:json].cache_key : nil, options[:fields].nil? ? nil : options[:fields].join(',')].compact.join(':')
     expires_in = options.delete(:expires_in) || 3.minutes
@@ -174,10 +196,6 @@ module CacheConcern
       render(options)
       Rails.cache.write(key, response.body, expires_in: expires_in, raw: true)
     end
-  end
-
-  def set_cache_headers
-    response.headers['Vary'] = public_fetch_mode? ? 'Accept' : 'Accept, Signature'
   end
 
   def cache_collection(raw, klass)

@@ -24,7 +24,7 @@ RSpec.describe FamiliarFollowersPresenter do
 
       expect(result).to_not be_nil
       expect(result.id).to eq requested_accounts.first.id
-      expect(result.accounts).to match_array([familiar_follower])
+      expect(result.accounts).to contain_exactly(familiar_follower)
     end
 
     context 'when requested account hides followers' do

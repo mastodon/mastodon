@@ -2,6 +2,10 @@
 zh-TW:
   simple_form:
     hints:
+      account:
+        display_name: 完整名稱或暱稱。
+        fields: 烘培雞，自我認同代稱，年齡，及任何您想分享的。
+        note: '您可以 @mention 其他人或者使用 #主題標籤。'
       account_alias:
         acct: 指定要移動的帳號的「使用者名稱@網域名稱」
       account_migration:
@@ -17,7 +21,7 @@ zh-TW:
         types:
           disable: 禁止該使用者使用他們的帳號，但是不刪除或隱藏他們的內容。
           none: 使用這個寄送警告給該使用者，而不進行其他動作。
-          sensitive: 強制標記此使用者所有媒體為敏感內容。
+          sensitive: 強制標記此使用者所有多媒體附加檔案為敏感內容。
           silence: 禁止該使用者發公開嘟文，從無跟隨他們的帳號中隱藏嘟文和通知。關閉所有對此帳號之檢舉報告。
           suspend: 禁止所有對該帳號任何互動，並且刪除其內容。三十天內可以撤銷此動作。關閉所有對此帳號之檢舉報告。
         warning_preset_id: 選用。您仍可在預設的結尾新增自訂文字
@@ -39,7 +43,6 @@ zh-TW:
         digest: 僅在您長時間未登入且在未登入期間收到私訊時傳送
         discoverable: 允許陌生人透過推薦、熱門趨勢及其他功能發現您的帳號
         email: 您將收到一封確認電子郵件
-        fields: 您可在個人檔案上有至多 4 個以表格形式顯示的項目
         header: 支援 PNG、GIF 或 JPG 圖片格式，檔案最大為 %{size}，會等比例縮減至 %{dimensions} 像素
         inbox_url: 從您想要使用的中繼首頁複製網址
         irreversible: 已過濾的嘟文將會不可逆地消失，即便之後移除過濾器也一樣
@@ -59,7 +62,7 @@ zh-TW:
         setting_show_application: 您用來發嘟文的應用程式將會在您嘟文的詳細檢視顯示
         setting_use_blurhash: 彩色漸層圖樣是基於隱藏媒體內容顏色產生，所有細節會變得模糊
         setting_use_pending_items: 關閉自動捲動更新，時間軸只會在點擊後更新
-        username: 您的使用者名稱將於 %{domain} 是獨一無二的
+        username: 您可以使用字幕、數字與底線
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
       domain_allow:
         domain: 此網域將能夠攫取本站資料，而自該網域發出的資料也會於本站處理和留存。
@@ -78,7 +81,7 @@ zh-TW:
         backups_retention_period: 將已產生的使用者封存資料保存特定天數。
         bootstrap_timeline_accounts: 這些帳號將被釘選於新帳號跟隨推薦之上。
         closed_registrations_message: 於註冊關閉時顯示
-        content_cache_retention_period: 當設定成正值時，從其他伺服器而來的嘟文會於指定天數後被刪除。這項操作可能是不可逆的。
+        content_cache_retention_period: 所有來自其他伺服器之嘟文及轉嘟將於指定天數後被刪除。這項操作可能是不可逆的。所有相關之書籤、最愛、轉嘟將會遺失並且無法回復。
         custom_css: 您於 Mastodon 網頁版本中能套用客製化風格。
         mascot: 覆寫進階網頁介面中的圖例。
         media_cache_retention_period: 當設定成正值時，已下載的多媒體檔案會於指定天數後被刪除，並且視需要重新下載。
@@ -131,6 +134,7 @@ zh-TW:
         position: 在某些情況下，衝突的解決方式由更高階的角色決定。某些動作只能由優先程度較低的角色執行
       webhook:
         events: 請選擇要傳送的事件
+        template: 使用變數代換組合您自己的 JSON payload。留白以使用預設 JSON 。
         url: 事件會被傳送至何處
     labels:
       account:
@@ -178,7 +182,7 @@ zh-TW:
         display_name: 顯示名稱
         email: 電子郵件地址
         expires_in: 失效時間
-        fields: 個人檔案詮釋資料
+        fields: 額外欄位
         header: 封面圖片
         honeypot: "%{label} (請勿填寫)"
         inbox_url: 中繼收件匣 URL
@@ -227,7 +231,7 @@ zh-TW:
       email_domain_block:
         with_dns_records: 包括網域的 MX 記錄和 IP 位址
       featured_tag:
-        name: "「#」標籤"
+        name: "「#」主題標籤"
       filters:
         actions:
           hide: 完全隱藏
@@ -279,7 +283,7 @@ zh-TW:
       notification_emails:
         appeal: 有人對管理員的決定提出上訴
         digest: 傳送摘要電子郵件
-        favourite: 當有使用者喜歡您的嘟文時，傳送電子郵件通知
+        favourite: 當有使用者將您的嘟文加入最愛時，傳送電子郵件通知
         follow: 當有使用者跟隨您時，傳送電子郵件通知
         follow_request: 當有使用者請求跟隨您時，傳送電子郵件通知
         mention: 當有使用者在嘟文提及您時，傳送電子郵件通知
@@ -296,6 +300,7 @@ zh-TW:
         usable: 允許嘟文使用此主題標籤
       user:
         role: 角色
+        time_zone: 時區
       user_role:
         color: 識別顏色
         highlighted: 在使用者個人檔案上將角色顯示為徽章
@@ -304,6 +309,7 @@ zh-TW:
         position: 優先權
       webhook:
         events: 已啟用的事件
+        template: Payload 樣板
         url: 端點 URL
     'no': 否
     not_recommended: 不建議

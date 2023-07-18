@@ -28,7 +28,7 @@ describe AuthorizeInteractionsController do
       end
 
       it 'renders error when account cant be found' do
-        service = double
+        service = instance_double(ResolveAccountService)
         allow(ResolveAccountService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('missing@hostname').and_return(nil)
 
@@ -40,7 +40,7 @@ describe AuthorizeInteractionsController do
 
       it 'sets resource from url' do
         account = Fabricate(:account)
-        service = double
+        service = instance_double(ResolveURLService)
         allow(ResolveURLService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('http://example.com').and_return(account)
 
@@ -52,7 +52,7 @@ describe AuthorizeInteractionsController do
 
       it 'sets resource from acct uri' do
         account = Fabricate(:account)
-        service = double
+        service = instance_double(ResolveAccountService)
         allow(ResolveAccountService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('found@hostname').and_return(account)
 
@@ -82,7 +82,7 @@ describe AuthorizeInteractionsController do
       end
 
       it 'shows error when account not found' do
-        service = double
+        service = instance_double(ResolveAccountService)
 
         allow(ResolveAccountService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('user@hostname').and_return(nil)
@@ -94,7 +94,7 @@ describe AuthorizeInteractionsController do
 
       it 'follows account when found' do
         target_account = Fabricate(:account)
-        service = double
+        service = instance_double(ResolveAccountService)
 
         allow(ResolveAccountService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('user@hostname').and_return(target_account)

@@ -11,11 +11,11 @@ RSpec.describe ResolveAccountService, type: :service do
     stub_request(:get, 'https://ap.example.com/.well-known/webfinger?resource=acct:foo@ap.example.com').to_return(request_fixture('activitypub-webfinger.txt'))
     stub_request(:get, 'https://ap.example.com/users/foo').to_return(request_fixture('activitypub-actor.txt'))
     stub_request(:get, 'https://ap.example.com/users/foo.atom').to_return(request_fixture('activitypub-feed.txt'))
-    stub_request(:get, %r{https://ap.example.com/users/foo/\w+}).to_return(status: 404)
+    stub_request(:get, %r{https://ap\.example\.com/users/foo/\w+}).to_return(status: 404)
     stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:hoge@example.com').to_return(status: 410)
   end
 
-  context 'using skip_webfinger' do
+  context 'when using skip_webfinger' do
     context 'when account is known' do
       let!(:remote_account) { Fabricate(:account, username: 'foo', domain: 'ap.example.com', protocol: 'activitypub') }
 
@@ -78,7 +78,7 @@ RSpec.describe ResolveAccountService, type: :service do
   end
 
   context 'when webfinger returns http gone' do
-    context 'for a previously known account' do
+    context 'with a previously known account' do
       before do
         Fabricate(:account, username: 'hoge', domain: 'example.com', last_webfingered_at: nil)
         allow(AccountDeletionWorker).to receive(:perform_async)
@@ -94,7 +94,7 @@ RSpec.describe ResolveAccountService, type: :service do
       end
     end
 
-    context 'for a previously unknown account' do
+    context 'with a previously unknown account' do
       it 'returns nil' do
         expect(subject.call('hoge@example.com')).to be_nil
       end

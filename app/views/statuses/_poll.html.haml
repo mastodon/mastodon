@@ -1,6 +1,7 @@
-- show_results = (user_signed_in? && poll.voted?(current_account)) || poll.expired?
-- own_votes = user_signed_in? ? poll.own_votes(current_account) : []
-- total_votes_count = poll.voters_count || poll.votes_count
+:ruby
+  show_results = (user_signed_in? && poll.voted?(current_account)) || poll.expired?
+  own_votes = user_signed_in? ? poll.own_votes(current_account) : []
+  total_votes_count = poll.voters_count || poll.votes_count
 
 .poll
   %ul
@@ -17,7 +18,7 @@
               %span.poll__voted
                 %i.poll__voted__mark.fa.fa-check
 
-          %progress{ max: 100, value: percent < 1 ? 1 : percent, 'aria-hidden': 'true' }
+          %progress{ max: 100, value: [percent, 1].max, 'aria-hidden': 'true' }
             %span.poll__chart
         - else
           %label.poll__option><

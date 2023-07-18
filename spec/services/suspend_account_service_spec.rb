@@ -26,7 +26,7 @@ RSpec.describe SuspendAccountService, type: :service do
     end
 
     it 'does not change the “suspended” flag' do
-      expect { subject }.to_not change { account.suspended? }
+      expect { subject }.to_not change(account, :suspended?)
     end
   end
 

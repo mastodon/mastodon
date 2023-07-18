@@ -2,6 +2,10 @@
 sq:
   simple_form:
     hints:
+      account:
+        display_name: Emri juaj i plotë, ose emri juaj lojcak.
+        fields: Faqja juaj hyrëse, përemra, moshë, ç’të keni qejf.
+        note: 'Mundeni të @përmendni persona apo #hashtagë të tjerë.'
       account_alias:
         acct: Specifikoni emrinepërdoruesit@përkatësi të llogarisë prej nga doni të lëvizet
       account_migration:
@@ -39,7 +43,6 @@ sq:
         digest: I dërguar vetëm pas një periudhe të gjatë pasiviteti dhe vetëm nëse keni marrë ndonjë mesazh personal gjatë mungesës tuaj
         discoverable: Lejoni që llogaria juaj të zbulohet nga të huaj përmes rekomandimesh, gjërash në modë dhe veçorish të tjera
         email: Do t’ju dërgohet një email ripohimi
-        fields: Te profili juaj mund të keni deri në 4 objekte të shfaqur si tabelë
         header: PNG, GIF ose JPG. E shumta %{size}. Do të ripërmasohet në %{dimensions}px
         inbox_url: Kopjoni URL-në prej faqes ballore të relesë që doni të përdorni
         irreversible: Mesazhet e filtruar do të zhduken në mënyrë të pakthyeshme, edhe nëse filtri hiqet më vonë
@@ -59,7 +62,7 @@ sq:
         setting_show_application: Aplikacioni që përdorni për mesazhe do të shfaqet te pamja e hollësishme për mesazhet tuaj
         setting_use_blurhash: Gradientët bazohen në ngjyrat e elementëve pamorë të fshehur, por errësojnë çfarëdo hollësie
         setting_use_pending_items: Fshihi përditësimet e rrjedhës kohore pas një klikimi, në vend të rrëshqitjes automatike nëpër prurje
-        username: Emri juaj i përdoruesit do të jetë unik në %{domain}
+        username: Mund të përdorni shkronja, numra dhe nënvija
         whole_word: Kur fjalëkyçi ose fraza është vetëm numerike, do të aplikohet vetëm nëse përputhet me krejt fjalën
       domain_allow:
         domain: Kjo përkatësi do të jetë në gjendje të sjellë të dhëna prej këtij shërbyesi dhe të dhënat ardhëse prej tij do të përpunohen dhe depozitohen
@@ -131,6 +134,7 @@ sq:
         position: Role më të lartë vendosin zgjidhje përplasje në disa raste. Disa veprime mund të kryhen vetëm mbi role të një shkalle më të ulët
       webhook:
         events: Përzgjidhni akte për dërgim
+        template: Hartoni ngarkesë tuajën JSON, duke përdorur ndërkëmbim ndryshoresh. Lëreni të zbrazët, për JSON-in parazgjedhje.
         url: Ku do të dërgohen aktet
     labels:
       account:
@@ -296,6 +300,7 @@ sq:
         usable: Lejoji mesazhet të përdorin këtë hashtag
       user:
         role: Rol
+        time_zone: Zonë kohore
       user_role:
         color: Ngjyrë steme
         highlighted: Shfaqe rolin si një stemë në profile përdoruesish
@@ -304,6 +309,7 @@ sq:
         position: Përparësi
       webhook:
         events: Akte të aktivizuar
+        template: Gjedhe ngarkese
         url: URL pikëmbarimi
     'no': Jo
     not_recommended: Jo e këshilluar

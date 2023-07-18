@@ -2,6 +2,10 @@
 es-MX:
   simple_form:
     hints:
+      account:
+        display_name: Tu nombre completo o tu nick.
+        fields: Tu página de inicio, pronombres, edad, todo lo que quieras.
+        note: 'Puedes @mencionar a otra gente o #hashtags.'
       account_alias:
         acct: Especifique el nombre de usuario@dominio de la cuenta desde la cual se desea migrar
       account_migration:
@@ -39,7 +43,6 @@ es-MX:
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
         discoverable: Permite que tu cuenta sea descubierta por extraños a través de recomendaciones, tendencias y otras características
         email: Se le enviará un correo de confirmación
-        fields: Puedes tener hasta 4 elementos mostrándose como una tabla en tu perfil
         header: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         inbox_url: Copia la URL de la página principal del relés que quieres utilizar
         irreversible: Los toots filtrados desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
@@ -59,7 +62,7 @@ es-MX:
         setting_show_application: La aplicación que utiliza usted para publicar toots se mostrará en la vista detallada de sus toots
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar nuevos estados detrás de un clic en lugar de desplazar automáticamente el feed
-        username: Tu nombre de usuario será único en %{domain}
+        username: Puedes usar letras, números y guiones bajos
         whole_word: Cuando la palabra clave o frase es solo alfanumérica, solo será aplicado si concuerda con toda la palabra
       domain_allow:
         domain: Este dominio podrá obtener datos de este servidor y los datos entrantes serán procesados y archivados
@@ -131,6 +134,7 @@ es-MX:
         position: Un rol superior decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con menor prioridad
       webhook:
         events: Seleccionar eventos para enviar
+        template: Crea tu propio JSON usando interpolación variable. Déjalo en blanco para el JSON predeterminado.
         url: Donde los eventos serán enviados
     labels:
       account:
@@ -296,6 +300,7 @@ es-MX:
         usable: Permitir a los toots usar esta etiqueta
       user:
         role: Rol
+        time_zone: Zona horaria
       user_role:
         color: Color de insignia
         highlighted: Mostrar rol como insignia en perfiles de usuario
@@ -304,6 +309,7 @@ es-MX:
         position: Prioridad
       webhook:
         events: Eventos habilitados
+        template: Plantilla de carga
         url: URL de Endpoint
     'no': 'No'
     not_recommended: No recomendado

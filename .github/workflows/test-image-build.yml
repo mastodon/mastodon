@@ -1,0 +1,21 @@
+name: Test container image build
+on:
+  pull_request:
+    paths:
+      - .github/workflows/build-nightly.yml
+      - .github/workflows/build-push-pr.yml
+      - .github/workflows/build-releases.yml
+      - .github/workflows/test-image-build.yml
+      - Dockerfile
+permissions:
+  contents: read
+
+jobs:
+  build-image:
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      platforms: linux/amd64 # Testing only on native platform so it is performant

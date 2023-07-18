@@ -2,6 +2,9 @@
 sl:
   simple_form:
     hints:
+      account:
+        fields: Vaša domača stran, starost, kar koli.
+        note: 'Druge osebe lahko @omenite ali #ključnite.'
       account_alias:
         acct: Določite uporabniškoime@domena računa, od katerega se želite preseliti
       account_migration:
@@ -39,7 +42,6 @@ sl:
         digest: Pošlje se le po dolgem obdobju nedejavnosti in samo, če ste prejeli osebna sporočila v vaši odsotnosti
         discoverable: Dovolite, da vaš račun odkrijejo neznanci prek priporočil, trendov in drugih funkcij
         email: Poslali vam bomo potrditveno e-pošto
-        fields: Na svojem profilu lahko imate do 4 predmete prikazane kot tabelo.
         header: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
         inbox_url: Kopirajte URL naslov s prve strani releja, ki ga želite uporabiti
         irreversible: Filtrirane objave bodo nepovratno izginile, tudi če je filter kasneje odstranjen
@@ -59,7 +61,7 @@ sl:
         setting_show_application: Aplikacija, ki jo uporabljate za objavljanje, bo prikazana v podrobnem pogledu vaših objav
         setting_use_blurhash: Prelivi temeljijo na barvah skrite vizualne slike, vendar zakrivajo vse podrobnosti
         setting_use_pending_items: Skrij posodobitev časovnice za klikom namesto samodejnega posodabljanja
-        username: Vaše uporabniško ime bo edinstveno na %{domain}
+        username: Uporabite lahko črke, števke in podčrtaje.
         whole_word: Ko je ključna beseda ali fraza samo alfanumerična, se bo uporabljala le, če se bo ujemala s celotno besedo
       domain_allow:
         domain: Ta domena bo lahko prejela podatke s tega strežnika, dohodni podatki z nje pa bodo obdelani in shranjeni
@@ -296,6 +298,7 @@ sl:
         usable: Dovoli, da objave uporabljajo ta ključnik
       user:
         role: Vloga
+        time_zone: Časovni pas
       user_role:
         color: Barva značke
         highlighted: Prikaži vlogo kot značko na uporabniškem profilu

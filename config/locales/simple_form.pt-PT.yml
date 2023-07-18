@@ -2,6 +2,10 @@
 pt-PT:
   simple_form:
     hints:
+      account:
+        display_name: O seu nome completo ou o seu nome divertido.
+        fields: A sua página inicial, os seus pronomes, idade e tudo o que quiser.
+        note: 'Pode @mencionar outras pessoas ou #hashtags.'
       account_alias:
         acct: Especifique o utilizador@domínio da conta de onde você deseja migrar
       account_migration:
@@ -39,7 +43,6 @@ pt-PT:
         digest: Enviado após um longo período de inatividade e apenas se foste mencionado na tua ausência
         discoverable: Permitir que a sua conta seja descoberta por outros através de recomendações, destaques e outras funções
         email: Será enviado um e-mail de confirmação
-        fields: Pode ter até 4 elementos expostos, em forma de tabela, no seu perfil
         header: PNG, GIF ou JPG. Ficheiros no máximo de %{size}. Serão reduzidos para %{dimensions}px
         inbox_url: Copie o URL da página inicial do repetidor que quer usar
         irreversible: Publicações filtradas irão desaparecer irremediavelmente, mesmo que o filtro seja removido posteriormente
@@ -59,7 +62,7 @@ pt-PT:
         setting_show_application: A aplicação que usa para publicar será mostrada na vista pormenorizada das suas publicações
         setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer pormenores
         setting_use_pending_items: Ocultar atualizações da cronologia por detrás dum clique, em vez de rolar automaticamente o fluxo
-        username: O teu nome de utilizador será único em %{domain}
+        username: Pode utilizar letras, números e sublinhados
         whole_word: Quando a palavra-chave ou expressão-chave é somente alfanumérica, ela só será aplicada se corresponder à palavra completa
       domain_allow:
         domain: Este domínio será capaz de obter dados desta instância e os dados dele recebidos serão processados e armazenados
@@ -131,6 +134,7 @@ pt-PT:
         position: Cargos mais altos decidem a resolução de conflitos em certas situações. Certas ações só podem ser executadas em cargos com uma menor prioridade
       webhook:
         events: Selecione os eventos a enviar
+        template: Componha o seu próprio conteúdo JSON utilizando a interpolação de variáveis. Deixar em branco para o JSON predefinido.
         url: Para onde os eventos serão enviados
     labels:
       account:
@@ -296,6 +300,7 @@ pt-PT:
         usable: Permitir que as publicações usem esta etiqueta
       user:
         role: Cargo
+        time_zone: Fuso horário
       user_role:
         color: Cor do emblema
         highlighted: Apresentar o cargo como emblema nos perfis de utilizador
@@ -304,6 +309,7 @@ pt-PT:
         position: Prioridade
       webhook:
         events: Eventos ativados
+        template: Modelo de conteúdo
         url: URL do Endpoint
     'no': Não
     not_recommended: Não recomendado

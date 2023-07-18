@@ -19,7 +19,8 @@ class UserSettings::Setting
   end
 
   def type
-    if @default_value.is_a?(TrueClass) || @default_value.is_a?(FalseClass)
+    case default_value
+    when TrueClass, FalseClass
       ActiveModel::Type::Boolean.new
     else
       ActiveModel::Type::String.new

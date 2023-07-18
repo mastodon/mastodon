@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.describe CustomEmoji, type: :model do
+RSpec.describe CustomEmoji do
   describe '#search' do
     subject { described_class.search(search_term) }
 
     let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: shortcode) }
 
-    context 'shortcode is exact' do
+    context 'when shortcode is exact' do
       let(:shortcode) { 'blobpats' }
       let(:search_term) { 'blobpats' }
 
@@ -17,7 +17,7 @@ RSpec.describe CustomEmoji, type: :model do
       end
     end
 
-    context 'shortcode is partial' do
+    context 'when shortcode is partial' do
       let(:shortcode) { 'blobpats' }
       let(:search_term) { 'blob' }
 
@@ -32,7 +32,7 @@ RSpec.describe CustomEmoji, type: :model do
 
     let(:custom_emoji) { Fabricate(:custom_emoji, domain: domain) }
 
-    context 'domain is nil' do
+    context 'when domain is nil' do
       let(:domain) { nil }
 
       it 'returns true' do
@@ -40,7 +40,7 @@ RSpec.describe CustomEmoji, type: :model do
       end
     end
 
-    context 'domain is present' do
+    context 'when domain is present' do
       let(:domain) { 'example.com' }
 
       it 'returns false' do

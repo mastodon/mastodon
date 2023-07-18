@@ -1,15 +1,20 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import classNames from 'classnames';
-import Motion from 'mastodon/features/ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
+
 import escapeTextContentForBrowser from 'escape-html';
+import spring from 'react-motion/lib/spring';
+
+import { Icon }  from 'mastodon/components/icon';
 import emojify from 'mastodon/features/emoji/emoji';
-import RelativeTimestamp from './relative_timestamp';
-import Icon from 'mastodon/components/icon';
+import Motion from 'mastodon/features/ui/util/optional_motion';
+
+import { RelativeTimestamp } from './relative_timestamp';
 
 const messages = defineMessages({
   closed: {
@@ -52,9 +57,9 @@ class Poll extends ImmutablePureComponent {
   };
 
   static getDerivedStateFromProps (props, state) {
-    const { poll, intl } = props;
+    const { poll } = props;
     const expires_at = poll.get('expires_at');
-    const expired = poll.get('expired') || expires_at !== null && (new Date(expires_at)).getTime() < intl.now();
+    const expired = poll.get('expired') || expires_at !== null && (new Date(expires_at)).getTime() < Date.now();
     return (expired === state.expired) ? null : { expired };
   }
 
@@ -71,10 +76,10 @@ class Poll extends ImmutablePureComponent {
   }
 
   _setupTimer () {
-    const { poll, intl } = this.props;
+    const { poll } = this.props;
     clearTimeout(this._timer);
     if (!this.state.expired) {
-      const delay = (new Date(poll.get('expires_at'))).getTime() - intl.now();
+      const delay = (new Date(poll.get('expires_at'))).getTime() - Date.now();
       this._timer = setTimeout(() => {
         this.setState({ expired: true });
       }, delay);
@@ -125,6 +130,10 @@ class Poll extends ImmutablePureComponent {
     this.props.refresh();
   };
 
+  handleReveal = () => {
+    this.setState({ revealed: true });
+  }
+
   renderOption (option, optionIndex, showResults) {
     const { poll, lang, disabled, intl } = this.props;
     const pollVotesCount  = poll.get('voters_count') || poll.get('votes_count');
@@ -133,10 +142,12 @@ class Poll extends ImmutablePureComponent {
     const active          = !!this.state.selected[`${optionIndex}`];
     const voted           = option.get('voted') || (poll.get('own_votes') && poll.get('own_votes').includes(optionIndex));
 
-    let titleEmojified = option.get('title_emojified');
-    if (!titleEmojified) {
+    const title = option.getIn(['translation', 'title']) || option.get('title');
+    let titleHtml = option.getIn(['translation', 'titleHtml']) || option.get('titleHtml');
+
+    if (!titleHtml) {
       const emojiMap = makeEmojiMap(poll);
-      titleEmojified = emojify(escapeTextContentForBrowser(option.get('title')), emojiMap);
+      titleHtml = emojify(escapeTextContentForBrowser(title), emojiMap);
     }
 
     return (
@@ -154,11 +165,11 @@ class Poll extends ImmutablePureComponent {
           {!showResults && (
             <span
               className={classNames('poll__input', { checkbox: poll.get('multiple'), active })}
-              tabIndex='0'
+              tabIndex={0}
               role={poll.get('multiple') ? 'checkbox' : 'radio'}
               onKeyPress={this.handleOptionKeyPress}
               aria-checked={active}
-              aria-label={option.get('title')}
+              aria-label={title}
               lang={lang}
               data-index={optionIndex}
             />
@@ -177,7 +188,7 @@ class Poll extends ImmutablePureComponent {
           <span
             className='poll__option__text translate'
             lang={lang}
-            dangerouslySetInnerHTML={{ __html: titleEmojified }}
+            dangerouslySetInnerHTML={{ __html: titleHtml }}
           />
 
           {!!voted && <span className='poll__voted'>
@@ -198,14 +209,14 @@ class Poll extends ImmutablePureComponent {
 
   render () {
     const { poll, intl } = this.props;
-    const { expired } = this.state;
+    const { revealed, expired } = this.state;
 
     if (!poll) {
       return null;
     }
 
     const timeRemaining = expired ? intl.formatMessage(messages.closed) : <RelativeTimestamp timestamp={poll.get('expires_at')} futureDate />;
-    const showResults   = poll.get('voted') || expired;
+    const showResults   = poll.get('voted') || revealed || expired;
     const disabled      = this.props.disabled || Object.entries(this.state.selected).every(item => !item);
 
     let votesCount = null;
@@ -224,9 +235,10 @@ class Poll extends ImmutablePureComponent {
 
         <div className='poll__footer'>
           {!showResults && <button className='button button-secondary' disabled={disabled || !this.context.identity.signedIn} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
-          {showResults && !this.props.disabled && <span><button className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </span>}
+          {!showResults && <><button className='poll__link' onClick={this.handleReveal}><FormattedMessage id='poll.reveal' defaultMessage='See results' /></button> · </>}
+          {showResults && !this.props.disabled && <><button className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </>}
           {votesCount}
-          {poll.get('expires_at') && <span> · {timeRemaining}</span>}
+          {poll.get('expires_at') && <> · {timeRemaining}</>}
         </div>
       </div>
     );

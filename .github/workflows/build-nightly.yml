@@ -1,0 +1,42 @@
+name: Build nightly container image
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *' # run at 2 AM UTC
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  compute-suffix:
+    runs-on: ubuntu-latest
+    steps:
+      - id: version_vars
+        env:
+          TZ: Etc/UTC
+        run: |
+          echo mastodon_version_suffix=nightly-$(date +'%Y-%m-%d')>> $GITHUB_OUTPUT
+    outputs:
+      suffix: ${{ steps.version_vars.outputs.mastodon_version_suffix }}
+
+  build-image:
+    needs: compute-suffix
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      platforms: linux/amd64,linux/arm64
+      use_native_arm64_builder: true
+      push_to_images: |
+        tootsuite/mastodon
+        ghcr.io/mastodon/mastodon
+      # The `+` is important here, result will be v4.1.2+nightly-2022-03-05
+      version_suffix: +${{ needs.compute-suffix.outputs.suffix }}
+      labels: |
+        org.opencontainers.image.description=Nightly build image used for testing purposes
+      flavor: |
+        latest=auto
+      tags: |
+        type=raw,value=edge
+        type=raw,value=nightly
+        type=schedule,pattern=${{ needs.compute-suffix.outputs.suffix }}
+    secrets: inherit

@@ -5,8 +5,10 @@ class Api::V1::Instances::PrivacyPoliciesController < Api::BaseController
 
   before_action :set_privacy_policy
 
+  vary_by ''
+
   def show
-    expires_in 1.day, public: true
+    cache_even_if_authenticated!
     render json: @privacy_policy, serializer: REST::PrivacyPolicySerializer
   end
 

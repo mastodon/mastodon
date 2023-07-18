@@ -6,6 +6,8 @@ class NotifyService < BaseService
   NON_EMAIL_TYPES = %i(
     admin.report
     admin.sign_up
+    update
+    poll
   ).freeze
 
   def call(recipient, type, activity)
@@ -160,7 +162,12 @@ class NotifyService < BaseService
   end
 
   def send_email!
-    NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later(wait: 2.minutes) if NotificationMailer.respond_to?(@notification.type)
+    return unless NotificationMailer.respond_to?(@notification.type)
+
+    NotificationMailer
+      .with(recipient: @recipient, notification: @notification)
+      .public_send(@notification.type)
+      .deliver_later(wait: 2.minutes)
   end
 
   def email_needed?

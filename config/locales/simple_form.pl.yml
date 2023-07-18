@@ -2,6 +2,10 @@
 pl:
   simple_form:
     hints:
+      account:
+        display_name: Twoje imię lub imię zabawne.
+        fields: Twoja strona główna, rzeczy, wiek, cokolwiek chcesz.
+        note: 'Możesz @wymienić innych ludzi lub #hashtags.'
       account_alias:
         acct: Określ nazwę@domenę konta z którego chcesz się przenieść
       account_migration:
@@ -39,7 +43,6 @@ pl:
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
         discoverable: Pozwala na odkrywanie twojego konta przez nieznajomych poprzez rekomendacje, popularne wpisy i inne funkcje
         email: Otrzymasz e-mail potwierdzający
-        fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         inbox_url: Skopiuj adres ze strony głównej przekaźnika, którego chcesz użyć
         irreversible: Filtrowane wpisy znikną bezpowrotnie, nawet gdy filtr zostanie usunięty
@@ -59,7 +62,7 @@ pl:
         setting_show_application: W informacjach o wpisie będzie widoczna informacja o aplikacji, z której został wysłany
         setting_use_blurhash: Gradienty są oparte na kolorach ukrywanej zawartości, ale uniewidaczniają wszystkie szczegóły
         setting_use_pending_items: Ukryj aktualizacje osi czasu za kliknięciem, zamiast automatycznego przewijania strumienia
-        username: Twoja nazwa użytkownika będzie niepowtarzalna na %{domain}
+        username: Możesz używać liter, cyfr i podkreślników
         whole_word: Jeśli słowo lub fraza składa się jedynie z liter lub cyfr, filtr będzie zastosowany tylko do pełnych wystąpień
       domain_allow:
         domain: Ta domena będzie mogła pobierać dane z serwera, a dane przychodzące z niej będą przetwarzane i przechowywane
@@ -131,6 +134,7 @@ pl:
         position: Wyższa rola decyduje o rozwiązywaniu konfliktów w pewnych sytuacjach. Niektóre działania mogą być wykonywane tylko na rolach z niższym priorytetem
       webhook:
         events: Wybierz zdarzenia do wysłania
+        template: Stwórz własny ładunek JSON za pomocą zmiennej interpolacji. Pozostaw puste dla domyślnego JSON.
         url: Dokąd będą wysłane zdarzenia
     labels:
       account:
@@ -285,7 +289,7 @@ pl:
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
         pending_account: Wyślij e-mail kiedy nowe konto potrzebuje recenzji
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
-        report: Nowy raport został wysłany
+        report: Nowe zgłoszenie zostało wysłane
         trending_tag: Nowe popularne wymagają przeglądu
       rule:
         text: Zasada
@@ -296,6 +300,7 @@ pl:
         usable: Pozwól na umieszczanie tego hashtagu we wpisach
       user:
         role: Rola
+        time_zone: Strefa czasowa
       user_role:
         color: Kolor odznaki
         highlighted: Wyświetl rolę jako odznakę na profilach użytkowników
@@ -304,6 +309,7 @@ pl:
         position: Priorytet
       webhook:
         events: Włączone zdarzenia
+        template: Szablon obciążenia
         url: Endpoint URL
     'no': Nie
     not_recommended: Niezalecane

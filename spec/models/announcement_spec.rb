@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe Announcement, type: :model do
+RSpec.describe Announcement do
 end

@@ -128,7 +128,6 @@ $content-width: 840px;
         }
 
         &.selected {
-          background: darken($ui-base-color, 2%);
           border-radius: 4px 0 0;
         }
       }
@@ -146,13 +145,9 @@ $content-width: 840px;
 
       .simple-navigation-active-leaf a {
         color: $primary-text-color;
-        background-color: darken($ui-highlight-color, 2%);
+        background-color: $ui-highlight-color;
         border-bottom: 0;
         border-radius: 0;
-
-        &:hover {
-          background-color: $ui-highlight-color;
-        }
       }
     }
 
@@ -246,12 +241,6 @@ $content-width: 840px;
             font-weight: 700;
             color: $primary-text-color;
             background: $ui-highlight-color;
-
-            &:hover,
-            &:focus,
-            &:active {
-              background: lighten($ui-highlight-color, 4%);
-            }
           }
         }
       }
@@ -635,7 +624,7 @@ body,
     .button {
       overflow: visible;
       margin: 0 0 5px 5px;
-      float: inline-end;
+      float: right;
     }
   }
 }
@@ -783,7 +772,7 @@ a.name-tag,
 
 .speech-bubble {
   margin-bottom: 20px;
-  border-inset-inline-start: 4px solid $ui-highlight-color;
+  border-inline-start: 4px solid $ui-highlight-color;
 
   &.positive {
     border-left-color: $success-green;
@@ -1293,6 +1282,15 @@ a.sparkline {
     &:last-child {
       border-bottom: 0;
     }
+
+    &.negative {
+      color: $error-value-color;
+      font-weight: 700;
+
+      .dimension__item__value {
+        color: $error-value-color;
+      }
+    }
   }
 }
 
@@ -1355,7 +1353,7 @@ a.sparkline {
     }
   }
 
-  @media screen and (max-width: 930px) {
+  @media screen and (width <= 930px) {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -1641,7 +1639,7 @@ a.sparkline {
     }
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (width <= 800px) {
     border: 0;
 
     &__item {
@@ -1662,7 +1660,7 @@ a.sparkline {
 }
 
 .section-skip-link {
-  float: inline-end;
+  float: right;
 
   a {
     color: $ui-highlight-color;

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe WebauthnCredential, type: :model do
+RSpec.describe WebauthnCredential do
   describe 'validations' do
     it 'is invalid without an external id' do
       webauthn_credential = Fabricate.build(:webauthn_credential, external_id: nil)

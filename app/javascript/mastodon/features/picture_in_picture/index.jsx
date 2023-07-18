@@ -1,17 +1,20 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Video from 'mastodon/features/video';
-import Audio from 'mastodon/features/audio';
+import { Component } from 'react';
+
+import { connect } from 'react-redux';
+
 import { removePictureInPicture } from 'mastodon/actions/picture_in_picture';
-import Header from './components/header';
+import Audio from 'mastodon/features/audio';
+import Video from 'mastodon/features/video';
+
 import Footer from './components/footer';
+import Header from './components/header';
 
 const mapStateToProps = state => ({
   ...state.get('picture_in_picture'),
 });
 
-class PictureInPicture extends React.Component {
+class PictureInPicture extends Component {
 
   static propTypes = {
     statusId: PropTypes.string,

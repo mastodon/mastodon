@@ -1,21 +1,21 @@
-import React from 'react';
+import { PureComponent } from 'react';
+
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { showTrends } from 'mastodon/initial_state';
-import Trends from 'mastodon/features/getting_started/containers/trends_container';
+
 import AccountNavigation from 'mastodon/features/account/navigation';
+import Trends from 'mastodon/features/getting_started/containers/trends_container';
+import { showTrends } from 'mastodon/initial_state';
 
 const DefaultNavigation = () => (
-  <>
-    {showTrends && (
-      <>
-        <div className='flex-spacer' />
-        <Trends />
-      </>
-    )}
-  </>
+  showTrends ? (
+    <>
+      <div className='flex-spacer' />
+      <Trends />
+    </>
+  ) : null
 );
 
-class NavigationPortal extends React.PureComponent {
+class NavigationPortal extends PureComponent {
 
   render () {
     return (

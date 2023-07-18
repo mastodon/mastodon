@@ -2,7 +2,7 @@
 
 <% @tags.each do |tag| %>
 - #<%= tag.display_name %>
-  <%= raw t('admin.trends.tags.usage_comparison', today: tag.history.get(Time.now.utc).accounts, yesterday: tag.history.get(Time.now.utc - 1.day).accounts) %> • <%= t('admin.trends.tags.current_score', score: Trends.tags.score(tag.id).round(2)) %>
+  <%= raw t('admin.trends.tags.usage_comparison', today: tag.history.get(Time.now.utc).accounts, yesterday: tag.history.get(Time.now.utc - 1.day).accounts) %> · <%= t('admin.trends.tags.current_score', score: Trends.tags.score(tag.id).round(2)) %>
 <% end %>
 
 <% if @lowest_trending_tag %>

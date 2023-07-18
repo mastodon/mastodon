@@ -6,8 +6,8 @@ class Importer::TagsIndexImporter < Importer::BaseImporter
       in_work_unit(tmp) do |tags|
         bulk = Chewy::Index::Import::BulkBuilder.new(index, to_index: tags).bulk_body
 
-        indexed = bulk.select { |entry| entry[:index] }.size
-        deleted = bulk.select { |entry| entry[:delete] }.size
+        indexed = bulk.count { |entry| entry[:index] }
+        deleted = bulk.count { |entry| entry[:delete] }
 
         Chewy::Index::Import::BulkRequest.new(index).perform(bulk)
 

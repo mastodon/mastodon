@@ -8,7 +8,7 @@
 
 <%= t('sessions.ip') %>: <%= @remote_ip %>
 <%= t('sessions.browser') %>: <%= t('sessions.description', browser: t("sessions.browsers.#{@detection.id}", default: "#{@detection.id}"), platform: t("sessions.platforms.#{@detection.platform.id}", default: "#{@detection.platform.id}")) %>
-<%= l(@timestamp) %>
+<%= l(@timestamp.in_time_zone(@resource.time_zone.presence)) %>
 
 <%= t 'user_mailer.suspicious_sign_in.further_actions_html', action: t('user_mailer.suspicious_sign_in.change_password') %>
 
