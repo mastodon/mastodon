@@ -82,6 +82,18 @@ A **Vagrant** configuration is included for development purposes. To use it, com
 - Run `vagrant ssh -c "cd /vagrant && foreman start"`
 - Open `http://mastodon.local` in your browser
 
+To set up **MacOS** for native development, complete the following steps:
+
+- Install the latest stable Ruby version (use a ruby version manager for easy installation and management of ruby versions)
+- Run `brew install postgresql@14`
+- Run `brew install redis`
+- Run `brew install imagemagick`
+- Install Foreman or a similar tool (such as [overmind](https://github.com/DarthSim/overmind)) to handle multiple process launching.
+- Navigate to Mastodon's root directory and run `brew install nvm` then `nvm use` to use the version from .nvmrc
+- Run `corepack enable && yarn set version classic`
+- Run `bundle exec rails db:setup` (optionally prepend `RAILS_ENV=development` to target the dev environment)
+- Finally, run `overmind start -f Procfile.dev`
+
 ### Getting Started with GitHub Codespaces
 
 To get started, create a codespace for this repository by clicking this 👇
