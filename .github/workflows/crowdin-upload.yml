@@ -1,0 +1,35 @@
+name: Crowdin / Upload translations
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - crowdin.yml
+      - app/javascript/mastodon/locales/en.json
+      - config/locales/en.yml
+      - config/locales/simple_form.en.yml
+      - config/locales/activerecord.en.yml
+      - config/locales/devise.en.yml
+      - config/locales/doorkeeper.en.yml
+      - .github/workflows/crowdin-upload.yml
+
+jobs:
+  upload-translations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: crowdin action
+        uses: crowdin/github-action@v1
+        with:
+          upload_sources: true
+          upload_translations: false
+          download_translations: false
+          crowdin_branch_name: main
+
+        env:
+          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
