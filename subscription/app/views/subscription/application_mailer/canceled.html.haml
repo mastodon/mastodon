@@ -13,8 +13,8 @@
                         %tbody
                           %tr
                             %td.column-cell.text-center.padded
-                              %p.lead= "Your subscription has been canceled" 
-                              %p= "Your account will remain active until the end of the billing cycle on " + Time.at(@cancel_at).strftime('%b %d, %Y')
+                              %h2= "Your subscription has been canceled"
+                              %p= "Your account will remain active until the end of the billing cycle on " + Time.at(@cancel_at).strftime('%b %d, %Y') + "."
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
@@ -33,4 +33,4 @@
                             %tbody
                               %tr
                                 %td
-                                  %p= link_to 'Resubscribe or manage your subscription in the future', settings_subscription.subscriptions_url
+                                  %p= 'Resubscribe or manage your subscription in the future: ' + link_to(settings_subscription.subscriptions_url)
