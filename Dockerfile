@@ -1,6 +1,6 @@
 # Ignoring these here since we don't want to pin any versions and the Debian image removes apt-get content after use
 # hadolint global ignore=DL3008
-FROM ruby:3.2.2-slim-bullseye
+FROM ruby:3.2.2-slim-bookworm
 
 RUN set -eux; \
   apt-get update; \
@@ -68,7 +68,7 @@ RUN set -eux; \
     gcc \
     git \
     libicu-dev \
-    libidn11-dev \
+    libidn-dev \
     libpq-dev \
     libgdbm-dev \
     libgmp-dev \
