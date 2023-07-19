@@ -17,23 +17,29 @@ class Api::V1::Peers::SearchController < Api::BaseController
   private
 
   def require_enabled_api!
-    head 404 unless Setting.peers_api_enabled && Chewy.enabled? && !whitelist_mode?
+    head 404 unless Setting.peers_api_enabled && !whitelist_mode?
   end
 
   def set_domains
     return if params[:q].blank?
 
-    @domains = InstancesIndex.query(function_score: {
-      query: {
-        prefix: {
-          domain: params[:q],
+    if Chewy.enabled?
+      @domains = InstancesIndex.query(function_score: {
+        query: {
+          prefix: {
+            domain: params[:q],
+          },
         },
-      },
 
-      field_value_factor: {
-        field: 'accounts_count',
-        modifier: 'log2p',
-      },
-    }).limit(10).pluck(:domain)
+        field_value_factor: {
+          field: 'accounts_count',
+          modifier: 'log2p',
+        },
+      }).limit(10).pluck(:domain)
+    else
+      domain = params[:q].strip
+      domain = TagManager.instance.normalize_domain(domain)
+      @domains = Instance.searchable.where(Instance.arel_table[:domain].matches("#{Instance.sanitize_sql_like(domain)}%", false, true)).limit(10).pluck(:domain)
+    end
   end
 end
