@@ -32,7 +32,7 @@
       .fields-group
         = text_area_tag :text, nil, placeholder: t('admin.reports.summary.warning_placeholder')
 
-      - if !@report.other?
+      - unless @report.other?
         %p
           %strong= t('user_mailer.warning.reason')
           = t("user_mailer.warning.categories.#{@report.category}")

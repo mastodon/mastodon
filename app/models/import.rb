@@ -17,6 +17,9 @@
 #  overwrite         :boolean          default(FALSE), not null
 #
 
+# NOTE: This is a deprecated model, only kept to not break ongoing imports
+# on upgrade. See `BulkImport` and `Form::Import` for its replacements.
+
 class Import < ApplicationRecord
   FILE_TYPES = %w(text/plain text/csv application/csv).freeze
   MODES = %i(merge overwrite).freeze
@@ -28,7 +31,6 @@ class Import < ApplicationRecord
   enum type: { following: 0, blocking: 1, muting: 2, domain_blocking: 3, bookmarks: 4 }
 
   validates :type, presence: true
-  validates_with ImportValidator, on: :create
 
   has_attached_file :data
   validates_attachment_content_type :data, content_type: FILE_TYPES

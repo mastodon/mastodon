@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'devise/strategies/authenticatable'
 
 Warden::Manager.after_set_user except: :fetch do |user, warden|

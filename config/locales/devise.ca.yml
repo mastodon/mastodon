@@ -8,15 +8,15 @@ ca:
         Si l'adreça de correu-e ja existeix a la nostra base de dades rebràs un correu amb instruccions sobre com confirmar-la.
         Si us plau, verifica la carpeta de la brossa si no l'has rebut.
     failure:
-      already_authenticated: Ja estàs registrat.
+      already_authenticated: Ja t'has registrat.
       inactive: El teu compte encara no s'ha activat.
       invalid: "%{authentication_keys} o contrasenya no són vàlids."
       last_attempt: Tens un intent més abans no es bloqui el teu compte.
       locked: El teu compte s'ha blocat.
       not_found_in_database: "%{authentication_keys} o contrasenya no són vàlids."
       pending: El teu compte encara està en revisió.
-      timeout: La sessió ha expirat. Torna a iniciar-la per a continuar.
-      unauthenticated: Cal iniciar sessió o registrar-se abans de continuar.
+      timeout: La teva sessió ha expirat. Torna a iniciar-la per a continuar.
+      unauthenticated: Necessites iniciar sessió o registrar-te abans de continuar.
       unconfirmed: Has de confirmar l'adreça-e abans de continuar.
     mailer:
       confirmation_instructions:
@@ -86,15 +86,15 @@ ca:
       no_token: Només pots accedir a aquesta pàgina a través de l'enllaç de restabliment de la contrasenya. Si vens d'un correu electrònic com aquest, assegura't que has introduït l'adreça completa proporcionada.
       send_instructions: Si el teu correu electrònic existeix en la nostra base de dades, rebràs en pocs minuts un enllaç de restabliment de contrasenya en l'adreça de correu. Si us plau verifica la teva carpeta de correu brossa si no has rebut aquest correu.
       send_paranoid_instructions: Si el teu correu electrònic existeix en la nostra base de dades, rebràs un enllaç de restabliment de contrasenya en l'adreça de correu en pocs minuts. Si us plau verifica la carpeta de correu brossa si no reps aquest correu.
-      updated: La contrasenya s'ha canviat correctament. Ara ja estàs registrat.
+      updated: La contrasenya s'ha pogut canviar. Ara ja has iniciat la sessió.
       updated_not_active: La contrasenya s'ha canviat correctament.
     registrations:
       destroyed: Adéu! el compte s'ha cancel·lat amb èxit. Desitgem veure't de nou ben aviat.
-      signed_up: Benvingut! T'has registrat amb èxit.
-      signed_up_but_inactive: T´has registrat amb èxit. No obstant, no podem iniciar la teva sessió perquè el teu compte encara no s'ha activat.
-      signed_up_but_locked: T'has registrat amb èxit. Això no obstant, no podem iniciar la sessió perquè el teu compte està blocat.
+      signed_up: Benvingut! T'has registrat.
+      signed_up_but_inactive: T'has registrat. Tanmateix, no podem iniciar la teva sessió perquè el compte encara no s'ha activat.
+      signed_up_but_locked: T'has registrat. Tanmateix, no podem iniciar la sessió perquè el compte està blocat.
       signed_up_but_pending: S'ha enviat un missatge amb un enllaç de confirmació a la teva adreça de correu electrònic. Després que hagis fet clic a l'enllaç, revisarem la sol·licitud. Se't notificarà si s'aprova.
-      signed_up_but_unconfirmed: S'ha enviat per correu electrònic un missatge amb un enllaç de confirmació. Fes clic a l'enllaç per a activar el compte. Si us plau verifica la teva carpeta de correu brossa si no reps aquest correu.
+      signed_up_but_unconfirmed: S'ha enviat per correu electrònic un missatge amb un enllaç de confirmació. Fes clic a l'enllaç per a activar el compte. Si us plau, verifica la teva carpeta de correu brossa si no el reps.
       update_needs_confirmation: Has actualitzat el teu compte amb èxit, però necessitem verificar la teva nova adreça de correu. Si us plau comprova el correu i segueixi l'enllaç per confirmar la nova adreça de correu. Si us plau verifica la teva carpeta de correu brossa si no reps aquest correu.
       updated: El teu compte ha estat actualitzat amb èxit.
     sessions:
@@ -104,10 +104,10 @@ ca:
     unlocks:
       send_instructions: En pocs minuts rebràs un correu electrònic amb instruccions sobre com desbloquejar el teu compte. Si us plau verifica la teva carpeta de correu brossa si no has rebut aquest correu.
       send_paranoid_instructions: Si el teu compte existeix, rebràs en pocs minuts un correu electrònic amb instruccions sobre com desbloquejar-lo. Verifica la carpeta de correu brossa si no has rebut aquest correu.
-      unlocked: El compte s'ha desbloquejat correctament. Inicia sessió per a continuar.
+      unlocked: El teu compte s'ha desbloquejat correctament. Inicia la sessió per a continuar.
   errors:
     messages:
-      already_confirmed: ja està confirmat. Intenta iniciar sessió
+      already_confirmed: ja està confirmat, intenta iniciar sessió
       confirmation_period_expired: cal fer la confirmació dins de %{period}, si us plau sol·licita-ho de nou
       expired: ha expirat, si us plau demana'n una altra
       not_found: no s'ha trobat

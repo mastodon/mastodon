@@ -13,7 +13,7 @@ module Terrapin
 
     def pipe_options
       # Add some flags to explicitly close the other end of the pipes
-      { out: @stdout_out, err: @stderr_out, @stdout_in => :close, @stderr_in => :close }
+      { :out => @stdout_out, :err => @stderr_out, @stdout_in => :close, @stderr_in => :close }
     end
 
     def read

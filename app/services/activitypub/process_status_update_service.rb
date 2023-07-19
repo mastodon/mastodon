@@ -35,7 +35,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     last_edit_date = @status.edited_at.presence || @status.created_at
 
     # Only allow processing one create/update per status at a time
-    with_lock("create:#{@uri}") do
+    with_redis_lock("create:#{@uri}") do
       Status.transaction do
         record_previous_edit!
         update_media_attachments!
@@ -58,7 +58,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def handle_implicit_update!
-    with_lock("create:#{@uri}") do
+    with_redis_lock("create:#{@uri}") do
       update_poll!(allow_significant_changes: false)
       queue_poll_notifications!
     end

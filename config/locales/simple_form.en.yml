@@ -2,6 +2,10 @@
 en:
   simple_form:
     hints:
+      account:
+        display_name: Your full name or your fun name.
+        fields: Your homepage, pronouns, age, anything you want.
+        note: 'You can @mention other people or #hashtags.'
       account_alias:
         acct: Specify the username@domain of the account you want to move from
       account_migration:
@@ -39,7 +43,6 @@ en:
         digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
         discoverable: Allow your account to be discovered by strangers through recommendations, trends and other features
         email: You will be sent a confirmation e-mail
-        fields: You can have up to 4 items displayed as a table on your profile
         header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         inbox_url: Copy the URL from the frontpage of the relay you want to use
         irreversible: Filtered posts will disappear irreversibly, even if filter is later removed
@@ -78,7 +81,7 @@ en:
         backups_retention_period: Keep generated user archives for the specified number of days.
         bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
         closed_registrations_message: Displayed when sign-ups are closed
-        content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
+        content_cache_retention_period: All posts and boosts from other servers will be deleted after the specified number of days. Some posts may not be recoverable. All related bookmarks, favourites and boosts will also be lost and impossible to undo.
         custom_css: You can apply custom styles on the web version of Mastodon.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
@@ -131,6 +134,7 @@ en:
         position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
       webhook:
         events: Select events to send
+        template: Compose your own JSON payload using variable interpolation. Leave blank for default JSON.
         url: Where events will be sent to
     labels:
       account:
@@ -166,8 +170,8 @@ en:
         text: Explain why this decision should be reversed
       defaults:
         autofollow: Invite to follow your account
-        avatar: Avatar
-        bot: This is a bot account
+        avatar: Profile picture
+        bot: This is an automated account
         chosen_languages: Filter languages
         confirm_new_password: Confirm new password
         confirm_password: Confirm password
@@ -178,8 +182,8 @@ en:
         display_name: Display name
         email: E-mail address
         expires_in: Expire after
-        fields: Profile metadata
-        header: Header
+        fields: Extra fields
+        header: Header picture
         honeypot: "%{label} (do not fill in)"
         inbox_url: URL of the relay inbox
         irreversible: Drop instead of hide
@@ -296,6 +300,7 @@ en:
         usable: Allow posts to use this hashtag
       user:
         role: Role
+        time_zone: Time zone
       user_role:
         color: Badge color
         highlighted: Display role as badge on user profiles
@@ -304,6 +309,7 @@ en:
         position: Priority
       webhook:
         events: Enabled events
+        template: Payload template
         url: Endpoint URL
     'no': 'No'
     not_recommended: Not recommended

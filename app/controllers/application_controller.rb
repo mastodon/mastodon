@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   include SessionTrackingConcern
   include CacheConcern
   include DomainControlHelper
+  include DatabaseHelper
 
   helper_method :current_account
   helper_method :current_session

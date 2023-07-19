@@ -1,7 +1,7 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/emoji-index.js
 
-import data from './emoji_mart_data_light';
+import * as data from './emoji_mart_data_light';
 import { getData, getSanitizedData, uniq, intersect } from './emoji_utils';
 
 let originalPool = {};

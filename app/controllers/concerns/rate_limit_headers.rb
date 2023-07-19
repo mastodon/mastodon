@@ -61,7 +61,7 @@ module RateLimitHeaders
   end
 
   def request_time
-    @_request_time ||= Time.now.utc
+    @request_time ||= Time.now.utc
   end
 
   def reset_period_offset

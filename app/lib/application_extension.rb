@@ -9,10 +9,6 @@ module ApplicationExtension
     validates :redirect_uri, length: { maximum: 2_000 }
   end
 
-  def most_recently_used_access_token
-    @most_recently_used_access_token ||= access_tokens.where.not(last_used_at: nil).order(last_used_at: :desc).first
-  end
-
   def confirmation_redirect_uri
     redirect_uri.lines.first.strip
   end

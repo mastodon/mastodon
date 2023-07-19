@@ -7,7 +7,7 @@ class FetchLinkCardService < BaseService
   URL_PATTERN = %r{
     (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceding chars
     (                                                                                                                           #   $2 URL
-      (https?:\/\/)                                                                                                             #   $3 Protocol (required)
+      (https?://)                                                                                                               #   $3 Protocol (required)
       (#{Twitter::TwitterText::Regex[:valid_domain]})                                                                           #   $4 Domain(s)
       (?::(#{Twitter::TwitterText::Regex[:valid_port_number]}))?                                                                #   $5 Port number (optional)
       (/#{Twitter::TwitterText::Regex[:valid_url_path]}*)?                                                                      #   $6 URL Path and anchor
@@ -23,7 +23,7 @@ class FetchLinkCardService < BaseService
 
     @url = @original_url.to_s
 
-    with_lock("fetch:#{@original_url}") do
+    with_redis_lock("fetch:#{@original_url}") do
       @card = PreviewCard.find_by(url: @url)
       process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
     end

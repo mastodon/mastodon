@@ -8,6 +8,8 @@ class ActivityPub::ProcessCollectionService < BaseService
     @json    = original_json = Oj.load(body, mode: :strict)
     @options = options
 
+    return unless @json.is_a?(Hash)
+
     begin
       @json = compact(@json) if @json['signature'].is_a?(Hash)
     rescue JSON::LD::JsonLdError => e

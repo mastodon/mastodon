@@ -1,0 +1,6 @@
+.content__heading__tabs
+  = render_navigation renderer: :links do |primary|
+    :ruby
+      primary.item :profile, safe_join([fa_icon('user fw'), t('settings.edit_profile')]), settings_profile_path
+      primary.item :verification, safe_join([fa_icon('check fw'), t('verification.verification')]), settings_verification_path
+      primary.item :featured_tags, safe_join([fa_icon('hashtag fw'), t('settings.featured_tags')]), settings_featured_tags_path

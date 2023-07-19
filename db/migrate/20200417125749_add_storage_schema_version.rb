@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddStorageSchemaVersion < ActiveRecord::Migration[5.2]
   def change
     add_column :preview_cards, :image_storage_schema_version, :integer

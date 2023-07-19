@@ -1,8 +1,8 @@
 - if status.ordered_media_attachments.first.video?
   - video = status.ordered_media_attachments.first
-  = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), frameRate: video.file.meta.dig('original', 'frame_rate'), blurhash: video.blurhash, sensitive: status.sensitive?, visible: false, width: 610, height: 343, inline: true, alt: video.description, media: [ActiveModelSerializers::SerializableResource.new(video, serializer: REST::MediaAttachmentSerializer)].as_json
+  = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), frameRate: video.file.meta.dig('original', 'frame_rate'), blurhash: video.blurhash, sensitive: status.sensitive?, visible: false, width: 610, height: 343, inline: true, alt: video.description, lang: status.language, media: [ActiveModelSerializers::SerializableResource.new(video, serializer: REST::MediaAttachmentSerializer)].as_json
 - elsif status.ordered_media_attachments.first.audio?
   - audio = status.ordered_media_attachments.first
-  = react_component :audio, src: audio.file.url(:original), height: 110, alt: audio.description, duration: audio.file.meta.dig(:original, :duration)
+  = react_component :audio, src: audio.file.url(:original), height: 110, alt: audio.description, lang: status.language, duration: audio.file.meta.dig(:original, :duration)
 - else
-  = react_component :media_gallery, height: 343, sensitive: status.sensitive?, visible: false, media: status.ordered_media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
+  = react_component :media_gallery, height: 343, sensitive: status.sensitive?, visible: false, lang: status.language, media: status.ordered_media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }

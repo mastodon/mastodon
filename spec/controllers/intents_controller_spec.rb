@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe IntentsController, type: :controller do
+RSpec.describe IntentsController do
   render_views
 
   let(:user) { Fabricate(:user) }

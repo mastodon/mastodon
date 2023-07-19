@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PollVote, type: :model do
+RSpec.describe PollVote do
   describe '#object_type' do
     let(:poll_vote) { Fabricate.build(:poll_vote) }
 

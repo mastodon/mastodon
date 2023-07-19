@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCanonicalEmailBlocks < ActiveRecord::Migration[6.1]
   def change
     create_table :canonical_email_blocks do |t|

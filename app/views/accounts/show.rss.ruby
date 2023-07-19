@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSS::Builder.build do |doc|
   doc.title(display_name(@account))
   doc.description(I18n.t('rss.descriptions.account', acct: @account.local_username_and_domain))

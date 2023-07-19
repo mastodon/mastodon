@@ -10,6 +10,8 @@ class RelationshipFilter
     location
   ).freeze
 
+  IGNORED_PARAMS = %w(relationship page).freeze
+
   attr_reader :params, :account
 
   def initialize(account, params)
@@ -23,7 +25,7 @@ class RelationshipFilter
     scope = scope_for('relationship', params['relationship'].to_s.strip)
 
     params.each do |key, value|
-      next if %w(relationship page).include?(key)
+      next if IGNORED_PARAMS.include?(key)
 
       scope.merge!(scope_for(key.to_s, value.to_s.strip)) if value.present?
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 MIGRATION_BASE_CLASS = if ActiveRecord::VERSION::MAJOR >= 5
                          ActiveRecord::Migration[5.0]
                        else

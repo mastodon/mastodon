@@ -85,6 +85,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       enabled: registrations_enabled?,
       approval_required: Setting.registrations_mode == 'approved',
       message: registrations_enabled? ? nil : registrations_message,
+      url: ENV.fetch('SSO_ACCOUNT_SIGN_UP', nil),
     }
   end
 

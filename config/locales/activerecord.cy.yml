@@ -8,7 +8,7 @@ cy:
       user:
         agreement: Cytundeb gwasanaeth
         email: Cyfeiriad e-bost
-        locale: Locale
+        locale: Lleoliad
         password: Cyfrinair
       user/account:
         username: Enw defnyddiwr
@@ -53,3 +53,7 @@ cy:
             position:
               elevated: nid yw'n gallu bod yn uwch na'ch rôl cyfredol
               own_role: nid oes modd ei newid gyda'ch rôl cyfredol
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: ni ellir cynnwys digwyddiadau nad oes gennych yr hawl iddynt

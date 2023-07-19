@@ -77,19 +77,17 @@ describe ApplicationHelper do
 
   describe 'open_registrations?' do
     it 'returns true when open for registrations' do
-      without_partial_double_verification do
-        expect(Setting).to receive(:registrations_mode).and_return('open')
-      end
+      allow(Setting).to receive(:[]).with('registrations_mode').and_return('open')
 
       expect(helper.open_registrations?).to be true
+      expect(Setting).to have_received(:[]).with('registrations_mode')
     end
 
     it 'returns false when closed for registrations' do
-      without_partial_double_verification do
-        expect(Setting).to receive(:registrations_mode).and_return('none')
-      end
+      allow(Setting).to receive(:[]).with('registrations_mode').and_return('none')
 
       expect(helper.open_registrations?).to be false
+      expect(Setting).to have_received(:[]).with('registrations_mode')
     end
   end
 
@@ -123,6 +121,170 @@ describe ApplicationHelper do
     end
   end
 
+  describe 'available_sign_up_path' do
+    context 'when registrations are closed' do
+      before do
+        without_partial_double_verification do
+          allow(Setting).to receive(:registrations_mode).and_return('none')
+        end
+      end
+
+      it 'redirects to joinmastodon site' do
+        expect(helper.available_sign_up_path).to match(/joinmastodon.org/)
+      end
+    end
+
+    context 'when in omniauth only mode' do
+      around do |example|
+        ClimateControl.modify OMNIAUTH_ONLY: 'true' do
+          example.run
+        end
+      end
+
+      it 'redirects to joinmastodon site' do
+        expect(helper.available_sign_up_path).to match(/joinmastodon.org/)
+      end
+    end
+
+    context 'when registrations are allowed' do
+      it 'returns a link to the registration page' do
+        expect(helper.available_sign_up_path).to eq(new_user_registration_path)
+      end
+    end
+  end
+
+  describe 'omniauth_only?' do
+    context 'when env var is set to true' do
+      around do |example|
+        ClimateControl.modify OMNIAUTH_ONLY: 'true' do
+          example.run
+        end
+      end
+
+      it 'returns true' do
+        expect(helper).to be_omniauth_only
+      end
+    end
+
+    context 'when env var is not set' do
+      around do |example|
+        ClimateControl.modify OMNIAUTH_ONLY: nil do
+          example.run
+        end
+      end
+
+      it 'returns false' do
+        expect(helper).to_not be_omniauth_only
+      end
+    end
+  end
+
+  describe 'quote_wrap' do
+    it 'indents and quote wraps text' do
+      text = <<~TEXT
+        Hello this is a nice message for you to quote.
+        Be careful because it has two lines.
+      TEXT
+
+      expect(helper.quote_wrap(text)).to eq <<~EXPECTED.strip
+        > Hello this is a nice message for you to quote.
+        > Be careful because it has two lines.
+      EXPECTED
+    end
+  end
+
+  describe 'storage_host' do
+    context 'when S3 alias is present' do
+      around do |example|
+        ClimateControl.modify S3_ALIAS_HOST: 's3.alias' do
+          example.run
+        end
+      end
+
+      it 'returns true' do
+        expect(helper.storage_host).to eq('https://s3.alias')
+      end
+    end
+
+    context 'when S3 alias includes a path component' do
+      around do |example|
+        ClimateControl.modify S3_ALIAS_HOST: 's3.alias/path' do
+          example.run
+        end
+      end
+
+      it 'returns a correct URL' do
+        expect(helper.storage_host).to eq('https://s3.alias/path')
+      end
+    end
+
+    context 'when S3 cloudfront is present' do
+      around do |example|
+        ClimateControl.modify S3_CLOUDFRONT_HOST: 's3.cloudfront' do
+          example.run
+        end
+      end
+
+      it 'returns true' do
+        expect(helper.storage_host).to eq('https://s3.cloudfront')
+      end
+    end
+  end
+
+  describe 'storage_host?' do
+    context 'when S3 alias is present' do
+      around do |example|
+        ClimateControl.modify S3_ALIAS_HOST: 's3.alias' do
+          example.run
+        end
+      end
+
+      it 'returns true' do
+        expect(helper.storage_host?).to be true
+      end
+    end
+
+    context 'when S3 cloudfront is present' do
+      around do |example|
+        ClimateControl.modify S3_CLOUDFRONT_HOST: 's3.cloudfront' do
+          example.run
+        end
+      end
+
+      it 'returns true' do
+        expect(helper.storage_host?).to be true
+      end
+    end
+
+    context 'when neither env value is present' do
+      it 'returns false' do
+        expect(helper.storage_host?).to be false
+      end
+    end
+  end
+
+  describe 'visibility_icon' do
+    it 'returns a globe icon for a public visible status' do
+      result = helper.visibility_icon Status.new(visibility: 'public')
+      expect(result).to match(/globe/)
+    end
+
+    it 'returns an unlock icon for a unlisted visible status' do
+      result = helper.visibility_icon Status.new(visibility: 'unlisted')
+      expect(result).to match(/unlock/)
+    end
+
+    it 'returns a lock icon for a private visible status' do
+      result = helper.visibility_icon Status.new(visibility: 'private')
+      expect(result).to match(/lock/)
+    end
+
+    it 'returns an at icon for a direct visible status' do
+      result = helper.visibility_icon Status.new(visibility: 'direct')
+      expect(result).to match(/at/)
+    end
+  end
+
   describe 'title' do
     around do |example|
       site_title = Setting.site_title
@@ -132,8 +294,9 @@ describe ApplicationHelper do
 
     it 'returns site title on production environment' do
       Setting.site_title = 'site title'
-      expect(Rails.env).to receive(:production?).and_return(true)
+      allow(Rails.env).to receive(:production?).and_return(true)
       expect(helper.title).to eq 'site title'
+      expect(Rails.env).to have_received(:production?)
     end
   end
 end

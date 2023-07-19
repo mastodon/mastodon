@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountDeletionRequest, type: :model do
+RSpec.describe AccountDeletionRequest do
 end

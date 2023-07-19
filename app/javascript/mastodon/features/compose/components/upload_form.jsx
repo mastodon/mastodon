@@ -1,9 +1,9 @@
-import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import UploadProgressContainer from '../containers/upload_progress_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import UploadContainer from '../containers/upload_container';
+
 import SensitiveButtonContainer from '../containers/sensitive_button_container';
+import UploadContainer from '../containers/upload_container';
+import UploadProgressContainer from '../containers/upload_progress_container';
 
 export default class UploadForm extends ImmutablePureComponent {
 

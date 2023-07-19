@@ -40,20 +40,21 @@ class Report < ApplicationRecord
   scope :resolved,   -> { where.not(action_taken_at: nil) }
   scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with({ user: [:invite_request, :invite] })) }
 
-  validates :comment, length: { maximum: 1_000 }
+  # A report is considered local if the reporter is local
+  delegate :local?, to: :account
+
+  validates :comment, length: { maximum: 1_000 }, if: :local?
   validates :rule_ids, absence: true, unless: :violation?
 
   validate :validate_rule_ids
 
+  # entries here needs to be kept in sync with app/javascript/mastodon/features/notifications/components/report.jsx
   enum category: {
     other: 0,
     spam: 1_000,
+    legal: 1_500,
     violation: 2_000,
   }
-
-  def local?
-    false # Force uri_for to use uri attribute
-  end
 
   before_validation :set_uri, only: :create
 

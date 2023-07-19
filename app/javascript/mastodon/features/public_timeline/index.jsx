@@ -1,16 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import StatusListContainer from '../ui/containers/status_list_container';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import { connect } from 'react-redux';
+
+import { DismissableBanner } from 'mastodon/components/dismissable_banner';
+import { domain } from 'mastodon/initial_state';
+
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
+import { connectPublicStream } from '../../actions/streaming';
+import { expandPublicTimeline } from '../../actions/timelines';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import { expandPublicTimeline } from '../../actions/timelines';
-import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
+import StatusListContainer from '../ui/containers/status_list_container';
+
 import ColumnSettingsContainer from './containers/column_settings_container';
-import { connectPublicStream } from '../../actions/streaming';
-import { Helmet } from 'react-helmet';
-import DismissableBanner from 'mastodon/components/dismissable_banner';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
@@ -31,7 +38,7 @@ const mapStateToProps = (state, { columnId }) => {
   };
 };
 
-class PublicTimeline extends React.PureComponent {
+class PublicTimeline extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -136,11 +143,8 @@ class PublicTimeline extends React.PureComponent {
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
-        <DismissableBanner id='public_timeline'>
-          <FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on this and other servers of the decentralized network that this server knows about.' />
-        </DismissableBanner>
-
         <StatusListContainer
+          prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.' values={{ domain }} /></DismissableBanner>}
           timelineId={`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}

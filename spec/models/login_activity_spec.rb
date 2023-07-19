@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe LoginActivity, type: :model do
+RSpec.describe LoginActivity do
 end

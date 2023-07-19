@@ -31,7 +31,7 @@ def gen_border(codepoint, color)
 end
 
 def codepoints_to_filename(codepoints)
-  codepoints.downcase.gsub(/\A[0]+/, '').tr(' ', '-')
+  codepoints.downcase.gsub(/\A0+/, '').tr(' ', '-')
 end
 
 def codepoints_to_unicode(codepoints)

@@ -70,7 +70,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
       let(:forwarder) { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/other_account') }
 
       it 'does not process payload if no signature exists' do
-        expect_any_instance_of(ActivityPub::LinkedDataSignature).to receive(:verify_actor!).and_return(nil)
+        allow_any_instance_of(ActivityPub::LinkedDataSignature).to receive(:verify_actor!).and_return(nil)
         expect(ActivityPub::Activity).to_not receive(:factory)
 
         subject.call(json, forwarder)
@@ -79,7 +79,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
       it 'processes payload with actor if valid signature exists' do
         payload['signature'] = { 'type' => 'RsaSignature2017' }
 
-        expect_any_instance_of(ActivityPub::LinkedDataSignature).to receive(:verify_actor!).and_return(actor)
+        allow_any_instance_of(ActivityPub::LinkedDataSignature).to receive(:verify_actor!).and_return(actor)
         expect(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), actor, instance_of(Hash))
 
         subject.call(json, forwarder)
@@ -88,7 +88,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
       it 'does not process payload if invalid signature exists' do
         payload['signature'] = { 'type' => 'RsaSignature2017' }
 
-        expect_any_instance_of(ActivityPub::LinkedDataSignature).to receive(:verify_actor!).and_return(nil)
+        allow_any_instance_of(ActivityPub::LinkedDataSignature).to receive(:verify_actor!).and_return(nil)
         expect(ActivityPub::Activity).to_not receive(:factory)
 
         subject.call(json, forwarder)

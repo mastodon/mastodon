@@ -40,7 +40,7 @@ RSpec.describe LinkDetailsExtractor do
   context 'when structured data is present' do
     let(:original_url) { 'https://example.com/page.html' }
 
-    context 'and is wrapped in CDATA tags' do
+    context 'when is wrapped in CDATA tags' do
       let(:html) { <<~HTML }
         <!doctype html>
         <html>
@@ -79,7 +79,7 @@ RSpec.describe LinkDetailsExtractor do
       end
     end
 
-    context 'but the first tag is invalid JSON' do
+    context 'with the first tag is invalid JSON' do
       let(:html) { <<~HTML }
         <!doctype html>
         <html>

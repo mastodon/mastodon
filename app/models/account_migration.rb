@@ -42,7 +42,7 @@ class AccountMigration < ApplicationRecord
 
     return false unless errors.empty?
 
-    with_lock("account_migration:#{account.id}") do
+    with_redis_lock("account_migration:#{account.id}") do
       save
     end
   end

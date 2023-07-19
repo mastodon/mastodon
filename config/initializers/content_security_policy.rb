@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 # Define an application-wide content security policy
 # For further information see the following documentation
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 
 def host_to_url(str)
-  "http#{Rails.configuration.x.use_https ? 's' : ''}://#{str}" if str.present?
+  "http#{Rails.configuration.x.use_https ? 's' : ''}://#{str}".split('/').first if str.present?
 end
 
 base_host = Rails.configuration.x.web_domain

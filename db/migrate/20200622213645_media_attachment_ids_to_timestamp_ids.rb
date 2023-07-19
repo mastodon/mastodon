@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MediaAttachmentIdsToTimestampIds < ActiveRecord::Migration[5.2]
   def up
     # Set up the media_attachments.id column to use our timestamp-based IDs.

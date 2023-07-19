@@ -34,11 +34,11 @@ class Api::V2::SearchController < Api::BaseController
       params[:q],
       current_account,
       limit_param(RESULTS_LIMIT),
-      search_params.merge(resolve: truthy_param?(:resolve), exclude_unreviewed: truthy_param?(:exclude_unreviewed))
+      search_params.merge(resolve: truthy_param?(:resolve), exclude_unreviewed: truthy_param?(:exclude_unreviewed), following: truthy_param?(:following))
     )
   end
 
   def search_params
-    params.permit(:type, :offset, :min_id, :max_id, :account_id)
+    params.permit(:type, :offset, :min_id, :max_id, :account_id, :following)
   end
 end

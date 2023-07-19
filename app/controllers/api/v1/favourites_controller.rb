@@ -21,7 +21,7 @@ class Api::V1::FavouritesController < Api::BaseController
   end
 
   def results
-    @_results ||= account_favourites.joins(:status).eager_load(:status).to_a_paginated_by_id(
+    @results ||= account_favourites.joins(:status).eager_load(:status).to_a_paginated_by_id(
       limit_param(DEFAULT_STATUSES_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )

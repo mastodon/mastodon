@@ -6,11 +6,14 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
   def show
-    @statuses = load_statuses
+    with_read_replica do
+      @statuses = load_statuses
+      @relationships = StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
+    end
 
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
-           relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id),
+           relationships: @relationships,
            status: account_home_feed.regenerating? ? 206 : 200
   end
 

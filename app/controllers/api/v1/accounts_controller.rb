@@ -90,7 +90,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def account_params
-    params.permit(:username, :email, :password, :agreement, :locale, :reason)
+    params.permit(:username, :email, :password, :agreement, :locale, :reason, :time_zone)
   end
 
   def check_enabled_registrations

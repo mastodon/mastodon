@@ -14,7 +14,7 @@ fi:
       not_found_in_database: Virheellinen %{authentication_keys} tai salasana.
       pending: Tilisi on vielä tarkistamatta.
       timeout: Istuntosi on umpeutunut. Jatka kirjautumalla uudelleen sisään.
-      unauthenticated: Sinun pitää kirjautua sisään tai rekisteröityä ennen kuin voit jatkaa.
+      unauthenticated: Sinun on kirjauduttava tai rekisteröidyttävä ennen kuin voit jatkaa.
       unconfirmed: Vahvista sähköpostiosoitteesi, ennen kuin jatkat.
     mailer:
       confirmation_instructions:
@@ -102,7 +102,7 @@ fi:
     unlocks:
       send_instructions: Saat pian sähköpostitse ohjeet tilin lukituksen poistoon. Jos et saanut viestiä, tarkista roskapostikansio.
       send_paranoid_instructions: Jos tili on olemassa, saat pian sähköpostitse ohjeet tilin lukituksen poistoon. Jos et saanut viestiä, tarkista roskapostikansio.
-      unlocked: Tilin lukituksen poisto onnistui. Jatka kirjautumalla sisään.
+      unlocked: Tilisi lukituksen poisto onnistui. Jatka kirjautumalla sisään.
   errors:
     messages:
       already_confirmed: on jo vahvistettu. Yritä kirjautua sisään

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSS::Builder.build do |doc|
   doc.title("##{@tag.display_name}")
   doc.description(I18n.t('rss.descriptions.tag', hashtag: @tag.display_name))

@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
-import ColumnSettings from '../components/column_settings';
-import { changeSetting } from '../../../actions/settings';
+
 import { changeColumnParams } from '../../../actions/columns';
+import { changeSetting } from '../../../actions/settings';
+import ColumnSettings from '../components/column_settings';
 
 const mapStateToProps = (state, { columnId }) => {
   const uuid = columnId;

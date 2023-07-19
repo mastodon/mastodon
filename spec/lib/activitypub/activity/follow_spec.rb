@@ -20,7 +20,7 @@ RSpec.describe ActivityPub::Activity::Follow do
     subject { described_class.new(json, sender) }
 
     context 'with no prior follow' do
-      context 'unlocked account' do
+      context 'with an unlocked account' do
         before do
           subject.perform
         end
@@ -35,7 +35,7 @@ RSpec.describe ActivityPub::Activity::Follow do
         end
       end
 
-      context 'silenced account following an unlocked account' do
+      context 'when silenced account following an unlocked account' do
         before do
           sender.touch(:silenced_at)
           subject.perform
@@ -51,7 +51,7 @@ RSpec.describe ActivityPub::Activity::Follow do
         end
       end
 
-      context 'unlocked account muting the sender' do
+      context 'with an unlocked account muting the sender' do
         before do
           recipient.mute!(sender)
           subject.perform
@@ -67,7 +67,7 @@ RSpec.describe ActivityPub::Activity::Follow do
         end
       end
 
-      context 'locked account' do
+      context 'when locked account' do
         before do
           recipient.update(locked: true)
           subject.perform
@@ -89,7 +89,7 @@ RSpec.describe ActivityPub::Activity::Follow do
         sender.active_relationships.create!(target_account: recipient, uri: 'bar')
       end
 
-      context 'unlocked account' do
+      context 'with an unlocked account' do
         before do
           subject.perform
         end
@@ -103,7 +103,7 @@ RSpec.describe ActivityPub::Activity::Follow do
         end
       end
 
-      context 'silenced account following an unlocked account' do
+      context 'when silenced account following an unlocked account' do
         before do
           sender.touch(:silenced_at)
           subject.perform
@@ -118,7 +118,7 @@ RSpec.describe ActivityPub::Activity::Follow do
         end
       end
 
-      context 'unlocked account muting the sender' do
+      context 'with an unlocked account muting the sender' do
         before do
           recipient.mute!(sender)
           subject.perform
@@ -133,7 +133,7 @@ RSpec.describe ActivityPub::Activity::Follow do
         end
       end
 
-      context 'locked account' do
+      context 'when locked account' do
         before do
           recipient.update(locked: true)
           subject.perform
@@ -154,7 +154,7 @@ RSpec.describe ActivityPub::Activity::Follow do
         sender.follow_requests.create!(target_account: recipient, uri: 'bar')
       end
 
-      context 'silenced account following an unlocked account' do
+      context 'when silenced account following an unlocked account' do
         before do
           sender.touch(:silenced_at)
           subject.perform
@@ -170,7 +170,7 @@ RSpec.describe ActivityPub::Activity::Follow do
         end
       end
 
-      context 'locked account' do
+      context 'when locked account' do
         before do
           recipient.update(locked: true)
           subject.perform

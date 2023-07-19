@@ -3,11 +3,8 @@
     display: block;
     text-decoration: none;
     color: inherit;
-    box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      box-shadow: none;
-    }
+    overflow: hidden;
+    border-radius: 4px;
 
     &:hover,
     &:active,
@@ -22,7 +19,6 @@
     height: 130px;
     position: relative;
     background: darken($ui-base-color, 12%);
-    border-radius: 4px 4px 0 0;
 
     img {
       display: block;
@@ -30,7 +26,6 @@
       height: 100%;
       margin: 0;
       object-fit: cover;
-      border-radius: 4px 4px 0 0;
     }
 
     @media screen and (width <= 600px) {
@@ -45,11 +40,6 @@
     justify-content: flex-start;
     align-items: center;
     background: lighten($ui-base-color, 4%);
-    border-radius: 0 0 4px 4px;
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      border-radius: 0;
-    }
 
     .avatar {
       flex: 0 0 auto;

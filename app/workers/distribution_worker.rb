@@ -6,7 +6,7 @@ class DistributionWorker
   include Lockable
 
   def perform(status_id, options = {})
-    with_lock("distribute:#{status_id}") do
+    with_redis_lock("distribute:#{status_id}") do
       FanOutOnWriteService.new.call(Status.find(status_id), **options.symbolize_keys)
     end
   rescue ActiveRecord::RecordNotFound

@@ -1,4 +1,5 @@
 import api from '../api';
+
 import { importFetchedAccounts, importFetchedStatus } from './importer';
 
 export const REBLOG_REQUEST = 'REBLOG_REQUEST';

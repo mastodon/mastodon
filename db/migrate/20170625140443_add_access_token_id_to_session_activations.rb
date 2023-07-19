@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAccessTokenIdToSessionActivations < ActiveRecord::Migration[5.1]
   def change
     add_column :session_activations, :access_token_id, :integer

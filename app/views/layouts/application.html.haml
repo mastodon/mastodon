@@ -29,7 +29,7 @@
     = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
     = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
-    = javascript_pack_tag "locale_#{I18n.locale}", crossorigin: 'anonymous'
+    = preload_pack_asset "locale/#{I18n.locale}-json.js", crossorigin: 'anonymous'
     = csrf_meta_tags unless skip_csrf_meta_tags?
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 

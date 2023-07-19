@@ -10,21 +10,21 @@
 
       - if preview_card.provider_name.present?
         = preview_card.provider_name
-        •
+        ·
 
       - if preview_card.language.present?
         = standard_locale_name(preview_card.language)
-        •
+        ·
 
       = t('admin.trends.links.shared_by_over_week', count: preview_card.history.reduce(0) { |sum, day| sum + day.accounts })
 
       - if preview_card.trend.allowed?
-        •
+        ·
         %abbr{ title: t('admin.trends.tags.current_score', score: preview_card.trend.score) }= t('admin.trends.tags.trending_rank', rank: preview_card.trend.rank)
 
         - if preview_card.decaying?
-          •
+          ·
           = t('admin.trends.tags.peaked_on_and_decaying', date: l(preview_card.max_score_at.to_date, format: :short))
       - elsif preview_card.requires_review?
-        •
+        ·
         = t('admin.trends.pending_review')

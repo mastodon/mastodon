@@ -23,6 +23,7 @@ describe Api::V1::Statuses::HistoriesController do
 
       it 'returns http success' do
         expect(response).to have_http_status(200)
+        expect(body_as_json.size).to_not be 0
       end
     end
   end

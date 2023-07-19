@@ -36,6 +36,11 @@ class Sanitize
       node['class'] = class_list.join(' ')
     end
 
+    TRANSLATE_TRANSFORMER = lambda do |env|
+      node = env[:node]
+      node.remove_attribute('translate') unless node['translate'] == 'no'
+    end
+
     UNSUPPORTED_HREF_TRANSFORMER = lambda do |env|
       return unless env[:node_name] == 'a'
 
@@ -63,8 +68,8 @@ class Sanitize
       elements: %w(p br span a del pre blockquote code b strong u i em ul ol li),
 
       attributes: {
-        'a' => %w(href rel class),
-        'span' => %w(class),
+        'a' => %w(href rel class translate),
+        'span' => %w(class translate),
         'ol' => %w(start reversed),
         'li' => %w(value),
       },
@@ -80,31 +85,32 @@ class Sanitize
 
       transformers: [
         CLASS_WHITELIST_TRANSFORMER,
+        TRANSLATE_TRANSFORMER,
         UNSUPPORTED_ELEMENTS_TRANSFORMER,
         UNSUPPORTED_HREF_TRANSFORMER,
       ]
     )
 
-    MASTODON_OEMBED ||= freeze_config merge(
-      RELAXED,
-      elements: RELAXED[:elements] + %w(audio embed iframe source video),
+    MASTODON_OEMBED ||= freeze_config(
+      elements: %w(audio embed iframe source video),
 
-      attributes: merge(
-        RELAXED[:attributes],
+      attributes: {
         'audio' => %w(controls),
         'embed' => %w(height src type width),
         'iframe' => %w(allowfullscreen frameborder height scrolling src width),
         'source' => %w(src type),
         'video' => %w(controls height loop width),
-        'div' => [:data]
-      ),
+      },
 
-      protocols: merge(
-        RELAXED[:protocols],
+      protocols: {
         'embed' => { 'src' => HTTP_PROTOCOLS },
         'iframe' => { 'src' => HTTP_PROTOCOLS },
-        'source' => { 'src' => HTTP_PROTOCOLS }
-      )
+        'source' => { 'src' => HTTP_PROTOCOLS },
+      },
+
+      add_attributes: {
+        'iframe' => { 'sandbox' => 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms' },
+      }
     )
   end
 end

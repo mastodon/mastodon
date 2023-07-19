@@ -123,7 +123,18 @@ class Form::AccountBatch
       account: current_account,
       action: :suspend
     )
+
     Admin::SuspensionWorker.perform_async(account.id)
+
+    # Suspending a single account closes their associated reports, so
+    # mass-suspending would be consistent.
+    Report.where(target_account: account).unresolved.find_each do |report|
+      authorize(report, :update?)
+      log_action(:resolve, report)
+      report.resolve!(current_account)
+    rescue Mastodon::NotPermittedError
+      # This should not happen, but just in case, do not fail early
+    end
   end
 
   def approve_account(account)

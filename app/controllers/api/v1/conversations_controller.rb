@@ -11,11 +11,16 @@ class Api::V1::ConversationsController < Api::BaseController
 
   def index
     @conversations = paginated_conversations
-    render json: @conversations, each_serializer: REST::ConversationSerializer
+    render json: @conversations, each_serializer: REST::ConversationSerializer, relationships: StatusRelationshipsPresenter.new(@conversations.map(&:last_status), current_user&.account_id)
   end
 
   def read
     @conversation.update!(unread: false)
+    render json: @conversation, serializer: REST::ConversationSerializer
+  end
+
+  def unread
+    @conversation.update!(unread: true)
     render json: @conversation, serializer: REST::ConversationSerializer
   end
 
@@ -32,6 +37,19 @@ class Api::V1::ConversationsController < Api::BaseController
 
   def paginated_conversations
     AccountConversation.where(account: current_account)
+                       .includes(
+                         account: :account_stat,
+                         last_status: [
+                           :media_attachments,
+                           :preview_cards,
+                           :status_stat,
+                           :tags,
+                           {
+                             active_mentions: [account: :account_stat],
+                             account: :account_stat,
+                           },
+                         ]
+                       )
                        .to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe NotificationMailer, type: :mailer do
+RSpec.describe NotificationMailer do
   let(:receiver)       { Fabricate(:user) }
   let(:sender)         { Fabricate(:account, username: 'bob') }
   let(:foreign_status) { Fabricate(:status, account: sender, text: 'The body of the foreign status') }
@@ -10,7 +10,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
   shared_examples 'localized subject' do |*args, **kwrest|
     it 'renders subject localized for the locale of the receiver' do
-      locale = %i(de en).sample
+      locale = :de
       receiver.update!(locale: locale)
       expect(mail.subject).to eq I18n.t(*args, **kwrest.merge(locale: locale))
     end
@@ -23,7 +23,8 @@ RSpec.describe NotificationMailer, type: :mailer do
 
   describe 'mention' do
     let(:mention) { Mention.create!(account: receiver.account, status: foreign_status) }
-    let(:mail) { NotificationMailer.mention(receiver.account, Notification.create!(account: receiver.account, activity: mention)) }
+    let(:notification) { Notification.create!(account: receiver.account, activity: mention) }
+    let(:mail) { prepared_mailer_for(receiver.account).mention }
 
     include_examples 'localized subject', 'notification_mailer.mention.subject', name: 'bob'
 
@@ -40,7 +41,8 @@ RSpec.describe NotificationMailer, type: :mailer do
 
   describe 'follow' do
     let(:follow) { sender.follow!(receiver.account) }
-    let(:mail) { NotificationMailer.follow(receiver.account, Notification.create!(account: receiver.account, activity: follow)) }
+    let(:notification) { Notification.create!(account: receiver.account, activity: follow) }
+    let(:mail) { prepared_mailer_for(receiver.account).follow }
 
     include_examples 'localized subject', 'notification_mailer.follow.subject', name: 'bob'
 
@@ -56,7 +58,8 @@ RSpec.describe NotificationMailer, type: :mailer do
 
   describe 'favourite' do
     let(:favourite) { Favourite.create!(account: sender, status: own_status) }
-    let(:mail) { NotificationMailer.favourite(own_status.account, Notification.create!(account: receiver.account, activity: favourite)) }
+    let(:notification) { Notification.create!(account: receiver.account, activity: favourite) }
+    let(:mail) { prepared_mailer_for(own_status.account).favourite }
 
     include_examples 'localized subject', 'notification_mailer.favourite.subject', name: 'bob'
 
@@ -73,7 +76,8 @@ RSpec.describe NotificationMailer, type: :mailer do
 
   describe 'reblog' do
     let(:reblog) { Status.create!(account: sender, reblog: own_status) }
-    let(:mail) { NotificationMailer.reblog(own_status.account, Notification.create!(account: receiver.account, activity: reblog)) }
+    let(:notification) { Notification.create!(account: receiver.account, activity: reblog) }
+    let(:mail) { prepared_mailer_for(own_status.account).reblog }
 
     include_examples 'localized subject', 'notification_mailer.reblog.subject', name: 'bob'
 
@@ -90,7 +94,8 @@ RSpec.describe NotificationMailer, type: :mailer do
 
   describe 'follow_request' do
     let(:follow_request) { Fabricate(:follow_request, account: sender, target_account: receiver.account) }
-    let(:mail) { NotificationMailer.follow_request(receiver.account, Notification.create!(account: receiver.account, activity: follow_request)) }
+    let(:notification) { Notification.create!(account: receiver.account, activity: follow_request) }
+    let(:mail) { prepared_mailer_for(receiver.account).follow_request }
 
     include_examples 'localized subject', 'notification_mailer.follow_request.subject', name: 'bob'
 
@@ -102,5 +107,11 @@ RSpec.describe NotificationMailer, type: :mailer do
     it 'renders the body' do
       expect(mail.body.encoded).to match('bob has requested to follow you')
     end
+  end
+
+  private
+
+  def prepared_mailer_for(recipient)
+    described_class.with(recipient: recipient, notification: notification)
   end
 end

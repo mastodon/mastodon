@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangePrimaryKeyToBigintOnStatuses < ActiveRecord::Migration[5.0]
   def change
     change_column :statuses, :id, :bigint

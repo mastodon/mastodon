@@ -6,7 +6,7 @@
 
       %small
         - if instance.domain_block
-          = instance.domain_block.policies.map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') }.join(' • ')
+          = instance.domain_block.policies.map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') }.join(' · ')
         - elsif instance.domain_allow
           = t('admin.accounts.whitelisted')
         - else

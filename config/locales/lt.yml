@@ -254,7 +254,6 @@ lt:
     warning: Būkite atsargūs su šia informacija. Niekada jos nesidalinkite!
     your_token: Jūsų prieigos žetonas
   auth:
-    change_password: Slaptažodis
     delete_account: Ištrinti paskyrą
     delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>. Jūsų prašys patvirtinti pasirinkimą.
     forgot_password: Pamiršote slaptažodį?
@@ -298,8 +297,10 @@ lt:
     proceed: Ištrinti paskyrą
     success_msg: Jūsų paskyra sėkmingai ištrinta
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Jūs neturie prieigos matyti šiam puslapiui.
     '404': Puslapis nerastas.
+    '406': This page is not available in the requested format.
     '410': Puslapis neegzistuoja.
     '422':
       content: Apsaugos patvirtinmas klaidingas. Ar jūs blokuojate sausainius?
@@ -308,6 +309,7 @@ lt:
     '500':
       content: Atsiprašome, tačiau mūsų pusėje įvyko klaida.
       title: Netinkamas puslapis
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Kad naudotumėtės Mastodon web aplikacija, prašome įsijungti JavaScript. Alternatyviai, pabandykite viena iš <a href="%{apps_path}">vietinių aplikacijų</a> Mastodon savo platformai.
   exports:
     archive_takeout:
@@ -412,6 +414,8 @@ lt:
     next: Kitas
     older: Senesnis
     prev: Ankstesnis
+  preferences:
+    other: Kita
   remote_follow:
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
   scheduled_statuses:

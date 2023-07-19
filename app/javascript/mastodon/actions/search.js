@@ -1,4 +1,5 @@
 import api from '../api';
+
 import { fetchRelationships } from './accounts';
 import { importFetchedAccounts, importFetchedStatuses } from './importer';
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::Settings::BrandingController, type: :controller do
+RSpec.describe Admin::Settings::BrandingController do
   render_views
 
   describe 'When signed in as an admin' do

@@ -1,6 +1,17 @@
 // @ts-check
 
+import { getLocale } from '../locales';
 import { connectStream } from '../stream';
+
+import {
+  fetchAnnouncements,
+  updateAnnouncements,
+  updateReaction as updateAnnouncementsReaction,
+  deleteAnnouncement,
+} from './announcements';
+import { updateConversations } from './conversations';
+import { updateNotifications, expandNotifications } from './notifications';
+import { updateStatus } from './statuses';
 import {
   updateTimeline,
   deleteFromTimelines,
@@ -12,18 +23,6 @@ import {
   fillCommunityTimelineGaps,
   fillListTimelineGaps,
 } from './timelines';
-import { updateNotifications, expandNotifications } from './notifications';
-import { updateConversations } from './conversations';
-import { updateStatus } from './statuses';
-import {
-  fetchAnnouncements,
-  updateAnnouncements,
-  updateReaction as updateAnnouncementsReaction,
-  deleteAnnouncement,
-} from './announcements';
-import { getLocale } from '../locales';
-
-const { messages } = getLocale();
 
 /**
  * @param {number} max
@@ -42,8 +41,10 @@ const randomUpTo = max =>
  * @param {function(object): boolean} [options.accept]
  * @returns {function(): void}
  */
-export const connectTimelineStream = (timelineId, channelName, params = {}, options = {}) =>
-  connectStream(channelName, params, (dispatch, getState) => {
+export const connectTimelineStream = (timelineId, channelName, params = {}, options = {}) => {
+  const { messages } = getLocale();
+
+  return connectStream(channelName, params, (dispatch, getState) => {
     const locale = getState().getIn(['meta', 'locale']);
 
     // @ts-expect-error
@@ -52,8 +53,10 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
     /**
      * @param {function(Function, Function): void} fallback
      */
+
     const useFallback = fallback => {
       fallback(dispatch, () => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks -- this is not a react hook
         pollingId = setTimeout(() => useFallback(fallback), 20000 + randomUpTo(20000));
       });
     };
@@ -118,6 +121,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
       },
     };
   });
+};
 
 /**
  * @param {Function} dispatch

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require Rails.root.join('lib', 'mastodon', 'migration_helpers')
 
 class AddLockVersionToAccountStats < ActiveRecord::Migration[5.2]

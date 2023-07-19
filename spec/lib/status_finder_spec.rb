@@ -18,10 +18,13 @@ describe StatusFinder do
 
       it 'raises an error if action is not :show' do
         recognized = Rails.application.routes.recognize_path(url)
-        expect(recognized).to receive(:[]).with(:action).and_return(:create)
-        expect(Rails.application.routes).to receive(:recognize_path).with(url).and_return(recognized)
+        allow(recognized).to receive(:[]).with(:action).and_return(:create)
+        allow(Rails.application.routes).to receive(:recognize_path).with(url).and_return(recognized)
 
         expect { subject.status }.to raise_error(ActiveRecord::RecordNotFound)
+
+        expect(Rails.application.routes).to have_received(:recognize_path)
+        expect(recognized).to have_received(:[])
       end
     end
 

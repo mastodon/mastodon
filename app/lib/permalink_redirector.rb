@@ -8,21 +8,51 @@ class PermalinkRedirector
   end
 
   def redirect_path
-    if path_segments[0].present? && path_segments[0].start_with?('@') && path_segments[1] =~ /\d/
-      find_status_url_by_id(path_segments[1])
-    elsif path_segments[0].present? && path_segments[0].start_with?('@')
-      find_account_url_by_name(path_segments[0])
-    elsif path_segments[0] == 'statuses' && path_segments[1] =~ /\d/
-      find_status_url_by_id(path_segments[1])
-    elsif path_segments[0] == 'accounts' && path_segments[1] =~ /\d/
-      find_account_url_by_id(path_segments[1])
+    if at_username_status_request? || statuses_status_request?
+      find_status_url_by_id(second_segment)
+    elsif at_username_request?
+      find_account_url_by_name(first_segment)
+    elsif accounts_request? && record_integer_id_request?
+      find_account_url_by_id(second_segment)
     end
   end
 
   private
 
+  def at_username_status_request?
+    at_username_request? && record_integer_id_request?
+  end
+
+  def statuses_status_request?
+    statuses_request? && record_integer_id_request?
+  end
+
+  def at_username_request?
+    first_segment.present? && first_segment.start_with?('@')
+  end
+
+  def statuses_request?
+    first_segment == 'statuses'
+  end
+
+  def accounts_request?
+    first_segment == 'accounts'
+  end
+
+  def record_integer_id_request?
+    second_segment =~ /\d/
+  end
+
+  def first_segment
+    path_segments.first
+  end
+
+  def second_segment
+    path_segments.second
+  end
+
   def path_segments
-    @path_segments ||= @path.gsub(/\A\//, '').split('/')
+    @path_segments ||= @path.delete_prefix('/').split('/')
   end
 
   def find_status_url_by_id(id)

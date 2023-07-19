@@ -7,7 +7,7 @@ RSpec.describe SuspiciousSignInDetector do
     subject { described_class.new(user).suspicious?(request) }
 
     let(:user) { Fabricate(:user, current_sign_in_at: 1.day.ago) }
-    let(:request) { double(remote_ip: remote_ip) }
+    let(:request) { instance_double(ActionDispatch::Request, remote_ip: remote_ip) }
     let(:remote_ip) { nil }
 
     context 'when user has 2FA enabled' do

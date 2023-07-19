@@ -22,14 +22,14 @@ describe JsonLdHelper do
   end
 
   describe '#first_of_value' do
-    context 'value.is_a?(Array)' do
+    context 'when value.is_a?(Array)' do
       it 'returns value.first' do
         value = ['a']
         expect(helper.first_of_value(value)).to be 'a'
       end
     end
 
-    context '!value.is_a?(Array)' do
+    context 'with !value.is_a?(Array)' do
       it 'returns value' do
         value = 'a'
         expect(helper.first_of_value(value)).to be 'a'
@@ -38,14 +38,14 @@ describe JsonLdHelper do
   end
 
   describe '#supported_context?' do
-    context "!json.nil? && equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT)" do
+    context 'when json is present and in an activitypub tagmanager context' do
       it 'returns true' do
         json = { '@context' => ActivityPub::TagManager::CONTEXT }.as_json
         expect(helper.supported_context?(json)).to be true
       end
     end
 
-    context 'else' do
+    context 'when not in activitypub tagmanager context' do
       it 'returns false' do
         json = nil
         expect(helper.supported_context?(json)).to be false
@@ -90,7 +90,7 @@ describe JsonLdHelper do
     end
   end
 
-  context 'compaction and forwarding' do
+  context 'with compaction and forwarding' do
     let(:json) do
       {
         '@context' => [

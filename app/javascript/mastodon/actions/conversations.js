@@ -1,4 +1,5 @@
 import api, { getLinks } from '../api';
+
 import {
   importFetchedAccounts,
   importFetchedStatuses,

@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountModerationNote, type: :model do
+RSpec.describe AccountModerationNote do
 end

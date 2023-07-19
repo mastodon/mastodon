@@ -1,3 +1,5 @@
+import { Map as ImmutableMap, fromJS } from 'immutable';
+
 import {
   HASHTAG_FETCH_SUCCESS,
   HASHTAG_FOLLOW_REQUEST,
@@ -5,7 +7,6 @@ import {
   HASHTAG_UNFOLLOW_REQUEST,
   HASHTAG_UNFOLLOW_FAIL,
 } from 'mastodon/actions/tags';
-import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const initialState = ImmutableMap();
 

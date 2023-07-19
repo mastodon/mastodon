@@ -58,7 +58,7 @@
 
 - unless @statuses.empty?
   - @statuses.each_with_index do |status, i|
-    = render 'notification_mailer/status', status: status, i: i + 1, highlighted: true
+    = render 'notification_mailer/status', status: status, i: i + 1, highlighted: true, time_zone: @resource.time_zone.presence
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody

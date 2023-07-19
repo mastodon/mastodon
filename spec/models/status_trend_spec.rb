@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe StatusTrend, type: :model do
+RSpec.describe StatusTrend do
 end

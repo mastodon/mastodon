@@ -25,7 +25,7 @@ class AccountAlias < ApplicationRecord
 
   def acct=(val)
     val = val.to_s.strip
-    super(val.start_with?('@') ? val[1..-1] : val)
+    super(val.start_with?('@') ? val[1..] : val)
   end
 
   def pretty_acct

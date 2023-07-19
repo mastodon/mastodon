@@ -1,5 +1,6 @@
-import { HISTORY_FETCH_REQUEST, HISTORY_FETCH_SUCCESS, HISTORY_FETCH_FAIL } from 'mastodon/actions/history';
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
+
+import { HISTORY_FETCH_REQUEST, HISTORY_FETCH_SUCCESS, HISTORY_FETCH_FAIL } from 'mastodon/actions/history';
 
 const initialHistory = ImmutableMap({
   loading: false,

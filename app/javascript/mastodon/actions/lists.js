@@ -1,6 +1,7 @@
 import api from '../api';
-import { importFetchedAccounts } from './importer';
+
 import { showAlertForError } from './alerts';
+import { importFetchedAccounts } from './importer';
 
 export const LIST_FETCH_REQUEST = 'LIST_FETCH_REQUEST';
 export const LIST_FETCH_SUCCESS = 'LIST_FETCH_SUCCESS';
@@ -150,10 +151,10 @@ export const createListFail = error => ({
   error,
 });
 
-export const updateList = (id, title, shouldReset, replies_policy) => (dispatch, getState) => {
+export const updateList = (id, title, shouldReset, isExclusive, replies_policy) => (dispatch, getState) => {
   dispatch(updateListRequest(id));
 
-  api(getState).put(`/api/v1/lists/${id}`, { title, replies_policy }).then(({ data }) => {
+  api(getState).put(`/api/v1/lists/${id}`, { title, replies_policy, exclusive: typeof isExclusive === 'undefined' ? undefined : !!isExclusive }).then(({ data }) => {
     dispatch(updateListSuccess(data));
 
     if (shouldReset) {

@@ -1,0 +1,9 @@
+- content_for :page_title do
+  = t('mail_subscriptions.unsubscribe.title')
+
+.simple_form
+  %h1.title= t('mail_subscriptions.unsubscribe.complete')
+  %p.lead
+    = t('mail_subscriptions.unsubscribe.success_html', domain: content_tag(:strong, site_hostname), type: content_tag(:strong, I18n.t(@type, scope: 'mail_subscriptions.unsubscribe.emails')), email: content_tag(:strong, @user.email))
+  %p.lead
+    = t('mail_subscriptions.unsubscribe.resubscribe_html', settings_path: settings_preferences_notifications_path)

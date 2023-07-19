@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe ReblogService, type: :service do
   let(:alice)  { Fabricate(:account, username: 'alice') }
 
-  context 'creates a reblog with appropriate visibility' do
-    subject { ReblogService.new }
+  context 'when creates a reblog with appropriate visibility' do
+    subject { described_class.new }
 
     let(:visibility)        { :public }
     let(:reblog_visibility) { :public }
@@ -61,8 +61,8 @@ RSpec.describe ReblogService, type: :service do
     end
   end
 
-  context 'ActivityPub' do
-    subject { ReblogService.new }
+  context 'with ActivityPub' do
+    subject { described_class.new }
 
     let(:bob)    { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
     let(:status) { Fabricate(:status, account: bob) }

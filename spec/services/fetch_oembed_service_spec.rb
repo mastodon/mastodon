@@ -39,7 +39,7 @@ describe FetchOEmbedService, type: :service do
         end
       end
 
-      context 'Both of JSON and XML provider are discoverable' do
+      context 'when both of JSON and XML provider are discoverable' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
             status: 200,
@@ -66,7 +66,7 @@ describe FetchOEmbedService, type: :service do
         end
       end
 
-      context 'JSON provider is discoverable while XML provider is not' do
+      context 'when JSON provider is discoverable while XML provider is not' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
             status: 200,
@@ -87,7 +87,7 @@ describe FetchOEmbedService, type: :service do
         end
       end
 
-      context 'XML provider is discoverable while JSON provider is not' do
+      context 'when XML provider is discoverable while JSON provider is not' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
             status: 200,
@@ -108,7 +108,7 @@ describe FetchOEmbedService, type: :service do
         end
       end
 
-      context 'Invalid XML provider is discoverable while JSON provider is not' do
+      context 'with Invalid XML provider is discoverable while JSON provider is not' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
             status: 200,
@@ -122,7 +122,7 @@ describe FetchOEmbedService, type: :service do
         end
       end
 
-      context 'Neither of JSON and XML provider is discoverable' do
+      context 'with neither of JSON and XML provider is discoverable' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
             status: 200,
@@ -136,7 +136,7 @@ describe FetchOEmbedService, type: :service do
         end
       end
 
-      context 'Empty JSON provider is discoverable' do
+      context 'when empty JSON provider is discoverable' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
             status: 200,

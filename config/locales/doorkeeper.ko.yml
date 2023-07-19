@@ -40,7 +40,7 @@ ko:
         delete: 삭제
         empty: 애플리케이션이 없습니다.
         name: 이름
-        new: 새 애플리케이션
+        new: 새로운 애플리케이션
         scopes: 범위
         show: 표시
         title: 내 응용프로그램
@@ -67,7 +67,7 @@ ko:
         title: 이 승인 코드를 복사하여 애플리케이션에 붙여넣으세요
     authorized_applications:
       buttons:
-        revoke: 취소
+        revoke: 삭제
       confirmations:
         revoke: 확실합니까?
       index:
@@ -93,7 +93,7 @@ ko:
         invalid_scope: 요청한 범위가 올바르지 않거나, 알 수 없거나, 잘못 된 형식입니다.
         invalid_token:
           expired: 액세스 토큰이 만료되었습니다.
-          revoked: 액세스 토큰이 취소되었습니다.
+          revoked: 액세스 토큰이 삭제되었습니다.
           unknown: 액세스 토큰이 잘못되었습니다.
         resource_owner_authenticator_not_configured: Doorkeeper.configure.resource_owner_authenticator가 설정되지 않아 리소스 소유자 찾기가 실패하였습니다.
         server_error: 권한 부여 서버에 예기치 않은 상태가 발생하여, 요청을 수행할 수 없습니다.
@@ -111,7 +111,7 @@ ko:
           notice: 애플리케이션을 갱신했습니다.
       authorized_applications:
         destroy:
-          notice: 애플리케이션 승인을 취소하였습니다.
+          notice: 애플리케이션이 삭제되었습니다.
     grouped_scopes:
       access:
         read: 읽기 전용 권한
@@ -184,7 +184,7 @@ ko:
       write:blocks: 계정 및 도메인 차단
       write:bookmarks: 게시물을 북마크에 넣기
       write:conversations: 뮤트 및 대화 삭제
-      write:favourites: 관심글 지정
+      write:favourites: 게시물 좋아요
       write:filters: 필터 만들기
       write:follows: 사람을 팔로우
       write:lists: 리스트 만들기

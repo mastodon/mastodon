@@ -1,4 +1,5 @@
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+
 import {
   LIST_ADDER_RESET,
   LIST_ADDER_SETUP,

@@ -2,11 +2,11 @@
 APP_PATH = File.expand_path('../config/application', __dir__)
 
 require_relative '../config/boot'
-require_relative '../lib/cli'
+require_relative '../lib/mastodon/cli/main'
 
 begin
   Chewy.strategy(:mastodon) do
-    Mastodon::CLI.start(ARGV)
+    Mastodon::CLI::Main.start(ARGV)
   end
 rescue Interrupt
   exit(130)

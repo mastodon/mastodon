@@ -2,6 +2,10 @@
 et:
   simple_form:
     hints:
+      account:
+        display_name: Su täisnimi või naljanimi.
+        fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
+        note: 'Saad @mainida teisi inimesi või #silte.'
       account_alias:
         acct: Sisesta konto kasutajanimi@domeen, mille soovid siia ümber kolida
       account_migration:
@@ -39,7 +43,6 @@ et:
         digest: Saadetakse ainult pärast pikka tegevusetuse perioodi ja ainult siis, kui on saadetud otsesõnumeid
         discoverable: Konto on leitav võhivõõraste jaoks soovituste ja trendide sirvimise teel vm sarnaste vahenditega
         email: Sulle saadetakse e-posti teel kinnituskiri
-        fields: Saad oma profiilil tabelina kuvada kuni 4 asja
         header: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         inbox_url: Kopeeri soovitud vahendaja avalehe URL
         irreversible: Filtreeritud postitused kaovad taastamatult, isegi kui filter on hiljem eemaldatud
@@ -131,6 +134,7 @@ et:
         position: Kõrgem roll otsustab teatud olukordades konfliktide lahendamise. Teatud toiminguid saab teha ainult madalama prioriteediga rollidega
       webhook:
         events: Saadetavate sündmuste valik
+        template: Cruthaich an JSON payload agad fhèin le eadar-phòlachadh chaochladairean. Fàg seo bàn airson JSON bunaiteach fhaighinn.
         url: Kuhu sündmused saadetakse
     labels:
       account:
@@ -296,6 +300,7 @@ et:
         usable: Luba postitustel seda silti kasutada
       user:
         role: Roll
+        time_zone: Ajavöönd
       user_role:
         color: Märgi värv
         highlighted: Kuva roll kasutajaprofiilidel märgina
@@ -304,6 +309,7 @@ et:
         position: Positsioon
       webhook:
         events: Lubatud sündmused
+        template: Gjedhe ngarkese
         url: Lõpp-punkti URL
     'no': Ei
     not_recommended: Pole soovitatav

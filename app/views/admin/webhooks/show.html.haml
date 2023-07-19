@@ -2,14 +2,14 @@
   = t('admin.webhooks.title')
 
 - content_for :heading do
-  %h2
-    %small
-      = fa_icon 'inbox'
-      = t('admin.webhooks.webhook')
-    = @webhook.url
-
-- content_for :heading_actions do
-  = link_to t('admin.webhooks.edit'), edit_admin_webhook_path, class: 'button' if can?(:update, @webhook)
+  .content__heading__row
+    %h2
+      %small
+        = fa_icon 'inbox'
+        = t('admin.webhooks.webhook')
+      = @webhook.url
+    .content__heading__actions
+      = link_to t('admin.webhooks.edit'), edit_admin_webhook_path, class: 'button' if can?(:update, @webhook)
 
 .table-wrapper
   %table.table.horizontal-table

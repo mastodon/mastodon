@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveMentionsStatusIdIndex < ActiveRecord::Migration[6.1]
   def up
     remove_index :mentions, name: :mentions_status_id_index if index_exists?(:mentions, :status_id, name: :mentions_status_id_index)

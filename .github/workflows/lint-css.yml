@@ -3,6 +3,7 @@ on:
   push:
     branches-ignore:
       - 'dependabot/**'
+      - 'renovate/**'
     paths:
       - 'package.json'
       - 'yarn.lock'
@@ -48,4 +49,4 @@ jobs:
       - run: echo "::add-matcher::.github/stylelint-matcher.json"
 
       - name: Stylelint
-        run: yarn test:lint:sass
+        run: yarn lint:sass

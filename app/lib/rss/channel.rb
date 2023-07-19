@@ -16,7 +16,7 @@ class RSS::Channel < RSS::Element
   end
 
   def last_build_date(date)
-    append_element('lastBuildDate', date.to_formatted_s(:rfc822))
+    append_element('lastBuildDate', date.to_fs(:rfc822))
   end
 
   def image(url, title, link)

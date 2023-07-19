@@ -20,4 +20,16 @@ describe Admin::AccountActionsController do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'POST #create' do
+    let(:account) { Fabricate(:account) }
+
+    it 'records the account action' do
+      expect do
+        post :create, params: { account_id: account.id, admin_account_action: { type: 'silence' } }
+      end.to change { account.strikes.count }.by(1)
+
+      expect(response).to redirect_to(admin_account_path(account.id))
+    end
+  end
 end

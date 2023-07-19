@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe SystemKey, type: :model do
+RSpec.describe SystemKey do
 end

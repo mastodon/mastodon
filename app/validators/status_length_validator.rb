@@ -53,7 +53,7 @@ class StatusLengthValidator < ActiveModel::Validator
       entity[:indices].last
     end
 
-    result << str[last_index..-1]
+    result << str[last_index..]
     result
   end
 end

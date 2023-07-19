@@ -53,3 +53,7 @@ fi:
             position:
               elevated: ei voi olla korkeampi kuin nykyinen roolisi
               own_role: ei voi muuttaa nykyisellä roolillasi
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: ei voi sisältää tapahtumia, joihin sinulla ei ole oikeuksia

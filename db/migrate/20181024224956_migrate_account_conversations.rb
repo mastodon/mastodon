@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/mastodon/migration_warning'
 
 class MigrateAccountConversations < ActiveRecord::Migration[5.2]

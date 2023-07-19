@@ -125,7 +125,7 @@ class UserRole < ApplicationRecord
   end
 
   def permissions_as_keys=(value)
-    self.permissions = value.map(&:presence).compact.reduce(Flags::NONE) { |bitmask, privilege| FLAGS.key?(privilege.to_sym) ? (bitmask | FLAGS[privilege.to_sym]) : bitmask }
+    self.permissions = value.filter_map(&:presence).reduce(Flags::NONE) { |bitmask, privilege| FLAGS.key?(privilege.to_sym) ? (bitmask | FLAGS[privilege.to_sym]) : bitmask }
   end
 
   def can?(*any_of_privileges)

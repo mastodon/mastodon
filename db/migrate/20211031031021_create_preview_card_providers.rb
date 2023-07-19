@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePreviewCardProviders < ActiveRecord::Migration[6.1]
   def change
     create_table :preview_card_providers do |t|

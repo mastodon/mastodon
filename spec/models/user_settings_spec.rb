@@ -49,6 +49,16 @@ RSpec.describe UserSettings do
         expect(subject[:always_send_emails]).to be true
       end
     end
+
+    context 'when the setting has a closed set of values' do
+      it 'updates the attribute when given a valid value' do
+        expect { subject[:'web.display_media'] = :show_all }.to change { subject[:'web.display_media'] }.from('default').to('show_all')
+      end
+
+      it 'raises an error when given an invalid value' do
+        expect { subject[:'web.display_media'] = 'invalid value' }.to raise_error ArgumentError
+      end
+    end
   end
 
   describe '#update' do

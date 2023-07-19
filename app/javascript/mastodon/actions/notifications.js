@@ -1,5 +1,15 @@
+import { IntlMessageFormat } from 'intl-messageformat';
+import { defineMessages } from 'react-intl';
+
+import { List as ImmutableList } from 'immutable';
+
+import { compareId } from 'mastodon/compare_id';
+import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
+
 import api, { getLinks } from '../api';
-import IntlMessageFormat from 'intl-messageformat';
+import { unescapeHTML } from '../utils/html';
+import { requestNotificationPermission } from '../utils/notifications';
+
 import { fetchFollowRequests, fetchRelationships } from './accounts';
 import {
   importFetchedAccount,
@@ -9,12 +19,6 @@ import {
 } from './importer';
 import { submitMarkers } from './markers';
 import { saveSettings } from './settings';
-import { defineMessages } from 'react-intl';
-import { List as ImmutableList } from 'immutable';
-import { unescapeHTML } from '../utils/html';
-import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
-import compareId from 'mastodon/compare_id';
-import { requestNotificationPermission } from '../utils/notifications';
 
 export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';

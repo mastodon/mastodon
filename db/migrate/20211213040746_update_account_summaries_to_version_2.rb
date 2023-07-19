@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateAccountSummariesToVersion2 < ActiveRecord::Migration[6.1]
   def up
     reapplication_follow_recommendations_v2 do

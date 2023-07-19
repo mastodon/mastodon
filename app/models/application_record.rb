@@ -5,6 +5,8 @@ class ApplicationRecord < ActiveRecord::Base
 
   include Remotable
 
+  connects_to database: { writing: :primary, reading: :read }
+
   class << self
     def update_index(_type_name, *_args, &_block)
       super if Chewy.enabled?

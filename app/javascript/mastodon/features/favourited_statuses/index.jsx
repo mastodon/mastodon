@@ -1,23 +1,28 @@
-import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
-import React from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
 import { Helmet } from 'react-helmet';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+
+import { debounce } from 'lodash';
+
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'mastodon/actions/favourites';
 import ColumnHeader from 'mastodon/components/column_header';
 import StatusList from 'mastodon/components/status_list';
 import Column from 'mastodon/features/ui/components/column';
+import { getStatusList } from 'mastodon/selectors';
 
 const messages = defineMessages({
   heading: { id: 'column.favourites', defaultMessage: 'Favourites' },
 });
 
 const mapStateToProps = state => ({
-  statusIds: state.getIn(['status_lists', 'favourites', 'items']),
+  statusIds: getStatusList(state, 'favourites'),
   isLoading: state.getIn(['status_lists', 'favourites', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'favourites', 'next']),
 });
@@ -34,7 +39,7 @@ class Favourites extends ImmutablePureComponent {
     isLoading: PropTypes.bool,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.props.dispatch(fetchFavouritedStatuses());
   }
 

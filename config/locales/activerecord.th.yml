@@ -53,3 +53,7 @@ th:
             position:
               elevated: ไม่สามารถสูงกว่าบทบาทปัจจุบันของคุณ
               own_role: ไม่สามารถเปลี่ยนด้วยบทบาทปัจจุบันของคุณ
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: ไม่สามารถรวมเหตุการณ์ที่คุณไม่มีสิทธิ

@@ -3,6 +3,7 @@ on:
   push:
     branches-ignore:
       - 'dependabot/**'
+      - 'renovate/**'
     paths:
       - 'package.json'
       - 'yarn.lock'
@@ -42,4 +43,4 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Prettier
-        run: yarn prettier --check "**/*.{yml,yaml}"
+        run: yarn lint:yml

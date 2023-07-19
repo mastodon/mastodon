@@ -53,3 +53,7 @@ et:
             position:
               elevated: ei saa olla kõrgem, kui sinu praegune roll
               own_role: ei saa muuta sinu praeguse rolliga
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: ei tohi sisaldada sündmuseid, mille jaoks pole sul õiguseid

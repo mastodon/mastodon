@@ -32,10 +32,6 @@ module ApplicationHelper
     paths.any? { |path| current_page?(path) } ? 'active' : ''
   end
 
-  def active_link_to(label, path, **options)
-    link_to label, path, options.merge(class: active_nav_class(path))
-  end
-
   def show_landing_strip?
     !user_signed_in? && !single_user_mode?
   end
@@ -56,7 +52,7 @@ module ApplicationHelper
     if closed_registrations? || omniauth_only?
       'https://joinmastodon.org/#getting-started'
     else
-      new_user_registration_path
+      ENV.fetch('SSO_ACCOUNT_SIGN_UP', new_user_registration_path)
     end
   end
 
@@ -147,7 +143,7 @@ module ApplicationHelper
     if prefers_autoplay?
       image_tag(custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:")
     else
-      image_tag(custom_emoji.image.url(:static), class: 'emojione custom-emoji', alt: ":#{custom_emoji.shortcode}", 'data-original' => full_asset_url(custom_emoji.image.url), 'data-static' => full_asset_url(custom_emoji.image.url(:static)))
+      image_tag(custom_emoji.image.url(:static), :class => 'emojione custom-emoji', :alt => ":#{custom_emoji.shortcode}", 'data-original' => full_asset_url(custom_emoji.image.url), 'data-static' => full_asset_url(custom_emoji.image.url(:static)))
     end
   end
 
@@ -173,11 +169,11 @@ module ApplicationHelper
   end
 
   def storage_host
-    "https://#{ENV['S3_ALIAS_HOST'].presence || ENV['S3_CLOUDFRONT_HOST']}"
+    "https://#{storage_host_var}"
   end
 
   def storage_host?
-    ENV['S3_ALIAS_HOST'].present? || ENV['S3_CLOUDFRONT_HOST'].present?
+    storage_host_var.present?
   end
 
   def quote_wrap(text, line_width: 80, break_sequence: "\n")
@@ -234,5 +230,11 @@ module ApplicationHelper
 
   def prerender_custom_emojis(html, custom_emojis, other_options = {})
     EmojiFormatter.new(html, custom_emojis, other_options.merge(animate: prefers_autoplay?)).to_s
+  end
+
+  private
+
+  def storage_host_var
+    ENV.fetch('S3_ALIAS_HOST', nil) || ENV.fetch('S3_CLOUDFRONT_HOST', nil)
   end
 end

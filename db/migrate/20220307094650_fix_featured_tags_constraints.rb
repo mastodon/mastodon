@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FixFeaturedTagsConstraints < ActiveRecord::Migration[6.1]
   def up
     safety_assured do
