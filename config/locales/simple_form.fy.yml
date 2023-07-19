@@ -2,6 +2,10 @@
 fy:
   simple_form:
     hints:
+      account:
+        display_name: Jo folsleine namme of in aardige bynamme.
+        fields: Jo website, persoanlike foarnammewurden, leeftiid, alles wat jo mar kwyt wolle.
+        note: 'Jo kinne oare minsken @fermelde of #hashtags brûke.'
       account_alias:
         acct: Fermeld de brûkersnamme@domein fan de account fan wêr’t jo ferhúzje wolle
       account_migration:
@@ -130,6 +134,7 @@ fy:
         position: In hegere rol beslist yn bepaalde situaasjes oer it oplossen fan konflikten. Bepaalde aksjes kinne allinnich útfierd wurde op rollen mei in legere prioriteit
       webhook:
         events: Selektearje de te ferstjoeren eveneminten
+        template: Meitsje eigen JSON-payload oan mei fariabele ynterpolaasje. Lit leech foar standert JSON.
         url: Wêr’t eveneminten nei ta stjoerd wurde
     labels:
       account:
@@ -295,6 +300,7 @@ fy:
         usable: Tastean dat dizze hashtag yn berjochten brûkt wurde mei
       user:
         role: Rol
+        time_zone: Tiidsône
       user_role:
         color: Badgekleur
         highlighted: Rol as badge op profylsiden toane
@@ -303,6 +309,7 @@ fy:
         position: Prioriteit
       webhook:
         events: Ynskeakele eveneminten
+        template: Payload-sjabloan
         url: Einpunt-URL
     'no': Nee
     not_recommended: Net oanrekommandearre

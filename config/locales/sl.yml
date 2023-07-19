@@ -396,6 +396,11 @@ sl:
       undo: Odstrani iz belega seznama
     domain_blocks:
       add_new: Dodaj nov domenski blok
+      confirm_suspension:
+        cancel: Prekliči
+        confirm: Suspendiraj
+        stop_communication: Vaš strežnik bo prenehal komunicirati s temi strežniki.
+        title: Potrdi domenski blok za %{domain}
       created_msg: Domenski blok se sedaj obdeluje
       destroyed_msg: Domenski blok je bil razveljavljen
       domain: Domena
@@ -1002,6 +1007,7 @@ sl:
     notification_preferences: Spremenite e-poštne nastavitve
     salutation: "%{name},"
     settings: 'Spremenite e-poštne nastavitve: %{link}'
+    unsubscribe: Odjavi od naročnine
     view: 'Pogled:'
     view_profile: Ogled profila
     view_status: Pokaži objavo
@@ -1015,6 +1021,8 @@ sl:
     your_token: Vaš dostopni žeton
   auth:
     apply_for_account: Zaprosite za račun
+    captcha_confirmation:
+      title: Varnostno preverjanje
     confirmations:
       wrong_email_hint: Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
     delete_account: Izbriši račun
@@ -1053,6 +1061,7 @@ sl:
       back: Nazaj
       preamble: Slednje določajo in njihovo spoštovanje zagotavljajo moderatorji %{domain}.
       title: Nekaj osnovnih pravil.
+      title_invited: Ste povabljeni.
     security: Varnost
     set_new_password: Nastavi novo geslo
     setup:
@@ -1165,6 +1174,10 @@ sl:
       your_appeal_rejected: Vaša pritožba je bila zavržena
   domain_validator:
     invalid_domain: ni veljavno ime domene
+  edit_profile:
+    basic_information: Osnovni podatki
+    other: Drugo
+    safety_and_privacy: Varnost in zasebnost
   errors:
     '400': Zahteva, ki ste jo oddali, je neveljavna ali nepravilno oblikovana.
     '403': Nimate dovoljenja za ogled te strani.
@@ -1263,7 +1276,9 @@ sl:
       one: Izbran je <strong>%{count}</strong> element, ki ustreza vašemu iskanju.
       other: Izbranih je <strong>%{count}</strong> elementov, ki ustrezajo vašemu iskanju.
       two: Izbrana sta <strong>%{count}</strong> elementa, ki ustrezata vašemu iskanju.
+    cancel: Prekliči
     changes_saved_msg: Spremembe so uspešno shranjene!
+    confirm: Potrdi
     copy: Kopiraj
     delete: Izbriši
     deselect: Prekliči ves izbor
@@ -1283,15 +1298,36 @@ sl:
       two: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napaki
   imports:
     errors:
+      empty: Prazna datoteka CSV
+      incompatible_type: Nezdružljivo z izbrano vrsto uvoza
       invalid_csv_file: 'Neveljavna datoteka CSV. Napaka: %{error}'
       over_rows_processing_limit: vsebuje več kot %{count} vrstic
+      too_large: Datoteka je prevelika
+    failures: Neuspehi
+    imported: Uvoženo
+    mismatched_types_warning: Kaže, da ste izbrali napačno vrsto za ta uvoz; preverite svoj izbor.
     modes:
       merge: Združi
       merge_long: Ohrani obstoječe zapise in dodaj nove
       overwrite: Prepiši
       overwrite_long: Zamenjaj trenutne zapise z novimi
     preface: Podatke, ki ste jih izvozili iz drugega strežnika, lahko uvozite. Na primer seznam oseb, ki jih spremljate ali blokirate.
+    recent_imports: Nedavni uvozi
+    states:
+      finished: Končano
+      in_progress: V teku
+      scheduled: Načrtovano
+      unconfirmed: Nepotrjeno
+    status: Stanje
     success: Vaši podatki so bili uspešno naloženi in bodo zdaj pravočasno obdelani
+    time_started: Začetek ob
+    titles:
+      blocking: Uvažanje blokiranih računov
+      bookmarks: Uvažanje zaznamkov
+      domain_blocking: Uvažanje blokiranih domen
+      following: Uvažanje sledenih računov
+      muting: Uvažanje utišanih računov
+    type: Vrsta uvoza
     types:
       blocking: Seznam blokiranih
       bookmarks: Zaznamki
@@ -1337,6 +1373,9 @@ sl:
     failed_sign_in_html: Spodletela prijava z metodo %{method} iz %{ip} (%{browser})
     successful_sign_in_html: Uspešna prijava z metodo %{method} iz %{ip} (%{browser})
     title: Zgodovina overjanja
+  mail_subscriptions:
+    unsubscribe:
+      title: Odjavi od naročnine
   media_attachments:
     validations:
       images_and_video: Videoposnetka ni mogoče priložiti objavi, ki že vsebuje slike
@@ -1452,6 +1491,7 @@ sl:
       expired: Glasovanje se je že zaključilo
       invalid_choice: Izbrana možnost glasovanja ne obstaja
       over_character_limit: ne more biti daljše od %{max} znakov
+      self_vote: Ne morete glasovati v lastnih anketah
       too_few_options: mora imeti več kot en element
       too_many_options: ne more vsebovati več kot %{max} elementov
   preferences:
@@ -1767,7 +1807,9 @@ sl:
     seamless_external_login: Prijavljeni ste prek zunanje storitve, tako da nastavitve gesla in e-pošte niso na voljo.
     signed_in_as: 'Vpisani kot:'
   verification:
+    here_is_how: Kako to poteka
     verification: Potrditev
+    verified_links: Vaše preverjene povezave
   webauthn_credentials:
     add: Dodaj nov varnostni ključ
     create:
