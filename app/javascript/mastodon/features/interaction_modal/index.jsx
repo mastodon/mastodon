@@ -60,6 +60,16 @@ const valueToDomain = value => {
   return value;
 };
 
+const addInputToOptions = (value, options) => {
+  const domain = valueToDomain(value);
+
+  if (domain.includes('.') && isValidDomain(domain)) {
+    return [domain].concat(options.filter((x) => x !== domain));
+  }
+
+  return options;
+};
+
 class LoginForm extends React.PureComponent {
 
   static propTypes = {
@@ -75,6 +85,7 @@ class LoginForm extends React.PureComponent {
     isSubmitting: false,
     error: false,
     options: [],
+    networkOptions: [],
   };
 
   setRef = c => {
@@ -82,7 +93,7 @@ class LoginForm extends React.PureComponent {
   };
 
   handleChange = ({ target }) => {
-    this.setState({ value: target.value, isLoading: true, error: false }, () => this._loadOptions());
+    this.setState(state => ({ value: target.value, isLoading: true, error: false, options: addInputToOptions(target.value, state.networkOptions) }), () => this._loadOptions());
   };
 
   handleMessage = (event) => {
@@ -184,7 +195,7 @@ class LoginForm extends React.PureComponent {
     const domain = valueToDomain(value);
 
     if (domain.trim().length === 0) {
-      this.setState({ options: [], isLoading: false, error: value.trim().length > 0 });
+      this.setState({ options: [], networkOptions: [], isLoading: false, error: value.trim().length > 0 });
       return;
     }
 
@@ -193,11 +204,7 @@ class LoginForm extends React.PureComponent {
         data = [];
       }
 
-      if (domain.includes('.') && !data.includes(domain) && isValidDomain(domain)) {
-        data.unshift(domain);
-      }
-
-      this.setState({ options: data, isLoading: false });
+      this.setState((state) => ({ networkOptions: data, options: addInputToOptions(state.value, data), isLoading: false }));
     }).catch(() => {
       this.setState({ isLoading: false });
     });
