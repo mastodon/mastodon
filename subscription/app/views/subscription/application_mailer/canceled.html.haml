@@ -1,0 +1,52 @@
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell.hero
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.text-center.padded
+                              %p.lead= "Your subscription has been canceled" 
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell.content-start
+                  %table.column{ cellspacing: 0, cellpadding: 0 }
+                    %tbody
+                      %tr
+                        %td.column-cell.button-cell
+                          %table.button{ align: 'center', cellspacing: 0, cellpadding: 0 }
+                            %tbody
+                              %tr
+                                %td
+                                  %p= 'Resubscribe or manage your subscription in the future at ' + link_to(settings_subscription.subscriptions_path)
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.text-center.padded
+                              %p= 'If you have a family plan, share this invite link with your family members so they can create their accounts'

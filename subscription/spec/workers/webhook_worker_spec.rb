@@ -310,5 +310,43 @@ describe Subscription::WebhookWorker do
       expect(sub.invite).to eq(invite)
       expect(invite.max_uses).to eq(3)
     end
+
+    it 'sends a subscription canceled email for update events with cancel attributes changed' do
+      event = {
+        "data": {
+          "object": {
+            "id": "sub_1",
+            "cancel_at": 1691982380,
+            "cancel_at_period_end": true,
+            "canceled_at": 1689779903,
+            "cancellation_details": {
+              "comment": nil,
+              "feedback": nil,
+              "reason": "cancellation_requested"
+            },
+            "customer": "cus_1",
+            "previous_attributes": {
+              "cancel_at": nil,
+              "cancel_at_period_end": false,
+              "canceled_at": nil,
+              "cancellation_details": {
+                "reason": nil
+              },
+              "start": 1689303980
+            }
+          }
+        },
+        "type": "customer.subscription.updated",
+      }
+      customer = {
+        "id": "cus_1",
+        "email": "email@example.io"
+      }
+      Subscription::StripeSubscription.create(subscription_id: "sub_1", user_id: 1, status: 'active')
+      allow(::Stripe::Event).to receive(:retrieve).and_return(event)
+      allow(::Stripe::Customer).to receive(:retrieve).and_return(customer)
+      expect(Subscription::ApplicationMailer).to receive(:send_canceled).and_return(double(deliver_later: true))
+      subject.perform("evt_1")
+    end
   end
 end
