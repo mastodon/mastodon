@@ -14,7 +14,7 @@
                           %tr
                             %td.column-cell.text-center.padded
                               %p.lead= "Your subscription has been canceled" 
-                              %p= "Your account will remain active until the end of the billing cycle on " + Time.at(@cancel_at).strftime('%b %d %y')
+                              %p= "Your account will remain active until the end of the billing cycle on " + Time.at(@cancel_at).strftime('%b %d, %Y')
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
