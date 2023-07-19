@@ -9,8 +9,8 @@ module Subscription
           template_name: 'invite'
     end
 
-    def send_canceled(email, subscription)
-      @subscription = subscription
+    def send_canceled(email, cancel_at)
+      @cancel_at = cancel_at
       mail to: email,
           subject: "Your subscription has been canceled",
           template_name: 'canceled'
