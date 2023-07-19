@@ -39,32 +39,36 @@ const isValidDomain = value => {
 };
 
 const valueToDomain = value => {
-  // If the user uses a URL to their profile page or server
+  // If the user starts typing an URL
   if (/^https?:\/\//.test(value)) {
     try {
-      return (new URL(value)).host;
+      const url = new URL(value);
+
+      // Consider that if there is a path, the URL is more meaningful than a bare domain
+      if (url.pathname.length > 1) {
+        return '';
+      }
+
+      return url.host;
     } catch {
-      return '';
+      return undefined;
     }
   // If the user writes their full handle including username
   } else if (value.includes('@')) {
-    const segments = value.split('@');
-
-    if (segments.length === 2) {
-      return segments[1];
-    } else {
-      return '';
+    if (value.replace(/^@/, '').split('@').length > 2) {
+      return undefined;
     }
+    return '';
   }
 
   return value;
 };
 
 const addInputToOptions = (value, options) => {
-  const domain = valueToDomain(value);
+  value = value.trim();
 
-  if (domain.includes('.') && isValidDomain(domain)) {
-    return [domain].concat(options.filter((x) => x !== domain));
+  if (value.includes('.') && isValidDomain(value)) {
+    return [value].concat(options.filter((x) => x !== value));
   }
 
   return options;
@@ -192,10 +196,16 @@ class LoginForm extends React.PureComponent {
 
   _loadOptions = throttle(() => {
     const { value } = this.state;
-    const domain = valueToDomain(value);
 
-    if (domain.trim().length === 0) {
-      this.setState({ options: [], networkOptions: [], isLoading: false, error: value.trim().length > 0 });
+    const domain = valueToDomain(value.trim());
+
+    if (typeof domain === 'undefined') {
+      this.setState({ options: [], networkOptions: [], isLoading: false, error: true });
+      return;
+    }
+
+    if (domain.length === 0) {
+      this.setState({ options: [], networkOptions: [], isLoading: false });
       return;
     }
 
@@ -213,7 +223,7 @@ class LoginForm extends React.PureComponent {
   render () {
     const { intl } = this.props;
     const { value, expanded, options, selectedOption, error, isSubmitting } = this.state;
-    const domain = valueToDomain(value).trim();
+    const domain = (valueToDomain(value) || '').trim();
     const domainRegExp = new RegExp(`(${escapeRegExp(domain)})`, 'gi');
     const hasPopOut = domain.length > 0 && options.length > 0;
 
