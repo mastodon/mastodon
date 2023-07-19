@@ -2,6 +2,10 @@
 pl:
   simple_form:
     hints:
+      account:
+        display_name: Twoje imię lub imię zabawne.
+        fields: Twoja strona główna, rzeczy, wiek, cokolwiek chcesz.
+        note: 'Możesz @wymienić innych ludzi lub #hashtags.'
       account_alias:
         acct: Określ nazwę@domenę konta z którego chcesz się przenieść
       account_migration:
@@ -130,6 +134,7 @@ pl:
         position: Wyższa rola decyduje o rozwiązywaniu konfliktów w pewnych sytuacjach. Niektóre działania mogą być wykonywane tylko na rolach z niższym priorytetem
       webhook:
         events: Wybierz zdarzenia do wysłania
+        template: Stwórz własny ładunek JSON za pomocą zmiennej interpolacji. Pozostaw puste dla domyślnego JSON.
         url: Dokąd będą wysłane zdarzenia
     labels:
       account:
@@ -295,6 +300,7 @@ pl:
         usable: Pozwól na umieszczanie tego hashtagu we wpisach
       user:
         role: Rola
+        time_zone: Strefa czasowa
       user_role:
         color: Kolor odznaki
         highlighted: Wyświetl rolę jako odznakę na profilach użytkowników
@@ -303,6 +309,7 @@ pl:
         position: Priorytet
       webhook:
         events: Włączone zdarzenia
+        template: Szablon obciążenia
         url: Endpoint URL
     'no': Nie
     not_recommended: Niezalecane

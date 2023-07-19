@@ -2,6 +2,10 @@
 hu:
   simple_form:
     hints:
+      account:
+        display_name: Teljes neved vagy vicces neved.
+        fields: Weboldalad, megszólításaid, korod, bármi, amit szeretnél.
+        note: 'Megemlíthetsz @másokat vagy #hashtag-eket.'
       account_alias:
         acct: Add meg annak a fióknak a felhasználónév@domain párosát, ahonnan át szeretnéd mozgatni
       account_migration:
@@ -130,6 +134,7 @@ hu:
         position: A magasabb szerepkör oldja fel az ütközéseket bizonyos helyzetekben. Bizonyos műveleteket csak alacsonyabb prioritású szerepkörrel lehet elvégezni.
       webhook:
         events: Válaszd ki a küldendő eseményeket
+        template: Saját JSON adatcsomagot állíthatsz össze változó-behelyettesítés használatával. Hagyd üresen az alapértelmezett JSON adatcsomaghoz.
         url: Ahová az eseményket küldjük
     labels:
       account:
@@ -295,6 +300,7 @@ hu:
         usable: Bejegyzések használhatják ezt a hashtaget
       user:
         role: Szerep
+        time_zone: Időzóna
       user_role:
         color: Jelvény színe
         highlighted: Szerep megjelenítése jelvényként a felhasználói profilokon
@@ -303,6 +309,7 @@ hu:
         position: Prioritás
       webhook:
         events: Engedélyezett események
+        template: Adatcsomag sablon
         url: Végponti URL
     'no': Nem
     not_recommended: Nem ajánlott

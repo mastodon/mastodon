@@ -1217,7 +1217,9 @@ el:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> στοιχείο που ταιριάζει με την αναζήτησή σου είναι επιλεγμένο."
       other: Όλα τα <strong>%{count}</strong> στοιχεία που ταιριάζουν στην αναζήτησή σου είναι επιλεγμένα.
+    cancel: Άκυρο
     changes_saved_msg: Οι αλλαγές αποθηκεύτηκαν!
+    confirm: Επιβεβαίωση
     copy: Αντιγραφή
     delete: Διαγραφή
     deselect: Αποεπιλογή όλων
@@ -1233,15 +1235,28 @@ el:
       other: Κάτι δεν πάει καλά! Για κοίταξε τα παρακάτω %{count} σφάλματα
   imports:
     errors:
+      empty: Κενό αρχείο CSV
       invalid_csv_file: 'Μη έγκυρο αρχείο CSV. Σφάλμα: %{error}'
       over_rows_processing_limit: περιέχει περισσότερες από %{count} γραμμές
+      too_large: Το αρχείο είναι πολύ μεγάλο
+    failures: Αποτυχίες
     modes:
       merge: Συγχώνευση
       merge_long: Διατήρηση των εγγράφων που υπάρχουν και προσθήκη των νέων
       overwrite: Αντικατάσταση
       overwrite_long: Αντικατάσταση των υπαρχόντων εγγράφων με τις καινούργιες
     preface: Μπορείς να εισάγεις τα δεδομένα που έχεις εξάγει από άλλο διακομιστή, όπως τη λίστα των ατόμων που ακολουθείς ή έχεις αποκλείσει.
+    recent_imports: Πρόσφατες Εισαγωγές
+    states:
+      finished: Ολοκληρώθηκε
+      in_progress: Σε εξέλιξη
+      scheduled: Προγραμματισμένη
+    status: Κατάσταση
     success: Τα δεδομένα σου μεταφορτώθηκαν επιτυχώς και θα επεξεργαστούν σύντομα
+    time_started: Ξεκίνησε στις
+    type: Τύπος εισαγωγής
+    type_groups:
+      destructive: Μπλοκ & σίγαση
     types:
       blocking: Λίστα αποκλεισμού
       bookmarks: Σελιδοδείκτες

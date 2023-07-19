@@ -1,9 +1,10 @@
 .content__heading__tabs
   = render_navigation renderer: :links do |primary|
-    - primary.item :branding, safe_join([fa_icon('pencil fw'), t('admin.settings.branding.title')]), admin_settings_branding_path
-    - primary.item :about, safe_join([fa_icon('file-text fw'), t('admin.settings.about.title')]), admin_settings_about_path
-    - primary.item :registrations, safe_join([fa_icon('users fw'), t('admin.settings.registrations.title')]), admin_settings_registrations_path
-    - primary.item :discovery, safe_join([fa_icon('search fw'), t('admin.settings.discovery.title')]), admin_settings_discovery_path
-    - primary.item :content_retention, safe_join([fa_icon('history fw'), t('admin.settings.content_retention.title')]), admin_settings_content_retention_path
-    - primary.item :appearance, safe_join([fa_icon('desktop fw'), t('admin.settings.appearance.title')]), admin_settings_appearance_path
-    - primary.item :other, safe_join([fa_icon('ellipsis-h fw'), t('admin.settings.other.title')]), admin_settings_other_path
+    :ruby
+      primary.item :branding, safe_join([fa_icon('pencil fw'), t('admin.settings.branding.title')]), admin_settings_branding_path
+      primary.item :about, safe_join([fa_icon('file-text fw'), t('admin.settings.about.title')]), admin_settings_about_path
+      primary.item :registrations, safe_join([fa_icon('users fw'), t('admin.settings.registrations.title')]), admin_settings_registrations_path
+      primary.item :discovery, safe_join([fa_icon('search fw'), t('admin.settings.discovery.title')]), admin_settings_discovery_path
+      primary.item :content_retention, safe_join([fa_icon('history fw'), t('admin.settings.content_retention.title')]), admin_settings_content_retention_path
+      primary.item :appearance, safe_join([fa_icon('desktop fw'), t('admin.settings.appearance.title')]), admin_settings_appearance_path
+      primary.item :other, safe_join([fa_icon('ellipsis-h fw'), t('admin.settings.other.title')]), admin_settings_other_path

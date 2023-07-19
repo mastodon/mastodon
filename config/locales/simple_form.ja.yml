@@ -2,6 +2,10 @@
 ja:
   simple_form:
     hints:
+      account:
+        display_name: フルネーム、ハンドルネームなど
+        fields: ホームページ、代名詞、年齢など何でも構いません。
+        note: '自己紹介には #ハッシュタグ や、ほかのアカウントのユーザー名 (@user) を使用できます'
       account_alias:
         acct: 引っ越し元のユーザー名@ドメインを指定してください
       account_migration:
@@ -77,7 +81,7 @@ ja:
         backups_retention_period: 生成されたユーザーのアーカイブを指定した日数の間保持します。
         bootstrap_timeline_accounts: これらのアカウントは、新しいユーザー向けのおすすめユーザーの一番上にピン留めされます。
         closed_registrations_message: アカウント作成を停止している時に表示されます
-        content_cache_retention_period: 正の値に設定されている場合、他のサーバーの投稿は指定された日数の後に削除されます。元に戻せません。
+        content_cache_retention_period: 指定した日数が経過した他のサーバーの投稿とブーストを削除します。削除された投稿は再取得できない場合があります。削除された投稿についたブックマークやお気に入り、ブーストも失われ、元に戻せません。
         custom_css: ウェブ版のMastodonでカスタムスタイルを適用できます。
         mascot: 上級者向けWebインターフェースのイラストを上書きします。
         media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
@@ -130,6 +134,7 @@ ja:
         position: 場合により、より高いロールのユーザーが紛争の解決を決定します。特定のアクションは優先度が低いロールでのみ実行できます。
       webhook:
         events: 送信するイベントを選択
+        template: 変数補完を使用して、独自のJSONペイロードを構成できます。デフォルトのJSONを使用する場合は空白のままにします。
         url: イベントの送信先
     labels:
       account:
@@ -295,6 +300,7 @@ ja:
         usable: 投稿への使用を許可する
       user:
         role: ロール
+        time_zone: タイムゾーン
       user_role:
         color: バッジの色
         highlighted: プロフィールにロールのバッジを表示する
@@ -303,6 +309,7 @@ ja:
         position: 優先度
       webhook:
         events: 有効なイベント
+        template: ペイロードテンプレート
         url: エンドポイントURL
     'no': いいえ
     not_recommended: 非推奨
