@@ -6,6 +6,7 @@ class NotificationMailer < ApplicationMailer
          :routing
 
   before_action :process_params
+  before_action :list_headers
   before_action :set_status, only: [:mention, :favourite, :reblog]
   before_action :set_account, only: [:follow, :favourite, :reblog, :follow_request]
 
@@ -61,6 +62,7 @@ class NotificationMailer < ApplicationMailer
     @me = params[:recipient]
     @user = @me.user
     @type = action_name
+    @unsubscribe_url = unsubscribe_url(token: @user.to_sgid(for: 'unsubscribe').to_s, type: @type)
   end
 
   def set_status
@@ -69,6 +71,14 @@ class NotificationMailer < ApplicationMailer
 
   def set_account
     @account = @notification.from_account
+  end
+
+  def list_headers
+    headers['List-ID'] = "<#{@type}.#{Rails.configuration.x.local_domain}>"
+    headers['List-Archive'] = "<#{web_url('notifications')}>"
+    headers['List-Subscribe'] = "<#{settings_preferences_notifications_url}>"
+    headers['List-Unsubscribe'] = "<#{@unsubscribe_url}>"
+    headers['List-Unsubscribe-Post'] = 'List-Unsubscribe=One-Click'
   end
 
   def thread_by_conversation(conversation)
