@@ -325,15 +325,15 @@ describe Subscription::WebhookWorker do
               "reason": "cancellation_requested"
             },
             "customer": "cus_1",
-            "previous_attributes": {
-              "cancel_at": nil,
-              "cancel_at_period_end": false,
-              "canceled_at": nil,
-              "cancellation_details": {
-                "reason": nil
-              },
-              "start": 1689303980
-            }
+          },
+          "previous_attributes": {
+            "cancel_at": nil,
+            "cancel_at_period_end": false,
+            "canceled_at": nil,
+            "cancellation_details": {
+              "reason": nil
+            },
+            "start": 1689303980
           }
         },
         "type": "customer.subscription.updated",

@@ -30,7 +30,7 @@ module Subscription
         subscription = Subscription::StripeSubscription.find_by(subscription_id: stripe_sub[:id])
         subscription.update(status: stripe_sub[:status])
 
-        if (stripe_sub[:canceled_at].present? && stripe_sub[:previous_attributes].present? && stripe_sub[:previous_attributes][:canceled_at].nil?)
+        if (stripe_sub[:canceled_at].present? && event[:data][:previous_attributes].present? && event[:data][:previous_attributes][:canceled_at].nil?)
           customer = ::Stripe::Customer.retrieve(stripe_sub[:customer])
           Subscription::ApplicationMailer.send_canceled(customer[:email], subscription).deliver_later
         end
