@@ -347,7 +347,7 @@ class InteractionModal extends React.PureComponent {
       <div className='modal-root__modal interaction-modal'>
         <div className='interaction-modal__lead'>
           <h3><span className='interaction-modal__icon'>{icon}</span> {title}</h3>
-          <p>{actionDescription} <strong><FormattedMessage id='interaction_modal.sign_in' defaultMessage='You are not signed in. Where is your account hosted?' /></strong> <FormattedMessage id='interaction_modal.sign_in_hint' defaultMessage="Tip: It's the second half of your username." /></p>
+          <p>{actionDescription} <strong><FormattedMessage id='interaction_modal.sign_in' defaultMessage='You are not signed in. Where is your account hosted?' /></strong> <FormattedMessage tagName='div' id='interaction_modal.sign_in_hint' defaultMessage='Tip: Entering your full username works too!' /></p>
         </div>
 
         <IntlLoginForm resourceUrl={url} />
