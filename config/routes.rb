@@ -62,6 +62,8 @@ Rails.application.routes.draw do
   get 'intent', to: 'intents#show'
   get 'custom.css', to: 'custom_css#show', as: :custom_css
 
+  get 'remote_interaction_helper', to: 'remote_interaction_helper#index'
+
   resource :instance_actor, path: 'actor', only: [:show] do
     resource :inbox, only: [:create], module: :activitypub
     resource :outbox, only: [:show], module: :activitypub

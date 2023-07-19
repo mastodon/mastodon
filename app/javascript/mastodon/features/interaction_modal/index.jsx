@@ -85,33 +85,50 @@ class LoginForm extends React.PureComponent {
     this.setState({ value: target.value, isLoading: true, error: false }, () => this._loadOptions());
   };
 
-  handleSubmit = () => {
-    const { value } = this.state;
+  handleMessage = (event) => {
     const { resourceUrl } = this.props;
 
-    const domain = valueToDomain(value);
-
-    if (!isValidDomain(domain)) {
-      this.setState({ error: true });
+    if (event.origin !== window.origin || event.source !== this.iframeRef.contentWindow) {
       return;
     }
 
-    if (localStorage) {
-      localStorage.setItem(PERSISTENCE_KEY, domain);
-    }
+    if (event.data?.type === 'fetchInteractionURL-failure') {
+      this.setState({ isSubmitting: false, error: true });
+    } else if (event.data?.type === 'fetchInteractionURL-success') {
+      if (/^https?:\/\//.test(event.data.template)) {
+        if (localStorage) {
+          localStorage.setItem(PERSISTENCE_KEY, event.data.uri_or_domain);
+        }
 
-    const fallbackUrl = `https://${domain}/authorize_interaction?uri={uri}`;
+        window.location.href = event.data.template.replace('{uri}', encodeURIComponent(resourceUrl));
+      } else {
+        this.setState({ isSubmitting: false, error: true });
+      }
+    }
+  };
+
+  componentDidMount () {
+    window.addEventListener('message', this.handleMessage);
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('message', this.handleMessage);
+  }
+
+  handleSubmit = () => {
+    const { value } = this.state;
 
     this.setState({ isSubmitting: true });
 
-    api().get(`https://${domain}/.well-known/webfinger`, { params: { resource: domain } }).then(({ data }) => {
-      const template = data.links.find(link => link.rel === 'http://ostatus.org/schema/1.0/subscribe')?.template;
-      window.location.href = (template || fallbackUrl).replace('{uri}', encodeURIComponent(resourceUrl));
-    }).catch(() => {
-      this.setState({ isSubmitting: false });
-      window.location.href = fallbackUrl.replace('{uri}', encodeURIComponent(resourceUrl));
-    });
+    this.iframeRef.contentWindow.postMessage({
+      type: 'fetchInteractionURL',
+      uri_or_domain: value.trim(),
+    }, window.origin);
   };
+
+  setIFrameRef = (iframe) => {
+    this.iframeRef = iframe;
+  }
 
   handleFocus = () => {
     this.setState({ expanded: true });
@@ -195,6 +212,15 @@ class LoginForm extends React.PureComponent {
 
     return (
       <div className={classNames('interaction-modal__login', { focused: expanded, expanded: hasPopOut, invalid: error })}>
+
+        <iframe
+          ref={this.setIFrameRef}
+          style={{display: 'none'}}
+          src='/remote_interaction_helper'
+          sandbox='allow-scripts allow-same-origin'
+          title='remote interaction helper'
+        />
+
         <div className='interaction-modal__login__input'>
           <input
             ref={this.setRef}
