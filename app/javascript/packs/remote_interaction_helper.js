@@ -20,7 +20,7 @@ const fetchInteractionURLFailure = (uri_or_domain) => {
 const fromDomain = (domain) => {
   const fallbackTemplate = `https://${domain}/authorize_interaction?uri={uri}`;
 
-  axios.get(`https://${domain}/.well-known/webfinger`, { params: { resource: domain } }).then(({ data }) => {
+  axios.get(`https://${domain}/.well-known/webfinger`, { params: { resource: `https://${domain}` } }).then(({ data }) => {
     const template = data.links.find(link => link.rel === 'http://ostatus.org/schema/1.0/subscribe')?.template;
     fetchInteractionURLSuccess(domain, template || fallbackTemplate);
   }).catch(() => {
