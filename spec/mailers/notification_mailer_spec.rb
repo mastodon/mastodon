@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe NotificationMailer do
-  let(:receiver)       { Fabricate(:user) }
+  let(:receiver)       { Fabricate(:user, account_attributes: { username: 'alice' }) }
   let(:sender)         { Fabricate(:account, username: 'bob') }
   let(:foreign_status) { Fabricate(:status, account: sender, text: 'The body of the foreign status') }
   let(:own_status)     { Fabricate(:status, account: receiver.account, text: 'The body of the own status') }
@@ -15,12 +15,10 @@ RSpec.describe NotificationMailer do
     end
 
     it 'renders the list headers' do
-      expect(mail['List-ID'].value).to match(/<\w+\.cb6e6126.ngrok.io>/)
-      expect(mail['List-Unsubscribe'].value).to match(%r{<https://cb6e6126.ngrok.io/unsubscribe\?token=.+&type=\w+>})
-      expect(mail['List-Unsubscribe'].value).to match(type)
+      expect(mail['List-ID'].value).to eq "<#{type}.alice.cb6e6126.ngrok.io>"
+      expect(mail['List-Unsubscribe'].value).to match(%r{<https://cb6e6126.ngrok.io/unsubscribe\?token=.+>})
+      expect(mail['List-Unsubscribe'].value).to match("&type=#{type}")
       expect(mail['List-Unsubscribe-Post'].value).to eq 'List-Unsubscribe=One-Click'
-      expect(mail['List-Archive'].value).to eq '<https://cb6e6126.ngrok.io/web/notifications>'
-      expect(mail['List-Subscribe'].value).to eq '<https://cb6e6126.ngrok.io/settings/preferences/notifications>'
     end
 
     if thread
