@@ -127,12 +127,6 @@ Lint/UselessAssignment:
     - 'spec/services/resolve_url_service_spec.rb'
     - 'spec/views/statuses/show.html.haml_spec.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: CheckForMethodsWithNoSideEffects.
-Lint/Void:
-  Exclude:
-    - 'spec/services/resolve_account_service_spec.rb'
-
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 150
