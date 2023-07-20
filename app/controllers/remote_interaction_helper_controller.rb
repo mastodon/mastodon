@@ -8,6 +8,7 @@ class RemoteInteractionHelperController < ApplicationController
 
     # Set every directive that does not have a fallback
     p.default_src :none
+    p.form_action :none
     p.base_uri :none
 
     # Disable every directive with a fallback to cut on response size
@@ -25,14 +26,10 @@ class RemoteInteractionHelperController < ApplicationController
     # Widen the directives that we do need
     p.frame_ancestors :self
     p.connect_src :https
-    p.form_action :https
   end
 
   def index
     expires_in(5.minutes, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.day)
-
-    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
-    response.headers['Referrer-Policy'] = 'no-referrer'
 
     render layout: 'helper_frame'
   end
