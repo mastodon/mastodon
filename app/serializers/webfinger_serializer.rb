@@ -22,13 +22,12 @@ class WebfingerSerializer < ActiveModel::Serializer
       [
         { rel: 'http://webfinger.net/rel/profile-page', type: 'text/html', href: about_more_url(instance_actor: true) },
         { rel: 'self', type: 'application/activity+json', href: instance_actor_url },
-        { rel: 'https://www.w3.org/ns/activitystreams#proxyUrl', href: interaction_proxy_url },
+        { rel: 'http://ostatus.org/schema/1.0/subscribe', template: "#{authorize_interaction_url}?uri={uri}" },
       ]
     else
       [
         { rel: 'http://webfinger.net/rel/profile-page', type: 'text/html', href: short_account_url(object) },
         { rel: 'self', type: 'application/activity+json', href: account_url(object) },
-        { rel: 'https://www.w3.org/ns/activitystreams#proxyUrl', href: interaction_proxy_url },
         { rel: 'http://ostatus.org/schema/1.0/subscribe', template: "#{authorize_interaction_url}?uri={uri}" },
       ]
     end
