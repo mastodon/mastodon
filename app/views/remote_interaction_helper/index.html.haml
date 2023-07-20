@@ -2,3 +2,6 @@
   %meta{ name: 'robots', content: 'noindex' }/
 
   = javascript_pack_tag 'remote_interaction_helper', crossorigin: 'anonymous'
+
+%form#proxy-form{ method: 'POST', target: '_parent' }
+  %input#resourceUrlField{ name: 'id', type: 'hidden' }

@@ -101,25 +101,11 @@ class LoginForm extends React.PureComponent {
   };
 
   handleMessage = (event) => {
-    const { resourceUrl } = this.props;
-
-    if (event.origin !== window.origin || event.source !== this.iframeRef.contentWindow) {
+    if (event.origin !== window.origin || event.source !== this.iframeRef.contentWindow || event.data?.type !== 'remoteInteractionFailure') {
       return;
     }
 
-    if (event.data?.type === 'fetchInteractionURL-failure') {
-      this.setState({ isSubmitting: false, error: true });
-    } else if (event.data?.type === 'fetchInteractionURL-success') {
-      if (/^https?:\/\//.test(event.data.template)) {
-        if (localStorage) {
-          localStorage.setItem(PERSISTENCE_KEY, event.data.uri_or_domain);
-        }
-
-        window.location.href = event.data.template.replace('{uri}', encodeURIComponent(resourceUrl));
-      } else {
-        this.setState({ isSubmitting: false, error: true });
-      }
-    }
+    this.setState({ isSubmitting: false, error: true });
   };
 
   componentDidMount () {
@@ -132,12 +118,14 @@ class LoginForm extends React.PureComponent {
 
   handleSubmit = () => {
     const { value } = this.state;
+    const { resourceUrl } = this.props;
 
     this.setState({ isSubmitting: true });
 
     this.iframeRef.contentWindow.postMessage({
-      type: 'fetchInteractionURL',
+      type: 'initiateRemoteInteraction',
       uri_or_domain: value.trim(),
+      resourceUrl,
     }, window.origin);
   };
 
@@ -234,7 +222,7 @@ class LoginForm extends React.PureComponent {
           ref={this.setIFrameRef}
           style={{display: 'none'}}
           src='/remote_interaction_helper'
-          sandbox='allow-scripts allow-same-origin'
+          sandbox='allow-scripts allow-same-origin allow-top-navigation allow-forms'
           title='remote interaction helper'
         />
 

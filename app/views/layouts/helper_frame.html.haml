@@ -6,3 +6,6 @@
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
 
     = yield :header_tags
+
+  %body
+    = content_for?(:content) ? yield(:content) : yield
