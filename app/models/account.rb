@@ -90,7 +90,7 @@ class Account < ApplicationRecord
   validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { (!local? || actor_type == 'Application') && will_save_change_to_username? }
 
   # Remote user validations
-  validates :uri, presence: true, unless: :local?
+  validates :uri, presence: true, unless: :local?, on: :create
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
@@ -98,10 +98,10 @@ class Account < ApplicationRecord
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, note_length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
-  validates :uri, absence: true, if: :local?
-  validates :inbox_url, absence: true, if: :local?
-  validates :shared_inbox_url, absence: true, if: :local?
-  validates :followers_url, absence: true, if: :local?
+  validates :uri, absence: true, if: :local?, on: :create
+  validates :inbox_url, absence: true, if: :local?, on: :create
+  validates :shared_inbox_url, absence: true, if: :local?, on: :create
+  validates :followers_url, absence: true, if: :local?, on: :create
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
