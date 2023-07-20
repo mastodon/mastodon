@@ -8,7 +8,7 @@
     - poll.loaded_options.each_with_index do |option, index|
       %li
         - if show_results
-          - percent = total_votes_count > 0 ? 100 * option.votes_count / total_votes_count : 0
+          - percent = total_votes_count.positive? ? 100 * option.votes_count / total_votes_count : 0
           %label.poll__option><
             %span.poll__number><
               = "#{percent.round}%"

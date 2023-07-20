@@ -963,12 +963,12 @@ RSpec.describe Account do
   context 'when is remote' do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
-      account = described_class.create!(domain: 'remote', username: Faker::Internet.user_name(separators: ['_']), public_key: key.to_pem)
+      account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', username: Faker::Internet.user_name(separators: ['_']), public_key: key.to_pem)
       expect(account.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do
-      account = described_class.create!(domain: 'にゃん', username: Faker::Internet.user_name(separators: ['_']))
+      account = described_class.create!(domain: 'にゃん', uri: 'https://xn--r9j5b5b/actor', username: Faker::Internet.user_name(separators: ['_']))
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end
