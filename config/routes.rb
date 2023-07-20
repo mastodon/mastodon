@@ -167,6 +167,7 @@ Rails.application.routes.draw do
   get '/backups/:id/download', to: 'backups#download', as: :download_backup, format: false
 
   resource :authorize_interaction, only: [:show]
+  resource :interaction_proxy, controller: :interaction_proxy, only: [:create]
   resource :share, only: [:show]
 
   draw(:admin)
