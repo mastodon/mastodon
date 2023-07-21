@@ -116,8 +116,8 @@ class InteractionModal extends PureComponent {
       break;
     case 'favourite':
       icon = <Icon id='star' />;
-      title = <FormattedMessage id='interaction_modal.title.favourite' defaultMessage="Favourite {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on Mastodon, you can favourite this post to let the author know you appreciate it and save it for later.' />;
+      title = <FormattedMessage id='interaction_modal.title.favourite' defaultMessage="Favorite {name}'s post" values={{ name }} />;
+      actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on Mastodon, you can favorite this post to let the author know you appreciate it and save it for later.' />;
       break;
     case 'follow':
       icon = <Icon id='user-plus' />;
@@ -158,7 +158,7 @@ class InteractionModal extends PureComponent {
 
           <div className='interaction-modal__choices__choice'>
             <h3><FormattedMessage id='interaction_modal.on_another_server' defaultMessage='On a different server' /></h3>
-            <p><FormattedMessage id='interaction_modal.other_server_instructions' defaultMessage='Copy and paste this URL into the search field of your favourite Mastodon app or the web interface of your Mastodon server.' /></p>
+            <p><FormattedMessage id='interaction_modal.other_server_instructions' defaultMessage='Copy and paste this URL into the search field of your favorite Mastodon app or the web interface of your Mastodon server.' /></p>
             <Copypaste value={url} />
           </div>
         </div>

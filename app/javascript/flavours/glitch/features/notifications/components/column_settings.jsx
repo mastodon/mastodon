@@ -110,7 +110,7 @@ export default class ColumnSettings extends PureComponent {
         </div>
 
         <div role='group' aria-labelledby='notifications-favourite'>
-          <span id='notifications-favourite' className='column-settings__section'><FormattedMessage id='notifications.column_settings.favourite' defaultMessage='Favourites:' /></span>
+          <span id='notifications-favourite' className='column-settings__section'><FormattedMessage id='notifications.column_settings.favourite' defaultMessage='Favorites:' /></span>
 
           <div className='column-settings__pillbar'>
             <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'favourite']} onChange={onChange} label={alertStr} />
