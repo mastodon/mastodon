@@ -80,8 +80,6 @@ lt:
       remove_header: Panaikinti antraštę
       resend_confirmation:
         already_confirmed: Šis vartotojas jau patvirtintas
-        send: Dar kartą išsiųsti patvirtinimo žinutę
-        success: Patvirtinimo laiškas sėkmingai išsiųstas!
       reset: Iš naujo
       reset_password: Atkurti slaptažodį
       resubscribe: Per prenumeruoti
@@ -256,10 +254,8 @@ lt:
     warning: Būkite atsargūs su šia informacija. Niekada jos nesidalinkite!
     your_token: Jūsų prieigos žetonas
   auth:
-    change_password: Slaptažodis
     delete_account: Ištrinti paskyrą
     delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>. Jūsų prašys patvirtinti pasirinkimą.
-    didnt_get_confirmation: Negavote patvirtinimo instrukcijų?
     forgot_password: Pamiršote slaptažodį?
     invalid_reset_password_token: Slaptažodžio atkūrimo žetonas netinkamas arba jo galiojimo laikas pasibaigęs. Prašykite naujo žetono.
     login: Prisijungti
@@ -268,7 +264,6 @@ lt:
     migrate_account_html: Jeigu norite nukreipti šią paskyrą į kita, galite tai <a href="%{path}">konfiguruoti čia</a>.
     or_log_in_with: Arba prisijungti su
     register: Užsiregistruoti
-    resend_confirmation: Išsiųsti dar kartą patvirtinimo instrukcijas
     reset_password: Atstatyti slaptažodį
     security: Apsauga
     set_new_password: Nustatyti naują slaptažodį
@@ -419,6 +414,8 @@ lt:
     next: Kitas
     older: Senesnis
     prev: Ankstesnis
+  preferences:
+    other: Kita
   remote_follow:
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
   scheduled_statuses:
@@ -433,8 +430,6 @@ lt:
     current_session: Dabartinė sesija
     description: "%{browser} ant %{platform}"
     explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
-    platforms:
-      other: nežinoma platforma
     revoke: Atšaukti
     revoke_success: Sesija sėkmingai atšaukta
     title: Sesijos
@@ -519,5 +514,4 @@ lt:
     seamless_external_login: Jūs esate prisijungę per išorini įrenginį, todėl slaptąžodis ir el pašto nustatymai neprieinami.
     signed_in_as: 'Prisijungta kaip:'
   verification:
-    explanation_html: 'Jūs galite <strong>patvirtinti savę kaip savininką nuorodų savo profilio meta duomenyse</strong>. Kad tai padarytumėte, susieta svetainė privalo turėti nuorodą atgal į Jūsų Mastodon profilį. Nuoroda atgal <strong> privalo </strong> turėti <code>rel="me"</code> savybę. Teksto turinys nuorodoje nesvarbus. Štai pavyzdys:'
     verification: Patvirtinimas

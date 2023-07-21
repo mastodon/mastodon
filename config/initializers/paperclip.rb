@@ -7,7 +7,7 @@ Paperclip.interpolates :filename do |attachment, style|
   if style == :original
     attachment.original_filename
   else
-    [basename(attachment, style), extension(attachment, style)].delete_if(&:blank?).join('.')
+    [basename(attachment, style), extension(attachment, style)].compact_blank!.join('.')
   end
 end
 
@@ -61,18 +61,14 @@ if ENV['S3_ENABLED'] == 'true'
 
     s3_options: {
       signature_version: ENV.fetch('S3_SIGNATURE_VERSION') { 'v4' },
-      http_open_timeout: ENV.fetch('S3_OPEN_TIMEOUT'){ '5' }.to_i,
-      http_read_timeout: ENV.fetch('S3_READ_TIMEOUT'){ '5' }.to_i,
+      http_open_timeout: ENV.fetch('S3_OPEN_TIMEOUT') { '5' }.to_i,
+      http_read_timeout: ENV.fetch('S3_READ_TIMEOUT') { '5' }.to_i,
       http_idle_timeout: 5,
       retry_limit: 0,
     }
   )
-  
-  if ENV['S3_PERMISSION'] == ''
-    Paperclip::Attachment.default_options.merge!(
-      s3_permissions: ->(*) { nil }
-    )
-  end
+
+  Paperclip::Attachment.default_options[:s3_permissions] = ->(*) { nil } if ENV['S3_PERMISSION'] == ''
 
   if ENV.has_key?('S3_ENDPOINT')
     Paperclip::Attachment.default_options[:s3_options].merge!(
@@ -90,11 +86,7 @@ if ENV['S3_ENABLED'] == 'true'
     )
   end
 
-  if ENV.has_key?('S3_STORAGE_CLASS')
-    Paperclip::Attachment.default_options[:s3_headers].merge!(
-      'X-Amz-Storage-Class' => ENV['S3_STORAGE_CLASS']
-    )
-  end
+  Paperclip::Attachment.default_options[:s3_headers]['X-Amz-Storage-Class'] = ENV['S3_STORAGE_CLASS'] if ENV.has_key?('S3_STORAGE_CLASS')
 
   # Some S3-compatible providers might not actually be compatible with some APIs
   # used by kt-paperclip, see https://github.com/mastodon/mastodon/issues/16822
@@ -130,8 +122,9 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       openstack_domain_name: ENV.fetch('SWIFT_DOMAIN_NAME') { 'default' },
       openstack_region: ENV['SWIFT_REGION'],
       openstack_cache_ttl: ENV.fetch('SWIFT_CACHE_TTL') { 60 },
+      openstack_temp_url_key: ENV['SWIFT_TEMP_URL_KEY'],
     },
-    
+
     fog_file: { 'Cache-Control' => 'public, max-age=315576000, immutable' },
 
     fog_directory: ENV['SWIFT_CONTAINER'],
@@ -159,4 +152,11 @@ unless defined?(Seahorse)
       class NetworkingError < StandardError; end
     end
   end
+end
+
+# Set our ImageMagick security policy, but allow admins to override it
+ENV['MAGICK_CONFIGURE_PATH'] = begin
+  imagemagick_config_paths = ENV.fetch('MAGICK_CONFIGURE_PATH', '').split(File::PATH_SEPARATOR)
+  imagemagick_config_paths << Rails.root.join('config', 'imagemagick').expand_path.to_s
+  imagemagick_config_paths.join(File::PATH_SEPARATOR)
 end

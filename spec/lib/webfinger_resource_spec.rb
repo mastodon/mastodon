@@ -17,7 +17,7 @@ describe WebfingerResource do
         resource = 'https://example.com/users/alice/other'
 
         expect do
-          WebfingerResource.new(resource).username
+          described_class.new(resource).username
         end.to raise_error(ActiveRecord::RecordNotFound)
       end
 
@@ -27,41 +27,42 @@ describe WebfingerResource do
         recognized = Rails.application.routes.recognize_path(resource)
         allow(recognized).to receive(:[]).with(:controller).and_return('accounts')
         allow(recognized).to receive(:[]).with(:username).and_return('alice')
-        expect(recognized).to receive(:[]).with(:action).and_return('create')
+        allow(recognized).to receive(:[]).with(:action).and_return('create')
 
         expect(Rails.application.routes).to receive(:recognize_path).with(resource).and_return(recognized).at_least(:once)
 
         expect do
-          WebfingerResource.new(resource).username
+          described_class.new(resource).username
         end.to raise_error(ActiveRecord::RecordNotFound)
+        expect(recognized).to have_received(:[]).exactly(3).times
       end
 
       it 'raises with a string that doesnt start with URL' do
         resource = 'website for http://example.com/users/alice/other'
 
         expect do
-          WebfingerResource.new(resource).username
+          described_class.new(resource).username
         end.to raise_error(WebfingerResource::InvalidRequest)
       end
 
       it 'finds the username in a valid https route' do
         resource = 'https://example.com/users/alice'
 
-        result = WebfingerResource.new(resource).username
+        result = described_class.new(resource).username
         expect(result).to eq 'alice'
       end
 
       it 'finds the username in a mixed case http route' do
         resource = 'HTTp://exAMPLe.com/users/alice'
 
-        result = WebfingerResource.new(resource).username
+        result = described_class.new(resource).username
         expect(result).to eq 'alice'
       end
 
       it 'finds the username in a valid http route' do
         resource = 'http://example.com/users/alice'
 
-        result = WebfingerResource.new(resource).username
+        result = described_class.new(resource).username
         expect(result).to eq 'alice'
       end
     end
@@ -71,7 +72,7 @@ describe WebfingerResource do
         resource = 'user@remote-host.com'
 
         expect do
-          WebfingerResource.new(resource).username
+          described_class.new(resource).username
         end.to raise_error(ActiveRecord::RecordNotFound)
       end
 
@@ -79,7 +80,7 @@ describe WebfingerResource do
         Rails.configuration.x.local_domain = 'example.com'
         resource = 'alice@example.com'
 
-        result = WebfingerResource.new(resource).username
+        result = described_class.new(resource).username
         expect(result).to eq 'alice'
       end
 
@@ -87,7 +88,7 @@ describe WebfingerResource do
         Rails.configuration.x.web_domain = 'example.com'
         resource = 'alice@example.com'
 
-        result = WebfingerResource.new(resource).username
+        result = described_class.new(resource).username
         expect(result).to eq 'alice'
       end
     end
@@ -97,7 +98,7 @@ describe WebfingerResource do
         resource = 'acct:user@remote-host.com'
 
         expect do
-          WebfingerResource.new(resource).username
+          described_class.new(resource).username
         end.to raise_error(ActiveRecord::RecordNotFound)
       end
 
@@ -105,7 +106,7 @@ describe WebfingerResource do
         resource = 'acct:user@remote-host@remote-hostess.remote.local@remote'
 
         expect do
-          WebfingerResource.new(resource).username
+          described_class.new(resource).username
         end.to raise_error(ActiveRecord::RecordNotFound)
       end
 
@@ -113,7 +114,7 @@ describe WebfingerResource do
         Rails.configuration.x.local_domain = 'example.com'
         resource = 'acct:alice@example.com'
 
-        result = WebfingerResource.new(resource).username
+        result = described_class.new(resource).username
         expect(result).to eq 'alice'
       end
 
@@ -121,7 +122,7 @@ describe WebfingerResource do
         Rails.configuration.x.web_domain = 'example.com'
         resource = 'acct:alice@example.com'
 
-        result = WebfingerResource.new(resource).username
+        result = described_class.new(resource).username
         expect(result).to eq 'alice'
       end
     end
@@ -131,7 +132,7 @@ describe WebfingerResource do
         resource = 'df/:dfkj'
 
         expect do
-          WebfingerResource.new(resource).username
+          described_class.new(resource).username
         end.to raise_error(WebfingerResource::InvalidRequest)
       end
     end

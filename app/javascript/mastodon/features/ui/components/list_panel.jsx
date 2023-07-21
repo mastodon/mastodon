@@ -1,11 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { createSelector } from 'reselect';
+
+import { withRouter } from 'react-router-dom';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { createSelector } from 'reselect';
+
 import { fetchLists } from 'mastodon/actions/lists';
+
 import ColumnLink from './column_link';
 
 const getOrderedLists = createSelector([state => state.get('lists')], lists => {
@@ -20,8 +23,6 @@ const mapStateToProps = state => ({
   lists: getOrderedLists(state),
 });
 
-export default @withRouter
-@connect(mapStateToProps)
 class ListPanel extends ImmutablePureComponent {
 
   static propTypes = {
@@ -53,3 +54,5 @@ class ListPanel extends ImmutablePureComponent {
   }
 
 }
+
+export default withRouter(connect(mapStateToProps)(ListPanel));

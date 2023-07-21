@@ -25,7 +25,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       limited_federation_mode: Rails.configuration.x.whitelist_mode,
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
-      trends: Setting.trends,
+      trends_enabled: Setting.trends,
       registrations_open: Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode,
       timeline_preview: Setting.timeline_preview,
       activity_api_enabled: Setting.activity_api_enabled,
@@ -47,7 +47,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:advanced_layout]   = object.current_account.user.setting_advanced_layout
       store[:use_blurhash]      = object.current_account.user.setting_use_blurhash
       store[:use_pending_items] = object.current_account.user.setting_use_pending_items
-      store[:trends]            = Setting.trends && object.current_account.user.setting_trends
+      store[:show_trends]       = Setting.trends && object.current_account.user.setting_trends
       store[:crop_images]       = object.current_account.user.setting_crop_images
     else
       store[:auto_play_gif] = Setting.auto_play_gif
@@ -83,7 +83,10 @@ class InitialStateSerializer < ActiveModel::Serializer
   def accounts
     store = {}
 
-    ActiveRecord::Associations::Preloader.new.preload([object.current_account, object.admin, object.owner, object.disabled_account, object.moved_to_account].compact, [:account_stat, :user, { moved_to_account: [:account_stat, :user] }])
+    ActiveRecord::Associations::Preloader.new(
+      records: [object.current_account, object.admin, object.owner, object.disabled_account, object.moved_to_account].compact,
+      associations: [:account_stat, :user, { moved_to_account: [:account_stat, :user] }]
+    )
 
     store[object.current_account.id.to_s]  = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
     store[object.admin.id.to_s]            = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin

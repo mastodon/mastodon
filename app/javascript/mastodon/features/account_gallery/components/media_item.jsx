@@ -1,11 +1,13 @@
-import Blurhash from 'mastodon/components/blurhash';
-import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
-import { autoPlayGif, displayMedia, useBlurhash } from 'mastodon/initial_state';
 import PropTypes from 'prop-types';
-import React from 'react';
+
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Blurhash } from 'mastodon/components/blurhash';
+import { Icon }  from 'mastodon/components/icon';
+import { autoPlayGif, displayMedia, useBlurhash } from 'mastodon/initial_state';
 
 export default class MediaItem extends ImmutablePureComponent {
 
@@ -74,7 +76,7 @@ export default class MediaItem extends ImmutablePureComponent {
       if (['audio', 'video'].includes(attachment.get('type'))) {
         content = (
           <img
-            src={attachment.get('preview_url') || attachment.getIn(['account', 'avatar_static'])}
+            src={attachment.get('preview_url') || status.getIn(['account', 'avatar_static'])}
             alt={attachment.get('description')}
             lang={status.get('language')}
             onLoad={this.handleImageLoad}

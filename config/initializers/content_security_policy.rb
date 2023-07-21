@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 # Define an application-wide content security policy
 # For further information see the following documentation
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 
 def host_to_url(str)
-  "http#{Rails.configuration.x.use_https ? 's' : ''}://#{str}" unless str.blank?
+  "http#{Rails.configuration.x.use_https ? 's' : ''}://#{str}".split('/').first if str.present?
 end
 
 base_host = Rails.configuration.x.web_domain
@@ -27,19 +29,17 @@ Rails.application.config.content_security_policy do |p|
   p.frame_src       :self, :https
   p.manifest_src    :self, assets_host
   p.form_action     :self
+  p.child_src       :self, :blob, assets_host
+  p.worker_src      :self, :blob, assets_host
 
   if Rails.env.development?
     webpacker_urls = %w(ws http).map { |protocol| "#{protocol}#{Webpacker.dev_server.https? ? 's' : ''}://#{Webpacker.dev_server.host_with_port}" }
 
     p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url, *webpacker_urls
     p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host
-    p.child_src   :self, :blob, assets_host
-    p.worker_src  :self, :blob, assets_host
   else
     p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url
     p.script_src  :self, assets_host, "'wasm-unsafe-eval'"
-    p.child_src   :self, :blob, assets_host
-    p.worker_src  :self, :blob, assets_host
   end
 end
 

@@ -2,6 +2,10 @@
 is:
   simple_form:
     hints:
+      account:
+        display_name: Fullt nafn þitt eða eitthvað til gamans.
+        fields: Heimasíðan þín, fornöfn, aldur eða eitthvað sem þú vilt koma á framfæri.
+        note: 'Þú getur @minnst á annað fólk eða #myllumerki.'
       account_alias:
         acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast frá
       account_migration:
@@ -39,7 +43,6 @@ is:
         digest: Er aðeins sent eftir lengri tímabil án virkni og þá aðeins ef þú hefur fengið persónuleg skilaboð á meðan þú hefur ekki verið á línunni
         discoverable: Gerðu öðrum kleift að finna aðganginn þinn í gegnum meðmæli, vinsældir og annað slíkt
         email: Þú munt fá sendan staðfestingarpóst
-        fields: Þú getur birt allt að 4 atriði sem töflu á notandasniðinu þínu
         header: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         inbox_url: Afritaðu slóðina af forsíðu endurvarpans sem þú vilt nota
         irreversible: Síaðar færslur munu hverfa óendurkræft, jafnvel þó sían sé seinna fjarlægð
@@ -59,7 +62,7 @@ is:
         setting_show_application: Nafnið á forritinu sem þú notar til að senda færslur mun birtast í ítarlegri sýn á færslunum þínum
         setting_use_blurhash: Litstiglarnir byggja á litunum í földu myndunum, en gera öll smáatriði óskýr
         setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er, í stað þess að hún skruni streyminu sjálfvirkt
-        username: Notandanafnið þitt verður einstakt á %{domain}
+        username: Þú mátt nota bókstafi, tölur og undirstrik
         whole_word: Þegar stikkorð eða setning er einungis tölur og bókstafir, verður það aðeins notað ef það samsvarar heilu orði
       domain_allow:
         domain: Þetta lén mun geta sótt gögn af þessum vefþjóni og tekið verður á móti innsendum gögnum frá léninu til vinnslu og geymslu
@@ -131,6 +134,7 @@ is:
         position: Rétthærra hlutverk ákvarðar lausn árekstra í ákveðnum tilfellum. Sumar aðgerðir er aðeins hægt að framkvæma á hlutverk með lægri forgangi
       webhook:
         events: Veldu atburði sem á að senda
+        template: Sníddu eigin JSON með breytilegri brúun. Skiljið eftir autt fyrir sjálfgefið JSON.
         url: Hvert atburðir verða sendir
     labels:
       account:
@@ -296,6 +300,7 @@ is:
         usable: Leyfa færslum að nota þetta myllumerki
       user:
         role: Hlutverk
+        time_zone: Tímabelti
       user_role:
         color: Litur merkis
         highlighted: Birta hlutverk sem merki á notandaauðkenni
@@ -304,6 +309,7 @@ is:
         position: Forgangur
       webhook:
         events: Virkjaðir atburðir
+        template: Sniðmát gagna
         url: Slóð á endapunkt
     'no': Nei
     not_recommended: Ekki mælt með þessu

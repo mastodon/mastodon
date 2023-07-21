@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe PreviewCardTrend, type: :model do
+RSpec.describe PreviewCardTrend do
 end

@@ -1,20 +1,22 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Icon }  from 'mastodon/components/icon';
+import { LoadMore } from 'mastodon/components/load_more';
+
+import { ImmutableHashtag as Hashtag } from '../../../components/hashtag';
 import AccountContainer from '../../../containers/account_container';
 import StatusContainer from '../../../containers/status_container';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { ImmutableHashtag as Hashtag } from '../../../components/hashtag';
-import Icon from 'mastodon/components/icon';
 import { searchEnabled } from '../../../initial_state';
-import LoadMore from 'mastodon/components/load_more';
 
 const messages = defineMessages({
   dismissSuggestion: { id: 'suggestions.dismiss', defaultMessage: 'Dismiss suggestion' },
 });
 
-export default @injectIntl
 class SearchResults extends ImmutablePureComponent {
 
   static propTypes = {
@@ -78,7 +80,7 @@ class SearchResults extends ImmutablePureComponent {
       count   += results.get('accounts').size;
       accounts = (
         <div className='search-results__section'>
-          <h5><Icon id='users' fixedWidth /><FormattedMessage id='search_results.accounts' defaultMessage='People' /></h5>
+          <h5><Icon id='users' fixedWidth /><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></h5>
 
           {results.get('accounts').map(accountId => <AccountContainer key={accountId} id={accountId} />)}
 
@@ -127,7 +129,7 @@ class SearchResults extends ImmutablePureComponent {
       <div className='search-results'>
         <div className='search-results__header'>
           <Icon id='search' fixedWidth />
-          <FormattedMessage id='search_results.total' defaultMessage='{count, number} {count, plural, one {result} other {results}}' values={{ count }} />
+          <FormattedMessage id='search_results.total' defaultMessage='{count, plural, one {# result} other {# results}}' values={{ count }} />
         </div>
 
         {accounts}
@@ -138,3 +140,5 @@ class SearchResults extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(SearchResults);

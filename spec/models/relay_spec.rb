@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe Relay, type: :model do
+RSpec.describe Relay do
 end

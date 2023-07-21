@@ -25,12 +25,12 @@
       height: 100%;
       position: absolute;
       bottom: 0;
-      left: 0;
+      inset-inline-start: 0;
     }
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (width <= 600px) {
   .account-header {
     margin-top: 0;
   }

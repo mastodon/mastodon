@@ -1,17 +1,21 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Column from 'mastodon/components/column';
-import LinkFooter from 'mastodon/features/ui/components/link_footer';
-import { Helmet } from 'react-helmet';
-import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'mastodon/actions/server';
-import Account from 'mastodon/containers/account_container';
-import Skeleton from 'mastodon/components/skeleton';
-import Icon from 'mastodon/components/icon';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
 import classNames from 'classnames';
-import Image from 'mastodon/components/image';
+import { Helmet } from 'react-helmet';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { fetchServer, fetchExtendedDescription, fetchDomainBlocks  } from 'mastodon/actions/server';
+import Column from 'mastodon/components/column';
+import { Icon  }  from 'mastodon/components/icon';
+import { ServerHeroImage } from 'mastodon/components/server_hero_image';
+import { Skeleton } from 'mastodon/components/skeleton';
+import Account from 'mastodon/containers/account_container';
+import LinkFooter from 'mastodon/features/ui/components/link_footer';
 
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },
@@ -41,7 +45,7 @@ const mapStateToProps = state => ({
   domainBlocks: state.getIn(['server', 'domainBlocks']),
 });
 
-class Section extends React.PureComponent {
+class Section extends PureComponent {
 
   static propTypes = {
     title: PropTypes.string,
@@ -67,7 +71,7 @@ class Section extends React.PureComponent {
 
     return (
       <div className={classNames('about__section', { active: !collapsed })}>
-        <div className='about__section__title' role='button' tabIndex='0' onClick={this.handleClick}>
+        <div className='about__section__title' role='button' tabIndex={0} onClick={this.handleClick}>
           <Icon id={collapsed ? 'chevron-right' : 'chevron-down'} fixedWidth /> {title}
         </div>
 
@@ -80,9 +84,7 @@ class Section extends React.PureComponent {
 
 }
 
-export default @connect(mapStateToProps)
-@injectIntl
-class About extends React.PureComponent {
+class About extends PureComponent {
 
   static propTypes = {
     server: ImmutablePropTypes.map,
@@ -116,7 +118,7 @@ class About extends React.PureComponent {
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <div className='scrollable about'>
           <div className='about__header'>
-            <Image blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
+            <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
             <h1>{isLoading ? <Skeleton width='10ch' /> : server.get('domain')}</h1>
             <p><FormattedMessage id='about.powered_by' defaultMessage='Decentralized social media powered by {mastodon}' values={{ mastodon: <a href='https://joinmastodon.org' className='about__mail' target='_blank'>Mastodon</a> }} /></p>
           </div>
@@ -125,7 +127,7 @@ class About extends React.PureComponent {
             <div className='about__meta__column'>
               <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
-              <Account id={server.getIn(['contact', 'account', 'id'])} size={36} />
+              <Account id={server.getIn(['contact', 'account', 'id'])} size={36} minimal />
             </div>
 
             <hr className='about__meta__divider' />
@@ -159,7 +161,7 @@ class About extends React.PureComponent {
           </Section>
 
           <Section title={intl.formatMessage(messages.rules)}>
-            {!isLoading && (server.get('rules').isEmpty() ? (
+            {!isLoading && (server.get('rules', []).isEmpty() ? (
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
             ) : (
               <ol className='rules-list'>
@@ -217,3 +219,5 @@ class About extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(About));

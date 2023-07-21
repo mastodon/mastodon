@@ -122,8 +122,6 @@ zh-HK:
       removed_header_msg: 成功刪除 %{username} 的頁面頂端圖片
       resend_confirmation:
         already_confirmed: 這個使用者先前已經被確認過
-        send: 重寄確認郵件
-        success: 確認電郵發送成功！
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
@@ -798,6 +796,12 @@ zh-HK:
         message_html: 您尚未定義任何伺服器規則
       sidekiq_process_check:
         message_html: 沒有 %{value} 佇列的 Sidekiq 處理程序。請檢查 Sidekiq 設定檔案
+      upload_check_privacy_error:
+        action: 在此查看更多資訊
+        message_html: "<strong>你的網絡伺服器配置錯誤。你的使用者的私隱有危險。</strong>"
+      upload_check_privacy_error_object_storage:
+        action: 在此查看更多資訊
+        message_html: "<strong>你的對象儲存配置錯誤。你的使用者的私隱有危險。</strong>"
     tags:
       review: 審核文章
       updated_msg: 成功更新主題標籤設定
@@ -955,7 +959,6 @@ zh-HK:
     your_token: token
   auth:
     apply_for_account: 申請帳號
-    change_password: 密碼
     confirmations:
       wrong_email_hint: 如果該電郵地址不正確，你可以在帳號設定中修改。
     delete_account: 刪除帳號
@@ -964,7 +967,6 @@ zh-HK:
       prefix_invited_by_user: "@%{name} 邀請你加入這個 Mastodon 服務站！"
       prefix_sign_up: 立即註冊 Mastodon！
       suffix: 有了一個帳戶，就可以從任何Mastodon服務器關注任何人，發佈更新並與任何Mastodon服務器的用戶交流！
-    didnt_get_confirmation: 沒有收到確認指示電郵？
     dont_have_your_security_key: 找不到安全密鑰？
     forgot_password: 忘記了密碼？
     invalid_reset_password_token: 密碼重置 token 無效或已過期。請重新重設密碼。
@@ -982,7 +984,6 @@ zh-HK:
       saml: SAML
     register: 登記
     registration_closed: "%{instance} 並不接受新成員請求"
-    resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
     rules:
       accept: 接受
@@ -991,10 +992,6 @@ zh-HK:
       title: 一些基本規則。
     security: 登入資訊
     set_new_password: 設定新密碼
-    setup:
-      email_below_hint_html: 如果下面的電郵地址不正確，你可在此修改，然後接收電郵進行確認。
-      email_settings_hint_html: 確認電郵已發送至 %{email}。電郵地址不正確的話，你可以在帳戶設置中進行更改。
-      title: 設定
     sign_in:
       preamble_html: 請使用 <strong>%{domain}</strong> 的資料登入。如果您的帳戶託管在其他的伺服器，您將無法在此登入。
       title: 登入 %{domain}
@@ -1379,6 +1376,7 @@ zh-HK:
     confirm_remove_selected_followers: 你確定要移除選取的追蹤者嗎？
     confirm_remove_selected_follows: 你確定要移除選取的追蹤者嗎？
     dormant: 潛在
+    follow_failure: 無法追蹤部份已選的帳號。
     follow_selected_followers: 關注所選的追隨者
     followers: 追隨者
     following: 正在關注
@@ -1418,6 +1416,7 @@ zh-HK:
       electron: Electron 瀏覽器
       firefox: Firefox 瀏覽器
       generic: 未知的瀏覽器
+      huawei_browser: 華為瀏覽器
       ie: Internet Explorer 瀏覽器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 瀏覽器
@@ -1427,6 +1426,7 @@ zh-HK:
       qq: QQ瀏覽器
       safari: Safari 瀏覽器
       uc_browser: UC 瀏覽器
+      unknown_browser: 未知的瀏覽器
       weibo: 新浪微博
     current_session: 目前的作業階段
     description: "%{platform} 上的 %{browser}"
@@ -1439,9 +1439,10 @@ zh-HK:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: 未知平台
+      unknown_platform: 未知平台
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1648,12 +1649,12 @@ zh-HK:
       title: 歡迎 %{name} 加入！
   users:
     follow_limit_reached: 你不能關注多於%{limit} 人
+    go_to_sso_account_settings: 前往你身份提供者的帳號設定
     invalid_otp_token: 雙重認證碼不正確
     otp_lost_help_html: 如果這兩者你均無法登入，你可以聯繫 %{email}
     seamless_external_login: 因為你正在使用第三方服務登入，所以不能設定密碼和電郵。
     signed_in_as: 目前登入的帳戶：
   verification:
-    explanation_html: 你可以<strong>認證個人資料頁面的元數據 (Metadata) 連結是屬於你的</strong>。要認證，那些連結的目的地網站必須有一條回到你 Mastodon 個人頁面的連結，而且連結<strong>必須</strong>具有<code>rel="me"</code>屬性。連結的文字內容都不會影響認證。這裏有一個例子：
     verification: 驗證
   webauthn_credentials:
     add: 新增安全密鑰裝置

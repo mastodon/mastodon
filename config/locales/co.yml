@@ -108,8 +108,6 @@ co:
       removed_header_msg: U ritrattu di cuprendula di %{username} hè statu toltu
       resend_confirmation:
         already_confirmed: St’utilizatore hè digià cunfirmatu
-        send: Rimandà un’e-mail di cunfirmazione
-        success: L’e-mail di cunfirmazione hè statu mandatu!
       reset: Riinizializà
       reset_password: Riinizializà a chjave d’accessu
       resubscribe: Riabbunassi
@@ -555,14 +553,12 @@ co:
     warning: Abbadate à quessi dati. Ùn i date à nisunu!
     your_token: Rigenerà a fiscia d’accessu
   auth:
-    change_password: Chjave d’accessu
     delete_account: Sguassà u contu
     delete_account_html: S’è voi vulete toglie u vostru contu <a href="%{path}">ghjè quì</a>. Duverete cunfirmà a vostra scelta.
     description:
       prefix_invited_by_user: "@%{name} v'invita à raghjunghje stu servore di Mastodon!"
       prefix_sign_up: Arregistratevi nant'à Mastodon oghji!
       suffix: Cù un contu, puderete siguità l'altri, pustà statuti è scambià missaghji cù l'utilizatori di tutti i servori Mastodon è ancu di più!
-    didnt_get_confirmation: Ùn avete micca ricevutu l’istruzione di cunfirmazione?
     dont_have_your_security_key: Ùn avete micca a chjave di sicurità?
     forgot_password: Chjave scurdata?
     invalid_reset_password_token: U ligame di riinizializazione di a chjave d’accessu hè spiratu o ùn hè micca validu. Pudete dumandà un'altru ligame.
@@ -578,14 +574,9 @@ co:
       saml: SAML
     register: Arregistrassi
     registration_closed: "%{instance} ùn accetta micca novi socii"
-    resend_confirmation: Rimandà l’istruzzioni di cunfirmazione
     reset_password: Cambià a chjave d’accessu
     security: Sicurità
     set_new_password: Creà una nova chjave d’accessu
-    setup:
-      email_below_hint_html: S'è l'indirizzu e-mail quì sottu ùn hè micca currettu, pudete cambiallu quì è riceve un novu e-mail di cunfirmazione.
-      email_settings_hint_html: L'e-mail di cunfirmazione hè statu mandatu à l'indirizzu %{email}. S'ellu ùn hè micca currettu, pudete cambiallu in i parametri di u contu.
-      title: Stallazione
     status:
       account_status: Statutu di u contu
       confirming: In attesa di a cumplezzione di a cunfirmazione di l'e-mail.
@@ -928,7 +919,6 @@ co:
       ios: iOS
       linux: Linux
       mac: macOS
-      other: piattaforma scunnisciuta
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1090,7 +1080,6 @@ co:
     seamless_external_login: Site cunnettatu·a dapoi un serviziu esternu, allora i parametri di chjave d’accessu è d’indirizzu e-mail ùn so micca dispunibili.
     signed_in_as: 'Cunnettatu·a cum’è:'
   verification:
-    explanation_html: 'Pudete <strong>verificavi cum''è u pruprietariu di i ligami in i metadati di u vostru prufile</strong>. Per quessa, u vostru situ deve avè un ligame versu a vostra pagina Mastodon. U ligame <strong>deve</strong> avè un''attributu <code>rel="me"</code>. U cuntenutu di u testu di u ligame ùn hè micca impurtante. Eccu un''esempiu:'
     verification: Verificazione
   webauthn_credentials:
     add: Aghjunghje una chjave di sicurità

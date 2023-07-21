@@ -4,12 +4,12 @@ on:
   push:
     branches-ignore:
       - 'dependabot/**'
+      - 'renovate/**'
   pull_request:
 
 env:
   BUNDLE_CLEAN: true
   BUNDLE_FROZEN: true
-  BUNDLE_WITHOUT: 'development production'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -19,8 +19,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: true
+      matrix:
+        mode:
+          - production
+          - test
     env:
-      RAILS_ENV: test
+      RAILS_ENV: ${{ matrix.mode }}
+      BUNDLE_WITH: ${{ matrix.mode }}
+      OTP_SECRET: precompile_placeholder
+      SECRET_KEY_BASE: precompile_placeholder
 
     steps:
       - uses: actions/checkout@v3
@@ -32,7 +41,9 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: Install native Ruby dependencies
-        run: sudo apt-get install -y libicu-dev libidn11-dev
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libicu-dev libidn11-dev
 
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
@@ -40,7 +51,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - run: yarn install --frozen-lockfile
+      - run: yarn --frozen-lockfile --production
       - name: Precompile assets
         # Previously had set this, but it's not supported
         # export NODE_OPTIONS=--openssl-legacy-provider
@@ -48,6 +59,7 @@ jobs:
           ./bin/rails assets:precompile
 
       - uses: actions/upload-artifact@v3
+        if: matrix.mode == 'test'
         with:
           path: |-
             ./public/assets
@@ -63,7 +75,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:14.5
+        image: postgres:14-alpine
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
@@ -76,7 +88,7 @@ jobs:
           - 5432:5432
 
       redis:
-        image: redis:7.0
+        image: redis:7-alpine
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -95,14 +107,13 @@ jobs:
       PAM_ENABLED: true
       PAM_DEFAULT_SERVICE: pam_test
       PAM_CONTROLLED_SERVICE: pam_test_controlled
-      BUNDLE_WITH: 'pam_authentication'
+      BUNDLE_WITH: 'pam_authentication test'
       CI_JOBS: ${{ matrix.ci_job }}/4
 
     strategy:
       fail-fast: false
       matrix:
         ruby-version:
-          - '2.7'
           - '3.0'
           - '3.1'
           - '.ruby-version'
@@ -119,6 +130,9 @@ jobs:
           path: './public'
           name: ${{ github.sha }}
 
+      - name: Update package index
+        run: sudo apt-get update
+
       - name: Install native Ruby dependencies
         run: sudo apt-get install -y libicu-dev libidn11-dev
 
@@ -130,10 +144,6 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version}}
           bundler-cache: true
-
-      - name: Update system gems
-        if: matrix.ruby-version == '2.7'
-        run: gem update --system
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Fabricator(:media_attachment) do
-  account
+  account { Fabricate.build(:account) }
 
   file do |attrs|
     case attrs[:type]

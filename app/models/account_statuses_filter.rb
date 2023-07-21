@@ -32,9 +32,9 @@ class AccountStatusesFilter
   private
 
   def initial_scope
-    if suspended?
-      Status.none
-    elsif anonymous?
+    return Status.none if suspended?
+
+    if anonymous?
       account.statuses.where(visibility: %i(public unlisted))
     elsif author?
       account.statuses.all # NOTE: #merge! does not work without the #all

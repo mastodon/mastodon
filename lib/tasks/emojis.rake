@@ -6,7 +6,7 @@ def gen_border(codepoint, color)
   doc = File.open(input) { |f| Nokogiri::XML(f) }
   svg = doc.at_css('svg')
   if svg.key?('viewBox')
-    view_box = svg['viewBox'].split(' ').map(&:to_i)
+    view_box = svg['viewBox'].split.map(&:to_i)
     view_box[0] -= 2
     view_box[1] -= 2
     view_box[2] += 4
@@ -31,12 +31,12 @@ def gen_border(codepoint, color)
 end
 
 def codepoints_to_filename(codepoints)
-  codepoints.downcase.gsub(/\A[0]+/, '').tr(' ', '-')
+  codepoints.downcase.gsub(/\A0+/, '').tr(' ', '-')
 end
 
 def codepoints_to_unicode(codepoints)
   if codepoints.include?(' ')
-    codepoints.split(' ').map(&:hex).pack('U*')
+    codepoints.split.map(&:hex).pack('U*')
   else
     [codepoints.hex].pack('U')
   end

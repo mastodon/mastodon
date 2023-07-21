@@ -3,11 +3,8 @@
     display: block;
     text-decoration: none;
     color: inherit;
-    box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      box-shadow: none;
-    }
+    overflow: hidden;
+    border-radius: 4px;
 
     &:hover,
     &:active,
@@ -22,7 +19,6 @@
     height: 130px;
     position: relative;
     background: darken($ui-base-color, 12%);
-    border-radius: 4px 4px 0 0;
 
     img {
       display: block;
@@ -30,15 +26,10 @@
       height: 100%;
       margin: 0;
       object-fit: cover;
-      border-radius: 4px 4px 0 0;
     }
 
-    @media screen and (max-width: 600px) {
+    @media screen and (width <= 600px) {
       height: 200px;
-    }
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      display: none;
     }
   }
 
@@ -49,11 +40,6 @@
     justify-content: flex-start;
     align-items: center;
     background: lighten($ui-base-color, 4%);
-    border-radius: 0 0 4px 4px;
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      border-radius: 0;
-    }
 
     .avatar {
       flex: 0 0 auto;
@@ -73,8 +59,8 @@
     }
 
     .display-name {
-      margin-left: 15px;
-      text-align: left;
+      margin-inline-start: 15px;
+      text-align: start;
 
       i[data-hidden] {
         display: none;
@@ -139,21 +125,21 @@
 
   .older {
     float: left;
-    padding-left: 0;
+    padding-inline-start: 0;
 
     .fa {
       display: inline-block;
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
   }
 
   .newer {
     float: right;
-    padding-right: 0;
+    padding-inline-end: 0;
 
     .fa {
       display: inline-block;
-      margin-left: 5px;
+      margin-inline-start: 5px;
     }
   }
 
@@ -162,7 +148,7 @@
     color: lighten($inverted-text-color, 10%);
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (width <= 700px) {
     padding: 30px 20px;
 
     .page {

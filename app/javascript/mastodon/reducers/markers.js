@@ -1,13 +1,14 @@
+import { Map as ImmutableMap } from 'immutable';
+
 import {
   MARKERS_SUBMIT_SUCCESS,
 } from '../actions/markers';
+
 
 const initialState = ImmutableMap({
   home: '0',
   notifications: '0',
 });
-
-import { Map as ImmutableMap } from 'immutable';
 
 export default function markers(state = initialState, action) {
   switch(action.type) {

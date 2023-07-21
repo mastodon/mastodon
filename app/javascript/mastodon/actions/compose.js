@@ -1,10 +1,12 @@
+import { defineMessages } from 'react-intl';
+
 import axios from 'axios';
 import { throttle } from 'lodash';
-import { defineMessages } from 'react-intl';
+
 import api from 'mastodon/api';
 import { search as emojiSearch } from 'mastodon/features/emoji/emoji_mart_search_light';
 import { tagHistory } from 'mastodon/settings';
-import resizeImage from 'mastodon/utils/resize_image';
+
 import { showAlert, showAlertForError } from './alerts';
 import { useEmoji } from './emojis';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
@@ -75,10 +77,13 @@ export const COMPOSE_CHANGE_MEDIA_DESCRIPTION = 'COMPOSE_CHANGE_MEDIA_DESCRIPTIO
 export const COMPOSE_CHANGE_MEDIA_FOCUS       = 'COMPOSE_CHANGE_MEDIA_FOCUS';
 
 export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
+export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
 
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
   uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
+  open: { id: 'compose.published.open', defaultMessage: 'Open' },
+  published: { id: 'compose.published.body', defaultMessage: 'Post published.' },
 });
 
 export const ensureComposeIsVisible = (getState, routerHistory) => {
@@ -125,6 +130,15 @@ export function resetCompose() {
     type: COMPOSE_RESET,
   };
 }
+
+export const focusCompose = (routerHistory, defaultText) => (dispatch, getState) => {
+  dispatch({
+    type: COMPOSE_FOCUS,
+    defaultText,
+  });
+
+  ensureComposeIsVisible(getState, routerHistory);
+};
 
 export function mentionCompose(account, routerHistory) {
   return (dispatch, getState) => {
@@ -228,6 +242,13 @@ export function submitCompose(routerHistory) {
         insertIfOnline('public');
         insertIfOnline(`account:${response.data.account.id}`);
       }
+
+      dispatch(showAlert({
+        message: messages.published,
+        action: messages.open,
+        dismissAfter: 10000,
+        onClick: () => routerHistory.push(`/@${response.data.account.username}/${response.data.id}`),
+      }));
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
@@ -257,63 +278,60 @@ export function submitComposeFail(error) {
 export function uploadCompose(files) {
   return function (dispatch, getState) {
     const uploadLimit = 4;
-    const media  = getState().getIn(['compose', 'media_attachments']);
-    const pending  = getState().getIn(['compose', 'pending_media_attachments']);
+    const media = getState().getIn(['compose', 'media_attachments']);
+    const pending = getState().getIn(['compose', 'pending_media_attachments']);
     const progress = new Array(files.length).fill(0);
+
     let total = Array.from(files).reduce((a, v) => a + v.size, 0);
 
     if (files.length + media.size + pending > uploadLimit) {
-      dispatch(showAlert(undefined, messages.uploadErrorLimit));
+      dispatch(showAlert({ message: messages.uploadErrorLimit }));
       return;
     }
 
     if (getState().getIn(['compose', 'poll'])) {
-      dispatch(showAlert(undefined, messages.uploadErrorPoll));
+      dispatch(showAlert({ message: messages.uploadErrorPoll }));
       return;
     }
 
     dispatch(uploadComposeRequest());
 
-    for (const [i, f] of Array.from(files).entries()) {
+    for (const [i, file] of Array.from(files).entries()) {
       if (media.size + i > 3) break;
 
-      resizeImage(f).then(file => {
-        const data = new FormData();
-        data.append('file', file);
-        // Account for disparity in size of original image and resized data
-        total += file.size - f.size;
+      const data = new FormData();
+      data.append('file', file);
 
-        return api(getState).post('/api/v2/media', data, {
-          onUploadProgress: function({ loaded }){
-            progress[i] = loaded;
-            dispatch(uploadComposeProgress(progress.reduce((a, v) => a + v, 0), total));
-          },
-        }).then(({ status, data }) => {
-          // If server-side processing of the media attachment has not completed yet,
-          // poll the server until it is, before showing the media attachment as uploaded
+      api(getState).post('/api/v2/media', data, {
+        onUploadProgress: function({ loaded }){
+          progress[i] = loaded;
+          dispatch(uploadComposeProgress(progress.reduce((a, v) => a + v, 0), total));
+        },
+      }).then(({ status, data }) => {
+        // If server-side processing of the media attachment has not completed yet,
+        // poll the server until it is, before showing the media attachment as uploaded
 
-          if (status === 200) {
-            dispatch(uploadComposeSuccess(data, f));
-          } else if (status === 202) {
-            dispatch(uploadComposeProcessing());
+        if (status === 200) {
+          dispatch(uploadComposeSuccess(data, file));
+        } else if (status === 202) {
+          dispatch(uploadComposeProcessing());
 
-            let tryCount = 1;
+          let tryCount = 1;
 
-            const poll = () => {
-              api(getState).get(`/api/v1/media/${data.id}`).then(response => {
-                if (response.status === 200) {
-                  dispatch(uploadComposeSuccess(response.data, f));
-                } else if (response.status === 206) {
-                  const retryAfter = (Math.log2(tryCount) || 1) * 1000;
-                  tryCount += 1;
-                  setTimeout(() => poll(), retryAfter);
-                }
-              }).catch(error => dispatch(uploadComposeFail(error)));
-            };
+          const poll = () => {
+            api(getState).get(`/api/v1/media/${data.id}`).then(response => {
+              if (response.status === 200) {
+                dispatch(uploadComposeSuccess(response.data, file));
+              } else if (response.status === 206) {
+                const retryAfter = (Math.log2(tryCount) || 1) * 1000;
+                tryCount += 1;
+                setTimeout(() => poll(), retryAfter);
+              }
+            }).catch(error => dispatch(uploadComposeFail(error)));
+          };
 
-            poll();
-          }
-        });
+          poll();
+        }
       }).catch(error => dispatch(uploadComposeFail(error)));
     }
   };
@@ -373,7 +391,10 @@ export function initMediaEditModal(id) {
       id,
     });
 
-    dispatch(openModal('FOCAL_POINT', { id }));
+    dispatch(openModal({
+      modalType: 'FOCAL_POINT',
+      modalProps: { id },
+    }));
   };
 }
 
@@ -401,16 +422,12 @@ export function changeUploadCompose(id, params) {
     // Editing already-attached media is deferred to editing the post itself.
     // For simplicity's sake, fake an API reply.
     if (media && !media.get('unattached')) {
-      let { description, focus } = params;
-      const data = media.toJS();
-
-      if (description) {
-        data.description = description;
-      }
+      const { focus, ...other } = params;
+      const data = { ...media.toJS(), ...other };
 
       if (focus) {
-        focus = focus.split(',');
-        data.meta = { focus: { x: parseFloat(focus[0]), y: parseFloat(focus[1]) } };
+        const [x, y] = focus.split(',');
+        data.meta = { focus: { x: parseFloat(x), y: parseFloat(y) } };
       }
 
       dispatch(changeUploadComposeSuccess(data, true));

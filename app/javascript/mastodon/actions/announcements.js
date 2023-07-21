@@ -1,4 +1,5 @@
 import api from '../api';
+
 import { normalizeAnnouncement } from './importer/normalizer';
 
 export const ANNOUNCEMENTS_FETCH_REQUEST = 'ANNOUNCEMENTS_FETCH_REQUEST';

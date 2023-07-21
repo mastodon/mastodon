@@ -2,6 +2,10 @@
 hu:
   simple_form:
     hints:
+      account:
+        display_name: Teljes neved vagy vicces neved.
+        fields: Weboldalad, megszólításaid, korod, bármi, amit szeretnél.
+        note: 'Megemlíthetsz @másokat vagy #hashtag-eket.'
       account_alias:
         acct: Add meg annak a fióknak a felhasználónév@domain párosát, ahonnan át szeretnéd mozgatni
       account_migration:
@@ -39,7 +43,6 @@ hu:
         digest: Csak hosszú távollét esetén küldődik és csak ha személyes üzenetet kaptál távollétedben
         discoverable: Engedélyezés, hogy a fiókod idegenek által megtalálható legyen javaslatokon, trendeken és más funkciókon keresztül
         email: Kapsz egy megerősítő e-mailt
-        fields: A profilodon legfeljebb 4 bejegyzés szerepelhet táblázatos formában
         header: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
         inbox_url: Másold ki a használandó relé szerver kezdőoldalának URL-jét
         irreversible: A kiszűrt bejegyzések visszafordíthatatlanul eltűnnek, a szűrő későbbi törlése esetén is
@@ -59,7 +62,7 @@ hu:
         setting_show_application: A bejegyzések részletes nézetében látszani fog, milyen alkalmazást használtál a bejegyzés közzétételéhez
         setting_use_blurhash: A kihomályosítás az eredeti képből történik, de minden részletet elrejt
         setting_use_pending_items: Idővonal frissítése csak kattintásra automatikus görgetés helyett
-        username: A felhasználói neved egyedi lesz a %{domain} domainen
+        username: Betűk, számok és alávonások használhatók
         whole_word: Ha a kulcsszó alfanumerikus, csak akkor minősül majd találatnak, ha teljes szóra illeszkedik
       domain_allow:
         domain: Ez a domain adatokat kérhet le erről a kiszolgálóról, és a bejövő adatok fel lesznek dolgozva és tárolva lesznek
@@ -131,6 +134,7 @@ hu:
         position: A magasabb szerepkör oldja fel az ütközéseket bizonyos helyzetekben. Bizonyos műveleteket csak alacsonyabb prioritású szerepkörrel lehet elvégezni.
       webhook:
         events: Válaszd ki a küldendő eseményeket
+        template: Saját JSON adatcsomagot állíthatsz össze változó-behelyettesítés használatával. Hagyd üresen az alapértelmezett JSON adatcsomaghoz.
         url: Ahová az eseményket küldjük
     labels:
       account:
@@ -296,6 +300,7 @@ hu:
         usable: Bejegyzések használhatják ezt a hashtaget
       user:
         role: Szerep
+        time_zone: Időzóna
       user_role:
         color: Jelvény színe
         highlighted: Szerep megjelenítése jelvényként a felhasználói profilokon
@@ -304,6 +309,7 @@ hu:
         position: Prioritás
       webhook:
         events: Engedélyezett események
+        template: Adatcsomag sablon
         url: Végponti URL
     'no': Nem
     not_recommended: Nem ajánlott

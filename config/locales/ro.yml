@@ -121,8 +121,6 @@ ro:
       removed_header_msg: S-a îndepărtat cu succes coperta utilizatorului %{username}
       resend_confirmation:
         already_confirmed: Acest utilizator este deja confirmat
-        send: Retrimite e-mail de confirmare
-        success: E-mail de confirmare trimis cu succes!
       reset: Resetează
       reset_password: Resetează parola
       resubscribe: Resubscrie-te
@@ -425,14 +423,12 @@ ro:
     warning: Fiți foarte atent cu aceste date. Nu le împărtășiți niciodată cu cineva!
     your_token: Token-ul tău de acces
   auth:
-    change_password: Parolă
     delete_account: Șterge contul
     delete_account_html: Dacă vrei să ștergi acest cont <a href="%{path}">poți începe aici</a>. Va trebui să confirmi această acțiune.
     description:
       prefix_invited_by_user: "@%{name} vă invită să vă alăturați acestui server de Mastodon!"
       prefix_sign_up: Înscrie-te pe Mastodon astăzi!
       suffix: Cu un cont, vei putea să urmărești oameni, să postezi actualizări și să schimbi mesaje cu utilizatorii de pe orice server Mastodon și multe altele!
-    didnt_get_confirmation: Nu ai primit instrucțiunile de confirmare?
     forgot_password: Ai uitat parola?
     invalid_reset_password_token: Această cerere este invalidă sau a expirat. Încearcă resetarea parolei din nou.
     login: Conectare
@@ -442,14 +438,9 @@ ro:
     or_log_in_with: Sau conectează-te cu
     register: Înregistrare
     registration_closed: "%{instance} nu acceptă membri noi"
-    resend_confirmation: Retrimite instrucțiunile de confirmare
     reset_password: Resetare parolă
     security: Securitate
     set_new_password: Setează o nouă parolă
-    setup:
-      email_below_hint_html: Dacă adresa de e-mail de mai jos este incorectă, o puteți schimba aici și puteți primi un nou e-mail de confirmare.
-      email_settings_hint_html: E-mailul de confirmare a fost trimis la %{email}. Dacă această adresă de e-mail nu este corectă, o puteți schimba în setările contului.
-      title: Configurare
     status:
       account_status: Starea contului
       confirming: Se așteaptă finalizarea confirmării prin e-mail.
@@ -749,5 +740,4 @@ ro:
     seamless_external_login: Sunteți autentificat prin intermediul unui serviciu extern, astfel încât parola și setările de e-mail nu sunt disponibile.
     signed_in_as: 'Conectat ca:'
   verification:
-    explanation_html: 'Poți <strong>să te verifici ca proprietar al link-urilor din metadatele profilului tău</strong>. Pentru aceasta, site-ul web asociat trebuie să conțină un link înapoi la profilul tău. Link-ul înapoi <strong>trebuie</strong> să aibă un atribut <code>rel="me"</code>. Conținut textului link-ului nu contează. Iată un exemplu:'
     verification: Verificare

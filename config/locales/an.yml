@@ -124,8 +124,6 @@ an:
       removed_header_msg: S'ha eliminau con exito la imachen de capitero de %{username}
       resend_confirmation:
         already_confirmed: Este usuario ya ye confirmau
-        send: Reninviar lo correu electronico de confirmación
-        success: Correu electronico de confirmación ninviau con exito!
       reset: Reiniciar
       reset_password: Reiniciar clau
       resubscribe: Re-suscribir
@@ -942,14 +940,12 @@ an:
     your_token: Lo tuyo token d'acceso
   auth:
     apply_for_account: Solicitar una cuenta
-    change_password: Clau
     delete_account: Borrar cuenta
     delete_account_html: Si deseya eliminar la suya cuenta, puede <a href="%{path}">proceder aquí</a>. Será pediu d'una confirmación.
     description:
       prefix_invited_by_user: "@%{name} te convida a unir-te a este servidor de Mastodon!"
       prefix_sign_up: Une-te a Mastodon hue!
       suffix: Con una cuenta podrás seguir a chent, publicar novedatz y intercambiar mensaches con usuarios de qualsequier servidor de Mastodon y mas!
-    didnt_get_confirmation: No recibió lo correu de confirmación?
     dont_have_your_security_key: No tiens la tuya clau de seguranza?
     forgot_password: Ixuplidés la tuya clau?
     invalid_reset_password_token: Lo token de reinicio de clau ye invalido u expiró. Per favor pide un nuevo.
@@ -967,17 +963,12 @@ an:
       saml: SAML
     register: Rechistrar-se
     registration_closed: "%{instance} no ye acceptando nuevos miembros"
-    resend_confirmation: Tornar a ninviar lo correu de confirmación
     reset_password: Restablir clau
     rules:
       preamble: Estas son establidas y aplicadas per los moderadors de %{domain}.
       title: Qualques reglas basicas.
     security: Cambiar clau
     set_new_password: Establir nueva clau
-    setup:
-      email_below_hint_html: Si l'adreza de correu electronico que amaneixe contino ye incorrecta, se puede cambiar-la aquí y recibir un nuevo correu electronico de confirmación.
-      email_settings_hint_html: Lo correu electronico de confirmación estió ninviau a %{email}. Si ixa adreza de correu electronico no sía correcta, se puede cambiar-la en a configuración d'a cuenta.
-      title: Configuración
     sign_in:
       preamble_html: Inicia sesión con as tuys credencials <strong>%{domain}</strong>. Si la tuya cuenta se troba en un servidor diferent, no podrás iniciar aquí una sesión.
       title: Iniciar sesión en %{domain}
@@ -1427,7 +1418,6 @@ an:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: plataforma desconoixida
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1644,7 +1634,6 @@ an:
     seamless_external_login: Has iniciau sesión dende un servicio externo, asinas que los achustes de clau y correu no son disponibles.
     signed_in_as: 'Sesión iniciada como:'
   verification:
-    explanation_html: 'Puetz <strong> verificar-te a tu mesmo como lo duenyo d''os links en os metadatos d''o tuyo perfil </strong>. Pa ixo, lo puesto vinculau ha de contener un vinclo a lo tuyo perfil de Mastodon. Lo vinclo en o tuyo puesto <strong> debe </strong> tener un atributo <code> rel="me"</code>. Lo texto d''o vinclo no importa. Aquí un eixemplo:'
     verification: Verificación
   webauthn_credentials:
     add: Adhibir nueva clau de seguranza

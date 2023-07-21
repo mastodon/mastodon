@@ -10,7 +10,7 @@ describe RefollowWorker do
   let(:bob)     { Fabricate(:account, domain: nil, username: 'bob') }
 
   describe 'perform' do
-    let(:service) { double }
+    let(:service) { instance_double(FollowService) }
 
     before do
       allow(FollowService).to receive(:new).and_return(service)

@@ -1,10 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
+
 import Button from '../../../components/button';
 
-export default @injectIntl
-class ConfirmationModal extends React.PureComponent {
+class ConfirmationModal extends PureComponent {
 
   static propTypes = {
     message: PropTypes.node.isRequired,
@@ -68,3 +69,5 @@ class ConfirmationModal extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(ConfirmationModal);

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ApplicationController, type: :controller do
+describe ApplicationController do
   controller do
     include Localized
 
@@ -41,7 +41,7 @@ describe ApplicationController, type: :controller do
     end
   end
 
-  context 'user with valid locale has signed in' do
+  context 'with a user with valid locale has signed in' do
     it "sets user's locale" do
       user = Fabricate(:user, locale: :ca)
 
@@ -52,7 +52,7 @@ describe ApplicationController, type: :controller do
     end
   end
 
-  context 'user with invalid locale has signed in' do
+  context 'with a user with invalid locale has signed in' do
     before do
       user = Fabricate.build(:user, locale: :invalid)
       user.save!(validate: false)
@@ -62,7 +62,7 @@ describe ApplicationController, type: :controller do
     include_examples 'default locale'
   end
 
-  context 'user has not signed in' do
+  context 'with a user who has not signed in' do
     include_examples 'default locale'
   end
 end

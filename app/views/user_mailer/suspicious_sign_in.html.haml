@@ -45,9 +45,9 @@
                                 = @remote_ip
                                 %br/
                                 %strong= "#{t('sessions.browser')}:"
-                                %span{ title: @user_agent }= t 'sessions.description', browser: t("sessions.browsers.#{@detection.id}", default: "#{@detection.id}"), platform: t("sessions.platforms.#{@detection.platform.id}", default: "#{@detection.platform.id}")
+                                %span{ title: @user_agent }= t 'sessions.description', browser: t("sessions.browsers.#{@detection.id}", default: @detection.id.to_s), platform: t("sessions.platforms.#{@detection.platform.id}", default: @detection.platform.id.to_s)
                                 %br/
-                                = l(@timestamp)
+                                = l(@timestamp.in_time_zone(@resource.time_zone.presence))
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody

@@ -2,6 +2,6 @@
 
 Fabricator(:account_moderation_note) do
   content 'MyText'
-  account
-  target_account { Fabricate(:account) }
+  account { Fabricate.build(:account) }
+  target_account { Fabricate.build(:account) }
 end

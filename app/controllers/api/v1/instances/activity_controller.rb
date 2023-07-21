@@ -3,11 +3,12 @@
 class Api::V1::Instances::ActivityController < Api::BaseController
   before_action :require_enabled_api!
 
-  skip_before_action :set_cache_headers
   skip_before_action :require_authenticated_user!, unless: :whitelist_mode?
 
+  vary_by ''
+
   def show
-    expires_in 1.day, public: true
+    cache_even_if_authenticated!
     render_with_cache json: :activity, expires_in: 1.day
   end
 

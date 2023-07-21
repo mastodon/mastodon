@@ -1,7 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import Icon from 'mastodon/components/icon';
+
+import { Icon }  from 'mastodon/components/icon';
 
 const tooltips = defineMessages({
   mentions: { id: 'notifications.filter.mentions', defaultMessage: 'Mentions' },
@@ -12,8 +14,7 @@ const tooltips = defineMessages({
   statuses: { id: 'notifications.filter.statuses', defaultMessage: 'Updates from people you follow' },
 });
 
-export default @injectIntl
-class FilterBar extends React.PureComponent {
+class FilterBar extends PureComponent {
 
   static propTypes = {
     selectFilter: PropTypes.func.isRequired,
@@ -108,3 +109,5 @@ class FilterBar extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(FilterBar);

@@ -14,15 +14,5 @@ module Admin
       @pending_tags_count    = Tag.pending_review.count
       @pending_appeals_count = Appeal.pending.count
     end
-
-    private
-
-    def redis_info
-      @redis_info ||= if redis.is_a?(Redis::Namespace)
-                        redis.redis.info
-                      else
-                        redis.info
-                      end
-    end
   end
 end

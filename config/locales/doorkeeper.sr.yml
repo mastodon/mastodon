@@ -149,13 +149,18 @@ sr:
     scopes:
       admin:read: читање свих података на серверу
       admin:read:accounts: читање осетљивих података за све налоге
+      admin:read:canonical_email_blocks: прочитај осетљиве информације и канонске имејл блокове
       admin:read:domain_allows: прочитај осетљиве информације за све дозволе домена
       admin:read:domain_blocks: прочитај осетљиве информације за све блокове домена
+      admin:read:email_domain_blocks: прочитај осетљиве информације свих блокова имејл домена
       admin:read:ip_blocks: прочитај осетљиве информације за све IP блокове
       admin:read:reports: читање осетљивих података свих извештаја и пријављених налога
       admin:write: мењање свих података на серверу
       admin:write:accounts: вршење модераторских активности над налозима
+      admin:write:canonical_email_blocks: изврши модерацијске радње над канонским имејл блоковима
+      admin:write:domain_allows: изврши модерацијске радње над дозволама домена
       admin:write:domain_blocks: изврши модераторске активности на блоковима домена
+      admin:write:email_domain_blocks: изврши модерацијске радње над блоковима имејл домена
       admin:write:ip_blocks: изврши модераторске активности на IP блоковима
       admin:write:reports: вршење модераторских активности над извештајима
       crypto: коришћење end-to-end енкрипције

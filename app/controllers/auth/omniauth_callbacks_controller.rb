@@ -33,7 +33,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def after_sign_in_path_for(resource)
     if resource.email_present?
-      root_path
+      stored_location_for(resource) || root_path
     else
       auth_setup_path(missing_email: '1')
     end

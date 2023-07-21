@@ -125,8 +125,8 @@ sv:
       removed_header_msg: Tog bort %{username}s sidhuvudsbild
       resend_confirmation:
         already_confirmed: Den här användaren är redan bekräftad
-        send: Skicka om e-postbekräftelse
-        success: Bekräftelsemeddelande skickades framgångsrikt!
+        send: Skicka bekräftelselänken igen
+        success: Bekräftelselänken har skickats!
       reset: Återställ
       reset_password: Återställ lösenord
       resubscribe: Starta en ny prenumeration
@@ -215,7 +215,7 @@ sv:
         reset_password_user: Återställ lösenord
         resolve_report: Lös rapport
         sensitive_account: Markera mediet i ditt konto som känsligt
-        silence_account: Tysta konto
+        silence_account: Begränsa konto
         suspend_account: Stäng av konto
         unassigned_report: Återkalla rapport
         unblock_email_account: Avblockera e-postadress
@@ -382,6 +382,8 @@ sv:
       undo: Tag bort från vitlistan
     domain_blocks:
       add_new: Lägg till ny
+      confirm_suspension:
+        cancel: Avbryt
       created_msg: Domänblocket behandlas nu
       destroyed_msg: Domänblockering har återtagits
       domain: Domän
@@ -812,6 +814,12 @@ sv:
         message_html: Du har inte definierat några serverregler.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-process körs för kön/köerna %{value}. Vänligen kontrollera din Sidekiq-konfiguration
+      upload_check_privacy_error:
+        action: Kolla här för mer information
+        message_html: "<strong>Din webbserver är felkonfigurerad. Sekretessen för dina användare är i fara.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Kolla här för mer information
+        message_html: "<strong>Din objektlagring är felkonfigurerad. Sekretessen för dina användare är i riskzonen.</strong>"
     tags:
       review: Granskningsstatus
       updated_msg: Hashtagg-inställningarna har uppdaterats
@@ -960,6 +968,7 @@ sv:
     notification_preferences: Ändra e-postinställningar
     salutation: "%{name},"
     settings: 'Ändra e-postinställningar: %{link}'
+    unsubscribe: Avprenumerera
     view: 'Granska:'
     view_profile: Visa profil
     view_status: Visa inlägg
@@ -973,7 +982,6 @@ sv:
     your_token: Din access token
   auth:
     apply_for_account: Ansök om konto
-    change_password: Lösenord
     confirmations:
       wrong_email_hint: Om e-postadressen inte är rätt, kan du ändra den i kontoinställningarna.
     delete_account: Radera konto
@@ -982,7 +990,7 @@ sv:
       prefix_invited_by_user: "@%{name} bjuder in dig att gå med i en Mastodon-server!"
       prefix_sign_up: Registrera dig på Mastodon idag!
       suffix: Med ett konto kommer du att kunna följa personer, göra inlägg och utbyta meddelanden med användare från andra Mastodon-servrar, och ännu mer!
-    didnt_get_confirmation: Fick du inte instruktioner om bekräftelse?
+    didnt_get_confirmation: Fick du ingen bekräftelselänk?
     dont_have_your_security_key: Har du inte din säkerhetsnyckel?
     forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
@@ -995,12 +1003,17 @@ sv:
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
     or_log_in_with: Eller logga in med
     privacy_policy_agreement_html: Jag har läst och godkänner <a href="%{privacy_policy_path}" target="_blank">integritetspolicyn</a>
+    progress:
+      confirm: Bekräfta e-postadress
+      details: Dina uppgifter
+      review: Vår recension
+      rules: Acceptera regler
     providers:
       cas: CAS
       saml: SAML
     register: Registrera
     registration_closed: "%{instance} accepterar inte nya medlemmar"
-    resend_confirmation: Skicka instruktionerna om bekräftelse igen
+    resend_confirmation: Skicka bekräftelselänken igen
     reset_password: Återställ lösenord
     rules:
       accept: Godkänn
@@ -1010,9 +1023,10 @@ sv:
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
-      email_below_hint_html: Om nedanstående e-postadress är felaktig kan du ändra den här, och få ett nytt bekräftelsemeddelande.
-      email_settings_hint_html: E-postmeddelande för verifiering skickades till %{email}. Om e-postadressen inte stämmer kan du ändra den i kontoinställningarna.
-      title: Ställ in
+      email_below_hint_html: Kolla din skräppost-mapp eller begär en annan. Du kan korrigera din e-postadress om den är fel.
+      email_settings_hint_html: Klicka på länken som vi har skickat till dig för att bekräfta %{email}. Vi väntar här.
+      link_not_received: Fick du ingen länk?
+      title: Kolla din inkorg
     sign_in:
       preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
       title: Logga in på %{domain}
@@ -1204,7 +1218,9 @@ sv:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> objekt som matchar din sökning är valt."
       other: "<strong>%{count}</strong> objekt som matchar din sökning är valda."
+    cancel: Avbryt
     changes_saved_msg: Ändringar sparade!
+    confirm: Bekräfta
     copy: Kopiera
     delete: Radera
     deselect: Avmarkera alla
@@ -1220,15 +1236,27 @@ sv:
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
   imports:
     errors:
+      empty: Tom CSV-fil
       invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
       over_rows_processing_limit: innehåller fler än %{count} rader
+      too_large: Filen är för stor
     modes:
       merge: Slå ihop
       merge_long: Behåll befintliga uppgifter och lägg till nya
       overwrite: Skriv över
       overwrite_long: Ersätt de nuvarande uppgifterna med de nya
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
+    states:
+      in_progress: Pågår
+      unconfirmed: Obekräftade
+    status: Status
     success: Dina uppgifter har laddats upp och kommer att behandlas snarast
+    time_started: Började vid
+    titles:
+      blocking: Importerar blockerade konton
+      bookmarks: Importerar bokmärken
+      domain_blocking: Importerar blockerade domäner
+    type: Typ av import
     types:
       blocking: Lista av blockerade
       bookmarks: Bokmärken
@@ -1405,6 +1433,7 @@ sv:
     confirm_remove_selected_followers: Är du säker på att du vill ta bort valda följare?
     confirm_remove_selected_follows: Är du säker på att du vill ta bort valda följare?
     dormant: Vilande
+    follow_failure: Kan inte följa några av de valda kontona.
     follow_selected_followers: Följ valda personer
     followers: Följare
     following: Följer
@@ -1444,6 +1473,7 @@ sv:
       electron: Electron
       firefox: Firefox
       generic: Okänd browser
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1453,6 +1483,7 @@ sv:
       qq: QQ browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Okänd browser
       weibo: Weibo
     current_session: Nuvarande session
     description: "%{browser} på %{platform}"
@@ -1465,9 +1496,10 @@ sv:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: okänd plattform
+      unknown_platform: Okänd plattform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1680,12 +1712,12 @@ sv:
       title: Välkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan inte följa fler än %{limit} personer
+    go_to_sso_account_settings: Gå till din identitetsleverantörs kontoinställningar
     invalid_otp_token: Ogiltig tvåfaktorskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, inställningar för lösenord och e-post är därför inte tillgängliga.
     signed_in_as: 'Inloggad som:'
   verification:
-    explanation_html: 'Du kan <strong>verifiera dig själv som ägare av länkar i din profilmetadata</strong>, genom att på den länkade webbplatsen även länka tillbaka till din Mastodon-profil. Länken tillbaka <strong>måste</strong> ha attributet <code>rel="me"</code>. Textinnehållet i länken spelar ingen roll. Här är ett exempel:'
     verification: Bekräftelse
   webauthn_credentials:
     add: Lägg till ny säkerhetsnyckel

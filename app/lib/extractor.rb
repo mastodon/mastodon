@@ -64,7 +64,7 @@ module Extractor
       end_position   = match_data.char_end(1)
       after          = ::Regexp.last_match.post_match
 
-      if %r{\A://}.match?(after)
+      if after.start_with?('://')
         hash_text.match(/(.+)(https?\Z)/) do |matched|
           hash_text     = matched[1]
           end_position -= matched[2].codepoint_length
