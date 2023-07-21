@@ -76,6 +76,9 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.suspended_at      = domain_block.created_at if auto_suspend?
     @account.suspension_origin = :local if auto_suspend?
     @account.silenced_at       = domain_block.created_at if auto_silence?
+
+    set_immediate_protocol_attributes!
+
     @account.save
   end
 
