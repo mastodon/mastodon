@@ -12,7 +12,7 @@ RSpec.describe 'Media API', paperclip_processing: true do
     it 'returns http success' do
       post '/api/v2/media', headers: headers, params: { file: fixture_file_upload('attachment-jpg.123456_abcd', 'image/jpeg') }
       expect(File.exist?(user.account.media_attachments.first.file.path(:small))).to be true
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(202)
     end
   end
 end
