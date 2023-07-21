@@ -4,7 +4,7 @@ require_relative '../../lib/mastodon/sidekiq_middleware'
 
 Sidekiq.configure_server do |config|
   if Rails.configuration.database_configuration.dig('production', 'adapter') == 'postgresql_makara'
-    STDERR.puts 'ERROR: Makara is not supported in Mastodon sidekiq workers'
+    STDERR.puts 'ERROR: Database replication is not currently supported in Sidekiq workers. Check your configuration.'
     exit 1
   end
 
