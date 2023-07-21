@@ -129,9 +129,10 @@
 }
 
 .navigation-bar__profile {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   margin-inline-start: 8px;
-  overflow: hidden;
 }
 
 .drawer--results {

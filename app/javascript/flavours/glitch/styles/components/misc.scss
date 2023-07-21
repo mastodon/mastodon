@@ -77,6 +77,10 @@
     background-color: $ui-button-focus-background-color;
   }
 
+  &:focus {
+    outline: $ui-button-icon-focus-outline;
+  }
+
   &--destructive {
     &:active,
     &:focus,
@@ -198,14 +202,12 @@
   &:hover,
   &:active,
   &:focus {
-    color: lighten($action-button-color, 7%);
-    background-color: rgba($action-button-color, 0.15);
-    transition: all 200ms ease-out;
-    transition-property: background-color, color;
+    color: lighten($action-button-color, 20%);
+    background-color: $ui-button-icon-hover-background-color;
   }
 
-  &:focus {
-    background-color: rgba($action-button-color, 0.3);
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
   }
 
   &.disabled {
@@ -227,16 +229,6 @@
     transition: none;
   }
 
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
-  }
-
   &.inverted {
     color: $lighter-text-color;
 
@@ -244,11 +236,11 @@
     &:active,
     &:focus {
       color: darken($lighter-text-color, 7%);
-      background-color: rgba($lighter-text-color, 0.15);
+      background-color: $ui-button-icon-hover-background-color;
     }
 
-    &:focus {
-      background-color: rgba($lighter-text-color, 0.3);
+    &:focus-visible {
+      outline: $ui-button-icon-focus-outline;
     }
 
     &.disabled {
@@ -301,7 +293,6 @@
   cursor: pointer;
   padding: 0 3px;
   white-space: nowrap;
-  outline: 0;
   transition: all 100ms ease-in;
   transition-property: background-color, color;
 
@@ -309,13 +300,13 @@
   &:active,
   &:focus {
     color: darken($lighter-text-color, 7%);
-    background-color: rgba($lighter-text-color, 0.15);
+    background-color: $ui-button-icon-hover-background-color;
     transition: all 200ms ease-out;
     transition-property: background-color, color;
   }
 
   &:focus {
-    background-color: rgba($lighter-text-color, 0.3);
+    outline: $ui-button-icon-focus-outline;
   }
 
   &.disabled {
@@ -326,16 +317,6 @@
 
   &.active {
     color: $highlight-text-color;
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
   }
 }
 

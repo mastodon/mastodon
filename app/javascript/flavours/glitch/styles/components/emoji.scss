@@ -79,11 +79,6 @@
   outline: 0;
   cursor: pointer;
 
-  &:active,
-  &:focus {
-    outline: 0 !important;
-  }
-
   img {
     filter: grayscale(100%);
     opacity: 0.8;
@@ -99,6 +94,13 @@
     img {
       opacity: 1;
       filter: none;
+      border-radius: 100%;
+    }
+  }
+
+  &:focus {
+    img {
+      outline: $ui-button-icon-focus-outline;
     }
   }
 }
