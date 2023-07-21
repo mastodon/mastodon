@@ -13,6 +13,7 @@ export default class Story extends PureComponent {
   static propTypes = {
     url: PropTypes.string,
     title: PropTypes.string,
+    lang: PropTypes.string,
     publisher: PropTypes.string,
     sharedTimes: PropTypes.number,
     thumbnail: PropTypes.string,
@@ -26,7 +27,7 @@ export default class Story extends PureComponent {
   handleImageLoad = () => this.setState({ thumbnailLoaded: true });
 
   render () {
-    const { url, title, publisher, sharedTimes, thumbnail, blurhash } = this.props;
+    const { url, title, lang, publisher, sharedTimes, thumbnail, blurhash } = this.props;
 
     const { thumbnailLoaded } = this.state;
 
@@ -34,7 +35,7 @@ export default class Story extends PureComponent {
       <a className='story' href={url} target='blank' rel='noopener'>
         <div className='story__details'>
           <div className='story__details__publisher'>{publisher ? publisher : <Skeleton width={50} />}</div>
-          <div className='story__details__title'>{title ? title : <Skeleton />}</div>
+          <div className='story__details__title' lang={lang}>{title ? title : <Skeleton />}</div>
           <div className='story__details__shared'>{typeof sharedTimes === 'number' ? <ShortNumber value={sharedTimes} renderer={accountsCountRenderer} /> : <Skeleton width={100} />}</div>
         </div>
 
