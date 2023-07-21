@@ -9,7 +9,7 @@ class MailSubscriptionsController < ApplicationController
   before_action :set_user
   before_action :set_type
 
-  skip_forgery_protection
+  protect_from_forgery with: :null_session
 
   def show; end
 
