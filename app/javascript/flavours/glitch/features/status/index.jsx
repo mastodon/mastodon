@@ -192,8 +192,8 @@ class Status extends ImmutablePureComponent {
     status: ImmutablePropTypes.map,
     isLoading: PropTypes.bool,
     settings: ImmutablePropTypes.map.isRequired,
-    ancestorsIds: ImmutablePropTypes.list,
-    descendantsIds: ImmutablePropTypes.list,
+    ancestorsIds: ImmutablePropTypes.list.isRequired,
+    descendantsIds: ImmutablePropTypes.list.isRequired,
     intl: PropTypes.object.isRequired,
     askReplyConfirmation: PropTypes.bool,
     multiColumn: PropTypes.bool,
@@ -217,16 +217,6 @@ class Status extends ImmutablePureComponent {
   componentDidMount () {
     attachFullscreenListener(this.onFullScreenChange);
     this.props.dispatch(fetchStatus(this.props.params.statusId));
-
-    const { status, ancestorsIds } = this.props;
-
-    if (status && ancestorsIds && ancestorsIds.size > 0) {
-      const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size - 1];
-
-      window.requestAnimationFrame(() => {
-        element.scrollIntoView(true);
-      });
-    }
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -625,16 +615,22 @@ class Status extends ImmutablePureComponent {
   };
 
   componentDidUpdate (prevProps) {
-    if (this.props.params.statusId && (this.props.params.statusId !== prevProps.params.statusId || prevProps.ancestorsIds.size < this.props.ancestorsIds.size)) {
-      const { status, ancestorsIds } = this.props;
+    const { status, ancestorsIds, multiColumn } = this.props;
 
-      if (status && ancestorsIds && ancestorsIds.size > 0) {
-        const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size - 1];
+    if (status && (ancestorsIds.size > prevProps.ancestorsIds.size || prevProps.status?.get('id') !== status.get('id'))) {
+      window.requestAnimationFrame(() => {
+        this.node?.querySelector('.detailed-status__wrapper')?.scrollIntoView(true);
 
-        window.requestAnimationFrame(() => {
-          element.scrollIntoView(true);
-        });
-      }
+        // In the single-column interface, `scrollIntoView` will put the post behind the header,
+        // so compensate for that.
+        if (!multiColumn) {
+          const offset = document.querySelector('.column-header__wrapper')?.getBoundingClientRect()?.bottom;
+          if (offset) {
+            const scrollingElement = document.scrollingElement || document.body;
+            scrollingElement.scrollBy(0, -offset);
+          }
+        }
+      });
     }
   }
 
@@ -701,16 +697,16 @@ class Status extends ImmutablePureComponent {
           showBackButton
           multiColumn={multiColumn}
           extraButton={(
-            <button className='column-header__button' title={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={!isExpanded ? 'eye-slash' : 'eye'} /></button>
+            <button type='button' className='column-header__button' title={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(!isExpanded ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={!isExpanded ? 'eye-slash' : 'eye'} /></button>
           )}
         />
 
         <ScrollContainer scrollKey='thread'>
-          <div className={classNames('scrollable', 'detailed-status__wrapper', { fullscreen })} ref={this.setRef}>
+          <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
             {ancestors}
 
             <HotKeys handlers={handlers}>
-              <div className='focusable' tabIndex={0} aria-label={textForScreenReader(intl, status, false, isExpanded)}>
+              <div className={classNames('focusable', 'detailed-status__wrapper', `detailed-status__wrapper-${status.get('visibility')}`)} tabIndex={0} aria-label={textForScreenReader(intl, status, false, isExpanded)}>
                 <DetailedStatus
                   key={`details-${status.get('id')}`}
                   status={status}
