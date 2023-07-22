@@ -285,11 +285,11 @@ class Request
         end
 
         until socks.empty?
-          _, available_socks, = IO.select(nil, socks, nil, Request::TIMEOUT[:connect])
+          _, available_socks, = IO.select(nil, socks, nil, Request::TIMEOUT[:connect_timeout])
 
           if available_socks.nil?
             socks.each(&:close)
-            raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect]} seconds"
+            raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect_timeout]} seconds"
           end
 
           available_socks.each do |sock|
