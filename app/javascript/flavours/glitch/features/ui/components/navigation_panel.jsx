@@ -55,12 +55,12 @@ class NavigationPanel extends Component {
     return (
       <div className='navigation-panel'>
         {transientSingleColumn && (
-          <>
+          <div className='navigation-panel__logo'>
             <a href={`/deck${location.pathname}`} className='button button--block'>
               {intl.formatMessage(messages.advancedInterface)}
             </a>
             <hr />
-          </>
+          </div>
         )}
 
         {signedIn && (
