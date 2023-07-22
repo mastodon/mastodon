@@ -23,7 +23,7 @@ describe StatusFilter do
 
       context 'when status policy does not allow show' do
         it 'filters the status' do
-          expect_any_instance_of(StatusPolicy).to receive(:show?).and_return(false)
+          allow_any_instance_of(StatusPolicy).to receive(:show?).and_return(false)
 
           expect(filter).to be_filtered
         end
@@ -74,7 +74,7 @@ describe StatusFilter do
 
       context 'when status policy does not allow show' do
         it 'filters the status' do
-          expect_any_instance_of(StatusPolicy).to receive(:show?).and_return(false)
+          allow_any_instance_of(StatusPolicy).to receive(:show?).and_return(false)
 
           expect(filter).to be_filtered
         end

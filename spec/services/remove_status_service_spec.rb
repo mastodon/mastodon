@@ -28,12 +28,12 @@ RSpec.describe RemoveStatusService, type: :service do
 
     it 'removes status from author\'s home feed' do
       subject.call(@status)
-      expect(HomeFeed.new(alice).get(10)).to_not include(@status.id)
+      expect(HomeFeed.new(alice).get(10).pluck(:id)).to_not include(@status.id)
     end
 
     it 'removes status from local follower\'s home feed' do
       subject.call(@status)
-      expect(HomeFeed.new(jeff).get(10)).to_not include(@status.id)
+      expect(HomeFeed.new(jeff).get(10).pluck(:id)).to_not include(@status.id)
     end
 
     it 'sends Delete activity to followers' do

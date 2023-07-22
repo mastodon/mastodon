@@ -38,8 +38,8 @@ RSpec.describe UnsuspendAccountService, type: :service do
 
     include_examples 'with common context' do
       let!(:account)         { Fabricate(:account) }
-      let!(:remote_follower) { Fabricate(:account, uri: 'https://alice.com', inbox_url: 'https://alice.com/inbox', protocol: :activitypub) }
-      let!(:remote_reporter) { Fabricate(:account, uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
+      let!(:remote_follower) { Fabricate(:account, uri: 'https://alice.com', inbox_url: 'https://alice.com/inbox', protocol: :activitypub, domain: 'alice.com') }
+      let!(:remote_reporter) { Fabricate(:account, uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
       let!(:report)          { Fabricate(:report, account: remote_reporter, target_account: account) }
 
       before do

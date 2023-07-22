@@ -35,7 +35,7 @@ interface PopModalOption {
 }
 const popModal = (
   state: State,
-  { modalType, ignoreFocus }: PopModalOption
+  { modalType, ignoreFocus }: PopModalOption,
 ): State => {
   if (
     modalType === undefined ||
@@ -52,12 +52,12 @@ const popModal = (
 const pushModal = (
   state: State,
   modalType: ModalType,
-  modalProps: ModalProps
+  modalProps: ModalProps,
 ): State => {
   return state.withMutations((record) => {
     record.set('ignoreFocus', false);
     record.update('stack', (stack) =>
-      stack.unshift(Modal({ modalType, modalProps }))
+      stack.unshift(Modal({ modalType, modalProps })),
     );
   });
 };
@@ -68,14 +68,14 @@ export function modalReducer(
     modalType: ModalType;
     ignoreFocus: boolean;
     modalProps: Record<string, unknown>;
-  }>
+  }>,
 ) {
   switch (action.type) {
     case openModal.type:
       return pushModal(
         state,
         action.payload.modalType,
-        action.payload.modalProps
+        action.payload.modalProps,
       );
     case closeModal.type:
       return popModal(state, action.payload);
@@ -85,8 +85,8 @@ export function modalReducer(
       return state.update('stack', (stack) =>
         stack.filterNot(
           // @ts-expect-error TIMELINE_DELETE action is not typed yet.
-          (modal) => modal.get('modalProps').statusId === action.id
-        )
+          (modal) => modal.get('modalProps').statusId === action.id,
+        ),
       );
     default:
       return state;

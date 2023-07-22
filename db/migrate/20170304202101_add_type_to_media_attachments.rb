@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddTypeToMediaAttachments < ActiveRecord::Migration[5.0]
   def up
     add_column :media_attachments, :type, :integer, default: 0, null: false

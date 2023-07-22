@@ -1,13 +1,13 @@
 - content_for :page_title do
-  = t("imports.titles.#{@bulk_import.type.to_s}")
+  = t("imports.titles.#{@bulk_import.type}")
 
 - if @bulk_import.likely_mismatched?
-  .flash-message.warning= t("imports.mismatched_types_warning")
+  .flash-message.warning= t('imports.mismatched_types_warning')
 
 - if @bulk_import.overwrite?
-  %p.hint= t("imports.overwrite_preambles.#{@bulk_import.type.to_s}_html", filename: @bulk_import.original_filename, total_items: @bulk_import.total_items)
+  %p.hint= t("imports.overwrite_preambles.#{@bulk_import.type}_html", filename: @bulk_import.original_filename, total_items: @bulk_import.total_items)
 - else
-  %p.hint= t("imports.preambles.#{@bulk_import.type.to_s}_html", filename: @bulk_import.original_filename, total_items: @bulk_import.total_items)
+  %p.hint= t("imports.preambles.#{@bulk_import.type}_html", filename: @bulk_import.original_filename, total_items: @bulk_import.total_items)
 
 .simple_form
   .actions

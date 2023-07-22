@@ -2,6 +2,9 @@
 sl:
   simple_form:
     hints:
+      account:
+        fields: Vaša domača stran, starost, kar koli.
+        note: 'Druge osebe lahko @omenite ali #ključnite.'
       account_alias:
         acct: Določite uporabniškoime@domena računa, od katerega se želite preseliti
       account_migration:
@@ -295,6 +298,7 @@ sl:
         usable: Dovoli, da objave uporabljajo ta ključnik
       user:
         role: Vloga
+        time_zone: Časovni pas
       user_role:
         color: Barva značke
         highlighted: Prikaži vlogo kot značko na uporabniškem profilu

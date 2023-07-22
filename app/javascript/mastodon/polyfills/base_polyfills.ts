@@ -4,7 +4,7 @@ import 'core-js/features/symbol';
 import 'core-js/features/promise/finally';
 import { decode as decodeBase64 } from '../utils/base64';
 
-if (!HTMLCanvasElement.prototype.toBlob) {
+if (!Object.hasOwn(HTMLCanvasElement.prototype, 'toBlob')) {
   const BASE64_MARKER = ';base64,';
 
   Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
@@ -12,12 +12,12 @@ if (!HTMLCanvasElement.prototype.toBlob) {
       this: HTMLCanvasElement,
       callback: BlobCallback,
       type = 'image/png',
-      quality: unknown
+      quality: unknown,
     ) {
       const dataURL: string = this.toDataURL(type, quality);
       let data;
 
-      if (dataURL.indexOf(BASE64_MARKER) >= 0) {
+      if (dataURL.includes(BASE64_MARKER)) {
         const [, base64] = dataURL.split(BASE64_MARKER);
         data = decodeBase64(base64);
       } else {

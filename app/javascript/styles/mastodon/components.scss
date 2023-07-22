@@ -74,6 +74,10 @@
     background-color: $ui-button-focus-background-color;
   }
 
+  &:focus {
+    outline: $ui-button-icon-focus-outline;
+  }
+
   &--destructive {
     &:active,
     &:focus,
@@ -96,16 +100,6 @@
   &.copied {
     background: $valid-value-color;
     transition: none;
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
   }
 
   &.button-secondary {
@@ -197,7 +191,7 @@
   border-radius: 4px;
   background: transparent;
   cursor: pointer;
-  transition: all 100ms ease-in;
+  transition: all 100ms ease-out;
   transition-property: background-color, color;
   text-decoration: none;
 
@@ -209,34 +203,18 @@
   &:hover,
   &:active,
   &:focus {
-    color: lighten($action-button-color, 7%);
-    background-color: rgba($action-button-color, 0.15);
-    transition: all 200ms ease-out;
-    transition-property: background-color, color;
+    color: lighten($action-button-color, 20%);
+    background-color: $ui-button-icon-hover-background-color;
   }
 
   &:focus {
-    background-color: rgba($action-button-color, 0.3);
+    outline: $ui-button-icon-focus-outline;
   }
 
   &.disabled {
     color: darken($action-button-color, 13%);
     background-color: transparent;
     cursor: default;
-  }
-
-  &.active {
-    color: $highlight-text-color;
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
   }
 
   &.inverted {
@@ -246,11 +224,11 @@
     &:active,
     &:focus {
       color: darken($lighter-text-color, 7%);
-      background-color: rgba($lighter-text-color, 0.15);
+      background-color: $ui-button-icon-hover-background-color;
     }
 
     &:focus {
-      background-color: rgba($lighter-text-color, 0.3);
+      outline: $ui-button-icon-focus-outline;
     }
 
     &.disabled {
@@ -305,7 +283,6 @@
   font-size: 11px;
   padding: 0 3px;
   line-height: 27px;
-  outline: 0;
   transition: all 100ms ease-in;
   transition-property: background-color, color;
 
@@ -313,13 +290,13 @@
   &:active,
   &:focus {
     color: darken($lighter-text-color, 7%);
-    background-color: rgba($lighter-text-color, 0.15);
+    background-color: $ui-button-icon-hover-background-color;
     transition: all 200ms ease-out;
     transition-property: background-color, color;
   }
 
   &:focus {
-    background-color: rgba($lighter-text-color, 0.3);
+    outline: $ui-button-icon-focus-outline;
   }
 
   &.disabled {
@@ -330,16 +307,6 @@
 
   &.active {
     color: $highlight-text-color;
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
   }
 }
 
@@ -728,7 +695,6 @@ body > [data-popper-placement] {
     flex: 0 0 auto;
 
     .compose-form__publish-button-wrapper {
-      overflow: hidden;
       padding-top: 15px;
     }
   }
@@ -747,7 +713,9 @@ body > [data-popper-placement] {
 }
 
 .no-reduce-motion .spoiler-input {
-  transition: height 0.4s ease, opacity 0.4s ease;
+  transition:
+    height 0.4s ease,
+    opacity 0.4s ease;
 }
 
 .sign-in-banner {
@@ -1421,6 +1389,7 @@ body > [data-popper-placement] {
 .detailed-status__link {
   color: inherit;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .detailed-status__favorites,
@@ -1668,10 +1637,6 @@ a.account__display-name {
 .detailed-status__application,
 .detailed-status__datetime {
   color: inherit;
-}
-
-.detailed-status .button.logo-button {
-  margin-bottom: 15px;
 }
 
 .detailed-status__display-name {
@@ -1930,13 +1895,6 @@ a.account__display-name {
   .navigation-bar__actions {
     position: relative;
 
-    .icon-button.close {
-      position: absolute;
-      pointer-events: none;
-      transform: scale(0, 1) translate(-100%, 0);
-      opacity: 0;
-    }
-
     .compose__action-bar .icon-button {
       pointer-events: auto;
       transform: scale(1, 1) translate(0, 0);
@@ -1946,19 +1904,21 @@ a.account__display-name {
 }
 
 .navigation-bar__profile {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   line-height: 20px;
-  overflow: hidden;
 }
 
 .navigation-bar__profile-account {
-  display: block;
+  display: inline;
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .navigation-bar__profile-edit {
+  display: inline;
   color: inherit;
   text-decoration: none;
 }
@@ -3958,7 +3918,9 @@ a.status-card.compact:hover {
   overflow-y: auto;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   color: $darker-text-color;
-  transition: max-height 150ms ease-in-out, opacity 300ms linear;
+  transition:
+    max-height 150ms ease-in-out,
+    opacity 300ms linear;
   opacity: 1;
   z-index: 1;
   position: relative;
@@ -4213,34 +4175,31 @@ a.status-card.compact:hover {
   }
 
   &__overlay {
-    display: block;
-    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($black, 0.5);
     width: 100%;
     height: 100%;
+    padding: 0;
+    margin: 0;
     border: 0;
+    border-radius: 4px;
 
     &__label {
-      display: inline-block;
-      background: rgba($base-overlay-background, 0.5);
-      border-radius: 8px;
-      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-direction: column;
       color: $primary-text-color;
       font-weight: 500;
       font-size: 14px;
     }
 
-    &:hover,
-    &:focus,
-    &:active {
-      .spoiler-button__overlay__label {
-        background: rgba($base-overlay-background, 0.8);
-      }
-    }
-
-    &:disabled {
-      .spoiler-button__overlay__label {
-        background: rgba($base-overlay-background, 0.5);
-      }
+    &__action {
+      font-weight: 400;
+      font-size: 13px;
     }
   }
 }
@@ -4392,7 +4351,7 @@ a.status-card.compact:hover {
 }
 
 .relationship-tag {
-  color: $primary-text-color;
+  color: $white;
   margin-bottom: 4px;
   display: block;
   background-color: rgba($black, 0.45);
@@ -4742,11 +4701,6 @@ a.status-card.compact:hover {
   outline: 0;
   cursor: pointer;
 
-  &:active,
-  &:focus {
-    outline: 0 !important;
-  }
-
   img {
     filter: grayscale(100%);
     opacity: 0.8;
@@ -4762,6 +4716,13 @@ a.status-card.compact:hover {
     img {
       opacity: 1;
       filter: none;
+      border-radius: 100%;
+    }
+  }
+
+  &:focus {
+    img {
+      outline: $ui-button-icon-focus-outline;
     }
   }
 }
@@ -5787,6 +5748,7 @@ a.status-card.compact:hover {
   &__toggle {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 
     & > span {
       font-size: 17px;
@@ -6941,7 +6903,8 @@ noscript {
   .navigation-bar {
     & > a:first-child {
       will-change: margin-top, margin-inline-start, margin-inline-end, width;
-      transition: margin-top $duration $delay,
+      transition:
+        margin-top $duration $delay,
         margin-inline-start $duration ($duration + $delay),
         margin-inline-end $duration ($duration + $delay);
     }
@@ -6954,12 +6917,15 @@ noscript {
     .navigation-bar__actions {
       & > .icon-button.close {
         will-change: opacity transform;
-        transition: opacity $duration * 0.5 $delay, transform $duration $delay;
+        transition:
+          opacity $duration * 0.5 $delay,
+          transform $duration $delay;
       }
 
       & > .compose__action-bar .icon-button {
         will-change: opacity transform;
-        transition: opacity $duration * 0.5 $delay + $duration * 0.5,
+        transition:
+          opacity $duration * 0.5 $delay + $duration * 0.5,
           transform $duration $delay;
       }
     }
@@ -9075,5 +9041,65 @@ noscript {
         text-overflow: ellipsis;
       }
     }
+  }
+}
+
+.notification-list {
+  position: fixed;
+  bottom: 2rem;
+  inset-inline-start: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.notification-bar {
+  flex: 0 0 auto;
+  position: relative;
+  inset-inline-start: -100%;
+  width: auto;
+  padding: 15px;
+  margin: 0;
+  color: $white;
+  background: rgba($black, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(lighten($classic-base-color, 4%), 0.85);
+  border-radius: 8px;
+  box-shadow:
+    0 10px 15px -3px rgba($base-shadow-color, 0.25),
+    0 4px 6px -4px rgba($base-shadow-color, 0.25);
+  cursor: default;
+  transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);
+  transform: translateZ(0);
+  font-size: 15px;
+  line-height: 21px;
+
+  &.notification-bar-active {
+    inset-inline-start: 1rem;
+  }
+}
+
+.notification-bar-title {
+  margin-inline-end: 5px;
+}
+
+.notification-bar-title,
+.notification-bar-action {
+  font-weight: 700;
+}
+
+.notification-bar-action {
+  text-transform: uppercase;
+  margin-inline-start: 10px;
+  cursor: pointer;
+  color: $blurple-300;
+  border-radius: 4px;
+  padding: 0 4px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: rgba($ui-base-color, 0.85);
   }
 }

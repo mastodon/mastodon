@@ -17,24 +17,63 @@ RSpec.describe ReportService, type: :service do
 
   context 'with a remote account' do
     let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
+    let(:forward) { false }
 
     before do
       stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
     end
 
-    it 'sends ActivityPub payload when forward is true' do
-      subject.call(source_account, remote_account, forward: true)
-      expect(a_request(:post, 'http://example.com/inbox')).to have_been_made
+    context 'when forward is true' do
+      let(:forward) { true }
+
+      it 'sends ActivityPub payload when forward is true' do
+        subject.call(source_account, remote_account, forward: forward)
+        expect(a_request(:post, 'http://example.com/inbox')).to have_been_made
+      end
+
+      it 'has an uri' do
+        report = subject.call(source_account, remote_account, forward: forward)
+        expect(report.uri).to_not be_nil
+      end
+
+      context 'when reporting a reply' do
+        let(:remote_thread_account) { Fabricate(:account, domain: 'foo.com', protocol: :activitypub, inbox_url: 'http://foo.com/inbox') }
+        let(:reported_status) { Fabricate(:status, account: remote_account, thread: Fabricate(:status, account: remote_thread_account)) }
+
+        before do
+          stub_request(:post, 'http://foo.com/inbox').to_return(status: 200)
+        end
+
+        context 'when forward_to_domains includes both the replied-to domain and the origin domain' do
+          it 'sends ActivityPub payload to both the author of the replied-to post and the reported user' do
+            subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward, forward_to_domains: [remote_account.domain, remote_thread_account.domain])
+            expect(a_request(:post, 'http://foo.com/inbox')).to have_been_made
+            expect(a_request(:post, 'http://example.com/inbox')).to have_been_made
+          end
+        end
+
+        context 'when forward_to_domains includes only the replied-to domain' do
+          it 'sends ActivityPub payload only to the author of the replied-to post' do
+            subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward, forward_to_domains: [remote_thread_account.domain])
+            expect(a_request(:post, 'http://foo.com/inbox')).to have_been_made
+            expect(a_request(:post, 'http://example.com/inbox')).to_not have_been_made
+          end
+        end
+
+        context 'when forward_to_domains does not include the replied-to domain' do
+          it 'does not send ActivityPub payload to the author of the replied-to post' do
+            subject.call(source_account, remote_account, status_ids: [reported_status.id], forward: forward)
+            expect(a_request(:post, 'http://foo.com/inbox')).to_not have_been_made
+          end
+        end
+      end
     end
 
-    it 'does not send anything when forward is false' do
-      subject.call(source_account, remote_account, forward: false)
-      expect(a_request(:post, 'http://example.com/inbox')).to_not have_been_made
-    end
-
-    it 'has an uri' do
-      report = subject.call(source_account, remote_account, forward: true)
-      expect(report.uri).to_not be_nil
+    context 'when forward is false' do
+      it 'does not send anything' do
+        subject.call(source_account, remote_account, forward: forward)
+        expect(a_request(:post, 'http://example.com/inbox')).to_not have_been_made
+      end
     end
   end
 

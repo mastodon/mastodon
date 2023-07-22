@@ -1,0 +1,40 @@
+name: Bundler Audit
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+    paths:
+      - 'Gemfile*'
+      - '.ruby-version'
+      - '.bundler-audit.yml'
+      - '.github/workflows/bundler-audit.yml'
+
+  pull_request:
+    paths:
+      - 'Gemfile*'
+      - '.ruby-version'
+      - '.bundler-audit.yml'
+      - '.github/workflows/bundler-audit.yml'
+
+  schedule:
+    - cron: '0 5 * * 1'
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Install native Ruby dependencies
+        run: sudo apt-get install -y libicu-dev libidn11-dev
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Run bundler-audit
+        run: bundle exec bundler-audit

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import { Helmet } from 'react-helmet';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { Provider as ReduxProvider } from 'react-redux';
 
@@ -12,6 +12,7 @@ import { fetchCustomEmojis } from 'mastodon/actions/custom_emojis';
 import { hydrateStore } from 'mastodon/actions/store';
 import { connectUserStream } from 'mastodon/actions/streaming';
 import ErrorBoundary from 'mastodon/components/error_boundary';
+import { Router } from 'mastodon/components/router';
 import UI from 'mastodon/features/ui';
 import initialState, { title as siteTitle } from 'mastodon/initial_state';
 import { IntlProvider } from 'mastodon/locales';
@@ -75,11 +76,11 @@ export default class Mastodon extends PureComponent {
       <IntlProvider>
         <ReduxProvider store={store}>
           <ErrorBoundary>
-            <BrowserRouter>
+            <Router>
               <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
                 <Route path='/' component={UI} />
               </ScrollContext>
-            </BrowserRouter>
+            </Router>
 
             <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
           </ErrorBoundary>

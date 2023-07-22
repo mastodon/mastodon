@@ -297,7 +297,7 @@ export default class Dropdown extends PureComponent {
       onKeyPress: this.handleKeyPress,
     }) : (
       <IconButton
-        icon={icon}
+        icon={!open ? icon : 'close'}
         title={title}
         active={open}
         disabled={disabled}

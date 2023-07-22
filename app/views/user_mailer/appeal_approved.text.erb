@@ -2,6 +2,6 @@
 
 ===
 
-<%= t 'user_mailer.appeal_approved.explanation', appeal_date: l(@appeal.created_at.in_time_zone(@resource.time_zone)), strike_date: l(@appeal.strike.created_at.in_time_zone(@resource.time_zone)) %>
+<%= t 'user_mailer.appeal_approved.explanation', appeal_date: l(@appeal.created_at.in_time_zone(@resource.time_zone.presence)), strike_date: l(@appeal.strike.created_at.in_time_zone(@resource.time_zone.presence)) %>
 
 => <%= root_url %>
