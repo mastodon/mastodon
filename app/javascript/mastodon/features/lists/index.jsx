@@ -65,7 +65,7 @@ class Lists extends ImmutablePureComponent {
 
     return (
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.heading)}>
-        <ColumnHeader title={intl.formatMessage(messages.heading)} icon='list-ul' multiColumn={multiColumn} showBackButton />
+        <ColumnHeader title={intl.formatMessage(messages.heading)} icon='list-ul' multiColumn={multiColumn} />
 
         <NewListForm />
 
