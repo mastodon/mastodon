@@ -58,16 +58,14 @@ export default class LocalSettingsPage extends PureComponent {
       </a>
     );
     else if (onNavigate) return (
-      <a
+      <button
         onClick={handleClick}
-        role='button'
-        tabIndex={0}
         className={finalClassName}
         title={title}
         aria-label={title}
       >
         {iconElem} <span>{title}</span>
-      </a>
+      </button>
     );
     else return null;
   }

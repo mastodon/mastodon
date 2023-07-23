@@ -56,11 +56,16 @@
   padding: 15px 20px;
   color: inherit;
   background: lighten($ui-secondary-color, 8%);
+  border: 0;
   border-bottom: 1px $ui-secondary-color solid;
   cursor: pointer;
   text-decoration: none;
   outline: none;
   transition: background 0.3s;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: start;
+  font-size: inherit;
 
   .text-icon-button {
     color: inherit;
