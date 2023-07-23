@@ -346,7 +346,6 @@ $ui-header-height: 55px;
   position: relative;
   z-index: 2;
   outline: 0;
-  overflow: hidden;
 
   & > button {
     display: flex;
@@ -363,6 +362,10 @@ $ui-header-height: 55px;
     overflow: hidden;
     white-space: nowrap;
     flex: 1;
+
+    &:focus-visible {
+      outline: $ui-button-icon-focus-outline;
+    }
   }
 
   & > .column-header__back-button {
@@ -426,6 +429,10 @@ $ui-header-height: 55px;
   cursor: pointer;
   font-size: 16px;
   padding: 0 15px;
+
+  &:last-child {
+    border-start-end-radius: 4px;
+  }
 
   &:hover {
     color: lighten($darker-text-color, 7%);

@@ -14,7 +14,7 @@
 .emoji-picker-dropdown__menu {
   background: $simple-background-color;
   position: relative;
-  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
+  box-shadow: var(--dropdown-shadow);
   border-radius: 4px;
   margin-top: 5px;
   z-index: 2;
@@ -98,7 +98,7 @@
     }
   }
 
-  &:focus {
+  &:focus-visible {
     img {
       outline: $ui-button-icon-focus-outline;
     }

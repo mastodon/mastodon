@@ -202,8 +202,8 @@
   &:hover,
   &:active,
   &:focus {
-    color: lighten($action-button-color, 20%);
-    background-color: $ui-button-icon-hover-background-color;
+    color: lighten($action-button-color, 7%);
+    background-color: rgba($action-button-color, 0.15);
   }
 
   &:focus-visible {
@@ -236,7 +236,7 @@
     &:active,
     &:focus {
       color: darken($lighter-text-color, 7%);
-      background-color: $ui-button-icon-hover-background-color;
+      background-color: rgba($lighter-text-color, 0.15);
     }
 
     &:focus-visible {
@@ -250,6 +250,13 @@
 
     &.active {
       color: $highlight-text-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $highlight-text-color;
+        background-color: transparent;
+      }
 
       &.disabled {
         color: lighten($highlight-text-color, 13%);
@@ -293,16 +300,12 @@
   cursor: pointer;
   padding: 0 3px;
   white-space: nowrap;
-  transition: all 100ms ease-in;
-  transition-property: background-color, color;
 
   &:hover,
   &:active,
   &:focus {
     color: darken($lighter-text-color, 7%);
-    background-color: $ui-button-icon-hover-background-color;
-    transition: all 200ms ease-out;
-    transition-property: background-color, color;
+    background-color: rgba($lighter-text-color, 0.15);
   }
 
   &:focus {
@@ -317,6 +320,13 @@
 
   &.active {
     color: $highlight-text-color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $highlight-text-color;
+      background-color: transparent;
+    }
   }
 }
 
@@ -561,7 +571,7 @@ body > [data-popper-placement] {
     font-size: inherit;
     line-height: inherit;
 
-    &:focus {
+    &:focus-visible {
       outline: 1px dotted;
     }
 
