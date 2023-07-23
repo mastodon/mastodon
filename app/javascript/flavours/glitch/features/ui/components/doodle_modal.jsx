@@ -129,12 +129,12 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   /**
    * Set options in the redux store
-   * @param opts
+   * @param {Object} opts
    */
   setOpt: (opts) => dispatch(doodleSet(opts)),
   /**
    * Submit doodle for upload
-   * @param file
+   * @param {File} file
    */
   submit: (file) => dispatch(uploadCompose([file])),
 });
@@ -240,7 +240,7 @@ class DoodleModal extends ImmutablePureComponent {
 
   /**
    * Key up handler
-   * @param e
+   * @param {KeyboardEvent} e
    */
   handleKeyUp = (e) => {
     if (e.target.nodeName === 'INPUT') return;
@@ -269,7 +269,7 @@ class DoodleModal extends ImmutablePureComponent {
 
   /**
    * Key down handler
-   * @param e
+   * @param {KeyboardEvent} e
    */
   handleKeyDown = (e) => {
     if (e.key === 'Control' || e.key === 'Meta') {
@@ -306,7 +306,7 @@ class DoodleModal extends ImmutablePureComponent {
   /**
    * Set reference to the canvas element.
    * This is called during component init
-   * @param elem - canvas element
+   * @param {HTMLCanvasElement} elem - canvas element
    */
   setCanvasRef = (elem) => {
     this.canvas = elem;
@@ -347,7 +347,7 @@ class DoodleModal extends ImmutablePureComponent {
 
   /**
    * Set up the sketcher instance
-   * @param canvas - canvas element. Null if we're just resizing
+   * @param {HTMLCanvasElement | null} canvas - canvas element. Null if we're just resizing
    */
   initSketcher (canvas = null) {
     const sizepreset = DOODLE_SIZES[this.size];
@@ -445,7 +445,7 @@ class DoodleModal extends ImmutablePureComponent {
   /**
    * Palette left click.
    * Selects Fg color (or Bg, if Control/Meta is held)
-   * @param e - event
+   * @param {MouseEvent<HTMLButtonElement>} e - event
    */
   onPaletteClick = (e) => {
     const c = e.target.dataset.color;
@@ -463,7 +463,7 @@ class DoodleModal extends ImmutablePureComponent {
   /**
    * Palette right click.
    * Selects Bg color
-   * @param e - event
+   * @param {MouseEvent<HTMLButtonElement>} e - event
    */
   onPaletteRClick = (e) => {
     this.bg = e.target.dataset.color;
@@ -473,7 +473,7 @@ class DoodleModal extends ImmutablePureComponent {
 
   /**
    * Handle click on the Draw mode button
-   * @param e - event
+   * @param {MouseEvent<HTMLButtonElement>} e - event
    */
   setModeDraw = (e) => {
     this.mode = 'draw';
@@ -482,7 +482,7 @@ class DoodleModal extends ImmutablePureComponent {
 
   /**
    * Handle click on the Fill mode button
-   * @param e - event
+   * @param {MouseEvent<HTMLButtonElement>} e - event
    */
   setModeFill = (e) => {
     this.mode = 'fill';
@@ -491,7 +491,7 @@ class DoodleModal extends ImmutablePureComponent {
 
   /**
    * Handle click on Smooth checkbox
-   * @param e - event
+   * @param {ChangeEvent<HTMLInputElement>} e - event
    */
   tglSmooth = (e) => {
     this.smoothing = !this.smoothing;
@@ -500,7 +500,7 @@ class DoodleModal extends ImmutablePureComponent {
 
   /**
    * Handle click on Adaptive checkbox
-   * @param e - event
+   * @param {ChangeEvent<HTMLInputElement>} e - event
    */
   tglAdaptive = (e) => {
     this.adaptiveStroke = !this.adaptiveStroke;
@@ -509,7 +509,7 @@ class DoodleModal extends ImmutablePureComponent {
 
   /**
    * Handle change of the Weight input field
-   * @param e - event
+   * @param {ChangeEvent<HTMLInputElement>} e - event
    */
   setWeight = (e) => {
     this.weight = +e.target.value || 1;
@@ -517,7 +517,7 @@ class DoodleModal extends ImmutablePureComponent {
 
   /**
    * Set size - clalback from the select box
-   * @param e - event
+   * @param {ChangeEvent<HTMLSelectElement>} e - event
    */
   changeSize = (e) => {
     let newSize = e.target.value;
