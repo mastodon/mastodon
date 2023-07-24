@@ -81,5 +81,19 @@ describe 'OmniAuth callbacks' do
         expect(response).to redirect_to(auth_setup_path(missing_email: '1'))
       end
     end
+
+    context 'when a user cannot be built' do
+      before do
+        allow(User).to receive(:find_for_oauth).and_return(User.new)
+      end
+
+      it 'redirects to the new user signup page' do
+        expect { post user_openid_connect_omniauth_callback_path }
+          .to not_change(User, :count)
+          .and not_change(Identity, :count)
+
+        expect(response).to redirect_to(new_user_registration_url)
+      end
+    end
   end
 end
