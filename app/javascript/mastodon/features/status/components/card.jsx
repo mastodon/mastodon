@@ -156,9 +156,12 @@ export default class Card extends PureComponent {
     const language    = card.get('language') || '';
 
     const description = (
-      <div className='status-card__content' lang={language}>
-        <span className='status-card__host'>{provider}{card.get('published_at') && <> · <RelativeTimestamp timestamp={card.get('published_at')} /></>}</span>
-        <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>
+      <div className='status-card__content'>
+        <span className='status-card__host'>
+          <span lang={language}>{provider}</span>
+          {card.get('published_at') && <> · <RelativeTimestamp timestamp={card.get('published_at')} /></>}
+         </span>
+        <strong className='status-card__title' title={card.get('title')} lang={language}>{card.get('title')}</strong>
         {card.get('author_name').length > 0 && <span className='status-card__author'><FormattedMessage id='link_preview.author' defaultMessage='By {name}' values={{ name: <strong>{card.get('author_name')}</strong> }} /></span>}
       </div>
     );
