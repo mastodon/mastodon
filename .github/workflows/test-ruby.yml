@@ -107,6 +107,8 @@ jobs:
       PAM_ENABLED: true
       PAM_DEFAULT_SERVICE: pam_test
       PAM_CONTROLLED_SERVICE: pam_test_controlled
+      OIDC_ENABLED: true
+      OIDC_SCOPE: read
       BUNDLE_WITH: 'pam_authentication test'
       CI_JOBS: ${{ matrix.ci_job }}/4
 
