@@ -124,7 +124,7 @@ class LinkDetailsExtractor
       author_url: author_url || '',
       embed_url: embed_url || '',
       language: language,
-      created_at: published_at.presence || Time.now.utc,
+      published_at: published_at.presence,
     }
   end
 

@@ -15,8 +15,4 @@ class REST::PreviewCardSerializer < ActiveModel::Serializer
   def html
     Sanitize.fragment(object.html, Sanitize::Config::MASTODON_OEMBED)
   end
-
-  def published_at
-    object.created_at
-  end
 end
