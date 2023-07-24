@@ -4,6 +4,17 @@ require 'rails_helper'
 
 describe 'OmniAuth callbacks' do
   describe '#openid_connect', if: ENV['OIDC_ENABLED'] == 'true' && ENV['OIDC_SCOPE'].present? do
+    before do
+      mock_omniauth(:openid_connect, {
+        provider: 'openid_connect',
+        uid: '123',
+        info: {
+          verified: 'true',
+          email: 'user@host.example',
+        },
+      })
+    end
+
     context 'without a matching user' do
       it 'creates a user and an identity and redirects to root path' do
         expect { post user_openid_connect_omniauth_callback_path }
