@@ -2,6 +2,10 @@
 my:
   simple_form:
     hints:
+      account:
+        display_name: သင့်အမည်အပြည့်အစုံ သို့မဟုတ် သင့်အမည်ပြောင်။
+        fields: သင့် ပင်မစာမျက်နှာ၊ နာမ်စား၊ အသက်၊ သင်လိုချင်သည့်အရာ။
+        note: 'သင်သည် အခြားသူများ သို့မဟုတ် #hashtag များကို @mention ဖြင့် ဖော်ပြနိုင်သည်။'
       account_alias:
         acct: ပြောင်းရွှေ့မည့်အကောင့်မှ username@domain ကို သတ်မှတ်ပါ
       account_migration:
@@ -130,6 +134,7 @@ my:
         position: အခန်းကဏ္ဍအဆင့်မြင့်သူအနေဖြင့် အချို့သောအခြေအနေများတွင် ပဋိပက္ခများကို ဖြေရှင်းနိုင်သည်။ အချို့လုပ်ဆောင်ချက်များမှာ အဆင့်နိမ့်အခန်းကဏ္ဍများတွင်သာ လုပ်ဆောင်နိုင်သည်။
       webhook:
         events: ပို့မည့်အကြောင်းအရာများကို ရွေးချယ်ပါ
+        template: variable interpolation ကိုအသုံးပြု၍ ကိုယ်ပိုင် JSON payload ရေးပါ။ မူရင်း JSON အတွက် နေရာလွတ်ချန်ထားပါ။
         url: အကြောင်းအရာများကို ဘယ်ကို ပို့မလဲ။
     labels:
       account:
@@ -195,7 +200,6 @@ my:
         setting_always_send_emails: အီးမေးလ်သတိပေးချက်များကို အမြဲပို့ပါ
         setting_auto_play_gif: ကာတွန်း GIF များကို အလိုအလျောက်ဖွင့်ပါ
         setting_boost_modal: Boost မလုပ်မီ အတည်ပြုချက်ပြပါ
-        setting_crop_images: အကျယ်မချဲ့ထားသော စာစုများတွင် ပုံများကို ၁၆း၉ အရွယ် ဖြတ်တောက်ပါ။
         setting_default_language: ပို့စ်တင်မည့်ဘာသာစကား
         setting_default_privacy: ပို့စ်ကို ဘယ်သူမြင်နိုင်မလဲ
         setting_default_sensitive: သတိထားရသောမီဒီယာအဖြစ် အမြဲအမှတ်အသားပြုပါ
@@ -295,6 +299,7 @@ my:
         usable: ပို့စ်များကို ဤ hashtag သုံးခွင့်ပြုပါ
       user:
         role: အခန်းကဏ္ဍ
+        time_zone: အချိန်ဇုန်
       user_role:
         color: သင်္ကေတအရောင်
         highlighted: အသုံးပြုသူပရိုဖိုင်များတွင် သင်္ကေတအဖြစ် အခန်းကဏ္ဍကို ပြသပါ
@@ -303,6 +308,7 @@ my:
         position: ဦးစားပေး
       webhook:
         events: အကြောင်းအရာများကဏ္ဍကို ဖွင့်ထားသည်
+        template: Payload ပုံစံ
         url: URL ဆုံးမှတ်
     'no': မလုပ်ပါ
     not_recommended: ထောက်ခံထားမှုမရှိ

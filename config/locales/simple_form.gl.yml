@@ -2,6 +2,10 @@
 gl:
   simple_form:
     hints:
+      account:
+        display_name: O teu nome completo ou un nome divertido.
+        fields: Páxina web, pronome, idade, o que ti queiras.
+        note: 'Podes @mencionar a outras persoas ou #cancelos.'
       account_alias:
         acct: Indica o usuaria@servidor da conta desde a cal queres migrar
       account_migration:
@@ -130,6 +134,7 @@ gl:
         position: O rol superior decide nos conflitos en certas situacións. Algunhas accións só poden aplicarse sobre roles cunha prioridade menor
       webhook:
         events: Elixir eventos a enviar
+        template: Crea o teu propio JSON interpolando variables. Déixao en branco para usar o JSON predeterminado.
         url: A onde se enviarán os eventos
     labels:
       account:
@@ -195,7 +200,6 @@ gl:
         setting_always_send_emails: Enviar sempre notificacións por correo electrónico
         setting_auto_play_gif: Reprodución automática de GIFs animados
         setting_boost_modal: Solicitar confirmación antes de promover
-        setting_crop_images: Recortar imaxes a 16x9 en publicacións non despregadas
         setting_default_language: Idioma de publicación
         setting_default_privacy: Privacidade da publicación
         setting_default_sensitive: Marcar sempre multimedia como sensible
@@ -260,7 +264,7 @@ gl:
         trends: Activar tendencias
         trends_as_landing_page: Usar as tendencias como páxina de benvida
       interactions:
-        must_be_follower: Bloquear as notificacións de non-seguidoras
+        must_be_follower: Bloquea as notificacións de persoas que non te seguen
         must_be_following: Bloquea as notificacións de persoas que non segues
         must_be_following_dm: Bloquea as mensaxes directas de persoas que non segues
       invite:
@@ -295,6 +299,7 @@ gl:
         usable: Permitir que as publicacións utilicen este cancelo
       user:
         role: Rol
+        time_zone: Fuso horario
       user_role:
         color: Cor da insignia
         highlighted: Mostrar rol como insignia en perfís de usuarias
@@ -303,6 +308,7 @@ gl:
         position: Prioridade
       webhook:
         events: Eventos activados
+        template: Modelo de carga
         url: URL do extremo
     'no': Non
     not_recommended: Non é recomendable

@@ -4,14 +4,13 @@ source 'https://rubygems.org'
 ruby '>= 3.0.0'
 
 gem 'puma', '~> 6.3'
-gem 'rails', '~> 6.1.7'
+gem 'rails', '~> 7.0'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
 gem 'rack', '~> 2.2.7'
 
 gem 'haml-rails', '~>2.0'
 gem 'pg', '~> 1.5'
-gem 'makara', '~> 0.5'
 gem 'pghero'
 gem 'dotenv-rails', '~> 2.8'
 
@@ -19,6 +18,7 @@ gem 'aws-sdk-s3', '~> 1.123', require: false
 gem 'fog-core', '<= 2.4.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.2'
+gem 'md-paperclip-azure', '~> 2.2', require: false
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
@@ -67,7 +67,7 @@ gem 'pundit', '~> 2.3'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 2.0', require: 'rack/cors'
-gem 'rails-i18n', '~> 6.0'
+gem 'rails-i18n', '~> 7.0'
 gem 'rails-settings-cached', '~> 0.6', git: 'https://github.com/mastodon/rails-settings-cached.git', branch: 'v0.6.6-aliases-true'
 gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
@@ -159,7 +159,7 @@ group :development do
   gem 'letter_opener_web', '~> 2.0'
 
   # Security analysis CLI tools
-  gem 'brakeman', '~> 5.4', require: false
+  gem 'brakeman', '~> 6.0', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
   # Linter CLI for HAML files

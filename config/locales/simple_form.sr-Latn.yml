@@ -2,6 +2,10 @@
 sr-Latn:
   simple_form:
     hints:
+      account:
+        display_name: Vaše puno ime ili nadimak.
+        fields: Vaša matična stranica, zamenice, godine, sve što želite.
+        note: 'Možete da @pomenete druge ljude ili #heš oznake.'
       account_alias:
         acct: Navedite korisničko_ime@domen naloga sa kojeg želite da se preselite
       account_migration:
@@ -58,6 +62,7 @@ sr-Latn:
         setting_show_application: Aplikacija koju koristite za objavljivanje će biti prikazana u detaljnom prikazu vaših objava
         setting_use_blurhash: Gradijenti se formiraju na osnovu bojâ skrivenih slika i zamućuju prikaz, prikrivajući detalje
         setting_use_pending_items: Sakriva ažuriranja vremenske linije iza klika umesto automatskog ažuriranja i pomeranja vremenske linije
+        username: Možete koristiti slova, brojeve i donje crte
         whole_word: Kada je ključna reč ili fraza isključivo alfanumerička, biće primenjena samo ako se podudara sa celom rečju
       domain_allow:
         domain: Ovaj domen će moći da preuzima podatke sa ovog servera i dolazni podaci sa njega će se obrađivati i čuvati
@@ -129,6 +134,7 @@ sr-Latn:
         position: Viša uloga odlučuje o rešavanju sukoba u određenim situacijama. Određene radnje se mogu izvršiti samo na ulogama sa nižim prioritetom
       webhook:
         events: Izaberite događaje za slanje
+        template: Sastavite sopstveni JSON korisnih podataka koristeći promenljivu interpolaciju. Ostavite prazno za podrazumevani JSON.
         url: Gde će se događaji slati
     labels:
       account:
@@ -194,7 +200,6 @@ sr-Latn:
         setting_always_send_emails: Uvek šalji obaveštenja e-poštom
         setting_auto_play_gif: Automatski reprodukuj animirane GIF-ove
         setting_boost_modal: Prikaži dijalog za potvrdu pre davanja podrške
-        setting_crop_images: Izreži slike u neproširenim objavama na 16x9
         setting_default_language: Jezik objavljivanja
         setting_default_privacy: Privatnost objava
         setting_default_sensitive: Uvek označi multimediju kao osetljivu
@@ -294,6 +299,7 @@ sr-Latn:
         usable: Dozvoli objavama da koriste ovu heš oznaku
       user:
         role: Uloga
+        time_zone: Vremenska zona
       user_role:
         color: Boja bedža
         highlighted: Prikaži ulogu i bedž na profilima korisnika
@@ -302,6 +308,7 @@ sr-Latn:
         position: Prioritet
       webhook:
         events: Omogućeni događaji
+        template: Šablon korisničkih podataka
         url: URL krajnje tačke
     'no': Ne
     not_recommended: Nije preporučeno

@@ -11,13 +11,21 @@ import BundleContainer from '../containers/bundle_container';
 
 // Small wrapper to pass multiColumn to the route components
 export class WrappedSwitch extends PureComponent {
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   render () {
     const { multiColumn, children } = this.props;
+    const { location } = this.context.router.route;
+
+    const decklessLocation = multiColumn && location.pathname.startsWith('/deck')
+      ? {...location, pathname: location.pathname.slice(5)}
+      : location;
 
     return (
-      <Switch>
-        {Children.map(children, child => cloneElement(child, { multiColumn }))}
+      <Switch location={decklessLocation}>
+        {Children.map(children, child => child ? cloneElement(child, { multiColumn }) : null)}
       </Switch>
     );
   }

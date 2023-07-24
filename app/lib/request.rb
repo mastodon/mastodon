@@ -4,14 +4,22 @@ require 'ipaddr'
 require 'socket'
 require 'resolv'
 
-# Monkey-patch the HTTP.rb timeout class to avoid using a timeout block
+# Use our own timeout class to avoid using HTTP.rb's timeout block
 # around the Socket#open method, since we use our own timeout blocks inside
 # that method
 #
 # Also changes how the read timeout behaves so that it is cumulative (closer
 # to HTTP::Timeout::Global, but still having distinct timeouts for other
 # operation types)
-class HTTP::Timeout::PerOperation
+class PerOperationWithDeadline < HTTP::Timeout::PerOperation
+  READ_DEADLINE = 30
+
+  def initialize(*args)
+    super
+
+    @read_deadline = options.fetch(:read_deadline, READ_DEADLINE)
+  end
+
   def connect(socket_class, host, port, nodelay = false)
     @socket = socket_class.open(host, port)
     @socket.setsockopt(Socket::IPPROTO_TCP, Socket::TCP_NODELAY, 1) if nodelay
@@ -24,7 +32,7 @@ class HTTP::Timeout::PerOperation
 
   # Read data from the socket
   def readpartial(size, buffer = nil)
-    @deadline ||= Process.clock_gettime(Process::CLOCK_MONOTONIC) + @read_timeout
+    @deadline ||= Process.clock_gettime(Process::CLOCK_MONOTONIC) + @read_deadline
 
     timeout = false
     loop do
@@ -33,7 +41,8 @@ class HTTP::Timeout::PerOperation
       return :eof if result.nil?
 
       remaining_time = @deadline - Process.clock_gettime(Process::CLOCK_MONOTONIC)
-      raise HTTP::TimeoutError, "Read timed out after #{@read_timeout} seconds" if timeout || remaining_time <= 0
+      raise HTTP::TimeoutError, "Read timed out after #{@read_timeout} seconds" if timeout
+      raise HTTP::TimeoutError, "Read timed out after a total of #{@read_deadline} seconds" if remaining_time <= 0
       return result if result != :wait_readable
 
       # marking the socket for timeout. Why is this not being raised immediately?
@@ -46,7 +55,7 @@ class HTTP::Timeout::PerOperation
       # timeout. Else, the first timeout was a proper timeout.
       # This hack has to be done because io/wait#wait_readable doesn't provide a value for when
       # the socket is closed by the server, and HTTP::Parser doesn't provide the limit for the chunks.
-      timeout = true unless @socket.to_io.wait_readable(remaining_time)
+      timeout = true unless @socket.to_io.wait_readable([remaining_time, @read_timeout].min)
     end
   end
 end
@@ -57,7 +66,7 @@ class Request
   # We enforce a 5s timeout on DNS resolving, 5s timeout on socket opening
   # and 5s timeout on the TLS handshake, meaning the worst case should take
   # about 15s in total
-  TIMEOUT = { connect: 5, read: 10, write: 10 }.freeze
+  TIMEOUT = { connect_timeout: 5, read_timeout: 10, write_timeout: 10, read_deadline: 30 }.freeze
 
   include RoutingHelper
 
@@ -69,6 +78,7 @@ class Request
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
     @options     = options.merge(socket_class: use_proxy? || @allow_local ? ProxySocket : Socket)
+    @options     = @options.merge(timeout_class: PerOperationWithDeadline, timeout_options: TIMEOUT)
     @options     = @options.merge(proxy_url) if use_proxy?
     @headers     = {}
 
@@ -129,7 +139,7 @@ class Request
     end
 
     def http_client
-      HTTP.use(:auto_inflate).timeout(TIMEOUT.dup).follow(max_hops: 3)
+      HTTP.use(:auto_inflate).follow(max_hops: 3)
     end
   end
 
@@ -274,11 +284,11 @@ class Request
         end
 
         until socks.empty?
-          _, available_socks, = IO.select(nil, socks, nil, Request::TIMEOUT[:connect])
+          _, available_socks, = IO.select(nil, socks, nil, Request::TIMEOUT[:connect_timeout])
 
           if available_socks.nil?
             socks.each(&:close)
-            raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect]} seconds"
+            raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect_timeout]} seconds"
           end
 
           available_socks.each do |sock|

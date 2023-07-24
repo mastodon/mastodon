@@ -2,6 +2,10 @@
 he:
   simple_form:
     hints:
+      account:
+        display_name: שמך המלא או שם הכיף שלך.
+        fields: עמוד הבית שלך, כינויי גוף, גיל, וכל מידע אחר לפי העדפתך האישית.
+        note: 'ניתן לאזכר @אחרים או #תגיות.'
       account_alias:
         acct: נא לציין משתמש@דומיין של החשבון ממנו תרצה/י לעבור
       account_migration:
@@ -130,6 +134,7 @@ he:
         position: תפקיד גבוה יותר מכריע בחילוקי דעות במצבים מסוימים. פעולות מסוימות יכולות להתבצע רק על תפקידים בדרגה נמוכה יותר
       webhook:
         events: בחר אירועים לשליחה
+        template: ניתן להרכיב מטען JSON משלך בשימוש בשילוב משתנים. יש להשאיר ריק בשביל JSON ברירת המחדל.
         url: היעד שאליו יישלחו אירועים
     labels:
       account:
@@ -195,7 +200,6 @@ he:
         setting_always_send_emails: תמיד שלח התראות לדוא"ל
         setting_auto_play_gif: ניגון אוטומטי של גיפים
         setting_boost_modal: הצגת דיאלוג אישור לפני הדהוד
-        setting_crop_images: קטום תמונות בהודעות לא מורחבות ל 16 על 9
         setting_default_language: שפת ברירת מחדל להודעה
         setting_default_privacy: פרטיות ההודעות
         setting_default_sensitive: תמיד לתת סימון "רגיש" למדיה
@@ -295,6 +299,7 @@ he:
         usable: הרשה/י להודעות להכיל תגית זו
       user:
         role: תפקיד
+        time_zone: אזור זמן
       user_role:
         color: צבע תג
         highlighted: הצג תפקיד כתג בפרופיל משתמש
@@ -303,6 +308,7 @@ he:
         position: עדיפות
       webhook:
         events: אירועים מאופשרים
+        template: תבנית מטען
         url: כתובת URL של נקודת הקצה
     'no': לא
     not_recommended: לא מומלצים

@@ -108,7 +108,7 @@ export const timeAgoString = (
   now: number,
   year: number,
   timeGiven: boolean,
-  short?: boolean
+  short?: boolean,
 ) => {
   const delta = now - date.getTime();
 
@@ -118,28 +118,28 @@ export const timeAgoString = (
     relativeTime = intl.formatMessage(messages.today);
   } else if (delta < 10 * SECOND) {
     relativeTime = intl.formatMessage(
-      short ? messages.just_now : messages.just_now_full
+      short ? messages.just_now : messages.just_now_full,
     );
   } else if (delta < 7 * DAY) {
     if (delta < MINUTE) {
       relativeTime = intl.formatMessage(
         short ? messages.seconds : messages.seconds_full,
-        { number: Math.floor(delta / SECOND) }
+        { number: Math.floor(delta / SECOND) },
       );
     } else if (delta < HOUR) {
       relativeTime = intl.formatMessage(
         short ? messages.minutes : messages.minutes_full,
-        { number: Math.floor(delta / MINUTE) }
+        { number: Math.floor(delta / MINUTE) },
       );
     } else if (delta < DAY) {
       relativeTime = intl.formatMessage(
         short ? messages.hours : messages.hours_full,
-        { number: Math.floor(delta / HOUR) }
+        { number: Math.floor(delta / HOUR) },
       );
     } else {
       relativeTime = intl.formatMessage(
         short ? messages.days : messages.days_full,
-        { number: Math.floor(delta / DAY) }
+        { number: Math.floor(delta / DAY) },
       );
     }
   } else if (date.getFullYear() === year) {
@@ -158,7 +158,7 @@ const timeRemainingString = (
   intl: IntlShape,
   date: Date,
   now: number,
-  timeGiven = true
+  timeGiven = true,
 ) => {
   const delta = date.getTime() - now;
 

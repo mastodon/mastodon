@@ -2,6 +2,10 @@
 vi:
   simple_form:
     hints:
+      account:
+        display_name: Tên đầy đủ hoặc biệt danh đều được.
+        fields: Trang blog của bạn, nghề nghiệp, tuổi hay bất cứ thứ gì.
+        note: 'Bạn có thể @nhắnriêng ai đó hoặc #hashtags.'
       account_alias:
         acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
       account_migration:
@@ -130,6 +134,7 @@ vi:
         position: Vai trò cao hơn sẽ có quyền quyết định xung đột trong các tình huống. Các vai trò có mức độ ưu tiên thấp hơn chỉ có thể thực hiện một số hành động nhất định
       webhook:
         events: Chọn sự kiện để gửi
+        template: Soạn JSON payload của riêng bạn bằng phép nội suy biến. Để trống để dùng JSON mặc định.
         url: Nơi những sự kiện được gửi đến
     labels:
       account:
@@ -195,7 +200,6 @@ vi:
         setting_always_send_emails: Luôn gửi email thông báo
         setting_auto_play_gif: Tự động phát ảnh GIF
         setting_boost_modal: Yêu cầu xác nhận trước khi đăng lại tút
-        setting_crop_images: Hiển thị ảnh theo tỉ lệ 16x9
         setting_default_language: Ngôn ngữ đăng
         setting_default_privacy: Kiểu đăng
         setting_default_sensitive: Ảnh/video là nội dung nhạy cảm
@@ -295,6 +299,7 @@ vi:
         usable: Cho phép dùng trong tút
       user:
         role: Vai trò
+        time_zone: Múi giờ
       user_role:
         color: Màu huy hiệu
         highlighted: Hiển thị huy hiệu vai trò trên hồ sơ người dùng
@@ -303,6 +308,7 @@ vi:
         position: Mức độ ưu tiên
       webhook:
         events: Những sự kiện đã bật
+        template: Mẫu payload
         url: URL endpoint
     'no': Tắt
     not_recommended: Không đề xuất

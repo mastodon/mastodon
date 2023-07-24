@@ -2,6 +2,10 @@
 gd:
   simple_form:
     hints:
+      account:
+        display_name: D’ ainm slàn no spòrsail.
+        fields: An duilleag-dhachaigh agad, roimhearan, aois, rud sam bith a thogras tu.
+        note: "’S urrainn dhut @iomradh a thoirt air càch no air #tagaicheanHais."
       account_alias:
         acct: Sònraich ainm-cleachdaiche@àrainn dhen chunntas a tha thu airson imrich uaithe
       account_migration:
@@ -58,6 +62,7 @@ gd:
         setting_show_application: Chithear cò an aplacaid a chleachd thu airson post a sgrìobhadh ann an seallaidhean mionaideach nam postaichean agad
         setting_use_blurhash: Tha caiseadan stèidhichte air dathan nan nithean lèirsinneach a chaidh fhalach ach chan fhaicear am mion-fhiosrachadh
         setting_use_pending_items: Falaich ùrachaidhean na loidhne-ama air cùlaibh briogaidh seach a bhith a’ sgroladh nam postaichean gu fèin-obrachail
+        username: Faodaidh tu litrichean, àireamhan is fo-loidhnichean a chleachdadh
         whole_word: Mur eil ach litrichean is àireamhan san fhacal-luirg, cha dèid a chur an sàs ach ma bhios e a’ maidseadh an fhacail shlàin
       domain_allow:
         domain: "’S urrainn dhan àrainn seo dàta fhaighinn on fhrithealaiche seo agus thèid an dàta a thig a-steach uaithe a phròiseasadh ’s a stòradh"
@@ -129,6 +134,7 @@ gd:
         position: Ma tha còmhstri ann, buannaichidh an dreuchd as àirde ann an cuid a shuidheachaidhean. Tha gnìomhan sònraichte ann nach urrainn ach dreuchdan le prìomhachas ìosail a ghabhail
       webhook:
         events: Tagh na tachartasan a thèid a chur
+        template: Cruthaich an JSON payload agad fhèin le eadar-phòlachadh chaochladairean. Fàg seo bàn airson JSON bunaiteach fhaighinn.
         url: Far an dèid na tachartasan a chur
     labels:
       account:
@@ -194,7 +200,6 @@ gd:
         setting_always_send_emails: Cuir brathan puist-d an-còmhnaidh
         setting_auto_play_gif: Cluich GIFs beòthaichte gu fèin-obrachail
         setting_boost_modal: Seall còmhradh dearbhaidh mus dèan thu brosnachadh
-        setting_crop_images: Beàrr na dealbhan sna postaichean gun leudachadh air 16x9
         setting_default_language: Cànan postaidh
         setting_default_privacy: Prìobhaideachd postaidh
         setting_default_sensitive: Cuir comharra ri meadhanan an-còmhnaidh gu bheil iad frionasach
@@ -294,6 +299,7 @@ gd:
         usable: Leig le postaichean an taga hais seo a chleachdadh
       user:
         role: Dreuchd
+        time_zone: Roinn-tìde
       user_role:
         color: Dathan na baidse
         highlighted: Seall an dreuchd ’na baidse air pròifilean nan cleachdaichean
@@ -302,6 +308,7 @@ gd:
         position: Prìomhachas
       webhook:
         events: Na tachartas an comas
+        template: Teamplaid payload
         url: URL na puinge-deiridh
     'no': Chan eil
     not_recommended: Cha mholamaid seo

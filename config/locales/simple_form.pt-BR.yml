@@ -2,6 +2,10 @@
 pt-BR:
   simple_form:
     hints:
+      account:
+        display_name: Seu nome completo ou apelido.
+        fields: Sua página inicial, pronomes, idade ou qualquer coisa que quiser.
+        note: 'Você pode @mencionar outras pessoas ou #hashtags.'
       account_alias:
         acct: Especifique o usuário@domínio de onde veio
       account_migration:
@@ -58,6 +62,7 @@ pt-BR:
         setting_show_application: O aplicativo que você usar para publicar será exibido na visão detalhada das suas publicações
         setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
         setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
+        username: Você pode usar letras, números e underlines
         whole_word: Quando a palavra-chave ou frase é inteiramente alfanumérica, ela será aplicada somente se corresponder a palavra inteira
       domain_allow:
         domain: Este domínio poderá obter dados deste servidor e os dados recebidos dele serão processados e armazenados
@@ -129,6 +134,7 @@ pt-BR:
         position: Um cargo superior decide a resolução de conflitos em certas situações. Certas ações só podem ser executadas com cargos de menor prioridade
       webhook:
         events: Selecione eventos para enviar
+        template: Elabore seu próprio conteúdo JSON usando interpolação de variáveis. Deixe em branco para utilizar o JSON padrão.
         url: Aonde os eventos serão enviados
     labels:
       account:
@@ -194,7 +200,6 @@ pt-BR:
         setting_always_send_emails: Sempre enviar notificações por e-mail
         setting_auto_play_gif: Reproduzir GIFs automaticamente
         setting_boost_modal: Solicitar confirmação antes de dar boost
-        setting_crop_images: Cortar imagens no formato 16x9 em publicações não expandidas
         setting_default_language: Idioma dos toots
         setting_default_privacy: Privacidade dos toots
         setting_default_sensitive: Sempre marcar mídia como sensível
@@ -294,6 +299,7 @@ pt-BR:
         usable: Permitir que toots usem esta hashtag
       user:
         role: Cargo
+        time_zone: Fuso horário
       user_role:
         color: Cor do emblema
         highlighted: Exibir cargo como distintivo nos perfis de usuários
@@ -302,6 +308,7 @@ pt-BR:
         position: Prioridade
       webhook:
         events: Eventos habilitados
+        template: Conteúdo JSON
         url: URL do Endpoint
     'no': Não
     not_recommended: Não recomendado

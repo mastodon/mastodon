@@ -19,7 +19,7 @@ import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
 import Button from 'mastodon/components/button';
 import { DisplayName } from 'mastodon/components/display_name';
-import ShortNumber from 'mastodon/components/short_number';
+import { ShortNumber } from 'mastodon/components/short_number';
 import { autoPlayGif, me, unfollowModal } from 'mastodon/initial_state';
 import { makeGetAccount } from 'mastodon/selectors';
 
@@ -160,16 +160,16 @@ class AccountCard extends ImmutablePureComponent {
       if (!account.get('relationship')) { // Wait until the relationship is loaded
         actionBtn = '';
       } else if (account.getIn(['relationship', 'requested'])) {
-        actionBtn = <Button className={classNames('logo-button')} text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.handleFollow} />;
+        actionBtn = <Button  text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.handleFollow} />;
       } else if (account.getIn(['relationship', 'muting'])) {
-        actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unmute)} onClick={this.handleMute} />;
+        actionBtn = <Button  text={intl.formatMessage(messages.unmute)} onClick={this.handleMute} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.handleFollow} />;
+        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames({ 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.handleFollow} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock)} onClick={this.handleBlock} />;
+        actionBtn = <Button  text={intl.formatMessage(messages.unblock)} onClick={this.handleBlock} />;
       }
     } else {
-      actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.edit_profile)} onClick={this.handleEditProfile} />;
+      actionBtn = <Button  text={intl.formatMessage(messages.edit_profile)} onClick={this.handleEditProfile} />;
     }
 
     return (

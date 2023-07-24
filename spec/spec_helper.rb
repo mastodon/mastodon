@@ -3,6 +3,7 @@
 if ENV['DISABLE_SIMPLECOV'] != 'true'
   require 'simplecov'
   SimpleCov.start 'rails' do
+    add_filter 'lib/linter'
     add_group 'Policies', 'app/policies'
     add_group 'Presenters', 'app/presenters'
     add_group 'Serializers', 'app/serializers'

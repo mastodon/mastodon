@@ -114,7 +114,7 @@ export default class IntersectionObserverArticle extends Component {
           aria-setsize={listLength}
           style={{ height: `${this.height || cachedHeight}px`, opacity: 0, overflow: 'hidden' }}
           data-id={id}
-          tabIndex={0}
+          tabIndex={-1}
         >
           {children && cloneElement(children, { hidden: true })}
         </article>
@@ -122,7 +122,7 @@ export default class IntersectionObserverArticle extends Component {
     }
 
     return (
-      <article ref={this.handleRef} aria-posinset={index + 1} aria-setsize={listLength} data-id={id} tabIndex={0}>
+      <article ref={this.handleRef} aria-posinset={index + 1} aria-setsize={listLength} data-id={id} tabIndex={-1}>
         {children && cloneElement(children, { hidden: false })}
       </article>
     );

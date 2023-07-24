@@ -2,6 +2,10 @@
 es-AR:
   simple_form:
     hints:
+      account:
+        display_name: Tu nombre completo o tu pseudónimo.
+        fields: Tu sitio web, pronombres, edad, o lo que quieras.
+        note: 'Podés @mencionar otras cuentas o usar #etiquetas.'
       account_alias:
         acct: Especificá el nombredeusuario@dominio de la cuenta desde la que querés mudarte
       account_migration:
@@ -58,6 +62,7 @@ es-AR:
         setting_show_application: La aplicación que usás para enviar mensajes se mostrará en la vista detallada de tus mensajes
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar actualizaciones de la línea temporal detrás de un clic en lugar de desplazar automáticamente el flujo
+        username: Podés usar letras, números y subguiones ("_")
         whole_word: Cuando la palabra clave o frase es sólo alfanumérica, sólo será aplicado si coincide con toda la palabra
       domain_allow:
         domain: Este dominio podrá recolectar datos de este servidor, y los datos entrantes serán procesados y archivados
@@ -76,7 +81,7 @@ es-AR:
         backups_retention_period: Conservar los archivos historiales generados por el usuario durante el número de días especificado.
         bootstrap_timeline_accounts: Estas cuentas serán fijadas a la parte superior de las recomendaciones de cuentas a seguir para nuevos usuarios.
         closed_registrations_message: Mostrado cuando los registros están cerrados
-        content_cache_retention_period: Los mensajes de otros servidores se eliminarán después del número especificado de días cuando se establezca un valor positivo. Esto puede ser irreversible.
+        content_cache_retention_period: Todos los mensajes y adhesiones de otros servidores se eliminarán después del número especificado de días. Es posible que algunos mensajes no sean recuperables. Todos los marcadores relacionados, mensajes marcados como favoritos y adhesiones también se perderán y será imposible de deshacer.
         custom_css: Podés aplicar estilos personalizados a la versión web de Mastodon.
         mascot: Reemplaza la ilustración en la interface web avanzada.
         media_cache_retention_period: Los archivos de medios descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se volverán a descargar a pedido.
@@ -129,6 +134,7 @@ es-AR:
         position: Un rol más alto decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con prioridad inferior
       webhook:
         events: Seleccionar eventos para enviar
+        template: Creá tu propio archivo JSON usando interpolación variable. Dejalo en blanco para usar el archivo JSON predeterminado.
         url: Adónde serán enviados los eventos
     labels:
       account:
@@ -150,7 +156,7 @@ es-AR:
         types:
           disable: Congelar
           none: Enviar una advertencia
-          sensitive: Sensible
+          sensitive: Marcar como sensible
           silence: Limitar
           suspend: Suspender
         warning_preset_id: Usar una advertencia preestablecida
@@ -165,7 +171,7 @@ es-AR:
       defaults:
         autofollow: Invitar para seguir tu cuenta
         avatar: Avatar
-        bot: Esta es una cuenta bot
+        bot: Esta es una cuenta automatizada
         chosen_languages: Filtrar idiomas
         confirm_new_password: Confirmar nueva contraseña
         confirm_password: Confirmar contraseña
@@ -176,7 +182,7 @@ es-AR:
         display_name: Nombre para mostrar
         email: Dirección de correo electrónico
         expires_in: Vence después de
-        fields: Metadatos de perfil
+        fields: Campos extras
         header: Cabecera
         honeypot: "%{label} (no rellenar)"
         inbox_url: Dirección web de la bandeja de entrada del relé
@@ -194,7 +200,6 @@ es-AR:
         setting_always_send_emails: Siempre enviar notificaciones por correo electrónico
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar diálogo de confirmación antes de adherir
-        setting_crop_images: Recortar imágenes en mensajes no expandidos a 16x9
         setting_default_language: Idioma de tus mensajes
         setting_default_privacy: Privacidad de mensajes
         setting_default_sensitive: Siempre marcar medios como sensibles
@@ -294,6 +299,7 @@ es-AR:
         usable: Permitir a los mensajes usar esta etiqueta
       user:
         role: Rol
+        time_zone: Zona horaria
       user_role:
         color: Color de Insignia
         highlighted: Mostrar rol como insignia en perfiles de usuario
@@ -302,6 +308,7 @@ es-AR:
         position: Prioridad
       webhook:
         events: Eventos habilitados
+        template: Plantilla de carga
         url: Dirección web del punto final
     'no': 'No'
     not_recommended: No recomendado

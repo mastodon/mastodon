@@ -20,7 +20,7 @@ import FollowRequestContainer from '../containers/follow_request_container';
 import Report from './report';
 
 const messages = defineMessages({
-  favourite: { id: 'notification.favourite', defaultMessage: '{name} favourited your status' },
+  favourite: { id: 'notification.favourite', defaultMessage: '{name} favorited your status' },
   follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
   ownPoll: { id: 'notification.own_poll', defaultMessage: 'Your poll has ended' },
   poll: { id: 'notification.poll', defaultMessage: 'A poll you have voted in has ended' },
@@ -198,7 +198,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
+              <FormattedMessage id='notification.favourite' defaultMessage='{name} favorited your status' values={{ name: link }} />
             </span>
           </div>
 

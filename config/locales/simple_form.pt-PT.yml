@@ -2,6 +2,10 @@
 pt-PT:
   simple_form:
     hints:
+      account:
+        display_name: O seu nome completo ou o seu nome divertido.
+        fields: A sua página inicial, os seus pronomes, idade e tudo o que quiser.
+        note: 'Pode @mencionar outras pessoas ou #hashtags.'
       account_alias:
         acct: Especifique o utilizador@domínio da conta de onde você deseja migrar
       account_migration:
@@ -130,6 +134,7 @@ pt-PT:
         position: Cargos mais altos decidem a resolução de conflitos em certas situações. Certas ações só podem ser executadas em cargos com uma menor prioridade
       webhook:
         events: Selecione os eventos a enviar
+        template: Componha o seu próprio conteúdo JSON utilizando a interpolação de variáveis. Deixar em branco para o JSON predefinido.
         url: Para onde os eventos serão enviados
     labels:
       account:
@@ -195,7 +200,6 @@ pt-PT:
         setting_always_send_emails: Enviar sempre notificações de email
         setting_auto_play_gif: Reproduzir GIF automaticamente
         setting_boost_modal: Solicitar confirmação antes de partilhar uma publicação
-        setting_crop_images: Recortar imagens para o formato 16x9 nas publicações não expandidas
         setting_default_language: Língua de publicação
         setting_default_privacy: Privacidade da publicação
         setting_default_sensitive: Marcar sempre os media como problemáticos
@@ -295,6 +299,7 @@ pt-PT:
         usable: Permitir que as publicações usem esta etiqueta
       user:
         role: Cargo
+        time_zone: Fuso horário
       user_role:
         color: Cor do emblema
         highlighted: Apresentar o cargo como emblema nos perfis de utilizador
@@ -303,6 +308,7 @@ pt-PT:
         position: Prioridade
       webhook:
         events: Eventos ativados
+        template: Modelo de conteúdo
         url: URL do Endpoint
     'no': Não
     not_recommended: Não recomendado

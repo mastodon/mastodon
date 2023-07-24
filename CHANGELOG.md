@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.1.5] - 2023-07-21
+
+### Added
+
+- Add check preventing Sidekiq workers from running with Makara configured ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/25850))
+
+### Changed
+
+- Change request timeout handling to use a longer deadline ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/26055))
+
+### Fixed
+
+- Fix moderation interface for remote instances with a .zip TLD ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/25885))
+- Fix remote accounts being possibly persisted to database with incomplete protocol values ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/25886))
+- Fix trending publishers table not rendering correctly on narrow screens ([vmstan](https://github.com/mastodon/mastodon/pull/25945))
+
+### Security
+
+- Fix CSP headers being unintentionally wide ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/26105))
+
 ## [4.1.4] - 2023-07-07
 
 ### Fixed
@@ -143,7 +163,7 @@ All notable changes to this project will be documented in this file.
 - Add instance activity API endpoint toggle back to the admin interface ([dariusk](https://github.com/mastodon/mastodon/pull/22833))
 - Add setting for status page URL ([Gargron](https://github.com/mastodon/mastodon/pull/23390), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/23499))
   - REST API changes:
-    - Add `configuration.urls.status` attribute to the object returned by `GET /api/v1/instance`
+    - Add `configuration.urls.status` attribute to the object returned by `GET /api/v2/instance`
 - Add `account.approved` webhook ([Saiv46](https://github.com/mastodon/mastodon/pull/22938))
 - Add 12 hours option to polls ([Pleclown](https://github.com/mastodon/mastodon/pull/21131))
 - Add dropdown menu item to open admin interface for remote domains ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/21895))

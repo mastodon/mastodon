@@ -2,6 +2,10 @@
 eo:
   simple_form:
     hints:
+      account:
+        display_name: Via plena nomo aŭ via kromnomo.
+        fields: Via retpaĝo, pronomoj, aĝo, ĉio, kion vi volas.
+        note: 'Vi povas @mencii aliajn homojn aŭ #haŝetikedoj.'
       account_alias:
         acct: Specifu la uzantnomon@domajnon de la konto el kiu vi volas translokiĝi
       account_migration:
@@ -58,6 +62,7 @@ eo:
         setting_show_application: La aplikaĵo, kiun vi uzas por afiŝi, estos montrita en la detala vido de viaj afiŝoj
         setting_use_blurhash: Transirojn estas bazita sur la koloroj de la kaŝitaj aŭdovidaĵoj sed ne montri iun ajn detalon
         setting_use_pending_items: Kaŝi tempoliniajn ĝisdatigojn malantaŭ klako anstataŭ aŭtomate rulumi la fluon
+        username: Vi povas uzi literojn, ciferojn kaj substrekojn
         whole_word: Kiam la vorto aŭ frazo estas nur litera aŭ cifera, ĝi estos uzata nur se ĝi kongruas kun la tuta vorto
       domain_allow:
         domain: Ĉi tiu domajno povos akiri datumon de ĉi tiu servilo kaj envenanta datumo estos prilaborita kaj konservita
@@ -129,6 +134,7 @@ eo:
         position: Pli altaj rolo decidas konfliktosolvo en kelkaj situacioj
       webhook:
         events: Elektu eventojn por sendi
+        template: Skribu vian propran JSON-ŝarĝon per varia interpolado. Lasu malplenan por defaŭlta JSON.
         url: Kien eventoj sendotas
     labels:
       account:
@@ -194,7 +200,6 @@ eo:
         setting_always_send_emails: Ĉiam sendi la sciigojn per retpoŝto
         setting_auto_play_gif: Aŭtomate ekigi GIF-ojn
         setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
-        setting_crop_images: Stuci bildojn en negrandigitaj mesaĝoj al 16x9
         setting_default_language: Publikada lingvo
         setting_default_privacy: Privateco de afiŝado
         setting_default_sensitive: Ĉiam marki plurmediojn kiel tiklaj
@@ -294,6 +299,7 @@ eo:
         usable: Permesi mesaĝojn uzi ĉi tiun kradvorton
       user:
         role: Rolo
+        time_zone: Horzono
       user_role:
         color: Koloro de ŝildo
         highlighted: Montri rolon kiel insignon sur uzantoprofiloj
@@ -302,6 +308,7 @@ eo:
         position: Prioritato
       webhook:
         events: Ŝaltitaj eventoj
+        template: Utilŝarĝa ŝablono
         url: Finpunkto-URL
     'no': Ne
     not_recommended: Nerekomendita

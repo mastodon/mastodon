@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import Search from 'mastodon/features/compose/containers/search_container';
-import { showTrends } from 'mastodon/initial_state';
+import { trendsEnabled } from 'mastodon/initial_state';
 
 import Links from './links';
 import SearchResults from './results';
@@ -26,7 +26,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   layout: state.getIn(['meta', 'layout']),
-  isSearching: state.getIn(['search', 'submitted']) || !showTrends,
+  isSearching: state.getIn(['search', 'submitted']) || !trendsEnabled,
 });
 
 class Explore extends PureComponent {

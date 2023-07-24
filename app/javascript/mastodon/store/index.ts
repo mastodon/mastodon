@@ -30,7 +30,7 @@ export const store = configureStore({
       .concat(
         loadingBarMiddleware({
           promiseTypeSuffixes: ['REQUEST', 'SUCCESS', 'FAIL'],
-        })
+        }),
       )
       .concat(errorsMiddleware)
       .concat(soundsMiddleware()),

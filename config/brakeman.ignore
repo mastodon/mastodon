@@ -1,66 +1,6 @@
 {
   "ignored_warnings": [
     {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "19df3740b8d02a9fe0eb52c939b4b87d3a2a591162a6adfa8d64e9c26aeebe6d",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/models/status.rb",
-      "line": 106,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "result.joins(\"INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Status",
-        "method": null
-      },
-      "user_input": "id",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "30dfe36e87fe1b8f239df9a33d576e44a9863f73b680198d4713be6540ae61d3",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/models/trends/query.rb",
-      "line": 76,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "klass.joins(\"join unnest(array[#{ids.join(\",\")}]) with ordinality as x (id, ordering) on #{klass.table_name}.id = x.id\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Trends::Query",
-        "method": "to_arel"
-      },
-      "user_input": "ids.join(\",\")",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "Redirect",
-      "warning_code": 18,
-      "fingerprint": "5fad11cd67f905fab9b1d5739d01384a1748ebe78c5af5ac31518201925265a7",
-      "check_name": "Redirect",
-      "message": "Possible unprotected redirect",
-      "file": "app/controllers/remote_interaction_controller.rb",
-      "line": 24,
-      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
-      "code": "redirect_to(RemoteFollow.new(resource_params).interact_address_for(Status.find(params[:id])))",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "RemoteInteractionController",
-        "method": "create"
-      },
-      "user_input": "RemoteFollow.new(resource_params).interact_address_for(Status.find(params[:id]))",
-      "confidence": "High",
-      "note": ""
-    },
-    {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 2,
       "fingerprint": "71cf98c8235b5cfa9946b5db8fdc1a2f3a862566abb34e4542be6f3acae78233",
@@ -88,46 +28,33 @@
       },
       "user_input": "(Unresolved Model).new.strike",
       "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
       "note": ""
     },
     {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "75fcd147b7611763ab6915faf8c5b0709e612b460f27c05c72d8b9bd0a6a77f8",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "lib/mastodon/snowflake.rb",
-      "line": 87,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "connection.execute(\"CREATE OR REPLACE FUNCTION timestamp_id(table_name text)\\nRETURNS bigint AS\\n$$\\n  DECLARE\\n    time_part bigint;\\n    sequence_base bigint;\\n    tail bigint;\\n  BEGIN\\n    time_part := (\\n      -- Get the time in milliseconds\\n      ((date_part('epoch', now()) * 1000))::bigint\\n      -- And shift it over two bytes\\n      << 16);\\n\\n    sequence_base := (\\n      'x' ||\\n      -- Take the first two bytes (four hex characters)\\n      substr(\\n        -- Of the MD5 hash of the data we documented\\n        md5(table_name || '#{SecureRandom.hex(16)}' || time_part::text),\\n        1, 4\\n      )\\n    -- And turn it into a bigint\\n    )::bit(16)::bigint;\\n\\n    -- Finally, add our sequence number to our base, and chop\\n    -- it to the last two bytes\\n    tail := (\\n      (sequence_base + nextval(table_name || '_id_seq'))\\n      & 65535);\\n\\n    -- Return the time part and the sequence part. OR appears\\n    -- faster here than addition, but they're equivalent:\\n    -- time_part has no trailing two bytes, and tail is only\\n    -- the last two bytes.\\n    RETURN time_part | tail;\\n  END\\n$$ LANGUAGE plpgsql VOLATILE;\\n\")",
+      "warning_type": "Denial of Service",
+      "warning_code": 76,
+      "fingerprint": "7b6abba5699755348e7ee82a4694bfbf574b41c7cce2d0db0f7c11ae3f983c72",
+      "check_name": "RegexDoS",
+      "message": "Model attribute used in regular expression",
+      "file": "lib/mastodon/cli/domains.rb",
+      "line": 128,
+      "link": "https://brakemanscanner.org/docs/warning_types/denial_of_service/",
+      "code": "/\\.?(#{DomainBlock.where(:severity => 1).pluck(:domain).map do\n Regexp.escape(domain)\n end.join(\"|\")})$/",
       "render_path": null,
       "location": {
         "type": "method",
-        "class": "Mastodon::Snowflake",
-        "method": "define_timestamp_id"
+        "class": "Mastodon::CLI::Domains",
+        "method": "crawl"
       },
-      "user_input": "SecureRandom.hex(16)",
-      "confidence": "Medium",
-      "note": ""
-    },
-    {
-      "warning_type": "Mass Assignment",
-      "warning_code": 105,
-      "fingerprint": "7631e93d0099506e7c3e5c91ba8d88523b00a41a0834ae30031a5a4e8bb3020a",
-      "check_name": "PermitAttributes",
-      "message": "Potentially dangerous key allowed for mass assignment",
-      "file": "app/controllers/api/v2/search_controller.rb",
-      "line": 28,
-      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
-      "code": "params.permit(:type, :offset, :min_id, :max_id, :account_id)",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Api::V2::SearchController",
-        "method": "search_params"
-      },
-      "user_input": ":account_id",
-      "confidence": "High",
+      "user_input": "DomainBlock.where(:severity => 1).pluck(:domain)",
+      "confidence": "Weak",
+      "cwe_id": [
+        20,
+        185
+      ],
       "note": ""
     },
     {
@@ -137,7 +64,7 @@
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api/v1/admin/reports_controller.rb",
-      "line": 90,
+      "line": 88,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit(:resolved, :account_id, :target_account_id)",
       "render_path": null,
@@ -148,6 +75,9 @@
       },
       "user_input": ":account_id",
       "confidence": "High",
+      "cwe_id": [
+        915
+      ],
       "note": ""
     },
     {
@@ -157,7 +87,7 @@
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api/v1/notifications_controller.rb",
-      "line": 81,
+      "line": 77,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit(:account_id, :types => ([]), :exclude_types => ([]))",
       "render_path": null,
@@ -168,26 +98,32 @@
       },
       "user_input": ":account_id",
       "confidence": "High",
+      "cwe_id": [
+        915
+      ],
       "note": ""
     },
     {
-      "warning_type": "Redirect",
-      "warning_code": 18,
-      "fingerprint": "ba568ac09683f98740f663f3d850c31785900215992e8c090497d359a2563d50",
-      "check_name": "Redirect",
-      "message": "Possible unprotected redirect",
-      "file": "app/controllers/remote_follow_controller.rb",
-      "line": 21,
-      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
-      "code": "redirect_to(RemoteFollow.new(resource_params).subscribe_address_for(@account))",
+      "warning_type": "Mass Assignment",
+      "warning_code": 105,
+      "fingerprint": "b0dd0a26d24f5ede9713fe49210e9638be5f5548af9eee0b5a16fe9dbc80ffcd",
+      "check_name": "PermitAttributes",
+      "message": "Potentially dangerous key allowed for mass assignment",
+      "file": "app/controllers/api/v2/search_controller.rb",
+      "line": 42,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit(:type, :offset, :min_id, :max_id, :account_id, :following)",
       "render_path": null,
       "location": {
         "type": "method",
-        "class": "RemoteFollowController",
-        "method": "create"
+        "class": "Api::V2::SearchController",
+        "method": "search_params"
       },
-      "user_input": "RemoteFollow.new(resource_params).subscribe_address_for(@account)",
+      "user_input": ":account_id",
       "confidence": "High",
+      "cwe_id": [
+        915
+      ],
       "note": ""
     },
     {
@@ -218,18 +154,21 @@
       },
       "user_input": "(Unresolved Model).new.url",
       "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
       "note": ""
     },
     {
       "warning_type": "Mass Assignment",
       "warning_code": 105,
-      "fingerprint": "f9de0ca4b04ae4b51b74d98db14dcbb6dae6809e627b58e711019cf9b4a47866",
+      "fingerprint": "d0511f0287aea4ed9511f5a744f880cb15af77a8ec88f81b7365b00b642cf427",
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api/v1/reports_controller.rb",
       "line": 26,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
-      "code": "params.permit(:account_id, :comment, :category, :forward, :status_ids => ([]), :rule_ids => ([]))",
+      "code": "params.permit(:account_id, :comment, :category, :forward, :forward_to_domains => ([]), :status_ids => ([]), :rule_ids => ([]))",
       "render_path": null,
       "location": {
         "type": "method",
@@ -238,9 +177,12 @@
       },
       "user_input": ":account_id",
       "confidence": "High",
+      "cwe_id": [
+        915
+      ],
       "note": ""
     }
   ],
-  "updated": "2022-03-22 07:48:32 +0100",
-  "brakeman_version": "5.2.1"
+  "updated": "2023-07-12 11:20:51 -0400",
+  "brakeman_version": "6.0.0"
 }

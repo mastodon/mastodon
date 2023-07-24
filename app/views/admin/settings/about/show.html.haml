@@ -22,9 +22,9 @@
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :show_domain_blocks, wrapper: :with_label, collection: %i(disabled users all), label_method: lambda { |value| t("admin.settings.domain_blocks.#{value}") }, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+      = f.input :show_domain_blocks, wrapper: :with_label, collection: %i(disabled users all), label_method: ->(value) { t("admin.settings.domain_blocks.#{value}") }, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :show_domain_blocks_rationale, wrapper: :with_label, collection: %i(disabled users all), label_method: lambda { |value| t("admin.settings.domain_blocks.#{value}") }, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+      = f.input :show_domain_blocks_rationale, wrapper: :with_label, collection: %i(disabled users all), label_method: ->(value) { t("admin.settings.domain_blocks.#{value}") }, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
   .fields-group
     = f.input :open_deletion, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.deletion.title'), hint: t('admin.settings.registrations.deletion.desc_html')

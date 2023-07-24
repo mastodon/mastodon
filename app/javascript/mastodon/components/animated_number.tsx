@@ -4,7 +4,7 @@ import { TransitionMotion, spring } from 'react-motion';
 
 import { reduceMotion } from '../initial_state';
 
-import ShortNumber from './short_number';
+import { ShortNumber } from './short_number';
 
 const obfuscatedCount = (count: number) => {
   if (count < 0) {
@@ -32,7 +32,7 @@ export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
   const willEnter = useCallback(() => ({ y: -1 * direction }), [direction]);
   const willLeave = useCallback(
     () => ({ y: spring(1 * direction, { damping: 35, stiffness: 400 }) }),
-    [direction]
+    [direction],
   );
 
   if (reduceMotion) {

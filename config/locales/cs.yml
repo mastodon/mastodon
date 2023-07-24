@@ -997,7 +997,6 @@ cs:
       guide_link: https://cs.crowdin.com/project/mastodon
       guide_link_text: Zapojit se může každý.
     sensitive_content: Citlivý obsah
-    toot_layout: Rozložení příspěvků
   application_mailer:
     notification_preferences: Změnit předvolby e-mailů
     salutation: "%{name},"
@@ -1263,7 +1262,9 @@ cs:
       many: "<strong>%{count}</strong> položek odpovídající vašemu hledání je vybráno."
       one: "<strong>%{count}</strong> položka odpovídající vašemu hledání je vybrána."
       other: Všech <strong>%{count}</strong> položek odpovídající vašemu hledání je vybráno.
+    cancel: Zrušit
     changes_saved_msg: Změny byly úspěšně uloženy!
+    confirm: Potvrdit
     copy: Kopírovat
     delete: Smazat
     deselect: Zrušit výběr všeho
@@ -1283,15 +1284,36 @@ cs:
       other: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyb uvedených níže
   imports:
     errors:
+      empty: Prázdný CSV soubor
+      incompatible_type: Nekompatibilní s vybraným typem importu
       invalid_csv_file: 'Neplatný soubor CSV. Chyba: %{error}'
       over_rows_processing_limit: obsahuje více než %{count} řádků
+      too_large: Soubor je příliš velký
+    failures: Chyby
+    imported: Importováno
+    mismatched_types_warning: Zdá se, že jste pro tento import vybrali nesprávný typ, zkontrolujte, prosím, znova.
     modes:
       merge: Sloučit
       merge_long: Ponechat existující záznamy a přidat nové
       overwrite: Přepsat
       overwrite_long: Nahradit aktuální záznamy novými
     preface: Můžete importovat data, která jste exportovali z jiného serveru, jako například seznam lidí, které sledujete či blokujete.
+    recent_imports: Nedávné importy
+    states:
+      finished: Dokončeno
+      in_progress: Probíhá
+      scheduled: Naplánováno
+      unconfirmed: Nepotvrzeno
+    status: Stav
     success: Vaše data byla úspěšně nahrána a budou zpracována v pravý čas
+    time_started: Zahájeno v
+    titles:
+      blocking: Import blokovaných účtů
+      bookmarks: Import záložek
+      domain_blocking: Import blokovaných domén
+      following: Import sledovaných účtů
+      muting: Import ztlumených účtů
+    type: Typ importu
     types:
       blocking: Seznam blokovaných
       bookmarks: Záložky
@@ -1619,7 +1641,6 @@ cs:
     show_newer: Zobrazit novější
     show_older: Zobrazit starší
     show_thread: Zobrazit vlákno
-    sign_in_to_participate: Chcete-li se zúčastnit této konverzace, přihlaste se
     title: "%{name}: „%{quote}“"
     visibilities:
       direct: Přímé
@@ -1665,8 +1686,6 @@ cs:
     min_reblogs: Zachovat příspěvky boostnuté alespoň
     min_reblogs_hint: Nesmaže žádný z vašich příspěvků, který byl boostnut alespoň tolikrát. Ponechte prázdné pro mazání příspěvků bez ohledu na počet jejich boostnutí
   stream_entries:
-    pinned: Připnutý příspěvek
-    reblogged: boostnul
     sensitive_content: Citlivý obsah
   strikes:
     errors:
