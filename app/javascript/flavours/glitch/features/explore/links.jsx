@@ -58,6 +58,7 @@ class Links extends PureComponent {
         {isLoading ? (<LoadingIndicator />) : links.map(link => (
           <Story
             key={link.get('id')}
+            lang={link.get('language')}
             url={link.get('url')}
             title={link.get('title')}
             publisher={link.get('provider_name')}
