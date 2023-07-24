@@ -3,6 +3,10 @@
 module AccountStatusesSearch
   extend ActiveSupport::Concern
 
+  def enqueue_update_statuses_index
+    UpdateStatusIndexWorker.perform_async(id)
+  end
+
   def update_statuses_index!
     return unless Chewy.enabled?
 
