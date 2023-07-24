@@ -105,7 +105,7 @@
   &__input {
     display: inline-block;
     position: relative;
-    border: 1px solid $ui-primary-color;
+    border: 1px solid $ui-button-background-color;
     box-sizing: border-box;
     width: 18px;
     height: 18px;
@@ -121,15 +121,10 @@
       border-radius: 4px;
     }
 
-    &.active {
-      border-color: $valid-value-color;
-      background: $valid-value-color;
-    }
-
     &:active,
     &:focus,
     &:hover {
-      border-color: lighten($valid-value-color, 15%);
+      border-color: $ui-button-focus-background-color;
       border-width: 4px;
     }
 
@@ -241,6 +236,14 @@
     color: $action-button-color;
     border-color: $action-button-color;
     margin-inline-end: 5px;
+
+    &:hover,
+    &:focus,
+    &.active {
+      border-color: $action-button-color;
+      background-color: $action-button-color;
+      color: $ui-button-color;
+    }
   }
 
   li {
