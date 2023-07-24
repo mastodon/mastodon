@@ -23,6 +23,9 @@ describe 'OmniAuth callbacks' do
             .by(1)
             .and change(Identity, :count)
             .by(1)
+            .and change(LoginActivity, :count)
+            .by(1)
+
           expect(User.last.email).to eq('user@host.example')
           expect(Identity.find_by(user: User.last).uid).to eq('123')
           expect(response).to redirect_to(root_path)
@@ -37,7 +40,10 @@ describe 'OmniAuth callbacks' do
         it 'matches the existing user, creates an identity, and redirects to root path' do
           expect { post user_openid_connect_omniauth_callback_path }
             .to not_change(User, :count)
-            .and change(Identity, :count).by(1)
+            .and change(Identity, :count)
+            .by(1)
+            .and change(LoginActivity, :count)
+            .by(1)
 
           expect(Identity.find_by(user: User.last).uid).to eq('123')
           expect(response).to redirect_to(root_path)
@@ -54,6 +60,8 @@ describe 'OmniAuth callbacks' do
           expect { post user_openid_connect_omniauth_callback_path }
             .to not_change(User, :count)
             .and not_change(Identity, :count)
+            .and change(LoginActivity, :count)
+            .by(1)
 
           expect(response).to redirect_to(root_path)
         end
@@ -77,6 +85,8 @@ describe 'OmniAuth callbacks' do
           .by(1)
           .and change(Identity, :count)
           .by(1)
+          .and change(LoginActivity, :count)
+          .by(1)
 
         expect(response).to redirect_to(auth_setup_path(missing_email: '1'))
       end
@@ -91,6 +101,7 @@ describe 'OmniAuth callbacks' do
         expect { post user_openid_connect_omniauth_callback_path }
           .to not_change(User, :count)
           .and not_change(Identity, :count)
+          .and not_change(LoginActivity, :count)
 
         expect(response).to redirect_to(new_user_registration_url)
       end
