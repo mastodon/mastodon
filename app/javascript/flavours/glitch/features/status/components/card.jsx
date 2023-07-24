@@ -181,7 +181,10 @@ export default class Card extends PureComponent {
     let thumbnail = <img src={card.get('image')} alt='' style={thumbnailStyle} onLoad={this.handleImageLoad} className='status-card__image-image' />;
     let spoilerButton = (
       <button type='button' onClick={this.handleReveal} className='spoiler-button__overlay'>
-        <span className='spoiler-button__overlay__label'><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
+        <span className='spoiler-button__overlay__label'>
+          <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />
+          <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
+        </span>
       </button>
     );
     spoilerButton = (

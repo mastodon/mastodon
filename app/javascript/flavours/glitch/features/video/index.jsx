@@ -577,7 +577,10 @@ class Video extends PureComponent {
 
         <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>
           <button type='button' className='spoiler-button__overlay' onClick={this.toggleReveal}>
-            <span className='spoiler-button__overlay__label'>{warning}</span>
+            <span className='spoiler-button__overlay__label'>
+              {warning}
+              <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
+            </span>
           </button>
         </div>
 
