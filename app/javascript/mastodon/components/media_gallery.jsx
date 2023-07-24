@@ -12,7 +12,7 @@ import { debounce } from 'lodash';
 
 import { Blurhash } from 'mastodon/components/blurhash';
 
-import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_state';
+import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
 
 import { IconButton } from './icon_button';
 
@@ -209,7 +209,6 @@ class MediaGallery extends PureComponent {
 
   static propTypes = {
     sensitive: PropTypes.bool,
-    standalone: PropTypes.bool,
     media: ImmutablePropTypes.list.isRequired,
     lang: PropTypes.string,
     size: PropTypes.object,
@@ -221,10 +220,6 @@ class MediaGallery extends PureComponent {
     visible: PropTypes.bool,
     autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
-  };
-
-  static defaultProps = {
-    standalone: false,
   };
 
   state = {
@@ -295,7 +290,7 @@ class MediaGallery extends PureComponent {
   }
 
   render () {
-    const { media, lang, intl, sensitive, defaultWidth, standalone, autoplay } = this.props;
+    const { media, lang, intl, sensitive, defaultWidth, autoplay } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
 
@@ -303,16 +298,16 @@ class MediaGallery extends PureComponent {
 
     const style = {};
 
-    if (this.isFullSizeEligible() && (standalone || !cropImages)) {
+    if (this.isFullSizeEligible()) {
       style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
     } else {
-      style.aspectRatio = '16 / 9';
+      style.aspectRatio = '3 / 2';
     }
 
     const size     = media.take(4).size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
-    if (standalone && this.isFullSizeEligible()) {
+    if (this.isFullSizeEligible()) {
       children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
     } else {
       children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
