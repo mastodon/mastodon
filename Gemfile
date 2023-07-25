@@ -36,7 +36,9 @@ end
 
 gem 'net-ldap', '~> 0.18'
 
-gem 'omniauth-cas', github: 'stanhu/omniauth-cas', branch: 'sh-update-omniauth2'
+# TODO: Point back at released omniauth-cas gem when PR merged
+# https://github.com/dlindahl/omniauth-cas/pull/68
+gem 'omniauth-cas', github: 'stanhu/omniauth-cas', ref: '4211e6d05941b4a981f9a36b49ec166cecd0e271'
 gem 'omniauth-saml', '~> 2.0'
 gem 'omniauth_openid_connect', '~> 0.6.1'
 gem 'omniauth', '~> 2.0'
