@@ -134,6 +134,11 @@
       border-width: 4px;
     }
 
+    &.active {
+      background-color: $ui-button-focus-background-color;
+      border-color: $ui-button-focus-background-color;
+    }
+
     &::-moz-focus-inner {
       outline: 0 !important;
       border: 0;
