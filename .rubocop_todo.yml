@@ -112,7 +112,6 @@ Lint/UselessAssignment:
     - 'config/initializers/omniauth.rb'
     - 'db/migrate/20190511134027_add_silenced_at_suspended_at_to_accounts.rb'
     - 'db/post_migrate/20190511152737_remove_suspended_silenced_account_fields.rb'
-    - 'spec/controllers/api/v1/bookmarks_controller_spec.rb'
     - 'spec/controllers/api/v1/favourites_controller_spec.rb'
     - 'spec/controllers/concerns/account_controller_concern_spec.rb'
     - 'spec/helpers/jsonld_helper_spec.rb'
@@ -359,43 +358,6 @@ RSpec/PendingWithoutReason:
 Rails/ApplicationController:
   Exclude:
     - 'app/controllers/health_controller.rb'
-
-# Configuration parameters: Database, Include.
-# SupportedDatabases: mysql, postgresql
-# Include: db/**/*.rb
-Rails/BulkChangeTable:
-  Exclude:
-    - 'db/migrate/20160222143943_add_profile_fields_to_accounts.rb'
-    - 'db/migrate/20160223162837_add_metadata_to_statuses.rb'
-    - 'db/migrate/20160305115639_add_devise_to_users.rb'
-    - 'db/migrate/20160314164231_add_owner_to_application.rb'
-    - 'db/migrate/20160926213048_remove_owner_from_application.rb'
-    - 'db/migrate/20161003142332_add_confirmable_to_users.rb'
-    - 'db/migrate/20170112154826_migrate_settings.rb'
-    - 'db/migrate/20170127165745_add_devise_two_factor_to_users.rb'
-    - 'db/migrate/20170322143850_change_primary_key_to_bigint_on_statuses.rb'
-    - 'db/migrate/20170330021336_add_counter_caches.rb'
-    - 'db/migrate/20170425202925_add_oembed_to_preview_cards.rb'
-    - 'db/migrate/20170427011934_re_add_owner_to_application.rb'
-    - 'db/migrate/20170520145338_change_language_filter_to_opt_out.rb'
-    - 'db/migrate/20170624134742_add_description_to_session_activations.rb'
-    - 'db/migrate/20170718211102_add_activitypub_to_accounts.rb'
-    - 'db/migrate/20171006142024_add_uri_to_custom_emojis.rb'
-    - 'db/migrate/20180812123222_change_relays_enabled.rb'
-    - 'db/migrate/20190511134027_add_silenced_at_suspended_at_to_accounts.rb'
-    - 'db/migrate/20190805123746_add_capabilities_to_tags.rb'
-    - 'db/migrate/20190807135426_add_comments_to_domain_blocks.rb'
-    - 'db/migrate/20190815225426_add_last_status_at_to_tags.rb'
-    - 'db/migrate/20190901035623_add_max_score_to_tags.rb'
-    - 'db/migrate/20200417125749_add_storage_schema_version.rb'
-    - 'db/migrate/20200608113046_add_sign_in_token_to_users.rb'
-    - 'db/migrate/20211112011713_add_language_to_preview_cards.rb'
-    - 'db/migrate/20211231080958_add_category_to_reports.rb'
-    - 'db/migrate/20220202200743_add_trendable_to_accounts.rb'
-    - 'db/migrate/20220224010024_add_ips_to_email_domain_blocks.rb'
-    - 'db/migrate/20220227041951_add_last_used_at_to_oauth_access_tokens.rb'
-    - 'db/migrate/20220303000827_add_ordered_media_attachment_ids_to_status_edits.rb'
-    - 'db/migrate/20220824164433_add_human_identifier_to_admin_action_logs.rb'
 
 # Configuration parameters: Include.
 # Include: db/**/*.rb
@@ -936,9 +898,3 @@ Style/WordArray:
     - 'config/initializers/cors.rb'
     - 'spec/controllers/settings/imports_controller_spec.rb'
     - 'spec/models/form/import_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
-# URISchemes: http, https
-Layout/LineLength:
-  Max: 701
