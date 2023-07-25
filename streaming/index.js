@@ -716,7 +716,7 @@ const startServer = async () => {
 
           // If the payload already contains the `filtered` property, it means
           // that mastodon-web has applied the filters on the ruby on rails side,
-          // as such, we don't need to construct the filters:
+          // as such, we don't need to construct or apply the filters in streaming:
           if (payload.filtered) {
             transmit(event, payload);
             return;
