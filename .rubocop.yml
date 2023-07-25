@@ -38,14 +38,7 @@ Layout/FirstHashElementIndentation:
 # Reason: Currently disabled in .rubocop_todo.yml
 # https://docs.rubocop.org/rubocop/cops_layout.html#layoutlinelength
 Layout/LineLength:
-  AllowedPatterns:
-    # Allow comments to be long lines
-    - !ruby/regexp / \# .*$/
-    - !ruby/regexp /^\# .*$/
-  Exclude:
-    - 'lib/mastodon/cli/*.rb'
-    - db/*migrate/**/*
-    - db/seeds/**/*
+  Max: 320 # Default of 120 causes a duplicate entry in generated todo file
 
 # Reason:
 # https://docs.rubocop.org/rubocop/cops_lint.html#lintuselessaccessmodifier
