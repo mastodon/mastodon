@@ -640,7 +640,9 @@ const startServer = async () => {
       output(event, encodedPayload);
     };
 
-    // Currently message is of type string, soon it'll be Record<string, any>
+    // The listener used to process each message off the redis subscription,
+    // message here is an object with an `event` and `payload` property. Some
+    // events also include a queued_at value, but this is being removed shortly.
     const listener = message => {
       const { event, payload } = message;
 
