@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_24_160715) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_25_213448) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -802,6 +802,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_160715) do
     t.boolean "trendable"
     t.integer "link_type"
     t.datetime "published_at"
+    t.string "image_description", default: "", null: false
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 
