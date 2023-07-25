@@ -3,11 +3,13 @@
 require 'rails_helper'
 
 describe 'OmniAuth callbacks' do
-  describe '#openid_connect', if: ENV['OIDC_ENABLED'] == 'true' && ENV['OIDC_SCOPE'].present? do
+  shared_examples 'omniauth provider callbacks' do |provider|
+    subject { post send "user_#{provider}_omniauth_callback_path" }
+
     context 'with full information in response' do
       before do
-        mock_omniauth(:openid_connect, {
-          provider: 'openid_connect',
+        mock_omniauth(provider, {
+          provider: provider.to_s,
           uid: '123',
           info: {
             verified: 'true',
@@ -18,7 +20,7 @@ describe 'OmniAuth callbacks' do
 
       context 'without a matching user' do
         it 'creates a user and an identity and redirects to root path' do
-          expect { post user_openid_connect_omniauth_callback_path }
+          expect { subject }
             .to change(User, :count)
             .by(1)
             .and change(Identity, :count)
@@ -38,7 +40,7 @@ describe 'OmniAuth callbacks' do
         end
 
         it 'matches the existing user, creates an identity, and redirects to root path' do
-          expect { post user_openid_connect_omniauth_callback_path }
+          expect { subject }
             .to not_change(User, :count)
             .and change(Identity, :count)
             .by(1)
@@ -53,11 +55,11 @@ describe 'OmniAuth callbacks' do
       context 'with a matching user and a matching identity' do
         before do
           user = Fabricate(:user, email: 'user@host.example')
-          Fabricate(:identity, user: user, uid: '123', provider: :openid_connect)
+          Fabricate(:identity, user: user, uid: '123', provider: provider)
         end
 
         it 'matches the existing records and redirects to root path' do
-          expect { post user_openid_connect_omniauth_callback_path }
+          expect { subject }
             .to not_change(User, :count)
             .and not_change(Identity, :count)
             .and change(LoginActivity, :count)
@@ -70,8 +72,8 @@ describe 'OmniAuth callbacks' do
 
     context 'with a response missing email address' do
       before do
-        mock_omniauth(:openid_connect, {
-          provider: 'openid_connect',
+        mock_omniauth(provider, {
+          provider: provider.to_s,
           uid: '123',
           info: {
             verified: 'true',
@@ -80,7 +82,7 @@ describe 'OmniAuth callbacks' do
       end
 
       it 'redirects to the auth setup page' do
-        expect { post user_openid_connect_omniauth_callback_path }
+        expect { subject }
           .to change(User, :count)
           .by(1)
           .and change(Identity, :count)
@@ -98,7 +100,7 @@ describe 'OmniAuth callbacks' do
       end
 
       it 'redirects to the new user signup page' do
-        expect { post user_openid_connect_omniauth_callback_path }
+        expect { subject }
           .to not_change(User, :count)
           .and not_change(Identity, :count)
           .and not_change(LoginActivity, :count)
@@ -106,5 +108,17 @@ describe 'OmniAuth callbacks' do
         expect(response).to redirect_to(new_user_registration_url)
       end
     end
+  end
+
+  describe '#openid_connect', if: ENV['OIDC_ENABLED'] == 'true' && ENV['OIDC_SCOPE'].present? do
+    include_examples 'omniauth provider callbacks', :openid_connect
+  end
+
+  describe '#cas', if: ENV['CAS_ENABLED'] == 'true' do
+    include_examples 'omniauth provider callbacks', :cas
+  end
+
+  describe '#saml', if: ENV['SAML_ENABLED'] == 'true' do
+    include_examples 'omniauth provider callbacks', :saml
   end
 end
