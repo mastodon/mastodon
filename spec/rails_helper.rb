@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 ENV['RAILS_ENV'] ||= 'test'
+
+# This needs to be defined before Rails is initialized
+RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
+
+if RUN_SYSTEM_SPECS
+  STREAMING_PORT = rand(4001..4999)
+  ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
+end
 require File.expand_path('../config/environment', __dir__)
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
@@ -15,13 +23,12 @@ require 'chewy/rspec'
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
-WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: true)
+WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: RUN_SYSTEM_SPECS)
 Sidekiq::Testing.inline!
 Sidekiq.logger = nil
 
-# DatabaseCleaner is used only for system tests
+# System tests config
 DatabaseCleaner.strategy = [:deletion]
-
 streaming_server_manager = StreamingServerManager.new
 
 Devise::Test::ControllerHelpers.module_eval do
@@ -61,6 +68,8 @@ module SignedRequestHelpers
 end
 
 RSpec.configure do |config|
+  # This is set before running spec:system, see lib/tasks/tests.rake
+  config.filter_run_excluding type: :system unless RUN_SYSTEM_SPECS
   config.fixture_path = Rails.root.join('spec', 'fixtures')
   config.use_transactional_fixtures = true
   config.order = 'random'
@@ -101,9 +110,11 @@ RSpec.configure do |config|
     stub_jsonld_contexts!
   end
 
-  # Start the streaming server before any system test
-  config.before :all, type: :system do
-    streaming_server_manager.start
+  config.before :suite do
+    if RUN_SYSTEM_SPECS
+      Webpacker.compile
+      streaming_server_manager.start(port: STREAMING_PORT)
+    end
   end
 
   config.after :suite do

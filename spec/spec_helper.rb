@@ -13,8 +13,6 @@ if ENV['DISABLE_SIMPLECOV'] != 'true'
 end
 
 RSpec.configure do |config|
-  # This is set before running spec:system, see lib/tasks/tests.rake
-  config.filter_run_excluding type: :system unless ENV.fetch('RUN_SYSTEM_SPECS', false)
   config.example_status_persistence_file_path = 'tmp/rspec/examples.txt'
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -62,7 +60,7 @@ class StreamingServerManager
     at_exit { stop }
   end
 
-  def start
+  def start(port: 4020)
     return if @running_thread
 
     queue = Queue.new
@@ -76,6 +74,7 @@ class StreamingServerManager
           'DB_NAME' => "#{ENV.fetch('DB_NAME', 'mastodon')}_test#{ENV.fetch('TEST_ENV_NUMBER', '')}",
           'RAILS_ENV' => ENV.fetch('RAILS_ENV', 'test'),
           'NODE_ENV' => ENV.fetch('NODE_ENV', 'test'),
+          'PORT' => port.to_s,
         },
         'node index.js', # must not call yarn here, otherwise it will fail because yarn does not send signals to its child process
         chdir: Rails.root.join('streaming')
