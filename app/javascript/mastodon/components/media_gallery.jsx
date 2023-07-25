@@ -102,7 +102,7 @@ class Item extends PureComponent {
     }
 
     if (attachment.get('description')?.length > 0) {
-      badges.push(<span key='alt' className='media-gallery__gifv__label'>ALT</span>);
+      badges.push(<span key='alt' className='image-badge'>ALT</span>);
     }
 
     const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
@@ -159,7 +159,7 @@ class Item extends PureComponent {
     } else if (attachment.get('type') === 'gifv') {
       const autoPlay = this.getAutoPlay();
 
-      badges.push(<span key='gif' className='media-gallery__gifv__label'>GIF</span>);
+      badges.push(<span key='gif' className='image-badge'>GIF</span>);
 
       thumbnail = (
         <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
@@ -195,7 +195,7 @@ class Item extends PureComponent {
         {visible && thumbnail}
 
         {badges && (
-          <div className='media-gallery__item__badges'>
+          <div className='image-badges'>
             {badges}
           </div>
         )}

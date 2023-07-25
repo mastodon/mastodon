@@ -187,8 +187,8 @@ export default class Card extends PureComponent {
     const thumbnail = <img src={card.get('image')} alt={thumbnailDescription} title={thumbnailDescription} lang={language} style={thumbnailStyle} onLoad={this.handleImageLoad} className='status-card__image-image' />;
 
     const badges = thumbnailDescription?.length > 0 && (
-      <div className='media-gallery__item__badges'>
-         <span className='media-gallery__gifv__label'>ALT</span>
+      <div className='image-badges'>
+         <span className='image-badge'>ALT</span>
       </div>
     )
 

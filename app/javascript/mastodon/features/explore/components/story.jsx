@@ -39,8 +39,8 @@ export default class Story extends PureComponent {
     const { thumbnailLoaded } = this.state;
 
     const badges = thumbnailDescription?.length > 0 && (
-      <div className='media-gallery__item__badges'>
-         <span className='media-gallery__gifv__label'>ALT</span>
+      <div className='image-badges'>
+         <span className='image-badge'>ALT</span>
       </div>
     )
 
