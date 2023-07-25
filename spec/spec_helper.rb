@@ -72,10 +72,10 @@ class StreamingServerManager
     @running_thread = Thread.new do
       Open3.popen2e(
         {
-          'REDIS_NAMESPACE' => 'mastodon_test',
-          'DB_NAME' => 'mastodon_test',
-          'RAILS_ENV' => 'test',
-          'NODE_ENV' => 'test',
+          'REDIS_NAMESPACE' => ENV.fetch('REDIS_NAMESPACE'),
+          'DB_NAME' => "#{ENV.fetch('DB_NAME', 'mastodon')}_test#{ENV.fetch('TEST_ENV_NUMBER', '')}",
+          'RAILS_ENV' => ENV.fetch('RAILS_ENV', 'test'),
+          'NODE_ENV' => ENV.fetch('NODE_ENV', 'test'),
         },
         'node index.js', # must not call yarn here, otherwise it will fail because yarn does not send signals to its child process
         chdir: Rails.root.join('streaming')
