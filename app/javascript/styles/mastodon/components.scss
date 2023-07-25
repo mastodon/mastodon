@@ -3512,10 +3512,13 @@ button.icon-button.active i.fa-retweet {
   display: block;
   position: relative;
   font-size: 14px;
+  border: 1px solid lighten($ui-base-color, 8%);
+  border-radius: 8px;
   color: $darker-text-color;
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
+  background: darken($ui-base-color, 8%);
 
   &__actions {
     bottom: 0;
@@ -3624,8 +3627,7 @@ a.status-card {
 .status-card__content {
   flex: 1 1 auto;
   overflow: hidden;
-  padding: 15px 0;
-  padding-bottom: 0;
+  padding: 8px;
 }
 
 .status-card__host {
@@ -3649,7 +3651,6 @@ a.status-card {
   width: 100%;
   background: lighten($ui-base-color, 8%);
   position: relative;
-  border-radius: 8px;
 
   & > .fa {
     font-size: 21px;
@@ -3662,7 +3663,6 @@ a.status-card {
 }
 
 .status-card__image-image {
-  border-radius: 8px;
   display: block;
   margin: 0;
   width: 100%;
@@ -3673,7 +3673,6 @@ a.status-card {
 }
 
 .status-card__image-preview {
-  border-radius: 8px;
   display: block;
   margin: 0;
   width: 100%;
