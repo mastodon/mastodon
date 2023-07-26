@@ -188,7 +188,7 @@ export default class Card extends PureComponent {
 
     const badges = thumbnailDescription?.length > 0 && (
       <div className='image-badges'>
-         <span className='image-badge'>ALT</span>
+        <span className='image-badge'>ALT</span>
       </div>
     )
 

@@ -128,7 +128,11 @@ export default class MediaItem extends ImmutablePureComponent {
         <div className='media-gallery__gifv'>
           {content}
 
-          {label && <span className='image-badge'>{label}</span>}
+          {label && (
+            <div className='image-badges'>
+              <span className='image-badge'>{label}</span>
+            </div>
+          )}
         </div>
       );
     }
