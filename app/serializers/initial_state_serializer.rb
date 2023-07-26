@@ -11,7 +11,41 @@ class InitialStateSerializer < ActiveModel::Serializer
   has_one :role, serializer: REST::RoleSerializer
 
   def meta
-    store = {
+    store = server_meta
+
+    if object.current_account
+      store[:me]                = object.current_account.id.to_s
+      store[:unfollow_modal]    = object.current_account.user.setting_unfollow_modal
+      store[:boost_modal]       = object.current_account.user.setting_boost_modal
+      store[:delete_modal]      = object.current_account.user.setting_delete_modal
+      store[:auto_play_gif]     = object.current_account.user.setting_auto_play_gif
+      store[:display_media]     = object.current_account.user.setting_display_media
+      store[:expand_spoilers]   = object.current_account.user.setting_expand_spoilers
+      store[:reduce_motion]     = object.current_account.user.setting_reduce_motion
+      store[:disable_swiping]   = object.current_account.user.setting_disable_swiping
+      store[:advanced_layout]   = object.current_account.user.setting_advanced_layout
+      store[:use_blurhash]      = object.current_account.user.setting_use_blurhash
+      store[:use_pending_items] = object.current_account.user.setting_use_pending_items
+      store[:show_trends]       = Setting.trends && object.current_account.user.setting_trends
+      store[:webui_styles]      = object.current_account.user.setting_webui_styles
+      store[:wider_column]      = object.current_account.user.setting_wider_column
+    else
+      store[:auto_play_gif] = Setting.auto_play_gif
+      store[:display_media] = Setting.display_media
+      store[:reduce_motion] = Setting.reduce_motion
+      store[:use_blurhash]  = Setting.use_blurhash
+    end
+
+    store[:disabled_account_id] = object.disabled_account.id.to_s if object.disabled_account
+    store[:moved_to_account_id] = object.moved_to_account.id.to_s if object.moved_to_account
+
+    store[:owner] = object.owner&.id&.to_s if Rails.configuration.x.single_user_mode
+
+    store
+  end
+
+  def server_meta
+    {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
       access_token: object.token,
       locale: I18n.locale,
@@ -33,35 +67,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       trends_as_landing_page: Setting.trends_as_landing_page,
       status_page_url: Setting.status_page_url,
     }
-
-    if object.current_account
-      store[:me]                = object.current_account.id.to_s
-      store[:unfollow_modal]    = object.current_account.user.setting_unfollow_modal
-      store[:boost_modal]       = object.current_account.user.setting_boost_modal
-      store[:delete_modal]      = object.current_account.user.setting_delete_modal
-      store[:auto_play_gif]     = object.current_account.user.setting_auto_play_gif
-      store[:display_media]     = object.current_account.user.setting_display_media
-      store[:expand_spoilers]   = object.current_account.user.setting_expand_spoilers
-      store[:reduce_motion]     = object.current_account.user.setting_reduce_motion
-      store[:disable_swiping]   = object.current_account.user.setting_disable_swiping
-      store[:advanced_layout]   = object.current_account.user.setting_advanced_layout
-      store[:use_blurhash]      = object.current_account.user.setting_use_blurhash
-      store[:use_pending_items] = object.current_account.user.setting_use_pending_items
-      store[:show_trends]       = Setting.trends && object.current_account.user.setting_trends
-      store[:webui_styles]      = object.current_account.user.setting_webui_styles
-    else
-      store[:auto_play_gif] = Setting.auto_play_gif
-      store[:display_media] = Setting.display_media
-      store[:reduce_motion] = Setting.reduce_motion
-      store[:use_blurhash]  = Setting.use_blurhash
-    end
-
-    store[:disabled_account_id] = object.disabled_account.id.to_s if object.disabled_account
-    store[:moved_to_account_id] = object.moved_to_account.id.to_s if object.moved_to_account
-
-    store[:owner] = object.owner&.id&.to_s if Rails.configuration.x.single_user_mode
-
-    store
   end
 
   def compose
