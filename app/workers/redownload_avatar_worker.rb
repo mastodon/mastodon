@@ -16,6 +16,7 @@ class RedownloadAvatarWorker
     account.reset_avatar!
     account.save!
   rescue ActiveRecord::RecordNotFound
+  rescue ActiveRecord::RecordInvalid
     # Do nothing
   rescue Mastodon::UnexpectedResponseError => e
     response = e.response
