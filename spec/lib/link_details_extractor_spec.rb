@@ -3,33 +3,31 @@
 require 'rails_helper'
 
 RSpec.describe LinkDetailsExtractor do
-  subject { described_class.new(original_url, html, html_charset) }
+  subject { described_class.new(original_url, html, nil) }
 
-  let(:original_url) { 'https://example.com/dog.html' }
-  let(:html) { '' }
-  let(:html_charset) { nil }
+  let(:original_url) { 'https://example.com/dog.html?tracking=123' }
 
   describe '#canonical_url' do
-    let(:original_url) { 'https://foo.com/article?bar=baz123' }
+    let(:html) { "<!doctype html><link rel='canonical' href='#{url}'>" }
+
+    context 'when canonical URL points to the same host' do
+      let(:url) { 'https://example.com/dog.html' }
+
+      it 'ignores the canonical URLs' do
+        expect(subject.canonical_url).to eq 'https://example.com/dog.html'
+      end
+    end
 
     context 'when canonical URL points to another host' do
-      let(:html) { '<!doctype html><link rel="canonical" href="https://bar.com/different-article" />' }
+      let(:url) { 'https://different.example.net/dog.html' }
 
       it 'ignores the canonical URLs' do
         expect(subject.canonical_url).to eq original_url
       end
     end
 
-    context 'when canonical URL points to the same host' do
-      let(:html) { '<!doctype html><link rel="canonical" href="https://foo.com/article" />' }
-
-      it 'ignores the canonical URLs' do
-        expect(subject.canonical_url).to eq 'https://foo.com/article'
-      end
-    end
-
     context 'when canonical URL is set to "null"' do
-      let(:html) { '<!doctype html><link rel="canonical" href="null" />' }
+      let(:url) { 'null' }
 
       it 'ignores the canonical URLs' do
         expect(subject.canonical_url).to eq original_url
@@ -72,16 +70,12 @@ RSpec.describe LinkDetailsExtractor do
       {
         '@context' => 'https://schema.org',
         '@type' => 'NewsArticle',
-        'mainEntityOfPage' => {
-          '@type' => 'WebPage',
-          '@id' => 'http://example.com/dog.html',
-        },
         'headline' => 'Man bites dog',
         'description' => "A dog's tale",
         'datePublished' => '2022-01-31T19:53:00+00:00',
         'author' => {
           '@type' => 'Organization',
-          'name' => 'Pluto',
+          'name' => 'Charlie Brown',
         },
         'publisher' => {
           '@type' => 'NewsMediaOrganization',
@@ -92,12 +86,6 @@ RSpec.describe LinkDetailsExtractor do
     end
 
     shared_examples 'structured data' do
-      describe '#canonical_url' do
-        it 'returns the URL from structured data' do
-          expect(subject.canonical_url).to eq 'https://example.com/dog.html'
-        end
-      end
-
       describe '#title' do
         it 'returns the title from structured data' do
           expect(subject.title).to eq 'Man bites dog'
@@ -118,7 +106,7 @@ RSpec.describe LinkDetailsExtractor do
 
       describe '#author_name' do
         it 'returns the author name from structured data' do
-          expect(subject.author_name).to eq 'Pluto'
+          expect(subject.author_name).to eq 'Charlie Brown'
         end
       end
 
@@ -152,30 +140,74 @@ RSpec.describe LinkDetailsExtractor do
         <html>
         <body>
           <script type="application/ld+json">
-            {
-              "@context":"https://schema.org",
-              "@type":"ItemList",
-              "url":"https://example.com/cat.html",
-              "name":"Man bites cat",
-              "description":"A cat's tale"
-            },
-            {
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              "itemListElement":[
-                {
-                  "@type":"ListItem",
-                  "position":1,
-                  "item":{
-                    "@id":"https://www.example.com",
-                    "name":"Cat News"
-                  }
-                }
-              ]
-            }
+            invalid LD+JSON
           </script>
           <script type="application/ld+json">
             #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      it_behaves_like 'structured data'
+    end
+
+    context 'with preceding block of unsupported LD+JSON' do
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            [
+              {
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "url": "https://example.com/cat.html",
+                "name": "Man bites cat",
+                "description": "A cat's tale"
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement":[
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                      "@id": "https://www.example.com",
+                      "name": "Cat News"
+                    }
+                  }
+                ]
+              }
+            ]
+          </script>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      it_behaves_like 'structured data'
+    end
+
+    context 'with unsupported in same block LD+JSON' do
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            [
+              {
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "url": "https://example.com/cat.html",
+                "name": "Man bites cat",
+                "description": "A cat's tale"
+              },
+              #{ld_json}
+            ]
           </script>
         </body>
         </html>
@@ -194,9 +226,9 @@ RSpec.describe LinkDetailsExtractor do
         <meta property="og:title" content="Man bites dog">
         <meta property="og:description" content="A dog's tale">
         <meta property="article:published_time" content="2022-01-31T19:53:00+00:00">
-        <meta property="og:author" content="Pluto">
+        <meta property="og:author" content="Charlie Brown">
         <meta property="og:locale" content="en">
-        <meta property="og:image" content="https://example.com/dog.jpg">
+        <meta property="og:image" content="https://example.com/snoopy.jpg">
         <meta property="og:image:alt" content="A good boy">
         <meta property="og:site_name" content="Pet News">
       </head>
@@ -229,7 +261,7 @@ RSpec.describe LinkDetailsExtractor do
 
     describe '#author_name' do
       it 'returns the author name from Open Graph protocol data' do
-        expect(subject.author_name).to eq 'Pluto'
+        expect(subject.author_name).to eq 'Charlie Brown'
       end
     end
 
@@ -241,7 +273,7 @@ RSpec.describe LinkDetailsExtractor do
 
     describe '#image' do
       it 'returns the image from Open Graph protocol data' do
-        expect(subject.image).to eq 'https://example.com/dog.jpg'
+        expect(subject.image).to eq 'https://example.com/snoopy.jpg'
       end
     end
 
