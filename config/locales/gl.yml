@@ -1277,12 +1277,14 @@ gl:
       bookmarks_html: Vas <strong>substituír os marcadores</strong> por <strong>%{total_items} publicacións</strong> desde <strong>%{filename}</strong>.
       domain_blocking_html: Vas <strong>substituír a lista de dominios bloqueados</strong> por <strong>%{total_items} dominios</strong> desde <strong>%{filename}</strong>.
       following_html: Vas <strong>seguir</strong> estas <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong> e deixar de seguir a <strong>todas as outras contas</strong>.
+      lists_html: Vas <strong>substituír as túas listas</strong> co contido de <strong>%{filename}</strong>. Vanse engadir <strong>%{total_items} contas</strong> ás novas listas.
       muting_html: Vas <strong>substituír a lista de contas acaladas</strong> por <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
     preambles:
       blocking_html: Vas <strong>bloquear</strong> estas <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
       bookmarks_html: Vas engadir <strong>%{total_items} publicacións</strong> desde <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
       domain_blocking_html: Vas <strong>bloquear</strong> estes <strong>%{total_items} dominios</strong> desde <strong>%{filename}</strong>.
       following_html: Vas <strong>seguir</strong> estas <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
+      lists_html: Vas engadir <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong> ás túas <strong>listas</strong>. Crearánse novas listas se non hai listas ás que engadilas.
       muting_html: Vas <strong>acalar</strong> estas <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
     preface: Podes importar os datos que exportaches doutro servidor, tales como a lista de usuarias que estás a seguir ou bloquear.
     recent_imports: Importacións recentes
@@ -1299,6 +1301,7 @@ gl:
       bookmarks: Importando marcadores
       domain_blocking: Importando dominios bloqueados
       following: Importando contas seguidas
+      lists: Importación de listas
       muting: Importando contas acaladas
     type: Tipo de importación
     type_groups:
@@ -1309,6 +1312,7 @@ gl:
       bookmarks: Marcadores
       domain_blocking: Lista de bloqueo de dominios
       following: Lista de seguimento
+      lists: Listas
       muting: Lista de usuarias acaladas
     upload: Subir
   invites:

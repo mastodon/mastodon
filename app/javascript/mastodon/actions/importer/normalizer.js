@@ -76,6 +76,7 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.spoilerHtml = normalOldStatus.get('spoilerHtml');
     normalStatus.spoiler_text = normalOldStatus.get('spoiler_text');
     normalStatus.hidden = normalOldStatus.get('hidden');
+    normalStatus.translation = normalOldStatus.get('translation');
   } else {
     // If the status has a CW but no contents, treat the CW as if it were the
     // status' contents, to avoid having a CW toggle with seemingly no effect.
@@ -92,6 +93,18 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap);
     normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(spoilerText), emojiMap);
     normalStatus.hidden       = expandSpoilers ? false : spoilerText.length > 0 || normalStatus.sensitive;
+  }
+
+  if (normalOldStatus) {
+    const list = normalOldStatus.get('media_attachments');
+    if (normalStatus.media_attachments && list) {
+      normalStatus.media_attachments.forEach(item => {
+        const oldItem = list.find(i => i.get('id') === item.id);
+        if (oldItem && oldItem.get('description') === item.description) {
+          item.translation = oldItem.get('translation')
+        }
+      });
+    }
   }
 
   return normalStatus;
@@ -112,15 +125,23 @@ export function normalizeStatusTranslation(translation, status) {
   return normalTranslation;
 }
 
-export function normalizePoll(poll) {
+export function normalizePoll(poll, normalOldPoll) {
   const normalPoll = { ...poll };
   const emojiMap = makeEmojiMap(poll.emojis);
 
-  normalPoll.options = poll.options.map((option, index) => ({
-    ...option,
-    voted: poll.own_votes && poll.own_votes.includes(index),
-    titleHtml: emojify(escapeTextContentForBrowser(option.title), emojiMap),
-  }));
+  normalPoll.options = poll.options.map((option, index) => {
+    const normalOption = {
+      ...option,
+      voted: poll.own_votes && poll.own_votes.includes(index),
+      titleHtml: emojify(escapeTextContentForBrowser(option.title), emojiMap),
+    }
+
+    if (normalOldPoll && normalOldPoll.getIn(['options', index, 'title']) === option.title) {
+      normalOption.translation = normalOldPoll.getIn(['options', index, 'translation']);
+    }
+
+    return normalOption
+  });
 
   return normalPoll;
 }

@@ -1281,12 +1281,14 @@ is:
       bookmarks_html: Þú er í þann mund að fara að <strong>skipta út bókamerkjunum þínum</strong> með allt að <strong>%{total_items} færslum</strong> úr <strong>%{filename}</strong>.
       domain_blocking_html: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokuð lén</strong> með allt að <strong>%{total_items} lénum</strong> úr <strong>%{filename}</strong>.
       following_html: Þú er í þann mund að fara að <strong>fylgjast með</strong> allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong> og <strong>hætta að fylgjast með öllum öðrum</strong>.
+      lists_html: Þú ert í þann mund að fara að <strong>skipta út listunum þínum</strong> með efninu úr <strong>%{filename}</strong>. Allt að <strong>%{total_items} aðgöngum</strong> verður bætt við nýju listana.
       muting_html: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokaða aðganga</strong> með allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
     preambles:
       blocking_html: Þú er í þann mund að fara að <strong>útiloka</strong> allt að <strong>%{total_items} aðganga</strong> úr <strong>%{filename}</strong>.
       bookmarks_html: Þú er í þann mund að fara að bæta við allt að <strong>%{total_items} færslum</strong> úr <strong>%{filename}</strong> við <strong>bókamerkin</strong> þín.
       domain_blocking_html: Þú er í þann mund að fara að <strong>útiloka</strong> allt að <strong>%{total_items} lén</strong> úr <strong>%{filename}</strong>.
       following_html: Þú er í þann mund að fara að <strong>fylgjast með</strong> allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
+      lists_html: Þú ert í þann mund að fara að bæta við allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong> við <strong>listana</strong> þína. Nýir listar verða útbúnir ef ekki finnst neinn listi til að bæta í.
       muting_html: Þú er í þann mund að fara að <strong>þagga</strong> allt að <strong>%{total_items} aðganga</strong> úr <strong>%{filename}</strong>.
     preface: Þú getur flutt inn gögn sem þú hefur flutt út frá öðrum vefþjóni, svo sem lista yfir fólk sem þú fylgist með eða útilokar.
     recent_imports: Nýlega flutt inn
@@ -1303,6 +1305,7 @@ is:
       bookmarks: Flyt inn bókamerki
       domain_blocking: Flyt inn útilokuð lén
       following: Flyt inn aðganga sem fylgst er með
+      lists: Flytja inn lista
       muting: Flyt inn þaggaða aðganga
     type: Tegund innflutnings
     type_groups:
@@ -1313,6 +1316,7 @@ is:
       bookmarks: Bókamerki
       domain_blocking: Listi yfir útilokanir léna
       following: Listi yfir þá sem fylgst er með
+      lists: Listar
       muting: Listi yfir þagganir
     upload: Senda inn
   invites:

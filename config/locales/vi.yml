@@ -1252,12 +1252,14 @@ vi:
       bookmarks_html: Bạn sắp <strong>thay thế lượt lưu</strong> với <strong>%{total_items} tút</strong> từ <strong>%{filename}</strong>.
       domain_blocking_html: Bạn sắp <strong>thay thế danh sách máy chủ chặn</strong> với <strong>%{total_items} máy chủ</strong> từ <strong>%{filename}</strong>.
       following_html: Bạn sắp <strong>theo dõi</strong> với <strong>%{total_items} người</strong> từ <strong>%{filename}</strong> và <strong>ngừng theo dõi bất kỳ ai</strong>.
+      lists_html: Bạn sắp <strong>thay thế các danh sách</strong> bằng nội dung từ <strong>%{filename}</strong>. Hơn <strong>%{total_items} tài khoản</strong> sẽ được thêm vào những danh sách mới.
       muting_html: Bạn sắp <strong>thay thế danh sách ẩn</strong> với <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
     preambles:
       blocking_html: Bạn sắp <strong>chặn</strong> tới <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
       bookmarks_html: Bạn sắp thêm vào <strong>%{total_items} tút</strong> từ <strong>%{filename}</strong> vào <strong>lượt lưu</strong>.
       domain_blocking_html: Bạn sắp <strong>chặn</strong> tới <strong>%{total_items} máy chủ</strong> từ <strong>%{filename}</strong>.
       following_html: Bạn sắp <strong>theo dõi</strong> tới <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
+      lists_html: Bạn sắp thêm <strong>%{total_items} tài khoản</strong> từ <strong>%{filename}</strong> vào <strong>danh sách của bạn</strong>. Những danh sách mới sẽ được tạo nếu bạn chưa có danh sách nào.
       muting_html: Bạn sắp <strong>ẩn</strong> lên tới <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
     preface: Bạn có thể nhập dữ liệu mà bạn đã xuất từ một máy chủ khác, chẳng hạn như danh sách những người bạn đang theo dõi hoặc chặn.
     recent_imports: Đã nhập gần đây
@@ -1274,6 +1276,7 @@ vi:
       bookmarks: Đang nhập lượt lưu
       domain_blocking: Đang nhập máy chủ đã chặn
       following: Đang nhập người theo dõi
+      lists: Nhập danh sách
       muting: Đang nhập người đã ẩn
     type: Kiểu nhập
     type_groups:
@@ -1284,6 +1287,7 @@ vi:
       bookmarks: Tút đã lưu
       domain_blocking: Danh sách máy chủ đã chặn
       following: Danh sách người theo dõi
+      lists: Danh sách
       muting: Danh sách người đã ẩn
     upload: Tải lên
   invites:
