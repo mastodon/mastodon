@@ -770,7 +770,7 @@ hu:
           approved: A regisztráció engedélyhez kötött
           none: Senki sem regisztrálhat
           open: Bárki regisztrálhat
-      title: Kiszolgálóbeállítások
+      title: Kiszolgáló-beállítások
     site_uploads:
       delete: Feltöltött fájl törlése
       destroyed_msg: Sikeresen töröltük a site feltöltését!
@@ -1277,12 +1277,14 @@ hu:
       bookmarks_html: 'Arra készülsz, hogy <strong>lecseréld a könyvjelzőket</strong> legfeljebb <strong>%{total_items} bejegyzésre</strong> a következőből: <strong>%{filename}</strong>.'
       domain_blocking_html: 'Arra készülsz, hogy <strong>lecseréld a domain letiltási listát</strong> legfeljebb <strong>%{total_items} domainre</strong> a következőből: <strong>%{filename}</strong>.'
       following_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>, és <strong>abbahagyd mindenki más követését</strong>.'
+      lists_html: Arra készülsz, hogy <strong>a listákat lecseréld</strong> a <strong>%{filename}</strong> tartalmával. Legfeljebb <strong>%{total_items} fiók</strong> kerül fel az új listákra.
       muting_html: 'Arra készülsz, hogy <strong>lecseréld a némított fiókok listáját</strong> legfeljebb <strong>%{total_items} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
     preambles:
       blocking_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
       bookmarks_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} bejegyzést</strong> adj hozzá a <strong>könyvjelzőkhöz</strong> a következőből: <strong>%{filename}</strong>.'
       domain_blocking_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} domaint</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
       following_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>.'
+      lists_html: Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> hozzáadj a <strong>%{filename}</strong> fájlból a <strong>listákhoz</strong>. Új listák jönnek létre, ha nincs hozzáadható lista.
       muting_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>némíts</strong> a következőből: <strong>%{filename}</strong>.'
     preface: Itt importálhatod egy másik kiszolgálóról lementett adataidat, például követettjeid és letiltott felhasználóid listáját.
     recent_imports: Legutóbbi importálások
@@ -1299,6 +1301,7 @@ hu:
       bookmarks: Könyvjelzők importálása
       domain_blocking: Letiltott domainek importálása
       following: Követett fiókok importálása
+      lists: Listák importálása
       muting: Némított fiókok importálása
     type: Importálás típusa
     type_groups:
@@ -1309,6 +1312,7 @@ hu:
       bookmarks: Könyvjelzők
       domain_blocking: Letiltott domainek listája
       following: Követettjeid listája
+      lists: Listák
       muting: Némított felhasználók listája
     upload: Feltöltés
   invites:
