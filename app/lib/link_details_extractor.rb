@@ -153,11 +153,11 @@ class LinkDetailsExtractor
   end
 
   def title
-    html_entities.decode(structured_data&.headline || opengraph_tag('og:title') || document.xpath('//title').map(&:content).first)
+    html_entities.decode(structured_data&.headline || opengraph_tag('og:title'))
   end
 
   def description
-    html_entities.decode(structured_data&.description || opengraph_tag('og:description') || meta_tag('description'))
+    html_entities.decode(structured_data&.description || opengraph_tag('og:description'))
   end
 
   def published_at
@@ -230,10 +230,6 @@ class LinkDetailsExtractor
 
   def opengraph_tag(name)
     document.xpath("//meta[@property=\"#{name}\" or @name=\"#{name}\"]").pick('content')
-  end
-
-  def meta_tag(name)
-    document.xpath("//meta[@name=\"#{name}\"]").pick('content')
   end
 
   def structured_data
