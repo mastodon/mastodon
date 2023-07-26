@@ -6,7 +6,7 @@ ENV['RAILS_ENV'] ||= 'test'
 RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
 
 if RUN_SYSTEM_SPECS
-  STREAMING_PORT = rand(4001..4999)
+  STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
   ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
 end
 require File.expand_path('../config/environment', __dir__)
@@ -97,9 +97,7 @@ RSpec.configure do |config|
   end
 
   config.before :each, type: :feature do
-    # https = ENV['LOCAL_HTTPS'] == 'true'
-    # Capybara.app_host = "http#{https ? 's' : ''}://#{ENV.fetch('LOCAL_DOMAIN')}"
-    # Capybara.current_driver :rack_test
+    Capybara.current_driver = :rack_test
   end
 
   config.before :each, type: :controller do
