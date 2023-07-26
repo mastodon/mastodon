@@ -1277,12 +1277,14 @@ fr:
       bookmarks_html: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{total_items} posts</strong> tirés de <strong>%{filename}</strong>.
       domain_blocking_html: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
       following_html: Vous allez <strong>suivre</strong> jusqu’à <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
+      lists_html: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Près de <strong>%{total_items} comptes</strong> seront ajoutés à de nouvelles listes.
       muting_html: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
     preambles:
       blocking_html: Vous allez <strong>bloquer</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
       bookmarks_html: Vous allez ajouter près de <strong>%{total_items} messages</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
       domain_blocking_html: Vous allez <strong>bloquer</strong> près de <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
       following_html: Vous allez <strong>suivre</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+      lists_html: Vous allez ajouter près de <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
       muting_html: Vous allez <strong>masquer</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
     preface: Vous pouvez importer certaines données que vous avez exporté d’un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
     recent_imports: Récents imports
@@ -1299,6 +1301,7 @@ fr:
       bookmarks: En cours d’importation des signets
       domain_blocking: En cours d’importation des domaines bloqués
       following: En cours d’importation des comptes suivis
+      lists: En cours d’importation des listes
       muting: En cours d’importation des comptes masqués
     type: Type d’import
     type_groups:
@@ -1309,6 +1312,7 @@ fr:
       bookmarks: Marque-pages
       domain_blocking: Liste des serveurs bloqués
       following: Liste de comptes suivis
+      lists: Listes
       muting: Liste de comptes que vous masquez
     upload: Importer
   invites:
