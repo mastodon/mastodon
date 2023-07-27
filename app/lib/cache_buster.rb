@@ -2,8 +2,9 @@
 
 class CacheBuster
   def initialize(options = {})
-    @secret_header = options[:secret_header] || 'Secret-Header'
-    @secret        = options[:secret] || 'True'
+    @secret_header = options[:secret_header] || nil
+    @secret        = options[:secret] || nil
+    @http_method   = options[:http_method] || 'GET'
   end
 
   def bust(url)
@@ -21,7 +22,8 @@ class CacheBuster
   end
 
   def build_request(url, http_client)
-    Request.new(:get, url, http_client: http_client).tap do |request|
+    request = Request.new(@http_method.to_sym, url, http_client: http_client)
+    if @secret_header && !@secret_header.empty? && @secret && !@secret.empty?
       request.add_headers(@secret_header => @secret)
     end
   end
