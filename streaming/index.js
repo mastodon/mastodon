@@ -636,7 +636,7 @@ const startWorker = async (workerId) => {
     const listener = message => {
       const { event, payload, queued_at } = message;
 
-      const transmit = () => {
+      const transmit = (payload) => {
         const now = new Date().getTime();
         const delta = now - queued_at;
         const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
@@ -648,22 +648,21 @@ const startWorker = async (workerId) => {
       // Only messages that may require filtering are statuses, since notifications
       // are already personalized and deletes do not matter
       if (!needsFiltering || event !== 'update') {
-        transmit();
+        transmit(payload);
         return;
       }
 
-      const unpackedPayload = payload;
-      const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id));
-      const accountDomain = unpackedPayload.account.acct.split('@')[1];
+      const targetAccountIds = [payload.account.id].concat(payload.mentions.map(item => item.id));
+      const accountDomain = payload.account.acct.split('@')[1];
 
-      if (Array.isArray(req.chosenLanguages) && unpackedPayload.language !== null && req.chosenLanguages.indexOf(unpackedPayload.language) === -1) {
-        log.silly(req.requestId, `Message ${unpackedPayload.id} filtered by language (${unpackedPayload.language})`);
+      if (Array.isArray(req.chosenLanguages) && payload.language !== null && req.chosenLanguages.indexOf(payload.language) === -1) {
+        log.silly(req.requestId, `Message ${payload.id} filtered by language (${payload.language})`);
         return;
       }
 
       // When the account is not logged in, it is not necessary to confirm the block or mute
       if (!req.accountId) {
-        transmit();
+        transmit(payload);
         return;
       }
 
@@ -682,14 +681,14 @@ const startWorker = async (workerId) => {
                         SELECT 1
                         FROM mutes
                         WHERE account_id = $1
-                          AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, unpackedPayload.account.id].concat(targetAccountIds)),
+                          AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, payload.account.id].concat(targetAccountIds)),
         ];
 
         if (accountDomain) {
           queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
         }
 
-        if (!unpackedPayload.filtered && !req.cachedFilters) {
+        if (!payload.filtered && !req.cachedFilters) {
           queries.push(client.query('SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND (filter.expires_at IS NULL OR filter.expires_at > NOW())', [req.accountId]));
         }
 
@@ -700,7 +699,7 @@ const startWorker = async (workerId) => {
             return;
           }
 
-          if (!unpackedPayload.filtered && !req.cachedFilters) {
+          if (!payload.filtered && !req.cachedFilters) {
             const filterRows = values[accountDomain ? 2 : 1].rows;
 
             req.cachedFilters = filterRows.reduce((cache, row) => {
@@ -743,27 +742,30 @@ const startWorker = async (workerId) => {
           }
 
           // Check filters
-          if (req.cachedFilters && !unpackedPayload.filtered) {
-            const status = unpackedPayload;
+          if (req.cachedFilters && !payload.filtered) {
+            const mutatedPayload = { ...payload };
+            const status = payload;
             const searchContent = ([status.spoiler_text || '', status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
             const searchIndex = JSDOM.fragment(searchContent).textContent;
 
             const now = new Date();
-            payload.filtered = [];
+            mutatedPayload.filtered = [];
             Object.values(req.cachedFilters).forEach((cachedFilter) => {
               if ((cachedFilter.expires_at === null || cachedFilter.expires_at > now)) {
                 const keyword_matches = searchIndex.match(cachedFilter.regexp);
                 if (keyword_matches) {
-                  payload.filtered.push({
+                  mutatedPayload.filtered.push({
                     filter: cachedFilter.repr,
                     keyword_matches,
                   });
                 }
               }
             });
-          }
 
-          transmit();
+            transmit(mutatedPayload);
+          } else {
+            transmit(payload);
+          }
         }).catch(err => {
           log.error(err);
           done();
