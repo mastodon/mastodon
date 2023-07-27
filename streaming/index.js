@@ -707,7 +707,7 @@ const startServer = async () => {
           }
 
           // If the payload already contains the `filtered` property, it means
-          // that filtering has been applied the on the ruby on rails side, as 
+          // that filtering has been applied on the ruby on rails side, as 
           // such, we don't need to construct or apply the filters in streaming:
           if (Object.prototype.hasOwnProperty.call(payload, "filtered")) {
             transmit(event, payload);
