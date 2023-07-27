@@ -534,6 +534,16 @@
     }
   }
 
+  &__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .account-role {
+      line-height: unset;
+    }
+  }
+
   &__tabs {
     display: flex;
     align-items: flex-start;
@@ -570,10 +580,6 @@
 
     &__name {
       padding: 5px 10px;
-
-      .account-role {
-        vertical-align: top;
-      }
 
       .emojione {
         width: 22px;
