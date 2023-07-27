@@ -7331,6 +7331,16 @@ noscript {
     }
   }
 
+  &__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .account-role {
+      line-height: unset;
+    }
+  }
+
   &__tabs {
     display: flex;
     align-items: flex-start;
@@ -7368,10 +7378,6 @@ noscript {
     &__name {
       margin-top: 16px;
       margin-bottom: 16px;
-
-      .account-role {
-        vertical-align: top;
-      }
 
       .emojione {
         width: 22px;
