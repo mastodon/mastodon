@@ -131,12 +131,6 @@ RSpec/FilePath:
   Exclude:
     - 'spec/config/initializers/rack_attack_spec.rb' # namespaces usually have separate folder
     - 'spec/lib/sanitize_config_spec.rb' # namespaces usually have separate folder
-    - 'spec/controllers/concerns/account_controller_concern_spec.rb' # Concerns describe ApplicationController and don't fit naming
-    - 'spec/controllers/concerns/export_controller_concern_spec.rb'
-    - 'spec/controllers/concerns/localized_spec.rb'
-    - 'spec/controllers/concerns/rate_limit_headers_spec.rb'
-    - 'spec/controllers/concerns/signature_verification_spec.rb'
-    - 'spec/controllers/concerns/user_tracking_concern_spec.rb'
 
 # Reason:
 # https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecnamedsubject
