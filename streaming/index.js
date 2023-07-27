@@ -771,7 +771,7 @@ const startServer = async () => {
           // `filter_results` array of FilterResult entities
           if (req.cachedFilters) {
             const status = payload;
-            // TODO: Calculate searchableContent in mastodon-web / Rails:
+            // TODO: Calculate searchableContent in Ruby on Rails:
             const searchableContent = ([status.spoiler_text || '', status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
             const searchableTextContent = JSDOM.fragment(searchableContent).textContent;
 
