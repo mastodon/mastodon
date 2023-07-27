@@ -638,8 +638,7 @@ const startServer = async () => {
 
       // Streaming only needs to apply filtering to some channels and only to
       // some events. This is because majority of the filtering happens on the
-      // Ruby on Rails (mastodon-web) side when producing the event for
-      // streaming.
+      // Ruby on Rails side when producing the event for streaming.
       //
       // The only events that require filtering from the streaming server are
       // `update` and `status.update`, all other events are transmitted to the
@@ -708,8 +707,8 @@ const startServer = async () => {
           }
 
           // If the payload already contains the `filtered` property, it means
-          // that mastodon-web has applied the filters on the ruby on rails side,
-          // as such, we don't need to construct or apply the filters in streaming:
+          // that filtering has been applied the on the ruby on rails side, as 
+          // such, we don't need to construct or apply the filters in streaming:
           if (Object.prototype.hasOwnProperty.call(payload, "filtered")) {
             transmit(event, payload);
             return;
