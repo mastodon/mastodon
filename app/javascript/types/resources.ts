@@ -33,6 +33,7 @@ interface AccountApiResponseValues {
   note: string;
   statuses_count: number;
   url: string;
+  uri: string;
   username: string;
 }
 
