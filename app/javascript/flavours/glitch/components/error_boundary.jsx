@@ -7,8 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import StackTrace from 'stacktrace-js';
 
-import { source_url } from 'flavours/glitch/initial_state';
-import { preferencesLink } from 'flavours/glitch/utils/backend_links';
+import { version, source_url } from 'flavours/glitch/initial_state';
 
 export default class ErrorBoundary extends PureComponent {
 
@@ -24,7 +23,7 @@ export default class ErrorBoundary extends PureComponent {
     componentStack: undefined,
   };
 
-  componentDidCatch(error, info) {
+  componentDidCatch (error, info) {
     this.setState({
       hasError: true,
       errorMessage: error.toString(),
@@ -44,88 +43,62 @@ export default class ErrorBoundary extends PureComponent {
     });
   }
 
-  handleReload(e) {
-    e.preventDefault();
-    window.location.reload();
-  }
+  handleCopyStackTrace = () => {
+    const { errorMessage, stackTrace, mappedStackTrace } = this.state;
+    const textarea = document.createElement('textarea');
+
+    let contents = [errorMessage, stackTrace];
+    if (mappedStackTrace) {
+      contents.push(mappedStackTrace);
+    }
+
+    textarea.textContent    = contents.join('\n\n\n');
+    textarea.style.position = 'fixed';
+
+    document.body.appendChild(textarea);
+
+    try {
+      textarea.select();
+      document.execCommand('copy');
+    } catch (e) {
+
+    } finally {
+      document.body.removeChild(textarea);
+    }
+
+    this.setState({ copied: true });
+    setTimeout(() => this.setState({ copied: false }), 700);
+  };
 
   render() {
-    const { hasError, errorMessage, stackTrace, mappedStackTrace, componentStack } = this.state;
+    const { hasError, copied, errorMessage } = this.state;
 
-    if (!hasError) return this.props.children;
+    if (!hasError) {
+      return this.props.children;
+    }
 
     const likelyBrowserAddonIssue = errorMessage && errorMessage.includes('NotFoundError');
 
-    let debugInfo = '';
-    if (stackTrace) {
-      debugInfo += 'Stack trace\n-----------\n\n```\n' + errorMessage + '\n' + stackTrace.toString() + '\n```';
-    }
-    if (mappedStackTrace) {
-      debugInfo += 'Mapped stack trace\n-----------\n\n```\n' + errorMessage + '\n' + mappedStackTrace.toString() + '\n```';
-    }
-    if (componentStack) {
-      if (debugInfo) {
-        debugInfo += '\n\n\n';
-      }
-      debugInfo += 'React component stack\n---------------------\n\n```\n' + componentStack.toString() + '\n```';
-    }
-
-    let issueTracker = source_url;
-    if (source_url.match(/^https:\/\/github\.com\/[^/]+\/[^/]+\/?$/)) {
-      issueTracker = source_url + '/issues';
-    }
-
     return (
-      <div tabIndex={-1}>
-        <div className='error-boundary'>
-          <h1><FormattedMessage id='web_app_crash.title' defaultMessage="We're sorry, but something went wrong with the Mastodon app." /></h1>
-          <p>
-            <FormattedMessage id='web_app_crash.content' defaultMessage='You could try any of the following:' />
-          </p>
-          <ul>
-            { likelyBrowserAddonIssue && (
-              <li>
-                <FormattedMessage
-                  id='web_app_crash.disable_addons'
-                  defaultMessage='Disable browser add-ons or built-in translation tools'
-                />
-              </li>
-            ) }
-            <li>
-              <FormattedMessage
-                id='web_app_crash.report_issue'
-                defaultMessage='Report a bug in the {issuetracker}'
-                values={{ issuetracker: <a href={issueTracker} rel='noopener noreferrer' target='_blank'><FormattedMessage id='web_app_crash.issue_tracker' defaultMessage='issue tracker' /></a> }}
-              />
-              { debugInfo !== '' && (
-                <details>
-                  <summary><FormattedMessage id='web_app_crash.debug_info' defaultMessage='Debug information' /></summary>
-                  <textarea
-                    className='web_app_crash-stacktrace'
-                    value={debugInfo}
-                    rows='10'
-                    readOnly
-                  />
-                </details>
-              )}
-            </li>
-            <li>
-              <FormattedMessage
-                id='web_app_crash.reload_page'
-                defaultMessage='{reload} the current page'
-                values={{ reload: <a href='#' onClick={this.handleReload}><FormattedMessage id='web_app_crash.reload' defaultMessage='Reload' /></a> }}
-              />
-            </li>
-            { preferencesLink !== undefined && (
-              <li>
-                <FormattedMessage
-                  id='web_app_crash.change_your_settings'
-                  defaultMessage='Change your {settings}'
-                  values={{ settings: <a href={preferencesLink}><FormattedMessage id='web_app_crash.settings' defaultMessage='settings' /></a> }}
-                />
-              </li>
+      <div className='error-boundary'>
+        <div>
+          <p className='error-boundary__error'>
+            { likelyBrowserAddonIssue ? (
+              <FormattedMessage id='error.unexpected_crash.explanation_addons' defaultMessage='This page could not be displayed correctly. This error is likely caused by a browser add-on or automatic translation tools.' />
+            ) : (
+              <FormattedMessage id='error.unexpected_crash.explanation' defaultMessage='Due to a bug in our code or a browser compatibility issue, this page could not be displayed correctly.' />
             )}
-          </ul>
+          </p>
+
+          <p>
+            { likelyBrowserAddonIssue ? (
+              <FormattedMessage id='error.unexpected_crash.next_steps_addons' defaultMessage='Try disabling them and refreshing the page. If that does not help, you may still be able to use Mastodon through a different browser or native app.' />
+            ) : (
+              <FormattedMessage id='error.unexpected_crash.next_steps' defaultMessage='Try refreshing the page. If that does not help, you may still be able to use Mastodon through a different browser or native app.' />
+            )}
+          </p>
+
+          <p className='error-boundary__footer'>Mastodon v{version} · <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='errors.unexpected_crash.report_issue' defaultMessage='Report issue' /></a> · <button onClick={this.handleCopyStackTrace} className={copied ? 'copied' : ''}><FormattedMessage id='errors.unexpected_crash.copy_stacktrace' defaultMessage='Copy stacktrace to clipboard' /></button></p>
         </div>
 
         <Helmet>
