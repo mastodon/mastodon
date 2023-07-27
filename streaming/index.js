@@ -622,17 +622,7 @@ const startServer = async () => {
 
     log.verbose(req.requestId, `Starting stream from ${ids.join(', ')} for ${accountId}`);
 
-    const transmit = (event, raw_payload, filter_results) => {
-      let payload = raw_payload;
-      if ((event === 'update' || event === 'status.update') && filter_results && filter_results.length > 0) {
-        // copy the payload and add the `filtered` attribute, an Array of FilterResult
-        // https://docs.joinmastodon.org/entities/Status/#filtered
-        payload = {
-          ...payload,
-          filtered: filter_results
-        };
-      }
-
+    const transmit = (event, payload) => {
       // TODO: Replace "string"-based delete payloads with object payloads:
       const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
@@ -646,21 +636,24 @@ const startServer = async () => {
     const listener = message => {
       const { event, payload } = message;
 
-      // Streaming only needs to apply filtering to some channels and only some
-      // of the events on those channels require filtering. This is because
-      // majority of the filtering happens on the Ruby on Rails (mastodon-web)
-      // side when producing the event for streaming.
+      // Streaming only needs to apply filtering to some channels and only to
+      // some events. This is because majority of the filtering happens on the
+      // Ruby on Rails (mastodon-web) side when producing the event for
+      // streaming.
       //
-      // Specifically, the only events that require filtering are `update` and
-      // `status.update`, all other events are transmitted to the client as soon
-      // as they're received (pass-through).
+      // The only events that require filtering from the streaming server are
+      // `update` and `status.update`, all other events are transmitted to the
+      // client as soon as they're received (pass-through).
+      //
+      // The channels that need filtering are determined in the function
+      // `channelNameToIds` defined below:
       if (!needsFiltering || (event !== 'update' && event !== 'status.update')) {
         transmit(event, payload);
         return;
       }
 
       // The rest of the logic from here on in this function is to handle
-      // filtering of statuses
+      // filtering of statuses:
 
       // Filter based on language:
       if (Array.isArray(req.chosenLanguages) && payload.language !== null && req.chosenLanguages.indexOf(payload.language) === -1) {
@@ -679,7 +672,7 @@ const startServer = async () => {
       const accountDomain = payload.account.acct.split('@')[1];
 
       // TODO: Move this logic out of the message handling loop
-      pgPool.connect((err, client, done) => {
+      pgPool.connect((err, client, releasePgConnection) => {
         if (err) {
           log.error(err);
           return;
@@ -706,7 +699,7 @@ const startServer = async () => {
         }
 
         Promise.all(queries).then(values => {
-          done();
+          releasePgConnection();
 
           // Handling blocks & mutes and domain blocks: If one of those applies,
           // then we don't transmit the payload of the event to the client
@@ -717,7 +710,7 @@ const startServer = async () => {
           // If the payload already contains the `filtered` property, it means
           // that mastodon-web has applied the filters on the ruby on rails side,
           // as such, we don't need to construct or apply the filters in streaming:
-          if (payload.filtered) {
+          if (Object.prototype.hasOwnProperty.call(payload, "filtered")) {
             transmit(event, payload);
             return;
           }
@@ -739,6 +732,11 @@ const startServer = async () => {
                     title: filter.title,
                     context: filter.context,
                     expires_at: filter.expires_at,
+                    // filter.filter_action is the value from the
+                    // custom_filters.action database column, it is an integer
+                    // representing a value in an enum defined by Ruby on Rails:
+                    //
+                    // enum { warn: 0, hide: 1 }
                     filter_action: ['warn', 'hide'][filter.filter_action],
                   },
                 };
@@ -792,23 +790,34 @@ const startServer = async () => {
 
               const keyword_matches = searchableTextContent.match(cachedFilter.regexp);
               if (keyword_matches) {
-                // results is an Array of FilterResult:
+                // results is an Array of FilterResult; status_matches is always
+                // null as we only are only applying the keyword-based custom
+                // filters, not the status-based custom filters.
                 // https://docs.joinmastodon.org/entities/FilterResult/
                 results.push({
                   filter: cachedFilter.filter,
                   keyword_matches,
-                  status_matches: []
+                  status_matches: null
                 });
               }
             }, []);
 
-            transmit(event, payload, filter_results);
+            // Send the payload + the FilterResults as the `filtered` property
+            // to the streaming connection. To reach this code, the `event` must
+            // have been either `update` or `status.update`, meaning the
+            // `payload` is a Status entity, which has a `filtered` property:
+            //
+            // filtered: https://docs.joinmastodon.org/entities/Status/#filtered
+            transmit(event, {
+              ...payload,
+              filtered: filter_results
+            });
           } else {
             transmit(event, payload);
           }
         }).catch(err => {
+          releasePgConnection();
           log.error(err);
-          done();
         });
       });
     };
