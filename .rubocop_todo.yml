@@ -161,8 +161,6 @@ Naming/VariableNumber:
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/UnfreezeString:
   Exclude:
-    - 'app/lib/text_formatter.rb'
-    - 'app/validators/status_length_validator.rb'
     - 'lib/tasks/mastodon.rake'
 
 RSpec/AnyInstance:
