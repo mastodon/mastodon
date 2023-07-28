@@ -12,12 +12,34 @@ class SearchQueryTransformer < Parslet::Transform
       @filter_clauses = grouped.fetch(:filter, [])
     end
 
-    def apply(search)
-      should_clauses.each { |clause| search = search.query.should(clause_to_query(clause)) }
-      must_clauses.each { |clause| search = search.query.must(clause_to_query(clause)) }
-      must_not_clauses.each { |clause| search = search.query.must_not(clause_to_query(clause)) }
-      filter_clauses.each { |clause| search = search.filter(**clause_to_filter(clause)) }
-      search.query.minimum_should_match(1)
+    def apply(query)
+      query[:bool] ||= {}
+
+      if should_clauses.present?
+        query[:bool][:should] ||= []
+
+        query[:bool][:should] += should_clauses.map { |clause| clause_to_query(clause) }
+        query[:bool][:minimum_should_match] = 1
+      end
+
+      if must_clauses.present?
+        query[:bool][:must] ||= []
+
+        query[:bool][:must] += must_clauses.map { |clause| clause_to_query(clause) }
+      end
+
+      if must_not_clauses.present?
+        query[:bool][:must_not] ||= []
+
+        query[:bool][:must_not] += must_not_clauses.map { |clause| clause_to_query(clause) }
+      end
+
+      if filter_clauses.present?
+        query[:bool][:filter] ||= []
+        query[:bool][:filter] += filter_clauses.map { |clause| clause_to_filter(clause) }
+      end
+
+      query
     end
 
     private
