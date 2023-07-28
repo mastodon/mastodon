@@ -99,9 +99,6 @@ gem 'rdf-normalize', '~> 0.5'
 gem 'private_address_check', '~> 0.5'
 
 group :test do
-  # RSpec runner for rails
-  gem 'rspec-rails', '~> 6.0'
-
   # Used to split testing into chunks in CI
   gem 'rspec_chunked', '~> 0.6'
 
@@ -185,6 +182,11 @@ group :development, :test do
   gem 'ruby-prof', require: false
   gem 'stackprof', require: false
   gem 'test-prof'
+end
+
+group :development, :test do
+  # RSpec runner for rails
+  gem 'rspec-rails', '~> 6.0'
 end
 
 group :production do
