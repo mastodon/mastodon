@@ -45,7 +45,7 @@ jobs:
             tootsuite/mastodon
             ghcr.io/mastodon/mastodon
           flavor: |
-            latest=auto
+            latest=false
           tags: |
             type=edge,branch=main
             type=match,pattern=v(.*),group=0
