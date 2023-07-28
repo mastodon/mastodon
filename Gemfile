@@ -113,6 +113,10 @@ group :test do
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
+  gem 'selenium-webdriver'
+
+  # Used to reset the database between system tests
+  gem 'database_cleaner-active_record'
 
   # Used to mock environment variables
   gem 'climate_control', '~> 0.2'
