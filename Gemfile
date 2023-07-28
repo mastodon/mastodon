@@ -177,10 +177,14 @@ group :development do
 
   # Validate missing i18n keys
   gem 'i18n-tasks', '~> 1.0', require: false
+end
 
+group :development, :test do
   # Profiling tools
   gem 'memory_profiler', require: false
+  gem 'ruby-prof', require: false
   gem 'stackprof', require: false
+  gem 'test-prof'
 end
 
 group :production do
