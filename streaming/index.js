@@ -822,8 +822,8 @@ const startServer = async () => {
             transmit(event, payload);
           }
         }).catch(err => {
-          releasePgConnection();
           log.error(err);
+          releasePgConnection();
         });
       });
     };
