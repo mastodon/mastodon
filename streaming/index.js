@@ -724,7 +724,7 @@ const startWorker = async (workerId) => {
           }
 
           // If the payload already contains the `filtered` property, it means
-          // that filtering has been applied on the ruby on rails side, as 
+          // that filtering has been applied on the ruby on rails side, as
           // such, we don't need to construct or apply the filters in streaming:
           if (Object.prototype.hasOwnProperty.call(payload, "filtered")) {
             transmit(event, payload);
@@ -796,12 +796,12 @@ const startWorker = async (workerId) => {
             const filter_results = Object.values(req.cachedFilters).reduce((results, cachedFilter) => {
               // Check the filter hasn't expired before applying:
               if (cachedFilter.expires_at !== null && cachedFilter.expires_at < now) {
-                return;
+                return results;
               }
 
               // Just in-case JSDOM fails to find textContent in searchableContent
               if (!searchableTextContent) {
-                return;
+                return results;
               }
 
               const keyword_matches = searchableTextContent.match(cachedFilter.regexp);
@@ -816,6 +816,8 @@ const startWorker = async (workerId) => {
                   status_matches: null
                 });
               }
+
+              return results;
             }, []);
 
             // Send the payload + the FilterResults as the `filtered` property
