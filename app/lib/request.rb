@@ -68,14 +68,16 @@ class Request
   # about 15s in total
   TIMEOUT = { connect_timeout: 5, read_timeout: 10, write_timeout: 10, read_deadline: 30 }.freeze
 
+  # Workaround for overly-eager decoding of percent-encoded characters in Addressable::URI#normalized_path
+  # https://github.com/sporkmonger/addressable/issues/366
   URI_NORMALIZER = lambda do |uri|
-    uri = HTTP::URI.parse uri
+    uri = HTTP::URI.parse(uri)
 
     HTTP::URI.new(
-      scheme:    uri.normalized_scheme,
+      scheme: uri.normalized_scheme,
       authority: uri.normalized_authority,
-      path:      uri.path,
-      query:     uri.query,
+      path: Addressable::URI.normalize_path(uri.path),
+      query: uri.query
     )
   end
 

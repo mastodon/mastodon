@@ -95,7 +95,7 @@ describe Request do
       end
     end
 
-    context 'with escape sequence in path' do
+    context 'with unnormalized URL' do
       let(:url) { 'HTTP://EXAMPLE.com:80/foo%41%3A?bar=%41%3A#baz' }
 
       before do
