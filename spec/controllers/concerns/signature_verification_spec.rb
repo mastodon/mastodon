@@ -202,7 +202,7 @@ describe SignatureVerification do
 
         request.headers.merge!(fake_request.headers)
 
-        stub_request(:get, 'http://localhost:5000/actor#main-key').to_raise(Mastodon::HostValidationError)
+        stub_request(:get, 'http://localhost:5000/actor').to_raise(Mastodon::HostValidationError)
       end
 
       describe '#signed_request?' do
