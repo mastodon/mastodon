@@ -508,12 +508,12 @@ describe 'Caching behavior' do
   context 'when enabling LIMITED_FEDERATION_MODE mode' do
     around do |example|
       ClimateControl.modify LIMITED_FEDERATION_MODE: 'true' do
-        old_whitelist_mode = Rails.configuration.x.whitelist_mode
-        Rails.configuration.x.whitelist_mode = true
+        old_limited_federation_mode = Rails.configuration.x.limited_federation_mode
+        Rails.configuration.x.limited_federation_mode = true
 
         example.run
 
-        Rails.configuration.x.whitelist_mode = old_whitelist_mode
+        Rails.configuration.x.limited_federation_mode = old_limited_federation_mode
       end
     end
 

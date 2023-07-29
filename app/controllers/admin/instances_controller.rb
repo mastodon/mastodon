@@ -65,7 +65,7 @@ module Admin
     end
 
     def filtered_instances
-      InstanceFilter.new(whitelist_mode? ? { allowed: true } : filter_params).results
+      InstanceFilter.new(limited_federation_mode? ? { allowed: true } : filter_params).results
     end
 
     def filter_params
