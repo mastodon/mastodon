@@ -133,7 +133,7 @@ describe SignatureVerification do
       before do
         get :success
 
-        fake_request = Request.new(:get, request.url + '/../success')
+        fake_request = Request.new(:get, 'http://test.host/subdir/../success')
         fake_request.on_behalf_of(author)
 
         request.headers.merge!(fake_request.headers)
