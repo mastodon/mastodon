@@ -87,7 +87,7 @@ class Request
     raise ArgumentError if url.blank?
 
     @verb        = verb
-    @url         = Addressable::URI.parse(url)
+    @url         = URI_NORMALIZER.call(url)
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
     @options     = options.merge(socket_class: use_proxy? || @allow_local ? ProxySocket : Socket)
