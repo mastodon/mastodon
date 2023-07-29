@@ -4,7 +4,9 @@ require 'rails_helper'
 require 'securerandom'
 
 describe Request do
-  subject { described_class.new(:get, 'http://example.com') }
+  subject { described_class.new(:get, url) }
+
+  let(:url) { 'http://example.com' }
 
   describe '#headers' do
     it 'returns user agent' do
@@ -90,6 +92,44 @@ describe Request do
         allow(Resolv::DNS).to receive(:open).and_yield(resolver)
 
         expect { subject.perform }.to raise_error Mastodon::ValidationError
+      end
+    end
+
+    context 'with escape sequence in path' do
+      let(:url) { 'HTTP://EXAMPLE.com:80/foo%41%3A?bar=%41%3A#baz' }
+
+      before do
+        stub_request(:get, 'http://example.com/foo%41%3A?bar=%41%3A')
+      end
+
+      it 'normalizes scheme' do
+        subject.perform do |response|
+          expect(response.request.uri.scheme).to eq 'http'
+        end
+      end
+
+      it 'normalizes host' do
+        subject.perform do |response|
+          expect(response.request.uri.authority).to eq 'example.com'
+        end
+      end
+
+      it 'does modify path' do
+        subject.perform do |response|
+          expect(response.request.uri.path).to eq '/foo%41%3A'
+        end
+      end
+
+      it 'does modify query string' do
+        subject.perform do |response|
+          expect(response.request.uri.query).to eq 'bar=%41%3A'
+        end
+      end
+
+      it 'strips fragment' do
+        subject.perform do |response|
+          expect(response.request.uri.fragment).to be_nil
+        end
       end
     end
   end

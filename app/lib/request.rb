@@ -68,6 +68,17 @@ class Request
   # about 15s in total
   TIMEOUT = { connect_timeout: 5, read_timeout: 10, write_timeout: 10, read_deadline: 30 }.freeze
 
+  URI_NORMALIZER = lambda do |uri|
+    uri = HTTP::URI.parse uri
+
+    HTTP::URI.new(
+      scheme:    uri.normalized_scheme,
+      authority: uri.normalized_authority,
+      path:      uri.path,
+      query:     uri.query,
+    )
+  end
+
   include RoutingHelper
 
   def initialize(verb, url, **options)
@@ -139,7 +150,7 @@ class Request
     end
 
     def http_client
-      HTTP.use(:auto_inflate).follow(max_hops: 3)
+      HTTP.use(:auto_inflate).use(normalize_uri: { normalizer: URI_NORMALIZER }).follow(max_hops: 3)
     end
   end
 
