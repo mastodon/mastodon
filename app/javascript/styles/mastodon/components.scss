@@ -3510,13 +3510,16 @@ button.icon-button.active i.fa-retweet {
 }
 
 .status-card {
-  display: block;
+  display: flex;
+  align-items: center;
   position: relative;
   font-size: 14px;
   color: $darker-text-color;
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
+  border: 1px solid lighten($ui-base-color, 8%);
+  border-radius: 8px;
 
   &__actions {
     bottom: 0;
@@ -3527,11 +3530,13 @@ button.icon-button.active i.fa-retweet {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
     & > div {
       background: rgba($base-shadow-color, 0.6);
       border-radius: 8px;
       padding: 12px 9px;
+      backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
       flex: 0 0 auto;
       display: flex;
       justify-content: center;
@@ -3572,7 +3577,8 @@ a.status-card {
   &:active {
     .status-card__title,
     .status-card__host,
-    .status-card__author {
+    .status-card__author,
+    .status-card__description {
       color: $highlight-text-color;
     }
   }
@@ -3587,7 +3593,8 @@ a.status-card {
   &:active {
     .status-card__title,
     .status-card__host,
-    .status-card__author {
+    .status-card__author,
+    .status-card__description {
       color: $highlight-text-color;
     }
   }
@@ -3620,19 +3627,30 @@ a.status-card {
   line-height: 24px;
   color: $primary-text-color;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.status-card.expanded .status-card__title {
+  white-space: normal;
+  -webkit-line-clamp: 2;
 }
 
 .status-card__content {
   flex: 1 1 auto;
   overflow: hidden;
-  padding: 15px 0;
-  padding-bottom: 0;
+  padding: 15px;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .status-card__host {
   display: block;
   font-size: 14px;
   margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .status-card__author {
@@ -3640,17 +3658,33 @@ a.status-card {
   margin-top: 8px;
   font-size: 14px;
   color: $primary-text-color;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   strong {
     font-weight: 500;
   }
 }
 
+.status-card__description {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .status-card__image {
-  width: 100%;
+  flex: 0 0 auto;
+  width: 120px;
+  aspect-ratio: 1;
   background: lighten($ui-base-color, 8%);
   position: relative;
   border-radius: 8px;
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
 
   & > .fa {
     font-size: 21px;
@@ -3664,6 +3698,8 @@ a.status-card {
 
 .status-card__image-image {
   border-radius: 8px;
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
   display: block;
   margin: 0;
   width: 100%;
@@ -3675,6 +3711,8 @@ a.status-card {
 
 .status-card__image-preview {
   border-radius: 8px;
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
   display: block;
   margin: 0;
   width: 100%;
@@ -3689,6 +3727,28 @@ a.status-card {
   &--hidden {
     display: none;
   }
+}
+
+.status-card.expanded {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.status-card.expanded .status-card__image {
+  width: 100%;
+  aspect-ratio: auto;
+}
+
+.status-card.expanded .status-card__image,
+.status-card.expanded .status-card__image-image,
+.status-card.expanded .status-card__image-preview {
+  border-start-end-radius: 8px;
+  border-end-end-radius: 0;
+  border-end-start-radius: 0;
+}
+
+.status-card.expanded > a {
+  width: 100%;
 }
 
 .load-more {
@@ -4902,7 +4962,7 @@ a.status-card {
     width: 100%;
     background: $ui-base-color;
     border-radius: 0 0 4px 4px;
-    box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
+    box-shadow: var(--dropdown-shadow);
     z-index: 99;
     font-size: 13px;
     padding: 15px 5px;
@@ -8218,7 +8278,7 @@ noscript {
     flex: 0 0 auto;
     position: relative;
     width: 120px;
-    height: 120px;
+    aspect-ratio: 1;
 
     .skeleton {
       width: 100%;
