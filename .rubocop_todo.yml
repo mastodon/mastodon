@@ -146,13 +146,6 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Max: 27
 
-# Configuration parameters: ExpectMatchingDefinition, CheckDefinitionPathHierarchy, CheckDefinitionPathHierarchyRoots, Regex, IgnoreExecutableScripts, AllowedAcronyms.
-# CheckDefinitionPathHierarchyRoots: lib, spec, test, src
-# AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
-Naming/FileName:
-  Exclude:
-    - 'config/locales/sr-Latn.rb'
-
 # Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers, AllowedPatterns.
 # SupportedStyles: snake_case, normalcase, non_integer
 # AllowedIdentifiers: capture3, iso8601, rfc1123_date, rfc822, rfc2822, rfc3339, x86_64
@@ -281,7 +274,6 @@ RSpec/LetSetup:
     - 'spec/controllers/api/v2/admin/accounts_controller_spec.rb'
     - 'spec/controllers/api/v2/filters/keywords_controller_spec.rb'
     - 'spec/controllers/api/v2/filters/statuses_controller_spec.rb'
-    - 'spec/controllers/api/v2/filters_controller_spec.rb'
     - 'spec/controllers/auth/confirmations_controller_spec.rb'
     - 'spec/controllers/auth/passwords_controller_spec.rb'
     - 'spec/controllers/auth/sessions_controller_spec.rb'
@@ -836,8 +828,6 @@ Style/RedundantConstantBase:
   Exclude:
     - 'config/environments/production.rb'
     - 'config/initializers/sidekiq.rb'
-    - 'config/locales/sr-Latn.rb'
-    - 'config/locales/sr.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: SafeForConstants.

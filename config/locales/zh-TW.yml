@@ -1256,12 +1256,14 @@ zh-TW:
       bookmarks_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個嘟文</strong> 以 <strong>取代您的書籤</strong>。
       domain_blocking_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個網域</strong> 以 <strong>取代您的封鎖網域列表</strong>。
       following_html: 您將要 <strong>跟隨</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong> 並且 <strong>取消跟隨其他所有人</strong>。
+      lists_html: 您將以 <strong>%{filename}</strong> 之內容<strong>取代您的列表</strong>。這將會新增 <strong>%{total_items} 個帳號</strong>至新列表。
       muting_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong> 以 <strong>取代您的靜音帳號列表</strong>。
     preambles:
       blocking_html: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
       bookmarks_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個嘟文</strong> 以 <strong>加入至您的書籤</strong>。
       domain_blocking_html: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個網域</strong>。
       following_html: 您將要 <strong>跟隨</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
+      lists_html: 您將自 <strong>%{filename}</strong> 新增 <strong>%{total_items} 個帳號</strong>至您的<strong>列表</strong>。若不存在列表用以新增帳號，則會建立新列表。
       muting_html: 您將要 <strong>靜音</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
     preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括跟隨的使用者、封鎖的使用者名單。
     recent_imports: 最近匯入的
@@ -1278,6 +1280,7 @@ zh-TW:
       bookmarks: 正在匯入書籤
       domain_blocking: 正在匯入已封鎖網域
       following: 正在匯入已封鎖帳號
+      lists: 匯入列表
       muting: 正在匯入已靜音帳號
     type: 匯入類型
     type_groups:
@@ -1288,6 +1291,7 @@ zh-TW:
       bookmarks: 書籤
       domain_blocking: 網域封鎖列表
       following: 您跟隨的使用者列表
+      lists: 列表
       muting: 您靜音的使用者名單
     upload: 上傳
   invites:
