@@ -172,6 +172,7 @@ class MediaModal extends ImmutablePureComponent {
             width={image.get('width')}
             height={image.get('height')}
             frameRate={image.getIn(['meta', 'original', 'frame_rate'])}
+            aspectRatio={`${image.getIn(['meta', 'original', 'width'])} / ${image.getIn(['meta', 'original', 'height'])}`}
             currentTime={currentTime || 0}
             autoPlay={autoPlay || false}
             volume={volume || 1}

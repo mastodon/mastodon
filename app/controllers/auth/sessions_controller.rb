@@ -113,7 +113,7 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def home_paths(resource)
-    paths = [about_path]
+    paths = [about_path, '/explore']
 
     paths << short_account_path(username: resource.account) if single_user_mode? && resource.is_a?(User)
 

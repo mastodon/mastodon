@@ -86,7 +86,6 @@ class Bookmarks extends ImmutablePureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-          showBackButton
         />
 
         <StatusList

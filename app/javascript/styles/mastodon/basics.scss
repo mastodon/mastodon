@@ -175,6 +175,10 @@ a {
 button {
   font-family: inherit;
   cursor: pointer;
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 .app-holder {

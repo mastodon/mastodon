@@ -124,6 +124,7 @@ class LinkDetailsExtractor
       author_url: author_url || '',
       embed_url: embed_url || '',
       language: language,
+      published_at: published_at.presence,
     }
   end
 
@@ -157,6 +158,10 @@ class LinkDetailsExtractor
 
   def description
     html_entities.decode(structured_data&.description || opengraph_tag('og:description') || meta_tag('description'))
+  end
+
+  def published_at
+    structured_data&.date_published || opengraph_tag('article:published_time')
   end
 
   def image
