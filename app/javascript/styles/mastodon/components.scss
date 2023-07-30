@@ -74,7 +74,7 @@
     background-color: $ui-button-focus-background-color;
   }
 
-  &:focus {
+  &:focus-visible {
     outline: $ui-button-icon-focus-outline;
   }
 
@@ -191,8 +191,6 @@
   border-radius: 4px;
   background: transparent;
   cursor: pointer;
-  transition: all 100ms ease-out;
-  transition-property: background-color, color;
   text-decoration: none;
 
   a {
@@ -203,11 +201,11 @@
   &:hover,
   &:active,
   &:focus {
-    color: lighten($action-button-color, 20%);
-    background-color: $ui-button-icon-hover-background-color;
+    color: lighten($action-button-color, 7%);
+    background-color: rgba($action-button-color, 0.15);
   }
 
-  &:focus {
+  &:focus-visible {
     outline: $ui-button-icon-focus-outline;
   }
 
@@ -224,10 +222,10 @@
     &:active,
     &:focus {
       color: darken($lighter-text-color, 7%);
-      background-color: $ui-button-icon-hover-background-color;
+      background-color: rgba($lighter-text-color, 0.15);
     }
 
-    &:focus {
+    &:focus-visible {
       outline: $ui-button-icon-focus-outline;
     }
 
@@ -238,6 +236,13 @@
 
     &.active {
       color: $highlight-text-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $highlight-text-color;
+        background-color: transparent;
+      }
 
       &.disabled {
         color: lighten($highlight-text-color, 13%);
@@ -283,19 +288,15 @@
   font-size: 11px;
   padding: 0 3px;
   line-height: 27px;
-  transition: all 100ms ease-in;
-  transition-property: background-color, color;
 
   &:hover,
   &:active,
   &:focus {
     color: darken($lighter-text-color, 7%);
-    background-color: $ui-button-icon-hover-background-color;
-    transition: all 200ms ease-out;
-    transition-property: background-color, color;
+    background-color: rgba($lighter-text-color, 0.15);
   }
 
-  &:focus {
+  &:focus-visible {
     outline: $ui-button-icon-focus-outline;
   }
 
@@ -307,6 +308,13 @@
 
   &.active {
     color: $highlight-text-color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $highlight-text-color;
+      background-color: transparent;
+    }
   }
 }
 
@@ -1975,7 +1983,7 @@ a.account__display-name {
     font-size: inherit;
     line-height: inherit;
 
-    &:focus {
+    &:focus-visible {
       outline: 1px dotted;
     }
   }
@@ -3838,7 +3846,6 @@ a.status-card.compact:hover {
   position: relative;
   z-index: 2;
   outline: 0;
-  overflow: hidden;
 
   & > button {
     margin: 0;
@@ -3853,6 +3860,10 @@ a.status-card.compact:hover {
     overflow: hidden;
     white-space: nowrap;
     flex: 1;
+
+    &:focus-visible {
+      outline: $ui-button-icon-focus-outline;
+    }
   }
 
   & > .column-header__back-button {
@@ -3893,8 +3904,16 @@ a.status-card.compact:hover {
   font-size: 16px;
   padding: 0 15px;
 
+  &:last-child {
+    border-start-end-radius: 4px;
+  }
+
   &:hover {
     color: lighten($darker-text-color, 4%);
+  }
+
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
   }
 
   &.active {
@@ -4542,7 +4561,7 @@ a.status-card.compact:hover {
 .emoji-picker-dropdown__menu {
   background: $simple-background-color;
   position: relative;
-  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
+  box-shadow: var(--dropdown-shadow);
   border-radius: 4px;
   margin-top: 5px;
   z-index: 2;
@@ -4720,7 +4739,7 @@ a.status-card.compact:hover {
     }
   }
 
-  &:focus {
+  &:focus-visible {
     img {
       outline: $ui-button-icon-focus-outline;
     }
@@ -4734,7 +4753,7 @@ a.status-card.compact:hover {
 
 .privacy-dropdown__dropdown {
   background: $simple-background-color;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  box-shadow: var(--dropdown-shadow);
   border-radius: 4px;
   overflow: hidden;
   z-index: 2;
@@ -4811,19 +4830,6 @@ a.status-card.compact:hover {
   .privacy-dropdown__value {
     background: $simple-background-color;
     border-radius: 4px 4px 0 0;
-    box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
-
-    .icon-button {
-      transition: none;
-    }
-
-    &.active {
-      background: $ui-highlight-color;
-
-      .icon-button {
-        color: $primary-text-color;
-      }
-    }
   }
 
   &.top .privacy-dropdown__value {
@@ -4832,14 +4838,14 @@ a.status-card.compact:hover {
 
   .privacy-dropdown__dropdown {
     display: block;
-    box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
+    box-shadow: var(--dropdown-shadow);
   }
 }
 
 .language-dropdown {
   &__dropdown {
     background: $simple-background-color;
-    box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+    box-shadow: var(--dropdown-shadow);
     border-radius: 4px;
     overflow: hidden;
     z-index: 2;
