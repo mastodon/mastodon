@@ -7,38 +7,20 @@ import {
   defineMessages,
 } from 'react-intl';
 
-import Overlay from 'react-overlays/Overlay';
+import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 
 import { Icon } from 'flavours/glitch/components/icon';
 import { searchEnabled } from 'flavours/glitch/initial_state';
 import { focusRoot } from 'flavours/glitch/utils/dom_helpers';
+import { HASHTAG_REGEX } from 'flavours/glitch/utils/hashtags';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
   placeholderSignedIn: { id: 'search.search_or_paste', defaultMessage: 'Search or paste URL' },
 });
-
-class SearchPopout extends PureComponent {
-
-  render () {
-    const extraInformation = searchEnabled ? <FormattedMessage id='search_popout.tips.full_text' defaultMessage='Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.' /> : <FormattedMessage id='search_popout.tips.text' defaultMessage='Simple text returns matching display names, usernames and hashtags' />;
-    return (
-      <div className='search-popout'>
-        <h4><FormattedMessage id='search_popout.search_format' defaultMessage='Advanced search format' /></h4>
-
-        <ul>
-          <li><em>#example</em> <FormattedMessage id='search_popout.tips.hashtag' defaultMessage='hashtag' /></li>
-          <li><em>@username@domain</em> <FormattedMessage id='search_popout.tips.user' defaultMessage='user' /></li>
-          <li><em>URL</em> <FormattedMessage id='search_popout.tips.user' defaultMessage='user' /></li>
-          <li><em>URL</em> <FormattedMessage id='search_popout.tips.status' defaultMessage='status' /></li>
-        </ul>
-
-        {extraInformation}
-      </div>
-    );
-  }
-
-}
 
 //  The component.
 class Search extends PureComponent {
@@ -50,9 +32,13 @@ class Search extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string.isRequired,
+    recent: ImmutablePropTypes.orderedSet,
     submitted: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
+    onOpenURL: PropTypes.func.isRequired,
+    onClickSearchResult: PropTypes.func.isRequired,
+    onForgetSearchResult: PropTypes.func.isRequired,
     onClear: PropTypes.func.isRequired,
     onShow: PropTypes.func.isRequired,
     openInRoute: PropTypes.bool,
@@ -62,59 +48,104 @@ class Search extends PureComponent {
 
   state = {
     expanded: false,
+    selectedOption: -1,
+    options: [],
   };
 
   setRef = c => {
     this.searchForm = c;
   };
 
-  handleChange = (e) => {
+  handleChange = ({ target }) => {
     const { onChange } = this.props;
-    if (onChange) {
-      onChange(e.target.value);
-    }
+
+    onChange(target.value);
+
+    this._calculateOptions(target.value);
   };
 
-  handleClear = (e) => {
+  handleClear = e => {
     const {
       onClear,
       submitted,
       value,
     } = this.props;
+
     e.preventDefault();  //  Prevents focus change ??
-    if (onClear && (submitted || value && value.length)) {
+
+    if (value.length > 0 || submitted) {
       onClear();
+      this.setState({ options: [], selectedOption: -1 })
     }
   };
 
   handleBlur = () => {
-    this.setState({ expanded: false });
+    this.setState({ expanded: false, selectedOption: -1 });
   };
 
   handleFocus = () => {
-    this.setState({ expanded: true });
-    this.props.onShow();
+    const { onShow, singleColumn } = this.props;
 
-    if (this.searchForm && !this.props.singleColumn) {
+    this.setState({ expanded: true, selectedOption: -1 });
+    onShow();
+
+    if (this.searchForm && !singleColumn) {
       const { left, right } = this.searchForm.getBoundingClientRect();
+
       if (left < 0 || right > (window.innerWidth || document.documentElement.clientWidth)) {
         this.searchForm.scrollIntoView();
       }
     }
   };
 
-  handleKeyUp = (e) => {
-    const { onSubmit } = this.props;
-    switch (e.key) {
-    case 'Enter':
-      onSubmit();
+  handleKeyDown = (e) => {
+    const { selectedOption } = this.state;
+    const options = this._getOptions();
 
-      if (this.props.openInRoute) {
-        this.context.router.history.push('/search');
+    switch(e.key) {
+    case 'Escape':
+      e.preventDefault();
+
+      focusRoot();
+
+      break;
+    case 'ArrowDown':
+      e.preventDefault();
+
+      if (options.length > 0) {
+        this.setState({ selectedOption: Math.min(selectedOption + 1, options.length - 1) });
+      }
+
+      break;
+    case 'ArrowUp':
+      e.preventDefault();
+
+      if (options.length > 0) {
+        this.setState({ selectedOption: Math.max(selectedOption - 1, -1) });
+      }
+
+      break;
+    case 'Enter':
+      e.preventDefault();
+
+      if (selectedOption === -1) {
+        this._submit();
+      } else if (options.length > 0) {
+        options[selectedOption].action();
+      }
+
+      this._unfocus();
+      break;
+    case 'Delete':
+      if (selectedOption > -1 && options.length > 0) {
+        const search = options[selectedOption];
+
+        if (typeof search.forget === 'function') {
+          e.preventDefault();
+          search.forget(e);
+        }
       }
       break;
-    case 'Escape':
-      focusRoot();
     }
   };
 
@@ -122,14 +153,141 @@ class Search extends PureComponent {
     return this.searchForm;
   };
 
+  handleHashtagClick = () => {
+    const { router } = this.context;
+    const { value, onClickSearchResult } = this.props;
+
+    const query = value.trim().replace(/^#/, '');
+
+    router.history.push(`/tags/${query}`);
+    onClickSearchResult(query, 'hashtag');
+  };
+
+  handleAccountClick = () => {
+    const { router } = this.context;
+    const { value, onClickSearchResult } = this.props;
+
+    const query = value.trim().replace(/^@/, '');
+
+    router.history.push(`/@${query}`);
+    onClickSearchResult(query, 'account');
+  };
+
+  handleURLClick = () => {
+    const { router } = this.context;
+    const { onOpenURL } = this.props;
+
+    onOpenURL(router.history);
+  };
+
+  handleStatusSearch = () => {
+    this._submit('statuses');
+  };
+
+  handleAccountSearch = () => {
+    this._submit('accounts');
+  };
+
+  handleRecentSearchClick = search => {
+    const { router } = this.context;
+
+    if (search.get('type') === 'account') {
+      router.history.push(`/@${search.get('q')}`);
+    } else if (search.get('type') === 'hashtag') {
+      router.history.push(`/tags/${search.get('q')}`);
+    }
+  };
+
+  handleForgetRecentSearchClick = search => {
+    const { onForgetSearchResult } = this.props;
+
+    onForgetSearchResult(search.get('q'));
+  };
+
+  _unfocus () {
+    document.querySelector('.ui').parentElement.focus();
+  }
+
+  _submit (type) {
+    const { onSubmit, openInRoute } = this.props;
+    const { router } = this.context;
+
+    onSubmit(type);
+
+    if (openInRoute) {
+      router.history.push('/search');
+    }
+  }
+
+  _getOptions () {
+    const { options } = this.state;
+
+    if (options.length > 0) {
+      return options;
+    }
+
+    const { recent } = this.props;
+
+    return recent.toArray().map(search => ({
+      label: search.get('type') === 'account' ? `@${search.get('q')}` : `#${search.get('q')}`,
+
+      action: () => this.handleRecentSearchClick(search),
+
+      forget: e => {
+        e.stopPropagation();
+        this.handleForgetRecentSearchClick(search);
+      },
+    }));
+  }
+
+  _calculateOptions (value) {
+    const trimmedValue = value.trim();
+    const options = [];
+
+    if (trimmedValue.length > 0) {
+      const couldBeURL = trimmedValue.startsWith('https://') && !trimmedValue.includes(' ');
+
+      if (couldBeURL) {
+        options.push({ key: 'open-url', label: <FormattedMessage id='search.quick_action.open_url' defaultMessage='Open URL in Mastodon' />, action: this.handleURLClick });
+      }
+
+      const couldBeHashtag = (trimmedValue.startsWith('#') && trimmedValue.length > 1) || trimmedValue.match(HASHTAG_REGEX);
+
+      if (couldBeHashtag) {
+        options.push({ key: 'go-to-hashtag', label: <FormattedMessage id='search.quick_action.go_to_hashtag' defaultMessage='Go to hashtag {x}' values={{ x: <mark>#{trimmedValue.replace(/^#/, '')}</mark> }} />, action: this.handleHashtagClick });
+      }
+
+      const couldBeUsername = trimmedValue.match(/^@?[a-z0-9_-]+(@[^\s]+)?$/i);
+
+      if (couldBeUsername) {
+        options.push({ key: 'go-to-account', label: <FormattedMessage id='search.quick_action.go_to_account' defaultMessage='Go to profile {x}' values={{ x: <mark>@{trimmedValue.replace(/^@/, '')}</mark> }} />, action: this.handleAccountClick });
+      }
+
+      const couldBeStatusSearch = searchEnabled;
+
+      if (couldBeStatusSearch) {
+        options.push({ key: 'status-search', label: <FormattedMessage id='search.quick_action.status_search' defaultMessage='Posts matching {x}' values={{ x: <mark>{trimmedValue}</mark> }} />, action: this.handleStatusSearch });
+      }
+
+      const couldBeUserSearch = true;
+
+      if (couldBeUserSearch) {
+        options.push({ key: 'account-search', label: <FormattedMessage id='search.quick_action.account_search' defaultMessage='Profiles matching {x}' values={{ x: <mark>{trimmedValue}</mark> }} />, action: this.handleAccountSearch });
+      }
+    }
+
+    this.setState({ options });
+  }
+
   render () {
-    const { intl, value, submitted } = this.props;
-    const { expanded } = this.state;
+    const { intl, value, submitted, recent } = this.props;
+    const { expanded, options, selectedOption } = this.state;
     const { signedIn } = this.context.identity;
+
     const hasValue = value.length > 0 || submitted;
 
     return (
-      <div className='search'>
+      <div className={classNames('search', { active: expanded })}>
         <input
           ref={this.setRef}
           className='search__input'
@@ -138,7 +296,7 @@ class Search extends PureComponent {
           aria-label={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
           value={value || ''}
           onChange={this.handleChange}
-          onKeyUp={this.handleKeyUp}
+          onKeyDown={this.handleKeyDown}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
         />
@@ -147,15 +305,39 @@ class Search extends PureComponent {
           <Icon id='search' className={hasValue ? '' : 'active'} />
           <Icon id='times-circle' className={hasValue ? 'active' : ''} />
         </div>
-        <Overlay show={expanded && !hasValue} placement='bottom' target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
-          {({ props, placement }) => (
-            <div {...props} style={{ ...props.style, width: 285, zIndex: 2 }}>
-              <div className={`dropdown-animation ${placement}`}>
-                <SearchPopout />
+        <div className='search__popout'>
+          {options.length === 0 && (
+            <>
+              <h4><FormattedMessage id='search_popout.recent' defaultMessage='Recent searches' /></h4>
+
+              <div className='search__popout__menu'>
+                {recent.size > 0 ? this._getOptions().map(({ label, action, forget }, i) => (
+                  <button key={label} onMouseDown={action} className={classNames('search__popout__menu__item search__popout__menu__item--flex', { selected: selectedOption === i })}>
+                    <span>{label}</span>
+                    <button className='icon-button' onMouseDown={forget}><Icon id='times' /></button>
+                  </button>
+                )) : (
+                  <div className='search__popout__menu__message'>
+                    <FormattedMessage id='search.no_recent_searches' defaultMessage='No recent searches' />
+                  </div>
+                )}
               </div>
-            </div>
+            </>
           )}
-        </Overlay>
+          {options.length > 0 && (
+            <>
+              <h4><FormattedMessage id='search_popout.quick_actions' defaultMessage='Quick actions' /></h4>
+
+              <div className='search__popout__menu'>
+                {options.map(({ key, label, action }, i) => (
+                  <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === i })}>
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
       </div>
     );
   }
