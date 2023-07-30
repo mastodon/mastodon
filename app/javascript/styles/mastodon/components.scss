@@ -74,6 +74,10 @@
     background-color: $ui-button-focus-background-color;
   }
 
+  &:focus {
+    outline: $ui-button-icon-focus-outline;
+  }
+
   &--destructive {
     &:active,
     &:focus,
@@ -96,16 +100,6 @@
   &.copied {
     background: $valid-value-color;
     transition: none;
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
   }
 
   &.button-secondary {
@@ -197,7 +191,7 @@
   border-radius: 4px;
   background: transparent;
   cursor: pointer;
-  transition: all 100ms ease-in;
+  transition: all 100ms ease-out;
   transition-property: background-color, color;
   text-decoration: none;
 
@@ -209,34 +203,18 @@
   &:hover,
   &:active,
   &:focus {
-    color: lighten($action-button-color, 7%);
-    background-color: rgba($action-button-color, 0.15);
-    transition: all 200ms ease-out;
-    transition-property: background-color, color;
+    color: lighten($action-button-color, 20%);
+    background-color: $ui-button-icon-hover-background-color;
   }
 
   &:focus {
-    background-color: rgba($action-button-color, 0.3);
+    outline: $ui-button-icon-focus-outline;
   }
 
   &.disabled {
     color: darken($action-button-color, 13%);
     background-color: transparent;
     cursor: default;
-  }
-
-  &.active {
-    color: $highlight-text-color;
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
   }
 
   &.inverted {
@@ -246,11 +224,11 @@
     &:active,
     &:focus {
       color: darken($lighter-text-color, 7%);
-      background-color: rgba($lighter-text-color, 0.15);
+      background-color: $ui-button-icon-hover-background-color;
     }
 
     &:focus {
-      background-color: rgba($lighter-text-color, 0.3);
+      outline: $ui-button-icon-focus-outline;
     }
 
     &.disabled {
@@ -305,7 +283,6 @@
   font-size: 11px;
   padding: 0 3px;
   line-height: 27px;
-  outline: 0;
   transition: all 100ms ease-in;
   transition-property: background-color, color;
 
@@ -313,13 +290,13 @@
   &:active,
   &:focus {
     color: darken($lighter-text-color, 7%);
-    background-color: rgba($lighter-text-color, 0.15);
+    background-color: $ui-button-icon-hover-background-color;
     transition: all 200ms ease-out;
     transition-property: background-color, color;
   }
 
   &:focus {
-    background-color: rgba($lighter-text-color, 0.3);
+    outline: $ui-button-icon-focus-outline;
   }
 
   &.disabled {
@@ -330,16 +307,6 @@
 
   &.active {
     color: $highlight-text-color;
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
   }
 }
 
@@ -728,7 +695,6 @@ body > [data-popper-placement] {
     flex: 0 0 auto;
 
     .compose-form__publish-button-wrapper {
-      overflow: hidden;
       padding-top: 15px;
     }
   }
@@ -1929,13 +1895,6 @@ a.account__display-name {
   .navigation-bar__actions {
     position: relative;
 
-    .icon-button.close {
-      position: absolute;
-      pointer-events: none;
-      transform: scale(0, 1) translate(-100%, 0);
-      opacity: 0;
-    }
-
     .compose__action-bar .icon-button {
       pointer-events: auto;
       transform: scale(1, 1) translate(0, 0);
@@ -1945,19 +1904,21 @@ a.account__display-name {
 }
 
 .navigation-bar__profile {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   line-height: 20px;
-  overflow: hidden;
 }
 
 .navigation-bar__profile-account {
-  display: block;
+  display: inline;
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .navigation-bar__profile-edit {
+  display: inline;
   color: inherit;
   text-decoration: none;
 }
@@ -4740,11 +4701,6 @@ a.status-card.compact:hover {
   outline: 0;
   cursor: pointer;
 
-  &:active,
-  &:focus {
-    outline: 0 !important;
-  }
-
   img {
     filter: grayscale(100%);
     opacity: 0.8;
@@ -4760,6 +4716,13 @@ a.status-card.compact:hover {
     img {
       opacity: 1;
       filter: none;
+      border-radius: 100%;
+    }
+  }
+
+  &:focus {
+    img {
+      outline: $ui-button-icon-focus-outline;
     }
   }
 }
