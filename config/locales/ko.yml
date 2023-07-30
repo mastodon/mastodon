@@ -11,7 +11,7 @@ ko:
     followers:
       other: 팔로워
     following: 팔로잉
-    instance_actor_flash: 이 계정은 서버 자신을 나타내기 위한 가상의 계정이며 개인 이용자가 아닙니다. 이 계정은 연합을 위해 사용되며 정지되지 않아야 합니다.
+    instance_actor_flash: 이 계정은 서버 자신을 나타내기 위한 가상의 계정이며 개인 사용자가 아닙니다. 이 계정은 연합을 위해 사용되며 정지되지 않아야 합니다.
     last_active: 최근 활동
     link_verified_on: "%{date}에 이 링크의 소유가 확인되었습니다"
     nothing_here: 아무 것도 없습니다!
@@ -121,7 +121,7 @@ ko:
       removed_avatar_msg: 성공적으로 %{username}의 아바타 이미지를 삭제하였습니다
       removed_header_msg: 성공적으로 %{username}의 헤더 이미지를 삭제하였습니다
       resend_confirmation:
-        already_confirmed: 이 이용자는 이미 확인하였습니다
+        already_confirmed: 이 사용자는 이미 확인되었습니다
         send: 확인 링크 다시 보내기
         success: 확인 링크를 잘 보냈습니다!
       reset: 초기화
@@ -129,8 +129,8 @@ ko:
       resubscribe: 다시 구독
       role: 역할
       search: 검색
-      search_same_email_domain: 같은 이메일 도메인을 가진 다른 이용자
-      search_same_ip: 같은 IP의 다른 이용자
+      search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
+      search_same_ip: 같은 IP의 다른 사용자들
       security: 보안
       security_measures:
         only_password: 암호만
@@ -168,11 +168,11 @@ ko:
     action_logs:
       action_types:
         approve_appeal: 이의제기 승인
-        approve_user: 이용자 승낙
+        approve_user: 사용자 승인
         assigned_to_self_report: 신고 맡기
-        change_email_user: 이용자의 이메일 변경
+        change_email_user: 사용자의 이메일 변경
         change_role_user: 사용자 역할 변경
-        confirm_user: 이용자 확인
+        confirm_user: 사용자 확인
         create_account_warning: 경고 생성
         create_announcement: 공지사항 생성
         create_canonical_email_block: 이메일 차단 생성
@@ -183,7 +183,7 @@ ko:
         create_ip_block: IP 규칙 만들기
         create_unavailable_domain: 사용 불가능한 도메인 생성
         create_user_role: 역할 생성
-        demote_user: 이용자 강등
+        demote_user: 사용자 강등
         destroy_announcement: 공지사항 삭제
         destroy_canonical_email_block: 이메일 차단 삭제
         destroy_custom_emoji: 커스텀 에모지 삭제
@@ -197,15 +197,15 @@ ko:
         destroy_user_role: 역할 삭제
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
-        disable_sign_in_token_auth_user: 이용자에 대한 이메일 토큰 인증 비활성화
-        disable_user: 이용자 비활성화
+        disable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 비활성화
+        disable_user: 사용자 비활성화
         enable_custom_emoji: 커스텀 에모지 활성화
-        enable_sign_in_token_auth_user: 이용자에 대한 이메일 토큰 인증 활성화
-        enable_user: 이용자 활성화
+        enable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 활성화
+        enable_user: 사용자 활성화
         memorialize_account: 고인의 계정으로 전환
-        promote_user: 이용자 승급
+        promote_user: 사용자 승급
         reject_appeal: 이의 제기 거절
-        reject_user: 이용자 거부
+        reject_user: 사용자 거부
         remove_avatar_user: 아바타 지우기
         reopen_report: 신고 다시 열기
         resend_user: 확인 메일 다시 보내기
@@ -229,9 +229,9 @@ ko:
         approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 승인했습니다"
         approve_user_html: "%{name} 님이 %{target} 님의 가입을 승인했습니다"
         assigned_to_self_report_html: "%{name} 님이 신고 %{target}을 자신에게 할당했습니다"
-        change_email_user_html: "%{name} 님이 이용자 %{target} 님의 이메일 주소를 변경했습니다"
+        change_email_user_html: "%{name} 님이 사용자 %{target} 님의 이메일 주소를 변경했습니다"
         change_role_user_html: "%{name} 님이 %{target} 님의 역할을 수정했습니다"
-        confirm_user_html: "%{name} 님이 이용자 %{target} 님의 이메일 주소를 승인했습니다"
+        confirm_user_html: "%{name} 님이 사용자 %{target} 님의 이메일 주소를 승인했습니다"
         create_account_warning_html: "%{name} 님이 %{target}에게 경고를 보냈습니다"
         create_announcement_html: "%{name} 님이 새 공지 %{target}을 만들었습니다"
         create_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단했습니다"
@@ -242,7 +242,7 @@ ko:
         create_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
         create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
         create_user_role_html: "%{name} 님이 %{target} 역할을 생성했습니다"
-        demote_user_html: "%{name} 님이 이용자 %{target} 님을 강등했습니다"
+        demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단 해제했습니다"
         destroy_custom_emoji_html: "%{name} 님이 에모지 %{target}를 삭제했습니다"
@@ -254,7 +254,7 @@ ko:
         destroy_status_html: "%{name} 님이 %{target} 님의 게시물을 삭제했습니다"
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         destroy_user_role_html: "%{name} 님이 %{target} 역할을 삭제했습니다"
-        disable_2fa_user_html: "%{name} 님이 이용자 %{target} 님의 2단계 인증을 비활성화 했습니다"
+        disable_2fa_user_html: "%{name} 님이 사용자 %{target} 님의 2단계 인증을 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화했습니다"
         disable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 비활성화했습니다"
         disable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 비활성화했습니다"
@@ -262,13 +262,13 @@ ko:
         enable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 활성화했습니다"
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화했습니다"
         memorialize_account_html: "%{name} 님이 %{target}의 계정을 고인의 계정 페이지로 전환했습니다"
-        promote_user_html: "%{name} 님이 이용자 %{target} 님을 승급 하였습니다."
+        promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
         reject_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 거절했습니다"
         reject_user_html: "%{name} 님이 %{target} 님의 가입을 거부했습니다"
         remove_avatar_user_html: "%{name} 님이 %{target} 님의 아바타를 지웠습니다"
         reopen_report_html: "%{name} 님이 신고 %{target}을 다시 열었습니다"
         resend_user_html: "%{name} 님이 %{target} 님에 대한 확인 메일을 다시 보냈습니다"
-        reset_password_user_html: "%{name} 님이 이용자 %{target} 님의 암호를 초기화했습니다"
+        reset_password_user_html: "%{name} 님이 사용자 %{target}의 암호를 초기화했습니다"
         resolve_report_html: "%{name} 님이 신고 %{target}를 처리됨으로 변경하였습니다"
         sensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감함으로 표시했습니다"
         silence_account_html: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
@@ -341,7 +341,7 @@ ko:
       updated_msg: 성공적으로 에모지를 업데이트했습니다!
       upload: 업로드
     dashboard:
-      active_users: 활성 이용자
+      active_users: 활성 사용자
       interactions: 상호 작용
       media_storage: 미디어 저장소
       new_users: 새 사용자
@@ -452,7 +452,7 @@ ko:
         title: 도메인 차단 불러오기
       no_file: 선택된 파일이 없습니다
     follow_recommendations:
-      description_html: "<strong>팔로우 추천은 새 사용자들이 관심 가는 콘텐트를 빠르게 찾을 수 있도록 도와줍니다</strong>. 이용자가 개인화 된 팔로우 추천이 만들어지기 위한 충분한 상호작용을 하지 않은 경우, 이 계정들이 대신 추천 됩니다. 이들은 해당 언어에 대해 많은 관심을 갖거나 많은 로컬 팔로워를 가지고 있는 계정들을 섞어서 날마다 다시 계산 됩니다."
+      description_html: "<strong>팔로우 추천은 새 사용자들이 관심 가는 콘텐트를 빠르게 찾을 수 있도록 도와줍니다</strong>. 사용자가 개인화 된 팔로우 추천이 만들어지기 위한 충분한 상호작용을 하지 않은 경우, 이 계정들이 대신 추천 됩니다. 이들은 해당 언어에 대해 많은 관심을 갖거나 많은 로컬 팔로워를 가지고 있는 계정들을 섞어서 날마다 다시 계산 됩니다."
       language: 언어 필터
       status: 상태
       suppress: 팔로우 추천 숨기기
@@ -614,7 +614,7 @@ ko:
       notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 기록을 작성합니다
       processed_msg: '신고 #%{id}가 정상적으로 처리되었습니다'
       quick_actions_description_html: '빠른 조치를 취하거나 아래로 스크롤해서 신고된 콘텐츠를 확인하세요:'
-      remote_user_placeholder: "%{instance}의 리모트 이용자"
+      remote_user_placeholder: "%{instance}의 리모트 사용자"
       reopen: 신고 재검토
       report: '신고 #%{id}'
       reported_account: 신고 대상 계정
@@ -851,7 +851,7 @@ ko:
       statuses:
         allow: 게시물 허용
         allow_account: 작성자 허용
-        description_html: 여기에 여러분의 서버가 알아낸, 이 순간 가장 많은 공유하고 좋아요를 받은 게시물이 있습니다. 새로운 이용자나 돌아오는 이용자들이 팔로우 할 사람을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
+        description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 좋아요가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
         disallow: 게시물 비허용
         disallow_account: 작성자 비허용
         no_status_selected: 아무 것도 선택 되지 않아 어떤 유행중인 게시물도 바뀌지 않았습니다
@@ -957,7 +957,6 @@ ko:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 누구나 기여할 수 있습니다.
     sensitive_content: 민감한 내용
-    toot_layout: 게시물 레이아웃
   application_mailer:
     notification_preferences: 메일 설정 변경
     salutation: "%{name} 님,"
@@ -1045,18 +1044,6 @@ ko:
       view_strikes: 내 계정에 대한 과거 중재 기록 보기
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
     use_security_key: 보안 키 사용
-  authorize_follow:
-    already_following: 이미 이 계정을 팔로우 하고 있습니다
-    already_requested: 이미 이 계정에게 팔로우 요청을 보냈습니다
-    error: 리모트 계정을 확인하는 도중 오류가 발생했습니다
-    follow: 팔로우
-    follow_request: '팔로우 요청을 보냄:'
-    following: '성공! 당신은 다음 계정을 팔로우 하고 있습니다:'
-    post_follow:
-      close: 혹은, 그저 이 창을 닫을 수도 있습니다.
-      return: 사용자 프로필 보기
-      web: 웹으로 가기
-    title: "%{acct} 를 팔로우"
   challenge:
     confirm: 계속
     hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
@@ -1255,12 +1242,14 @@ ko:
       bookmarks_html: 나의 <strong>북마크</strong>를 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 게시물</strong>로 덮어 씌우려고 합니다.
       domain_blocking_html: 나의 <strong>도메인 차단 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 도메인</strong>으로 덮어 씌우려고 합니다.
       following_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 계정</strong>을 <strong>팔로우</strong>하고 <strong>나머지 계정을 팔로우 해제</strong>하려고 합니다."
+      lists_html: 나의 <strong>리스트</strong>를 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 계정</strong>으로 덮어 씌우려고 합니다.
       muting_html: 나의 <strong>뮤트한 계정 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 계정</strong>으로 덮어 씌우려고 합니다.
     preambles:
       blocking_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 계정</strong>을 차단하려고 합니다."
       bookmarks_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 게시물</strong>을 북마크에 추가하려고 합니다."
       domain_blocking_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 도메인</strong>을 차단하려고 합니다."
       following_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 계정</strong>을 팔로우하려고 합니다."
+      lists_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 계정</strong>을 내 <strong>리스트</strong>에 추가하려고 합니다. 추가할 리스트가 존재하지 않으면 새로 생성될 것입니다."
       muting_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 계정</strong>을 뮤트하려고 합니다."
     preface: 다른 서버에서 내보내기 한 파일에서 팔로우 / 차단 정보를 이 계정으로 불러올 수 있습니다.
     recent_imports: 최근의 가져오기
@@ -1277,6 +1266,7 @@ ko:
       bookmarks: 북마크 가져오는 중
       domain_blocking: 차단한 도메인 가져오는 중
       following: 팔로우한 계정 가져오는 중
+      lists: 리스트 가져오기
       muting: 뮤트한 계정 가져오는 중
     type: 가져오기 유형
     type_groups:
@@ -1287,6 +1277,7 @@ ko:
       bookmarks: 북마크
       domain_blocking: 도메인 차단 목록
       following: 팔로우 중인 계정 목록
+      lists: 리스트
       muting: 뮤트 중인 계정 목록
     upload: 업로드
   invites:
@@ -1378,8 +1369,8 @@ ko:
   moderation:
     title: 중재
   move_handler:
-    carry_blocks_over_text: 이 이용자는 예전에 차단한 %{acct}에서 이주 했습니다.
-    carry_mutes_over_text: 이 이용자는 예전에 뮤트한 %{acct}에서 이주 했습니다.
+    carry_blocks_over_text: 이 사용자는 예전에 차단한 %{acct}에서 이주 했습니다.
+    carry_mutes_over_text: 이 사용자는 예전에 뮤트한 %{acct}에서 이주 했습니다.
     copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
   navigation:
     toggle_menu: 토글 메뉴
@@ -1604,7 +1595,6 @@ ko:
     show_newer: 새로운 것 표시
     show_older: 오래된 것 표시
     show_thread: 글타래 보기
-    sign_in_to_participate: 대화에 참여 위해 로그인 하기
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: 다이렉트
@@ -1650,8 +1640,6 @@ ko:
     min_reblogs: 해당 횟수 이상 부스트된 게시물 유지
     min_reblogs_hint: 이 횟수 이상의 부스트가 된 게시물은 삭제하지 않습니다. 부스트 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
   stream_entries:
-    pinned: 고정된 게시물
-    reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 내용
   strikes:
     errors:

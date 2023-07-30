@@ -975,7 +975,6 @@ is:
       guide_link: https://crowdin.com/project/mastodon/is
       guide_link_text: Allir geta tekið þátt.
     sensitive_content: Viðkvæmt efni
-    toot_layout: Framsetning færslu
   application_mailer:
     notification_preferences: Breyta kjörstillingum tölvupósts
     salutation: "%{name},"
@@ -1065,18 +1064,6 @@ is:
       view_strikes: Skoða fyrri bönn notandaaðgangsins þíns
     too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
     use_security_key: Nota öryggislykil
-  authorize_follow:
-    already_following: Þú ert að þegar fylgjast með þessum aðgangi
-    already_requested: Þú ert þegar búin/n að senda fylgjendabeiðni á þennan notanda
-    error: Því miður, það kom upp villa við að fletta upp fjartengda notandaaðgangnum
-    follow: Fylgjast með
-    follow_request: 'Þú sendir beiðni um að fylgjast með til:'
-    following: 'Tókst! Þú ert núna að fylgjast með:'
-    post_follow:
-      close: Eða að þú getur lokað þessum glugga.
-      return: Birta notandasnið notandans
-      web: Fara á vefinn
-    title: Fylgjast með %{acct}
   challenge:
     confirm: Halda áfram
     hint_html: "<strong>Ábending:</strong> Við munum ekki spyrja þig um lykilorðið aftur næstu klukkustundina."
@@ -1282,12 +1269,14 @@ is:
       bookmarks_html: Þú er í þann mund að fara að <strong>skipta út bókamerkjunum þínum</strong> með allt að <strong>%{total_items} færslum</strong> úr <strong>%{filename}</strong>.
       domain_blocking_html: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokuð lén</strong> með allt að <strong>%{total_items} lénum</strong> úr <strong>%{filename}</strong>.
       following_html: Þú er í þann mund að fara að <strong>fylgjast með</strong> allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong> og <strong>hætta að fylgjast með öllum öðrum</strong>.
+      lists_html: Þú ert í þann mund að fara að <strong>skipta út listunum þínum</strong> með efninu úr <strong>%{filename}</strong>. Allt að <strong>%{total_items} aðgöngum</strong> verður bætt við nýju listana.
       muting_html: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokaða aðganga</strong> með allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
     preambles:
       blocking_html: Þú er í þann mund að fara að <strong>útiloka</strong> allt að <strong>%{total_items} aðganga</strong> úr <strong>%{filename}</strong>.
       bookmarks_html: Þú er í þann mund að fara að bæta við allt að <strong>%{total_items} færslum</strong> úr <strong>%{filename}</strong> við <strong>bókamerkin</strong> þín.
       domain_blocking_html: Þú er í þann mund að fara að <strong>útiloka</strong> allt að <strong>%{total_items} lén</strong> úr <strong>%{filename}</strong>.
       following_html: Þú er í þann mund að fara að <strong>fylgjast með</strong> allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
+      lists_html: Þú ert í þann mund að fara að bæta við allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong> við <strong>listana</strong> þína. Nýir listar verða útbúnir ef ekki finnst neinn listi til að bæta í.
       muting_html: Þú er í þann mund að fara að <strong>þagga</strong> allt að <strong>%{total_items} aðganga</strong> úr <strong>%{filename}</strong>.
     preface: Þú getur flutt inn gögn sem þú hefur flutt út frá öðrum vefþjóni, svo sem lista yfir fólk sem þú fylgist með eða útilokar.
     recent_imports: Nýlega flutt inn
@@ -1304,6 +1293,7 @@ is:
       bookmarks: Flyt inn bókamerki
       domain_blocking: Flyt inn útilokuð lén
       following: Flyt inn aðganga sem fylgst er með
+      lists: Flytja inn lista
       muting: Flyt inn þaggaða aðganga
     type: Tegund innflutnings
     type_groups:
@@ -1314,6 +1304,7 @@ is:
       bookmarks: Bókamerki
       domain_blocking: Listi yfir útilokanir léna
       following: Listi yfir þá sem fylgst er með
+      lists: Listar
       muting: Listi yfir þagganir
     upload: Senda inn
   invites:
@@ -1638,7 +1629,6 @@ is:
     show_newer: Sýna nýrri
     show_older: Sýna eldri
     show_thread: Birta þráð
-    sign_in_to_participate: Skráðu þig inn til að taka þátt í samtalinu
     title: "%{name}: „%{quote}‟"
     visibilities:
       direct: Beint
@@ -1684,8 +1674,6 @@ is:
     min_reblogs: Halda færslum sem eru endurbirtar oftar en
     min_reblogs_hint: Eyðir ekki þínum eigin færslum sem endurbirtar hafa verið þetta oft. Skildu þetta eftir autt til að eyða færslum burtséð frá fjölda endurbirtinga
   stream_entries:
-    pinned: Fest færsla
-    reblogged: endurbirt
     sensitive_content: Viðkvæmt efni
   strikes:
     errors:

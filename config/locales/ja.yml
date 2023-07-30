@@ -955,7 +955,6 @@ ja:
       guide_link: https://ja.crowdin.com/project/mastodon
       guide_link_text: 誰でも参加することができます。
     sensitive_content: 閲覧注意コンテンツ
-    toot_layout: 投稿のレイアウト
   application_mailer:
     notification_preferences: メール設定の変更
     salutation: "%{name}さん"
@@ -1043,18 +1042,6 @@ ja:
       view_strikes: 過去のストライクを表示
     too_fast: フォームの送信が速すぎます。もう一度やり直してください。
     use_security_key: セキュリティキーを使用
-  authorize_follow:
-    already_following: あなたは既にこのアカウントをフォローしています
-    already_requested: 既にこのアカウントへフォローリクエストを送信しています
-    error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
-    follow: フォロー
-    follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
-    following: '成功！ あなたは現在以下のアカウントをフォローしています:'
-    post_follow:
-      close: またはこのウィンドウを閉じます。
-      return: ユーザーのプロフィールを見る
-      web: Webを開く
-    title: "%{acct}さんをフォロー"
   challenge:
     confirm: 続ける
     hint_html: 以後1時間はパスワードの再入力を求めません
@@ -1253,12 +1240,14 @@ ja:
       bookmarks_html: "<strong>%{filename}</strong>の<strong>%{total_items}件の投稿</strong>で<strong>ブックマークの一覧を置き換えます</strong>。"
       domain_blocking_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のドメイン</strong>で<strong>非表示にしたドメインリストを置き換えます</strong>。"
       following_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>フォローします</strong>。また、<strong>この中に含まれていないアカウントのフォローを解除します</strong>。"
+      lists_html: "<strong>作成済みのリスト</strong>を<strong>%{filename}の内容で置き換えます</strong>。<strong>%{total_items}個のアカウント</strong>が新しいリストに追加されます。"
       muting_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>で<strong>ミュートしたアカウントリストを置き換えます</strong>。"
     preambles:
       blocking_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>ブロックします</strong>。"
       bookmarks_html: "<strong>%{filename}</strong>の<strong>%{total_items}件の投稿</strong>を<strong>ブックマークに追加します</strong>。"
       domain_blocking_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のドメイン</strong>を<strong>非表示にします</strong>。"
       following_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>フォローします</strong>。"
+      lists_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>リストに追加します</strong>。追加先のリストがない場合は新しく作成されます。"
       muting_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>ミュートします</strong>。"
     preface: 他のサーバーでエクスポートされたファイルから、フォロー/ブロックした情報をこのサーバー上のアカウントにインポートできます。
     recent_imports: 最近のインポート
@@ -1275,6 +1264,7 @@ ja:
       bookmarks: ブックマークのインポート
       domain_blocking: ドメイン非表示のインポート
       following: フォローのインポート
+      lists: リストのインポート
       muting: ミュートのインポート
     type: インポートする項目
     type_groups:
@@ -1285,6 +1275,7 @@ ja:
       bookmarks: ブックマーク
       domain_blocking: 非表示にしたドメインリスト
       following: フォロー中のアカウントリスト
+      lists: リスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
   invites:
@@ -1602,7 +1593,6 @@ ja:
     show_newer: 新しいものを表示
     show_older: 古いものを表示
     show_thread: スレッドを表示
-    sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: ダイレクト
@@ -1648,8 +1638,6 @@ ja:
     min_reblogs: ブーストの基準値
     min_reblogs_hint: この数以上、ブーストされた投稿を削除せずに残します。空白にしておくと、ブーストされた数に関わらず投稿を削除します。
   stream_entries:
-    pinned: 固定された投稿
-    reblogged: さんがブースト
     sensitive_content: 閲覧注意
   strikes:
     errors:

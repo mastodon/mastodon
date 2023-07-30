@@ -798,7 +798,7 @@ ru:
           approved: Для регистрации требуется подтверждение
           none: Никто не может регистрироваться
           open: Все могут регистрироваться
-      title: Настройки Сервера
+      title: Настройки сервера
     site_uploads:
       delete: Удалить загруженный файл
       destroyed_msg: Файл успешно удалён.
@@ -1009,7 +1009,6 @@ ru:
       guide_link: https://ru.crowdin.com/project/mastodon
       guide_link_text: Каждый может внести свой вклад.
     sensitive_content: Содержимое деликатного характера
-    toot_layout: Структура постов
   application_mailer:
     notification_preferences: Настроить уведомления можно здесь
     salutation: "%{name},"
@@ -1068,6 +1067,7 @@ ru:
     rules:
       accept: Принять
       back: Назад
+      invited_by: 'Вы можете присоединиться к %{domain} благодаря приглашению полученному от:'
       preamble: Они устанавливаются и применяются модераторами %{domain}.
       title: Несколько основных правил.
     security: Безопасность
@@ -1094,18 +1094,6 @@ ru:
       view_strikes: Просмотр предыдущих замечаний в адрес вашей учетной записи
     too_fast: Форма отправлена слишком быстро, попробуйте еще раз.
     use_security_key: Использовать ключ безопасности
-  authorize_follow:
-    already_following: Вы уже подписаны на эту учётную запись
-    already_requested: Вы уже отправили запрос на подписку на эту учётную запись
-    error: К сожалению, при поиске удалённой учётной записи возникла ошибка
-    follow: Подписаться
-    follow_request: 'Вы отправили запрос на подписку:'
-    following: 'Готово! Вы подписались на:'
-    post_follow:
-      close: Или просто закройте это окно.
-      return: Вернуться к профилю пользователя
-      web: Открыть в веб-версии
-    title: Подписаться на %{acct}
   challenge:
     confirm: Продолжить
     hint_html: "<strong>Подсказка</strong>: мы не будем спрашивать пароль повторно в течение часа."
@@ -1320,12 +1308,14 @@ ru:
       bookmarks_html: Вы собираетесь <strong>заменить свои закладки</strong> на <strong>%{total_items} постов</strong> из <strong>%{filename}</strong>.
       domain_blocking_html: Вы собираетесь <strong>заменить ваш список блокировки доменов</strong> на <strong>%{total_items} доменов</strong> из <strong>%{filename}</strong>.
       following_html: Вы собираетесь <strong>следить</strong> за <strong>%{total_items} аккаунтами</strong> из <strong>%{filename}</strong> и <strong>прекратить следить за всеми остальными</strong>.
+      lists_html: Вы собираетесь <strong>заменить ваши списки</strong> содержимым <strong>%{filename}</strong>. До <strong>%{total_items} аккаунты</strong> будут добавлены в новые списки.
       muting_html: Вы собираетесь <strong>заменить список отключенных аккаунтов</strong> на <strong>%{total_items} аккаунтов</strong> из <strong>%{filename}</strong>.
     preambles:
       blocking_html: Вы собираетесь <strong>заблокировать</strong> до <strong>%{total_items} аккаунтов</strong> из <strong>%{filename}</strong>.
       bookmarks_html: Вы собираетесь добавить до <strong>%{total_items} постов</strong> из <strong>%{filename}</strong> в свои <strong>закладки</strong>.
       domain_blocking_html: Вы собираетесь <strong>блокировать</strong> до <strong>%{total_items} доменов</strong> от <strong>%{filename}</strong>.
       following_html: Вы собираетесь <strong>следовать</strong> за <strong>%{total_items} аккаунтами</strong> из <strong>%{filename}</strong>.
+      lists_html: Вы собираетесь добавить до <strong>%{total_items} аккаунтов</strong> от <strong>%{filename}</strong> к вашим <strong>спискам</strong>. Новые списки будут созданы, если нет списка для добавления.
       muting_html: Вы собираетесь <strong>отключить</strong> до <strong>%{total_items} аккаунтов</strong> из <strong>%{filename}</strong>.
     preface: Вы можете загрузить некоторые данные, например, списки людей, на которых Вы подписаны или которых блокируете, в Вашу учётную запись на этом узле из файлов, экспортированных с другого узла.
     recent_imports: Недавно импортированное
@@ -1342,6 +1332,7 @@ ru:
       bookmarks: Импорт закладок
       domain_blocking: Импорт заблокированных доменов
       following: Импорт последующих аккаунтов
+      lists: Импортировать список
       muting: Импорт отключенных аккаунтов
     type: Тип импорта
     type_groups:
@@ -1352,6 +1343,7 @@ ru:
       bookmarks: Закладки
       domain_blocking: Список доменных блокировок
       following: Подписки
+      lists: Списки
       muting: Список глушения
     upload: Загрузить
   invites:
@@ -1674,7 +1666,6 @@ ru:
     show_newer: Показать более новое
     show_older: Показать старые
     show_thread: Открыть обсуждение
-    sign_in_to_participate: Войдите, чтобы принять участие в дискуссии
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Адресованный
@@ -1720,8 +1711,6 @@ ru:
     min_reblogs: Порог продвижений
     min_reblogs_hint: Не удаляет ваши посты, количество продвижений которых достигло указанного выше значения. Оставьте поле пустым, чтобы удалять посты независимо от количества продвижений.
   stream_entries:
-    pinned: Закреплённый пост
-    reblogged: продвинул(а)
     sensitive_content: Содержимое деликатного характера
   strikes:
     errors:

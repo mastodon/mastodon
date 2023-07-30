@@ -770,7 +770,7 @@ es-AR:
           approved: Se requiere aprobación para registrarse
           none: Nadie puede registrarse
           open: Cualquiera puede registrarse
-      title: Configuraciones del servidor
+      title: Configuración del servidor
     site_uploads:
       delete: Eliminar archivo subido
       destroyed_msg: "¡Subida al sitio eliminada exitosamente!"
@@ -973,7 +973,6 @@ es-AR:
       guide_link: https://es.crowdin.com/project/mastodon
       guide_link_text: Todos pueden contribuir.
     sensitive_content: Contenido sensible
-    toot_layout: Diseño del mensaje
   application_mailer:
     notification_preferences: Cambiar configuración de correo electrónico
     salutation: "%{name}:"
@@ -1061,18 +1060,6 @@ es-AR:
       view_strikes: Ver incumplimientos pasados contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, probá de nuevo.
     use_security_key: Usar la llave de seguridad
-  authorize_follow:
-    already_following: Ya estás siguiendo a esta cuenta
-    already_requested: Ya enviaste una solicitud de seguimiento a esa cuenta
-    error: Lamentablemente, ocurrió un error buscando la cuenta remota
-    follow: Seguir
-    follow_request: 'Enviaste una solicitud de seguimiento a:'
-    following: "¡Listo! Ahora estás siguiendo a:"
-    post_follow:
-      close: O simplemente podés cerrar esta ventana.
-      return: Mostrar el perfil del usuario
-      web: Ir a la web
-    title: Seguir a %{acct}
   challenge:
     confirm: Continuar
     hint_html: "<strong>Dato:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
@@ -1278,12 +1265,14 @@ es-AR:
       bookmarks_html: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{total_items} mensajes</strong> provenientes de <strong>%{filename}</strong>.
       domain_blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
       following_html: Estás a punto de <strong>seguir</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
+      lists_html: Estás a punto de <strong>reemplazar tus listas</strong> con el contenido de <strong>%{filename}</strong>. Se agregarán hasta <strong>%{total_items} cuentas</strong> a listas nuevas.
       muting_html: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preambles:
       blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
       bookmarks_html: Está a punto de agregar hasta <strong>%{total_items} mensajes</strong> provenientes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
       domain_blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
       following_html: Estás a punto de <strong>seguir</strong> hasta <strong>cuentas%{total_items}</strong> provenientes de <strong>%{filename}</strong>.
+      lists_html: Estás a punto de agregar hasta <strong>%{total_items} cuentas</strong> desde <strong>%{filename}</strong> a tus <strong>listas</strong>. Se crearán nuevas listas si no hay lista a cual agregar.
       muting_html: Estás a punto de <strong>silenciar</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preface: Podés importar ciertos datos que exportaste desde otro servidor, como una lista de las cuentas que estás siguiendo o bloqueando.
     recent_imports: Importaciones recientes
@@ -1300,6 +1289,7 @@ es-AR:
       bookmarks: Importación de marcadores
       domain_blocking: Importación de dominios bloqueados
       following: Importación de cuentas seguidas
+      lists: Importando listas
       muting: Importación de cuentas silenciadas
     type: Importar tipo
     type_groups:
@@ -1310,6 +1300,7 @@ es-AR:
       bookmarks: Marcadores
       domain_blocking: Lista de dominios bloqueados
       following: Lista de seguidos
+      lists: Listas
       muting: Lista de silenciados
     upload: Subir
   invites:
@@ -1634,7 +1625,6 @@ es-AR:
     show_newer: Mostrar más recientes
     show_older: Mostrar más antiguos
     show_thread: Mostrar hilo
-    sign_in_to_participate: Iniciá sesión para participar en la conversación
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Directo
@@ -1680,8 +1670,6 @@ es-AR:
     min_reblogs: Conservar adhesiones de por lo menos
     min_reblogs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de adhesiones. Dejá en blanco para eliminar mensajes independientemente de su número de adhesiones.
   stream_entries:
-    pinned: Mensaje fijado
-    reblogged: adhirió a este mensaje
     sensitive_content: Contenido sensible
   strikes:
     errors:

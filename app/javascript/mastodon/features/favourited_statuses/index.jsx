@@ -18,7 +18,7 @@ import Column from 'mastodon/features/ui/components/column';
 import { getStatusList } from 'mastodon/selectors';
 
 const messages = defineMessages({
-  heading: { id: 'column.favourites', defaultMessage: 'Favourites' },
+  heading: { id: 'column.favourites', defaultMessage: 'Favorites' },
 });
 
 const mapStateToProps = state => ({
@@ -74,7 +74,7 @@ class Favourites extends ImmutablePureComponent {
     const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
     const pinned = !!columnId;
 
-    const emptyMessage = <FormattedMessage id='empty_column.favourited_statuses' defaultMessage="You don't have any favourite posts yet. When you favourite one, it will show up here." />;
+    const emptyMessage = <FormattedMessage id='empty_column.favourited_statuses' defaultMessage="You don't have any favorite posts yet. When you favorite one, it will show up here." />;
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.heading)}>
@@ -86,7 +86,6 @@ class Favourites extends ImmutablePureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-          showBackButton
         />
 
         <StatusList

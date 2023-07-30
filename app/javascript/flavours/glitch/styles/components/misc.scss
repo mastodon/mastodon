@@ -1351,6 +1351,8 @@ button.icon-button.active i.fa-retweet {
     padding: 0;
     margin: 0;
     border: 0;
+    border-radius: 4px;
+    color: $white;
 
     &__label {
       display: flex;
@@ -1358,7 +1360,6 @@ button.icon-button.active i.fa-retweet {
       justify-content: center;
       gap: 8px;
       flex-direction: column;
-      color: $primary-text-color;
       font-weight: 500;
       font-size: 14px;
     }

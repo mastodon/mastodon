@@ -575,7 +575,6 @@ sk:
           approved: Pre registráciu je nutné povolenie
           none: Nikto sa nemôže registrovať
           open: Ktokoľvek sa môže zaregistrovať
-      title: Nastavenia servera
     site_uploads:
       delete: Vymaž nahratý súbor
       destroyed_msg: Nahratie bolo zo stránky úspešne vymazané!
@@ -684,7 +683,6 @@ sk:
       body: Mastodon je prekladaný dobrovoľníkmi.
       guide_link_text: Prispievať môže každý.
     sensitive_content: Chúlostivý obsah
-    toot_layout: Rozloženie príspevkov
   application_mailer:
     notification_preferences: Zmeň emailové voľby
     settings: 'Zmeň emailové voľby: %{link}'
@@ -739,17 +737,6 @@ sk:
       pending: Tvoja žiadosť čaká na schvílenie od nášho týmu. Môže to chviľu potrvať. Ak bude tvoja žiadosť schválená, dostaneš o tom email.
       redirecting_to: Tvoj účet je neaktívny, lebo v súčasnosti presmerováva na %{acct}.
     use_security_key: Použi bezpečnostný kľúč
-  authorize_follow:
-    already_following: Tento účet už nasleduješ
-    error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
-    follow: Nasleduj
-    follow_request: 'Poslal/a si žiadosť nasledovať užívateľa:'
-    following: 'Podarilo sa! Teraz nasleduješ užívateľa:'
-    post_follow:
-      close: Alebo môžeš iba zatvoriť toto okno.
-      return: Ukáž užívateľov profil
-      web: Prejdi do siete
-    title: Nasleduj %{acct}
   challenge:
     confirm: Pokračuj
     hint_html: "<strong>Tip:</strong> Hodinu nebudeme znovu vyžadovať tvoje heslo."
@@ -960,7 +947,7 @@ sk:
     favourite:
       body: 'Tvoj príspevok bol uložený medzi obľúbené užívateľa %{name}:'
       subject: "%{name} si obľúbil/a tvoj príspevok"
-      title: Nové obľúbené
+      title: Novo obľúbené
     follow:
       body: "%{name} ťa teraz následuje!"
       subject: "%{name} ťa teraz nasleduje"
@@ -1124,7 +1111,6 @@ sk:
       vote: Hlasuj
     show_more: Ukáž viac
     show_thread: Ukáž diskusné vlákno
-    sign_in_to_participate: Prihlás sa pre zapojenie do diskusie
     title: '%{name}: „%{quote}"'
     visibilities:
       private: Iba pre sledovateľov
@@ -1138,8 +1124,6 @@ sk:
     keep_pinned_hint: Nevymaže žiadne s tvojich pripnutých príspevkov
     keep_self_bookmark: Ponechaj príspevky, ktoré sú záložkami
   stream_entries:
-    pinned: Pripnutý príspevok
-    reblogged: vyzdvihli
     sensitive_content: Senzitívny obsah
   tags:
     does_not_match_previous_name: nezhoduje sa s predošlým názvom

@@ -769,7 +769,7 @@ zh-CN:
         remove_from_report: 从报告中移除
         report: 举报
       deleted: 已删除
-      favourites: 收藏夹
+      favourites: 喜欢
       history: 版本历史记录
       in_reply_to: 回复给
       language: 语言
@@ -955,7 +955,6 @@ zh-CN:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每个人都可以参与翻译。
     sensitive_content: 敏感内容
-    toot_layout: 嘟文布局
   application_mailer:
     notification_preferences: 更改电子邮件首选项
     salutation: "%{name}："
@@ -1043,18 +1042,6 @@ zh-CN:
       view_strikes: 查看针对你账号的记录
     too_fast: 表单提交过快，请重试。
     use_security_key: 使用安全密钥
-  authorize_follow:
-    already_following: 你已经在关注此用户了
-    already_requested: 你已经向那个账户发送过关注请求了
-    error: 对不起，寻找这个跨站用户时出错
-    follow: 关注
-    follow_request: 关注请求已发送给：
-    following: 成功！你正在关注：
-    post_follow:
-      close: 你也可以直接关闭这个窗口。
-      return: 查看用户个人资料
-      web: 返回本站
-    title: 关注 %{acct}
   challenge:
     confirm: 继续
     hint_html: "<strong>注意：</strong>接下来一小时内我们不会再次要求你输入密码。"
@@ -1250,15 +1237,17 @@ zh-CN:
       overwrite_long: 将当前记录替换为新记录
     overwrite_preambles:
       blocking_html: 您即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换您的屏蔽列表。
-      bookmarks_html: 您即将使用来自<strong> %{filename} </strong>的<strong> %{total_items} 篇贴文</strong>替换您的书签。
+      bookmarks_html: 您即将使用来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>替换您的书签。
       domain_blocking_html: 您即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个域名</strong>替换您的域名屏蔽列表。
       following_html: 您即将从<strong> %{filename} </strong>关注<strong> %{total_items} 个账户</strong>，并停止关注其他任何人。
+      lists_html: 你即将用<strong> %{filename} </strong>的内容<strong>替换你的列表</strong>。新列表中将添加<strong> %{total_items} 个账户</strong>。
       muting_html: 您即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换您已隐藏的账户列表。
     preambles:
       blocking_html: 您即将从<strong> %{filename} </strong>中<strong>封锁</strong>多达<strong> %{total_items} </strong>个账户。
-      bookmarks_html: 您即将把来自<strong> %{filename} </strong>的<strong> %{total_items} 篇贴文</strong>添加到您的<strong>书签</strong>中。
+      bookmarks_html: 您即将把来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>添加到您的<strong>书签</strong>中。
       domain_blocking_html: 您即将从<strong> %{filename} </strong>中<strong>屏蔽</strong><strong> %{total_items} 个域名</strong>。
       following_html: 您即将从<strong> %{filename} </strong><strong>关注</strong>最多<strong> %{total_items} 个账户</strong>。
+      lists_html: 你即将从<strong> %{filename} </strong>中添加最多<strong> %{total_items} 个账户</strong>到你的<strong>列表</strong>中。如果没有可用列表，将创建新的列表。
       muting_html: 您即将从<strong> %{filename} </strong>中<strong>隐藏</strong><strong> %{total_items} 个账户</strong>。
     preface: 你可以在此导入你在其他实例导出的数据，比如你所关注或屏蔽的用户列表。
     recent_imports: 最近导入
@@ -1275,6 +1264,7 @@ zh-CN:
       bookmarks: 正在导入书签
       domain_blocking: 正在导入被屏蔽的域名
       following: 正在导入关注的账户
+      lists: 导入列表
       muting: 正在导入隐藏的账户
     type: 导入类型
     type_groups:
@@ -1285,6 +1275,7 @@ zh-CN:
       bookmarks: 书签
       domain_blocking: 域名屏蔽列表
       following: 关注列表
+      lists: 列表
       muting: 隐藏列表
     upload: 上传
   invites:
@@ -1329,7 +1320,7 @@ zh-CN:
       confirmation_html: 您确定要取消订阅来自 %{domain} 上的 Mastodon 的 %{type} 到您的邮箱 %{email} 吗？您可以随时在<a href="%{settings_path}">电子邮件通知设置</a>重新订阅。
       emails:
         notification_emails:
-          favourite: 嘟文被喜欢邮件通知
+          favourite: 嘟文被点赞邮件通知
           follow: 账户被关注邮件通知
           follow_request: 关注请求邮件通知
           mention: 账户被提及邮件通知
@@ -1602,7 +1593,6 @@ zh-CN:
     show_newer: 显示更新内容
     show_older: 显示更早内容
     show_thread: 显示全部对话
-    sign_in_to_participate: 登录以加入对话
     title: "%{name}：“%{quote}”"
     visibilities:
       direct: 私信
@@ -1631,7 +1621,7 @@ zh-CN:
     keep_polls_hint: 不会删除你的任何投票
     keep_self_bookmark: 保存被你加入书签的嘟文
     keep_self_bookmark_hint: 如果你已将自己的嘟文添加书签，就不会删除这些嘟文
-    keep_self_fav: 保留你喜欢的嘟文
+    keep_self_fav: 保留你点赞的嘟文
     keep_self_fav_hint: 如果你喜欢了自己的嘟文，则不会删除这些嘟文
     min_age:
       '1209600': 2周
@@ -1643,13 +1633,11 @@ zh-CN:
       '63113904': 两年
       '7889238': 3个月
     min_age_label: 过期阈值
-    min_favs: 保留如下嘟文：喜欢数超过
-    min_favs_hint: 喜欢数超过该阈值的的嘟文都不会被删除。如果留空，则无论嘟文获得多少喜欢，都将被删除。
+    min_favs: 保留如下嘟文：点赞数超过
+    min_favs_hint: 点赞数超过该阈值的的嘟文都不会被删除。如果留空，则无论嘟文获得多少点赞，都将被删除。
     min_reblogs: 保留如下嘟文：转嘟数超过
     min_reblogs_hint: 转嘟数超过该阈值的的嘟文不会被删除。如果留空，则无论嘟文获得多少转嘟，都将被删除。
   stream_entries:
-    pinned: 置顶嘟文
-    reblogged: 转嘟
     sensitive_content: 敏感内容
   strikes:
     errors:

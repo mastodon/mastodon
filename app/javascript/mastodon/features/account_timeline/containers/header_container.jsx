@@ -83,7 +83,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       modalProps: {
         type: 'follow',
         accountId: account.get('id'),
-        url: account.get('url'),
+        url: account.get('uri'),
       },
     }));
   },

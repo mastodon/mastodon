@@ -1009,7 +1009,6 @@ he:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: כולם יכולים לתרום.
     sensitive_content: תוכן רגיש
-    toot_layout: פריסת הודעה
   application_mailer:
     notification_preferences: שינוי העדפות דוא"ל
     salutation: "%{name},"
@@ -1097,18 +1096,6 @@ he:
       view_strikes: צפיה בעברות קודמות שנרשמו נגד חשבונך
     too_fast: הטופס הוגש מהר מדי, נסה/י שוב.
     use_security_key: שימוש במפתח אבטחה
-  authorize_follow:
-    already_following: את/ה כבר עוקב/ת אחרי חשבון זה
-    already_requested: כבר נשלחה בקשת מעקב לחשבון זה
-    error: למרבה הצער, היתה שגיאה בחיפוש החשבון המרוחק
-    follow: לעקוב
-    follow_request: 'שלחת בקשת מעקב ל:'
-    following: 'הצלחה! הינך עוקב עכשיו אחרי:'
-    post_follow:
-      close: או, פשוט לסגור חלון זה.
-      return: הצג את פרופיל המשתמש
-      web: מעבר לווב
-    title: לעקוב אחרי %{acct}
   challenge:
     confirm: המשך
     hint_html: "<strong>טיפ:</strong> לא נבקש את סיסמתך שוב בשעה הקרובה."
@@ -1328,12 +1315,14 @@ he:
       bookmarks_html: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>%{total_items} הודעות</strong> מהקובץ <strong>%{filename}</strong>.
       domain_blocking_html: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>%{total_items} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
       following_html: אתם עומדים <strong>לעקוב</strong> עד כדי <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
+      lists_html: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{total_items} חשבונות</strong> יתווספו לרשימות חדשות.
       muting_html: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> עד כדי <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
     preambles:
       blocking_html: אתם עומדים <strong>לחסום</strong> עד <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
       bookmarks_html: אתם עומדים <strong>להוסיף</strong> עד <strong>%{total_items} הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
       domain_blocking_html: אתם עומדים <strong>לחסום</strong> עד כדי <strong>%{total_items} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
       following_html: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+      lists_html: הפעולה הבאה תוסיף עד <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
       muting_html: אתם עומדים <strong>להשתיק</strong> עד <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
     preface: ניתן ליבא מידע מסויים כגון כל הנעקבים או המשתמשים החסומים לתוך חשבונך על שרת זה, מתוך קבצים שנוצרו על ידי יצוא משרת אחר כגון רשימת הנעקבים והחסומים שלך.
     recent_imports: ייבואים אחרונים
@@ -1350,6 +1339,7 @@ he:
       bookmarks: מייבא סימניות
       domain_blocking: מייבא שרתים חסומים
       following: מייבא חשבונות נעקבים
+      lists: יבוא רשימות
       muting: מייבא חשבונות מושתקים
     type: סוג יבוא
     type_groups:
@@ -1360,6 +1350,7 @@ he:
       bookmarks: סימניות
       domain_blocking: רשימת שמות מתחם חסומים
       following: רשימת נעקבים
+      lists: רשימות
       muting: רשימת השתקות
     upload: יבוא
   invites:
@@ -1698,7 +1689,6 @@ he:
     show_newer: הצג חדשים יותר
     show_older: הצג ישנים יותר
     show_thread: הצג שרשור
-    sign_in_to_participate: הכנס כדי להשתתף בשיחה
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: ישיר
@@ -1744,8 +1734,6 @@ he:
     min_reblogs: שמור הודעות מהודהדות לפחות
     min_reblogs_hint: לא מוחק מי מהודעותיך שקיבלו לפחות את המספר הזה של הדהודים. להשאיר ריק כדי למחוק הודעות ללא קשר למספר ההדהודים שקיבלו
   stream_entries:
-    pinned: הודעה נעוצה
-    reblogged: הודהד
     sensitive_content: תוכן רגיש
   strikes:
     errors:

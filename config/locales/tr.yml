@@ -770,7 +770,7 @@ tr:
           approved: Kayıt için onay gerekli
           none: Hiç kimse kayıt olamaz
           open: Herkes kaydolabilir
-      title: Sunucu Ayarları
+      title: Sunucu ayarları
     site_uploads:
       delete: Yüklenen dosyayı sil
       destroyed_msg: Site yüklemesi başarıyla silindi!
@@ -973,7 +973,6 @@ tr:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Herkes katkıda bulunabilir.
     sensitive_content: Hassas içerik
-    toot_layout: Gönderi düzeni
   application_mailer:
     notification_preferences: E-posta tercihlerini değiştir
     salutation: "%{name},"
@@ -1061,18 +1060,6 @@ tr:
       view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     use_security_key: Güvenlik anahtarını kullan
-  authorize_follow:
-    already_following: Bu hesabı zaten takip ediyorsunuz
-    already_requested: Bu hesaba zaten takip isteği gönderdiniz
-    error: Uzak hesap aranırken bir hata oluştu
-    follow: Takip et
-    follow_request: 'Şuna takip isteği gönderdiniz:'
-    following: 'Başarılı! Artık şunu takip ediyorsunuz:'
-    post_follow:
-      close: Ya da, sadece bu pencereyi kapatabilirsiniz.
-      return: Kullanıcının profilini göster
-      web: Web'e git
-    title: "%{acct} takip et"
   challenge:
     confirm: Devam et
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
@@ -1278,12 +1265,14 @@ tr:
       bookmarks_html: "<strong>Yerimlerinizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} gönderiyle</strong> değiştirmek üzeresiniz."
       domain_blocking_html: "<strong>Alan adı engel listenizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} alan adıyla</strong> değiştirmek üzeresiniz."
       following_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>takip etmeye</strong> başlamak ve <strong>diğer herkesi takipten çıkmak</strong> üzeresiniz."
+      lists_html: Listelerinizi <strong>%{filename}</strong> içeriğiyle <strong>değiştirmek</strong> üzeresiniz. Yeni listelere en fazla <strong>%{total_items} hesap</strong> eklenecek.
       muting_html: "<strong>Sessize alınmış hesaplar listenizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} hesapla</strong> değiştirmek üzeresiniz."
     preambles:
       blocking_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>engellemek</strong> üzeresiniz."
       bookmarks_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} gönderiyi</strong> <strong>yerimlerinize</strong> eklemek üzeresiniz."
       domain_blocking_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} alan adını</strong> <strong>engellemek</strong> üzeresiniz."
       following_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>takip etmek</strong> üzeresiniz."
+      lists_html: "<strong>Listelerinize</strong> <strong>%{filename}</strong> dosyasından en fazla <strong>%{total_items} hesap</strong> eklemek üzeresiniz. Eklenecek bir liste olmaması durumunda yeni listeler oluşturulacaktır."
       muting_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>sessize almak</strong> üzeresiniz."
     preface: Diğer sunucudan alarak oluşturduğunuz dosyalar sayesinde, bu sunucudaki hesabınıza takipçilerinizi aktarabilir veya istemediğiniz kişileri otomatik olarak engelleyebilirsiniz.
     recent_imports: Son içe aktarmalar
@@ -1300,6 +1289,7 @@ tr:
       bookmarks: Yer işaretleri içe aktarılıyor
       domain_blocking: Engellenmiş alan adları içe aktarılıyor
       following: Takip edilen hesaplar içe aktarılıyor
+      lists: Listeleri içe aktarma
       muting: Sessize alınmış hesaplar içe aktarılıyor
     type: İçe aktarma türü
     type_groups:
@@ -1310,6 +1300,7 @@ tr:
       bookmarks: Yer imleri
       domain_blocking: Alan adı engelleme listesi
       following: Takip edilenler listesi
+      lists: Listeler
       muting: Susturulanlar listesi
     upload: Yükle
   invites:
@@ -1634,7 +1625,6 @@ tr:
     show_newer: Yenileri göster
     show_older: Eskileri göster
     show_thread: Konuyu göster
-    sign_in_to_participate: Sohbete katılmak için oturum açın
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Doğrudan
@@ -1680,8 +1670,6 @@ tr:
     min_reblogs: Şundan daha fazla teşvik edilen gönderileri sakla
     min_reblogs_hint: Bu belirtilenden daha fazla teşvik edilen gönderilerinizin herhangi birini silmez. Teşvik sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
   stream_entries:
-    pinned: Sabitlenmiş gönderi
-    reblogged: boostladı
     sensitive_content: Hassas içerik
   strikes:
     errors:

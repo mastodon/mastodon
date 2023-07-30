@@ -127,16 +127,16 @@
       border-radius: 4px;
     }
 
-    &.active {
-      border-color: $valid-value-color;
-      background: $valid-value-color;
-    }
-
     &:active,
     &:focus,
     &:hover {
       border-color: lighten($valid-value-color, 15%);
       border-width: 4px;
+    }
+
+    &.active {
+      background-color: $valid-value-color;
+      border-color: $valid-value-color;
     }
 
     &::-moz-focus-inner {
@@ -223,6 +223,14 @@
     padding: 10px;
   }
 
+  .poll__input {
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: $ui-button-focus-background-color;
+    }
+  }
+
   .poll__footer {
     border-top: 1px solid darken($simple-background-color, 8%);
     padding: 10px;
@@ -249,6 +257,14 @@
     color: $action-button-color;
     border-color: $action-button-color;
     margin-inline-end: 5px;
+
+    &:hover,
+    &:focus,
+    &.active {
+      border-color: $action-button-color;
+      background-color: $action-button-color;
+      color: $ui-button-color;
+    }
   }
 
   li {

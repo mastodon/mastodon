@@ -975,7 +975,6 @@ it:
       guide_link: https://it.crowdin.com/project/mastodon
       guide_link_text: Tutti possono contribuire.
     sensitive_content: Contenuto sensibile
-    toot_layout: Layout dei toot
   application_mailer:
     notification_preferences: Cambia preferenze email
     salutation: "%{name},"
@@ -1063,18 +1062,6 @@ it:
       view_strikes: Visualizza le sanzioni precedenti prese nei confronti del tuo account
     too_fast: Modulo inviato troppo velocemente, riprova.
     use_security_key: Usa la chiave di sicurezza
-  authorize_follow:
-    already_following: Stai già seguendo questo account
-    already_requested: Hai già mandato una richiesta di seguire questo account
-    error: Sfortunatamente c'è stato un errore nel consultare l'account remoto
-    follow: Segui
-    follow_request: 'Hai mandato una richiesta di seguire:'
-    following: 'Accettato! Ora stai seguendo:'
-    post_follow:
-      close: Oppure puoi chiudere questa finestra.
-      return: Mostra il profilo dell'utente
-      web: Vai al web
-    title: Segui %{acct}
   challenge:
     confirm: Continua
     hint_html: "<strong>Suggerimento:</strong> Non ti chiederemo di nuovo la tua password per la prossima ora."
@@ -1280,12 +1267,14 @@ it:
       bookmarks_html: Stai per <strong>sostituire i tuoi segnalibri</strong> con un massimo di <strong>%{total_items} post</strong> da <strong>%{filename}</strong>.
       domain_blocking_html: Stai per <strong>sostituire la tua lista di domini bloccati</strong> con un massimo di <strong>%{total_items} domini</strong> da <strong>%{filename}</strong>.
       following_html: Stai per <strong>seguire</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong> e <strong>smettere di seguire chiunque altro</strong>.
+      lists_html: Stai per <strong>sostituire le tue liste</strong> con i contenuti di <strong>%{filename}</strong>. Fino a <strong>%{total_items} profili</strong> verranno aggiunti a nuove liste.
       muting_html: Stai per <strong>sostituire la tua lista di account silenziati</strong> con un massimo di <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
     preambles:
       blocking_html: Stai per <strong>bloccare</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
       bookmarks_html: Stai per aggiungere fino a <strong>%{total_items} post</strong> da <strong>%{filename}</strong> ai tuoi <strong>segnalibri</strong>.
       domain_blocking_html: Stai per <strong>bloccare</strong> fino a <strong>%{total_items} domini</strong> da <strong>%{filename}</strong>.
       following_html: Stai per <strong>seguire</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
+      lists_html: Stai per aggiungere fino a <strong>%{total_items} profili</strong> da <strong>%{filename}</strong> alla tue <strong>liste</strong>. Le nuove liste saranno create se non c'è una lista a cui aggiungere.
       muting_html: Stai per <strong>silenziare</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
     preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato su questo server, da file creati da un'esportazione su un altro server.
     recent_imports: Importazioni recenti
@@ -1302,6 +1291,7 @@ it:
       bookmarks: Importazione dei segnalibri
       domain_blocking: Importazione dei domini bloccati
       following: Importazione degli account seguiti
+      lists: Importa elenchi
       muting: Importazione degli account silenziati
     type: Tipo d'importazione
     type_groups:
@@ -1312,6 +1302,7 @@ it:
       bookmarks: Segnalibri
       domain_blocking: Lista dei domini bloccati
       following: Lista dei seguiti
+      lists: Elenchi
       muting: Lista dei silenziati
     upload: Carica
   invites:
@@ -1636,7 +1627,6 @@ it:
     show_newer: Mostra più nuovi
     show_older: Mostra più vecchi
     show_thread: Mostra thread
-    sign_in_to_participate: Accedi per partecipare alla conversazione
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Diretto
@@ -1682,8 +1672,6 @@ it:
     min_reblogs: Conserva i post condivisi più di
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:
-    pinned: Post fissato in cima
-    reblogged: condiviso
     sensitive_content: Materiale sensibile
   strikes:
     errors:

@@ -55,12 +55,15 @@ Rails.application.routes.draw do
   get '.well-known/nodeinfo', to: 'well_known/nodeinfo#index', as: :nodeinfo, defaults: { format: 'json' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get '.well-known/change-password', to: redirect('/auth/edit')
+  get '.well-known/proxy', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
   get '/nodeinfo/2.0', to: 'well_known/nodeinfo#show', as: :nodeinfo_schema
 
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
   get 'custom.css', to: 'custom_css#show', as: :custom_css
+
+  get 'remote_interaction_helper', to: 'remote_interaction_helper#index'
 
   resource :instance_actor, path: 'actor', only: [:show] do
     resource :inbox, only: [:create], module: :activitypub
@@ -164,7 +167,7 @@ Rails.application.routes.draw do
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy, format: false
   get '/backups/:id/download', to: 'backups#download', as: :download_backup, format: false
 
-  resource :authorize_interaction, only: [:show, :create]
+  resource :authorize_interaction, only: [:show]
   resource :share, only: [:show]
 
   draw(:admin)

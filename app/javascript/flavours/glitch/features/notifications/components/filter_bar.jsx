@@ -7,7 +7,7 @@ import { Icon } from 'flavours/glitch/components/icon';
 
 const tooltips = defineMessages({
   mentions: { id: 'notifications.filter.mentions', defaultMessage: 'Mentions' },
-  favourites: { id: 'notifications.filter.favourites', defaultMessage: 'Favourites' },
+  favourites: { id: 'notifications.filter.favourites', defaultMessage: 'Favorites' },
   boosts: { id: 'notifications.filter.boosts', defaultMessage: 'Boosts' },
   polls: { id: 'notifications.filter.polls', defaultMessage: 'Poll results' },
   follows: { id: 'notifications.filter.follows', defaultMessage: 'Follows' },

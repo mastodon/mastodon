@@ -973,7 +973,6 @@ fr:
       guide_link: https://fr.crowdin.com/project/mastodon
       guide_link_text: Tout le monde peut y contribuer.
     sensitive_content: Contenu sensible
-    toot_layout: Agencement des messages
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
     salutation: "%{name},"
@@ -1061,18 +1060,6 @@ fr:
       view_strikes: Voir les sanctions précédemment appliquées à votre compte
     too_fast: Formulaire envoyé trop rapidement, veuillez réessayer.
     use_security_key: Utiliser la clé de sécurité
-  authorize_follow:
-    already_following: Vous suivez déjà ce compte
-    already_requested: Vous avez déjà envoyé une demande d’abonnement à ce compte
-    error: Malheureusement, une erreur s'est produite lors de la recherche du compte distant
-    follow: Suivre
-    follow_request: 'Vous avez demandé à suivre :'
-    following: 'Youpi ! Vous suivez maintenant  :'
-    post_follow:
-      close: Ou bien, vous pouvez fermer cette fenêtre.
-      return: Afficher le profil de l’utilisateur·ice
-      web: Retour à l’interface web
-    title: Suivre %{acct}
   challenge:
     confirm: Continuer
     hint_html: "<strong>Astuce :</strong> Nous ne vous demanderons plus votre mot de passe pour la prochaine heure."
@@ -1278,12 +1265,14 @@ fr:
       bookmarks_html: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{total_items} posts</strong> tirés de <strong>%{filename}</strong>.
       domain_blocking_html: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
       following_html: Vous allez <strong>suivre</strong> jusqu’à <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
+      lists_html: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Près de <strong>%{total_items} comptes</strong> seront ajoutés à de nouvelles listes.
       muting_html: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
     preambles:
       blocking_html: Vous allez <strong>bloquer</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
       bookmarks_html: Vous allez ajouter près de <strong>%{total_items} messages</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
       domain_blocking_html: Vous allez <strong>bloquer</strong> près de <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
       following_html: Vous allez <strong>suivre</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+      lists_html: Vous allez ajouter près de <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
       muting_html: Vous allez <strong>masquer</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
     preface: Vous pouvez importer certaines données que vous avez exporté d’un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
     recent_imports: Récents imports
@@ -1300,6 +1289,7 @@ fr:
       bookmarks: En cours d’importation des signets
       domain_blocking: En cours d’importation des domaines bloqués
       following: En cours d’importation des comptes suivis
+      lists: En cours d’importation des listes
       muting: En cours d’importation des comptes masqués
     type: Type d’import
     type_groups:
@@ -1310,6 +1300,7 @@ fr:
       bookmarks: Marque-pages
       domain_blocking: Liste des serveurs bloqués
       following: Liste de comptes suivis
+      lists: Listes
       muting: Liste de comptes que vous masquez
     upload: Importer
   invites:
@@ -1634,7 +1625,6 @@ fr:
     show_newer: Plus récents
     show_older: Plus anciens
     show_thread: Afficher le fil de discussion
-    sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
     title: "%{name} : « %{quote} »"
     visibilities:
       direct: Direct
@@ -1680,8 +1670,6 @@ fr:
     min_reblogs: Conserver les messages partagés au moins
     min_reblogs_hint: Ne supprime aucun de vos messages qui ont été partagés au moins ce nombre de fois. Laisser vide pour supprimer les messages indépendamment de leur nombre de partages
   stream_entries:
-    pinned: Message épinglé
-    reblogged: a partagé
     sensitive_content: Contenu sensible
   strikes:
     errors:

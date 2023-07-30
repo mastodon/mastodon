@@ -1009,7 +1009,6 @@ pl:
       guide_link: https://pl.crowdin.com/project/mastodon
       guide_link_text: Każdy może wnieść swój wkład.
     sensitive_content: Wrażliwa zawartość
-    toot_layout: Wygląd wpisów
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
     salutation: "%{name},"
@@ -1097,18 +1096,6 @@ pl:
       view_strikes: Zobacz dawne ostrzeżenia nałożone na twoje konto
     too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
     use_security_key: Użyj klucza bezpieczeństwa
-  authorize_follow:
-    already_following: Już obserwujesz to konto
-    already_requested: Już wysłałeś(-aś) prośbę o możliwość obserwowania tego konta
-    error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
-    follow: Obserwuj
-    follow_request: 'Wysłano prośbę o możliwość obserwowania:'
-    following: 'Pomyślnie! Od teraz obserwujesz:'
-    post_follow:
-      close: Ewentualnie, możesz po prostu zamknąć tę stronę.
-      return: Pokaż stronę użytkownika
-      web: Przejdź do sieci
-    title: Obserwuj %{acct}
   challenge:
     confirm: Kontynuuj
     hint_html: "<strong>Informacja:</strong> Nie będziemy prosić Cię o ponowne podanie hasła przez następną godzinę."
@@ -1328,12 +1315,14 @@ pl:
       bookmarks_html: Zamierzasz <strong>zastąpić swoje zakładki</strong> maksymalnie <strong>%{total_items} wpisami</strong> z <strong>%{filename}</strong>.
       domain_blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków domen</strong> maksymalnie <strong>%{total_items} domenami</strong> z <strong>%{filename}</strong>.
       following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong> i <strong>przestać obserwować kogokolwiek innego</strong>.
+      lists_html: Zamierzasz <strong>zastąpić swoje listy</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
       muting_html: Zamierzasz <strong>zastąpić swoją wyciszonych</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
     preambles:
       blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
       bookmarks_html: Zamierzasz dodać maksymalnie <strong>%{total_items} wpisów</strong> do twoich <strong>zakładek</strong> z <strong>%{filename}</strong>.
       domain_blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} domen</strong> z <strong>%{filename}</strong>.
       following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
+      lists_html: Zamierzasz dodać maksymalnie <strong>%{total_items} kont</strong> do twoich <strong>list</strong> z <strong>%{filename}</strong>. Jeżeli nie ma list, nowe zostaną utworzone.
       muting_html: Zamierzasz <strong>wyciszyć</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
     preface: Możesz zaimportować pewne dane (np. lista kont, które obserwujesz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
     recent_imports: Ostatnie importy
@@ -1350,6 +1339,7 @@ pl:
       bookmarks: Importowanie zakładek
       domain_blocking: Importowanie zablokowanych domen
       following: Importowanie obserwowanych kont
+      lists: Importowanie list
       muting: Importowanie wyciszonych kont
     type: Typ importu
     type_groups:
@@ -1360,6 +1350,7 @@ pl:
       bookmarks: Zakładki
       domain_blocking: Lista zablokowanych domen
       following: Lista obserwowanych
+      lists: Listy
       muting: Lista wyciszonych
     upload: Załaduj
   invites:
@@ -1698,7 +1689,6 @@ pl:
     show_newer: Pokaż nowsze
     show_older: Pokaż starsze
     show_thread: Pokaż wątek
-    sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Bezpośredni
@@ -1744,8 +1734,6 @@ pl:
     min_reblogs: Utrzymuj posty wzmocnione więcej niż
     min_reblogs_hint: Nie usuwa żadnego z Twoich wpisów, które zostały wzmocnione więcej niż tyle razy. Pozostaw puste, aby usunąć posty bez względu na ich liczbę wzmocnień
   stream_entries:
-    pinned: Przypięty wpis
-    reblogged: podbił
     sensitive_content: Wrażliwa zawartość
   strikes:
     errors:

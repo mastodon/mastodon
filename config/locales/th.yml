@@ -955,7 +955,6 @@ th:
       guide_link: https://crowdin.com/project/mastodon/th
       guide_link_text: ทุกคนสามารถมีส่วนร่วม
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
-    toot_layout: เค้าโครงโพสต์
   application_mailer:
     notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
     salutation: "%{name},"
@@ -1043,18 +1042,6 @@ th:
       view_strikes: ดูการดำเนินการที่ผ่านมาต่อบัญชีของคุณ
     too_fast: ส่งแบบฟอร์มเร็วเกินไป ลองอีกครั้ง
     use_security_key: ใช้กุญแจความปลอดภัย
-  authorize_follow:
-    already_following: คุณกำลังติดตามบัญชีนี้อยู่แล้ว
-    already_requested: คุณได้ส่งคำขอติดตามไปยังบัญชีนั้นไปแล้ว
-    error: น่าเสียดาย มีข้อผิดพลาดในการมองหาบัญชีระยะไกล
-    follow: ติดตาม
-    follow_request: 'คุณได้ส่งคำขอติดตามไปยัง:'
-    following: 'สำเร็จ! ตอนนี้คุณกำลังติดตาม:'
-    post_follow:
-      close: หรือคุณสามารถปิดหน้าต่างนี้
-      return: แสดงโปรไฟล์ของผู้ใช้
-      web: ไปยังเว็บ
-    title: ติดตาม %{acct}
   challenge:
     confirm: ดำเนินการต่อ
     hint_html: "<strong>เคล็ดลับ:</strong> เราจะไม่ถามรหัสผ่านของคุณกับคุณสำหรับชั่วโมงถัดไป"
@@ -1253,12 +1240,14 @@ th:
       bookmarks_html: คุณกำลังจะ <strong>แทนที่ที่คั่นหน้าของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong>
       domain_blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นโดเมนของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
       following_html: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong> และ <strong>หยุดการติดตามคนอื่นใด</strong>
+      lists_html: คุณกำลังจะ <strong>แทนที่รายการของคุณ</strong> ด้วยเนื้อหาของ <strong>%{filename}</strong> จะเพิ่มมากถึง <strong>%{total_items} บัญชี</strong> ไปยังรายการใหม่
       muting_html: คุณกำลังจะ <strong>แทนที่รายการบัญชีที่ซ่อนอยู่ของคุณ</strong> ด้วยมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
     preambles:
       blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
       bookmarks_html: คุณกำลังจะเพิ่มมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>ที่คั่นหน้า</strong> ของคุณ
       domain_blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
       following_html: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
+      lists_html: คุณกำลังจะเพิ่มมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>รายการ</strong> ของคุณ จะสร้างรายการใหม่หากไม่มีรายการที่จะเพิ่มไปยัง
       muting_html: คุณกำลังจะ <strong>ซ่อน</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
     preface: คุณสามารถนำเข้าข้อมูลที่คุณได้ส่งออกจากเซิร์ฟเวอร์อื่น เช่น รายการผู้คนที่คุณกำลังติดตามหรือกำลังปิดกั้น
     recent_imports: การนำเข้าล่าสุด
@@ -1275,6 +1264,7 @@ th:
       bookmarks: กำลังนำเข้าที่คั่นหน้า
       domain_blocking: กำลังนำเข้าโดเมนที่ปิดกั้นอยู่
       following: กำลังนำเข้าบัญชีที่ติดตาม
+      lists: กำลังนำเข้ารายการ
       muting: กำลังนำเข้าบัญชีที่ซ่อนอยู่
     type: ชนิดการนำเข้า
     type_groups:
@@ -1285,6 +1275,7 @@ th:
       bookmarks: ที่คั่นหน้า
       domain_blocking: รายการการปิดกั้นโดเมน
       following: รายการติดตาม
+      lists: รายการ
       muting: รายการซ่อน
     upload: อัปโหลด
   invites:
@@ -1602,7 +1593,6 @@ th:
     show_newer: แสดงที่ใหม่กว่า
     show_older: แสดงที่เก่ากว่า
     show_thread: แสดงกระทู้
-    sign_in_to_participate: เข้าสู่ระบบเพื่อเข้าร่วมการสนทนา
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: โดยตรง
@@ -1648,8 +1638,6 @@ th:
     min_reblogs: เก็บโพสต์ที่ได้รับการดันอย่างน้อย
     min_reblogs_hint: ไม่ลบโพสต์ใดก็ตามของคุณที่ได้รับจำนวนครั้งการดันอย่างน้อยเท่านี้ เว้นว่างไว้เพื่อลบโพสต์โดยไม่คำนึงถึงจำนวนการดันของโพสต์
   stream_entries:
-    pinned: โพสต์ที่ปักหมุด
-    reblogged: ดันแล้ว
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   strikes:
     errors:

@@ -17,7 +17,7 @@ cy:
       zero: Dilynwyr
     following: Yn dilyn
     instance_actor_flash: Mae'r cyfrif hwn yn actor rhithwir sy'n cael ei ddefnyddio i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol. Fe'i defnyddir at ddibenion ffederasiwn ac ni ddylid ei atal.
-    last_active: diweddaraf
+    last_active: y diweddaraf
     link_verified_on: Gwiriwyd perchnogaeth y ddolen yma ar %{date}
     nothing_here: Does dim byd yma!
     pin_errors:
@@ -826,7 +826,7 @@ cy:
           approved: Mae angen cymeradwyaeth i gofrestru
           none: Nid oes neb yn gallu cofrestru
           open: Gall unrhyw un cofrestru
-      title: Gosodiadau Gweinydd
+      title: Gosodiadau gweinydd
     site_uploads:
       delete: Dileu ffeil sydd wedi'i llwytho
       destroyed_msg: Llwytho i fyny i'r wefan wedi'i dileu yn llwyddiannus!
@@ -1045,7 +1045,6 @@ cy:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Gall pawb gyfrannu.
     sensitive_content: Cynnwys sensitif
-    toot_layout: Cynllun postiad
   application_mailer:
     notification_preferences: Newid gosodiadau e-bost
     salutation: "%{name},"
@@ -1133,18 +1132,6 @@ cy:
       view_strikes: Gweld rybuddion y gorffennol yn erbyn eich cyfrif
     too_fast: Cafodd y ffurflen ei chyflwyno'n rhy gyflym, ceisiwch eto.
     use_security_key: Defnyddiwch allwedd diogelwch
-  authorize_follow:
-    already_following: Rydych yn dilyn y cyfrif hwn yn barod
-    already_requested: Rydych chi eisoes wedi anfon cais i ddilyn y cyfrif hwnnw
-    error: Yn anffodus, roedd gwall tra'n edrych am y cyfrif pell
-    follow: Dilyn
-    follow_request: 'Rydych wedi anfon cais dilyn at:'
-    following: 'Llwyddiant! Rydych nawr yn dilyn:'
-    post_follow:
-      close: Neu, gallwch gau'r ffenest hon.
-      return: Dangos proffil y defnyddiwr
-      web: Ewch i'r we
-    title: Dilyn %{acct}
   challenge:
     confirm: Parhau
     hint_html: "<strong>Awgrym:</strong> Fyddwn ni ddim yn gofyn i chi am eich cyfrinair eto am yr awr nesaf."
@@ -1762,7 +1749,6 @@ cy:
     show_newer: Dangos y diweddaraf
     show_older: Dangos pethau hŷn
     show_thread: Dangos trywydd
-    sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Uniongyrchol
@@ -1808,8 +1794,6 @@ cy:
     min_reblogs: Cadw postiadau wedi eu hybu o leiaf
     min_reblogs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi cael eu hybu o leiaf y nifer hwn o weithiau. Gadewch yn wag i ddileu postiadau waeth beth fo'u nifer o hybiadau
   stream_entries:
-    pinned: Postiad wedi'i binio
-    reblogged: hybwyd
     sensitive_content: Cynnwys sensitif
   strikes:
     errors:

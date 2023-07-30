@@ -1,0 +1,4 @@
+- content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex' }/
+
+  = javascript_pack_tag 'core/remote_interaction_helper', crossorigin: 'anonymous'

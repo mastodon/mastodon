@@ -991,7 +991,6 @@ sr-Latn:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Svako može doprineti.
     sensitive_content: Osetljiv sadržaj
-    toot_layout: Raspored objava
   application_mailer:
     notification_preferences: Promeni preference E-pošte
     salutation: Poštovani %{name},
@@ -1079,18 +1078,6 @@ sr-Latn:
       view_strikes: Pogledajte prethodne prestupe upisane na Vaše ime
     too_fast: Formular je podnet prebrzo, pokušajte ponovo.
     use_security_key: Koristite sigurnosni ključ
-  authorize_follow:
-    already_following: Već pratite ovaj nalog
-    already_requested: Već ste poslali zahtev za praćenje tom nalogu
-    error: Nažalost, desila se greška pri traženju udaljenog naloga
-    follow: Zaprati
-    follow_request: 'Poslali ste zahtev za praćenjen za:'
-    following: 'Sjajno! Sada pratite:'
-    post_follow:
-      close: Ili možete zatvoriti ovaj prozor.
-      return: Vrati se na nalog ovog korisnika
-      web: Idi na veb
-    title: Zaprati %{acct}
   challenge:
     confirm: Nastavi
     hint_html: "<strong>Savet:</strong> Nećemo Vas pitati za lozinku ponovo u narednih sat vremena."
@@ -1303,12 +1290,14 @@ sr-Latn:
       bookmarks_html: Upravo ćete <strong>zameniti svoje obeleživače</strong> sa do <strong>%{total_items} objava</strong> iz <strong>%{filename}</strong>.
       domain_blocking_html: Upravo ćete <strong>zameniti svoju listu blokiranih domena</strong> sa do <strong>%{total_items} domena</strong> iz <strong>%{filename}</strong>.
       following_html: Upravo ćete <strong>pratiti</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong> and <strong>i prestati sa praćenjem bilo koga drugog</strong>.
+      lists_html: Spremate se da <strong>zamenite svoje liste</strong> sadržajem od <strong>%{filename}</strong>. Do <strong>%{total_items} naloga</strong> će biti dodato na nove liste.
       muting_html: Upravo ćete <strong>zameniti svoju listu ignorisanih naloga</strong> sa do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
     preambles:
       blocking_html: Upravo ćete <strong>blokirati</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
       bookmarks_html: Upravo ćete dodati do <strong>%{total_items} objava</strong> iz <strong>%{filename}</strong> u vaše <strong>obeleživače</strong>.
       domain_blocking_html: Upravo ćete <strong>blokirati</strong> do <strong>%{total_items} domena</strong> iz <strong>%{filename}</strong>.
       following_html: Upravo ćete <strong>pratiti</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
+      lists_html: Spremate se da dodate do <strong>%{total_items} naloga</strong> od <strong>%{filename}</strong> na svoje <strong>liste</strong>. Nove liste će biti kreirane ako ne postoji lista za dodavanje.
       muting_html: Upravo ćete <strong>ignorisati</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
     preface: Možete uvesti podatke koje ste izvezli sa druge instance, kao što su liste ljudi koje ste pratili ili blokirali.
     recent_imports: Nedavni uvozi
@@ -1325,6 +1314,7 @@ sr-Latn:
       bookmarks: Uvoz obeleživača
       domain_blocking: Uvoz blokiranih domena
       following: Uvoz praćenih naloga
+      lists: Uvoz lista
       muting: Uvoz ignorisanih naloga
     type: Tip uvoza
     type_groups:
@@ -1335,6 +1325,7 @@ sr-Latn:
       bookmarks: Obeleživači
       domain_blocking: Lista blokiranih domena
       following: Lista pratilaca
+      lists: Liste
       muting: Lista ućutkanih
     upload: Otpremi
   invites:
@@ -1666,7 +1657,6 @@ sr-Latn:
     show_newer: Nikad ne prikazuj
     show_older: Prikaži starije
     show_thread: Prikaži niz
-    sign_in_to_participate: Prijavite se da učestvujete u razgovoru
     title: "%{name}: „%{quote}”"
     visibilities:
       direct: Direktno
@@ -1712,8 +1702,6 @@ sr-Latn:
     min_reblogs: Zadrži objave podržane barem
     min_reblogs_hint: Ne briše nijednu vašu objavu koja je bila podržana najmanje ovoliko puta. Ostavite prazno za brisanje objava bez obzira na njihov broj podržavanja
   stream_entries:
-    pinned: Zakačena objava
-    reblogged: podržano
     sensitive_content: Osetljiv sadržaj
   strikes:
     errors:

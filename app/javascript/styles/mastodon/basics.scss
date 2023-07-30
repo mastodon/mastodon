@@ -161,11 +161,22 @@ body {
   }
 }
 
+a {
+  &:focus {
+    border-radius: 4px;
+    outline: $ui-button-icon-focus-outline;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
 button {
   font-family: inherit;
   cursor: pointer;
 
-  &:focus {
+  &:focus:not(:focus-visible) {
     outline: none;
   }
 }

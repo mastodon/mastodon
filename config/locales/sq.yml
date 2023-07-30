@@ -1,7 +1,7 @@
 ---
 sq:
   about:
-    about_mastodon_html: 'تۆڕی کۆمەڵایەتی داهاتوو: هیچ ڕیکلامێک، هیچ چاودێرییەکی کۆمپانیا، دیزاینی ئەخلاقی و لامەرکەزی! خاوەنی داتاکانت بە لە ماستۆدۆن!'
+    about_mastodon_html: 'Rrjeti shoqëror i së ardhmes: Pa reklama, pa survejim nga korporata, konceptim etik dhe decentralizim! Jini zot i të dhënave tuaja, me Mastodon-in!'
     contact_missing: I parregulluar
     contact_unavailable: N/A
     hosted_on: Mastodon i strehuar në %{domain}
@@ -475,7 +475,6 @@ sq:
           one: Përpjekje e dështuar në %{count} ditë.
           other: Përpjekje e dështuar në %{count} ditë të ndryshme.
         no_failures_recorded: S’ka dështime të regjistruara.
-        title: Disponueshmëria
         warning: Përpjekja e fundit për t’u lidhur me këtë shërbyes ka qenë e pasuksesshme
       back_to_all: Krejt
       back_to_limited: E kufizuar
@@ -667,7 +666,6 @@ sq:
         other: "%{count} përdorues"
       categories:
         administration: Administrim
-        devops: DevOps
         invites: Ftesa
         moderation: Moderim
         special: Special
@@ -718,7 +716,6 @@ sq:
         view_audit_log_description: U lejon përdoruesve të shohin një historik veprimesh administrative te shërbyesi
         view_dashboard: Shihni Pultin
         view_dashboard_description: U lejon përdoruesve të hyjnë te pulti dhe shohin shifra të ndryshme matjesh
-        view_devops: DevOps
         view_devops_description: U lejon përdoruesve të hyjnë në pultet Sidekiq dhe pgHero
       title: Role
     rules:
@@ -741,7 +738,6 @@ sq:
         preamble: Elementët e markës të shërbyesit tuaj e dallojnë atë nga shërbyes të tjerë në rrjet. Këto hollësi mund të shfaqen në një larmi mjedisesh, bie fjala, në ndërfaqen web të Mastodon-it, aplikacione për platforma të ndryshme, në paraparje lidhjesh në sajte të tjerë dhe brenda aplikacionesh për shkëmbim mesazhesh, e me radhë. Për këtë arsyes, më e mira është që këto hollësi të jenë të qarta, të shkurtra dhe të kursyera.
         title: Elementë marke
       captcha_enabled:
-        desc_html: Гэта функцыянальнасць залежыць ад знешніх скрыптоў hCaptcha, што можа быць праблемай бяспекі і прыватнасці. Акрамя таго, <strong>гэта можа зрабіць працэс рэгістрацыі значна менш даступным для некаторых людзей, асабліва інвалідаў</strong>. Па гэтых прычынах, калі ласка, разгледзьце альтэрнатыўныя меры, такія як рэгістрацыя на аснове зацвярджэння або запрашэння.
         title: Kërko prej përdoruesve të rinj të zgjidhin një CAPTCHA, si ripohim të llogarisë të tyre
       content_retention:
         preamble: Kontrolloni se si depozitohen në Mastodon lënda e prodhuar nga përdoruesit.
@@ -770,7 +766,6 @@ sq:
           approved: Për regjistrim, lypset miratimi
           none: S’mund të regjistrohet ndokush
           open: Mund të regjistrohet gjithkush
-      title: Rregullime Shërbyesi
     site_uploads:
       delete: Fshi kartelën e ngarkuar
       destroyed_msg: Ngarkimi në sajt u fshi me sukses!
@@ -852,7 +847,6 @@ sq:
           other: Ndarë me të tjerë nga %{count} vetë gjatë javës së kaluar
         title: Lidhje në modë
         usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
-      not_allowed_to_trend: غير مسموح ظهوره في المتداولة
       only_allowed: Lejuar vetëm
       pending_review: Në pritje të shqyrtimit
       preview_card_providers:
@@ -890,7 +884,6 @@ sq:
         peaked_on_and_decaying: Kulmoi më %{date}, tani në rënie
         title: Hashtag-ë në modë
         trendable: Mund të shfaqet nën të modës
-        trending_rank: 'U trendu #%{rank}'
         usable: Mund të përdoret
         usage_comparison: Përdorur %{today} herë sot, krahasuar me %{yesterday} dje
         used_by_over_week:
@@ -952,7 +945,6 @@ sq:
         title: Postime në modë
       new_trending_tags:
         no_approved_tags: Aktualisht s’ka hashtag-ë në modë të miratuar.
-        requirements: 'Qualquer um desses candidatos poderia ultrapassar a hashtag de tendência aprovada #%{rank} , que é atualmente #%{lowest_tag_name} com uma pontuação de %{lowest_tag_score}.'
         title: Hashtag-ë në modë
       subject: Gjëra të reja në modë për shqyrtim te %{instance}
   aliases:
@@ -973,7 +965,6 @@ sq:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Çdokush mund të kontribuojë.
     sensitive_content: Lëndë rezervat
-    toot_layout: Skemë mesazhesh
   application_mailer:
     notification_preferences: Ndryshoni parapëlqime email-i
     salutation: "%{name},"
@@ -1061,18 +1052,6 @@ sq:
       view_strikes: Shihni paralajmërime të dikurshme kundër llogarisë tuaj
     too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
     use_security_key: Përdor kyç sigurie
-  authorize_follow:
-    already_following: E ndiqni tashmë këtë llogari
-    already_requested: Keni dërguar tashmë një kërkesë ndjekjeje te ajo llogari
-    error: Mjerisht, pati një gabim gjatë kërkimit të llogarisë së largët
-    follow: Ndiqeni
-    follow_request: 'Keni dërguar një kërkesë ndjekjeje te:'
-    following: 'Sukses! Tani e ndiqni:'
-    post_follow:
-      close: Ose, thjesht mund të mbyllni këtë dritare.
-      return: Shfaq profilin e përdoruesit
-      web: Kalo në web
-    title: Ndiq %{acct}
   challenge:
     confirm: Vazhdo
     hint_html: "<strong>Ndihmëz:</strong> S’do t’ju pyesim për fjalëkalimin tuaj sërish, për një orë."
@@ -1353,13 +1332,6 @@ sq:
       action: Po, shpajtomëni
       complete: U shpajtuat
       confirmation_html: Jeni i sigurt se doni të shpajtoheni prej marrjes së %{type} për Mastodon në %{domain} te email-i juaj në %{email}? Mundeni përherë të ripajtoheni, që prej <a href="%{settings_path}">rregullimeve tuaja për njoftime me email</a>.
-      emails:
-        notification_emails:
-          favourite: notificaciones de me gusta por correo
-          follow: notificaciones de seguidores por correo
-          follow_request: notificaciones de peticiones de seguimiento por correo
-          mention: notificaciones de menciones por correo
-          reblog: notificaciones de impulsos por correo
       resubscribe_html: Nëse u shpajtuat gabimisht, mund të ripajtoheni që nga <a href="%{settings_path}">rregullimet tuaja për njoftime me email</a>.
       success_html: S’do të merrni më %{type} për Mastodon në %{domain} te email juaj %{email}.
       title: Shpajtohuni
@@ -1634,7 +1606,6 @@ sq:
     show_newer: Shfaq më të reja
     show_older: Shfaq më të vjetra
     show_thread: Shfaq rrjedhën
-    sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: I drejtpërdrejtë
@@ -1680,8 +1651,6 @@ sq:
     min_reblogs: Mbaji postimet e përforcuara më shumë se
     min_reblogs_hint: Nuk fshihet ndonjë nga postimet tuaja që kanë marrë më shumë se sa ky numër përforcimesh. Lëreni të zbrazët për të fshirë postimet, pavarësisht të numrit të përforcimeve për to
   stream_entries:
-    pinned: Mesazh i fiksuar
-    reblogged: të përforcuara
     sensitive_content: Lëndë rezervat
   strikes:
     errors:

@@ -146,7 +146,7 @@ es:
         targeted_reports: Reportes hechos sobre esta cuenta
       silence: Silenciar
       silenced: Silenciado
-      statuses: Estados
+      statuses: Publicaciones
       strikes: Amonestaciones previas
       subscribe: Suscribir
       suspend: Suspender
@@ -195,7 +195,7 @@ es:
         destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
         destroy_instance: Purgar Dominio
         destroy_ip_block: Eliminar regla IP
-        destroy_status: Eliminar Estado
+        destroy_status: Eliminar Publicación
         destroy_unavailable_domain: Eliminar Dominio No Disponible
         destroy_user_role: Destruir Rol
         disable_2fa_user: Deshabilitar 2FA
@@ -226,7 +226,7 @@ es:
         update_custom_emoji: Actualizar Emoji Personalizado
         update_domain_block: Actualizar el Bloqueo de Dominio
         update_ip_block: Actualizar regla IP
-        update_status: Actualizar Estado
+        update_status: Actualizar Publicación
         update_user_role: Actualizar Rol
       actions:
         approve_appeal_html: "%{name} aprobó la solicitud de moderación de %{target}"
@@ -254,7 +254,7 @@ es:
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
         destroy_instance_html: "%{name} purgó el dominio %{target}"
         destroy_ip_block_html: "%{name} eliminó una regla para la IP %{target}"
-        destroy_status_html: "%{name} eliminó el estado por %{target}"
+        destroy_status_html: "%{name} eliminó la publicación de %{target}"
         destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
         destroy_user_role_html: "%{name} eliminó el rol %{target}"
         disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
@@ -285,7 +285,7 @@ es:
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_ip_block_html: "%{name} cambió la regla para la IP %{target}"
-        update_status_html: "%{name} actualizó el estado de %{target}"
+        update_status_html: "%{name} actualizó la publicación de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
       deleted_account: cuenta eliminada
       empty: No se encontraron registros.
@@ -770,7 +770,7 @@ es:
           approved: Se requiere aprobación para registrarse
           none: Nadie puede registrarse
           open: Cualquiera puede registrarse
-      title: Ajustes del Servidor
+      title: Ajustes del servidor
     site_uploads:
       delete: Eliminar archivo subido
       destroyed_msg: "¡Carga del sitio eliminada con éxito!"
@@ -790,12 +790,12 @@ es:
       media:
         title: Multimedia
       metadata: Metadatos
-      no_status_selected: No se cambió ningún estado al no seleccionar ninguno
+      no_status_selected: No se cambió ninguna publicación al no seleccionar ninguna
       open: Abrir publicación
       original_status: Publicación original
       reblogs: Impulsos
       status_changed: Publicación cambiada
-      title: Estado de las cuentas
+      title: Publicaciones de la cuenta
       trending: En tendencia
       visibility: Visibilidad
       with_media: Con multimedia
@@ -973,7 +973,6 @@ es:
       guide_link: https://es.crowdin.com/project/mastodon
       guide_link_text: Todos pueden contribuir.
     sensitive_content: Contenido sensible
-    toot_layout: Diseño de las publicaciones
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
     salutation: "%{name}:"
@@ -981,7 +980,7 @@ es:
     unsubscribe: Cancelar suscripción
     view: 'Vista:'
     view_profile: Ver perfil
-    view_status: Ver estado
+    view_status: Ver publicación
   applications:
     created: Aplicación creada exitosamente
     destroyed: Apicación eliminada exitosamente
@@ -1061,18 +1060,6 @@ es:
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     use_security_key: Usar la clave de seguridad
-  authorize_follow:
-    already_following: Ya estás siguiendo a esta cuenta
-    already_requested: Ya has enviado una solicitud de seguimiento a esa cuenta
-    error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
-    follow: Seguir
-    follow_request: 'Tienes una solicitud de seguimiento de:'
-    following: "¡Éxito! Ahora estás siguiendo a:"
-    post_follow:
-      close: O, puedes simplemente cerrar esta ventana.
-      return: Regresar al perfil del usuario
-      web: Ir al sitio web
-    title: Seguir a %{acct}
   challenge:
     confirm: Continuar
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
@@ -1365,7 +1352,7 @@ es:
       title: Cancelar suscripición
   media_attachments:
     validations:
-      images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
+      images_and_video: No se puede adjuntar un video a unapublicación que ya contenga imágenes
       not_ready: No se pueden adjuntar archivos que no se han terminado de procesar. ¡Inténtalo de nuevo en un momento!
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
@@ -1414,8 +1401,8 @@ es:
       sign_up:
         subject: "%{name} se registró"
     favourite:
-      body: 'Tu estado fue marcado como favorito por %{name}:'
-      subject: "%{name} marcó como favorito tu estado"
+      body: 'Tu publicación fue marcada como favorita por %{name}:'
+      subject: "%{name} marcó como favorita tu publicación"
       title: Nuevo favorito
     follow:
       body: "¡%{name} te está siguiendo!"
@@ -1614,7 +1601,7 @@ es:
       other: 'contenía los hashtags no permitidos: %{tags}'
     edited_at_html: Editado %{date}
     errors:
-      in_reply_not_found: El estado al que intentas responder no existe.
+      in_reply_not_found: La publicación a la que intentas responder no existe.
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
@@ -1634,7 +1621,6 @@ es:
     show_newer: Mostrar más recientes
     show_older: Mostrar más antiguos
     show_thread: Mostrar discusión
-    sign_in_to_participate: Inicia sesión para participar en la conversación
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Directa
@@ -1680,8 +1666,6 @@ es:
     min_reblogs: Mantener publicaciones reblogueadas más de
     min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido reblogueadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de reblogueos
   stream_entries:
-    pinned: Publicación fijada
-    reblogged: impulsó
     sensitive_content: Contenido sensible
   strikes:
     errors:

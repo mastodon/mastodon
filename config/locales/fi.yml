@@ -973,7 +973,6 @@ fi:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Kaikki voivat osallistua.
     sensitive_content: Arkaluonteinen sisältö
-    toot_layout: Viestin asettelu
   application_mailer:
     notification_preferences: Muuta sähköpostiasetuksia
     salutation: "%{name},"
@@ -1061,18 +1060,6 @@ fi:
       view_strikes: Näytä tiliäsi koskevia aiempia varoituksia
     too_fast: Lomake lähetettiin liian nopeasti, yritä uudelleen.
     use_security_key: Käytä suojausavainta
-  authorize_follow:
-    already_following: Sinä seuraat jo tätä tiliä
-    already_requested: Olet jo lähettänyt seurantapyynnön tälle tilille
-    error: Valitettavasti etätilin haussa tapahtui virhe
-    follow: Seuraa
-    follow_request: 'Olet lähettänyt seuraamispyynnön käyttäjälle:'
-    following: 'Onnistui! Seuraat käyttäjää:'
-    post_follow:
-      close: Tai voit sulkea tämän ikkunan.
-      return: Palaa käyttäjän profiiliin
-      web: Siirry verkkosivulle
-    title: Seuraa käyttäjää %{acct}
   challenge:
     confirm: Jatka
     hint_html: "<strong>Vihje:</strong> Emme pyydä sinulta salasanaa uudelleen seuraavan tunnin aikana."
@@ -1278,12 +1265,14 @@ fi:
       bookmarks_html: Olet aikeissa <strong>korvata kirjanmerkit</strong> kaikkiaan <strong>%{total_items} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
       domain_blocking_html: Olet aikeissa <strong>korvata verkkotunnusestot</strong> kaikkiaan <strong>%{total_items} verkkotunnuksella</strong> tiedostoon <strong>%{filename}</strong> perustuen.
       following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostoon <strong>%{filename}</strong> perustuen. Aiot lisäksi <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+      lists_html: Olet <strong>korvaamassa listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{total_items} tiliä</strong>.
       muting_html: Olet <strong>korvaamassa mykistettyjä tilejäsi</strong> kaikkiaan <strong>%{total_items} tilillä</strong> tiedostoon <strong>%{filename}</strong> perustuen.
     preambles:
       blocking_html: Olet <strong>estämässä</strong> yhteensä <strong>%{total_items} tiliä</strong> tiedostoon <strong>%{filename}</strong> perustuen.
       bookmarks_html: Olet lisäämässä <strong>%{total_items} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
       domain_blocking_html: Olet <strong>estämässä</strong> yhteensä <strong>%{total_items} verkkotunnusta</strong> tiedoston <strong>%{filename}</strong> nojalla.
       following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostoon <strong>%{filename}</strong> perustuen.
+      lists_html: Olet lisäämässä <strong>listoihisi</strong> <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uudet listat luodaan, jos sopivaa kohdelistaa ei ole olemassa.
       muting_html: Olet <strong>hiljentämässä</strong> yhteensä <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
     preface: Voit tuoda toisesta instanssista viemiäsi tietoja, kuten esimerkiksi seuraamiesi tai estämiesi henkilöiden listan.
     recent_imports: Viimeksi tuotu
@@ -1300,6 +1289,7 @@ fi:
       bookmarks: Tuodaan kirjanmerkkejä
       domain_blocking: Tuodaan estettyjä verkkotunnuksia
       following: Tuodaan seurattuja tilejä
+      lists: Listojen tuonti
       muting: Tuodaan hiljennettyjä tilejä
     type: Tuonnin tyyppi
     type_groups:
@@ -1310,6 +1300,7 @@ fi:
       bookmarks: Kirjanmerkit
       domain_blocking: Verkkoalueen estolista
       following: Seurattujen lista
+      lists: Listat
       muting: Mykistettyjen lista
     upload: Lähetä
   invites:
@@ -1352,7 +1343,6 @@ fi:
     unsubscribe:
       action: Kyllä, peru tilaus
       complete: Tilaus lopetettiin
-      confirmation_html: Oletko varma, että haluat lopettaa käyttäjän %{type} vastaanottamisen Mastodonista %{domain} sähköpostiisi osoitteessa %{email}? Voit aina tilata <a href="%{settings_path}">sähköposti-ilmoitusasetuksesi</a> uudelleen .
       emails:
         notification_emails:
           favourite: sähköpostit ilmoituksille
@@ -1360,8 +1350,6 @@ fi:
           follow_request: seuraa pyyntöjä sähköpostiin
           mention: mainitse sähköpostin ilmoitukset
           reblog: tehosta sähköpostien ilmoituksia
-      resubscribe_html: Jos olet perunut tilauksen erehdyksellä, voit tilata uudelleen <a href="%{settings_path}">sähköpostin ilmoitusasetuksistasi</a>.
-      success_html: Et enää saa %{type} Mastodonilta %{domain} sähköpostiisi osoitteeseen %{email}.
       title: Lopeta tilaus
   media_attachments:
     validations:
@@ -1634,7 +1622,6 @@ fi:
     show_newer: Näytä uudemmat
     show_older: Näytä vanhempi
     show_thread: Näytä ketju
-    sign_in_to_participate: Kirjaudu osallistuaksesi keskusteluun
     title: "%{name}: ”%{quote}”"
     visibilities:
       direct: Suoraan
@@ -1680,8 +1667,6 @@ fi:
     min_reblogs: Pidä viestit tehostettuna vähintään
     min_reblogs_hint: Ei poista yhtään viestiäsi, jota on tehostettu vähintään näin monta kertaa. Jätä tyhjäksi poistaaksesi viestejä riippumatta niiden tehosteiden määrästä
   stream_entries:
-    pinned: Kiinnitetty tuuttaus
-    reblogged: tehosti
     sensitive_content: Arkaluontoista sisältöä
   strikes:
     errors:
@@ -1782,10 +1767,6 @@ fi:
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut tilillä:'
   verification:
-    extra_instructions_html: <strong>Vihje:</strong> Sivuston linkki voi olla näkymätön. Tärkeä osa on <code>rel="me"</code> joka estää personoinnin verkkosivustoilla, joilla on käyttäjän luomaa sisältöä. Voit jopa käyttää <code>linkkiä</code> tag sivun otsikossa sen sijaan <code>a</code>, mutta HTML:n on oltava käytettävissä suorittamatta JavaScriptiä.
-    here_is_how: Näin voit tehdä sen
-    hint_html: "<strong>Henkilöllisyytesi varmentaminen Mastodonissa on kaikille.</strong> Perustuu avoimiin web-standardeihin, nyt ja ikuisesti ilmaiseksi. Kaikki mitä tarvitset on henkilökohtainen sivusto, että ihmiset tunnistavat sinut. Kun linkit tälle sivustolle profiilistasi, tarkistamme, että sivusto linkit takaisin profiiliisi ja näyttää visuaalinen indikaattori sitä."
-    instructions_html: Kopioi ja liitä alla oleva koodi verkkosivusi HTML:ään. Lisää sitten sivustosi osoite johonkin ylimääräisestä kentästä profiilissasi "Muokkaa profiilia" -välilehdestä ja tallenna muutokset.
     verification: Vahvistus
     verified_links: Vahvistetut linkkisi
   webauthn_credentials:

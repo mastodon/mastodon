@@ -955,7 +955,6 @@ vi:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Ai cũng có thể đóng góp.
     sensitive_content: Nội dung nhạy cảm
-    toot_layout: Tút
   application_mailer:
     notification_preferences: Thay đổi tùy chọn email
     salutation: "%{name},"
@@ -1043,18 +1042,6 @@ vi:
       view_strikes: Xem những lần cảnh cáo cũ
     too_fast: Nghi vấn đăng ký spam, xin thử lại.
     use_security_key: Dùng khóa bảo mật
-  authorize_follow:
-    already_following: Bạn đang theo dõi người này
-    already_requested: Bạn vừa gửi một yêu cầu theo dõi tới người này
-    error: Rất tiếc, đã xảy ra lỗi khi tìm kiếm tài khoản từ nơi khác
-    follow: Theo dõi
-    follow_request: Bạn đã gửi yêu cầu theo dõi tới
-    following: Chúc mừng! Bạn đã trở thành người theo dõi
-    post_follow:
-      close: Bạn có thể đóng cửa sổ này rồi.
-      return: Xem trang hồ sơ
-      web: Mở trong Mastodon
-    title: Theo dõi %{acct}
   challenge:
     confirm: Tiếp tục
     hint_html: "<strong>Mẹo:</strong> Chúng tôi sẽ không hỏi lại mật khẩu của bạn sau này."
@@ -1253,12 +1240,14 @@ vi:
       bookmarks_html: Bạn sắp <strong>thay thế lượt lưu</strong> với <strong>%{total_items} tút</strong> từ <strong>%{filename}</strong>.
       domain_blocking_html: Bạn sắp <strong>thay thế danh sách máy chủ chặn</strong> với <strong>%{total_items} máy chủ</strong> từ <strong>%{filename}</strong>.
       following_html: Bạn sắp <strong>theo dõi</strong> với <strong>%{total_items} người</strong> từ <strong>%{filename}</strong> và <strong>ngừng theo dõi bất kỳ ai</strong>.
+      lists_html: Bạn sắp <strong>thay thế các danh sách</strong> bằng nội dung từ <strong>%{filename}</strong>. Hơn <strong>%{total_items} tài khoản</strong> sẽ được thêm vào những danh sách mới.
       muting_html: Bạn sắp <strong>thay thế danh sách ẩn</strong> với <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
     preambles:
       blocking_html: Bạn sắp <strong>chặn</strong> tới <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
       bookmarks_html: Bạn sắp thêm vào <strong>%{total_items} tút</strong> từ <strong>%{filename}</strong> vào <strong>lượt lưu</strong>.
       domain_blocking_html: Bạn sắp <strong>chặn</strong> tới <strong>%{total_items} máy chủ</strong> từ <strong>%{filename}</strong>.
       following_html: Bạn sắp <strong>theo dõi</strong> tới <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
+      lists_html: Bạn sắp thêm <strong>%{total_items} tài khoản</strong> từ <strong>%{filename}</strong> vào <strong>danh sách của bạn</strong>. Những danh sách mới sẽ được tạo nếu bạn chưa có danh sách nào.
       muting_html: Bạn sắp <strong>ẩn</strong> lên tới <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
     preface: Bạn có thể nhập dữ liệu mà bạn đã xuất từ một máy chủ khác, chẳng hạn như danh sách những người bạn đang theo dõi hoặc chặn.
     recent_imports: Đã nhập gần đây
@@ -1275,6 +1264,7 @@ vi:
       bookmarks: Đang nhập lượt lưu
       domain_blocking: Đang nhập máy chủ đã chặn
       following: Đang nhập người theo dõi
+      lists: Nhập danh sách
       muting: Đang nhập người đã ẩn
     type: Kiểu nhập
     type_groups:
@@ -1285,6 +1275,7 @@ vi:
       bookmarks: Tút đã lưu
       domain_blocking: Danh sách máy chủ đã chặn
       following: Danh sách người theo dõi
+      lists: Danh sách
       muting: Danh sách người đã ẩn
     upload: Tải lên
   invites:
@@ -1602,7 +1593,6 @@ vi:
     show_newer: Mới hơn
     show_older: Cũ hơn
     show_thread: Trích nguyên văn
-    sign_in_to_participate: Đăng nhập để trả lời tút này
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Nhắn riêng
@@ -1648,8 +1638,6 @@ vi:
     min_reblogs: Giữ những tút đã đăng lại lâu hơn
     min_reblogs_hint: Những tút có lượt đăng lại nhiều hơn số này sẽ không bị xóa. Để trống nếu bạn muốn xóa hết
   stream_entries:
-    pinned: Tút đã ghim
-    reblogged: đăng lại
     sensitive_content: NSFW
   strikes:
     errors:

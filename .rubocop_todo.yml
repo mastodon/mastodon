@@ -127,12 +127,6 @@ Lint/UselessAssignment:
     - 'spec/services/resolve_url_service_spec.rb'
     - 'spec/views/statuses/show.html.haml_spec.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: CheckForMethodsWithNoSideEffects.
-Lint/Void:
-  Exclude:
-    - 'spec/services/resolve_account_service_spec.rb'
-
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 150
@@ -151,13 +145,6 @@ Metrics/CyclomaticComplexity:
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/PerceivedComplexity:
   Max: 27
-
-# Configuration parameters: ExpectMatchingDefinition, CheckDefinitionPathHierarchy, CheckDefinitionPathHierarchyRoots, Regex, IgnoreExecutableScripts, AllowedAcronyms.
-# CheckDefinitionPathHierarchyRoots: lib, spec, test, src
-# AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
-Naming/FileName:
-  Exclude:
-    - 'config/locales/sr-Latn.rb'
 
 # Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers, AllowedPatterns.
 # SupportedStyles: snake_case, normalcase, non_integer
@@ -287,7 +274,6 @@ RSpec/LetSetup:
     - 'spec/controllers/api/v2/admin/accounts_controller_spec.rb'
     - 'spec/controllers/api/v2/filters/keywords_controller_spec.rb'
     - 'spec/controllers/api/v2/filters/statuses_controller_spec.rb'
-    - 'spec/controllers/api/v2/filters_controller_spec.rb'
     - 'spec/controllers/auth/confirmations_controller_spec.rb'
     - 'spec/controllers/auth/passwords_controller_spec.rb'
     - 'spec/controllers/auth/sessions_controller_spec.rb'
@@ -297,6 +283,7 @@ RSpec/LetSetup:
     - 'spec/controllers/oauth/tokens_controller_spec.rb'
     - 'spec/controllers/settings/imports_controller_spec.rb'
     - 'spec/lib/activitypub/activity/delete_spec.rb'
+    - 'spec/lib/vacuum/applications_vacuum_spec.rb'
     - 'spec/lib/vacuum/preview_cards_vacuum_spec.rb'
     - 'spec/models/account_spec.rb'
     - 'spec/models/account_statuses_cleanup_policy_spec.rb'
@@ -841,8 +828,6 @@ Style/RedundantConstantBase:
   Exclude:
     - 'config/environments/production.rb'
     - 'config/initializers/sidekiq.rb'
-    - 'config/locales/sr-Latn.rb'
-    - 'config/locales/sr.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: SafeForConstants.

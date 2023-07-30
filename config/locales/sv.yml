@@ -963,7 +963,6 @@ sv:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alla kan bidra.
     sensitive_content: Känsligt innehåll
-    toot_layout: Inläggslayout
   application_mailer:
     notification_preferences: Ändra e-postinställningar
     salutation: "%{name},"
@@ -1020,6 +1019,7 @@ sv:
       back: Tillbaka
       preamble: Dessa bestäms och upprätthålls av moderatorerna för %{domain}.
       title: Några grundregler.
+      title_invited: Du har blivit inbjuden.
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
@@ -1042,18 +1042,6 @@ sv:
       view_strikes: Visa tidigare prickar på ditt konto
     too_fast: Formuläret har skickats för snabbt, försök igen.
     use_security_key: Använd säkerhetsnyckel
-  authorize_follow:
-    already_following: Du följer redan detta konto
-    already_requested: Du har redan skickat en vänförfrågan till det kontot
-    error: Tyvärr inträffade ett fel när vi kontrollerade fjärrkontot
-    follow: Följ
-    follow_request: 'Du har skickat en följaförfrågan till:'
-    following: 'Succé! Du följer nu:'
-    post_follow:
-      close: Eller så kan du stänga detta fönster.
-      return: Visa användarens profil
-      web: Gå till webb
-    title: Följ %{acct}
   challenge:
     confirm: Fortsätt
     hint_html: "<strong>Tips:</strong> Vi frågar dig inte efter ditt lösenord igen under nästkommande timme."
@@ -1262,6 +1250,7 @@ sv:
       bookmarks: Bokmärken
       domain_blocking: Domänblockeringslista
       following: Lista av följare
+      lists: Listor
       muting: Lista av nertystade
     upload: Ladda upp
   invites:
@@ -1570,7 +1559,6 @@ sv:
     show_newer: Visa nyare
     show_older: Visa äldre
     show_thread: Visa tråd
-    sign_in_to_participate: Logga in för att delta i konversationen
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkt
@@ -1616,8 +1604,6 @@ sv:
     min_reblogs: Behåll boostade inlägg i minst
     min_reblogs_hint: Raderar inte något av dina inlägg som har blivit boostat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal boostar
   stream_entries:
-    pinned: Fäst inlägg
-    reblogged: boostad
     sensitive_content: Känsligt innehåll
   strikes:
     errors:

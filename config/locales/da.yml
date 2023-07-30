@@ -383,13 +383,13 @@ da:
     domain_blocks:
       add_new: Tilføj ny domæneblokering
       confirm_suspension:
-        cancel: Fortryd
+        cancel: Annuller
         confirm: Suspendér
         permanent_action: Fortrydelse af suspensionen vil ikke genoprette nogen data eller sammenhæng.
         preamble_html: Du er ved at suspendere <strong>%{domain}</strong> og dets underdomæner.
         remove_all_data: Dette vil fjerne alt indhold, medier og profildata for dette domænes konti fra din server.
         stop_communication: Din server vil stoppe kommunikationen med disse servere.
-        title: Annullér domæneblokering for domænet %{domain}
+        title: Bekræft blokering af domænet %{domain}
         undo_relationships: Dette vil fortryde ethvert følgeforhold mellem konti for disse servere og din.
       created_msg: Domæneblokering under behandling
       destroyed_msg: Domæneblokering er blevet fjernet
@@ -973,12 +973,11 @@ da:
       guide_link: https://da.crowdin.com/project/mastodon
       guide_link_text: Alle kan bidrage.
     sensitive_content: Sensitivt indhold
-    toot_layout: Indlægslayout
   application_mailer:
     notification_preferences: Skift e-mailpræferencer
     salutation: "%{name}"
     settings: 'Skift e-mailpræferencer: %{link}'
-    unsubscribe: Opsig abonnement
+    unsubscribe: Afmeld notifikationer
     view: 'Vis:'
     view_profile: Vis profil
     view_status: Vis status
@@ -993,8 +992,8 @@ da:
   auth:
     apply_for_account: Anmod om en konto
     captcha_confirmation:
-      help_html: Hvis du har problemer med at løse CAPTCHA, kan du komme i kontakt med os via %{email} og vi kan hjælpe dig.
-      hint_html: Bare en ting mere! Vi er nødt til at bekræfte, at du er et menneske (dette er, så vi kan holde spam ud!). Løs CAPTCHA nedenfor og klik på "Fortsæt".
+      help_html: Hvis du har problemer med at løse CAPTCHA'en, kan du kontakte os via %{email}, så vi kan hjælpe dig.
+      hint_html: Bare en ting mere! Vi er nødt til at bekræfte, at du er et menneske (dette er for at vi kan holde spam ude!). Løs CAPTCHA'en nedenfor og klik på "Fortsæt".
       title: Sikkerhedstjek
     confirmations:
       wrong_email_hint: Er denne e-mailadresse ikke korrekt, kan den ændres i kontoindstillinger.
@@ -1036,7 +1035,7 @@ da:
       preamble: Disse er opsat og håndhæves af %{domain}-moderatorerne.
       preamble_invited: Før du fortsætter, bedes du overveje de grundregler, der er fastsat af moderatorerne af %{domain}.
       title: Nogle grundregler.
-      title_invited: Du er blevet spiddet!
+      title_invited: Du er blevet inviteret.
     security: Sikkerhed
     set_new_password: Opsæt ny adgangskode
     setup:
@@ -1061,18 +1060,6 @@ da:
       view_strikes: Se tidligere anmeldelser af din konto
     too_fast: Formularen indsendt for hurtigt, forsøg igen.
     use_security_key: Brug sikkerhedsnøgle
-  authorize_follow:
-    already_following: Du følger allerede denne konto
-    already_requested: Du har allerede sendt en følgeanmodning til den konto
-    error: Desværre opstod en fejl under søgning af fjernkontoen
-    follow: Følg
-    follow_request: 'Du har sendt en følgeanmodning til:'
-    following: 'Accepteret! Du følger nu:'
-    post_follow:
-      close: Du kan også bare lukke dette vindue.
-      return: Vis brugerens profil
-      web: Gå til web
-    title: Følg %{acct}
   challenge:
     confirm: Fortsæt
     hint_html: "<strong>Tip:</strong> Du bliver ikke anmodet om din adgangskode igen den næste time."
@@ -1153,7 +1140,7 @@ da:
     basic_information: Oplysninger
     hint_html: "<strong>Tilpas hvad folk ser på din offentlige profil og ved siden af dine indlæg.</strong> Andre personer vil mere sandsynligt følge dig tilbage og interagere med dig, når du har en udfyldt profil og et profilbillede."
     other: Andre
-    safety_and_privacy: Sikkerhed og Privatliv
+    safety_and_privacy: Sikkerhed og privatliv
   errors:
     '400': Din indsendte anmodning er ugyldig eller fejlbehæftet.
     '403': Du har ikke tilladelse til at se denne side.
@@ -1278,12 +1265,14 @@ da:
       bookmarks_html: Du er ved at <strong>erstatte bogmærkelisten</strong> med op til <strong>%{total_items} emner</strong> fra <strong>%{filename}</strong>.
       domain_blocking_html: Du er ved at <strong>erstatte domæneblokeringslisten</strong> med op til <strong>%{total_items} domæner</strong> fra <strong>%{filename}</strong>.
       following_html: Du er ved at <strong>følge</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong> og <strong>stoppe med at følge alle andre</strong>.
+      lists_html: Du er ved at <strong>erstatte dine lister</strong> med indholdet af <strong>%{filename}</strong>. Op til <strong>%{total_items} konti</strong> tilføjes nye lister.
       muting_html: Du er ved at <strong>erstatte listen over tavsgjorte konti</strong> med op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
     preambles:
       blocking_html: Du er ved at <strong>blokere</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
       bookmarks_html: Du er ved at føje op til <strong>%{total_items} indlæg</strong> fra <strong>%{filename}</strong> til <strong>bogmærkelisten</strong>.
       domain_blocking_html: Du er ved at <strong>blokere</strong> op til <strong>%{total_items} domæner</strong> fra <strong>%{filename}</strong>.
       following_html: Du er ved at <strong>følge</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
+      lists_html: Du er ved at tilføje op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong> til dine <strong>lister</strong>. Nye lister oprettes, hvis der ikke er nogen liste at føje konti til.
       muting_html: Du er ved at <strong>tavsgøre</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
     preface: Du kan importere data, du har eksporteret fra en anden server, såsom en liste over folk du følger eller blokerer.
     recent_imports: Seneste importer
@@ -1300,6 +1289,7 @@ da:
       bookmarks: Importerer bogmærker
       domain_blocking: Importerer blokerede konti
       following: Importerer fulgte konti
+      lists: Import af lister
       muting: Importerer tavsgjorte konti
     type: Importtype
     type_groups:
@@ -1310,6 +1300,7 @@ da:
       bookmarks: Bogmærker
       domain_blocking: Domæneblokeringsliste
       following: Følgningsliste
+      lists: Lister
       muting: Tavsgørelsesliste
     upload: Upload
   invites:
@@ -1351,16 +1342,16 @@ da:
   mail_subscriptions:
     unsubscribe:
       action: Ja, afmeld
-      complete: Frameldt
+      complete: Afmeldt
       confirmation_html: Er du sikker på, at du vil afmelde dig fra at modtage %{type} for Mastodon på %{domain} til din e-mail på %{email}? Du kan altid gentilmelde dig dine <a href="%{settings_path}">e-mail-notifikationsindstillinger</a>.
       emails:
         notification_emails:
-          favourite: favorit notifikations e-mails
-          follow: favorit notifikations e-mails
-          follow_request: følg anmodning e-mails
-          mention: favorit notifikations e-mails
-          reblog: favorit notifikations e-mails
-      resubscribe_html: Hvis du ved en fejl har afmeldt dig, kan du gentilmelde dig dine <a href="%{settings_path}">e-mail-notifikationsindstillinger</a>.
+          favourite: e-mailnotifikationer om favoritmarkeringer
+          follow: e-mailnotifikationer om nye følgere
+          follow_request: e-mailnotifikationer om følgeanmodninger
+          mention: e-mailnotifikationer om omtaler
+          reblog: e-mailnotifikationer om boosts
+      resubscribe_html: Hvis du har afmeldt dig ved en fejl, kan du gentilmelde dig under dine <a href="%{settings_path}">e-mail-notifikationsindstillinger</a>.
       success_html: Du vil ikke længere modtage %{type} for Mastodon på %{domain} til din e-mail på %{email}.
       title: Opsig abonnement
   media_attachments:
@@ -1459,7 +1450,7 @@ da:
     code_hint: Angiv koden genereret af godkendelses-appen for at bekræfte
     description_html: Aktiveres <strong>tofaktorgodkendelse</strong> vha. af en godkendelses-app, vil man skulle benytte sin mobil, der genererer det token, der skal angives ved indlogning.
     enable: Aktivér
-    instructions_html: "<strong>Skan denne QR-kode i Google Autehnticator eller en lign. TOTP-app på mobilen</strong>. Fremadrettet vil appen generere de tokens, som vil skulle angives ifm. indlogning."
+    instructions_html: "<strong>Skan denne QR-kode i Google Authenticator eller en lign. TOTP-app på mobilen</strong>. Fremadrettet vil appen generere de tokens, som vil skulle angives ifm. indlogning."
     manual_instructions: 'Kan QR-koden ikke skannes, så man er nødt til manuelt at angive den, er her en simplel tekst-hemmelighed:'
     setup: Opsæt
     wrong_code: Den angivne kode er ugyldig! Er server- og enhedsklokkeslæt korrekte?
@@ -1478,7 +1469,7 @@ da:
       expired: Afstemningen er allerede afsluttet
       invalid_choice: Den valgte stemmemulighed findes ikke
       over_character_limit: må maks. udgøre %{max} tegn hver
-      self_vote: Du kan ikke stemme på dit eget indlæg.
+      self_vote: Du kan ikke stemme i dine egne afstemninger
       too_few_options: skal have flere end ét valg
       too_many_options: for mange svar (maks. %{max})
   preferences:
@@ -1588,7 +1579,7 @@ da:
     migrate: Kontomigrering
     notifications: Notifikationer
     preferences: Præferencer
-    profile: Profil
+    profile: Offentlig profil
     relationships: Følger og følgere
     statuses_cleanup: Auto-indlægssletning
     strikes: Moderationsadvarsler
@@ -1618,7 +1609,7 @@ da:
     open_in_web: Åbn i webbrowser
     over_character_limit: grænsen på %{max} tegn overskredet
     pin_errors:
-      direct: Indlæg, som kun kan ses af nævnte brugere, kan ikke fastgøres
+      direct: Indlæg, som kun kan ses af omtalte brugere, kan ikke fastgøres
       limit: Maksimalt antal indlæg allerede fastgjort
       ownership: Andres indlæg kan ikke fastgøres
       reblog: Et boost kan ikke fastgøres
@@ -1634,7 +1625,6 @@ da:
     show_newer: Vis nyere
     show_older: Vis ældre
     show_thread: Vis tråd
-    sign_in_to_participate: Log ind for at deltage i konversationen
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkte
@@ -1680,8 +1670,6 @@ da:
     min_reblogs: Behold indlæg boostet mindst
     min_reblogs_hint: Sletter ingen egne indlæg, som er boostet flere end dette antal gange. Lad stå tomt for at ignorere denne tærskel under sletning
   stream_entries:
-    pinned: Fastgjort indlæg
-    reblogged: boostet
     sensitive_content: Sensitivt indhold
   strikes:
     errors:

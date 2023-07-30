@@ -48,7 +48,7 @@ const messages = defineMessages({
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   followed_tags: { id: 'navigation_bar.followed_tags', defaultMessage: 'Followed hashtags' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
@@ -370,15 +370,32 @@ class Header extends ImmutablePureComponent {
     const acct            = isLocal && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
     const isIndexable     = !account.get('noindex');
 
-    let badge;
+    const badges = [];
 
     if (account.get('bot')) {
-      badge = (<div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Automated' /></div>);
+      badges.push(
+        <div key='bot-badge' className='account-role bot'>
+          <Icon id='cogs' /> { ' ' }
+          <FormattedMessage id='account.badges.bot' defaultMessage='Automated' />
+        </div>
+      );
     } else if (account.get('group')) {
-      badge = (<div className='account-role group'><FormattedMessage id='account.badges.group' defaultMessage='Group' /></div>);
-    } else {
-      badge = null;
+      badges.push(
+        <div key='group-badge' className='account-role group'>
+          <Icon id='users' /> { ' ' }
+          <FormattedMessage id='account.badges.group' defaultMessage='Group' />
+        </div>
+      );
     }
+
+    account.get('roles', []).forEach((role) => {
+      badges.push(
+        <div key={`role-badge-${role.get('id')}`} className={`account-role user-role-${account.getIn(['roles', 0, 'id'])}`}>
+          <Icon id='circle' /> { ' ' }
+          <span>{role.get('name')} ({domain})</span>
+        </div>
+      );
+    });
 
     return (
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
@@ -414,12 +431,18 @@ class Header extends ImmutablePureComponent {
 
           <div className='account__header__tabs__name'>
             <h1>
-              <span dangerouslySetInnerHTML={displayNameHtml} /> {badge}
+              <span dangerouslySetInnerHTML={displayNameHtml} />
               <small>
                 <span>@{acct}</span> {lockedIcon}
               </small>
             </h1>
           </div>
+
+          {badges.length > 0 && (
+            <div className='account__header__badges'>
+              {badges}
+            </div>
+          )}
 
           {!(suspended || hidden) && (
             <div className='account__header__extra'>

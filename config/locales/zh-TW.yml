@@ -959,7 +959,6 @@ zh-TW:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每個人都能貢獻。
     sensitive_content: 敏感內容
-    toot_layout: 嘟文排版
   application_mailer:
     notification_preferences: 變更電子郵件設定
     salutation: "%{name}、"
@@ -1047,18 +1046,6 @@ zh-TW:
       view_strikes: 檢視針對您帳號過去的警示
     too_fast: 送出表單的速度太快跟不上，請稍後再試。
     use_security_key: 使用安全金鑰
-  authorize_follow:
-    already_following: 您已經跟隨這個使用者
-    already_requested: 您早已向該帳號寄送跟隨請求
-    error: 對不起，搜尋其他站點使用者出現錯誤
-    follow: 跟隨
-    follow_request: 跟隨請求已發送給：
-    following: 成功！您正在跟隨：
-    post_follow:
-      close: 您可以直接關閉此頁面。
-      return: 顯示個人檔案
-      web: 返回本站
-    title: 跟隨 %{acct}
   challenge:
     confirm: 繼續
     hint_html: "<strong>温馨小提醒：</strong> 我們在接下來一小時內不會再要求您輸入密碼。"
@@ -1257,12 +1244,14 @@ zh-TW:
       bookmarks_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個嘟文</strong> 以 <strong>取代您的書籤</strong>。
       domain_blocking_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個網域</strong> 以 <strong>取代您的封鎖網域列表</strong>。
       following_html: 您將要 <strong>跟隨</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong> 並且 <strong>取消跟隨其他所有人</strong>。
+      lists_html: 您將以 <strong>%{filename}</strong> 之內容<strong>取代您的列表</strong>。這將會新增 <strong>%{total_items} 個帳號</strong>至新列表。
       muting_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong> 以 <strong>取代您的靜音帳號列表</strong>。
     preambles:
       blocking_html: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
       bookmarks_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個嘟文</strong> 以 <strong>加入至您的書籤</strong>。
       domain_blocking_html: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個網域</strong>。
       following_html: 您將要 <strong>跟隨</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
+      lists_html: 您將自 <strong>%{filename}</strong> 新增 <strong>%{total_items} 個帳號</strong>至您的<strong>列表</strong>。若不存在列表用以新增帳號，則會建立新列表。
       muting_html: 您將要 <strong>靜音</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
     preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括跟隨的使用者、封鎖的使用者名單。
     recent_imports: 最近匯入的
@@ -1279,6 +1268,7 @@ zh-TW:
       bookmarks: 正在匯入書籤
       domain_blocking: 正在匯入已封鎖網域
       following: 正在匯入已封鎖帳號
+      lists: 匯入列表
       muting: 正在匯入已靜音帳號
     type: 匯入類型
     type_groups:
@@ -1289,6 +1279,7 @@ zh-TW:
       bookmarks: 書籤
       domain_blocking: 網域封鎖列表
       following: 您跟隨的使用者列表
+      lists: 列表
       muting: 您靜音的使用者名單
     upload: 上傳
   invites:
@@ -1606,7 +1597,6 @@ zh-TW:
     show_newer: 顯示較新嘟文
     show_older: 顯示較舊嘟文
     show_thread: 顯示討論串
-    sign_in_to_participate: 登入以加入討論
     title: "%{name}：「%{quote}」"
     visibilities:
       direct: 私訊
@@ -1652,8 +1642,6 @@ zh-TW:
     min_reblogs: 保留超過嘟文轉嘟門檻
     min_reblogs_hint: 如果您嘟文已收到超過轉嘟門檻則不會刪除。留白表示不論轉嘟數量皆刪除該嘟文。
   stream_entries:
-    pinned: 釘選嘟文
-    reblogged: 轉嘟
     sensitive_content: 敏感內容
   strikes:
     errors:

@@ -1,0 +1,76 @@
+name: Bug Report (Web Interface)
+description: If you are using Mastodon's web interface and something is not working as expected
+labels: [bug, 'status/to triage', 'area/web interface']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Make sure that you are submitting a new bug that was not previously reported or already fixed.
+
+        Please use a concise and distinct title for the issue.
+  - type: textarea
+    attributes:
+      label: Steps to reproduce the problem
+      description: What were you trying to do?
+      value: |
+        1.
+        2.
+        3.
+        ...
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Expected behaviour
+      description: What should have happened?
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Actual behaviour
+      description: What happened?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Detailed description
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: Mastodon instance
+      description: The address of the Mastodon instance where you experienced the issue
+      placeholder: mastodon.social
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Mastodon version
+      description: |
+        This is displayed at the bottom of the About page, eg. `v4.1.2+nightly-20230627`
+      placeholder: v4.1.2
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Browser name and version
+      description: |
+        What browser are you using when getting this bug? Please specify the version as well.
+      placeholder: Firefox 105.0.3
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Operating system
+      description: |
+        What OS are you running? Please specify the version as well.
+      placeholder: macOS 13.4.1
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Technical details
+      description: |
+        Any additional technical details you may have. This can include the full error log, inspector's output…
+    validations:
+      required: false

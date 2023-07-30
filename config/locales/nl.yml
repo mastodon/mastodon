@@ -973,7 +973,6 @@ nl:
       guide_link: https://crowdin.com/project/mastodon/nl
       guide_link_text: Iedereen kan bijdragen.
     sensitive_content: Gevoelige inhoud
-    toot_layout: Lay-out van berichten
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
     salutation: "%{name},"
@@ -1061,18 +1060,6 @@ nl:
       view_strikes: Bekijk de eerder door moderatoren vastgestelde overtredingen die je hebt gemaakt
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
     use_security_key: Beveiligingssleutel gebruiken
-  authorize_follow:
-    already_following: Je volgt dit account al
-    already_requested: Je hebt al een volgverzoek naar dat account verstuurd
-    error: Helaas, er is een fout opgetreden bij het opzoeken van de externe account
-    follow: Volgen
-    follow_request: 'Jij hebt een volgverzoek ingediend bij:'
-    following: 'Succes! Jij volgt nu:'
-    post_follow:
-      close: Of je kunt dit venster gewoon sluiten.
-      return: Profiel van deze gebruiker tonen
-      web: Ga naar de webapp
-    title: Volg %{acct}
   challenge:
     confirm: Doorgaan
     hint_html: "<strong>Tip:</strong> We vragen jou het komende uur niet meer naar jouw wachtwoord."
@@ -1278,12 +1265,14 @@ nl:
       bookmarks_html: Je staat op het punt <strong>jouw bladwijzers</strong> te vervangen door <strong>%{total_items} berichten</strong> vanuit <strong>%{filename}</strong>.
       domain_blocking_html: Je staat op het punt <strong>jouw lijst met geblokkeerde domeinen</strong> te vervangen door <strong>%{total_items} domeinen</strong> vanuit <strong>%{filename}</strong>.
       following_html: Je staat op het punt om <strong>%{total_items} accounts</strong> <strong>te volgen</strong> vanuit <strong>%{filename}</strong> en <strong>te stoppen met het volgen van alle andere accounts</strong>.
+      lists_html: Je staat op het punt <strong>je lijsten</strong> te vervangen door inhoud van <strong>%{filename}</strong>. Tot <strong>%{total_items} accounts</strong> zullen aan nieuwe lijsten worden toegevoegd.
       muting_html: Je staat op het punt <strong>jouw lijst met genegeerde accounts</strong> te vervangen door <strong>%{total_items} accounts</strong> vanuit <strong>%{filename}</strong>.
     preambles:
       blocking_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>blokkeren</strong> vanuit <strong>%{filename}</strong>.
       bookmarks_html: Je staat op het punt om <strong>%{total_items} berichten</strong> aan je <strong>bladwijzers</strong> toe te voegen vanuit <strong>%{filename}</strong>.
       domain_blocking_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>negeren</strong> vanuit <strong>%{filename}</strong>.
       following_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>volgen</strong> vanuit <strong>%{filename}</strong>.
+      lists_html: Je staat op het punt om tot <strong>%{total_items} accounts</strong> van <strong>%{filename}</strong> toe te voegen aan je <strong>lijsten</strong>. Nieuwe lijsten worden aangemaakt als er geen lijst is om aan toe te voegen.
       muting_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>negeren</strong> vanuit <strong>%{filename}</strong>.
     preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd, naar jouw account op deze server importeren. Je moet deze gegevens wel eerst op de oorspronkelijke server exporteren.
     recent_imports: Recent geïmporteerd
@@ -1300,6 +1289,7 @@ nl:
       bookmarks: Bladwijzers importeren
       domain_blocking: Geblokkeerde domeinen importeren
       following: Gevolgde accounts importeren
+      lists: Lijsten importeren
       muting: Genegeerde accounts importeren
     type: Importtype
     type_groups:
@@ -1310,6 +1300,7 @@ nl:
       bookmarks: Bladwijzers
       domain_blocking: Geblokkeerde domeinen
       following: Gevolgde accounts
+      lists: Lijsten
       muting: Genegeerde accounts
     upload: Uploaden
   invites:
@@ -1634,7 +1625,6 @@ nl:
     show_newer: Nieuwere tonen
     show_older: Oudere tonen
     show_thread: Gesprek tonen
-    sign_in_to_participate: Log in om deel te nemen aan het gesprek
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privébericht
@@ -1680,8 +1670,6 @@ nl:
     min_reblogs: Berichten die minstens zoveel keer zijn geboost behouden
     min_reblogs_hint: Verwijdert geen berichten die tenminste zoveel keer zijn geboost. Laat leeg om berichten ongeacht het aantal boosts te verwijderen
   stream_entries:
-    pinned: Vastgemaakt bericht
-    reblogged: boostte
     sensitive_content: Gevoelige inhoud
   strikes:
     errors:

@@ -770,7 +770,7 @@ ca:
           approved: Cal l’aprovació per a registrar-se
           none: No es pot registrar ningú
           open: Qualsevol pot registrar-se
-      title: Paràmetres del servidor
+      title: Configuració del servidor
     site_uploads:
       delete: Esborra el fitxer pujat
       destroyed_msg: La càrrega al lloc s'ha suprimit correctament!
@@ -973,7 +973,6 @@ ca:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Tothom hi pot contribuir.
     sensitive_content: Contingut sensible
-    toot_layout: Disseny dels tuts
   application_mailer:
     notification_preferences: Canvia les preferències de correu
     salutation: "%{name},"
@@ -1061,18 +1060,6 @@ ca:
       view_strikes: Veure accions del passat contra el teu compte
     too_fast: Formulari enviat massa ràpid, torna a provar-ho.
     use_security_key: Usa clau de seguretat
-  authorize_follow:
-    already_following: Ja estàs seguint aquest compte
-    already_requested: Ja has enviat una sol·licitud de seguiment a aquest usuari
-    error: Malauradament, ha ocorregut un error cercant el compte remot
-    follow: Segueix
-    follow_request: 'Has enviat una sol·licitud de seguiment a:'
-    following: 'Perfecte! Ara segueixes:'
-    post_follow:
-      close: O bé, pots tancar aquesta finestra.
-      return: Mostra el perfil de l'usuari
-      web: Vés a la web
-    title: Segueix %{acct}
   challenge:
     confirm: Continua
     hint_html: "<strong>Pista:</strong> No et preguntarem un altre cop la teva contrasenya en la pròxima hora."
@@ -1278,12 +1265,14 @@ ca:
       bookmarks_html: Ets a punt de <strong>reemplaçar els teus marcadors</strong> de fins a <strong>%{total_items} tuts</strong> des de <strong>%{filename}</strong>.
       domain_blocking_html: Ets a punt de <strong>reemplaçar la teva llista de dominis bloquejats</strong> de fins a <strong>%{total_items} dominis</strong> des de <strong>%{filename}</strong>.
       following_html: Ets a punt de <strong>seguir</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong> i <strong>deixar de seguir a la resta</strong>.
+      lists_html: Estàs a punt de <strong>reemplaçar les teves llistes</strong> amb contactes de <strong>%{filename}</strong>. S'afegiran fins a <strong>%{total_items} comptes</strong> a les noves llistes.
       muting_html: Ets a punt de <strong>reemplaçar la teva llista de comptes silenciats</strong> de fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
     preambles:
       blocking_html: Ets a punt de <strong>bloquejar</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
       bookmarks_html: Ets a punt d'afegir fins a <strong>%{total_items} tuts</strong> des de <strong>%{filename}</strong> als teus <strong>marcadors</strong>.
       domain_blocking_html: Ets a punt de <strong>bloquejar</strong> fins a <strong>%{total_items} dominis</strong> des de <strong>%{filename}</strong>.
       following_html: Ets a punt de <strong>seguir</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
+      lists_html: Estàs a punt d'afegir <strong>%{total_items} comptes</strong> de <strong>%{filename}</strong> a les teves <strong>llistes</strong>. Es crearan noves llistes si no hi ha cap llista on afegir-los.
       muting_html: Ets a punt de <strong>silenciar</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
     preface: Pots importar algunes les dades que has exportat des d'un altre servidor, com ara el llistat de les persones que estàs seguint o bloquejant.
     recent_imports: Importacions recents
@@ -1300,6 +1289,7 @@ ca:
       bookmarks: Important marcadors
       domain_blocking: Important dominis bloquejats
       following: Important comptes seguits
+      lists: Important llistes
       muting: Important comptes silenciats
     type: Tipus d'importació
     type_groups:
@@ -1310,6 +1300,7 @@ ca:
       bookmarks: Marcadors
       domain_blocking: Llistat de dominis bloquejats
       following: Llista de seguits
+      lists: Llistes
       muting: Llista de silenciats
     upload: Carrega
   invites:
@@ -1634,7 +1625,6 @@ ca:
     show_newer: Mostra els més nous
     show_older: Mostra els més vells
     show_thread: Mostra el fil
-    sign_in_to_participate: Inicia la sessió per participar a la conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Directe
@@ -1680,8 +1670,6 @@ ca:
     min_reblogs: Mantenir les publicacions impulsades més de
     min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest nombre de vegades. Deixa-ho en blanc per a suprimir les publicacions independentment del nombre d'impulsos que tinguin.
   stream_entries:
-    pinned: Publicació fixada
-    reblogged: ha impulsat
     sensitive_content: Contingut sensible
   strikes:
     errors:
@@ -1784,7 +1772,7 @@ ca:
   verification:
     extra_instructions_html: <strong>Consell:</strong> l'enllaç al vostre lloc web pot ser invisible. La part important és <code>rel="me"</code> que evita que us suplantin la identitat a llocs web amb contingut generat pels usuaris. Fins i tot podeu generar una etiqueta <code>link</code> a la capçalera de la pàgina en comptes d'una <code>a</code>, però el codi HTML ha de ser accessible sense requerir executar JavaScript.
     here_is_how: Així és com
-    hint_html: "<strong>Verifikimi i identitetit të secilit në Mastodon është për këdo.</strong> Bazuar në standarde web të hapët, falas për so dhe për mot. Krejt ç’ju duhet është një sajt personal me të cilin ju njohin njerëzit. Kur bëni lidhjen me këtë sajt që nga profili juaj, do të kontrollojmë nëse sajti përgjigjet me një lidhje për te profili juaj dhe shfaq një tregues në të."
+    hint_html: "<strong>Verificar la pròpia identitat a Mastodon és per a tothom.</strong> Basat en estàndarts webs oberts, ara i per sempre. Només et cat un lloc web personal que la gent reconegui com a teu. Quan hi enllacis des del teu perfil, comprovarem que el web retorna l'enllaç al perfil i hi posarem un indicador visual."
     instructions_html: Copieu i enganxeu el següent codi HTML al vostre lloc web. Després, afegiu l'adreça del vostre lloc web dins d'un dels camps extres del vostre perfil i deseu els canvis.
     verification: Verificació
     verified_links: Els teus enllaços verificats

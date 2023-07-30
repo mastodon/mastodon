@@ -15,7 +15,7 @@ class Api::V1::Instances::PeersController < Api::BaseController
 
   def index
     cache_even_if_authenticated!
-    render_with_cache(expires_in: 1.day) { Instance.where.not(domain: DomainBlock.select(:domain)).pluck(:domain) }
+    render_with_cache(expires_in: 1.day) { Instance.searchable.pluck(:domain) }
   end
 
   private

@@ -24,11 +24,14 @@ html {
 .column > .scrollable,
 .getting-started,
 .column-inline-form,
-.error-column,
 .regeneration-indicator {
   background: $white;
   border: 1px solid lighten($ui-base-color, 8%);
   border-top: 0;
+}
+
+.error-column {
+  border: 1px solid lighten($ui-base-color, 8%);
 }
 
 .column > .scrollable.about {
@@ -75,6 +78,10 @@ html {
 .column-header__button.active,
 .account__header {
   background: $white;
+}
+
+.column-header {
+  border-bottom: 0;
 }
 
 .column-header__button.active {
@@ -414,7 +421,7 @@ html {
 .column-header__collapsible-inner {
   background: darken($ui-base-color, 4%);
   border: 1px solid lighten($ui-base-color, 8%);
-  border-top: 0;
+  border-bottom: 0;
 }
 
 .dashboard__quick-access,

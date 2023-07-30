@@ -103,10 +103,6 @@ module HasUserSettings
     settings['web.trends']
   end
 
-  def setting_crop_images
-    settings['web.crop_images']
-  end
-
   def setting_disable_swiping
     settings['web.disable_swiping']
   end

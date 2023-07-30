@@ -1306,13 +1306,13 @@ img.modal-warning {
 .interaction-modal {
   max-width: 90vw;
   width: 600px;
-  background: $ui-base-color;
+  background: var(--modal-background-color);
+  border: 1px solid var(--modal-border-color);
   border-radius: 8px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: visible;
   position: relative;
   display: block;
-  padding: 20px;
+  padding: 40px;
 
   h3 {
     font-size: 22px;
@@ -1321,63 +1321,100 @@ img.modal-warning {
     text-align: center;
   }
 
+  p {
+    font-size: 17px;
+    line-height: 22px;
+    color: $darker-text-color;
+
+    strong {
+      color: $primary-text-color;
+      font-weight: 700;
+    }
+  }
+
+  p.hint {
+    margin-bottom: 14px;
+    font-size: 14px;
+  }
+
   &__icon {
     color: $highlight-text-color;
     margin: 0 5px;
   }
 
   &__lead {
-    padding: 20px;
-    text-align: center;
+    margin-bottom: 20px;
 
     h3 {
       margin-bottom: 15px;
     }
-
-    p {
-      font-size: 17px;
-      line-height: 22px;
-      color: $darker-text-color;
-    }
   }
 
-  &__choices {
-    display: flex;
+  &__login {
+    position: relative;
+    margin-bottom: 20px;
 
-    &__choice {
-      flex: 0 0 auto;
-      width: 50%;
-      box-sizing: border-box;
-      padding: 20px;
+    &__input {
+      @include search-input;
 
-      h3 {
-        margin-bottom: 20px;
-      }
+      border: 1px solid lighten($ui-base-color, 8%);
+      padding: 4px 6px;
+      color: $primary-text-color;
+      font-size: 16px;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
 
-      p {
-        color: $darker-text-color;
-        margin-bottom: 20px;
+      input {
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        border: 0;
+        padding: 15px - 4px 15px - 6px;
+        flex: 1 1 auto;
+
+        &::placeholder {
+          color: lighten($darker-text-color, 4%);
+        }
+
+        &:focus {
+          outline: 0;
+        }
       }
 
       .button {
-        margin-bottom: 10px;
-
-        &:last-child {
-          margin-bottom: 0;
-        }
+        flex: 0 0 auto;
       }
+    }
+
+    .search__popout {
+      margin-top: -1px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border: 1px solid lighten($ui-base-color, 8%);
+    }
+
+    &.focused &__input {
+      border-color: $highlight-text-color;
+      background: lighten($ui-base-color, 4%);
+    }
+
+    &.invalid &__input {
+      border-color: $error-red;
+    }
+
+    &.expanded .search__popout {
+      display: block;
+    }
+
+    &.expanded &__input {
+      border-radius: 4px 4px 0 0;
     }
   }
 
-  @media screen and (max-width: $no-gap-breakpoint - 1px) {
-    &__choices {
-      display: block;
-
-      &__choice {
-        width: auto;
-        margin-bottom: 20px;
-      }
-    }
+  .link-button {
+    font-size: inherit;
+    display: inline;
   }
 }
 

@@ -5,6 +5,7 @@ $red-600: #b7253d !default; // Deep Carmine
 $red-500: #df405a !default; // Cerise
 $blurple-600: #563acc; // Iris
 $blurple-500: #6364ff; // Brand purple
+$blurple-400: #7477fd; // Medium slate blue
 $blurple-300: #858afa; // Faded Blue
 $grey-600: #4e4c5a; // Trout
 $grey-100: #dadaf3; // Topaz
@@ -56,6 +57,9 @@ $ui-button-tertiary-focus-color: $white !default;
 $ui-button-destructive-background-color: $red-500 !default;
 $ui-button-destructive-focus-background-color: $red-600 !default;
 
+$ui-button-icon-focus-outline: solid 2px $blurple-400 !default;
+$ui-button-icon-hover-background-color: rgba(140, 141, 255, 40%) !default;
+
 // Variables for texts
 $primary-text-color: $white !default;
 $darker-text-color: $ui-primary-color !default;
@@ -92,4 +96,6 @@ $font-monospace: 'mastodon-font-monospace' !default;
   --dropdown-background-color: #{lighten($ui-base-color, 4%)};
   --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
     0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
+  --modal-background-color: #{darken($ui-base-color, 4%)};
+  --modal-border-color: #{lighten($ui-base-color, 4%)};
 }
