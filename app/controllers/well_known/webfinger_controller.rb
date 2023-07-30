@@ -19,6 +19,7 @@ module WellKnown
 
     def set_account
       username = username_from_resource
+
       @account = begin
         if username == Rails.configuration.x.local_domain
           Account.representative

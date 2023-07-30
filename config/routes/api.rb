@@ -124,6 +124,10 @@ namespace :api, format: false do
       resource :activity, only: [:show], controller: 'instances/activity'
     end
 
+    namespace :peers do
+      get :search, to: 'search#index'
+    end
+
     resource :domain_blocks, only: [:show, :create, :destroy]
 
     resource :directory, only: [:show]

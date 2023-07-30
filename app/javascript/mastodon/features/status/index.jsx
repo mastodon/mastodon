@@ -252,7 +252,7 @@ class Status extends ImmutablePureComponent {
         modalProps: {
           type: 'favourite',
           accountId: status.getIn(['account', 'id']),
-          url: status.get('url'),
+          url: status.get('uri'),
         },
       }));
     }
@@ -289,7 +289,7 @@ class Status extends ImmutablePureComponent {
         modalProps: {
           type: 'reply',
           accountId: status.getIn(['account', 'id']),
-          url: status.get('url'),
+          url: status.get('uri'),
         },
       }));
     }
@@ -319,7 +319,7 @@ class Status extends ImmutablePureComponent {
         modalProps: {
           type: 'reblog',
           accountId: status.getIn(['account', 'id']),
-          url: status.get('url'),
+          url: status.get('uri'),
         },
       }));
     }
