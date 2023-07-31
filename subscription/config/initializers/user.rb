@@ -6,8 +6,12 @@ module UserSubscriptionExtensions
     def associate_subscription
       if invite_id.present?
         sub = Subscription::StripeSubscription.find_by(invite_id: invite_id)
-        if sub.present? && sub.user.nil?
-          sub.update(user_id: id)
+        if sub.present?
+          if sub.user.nil?
+            sub.update(user_id: id)
+          else
+            sub.members.create(user_id: id)
+          end
         end
       end
 
@@ -17,5 +21,7 @@ module UserSubscriptionExtensions
 end
 
 ActiveSupport::Reloader.to_prepare do
-  User.include(UserSubscriptionExtensions)
+  if defined? User
+    User.include(UserSubscriptionExtensions)
+  end
 end

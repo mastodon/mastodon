@@ -3,6 +3,7 @@ module Subscription
     belongs_to :user, optional: true
     belongs_to :invite, optional: true
     attr_accessor :subscription
+    has_many :members, class_name: 'Subscription::SubscriptionMember', foreign_key: 'subscription_id'
 
     validates :status, presence: true
     before_validation :set_invite

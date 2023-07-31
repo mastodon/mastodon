@@ -25,6 +25,16 @@ describe User do
     expect(subscription.reload.user).to eq(user)
   end
 
+  it 'creates a membership in the subscription when there is an invite associated with an already-associated subscription' do
+    invite = Fabricate(:invite)
+    owner = Fabricate(:user, invite: invite)
+    subscription = Fabricate(:stripe_subscription, invite: invite, user_id: owner.id)
+    user = Fabricate(:user, invite: invite)
+
+    expect(subscription.reload.user).to eq(owner)
+    expect(subscription.members.count).to eq(1)
+  end
+
   it 'does not associate a subscription when there is an invite associated with a subscription \
    but the subscription already has a user' do
     invite = Fabricate(:invite)
