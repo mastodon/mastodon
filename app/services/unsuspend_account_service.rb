@@ -81,7 +81,7 @@ class UnsuspendAccountService < BaseService
             rescue Aws::S3::Errors::NotImplemented => e
               Rails.logger.error "Error trying to change ACL on #{attachment.s3_object(style).key}: #{e.message}"
             end
-          when :fog
+          when :fog, :azure
             # Not supported
           when :filesystem
             begin
