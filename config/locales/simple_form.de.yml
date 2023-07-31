@@ -11,17 +11,17 @@ de:
       account_migration:
         acct: Gib profilname@domain des Kontos an, zu dem du umziehen möchtest
       account_warning_preset:
-        text: Du kannst Beitragssyntax verwenden, wie z. B. URLs, Hashtags und Erwähnungen
+        text: Du kannst Beitragssyntax verwenden, wie z. B. URLs, Hashtags und Erwähnungen
         title: Optional. Für Empfänger*in nicht sichtbar
       admin_account_action:
-        include_statuses: Die Person sieht, welche Beiträge die Moderationsmaßnahme oder Warnung verursacht haben
+        include_statuses: Die Person wird sehen, welche Inhalte dich zu dieser Maßnahme veranlasst haben
         send_email_notification: Benutzer*in wird eine Erklärung erhalten, was mit dem Konto geschehen ist
         text_html: Optional. Du kannst Beitragssyntax verwenden. Du kannst <a href="%{path}">Warnvorlagen hinzufügen</a>, um Zeit zu sparen
         type_html: Wähle aus, wie mit <strong>%{acct}</strong> vorgegangen werden soll
         types:
           disable: Benutzer*in daran hindern, das Konto verwenden zu können, aber die Inhalte nicht löschen oder ausblenden.
           none: Dem Konto eine Verwarnung zusenden, ohne dabei eine andere Aktion vorzunehmen.
-          sensitive: Erzwingen, dass alle Medienanhänge dieses Profils mit einer Inhaltswarnung versehen werden.
+          sensitive: Erzwingen, dass alle Medieninhalte dieses Profils mit einer Inhaltswarnung versehen werden.
           silence: Verhindert, dass dieses Profil öffentlich sichtbare Beiträge verfassen kann, und verbirgt alle Beiträge und Benachrichtigungen vor Personen, die diesem Profil nicht folgen. Alle Meldungen zu diesem Konto werden geschlossen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
         warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
@@ -37,7 +37,7 @@ de:
         autofollow: Personen, die sich über deine Einladung registrieren, folgen automatisch deinem Profil
         avatar: PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
         bot: Signalisiert, dass dieses Konto hauptsächlich automatisierte Aktionen durchführt und möglicherweise nicht persönlich betreut wird
-        context: In welchem Bereich soll der Filter aktiv sein?
+        context: Orte, an denen der Filter aktiv sein soll
         current_password: Gib aus Sicherheitsgründen bitte das Passwort des aktuellen Kontos ein
         current_username: Um das zu bestätigen, gib den Profilnamen des aktuellen Kontos ein
         digest: Wenn du eine längere Zeit inaktiv bist oder du in deiner Abwesenheit eine Direktnachricht erhalten hast
@@ -46,14 +46,14 @@ de:
         header: PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
         inbox_url: Kopiere die URL von der Startseite des gewünschten Relays
         irreversible: Bereinigte Beiträge verschwinden unwiderruflich für dich, auch dann, wenn dieser Filter zu einem späteren wieder entfernt wird
-        locale: Die Sprache des Webinterface, der E-Mails und Push-Benachrichtigungen
+        locale: Die Sprache der Bedienoberfläche, E-Mails und Push-Benachrichtigungen
         locked: Wer dir folgen möchte, muss um deine Erlaubnis bitten
         password: Verwende mindestens 8 Zeichen
         phrase: Wird unabhängig von der Groß- und Kleinschreibung im Text oder der Inhaltswarnung eines Beitrags abgeglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
         setting_aggregate_reblogs: Keine geteilten Beiträge anzeigen, die bereits kürzlich geteilt wurden (wirkt sich nur auf zukünftige geteilte Beiträge aus)
-        setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail verschickt, wenn du gerade auf Mastodon aktiv bist
-        setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen wurden, werden erst nach einem zusätzlichen Klick angezeigt
+        setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail versendet, wenn du gerade auf Mastodon aktiv bist
+        setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
         setting_display_media_default: Medien mit Inhaltswarnung ausblenden
         setting_display_media_hide_all: Medien immer ausblenden
         setting_display_media_show_all: Medien mit Inhaltswarnung immer anzeigen
@@ -84,9 +84,9 @@ de:
         content_cache_retention_period: Sowohl alle Beiträge als auch geteilte Beiträge von anderen Servern werden nach der angegebenen Anzahl von Tagen gelöscht. Alle zugehörigen Lesezeichen, Favoriten und geteilte Beiträge werden ebenfalls verloren gehen. Dies kann nicht mehr rückgängig gemacht werden.
         custom_css: Du kannst benutzerdefinierte Stile auf die Web-Version von Mastodon anwenden.
         mascot: Überschreibt die Abbildung in der erweiterten Weboberfläche.
-        media_cache_retention_period: Von anderen Instanzen übertragene Mediendateien werden nach der angegebenen Anzahl an Tagen – sofern das Feld eine positive Zahl enthält – aus dem Cache gelöscht und bei Bedarf erneut heruntergeladen.
-        peers_api_enabled: Eine Liste von Domainnamen, die diesem Server im Fediverse begegnet sind. Hier werden keine Angaben darüber gemacht, ob du mit einem bestimmten Server föderierst, sondern nur, dass dein Server davon weiß. Dies wird von Diensten verwendet, die Statistiken über Föderation im allgemeinen Sinne sammeln.
-        profile_directory: Das Profilverzeichnis zeigt alle Benutzer*innen an, die sich dafür entschieden haben, entdeckt zu werden.
+        media_cache_retention_period: Von anderen Servern übertragene Mediendateien werden nach der angegebenen Anzahl an Tagen – sofern das Feld eine positive Zahl enthält – aus dem Cache gelöscht und bei Bedarf erneut heruntergeladen.
+        peers_api_enabled: Eine Liste von Domains, die diesem Server im Fediverse begegnet sind. Hierbei werden keine Angaben darüber gemacht, ob du mit einem bestimmten Server föderierst, sondern nur, dass dein Server davon weiß. Dies wird von Diensten verwendet, die allgemein Statistiken übers Ferdiverse sammeln.
+        profile_directory: Dieses Verzeichnis zeigt alle Profile an, die sich dafür entschieden haben, entdeckt zu werden.
         require_invite_text: Wenn Registrierungen eine manuelle Genehmigung erfordern, dann werden Nutzer einen Grund für ihre Registrierung angeben müssen
         site_contact_email: Wie man dich bei rechtlichen oder Support-Anfragen erreichen kann.
         site_contact_username: Wie man dich auf Mastodon erreichen kann.
@@ -94,13 +94,13 @@ de:
         site_short_description: Eine kurze Beschreibung zur eindeutigen Identifizierung des Servers. Wer betreibt ihn, für wen ist er bestimmt?
         site_terms: Verwende eine eigene Datenschutzerklärung oder lasse das Feld leer, um die allgemeine Vorlage zu verwenden. Kann mit der Markdown-Syntax formatiert werden.
         site_title: Wie Personen neben dem Domainnamen auf deinen Server verweisen können.
-        status_page_url: URL einer Seite, auf der der Serverstatus während eines Ausfalls angezeigt wird
+        status_page_url: Link zu einer Internetseite, auf der der Serverstatus während eines Ausfalls angezeigt wird
         theme: Das Design, das abgemeldete Besucher und neue Benutzer sehen.
         thumbnail: Ein Bild ungefähr im 2:1-Format, das neben den Server-Informationen angezeigt wird.
-        timeline_preview: Besucher*innen und ausgeloggte Benutzer*innen können die neuesten öffentlichen Beiträge dieses Servers aufrufen.
+        timeline_preview: Nicht angemeldete Personen können die neuesten öffentlichen Beiträge dieses Servers aufrufen.
         trendable_by_default: Manuelles Überprüfen angesagter Inhalte überspringen. Einzelne Elemente können später noch aus den Trends entfernt werden.
         trends: Trends zeigen, welche Beiträge, Hashtags und Nachrichten auf deinem Server immer beliebter werden.
-        trends_as_landing_page: Zeigt Trendinhalte abgemeldeter Benutzer und Besucher anstelle einer Beschreibung dieses Servers an. Erfordert, dass Trends aktiviert sind.
+        trends_as_landing_page: Dies zeigt nicht angemeldeten Personen Trendinhalte anstelle einer Beschreibung des Servers an. Erfordert, dass Trends aktiviert sind.
       form_challenge:
         current_password: Du betrittst einen sicheren Bereich
       imports:
@@ -117,12 +117,12 @@ de:
           sign_up_requires_approval: Neue Registrierungen müssen genehmigt werden
         severity: Wähle aus, was mit Anfragen von dieser IP-Adresse geschehen soll
       rule:
-        text: Führe eine Regel oder Bedingung für Benutzer*innen auf diesem Server ein. Bleib dabei kurz und knapp
+        text: Führe eine Regel oder Auflage für Profile auf diesem Server ein. Bleib dabei kurz und knapp
       sessions:
-        otp: 'Gib den Zwei-Faktor-Code von deinem Smartphone ein oder benutze einen deiner Wiederherstellungscodes:'
+        otp: 'Gib den Zwei-Faktor-Code von deinem Smartphone ein oder verwende einen deiner Wiederherstellungscodes:'
         webauthn: Wenn es sich um einen USB-Schlüssel handelt, vergewissere dich, dass du ihn einsteckst und – falls erforderlich – antippst.
       tag:
-        name: Du kannst zum Beispiel nur die Groß- und Kleinschreibung der Buchstaben ändern, um es lesbarer zu machen
+        name: Du kannst nur die Groß- und Kleinschreibung der Buchstaben ändern, um es z. B. lesbarer zu machen
       user:
         chosen_languages: Wenn du hier eine oder mehrere Sprachen auswählst, werden ausschließlich Beiträge in diesen Sprachen in deinen öffentlichen Timelines angezeigt
         role: Die Rolle legt fest, welche Berechtigungen das Konto hat
@@ -135,7 +135,7 @@ de:
       webhook:
         events: Zu sendende Ereignisse auswählen
         template: Erstelle deine eigenen JSON-Nutzdaten mit Hilfe von Variablen-Interpolation. Leer lassen für Standard-JSON.
-        url: Wohin Ereignisse geschickt werden
+        url: Wohin Ereignisse gesendet werden
     labels:
       account:
         fields:
@@ -151,7 +151,7 @@ de:
       admin_account_action:
         include_statuses: Gemeldete Beiträge der E-Mail beifügen
         send_email_notification: Benachrichtigung per E-Mail
-        text: Benutzerdefinierte Verwarnung
+        text: Individuelle Verwarnung
         type: Aktion
         types:
           disable: Einfrieren
@@ -159,7 +159,7 @@ de:
           sensitive: Inhaltswarnung
           silence: Stummschalten
           suspend: Sperre
-        warning_preset_id: Warnungsvorlage verwenden
+        warning_preset_id: Warnvorlage verwenden
       announcement:
         all_day: Ganztägiges Ereignis
         ends_at: Ende der Ankündigung
@@ -171,14 +171,14 @@ de:
       defaults:
         autofollow: Meinem Profil automatisch folgen
         avatar: Profilbild
-        bot: Dieses Konto ist automatisiert
+        bot: Dieses Profil ist automatisiert
         chosen_languages: Sprachen einschränken
         confirm_new_password: Neues Passwort bestätigen
         confirm_password: Passwort bestätigen
         context: Nach Bereichen filtern
         current_password: Derzeitiges Passwort
         data: Daten
-        discoverable: Dieses Konto anderen empfehlen
+        discoverable: Anderen dieses Konto empfehlen
         display_name: Anzeigename
         email: E-Mail-Adresse
         expires_in: Läuft ab
@@ -200,10 +200,9 @@ de:
         setting_always_send_emails: Benachrichtigungen immer senden
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Bestätigungsdialog beim Teilen eines Beitrags anzeigen
-        setting_crop_images: Bilder in nicht ausgeklappten Beiträgen auf 16:9 zuschneiden
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
-        setting_default_sensitive: Eigene Medien immer mit einer Inhaltswarnung versehen
+        setting_default_sensitive: Medien immer mit einer Inhaltswarnung versehen
         setting_delete_modal: Bestätigungsdialog beim Löschen eines Beitrags anzeigen
         setting_disable_swiping: Wischgesten deaktivieren
         setting_display_media: Medien-Anzeige
@@ -244,8 +243,8 @@ de:
         content_cache_retention_period: Aufbewahrungsfrist für Inhalte im Cache
         custom_css: Eigenes CSS
         mascot: Benutzerdefiniertes Maskottchen (Legacy)
-        media_cache_retention_period: Aufbewahrungsfrist für den Medien-Cache
-        peers_api_enabled: Über die API die bekanntgewordenen Fediverse-Server veröffentlichen
+        media_cache_retention_period: Aufbewahrungsfrist für Medien im Cache
+        peers_api_enabled: Die entdeckten Server im Fediverse über die API veröffentlichen
         profile_directory: Profilverzeichnis aktivieren
         registrations_mode: Wer darf ein neues Konto registrieren?
         require_invite_text: Begründung für Beitritt verlangen
@@ -257,7 +256,7 @@ de:
         site_short_description: Serverbeschreibung
         site_terms: Datenschutzerklärung
         site_title: Servername
-        status_page_url: URL der Statusseite
+        status_page_url: Statusseite (URL)
         theme: Standard-Design
         thumbnail: Vorschaubild des Servers
         timeline_preview: Nicht-authentifizierten Zugriff auf die öffentliche Timeline gestatten
@@ -265,8 +264,8 @@ de:
         trends: Trends aktivieren
         trends_as_landing_page: Trends als Landingpage verwenden
       interactions:
-        must_be_follower: Benachrichtigungen von Profilen verbergen, die mir nicht folgen
-        must_be_following: Benachrichtigungen von Profilen verbergen, denen ich nicht folge
+        must_be_follower: Benachrichtigungen von Profilen unterdrücken, die mir nicht folgen
+        must_be_following: Benachrichtigungen von Profilen unterdrücken, denen ich nicht folge
         must_be_following_dm: Direktnachrichten von Profilen, denen ich nicht folge, ablehnen
       invite:
         comment: Kommentar
@@ -281,7 +280,7 @@ de:
           sign_up_requires_approval: Registrierungen begrenzen
         severity: Regel
       notification_emails:
-        appeal: wenn jemand einer Moderationsentscheidung widerspricht
+        appeal: Jemand hat Einspruch gegen eine Moderationsentscheidung erhoben
         digest: Zusammenfassung senden
         favourite: wenn jemand meinen Beitrag favorisiert
         follow: wenn mir jemand Neues gefolgt ist
@@ -289,8 +288,8 @@ de:
         mention: wenn mich jemand erwähnt
         pending_account: wenn ein neues Konto überprüft werden muss
         reblog: wenn jemand meinen Beitrag teilt
-        report: wenn eine neue Meldung vorliegt
-        trending_tag: wenn ein neuer Trend überprüft werden soll
+        report: Neue Meldung wurde eingereicht
+        trending_tag: Neuer Trend erfordert eine Überprüfung
       rule:
         text: Regel
       tag:

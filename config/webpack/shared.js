@@ -34,6 +34,7 @@ module.exports = {
     chunkFilename: 'js/[name]-[chunkhash].chunk.js',
     hotUpdateChunkFilename: 'js/[id]-[hash].hot-update.js',
     hashFunction: 'sha256',
+    crossOriginLoading: 'anonymous',
     path: output.path,
     publicPath: output.publicPath,
   },

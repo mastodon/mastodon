@@ -30,6 +30,7 @@
 #  max_score_at                 :datetime
 #  trendable                    :boolean
 #  link_type                    :integer
+#  published_at                 :datetime
 #
 
 class PreviewCard < ApplicationRecord

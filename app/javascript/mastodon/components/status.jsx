@@ -19,7 +19,6 @@ import Bundle from '../features/ui/components/bundle';
 import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
 import { displayMedia } from '../initial_state';
 
-import AttachmentList from './attachment_list';
 import { Avatar } from './avatar';
 import { AvatarOverlay } from './avatar_overlay';
 import { DisplayName } from './display_name';
@@ -191,17 +190,35 @@ class Status extends ImmutablePureComponent {
     this.props.onTranslate(this._properStatus());
   };
 
-  renderLoadingMediaGallery () {
-    return <div className='media-gallery' style={{ height: '110px' }} />;
+  getAttachmentAspectRatio () {
+    const attachments = this._properStatus().get('media_attachments');
+
+    if (attachments.getIn([0, 'type']) === 'video') {
+      return `${attachments.getIn([0, 'meta', 'original', 'width'])} / ${attachments.getIn([0, 'meta', 'original', 'height'])}`;
+    } else if (attachments.getIn([0, 'type']) === 'audio') {
+      return '16 / 9';
+    } else {
+      return (attachments.size === 1 && attachments.getIn([0, 'meta', 'small', 'aspect'])) ? attachments.getIn([0, 'meta', 'small', 'aspect']) : '3 / 2'
+    }
   }
 
-  renderLoadingVideoPlayer () {
-    return <div className='video-player' style={{ height: '110px' }} />;
-  }
+  renderLoadingMediaGallery = () => {
+    return (
+      <div className='media-gallery' style={{ aspectRatio: this.getAttachmentAspectRatio() }} />
+    );
+  };
 
-  renderLoadingAudioPlayer () {
-    return <div className='audio-player' style={{ height: '110px' }} />;
-  }
+  renderLoadingVideoPlayer = () => {
+    return (
+      <div className='video-player' style={{ aspectRatio: this.getAttachmentAspectRatio() }} />
+    );
+  };
+
+  renderLoadingAudioPlayer = () => {
+    return (
+      <div className='audio-player' style={{ aspectRatio: this.getAttachmentAspectRatio() }} />
+    );
+  };
 
   handleOpenVideo = (options) => {
     const status = this._properStatus();
@@ -426,18 +443,11 @@ class Status extends ImmutablePureComponent {
     }
 
     if (pictureInPicture.get('inUse')) {
-      media = <PictureInPicturePlaceholder />;
+      media = <PictureInPicturePlaceholder aspectRatio={this.getAttachmentAspectRatio()} />;
     } else if (status.get('media_attachments').size > 0) {
       const language = status.getIn(['translation', 'language']) || status.get('language');
 
-      if (this.props.muted) {
-        media = (
-          <AttachmentList
-            compact
-            media={status.get('media_attachments')}
-          />
-        );
-      } else if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
+      if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
         const attachment = status.getIn(['media_attachments', 0]);
         const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
 
@@ -475,11 +485,11 @@ class Status extends ImmutablePureComponent {
               <Component
                 preview={attachment.get('preview_url')}
                 frameRate={attachment.getIn(['meta', 'original', 'frame_rate'])}
+                aspectRatio={`${attachment.getIn(['meta', 'original', 'width'])} / ${attachment.getIn(['meta', 'original', 'height'])}`}
                 blurhash={attachment.get('blurhash')}
                 src={attachment.get('url')}
                 alt={description}
                 lang={language}
-                inline
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
                 deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}
@@ -508,7 +518,7 @@ class Status extends ImmutablePureComponent {
           </Bundle>
         );
       }
-    } else if (status.get('spoiler_text').length === 0 && status.get('card') && !this.props.muted) {
+    } else if (status.get('spoiler_text').length === 0 && status.get('card')) {
       media = (
         <Card
           onOpenMedia={this.handleOpenMedia}

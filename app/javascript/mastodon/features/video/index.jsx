@@ -105,6 +105,7 @@ class Video extends PureComponent {
   static propTypes = {
     preview: PropTypes.string,
     frameRate: PropTypes.string,
+    aspectRatio: PropTypes.string,
     src: PropTypes.string.isRequired,
     alt: PropTypes.string,
     lang: PropTypes.string,
@@ -113,7 +114,6 @@ class Video extends PureComponent {
     onOpenVideo: PropTypes.func,
     onCloseVideo: PropTypes.func,
     detailed: PropTypes.bool,
-    inline: PropTypes.bool,
     editable: PropTypes.bool,
     alwaysVisible: PropTypes.bool,
     visible: PropTypes.bool,
@@ -500,14 +500,9 @@ class Video extends PureComponent {
   }
 
   render () {
-    const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, lang, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
+    const { preview, src, aspectRatio, onOpenVideo, onCloseVideo, intl, alt, lang, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
     const { currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
-    const playerStyle = {};
-
-    if (inline) {
-      playerStyle.aspectRatio = '16 / 9';
-    }
 
     let preload;
 
@@ -527,95 +522,101 @@ class Video extends PureComponent {
       warning = <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />;
     }
 
+    // The outer wrapper is necessary to avoid reflowing the layout when going into full screen
     return (
-      <div
-        role='menuitem'
-        className={classNames('video-player', { inactive: !revealed, detailed, inline: inline && !fullscreen, fullscreen, editable })}
-        style={playerStyle}
-        ref={this.setPlayerRef}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
-        onClick={this.handleClickRoot}
-        onKeyDown={this.handleKeyDown}
-        tabIndex={0}
-      >
-        <Blurhash
-          hash={blurhash}
-          className={classNames('media-gallery__preview', {
-            'media-gallery__preview--hidden': revealed,
-          })}
-          dummy={!useBlurhash}
-        />
-
-        {(revealed || editable) && <video
-          ref={this.setVideoRef}
-          src={src}
-          poster={preview}
-          preload={preload}
-          role='button'
+      <div style={{ aspectRatio }}>
+        <div
+          role='menuitem'
+          className={classNames('video-player', { inactive: !revealed, detailed, fullscreen, editable })}
+          style={{ aspectRatio }}
+          ref={this.setPlayerRef}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+          onClick={this.handleClickRoot}
+          onKeyDown={this.handleKeyDown}
           tabIndex={0}
-          aria-label={alt}
-          title={alt}
-          lang={lang}
-          volume={volume}
-          onClick={this.togglePlay}
-          onKeyDown={this.handleVideoKeyDown}
-          onPlay={this.handlePlay}
-          onPause={this.handlePause}
-          onLoadedData={this.handleLoadedData}
-          onProgress={this.handleProgress}
-          onVolumeChange={this.handleVolumeChange}
-          style={{ ...playerStyle, width: '100%' }}
-        />}
+        >
+          <Blurhash
+            hash={blurhash}
+            className={classNames('media-gallery__preview', {
+              'media-gallery__preview--hidden': revealed,
+            })}
+            dummy={!useBlurhash}
+          />
 
-        <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>
-          <button type='button' className='spoiler-button__overlay' onClick={this.toggleReveal}>
-            <span className='spoiler-button__overlay__label'>{warning}</span>
-          </button>
-        </div>
+          {(revealed || editable) && <video
+            ref={this.setVideoRef}
+            src={src}
+            poster={preview}
+            preload={preload}
+            role='button'
+            tabIndex={0}
+            aria-label={alt}
+            title={alt}
+            lang={lang}
+            volume={volume}
+            onClick={this.togglePlay}
+            onKeyDown={this.handleVideoKeyDown}
+            onPlay={this.handlePlay}
+            onPause={this.handlePause}
+            onLoadedData={this.handleLoadedData}
+            onProgress={this.handleProgress}
+            onVolumeChange={this.handleVolumeChange}
+            style={{ width: '100%' }}
+          />}
 
-        <div className={classNames('video-player__controls', { active: paused || hovered })}>
-          <div className='video-player__seek' onMouseDown={this.handleMouseDown} ref={this.setSeekRef}>
-            <div className='video-player__seek__buffer' style={{ width: `${buffer}%` }} />
-            <div className='video-player__seek__progress' style={{ width: `${progress}%` }} />
-
-            <span
-              className={classNames('video-player__seek__handle', { active: dragging })}
-              tabIndex={0}
-              style={{ left: `${progress}%` }}
-              onKeyDown={this.handleVideoKeyDown}
-            />
+          <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>
+            <button type='button' className='spoiler-button__overlay' onClick={this.toggleReveal}>
+              <span className='spoiler-button__overlay__label'>
+                {warning}
+                <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
+              </span>
+            </button>
           </div>
 
-          <div className='video-player__buttons-bar'>
-            <div className='video-player__buttons left'>
-              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay} autoFocus={autoFocus}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
-              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
+          <div className={classNames('video-player__controls', { active: paused || hovered })}>
+            <div className='video-player__seek' onMouseDown={this.handleMouseDown} ref={this.setSeekRef}>
+              <div className='video-player__seek__buffer' style={{ width: `${buffer}%` }} />
+              <div className='video-player__seek__progress' style={{ width: `${progress}%` }} />
 
-              <div className={classNames('video-player__volume', { active: this.state.hovered })} onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
-                <div className='video-player__volume__current' style={{ width: `${volume * 100}%` }} />
-
-                <span
-                  className={classNames('video-player__volume__handle')}
-                  tabIndex={0}
-                  style={{ left: `${volume * 100}%` }}
-                />
-              </div>
-
-              {(detailed || fullscreen) && (
-                <span className='video-player__time'>
-                  <span className='video-player__time-current'>{formatTime(Math.floor(currentTime))}</span>
-                  <span className='video-player__time-sep'>/</span>
-                  <span className='video-player__time-total'>{formatTime(Math.floor(duration))}</span>
-                </span>
-              )}
+              <span
+                className={classNames('video-player__seek__handle', { active: dragging })}
+                tabIndex={0}
+                style={{ left: `${progress}%` }}
+                onKeyDown={this.handleVideoKeyDown}
+              />
             </div>
 
-            <div className='video-player__buttons right'>
-              {(!onCloseVideo && !editable && !fullscreen && !this.props.alwaysVisible) && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} className='player-button' onClick={this.toggleReveal}><Icon id='eye-slash' fixedWidth /></button>}
-              {(!fullscreen && onOpenVideo) && <button type='button' title={intl.formatMessage(messages.expand)} aria-label={intl.formatMessage(messages.expand)} className='player-button' onClick={this.handleOpenVideo}><Icon id='expand' fixedWidth /></button>}
-              {onCloseVideo && <button type='button' title={intl.formatMessage(messages.close)} aria-label={intl.formatMessage(messages.close)} className='player-button' onClick={this.handleCloseVideo}><Icon id='compress' fixedWidth /></button>}
-              <button type='button' title={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} className='player-button' onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} fixedWidth /></button>
+            <div className='video-player__buttons-bar'>
+              <div className='video-player__buttons left'>
+                <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay} autoFocus={autoFocus}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
+                <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
+
+                <div className={classNames('video-player__volume', { active: this.state.hovered })} onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
+                  <div className='video-player__volume__current' style={{ width: `${volume * 100}%` }} />
+
+                  <span
+                    className={classNames('video-player__volume__handle')}
+                    tabIndex={0}
+                    style={{ left: `${volume * 100}%` }}
+                  />
+                </div>
+
+                {(detailed || fullscreen) && (
+                  <span className='video-player__time'>
+                    <span className='video-player__time-current'>{formatTime(Math.floor(currentTime))}</span>
+                    <span className='video-player__time-sep'>/</span>
+                    <span className='video-player__time-total'>{formatTime(Math.floor(duration))}</span>
+                  </span>
+                )}
+              </div>
+
+              <div className='video-player__buttons right'>
+                {(!onCloseVideo && !editable && !fullscreen && !this.props.alwaysVisible) && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} className='player-button' onClick={this.toggleReveal}><Icon id='eye-slash' fixedWidth /></button>}
+                {(!fullscreen && onOpenVideo) && <button type='button' title={intl.formatMessage(messages.expand)} aria-label={intl.formatMessage(messages.expand)} className='player-button' onClick={this.handleOpenVideo}><Icon id='expand' fixedWidth /></button>}
+                {onCloseVideo && <button type='button' title={intl.formatMessage(messages.close)} aria-label={intl.formatMessage(messages.close)} className='player-button' onClick={this.handleCloseVideo}><Icon id='compress' fixedWidth /></button>}
+                <button type='button' title={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} className='player-button' onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} fixedWidth /></button>
+              </div>
             </div>
           </div>
         </div>
