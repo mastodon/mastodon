@@ -2,10 +2,10 @@ import { Chart as ChartJS, registerables } from 'chart.js';
 import 'chartjs-adapter-moment';
 import { fetchInstanceStats } from 'mastodon/actions/instance_stats';
 import Column from 'mastodon/components/column';
-import Skeleton from 'mastodon/components/skeleton';
+import { Skeleton } from 'mastodon/components/skeleton';
 import 'moment';
 import PropTypes from 'prop-types';
-import React from 'react';
+import { PureComponent } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Helmet } from 'react-helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -102,9 +102,7 @@ const renderStats = (header, stats) => {
   );
 };
 
-export default @connect(mapStateToProps)
-@injectIntl
-class InstanceStats extends React.PureComponent {
+class InstanceStats extends PureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -147,3 +145,5 @@ class InstanceStats extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(InstanceStats));
