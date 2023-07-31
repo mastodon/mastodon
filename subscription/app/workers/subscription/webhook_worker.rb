@@ -12,7 +12,8 @@ module Subscription
       when 'checkout.session.completed'
         session = ::Stripe::Checkout::Session.retrieve(event[:data][:object][:id])
         subscription = ::Stripe::Subscription.retrieve(session[:subscription])
-        invite = Invite.create!(user_id: InstancePresenter.new.contact.account.user.id, max_uses: subscription[:quantity], autofollow: true)
+        instance_user = InstancePresenter.new.contact.account&.user
+        invite = Invite.create!(user_id: session[:client_reference_id] || instance_user&.id, max_uses: subscription[:quantity], autofollow: true)
         Subscription::StripeSubscription.create(
           user_id: session[:client_reference_id],
           customer_id: session[:customer],

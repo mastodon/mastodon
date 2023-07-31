@@ -3,7 +3,7 @@ module Subscription
     protect_from_forgery with: :null_session
 
     def receive
-      WebhookWorker.perform_async(params[:id])
+      Subscription::WebhookWorker.perform_async(params[:id])
 
       render body: nil, layout: false, status: 201
     end
