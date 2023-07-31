@@ -132,6 +132,26 @@ describe Request do
         end
       end
     end
+
+    context 'with non-ASCII URL' do
+      let(:url) { 'http://éxample:80/föo?bär=1' }
+
+      before do
+        stub_request(:get, 'http://xn--xample-9ua/f%C3%B6o?b%C3%A4r=1')
+      end
+
+      it 'IDN-encodes host' do
+        subject.perform do |response|
+          expect(response.request.uri.authority).to eq 'xn--xample-9ua'
+        end
+      end
+
+      it 'percent-escapes path and query string' do
+        subject.perform
+
+        expect(a_request(:get, 'http://xn--xample-9ua/f%C3%B6o?b%C3%A4r=1')).to have_been_made
+      end
+    end
   end
 
   describe "response's body_with_limit method" do
