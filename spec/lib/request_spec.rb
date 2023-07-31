@@ -134,22 +134,57 @@ describe Request do
     end
 
     context 'with non-ASCII URL' do
-      let(:url) { 'http://éxample:80/föo?bär=1' }
+      let(:url) { 'http://éxample.com/föo?bär=1' }
 
       before do
-        stub_request(:get, 'http://xn--xample-9ua/f%C3%B6o?b%C3%A4r=1')
+        stub_request(:get, 'http://xn--xample-9ua.com/f%C3%B6o?b%C3%A4r=1')
       end
 
       it 'IDN-encodes host' do
         subject.perform do |response|
-          expect(response.request.uri.authority).to eq 'xn--xample-9ua'
+          expect(response.request.uri.authority).to eq 'xn--xample-9ua.com'
         end
       end
 
       it 'percent-escapes path and query string' do
         subject.perform
 
-        expect(a_request(:get, 'http://xn--xample-9ua/f%C3%B6o?b%C3%A4r=1')).to have_been_made
+        expect(a_request(:get, 'http://xn--xample-9ua.com/f%C3%B6o?b%C3%A4r=1')).to have_been_made
+      end
+    end
+
+    context 'with redirecting URL' do
+      let(:url) { 'http://example.com/foo' }
+
+      before do
+        stub_request(:get, 'http://example.com/foo').to_return(status: 302, headers: { 'Location' => 'HTTPS://EXAMPLE.net/Bar' })
+        stub_request(:get, 'https://example.net/Bar').to_return(body: 'Lorem ipsum')
+      end
+
+      it 'resolves redirect' do
+        subject.perform do |response|
+          expect(response.body.to_s).to eq 'Lorem ipsum'
+        end
+
+        expect(a_request(:get, 'https://example.net/Bar')).to have_been_made
+      end
+
+      it 'normalizes destination scheme' do
+        subject.perform do |response|
+          expect(response.request.uri.scheme).to eq 'https'
+        end
+      end
+
+      it 'normalizes destination host' do
+        subject.perform do |response|
+          expect(response.request.uri.authority).to eq 'example.net'
+        end
+      end
+
+      it 'does modify path' do
+        subject.perform do |response|
+          expect(response.request.uri.path).to eq '/Bar'
+        end
       end
     end
   end
