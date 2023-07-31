@@ -27,7 +27,7 @@ class Api::V1::Peers::SearchController < Api::BaseController
       @domains = InstancesIndex.query(function_score: {
         query: {
           prefix: {
-            domain: params[:q],
+            domain: TagManager.instance.normalize_domain(params[:q].strip),
           },
         },
 
