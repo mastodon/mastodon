@@ -22,28 +22,30 @@
         .permissions-list__item
           %ul.permissions-list
             %li.permissions-list__item
-              %li.permissions-list__item
-                = t('subscription.description')
-              %li.permissions-list__item
-                .permissions-list__item__text__title
-                  = t('subscription.price')
-              %li.permissions-list__item
-                = link_to t('subscription.button'), settings_subscription.subscriptions_url, class: 'button', method: 'POST'
+              = @single_plan
+            %li.permissions-list__item
+              = t('subscription.description')
+            %li.permissions-list__item
+              .permissions-list__item__text__title
+                = t('subscription.price')
+            %li.permissions-list__item
+              = link_to t('subscription.button'), settings_subscription.subscriptions_url, class: 'button', method: 'POST'
           %ul.permissions-list
             %li.permissions-list__item
+              = @group_plan
+            %li.permissions-list__item
+              = t('subscription.description2')
+            = form_with url: settings_subscription.subscriptions_url do |f|
+              = f.hidden_field :group, value: true
               %li.permissions-list__item
-                = t('subscription.description2')
-              = form_with url: settings_subscription.subscriptions_url do |f|
-                = f.hidden_field :group, value: true
-                %li.permissions-list__item
-                  .permissions-list__item__text__title.input.with_block_label
-                    = f.select :quantity, 2..99, class: 'select'
-                    %br
-                    = t('subscription.small_group_price')
-                    %br
-                    = t('subscription.large_group_price')
-                %li.permissions-list__item
-                  = f.submit t('subscription.button2'), class: 'button'
+                .permissions-list__item__text__title.input.with_block_label
+                  = f.select :quantity, 2..99, class: 'select'
+                  %br
+                  = t('subscription.small_group_price')
+                  %br
+                  = t('subscription.large_group_price')
+              %li.permissions-list__item
+                = f.submit t('subscription.button2'), class: 'button'
       - else
         %ul.permissions-list
           - @subscriptions.each do |sub| 

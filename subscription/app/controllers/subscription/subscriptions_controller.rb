@@ -1,6 +1,7 @@
 module Subscription
   class SubscriptionsController < ::Settings::BaseController
     before_action :set_user
+    before_action :set_prices
     skip_before_action :require_functional!
 
     def index
@@ -18,15 +19,19 @@ module Subscription
             owner: sub.user_id == @user.id,
           }
       end
+      single_price = ::Stripe::Price.retrieve(@prices[:single])
+      group_price = ::Stripe::Price.retrieve(@prices[:group])
+      @single_plan = ::Stripe::Product.retrieve(single_price[:product]).name
+      @group_plan = ::Stripe::Product.retrieve(group_price[:product]).name
     end
 
     def create
       single = [{
-        price: ENV['STRIPE_PRICE_1'],
+        price: @prices[:single],
         quantity: 1,
       }]
       group = [{
-        price: ENV['STRIPE_PRICE_2'],
+        price: @prices[:group],
         quantity: params[:quantity].to_i || 1,
         adjustable_quantity: {
           enabled: true,
@@ -48,6 +53,13 @@ module Subscription
     private
     def set_user
       @user = current_account.user
+    end
+
+    def set_prices
+      @prices = {
+        single: ENV['STRIPE_PRICE_1'],
+        group: ENV['STRIPE_PRICE_2'],
+      }
     end
   end
 end
