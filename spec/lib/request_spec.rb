@@ -95,6 +95,27 @@ describe Request do
       end
     end
 
+    context 'with bare domain URL' do
+      let(:url) { 'http://example.com' }
+
+      before do
+        stub_request(:get, 'http://example.com')
+      end
+
+      it 'normalizes path' do
+        subject.perform do |response|
+          expect(response.request.uri.path).to eq '/'
+        end
+      end
+
+      it 'normalizes path used for request signing' do
+        subject.perform do |response|
+          headers = subject.instance_variable_get(:@headers)
+          expect(headers[Request::REQUEST_TARGET]).to eq 'get /'
+        end
+      end
+    end
+
     context 'with unnormalized URL' do
       let(:url) { 'HTTP://EXAMPLE.com:80/foo%41%3A?bar=%41%3A#baz' }
 
@@ -114,15 +135,22 @@ describe Request do
         end
       end
 
-      it 'does modify path' do
+      it 'does not modify path' do
         subject.perform do |response|
           expect(response.request.uri.path).to eq '/foo%41%3A'
         end
       end
 
-      it 'does modify query string' do
+      it 'does not modify query string' do
         subject.perform do |response|
           expect(response.request.uri.query).to eq 'bar=%41%3A'
+        end
+      end
+
+      it 'does not modify path used for request signing' do
+        subject.perform do |response|
+          headers = subject.instance_variable_get(:@headers)
+          expect(headers[Request::REQUEST_TARGET]).to eq 'get /foo%41%3A'
         end
       end
 

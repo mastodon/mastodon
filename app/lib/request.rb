@@ -76,7 +76,7 @@ class Request
     HTTP::URI.new(
       scheme: uri.normalized_scheme,
       authority: uri.normalized_authority,
-      path: Addressable::URI.normalize_path(uri.path),
+      path: Addressable::URI.normalize_path(uri.path).presence || '/',
       query: uri.query
     )
   end
