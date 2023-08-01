@@ -21,8 +21,9 @@
       - if @subscriptions.empty?
         .permissions-list__item
           %ul.permissions-list
-            %li.permissions-list__item
-              = @single_plan
+            %li.permissions-list__item__text__title
+              %strong.announcements-list__item__title
+                = @single_plan
             %li.permissions-list__item
               = t('subscription.description')
             %li.permissions-list__item
@@ -31,8 +32,9 @@
             %li.permissions-list__item
               = link_to t('subscription.button'), settings_subscription.subscriptions_url, class: 'button', method: 'POST'
           %ul.permissions-list
-            %li.permissions-list__item
-              = @group_plan
+            %li.permissions-list__item__text__title
+              %strong.announcements-list__item__title
+                = @group_plan
             %li.permissions-list__item
               = t('subscription.description2')
             = form_with url: settings_subscription.subscriptions_url do |f|
