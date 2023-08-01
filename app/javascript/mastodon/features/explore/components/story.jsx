@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
+import { FormattedMessage } from 'react-intl';
+
 import classNames from 'classnames';
 
 import { Blurhash } from 'mastodon/components/blurhash';
 import { accountsCountRenderer } from 'mastodon/components/hashtag';
+import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
 
@@ -13,10 +16,14 @@ export default class Story extends PureComponent {
   static propTypes = {
     url: PropTypes.string,
     title: PropTypes.string,
+    lang: PropTypes.string,
     publisher: PropTypes.string,
+    publishedAt: PropTypes.string,
+    author: PropTypes.string,
     sharedTimes: PropTypes.number,
     thumbnail: PropTypes.string,
     blurhash: PropTypes.string,
+    expanded: PropTypes.bool,
   };
 
   state = {
@@ -26,16 +33,16 @@ export default class Story extends PureComponent {
   handleImageLoad = () => this.setState({ thumbnailLoaded: true });
 
   render () {
-    const { url, title, publisher, sharedTimes, thumbnail, blurhash } = this.props;
+    const { expanded, url, title, lang, publisher, author, publishedAt, sharedTimes, thumbnail, blurhash } = this.props;
 
     const { thumbnailLoaded } = this.state;
 
     return (
-      <a className='story' href={url} target='blank' rel='noopener'>
+      <a className={classNames('story', { expanded })} href={url} target='blank' rel='noopener'>
         <div className='story__details'>
-          <div className='story__details__publisher'>{publisher ? publisher : <Skeleton width={50} />}</div>
-          <div className='story__details__title'>{title ? title : <Skeleton />}</div>
-          <div className='story__details__shared'>{typeof sharedTimes === 'number' ? <ShortNumber value={sharedTimes} renderer={accountsCountRenderer} /> : <Skeleton width={100} />}</div>
+          <div className='story__details__publisher'>{publisher ? <span lang={lang}>{publisher}</span> : <Skeleton width={50} />}{publishedAt && <> · <RelativeTimestamp timestamp={publishedAt} /></>}</div>
+          <div className='story__details__title' lang={lang}>{title ? title : <Skeleton />}</div>
+          <div className='story__details__shared'>{author && <><FormattedMessage id='link_preview.author' defaultMessage='By {name}' values={{ name: <strong>{author}</strong> }} /> · </>}{typeof sharedTimes === 'number' ? <ShortNumber value={sharedTimes} renderer={accountsCountRenderer} /> : <Skeleton width={100} />}</div>
         </div>
 
         <div className='story__thumbnail'>

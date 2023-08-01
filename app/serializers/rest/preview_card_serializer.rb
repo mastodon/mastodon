@@ -6,7 +6,7 @@ class REST::PreviewCardSerializer < ActiveModel::Serializer
   attributes :url, :title, :description, :language, :type,
              :author_name, :author_url, :provider_name,
              :provider_url, :html, :width, :height,
-             :image, :embed_url, :blurhash
+             :image, :embed_url, :blurhash, :published_at
 
   def image
     object.image? ? full_asset_url(object.image.url(:original)) : nil

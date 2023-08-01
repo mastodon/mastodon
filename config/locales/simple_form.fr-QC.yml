@@ -3,7 +3,7 @@ fr-QC:
   simple_form:
     hints:
       account:
-        display_name: Votre nom complet ou votre nom rigolo.
+        display_name: Votre nom complet ou votre nom cool.
         fields: Votre page d'accueil, pronoms, âge, tout ce que vous voulez.
         note: 'Vous pouvez @mentionner d’autres personnes ou des #hashtags.'
       account_alias:
@@ -134,7 +134,7 @@ fr-QC:
         position: Dans certaines situations, un rôle supérieur peut trancher la résolution d'un conflit. Mais certaines opérations ne peuvent être effectuées que sur des rôles ayant une priorité inférieure
       webhook:
         events: Sélectionnez les événements à envoyer
-        template: Écrivez votre propre bloc JSON avec la possibilité d’utiliser de l’interpolation de variables. Laissez vider pour utiliser le bloc JSON par défaut.
+        template: Écrivez votre propre bloc JSON avec la possibilité d’utiliser de l’interpolation de variables. Laissez vide pour le bloc JSON par défaut.
         url: Là où les événements seront envoyés
     labels:
       account:
@@ -200,7 +200,6 @@ fr-QC:
         setting_always_send_emails: Toujours envoyer les notifications par courriel
         setting_auto_play_gif: Lire automatiquement les GIFs animés
         setting_boost_modal: Demander confirmation avant de partager un message
-        setting_crop_images: Recadrer en 16x9 les images des messages qui ne sont pas ouverts en vue détaillée
         setting_default_language: Langue de publication
         setting_default_privacy: Confidentialité des messages
         setting_default_sensitive: Toujours marquer les médias comme sensibles
@@ -309,7 +308,7 @@ fr-QC:
         position: Priorité
       webhook:
         events: Événements activés
-        template: Modèle de payload
+        template: Modèle de charge utile
         url: URL du point de terminaison
     'no': Non
     not_recommended: Non recommandé
