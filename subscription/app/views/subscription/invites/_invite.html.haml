@@ -5,10 +5,10 @@
       = invite.uses
       = " / #{invite.max_uses}" unless invite.max_uses.nil?
       invites used
+    %td
+      %br
+      = main_app.public_invite_url(invite_code: invite.code)
   - else
     %td{ colspan: 2 }
       = t('invites.expired')
-  %td
-    %br
-    = main_app.public_invite_url(invite_code: invite.code)
 
