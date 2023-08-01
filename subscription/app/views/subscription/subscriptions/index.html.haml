@@ -17,7 +17,7 @@
           Please choose a subscription option below:
         - else
           manage your current subscription & view past subscriptions
-    .announcements-list__item__permissions
+    .announcements-list__item__permissions.simple_form
       - if @subscriptions.empty?
         .permissions-list__item
           %ul.permissions-list
@@ -33,15 +33,16 @@
             %li.permissions-list__item
               %li.permissions-list__item
                 = t('subscription.description2')
-              %li.permissions-list__item
-                .permissions-list__item__text__title
-                  = t('subscription.small_group_price')
-                  %br
-                  = t('subscription.large_group_price')
-              %li.permissions-list__item
-                = form_with url: settings_subscription.subscriptions_url do |f|
-                  = f.hidden_field :group, value: true
-                  = f.select :quantity, 2..99
+              = form_with url: settings_subscription.subscriptions_url do |f|
+                = f.hidden_field :group, value: true
+                %li.permissions-list__item
+                  .permissions-list__item__text__title.input.with_block_label
+                    = f.select :quantity, 2..99, class: 'select'
+                    %br
+                    = t('subscription.small_group_price')
+                    %br
+                    = t('subscription.large_group_price')
+                %li.permissions-list__item
                   = f.submit t('subscription.button2'), class: 'button'
       - else
         %ul.permissions-list
