@@ -3682,9 +3682,6 @@ a.status-card {
   aspect-ratio: 1;
   background: lighten($ui-base-color, 8%);
   position: relative;
-  border-radius: 8px;
-  border-start-end-radius: 0;
-  border-end-end-radius: 0;
 
   & > .fa {
     font-size: 21px;
@@ -3697,9 +3694,6 @@ a.status-card {
 }
 
 .status-card__image-image {
-  border-radius: 8px;
-  border-start-end-radius: 0;
-  border-end-end-radius: 0;
   display: block;
   margin: 0;
   width: 100%;
@@ -3710,9 +3704,6 @@ a.status-card {
 }
 
 .status-card__image-preview {
-  border-radius: 8px;
-  border-start-end-radius: 0;
-  border-end-end-radius: 0;
   display: block;
   margin: 0;
   width: 100%;
@@ -3737,6 +3728,15 @@ a.status-card {
 .status-card.expanded .status-card__image {
   width: 100%;
   aspect-ratio: auto;
+}
+
+.status-card__image,
+.status-card__image-image,
+.status-card__image-preview {
+  border-start-start-radius: 8px;
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+  border-end-start-radius: 8px;
 }
 
 .status-card.expanded .status-card__image,
