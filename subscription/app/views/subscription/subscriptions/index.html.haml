@@ -60,19 +60,18 @@
                   - if @data[sub.id][:owner]
                     - if sub.size > 1
                       .permissions-list__item__text
-                        - if sub.invite.present?
-                          - if sub.invite.valid_for_use?
-                            - sub.members.each do |m|
-                              %br
-                              %br
-                              %br
-                              %br
-                            = fa_icon 'user fw'
-                            = sub.invite.uses
-                            = " / #{sub.invite.max_uses}" unless sub.invite.max_uses.nil?
-                            invites used
-                            - sub.members.each do |member|
-                              = account_link_to member.user.account
+                        - if sub.invite.present? && sub.invite.valid_for_use?
+                          - sub.members.each do |m|
+                            %br
+                            %br
+                            %br
+                            %br
+                          = fa_icon 'user fw'
+                          = sub.invite.uses
+                          = " / #{sub.invite.max_uses}" unless sub.invite.max_uses.nil?
+                          invites used
+                          - sub.members.each do |member|
+                            = account_link_to member.user.account
               - if @data[sub.id][:owner]
                 - if sub.invite.present? && sub.invite.valid_for_use?
                   .permissions-list__item__text
@@ -84,4 +83,6 @@
                 .permissions-list__item__text
                   .permissions-list__item__text__type
                     managed by
+                .permissions-list__item__text
+                  .permissions-list__item__text__type
                     = account_link_to sub.user.account
