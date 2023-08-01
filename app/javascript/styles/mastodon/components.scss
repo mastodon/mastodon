@@ -3633,7 +3633,9 @@ a.status-card {
 
 .status-card.expanded .status-card__title {
   white-space: normal;
+  display: -webkit-box;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .status-card__content {
