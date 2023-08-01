@@ -74,8 +74,9 @@
                             - sub.members.each do |member|
                               = account_link_to member.user.account
               - if @data[sub.id][:owner]
-                .permissions-list__item__text
-                  = main_app.public_invite_url(invite_code: sub.invite.code)
+                - if sub.invite.present? && sub.invite.valid_for_use?
+                  .permissions-list__item__text
+                    = main_app.public_invite_url(invite_code: sub.invite.code)
                 .permissions-list__item__text
                   .permissions-list__item__text__type
                     = link_to "Manage", @data[sub.id][:url], class: 'button'
