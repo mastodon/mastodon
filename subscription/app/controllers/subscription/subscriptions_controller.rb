@@ -5,10 +5,18 @@ module Subscription
 
     def index
       @subscriptions = StripeSubscription.all.where(user_id: current_account.user.id)
-      @urls = @subscriptions.each_with_object({}) do |sub, hash|
-        hash[sub.id] = ::Stripe::BillingPortal::Session.create({
-          customer: sub.customer_id,
-        }).url
+      if (@subscriptions.empty?)
+        @subscriptions = SubscriptionMember.all.where(user_id: current_account.user.id).map(&:subscription)
+      end
+      @data = @subscriptions.each_with_object({}) do |sub, hash|
+          url = ::Stripe::BillingPortal::Session.create({
+            customer: sub.customer_id,
+          }).url
+
+          hash[sub.id] = {
+            url: url,
+            owner: sub.user_id == @user.id,
+          }
       end
     end
 

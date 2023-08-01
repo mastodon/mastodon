@@ -55,9 +55,16 @@
               .permissions-list__item__text
                 .permissions-list__item__text__title
                   = sub.description
-                - if sub.size > 1 && sub.invite.present?
-                  .permissions-list__item__text
-                    = render sub.invite
-              .permissions-list__item__text
-                .permissions-list__item__text__type
-                  = link_to "Manage", @urls[sub.id], class: 'button'
+                  - if @data[sub.id][:owner]
+                    - if sub.size > 1 && sub.invite.present?
+                      .permissions-list__item__text
+                        = render sub.invite
+              - if @data[sub.id][:owner]
+                .permissions-list__item__text
+                  .permissions-list__item__text__type
+                    = link_to "Manage", @data[sub.id][:url], class: 'button'
+              - else
+                .permissions-list__item__text
+                  .permissions-list__item__text__type
+                    managed by
+                    = "@" + sub.user.account.acct
