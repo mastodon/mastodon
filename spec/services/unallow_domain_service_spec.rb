@@ -14,7 +14,7 @@ RSpec.describe UnallowDomainService, type: :service do
 
   context 'with limited federation mode' do
     before do
-      allow(Rails.configuration.x).to receive(:whitelist_mode).and_return(true)
+      allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(true)
     end
 
     describe '#call' do
@@ -40,7 +40,7 @@ RSpec.describe UnallowDomainService, type: :service do
 
   context 'without limited federation mode' do
     before do
-      allow(Rails.configuration.x).to receive(:whitelist_mode).and_return(false)
+      allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(false)
     end
 
     describe '#call' do
