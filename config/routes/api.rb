@@ -282,7 +282,9 @@ namespace :api, format: false do
 
     resources :media, only: [:create]
     resources :suggestions, only: [:index]
-    resource :instance, only: [:show]
+    resource :instance, only: [:show] do
+      resources :languages, only: :index, controller: 'instances/languages'
+    end
     resources :filters, only: [:index, :create, :show, :update, :destroy] do
       resources :keywords, only: [:index, :create], controller: 'filters/keywords'
       resources :statuses, only: [:index, :create], controller: 'filters/statuses'
