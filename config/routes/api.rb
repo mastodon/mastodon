@@ -120,6 +120,7 @@ namespace :api, format: false do
       resource :privacy_policy, only: [:show], controller: 'instances/privacy_policies'
       resource :extended_description, only: [:show], controller: 'instances/extended_descriptions'
       resource :translation_languages, only: [:show], controller: 'instances/translation_languages'
+      resource :languages, only: [:show], controller: 'instances/languages'
       resource :activity, only: [:show], controller: 'instances/activity'
     end
 
@@ -282,9 +283,7 @@ namespace :api, format: false do
 
     resources :media, only: [:create]
     resources :suggestions, only: [:index]
-    resource :instance, only: [:show] do
-      resources :languages, only: :index, controller: 'instances/languages'
-    end
+    resource :instance, only: [:show]
     resources :filters, only: [:index, :create, :show, :update, :destroy] do
       resources :keywords, only: [:index, :create], controller: 'filters/keywords'
       resources :statuses, only: [:index, :create], controller: 'filters/statuses'
