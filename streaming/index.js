@@ -628,7 +628,19 @@ const startServer = async () => {
       return;
     }
 
-    accountFromRequest(req).then(() => checkScopes(req, channelNameFromPath(req))).then(() => {
+    const channelName = channelNameFromPath(req);
+
+    // If no channelName can be found for the request, then we should terminate
+    // the connection, as there's nothing to stream back
+    if (!channelName) {
+      const err = new Error('Unknown channel requested');
+      err.status = 400;
+
+      next(err);
+      return;
+    }
+
+    accountFromRequest(req).then(() => checkScopes(req, channelName)).then(() => {
       subscribeHttpToSystemChannel(req, res);
     }).then(() => {
       next();
