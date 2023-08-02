@@ -43,6 +43,8 @@ $ui-highlight-color: $classic-highlight-color !default;
 $ui-button-color: $white !default;
 $ui-button-background-color: $blurple-500 !default;
 $ui-button-focus-background-color: $blurple-600 !default;
+$ui-button-focus-outline-color: $blurple-400 !default;
+$ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !default;
 
 $ui-button-secondary-color: $grey-100 !default;
 $ui-button-secondary-border-color: $grey-100 !default;
@@ -57,7 +59,7 @@ $ui-button-tertiary-focus-color: $white !default;
 $ui-button-destructive-background-color: $red-500 !default;
 $ui-button-destructive-focus-background-color: $red-600 !default;
 
-$ui-button-icon-focus-outline: solid 2px $blurple-400 !default;
+$ui-button-icon-focus-outline: $ui-button-focus-outline !default;
 $ui-button-icon-hover-background-color: rgba(140, 141, 255, 40%) !default;
 
 // Variables for texts
