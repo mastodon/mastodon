@@ -76,8 +76,8 @@ class Request
     HTTP::URI.new(
       scheme: uri.normalized_scheme,
       authority: uri.normalized_authority,
-      path: Addressable::URI.normalize_path(uri.path),
-      query: uri.query
+      path: Addressable::URI.normalize_path(encode_non_ascii(uri.path)).presence || '/',
+      query: encode_non_ascii(uri.query)
     )
   end
 
@@ -149,6 +149,12 @@ class Request
       end
 
       %w(http https).include?(parsed_url.scheme) && parsed_url.host.present?
+    end
+
+    NON_ASCII_PATTERN = /[^\x00-\x7F]+/
+
+    def encode_non_ascii(str)
+      str&.gsub(NON_ASCII_PATTERN) { |substr| CGI.escape(substr.encode(Encoding::UTF_8)) }
     end
 
     def http_client
