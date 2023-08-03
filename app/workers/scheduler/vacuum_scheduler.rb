@@ -25,6 +25,7 @@ class Scheduler::VacuumScheduler
       applications_vacuum,
       feeds_vacuum,
       imports_vacuum,
+      invites_vacuum,
     ]
   end
 
@@ -60,7 +61,18 @@ class Scheduler::VacuumScheduler
     Vacuum::ApplicationsVacuum.new
   end
 
+  def invites_vacuum
+    Vacuum::InvitesVacuum.new(
+      invites_retention_policy.invite_retention_period,
+      invites_retention_policy.invite_max_uses
+    )
+  end
+
   def content_retention_policy
     ContentRetentionPolicy.current
+  end
+
+  def invites_retention_policy
+    InvitesRetentionPolicy.current
   end
 end

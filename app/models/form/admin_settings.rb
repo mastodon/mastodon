@@ -32,6 +32,8 @@ class Form::AdminSettings
     media_cache_retention_period
     content_cache_retention_period
     backups_retention_period
+    invite_expiration_period
+    invite_max_uses
     status_page_url
     captcha_enabled
   ).freeze
@@ -40,6 +42,8 @@ class Form::AdminSettings
     media_cache_retention_period
     content_cache_retention_period
     backups_retention_period
+    invite_expiration_period
+    invite_max_uses
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -70,6 +74,7 @@ class Form::AdminSettings
   validates :show_domain_blocks, inclusion: { in: %w(disabled users all) }, if: -> { defined?(@show_domain_blocks) }
   validates :show_domain_blocks_rationale, inclusion: { in: %w(disabled users all) }, if: -> { defined?(@show_domain_blocks_rationale) }
   validates :media_cache_retention_period, :content_cache_retention_period, :backups_retention_period, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@media_cache_retention_period) || defined?(@content_cache_retention_period) || defined?(@backups_retention_period) }
+  validates :invite_expiration_period, :invite_max_uses, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@invite_expiration_period) || defined?(@invite_max_uses) }
   validates :site_short_description, length: { maximum: 200 }, if: -> { defined?(@site_short_description) }
   validates :status_page_url, url: true, allow_blank: true
   validate :validate_site_uploads
