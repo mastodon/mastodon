@@ -58,7 +58,7 @@ const redisUrlToClient = async (defaultConfig, redisUrl) => {
  * connection, this is why it accepts a `req` argument.
  * @param {string} json
  * @param {any?} req
- * @returns {Object.<string, any>|null}
+ * @returns {ReturnType<typeof JSON.parse>|null}
  */
 const parseJSON = (json, req) => {
   try {
@@ -166,6 +166,68 @@ const redisConfigFromEnv = (env) => {
   };
 };
 
+const FALSE_VALUES = [
+  false,
+  0,
+  '0',
+  'f',
+  'F',
+  'false',
+  'FALSE',
+  'off',
+  'OFF',
+];
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
+const isTruthy = value =>
+  value && !FALSE_VALUES.includes(value);
+
+/**
+ * @param {any} req
+ * @returns {string|undefined}
+ */
+const channelNameFromPath = req => {
+  const { path, query } = req;
+  const onlyMedia = isTruthy(query.only_media);
+
+  switch (path) {
+  case '/api/v1/streaming/user':
+    return 'user';
+  case '/api/v1/streaming/user/notification':
+    return 'user:notification';
+  case '/api/v1/streaming/public':
+    return onlyMedia ? 'public:media' : 'public';
+  case '/api/v1/streaming/public/local':
+    return onlyMedia ? 'public:local:media' : 'public:local';
+  case '/api/v1/streaming/public/remote':
+    return onlyMedia ? 'public:remote:media' : 'public:remote';
+  case '/api/v1/streaming/hashtag':
+    return 'hashtag';
+  case '/api/v1/streaming/hashtag/local':
+    return 'hashtag:local';
+  case '/api/v1/streaming/direct':
+    return 'direct';
+  case '/api/v1/streaming/list':
+    return 'list';
+  default:
+    return undefined;
+  }
+};
+
+const PUBLIC_CHANNELS = [
+  'public',
+  'public:media',
+  'public:local',
+  'public:local:media',
+  'public:remote',
+  'public:remote:media',
+  'hashtag',
+  'hashtag:local',
+];
+
 const startServer = async () => {
   const app = express();
 
@@ -177,7 +239,7 @@ const startServer = async () => {
   const { redisParams, redisUrl, redisPrefix } = redisConfigFromEnv(process.env);
 
   /**
-   * @type {Object.<string, Array.<function(Object<string, any>): void>>}
+   * @type {Object.<string, Array.<SubscriptionListener>>}
    */
   const subs = {};
 
@@ -276,6 +338,7 @@ const startServer = async () => {
    * @param {string} channel
    */
   const onRedisMessage = (message, channel) => {
+    const isPublicChannel = PUBLIC_CHANNELS.includes(channel.slice('timeline:'.length));
     const callbacks = subs[channel];
 
     log.silly(`New message on channel ${channel}`);
@@ -285,15 +348,52 @@ const startServer = async () => {
     }
 
     const json = parseJSON(message, null);
-    if (!json) return;
 
-    callbacks.forEach(callback => callback(json));
+    // Ensure we get an object back, as JSON.parse returns `any` we need to
+    // ensure we did actually receive an object
+    if (!json || typeof json !== 'object' || Array.isArray(json)) return;
+
+    // The following code extracts the searchableTextContent for newly posted
+    // status or updated statuses on the public timelines. The public
+    // timelines are filtered in the streaming server, the other timelines are
+    // all filtered in rails. Previously we did this N times per message,
+    // where N was the number of subscribers to that channel. This is a
+    // compromise between changing the ruby side to expose the searchable text
+    // content directly, and trying to reduce the memory & CPU load of the
+    // streaming server, hopefully significantly reducing the likelihood of
+    // big GC pauses during the processing of a single message from redis.
+    //
+    // TODO: Calculate searchableContent in Ruby on Rails:
+    if (json.event && json.payload) {
+      /** @type {Readonly<string|null>} */
+      let searchableTextContent = null;
+
+      // We only need to calculate the searchable text for public channels when
+      // the event is related to a status post or update, and the status
+      // (payload) hasn't already been filtered
+      if (isPublicChannel && (json.event === 'update' || json.event === 'status.update') && !json.payload.filtered) {
+        const status = json.payload;
+        const searchableContent = ([status.spoiler_text || '', status.content]
+          .concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : []))
+          .concat(status.media_attachments.map(att => att.description))
+          .join('\n\n')
+          .replace(/<br\s*\/?>/g, '\n')
+          .replace(/<\/p><p>/g, '\n\n');
+
+        searchableTextContent = JSDOM.fragment(searchableContent).textContent;
+      }
+
+      callbacks.forEach(callback => callback(json, searchableTextContent));
+    } else {
+      callbacks.forEach(callback => callback(json, null));
+    }
   };
 
   /**
    * @callback SubscriptionListener
    * @param {ReturnType<parseJSON>} json of the message
-   * @returns void
+   * @param {string|null} searchableTextContent
+   * @returns {void}
    */
 
   /**
@@ -334,25 +434,6 @@ const startServer = async () => {
       delete subs[channel];
     }
   };
-
-  const FALSE_VALUES = [
-    false,
-    0,
-    '0',
-    'f',
-    'F',
-    'false',
-    'FALSE',
-    'off',
-    'OFF',
-  ];
-
-  /**
-   * @param {any} value
-   * @returns {boolean}
-   */
-  const isTruthy = value =>
-    value && !FALSE_VALUES.includes(value);
 
   /**
    * @param {any} req
@@ -461,49 +542,6 @@ const startServer = async () => {
 
   /**
    * @param {any} req
-   * @returns {string|undefined}
-   */
-  const channelNameFromPath = req => {
-    const { path, query } = req;
-    const onlyMedia = isTruthy(query.only_media);
-
-    switch (path) {
-    case '/api/v1/streaming/user':
-      return 'user';
-    case '/api/v1/streaming/user/notification':
-      return 'user:notification';
-    case '/api/v1/streaming/public':
-      return onlyMedia ? 'public:media' : 'public';
-    case '/api/v1/streaming/public/local':
-      return onlyMedia ? 'public:local:media' : 'public:local';
-    case '/api/v1/streaming/public/remote':
-      return onlyMedia ? 'public:remote:media' : 'public:remote';
-    case '/api/v1/streaming/hashtag':
-      return 'hashtag';
-    case '/api/v1/streaming/hashtag/local':
-      return 'hashtag:local';
-    case '/api/v1/streaming/direct':
-      return 'direct';
-    case '/api/v1/streaming/list':
-      return 'list';
-    default:
-      return undefined;
-    }
-  };
-
-  const PUBLIC_CHANNELS = [
-    'public',
-    'public:media',
-    'public:local',
-    'public:local:media',
-    'public:remote',
-    'public:remote:media',
-    'hashtag',
-    'hashtag:local',
-  ];
-
-  /**
-   * @param {any} req
    * @param {string|undefined} channelName
    * @returns {Promise.<void>}
    */
@@ -570,10 +608,10 @@ const startServer = async () => {
   /**
    * @param {any} req
    * @param {SystemMessageHandlers} eventHandlers
-   * @returns {function(object): void}
+   * @returns {SubscriptionListener}
    */
   const createSystemMessageListener = (req, eventHandlers) => {
-    return message => {
+    return (message /*, searchableTextContent */) => {
       const { event } = message;
 
       log.silly(req.requestId, `System message for ${req.accountId}: ${event}`);
@@ -726,7 +764,7 @@ const startServer = async () => {
     // message here is an object with an `event` and `payload` property. Some
     // events also include a queued_at value, but this is being removed shortly.
     /** @type {SubscriptionListener} */
-    const listener = message => {
+    const listener = (message, searchableTextContent) => {
       const { event, payload } = message;
 
       // Streaming only needs to apply filtering to some channels and only to
@@ -862,21 +900,11 @@ const startServer = async () => {
 
           // Apply cachedFilters against the payload, constructing a
           // `filter_results` array of FilterResult entities
-          if (req.cachedFilters) {
-            const status = payload;
-            // TODO: Calculate searchableContent in Ruby on Rails:
-            const searchableContent = ([status.spoiler_text || '', status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-            const searchableTextContent = JSDOM.fragment(searchableContent).textContent;
-
+          if (req.cachedFilters && searchableTextContent) {
             const now = new Date();
             const filter_results = Object.values(req.cachedFilters).reduce((results, cachedFilter) => {
               // Check the filter hasn't expired before applying:
               if (cachedFilter.expires_at !== null && cachedFilter.expires_at < now) {
-                return results;
-              }
-
-              // Just in-case JSDOM fails to find textContent in searchableContent
-              if (!searchableTextContent) {
                 return results;
               }
 
