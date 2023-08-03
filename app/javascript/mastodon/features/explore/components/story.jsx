@@ -38,12 +38,6 @@ export default class Story extends PureComponent {
 
     const { thumbnailLoaded } = this.state;
 
-    const badges = thumbnailDescription?.length > 0 && (
-      <div className='image-badges'>
-         <span className='image-badge'>ALT</span>
-      </div>
-    )
-
     return (
       <a className={classNames('story', { expanded })} href={url} target='blank' rel='noopener'>
         <div className='story__details'>
@@ -57,7 +51,6 @@ export default class Story extends PureComponent {
             <>
               <div className={classNames('story__thumbnail__preview', { 'story__thumbnail__preview--hidden': thumbnailLoaded })}><Blurhash hash={blurhash} /></div>
               <img src={thumbnail} onLoad={this.handleImageLoad} alt={thumbnailDescription} title={thumbnailDescription} lang={lang} />
-              {badges}
             </>
           ) : <Skeleton />}
         </div>

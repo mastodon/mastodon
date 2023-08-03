@@ -186,12 +186,6 @@ export default class Card extends PureComponent {
     const thumbnailDescription = card.get('image_description');
     const thumbnail = <img src={card.get('image')} alt={thumbnailDescription} title={thumbnailDescription} lang={language} style={thumbnailStyle} onLoad={this.handleImageLoad} className='status-card__image-image' />;
 
-    const badges = thumbnailDescription?.length > 0 && (
-      <div className='image-badges'>
-        <span className='image-badge'>ALT</span>
-      </div>
-    )
-
     let spoilerButton = (
       <button type='button' onClick={this.handleReveal} className='spoiler-button__overlay'>
         <span className='spoiler-button__overlay__label'>
@@ -221,7 +215,6 @@ export default class Card extends PureComponent {
           <div className='status-card__image'>
             {canvas}
             {thumbnail}
-            {badges}
 
             {revealed && (
               <div className='status-card__actions'>
@@ -248,7 +241,6 @@ export default class Card extends PureComponent {
         <div className='status-card__image'>
           {canvas}
           {thumbnail}
-          {badges}
         </div>
       );
     } else {
