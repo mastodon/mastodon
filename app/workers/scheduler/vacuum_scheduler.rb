@@ -73,6 +73,6 @@ class Scheduler::VacuumScheduler
   end
 
   def invites_retention_policy
-    InvitesRetentionPolicy.current
+    InviteRetentionPolicy.current
   end
 end
