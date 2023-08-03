@@ -19,19 +19,19 @@ RSpec.describe Vacuum::InvitesVacuum do
     end
 
     it 'expires unlimited invitation link' do
-      expect(invite_unlimited.expired?).to be true
+      expect(invite_unlimited.reload.expired?).to be true
     end
 
     it 'expires invitation link that have huge max uses' do
-      expect(invite_huge_max_uses.expired?).to be true
+      expect(invite_huge_max_uses.reload.expired?).to be true
     end
 
     it 'does not expires invitation link that have small max uses' do
-      expect(invite_small_max_uses.expired?).to be false
+      expect(invite_small_max_uses.reload.expired?).to be false
     end
 
     it 'expires invitation link that will expire' do
-      expect(invite_will_expires.expired?).to be true
+      expect(invite_will_expires.reload.expired?).to be true
     end
   end
 end
