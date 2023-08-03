@@ -23,6 +23,7 @@ export default class Story extends PureComponent {
     author: PropTypes.string,
     sharedTimes: PropTypes.number,
     thumbnail: PropTypes.string,
+    thumbnailDescription: PropTypes.string,
     blurhash: PropTypes.string,
     expanded: PropTypes.bool,
   };
@@ -34,7 +35,7 @@ export default class Story extends PureComponent {
   handleImageLoad = () => this.setState({ thumbnailLoaded: true });
 
   render () {
-    const { expanded, url, title, lang, publisher, author, publishedAt, sharedTimes, thumbnail, blurhash } = this.props;
+    const { expanded, url, title, lang, publisher, author, publishedAt, sharedTimes, thumbnail, thumbnailDescription, blurhash } = this.props;
 
     const { thumbnailLoaded } = this.state;
 
@@ -50,7 +51,7 @@ export default class Story extends PureComponent {
           {thumbnail ? (
             <>
               <div className={classNames('story__thumbnail__preview', { 'story__thumbnail__preview--hidden': thumbnailLoaded })}><Blurhash hash={blurhash} /></div>
-              <img src={thumbnail} onLoad={this.handleImageLoad} alt='' role='presentation' />
+              <img src={thumbnail} onLoad={this.handleImageLoad} alt={thumbnailDescription} title={thumbnailDescription} lang={lang} />
             </>
           ) : <Skeleton />}
         </div>

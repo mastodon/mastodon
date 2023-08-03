@@ -67,6 +67,7 @@ class Links extends PureComponent {
             author={link.get('author_name')}
             sharedTimes={link.getIn(['history', 0, 'accounts']) * 1 + link.getIn(['history', 1, 'accounts']) * 1}
             thumbnail={link.get('image')}
+            thumbnailDescription={link.get('image_description')}
             blurhash={link.get('blurhash')}
           />
         ))}
