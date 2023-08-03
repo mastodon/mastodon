@@ -8,11 +8,13 @@ RSpec.describe Vacuum::InvitesVacuum do
   let(:retention_period) { 7.days }
   let(:retention_max_uses) { 10 }
 
+  let(:user) { Fabricate(:user) }
+
   describe '#perform' do
-    invite_unlimited = Fabricate(:invite, max_uses: nil, expires_at: nil)
-    invite_huge_max_uses = Fabricate(:invite, max_uses: 100, expires_at: nil)
-    invite_small_max_uses = Fabricate(:invite, max_uses: 2, expires_at: nil)
-    invite_will_expires = Fabricate(:invite, max_uses: nil, created_at: 1.hour.ago, expires_at: 1.hour.from_now)
+    let!(:invite_unlimited) { Fabricate(:invite, user: user, max_uses: nil, created_at: 10.days.ago, expires_at: nil) }
+    let!(:invite_huge_max_uses) { Fabricate(:invite, max_uses: 100, created_at: 10.days.ago, expires_at: nil) }
+    let!(:invite_small_max_uses) { Fabricate(:invite, max_uses: 2, created_at: 10.days.ago, expires_at: nil) }
+    let!(:invite_will_expires_later) { Fabricate(:invite, max_uses: nil, created_at: 1.hour.ago, expires_at: 1.hour.from_now) }
 
     before do
       subject.perform
@@ -31,7 +33,7 @@ RSpec.describe Vacuum::InvitesVacuum do
     end
 
     it 'expires invitation link that will expire' do
-      expect(invite_will_expires.reload.expired?).to be true
+      expect(invite_will_expires_later.reload.expired?).to be false
     end
   end
 end

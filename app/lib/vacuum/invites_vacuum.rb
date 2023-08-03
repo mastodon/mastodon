@@ -13,13 +13,13 @@ class Vacuum::InvitesVacuum
   private
 
   def expire_invites!
-    invites = Invite.where('created_at < ?', @retention_period.ago)
+    invites = Invite.available.where('created_at < ?', @retention_period.ago)
     invites = if @max_uses.present?
                 invites.where('max_uses > ? OR max_uses IS NULL', @max_uses)
               else
                 invites.where(max_uses: nil)
               end
 
-    invites.reorder(nil).in_batches(&:expire!)
+    invites.reorder(nil).find_each(&:expire!)
   end
 end
