@@ -11,8 +11,6 @@ class InitialStateSerializer < ActiveModel::Serializer
   has_one :role, serializer: REST::RoleSerializer
 
   def meta
-    sso_redirect = "/auth/auth/#{Devise.omniauth_providers[0]}" if ENV['OMNIAUTH_ONLY'] == 'true' && Devise.omniauth_providers.length == 1
-
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
       access_token: object.token,
@@ -110,5 +108,9 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   def instance_presenter
     @instance_presenter ||= InstancePresenter.new
+  end
+
+  def sso_redirect
+    "/auth/auth/#{Devise.omniauth_providers[0]}" if ENV['OMNIAUTH_ONLY'] == 'true' && Devise.omniauth_providers.length == 1
   end
 end
