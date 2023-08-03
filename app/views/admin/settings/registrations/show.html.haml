@@ -20,6 +20,10 @@
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :require_invite_text, as: :boolean, wrapper: :with_label, disabled: !approved_registrations?
 
+  .fields-group
+    = f.input :invite_expiration_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
+    = f.input :invite_max_uses, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
+
   - if captcha_available?
     .fields-group
       = f.input :captcha_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.captcha_enabled.title'), hint: t('admin.settings.captcha_enabled.desc_html')

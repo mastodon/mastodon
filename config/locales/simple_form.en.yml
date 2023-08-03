@@ -83,6 +83,8 @@ en:
         closed_registrations_message: Displayed when sign-ups are closed
         content_cache_retention_period: All posts and boosts from other servers will be deleted after the specified number of days. Some posts may not be recoverable. All related bookmarks, favourites and boosts will also be lost and impossible to undo.
         custom_css: You can apply custom styles on the web version of Mastodon.
+        invite_expiration_period: If set to a positive number, invitation links will expire after the specified number of days.
+        invite_max_uses: If set, invite links with fewer than the specified number of uses will not be forced to expire.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
         peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
@@ -242,6 +244,8 @@ en:
         closed_registrations_message: Custom message when sign-ups are not available
         content_cache_retention_period: Content cache retention period
         custom_css: Custom CSS
+        invite_expiration_period: Invitation link force expiration period
+        invite_max_uses: Max uses threshold for force expiration of invitation link
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period
         peers_api_enabled: Publish list of discovered servers in the API
