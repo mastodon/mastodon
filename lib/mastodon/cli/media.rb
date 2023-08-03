@@ -158,6 +158,9 @@ module Mastodon::CLI
       when :fog
         say('The fog storage driver is not supported for this operation at this time', :red)
         exit(1)
+      when :azure
+        say('The azure storage driver is not supported for this operation at this time', :red)
+        exit(1)
       when :filesystem
         require 'find'
 

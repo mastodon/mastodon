@@ -22,7 +22,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       repository: Mastodon::Version.repository,
       source_url: instance_presenter.source_url,
       version: instance_presenter.version,
-      limited_federation_mode: Rails.configuration.x.whitelist_mode,
+      limited_federation_mode: Rails.configuration.x.limited_federation_mode,
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
       trends_enabled: Setting.trends,

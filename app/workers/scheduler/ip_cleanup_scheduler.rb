@@ -6,7 +6,7 @@ class Scheduler::IpCleanupScheduler
   IP_RETENTION_PERIOD = ENV.fetch('IP_RETENTION_PERIOD', 1.year).to_i.seconds.freeze
   SESSION_RETENTION_PERIOD = ENV.fetch('SESSION_RETENTION_PERIOD', 1.year).to_i.seconds.freeze
 
-  sidekiq_options retry: 0
+  sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform
     clean_ip_columns!

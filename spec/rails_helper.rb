@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 ENV['RAILS_ENV'] ||= 'test'
+
+# This needs to be defined before Rails is initialized
+RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
+
+if RUN_SYSTEM_SPECS
+  STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
+  ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
+end
 require File.expand_path('../config/environment', __dir__)
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
@@ -15,9 +23,13 @@ require 'chewy/rspec'
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
-WebMock.disable_net_connect!(allow: Chewy.settings[:host])
+WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: RUN_SYSTEM_SPECS)
 Sidekiq::Testing.inline!
 Sidekiq.logger = nil
+
+# System tests config
+DatabaseCleaner.strategy = [:deletion]
+streaming_server_manager = StreamingServerManager.new
 
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in
@@ -56,6 +68,8 @@ module SignedRequestHelpers
 end
 
 RSpec.configure do |config|
+  # This is set before running spec:system, see lib/tasks/tests.rake
+  config.filter_run_excluding type: :system unless RUN_SYSTEM_SPECS
   config.fixture_path = Rails.root.join('spec', 'fixtures')
   config.use_transactional_fixtures = true
   config.order = 'random'
@@ -83,8 +97,7 @@ RSpec.configure do |config|
   end
 
   config.before :each, type: :feature do
-    https = ENV['LOCAL_HTTPS'] == 'true'
-    Capybara.app_host = "http#{https ? 's' : ''}://#{ENV.fetch('LOCAL_DOMAIN')}"
+    Capybara.current_driver = :rack_test
   end
 
   config.before :each, type: :controller do
@@ -93,6 +106,35 @@ RSpec.configure do |config|
 
   config.before :each, type: :service do
     stub_jsonld_contexts!
+  end
+
+  config.before :suite do
+    if RUN_SYSTEM_SPECS
+      Webpacker.compile
+      streaming_server_manager.start(port: STREAMING_PORT)
+    end
+  end
+
+  config.after :suite do
+    streaming_server_manager.stop
+  end
+
+  config.around :each, type: :system do |example|
+    # driven_by :selenium, using: :chrome, screen_size: [1600, 1200]
+    driven_by :selenium, using: :headless_chrome, screen_size: [1600, 1200]
+
+    # The streaming server needs access to the database
+    # but with use_transactional_tests every transaction
+    # is rolled-back, so the streaming server never sees the data
+    # So we disable this feature for system tests, and use DatabaseCleaner to clean
+    # the database tables between each test
+    self.use_transactional_tests = false
+
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+
+    self.use_transactional_tests = true
   end
 
   config.before(:each) do |example|
@@ -104,6 +146,14 @@ RSpec.configure do |config|
   config.after :each do
     Rails.cache.clear
     redis.del(redis.keys)
+  end
+
+  # Assign types based on dir name for non-inferred types
+  config.define_derived_metadata(file_path: %r{/spec/}) do |metadata|
+    unless metadata.key?(:type)
+      match = metadata[:location].match(%r{/spec/([^/]+)/})
+      metadata[:type] = match[1].singularize.to_sym
+    end
   end
 end
 

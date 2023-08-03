@@ -45,7 +45,7 @@ class CopyStatusStats < ActiveRecord::Migration[5.2]
     # We cannot use bulk INSERT or overarching transactions here because of possible
     # uniqueness violations that we need to skip over
     Status.unscoped.select('id, reblogs_count, favourites_count, created_at, updated_at').find_each do |status|
-      params = [[nil, status.id], [nil, status.reblogs_count], [nil, status.favourites_count], [nil, status.created_at], [nil, status.updated_at]]
+      params = [status.id, status.reblogs_count, status.favourites_count, status.created_at, status.updated_at]
       exec_insert('INSERT INTO status_stats (status_id, reblogs_count, favourites_count, created_at, updated_at) VALUES ($1, $2, $3, $4, $5)', nil, params)
     rescue ActiveRecord::RecordNotUnique
       next

@@ -46,6 +46,8 @@ module Mastodon::CLI
                           upgrade_storage_s3(progress, attachment, style)
                         when :fog
                           upgrade_storage_fog(progress, attachment, style)
+                        when :azure
+                          upgrade_storage_azure(progress, attachment, style)
                         when :filesystem
                           upgrade_storage_filesystem(progress, attachment, style)
                         end
@@ -102,6 +104,11 @@ module Mastodon::CLI
 
     def upgrade_storage_fog(_progress, _attachment, _style)
       say('The fog storage driver is not supported for this operation at this time', :red)
+      exit(1)
+    end
+
+    def upgrade_storage_azure(_progress, _attachment, _style)
+      say('The azure storage driver is not supported for this operation at this time', :red)
       exit(1)
     end
 

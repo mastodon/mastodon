@@ -120,7 +120,12 @@ namespace :api, format: false do
       resource :privacy_policy, only: [:show], controller: 'instances/privacy_policies'
       resource :extended_description, only: [:show], controller: 'instances/extended_descriptions'
       resource :translation_languages, only: [:show], controller: 'instances/translation_languages'
+      resource :languages, only: [:show], controller: 'instances/languages'
       resource :activity, only: [:show], controller: 'instances/activity'
+    end
+
+    namespace :peers do
+      get :search, to: 'search#index'
     end
 
     resource :domain_blocks, only: [:show, :create, :destroy]

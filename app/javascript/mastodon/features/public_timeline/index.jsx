@@ -29,7 +29,7 @@ const mapStateToProps = (state, { columnId }) => {
   const index = columns.findIndex(c => c.get('uuid') === uuid);
   const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']);
   const onlyRemote = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyRemote']) : state.getIn(['settings', 'public', 'other', 'onlyRemote']);
-  const timelineState = state.getIn(['timelines', `public${onlyMedia ? ':media' : ''}`]);
+  const timelineState = state.getIn(['timelines', `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`]);
 
   return {
     hasUnread: !!timelineState && timelineState.get('unread') > 0,

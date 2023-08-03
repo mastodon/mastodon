@@ -153,3 +153,100 @@ jobs:
         run: './bin/rails db:create db:schema:load db:seed'
 
       - run: bundle exec rake rspec_chunked
+
+  test-e2e:
+    name: End to End testing
+    runs-on: ubuntu-latest
+
+    needs:
+      - build
+
+    services:
+      postgres:
+        image: postgres:14-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    env:
+      DB_HOST: localhost
+      DB_USER: postgres
+      DB_PASS: postgres
+      DISABLE_SIMPLECOV: true
+      RAILS_ENV: test
+      BUNDLE_WITH: test
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version:
+          - '3.0'
+          - '3.1'
+          - '.ruby-version'
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+        with:
+          path: './public'
+          name: ${{ github.sha }}
+
+      - name: Update package index
+        run: sudo apt-get update
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version-file: '.nvmrc'
+
+      - name: Install native Ruby dependencies
+        run: sudo apt-get install -y libicu-dev libidn11-dev
+
+      - name: Install additional system dependencies
+        run: sudo apt-get install -y ffmpeg imagemagick
+
+      - name: Set up bundler cache
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version}}
+          bundler-cache: true
+
+      - run: yarn --frozen-lockfile
+
+      - name: Load database schema
+        run: './bin/rails db:create db:schema:load db:seed'
+
+      - run: bundle exec rake spec:system
+
+      - name: Archive logs
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: e2e-logs-${{ matrix.ruby-version }}
+          path: log/
+
+      - name: Archive test screenshots
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: e2e-screenshots
+          path: tmp/screenshots/

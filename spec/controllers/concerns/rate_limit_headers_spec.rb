@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-describe ApplicationController do
-  controller do
+describe RateLimitHeaders do
+  controller(ApplicationController) do
     include RateLimitHeaders
 
     def show
