@@ -802,6 +802,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_112520) do
     t.boolean "trendable"
     t.integer "link_type"
     t.datetime "published_at"
+    t.string "image_description", default: "", null: false
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 
