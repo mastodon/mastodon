@@ -13,7 +13,7 @@ import { openModal, closeModal } from 'mastodon/actions/modal';
 import api from 'mastodon/api';
 import Button from 'mastodon/components/button';
 import { Icon }  from 'mastodon/components/icon';
-import { registrationsOpen } from 'mastodon/initial_state';
+import { registrationsOpen, sso_redirect } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server, e.g. mastodon.social' },
@@ -331,18 +331,36 @@ class InteractionModal extends React.PureComponent {
     }
 
     let signupButton;
+    let signUpOrSignInButton;
 
-    if (registrationsOpen) {
-      signupButton = (
-        <a href='/auth/sign_up' className='link-button'>
-          <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+    if (sso_redirect) {
+      signUpOrSignInButton = (
+        <a href={sso_redirect} data-method='post' className='button button--block button-tertiary'>
+          <FormattedMessage id='sign_in_banner.sso_redirect' defaultMessage='Login or Register' />
         </a>
-      );
+      )
     } else {
-      signupButton = (
-        <button className='link-button' onClick={this.handleSignupClick}>
-          <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
-        </button>
+      if(registrationsOpen) {
+        signupButton = (
+          <a href='/auth/sign_up' className='link-button'>
+            <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+          </a>
+        );
+      } else {
+        signupButton = (
+          <button className='button button--block button-tertiary' onClick={this.handleSignupClick}>
+            <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+          </button>
+        );
+      }
+
+      signUpOrSignInButton = (
+        <>
+          <a href='/auth/sign_in' className='button button--block'>
+            <FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' />
+          </a>
+          {signupButton}
+        </>
       );
     }
 
@@ -351,6 +369,13 @@ class InteractionModal extends React.PureComponent {
         <div className='interaction-modal__lead'>
           <h3><span className='interaction-modal__icon'>{icon}</span> {title}</h3>
           <p>{actionDescription} <strong><FormattedMessage id='interaction_modal.sign_in' defaultMessage='You are not logged in to this server. Where is your account hosted?' /></strong></p>
+        </div>
+
+        <div className='interaction-modal__choices'>
+          <div className='interaction-modal__choices__choice'>
+            <h3><FormattedMessage id='interaction_modal.on_this_server' defaultMessage='On this server' /></h3>
+            {signUpOrSignInButton}
+          </div>
         </div>
 
         <IntlLoginForm resourceUrl={url} />
