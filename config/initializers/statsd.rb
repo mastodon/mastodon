@@ -10,6 +10,6 @@ if ENV['STATSD_ADDR'].present?
     informant.collect(:action_controller, :web)
     informant.collect(:active_record, :db)
     informant.collect(:active_support_cache, :cache)
-    informant.collect(:sidekiq, :sidekiq)
+    informant.collect(:sidekiq, :sidekiq) if ENV['STATSD_SIDEKIQ'] == 'true'
   end
 end
