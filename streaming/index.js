@@ -234,7 +234,7 @@ const startServer = async () => {
   // When checking metrics in the browser, the favicon is requested this
   // prevents the request from falling through to the API Router, which would
   // error for this endpoint:
-  app.get('/favicon.ico', (req, res) => res.end());
+  app.get('/favicon.ico', (req, res) => res.status(404).end());
 
   app.get('/api/v1/streaming/health', (req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
