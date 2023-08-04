@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class StatusesIndex < Chewy::Index
+class PublicStatusesIndex < Chewy::Index
   include FormattingHelper
 
-  settings index: index_preset(refresh_interval: '30s', number_of_shards: 5), analysis: {
+  settings index: { refresh_interval: '30s' }, analysis: {
     filter: {
       english_stop: {
         type: 'stop',
@@ -35,7 +35,13 @@ class StatusesIndex < Chewy::Index
 
   # We do not use delete_if option here because it would call a method that we
   # expect to be called with crutches without crutches, causing n+1 queries
-  index_scope ::Status.unscoped.kept.without_reblogs.includes(:media_attachments, :preloadable_poll)
+  index_scope ::Status.unscoped
+                      .kept
+                      .without_reblogs
+                      .includes(:media_attachments, :preloadable_poll)
+                      .joins(:account)
+                      .where(accounts: { discoverable: true })
+                      .where(visibility: :public)
 
   crutch :mentions do |collection|
     data = ::Mention.where(status_id: collection.map(&:id)).where(account: Account.local, silent: false).pluck(:status_id, :account_id)
@@ -69,7 +75,5 @@ class StatusesIndex < Chewy::Index
     field(:text, type: 'text', value: ->(status) { status.searchable_text }) do
       field(:stemmed, type: 'text', analyzer: 'content')
     end
-
-    field(:searchable_by, type: 'long', value: ->(status, crutches) { status.searchable_by(crutches) })
   end
 end
