@@ -71,7 +71,7 @@ nl:
       enabled: Ingeschakeld
       enabled_msg: Het ontdooien van het account van %{username} is geslaagd
       followers: Volgers
-      follows: Volgt
+      follows: Gevolgde accounts
       header: Omslagfoto
       inbox_url: Inbox-URL
       invite_request_text: Redenen om te registreren
@@ -382,6 +382,15 @@ nl:
       undo: Federatie met domein afkeuren
     domain_blocks:
       add_new: Nieuwe domeinblokkade toevoegen
+      confirm_suspension:
+        cancel: Annuleren
+        confirm: Opschorten
+        permanent_action: De schorsing ongedaan maken zal geen gegevens of volgrelaties herstellen.
+        preamble_html: Je staat op het punt om <strong>%{domain}</strong> en subdomeinen op te schorten.
+        remove_all_data: Dit verwijdert alle inhoud, media en profielgegevens van de accounts van dit domein van jouw server.
+        stop_communication: Jouw server zal niet langer met deze servers communiceren.
+        title: Domeinblokkade voor %{domain} bevestigen
+        undo_relationships: Dit zal elke volgrelatie tussen de accounts van deze servers en die van jou ongedaan maken.
       created_msg: Domeinblokkade wordt nu verwerkt
       destroyed_msg: Domeinblokkade is ongedaan gemaakt
       domain: Domein
@@ -731,6 +740,9 @@ nl:
       branding:
         preamble: De branding van jouw server laat zien hoe het met andere servers in het netwerk verschilt. Deze informatie wordt op verschillende plekken getoond, zoals in de webomgeving van Mastodon, in mobiele apps, in voorvertoningen op andere websites en berichten-apps, enz. Daarom is het belangrijk om de informatie helder, kort en beknopt te houden.
         title: Branding
+      captcha_enabled:
+        desc_html: Dit is afhankelijk van externe scripts van hCaptcha, wat veiligheids- en privacyrisico's met zich mee kan brengen. Bovendien kan <strong>dit het registratieproces aanzienlijk minder toegankelijk maken voor sommige (vooral gehandicapte) mensen</strong>. Om deze redenen kun je het beste alternatieve maatregelen overwegen, zoals registratie op basis van goedkeuring of op uitnodiging.
+        title: Nieuwe gebruikers dienen een CAPTCHA op te lossen om hun account te bevestigen
       content_retention:
         preamble: Toezicht houden op hoe berichten en media van gebruikers op Mastodon worden bewaard.
         title: Bewaartermijn berichten
@@ -961,11 +973,11 @@ nl:
       guide_link: https://crowdin.com/project/mastodon/nl
       guide_link_text: Iedereen kan bijdragen.
     sensitive_content: Gevoelige inhoud
-    toot_layout: Lay-out van berichten
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
     salutation: "%{name},"
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
+    unsubscribe: Afmelden
     view: 'Bekijk:'
     view_profile: Profiel bekijken
     view_status: Bericht bekijken
@@ -979,6 +991,10 @@ nl:
     your_token: Jouw toegangscode
   auth:
     apply_for_account: Account aanvragen
+    captcha_confirmation:
+      help_html: Als je problemen ondervindt bij het oplossen van de CAPTCHA, kun je contact met ons opnemen via %{email}, zodat we je kunnen assisteren.
+      hint_html: Nog maar één ding! Je moet bevestigen dat je een mens bent (dit is om de spam buiten de deur te houden!). Los de onderstaande CAPTCHA op en klik op "Doorgaan".
+      title: Veiligheidscontrole
     confirmations:
       wrong_email_hint: Als dat e-mailadres niet correct is, kun je het wijzigen in je accountinstellingen.
     delete_account: Account verwijderen
@@ -1015,8 +1031,11 @@ nl:
     rules:
       accept: Accepteren
       back: Terug
+      invited_by: 'Je kunt je registreren op %{domain} dankzij de uitnodiging die je hebt ontvangen van:'
       preamble: Deze zijn vastgesteld en worden gehandhaafd door de moderatoren van %{domain}.
+      preamble_invited: Voordat je verder gaat, moet je eerst kennisnemen van de basisregels die door de moderatoren van %{domain} zijn vastgesteld.
       title: Enkele basisregels.
+      title_invited: Je bent uitgenodigd.
     security: Beveiliging
     set_new_password: Nieuw wachtwoord instellen
     setup:
@@ -1041,18 +1060,6 @@ nl:
       view_strikes: Bekijk de eerder door moderatoren vastgestelde overtredingen die je hebt gemaakt
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
     use_security_key: Beveiligingssleutel gebruiken
-  authorize_follow:
-    already_following: Je volgt dit account al
-    already_requested: Je hebt al een volgverzoek naar dat account verstuurd
-    error: Helaas, er is een fout opgetreden bij het opzoeken van de externe account
-    follow: Volgen
-    follow_request: 'Jij hebt een volgverzoek ingediend bij:'
-    following: 'Succes! Jij volgt nu:'
-    post_follow:
-      close: Of je kunt dit venster gewoon sluiten.
-      return: Profiel van deze gebruiker tonen
-      web: Ga naar de webapp
-    title: Volg %{acct}
   challenge:
     confirm: Doorgaan
     hint_html: "<strong>Tip:</strong> We vragen jou het komende uur niet meer naar jouw wachtwoord."
@@ -1129,6 +1136,11 @@ nl:
       your_appeal_rejected: Jouw bezwaar is afgewezen
   domain_validator:
     invalid_domain: is een ongeldige domeinnaam
+  edit_profile:
+    basic_information: Algemene informatie
+    hint_html: "<strong>Pas aan wat mensen op jouw openbare profiel en naast je berichten zien.</strong> Andere mensen zullen je eerder volgen en met je communiceren wanneer je profiel is ingevuld en je een profielfoto hebt."
+    other: Overige
+    safety_and_privacy: Veiligheid en privacy
   errors:
     '400': De aanvraag die je hebt ingediend was ongeldig of foutief.
     '403': Jij hebt geen toestemming om deze pagina te bekijken.
@@ -1155,18 +1167,18 @@ nl:
       in_progress: Jouw archief wordt samengesteld...
       request: Jouw archief opvragen
       size: Omvang
-    blocks: Jij blokkeert
+    blocks: Geblokkeerde accounts
     bookmarks: Bladwijzers
     csv: CSV
-    domain_blocks: Domeinblokkades
+    domain_blocks: Geblokkeerde domeinen
     lists: Lijsten
-    mutes: Jij negeert
-    storage: Mediaopslag
+    mutes: Genegeerde accounts
+    storage: Mediabestanden
   featured_tags:
     add_new: Nieuwe toevoegen
     errors:
       limit: Je hebt al het maximale aantal hashtags uitgelicht
-    hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare berichten per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
+    hint_html: "<strong>Toon je belangrijkste hashtags op je profiel</strong> Deze worden prominent op je openbare profiel getoond en stelt mensen in staat om je openbare berichten per hashtag te bekijken. Het is een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
   filters:
     contexts:
       account: Profielen
@@ -1217,7 +1229,9 @@ nl:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> item dat met jouw zoekopdracht overeenkomt is geselecteerd."
       other: Alle <strong>%{count}</strong> items die met jouw zoekopdracht overeenkomen zijn geselecteerd.
+    cancel: Annuleren
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
+    confirm: Bevestigen
     copy: Kopiëren
     delete: Verwijderen
     deselect: Alles deselecteren
@@ -1233,21 +1247,61 @@ nl:
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
   imports:
     errors:
+      empty: Leeg CSV-bestand
+      incompatible_type: Incompatibel met het geselecteerde importtype
       invalid_csv_file: 'Ongeldig CSV-bestand. Fout: %{error}'
       over_rows_processing_limit: bevat meer dan %{count} rijen
+      too_large: Bestand is te groot
+    failures: Fouten
+    imported: Geïmporteerd
+    mismatched_types_warning: Het lijkt erop dat je het verkeerde type hebt gekozen voor deze import. Gelieve dit na te kijken.
     modes:
       merge: Samenvoegen
       merge_long: Bestaande gegevens behouden en nieuwe toevoegen
       overwrite: Overschrijven
       overwrite_long: Huidige gegevens met de nieuwe gegevens vervangen
+    overwrite_preambles:
+      blocking_html: Je staat op het punt <strong>jouw lijst met geblokkeerde accounts</strong> te vervangen door <strong>%{total_items} accounts</strong> vanuit <strong>%{filename}</strong>.
+      bookmarks_html: Je staat op het punt <strong>jouw bladwijzers</strong> te vervangen door <strong>%{total_items} berichten</strong> vanuit <strong>%{filename}</strong>.
+      domain_blocking_html: Je staat op het punt <strong>jouw lijst met geblokkeerde domeinen</strong> te vervangen door <strong>%{total_items} domeinen</strong> vanuit <strong>%{filename}</strong>.
+      following_html: Je staat op het punt om <strong>%{total_items} accounts</strong> <strong>te volgen</strong> vanuit <strong>%{filename}</strong> en <strong>te stoppen met het volgen van alle andere accounts</strong>.
+      lists_html: Je staat op het punt <strong>je lijsten</strong> te vervangen door inhoud van <strong>%{filename}</strong>. Tot <strong>%{total_items} accounts</strong> zullen aan nieuwe lijsten worden toegevoegd.
+      muting_html: Je staat op het punt <strong>jouw lijst met genegeerde accounts</strong> te vervangen door <strong>%{total_items} accounts</strong> vanuit <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>blokkeren</strong> vanuit <strong>%{filename}</strong>.
+      bookmarks_html: Je staat op het punt om <strong>%{total_items} berichten</strong> aan je <strong>bladwijzers</strong> toe te voegen vanuit <strong>%{filename}</strong>.
+      domain_blocking_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>negeren</strong> vanuit <strong>%{filename}</strong>.
+      following_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>volgen</strong> vanuit <strong>%{filename}</strong>.
+      lists_html: Je staat op het punt om tot <strong>%{total_items} accounts</strong> van <strong>%{filename}</strong> toe te voegen aan je <strong>lijsten</strong>. Nieuwe lijsten worden aangemaakt als er geen lijst is om aan toe te voegen.
+      muting_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>negeren</strong> vanuit <strong>%{filename}</strong>.
     preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd, naar jouw account op deze server importeren. Je moet deze gegevens wel eerst op de oorspronkelijke server exporteren.
+    recent_imports: Recent geïmporteerd
+    states:
+      finished: Voltooid
+      in_progress: Bezig…
+      scheduled: Ingepland
+      unconfirmed: Onbevestigd
+    status: Status
     success: Jouw gegevens zijn succesvol geüpload en worden binnenkort verwerkt
+    time_started: Begonnen om
+    titles:
+      blocking: Geblokkeerde accounts importeren
+      bookmarks: Bladwijzers importeren
+      domain_blocking: Geblokkeerde domeinen importeren
+      following: Gevolgde accounts importeren
+      lists: Lijsten importeren
+      muting: Genegeerde accounts importeren
+    type: Importtype
+    type_groups:
+      constructive: Gevolgde accounts en bladwijzers
+      destructive: Geblokkeerde accounts/domeinen en genegeerde accounts
     types:
-      blocking: Blokkeerlijst
+      blocking: Geblokkeerde accounts
       bookmarks: Bladwijzers
-      domain_blocking: Lijst met geblokkeerde domeinen
-      following: Volglijst
-      muting: Negeerlijst
+      domain_blocking: Geblokkeerde domeinen
+      following: Gevolgde accounts
+      lists: Lijsten
+      muting: Genegeerde accounts
     upload: Uploaden
   invites:
     delete: Deactiveren
@@ -1285,6 +1339,21 @@ nl:
     failed_sign_in_html: Mislukte inlogpoging met %{method} van %{ip} (%{browser})
     successful_sign_in_html: Succesvol ingelogd met %{method} van %{ip} (%{browser})
     title: Inloggeschiedenis
+  mail_subscriptions:
+    unsubscribe:
+      action: Ja, afmelden
+      complete: Afgemeld
+      confirmation_html: Weet je zeker dat je je wilt afmelden voor het ontvangen van %{type} van Mastodon op %{domain} op je e-mailadres %{email}? Je kunt je altijd opnieuw abonneren in jouw <a href="%{settings_path}">instellingen voor e-mailmeldingen</a>.
+      emails:
+        notification_emails:
+          favourite: e-mailmeldingen voor favorieten
+          follow: e-mailmeldingen voor nieuwe volgers
+          follow_request: e-mailmeldingen voor volgverzoeken
+          mention: e-mailmeldingen voor vermeldingen
+          reblog: e-mailmeldingen voor boosts
+      resubscribe_html: Als je je per ongeluk hebt afgemeld, kun je je opnieuw abonneren in jouw <a href="%{settings_path}">instellingen voor e-mailmeldingen</a>.
+      success_html: Je ontvangt niet langer %{type} van Mastodon op %{domain} op je e-mailadres %{email}.
+      title: Afmelden
   media_attachments:
     validations:
       images_and_video: Een video kan niet aan een bericht met afbeeldingen worden gekoppeld
@@ -1354,7 +1423,7 @@ nl:
       subject: Jij bent vermeld door %{name}
       title: Nieuwe vermelding
     poll:
-      subject: Een poll van %{name} is beëindigd
+      subject: Een peiling van %{name} is beëindigd
     reblog:
       body: 'Jouw bericht werd door %{name} geboost:'
       subject: "%{name} boostte jouw bericht"
@@ -1393,13 +1462,14 @@ nl:
     truncate: "&hellip;"
   polls:
     errors:
-      already_voted: Je hebt al op deze poll gestemd
+      already_voted: Je hebt al aan deze peiling deelgenomen
       duplicate_options: bevat dubbele items
       duration_too_long: ligt te ver in de toekomst
       duration_too_short: is te kort van duur
-      expired: De poll is al beëindigd
-      invalid_choice: De gekozen poll-optie bestaat niet
+      expired: De peiling is al beëindigd
+      invalid_choice: De gekozen peiling-optie bestaat niet
       over_character_limit: kan stuk voor stuk niet langer zijn dan %{max} tekens
+      self_vote: Je kunt niet op eigen peilingen stemmen
       too_few_options: moet meer dan één item bevatten
       too_many_options: kan niet meer dan %{max} items bevatten
   preferences:
@@ -1509,7 +1579,7 @@ nl:
     migrate: Accountmigratie
     notifications: Meldingen
     preferences: Voorkeuren
-    profile: Profiel
+    profile: Openbaar profiel
     relationships: Volgers en gevolgde accounts
     statuses_cleanup: Automatisch berichten verwijderen
     strikes: Vastgestelde overtredingen
@@ -1555,7 +1625,6 @@ nl:
     show_newer: Nieuwere tonen
     show_older: Oudere tonen
     show_thread: Gesprek tonen
-    sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privébericht
@@ -1580,8 +1649,8 @@ nl:
     keep_media_hint: Verwijdert geen enkel bericht met mediabijlagen
     keep_pinned: Vastgemaakte berichten behouden
     keep_pinned_hint: Verwijdert geen enkel vastgezet bericht van jou
-    keep_polls: Polls behouden
-    keep_polls_hint: Geen enkele poll van jou wordt verwijderd
+    keep_polls: Peilingen behouden
+    keep_polls_hint: Geen enkele peiling van jou wordt verwijderd
     keep_self_bookmark: Bladwijzers behouden
     keep_self_bookmark_hint: Eigen berichten die je aan je bladwijzers hebt toegevoegd worden niet verwijderd
     keep_self_fav: Favorieten behouden
@@ -1601,8 +1670,6 @@ nl:
     min_reblogs: Berichten die minstens zoveel keer zijn geboost behouden
     min_reblogs_hint: Verwijdert geen berichten die tenminste zoveel keer zijn geboost. Laat leeg om berichten ongeacht het aantal boosts te verwijderen
   stream_entries:
-    pinned: Vastgemaakt bericht
-    reblogged: boostte
     sensitive_content: Gevoelige inhoud
   strikes:
     errors:
@@ -1703,7 +1770,12 @@ nl:
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
   verification:
+    extra_instructions_html: <strong>Tip:</strong> De link op je website kan onzichtbaar zijn. Het belangrijke onderdeel is <code>rel="me"</code> dat impersonatie op websites met user-generated content voorkomt. Je kunt zelfs een <code>link</code>-tag gebruiken in de header van de pagina in plaats van <code>a</code>, maar de HTML moet ook zonder JavaScript toegankelijk zijn.
+    here_is_how: Zo werkt het
+    hint_html: "<strong>Verificatie van je identiteit op Mastodon is voor iedereen.</strong> Het is gebaseerd op open webstandaarden, en is en blijft altijd gratis. Alles wat nodig is is een persoonlijke website waar mensen je aan kunnen herkennen. Wanneer je vanuit jouw profiel naar deze website linkt, zullen wij controleren of de website naar jouw profiel teruglinkt en daar een visuele indicator van tonen."
+    instructions_html: Kopieer en plak de onderstaande code in de HTML van je website. Voeg vervolgens het adres van je website toe aan een van de extra velden op je profiel op het tabblad "Profiel bewerken" en sla de wijzigingen op.
     verification: Verificatie
+    verified_links: Jouw geverifieerde links
   webauthn_credentials:
     add: Nieuwe beveiligingssleutel toevoegen
     create:

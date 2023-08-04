@@ -396,6 +396,15 @@ pl:
       undo: Usuń z białej listy
     domain_blocks:
       add_new: Dodaj nową
+      confirm_suspension:
+        cancel: Anuluj
+        confirm: Zawieś
+        permanent_action: Cofnięcie zawieszenia nie przywróci żadnych danych ani związków.
+        preamble_html: Zamierzasz zawiesić <strong>%{domain}</strong> wraz z subdomenami.
+        remove_all_data: Usunie to wszystkie treści, media, i dane profilów kont tej domeny z twojego serwera.
+        stop_communication: Twój serwer przestanie komunikować się z tymi serwerami.
+        title: Potwierdź blokadę domeny %{domain}
+        undo_relationships: To usunie wszystkie związki obserwowania między kontami na tych serwerach i twoim.
       created_msg: Blokada domen jest przetwarzana
       destroyed_msg: Blokada domeny nie może zostać odwrócona
       domain: Domena
@@ -759,6 +768,9 @@ pl:
       branding:
         preamble: Marka Twojego serwera odróżnia go od innych serwerów w sieci. Informacje te mogą być wyświetlane w różnych środowiskach, takich jak interfejs internetowy Mastodon, aplikacje natywne, w podglądzie linków na innych stronach internetowych i w aplikacjach do wysyłania wiadomości itd. Z tego względu najlepiej zachować jasną, krótką i zwięzłą informację.
         title: Marka
+      captcha_enabled:
+        desc_html: Wymaga użycia zewnętrznych skryptów hCaptcha, co może negatywnie wpływać na bezpieczeństwo i prywatność. <strong>Może również przyczynić się do znaczącego utrudnienia procesu rejestracji niektórym, np. niepełnosprawnym, osobom.</strong> Dlatego sugeruje się używanie zaproszeń bądź ręcznie potwierdzanie kont.
+        title: W celu potwierdzenia ich kont wymagaj rozwiązania zadania CAPTCHA przez nowych użytkowników
       content_retention:
         preamble: Kontroluj, jak treści generowane przez użytkownika są przechowywane w Mastodon.
         title: Retencja treści
@@ -997,11 +1009,11 @@ pl:
       guide_link: https://pl.crowdin.com/project/mastodon
       guide_link_text: Każdy może wnieść swój wkład.
     sensitive_content: Wrażliwa zawartość
-    toot_layout: Wygląd wpisów
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
     salutation: "%{name},"
     settings: 'Zmień ustawienia powiadamiania: %{link}'
+    unsubscribe: Anuluj subskrypcję
     view: 'Zobacz:'
     view_profile: Wyświetl profil
     view_status: Wyświetl wpis
@@ -1015,6 +1027,10 @@ pl:
     your_token: Twój token dostępu
   auth:
     apply_for_account: Poproś o założenie konta
+    captcha_confirmation:
+      help_html: Jeżeli masz problemy z rozwiązywaniem zadań CAPTCHA, możemy pomóc ci po kontakcie z nami pod adresem %{email}.
+      hint_html: Jeszcze jedno! Potrzebujemy potwierdzić twoje człowieczeństwo, żeby ograniczyć spam. Rozwiąż poniższą CAPTCHA-ę i naciśnij "Kontynuuj".
+      title: Kontrola bezpieczeństwa
     confirmations:
       wrong_email_hint: Jeśli ten adres e-mail nie jest poprawny, możesz go zmienić w ustawieniach konta.
     delete_account: Usunięcie konta
@@ -1051,8 +1067,11 @@ pl:
     rules:
       accept: Zaakceptuj
       back: Wróć
+      invited_by: 'Możesz dołączyć do %{domain} dzięki zaproszeniu, które otrzymano od:'
       preamble: Są one ustawione i wymuszone przez moderatorów %{domain}.
+      preamble_invited: Zanim przejdziesz dalej, rozważ zasady podstawowe ustalone przez moderatorów %{domain}.
       title: Kilka podstawowych zasad.
+      title_invited: Otrzymano zaproszenie.
     security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
     setup:
@@ -1077,18 +1096,6 @@ pl:
       view_strikes: Zobacz dawne ostrzeżenia nałożone na twoje konto
     too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
     use_security_key: Użyj klucza bezpieczeństwa
-  authorize_follow:
-    already_following: Już obserwujesz to konto
-    already_requested: Już wysłałeś(-aś) prośbę o możliwość obserwowania tego konta
-    error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
-    follow: Obserwuj
-    follow_request: 'Wysłano prośbę o możliwość obserwowania:'
-    following: 'Pomyślnie! Od teraz obserwujesz:'
-    post_follow:
-      close: Ewentualnie, możesz po prostu zamknąć tę stronę.
-      return: Pokaż stronę użytkownika
-      web: Przejdź do sieci
-    title: Obserwuj %{acct}
   challenge:
     confirm: Kontynuuj
     hint_html: "<strong>Informacja:</strong> Nie będziemy prosić Cię o ponowne podanie hasła przez następną godzinę."
@@ -1165,6 +1172,11 @@ pl:
       your_appeal_rejected: Twoje odwołanie zostało odrzucone
   domain_validator:
     invalid_domain: nie jest prawidłową nazwą domeny
+  edit_profile:
+    basic_information: Podstawowe informacje
+    hint_html: "<strong>Dostosuj to, co ludzie widzą na Twoim profilu publicznym i obok Twoich wpisów.</strong> Inne osoby są bardziej skłonne obserwować Cię i wchodzić z Tobą w interakcje, gdy masz wypełniony profil i zdjęcie profilowe."
+    other: Inne
+    safety_and_privacy: Bezpieczeństwo i prywatność
   errors:
     '400': Wysłane zgłoszenie jest nieprawidłowe lub uszkodzone.
     '403': Nie masz uprawnień, aby wyświetlić tę stronę.
@@ -1263,7 +1275,9 @@ pl:
       many: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
       one: "<strong>%{count}</strong> element pasujący do Twojego wyszukiwania został wybrany."
       other: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
+    cancel: Anuluj
     changes_saved_msg: Ustawienia zapisane!
+    confirm: Zatwierdź
     copy: Kopiuj
     delete: Usuń
     deselect: Odznacz wszystkie
@@ -1283,20 +1297,60 @@ pl:
       other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
   imports:
     errors:
+      empty: Pusty plik CSV
+      incompatible_type: Niezgodny z wybranym typem importu
       invalid_csv_file: 'Nieprawidłowy plik CSV. Błąd: %{error}'
       over_rows_processing_limit: zawiera więcej niż %{count} wierszy
+      too_large: Plik jest zbyt duży
+    failures: Błędy
+    imported: Zaimportowano
+    mismatched_types_warning: Wygląda na to, że wybrałeś nieprawidłowy typ dla tego importu, sprawdź dwukrotnie.
     modes:
       merge: Połącz
       merge_long: Zachowaj obecne wpisy i dodaj nowe
       overwrite: Nadpisz
       overwrite_long: Zastąp obecne wpisy nowymi
+    overwrite_preambles:
+      blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
+      bookmarks_html: Zamierzasz <strong>zastąpić swoje zakładki</strong> maksymalnie <strong>%{total_items} wpisami</strong> z <strong>%{filename}</strong>.
+      domain_blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków domen</strong> maksymalnie <strong>%{total_items} domenami</strong> z <strong>%{filename}</strong>.
+      following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong> i <strong>przestać obserwować kogokolwiek innego</strong>.
+      lists_html: Zamierzasz <strong>zastąpić swoje listy</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
+      muting_html: Zamierzasz <strong>zastąpić swoją wyciszonych</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
+      bookmarks_html: Zamierzasz dodać maksymalnie <strong>%{total_items} wpisów</strong> do twoich <strong>zakładek</strong> z <strong>%{filename}</strong>.
+      domain_blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} domen</strong> z <strong>%{filename}</strong>.
+      following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
+      lists_html: Zamierzasz dodać maksymalnie <strong>%{total_items} kont</strong> do twoich <strong>list</strong> z <strong>%{filename}</strong>. Jeżeli nie ma list, nowe zostaną utworzone.
+      muting_html: Zamierzasz <strong>wyciszyć</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
     preface: Możesz zaimportować pewne dane (np. lista kont, które obserwujesz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
+    recent_imports: Ostatnie importy
+    states:
+      finished: Zakończono
+      in_progress: W toku
+      scheduled: Zaplanowane
+      unconfirmed: Niepotwierdzone
+    status: Wpisy
     success: Twoje dane zostały załadowane i zostaną niebawem przetworzone
+    time_started: Rozpoczęto o
+    titles:
+      blocking: Importowanie zablokowanych kont
+      bookmarks: Importowanie zakładek
+      domain_blocking: Importowanie zablokowanych domen
+      following: Importowanie obserwowanych kont
+      lists: Importowanie list
+      muting: Importowanie wyciszonych kont
+    type: Typ importu
+    type_groups:
+      constructive: Obserwowani i zakładki
+      destructive: Zablokowani i wyciszeni użytkownicy
     types:
       blocking: Lista blokowanych
       bookmarks: Zakładki
       domain_blocking: Lista zablokowanych domen
       following: Lista obserwowanych
+      lists: Listy
       muting: Lista wyciszonych
     upload: Załaduj
   invites:
@@ -1337,6 +1391,21 @@ pl:
     failed_sign_in_html: Próba logowania zakończona niepowodzeniem przy pomocy %{method} z %{ip} (%{browser})
     successful_sign_in_html: Pomyślne logowanie przy pomocy %{method} z %{ip} (%{browser})
     title: Historia uwierzytelniania
+  mail_subscriptions:
+    unsubscribe:
+      action: Tak, wypisuję się
+      complete: Anulowano subskrypcję
+      confirmation_html: Czy na pewno chcesz wypisać się z otrzymywania %{type} z Mastodona na %{domain} na adres %{email}? Zawsze możesz zapisać się ponownie ze strony <a href="%{settings_path}">ustawień powiadomień mejlowych</a>.
+      emails:
+        notification_emails:
+          favourite: powiadomień mejlowych o polubieniach
+          follow: powiadomień mejlowych o obserwujących
+          follow_request: mejli o prośbach o możliwość obserwowania
+          mention: powiadomień mejlowych o wspomnieniach
+          reblog: powiadomień mejlowych o podbiciach
+      resubscribe_html: W przypadku przypadkowego wypisania możesz zapisać się ponownie z <a href="%{settings_path}">ustawień powiadomień mejlowych</a>.
+      success_html: Już nie będziesz otrzymywać %{type} z Mastodona na %{domain} na adres %{email}.
+      title: Anuluj subskrypcję
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
@@ -1452,6 +1521,7 @@ pl:
       expired: To głosowanie już zakończyło się
       invalid_choice: Wybrana opcja głosowania nie istnieje
       over_character_limit: nie może zawierać więcej niż %{max} znaków
+      self_vote: Nie możesz głosować we własnych ankietach
       too_few_options: musi zawierać przynajmniej dwie opcje
       too_many_options: nie może zawierać więcej niż %{max} opcji
   preferences:
@@ -1619,7 +1689,6 @@ pl:
     show_newer: Pokaż nowsze
     show_older: Pokaż starsze
     show_thread: Pokaż wątek
-    sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Bezpośredni
@@ -1665,8 +1734,6 @@ pl:
     min_reblogs: Utrzymuj posty wzmocnione więcej niż
     min_reblogs_hint: Nie usuwa żadnego z Twoich wpisów, które zostały wzmocnione więcej niż tyle razy. Pozostaw puste, aby usunąć posty bez względu na ich liczbę wzmocnień
   stream_entries:
-    pinned: Przypięty wpis
-    reblogged: podbił
     sensitive_content: Wrażliwa zawartość
   strikes:
     errors:
@@ -1767,7 +1834,12 @@ pl:
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowano jako:'
   verification:
+    extra_instructions_html: <strong>Wskazówka:</strong> link na twojej stronie może być niewidoczny. Istotną częścią, zapobiegającą podszywaniu na stronach z treściami dodawanymi przez użytkowników, jest <code>rel="me"</code>. Zamiast tagu <code>a</code> możesz w nagłówek osadzić tag <code>link</code>. Oba jednak muszą być dostępne bez JavaScriptu.
+    here_is_how: Oto jak
+    hint_html: "<strong>Weryfikacja tożsamości na Mastodonie jest dla wszystkich,</strong> oparta na otwartych standardach, i darmowa. Potrzebna ci tylko osobista strona WWW po której inni cię rozpoznają – kiedy linkujesz do niej z twojego profilu, sprawdzamy czy ona linkuje doń z powrotem, i wskazujemy to wizualnie."
+    instructions_html: Skopiuj poniższy kod HTML i wklej go na swoją stronę. Potem dodaj link do twojej strony do jednego z wolnych pól na profilu z zakładki "Edytuj profil".
     verification: Weryfikacja
+    verified_links: Twoje zweryfikowane linki
   webauthn_credentials:
     add: Dodaj nowy klucz bezpieczeństwa
     create:

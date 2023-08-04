@@ -2,6 +2,10 @@
 tr:
   simple_form:
     hints:
+      account:
+        display_name: Tam adınız veya kullanıcı adınız.
+        fields: Ana sayfanız, zamirleriniz, yaşınız, istediğiniz herhangi bir şey.
+        note: 'Diğer insanlara @değinebilir veya #etiketler kullanabilirsiniz.'
       account_alias:
         acct: Taşımak istediğiniz hesabı kullanıcıadı@alanadı şeklinde belirtin
       account_migration:
@@ -130,6 +134,7 @@ tr:
         position: Belirli durumlarda çatışmayı çözmek için daha yüksek rol belirleyicidir. Bazı eylemler ancak daha düşük öncelikteki rollere uygulanabilir
       webhook:
         events: Gönderilecek etkinlikleri seçin
+        template: Değişken değerleme kullanarak kendi JSON yükünüzü oluşturun. Varsayılan JSON için boş bırakın.
         url: Olayların gönderileceği yer
     labels:
       account:
@@ -195,7 +200,6 @@ tr:
         setting_always_send_emails: Her zaman e-posta bildirimleri gönder
         setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
         setting_boost_modal: Boostlamadan önce onay iletişim kutusu göster
-        setting_crop_images: Genişletilmemiş gönderilerdeki resimleri 16x9 olarak kırp
         setting_default_language: Gönderi dili
         setting_default_privacy: Gönderi gizliliği
         setting_default_sensitive: Medyayı her zaman hassas olarak işaretle
@@ -295,6 +299,7 @@ tr:
         usable: Gönderilerin bu etiketi kullanmasına izin ver
       user:
         role: Rol
+        time_zone: Zaman dilimi
       user_role:
         color: Rozet rengi
         highlighted: Rolü kullanıcıların profilinde rozet olarak görüntüle
@@ -303,6 +308,7 @@ tr:
         position: Öncelik
       webhook:
         events: Etkin olaylar
+        template: Yük şablonu
         url: Uç nokta URL’si
     'no': Hayır
     not_recommended: Önerilmez

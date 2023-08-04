@@ -8,7 +8,7 @@ on:
       - 'Gemfile*'
       - '.rubocop*.yml'
       - '.ruby-version'
-      - '.bundler-audit.yml'
+      - 'config/brakeman.ignore'
       - '**/*.rb'
       - '**/*.rake'
       - '.github/workflows/lint-ruby.yml'
@@ -18,7 +18,7 @@ on:
       - 'Gemfile*'
       - '.rubocop*.yml'
       - '.ruby-version'
-      - '.bundler-audit.yml'
+      - 'config/brakeman.ignore'
       - '**/*.rb'
       - '**/*.rake'
       - '.github/workflows/lint-ruby.yml'
@@ -46,5 +46,6 @@ jobs:
       - name: Run rubocop
         run: bundle exec rubocop
 
-      - name: Run bundler-audit
-        run: bundle exec bundler-audit
+      - name: Run brakeman
+        if: always() # Run both checks, even if the first failed
+        run: bundle exec brakeman

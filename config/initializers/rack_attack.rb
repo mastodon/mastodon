@@ -5,9 +5,9 @@ require 'doorkeeper/grape/authorization_decorator'
 class Rack::Attack
   class Request
     def authenticated_token
-      return @token if defined?(@token)
+      return @authenticated_token if defined?(@authenticated_token)
 
-      @token = Doorkeeper::OAuth::Token.authenticate(
+      @authenticated_token = Doorkeeper::OAuth::Token.authenticate(
         Doorkeeper::Grape::AuthorizationDecorator.new(self),
         *Doorkeeper.configuration.access_token_methods
       )

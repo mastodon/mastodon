@@ -2,6 +2,10 @@
 zh-CN:
   simple_form:
     hints:
+      account:
+        display_name: 您的全名或昵称。
+        fields: 你的主页、人称代词、年龄，以及任何你想要添加的内容。
+        note: '您可以提及 @其他人 或 #标签 。'
       account_alias:
         acct: 指定你想要迁移过来的原账号：用户名@站点域名
       account_migration:
@@ -51,8 +55,8 @@ zh-CN:
         setting_always_send_emails: 一般情况下，如果您活跃使用 Mastodon，我们不会给您发送电子邮件通知
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
         setting_display_media_default: 隐藏被标记为敏感内容的媒体
-        setting_display_media_hide_all: 隐藏所有媒体
-        setting_display_media_show_all: 显示所有的媒体
+        setting_display_media_hide_all: 始终隐藏媒体
+        setting_display_media_show_all: 始终显示媒体
         setting_hide_network: 你的关注者和你关注的人将不会在你的个人资料页上展示
         setting_noindex: 此设置会影响到你的公开个人资料以及嘟文页面
         setting_show_application: 你用来发表嘟文的应用程序将会在你嘟文的详细内容中显示
@@ -130,6 +134,7 @@ zh-CN:
         position: 用于在特定情况下处理决策冲突。一些特定操作只能对优先级更低的角色执行
       webhook:
         events: 选择要发送的事件
+        template: 使用变量插值来构建自己的JSON负载。如果要使用默认的JSON，请留空。
         url: 事件将被发往的目的地
     labels:
       account:
@@ -195,21 +200,20 @@ zh-CN:
         setting_always_send_emails: 总是发送电子邮件通知
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 在转嘟前询问我
-        setting_crop_images: 把未展开嘟文中的图片裁剪到 16x9
         setting_default_language: 发布语言
         setting_default_privacy: 嘟文默认可见范围
-        setting_default_sensitive: 总是将我发送的媒体文件标记为敏感内容
+        setting_default_sensitive: 始终标记媒体为敏感内容
         setting_delete_modal: 在删除嘟文前询问我
         setting_disable_swiping: 禁用滑动动作
-        setting_display_media: 媒体展示
+        setting_display_media: 媒体显示
         setting_display_media_default: 默认
         setting_display_media_hide_all: 隐藏全部
         setting_display_media_show_all: 显示全部
-        setting_expand_spoilers: 始终展开具有内容警告的嘟文
+        setting_expand_spoilers: 一律展开具有内容警告的嘟文
         setting_hide_network: 隐藏你的社交网络
         setting_noindex: 禁止搜索引擎建立索引
         setting_reduce_motion: 降低过渡动画效果
-        setting_show_application: 展示你用来发嘟的应用
+        setting_show_application: 展示发布嘟文的应用
         setting_system_font_ui: 使用系统默认字体
         setting_theme: 站点主题
         setting_trends: 显示今日热门
@@ -295,6 +299,7 @@ zh-CN:
         usable: 允许嘟文使用此话题标签
       user:
         role: 角色
+        time_zone: 时区
       user_role:
         color: 徽章颜色
         highlighted: 在用户资料中显示角色徽章
@@ -303,6 +308,7 @@ zh-CN:
         position: 优先级
       webhook:
         events: 已启用事件
+        template: 载荷模板
         url: 对端 URL
     'no': 否
     not_recommended: 不推荐

@@ -125,6 +125,8 @@ nn:
       removed_header_msg: Fjerna %{username} sitt toppbilete
       resend_confirmation:
         already_confirmed: Denne brukaren er allereie stadfesta
+        send: Send stadfestingslenka på nytt
+        success: Stadfestingslenka er send!
       reset: Attstill
       reset_password: Attstill passord
       resubscribe: Ting på nytt
@@ -350,6 +352,12 @@ nn:
       pending_appeals_html:
         one: "<strong>%{count}</strong> ventande ankar"
         other: "<strong>%{count}</strong> ventande klagar"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> ventande rapportar"
+        other: "<strong>%{count}</strong> ventande rapportar"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> ventande emneknaggar"
+        other: "<strong>%{count}</strong> ventande emneknaggar"
       pending_users_html:
         one: "<strong>%{count}</strong> ventande brukarar"
         other: "<strong>%{count}</strong> ventande brukarar"
@@ -374,6 +382,10 @@ nn:
       undo: Fjern frå kvitliste
     domain_blocks:
       add_new: Lag ny
+      confirm_suspension:
+        cancel: Avbryt
+        confirm: Suspender
+        permanent_action: Å oppheve suspensjonen vil ikke gjenopprette noe data eller koblinger.
       created_msg: Domeneblokkering blir nå behandlet
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
@@ -750,7 +762,6 @@ nn:
           approved: Godkjenning kreves for påmelding
           none: Ingen kan melda seg inn
           open: Kven som helst kan melda seg inn
-      title: Serverinnstillinger
     site_uploads:
       delete: Slett opplasta fil
       destroyed_msg: Vellukka sletting av sideopplasting!
@@ -804,6 +815,12 @@ nn:
         message_html: Du har ikke definert noen serverregler.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
+      upload_check_privacy_error:
+        action: Sjekk her for meir informasjon
+        message_html: "<strong>Vevtenaren din er sett opp feil. Personvernet til brukarane din er i fare.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Sjekk her for meir informasjon
+        message_html: "<strong>Objektlagringa di er sett opp feil. Personvernet til brukarane dine er i fare.</strong>"
     tags:
       review: Sjå gjennom status
       updated_msg: Emneknagginnstillingane er oppdaterte
@@ -947,11 +964,11 @@ nn:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alle kan bidra.
     sensitive_content: Ømtolig innhald
-    toot_layout: Tutoppsett
   application_mailer:
     notification_preferences: Endr e-post-innstillingane
     salutation: Hei %{name},
     settings: 'Endr e-post-innstillingar: %{link}'
+    unsubscribe: Avslutt abonnement
     view: 'Sjå:'
     view_profile: Sjå profil
     view_status: Sjå status
@@ -965,6 +982,8 @@ nn:
     your_token: Tilgangsnykelen din
   auth:
     apply_for_account: Søk om ein konto
+    captcha_confirmation:
+      title: Sikkerhetskontroll
     confirmations:
       wrong_email_hint: Viss epostadressa er feil, kan du endra ho i kontoinnstillingane.
     delete_account: Slett konto
@@ -973,6 +992,7 @@ nn:
       prefix_invited_by_user: "@%{name} spør deg om å verta med i ein Mastodon-tenar!"
       prefix_sign_up: Meld deg på Mastodon i dag!
       suffix: Med ein konto kan du fylgja folk, skriva innlegg og veksla meldingar med brukarar frå kva som helst annan Mastodon-tenar og meir!
+    didnt_get_confirmation: Fekk du ikkje stadfestingslenka?
     dont_have_your_security_key: Har du ikke sikkerhetsnøkkelen din?
     forgot_password: Har du gløymt passordet ditt?
     invalid_reset_password_token: Tilgangsnykelen er ugyldig eller utgått. Ver venleg å beda om ein ny ein.
@@ -985,23 +1005,39 @@ nn:
     migrate_account_html: Om du vil visa denne kontoen til ein anna, kan du <a href="%{path}">skipe det her</a>.
     or_log_in_with: Eller logg inn med
     privacy_policy_agreement_html: Jeg har lest og godtar <a href="%{privacy_policy_path}" target="_blank">retningslinjer for personvern</a>
+    progress:
+      confirm: Stadfest e-postadressa
+      details: Opplysingane dine
+      review: Vår gjennomgang
+      rules: Godta reglane
     providers:
       cas: CAS
       saml: SAML
     register: Registrer deg
     registration_closed: "%{instance} tek ikkje imot nye medlemmar"
+    resend_confirmation: Send stadfestingslenka på nytt
     reset_password: Attstill passord
     rules:
       accept: Godkjenn
       back: Attende
+      invited_by: 'Du kan bli med %{domain} takket være invitasjonen du fikk fra:'
       preamble: Disse angis og håndheves av %{domain}-moderatorene.
+      preamble_invited: Før du fortsetter, vennligst gå gjennom reglene som er satt av moderatorene av %{domain}.
       title: Noen grunnregler.
+      title_invited: Du har blitt invitert.
     security: Tryggleik
     set_new_password: Lag nytt passord
+    setup:
+      email_below_hint_html: Sjekk søppelpostmappa di, eller be om ein ny. Du kan endra epostadressa di dersom ho er feil.
+      email_settings_hint_html: Klikk lenka me sende deg for å stadfesta %{email}. Me sit her og ventar.
+      link_not_received: Fekk du ikkje lenka?
+      new_confirmation_instructions_sent: Du burde få ein ny epost med stadfestingslenke innan nokre minutt!
+      title: Sjekk innboksen din
     sign_in:
       preamble_html: Logg inn med brukaropplysningar for <strong>%{domain}</strong>. Dersom kontoen din er registrert på ein annan tenar vil du ikkje kunne logga inn her.
       title: Logg inn på %{domain}
     sign_up:
+      manual_review: Når du lagar ein konto på %{domain}, vil moderatorane våre gå gjennom påmeldinga di manuelt. For å hjelpa oss med påmeldinga di, er det fint om du skriv litt om deg sjølv og kvifor du vil ha ein konto på %{domain}.
       preamble: Med en konto på denne Mastodon-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
       title: La oss få deg satt i gang på %{domain}.
     status:
@@ -1013,18 +1049,6 @@ nn:
       view_strikes: Vis tidligere advarsler mot kontoen din
     too_fast: Skjemaet ble sendt inn for raskt, prøv på nytt.
     use_security_key: Bruk sikkerhetsnøkkel
-  authorize_follow:
-    already_following: Du fylgjer allereie denne kontoen
-    already_requested: Du har allereie sendt ein fylgjespurnad til den kontoen
-    error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
-    follow: Fylg
-    follow_request: 'Du har sendt ein fylgjeførespurnad til:'
-    following: 'Suksess! No fylgjer du:'
-    post_follow:
-      close: Eller så kan du berre lukka att dette vindauget.
-      return: Vis brukarprofilen
-      web: Gå til nettet
-    title: Fylg %{acct}
   challenge:
     confirm: Hald fram
     hint_html: "<strong>Tips:</strong> Vi skal ikkje spørja deg om passordet ditt igjen i laupet av den neste timen."
@@ -1101,6 +1125,11 @@ nn:
       your_appeal_rejected: Din klage har blitt avvist
   domain_validator:
     invalid_domain: er ikkje eit gangbart domenenamn
+  edit_profile:
+    basic_information: Grunnleggende informasjon
+    hint_html: "<strong>Tilpass hva folk ser på din offentlige profil og ved siden av dine innlegg.</strong> Det er mer sannsynlig at andre mennesker følger deg tilbake og samhandler med deg når du har fylt ut en profil og et profilbilde."
+    other: Annet
+    safety_and_privacy: Sikkerhet og personvern
   errors:
     '400': Søknaden du sende var ugyldig eller sett opp feil.
     '403': Du har ikkje løyve til å sjå denne sida.
@@ -1161,6 +1190,9 @@ nn:
       empty: Du har ingen filtre.
       expires_in: Går ut om %{distance}
       expires_on: Går ut %{date}
+      keywords:
+        one: "%{count} stikkord"
+        other: "%{count} stikkord"
       title: Filter
     new:
       save: Lagre nytt filter
@@ -1174,7 +1206,9 @@ nn:
         title: Filtrerte innlegg
   generic:
     all: Alle
+    cancel: Avbryt
     changes_saved_msg: Alle endringane vart lagra!
+    confirm: Stadfest
     copy: Kopier
     delete: Slett
     deselect: Vel ingen
@@ -1187,15 +1221,51 @@ nn:
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   imports:
     errors:
+      empty: Tom CSV-fil
+      incompatible_type: Ikkje kompatibel med importtypen du valde
       invalid_csv_file: 'Ugyldig CSV-fil. Feil: %{error}'
       over_rows_processing_limit: inneholder flere enn %{count} rader
+      too_large: Fila er for stor
+    failures: Feil
+    imported: Importert
+    mismatched_types_warning: Det ser ut som du har valt feil type for denne importen. Sjekk ein gong til.
     modes:
       merge: Set saman
       merge_long: Hald på eksisterande data og legg til nye
       overwrite: Skriv over
       overwrite_long: Byt ut dei noverande oppføringane med dei nye
+    overwrite_preambles:
+      blocking_html: Du skal til å <strong>byta ut blokkeringslista di</strong> med opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+      bookmarks_html: Du skal til å <strong>byta ut bokmerka dine</strong> med opp til <strong>%{total_items} innlegg</strong> frå <strong>%{filename}</strong>.
+      domain_blocking_html: Du skal til å <strong>byta ut domeneblokkeringslista di</strong> med opp til <strong>%{total_items} domene</strong> frå <strong>%{filename}</strong>.
+      following_html: Du skal til å <strong>fylgja</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong> og <strong>slutta å fylgja alle andre</strong>.
+      muting_html: Du skal til å <strong>byta ut lista di over dempa brukarkontoar</strong> med opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Du skal til å <strong>blokkera</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+      bookmarks_html: Du skal til å leggja til opp til <strong>%{total_items} innlegg</strong> frå <strong>%{filename}</strong> til <strong>bokmerka dine</strong>.
+      domain_blocking_html: Du skal til å <strong>blokkera</strong> opp til <strong>%{total_items} domene</strong> frå <strong>%{filename}</strong>.
+      following_html: Du skal til å <strong>fylgja</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+      muting_html: Du skal til å <strong>dempa</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
     preface: Du kan henta inn data som du har eksportert frå ein annan tenar, som t.d. ei liste over folka du fylgjer eller blokkerer.
+    recent_imports: Siste importar
+    states:
+      finished: Ferdig
+      in_progress: Pågår
+      scheduled: Planlagt
+      unconfirmed: Ikkje stadfesta
+    status: Status
     success: Dataa dine vart lasta opp og vert no handsama så fort som mogeleg
+    time_started: Starta
+    titles:
+      blocking: Importerer blokkerte brukarkontoar
+      bookmarks: Importerer bokmerke
+      domain_blocking: Importerer blokkerte domene
+      following: Importerer fylgde brukarkontoar
+      muting: Importerer dempa brukarkontoar
+    type: Type import
+    type_groups:
+      constructive: Fylgjer og bokmerke
+      destructive: Blokkeringar og dempingar
     types:
       blocking: Blokkeringsliste
       bookmarks: Bokmerker
@@ -1239,6 +1309,21 @@ nn:
     failed_sign_in_html: Mislykket innloggingsforsøk med %{method} fra %{ip} (%{browser})
     successful_sign_in_html: Vellykket innlogging med %{method} fra %{ip} (%{browser})
     title: Autentiseringshistorikk
+  mail_subscriptions:
+    unsubscribe:
+      action: Ja, avslutt abonnement
+      complete: Abonnement avsluttet
+      confirmation_html: Er du sikker på at du vil slutte å motta %{type} fra Mastodon %{domain} i e-posten din på %{email}? Du kan når som helst gjenoppta i <a href="%{settings_path}">innstillinger for e-postvarsling</a>.
+      emails:
+        notification_emails:
+          favourite: e-poster om favorittmarkeringer
+          follow: e-poster om følgere
+          follow_request: e-poster om følgeforespørsler
+          mention: e-poster om nevninger
+          reblog: e-poster om fremhevinger
+      resubscribe_html: Hvis du har avsluttet abonnementet ved en feiltakelse, kan du abonnere på nytt i <a href="%{settings_path}">innstillinger for e-postvarsling</a>.
+      success_html: Du vil ikke lenger motta %{type} fra Mastodon på %{domain} i e-posten din på %{email}.
+      title: Avslutt abonnement
   media_attachments:
     validations:
       images_and_video: Kan ikkje leggja ved video til status som allereie inneheld bilete
@@ -1354,6 +1439,7 @@ nn:
       expired: Denne rundspørjinga er allereie ferdig
       invalid_choice: Det valgte stemmealternativet eksisterer ikke
       over_character_limit: kan ikkje vera lengre enn %{max} teikn kvar
+      self_vote: Du kan ikke stemme i dine egne avstemninger
       too_few_options: må ha meir enn eitt element
       too_many_options: kan ikkje ha meir enn %{max} element
   preferences:
@@ -1478,6 +1564,9 @@ nn:
       image:
         one: "%{count} bilete"
         other: "%{count} bilete"
+      video:
+        one: "%{count} video"
+        other: "%{count} videoar"
     boosted_from_html: Framheva av %{acct_link}
     content_warning: 'Innhaldsåtvaring: %{warning}'
     default_language: Samme språk som brukergrensesnittet
@@ -1495,6 +1584,9 @@ nn:
       ownership: Du kan ikkje festa andre sine tut
       reblog: Ei framheving kan ikkje festast
     poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} folk"
       total_votes:
         one: "%{count} røyst"
         other: "%{count} røyster"
@@ -1503,7 +1595,6 @@ nn:
     show_newer: Vis nyere
     show_older: Vis eldre
     show_thread: Vis tråden
-    sign_in_to_participate: Logg inn for å verta med i samtalen
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Direkte
@@ -1549,8 +1640,6 @@ nn:
     min_reblogs: Behold innlegg fremhevet av minst
     min_reblogs_hint: Sletter ikke noen av dine innlegg som har blitt fremhevet minst dette antall ganger. La stå tom for å slette innlegg uavhengig av antall fremhevinger
   stream_entries:
-    pinned: Festa tut
-    reblogged: framheva
     sensitive_content: Ømtolig innhald
   strikes:
     errors:
@@ -1645,12 +1734,18 @@ nn:
       title: Velkomen om bord, %{name}!
   users:
     follow_limit_reached: Du kan ikkje fylgja fleire enn %{limit} folk
+    go_to_sso_account_settings: Gå til kontoinnstillingane hjå identitetsleverandøren din
     invalid_otp_token: Ugyldig tostegskode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     seamless_external_login: Du er logga inn gjennom eit eksternt reiskap, so passord og e-postinstillingar er ikkje tilgjengelege.
     signed_in_as: 'Logga inn som:'
   verification:
+    extra_instructions_html: <strong>Tips:</strong> Lenken på din nettside kan være usynlig. Den viktige delen er <code>rel="me"</code> som sikrer at nettsteder med brukergenerert innhold ikke kan utgi seg for å være deg. Du kan til og med bruke en <code>link</code> lenke i sidens topptekst i stedet for <code>a</code>, men HTML-koden må være tilgjengelig uten å kjøre JavaScript.
+    here_is_how: Slik gjør du
+    hint_html: "<strong>Verifisering av identiteten din på Mastodon er for alle.</strong> Basert på åpne nettstandarder, gratis nå og for alltid. Alt du trenger er en personlig nettside som gjør at folk kjenner deg igjen. Når du lenker til dette nettstedet fra din profil, vil vi sjekke at nettstedet lenker tilbake til profilen din og viser dette på profilen din."
+    instructions_html: Kopier og lim inn koden nedenfor i HTML til ditt nettsted. Deretter legger du til adressen til nettstedet ditt i et av ekstrafeltene på profilen din fra fanen "Rediger profil" og lagre endringer.
     verification: Stadfesting
+    verified_links: Dine bekreftede lenker
   webauthn_credentials:
     add: Legg til ny sikkerhetsnøkkel
     create:

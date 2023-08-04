@@ -382,6 +382,15 @@ fy:
       undo: Federaasje mei domein net tastean
     domain_blocks:
       add_new: Nije domeinblokkade tafoegje
+      confirm_suspension:
+        cancel: Annulearje
+        confirm: Utstelle
+        permanent_action: It útstellen ûngedien meitsje sil gjin gegevens of folchrelaasjes werstelle.
+        preamble_html: Jo steane op it punt om <strong>%{domain}</strong> en subdomeinen út te stellen.
+        remove_all_data: Dit smyt alle ynhâld, media en profylgegevens fan de accounts fan dit domein fan jo server fuort.
+        stop_communication: Jo server sil net langer mei dizze servers kommunisearje.
+        title: Domeinblokkade foar %{domain} befêstigje
+        undo_relationships: Dit sil elke folchrelaasje tusken de accounts fan dizze servers en dy fan jo ûngedien meitsje.
       created_msg: Domeinblokkade wurdt no ferwurke
       destroyed_msg: Domeinblokkade is ûngedien makke
       domain: Domein
@@ -425,7 +434,7 @@ fy:
           mx: MX-record
       domain: Domein
       new:
-        create: Domain tafoegje
+        create: Domein tafoegje
         resolve: Domein opsykje
         title: Nije e-maildomein blokkearje
       no_email_domain_block_selected: Der binne gjin e-maildomeinblokkaden wizige, omdat der gjin ien selektearre waard
@@ -731,6 +740,9 @@ fy:
       branding:
         preamble: De branding fan jo server lit sjen hoe’t it fan oare servers yn it netwurk ferskilt. Dizze ynformaasje wurdt op ferskate plakken toand, lykas yn de webomjouwing fan Mastodon, yn mobile apps, yn foarfertoaningen op oare websites en berjochte-apps, ensfh. Dêrom is it wichtich om de ynformaasje helder, koart en bûnich te hâlden.
         title: Branding
+      captcha_enabled:
+        desc_html: Dit is ôfhinklik fan eksterne scripts fan hCaptcha, wat feilichheids- en privacyrisiko’s meibringe kin. Boppe dat kin <strong>dit it registraasjeproses bot minder tagonklik meitsje foar guon (foaral handicapte) minsken</strong>. Om dizze redenen kinne jo it beste alternative maatregels oerweagje, lykas registraasje op basis fan goedkarring of op útnûging.
+        title: Nije brûkers moatte in CAPTCHA oplosse om harren account te befêstigjen
       content_retention:
         preamble: Tafersjoch hâlde op hoe’t berjochten en media fan brûkers op Mastodon bewarre wurde.
         title: Bewartermyn berjochten
@@ -961,11 +973,11 @@ fy:
       guide_link: https://crowdin.com/project/mastodon/fy
       guide_link_text: Elkenien kin bydrage.
     sensitive_content: Gefoelige ynhâld
-    toot_layout: Lay-out fan berjochten
   application_mailer:
-    notification_preferences: E-mailfoarkarren wizigje
+    notification_preferences: E-mailynstellingen wizigje
     salutation: "%{name},"
-    settings: 'E-mailfoarkarren wizigje: %{link}'
+    settings: 'E-mailynstellingen wizigje: %{link}'
+    unsubscribe: Ofmelde
     view: 'Besjoch:'
     view_profile: Profyl besjen
     view_status: Berjocht besjen
@@ -979,6 +991,10 @@ fy:
     your_token: Jo tagongskoade
   auth:
     apply_for_account: Account oanfreegje
+    captcha_confirmation:
+      help_html: As jo problemen tsjinkomme by it oplossen fan de CAPTCHA, kinne jo kontakt mei ús opnimme fia %{email}, sadat wy jo helpe kinne.
+      hint_html: Noch ien ding! Jo moatte befêstigje dat jo in minske binne (dit is om de spam bûten de doar te hâlden!). Los de ûndersteande CAPTCHA op en klik op ‘Trochgean’.
+      title: Befeiligingskontrôle
     confirmations:
       wrong_email_hint: As it e-mailadres net korrekt is, kinne jo dat wizigje yn de accountynstellingen.
     delete_account: Account fuortsmite
@@ -1015,8 +1031,11 @@ fy:
     rules:
       accept: Akseptearje
       back: Tebek
+      invited_by: 'Jo kinne jo registrearje op %{domain} mei tank oan de útnûging dy’t jo ûntfongen hawwe fan:'
       preamble: Dizze binne fêststeld en wurde yn stân hâlden troch de moderatoaren fan %{domain}.
+      preamble_invited: Eardat jo fierder gean, moatte jo earst yn de kunde komme mei de basisregels dy’t troch de moderatoaren fan %{domain} fêststeld binne.
       title: Inkelde basisrigels.
+      title_invited: Jo binne útnûge.
     security: Befeiliging
     set_new_password: Nij wachtwurd ynstelle
     setup:
@@ -1041,18 +1060,6 @@ fy:
       view_strikes: Besjoch de earder troch moderatoaren fêststelde skeiningen dy’t jo makke hawwe
     too_fast: Formulier is te fluch yntsjinne. Probearje it nochris.
     use_security_key: Befeiligingskaai brûke
-  authorize_follow:
-    already_following: Jo folgje dizze account al
-    already_requested: Jo hawwe al in folchfersyk nei dat account ferstjoerd
-    error: Spitiger, der is in flater bard by it opsykjen fan de eksterne account
-    follow: Folgje
-    follow_request: 'Jo hawwe in folchfersyk yntsjinne by:'
-    following: 'Slagge! Jo folgje no:'
-    post_follow:
-      close: Of jo kinne dit finster gewoan slute.
-      return: Profyl fan dizze brûker toane
-      web: Gean nei de webapp
-    title: "%{acct} folgje"
   challenge:
     confirm: Trochgean
     hint_html: "<strong>Tip:</strong> Wy freegje jo it kommende oere net mear nei jo wachtwurd."
@@ -1129,6 +1136,11 @@ fy:
       your_appeal_rejected: Jo beswier is ôfwêzen
   domain_validator:
     invalid_domain: is in ûnjildige domeinnamme
+  edit_profile:
+    basic_information: Algemiene ynformaasje
+    hint_html: "<strong>Pas oan wat minsken op jo iepenbiere profyl en njonken jo berjochten sjogge.</strong> Oare minsken sille jo earder folgje en mei jo kommunisearje wannear’t jo profyl ynfolle is en jo in profylfoto hawwe."
+    other: Oars
+    safety_and_privacy: Feilichheid en privacy
   errors:
     '400': De oanfraach dy’t jo yntsjinne hawwe wie ûnjildich of fout.
     '403': Jo hawwe gjin tastimming om dizze side te besjen.
@@ -1217,7 +1229,9 @@ fy:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> item dat mei jo sykopdracht oerienkomt is selektearre."
       other: Alle <strong>%{count}</strong> items dy’t mei jo sykopdracht oerienkomme binne selektearre.
+    cancel: Annulearje
     changes_saved_msg: Wizigingen mei sukses bewarre!
+    confirm: Befêstigje
     copy: Kopiearje
     delete: Fuortsmite
     deselect: Alles deselektearje
@@ -1233,15 +1247,51 @@ fy:
       other: Der is wat net hielendal goed! Besjoch ûndersteande %{count} flaters
   imports:
     errors:
+      empty: Leech CSV-bestân
+      incompatible_type: Ynkompatibel mei it keazen ymporttype
       invalid_csv_file: 'Unjildich CSV-bestân. Flater: %{error}'
       over_rows_processing_limit: befettet mear as %{count} rigen
+      too_large: Bestân is te grut
+    failures: Flaters
+    imported: Ymportearre
+    mismatched_types_warning: It liket der op dat jo it ferkearde ymporttype selektearre hawwe, kontrolearje nochris.
     modes:
       merge: Gearfoegje
       merge_long: Besteande gegevens behâlde en nije tafoegje
       overwrite: Oerskriuwe
       overwrite_long: Aktuele gegevens mei de nije gegevens ferfange
+    overwrite_preambles:
+      blocking_html: Jo steane op it punt om <strong>jo blokkearlist</strong> mei mear as <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> te ferfangen.
+      bookmarks_html: Jo steane op it punt om <strong>jo blêdwizers</strong> mei mear as <strong>%{total_items} artikelen</strong> fan <strong>%{filename}</strong> te ferfangen.
+      domain_blocking_html: Jo steane op it punt om <strong>jo domeinblokkearlist</strong> mei mear as <strong>%{total_items} domeinen</strong> fan <strong>%{filename}</strong> te ferfangen.
+      following_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> út <strong>%{filename}</strong> <strong>te folgjen</strong> en <strong>te stopjen mei folgjen fan alle oaren</strong>.
+      muting_html: Jo steane op it punt om <strong>jo list mei negearre accounts</strong> mei mear as <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te ferfangen.
+    preambles:
+      blocking_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te <strong>blokkearjen</strong>.
+      bookmarks_html: Jo steane op it punt om <strong>%{total_items} berjochten</strong> fan <strong>%{filename}</strong> út oan jo <strong>blêdwizers</strong> ta te foegjen.
+      domain_blocking_html: Jo steane op it punt om <strong>%{total_items} domeinen</strong> fan <strong>%{filename}</strong> út te <strong>blokkearjen</strong>.
+      following_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te <strong>folgjen</strong>.
+      muting_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te <strong>negearjen</strong>.
     preface: Jo kinne bepaalde gegevens, lykas de minsken dy’t jo folgje of blokkearre hawwe, nei jo account op dizze server ymportearje. Jo moatte dizze gegevens wol earst op de oarspronklike server eksportearje.
+    recent_imports: Resinte ymports
+    states:
+      finished: Klear
+      in_progress: Dwaande
+      scheduled: Pland
+      unconfirmed: Net befêstige
+    status: Steat
     success: Jo gegevens binne mei sukses opladen en wurde ynkoarten ferwurke
+    time_started: Start op
+    titles:
+      blocking: Blokkearre accounts ymportearje
+      bookmarks: Blêdwizers ymportearje
+      domain_blocking: Blokkearre domeinen ymportearje
+      following: Folge accounts ymportearje
+      muting: Negearre accounts ymportearje
+    type: Ymporttype
+    type_groups:
+      constructive: Folgje ik & blêdwizers
+      destructive: Blokkearre & negearre
     types:
       blocking: Blokkearlist
       bookmarks: Blêdwizers
@@ -1285,6 +1335,21 @@ fy:
     failed_sign_in_html: Mislearre oanmeldbesykjen mei %{method} fan %{ip} (%{browser})
     successful_sign_in_html: Mei sukses oanmeld mei %{method} fan %{ip} (%{browser})
     title: Oanmeldskiednis
+  mail_subscriptions:
+    unsubscribe:
+      action: Ja, ôfmelde
+      complete: Ofmelden
+      confirmation_html: Binne jo wis dat jo jo ôfmelde wolle foar it ûntfangen fan %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}? Jo kinne jo altyd opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
+      emails:
+        notification_emails:
+          favourite: e-mailmeldingen foar favoriten
+          follow: e-mailmeldingen foar nije folgers
+          follow_request: e-mailmeldingen foar folchfersiken
+          mention: e-mailmeldingen foar fermeldingen
+          reblog: e-mailmeldingen foar boosts
+      resubscribe_html: As jo jo mei fersin ôfmeld hawwe, kinne jo jo opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
+      success_html: Jo ûntfange net langer %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}.
+      title: Ofmelde
   media_attachments:
     validations:
       images_and_video: In fideo kin net oan in berjocht mei ôfbyldingen keppele wurde
@@ -1400,6 +1465,7 @@ fy:
       expired: De enkête is al beëinige
       invalid_choice: De keazen enkêteopsje bestiet net
       over_character_limit: kin net langer wêze as %{max} tekens
+      self_vote: Jo kinne net op eigen peilingen stimme
       too_few_options: moat mear as ien item befetsje
       too_many_options: kin net mear as %{max} items befetsje
   preferences:
@@ -1508,7 +1574,7 @@ fy:
     import_and_export: Ymportearje en eksportearje
     migrate: Accountmigraasje
     notifications: Meldingen
-    preferences: Foarkarren
+    preferences: Ynstellingen
     profile: Profyl
     relationships: Folgers en folgjenden
     statuses_cleanup: Automatysk berjochten fuortsmite
@@ -1555,7 +1621,6 @@ fy:
     show_newer: Nijere toane
     show_older: Aldere toane
     show_thread: Petear toane
-    sign_in_to_participate: Meld jo oan om oan dit petear mei te dwaan
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkt
@@ -1601,8 +1666,6 @@ fy:
     min_reblogs: Berjochten dy’t op syn minst safolle kear boost binne behâlde
     min_reblogs_hint: Smyt gjin berjochten dy’t op syn minst safolle kear boost binne fuort. Lit leech om berjochten likefolle it tal boosts fuort te smiten
   stream_entries:
-    pinned: Fêstsette berjocht
-    reblogged: boostte
     sensitive_content: Gefoelige ynhâld
   strikes:
     errors:
@@ -1703,7 +1766,12 @@ fy:
     seamless_external_login: Jo binne oanmeld fia in eksterne tsjinst, dêrom binne wachtwurden en e-mailynstellingen net beskikber.
     signed_in_as: 'Oanmeld as:'
   verification:
+    extra_instructions_html: <strong>Tip:</strong> De keppeling op jo website kin ûnsichtber wêze. It wichtige part is <code>rel="me"</code> dat ympersonaasje op websites mei user-generated ynhâld foarkomt. Jo kinne sels in <code>link</code>-label brûke yn de header fan de side yn stee fan <code>a</code>, mar de HTML moat ek sûnder JavaScript tagonklik wêze.
+    here_is_how: Sa wurket it
+    hint_html: "<strong>Ferifikaasje fan jo identiteit op Mastodon is foar elkenien.</strong> It is basearre op iepen webstanderts, en is en bliuwt altyd fergees. Alles wat nedich is, is in persoanlike website dêr’t minsken jo oan werkenne kinne. Wannear’t jo fan jo profyl út nei dizze website keppelje, sille wy kontrolearje oft de website nei jo profyl weromkeppelt en dêr in fisuele yndikator fan toane."
+    instructions_html: Kopiearje en plak de ûndersteande koade yn de HTML fan jo website. Foegje dernei it adres fan jo website ta oan ien fan de ekstra fjilden op jo profyl op it ljepblêd ‘Profyl bewurkje’ en bewarje de wizigingen.
     verification: Ferifikaasje
+    verified_links: Jo ferifiearre keppelingen
   webauthn_credentials:
     add: Nije befeiligingskaai tafoegje
     create:

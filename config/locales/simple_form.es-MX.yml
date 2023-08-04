@@ -2,6 +2,10 @@
 es-MX:
   simple_form:
     hints:
+      account:
+        display_name: Tu nombre completo o tu nick.
+        fields: Tu página de inicio, pronombres, edad, todo lo que quieras.
+        note: 'Puedes @mencionar a otra gente o #hashtags.'
       account_alias:
         acct: Especifique el nombre de usuario@dominio de la cuenta desde la cual se desea migrar
       account_migration:
@@ -130,6 +134,7 @@ es-MX:
         position: Un rol superior decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con menor prioridad
       webhook:
         events: Seleccionar eventos para enviar
+        template: Crea tu propio JSON usando interpolación variable. Déjalo en blanco para el JSON predeterminado.
         url: Donde los eventos serán enviados
     labels:
       account:
@@ -195,7 +200,6 @@ es-MX:
         setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar ventana de confirmación antes de un Retoot
-        setting_crop_images: Recortar a 16x9 las imágenes de los toots no expandidos
         setting_default_language: Idioma de publicación
         setting_default_privacy: Privacidad de publicaciones
         setting_default_sensitive: Marcar siempre imágenes como sensibles
@@ -295,6 +299,7 @@ es-MX:
         usable: Permitir a los toots usar esta etiqueta
       user:
         role: Rol
+        time_zone: Zona horaria
       user_role:
         color: Color de insignia
         highlighted: Mostrar rol como insignia en perfiles de usuario
@@ -303,6 +308,7 @@ es-MX:
         position: Prioridad
       webhook:
         events: Eventos habilitados
+        template: Plantilla de carga
         url: URL de Endpoint
     'no': 'No'
     not_recommended: No recomendado

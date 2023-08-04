@@ -9,7 +9,7 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
 
     target_accounts.each do |target_account|
       target_statuses     = target_statuses_by_account[target_account.id]
-      replied_to_accounts = Account.local.where(id: target_statuses.filter_map(&:in_reply_to_account_id))
+      replied_to_accounts = target_statuses.nil? ? [] : Account.local.where(id: target_statuses.filter_map(&:in_reply_to_account_id))
 
       next if target_account.suspended? || (!target_account.local? && replied_to_accounts.none?)
 

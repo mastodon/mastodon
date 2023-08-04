@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   include SessionTrackingConcern
   include CacheConcern
   include DomainControlHelper
+  include DatabaseHelper
 
   helper_method :current_account
   helper_method :current_session
@@ -18,7 +19,7 @@ class ApplicationController < ActionController::Base
   helper_method :use_seamless_external_login?
   helper_method :omniauth_only?
   helper_method :sso_account_settings
-  helper_method :whitelist_mode?
+  helper_method :limited_federation_mode?
   helper_method :body_class_string
   helper_method :skip_csrf_meta_tags?
 
@@ -51,7 +52,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authorized_fetch_mode?
-    ENV['AUTHORIZED_FETCH'] == 'true' || Rails.configuration.x.whitelist_mode
+    ENV['AUTHORIZED_FETCH'] == 'true' || Rails.configuration.x.limited_federation_mode
   end
 
   def public_fetch_mode?

@@ -26,23 +26,23 @@ de:
         subject: 'Mastodon: Bestätigung deines Kontos bei %{instance}'
         title: Verifiziere E-Mail-Adresse
       email_changed:
-        explanation: 'Die E-Mail-Adresse deines Accounts wird geändert zu:'
-        extra: Wenn du deine E-Mail-Adresse nicht geändert hast, dann wird es vermutlich so sein, dass jemand Zugriff zu deinem Account erhalten hat. Bitte ändere sofort dein Passwort oder kontaktiere den Administrator des Servers, wenn du dich ausgesperrt hast.
+        explanation: 'Die E-Mail-Adresse deines Kontos wird geändert zu:'
+        extra: Wenn du deine E-Mail-Adresse nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Serververwaltung, wenn du aus deinem Konto ausgesperrt bist.
         subject: 'Mastodon: E-Mail-Adresse geändert'
         title: Neue E-Mail-Adresse
       password_change:
         explanation: Deine Zugangsdaten wurden geändert.
-        extra: Wenn du dein Passwort nicht geändert hast, dann wird es vermutlich so sein, dass jemand Zugriff auf deinem Account erlangt hat. Bitte ändere sofort dein Passwort oder kontaktiere den Administrator des Servers, wenn du dich ausgesperrt hast.
+        extra: Wenn du dein Passwort nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Serververwaltung, wenn du aus deinem Konto ausgesperrt bist.
         subject: 'Mastodon: Passwort geändert'
         title: Passwort geändert
       reconfirmation_instructions:
         explanation: Bestätige deine neue E-Mail-Adresse, um sie zu ändern.
-        extra: Wenn diese Änderung nicht von dir ausgeführt wurde, dann solltest du diese E-Mail ignorieren. Die E-Mail-Adresse für deinen Mastodon-Account wird sich nicht ändern, bis du den obigen Link anklickst.
+        extra: Wenn diese Änderung nicht von dir ausgeführt wurde, dann kannst du diese E-Mail ignorieren. Die E-Mail-Adresse für dein Mastodon-Konto wird sich erst ändern, wenn du den obigen Link anklickst.
         subject: 'Mastodon: E-Mail-Adresse für %{instance} bestätigen'
         title: Verifiziere E-Mail-Adresse
       reset_password_instructions:
         action: Passwort ändern
-        explanation: Du hast ein neues Passwort für deinen Account angefragt.
+        explanation: Du hast ein neues Passwort für dein Konto angefordert.
         extra: Wenn du diese Anfrage nicht gestellt hast, solltest du diese E-Mail ignorieren. Dein Passwort wird sich nicht ändern, solange du den obigen Link anklickst und ein neues erstellst.
         subject: 'Mastodon: Anleitung zum Zurücksetzen deines Passworts'
         title: Passwort zurücksetzen
@@ -66,7 +66,7 @@ de:
           subject: 'Mastodon: Neuer Sicherheitsschlüssel'
           title: Ein neuer Sicherheitsschlüssel wurde hinzugefügt
         deleted:
-          explanation: Der folgende Sicherheitsschlüssel wurde aus deinem Konto gelöscht
+          explanation: Der folgende Sicherheitsschlüssel wurde von deinem Konto entfernt
           subject: 'Mastodon: Sicherheitsschlüssel entfernt'
           title: Einer deiner Sicherheitsschlüssel wurde entfernt
       webauthn_disabled:
@@ -79,22 +79,22 @@ de:
         title: Sicherheitsschlüssel aktiviert
     omniauth_callbacks:
       failure: Du konntest nicht mit deinem %{kind}-Konto angemeldet werden, weil „%{reason}“.
-      success: Du hast dich erfolgreich mit deinem %{kind}-Konto angemeldet.
+      success: Du hast dich erfolgreich mit deinem Konto %{kind} angemeldet.
     passwords:
       no_token: Du kannst diese Seite nur über den Link aus der E-Mail zum Zurücksetzen des Passworts aufrufen. Wenn du einen solchen Link aufgerufen hast, vergewissere dich bitte, dass du die vollständige Adresse aufrufst.
       send_instructions: Du erhältst in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du dein Passwort zurücksetzen kannst.
       send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank hinterlegt ist, erhältst du in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du dein Passwort zurücksetzen kannst.
-      updated: Ihr Passwort wurde erfolgreich geändert. Du bist jetzt angemeldet.
+      updated: Dein Passwort wurde erfolgreich geändert. Du bist jetzt angemeldet.
       updated_not_active: Dein Passwort wurde erfolgreich geändert.
     registrations:
       destroyed: Tschüss! Dein Konto wurde erfolgreich gelöscht. Wir hoffen, dich bald wiederzusehen.
       signed_up: Herzlich willkommen! Du hast dich erfolgreich registriert.
       signed_up_but_inactive: Du hast dich erfolgreich registriert. Allerdings ist dein Konto noch nicht aktiviert und du kannst dich daher noch nicht anmelden.
       signed_up_but_locked: Du hast dich erfolgreich registriert. Allerdings ist dein Konto gesperrt und du kannst dich daher nicht anmelden.
-      signed_up_but_pending: Eine Nachricht mit einem Bestätigungslink wurde an dich per E-Mail geschickt. Nachdem du diesen Link angeklickt hast, werden wir deine Anfrage überprüfen. Du wirst benachrichtigt werden, falls die Anfrage angenommen wurde.
+      signed_up_but_pending: Eine Nachricht mit einem Bestätigungslink wurde an deine E-Mail-Adresse gesendet. Nachdem du diesen Link angeklickt hast, werden wir deine Bewerbung überprüfen. Sobald sie genehmigt wurde, wirst du benachrichtigt.
       signed_up_but_unconfirmed: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto noch nicht bestätigt ist. Du erhältst in Kürze eine E-Mail. Darin wird erklärt, wie du dein Konto freischalten kannst.
       update_needs_confirmation: Deine Daten wurden aktualisiert, aber du musst deine neue E-Mail-Adresse bestätigen. Du erhältst in wenigen Minuten eine E-Mail. Darin ist erklärt, wie du die Änderung deiner E-Mail-Adresse abschließen kannst.
-      updated: Ihr Konto wurde erfolgreich aktualisiert.
+      updated: Dein Konto wurde erfolgreich aktualisiert.
     sessions:
       already_signed_out: Erfolgreich abgemeldet.
       signed_in: Erfolgreich angemeldet.

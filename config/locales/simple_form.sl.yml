@@ -2,6 +2,10 @@
 sl:
   simple_form:
     hints:
+      account:
+        display_name: Vaše polno ime ali lažno ime.
+        fields: Vaša domača stran, starost, kar koli.
+        note: 'Druge osebe lahko @omenite ali #ključnite.'
       account_alias:
         acct: Določite uporabniškoime@domena računa, od katerega se želite preseliti
       account_migration:
@@ -195,7 +199,6 @@ sl:
         setting_always_send_emails: Vedno pošlji e-obvestila
         setting_auto_play_gif: Samodejno predvajanje animiranih GIF-ov
         setting_boost_modal: Pred izpostavljanjem pokaži potrditveno okno
-        setting_crop_images: Obreži slike v nerazširjenih objavah v razmerju 16:9
         setting_default_language: Jezik objavljanja
         setting_default_privacy: Zasebnost objave
         setting_default_sensitive: Vedno označi medije kot občutljive
@@ -295,6 +298,7 @@ sl:
         usable: Dovoli, da objave uporabljajo ta ključnik
       user:
         role: Vloga
+        time_zone: Časovni pas
       user_role:
         color: Barva značke
         highlighted: Prikaži vlogo kot značko na uporabniškem profilu

@@ -35,7 +35,7 @@ fr-QC:
       approve: Approuver
       approved_msg: La demande d’inscription de %{username} a été approuvée avec succès
       are_you_sure: Voulez-vous vraiment faire ça ?
-      avatar: Avatar
+      avatar: Image de profil
       by_domain: Domaine
       change_email:
         changed_msg: Courriel modifié avec succès !
@@ -125,6 +125,8 @@ fr-QC:
       removed_header_msg: L’image d’en-tête de %{username} a été supprimée avec succès
       resend_confirmation:
         already_confirmed: Cet·te utilisateur·rice est déjà confirmé·e
+        send: Renvoyer le courriel de confirmation
+        success: Courriel de confirmation envoyé avec succès!
       reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
       resubscribe: Se réabonner
@@ -380,6 +382,15 @@ fr-QC:
       undo: Supprimer de la liste blanche
     domain_blocks:
       add_new: Bloquer un nouveau domaine
+      confirm_suspension:
+        cancel: Annuler
+        confirm: Suspendre
+        permanent_action: Annuler la suspension ne restaure aucune donnée ou relation.
+        preamble_html: Vous êtes sur le point de suspendre <strong>%{domain}</strong> et ses sous-domaines.
+        remove_all_data: Cela supprimera de votre serveur tous les contenus, médias et données de profil pour les comptes de ce domaine.
+        stop_communication: Votre serveur cessera de communiquer avec ces serveurs.
+        title: Confirmer le blocage du domaine pour %{domain}
+        undo_relationships: Cela annulera toute relation de suivi entre les comptes de ces serveurs et du vôtre.
       created_msg: Le blocage de domaine est désormais activé
       destroyed_msg: Le blocage de domaine a été désactivé
       domain: Domaine
@@ -729,6 +740,9 @@ fr-QC:
       branding:
         preamble: L'image de marque de votre serveur la différencie des autres serveurs du réseau. Ces informations peuvent être affichées dans nombre d'environnements, tels que l'interface web de Mastodon, les applications natives, dans les aperçus de liens sur d'autres sites Web et dans les applications de messagerie, etc. C'est pourquoi il est préférable de garder ces informations claires, courtes et concises.
         title: Thème
+      captcha_enabled:
+        desc_html: Ceci se base sur des scripts externes de hCaptcha, ce qui peut engendrer des soucis de sécurité et de confidentialité. De plus, <strong>cela peut rendre l'inscription beaucoup moins accessible pour certaines personnes (surtout les personnes handicapées)</strong>. Pour ces raisons, veuillez envisager des mesures alternatives telles que l'inscription par acceptation ou par invitation.
+        title: Obliger les nouveaux utilisateurs à résoudre un CAPTCHA pour vérifier leur compte
       content_retention:
         preamble: Contrôle comment le contenu créé par les utilisateurs est enregistré et stocké dans Mastodon.
         title: Rétention du contenu
@@ -959,11 +973,11 @@ fr-QC:
       guide_link: https://fr.crowdin.com/project/mastodon
       guide_link_text: Tout le monde peut y contribuer.
     sensitive_content: Contenu sensible
-    toot_layout: Agencement des messages
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
     salutation: "%{name},"
     settings: 'Changer les préférences courriel : %{link}'
+    unsubscribe: Se désabonner
     view: 'Voir :'
     view_profile: Voir le profil
     view_status: Afficher le message
@@ -977,6 +991,10 @@ fr-QC:
     your_token: Votre jeton d’accès
   auth:
     apply_for_account: Demander un compte
+    captcha_confirmation:
+      help_html: Si vous ne pouvez pas résoudre le CAPTCHA, vous pouvez nous contacter via %{email} et nous pouvons vous aider.
+      hint_html: Juste une autre chose! Nous avons besoin de confirmer que vous êtes un humain (pour que nous puissions empêcher les spams!). Résolvez le CAPTCHA ci-dessous et cliquez sur "Continuer".
+      title: Vérification de sécurité
     confirmations:
       wrong_email_hint: Si cette adresse de courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
     delete_account: Supprimer le compte
@@ -985,6 +1003,7 @@ fr-QC:
       prefix_invited_by_user: "@%{name} vous invite à rejoindre ce serveur Mastodon !"
       prefix_sign_up: Inscrivez-vous aujourd’hui sur Mastodon !
       suffix: Avec un compte, vous pourrez suivre des gens, publier des statuts et échanger des messages avec les utilisateur·rice·s de n'importe quel serveur Mastodon et bien plus !
+    didnt_get_confirmation: Vous n'avez pas reçu de lien de confirmation?
     dont_have_your_security_key: Vous n'avez pas votre clé de sécurité?
     forgot_password: Mot de passe oublié ?
     invalid_reset_password_token: Le lien de réinitialisation du mot de passe est invalide ou a expiré. Merci de réessayer.
@@ -997,23 +1016,39 @@ fr-QC:
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
     or_log_in_with: Ou authentifiez-vous avec
     privacy_policy_agreement_html: J’ai lu et j’accepte la <a href="%{privacy_policy_path}" target="_blank">politique de confidentialité</a>
+    progress:
+      confirm: Confirmez l'adresse courriel
+      details: Vos infos
+      review: Notre avis
+      rules: Accepter les règles
     providers:
       cas: CAS
       saml: SAML
     register: S’inscrire
     registration_closed: "%{instance} a désactivé les inscriptions"
+    resend_confirmation: Renvoyer le courriel de confirmation
     reset_password: Réinitialiser le mot de passe
     rules:
       accept: Accepter
       back: Retour
+      invited_by: 'Vous pouvez rejoindre %{domain} grâve à l''invitation reçue de:'
       preamble: Celles-ci sont définies et appliqués par les modérateurs de %{domain}.
+      preamble_invited: Avant de continuer, veuillez lire les règles de base définies par les modérateurs de %{domain}.
       title: Quelques règles de base.
+      title_invited: Vous avez été invité·e.
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
+    setup:
+      email_below_hint_html: Vérifiez votre dossier de spam ou demandez qu’on vous le renvoie. Vous pouvez corriger votre adresse courriel si elle est incorrecte.
+      email_settings_hint_html: Cliquez sur le lien que nous vous avons envoyé pour vérifier %{email}. Nous vous attendrons ici.
+      link_not_received: Vous n'avez pas reçu de lien?
+      new_confirmation_instructions_sent: Vous recevrez un nouveau courriel avec votre lien de confirmation dans quelques minutes!
+      title: Vérifiez votre boîte de réception
     sign_in:
       preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
       title: Se connecter à %{domain}
     sign_up:
+      manual_review: Les inscriptions sur %{domain} passent par une revue manuelle de nos modérateurs. Pour les aider, écrivez un peu plus sur vous et pourquoi vous souhaitez créer un compte sur %{domain}.
       preamble: Avec un compte sur ce serveur Mastodon, vous serez en mesure de suivre toute autre personne sur le réseau, quel que soit l’endroit où son compte est hébergé.
       title: Mettons les choses en place pour %{domain}.
     status:
@@ -1025,18 +1060,6 @@ fr-QC:
       view_strikes: Voir les sanctions précédemment appliquées à votre compte
     too_fast: Formulaire envoyé trop rapidement, veuillez réessayer.
     use_security_key: Utiliser la clé de sécurité
-  authorize_follow:
-    already_following: Vous suivez déjà ce compte
-    already_requested: Vous avez déjà envoyé une demande d’abonnement à ce compte
-    error: Malheureusement, une erreur s'est produite lors de la recherche du compte distant
-    follow: Suivre
-    follow_request: 'Vous avez demandé à suivre :'
-    following: 'Youpi ! Vous suivez maintenant  :'
-    post_follow:
-      close: Ou bien, vous pouvez fermer cette fenêtre.
-      return: Afficher le profil de l’utilisateur·ice
-      web: Retour à l’interface web
-    title: Suivre %{acct}
   challenge:
     confirm: Continuer
     hint_html: "<strong>Astuce :</strong> Nous ne vous demanderons plus votre mot de passe pour la prochaine heure."
@@ -1113,6 +1136,11 @@ fr-QC:
       your_appeal_rejected: Votre appel a été rejeté
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
+  edit_profile:
+    basic_information: Informations de base
+    hint_html: "<strong>Personnalisez ce que les gens voient sur votre profil public et à côté de vos messages.</strong> Les autres personnes seront plus susceptibles de vous suivre et d’interagir avec vous lorsque vous avez un profil complet et une photo."
+    other: Autre
+    safety_and_privacy: Sécurité et confidentialité
   errors:
     '400': La demande que vous avez soumise est invalide ou mal formée.
     '403': Vous n’avez pas accès à cette page.
@@ -1201,7 +1229,9 @@ fr-QC:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> élément correspondant à votre recherche est sélectionné."
       other: L'ensemble des <strong>%{count}</strong> éléments correspondant à votre recherche est sélectionné.
+    cancel: Annuler
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
+    confirm: Confirmer
     copy: Copier
     delete: Supprimer
     deselect: Tout déselectionner
@@ -1217,20 +1247,60 @@ fr-QC:
       other: Certaines choses ne vont pas ! Veuillez vérifier les %{count} erreurs ci-dessous
   imports:
     errors:
+      empty: Fichier CSV vide
+      incompatible_type: Incompatible avec le type d’import sélectionné
       invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'
       over_rows_processing_limit: contient plus de %{count} lignes
+      too_large: Fichier trop lourd
+    failures: Échecs
+    imported: Importé
+    mismatched_types_warning: Il semble que vous avez sélectionné le mauvais type pour cet import, veuillez vérifier à nouveau.
     modes:
       merge: Fusionner
       merge_long: Garder les enregistrements existants et ajouter les nouveaux
       overwrite: Écraser
       overwrite_long: Remplacer les enregistrements actuels par les nouveaux
+    overwrite_preambles:
+      blocking_html: Vous allez <strong>remplacer votre liste de blocages</strong> par jusqu'à <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+      bookmarks_html: Vous allez <strong>remplacer vos signets</strong> par jusqu'à <strong>%{total_items} posts</strong> tirés de <strong>%{filename}</strong>.
+      domain_blocking_html: Vous allez <strong>remplacer votre liste de blocages de domaines</strong> par jusqu'à <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
+      following_html: Vous allez <strong>suivre</strong> jusqu’à <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
+      lists_html: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Jusqu'à <strong>%{total_items} comptes</strong> seront ajoutés à de nouvelles listes.
+      muting_html: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par jusqu'à <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Vous allez <strong>bloquer</strong> jusqu'à <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+      bookmarks_html: Vous allez ajouter jusqu'à <strong>%{total_items} messages</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
+      domain_blocking_html: Vous allez <strong>bloquer</strong> jusqu'à <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
+      following_html: Vous allez <strong>suivre</strong> jusqu'à <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+      lists_html: Vous allez ajouter jusqu'à <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées s'il n'y a aucune liste à laquelle les ajouter.
+      muting_html: Vous allez <strong>masquer</strong> jusqu'à <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
     preface: Vous pouvez importer certaines données que vous avez exporté d’un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
+    recent_imports: Importations récentes
+    states:
+      finished: Terminé
+      in_progress: En cours
+      scheduled: Planifié
+      unconfirmed: Non confirmé
+    status: Statut
     success: Vos données ont été importées avec succès et seront traitées en temps et en heure
+    time_started: Démarré le
+    titles:
+      blocking: En cours d’importation des comptes bloqués
+      bookmarks: En cours d’importation des signets
+      domain_blocking: En cours d’importation des domaines bloqués
+      following: En cours d’importation des comptes suivis
+      lists: En cours d’importation des listes
+      muting: En cours d’importation des comptes masqués
+    type: Type d’importation
+    type_groups:
+      constructive: Abonnements et signets
+      destructive: Blocages et masquages
     types:
       blocking: Liste de comptes bloqués
       bookmarks: Marque-pages
       domain_blocking: Liste des serveurs bloqués
       following: Liste d’utilisateur·rice·s suivi·e·s
+      lists: Listes
       muting: Liste d’utilisateur·rice·s que vous masquez
     upload: Importer
   invites:
@@ -1269,6 +1339,21 @@ fr-QC:
     failed_sign_in_html: Tentative de connexion échouée avec %{method} de %{ip} (%{browser})
     successful_sign_in_html: Connexion réussie avec %{method} de %{ip} (%{browser})
     title: Historique d'authentification
+  mail_subscriptions:
+    unsubscribe:
+      action: Oui, me désabonner
+      complete: Désabonné·e
+      confirmation_html: Voulez-vous vraiment vous désabonner des %{type} de la part de Mastodon installés sur %{domain} vers votre adresse %{email}? Vous pouvez toujours vous réabonner à partir de vos <a href="%{settings_path}">paramètres de notification par courriel</a>.
+      emails:
+        notification_emails:
+          favourite: courriels de notifications de favoris
+          follow: courriels de notifications d’abonnements
+          follow_request: courriels de demandes d’abonnements
+          mention: courriels de notifications de mentions
+          reblog: courriels de notifications de boost
+      resubscribe_html: Si vous vous êtes désabonné·e par erreur, vous pouvez vous réinscrire à partir de vos <a href="%{settings_path}">paramètres de notification par courriel</a>.
+      success_html: Vous ne serez plus inscrits aux %{type} de Mastodon installés sur %{domain} à votre adresse %{email}.
+      title: Se désabonner
   media_attachments:
     validations:
       images_and_video: Impossible de joindre une vidéo à un message contenant déjà des images
@@ -1384,6 +1469,7 @@ fr-QC:
       expired: Ce sondage est déjà terminé
       invalid_choice: L'option de vote choisie n'existe pas
       over_character_limit: ne peuvent être plus long que %{max} caractères chacun
+      self_vote: Vous ne pouvez pas voter à vos propres sondages
       too_few_options: doit avoir plus qu’une proposition
       too_many_options: ne peut contenir plus de %{max} propositions
   preferences:
@@ -1401,7 +1487,7 @@ fr-QC:
     confirm_follow_selected_followers: Voulez-vous vraiment suivre les abonné⋅e⋅s sélectionné⋅e⋅s ?
     confirm_remove_selected_followers: Voulez-vous vraiment supprimer les abonné⋅e⋅s sélectionné⋅e⋅s ?
     confirm_remove_selected_follows: Voulez-vous vraiment supprimer les abonnements sélectionnés ?
-    dormant: Dormant
+    dormant: Inactif
     follow_failure: Impossibilité de suivre certains des comptes sélectionnés.
     follow_selected_followers: Suivre les abonné·e·s sélectionné·e·s
     followers: Abonné·e
@@ -1502,8 +1588,8 @@ fr-QC:
   statuses:
     attached:
       audio:
-        one: "%{count} audio"
-        other: "%{count} audio"
+        one: "%{count} fichier audio"
+        other: "%{count} fichiers audio"
       description: 'Attaché : %{attached}'
       image:
         one: "%{count} image"
@@ -1539,7 +1625,6 @@ fr-QC:
     show_newer: Plus récents
     show_older: Plus anciens
     show_thread: Afficher le fil de discussion
-    sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
     title: "%{name} : « %{quote} »"
     visibilities:
       direct: Direct
@@ -1585,8 +1670,6 @@ fr-QC:
     min_reblogs: Conserver les messages partagés au moins
     min_reblogs_hint: Ne supprime aucun de vos messages qui ont été partagés au moins ce nombre de fois. Laisser vide pour supprimer les messages indépendamment de leur nombre de partages
   stream_entries:
-    pinned: Message épinglé
-    reblogged: a partagé
     sensitive_content: Contenu sensible
   strikes:
     errors:
@@ -1687,7 +1770,12 @@ fr-QC:
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
   verification:
+    extra_instructions_html: <strong>Astuce:</strong> Le lien sur votre site Web peut être invisible. La partie importante est <code>rel="me"</code> qui évite d’autres liens provenant de contenu générés par des utilisateurs tiers d'être pris en compte. Vous pouvez même utiliser une balise <code>link</code> dans l’en-tête de la page au lieu de <code>a</code>, mais le HTML doit être accessible sans avoir besoin d’exécuter du JavaScript.
+    here_is_how: Voici comment
+    hint_html: "<strong>La vérification de son profil sur Mastodon est accessible à tous.</strong> Elle s’appuie sur des standards ouverts du web, gratuits aujourd’hui et pour toujours. Tout ce dont vous avez besoin, c’est d’un site web personnel avec lequel les gens vous reconnaissent. Lorsque vous ajoutez un lien depuis votre profil, nous vérifierons que le site web renvoie à son tour à votre profil Mastodon et montrerons un indicateur visuel à côté du lien si c’est le cas."
+    instructions_html: Copiez et collez le code ci-dessous dans le code HTML de votre site web. Ajoutez ensuite l’adresse de votre site dans l’un des champs supplémentaires de votre profil à partir de l‘onglet "Modifier le profil" et enregistrez les modifications.
     verification: Vérification
+    verified_links: Vos liens vérifiés
   webauthn_credentials:
     add: Ajouter une nouvelle clé de sécurité
     create:

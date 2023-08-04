@@ -9,7 +9,7 @@ import emojiCompressed from './emoji_compressed';
 import { unicodeToUnifiedName } from './unicode_to_unified_name';
 
 type Emojis = {
-  [key in keyof ShortCodesToEmojiData]: {
+  [key in NonNullable<keyof ShortCodesToEmojiData>]: {
     native: BaseEmoji['native'];
     search: Search;
     short_names: Emoji['short_names'];

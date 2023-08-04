@@ -4,7 +4,7 @@ zh-CN:
     about_mastodon_html: 来自未来的社交网络：无广告、无监视、去中心化、合乎道德！使用 Mastodon 夺回你的数据！
     contact_missing: 未设定
     contact_unavailable: 未公开
-    hosted_on: 运行在 %{domain} 上的 Mastodon 站点
+    hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     title: 关于本站
   accounts:
     follow: 关注
@@ -25,8 +25,8 @@ zh-CN:
       action: 执行操作
       title: 在 %{acct} 上执行管理操作
     account_moderation_notes:
-      create: 新增记录
-      created_msg: 管理记录已创建！
+      create: 新建记录
+      created_msg: 管理记录创建成功！
       destroyed_msg: 管理记录删除成功！
     accounts:
       add_email_domain_block: 封禁电子邮箱域名
@@ -41,7 +41,7 @@ zh-CN:
         label: 更改电子邮箱
         new_email: 新的电子邮箱
         submit: 更改电子邮件地址
-        title: 为 %{username} 更改电子邮箱
+        title: 更改 %{username} 的电子邮箱
       change_role:
         changed_msg: 已成功更改角色！
         label: 更改角色
@@ -62,7 +62,7 @@ zh-CN:
       display_name: 昵称
       domain: 域名
       edit: 编辑
-      email: 电子邮件地址
+      email: 电子邮箱地址
       email_status: 电子邮件地址状态
       enable: 解冻
       enable_sign_in_token_auth: 启用电子邮件令牌认证
@@ -94,7 +94,7 @@ zh-CN:
         silenced: 受限
         suspended: 已封禁
         title: 管理
-      moderation_notes: 管理员备注
+      moderation_notes: 管理记录
       most_recent_activity: 最后一次活跃的时间
       most_recent_ip: 最后一次活跃的 IP 地址
       no_account_selected: 因为没有选中任何账号，所以没有更改
@@ -354,7 +354,7 @@ zh-CN:
         other: "<strong>%{count}</strong> 个待处理话题标签"
       pending_users_html:
         other: "<strong>%{count}</strong> 个待处理用户"
-      resolved_reports: 已解决的举报
+      resolved_reports: 已处理的举报
       software: 软件
       sources: 注册来源
       space: 存储使用情况
@@ -375,6 +375,15 @@ zh-CN:
       undo: 不允许和该域名跨站交互
     domain_blocks:
       add_new: 添加新屏蔽域名
+      confirm_suspension:
+        cancel: 取消
+        confirm: 封禁
+        permanent_action: 撤销暂停不会恢复任何数据或关系。
+        preamble_html: 您将要暂停 <strong>%{domain}</strong> 及其子域。
+        remove_all_data: 这将从您的实例上删除此域名下账户的所有内容、媒体和个人资料数据。
+        stop_communication: 您的实例将停止与这些实例的通信。
+        title: 确认对 %{domain} 的封锁
+        undo_relationships: 这将解除你的实例与这些实例上账户之间的任何关注。
       created_msg: 正在进行域名屏蔽
       destroyed_msg: 域名屏蔽已撤销
       domain: 域名
@@ -589,9 +598,9 @@ zh-CN:
       delete_and_resolve: 删除嘟文
       forwarded: 已转发
       forwarded_to: 转发举报至 %{domain}
-      mark_as_resolved: 标记为“已处理”
+      mark_as_resolved: 标记为已处理
       mark_as_sensitive: 标记为敏感内容
-      mark_as_unresolved: 标记为“未处理”
+      mark_as_unresolved: 标记为未处理
       no_one_assigned: 未分派
       notes:
         create: 添加记录
@@ -717,6 +726,9 @@ zh-CN:
       branding:
         preamble: 你的服务器与网络中其他服务器的招牌区别。此信息将可能在多种环境下显示，包括 Mastodon 网页界面、原生应用和其他网站的链接预览等。因此应尽量简明扼要。
         title: 招牌
+      captcha_enabled:
+        desc_html: 这依赖于来自hCaptcha的外部脚本，可能会带来安全和隐私问题。此外，<strong>这可能使注册过程对某些人（尤其是残疾人）的注册简易程度大幅下降</strong>。出于这些原因，请考虑采取其他措施，如基于批准或邀请的注册方式。
+        title: 要求新用户输入验证码以确认他们的账户
       content_retention:
         preamble: 控制用户生成的内容在 Mastodon 中如何存储。
         title: 内容保留
@@ -943,11 +955,11 @@ zh-CN:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每个人都可以参与翻译。
     sensitive_content: 敏感内容
-    toot_layout: 嘟文布局
   application_mailer:
     notification_preferences: 更改电子邮件首选项
     salutation: "%{name}："
     settings: 使用此链接更改你的电子邮件首选项：%{link}
+    unsubscribe: 取消订阅
     view: 点此链接查看详情：
     view_profile: 查看个人资料页
     view_status: 查看嘟文
@@ -961,6 +973,10 @@ zh-CN:
     your_token: 你的访问令牌
   auth:
     apply_for_account: 申请账号
+    captcha_confirmation:
+      help_html: 如果您在输入验证码时遇到问题，可以通过%{email} 与我们联系，我们将为您提供帮助。
+      hint_html: 只剩最后一件事了！我们需要确认您是一个人类（这样我们才能阻止恶意访问！）。请输入下面的验证码，然后点击“继续”。
+      title: 安全检查
     confirmations:
       wrong_email_hint: 如果该电子邮件地址不正确，您可以在帐户设置中进行更改。
     delete_account: 删除帐户
@@ -997,8 +1013,11 @@ zh-CN:
     rules:
       accept: 接受
       back: 返回
+      invited_by: 你可以加入%{domain}，这是由于你收到了他人的邀请，邀请来自：
       preamble: 这些由 %{domain} 监察员设置和执行。
+      preamble_invited: 在您继续之前，请考虑 %{domain} 的管理员设定的基本规则。
       title: 一些基本规则。
+      title_invited: 您已经被邀请。
     security: 账户安全
     set_new_password: 设置新密码
     setup:
@@ -1023,18 +1042,6 @@ zh-CN:
       view_strikes: 查看针对你账号的记录
     too_fast: 表单提交过快，请重试。
     use_security_key: 使用安全密钥
-  authorize_follow:
-    already_following: 你已经在关注此用户了
-    already_requested: 你已经向那个账户发送过关注请求了
-    error: 对不起，寻找这个跨站用户时出错
-    follow: 关注
-    follow_request: 关注请求已发送给：
-    following: 成功！你正在关注：
-    post_follow:
-      close: 你也可以直接关闭这个窗口。
-      return: 查看用户个人资料
-      web: 返回本站
-    title: 关注 %{acct}
   challenge:
     confirm: 继续
     hint_html: "<strong>注意：</strong>接下来一小时内我们不会再次要求你输入密码。"
@@ -1111,6 +1118,11 @@ zh-CN:
       your_appeal_rejected: 你的申诉已被驳回
   domain_validator:
     invalid_domain: 不是一个有效的域名
+  edit_profile:
+    basic_information: 基本信息
+    hint_html: "<strong>自定义公开资料和帖子旁边显示的内容。</strong>当您填写完整的个人资料并设置了头像时，其他人更有可能关注您并与您互动。"
+    other: 其他
+    safety_and_privacy: 安全和隐私
   errors:
     '400': 你提交的请求无效或格式不正确。
     '403': 你没有访问这个页面的权限。
@@ -1194,7 +1206,9 @@ zh-CN:
       other: 此页面上的所有 <strong>%{count}</strong> 项目已被选中。
     all_matching_items_selected_html:
       other: 所有 <strong>%{count}</strong> 匹配您搜索的项目都已被选中。
+    cancel: 取消
     changes_saved_msg: 更改保存成功！
+    confirm: 确认
     copy: 复制
     delete: 删除
     deselect: 取消全选
@@ -1208,20 +1222,60 @@ zh-CN:
       other: 出错啦！检查一下下面 %{count} 处出错的地方吧
   imports:
     errors:
+      empty: CSV 文件为空
+      incompatible_type: 与所选导入类型不兼容
       invalid_csv_file: '无效的 CSV 文件。错误: %{error}'
       over_rows_processing_limit: 包含行数超过了 %{count}
+      too_large: 文件过大
+    failures: 失败
+    imported: 已导入
+    mismatched_types_warning: 您似乎选择了导入错误的类型，请再次检查。
     modes:
       merge: 合并
       merge_long: 保留现有记录并添加新的记录
       overwrite: 覆盖
       overwrite_long: 将当前记录替换为新记录
+    overwrite_preambles:
+      blocking_html: 您即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换您的屏蔽列表。
+      bookmarks_html: 您即将使用来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>替换您的书签。
+      domain_blocking_html: 您即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个域名</strong>替换您的域名屏蔽列表。
+      following_html: 您即将从<strong> %{filename} </strong>关注<strong> %{total_items} 个账户</strong>，并停止关注其他任何人。
+      lists_html: 你即将用<strong> %{filename} </strong>的内容<strong>替换你的列表</strong>。新列表中将添加<strong> %{total_items} 个账户</strong>。
+      muting_html: 您即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换您已隐藏的账户列表。
+    preambles:
+      blocking_html: 您即将从<strong> %{filename} </strong>中<strong>封锁</strong>多达<strong> %{total_items} </strong>个账户。
+      bookmarks_html: 您即将把来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>添加到您的<strong>书签</strong>中。
+      domain_blocking_html: 您即将从<strong> %{filename} </strong>中<strong>屏蔽</strong><strong> %{total_items} 个域名</strong>。
+      following_html: 您即将从<strong> %{filename} </strong><strong>关注</strong>最多<strong> %{total_items} 个账户</strong>。
+      lists_html: 你即将从<strong> %{filename} </strong>中添加最多<strong> %{total_items} 个账户</strong>到你的<strong>列表</strong>中。如果没有可用列表，将创建新的列表。
+      muting_html: 您即将从<strong> %{filename} </strong>中<strong>隐藏</strong><strong> %{total_items} 个账户</strong>。
     preface: 你可以在此导入你在其他实例导出的数据，比如你所关注或屏蔽的用户列表。
+    recent_imports: 最近导入
+    states:
+      finished: 已完成
+      in_progress: 导入中
+      scheduled: 已预定
+      unconfirmed: 未确认
+    status: 状态
     success: 数据上传成功，正在处理中
+    time_started: 开始于
+    titles:
+      blocking: 正在导入被屏蔽的账户
+      bookmarks: 正在导入书签
+      domain_blocking: 正在导入被屏蔽的域名
+      following: 正在导入关注的账户
+      lists: 导入列表
+      muting: 正在导入隐藏的账户
+    type: 导入类型
+    type_groups:
+      constructive: 关注和书签
+      destructive: 屏蔽和隐藏
     types:
       blocking: 屏蔽列表
       bookmarks: 书签
       domain_blocking: 域名屏蔽列表
       following: 关注列表
+      lists: 列表
       muting: 隐藏列表
     upload: 上传
   invites:
@@ -1259,6 +1313,21 @@ zh-CN:
     failed_sign_in_html: 失败的 %{method} 登录尝试，来自 %{ip} (%{browser})
     successful_sign_in_html: 通过 %{method} 成功登录，来自 %{ip} (%{browser})
     title: 认证历史
+  mail_subscriptions:
+    unsubscribe:
+      action: 是，取消订阅
+      complete: 已取消订阅
+      confirmation_html: 您确定要取消订阅来自 %{domain} 上的 Mastodon 的 %{type} 到您的邮箱 %{email} 吗？您可以随时在<a href="%{settings_path}">电子邮件通知设置</a>重新订阅。
+      emails:
+        notification_emails:
+          favourite: 嘟文被点赞邮件通知
+          follow: 账户被关注邮件通知
+          follow_request: 关注请求邮件通知
+          mention: 账户被提及邮件通知
+          reblog: 被转嘟邮件通知
+      resubscribe_html: 如果您不小心取消订阅，可以从您的<a href="%{settings_path}">电子邮件通知设置</a>重新订阅。
+      success_html: 您将不会在您的邮箱 %{email} 中收到 %{domain} 上的 Mastodon的 %{type}
+      title: 取消订阅
   media_attachments:
     validations:
       images_and_video: 无法在嘟文中同时插入视频和图片
@@ -1299,7 +1368,7 @@ zh-CN:
     title: 运营
   move_handler:
     carry_blocks_over_text: 这个用户迁移自你屏蔽过的 %{acct}
-    carry_mutes_over_text: 这个用户迁移自你隐藏过的 %{acct}
+    carry_mutes_over_text: 这个用户由你隐藏过的 %{acct} 迁移而来
     copy_account_note_text: 这个用户迁移自 %{acct}，你曾为其添加备注：
   navigation:
     toggle_menu: 隐藏/显示菜单
@@ -1334,7 +1403,7 @@ zh-CN:
       subject: "%{name} 转嘟了你的嘟文"
       title: 新的转嘟
     status:
-      subject: "%{name} 刚刚发嘟"
+      subject: "%{name} 刚刚发布嘟文"
     update:
       subject: "%{name} 编辑了嘟文"
   notifications:
@@ -1369,11 +1438,12 @@ zh-CN:
     errors:
       already_voted: 你已经在这里投过票了
       duplicate_options: 包含重复的项目
-      duration_too_long: 持续时间过长
-      duration_too_short: 持续时间过短
+      duration_too_long: 期限过长
+      duration_too_short: 期限过短
       expired: 投票已经结束
       invalid_choice: 被选中的投票选项不存在
       over_character_limit: 每条不能超过 %{max} 个字符
+      self_vote: 您不能参与自己发起的投票
       too_few_options: 至少需要两个选项
       too_many_options: 不能超过 %{max} 项
   preferences:
@@ -1430,7 +1500,7 @@ zh-CN:
       chrome: Chrome
       edge: 微软 Edge
       electron: Electron
-      firefox: 火狐
+      firefox: Firefox
       generic: 未知浏览器
       huawei_browser: 华为浏览器
       ie: IE 浏览器
@@ -1523,7 +1593,6 @@ zh-CN:
     show_newer: 显示更新内容
     show_older: 显示更早内容
     show_thread: 显示全部对话
-    sign_in_to_participate: 登录以加入对话
     title: "%{name}：“%{quote}”"
     visibilities:
       direct: 私信
@@ -1552,7 +1621,7 @@ zh-CN:
     keep_polls_hint: 不会删除你的任何投票
     keep_self_bookmark: 保存被你加入书签的嘟文
     keep_self_bookmark_hint: 如果你已将自己的嘟文添加书签，就不会删除这些嘟文
-    keep_self_fav: 保留你喜欢的嘟文
+    keep_self_fav: 保留你点赞的嘟文
     keep_self_fav_hint: 如果你喜欢了自己的嘟文，则不会删除这些嘟文
     min_age:
       '1209600': 2周
@@ -1564,13 +1633,11 @@ zh-CN:
       '63113904': 两年
       '7889238': 3个月
     min_age_label: 过期阈值
-    min_favs: 保留如下嘟文：喜欢数超过
-    min_favs_hint: 喜欢数超过该阈值的的嘟文都不会被删除。如果留空，则无论嘟文获得多少喜欢，都将被删除。
+    min_favs: 保留如下嘟文：点赞数超过
+    min_favs_hint: 点赞数超过该阈值的的嘟文都不会被删除。如果留空，则无论嘟文获得多少点赞，都将被删除。
     min_reblogs: 保留如下嘟文：转嘟数超过
     min_reblogs_hint: 转嘟数超过该阈值的的嘟文不会被删除。如果留空，则无论嘟文获得多少转嘟，都将被删除。
   stream_entries:
-    pinned: 置顶嘟文
-    reblogged: 转嘟
     sensitive_content: 敏感内容
   strikes:
     errors:
@@ -1631,7 +1698,7 @@ zh-CN:
       explanation:
         delete_statuses: 你的一些嘟文被发现违反了一条或多条社区准则，并已被 %{instance} 的监察员删除。
         disable: 你不能再使用你的账户，但你的个人资料和其他数据保持不变。你可以请求数据备份，更改账户设置或删除账户。
-        mark_statuses_as_sensitive: 你的一些嘟文已经被 %{instance} 检察员标记为敏感内容。这意味着别人需要在嘟文中点击媒体，才能显示媒体预览。你可以在今后发嘟时自行将媒体标记为敏感内容。
+        mark_statuses_as_sensitive: 你的一些嘟文已经被 %{instance} 检察员标记为敏感内容。这意味着别人需要在嘟文中点击媒体，才能显示媒体预览。你可以在今后发布嘟文时自行将媒体标记为敏感内容。
         sensitive: 即刻起，你上传的所有媒体文件都将被标记为敏感内容并隐藏，在点击警告后才能查看。
         silence: 你可以继续使用你的账号，但只有已关注你的人才能在看到你在此服务器上的嘟文，并且你会被排除在各类公共列表之外。其他用户仍可以手动关注你。
         suspend: 你不能再使用你的账户，并且你的个人资料和其他数据都将无法访问。在大约30天内，你仍可以登录并请求数据备份，之后相关数据将被完全删除。我们会保留一些基础数据以避免封禁失效。
@@ -1658,7 +1725,7 @@ zh-CN:
       edit_profile_step: 您可以通过上传个人资料图片、更改您的昵称等来自定义您的个人资料。 您可以选择在新关注者关注您之前对其进行审核。
       explanation: 下面是几个小贴士，希望它们能帮到你
       final_action: 开始嘟嘟
-      final_step: '开始发嘟！ 即使没有关注者，您的公开嘟文也可能会被其他人看到，例如在本地时间轴或话题标签中。 您可能想在 #introductions 话题标签上介绍自己。'
+      final_step: '开始发布嘟文！ 即使没有关注者，您的公开嘟文也可能会被其他人看到，例如在本地时间轴或话题标签中。 您可能想在 #introductions 话题标签上介绍自己。'
       full_handle: 你的完整用户地址
       full_handle_hint: 你需要把这个告诉你的朋友们，这样他们就能从另一台服务器向你发送信息或者关注你。
       subject: 欢迎来到 Mastodon
@@ -1671,7 +1738,12 @@ zh-CN:
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
     signed_in_as: 当前登录的账户：
   verification:
+    extra_instructions_html: <strong>提示：</strong>您网站上的链接可能是不可见的。重要的部分是 <code>rel="me"</code>，它可以防止在具有用户生成内容的网站上冒充身份。您甚至可以在页面头部使用 <code>link</code> 标签而不是 <code>a</code>，但 HTML 必须能够在不执行 JavaScript 的情况下访问。
+    here_is_how: 具体方法如下：
+    hint_html: "<strong>在Mastodon上验证您的身份对每个人都是必要的。</strong>基于开放网络标准，现在和将来永远免费。您只需要一个被人们认可的个人网站。当您在个人资料中链接到这个网站时，我们会检查该网站是否回链到您的资料，并显示一个指示符号。"
+    instructions_html: 将下面的代码复制并粘贴到您网站的HTML中。然后在“编辑个人资料”选项卡中的附加字段之一添加您网站的地址，并保存更改。
     verification: 验证
+    verified_links: 您已验证的链接
   webauthn_credentials:
     add: 添加新的安全密钥
     create:

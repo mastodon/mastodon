@@ -65,8 +65,8 @@ RSpec.describe DeleteAccountService, type: :service do
       stub_request(:post, 'https://bob.com/inbox').to_return(status: 201)
     end
 
-    let!(:remote_alice) { Fabricate(:account, inbox_url: 'https://alice.com/inbox', protocol: :activitypub) }
-    let!(:remote_bob) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
+    let!(:remote_alice) { Fabricate(:account, inbox_url: 'https://alice.com/inbox', domain: 'alice.com', protocol: :activitypub) }
+    let!(:remote_bob) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', domain: 'bob.com', protocol: :activitypub) }
 
     include_examples 'common behavior' do
       let!(:account) { Fabricate(:account) }
@@ -87,12 +87,34 @@ RSpec.describe DeleteAccountService, type: :service do
     end
 
     include_examples 'common behavior' do
-      let!(:account) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
+      let!(:account) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
       let!(:local_follower) { Fabricate(:account) }
 
-      it 'sends a reject follow to follower inboxes' do
+      it 'sends expected activities to followed and follower inboxes' do
         subject
-        expect(a_request(:post, account.inbox_url)).to have_been_made.once
+
+        expect(a_request(:post, account.inbox_url).with(
+                 body:
+                   hash_including({
+                     'type' => 'Reject',
+                     'object' => hash_including({
+                       'type' => 'Follow',
+                       'actor' => account.uri,
+                       'object' => ActivityPub::TagManager.instance.uri_for(local_follower),
+                     }),
+                   })
+               )).to have_been_made.once
+
+        expect(a_request(:post, account.inbox_url).with(
+                 body: hash_including({
+                   'type' => 'Undo',
+                   'object' => hash_including({
+                     'type' => 'Follow',
+                     'actor' => ActivityPub::TagManager.instance.uri_for(local_follower),
+                     'object' => account.uri,
+                   }),
+                 })
+               )).to have_been_made.once
       end
     end
   end

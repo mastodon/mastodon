@@ -2,6 +2,10 @@
 ko:
   simple_form:
     hints:
+      account:
+        display_name: 실명 혹은 별명.
+        fields: 홈페이지, 호칭, 나이, 뭐든지 적고 싶은 것들.
+        note: '남을 @mention 하거나 #hashtag 태그를 달 수 있습니다.'
       account_alias:
         acct: 이동하고자 하는 계정의 사용자이름@도메인을 설정하세요
       account_migration:
@@ -38,7 +42,7 @@ ko:
         current_username: 확인을 위해, 현재 계정의 사용자명을 입력해주세요
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
         discoverable: 추천, 트렌드 및 기타 기능을 통해 낯선 사람이 내 계정을 발견할 수 있도록 허용합니다
-        email: 당신은 확인 메일을 받게 됩니다
+        email: 확인용 이메일을 보냈습니다.
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
         inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
         irreversible: 필터링 된 게시물은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
@@ -50,9 +54,9 @@ ko:
         setting_aggregate_reblogs: 최근에 부스트 됐던 게시물은 새로 부스트 되어도 보여주지 않기 (새로 받은 부스트에만 적용됩니다)
         setting_always_send_emails: 기본적으로 마스토돈을 활동적으로 사용하고 있을 때에는 이메일 알림이 보내지지 않습니다
         setting_default_sensitive: 민감한 미디어는 기본적으로 가려져 있으며 클릭해서 볼 수 있습니다
-        setting_display_media_default: 민감함으로 설정 된 미디어 가리기
-        setting_display_media_hide_all: 항상 모든 미디어를 가리기
-        setting_display_media_show_all: 민감함으로 설정 된 미디어를 항상 보이기
+        setting_display_media_default: 민감함으로 표시된 미디어 가리기
+        setting_display_media_hide_all: 모든 미디어를 가리기
+        setting_display_media_show_all: 모든 미디어를 보이기
         setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들을 내 프로필에서 숨깁니다
         setting_noindex: 공개 프로필 및 각 게시물 페이지에 영향을 미칩니다
         setting_show_application: 게시물 작성에 사용한 애플리케이션이 게시물 상세정보에 표시됩니다.
@@ -71,15 +75,15 @@ ko:
         action: 게시물이 필터에 걸러질 때 어떤 동작을 수행할 지 고르세요
         actions:
           hide: 필터에 걸러진 글을 처음부터 없었던 것처럼 완전히 가리기
-          warn: 필터에 걸러진 글을 필터 제목과 함께 경고 뒤에 가리기
+          warn: 필터 제목을 언급하는 경고 뒤에 걸러진 내용을 숨기기
       form_admin_settings:
         activity_api_enabled: 주별 로컬에 게시된 글, 활성 사용자 및 새로운 가입자 수
         backups_retention_period: 생성된 사용자 아카이브를 며칠동안 저장할 지.
         bootstrap_timeline_accounts: 이 계정들은 팔로우 추천 목록 상단에 고정됩니다.
         closed_registrations_message: 새 가입을 차단했을 때 표시됩니다
-        content_cache_retention_period: 양수로 설정되었다면 다른 서버의 게시물은 여기서 설정된 일수가 지나면 삭제될 것입니다. 되돌릴 수 없는 작업일 수 있습니다.
+        content_cache_retention_period: 다른 서버의 게시물과 부스트들은 지정한 일수가 지나면 삭제될 것입니다. 몇몇 게시물들은 복구가 불가능할 것입니다. 관련된 북마크, 좋아요, 부스트 또한 잃어버릴 것이며 취소도 할 수 없습니다.
         custom_css: 사용자 지정 스타일을 웹 버전의 마스토돈에 지정할 수 있습니다.
-        mascot: 고급 사용자 인터페이스에 있는 일러스트를 교체합니다.
+        mascot: 고급 웹 인터페이스의 그림을 대체합니다.
         media_cache_retention_period: 양수로 설정된 경우 다운로드된 미디어 파일들은 지정된 일수가 지나면 삭제될 것이고 필요할 때 다시 다운로드 될 것입니다.
         peers_api_enabled: 이 서버가 연합우주에서 만났던 서버들에 대한 도메인 네임의 목록입니다. 해당 서버와 어떤 연합을 했는지에 대한 정보는 전혀 포함되지 않고, 단순히 그 서버를 알고 있는지에 대한 것입니다. 이것은 일반적으로 연합에 대한 통계를 수집할 때 사용됩니다.
         profile_directory: 프로필 책자는 발견되기를 희망하는 모든 사람들의 목록을 나열합니다.
@@ -130,6 +134,7 @@ ko:
         position: 특정 상황에서 충돌이 발생할 경우 더 높은 역할이 충돌을 해결합니다. 특정 작업은 우선순위가 낮은 역할에 대해서만 수행될 수 있습니다
       webhook:
         events: 전송할 이벤트를 선택하세요
+        template: 원하는 JSON 페이로드를 변수와 함께 작성하거나, 그냥 냅둬서 기본 JSON을 사용할 수 있습니다.
         url: 이벤트가 어디로 전송될 지
     labels:
       account:
@@ -165,7 +170,7 @@ ko:
         text: 이 결정을 번복해야만 하는 이유가 무엇입니까
       defaults:
         autofollow: 초대를 통한 팔로우
-        avatar: 아바타
+        avatar: 프로필 사진
         bot: 이것은 자동화된 계정입니다
         chosen_languages: 언어 필터링
         confirm_new_password: 암호 다시 입력
@@ -176,8 +181,8 @@ ko:
         discoverable: 계정을 다른 사람들에게 추천하기
         display_name: 표시 이름
         email: 이메일 주소
-        expires_in: 만료시각
-        fields: 프로필 메타데이터
+        expires_in: 만기
+        fields: 부가 필드
         header: 헤더
         honeypot: "%{label} (채우지 마시오)"
         inbox_url: 릴레이 서버의 inbox URL
@@ -190,12 +195,11 @@ ko:
         otp_attempt: 이중 인증 코드
         password: 암호
         phrase: 키워드 또는 문장
-        setting_advanced_layout: 고급 웹 UI 활성화
+        setting_advanced_layout: 고급 웹 인터페이스 활성화
         setting_aggregate_reblogs: 타임라인의 부스트를 그룹화
         setting_always_send_emails: 항상 이메일 알림 보내기
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
         setting_boost_modal: 부스트 전 확인 창을 표시
-        setting_crop_images: 확장되지 않은 게시물의 이미지를 16x9로 자르기
         setting_default_language: 게시물 언어
         setting_default_privacy: 게시물 프라이버시
         setting_default_sensitive: 미디어를 언제나 민감한 콘텐츠로 설정
@@ -205,7 +209,7 @@ ko:
         setting_display_media_default: 기본
         setting_display_media_hide_all: 모두 가리기
         setting_display_media_show_all: 모두 보이기
-        setting_expand_spoilers: 열람주의 게시물을 항상 펼치기
+        setting_expand_spoilers: 내용 경고로 표시된 게시물을 항상 펼치기
         setting_hide_network: 내 인맥 숨기기
         setting_noindex: 검색엔진의 인덱싱을 거절
         setting_reduce_motion: 애니메이션 줄이기
@@ -295,6 +299,7 @@ ko:
         usable: 이 해시태그를 게시물에 사용 가능하도록 허용
       user:
         role: 역할
+        time_zone: 시간대
       user_role:
         color: 배지 색상
         highlighted: 역할 배지를 사용자 프로필에 표시
@@ -303,6 +308,7 @@ ko:
         position: 우선순위
       webhook:
         events: 활성화된 이벤트
+        template: 페이로드 템플릿
         url: 엔드포인트 URL
     'no': 아니요
     not_recommended: 추천하지 않음

@@ -382,6 +382,15 @@ eu:
       undo: Kendu zerrenda zuritik
     domain_blocks:
       add_new: Gehitu domeinuaren blokeo berria
+      confirm_suspension:
+        cancel: Utzi
+        confirm: Eten
+        permanent_action: Etenaldia uzteak ez ditu datuak edo elkarreraginak leheneratuko.
+        preamble_html: "<strong>%{domain}</strong> eta bere azpidomeinuak etetzera zoaz."
+        remove_all_data: Honek domeinuko kontuen eduki, media, eta profiletako datu guztiak kenduko ditu zure zerbitzaritik.
+        stop_communication: Zure zerbitzariak zerbitzari hauekin komunikatzeari utziko dio.
+        title: Berretsi %{domain} domeinuaren blokeoa
+        undo_relationships: Honek zerbitzari honetako eta zure zerbitzariko edozein elkarreragin desegingo ditu.
       created_msg: Domeinuaren blokeoa orain prozesatzen ari da
       destroyed_msg: Domeinuaren blokeoa desegin da
       domain: Domeinua
@@ -744,8 +753,8 @@ eu:
         preamble: Eduki interesgarria aurkitzea garrantzitsua da Mastodoneko erabiltzaile berrientzat, behar bada inor ez dutelako ezagutuko. Kontrolatu zure zerbitzariko aurkikuntza-ezaugarriek nola funtzionatzen duten.
         profile_directory: Profil-direktorioa
         public_timelines: Denbora-lerro publikoak
-        publish_discovered_servers: Deskubritutako zerbitzariak argitaratu
-        publish_statistics: Estatistikak argitaratu
+        publish_discovered_servers: Argitaratu aurkitutako zerbitzariak
+        publish_statistics: Argitaratu estatistikak
         title: Aurkitzea
         trends: Joerak
       domain_blocks:
@@ -760,7 +769,7 @@ eu:
           approved: Izena emateko onarpena behar da
           none: Ezin du inork izena eman
           open: Edonork eman dezake izena
-      title: Zerbitzariaren ezarpenak
+      title: Zerbitzariko ezarpenak
     site_uploads:
       delete: Ezabatu igotako fitxategia
       destroyed_msg: Guneko igoera ongi ezabatu da!
@@ -963,7 +972,6 @@ eu:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Edonork lagundu dezake.
     sensitive_content: Eduki hunkigarria
-    toot_layout: Bidalketen diseinua
   application_mailer:
     notification_preferences: Aldatu e-mail hobespenak
     salutation: "%{name},"
@@ -980,7 +988,7 @@ eu:
     warning: Kontuz datu hauekin, ez partekatu inoiz inorekin!
     your_token: Zure sarbide token-a
   auth:
-    apply_for_account: Kontu bat eskatu
+    apply_for_account: Eskatu kontu bat
     confirmations:
       wrong_email_hint: Helbide-elektroniko hori zuzena ez bada, kontuaren ezarpenetan alda dezakezu.
     delete_account: Ezabatu kontua
@@ -1043,18 +1051,6 @@ eu:
       view_strikes: Ikusi zure kontuaren aurkako neurriak
     too_fast: Formularioa azkarregi bidali duzu, saiatu berriro.
     use_security_key: Erabili segurtasun gakoa
-  authorize_follow:
-    already_following: Kontu hau aurretik jarraitzen duzu
-    already_requested: Bidali duzu dagoeneko kontu hori jarraitzeko eskaera bat
-    error: Zoritxarrez, urruneko kontua bilatzean errore bat gertatu da
-    follow: Jarraitu
-    follow_request: 'Jarraitzeko eskari bat bidali duzu hona:'
-    following: 'Ongi! Orain jarraitzen duzu:'
-    post_follow:
-      close: Edo, leiho hau besterik gabe itxi dezakezu.
-      return: Erakutsi erabiltzailearen profila
-      web: Joan webera
-    title: Jarraitu %{acct}
   challenge:
     confirm: Jarraitu
     hint_html: "<strong>Oharra:</strong> Ez dizugu pasahitza berriro eskatuko ordu batez."
@@ -1219,7 +1215,9 @@ eu:
     all_matching_items_selected_html:
       one: Zure bilaketarekin bat datorren elementu <strong>%{count}</strong> hautatuta.
       other: Zure bilaketarekin bat datozen <strong>%{count}</strong> elementu hautatuta.
+    cancel: Utzi
     changes_saved_msg: Aldaketak ongi gorde dira!
+    confirm: Berretsi
     copy: Kopiatu
     delete: Ezabatu
     deselect: Desautatu guztiak
@@ -1235,15 +1233,39 @@ eu:
       other: Zerbait ez dabil ongi! Egiaztatu beheko %{count}  erroreak mesedez
   imports:
     errors:
+      empty: CSV fitxategi hutsa
+      incompatible_type: Ez da bateragarria aukeratutako inportatze-motarekin
       invalid_csv_file: 'CSV fitxategi baliogabea. Errorea: %{error}'
       over_rows_processing_limit: "%{count} lerro baina gehiago ditu"
+      too_large: Fitxategia handiegia da
+    failures: Akatsak
+    imported: Inportatuta
+    mismatched_types_warning: Badirudi mota okerra aukeratu duzula inportatze honetarako, mesedez, berrikusi.
     modes:
       merge: Bateratu
       merge_long: Mantendu dauden erregistroak eta gehitu berriak
       overwrite: Gainidatzi
       overwrite_long: Ordeztu oraingo erregistroak berriekin
     preface: Beste zerbitzari bateko datuak inportatu ditzakezu, esaterako jarraitzen duzun edo blokeatu duzun jendearen zerrenda.
+    recent_imports: Azken inportazioak
+    states:
+      finished: Amaitua
+      in_progress: Abian
+      scheduled: Programatuta
+      unconfirmed: Berretsi gabe
+    status: Egoera
     success: Zure datuak ongi igo dira eta dagokionean prozesatuko dira
+    time_started: Noiz hasia
+    titles:
+      blocking: Blokeatutako kontuak inportatzen
+      bookmarks: Laster-markak inportatzen
+      domain_blocking: Blokeatutako domeinuak inportatzen
+      following: Jarraitutako kontuak inportatzen
+      muting: Mutututako kontuak inportatzen
+    type: Inportazio mota
+    type_groups:
+      constructive: Jarraipenak eta laster-markak
+      destructive: Blokeatzeak eta mututzeak
     types:
       blocking: Blokeatutakoen zerrenda
       bookmarks: Laster-markak
@@ -1557,7 +1579,6 @@ eu:
     show_newer: Erakutsi berriagoak
     show_older: Erakutsi zaharragoak
     show_thread: Erakutsi haria
-    sign_in_to_participate: Eman izena elkarrizketan parte hartzeko
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Zuzena
@@ -1603,8 +1624,6 @@ eu:
     min_reblogs: Mantendu bultzada kopuru hau duten bidalketak
     min_reblogs_hint: Gutxienez bultzada kopuru hau jaso duten zure bidalketak ez dira ezabatuko. Hutsik utziz gero bultzada kopurua ez da kontuan hartuko bidalketak ezabatzean
   stream_entries:
-    pinned: Finkatutako bidalketa
-    reblogged: "(r)en bultzada"
     sensitive_content: 'Kontuz: Eduki hunkigarria'
   strikes:
     errors:

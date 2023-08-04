@@ -232,17 +232,6 @@ ka:
     reset_password: პაროლის გადატვირთვა
     security: უსაფრთხოება
     set_new_password: ახალი პაროლის დაყენება
-  authorize_follow:
-    already_following: უკვე მიჰყვებით ამ ანგარიშს
-    error: სამწუხაროთ, დისტანციური სერვერის წაკითხვამ გამოიწვია შეცდომა
-    follow: გაყევი
-    follow_request: 'დადევნების მოთხონვა გაეგზავნა:'
-    following: 'წარმატება! ახლა მიჰყვებით:'
-    post_follow:
-      close: ან შეგიძლიათ დახუროთ ეს ფანჯარა.
-      return: მომხმარებლის პროფილის ჩვენება
-      web: ვებზე გადასვლა
-    title: გაყევი %{acct}-ს
   datetime:
     distance_in_words:
       about_x_hours: "%{count}სთ"
@@ -262,8 +251,10 @@ ka:
     proceed: ანგარიშის გაუქმება
     success_msg: თქვენი ანგარიში წარმატებით გაუქმდა
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': ამ გვერდის ხილვის უფლება არ გაქვთ.
     '404': გვერდი რომელსაც ეძებთ არ არსებობს.
+    '406': This page is not available in the requested format.
     '410': გვერდი რომელსაც ეძებდით აღარ არსებობს.
     '422':
       content: უსაფრთხოების ვერიფიკაცია ვერ მოხერხდა. ბლოკავთ ქუქის?
@@ -272,6 +263,7 @@ ka:
     '500':
       content: ბოდიში, ჩვენ მხარეს რაღაც არია.
       title: გვერდი არაა სწორი
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: მასტოდონ ვებ-აპლიკაციის გამოყენებისთვის, გთხოვთ ჩართოთ ჯავასკრიპტი. სხვა შემთხვევაში, მასტოდონის თქვენი პატფორმისთვის სცადეთ გამოიყენოთ ერთ-ერთი <a href="%{apps_path}">მშობლიური აპლიკაცია</a>.
   exports:
     archive_takeout:
@@ -381,6 +373,8 @@ ka:
     next: შემდეგი
     older: ძველი
     prev: წინა
+  preferences:
+    other: სხვა
   remote_follow:
     missing_resource: საჭირო გადამისამართების ურლ თქვენი ანგარიშისთვის ვერ მოიძებნა
   sessions:
@@ -452,7 +446,6 @@ ka:
       ownership: სხვისი ტუტი ვერ აიპინება
       reblog: ბუსტი ვერ აიპინება
     show_more: მეტის ჩვენება
-    sign_in_to_participate: საუბარში მონაწილეობისთვის გაიარეთ ავტორიზაცია
     visibilities:
       private: მხოლოდ-მიმდევრები
       private_long: აჩვენე მხოლოდ მიმდევრებს
@@ -461,8 +454,6 @@ ka:
       unlisted: ჩამოუთვლელი
       unlisted_long: ხედავს ყველა, მაგრამ არ ჩანს საჯარო თაიმლაინებში
   stream_entries:
-    pinned: აპინული ტუტი
-    reblogged: გაზრდილი
     sensitive_content: მგრძნობიარე კონტენტი
   themes:
     contrast: მაღალი კონტრასტი

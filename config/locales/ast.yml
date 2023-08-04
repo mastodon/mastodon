@@ -71,6 +71,7 @@ ast:
         create_custom_emoji_html: "%{name} xubió un fustaxe nuevu «%{target}»"
         create_domain_allow_html: "%{name} permitió la federación col dominiu %{target}"
         create_domain_block_html: "%{name} bloquió'l dominiu %{target}"
+        create_unavailable_domain_html: "%{name} paró la entrega al dominiu %{target}"
         create_user_role_html: "%{name} creó'l rol «%{target}»"
         destroy_announcement_html: "%{name} desanició l'anunciu «%{target}»"
         destroy_custom_emoji_html: "%{name} desanició'l fustaxe %{target}"
@@ -335,7 +336,6 @@ ast:
           approved: Tol mundu pente una aprobación
           none: Naide
           open: Tol mundu
-      title: Configuración del sirvidor
     site_uploads:
       delete: Desaniciar el ficheru xubíu
     statuses:
@@ -398,7 +398,7 @@ ast:
       disable: Desactivar
       disabled: Desactivóse
       edit: Editar l'estremu
-      empty: Entá nun tienes nengún estremu de webhooks configuráu.
+      empty: Nun tienes nengún estremu de webhooks configuráu.
       enable: Activar
       enabled: N'activo
       enabled_events:
@@ -438,7 +438,6 @@ ast:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: tol mundu pue collaborar.
     sensitive_content: Conteníu sensible
-    toot_layout: Distribución de los artículos
   application_mailer:
     notification_preferences: Camudar les preferencies de los mensaxes de corréu electrónicu
   applications:
@@ -482,15 +481,6 @@ ast:
       functional: La cuenta ta completamente operativa.
       pending: La to solicitú ta pendiente de que la revise'l nuesu personal ya ye posible que tarde tiempu. Vas recibir un mensaxe si s'aprueba.
     too_fast: El formulariu xubióse mui rápido, volvi tentalo.
-  authorize_follow:
-    already_following: Xá tas siguiendo a esta cuenta
-    already_requested: Yá unviesti una solicitú de siguimientu a esa cuenta
-    error: Desafortunadamente, hebo un error al buscar la cuenta remota
-    follow_request: 'Unviesti una solicitú de siguimientu a:'
-    post_follow:
-      close: O pues zarrar esta ventana.
-      return: Amosar el perfil de la cuenta
-      web: Dir a la web
   challenge:
     confirm: Siguir
     hint_html: "<strong>Conseyu:</strong> nun vamos volver pidite la contraseña hasta dientro d'una hora."
@@ -516,7 +506,7 @@ ast:
     challenge_not_passed: La información qu'introduxesti nun yera correuta
     confirm_password: Introduz la contraseña pa verificar la to identidá
     warning:
-      email_contact_html: Si entá nun aportó, pues unviar un mensaxe a <a href="mailto:%{email}">%{email}</a> pa consiguir más ayuda
+      email_contact_html: Si nun aportó, pues unviar un mensaxe a <a href="mailto:%{email}">%{email}</a> pa consiguir más ayuda
       email_reconfirmation_html: Si nun recibiesti'l mensaxe de confirmación, pues <a href="%{path}">volver solicitalu</a>
       more_details_html: Pa consiguir más detalles, mira la <a href="%{terms_path}">política de privacidá</a>.
   disputes:
@@ -538,6 +528,8 @@ ast:
       your_appeal_approved: Aprobóse la to apellación
       your_appeal_pending: Unviesti una apellación
       your_appeal_rejected: Refugóse la to apellación
+  edit_profile:
+    safety_and_privacy: Seguranza ya privacidá
   errors:
     '400': La solicitú qu'unviesti nun yera válida o yera incorreuta.
     '403': Nun tienes permisu pa ver esta páxina.
@@ -568,10 +560,10 @@ ast:
     storage: Almacenamientu multimedia
   featured_tags:
     add_new: Amestar
-    hint_html: "<strong>¿Qué son les etiquetes destacaes?</strong> Apaecen de forma bien visible nel perfil públicu ya permite que les persones restolen los tos artículos públicos per duana d'eses etiquetes. Son una gran ferramienta pa tener un rexistru de trabayos creativos o de proyeutos a plazu llongu."
   filters:
     contexts:
       account: Perfiles
+      home: Aniciu ya llistes
       notifications: Avisos
       public: Llinies de tiempu públiques
       thread: Conversaciones
@@ -621,6 +613,7 @@ ast:
       bookmarks: Marcadores
       domain_blocking: Llista de dominios bloquiaos
       following: Llista de siguidores
+      lists: Llistes
       muting: Llista de perfiles colos avisos desactivaos
     upload: Xubir
   invites:
@@ -787,7 +780,7 @@ ast:
     migrate: Migración de la cuenta
     notifications: Avisos
     preferences: Preferencies
-    profile: Perfil
+    profile: Perfil públicu
     relationships: Perfiles que sigues ya te siguen
     statuses_cleanup: Desaniciu automáticu d'artículos
     two_factor_authentication: Autenticación en dos pasos
@@ -824,6 +817,7 @@ ast:
     visibilities:
       direct: Mensaxe direutu
       private: Namás siguidores
+      private_long: Namás los ven los perfiles siguidores
       public_long: Tol mundu pue velos
       unlisted_long: Tol mundu pue velos, mas nun apaecen nes llinies de tiempu públiques
   statuses_cleanup:
@@ -838,8 +832,6 @@ ast:
     keep_polls_hint: Nun desanicia nenguna encuesta de to
     keep_self_bookmark: Caltener los artículos que metieres en Marcadores
     keep_self_bookmark_hint: Nun desanicia nengún artículu que metieres en Marcadores
-    keep_self_fav: Caltener los artículos que seyan favoritos
-    keep_self_fav_hint: Nun desanicia nengún artículu que marcares como favoritu
     min_age:
       '1209600': 2 selmanes
       '15778476': 6 meses
@@ -872,8 +864,8 @@ ast:
       appeal_description: Si te paez que ye un error, pues unviar una apellación al personal de %{instance}.
       explanation:
         disable: Xá nun pues usar la cuenta mas el perfil ya otros datos siguen intautos. Pues solicitar una copia de seguranza de los datos, camudar la configuración de la cuenta o desaniciar la cuenta.
-        silence: Entá pues usar la cuenta mas namás vas ver los artículos de los perfiles que xá siguieres nesti sirvidor ya ye posible que se t'escluya de dalgunes funciones de descubrimientu. Por embargu, otros perfiles tovía puen siguite manualmente.
-        suspend: Xá nun pues usar la cuenta nin se pue acceder a los datos del to perfil. Entá pues aniciar la sesión pa pidir una copia de seguranza de los tos datos hasta que se desanicien en 30 díes, mas vamos caltener dalgunos datos básicos pa evitar que te saltes la suspensión.
+        silence: Pues siguir usando la cuenta mas namás vas ver los artículos de los perfiles que xá siguieres nesti sirvidor ya ye posible que se t'escluya de dalgunes funciones de descubrimientu. Por embargu, otros perfiles entá puen siguite manualmente.
+        suspend: Xá nun pues usar la cuenta nin se pue acceder a los datos del to perfil. Pues aniciar la sesión pa pidir una copia de seguranza de los tos datos hasta que se desanicien en 30 díes, mas vamos caltener dalgunos datos básicos pa evitar que te saltes la suspensión.
       reason: 'Motivu:'
       statuses: 'Artículos citaos:'
       subject:
@@ -901,6 +893,6 @@ ast:
     create:
       error: Hebo un problema al amestar la llave de seguranza. Volvi tentalo.
     invalid_credential: La llave de seguranza nun ye válida
-    not_enabled: Entá nun activesti la función WebAuthn
+    not_enabled: Nun activesti la función WebAuthn
     not_supported: Esti restolador nun ye compatible coles llaves de seguranza
     otp_required: Pa usar les llaves de seguranza, activa primero l'autenticación en dos pasos.

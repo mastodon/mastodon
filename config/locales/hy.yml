@@ -84,6 +84,7 @@ hy:
         active: Ակտիվ
         all: Բոլորը
         pending: Սպասում
+        silenced: Սահմանափակ
         suspended: Կասեցուած
         title: Մոդերացիա
       moderation_notes: Մոդերացիայի նշումներ
@@ -480,17 +481,6 @@ hy:
       account_status: Հաշուի կարգավիճակ
       pending: Դիմումը պէտք է քննուի մեր անձնակազմի կողմից, ինչը կարող է մի փոքր ժամանակ խլել։ Դիմումի հաստատուելու դէպքում, կտեղեկացնենք նամակով։
     use_security_key: Օգտագործել անվտանգութեան բանալի
-  authorize_follow:
-    already_following: Դու արդէն հետեւում ես այս հաշուին
-    already_requested: Դու արդէն ուղարկել ես հետեւմանն յայտ այս հաշուին
-    follow: Հետևել
-    follow_request: Դու ուղարկել ես հետեւելու հայց՝
-    following: Յաջողութի՜ւն։ Դու այժմ հետեւում ես․
-    post_follow:
-      close: Կամ, կարող ես պարզապէս փակել այս պատուհանը։
-      return: Ցուցադրել օգտատիրոջ էջը
-      web: Անցնել վէբին
-    title: Հետեւել %{acct}
   challenge:
     confirm: Շարունակել
     invalid_password: Անվաւեր ծածկագիր
@@ -528,10 +518,15 @@ hy:
   domain_validator:
     invalid_domain: անվաւէր տիրոյթի անուն
   errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
     '404': Էջը, որը փնտրում ես գոյութիւն չունի։
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
     '429': Չափազանց շատ հարցումներ
     '500':
       title: Էջը ճիշտ չէ
+    '503': The page could not be served due to a temporary server failure.
   existing_username_validator:
     not_found: չյաջողուեց գտնել այս ծածկագրով լոկալ օգտատիրոջ
     not_found_multiple: չյաջողուեց գտնել %{usernames}
@@ -561,6 +556,7 @@ hy:
     index:
       delete: Ջնջել
       empty: Դու ֆիլտրեր չունես։
+      expires_on: Լրանում է %{date}-ին
       title: Ֆիլտրեր
     new:
       title: Ավելացնել ֆիլտր
@@ -694,6 +690,8 @@ hy:
     other: Այլ
     posting_defaults: Կանխադիր կարգաւորումներ
     public_timelines: Հանրային հոսք
+  privacy_policy:
+    title: Գաղտնիութեան քաղաքականութիւն
   reactions:
     errors:
       unrecognized_emoji: ճանաչուած էմոջի չէ
@@ -797,7 +795,6 @@ hy:
     show_newer: Ցուցադրել նորերը
     show_older: Ցուցադրել հները
     show_thread: Բացել շղթան
-    sign_in_to_participate: Մուտք գործէք՝ զրոյցին միանալու համար
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Հասցէագրուած
@@ -819,8 +816,6 @@ hy:
       '63113904': 2 տարի
       '7889238': 3 ամիս
   stream_entries:
-    pinned: Ամրացուած գրառում
-    reblogged: տարածուած
     sensitive_content: Կասկածելի բովանդակութիւն
   themes:
     contrast: Mastodon (բարձր կոնտրաստով)

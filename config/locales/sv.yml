@@ -215,7 +215,7 @@ sv:
         reset_password_user: Återställ lösenord
         resolve_report: Lös rapport
         sensitive_account: Markera mediet i ditt konto som känsligt
-        silence_account: Tysta konto
+        silence_account: Begränsa konto
         suspend_account: Stäng av konto
         unassigned_report: Återkalla rapport
         unblock_email_account: Avblockera e-postadress
@@ -382,6 +382,8 @@ sv:
       undo: Tag bort från vitlistan
     domain_blocks:
       add_new: Lägg till ny
+      confirm_suspension:
+        cancel: Avbryt
       created_msg: Domänblocket behandlas nu
       destroyed_msg: Domänblockering har återtagits
       domain: Domän
@@ -961,11 +963,11 @@ sv:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alla kan bidra.
     sensitive_content: Känsligt innehåll
-    toot_layout: Inläggslayout
   application_mailer:
     notification_preferences: Ändra e-postinställningar
     salutation: "%{name},"
     settings: 'Ändra e-postinställningar: %{link}'
+    unsubscribe: Avprenumerera
     view: 'Granska:'
     view_profile: Visa profil
     view_status: Visa inlägg
@@ -1003,6 +1005,8 @@ sv:
     progress:
       confirm: Bekräfta e-postadress
       details: Dina uppgifter
+      review: Vår recension
+      rules: Acceptera regler
     providers:
       cas: CAS
       saml: SAML
@@ -1015,10 +1019,14 @@ sv:
       back: Tillbaka
       preamble: Dessa bestäms och upprätthålls av moderatorerna för %{domain}.
       title: Några grundregler.
+      title_invited: Du har blivit inbjuden.
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
+      email_below_hint_html: Kolla din skräppost-mapp eller begär en annan. Du kan korrigera din e-postadress om den är fel.
+      email_settings_hint_html: Klicka på länken som vi har skickat till dig för att bekräfta %{email}. Vi väntar här.
       link_not_received: Fick du ingen länk?
+      title: Kolla din inkorg
     sign_in:
       preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
       title: Logga in på %{domain}
@@ -1034,18 +1042,6 @@ sv:
       view_strikes: Visa tidigare prickar på ditt konto
     too_fast: Formuläret har skickats för snabbt, försök igen.
     use_security_key: Använd säkerhetsnyckel
-  authorize_follow:
-    already_following: Du följer redan detta konto
-    already_requested: Du har redan skickat en vänförfrågan till det kontot
-    error: Tyvärr inträffade ett fel när vi kontrollerade fjärrkontot
-    follow: Följ
-    follow_request: 'Du har skickat en följaförfrågan till:'
-    following: 'Succé! Du följer nu:'
-    post_follow:
-      close: Eller så kan du stänga detta fönster.
-      return: Visa användarens profil
-      web: Gå till webb
-    title: Följ %{acct}
   challenge:
     confirm: Fortsätt
     hint_html: "<strong>Tips:</strong> Vi frågar dig inte efter ditt lösenord igen under nästkommande timme."
@@ -1210,7 +1206,9 @@ sv:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> objekt som matchar din sökning är valt."
       other: "<strong>%{count}</strong> objekt som matchar din sökning är valda."
+    cancel: Avbryt
     changes_saved_msg: Ändringar sparade!
+    confirm: Bekräfta
     copy: Kopiera
     delete: Radera
     deselect: Avmarkera alla
@@ -1226,20 +1224,33 @@ sv:
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
   imports:
     errors:
+      empty: Tom CSV-fil
       invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
       over_rows_processing_limit: innehåller fler än %{count} rader
+      too_large: Filen är för stor
     modes:
       merge: Slå ihop
       merge_long: Behåll befintliga uppgifter och lägg till nya
       overwrite: Skriv över
       overwrite_long: Ersätt de nuvarande uppgifterna med de nya
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
+    states:
+      in_progress: Pågår
+      unconfirmed: Obekräftade
+    status: Status
     success: Dina uppgifter har laddats upp och kommer att behandlas snarast
+    time_started: Började vid
+    titles:
+      blocking: Importerar blockerade konton
+      bookmarks: Importerar bokmärken
+      domain_blocking: Importerar blockerade domäner
+    type: Typ av import
     types:
       blocking: Lista av blockerade
       bookmarks: Bokmärken
       domain_blocking: Domänblockeringslista
       following: Lista av följare
+      lists: Listor
       muting: Lista av nertystade
     upload: Ladda upp
   invites:
@@ -1548,7 +1559,6 @@ sv:
     show_newer: Visa nyare
     show_older: Visa äldre
     show_thread: Visa tråd
-    sign_in_to_participate: Logga in för att delta i konversationen
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkt
@@ -1594,8 +1604,6 @@ sv:
     min_reblogs: Behåll boostade inlägg i minst
     min_reblogs_hint: Raderar inte något av dina inlägg som har blivit boostat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal boostar
   stream_entries:
-    pinned: Fäst inlägg
-    reblogged: boostad
     sensitive_content: Känsligt innehåll
   strikes:
     errors:

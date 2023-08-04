@@ -51,7 +51,6 @@
  * @property {boolean} activity_api_enabled
  * @property {string} admin
  * @property {boolean=} boost_modal
- * @property {boolean} crop_images
  * @property {boolean=} delete_modal
  * @property {boolean=} disable_swiping
  * @property {string=} disabled_account_id
@@ -81,6 +80,7 @@
  * @property {boolean} use_blurhash
  * @property {boolean=} use_pending_items
  * @property {string} version
+ * @property {string} sso_redirect
  */
 
 /**
@@ -94,6 +94,13 @@ const element = document.getElementById('initial-state');
 /** @type {InitialState | undefined} */
 const initialState = element?.textContent && JSON.parse(element.textContent);
 
+/** @type {string} */
+const initialPath = document.querySelector("head meta[name=initialPath]")?.getAttribute("content") ?? '';
+/** @type {boolean} */
+export const hasMultiColumnPath = initialPath === '/'
+  || initialPath === '/getting-started'
+  || initialPath.startsWith('/deck');
+
 /**
  * @template {keyof InitialStateMeta} K
  * @param {K} prop
@@ -104,7 +111,6 @@ const getMeta = (prop) => initialState?.meta && initialState.meta[prop];
 export const activityApiEnabled = getMeta('activity_api_enabled');
 export const autoPlayGif = getMeta('auto_play_gif');
 export const boostModal = getMeta('boost_modal');
-export const cropImages = getMeta('crop_images');
 export const deleteModal = getMeta('delete_modal');
 export const disableSwiping = getMeta('disable_swiping');
 export const disabledAccountId = getMeta('disabled_account_id');
@@ -136,5 +142,6 @@ export const version = getMeta('version');
 export const languages = initialState?.languages;
 // @ts-expect-error
 export const statusPageUrl = getMeta('status_page_url');
+export const sso_redirect = getMeta('sso_redirect');
 
 export default initialState;

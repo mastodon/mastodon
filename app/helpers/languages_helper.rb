@@ -204,7 +204,17 @@ module LanguagesHelper
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
 
-  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_3).freeze
+  # e.g. For Chinese, which is not a language,
+  # but a language family in spite of sharing the main locale code
+  # We need to be able to filter these
+  ISO_639_1_REGIONAL = {
+    'zh-CN': ['Chinese (China)', '简体中文'].freeze,
+    'zh-HK': ['Chinese (Hong Kong)', '繁體中文（香港）'].freeze,
+    'zh-TW': ['Chinese (Taiwan)', '繁體中文（臺灣）'].freeze,
+    'zh-YUE': ['Cantonese', '廣東話'].freeze,
+  }.freeze
+
+  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_1_REGIONAL).merge(ISO_639_3).freeze
 
   # For ISO-639-1 and ISO-639-3 language codes, we have their official
   # names, but for some translations, we need the names of the
@@ -217,9 +227,6 @@ module LanguagesHelper
     'pt-BR': 'Português (Brasil)',
     'pt-PT': 'Português (Portugal)',
     'sr-Latn': 'Srpski (latinica)',
-    'zh-CN': '简体中文',
-    'zh-HK': '繁體中文（香港）',
-    'zh-TW': '繁體中文（臺灣）',
   }.freeze
 
   def native_locale_name(locale)

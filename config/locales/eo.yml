@@ -125,6 +125,8 @@ eo:
       removed_header_msg: Kapbildo de %{username} suksece forigita
       resend_confirmation:
         already_confirmed: Ĉi tiu uzanto jam estas konfirmita
+        send: Resendi la ligilon de konfirmo
+        success: Konfirma ligilo estis sukcese sendita!
       reset: Restarigi
       reset_password: Restarigi pasvorton
       resubscribe: Reaboni
@@ -380,6 +382,15 @@ eo:
       undo: Forigi el la blanka listo
     domain_blocks:
       add_new: Aldoni novan blokadon de domajno
+      confirm_suspension:
+        cancel: Nuligi
+        confirm: Haltigi
+        permanent_action: Malfari la suspendon restarigos neniun datumon aŭ rilaton.
+        preamble_html: Vi estas suspendonta <strong>%{domain}</strong> kaj ĝiajn subdomajnojn.
+        remove_all_data: Tio forigos ĉiujn enhavojn, amaskomunikilarojn kaj profilajn datumojn por la kontoj de ĉi tiu domajno de via servilo.
+        stop_communication: Via servilo haltos komuniki kun tiuj serviloj.
+        title: Konfirmu domajnan blokon por %{domain}
+        undo_relationships: Ĉi tio malfaros ajnan sekvan rilaton inter kontoj de ĉi tiuj serviloj kaj viaj.
       created_msg: Domajna blokado en traktado
       destroyed_msg: Domajna blokado malfarita
       domain: Domajno
@@ -729,6 +740,9 @@ eo:
       branding:
         preamble: Via markeco de servilo malsamigas ĝin de aliaj servilojn en la reto. Do, la informo devus esti simpla kaj mallonga.
         title: Markeco
+      captcha_enabled:
+        desc_html: Ĉi tio dependas de eksteraj hCaptcha-skriptoj, kiuj povas esti problemo pri sekureco kaj privateco. Ankaŭ, <strong>ĝi povas igi la registran procezon multe malpli alirebla por iuj homoj (precipe homoj kun handikapoj)</strong>. Pro ĉi tiuj kialoj, bonvolu konsideri alternativajn rimedojn kiel registradon per aprobo aŭ per invito.
+        title: Postuli novajn uzantojn solvi CAPTCHA por konfirmi sian konton
       content_retention:
         preamble: Regi kiel uzantogenerita enhavo konservitis en Mastodon.
         title: Enhavkonservo
@@ -756,7 +770,6 @@ eo:
           approved: Bezonas aprobi por aliĝi
           none: Neniu povas aliĝi
           open: Iu povas aliĝi
-      title: Agordoj de la servilo
     site_uploads:
       delete: Forigi elŝutitan dosieron
       destroyed_msg: Reteja alŝuto sukcese forigita!
@@ -810,6 +823,12 @@ eo:
         message_html: Vi ne difinis iujn servilajn regulojn.
       sidekiq_process_check:
         message_html: Neniu Sidekiq-procezo por la %{value} vico
+      upload_check_privacy_error:
+        action: Klaku ĉi tie por pliaj informoj
+        message_html: "<strong>Via retservilo estas misagordita. La privateco de viaj uzantoj estas en risko.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Klaku ĉi tie por pliaj informoj
+        message_html: "<strong>Via objektostokado estas misagordita. La privateco de viaj uzantoj estas en risko.</strong>"
     tags:
       review: La statuso de la recenzo
       updated_msg: Kradvorto agordoj ĝisdatigis sukcese
@@ -953,11 +972,11 @@ eo:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Ĉiu povas kontribui.
     sensitive_content: Tikla enhavo
-    toot_layout: Mesaĝo aranĝo
   application_mailer:
     notification_preferences: Ŝanĝi retmesaĝajn preferojn
     salutation: "%{name},"
     settings: 'Ŝanĝi retmesaĝajn preferojn: %{link}'
+    unsubscribe: Malabonu
     view: 'Vidi:'
     view_profile: Vidi profilon
     view_status: Vidi mesaĝon
@@ -971,6 +990,9 @@ eo:
     your_token: Via alira ĵetono
   auth:
     apply_for_account: Peti konton
+    captcha_confirmation:
+      help_html: Se vi havas problemojn solvi la CAPTCHA, vi povas kontakti nin per %{email} kaj ni povas helpi vin.
+      title: Sekureckontrolo
     confirmations:
       wrong_email_hint: Se tiu retpoŝtadreso ne estas ĝusta, vi povas ŝanĝi ĝin en la agordoj pri la konto.
     delete_account: Forigi konton
@@ -979,6 +1001,7 @@ eo:
       prefix_invited_by_user: "@%{name} invitigi vin aligiĝi ĉi tiu servilo de Mastodon!"
       prefix_sign_up: Registriĝu en Mastodon hodiaŭ!
       suffix: Per konto, vi povos sekvi aliajn homojn, afiŝi kaj interŝanĝi mesaĝojn kun uzantoj de ajna Mastodona servilo kaj multe pli!
+    didnt_get_confirmation: Ĉu vi ne ricevis konfirman ligilon?
     dont_have_your_security_key: Ne havas vi vian sekurecan ŝlosilon?
     forgot_password: Pasvorto forgesita?
     invalid_reset_password_token: La ĵetono por restarigi la pasvorton estas nevalida aŭ eksvalida. Bonvolu peti novon.
@@ -991,19 +1014,33 @@ eo:
     migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas <a href="%{path}">agordi ĝin ĉi tie</a>.
     or_log_in_with: Aŭ saluti per
     privacy_policy_agreement_html: Mi legis kaj konsentis pri <a href="%{privacy_policy_path}" target="_blank">privatpolitiko</a>
+    progress:
+      confirm: Konfirmi retpoŝtadreson
+      details: Viaj detaloj
+      review: Niaj recenzoj
+      rules: Akcepti regulojn
     providers:
       cas: CAS
       saml: SAML
     register: Krei konton
     registration_closed: "%{instance} ne estas akcepti nova uzantojn"
+    resend_confirmation: Resendu konfirman ligilon
     reset_password: Restarigi pasvorton
     rules:
       accept: Akcepti
       back: Reen
+      invited_by: 'Vi povas aliĝi al %{domain} danke al la invito, kiun vi ricevis de:'
       preamble: Ĉi tioj fiksitas kaj devigitas de kontrolantoj de %{domain}.
+      preamble_invited: Antaŭ ol daŭrigi, bonvolu konsideri la bazajn regulojn fiksitajn de la moderigaĵoj de %{domain}.
       title: Bazaj reguloj.
+      title_invited: Vi estis invitita.
     security: Sekureco
     set_new_password: Elekti novan pasvorton
+    setup:
+      email_below_hint_html: Kontrolu vian spam-dosierujon aŭ petu novan ligon. Se necese, vi povas korekti vian retadreson.
+      link_not_received: Ĉu vi ne ricevis ligilon?
+      new_confirmation_instructions_sent: Vi devus ricevi novan retpoŝton kun la konfirma ligilo post kelkaj minutoj!
+      title: Kontrolu vian retpoŝta enirkesto
     sign_in:
       preamble_html: Ensalutu per via detaloj de <strong>%{domain}</strong>. Se via konto gastigantigas sur malsama servilo, vi ne povas ensaluti ĉi tie.
       title: Saluti en %{domain}
@@ -1019,18 +1056,6 @@ eo:
       view_strikes: Vidi antauaj admonoj kontra via konto
     too_fast: Formularo sendita tro rapide, klopodu denove.
     use_security_key: Uzi sekurecan ŝlosilon
-  authorize_follow:
-    already_following: Vi jam sekvas tiun konton
-    already_requested: Vi jam sendis peton de sekvado al ĉi tiu konto
-    error: Bedaŭrinde, estis eraro en la serĉado de la fora konto
-    follow: Sekvi
-    follow_request: 'Vi sendis peton de sekvado al:'
-    following: 'Sukceson! Vi nun sekvas:'
-    post_follow:
-      close: Aŭ, vi povas simple fermi ĉi tiun fenestron.
-      return: Montri la profilon de la uzanto
-      web: Iri al reto
-    title: Sekvi %{acct}
   challenge:
     confirm: Daŭrigi
     hint_html: "<strong>Konsileto:</strong> Ni ne demandos pri via pasvorto ĝis 1 horo."
@@ -1107,6 +1132,10 @@ eo:
       your_appeal_rejected: Via apelacio malakceptitas
   domain_validator:
     invalid_domain: ne estas valida domajna nomo
+  edit_profile:
+    basic_information: Baza informo
+    other: Alia
+    safety_and_privacy: Sekureco kaj privateco
   errors:
     '400': La peto kiun vi sendis estas nevalida au malformas.
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
@@ -1197,7 +1226,9 @@ eo:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> ero kiu kongruas vian serĉon elektitas."
       other: "<strong>%{count}</strong> eroj kiuj kongruas vian serĉon elektitas."
+    cancel: Nuligi
     changes_saved_msg: Ŝanĝoj sukcese konservitaj!
+    confirm: Konfirmi
     copy: Kopii
     delete: Forigi
     deselect: Malelekti ĉiujn
@@ -1213,8 +1244,14 @@ eo:
       other: Io mise okazis! Bonvolu konsulti la subajn %{count} erar-raportojn
   imports:
     errors:
+      empty: Malpena CSV-dosiero
+      incompatible_type: Nekongrua kun la elektita importotipo
       invalid_csv_file: Nevalida CSV-dosiero. %{error}
       over_rows_processing_limit: enhavas pli ol %{count} vicoj
+      too_large: La dosiero estas tro larĝa
+    failures: Malsukcesoj
+    imported: Importitaj
+    mismatched_types_warning: Ŝajnas, ke vi eble elektis la malĝustan tipon por ĉi tiu importo, bonvolu denove kontroli.
     modes:
       merge: Kunigi
       merge_long: Konservi ekzistajn registrojn kaj aldoni novajn
@@ -1265,6 +1302,9 @@ eo:
     failed_sign_in_html: Malsukcese ensalutprovo per %{method} de %{ip} (%{browser})
     successful_sign_in_html: Sukcese ensaluto per %{method} de %{ip} (%{browser})
     title: Aŭtentiga historio
+  mail_subscriptions:
+    unsubscribe:
+      title: Malaboni
   media_attachments:
     validations:
       images_and_video: Aldoni videon al mesaĝo, kiu jam havas bildojn ne eblas
@@ -1535,7 +1575,6 @@ eo:
     show_newer: Montri pli novajn
     show_older: Montri pli malnovajn
     show_thread: Montri la mesaĝaron
-    sign_in_to_participate: Ensalutu por partopreni la konversacion
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Rekta
@@ -1581,8 +1620,6 @@ eo:
     min_reblogs: Konservi diskonitajn mesaĝojn almenau
     min_reblogs_hint: Oni ne forigas viajn afiŝojn kiuj estas diskonigitaj almenaŭ ĉi tiun nombron da fojoj. Lasu malplena por forigi afiŝojn sendepende de iliaj nombroj da diskonigoj
   stream_entries:
-    pinned: Fiksita afiŝo
-    reblogged: diskonigita
     sensitive_content: Tikla enhavo
   strikes:
     errors:
@@ -1683,6 +1720,7 @@ eo:
     signed_in_as: 'Salutinta kiel:'
   verification:
     verification: Kontrolo
+    verified_links: Via kontrolitaj ligiloj
   webauthn_credentials:
     add: Aldoni novan sekurecan ŝlosilon
     create:

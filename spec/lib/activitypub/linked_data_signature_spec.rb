@@ -7,7 +7,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
   subject { described_class.new(json) }
 
-  let!(:sender) { Fabricate(:account, uri: 'http://example.com/alice') }
+  let!(:sender) { Fabricate(:account, uri: 'http://example.com/alice', domain: 'example.com') }
 
   let(:raw_json) do
     {

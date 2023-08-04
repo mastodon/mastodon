@@ -2,6 +2,10 @@
 is:
   simple_form:
     hints:
+      account:
+        display_name: Fullt nafn þitt eða eitthvað til gamans.
+        fields: Heimasíðan þín, fornöfn, aldur eða eitthvað sem þú vilt koma á framfæri.
+        note: 'Þú getur @minnst á annað fólk eða #myllumerki.'
       account_alias:
         acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast frá
       account_migration:
@@ -130,6 +134,7 @@ is:
         position: Rétthærra hlutverk ákvarðar lausn árekstra í ákveðnum tilfellum. Sumar aðgerðir er aðeins hægt að framkvæma á hlutverk með lægri forgangi
       webhook:
         events: Veldu atburði sem á að senda
+        template: Sníddu eigin JSON með breytilegri brúun. Skiljið eftir autt fyrir sjálfgefið JSON.
         url: Hvert atburðir verða sendir
     labels:
       account:
@@ -195,7 +200,6 @@ is:
         setting_always_send_emails: Alltaf senda tilkynningar í tölvupósti
         setting_auto_play_gif: Spila sjálfkrafa GIF-hreyfimyndir
         setting_boost_modal: Sýna staðfestingarglugga fyrir endurbirtingu
-        setting_crop_images: Utansníða myndir í ekki-útfelldum færslum í 16x9
         setting_default_language: Tungumál sem skrifað er á
         setting_default_privacy: Gagnaleynd færslna
         setting_default_sensitive: Alltaf merkja myndefni sem viðkvæmt
@@ -295,6 +299,7 @@ is:
         usable: Leyfa færslum að nota þetta myllumerki
       user:
         role: Hlutverk
+        time_zone: Tímabelti
       user_role:
         color: Litur merkis
         highlighted: Birta hlutverk sem merki á notandaauðkenni
@@ -303,6 +308,7 @@ is:
         position: Forgangur
       webhook:
         events: Virkjaðir atburðir
+        template: Sniðmát gagna
         url: Slóð á endapunkt
     'no': Nei
     not_recommended: Ekki mælt með þessu

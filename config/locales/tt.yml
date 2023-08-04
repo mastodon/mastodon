@@ -5,76 +5,189 @@ tt:
     title: Проект турында
   accounts:
     follow: Языл
+    followers:
+      other: Язылучы
     following: Язылгансыз
+    posts:
+      other: Язма
+    posts_tab_heading: Язмалар
   admin:
+    account_moderation_notes:
+      create: Искәрмә өстәү
     accounts:
       approve: Хуплау
+      are_you_sure: Раслыйсызмы?
       avatar: Аватар
       by_domain: Домен
       change_email:
+        changed_msg: Эл. почта уңышлы үзгәртелде!
+        current_email: Агымдагы эл. почта
         label: Emailны үзгәртү
+        new_email: Яңа эл. почта
         submit: Emailны үзгәртү
+        title: "%{username} өчен эл. почтаны үзгәртү"
       change_role:
+        changed_msg: Роль уңышлы үзгәртелде!
+        label: Рольне үзгәртү
         no_role: Рольсез
+        title: "%{username} өчен рольне үзгәртү"
       confirm: Раслау
+      confirmed: Расланды
+      delete: Мәгълүматны бетерү
       deleted: Бетерелде
+      disable_two_factor_authentication: 2FA-ны cүндерү
+      display_name: Күрсәтелгән исем
       domain: Домен
       edit: Үзгәртү
       email: Эл. почта
+      email_status: Эл. почта халәте
       header: Башлам
+      inbox_url: Килгән хатлар URL
+      invited_by: Тарафыннан чакырылды
       ip: ІР
       joined: Кушылды
       location:
         all: Бөтенесе
         local: Җирле
         title: Урын
+      login_status: Логин халәте
+      memorialized: Һәйкәлгә әйләнде
       moderation:
         active: Актив
         all: Бөтенесе
+        disabled: Cүндерелгән
+        pending: Көтелә
+        silenced: Чикләнгән
+        suspended: Туктатып торылган
+        title: Модерация
       perform_full_suspension: Искә алмау
+      promote: Күтәрү
+      protocol: Протокол
+      public: Һәркемгә ачык
+      redownload: Профильне яңарту
+      reject: Кире кагу
+      remove_avatar: Аватарны бетерү
+      remove_header: Башламаны бетерү
+      removed_avatar_msg: "%{username} хисабының аватар рәсеме уңышлы бетерелде"
+      removed_header_msg: "%{username} хисабының башлам рәсеме уңышлы бетерелде"
+      resend_confirmation:
+        success: Тикшерү сылтамасы уңышлы җибәрелде!
       reset: Ташлату
+      reset_password: Серсүзне алыштыру
+      resubscribe: Яңадан язылу
       role: Роль
       search: Эзләү
       security: Иминлек
       security_measures:
         only_password: Серсүз генә
+        password_and_2fa: Серсүз һәм 2FA
       sensitive: Sizmäle
+      silence: Чикләү
+      silenced: Чикләнгән
+      statuses: Язмалар
+      subscribe: Язылу
+      suspended: Туктатып торылган
       title: Аккаунтлар
       username: Кулланучы исеме
+      warn: Кисәтү
       web: Веб
     action_logs:
       action_types:
+        create_user_role: Роль булдыру
+        destroy_instance: Домены чистарту
+        destroy_ip_block: IP кагыйдәсен бетерү
+        destroy_status: Язманы бетерү
+        destroy_user_role: Рольне бетерү
         disable_2fa_user: 2FA cүндерү
+        memorialize_account: Хисапны һәйкәлгә әйләндерү
+        remove_avatar_user: Аватарны бетерү
+        reopen_report: Шикаятьне яңадан ачу
+        reset_password_user: Серсүзне алыштыру
+        suspend_account: Хисапны туктатып тору
+        unsuspend_account: Хисапны туктатып тормау
+      deleted_account: бетерелгән хисап
+      title: Аудит журналы
+    announcements:
+      destroyed_msg: Белдерү уңышлы бетерелде!
+      live: Турыдан-туры
+      published_msg: Белдерү уңышлы бастырылды!
+      title: Белдерүләр
+      unpublish: Нәшер итмәү
+      unpublished_msg: Белдерү уңышлы бастырылмады!
+      updated_msg: Белдерү уңышлы яңартылды!
     custom_emojis:
       by_domain: Домен
+      copied_msg: Локаль эмодзинең күчермәсе уңышлы ясалды
       copy: Күчереп алу
+      created_msg: Эмодзи уңышлы ясалды!
       delete: Бетерү
+      destroyed_msg: Эмодзи уңышлы юк ителде!
       disable: Cүндерү
       disabled: Cүнек
+      disabled_msg: Бу эмодзи уңышлы сүндерелде
+      emoji: Эмодзи
       enable: Кушу
+      enabled_msg: Бу эмодзи уңышлы кабызылды
       list: Исемлек
+      overwrite: Яңадан язу
+      shortcode: Кыска код
+      updated_msg: Эмодзи уңышлы яңартылды!
       upload: Йөкләтү
+    dashboard:
+      new_users: яңа кулланучылар
+      software: Программа тәэминаты
+      title: Идарә аслыгы
+      website: Вебсайт
+    domain_allows:
+      export: Экспортлау
+      import: Импортлау
     domain_blocks:
       domain: Домен
+      export: Экспортлау
+      import: Импортлау
       new:
         severity:
           noop: Бернинди дә
+          silence: Чикләү
           suspend: Искә алмау
     email_domain_blocks:
+      created_msg: Эл. почта домены уңышлы блокланды
       delete: Бетерү
+      dns:
+        types:
+          mx: MX язмасы
       domain: Домен
+      new:
+        create: Домен өстәү
     follow_recommendations:
+      language: Тел өчен
       status: Халәт
+      suppressed: Тәэсире киметелгән
     instances:
+      availability:
+        title: Мөмкинлек
+      back_to_all: Барысы да
+      back_to_warning: Игътибар
       by_domain: Домен
+      content_policies:
+        policies:
+          reject_media: Медиа-файлны кире кагу
+          silence: Чикләү
+      delivery:
+        all: Барысы да
       moderation:
         all: Бөтенесе
+        title: Модерация
+      purge: Чистарту
+      title: Федерация
     invites:
       filter:
         all: Бөтенесе
+        available: Мөмкин
         expired: Гамәлдән чыкты
         title: Sözgeç
     ip_blocks:
+      created_msg: Яңа IP кагыйдәсе уңышлы өстәлде
       delete: Бетерү
       expires_in:
         '1209600': 2 атна
@@ -89,36 +202,141 @@ tt:
       disable: Cүндерү
       disabled: Cүндерелгән
       enable: Кабызу
+      inbox_url: Ретранслятор URL-ы
+      save_and_enable: Саклау һәм кабызу
       status: Халәт
+    report_notes:
+      created_msg: Шикаять язмасы уңышлы ясалды!
+      destroyed_msg: Шикаять язмасы уңышлы бетерелде!
     reports:
+      account:
+        notes:
+          other: "%{count} искәрмә"
+      action_log: Аудит журналы
+      are_you_sure: Моны раслыйсызмы?
+      cancel: Баш тарту
+      category: Категория
       comment:
         none: Бернинди дә
+      confirm: Раслау
+      delete_and_resolve: Язмаларны бетерү
+      forwarded: Тапшырылган
       notes:
         create: Язу кушу
         delete: Бетерү
+        title: Искәрмәләр
+      reopen: Шикаятьне яңадан ачу
+      report: 'Шикаять #%{id}'
+      resolved_msg: Шикаять уңышлы чишелде!
       status: Халәт
+      unresolved: Танылмаган
       updated_at: Яңартылды
+      view_profile: Профильне ачу
+    roles:
+      assigned_users:
+        other: "%{count} кулланучы"
+      categories:
+        devops: DevOps
+        moderation: Модерация
+      delete: Бетерү
+      privileges:
+        administrator: Администратор
+        invite_users: Кулланучыларны чакыру
+        manage_roles: Рольләр белән идарә итү
+        manage_rules: Кагыйдәләр белән идарә итү
+        manage_users: Кулланучылар белән идарә итү
+        view_devops: DevOps
+      title: Рольләр
     rules:
       delete: Бетерү
+      edit: Кагыйдәне үзгәртү
+      title: Сервер кагыйдәләре
+    settings:
+      about:
+        title: Хакында
+      appearance:
+        title: Кыяфәт
+      discovery:
+        trends: Мөһим вакыйгалар
+      domain_blocks:
+        disabled: Һичкемгә
+    site_uploads:
+      destroyed_msg: Сайтны йөкләү уңышлы бетерелде!
     statuses:
+      account: Автор
+      application: Кушымта
+      batch:
+        report: Шикаять итү
       deleted: Бетерелде
+      favourites: Сайланмалар
+      history: Версия тарихы
+      language: Тел
       media:
         title: Медиа
+      metadata: Метамәгълүматлар
+      open: Язманы ачу
+      original_status: Башлангыч язма
+      status_changed: Язма үзгәртелде
+      visibility: Күренүчәнлек
+      with_media: Медиа-файл белән
+    tags:
+      updated_msg: Хәштәг көйләүләре уңышлы яңартылды
     trends:
       allow: Рөхсәт итү
+      links:
+        allow: Сылтаманы рөхсәт итү
+      preview_card_providers:
+        title: Нәширләр
+      rejected: Кире кагылган
+      statuses:
+        allow: Язманы рөхсәт итү
+      tags:
+        dashboard:
+          tag_languages_dimension: Иң популяр телләр
+          tag_servers_dimension: Иң популяр серверлар
+        usable: Кулланырга мөмкин
+      title: Мөһим вакыйгалар
     warning_presets:
       delete: Бетерү
+    webhooks:
+      delete: Бетерү
+      disable: Cүндерү
+      disabled: Cүндерелгән
+      enable: Кабызу
+      events: Вакыйгалар
+      new: Яңа вебхук
+      status: Халәт
+      title: Вебхуклар
+      webhook: Вебхук
+  admin_mailer:
+    new_appeal:
+      actions:
+        none: кисәтү
   application_mailer:
     salutation: "%{name},"
+    view: 'Карау:'
+    view_profile: Профильне ачу
+    view_status: Язманы карау
+  applications:
+    created: Кушымта уңышлы ясалды
+    destroyed: Кушымта уңышлы бетерелде
+    logout: Чыгу
   auth:
+    log_in_with: Аның белән керү
     login: Керү
+    logout: Чыгу
+    or_log_in_with: Яки аның белән керү
+    progress:
+      confirm: Эл. почтаны раслагыз
     providers:
       cas: САS
       saml: SАML
     register: Теркәлү
+    reset_password: Серсүзне алыштыру
+    rules:
+      accept: Кабул итү
+      back: Кире
     security: Хәвефсезлек
-  authorize_follow:
-    follow: Язылу
   challenge:
     confirm: Дәвам итү
   date:
@@ -139,24 +357,62 @@ tt:
       x_minutes: "%{count}м"
       x_months: "%{count}ай"
       x_seconds: "%{count}сек"
+  deletes:
+    success_msg: Хисабыгыз уңышлы бетерелде
+  disputes:
+    strikes:
+      appeal: Апелляция
+      created_at: Дата
+      title_actions:
+        none: Игътибар
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
+    '429': Too many requests
+    '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
       date: Көне
       size: Зурлык
     bookmarks: Кыстыргычлар
     csv: СSV
+    lists: Исемлекләр
+    storage: Медиа-файллар саклагычы
+  featured_tags:
+    add_new: Яңа өстәү
   filters:
     contexts:
+      notifications: Искәртүләр
       thread: Әңгәмәләр
+    edit:
+      add_keyword: Ачкыч сүз өстәү
+      keywords: Ачкыч сүзләр
     index:
       delete: Бетерү
       title: Сөзгечләр
   generic:
     all: Бөтенесе
+    cancel: Баш тарту
+    changes_saved_msg: Үзгәрешләр уңышлы сакланды!
+    confirm: Раслау
     copy: Күчереп алу
     delete: Бетерү
+    deselect: Берсен дә сайламаска
+    none: Бернинди дә
+    save_changes: Үзгәрешләрне саклау
     today: бүген
   imports:
+    errors:
+      empty: Буш CSV файлы
+    modes:
+      merge: Берләштерү
+      overwrite: Яңадан язу
+    states:
+      scheduled: Җәдвәлләнгән
+    status: Халәт
     types:
       bookmarks: Кыстыргычлар
     upload: Йөкләтү
@@ -170,26 +426,63 @@ tt:
       '604800': 1 атна
       '86400': 1 көн
     expires_in_prompt: Беркайчан да
+    max_uses:
+      other: "%{count} кулланылыш"
+    table:
+      uses: Куллана
+  login_activities:
+    authentication_methods:
+      password: серсүз
+  moderation:
+    title: Модерация
+  notification_mailer:
+    mention:
+      action: Җавап бирү
+      title: Яңа искә алу
   number:
     human:
       decimal_units:
         format: "%n %u"
+        units:
+          billion: Млрд
+          million: Млн
+          quadrillion: Квадрлн
+          thousand: Мең
+          trillion: Трлн
   otp_authentication:
     enable: Кушу
+    setup: Көйләү
   pagination:
+    newer: Яңарак
     next: Киләсе
+    older: Искерәк
     prev: Алдыгы
     truncate: "&hellip;"
+  preferences:
+    other: Башка
+  privacy_policy:
+    title: Хосусыйлык Сәясәте
   relationships:
+    dormant: Актив түгел
+    followers: Язылучылар
     following: Язылулар
+    invited: Чакырылды
+    most_recent: Иң соңгы
+    moved: Күчерелде
+    mutual: Үзара
+    primary: Төп
+    relationship: Бәйләнеш
   sessions:
     browser: Браузер
     browsers:
       alipay: Аlipay
+      blackberry: BlackBerry
       chrome: Chrоme
       edge: Microsоft Edge
       electron: Electrоn
       firefox: Firеfox
+      generic: Билгесез браузер
+      huawei_browser: Huawei Browser
       ie: Internet Explоrer
       micro_messenger: MicroMеssenger
       nokia: Nokia S40 Ovi Brоwser
@@ -198,32 +491,55 @@ tt:
       phantom_js: PhаntomJS
       qq: QQ Brоwser
       safari: Safаri
+      uc_browser: UC Browser
+      unknown_browser: Билгесез Браузер
       weibo: Weibо
+    current_session: Агымдагы сессия
     description: "%{platform} платформасында %{browser}"
     ip: ІР
     platforms:
       adobe_air: Adobе Air
       android: Andrоid
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firеfox OS
       ios: iОS
+      kai_os: KaiOS
       linux: Lіnux
       mac: macOS
       windows: Windоws
       windows_mobile: Windows Mоbile
       windows_phone: Windоws Phone
+    revoke: Кире алу
   settings:
     account: Аккаунт
     appearance: Тышкы кыяфәт
     development: Ясаучылар өчен
     edit_profile: Профильне үзгәртү
     import: Импортлау
+    notifications: Искәртүләр
     preferences: Caylaw
     profile: Профиль
+    two_factor_authentication: Ике-факторлы авторизация
   statuses:
     attached:
+      audio:
+        other: "%{count} аудио"
+      image:
+        other: "%{count} рәсем"
       video:
         other: "%{count} видео"
+    edited_at_html: "%{date} көнне төзәтте"
+    open_in_web: Веб-та ачу
+    poll:
+      total_people:
+        other: "%{count} кеше"
+      vote: Тавыш бирү
+    show_more: Күбрәк күрсәтү
     title: '%{name}: "%{quote}"'
+    visibilities:
+      private: Ияртүчеләр генә
+      public: Һәркемгә ачык
   statuses_cleanup:
     min_age:
       '1209600': 2 атна
@@ -234,6 +550,8 @@ tt:
       '604800': 1 атна
       '63113904': 2 ел
       '7889238': 3 ай
+  themes:
+    default: Mastodon (Караңгы)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -242,11 +560,17 @@ tt:
   two_factor_authentication:
     add: Өстәү
     disable: 2FA cүндерү
+    disabled_success: Ике-факторлы аутентификация уңышлы сүндерелде
     edit: Үзгәртү
+    enabled_success: Ике-факторлы аутентификация уңышлы кабызылды
   user_mailer:
     warning:
+      categories:
+        spam: Спам
       reason: 'Сәбәп:'
       title:
         none: Игътибар
+  verification:
+    verification: Раслау
   webauthn_credentials:
     delete: Бетерү

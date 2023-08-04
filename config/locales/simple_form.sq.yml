@@ -2,6 +2,10 @@
 sq:
   simple_form:
     hints:
+      account:
+        display_name: Emri juaj i plotë, ose emri juaj lojcak.
+        fields: Faqja juaj hyrëse, përemra, moshë, ç’të keni qejf.
+        note: 'Mundeni të @përmendni persona apo #hashtagë të tjerë.'
       account_alias:
         acct: Specifikoni emrinepërdoruesit@përkatësi të llogarisë prej nga doni të lëvizet
       account_migration:
@@ -130,6 +134,7 @@ sq:
         position: Role më të lartë vendosin zgjidhje përplasje në disa raste. Disa veprime mund të kryhen vetëm mbi role të një shkalle më të ulët
       webhook:
         events: Përzgjidhni akte për dërgim
+        template: Hartoni ngarkesë tuajën JSON, duke përdorur ndërkëmbim ndryshoresh. Lëreni të zbrazët, për JSON-in parazgjedhje.
         url: Ku do të dërgohen aktet
     labels:
       account:
@@ -195,7 +200,6 @@ sq:
         setting_always_send_emails: Dërgo përherë njoftime me email
         setting_auto_play_gif: Vetëluaji GIF-et e animuar
         setting_boost_modal: Shfaq dialog ripohimi përpara përforcimi
-        setting_crop_images: Në mesazhe jo të zgjerueshëm, qethi figurat në 16x9
         setting_default_language: Gjuhë postimi
         setting_default_privacy: Privatësi postimi
         setting_default_sensitive: Mediave vëru përherë shenjë si rezervat
@@ -295,6 +299,7 @@ sq:
         usable: Lejoji mesazhet të përdorin këtë hashtag
       user:
         role: Rol
+        time_zone: Zonë kohore
       user_role:
         color: Ngjyrë steme
         highlighted: Shfaqe rolin si një stemë në profile përdoruesish
@@ -303,6 +308,7 @@ sq:
         position: Përparësi
       webhook:
         events: Akte të aktivizuar
+        template: Gjedhe ngarkese
         url: URL pikëmbarimi
     'no': Jo
     not_recommended: Jo e këshilluar

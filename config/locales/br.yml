@@ -299,11 +299,6 @@ br:
     security: Diogelroez
     status:
       account_status: Statud ar gont
-  authorize_follow:
-    follow: Heuliañ
-    post_follow:
-      web: Distreiñ d'an etrefas web
-    title: Heuliañ %{acct}
   challenge:
     confirm: Kenderc' hel
     invalid_password: Ger-tremen diwiriek
@@ -333,6 +328,14 @@ br:
       created_at: Deiziad
       title_actions:
         none: Diwall
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
+    '429': Too many requests
+    '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
       date: Deiziad
@@ -494,9 +497,6 @@ br:
       '604800': 1 sizhunvezh
       '63113904': 2 vloavezh
       '7889238': 3 months
-  stream_entries:
-    pinned: Toud spilhennet
-    reblogged: en·he deus skignet
   themes:
     default: Mastodoñ (Teñval)
     mastodon-light: Mastodoñ (Sklaer)

@@ -31,8 +31,8 @@ de:
       form:
         error: Ups! Bitte überprüfe das Formular auf mögliche Fehler
       help:
-        native_redirect_uri: Benutze %{native_redirect_uri} für lokale Tests
-        redirect_uri: Benutze eine Zeile pro URI
+        native_redirect_uri: Verwende %{native_redirect_uri} für lokale Tests
+        redirect_uri: Verwende eine Zeile pro URI
         scopes: Bitte die Befugnisse mit Leerzeichen trennen. Zur Verwendung der Standardwerte freilassen.
       index:
         application: Anwendung
@@ -60,7 +60,7 @@ de:
       error:
         title: Ein Fehler ist aufgetreten
       new:
-        prompt_html: "%{client_name} möchte auf dein Konto zugreifen. Es handelt sich um eine Drittanbieter-Software. <strong>Wenn du der Anwendung nicht vertraust, solltest du ihr keinen Zugriff auf dein Konto geben.</strong>"
+        prompt_html: "%{client_name} möchte auf dein Konto zugreifen. Es handelt sich um eine Software von Dritten. <strong>Wenn du der Anwendung nicht vertraust, solltest du ihr keinen Zugriff auf dein Konto geben.</strong>"
         review_permissions: Berechtigungen überprüfen
         title: Autorisierung erforderlich
       show:
@@ -77,7 +77,7 @@ de:
         never_used: Nie verwendet
         scopes: Berechtigungen
         superapp: Intern
-        title: Deine genehmigten Apps
+        title: Deine autorisierten Anwendungen
     errors:
       messages:
         access_denied: Diese Anfrage wurde von den Inhaber*innen oder durch den Autorisierungsserver abgelehnt.
@@ -129,10 +129,10 @@ de:
         crypto: Ende-zu-Ende-Verschlüsselung
         favourites: Favoriten
         filters: Filter
-        follow: Folge ich, Stummschaltungen und Sperrungen
+        follow: Folge ich, Stummschaltungen und Blockierungen
         follows: Folge ich
         lists: Listen
-        media: Medienanhänge
+        media: Medieninhalte
         mutes: Stummschaltungen
         notifications: Benachrichtigungen
         push: Push-Benachrichtigungen
@@ -167,11 +167,11 @@ de:
       follow: Kontenbeziehungen verändern
       push: deine Push-Benachrichtigungen erhalten
       read: all deine Daten lesen
-      read:accounts: deine Konteninformationen einsehen
-      read:blocks: deine Sperren einsehen
+      read:accounts: deine Kontoinformationen einsehen
+      read:blocks: deine Blockierungen einsehen
       read:bookmarks: deine Lesezeichen lesen
-      read:favourites: deine Favoriten lesen
-      read:filters: deine Filter ansehen
+      read:favourites: deine Favoriten einsehen
+      read:filters: deine Filter einsehen
       read:follows: sehen, wem du folgst
       read:lists: deine Listen sehen
       read:mutes: deine Stummschaltungen einsehen
@@ -179,17 +179,17 @@ de:
       read:reports: deine Meldungen sehen
       read:search: in deinem Namen suchen
       read:statuses: alle Beiträge sehen
-      write: all deine Benutzerdaten verändern
+      write: all deine Kontodaten verändern
       write:accounts: dein Profil bearbeiten
-      write:blocks: Domains und Konten sperren
+      write:blocks: Domains und Konten blockieren
       write:bookmarks: Lesezeichen hinzufügen
       write:conversations: Unterhaltungen stummschalten und löschen
       write:favourites: Beiträge favorisieren
       write:filters: Filter erstellen
       write:follows: Profilen folgen
       write:lists: Listen erstellen
-      write:media: Mediendateien hochladen
+      write:media: Medieninhalte hochladen
       write:mutes: Profile und Unterhaltungen stummschalten
-      write:notifications: deine Benachrichtigungen leeren
+      write:notifications: deine Mitteilungen löschen
       write:reports: andere Profile melden
       write:statuses: Beiträge veröffentlichen

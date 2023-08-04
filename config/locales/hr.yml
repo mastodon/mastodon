@@ -3,6 +3,7 @@ hr:
   about:
     about_mastodon_html: 'Društvena mreža budućnosti: bez oglasa, bez korporativnog nadzora, etički dizajn i decentralizacija! Budite u vlasništvu svojih podataka pomoću Mastodona!'
     contact_missing: Nije postavljeno
+    title: O aplikaciji
   accounts:
     follow: Prati
     following: Praćenih
@@ -17,8 +18,10 @@ hr:
     accounts:
       approve: Odobri
       are_you_sure: Jeste li sigurni?
+      avatar: Avatar
       by_domain: Domena
       change_email:
+        changed_msg: E-pošta računa uspješno je promijenjena!
         current_email: Trenutna e-pošta
         label: Promijeni e-poštu
         new_email: Nova e-pošta
@@ -27,6 +30,7 @@ hr:
       confirm: Potvrdi
       confirmed: Potvrđeno
       confirming: Potvrđivanje
+      custom: Prilagođeno
       delete: Izbriši podatke
       deleted: Izbrisano
       display_name: Prikazano ime
@@ -60,10 +64,6 @@ hr:
     reset_password: Ponovno postavi lozinku
     security: Sigurnost
     set_new_password: Postavi novu lozinku
-  authorize_follow:
-    error: Nažalost, došlo je do greške tijekom traženja udaljenog računa
-    follow: Prati
-    title: Prati %{acct}
   datetime:
     distance_in_words:
       about_x_months: "%{count}mj"
@@ -73,6 +73,14 @@ hr:
       less_than_x_seconds: Upravo sada
       over_x_years: "%{count}god"
       x_months: "%{count}mj"
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
+    '429': Too many requests
+    '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
       date: Datum
@@ -195,7 +203,6 @@ hr:
       public: Javno
       unlisted: Neprikazano
   stream_entries:
-    reblogged: boostano
     sensitive_content: Osjetljivi sadržaj
   two_factor_authentication:
     disable: Onemogući 2FA

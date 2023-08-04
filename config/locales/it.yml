@@ -382,6 +382,15 @@ it:
       undo: Elimina dalla whitelist
     domain_blocks:
       add_new: Aggiungi nuovo
+      confirm_suspension:
+        cancel: Annulla
+        confirm: Sospendi
+        permanent_action: L'annullamento della sospensione non ripristinerà alcun dato o relazione.
+        preamble_html: Stai per sospendere <strong>%{domain}</strong> e i suoi sottodomini.
+        remove_all_data: Questa operazione rimuoverà dal tuo server tutti i contenuti, i file multimediali e i dati del profilo per gli account di questo dominio.
+        stop_communication: Il tuo server smetterà di comunicare con questi server.
+        title: Conferma il blocco del dominio per %{domain}
+        undo_relationships: Questo annullerà qualsiasi relazione di follow tra gli account di questi server e il tuo.
       created_msg: Il blocco del dominio sta venendo processato
       destroyed_msg: Il blocco del dominio è stato rimosso
       domain: Dominio
@@ -731,6 +740,9 @@ it:
       branding:
         preamble: 'Il marchio del tuo server lo differenzia dagli altri server nella rete. Queste informazioni possono essere visualizzate in una varietà di ambienti, come: l''interfaccia web di Mastodon, le applicazioni native, nelle anteprime dei collegamenti su altri siti Web e all''interno delle app di messaggistica e così via. Per questo motivo, è meglio mantenere queste informazioni chiare, brevi e concise.'
         title: Marchio
+      captcha_enabled:
+        desc_html: Questo si basa su script esterni da hCaptcha, che possono rappresentare un problema di sicurezza e privacy. Inoltre, <strong>questo può rendere il processo di registrazione significativamente meno accessibile ad alcune persone (soprattutto disabili)</strong>. Per questi motivi, prendi in considerazione misure alternative come la registrazione basata su approvazione o su invito.
+        title: Richiedi ai nuovi utenti di risolvere un CAPTCHA per confermare il loro account
       content_retention:
         preamble: Controlla come vengono memorizzati i contenuti generati dall'utente in Mastodon.
         title: Conservazione dei contenuti
@@ -963,11 +975,11 @@ it:
       guide_link: https://it.crowdin.com/project/mastodon
       guide_link_text: Tutti possono contribuire.
     sensitive_content: Contenuto sensibile
-    toot_layout: Layout dei toot
   application_mailer:
     notification_preferences: Cambia preferenze email
     salutation: "%{name},"
     settings: 'Cambia le impostazioni per le email: %{link}'
+    unsubscribe: Disiscriviti
     view: 'Guarda:'
     view_profile: Mostra profilo
     view_status: Mostra post
@@ -981,6 +993,10 @@ it:
     your_token: Il tuo token di accesso
   auth:
     apply_for_account: Richiedi un account
+    captcha_confirmation:
+      help_html: Se hai problemi a risolvere il CAPTCHA, puoi metterti in contatto con noi tramite %{email} e ti possiamo aiutare.
+      hint_html: Solamente un'altra cosa! Dobbiamo confermare che tu sia un essere umano (così possiamo tenere fuori lo spam!). Risolvi il CAPTCHA sottostante e fai clic su "Continua".
+      title: Controllo di sicurezza
     confirmations:
       wrong_email_hint: Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
     delete_account: Elimina account
@@ -1017,8 +1033,11 @@ it:
     rules:
       accept: Accetta
       back: Indietro
+      invited_by: 'Puoi unirti a %{domain} grazie all''invito che hai ricevuto da:'
       preamble: Questi sono impostati e applicati dai moderatori di %{domain}.
+      preamble_invited: Prima di procedere, si prega di considera le regole di base stabilite dai moderatori di %{domain}.
       title: Alcune regole di base.
+      title_invited: Sei stato/a invitato/a.
     security: Credenziali
     set_new_password: Imposta una nuova password
     setup:
@@ -1043,18 +1062,6 @@ it:
       view_strikes: Visualizza le sanzioni precedenti prese nei confronti del tuo account
     too_fast: Modulo inviato troppo velocemente, riprova.
     use_security_key: Usa la chiave di sicurezza
-  authorize_follow:
-    already_following: Stai già seguendo questo account
-    already_requested: Hai già mandato una richiesta di seguire questo account
-    error: Sfortunatamente c'è stato un errore nel consultare l'account remoto
-    follow: Segui
-    follow_request: 'Hai mandato una richiesta di seguire:'
-    following: 'Accettato! Ora stai seguendo:'
-    post_follow:
-      close: Oppure puoi chiudere questa finestra.
-      return: Mostra il profilo dell'utente
-      web: Vai al web
-    title: Segui %{acct}
   challenge:
     confirm: Continua
     hint_html: "<strong>Suggerimento:</strong> Non ti chiederemo di nuovo la tua password per la prossima ora."
@@ -1131,6 +1138,11 @@ it:
       your_appeal_rejected: Il tuo appello è stato respinto
   domain_validator:
     invalid_domain: non è un nome di dominio valido
+  edit_profile:
+    basic_information: Informazioni di base
+    hint_html: "<strong>Personalizza ciò che le persone vedono sul tuo profilo pubblico e accanto ai tuoi post.</strong> È più probabile che altre persone ti seguano e interagiscano con te quando hai un profilo compilato e un'immagine del profilo."
+    other: Altro
+    safety_and_privacy: Sicurezza e privacy
   errors:
     '400': La richiesta che hai inviato non è valida o non è corretta.
     '403': Non sei autorizzato a visualizzare questa pagina.
@@ -1219,7 +1231,9 @@ it:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> elemento corrispondente alla tua ricerca è selezionato."
       other: Tutti i <strong>%{count}</strong> elementi corrispondenti alla tua ricerca sono selezionati.
+    cancel: Annulla
     changes_saved_msg: Modifiche effettuate con successo!
+    confirm: Conferma
     copy: Copia
     delete: Cancella
     deselect: Deseleziona tutto
@@ -1235,20 +1249,60 @@ it:
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
   imports:
     errors:
+      empty: File CSV vuoto
+      incompatible_type: Incompatibile con il tipo di importazione selezionato
       invalid_csv_file: 'File CSV non valido. Errore: %{error}'
       over_rows_processing_limit: contiene più di %{count} righe
+      too_large: Il file è troppo grande
+    failures: Fallimenti
+    imported: Importato
+    mismatched_types_warning: Sembra che tu abbia selezionato il tipo sbagliato per questa importazione, ricontrolla per favore.
     modes:
       merge: Fondi
       merge_long: Mantieni record esistenti e aggiungine di nuovi
       overwrite: Sovrascrivi
       overwrite_long: Sostituisci record attuali con quelli nuovi
+    overwrite_preambles:
+      blocking_html: Stai per <strong>sostituire la tua lista di blocchi</strong> con un massimo di <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
+      bookmarks_html: Stai per <strong>sostituire i tuoi segnalibri</strong> con un massimo di <strong>%{total_items} post</strong> da <strong>%{filename}</strong>.
+      domain_blocking_html: Stai per <strong>sostituire la tua lista di domini bloccati</strong> con un massimo di <strong>%{total_items} domini</strong> da <strong>%{filename}</strong>.
+      following_html: Stai per <strong>seguire</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong> e <strong>smettere di seguire chiunque altro</strong>.
+      lists_html: Stai per <strong>sostituire le tue liste</strong> con i contenuti di <strong>%{filename}</strong>. Fino a <strong>%{total_items} profili</strong> verranno aggiunti a nuove liste.
+      muting_html: Stai per <strong>sostituire la tua lista di account silenziati</strong> con un massimo di <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Stai per <strong>bloccare</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
+      bookmarks_html: Stai per aggiungere fino a <strong>%{total_items} post</strong> da <strong>%{filename}</strong> ai tuoi <strong>segnalibri</strong>.
+      domain_blocking_html: Stai per <strong>bloccare</strong> fino a <strong>%{total_items} domini</strong> da <strong>%{filename}</strong>.
+      following_html: Stai per <strong>seguire</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
+      lists_html: Stai per aggiungere fino a <strong>%{total_items} profili</strong> da <strong>%{filename}</strong> alla tue <strong>liste</strong>. Le nuove liste saranno create se non c'è una lista a cui aggiungere.
+      muting_html: Stai per <strong>silenziare</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
     preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato su questo server, da file creati da un'esportazione su un altro server.
+    recent_imports: Importazioni recenti
+    states:
+      finished: Terminata
+      in_progress: In corso
+      scheduled: Programmata
+      unconfirmed: Non confermata
+    status: Stato
     success: Le tue impostazioni sono state importate correttamente e verranno applicate in breve tempo
+    time_started: Iniziata il
+    titles:
+      blocking: Importazione di account bloccati
+      bookmarks: Importazione dei segnalibri
+      domain_blocking: Importazione dei domini bloccati
+      following: Importazione degli account seguiti
+      lists: Importa elenchi
+      muting: Importazione degli account silenziati
+    type: Tipo d'importazione
+    type_groups:
+      constructive: Seguimenti e Segnalibri
+      destructive: Blocchi e silenzi
     types:
       blocking: Lista dei bloccati
       bookmarks: Segnalibri
       domain_blocking: Lista dei domini bloccati
       following: Lista dei seguiti
+      lists: Elenchi
       muting: Lista dei silenziati
     upload: Carica
   invites:
@@ -1287,6 +1341,21 @@ it:
     failed_sign_in_html: Tentativo di accesso fallito con %{method} da %{ip} (%{browser})
     successful_sign_in_html: Accesso riuscito con %{method} da %{ip} (%{browser})
     title: Cronologia delle autenticazioni
+  mail_subscriptions:
+    unsubscribe:
+      action: Sì, annulla l'iscrizione
+      complete: Iscrizione annullata
+      confirmation_html: Sei sicuro di voler annullare l'iscrizione alla ricezione di %{type} per Mastodon su %{domain} alla tua e-mail a %{email}? Puoi sempre iscriverti di nuovo dalle tue <a href="%{settings_path}">impostazioni di notifica via email</a>.
+      emails:
+        notification_emails:
+          favourite: e-mai di notifica per i post apprezzati
+          follow: e-mail di notifica per chi inizia a seguirti
+          follow_request: e-mail di notifica per la richiesta di seguirti
+          mention: e-mail di notifica per le menzioni
+          reblog: e-mail di notifica per le condivisioni
+      resubscribe_html: Se hai annullato l'iscrizione per errore, puoi iscriverti di nuovo dalle tue <a href="%{settings_path}">impostazioni di notifica via email</a>.
+      success_html: Non riceverai più %{type} per Mastodon su %{domain} alla tua e-mail a %{email}.
+      title: Disiscriviti
   media_attachments:
     validations:
       images_and_video: Impossibile allegare video a un post che contiene già immagini
@@ -1402,6 +1471,7 @@ it:
       expired: Il sondaggio si è già concluso
       invalid_choice: L'opzione di voto scelta non esiste
       over_character_limit: non possono essere più lunghi di %{max} caratteri ciascuno
+      self_vote: Non puoi votare nei tuoi sondaggi
       too_few_options: deve avere più di un elemento
       too_many_options: non può contenere più di %{max} elementi
   preferences:
@@ -1557,7 +1627,6 @@ it:
     show_newer: Mostra più nuovi
     show_older: Mostra più vecchi
     show_thread: Mostra thread
-    sign_in_to_participate: Accedi per partecipare alla conversazione
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Diretto
@@ -1603,8 +1672,6 @@ it:
     min_reblogs: Conserva i post condivisi più di
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:
-    pinned: Post fissato in cima
-    reblogged: condiviso
     sensitive_content: Materiale sensibile
   strikes:
     errors:
@@ -1705,7 +1772,12 @@ it:
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
   verification:
+    extra_instructions_html: <strong>Suggerimento:</strong> il collegamento sul tuo sito web può essere invisibile. La parte importante è <code>rel="me"</code> che impedisce l'impersonificazione su siti web con contenuti generati dagli utenti. Puoi anche usare un tag <code>link</code> nell'intestazione della pagina invece di <code>a</code>, ma l'HTML deve essere accessibile senza eseguire JavaScript.
+    here_is_how: Ecco come
+    hint_html: "<strong>La verifica della tua identità su Mastodon è per tutti.</strong> Basata su standard web aperti, ora e per sempre gratis. Tutto ciò di cui hai bisogno è un sito web personale in cui le persone ti riconoscano. Quando ti colleghi a questo sito web dal tuo profilo, verificheremo che il sito web rimandi al tuo profilo e mostreremo un indicatore visivo su di esso."
+    instructions_html: Copia e incolla il codice qui sotto nell'HTML del tuo sito web. Quindi, aggiungi l'indirizzo del tuo sito web in uno dei campi aggiuntivi del tuo profilo dalla scheda "Modifica profilo" e salva le modifiche.
     verification: Verifica
+    verified_links: I tuoi collegamenti verificati
   webauthn_credentials:
     add: Aggiungi una nuova chiave di sicurezza
     create:

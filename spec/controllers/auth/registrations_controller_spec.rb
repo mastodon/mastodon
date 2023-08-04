@@ -15,20 +15,22 @@ RSpec.describe Auth::RegistrationsController do
     it 'redirects if it is in single user mode while it is open for registration' do
       Fabricate(:account)
       Setting.registrations_mode = 'open'
-      expect(Rails.configuration.x).to receive(:single_user_mode).and_return(true)
+      allow(Rails.configuration.x).to receive(:single_user_mode).and_return(true)
 
       get path
 
       expect(response).to redirect_to '/'
+      expect(Rails.configuration.x).to have_received(:single_user_mode)
     end
 
     it 'redirects if it is not open for registration while it is not in single user mode' do
       Setting.registrations_mode = 'none'
-      expect(Rails.configuration.x).to receive(:single_user_mode).and_return(false)
+      allow(Rails.configuration.x).to receive(:single_user_mode).and_return(false)
 
       get path
 
       expect(response).to redirect_to '/'
+      expect(Rails.configuration.x).to have_received(:single_user_mode)
     end
   end
 

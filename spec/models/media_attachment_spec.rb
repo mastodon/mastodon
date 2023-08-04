@@ -84,7 +84,87 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
     end
   end
 
-  describe 'animated gif conversion' do
+  shared_examples 'static 600x400 image' do |content_type, extension|
+    after do
+      media.destroy
+    end
+
+    it 'saves media attachment' do
+      expect(media.persisted?).to be true
+      expect(media.file).to_not be_nil
+    end
+
+    it 'completes processing' do
+      expect(media.processing_complete?).to be true
+    end
+
+    it 'sets type' do
+      expect(media.type).to eq 'image'
+    end
+
+    it 'sets content type' do
+      expect(media.file_content_type).to eq content_type
+    end
+
+    it 'sets file extension' do
+      expect(media.file_file_name).to end_with extension
+    end
+
+    it 'strips original file name' do
+      expect(media.file_file_name).to_not start_with '600x400'
+    end
+
+    it 'sets meta for original' do
+      expect(media.file.meta['original']['width']).to eq 600
+      expect(media.file.meta['original']['height']).to eq 400
+      expect(media.file.meta['original']['aspect']).to eq 1.5
+    end
+
+    it 'sets meta for thumbnail' do
+      expect(media.file.meta['small']['width']).to eq 588
+      expect(media.file.meta['small']['height']).to eq 392
+      expect(media.file.meta['small']['aspect']).to eq 1.5
+    end
+  end
+
+  describe 'jpeg' do
+    let(:media) { described_class.create(account: Fabricate(:account), file: attachment_fixture('600x400.jpeg')) }
+
+    it_behaves_like 'static 600x400 image', 'image/jpeg', '.jpeg'
+  end
+
+  describe 'png' do
+    let(:media) { described_class.create(account: Fabricate(:account), file: attachment_fixture('600x400.png')) }
+
+    it_behaves_like 'static 600x400 image', 'image/png', '.png'
+  end
+
+  describe 'webp' do
+    let(:media) { described_class.create(account: Fabricate(:account), file: attachment_fixture('600x400.webp')) }
+
+    it_behaves_like 'static 600x400 image', 'image/webp', '.webp'
+  end
+
+  describe 'avif' do
+    let(:media) { described_class.create(account: Fabricate(:account), file: attachment_fixture('600x400.avif')) }
+
+    it_behaves_like 'static 600x400 image', 'image/jpeg', '.jpeg'
+  end
+
+  describe 'heic' do
+    let(:media) { described_class.create(account: Fabricate(:account), file: attachment_fixture('600x400.heic')) }
+
+    it_behaves_like 'static 600x400 image', 'image/jpeg', '.jpeg'
+  end
+
+  describe 'base64-encoded image' do
+    let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('600x400.jpeg').read)}" }
+    let(:media) { described_class.create(account: Fabricate(:account), file: base64_attachment) }
+
+    it_behaves_like 'static 600x400 image', 'image/jpeg', '.jpeg'
+  end
+
+  describe 'animated gif' do
     let(:media) { described_class.create(account: Fabricate(:account), file: attachment_fixture('avatar.gif')) }
 
     it 'sets type to gifv' do
@@ -101,7 +181,7 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
     end
   end
 
-  describe 'non-animated gif non-conversion' do
+  describe 'static gif' do
     fixtures = [
       { filename: 'attachment.gif', width: 600, height: 400, aspect: 1.5 },
       { filename: 'mini-static.gif', width: 32, height: 32, aspect: 1.0 },
@@ -169,37 +249,6 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
 
     it 'gives the file a random name' do
       expect(media.file_file_name).to_not eq 'boop.mp3'
-    end
-  end
-
-  describe 'jpeg' do
-    let(:media) { described_class.create(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }
-
-    it 'sets meta for different style' do
-      expect(media.file.meta['original']['width']).to eq 600
-      expect(media.file.meta['original']['height']).to eq 400
-      expect(media.file.meta['original']['aspect']).to eq 1.5
-      expect(media.file.meta['small']['width']).to eq 588
-      expect(media.file.meta['small']['height']).to eq 392
-      expect(media.file.meta['small']['aspect']).to eq 1.5
-    end
-
-    it 'gives the file a random name' do
-      expect(media.file_file_name).to_not eq 'attachment.jpg'
-    end
-  end
-
-  describe 'base64-encoded jpeg' do
-    let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('attachment.jpg').read)}" }
-    let(:media) { described_class.create(account: Fabricate(:account), file: base64_attachment) }
-
-    it 'saves media attachment' do
-      expect(media.persisted?).to be true
-      expect(media.file).to_not be_nil
-    end
-
-    it 'gives the file a file name' do
-      expect(media.file_file_name).to_not be_blank
     end
   end
 

@@ -2,6 +2,10 @@
 et:
   simple_form:
     hints:
+      account:
+        display_name: Su täisnimi või naljanimi.
+        fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
+        note: 'Saad @mainida teisi inimesi või #silte.'
       account_alias:
         acct: Sisesta konto kasutajanimi@domeen, mille soovid siia ümber kolida
       account_migration:
@@ -195,7 +199,6 @@ et:
         setting_always_send_emails: Edasta kõik teavitused meilile
         setting_auto_play_gif: Esita GIF-e automaatselt
         setting_boost_modal: Näita enne jagamist kinnitusdialoogi
-        setting_crop_images: Laiendamata postitustes kärbi pildid 16:9 küljesuhtesse
         setting_default_language: Postituse keel
         setting_default_privacy: Postituse nähtavus
         setting_default_sensitive: Alati märgista meedia tundlikuks
@@ -295,6 +298,7 @@ et:
         usable: Luba postitustel seda silti kasutada
       user:
         role: Roll
+        time_zone: Ajavöönd
       user_role:
         color: Märgi värv
         highlighted: Kuva roll kasutajaprofiilidel märgina

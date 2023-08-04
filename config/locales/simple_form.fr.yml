@@ -2,6 +2,10 @@
 fr:
   simple_form:
     hints:
+      account:
+        display_name: Votre nom complet ou votre nom rigolo.
+        fields: Votre page personnelle, vos pronoms, votre âge, ce que vous voulez.
+        note: 'Vous pouvez @mentionner d’autres personnes ou des #hashtags.'
       account_alias:
         acct: Spécifiez l’identifiant@domaine du compte à partir duquel vous souhaitez migrer
       account_migration:
@@ -58,6 +62,7 @@ fr:
         setting_show_application: Le nom de l’application que vous utilisez pour publier sera affichée dans la vue détaillée de vos messages
         setting_use_blurhash: Les dégradés sont basés sur les couleurs des images cachées mais n’en montrent pas les détails
         setting_use_pending_items: Cacher les mises à jour des fils d’actualités derrière un clic, au lieu de les afficher automatiquement
+        username: Vous pouvez utiliser des lettres, des chiffres, et des tirets bas
         whole_word: Si le mot-clé ou la phrase est alphanumérique, alors le filtre ne sera appliqué que s’il correspond au mot entier
       domain_allow:
         domain: Ce domaine pourra récupérer des données de ce serveur et les données entrantes seront traitées et stockées
@@ -129,6 +134,7 @@ fr:
         position: Dans certaines situations, un rôle supérieur peut trancher la résolution d'un conflit. Mais certaines opérations ne peuvent être effectuées que sur des rôles ayant une priorité inférieure
       webhook:
         events: Sélectionnez les événements à envoyer
+        template: Écrivez votre propre bloc JSON avec la possibilité d’utiliser de l’interpolation de variables. Laissez vider pour utiliser le bloc JSON par défaut.
         url: Là où les événements seront envoyés
     labels:
       account:
@@ -194,7 +200,6 @@ fr:
         setting_always_send_emails: Toujours envoyer les notifications par courriel
         setting_auto_play_gif: Lire automatiquement les GIFs animés
         setting_boost_modal: Demander confirmation avant de partager un message
-        setting_crop_images: Recadrer en 16x9 les images des messages qui ne sont pas ouverts en vue détaillée
         setting_default_language: Langue de publication
         setting_default_privacy: Confidentialité des messages
         setting_default_sensitive: Toujours marquer les médias comme sensibles
@@ -294,6 +299,7 @@ fr:
         usable: Autoriser les messages à utiliser ce hashtag
       user:
         role: Rôle
+        time_zone: Fuseau horaire
       user_role:
         color: Couleur du badge
         highlighted: Afficher le rôle avec un badge sur les profils des utilisateur·rice·s
@@ -302,6 +308,7 @@ fr:
         position: Priorité
       webhook:
         events: Événements activés
+        template: Modèle de payload
         url: URL du point de terminaison
     'no': Non
     not_recommended: Non recommandé

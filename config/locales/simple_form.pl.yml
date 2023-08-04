@@ -2,6 +2,10 @@
 pl:
   simple_form:
     hints:
+      account:
+        display_name: Twoje imię lub pseudonim.
+        fields: Co ci się tylko podoba – twoja strona domowa, zaimki, wiek…
+        note: 'Możesz @wspomnieć użytkowników albo #hasztagi.'
       account_alias:
         acct: Określ nazwę@domenę konta z którego chcesz się przenieść
       account_migration:
@@ -130,6 +134,7 @@ pl:
         position: Wyższa rola decyduje o rozwiązywaniu konfliktów w pewnych sytuacjach. Niektóre działania mogą być wykonywane tylko na rolach z niższym priorytetem
       webhook:
         events: Wybierz zdarzenia do wysłania
+        template: Poskładaj zawartość JSON, podstawiając zmienne. Użyjemy domyślnej wartości, jeżeli pole zostawisz pustym.
         url: Dokąd będą wysłane zdarzenia
     labels:
       account:
@@ -195,7 +200,6 @@ pl:
         setting_always_send_emails: Zawsze wysyłaj powiadomienia e-mail
         setting_auto_play_gif: Automatycznie odtwarzaj animowane GIFy
         setting_boost_modal: Pytaj o potwierdzenie przed podbiciem
-        setting_crop_images: Przycinaj obrazki w nierozwiniętych wpisach do 16x9
         setting_default_language: Język wpisów
         setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
@@ -290,11 +294,12 @@ pl:
         text: Zasada
       tag:
         listable: Pozwól, aby ten hashtag pojawiał się w wynikach wyszukiwania i katalogu profilów
-        name: Hashtag
+        name: Hasztag
         trendable: Pozwól na wyświetlanie tego hashtagu w „Na czasie”
         usable: Pozwól na umieszczanie tego hashtagu we wpisach
       user:
         role: Rola
+        time_zone: Strefa czasowa
       user_role:
         color: Kolor odznaki
         highlighted: Wyświetl rolę jako odznakę na profilach użytkowników
@@ -303,6 +308,7 @@ pl:
         position: Priorytet
       webhook:
         events: Włączone zdarzenia
+        template: Szablon zawartości
         url: Endpoint URL
     'no': Nie
     not_recommended: Niezalecane

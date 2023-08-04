@@ -25,12 +25,13 @@ export type SearchData = [
   BaseEmoji['native'],
   Emoji['short_names'],
   Search,
-  Emoji['unified']
+  Emoji['unified'],
 ];
 
-export interface ShortCodesToEmojiData {
-  [key: ShortCodesToEmojiDataKey]: [FilenameData, SearchData];
-}
+export type ShortCodesToEmojiData = Record<
+  ShortCodesToEmojiDataKey,
+  [FilenameData, SearchData]
+>;
 export type EmojisWithoutShortCodes = FilenameData[];
 
 export type EmojiCompressed = [
@@ -38,7 +39,7 @@ export type EmojiCompressed = [
   Skins,
   Category[],
   Data['aliases'],
-  EmojisWithoutShortCodes
+  EmojisWithoutShortCodes,
 ];
 
 /*

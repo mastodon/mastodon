@@ -191,12 +191,18 @@ ta:
     localization:
       body: மாஸ்டோடான் தன்னார்வலர்களால் மொழிபெயர்க்கப்படுகிறது.
       guide_link_text: அனைவரும் பங்களிக்கலாம்.
-  authorize_follow:
-    already_requested: இக்கணக்கைப் பின்தொடரும் கோரிக்கையை நீங்கள் ஏற்கனவே அனுப்பிவிட்டீர்கள்
   crypto:
     errors:
       invalid_key: ஒரு முறையான Ed25519 அல்லது Curve25519 key அல்ல
       invalid_signature: ஒரு முறையான Ed25519 அடையாளம் அல்ல
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
+    '429': Too many requests
+    '503': The page could not be served due to a temporary server failure.
   filters:
     index:
       empty: தடுப்புகள் ஏதும் இல்லை.

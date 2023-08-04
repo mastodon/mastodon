@@ -395,7 +395,6 @@ oc:
           approved: Validacion necessària per s’inscriure
           none: Degun pòt pas se marcar
           open: Tot lo monde se pòt marcar
-      title: Paramètres del servidor
     site_uploads:
       delete: Suprimir lo fichièr enviat
     statuses:
@@ -459,7 +458,6 @@ oc:
       body: Mastodon es traduch per de benevòls.
       guide_link_text: Tot lo monde pòt contribuïr.
     sensitive_content: Contengut sensible
-    toot_layout: Disposicion del tut
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
     salutation: "%{name},"
@@ -504,17 +502,6 @@ oc:
       account_status: Estat del compte
       functional: Vòstre compte es complètament foncional.
     use_security_key: Utilizar clau de seguretat
-  authorize_follow:
-    already_following: Seguètz ja aqueste compte
-    error: O planhèm, i a agut una error al moment de cercar lo compte
-    follow: Sègre
-    follow_request: 'Avètz demandat de sègre :'
-    following: 'Felicitacion ! Seguètz ara :'
-    post_follow:
-      close: O podètz tampar aquesta fenèstra.
-      return: Veire lo perfil a la persona
-      web: Tornar a l’interfàcia Web
-    title: Sègre %{acct}
   challenge:
     confirm: Contunhar
     hint_html: "<strong>Asutúcia :</strong> vos demandarem pas vòstre senhal de nòu d’aquí unas oras."
@@ -559,6 +546,7 @@ oc:
   domain_validator:
     invalid_domain: es pas un nom de domeni valid
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Avètz pas l’autorizacion de veire aquesta pagina.
     '404': La pagina que cercatz existís pas aquí.
     '406': La pagina es pas disponibla dins lo format demandat.
@@ -570,6 +558,7 @@ oc:
     '500':
       content: Un quicomet a pas foncionat coma caliá.
       title: Aquesta pagina es pas corrècta
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="%{apps_path}">una aplicacion</a> per vòstra plataforma coma alernativa.
   existing_username_validator:
     not_found: impossible de trobar un utilizaire local amb aqueste nom d’utilizaire
@@ -888,7 +877,6 @@ oc:
     show_newer: Veire mai recents
     show_older: Veire mai ancians
     show_thread: Mostrar lo fil
-    sign_in_to_participate: Inscrivètz-vos per participar a la conversacion
     title: '%{name} : "%{quote}"'
     visibilities:
       direct: Dirècte
@@ -931,8 +919,6 @@ oc:
     min_reblogs: Gardar las publicacions partejadas al mens
     min_reblogs_hint: Suprimís pas vòstras publicacions qu’an agut aqueste nombre de partiment. Daissar blanc per suprimir las publicacions sens far cas als partiments
   stream_entries:
-    pinned: Tut penjat
-    reblogged: a partejat
     sensitive_content: Contengut sensible
   tags:
     does_not_match_previous_name: correspond pas al nom precedent

@@ -396,6 +396,9 @@ ar:
       undo: إزالة من القائمة البيضاء
     domain_blocks:
       add_new: إضافة حجب جديد لنطاق
+      confirm_suspension:
+        cancel: إلغاء
+        confirm: علّق الحساب
       created_msg: إنّ حجب النطاق حيز التشغيل
       destroyed_msg: تم إلغاء الحجب المفروض على النطاق
       domain: النطاق
@@ -776,7 +779,6 @@ ar:
           approved: طلب الموافقة لازم عند إنشاء حساب
           none: لا أحد يمكنه إنشاء حساب
           open: يمكن للجميع إنشاء حساب
-      title: إعدادات الخادم
     site_uploads:
       delete: احذف الملف الذي تم تحميله
       destroyed_msg: تم حذف التحميل مِن الموقع بنجاح!
@@ -870,6 +872,13 @@ ar:
         disallow_account: رفض الناشر
         no_status_selected: لم يتم تغيير أي منشورات متداوله حيث لم يتم اختيار أي منهم
         not_discoverable: الكاتب لم يختار أن يكون قابلا للاكتشاف
+        shared_by:
+          few: تمت مشاركته وتفضيله %{friendly_count} مرات
+          many: تمت مشاركته وتفضيله %{friendly_count} مرات
+          one: تمت مشاركته وتفضيله مرة واحدة
+          other: تمت مشاركته وتفضيله %{friendly_count} مرات
+          two: تمت مشاركته وتفضيله مرتين
+          zero: لم يتم مشاركته أو تفضيله مطلقًا
         title: المنشورات المتداولة
       tags:
         current_score: التقييم الحالي %{score}
@@ -950,7 +959,7 @@ ar:
       new_trending_statuses:
         title: المنشورات الشائعة
       new_trending_tags:
-        no_approved_tags: لا توجد حاليًا هاشات شائعة موافق عليها.
+        no_approved_tags: لا توجد حاليًا وسوم شائعة موافق عليها.
         requirements: 'يمكن لأي من هؤلاء المرشحين أن يتجاوز علامة #%{rank} من الوسوم الموافق عليها، وهي حاليا #%{lowest_tag_name} مع نتيجة %{lowest_tag_score}.'
         title: الوسوم المتداولة
       subject: تداولات جديدة في انتظار المراجعة على %{instance}
@@ -972,11 +981,11 @@ ar:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: يمكن للجميع المساهمة.
     sensitive_content: المحتوى الحساس
-    toot_layout: شكل المنشور
   application_mailer:
     notification_preferences: تعديل تفضيلات البريد الإلكتروني
     salutation: "%{name}،"
     settings: 'تغيير تفضيلات البريد الإلكتروني: %{link}'
+    unsubscribe: إلغاء الاشتراك
     view: 'اعرض:'
     view_profile: اعرض الصفحة التعريفية
     view_status: عرض المنشور
@@ -990,6 +999,8 @@ ar:
     your_token: رمز نفاذك
   auth:
     apply_for_account: اطلُب حسابًا
+    captcha_confirmation:
+      title: التحقق من الأمان
     confirmations:
       wrong_email_hint: إذا كان عنوان البريد الإلكتروني هذا غير صحيح، يمكنك تغييره في إعدادات الحساب.
     delete_account: حذف الحساب
@@ -1014,6 +1025,7 @@ ar:
     progress:
       confirm: تأكيد عنوان البريد الإلكتروني
       details: تفاصيلك
+      review: مراجعتنا
       rules: قبول القواعد
     providers:
       cas: CAS
@@ -1025,8 +1037,10 @@ ar:
     rules:
       accept: قبول
       back: العودة
+      invited_by: 'يمكنك الانضمام إلى %{domain} بفضل الدعوة التي تلقيتها من:'
       preamble: يتم تعيين هذه القوانين وفرضها من قبل مشرفي %{domain}.
       title: بعض القواعد الأساسية.
+      title_invited: لقد تلقيت دعوة.
     security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
     setup:
@@ -1036,9 +1050,10 @@ ar:
       new_confirmation_instructions_sent: سوف تتلقى رسالة بريد إلكتروني جديدة مع رابط التأكيد في غضون بضع دقائق!
       title: تحقَّق من بريدك الوارِد
     sign_in:
-      preamble_html: قم بتسجيل الدخول باستخدام بيانات الاعتماد الخاصة بك علي <strong>%{domain}</strong> إذا تم استضافة حسابك على خادم مختلف، فلن تتمكن من تسجيل الدخول هنا.
+      preamble_html: قم بتسجيل الدخول باستخدام بيانات الاعتماد الخاصة بك علي <strong>%{domain}</strong> إذا تم استضافة حسابك على خادم مختلف، لن تتمكن من تسجيل الدخول هنا.
       title: تسجيل الدخول إلى %{domain}
     sign_up:
+      manual_review: عمليات التسجيل في %{domain} تمر من خلال المراجعة اليدوية من قبل المشرفين لدينا. لمساعدتنا في معالجة عملية التسجيل الخاصة بك، تواصل معنا واكتب قليلًا عن نفسك ولماذا تريد حساب على %{domain}.
       preamble: مع حساب على خادم ماستدون هذا، ستتمكن من متابعة أي شخص آخر على الشبكة، بغض النظر عن المكان الذي يستضيف فيه حسابهم.
       title: دعنا نجهّز %{domain}.
     status:
@@ -1050,18 +1065,6 @@ ar:
       view_strikes: عرض السجلات السابقة ضد حسابك
     too_fast: تم إرسال النموذج بسرعة كبيرة، حاول مرة أخرى.
     use_security_key: استخدام مفتاح الأمان
-  authorize_follow:
-    already_following: أنت تتابع بالفعل هذا الحساب
-    already_requested: لقد قُمتَ بإرسال طلب متابَعة إلى هذا الحساب مِن قَبل
-    error: يا للأسف، وقع هناك خطأ إثر عملية البحث عن الحساب عن بعد
-    follow: اتبع
-    follow_request: 'لقد قمت بإرسال طلب متابعة إلى:'
-    following: 'مرحى! أنت الآن تتبع:'
-    post_follow:
-      close: أو يمكنك إغلاق هذه النافذة.
-      return: اظهر الملف التعريفي للمستخدم
-      web: واصل إلى الويب
-    title: إتباع %{acct}
   challenge:
     confirm: واصل
     hint_html: "<strong>توصية:</strong> لن نطلب منك ثانية كلمتك السرية في غضون الساعة اللاحقة."
@@ -1138,6 +1141,9 @@ ar:
       your_appeal_rejected: تم رفض طعنك
   domain_validator:
     invalid_domain: ليس بإسم نطاق صالح
+  edit_profile:
+    other: أخرى
+    safety_and_privacy: الأمان والخصوصية
   errors:
     '400': الطلب الذي قدمته غير صالح أو أنّ شكله غير سليم.
     '403': ليس لك الصلاحيات الكافية لعرض هذه الصفحة.
@@ -1225,7 +1231,9 @@ ar:
         title: الرسائل المصفّاة
   generic:
     all: الكل
+    cancel: إلغاء
     changes_saved_msg: تم حفظ التعديلات بنجاح!
+    confirm: تأكيد
     copy: نسخ
     delete: احذف
     deselect: إلغاء تحديد الكل
@@ -1242,8 +1250,14 @@ ar:
       zero: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
   imports:
     errors:
+      empty: ملف CSV فارغ
+      incompatible_type: غير متوافق مع نوع الاستيراد المحدد
       invalid_csv_file: 'ملف CSV غير صالح. خطأ: %{error}'
       over_rows_processing_limit: يحتوي على أكثر من %{count} صف
+      too_large: الملف كبير جدًا
+    failures: فشل
+    imported: مستورد
+    mismatched_types_warning: يبدو أنك اخترت نوعًا خاطئًا لهذا الاستيراد، تأكد من فضلك.
     modes:
       merge: دمج
       merge_long: الإبقاء علي التسجيلات الحالية وإضافة الجديدة
@@ -1298,6 +1312,9 @@ ar:
     failed_sign_in_html: فشل محاولة تسجيل الدخول مع %{method} من %{ip} (%{browser})
     successful_sign_in_html: تم تسجيل الدخول بنجاح مع %{method} من %{ip} (%{browser})
     title: تاريخ المصادقة
+  mail_subscriptions:
+    unsubscribe:
+      complete: إلغاء الاشتراك
   media_attachments:
     validations:
       images_and_video: ليس بالإمكان إرفاق فيديو في منشور يحتوي مسبقا على صور
@@ -1592,7 +1609,6 @@ ar:
     show_newer: إظهار أحدث
     show_older: إظهار أقدم
     show_thread: اعرض خيط المحادثة
-    sign_in_to_participate: قم بتسجيل الدخول للمشاركة في هذه المحادثة
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: مباشرة
@@ -1638,8 +1654,6 @@ ar:
     min_reblogs: إبقاء المشاركات المعززة أكثر من
     min_reblogs_hint: لن تُحذف أي من منشوراتك التي أعيد مشاركتها أكثر من هذا العدد من المرات. اتركه فارغاً لحذف المنشورات بغض النظر عن عدد إعادات المشاركة
   stream_entries:
-    pinned: منشور مثبّت
-    reblogged: شارَكَه
     sensitive_content: محتوى حساس
   strikes:
     errors:

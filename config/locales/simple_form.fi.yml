@@ -2,6 +2,10 @@
 fi:
   simple_form:
     hints:
+      account:
+        display_name: Koko nimesi tai lempinimesi.
+        fields: Kotisivusi, pronominit, ikä, mitä ikinä haluatkin.
+        note: 'Voit @mainita muita käyttäjiä tai #aihetunnisteita.'
       account_alias:
         acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, josta haluat siirtyä
       account_migration:
@@ -11,7 +15,7 @@ fi:
         title: Valinnainen. Ei näy vastaanottajalle
       admin_account_action:
         include_statuses: Käyttäjä näkee mitkä viestit johtivat toimenpiteeseen tai varoitukseen
-        send_email_notification: Käyttäjä saa selityksen mitä tapahtui hänen tililleen
+        send_email_notification: Käyttäjä saa selvityksen siitä, mitä hänen tililleen tapahtui
         text_html: Valinnainen. Voit käyttää julkaisun syntaksia. Voit <a href="%{path}">lisätä varoitusasetuksia</a> säästääksesi aikaa
         type_html: Valitse mitä teet käyttäjälle <strong>%{acct}</strong>
         types:
@@ -195,8 +199,7 @@ fi:
         setting_always_send_emails: Lähetä aina sähköposti-ilmoituksia
         setting_auto_play_gif: Toista GIF-animaatiot automaattisesti
         setting_boost_modal: Kysy vahvistus ennen tehostusta
-        setting_crop_images: Rajaa kuvat avaamattomissa tuuttauksissa 16:9 kuvasuhteeseen
-        setting_default_language: Julkaisujen kieli
+        setting_default_language: Viestien kieli
         setting_default_privacy: Viestin näkyvyys
         setting_default_sensitive: Merkitse media aina arkaluontoiseksi
         setting_delete_modal: Kysy vahvistusta ennen viestin poistamista
@@ -295,6 +298,7 @@ fi:
         usable: Salli julkaisujen käyttää tätä aihetunnistetta
       user:
         role: Rooli
+        time_zone: Aikavyöhyke
       user_role:
         color: Merkin väri
         highlighted: Näyttä rooli merkkinä käyttäjäprofiileissa

@@ -17,7 +17,6 @@ class UserSettings
   setting :default_privacy, default: nil, in: %w(public unlisted private)
 
   namespace :web do
-    setting :crop_images, default: true
     setting :advanced_layout, default: false
     setting :trends, default: true
     setting :use_blurhash, default: true

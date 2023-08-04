@@ -389,6 +389,15 @@ sr:
       undo: Забрани федерацију са доменом
     domain_blocks:
       add_new: Додај нови блок домена
+      confirm_suspension:
+        cancel: Откажи
+        confirm: Обустави
+        permanent_action: Поништавање обуставе неће вратити никакве податке или однос.
+        preamble_html: Обуставићете <strong>%{domain}</strong> и његове поддомене.
+        remove_all_data: Ово ће уклонити сав садржај, медије и податке профила за налоге овог домена са вашег сервера.
+        stop_communication: Ваш сервер ће престати да комуницира са овим серверима.
+        title: Потврди блокирање домена за %{domain}
+        undo_relationships: Ово ће поништити сваки однос праћења између налога ових сервера и вашег.
       created_msg: Блокирање домена се обрађује
       destroyed_msg: Блокирање домена је опозвано
       domain: Домен
@@ -745,6 +754,9 @@ sr:
       branding:
         preamble: Брендирање Вашег сервера га издваја од других сервера на мрежи. Ове информације могу бити приказане у разним окружењима, попут Мастодоновог веб интерфејса, нативних апликација, у прегледима линкова на другим серверима и у апликацијама за размену порука, итд. Из овог разлога, најбоље је да ове информације буду кратке, јасне и концизне.
         title: Брендирање
+      captcha_enabled:
+        desc_html: Ово се ослања на екстерне скрипте из hCaptcha, што може представљати забринутост за безбедност и приватност. Поред тога, <strong>ово може учинити процес регистрације знатно мање доступним неким (посебно особама са инвалидитетом)</strong>. Из ових разлога, размотрите алтернативне мере као што је регистрација заснована на одобрењу или на позиву.
+        title: Захтевај од нових корисника да реше CAPTCHA да би потврдили свој налог
       content_retention:
         preamble: Контролишите како се садржај генерисан од стране корисника складишти на Мастодону.
         title: Задржавање садржаја
@@ -979,11 +991,11 @@ sr:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Свако може допринети.
     sensitive_content: Осетљив садржај
-    toot_layout: Распоред објава
   application_mailer:
     notification_preferences: Промени преференце Е-поште
     salutation: Поштовани %{name},
     settings: 'Промени подешавања е-поште: %{link}'
+    unsubscribe: Одјави се
     view: 'Погледај:'
     view_profile: Погледај налог
     view_status: Погледај статус
@@ -997,6 +1009,10 @@ sr:
     your_token: Ваш приступни токен
   auth:
     apply_for_account: Затражите налог
+    captcha_confirmation:
+      help_html: Ако имате проблема са решавањем CAPTCHA, можете нас контактирати преко %{email} и можемо вам помоћи.
+      hint_html: Само још једна ствар! Морамо да потврдимо да сте људско биће (ово је да бисмо спречили нежељену пошту!). Решите CAPTCHA испод и кликните на „Настави”.
+      title: Безбедоносна провера
     confirmations:
       wrong_email_hint: Ако та имејл адреса није исправна, можете је променити у подешавањима налога.
     delete_account: Брисање налога
@@ -1033,8 +1049,11 @@ sr:
     rules:
       accept: Прихвати
       back: Назад
+      invited_by: 'Можете се придружити %{domain} захваљујући позивници коју сте добили од:'
       preamble: Ово су правила која су успоставили и која спроводе модератори сервера %{domain}.
+      preamble_invited: Пре него што наставите, размотрите основна правила која су поставили модератори %{domain}.
       title: Нека основна правила.
+      title_invited: Позвани сте.
     security: Безбедност
     set_new_password: Постави нову лозинку
     setup:
@@ -1059,18 +1078,6 @@ sr:
       view_strikes: Погледајте претходне преступе уписане на Ваше име
     too_fast: Формулар је поднет пребрзо, покушајте поново.
     use_security_key: Користите сигурносни кључ
-  authorize_follow:
-    already_following: Већ пратите овај налог
-    already_requested: Већ сте послали захтев за праћење том налогу
-    error: Нажалост, десила се грешка при тражењу удаљеног налога
-    follow: Запрати
-    follow_request: 'Послали сте захтев за праћењен за:'
-    following: 'Сјајно! Сада пратите:'
-    post_follow:
-      close: Или можете затворити овај прозор.
-      return: Врати се на налог овог корисника
-      web: Иди на веб
-    title: Запрати %{acct}
   challenge:
     confirm: Настави
     hint_html: "<strong>Савет:</strong> Нећемо Вас питати за лозинку поново у наредних сат времена."
@@ -1147,6 +1154,11 @@ sr:
       your_appeal_rejected: Ваша жалба је одбијена
   domain_validator:
     invalid_domain: нелегитимно име домена
+  edit_profile:
+    basic_information: Основне информације
+    hint_html: "<strong>Прилагодите шта људи виде на вашем јавном профилу и поред ваших објава.</strong> Већа је вероватноћа да ће вас други пратити и комуницирати са вама када имате попуњен профил и слику профила."
+    other: Остало
+    safety_and_privacy: Сигурност и приватност
   errors:
     '400': Захтев који сте поднели је био нелегитиман или у погрешном формату.
     '403': Немате дозвола да видите ову страну.
@@ -1240,7 +1252,9 @@ sr:
       few: Све <strong>%{count}</strong> ставке које се поклапају са Вашом претрагом су изабране.
       one: "<strong>%{count}</strong> ставка која се поклапа са Вашом претрагом је изабрана."
       other: Свих <strong>%{count}</strong> ставки које се поклапају са Вашом претрагом су изабране.
+    cancel: Откажи
     changes_saved_msg: Измене успешно сачуване!
+    confirm: Потврди
     copy: Копирај
     delete: Избриши
     deselect: Поништи све изборе
@@ -1258,20 +1272,60 @@ sr:
       other: Нешто није баш како треба! Прегледајте %{count} грешака испод
   imports:
     errors:
+      empty: Празна CSV датотека
+      incompatible_type: Некомпатибилно са изабраним типом увоза
       invalid_csv_file: 'Неисправан CSV фајл. Грешка: %{error}'
       over_rows_processing_limit: садржи више од %{count} редова
+      too_large: Датотека је превелика
+    failures: Неуспеси
+    imported: Увезено
+    mismatched_types_warning: Изгледа да сте можда изабрали погрешан тип за овај увоз, проверите још једном.
     modes:
       merge: Стапање
       merge_long: Задржите постојеће записе и додајте нове
       overwrite: Замени
       overwrite_long: Замени тренутне записе новима
+    overwrite_preambles:
+      blocking_html: Управо ћете <strong>заменити своју листу блокираних</strong> са до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
+      bookmarks_html: Управо ћете <strong>заменити своје обележиваче</strong> са до <strong>%{total_items} објава</strong> из <strong>%{filename}</strong>.
+      domain_blocking_html: Управо ћете <strong>заменити своју листу блокираних домена</strong> са до <strong>%{total_items} домена</strong> из <strong>%{filename}</strong>.
+      following_html: Управо ћете <strong>пратити</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong> and <strong>и престати са праћењем било кога другог</strong>.
+      lists_html: Спремате се да <strong>замените своје листе</strong> садржајем од <strong>%{filename}</strong>. До <strong>%{total_items} налога</strong> ће бити додато на нове листе.
+      muting_html: Управо ћете <strong>заменити своју листу игнорисаних налога</strong> са до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Управо ћете <strong>блокирати</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
+      bookmarks_html: Управо ћете додати до <strong>%{total_items} објава</strong> из <strong>%{filename}</strong> у ваше <strong>обележиваче</strong>.
+      domain_blocking_html: Управо ћете <strong>блокирати</strong> до <strong>%{total_items} домена</strong> из <strong>%{filename}</strong>.
+      following_html: Управо ћете <strong>пратити</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
+      lists_html: Спремате се да додате до <strong>%{total_items} налога</strong> од <strong>%{filename}</strong> на своје <strong>листе</strong>. Нове листе ће бити креиране ако не постоји листа за додавање.
+      muting_html: Управо ћете <strong>игнорисати</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
     preface: Можете увести податке које сте извезли са друге инстанце, као што су листе људи које сте пратили или блокирали.
+    recent_imports: Недавни увози
+    states:
+      finished: Завршено
+      in_progress: У току
+      scheduled: Планирано
+      unconfirmed: Непотврђено
+    status: Статус
     success: Ваши подаци су успешно отпремљени и биће обрађени ускоро
+    time_started: Започето у
+    titles:
+      blocking: Увоз блокираних налога
+      bookmarks: Увоз обележивача
+      domain_blocking: Увоз блокираних домена
+      following: Увоз праћених налога
+      lists: Увоз листа
+      muting: Увоз игнорисаних налога
+    type: Тип увоза
+    type_groups:
+      constructive: Праћења и обележивачи
+      destructive: Блокирања и игнорисања
     types:
       blocking: Листа блокирања
       bookmarks: Обележивачи
       domain_blocking: Листа блокираних домена
       following: Листа пратилаца
+      lists: Листе
       muting: Листа ућутканих
     upload: Отпреми
   invites:
@@ -1311,6 +1365,21 @@ sr:
     failed_sign_in_html: Неуспешан покушај пријављивања путем %{method} са %{ip} (%{browser})
     successful_sign_in_html: Успешан покушај пријављивања путем %{method} са %{ip} (%{browser})
     title: Историја аутентификације
+  mail_subscriptions:
+    unsubscribe:
+      action: Да, одјави ме
+      complete: Одјављен
+      confirmation_html: Да ли сте сигурни да желите да се одјавите од примања %{type} за Mastodon на %{domain} на своју е-пошту на %{email}? Увек можете поново да се пријавите у својим <a href="%{settings_path}">подешавањима обавештења путем е-поште</a>.
+      emails:
+        notification_emails:
+          favourite: омиљене е-поште за обавештења
+          follow: омиљене е-поште за праћења
+          follow_request: е-поште за захтеве за праћења
+          mention: е-поште за обавештење помињања
+          reblog: е-поште за обавештење подржавања
+      resubscribe_html: Ако сте се грешком одјавили, можете поново да се пријавите у својим <a href="%{settings_path}">подешавањима обавештења путем е-поште</a>.
+      success_html: Више нећете добијати %{type} за Mastodon на %{domain} на своју е-пошту на %{email}.
+      title: Одјави се
   media_attachments:
     validations:
       images_and_video: Не може да се прикачи видео на статус који већ има слике
@@ -1426,6 +1495,7 @@ sr:
       expired: Анкета је већ завршена
       invalid_choice: Изабрана опција не постоји
       over_character_limit: не може бити дуже од по %{max} карактера
+      self_vote: Не можете гласати у сопственим анкетама
       too_few_options: мора имати више од једне опције
       too_many_options: не може да садржи више од %{max} опција
   preferences:
@@ -1587,7 +1657,6 @@ sr:
     show_newer: Никад не приказуј
     show_older: Прикажи старије
     show_thread: Прикажи низ
-    sign_in_to_participate: Пријавите се да учествујете у разговору
     title: "%{name}: „%{quote}”"
     visibilities:
       direct: Директно
@@ -1633,8 +1702,6 @@ sr:
     min_reblogs: Задржи објаве подржане барем
     min_reblogs_hint: Не брише ниједну вашу објаву која је била подржана најмање оволико пута. Оставите празно за брисање објава без обзира на њихов број подржавања
   stream_entries:
-    pinned: Закачена објава
-    reblogged: подржано
     sensitive_content: Осетљив садржај
   strikes:
     errors:
@@ -1735,7 +1802,12 @@ sr:
     seamless_external_login: Пријављени сте путем спољашње услуге, тако да лозинка и подешавања Е-поште нису доступни.
     signed_in_as: 'Пријављен/а као:'
   verification:
+    extra_instructions_html: <strong>Савет:</strong>Веза на вашем веб сајту може да буде невидљива. Важан део је <code>rel="me"</code> који спречава лажно представљање на веб сајтовима са садржајем који генерише корисник. Можете чак да користите ознаку <code>везе</code> у заглављу странице уместо <code>а</code>, али HTML мора бити доступан без извршавања JavaScript-а.
+    here_is_how: Ево како
+    hint_html: "<strong>Верификација вашег идентитета на Mastodon-у је за свакога.</strong> Засновано на отвореним веб стандардима, сада и заувек бесплатно. Све што вам треба је лични веб сајт по коме вас људи препознају. Када се повежете са овим веб сајтом са свог профила, проверићемо да ли је веб сајт повезан са вашим профилом и на њему ћемо приказати визуелни индикатор."
+    instructions_html: Копирајте и налепите код испод у HTML свог веб сајта. Затим додајте адресу свог веб сајта у једно од додатних поља на свом профилу са картице „Уреди профил” и сачувајте промене.
     verification: Провера
+    verified_links: Ваше верификоване везе
   webauthn_credentials:
     add: Додајте нови сигурносни кључ
     create:

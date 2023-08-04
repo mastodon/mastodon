@@ -772,7 +772,6 @@ lv:
           approved: Reģistrācijai nepieciešams apstiprinājums
           none: Neviens nevar reģistrēties
           open: Jebkurš var reģistrēties
-      title: Servera Iestatījumi
     site_uploads:
       delete: Dzēst augšupielādēto failu
       destroyed_msg: Vietnes augšupielāde ir veiksmīgi izdzēsta!
@@ -979,7 +978,6 @@ lv:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Ikviens var piedalīties.
     sensitive_content: Sensitīvs saturs
-    toot_layout: Ziņas izskats
   application_mailer:
     notification_preferences: Mainīt e-pasta uztādījumus
     salutation: "%{name},"
@@ -1059,18 +1057,6 @@ lv:
       view_strikes: Skati iepriekšējos brīdinājumus par savu kontu
     too_fast: Veidlapa ir iesniegta pārāk ātri, mēģini vēlreiz.
     use_security_key: Lietot drošības atslēgu
-  authorize_follow:
-    already_following: Tu jau seko šim kontam
-    already_requested: Tu jau esi nosūtījis sekošanas pieteikumu šim kontam
-    error: Diemžēl, meklējot attālināto kontu, radās kļūda
-    follow: Sekot
-    follow_request: 'Tu esi nosūtījis sekošanas pieteikumu:'
-    following: 'Veiksmīgi! Tu tagad seko:'
-    post_follow:
-      close: Vai vienkārši aizver šo logu.
-      return: Parādīt lietotāja profilu
-      web: Doties uz tīmekli
-    title: Sekot %{acct}
   challenge:
     confirm: Turpināt
     hint_html: "<strong>Padoms:</strong> Nākamās stundas laikā mēs tev vairs neprasīsim paroli."
@@ -1240,7 +1226,9 @@ lv:
       one: Atlasīts <strong>%{count}</strong> vienums, kas atbilst tavam meklēšanas vaicājumam.
       other: Atlasīti visi <strong>%{count}</strong> vienumi, kas atbilst tavam meklēšanas vaicājumam.
       zero: Atlasīts <strong>%{count}</strong> vienumu, kas atbilst tavam meklēšanas vaicājumam.
+    cancel: Atcelt
     changes_saved_msg: Izmaiņas veiksmīgi saglabātas!
+    confirm: Apstiprināt
     copy: Kopēt
     delete: Dzēst
     deselect: Atcelt visu atlasi
@@ -1258,15 +1246,51 @@ lv:
       zero: "%{count} kļūdu"
   imports:
     errors:
+      empty: Tukšs CSV fails
+      incompatible_type: Nesavietojams ar izvēlēto importēšanas veidu
       invalid_csv_file: 'Nederīgs CSV fails. Kļūda: %{error}'
       over_rows_processing_limit: satur vairāk, nekā %{count} rindas
+      too_large: Fails ir pārāk liels
+    failures: Kļūmes
+    imported: Importēti
+    mismatched_types_warning: Šķiet, ka šim importam esi izvēlējies nepareizu veidu. Lūdzu, pārbaudi vēlreiz.
     modes:
       merge: Apvienot
       merge_long: Saglabāt esošos ierakstus un pievienot jaunus
       overwrite: Pārrakstīt
       overwrite_long: Nomainīt pašreizējos ierakstus ar jauniem
+    overwrite_preambles:
+      blocking_html: Tu gatavojies <strong>aizstāt savu bloķēto sarakstu</strong> ar līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
+      bookmarks_html: Tu gatavojies <strong>aizstāt savas bloķētās izlases</strong> ar līdz pat <strong>%{total_items} ziņām</strong> no <strong>%{filename}</strong>.
+      domain_blocking_html: Tu gatavojies <strong>aizstāt savu bloķēto domēnu sarakstu</strong> ar līdz pat <strong>%{total_items} domēniem</strong> no <strong>%{filename}</strong>.
+      following_html: Tu gatavojies <strong>sekot</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong> un <strong>pārtrauksi sekot citiem</strong>.
+      muting_html: Tu gatavojies <strong>aizstāt savu noklusināto kontu sarakstu</strong> ar līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Tu gatavojies <strong>bloķēt</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
+      bookmarks_html: Tu gatavojies pievienot līdz pat <strong>%{total_items} ziņām</strong> no <strong>%{filename}</strong> savām <strong>grāmatzīmēm</strong>.
+      domain_blocking_html: Tu gatavojies <strong>bloķēt</strong> līdz pat <strong>%{total_items} domēniem</strong> no <strong>%{filename}</strong>.
+      following_html: Tu gatavojies <strong>sekot</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
+      muting_html: Tu gatavojies <strong>noklusināt</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
     preface: Tu vari importēt datus, kurus esi eksportējis no cita servera, piemēram, to personu sarakstu, kurām tu seko vai kuras bloķē.
+    recent_imports: Nesen importēts
+    states:
+      finished: Pabeigts
+      in_progress: Procesā
+      scheduled: Ieplānots
+      unconfirmed: Neapstiprināti
+    status: Statuss
     success: Tavi dati tika veiksmīgi augšupielādēti un tiks apstrādāti noteiktajā laikā
+    time_started: Sākuma laiks
+    titles:
+      blocking: Importē bloķētos kontus
+      bookmarks: Importē grāmatzīmes
+      domain_blocking: Importē bloķētos domēnus
+      following: Importē sekotos kontus
+      muting: Importē noklusinātos kontus
+    type: Importa veids
+    type_groups:
+      constructive: Seko un Grāmatzīmes
+      destructive: Bloķētie un noklusinātie
     types:
       blocking: Bloķēšanas saraksts
       bookmarks: Grāmatzīmes
@@ -1587,7 +1611,6 @@ lv:
     show_newer: Nekad nerādīt
     show_older: Rādīt senākus
     show_thread: Rādīt tematu
-    sign_in_to_participate: Lai piedalītos sarunā, pieraksties
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Tiešs
@@ -1633,8 +1656,6 @@ lv:
     min_reblogs: Saglabāt ziņas izceltas vismaz
     min_reblogs_hint: Neizdzēš nevienu no tavām ziņām, kas ir izceltas vismaz tik reižu. Atstāj tukšu, lai dzēstu ziņas neatkarīgi no to izcēlumu skaita
   stream_entries:
-    pinned: Piespraustā ziņa
-    reblogged: izceltie
     sensitive_content: Sensitīvs saturs
   strikes:
     errors:

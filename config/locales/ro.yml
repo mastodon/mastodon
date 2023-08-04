@@ -408,7 +408,6 @@ ro:
     localization:
       guide_link_text: Toată lumea poate contribui.
     sensitive_content: Conținut sensibil
-    toot_layout: Aspect postare
   application_mailer:
     notification_preferences: Modifică preferințe e-mail
     settings: 'Modifică preferințe e-mail: %{link}'
@@ -446,18 +445,6 @@ ro:
       confirming: Se așteaptă finalizarea confirmării prin e-mail.
       pending: Cererea dvs. este în curs de revizuire de către personalul nostru. Este posibil să dureze ceva timp. Veți primi un e-mail dacă cererea dvs. este aprobată.
       redirecting_to: Contul dvs. este inactiv deoarece în prezent se redirecționează către %{acct}.
-  authorize_follow:
-    already_following: Urmărești deja acest cont
-    already_requested: Ați trimis deja o cerere de urmărire către acel cont
-    error: Din păcate a apărut o eroare
-    follow: Urmărește
-    follow_request: 'Ai trimis o cerere de urmărire către:'
-    following: 'Gata! De acum urmărești:'
-    post_follow:
-      close: Sau, poți închide această fereastră.
-      return: Arată profilul utilizatorului
-      web: Mergi la web
-    title: Urmărește %{acct}
   challenge:
     confirm: Continuă
     hint_html: "<strong>Sfat:</strong> Nu vă vom mai cere parola pentru următoarea oră."
@@ -491,8 +478,10 @@ ro:
       email_change_html: Puteți <a href="%{path}">schimba adresa de e-mail</a> fără a șterge contul dvs
       email_contact_html: Dacă tot nu ajunge, puteți trimite e-mail la <a href="mailto:%{email}">%{email}</a> pentru ajutor
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Nu ai permisiunea să vizitezi această pagină.
     '404': Pagina pe care o cauți nu există.
+    '406': This page is not available in the requested format.
     '410': Pagina pe care o cauți nu mai există.
     '422':
       content: Verificarea securității a eșuat. Ai blocat cookiurile?
@@ -501,6 +490,7 @@ ro:
     '500':
       content: Ne pare rău, dar ceva a funcționat greșit. Încercați din nou!?
       title: Această pagină nu este corectă
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Pentru a utiliza o aplicație web Mastodon, te rog activează JavaScript. Alternativ, încearcă una din <a href="%{apps_path}">aplicațiile native</a> Mastodon pentru platforma ta.
   exports:
     archive_takeout:
@@ -676,7 +666,6 @@ ro:
       vote: Votează
     show_more: Arată mai mult
     show_thread: Arată discuția
-    sign_in_to_participate: Conectează-te pentru a participa la conversație
     visibilities:
       private: Doar urmăritorii
       private_long: Arată doar urmăritorilor
@@ -684,8 +673,6 @@ ro:
       unlisted: Nelistat
       unlisted_long: Toată lumea poate vedea, dar nu este listată pe fluxurile publice
   stream_entries:
-    pinned: Postare fixată
-    reblogged: impulsionată
     sensitive_content: Conținut sensibil
   tags:
     does_not_match_previous_name: nu se potrivește cu numele anterior

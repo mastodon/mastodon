@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 export const StatusesCounter = (
   displayNumber: React.ReactNode,
-  pluralReady: number
+  pluralReady: number,
 ) => (
   <FormattedMessage
     id='account.statuses_counter'
@@ -18,7 +18,7 @@ export const StatusesCounter = (
 
 export const FollowingCounter = (
   displayNumber: React.ReactNode,
-  pluralReady: number
+  pluralReady: number,
 ) => (
   <FormattedMessage
     id='account.following_counter'
@@ -32,7 +32,7 @@ export const FollowingCounter = (
 
 export const FollowersCounter = (
   displayNumber: React.ReactNode,
-  pluralReady: number
+  pluralReady: number,
 ) => (
   <FormattedMessage
     id='account.followers_counter'

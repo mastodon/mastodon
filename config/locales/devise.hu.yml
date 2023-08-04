@@ -12,38 +12,38 @@ hu:
       last_attempt: Már csak egy próbálkozásod maradt, mielőtt a fiókodat zároljuk.
       locked: A fiókodat zároltuk.
       not_found_in_database: Helytelen %{authentication_keys} vagy jelszó.
-      pending: A fiók még áttekintés alatt áll.
-      timeout: A munkameneted lejárt. Kérjük, a folytatáshoz jelentkezz be újra.
+      pending: A fiókod még engedélyezésre vár.
+      timeout: A munkameneted lejárt. A folytatáshoz jelentkezz be újra.
       unauthenticated: A folytatás előtt be kell jelentkezned vagy regisztrálnod kell.
-      unconfirmed: A folytatás előtt meg kell erősíteni az email címet.
+      unconfirmed: A folytatás előtt meg kell erősítened az emailcímedet.
     mailer:
       confirmation_instructions:
-        action: Email cím ellenőrzése
+        action: Emailcím ellenőrzése
         action_with_app: 'Megerősítés majd visszatérés: %{app}'
-        explanation: Ezzel az email címmel kezdeményeztek regisztrációt %{host} kiszolgálón. Csak egy kattintás, és a felhasználói fiók bekapcsolásra kerül. Ha a regisztráció kezdeményezése téves volt, tekintsük ezt az emailt tárgytalannak.
-        explanation_when_pending: Ezzel az email címmel meghívás kérés történt %{host} kiszolgálón. Az email cím megerősítése után a jelentkezés áttekintésre kerül. Ennek ideje alatt nem lehet belépni. Ha a jelentkezés elutasításra kerül, az adatok törlésre kerülnek, más teendő nincs. Ha a kérelem kezdeményezése téves volt, tekintsük ezt az emailt tárgytalannak.
-        extra_html: Tekintsük át a <a href="%{terms_path}">a kiszolgáló szabályait</a> és a <a href="%{policy_path}">felhasználási feltételeket</a>.
+        explanation: Ezzel az emailcímmel kezdeményeztél egy regisztrációt a %{host} kiszolgálón. Csak egy kattintásra vagy az aktiválástól. Ha a regisztrációt nem te indítottad, tekintsd ezt az emailt tárgytalannak.
+        explanation_when_pending: Ezzel az email címmel meghívást kértél a %{host} kiszolgálóra. Amint az emailcímedet megerősítetted, áttekintjük a jelentkezésedet. Ennek ideje alatt bejelentkezhetsz az adataid módosításához vagy a fiókod törléséhez, de a funkciók többségét nem használhatod a fiókod jóváhagyásáig. Ha a jelentkezésed elutasításra kerül, az adataid törlésre kerülnek, így nincs más teendőd. Ha nem te kezdeményezted ezt, tekintsd ezt az emailt tárgytalannak.
+        extra_html: Tekintsd át a <a href="%{terms_path}">a kiszolgáló szabályait</a> és <a href="%{policy_path}">a felhasználási feltételeket</a>.
         subject: 'Mastodon: Megerősítési utasítások: %{instance}'
-        title: Email cím megerősítése
+        title: Emailcím megerősítése
       email_changed:
         explanation: 'A fiókodhoz tartozó e-mail cím a következőre változik:'
         extra: Ha nem változtattad meg az e-mail címed, akkor valószínű, hogy valaki hozzáférhetett a fiókodhoz. Kérjük, azonnal változtasd meg a jelszavadat, vagy lépj kapcsolatba a szerver adminisztrátorával, ha ki vagy zárva a fiókodból.
-        subject: 'Mastodon: a fiókhoz tartozó email cím megváltoztatásra került'
-        title: Új email cím
+        subject: 'Mastodon: Email megváltozott'
+        title: Új emailcím
       password_change:
-        explanation: A fiókhoz tartozó jelszó megváltoztatásra került.
-        extra: Ha a fiók jelszavának módosítási kérelme téves volt, akkor valaki hozzáférhetett a fiókhoz. Legjobb, a jelszó azonnali megváltoztatása vagy ha kizárásra kerültünk a fiókból, vegyük fel a kapcsolatot a kiszolgáló adminisztrátorával.
+        explanation: A fiókodhoz tartozó jelszót megváltoztattuk.
+        extra: Ha nem te kérted a fiókod jelszavának módosítását, akkor valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot a kiszolgálód adminisztrátorával.
         subject: 'Mastodon: A jelszó megváltoztatásra került'
         title: A jelszó megváltoztatásra került
       reconfirmation_instructions:
-        explanation: Az email cím megváltoztatásához meg kell erősíteni az új email címet.
-        extra: Amennyiben a kezdeményezés téves volt, tekintsük ezt az emailt tárgytalannak. A Mastodon fiókhoz tartozó email cím változatlan marad a fenti hivatkozásra kattintásig.
+        explanation: Az emailcím megváltoztatásához meg kell erősítened az új címet.
+        extra: Amennyiben nem te kezdeményezted ezt a módosítást, kérjük tekintsd ezt az emailt tárgytalannak. A Mastodon fiókodhoz tartozó emailcímed változatlan marad mindaddig, amíg rá nem kattintasz a fenti linkre.
         subject: 'Mastodon: Email cím megerősítése: %{instance}'
-        title: Email cím megerősítése
+        title: Emailcím megerősítése
       reset_password_instructions:
         action: Jelszó módosítása
-        explanation: A fiókhoz tartozó jelszó módosítása kezdeményezésre került.
-        extra: Amennyiben a kezdeményezés téves volt, tekintsük ezt az emailt tárgytalannak. A Mastodon fiókhoz tartozó jelszó változatlan marad a fenti hivatkozásra kattintásig.
+        explanation: A fiókodhoz tartozó jelszó módosítását kezdeményezted.
+        extra: Amennyiben nem te kezdeményezted a módosítást, kérjük tekintsd ezt az emailt tárgytalannak. A jelszavad változatlan marad mindaddig, amíg újat nem hozol létre a fenti linkre kattintva.
         subject: 'Mastodon: Jelszó visszaállítási lépések'
         title: Jelszó visszaállítása
       two_factor_disabled:
@@ -62,47 +62,47 @@ hu:
         subject: 'Mastodon: Feloldási lépések'
       webauthn_credential:
         added:
-          explanation: A következő biztonsági kulcs a fiókhoz hozzáadásra került
+          explanation: A következő biztonsági kulcsot hozzáadtuk a fiókodhoz
           subject: 'Mastodon: Új biztonsági kulcs'
           title: Új biztonsági kulcs lett hozzáadva
         deleted:
-          explanation: A következő biztonsági kulcs törlésre került a fiókból
+          explanation: A következő biztonsági kulcsot töröltük a fiókodból
           subject: 'Mastodon: A biztonsági kulcs törlésre került'
-          title: Az egyik biztonsági kulcs törlésre került
+          title: Az egyik biztonsági kulcsodat törölték
       webauthn_disabled:
-        explanation: A biztonsági kulccsal történő hitelesítés letiltásra kerüt a fióknál. Bejelentkezni csak a párosított TOTP app által generált vezérjellel lehet.
+        explanation: A biztonsági kulccsal történő hitelesítést letiltottuk a fiókodon. Bejelentkezni csak a párosított TOTP app által generált tokennel lehet.
         subject: 'Mastodon: A biztonsági kulccsal történő hitelesítés letiltásra került'
-        title: A bztonsági kulcsok letiltásra kerültek
+        title: A biztonsági kulcsok letiltásra kerültek
       webauthn_enabled:
-        explanation: A biztonsági kulccsal történő hitelesítést engedélyezve lett a fióknál. A biztonsági kulcs mostantól használható a bejelentkezésre.
+        explanation: A biztonsági kulccsal történő hitelesítést engedélyeztük a fiókodon. A biztonsági kulcsodat mostantól használhatod bejelentkezésre.
         subject: 'Mastodon: A biztonsági kulcsos hitelesítés engedélyezésre került'
-        title: A bztonsági kulcsok engedélyezésre kerültek
+        title: A biztonsági kulcsok engedélyezésre kerültek
     omniauth_callbacks:
       failure: Sikertelen hitelesítés %{kind} fiókról, mert "%{reason}".
       success: Sikeres hitelesítés %{kind} fiókról.
     passwords:
-      no_token: Nem lehet hozzáférni ehhez az oldalhoz jelszó visszaállító email nélkül. Ha egy jelszó visszaállító email miatt érkeztünk ide, ellenőrizzük a megadott teljes webcím használatát.
-      send_instructions: Ha az email cím létezik az adatbázisban, néhány perc alatt megérkezik jelszó helyreállítási hivatkozás az email címre. Ellenőrizzük a spam mappát, ha nem érkezett meg ez az email.
-      send_paranoid_instructions: Ha az email cím létezik az adatbázisban, néhány perc alatt megérkezik jelszó helyreállítási hivatkozás az email címre. Ellenőrizzük a spam mappát, ha nem érkezett meg ez az email.
-      updated: A jelszó sikeresen megváltozott. Megtörtént a bejelentkezés.
-      updated_not_active: A jelszó sikeresen megváltoztatásra került.
+      no_token: Nem férhetsz hozzá ehhez az oldalhoz jelszó-visszaállító email nélkül. Ha egy jelszó-visszaállító email hozott ide, ellenőrizd, hogy a teljes megadott URL-t használtad-e.
+      send_instructions: Ha az emailcímed létezik az adatbázisunkban, néhány percen belül kapsz egy jelszó-helyreállítási hivatkozást az emailcímedre. Ellenőrizd a spam mappádat, ha nem kaptad meg ezt az emailt.
+      send_paranoid_instructions: Ha az emailcímed létezik az adatbázisunkban, néhány percen belül kapsz egy jelszó-helyreállítási hivatkozást az emailcímedre. Ellenőrizd a spam mappádat, ha nem kaptad meg ezt az emailt.
+      updated: A jelszavad sikeresen megváltozott. Megtörtént a bejelentkezés.
+      updated_not_active: A jelszavad sikeresen megváltoztatásra került.
     registrations:
-      destroyed: Viszontásátásra! A fiók sikeresen törlésre került. Reméljük hamarosan visszatér.
+      destroyed: Viszlát! A fiókodat sikeresen töröltük. Reméljük hamarosan viszontláthatunk.
       signed_up: Üdvözlünk! Sikeresen regisztráltál.
       signed_up_but_inactive: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókodat még nem aktiválták.
       signed_up_but_locked: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókod le van zárva.
       signed_up_but_pending: Egy megerősítési hivatkozással ellátott üzenetet kiküldtünk az e-mail címedre. Ha kattintasz a hivatkozásra, átnézzük a kérelmedet. Értesítünk, ha jóváhagytuk.
       signed_up_but_unconfirmed: Egy megerősítési hivatkozással ellátott üzenetet kiküldtünk az e-mail címedre. Kérjük használd a hivatkozást a fiókod aktiválásához. Ellenőrizd a spam mappádat, ha nem kaptad meg ezt a levelet.
-      update_needs_confirmation: A fiókodat sikeresen frissítésre került, de szükség van az email cím megerősítésére. Ellenőrizzük az emailt és kövessük a benne levő megerősítési hivatkozást az email cím megerősítéséhez. Ellenőrizzük a levélszemét mappát, ha nemérkezett volna meg ez az email.
-      updated: A fiók sikeresen frissítésre került.
+      update_needs_confirmation: Sikeresen frissítetted a fiókodat, de szükségünk van az e-mail címed megerősítésére. Kérlek ellenőrizd az e-mailedet és kövesd a levélben szereplő megerősítési linket az e-mail címed megerősítéséhez. Ellenőrizd a levélszemét mappád, ha nem kaptál volna ilyen levelet.
+      updated: A fiókod sikeresen frissítésre került.
     sessions:
       already_signed_out: A kijelentkezés sikeres volt.
       signed_in: A bejelentkezés sikeres volt.
       signed_out: A kijelentkezés sikeres volt.
     unlocks:
-      send_instructions: Néhány perc múlva egy email érkezik a fiók feloldásáról. Ellenőrizzük a spam mappát, ha nem érkezett volna meg at email.
-      send_paranoid_instructions: Ha a fiók létezik, pár percen belül egy email érkezik a feloldáshoz szükséges lépésekkel. Ellenőrizzük a levélszemét mappát, ha nem érkezett volna ilyen email.
-      unlocked: A fiók sikeresen feloldásra került. Jelentkezzünk be a folytatáshoz.
+      send_instructions: Pár percen belül egy e-mailt fogsz kapni a feloldáshoz szükséges lépésekkel. Ellenőrizd a levélszemét mappád, ha nem kaptál volna ilyen levelet.
+      send_paranoid_instructions: Ha a fiókod létezik, pár percen belül egy e-mailt fogsz kapni a feloldáshoz szükséges lépésekkel. Ellenőrizd a levélszemét mappád, ha nem kaptál volna ilyen levelet.
+      unlocked: A fiókod sikeresen feloldásra került. Jelentkezz be a folytatáshoz.
   errors:
     messages:
       already_confirmed: már meg lett erősítve, kérjük jelentkezz be

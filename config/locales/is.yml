@@ -382,6 +382,15 @@ is:
       undo: Fjarlægja af lista yfir leyft
     domain_blocks:
       add_new: Bæta við nýrri útilokun á léni
+      confirm_suspension:
+        cancel: Hætta við
+        confirm: Setja í bið
+        permanent_action: Afturköllun biðstöðu mun ekki endurheimta nein gögn né vensl.
+        preamble_html: Þú ert við það að setja <strong>%{domain}</strong> í bið ásamt undirlénum.
+        remove_all_data: Þetta mun fjarlægja allt efni og notendaupplýsingar fyrir aðganga frá þessu léni af þínum vefþjóni.
+        stop_communication: Vefþjónnin þinn mun slíta samskiptum við þessa vefþjóna.
+        title: Staðfesta útilokun á léni fyrir %{domain}
+        undo_relationships: Þetta mun afturkalla öll fylgjendavensl milli aðganaga þessa vefþjóns og þíns.
       created_msg: Útilokun léns er núna í vinnslu
       destroyed_msg: Útilokun léns hefur verið aflétt
       domain: Lén
@@ -731,6 +740,11 @@ is:
       branding:
         preamble: Útlitsleg einkenni aðgreina netþjóninn þinn frá öðrum netþjónum á netkerfinu. Þessar upplýsingar geta birst á margvíslegum stöðum, eins og til dæmis í vefviðmóti Mastodon, einstökum forritum, í forskoðun tengla á öðrum vefsvæðum og innan samskiptaforrita, svo eitthvað sé talið. Þess vegna er vest að þessar upplýsingar séu skýrar, stuttar og tæmandi.
         title: Útlitsleg aðgreining
+      captcha_enabled:
+        desc_html: |-
+          Þetta stuðlast á utanaðkomandi forskriftum frá hCaptcha, sem gæti haft í för með sér öryggisveikleika og vegið að friðhelgi notenda.
+          Aukinheldur <strong> gæti þetta gert nýskráningarferlið óaðgengilegra sumum (sérstaklega fyrir fatlaða)</strong>. Þess vegna er rétt að skoða aðra valmöguleika svo sem nýskráningar háðar samþykki eða boði.
+        title: Nýir notendur munu þurfa að standast Turing skynpróf til að staðfesta notendaaðganginn
       content_retention:
         preamble: Stýrðu hvernig efni frá notendum sé geymt í Mastodon.
         title: Geymsla efnis
@@ -961,11 +975,11 @@ is:
       guide_link: https://crowdin.com/project/mastodon/is
       guide_link_text: Allir geta tekið þátt.
     sensitive_content: Viðkvæmt efni
-    toot_layout: Framsetning færslu
   application_mailer:
     notification_preferences: Breyta kjörstillingum tölvupósts
     salutation: "%{name},"
     settings: 'Breyta kjörstillingum tölvupósts: %{link}'
+    unsubscribe: Taka úr áskrift
     view: 'Skoða:'
     view_profile: Skoða notandasnið
     view_status: Skoða færslu
@@ -979,6 +993,12 @@ is:
     your_token: Aðgangsteiknið þitt
   auth:
     apply_for_account: Biðja um notandaaðgang
+    captcha_confirmation:
+      help_html: Ef þú átt í erfiðleikum með að leysa Turing skynpróf, geturðu hafst samband við okkur á netfanginu %{email} og við munum aðstoða þig.
+      hint_html: |-
+        Bara eitt enn! Við þurfum að ganga úr skugga um að þú sért mennskur (þetta er gert til að draga úr amapósti).
+        Leystu Turing skynprófið og smelltu á "Áfram".
+      title: Öryggisathugun
     confirmations:
       wrong_email_hint: Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
     delete_account: Eyða notandaaðgangi
@@ -1015,8 +1035,11 @@ is:
     rules:
       accept: Samþykkja
       back: Til baka
+      invited_by: 'Þú getur tekið þátt í %{domain} þökk sé boði sem þú fékkst frá:'
       preamble: Þær eru settar og þeim framfylgt af umsjónarmönnum %{domain}.
+      preamble_invited: Áður en haldið er lengra, vinsamlegast kynntu þér reglurnar sem stjórnendur %{domain} hafa sett.
       title: Nokkrar grunnreglur.
+      title_invited: Þér hefur verið boðið.
     security: Öryggi
     set_new_password: Stilla nýtt lykilorð
     setup:
@@ -1041,18 +1064,6 @@ is:
       view_strikes: Skoða fyrri bönn notandaaðgangsins þíns
     too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
     use_security_key: Nota öryggislykil
-  authorize_follow:
-    already_following: Þú ert að þegar fylgjast með þessum aðgangi
-    already_requested: Þú ert þegar búin/n að senda fylgjendabeiðni á þennan notanda
-    error: Því miður, það kom upp villa við að fletta upp fjartengda notandaaðgangnum
-    follow: Fylgjast með
-    follow_request: 'Þú sendir beiðni um að fylgjast með til:'
-    following: 'Tókst! Þú ert núna að fylgjast með:'
-    post_follow:
-      close: Eða að þú getur lokað þessum glugga.
-      return: Birta notandasnið notandans
-      web: Fara á vefinn
-    title: Fylgjast með %{acct}
   challenge:
     confirm: Halda áfram
     hint_html: "<strong>Ábending:</strong> Við munum ekki spyrja þig um lykilorðið aftur næstu klukkustundina."
@@ -1129,6 +1140,11 @@ is:
       your_appeal_rejected: Áfrýjun þinni hefur verið hafnað
   domain_validator:
     invalid_domain: er ekki leyfilegt nafn á léni
+  edit_profile:
+    basic_information: Grunnupplýsingar
+    hint_html: "<strong>Sérsníddu hvað fólk sér á opinbera notandasniðinu þínu og næst færslunum þínum.</strong> Annað fólk er líklegra til að fylgjast með þér og eiga í samskiptum við þig ef þú fyllir út notandasniðið og setur auðkennismynd."
+    other: Annað
+    safety_and_privacy: Öryggi og friðhelgi
   errors:
     '400': Beiðnin sem þú sendir er ógild eða rangt uppsett.
     '403': Þú hefur ekki heimildir til að skoða þessari síðu.
@@ -1217,7 +1233,9 @@ is:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> atriði sem samsvarar leitinni þinni er valið."
       other: Öll <strong>%{count}</strong> atriðin sem samsvara leitinni þinni eru valin.
+    cancel: Hætta við
     changes_saved_msg: Það tókst að vista breytingarnar!
+    confirm: Staðfesta
     copy: Afrita
     delete: Eyða
     deselect: Afvelja allt
@@ -1233,20 +1251,60 @@ is:
       other: Ennþá er ekki alveg allt í lagi! Skoðaðu vel villurnar %{count} hér fyrir neðan
   imports:
     errors:
+      empty: Tóm CSV-skrá
+      incompatible_type: Ekki samhæfanlegt valinni tegund innflutnings
       invalid_csv_file: 'Ógild CSV-skrá. Villa: %{error}'
       over_rows_processing_limit: inniheldur meira en %{count} raðir
+      too_large: Skráin er of stór
+    failures: Mistök
+    imported: Flutt inn
+    mismatched_types_warning: Það lítur út fyrir að þú hafir valið ranga tegund innflutnings, yfirfarðu upplýsingarnar.
     modes:
       merge: Sameina
       merge_long: Halda fyrirliggjandi færslum og bæta við nýjum
       overwrite: Skrifa yfir
       overwrite_long: Skipta út fyrirliggjandi færslum með þeim nýju
+    overwrite_preambles:
+      blocking_html: Þú er í þann mund að fara að <strong>skipta út útilokanalistanum þínum</strong> með allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
+      bookmarks_html: Þú er í þann mund að fara að <strong>skipta út bókamerkjunum þínum</strong> með allt að <strong>%{total_items} færslum</strong> úr <strong>%{filename}</strong>.
+      domain_blocking_html: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokuð lén</strong> með allt að <strong>%{total_items} lénum</strong> úr <strong>%{filename}</strong>.
+      following_html: Þú er í þann mund að fara að <strong>fylgjast með</strong> allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong> og <strong>hætta að fylgjast með öllum öðrum</strong>.
+      lists_html: Þú ert í þann mund að fara að <strong>skipta út listunum þínum</strong> með efninu úr <strong>%{filename}</strong>. Allt að <strong>%{total_items} aðgöngum</strong> verður bætt við nýju listana.
+      muting_html: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokaða aðganga</strong> með allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Þú er í þann mund að fara að <strong>útiloka</strong> allt að <strong>%{total_items} aðganga</strong> úr <strong>%{filename}</strong>.
+      bookmarks_html: Þú er í þann mund að fara að bæta við allt að <strong>%{total_items} færslum</strong> úr <strong>%{filename}</strong> við <strong>bókamerkin</strong> þín.
+      domain_blocking_html: Þú er í þann mund að fara að <strong>útiloka</strong> allt að <strong>%{total_items} lén</strong> úr <strong>%{filename}</strong>.
+      following_html: Þú er í þann mund að fara að <strong>fylgjast með</strong> allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
+      lists_html: Þú ert í þann mund að fara að bæta við allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong> við <strong>listana</strong> þína. Nýir listar verða útbúnir ef ekki finnst neinn listi til að bæta í.
+      muting_html: Þú er í þann mund að fara að <strong>þagga</strong> allt að <strong>%{total_items} aðganga</strong> úr <strong>%{filename}</strong>.
     preface: Þú getur flutt inn gögn sem þú hefur flutt út frá öðrum vefþjóni, svo sem lista yfir fólk sem þú fylgist með eða útilokar.
+    recent_imports: Nýlega flutt inn
+    states:
+      finished: Lokið
+      in_progress: Í vinnslu
+      scheduled: Áætlað
+      unconfirmed: Óstaðfest
+    status: Staða
     success: Það tókst að senda inn gögnin þín og verður unnið með þau þegar færi gefst
+    time_started: Hófst
+    titles:
+      blocking: Flyt inn útilokaða aðganga
+      bookmarks: Flyt inn bókamerki
+      domain_blocking: Flyt inn útilokuð lén
+      following: Flyt inn aðganga sem fylgst er með
+      lists: Flytja inn lista
+      muting: Flyt inn þaggaða aðganga
+    type: Tegund innflutnings
+    type_groups:
+      constructive: Fylgst með og bókamerki
+      destructive: Útilokanir og þagganir
     types:
       blocking: Listi yfir útilokanir
       bookmarks: Bókamerki
       domain_blocking: Listi yfir útilokanir léna
       following: Listi yfir þá sem fylgst er með
+      lists: Listar
       muting: Listi yfir þagganir
     upload: Senda inn
   invites:
@@ -1285,6 +1343,21 @@ is:
     failed_sign_in_html: Misheppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
     successful_sign_in_html: Vel heppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
     title: Auðkenningarferill
+  mail_subscriptions:
+    unsubscribe:
+      action: Já, hætta í áskrift
+      complete: Hætta í áskrift
+      confirmation_html: Ertu viss um að þú viljir hætta áskrift sendinga á %{type} fyrir Mastodon á %{domain} til póstfangsins þíns %{email}? Þú getur alltaf aftur gerst áskrifandi í <a href="%{settings_path}">stillingunum fyrir tilkynningar í tölvupósti</a>.
+      emails:
+        notification_emails:
+          favourite: tilkynningum í tölvupósti um eftirlæti
+          follow: tilkynningum í tölvupósti um fylgjendur
+          follow_request: tilkynningum í tölvupósti um beiðnir um að fylgjast með
+          mention: tilkynningum í tölvupósti um tilvísanir
+          reblog: tilkynningum í tölvupósti um endurbirtingar
+      resubscribe_html: Ef þú hættir áskrift fyrir mistök, geturðu alltaf aftur gerst áskrifandi í <a href="%{settings_path}">stillingunum fyrir tilkynningar í tölvupósti</a>.
+      success_html: Þú munt ekki lengur fá sendingar með %{type} fyrir Mastodon á %{domain} á póstfangið þitt %{email}.
+      title: Taka úr áskrift
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við færslu sem þegar inniheldur myndir
@@ -1400,6 +1473,7 @@ is:
       expired: Könnuninni er þegar lokið
       invalid_choice: Þessi valkostur er ekki til
       over_character_limit: geta ekki verið lengri en %{max} stafir hvert
+      self_vote: Þú getur ekki greitt atkvæði í þínum eigin könnunum
       too_few_options: verður að vera með fleiri en eitt atriði
       too_many_options: getur ekki innihaldið meira en %{max} atriði
   preferences:
@@ -1555,7 +1629,6 @@ is:
     show_newer: Sýna nýrri
     show_older: Sýna eldri
     show_thread: Birta þráð
-    sign_in_to_participate: Skráðu þig inn til að taka þátt í samtalinu
     title: "%{name}: „%{quote}‟"
     visibilities:
       direct: Beint
@@ -1601,8 +1674,6 @@ is:
     min_reblogs: Halda færslum sem eru endurbirtar oftar en
     min_reblogs_hint: Eyðir ekki þínum eigin færslum sem endurbirtar hafa verið þetta oft. Skildu þetta eftir autt til að eyða færslum burtséð frá fjölda endurbirtinga
   stream_entries:
-    pinned: Fest færsla
-    reblogged: endurbirt
     sensitive_content: Viðkvæmt efni
   strikes:
     errors:
@@ -1655,7 +1726,7 @@ is:
       subject: Skráð hefur verið inn á aðganginn þinn frá nýju IP-vistfangi
       title: Ný innskráning
     warning:
-      appeal: Ssenda inn áfrýjun
+      appeal: Senda inn áfrýjun
       appeal_description: Ef þú álítur að um mistök sé að ræða, geturðu sent áfrýjun til umsjónarmanna %{instance}.
       categories:
         spam: Ruslpóstur
@@ -1703,7 +1774,12 @@ is:
     seamless_external_login: Innskráning þín er í gegnum utanaðkomandi þjónustu, þannig að stillingar fyrir lykilorð og tölvupóst eru ekki aðgengilegar.
     signed_in_as: 'Skráð inn sem:'
   verification:
+    extra_instructions_html: <strong>Ábending:</strong> Tengillinn á vefsvæðinu þínu má vera ósýnilegur. Mikilvægi hlutinn er <code>rel="me"</code> sem kemur í veg fyrir auðkennastuld á vefsvæðum með notenda-framleiddu efni. Þú getur meira að segja notað <code>link</code> einindi í haus síðunnar í stað <code>a</code>, en HTML-kóðinn verður að vera aðgengilegur án keyrslu JavaScript.
+    here_is_how: Svona gerum við það
+    hint_html: "<strong>Að sannreyna auðkenni þitt á Mastodon er fyrir alla.</strong> Byggt á opnum vefstöðlum, ókeypis núna og um ókomna tíð. Allt sem þú þarft er þitt eigið persónulegt vefsvæði sem aðrir geta notað til að þekkja þig. Þegar þú tengir á þetta vefsvæði úr notandasniðinu þínu, munum við athuga hvort vefsvæðið tengi til baka í notandasniðiið þitt og birtum þá sýnilegt merki um að svo sé."
+    instructions_html: Afritaðu og límdu kóðann hér fyrir neðan inn í HTML-kóða vefsvæðisins þíns. Bættu síðan slóð vefsvæðisins þíns inn í einn af auka-reitunum í flipanum "Breyta notandasniði" og vistaðu síðan breytingarnar.
     verification: Sannprófun
+    verified_links: Staðfestu tenglarnir þínir
   webauthn_credentials:
     add: Bæta við nýjum öryggislykli
     create:

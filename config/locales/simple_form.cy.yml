@@ -2,6 +2,10 @@
 cy:
   simple_form:
     hints:
+      account:
+        display_name: Eich enw llawn neu'ch enw hwyl.
+        fields: Eich tudalen cartref, rhagenwau, oed, neu unrhyw beth.
+        note: 'Gallwch @grybwyll pobl eraill neu #hashnodau.'
       account_alias:
         acct: Rhowch enwdefnyddiwr@parth y cyfrif y hoffech chi symud ohono
       account_migration:
@@ -130,6 +134,7 @@ cy:
         position: Mae rôl uwch yn penderfynu ar ddatrys gwrthdrawiadau mewn rhai sefyllfaoedd. Dim ond ar rolau â blaenoriaeth is y gellir cyflawni rhai gweithredoedd
       webhook:
         events: Dewiswch ddigwyddiadau i'w hanfon
+        template: Cyfansoddwch eich llwyth tâl JSON eich hun gan ddefnyddio rhyngosod newidiol. Gadewch yn wag ar gyfer JSON rhagosodedig.
         url: I ble bydd digwyddiadau'n cael eu hanfon
     labels:
       account:
@@ -195,7 +200,6 @@ cy:
         setting_always_send_emails: Anfonwch hysbysiadau e-bost bob amser
         setting_auto_play_gif: Chwarae GIFs wedi'u hanimeiddio yn awtomatig
         setting_boost_modal: Dangos deialog cadarnhau cyn rhoi hwb
-        setting_crop_images: Tocio delweddau o fewn postiadau nad ydynt wedi'u hehangu i 16x9
         setting_default_language: Iaith postio
         setting_default_privacy: Preifatrwydd cyhoeddi
         setting_default_sensitive: Marcio cyfryngau fel eu bod yn sensitif bob tro
@@ -295,6 +299,7 @@ cy:
         usable: Caniatáu i bostiadau ddefnyddio'r hashnod hwn
       user:
         role: Rôl
+        time_zone: Cylchfa amser
       user_role:
         color: Lliw bathodyn
         highlighted: Dangos rôl fel bathodyn ar broffiliau defnyddwyr
@@ -303,6 +308,7 @@ cy:
         position: Blaenoriaeth
       webhook:
         events: Digwyddiadau wedi'u galluogi
+        template: Templed llwyth tâl
         url: URL diweddbwynt
     'no': Na
     not_recommended: Heb ei argymell

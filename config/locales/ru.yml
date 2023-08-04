@@ -396,6 +396,15 @@ ru:
       undo: Убрать из белого списка
     domain_blocks:
       add_new: Заблокировать домен
+      confirm_suspension:
+        cancel: Отмена
+        confirm: Приостановить
+        permanent_action: Отмена приостановки не восстановит никаких данных или отношений.
+        preamble_html: Вы собираетесь приостановить <strong>%{domain}</strong> и его субдомены.
+        remove_all_data: Это удалит весь контент, мультимедиа и данные профиля для учетных записей этого домена с вашего сервера.
+        stop_communication: Ваш сервер перестанет общаться с этими серверами.
+        title: Снять блокировку с домена %{domain}
+        undo_relationships: Это отменит связь между аккаунтами этих серверов и вашими.
       created_msg: Блокировка домена обрабатывается
       destroyed_msg: Блокировка домена снята
       domain: Домен
@@ -759,6 +768,9 @@ ru:
       branding:
         preamble: Брендинг вашего сервера отличает его от других серверов сети. Эта информация может отображаться в различных средах, таких как веб-интерфейс Mastodon, нативные приложения, в виде предпросмотра ссылок на других веб-сайтах, в почтовых приложениях и так далее. По этой причине лучше держать эту информацию ясной, короткой и краткой.
         title: Брендинг
+      captcha_enabled:
+        desc_html: Это зависит от внешних скриптов из hCaptcha, которые могут представлять интерес для безопасности и конфиденциальности. Кроме того, <strong>это может сделать процесс регистрации значительно менее доступным для некоторых (особенно отключенных) людей</strong>. По этим причинам просьба рассмотреть альтернативные меры, такие, как регистрация, основанная на официальном утверждении или на приглашении.
+        title: Запрашивать новых пользователей для решения CAPTCHA для подтверждения учетной записи
       content_retention:
         preamble: Управление сохранением пользовательского контента в Mastodon.
         title: Хранение контента
@@ -786,7 +798,7 @@ ru:
           approved: Для регистрации требуется подтверждение
           none: Никто не может регистрироваться
           open: Все могут регистрироваться
-      title: Настройки Сервера
+      title: Настройки сервера
     site_uploads:
       delete: Удалить загруженный файл
       destroyed_msg: Файл успешно удалён.
@@ -997,11 +1009,11 @@ ru:
       guide_link: https://ru.crowdin.com/project/mastodon
       guide_link_text: Каждый может внести свой вклад.
     sensitive_content: Содержимое деликатного характера
-    toot_layout: Структура постов
   application_mailer:
     notification_preferences: Настроить уведомления можно здесь
     salutation: "%{name},"
     settings: 'Настроить уведомления можно здесь: %{link}'
+    unsubscribe: Отписаться
     view: 'Просмотр:'
     view_profile: Просмотреть профиль
     view_status: Просмотреть пост
@@ -1015,6 +1027,10 @@ ru:
     your_token: Ваш токен доступа
   auth:
     apply_for_account: Запросить аккаунт
+    captcha_confirmation:
+      help_html: Если у вас есть проблемы с CAPTCHA, вы можете связаться с нами через %{email} и мы вам поможем.
+      hint_html: Еще одна вещь! Нам нужно подтвердить, что вы человек (так что мы можем держать спам!). Решите капчу ниже и нажмите кнопку «Продолжить».
+      title: Проверка безопасности
     confirmations:
       wrong_email_hint: Если этот адрес электронной почты неверен, вы можете изменить его в настройках аккаунта.
     delete_account: Удалить учётную запись
@@ -1051,6 +1067,7 @@ ru:
     rules:
       accept: Принять
       back: Назад
+      invited_by: 'Вы можете присоединиться к %{domain} благодаря приглашению полученному от:'
       preamble: Они устанавливаются и применяются модераторами %{domain}.
       title: Несколько основных правил.
     security: Безопасность
@@ -1077,18 +1094,6 @@ ru:
       view_strikes: Просмотр предыдущих замечаний в адрес вашей учетной записи
     too_fast: Форма отправлена слишком быстро, попробуйте еще раз.
     use_security_key: Использовать ключ безопасности
-  authorize_follow:
-    already_following: Вы уже подписаны на эту учётную запись
-    already_requested: Вы уже отправили запрос на подписку на эту учётную запись
-    error: К сожалению, при поиске удалённой учётной записи возникла ошибка
-    follow: Подписаться
-    follow_request: 'Вы отправили запрос на подписку:'
-    following: 'Готово! Вы подписались на:'
-    post_follow:
-      close: Или просто закройте это окно.
-      return: Вернуться к профилю пользователя
-      web: Открыть в веб-версии
-    title: Подписаться на %{acct}
   challenge:
     confirm: Продолжить
     hint_html: "<strong>Подсказка</strong>: мы не будем спрашивать пароль повторно в течение часа."
@@ -1263,7 +1268,9 @@ ru:
       many: Выбрано <strong>%{count}</strong> элементов, соответствующих вашему запросу.
       one: Выбран <strong>%{count}</strong> элемент, соответствующий вашему запросу.
       other: Выбраны все <strong>%{count}</strong> элементов, соответствующих вашему запросу.
+    cancel: Отмена
     changes_saved_msg: Изменения успешно сохранены!
+    confirm: Подтвердить
     copy: Копировать
     delete: Удалить
     deselect: Снять выделение
@@ -1283,20 +1290,60 @@ ru:
       other: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
   imports:
     errors:
+      empty: Пустой CSV-файл
+      incompatible_type: Несовместимость с выбранным типом импорта
       invalid_csv_file: 'Неверный файл CSV. Ошибка: %{error}'
       over_rows_processing_limit: содержит более %{count} строк
+      too_large: Файл слишком большой
+    failures: Ошибки
+    imported: Импортирован
+    mismatched_types_warning: Возможно, вы выбрали неверный тип для этого импорта, пожалуйста, перепроверьте.
     modes:
       merge: Объединить
       merge_long: Сохранить имеющиеся данные и добавить новые.
       overwrite: Перезаписать
       overwrite_long: Перезаписать имеющиеся данные новыми.
+    overwrite_preambles:
+      blocking_html: Вы собираетесь <strong>заменить свой блок-лист</strong> на <strong>%{total_items} аккаунтов</strong> из <strong>%{filename}</strong>.
+      bookmarks_html: Вы собираетесь <strong>заменить свои закладки</strong> на <strong>%{total_items} постов</strong> из <strong>%{filename}</strong>.
+      domain_blocking_html: Вы собираетесь <strong>заменить ваш список блокировки доменов</strong> на <strong>%{total_items} доменов</strong> из <strong>%{filename}</strong>.
+      following_html: Вы собираетесь <strong>следить</strong> за <strong>%{total_items} аккаунтами</strong> из <strong>%{filename}</strong> и <strong>прекратить следить за всеми остальными</strong>.
+      lists_html: Вы собираетесь <strong>заменить ваши списки</strong> содержимым <strong>%{filename}</strong>. До <strong>%{total_items} аккаунты</strong> будут добавлены в новые списки.
+      muting_html: Вы собираетесь <strong>заменить список отключенных аккаунтов</strong> на <strong>%{total_items} аккаунтов</strong> из <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Вы собираетесь <strong>заблокировать</strong> до <strong>%{total_items} аккаунтов</strong> из <strong>%{filename}</strong>.
+      bookmarks_html: Вы собираетесь добавить до <strong>%{total_items} постов</strong> из <strong>%{filename}</strong> в свои <strong>закладки</strong>.
+      domain_blocking_html: Вы собираетесь <strong>блокировать</strong> до <strong>%{total_items} доменов</strong> от <strong>%{filename}</strong>.
+      following_html: Вы собираетесь <strong>следовать</strong> за <strong>%{total_items} аккаунтами</strong> из <strong>%{filename}</strong>.
+      lists_html: Вы собираетесь добавить до <strong>%{total_items} аккаунтов</strong> от <strong>%{filename}</strong> к вашим <strong>спискам</strong>. Новые списки будут созданы, если нет списка для добавления.
+      muting_html: Вы собираетесь <strong>отключить</strong> до <strong>%{total_items} аккаунтов</strong> из <strong>%{filename}</strong>.
     preface: Вы можете загрузить некоторые данные, например, списки людей, на которых Вы подписаны или которых блокируете, в Вашу учётную запись на этом узле из файлов, экспортированных с другого узла.
+    recent_imports: Недавно импортированное
+    states:
+      finished: Готово
+      in_progress: В процессе
+      scheduled: Запланировано
+      unconfirmed: Неподтвержденный
+    status: Статус
     success: Ваши данные были успешно загружены и будут обработаны с должной скоростью
+    time_started: Началось в
+    titles:
+      blocking: Импорт заблокированных аккаунтов
+      bookmarks: Импорт закладок
+      domain_blocking: Импорт заблокированных доменов
+      following: Импорт последующих аккаунтов
+      lists: Импортировать список
+      muting: Импорт отключенных аккаунтов
+    type: Тип импорта
+    type_groups:
+      constructive: Подписки и закладки
+      destructive: Блокировки и игнорируемые
     types:
       blocking: Список блокировки
       bookmarks: Закладки
       domain_blocking: Список доменных блокировок
       following: Подписки
+      lists: Списки
       muting: Список глушения
     upload: Загрузить
   invites:
@@ -1619,7 +1666,6 @@ ru:
     show_newer: Показать более новое
     show_older: Показать старые
     show_thread: Открыть обсуждение
-    sign_in_to_participate: Войдите, чтобы принять участие в дискуссии
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Адресованный
@@ -1665,8 +1711,6 @@ ru:
     min_reblogs: Порог продвижений
     min_reblogs_hint: Не удаляет ваши посты, количество продвижений которых достигло указанного выше значения. Оставьте поле пустым, чтобы удалять посты независимо от количества продвижений.
   stream_entries:
-    pinned: Закреплённый пост
-    reblogged: продвинул(а)
     sensitive_content: Содержимое деликатного характера
   strikes:
     errors:

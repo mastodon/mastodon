@@ -331,11 +331,6 @@ ga:
     status:
       account_status: Stádas cuntais
     too_fast: Cuireadh an fhoirm isteach róthapa, triail arís.
-  authorize_follow:
-    follow: Lean
-    post_follow:
-      return: Taispeáin próifíl an úsáideora
-    title: Lean %{acct}
   challenge:
     confirm: Lean ar aghaidh
   datetime:
@@ -362,6 +357,14 @@ ga:
       title_actions:
         none: Rabhadh
       your_appeal_pending: Chuir tú achomharc isteach
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
+    '429': Too many requests
+    '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
       date: Dáta
@@ -424,6 +427,8 @@ ga:
     next: An céad eile
     older: Níos sine
     prev: Ceann roimhe seo
+  preferences:
+    other: Eile
   relationships:
     follow_selected_followers: Lean leantóirí roghnaithe
     followers: Leantóirí
@@ -491,7 +496,6 @@ ga:
       '63113904': 2 bhliain
       '7889238': 3 mhí
   stream_entries:
-    pinned: Postáil pionnáilte
     sensitive_content: Ábhar íogair
   two_factor_authentication:
     edit: Cuir in eagar
