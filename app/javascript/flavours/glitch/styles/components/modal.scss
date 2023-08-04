@@ -719,15 +719,16 @@
   }
 
   .button.button-secondary {
-    border-color: $ui-button-secondary-border-color;
-    color: $ui-button-secondary-color;
+    border-color: $inverted-text-color;
+    color: $inverted-text-color;
     flex: 0 0 auto;
 
     &:hover,
     &:focus,
     &:active {
-      border-color: $ui-button-secondary-focus-background-color;
-      color: $ui-button-secondary-focus-color;
+      background: transparent;
+      border-color: $ui-button-background-color;
+      color: $ui-button-background-color;
     }
   }
 
