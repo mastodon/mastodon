@@ -31,4 +31,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'DSL'
 
   inflect.singular 'data', 'data'
+  inflect.singular 'following', 'following'
 end

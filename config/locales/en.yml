@@ -1167,13 +1167,16 @@ en:
       in_progress: Compiling your archive...
       request: Request your archive
       size: Size
-    blocks: You block
+    blocks: Blocked users
     bookmarks: Bookmarks
     csv: CSV
-    domain_blocks: Domain blocks
+    domain_blocks: Blocked domains
+    followers: Followers
+    follows: Following
     lists: Lists
-    mutes: You mute
+    mutes: Muted users
     storage: Media storage
+    statuses: Posts
   featured_tags:
     add_new: Add new
     errors:
@@ -1261,20 +1264,20 @@ en:
       overwrite: Overwrite
       overwrite_long: Replace current records with the new ones
     overwrite_preambles:
-      blocking_html: You are about to <strong>replace your block list</strong> with up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+      blocking_html: You are about to <strong>replace your block list</strong> with up to <strong>%{total_items} users</strong> from <strong>%{filename}</strong>.
       bookmarks_html: You are about to <strong>replace your bookmarks</strong> with up to <strong>%{total_items} posts</strong> from <strong>%{filename}</strong>.
       domain_blocking_html: You are about to <strong>replace your domain block list</strong> with up to <strong>%{total_items} domains</strong> from <strong>%{filename}</strong>.
-      following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
+      following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} users</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
       lists_html: You are about to <strong>replace your lists</strong> with contents of <strong>%{filename}</strong>. Up to <strong>%{total_items} accounts</strong> will be added to new lists.
-      muting_html: You are about to <strong>replace your list of muted accounts</strong> with up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+      muting_html: You are about to <strong>replace your mute lists</strong> with up to <strong>%{total_items} users</strong> from <strong>%{filename}</strong>.
     preambles:
-      blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+      blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} users</strong> from <strong>%{filename}</strong>.
       bookmarks_html: You are about to add up to <strong>%{total_items} posts</strong> from <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
       domain_blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} domains</strong> from <strong>%{filename}</strong>.
-      following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
-      lists_html: You are about to add up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong> to your <strong>lists</strong>. New lists will be created if there is no list to add to.
-      muting_html: You are about to <strong>mute</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
-    preface: You can import data that you have exported from another server, such as a list of the people you are following or blocking.
+      following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} users</strong> from <strong>%{filename}</strong>.
+      lists_html: You are about to add up to <strong>%{total_items} users</strong> from <strong>%{filename}</strong> to your <strong>lists</strong>. New lists will be created if there is no list to add to.
+      muting_html: You are about to <strong>mute</strong> up to <strong>%{total_items} users</strong> from <strong>%{filename}</strong>.
+    preface: You can import data that you have exported from another server, such as a list of the users you are following or blocking.
     recent_imports: Recent imports
     states:
       finished: Finished
@@ -1285,23 +1288,23 @@ en:
     success: Your data was successfully uploaded and will be processed in due time
     time_started: Started at
     titles:
-      blocking: Importing blocked accounts
+      blocking: Importing blocked users
       bookmarks: Importing bookmarks
       domain_blocking: Importing blocked domains
-      following: Importing followed accounts
+      following: Importing following
       lists: Importing lists
-      muting: Importing muted accounts
+      muting: Importing muted users
     type: Import type
     type_groups:
-      constructive: Follows & Bookmarks
-      destructive: Blocks & mutes
+      constructive: Following & bookmarks
+      destructive: Mutes & blocks
     types:
-      blocking: Blocking list
+      blocking: Blocked users
       bookmarks: Bookmarks
-      domain_blocking: Domain blocking list
-      following: Following list
+      domain_blocking: Blocked domains
+      following: Following
       lists: Lists
-      muting: Muting list
+      muting: Muted users
     upload: Upload
   invites:
     delete: Deactivate
@@ -1573,7 +1576,7 @@ en:
     delete: Account deletion
     development: Development
     edit_profile: Edit profile
-    export: Data export
+    export: Export
     featured_tags: Featured hashtags
     import: Import
     import_and_export: Import and export

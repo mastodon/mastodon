@@ -23,7 +23,7 @@ namespace :settings do
   resource :export, only: [:show, :create]
 
   namespace :exports, constraints: { format: :csv } do
-    resources :follows, only: :index, controller: :following_accounts
+    resources :following, only: :index, controller: :following_accounts
     resources :blocks, only: :index, controller: :blocked_accounts
     resources :mutes, only: :index, controller: :muted_accounts
     resources :lists, only: :index, controller: :lists
