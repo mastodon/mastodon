@@ -239,6 +239,19 @@ html {
   }
 }
 
+.column-settings__hashtags .column-select {
+  &__menu {
+    background: darken($ui-base-color, 6%);
+  }
+
+  &__option {
+    &--is-focused,
+    &--is-selected {
+      background: lighten($ui-base-color, 4%);
+    }
+  }
+}
+
 .emoji-mart-bar {
   border-color: lighten($ui-base-color, 4%);
 
@@ -422,10 +435,6 @@ html {
   background: darken($ui-base-color, 4%);
   border: 1px solid lighten($ui-base-color, 8%);
   border-bottom: 0;
-}
-
-.column-settings__hashtags .column-select__option {
-  color: $white;
 }
 
 .dashboard__quick-access,
