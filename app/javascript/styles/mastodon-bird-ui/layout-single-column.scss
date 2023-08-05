@@ -1,5 +1,5 @@
 /* Mastodon Bird UI by @rolle@mementomori.social
-   1.6.0-nightly */
+   1.7.1rc1-nightly */
 
 /* CSS variables */
 :root {
@@ -10,11 +10,11 @@
   --color-brand-twitter-mud: #273340;
   --color-brand-twitter-dark: #232543;
   --color-brand-twitter-threaded-line: #425364;
-  --color-brand-mastodon: #595aff;
-  --color-brand-mastodon-links: #8c8dff;
+  --color-brand-mastodon: #6364ff;
+  --color-brand-mastodon-links: #858afa;
   --color-brand-mastodon-bg: #1e2028;
   --color-brand-mastodon-dim: #717c9b;
-  --color-brand-mastodon-mud: #272c40;
+  --color-brand-mastodon-mud: rgb(39 44 64 / .5);
   --color-brand-mastodon-dark: #232543;
   --color-brand-mastodon-threaded-line: #434264;
   --color-brand-mastodon-text-light: #8493a7;
@@ -38,13 +38,14 @@
   --color-focusable-toot: #ffffff09;
   --color-light-text: #f7f9f9;
   --color-mud: var(--color-brand-mastodon-mud);
+  --color-arsenic: #393f4f;
   --color-black-coral: #5a5371;
   --color-profile-button-hover: #f1eff41a;
   --color-column-link-hover: #f7f7f91a;
   --color-modal-overlay: #5b708366;
   --color-dark: var(--color-brand-mastodon-dark);
   --color-thread-line: var(--color-brand-mastodon-threaded-line);
-  --color-gainsboro: #dcd9e8;
+  --color-topaz: #dadaf3;
   --color-light-purple: #9baec8;
   --color-lighter-purple: #a5b8d3;
   --color-dark-electric-blue: #576078;
@@ -56,18 +57,22 @@
   --color-hashtag: var(--color-accent);
   --color-mention: var(--color-accent);
   --color-link: var(--color-accent);
+  --color-bg-compose-form: rgb(39 44 64 / .4);
+  --color-bg-compose-form-focus: rgb(39 44 64 / .8);
 
   /* In the original UI this color is lighten($ui-base-color, 12%) */
   --color-outer-space: #42485a;
 
   /* Font related */
-  --font-stack: system-ui, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, Inter, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-size: 15px;
   --font-size-smaller: 13px;
   --font-size-12: 12px;
   --font-size-mid: 14px;
   --font-size-bigger: 17px;
+  --font-size-title: 19px;
   --font-size-heading: 20px;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 500;
   --font-weight-bold: 700;
   --line-height: 22px;
   --line-height-mid: 20px;
@@ -155,7 +160,7 @@
 }
 
 /* High Contrast theme */
-body.theme-contrast.layout-single-column {
+body.theme-mastodon-bird-ui-contrast.layout-single-column {
   --color-dim: #b8b3c0;
 
   /* Icons */
@@ -176,7 +181,7 @@ body.theme-contrast.layout-single-column {
 }
 
 /* Light theme */
-body.theme-mastodon-light.layout-single-column {
+body.theme-mastodon-bird-ui-light.layout-single-column {
   --color-bg: #fff;
   --color-fg: #000;
   --color-border: #e6e1ed;
@@ -194,12 +199,14 @@ body.theme-mastodon-light.layout-single-column {
   --color-modal-overlay: #6a5b8366;
   --color-dark: #f7f9f9;
   --color-thread-line: #e1e8ed;
-  --color-gainsboro: #8899a6;
+  --color-topaz: #8899a6;
   --color-light-purple: #9588a6;
   --color-dark-electric-blue: #9088a6;
   --color-bg-75: #ffffffbf;
   --color-accent: var(--color-accent-dark);
   --color-ghost-button-text: var(--color-accent-dark);
+  --color-bg-compose-form: rgb(147 136 166 / .2);
+  --color-bg-compose-form-focus: rgb(147 136 166 / .3);
 
   /* Misc */
   --compose-form-linear-gradient: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 53%, rgba(255, 255, 255, 0.8141631652661064) 76%, rgba(255, 255, 255, 0.7077205882352942) 87%, rgba(255, 255, 255, 0.458420868347339) 97%, rgba(255, 255, 255, 0) 100%);
@@ -294,11 +301,9 @@ body.theme-mastodon-light.layout-single-column {
   width: calc(100% - 30px) !important;
 }
 
-body.embed,
 body.layout-single-column {
   background-color: var(--color-bg);
   color: var(--color-fg);
-  font-family: var(--font-stack);
 }
 
 .layout-single-column .ui {
@@ -331,7 +336,7 @@ body.layout-single-column {
 }
 
 /* stylelint-disable-next-line */
-.layout-multiple-columns .status-link.mention:not(.hashtag):not(.mention) {
+.layout-single-column .status-link.mention:not(.hashtag):not(.mention) {
   color: var(--color-link);
 }
 
@@ -429,35 +434,6 @@ body.layout-single-column {
   gap: 6px;
 }
 
-/* Modal buttons */
-.layout-single-column .media-modal__navigation button,
-.layout-single-column .image-loader button {
-  align-items: center;
-  border-radius: 50%;
-  /* It's inlined so we have to use !important */
-  /* stylelint-disable-next-line */
-  color: var(--color-light-text) !important;
-  display: inline-flex;
-
-  /* It's inlined so we have to use !important */
-  /* stylelint-disable-next-line */
-  font-size: var(--font-size-heading) !important;
-  /* stylelint-disable-next-line */
-  // height: 36px !important;
-  justify-content: center;
-  /* stylelint-disable-next-line */
-  // margin: 4px !important;
-  /* stylelint-disable-next-line */
-  top: 2px !important;
-  /* stylelint-disable-next-line */
-  width: 36px !important;
-}
-
-.layout-single-column .media-modal__navigation button {
-  /* stylelint-disable-next-line */
-  top: 5px !important;
-}
-
 .layout-single-column .media-modal__navigation .fa-times::before {
   content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgb(247 249 249)' aria-hidden='true' class='r-jwli3a r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03'%3E%3Cg%3E%3Cpath d='M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
 }
@@ -512,14 +488,79 @@ body.layout-single-column {
   top: -2px;
 }
 
-/* Bigger preview cards */
+/* URL preview cards */
 .layout-single-column .status-card,
-.layout-single-column .status-card.compact {
+.layout-single-column .status-card:hover,
+.layout-single-column .status-card:focus {
+  background-color: transparent;
+  border-color: var(--color-border);
+}
+
+/* URL preview card summary text */
+.layout-single-column .status-card .status-card__host,
+.layout-single-column .status-card .status-card__description {
+  color: var(--color-dim);
+}
+
+/* URL preview card box */
+/* stylelint-disable-next-line */
+.layout-single-column .status-card .status-card__content {
+  padding: var(--gap-default);
+}
+
+.layout-single-column .status-card.expanded .status-card__content {
+  display: grid;
+  gap: 8px;
+}
+
+/* Preview cards */
+.layout-single-column .status-card {
   background-color: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  display: block;
   transition: all 200ms;
+}
+
+.layout-single-column .status-card.expanded {
+  display: block;
+}
+
+.layout-single-column a.status-card .status-card__host {
+  font-size: var(--font-size);
+}
+
+.layout-single-column .status-card a:active .status-card__author,
+.layout-single-column .status-card a:active .status-card__title,
+.layout-single-column .status-card a:focus .status-card__author,
+.layout-single-column .status-card a:focus .status-card__title,
+.layout-single-column .status-card a:hover .status-card__author,
+.layout-single-column .status-card a:hover .status-card__title,
+.layout-single-column a.status-card:active .status-card__author,
+.layout-single-column a.status-card:active .status-card__title,
+.layout-single-column a.status-card:focus .status-card__author,
+.layout-single-column a.status-card:focus .status-card__title,
+.layout-single-column a.status-card:hover .status-card__author,
+.layout-single-column a.status-card:hover .status-card__title {
+  color: var(--color-fg);
+}
+
+.layout-single-column .status-card a:active .status-card__host,
+.layout-single-column .status-card a:hover .status-card__host,
+.layout-single-column .status-card a:focus .status-card__host,
+.layout-single-column a.status-card:active .status-card__host,
+.layout-single-column a.status-card:focus .status-card__host,
+.layout-single-column a.status-card:hover .status-card__host {
+  color: var(--color-dim);
+}
+
+/* Show minimal status card if there's no image */
+.layout-single-column .status-card .status-card__image:not(:has(img)) {
+  display: none;
+}
+
+/* Hide empty status cards alltogether (Mastodon 4.1.5-2023-07-29) */
+.layout-single-column .status-card:has(.fa-file-text) {
+  display: none;
 }
 
 /* Hide empty YouTube description */
@@ -536,31 +577,37 @@ body.layout-single-column {
   content: "";
 }
 
-.layout-single-column .status-card .status-card__image-image,
-.layout-single-column .status-card .status-card__image-image.compact {
+.layout-single-column .status-card__image-image,
+.layout-single-column .status-card__image-preview,
+.layout-single-column .status-card .status-card__image {
+  background-color: var(--color-arsenic);
   border-radius: 0;
 }
 
-.layout-single-column .status-card .status-card__content,
-.layout-single-column .status-card.compact .status-card__content {
-  padding: 15px;
+.layout-single-column a.status-card .status-card__content {
+  padding: 16px;
 }
 
-.layout-single-column .status-card .status-card__title,
-.layout-single-column .status-card.compact .status-card__title {
+.layout-single-column a.status-card .status-card__title {
   color: var(--color-fg);
-  font-size: 18px;
-  font-weight: 400;
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-semibold);
   line-height: 1.3;
-  margin-bottom: 10px;
+  margin: 0;
+}
+
+.layout-single-column a.status-card.expanded .status-card__title {
   white-space: inherit;
 }
 
-.layout-single-column .status-card .status-card__host,
-.layout-single-column .status-card.compact .status-card__host {
+.layout-single-column .status-card.expanded .status-card__host {
   color: var(--color-dim);
-  font-size: var(--font-size-mid);
-  margin-bottom: 5px;
+  font-size: var(--font-size);
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.layout-single-column .status-card.expanded .status-card__description {
   margin-top: 0;
 }
 
@@ -568,10 +615,6 @@ body.layout-single-column {
 .layout-single-column .announcements__pagination .fa,
 .layout-single-column .announcements__pagination {
   color: var(--color-dim);
-}
-
-.layout-single-column .announcements__pagination .icon-button:hover i {
-  color: var(--color-light-purple);
 }
 
 /* Dark panels like modals and boxes */
@@ -825,10 +868,11 @@ body.embed .status__content a,
   stroke: var(--color-accent) !important;
 }
 
-/* Mud background colors */
+/* Mud background colors, reply-indicator */
 .layout-single-column .reply-indicator {
   background-color: var(--color-mud);
   color: var(--color-light-text);
+  max-height: 20vh;
 }
 
 /* Dropdown hovers */
@@ -843,6 +887,58 @@ body.embed .status__content a,
 .layout-single-column .status__wrapper.unread::before {
   border-color: var(--color-accent);
   display: none;
+}
+
+/* Filtered post */
+.layout-single-column .status__wrapper.status__wrapper--filtered {
+  align-items: center;
+  background-color: var(--color-focusable-toot);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  color: var(--color-light-purple);
+  display: flex;
+  flex-wrap: nowrap;
+  font-size: var(--font-size-mid);
+  justify-content: space-between;
+  margin: var(--gap-default);
+  overflow: hidden;
+  padding: 4px 16px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - calc(var(--gap-default) * 2));
+}
+
+.layout-single-column .notification:has(.status__wrapper--filtered) .notification__message {
+  display: none;
+}
+
+/* Fix hover/focus on article that has filtered banner */
+.layout-single-column article:has(.status__wrapper--filtered):hover {
+  background-color: transparent;
+}
+
+.layout-single-column .status__wrapper.status__wrapper--filtered button {
+  background-color: rgb(255 255 255 / 0);
+  border-bottom-left-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+  color: var(--color-fg);
+  font-weight: var(--font-weight-semibold);
+  margin-left: auto;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 8px;
+  transition: 200ms background;
+  white-space: nowrap;
+}
+
+.layout-single-column .status__wrapper.status__wrapper--filtered button:focus,
+.layout-single-column .status__wrapper.status__wrapper--filtered button:hover {
+  background-color: rgb(255 255 255 / .1);
+  text-decoration: none;
 }
 
 /* Unread message */
@@ -881,7 +977,6 @@ body.embed .status__content a,
 .layout-single-column .status-check-box__status .detailed-status__display-name,
 .layout-single-column .report-dialog-modal .poll__option.dialog-option > .poll__option__text,
 .layout-single-column .status-card .status-card__description,
-.layout-single-column .status-card.compact .status-card__description,
 .layout-single-column .report-dialog-modal .dialog-option .poll__input,
 .layout-single-column .dropdown-menu__container__header,
 .layout-single-column .sign-in-banner p,
@@ -930,7 +1025,8 @@ body.embed .status__content a,
 .layout-single-column .muted .status__content,
 .layout-single-column .muted .status__content a,
 .layout-single-column .muted .status__content p,
-.layout-single-column .muted .status__display-name strong {
+.layout-single-column .muted .status__display-name strong,
+.layout-single-column .privacy-dropdown__option:not(.active) .privacy-dropdown__option__content {
   color: var(--color-dim);
 }
 
@@ -948,7 +1044,7 @@ body.embed .status__content a,
 /* Light grey things */
 .layout-single-column .navigation-bar,
 .layout-single-column .navigation-bar strong {
-  color: var(--color-gainsboro);
+  color: var(--color-topaz);
 }
 
 /* CW button */
@@ -956,7 +1052,7 @@ body.embed .status__content a,
 .layout-single-column .status__content__spoiler-link {
   background-color: var(--color-dark);
   color: var(--color-light-purple);
-  font-weight: 500;
+  font-weight: var(--font-weight-semibold);
 
   /* Need to override forced styles */
   /* stylelint-disable-next-line */
@@ -988,10 +1084,13 @@ body.embed .status__content a,
 }
 
 /* Light purple things */
-.account__header__tabs__name h1 small,
+.layout-single-column .announcements__pagination .icon-button:hover i,
+.layout-single-column .server-banner__introduction,
+.layout-single-column .account__header__tabs__name h1 small,
 .layout-single-column .account .account__display-name,
 .layout-single-column .column-settings__section,
-.layout-single-column .setting-toggle__label {
+.layout-single-column .setting-toggle__label,
+.layout-single-column .server-banner__number-label {
   color: var(--color-light-purple);
 }
 
@@ -1006,6 +1105,9 @@ body.embed .status__content a,
 .layout-single-column .dismissable-banner__message,
 .layout-single-column .privacy-dropdown__option,
 .layout-single-column .privacy-dropdown__option__content strong,
+.layout-single-column .privacy-dropdown__option.active,
+.layout-single-column .privacy-dropdown__option:hover .privacy-dropdown__option__content,
+.layout-single-column .privacy-dropdown__option:focus .privacy-dropdown__option__content,
 .layout-single-column .status__info .display-name strong.display-name__html,
 .layout-single-column .reply-indicator .display-name strong.display-name__html,
 .layout-single-column .notification__message,
@@ -1057,6 +1159,7 @@ body.embed .status__content a,
 /* Status action bar */
 .layout-single-column .status__action-bar {
   margin-top: 12px;
+  max-height: 27px;
 }
 
 /* Display name */
@@ -1078,7 +1181,7 @@ body.embed .status__content a,
   content: "·";
   display: inline-block;
   font-size: var(--font-size);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   height: 20px;
   margin-left: -6px;
   margin-right: -10px;
@@ -1158,6 +1261,7 @@ body.embed .detailed-status,
 }
 
 /* Avatars */
+body.embed .detailed-status__display-avatar > img,
 .layout-single-column .account-card__title__avatar .account__avatar,
 .layout-single-column .account-card__title__avatar img,
 .layout-single-column .account__avatar > img,
@@ -1217,23 +1321,6 @@ body.embed .detailed-status,
   background: var(--color-focusable-toot);
 }
 
-/* URL preview cards */
-.layout-single-column .status-card,
-.layout-single-column .status-card.compact:hover,
-.layout-single-column .status-card.compact:focus,
-.layout-single-column .status-card.compact {
-  background-color: transparent;
-  border-color: var(--color-border);
-}
-
-/* URL preview card summary text */
-.layout-single-column .status-card .status-card__host,
-.layout-single-column .status-card.compact .status-card__host,
-.layout-single-column .status-card .status-card__description,
-.layout-single-column .status-card.compact .status-card__description {
-  color: var(--color-dim);
-}
-
 /* Search panel that opens when focusing Search or paste URL field */
 .layout-single-column .explore__search-header .search__popout,
 .layout-single-column .compose-form__poll-wrapper option,
@@ -1247,24 +1334,6 @@ body.embed .detailed-status,
 .layout-single-column .search__popout em,
 .layout-single-column .search-popout em {
   color: var(--color-light-text);
-}
-
-/* URL preview card box */
-/* stylelint-disable-next-line */
-.layout-single-column .status-card .status-card__content,
-.layout-single-column .status-card.compact .status-card__content {
-  display: grid;
-  gap: calc(var(--gap-default) / 2);
-  padding: var(--gap-default);
-}
-
-/* URL preview card fonts */
-.layout-single-column .status-card .status-card__host,
-.layout-single-column .status-card.compact .status-card__host,
-.layout-single-column .status-card .status-card__title,
-.layout-single-column .status-card.compact .status-card__title {
-  font-size: var(--font-size);
-  margin: 0;
 }
 
 /* Status update tinted to right */
@@ -1323,11 +1392,19 @@ body.embed .detailed-status,
   margin-left: auto;
   /* Need to override inline styles */
   /* stylelint-disable-next-line */
-  /* width: calc(100% - calc(var(--size-avatar) + var(--gap-default))) !important; */
+  // width: calc(100% - calc(var(--size-avatar) + var(--gap-default))) !important;
+}
+
+/* Fix aspect-ratio for some videos in mastodon v4.1.5-nightly-2023-07-26 */
+.layout-single-column div[style*='aspect-ratio']:not([class]) {
+
+  /* It's inlined so we have to use !important */
+  /* stylelint-disable-next-line */
+  aspect-ratio: unset !important;
 }
 
 .layout-single-column .status .status-card {
-  /* margin-left: calc(var(--size-avatar) + var(--gap-default)); */
+  // margin-left: calc(var(--size-avatar) + var(--gap-default));
 }
 
 /* Detailed status update */
@@ -1372,18 +1449,39 @@ body.embed .detailed-status__favorites {
   font-weight: var(--font-weight-bold);
 }
 
-body.embed .detailed-status__reblogs::after,
-.layout-single-column .detailed-status__reblogs::after {
-  color: var(--color-dim);
-  content: 'Boosts';
-  font-weight: 500;
+body.embed .activity-stream .entry {
+  background-color: var(--color-bg);
 }
 
-body.embed .detailed-status__favorites::after,
-.layout-single-column .detailed-status__favorites::after {
+body.embed > .activity-stream {
+  backface-visibility: hidden;
+  /* stylelint-disable-next-line */
+  background: #313543 !important;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Textual labels for detailed metrics */
+body.embed .detailed-status__link > .fa-reply + span::after,
+.layout-single-column .detailed-status__link > .fa-reply + span::after {
+  color: var(--color-dim);
+  content: 'Replies';
+  font-weight: var(--font-weight-semibold);
+}
+
+body.embed .detailed-status__link > .fa-retweet + span::after,
+.layout-single-column .detailed-status__link > .fa-retweet + span::after {
+  color: var(--color-dim);
+  content: 'Boosts';
+  font-weight: var(--font-weight-semibold);
+}
+
+body.embed .detailed-status__link > .fa-star + span::after,
+.layout-single-column .detailed-status__link > .fa-star + span::after {
   color: var(--color-dim);
   content: 'Favourites';
-  font-weight: 500;
+  font-weight: var(--font-weight-semibold);
 }
 
 body.embed .detailed-status__meta .detailed-status__link .fa-star,
@@ -1676,7 +1774,7 @@ body.embed .detailed-status__meta .detailed-status__link .fa-retweet,
 }
 
 .layout-single-column .notification-admin-report .notification__report__details  strong {
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
 }
 
 /* Revert hack for notification admin message that has no avatar visible */
@@ -2031,7 +2129,7 @@ body.embed .detailed-status__meta .detailed-status__link .fa-retweet,
 /* Joined label */
 .layout-single-column .account__header__bio .account__header__fields dt:not([title]) {
   display: inline-flex;
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   gap: calc(var(--gap-default) / 2);
   text-transform: unset;
 }
@@ -2061,7 +2159,7 @@ body.embed .detailed-status__meta .detailed-status__link .fa-retweet,
   color: var(--color-dim);
   display: inline-flex;
   font-size: var(--font-size);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   gap: calc(var(--gap-default) / 2);
   padding: 0;
 }
@@ -2148,6 +2246,11 @@ body.embed .button.logo-button,
 
 .layout-single-column .account__header__tabs__buttons .icon-button {
   color: var(--color-light-text);
+}
+
+/* Fix focus overflow for 4.1.4-nightly */
+.layout-single-column .account__header__tabs__buttons {
+  overflow: visible;
 }
 
 /* stylelint-disable-next-line */
@@ -2370,6 +2473,38 @@ body.embed .button.logo-button:hover,
     max-height: 20vh !important;  /* stylelint-disable-next-line */
     overflow-y: auto !important;
     resize: none;
+  }
+
+  /* Add slight background color for the compose form */
+  /* stylelint-disable-next-line no-duplicate-selectors */
+  .layout-single-column .compose-form .compose-form__autosuggest-wrapper,
+  .layout-single-column .compose-form .compose-form__buttons-wrapper {
+    background-color: var(--color-bg-compose-form);
+    border-color: var(--color-bg-compose-form);
+    padding-top: 0;
+    transition: all 200ms;
+  }
+
+  /* Smooth color transition on focus */
+  .layout-single-column .compose-form .compose-form__autosuggest-wrapper:focus-within,
+  .layout-single-column .compose-form .compose-form__autosuggest-wrapper:focus-within ~ .compose-form__buttons-wrapper {
+    background-color: var(--color-bg-compose-form-focus);
+    border-color: var(--color-bg-compose-form-focus);
+  }
+
+  /* Fixes bottom row padding when there's a background */
+  .layout-single-column .compose-form .compose-form__buttons-wrapper {
+    padding: calc(var(--gap-default) / 2);
+  }
+
+  .layout-single-column .navigation-bar + .compose-form {
+    padding-top: 10px;
+  }
+
+  .layout-single-column .compose-form .emoji-picker-dropdown {
+    inset-inline-end: 3px;
+    position: absolute;
+    top: 3px;
   }
 }
 
@@ -2886,7 +3021,7 @@ body.embed .button.logo-button:hover,
   background-color: var(--color-mud);
   color: var(--color-light-text);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: var(--font-weight-semibold);
   line-height: 12px;
   opacity: 1;
 }
@@ -3198,14 +3333,20 @@ body.embed .button.logo-button:hover,
 .layout-single-column .video-player,
 .layout-single-column .media-gallery__gifv,
 .layout-single-column .media-gallery__preview {
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  outline: 1px solid var(--color-border);
   overflow: hidden;
 }
 
 /* Exception for your own profile media gallery */
 .layout-single-column .account-gallery__container .media-gallery__gifv {
   border-radius: 0;
+}
+
+/* Hide autoplaying gifs in notifications (they get annoying if you have favs/boosts on) */
+.layout-single-column .notification.notification-reblog .media-gallery:has(.media-gallery__gifv.autoplay),
+.layout-single-column .notification.notification-favourite .media-gallery:has(.media-gallery__gifv.autoplay) {
+  display: none;
 }
 
 /* More distinct focus color for accessibility, instead of just white */
@@ -3215,13 +3356,22 @@ body.embed .button.logo-button:hover,
 }
 
 /* Embeds outside Mastodon */
+body.embed {
+  /* Make sure with !important */
+  /* stylelint-disable-next-line */
+  background: transparent !important;
+  border: 0;
+}
+
 body.embed .entry .detailed-status {
   backface-visibility: hidden;
   background-color: #00000059;
+  /* stylelint-disable-next-line */
+  border: 0 !important;
 
   /* It's inlined so we have to use !important */
   /* stylelint-disable-next-line */
-  border-radius: 10px !important;
+  border-radius: 0 !important;
   overflow: hidden;
 }
 
@@ -3263,6 +3413,11 @@ body.embed .entry .detailed-status {
 .layout-single-column .server-banner__meta__column {
   max-width: 60%;
   width: unset;
+}
+
+/* Increase gap for server-banner__meta */
+.layout-single-column .server-banner__meta {
+  gap: 25px;
 }
 
 /* Native Mastodon 4.1.2-nightly threaded lines */
@@ -3319,6 +3474,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 }
 
 /* Scrollbars */
+.layout-single-column .drawer__inner::-webkit-scrollbar,
 .layout-single-column textarea::-webkit-scrollbar,
 .layout-single-column .autosuggest-textarea__textarea::-webkit-scrollbar,
 .layout-single-column .reply-indicator::-webkit-scrollbar,
@@ -3373,11 +3529,38 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
   background-color: var(--color-bg);
 }
 
+.layout-single-column .drawer__inner::-webkit-scrollbar-corner,
 .layout-single-column textarea::-webkit-scrollbar-corner,
 .layout-single-column .autosuggest-textarea__textarea::-webkit-scrollbar-corner,
 .layout-single-column .reply-indicator::-webkit-scrollbar-corner,
 .layout-single-column::-webkit-scrollbar-corner {
   background-color: transparent;
+}
+
+/* Drawer scollbars */
+.layout-single-column .drawer__inner::-webkit-scrollbar-thumb {
+  background-color: var(--color-dim);
+  border: 0;
+  border-radius: 50px;
+}
+
+.layout-single-column .drawer__inner::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-light-purple);
+}
+
+.layout-single-column .drawer__inner::-webkit-scrollbar-thumb:active {
+  background-color: var(--color-light-text);
+}
+
+.layout-single-column .drawer__inner::-webkit-scrollbar-track {
+  background-color: var(--color-dark);
+  border: 0;
+  border-radius: 0;
+}
+
+.layout-single-column .drawer__inner::-webkit-scrollbar-track:hover,
+.layout-single-column .drawer__inner::-webkit-scrollbar-track:active {
+  background-color: var(--color-dark);
 }
 
 /*
@@ -3673,6 +3856,17 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .layout-single-column .detailed-status button.icon-button:focus .fa-star::before,
 .layout-single-column .status button.icon-button:hover .fa-star::before {
   color: var(--color-dim);
+}
+
+/* Fix focus for mouse users on v4.1.4-nighly-20230721 */
+.layout-single-column button:focus,
+.layout-single-column .icon-button:focus {
+  outline: 0;
+}
+
+.layout-single-column button:focus-visible,
+.layout-single-column .icon-button:focus-visible {
+  outline: 2px solid var(--color-accent);
 }
 
 /* Mobile devices */

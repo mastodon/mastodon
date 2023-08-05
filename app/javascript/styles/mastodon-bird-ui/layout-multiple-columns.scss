@@ -1,5 +1,5 @@
 /* Mastodon Bird UI by @rolle@mementomori.social
-   1.6.0-nightly */
+   1.7.1rc1-nightly */
 
 /* CSS variables */
 :root {
@@ -56,18 +56,22 @@
   --color-hashtag: var(--color-accent);
   --color-mention: var(--color-accent);
   --color-link: var(--color-accent);
+  --color-bg-compose-form: rgb(39 44 64 / .4);
+  --color-bg-compose-form-focus: rgb(39 44 64 / .8);
 
   /* In the original UI this color is lighten($ui-base-color, 12%) */
   --color-outer-space: #42485a;
 
   /* Font related */
-  --font-stack: system-ui, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, Inter, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-size: 15px;
   --font-size-smaller: 13px;
   --font-size-12: 12px;
   --font-size-mid: 14px;
   --font-size-bigger: 17px;
+  --font-size-title: 19px;
   --font-size-heading: 20px;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 500;
   --font-weight-bold: 700;
   --line-height: 22px;
   --line-height-mid: 20px;
@@ -156,7 +160,7 @@
 }
 
 /* High Contrast theme */
-body.theme-contrast.layout-multiple-columns {
+body.theme-mastodon-bird-ui-contrast.layout-multiple-columns {
   --color-dim: #b8b3c0;
 
   /* Icons */
@@ -177,7 +181,7 @@ body.theme-contrast.layout-multiple-columns {
 }
 
 /* Light theme */
-body.theme-mastodon-light.layout-multiple-columns {
+body.theme-mastodon-bird-ui-light.layout-multiple-columns {
   --color-bg: #fff;
   --color-fg: #000;
   --color-border: #e6e1ed;
@@ -201,6 +205,8 @@ body.theme-mastodon-light.layout-multiple-columns {
   --color-bg-75: #ffffffbf;
   --color-accent: var(--color-accent-dark);
   --color-ghost-button-text: var(--color-accent-dark);
+  --color-bg-compose-form: rgb(147 136 166 / .2);
+  --color-bg-compose-form-focus: rgb(147 136 166 / .3);
 
   /* Misc */
   --compose-form-linear-gradient: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 53%, rgba(255, 255, 255, 0.8141631652661064) 76%, rgba(255, 255, 255, 0.7077205882352942) 87%, rgba(255, 255, 255, 0.458420868347339) 97%, rgba(255, 255, 255, 0) 100%);
@@ -293,11 +299,9 @@ body.theme-mastodon-light.layout-multiple-columns {
   width: calc(100% - 30px) !important;
 }
 
-body.embed,
 body.layout-multiple-columns {
   background-color: var(--color-bg);
   color: var(--color-fg);
-  font-family: var(--font-stack);
 }
 
 .layout-multiple-columns .ui {
@@ -372,12 +376,12 @@ body.layout-multiple-columns {
 }
 
 /* Exceptions */
-.layout-single-column .account__header__content {
+.layout-multiple-columns .account__header__content {
   line-height: 18px;
 }
 
 /* Things that will have even smaller font size */
-.layout-single-column .account__header__account-note label {
+.layout-multiple-columns .account__header__account-note label {
   font-size: var(--font-size-12);
 }
 
@@ -413,35 +417,6 @@ body.layout-multiple-columns {
 .layout-multiple-columns .report-dialog-modal .poll__option.dialog-option > .poll__option__text {
   display: grid;
   gap: 6px;
-}
-
-/* Modal buttons */
-.layout-multiple-columns .media-modal__navigation button,
-.layout-multiple-columns .image-loader button {
-  align-items: center;
-  border-radius: 50%;
-  /* It's inlined so we have to use !important */
-  /* stylelint-disable-next-line */
-  color: var(--color-light-text) !important;
-  display: inline-flex;
-
-  /* It's inlined so we have to use !important */
-  /* stylelint-disable-next-line */
-  font-size: var(--font-size-heading) !important;
-  /* stylelint-disable-next-line */
-  height: 36px !important;
-  justify-content: center;
-  /* stylelint-disable-next-line */
-  margin: 4px !important;
-  /* stylelint-disable-next-line */
-  top: 2px !important;
-  /* stylelint-disable-next-line */
-  width: 36px !important;
-}
-
-.layout-multiple-columns .media-modal__navigation button {
-  /* stylelint-disable-next-line */
-  top: 5px !important;
 }
 
 .layout-multiple-columns .media-modal__navigation .fa-times::before {
@@ -509,14 +484,79 @@ body.layout-multiple-columns {
   top: -2px;
 }
 
-/* Bigger preview cards */
+/* URL preview cards */
 .layout-multiple-columns .status-card,
-.layout-multiple-columns .status-card.compact {
+.layout-multiple-columns .status-card:hover,
+.layout-multiple-columns .status-card:focus {
+  background-color: transparent;
+  border-color: var(--color-border);
+}
+
+/* URL preview card summary text */
+.layout-multiple-columns .status-card .status-card__host,
+.layout-multiple-columns .status-card .status-card__description {
+  color: var(--color-dim);
+}
+
+/* URL preview card box */
+/* stylelint-disable-next-line */
+.layout-multiple-columns .status-card .status-card__content {
+  padding: var(--gap-default);
+}
+
+.layout-multiple-columns .status-card.expanded .status-card__content {
+  display: grid;
+  gap: 8px;
+}
+
+/* Preview cards */
+.layout-multiple-columns .status-card {
   background-color: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  display: block;
   transition: all 200ms;
+}
+
+.layout-multiple-columns .status-card.expanded {
+  display: block;
+}
+
+.layout-multiple-columns a.status-card .status-card__host {
+  font-size: var(--font-size);
+}
+
+.layout-multiple-columns .status-card a:active .status-card__author,
+.layout-multiple-columns .status-card a:active .status-card__title,
+.layout-multiple-columns .status-card a:focus .status-card__author,
+.layout-multiple-columns .status-card a:focus .status-card__title,
+.layout-multiple-columns .status-card a:hover .status-card__author,
+.layout-multiple-columns .status-card a:hover .status-card__title,
+.layout-multiple-columns a.status-card:active .status-card__author,
+.layout-multiple-columns a.status-card:active .status-card__title,
+.layout-multiple-columns a.status-card:focus .status-card__author,
+.layout-multiple-columns a.status-card:focus .status-card__title,
+.layout-multiple-columns a.status-card:hover .status-card__author,
+.layout-multiple-columns a.status-card:hover .status-card__title {
+  color: var(--color-fg);
+}
+
+.layout-multiple-columns .status-card a:active .status-card__host,
+.layout-multiple-columns .status-card a:hover .status-card__host,
+.layout-multiple-columns .status-card a:focus .status-card__host,
+.layout-multiple-columns a.status-card:active .status-card__host,
+.layout-multiple-columns a.status-card:focus .status-card__host,
+.layout-multiple-columns a.status-card:hover .status-card__host {
+  color: var(--color-dim);
+}
+
+/* Show minimal status card if there's no image */
+.layout-multiple-columns .status-card .status-card__image:not(:has(img)) {
+  display: none;
+}
+
+/* Hide empty status cards alltogether (Mastodon 4.1.5-2023-07-29) */
+.layout-multiple-columns .status-card:has(.fa-file-text) {
+  display: none;
 }
 
 /* Hide empty YouTube description */
@@ -533,31 +573,37 @@ body.layout-multiple-columns {
   content: "";
 }
 
-.layout-multiple-columns .status-card .status-card__image-image,
-.layout-multiple-columns .status-card .status-card__image-image.compact {
+.layout-multiple-columns .status-card__image-image,
+.layout-multiple-columns .status-card__image-preview,
+.layout-multiple-columns .status-card .status-card__image {
+  background-color: var(--color-arsenic);
   border-radius: 0;
 }
 
-.layout-multiple-columns .status-card .status-card__content,
-.layout-multiple-columns .status-card.compact .status-card__content {
-  padding: 15px;
+.layout-multiple-columns a.status-card .status-card__content {
+  padding: 16px;
 }
 
-.layout-multiple-columns .status-card .status-card__title,
-.layout-multiple-columns .status-card.compact .status-card__title {
+.layout-multiple-columns a.status-card .status-card__title {
   color: var(--color-fg);
-  font-size: 18px;
-  font-weight: 400;
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-semibold);
   line-height: 1.3;
-  margin-bottom: 10px;
+  margin: 0;
+}
+
+.layout-multiple-columns a.status-card.expanded .status-card__title {
   white-space: inherit;
 }
 
-.layout-multiple-columns .status-card .status-card__host,
-.layout-multiple-columns .status-card.compact .status-card__host {
+.layout-multiple-columns .status-card.expanded .status-card__host {
   color: var(--color-dim);
-  font-size: var(--font-size-mid);
-  margin-bottom: 5px;
+  font-size: var(--font-size);
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.layout-multiple-columns .status-card.expanded .status-card__description {
   margin-top: 0;
 }
 
@@ -851,10 +897,11 @@ body.embed .status__content a,
   stroke: var(--color-accent) !important;
 }
 
-/* Mud background colors */
+/* Mud background colors, reply-indicator */
 .layout-multiple-columns .reply-indicator {
   background-color: var(--color-mud);
   color: var(--color-light-text);
+  max-height: 20vh;
 }
 
 /* Dropdown hovers */
@@ -869,6 +916,58 @@ body.embed .status__content a,
 .layout-multiple-columns .status__wrapper.unread::before {
   border-color: var(--color-accent);
   display: none;
+}
+
+/* Filtered post */
+.layout-multiple-columns .status__wrapper.status__wrapper--filtered {
+  align-items: center;
+  background-color: var(--color-focusable-toot);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  color: var(--color-light-purple);
+  display: flex;
+  flex-wrap: nowrap;
+  font-size: var(--font-size-mid);
+  justify-content: space-between;
+  margin: var(--gap-default);
+  overflow: hidden;
+  padding: 4px 16px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - calc(var(--gap-default) * 2));
+}
+
+.layout-multiple-columns .notification:has(.status__wrapper--filtered) .notification__message {
+  display: none;
+}
+
+/* Fix hover/focus on article that has filtered banner */
+.layout-multiple-columns article:has(.status__wrapper--filtered):hover {
+  background-color: transparent;
+}
+
+.layout-multiple-columns .status__wrapper.status__wrapper--filtered button {
+  background-color: rgb(255 255 255 / 0);
+  border-bottom-left-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+  color: var(--color-fg);
+  font-weight: var(--font-weight-semibold);
+  margin-left: auto;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 8px;
+  transition: 200ms background;
+  white-space: nowrap;
+}
+
+.layout-multiple-columns .status__wrapper.status__wrapper--filtered button:focus,
+.layout-multiple-columns .status__wrapper.status__wrapper--filtered button:hover {
+  background-color: rgb(255 255 255 / .1);
+  text-decoration: none;
 }
 
 /* Unread message */
@@ -907,7 +1006,6 @@ body.embed .status__content a,
 .layout-multiple-columns .status-check-box__status .detailed-status__display-name,
 .layout-multiple-columns .report-dialog-modal .poll__option.dialog-option > .poll__option__text,
 .layout-multiple-columns .status-card .status-card__description,
-.layout-multiple-columns .status-card.compact .status-card__description,
 .layout-multiple-columns .report-dialog-modal .dialog-option .poll__input,
 .layout-multiple-columns .dropdown-menu__container__header,
 .layout-multiple-columns .sign-in-banner p,
@@ -956,7 +1054,8 @@ body.embed .status__content a,
 .layout-multiple-columns .muted .status__content,
 .layout-multiple-columns .muted .status__content a,
 .layout-multiple-columns .muted .status__content p,
-.layout-multiple-columns .muted .status__display-name strong {
+.layout-multiple-columns .muted .status__display-name strong,
+.layout-multiple-columns .privacy-dropdown__option:not(.active) .privacy-dropdown__option__content {
   color: var(--color-dim);
 }
 
@@ -982,7 +1081,7 @@ body.embed .status__content a,
 .layout-multiple-columns .status__content__spoiler-link {
   background-color: var(--color-dark);
   color: var(--color-light-purple);
-  font-weight: 500;
+  font-weight: var(--font-weight-semibold);
 
   /* Need to override forced styles */
   /* stylelint-disable-next-line */
@@ -1014,10 +1113,13 @@ body.embed .status__content a,
 }
 
 /* Light purple things */
-.account__header__tabs__name h1 small,
+.layout-multiple-columns .announcements__pagination .icon-button:hover i,
+.layout-multiple-columns .server-banner__introduction,
+.layout-multiple-columns .account__header__tabs__name h1 small,
 .layout-multiple-columns .account .account__display-name,
 .layout-multiple-columns .column-settings__section,
-.layout-multiple-columns .setting-toggle__label {
+.layout-multiple-columns .setting-toggle__label,
+.layout-multiple-columns .server-banner__number-label {
   color: var(--color-light-purple);
 }
 
@@ -1030,6 +1132,9 @@ body.embed .status__content a,
 .layout-multiple-columns .report-dialog-modal__lead,
 .layout-multiple-columns .detailed-status__display-name strong,
 .layout-multiple-columns .dismissable-banner__message,
+.layout-multiple-columns .privacy-dropdown__option.active,
+.layout-multiple-columns .privacy-dropdown__option:hover .privacy-dropdown__option__content,
+.layout-multiple-columns .privacy-dropdown__option:focus .privacy-dropdown__option__content,
 .layout-multiple-columns .privacy-dropdown__option,
 .layout-multiple-columns .privacy-dropdown__option__content strong,
 .layout-multiple-columns .status__info .display-name strong.display-name__html,
@@ -1081,8 +1186,9 @@ body.embed .status__content a,
 }
 
 /* Status action bar */
-.layout-single-column .status__action-bar {
+.layout-multiple-columns .status__action-bar {
   margin-top: 12px;
+  max-height: 27px;
 }
 
 /* Display name */
@@ -1104,7 +1210,7 @@ body.embed .status__content a,
   content: "·";
   display: inline-block;
   font-size: var(--font-size);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   height: 20px;
   margin-left: -6px;
   margin-right: -10px;
@@ -1241,23 +1347,6 @@ body.embed .detailed-status,
   background: var(--color-focusable-toot);
 }
 
-/* URL preview cards */
-.layout-multiple-columns a.status-card,
-.layout-multiple-columns a.status-card.compact:hover,
-.layout-multiple-columns a.status-card.compact:focus,
-.layout-multiple-columns a.status-card.compact {
-  background-color: transparent;
-  border-color: var(--color-border);
-}
-
-/* URL preview card summary text */
-.layout-multiple-columns a.status-card .status-card__host,
-.layout-multiple-columns a.status-card.compact .status-card__host,
-.layout-multiple-columns a.status-card .status-card__description,
-.layout-multiple-columns a.status-card.compact .status-card__description {
-  color: var(--color-dim);
-}
-
 /* Search panel that opens when focusing Search or paste URL field */
 .layout-multiple-columns .explore__search-header .search__popout,
 .layout-multiple-columns .compose-form__poll-wrapper option,
@@ -1271,24 +1360,6 @@ body.embed .detailed-status,
 .layout-multiple-columns .search__popout em,
 .layout-multiple-columns .search-popout em {
   color: var(--color-light-text);
-}
-
-/* URL preview card box */
-/* stylelint-disable-next-line */
-.layout-multiple-columns a.status-card .status-card__content,
-.layout-multiple-columns a.status-card.compact .status-card__content {
-  display: grid;
-  gap: calc(var(--gap-default) / 2);
-  padding: var(--gap-default);
-}
-
-/* URL preview card fonts */
-.layout-multiple-columns a.status-card .status-card__host,
-.layout-multiple-columns a.status-card.compact .status-card__host,
-.layout-multiple-columns a.status-card .status-card__title,
-.layout-multiple-columns a.status-card.compact .status-card__title {
-  font-size: var(--font-size);
-  margin: 0;
 }
 
 /* Status update tinted to right */
@@ -1350,6 +1421,14 @@ body.embed .detailed-status,
   width: calc(100% - calc(var(--size-avatar) + var(--gap-default))) !important;
 }
 
+/* Fix aspect-ratio for some videos in mastodon v4.1.5-nightly-2023-07-26 */
+.layout-multiple-columns div[style*='aspect-ratio']:not([class]) {
+
+  /* It's inlined so we have to use !important */
+  /* stylelint-disable-next-line */
+  aspect-ratio: unset !important;
+}
+
 .layout-multiple-columns .status .status-card {
   margin-left: calc(var(--size-avatar) + var(--gap-default));
 }
@@ -1396,18 +1475,26 @@ body.embed .detailed-status__favorites {
   font-weight: var(--font-weight-bold);
 }
 
-body.embed .detailed-status__reblogs::after,
-.layout-multiple-columns .detailed-status__reblogs::after {
+/* Textual labels for detailed metrics */
+body.embed .detailed-status__link > .fa-reply + span::after,
+.layout-multiple-columns .detailed-status__link > .fa-reply + span::after {
   color: var(--color-dim);
-  content: 'Boosts';
-  font-weight: 500;
+  content: 'Replies';
+  font-weight: var(--font-weight-semibold);
 }
 
-body.embed .detailed-status__favorites::after,
-.layout-multiple-columns .detailed-status__favorites::after {
+body.embed .detailed-status__link > .fa-retweet + span::after,
+.layout-multiple-columns .detailed-status__link > .fa-retweet + span::after {
+  color: var(--color-dim);
+  content: 'Boosts';
+  font-weight: var(--font-weight-semibold);
+}
+
+body.embed .detailed-status__link > .fa-star + span::after,
+.layout-multiple-columns .detailed-status__link > .fa-star + span::after {
   color: var(--color-dim);
   content: 'Favourites';
-  font-weight: 500;
+  font-weight: var(--font-weight-semibold);
 }
 
 body.embed .detailed-status__meta .detailed-status__link .fa-star,
@@ -1700,7 +1787,7 @@ body.embed .detailed-status__meta .detailed-status__link .fa-retweet,
 }
 
 .layout-multiple-columns .notification-admin-report .notification__report__details  strong {
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
 }
 
 /* Revert hack for notification admin message that has no avatar visible */
@@ -2046,7 +2133,7 @@ body.embed .detailed-status__meta .detailed-status__link .fa-retweet,
 /* Joined label */
 .layout-multiple-columns .account__header__bio .account__header__fields dt:not([title]) {
   display: inline-flex;
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   gap: calc(var(--gap-default) / 2);
   text-transform: unset;
 }
@@ -2076,7 +2163,7 @@ body.embed .detailed-status__meta .detailed-status__link .fa-retweet,
   color: var(--color-dim);
   display: inline-flex;
   font-size: var(--font-size);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   gap: calc(var(--gap-default) / 2);
   padding: 0;
 }
@@ -2397,6 +2484,38 @@ body.embed .button.logo-button:hover,
     max-height: 20vh !important;  /* stylelint-disable-next-line */
     overflow-y: auto !important;
     resize: none;
+  }
+
+  /* Add slight background color for the compose form */
+  /* stylelint-disable-next-line no-duplicate-selectors */
+  .layout-multiple-columns .compose-form .compose-form__autosuggest-wrapper,
+  .layout-multiple-columns .compose-form .compose-form__buttons-wrapper {
+    background-color: var(--color-bg-compose-form);
+    border-color: var(--color-bg-compose-form);
+    padding-top: 0;
+    transition: all 200ms;
+  }
+
+  /* Smooth color transition on focus */
+  .layout-multiple-columns .compose-form .compose-form__autosuggest-wrapper:focus-within,
+  .layout-multiple-columns .compose-form .compose-form__autosuggest-wrapper:focus-within ~ .compose-form__buttons-wrapper {
+    background-color: var(--color-bg-compose-form-focus);
+    border-color: var(--color-bg-compose-form-focus);
+  }
+
+  /* Fixes bottom row padding when there's a background */
+  .layout-multiple-columns .compose-form .compose-form__buttons-wrapper {
+    padding: calc(var(--gap-default) / 2);
+  }
+
+  .layout-multiple-columns .navigation-bar + .compose-form {
+    padding-top: 10px;
+  }
+
+  .layout-multiple-columns .compose-form .emoji-picker-dropdown {
+    inset-inline-end: 3px;
+    position: absolute;
+    top: 3px;
   }
 }
 
@@ -2914,7 +3033,7 @@ body.embed .button.logo-button:hover,
   background-color: var(--color-mud);
   color: var(--color-light-text);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: var(--font-weight-semibold);
   line-height: 12px;
   opacity: 1;
 }
@@ -3230,9 +3349,20 @@ body.embed .button.logo-button:hover,
 .layout-multiple-columns .video-player,
 .layout-multiple-columns .media-gallery__gifv,
 .layout-multiple-columns .media-gallery__preview {
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  outline: 1px solid var(--color-border);
   overflow: hidden;
+}
+
+/* Exception for your own profile media gallery */
+.layout-multiple-columns .account-gallery__container .media-gallery__gifv {
+  border-radius: 0;
+}
+
+/* Hide autoplaying gifs in notifications (they get annoying if you have favs/boosts on) */
+.layout-multiple-columns .notification.notification-reblog .media-gallery:has(.media-gallery__gifv.autoplay),
+.layout-multiple-columns .notification.notification-favourite .media-gallery:has(.media-gallery__gifv.autoplay) {
+  display: none;
 }
 
 /* More distinct focus color for accessibility, instead of just white */
@@ -3292,6 +3422,11 @@ body.embed .entry .detailed-status {
   width: unset;
 }
 
+/* Increase gap for server-banner__meta */
+.layout-multiple-columns .server-banner__meta {
+  gap: 25px;
+}
+
 /* Native Mastodon 4.1.2-nightly threaded lines */
 .layout-multiple-columns .status__line--first {
   height: calc(100% + var(--size-avatar));
@@ -3346,11 +3481,11 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 }
 
 /* Scrollbars */
+.layout-multiple-columns .drawer__inner::-webkit-scrollbar,
 .layout-multiple-columns textarea::-webkit-scrollbar,
 .layout-multiple-columns .autosuggest-textarea__textarea::-webkit-scrollbar,
 .layout-multiple-columns .reply-indicator::-webkit-scrollbar,
-.layout-multiple-columns::-webkit-scrollbar,
-.layout-multiple-columns .scrollable::-webkit-scrollbar {
+.layout-multiple-columns::-webkit-scrollbar {
   height: 6px;
   width: 6px;
 }
@@ -3358,8 +3493,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .layout-multiple-columns textarea::-webkit-scrollbar-thumb,
 .layout-multiple-columns .autosuggest-textarea__textarea::-webkit-scrollbar-thumb,
 .layout-multiple-columns .reply-indicator::-webkit-scrollbar-thumb,
-.layout-multiple-columns::-webkit-scrollbar-thumb,
-.layout-multiple-columns .scrollable::-webkit-scrollbar-thumb {
+.layout-multiple-columns::-webkit-scrollbar-thumb {
   background-color: var(--color-border);
   border: 0px solid var(--color-border);
   border-radius: 50px;
@@ -3368,24 +3502,21 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .layout-multiple-columns textarea::-webkit-scrollbar-thumb:hover,
 .layout-multiple-columns .autosuggest-textarea__textarea::-webkit-scrollbar-thumb:hover,
 .layout-multiple-columns .reply-indicator::-webkit-scrollbar-thumb:hover,
-.layout-multiple-columns::-webkit-scrollbar-thumb:hover,
-.layout-multiple-columns .scrollable:-webkit-scrollbar-thumb:hover {
+.layout-multiple-columns::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-light-purple);
 }
 
 .layout-multiple-columns textarea::-webkit-scrollbar-thumb:active,
 .layout-multiple-columns .autosuggest-textarea__textarea::-webkit-scrollbar-thumb:active,
 .layout-multiple-columns .reply-indicator::-webkit-scrollbar-thumb:active,
-.layout-multiple-columns::-webkit-scrollbar-thumb:active,
-.layout-multiple-columns .scrollable::-webkit-scrollbar-thumb:active {
+.layout-multiple-columns::-webkit-scrollbar-thumb:active {
   background-color: var(--color-black-coral);
 }
 
 .layout-multiple-columns textarea::-webkit-scrollbar-track,
 .layout-multiple-columns .autosuggest-textarea__textarea::-webkit-scrollbar-track,
 .layout-multiple-columns .reply-indicator::-webkit-scrollbar-track,
-.layout-multiple-columns::-webkit-scrollbar-track,
-.layout-multiple-columns .scrollable::-webkit-scrollbar-track {
+.layout-multiple-columns::-webkit-scrollbar-track {
   background-color: var(--color-bg);
   border: 0px solid var(--color-border);
   border-radius: 0;
@@ -3394,25 +3525,49 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .layout-multiple-columns textarea::-webkit-scrollbar-track:hover,
 .layout-multiple-columns .autosuggest-textarea__textarea::-webkit-scrollbar-track:hover,
 .layout-multiple-columns .reply-indicator::-webkit-scrollbar-track:hover,
-.layout-multiple-columns::-webkit-scrollbar-track:hover,
-.layout-multiple-columns .scrollable::-webkit-scrollbar-track:hover {
+.layout-multiple-columns::-webkit-scrollbar-track:hover {
   background-color: var(--color-bg);
 }
 
 .layout-multiple-columns textarea::-webkit-scrollbar-track:active,
 .layout-multiple-columns .autosuggest-textarea__textarea::-webkit-scrollbar-track:active,
 .layout-multiple-columns .reply-indicator::-webkit-scrollbar-track:active,
-.layout-multiple-columns::-webkit-scrollbar-track:active,
-.layout-multiple-columns .scrollable::-webkit-scrollbar-track:active {
+.layout-multiple-columns::-webkit-scrollbar-track:active {
   background-color: var(--color-bg);
 }
 
+.layout-multiple-columns .drawer__inner::-webkit-scrollbar-corner,
 .layout-multiple-columns textarea::-webkit-scrollbar-corner,
 .layout-multiple-columns .autosuggest-textarea__textarea::-webkit-scrollbar-corner,
 .layout-multiple-columns .reply-indicator::-webkit-scrollbar-corner,
-.layout-multiple-columns::-webkit-scrollbar-corner,
-.layout-multiple-columns .scrollable::-webkit-scrollbar-corner {
+.layout-multiple-columns::-webkit-scrollbar-corner {
   background-color: transparent;
+}
+
+/* Drawer scollbars */
+.layout-multiple-columns .drawer__inner::-webkit-scrollbar-thumb {
+  background-color: var(--color-dim);
+  border: 0;
+  border-radius: 50px;
+}
+
+.layout-multiple-columns .drawer__inner::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-light-purple);
+}
+
+.layout-multiple-columns .drawer__inner::-webkit-scrollbar-thumb:active {
+  background-color: var(--color-light-text);
+}
+
+.layout-multiple-columns .drawer__inner::-webkit-scrollbar-track {
+  background-color: var(--color-dark);
+  border: 0;
+  border-radius: 0;
+}
+
+.layout-multiple-columns .drawer__inner::-webkit-scrollbar-track:hover,
+.layout-multiple-columns .drawer__inner::-webkit-scrollbar-track:active {
+  background-color: var(--color-dark);
 }
 
 /*
@@ -3708,6 +3863,17 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .layout-multiple-columns .detailed-status button.icon-button:focus .fa-star::before,
 .layout-multiple-columns .status button.icon-button:hover .fa-star::before {
   color: var(--color-dim);
+}
+
+/* Fix focus for mouse users on v4.1.4-nighly-20230721 */
+.layout-multiple-columns button:focus,
+.layout-multiple-columns .icon-button:focus {
+  outline: 0;
+}
+
+.layout-multiple-columns button:focus-visible,
+.layout-multiple-columns .icon-button:focus-visible {
+  outline: 2px solid var(--color-accent);
 }
 
 /* Mobile devices */
