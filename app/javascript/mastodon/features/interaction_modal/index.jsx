@@ -342,7 +342,7 @@ class InteractionModal extends React.PureComponent {
     } else {
       if(registrationsOpen) {
         signupButton = (
-          <a href='/auth/sign_up' className='link-button'>
+          <a href='/auth/sign_up' className='button button--block button-tertiary'>
             <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
           </a>
         );
