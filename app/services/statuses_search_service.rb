@@ -35,6 +35,7 @@ class StatusesSearchService < BaseService
       definition = definition.filter(range: { id: range })
     end
 
+    # This is the best way to submit identical queries to multi-indexes though chewy
     definition.instance_variable_get(:@parameters)[:indices].value[:indices] << PublicStatusesIndex
 
     results             = definition.limit(@limit).offset(@offset).objects.compact
