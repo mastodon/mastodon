@@ -45,43 +45,8 @@ class Importer::PublicStatusesIndexImporter < Importer::BaseImporter
 
   def scopes
     [
-      local_statuses_scope,
-      local_mentions_scope,
-      local_favourites_scope,
-      local_votes_scope,
-      local_bookmarks_scope,
+      local_statuses_scope
     ]
-  end
-
-  def local_mentions_scope
-    Mention.where(account: Account.local, silent: false)
-           .joins(status: :account)
-           .where(accounts: { discoverable: true })
-           .where(statuses: { visibility: :public })
-           .select('mentions.id, statuses.id AS status_id')
-  end
-
-  def local_favourites_scope
-    Favourite.where(account: Account.local)
-             .joins(status: :account)
-             .where(accounts: { discoverable: true })
-             .where(statuses: { visibility: :public })
-             .select('favourites.id, statuses.id AS status_id')
-  end
-
-  def local_bookmarks_scope
-    Bookmark.joins(status: :account)
-            .where(accounts: { discoverable: true })
-            .where(statuses: { visibility: :public })
-            .select('bookmarks.id, statuses.id AS status_id')
-  end
-
-  def local_votes_scope
-    local_account_ids = Account.where(discoverable: true).pluck(:id)
-
-    Poll.joins(:votes)
-        .where(poll_votes: { account_id: local_account_ids })
-        .where(status_id: Status.where(visibility: :public))
   end
 
   def local_statuses_scope

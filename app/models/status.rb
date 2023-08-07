@@ -47,7 +47,7 @@ class Status < ApplicationRecord
   attr_accessor :override_timestamps
 
   update_index('statuses', :proper)
-  update_index('publicStatuses', :proper)
+  update_index('public_statuses', :proper)
 
   enum visibility: { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, _suffix: :visibility
 

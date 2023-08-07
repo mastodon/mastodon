@@ -135,7 +135,7 @@ class Account < ApplicationRecord
   scope :not_domain_blocked_by_account, ->(account) { where(arel_table[:domain].eq(nil).or(arel_table[:domain].not_in(account.excluded_from_timeline_domains))) }
 
   after_update_commit :trigger_update_webhooks
-  after_update :enqueue_update_public_statuses_index, if: :saved_change_to_discoverable? and Chewy.enabled?
+  after_update_commit :enqueue_update_public_statuses_index, if: :saved_change_to_discoverable? and Chewy.enabled?
 
   delegate :email,
            :unconfirmed_email,
@@ -479,7 +479,7 @@ class Account < ApplicationRecord
   before_validation :prepare_username, on: :create
   before_create :generate_keys
   before_destroy :clean_feed_manager
-  after_commit :enqueue_remove_from_public_statuses_index, on: :destroy, if: -> { Chewy.enabled? && discoverable? }
+  after_destroy_commit :enqueue_remove_from_public_statuses_index, if: -> { Chewy.enabled? && discoverable? }
 
   def ensure_keys!
     return unless local? && private_key.blank? && public_key.blank?

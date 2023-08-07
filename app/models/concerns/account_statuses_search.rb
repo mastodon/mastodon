@@ -26,19 +26,11 @@ module AccountStatusesSearch
   def add_to_public_statuses_index!
     return unless Chewy.enabled?
 
-    batch_size = 1000
-    offset = 0
-
-    loop do
-      batch = Status.where(account_id: id).offset(offset).limit(batch_size)
-
-      break if batch.empty?
-
+    Status.where(account_id: id).find_in_batches(batch_size: 1_000) do |batch|
+      puts batch
       Chewy.strategy(:sidekiq) do
         PublicStatusesIndex.import(query: batch)
       end
-
-      offset += batch_size
     end
   end
 
