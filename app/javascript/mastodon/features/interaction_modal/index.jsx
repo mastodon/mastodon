@@ -335,7 +335,7 @@ class InteractionModal extends React.PureComponent {
     if (sso_redirect) {
       signupButton = (
         <a href={sso_redirect} data-method='post' className='link-button'>
-          <FormattedMessage id='sign_in_banner.sso_redirect' defaultMessage='Login or Register' />
+          <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
         </a>
       );
     } else if (registrationsOpen) {
