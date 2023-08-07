@@ -289,8 +289,10 @@ br:
     view_status: Gwelet ar c'hannad
   auth:
     delete_account: Dilemel ar gont
+    delete_account_html: Ma fell deoc'h dilemel ho kont e c'hellit <a href="%{path}">klikañ amañ</a>. Goulennet e vo ganeoc'h kadarnaat an obererezh.
     login: Mont tre
     logout: Digennaskañ
+    migrate_account_html: Ma fell deoc'h adkas ar gont-mañ war-zu unan all e c'hellit <a href="%{path}">arventenniñ an dra-se amañ</a>.
     providers:
       cas: CAS
       saml: SAML
@@ -334,7 +336,9 @@ br:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
+    '422': 
     '429': Too many requests
+    '500': 
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
@@ -390,6 +394,8 @@ br:
     table:
       uses: Implijoù
     title: Pediñ tud
+  migrations:
+    incoming_migrations_html: Evit dilojañ ur gont all da homañ e rankit <a href="%{path}">sevel un alias</a> da gentañ.
   moderation:
     title: Habaskadur
   notification_mailer:

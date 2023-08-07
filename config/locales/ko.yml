@@ -269,7 +269,7 @@ ko:
         reopen_report_html: "%{name} 님이 신고 %{target}을 다시 열었습니다"
         resend_user_html: "%{name} 님이 %{target} 님에 대한 확인 메일을 다시 보냈습니다"
         reset_password_user_html: "%{name} 님이 사용자 %{target}의 암호를 초기화했습니다"
-        resolve_report_html: "%{name} 님이 신고 %{target}를 처리됨으로 변경하였습니다"
+        resolve_report_html: "%{name} 중재자가 %{target}번 신고를 해결로 변경하였습니다"
         sensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감함으로 표시했습니다"
         silence_account_html: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
         suspend_account_html: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
@@ -354,7 +354,7 @@ ko:
         other: "<strong>%{count}</strong>개의 대기 중인 해시태그"
       pending_users_html:
         other: "<strong>%{count}</strong>명의 대기 중인 사용자"
-      resolved_reports: 신고 해결됨
+      resolved_reports: 해결된 신고
       software: 소프트웨어
       sources: 가입 출처
       space: 디스크 사용량
@@ -600,7 +600,7 @@ ko:
       delete_and_resolve: 게시물 삭제
       forwarded: 전달됨
       forwarded_to: "%{domain}에게 전달됨"
-      mark_as_resolved: 해결 완료 처리
+      mark_as_resolved: 해결로 표시
       mark_as_sensitive: 민감함으로 설정
       mark_as_unresolved: 미해결로 표시
       no_one_assigned: 아무도 없음
@@ -619,7 +619,7 @@ ko:
       report: '신고 #%{id}'
       reported_account: 신고 대상 계정
       reported_by: 신고자
-      resolved: 해결됨
+      resolved: 해결
       resolved_msg: 신고를 잘 해결했습니다!
       skip_to_actions: 작업으로 건너뛰기
       status: 상태
@@ -712,7 +712,7 @@ ko:
     rules:
       add_new: 규칙 추가
       delete: 삭제
-      description_html: 대부분의 경우 사람들이 이용약관을 반드시 읽고 동의하도록 하지만, 보통의 사람들은 문제가 일어나기 전까지는 읽지 않습니다. <strong>여러분의 서버 규칙을 목록으로 정리해서 한 번에 읽기 쉽게 만드세요.</strong> 규칙 각각을 짧고 단순하게 만들고, 하나를 여러 개로 쪼개지도 마세요.
+      description_html: 대부분의 사람들은 서비스 약관을 읽고 동의한다고 밝힙니다만, 대개 문제가 발생하기 전까지는 약관을 자세히 읽어보지 않습니다. <strong>서버의 운영원칙을 단일한 글머리 기호 목록으로 제공하여 한 눈에 쉽게 확인할 수 있도록 하세요.</strong> 각 규칙을 짧고 간결하게 유지하되, 많은 항목으로 나누지 않도록 하세요.
       edit: 규칙 수정
       empty: 아직 정의된 서버 규칙이 없습니다.
       title: 서버 규칙
@@ -851,7 +851,7 @@ ko:
       statuses:
         allow: 게시물 허용
         allow_account: 작성자 허용
-        description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 좋아요가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
+        description_html: 여러분의 서버가 알기로 현재 많은 수의 공유와 좋아요가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
         disallow: 게시물 비허용
         disallow_account: 작성자 비허용
         no_status_selected: 아무 것도 선택 되지 않아 어떤 유행중인 게시물도 바뀌지 않았습니다
@@ -1229,7 +1229,7 @@ ko:
       invalid_csv_file: '올바르지 않은 CSV 파일입니다. 오류: %{error}'
       over_rows_processing_limit: "%{count}개 이상의 열을 포함합니다"
       too_large: 파일이 너무 큼
-    failures: 실패함
+    failures: 실패
     imported: 가져옴
     mismatched_types_warning: 가져오기할 때 잘못된 유형을 선택했을 수 있으니, 꼭 두 번 체크해주세요.
     modes:
@@ -1276,9 +1276,9 @@ ko:
       blocking: 차단한 계정 목록
       bookmarks: 북마크
       domain_blocking: 도메인 차단 목록
-      following: 팔로우 중인 계정 목록
+      following: 팔로잉 목록
       lists: 리스트
-      muting: 뮤트 중인 계정 목록
+      muting: 뮤트한 계정 목록
     upload: 업로드
   invites:
     delete: 비활성화
@@ -1363,7 +1363,7 @@ ko:
       cooldown: 이주 뒤에는 새로운 이주를 하지 못하는 휴식기간이 존재합니다
       disabled_account: 이 계정은 완전한 사용이 불가능하게 됩니다. 하지만, 데이터 내보내기나 재활성화를 위해 접근할 수 있습니다.
       followers: 이 행동은 현재 계정의 모든 팔로워를 새 계정으로 이동시킵니다
-      only_redirect_html: 대신, <a href="%{path}">프로필에 리디렉션만 표시</a>할 수 있습니다.
+      only_redirect_html: 대신, <a href="%{path}">프로필에 리디렉션만 표시</a>할 수도 있습니다.
       other_data: 다른 어떤 데이터도 자동적으로 옮겨지지 않을 것입니다
       redirect: 현재 계정 프로필은 리다이렉트 알림과 함께 업데이트 되며 검색에서 제외 됩니다
   moderation:

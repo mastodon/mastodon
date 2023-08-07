@@ -810,7 +810,7 @@ zh-TW:
         message_html: 不相容的 Elasticsearch 版本：%{value}
         version_comparison: Elasticsearch %{running_version} 版正在執行，需要 %{required_version} 版。
       rules_check:
-        action: 管理服务器规则
+        action: 管理伺服器規則
         message_html: 您尚未定義任何伺服器規則。
       sidekiq_process_check:
         message_html: 沒有佇列 %{value} 的 Sidekiq 行程，請檢查您的 Sidekiq 設定組態
