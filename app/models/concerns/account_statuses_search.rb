@@ -27,9 +27,7 @@ module AccountStatusesSearch
     return unless Chewy.enabled?
 
     Status.joins(:account).where(accounts: { discoverable: true }).where(visibility: :public).where(account_id: id).find_in_batches(batch_size: 1_000) do |batch|
-      Chewy.strategy(:sidekiq) do
-        PublicStatusesIndex.import(query: batch)
-      end
+      PublicStatusesIndex.import(query: batch)
     end
   end
 
