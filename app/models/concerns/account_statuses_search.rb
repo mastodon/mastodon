@@ -26,8 +26,7 @@ module AccountStatusesSearch
   def add_to_public_statuses_index!
     return unless Chewy.enabled?
 
-    Status.where(account_id: id).find_in_batches(batch_size: 1_000) do |batch|
-      puts batch
+    Status.joins(:account).where(accounts: { discoverable: true }).where(visibility: :public).where(account_id: id).find_in_batches(batch_size: 1_000) do |batch|
       Chewy.strategy(:sidekiq) do
         PublicStatusesIndex.import(query: batch)
       end
