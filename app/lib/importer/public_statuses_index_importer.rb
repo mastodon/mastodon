@@ -45,7 +45,7 @@ class Importer::PublicStatusesIndexImporter < Importer::BaseImporter
 
   def scopes
     [
-      local_statuses_scope
+      local_statuses_scope,
     ]
   end
 
