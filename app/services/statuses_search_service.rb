@@ -21,24 +21,16 @@ class StatusesSearchService < BaseService
             publicly_searchable,
             non_publicly_searchable,
           ],
+
           minimum_should_match: 1,
         }
       )
     )
 
-    definition = definition.filter(term: { account_id: @options[:account_id] }) if @options[:account_id].present?
-
-    if @options[:min_id].present? || @options[:max_id].present?
-      range      = {}
-      range[:gt] = @options[:min_id].to_i if @options[:min_id].present?
-      range[:lt] = @options[:max_id].to_i if @options[:max_id].present?
-      definition = definition.filter(range: { id: range })
-    end
-
     # This is the best way to submit identical queries to multi-indexes though chewy
     definition.instance_variable_get(:@parameters)[:indices].value[:indices] << PublicStatusesIndex
 
-    results             = definition.limit(@limit).offset(@offset).objects.compact
+    results             = definition.order(_id: { order: :desc }).limit(@limit).offset(@offset).objects.compact
     account_ids         = results.map(&:account_id)
     account_domains     = results.map(&:account_domain)
     preloaded_relations = @account.relations_map(account_ids, account_domains)
