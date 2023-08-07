@@ -1038,3 +1038,33 @@ $ui-header-height: 55px;
     }
   }
 }
+
+.hashtag-header {
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  padding: 15px;
+  font-size: 17px;
+  line-height: 22px;
+  color: $darker-text-color;
+
+  strong {
+    font-weight: 700;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+
+    h1 {
+      color: $primary-text-color;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: 22px;
+      line-height: 33px;
+      font-weight: 700;
+    }
+  }
+}
