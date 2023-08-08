@@ -90,6 +90,7 @@ class ScrollableList extends PureComponent {
   };
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
+  firstArticle = null;
 
   handleScroll = throttle(() => {
     if (this.node) {
@@ -251,14 +252,42 @@ class ScrollableList extends PureComponent {
     this.node = c;
   };
 
+  preLoad = () => {
+    // Here we record the first visible article so that when we mouseUp on
+    // the LoadX element, were able to scroll back to it.
+    const scrollableRect = this.node.getBoundingClientRect();
+    const articles = this.node.querySelectorAll("article");
+    for (const article of articles) {
+      const articleRect = article.getBoundingClientRect();
+      if (articleRect.top > scrollableRect.top) {
+        this.firstArticle = article;
+        break;
+      }
+    }
+  }
+
+  returnToFirstArticle () {
+    if (this.firstArticle !== null) {
+      // Scroll the firstArticle back into view once we're done with everything
+      // else.
+      setTimeout(() => {
+        firstArticle.scrollIntoView();
+        firstArticle.querySelector("div.status__wrapper").focus();
+      }, 0);
+    }
+  }
+
+
   handleLoadMore = e => {
     e.preventDefault();
     this.props.onLoadMore();
+    this.returnToFirstArticle();
   };
 
   handleLoadPending = e => {
     e.preventDefault();
     this.props.onLoadPending();
+    this.returnToFirstArticle();
   };
 
   render () {
@@ -266,8 +295,8 @@ class ScrollableList extends PureComponent {
     const { fullscreen } = this.state;
     const childrenCount = Children.count(children);
 
-    const loadMore     = (hasMore && onLoadMore) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
-    const loadPending  = (numPending > 0) ? <LoadPending count={numPending} onClick={this.handleLoadPending} /> : null;
+    const loadMore     = (hasMore && onLoadMore) ? <LoadMore visible={!isLoading} onMouseDown={this.preLoad} onMouseUp={this.handleLoadMore} /> : null;
+    const loadPending  = (numPending > 0) ? <LoadPending count={numPending} onMouseDown={this.preLoad} onMouseUp={this.handleLoadPending} /> : null;
     let scrollableArea = null;
 
     if (showLoading) {

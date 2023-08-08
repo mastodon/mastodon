@@ -1,13 +1,22 @@
 import { FormattedMessage } from 'react-intl';
 
 interface Props {
-  onClick: (event: React.MouseEvent) => void;
+  onMouseDown: (event: React.MouseEvent) => void;
+  onMouseUp: (event: React.MouseEvent) => void;
   count: number;
 }
 
-export const LoadPending: React.FC<Props> = ({ onClick, count }) => {
+export const LoadPending: React.FC<Props> = ({
+  onMouseDown,
+  onMouseUp,
+  count,
+}) => {
   return (
-    <button className='load-more load-gap' onClick={onClick}>
+    <button
+      className='load-more load-gap'
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+    >
       <FormattedMessage
         id='load_pending'
         defaultMessage='{count, plural, one {# new item} other {# new items}}'
