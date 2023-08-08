@@ -4,7 +4,7 @@ class Api::V1::Peers::SearchController < Api::BaseController
   before_action :require_enabled_api!
   before_action :set_domains
 
-  skip_before_action :require_authenticated_user!, unless: :whitelist_mode?
+  skip_before_action :require_authenticated_user!, unless: :limited_federation_mode?
   skip_around_action :set_locale
 
   vary_by ''
@@ -17,7 +17,7 @@ class Api::V1::Peers::SearchController < Api::BaseController
   private
 
   def require_enabled_api!
-    head 404 unless Setting.peers_api_enabled && !whitelist_mode?
+    head 404 unless Setting.peers_api_enabled && !limited_federation_mode?
   end
 
   def set_domains
@@ -27,7 +27,7 @@ class Api::V1::Peers::SearchController < Api::BaseController
       @domains = InstancesIndex.query(function_score: {
         query: {
           prefix: {
-            domain: params[:q],
+            domain: TagManager.instance.normalize_domain(params[:q].strip),
           },
         },
 

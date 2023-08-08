@@ -135,7 +135,7 @@ Lint/UselessAssignment:
 
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
-  Max: 143
+  Max: 146
 
 # Configuration parameters: CountBlocks, Max.
 Metrics/BlockNesting:
@@ -589,7 +589,7 @@ Style/FetchEnvVar:
     - 'app/lib/translation_service.rb'
     - 'config/environments/development.rb'
     - 'config/environments/production.rb'
-    - 'config/initializers/2_whitelist_mode.rb'
+    - 'config/initializers/2_limited_federation_mode.rb'
     - 'config/initializers/blacklists.rb'
     - 'config/initializers/cache_buster.rb'
     - 'config/initializers/content_security_policy.rb'

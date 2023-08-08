@@ -63,6 +63,11 @@ namespace :tests do
         puts 'Account domains not properly normalized'
         exit(1)
       end
+
+      unless Status.find(12).preview_cards.pluck(:url) == ['https://joinmastodon.org/']
+        puts 'Preview cards not deduplicated as expected'
+        exit(1)
+      end
     end
 
     desc 'Populate the database with test data for 2.4.3'
@@ -238,6 +243,11 @@ namespace :tests do
           (10, 2, '@admin hey!', NULL, 1, 3, now(), now()),
           (11, 1, '@user hey!', 10, 1, 3, now(), now());
 
+        INSERT INTO "statuses"
+          (id, account_id, text, created_at, updated_at)
+        VALUES
+          (12, 1, 'check out https://joinmastodon.org/', now(), now());
+
         -- mentions (from previous statuses)
 
         INSERT INTO "mentions"
@@ -326,6 +336,21 @@ namespace :tests do
           (1, 6, 2, 'Follow', 2, now(), now()),
           (2, 2, 1, 'Mention', 4, now(), now()),
           (3, 1, 2, 'Mention', 5, now(), now());
+
+        -- preview cards
+
+        INSERT INTO "preview_cards"
+          (id, url, title, created_at, updated_at)
+        VALUES
+          (1, 'https://joinmastodon.org/', 'Mastodon - Decentralized social media', now(), now());
+
+        -- many-to-many association between preview cards and statuses
+
+        INSERT INTO "preview_cards_statuses"
+          (status_id, preview_card_id)
+        VALUES
+          (12, 1),
+          (12, 1);
       SQL
     end
   end

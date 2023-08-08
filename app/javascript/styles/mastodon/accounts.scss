@@ -187,7 +187,6 @@
   }
 }
 
-.account-role,
 .information-badge,
 .simple_form .recommended,
 .simple_form .not_recommended {
@@ -212,10 +211,30 @@
 }
 
 .account-role {
+  display: inline-flex;
+  padding: 4px;
+  padding-inline-end: 8px;
   border: 1px solid $highlight-text-color;
+  color: $highlight-text-color;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  line-height: 16px;
+  gap: 4px;
+  border-radius: 6px;
+  align-items: center;
 
-  .fa {
-    color: var(--user-role-accent, $highlight-text-color);
+  svg {
+    width: auto;
+    height: 15px;
+    opacity: 0.85;
+    fill: currentColor;
+  }
+
+  &__domain {
+    font-weight: 400;
+    opacity: 0.75;
+    letter-spacing: 0;
   }
 }
 

@@ -845,7 +845,7 @@ cy:
       language: Iaith
       media:
         title: Cyfryngau
-      metadata: Metaddata
+      metadata: Metadata
       no_status_selected: Heb newid postiad gan na ddewiswyd dim un
       open: Agor postiad
       original_status: Postiad gwreiddiol
@@ -1049,7 +1049,7 @@ cy:
     notification_preferences: Newid gosodiadau e-bost
     salutation: "%{name},"
     settings: 'Newid gosodiadau e-bost: %{link}'
-    unsubscribe: Datdanysgrifio
+    unsubscribe: Dad-danysgrifio
     view: 'Gweld:'
     view_profile: Gweld proffil
     view_status: Gweld postiad
@@ -1321,7 +1321,7 @@ cy:
       other: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
       two: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
       zero: Does <strong>%{count}</strong> o eitemau sy'n cyfateb i'ch chwiliad wedi'u dewis.
-    cancel: Diddymu
+    cancel: Canslo
     changes_saved_msg: Llwyddwyd i gadw'r newidiadau!
     confirm: Cadarnhau
     copy: Copïo
@@ -1365,12 +1365,14 @@ cy:
       bookmarks_html: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{total_items} o bostiadau</strong> gan <strong>%{filename}</strong> .
       domain_blocking_html: Rydych ar fin <strong>amnewid eich rhestr rhwystro parth</strong> gyda hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong> .
       following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> a <strong>pheidio a ddilyn unrhyw un arall</strong> .
+      lists_html: Rydych ar fin <strong>amnewid eich rhestrau</strong> gyda chynnwys <strong>%{filename}</strong> . Bydd hyd at <strong>%{total_items} o gyfrifon</strong> yn cael eu hychwanegu at restrau newydd.
       muting_html: Rydych ar fin <strong>amnewid eich rhestr o gyfrifon tawel</strong> gyda hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
     preambles:
       blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
       bookmarks_html: Rydych ar fin ychwanegu hyd at <strong>%{total_items} o bostiadau</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong> .
       domain_blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong> .
       following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} cyfrif</strong> gan <strong>%{filename}</strong> .
+      lists_html: Rydych ar fin ychwanegu hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> at eich <strong>rhestrau</strong> . Bydd rhestrau newydd yn cael eu creu os nad oes rhestr i ychwanegu ati.
       muting_html: Rydych ar fin <strong>tewi</strong> hyd at <strong>%{total_items} cyfrif</strong> o <strong>%{filename}</strong> .
     preface: Gallwch fewnforio data rydych chi wedi'i allforio o weinydd arall, fel rhestr o'r bobl rydych chi'n eu dilyn neu'n eu blocio.
     recent_imports: Mewnforion diweddar
@@ -1387,6 +1389,7 @@ cy:
       bookmarks: Mewnforio nodau tudalen
       domain_blocking: Mewnforio parthau sydd wedi'u rhwystro
       following: Mewnforio cyfrifon yn cael eu dilyn
+      lists: Mewnforio rhestrau
       muting: Mewnforio cyfrifon wedi'u tewi
     type: Math o fewnforion
     type_groups:
@@ -1397,6 +1400,7 @@ cy:
       bookmarks: Llyfrnodau
       domain_blocking: Rhestr rhwystro parth
       following: Rhestr ddilynion
+      lists: Rhestrau
       muting: Rhestr tewi
     upload: Llwytho
   invites:
@@ -1453,7 +1457,7 @@ cy:
           reblog: e-bost hysbysu hybu
       resubscribe_html: Os ydych wedi dad-danysgrifio trwy gamgymeriad, gallwch ail-danysgrifio o'ch <a href="%{settings_path}">gosodiadau hysbysiadau e-bost</a> .
       success_html: Os nad ydych bellach yn derbyn %{type} Mastodon %{domain} i'ch e-bost %{email}.
-      title: Datdanysgrifio
+      title: Dad-danysgrifio
   media_attachments:
     validations:
       images_and_video: Methu atodi fideo i bostiad sydd eisoes yn cynnwys delweddau
@@ -1679,7 +1683,7 @@ cy:
     migrate: Mudo cyfrif
     notifications: Hysbysiadau
     preferences: Dewisiadau
-    profile: Proffil
+    profile: Proffil cyhoeddus
     relationships: Yn dilyn a dilynwyr
     statuses_cleanup: Dileu postiadau'n awtomatig
     strikes: Rhybuddion cymedroli

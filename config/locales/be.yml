@@ -798,6 +798,7 @@ be:
           approved: Для рэгістрацыі патрабуецца пацвярджэнне
           none: Нікому не магчыма зарэгістравацца
           open: Любому магчыма зарэгістравацца
+      title: Налады сервера
     site_uploads:
       delete: Выдаліць запампаваны файл
       destroyed_msg: Загрузка сайту паспяхова выдалена!
@@ -1314,12 +1315,14 @@ be:
       bookmarks_html: Вы збіраецеся <strong>замяніць свае закладкі</strong> на <strong>%{total_items} допісаў</strong> з файла <strong>%{filename}</strong>.
       domain_blocking_html: Вы збіраецеся <strong>замяніць свой спіс блакіроўкі даменаў</strong> на <strong>%{total_items} даменаў</strong> з файла <strong>%{filename}</strong>.
       following_html: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong> і <strong> адпісацца ад усіх іншых карыстальнікаў</strong>.
+      lists_html: Вы збіраецеся <strong>замяніць свае спісы</strong> змесцівам з <strong>%{filename}</strong>. Да <strong>%{total_items} уліковых запісаў</strong> будуць дададзены ў новыя спісы.
       muting_html: Вы збіраецеся <strong>замяніць свой спіс ігнараваных уліковых запісаў</strong> на <strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong>.
     preambles:
       blocking_html: Вы збіраецеся <strong>заблакіраваць</strong> да <strong>%{total_items} уліковых запісаў</strong> з файла<strong>%{filename}</strong>.
       bookmarks_html: Вы збіраецеся дадаць да <strong>%{total_items} паведамленняў</strong> з файла <strong>%{filename}</strong> у вашы <strong>закладкі</strong>.
       domain_blocking_html: Вы збіраецеся <strong>заблакіраваць</strong> да <strong>%{total_items} даменаў</strong> з файла <strong>%{filename}</strong>.
       following_html: Вы збіраецеся <strong>падпісацца </strong> на<strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong>.
+      lists_html: Вы збіраецеся дадаць да <strong>%{total_items} уліковых запісаў</strong> з <strong>%{filename}</strong> у вашы <strong>спісы</strong>. Новыя спісы будуць створаны, калі іх няма.
       muting_html: Вы збіраецеся <strong>ігнараваць</strong> да <strong>%{total_items} уліковых запісаў</strong> з файла <strong>%{filename}</strong>.
     preface: Вы можаце імпартаваць даныя, экспартаваныя вамі з іншага сервера, напрыклад, спіс людзей, на якіх вы падпісаны або якіх блакуеце.
     recent_imports: Нядаўнія імпарты
@@ -1336,6 +1339,7 @@ be:
       bookmarks: Імпарт закладак
       domain_blocking: Імпарт заблакіраваных даменаў
       following: Імпарт падпісаных уліковых запісаў
+      lists: Імпартаванне спісаў
       muting: Імпарт ігнараваных уліковых запісаў
     type: Тып імпарту
     type_groups:
@@ -1346,6 +1350,7 @@ be:
       bookmarks: Закладкі
       domain_blocking: Спіс заблакіраваных даменаў
       following: Падпіскі
+      lists: Спісы
       muting: Спіс ігнаравання
     upload: Запампаваць
   invites:

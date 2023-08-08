@@ -20,7 +20,7 @@ de:
         type_html: Wähle aus, wie mit <strong>%{acct}</strong> vorgegangen werden soll
         types:
           disable: Benutzer*in daran hindern, das Konto verwenden zu können, aber die Inhalte nicht löschen oder ausblenden.
-          none: Dem Konto eine Verwarnung zusenden, ohne dabei eine andere Aktion vorzunehmen.
+          none: Dem Konto eine Warnung zusenden, ohne dabei eine andere Aktion vorzunehmen.
           sensitive: Erzwingen, dass alle Medieninhalte dieses Profils mit einer Inhaltswarnung versehen werden.
           silence: Verhindert, dass dieses Profil öffentlich sichtbare Beiträge verfassen kann, und verbirgt alle Beiträge und Benachrichtigungen vor Personen, die diesem Profil nicht folgen. Alle Meldungen zu diesem Konto werden geschlossen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
@@ -51,7 +51,7 @@ de:
         password: Verwende mindestens 8 Zeichen
         phrase: Wird unabhängig von der Groß- und Kleinschreibung im Text oder der Inhaltswarnung eines Beitrags abgeglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
-        setting_aggregate_reblogs: Keine geteilten Beiträge anzeigen, die bereits kürzlich geteilt wurden (wirkt sich nur auf zukünftige geteilte Beiträge aus)
+        setting_aggregate_reblogs: Beiträge, die erst kürzlich geteilt wurden, werden nicht noch einmal angezeigt (wirkt sich nur auf zukünftige geteilte Beiträge aus)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail versendet, wenn du gerade auf Mastodon aktiv bist
         setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
         setting_display_media_default: Medien mit Inhaltswarnung ausblenden
@@ -151,7 +151,7 @@ de:
       admin_account_action:
         include_statuses: Gemeldete Beiträge der E-Mail beifügen
         send_email_notification: Benachrichtigung per E-Mail
-        text: Individuelle Verwarnung
+        text: Individuelle Warnung
         type: Aktion
         types:
           disable: Einfrieren
