@@ -90,7 +90,7 @@ class ScrollableList extends PureComponent {
   };
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
-  firstArticle = null;
+  firstSeenArticle = null;
 
   handleScroll = throttle(() => {
     if (this.node) {
@@ -260,19 +260,19 @@ class ScrollableList extends PureComponent {
     for (const article of articles) {
       const articleRect = article.getBoundingClientRect();
       if (articleRect.top > scrollableRect.top) {
-        this.firstArticle = article;
+        this.firstSeenArticle = article;
         break;
       }
     }
   }
 
   returnToFirstArticle () {
-    if (this.firstArticle !== null) {
-      // Scroll the firstArticle back into view once we're done with everything
-      // else.
+    if (this.firstSeenArticle !== null) {
+      // Scroll the firstSeenArticle back into view once we're done with
+      // everything else.
       setTimeout(() => {
-        firstArticle.scrollIntoView();
-        firstArticle.querySelector("div.status__wrapper").focus();
+        firstSeenArticle.scrollIntoView();
+        firstSeenArticle.querySelector("div.status__wrapper").focus();
       }, 0);
     }
   }
