@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PublicStatusesIndex < Chewy::Index
-  settings index: { refresh_interval: '30s' }, analysis: {
+  settings index: index_preset(refresh_interval: '30s', number_of_shards: 5), analysis: {
     filter: {
       english_stop: {
         type: 'stop',
