@@ -195,7 +195,14 @@ module Mastodon
     def supports_drop_index_concurrently?
       version = select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
 
-      version >= 90200
+      version >= 90_200
+    end
+
+    # Only available on Postgresql >= 11
+    def supports_add_column_with_default?
+      version = select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
+
+      version >= 11_000
     end
 
     # Adds a foreign key with only minimal locking on the tables involved.
@@ -414,6 +421,11 @@ module Mastodon
     # This method can also take a block which is passed directly to the
     # `update_column_in_batches` method.
     def add_column_with_default(table, column, type, default:, limit: nil, allow_null: false, &block)
+      if supports_add_column_with_default?
+        add_column(table, column, type, default: default, limit: limit, null: allow_null)
+        return
+      end
+
       if transaction_open?
         raise 'add_column_with_default can not be run inside a transaction, ' \
           'you can disable transactions by calling disable_ddl_transaction! ' \
