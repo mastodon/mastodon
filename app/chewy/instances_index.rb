@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class InstancesIndex < Chewy::Index
-  settings index: { refresh_interval: '30s' }
+  settings index: index_preset(refresh_interval: '30s')
 
   index_scope ::Instance.searchable
 
