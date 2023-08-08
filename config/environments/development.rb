@@ -35,6 +35,8 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.action_controller.forgery_protection_origin_check = ENV['DISABLE_FORGERY_REQUEST_PROTECTION'].nil?
+
   ActiveSupport::Logger.new(STDOUT).tap do |logger|
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
