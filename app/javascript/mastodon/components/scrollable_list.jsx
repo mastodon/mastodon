@@ -88,6 +88,7 @@ class ScrollableList extends PureComponent {
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
   firstSeenArticle = null;
+  scrollAdjustment = 0;
 
   handleScroll = throttle(() => {
     if (this.node) {
@@ -132,6 +133,12 @@ class ScrollableList extends PureComponent {
 
     // Handle initial scroll position
     this.handleScroll();
+
+    // If we are bound to the document, the stuff above the scrollable has to
+    // be taken into account when we focus back to the article we want.
+    if (this.props.bindToDocument) {
+      this.scrollAdjustment = this.node.getBoundingClientRect().top;
+    }
   }
 
   getScrollPosition = () => {
@@ -159,27 +166,6 @@ class ScrollableList extends PureComponent {
 
     this.setScrollTop(newScrollTop);
   };
-
-  getSnapshotBeforeUpdate (prevProps) {
-    const someItemInserted = Children.count(prevProps.children) > 0 &&
-      Children.count(prevProps.children) < Children.count(this.props.children) &&
-      this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
-    const pendingChanged = (prevProps.numPending > 0) !== (this.props.numPending > 0);
-
-    if (pendingChanged || someItemInserted && (this.getScrollTop() > 0 || this.props.preventScroll)) {
-      return this.getScrollHeight() - this.getScrollTop();
-    } else {
-      return null;
-    }
-  }
-
-  componentDidUpdate (prevProps, prevState, snapshot) {
-    // Reset the scroll position when a new child comes in in order not to
-    // jerk the scrollbar around if you're already scrolled down the page.
-    if (snapshot !== null) {
-      this.setScrollTop(this.getScrollHeight() - snapshot);
-    }
-  }
 
   cacheMediaWidth = (width) => {
     if (width && this.state.cachedMediaWidth !== width) {
@@ -248,11 +234,14 @@ class ScrollableList extends PureComponent {
   preLoad = () => {
     // Here we record the first visible article so that when we mouseUp on
     // the LoadX element, were able to scroll back to it.
+
+    // Note that it does not matter whether we are binding to the document, or
+    // not. The node we have to test is always that of the scrollable itself.
     const scrollableRect = this.node.getBoundingClientRect();
     const articles = this.node.querySelectorAll("article");
     for (const article of articles) {
       const articleRect = article.getBoundingClientRect();
-      if (articleRect.top > scrollableRect.top) {
+      if (articleRect.top >= scrollableRect.top) {
         this.firstSeenArticle = article;
         break;
       }
@@ -260,14 +249,21 @@ class ScrollableList extends PureComponent {
   }
 
   returnToFirstArticle () {
-    if (this.firstSeenArticle !== null) {
-      // Scroll the firstSeenArticle back into view once we're done with
-      // everything else.
-      setTimeout(() => {
-        firstSeenArticle.scrollIntoView();
-        firstSeenArticle.querySelector("div.status__wrapper").focus();
-      }, 0);
+    const first = this.firstSeenArticle;
+    if (first === null) {
+      return;
     }
+
+    // Scroll the firstSeenArticle back into view once we're done with
+    // everything else.
+    setTimeout(() => {
+      // We need to adjust with the scrollAdjustment. It is non-zero only when
+      // we bind to the document.
+      this.setScrollTop(this.getScrollTop() +
+                        first.getBoundingClientRect().top -
+                        this.scrollAdjustment);
+      first.querySelector("div.status__wrapper").focus();
+    }, 0);
   }
 
 
