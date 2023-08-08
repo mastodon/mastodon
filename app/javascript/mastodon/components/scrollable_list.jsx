@@ -7,7 +7,6 @@ import { useLocation } from 'react-router-dom';
 import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 
-import { supportsPassiveEvents } from 'detect-passive-events';
 import { throttle } from 'lodash';
 
 import ScrollContainer from 'mastodon/containers/scroll_container';
@@ -19,8 +18,6 @@ import IntersectionObserverWrapper from '../features/ui/util/intersection_observ
 import { LoadMore } from './load_more';
 import { LoadPending } from './load_pending';
 import { LoadingIndicator } from './loading_indicator';
-
-const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 /**
  *
@@ -218,20 +215,16 @@ class ScrollableList extends PureComponent {
   attachScrollListener () {
     if (this.props.bindToDocument) {
       document.addEventListener('scroll', this.handleScroll);
-      document.addEventListener('wheel', this.handleWheel,  listenerOptions);
     } else {
       this.node.addEventListener('scroll', this.handleScroll);
-      this.node.addEventListener('wheel', this.handleWheel, listenerOptions);
     }
   }
 
   detachScrollListener () {
     if (this.props.bindToDocument) {
       document.removeEventListener('scroll', this.handleScroll);
-      document.removeEventListener('wheel', this.handleWheel, listenerOptions);
     } else {
       this.node.removeEventListener('scroll', this.handleScroll);
-      this.node.removeEventListener('wheel', this.handleWheel, listenerOptions);
     }
   }
 
