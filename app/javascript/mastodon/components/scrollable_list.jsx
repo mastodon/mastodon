@@ -20,8 +20,6 @@ import { LoadMore } from './load_more';
 import { LoadPending } from './load_pending';
 import { LoadingIndicator } from './loading_indicator';
 
-const MOUSE_IDLE_DELAY = 300;
-
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 /**
@@ -109,22 +107,10 @@ class ScrollableList extends PureComponent {
       } else if (this.props.onScroll) {
         this.props.onScroll();
       }
-
-      if (!this.lastScrollWasSynthetic) {
-        // If the last scroll wasn't caused by setScrollTop(), assume it was
-        // intentional and cancel any pending scroll reset on mouse idle
-        this.scrollToTopOnMouseIdle = false;
-      }
-      this.lastScrollWasSynthetic = false;
     }
   }, 150, {
     trailing: true,
   });
-
-  mouseIdleTimer = null;
-  mouseMovedRecently = false;
-  lastScrollWasSynthetic = false;
-  scrollToTopOnMouseIdle = false;
 
   _getScrollingElement = () => {
     if (this.props.bindToDocument) {
@@ -136,48 +122,8 @@ class ScrollableList extends PureComponent {
 
   setScrollTop = newScrollTop => {
     if (this.getScrollTop() !== newScrollTop) {
-      this.lastScrollWasSynthetic = true;
-
       this._getScrollingElement().scrollTop = newScrollTop;
     }
-  };
-
-  clearMouseIdleTimer = () => {
-    if (this.mouseIdleTimer === null) {
-      return;
-    }
-
-    clearTimeout(this.mouseIdleTimer);
-    this.mouseIdleTimer = null;
-  };
-
-  handleMouseMove = throttle(() => {
-    // As long as the mouse keeps moving, clear and restart the idle timer.
-    this.clearMouseIdleTimer();
-    this.mouseIdleTimer = setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
-
-    if (!this.mouseMovedRecently && this.getScrollTop() === 0) {
-      // Only set if we just started moving and are scrolled to the top.
-      this.scrollToTopOnMouseIdle = true;
-    }
-
-    // Save setting this flag for last, so we can do the comparison above.
-    this.mouseMovedRecently = true;
-  }, MOUSE_IDLE_DELAY / 2);
-
-  handleWheel = throttle(() => {
-    this.scrollToTopOnMouseIdle = false;
-  }, 150, {
-    trailing: true,
-  });
-
-  handleMouseIdle = () => {
-    if (this.scrollToTopOnMouseIdle && !this.props.preventScroll) {
-      this.setScrollTop(0);
-    }
-
-    this.mouseMovedRecently = false;
-    this.scrollToTopOnMouseIdle = false;
   };
 
   componentDidMount () {
@@ -191,7 +137,7 @@ class ScrollableList extends PureComponent {
   }
 
   getScrollPosition = () => {
-    if (this.node && (this.getScrollTop() > 0 || this.mouseMovedRecently)) {
+    if (this.node && this.getScrollTop() > 0) {
       return { height: this.getScrollHeight(), top: this.getScrollTop() };
     } else {
       return null;
@@ -222,7 +168,7 @@ class ScrollableList extends PureComponent {
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
     const pendingChanged = (prevProps.numPending > 0) !== (this.props.numPending > 0);
 
-    if (pendingChanged || someItemInserted && (this.getScrollTop() > 0 || this.mouseMovedRecently || this.props.preventScroll)) {
+    if (pendingChanged || someItemInserted && (this.getScrollTop() > 0 || this.props.preventScroll)) {
       return this.getScrollHeight() - this.getScrollTop();
     } else {
       return null;
@@ -244,7 +190,6 @@ class ScrollableList extends PureComponent {
   };
 
   componentWillUnmount () {
-    this.clearMouseIdleTimer();
     this.detachScrollListener();
     this.detachIntersectionObserver();
 
@@ -314,13 +259,6 @@ class ScrollableList extends PureComponent {
   handleLoadPending = e => {
     e.preventDefault();
     this.props.onLoadPending();
-    // Prevent the weird scroll-jumping behavior, as we explicitly don't want to
-    // scroll to top, and we know the scroll height is going to change
-    this.scrollToTopOnMouseIdle = false;
-    this.lastScrollWasSynthetic = false;
-    this.clearMouseIdleTimer();
-    this.mouseIdleTimer = setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
-    this.mouseMovedRecently = true;
   };
 
   render () {
@@ -346,7 +284,7 @@ class ScrollableList extends PureComponent {
       );
     } else if (isLoading || childrenCount > 0 || numPending > 0 || hasMore || !emptyMessage) {
       scrollableArea = (
-        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
+        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
           <div role='feed' className='item-list'>
             {prepend}
 
