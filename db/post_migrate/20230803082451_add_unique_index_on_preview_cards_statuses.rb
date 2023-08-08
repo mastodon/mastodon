@@ -18,7 +18,7 @@ class AddUniqueIndexOnPreviewCardsStatuses < ActiveRecord::Migration[6.1]
   def deduplicate_and_reindex!
     deduplicate_preview_cards!
 
-    safety_assured { execute 'REINDEX INDEX preview_cards_statuses_pkey' }
+    safety_assured { execute 'REINDEX INDEX CONCURRENTLY preview_cards_statuses_pkey' }
   rescue ActiveRecord::RecordNotUnique
     retry
   end
