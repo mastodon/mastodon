@@ -80,7 +80,7 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
       unit: 'bytes',
       human_value: number_to_human_size(value),
     }
-  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
+  rescue Faraday::ConnectionFailed, Elastic::Transport::Transport::Error
     nil
   end
 end
