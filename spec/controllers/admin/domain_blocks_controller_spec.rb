@@ -68,6 +68,26 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
       expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
       expect(response).to redirect_to(admin_instances_path(limited: '1'))
     end
+
+    context 'when a block for a parent domain already exists' do
+      subject { post :create, params: { domain_block: { domain: 'subdomain.example.com', severity: child_severity } } }
+
+      let(:parent_severity) { 'silence' }
+      let(:child_severity)  { 'suspend' }
+
+      before do
+        Fabricate(:domain_block, domain: 'example.com', severity: parent_severity)
+      end
+
+      it 'does not change the existing block' do
+        expect { subject }.to_not change { DomainBlock.find_by(domain: 'example.com') }
+      end
+
+      it 'creates a domain block with expected severity' do
+        subject
+        expect(DomainBlock.where(domain: 'subdomain.example.com', severity: child_severity)).to exist
+      end
+    end
   end
 
   describe 'PUT #update' do
