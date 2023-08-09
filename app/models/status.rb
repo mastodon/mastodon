@@ -379,8 +379,13 @@ class Status < ApplicationRecord
         item.account = accounts[item.account_id]
         item.reblog.account = accounts[item.reblog.account_id] if item.reblog?
 
-        status_stat = status_stats[item.id]
-        item.status_stat = status_stat if status_stat.present?
+        if item.reblog?
+          status_stat = status_stats[item.reblog.id]
+          item.reblog.status_stat = status_stat if status_stat.present?
+        else
+          status_stat = status_stats[item.id]
+          item.status_stat = status_stat if status_stat.present?
+        end
       end
     end
 
