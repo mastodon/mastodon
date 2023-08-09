@@ -7,9 +7,29 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
 
   disable_ddl_transaction!
 
-  class Mention < ApplicationRecord
-    belongs_to :account, inverse_of: :mentions
-    belongs_to :status, -> { unscope(where: :deleted_at) }
+  class MigrationAccount < ApplicationRecord
+    self.table_name = :accounts
+    has_many :mentions, inverse_of: :account, dependent: :destroy, class_name: 'MigrationMention', foreign_key: :account_id
+  end
+
+  class MigrationConversation < ApplicationRecord
+    self.table_name = :conversations
+  end
+
+  class MigrationStatus < ApplicationRecord
+    self.table_name = :statuses
+    belongs_to :account, class_name: 'MigrationAccount'
+    has_many :mentions, dependent: :destroy, inverse_of: :status, class_name: 'MigrationMention', foreign_key: :status_id
+    scope :local, -> { where(local: true).or(where(uri: nil)) }
+    enum visibility: { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, _suffix: :visibility
+    has_many :active_mentions, -> { active }, class_name: 'MigrationMention', inverse_of: :status, foreign_key: :status_id
+  end
+
+  class MigrationMention < ApplicationRecord
+    self.table_name = :mentions
+    belongs_to :account, inverse_of: :mentions, class_name: 'MigrationAccount'
+    belongs_to :status, -> { unscope(where: :deleted_at) }, class_name: 'MigrationStatus'
+    scope :active, -> { where(silent: false) }
 
     delegate(
       :username,
@@ -19,22 +39,24 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
     )
   end
 
-  class Notification < ApplicationRecord
-    belongs_to :account, optional: true
+  class MigrationNotification < ApplicationRecord
+    self.table_name = :notifications
+    belongs_to :account, optional: true, class_name: 'MigrationAccount'
     belongs_to :activity, polymorphic: true, optional: true
 
-    belongs_to :status,  foreign_key: 'activity_id', optional: true
-    belongs_to :mention, foreign_key: 'activity_id', optional: true
+    belongs_to :status,  foreign_key: 'activity_id', optional: true, class_name: 'MigrationStatus'
+    belongs_to :mention, foreign_key: 'activity_id', optional: true, class_name: 'MigrationMention'
 
     def target_status
       mention&.status
     end
   end
 
-  class AccountConversation < ApplicationRecord
-    belongs_to :account
-    belongs_to :conversation
-    belongs_to :last_status, -> { unscope(where: :deleted_at) }, class_name: 'Status'
+  class MigrationAccountConversation < ApplicationRecord
+    self.table_name = :account_conversations
+    belongs_to :account, class_name: 'MigrationAccount'
+    belongs_to :conversation, class_name: 'MigrationConversation'
+    belongs_to :last_status, -> { unscope(where: :deleted_at) }, class_name: 'MigrationStatus'
 
     before_validation :set_last_status
 
@@ -74,7 +96,7 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
     last_time = Time.zone.now
 
     local_direct_statuses.includes(:account, mentions: :account).find_each do |status|
-      AccountConversation.add_status(status.account, status)
+      MigrationAccountConversation.add_status(status.account, status)
       migrated += 1
 
       if Time.zone.now - last_time > 1
@@ -84,7 +106,7 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
     end
 
     notifications_about_direct_statuses.includes(:account, mention: { status: [:account, mentions: :account] }).find_each do |notification|
-      AccountConversation.add_status(notification.account, notification.target_status)
+      MigrationAccountConversation.add_status(notification.account, notification.target_status)
       migrated += 1
 
       if Time.zone.now - last_time > 1
@@ -103,10 +125,10 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
   end
 
   def local_direct_statuses
-    Status.unscoped.local.where(visibility: :direct)
+    MigrationStatus.unscoped.local.where(visibility: :direct)
   end
 
   def notifications_about_direct_statuses
-    Notification.joins('INNER JOIN mentions ON mentions.id = notifications.activity_id INNER JOIN statuses ON statuses.id = mentions.status_id').where(activity_type: 'Mention', statuses: { visibility: :direct })
+    MigrationNotification.joins('INNER JOIN mentions ON mentions.id = notifications.activity_id INNER JOIN statuses ON statuses.id = mentions.status_id').where(activity_type: 'Mention', statuses: { visibility: :direct })
   end
 end
