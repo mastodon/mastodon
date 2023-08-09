@@ -43,8 +43,9 @@ class PublicStatusesIndex < Chewy::Index
                       .where(visibility: :public)
 
   root date_detection: false do
+    field(:id, type: 'keyword')
     field(:account_id, type: 'long')
-    field(:text, type: 'text', value: ->(status) { status.searchable_text }) { field(:stemmed, type: 'text', analyzer: 'content') }
+    field(:text, type: 'text', analyzer: 'whitespace', value: ->(status) { status.searchable_text }) { field(:stemmed, type: 'text', analyzer: 'content') }
     field(:language, type: 'keyword')
     field(:properties, type: 'keyword', value: ->(status) { status.searchable_properties })
     field(:created_at, type: 'date')

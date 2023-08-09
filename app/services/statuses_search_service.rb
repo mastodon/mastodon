@@ -30,7 +30,7 @@ class StatusesSearchService < BaseService
     # This is the best way to submit identical queries to multi-indexes though chewy
     definition.instance_variable_get(:@parameters)[:indices].value[:indices] << PublicStatusesIndex
 
-    results             = definition.order(_id: { order: :desc }).limit(@limit).offset(@offset).objects.compact
+    results             = definition.collapse(field: :id).order(_id: { order: :desc }).limit(@limit).offset(@offset).objects.compact
     account_ids         = results.map(&:account_id)
     account_domains     = results.map(&:account_domain)
     preloaded_relations = @account.relations_map(account_ids, account_domains)
