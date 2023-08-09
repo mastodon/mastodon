@@ -94,6 +94,7 @@ if ENV['S3_ENABLED'] == 'true'
     class Aws::S3::FileDownloader
       def validate!
         @params.delete(:checksum_mode)
+        super
       end
     end
   end
