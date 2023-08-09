@@ -88,6 +88,16 @@ if ENV['S3_ENABLED'] == 'true'
 
   Paperclip::Attachment.default_options[:s3_headers]['X-Amz-Storage-Class'] = ENV['S3_STORAGE_CLASS'] if ENV.has_key?('S3_STORAGE_CLASS')
 
+  # Some S3 providers are not compatible with the checksum mode
+  # See https://github.com/mastodon/mastodon/issues/26394
+  if ENV['S3_DISABLE_CHECKSUM_MODE'] == 'true'
+    class Aws::S3::FileDownloader
+      def validate!
+        @params.delete(:checksum_mode)
+      end
+    end
+  end
+
   # Some S3-compatible providers might not actually be compatible with some APIs
   # used by kt-paperclip, see https://github.com/mastodon/mastodon/issues/16822
   if ENV['S3_FORCE_SINGLE_REQUEST'] == 'true'
