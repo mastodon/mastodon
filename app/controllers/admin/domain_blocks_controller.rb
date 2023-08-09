@@ -25,7 +25,7 @@ module Admin
         @domain_block.errors.delete(:domain)
         render :new
       else
-        if existing_domain_block.present?
+        if existing_domain_block.present? && existing_domain_block.domain == TagManager.instance.normalize_domain(@domain_block.domain.strip)
           @domain_block = existing_domain_block
           @domain_block.update(resource_params)
         end
