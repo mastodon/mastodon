@@ -91,11 +91,14 @@ if ENV['S3_ENABLED'] == 'true'
   # Some S3 providers are not compatible with the checksum mode
   # See https://github.com/mastodon/mastodon/issues/26394
   if ENV['S3_DISABLE_CHECKSUM_MODE'] == 'true'
-    class Aws::S3::FileDownloader
+    module Aws::S3::FileDownloaderExtensions
       def validate!
         @params.delete(:checksum_mode)
+        super
       end
     end
+
+    Aws::S3::FileDownloader.prepend(Aws::S3::FileDownloaderExtensions)
   end
 
   # Some S3-compatible providers might not actually be compatible with some APIs
