@@ -387,7 +387,7 @@ fi:
         confirm: Jäädytä
         permanent_action: Jäädytyksen kumoaminen ei palauta mitään tietoja tai suhteita.
         preamble_html: Olet jäädyttämässä verkkotunnuksen <strong>%{domain}</strong> ja sen aliverkkotunnukset.
-        remove_all_data: Tämä poistaa palvelimeltasi kaiken sisällön, median ja profiilitiedot tämän verkkotunnuksen tileiltä.
+        remove_all_data: Tämä toiminto poistaa palvelimeltasi kaiken sisällön, median ja profiilitiedot tämän palvelun tileiltä.
         stop_communication: Palvelimesi lopettaa näiden palvelinten viestinnän.
         title: Vahvista verkkotunnuksen %{domain} esto
         undo_relationships: Tämä kumoaa näiden palvelimien ja sinun tilien välisen seurannan.
@@ -1343,6 +1343,7 @@ fi:
     unsubscribe:
       action: Kyllä, peru tilaus
       complete: Tilaus lopetettiin
+      confirmation_html: Olethan varma, että haluat lopettaa %{type} -aiheisten Mastodonin sähköposti-ilmoitusten vastaanoton palvelimelta %{domain} osoitteeseesi %{email}? Voit toki milloin tahansa ottaa jälleen käyttöön muun muassa nämä viestit <a href="%{settings_path}">sähköposti-ilmoitusasetusten</a> kautta.
       emails:
         notification_emails:
           favourite: sähköpostit ilmoituksille
@@ -1350,6 +1351,8 @@ fi:
           follow_request: seuraa pyyntöjä sähköpostiin
           mention: mainitse sähköpostin ilmoitukset
           reblog: tehosta sähköpostien ilmoituksia
+      resubscribe_html: Jos olet perunut ilmoitusviestien vastaanottamisen suotta, pääset jälleentilaamaan ilmoitusviestejä <a href="%{settings_path}">sähköposti-ilmoitusasetusten</a> kautta.
+      success_html: Sinulle ei vastedes lähetetä %{type} -aihepiirin Mastodon-sähköposti-ilmoituksia palvelimelta %{domain} osoitteeseen %{email}.
       title: Lopeta tilaus
   media_attachments:
     validations:
@@ -1767,6 +1770,10 @@ fi:
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut tilillä:'
   verification:
+    extra_instructions_html: <strong>Vinkki:</strong> Tämä linkitys verkkosivustollasi voidaan toteuttaa myös näkymättömänä. Tärkeä osuus on <code>rel="me"</code> -määre, jolla ehkäistään valeprofiilikäyttötarkoituksia sivustoilla, joiden sisältö perustuu käyttäjiensä julkaisuihin. Voit siis käyttää linkkiviittauselementtiä <code>link</code> HTML-lähdekoodin otsakeosassa (head) sen sijaan, että käyttäisit näkyvää hyperlinkkielementtiä <code>a</code>. HTML-lähdekoodin tulee tuolta osin kuitenkin olla JavaScriptistä riippumatonta.
+    here_is_how: Näin voit tehdä sen
+    hint_html: "<strong>Mastodonissa henkilöllisyyden vahventaminen on jokaisen käyttäjän ulottuvilla.</strong> Tämä perustuu avoimiin standardeihin, maksuttomasti nyt ja aina. Kaikki mitä tarvitset on henkilökohtainen verkkosivusto, jonka avulla sinut voidaan tunnistaa. Kun Mastodon-profiilistasi on linkki kyseiselle verkkosivustollesi, ja sieltä löytyy vastaviittaus tai -linkitys profiiliisi, näkyy profiilissasi vahvistustunniste."
+    instructions_html: Kopioi ja liitä alla oleva koodi verkkosivusi HTML-lähdekoodiin. Lisää sitten verkkosivustosi osoite johonkin ylimääräisistä kentistä profiiliasetuksissa, "Muokkaa profiilia" -välilehdestä, ja tallenna muutokset.
     verification: Vahvistus
     verified_links: Vahvistetut linkkisi
   webauthn_credentials:

@@ -3283,6 +3283,8 @@ $ui-header-height: 55px;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
+  border: 0;
+  border-left: 4px solid transparent;
 
   &:hover,
   &:focus,
@@ -3292,6 +3294,11 @@ $ui-header-height: 55px;
 
   &:focus {
     outline: 0;
+  }
+
+  &:focus-visible {
+    border-color: $ui-button-focus-outline-color;
+    border-radius: 0;
   }
 
   &--transparent {
@@ -3633,7 +3640,9 @@ a.status-card {
 
 .status-card.expanded .status-card__title {
   white-space: normal;
+  display: -webkit-box;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .status-card__content {
@@ -3682,9 +3691,6 @@ a.status-card {
   aspect-ratio: 1;
   background: lighten($ui-base-color, 8%);
   position: relative;
-  border-radius: 8px;
-  border-start-end-radius: 0;
-  border-end-end-radius: 0;
 
   & > .fa {
     font-size: 21px;
@@ -3697,9 +3703,6 @@ a.status-card {
 }
 
 .status-card__image-image {
-  border-radius: 8px;
-  border-start-end-radius: 0;
-  border-end-end-radius: 0;
   display: block;
   margin: 0;
   width: 100%;
@@ -3710,9 +3713,6 @@ a.status-card {
 }
 
 .status-card__image-preview {
-  border-radius: 8px;
-  border-start-end-radius: 0;
-  border-end-end-radius: 0;
   display: block;
   margin: 0;
   width: 100%;
@@ -3737,6 +3737,15 @@ a.status-card {
 .status-card.expanded .status-card__image {
   width: 100%;
   aspect-ratio: auto;
+}
+
+.status-card__image,
+.status-card__image-image,
+.status-card__image-preview {
+  border-start-start-radius: 8px;
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+  border-end-start-radius: 8px;
 }
 
 .status-card.expanded .status-card__image,
@@ -3956,7 +3965,7 @@ a.status-card {
   }
 
   &:focus-visible {
-    outline: $ui-button-icon-focus-outline;
+    outline: $ui-button-focus-outline;
   }
 
   &.active {
@@ -4240,16 +4249,19 @@ a.status-card {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba($black, 0.5);
+    background: transparent;
     width: 100%;
     height: 100%;
     padding: 0;
     margin: 0;
     border: 0;
-    border-radius: 4px;
     color: $white;
 
     &__label {
+      background-color: rgba($black, 0.45);
+      backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+      border-radius: 6px;
+      padding: 10px 15px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -4262,6 +4274,13 @@ a.status-card {
     &__action {
       font-weight: 400;
       font-size: 13px;
+    }
+
+    &:hover,
+    &:focus {
+      .spoiler-button__overlay__label {
+        background-color: rgba($black, 0.9);
+      }
     }
   }
 }
@@ -5806,15 +5825,16 @@ a.status-card {
   }
 
   .button.button-secondary {
-    border-color: $ui-button-secondary-border-color;
-    color: $ui-button-secondary-color;
+    border-color: $inverted-text-color;
+    color: $inverted-text-color;
     flex: 0 0 auto;
 
     &:hover,
     &:focus,
     &:active {
-      border-color: $ui-button-secondary-focus-background-color;
-      color: $ui-button-secondary-focus-color;
+      background: transparent;
+      border-color: $ui-button-background-color;
+      color: $ui-button-background-color;
     }
   }
 
@@ -9209,5 +9229,35 @@ noscript {
   &:focus,
   &:active {
     background: rgba($ui-base-color, 0.85);
+  }
+}
+
+.hashtag-header {
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  padding: 15px;
+  font-size: 17px;
+  line-height: 22px;
+  color: $darker-text-color;
+
+  strong {
+    font-weight: 700;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+
+    h1 {
+      color: $primary-text-color;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: 22px;
+      line-height: 33px;
+      font-weight: 700;
+    }
   }
 }

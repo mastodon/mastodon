@@ -13,7 +13,7 @@ import { openModal, closeModal } from 'mastodon/actions/modal';
 import api from 'mastodon/api';
 import Button from 'mastodon/components/button';
 import { Icon }  from 'mastodon/components/icon';
-import { registrationsOpen } from 'mastodon/initial_state';
+import { registrationsOpen, sso_redirect } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server, e.g. mastodon.social' },
@@ -250,6 +250,9 @@ class LoginForm extends React.PureComponent {
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyDown}
+            autocomplete='off'
+            autocapitalize='off'
+            spellcheck='false'
           />
 
           <Button onClick={this.handleSubmit} disabled={isSubmitting}><FormattedMessage id='interaction_modal.login.action' defaultMessage='Take me home' /></Button>
@@ -329,7 +332,13 @@ class InteractionModal extends React.PureComponent {
 
     let signupButton;
 
-    if (registrationsOpen) {
+    if (sso_redirect) {
+      signupButton = (
+        <a href={sso_redirect} data-method='post' className='link-button'>
+          <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+        </a>
+      );
+    } else if (registrationsOpen) {
       signupButton = (
         <a href='/auth/sign_up' className='link-button'>
           <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />

@@ -167,7 +167,8 @@ export default class Card extends PureComponent {
       />
     );
 
-    let thumbnail = <img src={card.get('image')} alt='' style={thumbnailStyle} onLoad={this.handleImageLoad} className='status-card__image-image' />;
+    const thumbnailDescription = card.get('image_description');
+    const thumbnail = <img src={card.get('image')} alt={thumbnailDescription} title={thumbnailDescription} lang={language} style={thumbnailStyle} onLoad={this.handleImageLoad} className='status-card__image-image' />;
 
     let spoilerButton = (
       <button type='button' onClick={this.handleReveal} className='spoiler-button__overlay'>

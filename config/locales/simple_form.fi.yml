@@ -134,6 +134,7 @@ fi:
         position: Korkeampi rooli ratkaisee konfliktit tietyissä tilanteissa. Tiettyjä toimintoja voidaan suorittaa vain rooleille, joiden prioriteetti on pienempi
       webhook:
         events: Valitse lähetettävät tapahtumat
+        template: Luo oma JSON-hyötykuorma käyttäen muuttujainterpolointia. Jättäessäsi kentän tyhjäksi, käytetään vakio-JSON-kuormaa.
         url: Mihin tapahtumat lähetetään
     labels:
       account:
@@ -307,6 +308,7 @@ fi:
         position: Prioriteetti
       webhook:
         events: Tapahtumat käytössä
+        template: Hyötykuormapohja
         url: Päätepisteen URL
     'no': Ei
     not_recommended: Ei suositella
