@@ -130,7 +130,8 @@ module Mastodon::CLI
             [json, account.id, inbox_url]
           end
 
-          account.suspend!(block_email: false)
+          # Do not call `Account#suspend!` because we don't want to issue a deletion request
+          account.update!(suspended_at: Time.now.utc, suspension_origin: :local)
         end
 
         processed += 1
