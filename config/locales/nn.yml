@@ -741,7 +741,7 @@ nn:
         preamble: Profileringa av tenaren din skil den frå andre tenarar i nettverket. Informasjonen kan bli vist ulike stadar, til dømes i Mastodon sitt web-grensesnitt, i eigne applikasjonar, i førehandsvisningar på andre nettsider, i meldingsappar og så bortetter. På grunn av dette er det best å halde informasjonen enkel, kort og treffande.
         title: Profilering
       captcha_enabled:
-        desc_html: Dette er avhengig av eksterne skript fra hCaptcha, som kan være et sikkerhets- og personvernproblem.<strong> I tillegg kan dette gjøre registreringsprosessen betydelig mindre tilgjengelig for noen (spesielt funksjonshemmede) personer</strong>. Av disse grunnene bør du vurdere alternative tiltak som godkjenningsbasert eller invitasjonsbasert registrering.
+        desc_html: Dette baserer seg på eksterne skript frå hCaptcha, noko som kan vera eit tryggleiks- og personvernsproblem. <strong>I tillegg kan dette gjera registreringsprosessen monaleg mindre tilgjengeleg (særleg for folk med nedsett funksjonsevne)</strong>. Dette gjer at du bør du vurdera alternative tiltak, som til dømes godkjennings- eller invitasjonsbasert registrering.
         title: Krev at nye brukarar løyser ein CAPTCHA for å bekrefte kontoen sin
       content_retention:
         preamble: Styr korleis brukargenerert innhald blir lagra i Mastodon.
@@ -1138,7 +1138,7 @@ nn:
     invalid_domain: er ikkje eit gangbart domenenamn
   edit_profile:
     basic_information: Grunnleggande informasjon
-    hint_html: "<strong>Tilpass hva folk ser på din offentlige profil og ved siden av dine innlegg.</strong> Det er mer sannsynlig at andre mennesker følger deg tilbake og samhandler med deg når du har fylt ut en profil og et profilbilde."
+    hint_html: "<strong>Tilpass kva folk ser på den offentlege profilen din og ved sida av innlegga dine.</strong> Andre vil i større grad fylgja og samhandla med deg når du har eit profilbilete og har fyllt ut profilen din."
     other: Anna
     safety_and_privacy: Sikkerheit og personvern
   errors:
@@ -1265,14 +1265,14 @@ nn:
       bookmarks_html: Du skal til å <strong>byta ut bokmerka dine</strong> med opp til <strong>%{total_items} innlegg</strong> frå <strong>%{filename}</strong>.
       domain_blocking_html: Du skal til å <strong>byta ut domeneblokkeringslista di</strong> med opp til <strong>%{total_items} domene</strong> frå <strong>%{filename}</strong>.
       following_html: Du skal til å <strong>fylgja</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong> og <strong>slutta å fylgja alle andre</strong>.
-      lists_html: Du er i ferd med å <strong>erstatte dine lister</strong> med innholdet i <strong>%{filename}</strong>. Inntil <strong>%{total_items} kontoer</strong> legges til i nye lister.
+      lists_html: Du er i ferd med å <strong>erstatta listene dine</strong> med innhaldet i <strong>%{filename}</strong>. Opptil <strong>%{total_items} kontoar</strong> vil bli lagt til i nye lister.
       muting_html: Du skal til å <strong>byta ut lista di over dempa brukarkontoar</strong> med opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
     preambles:
       blocking_html: Du skal til å <strong>blokkera</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
       bookmarks_html: Du skal til å leggja til opp til <strong>%{total_items} innlegg</strong> frå <strong>%{filename}</strong> til <strong>bokmerka dine</strong>.
       domain_blocking_html: Du skal til å <strong>blokkera</strong> opp til <strong>%{total_items} domene</strong> frå <strong>%{filename}</strong>.
       following_html: Du skal til å <strong>fylgja</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
-      lists_html: Du er i ferd med å legge inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong> til dine <strong>lister</strong>. Nye lister vil bli opprettet hvis det ikke finnes noen liste å legge til.
+      lists_html: Du er i ferd med å leggja til opptil <strong>%{total_items} kontoar</strong> frå <strong>%{filename}</strong> til i <strong>listene</strong> dine. Nye lister vil blir oppretta om ingen lister finst frå før.
       muting_html: Du skal til å <strong>dempa</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
     preface: Du kan henta inn data som du har eksportert frå ein annan tenar, som t.d. ei liste over folka du fylgjer eller blokkerer.
     recent_imports: Siste importar
@@ -1343,12 +1343,12 @@ nn:
     unsubscribe:
       action: Ja, meld av
       complete: Meldt av
-      confirmation_html: Er du sikker på at du vil slutte å motta %{type} fra Mastodon %{domain} i e-posten din på %{email}? Du kan når som helst gjenoppta i <a href="%{settings_path}">innstillinger for e-postvarsling</a>.
+      confirmation_html: Er du sikker på at du ikkje lenger ynskjer å motta %{type} frå Mastodon på %{domain} til e-posten din %{email}? Du kan alltids gjera om på dette i <a href="%{settings_path}">innstillingar for e-postvarsling</a>.
       emails:
         notification_emails:
-          favourite: e-poster om favorittmarkeringer
-          follow: e-poster om følgere
-          follow_request: e-poster om følgeforespørsler
+          favourite: e-postar om favorittmarkeringar
+          follow: e-postar om nye fylgjarar
+          follow_request: e-postar om fylgjeførespurnadar
           mention: e-poster om nevninger
           reblog: e-poster om fremhevinger
       resubscribe_html: Hvis du har avsluttet abonnementet ved en feiltakelse, kan du abonnere på nytt i <a href="%{settings_path}">innstillinger for e-postvarsling</a>.
