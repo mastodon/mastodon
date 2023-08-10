@@ -186,9 +186,7 @@ group :development, :test do
   gem 'ruby-prof', require: false
   gem 'stackprof', require: false
   gem 'test-prof'
-end
 
-group :development, :test do
   # RSpec runner for rails
   gem 'rspec-rails', '~> 6.0'
 end
