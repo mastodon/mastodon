@@ -35,6 +35,7 @@ class Scheduler::AccountsStatusesCleanupScheduler
   sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform
+    return if ENV['SELF_DESTRUCT'] && ENV['SELF_DESTRUCT'] == ENV['LOCAL_DOMAIN']
     return if under_load?
 
     budget = compute_budget

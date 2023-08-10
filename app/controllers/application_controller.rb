@@ -39,6 +39,8 @@ class ApplicationController < ActionController::Base
     service_unavailable
   end
 
+  before_action :check_self_destruct!
+
   before_action :store_referrer, except: :raise_not_found, if: :devise_controller?
   before_action :require_functional!, if: :user_signed_in?
 
@@ -167,6 +169,15 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.any  { render "errors/#{code}", layout: 'error', status: code, formats: [:html] }
       format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code }
+    end
+  end
+
+  def check_self_destruct!
+    return unless ENV.fetch('SELF_DESTRUCT', nil) && ENV['SELF_DESTRUCT'] == ENV['LOCAL_DOMAIN']
+
+    respond_to do |format|
+      format.any  { render 'errors/self_destruct', layout: 'auth', status: 410, formats: [:html] }
+      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: code }
     end
   end
 
