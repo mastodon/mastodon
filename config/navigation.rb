@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 SimpleNavigation::Configuration.run do |navigation|
-  self_destruct = ENV.fetch('SELF_DESTRUCT', nil) && ENV['SELF_DESTRUCT'] == ENV['LOCAL_DOMAIN']
+  self_destruct = SelfDestructHelper.self_destruct?
 
   navigation.items do |n|
     n.item :web, safe_join([fa_icon('chevron-left fw'), t('settings.back')]), root_path

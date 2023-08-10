@@ -2,6 +2,7 @@
 
 class Scheduler::SelfDestructScheduler
   include Sidekiq::Worker
+  include SelfDestructHelper
 
   MAX_ENQUEUED = 10_000
   MAX_REDIS_MEM_USAGE = 0.5
@@ -10,7 +11,7 @@ class Scheduler::SelfDestructScheduler
   sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform
-    return unless ENV['SELF_DESTRUCT'] && ENV['SELF_DESTRUCT'] == ENV['LOCAL_DOMAIN']
+    return unless self_destruct?
     return if sidekiq_overwhelmed?
 
     delete_accounts!
@@ -35,6 +36,10 @@ class Scheduler::SelfDestructScheduler
       delete_account!(account)
       account.deletion_request&.destroy
     end
+  end
+
+  def inboxes
+    @inboxes ||= Account.inboxes
   end
 
   def delete_account!(account)

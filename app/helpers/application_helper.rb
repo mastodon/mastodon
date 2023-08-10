@@ -168,10 +168,6 @@ module ApplicationHelper
     cdn_host.present?
   end
 
-  def self_destruct?
-    ENV.fetch('SELF_DESTRUCT', nil) && ENV['SELF_DESTRUCT'] == ENV['LOCAL_DOMAIN']
-  end
-
   def storage_host
     "https://#{storage_host_var}"
   end

@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   include DomainControlHelper
   include DatabaseHelper
   include AuthorizedFetchHelper
+  include SelfDestructHelper
 
   helper_method :current_account
   helper_method :current_session
@@ -173,7 +174,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_self_destruct!
-    return unless ENV.fetch('SELF_DESTRUCT', nil) && ENV['SELF_DESTRUCT'] == ENV['LOCAL_DOMAIN']
+    return unless self_destruct?
 
     respond_to do |format|
       format.any  { render 'errors/self_destruct', layout: 'auth', status: 410, formats: [:html] }
