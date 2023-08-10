@@ -20,6 +20,8 @@ require_relative 'upgrade'
 
 module Mastodon::CLI
   class Main < Base
+    include Redisable
+
     desc 'media SUBCOMMAND ...ARGS', 'Manage media files'
     subcommand 'media', Media
 
@@ -137,8 +139,21 @@ module Mastodon::CLI
         processed += 1
       end
 
-      Account.local.without_suspended.find_each { |account| delete_account.call(account) }
-      Account.local.suspended.joins(:deletion_request).find_each { |account| delete_account.call(account) }
+      Account.local.without_suspended.find_in_batches(batch_size: 50) do |accounts|
+        accounts.each { |account| delete_account.call(account) }
+
+        prompt.ok("Processed accounts so far: #{processed}")
+
+        sleep 5 while sidekiq_overwhelmed?
+      end
+
+      Account.local.suspended.joins(:deletion_request).find_in_batches(batch_size: 50) do |accounts|
+        accounts.each { |account| delete_account.call(account) }
+
+        prompt.ok("Processed accounts so far: #{processed}")
+
+        sleep 5 while sidekiq_overwhelmed?
+      end
 
       prompt.ok("Queued #{inboxes.size * processed} items into Sidekiq for #{processed} accounts#{dry_run_mode_suffix}")
       prompt.ok('Wait until Sidekiq processes all items, then you can shut everything down and delete the data')
@@ -151,6 +166,14 @@ module Mastodon::CLI
     desc 'version', 'Show version'
     def version
       say(Mastodon::Version.to_s)
+    end
+
+    private
+
+    def sidekiq_overwhelmed?
+      redis_mem_info = Sidekiq.redis_info
+
+      Sidekiq::Stats.new.enqueued > 5000 || redis_mem_info['used_memory'].to_f * 2 > redis_mem_info['total_system_memory'].to_f
     end
   end
 end
