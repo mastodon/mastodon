@@ -80,6 +80,7 @@
  * @property {boolean} use_blurhash
  * @property {boolean=} use_pending_items
  * @property {string} version
+ * @property {string} sso_redirect
  */
 
 /**
@@ -141,5 +142,6 @@ export const version = getMeta('version');
 export const languages = initialState?.languages;
 // @ts-expect-error
 export const statusPageUrl = getMeta('status_page_url');
+export const sso_redirect = getMeta('sso_redirect');
 
 export default initialState;

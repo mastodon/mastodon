@@ -20,7 +20,7 @@ de:
         type_html: Wähle aus, wie mit <strong>%{acct}</strong> vorgegangen werden soll
         types:
           disable: Benutzer*in daran hindern, das Konto verwenden zu können, aber die Inhalte nicht löschen oder ausblenden.
-          none: Dem Konto eine Verwarnung zusenden, ohne dabei eine andere Aktion vorzunehmen.
+          none: Dem Konto eine Warnung zusenden, ohne dabei eine andere Aktion vorzunehmen.
           sensitive: Erzwingen, dass alle Medieninhalte dieses Profils mit einer Inhaltswarnung versehen werden.
           silence: Verhindert, dass dieses Profil öffentlich sichtbare Beiträge verfassen kann, und verbirgt alle Beiträge und Benachrichtigungen vor Personen, die diesem Profil nicht folgen. Alle Meldungen zu diesem Konto werden geschlossen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
@@ -40,7 +40,7 @@ de:
         context: Orte, an denen der Filter aktiv sein soll
         current_password: Gib aus Sicherheitsgründen bitte das Passwort des aktuellen Kontos ein
         current_username: Um das zu bestätigen, gib den Profilnamen des aktuellen Kontos ein
-        digest: Wenn du eine längere Zeit inaktiv bist oder du in deiner Abwesenheit eine Direktnachricht erhalten hast
+        digest: Wenn du eine längere Zeit inaktiv bist oder du während deiner Abwesenheit in einer privaten Nachricht erwähnt worden bist
         discoverable: Dein Konto kann von Fremden durch Empfehlungen, Trends und andere Funktionen entdeckt werden
         email: Du wirst eine E-Mail zur Verifizierung dieser E-Mail-Adresse erhalten
         header: PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
@@ -51,7 +51,7 @@ de:
         password: Verwende mindestens 8 Zeichen
         phrase: Wird unabhängig von der Groß- und Kleinschreibung im Text oder der Inhaltswarnung eines Beitrags abgeglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
-        setting_aggregate_reblogs: Keine geteilten Beiträge anzeigen, die bereits kürzlich geteilt wurden (wirkt sich nur auf zukünftige geteilte Beiträge aus)
+        setting_aggregate_reblogs: Beiträge, die erst kürzlich geteilt wurden, werden nicht noch einmal angezeigt (wirkt sich nur auf zukünftige geteilte Beiträge aus)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail versendet, wenn du gerade auf Mastodon aktiv bist
         setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
         setting_display_media_default: Medien mit Inhaltswarnung ausblenden
@@ -151,7 +151,7 @@ de:
       admin_account_action:
         include_statuses: Gemeldete Beiträge der E-Mail beifügen
         send_email_notification: Benachrichtigung per E-Mail
-        text: Individuelle Verwarnung
+        text: Individuelle Warnung
         type: Aktion
         types:
           disable: Einfrieren
@@ -182,7 +182,7 @@ de:
         display_name: Anzeigename
         email: E-Mail-Adresse
         expires_in: Läuft ab
-        fields: Zusatzfelder
+        fields: Metadaten
         header: Titelbild
         honeypot: "%{label} (nicht ausfüllen)"
         inbox_url: Inbox-URL des Relais
@@ -226,7 +226,7 @@ de:
         type: Typ
         username: Profilname
         username_or_email: Profilname oder E-Mail
-        whole_word: Phrasensuche mit exakter Zeichenfolge erzwingen
+        whole_word: Exakte Zeichenfolge
       email_domain_block:
         with_dns_records: MX-Einträge und IP-Adressen der Domain einbeziehen
       featured_tag:
@@ -259,14 +259,14 @@ de:
         status_page_url: Statusseite (URL)
         theme: Standard-Design
         thumbnail: Vorschaubild des Servers
-        timeline_preview: Nicht-authentifizierten Zugriff auf die öffentliche Timeline gestatten
+        timeline_preview: Nicht-authentisierten Zugriff auf öffentliche Timelines gestatten
         trendable_by_default: Trends ohne vorherige Überprüfung erlauben
         trends: Trends aktivieren
         trends_as_landing_page: Trends als Landingpage verwenden
       interactions:
-        must_be_follower: Benachrichtigungen von Profilen unterdrücken, die mir nicht folgen
-        must_be_following: Benachrichtigungen von Profilen unterdrücken, denen ich nicht folge
-        must_be_following_dm: Direktnachrichten von Profilen, denen ich nicht folge, ablehnen
+        must_be_follower: Benachrichtigungen von Profilen, die mir nicht folgen, ausblenden
+        must_be_following: Benachrichtigungen von Profilen, denen ich nicht folge, ausblenden
+        must_be_following_dm: Private Nachrichten von Profilen, denen ich nicht folge, ausblenden
       invite:
         comment: Kommentar
       invite_request:

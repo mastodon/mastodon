@@ -5,7 +5,7 @@ class ApplicationRecord < ActiveRecord::Base
 
   include Remotable
 
-  connects_to database: { writing: :primary, reading: ENV['DB_REPLICA_NAME'] || ENV['READ_DATABASE_URL'] ? :read : :primary }
+  connects_to database: { writing: :primary, reading: ENV['REPLICA_DB_NAME'] || ENV['REPLICA_DATABASE_URL'] ? :replica : :primary }
 
   class << self
     def update_index(_type_name, *_args, &_block)

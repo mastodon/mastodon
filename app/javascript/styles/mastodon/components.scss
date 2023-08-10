@@ -4249,16 +4249,19 @@ a.status-card {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba($black, 0.5);
+    background: transparent;
     width: 100%;
     height: 100%;
     padding: 0;
     margin: 0;
     border: 0;
-    border-radius: 4px;
     color: $white;
 
     &__label {
+      background-color: rgba($black, 0.45);
+      backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+      border-radius: 6px;
+      padding: 10px 15px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -4271,6 +4274,13 @@ a.status-card {
     &__action {
       font-weight: 400;
       font-size: 13px;
+    }
+
+    &:hover,
+    &:focus {
+      .spoiler-button__overlay__label {
+        background-color: rgba($black, 0.9);
+      }
     }
   }
 }
@@ -5815,15 +5825,16 @@ a.status-card {
   }
 
   .button.button-secondary {
-    border-color: $ui-button-secondary-border-color;
-    color: $ui-button-secondary-color;
+    border-color: $inverted-text-color;
+    color: $inverted-text-color;
     flex: 0 0 auto;
 
     &:hover,
     &:focus,
     &:active {
-      border-color: $ui-button-secondary-focus-background-color;
-      color: $ui-button-secondary-focus-color;
+      background: transparent;
+      border-color: $ui-button-background-color;
+      color: $ui-button-background-color;
     }
   }
 
@@ -9218,5 +9229,35 @@ noscript {
   &:focus,
   &:active {
     background: rgba($ui-base-color, 0.85);
+  }
+}
+
+.hashtag-header {
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  padding: 15px;
+  font-size: 17px;
+  line-height: 22px;
+  color: $darker-text-color;
+
+  strong {
+    font-weight: 700;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+
+    h1 {
+      color: $primary-text-color;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: 22px;
+      line-height: 33px;
+      font-weight: 700;
+    }
   }
 }
