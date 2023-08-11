@@ -3,7 +3,7 @@
 class Api::V1::Instances::ActivityController < Api::BaseController
   before_action :require_enabled_api!
 
-  skip_before_action :require_authenticated_user!, unless: :whitelist_mode?
+  skip_before_action :require_authenticated_user!, unless: :limited_federation_mode?
 
   vary_by ''
 
@@ -33,6 +33,6 @@ class Api::V1::Instances::ActivityController < Api::BaseController
   end
 
   def require_enabled_api!
-    head 404 unless Setting.activity_api_enabled && !whitelist_mode?
+    head 404 unless Setting.activity_api_enabled && !limited_federation_mode?
   end
 end

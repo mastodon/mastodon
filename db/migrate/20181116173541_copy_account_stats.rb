@@ -45,7 +45,7 @@ class CopyAccountStats < ActiveRecord::Migration[5.2]
     # We cannot use bulk INSERT or overarching transactions here because of possible
     # uniqueness violations that we need to skip over
     Account.unscoped.select('id, statuses_count, following_count, followers_count, created_at, updated_at').find_each do |account|
-      params = [[nil, account.id], [nil, account[:statuses_count]], [nil, account[:following_count]], [nil, account[:followers_count]], [nil, account.created_at], [nil, account.updated_at]]
+      params = [account.id, account[:statuses_count], account[:following_count], account[:followers_count], account.created_at, account.updated_at]
       exec_insert('INSERT INTO account_stats (account_id, statuses_count, following_count, followers_count, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6)', nil, params)
     rescue ActiveRecord::RecordNotUnique
       next

@@ -4,7 +4,9 @@ require 'rails_helper'
 require 'securerandom'
 
 describe Request do
-  subject { described_class.new(:get, 'http://example.com') }
+  subject { described_class.new(:get, url) }
+
+  let(:url) { 'http://example.com' }
 
   describe '#headers' do
     it 'returns user agent' do
@@ -90,6 +92,152 @@ describe Request do
         allow(Resolv::DNS).to receive(:open).and_yield(resolver)
 
         expect { subject.perform }.to raise_error Mastodon::ValidationError
+      end
+    end
+
+    context 'with bare domain URL' do
+      let(:url) { 'http://example.com' }
+
+      before do
+        stub_request(:get, 'http://example.com')
+      end
+
+      it 'normalizes path' do
+        subject.perform do |response|
+          expect(response.request.uri.path).to eq '/'
+        end
+      end
+
+      it 'normalizes path used for request signing' do
+        subject.perform
+
+        headers = subject.instance_variable_get(:@headers)
+        expect(headers[Request::REQUEST_TARGET]).to eq 'get /'
+      end
+
+      it 'normalizes path used in request line' do
+        subject.perform do |response|
+          expect(response.request.headline).to eq 'GET / HTTP/1.1'
+        end
+      end
+    end
+
+    context 'with unnormalized URL' do
+      let(:url) { 'HTTP://EXAMPLE.com:80/foo%41%3A?bar=%41%3A#baz' }
+
+      before do
+        stub_request(:get, 'http://example.com/foo%41%3A?bar=%41%3A')
+      end
+
+      it 'normalizes scheme' do
+        subject.perform do |response|
+          expect(response.request.uri.scheme).to eq 'http'
+        end
+      end
+
+      it 'normalizes host' do
+        subject.perform do |response|
+          expect(response.request.uri.authority).to eq 'example.com'
+        end
+      end
+
+      it 'does not modify path' do
+        subject.perform do |response|
+          expect(response.request.uri.path).to eq '/foo%41%3A'
+        end
+      end
+
+      it 'does not modify query string' do
+        subject.perform do |response|
+          expect(response.request.uri.query).to eq 'bar=%41%3A'
+        end
+      end
+
+      it 'does not modify path used for request signing' do
+        subject.perform
+
+        headers = subject.instance_variable_get(:@headers)
+        expect(headers[Request::REQUEST_TARGET]).to eq 'get /foo%41%3A'
+      end
+
+      it 'does not modify path used in request line' do
+        subject.perform do |response|
+          expect(response.request.headline).to eq 'GET /foo%41%3A?bar=%41%3A HTTP/1.1'
+        end
+      end
+
+      it 'strips fragment' do
+        subject.perform do |response|
+          expect(response.request.uri.fragment).to be_nil
+        end
+      end
+    end
+
+    context 'with non-ASCII URL' do
+      let(:url) { 'http://éxample.com:81/föo?bär=1' }
+
+      before do
+        stub_request(:get, 'http://xn--xample-9ua.com:81/f%C3%B6o?b%C3%A4r=1')
+      end
+
+      it 'IDN-encodes host' do
+        subject.perform do |response|
+          expect(response.request.uri.authority).to eq 'xn--xample-9ua.com:81'
+        end
+      end
+
+      it 'IDN-encodes host in Host header' do
+        subject.perform do |response|
+          expect(response.request.headers['Host']).to eq 'xn--xample-9ua.com'
+        end
+      end
+
+      it 'percent-escapes path used for request signing' do
+        subject.perform
+
+        headers = subject.instance_variable_get(:@headers)
+        expect(headers[Request::REQUEST_TARGET]).to eq 'get /f%C3%B6o'
+      end
+
+      it 'normalizes path used in request line' do
+        subject.perform do |response|
+          expect(response.request.headline).to eq 'GET /f%C3%B6o?b%C3%A4r=1 HTTP/1.1'
+        end
+      end
+    end
+
+    context 'with redirecting URL' do
+      let(:url) { 'http://example.com/foo' }
+
+      before do
+        stub_request(:get, 'http://example.com/foo').to_return(status: 302, headers: { 'Location' => 'HTTPS://EXAMPLE.net/Bar' })
+        stub_request(:get, 'https://example.net/Bar').to_return(body: 'Lorem ipsum')
+      end
+
+      it 'resolves redirect' do
+        subject.perform do |response|
+          expect(response.body.to_s).to eq 'Lorem ipsum'
+        end
+
+        expect(a_request(:get, 'https://example.net/Bar')).to have_been_made
+      end
+
+      it 'normalizes destination scheme' do
+        subject.perform do |response|
+          expect(response.request.uri.scheme).to eq 'https'
+        end
+      end
+
+      it 'normalizes destination host' do
+        subject.perform do |response|
+          expect(response.request.uri.authority).to eq 'example.net'
+        end
+      end
+
+      it 'does modify path' do
+        subject.perform do |response|
+          expect(response.request.uri.path).to eq '/Bar'
+        end
       end
     end
   end

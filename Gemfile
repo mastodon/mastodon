@@ -99,9 +99,6 @@ gem 'rdf-normalize', '~> 0.5'
 gem 'private_address_check', '~> 0.5'
 
 group :test do
-  # RSpec runner for rails
-  gem 'rspec-rails', '~> 6.0'
-
   # Used to split testing into chunks in CI
   gem 'rspec_chunked', '~> 0.6'
 
@@ -113,6 +110,10 @@ group :test do
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
+  gem 'selenium-webdriver'
+
+  # Used to reset the database between system tests
+  gem 'database_cleaner-active_record'
 
   # Used to mock environment variables
   gem 'climate_control', '~> 0.2'
@@ -173,10 +174,19 @@ group :development do
 
   # Validate missing i18n keys
   gem 'i18n-tasks', '~> 1.0', require: false
+end
 
+group :development, :test do
   # Profiling tools
   gem 'memory_profiler', require: false
+  gem 'ruby-prof', require: false
   gem 'stackprof', require: false
+  gem 'test-prof'
+end
+
+group :development, :test do
+  # RSpec runner for rails
+  gem 'rspec-rails', '~> 6.0'
 end
 
 group :production do
