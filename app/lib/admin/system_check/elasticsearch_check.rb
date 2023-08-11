@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
+  INDEXES = [
+    InstancesIndex,
+    AccountsIndex,
+    TagsIndex,
+    StatusesIndex,
+  ].freeze
+
   def skip?
     !current_user.can?(:view_devops)
   end
@@ -8,7 +15,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
   def pass?
     return true unless Chewy.enabled?
 
-    running_version.present? && compatible_version? && cluster_health['status'] == 'green'
+    running_version.present? && compatible_version? && cluster_health['status'] == 'green' && indexes_match?
   end
 
   def message
@@ -22,6 +29,11 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
           running_version: running_version,
           required_version: required_version
         )
+      )
+    elsif !indexes_match?
+      Admin::SystemCheck::Message.new(
+        :elasticsearch_index_mismatch,
+        mismatched_indexes.join(' ')
       )
     elsif cluster_health['status'] == 'red'
       Admin::SystemCheck::Message.new(:elasticsearch_health_red)
@@ -57,5 +69,15 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
 
     Gem::Version.new(running_version) >= Gem::Version.new(required_version) ||
       Gem::Version.new(compatible_wire_version) >= Gem::Version.new(required_version)
+  end
+
+  def mismatched_indexes
+    @mismatched_indexes ||= INDEXES.filter_map do |klass|
+      klass.index_name if Chewy.client.indices.get_mapping[klass.index_name]&.deep_symbolize_keys != klass.mappings_hash
+    end
+  end
+
+  def indexes_match?
+    mismatched_indexes.empty?
   end
 end
