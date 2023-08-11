@@ -8,11 +8,13 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
   def pass?
     return true unless Chewy.enabled?
 
-    running_version.present? && compatible_version?
+    running_version.present? && compatible_version? && cluster_health['status'] == 'green'
   end
 
   def message
-    if running_version.present?
+    if running_version.blank?
+      Admin::SystemCheck::Message.new(:elasticsearch_running_check)
+    elsif !compatible_version?
       Admin::SystemCheck::Message.new(
         :elasticsearch_version_check,
         I18n.t(
@@ -21,12 +23,18 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
           required_version: required_version
         )
       )
+    elsif cluster_health['status'] == 'red'
+      Admin::SystemCheck::Message.new(:elasticsearch_health_red)
     else
-      Admin::SystemCheck::Message.new(:elasticsearch_running_check)
+      Admin::SystemCheck::Message.new(:elasticsearch_health_yellow)
     end
   end
 
   private
+
+  def cluster_health
+    @cluster_health ||= Chewy.client.cluster.health
+  end
 
   def running_version
     @running_version ||= begin
