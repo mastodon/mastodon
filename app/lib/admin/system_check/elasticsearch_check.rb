@@ -16,6 +16,8 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
     return true unless Chewy.enabled?
 
     running_version.present? && compatible_version? && cluster_health['status'] == 'green' && indexes_match?
+  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
+    false
   end
 
   def message
@@ -40,6 +42,8 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
     else
       Admin::SystemCheck::Message.new(:elasticsearch_health_yellow)
     end
+  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
+    Admin::SystemCheck::Message.new(:elasticsearch_running_check)
   end
 
   private
@@ -69,6 +73,8 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
 
     Gem::Version.new(running_version) >= Gem::Version.new(required_version) ||
       Gem::Version.new(compatible_wire_version) >= Gem::Version.new(required_version)
+  rescue ArgumentError
+    false
   end
 
   def mismatched_indexes
