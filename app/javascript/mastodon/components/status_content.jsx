@@ -15,10 +15,28 @@ import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_s
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
-const emojiRegexp = /^(\s*(?:\p{Extended_Pictographic}|:[a-zA-Z0-9]+:)+\s*)+$/u
+const emojiRegexp = /^(?:\s*(?:\p{Extended_Pictographic}|:([a-zA-Z0-9]+):)+)+$/u;
 
 function containsOnlyEmoji(status) {
-  return emojiRegexp.test(status.get('search_index'))
+  // We need to use `trim` here to avoid matching for trailing spaces in the regexp above, as this might trigger a ReDoS vulnerability
+  const matches = status.get('search_index')?.trim()?.match(emojiRegexp);
+
+  if(matches) {
+    if(matches.length === 2 && matches[1] === undefined) {
+      // it matched the regexp, but does not contain any custom emoji
+      return true;
+    }
+
+    // The first element of the array is the full match, drop it
+    matches.shift();
+
+    const shortCodes = status.get('emojis').map(e => e.get('shortcode')).toJS();
+
+    // check if every match is a shortcode for a custom emoji
+    return matches.every(match => shortCodes.includes(match));
+  }
+
+  return false;
 }
 
 /**
