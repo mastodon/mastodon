@@ -75,7 +75,7 @@ class TextFormatter
       entity[:indices].first
     end
 
-    result = ''.dup
+    result = +''
 
     last_index = entities.reduce(0) do |index, entity|
       indices = entity[:indices]
