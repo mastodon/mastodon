@@ -15,10 +15,11 @@ import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_s
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
-const emojiRegexp = /^(?:\s*(?:\p{Extended_Pictographic}|:([a-zA-Z0-9]+):)+)+$/u;
+// Using SHORTCODE_RE_FRAGMENT from app/models/custom_emoji.rb
+const emojiRegexp = /^(?:\p{Extended_Pictographic}\s*|:([a-zA-Z0-9_]{2,}):\s*)+$/u;
 
 function containsOnlyEmoji(status) {
-  // We need to use `trim` here to avoid matching for trailing spaces in the regexp above, as this might trigger a ReDoS vulnerability
+  // We need to use `trim` here to avoid matching for leading spaces in the regexp above, as this might trigger a ReDoS vulnerability
   const matches = status.get('search_index')?.trim()?.match(emojiRegexp);
 
   if(matches) {
