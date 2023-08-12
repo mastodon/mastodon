@@ -121,6 +121,7 @@ namespace :api, format: false do
       resource :privacy_policy, only: [:show], controller: 'instances/privacy_policies'
       resource :extended_description, only: [:show], controller: 'instances/extended_descriptions'
       resource :translation_languages, only: [:show], controller: 'instances/translation_languages'
+      resource :languages, only: [:show], controller: 'instances/languages'
       resource :activity, only: [:show], controller: 'instances/activity'
     end
 

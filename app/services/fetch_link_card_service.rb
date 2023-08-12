@@ -61,9 +61,13 @@ class FetchLinkCardService < BaseService
   end
 
   def attach_card
-    @status.preview_cards << @card
-    Rails.cache.delete(@status)
-    Trends.links.register(@status)
+    with_redis_lock("attach_card:#{@status.id}") do
+      return if @status.preview_cards.any?
+
+      @status.preview_cards << @card
+      Rails.cache.delete(@status)
+      Trends.links.register(@status)
+    end
   end
 
   def parse_urls
