@@ -19,6 +19,6 @@ class InviteValidator < ActiveModel::Validator
   end
 
   def daily_limit_reached?(invite)
-    invite.user.invites.where('created_at >= ?', (Time.now.utc - 24.hours)).count >= DAILY_LIMIT
+    invite.user.invites.where(created_at: 1.day.ago...).count >= DAILY_LIMIT
   end
 end
