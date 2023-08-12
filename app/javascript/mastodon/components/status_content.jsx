@@ -16,9 +16,9 @@ import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_s
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
 // Using SHORTCODE_RE_FRAGMENT from app/models/custom_emoji.rb
-const emojiRegexp = /^(?:\p{Extended_Pictographic}\s*|:([a-zA-Z0-9_]{2,}):\s*)+$/u;
+const emojiRegexp = /^(?:\p{Extended_Pictographic}[^\S\r\n]*|:([a-zA-Z0-9_]{2,}):[\S\r\n]*)+$/u;
 
-function containsOnlyEmoji(status) {
+export function statusContainsOnlyEmoji(status) {
   // We need to use `trim` here to avoid matching for leading spaces in the regexp above, as this might trigger a ReDoS vulnerability
   const matches = status.get('search_index')?.trim()?.match(emojiRegexp);
 
@@ -275,7 +275,7 @@ class StatusContent extends PureComponent {
       'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
       'status__content--collapsed': renderReadMore,
-      'status__content--only-emoji': containsOnlyEmoji(status),
+      'status__content--only-emoji': statusContainsOnlyEmoji(status),
     });
 
     const readMoreButton = renderReadMore && (
