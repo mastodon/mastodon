@@ -805,6 +805,15 @@ body > [data-popper-placement] {
   clear: both;
 }
 
+.status__content--only-emoji {
+  .status__content__text {
+    img.emojione {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+
 .status__content,
 .reply-indicator__content {
   position: relative;

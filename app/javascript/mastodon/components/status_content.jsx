@@ -15,6 +15,12 @@ import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_s
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
+const emojiRegexp = /^(\s*(?:\p{Extended_Pictographic}|:[a-zA-Z0-9]+:)+\s*)+$/u
+
+function containsOnlyEmoji(status) {
+  return emojiRegexp.test(status.get('search_index'))
+}
+
 /**
  *
  * @param {any} status
@@ -250,6 +256,7 @@ class StatusContent extends PureComponent {
       'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
       'status__content--collapsed': renderReadMore,
+      'status__content--only-emoji': containsOnlyEmoji(status),
     });
 
     const readMoreButton = renderReadMore && (
