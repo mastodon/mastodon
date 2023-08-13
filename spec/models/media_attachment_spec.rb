@@ -90,7 +90,7 @@ RSpec.describe MediaAttachment, :paperclip_processing do
       media.destroy
     end
 
-    it 'saves media attachment with correct file metadata' do
+    it 'saves metadata' do
       expect(media.persisted?).to be true
       expect(media.file).to_not be_nil
 
@@ -108,20 +108,86 @@ RSpec.describe MediaAttachment, :paperclip_processing do
 
       # Rack::Mime (used by PublicFileServerMiddleware) recognizes file extension
       expect(Rack::Mime.mime_type(extension, nil)).to eq content_type
+
+      # generates blurhash
+      expect(media.blurhash.size).to eq 36
     end
 
-    it 'saves media attachment with correct size metadata' do
+    it 'saves original style' do
       # strips original file name
       expect(media.file_file_name).to_not start_with '600x400'
+
+      # preserves original type and size
+      expect(Marcel::MimeType.for(Pathname.new(media.file.path))).to eq content_type
+      expect(FastImage.size(media.file.path(:original))).to eq [600, 400]
 
       # sets meta for original
       expect(media.file.meta['original']['width']).to eq 600
       expect(media.file.meta['original']['height']).to eq 400
       expect(media.file.meta['original']['aspect']).to eq 1.5
+    end
+
+    it 'saves small style' do
+      # resizes but preserves type
+      expect(Marcel::MimeType.for(Pathname.new(media.file.path))).to eq content_type
+      expect(FastImage.size(media.file.path(:small))).to eq [588, 392]
 
       # sets meta for thumbnail
       expect(media.file.meta['small']['width']).to eq 588
       expect(media.file.meta['small']['height']).to eq 392
+      expect(media.file.meta['small']['aspect']).to eq 1.5
+    end
+  end
+
+  shared_examples 'animated 600x400 image' do
+    after do
+      media.destroy
+    end
+
+    it 'saves metadata' do
+      expect(media.persisted?).to be true
+      expect(media.file).to_not be_nil
+
+      # completes processing
+      expect(media.processing_complete?).to be true
+
+      # sets type
+      expect(media.type).to eq 'gifv'
+
+      # sets content type
+      expect(media.file_content_type).to eq 'video/mp4'
+
+      # sets file extension
+      expect(media.file_file_name).to end_with '.mp4'
+
+      # generates blurhash
+      expect(media.blurhash.size).to eq 36
+    end
+
+    it 'saves original style' do
+      # transcodes to MP4
+      expect(media.file.path).to end_with '.mp4'
+      expect(Marcel::MimeType.for(Pathname.new(media.file.path))).to eq 'video/mp4'
+
+      # sets meta for original
+      expect(media.file.meta['original']['width']).to eq 600
+      expect(media.file.meta['original']['height']).to eq 400
+      expect(media.file.meta['original']['duration']).to eq 3
+      expect(media.file.meta['original']['frame_rate']).to eq '1/1'
+    end
+
+    it 'saves small style' do
+      # generates static PNG thumbnail
+      expect(FastImage.type(media.file.path(:small))).to eq :png
+      expect(media.file.path(:small)).to end_with '.png'
+      expect(FastImage.animated?(media.file.path(:small))).to be false
+
+      # scales image
+      expect(FastImage.size(media.file.path(:small))).to eq [600, 400]
+
+      # sets meta for thumbnail
+      expect(media.file.meta['small']['width']).to eq 600
+      expect(media.file.meta['small']['height']).to eq 400
       expect(media.file.meta['small']['aspect']).to eq 1.5
     end
   end
@@ -136,6 +202,12 @@ RSpec.describe MediaAttachment, :paperclip_processing do
     let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400.png')) }
 
     it_behaves_like 'static 600x400 image', 'image/png', '.png'
+  end
+
+  describe 'gif' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400.gif')) }
+
+    it_behaves_like 'static 600x400 image', 'image/gif', '.gif'
   end
 
   describe 'webp' do
@@ -164,35 +236,15 @@ RSpec.describe MediaAttachment, :paperclip_processing do
   end
 
   describe 'animated gif' do
-    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('avatar.gif')) }
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400-animated.gif')) }
 
-    it 'sets correct file metadata' do
-      expect(media.type).to eq 'gifv'
-      expect(media.file_content_type).to eq 'video/mp4'
-      expect(media.file.meta['original']['width']).to eq 128
-      expect(media.file.meta['original']['height']).to eq 128
-    end
+    it_behaves_like 'animated 600x400 image'
   end
 
-  describe 'static gif' do
-    fixtures = [
-      { filename: 'attachment.gif', width: 600, height: 400, aspect: 1.5 },
-      { filename: 'mini-static.gif', width: 32, height: 32, aspect: 1.0 },
-    ]
+  describe 'animated png' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400-animated.png')) }
 
-    fixtures.each do |fixture|
-      context fixture[:filename] do
-        let(:media) { Fabricate(:media_attachment, file: attachment_fixture(fixture[:filename])) }
-
-        it 'sets correct file metadata' do
-          expect(media.type).to eq 'image'
-          expect(media.file_content_type).to eq 'image/gif'
-          expect(media.file.meta['original']['width']).to eq fixture[:width]
-          expect(media.file.meta['original']['height']).to eq fixture[:height]
-          expect(media.file.meta['original']['aspect']).to eq fixture[:aspect]
-        end
-      end
-    end
+    it_behaves_like 'animated 600x400 image'
   end
 
   describe 'ogg with cover art' do
