@@ -15,7 +15,7 @@ module Mastodon::CLI
 
     option :concurrency, type: :numeric, default: 5, aliases: [:c], desc: 'Workload will be split between this number of threads'
     option :batch_size, type: :numeric, default: 100, aliases: [:b], desc: 'Number of records in each batch'
-    option :only, type: :array, enum: %w(accounts tags statuses), desc: 'Only process these indices'
+    option :only, type: :array, enum: %w(instances accounts tags statuses), desc: 'Only process these indices'
     option :import, type: :boolean, default: true, desc: 'Import data from the database to the index'
     option :clean, type: :boolean, default: true, desc: 'Remove outdated documents from the index'
     desc 'deploy', 'Create or upgrade Elasticsearch indices and populate them'
