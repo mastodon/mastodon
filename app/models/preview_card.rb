@@ -31,6 +31,7 @@
 #  trendable                    :boolean
 #  link_type                    :integer
 #  published_at                 :datetime
+#  image_description            :string           default(""), not null
 #
 
 class PreviewCard < ApplicationRecord

@@ -448,7 +448,7 @@ ca:
       no_file: No s'ha seleccionat cap fitxer
     export_domain_blocks:
       import:
-        description_html: Estàs a punt d'importar una llista de dominis blocats. Si us plau, revisa aquesta llista amb molta cura, especialment si no l'has creada tu mateix.
+        description_html: Esteu a punt d'importar una llista de dominis blocats. Reviseu aquesta llista amb molta cura, especialment si no l'heu creada vós mateix.
         existing_relationships_warning: Relacions de seguiment existents
         private_comment_description_html: 'Per a ajudar-te a fer un seguiment d''on provenen els bloquejos importats, es crearan amb el següent comentari privat: <q>%{comment}</q>'
         private_comment_template: Importar des de %{source} el %{date}
@@ -458,7 +458,7 @@ ca:
         title: Importa dominis bloquejats
       no_file: No s'ha seleccionat cap fitxer
     follow_recommendations:
-      description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb d'altres com per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen a diari a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
+      description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb altres per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen diàriament a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
       language: Per idioma
       status: Estat
       suppress: Suprimeix les recomanacions de seguiment
@@ -813,9 +813,9 @@ ca:
       appeal_rejected: Apel·lació rebutjada
     system_checks:
       database_schema_check:
-        message_html: Hi ha pendents migracions de la base de dades. Si us plau executa-les per a assegurar que l'aplicació es comporta com s'espera
+        message_html: Hi ha pendents migracions de la base de dades. Executeu-les per a assegurar que l'aplicació es comporta com s'espera
       elasticsearch_running_check:
-        message_html: No s'ha pogut connectar a Elasticsearch. Si us plau verifica que estigui funcionant o desactiva la cerca de text complet
+        message_html: No s'ha pogut connectar a Elasticsearch. Verifiqueu que funciona o desactiveu la cerca de text complet
       elasticsearch_version_check:
         message_html: 'Versió incompatible de Elasticsearch: %{value}'
         version_comparison: Elasticsearch %{running_version} està funcionant mentre %{required_version} és requerida
@@ -823,7 +823,7 @@ ca:
         action: Gestiona les normes del servidor
         message_html: No has definit cap norma del servidor.
       sidekiq_process_check:
-        message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Si us plau revisa la teva configuració de Sidekiq
+        message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Reviseu la configuració de Sidekiq
       upload_check_privacy_error:
         action: Consulta aquí per a més informació
         message_html: "<strong>El teu servidor no està ben configurat. La privacitat dels teus usuaris està en risc.</strong>"
@@ -1094,7 +1094,7 @@ ca:
     proceed: Elimina el compte
     success_msg: El compte s'ha eliminat correctament
     warning:
-      before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
+      before: 'Abans de procedir, llegiu amb cura aquestes notes:'
       caches: El contingut que ha estat memoritzat en la memòria cau per altres servidors pot persistir
       data_removal: Els teus tuts i altres dades seran permanentment eliminades
       email_change_html: Pots <a href="%{path}">canviar la teva adreça de correu electrònic</a> sense eliminar el teu compte
@@ -1244,7 +1244,7 @@ ca:
     today: avui
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
-      other: Alguna cosa no va bé! Si us plau, revisa %{count} errors més a baix
+      other: Alguna cosa no va bé! Reviseu els %{count} errors següents
   imports:
     errors:
       empty: Fitxer CSV buit
@@ -1366,7 +1366,7 @@ ca:
     cancelled_msg: Redirecció cancel·lada amb èxit.
     errors:
       already_moved: és el mateix compte al que ja t'has mogut
-      missing_also_known_as: no fa referencia a aquest compte
+      missing_also_known_as: no fa referència a aquest compte
       move_to_self: no pot ser el compte actual
       not_found: podria no ser trobat
       on_cooldown: Estàs en temps de refredament
@@ -1383,7 +1383,7 @@ ca:
     set_redirect: Ajusta la redirecció
     warning:
       backreference_required: El compte nou primer ha de ser configurat per a referenciar aquest
-      before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
+      before: 'Abans de procedir, llegiu amb cura aquestes notes:'
       cooldown: Després de moure't hi ha un període de recuperació durant el qual no seràs capaç de moure't un altre cop
       disabled_account: El teu compte actual no serà plenament utilitzable després. Tanmateix, tindràs accés a exportació de dades així com reactivació.
       followers: Aquesta acció mourà tots els seguidors des de l'actual al compte nou
@@ -1791,5 +1791,5 @@ ca:
     nickname_hint: Introdueix el sobrenom de la teva clau de seguretat nova
     not_enabled: Encara no has activat WebAuthn
     not_supported: Aquest navegador no suporta claus de seguretat
-    otp_required: Per emprar claus de seguretat si us plau activa primer l'autenticació de dos factors.
+    otp_required: Per a usar claus de seguretat, activeu primer l'autenticació de dos factors.
     registered_on: Registrat en %{date}

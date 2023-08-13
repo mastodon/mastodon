@@ -49,11 +49,7 @@ describe Admin::SystemCheck::ElasticsearchCheck do
       end
 
       context 'when running version is missing' do
-        before do
-          client = instance_double(Elasticsearch::Transport::Client)
-          allow(client).to receive(:info).and_raise(Elasticsearch::Transport::Transport::Error)
-          allow(Chewy).to receive(:client).and_return(client)
-        end
+        before { stub_elasticsearch_error }
 
         it 'returns false' do
           expect(check.pass?).to be false
@@ -86,6 +82,8 @@ describe Admin::SystemCheck::ElasticsearchCheck do
     end
 
     context 'when running version is missing' do
+      before { stub_elasticsearch_error }
+
       it 'sends class name symbol to message instance' do
         allow(Admin::SystemCheck::Message).to receive(:new)
           .with(:elasticsearch_running_check)
@@ -96,5 +94,11 @@ describe Admin::SystemCheck::ElasticsearchCheck do
           .with(:elasticsearch_running_check)
       end
     end
+  end
+
+  def stub_elasticsearch_error
+    client = instance_double(Elasticsearch::Transport::Client)
+    allow(client).to receive(:info).and_raise(Elasticsearch::Transport::Transport::Error)
+    allow(Chewy).to receive(:client).and_return(client)
   end
 end

@@ -31,7 +31,7 @@ vi:
     accounts:
       add_email_domain_block: Chặn tên miền email
       approve: Phê duyệt
-      approved_msg: Đã phê duyệt %{username} đăng ký thành công
+      approved_msg: Đã phê duyệt đăng ký %{username}
       are_you_sure: Bạn có chắc không?
       avatar: Ảnh đại diện
       by_domain: Máy chủ
@@ -964,7 +964,7 @@ vi:
     view_profile: Xem trang hồ sơ
     view_status: Xem tút
   applications:
-    created: Đơn đăng ký được tạo thành công
+    created: Đã gửi yêu cầu đăng ký
     destroyed: Đã xóa đơn đăng ký
     logout: Đăng xuất
     regenerate_token: Tạo lại mã truy cập
@@ -1000,7 +1000,7 @@ vi:
     privacy_policy_agreement_html: Tôi đã đọc và đồng ý <a href="%{privacy_policy_path}" target="_blank">chính sách bảo mật</a>
     progress:
       confirm: Xác minh email
-      details: Thông tin của bạn
+      details: Điền thông tin
       review: Đợi duyệt
       rules: Đọc nội quy
     providers:
@@ -1021,18 +1021,18 @@ vi:
     security: Bảo mật
     set_new_password: Đặt mật khẩu mới
     setup:
-      email_below_hint_html: Kiểm tra thư rác của bạn hoặc yêu cầu gửi lại. Bạn có thể sửa địa chỉ email của mình nếu sai.
+      email_below_hint_html: Kiểm tra hộp thư rác hoặc yêu cầu gửi lại. Bạn có thể sửa địa chỉ email của mình nếu sai.
       email_settings_hint_html: Nhấn vào liên kết chúng tôi vừa gửi để xác minh %{email}. Nhanh nhé bạn.
       link_not_received: Không nhận được mã?
       new_confirmation_instructions_sent: Bạn sẽ nhận được một email mới với liên kết xác nhận sau vài phút!
-      title: Kiểm tra hộp thư của bạn
+      title: Kiểm tra email của bạn
     sign_in:
       preamble_html: Đăng nhập bằng tài khoản <strong>%{domain}</strong>. Nếu tài khoản của bạn được lưu trữ trên một máy chủ khác, bạn sẽ không thể đăng nhập tại đây.
       title: Đăng nhập %{domain}
     sign_up:
-      manual_review: Đăng ký trên %{domain} cần duyệt thủ công. Để giúp chúng tôi xử lý nhanh, hãy viết một chút về bản thân và lý do bạn muốn có một tài khoản trên %{domain}.
+      manual_review: "%{domain} sẽ duyệt đăng ký thủ công. Để giúp chúng tôi duyệt nhanh, hãy viết một chút về bản thân và lý do bạn muốn có một tài khoản trên %{domain}."
       preamble: Với tài khoản trên máy chủ Mastodon này, bạn sẽ có thể theo dõi bất kỳ người nào trên các máy chủ khác, bất kể tài khoản của họ ở đâu.
-      title: Cho phép bạn đăng ký trên %{domain}.
+      title: Đang đăng ký trên %{domain}.
     status:
       account_status: Trạng thái tài khoản
       confirming: Đang chờ xác minh email.
@@ -1592,7 +1592,7 @@ vi:
     show_more: Đọc thêm
     show_newer: Mới hơn
     show_older: Cũ hơn
-    show_thread: Trích nguyên văn
+    show_thread: Nội dung gốc
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Nhắn riêng

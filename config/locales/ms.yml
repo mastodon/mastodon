@@ -89,6 +89,7 @@ ms:
       moderation:
         active: Aktif
         all: Semua
+        disabled: Dimatikan
         pending: Menunggu
         silenced: Terhad
         suspended: Digantungkan
@@ -113,12 +114,15 @@ ms:
       redownloaded_msg: Berjaya segarkan semula profil %{username} daripada asalnya
       reject: Tolak
       rejected_msg: Berjaya menolak permohonan pendaftaran %{username}
+      remote_suspension_irreversible: Data akaun ini telah dipadamkan secara tidak dapat dipulihkan.
       remove_avatar: Buang avatar
       remove_header: Buang pengepala
       removed_avatar_msg: Berjaya membuang imej avatar %{username}
       removed_header_msg: Berjaya membuang imej pengepala %{username}
       resend_confirmation:
         already_confirmed: Pengguna ini telah disahkan
+        send: Hantar semula pautan pengesahan
+        success: Pautan pengesahan berjaya dihantar!
       reset: Tetapkan semula
       reset_password: Tetapkan semula kata laluan
       resubscribe: Langgan semula
@@ -126,6 +130,7 @@ ms:
       search: Cari
       search_same_email_domain: Pengguna lain dengan domain e-mel yang sama
       search_same_ip: Pengguna lain dengan alamat IP yang sama
+      security: Keselamatan
       security_measures:
         only_password: Kata laluan sahaja
         password_and_2fa: Kata laluan dan 2FA
@@ -369,6 +374,12 @@ ms:
       undo: Buang kebenaran persekutuan dengan domain
     domain_blocks:
       add_new: Tambah penyekatan domain baharu
+      confirm_suspension:
+        cancel: Batal
+        confirm: Gantung
+        permanent_action: Membuat asal penggantungan tidak akan memulihkan sebarang data atau perhubungan.
+        preamble_html: Anda akan menggantung <strong>%{domain}</strong> dan subdomainnya.
+        remove_all_data: Ini akan mengalih keluar semua kandungan, media dan data profil untuk akaun domain ini daripada sever anda.
       created_msg: Sekatan domain sedang diproses
       destroyed_msg: Sekatan domain telah diundurkan
       domain: Domain
@@ -414,6 +425,7 @@ ms:
         resolve: Menyelesaikan domain
         title: Sekat domain e-mel baharu
       no_email_domain_block_selected: Tiada sekatan domain e-mel diubah kerana tiada yang dipilih
+      not_permitted: Tidak dibenarkan
       resolved_through_html: Diselesaikan melalui %{domain}
       title: Domain e-mel disekat
     export_domain_allows:
@@ -423,6 +435,9 @@ ms:
     export_domain_blocks:
       import:
         existing_relationships_warning: Hubungan ikut sedia ada
+        title: Import blok domain
+      new:
+        title: Import blok domain
       no_file: Tiada fail yang dipilih
     follow_recommendations:
       description_html: "<strong>Saranan ikutan membantu pengguna baharu mencari kandungan menarik dengan cepat</strong>. Apabila pengguna belum cukup berinteraksi dengan akaun lain untuk membentuk saranan ikutan tersendiri, akaun-akaun inilah yang akan disarankan. Ia dinilai semula setiap hari dari gabungan keterlibatan tertinggi terkini dan juga jumlah pengikut tempatan tertinggi mengikut bahasa masing-masing."
@@ -444,7 +459,10 @@ ms:
       content_policies:
         comment: Catatan dalaman
         policies:
+          reject_media: Tolak media
+          reject_reports: Tolak laporan
           silence: Hadkan
+          suspend: Gantung
         policy: Dasar
         reason: Sebab awam
         title: Dasar kandungan
@@ -454,6 +472,7 @@ ms:
         instance_followers_measure: pengikut kami di situ
         instance_follows_measure: pengikut mereka di sini
         instance_languages_dimension: Bahasa teratas
+        instance_media_attachments_measure: lampiran media yang disimpan
         instance_reports_measure: laporan mengenai mereka
         instance_statuses_measure: Hantaran yang disimpan
       delivery:
@@ -467,6 +486,8 @@ ms:
       delivery_error_days: Hari ralat penghantaran
       delivery_error_hint: Jika penghantaran tidak berjaya selama %{count} hari, ia akan ditanda sebagai tidak boleh dihantar.
       empty: Tiada domain dijumpai.
+      known_accounts:
+        other: "%{count} akaun dikenali"
       moderation:
         all: Semua
         limited: Terhad
@@ -538,9 +559,11 @@ ms:
       assign_to_self: Menugaskan kepada saya
       assigned: Penyederhana yang ditugaskan
       by_target_domain: Domain bagi akaun yang dilaporkan
+      cancel: Batal
       category: Kumpulan
       comment:
         none: Tiada
+      confirm: Konfirm
       created_at: Dilaporkan
       delete_and_resolve: Padam hantaran
       forwarded: Dipanjangkan
@@ -556,6 +579,7 @@ ms:
         delete: Padam
         placeholder: Terangkan tindakan apa yang telah diambil, atau sebarang kemas kini lain yang berkaitan...
         title: Catatan
+      processed_msg: 'Laporan #%{id} berjaya diproses'
       reopen: Buka semula laporan
       report: 'Laporan #%{id}'
       reported_account: Akaun yang dilaporkan
@@ -669,6 +693,8 @@ ms:
       destroyed_msg: Muat naik tapak berjaya dihapuskan!
     statuses:
       account: Penulis
+      batch:
+        report: Laporan
       deleted: Dipadamkan
       favourites: Gemaran
       history: Sejarah versi
@@ -694,16 +720,27 @@ ms:
         suspend: "%{name} telah menggantungkan akaun %{target}"
       appeal_approved: Dirayu
       appeal_pending: Rayuan yang belum selesai
+    system_checks:
+      sidekiq_process_check:
+        message_html: Tiada proses Sidekiq berjalan untuk baris gilir %{value}. Sila semak konfigurasi Sidekiq anda
+      upload_check_privacy_error:
+        message_html: "<strong>Server web anda salah konfigurasi. Privasi pengguna anda berisiko</strong>"
+      upload_check_privacy_error_object_storage:
+        message_html: "<strong>Ruang objek anda salah konfigurasi. Privasi pengguna anda berisiko</strong>"
     tags:
       review: Semak status
     title: Pentadbiran
     trends:
       allow: Izin
       approved: Diluluskan
+      disallow: Tidak membenarkan
       links:
         allow: Membenarkan pautan
         allow_provider: Membenarkan penerbit
+        disallow: Tidak membenarkan pautan
         title: Pautan yang sedang sohor kini
+      not_allowed_to_trend: Tidak dibenarkan menjadi trend
+      only_allowed: Hanya dibenarkan
       preview_card_providers:
         rejected: Pautan daripada penerbit ini tidak akan menjadi sohor kini
         title: Penerbit
@@ -735,6 +772,7 @@ ms:
       delete: Padam
     webhooks:
       delete: Padam
+      empty: You don't have any webhook endpoints configured yet.
       enable: Dayakan
       enabled: Aktif
   admin_mailer:
@@ -742,15 +780,24 @@ ms:
       actions:
         silence: untuk mengehadkan akaun mereka
   appearance:
+    advanced_web_interface_hint: 'Jika anda ingin menggunakan keseluruhan lebar skrin anda, antara muka web lanjutan membolehkan anda mengkonfigurasi banyak lajur berbeza untuk melihat seberapa banyak maklumat pada masa yang sama seperti yang anda mahu: Laman Utama, pemberitahuan, garis masa bersekutu, sebarang bilangan senarai dan hashteg.'
+    discovery: Penemuan
     localization:
       guide_link_text: Sesiapa sahaja boleh memberi sumbangan.
     sensitive_content: Kandungan sensitif
   application_mailer:
     notification_preferences: Tukar keutamaan e-mel
+    salutation: "%{name},"
     view: 'Lihat:'
     view_profile: Lihat profil
     view_status: Lihat hantaran
+  applications:
+    logout: Log keluar
+    your_token: Token akses anda
   auth:
+    apply_for_account: Minta akaun
+    captcha_confirmation:
+      title: Pemeriksaan keselamatan
     delete_account: Padam akaun
     description:
       prefix_sign_up: Daftar pada Mastodon hari ini!
@@ -759,9 +806,19 @@ ms:
     login: Daftar masuk
     logout: Daftar keluar
     migrate_account: Pindah kepada akaun lain
+    migrate_account_html: Jika anda ingin mengubah hala akaun ini kepada akaun lain, anda boleh <a href="%{path}">konfigurasikannya di sini</a>.
     or_log_in_with: Atau daftar masuk dengan
+    progress:
+      confirm: Sahkan E-mel
+      details: Maklumat anda
+    providers:
+      cas: CAS
+      saml: SAML
     register: Daftar
     registration_closed: "%{instance} tidak menerima ahli-ahli baru"
+    rules:
+      accept: Terima
+      back: Kembali
     security: Keselamatan
     status:
       account_status: Status akaun
@@ -774,6 +831,7 @@ ms:
   datetime:
     distance_in_words:
       half_a_minute: Sebentar tadi
+      less_than_x_seconds: Baru sahaja
   deletes:
     proceed: Padam akaun
   disputes:
@@ -818,8 +876,11 @@ ms:
     '503': Halaman tidak dapat disampaikan kerana kegagalan pelayan sementara.
   exports:
     archive_takeout:
+      date: Tarikh
       in_progress: Mengkompil arkib anda...
       request: Minta arkib anda
+      size: Saiz
+    blocks: Blok anda
     csv: CSV
     domain_blocks: Domain disekat
     lists: Senarai
@@ -832,6 +893,7 @@ ms:
       keywords: Kata kunci
       title: Sunting penapis
     index:
+      delete: Padam
       empty: Anda tiada penapis.
       keywords:
         other: "%{count} kata kunci"
@@ -852,8 +914,18 @@ ms:
     deselect: Nyahpilih semua
     none: Tiada
   imports:
+    errors:
+      too_large: Fail terlalu besar
+    states:
+      finished: Selesai
+      in_progress: Dalam proses
+      scheduled: Dijadualkan
+    status: Status
+    types:
+      lists: Senarai
     upload: Muat naik
   invites:
+    expired: Tamat tempoh
     expires_in:
       '1800': 30 minit
       '21600': 6 jam
@@ -867,9 +939,16 @@ ms:
       password: kata laluan
       sign_in_token: e-mel kod keselamatan
       webauthn: kunci keselamatan
+  mail_subscriptions:
+    unsubscribe:
+      title: Hentikan langganan
   migrations:
     acct: Dipindah ke
+    errors:
+      not_found: tidak dapat dicarikan
     proceed_with_move: Pindah pengikut
+    warning:
+      backreference_required: Akaun baharu mesti terlebih dahulu dikonfigurasikan untuk merujuk semula akaun ini
   notification_mailer:
     follow:
       title: Pengikut baru
