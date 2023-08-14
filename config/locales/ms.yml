@@ -115,6 +115,7 @@ ms:
       reject: Tolak
       rejected_msg: Berjaya menolak permohonan pendaftaran %{username}
       remote_suspension_irreversible: Data akaun ini telah dipadamkan secara tidak dapat dipulihkan.
+      remote_suspension_reversible_hint_html: Akaun telah digantung pada server mereka dan data akan dialih keluar sepenuhnya pada %{date}. Sehingga itu, server jauh boleh memulihkan akaun ini tanpa sebarang kesan buruk. Jika anda ingin mengalih keluar semua data akaun dengan segera, anda boleh berbuat demikian di bawah.
       remove_avatar: Buang avatar
       remove_header: Buang pengepala
       removed_avatar_msg: Berjaya membuang imej avatar %{username}
@@ -380,6 +381,9 @@ ms:
         permanent_action: Membuat asal penggantungan tidak akan memulihkan sebarang data atau perhubungan.
         preamble_html: Anda akan menggantung <strong>%{domain}</strong> dan subdomainnya.
         remove_all_data: Ini akan mengalih keluar semua kandungan, media dan data profil untuk akaun domain ini daripada sever anda.
+        stop_communication: Server anda akan berhenti berkomunikasi dengan server ini.
+        title: Sahkan blok domain untuk %{domain}
+        undo_relationships: Ini akan membuat asal sebarang hubungan ikut antara akaun server ini dan akaun anda.
       created_msg: Sekatan domain sedang diproses
       destroyed_msg: Sekatan domain telah diundurkan
       domain: Domain
@@ -392,6 +396,7 @@ ms:
         create: Cipta sekatan
         hint: Sekatan domain tidak akan menghindarkan penciptaan entri akaun dalam pangkalan data, tetapi akan dikenakan kaedah penyederhanaan khusus tertentu pada akaun-akaun tersebut secara retroaktif dan automatik.
         severity:
+          desc_html: "<strong>Had</strong> akan menjadikan siaran daripada akaun di domain ini tidak kelihatan kepada sesiapa sahaja yang tidak mengikutinya. <strong>Tangguhkan</strong> akan mengalih keluar semua kandungan, media dan data profil untuk akaun domain ini daripada server anda. Gunakan <strong>Tiada</strong> jika anda hanya mahu menolak fail media."
           noop: Tiada
           silence: Hadkan
           suspend: Gantungkan
@@ -426,6 +431,7 @@ ms:
         title: Sekat domain e-mel baharu
       no_email_domain_block_selected: Tiada sekatan domain e-mel diubah kerana tiada yang dipilih
       not_permitted: Tidak dibenarkan
+      resolved_dns_records_hint_html: Nama domain diselesaikan kepada domain MX berikut, yang akhirnya bertanggungjawab untuk menerima e-mel. Menyekat domain MX akan menyekat pendaftaran daripada mana-mana alamat e-mel yang menggunakan domain MX yang sama, walaupun nama domain yang kelihatan berbeza. <strong>Berhati-hati untuk tidak menyekat penyedia e-mel utama.</strong>
       resolved_through_html: Diselesaikan melalui %{domain}
       title: Domain e-mel disekat
     export_domain_allows:
@@ -434,8 +440,12 @@ ms:
       no_file: Tiada fail dipilih
     export_domain_blocks:
       import:
+        description_html: Anda akan mengimport senarai blok domain. Sila semak senarai ini dengan teliti, terutamanya jika anda belum mengarang senarai ini sendiri.
         existing_relationships_warning: Hubungan ikut sedia ada
+        private_comment_description_html: 'Untuk membantu anda menjejak dari mana datangnya blok yang diimport, blok yang diimport akan dibuat dengan ulasan peribadi berikut: <q>%{comment}</q>'
+        private_comment_template: Diimport daripada %{source} pada %{date}
         title: Import blok domain
+      invalid_domain_block: 'Satu atau lebih blok domain telah dilangkau kerana ralat berikut: %{error}'
       new:
         title: Import blok domain
       no_file: Tiada fail yang dipilih
@@ -449,6 +459,8 @@ ms:
       unsuppress: Tetap semula saranan ikutan
     instances:
       availability:
+        failure_threshold_reached: Ambang kegagalan dicapai pada %{date}.
+        no_failures_recorded: Tiada kegagalan dalam rekod.
         title: Ketersediaan
         warning: Percubaan terakhir untuk menyambung ke pelayan ini tidak berjaya
       back_to_all: Semua
@@ -458,6 +470,8 @@ ms:
       confirm_purge: Adakah anda pasti mahu menghapuskan senarai ini secara kekal daripada domain ini?
       content_policies:
         comment: Catatan dalaman
+        description_html: Anda boleh menentukan dasar kandungan yang akan digunakan pada semua akaun daripada domain ini dan mana-mana subdomainnya.
+        limited_federation_mode_description_html: Anda boleh memilih sama ada untuk membenarkan persekutuan dengan domain ini.
         policies:
           reject_media: Tolak media
           reject_reports: Tolak laporan
@@ -485,6 +499,7 @@ ms:
       delivery_available: Penghantaran tersedia
       delivery_error_days: Hari ralat penghantaran
       delivery_error_hint: Jika penghantaran tidak berjaya selama %{count} hari, ia akan ditanda sebagai tidak boleh dihantar.
+      destroyed_msg: Data daripada %{domain} kini beratur untuk pemadaman segera.
       empty: Tiada domain dijumpai.
       known_accounts:
         other: "%{count} akaun dikenali"
@@ -494,12 +509,15 @@ ms:
         title: Penyederhanaan
       private_comment: Ulasan peribadi
       public_comment: Ulasan awam
+      purge: Singkir
+      purge_description_html: Jika anda percaya domain ini berada di luar talian selama-lamanya, anda boleh memadamkan semua rekod akaun dan data yang berkaitan daripada domain ini daripada storan anda. Ini mungkin mengambil sedikit masa.
       title: Persekutuan
       total_blocked_by_us: Disekati kami
       total_followed_by_them: Diikuti mereka
       total_followed_by_us: Diikuti kami
       total_reported: Laporan tentang mereka
       total_storage: Lampiran media
+      totals_time_period_hint_html: Jumlah yang dipaparkan di bawah termasuk data untuk sepanjang masa.
     invites:
       deactivate_all: Nyahaktifkan semua
       filter:
@@ -553,7 +571,12 @@ ms:
       actions:
         delete_description_html: Hantaran yang dilaporkan akan dihapuskan dan pelanggaran itu akan direkodkan bagi membantu anda menguruskan pelanggaran pada akaun yang sama di masa akan datang.
         mark_as_sensitive_description_html: Media di dalam hantaran yang dilaporkan akan ditandakan sebagai sensitif dan pelanggaran itu akan direkodkan bagi membantu anda menguruskan pelanggaran pada akaun yang sama di masa akan datang.
+        other_description_html: Lihat lebih banyak pilihan untuk mengawal tingkah laku akaun dan menyesuaikan komunikasi ke akaun yang dilaporkan.
         resolve_description_html: Tiada tindakan akan diambil terhadap akaun yang dilaporkan, tiada pelanggaran direkodkan dan laporan akan ditutup.
+        silence_description_html: Akaun itu akan kelihatan hanya kepada mereka yang telah mengikutinya atau mencarinya secara manual, mengehadkan capaiannya dengan teruk. Sentiasa boleh dikembalikan. Menutup semua laporan terhadap akaun ini.
+        suspend_description_html: Akaun dan semua kandungannya akan tidak boleh diakses dan akhirnya dipadamkan, dan berinteraksi dengannya adalah mustahil. Boleh diterbalikkan dalam masa 30 hari. Menutup semua laporan terhadap akaun ini.
+      actions_description_html: Tentukan tindakan yang perlu diambil untuk menyelesaikan laporan ini. Jika anda mengambil tindakan menghukum terhadap akaun yang dilaporkan, pemberitahuan e-mel akan dihantar kepada mereka, kecuali apabila kategori <strong>Spam</strong> dipilih.
+      actions_description_remote_html: Tentukan tindakan yang perlu diambil untuk menyelesaikan laporan ini. Ini hanya akan menjejaskan cara server<strong>anda</strong> berkomunikasi dengan akaun jauh ini dan mengendalikan kandungannya.
       add_to_report: Tambahkan lebih banyak pada laporan
       are_you_sure: Adakah anda pasti?
       assign_to_self: Menugaskan kepada saya
@@ -561,9 +584,12 @@ ms:
       by_target_domain: Domain bagi akaun yang dilaporkan
       cancel: Batal
       category: Kumpulan
+      category_description_html: Sebab akaun dan/atau kandungan ini dilaporkan akan disebut dalam komunikasi dengan akaun yang dilaporkan
       comment:
         none: Tiada
+      comment_description_html: 'Untuk memberikan maklumat lanjut, %{name} menulis:'
       confirm: Konfirm
+      confirm_action: Sahkan tindakan penyederhanaan terhadap @%{acct}
       created_at: Dilaporkan
       delete_and_resolve: Padam hantaran
       forwarded: Dipanjangkan
@@ -579,7 +605,10 @@ ms:
         delete: Padam
         placeholder: Terangkan tindakan apa yang telah diambil, atau sebarang kemas kini lain yang berkaitan...
         title: Catatan
+      notes_description_html: Lihat dan tinggalkan nota kepada moderator lain dan diri masa depan anda
       processed_msg: 'Laporan #%{id} berjaya diproses'
+      quick_actions_description_html: 'Ambil tindakan pantas atau tatal ke bawah untuk melihat kandungan yang dilaporkan:'
+      remote_user_placeholder: pengguna jauh dari %{instance}
       reopen: Buka semula laporan
       report: 'Laporan #%{id}'
       reported_account: Akaun yang dilaporkan
@@ -589,9 +618,29 @@ ms:
       skip_to_actions: Langkau ke tindakan
       status: Status
       statuses: Kandungan yang dilaporkan
+      statuses_description_html: Kandungan yang menyinggung perasaan akan disebut dalam komunikasi dengan akaun yang dilaporkan
+      summary:
+        action_preambles:
+          delete_html: 'Anda akan <strong>mengalih keluar</strong> beberapa siaran <strong>@%{acct}</strong>. Ini akan:'
+          mark_as_sensitive_html: 'Anda akan <strong>menandai</strong> beberapa siaran <strong>@%{acct}</strong> sebagai <strong>sensitif</strong>. Ini akan:'
+          silence_html: 'Anda akan <strong>menghadkan</strong> akaun <strong>@%{acct}</strong>. Ini akan:'
+          suspend_html: 'Anda akan <strong>menggantung</strong> akaun <strong>@%{acct}</strong>. Ini akan:'
+        actions:
+          delete_html: Alih keluar pos yang menyinggung perasaan
+          mark_as_sensitive_html: Tandai media pos yang menyinggung perasaan sebagai sensitif
+          silence_html: Hadkan capaian <strong>@%{acct}</strong> dengan ketat dengan menjadikan profil dan kandungan mereka hanya kelihatan kepada orang yang sudah mengikuti mereka atau melihat profil itu secara manual
+          suspend_html: Gantung <strong>@%{acct}</strong>, menjadikan profil dan kandungan mereka tidak boleh diakses dan mustahil untuk berinteraksi dengannya
+        close_report: 'Tandai laporan #%{id} sebagai diselesaikan'
+        close_reports_html: Tandai <strong>semua</strong> laporan terhadap <strong>@%{acct}</strong> sebagai telah diselesaikan
+        delete_data_html: Padamkan profil dan kandungan <strong>@%{acct}</strong> 30 hari dari sekarang melainkan mereka dibatalkan penggantungan buat sementara waktu
+        preview_preamble_html: "<strong>@%{acct}</strong> akan menerima amaran dengan kandungan berikut:"
+        record_strike_html: Rakam bantahan terhadap <strong>@%{acct}</strong> untuk membantu anda mempertingkatkan tentang pelanggaran akaun ini pada masa hadapan
+        send_email_html: Hantar <strong>@%{acct}</strong> e-mel amaran
+        warning_placeholder: Penaakulan tambahan pilihan untuk tindakan penyederhanaan.
       target_origin: Asalan akaun yang dilaporkan
       title: Laporan
       unassign: Nyahtugaskan
+      unknown_action_msg: 'Tindakan tidak diketahui: %{action}'
       unresolved: Nyahselesaikan
       updated_at: Dikemaskini
       view_profile: Lihat profil
@@ -606,12 +655,15 @@ ms:
         moderation: Penyederhanaan
         special: Khas
       delete: Padam
+      description_html: Dengan <strong>peranan pengguna</strong>, anda boleh menyesuaikan fungsi dan kawasan Mastodon yang boleh diakses oleh pengguna anda.
       edit: Sunting peranan '%{name}'
       everyone: Kebenaran lalai
+      everyone_full_description_html: Ini ialah <strong>peranan asas</strong> yang mempengaruhi <strong>semua pengguna</strong>, walaupun mereka yang tidak mempunyai peranan yang ditetapkan. Semua peranan lain mewarisi kebenaran daripadanya.
       permissions_count:
         other: "%{count} kebenaran"
       privileges:
         administrator: Pentadbir
+        administrator_description: Users with this permission will bypass every permission
         delete_user_data: Padamkan Data Pengguna
         delete_user_data_description: Membenarkan pengguna menghapuskan data pengguna lain tanpa bertangguh
         invite_users: Mengundang pengguna
@@ -668,12 +720,24 @@ ms:
         preamble: Menyesuaikan antara muka web Mastodon.
         title: Penampilan
       branding:
+        preamble: Penjenamaan server anda membezakannya daripada server lain dalam rangkaian. Maklumat ini mungkin dipaparkan merentasi pelbagai persekitaran, seperti antara muka web Mastodon, aplikasi asli, dalam pratonton pautan di tapak web lain dan dalam aplikasi pemesejan, dan sebagainya. Atas sebab ini, adalah lebih baik untuk memastikan maklumat ini jelas, pendek dan padat.
         title: Penjenamaan
+      captcha_enabled:
+        desc_html: Ini bergantung pada skrip luaran daripada hCaptcha, yang mungkin menjadi kebimbangan keselamatan dan privasi. Selain itu, <strong>ini boleh menjadikan proses pendaftaran menjadi kurang dapat diakses oleh sesetengah orang (terutamanya orang kurang upaya)</strong>. Atas sebab ini, sila pertimbangkan langkah alternatif seperti pendaftaran berasaskan kelulusan atau jemputan.
+        title: Memerlukan pengguna baharu menyelesaikan CAPTCHA untuk mengesahkan akaun mereka
       content_retention:
+        preamble: Kawal cara kandungan yang dijana pengguna disimpan dalam Mastodon.
         title: Pengekalan kandungan
+      default_noindex:
+        desc_html: Mempengaruhi semua pengguna yang tidak menukar tetapan ini sendiri
+        title: Tarik pengguna keluar daripada pengindeksan enjin carian secara lalai
       discovery:
+        follow_recommendations: Ikut cadangan
+        preamble: Memaparkan kandungan yang menarik adalah penting dalam memasukkan pengguna baharu yang mungkin tidak mengenali sesiapa Mastodon. Kawal cara pelbagai ciri penemuan berfungsi pada server anda.
         profile_directory: Direktori profil
         public_timelines: Garis masa awam
+        publish_discovered_servers: Terbitkan pelayan yang ditemui
+        publish_statistics: Terbitkan statistik
         title: Penemuan
         trends: Sohor kini
       domain_blocks:
@@ -688,16 +752,22 @@ ms:
           approved: Kelulusan diperlukan untuk pendaftaran
           none: Tiada siapa boleh mendaftar
           open: Sesiapapun boleh mendaftar
+      title: Tetapan server
     site_uploads:
       delete: Hapuskan fail yang dimuat naik
       destroyed_msg: Muat naik tapak berjaya dihapuskan!
     statuses:
       account: Penulis
+      application: Aplikasi
+      back_to_account: Kembali ke halaman akaun
+      back_to_report: Kembali ke halaman laporan
       batch:
+        remove_from_report: Alih keluar daripada laporan
         report: Laporan
       deleted: Dipadamkan
       favourites: Gemaran
       history: Sejarah versi
+      in_reply_to: Membalas kepada
       language: Bahasa
       media:
         title: Media
@@ -709,6 +779,8 @@ ms:
       status_changed: Hantaran diubah
       title: Hantaran akaun
       trending: Sohor kini
+      visibility: Visibiliti
+      with_media: Dengan media
     strikes:
       actions:
         delete_statuses: "%{name} memadam hantaran %{target}"
@@ -720,15 +792,29 @@ ms:
         suspend: "%{name} telah menggantungkan akaun %{target}"
       appeal_approved: Dirayu
       appeal_pending: Rayuan yang belum selesai
+      appeal_rejected: Rayuan ditolak
     system_checks:
+      database_schema_check:
+        message_html: Terdapat migrasi pangkalan data yang belum selesai. Sila jalankannya untuk memastikan aplikasi berfungsi seperti yang diharapkan
+      elasticsearch_running_check:
+        message_html: Tidak dapat menyambung ke Elasticsearch. Sila semak sama ada ia sedang berjalan atau lumpuhkan carian teks penuh
+      elasticsearch_version_check:
+        message_html: 'Versi Elasticsearch tidak serasi: %{value}'
+        version_comparison: Elasticsearch %{running_version} sedang berjalan manakala %{required_version} diperlukan
+      rules_check:
+        action: Urus peraturan server
+        message_html: Anda belum menentukan sebarang peraturan server.
       sidekiq_process_check:
         message_html: Tiada proses Sidekiq berjalan untuk baris gilir %{value}. Sila semak konfigurasi Sidekiq anda
       upload_check_privacy_error:
+        action: Semak di sini untuk maklumat lanjut
         message_html: "<strong>Server web anda salah konfigurasi. Privasi pengguna anda berisiko</strong>"
       upload_check_privacy_error_object_storage:
+        action: Semak di sini untuk maklumat lanjut
         message_html: "<strong>Ruang objek anda salah konfigurasi. Privasi pengguna anda berisiko</strong>"
     tags:
       review: Semak status
+      updated_msg: Tetapan hashtag berjaya dikemas kini
     title: Pentadbiran
     trends:
       allow: Izin
@@ -737,11 +823,19 @@ ms:
       links:
         allow: Membenarkan pautan
         allow_provider: Membenarkan penerbit
+        description_html: Ini ialah pautan yang sedang banyak dikongsi oleh akaun tempat server anda melihat siaran daripadanya. Ia boleh membantu pengguna anda mengetahui perkara yang berlaku di dunia. Tiada pautan dipaparkan secara terbuka sehingga anda meluluskan penerbit. Anda juga boleh membenarkan atau menolak pautan individu.
         disallow: Tidak membenarkan pautan
+        disallow_provider: Tolak penerbit
+        no_link_selected: Tiada pautan ditukar kerana tiada pautan dipilih
+        publishers:
+          no_publisher_selected: Tiada penerbit ditukar kerana tiada penerbit dipilih
         title: Pautan yang sedang sohor kini
+        usage_comparison: Dikongsi %{today} kali hari ini, berbanding %{yesterday} semalam
       not_allowed_to_trend: Tidak dibenarkan menjadi trend
       only_allowed: Hanya dibenarkan
+      pending_review: Menunggu semak semula
       preview_card_providers:
+        description_html: Ini adalah domain dari mana pautan sering dikongsi pada server anda. Pautan tidak akan menjadi aliran secara terbuka melainkan domain pautan itu diluluskan. Kelulusan (atau penolakan) anda dilanjutkan kepada subdomain.
         rejected: Pautan daripada penerbit ini tidak akan menjadi sohor kini
         title: Penerbit
       rejected: Ditolak
@@ -775,10 +869,41 @@ ms:
       empty: You don't have any webhook endpoints configured yet.
       enable: Dayakan
       enabled: Aktif
+      new: Webhook baru
+      rotate_secret: Putar rahsia
+      secret: Menandatangani rahsia
+      status: Status
+      title: Webhook
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: untuk memadamkan pos mereka
+        disable: untuk membekukan akaun mereka
+        mark_statuses_as_sensitive: untuk menandakan pos mereka sebagai sensitif
+        none: amaran
+        sensitive: untuk menandakan akaun mereka sebagai sensitif
         silence: untuk mengehadkan akaun mereka
+        suspend: untuk menggantung akaun mereka
+      body: "%{target} sedang merayu keputusan penyederhanaan sebanyak %{action_taken_by} dari %{date}, iaitu %{type}. Mereka tulis:"
+      next_steps: Anda boleh meluluskan rayuan untuk membuat asal keputusan penyederhanaan atau mengabaikannya.
+      subject: "%{username} sedang merayu keputusan penyederhanaan pada %{instance}"
+    new_pending_account:
+      body: Butiran akaun baharu ada di bawah. Anda boleh meluluskan atau menolak aplikasi ini.
+      subject: Akaun baharu disediakan untuk semakan pada %{instance} (%{username})
+    new_report:
+      body: "%{reporter} telah melaporkan %{target}"
+      body_remote: Seseorang daripada %{domain} telah melaporkan %{target}
+      subject: Laporan baharu untuk %{instance} (#%{id})
+    new_trends:
+      body: 'Item berikut memerlukan semakan sebelum boleh dipaparkan secara terbuka:'
+      new_trending_links:
+        title: Pautan sohor kini
+      new_trending_statuses:
+        title: Pos sohor kini
+      new_trending_tags:
+        no_approved_tags: Pada masa ini tiada hashtag sohor kini yang diluluskan.
+        requirements: 'Mana-mana calon ini boleh melepasi hashtag arah aliran #%{rank} yang diluluskan, yang pada masa ini ialah #%{lowest_tag_name} dengan markah %{lowest_tag_score}.'
   appearance:
     advanced_web_interface_hint: 'Jika anda ingin menggunakan keseluruhan lebar skrin anda, antara muka web lanjutan membolehkan anda mengkonfigurasi banyak lajur berbeza untuk melihat seberapa banyak maklumat pada masa yang sama seperti yang anda mahu: Laman Utama, pemberitahuan, garis masa bersekutu, sebarang bilangan senarai dan hashteg.'
     discovery: Penemuan
@@ -801,7 +926,11 @@ ms:
     delete_account: Padam akaun
     description:
       prefix_sign_up: Daftar pada Mastodon hari ini!
+      suffix: Dengan akaun, anda akan dapat mengikuti orang, menyiarkan kemas kini dan bertukar-tukar mesej dengan pengguna dari mana-mana server Mastodon dan banyak lagi!
+    didnt_get_confirmation: Tidak menerima pautan pengesahan?
+    dont_have_your_security_key: Tiada kunci keselamatan anda?
     forgot_password: Terlupa kata laluan anda?
+    invalid_reset_password_token: Token tetapan semula kata laluan tidak sah atau tamat tempoh. Sila minta yang baharu.
     log_in_with: Daftar masuk dengan
     login: Daftar masuk
     logout: Daftar keluar

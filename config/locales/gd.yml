@@ -593,7 +593,7 @@ gd:
       pending: A’ feitheamh ri aontachadh an ath-sheachadain
       save_and_enable: Sàbhail ’s cuir an comas
       setup: Suidhich ceangal ri ath-sheachadain
-      signatures_not_enabled: Chan obraich ath-sheachadain mar bu chòir nuair a bhios am modh tèarainte no modh a’ cho-nasgaidh chuingichte an comas
+      signatures_not_enabled: Dh’fhaoidte nach obraich ath-sheachadain mar bu chòir nuair a bhios am modh tèarainte no modh a’ cho-nasgaidh chuingichte an comas
       status: Staid
       title: Ath-sheachadain
     report_notes:
@@ -900,10 +900,10 @@ gd:
         no_status_selected: Cha deach post a’ treandadh sam bith atharrachadh o nach deach gin dhiubh a thaghadh
         not_discoverable: Cha do chuir an t-ùghdar roimhe gun gabh a rùrachadh
         shared_by:
-          few: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} tursan
-          one: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} turas
-          other: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} turas
-          two: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} thuras
+          few: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} tursan
+          one: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} turas
+          other: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} turas
+          two: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} thuras
         title: Postaichean a’ treandadh
       tags:
         current_score: Sgòr làithreach de %{score}
@@ -1631,7 +1631,7 @@ gd:
     migrate: Imrich cunntais
     notifications: Brathan
     preferences: Roghainnean
-    profile: Pròifil
+    profile: Pròifil phoblach
     relationships: Dàimhean leantainn
     statuses_cleanup: Sguabadh às fèin-obrachail phostaichean
     strikes: Rabhaidhean na maorsainneachd
@@ -1717,7 +1717,7 @@ gd:
     keep_polls_hint: Cha dèid gin dhe na cunntasan-bheachd agad a sguabadh às
     keep_self_bookmark: Cùm na chuir thu ris comharran-lìn
     keep_self_bookmark_hint: Cha dèid gin dhe na postaichean agad fhèin a chuir thu ris na comharran-lìn agad a sguabadh às
-    keep_self_fav: Cùm na chuir thu ris na h-annsachdan
+    keep_self_fav: Cùm na postaichean a chuir thu ris na h-annsachdan
     keep_self_fav_hint: Cha dèid gin dhe na postaichean agad fhèin a chuir thu ris na h-annsachdan agad a sguabadh às
     min_age:
       '1209600': 2 sheachdain
@@ -1729,8 +1729,8 @@ gd:
       '63113904': 2 bhliadhna
       '7889238': 3 mìosan
     min_age_label: Stairsneach aoise
-    min_favs: Cùm na tha ’na annsachd aig co-dhiù
-    min_favs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a tha ’nan annsachd an àireamh de thursan seo air a char as lugha. Fàg seo bàn airson postaichean a sguabadh às ge b’ e co mheud turas a tha iad ’nan annsachd
+    min_favs: Cùm na postaichean a chaidh a chur ris na h-annsachdan co-dhiù
+    min_favs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a chaidh a chur ris na h-annsachdan an àireamh seo de thursan air a char as lugha. Fàg seo bàn airson na postaichean a sguabadh às ge b’ e co mheud neach a chuir ris na h-annsachdan iad
     min_reblogs: Cùm na tha ’ga bhrosnachadh le co-dhiù
     min_reblogs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a tha ’gam brosnachadh an àireamh de thursan seo air a char as lugha. Fàg seo bàn airson postaichean a sguabadh às ge b’ e co mheud turas a tha iad ’gam brosnachadh
   stream_entries:
