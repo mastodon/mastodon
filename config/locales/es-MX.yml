@@ -1265,12 +1265,14 @@ es-MX:
       bookmarks_html: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{total_items} publicaciones</strong> provenientes de <strong>%{filename}</strong>.
       domain_blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
       following_html: Estás a punto de <strong>seguir</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
+      lists_html: Estás a punto de <strong>reemplazar tus listas</strong> con contenidos de <strong>%{filename}</strong>. Se añadirán <strong>%{total_items} cuentas</strong> a nuevas listas.
       muting_html: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
     preambles:
       blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
       bookmarks_html: Estás a punto de añadir hasta <strong>%{total_items} publicaciones</strong> proveninetes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
       domain_blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
       following_html: Estás a punto de <strong>seguir</strong> hasta <strong>cuentas%{total_items}</strong> provenientes de <strong>%{filename}</strong>.
+      lists_html: Estás a punto de añadir <strong>%{total_items} cuentas</strong> desde <strong>%{filename}</strong> a tus <strong>listas</strong>. Se crearán nuevas listas si no hay listas para añadirlas.
       muting_html: Estás a punto de <strong>silenciar</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
     recent_imports: Importaciones recientes
@@ -1287,6 +1289,7 @@ es-MX:
       bookmarks: Importando marcadores
       domain_blocking: Importando dominios bloqueados
       following: Importando cuentas seguidas
+      lists: Importando listas
       muting: Importando cuentas silenciadas
     type: Importar tipo
     type_groups:
@@ -1297,6 +1300,7 @@ es-MX:
       bookmarks: Marcadores
       domain_blocking: Lista de dominios bloqueados
       following: Lista de seguidos
+      lists: Listas
       muting: Lista de silenciados
     upload: Cargar
   invites:

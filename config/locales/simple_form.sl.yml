@@ -134,6 +134,7 @@ sl:
         position: Višja vloga se odloča o razrešitvi sporov v določenih situacijah. Določena dejanja lahko izvede le na vlogah z nižjo prioriteto
       webhook:
         events: Izberite dogodke za pošiljanje
+        template: Sestavite svojo obremenitev JSON z uporabo interpolacije spremenljivk. Za privzeti JSON pustite prazno.
         url: Kam bodo poslani dogodki
     labels:
       account:
@@ -307,6 +308,7 @@ sl:
         position: Prioriteta
       webhook:
         events: Omogočeni dogodki
+        template: Predloga obremenitev
         url: URL končne točke
     'no': Ne
     not_recommended: Ni priporočeno

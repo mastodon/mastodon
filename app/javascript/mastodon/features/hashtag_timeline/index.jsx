@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -17,16 +16,11 @@ import { fetchHashtag, followHashtag, unfollowHashtag } from 'mastodon/actions/t
 import { expandHashtagTimeline, clearTimeline } from 'mastodon/actions/timelines';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
-import { Icon }  from 'mastodon/components/icon';
 
 import StatusListContainer from '../ui/containers/status_list_container';
 
+import { HashtagHeader } from './components/hashtag_header';
 import ColumnSettingsContainer from './containers/column_settings_container';
-
-const messages = defineMessages({
-  followHashtag: { id: 'hashtag.follow', defaultMessage: 'Follow hashtag' },
-  unfollowHashtag: { id: 'hashtag.unfollow', defaultMessage: 'Unfollow hashtag' },
-});
 
 const mapStateToProps = (state, props) => ({
   hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}${props.params.local ? ':local' : ''}`, 'unread']) > 0,
@@ -48,7 +42,6 @@ class HashtagTimeline extends PureComponent {
     hasUnread: PropTypes.bool,
     tag: ImmutablePropTypes.map,
     multiColumn: PropTypes.bool,
-    intl: PropTypes.object,
   };
 
   handlePin = () => {
@@ -188,26 +181,10 @@ class HashtagTimeline extends PureComponent {
   };
 
   render () {
-    const { hasUnread, columnId, multiColumn, tag, intl } = this.props;
+    const { hasUnread, columnId, multiColumn, tag } = this.props;
     const { id, local } = this.props.params;
     const pinned = !!columnId;
     const { signedIn } = this.context.identity;
-
-    let followButton;
-
-    if (tag) {
-      const following = tag.get('following');
-
-      const classes = classNames('column-header__button', {
-        active: following,
-      });
-
-      followButton = (
-        <button className={classes} onClick={this.handleFollow} disabled={!signedIn} title={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)} aria-label={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)}>
-          <Icon id={following ? 'user-times' : 'user-plus'} fixedWidth className='column-header__icon' />
-        </button>
-      );
-    }
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={`#${id}`}>
@@ -220,13 +197,14 @@ class HashtagTimeline extends PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-          extraButton={followButton}
           showBackButton
         >
           {columnId && <ColumnSettingsContainer columnId={columnId} />}
         </ColumnHeader>
 
         <StatusListContainer
+          prepend={pinned ? null : <HashtagHeader tag={tag} disabled={!signedIn} onClick={this.handleFollow} />}
+          alwaysPrepend
           trackScroll={!pinned}
           scrollKey={`hashtag_timeline-${columnId}`}
           timelineId={`hashtag:${id}${local ? ':local' : ''}`}
@@ -245,4 +223,4 @@ class HashtagTimeline extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(HashtagTimeline));
+export default connect(mapStateToProps)(HashtagTimeline);

@@ -1,51 +1,12 @@
 [Unit]
 Description=mastodon-streaming
 After=network.target
+Wants=mastodon-streaming@4000.service
 
 [Service]
-Type=simple
-User=mastodon
-WorkingDirectory=/home/mastodon/live
-Environment="NODE_ENV=production"
-Environment="PORT=4000"
-ExecStart=/usr/bin/node ./streaming
-TimeoutSec=15
-Restart=always
-LimitNOFILE=65536
-# Proc filesystem
-ProcSubset=pid
-ProtectProc=invisible
-# Capabilities
-CapabilityBoundingSet=
-# Security
-NoNewPrivileges=true
-# Sandboxing
-ProtectSystem=strict
-PrivateTmp=true
-PrivateDevices=true
-PrivateUsers=true
-ProtectHostname=true
-ProtectKernelLogs=true
-ProtectKernelModules=true
-ProtectKernelTunables=true
-ProtectControlGroups=true
-RestrictAddressFamilies=AF_INET
-RestrictAddressFamilies=AF_INET6
-RestrictAddressFamilies=AF_NETLINK
-RestrictAddressFamilies=AF_UNIX
-RestrictNamespaces=true
-LockPersonality=true
-RestrictRealtime=true
-RestrictSUIDSGID=true
-RemoveIPC=true
-PrivateMounts=true
-ProtectClock=true
-# System Call Filtering
-SystemCallArchitectures=native
-SystemCallFilter=~@cpu-emulation @debug @keyring @ipc @memlock @mount @obsolete @privileged @resources @setuid
-SystemCallFilter=pipe
-SystemCallFilter=pipe2
-ReadWritePaths=/home/mastodon/live
+Type=oneshot
+ExecStart=/bin/echo "mastodon-streaming exists only to collectively start and stop mastodon-streaming@ instances, shimming over the migration to templated mastodon-streaming systemd unit"
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target

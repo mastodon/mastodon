@@ -2,6 +2,10 @@
 cs:
   simple_form:
     hints:
+      account:
+        display_name: Vaše celé jméno nebo přezdívka.
+        fields: Vaše domovská stránka, zájmena, věk, cokoliv chcete.
+        note: 'Můžete @zmínit jiné osoby nebo #hashtagy.'
       account_alias:
         acct: Zadejte svůj účet, ze kterého se chcete přesunout jinam, ve formátu přezdívka@doména
       account_migration:
@@ -130,6 +134,7 @@ cs:
         position: Vyšší role rozhoduje o řešení konfliktů v určitých situacích. Některé akce lze provádět pouze na rolích s nižší prioritou
       webhook:
         events: Zvolte odesílané události
+        template: Sestavte si vlastní JSON payload pomocí interpolace proměnných. Pro výchozí JSON ponechte prázdné.
         url: Kam budou události odesílány
     labels:
       account:
@@ -294,6 +299,7 @@ cs:
         usable: Povolit používat tento hashtag v příspěvcích
       user:
         role: Role
+        time_zone: Časové pásmo
       user_role:
         color: Barva odznaku
         highlighted: Zobrazit roli jako odznak na profilech uživatelů
@@ -302,6 +308,7 @@ cs:
         position: Priorita
       webhook:
         events: Zapnuté události
+        template: Šablona payloadu
         url: URL koncového bodu
     'no': Ne
     not_recommended: Nedoporučuje se

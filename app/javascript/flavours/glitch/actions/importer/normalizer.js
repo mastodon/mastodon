@@ -75,7 +75,10 @@ export function normalizeStatus(status, normalOldStatus, settings) {
     normalStatus.contentHtml = normalOldStatus.get('contentHtml');
     normalStatus.spoilerHtml = normalOldStatus.get('spoilerHtml');
     normalStatus.hidden = normalOldStatus.get('hidden');
-    normalStatus.translation = normalOldStatus.get('translation');
+
+    if (normalOldStatus.get('translation')) {
+      normalStatus.translation = normalOldStatus.get('translation');
+    }
   } else {
     const spoilerText   = normalStatus.spoiler_text || '';
     const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');

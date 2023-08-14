@@ -33,7 +33,7 @@ class AccountsIndex < Chewy::Index
       },
 
       verbatim: {
-        tokenizer: 'whitespace',
+        tokenizer: 'standard',
         filter: %w(lowercase asciifolding cjk_width),
       },
 
