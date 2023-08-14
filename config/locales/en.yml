@@ -817,9 +817,9 @@ en:
       elasticsearch_health_red:
         message_html: Elasticsearch cluster is unhealthy (red status), search features are unavailable
       elasticsearch_health_yellow:
-        message_html: Elasticsearch cluster is unhealthy (yellow status), search features may be unavailable
+        message_html: Elasticsearch cluster is unhealthy (yellow status), you may want to review your setup
       elasticsearch_index_mismatch:
-        message_html: Elasticsearch indexes do not match current definitions. Please run <code>tootctl search deploy --only=%{value}</code>
+        message_html: Elasticsearch index mappings are outdated. Please run <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_running_check:
         message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
       elasticsearch_version_check:
