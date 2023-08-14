@@ -20,6 +20,7 @@ import Bundle from '../features/ui/components/bundle';
 import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
 import { displayMedia } from '../initial_state';
 
+import { HashtagBar } from './hashtag_bar';
 import AttachmentList from './attachment_list';
 import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
@@ -738,6 +739,10 @@ class Status extends ImmutablePureComponent {
       contentMedia.push(<PollContainer pollId={status.get('poll')} lang={language} />);
       contentMediaIcons.push('tasks');
     }
+
+    media.push(
+      <HashtagBar hashtags={status.get('tags')} text={status.get('content')} />
+    );
 
     //  Here we prepare extra data-* attributes for CSS selectors.
     //  Users can use those for theming, hiding avatars etc via UserStyle
