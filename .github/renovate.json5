@@ -5,9 +5,9 @@
     ':labels(dependencies)',
     ':maintainLockFilesMonthly', // update non-direct dependencies monthly
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
-    ':prHourlyLimit2' // Rate limit PR creation to a maximum of two per hour.
+    ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
   ],
-  minimumReleaseAge: "3", // Wait 3 days after the package has been published before upgrading it
+  minimumReleaseAge: '3', // Wait 3 days after the package has been published before upgrading it
   // packageRules order is important, they are applied from top to bottom and are merged,
   // meaning the most important ones must be at the bottom, for example grouping rules
   // If we do not want a package to be grouped with others, we need to set its groupName
@@ -42,7 +42,7 @@
         'react-router-dom',
       ],
       matchUpdateTypes: ['major'],
-      "dependencyDashboardApproval": true
+      dependencyDashboardApproval: true,
     },
     {
       // Require Dependency Dashboard Approval for major version bumps of these Ruby packages
@@ -56,7 +56,7 @@
         'redis', // Requires manual upgrade and sync with Sidekiq version
       ],
       matchUpdateTypes: ['major'],
-      "dependencyDashboardApproval": true
+      dependencyDashboardApproval: true,
     },
     {
       // Update Github Actions and Docker images weekly
@@ -68,21 +68,21 @@
       matchManagers: ['dockerfile'],
       matchPackageNames: ['moritzheiber/ruby-jemalloc'],
       matchUpdateTypes: ['minor', 'major'],
-      "dependencyDashboardApproval": true
+      dependencyDashboardApproval: true,
     },
     {
       // Require Dependency Dashboard Approval for major bumps for the node image, this needs to be synced with .nvmrc
       matchManagers: ['dockerfile'],
       matchPackageNames: ['node'],
       matchUpdateTypes: ['major'],
-      "dependencyDashboardApproval": true
+      dependencyDashboardApproval: true,
     },
     {
       // Require Dependency Dashboard Approval for major postgres bumps in the docker-compose file, as those break dev environments
       matchManagers: ['docker-compose'],
       matchPackageNames: ['postgres'],
       matchUpdateTypes: ['major'],
-      "dependencyDashboardApproval": true
+      dependencyDashboardApproval: true,
     },
     {
       // Update devDependencies every week, with one grouped PR
