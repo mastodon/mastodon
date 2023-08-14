@@ -7,7 +7,7 @@ describe Importer::PublicStatusesIndexImporter do
     let(:pool) { Concurrent::FixedThreadPool.new(5) }
     let(:importer) { described_class.new(batch_size: 123, executor: pool) }
 
-    before { Fabricate(:status) }
+    before { Fabricate(:status, account: Fabricate(:account, indexable: true)) }
 
     it 'indexes relevant statuses' do
       expect { importer.import! }.to update_index(PublicStatusesIndex)

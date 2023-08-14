@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe AccountStatusesSearch do
-  let(:account) { Fabricate(:account, discoverable: discoverable) }
+  let(:account) { Fabricate(:account, indexable: indexable) }
 
   before do
     allow(Chewy).to receive(:enabled?).and_return(true)
@@ -15,8 +15,8 @@ describe AccountStatusesSearch do
       allow(account).to receive(:enqueue_remove_from_public_statuses_index)
     end
 
-    context 'when account is discoverable' do
-      let(:discoverable) { true }
+    context 'when account is indexable' do
+      let(:indexable) { true }
 
       it 'enqueues add_to_public_statuses_index and not to remove_from_public_statuses_index' do
         account.enqueue_update_public_statuses_index
@@ -25,8 +25,8 @@ describe AccountStatusesSearch do
       end
     end
 
-    context 'when account is not discoverable' do
-      let(:discoverable) { false }
+    context 'when account is not indexable' do
+      let(:indexable) { false }
 
       it 'enqueues remove_from_public_statuses_index and not to add_to_public_statuses_index' do
         account.enqueue_update_public_statuses_index
@@ -37,7 +37,7 @@ describe AccountStatusesSearch do
   end
 
   describe '#enqueue_add_to_public_statuses_index' do
-    let(:discoverable) { nil }
+    let(:indexable) { true }
     let(:worker) { AddToPublicStatusesIndexWorker }
 
     before do
@@ -51,7 +51,7 @@ describe AccountStatusesSearch do
   end
 
   describe '#enqueue_remove_from_public_statuses_index' do
-    let(:discoverable) { nil }
+    let(:indexable) { false }
     let(:worker) { RemoveFromPublicStatusesIndexWorker }
 
     before do

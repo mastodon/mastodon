@@ -3,8 +3,13 @@
 module AccountStatusesSearch
   extend ActiveSupport::Concern
 
+  included do
+    after_update_commit :enqueue_update_public_statuses_index, if: :saved_change_to_indexable?
+    after_destroy_commit :enqueue_remove_from_public_statuses_index, if: :indexable?
+  end
+
   def enqueue_update_public_statuses_index
-    if discoverable?
+    if indexable?
       enqueue_add_to_public_statuses_index
     else
       enqueue_remove_from_public_statuses_index
@@ -26,7 +31,7 @@ module AccountStatusesSearch
   def add_to_public_statuses_index!
     return unless Chewy.enabled?
 
-    Status.joins(:account).where(accounts: { discoverable: true }).where(visibility: :public).where(account_id: id).find_in_batches(batch_size: 1_000) do |batch|
+    statuses.indexable.find_in_batches do |batch|
       PublicStatusesIndex.import(query: batch)
     end
   end

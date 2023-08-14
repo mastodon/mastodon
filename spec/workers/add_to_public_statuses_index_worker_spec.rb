@@ -4,16 +4,16 @@ require 'rails_helper'
 
 describe AddToPublicStatusesIndexWorker do
   describe '#perform' do
-    let(:account) { Fabricate(:account, discoverable: discoverable) }
+    let(:account) { Fabricate(:account, indexable: indexable) }
     let(:account_id) { account.id }
 
     before do
-      allow(Account).to receive(:find).with(account_id).and_return(account)
-      allow(account).to receive(:add_to_public_statuses_index!)
+      allow(Account).to receive(:find).with(account_id).and_return(account) unless account.nil?
+      allow(account).to receive(:add_to_public_statuses_index!) unless account.nil?
     end
 
-    context 'when account is discoverable' do
-      let(:discoverable) { true }
+    context 'when account is indexable' do
+      let(:indexable) { true }
 
       it 'adds the account to the public statuses index' do
         subject.perform(account_id)
@@ -21,8 +21,8 @@ describe AddToPublicStatusesIndexWorker do
       end
     end
 
-    context 'when account is undiscoverable' do
-      let(:discoverable) { false }
+    context 'when account is not indexable' do
+      let(:indexable) { false }
 
       it 'does not add the account to public statuses index' do
         subject.perform(account_id)
@@ -31,8 +31,8 @@ describe AddToPublicStatusesIndexWorker do
     end
 
     context 'when account does not exist' do
+      let(:account) { nil }
       let(:account_id) { 999 }
-      let(:discoverable) { nil }
 
       it 'does not raise an error' do
         expect { subject.perform(account_id) }.to_not raise_error

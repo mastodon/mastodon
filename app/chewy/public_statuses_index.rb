@@ -36,11 +36,8 @@ class PublicStatusesIndex < Chewy::Index
 
   index_scope ::Status.unscoped
                       .kept
-                      .without_reblogs
+                      .indexable
                       .includes(:media_attachments, :preloadable_poll, :preview_cards)
-                      .joins(:account)
-                      .where(accounts: { discoverable: true })
-                      .where(visibility: :public)
 
   root date_detection: false do
     field(:id, type: 'keyword')

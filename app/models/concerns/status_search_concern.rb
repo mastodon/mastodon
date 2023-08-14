@@ -3,6 +3,10 @@
 module StatusSearchConcern
   extend ActiveSupport::Concern
 
+  included do
+    scope :indexable, -> { without_reblogs.where(visibility: :public).joins(:account).where(account: { indexable: true }) }
+  end
+
   def searchable_by(preloaded = nil)
     ids = []
 
