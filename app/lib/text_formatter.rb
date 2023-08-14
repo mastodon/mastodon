@@ -20,6 +20,7 @@ class TextFormatter
   # @option options [Boolean] :multiline
   # @option options [Boolean] :with_domains
   # @option options [Boolean] :with_rel_me
+  # @option options [Boolean] :strip_rich_entities
   # @option options [Array<Account>] :preloaded_accounts
   def initialize(text, options = {})
     @text    = text
@@ -75,16 +76,22 @@ class TextFormatter
       entity[:indices].first
     end
 
+    interrupt_text_at = detect_hashtag_block if options[:strip_rich_entities]
     result = +''
 
     last_index = entities.reduce(0) do |index, entity|
       indices = entity[:indices]
+
       result << h(text[index...indices.first])
+
+      break interrupt_text_at if interrupt_text_at.present? && indices.first >= interrupt_text_at
+
       result << yield(entity)
+
       indices.last
     end
 
-    result << h(text[last_index..])
+    result << h(text[last_index..]) unless interrupt_text_at.present? && last_index >= interrupt_text_at
 
     result
   end
@@ -162,5 +169,39 @@ class TextFormatter
 
   def preloaded_accounts?
     preloaded_accounts.present?
+  end
+
+  def detect_hashtag_block
+    block_begin = nil
+    block_end = nil
+
+    entities.map.with_index do |entity, i|
+      next unless entity[:hashtag]
+
+      next_entity = entities[i + 1]
+
+      if !next_entity.nil? && !next_entity[:hashtag]
+        block_begin = nil
+        block_end = nil
+        next
+      elsif next_entity.nil?
+        block_begin = entity[:indices].first if block_begin.nil?
+        block_end = entity[:indices].last
+        next
+      end
+
+      entity_end = entity[:indices].last
+      next_entity_start = next_entity[:indices].first
+
+      if next_entity_start == entity_end + 1
+        block_begin = entity[:indices].first if block_begin.nil?
+        block_end = entity_end
+      else
+        block_begin = nil
+        block_end = nil
+      end
+    end
+
+    block_begin if block_begin.present? && block_end.present? && text[block_end..].blank? && text[block_begin - 1] == "\n"
   end
 end

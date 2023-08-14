@@ -4,8 +4,9 @@ require 'rails_helper'
 
 RSpec.describe TextFormatter do
   describe '#to_s' do
-    subject { described_class.new(text, preloaded_accounts: preloaded_accounts).to_s }
+    subject { described_class.new(text, strip_rich_entities: strip_rich_entities, preloaded_accounts: preloaded_accounts).to_s }
 
+    let(:strip_rich_entities) { false }
     let(:preloaded_accounts) { nil }
 
     context 'when given text containing plain text' do
@@ -273,7 +274,7 @@ RSpec.describe TextFormatter do
     end
 
     context 'when given text containing a hashtag' do
-      let(:text)  { '#hashtag' }
+      let(:text)  { 'foo #hashtag' }
 
       it 'creates a hashtag link' do
         expect(subject).to include '/tags/hashtag" class="mention hashtag" rel="tag">#<span>hashtag</span></a>'
@@ -281,7 +282,7 @@ RSpec.describe TextFormatter do
     end
 
     context 'when given text containing a hashtag with Unicode chars' do
-      let(:text)  { '#hashtagタグ' }
+      let(:text)  { 'foo #hashtagタグ' }
 
       it 'creates a hashtag link' do
         expect(subject).to include '/tags/hashtag%E3%82%BF%E3%82%B0" class="mention hashtag" rel="tag">#<span>hashtagタグ</span></a>'
@@ -309,6 +310,34 @@ RSpec.describe TextFormatter do
 
       it 'matches the full URI' do
         expect(subject).to include 'href="magnet:?xt=urn:btih:c12fe1c06bba254a9dc9f519b335aa7c1367a88a"'
+      end
+    end
+
+    context 'with strip_rich_entities option' do
+      let(:strip_rich_entities) { true }
+
+      context 'when a hashtag is in the middle of a sentence' do
+        let(:text) { 'Hello #foo world' }
+
+        it 'keeps the hashtag in place' do
+          expect(subject).to include 'foo'
+        end
+      end
+
+      context 'when a hashtag starts a line but is followed by text' do
+        let(:text) { '#foo Hello world' }
+
+        it 'keeps the hashtag in place' do
+          expect(subject).to include 'foo'
+        end
+      end
+
+      context 'when a hashtag is on the last line in the text' do
+        let(:text) { "Hello world\n#foo" }
+
+        it 'strips out the hashtag' do
+          expect(subject).to_not include 'foo'
+        end
       end
     end
   end
