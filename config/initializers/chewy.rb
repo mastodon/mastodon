@@ -15,6 +15,9 @@ Chewy.settings = {
   journal: false,
   user: user,
   password: password,
+  index: {
+    number_of_replicas: ['single_node_cluster', nil].include?(ENV['ES_PRESET'].presence) ? 0 : 1,
+  },
 }
 
 # We use our own async strategy even outside the request-response
