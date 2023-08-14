@@ -399,6 +399,12 @@ ar:
       confirm_suspension:
         cancel: إلغاء
         confirm: علّق الحساب
+        permanent_action: لن يستعيد رفع الحظر أي بيانات أو علاقات.
+        preamble_html: أنت على وشك تعليق <strong>%{domain}</strong> وجميع نطاقاته الفرعيّة.
+        remove_all_data: ستُحذف كل المحتوى والوسائط وبيانات حسابات هذا النطاق من خادومك.
+        stop_communication: سيتوقّف خادومك عن التواصل مع كل هذه الخادومات.
+        title: تأكيد حظر نطاق %{domain}
+        undo_relationships: سيتم التراجع عن أي علاقات متابعة ما بين الحسابات على هذه الخادومات وخادومك.
       created_msg: إنّ حجب النطاق حيز التشغيل
       destroyed_msg: تم إلغاء الحجب المفروض على النطاق
       domain: النطاق

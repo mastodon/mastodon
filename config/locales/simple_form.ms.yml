@@ -4,6 +4,8 @@ ms:
     hints:
       account:
         display_name: Nama penuh anda atau nama anda yang menyeronokkan.
+        fields: Halaman utama anda, kata ganti nama, umur, apa sahaja yang anda mahukan.
+        note: 'Anda boleh @menyebut orang lain atau #hashtags.'
       account_alias:
         acct: Tentukan namapengguna@domain akaun yang ingin anda alihkan daripada
       account_migration:
@@ -20,6 +22,8 @@ ms:
           disable: Halang pengguna daripada menggunakan akaun mereka, tetapi jangan hapus atau sorokkan kandungan mereka.
           none: Gunakan ini untuk menghantar amaran kepada pengguna, tanpa mencetuskan sebarang tindakan lain.
           sensitive: Memaksa semua lampiran media pengguna ini ditandakan sebagai sensitif.
+          silence: Halang pengguna daripada dapat membuat siaran dengan keterlihatan awam, menyembunyikan siaran dan pemberitahuan mereka daripada orang yang tidak mengikutinya. Menutup semua laporan terhadap akaun ini.
+          suspend: Halang sebarang interaksi daripada atau ke akaun ini dan padamkan kandungannya. Boleh diterbalikkan dalam masa 30 hari. Menutup semua laporan terhadap akaun ini.
         warning_preset_id: Pilihan. Anda masih boleh menambah teks tersuai pada akhir praset
       announcement:
         all_day: Apabila diperiksa, hanya tarikh dalam julat masa yang akan dipaparkan
@@ -32,22 +36,43 @@ ms:
       defaults:
         autofollow: Orang yang mendaftar melalui undangan akan mengikuti anda secara automatik
         avatar: PNG, GIF atau JPG. Kebanyakannya %{size}. Saiz akan dikecilkan kepada %{dimensions}px
+        bot: Memberi isyarat kepada orang lain bahawa akaun itu kebanyakannya melakukan tindakan automatik dan mungkin tidak dipantau
+        context: Satu atau berbilang konteks di mana penapis harus digunakan
+        current_password: Untuk tujuan keselamatan sila masukkan kata laluan akaun semasa
+        current_username: Untuk mengesahkan, sila masukkan nama pengguna akaun semasa
+        digest: Hanya dihantar selepas tempoh yang lama tidak aktif dan hanya jika anda telah menerima sebarang mesej peribadi semasa ketiadaan anda
+        discoverable: Benarkan akaun anda ditemui oleh orang yang tidak dikenali melalui pengesyoran, aliran dan ciri lain
         email: Anda akan dihantar e-mel pengesahan
+        header: PNG, GIF atau JPG. Paling banyak %{size}. Akan diturunkan skala kepada %{dimensions}px
+        inbox_url: Salin URL dari muka depan geganti yang anda mahu gunakan
+        irreversible: Siaran yang ditapis akan hilang secara tidak dapat dipulihkan, walaupun penapis dialih keluar kemudian
         locale: Bahasa untuk antara muka pengguna, e-mel dan pemberitahuan segera
+        locked: Kawal orang yang boleh mengikuti anda secara manual dengan meluluskan permintaan ikuti
         password: Gunakan sekurang-kurangnya 8 aksara
+        phrase: Akan dipadankan tanpa mengira sarung dalam teks atau amaran kandungan siaran
+        scopes: API mana yang akan dibenarkan untuk diakses oleh aplikasi. Jika anda memilih skop peringkat atasan, anda tidak perlu memilih skop individu.
+        setting_aggregate_reblogs: Jangan tunjukkan rangsangan baharu untuk siaran yang telah dirangsang baru-baru ini (hanya menjejaskan rangsangan yang baru diterima)
         setting_always_send_emails: Biasanya pemberitahuan e-mel tidak akan dihantar apabila anda selalu menggunakan Mastodon
+        setting_default_sensitive: Media sensitif disembunyikan secara lalai dan boleh didedahkan dengan satu klik
         setting_display_media_default: Sembunyikan media yang ditanda sebagai sensitif
         setting_display_media_hide_all: Sentiasa sembunyikan media
         setting_display_media_show_all: Sentiasa paparkan media
         setting_hide_network: Sesiapa yang anda ikuti dan sesiapa yang mengikuti anda akan disembunyi daripada profil anda
         setting_noindex: Menjejaskan profil awam dan laman hantaran anda
+        setting_show_application: Aplikasi yang anda gunakan untuk menyiarkan akan dipaparkan dalam paparan terperinci siaran anda
       form_admin_settings:
         closed_registrations_message: Dipaparkan semasa pendaftaran ditutup
+        site_contact_email: Cara orang boleh menghubungi anda untuk pertanyaan undang-undang atau sokongan.
         site_contact_username: Bagaimana orang boleh menghubungi anda pada Mastodon.
         site_extended_description: Apa-apa maklumat tambahan yang mungkin berguna untuk pelawat dan pengguna anda. Boleh distruktur dengan sintaks Markdown.
+        site_short_description: Penerangan ringkas untuk membantu mengenal pasti server anda. Siapa yang menjalankannya, untuk siapa?
         site_terms: Gunakan dasar polisi anda atau biarkan kosong untuk menggunakan lalai. Boleh distruktur dengan sintaks Markdown.
         site_title: Bagaimana orang boleh merujuk kepada server anda selain nama domainnya.
         status_page_url: URL halaman yang membolehkan orang ramai melihat status server ini semasa gangguan
+        theme: Tema yang pelawat log keluar dan pengguna baharu lihat.
+        thumbnail: Imej kira-kira 2:1 dipaparkan bersama maklumat server anda.
+        timeline_preview: Pelawat yang log keluar akan dapat menyemak imbas siaran awam terkini yang tersedia pada server.
+        trendable_by_default: Langkau semakan manual kandungan sohor kini. Item individu masih boleh dialih keluar daripada trend selepas fakta itu.
       form_challenge:
         current_password: Anda sedang memasuki kawasan selamat
       imports:
@@ -63,9 +88,12 @@ ms:
         color: Warna yang akan digunakan untuk peranan ini dalam seluruh UI, sebagai RGB dalam format hex
         highlighted: Ini menjadikan peranan ini dipaparkan secara umum
         permissions_as_keys: Pengguna dengan peranan ini akan mempunyai akses kepada...
+      webhook:
+        url: Di mana acara akan dihantar
     labels:
       account:
         fields:
+          name: Label
           value: Kandungan
       account_warning_preset:
         title: Tajuk
@@ -79,10 +107,14 @@ ms:
           suspend: Gantung
         warning_preset_id: Gunakan amaran yang ditetapkan
       announcement:
+        all_day: Acara sepanjang hari
+        ends_at: Tamat acara
+        starts_at: Permulaan acara
         text: Pengumuman
       appeal:
         text: Jelaskan mengapa keputusan ini patut diterbalikkan
       defaults:
+        avatar: Gambar profil
         bot: Ini ialah akaun bot
         chosen_languages: Tapis bahasa
         confirm_new_password: Sahkan kata laluan baru
@@ -95,8 +127,11 @@ ms:
         email: Alamat e-mel
         expires_in: Tamat tempoh selepas
         fields: Metadata profil
+        honeypot: "%{label} (jangan isi)"
+        irreversible: Sebaliknya sembunyikan, jatuhkan
         locale: Bahasa antara muka
         new_password: Kata laluan baru
+        note: Bio
         otp_attempt: Kod dua faktor
         password: Kata laluan
         phrase: Kata kunci atau frasa
@@ -108,6 +143,7 @@ ms:
         setting_display_media_default: Lalai
         setting_display_media_hide_all: Sembunyikan semua
         setting_display_media_show_all: Paparkan semua
+        setting_hide_network: Sembunyikan graf sosial anda
         setting_system_font_ui: Gunakan fon lalai sistem
         setting_theme: Tema halaman
         setting_trends: Paparkan trend hari ini
@@ -136,6 +172,7 @@ ms:
         site_short_description: Penerangan pelayan
         site_terms: Dasar Privasi
         site_title: Nama pelayan
+        status_page_url: URL halaman status
         theme: Tema asal
         trends: Dayakan trend
       invite:
@@ -166,6 +203,7 @@ ms:
         usable: Benarkan siaran untuk menggunakan tanda pagar ini
       user:
         role: Peranan
+        time_zone: Zon masa
       user_role:
         color: Warna lencana
         name: Nama
@@ -175,5 +213,6 @@ ms:
     not_recommended: Tidak disyorkan
     recommended: Disyorkan
     required:
+      mark: "*"
       text: diperlukan
     'yes': Ya
