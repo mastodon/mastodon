@@ -32,7 +32,7 @@ class ClosedRegistrationsModal extends ImmutablePureComponent {
         <p className='prose'>
           <FormattedMessage
             id='closed_registrations_modal.description'
-            defaultMessage='Creating an account on {domain} is currently not possible, but please keep in mind that you do not need an account specifically on {domain} to use Mastodon.'
+            defaultMessage='Creating an account on {domain} is currently not possible, but please keep in mind that you do not need an account specifically on {domain} to use TomX.'
             values={{ domain: <strong>{domain}</strong> }}
           />
         </p>
@@ -42,7 +42,7 @@ class ClosedRegistrationsModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal interaction-modal'>
         <div className='interaction-modal__lead'>
-          <h3><FormattedMessage id='closed_registrations_modal.title' defaultMessage='Signing up on Mastodon' /></h3>
+          <h3><FormattedMessage id='closed_registrations_modal.title' defaultMessage='Signing up on TomX' /></h3>
           <p>
             <FormattedMessage
               id='closed_registrations_modal.preamble'
@@ -62,10 +62,9 @@ class ClosedRegistrationsModal extends ImmutablePureComponent {
             <p className='prose'>
               <FormattedMessage
                 id='closed_registrations.other_server_instructions'
-                defaultMessage='Since Mastodon is decentralized, you can create an account on another server and still interact with this one.'
+                defaultMessage='Since TomX is decentralized, you can create an account on another server and still interact with this one.'
               />
             </p>
-            <a href='https://joinmastodon.org/servers' className='button button--block'><FormattedMessage id='closed_registrations_modal.find_another_server' defaultMessage='Find another server' /></a>
           </div>
         </div>
       </div>
