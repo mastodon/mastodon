@@ -52,7 +52,7 @@ zh-CN:
         phrase: 匹配将忽略嘟文或内容警告里的字母大小写
         scopes: 哪些 API 被允许使用。如果你勾选了更高一级的范围，就不用单独选中子项目了。
         setting_aggregate_reblogs: 不显示最近已经被转嘟过的嘟文(只会影响新收到的转嘟)
-        setting_always_send_emails: 一般情况下，如果您活跃使用 Mastodon，我们不会给您发送电子邮件通知
+        setting_always_send_emails: 一般情况下，如果您活跃使用 TomX，我们不会给您发送电子邮件通知
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
         setting_display_media_default: 隐藏被标记为敏感内容的媒体
         setting_display_media_hide_all: 始终隐藏媒体
@@ -68,7 +68,7 @@ zh-CN:
         domain: 该站点将能够从该服务器上拉取数据，并处理和存储收到的数据。
       email_domain_block:
         domain: 这可以是电子邮件地址的域名或它使用的 MX 记录所指向的域名。用户注册时，系统会对此检查。
-        with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并封禁
+        with_dns_records: TomX 会尝试解析所给域名的 DNS 记录，然后把解析结果一并封禁
       featured_tag:
         name: 以下是你最近使用过的标签：
       filters:
@@ -82,14 +82,14 @@ zh-CN:
         bootstrap_timeline_accounts: 这些账号将在新用户关注推荐中置顶。
         closed_registrations_message: 在关闭注册时显示
         content_cache_retention_period: 设为正数值时，来自其他服务器的嘟文将在指定天数后被删除。删除有可能会是不可逆的。
-        custom_css: 你可以为网页版 Mastodon 应用自定义样式。
+        custom_css: 你可以为网页版 TomX 应用自定义样式。
         mascot: 覆盖高级网页界面中的绘图形象。
         media_cache_retention_period: 设为正数值时，来自其他服务器的媒体文件将在指定天数后被删除，并在需要时再次下载。
         peers_api_enabled: 此服务器在联邦宇宙中遇到的域名列表。 这里不包含关于您是否与给定服务器联合的数据，只是您的服务器知道它。 这由收集一般意义上的联邦统计信息的服务使用。
         profile_directory: 个人资料目录会列出所有选择可被发现的用户。
         require_invite_text: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
         site_contact_email: 他人需要询恰法务或支持信息时的联络方式
-        site_contact_username: 他人在 Mastodon 上联系你的方式
+        site_contact_username: 他人在 TomX 上联系你的方式
         site_extended_description: 任何可能对访客和用户有用的额外信息。可以使用 Markdown 语法。
         site_short_description: 有助于区分你的服务器独特性的简短描述。谁在管理？供谁使用？
         site_terms: 使用你自己的隐私政策或留空以使用默认版。可以使用 Markdown 语法。
@@ -104,7 +104,7 @@ zh-CN:
       form_challenge:
         current_password: 你正在进入安全区域
       imports:
-        data: 从其他 Mastodon 服务器导出的 CSV 文件
+        data: 从其他 TomX 服务器导出的 CSV 文件
       invite_request:
         text: 这会有助于我们处理你的申请
       ip_block:

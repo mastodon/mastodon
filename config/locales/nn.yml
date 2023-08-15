@@ -1,10 +1,10 @@
 ---
 nn:
   about:
-    about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
+    about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med TomX!'
     contact_missing: Ikkje sett
     contact_unavailable: I/T
-    hosted_on: "%{domain} er vert for Mastodon"
+    hosted_on: "%{domain} er vert for TomX"
     title: Om
   accounts:
     follow: Fylg
@@ -672,7 +672,7 @@ nn:
         moderation: Moderering
         special: Særskild
       delete: Slett
-      description_html: Med <strong>brukarrollar</strong> kan du kontrollera kva funksjonar og område av Mastodon brukarane dine har tilgong til.
+      description_html: Med <strong>brukarrollar</strong> kan du kontrollera kva funksjonar og område av TomX brukarane dine har tilgong til.
       edit: Endr rollen '%{name}'
       everyone: Standard-tillatelser
       everyone_full_description_html: Dette er <strong>grunnrollen</strong> som påverkar <strong>alle brukarar</strong>, jamvel dei utan ei tilsett rolle. Alle andre rollar arvar tillatingar frå denne.
@@ -738,20 +738,20 @@ nn:
         preamble: Tilpasse web-grensesnittet.
         title: Utsjånad
       branding:
-        preamble: Profileringa av tenaren din skil den frå andre tenarar i nettverket. Informasjonen kan bli vist ulike stadar, til dømes i Mastodon sitt web-grensesnitt, i eigne applikasjonar, i førehandsvisningar på andre nettsider, i meldingsappar og så bortetter. På grunn av dette er det best å halde informasjonen enkel, kort og treffande.
+        preamble: Profileringa av tenaren din skil den frå andre tenarar i nettverket. Informasjonen kan bli vist ulike stadar, til dømes i TomX sitt web-grensesnitt, i eigne applikasjonar, i førehandsvisningar på andre nettsider, i meldingsappar og så bortetter. På grunn av dette er det best å halde informasjonen enkel, kort og treffande.
         title: Profilering
       captcha_enabled:
         desc_html: Dette baserer seg på eksterne skript frå hCaptcha, noko som kan vera eit tryggleiks- og personvernsproblem. <strong>I tillegg kan dette gjera registreringsprosessen monaleg mindre tilgjengeleg (særleg for folk med nedsett funksjonsevne)</strong>. Dette gjer at du bør du vurdera alternative tiltak, som til dømes godkjennings- eller invitasjonsbasert registrering.
         title: Krev at nye brukarar løyser ein CAPTCHA for å bekrefte kontoen sin
       content_retention:
-        preamble: Styr korleis brukargenerert innhald blir lagra i Mastodon.
+        preamble: Styr korleis brukargenerert innhald blir lagra i TomX.
         title: Bevaring av innhald
       default_noindex:
         desc_html: Påverkar alle brukarar som ikkje har justert denne innstillinga sjølve
         title: Ikkje la brukarar indekserast av søkjemotorar som standard
       discovery:
         follow_recommendations: Følgjeforslag
-        preamble: Å framheva interessant innhald er vitalt i mottakinga av nye brukarar som ikkje nødvendigvis kjenner nokon på Mastodon. Kontroller korleis oppdagingsfunksjonane på tenaren din fungerar.
+        preamble: Å framheva interessant innhald er vitalt i mottakinga av nye brukarar som ikkje nødvendigvis kjenner nokon på TomX. Kontroller korleis oppdagingsfunksjonane på tenaren din fungerar.
         profile_directory: Profilkatalog
         public_timelines: Offentlege tidsliner
         publish_discovered_servers: Publiser oppdaga tenarar
@@ -907,7 +907,7 @@ nn:
     webhooks:
       add_new: Legg til endepunkt
       delete: Slett
-      description_html: En <strong>webhook</strong> gjør det mulig for Mastodon å sende <strong>varsler i sanntid</strong> om utvalgte hendelser til din egen applikasjon, sånn at applikasjonen din kan <strong>reagere automatisk</strong>.
+      description_html: En <strong>webhook</strong> gjør det mulig for TomX å sende <strong>varsler i sanntid</strong> om utvalgte hendelser til din egen applikasjon, sånn at applikasjonen din kan <strong>reagere automatisk</strong>.
       disable: Deaktiver
       disabled: Deaktivert
       edit: Rediger endepunkt
@@ -969,7 +969,7 @@ nn:
     confirmation_dialogs: Bekreftelsesdialoger
     discovery: Oppdaging
     localization:
-      body: Mastodon er omsett av friviljuge.
+      body: TomX er omsett av friviljuge.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alle kan bidra.
     sensitive_content: Ømtolig innhald
@@ -1000,9 +1000,9 @@ nn:
     delete_account: Slett konto
     delete_account_html: Om du vil sletta kontoen din, kan du <a href="%{path}">gå hit</a>. Du vert spurd etter stadfesting.
     description:
-      prefix_invited_by_user: "@%{name} spør deg om å verta med i ein Mastodon-tenar!"
-      prefix_sign_up: Meld deg på Mastodon i dag!
-      suffix: Med ein konto kan du fylgja folk, skriva innlegg og veksla meldingar med brukarar frå kva som helst annan Mastodon-tenar og meir!
+      prefix_invited_by_user: "@%{name} spør deg om å verta med i ein TomX-tenar!"
+      prefix_sign_up: Meld deg på TomX i dag!
+      suffix: Med ein konto kan du fylgja folk, skriva innlegg og veksla meldingar med brukarar frå kva som helst annan TomX-tenar og meir!
     didnt_get_confirmation: Fekk du ikkje stadfestingslenka?
     dont_have_your_security_key: Har du ikke sikkerhetsnøkkelen din?
     forgot_password: Har du gløymt passordet ditt?
@@ -1049,7 +1049,7 @@ nn:
       title: Logg inn på %{domain}
     sign_up:
       manual_review: Når du lagar ein konto på %{domain}, vil moderatorane våre gå gjennom påmeldinga di manuelt. For å hjelpa oss med påmeldinga di, er det fint om du skriv litt om deg sjølv og kvifor du vil ha ein konto på %{domain}.
-      preamble: Med en konto på denne Mastodon-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
+      preamble: Med en konto på denne TomX-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
       title: La oss få deg satt i gang på %{domain}.
     status:
       account_status: Kontostatus
@@ -1155,7 +1155,7 @@ nn:
       content: Orsak. Vi har gjort noko feil.
       title: Denne sida er ikkje rett
     '503': Siden kunne ikke vises på grunn av en midlertidig serverfeil.
-    noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
+    noscript_html: For å bruke TomX webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for TomX til din plattform.
   existing_username_validator:
     not_found: fann ingen lokalbrukar med det namnet
     not_found_multiple: fann ikkje %{usernames}
@@ -1343,7 +1343,7 @@ nn:
     unsubscribe:
       action: Ja, meld av
       complete: Meldt av
-      confirmation_html: Er du sikker på at du ikkje lenger ynskjer å motta %{type} frå Mastodon på %{domain} til e-posten din %{email}? Du kan alltids gjera om på dette i <a href="%{settings_path}">innstillingar for e-postvarsling</a>.
+      confirmation_html: Er du sikker på at du ikkje lenger ynskjer å motta %{type} frå TomX på %{domain} til e-posten din %{email}? Du kan alltids gjera om på dette i <a href="%{settings_path}">innstillingar for e-postvarsling</a>.
       emails:
         notification_emails:
           favourite: e-postar om favorittmarkeringar
@@ -1352,7 +1352,7 @@ nn:
           mention: e-poster om nevninger
           reblog: e-poster om fremhevinger
       resubscribe_html: Hvis du har avsluttet abonnementet ved en feiltakelse, kan du abonnere på nytt i <a href="%{settings_path}">innstillinger for e-postvarsling</a>.
-      success_html: Du vil ikke lenger motta %{type} fra Mastodon på %{domain} i e-posten din på %{email}.
+      success_html: Du vil ikke lenger motta %{type} fra TomX på %{domain} i e-posten din på %{email}.
       title: Meld av
   media_attachments:
     validations:
@@ -1542,7 +1542,7 @@ nn:
       weibo: Weibo
     current_session: Noverande økt
     description: "%{browser} på %{platform}"
-    explanation: Desse nettlesarane er logga inn på Mastodon-kontoen din.
+    explanation: Desse nettlesarane er logga inn på TomX-kontoen din.
     ip: IP-adresse
     platforms:
       adobe_air: Adobe Air
@@ -1568,7 +1568,7 @@ nn:
     aliases: Kallenamn til kontoen
     appearance: Utsjånad
     authorized_apps: Godkjende appar
-    back: Tilbake til Mastodon
+    back: Tilbake til TomX
     delete: Kontosletting
     development: Utvikling
     edit_profile: Endr profil
@@ -1677,9 +1677,9 @@ nn:
   tags:
     does_not_match_previous_name: stemmar ikkje med det førre namnet
   themes:
-    contrast: Mastodon (Høg kontrast)
-    default: Mastodon (Mørkt)
-    mastodon-light: Mastodon (Lyst)
+    contrast: TomX (Høg kontrast)
+    default: TomX (Mørkt)
+    TomX-light: TomX (Lyst)
   time:
     formats:
       default: "%d.%b %Y, %H:%M"
@@ -1711,7 +1711,7 @@ nn:
       subject: Din klage fra %{date} er avvist
       title: Anke avvist
     backup_ready:
-      explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
+      explanation: Du ba om en fullstendig sikkerhetskopi av TomX-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
       title: Nedlasting av arkiv
     suspicious_sign_in:
@@ -1760,7 +1760,7 @@ nn:
       final_step: 'Skriv innlegg! Selv uten følgere kan dine offentlige innlegg bli sett av andre, for eksempel på den lokale tidslinjen og i emneknagger. Du kan introdusere deg selv ved å bruke emneknaggen #introduksjon.'
       full_handle: Det fulle brukarnamnet ditt
       full_handle_hint: Dette er det du fortel venene dine for at dei skal kunna senda deg meldingar eller fylgja deg frå ein annan tenar.
-      subject: Velkomen til Mastodon
+      subject: Velkomen til TomX
       title: Velkomen om bord, %{name}!
   users:
     follow_limit_reached: Du kan ikkje fylgja fleire enn %{limit} folk
@@ -1772,7 +1772,7 @@ nn:
   verification:
     extra_instructions_html: <strong>Tips:</strong> Lenken på din nettside kan være usynlig. Den viktige delen er <code>rel="me"</code> som sikrer at nettsteder med brukergenerert innhold ikke kan utgi seg for å være deg. Du kan til og med bruke en <code>link</code> lenke i sidens topptekst i stedet for <code>a</code>, men HTML-koden må være tilgjengelig uten å kjøre JavaScript.
     here_is_how: Slik gjer du
-    hint_html: "<strong>Verifisering av identiteten din på Mastodon er for alle.</strong> Basert på åpne nettstandarder, gratis nå og for alltid. Alt du trenger er en personlig nettside som gjør at folk kjenner deg igjen. Når du lenker til dette nettstedet fra din profil, vil vi sjekke at nettstedet lenker tilbake til profilen din og viser dette på profilen din."
+    hint_html: "<strong>Verifisering av identiteten din på TomX er for alle.</strong> Basert på åpne nettstandarder, gratis nå og for alltid. Alt du trenger er en personlig nettside som gjør at folk kjenner deg igjen. Når du lenker til dette nettstedet fra din profil, vil vi sjekke at nettstedet lenker tilbake til profilen din og viser dette på profilen din."
     instructions_html: Kopier og lim inn koden nedenfor i HTML til ditt nettsted. Deretter legger du til adressen til nettstedet ditt i et av ekstrafeltene på profilen din fra fanen "Rediger profil" og lagre endringer.
     verification: Stadfesting
     verified_links: Dine verifiserte lenker

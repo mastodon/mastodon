@@ -1,10 +1,10 @@
 ---
 cs:
   about:
-    about_mastodon_html: 'Sociální síť budoucnosti: žádné reklamy, žádné korporátní sledování, etický design a decentralizace! S Mastodonem vlastníte svoje data!'
+    about_mastodon_html: 'Sociální síť budoucnosti: žádné reklamy, žádné korporátní sledování, etický design a decentralizace! S TomXem vlastníte svoje data!'
     contact_missing: Nenastaveno
     contact_unavailable: Neuvedeno
-    hosted_on: Mastodon na doméně %{domain}
+    hosted_on: TomX na doméně %{domain}
     title: O aplikaci
   accounts:
     follow: Sledovat
@@ -689,7 +689,7 @@ cs:
         moderation: Moderování
         special: Speciální
       delete: Smazat
-      description_html: Pomocí <strong>uživatelských rolí</strong>můžete upravit, ke kterým funkcím a oblastem mají přístup uživatelé Mastodon.
+      description_html: Pomocí <strong>uživatelských rolí</strong>můžete upravit, ke kterým funkcím a oblastem mají přístup uživatelé TomX.
       edit: Upravit roli „%{name}“
       everyone: Výchozí oprávnění
       everyone_full_description_html: Toto je <strong>základní role</strong> ovlivňující <strong>všechny uživatele</strong>, a to i bez přiřazené role. Všechny ostatní role od ní dědí oprávnění.
@@ -754,20 +754,20 @@ cs:
         rules_hint: Existuje vyhrazená oblast pro pravidla, u nichž se očekává, že je budou uživatelé dodržovat.
         title: O aplikaci
       appearance:
-        preamble: Přizpůsobte si webové rozhraní Mastodon.
+        preamble: Přizpůsobte si webové rozhraní TomX.
         title: Vzhled
       branding:
-        preamble: Značka vašeho serveru jej odlišuje od ostatních serverů v síti. Tyto informace se mohou zobrazovat v různých prostředích, například ve webovém rozhraní Mastodonu, v nativních aplikacích, v náhledech odkazů na jiných webových stránkách a v aplikacích pro zasílání zpráv atd. Z tohoto důvodu je nejlepší, aby tyto informace byly jasné, krátké a stručné.
+        preamble: Značka vašeho serveru jej odlišuje od ostatních serverů v síti. Tyto informace se mohou zobrazovat v různých prostředích, například ve webovém rozhraní TomXu, v nativních aplikacích, v náhledech odkazů na jiných webových stránkách a v aplikacích pro zasílání zpráv atd. Z tohoto důvodu je nejlepší, aby tyto informace byly jasné, krátké a stručné.
         title: Značka
       content_retention:
-        preamble: Určuje, jak je obsah generovaný uživatelem uložen v Mastodonu.
+        preamble: Určuje, jak je obsah generovaný uživatelem uložen v TomXu.
         title: Uchovávání obsahu
       default_noindex:
         desc_html: Ovlivňuje všechny uživatele, kteří toto nastavení sami nezměnili
         title: Odhlásit uživatele ze standardního indexování vyhledávačů
       discovery:
         follow_recommendations: Doporučená sledování
-        preamble: Povrchový zajímavý obsah je užitečný pro zapojení nových uživatelů, kteří možná neznají žádného Mastodona. Mějte pod kontrolou, jak různé objevovací funkce fungují na vašem serveru.
+        preamble: Povrchový zajímavý obsah je užitečný pro zapojení nových uživatelů, kteří možná neznají žádného TomXa. Mějte pod kontrolou, jak různé objevovací funkce fungují na vašem serveru.
         profile_directory: Adresář profilů
         public_timelines: Veřejné časové osy
         publish_discovered_servers: Zveřejnit objevené servery
@@ -928,7 +928,7 @@ cs:
     webhooks:
       add_new: Přidat koncový bod
       delete: Smazat
-      description_html: "<strong>Webhook</strong> umožňuje Mastodonu o vybraných událostech <strong>notifikovat v reálném čase</strong> vaši vlastní aplikaci, aby mohla <strong>automaticky spouštět reakce</strong>."
+      description_html: "<strong>Webhook</strong> umožňuje TomXu o vybraných událostech <strong>notifikovat v reálném čase</strong> vaši vlastní aplikaci, aby mohla <strong>automaticky spouštět reakce</strong>."
       disable: Vypnout
       disabled: Vypnuto
       edit: Upravit koncový bod
@@ -992,7 +992,7 @@ cs:
     confirmation_dialogs: Potvrzovací dialogy
     discovery: Objevování
     localization:
-      body: Mastodon je překládán dobrovolníky.
+      body: TomX je překládán dobrovolníky.
       guide_link: https://cs.crowdin.com/project/mastodon
       guide_link_text: Zapojit se může každý.
     sensitive_content: Citlivý obsah
@@ -1018,9 +1018,9 @@ cs:
     delete_account: Odstranit účet
     delete_account_html: Chcete-li odstranit svůj účet, <a href="%{path}">pokračujte zde</a>. Budete požádáni o potvrzení.
     description:
-      prefix_invited_by_user: "@%{name} vás zve na tento server Mastodon!"
-      prefix_sign_up: Registrujte se na Mastodonu již dnes!
-      suffix: S účtem budete moci sledovat lidi, psát příspěvky a vyměňovat si zprávy s uživateli z kteréhokoliv serveru Mastodon a dalších služeb!
+      prefix_invited_by_user: "@%{name} vás zve na tento server TomX!"
+      prefix_sign_up: Registrujte se na TomXu již dnes!
+      suffix: S účtem budete moci sledovat lidi, psát příspěvky a vyměňovat si zprávy s uživateli z kteréhokoliv serveru TomX a dalších služeb!
     didnt_get_confirmation: Neobdrželi jste potvrzovací odkaz?
     dont_have_your_security_key: Nemáte svůj bezpečnostní klíč?
     forgot_password: Zapomněli jste heslo?
@@ -1064,7 +1064,7 @@ cs:
       title: Přihlásit se k %{domain}
     sign_up:
       manual_review: Registrace na %{domain} procházejí manuálním hodnocením od našich moderátorů. Abyste nám pomohli zpracovat Vaši registraci, napište trochu o sobě a proč chcete účet na %{domain}.
-      preamble: S účtem na tomto serveru Mastodon budete moci sledovat jakoukoliv jinou osobu v síti bez ohledu na to, kde je jejich účet hostován.
+      preamble: S účtem na tomto serveru TomX budete moci sledovat jakoukoliv jinou osobu v síti bez ohledu na to, kde je jejich účet hostován.
       title: Pojďme vás nastavit na %{domain}.
     status:
       account_status: Stav účtu
@@ -1165,7 +1165,7 @@ cs:
       content: Omlouváme se, ale něco se u nás pokazilo.
       title: Tato stránka není správná
     '503': Stránku nelze načíst kvůli dočasnému selhání serveru.
-    noscript_html: Pro použití webové aplikace Mastodon prosím povolte JavaScript. Nebo zkuste jednu z <a href="%{apps_path}">nativních aplikací</a> pro Mastodon pro vaši platformu.
+    noscript_html: Pro použití webové aplikace TomX prosím povolte JavaScript. Nebo zkuste jednu z <a href="%{apps_path}">nativních aplikací</a> pro TomX pro vaši platformu.
   existing_username_validator:
     not_found: nelze najít místního uživatele s tímto uživatelským jménem
     not_found_multiple: nelze najít %{usernames}
@@ -1533,7 +1533,7 @@ cs:
       weibo: Weibo
     current_session: Aktuální relace
     description: "%{browser} na systému %{platform}"
-    explanation: Tohle jsou webové prohlížeče aktuálně přihlášené na váš účet Mastodon.
+    explanation: Tohle jsou webové prohlížeče aktuálně přihlášené na váš účet TomX.
     ip: IP adresa
     platforms:
       adobe_air: Adobe Air
@@ -1559,7 +1559,7 @@ cs:
     aliases: Aliasy účtů
     appearance: Vzhled
     authorized_apps: Autorizované aplikace
-    back: Zpět na Mastodon
+    back: Zpět na TomX
     delete: Smazání účtu
     development: Vývoj
     edit_profile: Upravit profil
@@ -1680,9 +1680,9 @@ cs:
   tags:
     does_not_match_previous_name: se neshoduje s předchozím názvem
   themes:
-    contrast: Mastodon (vysoký kontrast)
-    default: Mastodon (tmavý)
-    mastodon-light: Mastodon (světlý)
+    contrast: TomX (vysoký kontrast)
+    default: TomX (tmavý)
+    TomX-light: TomX (světlý)
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
@@ -1714,7 +1714,7 @@ cs:
       subject: Vaše odvolání z %{date} bylo zamítnuto
       title: Odvolání zamítnuto
     backup_ready:
-      explanation: Vyžádali jste si úplnou zálohu svého účtu Mastodon. Nyní je připravena ke stažení!
+      explanation: Vyžádali jste si úplnou zálohu svého účtu TomX. Nyní je připravena ke stažení!
       subject: Váš archiv je připraven ke stažení
       title: Stažení archivu
     suspicious_sign_in:
@@ -1763,7 +1763,7 @@ cs:
       final_step: 'Začněte psát příspěvky! I bez sledujících mohou vaše veřejné příspěvky vidět ostatní, například na místní časové ose nebo v hashtagu. Možná se budete chtít představit na hashtagu #představení.'
       full_handle: Vaše celá adresa profilu
       full_handle_hint: Tohle je, co byste řekli svým přátelům, aby vám mohli posílat zprávy nebo vás sledovat z jiného serveru.
-      subject: Vítejte na Mastodonu
+      subject: Vítejte na TomXu
       title: Vítejte na palubě, %{name}!
   users:
     follow_limit_reached: Nemůžete sledovat více než %{limit} lidí
