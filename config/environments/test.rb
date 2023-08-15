@@ -46,7 +46,7 @@ Rails.application.configure do
   config.x.otp_secret = '100c7faeef00caa29242f6b04156742bf76065771fd4117990c4282b8748ff3d99f8fdae97c982ab5bd2e6756a159121377cce4421f4a8ecd2d67bd7749a3fb4'
 
   # Generate random VAPID keys
-  vapid_key = Webpush.generate_key
+  vapid_key = WebPush.generate_key
   config.x.vapid_private_key = vapid_key.private_key
   config.x.vapid_public_key = vapid_key.public_key
 

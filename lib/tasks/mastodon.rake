@@ -34,7 +34,7 @@ namespace :mastodon do
         env[key] = SecureRandom.hex(64)
       end
 
-      vapid_key = Webpush.generate_key
+      vapid_key = WebPush.generate_key
 
       env['VAPID_PRIVATE_KEY'] = vapid_key.private_key
       env['VAPID_PUBLIC_KEY']  = vapid_key.public_key
@@ -528,7 +528,7 @@ namespace :mastodon do
   namespace :webpush do
     desc 'Generate VAPID key'
     task :generate_vapid_key do
-      vapid_key = Webpush.generate_key
+      vapid_key = WebPush.generate_key
       puts "VAPID_PRIVATE_KEY=#{vapid_key.private_key}"
       puts "VAPID_PUBLIC_KEY=#{vapid_key.public_key}"
     end

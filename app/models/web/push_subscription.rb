@@ -28,7 +28,7 @@ class Web::PushSubscription < ApplicationRecord
   delegate :locale, to: :associated_user
 
   def encrypt(payload)
-    Webpush::Encryption.encrypt(payload, key_p256dh, key_auth)
+    WebPush::Encryption.encrypt(payload, key_p256dh, key_auth)
   end
 
   def audience
@@ -91,7 +91,7 @@ class Web::PushSubscription < ApplicationRecord
   end
 
   def vapid_key
-    @vapid_key ||= Webpush::VapidKey.from_keys(Rails.configuration.x.vapid_public_key, Rails.configuration.x.vapid_private_key)
+    @vapid_key ||= WebPush::VapidKey.from_keys(Rails.configuration.x.vapid_public_key, Rails.configuration.x.vapid_private_key)
   end
 
   def contact_email

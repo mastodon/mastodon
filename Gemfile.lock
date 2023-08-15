@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/ClearlyClaire/webpush.git
-  revision: f14a4d52e201128b1b00245d11b6de80d6cfdcd9
-  ref: f14a4d52e201128b1b00245d11b6de80d6cfdcd9
-  specs:
-    webpush (0.3.8)
-      hkdf (~> 0.2)
-      jwt (~> 2.0)
-
-GIT
   remote: https://github.com/jhawthorn/nsa.git
   revision: e020fcc3a54d993ab45b7194d89ab720296c111b
   ref: e020fcc3a54d993ab45b7194d89ab720296c111b
@@ -344,7 +335,7 @@ GEM
       json
     highline (2.1.0)
     hiredis (0.6.3)
-    hkdf (0.3.0)
+    hkdf (1.0.0)
     htmlentities (4.3.4)
     http (5.1.1)
       addressable (~> 2.8)
@@ -779,6 +770,10 @@ GEM
       public_suffix
     warden (1.2.9)
       rack (>= 2.0.9)
+    web-push (3.0.0)
+      hkdf (~> 1.0)
+      jwt (~> 2.0)
+      openssl (~> 3.0)
     webauthn (3.0.0)
       android_key_attestation (~> 0.3.0)
       awrence (~> 1.1)
@@ -939,10 +934,10 @@ DEPENDENCIES
   tty-prompt (~> 0.23)
   twitter-text (~> 3.1.0)
   tzinfo-data (~> 1.2023)
+  web-push (~> 3.0)
   webauthn (~> 3.0)
   webmock (~> 3.18)
   webpacker (~> 5.4)
-  webpush!
   xorcist (~> 1.1)
 
 RUBY VERSION

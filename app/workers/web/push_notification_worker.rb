@@ -26,8 +26,8 @@ class Web::PushNotificationWorker
         'Ttl' => TTL,
         'Urgency' => URGENCY,
         'Content-Encoding' => 'aesgcm',
-        'Encryption' => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
-        'Crypto-Key' => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{@subscription.crypto_key_header}",
+        'Encryption' => "salt=#{WebPush.encode64(payload.fetch(:salt)).delete('=')}",
+        'Crypto-Key' => "dh=#{WebPush.encode64(payload.fetch(:server_public_key)).delete('=')};#{@subscription.crypto_key_header}",
         'Authorization' => @subscription.authorization_header
       )
 

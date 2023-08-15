@@ -13,7 +13,7 @@ describe Web::PushNotificationWorker do
   let(:subscription) { Fabricate(:web_push_subscription, user_id: user.id, key_p256dh: p256dh, key_auth: auth, endpoint: endpoint, data: { alerts: { notification.type => true } }) }
   let(:vapid_public_key) { 'BB37UCyc8LLX4PNQSe-04vSFvpUWGrENubUaslVFM_l5TxcGVMY0C3RXPeUJAQHKYlcOM2P4vTYmkoo0VZGZTM4=' }
   let(:vapid_private_key) { 'OPrw1Sum3gRoL4-DXfSCC266r-qfFSRZrnj8MgIhRHg=' }
-  let(:vapid_key) { Webpush::VapidKey.from_keys(vapid_public_key, vapid_private_key) }
+  let(:vapid_key) { WebPush::VapidKey.from_keys(vapid_public_key, vapid_private_key) }
   let(:contact_email) { 'sender@example.com' }
   let(:ciphertext) { "+\xB8\xDBT}\x13\xB6\xDD.\xF9\xB0\xA7\xC8\xD2\x80\xFD\x99#\xF7\xAC\x83\xA4\xDB,\x1F\xB5\xB9w\x85>\xF7\xADr" }
   let(:salt) { "X\x97\x953\xE4X\xF8_w\xE7T\x95\xC51q\xFE" }
@@ -25,7 +25,7 @@ describe Web::PushNotificationWorker do
     before do
       allow_any_instance_of(subscription.class).to receive(:contact_email).and_return(contact_email)
       allow_any_instance_of(subscription.class).to receive(:vapid_key).and_return(vapid_key)
-      allow(Webpush::Encryption).to receive(:encrypt).and_return(payload)
+      allow(WebPush::Encryption).to receive(:encrypt).and_return(payload)
       allow(JWT).to receive(:encode).and_return('jwt.encoded.payload')
 
       stub_request(:post, endpoint).to_return(status: 201, body: '')
