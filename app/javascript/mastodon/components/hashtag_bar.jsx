@@ -19,7 +19,7 @@ export const HashtagBar = ({ hashtags, text }) => {
   }, [text]);
 
   const invisibleHashtags = useMemo(() => (
-    hashtags.filter(hashtag => !renderedHashtags.some(textContent => textContent === `#${hashtag.get('name')}` || textContent === hashtag.get('name')))
+    hashtags.filter(hashtag => !renderedHashtags.some(textContent => textContent === `#${hashtag.get('name').toLowerCase()}` || textContent === hashtag.get('name').toLowerCase()))
   ), [hashtags, renderedHashtags]);
 
   const [expanded, setExpanded] = useState(false);
