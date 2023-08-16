@@ -54,6 +54,12 @@
                   = t('subscription.large_group_price')
               %li.permissions-list__item
                 = f.submit t('subscription.button2'), class: 'button'
+        .permissions-list__item
+          = form_with url: settings_subscription.join_subscriptions_url do |f|
+            Got an invite? Join an existing group plan:
+            .permissions-list__item.input.with_block_label
+              = f.text_field :invite, { placeholder: 'paste invite here' }
+            = f.submit "Join", class: 'button'
       - else
         %ul.permissions-list
           - @subscriptions.each do |sub| 
@@ -91,6 +97,9 @@
                   .permissions-list__item__text__type
                     = link_to "Manage", @data[sub.id][:url], class: 'button'
               - else
+                .permissions-list__item__text
+                  .permissions-list__item__text__type
+                    member
                 .permissions-list__item__text
                   .permissions-list__item__text__type
                     managed by

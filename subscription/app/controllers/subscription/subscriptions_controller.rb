@@ -1,7 +1,7 @@
 module Subscription
   class SubscriptionsController < ::Settings::BaseController
     before_action :set_user
-    before_action :set_prices
+    before_action :set_prices, except: [:join]
     skip_before_action :require_functional!
 
     def index
@@ -49,7 +49,24 @@ module Subscription
 
       redirect_to session.url, status: 303
     end
-
+  
+    def join
+      if (params[:invite].nil?)
+        redirect_to settings_subscription.subscriptions_url, flash: { error: "Please enter a valid invite" }
+      end
+      code = params[:invite].split('/').last.strip
+      invite = ::Invite.find_by(code: code)
+      if (invite.nil?)
+        redirect_to settings_subscription.subscriptions_url, flash: { error: "Invite not found" }
+      elsif (invite.uses <= invite.max_uses)
+        invite.update(uses: invite.uses + 1)
+        sub = Subscription::StripeSubscription.find_by(invite_id: invite.id)
+        sub.members.create(user_id: @user.id)
+      else
+        redirect_to settings_subscription.subscriptions_url, flash: { error: "Invite is no longer valid" }
+      end
+    end
+  
     private
     def set_user
       @user = current_account.user
