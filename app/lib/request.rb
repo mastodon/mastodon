@@ -67,7 +67,7 @@ class HTTP::Cookie
     # HTTP::Cookie uses URI which only accepts RFC 3986-compliant URLs.
     def parse(set_cookie, origin, options = nil)
       origin = Addressable::URI.parse(origin).normalize
-      original_parse(set_cookie, origin, options = nil)
+      original_parse(set_cookie, origin, options)
     end
   end
 end
