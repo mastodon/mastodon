@@ -145,5 +145,35 @@ describe ResolveURLService, type: :service do
         expect(subject.call(url, on_behalf_of: account)).to eq(status)
       end
     end
+
+    context 'when searching for a local link of a remote private status' do
+      let(:account)    { Fabricate(:account) }
+      let(:poster)     { Fabricate(:account, username: 'foo', domain: 'example.com') }
+      let(:url)        { 'https://example.com/@foo/42' }
+      let(:uri)        { 'https://example.com/users/foo/statuses/42' }
+      let!(:status)    { Fabricate(:status, url: url, uri: uri, account: poster, visibility: :private) }
+      let(:search_url) { "https://#{Rails.configuration.x.local_domain}/@foo@example.com/#{status.id}" }
+
+      before do
+        stub_request(:get, url).to_return(status: 404) if url.present?
+        stub_request(:get, uri).to_return(status: 404)
+      end
+
+      context 'when the account follows the poster' do
+        before do
+          account.follow!(poster)
+        end
+
+        it 'returns the status' do
+          expect(subject.call(search_url, on_behalf_of: account)).to eq(status)
+        end
+      end
+
+      context 'when the account does not follow the poster' do
+        it 'does not return the status' do
+          expect(subject.call(search_url, on_behalf_of: account)).to be_nil
+        end
+      end
+    end
   end
 end

@@ -7,10 +7,14 @@ class Api::V1::Statuses::HistoriesController < Api::BaseController
   before_action :set_status
 
   def show
-    render json: @status.edits.includes(:account, status: [:account]), each_serializer: REST::StatusEditSerializer
+    render json: status_edits, each_serializer: REST::StatusEditSerializer
   end
 
   private
+
+  def status_edits
+    @status.edits.includes(:account, status: [:account]).to_a.presence || [@status.build_snapshot(at_time: @status.edited_at || @status.created_at)]
+  end
 
   def set_status
     @status = Status.find(params[:status_id])

@@ -5,7 +5,9 @@ require_relative '../config/boot'
 require_relative '../lib/cli'
 
 begin
-  Mastodon::CLI.start(ARGV)
+  Chewy.strategy(:mastodon) do
+    Mastodon::CLI.start(ARGV)
+  end
 rescue Interrupt
   exit(130)
 end

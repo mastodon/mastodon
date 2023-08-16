@@ -3,7 +3,7 @@
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 
 def host_to_url(str)
-  "http#{Rails.configuration.x.use_https ? 's' : ''}://#{str}" unless str.blank?
+  "http#{Rails.configuration.x.use_https ? 's' : ''}://#{str}".split('/').first if str.present?
 end
 
 base_host = Rails.configuration.x.web_domain

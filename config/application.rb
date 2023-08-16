@@ -29,6 +29,7 @@ require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
 require_relative '../lib/paperclip/lazy_thumbnail'
 require_relative '../lib/paperclip/gif_transcoder'
+require_relative '../lib/paperclip/media_type_spoof_detector_extensions'
 require_relative '../lib/paperclip/transcoder'
 require_relative '../lib/paperclip/type_corrector'
 require_relative '../lib/paperclip/response_with_limit_adapter'
@@ -39,6 +40,7 @@ require_relative '../lib/mastodon/rack_middleware'
 require_relative '../lib/devise/two_factor_ldap_authenticatable'
 require_relative '../lib/devise/two_factor_pam_authenticatable'
 require_relative '../lib/chewy/strategy/mastodon'
+require_relative '../lib/chewy/strategy/bypass_with_warning'
 require_relative '../lib/webpacker/manifest_extensions'
 require_relative '../lib/webpacker/helper_extensions'
 require_relative '../lib/rails/engine_extensions'
@@ -159,6 +161,10 @@ module Mastodon
         :en
       end
     end
+
+    config.public_file_server.headers = {
+      'X-Content-Type-Options' => 'nosniff',
+    }
 
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]

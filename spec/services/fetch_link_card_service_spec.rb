@@ -10,6 +10,7 @@ RSpec.describe FetchLinkCardService, type: :service do
     stub_request(:get, 'http://example.com/koi8-r').to_return(request_fixture('koi8-r.txt'))
     stub_request(:get, 'http://example.com/日本語').to_return(request_fixture('sjis.txt'))
     stub_request(:get, 'https://github.com/qbi/WannaCry').to_return(status: 404)
+    stub_request(:get, 'http://example.com/test?data=file.gpx%5E1').to_return(status: 200)
     stub_request(:get, 'http://example.com/test-').to_return(request_fixture('idn.txt'))
     stub_request(:get, 'http://example.com/windows-1251').to_return(request_fixture('windows-1251.txt'))
 
@@ -83,6 +84,15 @@ RSpec.describe FetchLinkCardService, type: :service do
 
       it 'does not fetch URLs with not isolated from their surroundings' do
         expect(a_request(:get, 'http://example.com/sjis')).to_not have_been_made
+      end
+    end
+
+    context do
+      let(:status) { Fabricate(:status, text: 'test http://example.com/test?data=file.gpx^1') }
+
+      it 'does fetch URLs with a caret in search params' do
+        expect(a_request(:get, 'http://example.com/test?data=file.gpx')).to_not have_been_made
+        expect(a_request(:get, 'http://example.com/test?data=file.gpx%5E1')).to have_been_made.once
       end
     end
   end

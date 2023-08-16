@@ -24,7 +24,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
   def running_version
     @running_version ||= begin
       Chewy.client.info['version']['number']
-    rescue Faraday::ConnectionFailed
+    rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
       nil
     end
   end

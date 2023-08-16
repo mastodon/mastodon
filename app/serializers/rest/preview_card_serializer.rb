@@ -11,4 +11,8 @@ class REST::PreviewCardSerializer < ActiveModel::Serializer
   def image
     object.image? ? full_asset_url(object.image.url(:original)) : nil
   end
+
+  def html
+    Sanitize.fragment(object.html, Sanitize::Config::MASTODON_OEMBED)
+  end
 end

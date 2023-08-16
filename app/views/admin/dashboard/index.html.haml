@@ -12,7 +12,7 @@
 - unless @system_checks.empty?
   .flash-message-stack
     - @system_checks.each do |message|
-      .flash-message.warning
+      .flash-message{ class: message.critical ? 'alert' : 'warning' }
         = t("admin.system_checks.#{message.key}.message_html", value: message.value ? content_tag(:strong, message.value) : nil)
         - if message.action
           = link_to t("admin.system_checks.#{message.key}.action"), message.action
