@@ -31,8 +31,7 @@ const emojis: Emojis = {};
 Object.keys(shortCodesToEmojiData).forEach((shortCode) => {
   const [_filenameData, searchData] = shortCodesToEmojiData[shortCode];
   const [native, _short_names, search, _unified] = searchData;
-  let short_names = searchData[1];
-  let unified = searchData[3];
+  let [_native, short_names, _search, unified] = searchData; // eslint-disable-line prefer-const
 
   if (!unified) {
     // unified name can be derived from unicodeToUnifiedName
