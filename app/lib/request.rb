@@ -62,7 +62,7 @@ end
 
 class HTTP::Cookie
   class << self
-    alias_method :original_parse, :parse
+    alias original_parse parse
 
     # HTTP::Cookie uses URI which only accepts RFC 3986-compliant URLs.
     def parse(set_cookie, origin, options = nil)
