@@ -7,6 +7,7 @@
 
 .about-header {
   display: inline-flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 95%;
   padding-top: 30px;
@@ -62,12 +63,18 @@
   width: auto;
 }
 
-.intro {
-  display: flex;
-  width: 100%;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  padding: 0px 10px 30px 50px;
+.about {
+  section {
+    display: flex;
+    flex-wrap: wrap-reverse;
+  }
+
+  .intro {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0px 10px 30px 50px;
+    flex-wrap: wrap;
+  }
 
   h1.heading {
     color: darken($primary-text-color, 15%);
