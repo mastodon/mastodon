@@ -15,7 +15,7 @@ const VISIBLE_HASHTAGS = 7;
 export const HashtagBar = ({ hashtags, text }) => {
   const renderedHashtags = useMemo(() => {
     const body = domParser.parseFromString(text, 'text/html').documentElement;
-    return [].map.call(body.querySelectorAll('[rel=tag]'), node => node.textContent.toLowerCase());
+    return [].filter.call(body.querySelectorAll('a[href]'), link => link.textContent[0] === '#' || (link.previousSibling?.textContent?.[link.previousSibling.textContent.length - 1] === '#')).map(node => node.textContent.toLowerCase());
   }, [text]);
 
   const invisibleHashtags = useMemo(() => (
