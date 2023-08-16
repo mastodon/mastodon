@@ -31,8 +31,8 @@ namespace :branding do
     rsvg_convert = Terrapin::CommandLine.new('rsvg-convert', '--stylesheet :stylesheet -h :size --keep-aspect-ratio :input -o :output')
     output_dest  = Rails.root.join('lib', 'assets')
 
-    rsvg_convert.run(stylesheet: Rails.root.join('lib', 'assets', 'wordmark.dark.css'), input: Rails.root.join('app', 'javascript', 'images', 'logo-symbol-wordmark.svg'), size: 102, output: output_dest.join('wordmark.dark.png'))
     rsvg_convert.run(stylesheet: Rails.root.join('lib', 'assets', 'wordmark.light.css'), input: Rails.root.join('app', 'javascript', 'images', 'logo-symbol-wordmark.svg'), size: 102, output: output_dest.join('wordmark.light.png'))
+    rsvg_convert.run(stylesheet: Rails.root.join('lib', 'assets', 'wordmark.dark.css'), input: Rails.root.join('app', 'javascript', 'images', 'logo-symbol-wordmark.svg'), size: 102, output: output_dest.join('wordmark.dark.png'))
   end
 
   desc 'Generate favicons and app icons from SVG source files'
