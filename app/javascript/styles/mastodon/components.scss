@@ -6791,15 +6791,22 @@ a.status-card {
 .notification__filter-bar,
 .account__section-headline {
   background: darken($ui-base-color, 4%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
   display: flex;
   flex-shrink: 0;
 
-  button {
-    background: darken($ui-base-color, 4%);
+  button,
+  a {
     border: 0;
+    border-bottom: 2px solid lighten($ui-base-color, 8%);
+    background: darken($ui-base-color, 4%);
     margin: 0;
+    border-radius: 0;
+
+    &:focus-visible {
+      outline: none;
+      border-bottom: 2px solid $ui-button-focus-outline-color;
+    }
   }
 
   button,
@@ -6832,11 +6839,25 @@ a.status-card {
         border-style: solid;
         border-width: 0 10px 10px;
         border-color: transparent transparent lighten($ui-base-color, 8%);
+
+        &:focus-visible {
+          border-color: $ui-button-focus-outline-color;
+        }
       }
 
       &::after {
-        bottom: -1px;
+        bottom: -3px;
         border-color: transparent transparent $ui-base-color;
+      }
+
+      &:focus-visible {
+        &::before {
+          border-color: transparent transparent $ui-button-focus-outline-color;
+        }
+
+        &::after {
+          display: none;
+        }
       }
     }
   }
