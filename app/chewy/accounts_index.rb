@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountsIndex < Chewy::Index
-  settings index: { refresh_interval: '30s' }, analysis: {
+  settings index: index_preset(refresh_interval: '30s'), analysis: {
     filter: {
       english_stop: {
         type: 'stop',
