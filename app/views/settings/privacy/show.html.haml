@@ -1,0 +1,43 @@
+- content_for :page_title do
+  = t('privacy.title')
+
+- content_for :heading do
+  %h2= t('settings.profile')
+  = render partial: 'settings/shared/profile_navigation'
+
+= simple_form_for @account, url: settings_privacy_path, html: { method: :put } do |f|
+  = render 'shared/error_messages', object: @account
+
+  %p.lead= t('privacy.hint_html')
+
+  %h4= t('privacy.reach')
+
+  %p.lead= t('privacy.reach_hint_html')
+
+  .fields-group
+    = f.input :discoverable, as: :boolean, wrapper: :with_label, recommended: true
+
+  .fields-group
+    = f.input :unlocked, as: :boolean, wrapper: :with_label
+
+  %h4= t('privacy.search')
+
+  %p.lead= t('privacy.search_hint_html')
+
+  = f.simple_fields_for :settings, current_user.settings do |ff|
+    .fields-group
+      = ff.input :indexable, wrapper: :with_label
+
+  %h4= t('privacy.privacy')
+
+  %p.lead= t('privacy.privacy_hint_html')
+
+  .fields-group
+    = f.input :show_collections, as: :boolean, wrapper: :with_label
+
+  = f.simple_fields_for :settings, current_user.settings do |ff|
+    .fields-group
+      = ff.input :show_application, wrapper: :with_label
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

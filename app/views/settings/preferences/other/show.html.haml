@@ -9,9 +9,6 @@
 
   = f.simple_fields_for :settings, current_user.settings do |ff|
     .fields-group
-      = ff.input :noindex, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_noindex'), hint: I18n.t('simple_form.hints.defaults.setting_noindex')
-
-    .fields-group
       = ff.input :aggregate_reblogs, wrapper: :with_label, recommended: true, label: I18n.t('simple_form.labels.defaults.setting_aggregate_reblogs'), hint: I18n.t('simple_form.hints.defaults.setting_aggregate_reblogs')
 
     %h4= t 'preferences.posting_defaults'
@@ -25,9 +22,6 @@
 
     .fields-group
       = ff.input :default_sensitive, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_default_sensitive'), hint: I18n.t('simple_form.hints.defaults.setting_default_sensitive')
-
-    .fields-group
-      = ff.input :show_application, wrapper: :with_label, recommended: true, label: I18n.t('simple_form.labels.defaults.setting_show_application'), hint: I18n.t('simple_form.hints.defaults.setting_show_application')
 
   %h4= t 'preferences.public_timelines'
 
