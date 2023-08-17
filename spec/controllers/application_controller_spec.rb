@@ -75,9 +75,9 @@ describe ApplicationController do
 
   describe 'helper_method :current_theme' do
     it 'returns "default" when theme wasn\'t changed in admin settings' do
-      allow(Setting).to receive(:default_settings).and_return({ 'theme' => 'mastodon-light' })
+      allow(Setting).to receive(:default_settings).and_return({ 'theme' => 'default' })
 
-      expect(controller.view_context.current_theme).to eq 'mastodon-light'
+      expect(controller.view_context.current_theme).to eq 'default'
     end
 
     it 'returns instances\'s theme when user is not signed in' do
