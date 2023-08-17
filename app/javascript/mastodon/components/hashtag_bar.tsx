@@ -61,6 +61,12 @@ function uniqueHashtagsWithCaseHandling(hashtags: string[]) {
   });
 }
 
+// Create the collator once, this is much more efficient
+const collator = new Intl.Collator(undefined, { sensitivity: 'accent' });
+function localeAwareInclude(collection: string[], value: string) {
+  return collection.find((item) => collator.compare(item, value) === 0);
+}
+
 /**
  *  This function will process a status to, at the same time (avoiding parsing it twice):
  * - build the HashtagBar for this status
@@ -108,21 +114,18 @@ export function getHashtagBarForStatus(status: StatusLike): {
     return result;
   }, []);
 
-  const lowercaseContentHashtags = contentHashtags.map((h) => h.toLowerCase());
-
   // Now we parse the last line, and try to see if it only contains hashtags
   const lastLineHashtags: string[] = [];
   // try to see if the last line is only hashtags
   const onlyHashtags = Array.from(lastChild.childNodes).every((node) => {
     if (isNodeLinkHashtag(node)) {
       const normalized = normalizeHashtag(node.innerText);
-      const normalizedLower = normalized.toLowerCase();
 
-      if (!tagNames.includes(normalizedLower))
+      if (!localeAwareInclude(tagNames, normalized))
         // stop here, this is not a real hashtag, so consider it as text
         return false;
 
-      if (!lowercaseContentHashtags.includes(normalizedLower))
+      if (!localeAwareInclude(contentHashtags, normalized))
         // only add it if it does not appear in the rest of the content
         lastLineHashtags.push(normalized);
 
@@ -133,15 +136,11 @@ export function getHashtagBarForStatus(status: StatusLike): {
     } else return false;
   });
 
-  const lowercaseLastLineHashtags = lastLineHashtags.map((h) =>
-    h.toLowerCase(),
-  );
-
   const hashtagsInBar = tagNames.filter(
     (tag) =>
       // the tag does not appear at all in the status content, it is an out-of-band tag
-      !lowercaseContentHashtags.includes(tag) &&
-      !lowercaseLastLineHashtags.includes(tag),
+      !localeAwareInclude(contentHashtags, tag) &&
+      !localeAwareInclude(lastLineHashtags, tag),
   );
 
   if (onlyHashtags) {
