@@ -126,12 +126,14 @@ html {
   .confirmation-modal__cancel-button,
   .mute-modal__cancel-button,
   .block-modal__cancel-button {
-    color: $ui-base-color;
+    color: $white;
+    background-color: darken($ui-highlight-color, 4%) !important;
   
     &:hover,
     &:focus,
     &:active {
-      color: $primary-text-color;
+      color: $white;
+      background-color: darken($ui-highlight-color, 12%) !important;
     }
   }
   

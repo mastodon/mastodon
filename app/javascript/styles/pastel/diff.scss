@@ -144,12 +144,14 @@ html {
   .confirmation-modal__cancel-button,
   .mute-modal__cancel-button,
   .block-modal__cancel-button {
-    color: $ui-base-color;
+    color: $black;
+    background-color: lighten($ui-color-pink, 4%) !important;
   
     &:hover,
     &:focus,
     &:active {
-      color: $primary-text-color;
+      color: $black;
+      background-color: lighten($ui-color-pink, 12%) !important;
     }
   }
   
@@ -243,7 +245,7 @@ html {
     }
     .columns-area__panels__pane--navigational {
       .navigation-panel {
-        background: $ui-primary-color;
+        background: $ui-color-mint;
         border-left: none;
       }
     }
