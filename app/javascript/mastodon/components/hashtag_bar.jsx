@@ -15,11 +15,11 @@ const VISIBLE_HASHTAGS = 7;
 export const HashtagBar = ({ hashtags, text }) => {
   const renderedHashtags = useMemo(() => {
     const body = domParser.parseFromString(text, 'text/html').documentElement;
-    return [].filter.call(body.querySelectorAll('a[href]'), link => link.textContent[0] === '#' || (link.previousSibling?.textContent?.[link.previousSibling.textContent.length - 1] === '#')).map(node => node.textContent.toLowerCase());
+    return [].filter.call(body.querySelectorAll('a[href]'), link => link.textContent[0] === '#' || (link.previousSibling?.textContent?.[link.previousSibling.textContent.length - 1] === '#')).map(node => node.textContent);
   }, [text]);
 
   const invisibleHashtags = useMemo(() => (
-    hashtags.filter(hashtag => !renderedHashtags.some(textContent => textContent === `#${hashtag.get('name').toLowerCase()}` || textContent === hashtag.get('name').toLowerCase()))
+    hashtags.filter(hashtag => !renderedHashtags.some(textContent => textContent.localeCompare(`#${hashtag.get('name')}`, undefined, { sensitivity: 'accent' }) === 0 || textContent.localeCompare(hashtag.get('name'), undefined, { sensitivity: 'accent' }) === 0))
   ), [hashtags, renderedHashtags]);
 
   const [expanded, setExpanded] = useState(false);
