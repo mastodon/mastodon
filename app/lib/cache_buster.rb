@@ -22,9 +22,9 @@ class CacheBuster
   end
 
   def build_request(url, http_client)
-    request = Request.new(@http_method.to_sym, url, http_client: http_client)
-    if @secret_header && !@secret_header.empty? && @secret && !@secret.empty?
-      request.add_headers(@secret_header => @secret)
-    end
+    request = Request.new(@http_method.downcase.to_sym, url, http_client: http_client)
+    request.add_headers(@secret_header => @secret) if @secret_header.present? && @secret && !@secret.empty?
+
+    request
   end
 end
