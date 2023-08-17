@@ -12,7 +12,7 @@
 - unless @system_checks.empty?
   .flash-message-stack
     - @system_checks.each do |message|
-      .flash-message.warning
+      .flash-message{ class: message.critical ? 'alert' : 'warning' }
         = t("admin.system_checks.#{message.key}.message_html", value: message.value ? content_tag(:strong, message.value) : nil)
         - if message.action
           = link_to t("admin.system_checks.#{message.key}.action"), message.action
@@ -59,7 +59,7 @@
     = react_admin_component :dimension, dimension: 'servers', start_at: @time_period.first, end_at: @time_period.last, limit: 8, label: t('admin.dashboard.top_servers')
 
   .dashboard__item.dashboard__item--span-double-column
-    = react_admin_component :retention, start_at: @time_period.last - 6.months,   end_at: @time_period.last, frequency: 'month'
+    = react_admin_component :retention, start_at: @time_period.last - 6.months, end_at: @time_period.last, frequency: 'month'
 
   .dashboard__item.dashboard__item--span-double-row
     = react_admin_component :trends, limit: 7

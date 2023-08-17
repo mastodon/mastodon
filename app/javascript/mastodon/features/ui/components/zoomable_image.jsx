@@ -1,7 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from 'mastodon/components/icon_button';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import { IconButton } from 'mastodon/components/icon_button';
 
 const messages = defineMessages({
   compress: { id: 'lightbox.compress', defaultMessage: 'Compress image view box' },
@@ -91,11 +93,11 @@ const normalizeWheel = event => {
   };
 };
 
-export default @injectIntl
-class ZoomableImage extends React.PureComponent {
+class ZoomableImage extends PureComponent {
 
   static propTypes = {
     alt: PropTypes.string,
+    lang: PropTypes.string,
     src: PropTypes.string.isRequired,
     width: PropTypes.number,
     height: PropTypes.number,
@@ -106,6 +108,7 @@ class ZoomableImage extends React.PureComponent {
 
   static defaultProps = {
     alt: '',
+    lang: '',
     width: null,
     height: null,
   };
@@ -403,14 +406,14 @@ class ZoomableImage extends React.PureComponent {
   };
 
   render () {
-    const { alt, src, width, height, intl } = this.props;
+    const { alt, lang, src, width, height, intl } = this.props;
     const { scale, lockTranslate } = this.state;
     const overflow = scale === MIN_SCALE ? 'hidden' : 'scroll';
     const zoomButtonShouldHide = this.state.navigationHidden || this.props.zoomButtonHidden || this.state.zoomMatrix.rate <= MIN_SCALE ? 'media-modal__zoom-button--hidden' : '';
     const zoomButtonTitle = this.state.zoomState === 'compress' ? intl.formatMessage(messages.compress) : intl.formatMessage(messages.expand);
 
     return (
-      <React.Fragment>
+      <>
         <IconButton
           className={`media-modal__zoom-button ${zoomButtonShouldHide}`}
           title={zoomButtonTitle}
@@ -431,6 +434,7 @@ class ZoomableImage extends React.PureComponent {
             ref={this.setImageRef}
             alt={alt}
             title={alt}
+            lang={lang}
             src={src}
             width={width}
             height={height}
@@ -443,8 +447,10 @@ class ZoomableImage extends React.PureComponent {
             onMouseDown={this.handleMouseDown}
           />
         </div>
-      </React.Fragment>
+      </>
     );
   }
 
 }
+
+export default injectIntl(ZoomableImage);

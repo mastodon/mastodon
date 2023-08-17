@@ -20,13 +20,13 @@ describe AccountStatusesCleanupService, type: :service do
       let!(:another_old_status) { Fabricate(:status, created_at: 1.year.ago, account: account) }
       let!(:recent_status)      { Fabricate(:status, created_at: 1.day.ago, account: account) }
 
-      context 'given a budget of 1' do
+      context 'when given a budget of 1' do
         it 'reports 1 deleted toot' do
           expect(subject.call(account_policy, 1)).to eq 1
         end
       end
 
-      context 'given a normal budget of 10' do
+      context 'when given a normal budget of 10' do
         it 'reports 3 deleted statuses' do
           expect(subject.call(account_policy, 10)).to eq 3
         end

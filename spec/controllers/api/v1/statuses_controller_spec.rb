@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::StatusesController, type: :controller do
+RSpec.describe Api::V1::StatusesController do
   render_views
 
   let(:user)  { Fabricate(:user) }
@@ -120,7 +120,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     describe 'POST #create' do
       let(:scopes) { 'write:statuses' }
 
-      context do
+      context 'with a basic status body' do
         before do
           post :create, params: { status: 'Hello world' }
         end

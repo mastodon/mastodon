@@ -2,6 +2,10 @@
 fr-QC:
   simple_form:
     hints:
+      account:
+        display_name: Votre nom complet ou votre nom cool.
+        fields: Votre page d'accueil, pronoms, âge, tout ce que vous voulez.
+        note: 'Vous pouvez @mentionner d’autres personnes ou des #hashtags.'
       account_alias:
         acct: Spécifiez l’identifiant@domaine du compte que vous souhaitez faire migrer
       account_migration:
@@ -37,14 +41,11 @@ fr-QC:
         current_password: Par mesure de sécurité, veuillez saisir le mot de passe de ce compte
         current_username: Pour confirmer, veuillez saisir le nom d'utilisateur de ce compte
         digest: Uniquement envoyé après une longue période d’inactivité en cas de messages personnels reçus pendant votre absence
-        discoverable: Permet à votre compte d’être découvert par des inconnus par le biais de recommandations, de tendances et autres fonctionnalités
         email: Vous recevrez un courriel de confirmation
-        fields: Vous pouvez avoir jusqu’à 4 éléments affichés en tant que tableau sur votre profil
         header: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         inbox_url: Copiez l’URL depuis la page d’accueil du relai que vous souhaitez utiliser
         irreversible: Les messages filtrés disparaîtront irrévocablement, même si le filtre est supprimé plus tard
         locale: La langue de l’interface, des courriels et des notifications
-        locked: Nécessite que vous approuviez manuellement chaque abonné·e
         password: Utilisez au moins 8 caractères
         phrase: Sera filtré peu importe la casse ou l’avertissement de contenu du message
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
@@ -54,12 +55,9 @@ fr-QC:
         setting_display_media_default: Masquer les médias marqués comme sensibles
         setting_display_media_hide_all: Toujours masquer les médias
         setting_display_media_show_all: Toujours afficher les médias
-        setting_hide_network: Ceux que vous suivez et ceux qui vous suivent ne seront pas affichés sur votre profil
-        setting_noindex: Affecte votre profil public ainsi que vos messages
-        setting_show_application: Le nom de l’application que vous utilisez pour publier sera affichée dans la vue détaillée de vos messages
         setting_use_blurhash: Les dégradés sont basés sur les couleurs des images cachées mais n’en montrent pas les détails
         setting_use_pending_items: Cacher les mises à jour des fils d’actualités derrière un clic, au lieu de les afficher automatiquement
-        username: Votre nom d’utilisateur sera unique sur %{domain}
+        username: Vous pouvez utiliser des lettres, des chiffres, et des tirets bas
         whole_word: Si le mot-clé ou la phrase est alphanumérique, alors le filtre ne sera appliqué que s’il correspond au mot entier
       domain_allow:
         domain: Ce domaine pourra récupérer des données de ce serveur et les données entrantes seront traitées et stockées
@@ -82,7 +80,7 @@ fr-QC:
         custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
         mascot: Remplace l'illustration dans l'interface Web avancée.
         media_cache_retention_period: Les fichiers multimédias téléchargés seront supprimés après le nombre de jours spécifiés lorsque la valeur est positive, et seront téléchargés à nouveau sur demande.
-        peers_api_enabled: Une liste de noms de domaine que ce serveur a rencontrés dans le fediverse. Aucune donnée indiquant si vous vous fédérez ou non avec un serveur particulier n'est incluse ici, seulement l'information que votre serveur connaît un autre serveur. Cette option est utilisée par les services qui collectent des statistiques sur la fédération en général.
+        peers_api_enabled: Une liste de noms de domaine que ce serveur a rencontrés dans le fédiverse. Aucune donnée indiquant si vous vous fédérez ou non avec un serveur particulier n'est incluse ici, seulement l'information que votre serveur connaît un autre serveur. Cette option est utilisée par les services qui collectent des statistiques sur la fédération en général.
         profile_directory: L'annuaire des profils répertorie tous les utilisateurs qui ont opté pour être découverts.
         require_invite_text: Lorsque les inscriptions nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
         site_contact_email: Comment les personnes peuvent vous joindre pour des demandes de renseignements juridiques ou d'assistance.
@@ -91,11 +89,13 @@ fr-QC:
         site_short_description: Une courte description pour aider à identifier de manière unique votre serveur. Qui l'exécute, à qui il est destiné ?
         site_terms: Utilisez votre propre politique de confidentialité ou laissez vide pour utiliser la syntaxe par défaut. Peut être structurée avec la syntaxe Markdown.
         site_title: Comment les personnes peuvent se référer à votre serveur en plus de son nom de domaine.
+        status_page_url: URL d'une page où les gens peuvent voir l'état de ce serveur en cas de panne
         theme: Thème que verront les utilisateur·rice·s déconnecté·e·s ainsi que les nouveaux·elles utilisateur·rice·s.
         thumbnail: Une image d'environ 2:1 affichée à côté des informations de votre serveur.
         timeline_preview: Les visiteurs déconnectés pourront parcourir les derniers messages publics disponibles sur le serveur.
         trendable_by_default: Ignorer l'examen manuel du contenu tendance. Des éléments individuels peuvent toujours être supprimés des tendances après coup.
         trends: Les tendances montrent quelles publications, hashtags et actualités sont en train de gagner en traction sur votre serveur.
+        trends_as_landing_page: Afficher le contenu tendance au lieu d'une description de ce serveur pour les comptes déconnectés et les non-inscrit⋅e⋅s. Nécessite que les tendances soient activées.
       form_challenge:
         current_password: Vous entrez une zone sécurisée
       imports:
@@ -129,6 +129,7 @@ fr-QC:
         position: Dans certaines situations, un rôle supérieur peut trancher la résolution d'un conflit. Mais certaines opérations ne peuvent être effectuées que sur des rôles ayant une priorité inférieure
       webhook:
         events: Sélectionnez les événements à envoyer
+        template: Écrivez votre propre bloc JSON avec la possibilité d’utiliser de l’interpolation de variables. Laissez vide pour le bloc JSON par défaut.
         url: Là où les événements seront envoyés
     labels:
       account:
@@ -172,7 +173,6 @@ fr-QC:
         context: Contextes du filtre
         current_password: Mot de passe actuel
         data: Données
-        discoverable: Suggérer ce compte aux autres
         display_name: Nom public
         email: Adresse courriel
         expires_in: Expire après
@@ -182,7 +182,6 @@ fr-QC:
         inbox_url: URL de la boîte de relais
         irreversible: Supprimer plutôt que masquer
         locale: Langue de l’interface
-        locked: Verrouiller le compte
         max_uses: Nombre maximum d’utilisations
         new_password: Nouveau mot de passe
         note: Présentation
@@ -194,7 +193,6 @@ fr-QC:
         setting_always_send_emails: Toujours envoyer les notifications par courriel
         setting_auto_play_gif: Lire automatiquement les GIFs animés
         setting_boost_modal: Demander confirmation avant de partager un message
-        setting_crop_images: Recadrer en 16x9 les images des messages qui ne sont pas ouverts en vue détaillée
         setting_default_language: Langue de publication
         setting_default_privacy: Confidentialité des messages
         setting_default_sensitive: Toujours marquer les médias comme sensibles
@@ -206,9 +204,7 @@ fr-QC:
         setting_display_media_show_all: Montrer tout
         setting_expand_spoilers: Toujours déplier les messages marqués d’un avertissement de contenu
         setting_hide_network: Cacher votre réseau
-        setting_noindex: Demander aux moteurs de recherche de ne pas indexer vos informations personnelles
         setting_reduce_motion: Réduire la vitesse des animations
-        setting_show_application: Dévoiler l’application utilisée pour envoyer les messages
         setting_system_font_ui: Utiliser la police par défaut du système
         setting_theme: Thème du site
         setting_trends: Afficher les tendances du jour
@@ -225,7 +221,7 @@ fr-QC:
       email_domain_block:
         with_dns_records: Inclure les enregistrements MX et IP du domaine
       featured_tag:
-        name: Hashtag
+        name: Mot-clic
       filters:
         actions:
           hide: Cacher complètement
@@ -251,11 +247,13 @@ fr-QC:
         site_short_description: Description du serveur
         site_terms: Politique de confidentialité
         site_title: Nom du serveur
+        status_page_url: URL de la page de l'état du serveur
         theme: Thème par défaut
         thumbnail: Miniature du serveur
         timeline_preview: Autoriser l’accès non authentifié aux fils publics
         trendable_by_default: Autoriser les tendances sans révision préalable
         trends: Activer les tendances
+        trends_as_landing_page: Utiliser les tendances comme page d'accueil
       interactions:
         must_be_follower: Bloquer les notifications des personnes qui ne vous suivent pas
         must_be_following: Bloquer les notifications des personnes que vous ne suivez pas
@@ -287,11 +285,12 @@ fr-QC:
         text: Règle
       tag:
         listable: Autoriser ce hashtag à apparaître dans les recherches et dans l’annuaire des profils
-        name: Hashtag
+        name: Mot-clic
         trendable: Autoriser ce hashtag à apparaitre dans les tendances
         usable: Autoriser les messages à utiliser ce hashtag
       user:
         role: Rôle
+        time_zone: Fuseau horaire
       user_role:
         color: Couleur du badge
         highlighted: Afficher le rôle avec un badge sur les profils des utilisateur·rice·s
@@ -300,6 +299,7 @@ fr-QC:
         position: Priorité
       webhook:
         events: Événements activés
+        template: Modèle de charge utile
         url: URL du point de terminaison
     'no': Non
     not_recommended: Non recommandé

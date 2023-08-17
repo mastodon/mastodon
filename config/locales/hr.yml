@@ -3,6 +3,7 @@ hr:
   about:
     about_mastodon_html: 'Društvena mreža budućnosti: bez oglasa, bez korporativnog nadzora, etički dizajn i decentralizacija! Budite u vlasništvu svojih podataka pomoću Mastodona!'
     contact_missing: Nije postavljeno
+    title: O aplikaciji
   accounts:
     follow: Prati
     following: Praćenih
@@ -17,8 +18,10 @@ hr:
     accounts:
       approve: Odobri
       are_you_sure: Jeste li sigurni?
+      avatar: Avatar
       by_domain: Domena
       change_email:
+        changed_msg: E-pošta računa uspješno je promijenjena!
         current_email: Trenutna e-pošta
         label: Promijeni e-poštu
         new_email: Nova e-pošta
@@ -27,6 +30,7 @@ hr:
       confirm: Potvrdi
       confirmed: Potvrđeno
       confirming: Potvrđivanje
+      custom: Prilagođeno
       delete: Izbriši podatke
       deleted: Izbrisano
       display_name: Prikazano ime
@@ -53,19 +57,13 @@ hr:
     settings: 'Promijeni postavke e-pošte: %{link}'
     view: 'Vidi:'
   auth:
-    didnt_get_confirmation: Niste primili upute za potvrđivanje?
     forgot_password: Zaboravljena lozinka?
     login: Prijavi se
     logout: Odjavi se
     register: Registriraj se
-    resend_confirmation: Ponovo pošalji upute za potvrđivanje
     reset_password: Ponovno postavi lozinku
     security: Sigurnost
     set_new_password: Postavi novu lozinku
-  authorize_follow:
-    error: Nažalost, došlo je do greške tijekom traženja udaljenog računa
-    follow: Prati
-    title: Prati %{acct}
   datetime:
     distance_in_words:
       about_x_months: "%{count}mj"
@@ -99,8 +97,6 @@ hr:
       title: Filteri
     new:
       title: Dodaj novi filter
-  footer:
-    trending_now: Popularno
   generic:
     all: Sve
     changes_saved_msg: Izmjene su uspješno sačuvane!
@@ -167,8 +163,6 @@ hr:
   remote_follow:
     missing_resource: Nije moguće pronaći traženi URL preusmjeravanja za Vaš račun
   sessions:
-    platforms:
-      other: nepoznata platforma
     revoke: Opozovi
     revoke_success: Sesija je uspješno opozvana
     title: Sesije
@@ -209,7 +203,6 @@ hr:
       public: Javno
       unlisted: Neprikazano
   stream_entries:
-    reblogged: boostano
     sensitive_content: Osjetljivi sadržaj
   two_factor_authentication:
     disable: Onemogući 2FA

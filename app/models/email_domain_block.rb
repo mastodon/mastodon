@@ -12,7 +12,7 @@
 #
 
 class EmailDomainBlock < ApplicationRecord
-  self.ignored_columns = %w(
+  self.ignored_columns += %w(
     ips
     last_refresh_at
   )
@@ -64,7 +64,7 @@ class EmailDomainBlock < ApplicationRecord
 
         segments = uri.normalized_host.split('.')
 
-        segments.map.with_index { |_, i| segments[i..-1].join('.') }
+        segments.map.with_index { |_, i| segments[i..].join('.') }
       end
     end
 

@@ -2,16 +2,20 @@
 fi:
   simple_form:
     hints:
+      account:
+        display_name: Koko nimesi tai lempinimesi.
+        fields: Kotisivusi, pronominit, ikä, mitä ikinä haluatkin.
+        note: 'Voit @mainita muita käyttäjiä tai #aihetunnisteita.'
       account_alias:
         acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, josta haluat siirtyä
       account_migration:
         acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, johon haluat siirtyä
       account_warning_preset:
         text: Voit käyttää julkaisun syntaksia, kuten URL-osoitteita, aihetunnisteita ja mainintoja
-        title: Vapaaehtoinen. Ei näytetä vastaanottajalle
+        title: Valinnainen. Ei näy vastaanottajalle
       admin_account_action:
         include_statuses: Käyttäjä näkee mitkä viestit johtivat toimenpiteeseen tai varoitukseen
-        send_email_notification: Käyttäjä saa selityksen mitä tapahtui hänen tililleen
+        send_email_notification: Käyttäjä saa selvityksen siitä, mitä hänen tililleen tapahtui
         text_html: Valinnainen. Voit käyttää julkaisun syntaksia. Voit <a href="%{path}">lisätä varoitusasetuksia</a> säästääksesi aikaa
         type_html: Valitse mitä teet käyttäjälle <strong>%{acct}</strong>
         types:
@@ -37,14 +41,11 @@ fi:
         current_password: Turvallisuussyistä kirjoita nykyisen tilin salasana
         current_username: Vahvista kirjoittamalla nykyisen tilin käyttäjätunnus
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
-        discoverable: Salli tuntemattomien löytää tilisi suositusten, trendien ja muiden ominaisuuksien kautta
         email: Sinulle lähetetään vahvistussähköposti
-        fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         inbox_url: Kopioi URL-osoite haluamasi välittäjän etusivulta
         irreversible: Suodatetut julkaisut katoavat lopullisesti, vaikka suodatin poistettaisiin myöhemmin
         locale: Käyttöliittymän, sähköpostien ja ilmoitusten kieli
-        locked: Sinun täytyy hyväksyä seuraajat manuaalisesti
         password: Käytä vähintään 8 merkkiä
         phrase: Täytetään riippumatta julkaisun kirjainkoon tai sisällön varoituksesta
         scopes: Mihin sovellusliittymiin sovellus pääsee käsiksi. Jos valitset ylätason laajuuden, sinun ei tarvitse valita yksittäisiä.
@@ -54,12 +55,9 @@ fi:
         setting_display_media_default: Piilota arkaluonteiseksi merkitty media
         setting_display_media_hide_all: Piilota aina kaikki media
         setting_display_media_show_all: Näytä aina arkaluonteiseksi merkitty media
-        setting_hide_network: Ketä seuraat ja kuka seuraa sinua, piilotetaan profiiliisi
-        setting_noindex: Vaikuttaa julkiseen profiiliisi ja tilasivuihisi
-        setting_show_application: Viestittelyyn käyttämäsi sovellus näkyy viestiesi yksityiskohtaisessa näkymässä
         setting_use_blurhash: Liukuvärit perustuvat piilotettujen kuvien väreihin, mutta sumentavat yksityiskohdat
-        setting_use_pending_items: Piilota aikajanan päivitykset napsautuksen taakse sen sijaan, että vierittäisi syötettä automaattisesti
-        username: Käyttäjänimesi tulee olemaan yksilöllinen %{domain}
+        setting_use_pending_items: Piilota aikajanan päivitykset napsautuksen taakse syötteen automaattisen vierityksen sijaan
+        username: Voit käyttää kirjaimia, numeroita ja alaviivoja
         whole_word: Kun avainsana tai lause on vain aakkosnumeerinen, se otetaan käyttöön, jos se vastaa koko sanaa
       domain_allow:
         domain: Tämä verkkotunnus voi noutaa tietoja tältä palvelimelta ja sieltä saapuvat tiedot käsitellään ja tallennetaan
@@ -67,7 +65,7 @@ fi:
         domain: Tämä voi olla se verkkotunnus, joka näkyy sähköpostiosoitteessa tai MX tietueessa jota se käyttää. Ne tarkistetaan rekisteröitymisen yhteydessä.
         with_dns_records: Annetun verkkotunnuksen DNS-tietueet yritetään ratkaista ja tulokset myös estetään
       featured_tag:
-        name: 'Tässä muutamia aihetunnisteita, joita käytit viime aikoina:'
+        name: 'Tässä muutamia hiljattain käyttämiäsi aihetunnisteita:'
       filters:
         action: Valitse, mikä toiminto suoritetaan, kun viesti vastaa suodatinta
         actions:
@@ -91,13 +89,13 @@ fi:
         site_short_description: Lyhyt kuvaus auttaa yksilöimään palvelimesi. Kuka sitä johtaa, kenelle se on tarkoitettu?
         site_terms: Käytä omaa tietosuojakäytäntöä tai jätä tyhjäksi, jos haluat käyttää oletusta. Voidaan jäsentää Markdown-syntaksilla.
         site_title: Kuinka ihmiset voivat viitata palvelimeen sen verkkotunnuksen lisäksi.
-        status_page_url: URL-osoite, jonka kautta palvelimen tila voidaan tarkastaa sen ollessa tavoittamattomissa
+        status_page_url: URL-osoite sivulle, jonka kautta tämän palvelimen tila voidaan ongelmatilanteissa tarkastaa
         theme: Teema, jonka uloskirjautuneet vierailijat ja uudet käyttäjät näkevät.
         thumbnail: Noin 2:1 kuva näytetään palvelimen tietojen rinnalla.
         timeline_preview: Uloskirjautuneet vierailijat voivat selata uusimpia julkisia viestejä, jotka ovat saatavilla palvelimella.
         trendable_by_default: Ohita suositun sisällön manuaalinen tarkistus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
         trends: Trendit osoittavat, mitkä julkaisut, aihetunnisteet ja uutiset ovat saamassa vetoa palvelimellasi.
-        trends_as_landing_page: Näytä suosittu sisältö uloskirjautuneille käyttäjille ja kävijöille palvelimen kuvauksen sijaan. Edellyttää suositun sisällön käyttöönottoa.
+        trends_as_landing_page: Näytä vierailijoille ja uloskirjautuneille käyttäjille suosittu sisältö palvelininstanssin kuvaustekstin sijaan. Edellytyksenä on, että suosittu sisältö -ominaisuus on käytössä.
       form_challenge:
         current_password: Olet menossa suojatulle alueelle
       imports:
@@ -131,6 +129,7 @@ fi:
         position: Korkeampi rooli ratkaisee konfliktit tietyissä tilanteissa. Tiettyjä toimintoja voidaan suorittaa vain rooleille, joiden prioriteetti on pienempi
       webhook:
         events: Valitse lähetettävät tapahtumat
+        template: Luo oma JSON-hyötykuorma käyttäen muuttujainterpolointia. Jättäessäsi kentän tyhjäksi, käytetään vakio-JSON-kuormaa.
         url: Mihin tapahtumat lähetetään
     labels:
       account:
@@ -174,7 +173,6 @@ fi:
         context: Suodata konteksteista
         current_password: Nykyinen salasana
         data: Tiedot
-        discoverable: Listaa tämä tili hakemistoon
         display_name: Nimimerkki
         email: Sähköpostiosoite
         expires_in: Vanhenee
@@ -184,7 +182,6 @@ fi:
         inbox_url: Välittäjän postilaatikon URL-osoite
         irreversible: Pudota piilottamisen sijaan
         locale: Kieli
-        locked: Lukitse tili
         max_uses: Käyttökertoja enintään
         new_password: Uusi salasana
         note: Kuvaus
@@ -196,8 +193,7 @@ fi:
         setting_always_send_emails: Lähetä aina sähköposti-ilmoituksia
         setting_auto_play_gif: Toista GIF-animaatiot automaattisesti
         setting_boost_modal: Kysy vahvistus ennen tehostusta
-        setting_crop_images: Rajaa kuvat avaamattomissa tuuttauksissa 16:9 kuvasuhteeseen
-        setting_default_language: Julkaisujen kieli
+        setting_default_language: Viestien kieli
         setting_default_privacy: Viestin näkyvyys
         setting_default_sensitive: Merkitse media aina arkaluontoiseksi
         setting_delete_modal: Kysy vahvistusta ennen viestin poistamista
@@ -208,9 +204,7 @@ fi:
         setting_display_media_show_all: Näytä kaikki
         setting_expand_spoilers: Laajenna aina sisältövaroituksilla merkityt viestit
         setting_hide_network: Piilota verkkosi
-        setting_noindex: Jättäydy hakukoneindeksoinnin ulkopuolelle
         setting_reduce_motion: Vähennä animaatioiden liikettä
-        setting_show_application: Näytä sovellus mistä lähetät viestejä
         setting_system_font_ui: Käytä järjestelmän oletusfonttia
         setting_theme: Sivuston teema
         setting_trends: Näytä päivän trendit
@@ -296,6 +290,7 @@ fi:
         usable: Salli julkaisujen käyttää tätä aihetunnistetta
       user:
         role: Rooli
+        time_zone: Aikavyöhyke
       user_role:
         color: Merkin väri
         highlighted: Näyttä rooli merkkinä käyttäjäprofiileissa
@@ -304,6 +299,7 @@ fi:
         position: Prioriteetti
       webhook:
         events: Tapahtumat käytössä
+        template: Hyötykuormapohja
         url: Päätepisteen URL
     'no': Ei
     not_recommended: Ei suositella

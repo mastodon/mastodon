@@ -1,7 +1,7 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/index.js
 
-import data from './emoji_mart_data_light';
+import * as data from './emoji_mart_data_light';
 
 const buildSearch = (data) => {
   const search = [];

@@ -1,11 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { makeGetAccount } from '../../../selectors';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import Avatar from '../../../components/avatar';
-import DisplayName from '../../../components/display_name';
 import { injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import { Avatar } from '../../../components/avatar';
+import { DisplayName } from '../../../components/display_name';
+import { makeGetAccount } from '../../../selectors';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
@@ -17,9 +18,6 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-
-export default @connect(makeMapStateToProps)
-@injectIntl
 class Account extends ImmutablePureComponent {
 
   static propTypes = {
@@ -41,3 +39,5 @@ class Account extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(makeMapStateToProps)(injectIntl(Account));

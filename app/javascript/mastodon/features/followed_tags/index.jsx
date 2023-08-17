@@ -1,16 +1,20 @@
-import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
-import React from 'react';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
+
+import { debounce } from 'lodash';
+
+import { expandFollowedHashtags, fetchFollowedHashtags } from 'mastodon/actions/tags';
 import ColumnHeader from 'mastodon/components/column_header';
+import Hashtag from 'mastodon/components/hashtag';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import Column from 'mastodon/features/ui/components/column';
-import { Helmet } from 'react-helmet';
-import Hashtag from 'mastodon/components/hashtag';
-import { expandFollowedHashtags, fetchFollowedHashtags } from 'mastodon/actions/tags';
 
 const messages = defineMessages({
   heading: { id: 'followed_tags', defaultMessage: 'Followed hashtags' },
@@ -22,8 +26,6 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['followed_tags', 'next']),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class FollowedTags extends ImmutablePureComponent {
 
   static propTypes = {
@@ -87,3 +89,5 @@ class FollowedTags extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(FollowedTags));

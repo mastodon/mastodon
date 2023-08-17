@@ -2,6 +2,10 @@
 hu:
   simple_form:
     hints:
+      account:
+        display_name: Teljes neved vagy vicces neved.
+        fields: Weboldalad, megszólításaid, korod, bármi, amit szeretnél.
+        note: 'Megemlíthetsz @másokat vagy #hashtag-eket.'
       account_alias:
         acct: Add meg annak a fióknak a felhasználónév@domain párosát, ahonnan át szeretnéd mozgatni
       account_migration:
@@ -37,14 +41,11 @@ hu:
         current_password: Biztonsági okok miatt kérlek, írd be a jelenlegi fiók jelszavát
         current_username: A jóváhagyáshoz írd be a jelenlegi fiók felhasználói nevét
         digest: Csak hosszú távollét esetén küldődik és csak ha személyes üzenetet kaptál távollétedben
-        discoverable: Engedélyezés, hogy a fiókod idegenek által megtalálható legyen javaslatokon, trendeken és más funkciókon keresztül
         email: Kapsz egy megerősítő e-mailt
-        fields: A profilodon legfeljebb 4 bejegyzés szerepelhet táblázatos formában
         header: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
         inbox_url: Másold ki a használandó relé szerver kezdőoldalának URL-jét
         irreversible: A kiszűrt bejegyzések visszafordíthatatlanul eltűnnek, a szűrő későbbi törlése esetén is
         locale: A felhasználói felület, e-mailek, push üzenetek nyelve
-        locked: Egyenként engedélyezned kell a követőidet
         password: Legalább 8 karakter
         phrase: Illeszkedni fog kis/nagybetű függetlenül, és tartalmi figyelmeztetések mögött is
         scopes: Mely API-kat érheti el az alkalmazás. Ha felső szintű hatáskört választasz, nem kell egyesével kiválasztanod az alatta lévőeket.
@@ -54,12 +55,9 @@ hu:
         setting_display_media_default: Kényes tartalomnak jelölt média elrejtése
         setting_display_media_hide_all: Mindig minden média elrejtése
         setting_display_media_show_all: Mindig mutasd a szenzitív tartalomként jelölt médiát
-        setting_hide_network: Nem látszik majd a profilodon, kik követnek és te kiket követsz
-        setting_noindex: A nyilvános profilodra és a bejegyzéseidre vonatkozik
-        setting_show_application: A bejegyzések részletes nézetében látszani fog, milyen alkalmazást használtál a bejegyzés közzétételéhez
         setting_use_blurhash: A kihomályosítás az eredeti képből történik, de minden részletet elrejt
         setting_use_pending_items: Idővonal frissítése csak kattintásra automatikus görgetés helyett
-        username: A felhasználói neved egyedi lesz a %{domain} domainen
+        username: Betűk, számok és alávonások használhatók
         whole_word: Ha a kulcsszó alfanumerikus, csak akkor minősül majd találatnak, ha teljes szóra illeszkedik
       domain_allow:
         domain: Ez a domain adatokat kérhet le erről a kiszolgálóról, és a bejövő adatok fel lesznek dolgozva és tárolva lesznek
@@ -131,6 +129,7 @@ hu:
         position: A magasabb szerepkör oldja fel az ütközéseket bizonyos helyzetekben. Bizonyos műveleteket csak alacsonyabb prioritású szerepkörrel lehet elvégezni.
       webhook:
         events: Válaszd ki a küldendő eseményeket
+        template: Saját JSON adatcsomagot állíthatsz össze változó-behelyettesítés használatával. Hagyd üresen az alapértelmezett JSON adatcsomaghoz.
         url: Ahová az eseményket küldjük
     labels:
       account:
@@ -174,7 +173,6 @@ hu:
         context: Szűrés kontextusai
         current_password: Jelenlegi jelszó
         data: Adatok
-        discoverable: Fiók listázása a profilok adatbázisában
         display_name: Megjelenített név
         email: E-mail cím
         expires_in: Elévül
@@ -184,7 +182,6 @@ hu:
         inbox_url: Relé inbox-hoz tartozó URL
         irreversible: Eldobás elrejtés helyett
         locale: Felhasználói felület nyelve
-        locked: Felhasználói fiók lezárása
         max_uses: Hányszor használható
         new_password: Új jelszó
         note: Bemutatkozás
@@ -196,7 +193,6 @@ hu:
         setting_always_send_emails: E-mail értesítések küldése mindig
         setting_auto_play_gif: GIF-ek automatikus lejátszása
         setting_boost_modal: Megerősítés kérése megtolás előtt
-        setting_crop_images: Képek 16x9-re vágása nem kinyitott bejegyzéseknél
         setting_default_language: Bejegyzések nyelve
         setting_default_privacy: Bejegyzések láthatósága
         setting_default_sensitive: Minden médiafájl megjelölése kényesként
@@ -208,9 +204,7 @@ hu:
         setting_display_media_show_all: Mindent mutat
         setting_expand_spoilers: Tartalmi figyelmeztetéssel ellátott bejegyzések automatikus kinyitása
         setting_hide_network: Hálózatod elrejtése
-        setting_noindex: Megtiltom a keresőmotoroknak, hogy indexeljék a tartalmaimat
         setting_reduce_motion: Animációk mozgásának csökkentése
-        setting_show_application: Bejegyzések küldésére használt alkalmazás feltüntetése
         setting_system_font_ui: Rendszer betűtípusának használata
         setting_theme: Megjelenítési sablon
         setting_trends: Mai trend mutatása
@@ -296,6 +290,7 @@ hu:
         usable: Bejegyzések használhatják ezt a hashtaget
       user:
         role: Szerep
+        time_zone: Időzóna
       user_role:
         color: Jelvény színe
         highlighted: Szerep megjelenítése jelvényként a felhasználói profilokon
@@ -304,6 +299,7 @@ hu:
         position: Prioritás
       webhook:
         events: Engedélyezett események
+        template: Adatcsomag sablon
         url: Végponti URL
     'no': Nem
     not_recommended: Nem ajánlott

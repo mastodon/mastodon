@@ -1,9 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
-import classNames from 'classnames';
+
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
-import Icon from 'mastodon/components/icon';
+
+import classNames from 'classnames';
+
+import { Icon }  from 'mastodon/components/icon';
 
 const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
@@ -12,8 +15,7 @@ const messages = defineMessages({
   moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
 });
 
-export default @injectIntl
-class ColumnHeader extends React.PureComponent {
+class ColumnHeader extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -43,14 +45,6 @@ class ColumnHeader extends React.PureComponent {
     animating: false,
   };
 
-  historyBack = () => {
-    if (window.history && window.history.length === 1) {
-      this.context.router.history.push('/');
-    } else {
-      this.context.router.history.goBack();
-    }
-  };
-
   handleToggleClick = (e) => {
     e.stopPropagation();
     this.setState({ collapsed: !this.state.collapsed, animating: true });
@@ -69,7 +63,13 @@ class ColumnHeader extends React.PureComponent {
   };
 
   handleBackClick = () => {
-    this.historyBack();
+    const { router } = this.context;
+
+    if (router.history.location?.state?.fromMastodon) {
+      router.history.goBack();
+    } else {
+      router.history.push('/');
+    }
   };
 
   handleTransitionEnd = () => {
@@ -85,6 +85,7 @@ class ColumnHeader extends React.PureComponent {
   };
 
   render () {
+    const { router } = this.context;
     const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
     const { collapsed, animating } = this.state;
 
@@ -128,7 +129,7 @@ class ColumnHeader extends React.PureComponent {
       pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
-    if (!pinned && (multiColumn || showBackButton)) {
+    if (!pinned && ((multiColumn && router.history.location?.state?.fromMastodon) || showBackButton)) {
       backButton = (
         <button onClick={this.handleBackClick} className='column-header__back-button'>
           <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
@@ -213,3 +214,5 @@ class ColumnHeader extends React.PureComponent {
   }
 
 }
+
+export default injectIntl(ColumnHeader);

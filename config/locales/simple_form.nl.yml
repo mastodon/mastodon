@@ -2,6 +2,10 @@
 nl:
   simple_form:
     hints:
+      account:
+        display_name: Jouw volledige naam of een leuke bijnaam.
+        fields: Jouw website, persoonlijke voornaamwoorden, leeftijd, alles wat je maar kwijt wilt.
+        note: 'Je kunt andere mensen @vermelden of #hashtags gebruiken.'
       account_alias:
         acct: Vermeld de gebruikersnaam@domein van het account vanwaar je wilt verhuizen
       account_migration:
@@ -32,19 +36,16 @@ nl:
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
-        bot: Signaal naar andere gebruikers toe dat dit account hoofdzakelijk geautomatiseerde berichten stuurt en mogelijk niet wordt gemonitord
+        bot: Signaal aan anderen dat het account voornamelijk geautomatiseerde acties uitvoert en mogelijk niet wordt gecontroleerd
         context: Een of meerdere locaties waar de filter actief moet zijn
         current_password: Voer voor veiligheidsredenen het wachtwoord van je huidige account in
         current_username: Voer ter bevestiging de gebruikersnaam van je huidige account in
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
-        discoverable: Toestaan dat jouw account vindbaar is voor onbekenden, via aanbevelingen, trends en op andere manieren
         email: Je krijgt een bevestigingsmail
-        fields: Je kunt maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
         inbox_url: Kopieer de URL van de voorpagina van de relayserver die je wil gebruiken
         irreversible: Gefilterde berichten verdwijnen onomkeerbaar, zelfs als de filter later wordt verwijderd
         locale: De taal van de gebruikersomgeving, e-mails en pushmeldingen
-        locked: Door het goedkeuren van volgers handmatig bepalen wie jou mag volgen
         password: Gebruik tenminste 8 tekens
         phrase: Komt overeen ongeacht hoofd-/kleine letters of een inhoudswaarschuwing
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
@@ -54,12 +55,9 @@ nl:
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
         setting_display_media_show_all: Media altijd tonen
-        setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
-        setting_noindex: Heeft invloed op jouw openbare profiel en pagina's met berichten
-        setting_show_application: De toepassing de je gebruikt om berichten te plaatsen wordt in de gedetailleerde weergave van het bericht getoond
         setting_use_blurhash: Wazige kleurovergangen zijn gebaseerd op de kleuren van de verborgen media, waarmee elk detail verdwijnt
         setting_use_pending_items: De tijdlijn wordt bijgewerkt door op het aantal nieuwe items te klikken, in plaats van dat deze automatisch wordt bijgewerkt
-        username: Jouw gebruikersnaam is uniek op %{domain}
+        username: Je kunt letters, cijfers en underscores gebruiken
         whole_word: Wanneer het trefwoord of zinsdeel alfanumeriek is, wordt het alleen gefilterd wanneer het hele woord overeenkomt
       domain_allow:
         domain: Dit domein is in staat om gegevens van deze server op te halen, en binnenkomende gegevens worden verwerkt en opgeslagen
@@ -78,7 +76,7 @@ nl:
         backups_retention_period: De aangemaakte gebruikersarchieven voor het opgegeven aantal dagen behouden.
         bootstrap_timeline_accounts: Deze accounts worden bovenaan de aanbevelingen aan nieuwe gebruikers getoond. Meerdere gebruikersnamen met komma's scheiden.
         closed_registrations_message: Weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld
-        content_cache_retention_period: 'Berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Let op: Dit is onomkeerbaar.'
+        content_cache_retention_period: Alle berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Deze berichten kunnen daarna hoogstwaarschijnlijk niet meer worden hersteld. Alle gerelateerde bladwijzers, favorieten en boosts worden eveneens onomkeerbaar verwijderd.
         custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
         media_cache_retention_period: Mediabestanden die van andere servers zijn gedownload worden na het opgegeven aantal dagen verwijderd en worden op verzoek opnieuw gedownload.
@@ -131,6 +129,7 @@ nl:
         position: Een hogere rol beslist in bepaalde situaties over het oplossen van conflicten. Bepaalde acties kunnen alleen worden uitgevoerd op rollen met een lagere prioriteit
       webhook:
         events: Selecteer de te verzenden gebeurtenissen
+        template: Maak een eigen JSON payload aan met variabele interpolatie. Laat leeg voor standaard JSON.
         url: Waar gebeurtenissen naartoe worden verzonden
     labels:
       account:
@@ -167,24 +166,22 @@ nl:
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
         avatar: Profielfoto
-        bot: Dit is een bot-account
+        bot: Dit is een geautomatiseerd account
         chosen_languages: Talen filteren
         confirm_new_password: Nieuw wachtwoord bevestigen
         confirm_password: Wachtwoord bevestigen
         context: Filterlocaties
         current_password: Huidig wachtwoord
         data: Gegevens
-        discoverable: Dit account laten aanbevelen en in de gebruikersgids tonen
         display_name: Weergavenaam
         email: E-mailadres
         expires_in: Vervalt na
-        fields: Metadata profiel
+        fields: Extra velden
         header: Omslagfoto
         honeypot: "%{label} (niet invullen)"
         inbox_url: Inbox-URL van de relayserver
         irreversible: Verwijderen in plaats van verbergen
         locale: Taal van de gebruikersomgeving
-        locked: Volgverzoek vereisen
         max_uses: Max. aantal keer te gebruiken
         new_password: Nieuwe wachtwoord
         note: Bio
@@ -194,9 +191,8 @@ nl:
         setting_advanced_layout: Geavanceerde webomgeving inschakelen
         setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
         setting_always_send_emails: Altijd e-mailmeldingen verzenden
-        setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
+        setting_auto_play_gif: Geanimeerde GIF's automatisch afspelen
         setting_boost_modal: Vraag voor het boosten van een bericht een bevestiging
-        setting_crop_images: Afbeeldingen bijsnijden tot 16x9 in berichten op tijdlijnen
         setting_default_language: Taal van jouw berichten
         setting_default_privacy: Zichtbaarheid van nieuwe berichten
         setting_default_sensitive: Media altijd als gevoelig markeren
@@ -206,12 +202,10 @@ nl:
         setting_display_media_default: Standaard
         setting_display_media_hide_all: Alles verbergen
         setting_display_media_show_all: Alles tonen
-        setting_expand_spoilers: Altijd berichten met inhoudswaarschuwingen uitklappen
+        setting_expand_spoilers: Berichten met inhoudswaarschuwingen altijd uitklappen
         setting_hide_network: Jouw volgers en wie je volgt verbergen
-        setting_noindex: Jouw berichten niet door zoekmachines laten indexeren
-        setting_reduce_motion: Langzamere animaties
-        setting_show_application: Toepassing onthullen die je voor het verzenden van berichten gebruikt
-        setting_system_font_ui: Standaardlettertype van jouw systeem gebruiken
+        setting_reduce_motion: Beweging in animaties verminderen
+        setting_system_font_ui: Standaardlettertype van het systeem gebruiken
         setting_theme: Thema website
         setting_trends: Trends van vandaag tonen
         setting_unfollow_modal: Vraag voor het ontvolgen van iemand een bevestiging
@@ -263,7 +257,7 @@ nl:
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
-        must_be_following_dm: Directe berichten van mensen die jij niet volgt blokkeren
+        must_be_following_dm: Privéberichten van mensen die jij niet volgt blokkeren
       invite:
         comment: Opmerking
       invite_request:
@@ -296,6 +290,7 @@ nl:
         usable: Toestaan dat deze hashtag in berichten gebruikt mag worden
       user:
         role: Rol
+        time_zone: Tijdzone
       user_role:
         color: Kleur van badge
         highlighted: Rol als badge op profielpagina's tonen
@@ -304,6 +299,7 @@ nl:
         position: Prioriteit
       webhook:
         events: Ingeschakelde gebeurtenissen
+        template: Sjabloon Payload
         url: Eindpunt URL
     'no': Nee
     not_recommended: Niet aanbevolen

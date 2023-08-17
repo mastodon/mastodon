@@ -1,10 +1,12 @@
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import Icon from 'mastodon/components/icon';
+import { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
 
-export default class ColumnBackButton extends React.PureComponent {
+import { FormattedMessage } from 'react-intl';
+
+import { Icon }  from 'mastodon/components/icon';
+
+export default class ColumnBackButton extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -12,13 +14,19 @@ export default class ColumnBackButton extends React.PureComponent {
 
   static propTypes = {
     multiColumn: PropTypes.bool,
+    onClick: PropTypes.func,
   };
 
   handleClick = () => {
-    if (window.history && window.history.length === 1) {
-      this.context.router.history.push('/');
+    const { router } = this.context;
+    const { onClick } = this.props;
+
+    if (onClick) {
+      onClick();
+    } else if (router.history.location?.state?.fromMastodon) {
+      router.history.goBack();
     } else {
-      this.context.router.history.goBack();
+      router.history.push('/');
     }
   };
 

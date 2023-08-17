@@ -2,6 +2,10 @@
 et:
   simple_form:
     hints:
+      account:
+        display_name: Su täisnimi või naljanimi.
+        fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
+        note: 'Saad @mainida teisi inimesi või #silte.'
       account_alias:
         acct: Sisesta konto kasutajanimi@domeen, mille soovid siia ümber kolida
       account_migration:
@@ -30,21 +34,18 @@ et:
       appeal:
         text: Otsust on võimalik vaidlustada vaid 1 kord
       defaults:
-        autofollow: Inimesed, kes loovad konto selle kutse läbi, automaatselt jälgivad Teid
+        autofollow: Inimesed, kes loovad konto selle kutse läbi, automaatselt jälgivad sind
         avatar: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         bot: Teavita teisi, et see konto teeb enamjaolt automatiseeritud tegevusi ja ei pruugi olla järelvalve all
         context: Üks või mitu konteksti, mille vastu see filter peaks rakenduma
         current_password: Sisesta turvalisuse huvides oma siinse konto salasõna
         current_username: Kinnitamiseks palun sisesta oma konto kasutajanimi
         digest: Saadetakse ainult pärast pikka tegevusetuse perioodi ja ainult siis, kui on saadetud otsesõnumeid
-        discoverable: Konto on leitav võhivõõraste jaoks soovituste ja trendide sirvimise teel vm sarnaste vahenditega
         email: Sulle saadetakse e-posti teel kinnituskiri
-        fields: Saad oma profiilil tabelina kuvada kuni 4 asja
         header: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         inbox_url: Kopeeri soovitud vahendaja avalehe URL
         irreversible: Filtreeritud postitused kaovad taastamatult, isegi kui filter on hiljem eemaldatud
         locale: Kasutajaliidese, e-kirjade ja tõuketeadete keel
-        locked: Nõuab käsitsi jälgijate kinnitamist
         password: Vajalik on vähemalt 8 märki
         phrase: Kattub olenemata postituse teksti suurtähtedest või sisuhoiatusest
         scopes: Milliseid API-sid see rakendus tohib kasutada. Kui valid kõrgeima taseme, ei pea üksikuid eraldi valima.
@@ -54,12 +55,9 @@ et:
         setting_display_media_default: Peida tundlikuks märgitud meedia
         setting_display_media_hide_all: Alati peida kõik meedia
         setting_display_media_show_all: Alati näita tundlikuks märgistatud meedia
-        setting_hide_network: Profiilil ei kuvata Keda sa jälgid ja kes jälgib sind
-        setting_noindex: Mõjutab avalikku profiili ja postituste lehekülgi
-        setting_show_application: Postitamiseks kasutatud rakenduse infot kuvatakse postituse üksikasjavaates
         setting_use_blurhash: Värvid põhinevad peidetud visuaalidel, kuid hägustavad igasuguseid detaile
         setting_use_pending_items: Voo automaatse kerimise asemel peida ajajoone uuendused kliki taha
-        username: Sinu kasutajanimi on %{domain}-il unikaalne
+        username: Võid kasutada ladina tähti, numbreid ja allkriipsu
         whole_word: Kui võtmesõna või fraas on ainult tähtnumbriline, rakendub see ainult siis, kui see kattub terve sõnaga
       domain_allow:
         domain: See domeen saab tõmmata andmeid sellelt serverilt ning sissetulevad andmed sellelt domeenilt töödeldakse ning salvestatakse
@@ -131,6 +129,7 @@ et:
         position: Kõrgem roll otsustab teatud olukordades konfliktide lahendamise. Teatud toiminguid saab teha ainult madalama prioriteediga rollidega
       webhook:
         events: Saadetavate sündmuste valik
+        template: Koosta oma JSON manus kasutades muutujateasendust. Jäta tühaks tavalise JSONi jaoks.
         url: Kuhu sündmused saadetakse
     labels:
       account:
@@ -174,7 +173,6 @@ et:
         context: Filtreeri kontekste
         current_password: Kehtiv salasõna
         data: Andmed
-        discoverable: Lisa see konto kataloogi
         display_name: Kuvanimi
         email: E-posti aadress
         expires_in: Aegu pärast
@@ -184,7 +182,6 @@ et:
         inbox_url: Vahendaja sisendkausta URL
         irreversible: Kustuta selle asemel, et peita
         locale: Kasutajaliidese keel
-        locked: Lukusta konto
         max_uses: Maksimum kasutajate arv
         new_password: Uus salasõna
         note: Elulugu
@@ -196,7 +193,6 @@ et:
         setting_always_send_emails: Edasta kõik teavitused meilile
         setting_auto_play_gif: Esita GIF-e automaatselt
         setting_boost_modal: Näita enne jagamist kinnitusdialoogi
-        setting_crop_images: Laiendamata postitustes kärbi pildid 16:9 küljesuhtesse
         setting_default_language: Postituse keel
         setting_default_privacy: Postituse nähtavus
         setting_default_sensitive: Alati märgista meedia tundlikuks
@@ -208,9 +204,7 @@ et:
         setting_display_media_show_all: Kuva kõik
         setting_expand_spoilers: Alati näita tundlikuks märgitud postituste sisu
         setting_hide_network: Peida oma võrk
-        setting_noindex: Keeldu otsingumootorite indekseerimistest
         setting_reduce_motion: Vähenda animatsioonides liikumist
-        setting_show_application: Avalikusta postituste tegemisel kasutatud rakendus
         setting_system_font_ui: Kasuta süsteemi vaikefonti
         setting_theme: Saidi teema
         setting_trends: Näita tänaseid trende
@@ -281,8 +275,8 @@ et:
         digest: Saada ülevaatlike e-kirju
         favourite: Saada e-kiri, kui keegi lisab su postituse lemmikuks
         follow: Saada e-kiri, kui keegi alustab jälgimist
-        follow_request: Saada e-kiri, kui keegi soovib Teid jälgida
-        mention: Saada e-kiri, kui keegi mainib Teid
+        follow_request: Saada e-kiri, kui keegi soovib sind jälgida
+        mention: Saada e-kiri, kui keegi mainib sind
         pending_account: Saada e-kiri, kui uus konto vajab ülevaatlust
         reblog: Keegi jagas postitust
         report: Esitatud on uus raport
@@ -296,6 +290,7 @@ et:
         usable: Luba postitustel seda silti kasutada
       user:
         role: Roll
+        time_zone: Ajavöönd
       user_role:
         color: Märgi värv
         highlighted: Kuva roll kasutajaprofiilidel märgina
@@ -304,6 +299,7 @@ et:
         position: Positsioon
       webhook:
         events: Lubatud sündmused
+        template: Manuse mall
         url: Lõpp-punkti URL
     'no': Ei
     not_recommended: Pole soovitatav

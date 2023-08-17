@@ -54,7 +54,7 @@ uk:
         no_role: Немає ролі
         title: Змінити роль для %{username}
       confirm: Зберегти
-      confirmed: Збережено
+      confirmed: Підтвердити ел.адресу
       confirming: Зберігається
       custom: Власне
       delete: Видалити дані
@@ -89,7 +89,7 @@ uk:
         title: Розміщення
       login_status: Стан входу
       media_attachments: Мультимедійні вкладення
-      memorialize: Зробити пам'ятником
+      memorialize: Меморіалізувати
       memorialized: Перетворено на пам'ятник
       memorialized_msg: "%{username} успішно перетворено на пам'ятний обліковий запис"
       moderation:
@@ -131,7 +131,7 @@ uk:
       removed_header_msg: Зображення обкладинки %{username} вилучено
       resend_confirmation:
         already_confirmed: Цей користувач уже підтверджений
-        send: Надіслати електронний лист-підтвердження ще раз
+        send: Повторно надіслати підтвердження на електронну пошту
         success: Електронний лист-підтвердження успішно надіслано!
       reset: Скинути
       reset_password: Скинути пароль
@@ -150,7 +150,7 @@ uk:
       show:
         created_reports: Скарги, створені цим обліковим записом
         targeted_reports: Скарги на цей обліковий запис
-      silence: Глушення
+      silence: Обмежити
       silenced: Заглушені
       statuses: Дописи
       strikes: Попередні попередження
@@ -164,7 +164,7 @@ uk:
       unblocked_email_msg: Адреса електронної пошти %{username} успішно розблокована
       unconfirmed_email: Непідтверджена адреса електронної пошти
       undo_sensitized: Скасувати позначення делікатним
-      undo_silenced: Зняти глушення
+      undo_silenced: Зняти обмеження
       undo_suspension: Зняти призупинення
       unsilenced_msg: Успішно знято обмеження з облікового запису %{username}
       unsubscribe: Відписатися
@@ -211,7 +211,7 @@ uk:
         enable_custom_emoji: Увімкнути користувацькі емодзі
         enable_sign_in_token_auth_user: Увімкнути автентифікацію за допомогою е-пошти для користувача
         enable_user: Активувати користувача
-        memorialize_account: Зробити обліковий запис меморіалом
+        memorialize_account: Меморіалізувати акаунт
         promote_user: Підвищити користувача
         reject_appeal: Відхилити апеляцію
         reject_user: Відхилити користувача
@@ -396,6 +396,15 @@ uk:
       undo: Видалити з білого списку
     domain_blocks:
       add_new: Додати нове
+      confirm_suspension:
+        cancel: Скасувати
+        confirm: Призупинити
+        permanent_action: Скасування призупинення не відновить жодних даних або відносин.
+        preamble_html: Ви збираєтеся призупинити <strong>%{domain}</strong> і його піддомени.
+        remove_all_data: Це вилучить усі дані вмісту, медіа та профілів для облікових записів цього домену із вашого сервера.
+        stop_communication: Ваш сервер перестане взаємодіяти з цими серверами.
+        title: Підтвердити блокування домену для %{domain}
+        undo_relationships: Це призведе до скасування всіх взаємозв'язків між обліковими записами цих серверів і вашими.
       created_msg: Блокування домену обробляється
       destroyed_msg: Блокування домену знято
       domain: Домен
@@ -759,6 +768,9 @@ uk:
       branding:
         preamble: Брендинг вашого сервера відрізняє його від інших серверів в мережі. Ця інформація може показуватися в різних середовищах, таких як вебінтерфейс Mastodon, застосунки, у попередньому перегляді посилань на інші вебсайти та в застосунках обміну повідомленнями. Тому краще, щоб ця інформація була чіткою, короткою та лаконічною.
         title: Брендинг
+      captcha_enabled:
+        desc_html: Це залежить від зовнішніх скриптів hCaptcha, що може становити загрозу безпеці та приватності. Крім того, <strong>це може зробити процес реєстрації значно менш доступним для деяких людей (особливо з обмеженими можливостями)</strong>. З цих причин, будь ласка, розгляньте альтернативні заходи, такі як реєстрація на основі схвалення або на основі запрошення.
+        title: Вимагати нових користувачів розв'язувати CAPTCHA для підтвердження облікового запису
       content_retention:
         preamble: Контролюйте, як зберігаються користувацькі матеріали в Mastodon.
         title: Зберігання вмісту
@@ -840,6 +852,12 @@ uk:
         message_html: Ви не визначили будь-які правила сервера.
       sidekiq_process_check:
         message_html: Не працює процес Sidekiq для %{value} черги. Перегляньте конфігурації вашого Sidekiq
+      upload_check_privacy_error:
+        action: Перегляньте подробиці тут
+        message_html: "<strong>Ваш вебсервер неправильно налаштований. Приватність ваших користувачів піддається ризику</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Перегляньте подробиці тут
+        message_html: "<strong>Ваше сховище об'єктів неправильно налаштоване. Приватність ваших користувачів піддається ризику</strong>"
     tags:
       review: Переглянути допис
       updated_msg: Параметри хештеґів успішно оновлені
@@ -991,11 +1009,11 @@ uk:
       guide_link: https://uk.crowdin.com/project/mastodon
       guide_link_text: Кожен може взяти участь.
     sensitive_content: Дражливий зміст
-    toot_layout: Зовнішній вигляд дописів
   application_mailer:
     notification_preferences: Змінити налаштування електронної пошти
     salutation: "%{name},"
     settings: 'Змінити налаштування електронної пошти: %{link}'
+    unsubscribe: Відписатися
     view: 'Перегляд:'
     view_profile: Показати профіль
     view_status: Показати допис
@@ -1009,7 +1027,10 @@ uk:
     your_token: Ваш токен доступу
   auth:
     apply_for_account: Запит облікового запису
-    change_password: Пароль
+    captcha_confirmation:
+      help_html: Якщо у вас виникли проблеми з вирішенням CAPTCHA, ви можете зв'язатися з нами через %{email} і ми можемо вам допомогти.
+      hint_html: Ще одне! Ми повинні пересвідчитись, що ви людина (щоб ми могли уникнути спаму!). Розв'яжіть CAPTCHA внизу і натисніть кнопку "Продовжити".
+      title: Перевірка безпеки
     confirmations:
       wrong_email_hint: Якщо ця адреса електронної пошти неправильна, можна змінити її в налаштуваннях облікового запису.
     delete_account: Видалити обліковий запис
@@ -1018,7 +1039,7 @@ uk:
       prefix_invited_by_user: "@%{name} запрошує вас приєднатися до цього сервера Mastodon!"
       prefix_sign_up: Зареєструйтеся на Mastodon сьогодні!
       suffix: Маючи обліковий запис, ви зможете підписуватися на людей, публікувати дописи та листуватися з користувачами будь-якого сервера Mastodon!
-    didnt_get_confirmation: Не отримали інструкції з підтвердження?
+    didnt_get_confirmation: Не отримали посилання для підтвердження?
     dont_have_your_security_key: Не маєте ключа безпеки?
     forgot_password: Забули пароль?
     invalid_reset_password_token: Токен скидання паролю неправильний або просрочений. Спробуйте попросити новий.
@@ -1031,28 +1052,39 @@ uk:
     migrate_account_html: Якщо ви бажаєте переспрямувати цей обліковий запис на інший, ви можете <a href="%{path}">налаштувати це тут</a>.
     or_log_in_with: Або увійдіть з
     privacy_policy_agreement_html: Мною прочитано і я погоджуюся з <a href="%{privacy_policy_path}" target="_blank">політикою приватності</a>
+    progress:
+      confirm: Підтвердити електронну адресу
+      details: Ваші дані
+      review: Наш відгук
+      rules: Погодитися з правилами
     providers:
       cas: CAS
       saml: SAML
     register: Зареєструватися
     registration_closed: "%{instance} не приймає нових членів"
-    resend_confirmation: Повторно відправити інструкції з підтвердження
+    resend_confirmation: Повторно надіслати підтвердження на електронну пошту
     reset_password: Скинути пароль
     rules:
       accept: Прийняти
       back: Назад
+      invited_by: 'Ви можете приєднатися до %{domain} завдяки запрошенню, яке ви отримали від:'
       preamble: Вони налаштовані та закріплені модераторами %{domain}.
+      preamble_invited: Перед тим як продовжити ознайомтеся з основними правилами, встановленими модераторами %{domain}.
       title: Деякі основні правила.
+      title_invited: Вас запрошено.
     security: Зміна паролю
     set_new_password: Встановити новий пароль
     setup:
-      email_below_hint_html: Якщо ця електронна адреса не є вірною, ви можете змінити її тут та отримати новий лист для підтвердження.
-      email_settings_hint_html: Електронний лист-підтвердження було вислано на %{email}. Якщо ця адреса електронної пошти не правильна, ви можете змінити її в налаштуваннях облікового запису.
-      title: Налаштування
+      email_below_hint_html: Перевірте теку "Спам", або зробіть ще один запит. Ви можете виправити свою електронну адресу, якщо вона неправильна.
+      email_settings_hint_html: Натисніть на посилання, яке ми надіслали вам, щоб підтвердити %{email}. Ми чекатимемо прямо тут.
+      link_not_received: Не отримали посилання?
+      new_confirmation_instructions_sent: Ви отримаєте новий лист із посиланням на підтвердження протягом декількох хвилин!
+      title: Перевірте вашу поштову скриньку
     sign_in:
       preamble_html: Увійдіть за допомогою облікових даних <strong>%{domain}</strong>. Якщо ваш обліковий запис розміщений на іншому сервері, ви не зможете увійти тут.
       title: Увійти до %{domain}
     sign_up:
+      manual_review: Реєстрація на %{domain} проходить через ручний розгляд нашими модераторами. Щоб допомогти нам завершити вашу реєстрацію, напишіть трохи про себе і чому ви хочете зареєструватися на %{domain}.
       preamble: За допомогою облікового запису на цьому сервері Mastodon, ви зможете слідкувати за будь-якою іншою людиною в мережі, не зважаючи на те, де розміщений обліковий запис.
       title: Налаштуймо вас на %{domain}.
     status:
@@ -1064,18 +1096,6 @@ uk:
       view_strikes: Переглянути попередні попередження вашому обліковому запису
     too_fast: Форму подано занадто швидко, спробуйте ще раз.
     use_security_key: Використовувати ключ безпеки
-  authorize_follow:
-    already_following: Ви вже слідкуєте за цим обліковим записом
-    already_requested: Ви вже надіслали запит на підписку до цього облікового запису
-    error: На жаль, під час пошуку віддаленого облікового запису сталася помилка
-    follow: Підписатися
-    follow_request: 'Вам надіслали запит на підписку:'
-    following: 'Ура! Ви тепер підписані на:'
-    post_follow:
-      close: Або, ви можете просто закрити вікно.
-      return: Перейти до профілю користувача
-      web: Перейти до вебу
-    title: Підписатися на %{acct}
   challenge:
     confirm: Далі
     hint_html: "<strong>Підказка:</strong> ми не будемо запитувати ваш пароль впродовж наступної години."
@@ -1152,6 +1172,10 @@ uk:
       your_appeal_rejected: Вашу апеляцію було відхилено
   domain_validator:
     invalid_domain: не є допустимим ім'ям домену
+  edit_profile:
+    basic_information: Основна інформація
+    hint_html: "<strong>Налаштуйте те, що люди бачитимуть у вашому загальнодоступному профілі та поруч із вашими дописами.</strong> Інші люди з більшою ймовірністю підпишуться на вас та взаємодіятимуть з вами, якщо у вас є заповнений профіль та зображення профілю."
+    other: Інше
   errors:
     '400': Ваш запит був недійсним або неправильним.
     '403': У Вас немає доступу до перегляду даної сторінки.
@@ -1189,7 +1213,7 @@ uk:
     add_new: Додати новий
     errors:
       limit: Ви досягли максимальної кількості хештеґів
-    hint_html: "<strong>Що таке виділені хештеґи?</strong> Це ті, що показуються на видному місці у вашому загальнодоступному профілі. Вони дають змогу людям фільтрувати ваші загальнодоступні дописи за цими хештеґами. Це дуже корисно для стеження з мистецькими творами та довготривалими проєктами."
+    hint_html: "<strong>Що таке виділені хештеги?</strong> Чудовий інструмент для відстеження ваших творчих робіт і довготривалих проєктів, рекомендовані хештеги показані першими у вашому профілі та дозволяють швидко отримати доступ до ваших власних повідомлень."
   filters:
     contexts:
       account: Профілі
@@ -1238,8 +1262,6 @@ uk:
       index:
         hint: Цей фільтр застосовується для вибору окремих дописів, незалежно від інших критеріїв. Ви можете додавати більше дописів до цього фільтра з вебінтерфейсу.
         title: Відфільтровані дописи
-  footer:
-    trending_now: Актуальні
   generic:
     all: Усі
     all_items_on_page_selected_html:
@@ -1252,7 +1274,9 @@ uk:
       many: Усі <strong>%{count}</strong> елементів, що збігаються з вашим пошуком вибрано.
       one: "<strong>%{count}</strong> елемент, що збігається з вашим пошуком вибрано."
       other: Усі <strong>%{count}</strong> елементи, що збігаються з вашим пошуком вибрано.
+    cancel: Скасувати
     changes_saved_msg: Зміни успішно збережені!
+    confirm: Підтвердити
     copy: Копіювати
     delete: Видалити
     deselect: Скасувати вибір
@@ -1270,24 +1294,62 @@ uk:
       many: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
       one: Щось досі не гаразд! Перегляньте повідомлення про помилку
       other: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
-  html_validator:
-    invalid_markup: 'містить неприпустиму HTML розмітку: %{error}'
   imports:
     errors:
+      empty: Порожній CSV-файл
+      incompatible_type: Несумісний з обраним типом імпорту
       invalid_csv_file: 'Хибний файл CSV. Помилка: %{error}'
       over_rows_processing_limit: містить більше ніж %{count} рядків
+      too_large: Файл завеликий
+    failures: Невдачі
+    imported: Імпортовано
+    mismatched_types_warning: Схоже, ви обрали неправильний тип для цього імпорту, перевірте його ще раз.
     modes:
       merge: Злиття
       merge_long: Зберегти наявні записи та додати нові
       overwrite: Перезаписувати
       overwrite_long: Замінити наявні записи новими
+    overwrite_preambles:
+      blocking_html: Ви збираєтеся <strong>замінити ваш список блокування</strong> з <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong>.
+      bookmarks_html: Ви збираєтеся <strong>замінити ваші закладки</strong> з <strong>%{total_items} дописами</strong> з <strong>%{filename}</strong>.
+      domain_blocking_html: Ви збираєтеся <strong>замінити ваш список блокування доменів</strong> з <strong>%{total_items} доменами</strong> з <strong>%{filename}</strong>.
+      following_html: Ви збираєтеся <strong>слідкувати</strong> за <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong> і <strong>перестати слідкувати за всіма іншими</strong>.
+      lists_html: Ви збираєтеся <strong>замінити ваші списки</strong> вмістом з <strong>%{filename}</strong>. До нових списків буде додано до <strong>%{total_items} облікових записів</strong>.
+      muting_html: Ви збираєтеся <strong>замінити ваш список ігнорованих облікових записів</strong> з <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Ви збираєтеся <strong>заблокувати</strong> <strong>%{total_items} облікових записів</strong> з <strong>%{filename}</strong>.
+      bookmarks_html: Ви збираєтеся додати <strong>%{total_items} дописів</strong> з <strong>%{filename}</strong> до ваших <strong>закладок</strong>.
+      domain_blocking_html: Ви збираєтеся <strong>заблокувати</strong> <strong>%{total_items} доменів</strong> з <strong>%{filename}</strong>.
+      following_html: Ви збираєтеся <strong>слідкувати</strong> за <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong>.
+      lists_html: Ви збираєтеся додати до <strong>%{total_items} облікових записів</strong> з <strong>%{filename}</strong> до ваших <strong>списків</strong>. Нові списки будуть створені, якщо немає списку для додавання.
+      muting_html: Ви збираєтеся <strong>ігнорувати</strong> <strong>%{total_items} облікових записів</strong> з <strong>%{filename}</strong>.
     preface: Ви можете імпортувати дані, які ви експортували з іншого сервера, наприклад, список людей, яких ви відстежуєте або блокуєте.
+    recent_imports: Останні імпорти
+    states:
+      finished: Завершені
+      in_progress: Тривають
+      scheduled: Заплановані
+      unconfirmed: Непідтверджені
+    status: Стан
     success: Ваші дані завантажено та буде оброблено найближчим часом
+    time_started: Розпочато о
+    titles:
+      blocking: Імпортування заблокованих облікових записів
+      bookmarks: Імпортування закладок
+      domain_blocking: Імпортування заблокованих доменів
+      following: Імпортування відстежуваних облікових записів
+      lists: Імпортування списків
+      muting: Імпортування ігнорованих облікових записів
+    type: Тип імпорту
+    type_groups:
+      constructive: Підписки та закладки
+      destructive: Блокування та ігнорування
     types:
       blocking: Список блокувань
       bookmarks: Закладки
       domain_blocking: Список заблокованих сайтів
       following: Підписки
+      lists: Списки
       muting: Список глушення
     upload: Завантажити
   invites:
@@ -1328,6 +1390,21 @@ uk:
     failed_sign_in_html: Не вдалося увійти з %{method} з %{ip} (%{browser})
     successful_sign_in_html: Успішний вхід з %{method} з %{ip} (%{browser})
     title: Історія входів
+  mail_subscriptions:
+    unsubscribe:
+      action: Так, відписатися
+      complete: Відписалися
+      confirmation_html: Ви впевнені, що хочете відписатися від отримання %{type} для Mastodon на %{domain} до своєї скриньки %{email}? Ви можете повторно підписатися у <a href="%{settings_path}">налаштуваннях сповіщень електронною поштою</a>.
+      emails:
+        notification_emails:
+          favourite: отримувати сповіщення про вподобання електронною поштою
+          follow: отримувати сповіщення про підписки електронною поштою
+          follow_request: отримувати сповіщення про запити на стеження електронною поштою
+          mention: отримувати сповіщення про згадки електронною поштою
+          reblog: отримувати сповіщення про поширення електронною поштою
+      resubscribe_html: Якщо ви відписалися помилково, ви можете повторно підписатися в <a href="%{settings_path}">налаштуваннях сповіщень електронною поштою</a>.
+      success_html: Ви більше не отримуватимете %{type} для Mastodon %{domain} на адресу %{email}.
+      title: Відписатися
   media_attachments:
     validations:
       images_and_video: Не можна додати відео до допису з зображеннями
@@ -1443,6 +1520,7 @@ uk:
       expired: Це опитування вже завершено
       invalid_choice: Обраного варіанту голосування не існує
       over_character_limit: не може бути довше ніж %{max} символів кожен
+      self_vote: Ви не можете голосувати у власному опитуванні
       too_few_options: має містити більше ніж один варіант
       too_many_options: не може мати більше ніж %{max} варіантів
   preferences:
@@ -1461,6 +1539,7 @@ uk:
     confirm_remove_selected_followers: Ви дійсно бажаєте видалити вибраних підписників?
     confirm_remove_selected_follows: Ви дійсно хочете вилучити вибрані підписки?
     dormant: Неактивні
+    follow_failure: Не вдалося підписатися на деякі вибрані облікові записи.
     follow_selected_followers: Стежити за вибраними підписниками
     followers: Підписники
     following: Підписник
@@ -1500,6 +1579,7 @@ uk:
       electron: Electron
       firefox: Firefox
       generic: Невідомий браузер
+      huawei_browser: Huawei Браузер
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1509,6 +1589,7 @@ uk:
       qq: QQ Browser
       safari: Сафарі
       uc_browser: UC Browser
+      unknown_browser: Невідомий браузер
       weibo: Weibo
     current_session: Поточний сеанс
     description: "%{browser} на %{platform}"
@@ -1521,9 +1602,10 @@ uk:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: невідома платформа
+      unknown_platform: Невідома Платформа
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1548,7 +1630,7 @@ uk:
     migrate: Міграція облікового запису
     notifications: Сповіщення
     preferences: Налаштування
-    profile: Профіль
+    profile: Загальнодоступний профіль
     relationships: Підписки та підписники
     statuses_cleanup: Автовидалення допису
     strikes: Попередження модераторів
@@ -1606,7 +1688,6 @@ uk:
     show_newer: Показати новіші
     show_older: Показати давніші
     show_thread: Відкрити обговорення
-    sign_in_to_participate: Увійдіть, щоб брати участь у бесіді
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Особисто
@@ -1652,8 +1733,6 @@ uk:
     min_reblogs: Залишати дописи, поширені більше ніж
     min_reblogs_hint: Не видаляти ваших дописів, що були поширені більш ніж вказану кількість разів. Залиште порожнім, щоб видаляти дописи, попри кількість їхніх поширень
   stream_entries:
-    pinned: Закріплений допис
-    reblogged: поширив
     sensitive_content: Дражливий зміст
   strikes:
     errors:
@@ -1748,13 +1827,18 @@ uk:
       title: Ласкаво просимо, %{name}!
   users:
     follow_limit_reached: Не можна слідкувати більш ніж за %{limit} людей
+    go_to_sso_account_settings: Перейдіть до налаштувань облікового запису постачальника ідентифікації
     invalid_otp_token: Введено неправильний код
     otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}
     seamless_external_login: Ви увійшли за допомогою зовнішнього сервісу, тому налаштування паролю та електронної пошти недоступні.
     signed_in_as: 'Ви увійшли як:'
   verification:
-    explanation_html: 'Ви можете <strong>підтвердити володіння посиланнями в метаданих вашого профілю</strong>. Для цього на зазначеному сайті повинне міститися посилання на ваш профіль Mastodon. Посилання <strong>повинне</strong> мати атрибут <code>rel="me"</code>. Текстовий вміст посилання не має значення. Ось приклад:'
+    extra_instructions_html: <strong>Порада:</strong> Посилання на ваш сайт може бути невидимим. Важлива частина — це <code>rel="me"</code>, яка не запобігає видаванню себе за іншу особу на вебсайтах з користувацьким наповненням. Ви навіть можете використовувати тег <code>link</code> у заголовку сторінки замість <code>a</code>, але HTML має бути доступним без виконання JavaScript.
+    here_is_how: Ось, як це зробити
+    hint_html: "<strong>Підтвердження особи на Mastodon доступне всім.</strong> Базуючись на відкритих вебстандартах, тепер і завжди безплатно. Все, що вам потрібно, — це особистий сайт, на якому вас впізнають. Після пов'язування цього сайту з вашим профілем, ми ще раз перевіримо, чи є на сайті посилання і чи видно візуальний індикатор на ньому."
+    instructions_html: Скопіюйте та вставте наведений нижче код у HTML-код вашого сайту. Потім додайте адресу свого сайту в одне з додаткових полів вашого профілю на вкладці «Редагувати профіль» і збережіть зміни.
     verification: Підтвердження
+    verified_links: Ваші підтверджені посилання
   webauthn_credentials:
     add: Додати новий ключ безпеки
     create:

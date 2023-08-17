@@ -2,13 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe Mention, type: :model do
+RSpec.describe Mention do
   describe 'validations' do
-    it 'has a valid fabricator' do
-      mention = Fabricate.build(:mention)
-      expect(mention).to be_valid
-    end
-
     it 'is invalid without an account' do
       mention = Fabricate.build(:mention, account: nil)
       mention.valid?

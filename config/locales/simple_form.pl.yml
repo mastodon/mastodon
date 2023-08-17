@@ -2,6 +2,10 @@
 pl:
   simple_form:
     hints:
+      account:
+        display_name: Twoje imię lub pseudonim.
+        fields: Co ci się tylko podoba – twoja strona domowa, zaimki, wiek…
+        note: 'Możesz @wspomnieć użytkowników albo #hasztagi.'
       account_alias:
         acct: Określ nazwę@domenę konta z którego chcesz się przenieść
       account_migration:
@@ -37,14 +41,11 @@ pl:
         current_password: Ze względów bezpieczeństwa wprowadź hasło obecnego konta
         current_username: Aby potwierdzić, wprowadź nazwę użytkownika obecnego konta
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
-        discoverable: Pozwala na odkrywanie twojego konta przez nieznajomych poprzez rekomendacje, popularne wpisy i inne funkcje
         email: Otrzymasz e-mail potwierdzający
-        fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         inbox_url: Skopiuj adres ze strony głównej przekaźnika, którego chcesz użyć
         irreversible: Filtrowane wpisy znikną bezpowrotnie, nawet gdy filtr zostanie usunięty
         locale: Język interfejsu, wiadomości e-mail i powiadomieniach push
-        locked: Musisz akceptować prośby o możliwość obserwacji
         password: Użyj co najmniej 8 znaków
         phrase: Zostanie wykryte nawet, gdy znajduje się za ostrzeżeniem o zawartości
         scopes: Wybór API, do których aplikacja będzie miała dostęp. Jeżeli wybierzesz nadrzędny zakres, nie musisz wybierać jego elementów.
@@ -54,12 +55,9 @@ pl:
         setting_display_media_default: Ukrywaj zawartość multimedialną oznaczoną jako wrażliwa
         setting_display_media_hide_all: Zawsze ukrywaj zawartość multimedialną
         setting_display_media_show_all: Zawsze pokazuj zawartość multimedialną
-        setting_hide_network: Informacje o tym, kto Cię obserwuje i kogo obserwujesz nie będą widoczne
-        setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
-        setting_show_application: W informacjach o wpisie będzie widoczna informacja o aplikacji, z której został wysłany
         setting_use_blurhash: Gradienty są oparte na kolorach ukrywanej zawartości, ale uniewidaczniają wszystkie szczegóły
         setting_use_pending_items: Ukryj aktualizacje osi czasu za kliknięciem, zamiast automatycznego przewijania strumienia
-        username: Twoja nazwa użytkownika będzie niepowtarzalna na %{domain}
+        username: Możesz używać liter, cyfr i podkreślników
         whole_word: Jeśli słowo lub fraza składa się jedynie z liter lub cyfr, filtr będzie zastosowany tylko do pełnych wystąpień
       domain_allow:
         domain: Ta domena będzie mogła pobierać dane z serwera, a dane przychodzące z niej będą przetwarzane i przechowywane
@@ -131,6 +129,7 @@ pl:
         position: Wyższa rola decyduje o rozwiązywaniu konfliktów w pewnych sytuacjach. Niektóre działania mogą być wykonywane tylko na rolach z niższym priorytetem
       webhook:
         events: Wybierz zdarzenia do wysłania
+        template: Poskładaj zawartość JSON, podstawiając zmienne. Użyjemy domyślnej wartości, jeżeli pole zostawisz pustym.
         url: Dokąd będą wysłane zdarzenia
     labels:
       account:
@@ -174,7 +173,6 @@ pl:
         context: Filtruj zawartość
         current_password: Obecne hasło
         data: Dane
-        discoverable: Wyświetlaj ten profil w katalogu
         display_name: Widoczna nazwa
         email: Adres e-mail
         expires_in: Wygaśnie po
@@ -184,7 +182,6 @@ pl:
         inbox_url: Adres skrzynki przekaźnika
         irreversible: Usuwaj zamiast ukrywać
         locale: Język interfejsu
-        locked: Ustaw konto jako prywatne
         max_uses: Maksymalna liczba użyć
         new_password: Nowe hasło
         note: Biogram
@@ -196,7 +193,6 @@ pl:
         setting_always_send_emails: Zawsze wysyłaj powiadomienia e-mail
         setting_auto_play_gif: Automatycznie odtwarzaj animowane GIFy
         setting_boost_modal: Pytaj o potwierdzenie przed podbiciem
-        setting_crop_images: Przycinaj obrazki w nierozwiniętych wpisach do 16x9
         setting_default_language: Język wpisów
         setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
@@ -208,9 +204,7 @@ pl:
         setting_display_media_show_all: Pokaż wszystko
         setting_expand_spoilers: Zawsze rozwijaj wpisy oznaczone ostrzeżeniem o zawartości
         setting_hide_network: Ukryj swoją sieć
-        setting_noindex: Nie indeksuj mojego profilu w wyszukiwarkach internetowych
         setting_reduce_motion: Ogranicz ruch w animacjach
-        setting_show_application: Informuj o aplikacji z której wysłano wpisy
         setting_system_font_ui: Używaj domyślnej czcionki systemu
         setting_theme: Motyw strony
         setting_trends: Pokazuj dzisiejsze „Na czasie”
@@ -285,17 +279,18 @@ pl:
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
         pending_account: Wyślij e-mail kiedy nowe konto potrzebuje recenzji
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
-        report: Nowy raport został wysłany
+        report: Nowe zgłoszenie zostało wysłane
         trending_tag: Nowe popularne wymagają przeglądu
       rule:
         text: Zasada
       tag:
         listable: Pozwól, aby ten hashtag pojawiał się w wynikach wyszukiwania i katalogu profilów
-        name: Hashtag
+        name: Hasztag
         trendable: Pozwól na wyświetlanie tego hashtagu w „Na czasie”
         usable: Pozwól na umieszczanie tego hashtagu we wpisach
       user:
         role: Rola
+        time_zone: Strefa czasowa
       user_role:
         color: Kolor odznaki
         highlighted: Wyświetl rolę jako odznakę na profilach użytkowników
@@ -304,6 +299,7 @@ pl:
         position: Priorytet
       webhook:
         events: Włączone zdarzenia
+        template: Szablon zawartości
         url: Endpoint URL
     'no': Nie
     not_recommended: Niezalecane

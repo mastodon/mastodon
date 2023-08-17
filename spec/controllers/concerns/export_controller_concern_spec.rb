@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-describe ApplicationController, type: :controller do
-  controller do
+describe ExportControllerConcern do
+  controller(ApplicationController) do
     include ExportControllerConcern
 
     def index

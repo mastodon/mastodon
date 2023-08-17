@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateInstances < ActiveRecord::Migration[5.2]
   def change
     create_view :instances, materialized: true

@@ -1,10 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { autoPlayGif } from '../initial_state';
-import Avatar from './avatar';
+import { PureComponent } from 'react';
 
-export default class AvatarComposite extends React.PureComponent {
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
+import { autoPlayGif } from '../initial_state';
+
+import { Avatar } from './avatar';
+
+export default class AvatarComposite extends PureComponent {
 
   static propTypes = {
     accounts: ImmutablePropTypes.list.isRequired,

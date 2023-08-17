@@ -5,19 +5,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        # Update 'VARIANT' to pick a version of Ruby: 3, 3.1, 3.0, 2, 2.7, 2.6
-        # Append -bullseye or -buster to pin to an OS version.
-        # Use -bullseye variants on local arm64/Apple Silicon.
-        VARIANT: '3.0-bullseye'
-        # Optional Node.js version to install
-        NODE_VERSION: '16'
     volumes:
-      - ..:/mastodon:cached
+      - ../..:/workspaces:cached
     environment:
       RAILS_ENV: development
       NODE_ENV: development
-
+      BIND: 0.0.0.0
       REDIS_HOST: redis
       REDIS_PORT: '6379'
       DB_HOST: db
@@ -30,10 +23,12 @@ services:
       LIBRE_TRANSLATE_ENDPOINT: http://libretranslate:5000
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
+    ports:
+      - '127.0.0.1:3000:3000'
+      - '127.0.0.1:4000:4000'
     networks:
       - external_network
       - internal_network
-    user: vscode
 
   db:
     image: postgres:14-alpine
@@ -49,7 +44,7 @@ services:
       - internal_network
 
   redis:
-    image: redis:6-alpine
+    image: redis:7-alpine
     restart: unless-stopped
     volumes:
       - redis-data:/data
@@ -74,15 +69,19 @@ services:
         hard: -1
 
   libretranslate:
-    image: libretranslate/libretranslate:v1.2.9
+    image: libretranslate/libretranslate:v1.3.11
     restart: unless-stopped
+    volumes:
+      - lt-data:/home/libretranslate/.local
     networks:
+      - external_network
       - internal_network
 
 volumes:
   postgres-data:
   redis-data:
   es-data:
+  lt-data:
 
 networks:
   external_network:

@@ -25,7 +25,7 @@ namespace :tests do
       end
 
       if Account.where(domain: Rails.configuration.x.local_domain).exists?
-        puts 'Faux remote accounts not properly claned up'
+        puts 'Faux remote accounts not properly cleaned up'
         exit(1)
       end
 
@@ -51,6 +51,21 @@ namespace :tests do
 
       unless Admin::ActionLog.find_by(target_type: 'EmailDomainBlock', target_id: 1).human_identifier == 'example.org'
         puts 'Admin::ActionLog email domain block records not updated as expected'
+        exit(1)
+      end
+
+      unless User.find(1).settings['notification_emails.favourite'] == true && User.find(1).settings['notification_emails.mention'] == false
+        puts 'User settings not kept as expected'
+        exit(1)
+      end
+
+      unless Account.find_remote('bob', 'ActivityPub.com').domain == 'activitypub.com'
+        puts 'Account domains not properly normalized'
+        exit(1)
+      end
+
+      unless Status.find(12).preview_cards.pluck(:url) == ['https://joinmastodon.org/']
+        puts 'Preview cards not deduplicated as expected'
         exit(1)
       end
     end
@@ -98,12 +113,17 @@ namespace :tests do
           (1, 'destroy', 'EmailDomainBlock', 1, now(), now()),
           (1, 'destroy', 'Status', 1, now(), now()),
           (1, 'destroy', 'CustomEmoji', 3, now(), now());
+
+        INSERT INTO "settings"
+          (id, thing_type, thing_id, var, value, created_at, updated_at)
+        VALUES
+          (3, 'User', 1, 'notification_emails', E'--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nfollow: false\nreblog: true\nfavourite: true\nmention: false\nfollow_request: true\ndigest: true\nreport: true\npending_account: false\ntrending_tag: true\nappeal: true\n', now(), now());
       SQL
     end
 
     desc 'Populate the database with test data for 2.4.0'
     task populate_v2_4: :environment do # rubocop:disable Naming/VariableNumber
-      ActiveRecord::Base.connection.execute(<<~SQL)
+      ActiveRecord::Base.connection.execute(<<~SQL.squish)
         INSERT INTO "settings"
           (id, thing_type, thing_id, var, value, created_at, updated_at)
         VALUES
@@ -150,7 +170,7 @@ namespace :tests do
         INSERT INTO "accounts"
           (id, username, domain, private_key, public_key, created_at, updated_at, protocol, inbox_url, outbox_url, followers_url)
         VALUES
-          (6, 'bob', 'activitypub.com', NULL, #{remote_public_key_ap}, now(), now(),
+          (6, 'bob', 'ActivityPub.com', NULL, #{remote_public_key_ap}, now(), now(),
            1, 'https://activitypub.com/users/bob/inbox', 'https://activitypub.com/users/bob/outbox', 'https://activitypub.com/users/bob/followers');
 
         INSERT INTO "accounts"
@@ -222,6 +242,11 @@ namespace :tests do
         VALUES
           (10, 2, '@admin hey!', NULL, 1, 3, now(), now()),
           (11, 1, '@user hey!', 10, 1, 3, now(), now());
+
+        INSERT INTO "statuses"
+          (id, account_id, text, created_at, updated_at)
+        VALUES
+          (12, 1, 'check out https://joinmastodon.org/', now(), now());
 
         -- mentions (from previous statuses)
 
@@ -311,6 +336,21 @@ namespace :tests do
           (1, 6, 2, 'Follow', 2, now(), now()),
           (2, 2, 1, 'Mention', 4, now(), now()),
           (3, 1, 2, 'Mention', 5, now(), now());
+
+        -- preview cards
+
+        INSERT INTO "preview_cards"
+          (id, url, title, created_at, updated_at)
+        VALUES
+          (1, 'https://joinmastodon.org/', 'Mastodon - Decentralized social media', now(), now());
+
+        -- many-to-many association between preview cards and statuses
+
+        INSERT INTO "preview_cards_statuses"
+          (status_id, preview_card_id)
+        VALUES
+          (12, 1),
+          (12, 1);
       SQL
     end
   end

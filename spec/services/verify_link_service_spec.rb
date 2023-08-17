@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe VerifyLinkService, type: :service do
   subject { described_class.new }
 
-  context 'given a local account' do
+  context 'when given a local account' do
     let(:account) { Fabricate(:account, username: 'alice') }
     let(:field)   { Account::Field.new(account, 'name' => 'Website', 'value' => 'http://example.com') }
 
@@ -129,7 +129,7 @@ RSpec.describe VerifyLinkService, type: :service do
     end
   end
 
-  context 'given a remote account' do
+  context 'when given a remote account' do
     let(:account) { Fabricate(:account, username: 'alice', domain: 'example.com', url: 'https://profile.example.com/alice') }
     let(:field)   { Account::Field.new(account, 'name' => 'Website', 'value' => '<a href="http://example.com" rel="me"><span class="invisible">http://</span><span class="">example.com</span><span class="invisible"></span></a>') }
 

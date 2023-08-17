@@ -21,7 +21,7 @@ namespace :mastodon do
       env['LOCAL_DOMAIN'] = prompt.ask('Domain name:') do |q|
         q.required true
         q.modify :strip
-        q.validate(/\A[a-z0-9\.\-]+\z/i)
+        q.validate(/\A[a-z0-9.-]+\z/i)
         q.messages[:valid?] = 'Invalid domain. If you intend to use unicode characters, enter punycode here'
       end
 
@@ -240,7 +240,7 @@ namespace :mastodon do
           end
 
           env['S3_PROTOCOL'] = env['S3_ENDPOINT'].start_with?('https') ? 'https' : 'http'
-          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(/\Ahttps?:\/\//, '')
+          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(%r{\Ahttps?://}, '')
 
           env['S3_BUCKET'] = prompt.ask('Minio bucket name:') do |q|
             q.required true
@@ -269,7 +269,7 @@ namespace :mastodon do
           end
 
           env['S3_PROTOCOL'] = env['S3_ENDPOINT'].start_with?('https') ? 'https' : 'http'
-          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(/\Ahttps?:\/\//, '')
+          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(%r{\Ahttps?://}, '')
 
           env['S3_BUCKET'] = prompt.ask('Storj DCS bucket name:') do |q|
             q.required true
@@ -438,12 +438,7 @@ namespace :mastodon do
           "#{key}=#{escaped}"
         end.join("\n")
 
-        generated_header = "# Generated with mastodon:setup on #{Time.now.utc}\n\n".dup
-
-        if incompatible_syntax
-          generated_header << "# Some variables in this file will be interpreted differently whether you are\n"
-          generated_header << "# using docker-compose or not.\n\n"
-        end
+        generated_header = generate_header(incompatible_syntax)
 
         Rails.root.join('.env.production').write("#{generated_header}#{env_contents}\n")
 
@@ -538,6 +533,19 @@ namespace :mastodon do
       puts "VAPID_PUBLIC_KEY=#{vapid_key.public_key}"
     end
   end
+
+  private
+
+  def generate_header(include_warning)
+    default_message = "# Generated with mastodon:setup on #{Time.now.utc}\n\n"
+
+    default_message.tap do |string|
+      if include_warning
+        string << "# Some variables in this file will be interpreted differently whether you are\n"
+        string << "# using docker-compose or not.\n\n"
+      end
+    end
+  end
 end
 
 def disable_log_stdout!
@@ -573,7 +581,7 @@ def dotenv_escape(value)
 
   # As long as the value doesn't include single quotes, we can safely
   # rely on single quotes
-  return "'#{value}'" unless /[']/.match?(value)
+  return "'#{value}'" unless value.include?("'")
 
   # If the value contains the string '\n' or '\r' we simply can't use
   # a double-quoted string, because Dotenv will expand \n or \r no

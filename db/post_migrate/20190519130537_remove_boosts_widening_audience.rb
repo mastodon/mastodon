@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class RemoveBoostsWideningAudience < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def up
-    public_boosts = Status.find_by_sql(<<-SQL)
+    public_boosts = Status.find_by_sql(<<-SQL.squish)
       SELECT boost.id
       FROM statuses AS boost
       LEFT JOIN statuses AS boosted ON boost.reblog_of_id = boosted.id

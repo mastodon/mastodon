@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe WellKnown::NodeInfoController, type: :controller do
+describe WellKnown::NodeInfoController do
   render_views
 
   describe 'GET #index' do

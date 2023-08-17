@@ -17,7 +17,7 @@
                                 %tbody
                                   %tr
                                     %td
-                                      = image_tag full_pack_url('media/images/mailer/icon_warning.png'), alt: ''
+                                      = image_tag full_pack_url('media/images/mailer/icon_flag.png'), alt: ''
 
                               %h1= t 'user_mailer.appeal_rejected.title'
 
@@ -36,7 +36,7 @@
                         %tbody
                           %tr
                             %td.column-cell.text-center
-                              %p= t 'user_mailer.appeal_rejected.explanation', appeal_date: l(@appeal.created_at), strike_date: l(@appeal.strike.created_at)
+                              %p= t 'user_mailer.appeal_rejected.explanation', appeal_date: l(@appeal.created_at.in_time_zone(@resource.time_zone.presence)), strike_date: l(@appeal.strike.created_at.in_time_zone(@resource.time_zone.presence))
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody

@@ -2,6 +2,10 @@
 ca:
   simple_form:
     hints:
+      account:
+        display_name: El teu nom complet o el teu nom divertit.
+        fields: La teva pàgina d'inici, pronoms, edat, el que vulguis.
+        note: 'Pots @mencionar altra gent o #etiquetes.'
       account_alias:
         acct: Especifica l'usuari@domini del compte des d'on et vols traslladar
       account_migration:
@@ -32,19 +36,16 @@ ca:
       defaults:
         autofollow: Qui es registri a través de la invitació et seguirà automàticament
         avatar: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
-        bot: Notifica que aquest compte realitza principalment accions automatitzades i que pot no estar controlat per cap persona
+        bot: Notifica que aquest compte realitza principalment accions automatitzades i que pot estar no monitorat
         context: Un o diversos contextos en què s'ha d'aplicar el filtre
-        current_password: Per motius de seguretat, introdueix la contrasenya del compte actual
-        current_username: Per a confirmar, si us plau entra el nom d'usuari del compte actual
+        current_password: Per motius de seguretat, introduïu la contrasenya del compte actual
+        current_username: Per a confirmar, entreu el nom d'usuari del compte actual
         digest: Només s'envia després d'un llarg període d'inactivitat i només si has rebut algun missatge personal durant la teva absència
-        discoverable: Permet que el teu compte sigui descobert per desconeguts a través de recomanacions, etiquetes i altres característiques
         email: Se t'enviarà un correu electrònic de confirmació
-        fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
-        inbox_url: Copia l'URL de la pàgina principal del relay que vols usar
+        inbox_url: Copia l'enllaç de la pàgina principal del relay que vols usar
         irreversible: Els tuts filtrats desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
         locale: L'idioma de la interfície d’usuari, els correus i les notificacions push
-        locked: Controla manualment qui et pot seguir, aprovant sol·licituds
         password: Utilitza com a mínim 8 caràcters
         phrase: Es combinarà independentment del format en el text o l'avís de contingut del tut
         scopes: API permeses per a accedir a l'aplicació. Si selecciones un àmbit de nivell superior, no cal que en seleccionis un d'individual.
@@ -54,17 +55,14 @@ ca:
         setting_display_media_default: Amaga el contingut gràfic marcat com a sensible
         setting_display_media_hide_all: Oculta sempre tot el contingut multimèdia
         setting_display_media_show_all: Mostra sempre el contingut gràfic
-        setting_hide_network: Qui segueixes i els que et segueixen no es mostraran en el teu perfil
-        setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
-        setting_show_application: L'aplicació que fas servir per a publicar es mostrarà a la vista detallada dels teus tuts
         setting_use_blurhash: Els degradats es basen en els colors de les imatges ocultes, però n'enfosqueixen els detalls
         setting_use_pending_items: Amaga les actualitzacions de la línia de temps després de fer un clic, en lloc de desplaçar-les automàticament
-        username: El teu nom d'usuari serà únic a %{domain}
+        username: Pots emprar lletres, números i subratllats
         whole_word: Quan la paraula clau o la frase sigui només alfanumèrica, s'aplicarà si coincideix amb la paraula sencera
       domain_allow:
         domain: Aquest domini podrà obtenir dades d’aquest servidor i les dades entrants d’aquests seran processades i emmagatzemades
       email_domain_block:
-        domain: Aquest pot ser el nom del domini que es mostra en l'adreça de correu o el registre MX que utilitza. Es revisaran ql registrar-se.
+        domain: Aquest pot ser el nom de domini que es veu a l'adreça de correu o al registre MX que fa servir. Es revisaran en registrar-se.
         with_dns_records: Es procurarà resoldre els registres DNS del domini determinat i els resultats també es llistaran a la llista negra
       featured_tag:
         name: 'Aquí estan algunes de les etiquetes que més has usat recentment:'
@@ -77,21 +75,21 @@ ca:
         activity_api_enabled: Contador de tuts publicats localment, usuaris actius i registres nous en períodes setmanals
         backups_retention_period: Manté els arxius d'usuari generats durant el nombre de dies especificats.
         bootstrap_timeline_accounts: Aquests comptes es fixaran en la part superior de les recomanacions de seguiment dels nous usuaris.
-        closed_registrations_message: Mostrat quan el registres estan tancats
+        closed_registrations_message: Es mostra quan el registres estan tancats
         content_cache_retention_period: Els tuts d'altres servidors se suprimiran després del nombre de dies especificat quan s'estableix un valor positiu. Això pot ser irreversible.
         custom_css: Pots aplicar estils personalitzats en la versió web de Mastodon.
         mascot: Anul·la la il·lustració en la interfície web avançada.
         media_cache_retention_period: Els fitxers multimèdia descarregats s'esborraran després del nombre de dies especificat quan el valor configurat és positiu, i tornats a descarregats sota demanda.
-        peers_api_enabled: Una llista de noms de domini que aquest servidor ha trobat al fedivers. No inclou cap dada sobre si estàs federat amb un servidor determinat, només si el teu en sap res. La fan servir, en un sentit general, serveis que recoŀlecten estadístiques sobre la federació.
+        peers_api_enabled: Una llista de noms de domini que aquest servidor ha trobat al fedivers. No inclou cap dada sobre si estàs federat amb un servidor determinat, només si el teu en sap res. La fan servir, en un sentit general, serveis que recol·lecten estadístiques sobre la federació.
         profile_directory: El directori de perfils llista tots els usuaris que tenen activat ser descoberts.
-        require_invite_text: Quan el registre requereix aprovació manual, fes que sigui obligatori en lloc d'opcional escriure el text de la sol·licitud d'invitació "Per què vols unir-te?"
+        require_invite_text: Quan el registre requereixi aprovació manual, fes que sigui obligatori en lloc d'opcional d'escriure el text de la sol·licitud d'invitació "Per què vols unir-te?"
         site_contact_email: Com pot la gent comunicar amb tu per a consultes legals o de recolzament.
         site_contact_username: Com pot la gent trobar-te a Mastodon.
         site_extended_description: Qualsevol informació addicional que pot ser útil per als visitants i els teus usuaris. Es pot estructurar amb format Markdown.
         site_short_description: Una descripció curta per a ajudar a identificar de manera única el teu servidor. Qui el fa anar, per a qui és?
         site_terms: Fes servir la teva pròpia política de privacitat o deixa-ho en blanc per a la per defecte. Es pot estructurar amb format Markdown.
         site_title: Com pot la gent referir-se al teu servidor a part del seu nom de domini.
-        status_page_url: URL de la pàgina on els usuaris poden veure l'estat d'aquest servidor durant una interrupció del servei
+        status_page_url: Enllaç de la pàgina on els usuaris poden veure l'estat d'aquest servidor durant una interrupció del servei
         theme: El tema que els visitants i els nous usuaris veuen.
         thumbnail: Una imatge d'aproximadament 2:1 que es mostra al costat la informació del teu servidor.
         timeline_preview: Els visitants amb sessió no iniciada seran capaços de navegar per els tuts més recents en el teu servidor.
@@ -110,7 +108,7 @@ ca:
         ip: Introdueix una adreça IPv4 o IPv6. Pots bloquejar rangs complets amb la sintaxi CIDR. Ves a compte no et bloquegis a tu mateix!
         severities:
           no_access: Bloqueja l’accés a tots els recursos
-          sign_up_block: Els nous registres no seran possibles
+          sign_up_block: No seran possibles nous registres
           sign_up_requires_approval: Els nous registres requeriran la teva aprovació
         severity: Tria què passarà amb les sol·licituds des d’aquesta IP
       rule:
@@ -131,6 +129,7 @@ ca:
         position: El rol superior decideix la resolució de conflictes en certes situacions. Certes accions només es poden realitzar amb rols amb menor prioritat
       webhook:
         events: Selecciona esdeveniments a enviar
+        template: Crea el teu propi JSON fent servir interpolació variable. Buit per al JSON per defecte.
         url: On els esdeveniments seran enviats
     labels:
       account:
@@ -174,17 +173,15 @@ ca:
         context: Filtre els contextos
         current_password: Contrasenya actual
         data: Informació
-        discoverable: Mostra aquest compte en el directori de perfils
         display_name: Nom visible
         email: Adreça de correu electrònic
         expires_in: Expira després
         fields: Metadades del perfil
         header: Capçalera
         honeypot: "%{label} (no omplir)"
-        inbox_url: URL de la safata d'entrada del relay
+        inbox_url: Enllaç de la safata d'entrada del relay
         irreversible: Cau en lloc d'ocultar
         locale: Idioma de la interfície
-        locked: Requereix sol·licituds de seguiment
         max_uses: Nombre màxim d'usos
         new_password: Contrasenya nova
         note: Biografia
@@ -196,7 +193,6 @@ ca:
         setting_always_send_emails: Envia'm sempre notificacions per correu electrònic
         setting_auto_play_gif: Reprodueix automàticament els GIF animats
         setting_boost_modal: Mostra la finestra de confirmació abans d'impulsar
-        setting_crop_images: Retalla les imatges en tuts no ampliats a 16x9
         setting_default_language: Llengua dels tuts
         setting_default_privacy: Privacitat dels tuts
         setting_default_sensitive: Marcar sempre el contingut gràfic com a sensible
@@ -208,9 +204,7 @@ ca:
         setting_display_media_show_all: Mostra-ho tot
         setting_expand_spoilers: Desplega sempre els tuts marcats amb advertències de contingut
         setting_hide_network: Amaga la teva xarxa
-        setting_noindex: Desactiva la indexació dels motors de cerca
         setting_reduce_motion: Redueix el moviment de les animacions
-        setting_show_application: Revela l'aplicació utilitzada per enviar tuts
         setting_system_font_ui: Usa la lletra predeterminada del sistema
         setting_theme: Tema del lloc
         setting_trends: Mostra les tendències d'avui
@@ -236,7 +230,7 @@ ca:
         activity_api_enabled: Publica a l'API estadístiques agregades sobre l'activitat dels usuaris
         backups_retention_period: Període de retenció del arxiu d'usuari
         bootstrap_timeline_accounts: Recomana sempre aquests comptes als nous usuaris
-        closed_registrations_message: Missatge personalitzat quan el registre està tancat
+        closed_registrations_message: Missatge personalitzat quan el registre no és accessible
         content_cache_retention_period: Període de retenció de la memòria cau de contingut
         custom_css: CSS personalitzat
         mascot: Mascota personalitzada (llegat)
@@ -253,7 +247,7 @@ ca:
         site_short_description: Descripció del servidor
         site_terms: Política de Privacitat
         site_title: Nom del servidor
-        status_page_url: URL de la pàgina de l'estat
+        status_page_url: Enllaç de la pàgina d'estat
         theme: Tema per defecte
         thumbnail: Miniatura del servidor
         timeline_preview: Permet l'accés no autenticat a les línies de temps públiques
@@ -263,7 +257,7 @@ ca:
       interactions:
         must_be_follower: Bloqueja les notificacions de persones que no em segueixen
         must_be_following: Bloqueja les notificacions de persones no seguides
-        must_be_following_dm: Blocar els missatges directes de persones que no segueixes
+        must_be_following_dm: Bloqueja les mencions privades de persones que no segueixes
       invite:
         comment: Comenta
       invite_request:
@@ -296,6 +290,7 @@ ca:
         usable: Permet als tuts emprar aquesta etiqueta
       user:
         role: Rol
+        time_zone: Zona horària
       user_role:
         color: Color de la insígnia
         highlighted: Mostra el rol com a insígnia en el perfil dels usuaris
@@ -304,7 +299,8 @@ ca:
         position: Prioritat
       webhook:
         events: Esdeveniments activats
-        url: URL de l'extrem
+        template: Plantilla de càrrega
+        url: Enllaç de l'extrem
     'no': 'No'
     not_recommended: No recomanat
     recommended: Recomanat

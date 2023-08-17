@@ -8,7 +8,7 @@ class AboutController < ApplicationController
   before_action :set_instance_presenter
 
   def show
-    expires_in 0, public: true unless user_signed_in?
+    expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.day) unless user_signed_in?
   end
 
   private

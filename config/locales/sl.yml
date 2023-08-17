@@ -131,8 +131,8 @@ sl:
       removed_header_msg: Uspešno odstranjena naslovna slika uporabnika %{username}
       resend_confirmation:
         already_confirmed: Ta uporabnik je že potrjen
-        send: Ponovno pošlji potrditveno e-sporočilo
-        success: Potrditveno e-sporočilo je uspešno poslano!
+        send: Ponovno pošlji potrditveno povezavo
+        success: Potrditvena povezava je uspešno poslana!
       reset: Ponastavi
       reset_password: Ponastavi geslo
       resubscribe: Ponovno se naroči
@@ -396,6 +396,12 @@ sl:
       undo: Odstrani iz belega seznama
     domain_blocks:
       add_new: Dodaj nov domenski blok
+      confirm_suspension:
+        cancel: Prekliči
+        confirm: Suspendiraj
+        permanent_action: Z razveljavitvijo suzpenza ne boste obnovili nobenih podatkov ali razmerij.
+        stop_communication: Vaš strežnik bo prenehal komunicirati s temi strežniki.
+        title: Potrdi domenski blok za %{domain}
       created_msg: Domenski blok se sedaj obdeluje
       destroyed_msg: Domenski blok je bil razveljavljen
       domain: Domena
@@ -840,6 +846,12 @@ sl:
         message_html: Nobenih pravil strežnika niste določili.
       sidekiq_process_check:
         message_html: Noben proces Sidekiq ne poteka za %{value} vrst. Preglejte svojo prilagoditev Sidekiq
+      upload_check_privacy_error:
+        action: Preverite tukaj za več informacij
+        message_html: "<strong>Vaš spletni strežnik je napačno nastavljen. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Preverite tukaj za več informacij
+        message_html: "<strong>Vaša predmetna shramba je napačno nastavljena. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
     tags:
       review: Stanje pregleda
       updated_msg: Nastavitve ključnikov uspešno posodobljene
@@ -991,11 +1003,11 @@ sl:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Vsakdo lahko prispeva.
     sensitive_content: Občutljiva vsebina
-    toot_layout: Postavitev objave
   application_mailer:
     notification_preferences: Spremenite e-poštne nastavitve
     salutation: "%{name},"
     settings: 'Spremenite e-poštne nastavitve: %{link}'
+    unsubscribe: Odjavi od naročnine
     view: 'Pogled:'
     view_profile: Ogled profila
     view_status: Pokaži objavo
@@ -1009,7 +1021,8 @@ sl:
     your_token: Vaš dostopni žeton
   auth:
     apply_for_account: Zaprosite za račun
-    change_password: Geslo
+    captcha_confirmation:
+      title: Varnostno preverjanje
     confirmations:
       wrong_email_hint: Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
     delete_account: Izbriši račun
@@ -1018,7 +1031,7 @@ sl:
       prefix_invited_by_user: "@%{name} vas vabi, da se pridružite temu strežniku Mastodon!"
       prefix_sign_up: Še danes se priključite Mastodonu!
       suffix: Z računom boste lahko sledili osebam, objavljali posodobitve in izmenjevali sporočila z uporabniki s poljubnega strežnika Mastodon in še veliko več!
-    didnt_get_confirmation: Niste prejeli navodil za potrditev?
+    didnt_get_confirmation: Ali niste prejeli potrditvene povezave?
     dont_have_your_security_key: Ali imate svoj varnostni ključ?
     forgot_password: Ste pozabili svoje geslo?
     invalid_reset_password_token: Žeton za ponastavitev gesla je neveljaven ali je potekel. Zahtevajte novo.
@@ -1031,28 +1044,37 @@ sl:
     migrate_account_html: Če želite ta račun preusmeriti na drugega, ga lahko <a href="%{path}">nastavite tukaj</a>.
     or_log_in_with: Ali se prijavite z
     privacy_policy_agreement_html: Prebral_a sem in se strinjam s <a href="%{privacy_policy_path}" target="_blank">pravilnikom o zasebnosti</a>.
+    progress:
+      confirm: Potrdi e-pošto
+      details: Vaši podatki
+      review: Naš pregled
+      rules: Sprejmi pravila
     providers:
       cas: CAS
       saml: SAML
     register: Vpis
     registration_closed: "%{instance} ne sprejema novih članov"
-    resend_confirmation: Ponovno pošlji navodila za potrditev
+    resend_confirmation: Ponovno pošlji potrditveno povezavo
     reset_password: Ponastavi geslo
     rules:
       accept: Sprejmi
       back: Nazaj
       preamble: Slednje določajo in njihovo spoštovanje zagotavljajo moderatorji %{domain}.
       title: Nekaj osnovnih pravil.
+      title_invited: Ste povabljeni.
     security: Varnost
     set_new_password: Nastavi novo geslo
     setup:
-      email_below_hint_html: Če spodnji e-poštni naslov ni pravilen, ga lahko spremenite tukaj in prejmete novo potrditveno e-pošto.
-      email_settings_hint_html: Potrditvena e-pošta je bila poslana na %{email}. Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
-      title: Nastavitev
+      email_below_hint_html: Poglejte v mapo neželene pošte ali zaprosite za novega. Če ste podali napačen e-naslov, ga lahko popravite.
+      email_settings_hint_html: Kliknite povezavo, ki smo vam jo poslali, da overite %{email}. Počakali bomo.
+      link_not_received: Ali ste prejeli povezavo?
+      new_confirmation_instructions_sent: Čez nekaj minut boste prejeli novo e-sporočilo s potrditveno povezavo!
+      title: Preverite svojo dohodno e-pošto
     sign_in:
       preamble_html: Prijavite se s svojimi poverilnicami <strong>%{domain}</strong>. Če vaš račun gostuje na drugem strežniku, se tukaj ne boste mogli prijaviti.
       title: Vpiši se v %{domain}
     sign_up:
+      manual_review: Registracije na %{domain} ročno pregledajo naši moderatorji. Da nam olajšate obdelavo vaše prijave, zapišite kaj o sebi in zakaj si želite račun na %{domain}.
       preamble: Z računom na strežniku Mastodon boste lahko sledili vsem drugim v tem omrežju, ne glede na to, kje gostuje njihov račun.
       title: Naj vas namestimo na %{domain}.
     status:
@@ -1064,18 +1086,6 @@ sl:
       view_strikes: Pokaži pretekle ukrepe proti mojemu računu
     too_fast: Obrazec oddan prehitro, poskusite znova.
     use_security_key: Uporabi varnostni ključ
-  authorize_follow:
-    already_following: Temu računu že sledite
-    already_requested: Temu računu ste že poslali zahtevo po sledenju
-    error: Na žalost je prišlo do napake pri iskanju oddaljenega računa
-    follow: Sledi
-    follow_request: 'Prošnjo za sledenje se poslali:'
-    following: 'Uspeh! Zdaj sledite:'
-    post_follow:
-      close: Lahko pa tudi zaprete to okno.
-      return: Prikaži uporabnikov profil
-      web: Pojdi na splet
-    title: Sledi %{acct}
   challenge:
     confirm: Nadaljuj
     hint_html: "<strong>Namig:</strong> naslednjo uro vas ne bomo več vprašali po vašem geslu."
@@ -1152,6 +1162,9 @@ sl:
       your_appeal_rejected: Vaša pritožba je bila zavržena
   domain_validator:
     invalid_domain: ni veljavno ime domene
+  edit_profile:
+    basic_information: Osnovni podatki
+    other: Drugo
   errors:
     '400': Zahteva, ki ste jo oddali, je neveljavna ali nepravilno oblikovana.
     '403': Nimate dovoljenja za ogled te strani.
@@ -1238,8 +1251,6 @@ sl:
       index:
         hint: Ta filter se nanaša na posamezne objave ne glede na druge pogoje. Filtru lahko dodate več objav prek spletnega vmesnika.
         title: Filtrirane objave
-  footer:
-    trending_now: Zdaj v trendu
   generic:
     all: Vse
     all_items_on_page_selected_html:
@@ -1252,7 +1263,9 @@ sl:
       one: Izbran je <strong>%{count}</strong> element, ki ustreza vašemu iskanju.
       other: Izbranih je <strong>%{count}</strong> elementov, ki ustrezajo vašemu iskanju.
       two: Izbrana sta <strong>%{count}</strong> elementa, ki ustrezata vašemu iskanju.
+    cancel: Prekliči
     changes_saved_msg: Spremembe so uspešno shranjene!
+    confirm: Potrdi
     copy: Kopiraj
     delete: Izbriši
     deselect: Prekliči ves izbor
@@ -1270,24 +1283,48 @@ sl:
       one: Nekaj še ni čisto v redu! Spodaj si oglejte napako
       other: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napak
       two: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napaki
-  html_validator:
-    invalid_markup: 'vsebuje neveljavno oznako HTML: %{error}'
   imports:
     errors:
+      empty: Prazna datoteka CSV
+      incompatible_type: Nezdružljivo z izbrano vrsto uvoza
       invalid_csv_file: 'Neveljavna datoteka CSV. Napaka: %{error}'
       over_rows_processing_limit: vsebuje več kot %{count} vrstic
+      too_large: Datoteka je prevelika
+    failures: Neuspehi
+    imported: Uvoženo
+    mismatched_types_warning: Kaže, da ste izbrali napačno vrsto za ta uvoz; preverite svoj izbor.
     modes:
       merge: Združi
       merge_long: Ohrani obstoječe zapise in dodaj nove
       overwrite: Prepiši
       overwrite_long: Zamenjaj trenutne zapise z novimi
     preface: Podatke, ki ste jih izvozili iz drugega strežnika, lahko uvozite. Na primer seznam oseb, ki jih spremljate ali blokirate.
+    recent_imports: Nedavni uvozi
+    states:
+      finished: Končano
+      in_progress: V teku
+      scheduled: Načrtovano
+      unconfirmed: Nepotrjeno
+    status: Stanje
     success: Vaši podatki so bili uspešno naloženi in bodo zdaj pravočasno obdelani
+    time_started: Začetek ob
+    titles:
+      blocking: Uvažanje blokiranih računov
+      bookmarks: Uvažanje zaznamkov
+      domain_blocking: Uvažanje blokiranih domen
+      following: Uvažanje sledenih računov
+      lists: Uvažanje seznamov
+      muting: Uvažanje utišanih računov
+    type: Vrsta uvoza
+    type_groups:
+      constructive: Sledenje in zaznamki
+      destructive: Blokiranja in utišanja
     types:
       blocking: Seznam blokiranih
       bookmarks: Zaznamki
       domain_blocking: Seznam blokiranih domen
       following: Seznam uporabnikov, katerim sledite
+      lists: Seznami
       muting: Seznam utišanih
     upload: Pošlji
   invites:
@@ -1328,6 +1365,11 @@ sl:
     failed_sign_in_html: Spodletela prijava z metodo %{method} iz %{ip} (%{browser})
     successful_sign_in_html: Uspešna prijava z metodo %{method} iz %{ip} (%{browser})
     title: Zgodovina overjanja
+  mail_subscriptions:
+    unsubscribe:
+      action: Da, odjavi me
+      complete: Odjavljeni
+      title: Odjavi od naročnine
   media_attachments:
     validations:
       images_and_video: Videoposnetka ni mogoče priložiti objavi, ki že vsebuje slike
@@ -1443,6 +1485,7 @@ sl:
       expired: Glasovanje se je že zaključilo
       invalid_choice: Izbrana možnost glasovanja ne obstaja
       over_character_limit: ne more biti daljše od %{max} znakov
+      self_vote: Ne morete glasovati v lastnih anketah
       too_few_options: mora imeti več kot en element
       too_many_options: ne more vsebovati več kot %{max} elementov
   preferences:
@@ -1461,6 +1504,7 @@ sl:
     confirm_remove_selected_followers: Ali ste prepričani, da želite odstraniti izbrane sledilce?
     confirm_remove_selected_follows: Ali ste prepričani, da želite odstraniti izbrana sledenja?
     dormant: Skrit
+    follow_failure: Nekaterim od izbranih računov ni bilo mogoče slediti.
     follow_selected_followers: Sledi izbranim sledilcem
     followers: Sledilci
     following: Sledi
@@ -1500,6 +1544,7 @@ sl:
       electron: Electron
       firefox: Firefox
       generic: Neznan brskalnik
+      huawei_browser: Brskalnik Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Brskalnik Nokia S40 Ovi
@@ -1509,6 +1554,7 @@ sl:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Neznan brskalnik
       weibo: Weibo
     current_session: Trenutna seja
     description: "%{browser} na %{platform}"
@@ -1521,9 +1567,10 @@ sl:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: neznana platforma
+      unknown_platform: Neznana platforma
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1606,7 +1653,6 @@ sl:
     show_newer: Pokaži novejše
     show_older: Pokaži starejše
     show_thread: Pokaži nit
-    sign_in_to_participate: Prijavite se, če želite sodelovati v pogovoru
     title: "%{name}: »%{quote}«"
     visibilities:
       direct: Neposredno
@@ -1652,8 +1698,6 @@ sl:
     min_reblogs: Obdrži objave izpostavljene vsaj
     min_reblogs_hint: Ne izbriše nobene od vaših objav, ki je bila vsaj tolikokrat podprta. Pustite prazno, če želite izbrisati objave ne glede na število izpostavitev
   stream_entries:
-    pinned: Pripeta objava
-    reblogged: izpostavljeno
     sensitive_content: Občutljiva vsebina
   strikes:
     errors:
@@ -1748,13 +1792,16 @@ sl:
       title: Dobrodošli, %{name}!
   users:
     follow_limit_reached: Ne morete spremljati več kot %{limit} ljudi
+    go_to_sso_account_settings: Pojdite na nastavitve svojega računa ponudnika identitete
     invalid_otp_token: Neveljavna dvofaktorska koda
     otp_lost_help_html: Če ste izgubili dostop do obeh, stopite v stik z %{email}
     seamless_external_login: Prijavljeni ste prek zunanje storitve, tako da nastavitve gesla in e-pošte niso na voljo.
     signed_in_as: 'Vpisani kot:'
   verification:
-    explanation_html: '<strong>V metapodatkih svojega profila se lahko potrdite kot lastnik povezav</strong>. Za to mora povezano spletno mesto vsebovati povezavo do vašega Mastodon profila. Povezava <strong>mora</strong> imeti atribut <code>el="me"</code>. Vsebina besedila povezave ni pomembna. Tukaj je primer:'
+    here_is_how: Kako to poteka
+    instructions_html: Spodnjo kodo kopirajte in prilepite v HTML svojega spletnega mesta. Nato dodajte naslov svoje spletne strani v eno od dodatnih polj v svojem profilu v zavihku »Uredi profil« in shranite spremembe.
     verification: Potrditev
+    verified_links: Vaše preverjene povezave
   webauthn_credentials:
     add: Dodaj nov varnostni ključ
     create:

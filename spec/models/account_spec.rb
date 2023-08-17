@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe Account, type: :model do
-  context do
+RSpec.describe Account do
+  context 'with an account record' do
     subject { Fabricate(:account) }
 
     let(:bob) { Fabricate(:account, username: 'bob') }
@@ -20,7 +20,9 @@ RSpec.describe Account, type: :model do
       end
 
       context 'when the account is of a local user' do
-        let!(:subject) { Fabricate(:user, email: 'foo+bar@domain.org').account }
+        subject { local_user_account }
+
+        let!(:local_user_account) { Fabricate(:user, email: 'foo+bar@domain.org').account }
 
         it 'creates a canonical domain block' do
           subject.suspend!
@@ -171,7 +173,7 @@ RSpec.describe Account, type: :model do
   describe '#possibly_stale?' do
     let(:account) { Fabricate(:account, last_webfingered_at: last_webfingered_at) }
 
-    context 'last_webfingered_at is nil' do
+    context 'when last_webfingered_at is nil' do
       let(:last_webfingered_at) { nil }
 
       it 'returns true' do
@@ -179,7 +181,7 @@ RSpec.describe Account, type: :model do
       end
     end
 
-    context 'last_webfingered_at is more than 24 hours before' do
+    context 'when last_webfingered_at is more than 24 hours before' do
       let(:last_webfingered_at) { 25.hours.ago }
 
       it 'returns true' do
@@ -187,7 +189,7 @@ RSpec.describe Account, type: :model do
       end
     end
 
-    context 'last_webfingered_at is less than 24 hours before' do
+    context 'when last_webfingered_at is less than 24 hours before' do
       let(:last_webfingered_at) { 23.hours.ago }
 
       it 'returns false' do
@@ -200,7 +202,7 @@ RSpec.describe Account, type: :model do
     let(:account) { Fabricate(:account, domain: domain) }
     let(:acct)    { account.acct }
 
-    context 'domain is nil' do
+    context 'when domain is nil' do
       let(:domain) { nil }
 
       it 'returns nil' do
@@ -213,7 +215,7 @@ RSpec.describe Account, type: :model do
       end
     end
 
-    context 'domain is present' do
+    context 'when domain is present' do
       let(:domain) { 'example.com' }
 
       it 'calls ResolveAccountService#call' do
@@ -339,7 +341,7 @@ RSpec.describe Account, type: :model do
     it 'returns the domains blocked by the account' do
       account = Fabricate(:account)
       account.block_domain!('domain')
-      expect(account.excluded_from_timeline_domains).to match_array ['domain']
+      expect(account.excluded_from_timeline_domains).to contain_exactly('domain')
     end
   end
 
@@ -362,7 +364,7 @@ RSpec.describe Account, type: :model do
         suspended: true
       )
 
-      results = Account.search_for('username')
+      results = described_class.search_for('username')
       expect(results).to eq []
     end
 
@@ -375,7 +377,7 @@ RSpec.describe Account, type: :model do
 
       match.user.update(approved: false)
 
-      results = Account.search_for('username')
+      results = described_class.search_for('username')
       expect(results).to eq []
     end
 
@@ -388,7 +390,7 @@ RSpec.describe Account, type: :model do
 
       match.user.update(confirmed_at: nil)
 
-      results = Account.search_for('username')
+      results = described_class.search_for('username')
       expect(results).to eq []
     end
 
@@ -400,7 +402,7 @@ RSpec.describe Account, type: :model do
         domain: 'example.com'
       )
 
-      results = Account.search_for('A?l\i:c e')
+      results = described_class.search_for('A?l\i:c e')
       expect(results).to eq [match]
     end
 
@@ -412,7 +414,7 @@ RSpec.describe Account, type: :model do
         domain: 'example.com'
       )
 
-      results = Account.search_for('display')
+      results = described_class.search_for('display')
       expect(results).to eq [match]
     end
 
@@ -424,7 +426,7 @@ RSpec.describe Account, type: :model do
         domain: 'example.com'
       )
 
-      results = Account.search_for('username')
+      results = described_class.search_for('username')
       expect(results).to eq [match]
     end
 
@@ -436,19 +438,19 @@ RSpec.describe Account, type: :model do
         domain: 'example.com'
       )
 
-      results = Account.search_for('example')
+      results = described_class.search_for('example')
       expect(results).to eq [match]
     end
 
     it 'limits by 10 by default' do
       11.times.each { Fabricate(:account, display_name: 'Display Name') }
-      results = Account.search_for('display')
+      results = described_class.search_for('display')
       expect(results.size).to eq 10
     end
 
     it 'accepts arbitrary limits' do
       2.times.each { Fabricate(:account, display_name: 'Display Name') }
-      results = Account.search_for('display', limit: 1)
+      results = described_class.search_for('display', limit: 1)
       expect(results.size).to eq 1
     end
 
@@ -458,7 +460,7 @@ RSpec.describe Account, type: :model do
         { display_name: 'Display Name', username: 'username', domain: 'example.com' },
       ].map(&method(:Fabricate).curry(2).call(:account))
 
-      results = Account.search_for('username')
+      results = described_class.search_for('username')
       expect(results).to eq matches
     end
   end
@@ -476,7 +478,7 @@ RSpec.describe Account, type: :model do
         )
         account.follow!(match)
 
-        results = Account.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
+        results = described_class.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
         expect(results).to eq [match]
       end
 
@@ -488,7 +490,7 @@ RSpec.describe Account, type: :model do
           domain: 'example.com'
         )
 
-        results = Account.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
+        results = described_class.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
         expect(results).to eq []
       end
 
@@ -501,7 +503,7 @@ RSpec.describe Account, type: :model do
           suspended: true
         )
 
-        results = Account.advanced_search_for('username', account, limit: 10, following: true)
+        results = described_class.advanced_search_for('username', account, limit: 10, following: true)
         expect(results).to eq []
       end
 
@@ -514,7 +516,7 @@ RSpec.describe Account, type: :model do
 
         match.user.update(approved: false)
 
-        results = Account.advanced_search_for('username', account, limit: 10, following: true)
+        results = described_class.advanced_search_for('username', account, limit: 10, following: true)
         expect(results).to eq []
       end
 
@@ -527,7 +529,7 @@ RSpec.describe Account, type: :model do
 
         match.user.update(confirmed_at: nil)
 
-        results = Account.advanced_search_for('username', account, limit: 10, following: true)
+        results = described_class.advanced_search_for('username', account, limit: 10, following: true)
         expect(results).to eq []
       end
     end
@@ -541,7 +543,7 @@ RSpec.describe Account, type: :model do
         suspended: true
       )
 
-      results = Account.advanced_search_for('username', account)
+      results = described_class.advanced_search_for('username', account)
       expect(results).to eq []
     end
 
@@ -554,7 +556,7 @@ RSpec.describe Account, type: :model do
 
       match.user.update(approved: false)
 
-      results = Account.advanced_search_for('username', account)
+      results = described_class.advanced_search_for('username', account)
       expect(results).to eq []
     end
 
@@ -567,7 +569,7 @@ RSpec.describe Account, type: :model do
 
       match.user.update(confirmed_at: nil)
 
-      results = Account.advanced_search_for('username', account)
+      results = described_class.advanced_search_for('username', account)
       expect(results).to eq []
     end
 
@@ -579,19 +581,19 @@ RSpec.describe Account, type: :model do
         domain: 'example.com'
       )
 
-      results = Account.advanced_search_for('A?l\i:c e', account)
+      results = described_class.advanced_search_for('A?l\i:c e', account)
       expect(results).to eq [match]
     end
 
     it 'limits by 10 by default' do
       11.times { Fabricate(:account, display_name: 'Display Name') }
-      results = Account.advanced_search_for('display', account)
+      results = described_class.advanced_search_for('display', account)
       expect(results.size).to eq 10
     end
 
     it 'accepts arbitrary limits' do
       2.times { Fabricate(:account, display_name: 'Display Name') }
-      results = Account.advanced_search_for('display', account, limit: 1)
+      results = described_class.advanced_search_for('display', account, limit: 1)
       expect(results.size).to eq 1
     end
 
@@ -600,7 +602,7 @@ RSpec.describe Account, type: :model do
       followed_match = Fabricate(:account, username: 'Matcher')
       Fabricate(:follow, account: account, target_account: followed_match)
 
-      results = Account.advanced_search_for('match', account)
+      results = described_class.advanced_search_for('match', account)
       expect(results).to eq [followed_match, match]
       expect(results.first.rank).to be > results.last.rank
     end
@@ -639,31 +641,31 @@ RSpec.describe Account, type: :model do
 
   describe '.following_map' do
     it 'returns an hash' do
-      expect(Account.following_map([], 1)).to be_a Hash
+      expect(described_class.following_map([], 1)).to be_a Hash
     end
   end
 
   describe '.followed_by_map' do
     it 'returns an hash' do
-      expect(Account.followed_by_map([], 1)).to be_a Hash
+      expect(described_class.followed_by_map([], 1)).to be_a Hash
     end
   end
 
   describe '.blocking_map' do
     it 'returns an hash' do
-      expect(Account.blocking_map([], 1)).to be_a Hash
+      expect(described_class.blocking_map([], 1)).to be_a Hash
     end
   end
 
   describe '.requested_map' do
     it 'returns an hash' do
-      expect(Account.requested_map([], 1)).to be_a Hash
+      expect(described_class.requested_map([], 1)).to be_a Hash
     end
   end
 
   describe '.requested_by_map' do
     it 'returns an hash' do
-      expect(Account.requested_by_map([], 1)).to be_a Hash
+      expect(described_class.requested_by_map([], 1)).to be_a Hash
     end
   end
 
@@ -698,18 +700,12 @@ RSpec.describe Account, type: :model do
       expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
     end
 
-    xit 'does not match URL querystring' do
+    xit 'does not match URL query string' do
       expect(subject.match('https://example.com/?x=@alice')).to be_nil
     end
   end
 
   describe 'validations' do
-    it 'has a valid fabricator' do
-      account = Fabricate.build(:account)
-      account.valid?
-      expect(account).to be_valid
-    end
-
     it 'is invalid without a username' do
       account = Fabricate.build(:account, username: nil)
       account.valid?
@@ -840,7 +836,7 @@ RSpec.describe Account, type: :model do
           { username: 'b', domain: 'b' },
         ].map(&method(:Fabricate).curry(2).call(:account))
 
-        expect(Account.where('id > 0').alphabetic).to eq matches
+        expect(described_class.where('id > 0').alphabetic).to eq matches
       end
     end
 
@@ -849,7 +845,7 @@ RSpec.describe Account, type: :model do
         match = Fabricate(:account, display_name: 'pattern and suffix')
         Fabricate(:account, display_name: 'prefix and pattern')
 
-        expect(Account.matches_display_name('pattern')).to eq [match]
+        expect(described_class.matches_display_name('pattern')).to eq [match]
       end
     end
 
@@ -858,24 +854,24 @@ RSpec.describe Account, type: :model do
         match = Fabricate(:account, username: 'pattern_and_suffix')
         Fabricate(:account, username: 'prefix_and_pattern')
 
-        expect(Account.matches_username('pattern')).to eq [match]
+        expect(described_class.matches_username('pattern')).to eq [match]
       end
     end
 
     describe 'by_domain_and_subdomains' do
       it 'returns exact domain matches' do
         account = Fabricate(:account, domain: 'example.com')
-        expect(Account.by_domain_and_subdomains('example.com')).to eq [account]
+        expect(described_class.by_domain_and_subdomains('example.com')).to eq [account]
       end
 
       it 'returns subdomains' do
         account = Fabricate(:account, domain: 'foo.example.com')
-        expect(Account.by_domain_and_subdomains('example.com')).to eq [account]
+        expect(described_class.by_domain_and_subdomains('example.com')).to eq [account]
       end
 
       it 'does not return partially matching domains' do
         account = Fabricate(:account, domain: 'grexample.com')
-        expect(Account.by_domain_and_subdomains('example.com')).to_not eq [account]
+        expect(described_class.by_domain_and_subdomains('example.com')).to_not eq [account]
       end
     end
 
@@ -883,7 +879,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who have a domain' do
         account_1 = Fabricate(:account, domain: nil)
         account_2 = Fabricate(:account, domain: 'example.com')
-        expect(Account.remote).to match_array([account_2])
+        expect(described_class.remote).to contain_exactly(account_2)
       end
     end
 
@@ -891,7 +887,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who do not have a domain' do
         account_1 = Fabricate(:account, domain: nil)
         account_2 = Fabricate(:account, domain: 'example.com')
-        expect(Account.where('id > 0').local).to match_array([account_1])
+        expect(described_class.where('id > 0').local).to contain_exactly(account_1)
       end
     end
 
@@ -902,14 +898,14 @@ RSpec.describe Account, type: :model do
           matches[index] = Fabricate(:account, domain: matches[index])
         end
 
-        expect(Account.where('id > 0').partitioned).to match_array(matches)
+        expect(described_class.where('id > 0').partitioned).to match_array(matches)
       end
     end
 
     describe 'recent' do
       it 'returns a relation of accounts sorted by recent creation' do
-        matches = 2.times.map { Fabricate(:account) }
-        expect(Account.where('id > 0').recent).to match_array(matches)
+        matches = Array.new(2) { Fabricate(:account) }
+        expect(described_class.where('id > 0').recent).to match_array(matches)
       end
     end
 
@@ -917,7 +913,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who are silenced' do
         account_1 = Fabricate(:account, silenced: true)
         account_2 = Fabricate(:account, silenced: false)
-        expect(Account.silenced).to match_array([account_1])
+        expect(described_class.silenced).to contain_exactly(account_1)
       end
     end
 
@@ -925,7 +921,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who are suspended' do
         account_1 = Fabricate(:account, suspended: true)
         account_2 = Fabricate(:account, suspended: false)
-        expect(Account.suspended).to match_array([account_1])
+        expect(described_class.suspended).to contain_exactly(account_1)
       end
     end
 
@@ -947,32 +943,32 @@ RSpec.describe Account, type: :model do
       end
 
       it 'returns every usable non-suspended account' do
-        expect(Account.searchable).to match_array([silenced_local, silenced_remote, local_account, remote_account])
+        expect(described_class.searchable).to contain_exactly(silenced_local, silenced_remote, local_account, remote_account)
       end
 
       it 'does not mess with previously-applied scopes' do
-        expect(Account.where.not(id: remote_account.id).searchable).to match_array([silenced_local, silenced_remote, local_account])
+        expect(described_class.where.not(id: remote_account.id).searchable).to contain_exactly(silenced_local, silenced_remote, local_account)
       end
     end
   end
 
   context 'when is local' do
-    # Test disabled because test environment omits autogenerating keys for performance
-    xit 'generates keys' do
-      account = Account.create!(domain: nil, username: Faker::Internet.user_name(separators: ['_']))
-      expect(account.keypair.private?).to be true
+    it 'generates keys' do
+      account = described_class.create!(domain: nil, username: Faker::Internet.user_name(separators: ['_']))
+      expect(account.keypair).to be_private
+      expect(account.keypair).to be_public
     end
   end
 
   context 'when is remote' do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
-      account = Account.create!(domain: 'remote', username: Faker::Internet.user_name(separators: ['_']), public_key: key.to_pem)
+      account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', username: Faker::Internet.user_name(separators: ['_']), public_key: key.to_pem)
       expect(account.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do
-      account = Account.create!(domain: 'にゃん', username: Faker::Internet.user_name(separators: ['_']))
+      account = described_class.create!(domain: 'にゃん', uri: 'https://xn--r9j5b5b/actor', username: Faker::Internet.user_name(separators: ['_']))
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end
@@ -992,7 +988,7 @@ RSpec.describe Account, type: :model do
       threads = Array.new(increment_by) do
         Thread.new do
           true while wait_for_start
-          Account.find(subject.id).increment_count!(:followers_count)
+          described_class.find(subject.id).increment_count!(:followers_count)
         end
       end
 

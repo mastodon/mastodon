@@ -2,18 +2,20 @@
 
 require 'rails_helper'
 
-describe ApplicationController, type: :controller do
-  class WrappedActor
-    attr_reader :wrapped_account
+describe SignatureVerification do
+  let(:wrapped_actor_class) do
+    Class.new do
+      attr_reader :wrapped_account
 
-    def initialize(wrapped_account)
-      @wrapped_account = wrapped_account
+      def initialize(wrapped_account)
+        @wrapped_account = wrapped_account
+      end
+
+      delegate :uri, :keypair, to: :wrapped_account
     end
-
-    delegate :uri, :keypair, to: :wrapped_account
   end
 
-  controller do
+  controller(ApplicationController) do
     include SignatureVerification
 
     before_action :require_actor_signature!, only: [:signature_required]
@@ -33,8 +35,8 @@ describe ApplicationController, type: :controller do
 
   before do
     routes.draw do
-      match via: [:get, :post], 'success' => 'anonymous#success'
-      match via: [:get, :post], 'signature_required' => 'anonymous#signature_required'
+      match :via => [:get, :post], 'success' => 'anonymous#success'
+      match :via => [:get, :post], 'signature_required' => 'anonymous#signature_required'
     end
   end
 
@@ -93,7 +95,7 @@ describe ApplicationController, type: :controller do
     end
 
     context 'with a valid actor that is not an Account' do
-      let(:actor) { WrappedActor.new(author) }
+      let(:actor) { wrapped_actor_class.new(author) }
 
       before do
         get :success
@@ -127,7 +129,38 @@ describe ApplicationController, type: :controller do
       end
     end
 
-    context 'with request with unparseable Date header' do
+    context 'with non-normalized URL' do
+      before do
+        get :success
+
+        fake_request = Request.new(:get, 'http://test.host/subdir/../success')
+        fake_request.on_behalf_of(author)
+
+        request.headers.merge!(fake_request.headers)
+
+        allow(controller).to receive(:actor_refresh_key!).and_return(author)
+      end
+
+      describe '#build_signed_string' do
+        it 'includes the normalized request path' do
+          expect(controller.send(:build_signed_string)).to start_with "(request-target): get /success\n"
+        end
+      end
+
+      describe '#signed_request?' do
+        it 'returns true' do
+          expect(controller.signed_request?).to be true
+        end
+      end
+
+      describe '#signed_request_actor' do
+        it 'returns an account' do
+          expect(controller.signed_request_account).to eq author
+        end
+      end
+    end
+
+    context 'with request with unparsable Date header' do
       before do
         get :success
 
@@ -200,7 +233,7 @@ describe ApplicationController, type: :controller do
 
         request.headers.merge!(fake_request.headers)
 
-        stub_request(:get, 'http://localhost:5000/actor#main-key').to_raise(Mastodon::HostValidationError)
+        stub_request(:get, 'http://localhost:5000/actor').to_raise(Mastodon::HostValidationError)
       end
 
       describe '#signed_request?' do

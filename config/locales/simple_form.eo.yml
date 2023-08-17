@@ -2,6 +2,10 @@
 eo:
   simple_form:
     hints:
+      account:
+        display_name: Via plena nomo aŭ via kromnomo.
+        fields: Via retpaĝo, pronomoj, aĝo, ĉio, kion vi volas.
+        note: 'Vi povas @mencii aliajn homojn aŭ #haŝetikedoj.'
       account_alias:
         acct: Specifu la uzantnomon@domajnon de la konto el kiu vi volas translokiĝi
       account_migration:
@@ -37,14 +41,11 @@ eo:
         current_password: Pro sekuraj kialoj, bonvolu enigi la pasvorton de la nuna konto
         current_username: Por konfirmi, bonvolu enigi la uzantnomon de la nuna konto
         digest: Sendita nur post longa tempo de neaktiveco, kaj nur se vi ricevis personan mesaĝon en via foresto
-        discoverable: Permesi vian konton esti malkovrita de fremduloj per rekomendoj, tendencoj kaj aliaj funkcioj
         email: Vi ricevos konfirman retpoŝton
-        fields: Vi povas havi ĝis 4 tabelajn elementojn en via profilo
         header: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
         inbox_url: Kopiu la URL de la ĉefpaĝo de la ripetilo, kiun vi volas uzi
         irreversible: La filtritaj mesaĝoj malaperos por eterne, eĉ se la filtrilo poste estas forigita
         locale: La lingvo de la fasado, retpoŝtaĵoj, kaj sciigoj
-        locked: Vi devos aprobi ĉiun peton de sekvado mane
         password: Uzu almenaŭ 8 signojn
         phrase: Estos provita senzorge pri la uskleco de teksto aŭ averto pri enhavo de mesaĝo
         scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
@@ -54,12 +55,9 @@ eo:
         setting_display_media_default: Kaŝi plurmediojn markitajn kiel tiklaj
         setting_display_media_hide_all: Ĉiam kaŝi la plurmediojn
         setting_display_media_show_all: Ĉiam montri la plurmediojn
-        setting_hide_network: Tiuj kiujn vi sekvas, kaj tiuj kiuj sekvas vin estos kaŝitaj en via profilo
-        setting_noindex: Influas vian publikan profilon kaj afiŝajn paĝojn
-        setting_show_application: La aplikaĵo, kiun vi uzas por afiŝi, estos montrita en la detala vido de viaj afiŝoj
         setting_use_blurhash: Transirojn estas bazita sur la koloroj de la kaŝitaj aŭdovidaĵoj sed ne montri iun ajn detalon
         setting_use_pending_items: Kaŝi tempoliniajn ĝisdatigojn malantaŭ klako anstataŭ aŭtomate rulumi la fluon
-        username: Via uzantnomo estos unika en %{domain}
+        username: Vi povas uzi literojn, ciferojn kaj substrekojn
         whole_word: Kiam la vorto aŭ frazo estas nur litera aŭ cifera, ĝi estos uzata nur se ĝi kongruas kun la tuta vorto
       domain_allow:
         domain: Ĉi tiu domajno povos akiri datumon de ĉi tiu servilo kaj envenanta datumo estos prilaborita kaj konservita
@@ -131,6 +129,7 @@ eo:
         position: Pli altaj rolo decidas konfliktosolvo en kelkaj situacioj
       webhook:
         events: Elektu eventojn por sendi
+        template: Skribu vian propran JSON-ŝarĝon per varia interpolado. Lasu malplenan por defaŭlta JSON.
         url: Kien eventoj sendotas
     labels:
       account:
@@ -174,7 +173,6 @@ eo:
         context: Filtri kuntekstojn
         current_password: Nuna pasvorto
         data: Datumoj
-        discoverable: Montri ĉi tiun konton en la profilujo
         display_name: Publika nomo
         email: Retadreso
         expires_in: Eksvalidiĝas post
@@ -184,7 +182,6 @@ eo:
         inbox_url: URL de la ripetila enirkesto
         irreversible: Forĵeti anstataŭ kaŝi
         locale: Lingvo de la fasado
-        locked: Ŝlosi konton
         max_uses: Maksimuma nombro de uzoj
         new_password: Nova pasvorto
         note: Sinprezento
@@ -196,7 +193,6 @@ eo:
         setting_always_send_emails: Ĉiam sendi la sciigojn per retpoŝto
         setting_auto_play_gif: Aŭtomate ekigi GIF-ojn
         setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
-        setting_crop_images: Stuci bildojn en negrandigitaj mesaĝoj al 16x9
         setting_default_language: Publikada lingvo
         setting_default_privacy: Privateco de afiŝado
         setting_default_sensitive: Ĉiam marki plurmediojn kiel tiklaj
@@ -208,9 +204,7 @@ eo:
         setting_display_media_show_all: Montri ĉiujn
         setting_expand_spoilers: Ĉiam malfoldas mesaĝojn markitajn per averto pri enhavo
         setting_hide_network: Kaŝi viajn sekvantojn kaj sekvatojn
-        setting_noindex: Ellistiĝi de retserĉila indeksado
         setting_reduce_motion: Redukti la movecojn de la animacioj
-        setting_show_application: Publikigi la aplikaĵon uzatan por sendi mesaĝojn
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
         setting_theme: Etoso de la retejo
         setting_trends: Montri hodiaŭajn furoraĵojn
@@ -296,6 +290,7 @@ eo:
         usable: Permesi mesaĝojn uzi ĉi tiun kradvorton
       user:
         role: Rolo
+        time_zone: Horzono
       user_role:
         color: Koloro de ŝildo
         highlighted: Montri rolon kiel insignon sur uzantoprofiloj
@@ -304,6 +299,7 @@ eo:
         position: Prioritato
       webhook:
         events: Ŝaltitaj eventoj
+        template: Utilŝarĝa ŝablono
         url: Finpunkto-URL
     'no': Ne
     not_recommended: Nerekomendita

@@ -84,6 +84,7 @@ hy:
         active: Ակտիվ
         all: Բոլորը
         pending: Սպասում
+        silenced: Սահմանափակ
         suspended: Կասեցուած
         title: Մոդերացիա
       moderation_notes: Մոդերացիայի նշումներ
@@ -108,8 +109,6 @@ hy:
       removed_header_msg: Յաջողութեամբ հեռացուեց %{username}֊ի գլխանկարը
       resend_confirmation:
         already_confirmed: Օգտատէրն արդէն հաստատուած է
-        send: Հաստատման իմակն ուղարկել կրկին
-        success: Հաստատման իմակը բարեյաջող ուղարկուեց
       reset: Վերականգնել
       reset_password: Վերականգնել գաղտանաբառը
       resubscribe: Կրկին բաժանորդագրուել
@@ -464,11 +463,9 @@ hy:
     regenerate_token: Ստեղծել նոր հասանելիութեան կտրոն
     your_token: Քո մուտքի բանալին
   auth:
-    change_password: Գաղտնաբառ
     delete_account: Ջնջել հաշիվը
     description:
       prefix_sign_up: Գրանցուի՛ր Մաստոդոնում հենց այսօր
-    didnt_get_confirmation: Չե՞ս ստացել հաստատման ուղեցոյց։
     dont_have_your_security_key: Չունե՞ս անվտանգութեան բանալի։
     forgot_password: Մոռացե՞լ ես գաղտնաբառդ
     login: Մտնել
@@ -480,23 +477,10 @@ hy:
     reset_password: Վերականգնել գաղտանաբառը
     security: Անվտանգություն
     set_new_password: Սահմանել նոր գաղտնաբառ
-    setup:
-      title: Կարգավորում
     status:
       account_status: Հաշուի կարգավիճակ
       pending: Դիմումը պէտք է քննուի մեր անձնակազմի կողմից, ինչը կարող է մի փոքր ժամանակ խլել։ Դիմումի հաստատուելու դէպքում, կտեղեկացնենք նամակով։
     use_security_key: Օգտագործել անվտանգութեան բանալի
-  authorize_follow:
-    already_following: Դու արդէն հետեւում ես այս հաշուին
-    already_requested: Դու արդէն ուղարկել ես հետեւմանն յայտ այս հաշուին
-    follow: Հետևել
-    follow_request: Դու ուղարկել ես հետեւելու հայց՝
-    following: Յաջողութի՜ւն։ Դու այժմ հետեւում ես․
-    post_follow:
-      close: Կամ, կարող ես պարզապէս փակել այս պատուհանը։
-      return: Ցուցադրել օգտատիրոջ էջը
-      web: Անցնել վէբին
-    title: Հետեւել %{acct}
   challenge:
     confirm: Շարունակել
     invalid_password: Անվաւեր ծածկագիր
@@ -572,11 +556,10 @@ hy:
     index:
       delete: Ջնջել
       empty: Դու ֆիլտրեր չունես։
+      expires_on: Լրանում է %{date}-ին
       title: Ֆիլտրեր
     new:
       title: Ավելացնել ֆիլտր
-  footer:
-    trending_now: Այժմ արդիական
   generic:
     all: Բոլորը
     changes_saved_msg: Փոփոխութիւնները յաջող պահուած են
@@ -707,6 +690,8 @@ hy:
     other: Այլ
     posting_defaults: Կանխադիր կարգաւորումներ
     public_timelines: Հանրային հոսք
+  privacy_policy:
+    title: Գաղտնիութեան քաղաքականութիւն
   reactions:
     errors:
       unrecognized_emoji: ճանաչուած էմոջի չէ
@@ -758,7 +743,6 @@ hy:
       ios: iOS
       linux: Լինուքս
       mac: macOS
-      other: անհայտ հարթակ
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -811,7 +795,6 @@ hy:
     show_newer: Ցուցադրել նորերը
     show_older: Ցուցադրել հները
     show_thread: Բացել շղթան
-    sign_in_to_participate: Մուտք գործէք՝ զրոյցին միանալու համար
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Հասցէագրուած
@@ -833,8 +816,6 @@ hy:
       '63113904': 2 տարի
       '7889238': 3 ամիս
   stream_entries:
-    pinned: Ամրացուած գրառում
-    reblogged: տարածուած
     sensitive_content: Կասկածելի բովանդակութիւն
   themes:
     contrast: Mastodon (բարձր կոնտրաստով)
@@ -884,7 +865,6 @@ hy:
     invalid_otp_token: Անվաւեր 2F կոդ
     signed_in_as: Մոտք գործել որպէս․
   verification:
-    explanation_html: Պիտակների յղումների հեղինակութիւնը կարելի է վաւերացնել։ Անհրաժեշտ է որ յղուած կայքը պարունակի յետադարձ յղում ձեր մաստադոնի էջին, որը <strong>պէտք է</strong> ունենայ <code>rel="me"</code> նիշքը։ Յղման բովանդակութիւնը կարևոր չէ։ Օրինակ՝
     verification: Ստուգում
   webauthn_credentials:
     delete: Ջնջել

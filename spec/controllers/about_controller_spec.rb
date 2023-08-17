@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AboutController, type: :controller do
+RSpec.describe AboutController do
   render_views
 
   describe 'GET #show' do

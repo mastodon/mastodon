@@ -1,17 +1,21 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { debounce } from 'lodash';
-import LoadingIndicator from '../../components/loading_indicator';
-import Column from '../ui/components/column';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
-import DomainContainer from '../../containers/domain_container';
-import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
-import ScrollableList from '../../components/scrollable_list';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
 import { Helmet } from 'react-helmet';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import { debounce } from 'lodash';
+
+import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
+import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import { LoadingIndicator } from '../../components/loading_indicator';
+import ScrollableList from '../../components/scrollable_list';
+import DomainContainer from '../../containers/domain_container';
+import Column from '../ui/components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.domain_blocks', defaultMessage: 'Blocked domains' },
@@ -23,8 +27,6 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['domain_lists', 'blocks', 'next']),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class Blocks extends ImmutablePureComponent {
 
   static propTypes = {
@@ -36,7 +38,7 @@ class Blocks extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.props.dispatch(fetchDomainBlocks());
   }
 
@@ -81,3 +83,5 @@ class Blocks extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(Blocks));

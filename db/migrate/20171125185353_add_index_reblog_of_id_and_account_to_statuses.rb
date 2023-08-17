@@ -1,4 +1,6 @@
-class AddIndexReblogOfIdAndAccountToStatuses < ActiveRecord::Migration[5.1]
+# frozen_string_literal: true
+
+class AddIndexReblogOfIdAndAccountToStatuses < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def change

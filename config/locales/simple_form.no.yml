@@ -2,6 +2,10 @@
 'no':
   simple_form:
     hints:
+      account:
+        display_name: Ditt fulle navn eller ditt morsomme navn.
+        fields: Din hjemmeside, uttalelse, alder, eller alt annet du vil.
+        note: 'Du kan @nevne andre eller #emneknagger.'
       account_alias:
         acct: Spesifiser brukernavn@domene til brukeren du vil flytte fra
       account_migration:
@@ -18,6 +22,8 @@
           disable: Forhindre brukeren fra å bruke kontoen sin, men ikke slett eller skjul innholdet deres.
           none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
           sensitive: Tving alle denne brukerens medievedlegg til å bli merket som følsomme.
+          silence: Forhindre at brukeren kan legge ut innlegg med offentlig synlighet, skjule innleggene og varslene sine fra folk som ikke følger dem. Lukker alle rapporter mot denne kontoen.
+          suspend: Forhindre interaksjon fra eller til denne kontoen og slett innholdet. Tilbakestiller innholdet innen 30 dager. Lukk alle rapporter mot denne kontoen.
         warning_preset_id: Valgfritt. Du kan fortsatt legge til tilpasset tekst til slutten av forhåndsinnstillingen
       announcement:
         all_day: Hvis noen av dem er valgt, vil kun datoene av tidsrammen bli vist
@@ -35,14 +41,11 @@
         current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
         current_username: For å bekrefte, vennligst skriv inn brukernavnet til den nåværende kontoen
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
-        discoverable: La kontoen din bli oppdaget av ukjente gjennom anbefalinger, trender og andre funksjoner
         email: Du vil bli tilsendt en bekreftelses-E-post
-        fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         inbox_url: Kopier URLen fra forsiden til overgangen du vil bruke
         irreversible: Filtrerte innlegg vil ugjenkallelig forsvinne, selv om filteret senere blir fjernet
         locale: Språket til brukergrensesnittet, e-mailer og push-varsler
-        locked: Krever at du manuelt godkjenner følgere
         password: Bruk minst 8 tegn
         phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsvarselet til et innlegg
         scopes: Hvilke API-er programmet vil bli gitt tilgang til. Dersom du velger et toppnivåomfang, trenger du ikke å velge individuelle API-er.
@@ -52,12 +55,9 @@
         setting_display_media_default: Skjul media som er merket som følsomt
         setting_display_media_hide_all: Skjul alltid all media
         setting_display_media_show_all: Alltid vis media som er merket som sensitivt
-        setting_hide_network: De som du følger, og de som følger deg, vil ikke bli vist på profilen din
-        setting_noindex: Påvirker din offentlige profil og statussider
-        setting_show_application: Appen du bruker til å publisere innlegg vil bli vist i den detaljerte visningen til innleggene dine
         setting_use_blurhash: Gradientene er basert på fargene til de skjulte visualitetene, men gjør alle detaljer uklare
         setting_use_pending_items: Skjul tidslinjeoppdateringer bak et klikk, i stedet for å automatisk la strømmen skrolle
-        username: Brukernavnet ditt vil være unikt på %{domain}
+        username: Du kan bruke bokstaver, tall og understrekingstegn
         whole_word: Når søkeordet eller setningen bare er alfanumerisk, aktiveres det bare hvis det samsvarer med hele ordet
       domain_allow:
         domain: Dette domenet vil være i stand til å hente data fra denne serveren og dets innkommende data vil bli prosessert og lagret
@@ -72,6 +72,7 @@
           hide: Skjul filtrert innhold fullstendig, som om det ikke eksisterte
           warn: Skjul det filtrerte innholdet bak et varsel som omtaler filterets tittel
       form_admin_settings:
+        activity_api_enabled: Teller med lokale publiserte innlegg, aktive brukere og nye registreringer i ukentlige bøtter
         backups_retention_period: Behold genererte brukerarkiv i det angitte antall dager.
         bootstrap_timeline_accounts: Disse kontoene vil bli festet til toppen av nye brukeres følge-anbefalinger.
         closed_registrations_message: Vises når det er stengt for registrering
@@ -79,6 +80,7 @@
         custom_css: Du kan bruke egendefinerte stiler på nettversjonen av Mastodon.
         mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
         media_cache_retention_period: Mediafiler som lastes ned vil bli slettet etter det angitte antall dager når det settes til en positiv verdi, og blir lastet ned på nytt ved behov.
+        peers_api_enabled: En liste over domenenavn denne serveren har oppstått i fødiverset. Det finnes ikke data om du føderer med en gitt server, for akkurat det serveren din vet om. Dette brukes av tjenester som i all hovedsak innhenter føderasjonsstatistikk.
         profile_directory: Profilkatalogen viser alle brukere som har valgt å kunne bli oppdaget.
         require_invite_text: Når registreringer krever manuell godkjenning, må du gjøre «Hvorfor vil du bli med?»-tekstinput obligatorisk i stedet for valgfritt
         site_contact_email: Hvordan mennesker får tak i deg for rettslige spørsmål eller brukerstøtte.
@@ -87,7 +89,13 @@
         site_short_description: En kort beskrivelse for å bidra til å definere din tjeners identitet. Hvem kjører den, hvem er det for?
         site_terms: Bruk dine egne personvernregler eller la stå tom for å bruke standarden. Kan struktureres med Markdown-syntaks.
         site_title: Hva man kan kalle tjeneren din utover domenenavnet.
+        status_page_url: URL-adressen til en side hvor folk kan se tilstanden til denne tjeneren under et avbrudd
         theme: Tema som vises for nye brukere og besøkende som ikke er logget inn.
+        thumbnail: Et omtrent 2:1 bilde vist sammen med serverinformasjonen din.
+        timeline_preview: Logget ut besøkende vil kunne bla gjennom de siste offentlige innlegg tilgjengelig på serveren.
+        trendable_by_default: Hopp over manuell gjennomgang av populære innhold. Individuelle elementer kan fjernes fra populært etter faktaen.
+        trends: Trender viser hvilke innlegg, emneknagger og nyheter som får trekkraft på serveren din.
+        trends_as_landing_page: Vis populære innhold til innloggede brukere og besøkende i stedet for en beskrivelse av tjeneren. Krever populært for å bli aktivert.
       form_challenge:
         current_password: Du går inn i et sikkert område
       imports:
@@ -107,10 +115,12 @@
         text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        webauthn: Hvis det er en USB-nøkkel må du sette den inn og om nødvendig trykke på den.
       tag:
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
         chosen_languages: Hvis noen av dem er valgt, vil kun innlegg i de valgte språkene bli vist i de offentlige tidslinjene
+        role: Rollekontroller som bestemmer rettigheter brukeren har
       user_role:
         color: Farge som skal brukes for rollen gjennom hele UI, som RGB i hex-format
         highlighted: Dette gjør rollen offentlig synlig
@@ -119,6 +129,7 @@
         position: Høyere rolle bestemmer konfliktløsning i visse situasjoner. Enkelte tiltak kan bare utføres på roller med lavere prioritet
       webhook:
         events: Velg hendelser som skal sendes
+        template: Skriv din egen JSON nyttelast ved å bruke variabel interpolering. La stå tom for standard JSON.
         url: Hvor hendelser vil bli sendt til
     labels:
       account:
@@ -155,24 +166,22 @@
       defaults:
         autofollow: Inviter til å følge kontoen din
         avatar: Profilbilde
-        bot: Dette er en botkonto
+        bot: Dette er en automatisert konto
         chosen_languages: Filtrer språk
         confirm_new_password: Bekreft nytt passord
         confirm_password: Bekreft passord
         context: Filtersammenhenger
         current_password: Nåværende passord
         data: Data
-        discoverable: Før opp denne kontoen i mappen
         display_name: Visningsnavn
         email: E-postadresse
         expires_in: Utløper etter
-        fields: Profilmetadata
-        header: Overskrift
+        fields: Ekstrafelt
+        header: Bakgrunnsbilde på profilen
         honeypot: "%{label} (ikke fyll ut)"
         inbox_url: URL til overgangsinnboksen
         irreversible: Forkast i stedet for å skjule
         locale: Språk
-        locked: Lås konto
         max_uses: Maksimalt antall bruk
         new_password: Nytt passord
         note: Om meg
@@ -184,7 +193,6 @@
         setting_always_send_emails: Alltid send e-postvarslinger
         setting_auto_play_gif: Autoavspill animert GIF-filer
         setting_boost_modal: Vis bekreftelse før fremheving
-        setting_crop_images: Klipp bilder i ikke-utvidede innlegg til 16:9
         setting_default_language: Innleggsspråk
         setting_default_privacy: Postintegritet
         setting_default_sensitive: Merk alltid media som følsomt
@@ -196,9 +204,7 @@
         setting_display_media_show_all: Vis alle
         setting_expand_spoilers: Utvid alltid innlegg som er merket med innholdsvarsler
         setting_hide_network: Skjul nettverket ditt
-        setting_noindex: Avmeld fra søkemotorindeksering
         setting_reduce_motion: Reduser bevegelser i animasjoner
-        setting_show_application: Vis hvilken app som ble brukt til å sende innlegg
         setting_system_font_ui: Bruk systemets standardfont
         setting_theme: Sidens tema
         setting_trends: Vis dagens trender
@@ -221,12 +227,15 @@
           hide: Skjul fullstendig
           warn: Skjul med en advarsel
       form_admin_settings:
+        activity_api_enabled: Publiser samlet statistikk om brukeraktivitet i API
         backups_retention_period: Brukers oppbevaringsperiode for arkiv
         bootstrap_timeline_accounts: Anbefaler alltid disse kontoene til nye brukere
         closed_registrations_message: Egendefinert melding når registrering ikke er tilgjengelig
         content_cache_retention_period: Oppbevaringsperiode for innholdsbuffer
         custom_css: Egendefinert CSS
+        mascot: Egendefinert maskot (legacy)
         media_cache_retention_period: Oppbevaringsperiode for mediebuffer
+        peers_api_enabled: Publiser liste over oppdagede instanser i API
         profile_directory: Aktiver profilkatalog
         registrations_mode: Hvem kan opprette konto
         require_invite_text: Krev en grunn for å bli med
@@ -238,10 +247,13 @@
         site_short_description: Beskrivelse av server
         site_terms: Retningslinjer for personvern
         site_title: Servernavn
+        status_page_url: Status side lenke
         theme: Standard tema
         thumbnail: Miniatyrbilde til server
+        timeline_preview: Tillat uautentisert tilgang til offentlige tidslinjer
         trendable_by_default: Tillat trender uten foregående vurdering
         trends: Aktiver trender
+        trends_as_landing_page: Bruk trender som landingsside
       interactions:
         must_be_follower: Blokker varslinger fra ikke-følgere
         must_be_following: Blokker varslinger fra personer du ikke følger
@@ -278,6 +290,7 @@
         usable: Tillat innlegg å bruke denne emneknaggen
       user:
         role: Rolle
+        time_zone: Tidssone
       user_role:
         color: Merkefarge
         highlighted: Vis rolle som merke på brukerprofiler
@@ -286,6 +299,8 @@
         position: Prioritet
       webhook:
         events: Aktiverte hendelser
+        template: Nyttelast mal
+        url: Endepunkt lenke
     'no': Nei
     not_recommended: Ikke anbefalt
     recommended: Anbefalt

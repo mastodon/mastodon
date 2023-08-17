@@ -2,6 +2,10 @@
 he:
   simple_form:
     hints:
+      account:
+        display_name: שמך המלא או שם הכיף שלך.
+        fields: עמוד הבית שלך, כינויי גוף, גיל, וכל מידע אחר לפי העדפתך האישית.
+        note: 'ניתן לאזכר @אחרים או #תגיות.'
       account_alias:
         acct: נא לציין משתמש@דומיין של החשבון ממנו תרצה/י לעבור
       account_migration:
@@ -37,14 +41,11 @@ he:
         current_password: מסיבות אבטחה נא להזין את הסיסמא של החשבון הנוכחי
         current_username: על מנת לאשר, נא להכניס את שם המשתמש של החשבון הנוכחי
         digest: נשלח לאחר תקופה ארוכה של אי-פעילות עם סיכום איזכורים שקיבלת בהעדרך
-        discoverable: אשר/י לחשבונך להתגלות לזרים על ידי המלצות, נושאים חמים ושאר דרכים
         email: דוא"ל אישור יישלח אליך
-        fields: ניתן להציג עד ארבעה פריטים כטבלה בפרופילך
         header: PNG, GIF או JPG. מקסימום %{size}. גודל התמונה יוקטן %{dimensions}px
         inbox_url: נא להעתיק את הקישורית מדף הבית של הממסר בו תרצה/י להשתמש
         irreversible: הודעות מסוננות יעלמו באופן בלתי הפיך, אפילו אם מאוחר יותר יוסר המסנן
         locale: שפת ממשק המשתמש, הדוא"ל וההתראות בדחיפה
-        locked: מחייב אישור עוקבים באופן ידני. פרטיות ההודעות תהיה עוקבים-בלבד אלא אם יצוין אחרת
         password: נא להשתמש בלפחות 8 תוים
         phrase: התאמה תמצא ללא תלות באזהרת תוכן בהודעה
         scopes: לאיזה ממשק יורשה היישום לגשת. בבחירת תחום כללי, אין צורך לבחור ממשקים ספציפיים.
@@ -54,12 +55,9 @@ he:
         setting_display_media_default: הסתרת מדיה המסומנת כרגישה
         setting_display_media_hide_all: הסתר מדיה תמיד
         setting_display_media_show_all: גלה מדיה תמיד
-        setting_hide_network: עוקבייך ונעקבייך יוסתרו בפרופילך
-        setting_noindex: משפיע על הפרופיל הציבורי שלך ועמודי ההודעות
-        setting_show_application: היישום בו נעשה שימוש כדי לחצרץ יופיע בתצוגה המפורטת של החצרוץ
         setting_use_blurhash: הגראדיינטים מבוססים על תוכן התמונה המוסתרת, אבל מסתירים את כל הפרטים
         setting_use_pending_items: הסתר עדכוני פיד מאחורי קליק במקום לגלול את הפיד אוטומטית
-        username: שם המשתמש שלך יהיה ייחודי ב- %{domain}
+        username: ניתן להשתמש בספרות, אותיות לטיניות ומקף תחתון
         whole_word: אם מילת מפתח או ביטוי הם אלפאנומריים בלבד, הם יופעלו רק אם נמצאה התאמה למילה שלמה
       domain_allow:
         domain: דומיין זה יוכל לייבא מידע משרת זה והמידע המגיע ממנו יעובד ויאופסן
@@ -131,6 +129,7 @@ he:
         position: תפקיד גבוה יותר מכריע בחילוקי דעות במצבים מסוימים. פעולות מסוימות יכולות להתבצע רק על תפקידים בדרגה נמוכה יותר
       webhook:
         events: בחר אירועים לשליחה
+        template: ניתן להרכיב מטען JSON משלך בשימוש בשילוב משתנים. יש להשאיר ריק בשביל JSON ברירת המחדל.
         url: היעד שאליו יישלחו אירועים
     labels:
       account:
@@ -174,7 +173,6 @@ he:
         context: סינון לפי הקשר
         current_password: סיסמא נוכחית
         data: מידע
-        discoverable: הצע חשבון לאחרים
         display_name: שם להצגה
         email: כתובת דוא"ל
         expires_in: תפוגה לאחר
@@ -184,7 +182,6 @@ he:
         inbox_url: קישורית לתיבת ממסר
         irreversible: הסרה במקום הסתרה
         locale: שפה
-        locked: הפוך חשבון לפרטי
         max_uses: מספר מרבי של שימושים
         new_password: סיסמא חדשה
         note: אודות
@@ -196,7 +193,6 @@ he:
         setting_always_send_emails: תמיד שלח התראות לדוא"ל
         setting_auto_play_gif: ניגון אוטומטי של גיפים
         setting_boost_modal: הצגת דיאלוג אישור לפני הדהוד
-        setting_crop_images: קטום תמונות בהודעות לא מורחבות ל 16 על 9
         setting_default_language: שפת ברירת מחדל להודעה
         setting_default_privacy: פרטיות ההודעות
         setting_default_sensitive: תמיד לתת סימון "רגיש" למדיה
@@ -208,9 +204,7 @@ he:
         setting_display_media_show_all: להציג הכול
         setting_expand_spoilers: להרחיב תמיד הודעות מסומנות באזהרת תוכן
         setting_hide_network: להחביא את הגרף החברתי שלך
-        setting_noindex: לבקש הסתרה ממנועי חיפוש
         setting_reduce_motion: הפחתת תנועה בהנפשות
-        setting_show_application: הצגת הישום ששימש לפרסום ההודעה
         setting_system_font_ui: להשתמש בגופן ברירת המחדל של המערכת
         setting_theme: ערכת העיצוב של האתר
         setting_trends: הצגת הנושאים החמים
@@ -296,6 +290,7 @@ he:
         usable: הרשה/י להודעות להכיל תגית זו
       user:
         role: תפקיד
+        time_zone: אזור זמן
       user_role:
         color: צבע תג
         highlighted: הצג תפקיד כתג בפרופיל משתמש
@@ -304,6 +299,7 @@ he:
         position: עדיפות
       webhook:
         events: אירועים מאופשרים
+        template: תבנית מטען
         url: כתובת URL של נקודת הקצה
     'no': לא
     not_recommended: לא מומלצים

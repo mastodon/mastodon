@@ -31,13 +31,13 @@ class SuspendAccountService < BaseService
     # counterpart to this operation, i.e. you can't then force a remote
     # account to re-follow you, so this part is not reversible.
 
-    follows = Follow.where(account: @account).to_a
+    Follow.where(account: @account).find_in_batches do |follows|
+      ActivityPub::DeliveryWorker.push_bulk(follows) do |follow|
+        [Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), follow.target_account_id, @account.inbox_url]
+      end
 
-    ActivityPub::DeliveryWorker.push_bulk(follows) do |follow|
-      [Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), follow.target_account_id, @account.inbox_url]
+      follows.each(&:destroy)
     end
-
-    follows.each(&:destroy)
   end
 
   def distribute_update_actor!
@@ -45,7 +45,7 @@ class SuspendAccountService < BaseService
 
     account_reach_finder = AccountReachFinder.new(@account)
 
-    ActivityPub::DeliveryWorker.push_bulk(account_reach_finder.inboxes) do |inbox_url|
+    ActivityPub::DeliveryWorker.push_bulk(account_reach_finder.inboxes, limit: 1_000) do |inbox_url|
       [signed_activity_json, @account.id, inbox_url]
     end
   end
@@ -68,7 +68,7 @@ class SuspendAccountService < BaseService
     @account.media_attachments.find_each do |media_attachment|
       attachment_names.each do |attachment_name|
         attachment = media_attachment.public_send(attachment_name)
-        styles     = [:original] | attachment.styles.keys
+        styles     = MediaAttachment::DEFAULT_STYLES | attachment.styles.keys
 
         next if attachment.blank?
 
@@ -85,7 +85,7 @@ class SuspendAccountService < BaseService
             rescue Aws::S3::Errors::NotImplemented => e
               Rails.logger.error "Error trying to change ACL on #{attachment.s3_object(style).key}: #{e.message}"
             end
-          when :fog
+          when :fog, :azure
             # Not supported
           when :filesystem
             begin

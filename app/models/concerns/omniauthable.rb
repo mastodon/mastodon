@@ -4,7 +4,7 @@ module Omniauthable
   extend ActiveSupport::Concern
 
   TEMP_EMAIL_PREFIX = 'change@me'
-  TEMP_EMAIL_REGEX  = /\A#{TEMP_EMAIL_PREFIX}/.freeze
+  TEMP_EMAIL_REGEX  = /\A#{TEMP_EMAIL_PREFIX}/
 
   included do
     devise :omniauthable
@@ -61,7 +61,7 @@ module Omniauthable
         user.account.avatar_remote_url = nil
       end
 
-      user.skip_confirmation! if email_is_verified
+      user.confirm! if email_is_verified
       user.save!
       user
     end

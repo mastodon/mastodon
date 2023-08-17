@@ -18,6 +18,8 @@ sv:
           disable: Förhindra användaren från att använda sitt konto, men radera eller dölj inte innehållet.
           none: Använd det här för att skicka en varning till användaren, utan att vidta någon ytterligare åtgärd.
           sensitive: Tvinga alla denna användares mediebilagor till att flaggas som känsliga.
+          silence: Hindra användaren från att kunna göra offentliga inlägg, göm deras inlägg och notiser från folk som inte följer dem. Stänger alla anmälningar mot detta kontot.
+          suspend: Förhindrar all interaktion från eller till detta konto och ta bort dess innehåll. Går att ångra inom 30 dagar. Stänger alla anmälningar mot detta konto.
         warning_preset_id: Valfri. Du kan lägga till anpassad text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
@@ -35,14 +37,11 @@ sv:
         current_password: Av säkerhetsskäl krävs lösenordet till det nuvarande kontot
         current_username: Ange det nuvarande kontots användarnamn för att bekräfta
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
-        discoverable: Tillåt att ditt konto upptäcks av främlingar genom rekommendationer, trender och andra funktioner
         email: Du kommer att få ett bekräftelsemeddelande via e-post
-        fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
         header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
         inbox_url: Kopiera webbadressen från hemsidan av det ombud du vill använda
         irreversible: Filtrerade inlägg kommer att försvinna oåterkalleligt, även om filter tas bort senare
         locale: Språket för användargränssnittet, e-postmeddelanden och push-aviseringar
-        locked: Kräver att du manuellt godkänner följare
         password: Använd minst 8 tecken
         phrase: Matchas oavsett användande i text eller innehållsvarning för ett inlägg
         scopes: 'Vilka API: er applikationen kommer tillåtas åtkomst till. Om du väljer en omfattning på högstanivån behöver du inte välja individuella sådana.'
@@ -52,12 +51,9 @@ sv:
         setting_display_media_default: Dölj media markerad som känslig
         setting_display_media_hide_all: Dölj alltid all media
         setting_display_media_show_all: Visa alltid media markerad som känslig
-        setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
-        setting_noindex: Påverkar din offentliga profil och statussidor
-        setting_show_application: Applikationen du använder för att göra inlägg kommer visas i detaljvyn för dina inlägg
         setting_use_blurhash: Gradienter är baserade på färgerna av de dolda objekten men fördunklar alla detaljer
         setting_use_pending_items: Dölj tidslinjeuppdateringar bakom ett klick istället för att automatiskt bläddra i flödet
-        username: Ditt användarnamn måste vara unikt på %{domain}
+        username: Du kan använda bokstäver, siffror och understreck
         whole_word: När sökordet eller frasen endast är alfanumerisk, kommer det endast att tillämpas om det matchar hela ordet
       domain_allow:
         domain: Denna domän kommer att kunna hämta data från denna server och inkommande data från den kommer att behandlas och lagras
@@ -72,6 +68,7 @@ sv:
           hide: Dölj det filtrerade innehållet helt (beter sig som om det inte fanns)
           warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
       form_admin_settings:
+        activity_api_enabled: Antalet lokalt publicerade inlägg, aktiva användare och nya registrerade konton per vecka
         backups_retention_period: Behåll genererade användararkiv i det angivna antalet dagar.
         bootstrap_timeline_accounts: Dessa konton kommer fästas högst upp i nya användares följrekommendationer.
         closed_registrations_message: Visas när nyregistreringar är avstängda
@@ -79,6 +76,7 @@ sv:
         custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
         mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
         media_cache_retention_period: Nedladdade mediefiler kommer raderas efter det angivna antalet dagar, om inställt till ett positivt värde, och laddas ned på nytt vid behov.
+        peers_api_enabled: En lista över domänen den här servern har stött på i fediversum. Ingen data inkluderas om du har federerat med servern, bara att din server känner till den. Detta används av tjänster som samlar statistik om federering i allmänhet.
         profile_directory: Profilkatalogen visar alla användare som har samtyckt till att bli upptäckbara.
         require_invite_text: Gör fältet "Varför vill du gå med?" obligatoriskt när nyregistreringar kräver manuellt godkännande
         site_contact_email: Hur människor kan nå dig för juridiska spörsmål eller supportfrågor.
@@ -87,11 +85,13 @@ sv:
         site_short_description: En kort beskrivning för att unikt identifiera din server. Vem är det som driver den, vilka är den till för?
         site_terms: Använd din egen sekretesspolicy eller lämna tomt för att använda standardinställningen. Kan struktureras med Markdown-syntax.
         site_title: Hur folk kan hänvisa till din server förutom med dess domännamn.
+        status_page_url: URL till en sida där personer kan se serverns status under ett driftavbrott
         theme: Tema som utloggade besökare och nya användare ser.
         thumbnail: En bild i cirka 2:1-proportioner som visas tillsammans med din serverinformation.
         timeline_preview: Utloggade besökare kommer kunna bläddra bland de senaste offentliga inläggen som finns på servern.
         trendable_by_default: Hoppa över manuell granskning av trendande innehåll. Enskilda objekt kan ändå raderas från trender retroaktivt.
         trends: Trender visar vilka inlägg, hashtaggar och nyheter det pratas om på din server.
+        trends_as_landing_page: Visa trendande innehåll för utloggade användare och besökare istället för en beskrivning om servern. Kräver att trender är aktiverat.
       form_challenge:
         current_password: Du går in i ett säkert område
       imports:
@@ -168,7 +168,6 @@ sv:
         context: Filtrera sammanhang
         current_password: Nuvarande lösenord
         data: Data
-        discoverable: Föreslå konto för andra
         display_name: Visningsnamn
         email: E-postadress
         expires_in: Utgår efter
@@ -178,7 +177,6 @@ sv:
         inbox_url: Webbadress för ombudsinkorg
         irreversible: Släng istället för att dölja
         locale: Språk för gränssnittet
-        locked: Kräv följförfrågningar
         max_uses: Max antal användningar
         new_password: Nytt lösenord
         note: Biografi
@@ -190,7 +188,6 @@ sv:
         setting_always_send_emails: Skicka alltid e-postnotiser
         setting_auto_play_gif: Spela upp GIF:ar automatiskt
         setting_boost_modal: Visa bekräftelsedialog innan boostning
-        setting_crop_images: Beskär bilder i icke-utökade inlägg till 16x9
         setting_default_language: Inläggsspråk
         setting_default_privacy: Inläggsintegritet
         setting_default_sensitive: Markera alltid media som känsligt
@@ -202,9 +199,7 @@ sv:
         setting_display_media_show_all: Visa alla
         setting_expand_spoilers: Utöka alltid tutningar markerade med innehållsvarningar
         setting_hide_network: Göm ditt nätverk
-        setting_noindex: Uteslutning av sökmotorindexering
         setting_reduce_motion: Minska rörelser i animationer
-        setting_show_application: Visa programmet som används för att skicka tutningar
         setting_system_font_ui: Använd systemets standardfont
         setting_theme: Sidans tema
         setting_trends: Visa dagens trender
@@ -227,6 +222,7 @@ sv:
           hide: Dölj helt
           warn: Dölj med en varning
       form_admin_settings:
+        activity_api_enabled: Publicera aggregerad statistik om användaraktivitet i API:et
         backups_retention_period: Lagringsperiod för användararkivet
         bootstrap_timeline_accounts: Rekommendera alltid dessa konton till nya användare
         closed_registrations_message: Anpassat meddelande när nyregistreringar inte är tillgängliga
@@ -234,6 +230,7 @@ sv:
         custom_css: Anpassad CSS
         mascot: Anpassad maskot (tekniskt arv)
         media_cache_retention_period: Tid för bibehållande av mediecache
+        peers_api_enabled: Publicera lista över upptäckta servrar i API:et
         profile_directory: Aktivera profilkatalog
         registrations_mode: Vem kan registrera sig
         require_invite_text: Kräv anledning för att gå med
@@ -245,11 +242,13 @@ sv:
         site_short_description: Serverbeskrivning
         site_terms: Integritetspolicy
         site_title: Servernamn
+        status_page_url: URL för statussida
         theme: Standardtema
         thumbnail: Serverns tumnagelbild
         timeline_preview: Tillåt oautentiserad åtkomst till offentliga tidslinjer
         trendable_by_default: Tillåt trender utan föregående granskning
         trends: Aktivera trender
+        trends_as_landing_page: Använd trender som landningssida
       interactions:
         must_be_follower: Blockera notiser från icke-följare
         must_be_following: Blockera notiser från personer du inte följer
@@ -286,6 +285,7 @@ sv:
         usable: Tillåt inlägg att använda denna hashtagg
       user:
         role: Roll
+        time_zone: Tidszon
       user_role:
         color: Emblemsfärg
         highlighted: Visa roll som emblem på användarprofiler

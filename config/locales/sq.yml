@@ -125,8 +125,8 @@ sq:
       removed_header_msg: U hoq me sukses figura e kryes për %{username}
       resend_confirmation:
         already_confirmed: Ky përdorues është i ripohuar tashmë
-        send: Ridërgo email ripohimi
-        success: Email-i i ripohimit u dërgua me sukses!
+        send: Ridërgo lidhje ripohimi
+        success: Lidhja e ripohimit u dërgua me sukses!
       reset: Riktheje te parazgjedhjet
       reset_password: Ricaktoni fjalëkalimin
       resubscribe: Ripajtohuni
@@ -382,6 +382,15 @@ sq:
       undo: Hiqe nga listë lejimesh
     domain_blocks:
       add_new: Shtoni bllokim të ri përkatësie
+      confirm_suspension:
+        cancel: Anuloje
+        confirm: Pezulloje
+        permanent_action: Prapakthimi i pezullimit s’do të rikthejë ndonjë të dhënë apo marrëdhënie.
+        preamble_html: Ju ndan një hap nga pezullim i <strong>%{domain}</strong> dhe përkatësive të saj.
+        remove_all_data: Kjo do të sjellë heqjen nga shërbyesii juaj të krejt lëndës, medias dhe të dhënave të profilit për llogaritë e kësaj përkatësie.
+        stop_communication: Shërbyesi juaj do të reshtë së komunikuar me këta shërbyes.
+        title: Ripohoni bllokim përkatësie për %{domain}
+        undo_relationships: Kjo do të zhbëjë farëdo marrëdhënie ndjekjeje mes llogarive të këtyre shërbyesve dhe tuajit.
       created_msg: Bllokimi i përkatësisë tani po përpunohet
       destroyed_msg: Bllokimi i përkatësisë u hoq
       domain: Përkatësi
@@ -728,6 +737,8 @@ sq:
       branding:
         preamble: Elementët e markës të shërbyesit tuaj e dallojnë atë nga shërbyes të tjerë në rrjet. Këto hollësi mund të shfaqen në një larmi mjedisesh, bie fjala, në ndërfaqen web të Mastodon-it, aplikacione për platforma të ndryshme, në paraparje lidhjesh në sajte të tjerë dhe brenda aplikacionesh për shkëmbim mesazhesh, e me radhë. Për këtë arsyes, më e mira është që këto hollësi të jenë të qarta, të shkurtra dhe të kursyera.
         title: Elementë marke
+      captcha_enabled:
+        title: Kërko prej përdoruesve të rinj të zgjidhin një CAPTCHA, si ripohim të llogarisë të tyre
       content_retention:
         preamble: Kontrolloni se si depozitohen në Mastodon lënda e prodhuar nga përdoruesit.
         title: Mbajtje lënde
@@ -755,7 +766,6 @@ sq:
           approved: Për regjistrim, lypset miratimi
           none: S’mund të regjistrohet ndokush
           open: Mund të regjistrohet gjithkush
-      title: Rregullime Shërbyesi
     site_uploads:
       delete: Fshi kartelën e ngarkuar
       destroyed_msg: Ngarkimi në sajt u fshi me sukses!
@@ -809,6 +819,12 @@ sq:
         message_html: S’keni përcaktuar ndonjë rregull shërbyesi.
       sidekiq_process_check:
         message_html: S’ka proces Sidekiq në punë për %{value} radhë. Ju lutemi, shqyrtoni formësimin tuaj për Sidekiq-un
+      upload_check_privacy_error:
+        action: Për më tepër hollësi, shihni këtu
+        message_html: "<strong>Shërbyesi juaj është formësuar keq. Privatësia e përdoruesve tuaj është në rrezik.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Për më tepër hollësi, shihni këtu
+        message_html: "<strong>Depozita juaj e objekteve është e formësuar keq. Privatësia e përdoruesve tuaj është në rrezik.</strong>"
     tags:
       review: Gjendje rishikimi
       updated_msg: Rregullimet për hashtag-ët u përditësuan me sukses
@@ -949,11 +965,11 @@ sq:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Çdokush mund të kontribuojë.
     sensitive_content: Lëndë rezervat
-    toot_layout: Skemë mesazhesh
   application_mailer:
     notification_preferences: Ndryshoni parapëlqime email-i
     salutation: "%{name},"
     settings: 'Ndryshoni parapëlqime email-i: %{link}'
+    unsubscribe: Shpajtohuni
     view: 'Parje:'
     view_profile: Shihni profilin
     view_status: Shihini gjendjen
@@ -967,7 +983,10 @@ sq:
     your_token: Token-i juaj për hyrje
   auth:
     apply_for_account: Kërkoni një llogari
-    change_password: Fjalëkalim
+    captcha_confirmation:
+      help_html: Nëse keni probleme me zgjidhjen e CAPTCHA-s, mund të lidheni me ne përmes %{email} dhe mund t’ju ndihmojmë.
+      hint_html: Edhe një gjë tjetër! Na duhet të ripohoni se jeni qenie njerëzore (që të mbajmë larg mesazhe të padëshiruar!). Zgjidhni CAPTCHA-n më poshtë dhe klikoni mbi “Vazhdo”.
+      title: Kontroll sigurie
     confirmations:
       wrong_email_hint: Nëse ajo adresë email s’është e saktë, mund ta ndryshoni te rregullimet e llogarisë.
     delete_account: Fshije llogarinë
@@ -976,7 +995,7 @@ sq:
       prefix_invited_by_user: "@%{name} ju fton të bëheni pjesë e këtij shërbyesi Mastodon!"
       prefix_sign_up: Regjistrohuni në Mastodon që sot!
       suffix: Me një llogari, do të jeni në gjendje të ndiqni persona, përditësime postimesh dhe të shkëmbeni mesazhe me përdorues nga cilido shërbyes Mastodon, etj!
-    didnt_get_confirmation: S’morët udhëzime ripohimi?
+    didnt_get_confirmation: S’morët një lidhje ripohimi?
     dont_have_your_security_key: S’i keni kyçet tuaj të sigurisë?
     forgot_password: Harruat fjalëkalimin tuaj?
     invalid_reset_password_token: Token-i i ricaktimit të fjalëkalimit është i pavlefshëm ose ka skaduar. Ju lutemi, kërkoni një të ri.
@@ -989,28 +1008,39 @@ sq:
     migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
     or_log_in_with: Ose bëni hyrjen me
     privacy_policy_agreement_html: I kam lexuar dhe pajtohem me <a href="%{privacy_policy_path}" target="_blank">rregullat e privatësisë</a>
+    progress:
+      confirm: Email ripohimi
+      details: Hollësitë tuaja
+      review: Shqyrtimi ynë
+      rules: Pranoni rregulla
     providers:
       cas: CAS
       saml: SAML
     register: Regjistrohuni
     registration_closed: "%{instance} s’pranon anëtarë të rinj"
-    resend_confirmation: Ridërgo udhëzime ripohimi
+    resend_confirmation: Ridërgo lidhje ripohimi
     reset_password: Ricaktoni fjalëkalimin
     rules:
       accept: Pranoje
       back: Mbrapsht
+      invited_by: 'Mund të bëheni pjesë e %{domain} falë ftesës që morët prej:'
       preamble: Këto vendosen dhe zbatimi i tyre është nën kujdesin e moderatorëve të %{domain}.
+      preamble_invited: Para se të vazhdoni më tej, ju lutemi, shihni rregullat bazë të vendosura nga moderatorët e %{domain}.
       title: Disa rregulla bazë.
+      title_invited: Jeni ftuar.
     security: Siguri
     set_new_password: Caktoni fjalëkalim të ri
     setup:
-      email_below_hint_html: Nëse adresa email më poshtë s’është e saktë, mund ta ndryshoni këtu dhe të merrni një email të ri ripohimi.
-      email_settings_hint_html: Email-i i ripohimit u dërgua te %{email}. Nëse ajo adresë email s’është e saktë, mund ta ndryshoni që nga rregullimet e llogarisë.
-      title: Ujdisje
+      email_below_hint_html: Shihni te dosja juaj e të padëshiruara, ose kërkoni një tjetër. Mund të ndreqni adresën tuaj email, nëse është e gabuar.
+      email_settings_hint_html: Që të verifikoni %{email}, klikoni lidhjen që ju dërguam. Do të presim këtu.
+      link_not_received: S’morët lidhje?
+      new_confirmation_instructions_sent: Pas pak minutash do të merrni një email të ri me lidhjen e ripohimit!
+      title: Shihni te email-et tuaj
     sign_in:
       preamble_html: Hyni me kredencialet tuaja për te <strong>%{domain}</strong>. Nëse llogaria juaj strehohet në një tjetër shërbyes, s’do të jeni në gjendje të bëni hyrjen këtu.
       title: Bëni hyrjen te %{domain}
     sign_up:
+      manual_review: Regjistrimet te %{domain} kalojnë një shqyrtim dorazi nga moderatorët tanë. Që të na ndihmoni të përfundojmë regjistrimin tuaj, na shkruani pakëz mbi veten dhe pse doni një llogari në %{domain}.
       preamble: Me një llogari në këtë shërbyes Mastodon, do të jeni në gjendje të ndiqni cilindo person tjetër në rrjet, pavarësisht se ku strehohet llogaria e tyre.
       title: Le të ujdisim llogarinë tuaj në %{domain}.
     status:
@@ -1022,18 +1052,6 @@ sq:
       view_strikes: Shihni paralajmërime të dikurshme kundër llogarisë tuaj
     too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
     use_security_key: Përdor kyç sigurie
-  authorize_follow:
-    already_following: E ndiqni tashmë këtë llogari
-    already_requested: Keni dërguar tashmë një kërkesë ndjekjeje te ajo llogari
-    error: Mjerisht, pati një gabim gjatë kërkimit të llogarisë së largët
-    follow: Ndiqeni
-    follow_request: 'Keni dërguar një kërkesë ndjekjeje te:'
-    following: 'Sukses! Tani e ndiqni:'
-    post_follow:
-      close: Ose, thjesht mund të mbyllni këtë dritare.
-      return: Shfaq profilin e përdoruesit
-      web: Kalo në web
-    title: Ndiq %{acct}
   challenge:
     confirm: Vazhdo
     hint_html: "<strong>Ndihmëz:</strong> S’do t’ju pyesim për fjalëkalimin tuaj sërish, për një orë."
@@ -1110,6 +1128,10 @@ sq:
       your_appeal_rejected: Apelimi juaj është hedhur poshtë
   domain_validator:
     invalid_domain: s’është emër i vlefshëm përkatësie
+  edit_profile:
+    basic_information: Hollësi elementare
+    hint_html: "<strong>Përshtatni ç’shohin njerëzit në profilin tuaj publik dhe në krah të postimeve tuaja.</strong> Personat e tjerë ka më shumë gjasa t’ju ndjekin dhe ndërveprojnë me ju, kur keni të plotësuar profilin dhe një foto profili."
+    other: Tjetër
   errors:
     '400': Kërkesa që parashtruar qe e pavlefshme ose e keqformuar.
     '403': S’keni leje të shihni këtë faqe.
@@ -1190,8 +1212,6 @@ sq:
       index:
         hint: Ky filtër aplikohet për të përzgjedhur postime individuale, pavarësisht kriteresh të tjera. Që nga ndërfaqja web mund të shtoni më tepër postime te ky filtër.
         title: Postime të filtruar
-  footer:
-    trending_now: Prirjet e tashme
   generic:
     all: Krejt
     all_items_on_page_selected_html:
@@ -1200,7 +1220,9 @@ sq:
     all_matching_items_selected_html:
       one: Është përzgjedhur <strong>%{count}</strong> objekt me përkim me kërkimin tuaj.
       other: Janë përzgjedhur krejt <strong>%{count}</strong> objektet me përkim me kërkimin tuaj.
+    cancel: Anuloje
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
+    confirm: Ripohojeni
     copy: Kopjoje
     delete: Fshije
     deselect: Shpërzgjidhi krejt
@@ -1214,19 +1236,53 @@ sq:
     validation_errors:
       one: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni gabimin më poshtë
       other: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni %{count} gabimet më poshtë
-  html_validator:
-    invalid_markup: 'përmban elementë HTML të pavlefshëm: %{error}'
   imports:
     errors:
+      empty: Kartelë CSV e zbrazët
+      incompatible_type: E papërputhshme me llojin e përzgjedhur për importim
       invalid_csv_file: 'Kartelë CSV e pavlefshme. Gabim: %{error}'
       over_rows_processing_limit: përmban më shumë se %{count} rreshta
+      too_large: Kartela është shumë e madhe
+    failures: Dështime
+    imported: Të importuar
+    mismatched_types_warning: Duket të keni përzgjedhur llojin e gabuar për këtë importim, ju lutemi, rikontrollojeni.
     modes:
       merge: Përzieji
       merge_long: Mbaji zërat ekzistues dhe shto të rinjtë
       overwrite: Mbishkruaje
       overwrite_long: Zëvendësoji zërat ekzistues me të rinjtë
+    overwrite_preambles:
+      blocking_html: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimeve</strong> me <strong>%{total_items} llogari</strong> nga <strong>%{filename}</strong>.
+      bookmarks_html: Ju ndan një hap nga <strong>zëvendësimi i faqerojtësve tuaj</strong> me <strong>%{total_items} postime</strong> nga <strong>%{filename}</strong>.
+      domain_blocking_html: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimit të përkatësive</strong> me <strong>%{total_items} përkatësi</strong> nga <strong>%{filename}</strong>.
+      following_html: Ju ndan një hap nga <strong>ndjekja</strong> e <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong> dhe <strong>reshtja së ndjekuri këdo tjetër</strong>.
+      muting_html: Ju ndan një hpa nga <strong>zëvendësimi i listës suaj të llogarive të heshtuara</strong> me <strong>%{total_items} llogari</strong> nga <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Ju ndan një hap nga <strong>bllokimi</strong> i <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong>.
+      bookmarks_html: Ju ndan një hap nga shtimi te <strong>faqerojtësit</strong> tuaj i <strong>%{total_items} postimeve</strong> nga <strong>%{filename}</strong>.
+      domain_blocking_html: Ju ndan një hap nga <strong>bllokimi</strong> i <strong>%{total_items} përkatësive</strong> nga <strong>%{filename}</strong>.
+      following_html: Ju ndan një hap nga <strong>ndjekja</strong> e <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong>.
+      muting_html: Ju ndan një hap nga <strong>heshtimi</strong> i <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong>.
     preface: Mund të importoni të dhëna që keni eksportuar nga një shërbyes tjetër, bie fjala, një listë të personave që ndiqni ose bllokoni.
+    recent_imports: Importime së fundi
+    states:
+      finished: Të përfunduar
+      in_progress: Në kryerje e sipër
+      scheduled: Të planifikuar
+      unconfirmed: Të paripohuar
+    status: Gjendje
     success: Të dhënat tuaja u ngarkuan me sukses dhe tani do të përpunohet në kohë
+    time_started: Filluar më
+    titles:
+      blocking: Po importohen llogari të bllokuara
+      bookmarks: Po importohen faqerojtës
+      domain_blocking: Po importohen përkatësi të bllokuara
+      following: Po importohen llogari të ndjekura
+      muting: Po importohen llogari të heshtuara
+    type: Lloj importimi
+    type_groups:
+      constructive: Ndjekje & Faqerojtës
+      destructive: Bllokime & heshtime
     types:
       blocking: Listë bllokimesh
       bookmarks: Faqerojtës
@@ -1270,6 +1326,14 @@ sq:
     failed_sign_in_html: Dështoi përpjekje hyrjeje me %{method} nga %{ip} (%{browser})
     successful_sign_in_html: Hyrje e suksesshme me %{method} nga %{ip} (%{browser})
     title: Historik mirëfilltësimesh
+  mail_subscriptions:
+    unsubscribe:
+      action: Po, shpajtomëni
+      complete: U shpajtuat
+      confirmation_html: Jeni i sigurt se doni të shpajtoheni prej marrjes së %{type} për Mastodon në %{domain} te email-i juaj në %{email}? Mundeni përherë të ripajtoheni, që prej <a href="%{settings_path}">rregullimeve tuaja për njoftime me email</a>.
+      resubscribe_html: Nëse u shpajtuat gabimisht, mund të ripajtoheni që nga <a href="%{settings_path}">rregullimet tuaja për njoftime me email</a>.
+      success_html: S’do të merrni më %{type} për Mastodon në %{domain} te email juaj %{email}.
+      title: Shpajtohuni
   media_attachments:
     validations:
       images_and_video: S’mund të bashkëngjitet video te një gjendje që përmban figura tashmë
@@ -1385,6 +1449,7 @@ sq:
       expired: Pyetësori ka përfunduar tashmë
       invalid_choice: Mundësia e zgjedhur për votën nuk ekziston
       over_character_limit: s’mund të jetë më i gjatë se %{max} shenja secili
+      self_vote: S’mund të votoni në pyetësorët tuaj
       too_few_options: duhet të ketë më tepër se një element
       too_many_options: s’mund të përmbajë më tepër se %{max} elementë
   preferences:
@@ -1403,6 +1468,7 @@ sq:
     confirm_remove_selected_followers: Jeni i sigurt se doni të hiqen ndjekësit e përzgjedhur?
     confirm_remove_selected_follows: Jeni i sigurt se doni të hiqen ndjekjet e përzgjedhura?
     dormant: Në gjumë
+    follow_failure: S’u ndoqën dot disa nga llogaritë e përzgjedhura.
     follow_selected_followers: Ndiq ndjekësit e përzgjedhur
     followers: Ndjekës
     following: Ndjek
@@ -1442,6 +1508,7 @@ sq:
       electron: Electron
       firefox: Firefox
       generic: Shfletues i panjohur
+      huawei_browser: Shfletues Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Shfletues Nokia S40 Ovi
@@ -1451,6 +1518,7 @@ sq:
       qq: QQ Browser
       safari: Safari
       uc_browser: Shfletues UC
+      unknown_browser: Shfletues i Panjohur
       weibo: Weibo
     current_session: Sesioni i tanishëm
     description: "%{browser} në %{platform}"
@@ -1463,9 +1531,10 @@ sq:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: platformë e panjohur
+      unknown_platform: Platformë e Panjohur
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1536,7 +1605,6 @@ sq:
     show_newer: Shfaq më të reja
     show_older: Shfaq më të vjetra
     show_thread: Shfaq rrjedhën
-    sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: I drejtpërdrejtë
@@ -1582,8 +1650,6 @@ sq:
     min_reblogs: Mbaji postimet e përforcuara më shumë se
     min_reblogs_hint: Nuk fshihet ndonjë nga postimet tuaja që kanë marrë më shumë se sa ky numër përforcimesh. Lëreni të zbrazët për të fshirë postimet, pavarësisht të numrit të përforcimeve për to
   stream_entries:
-    pinned: Mesazh i fiksuar
-    reblogged: të përforcuara
     sensitive_content: Lëndë rezervat
   strikes:
     errors:
@@ -1678,13 +1744,18 @@ sq:
       title: Mirë se vini, %{name}!
   users:
     follow_limit_reached: S’mund të ndiqni më tepër se %{limit} persona
+    go_to_sso_account_settings: Kaloni te rregullime llogarie te shërbimi juaj i identitetit
     invalid_otp_token: Kod dyfaktorësh i pavlefshëm
     otp_lost_help_html: Nëse humbët hyrjen te të dy, mund të lidheni me %{email}
     seamless_external_login: Jeni futur përmes një shërbimi të jashtëm, ndaj s’ka rregullime fjalëkalimi dhe email.
     signed_in_as: 'I futur si:'
   verification:
-    explanation_html: 'Mundeni <strong>të verifikoni veten si i zoti i lidhjeve te tejtëdhënat e profilit tuaj</strong>. Për këtë, sajti i lidhur duhet të përmbajë një lidhje për te profili juaj Mastodon. Lidhje për te ajo <strong>duhet</strong> të ketë një atribut <code>rel="me"</code>. Lënda tekst e lidhjes nuk ngre peshë. Ja një shembull:'
+    extra_instructions_html: <strong>Ndihmëz:</strong> Lidhja te sajti juaj mund të jetë e padukshme. Pjesa e rëndësishme është <code>rel="me"</code>, e cila pengon të hiqen gjoja në sajte me lëndë të prodhuar nga përdorues. Mundeni edhe të përdorni një etiketë <code>link</code> te kryet e faqes, në vend se <code>a</code>, por HTML-ja duhet të jetë e përdorshme pa ekzekutim JavaScript-i.
+    here_is_how: Ja se si
+    hint_html: "<strong>Verifikimi i identitetit të secilit në Mastodon është për këdo.</strong> Bazuar në standarde web të hapët, falas për so dhe për mot. Krejt ç’ju duhet është një sajt personal me të cilin ju njohin njerëzit. Kur bëni lidhjen me këtë sajt që nga profili juaj, do të kontrollojmë nëse sajti përgjigjet me një lidhje për te profili juaj dhe shfaq një tregues në të."
+    instructions_html: Kopjoni dhe ngjitni në HTML-në e sajtit tuaj kodin më poshtë. Mandej shtoni adresën e sajtit tuaj te një nga fushat shtesë në profilin tuaj, që nga skeda “Përpunoni profil” dhe ruani ndryshimet.
     verification: Verifikim
+    verified_links: Lidhjet tuaja të verifikuara
   webauthn_credentials:
     add: Shtoni kyç të ri sigurie
     create:
