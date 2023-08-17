@@ -23,59 +23,59 @@ sq:
         explanation: Keni krijuar një llogari te %{host}, me këtë adresë email. Jeni një klikim larg aktivizimit të saj. Nëse s’jeni ju, shpërfilleni këtë email.
         explanation_when_pending: Keni aplikuar për një ftesë te %{host} me këtë adresë email. Pasi të ripohoni adresën tuaj email, do të marrim në shqyrtim aplikimin tuaj. Mund të bëni hyrjen që të ndryshoni hollësitë tuaja ose të fshini llogarinë tuaj, por s’mund të përdorni shumicën e funksioneve, para se llogaria juaj të miratohet. Nëse aplikimi juaj hidhet poshtë, të dhënat tuaja do të hiqen, ndaj s’do të ketë nevojë për veprim të mëtejshëm nga ana juaj. Nëse ky s’qetë ju, ju lutemi, shpërfilleni këtë email.
         extra_html: Ju lutemi, shihni edhe <a href="%{terms_path}">rregullat e shërbyesit</a> dhe <a href="%{policy_path}">kushtet tona të shërbimit</a>.
-        subject: 'Mastodon: Udhëzime ripohimi për %{instance}'
+        subject: 'TomX: Udhëzime ripohimi për %{instance}'
         title: Verifikoni adresë email
       email_changed:
         explanation: 'Adresa email për llogarinë tuaj po ndryshohet në:'
         extra: Nëse email-in tuaj s’e ndryshuat ju, gjasat janë që dikush tjetër ka arritur të hyjë në llogarinë tuaj. Nëse jeni kyçur jashtë llogarisë tuaj, ju lutemi, ndryshoni menjëherë fjalëkalimin tuaj ose lidhuni me përgjegjësin e shërbyesit.
-        subject: 'Mastodon: U ndryshua email'
+        subject: 'TomX: U ndryshua email'
         title: Adresë email e re
       password_change:
         explanation: Fjalëkalimi për llogarinë tuaj u ndryshua.
         extra: Nëse fjalëkalimin tuaj s’e ndryshuat ju, gjasat janë që dikush tjetër ka arritur të hyjë në llogarinë tuaj. Ju lutemi, ndryshoni menjëherë fjalëkalimin tuaj ose lidhuni me përgjegjësin e shërbyesit, nëse jeni kyçur jashtë llogarisë tuaj.
-        subject: 'Mastodon: U ndryshua fjalëkalim'
+        subject: 'TomX: U ndryshua fjalëkalim'
         title: Fjalëkalimi u ndryshua
       reconfirmation_instructions:
         explanation: Që të ndryshohet email-i juaj, ripohoni adresën e re.
         extra: Nëse ky ndryshim s’qe filluar prej jush, ju lutemi, shpërfilleni këtë email. Adresa email për llogarinë TomX s’do të ndryshojë, para se të hyni në lidhjen më sipër.
-        subject: 'Mastodon: Ripohoni email-in për %{instance}'
+        subject: 'TomX: Ripohoni email-in për %{instance}'
         title: Verifikoni adresë email
       reset_password_instructions:
         action: Ndryshoni fjalëkalimin
         explanation: Kërkuat një fjalëkalim të ri për këtë llogari.
         extra: Nëse këtë s’e kërkuat ju, ju lutemi, shpërfilleni këtë email. Fjalëkalimi juaj s’do të ndryshohet pa hyrë në lidhjen më sipër dhe krijimin e një të riu.
-        subject: 'Mastodon: Udhëzime ricaktimi fjalëkalimi'
+        subject: 'TomX: Udhëzime ricaktimi fjalëkalimi'
         title: Ricaktim fjalëkalimi
       two_factor_disabled:
         explanation: Mirëfilltësimi dyfaktorësh për llogarinë tuaj është çaktivizuar. Hyrja tanimë është e mundur vetëm duke përdorur adresën email dhe fjalëkalimin.
-        subject: 'Mastodon: U çaktivizua mirëfilltësimi dyfaktorësh'
+        subject: 'TomX: U çaktivizua mirëfilltësimi dyfaktorësh'
         title: 2FA u çaktivizua
       two_factor_enabled:
         explanation: Mirëfilltësimi dyfaktorësh është aktivizuar për llogarinë tuaj. Për hyrje, do të kërkohet doemos një token i prodhuar nga aplikacioni TOTP i çiftuar.
-        subject: 'Mastodon: U aktivizua mirëfilltësimi dyfaktorësh'
+        subject: 'TomX: U aktivizua mirëfilltësimi dyfaktorësh'
         title: 2FA u aktivizua
       two_factor_recovery_codes_changed:
         explanation: Kodet e dikurshëm të rikthimit janë bërë të pavlefshëm dhe janë prodhuar të rinj.
-        subject: 'Mastodon: U riprodhuan kode rikthimi dyfaktorësh'
+        subject: 'TomX: U riprodhuan kode rikthimi dyfaktorësh'
         title: Kodet e rikthimit 2FA u ndryshuan
       unlock_instructions:
-        subject: 'Mastodon: Udhëzime shkyçjeje'
+        subject: 'TomX: Udhëzime shkyçjeje'
       webauthn_credential:
         added:
           explanation: Kyçi vijues i sigurisë është shtuar te llogaria juaj
-          subject: 'Mastodon: Kyç i ri sigurie'
+          subject: 'TomX: Kyç i ri sigurie'
           title: U shtua një kyç i ri sigurie
         deleted:
           explanation: Kyçi vijues i sigurisë është fshirë prej llogarisë tuaj
-          subject: 'Mastodon: Fshirje kyçi sigurie'
+          subject: 'TomX: Fshirje kyçi sigurie'
           title: Një nga kyçet tuaj të sigurisë është fshirë
       webauthn_disabled:
         explanation: Mirëfilltësimi me kyçe sigurie është çaktivizuar për llogarinë tuaj. Hyrja tani është e mundshme vetëm duke përdorur token-in e prodhuar nga aplikacioni TOTP i çiftuar.
-        subject: 'Mastodon: U çaktivizua mirëfilltësimi me kyçe sigurie'
+        subject: 'TomX: U çaktivizua mirëfilltësimi me kyçe sigurie'
         title: U çaktivizuan kyçe sigurie
       webauthn_enabled:
         explanation: Mirëfilltësimi përmes kyçesh sigurie është aktivizuar për llogarinë tuaj. Tani, për hyrje mund të përdoren kyçet tuaj të sigurisë.
-        subject: 'Mastodon: U aktivizua mirëfilltësim me kyçe sigurie'
+        subject: 'TomX: U aktivizua mirëfilltësim me kyçe sigurie'
         title: U aktivizuan kyçe sigurie
     omniauth_callbacks:
       failure: S’u bë dot mirëfilltësimi juaj nga %{kind}, sepse "%{reason}".

@@ -23,59 +23,59 @@ is:
         explanation: Þú hefur búið til notandaaðgang á %{host} með þessu tölvupóstfangi. Þú ert einn smell frá því að virkja hann. Ef það varst ekki þú sem baðst um þetta, geturðu hunsað þennan tölvupóst.
         explanation_when_pending: Þú sóttir um að vera boðinn á %{host} með þessu tölvupóstfangi. Þegar þú hefur staðfest tölvupóstfangið, munum við fara yfir umsóknina þína. Þú getur skrá þig inn og breytt ýmsum upplýsingum um þig eða jafnvel eytt aðgangnum þínum, en þú getur hinsvegar ekki nýtt þér flesta eiginleika hans fyrr en búið er að samþykkja aðganginn. Ef umsókninni er hafnað, verður öllum gögnum um þig eytt, þannig að ekki verður krafist frekari aðgerða af þinni hálfu. Ef það varst ekki þú sem baðst um þetta, geturðu hunsað þennan tölvupóst.
         extra_html: Skoðaðu líka <a href="%{terms_path}">gildandi reglur vefþjónsins</a> og <a href="%{policy_path}">þjónustuskilmálana okkar</a>.
-        subject: 'Mastodon: Leiðbeiningar vegna staðfestingar á %{instance}'
+        subject: 'TomX: Leiðbeiningar vegna staðfestingar á %{instance}'
         title: Staðfestu tölvupóstfang
       email_changed:
         explanation: 'Tölvupóstfanginu fyrir notandaaðganginn þinn verður breytt í:'
         extra: Ef það varst ekki þú sem breyttir tölvupóstfanginu þínu, þá er líklegt að einhver hafi komist inn í notandaaðganginn þinn. Skiptu núna strax um lykilorð eða hafðu samband við kerfisstjóra netþjónsins ef þú hefur verið læst/ur úti af notandaaðgangnum þínum.
-        subject: 'Mastodon: Tölvupóstfang breyttist'
+        subject: 'TomX: Tölvupóstfang breyttist'
         title: Nýtt tölvupóstfang
       password_change:
         explanation: Lykilorðinu á notandaaðgangnum þínum hefur verið breytt.
         extra: Ef það varst ekki þú sem breyttir lykilorðinu þínu, þá er líklegt að einhver hafi komist inn í notandaaðganginn þinn. Skiptu núna strax um lykilorð eða hafðu samband við kerfisstjóra netþjónsins ef þú hefur verið læst/ur úti af notandaaðgangnum þínum.
-        subject: 'Mastodon: Lykilorð breyttist'
+        subject: 'TomX: Lykilorð breyttist'
         title: Lykilorð breyttist
       reconfirmation_instructions:
         explanation: Staðfestu nýja vistfangið til að skipta um tölvupóstfang.
         extra: Ef það varst ekki þú sem baðst um þessa breytingu, geturðu hunsað þennan tölvupóst. Tölvupóstfangið fyrir TomX-aðganginn mun ekki breytast fyrr en þú hefur fylgt tenglinum hér fyrir ofan.
-        subject: 'Mastodon: Staðfestu tölvupóst fyrir %{instance}'
+        subject: 'TomX: Staðfestu tölvupóst fyrir %{instance}'
         title: Staðfestu tölvupóstfang
       reset_password_instructions:
         action: Breyta lykilorði
         explanation: Þú baðst um nýtt lykilorð fyrir notandaaðganginn þinn.
         extra: Ef það varst ekki þú sem baðst um þetta, geturðu hunsað þennan tölvupóst. Lykilorðið þitt mun ekki breytast fyrr en þú hefur fylgt tenglinum hér fyrir ofan og búið til nýtt lykilorð.
-        subject: 'Mastodon: Leiðbeiningar til að endurstilla lykilorð'
+        subject: 'TomX: Leiðbeiningar til að endurstilla lykilorð'
         title: Endurstilling lykilorðs
       two_factor_disabled:
         explanation: Tveggja-þátta auðkenning fyrir aðganginn þinn hefur verið gerð óvirk. Núna er einungis hægt að skrá inn með tölvupóstfangi og lykilorði.
-        subject: 'Mastodon: Tveggja-þátta auðkenning er óvirk'
+        subject: 'TomX: Tveggja-þátta auðkenning er óvirk'
         title: 2FA tveggja-þátta auðkenning er óvirk
       two_factor_enabled:
         explanation: Tveggja-þátta auðkenning hefur verið gerð virk fyrir aðganginn þinn. Krafist er teikns útbúnu af paraða TOTP-forritinu til að skrá inn.
-        subject: 'Mastodon: Tveggja-þátta auðkenning er virk'
+        subject: 'TomX: Tveggja-þátta auðkenning er virk'
         title: 2FA tveggja-þátta auðkenning er virk
       two_factor_recovery_codes_changed:
         explanation: Fyrri endurheimtukóðar tveggja-þátta auðkenningar voru ógiltir og nýir útbúnir í staðinn.
-        subject: 'Mastodon: Endurheimtukóðar tveggja-þátta auðkenningar voru endurnýjaðir'
+        subject: 'TomX: Endurheimtukóðar tveggja-þátta auðkenningar voru endurnýjaðir'
         title: Endurheimtukóðar tveggja-þátta auðkenningar breyttust
       unlock_instructions:
-        subject: 'Mastodon: Leiðbeiningar til að aflæsa'
+        subject: 'TomX: Leiðbeiningar til að aflæsa'
       webauthn_credential:
         added:
           explanation: Eftirfarandi öryggislykli hefur verið bætt við notandaaðganginn þinn
-          subject: 'Mastodon: Nýr öryggislykill'
+          subject: 'TomX: Nýr öryggislykill'
           title: Nýjum öryggislykli hefur verið bætt við
         deleted:
           explanation: Eftirfarandi öryggislykli hefur verið eytt úr notandaaðgangnum þínum
-          subject: 'Mastodon: Öryggislykli eytt'
+          subject: 'TomX: Öryggislykli eytt'
           title: Einum af öryggilyklunum þínum hefur verið eytt
       webauthn_disabled:
         explanation: Auðkenning með öryggislyklum hefur verið gerð óvirk fyrir aðganginn þinn. Innskráning er núna einungis möguleg með teikni útbúnu af paraða TOTP-forritinu.
-        subject: 'Mastodon: Auðkenning með öryggislyklum er óvirk'
+        subject: 'TomX: Auðkenning með öryggislyklum er óvirk'
         title: Öryggislyklar eru óvirkir
       webauthn_enabled:
         explanation: Auðkenning með öryggislykli hefur verið gerð virk fyrir aðganginn þinn. Nú er hægt að nota öryggislykilinn þinn til að skrá inn.
-        subject: 'Mastodon: Auðkenning með öryggislykli er virk'
+        subject: 'TomX: Auðkenning með öryggislykli er virk'
         title: Öryggislyklar eru virkir
     omniauth_callbacks:
       failure: Gat ekki auðkennt þig frá %{kind} vegna "%{reason}".

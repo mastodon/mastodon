@@ -23,7 +23,7 @@ br:
         explanation: Krouet ho peus ur c'hont war %{host} gant ar chomlec'h-postel-mañ. N'eus nemet ur c'hlik evit bevaat anezhañ. Ma ne oa ket krouet ganeoc'h, dianavezit ar postel-se.
         explanation_when_pending: Enskrivañ ho peus d'ur c'hemennad da %{host} gant ar chomlec'h-postel-se. Pa vo kadarnaet ho chomlec'h-postel, hoc'h enskrivadur a vo asantet. Gallout a rit mont-tre evit kemmañ munudoù ho kont pe skarzhañ anezhañ, met ne c'hellit ket implijout ul lod eus an aezamantoù par ma n'eo ket asantet ho kont. Ma vefe hoc'h enskrivadur nac'het, ho keloù a vefe skarzhet, neuze ne vo ket ret deoc'h ober netra ken. Ma ne oa ket ac'hanoc'h, dianavezit ar postel-se.
         extra_html: Mar plij, gwiriit ivez <a href="%{terms_path}"> reolennoù ar servijer</a> ha <a href="%{policy_path}"> hon divizoù-implij</a>.
-        subject: 'Mastodon: kemennoù kadarnadur evit %{instance}'
+        subject: 'TomX: kemennoù kadarnadur evit %{instance}'
         title: Gwiriekaat ar chomlec'h postel
       email_changed:
         explanation: 'Chomlec''h-postel ho kont a zo bet kemmet da:'
@@ -44,38 +44,38 @@ br:
         action: Kemmañ ar ger-tremen
         explanation: Goulennet ho peus ur ger-tremen nevez evit ho kont.
         extra: Ma n'ho peus ket goulennet an dra-se, dianavezit ar postel-mañ. Ho ker-tremen ne gemmo ket keit ha ma c'hlikit ar lec'hienn a-us ha krouiit unan all.
-        subject: 'Mastodon: Adkorañ kemennoù ar ger-tremen'
+        subject: 'TomX: Adkorañ kemennoù ar ger-tremen'
         title: Adderaouekaat ar ger-tremen
       two_factor_disabled:
         explanation: Dilesadur dre eil-elfenn a zo bet nac'het. Gallout a reer mont-tre en ur implijout nemet ur chomlec'h-postel hag ur ger-tremen.
-        subject: 'Mastodon: dilesadur dre eil-elfenn nac''het'
+        subject: 'TomX: dilesadur dre eil-elfenn nac''het'
         title: 2FA diweredekaet
       two_factor_enabled:
         explanation: Dilesadur dre eil-elfenn a zo aotreet evit ho kont. Ret a vo implij ur jedouer krouet gant an app TOTP koublet evit mont-tre.
-        subject: 'Mastodon: dilesadur dre eil-elfenn aotreet'
+        subject: 'TomX: dilesadur dre eil-elfenn aotreet'
         title: 2FA gweredekaet
       two_factor_recovery_codes_changed:
         explanation: Ar c'hodoù adtapout diaraok a zo bet skarzhet ha kodoù nevez krouet.
-        subject: 'Mastodon: kod adtapout dre eil-elfenn a zo adgrouet'
+        subject: 'TomX: kod adtapout dre eil-elfenn a zo adgrouet'
         title: Kod adtapout 2FA a zo bet kemmet
       unlock_instructions:
-        subject: 'Mastodon: Dikrouilhiñ kemennoù'
+        subject: 'TomX: Dikrouilhiñ kemennoù'
       webauthn_credential:
         added:
           explanation: An alc'hwez surentez-se a zo bet ouzhpennet d'ho kont
-          subject: 'Mastodon: alc''hwez surentez nevez-flamm'
+          subject: 'TomX: alc''hwez surentez nevez-flamm'
           title: Un alc'hwez surentez nevez-flamm a zo bet ouzhpennet
         deleted:
           explanation: An alc'hwez surentez-se a zo bet dilamet eus ho kont
-          subject: 'Mastodon: alc''hwezioù surentez dilamet'
+          subject: 'TomX: alc''hwezioù surentez dilamet'
           title: Unan eus hoc'h alc'hwezioù surentez a zo bet dilamet
       webauthn_disabled:
         explanation: Dilezadur dre alc'hwezioù surentel a zo bet nac'het evit ho kont. Gallout a reer mont-tre en ur implijout ar jedouer krouet gant app TOTP koublet.
-        subject: 'Mastodon: dilesadur dre alc''hwezioù surentez nac''het'
+        subject: 'TomX: dilesadur dre alc''hwezioù surentez nac''het'
         title: Alc'hwezioù surentez nac'het
       webauthn_enabled:
         explanation: Dilesadur dre alc'hwez surentez a zo bet aotreet evit ho kont. Hoc'h alc'hwez surentez a c'hell bezañ implijet evit mont-tre.
-        subject: 'Mastodon: dilesadur dre alc''hwezioù surentez aotreet'
+        subject: 'TomX: dilesadur dre alc''hwezioù surentez aotreet'
         title: Alc'hwezioù surentez aotreet
     omniauth_callbacks:
       failure: Ne c'haller ket bezañ gwiriekaet deus %{kind} abalamour da "%{reason}".

@@ -23,59 +23,59 @@ an:
         explanation: Has creyau una cuenta en %{host} con esta adreza de correu electronico. Yes a un solo clic d'activar-lo. Si no estiés tu, per favor ignora este correu electronico.
         explanation_when_pending: Has solicitau una invitación a %{host} con esta adreza de correu electronico. Una vegada que confirmes la tuya adreza de correu electronico, revisaremos la tuya solicitut. Puetz iniciar sesión pa cambiar los tuyos datos u eliminar la tuya cuenta, pero no puetz acceder ta la mayoría d'as funcions dica que la tuya cuenta sía aprebada. Si la suya solicitut ye refusada, los suyos datos serán eliminaus, per lo que no será necesaria garra acción adicional per la suya parte. Si no estiés tu, per favor ignora este correu electronico.
         extra_html: Per favor, revisa <a href="%{terms_path}">las reglas d'o servidor</a> y <a href="%{policy_path}">los nuestros termins de servicio</a>.
-        subject: 'Mastodon: Instruccions de confirmación pa %{instance}'
+        subject: 'TomX: Instruccions de confirmación pa %{instance}'
         title: Verificar adreza de correu electronico
       email_changed:
         explanation: 'Lo correu electronico pa la suya cuenta esta estando cambiada a:'
         extra: Si vusté no ha cambiau lo suyo correu electronico, ye probable que belún haiga aconseguiu acceso a la suya cuenta. Per favor cambie la suya clau immediatament u contacte a l'administrador d'a instancia si vusté no puede iniciar sesión.
-        subject: 'Mastodon: Correu electronico cambiau'
+        subject: 'TomX: Correu electronico cambiau'
         title: Nueva adreza de correu electronico
       password_change:
         explanation: La clau d'a suya cuenta a estau cambiada.
         extra: Si vusté no a cambiau la suya clau. ye probable que belún a aconseguiu acceso a la suya cuenta. Per favor cambie la suya clau immediatament u contacte a l'administrador d'a instancia si vusté esta blocau d'a suya cuenta.
-        subject: 'Mastodon: Clau cambiada'
+        subject: 'TomX: Clau cambiada'
         title: Clau cambiada
       reconfirmation_instructions:
         explanation: Confirme la nueva adreza pa cambiar la suya coreo electronico.
         extra: Si no iniciés este cambio, per favor ignora este correu. Esta adreza de correu pa la cuenta de TomX no cambiará dica que accedas a lo vinculo alto.
-        subject: 'Mastodon: Confirme correu electronico pa %{instance}'
+        subject: 'TomX: Confirme correu electronico pa %{instance}'
         title: Verifique adreza de correu electronico
       reset_password_instructions:
         action: Cambiar clau
         explanation: Solicités una nueva clau pa la tuya cuenta.
         extra: Si no solicités esto, per favor ignora este correu. La tuya clau no cambiará dica que la tuya accedas a lo vinculo alto y creyes una nueva.
-        subject: 'Mastodon: Instruccions pa reiniciar clau'
+        subject: 'TomX: Instruccions pa reiniciar clau'
         title: Reiniciar clau
       two_factor_disabled:
         explanation: L'autenticación de dos factors pa la tuya cuenta ha estau deshabilitada. Agora puetz connectar-te nomás usando l'adreza de correu electronico y la clau.
-        subject: 'Mastodon: L''autenticación de dos factors ye deshabilitada'
+        subject: 'TomX: L''autenticación de dos factors ye deshabilitada'
         title: 2FA desactivada
       two_factor_enabled:
         explanation: L'autenticación de dos factors pa la tuya cuenta ha estau habilitada. Se requiere un token chenerau per l'aplicación TOTP emparellada pa ingresar.
-        subject: 'Mastodon: L''autenticación de dos factors ye habilitada'
+        subject: 'TomX: L''autenticación de dos factors ye habilitada'
         title: 2FA activada
       two_factor_recovery_codes_changed:
         explanation: Los codigos de recuperación previos han estau invalidaus y se cheneroron codigos nuevos.
-        subject: 'Mastodon: Los codigos de recuperación de dos factors estioron regenerados'
+        subject: 'TomX: Los codigos de recuperación de dos factors estioron regenerados'
         title: Codigos de recuperación 2FA cambiaus
       unlock_instructions:
-        subject: 'Mastodon: Instruccions pa desblocar'
+        subject: 'TomX: Instruccions pa desblocar'
       webauthn_credential:
         added:
           explanation: La siguient clau de seguranza ha estau anyadida a la suya cuenta
-          subject: 'Mastodon: Nueva clau de seguranza'
+          subject: 'TomX: Nueva clau de seguranza'
           title: S'ha anyadiu una nueva clau de seguranza
         deleted:
           explanation: La siguient clau de seguranza ha estau eliminada d'a tuya cuenta
-          subject: 'Mastodon: Clau de seguranza eliminada'
+          subject: 'TomX: Clau de seguranza eliminada'
           title: Una d'as tuyas claus de seguranza ha estau eliminada
       webauthn_disabled:
         explanation: L'autenticación con claus de seguranza ha estau deshabilitada pa la tuya cuenta. Agora l'inicio de sesión nomás ye posible utilizando lo token chenerau per l'aplicación TOTP emparellada.
-        subject: 'Mastodon: Autenticación con claus de seguranza deshabilitada'
+        subject: 'TomX: Autenticación con claus de seguranza deshabilitada'
         title: Claus de seguranza deshabilitadas
       webauthn_enabled:
         explanation: L'autenticación con clau de seguranza ha estau habilitada pa la tuya cuenta. Agora la tuya clau de seguranza puede estar utilizada pa iniciar sesión.
-        subject: 'Mastodon: Autenticación de clau de seguranza habilitada'
+        subject: 'TomX: Autenticación de clau de seguranza habilitada'
         title: Claus de seguranza habilitadas
     omniauth_callbacks:
       failure: No se te podió autenticar dende %{kind} perque “%{reason}”.

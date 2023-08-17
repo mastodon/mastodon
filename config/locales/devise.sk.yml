@@ -23,59 +23,59 @@ sk:
         explanation: S touto emailovou adresou si si vytvoril/a účet na %{host}. Si iba jeden klik od jeho aktivácie. Pokiaľ si to ale nebol/a ty, prosím ignoruj tento email.
         explanation_when_pending: S touto e-mailovou adresou ste požiadali o pozvánku na %{host}. Po potvrdení vašej e-mailovej adresy vašu žiadosť skontrolujeme. Môžete sa prihlásiť, aby ste zmenili svoje údaje alebo vymazali svoje konto, ale kým nebude vaše konto schválené, nebudete mať prístup k väčšine funkcií. Ak bude vaša žiadosť zamietnutá, vaše údaje budú odstránené, takže sa od vás nebudú vyžadovať žiadne ďalšie kroky. Ak ste to neboli vy, tento e-mail ignorujte.
         extra_html: Prosím, pozri sa aj na <a href="%{terms_path}"> pravidlá tohto servera,</a> a <a href="%{policy_path}"> naše užívaťeľské podiemky</a>.
-        subject: 'Mastodon: Potvrdzovacie pokyny pre %{instance}'
+        subject: 'TomX: Potvrdzovacie pokyny pre %{instance}'
         title: Potvrď emailovú adresu
       email_changed:
         explanation: 'Emailová adresa tvojho účtu bude zmenená na:'
         extra: Ak si nezmenil/a svoj email, je pravdepodobné, že niekto iný získal prístup k tvojmu účtu. Naliehavo preto prosím zmeň svoje heslo, alebo kontaktuj administrátora tohto serveru, pokiaľ si vymknutý/á zo svojho účtu.
-        subject: 'Mastodon: Emailová adresa bola zmenená'
+        subject: 'TomX: Emailová adresa bola zmenená'
         title: Nová emailová adresa
       password_change:
         explanation: Heslo k tvojmu účtu bolo zmenené.
         extra: Ak si heslo nezmenil/a, je pravdepodobné, že niekto iný získal prístup k tvojmu účtu. Naliehavo preto prosím zmeň svoje heslo, alebo kontaktuj administrátora tohto serveru, pokiaľ si vymknutý/á zo svojho účtu.
-        subject: 'Mastodon: Heslo bolo zmenené'
+        subject: 'TomX: Heslo bolo zmenené'
         title: Heslo bolo zmenené
       reconfirmation_instructions:
         explanation: Potvrď novú emailovú adresu na ktorú chceš zmeniť svoj email.
         extra: Pokiaľ si túto akciu nevyžiadal/a, prosím ignoruj tento email. Emailová adresa pre tvoj TomX účet totiž nebude zmenená pokiaľ nepostúpiš na adresu uvedenú vyššie.
-        subject: 'Mastodon: Potvrď email pre %{instance}'
+        subject: 'TomX: Potvrď email pre %{instance}'
         title: Over emailovú adresu
       reset_password_instructions:
         action: Zmeň svoje heslo
         explanation: Vyžiadal/a si si nové heslo pre svoj účet.
         extra: Ak si túto akciu nevyžiadal/a, prosím ignoruj tento email. Tvoje heslo nebude zmenené pokiaľ nepostúpiš na adresu uvedenú vyššie a vytvoríš si nové.
-        subject: 'Mastodon: Pokyny pre obnovu hesla'
+        subject: 'TomX: Pokyny pre obnovu hesla'
         title: Nastav nové heslo
       two_factor_disabled:
         explanation: Dvojfázové overovanie tvojho účtu bolo vypnuté. Teraz sa môžeš prihlásiť len pomocou emailu a hesla.
-        subject: 'Mastodon: Dvojfázové overovanie vypnuté'
+        subject: 'TomX: Dvojfázové overovanie vypnuté'
         title: Dvoj-faktorové overovanie vypnuté
       two_factor_enabled:
         explanation: Dvojfázové overovanie bolo zapnuté pre tvoj účet. Pre prihlásenie budeš potrebovať token vygenerovaný pre TOTP aplikáciu, ktorá je spárovaná.
-        subject: 'Mastodon: Dvojfázové overovanie zapnuté'
+        subject: 'TomX: Dvojfázové overovanie zapnuté'
         title: Dvoj-faktorové overovanie zapnuté
       two_factor_recovery_codes_changed:
         explanation: Predošlé obnovovacie kódy boli urobené neplatnými a boli vygenerované nové.
-        subject: 'Mastodon: dvojfázové zálohové kódy boli znovu vygenerované'
+        subject: 'TomX: dvojfázové zálohové kódy boli znovu vygenerované'
         title: Obnovovacie kódy pre dvoj-faktorové overovanie zmenené
       unlock_instructions:
-        subject: 'Mastodon: Pokyny na odomknutie účtu'
+        subject: 'TomX: Pokyny na odomknutie účtu'
       webauthn_credential:
         added:
           explanation: Do vášho konta bol pridaný nasledujúci bezpečnostný kľúč
-          subject: 'Mastodon: Nový bezpečnostný kľúč'
+          subject: 'TomX: Nový bezpečnostný kľúč'
           title: Bol pridaný nový bezpečnostný kľúč
         deleted:
           explanation: Z vášho účtu bol odstránený nasledujúci bezpečnostný kľúč
-          subject: 'Mastodon: Bezpečnostný kľúč odstránený'
+          subject: 'TomX: Bezpečnostný kľúč odstránený'
           title: Jeden z vašich bezpečnostných kľúčov bol odstránený
       webauthn_disabled:
         explanation: Overovanie pomocou bezpečnostných kľúčov bolo pre vaše konto vypnuté. Prihlásenie je teraz možné len pomocou tokenu vygenerovaného spárovanou aplikáciou TOTP.
-        subject: 'Mastodon: Overovanie s vypnutými bezpečnostnými kľúčmi'
+        subject: 'TomX: Overovanie s vypnutými bezpečnostnými kľúčmi'
         title: Bezpečnostné kľúče sú vypnuté
       webauthn_enabled:
         explanation: Pre vaše konto bolo povolené overovanie bezpečnostným kľúčom. Váš bezpečnostný kľúč teraz môžete použiť na prihlásenie.
-        subject: 'Mastodon: Povolené overovanie bezpečnostného kľúča'
+        subject: 'TomX: Povolené overovanie bezpečnostného kľúča'
         title: Povolené bezpečnostné kľúče
     omniauth_callbacks:
       failure: Nebolo možné ťa overiť z %{kind}, lebo "%{reason}".

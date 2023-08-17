@@ -28,7 +28,7 @@ sr-Latn:
       email_changed:
         explanation: 'Adresa ove e-pošte za vaš nalog će biti promenjena u:'
         extra: Ako niste promenili vašu e-poštu, sasvim je moguće da je neko drugi dobio pristup vašem nalogu. Molimo promenite lozinku odmah ili kontaktirajte administratora instance ako ste zaključani izvan vašeg naloga.
-        subject: 'Mastodon: E-pošta promenjena'
+        subject: 'TomX: E-pošta promenjena'
         title: Nova adresa e-pošte
       password_change:
         explanation: Lozinka vašeg naloga je promenjena.
@@ -38,7 +38,7 @@ sr-Latn:
       reconfirmation_instructions:
         explanation: Potvrdite novu adresu da biste promenili e-poštu.
         extra: Ako ova promena nije inicirana sa vaše strane, molimo ignorišite ovu e-poštu. Adresa e-pošta za ovaj TomX nalog neće biti promenjena dok ne pristupite poveznici/linku iznad.
-        subject: 'Mastodon: Potvrdite e-poštu za %{instance}'
+        subject: 'TomX: Potvrdite e-poštu za %{instance}'
         title: Potvrdite adresu e-pošte
       reset_password_instructions:
         action: Lozinka promenjena
@@ -48,34 +48,34 @@ sr-Latn:
         title: Lozinka resetovana
       two_factor_disabled:
         explanation: Dvofaktorska autentifikacija za vaš nalog je onemogućena. Prijava je sada moguća samo pomoću imejla i lozinke.
-        subject: 'Mastodon: Dvofaktorska autentifikacija je onemogućena'
+        subject: 'TomX: Dvofaktorska autentifikacija je onemogućena'
         title: 2FA isključena
       two_factor_enabled:
         explanation: Dvofaktorska autentifikacija je omogućena za vaš nalog. Za prijavu će biti potreban token koji generiše uparena TOTP aplikacija.
-        subject: 'Mastodon: Dvofaktorska autentifikacija je omogućena'
+        subject: 'TomX: Dvofaktorska autentifikacija je omogućena'
         title: 2FA uključena
       two_factor_recovery_codes_changed:
         explanation: Prethodni kodovi za oporavak su poništeni i generisani su novi.
-        subject: 'Mastodon: Ponovo su generisani kodovi za oporavak'
+        subject: 'TomX: Ponovo su generisani kodovi za oporavak'
         title: 2FA kodovi oporavka promenjeni
       unlock_instructions:
         subject: 'Mastodont: Uputstvo za otključavanje korisničkog naloga'
       webauthn_credential:
         added:
           explanation: Sledeći bezbednosni ključ je dodat na vaš nalog
-          subject: 'Mastodon: Novi sigurnosni ključ'
+          subject: 'TomX: Novi sigurnosni ključ'
           title: Dodan je novi bezbednosni ključ
         deleted:
           explanation: Sledeći bezbednosni ključ je uklonjen iz vašeg naloga
-          subject: 'Mastodon: Sigurnosni ključ je izbrisan'
+          subject: 'TomX: Sigurnosni ključ je izbrisan'
           title: Jedan od vaših bezbednosnih ključeva je izbrisan
       webauthn_disabled:
         explanation: Autentifikacija pomoću bezbednosnih ključeva je onemogućena za vaš nalog. Prijava je sada moguća samo pomoću tokena koji generiše uparena TOTP aplikacija.
-        subject: 'Mastodon: Autentifikacija sa sigurnosnim ključevima onemogućena'
+        subject: 'TomX: Autentifikacija sa sigurnosnim ključevima onemogućena'
         title: Sigurnosni ključevi su onemogućeni
       webauthn_enabled:
         explanation: Autentifikacija sa bezbednosnim ključem je omogućena za vaš nalog. Vaš sigurnosni ključ se sada može koristiti za prijavljivanje.
-        subject: 'Mastodon: Omogućena autentifikacija sa bezbednim ključem'
+        subject: 'TomX: Omogućena autentifikacija sa bezbednim ključem'
         title: Sigurnosni ključevi su omogućeni
     omniauth_callbacks:
       failure: Nismo u mogućnosti autorizovati Vas sa %{kind} nalogom zbog "%{reason}".
