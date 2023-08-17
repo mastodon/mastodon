@@ -2,9 +2,12 @@
 
 class CacheBuster
   def initialize(options = {})
-    @secret_header = options[:secret_header] || nil
-    @secret        = options[:secret] || nil
-    @http_method   = options[:http_method] || 'GET'
+    @secret_header = options[:secret_header] ||
+                     (options[:http_method] ? nil : 'Secret-Header')
+    @secret = options[:secret] ||
+              (options[:http_method] ? nil : 'True')
+
+    @http_method = options[:http_method] || 'GET'
   end
 
   def bust(url)
