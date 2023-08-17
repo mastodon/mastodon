@@ -6,9 +6,9 @@ en:
         discoverable: Your public posts and profile may be featured or recommended in various areas of Mastodon and your profile may be suggested to other users.
         display_name: Your full name or your fun name.
         fields: Your homepage, pronouns, age, anything you want.
-        hide_collections: People will not be able to browse through your follows and followers. People that you follow will see that you follow them regardless.
-        locked: People will request to follow you and you will be able to either accept or reject new followers.
         note: 'You can @mention other people or #hashtags.'
+        show_collections: People will be able to browse through your follows and followers. People that you follow will see that you follow them regardless.
+        unlocked: People will be able to follow you without requesting approval. Uncheck if you want to review follow requests and chose whether to accept or reject new followers.
       account_alias:
         acct: Specify the username@domain of the account you want to move from
       account_migration:
@@ -143,8 +143,8 @@ en:
         fields:
           name: Label
           value: Content
-        hide_collections: Hide follows and followers from profile
-        locked: Manually review new followers
+        show_collections: Show follows and followers on profile
+        unlocked: Automatically accept new followers
       account_alias:
         acct: Handle of the old account
       account_migration:
