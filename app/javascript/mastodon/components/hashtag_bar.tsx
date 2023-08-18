@@ -14,19 +14,20 @@ import { getStatusContent } from './status_content';
 const VISIBLE_HASHTAGS = 7;
 
 // Those types are not correct, they need to be replaced once this part of the state is typed
-type TagLike = Record<{ name: string }>;
-type StatusLike = Record<{ tags: List<TagLike> }>;
+export type TagLike = Record<{ name: string }>;
+export type StatusLike = Record<{ tags: List<TagLike>; contentHTML: string }>;
 
 function normalizeHashtag(hashtag: string) {
-  if (hashtag.startsWith('#')) return hashtag.slice(1);
+  if (hashtag && hashtag.startsWith('#')) return hashtag.slice(1);
   else return hashtag;
 }
 
 function isNodeLinkHashtag(element: Node): element is HTMLLinkElement {
-  // it may be a <a> with a hashtag
   return (
     element instanceof HTMLAnchorElement &&
+    // it may be a <a> starting with a hashtag
     (element.textContent?.[0] === '#' ||
+      // or a #<a>
       element.previousSibling?.textContent?.[
         element.previousSibling.textContent.length - 1
       ] === '#')
@@ -40,7 +41,9 @@ function isNodeLinkHashtag(element: Node): element is HTMLLinkElement {
  * @returns The input hashtags, but with only 1 occurence of each (case-insensitive)
  */
 function uniqueHashtagsWithCaseHandling(hashtags: string[]) {
-  const groups = groupBy(hashtags, (tag) => tag.toLowerCase());
+  const groups = groupBy(hashtags, (tag) =>
+    tag.normalize('NFKD').toLowerCase(),
+  );
 
   return Object.values(groups).map((tags) => {
     if (tags.length === 1) return tags[0];
@@ -67,16 +70,10 @@ function localeAwareInclude(collection: string[], value: string) {
   return collection.find((item) => collator.compare(item, value) === 0);
 }
 
-/**
- *  This function will process a status to, at the same time (avoiding parsing it twice):
- * - build the HashtagBar for this status
- * - remove the last-line hashtags from the status content
- * @param status The status to process
- * @returns Props to be passed to the <StatusContent> component, and the hashtagBar to render
- */
-export function getHashtagBarForStatus(status: StatusLike): {
+// We use an intermediate function here to make it easier to test
+export function computeHashtagBarForStatus(status: StatusLike): {
   statusContentProps: { statusContent: string };
-  hashtagBar: React.ReactNode;
+  hashtagsInBar: string[];
 } {
   let statusContent = getStatusContent(status);
 
@@ -88,7 +85,7 @@ export function getHashtagBarForStatus(status: StatusLike): {
   // this is returned if we stop the processing early, it does not change what is displayed
   const defaultResult = {
     statusContentProps: { statusContent },
-    hashtagBar: null,
+    hashtagsInBar: [],
   };
 
   // return early if this status does not have any tags
@@ -117,23 +114,25 @@ export function getHashtagBarForStatus(status: StatusLike): {
   // Now we parse the last line, and try to see if it only contains hashtags
   const lastLineHashtags: string[] = [];
   // try to see if the last line is only hashtags
-  const onlyHashtags = Array.from(lastChild.childNodes).every((node) => {
-    if (isNodeLinkHashtag(node)) {
-      const normalized = normalizeHashtag(node.innerText);
+  let onlyHashtags = true;
 
-      if (!localeAwareInclude(tagNames, normalized))
+  Array.from(lastChild.childNodes).forEach((node) => {
+    if (isNodeLinkHashtag(node) && node.textContent) {
+      const normalized = normalizeHashtag(node.textContent);
+
+      if (!localeAwareInclude(tagNames, normalized)) {
         // stop here, this is not a real hashtag, so consider it as text
-        return false;
+        onlyHashtags = false;
+        return;
+      }
 
       if (!localeAwareInclude(contentHashtags, normalized))
         // only add it if it does not appear in the rest of the content
         lastLineHashtags.push(normalized);
-
-      return true;
-    } else if (node.nodeType === Node.TEXT_NODE && !node.nodeValue?.trim()) {
-      // This is a space
-      return true;
-    } else return false;
+    } else if (node.nodeType !== Node.TEXT_NODE || node.nodeValue?.trim()) {
+      // not a space
+      onlyHashtags = false;
+    }
   });
 
   const hashtagsInBar = tagNames.filter(
@@ -143,7 +142,10 @@ export function getHashtagBarForStatus(status: StatusLike): {
       !localeAwareInclude(lastLineHashtags, tag),
   );
 
-  if (onlyHashtags) {
+  const isOnlyOneLine = contentWithoutLastLine.content.childElementCount === 0;
+
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- due to https://github.com/microsoft/TypeScript/issues/9998
+  if (onlyHashtags && !isOnlyOneLine) {
     statusContent = contentWithoutLastLine.innerHTML;
     // and add the tags to the bar
     hashtagsInBar.push(...lastLineHashtags);
@@ -151,9 +153,24 @@ export function getHashtagBarForStatus(status: StatusLike): {
 
   return {
     statusContentProps: { statusContent },
-    hashtagBar: (
-      <HashtagBar hashtags={uniqueHashtagsWithCaseHandling(hashtagsInBar)} />
-    ),
+    hashtagsInBar: uniqueHashtagsWithCaseHandling(hashtagsInBar),
+  };
+}
+
+/**
+ *  This function will process a status to, at the same time (avoiding parsing it twice):
+ * - build the HashtagBar for this status
+ * - remove the last-line hashtags from the status content
+ * @param status The status to process
+ * @returns Props to be passed to the <StatusContent> component, and the hashtagBar to render
+ */
+export function getHashtagBarForStatus(status: StatusLike) {
+  const { statusContentProps, hashtagsInBar } =
+    computeHashtagBarForStatus(status);
+
+  return {
+    statusContentProps,
+    hashtagBar: <HashtagBar hashtags={hashtagsInBar} />,
   };
 }
 
