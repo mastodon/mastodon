@@ -64,7 +64,7 @@ if ENV['S3_ENABLED'] == 'true'
       http_open_timeout: ENV.fetch('S3_OPEN_TIMEOUT') { '5' }.to_i,
       http_read_timeout: ENV.fetch('S3_READ_TIMEOUT') { '5' }.to_i,
       http_idle_timeout: 5,
-      retry_limit: 0,
+      retry_limit: ENV.fetch('S3_RETRY_LIMIT') { '0' }.to_i,
     }
   )
 
