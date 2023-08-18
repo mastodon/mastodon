@@ -59,9 +59,11 @@ module Subscription
       if (invite.nil?)
         redirect_to settings_subscription.subscriptions_url, flash: { error: "Invite not found" }
       elsif (invite.uses <= invite.max_uses)
-        invite.update(uses: invite.uses + 1)
         sub = Subscription::StripeSubscription.find_by(invite_id: invite.id)
         sub.members.create(user_id: @user.id)
+        @user.invite = invite
+        @user.save!
+        render settings_subscription.subscriptions_url, status: 200
       else
         redirect_to settings_subscription.subscriptions_url, flash: { error: "Invite is no longer valid" }
       end
