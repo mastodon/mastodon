@@ -231,8 +231,8 @@ delegate(document, '#account_display_name', 'input', ({ target }) => {
   }
 });
 
-delegate(document, '#account_avatar', 'change', ({ target }) => {
-  const avatar = document.querySelector('.card .avatar img');
+delegate(document, '#edit_profile input[type=file]', 'change', ({ target }) => {
+  const avatar = document.getElementById(target.id + '-preview');
   const [file] = target.files || [];
   const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
 
@@ -253,14 +253,6 @@ const getProfileAvatarAnimationHandler = (swapTo) => {
 delegate(document, 'img#profile_page_avatar', 'mouseover', getProfileAvatarAnimationHandler('data-original'));
 
 delegate(document, 'img#profile_page_avatar', 'mouseout', getProfileAvatarAnimationHandler('data-static'));
-
-delegate(document, '#account_header', 'change', ({ target }) => {
-  const header = document.querySelector('.card .card__img img');
-  const [file] = target.files || [];
-  const url = file ? URL.createObjectURL(file) : header.dataset.originalSrc;
-
-  header.src = url;
-});
 
 delegate(document, '#account_locked', 'change', ({ target }) => {
   const lock = document.querySelector('.card .display-name i');
