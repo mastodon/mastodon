@@ -15,7 +15,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
   def pass?
     return true unless Chewy.enabled?
 
-    running_version.present? && compatible_version? && cluster_health['status'] == 'green' && indexes_match?
+    running_version.present? && compatible_version? && cluster_health['status'] == 'green' && indexes_match? && preset_matches?
   rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
     false
   end
@@ -39,8 +39,12 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
       )
     elsif cluster_health['status'] == 'red'
       Admin::SystemCheck::Message.new(:elasticsearch_health_red)
-    else
+    elsif cluster_health['number_of_nodes'] < 2 && ENV.fetch('ES_PRESET', 'single_node_cluster') != 'single_node_cluster'
+      Admin::SystemCheck::Message.new(:elasticsearch_preset_single_node, nil, 'https://docs.joinmastodon.org/admin/optional/elasticsearch/#scaling')
+    elsif cluster_health['status'] == 'yellow'
       Admin::SystemCheck::Message.new(:elasticsearch_health_yellow)
+    else
+      Admin::SystemCheck::Message.new(:elasticsearch_preset, nil, 'https://docs.joinmastodon.org/admin/optional/elasticsearch/#scaling')
     end
   rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
     Admin::SystemCheck::Message.new(:elasticsearch_running_check)
@@ -85,5 +89,9 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
 
   def indexes_match?
     mismatched_indexes.empty?
+  end
+
+  def preset_matches?
+    (cluster_health['number_of_nodes'] < 2) == (ENV.fetch('ES_PRESET', 'single_node_cluster') == 'single_node_cluster')
   end
 end
