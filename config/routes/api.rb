@@ -95,6 +95,7 @@ namespace :api, format: false do
     resources :filters, only: [:index, :create, :show, :update, :destroy]
     resources :endorsements, only: [:index]
     resources :markers, only: [:index, :create]
+    resources :profile, only: :destroy, param: :image, controller: 'profiles'
 
     namespace :apps do
       get :verify_credentials, to: 'credentials#show'
@@ -152,7 +153,6 @@ namespace :api, format: false do
     namespace :accounts do
       get :verify_credentials, to: 'credentials#show'
       patch :update_credentials, to: 'credentials#update'
-      resources :pictures, only: :destroy, param: :picture
       resource :search, only: :show, controller: :search
       resource :lookup, only: :show, controller: :lookup
       resources :relationships, only: :index
