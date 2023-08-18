@@ -65,7 +65,7 @@ module Subscription
         @user.save!
         render settings_subscription.subscriptions_url, status: 200
       else
-        redirect_to settings_subscription.subscriptions_url, flash: { error: "Invite is no longer valid" }
+        redirect_to settings_subscription.subscriptions_url, flash: { error: "Invite is not valid for any more uses" }
       end
     end
   
