@@ -3275,13 +3275,14 @@ $ui-header-height: 55px;
   background-color: $classic-base-color;
   padding: 15px;
   border-radius: 4px;
-  font-size: 15px;
-  line-height: 22px;
   margin-top: 4px;
   margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 18px;
 
-  .switch-to-advanced__label {
-    margin-bottom: 8px;
+  .switch-to-advanced__toggle {
+    color: $ui-button-tertiary-color;
+    font-weight: bold;
   }
 }
 

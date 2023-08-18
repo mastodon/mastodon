@@ -60,10 +60,9 @@ class NavigationPanel extends Component {
 
           {transientSingleColumn ? (
             <div class='switch-to-advanced'>
-              <div class='switch-to-advanced__label'>
-                {intl.formatMessage(messages.openedInClassicInterface)}
-              </div>
-              <a href={`/deck${location.pathname}`} className='button button-tertiary button--block'>
+              {intl.formatMessage(messages.openedInClassicInterface)}
+              {" "}
+              <a href={`/deck${location.pathname}`} class='switch-to-advanced__toggle'>
                 {intl.formatMessage(messages.advancedInterface)}
               </a>
             </div>
