@@ -14,14 +14,6 @@ RSpec.describe 'Deleting profile images' do
   let(:scopes)  { 'write:accounts' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
-    end
-  end
-
   describe 'DELETE /api/v1/profile' do
     before do
       allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
