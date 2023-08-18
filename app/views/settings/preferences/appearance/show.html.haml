@@ -52,7 +52,7 @@
     %h4= t 'appearance.sensitive_content'
 
     .fields-group
-      = ff.input :'web.display_media', collection: %w(default show_all hide_all), label_method: ->(item) { t("simple_form.hints.defaults.setting_display_media_#{item}") }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', wrapper: :with_floating_label, label: I18n.t('simple_form.labels.defaults.setting_display_media')
+      = ff.input :'web.display_media', collection: %w(show_all default hide_all), label_method: ->(item) { t("simple_form.hints.defaults.setting_display_media_#{item}") }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', wrapper: :with_floating_label, label: I18n.t('simple_form.labels.defaults.setting_display_media')
 
     .fields-group
       = ff.input :'web.use_blurhash', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_use_blurhash'), hint: I18n.t('simple_form.hints.defaults.setting_use_blurhash')
