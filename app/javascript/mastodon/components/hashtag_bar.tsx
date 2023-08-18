@@ -15,7 +15,12 @@ const VISIBLE_HASHTAGS = 7;
 
 // Those types are not correct, they need to be replaced once this part of the state is typed
 export type TagLike = Record<{ name: string }>;
-export type StatusLike = Record<{ tags: List<TagLike>; contentHTML: string }>;
+export type StatusLike = Record<{
+  tags: List<TagLike>;
+  contentHTML: string;
+  media_attachments: List<unknown>;
+  spoiler_text?: string;
+}>;
 
 function normalizeHashtag(hashtag: string) {
   if (hashtag && hashtag.startsWith('#')) return hashtag.slice(1);
@@ -143,9 +148,14 @@ export function computeHashtagBarForStatus(status: StatusLike): {
   );
 
   const isOnlyOneLine = contentWithoutLastLine.content.childElementCount === 0;
+  const hasMedia = status.get('media_attachments').size > 0;
+  const hasSpoiler = !!status.get('spoiler_text');
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- due to https://github.com/microsoft/TypeScript/issues/9998
-  if (onlyHashtags && !isOnlyOneLine) {
+  if (onlyHashtags && ((hasMedia && !hasSpoiler) || !isOnlyOneLine)) {
+    // if the last line only contains hashtags, and we either:
+    // - have other content in the status
+    // - dont have other content, but a media and no CW. If it has a CW, then we do not remove the content to avoid having an empty content behind the CW button
     statusContent = contentWithoutLastLine.innerHTML;
     // and add the tags to the bar
     hashtagsInBar.push(...lastLineHashtags);
