@@ -13,7 +13,7 @@ describe Admin::SystemCheck::ElasticsearchCheck do
     context 'when chewy is enabled' do
       before do
         allow(Chewy).to receive(:enabled?).and_return(true)
-        allow(Chewy.client.cluster).to receive(:health).and_return({ 'status' => 'green' })
+        allow(Chewy.client.cluster).to receive(:health).and_return({ 'status' => 'green', 'number_of_nodes' => 1 })
         allow(Chewy.client.indices).to receive(:get_mapping).and_return({
           AccountsIndex.index_name => AccountsIndex.mappings_hash.deep_stringify_keys,
           StatusesIndex.index_name => StatusesIndex.mappings_hash.deep_stringify_keys,
@@ -78,7 +78,7 @@ describe Admin::SystemCheck::ElasticsearchCheck do
   describe 'message' do
     before do
       allow(Chewy).to receive(:enabled?).and_return(true)
-      allow(Chewy.client.cluster).to receive(:health).and_return({ 'status' => 'green' })
+      allow(Chewy.client.cluster).to receive(:health).and_return({ 'status' => 'green', 'number_of_nodes' => 1 })
       allow(Chewy.client.indices).to receive(:get_mapping).and_return({
         AccountsIndex.index_name => AccountsIndex.mappings_hash.deep_stringify_keys,
         StatusesIndex.index_name => StatusesIndex.mappings_hash.deep_stringify_keys,
