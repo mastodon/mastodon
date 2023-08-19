@@ -13,15 +13,16 @@ import { Avatar } from 'mastodon/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';
 import Button from 'mastodon/components/button';
 import { FollowersCounter, FollowingCounter, StatusesCounter } from 'mastodon/components/counters';
-import { Icon }  from 'mastodon/components/icon';
+import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 import { ShortNumber } from 'mastodon/components/short_number';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'mastodon/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 
-import AccountNoteContainer from '../containers/account_note_container';
 import FollowRequestNoteContainer from '../containers/follow_request_note_container';
+
+import { AccountNote } from './account_note';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -197,7 +198,7 @@ class Header extends ImmutablePureComponent {
     }
   };
 
-  _attachLinkEvents () {
+  _attachLinkEvents() {
     const node = this.node;
 
     if (!node) {
@@ -219,15 +220,15 @@ class Header extends ImmutablePureComponent {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this._attachLinkEvents();
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     this._attachLinkEvents();
   }
 
-  render () {
+  render() {
     const { account, hidden, intl, domain } = this.props;
     const { signedIn, permissions } = this.context.identity;
 
@@ -235,15 +236,15 @@ class Header extends ImmutablePureComponent {
       return null;
     }
 
-    const suspended    = account.get('suspended');
-    const isRemote     = account.get('acct') !== account.get('username');
+    const suspended = account.get('suspended');
+    const isRemote = account.get('acct') !== account.get('username');
     const remoteDomain = isRemote ? account.get('acct').split('@')[1] : null;
 
-    let info        = [];
-    let actionBtn   = '';
-    let bellBtn     = '';
-    let lockedIcon  = '';
-    let menu        = [];
+    let info = [];
+    let actionBtn = '';
+    let bellBtn = '';
+    let lockedIcon = '';
+    let menu = [];
 
     if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
       info.push(<span key='followed_by' className='relationship-tag'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>);
@@ -364,12 +365,12 @@ class Header extends ImmutablePureComponent {
       }
     }
 
-    const content         = { __html: account.get('note_emojified') };
+    const content = { __html: account.get('note_emojified') };
     const displayNameHtml = { __html: account.get('display_name_html') };
-    const fields          = account.get('fields');
-    const isLocal         = account.get('acct').indexOf('@') === -1;
-    const acct            = isLocal && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
-    const isIndexable     = !account.get('noindex');
+    const fields = account.get('fields');
+    const isLocal = account.get('acct').indexOf('@') === -1;
+    const acct = isLocal && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
+    const isIndexable = !account.get('noindex');
 
     const badges = [];
 
@@ -433,7 +434,7 @@ class Header extends ImmutablePureComponent {
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
               <div className='account__header__bio' ref={this.setRef}>
-                {(account.get('id') !== me && signedIn) && <AccountNoteContainer account={account} />}
+                {(account.get('id') !== me && signedIn) && <AccountNote account={account} />}
 
                 {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}
 

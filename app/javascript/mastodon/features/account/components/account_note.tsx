@@ -1,20 +1,33 @@
 import PropTypes from 'prop-types';
+import type { ChangeEvent, KeyboardEvent } from 'react';
 import { createRef, useEffect, useState } from 'react';
 
+import type { IntlShape } from 'react-intl';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { is } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
 
 import Textarea from 'react-textarea-autosize';
 
+import type { TypeSafeImmutableMap } from 'app/javascript/types/immutable';
+import { submitAccountNote } from 'mastodon/actions/account_notes';
+import type { Account } from 'mastodon/reducers/accounts';
+import type { AppDispatch, RootState } from 'mastodon/store';
+
 const messages = defineMessages({
-  placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
+  placeholder: {
+    id: 'account_note.placeholder',
+    defaultMessage: 'Click to add a note',
+  },
 });
 
+interface InlineAlertProps {
+  show: boolean;
+}
 
-const InlineAlert = ({ show }) => {
+const InlineAlert = ({ show }: InlineAlertProps) => {
   const [mountMessage, setMountMessage] = useState(false);
   const TRANSITION_DELAY = 200;
 
@@ -27,8 +40,9 @@ const InlineAlert = ({ show }) => {
     // always be the opposite of the current value.
     if (show) {
       setMountMessage(true);
-      // A bare function is returned here so we can return a cleanup function later.
-      return () => { };
+      return () => {
+        // Intentionally left empty so the linter doesn't complain about having inconsistent returns
+      };
     }
 
     const handle = setTimeout(() => {
@@ -41,8 +55,15 @@ const InlineAlert = ({ show }) => {
   }, [show]);
 
   return (
-    <span aria-live='polite' role='status' className='inline-alert' style={{ opacity: show ? 1 : 0 }}>
-      {mountMessage && <FormattedMessage id='generic.saved' defaultMessage='Saved' />}
+    <span
+      aria-live='polite'
+      role='status'
+      className='inline-alert'
+      style={{ opacity: show ? 1 : 0 }}
+    >
+      {mountMessage && (
+        <FormattedMessage id='generic.saved' defaultMessage='Saved' />
+      )}
     </span>
   );
 };
@@ -51,39 +72,42 @@ InlineAlert.propTypes = {
   show: PropTypes.bool,
 };
 
-class AccountNote extends ImmutablePureComponent {
-  static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
-    value: PropTypes.string,
-    onSave: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
-  };
+interface Props {
+  account: TypeSafeImmutableMap<Account>;
+  value: string;
+  onSave: (value: string) => void;
+  intl: IntlShape;
+}
 
-  state = {
+interface State {
+  value: string;
+  saving: boolean;
+  saved: boolean;
+}
+
+class AccountNote extends ImmutablePureComponent<Props, State> {
+  state: State = {
     value: this.props.value,
     saving: false,
     saved: false,
   };
 
-  textarea = createRef();
+  textarea = createRef<HTMLTextAreaElement>();
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     const accountWillChange = !is(this.props.account, nextProps.account);
-    const newState = {};
 
     if (accountWillChange && this._isDirty()) {
       this._save(false);
     }
 
     if (accountWillChange || nextProps.value === this.state.value) {
-      newState.saving = false;
+      this.setState({ saving: false });
     }
 
     if (this.props.value !== nextProps.value) {
-      newState.value = nextProps.value;
+      this.setState({ value: nextProps.value });
     }
-
-    this.setState(newState);
   }
 
   componentWillUnmount() {
@@ -92,11 +116,11 @@ class AccountNote extends ImmutablePureComponent {
     }
   }
 
-  handleChange = e => {
+  handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     this.setState({ value: e.target.value, saving: false });
   };
 
-  handleKeyDown = e => {
+  handleKeyDown = (e: KeyboardEvent) => {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this._save();
@@ -119,16 +143,23 @@ class AccountNote extends ImmutablePureComponent {
     this.setState({ saving: true }, () => this.props.onSave(this.state.value));
 
     if (showMessage) {
-      this.setState({ saved: true }, () => setTimeout(() => this.setState({ saved: false }), 2000));
+      this.setState({ saved: true }, () =>
+        setTimeout(() => this.setState({ saved: false }), 2000)
+      );
     }
   }
 
-  _reset(callback) {
+  _reset(callback: () => void) {
     this.setState({ value: this.props.value }, callback);
   }
 
   _isDirty() {
-    return !this.state.saving && this.props.value !== null && this.state.value !== null && this.state.value !== this.props.value;
+    return (
+      !this.state.saving &&
+      this.props.value !== null &&
+      this.state.value !== null &&
+      this.state.value !== this.props.value
+    );
   }
 
   render() {
@@ -142,7 +173,11 @@ class AccountNote extends ImmutablePureComponent {
     return (
       <div className='account__header__account-note'>
         <label htmlFor={`account-note-${account.get('id')}`}>
-          <FormattedMessage id='account.account_note_header' defaultMessage='Note' /> <InlineAlert show={saved} />
+          <FormattedMessage
+            id='account.account_note_header'
+            defaultMessage='Note'
+          />{' '}
+          <InlineAlert show={saved} />
         </label>
 
         <Textarea
@@ -150,7 +185,7 @@ class AccountNote extends ImmutablePureComponent {
           className='account__header__account-note__content'
           disabled={this.props.value === null || value === null}
           placeholder={intl.formatMessage(messages.placeholder)}
-          value={value || ''}
+          value={value ?? ''}
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDown}
           onBlur={this.handleBlur}
@@ -159,7 +194,27 @@ class AccountNote extends ImmutablePureComponent {
       </div>
     );
   }
-
 }
 
-export default injectIntl(AccountNote);
+const mapStateToProps = (
+  state: RootState,
+  { account }: { account: TypeSafeImmutableMap<Account> }
+) => ({
+  value: account.getIn(['relationship', 'note']) as string,
+});
+
+const mapDispatchToProps = (
+  // TODO: This type is wrong.
+  dispatch: (action: any) => void,
+  { account }: { account: TypeSafeImmutableMap<Account> }
+) => ({
+  onSave(value: string) {
+    dispatch(submitAccountNote(account.get('id'), value));
+  },
+});
+
+const connected = injectIntl(
+  connect(mapStateToProps, mapDispatchToProps)(AccountNote)
+);
+
+export { connected as AccountNote };
