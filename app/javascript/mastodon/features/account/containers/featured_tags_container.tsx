@@ -1,4 +1,3 @@
-import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
 import { getAccount } from 'mastodon/selectors/accounts';
@@ -13,8 +12,7 @@ interface Props {
 const FeaturedTagsContainer = ({ accountId }: Props) => {
   const account = useAppSelector((state) => getAccount(state, accountId));
   const featuredTags = useAppSelector((state) => {
-    const userLists = state.user_lists as ImmutableMap<string, unknown>;
-    return userLists.getIn(
+    return state.user_lists.getIn(
       ['featured_tags', accountId, 'items'],
       ImmutableList()
     );

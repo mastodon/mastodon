@@ -6,6 +6,7 @@ interface TypeSafeImmutableMapImpl<T extends object> {
     key: K,
     notSetValue?: V
   ): V;
+  update<K extends keyof T>(key: K, updater: (current: T[K]) => T[K]): this;
 }
 
 // TypeSafeImmutableMap is an immutable map whose get() function is correctly typed for any type of T, where T is an object.
