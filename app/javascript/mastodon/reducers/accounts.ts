@@ -37,8 +37,6 @@ export interface Account {
   limited: boolean;
 }
 
-// TODO(trinitroglycerin): the value of this map is actually a record type,
-// mapping keys of Account to those values in an immutable map.
 type State = ImmutableMap<string, TypeSafeImmutableMap<Account>>;
 
 const initialState: State = ImmutableMap();
