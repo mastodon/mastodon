@@ -1,17 +1,20 @@
 import { fromJS } from 'immutable';
 import type { Map } from 'immutable';
 
-// TypeSafeImmutableCollection is an immutable map whose get() function is correctly typed for any type of T, where T is an object.
-//
-// The primary way to create one of these is using intoTypeSafeImmutableMap.
-//
-export interface TypeSafeImmutableMap<T extends object>
-  extends Map<keyof T, unknown> {
+interface TypeSafeImmutableMapImpl<T extends object> {
   get<K extends keyof T, V extends T[K] | null | undefined = undefined>(
     key: K,
     notSetValue?: V
   ): V;
 }
+
+// TypeSafeImmutableMap is an immutable map whose get() function is correctly typed for any type of T, where T is an object.
+//
+// The primary way to create one of these is using intoTypeSafeImmutableMap.
+//
+// This is a union type to permit TypeSafeImmutableMap having signatures that diverge from the signatures in the immutable typings.
+export type TypeSafeImmutableMap<T extends object> =
+  TypeSafeImmutableMapImpl<T> & Map<keyof T, unknown>;
 
 // TODO(trinitroglycerin): This is NOT typed correctly for nested collections.
 //
