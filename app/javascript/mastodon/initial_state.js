@@ -25,8 +25,8 @@
  * @property {string} display_name
  * @property {Emoji[]} emojis
  * @property {AccountField[]} fields
- * @property {number} followers_count
- * @property {number} following_count
+ * @property {number} [followers_count]
+ * @property {number} [following_count]
  * @property {boolean} group
  * @property {string} header
  * @property {string} header_static
@@ -34,9 +34,11 @@
  * @property {string=} last_status_at
  * @property {boolean} locked
  * @property {string} note
- * @property {number} statuses_count
+ * @property {number} [statuses_count]
  * @property {string} url
  * @property {string} username
+ * @property {boolean} [hidden]
+ * @property {boolean} [limited]
  */
 
 /**
