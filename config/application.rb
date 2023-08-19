@@ -52,6 +52,7 @@ require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
 require_relative '../lib/simple_navigation/item_extensions'
 require_relative '../lib/http_extensions'
+require_relative '../lib/http_cookie_extensions'
 
 Dotenv::Railtie.load
 

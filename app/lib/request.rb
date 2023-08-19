@@ -60,18 +60,6 @@ class PerOperationWithDeadline < HTTP::Timeout::PerOperation
   end
 end
 
-class HTTP::Cookie
-  class << self
-    alias original_parse parse
-
-    # HTTP::Cookie uses URI which only accepts RFC 3986-compliant URLs.
-    def parse(set_cookie, origin, options = nil)
-      origin = Addressable::URI.parse(origin).normalize
-      original_parse(set_cookie, origin, options)
-    end
-  end
-end
-
 class Request
   REQUEST_TARGET = '(request-target)'
 
