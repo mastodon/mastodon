@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { useEffect, useState } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
@@ -13,38 +13,43 @@ const messages = defineMessages({
   placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
 });
 
-class InlineAlert extends PureComponent {
 
-  static propTypes = {
-    show: PropTypes.bool,
-  };
+const InlineAlert = ({ show }) => {
+  const [mountMessage, setMountMessage] = useState(false);
+  const TRANSITION_DELAY = 200;
 
-  state = {
-    mountMessage: false,
-  };
-
-  static TRANSITION_DELAY = 200;
-
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    if (!this.props.show && nextProps.show) {
-      this.setState({ mountMessage: true });
-    } else if (this.props.show && !nextProps.show) {
-      setTimeout(() => this.setState({ mountMessage: false }), InlineAlert.TRANSITION_DELAY);
+  // TODO(trinitroglycerin): This effect changes the display of a message based on a flag, and hides it after a delay.
+  // It occurs to me that this is probably best represented with CSS handling the transition between the two states, and not
+  // handling this in JavaScript with the mountMessage state (which is the same value as 'show', but with a TRANSITION_DELAY lag).
+  useEffect(() => {
+    // Because show is a boolean value, this effect will only ever be triggered if it flips.
+    // We therefore do not need to store the previous value because we know the previous value will
+    // always be the opposite of the current value.
+    if (show) {
+      setMountMessage(true);
+      // A bare function is returned here so we can return a cleanup function later.
+      return () => { };
     }
-  }
 
-  render () {
-    const { show } = this.props;
-    const { mountMessage } = this.state;
+    const handle = setTimeout(() => {
+      setMountMessage(false);
+    }, TRANSITION_DELAY);
 
-    return (
-      <span aria-live='polite' role='status' className='inline-alert' style={{ opacity: show ? 1 : 0 }}>
-        {mountMessage && <FormattedMessage id='generic.saved' defaultMessage='Saved' />}
-      </span>
-    );
-  }
+    return () => {
+      clearTimeout(handle);
+    };
+  }, [show]);
 
-}
+  return (
+    <span aria-live='polite' role='status' className='inline-alert' style={{ opacity: show ? 1 : 0 }}>
+      {mountMessage && <FormattedMessage id='generic.saved' defaultMessage='Saved' />}
+    </span>
+  );
+};
+
+InlineAlert.propTypes = {
+  show: PropTypes.bool,
+};
 
 class AccountNote extends ImmutablePureComponent {
 
@@ -61,11 +66,11 @@ class AccountNote extends ImmutablePureComponent {
     saved: false,
   };
 
-  UNSAFE_componentWillMount () {
+  UNSAFE_componentWillMount() {
     this._reset();
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const accountWillChange = !is(this.props.account, nextProps.account);
     const newState = {};
 
@@ -84,7 +89,7 @@ class AccountNote extends ImmutablePureComponent {
     this.setState(newState);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this._isDirty()) {
       this._save(false);
     }
@@ -124,7 +129,7 @@ class AccountNote extends ImmutablePureComponent {
     }
   };
 
-  _save (showMessage = true) {
+  _save(showMessage = true) {
     this.setState({ saving: true }, () => this.props.onSave(this.state.value));
 
     if (showMessage) {
@@ -132,15 +137,15 @@ class AccountNote extends ImmutablePureComponent {
     }
   }
 
-  _reset (callback) {
+  _reset(callback) {
     this.setState({ value: this.props.value }, callback);
   }
 
-  _isDirty () {
+  _isDirty() {
     return !this.state.saving && this.props.value !== null && this.state.value !== null && this.state.value !== this.props.value;
   }
 
-  render () {
+  render() {
     const { account, intl } = this.props;
     const { value, saved } = this.state;
 
