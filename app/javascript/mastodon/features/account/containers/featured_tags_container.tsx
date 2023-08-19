@@ -23,4 +23,4 @@ const FeaturedTagsContainer = ({ accountId }: Props) => {
   return <FeaturedTags account={account} featuredTags={featuredTags} />;
 };
 
-export { FeaturedTagsContainer, FeaturedTagsContainer as default };
+export { FeaturedTagsContainer as FeaturedTags };
