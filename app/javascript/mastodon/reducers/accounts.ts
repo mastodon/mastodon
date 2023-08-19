@@ -77,7 +77,7 @@ type Action =
   | { type: typeof ACCOUNTS_IMPORT; accounts: Account[] }
   | { type: typeof ACCOUNT_REVEAL; id: unknown };
 
-export function accounts(state = initialState, action: Action) {
+export function accountsReducer(state = initialState, action: Action) {
   switch (action.type) {
     case ACCOUNT_IMPORT:
       return normalizeAccount(state, action.account);

@@ -3,7 +3,7 @@ import { Record as ImmutableRecord } from 'immutable';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import { combineReducers } from 'redux-immutable';
 
-import { accounts } from './accounts';
+import { accountsReducer as accounts } from './accounts';
 import accounts_counters from './accounts_counters';
 import accounts_map from './accounts_map';
 import alerts from './alerts';
