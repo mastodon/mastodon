@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { connect } from 'react-redux';
 
-import { FeaturedTags } from 'mastodon/features/account/containers/featured_tags_container';
+import { FeaturedTags } from 'mastodon/features/account/components/featured_tags';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 
 const mapStateToProps = (state, { match: { params: { acct } } }) => {
@@ -35,7 +35,7 @@ class AccountNavigation extends PureComponent {
     isLoading: PropTypes.bool,
   };
 
-  render () {
+  render() {
     const { accountId, isLoading, match: { params: { tagged } } } = this.props;
 
     if (isLoading) {

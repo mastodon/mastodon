@@ -2,10 +2,7 @@ import { fromJS } from 'immutable';
 import type { Map } from 'immutable';
 
 interface TypeSafeImmutableMapImpl<T extends object> {
-  get<K extends keyof T, V extends T[K] | null | undefined = undefined>(
-    key: K,
-    notSetValue?: V
-  ): V;
+  get<K extends keyof T, V extends T[K]>(key: K, notSetValue?: V): V;
   update<K extends keyof T>(key: K, updater: (current: T[K]) => T[K]): this;
 }
 

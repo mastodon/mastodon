@@ -1,62 +1,63 @@
-import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
+import { List as ImmutableList, Map as ImmutableMap, fromJS } from 'immutable';
 
-import { intoTypeSafeImmutableMap } from 'app/javascript/types/immutable';
 import type { TypeSafeImmutableMap } from 'app/javascript/types/immutable';
+import { intoTypeSafeImmutableMap } from 'app/javascript/types/immutable';
 import {
-  DIRECTORY_FETCH_REQUEST,
-  DIRECTORY_FETCH_SUCCESS,
-  DIRECTORY_FETCH_FAIL,
+  DIRECTORY_EXPAND_FAIL,
   DIRECTORY_EXPAND_REQUEST,
   DIRECTORY_EXPAND_SUCCESS,
-  DIRECTORY_EXPAND_FAIL,
+  DIRECTORY_FETCH_FAIL,
+  DIRECTORY_FETCH_REQUEST,
+  DIRECTORY_FETCH_SUCCESS,
 } from 'mastodon/actions/directory';
 import {
+  FEATURED_TAGS_FETCH_FAIL,
   FEATURED_TAGS_FETCH_REQUEST,
   FEATURED_TAGS_FETCH_SUCCESS,
-  FEATURED_TAGS_FETCH_FAIL,
 } from 'mastodon/actions/featured_tags';
+import type { RootState } from 'mastodon/store';
 
 import {
-  FOLLOWERS_FETCH_REQUEST,
-  FOLLOWERS_FETCH_SUCCESS,
-  FOLLOWERS_FETCH_FAIL,
+  FOLLOWERS_EXPAND_FAIL,
   FOLLOWERS_EXPAND_REQUEST,
   FOLLOWERS_EXPAND_SUCCESS,
-  FOLLOWERS_EXPAND_FAIL,
-  FOLLOWING_FETCH_REQUEST,
-  FOLLOWING_FETCH_SUCCESS,
-  FOLLOWING_FETCH_FAIL,
+  FOLLOWERS_FETCH_FAIL,
+  FOLLOWERS_FETCH_REQUEST,
+  FOLLOWERS_FETCH_SUCCESS,
+  FOLLOWING_EXPAND_FAIL,
   FOLLOWING_EXPAND_REQUEST,
   FOLLOWING_EXPAND_SUCCESS,
-  FOLLOWING_EXPAND_FAIL,
-  FOLLOW_REQUESTS_FETCH_REQUEST,
-  FOLLOW_REQUESTS_FETCH_SUCCESS,
-  FOLLOW_REQUESTS_FETCH_FAIL,
+  FOLLOWING_FETCH_FAIL,
+  FOLLOWING_FETCH_REQUEST,
+  FOLLOWING_FETCH_SUCCESS,
+  FOLLOW_REQUESTS_EXPAND_FAIL,
   FOLLOW_REQUESTS_EXPAND_REQUEST,
   FOLLOW_REQUESTS_EXPAND_SUCCESS,
-  FOLLOW_REQUESTS_EXPAND_FAIL,
+  FOLLOW_REQUESTS_FETCH_FAIL,
+  FOLLOW_REQUESTS_FETCH_REQUEST,
+  FOLLOW_REQUESTS_FETCH_SUCCESS,
   FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
   FOLLOW_REQUEST_REJECT_SUCCESS,
 } from '../actions/accounts';
 import {
-  BLOCKS_FETCH_REQUEST,
-  BLOCKS_FETCH_SUCCESS,
-  BLOCKS_FETCH_FAIL,
+  BLOCKS_EXPAND_FAIL,
   BLOCKS_EXPAND_REQUEST,
   BLOCKS_EXPAND_SUCCESS,
-  BLOCKS_EXPAND_FAIL,
+  BLOCKS_FETCH_FAIL,
+  BLOCKS_FETCH_REQUEST,
+  BLOCKS_FETCH_SUCCESS,
 } from '../actions/blocks';
 import {
-  REBLOGS_FETCH_SUCCESS,
   FAVOURITES_FETCH_SUCCESS,
+  REBLOGS_FETCH_SUCCESS,
 } from '../actions/interactions';
 import {
-  MUTES_FETCH_REQUEST,
-  MUTES_FETCH_SUCCESS,
-  MUTES_FETCH_FAIL,
+  MUTES_EXPAND_FAIL,
   MUTES_EXPAND_REQUEST,
   MUTES_EXPAND_SUCCESS,
-  MUTES_EXPAND_FAIL,
+  MUTES_FETCH_FAIL,
+  MUTES_FETCH_REQUEST,
+  MUTES_FETCH_SUCCESS,
 } from '../actions/mutes';
 import { NOTIFICATIONS_UPDATE } from '../actions/notifications';
 
@@ -148,8 +149,10 @@ const normalizeFollowRequest = (
   });
 };
 
-interface FeaturedTag {
+export interface FeaturedTag {
+  name: string;
   statuses_count: number;
+  last_status_at: string;
 }
 
 const normalizeFeaturedTag = (
@@ -180,6 +183,17 @@ const normalizeFeaturedTags = (
     })
   );
 };
+
+export function selectFeaturedTags(accountId: string) {
+  return (
+    state: RootState
+  ): ImmutableList<TypeSafeImmutableMap<FeaturedTag>> => {
+    return state.user_lists.getIn(
+      ['featured_tags', accountId, 'items'],
+      ImmutableList()
+    ) as ImmutableList<TypeSafeImmutableMap<FeaturedTag>>;
+  };
+}
 
 // The following types describe actions that are homogenous.
 type SuccessActionKey =
