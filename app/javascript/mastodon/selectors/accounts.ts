@@ -47,8 +47,22 @@ const getAccountMoved = (state: RootState, id: string): Account | undefined => {
   return state.accounts.get(moved);
 };
 
-export const makeGetAccount = () => {
-  return createSelector(
+// TODO(trinitroglycerin): I separated this out from makeGetAccount() to ease type diagnosis,
+// but I am pretty sure this must be within makeGetAccount() to ensure module splitting works correctly.
+//
+// Including this file would cause a side effect if createSelector() is used at a base level, and since it's
+// re-exported from selectors/index.js, any file which includes selectors/index.js will cause this function to be executed.
+//
+// I'm not convinced this is actually a problem in the real world as Mastodon is distributed mostly as one bundle, and this is
+// a core feature of Mastodon, but I'm not familiar enough with the codebase to do this without this disclaimer.
+// TODO(trinitroglycerin): While this function does return a map containing Account, it also includes
+// the computed properties 'relationship' (from getAccountRelationship) and 'moved' (from getAccountMoved).
+//
+// The details hare are currently hidden by the fact we use an Immutable Map, but we should strongly consider
+// using an Immutable Record with a type that correctly indicates the type of the value returned, because
+// these computed properties are not on the Account type in the initial_state file.
+export const getAccount: (state: RootState, id: string) => Account | null =
+  createSelector(
     [
       getAccountBase,
       getAccountCounters,
@@ -70,4 +84,5 @@ export const makeGetAccount = () => {
       });
     }
   );
-};
+
+export const makeGetAccount = () => getAccount;

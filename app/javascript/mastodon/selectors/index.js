@@ -5,7 +5,7 @@ import { toServerSideType } from 'mastodon/utils/filters';
 
 import { me } from '../initial_state';
 
-export * from './accounts';
+export { getAccount, makeGetAccount } from './accounts';
 
 const getFilters = (state, { contextType }) => {
   if (!contextType) return null;
@@ -80,7 +80,7 @@ export const getAlerts = createSelector(state => state.get('alerts'), alerts =>
   })).toArray());
 
 export const makeGetNotification = () => createSelector([
-  (_, base)             => base,
+  (_, base) => base,
   (state, _, accountId) => state.getIn(['accounts', accountId]),
 ], (base, account) => base.set('account', account));
 
@@ -91,7 +91,7 @@ export const makeGetReport = () => createSelector([
 
 export const getAccountGallery = createSelector([
   (state, id) => state.getIn(['timelines', `account:${id}:media`, 'items'], ImmutableList()),
-  state       => state.get('statuses'),
+  state => state.get('statuses'),
   (state, id) => state.getIn(['accounts', id]),
 ], (statusIds, statuses, account) => {
   let medias = ImmutableList();
