@@ -5,7 +5,6 @@ import { createRef, useEffect, useState } from 'react';
 import type { IntlShape } from 'react-intl';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
-import { is } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
@@ -14,7 +13,7 @@ import Textarea from 'react-textarea-autosize';
 import type { TypeSafeImmutableMap } from 'app/javascript/types/immutable';
 import { submitAccountNote } from 'mastodon/actions/account_notes';
 import type { Account } from 'mastodon/reducers/accounts';
-import type { AppDispatch, RootState } from 'mastodon/store';
+import type { RootState } from 'mastodon/store';
 
 const messages = defineMessages({
   placeholder: {
@@ -73,7 +72,7 @@ InlineAlert.propTypes = {
 };
 
 interface Props {
-  account: TypeSafeImmutableMap<Account>;
+  accountId: string;
   value: string;
   onSave: (value: string) => void;
   intl: IntlShape;
@@ -95,8 +94,10 @@ class AccountNote extends ImmutablePureComponent<Props, State> {
   textarea = createRef<HTMLTextAreaElement>();
 
   UNSAFE_componentWillReceiveProps(nextProps: Props) {
-    const accountWillChange = !is(this.props.account, nextProps.account);
+    const accountWillChange = this.props.accountId !== nextProps.accountId;
 
+    // If the account will change and we've made some changes, make sure the changes are updated somewhere,
+    // but ensure the change doesn't reflect.
     if (accountWillChange && this._isDirty()) {
       this._save(false);
     }
@@ -140,7 +141,8 @@ class AccountNote extends ImmutablePureComponent<Props, State> {
   };
 
   _save(showMessage = true) {
-    this.setState({ saving: true }, () => this.props.onSave(this.state.value));
+    this.setState({ saving: true });
+    this.props.onSave(this.state.value);
 
     if (showMessage) {
       this.setState({ saved: true }, () =>
@@ -163,16 +165,16 @@ class AccountNote extends ImmutablePureComponent<Props, State> {
   }
 
   render() {
-    const { account, intl } = this.props;
+    const { accountId, intl } = this.props;
     const { value, saved } = this.state;
 
-    if (!account) {
+    if (!accountId) {
       return null;
     }
 
     return (
       <div className='account__header__account-note'>
-        <label htmlFor={`account-note-${account.get('id')}`}>
+        <label htmlFor={`account-note-${accountId}`}>
           <FormattedMessage
             id='account.account_note_header'
             defaultMessage='Note'
@@ -181,7 +183,7 @@ class AccountNote extends ImmutablePureComponent<Props, State> {
         </label>
 
         <Textarea
-          id={`account-note-${account.get('id')}`}
+          id={`account-note-${accountId}`}
           className='account__header__account-note__content'
           disabled={this.props.value === null || value === null}
           placeholder={intl.formatMessage(messages.placeholder)}
@@ -200,6 +202,7 @@ const mapStateToProps = (
   state: RootState,
   { account }: { account: TypeSafeImmutableMap<Account> }
 ) => ({
+  accountId: account.get('id'),
   value: account.getIn(['relationship', 'note']) as string,
 });
 
@@ -217,4 +220,5 @@ const connected = injectIntl(
   connect(mapStateToProps, mapDispatchToProps)(AccountNote)
 );
 
-export { connected as AccountNote };
+// TODO(trinitroglycerin): Probably should rename this back to AccountNoteContainer and AccountNote
+export { connected as AccountNote, AccountNote as __AccountNote };
