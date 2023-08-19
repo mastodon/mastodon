@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
@@ -52,7 +52,6 @@ InlineAlert.propTypes = {
 };
 
 class AccountNote extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     value: PropTypes.string,
@@ -65,6 +64,8 @@ class AccountNote extends ImmutablePureComponent {
     saving: false,
     saved: false,
   };
+
+  textarea = createRef();
 
   UNSAFE_componentWillMount() {
     this._reset();
@@ -95,10 +96,6 @@ class AccountNote extends ImmutablePureComponent {
     }
   }
 
-  setTextareaRef = c => {
-    this.textarea = c;
-  };
-
   handleChange = e => {
     this.setState({ value: e.target.value, saving: false });
   };
@@ -106,19 +103,12 @@ class AccountNote extends ImmutablePureComponent {
   handleKeyDown = e => {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-
       this._save();
-
-      if (this.textarea) {
-        this.textarea.blur();
-      }
+      this.textarea.current?.blur();
     } else if (e.keyCode === 27) {
       e.preventDefault();
-
       this._reset(() => {
-        if (this.textarea) {
-          this.textarea.blur();
-        }
+        this.textarea.current?.blur();
       });
     }
   };
@@ -168,7 +158,7 @@ class AccountNote extends ImmutablePureComponent {
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDown}
           onBlur={this.handleBlur}
-          ref={this.setTextareaRef}
+          ref={this.textarea}
         />
       </div>
     );
