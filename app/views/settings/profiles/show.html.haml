@@ -35,10 +35,10 @@
       .fields-group
         = f.input :avatar, wrapper: :with_block_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT))
 
-    - if @account.avatar.present?
-      .fields-row__column.fields-row__column-6
-        .fields-group
-          = image_tag @account.avatar.url, class: 'fields-group__thumbnail', width: 90, height: 90
+    .fields-row__column.fields-row__column-6
+      .fields-group
+        = image_tag @account.avatar.url, class: 'fields-group__thumbnail', id: 'account_avatar-preview'
+        - if @account.avatar.present?
           = link_to settings_profile_picture_path('avatar'), data: { method: :delete }, class: 'link-button link-button--destructive' do
             = fa_icon 'trash fw'
             = t('generic.delete')
@@ -48,10 +48,10 @@
       .fields-group
         = f.input :header, wrapper: :with_block_label, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT))
 
-    - if @account.header.present?
-      .fields-row__column.fields-row__column-6
-        .fields-group
-          = image_tag @account.header.url, class: 'fields-group__thumbnail'
+    .fields-row__column.fields-row__column-6
+      .fields-group
+        = image_tag @account.header.url, class: 'fields-group__thumbnail', id: 'account_header-preview'
+        - if @account.header.present?
           = link_to settings_profile_picture_path('header'), data: { method: :delete }, class: 'link-button link-button--destructive' do
             = fa_icon 'trash fw'
             = t('generic.delete')
