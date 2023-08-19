@@ -1,7 +1,7 @@
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
-import { getAccount } from 'mastodon/selectors';
+import { getAccount } from 'mastodon/selectors/accounts';
 import { useAppSelector } from 'mastodon/store';
 
 import FeaturedTags from '../components/featured_tags';
