@@ -4,6 +4,8 @@ import { ACCOUNT_REVEAL } from 'mastodon/actions/accounts';
 import { ACCOUNT_IMPORT, ACCOUNTS_IMPORT } from 'mastodon/actions/importer';
 import type { Account } from 'mastodon/initial_state';
 
+// TODO(trinitroglycerin): the value of this map is actually a record type,
+// mapping keys of Account to those values in an immutable map.
 type State = ImmutableMap<string, ImmutableMap<string, unknown>>;
 const initialState: State = ImmutableMap();
 
