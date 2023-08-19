@@ -60,16 +60,12 @@ class AccountNote extends ImmutablePureComponent {
   };
 
   state = {
-    value: null,
+    value: this.props.value,
     saving: false,
     saved: false,
   };
 
   textarea = createRef();
-
-  UNSAFE_componentWillMount() {
-    this._reset();
-  }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     const accountWillChange = !is(this.props.account, nextProps.account);
