@@ -11,4 +11,3 @@ class HTTP::Cookie
     end
   end
 end
-
