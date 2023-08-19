@@ -1,28 +1,34 @@
 import type { Map as ImmutableMap } from 'immutable';
 import { createSelector } from 'reselect';
 
+import type { Account, TypeSafeImmutableMap } from 'mastodon/reducers/accounts';
+
 import type { RootState } from '../store';
 
-// TODO(trintrogycerin): All the selectors in this file expose 'unknown' to the user which is not
-// very helpful. This could be improved by moving the state slices that back the
-// selectors to Immutable Records instead of Immutable Maps.
-type Account = ImmutableMap<string, unknown>;
-type AccountCounters = ImmutableMap<string, number>;
+interface AccountCounters {
+  followers_count: number;
+  following_count: number;
+  statuses_count: number;
+}
+
 type AccountRelationship = unknown;
 
-const getAccountBase = (state: RootState, id: string): Account | null => {
+const getAccountBase = (
+  state: RootState,
+  id: string
+): TypeSafeImmutableMap<Account> | null => {
   return state.accounts.get(id, null);
 };
 
 const getAccountCounters = (
   state: RootState,
   id: string
-): AccountCounters | null => {
+): TypeSafeImmutableMap<AccountCounters> | null => {
   // TODO(trinitroglycerin): This slice is not typed, so we need to convert the type
   // to avoid complaints about 'any'
   const counters = state.accounts_counters as ImmutableMap<
     string,
-    AccountCounters
+    TypeSafeImmutableMap<AccountCounters>
   >;
 
   return counters.get(id, null);
@@ -38,7 +44,10 @@ const getAccountRelationship = (
   return rels.get(id, null);
 };
 
-const getAccountMoved = (state: RootState, id: string): Account | undefined => {
+const getAccountMoved = (
+  state: RootState,
+  id: string
+): TypeSafeImmutableMap<Account> | undefined => {
   const moved = state.accounts.getIn([id, 'moved'], null) as string | null;
   if (moved === null) {
     return undefined;
@@ -46,6 +55,12 @@ const getAccountMoved = (state: RootState, id: string): Account | undefined => {
 
   return state.accounts.get(moved);
 };
+
+// TODO(trinitroglycerin): Obviously this is a temporary name
+interface ExposedAccountType extends Account, AccountCounters {
+  relationship: AccountRelationship;
+  moved: { id: string } | null;
+}
 
 // TODO(trinitroglycerin): I separated this out from makeGetAccount() to ease type diagnosis,
 // but I am pretty sure this must be within makeGetAccount() to ensure module splitting works correctly.
@@ -61,28 +76,26 @@ const getAccountMoved = (state: RootState, id: string): Account | undefined => {
 // The details hare are currently hidden by the fact we use an Immutable Map, but we should strongly consider
 // using an Immutable Record with a type that correctly indicates the type of the value returned, because
 // these computed properties are not on the Account type in the initial_state file.
-export const getAccount: (state: RootState, id: string) => Account | null =
-  createSelector(
-    [
-      getAccountBase,
-      getAccountCounters,
-      getAccountRelationship,
-      getAccountMoved,
-    ],
-    (base, counters, relationship, moved) => {
-      if (base === null) {
-        return null;
-      }
-
-      if (counters !== null) {
-        base = base.merge(counters);
-      }
-
-      return base.withMutations((map) => {
-        map.set('relationship', relationship);
-        map.set('moved', moved);
-      });
+export const getAccount: (
+  state: RootState,
+  id: string
+) => TypeSafeImmutableMap<ExposedAccountType> | null = createSelector(
+  [getAccountBase, getAccountCounters, getAccountRelationship, getAccountMoved],
+  (base, counters, relationship, moved) => {
+    if (base === null) {
+      return null;
     }
-  );
+
+    let out = base as TypeSafeImmutableMap<ExposedAccountType>;
+    if (counters !== null) {
+      out = base.merge(counters);
+    }
+
+    return out.withMutations((map) => {
+      map.set('relationship', relationship);
+      map.set('moved', moved);
+    });
+  }
+);
 
 export const makeGetAccount = () => getAccount;

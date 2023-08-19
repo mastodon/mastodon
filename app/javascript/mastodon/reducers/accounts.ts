@@ -2,17 +2,56 @@ import { Map as ImmutableMap, fromJS } from 'immutable';
 
 import { ACCOUNT_REVEAL } from 'mastodon/actions/accounts';
 import { ACCOUNT_IMPORT, ACCOUNTS_IMPORT } from 'mastodon/actions/importer';
-import type { Account as StateAccount } from 'mastodon/initial_state';
+import type { AccountField, Emoji } from 'mastodon/initial_state';
+
+export interface Account {
+  acct: string;
+  avatar: string;
+  avatar_static: string;
+  bot: boolean;
+  created_at: string;
+  discoverable: boolean;
+  display_name: string;
+  emojis: Emoji[];
+  fields: AccountField[];
+  followers_count: number;
+  following_count: number;
+  group: boolean;
+  header: string;
+  header_static: string;
+  id: string;
+  last_status_at: string;
+  locked: boolean;
+  note: string;
+  statuses_count: number;
+  url: string;
+  username: string;
+
+  // TODO(trinitroglycerin): This property is provided by Redux.
+  hidden: boolean;
+  // TODO(trinitroglycerin): This is a derived property provided by Redux.
+  limited: boolean;
+}
 
 // TODO(trinitroglycerin): the value of this map is actually a record type,
 // mapping keys of Account to those values in an immutable map.
-type State = ImmutableMap<string, ImmutableMap<string, unknown>>;
-const initialState: State = ImmutableMap();
+type State = ImmutableMap<string, TypeSafeImmutableMap<Account>>;
 
-interface Status {
-  limited: boolean;
-  hidden: boolean;
+// TODO(trinitroglycerin): Temporary type to help aid in type safety.
+//
+// TypeSafeImmutableMap is an immutable map whose get() function is correctly typed for any type of T,
+// where T is an object.
+//
+// This prevents us having to pass around ImmutableMap everywhere.
+export interface TypeSafeImmutableMap<T extends object>
+  extends ImmutableMap<keyof T, unknown> {
+  get<K extends keyof T, V extends T[K] | null | undefined = undefined>(
+    key: K,
+    notSetValue?: V
+  ): V;
 }
+
+const initialState: State = ImmutableMap();
 
 interface Counters {
   followers_count: number;
@@ -20,29 +59,25 @@ interface Counters {
   statuses_count: number;
 }
 
-// This complicated type is used to allow for the deletion of the properties in Counters from the Account type.
-//
-// The properties in the Counters type are derived values and are tracked in the account_counters slice.
-//
-// TODO(trinitroglycerin): This additionally adds the derived hidden and limited properties, as these are not present
-// in the jsdoc types. However, there are a few instances where React components rely on these properties existing,
-// so it's possible that the hidden and limited properties should be graduated to the jsdoc types.
-type Account = Pick<StateAccount, Exclude<keyof StateAccount, keyof Counters>> &
-  Partial<Counters> &
-  Status;
-
 const normalizeAccount = (state: State, account: Account): State => {
-  account = { ...account };
-  // The following properties are deleted from the account as they are tracked separately within a the account_counters slice.
-  delete account.followers_count;
-  delete account.following_count;
-  delete account.statuses_count;
+  // This type hack is required to allow us to remove the derived counters from Account;
+  // React requires that properties deleted in type T are optional on that type.
+  // To accomplish this we reconstruct Account, excluding all properties in Counters, and then re-add them as optional.
+  const acct = { ...account } as Pick<
+    Account,
+    Exclude<keyof Account, keyof Counters>
+  > &
+    Partial<Counters>;
 
-  const limited = account.limited ?? false;
-  const hidden = state.getIn([account.id, 'hidden']) as boolean;
-  account.hidden = hidden === false ? false : limited;
+  delete acct.followers_count;
+  delete acct.following_count;
+  delete acct.statuses_count;
 
-  return state.set(account.id, fromJS(account));
+  const limited = acct.limited ?? false;
+  const hidden = state.getIn([acct.id, 'hidden']) as boolean;
+  acct.hidden = hidden === false ? false : limited;
+
+  return state.set(acct.id, fromJS(acct));
 };
 
 const normalizeAccounts = (state: State, accounts: Account[]): State => {
