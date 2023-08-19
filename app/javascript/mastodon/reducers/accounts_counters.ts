@@ -8,6 +8,12 @@ import {
 } from '../actions/accounts';
 import { ACCOUNT_IMPORT, ACCOUNTS_IMPORT } from '../actions/importer';
 
+export interface AccountCounters {
+  followers_count: number;
+  following_count: number;
+  statuses_count: number;
+}
+
 const normalizeAccount = (state, account) => state.set(account.id, fromJS({
   followers_count: account.followers_count,
   following_count: account.following_count,

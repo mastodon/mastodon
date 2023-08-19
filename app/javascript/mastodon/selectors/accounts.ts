@@ -1,15 +1,11 @@
 import type { Map as ImmutableMap } from 'immutable';
 import { createSelector } from 'reselect';
 
-import type { Account, TypeSafeImmutableMap } from 'mastodon/reducers/accounts';
+import type { TypeSafeImmutableMap } from 'app/javascript/types/immutable';
+import type { Account } from 'mastodon/reducers/accounts';
+import type { AccountCounters } from 'mastodon/reducers/accounts_counters';
 
 import type { RootState } from '../store';
-
-interface AccountCounters {
-  followers_count: number;
-  following_count: number;
-  statuses_count: number;
-}
 
 type AccountRelationship = unknown;
 

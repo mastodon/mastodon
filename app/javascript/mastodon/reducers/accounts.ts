@@ -1,8 +1,12 @@
-import { Map as ImmutableMap, fromJS } from 'immutable';
+import { Map as ImmutableMap } from 'immutable';
 
+import type { TypeSafeImmutableMap } from 'app/javascript/types/immutable';
+import { intoTypeSafeImmutableMap } from 'app/javascript/types/immutable';
 import { ACCOUNT_REVEAL } from 'mastodon/actions/accounts';
-import { ACCOUNT_IMPORT, ACCOUNTS_IMPORT } from 'mastodon/actions/importer';
+import { ACCOUNTS_IMPORT, ACCOUNT_IMPORT } from 'mastodon/actions/importer';
 import type { AccountField, Emoji } from 'mastodon/initial_state';
+
+import type { AccountCounters } from './accounts_counters';
 
 export interface Account {
   acct: string;
@@ -37,27 +41,7 @@ export interface Account {
 // mapping keys of Account to those values in an immutable map.
 type State = ImmutableMap<string, TypeSafeImmutableMap<Account>>;
 
-// TODO(trinitroglycerin): Temporary type to help aid in type safety.
-//
-// TypeSafeImmutableMap is an immutable map whose get() function is correctly typed for any type of T,
-// where T is an object.
-//
-// This prevents us having to pass around ImmutableMap everywhere.
-export interface TypeSafeImmutableMap<T extends object>
-  extends ImmutableMap<keyof T, unknown> {
-  get<K extends keyof T, V extends T[K] | null | undefined = undefined>(
-    key: K,
-    notSetValue?: V
-  ): V;
-}
-
 const initialState: State = ImmutableMap();
-
-interface Counters {
-  followers_count: number;
-  following_count: number;
-  statuses_count: number;
-}
 
 const normalizeAccount = (state: State, account: Account): State => {
   // This type hack is required to allow us to remove the derived counters from Account;
@@ -65,9 +49,9 @@ const normalizeAccount = (state: State, account: Account): State => {
   // To accomplish this we reconstruct Account, excluding all properties in Counters, and then re-add them as optional.
   const acct = { ...account } as Pick<
     Account,
-    Exclude<keyof Account, keyof Counters>
+    Exclude<keyof Account, keyof AccountCounters>
   > &
-    Partial<Counters>;
+    Partial<AccountCounters>;
 
   delete acct.followers_count;
   delete acct.following_count;
@@ -77,7 +61,7 @@ const normalizeAccount = (state: State, account: Account): State => {
   const hidden = state.getIn([acct.id, 'hidden']) as boolean;
   acct.hidden = hidden === false ? false : limited;
 
-  return state.set(acct.id, fromJS(acct));
+  return state.set(acct.id, intoTypeSafeImmutableMap(acct));
 };
 
 const normalizeAccounts = (state: State, accounts: Account[]): State => {
