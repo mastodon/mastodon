@@ -151,17 +151,15 @@ function loaded() {
       });
   }
 
-  delegate(document, '#user_account_attributes_username', 'input', throttle(() => {
-    const username = document.getElementById('user_account_attributes_username');
-
-    if (username.value && username.value.length > 0) {
-      axios.get('/api/v1/accounts/lookup', { params: { acct: username.value } }).then(() => {
-        username.setCustomValidity(formatMessage(messages.usernameTaken));
+  delegate(document, '#user_account_attributes_username', 'input', throttle(({ target }) => {
+    if (target.value && target.value.length > 0) {
+      axios.get('/api/v1/accounts/lookup', { params: { acct: target.value } }).then(() => {
+        target.setCustomValidity(formatMessage(messages.usernameTaken));
       }).catch(() => {
-        username.setCustomValidity('');
+        target.setCustomValidity('');
       });
     } else {
-      username.setCustomValidity('');
+      target.setCustomValidity('');
     }
   }, 500, { leading: false, trailing: true }));
 
