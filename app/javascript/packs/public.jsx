@@ -325,6 +325,26 @@ delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
   }
 });
 
+const setInputDisabled = (input, disabled) => {
+  input.disabled = disabled;
+
+  const wrapper = input.closest('.with_label');
+  if (wrapper) {
+    wrapper.classList.toggle('disabled', input.disabled);
+
+    const hidden = input.type === 'checkbox' && wrapper.querySelector('input[type=hidden][value="0"]');
+    if (hidden) {
+      hidden.disabled = input.disabled;
+    }
+  }
+};
+
+delegate(document, '#account_statuses_cleanup_policy_enabled', 'change', ({ target }) => {
+  [].forEach.call(target.form.querySelectorAll('input:not([type=hidden],#account_statuses_cleanup_policy_enabled), select'), (input) => {
+    setInputDisabled(input, !target.checked);
+  });
+});
+
 // Empty the honeypot fields in JS in case something like an extension
 // automatically filled them.
 delegate(document, '#registration_new_user,#new_user', 'submit', () => {
