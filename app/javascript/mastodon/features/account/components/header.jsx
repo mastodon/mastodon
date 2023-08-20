@@ -20,9 +20,9 @@ import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'mastodon/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 
-import FollowRequestNoteContainer from '../containers/follow_request_note_container';
-
 import { AccountNote } from './account_note';
+import { FollowRequestNote } from './follow_request_note';
+
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -386,7 +386,7 @@ class Header extends ImmutablePureComponent {
 
     return (
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-        {!(suspended || hidden || account.get('moved')) && account.getIn(['relationship', 'requested_by']) && <FollowRequestNoteContainer account={account} />}
+        {!(suspended || hidden || account.get('moved')) && account.getIn(['relationship', 'requested_by']) && <FollowRequestNote account={account} />}
 
         <div className='account__header__image'>
           <div className='account__header__info'>
