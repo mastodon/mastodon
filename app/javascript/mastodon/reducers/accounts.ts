@@ -37,6 +37,9 @@ export interface AccountModel {
   // TODO(trinitroglycerin): The following properties were undocumented on the types in JavaScript but code appears to rely on it being here.
   suspended: boolean;
   display_name_html: string;
+  relationship: {
+    note: string;
+  };
 
   // TODO(trinitroglycerin): This property is provided by Redux.
   hidden: boolean;

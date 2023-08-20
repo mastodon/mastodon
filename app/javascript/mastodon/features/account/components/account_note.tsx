@@ -8,7 +8,7 @@ import Textarea from 'react-textarea-autosize';
 import { submitAccountNote } from 'mastodon/actions/account_notes';
 import type { Account } from 'mastodon/reducers/accounts';
 import { useAppDispatch } from 'mastodon/store';
-import type { TypeSafeImmutableMap } from 'mastodon/utils/immutable';
+import type { Map as TypeSafeImmutableMap } from 'mastodon/utils/immutable';
 
 const messages = defineMessages({
   placeholder: {
@@ -196,7 +196,7 @@ interface ContainerProps {
 
 const AccountNoteContainer = ({ account }: ContainerProps) => {
   const accountId = account.get('id');
-  const value = account.getIn(['relationship', 'note']) as string;
+  const value = account.get('relationship').get('note');
   const dispatch = useAppDispatch();
   const onSave = useCallback(
     (value: string) => {

@@ -15,7 +15,7 @@ import {
 } from 'mastodon/actions/featured_tags';
 import type { RootState } from 'mastodon/store';
 import { intoTypeSafeImmutableMap } from 'mastodon/utils/immutable';
-import type { TypeSafeImmutableMap } from 'mastodon/utils/immutable';
+import type { Map as TypeSafeImmutableMap } from 'mastodon/utils/immutable';
 
 import {
   FOLLOWERS_EXPAND_FAIL,
@@ -160,7 +160,7 @@ const normalizeFeaturedTag = (
   accountId: string
 ): TypeSafeImmutableMap<FeaturedTag & { accountId: string }> => {
   const normalizeFeaturedTag = { ...featuredTags, accountId: accountId };
-  return fromJS(normalizeFeaturedTag);
+  return intoTypeSafeImmutableMap(normalizeFeaturedTag);
 };
 
 const normalizeFeaturedTags = (
@@ -175,9 +175,7 @@ const normalizeFeaturedTags = (
       items: ImmutableList(
         featuredTags
           .map((featuredTag) => normalizeFeaturedTag(featuredTag, accountId))
-          .sort(
-            (a, b) => b.get('statuses_count', 0) - a.get('statuses_count', 0)
-          )
+          .sort((a, b) => b.get('statuses_count') - a.get('statuses_count'))
       ),
       isLoading: false,
     })
