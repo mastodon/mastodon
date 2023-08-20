@@ -46,12 +46,6 @@ window.addEventListener('message', e => {
 function loaded() {
   const { messages: localeData } = getLocale();
 
-  const getEmojiAnimationHandler = (swapTo) => {
-    return ({ target }) => {
-      target.src = target.getAttribute(swapTo);
-    };
-  };
-
   const locale = document.documentElement.lang;
 
   const dateTimeFormat = new Intl.DateTimeFormat(locale, {
@@ -177,9 +171,6 @@ function loaded() {
     }
   });
 
-  delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
-  delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
-
   delegate(document, '.status__content__spoiler-link', 'click', function() {
     const statusEl = this.parentNode.parentNode;
 
@@ -267,6 +258,9 @@ delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
     toggleSidebar();
   }
 });
+
+delegate(document, '.custom-emoji', 'mouseover', ({ target }) => target.src = target.getAttribute('data-original'));
+delegate(document, '.custom-emoji', 'mouseout', ({ target }) => target.src = target.getAttribute('data-static'));
 
 // Empty the honeypot fields in JS in case something like an extension
 // automatically filled them.
