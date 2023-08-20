@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import type { ChangeEvent, KeyboardEvent } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -61,10 +60,6 @@ const InlineAlert = ({ show }: InlineAlertProps) => {
       )}
     </span>
   );
-};
-
-InlineAlert.propTypes = {
-  show: PropTypes.bool,
 };
 
 interface Props {
