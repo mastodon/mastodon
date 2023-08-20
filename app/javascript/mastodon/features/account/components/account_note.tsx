@@ -136,7 +136,7 @@ const AccountNote = ({ accountId, value: propsValue, onSave }: Props) => {
         _save();
       }
     };
-  }, [value, _save]);
+  }, [_save]);
 
   const handleChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
