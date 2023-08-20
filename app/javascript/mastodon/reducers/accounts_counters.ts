@@ -1,7 +1,7 @@
 import { Map as ImmutableMap } from 'immutable';
 
 import { me } from 'mastodon/initial_state';
-import type { TypeSafeImmutableMap } from 'mastodon/utils/immutable';
+import type { Map } from 'mastodon/utils/immutable';
 import { intoTypeSafeImmutableMap } from 'mastodon/utils/immutable';
 
 import {
@@ -10,7 +10,7 @@ import {
 } from '../actions/accounts';
 import { ACCOUNTS_IMPORT, ACCOUNT_IMPORT } from '../actions/importer';
 
-import type { Account } from './accounts';
+import type { AccountModel } from './accounts';
 
 export interface AccountCounters {
   followers_count: number;
@@ -18,9 +18,9 @@ export interface AccountCounters {
   statuses_count: number;
 }
 
-type State = ImmutableMap<string, TypeSafeImmutableMap<AccountCounters>>;
+type State = ImmutableMap<string, Map<AccountCounters>>;
 
-const normalizeAccount = (state: State, account: Account): State =>
+const normalizeAccount = (state: State, account: AccountModel): State =>
   state.set(
     account.id,
     intoTypeSafeImmutableMap({
@@ -30,7 +30,7 @@ const normalizeAccount = (state: State, account: Account): State =>
     })
   );
 
-const normalizeAccounts = (state: State, accounts: Account[]): State => {
+const normalizeAccounts = (state: State, accounts: AccountModel[]): State => {
   accounts.forEach((account) => {
     state = normalizeAccount(state, account);
   });
@@ -64,8 +64,8 @@ type Action =
       type: typeof ACCOUNT_UNFOLLOW_SUCCESS;
       relationship: { id: string };
     }
-  | { type: typeof ACCOUNT_IMPORT; account: Account }
-  | { type: typeof ACCOUNTS_IMPORT; accounts: Account[] };
+  | { type: typeof ACCOUNT_IMPORT; account: AccountModel }
+  | { type: typeof ACCOUNTS_IMPORT; accounts: AccountModel[] };
 
 export function accountsCountersReducer(
   state: State = initialState,

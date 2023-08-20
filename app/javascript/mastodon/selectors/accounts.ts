@@ -3,31 +3,21 @@ import { createSelector } from 'reselect';
 
 import type { Account } from 'mastodon/reducers/accounts';
 import type { AccountCounters } from 'mastodon/reducers/accounts_counters';
-import type { TypeSafeImmutableMap } from 'mastodon/utils/immutable';
+import type { Map } from 'mastodon/utils/immutable';
 
 import type { RootState } from '../store';
 
 type AccountRelationship = unknown;
 
-const getAccountBase = (
-  state: RootState,
-  id: string
-): TypeSafeImmutableMap<Account> | null => {
+const getAccountBase = (state: RootState, id: string): Map<Account> | null => {
   return state.accounts.get(id, null);
 };
 
 const getAccountCounters = (
   state: RootState,
   id: string
-): TypeSafeImmutableMap<AccountCounters> | null => {
-  // TODO(trinitroglycerin): This slice is not typed, so we need to convert the type
-  // to avoid complaints about 'any'
-  const counters = state.accounts_counters as ImmutableMap<
-    string,
-    TypeSafeImmutableMap<AccountCounters>
-  >;
-
-  return counters.get(id, null);
+): Map<AccountCounters> | null => {
+  return state.accounts_counters.get(id, null);
 };
 
 const getAccountRelationship = (
@@ -43,7 +33,7 @@ const getAccountRelationship = (
 const getAccountMoved = (
   state: RootState,
   id: string
-): TypeSafeImmutableMap<Account> | undefined => {
+): Map<{ id: string }> | undefined => {
   const moved = state.accounts.getIn([id, 'moved'], null) as string | null;
   if (moved === null) {
     return undefined;
@@ -55,7 +45,7 @@ const getAccountMoved = (
 // TODO(trinitroglycerin): Obviously this is a temporary name
 interface ExposedAccountType extends Account, AccountCounters {
   relationship: AccountRelationship;
-  moved: { id: string } | null;
+  moved: Map<{ id: string }> | null;
 }
 
 // TODO(trinitroglycerin): I separated this out from makeGetAccount() to ease type diagnosis,
@@ -75,21 +65,21 @@ interface ExposedAccountType extends Account, AccountCounters {
 export const getAccount: (
   state: RootState,
   id: string
-) => TypeSafeImmutableMap<ExposedAccountType> | null = createSelector(
+) => Map<ExposedAccountType> | null = createSelector(
   [getAccountBase, getAccountCounters, getAccountRelationship, getAccountMoved],
   (base, counters, relationship, moved) => {
     if (base === null) {
       return null;
     }
 
-    let out = base as TypeSafeImmutableMap<ExposedAccountType>;
+    let out = base;
     if (counters !== null) {
       out = base.merge(counters);
     }
 
-    return out.withMutations((map) => {
+    return out.withMutations<ExposedAccountType>((map) => {
       map.set('relationship', relationship);
-      map.set('moved', moved);
+      map.set('moved', moved ?? null);
     });
   }
 );
