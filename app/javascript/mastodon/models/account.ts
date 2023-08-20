@@ -49,7 +49,7 @@ export interface AccountShape
   relationship: AccountRelationship | null;
   hidden: boolean;
   limited: boolean;
-  moved: unknown | null;
+  moved: Account | null;
 }
 
 export type Account = RecordOf<AccountShape>;
@@ -87,7 +87,7 @@ const AccountFactory = Record<AccountShape>({
   hidden: false,
   limited: false,
   suspended: false,
-  moved: null
+  moved: null,
 });
 
 export function createAccountFromServerJSON(serverJSON: ApiAccountJSON) {

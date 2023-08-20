@@ -1,5 +1,6 @@
 import { Map as ImmutableMap } from 'immutable';
 
+import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import { me } from 'mastodon/initial_state';
 import type { Map } from 'mastodon/utils/immutable';
 import { intoTypeSafeImmutableMap } from 'mastodon/utils/immutable';
@@ -10,8 +11,6 @@ import {
 } from '../actions/accounts';
 import { ACCOUNTS_IMPORT, ACCOUNT_IMPORT } from '../actions/importer';
 
-import type { AccountModel } from './accounts';
-
 export interface AccountCounters {
   followers_count: number;
   following_count: number;
@@ -20,17 +19,17 @@ export interface AccountCounters {
 
 type State = ImmutableMap<string, Map<AccountCounters>>;
 
-const normalizeAccount = (state: State, account: AccountModel): State =>
+const normalizeAccount = (state: State, account: ApiAccountJSON): State =>
   state.set(
     account.id,
     intoTypeSafeImmutableMap({
       followers_count: account.followers_count,
       following_count: account.following_count,
       statuses_count: account.statuses_count,
-    })
+    }),
   );
 
-const normalizeAccounts = (state: State, accounts: AccountModel[]): State => {
+const normalizeAccounts = (state: State, accounts: ApiAccountJSON[]): State => {
   accounts.forEach((account) => {
     state = normalizeAccount(state, account);
   });
@@ -46,10 +45,10 @@ const incrementFollowers = (state: State, accountId: string): State =>
 const decrementFollowers = (state: State, accountId: string): State =>
   state
     .updateIn([accountId, 'followers_count'], (num) =>
-      Math.max(0, (num as number) - 1)
+      Math.max(0, (num as number) - 1),
     )
     .updateIn([me, 'following_count'], (num) =>
-      Math.max(0, (num as number) - 1)
+      Math.max(0, (num as number) - 1),
     );
 
 const initialState: State = ImmutableMap();
@@ -64,12 +63,12 @@ type Action =
       type: typeof ACCOUNT_UNFOLLOW_SUCCESS;
       relationship: { id: string };
     }
-  | { type: typeof ACCOUNT_IMPORT; account: AccountModel }
-  | { type: typeof ACCOUNTS_IMPORT; accounts: AccountModel[] };
+  | { type: typeof ACCOUNT_IMPORT; account: ApiAccountJSON }
+  | { type: typeof ACCOUNTS_IMPORT; accounts: ApiAccountJSON[] };
 
 export function accountsCountersReducer(
   state: State = initialState,
-  action: Action
+  action: Action,
 ): State {
   switch (action.type) {
     case ACCOUNT_IMPORT:

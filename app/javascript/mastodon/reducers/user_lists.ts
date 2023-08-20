@@ -13,6 +13,7 @@ import {
   FEATURED_TAGS_FETCH_REQUEST,
   FEATURED_TAGS_FETCH_SUCCESS,
 } from 'mastodon/actions/featured_tags';
+import type { Account } from 'mastodon/models/account';
 import type { RootState } from 'mastodon/store';
 import { intoTypeSafeImmutableMap } from 'mastodon/utils/immutable';
 import type { Map as TypeSafeImmutableMap } from 'mastodon/utils/immutable';
@@ -60,7 +61,6 @@ import {
   MUTES_FETCH_SUCCESS,
 } from '../actions/mutes';
 import { NOTIFICATIONS_UPDATE } from '../actions/notifications';
-import { Account } from 'mastodon/models/account';
 
 interface ListInfo {
   next: unknown;
@@ -98,7 +98,7 @@ const normalizeList = (
   state: State,
   path: string[],
   accounts: Account[],
-  next: unknown
+  next: unknown,
 ): State => {
   return state.setIn(
     path,
@@ -106,14 +106,14 @@ const normalizeList = (
       next,
       items: ImmutableList(accounts.map((item) => item.id)),
       isLoading: false,
-    })
+    }),
   );
 };
 
 function updateListInfo(
   map: TypeSafeImmutableMap<ListInfo>,
   accounts: Account[],
-  next: unknown
+  next: unknown,
 ): TypeSafeImmutableMap<ListInfo> {
   return map
     .set('next', next)
@@ -125,20 +125,20 @@ const appendToList = (
   state: State,
   path: string[],
   accounts: Account[],
-  next: unknown
+  next: unknown,
 ): State => {
   return state.updateIn(path, (map) => {
     return updateListInfo(
       map as TypeSafeImmutableMap<ListInfo>,
       accounts,
-      next
+      next,
     );
   });
 };
 
 const normalizeFollowRequest = (
   state: State,
-  notification: Notification
+  notification: Notification,
 ): State => {
   return state.updateIn(['follow_requests', 'items'], (list) => {
     const list2 = list as ImmutableList<string>;
@@ -156,7 +156,7 @@ export interface FeaturedTag {
 
 const normalizeFeaturedTag = (
   featuredTags: FeaturedTag,
-  accountId: string
+  accountId: string,
 ): TypeSafeImmutableMap<FeaturedTag & { accountId: string }> => {
   const normalizeFeaturedTag = { ...featuredTags, accountId: accountId };
   return intoTypeSafeImmutableMap(normalizeFeaturedTag);
@@ -166,7 +166,7 @@ const normalizeFeaturedTags = (
   state: State,
   path: string[],
   featuredTags: FeaturedTag[],
-  accountId: string
+  accountId: string,
 ) => {
   return state.setIn(
     path,
@@ -174,20 +174,20 @@ const normalizeFeaturedTags = (
       items: ImmutableList(
         featuredTags
           .map((featuredTag) => normalizeFeaturedTag(featuredTag, accountId))
-          .sort((a, b) => b.get('statuses_count') - a.get('statuses_count'))
+          .sort((a, b) => b.get('statuses_count') - a.get('statuses_count')),
       ),
       isLoading: false,
-    })
+    }),
   );
 };
 
 export function selectFeaturedTags(accountId: string) {
   return (
-    state: RootState
+    state: RootState,
   ): ImmutableList<TypeSafeImmutableMap<FeaturedTag>> => {
     return state.user_lists.getIn(
       ['featured_tags', accountId, 'items'],
-      ImmutableList()
+      ImmutableList(),
     ) as ImmutableList<TypeSafeImmutableMap<FeaturedTag>>;
   };
 }
@@ -284,14 +284,14 @@ export function userListsReducer(state = initialState, action: Action) {
         state,
         ['followers', action.id],
         action.accounts,
-        action.next
+        action.next,
       );
     case FOLLOWERS_EXPAND_SUCCESS:
       return appendToList(
         state,
         ['followers', action.id],
         action.accounts,
-        action.next
+        action.next,
       );
     case FOLLOWERS_FETCH_REQUEST:
     case FOLLOWERS_EXPAND_REQUEST:
@@ -304,14 +304,14 @@ export function userListsReducer(state = initialState, action: Action) {
         state,
         ['following', action.id],
         action.accounts,
-        action.next
+        action.next,
       );
     case FOLLOWING_EXPAND_SUCCESS:
       return appendToList(
         state,
         ['following', action.id],
         action.accounts,
-        action.next
+        action.next,
       );
     case FOLLOWING_FETCH_REQUEST:
     case FOLLOWING_EXPAND_REQUEST:
@@ -322,12 +322,12 @@ export function userListsReducer(state = initialState, action: Action) {
     case REBLOGS_FETCH_SUCCESS:
       return state.setIn(
         ['reblogged_by', action.id],
-        ImmutableList(action.accounts.map((item) => item.id))
+        ImmutableList(action.accounts.map((item) => item.id)),
       );
     case FAVOURITES_FETCH_SUCCESS:
       return state.setIn(
         ['favourited_by', action.id],
-        ImmutableList(action.accounts.map((item) => item.id))
+        ImmutableList(action.accounts.map((item) => item.id)),
       );
     case NOTIFICATIONS_UPDATE:
       return action.notification.type === 'follow_request'
@@ -338,14 +338,14 @@ export function userListsReducer(state = initialState, action: Action) {
         state,
         ['follow_requests'],
         action.accounts,
-        action.next
+        action.next,
       );
     case FOLLOW_REQUESTS_EXPAND_SUCCESS:
       return appendToList(
         state,
         ['follow_requests'],
         action.accounts,
-        action.next
+        action.next,
       );
     case FOLLOW_REQUESTS_FETCH_REQUEST:
     case FOLLOW_REQUESTS_EXPAND_REQUEST:
@@ -394,7 +394,7 @@ export function userListsReducer(state = initialState, action: Action) {
         state,
         ['featured_tags', action.id],
         action.tags,
-        action.id
+        action.id,
       );
     case FEATURED_TAGS_FETCH_REQUEST:
       return state.setIn(['featured_tags', action.id, 'isLoading'], true);

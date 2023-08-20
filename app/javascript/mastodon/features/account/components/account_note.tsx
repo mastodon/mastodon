@@ -6,8 +6,8 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import Textarea from 'react-textarea-autosize';
 
 import { submitAccountNote } from 'mastodon/actions/account_notes';
-import { useAppDispatch } from 'mastodon/store';
 import type { Account } from 'mastodon/models/account';
+import { useAppDispatch } from 'mastodon/store';
 
 const messages = defineMessages({
   placeholder: {
@@ -63,7 +63,7 @@ const InlineAlert = ({ show }: InlineAlertProps) => {
 
 interface Props {
   accountId: string | null;
-  value: string;
+  value: string | null;
   onSave: (value: string) => void;
 }
 
@@ -79,7 +79,7 @@ const AccountNote = ({ accountId, value: propsValue, onSave }: Props) => {
   const _save = useCallback(
     (showMessage = false) => {
       // If our form is not dirty, we do not save changes.
-      if (!isDirty) {
+      if (!isDirty || value === null) {
         return;
       }
 
@@ -88,10 +88,12 @@ const AccountNote = ({ accountId, value: propsValue, onSave }: Props) => {
 
       if (showMessage) {
         setSaved(true);
-        setTimeout(() => setSaved(false), 2000);
+        setTimeout(() => {
+          setSaved(false);
+        }, 2000);
       }
     },
-    [value, onSave, isDirty]
+    [value, onSave, isDirty],
   );
 
   const prevPropsValue = useRef(propsValue);
@@ -103,7 +105,7 @@ const AccountNote = ({ accountId, value: propsValue, onSave }: Props) => {
 
     if (prevPropsValue.current !== propsValue) {
       // Update the value from props if it changed
-      setValue(propsValue);
+      setValue(propsValue ?? '');
       prevPropsValue.current = propsValue;
     }
   }, [propsValue, value]);
@@ -151,14 +153,16 @@ const AccountNote = ({ accountId, value: propsValue, onSave }: Props) => {
       } else if (e.keyCode === 27) {
         e.preventDefault();
         // Reset the value to the original one before we made changes.
-        setValue(propsValue);
+        setValue(propsValue ?? '');
         textarea.current?.blur();
       }
     },
-    [_save, propsValue]
+    [_save, propsValue],
   );
 
-  const handleBlur = useCallback(() => _save(false), [_save]);
+  const handleBlur = useCallback(() => {
+    _save(false);
+  }, [_save]);
 
   if (accountId === null) {
     return null;
@@ -179,7 +183,7 @@ const AccountNote = ({ accountId, value: propsValue, onSave }: Props) => {
         className='account__header__account-note__content'
         disabled={propsValue === null || value === null}
         placeholder={intl.formatMessage(messages.placeholder)}
-        value={value}
+        value={value ?? ''}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         onBlur={handleBlur}
@@ -195,13 +199,13 @@ interface ContainerProps {
 
 const AccountNoteContainer = ({ account }: ContainerProps) => {
   const accountId = account.id;
-  const value = account.relationship.note;
+  const value = account.relationship?.note ?? null;
   const dispatch = useAppDispatch();
   const onSave = useCallback(
     (value: string) => {
       dispatch(submitAccountNote(accountId, value));
     },
-    [accountId, dispatch]
+    [accountId, dispatch],
   );
   return <AccountNote accountId={accountId} value={value} onSave={onSave} />;
 };

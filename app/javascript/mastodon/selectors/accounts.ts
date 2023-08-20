@@ -1,11 +1,15 @@
 import type { Map as ImmutableMap } from 'immutable';
 import { createSelector } from 'reselect';
 
+import type {
+  Account,
+  AccountRelationship,
+  AccountShape,
+} from 'mastodon/models/account';
 import type { AccountCounters } from 'mastodon/reducers/accounts_counters';
 import type { Map } from 'mastodon/utils/immutable';
 
 import type { RootState } from '../store';
-import type { Account, AccountRelationship } from 'mastodon/models/account';
 
 const getAccountBase = (state: RootState, id: string): Account | null => {
   return state.accounts.get(id, null);
@@ -13,14 +17,14 @@ const getAccountBase = (state: RootState, id: string): Account | null => {
 
 const getAccountCounters = (
   state: RootState,
-  id: string
+  id: string,
 ): Map<AccountCounters> | null => {
   return state.accounts_counters.get(id, null);
 };
 
 const getAccountRelationship = (
   state: RootState,
-  id: string
+  id: string,
 ): AccountRelationship | null => {
   // TODO(trinitroglycerin): This slice is not typed, so we need to convert the type
   // to avoid complaints about 'any'
@@ -28,10 +32,7 @@ const getAccountRelationship = (
   return rels.get(id, null);
 };
 
-const getAccountMoved = (
-  state: RootState,
-  id: string
-): Account  | undefined => {
+const getAccountMoved = (state: RootState, id: string): Account | undefined => {
   const moved = state.accounts.getIn([id, 'moved'], null) as string | null;
   if (moved === null) {
     return undefined;
@@ -41,10 +42,11 @@ const getAccountMoved = (
 };
 
 // TODO(trinitroglycerin): Obviously this is a temporary name
-type ExposedAccountType = Account & AccountCounters & {
-  relationship: AccountRelationship;
-  moved: Map<{ id: string }> | null;
-};
+type ExposedAccountType = Account &
+  AccountCounters & {
+    relationship: AccountRelationship;
+    moved: Map<{ id: string }> | null;
+  };
 
 // TODO(trinitroglycerin): I separated this out from makeGetAccount() to ease type diagnosis,
 // but I am pretty sure this must be within makeGetAccount() to ensure module splitting works correctly.
@@ -62,7 +64,7 @@ type ExposedAccountType = Account & AccountCounters & {
 // these computed properties are not on the Account type in the initial_state file.
 export const getAccount: (
   state: RootState,
-  id: string
+  id: string,
 ) => ExposedAccountType | null = createSelector(
   [getAccountBase, getAccountCounters, getAccountRelationship, getAccountMoved],
   (base, counters, relationship, moved) => {
@@ -72,15 +74,14 @@ export const getAccount: (
 
     let out = base;
     if (counters !== null) {
-      // TODO(trinitroglycerin): There's definitely a way to type this
-      out = base.merge(counters as any);
+      out = base.merge(counters as Partial<AccountShape>);
     }
 
     return out.withMutations((map) => {
       map.set('relationship', relationship);
       map.set('moved', moved ?? null);
     }) as ExposedAccountType;
-  }
+  },
 );
 
 export const makeGetAccount = () => getAccount;

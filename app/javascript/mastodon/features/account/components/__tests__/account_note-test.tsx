@@ -7,7 +7,7 @@ import { __AccountNote as AccountNote } from '../account_note';
 const intl = createIntl(
   // Both locale and defaultLocale must be set to suppress spammy warnings about missing translations
   { locale: 'en', defaultLocale: 'en', messages: {} },
-  createIntlCache()
+  createIntlCache(),
 );
 
 interface Props {
@@ -27,7 +27,7 @@ const TestHarness = ({ onSave, value = '', accountId }: Props) => {
 it('should save changes if the account changes and the form is dirty', () => {
   const onSave = jest.fn();
   const { rerender, getByLabelText } = render(
-    <TestHarness accountId='1234' value='' onSave={onSave} />
+    <TestHarness accountId='1234' value='' onSave={onSave} />,
   );
   const textarea = getByLabelText('Note');
   fireEvent.change(textarea, { target: { value: 'My new note' } });
@@ -41,7 +41,7 @@ it('should save changes if the account changes and the form is dirty', () => {
 it('should save changes if the component loses focus and it is dirty', () => {
   const onSave = jest.fn();
   const { getByLabelText } = render(
-    <TestHarness accountId='1234' value='' onSave={onSave} />
+    <TestHarness accountId='1234' value='' onSave={onSave} />,
   );
   const textarea = getByLabelText('Note');
   fireEvent.change(textarea, { target: { value: 'My new note' } });
@@ -55,7 +55,7 @@ it('should save changes if the component loses focus and it is dirty', () => {
 it('should save changes if the component is unmounting', () => {
   const onSave = jest.fn();
   const { getByLabelText, unmount } = render(
-    <TestHarness accountId='1234' value='' onSave={onSave} />
+    <TestHarness accountId='1234' value='' onSave={onSave} />,
   );
   const textarea = getByLabelText('Note');
   fireEvent.change(textarea, { target: { value: 'My new note' } });
@@ -69,7 +69,7 @@ it('should save changes if the component is unmounting', () => {
 it('should discard changes when escape is pressed', () => {
   const onSave = jest.fn();
   const { getByLabelText } = render(
-    <TestHarness accountId='1234' value='Initial Note' onSave={onSave} />
+    <TestHarness accountId='1234' value='Initial Note' onSave={onSave} />,
   );
   let textarea = getByLabelText('Note') as HTMLTextAreaElement;
 
@@ -86,7 +86,7 @@ it('should discard changes when escape is pressed', () => {
 it('saves changes and drops focus when enter is pressed with CTRL', () => {
   const onSave = jest.fn();
   const { getByLabelText } = render(
-    <TestHarness accountId='1234' value='Initial Note' onSave={onSave} />
+    <TestHarness accountId='1234' value='Initial Note' onSave={onSave} />,
   );
   const textarea = getByLabelText('Note') as HTMLTextAreaElement;
 
@@ -102,7 +102,7 @@ it('saves changes and drops focus when enter is pressed with CTRL', () => {
 it('saves changes and drops focus when enter is pressed with Meta', () => {
   const onSave = jest.fn();
   const { getByLabelText } = render(
-    <TestHarness accountId='1234' value='Initial Note' onSave={onSave} />
+    <TestHarness accountId='1234' value='Initial Note' onSave={onSave} />,
   );
   const textarea = getByLabelText('Note') as HTMLTextAreaElement;
 
@@ -118,7 +118,7 @@ it('saves changes and drops focus when enter is pressed with Meta', () => {
 it('does not save changes when enter is pressed without a modifier', () => {
   const onSave = jest.fn();
   const { getByLabelText } = render(
-    <TestHarness accountId='1234' value='Initial Note' onSave={onSave} />
+    <TestHarness accountId='1234' value='Initial Note' onSave={onSave} />,
   );
   let textarea = getByLabelText('Note') as HTMLTextAreaElement;
 
@@ -134,7 +134,7 @@ it('does not save changes when enter is pressed without a modifier', () => {
 it('updates the textarea if the value provided via props changes', () => {
   const onSave = jest.fn();
   const { rerender, getByLabelText } = render(
-    <TestHarness accountId='1234' value='Initial note' onSave={onSave} />
+    <TestHarness accountId='1234' value='Initial note' onSave={onSave} />,
   );
   const textarea = getByLabelText('Note') as HTMLTextAreaElement;
   expect(textarea).toHaveValue('Initial note');
@@ -143,7 +143,7 @@ it('updates the textarea if the value provided via props changes', () => {
   expect(textarea).toHaveValue('My new note');
 
   rerender(
-    <TestHarness accountId='1234' value='Secondary note' onSave={onSave} />
+    <TestHarness accountId='1234' value='Secondary note' onSave={onSave} />,
   );
   expect(textarea).toHaveValue('Secondary note');
 });

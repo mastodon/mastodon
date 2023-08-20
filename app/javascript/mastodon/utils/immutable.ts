@@ -40,7 +40,7 @@ export interface Map<T extends object> {
   get<K extends KeysThatAreObjects<T>>(val: K): Map<T[K]>;
   update<K extends keyof T>(key: K, updater: (current: T[K]) => T[K]): this;
   merge<TValue extends object, TOther extends Map<TValue>>(
-    other: TOther
+    other: TOther,
   ): Map<T & TValue>;
 
   withMutations<V extends object>(updater: (me: Map<V>) => void): Map<V>;
