@@ -1,30 +1,43 @@
 import type { RecordOf } from 'immutable';
-import { List, Record } from 'immutable';
+import { List, Record as ImmutableRecord } from 'immutable';
+
+import escapeTextContentForBrowser from 'escape-html';
 
 import type {
   ApiAccountFieldJSON,
   ApiAccountRoleJSON,
   ApiAccountJSON,
 } from 'mastodon/api_types/accounts';
+import type { ApiCustomEmojiJSON } from 'mastodon/api_types/custom_emoji';
+import emojify from 'mastodon/features/emoji/emoji';
+import { unescapeHTML } from 'mastodon/utils/html';
 
 import { CustomEmojiFactory } from './custom_emoji';
 import type { CustomEmoji } from './custom_emoji';
 
 // AccountField
-type AccountFieldShape = ApiAccountFieldJSON;
+interface AccountFieldShape extends Required<ApiAccountFieldJSON> {
+  name_emojified: string;
+  value_emojified: string;
+  value_plain: string | null;
+}
+
 type AccountField = RecordOf<AccountFieldShape>;
 
-const AccountFieldFactory = Record<AccountFieldShape>({
+const AccountFieldFactory = ImmutableRecord<AccountFieldShape>({
   name: '',
   value: '',
   verified_at: null,
+  name_emojified: '',
+  value_emojified: '',
+  value_plain: null,
 });
 
 // AccountRole
 export type AccountRoleShape = ApiAccountRoleJSON;
 export type AccountRole = RecordOf<AccountRoleShape>;
 
-const AccountRoleFactory = Record<AccountRoleShape>({
+const AccountRoleFactory = ImmutableRecord<AccountRoleShape>({
   color: '',
   id: '',
   name: '',
@@ -32,26 +45,31 @@ const AccountRoleFactory = Record<AccountRoleShape>({
 
 // Account
 export interface AccountShape
-  extends Omit<ApiAccountJSON, 'emojis' | 'fields' | 'roles'> {
+  extends Required<
+    Omit<
+      ApiAccountJSON,
+      | 'emojis'
+      | 'fields'
+      | 'roles'
+      | 'moved'
+      | 'followers_count'
+      | 'following_count'
+      | 'statuses_count'
+    >
+  > {
   emojis: List<CustomEmoji>;
   fields: List<AccountField>;
   roles: List<AccountRole>;
   display_name_html: string;
   note_emojified: string;
-  note_plain: string;
-  // TODO(renchap): there seem to be other properties used by the code, handle them
-  // See https://github.com/mastodon/mastodon/pull/26555/files#diff-95c45eefa511306d2bd9aed0458d8e6e2e1d489a6119ff451f9c8e12a1055f5aR37
-  // suspended: boolean;
-  // relationship: {
-  //   note: string;
-  // };
-  // hidden: boolean;
-  // limited: boolean;
+  note_plain: string | null;
+  hidden: boolean;
+  moved: string | null;
 }
 
 export type Account = RecordOf<AccountShape>;
 
-const AccountFactory = Record<AccountShape>({
+export const accountDefaultValues = {
   acct: '',
   avatar: '',
   avatar_static: '',
@@ -62,8 +80,6 @@ const AccountFactory = Record<AccountShape>({
   display_name_html: '',
   emojis: List<CustomEmoji>(),
   fields: List<AccountField>(),
-  followers_count: 0,
-  following_count: 0,
   group: false,
   header: '',
   header_static: '',
@@ -75,20 +91,71 @@ const AccountFactory = Record<AccountShape>({
   note_emojified: '',
   note_plain: 'string',
   roles: List<AccountRole>(),
-  statuses_count: 0,
   uri: '',
   url: '',
   username: '',
-});
+  hidden: false,
+  suspended: false,
+  memorial: false,
+  limited: false,
+  moved: null,
+};
+
+const AccountFactory = ImmutableRecord<AccountShape>(accountDefaultValues);
+
+type EmojiMap = Record<string, ApiCustomEmojiJSON>;
+
+function makeEmojiMap(emojis: ApiCustomEmojiJSON[]) {
+  return emojis.reduce<EmojiMap>((obj, emoji) => {
+    obj[`:${emoji.shortcode}:`] = emoji;
+    return obj;
+  }, {});
+}
+
+function createAccountField(
+  jsonField: ApiAccountFieldJSON,
+  emojiMap: EmojiMap,
+) {
+  return AccountFieldFactory({
+    ...jsonField,
+    name_emojified: emojify(
+      escapeTextContentForBrowser(jsonField.name),
+      emojiMap,
+    ),
+    value_emojified: emojify(jsonField.value, emojiMap),
+    value_plain: unescapeHTML(jsonField.value),
+  });
+}
 
 export function createAccountFromServerJSON(serverJSON: ApiAccountJSON) {
-  // TODO(renchap): the additional fields (note_emojified, note_plain, display_name_html) should be processed here, not in actions/importer/normalizer
+  const {
+    followers_count,
+    following_count,
+    statuses_count,
+    moved,
+    ...accountJSON
+  } = serverJSON;
+
+  const emojiMap = makeEmojiMap(accountJSON.emojis);
+
+  const displayName =
+    accountJSON.display_name.trim().length === 0
+      ? accountJSON.username
+      : accountJSON.display_name;
+
   return AccountFactory({
-    ...serverJSON,
+    ...accountJSON,
+    moved: moved?.id,
     fields: List(
-      serverJSON.fields.map((fields) => AccountFieldFactory(fields)),
+      serverJSON.fields.map((field) => createAccountField(field, emojiMap)),
     ),
     emojis: List(serverJSON.emojis.map((emoji) => CustomEmojiFactory(emoji))),
     roles: List(serverJSON.roles.map((role) => AccountRoleFactory(role))),
+    display_name_html: emojify(
+      escapeTextContentForBrowser(displayName),
+      emojiMap,
+    ),
+    note_emojified: emojify(accountJSON.note, emojiMap),
+    note_plain: unescapeHTML(accountJSON.note),
   });
 }

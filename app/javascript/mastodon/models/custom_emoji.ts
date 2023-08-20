@@ -3,12 +3,13 @@ import { Record } from 'immutable';
 
 import type { ApiCustomEmojiJSON } from 'mastodon/api_types/custom_emoji';
 
-type CustomEmojiShape = ApiCustomEmojiJSON; // no changes from server shape
+type CustomEmojiShape = Required<ApiCustomEmojiJSON>; // no changes from server shape
 export type CustomEmoji = RecordOf<CustomEmojiShape>;
 
 export const CustomEmojiFactory = Record<CustomEmojiShape>({
   shortcode: '',
   static_url: '',
   url: '',
+  category: '',
   visible_in_picker: false,
 });

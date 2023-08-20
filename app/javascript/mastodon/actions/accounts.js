@@ -785,8 +785,3 @@ export function unpinAccountFail(error) {
     error,
   };
 }
-
-export const revealAccount = id => ({
-  type: ACCOUNT_REVEAL,
-  id,
-});
