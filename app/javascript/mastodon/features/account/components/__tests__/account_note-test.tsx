@@ -54,10 +54,9 @@ it('should save changes if the component loses focus and it is dirty', () => {
 
 it('should save changes if the component is unmounting', () => {
   const onSave = jest.fn();
-  const { getByLabelText, unmount, debug } = render(
+  const { getByLabelText, unmount } = render(
     <TestHarness accountId='1234' value='' onSave={onSave} />
   );
-  debug();
   const textarea = getByLabelText('Note');
   fireEvent.change(textarea, { target: { value: 'My new note' } });
   expect(onSave).not.toBeCalled();
