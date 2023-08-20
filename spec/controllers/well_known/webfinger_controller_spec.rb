@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 describe WellKnown::WebfingerController do
+  include RoutingHelper
+
   render_views
 
   describe 'GET #show' do
@@ -165,6 +167,40 @@ describe WellKnown::WebfingerController do
 
       it 'returns http bad request' do
         expect(response).to have_http_status(400)
+      end
+    end
+
+    context 'when an account has an avatar' do
+      let(:alice) { Fabricate(:account, username: 'alice', avatar: attachment_fixture('attachment.jpg')) }
+      let(:resource) { alice.to_webfinger_s }
+
+      before do
+        perform_show!
+      end
+
+      it 'returns avatar in response' do
+        json = body_as_json
+
+        avatar_link = json[:links].find { |link| link[:rel] == 'http://webfinger.net/rel/avatar' }
+        expect(avatar_link).to_not be_nil
+        expect(avatar_link[:type]).to eq alice.avatar.content_type
+        expect(avatar_link[:href]).to eq full_asset_url(alice.avatar)
+      end
+    end
+
+    context 'when an account does not have an avatar' do
+      let(:alice) { Fabricate(:account, username: 'alice', avatar: nil) }
+      let(:resource) { alice.to_webfinger_s }
+
+      before do
+        perform_show!
+      end
+
+      it 'returns avatar in response' do
+        json = body_as_json
+
+        avatar_link = json[:links].find { |link| link[:rel] == 'http://webfinger.net/rel/avatar' }
+        expect(avatar_link).to be_nil
       end
     end
   end
