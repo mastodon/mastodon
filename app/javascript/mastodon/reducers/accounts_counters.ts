@@ -1,9 +1,7 @@
-import { Map as ImmutableMap } from 'immutable';
+import { Map as ImmutableMap, Record } from 'immutable';
 
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import { me } from 'mastodon/initial_state';
-import type { Map } from 'mastodon/utils/immutable';
-import { intoTypeSafeImmutableMap } from 'mastodon/utils/immutable';
 
 import {
   ACCOUNT_FOLLOW_SUCCESS,
@@ -17,12 +15,18 @@ export interface AccountCounters {
   statuses_count: number;
 }
 
-type State = ImmutableMap<string, Map<AccountCounters>>;
+const CounterFactory = Record<AccountCounters>({
+  followers_count: 0,
+  following_count: 0,
+  statuses_count: 0,
+});
+
+type State = ImmutableMap<string, Record<AccountCounters>>;
 
 const normalizeAccount = (state: State, account: ApiAccountJSON): State =>
   state.set(
     account.id,
-    intoTypeSafeImmutableMap({
+    CounterFactory({
       followers_count: account.followers_count,
       following_count: account.following_count,
       statuses_count: account.statuses_count,

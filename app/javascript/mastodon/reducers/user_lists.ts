@@ -1,4 +1,4 @@
-import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
+import { List as ImmutableList, Map as ImmutableMap, Record } from 'immutable';
 
 import {
   DIRECTORY_EXPAND_FAIL,
@@ -15,8 +15,6 @@ import {
 } from 'mastodon/actions/featured_tags';
 import type { Account } from 'mastodon/models/account';
 import type { RootState } from 'mastodon/store';
-import { intoTypeSafeImmutableMap } from 'mastodon/utils/immutable';
-import type { Map as TypeSafeImmutableMap } from 'mastodon/utils/immutable';
 
 import {
   FOLLOWERS_EXPAND_FAIL,
@@ -75,21 +73,21 @@ interface Notification {
   type: string;
 }
 
-const initialListState = intoTypeSafeImmutableMap<ListInfo>({
+const ListStateFactory = Record<ListInfo>({
   next: null,
   isLoading: false,
   items: ImmutableList(),
 });
 
 const initialState = ImmutableMap({
-  followers: initialListState,
-  following: initialListState,
-  reblogged_by: initialListState,
-  favourited_by: initialListState,
-  follow_requests: initialListState,
-  blocks: initialListState,
-  mutes: initialListState,
-  featured_tags: initialListState,
+  followers: ListStateFactory(),
+  following: ListStateFactory(),
+  reblogged_by: ListStateFactory(),
+  favourited_by: ListStateFactory(),
+  follow_requests: ListStateFactory(),
+  blocks: ListStateFactory(),
+  mutes: ListStateFactory(),
+  featured_tags: ListStateFactory(),
 });
 
 type State = typeof initialState;
@@ -111,10 +109,10 @@ const normalizeList = (
 };
 
 function updateListInfo(
-  map: TypeSafeImmutableMap<ListInfo>,
+  map: Record<ListInfo>,
   accounts: Account[],
   next: unknown,
-): TypeSafeImmutableMap<ListInfo> {
+): Record<ListInfo> {
   return map
     .set('next', next)
     .set('isLoading', false)
@@ -128,11 +126,7 @@ const appendToList = (
   next: unknown,
 ): State => {
   return state.updateIn(path, (map) => {
-    return updateListInfo(
-      map as TypeSafeImmutableMap<ListInfo>,
-      accounts,
-      next,
-    );
+    return updateListInfo(map as Record<ListInfo>, accounts, next);
   });
 };
 
@@ -149,17 +143,25 @@ const normalizeFollowRequest = (
 };
 
 export interface FeaturedTag {
+  accountId: string;
   name: string;
   statuses_count: number;
   last_status_at: string;
 }
 
+const FeaturedTagFactory = Record<FeaturedTag>({
+  name: '',
+  statuses_count: 0,
+  last_status_at: '',
+  accountId: '',
+});
+
 const normalizeFeaturedTag = (
   featuredTags: FeaturedTag,
   accountId: string,
-): TypeSafeImmutableMap<FeaturedTag & { accountId: string }> => {
+): Record<FeaturedTag> => {
   const normalizeFeaturedTag = { ...featuredTags, accountId: accountId };
-  return intoTypeSafeImmutableMap(normalizeFeaturedTag);
+  return FeaturedTagFactory(normalizeFeaturedTag);
 };
 
 const normalizeFeaturedTags = (
@@ -182,13 +184,11 @@ const normalizeFeaturedTags = (
 };
 
 export function selectFeaturedTags(accountId: string) {
-  return (
-    state: RootState,
-  ): ImmutableList<TypeSafeImmutableMap<FeaturedTag>> => {
+  return (state: RootState): ImmutableList<Record<FeaturedTag>> => {
     return state.user_lists.getIn(
       ['featured_tags', accountId, 'items'],
       ImmutableList(),
-    ) as ImmutableList<TypeSafeImmutableMap<FeaturedTag>>;
+    ) as ImmutableList<Record<FeaturedTag>>;
   };
 }
 
