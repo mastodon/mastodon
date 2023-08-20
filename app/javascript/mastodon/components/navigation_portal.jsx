@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 
 import { Switch, Route, withRouter } from 'react-router-dom';
 
-import AccountNavigation from 'mastodon/features/account/navigation';
+import { AccountNavigation } from 'mastodon/features/account/navigation';
 import Trends from 'mastodon/features/getting_started/containers/trends_container';
 import { showTrends } from 'mastodon/initial_state';
 
@@ -17,7 +17,7 @@ const DefaultNavigation = () => (
 
 class NavigationPortal extends PureComponent {
 
-  render () {
+  render() {
     return (
       <Switch>
         <Route path='/@:acct' exact component={AccountNavigation} />

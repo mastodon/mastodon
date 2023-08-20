@@ -25,7 +25,7 @@ export const FeaturedTags = ({ accountId }: Props) => {
   const account = useAppSelector((state) => getAccount(state, accountId));
   const featuredTags = useAppSelector(selectFeaturedTags(accountId));
 
-  if (!account || account.get('suspended') || featuredTags.isEmpty()) {
+  if (account === null || account.get('suspended') || featuredTags.isEmpty()) {
     return null;
   }
 
