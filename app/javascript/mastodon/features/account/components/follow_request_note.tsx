@@ -7,17 +7,14 @@ import {
   rejectFollowRequest,
 } from 'mastodon/actions/accounts';
 import { Icon } from 'mastodon/components/icon';
-import type { Account } from 'mastodon/reducers/accounts';
 import { useAppDispatch } from 'mastodon/store';
-import type { Map as TypeSafeImmutableMap } from 'mastodon/utils/immutable';
 
 interface Props {
-  account: TypeSafeImmutableMap<Account>;
+  displayName: string;
+  accountId: string;
 }
 
-export const FollowRequestNote = ({ account }: Props) => {
-  const displayName = account.get('display_name_html');
-  const accountId = account.get('id');
+export const FollowRequestNote = ({ displayName, accountId }: Props) => {
   const dispatch = useAppDispatch();
 
   const onAuthorize = useCallback(() => {

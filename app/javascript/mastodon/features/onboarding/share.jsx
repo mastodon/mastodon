@@ -145,7 +145,7 @@ class Share extends PureComponent {
 
   static propTypes = {
     onBack: PropTypes.func,
-    account: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.record,
     multiColumn: PropTypes.bool,
     intl: PropTypes.object,
   };

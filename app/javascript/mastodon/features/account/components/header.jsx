@@ -90,7 +90,7 @@ class Header extends ImmutablePureComponent {
   };
 
   static propTypes = {
-    account: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.record,
     identity_props: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
@@ -386,8 +386,7 @@ class Header extends ImmutablePureComponent {
 
     return (
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-        {!(suspended || hidden || account.get('moved')) && account.getIn(['relationship', 'requested_by']) && <FollowRequestNote account={account} />}
-
+        {!(suspended || hidden || account.get('moved')) && account.getIn(['relationship', 'requested_by']) && <FollowRequestNote accountId={account.get('id')} displayName={account.get('display_name_html')} />}
         <div className='account__header__image'>
           <div className='account__header__info'>
             {!suspended && info}

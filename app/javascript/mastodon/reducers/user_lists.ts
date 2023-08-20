@@ -1,4 +1,4 @@
-import { List as ImmutableList, Map as ImmutableMap, fromJS } from 'immutable';
+import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 
 import {
   DIRECTORY_EXPAND_FAIL,
@@ -60,8 +60,7 @@ import {
   MUTES_FETCH_SUCCESS,
 } from '../actions/mutes';
 import { NOTIFICATIONS_UPDATE } from '../actions/notifications';
-
-import type { Account } from './accounts';
+import { Account } from 'mastodon/models/account';
 
 interface ListInfo {
   next: unknown;

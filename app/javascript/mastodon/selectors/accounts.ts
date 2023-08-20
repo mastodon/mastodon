@@ -1,15 +1,13 @@
 import type { Map as ImmutableMap } from 'immutable';
 import { createSelector } from 'reselect';
 
-import type { Account } from 'mastodon/reducers/accounts';
 import type { AccountCounters } from 'mastodon/reducers/accounts_counters';
 import type { Map } from 'mastodon/utils/immutable';
 
 import type { RootState } from '../store';
+import type { Account, AccountRelationship } from 'mastodon/models/account';
 
-type AccountRelationship = unknown;
-
-const getAccountBase = (state: RootState, id: string): Map<Account> | null => {
+const getAccountBase = (state: RootState, id: string): Account | null => {
   return state.accounts.get(id, null);
 };
 
@@ -33,7 +31,7 @@ const getAccountRelationship = (
 const getAccountMoved = (
   state: RootState,
   id: string
-): Map<{ id: string }> | undefined => {
+): Account  | undefined => {
   const moved = state.accounts.getIn([id, 'moved'], null) as string | null;
   if (moved === null) {
     return undefined;
@@ -43,10 +41,10 @@ const getAccountMoved = (
 };
 
 // TODO(trinitroglycerin): Obviously this is a temporary name
-interface ExposedAccountType extends Account, AccountCounters {
+type ExposedAccountType = Account & AccountCounters & {
   relationship: AccountRelationship;
   moved: Map<{ id: string }> | null;
-}
+};
 
 // TODO(trinitroglycerin): I separated this out from makeGetAccount() to ease type diagnosis,
 // but I am pretty sure this must be within makeGetAccount() to ensure module splitting works correctly.
@@ -65,7 +63,7 @@ interface ExposedAccountType extends Account, AccountCounters {
 export const getAccount: (
   state: RootState,
   id: string
-) => Map<ExposedAccountType> | null = createSelector(
+) => ExposedAccountType | null = createSelector(
   [getAccountBase, getAccountCounters, getAccountRelationship, getAccountMoved],
   (base, counters, relationship, moved) => {
     if (base === null) {
@@ -74,13 +72,14 @@ export const getAccount: (
 
     let out = base;
     if (counters !== null) {
-      out = base.merge(counters);
+      // TODO(trinitroglycerin): There's definitely a way to type this
+      out = base.merge(counters as any);
     }
 
-    return out.withMutations<ExposedAccountType>((map) => {
+    return out.withMutations((map) => {
       map.set('relationship', relationship);
       map.set('moved', moved ?? null);
-    });
+    }) as ExposedAccountType;
   }
 );
 

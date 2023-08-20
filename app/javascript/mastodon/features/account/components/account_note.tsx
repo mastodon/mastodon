@@ -6,9 +6,8 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import Textarea from 'react-textarea-autosize';
 
 import { submitAccountNote } from 'mastodon/actions/account_notes';
-import type { Account } from 'mastodon/reducers/accounts';
 import { useAppDispatch } from 'mastodon/store';
-import type { Map as TypeSafeImmutableMap } from 'mastodon/utils/immutable';
+import type { Account } from 'mastodon/models/account';
 
 const messages = defineMessages({
   placeholder: {
@@ -191,12 +190,12 @@ const AccountNote = ({ accountId, value: propsValue, onSave }: Props) => {
 };
 
 interface ContainerProps {
-  account: TypeSafeImmutableMap<Account>;
+  account: Account;
 }
 
 const AccountNoteContainer = ({ account }: ContainerProps) => {
-  const accountId = account.get('id');
-  const value = account.get('relationship').get('note');
+  const accountId = account.id;
+  const value = account.relationship.note;
   const dispatch = useAppDispatch();
   const onSave = useCallback(
     (value: string) => {
