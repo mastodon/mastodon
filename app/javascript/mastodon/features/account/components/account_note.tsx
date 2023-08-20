@@ -1,19 +1,15 @@
 import PropTypes from 'prop-types';
 import type { ChangeEvent, KeyboardEvent } from 'react';
-import { createRef, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import type { IntlShape } from 'react-intl';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import Textarea from 'react-textarea-autosize';
 
 import type { TypeSafeImmutableMap } from 'app/javascript/types/immutable';
 import { submitAccountNote } from 'mastodon/actions/account_notes';
 import type { Account } from 'mastodon/reducers/accounts';
-import type { RootState } from 'mastodon/store';
+import { useAppDispatch } from 'mastodon/store';
 
 const messages = defineMessages({
   placeholder: {
@@ -72,153 +68,148 @@ InlineAlert.propTypes = {
 };
 
 interface Props {
-  accountId: string;
+  accountId: string | null;
   value: string;
   onSave: (value: string) => void;
-  intl: IntlShape;
 }
 
-interface State {
-  value: string;
-  saving: boolean;
-  saved: boolean;
-}
+const AccountNote = ({ accountId, value: propsValue, onSave }: Props) => {
+  const intl = useIntl();
+  const [value, setValue] = useState(propsValue);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const textarea = useRef<HTMLTextAreaElement>(null);
+  const prevAccountId = useRef(accountId);
 
-class AccountNote extends ImmutablePureComponent<Props, State> {
-  state: State = {
-    value: this.props.value,
-    saving: false,
-    saved: false,
-  };
+  const isDirty = !saving && value !== propsValue;
+  const _save = useCallback(
+    (showMessage = false) => {
+      // If our form is not dirty, we do not save changes.
+      if (!isDirty) {
+        return;
+      }
 
-  textarea = createRef<HTMLTextAreaElement>();
+      setSaving(true);
+      onSave(value);
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props) {
-    const accountWillChange = this.props.accountId !== nextProps.accountId;
+      if (showMessage) {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 2000);
+      }
+    },
+    [value, onSave, isDirty]
+  );
 
+  const prevPropsValue = useRef(propsValue);
+  useEffect(() => {
+    if (propsValue === value) {
+      // If there was no change, we're no longer saving.
+      setSaving(false);
+    }
+
+    if (prevPropsValue.current !== propsValue) {
+      // Update the value from props if it changed
+      setValue(propsValue);
+      prevPropsValue.current = propsValue;
+    }
+  }, [propsValue, value]);
+
+  useEffect(() => {
+    const accountWillChange = prevAccountId.current !== accountId;
     // If the account will change and we've made some changes, make sure the changes are updated somewhere,
     // but ensure the change doesn't reflect.
-    if (accountWillChange && this._isDirty()) {
-      this._save(false);
+    if (accountWillChange) {
+      _save();
+      setSaving(false);
     }
 
-    if (accountWillChange || nextProps.value === this.state.value) {
-      this.setState({ saving: false });
-    }
+    prevAccountId.current = accountId;
+  }, [accountId, _save]);
 
-    if (this.props.value !== nextProps.value) {
-      this.setState({ value: nextProps.value });
-    }
+  // This hack is used to ensure that we only save outside of key events when unmounting.
+  const isUnmounting = useRef(false);
+  useEffect(() => {
+    return () => {
+      isUnmounting.current = true;
+    };
+  }, []);
+
+  // This must be the last hook declared otheriwse isUnmounting will not be respected.
+  useEffect(() => {
+    return () => {
+      if (isUnmounting.current) {
+        _save();
+      }
+    };
+  }, [value, _save]);
+
+  const handleChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(e.target.value);
+    setSaving(false);
+  }, []);
+
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        _save(true);
+        textarea.current?.blur();
+      } else if (e.keyCode === 27) {
+        e.preventDefault();
+        // Reset the value to the original one before we made changes.
+        setValue(propsValue);
+        textarea.current?.blur();
+      }
+    },
+    [_save, propsValue]
+  );
+
+  const handleBlur = useCallback(() => _save(false), [_save]);
+
+  if (accountId === null) {
+    return null;
   }
 
-  componentWillUnmount() {
-    if (this._isDirty()) {
-      this._save(false);
-    }
-  }
+  return (
+    <div className='account__header__account-note'>
+      <label htmlFor={`account-note-${accountId}`}>
+        <FormattedMessage
+          id='account.account_note_header'
+          defaultMessage='Note'
+        />{' '}
+        <InlineAlert show={saved} />
+      </label>
 
-  handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    this.setState({ value: e.target.value, saving: false });
-  };
+      <Textarea
+        id={`account-note-${accountId}`}
+        className='account__header__account-note__content'
+        disabled={propsValue === null || value === null}
+        placeholder={intl.formatMessage(messages.placeholder)}
+        value={value}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        onBlur={handleBlur}
+        ref={textarea}
+      />
+    </div>
+  );
+};
 
-  handleKeyDown = (e: KeyboardEvent) => {
-    if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-      this._save();
-      this.textarea.current?.blur();
-    } else if (e.keyCode === 27) {
-      e.preventDefault();
-      this._reset(() => {
-        this.textarea.current?.blur();
-      });
-    }
-  };
-
-  handleBlur = () => {
-    if (this._isDirty()) {
-      this._save();
-    }
-  };
-
-  _save(showMessage = true) {
-    this.setState({ saving: true });
-    this.props.onSave(this.state.value);
-
-    if (showMessage) {
-      this.setState({ saved: true }, () =>
-        setTimeout(() => this.setState({ saved: false }), 2000)
-      );
-    }
-  }
-
-  _reset(callback: () => void) {
-    this.setState({ value: this.props.value }, callback);
-  }
-
-  _isDirty() {
-    return (
-      !this.state.saving &&
-      this.props.value !== null &&
-      this.state.value !== null &&
-      this.state.value !== this.props.value
-    );
-  }
-
-  render() {
-    const { accountId, intl } = this.props;
-    const { value, saved } = this.state;
-
-    if (!accountId) {
-      return null;
-    }
-
-    return (
-      <div className='account__header__account-note'>
-        <label htmlFor={`account-note-${accountId}`}>
-          <FormattedMessage
-            id='account.account_note_header'
-            defaultMessage='Note'
-          />{' '}
-          <InlineAlert show={saved} />
-        </label>
-
-        <Textarea
-          id={`account-note-${accountId}`}
-          className='account__header__account-note__content'
-          disabled={this.props.value === null || value === null}
-          placeholder={intl.formatMessage(messages.placeholder)}
-          value={value ?? ''}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-          onBlur={this.handleBlur}
-          ref={this.textarea}
-        />
-      </div>
-    );
-  }
+interface ContainerProps {
+  account: TypeSafeImmutableMap<Account>;
 }
 
-const mapStateToProps = (
-  state: RootState,
-  { account }: { account: TypeSafeImmutableMap<Account> }
-) => ({
-  accountId: account.get('id'),
-  value: account.getIn(['relationship', 'note']) as string,
-});
+const AccountNoteContainer = ({ account }: ContainerProps) => {
+  const accountId = account.get('id');
+  const value = account.getIn(['relationship', 'note']) as string;
+  const dispatch = useAppDispatch();
+  const onSave = useCallback(
+    (value: string) => {
+      dispatch(submitAccountNote(accountId, value));
+    },
+    [accountId, dispatch]
+  );
+  return <AccountNote accountId={accountId} value={value} onSave={onSave} />;
+};
 
-const mapDispatchToProps = (
-  // TODO: This type is wrong.
-  dispatch: (action: any) => void,
-  { account }: { account: TypeSafeImmutableMap<Account> }
-) => ({
-  onSave(value: string) {
-    dispatch(submitAccountNote(account.get('id'), value));
-  },
-});
-
-const connected = injectIntl(
-  connect(mapStateToProps, mapDispatchToProps)(AccountNote)
-);
-
-// TODO(trinitroglycerin): Probably should rename this back to AccountNoteContainer and AccountNote
-export { connected as AccountNote, AccountNote as __AccountNote };
+export { AccountNoteContainer as AccountNote, AccountNote as __AccountNote };

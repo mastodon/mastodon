@@ -19,12 +19,7 @@ interface Props {
 const TestHarness = ({ onSave, value = '', accountId }: Props) => {
   return (
     <RawIntlProvider value={intl}>
-      <AccountNote
-        accountId={accountId}
-        value={value}
-        onSave={onSave}
-        intl={intl}
-      />
+      <AccountNote accountId={accountId} value={value} onSave={onSave} />
     </RawIntlProvider>
   );
 };
@@ -59,9 +54,10 @@ it('should save changes if the component loses focus and it is dirty', () => {
 
 it('should save changes if the component is unmounting', () => {
   const onSave = jest.fn();
-  const { getByLabelText, unmount } = render(
+  const { getByLabelText, unmount, debug } = render(
     <TestHarness accountId='1234' value='' onSave={onSave} />
   );
+  debug();
   const textarea = getByLabelText('Note');
   fireEvent.change(textarea, { target: { value: 'My new note' } });
   expect(onSave).not.toBeCalled();
