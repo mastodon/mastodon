@@ -5,7 +5,7 @@ import { combineReducers } from 'redux-immutable';
 
 import { accountsReducer as accounts } from './accounts';
 import { accountsCountersReducer as accounts_counters } from './accounts_counters';
-import accounts_map from './accounts_map';
+import { accountsMapReducer as accounts_map } from './accounts_map';
 import alerts from './alerts';
 import announcements from './announcements';
 import blocks from './blocks';
