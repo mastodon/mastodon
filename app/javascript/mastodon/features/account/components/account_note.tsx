@@ -5,10 +5,10 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import Textarea from 'react-textarea-autosize';
 
-import type { TypeSafeImmutableMap } from 'app/javascript/types/immutable';
 import { submitAccountNote } from 'mastodon/actions/account_notes';
 import type { Account } from 'mastodon/reducers/accounts';
 import { useAppDispatch } from 'mastodon/store';
+import type { TypeSafeImmutableMap } from 'mastodon/utils/immutable';
 
 const messages = defineMessages({
   placeholder: {

@@ -1,8 +1,8 @@
 import { Map as ImmutableMap } from 'immutable';
 
-import type { TypeSafeImmutableMap } from 'app/javascript/types/immutable';
-import { intoTypeSafeImmutableMap } from 'app/javascript/types/immutable';
 import { me } from 'mastodon/initial_state';
+import type { TypeSafeImmutableMap } from 'mastodon/utils/immutable';
+import { intoTypeSafeImmutableMap } from 'mastodon/utils/immutable';
 
 import {
   ACCOUNT_FOLLOW_SUCCESS,

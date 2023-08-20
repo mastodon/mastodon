@@ -1,10 +1,10 @@
 import { Map as ImmutableMap } from 'immutable';
 
-import type { TypeSafeImmutableMap } from 'app/javascript/types/immutable';
-import { intoTypeSafeImmutableMap } from 'app/javascript/types/immutable';
 import { ACCOUNT_REVEAL } from 'mastodon/actions/accounts';
 import { ACCOUNTS_IMPORT, ACCOUNT_IMPORT } from 'mastodon/actions/importer';
 import type { AccountField, Emoji } from 'mastodon/initial_state';
+import { intoTypeSafeImmutableMap } from 'mastodon/utils/immutable';
+import type { TypeSafeImmutableMap } from 'mastodon/utils/immutable';
 
 import type { AccountCounters } from './accounts_counters';
 

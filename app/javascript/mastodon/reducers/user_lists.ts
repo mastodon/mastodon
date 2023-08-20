@@ -1,7 +1,5 @@
 import { List as ImmutableList, Map as ImmutableMap, fromJS } from 'immutable';
 
-import type { TypeSafeImmutableMap } from 'app/javascript/types/immutable';
-import { intoTypeSafeImmutableMap } from 'app/javascript/types/immutable';
 import {
   DIRECTORY_EXPAND_FAIL,
   DIRECTORY_EXPAND_REQUEST,
@@ -16,6 +14,8 @@ import {
   FEATURED_TAGS_FETCH_SUCCESS,
 } from 'mastodon/actions/featured_tags';
 import type { RootState } from 'mastodon/store';
+import { intoTypeSafeImmutableMap } from 'mastodon/utils/immutable';
+import type { TypeSafeImmutableMap } from 'mastodon/utils/immutable';
 
 import {
   FOLLOWERS_EXPAND_FAIL,

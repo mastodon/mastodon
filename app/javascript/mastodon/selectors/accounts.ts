@@ -1,9 +1,9 @@
 import type { Map as ImmutableMap } from 'immutable';
 import { createSelector } from 'reselect';
 
-import type { TypeSafeImmutableMap } from 'app/javascript/types/immutable';
 import type { Account } from 'mastodon/reducers/accounts';
 import type { AccountCounters } from 'mastodon/reducers/accounts_counters';
+import type { TypeSafeImmutableMap } from 'mastodon/utils/immutable';
 
 import type { RootState } from '../store';
 
