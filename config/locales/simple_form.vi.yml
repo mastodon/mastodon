@@ -4,7 +4,7 @@ vi:
     hints:
       account:
         display_name: Tên đầy đủ hoặc biệt danh đều được.
-        fields: Trang blog của bạn, nghề nghiệp, tuổi hay bất cứ thứ gì.
+        fields: Trang blog của bạn, nghề nghiệp, tuổi hoặc bất cứ thứ gì.
         note: 'Bạn có thể @nhắnriêng ai đó hoặc #hashtags.'
       account_alias:
         acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
@@ -19,9 +19,9 @@ vi:
         text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">mẫu có sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
         types:
-          disable: Tạm khóa đăng nhập tài khoản, nhưng không xóa hoặc ẩn tút.
+          disable: Tạm không cho đăng nhập tài khoản.
           none: Cảnh cáo tài khoản này, không áp đặt trừng phạt.
-          sensitive: Mọi tập tin của tài khoản này tải lên đều sẽ bị gắn nhãn nhạy cảm.
+          sensitive: Tất cả media tải lên sẽ bị gắn nhãn nhạy cảm.
           silence: Cấm người này đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
           suspend: Vô hiệu hóa và xóa sạch dữ liệu của tài khoản này. Có thể khôi phục trước 30 ngày.
         warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm chú thích riêng
@@ -53,14 +53,14 @@ vi:
         scopes: API nào ứng dụng sẽ được phép truy cập. Nếu bạn chọn quyền hạn cấp cao nhất, bạn không cần chọn từng phạm vi.
         setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì những lượt đăng lại sau sẽ không hiện trên bảng tin nữa
         setting_always_send_emails: Bình thường thì email thông báo sẽ không gửi khi bạn đang dùng Mastodon
-        setting_default_sensitive: Mặc định là nội dung nhạy cảm và chỉ hiện nếu nhấn vào
-        setting_display_media_default: Làm mờ nội dung nhạy cảm
-        setting_display_media_hide_all: Ẩn
-        setting_display_media_show_all: Luôn hiển thị
+        setting_default_sensitive: Bắt buộc nhấn vào mới có thể xem
+        setting_display_media_default: Click để xem
+        setting_display_media_hide_all: Luôn ẩn
+        setting_display_media_show_all: Luôn hiện
         setting_hide_network: Ẩn những người bạn theo dõi và những người theo dõi bạn
         setting_noindex: Ảnh hưởng đến trang cá nhân và tút của bạn
-        setting_show_application: Tên ứng dụng bạn dùng để đăng tút sẽ hiện trong chi tiết của tút
-        setting_use_blurhash: Lớp phủ mờ dựa trên màu sắc của hình ảnh nhạy cảm
+        setting_show_application: Nó sẽ hiện trong chi tiết của tút
+        setting_use_blurhash: Phủ lớp màu làm nhòe đi hình ảnh nhạy cảm
         setting_use_pending_items: Dồn lại toàn bộ tút mới và chỉ hiển thị khi nhấn vào
         username: Chỉ dùng ký tự, số và dấu gạch dưới
         whole_word: Khi từ khóa hoặc cụm từ là chữ và số, nó sẽ chỉ hiện ra những từ chính xác như vậy
@@ -124,7 +124,7 @@ vi:
       tag:
         name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
       user:
-        chosen_languages: Chỉ hiển thị những tút viết bằng các ngôn ngữ được chọn sau
+        chosen_languages: Chỉ hiển thị những tút viết bằng các ngôn ngữ sau
         role: Vai trò kiểm soát những quyền mà người dùng có
       user_role:
         color: Màu được sử dụng cho vai trò trong toàn bộ giao diện người dùng, dưới dạng RGB ở định dạng hex
@@ -199,26 +199,26 @@ vi:
         setting_aggregate_reblogs: Không hiện lượt đăng lại trùng lặp
         setting_always_send_emails: Luôn gửi email thông báo
         setting_auto_play_gif: Tự động phát ảnh GIF
-        setting_boost_modal: Yêu cầu xác nhận trước khi đăng lại tút
+        setting_boost_modal: Hỏi trước khi đăng lại tút
         setting_default_language: Ngôn ngữ đăng
         setting_default_privacy: Kiểu đăng
-        setting_default_sensitive: Ảnh/video là nội dung nhạy cảm
-        setting_delete_modal: Yêu cầu xác nhận trước khi xóa tút
-        setting_disable_swiping: Vô hiệu hóa vuốt màn hình
-        setting_display_media: Nội dung nhạy cảm
+        setting_default_sensitive: Đánh dấu media nhạy cảm
+        setting_delete_modal: Hỏi trước khi xóa tút
+        setting_disable_swiping: Không dùng chuyển động vuốt
+        setting_display_media: Media nhạy cảm
         setting_display_media_default: Mặc định
         setting_display_media_hide_all: Ẩn toàn bộ
         setting_display_media_show_all: Hiện toàn bộ
-        setting_expand_spoilers: Luôn hiển thị tút có nội dung ẩn
+        setting_expand_spoilers: Luôn mở rộng tút chứa nội dung ẩn
         setting_hide_network: Ẩn quan hệ của bạn
         setting_noindex: Không xuất hiện trong công cụ tìm kiếm
         setting_reduce_motion: Giảm chuyển động ảnh GIF
-        setting_show_application: Hiện ứng dụng đã dùng để đăng tút
-        setting_system_font_ui: Dùng phông chữ mặc định của hệ thống
+        setting_show_application: Hiện tên ứng dụng đăng tút
+        setting_system_font_ui: Dùng phông chữ mặc định hệ thống
         setting_theme: Giao diện
         setting_trends: Hiển thị thịnh hành hôm nay
-        setting_unfollow_modal: Yêu cầu xác nhận trước khi ngưng theo dõi ai đó
-        setting_use_blurhash: Làm mờ trước ảnh/video nhạy cảm
+        setting_unfollow_modal: Hỏi trước khi bỏ theo dõi ai đó
+        setting_use_blurhash: Phủ màu media nhạy cảm
         setting_use_pending_items: Không tự động cập nhật bảng tin
         severity: Mức độ nghiêm trọng
         sign_in_token_attempt: Mã an toàn
@@ -264,9 +264,9 @@ vi:
         trends: Bật thịnh hành
         trends_as_landing_page: Dùng trang thịnh hành làm trang chào mừng
       interactions:
-        must_be_follower: Chặn thông báo từ những người không theo dõi bạn
-        must_be_following: Chặn thông báo từ những người bạn không theo dõi
-        must_be_following_dm: Chặn tin nhắn từ những người bạn không theo dõi
+        must_be_follower: Những người không theo dõi bạn
+        must_be_following: Những người bạn không theo dõi
+        must_be_following_dm: những người bạn không theo dõi (nhắn riêng)
       invite:
         comment: Bình luận
       invite_request:
@@ -315,7 +315,7 @@ vi:
     recommended: Đề xuất
     required:
       mark: "*"
-      text: yêu cầu
+      text: Bắt buộc
     title:
       sessions:
         webauthn: Dùng một trong những khóa bảo mật của bạn để đăng nhập

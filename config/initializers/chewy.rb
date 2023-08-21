@@ -25,14 +25,6 @@ Chewy.root_strategy              = :bypass_with_warning if Rails.env.production?
 Chewy.request_strategy           = :mastodon
 Chewy.use_after_commit_callbacks = false
 
-module Chewy
-  class << self
-    def enabled?
-      settings[:enabled]
-    end
-  end
-end
-
 # Elasticsearch uses Faraday internally. Faraday interprets the
 # http_proxy env variable by default which leads to issues when
 # Mastodon is run with hidden services enabled, because

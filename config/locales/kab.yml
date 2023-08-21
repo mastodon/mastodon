@@ -101,6 +101,7 @@ kab:
       search: Nadi
       search_same_email_domain: Iseqdacen-nniḍen s yiwet n taɣult n yimayl
       search_same_ip: Imseqdacen-nniḍen s tansa IP am tinn-ik
+      security: Taɣellist
       security_measures:
         only_password: Awal uffir kan
         password_and_2fa: Awal uffir d 2FA
@@ -253,6 +254,8 @@ kab:
       undo: Kkes seg tebdart tamellalt
     domain_blocks:
       add_new: Rni iḥder amaynut n taɣult
+      confirm_suspension:
+        cancel: Sefsex
       domain: Taγult
       export: Sifeḍ
       import: Kter
@@ -283,6 +286,7 @@ kab:
     instances:
       back_to_all: Akk
       back_to_limited: Ɣur-s talast
+      back_to_warning: Γur-wat
       by_domain: Taγult
       content_policies:
         policy: Tasertit
@@ -353,6 +357,7 @@ kab:
       category: Taggayt
       comment:
         none: Ula yiwen
+      confirm: Sentem
       mark_as_resolved: Creḍ-it yefra
       mark_as_unresolved: Creḍ-it ur yefra ara
       notes:
@@ -407,6 +412,7 @@ kab:
       application: Asnas
       back_to_account: Tuγalin γer usebter n umiḍan
       deleted: Yettwakkes
+      favourites: Imenyafen
       language: Tutlayt
       media:
         title: Taγwalt
@@ -437,9 +443,11 @@ kab:
     view_profile: Ssken-d amaɣnu
     view_status: Ssken-d tasuffiɣt
   applications:
+    logout: Ffeɣ
     token_regenerated: Ajuṭu n unekcum yettusirew i tikkelt-nniḍen akken iwata
     your_token: Ajiṭun-ik·im n unekcum
   auth:
+    apply_for_account: Suter amiḍan
     delete_account: Kkes amiḍan
     description:
       prefix_invited_by_user: "@%{name} inced-ik·ikem ad ternuḍ ɣer uqeddac-a n Mastodon!"
@@ -456,6 +464,8 @@ kab:
     register: Jerred
     registration_closed: "%{instance} ur yeqbil ara imttekkiyen imaynuten"
     reset_password: Wennez awal uffir
+    rules:
+      back: Tuɣalin
     security: Taγellist
     set_new_password: Egr-d awal uffir amaynut
     status:
@@ -489,15 +499,8 @@ kab:
       username_available: Isem-ik·im n useqdac ad yuɣal yella i tikkelt-nniḍen
       username_unavailable: Isem-ik·im n useqdac ad yeqqim ulac-it
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
-    '429': Too many requests
     '500':
       title: Asebter-ayi d arameγtu
-    '503': The page could not be served due to a temporary server failure.
   existing_username_validator:
     not_found_multiple: ur yezmir ara ad yaf %{usernames}
   exports:
