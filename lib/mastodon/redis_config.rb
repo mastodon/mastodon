@@ -54,8 +54,18 @@ if ENV.fetch('SIDEKIQ_REDIS_SENTINEL', '').present?
     sentinel_servers = ips.map { |ip| { host: ip, port: sentinel_server[:port] } }
   end
 
+  ENV['SIDEKIQ_REDIS_URL'] = begin
+    if ENV.fetch('SIDEKIQ_REDIS_PASSWORD', '').empty?
+      "redis://#{ENV.fetch('SIDEKIQ_REDIS_SENTINEL_MASTER', 'mymaster')}"
+    else
+      "redis://:#{ENV['SIDEKIQ_REDIS_PASSWORD']}@#{ENV.fetch('SIDEKIQ_REDIS_SENTINEL_MASTER', 'mymaster')}"
+    end
+  end
+
   REDIS_SIDEKIQ_PARAMS = {
     driver: :hiredis,
+    url: ENV['SIDEKIQ_REDIS_URL'],
+    master_name: ENV.fetch('SIDEKIQ_REDIS_SENTINEL_MASTER', 'mymaster'),
     sentinels: sentinel_servers,
     namespace: sidekiq_namespace,
   }.freeze
