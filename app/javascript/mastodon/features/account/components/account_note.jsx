@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, memo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -9,7 +9,7 @@ const messages = defineMessages({
   placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
 });
 
-const InlineAlert = ({ show }) => {
+const InlineAlert = memo(({ show }) => {
   const [mountMessage, setMountMessage] = useState(false);
   const TRANSITION_DELAY = 200;
 
@@ -40,7 +40,7 @@ const InlineAlert = ({ show }) => {
       {mountMessage && <FormattedMessage id='generic.saved' defaultMessage='Saved' />}
     </span>
   );
-};
+});
 
 InlineAlert.propTypes = {
   show: PropTypes.bool,
@@ -99,22 +99,7 @@ export const AccountNote = ({ accountId, value: propsValue, onSave }) => {
     prevAccountId.current = accountId;
   }, [accountId, _save]);
 
-  // This hack is used to ensure that we only save outside of key events when unmounting.
-  const isUnmounting = useRef(false);
-  useEffect(() => {
-    return () => {
-      isUnmounting.current = true;
-    };
-  }, []);
-
-  // This must be the last hook declared otheriwse isUnmounting will not be respected.
-  useEffect(() => {
-    return () => {
-      if (isUnmounting.current) {
-        _save();
-      }
-    };
-  }, [value, _save]);
+  useOnUnmount(_save);
 
   const handleChange = useCallback((e) => {
     setValue(e.target.value);
@@ -173,3 +158,20 @@ AccountNote.propTypes = {
   value: PropTypes.string,
   onSave: PropTypes.func.isRequired
 };
+
+const useOnUnmount = (callback) => {
+  const isUnmounting = useRef(false);
+  useEffect(() => {
+    return () => {
+      isUnmounting.current = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (isUnmounting.current) {
+        callback();
+      }
+    };
+  }, [callback]);
+}
