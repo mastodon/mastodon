@@ -9,6 +9,7 @@ module Mastodon::CLI
     VALID_PATH_SEGMENTS_SIZE = [7, 10].freeze
 
     option :days, type: :numeric, default: 7, aliases: [:d]
+    option :unscoped_only, type: :boolean, default: false
     option :prune_profiles, type: :boolean, default: false
     option :remove_headers, type: :boolean, default: false
     option :include_follows, type: :boolean, default: false
@@ -23,6 +24,8 @@ module Mastodon::CLI
       they are removed. In case of avatars and headers, it specifies how old
       the last webfinger request and update to the user has to be before they
       are pruned. It defaults to 7 days.
+      If --unscoped-only is specified, only media that is not currenty referenced
+      will be removed.
       If --prune-profiles is specified, only avatars and headers are removed.
       If --remove-headers is specified, only headers are removed.
       If --include-follows is specified along with --prune-profiles or
@@ -43,7 +46,13 @@ module Mastodon::CLI
       time_ago = options[:days].days.ago
 
       if options[:prune_profiles] || options[:remove_headers]
-        processed, aggregate = parallelize_with_progress(Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })) do |account|
+        if options[:unscoped_only]
+          scope = Account.unscoped.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })
+        else
+          scope = Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })
+        end
+
+        processed, aggregate = parallelize_with_progress(scope) do |account|
           next if !options[:include_follows] && Follow.where(account: account).or(Follow.where(target_account: account)).exists?
           next if account.avatar.blank? && account.header.blank?
           next if options[:remove_headers] && account.header.blank?
@@ -64,7 +73,13 @@ module Mastodon::CLI
       end
 
       unless options[:prune_profiles] || options[:remove_headers]
-        processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where(created_at: ..time_ago)) do |media_attachment|
+        if options[:unscoped_only]
+          scope = MediaAttachment.unscoped.cached.where.not(remote_url: '').where(created_at: ..time_ago)
+        else
+          scope = MediaAttachment.cached.where.not(remote_url: '').where(created_at: ..time_ago)
+        end
+
+        processed, aggregate = parallelize_with_progress(scope) do |media_attachment|
           next if media_attachment.file.blank?
 
           size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
