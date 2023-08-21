@@ -5,19 +5,12 @@ import { accountDefaultValues } from 'mastodon/models/account';
 import type { Account, AccountShape } from 'mastodon/models/account';
 import type { RootState } from 'mastodon/store';
 
-interface AccountCountersShape {
-  following_count: number;
-  followers_count: number;
-  statuses_count: number;
-}
-
 const getAccountBase = (state: RootState, id: string) =>
   state.accounts.get(id, null);
 
-const getAccountCounters = (state: RootState, id: string) =>
-  state.accounts_counters.get(id, null);
-
 const getAccountRelationship = (state: RootState, id: string) =>
+  // TODO(renchap): update this when `Relationship` is typed
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
   state.relationships.get(id, null);
 
 const getAccountMoved = (state: RootState, id: string) => {
@@ -28,39 +21,28 @@ const getAccountMoved = (state: RootState, id: string) => {
   return state.accounts.get(movedToId);
 };
 
-interface FullAccountShape
-  extends Omit<AccountShape, 'moved'>,
-    AccountCountersShape {
+interface FullAccountShape extends Omit<AccountShape, 'moved'> {
   relationship: unknown;
   moved: Account | null;
 }
 
 const FullAccountFactory = ImmutableRecord<FullAccountShape>({
   ...accountDefaultValues,
+  moved: null,
   relationship: null,
-  followers_count: 0,
-  following_count: 0,
-  statuses_count: 0,
 });
 
 export function makeGetAccount() {
   return createSelector(
-    [
-      getAccountBase,
-      getAccountCounters,
-      getAccountRelationship,
-      getAccountMoved,
-    ],
-    (base, counters, relationship, moved) => {
+    [getAccountBase, getAccountRelationship, getAccountMoved],
+    (base, relationship, moved) => {
       if (base === null) {
         return null;
       }
 
-      return FullAccountFactory(base).withMutations((fullAccount) => {
-        fullAccount.merge(counters);
-        fullAccount.set('relationship', relationship);
-        fullAccount.set('moved', moved ?? null);
-      });
+      return FullAccountFactory(base)
+        .set('relationship', relationship)
+        .set('moved', moved ?? null);
     },
   );
 }

@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { revealAccount } from 'mastodon/actions/accounts_new';
+import { revealAccount } from 'mastodon/actions/accounts_typed';
 import Button from 'mastodon/components/button';
 import { domain } from 'mastodon/initial_state';
 import { useAppDispatch } from 'mastodon/store';

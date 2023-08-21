@@ -1,5 +1,6 @@
 import api, { getLinks } from '../api';
 
+import { followAccountSuccess, unfollowAccountSuccess } from './accounts_typed';
 import { importFetchedAccount, importFetchedAccounts } from './importer';
 
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
@@ -11,11 +12,9 @@ export const ACCOUNT_LOOKUP_SUCCESS = 'ACCOUNT_LOOKUP_SUCCESS';
 export const ACCOUNT_LOOKUP_FAIL    = 'ACCOUNT_LOOKUP_FAIL';
 
 export const ACCOUNT_FOLLOW_REQUEST = 'ACCOUNT_FOLLOW_REQUEST';
-export const ACCOUNT_FOLLOW_SUCCESS = 'ACCOUNT_FOLLOW_SUCCESS';
 export const ACCOUNT_FOLLOW_FAIL    = 'ACCOUNT_FOLLOW_FAIL';
 
 export const ACCOUNT_UNFOLLOW_REQUEST = 'ACCOUNT_UNFOLLOW_REQUEST';
-export const ACCOUNT_UNFOLLOW_SUCCESS = 'ACCOUNT_UNFOLLOW_SUCCESS';
 export const ACCOUNT_UNFOLLOW_FAIL    = 'ACCOUNT_UNFOLLOW_FAIL';
 
 export const ACCOUNT_BLOCK_REQUEST = 'ACCOUNT_BLOCK_REQUEST';
@@ -79,6 +78,8 @@ export const FOLLOW_REQUEST_REJECT_SUCCESS = 'FOLLOW_REQUEST_REJECT_SUCCESS';
 export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
 
 export const ACCOUNT_REVEAL = 'ACCOUNT_REVEAL';
+
+export * from './accounts_typed';
 
 export function fetchAccount(id) {
   return (dispatch, getState) => {
@@ -152,7 +153,7 @@ export function followAccount(id, options = { reblogs: true }) {
     dispatch(followAccountRequest(id, locked));
 
     api(getState).post(`/api/v1/accounts/${id}/follow`, options).then(response => {
-      dispatch(followAccountSuccess(response.data, alreadyFollowing));
+      dispatch(followAccountSuccess({relationship: response.data, alreadyFollowing}));
     }).catch(error => {
       dispatch(followAccountFail(error, locked));
     });
@@ -164,7 +165,7 @@ export function unfollowAccount(id) {
     dispatch(unfollowAccountRequest(id));
 
     api(getState).post(`/api/v1/accounts/${id}/unfollow`).then(response => {
-      dispatch(unfollowAccountSuccess(response.data, getState().get('statuses')));
+      dispatch(unfollowAccountSuccess({relationship: response.data, statuses: getState().get('statuses')}));
     }).catch(error => {
       dispatch(unfollowAccountFail(error));
     });
@@ -176,15 +177,6 @@ export function followAccountRequest(id, locked) {
     type: ACCOUNT_FOLLOW_REQUEST,
     id,
     locked,
-    skipLoading: true,
-  };
-}
-
-export function followAccountSuccess(relationship, alreadyFollowing) {
-  return {
-    type: ACCOUNT_FOLLOW_SUCCESS,
-    relationship,
-    alreadyFollowing,
     skipLoading: true,
   };
 }
@@ -202,15 +194,6 @@ export function unfollowAccountRequest(id) {
   return {
     type: ACCOUNT_UNFOLLOW_REQUEST,
     id,
-    skipLoading: true,
-  };
-}
-
-export function unfollowAccountSuccess(relationship, statuses) {
-  return {
-    type: ACCOUNT_UNFOLLOW_SUCCESS,
-    relationship,
-    statuses,
     skipLoading: true,
   };
 }

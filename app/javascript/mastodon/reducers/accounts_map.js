@@ -1,7 +1,7 @@
 import { Map as ImmutableMap } from 'immutable';
 
 import { ACCOUNT_LOOKUP_FAIL } from '../actions/accounts';
-import { importAccounts } from '../actions/accounts_new';
+import { importAccounts } from '../actions/accounts_typed';
 
 export const normalizeForLookup = str => str.toLowerCase();
 

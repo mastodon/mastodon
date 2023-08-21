@@ -1,7 +1,13 @@
 import { Map as ImmutableMap } from 'immutable';
 
-import { importAccounts, revealAccount } from 'mastodon/actions/accounts_new';
+import {
+  followAccountSuccess,
+  unfollowAccountSuccess,
+  importAccounts,
+  revealAccount,
+} from 'mastodon/actions/accounts_typed';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
+import { me } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 import { createAccountFromServerJSON } from 'mastodon/models/account';
 
@@ -37,9 +43,38 @@ export function accountsReducer(
   state = initialState,
   action: typeof revealAccount,
 ) {
+  const currentUserId = me;
+
+  if (!currentUserId)
+    throw new Error(
+      'No current user (me) defined when calling `accountsReducer`',
+    );
+
   if (revealAccount.match(action))
     return state.setIn([action.payload.id, 'hidden'], false);
   else if (importAccounts.match(action))
     return normalizeAccounts(state, action.payload.accounts);
+  else if (followAccountSuccess.match(action))
+    return state
+      .update(
+        action.payload.relationship.id,
+        (account) => account?.update('followers_count', (n) => n + 1),
+      )
+      .update(
+        currentUserId,
+        (account) => account?.update('following_count', (n) => n + 1),
+      );
+  else if (unfollowAccountSuccess.match(action))
+    return state
+      .update(
+        action.payload.relationship.id,
+        (account) =>
+          account?.update('followers_count', (n) => Math.max(0, n - 1)),
+      )
+      .update(
+        currentUserId,
+        (account) =>
+          account?.update('following_count', (n) => Math.max(0, n - 1)),
+      );
   else return state;
 }

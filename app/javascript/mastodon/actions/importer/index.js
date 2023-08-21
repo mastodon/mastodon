@@ -1,4 +1,4 @@
-import { importAccounts } from '../accounts_new';
+import { importAccounts } from '../accounts_typed';
 
 import { normalizeStatus, normalizePoll } from './normalizer';
 

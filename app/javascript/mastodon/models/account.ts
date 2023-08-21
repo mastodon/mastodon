@@ -46,16 +46,7 @@ const AccountRoleFactory = ImmutableRecord<AccountRoleShape>({
 // Account
 export interface AccountShape
   extends Required<
-    Omit<
-      ApiAccountJSON,
-      | 'emojis'
-      | 'fields'
-      | 'roles'
-      | 'moved'
-      | 'followers_count'
-      | 'following_count'
-      | 'statuses_count'
-    >
+    Omit<ApiAccountJSON, 'emojis' | 'fields' | 'roles' | 'moved'>
   > {
   emojis: List<CustomEmoji>;
   fields: List<AccountField>;
@@ -69,7 +60,7 @@ export interface AccountShape
 
 export type Account = RecordOf<AccountShape>;
 
-export const accountDefaultValues = {
+export const accountDefaultValues: AccountShape = {
   acct: '',
   avatar: '',
   avatar_static: '',
@@ -94,6 +85,9 @@ export const accountDefaultValues = {
   uri: '',
   url: '',
   username: '',
+  followers_count: 0,
+  following_count: 0,
+  statuses_count: 0,
   hidden: false,
   suspended: false,
   memorial: false,
@@ -128,13 +122,7 @@ function createAccountField(
 }
 
 export function createAccountFromServerJSON(serverJSON: ApiAccountJSON) {
-  const {
-    followers_count,
-    following_count,
-    statuses_count,
-    moved,
-    ...accountJSON
-  } = serverJSON;
+  const { moved, ...accountJSON } = serverJSON;
 
   const emojiMap = makeEmojiMap(accountJSON.emojis);
 

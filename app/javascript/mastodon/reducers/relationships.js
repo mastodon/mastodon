@@ -4,10 +4,8 @@ import {
   submitAccountNote,
 } from '../actions/account_notes';
 import {
-  ACCOUNT_FOLLOW_SUCCESS,
   ACCOUNT_FOLLOW_REQUEST,
   ACCOUNT_FOLLOW_FAIL,
-  ACCOUNT_UNFOLLOW_SUCCESS,
   ACCOUNT_UNFOLLOW_REQUEST,
   ACCOUNT_UNFOLLOW_FAIL,
   ACCOUNT_BLOCK_SUCCESS,
@@ -19,6 +17,7 @@ import {
   RELATIONSHIPS_FETCH_SUCCESS,
   FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
   FOLLOW_REQUEST_REJECT_SUCCESS,
+  followAccountSuccess, unfollowAccountSuccess
 } from '../actions/accounts';
 import {
   DOMAIN_BLOCK_SUCCESS,
@@ -65,8 +64,9 @@ export default function relationships(state = initialState, action) {
     return state.setIn([action.id, 'following'], false);
   case ACCOUNT_UNFOLLOW_FAIL:
     return state.setIn([action.id, 'following'], true);
-  case ACCOUNT_FOLLOW_SUCCESS:
-  case ACCOUNT_UNFOLLOW_SUCCESS:
+  case followAccountSuccess.type:
+  case unfollowAccountSuccess.type:
+    return normalizeRelationship(state, action.payload.relationship);
   case ACCOUNT_BLOCK_SUCCESS:
   case ACCOUNT_UNBLOCK_SUCCESS:
   case ACCOUNT_MUTE_SUCCESS:
