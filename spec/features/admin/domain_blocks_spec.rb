@@ -57,6 +57,30 @@ describe 'blocking domains through the moderation interface' do
     end
   end
 
+  context 'when suspending a subdomain of an already-silenced domain' do
+    it 'presents a confirmation screen before suspending the domain' do
+      domain_block = Fabricate(:domain_block, domain: 'example.com', severity: 'silence')
+
+      visit new_admin_domain_block_path
+
+      fill_in 'domain_block_domain', with: 'subdomain.example.com'
+      select I18n.t('admin.domain_blocks.new.severity.suspend'), from: 'domain_block_severity'
+      click_on I18n.t('admin.domain_blocks.new.create')
+
+      # It presents a confirmation screen
+      expect(page).to have_title(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'subdomain.example.com'))
+
+      # Confirming creates the block
+      click_on I18n.t('admin.domain_blocks.confirm_suspension.confirm')
+
+      expect(DomainBlock.where(domain: 'subdomain.example.com', severity: 'suspend')).to exist
+
+      # And leaves the previous block alone
+      expect(domain_block.reload.severity).to eq 'silence'
+      expect(domain_block.reload.domain).to eq 'example.com'
+    end
+  end
+
   context 'when editing a domain block' do
     it 'presents a confirmation screen before suspending the domain' do
       domain_block = Fabricate(:domain_block, domain: 'example.com', severity: 'silence')
