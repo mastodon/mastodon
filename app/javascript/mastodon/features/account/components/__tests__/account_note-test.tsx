@@ -10,30 +10,22 @@ const intl = createIntl(
   createIntlCache(),
 );
 
-interface Props {
-  onSave: () => void;
-  value?: string;
-  accountId: string;
-}
-
-const TestHarness = ({ onSave, value = '', accountId }: Props) => {
-  return (
-    <RawIntlProvider value={intl}>
-      <AccountNote accountId={accountId} value={value} onSave={onSave} />
-    </RawIntlProvider>
-  );
-};
-
 it('should save changes if the account changes and the form is dirty', () => {
   const onSave = jest.fn();
   const { rerender, getByLabelText } = render(
-    <TestHarness accountId='1234' value='' onSave={onSave} />,
+    <RawIntlProvider value={intl}>
+      <AccountNote accountId='1234' value='' onSave={onSave} />
+    </RawIntlProvider>,
   );
   const textarea = getByLabelText('Note');
   fireEvent.change(textarea, { target: { value: 'My new note' } });
   expect(onSave).not.toBeCalled();
 
-  rerender(<TestHarness accountId='12345' value='' onSave={onSave} />);
+  rerender(
+    <RawIntlProvider value={intl}>
+      <AccountNote accountId='12345' value='' onSave={onSave} />
+    </RawIntlProvider>,
+  );
 
   expect(onSave).toHaveBeenCalledWith('My new note');
 });
@@ -41,7 +33,9 @@ it('should save changes if the account changes and the form is dirty', () => {
 it('should save changes if the component loses focus and it is dirty', () => {
   const onSave = jest.fn();
   const { getByLabelText } = render(
-    <TestHarness accountId='1234' value='' onSave={onSave} />,
+    <RawIntlProvider value={intl}>
+      <AccountNote accountId='1234' value='' onSave={onSave} />
+    </RawIntlProvider>,
   );
   const textarea = getByLabelText('Note');
   fireEvent.change(textarea, { target: { value: 'My new note' } });
@@ -55,7 +49,9 @@ it('should save changes if the component loses focus and it is dirty', () => {
 it('should save changes if the component is unmounting', () => {
   const onSave = jest.fn();
   const { getByLabelText, unmount } = render(
-    <TestHarness accountId='1234' value='' onSave={onSave} />,
+    <RawIntlProvider value={intl}>
+      <AccountNote accountId='1234' value='' onSave={onSave} />
+    </RawIntlProvider>,
   );
   const textarea = getByLabelText('Note');
   fireEvent.change(textarea, { target: { value: 'My new note' } });
@@ -69,7 +65,9 @@ it('should save changes if the component is unmounting', () => {
 it('should discard changes when escape is pressed', () => {
   const onSave = jest.fn();
   const { getByLabelText } = render(
-    <TestHarness accountId='1234' value='Initial Note' onSave={onSave} />,
+    <RawIntlProvider value={intl}>
+      <AccountNote accountId='1234' value='Initial Note' onSave={onSave} />
+    </RawIntlProvider>,
   );
   let textarea = getByLabelText('Note') as HTMLTextAreaElement;
 
@@ -86,7 +84,9 @@ it('should discard changes when escape is pressed', () => {
 it('saves changes and drops focus when enter is pressed with CTRL', () => {
   const onSave = jest.fn();
   const { getByLabelText } = render(
-    <TestHarness accountId='1234' value='Initial Note' onSave={onSave} />,
+    <RawIntlProvider value={intl}>
+      <AccountNote accountId='1234' value='Initial Note' onSave={onSave} />
+    </RawIntlProvider>,
   );
   const textarea = getByLabelText('Note') as HTMLTextAreaElement;
 
@@ -102,7 +102,9 @@ it('saves changes and drops focus when enter is pressed with CTRL', () => {
 it('saves changes and drops focus when enter is pressed with Meta', () => {
   const onSave = jest.fn();
   const { getByLabelText } = render(
-    <TestHarness accountId='1234' value='Initial Note' onSave={onSave} />,
+    <RawIntlProvider value={intl}>
+      <AccountNote accountId='1234' value='Initial Note' onSave={onSave} />
+    </RawIntlProvider>,
   );
   const textarea = getByLabelText('Note') as HTMLTextAreaElement;
 
@@ -118,7 +120,9 @@ it('saves changes and drops focus when enter is pressed with Meta', () => {
 it('does not save changes when enter is pressed without a modifier', () => {
   const onSave = jest.fn();
   const { getByLabelText } = render(
-    <TestHarness accountId='1234' value='Initial Note' onSave={onSave} />,
+    <RawIntlProvider value={intl}>
+      <AccountNote accountId='1234' value='Initial note' onSave={onSave} />
+    </RawIntlProvider>,
   );
   let textarea = getByLabelText('Note') as HTMLTextAreaElement;
 
@@ -134,7 +138,9 @@ it('does not save changes when enter is pressed without a modifier', () => {
 it('updates the textarea if the value provided via props changes', () => {
   const onSave = jest.fn();
   const { rerender, getByLabelText } = render(
-    <TestHarness accountId='1234' value='Initial note' onSave={onSave} />,
+    <RawIntlProvider value={intl}>
+      <AccountNote accountId='1234' value='Initial note' onSave={onSave} />
+    </RawIntlProvider>,
   );
   const textarea = getByLabelText('Note') as HTMLTextAreaElement;
   expect(textarea).toHaveValue('Initial note');
@@ -143,7 +149,9 @@ it('updates the textarea if the value provided via props changes', () => {
   expect(textarea).toHaveValue('My new note');
 
   rerender(
-    <TestHarness accountId='1234' value='Secondary note' onSave={onSave} />,
+    <RawIntlProvider value={intl}>
+      <AccountNote accountId='1234' value='Secondary note' onSave={onSave} />
+    </RawIntlProvider>,
   );
   expect(textarea).toHaveValue('Secondary note');
 });
