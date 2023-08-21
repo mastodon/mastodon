@@ -29,16 +29,7 @@ log.level = process.env.LOG_LEVEL || 'verbose';
  */
 const redisUrlToClient = async (defaultConfig, redisUrl) => {
   const config = defaultConfig;
-
-  let client;
-
-  if (!redisUrl) {
-    client = new Redis(config);
-  } else if (redisUrl.startsWith('unix://')) {
-    client = new Redis(redisUrl.slice(7));
-  } else {
-    client = new Redis(redisUrl);
-  }
+  const  client = new Redis(redisUrl, config);
 
   client.on('error', (err) => log.error('Redis Client Error!', err));
 
@@ -141,12 +132,19 @@ const pgConfigFromEnv = (env) => {
  */
 const redisConfigFromEnv = (env) => {
   const redisNamespace = env.REDIS_NAMESPACE || null;
+  let path = null;
+  if (env.REDIS_URL.startsWith('unix://')) {
+    path = env.REDIS_URL.slice(7);
+  }
 
   const redisParams = {
     host: env.REDIS_HOST || '127.0.0.1',
     port: env.REDIS_PORT || 6379,
-    database: env.REDIS_DB || 0,
-    password: env.REDIS_PASSWORD || undefined,
+    options: {
+	  path: path,
+	  db: env.REDIS_DB || 0,
+      password: env.REDIS_PASSWORD || undefined,
+	}
   };
 
   if (redisNamespace) {
