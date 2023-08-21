@@ -29,6 +29,7 @@
 
   "remoteEnv": {
     "LOCAL_DOMAIN": "${localEnv:CODESPACE_NAME}-3000.app.github.dev",
+    "LOCAL_HTTPS": "true",
     "STREAMING_API_BASE_URL": "https://${localEnv:CODESPACE_NAME}-4000.app.github.dev",
     "DISABLE_FORGERY_REQUEST_PROTECTION": "true",
     "ES_ENABLED": "",
