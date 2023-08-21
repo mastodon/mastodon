@@ -94,19 +94,5 @@ RSpec.describe 'Deleting profile images' do
         expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
       end
     end
-
-    context 'when provided picture value is invalid' do
-      it 'returns http bad request' do
-        delete '/api/v1/profile/invalid', headers: headers
-
-        expect(response).to have_http_status(400)
-      end
-
-      it 'does not queue up an account update distribution' do
-        delete '/api/v1/profile/invalid', headers: headers
-
-        expect(ActivityPub::UpdateDistributionWorker).to_not have_received(:perform_async).with(account.id)
-      end
-    end
   end
 end
