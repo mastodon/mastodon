@@ -6,8 +6,6 @@ describe 'Admin::CustomEmojis' do
   let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
   before do
-    driven_by(:rack_test)
-
     sign_in current_user
   end
 
