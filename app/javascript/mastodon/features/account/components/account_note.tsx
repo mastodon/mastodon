@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -8,22 +8,35 @@ import Textarea from 'react-textarea-autosize';
 import { InlineAlert } from './inline-alert';
 
 const messages = defineMessages({
-  placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
+  placeholder: {
+    id: 'account_note.placeholder',
+    defaultMessage: 'Click to add a note',
+  },
 });
 
-export const AccountNote = ({ accountId, value: propsValue, onSave }) => {
+interface Props {
+  accountId: string | null;
+  value: string | null;
+  onSave(value: string): void;
+}
+
+export const AccountNote = ({
+  accountId,
+  value: propsValue,
+  onSave,
+}: Props) => {
   const intl = useIntl();
   const [value, setValue] = useState(propsValue);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
-  const textarea = useRef(null);
+  const textarea = useRef<HTMLTextAreaElement>(null);
   const prevAccountId = useRef(accountId);
 
   const isDirty = !saving && value !== propsValue;
   const _save = useCallback(
     (showMessage = false) => {
       // If our form is not dirty, we do not save changes.
-      if (!isDirty) {
+      if (!isDirty || value === null) {
         return;
       }
 
@@ -32,10 +45,12 @@ export const AccountNote = ({ accountId, value: propsValue, onSave }) => {
 
       if (showMessage) {
         setSaved(true);
-        setTimeout(() => setSaved(false), 2000);
+        setTimeout(() => {
+          setSaved(false);
+        }, 2000);
       }
     },
-    [value, onSave, isDirty]
+    [value, onSave, isDirty],
   );
 
   const prevPropsValue = useRef(propsValue);
@@ -66,13 +81,16 @@ export const AccountNote = ({ accountId, value: propsValue, onSave }) => {
 
   useOnUnmount(_save);
 
-  const handleChange = useCallback((e) => {
-    setValue(e.target.value);
-    setSaving(false);
-  }, []);
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setValue(e.target.value);
+      setSaving(false);
+    },
+    [],
+  );
 
   const handleKeyDown = useCallback(
-    (e) => {
+    (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
       if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
         _save(true);
@@ -84,10 +102,12 @@ export const AccountNote = ({ accountId, value: propsValue, onSave }) => {
         textarea.current?.blur();
       }
     },
-    [_save, propsValue]
+    [_save, propsValue],
   );
 
-  const handleBlur = useCallback(() => _save(false), [_save]);
+  const handleBlur = useCallback(() => {
+    _save(false);
+  }, [_save]);
 
   if (accountId === null) {
     return null;
@@ -110,7 +130,7 @@ export const AccountNote = ({ accountId, value: propsValue, onSave }) => {
         className='account__header__account-note__content'
         disabled={propsValue === null || value === null}
         placeholder={intl.formatMessage(messages.placeholder)}
-        value={value}
+        value={value ?? ''}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         onBlur={handleBlur}
@@ -121,12 +141,13 @@ export const AccountNote = ({ accountId, value: propsValue, onSave }) => {
 };
 
 AccountNote.propTypes = {
-  accountId: PropTypes.string.isRequired,
+  accountId: PropTypes.string,
   value: PropTypes.string,
-  onSave: PropTypes.func.isRequired
+  onSave: PropTypes.func.isRequired,
 };
 
-const useOnUnmount = (callback) => {
+// A hook which fires a function right before the component is unmounted.
+const useOnUnmount = (callback: () => void) => {
   const isUnmounting = useRef(false);
   useEffect(() => {
     return () => {
@@ -141,4 +162,4 @@ const useOnUnmount = (callback) => {
       }
     };
   }, [callback]);
-}
+};
