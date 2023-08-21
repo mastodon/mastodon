@@ -170,11 +170,6 @@
     display: block;
     width: 100%;
   }
-
-  .layout-multiple-columns &.button--with-bell {
-    font-size: 12px;
-    padding: 0 8px;
-  }
 }
 
 .column__wrapper {
@@ -1116,7 +1111,8 @@ body > [data-popper-placement] {
     .audio-player,
     .attachment-list,
     .picture-in-picture-placeholder,
-    .status-card {
+    .status-card,
+    .hashtag-bar {
       margin-inline-start: $thread-margin;
       width: calc(100% - ($thread-margin));
     }
@@ -9258,6 +9254,29 @@ noscript {
       font-size: 22px;
       line-height: 33px;
       font-weight: 700;
+    }
+  }
+}
+
+.hashtag-bar {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  gap: 4px;
+
+  a {
+    display: inline-flex;
+    border-radius: 4px;
+    background: rgba($highlight-text-color, 0.2);
+    color: $highlight-text-color;
+    padding: 0.4em 0.6em;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: rgba($highlight-text-color, 0.3);
     }
   }
 }
