@@ -27,8 +27,8 @@ log.level = process.env.LOG_LEVEL || 'verbose';
  * @param {Object.<string, any>} environment
  */
 const newRedisClient = async (environment) => {
-  const { redisParams } = redisConfigFromEnv(environment);
-  const client = new Redis(redisParams);
+  const { redisParams, redisUrl } = redisConfigFromEnv(environment);
+  const client = new Redis(redisUrl, redisParams);
   client.on('error', (err) => log.error('Redis Client Error!', err));
 
   return client;
@@ -148,11 +148,9 @@ const redisConfigFromEnv = (env) => {
     redisParams.keyPrefix = redisNamespace;
   }
 
-  const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
-
   return {
     redisParams,
-    redisPrefix,
+    redisUrl: env.REDIS_URL,
   };
 };
 
