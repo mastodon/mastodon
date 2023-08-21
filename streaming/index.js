@@ -1353,7 +1353,7 @@ const startServer = async () => {
     const location = url.parse(req.url, true);
 
     req.requestId = uuid.v4();
-    req.remoteAddress = ws._socket.remoteAddress;
+    req.remoteAddress = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.connection.remoteAddress;
 
     ws.isAlive = true;
 
@@ -1392,7 +1392,7 @@ const startServer = async () => {
 
     ws.on('message', (data, isBinary) => {
       if (isBinary) {
-        log.warn('socket', 'Received binary data, closing connection');
+        log.warn('socket', `Received binary data from ${req.remoteAddress} using ${req.headers['user-agent']}, closing connection`);
         ws.close(1003, 'The mastodon streaming server does not support binary messages');
         return;
       }
