@@ -128,11 +128,11 @@ const Firehose = ({ feedType, multiColumn }) => {
 
   const prependBanner = feedType === 'community' ? (
     <DismissableBanner id='community_timeline'>
-      {/* <FormattedMessage
+      <FormattedMessage
         id='dismissable_banner.community_timeline'
         defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.'
         values={{ domain }}
-      /> */}
+      />
     </DismissableBanner>
   ) : (
     <DismissableBanner id='public_timeline'>
@@ -185,7 +185,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         </div> */}
 
         <StatusListContainer
-          prepend={prependBanner}
+        //   prepend={prependBanner}
           timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
           onLoadMore={handleLoadMore}
           trackScroll
