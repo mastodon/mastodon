@@ -69,6 +69,15 @@ const isLinkMisleading = (link) => {
   return !(textMatchesTarget(text, origin, host) || textMatchesTarget(text.toLowerCase(), origin, host));
 };
 
+/**
+ *
+ * @param {any} status
+ * @returns {string}
+ */
+export function getStatusContent(status) {
+  return status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
+}
+
 class TranslateButton extends PureComponent {
 
   static propTypes = {
@@ -118,6 +127,7 @@ class StatusContent extends PureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
+    statusContent: PropTypes.string,
     expanded: PropTypes.bool,
     collapsed: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
@@ -327,6 +337,7 @@ class StatusContent extends PureComponent {
       tagLinks,
       rewriteMentions,
       intl,
+      statusContent,
     } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
@@ -334,7 +345,7 @@ class StatusContent extends PureComponent {
     const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
     const renderTranslate = this.props.onTranslate && this.context.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
 
-    const content = { __html: status.getIn(['translation', 'contentHtml']) || status.get('contentHtml') };
+    const content = { __html: statusContent ?? getStatusContent(status) };
     const spoilerContent = { __html: status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml') };
     const language = status.getIn(['translation', 'language']) || status.get('language');
     const classNames = classnames('status__content', {
