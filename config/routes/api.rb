@@ -95,6 +95,7 @@ namespace :api, format: false do
     resources :filters, only: [:index, :create, :show, :update, :destroy]
     resources :endorsements, only: [:index]
     resources :markers, only: [:index, :create]
+    resources :profile, only: :destroy, param: :image, controller: 'profiles'
 
     namespace :apps do
       get :verify_credentials, to: 'credentials#show'
