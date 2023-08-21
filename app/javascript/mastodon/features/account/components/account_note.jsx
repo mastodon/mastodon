@@ -1,50 +1,15 @@
 import PropTypes from 'prop-types';
-import { useCallback, useEffect, useRef, useState, memo } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import Textarea from 'react-textarea-autosize';
 
+import { InlineAlert } from './inline-alert';
+
 const messages = defineMessages({
   placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
 });
-
-const InlineAlert = memo(({ show }) => {
-  const [mountMessage, setMountMessage] = useState(false);
-  const TRANSITION_DELAY = 200;
-
-  // TODO(trinitroglycerin): This effect changes the display of a message based on a flag, and hides it after a delay.
-  // It occurs to me that this is probably best represented with CSS handling the transition between the two states, and not
-  // handling this in JavaScript with the mountMessage state (which is the same value as 'show', but with a TRANSITION_DELAY lag).
-  useEffect(() => {
-    // Because show is a boolean value, this effect will only ever be triggered if it flips.
-    // We therefore do not need to store the previous value because we know the previous value will
-    // always be the opposite of the current value.
-    if (show) {
-      setMountMessage(true);
-      // A bare function is returned here so we can return a cleanup function later.
-      return () => { };
-    }
-
-    const handle = setTimeout(() => {
-      setMountMessage(false);
-    }, TRANSITION_DELAY);
-
-    return () => {
-      clearTimeout(handle);
-    };
-  }, [show]);
-
-  return (
-    <span aria-live='polite' role='status' className='inline-alert' style={{ opacity: show ? 1 : 0 }}>
-      {mountMessage && <FormattedMessage id='generic.saved' defaultMessage='Saved' />}
-    </span>
-  );
-});
-
-InlineAlert.propTypes = {
-  show: PropTypes.bool,
-};
 
 export const AccountNote = ({ accountId, value: propsValue, onSave }) => {
   const intl = useIntl();
@@ -135,7 +100,9 @@ export const AccountNote = ({ accountId, value: propsValue, onSave }) => {
           id='account.account_note_header'
           defaultMessage='Note'
         />{' '}
-        <InlineAlert show={saved} />
+        <InlineAlert show={saved}>
+          <FormattedMessage id='generic.saved' defaultMessage='Saved' />
+        </InlineAlert>
       </label>
 
       <Textarea
