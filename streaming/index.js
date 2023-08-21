@@ -6,12 +6,12 @@ const url = require('url');
 
 const dotenv = require('dotenv');
 const express = require('express');
+const Redis = require('ioredis');
 const { JSDOM } = require('jsdom');
 const log = require('npmlog');
 const pg = require('pg');
 const dbUrlToConfig = require('pg-connection-string').parse;
 const metrics = require('prom-client');
-const redis = require('redis');
 const uuid = require('uuid');
 const WebSocket = require('ws');
 
@@ -33,21 +33,14 @@ const redisUrlToClient = async (defaultConfig, redisUrl) => {
   let client;
 
   if (!redisUrl) {
-    client = redis.createClient(config);
+    client = new Redis(config);
   } else if (redisUrl.startsWith('unix://')) {
-    client = redis.createClient(Object.assign(config, {
-      socket: {
-        path: redisUrl.slice(7),
-      },
-    }));
+    client = new Redis(redisUrl.slice(7));
   } else {
-    client = redis.createClient(Object.assign(config, {
-      url: redisUrl,
-    }));
+    client = new Redis(redisUrl);
   }
 
   client.on('error', (err) => log.error('Redis Client Error!', err));
-  await client.connect();
 
   return client;
 };
@@ -150,10 +143,8 @@ const redisConfigFromEnv = (env) => {
   const redisNamespace = env.REDIS_NAMESPACE || null;
 
   const redisParams = {
-    socket: {
-      host: env.REDIS_HOST || '127.0.0.1',
-      port: env.REDIS_PORT || 6379,
-    },
+    host: env.REDIS_HOST || '127.0.0.1',
+    port: env.REDIS_PORT || 6379,
     database: env.REDIS_DB || 0,
     password: env.REDIS_PASSWORD || undefined,
   };
