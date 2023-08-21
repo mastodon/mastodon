@@ -1,10 +1,15 @@
-import api from '../api';
+import api, { getLinks } from '../api';
 
+import { fetchRelationships } from './accounts';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
 
 export const REBLOG_REQUEST = 'REBLOG_REQUEST';
 export const REBLOG_SUCCESS = 'REBLOG_SUCCESS';
 export const REBLOG_FAIL    = 'REBLOG_FAIL';
+
+export const REBLOGS_EXPAND_REQUEST = 'REBLOGS_EXPAND_REQUEST';
+export const REBLOGS_EXPAND_SUCCESS = 'REBLOGS_EXPAND_SUCCESS';
+export const REBLOGS_EXPAND_FAIL = 'REBLOGS_EXPAND_FAIL';
 
 export const FAVOURITE_REQUEST = 'FAVOURITE_REQUEST';
 export const FAVOURITE_SUCCESS = 'FAVOURITE_SUCCESS';
@@ -273,8 +278,10 @@ export function fetchReblogs(id) {
     dispatch(fetchReblogsRequest(id));
 
     api(getState).get(`/api/v1/statuses/${id}/reblogged_by`).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedAccounts(response.data));
-      dispatch(fetchReblogsSuccess(id, response.data));
+      dispatch(fetchReblogsSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
       dispatch(fetchReblogsFail(id, error));
     });
@@ -288,17 +295,62 @@ export function fetchReblogsRequest(id) {
   };
 }
 
-export function fetchReblogsSuccess(id, accounts) {
+export function fetchReblogsSuccess(id, accounts, next) {
   return {
     type: REBLOGS_FETCH_SUCCESS,
     id,
     accounts,
+    next,
   };
 }
 
 export function fetchReblogsFail(id, error) {
   return {
     type: REBLOGS_FETCH_FAIL,
+    id,
+    error,
+  };
+}
+
+export function expandReblogs(id) {
+  return (dispatch, getState) => {
+    const url = getState().getIn(['user_lists', 'reblogged_by', id, 'next']);
+    if (url === null) {
+      return;
+    }
+
+    dispatch(expandReblogsRequest(id));
+
+    api(getState).get(url).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(expandReblogsSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => dispatch(expandReblogsFail(id, error)));
+  };
+}
+
+export function expandReblogsRequest(id) {
+  return {
+    type: REBLOGS_EXPAND_REQUEST,
+    id,
+  };
+}
+
+export function expandReblogsSuccess(id, accounts, next) {
+  return {
+    type: REBLOGS_EXPAND_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+}
+
+export function expandReblogsFail(id, error) {
+  return {
+    type: REBLOGS_EXPAND_FAIL,
+    id,
     error,
   };
 }
