@@ -184,7 +184,7 @@ const Firehose = ({ feedType, multiColumn }) => {
           </NavLink>
         </div> */}
 
-        {/* <StatusListContainer
+        <StatusListContainer
           prepend={prependBanner}
           timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
           onLoadMore={handleLoadMore}
@@ -192,7 +192,7 @@ const Firehose = ({ feedType, multiColumn }) => {
           scrollKey='firehose'
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
-        /> */}
+        />
       </div>
 
       <Helmet>
