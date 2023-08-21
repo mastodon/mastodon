@@ -22,25 +22,7 @@ def setup_redis_env_url(prefix = nil, defaults = true)
   end
 end
 
-setup_redis_env_url
-setup_redis_env_url(:cache, false)
-setup_redis_env_url(:sidekiq, false)
-
-namespace         = ENV.fetch('REDIS_NAMESPACE', nil)
-cache_namespace   = namespace ? "#{namespace}_cache" : 'cache'
-sidekiq_namespace = namespace
-
-REDIS_CACHE_PARAMS = {
-  driver: :hiredis,
-  url: ENV['CACHE_REDIS_URL'],
-  expires_in: 10.minutes,
-  namespace: cache_namespace,
-  pool_size: Sidekiq.server? ? Sidekiq[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
-  pool_timeout: 5,
-  connect_timeout: 5,
-}.freeze
-
-if ENV.fetch('SIDEKIQ_REDIS_SENTINEL', '').present?
+def setup_sidekiq_sentinel
   sentinel_string = ENV.fetch('SIDEKIQ_REDIS_SENTINEL')
   sentinel_servers = sentinel_string.split(',').map do |server|
     host, port = server.split(':')
@@ -62,6 +44,29 @@ if ENV.fetch('SIDEKIQ_REDIS_SENTINEL', '').present?
     end
   end
 
+  sentinel_servers
+end
+
+setup_redis_env_url
+setup_redis_env_url(:cache, false)
+setup_redis_env_url(:sidekiq, false)
+
+namespace         = ENV.fetch('REDIS_NAMESPACE', nil)
+cache_namespace   = namespace ? "#{namespace}_cache" : 'cache'
+sidekiq_namespace = namespace
+
+REDIS_CACHE_PARAMS = {
+  driver: :hiredis,
+  url: ENV['CACHE_REDIS_URL'],
+  expires_in: 10.minutes,
+  namespace: cache_namespace,
+  pool_size: Sidekiq.server? ? Sidekiq[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
+  pool_timeout: 5,
+  connect_timeout: 5,
+}.freeze
+
+if ENV.fetch('SIDEKIQ_REDIS_SENTINEL', '').present?
+  sentinel_servers = setup_sidekiq_sentinel
   REDIS_SIDEKIQ_PARAMS = {
     driver: :hiredis,
     url: ENV['SIDEKIQ_REDIS_URL'],
