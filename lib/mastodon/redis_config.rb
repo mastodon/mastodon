@@ -20,25 +20,20 @@ def setup_redis_env_url(prefix = nil, defaults = true)
       end.normalize.to_str
     end
   end
-end
 
-def setup_sidekiq_sentinel
-  sentinel_string = ENV.fetch('SIDEKIQ_REDIS_SENTINEL')
-  sentinel_servers = sentinel_string.split(',').map do |server|
-    host, port = server.split(':')
-    { host: host, port: port.to_i }
+  return unless ENV["#{prefix}REDIS_SENTINEL"].present
+
+  sentinel_master = ENV.fetch("#{prefix}REDIS_SENTINEL_MASTER") { 'mymaster' if defaults }
+
+  unless ENV["#{prefix}REDIS_SENTINEL"].include? ','
+    ips = Resolv.getaddresses(ENV["#{prefix}REDIS_SENTINEL"])
+    ENV["#{prefix}REDIS_SENTINEL"] = ips.map do |ip|
+      port = ENV.fetch("#{prefix}REDIS_SENTINEL_PORT", '26379')
+      "#{ip}:#{port}"
+    end.join(',')
   end
 
-  if sentinel_servers.size == 1
-    sentinel_server = sentinel_servers.first
-    hostname = sentinel_server[:host]
-    ips = Resolv.getaddresses(hostname)
-    sentinel_servers = ips.map { |ip| { host: ip, port: sentinel_server[:port] } }
-  end
-
-  ENV['SIDEKIQ_REDIS_URL'] = "redis://:#{ENV['SIDEKIQ_REDIS_PASSWORD']}@#{ENV.fetch('SIDEKIQ_REDIS_SENTINEL_MASTER', 'mymaster')}"
-
-  sentinel_servers
+  ENV["#{prefix}REDIS_URL"] = "redis://:#{password}@#{sentinel_master}"
 end
 
 setup_redis_env_url
@@ -57,23 +52,28 @@ REDIS_CACHE_PARAMS = {
   pool_size: Sidekiq.server? ? Sidekiq[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
   pool_timeout: 5,
   connect_timeout: 5,
-}.freeze
 
-if ENV.fetch('SIDEKIQ_REDIS_SENTINEL', '').present?
-  sentinel_servers = setup_sidekiq_sentinel
-  REDIS_SIDEKIQ_PARAMS = {
-    driver: :hiredis,
-    url: ENV['SIDEKIQ_REDIS_URL'],
-    master_name: ENV.fetch('SIDEKIQ_REDIS_SENTINEL_MASTER', 'mymaster'),
-    sentinels: sentinel_servers,
-    namespace: sidekiq_namespace,
-  }.freeze
-else
-  REDIS_SIDEKIQ_PARAMS = {
-    driver: :hiredis,
-    url: ENV['SIDEKIQ_REDIS_URL'],
-    namespace: sidekiq_namespace,
-  }.freeze
-end
+  master_name: (ENV.fetch('CACHE_REDIS_SENTINEL_MASTER', 'mymaster') if ENV['CACHE_REDIS_SENTINEL']),
+  sentinels: (if ENV['CACHE_REDIS_SENTINEL']
+                ENV['CACHE_REDIS_SENTINEL'].split(',').map do |server|
+                  host, port = server.split(':')
+                  { host: host, port: port.to_i }
+                end
+              end),
+}.compact.freeze
+
+REDIS_SIDEKIQ_PARAMS = {
+  driver: :hiredis,
+  url: ENV['SIDEKIQ_REDIS_URL'],
+  namespace: sidekiq_namespace,
+
+  master_name: (ENV.fetch('SIDEKIQ_REDIS_SENTINEL_MASTER', 'mymaster') if ENV['SIDEKIQ_REDIS_SENTINEL']),
+  sentinels: (if ENV['SIDEKIQ_REDIS_SENTINEL']
+                ENV['SIDEKIQ_REDIS_SENTINEL'].split(',').map do |server|
+                  host, port = server.split(':')
+                  { host: host, port: port.to_i }
+                end
+              end),
+}.compact.freeze
 
 ENV['REDIS_NAMESPACE'] = "mastodon_test#{ENV['TEST_ENV_NUMBER']}" if Rails.env.test?
