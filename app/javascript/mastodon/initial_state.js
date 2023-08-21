@@ -47,7 +47,7 @@
 
 /**
  * @typedef InitialState
- * @property {Record<string, import("./models/account").Account>} accounts
+ * @property {Record<string, import("./api_types/accounts").ApiAccountJSON>} accounts
  * @property {InitialStateLanguage[]} languages
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
