@@ -340,7 +340,7 @@ const setInputDisabled = (input, disabled) => {
 };
 
 delegate(document, '#account_statuses_cleanup_policy_enabled', 'change', ({ target }) => {
-  [].forEach.call(target.form.querySelectorAll('input:not([type=hidden],#account_statuses_cleanup_policy_enabled), select'), (input) => {
+  target.form.querySelectorAll('input:not([type=hidden],#account_statuses_cleanup_policy_enabled), select').forEach((input) => {
     setInputDisabled(input, !target.checked);
   });
 });
