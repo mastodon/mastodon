@@ -826,6 +826,8 @@ en:
       elasticsearch_preset_single_node:
         action: See documentation
         message_html: Your Elasticsearch cluster has only one node, <code>ES_PRESET</code> should be set to <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Your Elasticsearch system index is outdated due to a setting change. Please run <code>tootctl search deploy --reset-chewy</code> to update it.
       elasticsearch_running_check:
         message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
       elasticsearch_version_check:

@@ -20,6 +20,15 @@ describe Admin::SystemCheck::ElasticsearchCheck do
           InstancesIndex.index_name => InstancesIndex.mappings_hash.deep_stringify_keys,
           TagsIndex.index_name => TagsIndex.mappings_hash.deep_stringify_keys,
         })
+        allow(Chewy.client.indices).to receive(:get_settings).and_return({
+          'chewy_specifications' => {
+            'settings' => {
+              'index' => {
+                'number_of_replicas' => 0,
+              },
+            },
+          },
+        })
       end
 
       context 'when running version is present and high enough' do
