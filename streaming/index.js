@@ -24,13 +24,11 @@ dotenv.config({
 log.level = process.env.LOG_LEVEL || 'verbose';
 
 /**
- * @param {Object.<string, any>} defaultConfig
- * @param {string} redisUrl
+ * @param {Object.<string, any>} environment
  */
-const redisUrlToClient = async (defaultConfig, redisUrl) => {
-  const config = defaultConfig;
-  const  client = new Redis(redisUrl, config);
-
+const newRedisClient = async (environment) => {
+  const { redisParams } = redisConfigFromEnv(environment);
+  const client = new Redis(redisParams);
   client.on('error', (err) => log.error('Redis Client Error!', err));
 
   return client;
@@ -132,23 +130,22 @@ const pgConfigFromEnv = (env) => {
  */
 const redisConfigFromEnv = (env) => {
   const redisNamespace = env.REDIS_NAMESPACE || null;
-  let path = null;
-  if (env.REDIS_URL.startsWith('unix://')) {
-    path = env.REDIS_URL.slice(7);
-  }
 
   const redisParams = {
     host: env.REDIS_HOST || '127.0.0.1',
     port: env.REDIS_PORT || 6379,
     options: {
-	  path: path,
-	  db: env.REDIS_DB || 0,
+      db: env.REDIS_DB || 0,
       password: env.REDIS_PASSWORD || undefined,
-	}
+    }
   };
 
+  if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
+    redisParams.path = env.REDIS_URL.slice(7);
+  }
+
   if (redisNamespace) {
-    redisParams.namespace = redisNamespace;
+    redisParams.keyPrefix = redisNamespace;
   }
 
   const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
@@ -156,7 +153,6 @@ const redisConfigFromEnv = (env) => {
   return {
     redisParams,
     redisPrefix,
-    redisUrl: env.REDIS_URL,
   };
 };
 
@@ -168,15 +164,13 @@ const startServer = async () => {
   const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
   const server = http.createServer(app);
 
-  const { redisParams, redisUrl, redisPrefix } = redisConfigFromEnv(process.env);
-
   /**
    * @type {Object.<string, Array.<function(Object<string, any>): void>>}
    */
   const subs = {};
 
-  const redisSubscribeClient = await redisUrlToClient(redisParams, redisUrl);
-  const redisClient = await redisUrlToClient(redisParams, redisUrl);
+  const redisSubscribeClient = await newRedisClient(process.env);
+  const redisClient = await newRedisClient(process.env);
 
   // Collect metrics from Node.js
   metrics.collectDefaultMetrics();
@@ -253,7 +247,7 @@ const startServer = async () => {
     const interval = 6 * 60;
 
     const tellSubscribed = () => {
-      channels.forEach(channel => redisClient.set(`${redisPrefix}subscribed:${channel}`, '1', 'EX', interval * 3));
+      channels.forEach(channel => redisClient.set(`subscribed:${channel}`, '1', 'EX', interval * 3));
     };
 
     tellSubscribed();
@@ -599,14 +593,14 @@ const startServer = async () => {
     });
 
     res.on('close', () => {
-      unsubscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-      unsubscribe(`${redisPrefix}${systemChannelId}`, listener);
+      unsubscribe(`${accessTokenChannelId}`, listener);
+      unsubscribe(`${systemChannelId}`, listener);
 
       connectedChannels.labels({ type: 'eventsource', channel: 'system' }).dec(2);
     });
 
-    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-    subscribe(`${redisPrefix}${systemChannelId}`, listener);
+    subscribe(`${accessTokenChannelId}`, listener);
+    subscribe(`${systemChannelId}`, listener);
 
     connectedChannels.labels({ type: 'eventsource', channel: 'system' }).inc(2);
   };
@@ -911,11 +905,11 @@ const startServer = async () => {
     };
 
     ids.forEach(id => {
-      subscribe(`${redisPrefix}${id}`, listener);
+      subscribe(`${id}`, listener);
     });
 
     if (typeof attachCloseHandler === 'function') {
-      attachCloseHandler(ids.map(id => `${redisPrefix}${id}`), listener);
+      attachCloseHandler(ids.map(id => `${id}`), listener);
     }
 
     return listener;
@@ -1262,7 +1256,7 @@ const startServer = async () => {
     }
 
     channelIds.forEach(channelId => {
-      unsubscribe(`${redisPrefix}${channelId}`, subscription.listener);
+      unsubscribe(`${channelId}`, subscription.listener);
     });
 
     connectedChannels.labels({ type: 'websocket', channel: subscription.channelName }).dec();
@@ -1306,8 +1300,8 @@ const startServer = async () => {
 
     });
 
-    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-    subscribe(`${redisPrefix}${systemChannelId}`, listener);
+    subscribe(`${accessTokenChannelId}`, listener);
+    subscribe(`${systemChannelId}`, listener);
 
     subscriptions[accessTokenChannelId] = {
       channelName: 'system',
