@@ -196,7 +196,7 @@ describe WellKnown::WebfingerController do
         perform_show!
       end
 
-      it 'returns avatar in response' do
+      it 'does not return avatar in response' do
         json = body_as_json
 
         avatar_link = json[:links].find { |link| link[:rel] == 'http://webfinger.net/rel/avatar' }
