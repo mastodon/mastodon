@@ -29,8 +29,7 @@ RSpec.describe TranslateStatusService, type: :service do
         end
       end
 
-      allow(TranslationService).to receive(:configured?).and_return(true)
-      allow(TranslationService).to receive(:configured).and_return(translation_service)
+      allow(TranslationService).to receive_messages(configured?: true, configured: translation_service)
     end
 
     it 'returns translated status content' do
