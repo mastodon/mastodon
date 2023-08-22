@@ -591,14 +591,14 @@ const startServer = async () => {
     });
 
     res.on('close', () => {
-      unsubscribe(`${accessTokenChannelId}`, listener);
-      unsubscribe(`${systemChannelId}`, listener);
+      unsubscribe(accessTokenChannelId, listener);
+      unsubscribe(systemChannelId, listener);
 
       connectedChannels.labels({ type: 'eventsource', channel: 'system' }).dec(2);
     });
 
-    subscribe(`${accessTokenChannelId}`, listener);
-    subscribe(`${systemChannelId}`, listener);
+    subscribe(accessTokenChannelId, listener);
+    subscribe(systemChannelId, listener);
 
     connectedChannels.labels({ type: 'eventsource', channel: 'system' }).inc(2);
   };
@@ -903,11 +903,11 @@ const startServer = async () => {
     };
 
     ids.forEach(id => {
-      subscribe(`${id}`, listener);
+      subscribe(id, listener);
     });
 
     if (typeof attachCloseHandler === 'function') {
-      attachCloseHandler(ids.map(id => `${id}`), listener);
+      attachCloseHandler(ids, listener);
     }
 
     return listener;
@@ -1254,7 +1254,7 @@ const startServer = async () => {
     }
 
     channelIds.forEach(channelId => {
-      unsubscribe(`${channelId}`, subscription.listener);
+      unsubscribe(channelId, subscription.listener);
     });
 
     connectedChannels.labels({ type: 'websocket', channel: subscription.channelName }).dec();
@@ -1298,8 +1298,8 @@ const startServer = async () => {
 
     });
 
-    subscribe(`${accessTokenChannelId}`, listener);
-    subscribe(`${systemChannelId}`, listener);
+    subscribe(accessTokenChannelId, listener);
+    subscribe(systemChannelId, listener);
 
     subscriptions[accessTokenChannelId] = {
       channelName: 'system',
