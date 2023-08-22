@@ -45,6 +45,18 @@ class AdminMailer < ApplicationMailer
     end
   end
 
+  def new_software_updates
+    locale_for_account(@me) do
+      mail subject: default_i18n_subject(instance: @instance)
+    end
+  end
+
+  def new_critical_software_updates
+    locale_for_account(@me) do
+      mail subject: default_i18n_subject(instance: @instance)
+    end
+  end
+
   private
 
   def process_params

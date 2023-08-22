@@ -45,11 +45,11 @@ class SoftwareUpdateCheckService < BaseService
     new_update_notices = update_notices['updatesAvailable'].filter { |notice| known_versions.exclude?(notice['version']) }
     return if new_update_notices.blank?
 
-    new_update_notices.each do |notice|
+    new_updates = new_update_notices.map do |notice|
       SoftwareUpdate.create!(version: notice['version'], urgent: notice['urgent'], type: notice['type'], release_notes: notice['releaseNotes'])
     end
 
-    notify_devops!(new_update_notices)
+    notify_devops!(new_updates)
 
     # Clear obsolete notices
     SoftwareUpdate.where.not(version: update_notices['updatesAvailable'].pluck('version')).delete_all
@@ -68,13 +68,18 @@ class SoftwareUpdateCheckService < BaseService
     end
   end
 
-  def notify_devops!(new_update_notices)
-    has_new_urgent_version = new_update_notices.any? { |notice| notice['urgent'] }
-    has_new_patch_version  = new_update_notices.any? { |notice| notice['type'] == 'patch' }
+  def notify_devops!(new_updates)
+    has_new_urgent_version = new_updates.any?(&:urgent?)
+    has_new_patch_version  = new_updates.any?(&:patch_type?)
 
     User.those_who_can(:view_devops).includes(:account).find_each do |user|
       next unless should_notify_user?(user, has_new_urgent_version, has_new_patch_version)
-      # TODO
+
+      if has_new_urgent_version
+        AdminMailer.with(recipient: user.account).new_critical_software_updates.deliver_later
+      else
+        AdminMailer.with(recipient: user.account).new_software_updates.deliver_later
+      end
     end
   end
 end

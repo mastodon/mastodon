@@ -973,6 +973,9 @@ en:
       body: "%{target} is appealing a moderation decision by %{action_taken_by} from %{date}, which was %{type}. They wrote:"
       next_steps: You can approve the appeal to undo the moderation decision, or ignore it.
       subject: "%{username} is appealing a moderation decision on %{instance}"
+    new_critical_software_updates:
+      body: New critical versions of Mastodon have been released, you may want to update as soon as possible!
+      subject: Critical Mastodon updates are available!
     new_pending_account:
       body: The details of the new account are below. You can approve or reject this application.
       subject: New account up for review on %{instance} (%{username})
@@ -980,6 +983,9 @@ en:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
+    new_software_updates:
+      body: New Mastodon versions have been released, you may want to update!
+      subject: New Mastodon versions are available!
     new_trends:
       body: 'The following items need a review before they can be displayed publicly:'
       new_trending_links:
