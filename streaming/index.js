@@ -261,7 +261,7 @@ const startServer = async () => {
    * @param {string} message
    * @param {string} channel
    */
-  const onRedisMessage = (message, channel) => {
+  const onRedisMessage = (channel, message) => {
     const callbacks = subs[channel];
 
     log.silly(`New message on channel ${channel}`);
@@ -293,7 +293,8 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       log.verbose(`Subscribe ${channel}`);
-      redisSubscribeClient.subscribe(channel, onRedisMessage);
+      redisSubscribeClient.subscribe(channel)
+	  redisSubscribeClient.on("message", onRedisMessage);
       redisSubscriptions.inc();
     }
 
