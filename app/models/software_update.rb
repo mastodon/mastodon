@@ -22,8 +22,19 @@ class SoftwareUpdate < ApplicationRecord
     Gem::Version.new(version)
   end
 
-  def self.pending_updates
-    mastodon_version = Gem::Version.new(Mastodon::Version.to_s.split('+')[0])
-    all.to_a.filter { |update| update.gem_version > mastodon_version }
+  class << self
+    def check_enabled?
+      ENV['UPDATE_CHECK_URL'] != ''
+    end
+
+    def pending_to_a
+      return [] unless check_enabled?
+
+      all.to_a.filter { |update| update.gem_version > Mastodon::Version.gem_version }
+    end
+
+    def urgent_pending?
+      pending_to_a.any?(&:urgent?)
+    end
   end
 end

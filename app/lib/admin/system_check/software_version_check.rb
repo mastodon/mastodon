@@ -22,10 +22,6 @@ class Admin::SystemCheck::SoftwareVersionCheck < Admin::SystemCheck::BaseCheck
   private
 
   def software_updates
-    @software_updates ||= SoftwareUpdate.all.to_a.filter { |update| update.gem_version > gem_version && (update.urgent? || update.patch_type?) }
-  end
-
-  def gem_version
-    @gem_version ||= Gem::Version.new(Mastodon::Version.to_s.split('+')[0])
+    @software_updates ||= SoftwareUpdate.pending_to_a.filter { |update| update.urgent? || update.patch_type? }
   end
 end

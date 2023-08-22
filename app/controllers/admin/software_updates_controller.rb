@@ -12,7 +12,7 @@ module Admin
     private
 
     def check_enabled!
-      not_found if ENV['UPDATE_CHECK_URL'] == ''
+      not_found unless SoftwareUpdate.check_enabled?
     end
   end
 end

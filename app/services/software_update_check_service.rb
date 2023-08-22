@@ -3,7 +3,7 @@
 class SoftwareUpdateCheckService < BaseService
   def call
     clean_outdated_updates!
-    return if ENV['UPDATE_CHECK_URL'] == ''
+    return unless SoftwareUpdate.check_enabled?
 
     process_update_notices!(fetch_update_notices)
   end
@@ -12,7 +12,7 @@ class SoftwareUpdateCheckService < BaseService
 
   def clean_outdated_updates!
     SoftwareUpdate.find_each do |software_update|
-      software_update.delete if gem_version >= software_update.gem_version
+      software_update.delete if Mastodon::Version.gem_version >= software_update.gem_version
     rescue ArgumentError
       software_update.delete
     end
@@ -32,10 +32,6 @@ class SoftwareUpdateCheckService < BaseService
 
   def version
     @version ||= Mastodon::Version.to_s.split('+')[0]
-  end
-
-  def gem_version
-    @gem_version ||= Gem::Version.new(version)
   end
 
   def process_update_notices!(update_notices)

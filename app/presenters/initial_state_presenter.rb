@@ -10,12 +10,6 @@ class InitialStatePresenter < ActiveModelSerializers::Model
   end
 
   def critical_updates_pending
-    role&.can?(:view_devops) && ENV['UPDATE_CHECK_URL'] != '' && SoftwareUpdate.where(urgent: true).to_a.any? { |update| update.gem_version > gem_version }
-  end
-
-  private
-
-  def gem_version
-    @gem_version ||= Gem::Version.new(Mastodon::Version.to_s.split('+')[0])
+    role&.can?(:view_devops) && SoftwareUpdate.urgent_pending?
   end
 end
