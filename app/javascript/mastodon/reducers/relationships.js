@@ -4,27 +4,14 @@ import {
   submitAccountNote,
 } from '../actions/account_notes';
 import {
-  ACCOUNT_FOLLOW_REQUEST,
-  ACCOUNT_FOLLOW_FAIL,
-  ACCOUNT_UNFOLLOW_REQUEST,
-  ACCOUNT_UNFOLLOW_FAIL,
-  ACCOUNT_BLOCK_SUCCESS,
-  ACCOUNT_UNBLOCK_SUCCESS,
-  ACCOUNT_MUTE_SUCCESS,
-  ACCOUNT_UNMUTE_SUCCESS,
-  ACCOUNT_PIN_SUCCESS,
-  ACCOUNT_UNPIN_SUCCESS,
-  RELATIONSHIPS_FETCH_SUCCESS,
-  FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
-  FOLLOW_REQUEST_REJECT_SUCCESS,
-  followAccountSuccess, unfollowAccountSuccess
+  followAccountSuccess, unfollowAccountSuccess, authorizeFollowRequestSuccess, rejectFollowRequestSuccess, followAccountRequest, followAccountFail, unfollowAccountRequest, unfollowAccountFail, blockAccountSuccess, unblockAccountSuccess, muteAccountSuccess, unmuteAccountSuccess, pinAccountSuccess, unpinAccountSuccess, fetchRelationshipsSuccess
 } from '../actions/accounts';
 import {
-  DOMAIN_BLOCK_SUCCESS,
-  DOMAIN_UNBLOCK_SUCCESS,
+  blockDomainSuccess,
+  unblockDomainSuccess,
 } from '../actions/domain_blocks';
 import {
-  NOTIFICATIONS_UPDATE,
+  notificationsUpdate,
 } from '../actions/notifications';
 
 
@@ -50,37 +37,36 @@ const initialState = ImmutableMap();
 
 export default function relationships(state = initialState, action) {
   switch(action.type) {
-  case FOLLOW_REQUEST_AUTHORIZE_SUCCESS:
-    return state.setIn([action.id, 'followed_by'], true).setIn([action.id, 'requested_by'], false);
-  case FOLLOW_REQUEST_REJECT_SUCCESS:
-    return state.setIn([action.id, 'followed_by'], false).setIn([action.id, 'requested_by'], false);
-  case NOTIFICATIONS_UPDATE:
-    return action.notification.type === 'follow_request' ? state.setIn([action.notification.account.id, 'requested_by'], true) : state;
-  case ACCOUNT_FOLLOW_REQUEST:
-    return state.getIn([action.id, 'following']) ? state : state.setIn([action.id, action.locked ? 'requested' : 'following'], true);
-  case ACCOUNT_FOLLOW_FAIL:
-    return state.setIn([action.id, action.locked ? 'requested' : 'following'], false);
-  case ACCOUNT_UNFOLLOW_REQUEST:
-    return state.setIn([action.id, 'following'], false);
-  case ACCOUNT_UNFOLLOW_FAIL:
-    return state.setIn([action.id, 'following'], true);
+  case authorizeFollowRequestSuccess.type:
+    return state.setIn([action.id, 'followed_by'], true).setIn([action.payload.id, 'requested_by'], false);
+  case rejectFollowRequestSuccess.type:
+    return state.setIn([action.id, 'followed_by'], false).setIn([action.payload.id, 'requested_by'], false);
+  case notificationsUpdate.type:
+    return action.payload.notification.type === 'follow_request' ? state.setIn([action.payload.notification.account.id, 'requested_by'], true) : state;
+  case followAccountRequest.type:
+    return state.getIn([action.payload.id, 'following']) ? state : state.setIn([action.payload.id, action.payload.locked ? 'requested' : 'following'], true);
+  case followAccountFail.type:
+    return state.setIn([action.payload.id, action.payload.locked ? 'requested' : 'following'], false);
+  case unfollowAccountRequest.type:
+    return state.setIn([action.payload.id, 'following'], false);
+  case unfollowAccountFail.type:
+    return state.setIn([action.payload.id, 'following'], true);
   case followAccountSuccess.type:
   case unfollowAccountSuccess.type:
+  case blockAccountSuccess.type:
+  case unblockAccountSuccess.type:
+  case muteAccountSuccess.type:
+  case unmuteAccountSuccess.type:
+  case pinAccountSuccess.type:
+  case unpinAccountSuccess.type:
   case submitAccountNote.fulfilled:
     return normalizeRelationship(state, action.payload.relationship);
-  case ACCOUNT_BLOCK_SUCCESS:
-  case ACCOUNT_UNBLOCK_SUCCESS:
-  case ACCOUNT_MUTE_SUCCESS:
-  case ACCOUNT_UNMUTE_SUCCESS:
-  case ACCOUNT_PIN_SUCCESS:
-  case ACCOUNT_UNPIN_SUCCESS:
-    return normalizeRelationship(state, action.relationship);
-  case RELATIONSHIPS_FETCH_SUCCESS:
-    return normalizeRelationships(state, action.relationships);
-  case DOMAIN_BLOCK_SUCCESS:
-    return setDomainBlocking(state, action.accounts, true);
-  case DOMAIN_UNBLOCK_SUCCESS:
-    return setDomainBlocking(state, action.accounts, false);
+  case fetchRelationshipsSuccess.type:
+    return normalizeRelationships(state, action.payload.relationships);
+  case blockDomainSuccess.type:
+    return setDomainBlocking(state, action.payload.accounts, true);
+  case unblockDomainSuccess.type:
+    return setDomainBlocking(state, action.payload.accounts, false);
   default:
     return state;
   }
