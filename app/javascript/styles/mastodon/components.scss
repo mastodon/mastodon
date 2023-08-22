@@ -8539,6 +8539,45 @@ noscript {
     }
   }
 
+  &__choices {
+    display: flex;
+
+    &__choice {
+      flex: 0 0 auto;
+      width: 50%;
+      box-sizing: border-box;
+      padding: 20px;
+
+      h3 {
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: $darker-text-color;
+        margin-bottom: 20px;
+      }
+
+      .button {
+        margin-bottom: 10px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+    &__choices {
+      display: block;
+
+      &__choice {
+        width: auto;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
   .link-button {
     font-size: inherit;
     display: inline;
