@@ -11,10 +11,6 @@
     .fields-group
       = ff.input :aggregate_reblogs, wrapper: :with_label, recommended: true, label: I18n.t('simple_form.labels.defaults.setting_aggregate_reblogs'), hint: I18n.t('simple_form.hints.defaults.setting_aggregate_reblogs')
 
-    - unless Setting.hide_followers_count
-      .fields-group
-        = ff.input :hide_followers_count, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_hide_followers_count'), glitch_only: true
-
     %h4= t 'preferences.posting_defaults'
 
     .fields-row

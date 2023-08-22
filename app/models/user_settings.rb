@@ -20,6 +20,7 @@ class UserSettings
   setting :hide_followers_count, default: false
 
   setting_inverse_alias :indexable, :noindex
+  setting_inverse_alias :show_followers_count, :hide_followers_count
 
   namespace :web do
     setting :advanced_layout, default: false

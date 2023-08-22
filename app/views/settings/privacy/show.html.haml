@@ -36,6 +36,10 @@
     = f.input :show_collections, as: :boolean, wrapper: :with_label
 
   = f.simple_fields_for :settings, current_user.settings do |ff|
+    - unless Setting.hide_followers_count
+      .fields-group
+        = ff.input :show_followers_count, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_show_followers_count'), hint: I18n.t('simple_form.hints.defaults.setting_show_followers_count'), glitch_only: true
+
     .fields-group
       = ff.input :show_application, wrapper: :with_label
 
