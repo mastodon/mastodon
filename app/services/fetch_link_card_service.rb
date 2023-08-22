@@ -67,6 +67,7 @@ class FetchLinkCardService < BaseService
       @status.preview_cards << @card
       Rails.cache.delete(@status)
       Trends.links.register(@status)
+      DistributionWorker.perform_async(@status.id)
     end
   end
 
