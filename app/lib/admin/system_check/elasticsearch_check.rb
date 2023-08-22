@@ -41,7 +41,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
       Admin::SystemCheck::Message.new(:elasticsearch_health_red)
     elsif cluster_health['number_of_nodes'] < 2 && es_preset != 'single_node_cluster'
       Admin::SystemCheck::Message.new(:elasticsearch_preset_single_node, nil, 'https://docs.joinmastodon.org/admin/optional/elasticsearch/#scaling')
-    elsif Chewy.client.indices.get_settings['chewy_specifications'].dig('settings', 'index', 'number_of_replicas')&.to_i&.positive? && es_preset == 'single_node_cluster'
+    elsif Chewy.client.indices.get_settings[Chewy::Stash::Specification.index_name]&.dig('settings', 'index', 'number_of_replicas')&.to_i&.positive? && es_preset == 'single_node_cluster'
       Admin::SystemCheck::Message.new(:elasticsearch_reset_chewy)
     elsif cluster_health['status'] == 'yellow'
       Admin::SystemCheck::Message.new(:elasticsearch_health_yellow)
