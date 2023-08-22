@@ -854,6 +854,12 @@ en:
         message_html: You haven't defined any server rules.
       sidekiq_process_check:
         message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
+      software_version_critical_check:
+        action: See available updates
+        message_html: A critical Mastodon update is available, please update as quickly as possible.
+      software_version_patch_check:
+        action: See available updates
+        message_html: A bugfix Mastodon update is available.
       upload_check_privacy_error:
         action: Check here for more information
         message_html: "<strong>Your web server is misconfigured. The privacy of your users is at risk.</strong>"
