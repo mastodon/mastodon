@@ -1,6 +1,6 @@
 import { Map as ImmutableMap } from 'immutable';
 
-import type { AnyAction } from 'redux';
+import type { Reducer } from 'redux';
 
 import {
   followAccountSuccess,
@@ -41,7 +41,10 @@ const normalizeAccounts = (
   return state;
 };
 
-export function accountsReducer(state = initialState, action: AnyAction) {
+export const accountsReducer: Reducer<typeof initialState> = (
+  state = initialState,
+  action,
+) => {
   const currentUserId = me;
 
   if (!currentUserId)
@@ -76,4 +79,4 @@ export function accountsReducer(state = initialState, action: AnyAction) {
           account?.update('following_count', (n) => Math.max(0, n - 1)),
       );
   else return state;
-}
+};

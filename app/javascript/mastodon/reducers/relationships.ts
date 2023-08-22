@@ -1,7 +1,7 @@
 import { Map as ImmutableMap } from 'immutable';
 
 import { isFulfilled } from '@reduxjs/toolkit';
-import type { AnyAction } from 'redux';
+import type { Reducer } from 'redux';
 
 import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
 import type { Account } from 'mastodon/models/account';
@@ -63,7 +63,10 @@ const setDomainBlocking = (
   });
 };
 
-export function relationshipsReducer(state = initialState, action: AnyAction) {
+export const relationshipsReducer: Reducer<State> = (
+  state = initialState,
+  action,
+) => {
   if (authorizeFollowRequestSuccess.match(action))
     return state
       .setIn([action.payload.id, 'followed_by'], true)
@@ -117,4 +120,4 @@ export function relationshipsReducer(state = initialState, action: AnyAction) {
   else if (unblockDomainSuccess.match(action))
     return setDomainBlocking(state, action.payload.accounts, false);
   else return state;
-}
+};
