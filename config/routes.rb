@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
 
-  get 'health', to: 'health#show'
+  get 'health', to: 'rails/health#show'
 
   authenticate :user, lambda { |u| u.role&.can?(:view_devops) } do
     mount Sidekiq::Web, at: 'sidekiq', as: :sidekiq

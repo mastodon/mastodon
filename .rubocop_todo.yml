@@ -158,11 +158,6 @@ RSpec/MultipleMemoizedHelpers:
 RSpec/NestedGroups:
   Max: 6
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/ApplicationController:
-  Exclude:
-    - 'app/controllers/health_controller.rb'
-
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
 Rails/HasAndBelongsToMany:
