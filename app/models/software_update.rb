@@ -21,4 +21,9 @@ class SoftwareUpdate < ApplicationRecord
   def gem_version
     Gem::Version.new(version)
   end
+
+  def self.pending_updates
+    mastodon_version = Gem::Version.new(Mastodon::Version.to_s.split('+')[0])
+    all.to_a.filter { |update| update.gem_version > mastodon_version }
+  end
 end
