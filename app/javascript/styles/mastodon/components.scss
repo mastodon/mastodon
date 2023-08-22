@@ -8541,12 +8541,11 @@ noscript {
 
   &__choices {
     display: flex;
+    gap: 40px;
 
     &__choice {
-      flex: 0 0 auto;
-      width: 50%;
+      flex: 1;
       box-sizing: border-box;
-      padding: 20px;
 
       h3 {
         margin-bottom: 20px;
@@ -8555,6 +8554,7 @@ noscript {
       p {
         color: $darker-text-color;
         margin-bottom: 20px;
+        font-size: 15px;
       }
 
       .button {
@@ -8569,11 +8569,10 @@ noscript {
 
   @media screen and (max-width: $no-gap-breakpoint - 1px) {
     &__choices {
-      display: block;
+      flex-direction: column;
 
       &__choice {
-        width: auto;
-        margin-bottom: 20px;
+        margin-top: 40px;
       }
     }
   }
