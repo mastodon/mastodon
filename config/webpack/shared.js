@@ -2,6 +2,7 @@
 
 const { basename, dirname, join, relative, resolve } = require('path');
 
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 const { sync } = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const extname = require('path-complete-extname');
@@ -84,6 +85,9 @@ module.exports = {
       writeToDisk: true,
       publicPath: true,
     }),
+    new CircularDependencyPlugin({
+      failOnError: true,
+    })
   ],
 
   resolve: {
