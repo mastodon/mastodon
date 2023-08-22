@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 
 import { accountDefaultValues } from 'mastodon/models/account';
 import type { Account, AccountShape } from 'mastodon/models/account';
+import type { Relationship } from 'mastodon/models/relationship';
 import type { RootState } from 'mastodon/store';
 
 const getAccountBase = (state: RootState, id: string) =>
@@ -10,8 +11,8 @@ const getAccountBase = (state: RootState, id: string) =>
 
 const getAccountRelationship = (state: RootState, id: string) =>
   // TODO(renchap): update this when `Relationship` is typed
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-  state.relationships.get(id, null);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+  state.relationships.get(id, null) as Relationship;
 
 const getAccountMoved = (state: RootState, id: string) => {
   const movedToId = state.accounts.get(id)?.moved;
@@ -22,7 +23,7 @@ const getAccountMoved = (state: RootState, id: string) => {
 };
 
 interface FullAccountShape extends Omit<AccountShape, 'moved'> {
-  relationship: unknown;
+  relationship: Relationship | null;
   moved: Account | null;
 }
 
