@@ -31,7 +31,7 @@ import notifications from './notifications';
 import picture_in_picture from './picture_in_picture';
 import polls from './polls';
 import push_notifications from './push_notifications';
-import relationships from './relationships';
+import { relationshipsReducer } from './relationships';
 import search from './search';
 import server from './server';
 import settings from './settings';
@@ -57,7 +57,7 @@ const reducers = {
   accounts: accountsReducer,
   accounts_map,
   statuses,
-  relationships,
+  relationships: relationshipsReducer,
   settings,
   push_notifications,
   mutes,

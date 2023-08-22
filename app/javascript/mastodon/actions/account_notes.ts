@@ -1,17 +1,19 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import type { AxiosResponse } from 'axios';
+
 import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
-import { createAppAsyncThunk } from 'mastodon/store/typed_functions';
+import type { GetState } from 'mastodon/store';
 
 import api from '../api';
 
-export const submitAccountNote = createAppAsyncThunk(
+export const submitAccountNote = createAsyncThunk(
   'account_note/submit',
   async (args: { id: string; value: string }, { getState }) => {
-    const response = await api(getState).post<ApiRelationshipJSON>(
-      `/api/v1/accounts/${args.id}/note`,
-      {
-        comment: args.value,
-      },
-    );
+    const response: AxiosResponse<ApiRelationshipJSON> = await api(
+      getState as GetState,
+    ).post<ApiRelationshipJSON>(`/api/v1/accounts/${args.id}/note`, {
+      comment: args.value,
+    });
 
     return { relationship: response.data };
   },

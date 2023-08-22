@@ -1,5 +1,7 @@
 import { Map as ImmutableMap } from 'immutable';
 
+import type { AnyAction } from 'redux';
+
 import {
   followAccountSuccess,
   unfollowAccountSuccess,
@@ -39,10 +41,7 @@ const normalizeAccounts = (
   return state;
 };
 
-export function accountsReducer(
-  state = initialState,
-  action: typeof revealAccount,
-) {
+export function accountsReducer(state = initialState, action: AnyAction) {
   const currentUserId = me;
 
   if (!currentUserId)

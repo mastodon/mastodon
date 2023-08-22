@@ -10,9 +10,7 @@ const getAccountBase = (state: RootState, id: string) =>
   state.accounts.get(id, null);
 
 const getAccountRelationship = (state: RootState, id: string) =>
-  // TODO(renchap): update this when `Relationship` is typed
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-  state.relationships.get(id, null) as Relationship;
+  state.relationships.get(id, null);
 
 const getAccountMoved = (state: RootState, id: string) => {
   const movedToId = state.accounts.get(id)?.moved;
