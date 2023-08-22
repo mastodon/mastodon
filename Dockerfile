@@ -42,8 +42,8 @@ RUN apt-get update && \
 FROM node:${NODE_VERSION}
 
 # Use those args to specify your own version flags & suffixes
-ARG MASTODON_VERSION_FLAGS=""
-ARG MASTODON_VERSION_SUFFIX=""
+ARG MASTODON_VERSION_FLAGS
+ARG MASTODON_VERSION_SUFFIX
 
 ARG UID="991"
 ARG GID="991"
@@ -88,17 +88,25 @@ COPY --chown=mastodon:mastodon --from=build /opt/mastodon /opt/mastodon
 ENV RAILS_ENV="production" \
     NODE_ENV="production" \
     RAILS_SERVE_STATIC_FILES="true" \
-    BIND="0.0.0.0" \
-    MASTODON_VERSION_FLAGS="${MASTODON_VERSION_FLAGS}" \
-    MASTODON_VERSION_SUFFIX="${MASTODON_VERSION_SUFFIX}"
+    BIND="0.0.0.0"
 
 # Set the run user
 USER mastodon
 WORKDIR /opt/mastodon
 
+RUN <<EOT
+    if [[ -v MASTODON_VERSION_FLAGS ]]; then
+        echo "MASTODON_VERSION_FLAGS=$MASTODON_VERSION_FLAGS" >> .env.docker
+    fi
+
+    if [[ -v MASTODON_VERSION_SUFFIX ]]; then
+        echo "MASTODON_VERSION_SUFFIX=$MASTODON_VERSION_SUFFIX" >> .env.docker
+    fi
+EOT
+
 # Precompile assets
-RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile
+RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec dotenv -f .env.docker rails assets:precompile
 
 # Set the work dir and the container entry point
-ENTRYPOINT ["/usr/bin/tini", "--"]
+ENTRYPOINT ["/usr/bin/tini", "--", "bundle", "exec", "dotenv", "-f", ".env.docker"]
 EXPOSE 3000 4000
