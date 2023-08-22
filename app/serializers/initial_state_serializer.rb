@@ -7,6 +7,8 @@ class InitialStateSerializer < ActiveModel::Serializer
              :media_attachments, :settings,
              :languages
 
+  attribute :critical_updates_pending, if: -> { object&.role&.can?(:view_devops) && ENV['UPDATE_CHECK_URL'] != '' }
+
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
   has_one :role, serializer: REST::RoleSerializer
 
