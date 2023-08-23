@@ -1,0 +1,149 @@
+version: '3'
+services:
+
+  sidekiq1:
+    build: .
+    image: tootsuite/mastodon
+    restart: always
+    env_file: .env.production
+    command: bundle exec sidekiq -q default,1 -q pull,2 -q push,3 -q ingress,4  -c 25
+    networks:
+      - external_network
+      - internal_network
+    volumes:
+      - ./public/system:/mastodon/public/system
+    healthcheck:
+      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+
+  sidekiq2:
+    build: .
+    image: tootsuite/mastodon
+    restart: always
+    env_file: .env.production
+    command: bundle exec sidekiq -q default,2 -q pull,3 -q push,4 -q ingress,1  -c 25
+    networks:
+      - external_network
+      - internal_network
+    volumes:
+      - ./public/system:/mastodon/public/system
+    healthcheck:
+      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+
+  sidekiq3:
+    build: .
+    image: tootsuite/mastodon
+    restart: always
+    env_file: .env.production
+    command: bundle exec sidekiq -q default,3 -q pull,4 -q push,1 -q ingress,2  -c 25
+    networks:
+      - external_network
+      - internal_network
+    volumes:
+      - ./public/system:/mastodon/public/system
+    healthcheck:
+      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+
+  sidekiq4:
+    build: .
+    image: tootsuite/mastodon
+    restart: always
+    env_file: .env.production
+    command: bundle exec sidekiq -q default,4 -q pull,1 -q push,2 -q ingress,3  -c 25
+    networks:
+      - external_network
+      - internal_network
+    volumes:
+      - ./public/system:/mastodon/public/system
+    healthcheck:
+      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+
+  sidekiq5:
+    build: .
+    image: tootsuite/mastodon
+    restart: always
+    env_file: .env.production
+    command: bundle exec sidekiq -q default,1 -q pull,2 -q push,3 -q ingress,4  -c 25
+    networks:
+      - external_network
+      - internal_network
+    volumes:
+      - ./public/system:/mastodon/public/system
+    healthcheck:
+      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+
+ # sidekiq6:
+ #   build: .
+ #   image: tootsuite/mastodon
+ #   restart: always
+ #   env_file: .env.production
+ #   command: bundle exec sidekiq -q default,2 -q pull,3 -q push,4 -q ingress,1  -c 25
+ #   networks:
+ #     - external_network
+ #     - internal_network
+ #   volumes:
+ #     - ./public/system:/mastodon/public/system
+ #   healthcheck:
+ #     test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+ #   ulimits:
+ #     memlock:
+ #       soft: -1
+ #       hard: -1
+ #     nofile:
+ #       soft: 65536
+ #       hard: 65536
+
+
+  sidekiq-main:
+    build: .
+    image: tootsuite/mastodon
+    restart: always
+    env_file: .env.production
+    command: bundle exec sidekiq -q scheduler,1 -q mailers,5 -c 5
+    networks:
+      - external_network
+      - internal_network
+    volumes:
+      - ./public/system:/mastodon/public/system
+    healthcheck:
+      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+
+
+networks:
+  external_network:
+  internal_network:
+    internal: true
