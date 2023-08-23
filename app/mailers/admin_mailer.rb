@@ -52,6 +52,10 @@ class AdminMailer < ApplicationMailer
   end
 
   def new_critical_software_updates
+    headers['Priority'] = 'urgent'
+    headers['X-Priority'] = '1'
+    headers['Importance'] = 'high'
+
     locale_for_account(@me) do
       mail subject: default_i18n_subject(instance: @instance)
     end
