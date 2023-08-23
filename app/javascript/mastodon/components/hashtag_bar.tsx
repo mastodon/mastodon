@@ -23,8 +23,9 @@ export type StatusLike = Record<{
 }>;
 
 function normalizeHashtag(hashtag: string) {
-  if (hashtag && hashtag.startsWith('#')) return hashtag.slice(1);
-  else return hashtag;
+  return (
+    hashtag && hashtag.startsWith('#') ? hashtag.slice(1) : hashtag
+  ).normalize('NFKC');
 }
 
 function isNodeLinkHashtag(element: Node): element is HTMLLinkElement {
@@ -70,9 +71,16 @@ function uniqueHashtagsWithCaseHandling(hashtags: string[]) {
 }
 
 // Create the collator once, this is much more efficient
-const collator = new Intl.Collator(undefined, { sensitivity: 'accent' });
+const collator = new Intl.Collator(undefined, {
+  sensitivity: 'base', // we use this to emulate the ASCII folding done on the server-side, hopefuly more efficiently
+});
+
 function localeAwareInclude(collection: string[], value: string) {
-  return collection.find((item) => collator.compare(item, value) === 0);
+  const normalizedValue = value.normalize('NFKC');
+
+  return !!collection.find(
+    (item) => collator.compare(item.normalize('NFKC'), normalizedValue) === 0,
+  );
 }
 
 // We use an intermediate function here to make it easier to test
@@ -121,11 +129,13 @@ export function computeHashtagBarForStatus(status: StatusLike): {
   // try to see if the last line is only hashtags
   let onlyHashtags = true;
 
+  const normalizedTagNames = tagNames.map((tag) => tag.normalize('NFKC'));
+
   Array.from(lastChild.childNodes).forEach((node) => {
     if (isNodeLinkHashtag(node) && node.textContent) {
       const normalized = normalizeHashtag(node.textContent);
 
-      if (!localeAwareInclude(tagNames, normalized)) {
+      if (!localeAwareInclude(normalizedTagNames, normalized)) {
         // stop here, this is not a real hashtag, so consider it as text
         onlyHashtags = false;
         return;
@@ -140,12 +150,14 @@ export function computeHashtagBarForStatus(status: StatusLike): {
     }
   });
 
-  const hashtagsInBar = tagNames.filter(
-    (tag) =>
-      // the tag does not appear at all in the status content, it is an out-of-band tag
-      !localeAwareInclude(contentHashtags, tag) &&
-      !localeAwareInclude(lastLineHashtags, tag),
-  );
+  const hashtagsInBar = tagNames.filter((tag) => {
+    const normalizedTag = tag.normalize('NFKC');
+    // the tag does not appear at all in the status content, it is an out-of-band tag
+    return (
+      !localeAwareInclude(contentHashtags, normalizedTag) &&
+      !localeAwareInclude(lastLineHashtags, normalizedTag)
+    );
+  });
 
   const isOnlyOneLine = contentWithoutLastLine.content.childElementCount === 0;
   const hasMedia = status.get('media_attachments').size > 0;
