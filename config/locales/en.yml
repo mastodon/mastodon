@@ -976,7 +976,7 @@ en:
       subject: "%{username} is appealing a moderation decision on %{instance}"
     new_critical_software_updates:
       body: New critical versions of Mastodon have been released, you may want to update as soon as possible!
-      subject: Critical Mastodon updates are available!
+      subject: Critical Mastodon updates are available for %{instance}!
     new_pending_account:
       body: The details of the new account are below. You can approve or reject this application.
       subject: New account up for review on %{instance} (%{username})
@@ -986,7 +986,7 @@ en:
       subject: New report for %{instance} (#%{id})
     new_software_updates:
       body: New Mastodon versions have been released, you may want to update!
-      subject: New Mastodon versions are available!
+      subject: New Mastodon versions are available for %{instance}!
     new_trends:
       body: 'The following items need a review before they can be displayed publicly:'
       new_trending_links:
