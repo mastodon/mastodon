@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import api from 'flavours/glitch/api';
 
 const messages = defineMessages({
+  legal: { id: 'report.categories.legal', defaultMessage: 'Legal' },
   other: { id: 'report.categories.other', defaultMessage: 'Other' },
   spam: { id: 'report.categories.spam', defaultMessage: 'Spam' },
   violation: { id: 'report.categories.violation', defaultMessage: 'Content violates one or more server rules' },
@@ -150,6 +151,7 @@ class ReportReasonSelector extends PureComponent {
     return (
       <div className='report-reason-selector'>
         <Category id='other' text={intl.formatMessage(messages.other)} selected={category === 'other'} onSelect={this.handleSelect} disabled={disabled} />
+        <Category id='legal' text={intl.formatMessage(messages.legal)} selected={category === 'legal'} onSelect={this.handleSelect} disabled={disabled} />
         <Category id='spam' text={intl.formatMessage(messages.spam)} selected={category === 'spam'} onSelect={this.handleSelect} disabled={disabled} />
         <Category id='violation' text={intl.formatMessage(messages.violation)} selected={category === 'violation'} onSelect={this.handleSelect} disabled={disabled}>
           {rules.map(rule => <Rule key={rule.id} id={rule.id} text={rule.text} selected={rule_ids.includes(rule.id)} onToggle={this.handleToggle} disabled={disabled} />)}

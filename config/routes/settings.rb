@@ -63,6 +63,7 @@ namespace :settings do
   resource :delete, only: [:show, :destroy]
   resource :migration, only: [:show, :create]
   resource :verification, only: :show
+  resource :privacy, only: [:show, :update], controller: 'privacy'
 
   namespace :migration do
     resource :redirect, only: [:new, :create, :destroy]

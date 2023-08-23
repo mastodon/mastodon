@@ -50,6 +50,7 @@
 #  trendable                     :boolean
 #  reviewed_at                   :datetime
 #  requested_review_at           :datetime
+#  indexable                     :boolean          default(FALSE), not null
 #
 
 class Account < ApplicationRecord
@@ -439,7 +440,20 @@ class Account < ApplicationRecord
         EntityCache.instance.mention(username, domain)
       end
     end
+
+    def inverse_alias(key, original_key)
+      define_method("#{key}=") do |value|
+        public_send("#{original_key}=", !ActiveModel::Type::Boolean.new.cast(value))
+      end
+
+      define_method(key) do
+        !public_send(original_key)
+      end
+    end
   end
+
+  inverse_alias :show_collections, :hide_collections
+  inverse_alias :unlocked, :locked
 
   def emojis
     @emojis ||= CustomEmoji.from_text(emojifiable_text, domain)

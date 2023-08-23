@@ -10,6 +10,27 @@ class UserSettings::Setting
     @in            = options[:in]
   end
 
+  def inverse_of(name)
+    @inverse_of = name.to_sym
+    self
+  end
+
+  def value_for(name, original_value)
+    value = begin
+      if original_value.nil?
+        default_value
+      else
+        original_value
+      end
+    end
+
+    if !@inverse_of.nil? && @inverse_of == name.to_sym
+      !value
+    else
+      value
+    end
+  end
+
   def default_value
     if @default_value.respond_to?(:call)
       @default_value.call
