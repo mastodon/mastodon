@@ -105,6 +105,21 @@ describe('computeHashtagBarForStatus', () => {
     );
   });
 
+  it('handles server-side normalized tags with accentuated characters', () => {
+    const status = createStatus(
+      '<p>Text</p><p><a href="test">#éaa</a> <a href="test">#Éaa</a></p>',
+      ['eaa'], // The server may normalize the hashtags in the `tags` attribute
+    );
+
+    const { hashtagsInBar, statusContentProps } =
+      computeHashtagBarForStatus(status);
+
+    expect(hashtagsInBar).toEqual(['Éaa']);
+    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
+      `"<p>Text</p>"`,
+    );
+  });
+
   it('does not display in bar a hashtag in content with a case difference', () => {
     const status = createStatus(
       '<p>Text <a href="test">#Éaa</a></p><p><a href="test">#éaa</a></p>',
