@@ -216,7 +216,7 @@ const HashtagBar: React.FC<{
     <div className='hashtag-bar'>
       {revealedHashtags.map((hashtag) => (
         <Link key={hashtag} to={`/tags/${hashtag}`}>
-          #{hashtag}
+          #<span>{hashtag}</span>
         </Link>
       ))}
 
