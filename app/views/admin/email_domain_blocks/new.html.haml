@@ -1,9 +1,6 @@
 - content_for :page_title do
   = t('.title')
 
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 = simple_form_for @email_domain_block, url: admin_email_domain_blocks_path do |f|
   = render 'shared/error_messages', object: @email_domain_block
 
