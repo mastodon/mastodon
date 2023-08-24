@@ -14,13 +14,12 @@ describe Admin::SystemCheck::ElasticsearchCheck do
       before do
         allow(Chewy).to receive(:enabled?).and_return(true)
         allow(Chewy.client.cluster).to receive(:health).and_return({ 'status' => 'green', 'number_of_nodes' => 1 })
-        allow(Chewy.client.indices).to receive(:get_mapping).and_return({
+        allow(Chewy.client.indices).to receive_messages(get_mapping: {
           AccountsIndex.index_name => AccountsIndex.mappings_hash.deep_stringify_keys,
           StatusesIndex.index_name => StatusesIndex.mappings_hash.deep_stringify_keys,
           InstancesIndex.index_name => InstancesIndex.mappings_hash.deep_stringify_keys,
           TagsIndex.index_name => TagsIndex.mappings_hash.deep_stringify_keys,
-        })
-        allow(Chewy.client.indices).to receive(:get_settings).and_return({
+        }, get_settings: {
           'chewy_specifications' => {
             'settings' => {
               'index' => {

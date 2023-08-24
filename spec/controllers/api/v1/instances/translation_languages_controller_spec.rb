@@ -16,8 +16,7 @@ describe Api::V1::Instances::TranslationLanguagesController do
     context 'when a translation service is configured' do
       before do
         service = instance_double(TranslationService::DeepL, languages: { nil => %w(en de), 'en' => ['de'] })
-        allow(TranslationService).to receive(:configured?).and_return(true)
-        allow(TranslationService).to receive(:configured).and_return(service)
+        allow(TranslationService).to receive_messages(configured?: true, configured: service)
       end
 
       it 'returns language matrix' do
