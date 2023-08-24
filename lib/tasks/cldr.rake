@@ -15,7 +15,7 @@ namespace :cldr do
   desc 'Download CLDR data'
   task download: :environment do
     # View releases https://cldr.unicode.org/index/downloads
-    version = ENV.fetch('CLDR_VERSION', 42)
+    version = ENV.fetch('CLDR_VERSION', 43)
     puts "Downloading CLDR version #{version}"
 
     Cldr::Download.download(Cldr::Download::DEFAULT_SOURCE, Cldr::Download::DEFAULT_TARGET, version) { putc('.') }
