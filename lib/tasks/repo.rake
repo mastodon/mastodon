@@ -124,8 +124,8 @@ namespace :repo do
 
     unless missing_locale_names.empty?
       puts pastel.yellow("You are missing translations of the names of these languages: #{pastel.bold(missing_locale_names.join(', '))}")
-      puts pastel.yellow('Add them to config/locales/en.yml or remove the locales from app/helpers/languages_helper.rb')
-      puts pastel.yellow("Run #{pastel.bold('rake repo:locale')} to populate with translations from CLDR")
+      puts pastel.yellow('Add them to config/locales/languages.en.yml or remove the locales from app/helpers/languages_helper.rb')
+      puts pastel.yellow("Run #{pastel.bold('rake cldr:build')} to populate with translations from CLDR")
     end
 
     unless missing_supported_locales.empty?

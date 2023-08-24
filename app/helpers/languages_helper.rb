@@ -189,7 +189,7 @@ module LanguagesHelper
   ISO_639_3 = {
     ast: 'asturianu',
     chr: 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ',
-    ckb: 'سۆرانی',
+    ckb: 'کوردیی ناوەندی',
     cnr: 'crnogorski',
     jbo: 'la .lojban.',
     kab: 'Taqbaylit',
@@ -199,7 +199,7 @@ module LanguagesHelper
     sco: 'Scots',
     sma: 'Åarjelsaemien Gïele',
     smj: 'Julevsámegiella',
-    szl: 'ślůnsko godka',
+    szl: 'ślōnski',
     tok: 'toki pona',
     xal: 'Хальмг келн',
     zba: 'باليبلن',
