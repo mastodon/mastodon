@@ -309,8 +309,18 @@ code {
       border-radius: 4px;
       background: url('images/void.png');
 
+      &[src$='missing.png'] {
+        visibility: hidden;
+      }
+
       &:last-child {
         margin-bottom: 0;
+      }
+
+      &#account_avatar-preview {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
       }
     }
   }
