@@ -6,7 +6,7 @@ namespace :cldr do
   # Do not change - Cldr::Export::Data expects it to be 'vendor/cldr'.
   download_target = Cldr::Download::DEFAULT_TARGET
 
-  export_target = Rails.root.join('tmp/cldr')
+  export_target = Rails.root.join('tmp', 'cldr')
 
   locale_map = {
     'fr-QC': 'fr-CA',
@@ -50,11 +50,11 @@ namespace :cldr do
         next
       end
 
-      cldr_languages = YAML.safe_load(File.read(cldr_file), symbolize_names: true).dig(cldr_locale.to_sym, :languages)
+      cldr_languages = YAML.safe_load_file(cldr_file, symbolize_names: true).dig(cldr_locale.to_sym, :languages)
       cldr_languages.slice!(*LanguagesHelper::SUPPORTED_LOCALES.keys).stringify_keys
 
       locale_file = Rails.root.join('config', 'locales', "languages.#{locale}.yml")
-      data = YAML.safe_load(File.read(locale_file), symbolize_names: true) if locale_file.exist?
+      data = YAML.safe_load_file(locale_file, symbolize_names: true) if locale_file.exist?
       data ||= { locale => { languages: {} } }
 
       if ENV['FORCE']
