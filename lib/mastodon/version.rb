@@ -17,11 +17,11 @@ module Mastodon
     end
 
     def flags
-      ENV.fetch('MASTODON_VERSION_FLAGS', nil).presence || '-beta2'
+      ENV.fetch('MASTODON_VERSION_FLAGS', '-beta2')
     end
 
     def suffix
-      ENV.fetch('MASTODON_VERSION_SUFFIX', nil).presence || ''
+      ENV.fetch('MASTODON_VERSION_SUFFIX', '')
     end
 
     def to_a
