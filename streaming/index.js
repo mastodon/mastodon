@@ -26,7 +26,7 @@ log.level = process.env.LOG_LEVEL || 'verbose';
 /**
  * @param {Object.<string, any>} environment
  */
-const newRedisClient = async (environment) => {
+const createRedisClient = async (environment) => {
   const { redisParams, redisUrl } = redisConfigFromEnv(environment);
   const client = new Redis(redisUrl, redisParams);
   client.on('error', (err) => log.error('Redis Client Error!', err));
@@ -140,6 +140,7 @@ const redisConfigFromEnv = (env) => {
     }
   };
 
+  // redisParams.path takes precedence over host and port.
   if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
     redisParams.path = env.REDIS_URL.slice(7);
   }
@@ -167,8 +168,8 @@ const startServer = async () => {
    */
   const subs = {};
 
-  const redisSubscribeClient = await newRedisClient(process.env);
-  const redisClient = await newRedisClient(process.env);
+  const redisSubscribeClient = await createRedisClient(process.env);
+  const redisClient = await createRedisClient(process.env);
 
   // Collect metrics from Node.js
   metrics.collectDefaultMetrics();
@@ -258,8 +259,8 @@ const startServer = async () => {
   };
 
   /**
-   * @param {string} message
    * @param {string} channel
+   * @param {string} message
    */
   const onRedisMessage = (channel, message) => {
     const callbacks = subs[channel];
@@ -275,6 +276,7 @@ const startServer = async () => {
 
     callbacks.forEach(callback => callback(json));
   };
+  redisSubscribeClient.on("message", onRedisMessage);
 
   /**
    * @callback SubscriptionListener
@@ -294,7 +296,6 @@ const startServer = async () => {
     if (subs[channel].length === 0) {
       log.verbose(`Subscribe ${channel}`);
       redisSubscribeClient.subscribe(channel)
-	  redisSubscribeClient.on("message", onRedisMessage);
       redisSubscriptions.inc();
     }
 
