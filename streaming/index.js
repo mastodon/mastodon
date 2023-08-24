@@ -110,6 +110,11 @@ const pgConfigFromEnv = (env) => {
 
   if (env.DATABASE_URL) {
     baseConfig = dbUrlToConfig(env.DATABASE_URL);
+
+    // Support overriding the database password in the connection URL
+    if (!baseConfig.password && env.DB_PASS) {
+      baseConfig.password = env.DB_PASS;
+    }
   } else {
     baseConfig = pgConfigs[environment];
 
