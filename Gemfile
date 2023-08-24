@@ -110,7 +110,7 @@ group :test do
   gem 'fuubar', '~> 2.5'
 
   # Extra RSpec extenion methods and helpers for sidekiq
-  gem 'rspec-sidekiq', '~> 3.1'
+  gem 'rspec-sidekiq', '~> 4.0'
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'

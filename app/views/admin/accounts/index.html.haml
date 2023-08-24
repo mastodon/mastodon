@@ -1,9 +1,6 @@
 - content_for :page_title do
   = t('admin.accounts.title')
 
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 = form_tag admin_accounts_url, method: 'GET', class: 'simple_form' do
   .filters
     .filter-subset.filter-subset--with-select

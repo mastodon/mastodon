@@ -6,7 +6,7 @@ class InstancesIndex < Chewy::Index
   index_scope ::Instance.searchable
 
   root date_detection: false do
-    field :domain, type: 'text', index_prefixes: { min_chars: 1 }
+    field :domain, type: 'text', index_prefixes: { min_chars: 1, max_chars: 5 }
     field :accounts_count, type: 'long'
   end
 end

@@ -11,7 +11,24 @@ describe Admin::SystemCheck::ElasticsearchCheck do
 
   describe 'pass?' do
     context 'when chewy is enabled' do
-      before { allow(Chewy).to receive(:enabled?).and_return(true) }
+      before do
+        allow(Chewy).to receive(:enabled?).and_return(true)
+        allow(Chewy.client.cluster).to receive(:health).and_return({ 'status' => 'green', 'number_of_nodes' => 1 })
+        allow(Chewy.client.indices).to receive_messages(get_mapping: {
+          AccountsIndex.index_name => AccountsIndex.mappings_hash.deep_stringify_keys,
+          StatusesIndex.index_name => StatusesIndex.mappings_hash.deep_stringify_keys,
+          InstancesIndex.index_name => InstancesIndex.mappings_hash.deep_stringify_keys,
+          TagsIndex.index_name => TagsIndex.mappings_hash.deep_stringify_keys,
+        }, get_settings: {
+          'chewy_specifications' => {
+            'settings' => {
+              'index' => {
+                'number_of_replicas' => 0,
+              },
+            },
+          },
+        })
+      end
 
       context 'when running version is present and high enough' do
         before do
@@ -67,8 +84,19 @@ describe Admin::SystemCheck::ElasticsearchCheck do
   end
 
   describe 'message' do
+    before do
+      allow(Chewy).to receive(:enabled?).and_return(true)
+      allow(Chewy.client.cluster).to receive(:health).and_return({ 'status' => 'green', 'number_of_nodes' => 1 })
+      allow(Chewy.client.indices).to receive(:get_mapping).and_return({
+        AccountsIndex.index_name => AccountsIndex.mappings_hash.deep_stringify_keys,
+        StatusesIndex.index_name => StatusesIndex.mappings_hash.deep_stringify_keys,
+        InstancesIndex.index_name => InstancesIndex.mappings_hash.deep_stringify_keys,
+        TagsIndex.index_name => TagsIndex.mappings_hash.deep_stringify_keys,
+      })
+    end
+
     context 'when running version is present' do
-      before { allow(Chewy.client).to receive(:info).and_return({ 'version' => { 'number' => '999.99.9' } }) }
+      before { allow(Chewy.client).to receive(:info).and_return({ 'version' => { 'number' => '1.2.3' } }) }
 
       it 'sends class name symbol to message instance' do
         allow(Admin::SystemCheck::Message).to receive(:new)
@@ -77,7 +105,7 @@ describe Admin::SystemCheck::ElasticsearchCheck do
         check.message
 
         expect(Admin::SystemCheck::Message).to have_received(:new)
-          .with(:elasticsearch_version_check, 'Elasticsearch 999.99.9 is running while 7.x is required')
+          .with(:elasticsearch_version_check, 'Elasticsearch 1.2.3 is running while 7.x is required')
       end
     end
 

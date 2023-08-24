@@ -5125,6 +5125,7 @@ a.status-card {
 
     &.active {
       transform: rotate(90deg);
+      opacity: 1;
     }
 
     &:hover {
@@ -8539,6 +8540,44 @@ noscript {
     }
   }
 
+  &__choices {
+    display: flex;
+    gap: 40px;
+
+    &__choice {
+      flex: 1;
+      box-sizing: border-box;
+
+      h3 {
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: $darker-text-color;
+        margin-bottom: 20px;
+        font-size: 15px;
+      }
+
+      .button {
+        margin-bottom: 10px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+    &__choices {
+      flex-direction: column;
+
+      &__choice {
+        margin-top: 40px;
+      }
+    }
+  }
+
   .link-button {
     font-size: inherit;
     display: inline;
@@ -9267,16 +9306,15 @@ noscript {
 
   a {
     display: inline-flex;
-    border-radius: 4px;
-    background: rgba($highlight-text-color, 0.2);
-    color: $highlight-text-color;
-    padding: 0.4em 0.6em;
+    color: $dark-text-color;
     text-decoration: none;
 
-    &:hover,
-    &:focus,
-    &:active {
-      background: rgba($highlight-text-color, 0.3);
+    &:hover {
+      text-decoration: none;
+
+      span {
+        text-decoration: underline;
+      }
     }
   }
 }
