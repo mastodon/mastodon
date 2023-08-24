@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def flags
-      ENV.fetch('MASTODON_VERSION_FLAGS', '-beta1')
+      ENV.fetch('MASTODON_VERSION_FLAGS', '-beta2')
     end
 
     def suffix
