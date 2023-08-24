@@ -18,15 +18,20 @@
       = ff.input :'notification_emails.reblog', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.reblog')
       = ff.input :'notification_emails.favourite', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.favourite')
       = ff.input :'notification_emails.mention', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.mention')
-      = ff.input :'notification_emails.report', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.report') if current_user.can?(:manage_reports)
-      = ff.input :'notification_emails.appeal', as: :boolean, wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.appeal') if current_user.can?(:manage_appeals)
-      = ff.input :'notification_emails.pending_account', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.pending_account') if current_user.can?(:manage_users)
-      = ff.input :'notification_emails.trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_tag') if current_user.can?(:manage_taxonomies)
-      = ff.input :'notification_emails.link_trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_link') if current_user.can?(:manage_taxonomies)
-      = ff.input :'notification_emails.status_trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_status') if current_user.can?(:manage_taxonomies)
 
     .fields-group
       = ff.input :always_send_emails, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_always_send_emails'), hint: I18n.t('simple_form.hints.defaults.setting_always_send_emails')
+
+    - if current_user.can?(:manage_reports, :manage_appeals, :manage_users, :manage_taxonomies)
+      %h4= t 'notifications.administration_emails'
+
+      .fields-group
+        = ff.input :'notification_emails.report', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.report') if current_user.can?(:manage_reports)
+        = ff.input :'notification_emails.appeal', as: :boolean, wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.appeal') if current_user.can?(:manage_appeals)
+        = ff.input :'notification_emails.pending_account', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.pending_account') if current_user.can?(:manage_users)
+        = ff.input :'notification_emails.trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_tag') if current_user.can?(:manage_taxonomies)
+        = ff.input :'notification_emails.link_trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_link') if current_user.can?(:manage_taxonomies)
+        = ff.input :'notification_emails.status_trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_status') if current_user.can?(:manage_taxonomies)
 
   %h4= t 'notifications.other_settings'
 

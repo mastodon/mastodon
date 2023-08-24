@@ -16,7 +16,7 @@ jobs:
         env:
           TZ: Etc/UTC
         run: |
-          echo mastodon_version_suffix=nightly-$(date +'%Y-%m-%d')>> $GITHUB_OUTPUT
+          echo mastodon_version_suffix=nightly.$(date +'%Y-%m-%d')>> $GITHUB_OUTPUT
     outputs:
       suffix: ${{ steps.version_vars.outputs.mastodon_version_suffix }}
 
@@ -28,8 +28,8 @@ jobs:
       use_native_arm64_builder: false
       push_to_images: |
         ghcr.io/${{ github.repository_owner }}/mastodon
-      # The `+` is important here, result will be v4.1.2+nightly-2022-03-05
-      version_suffix: +${{ needs.compute-suffix.outputs.suffix }}
+      # The `-` is important here, result will be v4.1.2-nightly.2022-03-05
+      version_suffix: -${{ needs.compute-suffix.outputs.suffix }}
       labels: |
         org.opencontainers.image.description=Nightly build image used for testing purposes
       flavor: |
