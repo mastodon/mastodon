@@ -30,14 +30,14 @@
 #
 
 class Status < ApplicationRecord
-  before_destroy :unlink_from_conversations!
-
   include Discard::Model
   include Paginable
   include Cacheable
   include StatusThreadingConcern
   include StatusSnapshotConcern
   include RateLimitable
+  include StatusSafeReblogInsert
+  include StatusSearchConcern
 
   rate_limit by: :account, family: :statuses
 
@@ -48,6 +48,7 @@ class Status < ApplicationRecord
   attr_accessor :override_timestamps
 
   update_index('statuses', :proper)
+  update_index('public_statuses', :proper)
 
   enum visibility: { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, _suffix: :visibility
 
@@ -56,7 +57,7 @@ class Status < ApplicationRecord
   belongs_to :account, inverse_of: :statuses
   belongs_to :in_reply_to_account, class_name: 'Account', optional: true
   belongs_to :conversation, optional: true
-  belongs_to :preloadable_poll, class_name: 'Poll', foreign_key: 'poll_id', optional: true
+  belongs_to :preloadable_poll, class_name: 'Poll', foreign_key: 'poll_id', optional: true, inverse_of: false
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, optional: true
@@ -104,7 +105,9 @@ class Status < ApplicationRecord
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
   scope :tagged_with_all, lambda { |tag_ids|
     Array(tag_ids).map(&:to_i).reduce(self) do |result, id|
-      result.joins("INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}")
+      result.where(<<~SQL.squish, tag_id: id)
+        EXISTS(SELECT 1 FROM statuses_tags WHERE statuses_tags.status_id = statuses.id AND statuses_tags.tag_id = :tag_id)
+      SQL
     end
   }
   scope :tagged_with_none, lambda { |tag_ids|
@@ -113,6 +116,26 @@ class Status < ApplicationRecord
 
   after_create_commit :trigger_create_webhooks
   after_update_commit :trigger_update_webhooks
+
+  after_create_commit  :increment_counter_caches
+  after_destroy_commit :decrement_counter_caches
+
+  after_create_commit :store_uri, if: :local?
+  after_create_commit :update_statistics, if: :local?
+
+  before_validation :prepare_contents, if: :local?
+  before_validation :set_reblog
+  before_validation :set_visibility
+  before_validation :set_conversation
+  before_validation :set_local
+
+  around_create Mastodon::Snowflake::Callbacks
+
+  after_create :set_poll_id
+
+  # The `prepend: true` option below ensures this runs before
+  # the `dependent: destroy` callbacks remove relevant records
+  before_destroy :unlink_from_conversations!, prepend: true
 
   cache_associated :application,
                    :media_attachments,
@@ -141,38 +164,7 @@ class Status < ApplicationRecord
   REAL_TIME_WINDOW = 6.hours
 
   def cache_key
-    "v2:#{super}"
-  end
-
-  def searchable_by(preloaded = nil)
-    ids = []
-
-    ids << account_id if local?
-
-    if preloaded.nil?
-      ids += mentions.joins(:account).merge(Account.local).active.pluck(:account_id)
-      ids += favourites.joins(:account).merge(Account.local).pluck(:account_id)
-      ids += reblogs.joins(:account).merge(Account.local).pluck(:account_id)
-      ids += bookmarks.joins(:account).merge(Account.local).pluck(:account_id)
-      ids += poll.votes.joins(:account).merge(Account.local).pluck(:account_id) if poll.present?
-    else
-      ids += preloaded.mentions[id] || []
-      ids += preloaded.favourites[id] || []
-      ids += preloaded.reblogs[id] || []
-      ids += preloaded.bookmarks[id] || []
-      ids += preloaded.votes[id] || []
-    end
-
-    ids.uniq
-  end
-
-  def searchable_text
-    [
-      spoiler_text,
-      FormattingHelper.extract_status_plain_text(self),
-      preloadable_poll ? preloadable_poll.options.join("\n\n") : nil,
-      ordered_media_attachments.map(&:description).join("\n\n"),
-    ].compact.join("\n\n")
+    "v3:#{super}"
   end
 
   def to_log_human_identifier
@@ -249,6 +241,10 @@ class Status < ApplicationRecord
     preview_cards.any?
   end
 
+  def with_poll?
+    preloadable_poll.present?
+  end
+
   def non_sensitive_with_media?
     !sensitive? && with_media?
   end
@@ -311,22 +307,6 @@ class Status < ApplicationRecord
     attributes['trendable'].nil? && account.requires_review_notification?
   end
 
-  after_create_commit  :increment_counter_caches
-  after_destroy_commit :decrement_counter_caches
-
-  after_create_commit :store_uri, if: :local?
-  after_create_commit :update_statistics, if: :local?
-
-  before_validation :prepare_contents, if: :local?
-  before_validation :set_reblog
-  before_validation :set_visibility
-  before_validation :set_conversation
-  before_validation :set_local
-
-  around_create Mastodon::Snowflake::Callbacks
-
-  after_create :set_poll_id
-
   class << self
     def selectable_visibilities
       visibilities.keys - %w(direct limited)
@@ -362,13 +342,25 @@ class Status < ApplicationRecord
 
       account_ids.uniq!
 
+      status_ids = cached_items.map { |item| item.reblog? ? item.reblog_of_id : item.id }.uniq
+
       return if account_ids.empty?
 
       accounts = Account.where(id: account_ids).includes(:account_stat, :user).index_by(&:id)
 
+      status_stats = StatusStat.where(status_id: status_ids).index_by(&:status_id)
+
       cached_items.each do |item|
         item.account = accounts[item.account_id]
         item.reblog.account = accounts[item.reblog.account_id] if item.reblog?
+
+        if item.reblog?
+          status_stat = status_stats[item.reblog.id]
+          item.reblog.status_stat = status_stat if status_stat.present?
+        else
+          status_stat = status_stats[item.id]
+          item.status_stat = status_stat if status_stat.present?
+        end
       end
     end
 
@@ -389,71 +381,6 @@ class Status < ApplicationRecord
 
   def status_stat
     super || build_status_stat
-  end
-
-  # This is a hack to ensure that no reblogs of discarded statuses are created,
-  # as this cannot be enforced through database constraints the same way we do
-  # for reblogs of deleted statuses.
-  #
-  # To achieve this, we redefine the internal method responsible for issuing
-  # the "INSERT" statement and replace the "INSERT INTO ... VALUES ..." query
-  # with an "INSERT INTO ... SELECT ..." query with a "WHERE deleted_at IS NULL"
-  # clause on the reblogged status to ensure consistency at the database level.
-  #
-  # Otherwise, the code is kept as close as possible to ActiveRecord::Persistence
-  # code, and actually calls it if we are not handling a reblog.
-  def self._insert_record(values)
-    return super unless values.is_a?(Hash) && values['reblog_of_id'].present?
-
-    primary_key = self.primary_key
-    primary_key_value = nil
-
-    if primary_key
-      primary_key_value = values[primary_key]
-
-      if !primary_key_value && prefetch_primary_key?
-        primary_key_value = next_sequence_value
-        values[primary_key] = primary_key_value
-      end
-    end
-
-    # The following line is where we differ from stock ActiveRecord implementation
-    im = _compile_reblog_insert(values)
-
-    # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
-    # For our purposes, it's equivalent to a foreign key constraint violation
-    result = connection.insert(im, "#{self} Create", primary_key || false, primary_key_value)
-    raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id']}) is not present in table \"statuses\"" if result.nil?
-
-    result
-  end
-
-  def self._compile_reblog_insert(values)
-    # This is somewhat equivalent to the following code of ActiveRecord::Persistence:
-    # `arel_table.compile_insert(_substitute_values(values))`
-    # The main difference is that we use a `SELECT` instead of a `VALUES` clause,
-    # which means we have to build the `SELECT` clause ourselves and do a bit more
-    # manual work.
-
-    # Instead of using Arel::InsertManager#values, we are going to use Arel::InsertManager#select
-    im = Arel::InsertManager.new
-    im.into(arel_table)
-
-    binds = []
-    reblog_bind = nil
-    values.each do |name, value|
-      attr = arel_table[name]
-      bind = predicate_builder.build_bind_attribute(attr.name, value)
-
-      im.columns << attr
-      binds << bind
-
-      reblog_bind = bind if name == 'reblog_of_id'
-    end
-
-    im.select(arel_table.where(arel_table[:id].eq(reblog_bind)).where(arel_table[:deleted_at].eq(nil)).project(*binds))
-
-    im
   end
 
   def discard_with_reblogs

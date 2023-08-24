@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TagsController, type: :controller do
+RSpec.describe TagsController do
   render_views
 
   describe 'GET #show' do

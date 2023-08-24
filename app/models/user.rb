@@ -40,6 +40,7 @@
 #  sign_up_ip                :inet
 #  role_id                   :bigint(8)
 #  settings                  :text
+#  time_zone                 :string
 #
 
 class User < ApplicationRecord
@@ -99,6 +100,7 @@ class User < ApplicationRecord
   validates_with BlacklistedEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
+  validates :time_zone, inclusion: { in: ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo.name } }, allow_blank: true
 
   # Honeypot/anti-spam fields
   attr_accessor :registration_form_time, :website, :confirm_password
@@ -445,7 +447,6 @@ class User < ApplicationRecord
     return if chosen_languages.nil?
 
     chosen_languages.compact_blank!
-
     self.chosen_languages = nil if chosen_languages.empty?
   end
 
@@ -474,7 +475,7 @@ class User < ApplicationRecord
     User.those_who_can(:manage_users).includes(:account).find_each do |u|
       next unless u.allows_pending_account_emails?
 
-      AdminMailer.new_pending_account(u.account, self).deliver_later
+      AdminMailer.with(recipient: u.account).new_pending_account(self).deliver_later
     end
   end
 

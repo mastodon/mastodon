@@ -1,16 +1,20 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import { List as ImmutableList } from 'immutable';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
+
 import { expandSearch } from 'mastodon/actions/search';
+import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
+import { LoadMore } from 'mastodon/components/load_more';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import Account from 'mastodon/containers/account_container';
 import Status from 'mastodon/containers/status_container';
-import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
-import { List as ImmutableList } from 'immutable';
-import LoadMore from 'mastodon/components/load_more';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
-import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   title: { id: 'search_results.title', defaultMessage: 'Search for {q}' },
@@ -42,7 +46,7 @@ const renderStatuses = (results, onLoadMore) => appendLoadMore('statuses', resul
   <Status key={`status-${item}`} id={item} />
 )), onLoadMore);
 
-class Results extends React.PureComponent {
+class Results extends PureComponent {
 
   static propTypes = {
     results: ImmutablePropTypes.map,
@@ -102,12 +106,12 @@ class Results extends React.PureComponent {
     }
 
     return (
-      <React.Fragment>
+      <>
         <div className='account__section-headline'>
-          <button onClick={this.handleSelectAll} className={type === 'all' && 'active'}><FormattedMessage id='search_results.all' defaultMessage='All' /></button>
-          <button onClick={this.handleSelectAccounts} className={type === 'accounts' && 'active'}><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></button>
-          <button onClick={this.handleSelectHashtags} className={type === 'hashtags' && 'active'}><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></button>
-          <button onClick={this.handleSelectStatuses} className={type === 'statuses' && 'active'}><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></button>
+          <button onClick={this.handleSelectAll} className={type === 'all' ? 'active' : undefined}><FormattedMessage id='search_results.all' defaultMessage='All' /></button>
+          <button onClick={this.handleSelectAccounts} className={type === 'accounts' ? 'active' : undefined}><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></button>
+          <button onClick={this.handleSelectHashtags} className={type === 'hashtags' ? 'active' : undefined}><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></button>
+          <button onClick={this.handleSelectStatuses} className={type === 'statuses' ? 'active' : undefined}><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></button>
         </div>
 
         <div className='explore__search-results'>
@@ -117,7 +121,7 @@ class Results extends React.PureComponent {
         <Helmet>
           <title>{intl.formatMessage(messages.title, { q })}</title>
         </Helmet>
-      </React.Fragment>
+      </>
     );
   }
 

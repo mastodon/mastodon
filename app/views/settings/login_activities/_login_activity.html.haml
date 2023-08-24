@@ -1,6 +1,7 @@
-- method_str = content_tag(:span, login_activity.omniauth? ? t(login_activity.provider, scope: 'auth.providers') : t(login_activity.authentication_method, scope: 'login_activities.authentication_methods'), class: 'target')
-- ip_str = content_tag(:span, login_activity.ip, class: 'target')
-- browser_str = content_tag(:span, t('sessions.description', browser: t("sessions.browsers.#{login_activity.browser}", default: login_activity.browser.to_s), platform: t("sessions.platforms.#{login_activity.platform}", default: login_activity.platform.to_s)), class: 'target', title: login_activity.user_agent)
+:ruby
+  method_str = content_tag(:span, login_activity.omniauth? ? t(login_activity.provider, scope: 'auth.providers') : t(login_activity.authentication_method, scope: 'login_activities.authentication_methods'), class: 'target')
+  ip_str = content_tag(:span, login_activity.ip, class: 'target')
+  browser_str = content_tag(:span, t('sessions.description', browser: t("sessions.browsers.#{login_activity.browser}", default: login_activity.browser.to_s), platform: t("sessions.platforms.#{login_activity.platform}", default: login_activity.platform.to_s)), class: 'target', title: login_activity.user_agent)
 
 .log-entry
   .log-entry__header

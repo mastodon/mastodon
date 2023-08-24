@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StatusesCleanupController, type: :controller do
+RSpec.describe StatusesCleanupController do
   render_views
 
   before do

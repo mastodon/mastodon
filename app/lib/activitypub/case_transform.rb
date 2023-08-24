@@ -13,7 +13,7 @@ module ActivityPub::CaseTransform
       when Symbol then camel_lower(value.to_s).to_sym
       when String
         camel_lower_cache[value] ||= if value.start_with?('_:')
-                                       "_:#{value.gsub(/\A_:/, '').underscore.camelize(:lower)}"
+                                       "_:#{value.delete_prefix('_:').underscore.camelize(:lower)}"
                                      else
                                        value.underscore.camelize(:lower)
                                      end

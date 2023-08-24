@@ -136,6 +136,14 @@ code {
     line-height: 22px;
     color: $secondary-text-color;
     margin-bottom: 30px;
+
+    &.invited-by {
+      margin-bottom: 15px;
+    }
+
+    a {
+      color: $highlight-text-color;
+    }
   }
 
   .rules-list {
@@ -301,8 +309,18 @@ code {
       border-radius: 4px;
       background: url('images/void.png');
 
+      &[src$='missing.png'] {
+        visibility: hidden;
+      }
+
       &:last-child {
         margin-bottom: 0;
+      }
+
+      &#account_avatar-preview {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
       }
     }
   }
@@ -503,8 +521,8 @@ code {
     width: 100%;
     border: 0;
     border-radius: 4px;
-    background: darken($ui-highlight-color, 2%);
-    color: $primary-text-color;
+    background: $ui-button-background-color;
+    color: $ui-button-color;
     font-size: 18px;
     line-height: inherit;
     height: auto;
@@ -526,7 +544,7 @@ code {
     &:active,
     &:focus,
     &:hover {
-      background-color: $ui-highlight-color;
+      background-color: $ui-button-focus-background-color;
     }
 
     &:disabled:hover {
@@ -534,15 +552,12 @@ code {
     }
 
     &.negative {
-      background: $error-value-color;
+      background: $ui-button-destructive-background-color;
 
-      &:hover {
-        background-color: lighten($error-value-color, 5%);
-      }
-
+      &:hover,
       &:active,
       &:focus {
-        background-color: darken($error-value-color, 5%);
+        background-color: $ui-button-destructive-focus-background-color;
       }
     }
   }
@@ -722,7 +737,7 @@ code {
     }
   }
 
-  @media screen and (max-width: 740px) and (min-width: 441px) {
+  @media screen and (440px < width <= 740px) {
     margin-top: 40px;
   }
 
@@ -1037,6 +1052,12 @@ code {
   &:not(.field_with_errors) {
     display: none;
   }
+}
+
+.simple_form .h-captcha {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .permissions-list {

@@ -1,9 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { supportsPassiveEvents } from 'detect-passive-events';
+
 import { scrollTop } from '../scroll';
 
-export default class Column extends React.PureComponent {
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
+
+export default class Column extends PureComponent {
 
   static propTypes = {
     children: PropTypes.node,
@@ -12,7 +16,19 @@ export default class Column extends React.PureComponent {
   };
 
   scrollTop () {
-    const scrollable = this.props.bindToDocument ? document.scrollingElement : this.node.querySelector('.scrollable');
+    let scrollable = null;
+
+    if (this.props.bindToDocument) {
+      scrollable = document.scrollingElement;
+    } else {
+      scrollable = this.node.querySelector('.scrollable');
+
+      // Some columns have nested `.scrollable` containers, with the outer one
+      // being a wrapper while the actual scrollable content is deeper.
+      if (scrollable.classList.contains('scrollable--flex')) {
+        scrollable = scrollable?.querySelector('.scrollable') || scrollable;
+      }
+   }
 
     if (!scrollable) {
       return;
@@ -35,17 +51,17 @@ export default class Column extends React.PureComponent {
 
   componentDidMount () {
     if (this.props.bindToDocument) {
-      document.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
+      document.addEventListener('wheel', this.handleWheel, listenerOptions);
     } else {
-      this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
+      this.node.addEventListener('wheel', this.handleWheel, listenerOptions);
     }
   }
 
   componentWillUnmount () {
     if (this.props.bindToDocument) {
-      document.removeEventListener('wheel', this.handleWheel);
+      document.removeEventListener('wheel', this.handleWheel, listenerOptions);
     } else {
-      this.node.removeEventListener('wheel', this.handleWheel);
+      this.node.removeEventListener('wheel', this.handleWheel, listenerOptions);
     }
   }
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::BaseController, type: :controller do
+describe Admin::BaseController do
   controller do
     def success
       authorize :dashboard, :index?

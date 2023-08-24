@@ -3,7 +3,7 @@ nl:
   activerecord:
     attributes:
       poll:
-        expires_at: Deadline
+        expires_at: Vervaldatum
         options: Keuzes
       user:
         agreement: Servicevoorwaarden
@@ -53,3 +53,7 @@ nl:
             position:
               elevated: kan niet hoger zijn dan jouw huidige rol
               own_role: kan niet met jouw huidige rol worden gewijzigd
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: kan geen gebeurtenissen bevatten waar je geen rechten voor hebt

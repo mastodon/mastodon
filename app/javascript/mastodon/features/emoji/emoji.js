@@ -1,7 +1,10 @@
-import { autoPlayGif } from '../../initial_state';
-import unicodeMapping from './emoji_unicode_mapping_light';
-import { assetHost } from 'mastodon/utils/config';
 import Trie from 'substring-trie';
+
+import { assetHost } from 'mastodon/utils/config';
+
+import { autoPlayGif } from '../../initial_state';
+
+import unicodeMapping from './emoji_unicode_mapping_light';
 
 const trie = new Trie(Object.keys(unicodeMapping));
 

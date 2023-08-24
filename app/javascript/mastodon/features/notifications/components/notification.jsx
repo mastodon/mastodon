@@ -1,20 +1,26 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
-import { HotKeys } from 'react-hotkeys';
 import PropTypes from 'prop-types';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me } from 'mastodon/initial_state';
-import StatusContainer from 'mastodon/containers/status_container';
-import AccountContainer from 'mastodon/containers/account_container';
-import Report from './report';
-import FollowRequestContainer from '../containers/follow_request_container';
-import Icon from 'mastodon/components/icon';
-import { Link } from 'react-router-dom';
+
+import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
+
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { HotKeys } from 'react-hotkeys';
+
+import { Icon }  from 'mastodon/components/icon';
+import AccountContainer from 'mastodon/containers/account_container';
+import StatusContainer from 'mastodon/containers/status_container';
+import { me } from 'mastodon/initial_state';
+
+import FollowRequestContainer from '../containers/follow_request_container';
+
+import Report from './report';
 
 const messages = defineMessages({
-  favourite: { id: 'notification.favourite', defaultMessage: '{name} favourited your status' },
+  favourite: { id: 'notification.favourite', defaultMessage: '{name} favorited your status' },
   follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
   ownPoll: { id: 'notification.own_poll', defaultMessage: 'Your poll has ended' },
   poll: { id: 'notification.poll', defaultMessage: 'A poll you have voted in has ended' },
@@ -192,7 +198,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
+              <FormattedMessage id='notification.favourite' defaultMessage='{name} favorited your status' values={{ name: link }} />
             </span>
           </div>
 

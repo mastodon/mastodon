@@ -1,17 +1,20 @@
 // @ts-check
-import React from 'react';
-import { Sparklines, SparklinesCurve } from 'react-sparklines';
-import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { Link } from 'react-router-dom';
-// @ts-expect-error
-import ShortNumber from 'mastodon/components/short_number';
-// @ts-expect-error
-import Skeleton from 'mastodon/components/skeleton';
-import classNames from 'classnames';
+import { Component } from 'react';
 
-class SilentErrorBoundary extends React.Component {
+import { FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
+import { Sparklines, SparklinesCurve } from 'react-sparklines';
+
+import { ShortNumber } from 'mastodon/components/short_number';
+import { Skeleton } from 'mastodon/components/skeleton';
+
+class SilentErrorBoundary extends Component {
 
   static propTypes = {
     children: PropTypes.node,
@@ -37,7 +40,6 @@ class SilentErrorBoundary extends React.Component {
 
 /**
  * Used to render counter of how much people are talking about hashtag
- *
  * @type {(displayNumber: JSX.Element, pluralReady: number) => JSX.Element}
  */
 export const accountsCountRenderer = (displayNumber, pluralReady) => (
@@ -72,7 +74,7 @@ const Hashtag = ({ name, to, people, uses, history, className, description, with
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
       <Link to={to}>
-        {name ? <React.Fragment>#<span>{name}</span></React.Fragment> : <Skeleton width={50} />}
+        {name ? <>#<span>{name}</span></> : <Skeleton width={50} />}
       </Link>
 
       {description ? (

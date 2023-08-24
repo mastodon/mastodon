@@ -61,7 +61,7 @@ docker-compose.override.yml
 /app/javascript/mastodon/features/emoji/emoji_map.json
 
 # Ignore locale files
-/app/javascript/mastodon/locales
+/app/javascript/mastodon/locales/*.json
 /config/locales
 
 # Ignore vendored CSS reset
@@ -70,8 +70,6 @@ app/javascript/styles/mastodon/reset.scss
 # Ignore Javascript pending https://github.com/mastodon/mastodon/pull/23631
 *.js
 *.jsx
-*.ts
-*.tsx
 
 # Ignore HTML till cleaned and included in CI
 *.html

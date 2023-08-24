@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ModuleLength
-
 module LanguagesHelper
   ISO_639_1 = {
     aa: 'Afaraf',
@@ -190,7 +188,8 @@ module LanguagesHelper
 
   ISO_639_3 = {
     ast: 'asturianu',
-    ckb: 'کوردیی ناوەندی',
+    chr: 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ',
+    ckb: 'سۆرانی',
     cnr: 'crnogorski',
     jbo: 'la .lojban.',
     kab: 'Taqbaylit',
@@ -202,11 +201,22 @@ module LanguagesHelper
     smj: 'Julevsámegiella',
     szl: 'ślůnsko godka',
     tok: 'toki pona',
+    xal: 'Хальмг келн',
     zba: 'باليبلن',
     zgh: 'ⵜⴰⵎⴰⵣⵉⵖⵜ',
   }.freeze
 
-  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_3).freeze
+  # e.g. For Chinese, which is not a language,
+  # but a language family in spite of sharing the main locale code
+  # We need to be able to filter these
+  ISO_639_1_REGIONAL = {
+    'zh-CN': '简体中文',
+    'zh-HK': '繁體中文（香港）',
+    'zh-TW': '繁體中文（臺灣）',
+    'zh-YUE': '廣東話',
+  }.freeze
+
+  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_1_REGIONAL).merge(ISO_639_3).freeze
 
   # For ISO-639-1 and ISO-639-3 language codes, we have their official
   # names, but for some translations, we need the names of the
@@ -219,9 +229,6 @@ module LanguagesHelper
     'pt-BR': 'português (Brasil)',
     'pt-PT': 'português (Portugal)',
     'sr-Latn': 'srpski (latinica)',
-    'zh-CN': '简体中文',
-    'zh-HK': '繁體中文（香港）',
-    'zh-TW': '繁體中文（臺灣）',
   }.freeze
 
   def native_locale_name(locale)

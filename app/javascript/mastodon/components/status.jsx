@@ -1,33 +1,44 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import Avatar from './avatar';
-import AvatarOverlay from './avatar_overlay';
-import RelativeTimestamp from './relative_timestamp';
-import DisplayName from './display_name';
-import StatusContent from './status_content';
-import StatusActionBar from './status_action_bar';
-import AttachmentList from './attachment_list';
-import Card from '../features/status/components/card';
+
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
-import { HotKeys } from 'react-hotkeys';
+
 import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
-import { displayMedia } from '../initial_state';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { HotKeys } from 'react-hotkeys';
+
+import { Icon }  from 'mastodon/components/icon';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 
+import Card from '../features/status/components/card';
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
+import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
+import { displayMedia } from '../initial_state';
+
+import { Avatar } from './avatar';
+import { AvatarOverlay } from './avatar_overlay';
+import { DisplayName } from './display_name';
+import { getHashtagBarForStatus } from './hashtag_bar';
+import { RelativeTimestamp } from './relative_timestamp';
+import StatusActionBar from './status_action_bar';
+import StatusContent from './status_content';
+
+const domParser = new DOMParser();
 
 export const textForScreenReader = (intl, status, rebloggedByText = false) => {
   const displayName = status.getIn(['account', 'display_name']);
 
+  const spoilerText = status.getIn(['translation', 'spoiler_text']) || status.get('spoiler_text');
+  const contentHtml = status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
+  const contentText = domParser.parseFromString(contentHtml, 'text/html').documentElement.textContent;
+
   const values = [
     displayName.length === 0 ? status.getIn(['account', 'acct']).split('@')[0] : displayName,
-    status.get('spoiler_text') && status.get('hidden') ? status.get('spoiler_text') : status.get('search_index').slice(status.get('spoiler_text').length),
+    spoilerText && status.get('hidden') ? spoilerText : contentText,
     intl.formatDate(status.get('created_at'), { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' }),
     status.getIn(['account', 'acct']),
   ];
@@ -54,7 +65,7 @@ export const defaultMediaVisibility = (status) => {
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
   edited: { id: 'status.edited', defaultMessage: 'Edited {date}' },
 });
@@ -180,25 +191,46 @@ class Status extends ImmutablePureComponent {
     this.props.onTranslate(this._properStatus());
   };
 
-  renderLoadingMediaGallery () {
-    return <div className='media-gallery' style={{ height: '110px' }} />;
+  getAttachmentAspectRatio () {
+    const attachments = this._properStatus().get('media_attachments');
+
+    if (attachments.getIn([0, 'type']) === 'video') {
+      return `${attachments.getIn([0, 'meta', 'original', 'width'])} / ${attachments.getIn([0, 'meta', 'original', 'height'])}`;
+    } else if (attachments.getIn([0, 'type']) === 'audio') {
+      return '16 / 9';
+    } else {
+      return (attachments.size === 1 && attachments.getIn([0, 'meta', 'small', 'aspect'])) ? attachments.getIn([0, 'meta', 'small', 'aspect']) : '3 / 2'
+    }
   }
 
-  renderLoadingVideoPlayer () {
-    return <div className='video-player' style={{ height: '110px' }} />;
-  }
+  renderLoadingMediaGallery = () => {
+    return (
+      <div className='media-gallery' style={{ aspectRatio: this.getAttachmentAspectRatio() }} />
+    );
+  };
 
-  renderLoadingAudioPlayer () {
-    return <div className='audio-player' style={{ height: '110px' }} />;
-  }
+  renderLoadingVideoPlayer = () => {
+    return (
+      <div className='video-player' style={{ aspectRatio: this.getAttachmentAspectRatio() }} />
+    );
+  };
+
+  renderLoadingAudioPlayer = () => {
+    return (
+      <div className='audio-player' style={{ aspectRatio: this.getAttachmentAspectRatio() }} />
+    );
+  };
 
   handleOpenVideo = (options) => {
     const status = this._properStatus();
-    this.props.onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), options);
+    const lang = status.getIn(['translation', 'language']) || status.get('language');
+    this.props.onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), lang, options);
   };
 
   handleOpenMedia = (media, index) => {
-    this.props.onOpenMedia(this._properStatus().get('id'), media, index);
+    const status = this._properStatus();
+    const lang = status.getIn(['translation', 'language']) || status.get('language');
+    this.props.onOpenMedia(status.get('id'), media, index, lang);
   };
 
   handleHotkeyOpenMedia = e => {
@@ -208,10 +240,11 @@ class Status extends ImmutablePureComponent {
     e.preventDefault();
 
     if (status.get('media_attachments').size > 0) {
+      const lang = status.getIn(['translation', 'language']) || status.get('language');
       if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), { startTime: 0 });
+        onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), lang, { startTime: 0 });
       } else {
-        onOpenMedia(status.get('id'), status.get('media_attachments'), 0);
+        onOpenMedia(status.get('id'), status.get('media_attachments'), 0, lang);
       }
     }
   };
@@ -411,25 +444,21 @@ class Status extends ImmutablePureComponent {
     }
 
     if (pictureInPicture.get('inUse')) {
-      media = <PictureInPicturePlaceholder width={this.props.cachedMediaWidth} />;
+      media = <PictureInPicturePlaceholder aspectRatio={this.getAttachmentAspectRatio()} />;
     } else if (status.get('media_attachments').size > 0) {
-      if (this.props.muted) {
-        media = (
-          <AttachmentList
-            compact
-            media={status.get('media_attachments')}
-          />
-        );
-      } else if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
+      const language = status.getIn(['translation', 'language']) || status.get('language');
+
+      if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
         const attachment = status.getIn(['media_attachments', 0]);
+        const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
 
         media = (
           <Bundle fetchComponent={Audio} loading={this.renderLoadingAudioPlayer} >
             {Component => (
               <Component
                 src={attachment.get('url')}
-                alt={attachment.get('description')}
-                lang={status.get('language')}
+                alt={description}
+                lang={language}
                 poster={attachment.get('preview_url') || status.getIn(['account', 'avatar_static'])}
                 backgroundColor={attachment.getIn(['meta', 'colors', 'background'])}
                 foregroundColor={attachment.getIn(['meta', 'colors', 'foreground'])}
@@ -449,6 +478,7 @@ class Status extends ImmutablePureComponent {
         );
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const attachment = status.getIn(['media_attachments', 0]);
+        const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
 
         media = (
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
@@ -456,16 +486,13 @@ class Status extends ImmutablePureComponent {
               <Component
                 preview={attachment.get('preview_url')}
                 frameRate={attachment.getIn(['meta', 'original', 'frame_rate'])}
+                aspectRatio={`${attachment.getIn(['meta', 'original', 'width'])} / ${attachment.getIn(['meta', 'original', 'height'])}`}
                 blurhash={attachment.get('blurhash')}
                 src={attachment.get('url')}
-                alt={attachment.get('description')}
-                lang={status.get('language')}
-                width={this.props.cachedMediaWidth}
-                height={110}
-                inline
+                alt={description}
+                lang={language}
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
-                cacheWidth={this.props.cacheMediaWidth}
                 deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}
                 visible={this.state.showMedia}
                 onToggleVisibility={this.handleToggleMediaVisibility}
@@ -479,7 +506,7 @@ class Status extends ImmutablePureComponent {
             {Component => (
               <Component
                 media={status.get('media_attachments')}
-                lang={status.get('language')}
+                lang={language}
                 sensitive={status.get('sensitive')}
                 height={110}
                 onOpenMedia={this.handleOpenMedia}
@@ -492,14 +519,12 @@ class Status extends ImmutablePureComponent {
           </Bundle>
         );
       }
-    } else if (status.get('spoiler_text').length === 0 && status.get('card') && !this.props.muted) {
+    } else if (status.get('spoiler_text').length === 0 && status.get('card')) {
       media = (
         <Card
           onOpenMedia={this.handleOpenMedia}
           card={status.get('card')}
           compact
-          cacheWidth={this.props.cacheMediaWidth}
-          defaultWidth={this.props.cachedMediaWidth}
           sensitive={status.get('sensitive')}
         />
       );
@@ -519,6 +544,9 @@ class Status extends ImmutablePureComponent {
     };
 
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];
+
+    const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
+    const expanded = !status.get('hidden')
 
     return (
       <HotKeys handlers={handlers}>
@@ -547,14 +575,17 @@ class Status extends ImmutablePureComponent {
             <StatusContent
               status={status}
               onClick={this.handleClick}
-              expanded={!status.get('hidden')}
+              expanded={expanded}
               onExpandedToggle={this.handleExpandedToggle}
               onTranslate={this.handleTranslate}
               collapsible
               onCollapsedToggle={this.handleCollapsedToggle}
+              {...statusContentProps}
             />
 
             {media}
+
+            {expanded && hashtagBar}
 
             <StatusActionBar scrollKey={scrollKey} status={status} account={account} onFilter={matchedFilters ? this.handleFilterClick : null} {...other} />
           </div>

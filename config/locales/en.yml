@@ -382,6 +382,15 @@ en:
       undo: Disallow federation with domain
     domain_blocks:
       add_new: Add new domain block
+      confirm_suspension:
+        cancel: Cancel
+        confirm: Suspend
+        permanent_action: Undoing the suspension will not restore any data or relationship.
+        preamble_html: You are about to suspend <strong>%{domain}</strong> and its subdomains.
+        remove_all_data: This will remove all content, media, and profile data for this domain's accounts from your server.
+        stop_communication: Your server will stop communicating with these servers.
+        title: Confirm domain block for %{domain}
+        undo_relationships: This will undo any follow relationship between accounts of these servers and yours.
       created_msg: Domain block is now being processed
       destroyed_msg: Domain block has been undone
       domain: Domain
@@ -731,6 +740,9 @@ en:
       branding:
         preamble: Your server's branding differentiates it from other servers in the network. This information may be displayed across a variety of environments, such as Mastodon's web interface, native applications, in link previews on other websites and within messaging apps, and so on. For this reason, it is best to keep this information clear, short and concise.
         title: Branding
+      captcha_enabled:
+        desc_html: This relies on external scripts from hCaptcha, which may be a security and privacy concern. In addition, <strong>this can make the registration process significantly less accessible to some (especially disabled) people</strong>. For these reasons, please consider alternative measures such as approval-based or invite-based registration.
+        title: Require new users to solve a CAPTCHA to confirm their account
       content_retention:
         preamble: Control how user-generated content is stored in Mastodon.
         title: Content retention
@@ -758,7 +770,7 @@ en:
           approved: Approval required for sign up
           none: Nobody can sign up
           open: Anyone can sign up
-      title: Server Settings
+      title: Server settings
     site_uploads:
       delete: Delete uploaded file
       destroyed_msg: Site upload successfully deleted!
@@ -771,7 +783,7 @@ en:
         remove_from_report: Remove from report
         report: Report
       deleted: Deleted
-      favourites: Favourites
+      favourites: Favorites
       history: Version history
       in_reply_to: Replying to
       language: Language
@@ -802,6 +814,20 @@ en:
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      elasticsearch_health_red:
+        message_html: Elasticsearch cluster is unhealthy (red status), search features are unavailable
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch cluster is unhealthy (yellow status), you may want to investigate the reason
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch index mappings are outdated. Please run <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: See documentation
+        message_html: Your Elasticsearch cluster has more than one node, but Mastodon is not configured to use them.
+      elasticsearch_preset_single_node:
+        action: See documentation
+        message_html: Your Elasticsearch cluster has only one node, <code>ES_PRESET</code> should be set to <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Your Elasticsearch system index is outdated due to a setting change. Please run <code>tootctl search deploy --reset-chewy</code> to update it.
       elasticsearch_running_check:
         message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
       elasticsearch_version_check:
@@ -852,14 +878,14 @@ en:
       statuses:
         allow: Allow post
         allow_account: Allow author
-        description_html: These are posts that your server knows about that are currently being shared and favourited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
+        description_html: These are posts that your server knows about that are currently being shared and favorited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
         disallow: Disallow post
         disallow_account: Disallow author
         no_status_selected: No trending posts were changed as none were selected
         not_discoverable: Author has not opted-in to being discoverable
         shared_by:
-          one: Shared or favourited one time
-          other: Shared and favourited %{friendly_count} times
+          one: Shared or favorited one time
+          other: Shared and favorited %{friendly_count} times
         title: Trending posts
       tags:
         current_score: Current score %{score}
@@ -961,11 +987,11 @@ en:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Everyone can contribute.
     sensitive_content: Sensitive content
-    toot_layout: Post layout
   application_mailer:
     notification_preferences: Change e-mail preferences
     salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
+    unsubscribe: Unsubscribe
     view: 'View:'
     view_profile: View profile
     view_status: View post
@@ -979,7 +1005,10 @@ en:
     your_token: Your access token
   auth:
     apply_for_account: Request an account
-    change_password: Password
+    captcha_confirmation:
+      help_html: If you have issues solving the CAPTCHA, you can get in touch with us through %{email} and we can assist you.
+      hint_html: Just one more thing! We need to confirm you're a human (this is so we can keep the spam out!). Solve the CAPTCHA below and click "Continue".
+      title: Security check
     confirmations:
       wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Delete account
@@ -1016,8 +1045,11 @@ en:
     rules:
       accept: Accept
       back: Back
+      invited_by: 'You can join %{domain} thanks to the invitation you have received from:'
       preamble: These are set and enforced by the %{domain} moderators.
+      preamble_invited: Before you proceed, please consider the ground rules set by the moderators of %{domain}.
       title: Some ground rules.
+      title_invited: You've been invited.
     security: Security
     set_new_password: Set new password
     setup:
@@ -1027,8 +1059,8 @@ en:
       new_confirmation_instructions_sent: You will receive a new e-mail with the confirmation link in a few minutes!
       title: Check your inbox
     sign_in:
-      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
-      title: Sign in to %{domain}
+      preamble_html: Login with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Login to %{domain}
     sign_up:
       manual_review: Sign-ups on %{domain} go through manual review by our moderators. To help us process your registration, write a bit about yourself and why you want an account on %{domain}.
       preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
@@ -1042,18 +1074,6 @@ en:
       view_strikes: View past strikes against your account
     too_fast: Form submitted too fast, try again.
     use_security_key: Use security key
-  authorize_follow:
-    already_following: You are already following this account
-    already_requested: You have already sent a follow request to that account
-    error: Unfortunately, there was an error looking up the remote account
-    follow: Follow
-    follow_request: 'You have sent a follow request to:'
-    following: 'Success! You are now following:'
-    post_follow:
-      close: Or, you can just close this window.
-      return: Show the user's profile
-      web: Go to web
-    title: Follow %{acct}
   challenge:
     confirm: Continue
     hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
@@ -1130,6 +1150,10 @@ en:
       your_appeal_rejected: Your appeal has been rejected
   domain_validator:
     invalid_domain: is not a valid domain name
+  edit_profile:
+    basic_information: Basic information
+    hint_html: "<strong>Customize what people see on your public profile and next to your posts.</strong> Other people are more likely to follow you back and interact with you when you have a filled out profile and a profile picture."
+    other: Other
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -1167,7 +1191,7 @@ en:
     add_new: Add new
     errors:
       limit: You have already featured the maximum number of hashtags
-    hint_html: "<strong>What are featured hashtags?</strong> They are displayed prominently on your public profile and allow people to browse your public posts specifically under those hashtags. They are a great tool for keeping track of creative works or long-term projects."
+    hint_html: "<strong>Feature your most important hashtags on your profile.</strong> A great tool for keeping track of your creative works and long-term projects, featured hashtags are displayed prominently on your profile and allow quick access to your own posts."
   filters:
     contexts:
       account: Profiles
@@ -1218,7 +1242,9 @@ en:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> item matching your search is selected."
       other: All <strong>%{count}</strong> items matching your search are selected.
+    cancel: Cancel
     changes_saved_msg: Changes successfully saved!
+    confirm: Confirm
     copy: Copy
     delete: Delete
     deselect: Deselect all
@@ -1234,20 +1260,60 @@ en:
       other: Something isn't quite right yet! Please review %{count} errors below
   imports:
     errors:
+      empty: Empty CSV file
+      incompatible_type: Incompatible with the selected import type
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
       over_rows_processing_limit: contains more than %{count} rows
+      too_large: File is too large
+    failures: Failures
+    imported: Imported
+    mismatched_types_warning: It appears you may have selected the wrong type for this import, please double-check.
     modes:
       merge: Merge
       merge_long: Keep existing records and add new ones
       overwrite: Overwrite
       overwrite_long: Replace current records with the new ones
+    overwrite_preambles:
+      blocking_html: You are about to <strong>replace your block list</strong> with up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+      bookmarks_html: You are about to <strong>replace your bookmarks</strong> with up to <strong>%{total_items} posts</strong> from <strong>%{filename}</strong>.
+      domain_blocking_html: You are about to <strong>replace your domain block list</strong> with up to <strong>%{total_items} domains</strong> from <strong>%{filename}</strong>.
+      following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
+      lists_html: You are about to <strong>replace your lists</strong> with contents of <strong>%{filename}</strong>. Up to <strong>%{total_items} accounts</strong> will be added to new lists.
+      muting_html: You are about to <strong>replace your list of muted accounts</strong> with up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+      bookmarks_html: You are about to add up to <strong>%{total_items} posts</strong> from <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
+      domain_blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} domains</strong> from <strong>%{filename}</strong>.
+      following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+      lists_html: You are about to add up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong> to your <strong>lists</strong>. New lists will be created if there is no list to add to.
+      muting_html: You are about to <strong>mute</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
     preface: You can import data that you have exported from another server, such as a list of the people you are following or blocking.
+    recent_imports: Recent imports
+    states:
+      finished: Finished
+      in_progress: In progress
+      scheduled: Scheduled
+      unconfirmed: Unconfirmed
+    status: Status
     success: Your data was successfully uploaded and will be processed in due time
+    time_started: Started at
+    titles:
+      blocking: Importing blocked accounts
+      bookmarks: Importing bookmarks
+      domain_blocking: Importing blocked domains
+      following: Importing followed accounts
+      lists: Importing lists
+      muting: Importing muted accounts
+    type: Import type
+    type_groups:
+      constructive: Follows & Bookmarks
+      destructive: Blocks & mutes
     types:
       blocking: Blocking list
       bookmarks: Bookmarks
       domain_blocking: Domain blocking list
       following: Following list
+      lists: Lists
       muting: Muting list
     upload: Upload
   invites:
@@ -1286,6 +1352,21 @@ en:
     failed_sign_in_html: Failed sign-in attempt with %{method} from %{ip} (%{browser})
     successful_sign_in_html: Successful sign-in with %{method} from %{ip} (%{browser})
     title: Authentication history
+  mail_subscriptions:
+    unsubscribe:
+      action: Yes, unsubscribe
+      complete: Unsubscribed
+      confirmation_html: Are you sure you want to unsubscribe from receiving %{type} for Mastodon on %{domain} to your e-mail at %{email}? You can always re-subscribe from your <a href="%{settings_path}">e-mail notification settings</a>.
+      emails:
+        notification_emails:
+          favourite: favorite notification e-mails
+          follow: follow notification e-mails
+          follow_request: follow request e-mails
+          mention: mention notification e-mails
+          reblog: boost notification e-mails
+      resubscribe_html: If you've unsubscribed by mistake, you can re-subscribe from your <a href="%{settings_path}">e-mail notification settings</a>.
+      success_html: You'll no longer receive %{type} for Mastodon on %{domain} to your e-mail at %{email}.
+      title: Unsubscribe
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a post that already contains images
@@ -1337,9 +1418,9 @@ en:
       sign_up:
         subject: "%{name} signed up"
     favourite:
-      body: 'Your post was favourited by %{name}:'
-      subject: "%{name} favourited your post"
-      title: New favourite
+      body: 'Your post was favorited by %{name}:'
+      subject: "%{name} favorited your post"
+      title: New favorite
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
@@ -1365,6 +1446,7 @@ en:
     update:
       subject: "%{name} edited a post"
   notifications:
+    administration_emails: Admin e-mail notifications
     email_events: Events for e-mail notifications
     email_events_hint: 'Select events that you want to receive notifications for:'
     other_settings: Other notifications settings
@@ -1402,12 +1484,22 @@ en:
       expired: The poll has already ended
       invalid_choice: The chosen vote option does not exist
       over_character_limit: cannot be longer than %{max} characters each
+      self_vote: You cannot vote in your own polls
       too_few_options: must have more than one item
       too_many_options: can't contain more than %{max} items
   preferences:
     other: Other
     posting_defaults: Posting defaults
     public_timelines: Public timelines
+  privacy:
+    hint_html: "<strong>Customize how you want your profile and your posts to be found.</strong> A variety of features in Mastodon can help you reach a wider audience when enabled. Take a moment to review these settings to make sure they fit your use case."
+    privacy: Privacy
+    privacy_hint_html: Control how much you want to disclose for the benefit of others. People discover interesting profiles and cool apps by browsing other people's follows and seeing which apps they post from, but you may prefer to keep it hidden.
+    reach: Reach
+    reach_hint_html: Control whether you want to be discovered and followed by new people. Do you want your posts to appear on the Explore screen? Do you want other people to see you in their follow recommendations? Do you want to accept all new followers automatically, or have granular control over each one?
+    search: Search
+    search_hint_html: Control how you want to be found. Do you want people to find you by what you've publicly posted about? Do you want people outside Mastodon to find your profile when searching the web? Please mind that total exclusion from all search engines cannot be guaranteed for public information.
+    title: Privacy and reach
   privacy_policy:
     title: Privacy Policy
   reactions:
@@ -1511,7 +1603,7 @@ en:
     migrate: Account migration
     notifications: Notifications
     preferences: Preferences
-    profile: Profile
+    profile: Public profile
     relationships: Follows and followers
     statuses_cleanup: Automated post deletion
     strikes: Moderation strikes
@@ -1557,7 +1649,6 @@ en:
     show_newer: Show newer
     show_older: Show older
     show_thread: Show thread
-    sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direct
@@ -1572,10 +1663,10 @@ en:
     enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
     exceptions: Exceptions
     explanation: Because deleting posts is an expensive operation, this is done slowly over time when the server is not otherwise busy. For this reason, your posts may be deleted a while after they reach the age threshold.
-    ignore_favs: Ignore favourites
+    ignore_favs: Ignore favorites
     ignore_reblogs: Ignore boosts
     interaction_exceptions: Exceptions based on interactions
-    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favourite or boost threshold after having once gone over them.
+    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favorite or boost threshold after having once gone over them.
     keep_direct: Keep direct messages
     keep_direct_hint: Doesn't delete any of your direct messages
     keep_media: Keep posts with media attachments
@@ -1586,8 +1677,8 @@ en:
     keep_polls_hint: Doesn't delete any of your polls
     keep_self_bookmark: Keep posts you bookmarked
     keep_self_bookmark_hint: Doesn't delete your own posts if you have bookmarked them
-    keep_self_fav: Keep posts you favourited
-    keep_self_fav_hint: Doesn't delete your own posts if you have favourited them
+    keep_self_fav: Keep posts you favorited
+    keep_self_fav_hint: Doesn't delete your own posts if you have favorited them
     min_age:
       '1209600': 2 weeks
       '15778476': 6 months
@@ -1598,13 +1689,11 @@ en:
       '63113904': 2 years
       '7889238': 3 months
     min_age_label: Age threshold
-    min_favs: Keep posts favourited at least
-    min_favs_hint: Doesn't delete any of your posts that has received at least this number of favourites. Leave blank to delete posts regardless of their number of favourites
+    min_favs: Keep posts favorited at least
+    min_favs_hint: Doesn't delete any of your posts that has received at least this number of favorites. Leave blank to delete posts regardless of their number of favorites
     min_reblogs: Keep posts boosted at least
     min_reblogs_hint: Doesn't delete any of your posts that has been boosted at least this number of times. Leave blank to delete posts regardless of their number of boosts
   stream_entries:
-    pinned: Pinned post
-    reblogged: boosted
     sensitive_content: Sensitive content
   strikes:
     errors:
@@ -1705,8 +1794,12 @@ en:
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
   verification:
-    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. After adding the link you may need to come back here and re-save your profile for the verification to take effect. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
+    extra_instructions_html: <strong>Tip:</strong> The link on your website can be invisible. The important part is <code>rel="me"</code> which prevents impersonation on websites with user-generated content. You can even use a <code>link</code> tag in the header of the page instead of <code>a</code>, but the HTML must be accessible without executing JavaScript.
+    here_is_how: Here's how
+    hint_html: "<strong>Verifying your identity on Mastodon is for everyone.</strong> Based on open web standards, now and forever free. All you need is a personal website that people recognize you by. When you link to this website from your profile, we will check that the website links back to your profile and show a visual indicator on it."
+    instructions_html: Copy and paste the code below into the HTML of your website. Then add the address of your website into one of the extra fields on your profile from the "Edit profile" tab and save changes.
     verification: Verification
+    verified_links: Your verified links
   webauthn_credentials:
     add: Add new security key
     create:

@@ -1,19 +1,23 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import Story from './components/story';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
-import { connect } from 'react-redux';
-import { fetchTrendingLinks } from 'mastodon/actions/trends';
+import { PureComponent } from 'react';
+
 import { FormattedMessage } from 'react-intl';
-import DismissableBanner from 'mastodon/components/dismissable_banner';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { fetchTrendingLinks } from 'mastodon/actions/trends';
+import { DismissableBanner } from 'mastodon/components/dismissable_banner';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+
+import Story from './components/story';
 
 const mapStateToProps = state => ({
   links: state.getIn(['trends', 'links', 'items']),
   isLoading: state.getIn(['trends', 'links', 'isLoading']),
 });
 
-class Links extends React.PureComponent {
+class Links extends PureComponent {
 
   static propTypes = {
     links: ImmutablePropTypes.list,
@@ -31,7 +35,7 @@ class Links extends React.PureComponent {
 
     const banner = (
       <DismissableBanner id='explore/links'>
-        <FormattedMessage id='dismissable_banner.explore_links' defaultMessage='These news stories are being talked about by people on this and other servers of the decentralized network right now.' />
+        <FormattedMessage id='dismissable_banner.explore_links' defaultMessage='These are news stories being shared the most on the social web today. Newer news stories posted by more different people are ranked higher.' />
       </DismissableBanner>
     );
 
@@ -51,14 +55,19 @@ class Links extends React.PureComponent {
       <div className='explore__links'>
         {banner}
 
-        {isLoading ? (<LoadingIndicator />) : links.map(link => (
+        {isLoading ? (<LoadingIndicator />) : links.map((link, i) => (
           <Story
             key={link.get('id')}
+            expanded={i === 0}
+            lang={link.get('language')}
             url={link.get('url')}
             title={link.get('title')}
             publisher={link.get('provider_name')}
+            publishedAt={link.get('published_at')}
+            author={link.get('author_name')}
             sharedTimes={link.getIn(['history', 0, 'accounts']) * 1 + link.getIn(['history', 1, 'accounts']) * 1}
             thumbnail={link.get('image')}
+            thumbnailDescription={link.get('image_description')}
             blurhash={link.get('blurhash')}
           />
         ))}

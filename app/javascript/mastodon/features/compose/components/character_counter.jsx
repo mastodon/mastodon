@@ -1,8 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { length } from 'stringz';
 
-export default class CharacterCounter extends React.PureComponent {
+export default class CharacterCounter extends PureComponent {
 
   static propTypes = {
     text: PropTypes.string.isRequired,

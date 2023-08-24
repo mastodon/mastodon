@@ -8,29 +8,57 @@ default: &default
   application_name: ''
 
 development:
-  <<: *default
-  database: <%= ENV['DB_NAME'] || 'mastodon_development' %>
-  username: <%= ENV['DB_USER'] %>
-  password: <%= (ENV['DB_PASS'] || '').to_json %>
-  host: <%= ENV['DB_HOST'] %>
-  port: <%= ENV['DB_PORT'] %>
+  primary:
+    <<: *default
+    database: <%= ENV['DB_NAME'] || 'mastodon_development' %>
+    username: <%= ENV['DB_USER'] %>
+    password: <%= (ENV['DB_PASS'] || '').to_json %>
+    host: <%= ENV['DB_HOST'] %>
+    port: <%= ENV['DB_PORT'] %>
+  replica:
+    <<: *default
+    database: <%= ENV['DB_NAME'] || 'mastodon_development' %>
+    username: <%= ENV['DB_USER'] %>
+    password: <%= (ENV['DB_PASS'] || '').to_json %>
+    host: <%= ENV['DB_HOST'] %>
+    port: <%= ENV['DB_PORT'] %>
+    replica: true
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: <%= ENV['DB_NAME'] || 'mastodon' %>_test<%= ENV['TEST_ENV_NUMBER'] %>
-  username: <%= ENV['DB_USER'] %>
-  password: <%= (ENV['DB_PASS'] || '').to_json %>
-  host: <%= ENV['DB_HOST'] %>
-  port: <%= ENV['DB_PORT'] %>
+  primary:
+    <<: *default
+    database: <%= ENV['DB_NAME'] || 'mastodon' %>_test<%= ENV['TEST_ENV_NUMBER'] %>
+    username: <%= ENV['DB_USER'] %>
+    password: <%= (ENV['DB_PASS'] || '').to_json %>
+    host: <%= ENV['DB_HOST'] %>
+    port: <%= ENV['DB_PORT'] %>
+  replica:
+    <<: *default
+    database: <%= ENV['DB_NAME'] || 'mastodon' %>_test<%= ENV['TEST_ENV_NUMBER'] %>
+    username: <%= ENV['DB_USER'] %>
+    password: <%= (ENV['DB_PASS'] || '').to_json %>
+    host: <%= ENV['DB_HOST'] %>
+    port: <%= ENV['DB_PORT'] %>
+    replica: true
 
 production:
-  <<: *default
-  database: <%= ENV['DB_NAME'] || 'mastodon_production' %>
-  username: <%= ENV['DB_USER'] || 'mastodon' %>
-  password: <%= (ENV['DB_PASS'] || '').to_json %>
-  host: <%= ENV['DB_HOST'] || 'localhost' %>
-  port: <%= ENV['DB_PORT'] || 5432 %>
-  prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
+  primary:
+    <<: *default
+    database: <%= ENV['DB_NAME'] || 'mastodon_production' %>
+    username: <%= ENV['DB_USER'] || 'mastodon' %>
+    password: <%= (ENV['DB_PASS'] || '').to_json %>
+    host: <%= ENV['DB_HOST'] || 'localhost' %>
+    port: <%= ENV['DB_PORT'] || 5432 %>
+    prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
+  replica:
+    <<: *default
+    database: <%= ENV['REPLICA_DB_NAME'] ||ENV['DB_NAME'] || 'mastodon_production' %>
+    username: <%= ENV['REPLICA_DB_USER'] ||ENV['DB_USER'] || 'mastodon' %>
+    password: <%= (ENV['REPLICA_DB_PASS'] || ENV['DB_PASS'] || '').to_json %>
+    host: <%= ENV['REPLICA_DB_HOST'] ||ENV['DB_HOST'] || 'localhost' %>
+    port: <%= ENV['REPLICA_DB_PORT'] ||ENV['DB_PORT'] || 5432 %>
+    prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
+    replica: true

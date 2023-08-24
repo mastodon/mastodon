@@ -2,9 +2,7 @@
 
 require 'rails_helper'
 
-describe Rack::Attack do
-  include Rack::Test::Methods
-
+describe Rack::Attack, type: :request do
   def app
     Rails.application
   end
@@ -25,7 +23,7 @@ describe Rack::Attack do
       it 'does not change the request status' do
         limit.times do
           request.call
-          expect(last_response.status).to_not eq(429)
+          expect(response).to_not have_http_status(429)
         end
       end
     end
@@ -34,13 +32,13 @@ describe Rack::Attack do
       it 'returns http too many requests after limit and returns to normal status after period' do
         (limit * 2).times do |i|
           request.call
-          expect(last_response.status).to eq(429) if i > limit
+          expect(response).to have_http_status(429) if i > limit
         end
 
         travel period
 
         request.call
-        expect(last_response.status).to_not eq(429)
+        expect(response).to_not have_http_status(429)
       end
     end
   end
@@ -48,41 +46,41 @@ describe Rack::Attack do
   let(:remote_ip) { '1.2.3.5' }
 
   describe 'throttle excessive sign-up requests by IP address' do
-    context 'through the website' do
+    context 'when accessed through the website' do
       let(:limit)  { 25 }
       let(:period) { 5.minutes }
-      let(:request) { -> { post path, {}, 'REMOTE_ADDR' => remote_ip } }
+      let(:request) { -> { post path, headers: { 'REMOTE_ADDR' => remote_ip } } }
 
-      context 'for exact path' do
+      context 'with exact path' do
         let(:path) { '/auth' }
 
         it_behaves_like 'throttled endpoint'
       end
 
-      context 'for path with format' do
+      context 'with path with format' do
         let(:path) { '/auth.html' }
 
         it_behaves_like 'throttled endpoint'
       end
     end
 
-    context 'through the API' do
+    context 'when accessed through the API' do
       let(:limit)  { 5 }
       let(:period) { 30.minutes }
-      let(:request) { -> { post path, {}, 'REMOTE_ADDR' => remote_ip } }
+      let(:request) { -> { post path, headers: { 'REMOTE_ADDR' => remote_ip } } }
 
-      context 'for exact path' do
+      context 'with exact path' do
         let(:path) { '/api/v1/accounts' }
 
         it_behaves_like 'throttled endpoint'
       end
 
-      context 'for path with format' do
+      context 'with path with format' do
         let(:path)  { '/api/v1/accounts.json' }
 
         it 'returns http not found' do
           request.call
-          expect(last_response.status).to eq(404)
+          expect(response).to have_http_status(404)
         end
       end
     end
@@ -91,15 +89,15 @@ describe Rack::Attack do
   describe 'throttle excessive sign-in requests by IP address' do
     let(:limit)  { 25 }
     let(:period) { 5.minutes }
-    let(:request) { -> { post path, {}, 'REMOTE_ADDR' => remote_ip } }
+    let(:request) { -> { post path, headers: { 'REMOTE_ADDR' => remote_ip } } }
 
-    context 'for exact path' do
+    context 'with exact path' do
       let(:path) { '/auth/sign_in' }
 
       it_behaves_like 'throttled endpoint'
     end
 
-    context 'for path with format' do
+    context 'with path with format' do
       let(:path) { '/auth/sign_in.html' }
 
       it_behaves_like 'throttled endpoint'

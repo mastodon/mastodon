@@ -1,15 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import { injectIntl } from 'react-intl';
-import { setupListEditor, clearListSuggestions, resetListEditor } from '../../actions/lists';
-import Account from './components/account';
-import Search from './components/search';
-import EditListForm from './components/edit_list_form';
-import Motion from '../ui/util/optional_motion';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
 import spring from 'react-motion/lib/spring';
+
+import { setupListEditor, clearListSuggestions, resetListEditor } from '../../actions/lists';
+import Motion from '../ui/util/optional_motion';
+
+import Account from './components/account';
+import EditListForm from './components/edit_list_form';
+import Search from './components/search';
 
 const mapStateToProps = state => ({
   accountIds: state.getIn(['listEditor', 'accounts', 'items']),

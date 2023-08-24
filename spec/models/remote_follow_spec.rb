@@ -13,7 +13,7 @@ RSpec.describe RemoteFollow do
   describe '.initialize' do
     subject { remote_follow.acct }
 
-    context 'attrs with acct' do
+    context 'when attrs with acct' do
       let(:attrs) { { acct: 'gargron@quitter.no' } }
 
       it 'returns acct' do
@@ -21,7 +21,7 @@ RSpec.describe RemoteFollow do
       end
     end
 
-    context 'attrs without acct' do
+    context 'when attrs without acct' do
       let(:attrs) { {} }
 
       it do
@@ -33,7 +33,7 @@ RSpec.describe RemoteFollow do
   describe '#valid?' do
     subject { remote_follow.valid? }
 
-    context 'attrs with acct' do
+    context 'when attrs with acct' do
       let(:attrs) { { acct: 'gargron@quitter.no' } }
 
       it do
@@ -41,7 +41,7 @@ RSpec.describe RemoteFollow do
       end
     end
 
-    context 'attrs without acct' do
+    context 'when attrs without acct' do
       let(:attrs) { {} }
 
       it do

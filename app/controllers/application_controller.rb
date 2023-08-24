@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   include SessionTrackingConcern
   include CacheConcern
   include DomainControlHelper
+  include DatabaseHelper
 
   helper_method :current_account
   helper_method :current_session
@@ -18,8 +19,9 @@ class ApplicationController < ActionController::Base
   helper_method :use_seamless_external_login?
   helper_method :omniauth_only?
   helper_method :sso_account_settings
-  helper_method :whitelist_mode?
+  helper_method :limited_federation_mode?
   helper_method :body_class_string
+  helper_method :skip_csrf_meta_tags?
 
   rescue_from ActionController::ParameterMissing, Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
   rescue_from Mastodon::NotPermittedError, with: :forbidden
@@ -36,7 +38,7 @@ class ApplicationController < ActionController::Base
     service_unavailable
   end
 
-  before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
+  before_action :store_referrer, except: :raise_not_found, if: :devise_controller?
   before_action :require_functional!, if: :user_signed_in?
 
   before_action :set_cache_control_defaults
@@ -50,19 +52,30 @@ class ApplicationController < ActionController::Base
   private
 
   def authorized_fetch_mode?
-    ENV['AUTHORIZED_FETCH'] == 'true' || Rails.configuration.x.whitelist_mode
+    ENV['AUTHORIZED_FETCH'] == 'true' || Rails.configuration.x.limited_federation_mode
   end
 
   def public_fetch_mode?
     !authorized_fetch_mode?
   end
 
-  def store_current_location
-    store_location_for(:user, request.url) unless [:json, :rss].include?(request.format&.to_sym)
+  def store_referrer
+    return if request.referer.blank?
+
+    redirect_uri = URI(request.referer)
+    return if redirect_uri.path.start_with?('/auth')
+
+    stored_url = redirect_uri.to_s if redirect_uri.host == request.host && redirect_uri.port == request.port
+
+    store_location_for(:user, stored_url)
   end
 
   def require_functional!
     redirect_to edit_user_registration_path unless current_user.functional?
+  end
+
+  def skip_csrf_meta_tags?
+    false
   end
 
   def after_sign_out_path_for(_resource_or_scope)

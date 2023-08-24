@@ -7,15 +7,15 @@ class LinkDetailsExtractor
   # Some publications wrap their JSON-LD data in their <script> tags
   # in commented-out CDATA blocks, they need to be removed before
   # attempting to parse JSON
-  CDATA_JUNK_PATTERN = %r{^[\s]*(
-    (/\*[\s]*<!\[CDATA\[[\s]*\*/) # Block comment style opening
+  CDATA_JUNK_PATTERN = %r{^\s*(
+    (/\*\s*<!\[CDATA\[\s*\*/) # Block comment style opening
     |
-    (//[\s]*<!\[CDATA\[) # Single-line comment style opening
+    (//\s*<!\[CDATA\[) # Single-line comment style opening
     |
-    (/\*[\s]*\]\]>[\s]*\*/) # Block comment style closing
+    (/\*\s*\]\]>\s*\*/) # Block comment style closing
     |
-    (//[\s]*\]\]>) # Single-line comment style closing
-  )[\s]*$}x
+    (//\s*\]\]>) # Single-line comment style closing
+  )\s*$}x
 
   class StructuredData
     SUPPORTED_TYPES = %w(
@@ -113,6 +113,7 @@ class LinkDetailsExtractor
       title: title || '',
       description: description || '',
       image_remote_url: image,
+      image_description: image_alt || '',
       type: type,
       link_type: link_type,
       width: width || 0,
@@ -124,6 +125,7 @@ class LinkDetailsExtractor
       author_url: author_url || '',
       embed_url: embed_url || '',
       language: language,
+      published_at: published_at.presence,
     }
   end
 
@@ -140,7 +142,7 @@ class LinkDetailsExtractor
   end
 
   def html
-    player_url.present? ? content_tag(:iframe, nil, src: player_url, width: width, height: height, allowtransparency: 'true', scrolling: 'no', frameborder: '0') : nil
+    player_url.present? ? content_tag(:iframe, nil, src: player_url, width: width, height: height, allowfullscreen: 'true', allowtransparency: 'true', scrolling: 'no', frameborder: '0') : nil
   end
 
   def width
@@ -159,8 +161,16 @@ class LinkDetailsExtractor
     html_entities.decode(structured_data&.description || opengraph_tag('og:description') || meta_tag('description'))
   end
 
+  def published_at
+    structured_data&.date_published || opengraph_tag('article:published_time')
+  end
+
   def image
     valid_url_or_nil(opengraph_tag('og:image'))
+  end
+
+  def image_alt
+    opengraph_tag('og:image:alt')
   end
 
   def canonical_url
@@ -204,7 +214,7 @@ class LinkDetailsExtractor
   def host_to_url(str)
     return if str.blank?
 
-    str.start_with?(/https?:\/\//) ? str : "http://#{str}"
+    str.start_with?(%r{https?://}) ? str : "http://#{str}"
   end
 
   def valid_url_or_nil(str, same_origin_only: false)

@@ -156,8 +156,8 @@ module CacheConcern
   end
 
   class_methods do
-    def vary_by(value)
-      before_action do |controller|
+    def vary_by(value, **kwargs)
+      before_action(**kwargs) do |controller|
         response.headers['Vary'] = value.respond_to?(:call) ? controller.instance_exec(&value) : value
       end
     end
