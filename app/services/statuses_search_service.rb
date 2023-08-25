@@ -15,16 +15,7 @@ class StatusesSearchService < BaseService
 
   def status_search_results
     definition = parsed_query.apply(
-      StatusesIndex.filter(
-        bool: {
-          should: [
-            publicly_searchable,
-            non_publicly_searchable,
-          ],
-
-          minimum_should_match: 1,
-        }
-      )
+      StatusesIndex.filter(term: { searchable_by: @account.id })
     )
 
     # This is the best way to submit identical queries to multi-indexes though chewy
