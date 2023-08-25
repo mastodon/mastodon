@@ -142,7 +142,7 @@ const Firehose = ({ feedType, multiColumn }) => {
   const emptyMessage = feedType === 'community' ? (
     <FormattedMessage
       id='empty_column.community'
-      defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!'
+      defaultMessage='This server looks empty. Write something publicly to get the ball rolling!'
     />
   ) : (
     <FormattedMessage

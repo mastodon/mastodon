@@ -22,7 +22,7 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import ColumnSettingsContainer from './containers/column_settings_container';
 
 const messages = defineMessages({
-  title: { id: 'column.community', defaultMessage: 'Local timeline' },
+  title: { id: 'column.community', defaultMessage: 'This server' },
 });
 
 const mapStateToProps = (state, { columnId }) => {
@@ -144,7 +144,7 @@ class CommunityTimeline extends PureComponent {
           scrollKey={`community_timeline-${columnId}`}
           timelineId={`community${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
+          emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='This server looks empty. Write something publicly to get the ball rolling!' />}
           bindToDocument={!multiColumn}
         />
 
