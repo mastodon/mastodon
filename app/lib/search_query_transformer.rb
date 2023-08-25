@@ -81,7 +81,8 @@ class SearchQueryTransformer < Parslet::Transform
   class PrefixClause
     attr_reader :type, :filter, :operator, :term
 
-    def initialize(prefix, term)
+    def initialize(prefix, term, options = {})
+      @options  = options
       @operator = :filter
 
       case prefix
@@ -117,6 +118,8 @@ class SearchQueryTransformer < Parslet::Transform
     private
 
     def account_id_from_term(term)
+      return @options[:current_account]&.id || -1 if term == 'me'
+
       username, domain = term.gsub(/\A@/, '').split('@')
       domain = nil if TagManager.instance.local_domain?(domain)
       account = Account.find_remote(username, domain)
@@ -132,7 +135,7 @@ class SearchQueryTransformer < Parslet::Transform
     operator = clause[:operator]&.to_s
 
     if clause[:prefix]
-      PrefixClause.new(prefix, clause[:term].to_s)
+      PrefixClause.new(prefix, clause[:term].to_s, current_account: current_account)
     elsif clause[:term]
       TermClause.new(prefix, operator, clause[:term].to_s)
     elsif clause[:shortcode]
