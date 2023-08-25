@@ -11,7 +11,8 @@ class TranslationService::DeepL < TranslationService
   end
 
   def translate(texts, source_language, target_language)
-    form = { text: texts, source_lang: source_language&.upcase, target_lang: target_language, tag_handling: 'html' }
+    form = { text: texts, target_lang: target_language, tag_handling: 'html' }
+    form[:source_lang] = source_language&.upcase if source_language != 'auto'
     request(:post, '/v2/translate', form: form) do |res|
       transform_response(res.body_with_limit)
     end

@@ -8,18 +8,17 @@ class TranslateStatusService < BaseService
 
   def call(status, target_language)
     @status = status
+    raise Mastodon::NotPermittedError unless permitted?
+
     @source_texts = source_texts
     @target_language = target_language
 
-    raise Mastodon::NotPermittedError unless permitted?
-
-    status_translation = Rails.cache.fetch("v2:translations/#{@status.language}/#{@target_language}/#{content_hash}", expires_in: CACHE_TTL) do
-      translations = translation_backend.translate(@source_texts.values, @status.language, @target_language)
+    status_translation = Rails.cache.fetch("v2:translations/#{source_language}/#{@target_language}/#{content_hash}", expires_in: CACHE_TTL) do
+      translations = translation_backend.translate(@source_texts.values, source_language, @target_language)
       build_status_translation(translations)
     end
 
     status_translation.status = @status
-
     status_translation
   end
 
@@ -32,7 +31,17 @@ class TranslateStatusService < BaseService
   def permitted?
     return false unless @status.distributable? && TranslationService.configured?
 
-    languages[@status.language]&.include?(@target_language)
+    return true if source_language == 'auto'
+
+    languages[source_language]&.include?(@target_language)
+  end
+
+  def source_language
+    return @source_language if @source_language
+
+    return 'auto' if ENV['AUTO_DETECT_LANGUAGE'] == 'true'
+
+    @status.language
   end
 
   def languages
