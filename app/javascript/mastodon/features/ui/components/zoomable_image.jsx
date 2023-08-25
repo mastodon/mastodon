@@ -442,7 +442,6 @@ class ZoomableImage extends PureComponent {
               transform: `scale(${scale}) translate(-${lockTranslate.x}px, -${lockTranslate.y}px)`,
               transformOrigin: '0 0',
             }}
-            draggable={false}
             onClick={this.handleClick}
             onMouseDown={this.handleMouseDown}
           />
