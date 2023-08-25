@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 import { WordmarkLogo } from 'mastodon/components/logo';
 import NavigationPortal from 'mastodon/components/navigation_portal';
+import { IdentityContext } from 'mastodon/containers/identity_context';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
 
@@ -34,11 +35,7 @@ const messages = defineMessages({
 });
 
 class NavigationPanel extends Component {
-
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-    identity: PropTypes.object.isRequired,
-  };
+  static contextType = IdentityContext;
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -48,9 +45,9 @@ class NavigationPanel extends Component {
     return match || location.pathname.startsWith('/public');
   };
 
-  render () {
+  render() {
     const { intl } = this.props;
-    const { signedIn, disabledAccountId } = this.context.identity;
+    const { signedIn, disabledAccountId } = this.context;
 
     return (
       <div className='navigation-panel'>
@@ -86,7 +83,7 @@ class NavigationPanel extends Component {
         {!signedIn && (
           <div className='navigation-panel__sign-in-banner'>
             <hr />
-            { disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner /> }
+            {disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner />}
           </div>
         )}
 

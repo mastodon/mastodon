@@ -18,7 +18,7 @@ import initialState, { title as siteTitle } from 'mastodon/initial_state';
 import { IntlProvider } from 'mastodon/locales';
 import { store } from 'mastodon/store';
 
-import { Context as IdentityContext, createLegacyIdentityContext } from './identity_context';
+import { IdentityContext, createLegacyIdentityContext } from './identity_context';
 
 const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
 

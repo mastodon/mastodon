@@ -10,7 +10,7 @@ interface IdentityState {
   permissions: number;
 }
 
-export const Context = createContext<IdentityState>({
+export const IdentityContext = createContext<IdentityState>({
   signedIn: false,
   accountId: '',
   disabledAccountId: '',
