@@ -6,6 +6,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
     AccountsIndex,
     TagsIndex,
     StatusesIndex,
+    PublicStatusesIndex,
   ].freeze
 
   def skip?
