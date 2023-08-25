@@ -1,5 +1,5 @@
 /* Mastodon Bird UI by @rolle@mementomori.social
-   1.7.1-nightly */
+   1.7.2rc5-nightly */
 
 /* CSS variables */
 :root {
@@ -553,6 +553,11 @@ body.layout-multiple-columns {
 /* Show minimal status card if there's no image */
 .layout-multiple-columns .status-card .status-card__image:not(:has(img)) {
   display: none;
+}
+
+/* Show iframe in status card if status contains embedded media */
+.layout-multiple-columns .status-card .status-card-video:has(iframe) {
+  display: inherit;
 }
 
 /* Hide empty status cards alltogether (Mastodon 4.1.5-2023-07-29) */
@@ -1363,7 +1368,38 @@ body.embed .detailed-status,
   color: var(--color-light-text);
 }
 
+/* Pill style tags */
+.layout-multiple-columns .hashtag-bar a {
+  background-color: var(--color-dark);
+  border-radius: 9999px;
+  color: var(--color-light-purple);
+  display: inline-block;
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5;
+  margin: 0 4px 4px 0;
+  padding: 4px 8px;
+  text-decoration: none;
+}
+
+.layout-multiple-columns .hashtag-bar .link-button {
+  font-size: var(--font-size-smaller);
+}
+
+.layout-multiple-columns .hashtag-bar a:focus,
+.layout-multiple-columns .hashtag-bar a:hover {
+  background-color: var(--color-accent-dark);
+  /* It should be always light also on light mode, so not using variable here */
+  color: #f7f9f9;
+}
+
+.layout-multiple-columns .hashtag-bar a:focus span,
+.layout-multiple-columns .hashtag-bar a:hover span {
+  text-decoration: none;
+}
+
 /* Status update tinted to right */
+.layout-multiple-columns .status:not(.status--in-thread) .hashtag-bar,
 .layout-multiple-columns .status__content--collapsed + .status__content__read-more-button,
 .layout-multiple-columns .status:not(.status--in-thread) .status__action-bar,
 .layout-multiple-columns .status:not(.status--in-thread) .attachment-list,
