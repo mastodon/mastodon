@@ -1168,3 +1168,25 @@ a.status-card.compact:hover {
     border-color: lighten($ui-base-color, 12%);
   }
 }
+
+.hashtag-bar {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  gap: 4px;
+
+  a {
+    display: inline-flex;
+    color: $dark-text-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+}
