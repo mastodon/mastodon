@@ -40,11 +40,11 @@ module Paperclip
         unless eligible_to_passthrough?(metadata)
           @output_options['acodec'] = 'aac'
           @output_options['strict'] = 'experimental'
-        end
 
-        if high_vfr?(metadata) && !eligible_to_passthrough?(metadata)
-          @output_options['vsync'] = 'vfr'
-          @output_options['r'] = @vfr_threshold
+          if high_vfr?(metadata)
+            @output_options['vsync'] = 'vfr'
+            @output_options['r'] = @vfr_threshold
+          end
         end
       end
 

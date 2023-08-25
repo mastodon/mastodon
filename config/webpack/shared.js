@@ -2,6 +2,7 @@
 
 const { resolve } = require('path');
 
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const AssetsManifestPlugin = require('webpack-assets-manifest');
@@ -112,6 +113,9 @@ module.exports = {
       writeToDisk: true,
       publicPath: true,
     }),
+    new CircularDependencyPlugin({
+      failOnError: true,
+    })
   ],
 
   resolve: {

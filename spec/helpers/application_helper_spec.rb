@@ -31,10 +31,7 @@ describe ApplicationHelper do
     context 'with a body class string from a controller' do
       before do
         without_partial_double_verification do
-          allow(helper).to receive(:body_class_string).and_return('modal-layout compose-standalone')
-          allow(helper).to receive(:current_flavour).and_return('glitch')
-          allow(helper).to receive(:current_skin).and_return('default')
-          allow(helper).to receive(:current_account).and_return(Fabricate(:account))
+          allow(helper).to receive_messages(body_class_string: 'modal-layout compose-standalone', current_flavour: 'glitch', current_skin: 'default', current_account: Fabricate(:account))
         end
       end
 

@@ -18,20 +18,12 @@ delegate(document, '#account_display_name', 'input', ({ target }) => {
   }
 });
 
-delegate(document, '#account_avatar', 'change', ({ target }) => {
-  const avatar = document.querySelector('.card .avatar img');
+delegate(document, '#edit_profile input[type=file]', 'change', ({ target }) => {
+  const avatar = document.getElementById(target.id + '-preview');
   const [file] = target.files || [];
   const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
 
   avatar.src = url;
-});
-
-delegate(document, '#account_header', 'change', ({ target }) => {
-  const header = document.querySelector('.card .card__img img');
-  const [file] = target.files || [];
-  const url = file ? URL.createObjectURL(file) : header.dataset.originalSrc;
-
-  header.src = url;
 });
 
 delegate(document, '#account_locked', 'change', ({ target }) => {

@@ -97,6 +97,11 @@ namespace :api, format: false do
     resources :endorsements, only: [:index]
     resources :markers, only: [:index, :create]
 
+    namespace :profile do
+      resource :avatar, only: :destroy
+      resource :header, only: :destroy
+    end
+
     namespace :apps do
       get :verify_credentials, to: 'credentials#show'
     end

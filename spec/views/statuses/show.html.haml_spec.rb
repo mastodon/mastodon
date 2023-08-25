@@ -4,15 +4,9 @@ require 'rails_helper'
 
 describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
   before do
-    allow(view).to receive(:api_oembed_url).and_return('')
-    allow(view).to receive(:show_landing_strip?).and_return(true)
-    allow(view).to receive(:site_title).and_return('example site')
-    allow(view).to receive(:site_hostname).and_return('example.com')
-    allow(view).to receive(:full_asset_url).and_return('//asset.host/image.svg')
+    allow(view).to receive_messages(api_oembed_url: '', show_landing_strip?: true, site_title: 'example site', site_hostname: 'example.com', full_asset_url: '//asset.host/image.svg', current_account: nil, single_user_mode?: false)
     allow(view).to receive(:local_time)
     allow(view).to receive(:local_time_ago)
-    allow(view).to receive(:current_account).and_return(nil)
-    allow(view).to receive(:single_user_mode?).and_return(false)
     assign(:instance_presenter, InstancePresenter.new)
   end
 

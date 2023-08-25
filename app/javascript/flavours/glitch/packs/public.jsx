@@ -14,7 +14,6 @@ import emojify  from 'flavours/glitch/features/emoji/emoji';
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
 import { loadLocale, getLocale } from 'flavours/glitch/locales';
 import { loadPolyfills } from 'flavours/glitch/polyfills';
-import ready from 'flavours/glitch/ready';
 
 const messages = defineMessages({
   usernameTaken: { id: 'username.taken', defaultMessage: 'That username is taken. Try another' },
@@ -42,159 +41,157 @@ function main() {
     };
   };
 
-  ready(() => {
-    const locale = document.documentElement.lang;
+  const locale = document.documentElement.lang;
 
-    const dateTimeFormat = new Intl.DateTimeFormat(locale, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-    });
+  const dateTimeFormat = new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  });
 
-    const dateFormat = new Intl.DateTimeFormat(locale, {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      timeFormat: false,
-    });
+  const dateFormat = new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    timeFormat: false,
+  });
 
-    const timeFormat = new Intl.DateTimeFormat(locale, {
-      timeStyle: 'short',
-      hour12: false,
-    });
+  const timeFormat = new Intl.DateTimeFormat(locale, {
+    timeStyle: 'short',
+    hour12: false,
+  });
 
-    const formatMessage = ({ id, defaultMessage }, values) => {
-      const messageFormat = new IntlMessageFormat(localeData[id] || defaultMessage, locale);
-      return messageFormat.format(values);
-    };
+  const formatMessage = ({ id, defaultMessage }, values) => {
+    const messageFormat = new IntlMessageFormat(localeData[id] || defaultMessage, locale);
+    return messageFormat.format(values);
+  };
 
-    [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
-      content.innerHTML = emojify(content.innerHTML);
-    });
+  [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
+    content.innerHTML = emojify(content.innerHTML);
+  });
 
-    [].forEach.call(document.querySelectorAll('time.formatted'), (content) => {
-      const datetime = new Date(content.getAttribute('datetime'));
-      const formattedDate = dateTimeFormat.format(datetime);
+  [].forEach.call(document.querySelectorAll('time.formatted'), (content) => {
+    const datetime = new Date(content.getAttribute('datetime'));
+    const formattedDate = dateTimeFormat.format(datetime);
 
-      content.title = formattedDate;
-      content.textContent = formattedDate;
-    });
+    content.title = formattedDate;
+    content.textContent = formattedDate;
+  });
 
-    const isToday = date => {
-      const today = new Date();
+  const isToday = date => {
+    const today = new Date();
 
-      return date.getDate() === today.getDate() &&
-        date.getMonth() === today.getMonth() &&
-        date.getFullYear() === today.getFullYear();
-    };
-    const todayFormat = new IntlMessageFormat(localeData['relative_format.today'] || 'Today at {time}', locale);
+    return date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear();
+  };
+  const todayFormat = new IntlMessageFormat(localeData['relative_format.today'] || 'Today at {time}', locale);
 
-    [].forEach.call(document.querySelectorAll('time.relative-formatted'), (content) => {
-      const datetime = new Date(content.getAttribute('datetime'));
+  [].forEach.call(document.querySelectorAll('time.relative-formatted'), (content) => {
+    const datetime = new Date(content.getAttribute('datetime'));
 
-      let formattedContent;
+    let formattedContent;
 
-      if (isToday(datetime)) {
-        const formattedTime = timeFormat.format(datetime);
+    if (isToday(datetime)) {
+      const formattedTime = timeFormat.format(datetime);
 
-        formattedContent = todayFormat.format({ time: formattedTime });
-      } else {
-        formattedContent = dateFormat.format(datetime);
-      }
-
-      content.title = formattedContent;
-      content.textContent = formattedContent;
-    });
-
-    [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
-      const datetime = new Date(content.getAttribute('datetime'));
-      const now      = new Date();
-
-      const timeGiven = content.getAttribute('datetime').includes('T');
-      content.title = timeGiven ? dateTimeFormat.format(datetime) : dateFormat.format(datetime);
-      content.textContent = timeAgoString({
-        formatMessage,
-        formatDate: (date, options) => (new Intl.DateTimeFormat(locale, options)).format(date),
-      }, datetime, now, now.getFullYear(), timeGiven);
-    });
-
-    const reactComponents = document.querySelectorAll('[data-component]');
-    if (reactComponents.length > 0) {
-      import(/* webpackChunkName: "containers/media_container" */ 'flavours/glitch/containers/media_container')
-        .then(({ default: MediaContainer }) => {
-          [].forEach.call(reactComponents, (component) => {
-            [].forEach.call(component.children, (child) => {
-              component.removeChild(child);
-            });
-          });
-
-          const content = document.createElement('div');
-
-          const root = createRoot(content);
-          root.render(<MediaContainer locale={locale} components={reactComponents} />);
-          document.body.appendChild(content);
-          scrollToDetailedStatus();
-        })
-        .catch(error => {
-          console.error(error);
-          scrollToDetailedStatus();
-        });
+      formattedContent = todayFormat.format({ time: formattedTime });
     } else {
-      scrollToDetailedStatus();
+      formattedContent = dateFormat.format(datetime);
     }
 
-    delegate(document, '#user_account_attributes_username', 'input', throttle(() => {
-      const username = document.getElementById('user_account_attributes_username');
+    content.title = formattedContent;
+    content.textContent = formattedContent;
+  });
 
-      if (username.value && username.value.length > 0) {
-        axios.get('/api/v1/accounts/lookup', { params: { acct: username.value } }).then(() => {
-          username.setCustomValidity(formatMessage(messages.usernameTaken));
-        }).catch(() => {
-          username.setCustomValidity('');
+  [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
+    const datetime = new Date(content.getAttribute('datetime'));
+    const now      = new Date();
+
+    const timeGiven = content.getAttribute('datetime').includes('T');
+    content.title = timeGiven ? dateTimeFormat.format(datetime) : dateFormat.format(datetime);
+    content.textContent = timeAgoString({
+      formatMessage,
+      formatDate: (date, options) => (new Intl.DateTimeFormat(locale, options)).format(date),
+    }, datetime, now, now.getFullYear(), timeGiven);
+  });
+
+  const reactComponents = document.querySelectorAll('[data-component]');
+  if (reactComponents.length > 0) {
+    import(/* webpackChunkName: "containers/media_container" */ 'flavours/glitch/containers/media_container')
+      .then(({ default: MediaContainer }) => {
+        [].forEach.call(reactComponents, (component) => {
+          [].forEach.call(component.children, (child) => {
+            component.removeChild(child);
+          });
         });
-      } else {
+
+        const content = document.createElement('div');
+
+        const root = createRoot(content);
+        root.render(<MediaContainer locale={locale} components={reactComponents} />);
+        document.body.appendChild(content);
+        scrollToDetailedStatus();
+      })
+      .catch(error => {
+        console.error(error);
+        scrollToDetailedStatus();
+      });
+  } else {
+    scrollToDetailedStatus();
+  }
+
+  delegate(document, '#user_account_attributes_username', 'input', throttle(() => {
+    const username = document.getElementById('user_account_attributes_username');
+
+    if (username.value && username.value.length > 0) {
+      axios.get('/api/v1/accounts/lookup', { params: { acct: username.value } }).then(() => {
+        username.setCustomValidity(formatMessage(messages.usernameTaken));
+      }).catch(() => {
         username.setCustomValidity('');
-      }
-    }, 500, { leading: false, trailing: true }));
+      });
+    } else {
+      username.setCustomValidity('');
+    }
+  }, 500, { leading: false, trailing: true }));
 
-    delegate(document, '#user_password,#user_password_confirmation', 'input', () => {
-      const password = document.getElementById('user_password');
-      const confirmation = document.getElementById('user_password_confirmation');
-      if (!confirmation) return;
+  delegate(document, '#user_password,#user_password_confirmation', 'input', () => {
+    const password = document.getElementById('user_password');
+    const confirmation = document.getElementById('user_password_confirmation');
+    if (!confirmation) return;
 
-      if (confirmation.value && confirmation.value.length > password.maxLength) {
-        confirmation.setCustomValidity(formatMessage(messages.passwordExceedsLength));
-      } else if (password.value && password.value !== confirmation.value) {
-        confirmation.setCustomValidity(formatMessage(messages.passwordDoesNotMatch));
-      } else {
-        confirmation.setCustomValidity('');
-      }
-    });
+    if (confirmation.value && confirmation.value.length > password.maxLength) {
+      confirmation.setCustomValidity(formatMessage(messages.passwordExceedsLength));
+    } else if (password.value && password.value !== confirmation.value) {
+      confirmation.setCustomValidity(formatMessage(messages.passwordDoesNotMatch));
+    } else {
+      confirmation.setCustomValidity('');
+    }
+  });
 
-    delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
-    delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
+  delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
+  delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
 
-    delegate(document, '.status__content__spoiler-link', 'click', function() {
-      const statusEl = this.parentNode.parentNode;
+  delegate(document, '.status__content__spoiler-link', 'click', function() {
+    const statusEl = this.parentNode.parentNode;
 
-      if (statusEl.dataset.spoiler === 'expanded') {
-        statusEl.dataset.spoiler = 'folded';
-        this.textContent = (new IntlMessageFormat(localeData['status.show_more'] || 'Show more', locale)).format();
-      } else {
-        statusEl.dataset.spoiler = 'expanded';
-        this.textContent = (new IntlMessageFormat(localeData['status.show_less'] || 'Show less', locale)).format();
-      }
+    if (statusEl.dataset.spoiler === 'expanded') {
+      statusEl.dataset.spoiler = 'folded';
+      this.textContent = (new IntlMessageFormat(localeData['status.show_more'] || 'Show more', locale)).format();
+    } else {
+      statusEl.dataset.spoiler = 'expanded';
+      this.textContent = (new IntlMessageFormat(localeData['status.show_less'] || 'Show less', locale)).format();
+    }
 
-      return false;
-    });
+    return false;
+  });
 
-    [].forEach.call(document.querySelectorAll('.status__content__spoiler-link'), (spoilerLink) => {
-      const statusEl = spoilerLink.parentNode.parentNode;
-      const message = (statusEl.dataset.spoiler === 'expanded') ? (localeData['status.show_less'] || 'Show less') : (localeData['status.show_more'] || 'Show more');
-      spoilerLink.textContent = (new IntlMessageFormat(message, locale)).format();
-    });
+  [].forEach.call(document.querySelectorAll('.status__content__spoiler-link'), (spoilerLink) => {
+    const statusEl = spoilerLink.parentNode.parentNode;
+    const message = (statusEl.dataset.spoiler === 'expanded') ? (localeData['status.show_less'] || 'Show less') : (localeData['status.show_more'] || 'Show more');
+    spoilerLink.textContent = (new IntlMessageFormat(message, locale)).format();
   });
 
   const toggleSidebar = () => {

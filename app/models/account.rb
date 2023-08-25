@@ -63,6 +63,8 @@ class Account < ApplicationRecord
     trust_level
   )
 
+  BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
+
   USERNAME_RE   = /[a-z0-9_]+([a-z0-9_.-]+[a-z0-9_]+)?/i
   MENTION_RE    = %r{(?<=^|[^/[:word:]])@((#{USERNAME_RE})(?:@[[:word:].-]+[[:word:]]+)?)}i
   URL_PREFIX_RE = %r{\Ahttp(s?)://[^/]+}
@@ -211,6 +213,12 @@ class Account < ApplicationRecord
 
   def possibly_stale?
     last_webfingered_at.nil? || last_webfingered_at <= 1.day.ago
+  end
+
+  def schedule_refresh_if_stale!
+    return unless last_webfingered_at.present? && last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
+
+    AccountRefreshWorker.perform_in(rand(6.hours.to_i), id)
   end
 
   def refresh!
