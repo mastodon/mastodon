@@ -17,6 +17,7 @@ describe Admin::SystemCheck::ElasticsearchCheck do
         allow(Chewy.client.indices).to receive_messages(get_mapping: {
           AccountsIndex.index_name => AccountsIndex.mappings_hash.deep_stringify_keys,
           StatusesIndex.index_name => StatusesIndex.mappings_hash.deep_stringify_keys,
+          PublicStatusesIndex.index_name => PublicStatusesIndex.mappings_hash.deep_stringify_keys,
           InstancesIndex.index_name => InstancesIndex.mappings_hash.deep_stringify_keys,
           TagsIndex.index_name => TagsIndex.mappings_hash.deep_stringify_keys,
         }, get_settings: {
@@ -90,6 +91,7 @@ describe Admin::SystemCheck::ElasticsearchCheck do
       allow(Chewy.client.indices).to receive(:get_mapping).and_return({
         AccountsIndex.index_name => AccountsIndex.mappings_hash.deep_stringify_keys,
         StatusesIndex.index_name => StatusesIndex.mappings_hash.deep_stringify_keys,
+        PublicStatusesIndex.index_name => PublicStatusesIndex.mappings_hash.deep_stringify_keys,
         InstancesIndex.index_name => InstancesIndex.mappings_hash.deep_stringify_keys,
         TagsIndex.index_name => TagsIndex.mappings_hash.deep_stringify_keys,
       })
