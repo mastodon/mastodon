@@ -15,7 +15,7 @@ class StatusesSearchService < BaseService
 
   def status_search_results
     definition = parsed_query.apply(
-      StatusesIndex.filter(
+      Chewy::Search::Request.new(StatusesIndex, PublicStatusesIndex).filter(
         bool: {
           should: [
             publicly_searchable,
@@ -26,9 +26,6 @@ class StatusesSearchService < BaseService
         }
       )
     )
-
-    # This is the best way to submit identical queries to multi-indexes though chewy
-    definition.instance_variable_get(:@parameters)[:indices].value[:indices] << PublicStatusesIndex
 
     results             = definition.collapse(field: :id).order(_id: { order: :desc }).limit(@limit).offset(@offset).objects.compact
     account_ids         = results.map(&:account_id)
@@ -42,13 +39,7 @@ class StatusesSearchService < BaseService
 
   def publicly_searchable
     {
-      bool: {
-        must_not: {
-          exists: {
-            field: 'searchable_by',
-          },
-        },
-      },
+      term: { _index: PublicStatusesIndex.index_name },
     }
   end
 
@@ -57,9 +48,7 @@ class StatusesSearchService < BaseService
       bool: {
         must: [
           {
-            exists: {
-              field: 'searchable_by',
-            },
+            term: { _index: StatusesIndex.index_name },
           },
           {
             term: { searchable_by: @account.id },
