@@ -106,15 +106,15 @@ class SearchQueryTransformer < Parslet::Transform
       when 'before'
         @filter = :created_at
         @type = :range
-        @term = { lt: term }
+        @term = { lt: term, time_zone: @options[:current_account]&.user_time_zone || 'UTC' }
       when 'after'
         @filter = :created_at
         @type = :range
-        @term = { gt: term }
+        @term = { gt: term, time_zone: @options[:current_account]&.user_time_zone || 'UTC' }
       when 'during'
         @filter = :created_at
         @type = :range
-        @term = { gte: term, lte: term }
+        @term = { gte: term, lte: term, time_zone: @options[:current_account]&.user_time_zone || 'UTC' }
       else
         raise Mastodon::SyntaxError
       end
