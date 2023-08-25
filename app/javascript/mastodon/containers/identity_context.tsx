@@ -29,5 +29,5 @@ export const createLegacyIdentityContext = (state: InitialState) => {
 };
 
 export const useIdentityContext = (): IdentityState => {
-  return useContext(Context);
+  return useContext(IdentityContext);
 };
