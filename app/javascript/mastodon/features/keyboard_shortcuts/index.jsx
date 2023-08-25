@@ -124,11 +124,11 @@ class KeyboardShortcuts extends ImmutablePureComponent {
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>l</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.local' defaultMessage='to open local timeline' /></td>
+                <td><FormattedMessage id='keyboard_shortcuts.local' defaultMessage='to open this server’s timeline' /></td>
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>t</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.federated' defaultMessage='to open federated timeline' /></td>
+                <td><FormattedMessage id='keyboard_shortcuts.federated' defaultMessage='to open other servers’ timeline' /></td>
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>d</kbd></td>
