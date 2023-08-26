@@ -28,6 +28,6 @@ export const createLegacyIdentityContext = (state: InitialState) => {
   };
 };
 
-export const useIdentityContext = (): IdentityState => {
+export const useIdentity = (): IdentityState => {
   return useContext(IdentityContext);
 };

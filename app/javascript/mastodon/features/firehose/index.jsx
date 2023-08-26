@@ -11,7 +11,8 @@ import { changeSetting } from 'mastodon/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';
 import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
-import initialState, { domain } from 'mastodon/initial_state';
+import { useIdentity } from 'mastodon/containers/identity_context';
+import { domain } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import Column from '../../components/column';
@@ -19,17 +20,9 @@ import ColumnHeader from '../../components/column_header';
 import SettingToggle from '../notifications/components/setting_toggle';
 import StatusListContainer from '../ui/containers/status_list_container';
 
+
 const messages = defineMessages({
   title: { id: 'column.firehose', defaultMessage: 'Live feeds' },
-});
-
-// TODO: use a proper React context later on
-const useIdentity = () => ({
-  signedIn: !!initialState.meta.me,
-  accountId: initialState.meta.me,
-  disabledAccountId: initialState.meta.disabled_account_id,
-  accessToken: initialState.meta.access_token,
-  permissions: initialState.role ? initialState.role.permissions : 0,
 });
 
 const ColumnSettings = () => {
