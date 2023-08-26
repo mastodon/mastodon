@@ -66,7 +66,7 @@ describe StatusesHelper do
       it 'returns the correct fa icon' do
         result = helper.fa_visibility_icon(status)
 
-        expect(result).to match('fa-unlock')
+        expect(result).to match('fa-low-vision')
       end
     end
 
