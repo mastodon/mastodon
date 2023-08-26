@@ -399,6 +399,7 @@ sl:
       confirm_suspension:
         cancel: Prekliči
         confirm: Suspendiraj
+        permanent_action: Z razveljavitvijo suzpenza ne boste obnovili nobenih podatkov ali razmerij.
         stop_communication: Vaš strežnik bo prenehal komunicirati s temi strežniki.
         title: Potrdi domenski blok za %{domain}
       created_msg: Domenski blok se sedaj obdeluje
@@ -1002,7 +1003,6 @@ sl:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Vsakdo lahko prispeva.
     sensitive_content: Občutljiva vsebina
-    toot_layout: Postavitev objave
   application_mailer:
     notification_preferences: Spremenite e-poštne nastavitve
     salutation: "%{name},"
@@ -1086,18 +1086,6 @@ sl:
       view_strikes: Pokaži pretekle ukrepe proti mojemu računu
     too_fast: Obrazec oddan prehitro, poskusite znova.
     use_security_key: Uporabi varnostni ključ
-  authorize_follow:
-    already_following: Temu računu že sledite
-    already_requested: Temu računu ste že poslali zahtevo po sledenju
-    error: Na žalost je prišlo do napake pri iskanju oddaljenega računa
-    follow: Sledi
-    follow_request: 'Prošnjo za sledenje se poslali:'
-    following: 'Uspeh! Zdaj sledite:'
-    post_follow:
-      close: Lahko pa tudi zaprete to okno.
-      return: Prikaži uporabnikov profil
-      web: Pojdi na splet
-    title: Sledi %{acct}
   challenge:
     confirm: Nadaljuj
     hint_html: "<strong>Namig:</strong> naslednjo uro vas ne bomo več vprašali po vašem geslu."
@@ -1177,7 +1165,6 @@ sl:
   edit_profile:
     basic_information: Osnovni podatki
     other: Drugo
-    safety_and_privacy: Varnost in zasebnost
   errors:
     '400': Zahteva, ki ste jo oddali, je neveljavna ali nepravilno oblikovana.
     '403': Nimate dovoljenja za ogled te strani.
@@ -1326,13 +1313,18 @@ sl:
       bookmarks: Uvažanje zaznamkov
       domain_blocking: Uvažanje blokiranih domen
       following: Uvažanje sledenih računov
+      lists: Uvažanje seznamov
       muting: Uvažanje utišanih računov
     type: Vrsta uvoza
+    type_groups:
+      constructive: Sledenje in zaznamki
+      destructive: Blokiranja in utišanja
     types:
       blocking: Seznam blokiranih
       bookmarks: Zaznamki
       domain_blocking: Seznam blokiranih domen
       following: Seznam uporabnikov, katerim sledite
+      lists: Seznami
       muting: Seznam utišanih
     upload: Pošlji
   invites:
@@ -1375,6 +1367,8 @@ sl:
     title: Zgodovina overjanja
   mail_subscriptions:
     unsubscribe:
+      action: Da, odjavi me
+      complete: Odjavljeni
       title: Odjavi od naročnine
   media_attachments:
     validations:
@@ -1805,6 +1799,7 @@ sl:
     signed_in_as: 'Vpisani kot:'
   verification:
     here_is_how: Kako to poteka
+    instructions_html: Spodnjo kodo kopirajte in prilepite v HTML svojega spletnega mesta. Nato dodajte naslov svoje spletne strani v eno od dodatnih polj v svojem profilu v zavihku »Uredi profil« in shranite spremembe.
     verification: Potrditev
     verified_links: Vaše preverjene povezave
   webauthn_credentials:

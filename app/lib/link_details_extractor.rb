@@ -113,6 +113,7 @@ class LinkDetailsExtractor
       title: title || '',
       description: description || '',
       image_remote_url: image,
+      image_description: image_alt || '',
       type: type,
       link_type: link_type,
       width: width || 0,
@@ -124,6 +125,7 @@ class LinkDetailsExtractor
       author_url: author_url || '',
       embed_url: embed_url || '',
       language: language,
+      published_at: published_at.presence,
     }
   end
 
@@ -159,8 +161,16 @@ class LinkDetailsExtractor
     html_entities.decode(structured_data&.description || opengraph_tag('og:description') || meta_tag('description'))
   end
 
+  def published_at
+    structured_data&.date_published || opengraph_tag('article:published_time')
+  end
+
   def image
     valid_url_or_nil(opengraph_tag('og:image'))
+  end
+
+  def image_alt
+    opengraph_tag('og:image:alt')
   end
 
   def canonical_url

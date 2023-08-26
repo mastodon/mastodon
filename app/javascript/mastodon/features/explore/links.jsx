@@ -55,14 +55,19 @@ class Links extends PureComponent {
       <div className='explore__links'>
         {banner}
 
-        {isLoading ? (<LoadingIndicator />) : links.map(link => (
+        {isLoading ? (<LoadingIndicator />) : links.map((link, i) => (
           <Story
             key={link.get('id')}
+            expanded={i === 0}
+            lang={link.get('language')}
             url={link.get('url')}
             title={link.get('title')}
             publisher={link.get('provider_name')}
+            publishedAt={link.get('published_at')}
+            author={link.get('author_name')}
             sharedTimes={link.getIn(['history', 0, 'accounts']) * 1 + link.getIn(['history', 1, 'accounts']) * 1}
             thumbnail={link.get('image')}
+            thumbnailDescription={link.get('image_description')}
             blurhash={link.get('blurhash')}
           />
         ))}

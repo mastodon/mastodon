@@ -37,6 +37,7 @@ class Status < ApplicationRecord
   include StatusSnapshotConcern
   include RateLimitable
   include StatusSafeReblogInsert
+  include StatusSearchConcern
 
   rate_limit by: :account, family: :statuses
 
@@ -47,6 +48,7 @@ class Status < ApplicationRecord
   attr_accessor :override_timestamps
 
   update_index('statuses', :proper)
+  update_index('public_statuses', :proper)
 
   enum visibility: { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, _suffix: :visibility
 
@@ -162,38 +164,7 @@ class Status < ApplicationRecord
   REAL_TIME_WINDOW = 6.hours
 
   def cache_key
-    "v2:#{super}"
-  end
-
-  def searchable_by(preloaded = nil)
-    ids = []
-
-    ids << account_id if local?
-
-    if preloaded.nil?
-      ids += mentions.joins(:account).merge(Account.local).active.pluck(:account_id)
-      ids += favourites.joins(:account).merge(Account.local).pluck(:account_id)
-      ids += reblogs.joins(:account).merge(Account.local).pluck(:account_id)
-      ids += bookmarks.joins(:account).merge(Account.local).pluck(:account_id)
-      ids += poll.votes.joins(:account).merge(Account.local).pluck(:account_id) if poll.present?
-    else
-      ids += preloaded.mentions[id] || []
-      ids += preloaded.favourites[id] || []
-      ids += preloaded.reblogs[id] || []
-      ids += preloaded.bookmarks[id] || []
-      ids += preloaded.votes[id] || []
-    end
-
-    ids.uniq
-  end
-
-  def searchable_text
-    [
-      spoiler_text,
-      FormattingHelper.extract_status_plain_text(self),
-      preloadable_poll ? preloadable_poll.options.join("\n\n") : nil,
-      ordered_media_attachments.map(&:description).join("\n\n"),
-    ].compact.join("\n\n")
+    "v3:#{super}"
   end
 
   def to_log_human_identifier
@@ -268,6 +239,10 @@ class Status < ApplicationRecord
 
   def with_preview_card?
     preview_cards.any?
+  end
+
+  def with_poll?
+    preloadable_poll.present?
   end
 
   def non_sensitive_with_media?
@@ -367,13 +342,25 @@ class Status < ApplicationRecord
 
       account_ids.uniq!
 
+      status_ids = cached_items.map { |item| item.reblog? ? item.reblog_of_id : item.id }.uniq
+
       return if account_ids.empty?
 
       accounts = Account.where(id: account_ids).includes(:account_stat, :user).index_by(&:id)
 
+      status_stats = StatusStat.where(status_id: status_ids).index_by(&:status_id)
+
       cached_items.each do |item|
         item.account = accounts[item.account_id]
         item.reblog.account = accounts[item.reblog.account_id] if item.reblog?
+
+        if item.reblog?
+          status_stat = status_stats[item.reblog.id]
+          item.reblog.status_stat = status_stat if status_stat.present?
+        else
+          status_stat = status_stats[item.id]
+          item.status_stat = status_stat if status_stat.present?
+        end
       end
     end
 

@@ -35,11 +35,14 @@ group :pam_authentication, optional: true do
 end
 
 gem 'net-ldap', '~> 0.18'
-gem 'omniauth-cas', '~> 2.0'
-gem 'omniauth-saml', '~> 1.10'
+
+# TODO: Point back at released omniauth-cas gem when PR merged
+# https://github.com/dlindahl/omniauth-cas/pull/68
+gem 'omniauth-cas', github: 'stanhu/omniauth-cas', ref: '4211e6d05941b4a981f9a36b49ec166cecd0e271'
+gem 'omniauth-saml', '~> 2.0'
 gem 'omniauth_openid_connect', '~> 0.6.1'
-gem 'omniauth', '~> 1.9'
-gem 'omniauth-rails_csrf_protection', '~> 0.1'
+gem 'omniauth', '~> 2.0'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
 gem 'color_diff', '~> 0.1'
 gem 'discard', '~> 1.2'
@@ -56,8 +59,9 @@ gem 'httplog', '~> 1.6.2'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
-gem 'mime-types', '~> 3.4.1', require: 'mime/types/columnar'
+gem 'mime-types', '~> 3.5.0', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.15'
+gem 'nsa', github: 'jhawthorn/nsa', ref: 'e020fcc3a54d993ab45b7194d89ab720296c111b'
 gem 'oj', '~> 3.14'
 gem 'ox', '~> 2.14'
 gem 'parslet'
@@ -99,9 +103,6 @@ gem 'rdf-normalize', '~> 0.5'
 gem 'private_address_check', '~> 0.5'
 
 group :test do
-  # RSpec runner for rails
-  gem 'rspec-rails', '~> 6.0'
-
   # Used to split testing into chunks in CI
   gem 'rspec_chunked', '~> 0.6'
 
@@ -109,10 +110,14 @@ group :test do
   gem 'fuubar', '~> 2.5'
 
   # Extra RSpec extenion methods and helpers for sidekiq
-  gem 'rspec-sidekiq', '~> 3.1'
+  gem 'rspec-sidekiq', '~> 4.0'
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
+  gem 'selenium-webdriver'
+
+  # Used to reset the database between system tests
+  gem 'database_cleaner-active_record'
 
   # Used to mock environment variables
   gem 'climate_control', '~> 0.2'
@@ -173,10 +178,17 @@ group :development do
 
   # Validate missing i18n keys
   gem 'i18n-tasks', '~> 1.0', require: false
+end
 
+group :development, :test do
   # Profiling tools
   gem 'memory_profiler', require: false
+  gem 'ruby-prof', require: false
   gem 'stackprof', require: false
+  gem 'test-prof'
+
+  # RSpec runner for rails
+  gem 'rspec-rails', '~> 6.0'
 end
 
 group :production do

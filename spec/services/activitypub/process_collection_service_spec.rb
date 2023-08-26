@@ -100,8 +100,18 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
                     username: 'bob',
                     domain: 'example.com',
                     uri: 'https://example.com/users/bob',
-                    public_key: "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuuYyoyfsRkYnXRotMsId\nW3euBDDfiv9oVqOxUVC7bhel8KednIMrMCRWFAkgJhbrlzbIkjVr68o1MP9qLcn7\nCmH/BXHp7yhuFTr4byjdJKpwB+/i2jNEsvDH5jR8WTAeTCe0x/QHg21V3F7dSI5m\nCCZ/1dSIyOXLRTWVlfDlm3rE4ntlCo+US3/7oSWbg/4/4qEnt1HC32kvklgScxua\n4LR5ATdoXa5bFoopPWhul7MJ6NyWCyQyScUuGdlj8EN4kmKQJvphKHrI9fvhgOuG\nTvhTR1S5InA4azSSchY0tXEEw/VNxraeX0KPjbgr6DPcwhPd/m0nhVDq0zVyVBBD\nMwIDAQAB\n-----END PUBLIC KEY-----\n",
-                    private_key: nil)
+                    private_key: nil,
+                    public_key: <<~TEXT)
+                      -----BEGIN PUBLIC KEY-----
+                      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuuYyoyfsRkYnXRotMsId
+                      W3euBDDfiv9oVqOxUVC7bhel8KednIMrMCRWFAkgJhbrlzbIkjVr68o1MP9qLcn7
+                      CmH/BXHp7yhuFTr4byjdJKpwB+/i2jNEsvDH5jR8WTAeTCe0x/QHg21V3F7dSI5m
+                      CCZ/1dSIyOXLRTWVlfDlm3rE4ntlCo+US3/7oSWbg/4/4qEnt1HC32kvklgScxua
+                      4LR5ATdoXa5bFoopPWhul7MJ6NyWCyQyScUuGdlj8EN4kmKQJvphKHrI9fvhgOuG
+                      TvhTR1S5InA4azSSchY0tXEEw/VNxraeX0KPjbgr6DPcwhPd/m0nhVDq0zVyVBBD
+                      MwIDAQAB
+                      -----END PUBLIC KEY-----
+                    TEXT
         end
 
         let(:payload) do
@@ -125,7 +135,14 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
               type: 'RsaSignature2017',
               creator: 'https://example.com/users/bob#main-key',
               created: '2022-03-09T21:57:25Z',
-              signatureValue: 'WculK0LelTQ0MvGwU9TPoq5pFzFfGYRDCJqjZ232/Udj4CHqDTGOSw5UTDLShqBOyycCkbZGrQwXG+dpyDpQLSe1UVPZ5TPQtc/9XtI57WlS2nMNpdvRuxGnnb2btPdesXZ7n3pCxo0zjaXrJMe0mqQh5QJO22mahb4bDwwmfTHgbD3nmkD+fBfGi+UV2qWwqr+jlV4L4JqNkh0gWljF5KTePLRRZCuWiQ/FAt7c67636cdIPf7fR+usjuZltTQyLZKEGuK8VUn2Gkfsx5qns7Vcjvlz1JqlAjyO8HPBbzTTHzUG2nUOIgC3PojCSWv6mNTmRGoLZzOscCAYQA6cKw==',
+              signatureValue: 'WculK0LelTQ0MvGwU9TPoq5pFzFfGYRDCJqjZ232/Udj4' \
+                              'CHqDTGOSw5UTDLShqBOyycCkbZGrQwXG+dpyDpQLSe1UV' \
+                              'PZ5TPQtc/9XtI57WlS2nMNpdvRuxGnnb2btPdesXZ7n3p' \
+                              'Cxo0zjaXrJMe0mqQh5QJO22mahb4bDwwmfTHgbD3nmkD+' \
+                              'fBfGi+UV2qWwqr+jlV4L4JqNkh0gWljF5KTePLRRZCuWi' \
+                              'Q/FAt7c67636cdIPf7fR+usjuZltTQyLZKEGuK8VUn2Gk' \
+                              'fsx5qns7Vcjvlz1JqlAjyO8HPBbzTTHzUG2nUOIgC3Poj' \
+                              'CSWv6mNTmRGoLZzOscCAYQA6cKw==',
             },
             '@id': 'https://example.com/users/bob/statuses/107928807471117876/activity',
             '@type': 'https://www.w3.org/ns/activitystreams#Create',

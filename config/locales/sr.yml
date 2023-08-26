@@ -466,7 +466,7 @@ sr:
         title: Увези блокиране домене
       no_file: Ниједан фајл није одабран
     follow_recommendations:
-      description_html: "<strong>Предлози за праћење помажу новим корисницима да брзо пронађу занимљив садржај</strong>. Када корисник није довољно интераговао са осталима да би се за њега формирали персонализовани предлози за праћење, ови налози ће бити препоручени уместо тога. Они се генеришу на дневној бази из скупа налога са највише недавних ангажовања и највише локалних пратилаца за један језик."
+      description_html: "<strong>Предлози за праћење помажу новим корисницима да брзо пронађу занимљив садржај</strong>. Када корисник није довољно комуницирао са другима да би се за њега формирали персонализовани предлози за праћење, ови налози ће бити препоручени уместо тога. Они се генеришу на дневној бази из скупа налога са највише недавних ангажовања и највише локалних пратилаца за један језик."
       language: За језик
       status: Статус
       suppress: Потисни препоруке за праћење
@@ -991,7 +991,6 @@ sr:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Свако може допринети.
     sensitive_content: Осетљив садржај
-    toot_layout: Распоред објава
   application_mailer:
     notification_preferences: Промени преференце Е-поште
     salutation: Поштовани %{name},
@@ -1079,18 +1078,6 @@ sr:
       view_strikes: Погледајте претходне преступе уписане на Ваше име
     too_fast: Формулар је поднет пребрзо, покушајте поново.
     use_security_key: Користите сигурносни кључ
-  authorize_follow:
-    already_following: Већ пратите овај налог
-    already_requested: Већ сте послали захтев за праћење том налогу
-    error: Нажалост, десила се грешка при тражењу удаљеног налога
-    follow: Запрати
-    follow_request: 'Послали сте захтев за праћењен за:'
-    following: 'Сјајно! Сада пратите:'
-    post_follow:
-      close: Или можете затворити овај прозор.
-      return: Врати се на налог овог корисника
-      web: Иди на веб
-    title: Запрати %{acct}
   challenge:
     confirm: Настави
     hint_html: "<strong>Савет:</strong> Нећемо Вас питати за лозинку поново у наредних сат времена."
@@ -1171,7 +1158,6 @@ sr:
     basic_information: Основне информације
     hint_html: "<strong>Прилагодите шта људи виде на вашем јавном профилу и поред ваших објава.</strong> Већа је вероватноћа да ће вас други пратити и комуницирати са вама када имате попуњен профил и слику профила."
     other: Остало
-    safety_and_privacy: Сигурност и приватност
   errors:
     '400': Захтев који сте поднели је био нелегитиман или у погрешном формату.
     '403': Немате дозвола да видите ову страну.
@@ -1213,7 +1199,7 @@ sr:
   filters:
     contexts:
       account: Профили
-      home: Временска линија почетне
+      home: Почетна страница и листе
       notifications: Обавештења
       public: Јавне временске линије
       thread: Разговори
@@ -1303,12 +1289,14 @@ sr:
       bookmarks_html: Управо ћете <strong>заменити своје обележиваче</strong> са до <strong>%{total_items} објава</strong> из <strong>%{filename}</strong>.
       domain_blocking_html: Управо ћете <strong>заменити своју листу блокираних домена</strong> са до <strong>%{total_items} домена</strong> из <strong>%{filename}</strong>.
       following_html: Управо ћете <strong>пратити</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong> and <strong>и престати са праћењем било кога другог</strong>.
+      lists_html: Спремате се да <strong>замените своје листе</strong> садржајем од <strong>%{filename}</strong>. До <strong>%{total_items} налога</strong> ће бити додато на нове листе.
       muting_html: Управо ћете <strong>заменити своју листу игнорисаних налога</strong> са до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
     preambles:
       blocking_html: Управо ћете <strong>блокирати</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
       bookmarks_html: Управо ћете додати до <strong>%{total_items} објава</strong> из <strong>%{filename}</strong> у ваше <strong>обележиваче</strong>.
       domain_blocking_html: Управо ћете <strong>блокирати</strong> до <strong>%{total_items} домена</strong> из <strong>%{filename}</strong>.
       following_html: Управо ћете <strong>пратити</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
+      lists_html: Спремате се да додате до <strong>%{total_items} налога</strong> од <strong>%{filename}</strong> на своје <strong>листе</strong>. Нове листе ће бити креиране ако не постоји листа за додавање.
       muting_html: Управо ћете <strong>игнорисати</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
     preface: Можете увести податке које сте извезли са друге инстанце, као што су листе људи које сте пратили или блокирали.
     recent_imports: Недавни увози
@@ -1325,6 +1313,7 @@ sr:
       bookmarks: Увоз обележивача
       domain_blocking: Увоз блокираних домена
       following: Увоз праћених налога
+      lists: Увоз листа
       muting: Увоз игнорисаних налога
     type: Тип увоза
     type_groups:
@@ -1335,6 +1324,7 @@ sr:
       bookmarks: Обележивачи
       domain_blocking: Листа блокираних домена
       following: Листа пратилаца
+      lists: Листе
       muting: Листа ућутканих
     upload: Отпреми
   invites:
@@ -1639,9 +1629,9 @@ sr:
     content_warning: 'Упозорење на садржај: %{warning}'
     default_language: Исто као језик окружења
     disallowed_hashtags:
-      few: 'садржи забрањене хештегове: %{tags}'
-      one: 'садржи забрањени хештег: %{tags}'
-      other: 'садржи забрањене хештегове: %{tags}'
+      few: 'садржи забрањене хеш ознаке: %{tags}'
+      one: 'садржи забрањену хеш ознаку: %{tags}'
+      other: 'садржи забрањене хеш ознаке: %{tags}'
     edited_at_html: Измењено %{date}
     errors:
       in_reply_not_found: Објава на коју покушавате да одговорите наизглед не постоји.

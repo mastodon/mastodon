@@ -162,10 +162,9 @@ class BulkImportService < BaseService
 
   def import_lists!
     rows = @import.rows.to_a
+    included_lists = rows.map { |row| row.data['list_name'] }.uniq
 
     if @import.overwrite?
-      included_lists = rows.map { |row| row.data['list_name'] }.uniq
-
       @account.owned_lists.where.not(title: included_lists).destroy_all
 
       # As list membership changes do not retroactively change timeline
@@ -173,6 +172,10 @@ class BulkImportService < BaseService
       @account.owned_lists.find_each do |list|
         list.list_accounts.destroy_all
       end
+    end
+
+    included_lists.each do |title|
+      @account.owned_lists.find_or_create_by!(title: title)
     end
 
     Import::RowWorker.push_bulk(rows) do |row|

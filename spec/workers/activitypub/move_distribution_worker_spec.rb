@@ -6,8 +6,8 @@ describe ActivityPub::MoveDistributionWorker do
   subject { described_class.new }
 
   let(:migration) { Fabricate(:account_migration) }
-  let(:follower) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example.com') }
-  let(:blocker) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example2.com') }
+  let(:follower) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example.com', domain: 'example.com') }
+  let(:blocker) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example2.com', domain: 'example2.com') }
 
   describe '#perform' do
     before do

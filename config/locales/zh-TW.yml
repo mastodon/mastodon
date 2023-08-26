@@ -810,7 +810,7 @@ zh-TW:
         message_html: 不相容的 Elasticsearch 版本：%{value}
         version_comparison: Elasticsearch %{running_version} 版正在執行，需要 %{required_version} 版。
       rules_check:
-        action: 管理服务器规则
+        action: 管理伺服器規則
         message_html: 您尚未定義任何伺服器規則。
       sidekiq_process_check:
         message_html: 沒有佇列 %{value} 的 Sidekiq 行程，請檢查您的 Sidekiq 設定組態
@@ -959,7 +959,6 @@ zh-TW:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每個人都能貢獻。
     sensitive_content: 敏感內容
-    toot_layout: 嘟文排版
   application_mailer:
     notification_preferences: 變更電子郵件設定
     salutation: "%{name}、"
@@ -1047,18 +1046,6 @@ zh-TW:
       view_strikes: 檢視針對您帳號過去的警示
     too_fast: 送出表單的速度太快跟不上，請稍後再試。
     use_security_key: 使用安全金鑰
-  authorize_follow:
-    already_following: 您已經跟隨這個使用者
-    already_requested: 您早已向該帳號寄送跟隨請求
-    error: 對不起，搜尋其他站點使用者出現錯誤
-    follow: 跟隨
-    follow_request: 跟隨請求已發送給：
-    following: 成功！您正在跟隨：
-    post_follow:
-      close: 您可以直接關閉此頁面。
-      return: 顯示個人檔案
-      web: 返回本站
-    title: 跟隨 %{acct}
   challenge:
     confirm: 繼續
     hint_html: "<strong>温馨小提醒：</strong> 我們在接下來一小時內不會再要求您輸入密碼。"
@@ -1139,7 +1126,6 @@ zh-TW:
     basic_information: 基本資訊
     hint_html: "<strong>自訂人們可以於您個人檔案及嘟文內容。</strong>當您完成填寫個人檔案以及設定大頭貼後，其他人們比較願意跟隨您並與您互動。"
     other: 其他
-    safety_and_privacy: 安全與隱私
   errors:
     '400': 您所送出的請求無效或格式不正確。
     '403': 您沒有檢視這個頁面的權限。
@@ -1257,12 +1243,14 @@ zh-TW:
       bookmarks_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個嘟文</strong> 以 <strong>取代您的書籤</strong>。
       domain_blocking_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個網域</strong> 以 <strong>取代您的封鎖網域列表</strong>。
       following_html: 您將要 <strong>跟隨</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong> 並且 <strong>取消跟隨其他所有人</strong>。
+      lists_html: 您將以 <strong>%{filename}</strong> 之內容<strong>取代您的列表</strong>。這將會新增 <strong>%{total_items} 個帳號</strong>至新列表。
       muting_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong> 以 <strong>取代您的靜音帳號列表</strong>。
     preambles:
       blocking_html: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
       bookmarks_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個嘟文</strong> 以 <strong>加入至您的書籤</strong>。
       domain_blocking_html: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個網域</strong>。
       following_html: 您將要 <strong>跟隨</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
+      lists_html: 您將自 <strong>%{filename}</strong> 新增 <strong>%{total_items} 個帳號</strong>至您的<strong>列表</strong>。若不存在列表用以新增帳號，則會建立新列表。
       muting_html: 您將要 <strong>靜音</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
     preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括跟隨的使用者、封鎖的使用者名單。
     recent_imports: 最近匯入的
@@ -1279,6 +1267,7 @@ zh-TW:
       bookmarks: 正在匯入書籤
       domain_blocking: 正在匯入已封鎖網域
       following: 正在匯入已封鎖帳號
+      lists: 匯入列表
       muting: 正在匯入已靜音帳號
     type: 匯入類型
     type_groups:
@@ -1289,6 +1278,7 @@ zh-TW:
       bookmarks: 書籤
       domain_blocking: 網域封鎖列表
       following: 您跟隨的使用者列表
+      lists: 列表
       muting: 您靜音的使用者名單
     upload: 上傳
   invites:

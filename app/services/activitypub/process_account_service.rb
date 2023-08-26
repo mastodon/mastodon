@@ -79,7 +79,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
     set_immediate_protocol_attributes!
 
-    @account.save
+    @account.save!
   end
 
   def update_account
@@ -115,6 +115,8 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.fields                  = property_values || {}
     @account.also_known_as           = as_array(@json['alsoKnownAs'] || []).map { |item| value_or_id(item) }
     @account.discoverable            = @json['discoverable'] || false
+    @account.indexable               = @json['indexable'] || false
+    @account.memorial                = @json['memorial'] || false
   end
 
   def set_fetchable_key!

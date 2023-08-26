@@ -209,11 +209,6 @@ RSpec.describe ResolveAccountService, type: :service do
     fail_occurred  = false
     return_values  = Concurrent::Array.new
 
-    # Preload classes that throw circular dependency errors in threads
-    Account
-    TagManager
-    DomainBlock
-
     threads = Array.new(5) do
       Thread.new do
         true while wait_for_start
