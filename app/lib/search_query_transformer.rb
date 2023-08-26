@@ -36,7 +36,11 @@ class SearchQueryTransformer < Parslet::Transform
     def clause_to_filter(clause)
       case clause
       when PrefixClause
-        { clause.type => { clause.filter => clause.term } }
+        if clause.negated?
+          { bool: { must_not: { clause.type => { clause.filter => clause.term } } } }
+        else
+          { clause.type => { clause.filter => clause.term } }
+        end
       else
         raise "Unexpected clause type: #{clause}"
       end
@@ -81,7 +85,8 @@ class SearchQueryTransformer < Parslet::Transform
   class PrefixClause
     attr_reader :type, :filter, :operator, :term
 
-    def initialize(prefix, term)
+    def initialize(prefix, operator, term)
+      @negated  = operator == '-'
       @operator = :filter
 
       case prefix
@@ -114,6 +119,10 @@ class SearchQueryTransformer < Parslet::Transform
       end
     end
 
+    def negated?
+      @negated
+    end
+
     private
 
     def account_id_from_term(term)
@@ -132,7 +141,7 @@ class SearchQueryTransformer < Parslet::Transform
     operator = clause[:operator]&.to_s
 
     if clause[:prefix]
-      PrefixClause.new(prefix, clause[:term].to_s)
+      PrefixClause.new(prefix, operator, clause[:term].to_s)
     elsif clause[:term]
       TermClause.new(prefix, operator, clause[:term].to_s)
     elsif clause[:shortcode]
