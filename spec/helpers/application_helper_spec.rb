@@ -269,7 +269,7 @@ describe ApplicationHelper do
 
     it 'returns an unlock icon for a unlisted visible status' do
       result = helper.visibility_icon Status.new(visibility: 'unlisted')
-      expect(result).to match(/unlock/)
+      expect(result).to match(/low-vision/)
     end
 
     it 'returns a lock icon for a private visible status' do
