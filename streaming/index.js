@@ -28,7 +28,10 @@ log.level = process.env.LOG_LEVEL || 'verbose';
  */
 const createRedisClient = async (environment) => {
   const { redisParams, redisUrl } = redisConfigFromEnv(environment);
-  const client = new Redis(redisUrl, redisParams);
+  let client = new Redis(redisParams);
+  if (redisUrl) {
+	client = new Redis(redisUrl, redisParams);
+  }
   client.on('error', (err) => log.error('Redis Client Error!', err));
 
   return client;
@@ -134,19 +137,17 @@ const redisConfigFromEnv = (env) => {
   const redisParams = {
     host: env.REDIS_HOST || '127.0.0.1',
     port: env.REDIS_PORT || 6379,
-    options: {
-      db: env.REDIS_DB || 0,
-      password: env.REDIS_PASSWORD || undefined,
-    }
+    db: env.REDIS_DB || 0,
+    password: env.REDIS_PASSWORD || undefined,
   };
 
   // redisParams.path takes precedence over host and port.
   if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
-    redisParams.options.path = env.REDIS_URL.slice(7);
+    redisParams.path = env.REDIS_URL.slice(7);
   }
 
   if (redisNamespace) {
-    redisParams.options.keyPrefix = redisNamespace;
+    redisParams.keyPrefix = redisNamespace;
   }
 
   return {
