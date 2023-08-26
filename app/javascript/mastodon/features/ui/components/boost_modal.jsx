@@ -88,7 +88,7 @@ class BoostModal extends ImmutablePureComponent {
 
     const visibilityIconInfo = {
       'public': { icon: 'globe', text: intl.formatMessage(messages.public_short) },
-      'unlisted': { icon: 'unlock', text: intl.formatMessage(messages.unlisted_short) },
+      'unlisted': { icon: 'low-vision', text: intl.formatMessage(messages.unlisted_short) },
       'private': { icon: 'lock', text: intl.formatMessage(messages.private_short) },
       'direct': { icon: 'at', text: intl.formatMessage(messages.direct_short) },
     };

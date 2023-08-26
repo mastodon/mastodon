@@ -70,7 +70,7 @@ module StatusesHelper
     when 'public'
       fa_icon 'globe fw'
     when 'unlisted'
-      fa_icon 'unlock fw'
+      fa_icon 'low-vision fw'
     when 'private'
       fa_icon 'lock fw'
     when 'direct'
