@@ -24,10 +24,10 @@ dotenv.config({
 log.level = process.env.LOG_LEVEL || 'verbose';
 
 /**
- * @param {Object.<string, any>} environment
+ * @param {Object.<string, any>} config
  */
-const createRedisClient = async (environment) => {
-  const { redisParams, redisUrl } = redisConfigFromEnv(environment);
+const createRedisClient = async (config) => {
+  const { redisParams, redisUrl } = config;
   let client = new Redis(redisParams);
   if (redisUrl) {
 	client = new Redis(redisUrl, redisParams);
@@ -141,13 +141,11 @@ const redisConfigFromEnv = (env) => {
     password: env.REDIS_PASSWORD || undefined,
   };
 
+  redisParams.keyPrefix = redisNamespace ? `${redisNamespace}:` : '';
+
   // redisParams.path takes precedence over host and port.
   if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
     redisParams.path = env.REDIS_URL.slice(7);
-  }
-
-  if (redisNamespace) {
-    redisParams.keyPrefix = `${redisNamespace}:`;
   }
 
   return {
@@ -168,9 +166,10 @@ const startServer = async () => {
    * @type {Object.<string, Array.<function(Object<string, any>): void>>}
    */
   const subs = {};
-
-  const redisSubscribeClient = await createRedisClient(process.env);
-  const redisClient = await createRedisClient(process.env);
+  // ioredis transparently prefixes for us, *except* for subscribe/unsubscribe.
+  const redisConfig = redisConfigFromEnv(process.env);
+  const redisSubscribeClient = await createRedisClient(redisConfig);
+  const redisClient = await createRedisClient(redisConfig);
 
   // Collect metrics from Node.js
   metrics.collectDefaultMetrics();
@@ -296,7 +295,7 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       log.verbose(`Subscribe ${channel}`);
-      redisSubscribeClient.subscribe(channel)
+      redisSubscribeClient.subscribe(`${redisConfig.redisParams.keyPrefix}${channel}`)
       redisSubscriptions.inc();
     }
 
@@ -318,7 +317,7 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       log.verbose(`Unsubscribe ${channel}`);
-      redisSubscribeClient.unsubscribe(channel);
+      redisSubscribeClient.unsubscribe(`${redisConfig.redisParams.keyPrefix}${channel}`);
       redisSubscriptions.dec();
       delete subs[channel];
     }
