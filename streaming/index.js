@@ -147,7 +147,7 @@ const redisConfigFromEnv = (env) => {
   }
 
   if (redisNamespace) {
-    redisParams.keyPrefix = redisNamespace;
+    redisParams.keyPrefix = `${redisNamespace}:`;
   }
 
   return {
