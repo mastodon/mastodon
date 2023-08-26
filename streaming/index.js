@@ -142,11 +142,11 @@ const redisConfigFromEnv = (env) => {
 
   // redisParams.path takes precedence over host and port.
   if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
-    redisParams.path = env.REDIS_URL.slice(7);
+    redisParams.options.path = env.REDIS_URL.slice(7);
   }
 
   if (redisNamespace) {
-    redisParams.keyPrefix = redisNamespace;
+    redisParams.options.keyPrefix = redisNamespace;
   }
 
   return {
