@@ -1,10 +1,18 @@
 ---
 ja:
   admin:
+    custom_emojis:
+      batch_copy_error: '選択したいくつかの絵文字のコピー中にエラーが発生しました: %{message}'
+      batch_error: 'エラーが発生しました: %{message}'
     settings:
+      flavour_and_skin:
+        title: フレーバーとスキン
       hide_followers_count:
         desc_html: プロフィールページのフォロワー数を見られないようにします
         title: フォロワー数を隠す
+      other:
+        preamble: 他のカテゴリに該当しない多様なglitch-socの設定。
+        title: その他
       outgoing_spoilers:
         desc_html: トゥートが連合される際、閲覧注意としてマークされていないトゥートにこの警告が追加されます。これはあなたのインスタンスが他のインスタンスに警告をして欲しいとされる投稿に特化している場合に便利です。 メディアは閲覧注意にマークされます。
         title: 発信するトゥートへの警告
@@ -14,6 +22,13 @@ ja:
       show_replies_in_public_timelines:
         desc_html: 自分への公開投稿の返信に加えて、すべての公開投稿の返信をローカルタイムラインと連合タイムラインに表示します。
         title: 公開タイムラインに返信を表示
+      trending_status_cw:
+        desc_html: トレンド投稿が有効な場合、コンテンツワーニング付きの投稿がトレンドに掲載されるのを許可します。この設定の変更は遡及的ではありません。
+        title: 閲覧注意付きの投稿がトレンドに載るのを許可する
+  appearance:
+    localization:
+      glitch_guide_link: https://crowdin.com/project/glitch-soc
+      glitch_guide_link_text: そしてglitch-socへも同様に！
   generic:
     use_this: これを使う
   settings:
