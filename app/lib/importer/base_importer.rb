@@ -68,8 +68,8 @@ class Importer::BaseImporter
 
   protected
 
-  def in_work_unit(*args, &block)
-    work_unit = Concurrent::Promises.future_on(@executor, *args, &block)
+  def in_work_unit(...)
+    work_unit = Concurrent::Promises.future_on(@executor, ...)
 
     work_unit.on_fulfillment!(&@on_progress)
     work_unit.on_rejection!(&@on_failure)

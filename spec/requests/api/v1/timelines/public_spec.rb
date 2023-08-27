@@ -56,6 +56,13 @@ describe 'Public' do
         it_behaves_like 'a successful request to the public timeline'
       end
 
+      context 'with local and remote params' do
+        let(:params) { { local: true, remote: true } }
+        let(:expected_statuses) { [local_status, remote_status, media_status] }
+
+        it_behaves_like 'a successful request to the public timeline'
+      end
+
       context 'with only_media param' do
         let(:params) { { only_media: true } }
         let(:expected_statuses) { [media_status] }

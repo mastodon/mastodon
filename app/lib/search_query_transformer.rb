@@ -36,7 +36,7 @@ class SearchQueryTransformer < Parslet::Transform
     def clause_to_filter(clause)
       case clause
       when PrefixClause
-        { term: { clause.filter => clause.term } }
+        { clause.type => { clause.filter => clause.term } }
       else
         raise "Unexpected clause type: #{clause}"
       end
@@ -47,12 +47,10 @@ class SearchQueryTransformer < Parslet::Transform
     class << self
       def symbol(str)
         case str
-        when '+'
+        when '+', nil
           :must
         when '-'
           :must_not
-        when nil
-          :should
         else
           raise "Unknown operator: #{str}"
         end
@@ -81,22 +79,51 @@ class SearchQueryTransformer < Parslet::Transform
   end
 
   class PrefixClause
-    attr_reader :filter, :operator, :term
+    attr_reader :type, :filter, :operator, :term
 
     def initialize(prefix, term)
       @operator = :filter
+
       case prefix
+      when 'has', 'is'
+        @filter = :properties
+        @type = :term
+        @term = term
+      when 'language'
+        @filter = :language
+        @type = :term
+        @term = term
       when 'from'
         @filter = :account_id
-
-        username, domain = term.gsub(/\A@/, '').split('@')
-        domain           = nil if TagManager.instance.local_domain?(domain)
-        account          = Account.find_remote!(username, domain)
-
-        @term = account.id
+        @type = :term
+        @term = account_id_from_term(term)
+      when 'before'
+        @filter = :created_at
+        @type = :range
+        @term = { lt: term }
+      when 'after'
+        @filter = :created_at
+        @type = :range
+        @term = { gt: term }
+      when 'during'
+        @filter = :created_at
+        @type = :range
+        @term = { gte: term, lte: term }
       else
         raise Mastodon::SyntaxError
       end
+    end
+
+    private
+
+    def account_id_from_term(term)
+      username, domain = term.gsub(/\A@/, '').split('@')
+      domain = nil if TagManager.instance.local_domain?(domain)
+      account = Account.find_remote(username, domain)
+
+      # If the account is not found, we want to return empty results, so return
+      # an ID that does not exist
+      account&.id || -1
     end
   end
 
