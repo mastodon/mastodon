@@ -25,6 +25,7 @@ class ProcessMentionsService < BaseService
   private
 
   def scan_text!
+    @status.text = @status.text.gsub(/http[^\s]+/,"")
     @status.text = @status.text.gsub(Account::MENTION_RE) do |match|
       username, domain = Regexp.last_match(1).split('@')
 
