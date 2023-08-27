@@ -3,6 +3,8 @@
 class AddToPublicStatusesIndexWorker
   include Sidekiq::Worker
 
+  sidekiq_options queue: 'pull'
+
   def perform(account_id)
     account = Account.find(account_id)
 
