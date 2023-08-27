@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class SearchService < BaseService
+  QUOTE_EQUIVALENT_CHARACTERS = /[“”„«»「」『』《》]/
+
   def call(query, account, limit, options = {})
-    @query     = query&.strip
+    @query     = query&.strip&.gsub(QUOTE_EQUIVALENT_CHARACTERS, '"')
     @account   = account
     @options   = options
     @limit     = limit.to_i
