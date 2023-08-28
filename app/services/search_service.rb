@@ -17,7 +17,7 @@ class SearchService < BaseService
         results.merge!(url_resource_results) unless url_resource.nil? || @offset.positive? || (@options[:type].present? && url_resource_symbol != @options[:type].to_sym)
       elsif @query.present?
         results[:accounts] = perform_accounts_search! if account_searchable?
-        results[:statuses] = perform_statuses_search! if full_text_searchable?
+        results[:statuses] = perform_statuses_search! if status_searchable?
         results[:hashtags] = perform_hashtags_search! if hashtag_searchable?
       end
     end
@@ -79,18 +79,16 @@ class SearchService < BaseService
     url_resource.class.name.downcase.pluralize.to_sym
   end
 
-  def full_text_searchable?
-    return false unless Chewy.enabled?
-
-    statuses_search? && !@account.nil? && !(@query.include?('@') && !@query.include?(' '))
+  def status_searchable?
+    Chewy.enabled? && status_search? && @account.present?
   end
 
   def account_searchable?
-    account_search? && !(@query.include?('@') && @query.include?(' '))
+    account_search?
   end
 
   def hashtag_searchable?
-    hashtag_search? && !@query.include?('@')
+    hashtag_search?
   end
 
   def account_search?
@@ -101,7 +99,7 @@ class SearchService < BaseService
     @options[:type].blank? || @options[:type] == 'hashtags'
   end
 
-  def statuses_search?
+  def status_search?
     @options[:type].blank? || @options[:type] == 'statuses'
   end
 end
