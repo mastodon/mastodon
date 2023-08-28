@@ -85,8 +85,9 @@ class SearchQueryTransformer < Parslet::Transform
   class PrefixClause
     attr_reader :type, :filter, :operator, :term
 
-    def initialize(prefix, operator, term)
+    def initialize(prefix, operator, term, options = {})
       @negated  = operator == '-'
+      @options  = options
       @operator = :filter
 
       case prefix
@@ -105,15 +106,15 @@ class SearchQueryTransformer < Parslet::Transform
       when 'before'
         @filter = :created_at
         @type = :range
-        @term = { lt: term }
+        @term = { lt: term, time_zone: @options[:current_account]&.user_time_zone || 'UTC' }
       when 'after'
         @filter = :created_at
         @type = :range
-        @term = { gt: term }
+        @term = { gt: term, time_zone: @options[:current_account]&.user_time_zone || 'UTC' }
       when 'during'
         @filter = :created_at
         @type = :range
-        @term = { gte: term, lte: term }
+        @term = { gte: term, lte: term, time_zone: @options[:current_account]&.user_time_zone || 'UTC' }
       else
         raise Mastodon::SyntaxError
       end
@@ -126,6 +127,8 @@ class SearchQueryTransformer < Parslet::Transform
     private
 
     def account_id_from_term(term)
+      return @options[:current_account]&.id || -1 if term == 'me'
+
       username, domain = term.gsub(/\A@/, '').split('@')
       domain = nil if TagManager.instance.local_domain?(domain)
       account = Account.find_remote(username, domain)
@@ -141,7 +144,7 @@ class SearchQueryTransformer < Parslet::Transform
     operator = clause[:operator]&.to_s
 
     if clause[:prefix]
-      PrefixClause.new(prefix, operator, clause[:term].to_s)
+      PrefixClause.new(prefix, operator, clause[:term].to_s, current_account: current_account)
     elsif clause[:term]
       TermClause.new(prefix, operator, clause[:term].to_s)
     elsif clause[:shortcode]
