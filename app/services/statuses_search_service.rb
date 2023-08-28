@@ -59,6 +59,6 @@ class StatusesSearchService < BaseService
   end
 
   def parsed_query
-    SearchQueryTransformer.new.apply(SearchQueryParser.new.parse(@query))
+    SearchQueryTransformer.new.apply(SearchQueryParser.new.parse(@query), current_account: @account)
   end
 end
