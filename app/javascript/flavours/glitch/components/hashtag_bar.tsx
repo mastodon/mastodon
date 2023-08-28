@@ -10,8 +10,8 @@ import { groupBy, minBy } from 'lodash';
 
 import { getStatusContent } from './status_content';
 
-// About two lines on desktop
-const VISIBLE_HASHTAGS = 7;
+// Fit on a single line on desktop
+const VISIBLE_HASHTAGS = 3;
 
 // Those types are not correct, they need to be replaced once this part of the state is typed
 export type TagLike = Record<{ name: string }>;
@@ -210,7 +210,7 @@ const HashtagBar: React.FC<{
 
   const revealedHashtags = expanded
     ? hashtags
-    : hashtags.slice(0, VISIBLE_HASHTAGS - 1);
+    : hashtags.slice(0, VISIBLE_HASHTAGS);
 
   return (
     <div className='hashtag-bar'>

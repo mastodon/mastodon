@@ -1174,19 +1174,24 @@ a.status-card.compact:hover {
   display: flex;
   flex-wrap: wrap;
   font-size: 14px;
+  line-height: 18px;
   gap: 4px;
+  color: $darker-text-color;
 
   a {
     display: inline-flex;
-    color: $dark-text-color;
+    color: inherit;
     text-decoration: none;
 
-    &:hover {
-      text-decoration: none;
-
-      span {
-        text-decoration: underline;
-      }
+    &:hover span {
+      text-decoration: underline;
     }
+  }
+
+  .link-button {
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 0;
   }
 }
