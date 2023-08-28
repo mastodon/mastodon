@@ -2022,14 +2022,13 @@
     lz-string "^1.5.0"
     pretty-format "^27.0.2"
 
-"@testing-library/jest-dom@^5.16.5":
-  version "5.17.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-5.17.0.tgz#5e97c8f9a15ccf4656da00fecab505728de81e0c"
-  integrity sha512-ynmNeT7asXyH3aSVv4vvX4Rb+0qjOhdNHnO/3vuZNqPmhDpV/+rCSGwQ7bLcmU2cJ4dvoheIO85LQj0IbJHEtg==
+"@testing-library/jest-dom@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-6.0.0.tgz#d2ba5a3fd13724d5966b3f8cd24d2cedcab4fa76"
+  integrity sha512-Ye2R3+/oM27jir8CzYPmuWdavTaKwNZcu0d22L9pO/vnOYE0wmrtpw79TQJa8H6gV8/i7yd+pLaqeLlA0rTMfg==
   dependencies:
     "@adobe/css-tools" "^4.0.1"
     "@babel/runtime" "^7.9.2"
-    "@types/testing-library__jest-dom" "^5.9.1"
     aria-query "^5.0.0"
     chalk "^3.0.0"
     css.escape "^1.5.1"
@@ -2225,10 +2224,10 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@*", "@types/jest@^29.5.2":
-  version "29.5.4"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.5.4.tgz#9d0a16edaa009a71e6a71a999acd582514dab566"
-  integrity sha512-PhglGmhWeD46FYOVLt3X7TiWjzwuVGW9wG/4qocPevXMjCmrIc5b6db9WjeGE4QYVpUAWMDv3v0IiBwObY289A==
+"@types/jest@^29.5.2":
+  version "29.5.3"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.5.3.tgz#7a35dc0044ffb8b56325c6802a4781a626b05777"
+  integrity sha512-1Nq7YrO/vJE/FYnqYyw0FS8LdrjExSgIiHyKg7xPpn+yi8Q4huZryKnkJatN1ZRH89Kw2v33/8ZMB7DuZeSLlA==
   dependencies:
     expect "^29.0.0"
     pretty-format "^29.0.0"
@@ -2534,13 +2533,6 @@
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.8.tgz#b94a4391c85666c7b73299fd3ad79d4faa435310"
   integrity sha512-ipixuVrh2OdNmauvtT51o3d8z12p6LtFW9in7U79der/kwejjdNchQC5UMn5u/KxNoM7VHHOs/l8KS8uHxhODQ==
-
-"@types/testing-library__jest-dom@^5.9.1":
-  version "5.14.9"
-  resolved "https://registry.yarnpkg.com/@types/testing-library__jest-dom/-/testing-library__jest-dom-5.14.9.tgz#0fb1e6a0278d87b6737db55af5967570b67cb466"
-  integrity sha512-FSYhIjFlfOpGSRyVoMBMuS3ws5ehFQODymf3vlI7U1K8c7PHwWwFY7VREfmsuzHSOnoKs/9/Y983ayOs7eRzqw==
-  dependencies:
-    "@types/jest" "*"
 
 "@types/tough-cookie@*":
   version "4.0.2"
@@ -11353,6 +11345,7 @@ stringz@^2.1.0:
     char-regex "^1.0.2"
 
 "strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
