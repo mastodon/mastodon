@@ -174,17 +174,41 @@ describe WellKnown::WebfingerController do
       let(:alice) { Fabricate(:account, username: 'alice', avatar: attachment_fixture('attachment.jpg')) }
       let(:resource) { alice.to_webfinger_s }
 
-      before do
-        perform_show!
-      end
-
       it 'returns avatar in response' do
-        json = body_as_json
+        perform_show!
 
-        avatar_link = json[:links].find { |link| link[:rel] == 'http://webfinger.net/rel/avatar' }
+        avatar_link = get_avatar_link(body_as_json)
         expect(avatar_link).to_not be_nil
         expect(avatar_link[:type]).to eq alice.avatar.content_type
         expect(avatar_link[:href]).to eq full_asset_url(alice.avatar)
+      end
+
+      context 'with limited federation mode' do
+        before do
+          allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(true)
+        end
+
+        it 'does not return avatar in response' do
+          perform_show!
+
+          avatar_link = get_avatar_link(body_as_json)
+          expect(avatar_link).to be_nil
+        end
+      end
+
+      context 'when enabling DISALLOW_UNAUTHENTICATED_API_ACCESS' do
+        around do |example|
+          ClimateControl.modify DISALLOW_UNAUTHENTICATED_API_ACCESS: 'true' do
+            example.run
+          end
+        end
+
+        it 'does not return avatar in response' do
+          perform_show!
+
+          avatar_link = get_avatar_link(body_as_json)
+          expect(avatar_link).to be_nil
+        end
       end
     end
 
@@ -197,11 +221,15 @@ describe WellKnown::WebfingerController do
       end
 
       it 'does not return avatar in response' do
-        json = body_as_json
-
-        avatar_link = json[:links].find { |link| link[:rel] == 'http://webfinger.net/rel/avatar' }
+        avatar_link = get_avatar_link(body_as_json)
         expect(avatar_link).to be_nil
       end
     end
+  end
+
+  private
+
+  def get_avatar_link(json)
+    json[:links].find { |link| link[:rel] == 'http://webfinger.net/rel/avatar' }
   end
 end
