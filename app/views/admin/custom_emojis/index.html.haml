@@ -1,9 +1,6 @@
 - content_for :page_title do
   = t('admin.custom_emojis.title')
 
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 - if can?(:create, :custom_emoji)
   - content_for :heading_actions do
     = link_to t('admin.custom_emojis.upload'), new_admin_custom_emoji_path, class: 'button'
