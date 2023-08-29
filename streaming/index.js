@@ -149,7 +149,7 @@ const redisConfigFromEnv = (env) => {
   }
 
   return {
-	redisParams,
+    redisParams,
     redisPrefix,
     redisUrl: env.REDIS_URL,
   };
@@ -297,7 +297,7 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       log.verbose(`Subscribe ${channel}`);
-      redisSubscribeClient.subscribe(channel)
+      redisSubscribeClient.subscribe(channel);
       redisSubscriptions.inc();
     }
 
