@@ -104,7 +104,7 @@ export function normalizeStatus(status, normalOldStatus) {
       normalStatus.media_attachments.forEach(item => {
         const oldItem = list.find(i => i.get('id') === item.id);
         if (oldItem && oldItem.get('description') === item.description) {
-          item.translation = oldItem.get('translation')
+          item.translation = oldItem.get('translation');
         }
       });
     }
@@ -137,13 +137,13 @@ export function normalizePoll(poll, normalOldPoll) {
       ...option,
       voted: poll.own_votes && poll.own_votes.includes(index),
       titleHtml: emojify(escapeTextContentForBrowser(option.title), emojiMap),
-    }
+    };
 
     if (normalOldPoll && normalOldPoll.getIn(['options', index, 'title']) === option.title) {
       normalOption.translation = normalOldPoll.getIn(['options', index, 'translation']);
     }
 
-    return normalOption
+    return normalOption;
   });
 
   return normalPoll;
