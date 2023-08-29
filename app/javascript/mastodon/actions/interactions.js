@@ -31,6 +31,10 @@ export const FAVOURITES_FETCH_REQUEST = 'FAVOURITES_FETCH_REQUEST';
 export const FAVOURITES_FETCH_SUCCESS = 'FAVOURITES_FETCH_SUCCESS';
 export const FAVOURITES_FETCH_FAIL    = 'FAVOURITES_FETCH_FAIL';
 
+export const FAVOURITES_EXPAND_REQUEST = 'FAVOURITES_EXPAND_REQUEST';
+export const FAVOURITES_EXPAND_SUCCESS = 'FAVOURITES_EXPAND_SUCCESS';
+export const FAVOURITES_EXPAND_FAIL = 'FAVOURITES_EXPAND_FAIL';
+
 export const PIN_REQUEST = 'PIN_REQUEST';
 export const PIN_SUCCESS = 'PIN_SUCCESS';
 export const PIN_FAIL    = 'PIN_FAIL';
@@ -360,8 +364,10 @@ export function fetchFavourites(id) {
     dispatch(fetchFavouritesRequest(id));
 
     api(getState).get(`/api/v1/statuses/${id}/favourited_by`).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedAccounts(response.data));
-      dispatch(fetchFavouritesSuccess(id, response.data));
+      dispatch(fetchFavouritesSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
       dispatch(fetchFavouritesFail(id, error));
     });
@@ -375,17 +381,62 @@ export function fetchFavouritesRequest(id) {
   };
 }
 
-export function fetchFavouritesSuccess(id, accounts) {
+export function fetchFavouritesSuccess(id, accounts, next) {
   return {
     type: FAVOURITES_FETCH_SUCCESS,
     id,
     accounts,
+    next,
   };
 }
 
 export function fetchFavouritesFail(id, error) {
   return {
     type: FAVOURITES_FETCH_FAIL,
+    id,
+    error,
+  };
+}
+
+export function expandFavourites(id) {
+  return (dispatch, getState) => {
+    const url = getState().getIn(['user_lists', 'favourited_by', id, 'next']);
+    if (url === null) {
+      return;
+    }
+
+    dispatch(expandFavouritesRequest(id));
+
+    api(getState).get(url).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(expandFavouritesSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => dispatch(expandFavouritesFail(id, error)));
+  };
+}
+
+export function expandFavouritesRequest(id) {
+  return {
+    type: FAVOURITES_EXPAND_REQUEST,
+    id,
+  };
+}
+
+export function expandFavouritesSuccess(id, accounts, next) {
+  return {
+    type: FAVOURITES_EXPAND_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+}
+
+export function expandFavouritesFail(id, error) {
+  return {
+    type: FAVOURITES_EXPAND_FAIL,
+    id,
     error,
   };
 }

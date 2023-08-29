@@ -2,6 +2,8 @@
 
 class ActivityPub::Activity::Update < ActivityPub::Activity
   def perform
+    @account.schedule_refresh_if_stale!
+
     dereference_object!
 
     if equals_or_includes_any?(@object['type'], %w(Application Group Organization Person Service))
