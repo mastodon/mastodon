@@ -44,7 +44,12 @@ import {
   FEATURED_TAGS_FETCH_FAIL,
 } from 'flavours/glitch/actions/featured_tags';
 import {
+  REBLOGS_FETCH_REQUEST,
   REBLOGS_FETCH_SUCCESS,
+  REBLOGS_FETCH_FAIL,
+  REBLOGS_EXPAND_REQUEST,
+  REBLOGS_EXPAND_SUCCESS,
+  REBLOGS_EXPAND_FAIL,
   FAVOURITES_FETCH_REQUEST,
   FAVOURITES_FETCH_SUCCESS,
   FAVOURITES_FETCH_FAIL,
@@ -138,7 +143,15 @@ export default function userLists(state = initialState, action) {
   case FOLLOWING_EXPAND_FAIL:
     return state.setIn(['following', action.id, 'isLoading'], false);
   case REBLOGS_FETCH_SUCCESS:
-    return state.setIn(['reblogged_by', action.id], ImmutableList(action.accounts.map(item => item.id)));
+    return normalizeList(state, ['reblogged_by', action.id], action.accounts, action.next);
+  case REBLOGS_EXPAND_SUCCESS:
+    return appendToList(state, ['reblogged_by', action.id], action.accounts, action.next);
+  case REBLOGS_FETCH_REQUEST:
+  case REBLOGS_EXPAND_REQUEST:
+    return state.setIn(['reblogged_by', action.id, 'isLoading'], true);
+  case REBLOGS_FETCH_FAIL:
+  case REBLOGS_EXPAND_FAIL:
+    return state.setIn(['reblogged_by', action.id, 'isLoading'], false);
   case FAVOURITES_FETCH_SUCCESS:
     return normalizeList(state, ['favourited_by', action.id], action.accounts, action.next);
   case FAVOURITES_EXPAND_SUCCESS:
