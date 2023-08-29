@@ -8,17 +8,19 @@ module StatusSearchConcern
   end
 
   def searchable_by
-    ids = []
+    @searchable_by ||= begin
+      ids = []
 
-    ids << account_id if local?
+      ids << account_id if local?
 
-    ids += local_mentioned.pluck(:id)
-    ids += local_favorited.pluck(:id)
-    ids += local_reblogged.pluck(:id)
-    ids += local_bookmarked.pluck(:id)
-    ids += preloadable_poll.local_voters.pluck(:id) if preloadable_poll.present?
+      ids += local_mentioned.pluck(:id)
+      ids += local_favorited.pluck(:id)
+      ids += local_reblogged.pluck(:id)
+      ids += local_bookmarked.pluck(:id)
+      ids += preloadable_poll.local_voters.pluck(:id) if preloadable_poll.present?
 
-    ids.uniq
+      ids.uniq
+    end
   end
 
   def searchable_text
