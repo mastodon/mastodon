@@ -30,7 +30,7 @@ const createRedisClient = async (config) => {
   const { redisParams, redisUrl } = config;
   let client = new Redis(redisParams);
   if (redisUrl) {
-	client = new Redis(redisUrl, redisParams);
+    client = new Redis(redisUrl, redisParams);
   }
   client.on('error', (err) => log.error('Redis Client Error!', err));
 
@@ -149,8 +149,8 @@ const redisConfigFromEnv = (env) => {
   }
 
   return {
-    redisParams,
-	redisPrefix,
+	redisParams,
+    redisPrefix,
     redisUrl: env.REDIS_URL,
   };
 };
