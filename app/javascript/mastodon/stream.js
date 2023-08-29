@@ -77,9 +77,9 @@ const unsubscribe = ({ channelName, params, onDisconnect }) => {
 
   subscriptionCounters[key] = subscriptionCounters[key] || 1;
 
-  // @ts-expect-error
   if (
     subscriptionCounters[key] === 1 &&
+    // @ts-expect-error
     sharedConnection.readyState === WebSocketClient.OPEN
   ) {
     // @ts-expect-error
@@ -157,8 +157,9 @@ const channelNameWithInlineParams = (channelName, params) => {
  * @param {function(Function, Function): { onConnect: (function(): void), onReceive: (function(StreamEvent): void), onDisconnect: (function(): void) }} callbacks
  * @returns {function(): void}
  */
-// @ts-expect-error
+
 export const connectStream =
+  // @ts-expect-error
   (channelName, params, callbacks) => (dispatch, getState) => {
     const streamingAPIBaseURL = getState().getIn([
       'meta',
@@ -270,9 +271,9 @@ const createConnection = (
   channelName = params.shift();
 
   if (streamingAPIBaseURL.startsWith('ws')) {
-    // @ts-expect-error
     const ws = new WebSocketClient(
       `${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`,
+      // @ts-expect-error
       accessToken,
     );
 

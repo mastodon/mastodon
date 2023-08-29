@@ -61,10 +61,10 @@ export const ImmutableHashtag = ({ hashtag }) => (
       hashtag.getIn(['history', 0, 'accounts']) * 1 +
       hashtag.getIn(['history', 1, 'accounts']) * 1
     }
-    // @ts-expect-error
     history={hashtag
       .get('history')
       .reverse()
+      // @ts-expect-error
       .map((day) => day.get('uses'))
       .toArray()}
   />
@@ -74,15 +74,22 @@ ImmutableHashtag.propTypes = {
   hashtag: ImmutablePropTypes.map.isRequired,
 };
 
-// @ts-expect-error
 const Hashtag = ({
+  // @ts-expect-error
   name,
+  // @ts-expect-error
   to,
+  // @ts-expect-error
   people,
+  // @ts-expect-error
   uses,
+  // @ts-expect-error
   history,
+  // @ts-expect-error
   className,
+  // @ts-expect-error
   description,
+  // @ts-expect-error
   withGraph,
 }) => (
   <div className={classNames('trends__item', className)}>
