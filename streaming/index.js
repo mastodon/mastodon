@@ -602,7 +602,7 @@ const startServer = async () => {
     });
 
     subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-    subscribe('${redisPrefix}${systemChannelId}', listener);
+    subscribe(`${redisPrefix}${systemChannelId}`, listener);
 
     connectedChannels.labels({ type: 'eventsource', channel: 'system' }).inc(2);
   };
