@@ -14,7 +14,7 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
       scope.find_in_batches(batch_size: @batch_size) do |tmp|
         in_work_unit(tmp.map(&:status_id)) do |status_ids|
           bulk = ActiveRecord::Base.connection_pool.with_connection do
-            Chewy::Index::Import::BulkBuilder.new(index, to_index: Status.includes(:media_attachments, :preloadable_poll, :preview_cards).where(id: status_ids)).bulk_body
+            Chewy::Index::Import::BulkBuilder.new(index, to_index: index.adapter.default_scope.where(id: status_ids)).bulk_body
           end
 
           indexed = 0
