@@ -44,5 +44,8 @@ jobs:
       - name: Install all yarn packages
         run: yarn --frozen-lockfile
 
+      - name: Audit for vulnerabilities
+        run: yarn audit --frozen-lockfile --check-files
+
       - name: Jest testing
         run: yarn jest --reporters github-actions summary
