@@ -9,13 +9,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 const hex2rgba = (hex, alpha = 1) => {
-  const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
+  const [r, g, b] = hex.match(/\w\w/g).map((x) => parseInt(x, 16));
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
 export default class Visualizer {
-
-  constructor (tickSize) {
+  constructor(tickSize) {
     this.tickSize = tickSize;
   }
 
@@ -37,18 +36,18 @@ export default class Visualizer {
     this.analyser = analyser;
   }
 
-  getTickPoints (count) {
+  getTickPoints(count) {
     const coords = [];
 
-    for(let i = 0; i < count; i++) {
-      const rad = Math.PI * 2 * i / count;
+    for (let i = 0; i < count; i++) {
+      const rad = (Math.PI * 2 * i) / count;
       coords.push({ x: Math.cos(rad), y: -Math.sin(rad) });
     }
 
     return coords;
   }
 
-  drawTick (cx, cy, mainColor, x1, y1, x2, y2) {
+  drawTick(cx, cy, mainColor, x1, y1, x2, y2) {
     const dx1 = Math.ceil(cx + x1);
     const dy1 = Math.ceil(cy + y1);
     const dx2 = Math.ceil(cx + x2);
@@ -70,7 +69,7 @@ export default class Visualizer {
     this.context.stroke();
   }
 
-  getTicks (count, size, radius, scaleCoefficient) {
+  getTicks(count, size, radius, scaleCoefficient) {
     const ticks = this.getTickPoints(count);
     const lesser = 200;
     const m = [];
@@ -117,20 +116,24 @@ export default class Visualizer {
     }));
   }
 
-  clear (width, height) {
+  clear(width, height) {
     this.context.clearRect(0, 0, width, height);
   }
 
-  draw (cx, cy, color, radius, coefficient) {
+  draw(cx, cy, color, radius, coefficient) {
     this.context.save();
 
-    const ticks = this.getTicks(parseInt(360 * coefficient), this.tickSize, radius, coefficient);
+    const ticks = this.getTicks(
+      parseInt(360 * coefficient),
+      this.tickSize,
+      radius,
+      coefficient,
+    );
 
-    ticks.forEach(tick => {
+    ticks.forEach((tick) => {
       this.drawTick(cx, cy, color, tick.x1, tick.y1, tick.x2, tick.y2);
     });
 
     this.context.restore();
   }
-
 }

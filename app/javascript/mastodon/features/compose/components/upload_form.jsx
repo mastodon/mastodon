@@ -6,12 +6,11 @@ import UploadContainer from '../containers/upload_container';
 import UploadProgressContainer from '../containers/upload_progress_container';
 
 export default class UploadForm extends ImmutablePureComponent {
-
   static propTypes = {
     mediaIds: ImmutablePropTypes.list.isRequired,
   };
 
-  render () {
+  render() {
     const { mediaIds } = this.props;
 
     return (
@@ -19,7 +18,7 @@ export default class UploadForm extends ImmutablePureComponent {
         <UploadProgressContainer />
 
         <div className='compose-form__uploads-wrapper'>
-          {mediaIds.map(id => (
+          {mediaIds.map((id) => (
             <UploadContainer id={id} key={id} />
           ))}
         </div>
@@ -28,5 +27,4 @@ export default class UploadForm extends ImmutablePureComponent {
       </div>
     );
   }
-
 }

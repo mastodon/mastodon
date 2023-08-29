@@ -8,35 +8,48 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { openModal } from 'mastodon/actions/modal';
-import { disabledAccountId, movedToAccountId, domain } from 'mastodon/initial_state';
+import {
+  disabledAccountId,
+  movedToAccountId,
+  domain,
+} from 'mastodon/initial_state';
 import { logOut } from 'mastodon/utils/log_out';
 
 const messages = defineMessages({
-  logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
-  logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
+  logoutMessage: {
+    id: 'confirmations.logout.message',
+    defaultMessage: 'Are you sure you want to log out?',
+  },
+  logoutConfirm: {
+    id: 'confirmations.logout.confirm',
+    defaultMessage: 'Log out',
+  },
 });
 
 const mapStateToProps = (state) => ({
   disabledAcct: state.getIn(['accounts', disabledAccountId, 'acct']),
-  movedToAcct: movedToAccountId ? state.getIn(['accounts', movedToAccountId, 'acct']) : undefined,
+  movedToAcct: movedToAccountId
+    ? state.getIn(['accounts', movedToAccountId, 'acct'])
+    : undefined,
 });
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
-  onLogout () {
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: intl.formatMessage(messages.logoutMessage),
-        confirm: intl.formatMessage(messages.logoutConfirm),
-        closeWhenConfirm: false,
-        onConfirm: () => logOut(),
-      },
-    }));
+  onLogout() {
+    dispatch(
+      openModal({
+        modalType: 'CONFIRM',
+        modalProps: {
+          message: intl.formatMessage(messages.logoutMessage),
+          confirm: intl.formatMessage(messages.logoutConfirm),
+          closeWhenConfirm: false,
+          onConfirm: () => logOut(),
+        },
+      }),
+    );
   },
 });
 
 class DisabledAccountBanner extends PureComponent {
-
   static propTypes = {
     disabledAcct: PropTypes.string.isRequired,
     movedToAcct: PropTypes.string,
@@ -44,7 +57,7 @@ class DisabledAccountBanner extends PureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  handleLogOutClick = e => {
+  handleLogOutClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -53,7 +66,7 @@ class DisabledAccountBanner extends PureComponent {
     return false;
   };
 
-  render () {
+  render() {
     const { disabledAcct, movedToAcct } = this.props;
 
     const disabledAccountLink = (
@@ -71,7 +84,13 @@ class DisabledAccountBanner extends PureComponent {
               defaultMessage='Your account {disabledAccount} is currently disabled because you moved to {movedToAccount}.'
               values={{
                 disabledAccount: disabledAccountLink,
-                movedToAccount: <Link to={`/@${movedToAcct}`}>{movedToAcct.includes('@') ? movedToAcct : `${movedToAcct}@${domain}`}</Link>,
+                movedToAccount: (
+                  <Link to={`/@${movedToAcct}`}>
+                    {movedToAcct.includes('@')
+                      ? movedToAcct
+                      : `${movedToAcct}@${domain}`}
+                  </Link>
+                ),
               }}
             />
           ) : (
@@ -85,15 +104,26 @@ class DisabledAccountBanner extends PureComponent {
           )}
         </p>
         <a href='/auth/edit' className='button button--block'>
-          <FormattedMessage id='disabled_account_banner.account_settings' defaultMessage='Account settings' />
+          <FormattedMessage
+            id='disabled_account_banner.account_settings'
+            defaultMessage='Account settings'
+          />
         </a>
-        <button type='button' className='button button--block button-tertiary' onClick={this.handleLogOutClick}>
-          <FormattedMessage id='confirmations.logout.confirm' defaultMessage='Log out' />
+        <button
+          type='button'
+          className='button button--block button-tertiary'
+          onClick={this.handleLogOutClick}
+        >
+          <FormattedMessage
+            id='confirmations.logout.confirm'
+            defaultMessage='Log out'
+          />
         </button>
       </div>
     );
   }
-
 }
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(DisabledAccountBanner));
+export default injectIntl(
+  connect(mapStateToProps, mapDispatchToProps)(DisabledAccountBanner),
+);

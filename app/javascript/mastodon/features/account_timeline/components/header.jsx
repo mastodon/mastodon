@@ -13,7 +13,6 @@ import MemorialNote from './memorial_note';
 import MovedNote from './moved_note';
 
 export default class Header extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map,
     onFollow: PropTypes.func.isRequired,
@@ -112,7 +111,7 @@ export default class Header extends ImmutablePureComponent {
     this.props.onOpenAvatar(this.props.account);
   };
 
-  render () {
+  render() {
     const { account, hidden, hideTabs } = this.props;
 
     if (account === null) {
@@ -121,8 +120,10 @@ export default class Header extends ImmutablePureComponent {
 
     return (
       <div className='account-timeline__header'>
-        {(!hidden && account.get('memorial')) && <MemorialNote />}
-        {(!hidden && account.get('moved')) && <MovedNote from={account} to={account.get('moved')} />}
+        {!hidden && account.get('memorial') && <MemorialNote />}
+        {!hidden && account.get('moved') && (
+          <MovedNote from={account} to={account.get('moved')} />
+        )}
 
         <InnerHeader
           account={account}
@@ -149,13 +150,21 @@ export default class Header extends ImmutablePureComponent {
 
         {!(hideTabs || hidden) && (
           <div className='account__section-headline'>
-            <NavLink exact to={`/@${account.get('acct')}`}><FormattedMessage id='account.posts' defaultMessage='Posts' /></NavLink>
-            <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Posts and replies' /></NavLink>
-            <NavLink exact to={`/@${account.get('acct')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
+            <NavLink exact to={`/@${account.get('acct')}`}>
+              <FormattedMessage id='account.posts' defaultMessage='Posts' />
+            </NavLink>
+            <NavLink exact to={`/@${account.get('acct')}/with_replies`}>
+              <FormattedMessage
+                id='account.posts_with_replies'
+                defaultMessage='Posts and replies'
+              />
+            </NavLink>
+            <NavLink exact to={`/@${account.get('acct')}/media`}>
+              <FormattedMessage id='account.media' defaultMessage='Media' />
+            </NavLink>
           </div>
         )}
       </div>
     );
   }
-
 }

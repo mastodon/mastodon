@@ -26,21 +26,41 @@ import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-com
 import { me } from 'mastodon/initial_state';
 import { assetHost } from 'mastodon/utils/config';
 
-import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from '../../../actions/compose';
+import {
+  changeUploadCompose,
+  uploadThumbnail,
+  onChangeMediaDescription,
+  onChangeMediaFocus,
+} from '../../../actions/compose';
 import Video, { getPointerPosition } from '../../video';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
   apply: { id: 'upload_modal.apply', defaultMessage: 'Apply' },
   applying: { id: 'upload_modal.applying', defaultMessage: 'Applying…' },
-  placeholder: { id: 'upload_modal.description_placeholder', defaultMessage: 'A quick brown fox jumps over the lazy dog' },
-  chooseImage: { id: 'upload_modal.choose_image', defaultMessage: 'Choose image' },
-  discardMessage: { id: 'confirmations.discard_edit_media.message', defaultMessage: 'You have unsaved changes to the media description or preview, discard them anyway?' },
-  discardConfirm: { id: 'confirmations.discard_edit_media.confirm', defaultMessage: 'Discard' },
+  placeholder: {
+    id: 'upload_modal.description_placeholder',
+    defaultMessage: 'A quick brown fox jumps over the lazy dog',
+  },
+  chooseImage: {
+    id: 'upload_modal.choose_image',
+    defaultMessage: 'Choose image',
+  },
+  discardMessage: {
+    id: 'confirmations.discard_edit_media.message',
+    defaultMessage:
+      'You have unsaved changes to the media description or preview, discard them anyway?',
+  },
+  discardConfirm: {
+    id: 'confirmations.discard_edit_media.confirm',
+    defaultMessage: 'Discard',
+  },
 });
 
 const mapStateToProps = (state, { id }) => ({
-  media: state.getIn(['compose', 'media_attachments']).find(item => item.get('id') === id),
+  media: state
+    .getIn(['compose', 'media_attachments'])
+    .find((item) => item.get('id') === id),
   account: state.getIn(['accounts', me]),
   isUploadingThumbnail: state.getIn(['compose', 'isUploadingThumbnail']),
   description: state.getIn(['compose', 'media_modal', 'description']),
@@ -52,9 +72,13 @@ const mapStateToProps = (state, { id }) => ({
 });
 
 const mapDispatchToProps = (dispatch, { id }) => ({
-
   onSave: (description, x, y) => {
-    dispatch(changeUploadCompose(id, { description, focus: `${x.toFixed(2)},${y.toFixed(2)}` }));
+    dispatch(
+      changeUploadCompose(id, {
+        description,
+        focus: `${x.toFixed(2)},${y.toFixed(2)}`,
+      }),
+    );
   },
 
   onChangeDescription: (description) => {
@@ -65,18 +89,18 @@ const mapDispatchToProps = (dispatch, { id }) => ({
     dispatch(onChangeMediaFocus(focusX, focusY));
   },
 
-  onSelectThumbnail: files => {
+  onSelectThumbnail: (files) => {
     dispatch(uploadThumbnail(id, files[0]));
   },
-
 });
 
-const removeExtraLineBreaks = str => str.replace(/\n\n/g, '******')
-  .replace(/\n/g, ' ')
-  .replace(/\*\*\*\*\*\*/g, '\n\n');
+const removeExtraLineBreaks = (str) =>
+  str
+    .replace(/\n\n/g, '******')
+    .replace(/\n/g, ' ')
+    .replace(/\*\*\*\*\*\*/g, '\n\n');
 
 class ImageLoader extends PureComponent {
-
   static propTypes = {
     src: PropTypes.string.isRequired,
     width: PropTypes.number,
@@ -93,7 +117,7 @@ class ImageLoader extends PureComponent {
     image.src = this.props.src;
   }
 
-  render () {
+  render() {
     const { loading } = this.state;
 
     if (loading) {
@@ -102,11 +126,9 @@ class ImageLoader extends PureComponent {
       return <img {...this.props} alt='' />;
     }
   }
-
 }
 
 class FocalPointModal extends ImmutablePureComponent {
-
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     account: ImmutablePropTypes.map.isRequired,
@@ -127,12 +149,12 @@ class FocalPointModal extends ImmutablePureComponent {
     ocrStatus: '',
   };
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     document.removeEventListener('mousemove', this.handleMouseMove);
     document.removeEventListener('mouseup', this.handleMouseUp);
   }
 
-  handleMouseDown = e => {
+  handleMouseDown = (e) => {
     document.addEventListener('mousemove', this.handleMouseMove);
     document.addEventListener('mouseup', this.handleMouseUp);
 
@@ -140,7 +162,7 @@ class FocalPointModal extends ImmutablePureComponent {
     this.setState({ dragging: true });
   };
 
-  handleTouchStart = e => {
+  handleTouchStart = (e) => {
     document.addEventListener('touchmove', this.handleMouseMove);
     document.addEventListener('touchend', this.handleTouchEnd);
 
@@ -148,7 +170,7 @@ class FocalPointModal extends ImmutablePureComponent {
     this.setState({ dragging: true });
   };
 
-  handleMouseMove = e => {
+  handleMouseMove = (e) => {
     this.updatePosition(e);
   };
 
@@ -166,15 +188,15 @@ class FocalPointModal extends ImmutablePureComponent {
     this.setState({ dragging: false });
   };
 
-  updatePosition = e => {
+  updatePosition = (e) => {
     const { x, y } = getPointerPosition(this.node, e);
-    const focusX   = (x - .5) *  2;
-    const focusY   = (y - .5) * -2;
+    const focusX = (x - 0.5) * 2;
+    const focusY = (y - 0.5) * -2;
 
     this.props.onChangeFocus(focusX, focusY);
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.props.onChangeDescription(e.target.value);
   };
 
@@ -188,7 +210,11 @@ class FocalPointModal extends ImmutablePureComponent {
   handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    this.props.onSave(this.props.description, this.props.focusX, this.props.focusY);
+    this.props.onSave(
+      this.props.description,
+      this.props.focusX,
+      this.props.focusY,
+    );
   };
 
   getCloseConfirmationMessage = () => {
@@ -204,7 +230,7 @@ class FocalPointModal extends ImmutablePureComponent {
     }
   };
 
-  setRef = c => {
+  setRef = (c) => {
     this.node = c;
   };
 
@@ -217,59 +243,63 @@ class FocalPointModal extends ImmutablePureComponent {
 
     this.setState({ detecting: true });
 
-    fetchTesseract().then(({ createWorker }) => {
-      const worker = createWorker({
-        workerPath: tesseractWorkerPath,
-        corePath: tesseractCorePath,
-        langPath: `${assetHost}/ocr/lang-data/`,
-        logger: ({ status, progress }) => {
-          if (status === 'recognizing text') {
-            this.setState({ ocrStatus: 'detecting', progress });
-          } else {
-            this.setState({ ocrStatus: 'preparing', progress });
+    fetchTesseract()
+      .then(({ createWorker }) => {
+        const worker = createWorker({
+          workerPath: tesseractWorkerPath,
+          corePath: tesseractCorePath,
+          langPath: `${assetHost}/ocr/lang-data/`,
+          logger: ({ status, progress }) => {
+            if (status === 'recognizing text') {
+              this.setState({ ocrStatus: 'detecting', progress });
+            } else {
+              this.setState({ ocrStatus: 'preparing', progress });
+            }
+          },
+          cacheMethod: refreshCache ? 'refresh' : 'write',
+        });
+
+        let media_url = media.get('url');
+
+        if (window.URL && URL.createObjectURL) {
+          try {
+            media_url = URL.createObjectURL(media.get('file'));
+          } catch (error) {
+            console.error(error);
           }
-        },
-        cacheMethod: refreshCache ? 'refresh' : 'write',
-      });
-
-      let media_url = media.get('url');
-
-      if (window.URL && URL.createObjectURL) {
-        try {
-          media_url = URL.createObjectURL(media.get('file'));
-        } catch (error) {
-          console.error(error);
         }
-      }
 
-      return (async () => {
-        await worker.load();
-        await worker.loadLanguage('eng');
-        await worker.initialize('eng');
-        const { data: { text } } = await worker.recognize(media_url);
+        return (async () => {
+          await worker.load();
+          await worker.loadLanguage('eng');
+          await worker.initialize('eng');
+          const {
+            data: { text },
+          } = await worker.recognize(media_url);
+          this.setState({ detecting: false });
+          this.props.onChangeDescription(removeExtraLineBreaks(text));
+          await worker.terminate();
+        })().catch((e) => {
+          if (refreshCache) {
+            throw e;
+          } else {
+            this._detectText(true);
+          }
+        });
+      })
+      .catch((e) => {
+        console.error(e);
         this.setState({ detecting: false });
-        this.props.onChangeDescription(removeExtraLineBreaks(text));
-        await worker.terminate();
-      })().catch((e) => {
-        if (refreshCache) {
-          throw e;
-        } else {
-          this._detectText(true);
-        }
       });
-    }).catch((e) => {
-      console.error(e);
-      this.setState({ detecting: false });
-    });
   };
 
-  handleThumbnailChange = e => {
+  handleThumbnailChange = (e) => {
     if (e.target.files.length > 0) {
       this.props.onSelectThumbnail(e.target.files);
     }
   };
 
-  setFileInputRef = c => {
+  setFileInputRef = (c) => {
     this.fileInput = c;
   };
 
@@ -277,57 +307,124 @@ class FocalPointModal extends ImmutablePureComponent {
     this.fileInput.click();
   };
 
-  render () {
-    const { media, intl, account, onClose, isUploadingThumbnail, description, lang, focusX, focusY, dirty, is_changing_upload } = this.props;
+  render() {
+    const {
+      media,
+      intl,
+      account,
+      onClose,
+      isUploadingThumbnail,
+      description,
+      lang,
+      focusX,
+      focusY,
+      dirty,
+      is_changing_upload,
+    } = this.props;
     const { dragging, detecting, progress, ocrStatus } = this.state;
-    const x = (focusX /  2) + .5;
-    const y = (focusY / -2) + .5;
+    const x = focusX / 2 + 0.5;
+    const y = focusY / -2 + 0.5;
 
-    const width  = media.getIn(['meta', 'original', 'width']) || null;
+    const width = media.getIn(['meta', 'original', 'width']) || null;
     const height = media.getIn(['meta', 'original', 'height']) || null;
     const focals = ['image', 'gifv'].includes(media.get('type'));
     const thumbnailable = ['audio', 'video'].includes(media.get('type'));
 
-    const previewRatio  = 16/9;
-    const previewWidth  = 200;
+    const previewRatio = 16 / 9;
+    const previewWidth = 200;
     const previewHeight = previewWidth / previewRatio;
 
     let descriptionLabel = null;
 
     if (media.get('type') === 'audio') {
-      descriptionLabel = <FormattedMessage id='upload_form.audio_description' defaultMessage='Describe for people who are hard of hearing' />;
+      descriptionLabel = (
+        <FormattedMessage
+          id='upload_form.audio_description'
+          defaultMessage='Describe for people who are hard of hearing'
+        />
+      );
     } else if (media.get('type') === 'video') {
-      descriptionLabel = <FormattedMessage id='upload_form.video_description' defaultMessage='Describe for people who are deaf, hard of hearing, blind or have low vision' />;
+      descriptionLabel = (
+        <FormattedMessage
+          id='upload_form.video_description'
+          defaultMessage='Describe for people who are deaf, hard of hearing, blind or have low vision'
+        />
+      );
     } else {
-      descriptionLabel = <FormattedMessage id='upload_form.description' defaultMessage='Describe for people who are blind or have low vision' />;
+      descriptionLabel = (
+        <FormattedMessage
+          id='upload_form.description'
+          defaultMessage='Describe for people who are blind or have low vision'
+        />
+      );
     }
 
     let ocrMessage = '';
     if (ocrStatus === 'detecting') {
-      ocrMessage = <FormattedMessage id='upload_modal.analyzing_picture' defaultMessage='Analyzing picture…' />;
+      ocrMessage = (
+        <FormattedMessage
+          id='upload_modal.analyzing_picture'
+          defaultMessage='Analyzing picture…'
+        />
+      );
     } else {
-      ocrMessage = <FormattedMessage id='upload_modal.preparing_ocr' defaultMessage='Preparing OCR…' />;
+      ocrMessage = (
+        <FormattedMessage
+          id='upload_modal.preparing_ocr'
+          defaultMessage='Preparing OCR…'
+        />
+      );
     }
 
     return (
       <div className='modal-root__modal report-modal' style={{ maxWidth: 960 }}>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={20} />
-          <FormattedMessage id='upload_modal.edit_media' defaultMessage='Edit media' />
+          <IconButton
+            className='report-modal__close'
+            title={intl.formatMessage(messages.close)}
+            icon='times'
+            onClick={onClose}
+            size={20}
+          />
+          <FormattedMessage
+            id='upload_modal.edit_media'
+            defaultMessage='Edit media'
+          />
         </div>
 
         <div className='report-modal__container'>
-          <form className='report-modal__comment' onSubmit={this.handleSubmit} >
-            {focals && <p><FormattedMessage id='upload_modal.hint' defaultMessage='Click or drag the circle on the preview to choose the focal point which will always be in view on all thumbnails.' /></p>}
+          <form className='report-modal__comment' onSubmit={this.handleSubmit}>
+            {focals && (
+              <p>
+                <FormattedMessage
+                  id='upload_modal.hint'
+                  defaultMessage='Click or drag the circle on the preview to choose the focal point which will always be in view on all thumbnails.'
+                />
+              </p>
+            )}
 
             {thumbnailable && (
               <>
-                <label className='setting-text-label' htmlFor='upload-modal__thumbnail'><FormattedMessage id='upload_form.thumbnail' defaultMessage='Change thumbnail' /></label>
+                <label
+                  className='setting-text-label'
+                  htmlFor='upload-modal__thumbnail'
+                >
+                  <FormattedMessage
+                    id='upload_form.thumbnail'
+                    defaultMessage='Change thumbnail'
+                  />
+                </label>
 
-                <Button disabled={isUploadingThumbnail || !media.get('unattached')} text={intl.formatMessage(messages.chooseImage)} onClick={this.handleFileInputClick} />
+                <Button
+                  disabled={isUploadingThumbnail || !media.get('unattached')}
+                  text={intl.formatMessage(messages.chooseImage)}
+                  onClick={this.handleFileInputClick}
+                />
 
                 <label>
-                  <span style={{ display: 'none' }}>{intl.formatMessage(messages.chooseImage)}</span>
+                  <span style={{ display: 'none' }}>
+                    {intl.formatMessage(messages.chooseImage)}
+                  </span>
 
                   <input
                     id='upload-modal__thumbnail'
@@ -344,7 +441,10 @@ class FocalPointModal extends ImmutablePureComponent {
               </>
             )}
 
-            <label className='setting-text-label' htmlFor='upload-modal__description'>
+            <label
+              className='setting-text-label'
+              htmlFor='upload-modal__description'
+            >
               {descriptionLabel}
             </label>
 
@@ -361,41 +461,100 @@ class FocalPointModal extends ImmutablePureComponent {
               />
 
               <div className='setting-text__modifiers'>
-                <UploadProgress progress={progress * 100} active={detecting} icon='file-text-o' message={ocrMessage} />
+                <UploadProgress
+                  progress={progress * 100}
+                  active={detecting}
+                  icon='file-text-o'
+                  message={ocrMessage}
+                />
               </div>
             </div>
 
             <div className='setting-text__toolbar'>
               <button
                 type='button'
-                disabled={detecting || media.get('type') !== 'image' || is_changing_upload}
+                disabled={
+                  detecting ||
+                  media.get('type') !== 'image' ||
+                  is_changing_upload
+                }
                 className='link-button'
                 onClick={this.handleTextDetection}
               >
-                <FormattedMessage id='upload_modal.detect_text' defaultMessage='Detect text from picture' />
+                <FormattedMessage
+                  id='upload_modal.detect_text'
+                  defaultMessage='Detect text from picture'
+                />
               </button>
-              <CharacterCounter max={1500} text={detecting ? '' : description} />
+              <CharacterCounter
+                max={1500}
+                text={detecting ? '' : description}
+              />
             </div>
 
             <Button
               type='submit'
-              disabled={!dirty || detecting || isUploadingThumbnail || length(description) > 1500 || is_changing_upload}
-              text={intl.formatMessage(is_changing_upload ? messages.applying : messages.apply)}
+              disabled={
+                !dirty ||
+                detecting ||
+                isUploadingThumbnail ||
+                length(description) > 1500 ||
+                is_changing_upload
+              }
+              text={intl.formatMessage(
+                is_changing_upload ? messages.applying : messages.apply,
+              )}
             />
           </form>
 
           <div className='focal-point-modal__content'>
             {focals && (
-              <div className={classNames('focal-point', { dragging })} ref={this.setRef} onMouseDown={this.handleMouseDown} onTouchStart={this.handleTouchStart}>
-                {media.get('type') === 'image' && <ImageLoader src={media.get('url')} width={width} height={height} alt='' />}
-                {media.get('type') === 'gifv' && <GIFV src={media.get('url')} key={media.get('url')} width={width} height={height} />}
+              <div
+                className={classNames('focal-point', { dragging })}
+                ref={this.setRef}
+                onMouseDown={this.handleMouseDown}
+                onTouchStart={this.handleTouchStart}
+              >
+                {media.get('type') === 'image' && (
+                  <ImageLoader
+                    src={media.get('url')}
+                    width={width}
+                    height={height}
+                    alt=''
+                  />
+                )}
+                {media.get('type') === 'gifv' && (
+                  <GIFV
+                    src={media.get('url')}
+                    key={media.get('url')}
+                    width={width}
+                    height={height}
+                  />
+                )}
 
                 <div className='focal-point__preview'>
-                  <strong><FormattedMessage id='upload_modal.preview_label' defaultMessage='Preview ({ratio})' values={{ ratio: '16:9' }} /></strong>
-                  <div style={{ width: previewWidth, height: previewHeight, backgroundImage: `url(${media.get('preview_url')})`, backgroundSize: 'cover', backgroundPosition: `${x * 100}% ${y * 100}%` }} />
+                  <strong>
+                    <FormattedMessage
+                      id='upload_modal.preview_label'
+                      defaultMessage='Preview ({ratio})'
+                      values={{ ratio: '16:9' }}
+                    />
+                  </strong>
+                  <div
+                    style={{
+                      width: previewWidth,
+                      height: previewHeight,
+                      backgroundImage: `url(${media.get('preview_url')})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: `${x * 100}% ${y * 100}%`,
+                    }}
+                  />
                 </div>
 
-                <div className='focal-point__reticle' style={{ top: `${y * 100}%`, left: `${x * 100}%` }} />
+                <div
+                  className='focal-point__reticle'
+                  style={{ top: `${y * 100}%`, left: `${x * 100}%` }}
+                />
                 <div className='focal-point__overlay' />
               </div>
             )}
@@ -417,7 +576,9 @@ class FocalPointModal extends ImmutablePureComponent {
                 src={media.get('url')}
                 duration={media.getIn(['meta', 'original', 'duration'], 0)}
                 height={150}
-                poster={media.get('preview_url') || account.get('avatar_static')}
+                poster={
+                  media.get('preview_url') || account.get('avatar_static')
+                }
                 backgroundColor={media.getIn(['meta', 'colors', 'background'])}
                 foregroundColor={media.getIn(['meta', 'colors', 'foreground'])}
                 accentColor={media.getIn(['meta', 'colors', 'accent'])}
@@ -429,7 +590,6 @@ class FocalPointModal extends ImmutablePureComponent {
       </div>
     );
   }
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

@@ -3,18 +3,21 @@
 
 /* @preval */
 
-const fs   = require('fs');
+const fs = require('fs');
 const path = require('path');
 
-const filtered  = {};
+const filtered = {};
 const filenames = fs.readdirSync(path.resolve(__dirname, '../locales'));
 
-filenames.forEach(filename => {
+filenames.forEach((filename) => {
   if (!filename.match(/\.json$/)) return;
 
-  const content = fs.readFileSync(path.resolve(__dirname, `../locales/${filename}`), 'utf-8');
-  const full    = JSON.parse(content);
-  const locale  = filename.split('.')[0];
+  const content = fs.readFileSync(
+    path.resolve(__dirname, `../locales/${filename}`),
+    'utf-8',
+  );
+  const full = JSON.parse(content);
+  const locale = filename.split('.')[0];
 
   filtered[locale] = {
     'notification.favourite': full['notification.favourite'] || '',

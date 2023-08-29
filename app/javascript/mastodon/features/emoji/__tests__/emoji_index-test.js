@@ -3,7 +3,8 @@ import { pick } from 'lodash';
 
 import { search } from '../emoji_mart_search_light';
 
-const trimEmojis = emoji => pick(emoji, ['id', 'unified', 'native', 'custom']);
+const trimEmojis = (emoji) =>
+  pick(emoji, ['id', 'unified', 'native', 'custom']);
 
 describe('emoji_index', () => {
   it('should give same result for emoji_index_light and emoji-mart', () => {
@@ -118,33 +119,37 @@ describe('emoji_index', () => {
       },
     ];
     expect(search('masto', { custom }).map(trimEmojis)).toEqual(expected);
-    expect(emojiIndex.search('masto', { custom }).map(trimEmojis)).toEqual(expected);
+    expect(emojiIndex.search('masto', { custom }).map(trimEmojis)).toEqual(
+      expected,
+    );
   });
 
   it('should filter only emojis we care about, exclude pineapple', () => {
-    const emojisToShowFilter = emoji => emoji.unified !== '1F34D';
-    expect(search('apple', { emojisToShowFilter }).map((obj) => obj.id))
-      .not.toContain('pineapple');
-    expect(emojiIndex.search('apple', { emojisToShowFilter }).map((obj) => obj.id))
-      .not.toContain('pineapple');
+    const emojisToShowFilter = (emoji) => emoji.unified !== '1F34D';
+    expect(
+      search('apple', { emojisToShowFilter }).map((obj) => obj.id),
+    ).not.toContain('pineapple');
+    expect(
+      emojiIndex.search('apple', { emojisToShowFilter }).map((obj) => obj.id),
+    ).not.toContain('pineapple');
   });
 
   it('does an emoji whose unified name is irregular', () => {
     const expected = [
       {
-        'id': 'water_polo',
-        'unified': '1f93d',
-        'native': '🤽',
+        id: 'water_polo',
+        unified: '1f93d',
+        native: '🤽',
       },
       {
-        'id': 'man-playing-water-polo',
-        'unified': '1f93d-200d-2642-fe0f',
-        'native': '🤽‍♂️',
+        id: 'man-playing-water-polo',
+        unified: '1f93d-200d-2642-fe0f',
+        native: '🤽‍♂️',
       },
       {
-        'id': 'woman-playing-water-polo',
-        'unified': '1f93d-200d-2640-fe0f',
-        'native': '🤽‍♀️',
+        id: 'woman-playing-water-polo',
+        unified: '1f93d-200d-2640-fe0f',
+        native: '🤽‍♀️',
       },
     ];
     expect(search('polo').map(trimEmojis)).toEqual(expected);

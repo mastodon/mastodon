@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   count: state.getIn(['notifications', 'unread']),
   id: 'bell',
 });

@@ -10,9 +10,12 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { fetchFavourites, expandFavourites } from 'mastodon/actions/interactions';
+import {
+  fetchFavourites,
+  expandFavourites,
+} from 'mastodon/actions/interactions';
 import ColumnHeader from 'mastodon/components/column_header';
-import { Icon }  from 'mastodon/components/icon';
+import { Icon } from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import AccountContainer from 'mastodon/containers/account_container';
@@ -23,13 +26,25 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'favourited_by', props.params.statusId, 'items']),
-  hasMore: !!state.getIn(['user_lists', 'favourited_by', props.params.statusId, 'next']),
-  isLoading: state.getIn(['user_lists', 'favourited_by', props.params.statusId, 'isLoading'], true),
+  accountIds: state.getIn([
+    'user_lists',
+    'favourited_by',
+    props.params.statusId,
+    'items',
+  ]),
+  hasMore: !!state.getIn([
+    'user_lists',
+    'favourited_by',
+    props.params.statusId,
+    'next',
+  ]),
+  isLoading: state.getIn(
+    ['user_lists', 'favourited_by', props.params.statusId, 'isLoading'],
+    true,
+  ),
 });
 
 class Favourites extends ImmutablePureComponent {
-
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -40,7 +55,7 @@ class Favourites extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  UNSAFE_componentWillMount () {
+  UNSAFE_componentWillMount() {
     if (!this.props.accountIds) {
       this.props.dispatch(fetchFavourites(this.props.params.statusId));
     }
@@ -50,11 +65,15 @@ class Favourites extends ImmutablePureComponent {
     this.props.dispatch(fetchFavourites(this.props.params.statusId));
   };
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandFavourites(this.props.params.statusId));
-  }, 300, { leading: true });
+  handleLoadMore = debounce(
+    () => {
+      this.props.dispatch(expandFavourites(this.props.params.statusId));
+    },
+    300,
+    { leading: true },
+  );
 
-  render () {
+  render() {
     const { intl, accountIds, hasMore, isLoading, multiColumn } = this.props;
 
     if (!accountIds) {
@@ -65,16 +84,29 @@ class Favourites extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = <FormattedMessage id='empty_column.favourites' defaultMessage='No one has favorited this post yet. When someone does, they will show up here.' />;
+    const emptyMessage = (
+      <FormattedMessage
+        id='empty_column.favourites'
+        defaultMessage='No one has favorited this post yet. When someone does, they will show up here.'
+      />
+    );
 
     return (
       <Column bindToDocument={!multiColumn}>
         <ColumnHeader
           showBackButton
           multiColumn={multiColumn}
-          extraButton={(
-            <button type='button' className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' /></button>
-          )}
+          extraButton={
+            <button
+              type='button'
+              className='column-header__button'
+              title={intl.formatMessage(messages.refresh)}
+              aria-label={intl.formatMessage(messages.refresh)}
+              onClick={this.handleRefresh}
+            >
+              <Icon id='refresh' />
+            </button>
+          }
         />
 
         <ScrollableList
@@ -85,9 +117,9 @@ class Favourites extends ImmutablePureComponent {
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >
-          {accountIds.map(id =>
-            <AccountContainer key={id} id={id} withNote={false} />,
-          )}
+          {accountIds.map((id) => (
+            <AccountContainer key={id} id={id} withNote={false} />
+          ))}
         </ScrollableList>
 
         <Helmet>
@@ -96,7 +128,6 @@ class Favourites extends ImmutablePureComponent {
       </Column>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(Favourites));

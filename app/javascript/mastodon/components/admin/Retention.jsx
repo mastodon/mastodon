@@ -8,17 +8,18 @@ import classNames from 'classnames';
 import api from 'mastodon/api';
 import { roundTo10 } from 'mastodon/utils/numbers';
 
-const dateForCohort = cohort => {
-  switch(cohort.frequency) {
-  case 'day':
-    return <FormattedDate value={cohort.period} month='long' day='2-digit' />;
-  default:
-    return <FormattedDate value={cohort.period} month='long' year='numeric' />;
+const dateForCohort = (cohort) => {
+  switch (cohort.frequency) {
+    case 'day':
+      return <FormattedDate value={cohort.period} month='long' day='2-digit' />;
+    default:
+      return (
+        <FormattedDate value={cohort.period} month='long' year='numeric' />
+      );
   }
 };
 
 export default class Retention extends PureComponent {
-
   static propTypes = {
     start_at: PropTypes.string,
     end_at: PropTypes.string,
@@ -30,27 +31,35 @@ export default class Retention extends PureComponent {
     data: null,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { start_at, end_at, frequency } = this.props;
 
-    api().post('/api/v1/admin/retention', { start_at, end_at, frequency }).then(res => {
-      this.setState({
-        loading: false,
-        data: res.data,
+    api()
+      .post('/api/v1/admin/retention', { start_at, end_at, frequency })
+      .then((res) => {
+        this.setState({
+          loading: false,
+          data: res.data,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    }).catch(err => {
-      console.error(err);
-    });
   }
 
-  render () {
+  render() {
     const { loading, data } = this.state;
     const { frequency } = this.props;
 
     let content;
 
     if (loading) {
-      content = <FormattedMessage id='loading_indicator.label' defaultMessage='Loading...' />;
+      content = (
+        <FormattedMessage
+          id='loading_indicator.label'
+          defaultMessage='Loading...'
+        />
+      );
     } else {
       content = (
         <table className='retention__table'>
@@ -58,13 +67,19 @@ export default class Retention extends PureComponent {
             <tr>
               <th>
                 <div className='retention__table__date retention__table__label'>
-                  <FormattedMessage id='admin.dashboard.retention.cohort' defaultMessage='Sign-up month' />
+                  <FormattedMessage
+                    id='admin.dashboard.retention.cohort'
+                    defaultMessage='Sign-up month'
+                  />
                 </div>
               </th>
 
               <th>
                 <div className='retention__table__number retention__table__label'>
-                  <FormattedMessage id='admin.dashboard.retention.cohort_size' defaultMessage='New users' />
+                  <FormattedMessage
+                    id='admin.dashboard.retention.cohort_size'
+                    defaultMessage='New users'
+                  />
                 </div>
               </th>
 
@@ -80,22 +95,44 @@ export default class Retention extends PureComponent {
             <tr>
               <td>
                 <div className='retention__table__date retention__table__average'>
-                  <FormattedMessage id='admin.dashboard.retention.average' defaultMessage='Average' />
+                  <FormattedMessage
+                    id='admin.dashboard.retention.average'
+                    defaultMessage='Average'
+                  />
                 </div>
               </td>
 
               <td>
                 <div className='retention__table__size'>
-                  <FormattedNumber value={data.reduce((sum, cohort, i) => sum + ((cohort.data[0].value * 1) - sum) / (i + 1), 0)} maximumFractionDigits={0} />
+                  <FormattedNumber
+                    value={data.reduce(
+                      (sum, cohort, i) =>
+                        sum + (cohort.data[0].value * 1 - sum) / (i + 1),
+                      0,
+                    )}
+                    maximumFractionDigits={0}
+                  />
                 </div>
               </td>
 
               {data[0].data.slice(1).map((retention, i) => {
-                const average = data.reduce((sum, cohort, k) => cohort.data[i + 1] ? sum + (cohort.data[i + 1].rate - sum)/(k + 1) : sum, 0);
+                const average = data.reduce(
+                  (sum, cohort, k) =>
+                    cohort.data[i + 1]
+                      ? sum + (cohort.data[i + 1].rate - sum) / (k + 1)
+                      : sum,
+                  0,
+                );
 
                 return (
                   <td key={retention.date}>
-                    <div className={classNames('retention__table__box', 'retention__table__average', `retention__table__box--${roundTo10(average * 100)}`)}>
+                    <div
+                      className={classNames(
+                        'retention__table__box',
+                        'retention__table__average',
+                        `retention__table__box--${roundTo10(average * 100)}`,
+                      )}
+                    >
                       <FormattedNumber value={average} style='percent' />
                     </div>
                   </td>
@@ -105,7 +142,7 @@ export default class Retention extends PureComponent {
           </thead>
 
           <tbody>
-            {data.slice(0, -1).map(cohort => (
+            {data.slice(0, -1).map((cohort) => (
               <tr key={cohort.period}>
                 <td>
                   <div className='retention__table__date'>
@@ -119,9 +156,16 @@ export default class Retention extends PureComponent {
                   </div>
                 </td>
 
-                {cohort.data.slice(1).map(retention => (
+                {cohort.data.slice(1).map((retention) => (
                   <td key={retention.date}>
-                    <div className={classNames('retention__table__box', `retention__table__box--${roundTo10(retention.rate * 100)}`)}>
+                    <div
+                      className={classNames(
+                        'retention__table__box',
+                        `retention__table__box--${roundTo10(
+                          retention.rate * 100,
+                        )}`,
+                      )}
+                    >
                       <FormattedNumber value={retention.rate} style='percent' />
                     </div>
                   </td>
@@ -134,12 +178,22 @@ export default class Retention extends PureComponent {
     }
 
     let title = null;
-    switch(frequency) {
-    case 'day':
-      title = <FormattedMessage id='admin.dashboard.daily_retention' defaultMessage='User retention rate by day after sign-up' />;
-      break;
-    default:
-      title = <FormattedMessage id='admin.dashboard.monthly_retention' defaultMessage='User retention rate by month after sign-up' />;
+    switch (frequency) {
+      case 'day':
+        title = (
+          <FormattedMessage
+            id='admin.dashboard.daily_retention'
+            defaultMessage='User retention rate by day after sign-up'
+          />
+        );
+        break;
+      default:
+        title = (
+          <FormattedMessage
+            id='admin.dashboard.monthly_retention'
+            defaultMessage='User retention rate by month after sign-up'
+          />
+        );
     }
 
     return (
@@ -150,5 +204,4 @@ export default class Retention extends PureComponent {
       </div>
     );
   }
-
 }

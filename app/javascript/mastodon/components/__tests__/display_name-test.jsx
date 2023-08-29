@@ -1,4 +1,4 @@
-import { fromJS }  from 'immutable';
+import { fromJS } from 'immutable';
 
 import renderer from 'react-test-renderer';
 
@@ -12,7 +12,7 @@ describe('<DisplayName />', () => {
       display_name_html: '<p>Foo</p>',
     });
     const component = renderer.create(<DisplayName account={account} />);
-    const tree      = component.toJSON();
+    const tree = component.toJSON();
 
     expect(tree).toMatchSnapshot();
   });

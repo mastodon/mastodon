@@ -11,30 +11,32 @@ import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   hashtags: state.getIn(['trends', 'tags', 'items']),
   isLoadingHashtags: state.getIn(['trends', 'tags', 'isLoading']),
 });
 
 class Tags extends PureComponent {
-
   static propTypes = {
     hashtags: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     dispatch: PropTypes.func.isRequired,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchTrendingHashtags());
   }
 
-  render () {
+  render() {
     const { isLoading, hashtags } = this.props;
 
     const banner = (
       <DismissableBanner id='explore/tags'>
-        <FormattedMessage id='dismissable_banner.explore_tags' defaultMessage='These are hashtags that are gaining traction on the social web today. Hashtags that are used by more different people are ranked higher.' />
+        <FormattedMessage
+          id='dismissable_banner.explore_tags'
+          defaultMessage='These are hashtags that are gaining traction on the social web today. Hashtags that are used by more different people are ranked higher.'
+        />
       </DismissableBanner>
     );
 
@@ -44,7 +46,10 @@ class Tags extends PureComponent {
           {banner}
 
           <div className='empty-column-indicator'>
-            <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />
+            <FormattedMessage
+              id='empty_column.explore_statuses'
+              defaultMessage='Nothing is trending right now. Check back later!'
+            />
           </div>
         </div>
       );
@@ -54,13 +59,16 @@ class Tags extends PureComponent {
       <div className='explore__links'>
         {banner}
 
-        {isLoading ? (<LoadingIndicator />) : hashtags.map(hashtag => (
-          <Hashtag key={hashtag.get('name')} hashtag={hashtag} />
-        ))}
+        {isLoading ? (
+          <LoadingIndicator />
+        ) : (
+          hashtags.map((hashtag) => (
+            <Hashtag key={hashtag.get('name')} hashtag={hashtag} />
+          ))
+        )}
       </div>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(Tags);

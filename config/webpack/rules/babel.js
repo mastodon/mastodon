@@ -4,10 +4,9 @@ const { env, settings } = require('../configuration');
 
 module.exports = {
   test: /\.(js|jsx|mjs|ts|tsx)$/,
-  include: [
-    settings.source_path,
-    ...settings.resolved_paths,
-  ].map(p => resolve(p)),
+  include: [settings.source_path, ...settings.resolved_paths].map((p) =>
+    resolve(p),
+  ),
   exclude: /node_modules/,
   use: [
     {

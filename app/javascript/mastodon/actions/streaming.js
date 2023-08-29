@@ -28,8 +28,7 @@ import {
  * @param {number} max
  * @returns {number}
  */
-const randomUpTo = max =>
-  Math.floor(Math.random() * Math.floor(max));
+const randomUpTo = (max) => Math.floor(Math.random() * Math.floor(max));
 
 /**
  * @param {string} timelineId
@@ -41,7 +40,12 @@ const randomUpTo = max =>
  * @param {function(object): boolean} [options.accept]
  * @returns {function(): void}
  */
-export const connectTimelineStream = (timelineId, channelName, params = {}, options = {}) => {
+export const connectTimelineStream = (
+  timelineId,
+  channelName,
+  params = {},
+  options = {},
+) => {
   const { messages } = getLocale();
 
   return connectStream(channelName, params, (dispatch, getState) => {
@@ -54,10 +58,13 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
      * @param {function(Function, Function): void} fallback
      */
 
-    const useFallback = fallback => {
+    const useFallback = (fallback) => {
       fallback(dispatch, () => {
-        // eslint-disable-next-line react-hooks/rules-of-hooks -- this is not a react hook
-        pollingId = setTimeout(() => useFallback(fallback), 20000 + randomUpTo(20000));
+        pollingId = setTimeout(
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          () => useFallback(fallback),
+          20000 + randomUpTo(20000),
+        );
       });
     };
 
@@ -68,7 +75,8 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
         // @ts-expect-error
         if (pollingId) {
           // @ts-ignore
-          clearTimeout(pollingId); pollingId = null;
+          clearTimeout(pollingId);
+          pollingId = null;
         }
 
         if (options.fillGaps) {
@@ -80,43 +88,57 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
         dispatch(disconnectTimeline(timelineId));
 
         if (options.fallback) {
-          // @ts-expect-error
-          pollingId = setTimeout(() => useFallback(options.fallback), randomUpTo(40000));
+          // @ts-ignore
+          pollingId = setTimeout(
+            // @ts-ignore
+            () => useFallback(options.fallback),
+            randomUpTo(40000),
+          );
         }
       },
 
       onReceive(data) {
         switch (data.event) {
-        case 'update':
-          // @ts-expect-error
-          dispatch(updateTimeline(timelineId, JSON.parse(data.payload), options.accept));
-          break;
-        case 'status.update':
-          // @ts-expect-error
-          dispatch(updateStatus(JSON.parse(data.payload)));
-          break;
-        case 'delete':
-          dispatch(deleteFromTimelines(data.payload));
-          break;
-        case 'notification':
-          // @ts-expect-error
-          dispatch(updateNotifications(JSON.parse(data.payload), messages, locale));
-          break;
-        case 'conversation':
-          // @ts-expect-error
-          dispatch(updateConversations(JSON.parse(data.payload)));
-          break;
-        case 'announcement':
-          // @ts-expect-error
-          dispatch(updateAnnouncements(JSON.parse(data.payload)));
-          break;
-        case 'announcement.reaction':
-          // @ts-expect-error
-          dispatch(updateAnnouncementsReaction(JSON.parse(data.payload)));
-          break;
-        case 'announcement.delete':
-          dispatch(deleteAnnouncement(data.payload));
-          break;
+          // @ts-ignore
+          case 'update':
+            dispatch(
+              updateTimeline(
+                timelineId,
+                // @ts-ignore
+                JSON.parse(data.payload),
+                options.accept,
+              ),
+            );
+            break;
+          case 'status.update':
+            // @ts-expect-error
+            dispatch(updateStatus(JSON.parse(data.payload)));
+            break;
+          case 'delete':
+            dispatch(deleteFromTimelines(data.payload));
+            break;
+          // @ts-ignore
+          case 'notification':
+            dispatch(
+              // @ts-ignore
+              updateNotifications(JSON.parse(data.payload), messages, locale),
+            );
+            break;
+          case 'conversation':
+            // @ts-expect-error
+            dispatch(updateConversations(JSON.parse(data.payload)));
+            break;
+          case 'announcement':
+            // @ts-expect-error
+            dispatch(updateAnnouncements(JSON.parse(data.payload)));
+            break;
+          case 'announcement.reaction':
+            // @ts-expect-error
+            dispatch(updateAnnouncementsReaction(JSON.parse(data.payload)));
+            break;
+          case 'announcement.delete':
+            dispatch(deleteAnnouncement(data.payload));
+            break;
         }
       },
     };
@@ -128,19 +150,31 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
  * @param {function(): void} done
  */
 const refreshHomeTimelineAndNotification = (dispatch, done) => {
-  // @ts-expect-error
-  dispatch(expandHomeTimeline({}, () =>
-    // @ts-expect-error
-    dispatch(expandNotifications({}, () =>
-      dispatch(fetchAnnouncements(done))))));
+  dispatch(
+    // @ts-ignore
+    expandHomeTimeline({}, () =>
+      dispatch(
+        // @ts-ignore
+        expandNotifications({}, () => dispatch(fetchAnnouncements(done))),
+      ),
+    ),
+  );
 };
 
 /**
  * @returns {function(): void}
  */
 export const connectUserStream = () =>
-  // @ts-expect-error
-  connectTimelineStream('home', 'user', {}, { fallback: refreshHomeTimelineAndNotification, fillGaps: fillHomeTimelineGaps });
+  connectTimelineStream(
+    'home',
+    'user',
+    {},
+    {
+      // @ts-expect-error
+      fallback: refreshHomeTimelineAndNotification,
+      fillGaps: fillHomeTimelineGaps,
+    },
+  );
 
 /**
  * @param {Object} options
@@ -148,7 +182,12 @@ export const connectUserStream = () =>
  * @returns {function(): void}
  */
 export const connectCommunityStream = ({ onlyMedia } = {}) =>
-  connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia })) });
+  connectTimelineStream(
+    `community${onlyMedia ? ':media' : ''}`,
+    `public:local${onlyMedia ? ':media' : ''}`,
+    {},
+    { fillGaps: () => fillCommunityTimelineGaps({ onlyMedia }) },
+  );
 
 /**
  * @param {Object} options
@@ -157,7 +196,12 @@ export const connectCommunityStream = ({ onlyMedia } = {}) =>
  * @returns {function(): void}
  */
 export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
-  connectTimelineStream(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote }) });
+  connectTimelineStream(
+    `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`,
+    `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`,
+    {},
+    { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote }) },
+  );
 
 /**
  * @param {string} columnId
@@ -167,7 +211,12 @@ export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
  * @returns {function(): void}
  */
 export const connectHashtagStream = (columnId, tagName, onlyLocal, accept) =>
-  connectTimelineStream(`hashtag:${columnId}${onlyLocal ? ':local' : ''}`, `hashtag${onlyLocal ? ':local' : ''}`, { tag: tagName }, { accept });
+  connectTimelineStream(
+    `hashtag:${columnId}${onlyLocal ? ':local' : ''}`,
+    `hashtag${onlyLocal ? ':local' : ''}`,
+    { tag: tagName },
+    { accept },
+  );
 
 /**
  * @returns {function(): void}
@@ -179,5 +228,10 @@ export const connectDirectStream = () =>
  * @param {string} listId
  * @returns {function(): void}
  */
-export const connectListStream = listId =>
-  connectTimelineStream(`list:${listId}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId) });
+export const connectListStream = (listId) =>
+  connectTimelineStream(
+    `list:${listId}`,
+    'list',
+    { list: listId },
+    { fillGaps: () => fillListTimelineGaps(listId) },
+  );

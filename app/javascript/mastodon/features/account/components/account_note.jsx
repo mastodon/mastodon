@@ -10,11 +10,13 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import Textarea from 'react-textarea-autosize';
 
 const messages = defineMessages({
-  placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
+  placeholder: {
+    id: 'account_note.placeholder',
+    defaultMessage: 'Click to add a note',
+  },
 });
 
 class InlineAlert extends PureComponent {
-
   static propTypes = {
     show: PropTypes.bool,
   };
@@ -25,29 +27,37 @@ class InlineAlert extends PureComponent {
 
   static TRANSITION_DELAY = 200;
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (!this.props.show && nextProps.show) {
       this.setState({ mountMessage: true });
     } else if (this.props.show && !nextProps.show) {
-      setTimeout(() => this.setState({ mountMessage: false }), InlineAlert.TRANSITION_DELAY);
+      setTimeout(
+        () => this.setState({ mountMessage: false }),
+        InlineAlert.TRANSITION_DELAY,
+      );
     }
   }
 
-  render () {
+  render() {
     const { show } = this.props;
     const { mountMessage } = this.state;
 
     return (
-      <span aria-live='polite' role='status' className='inline-alert' style={{ opacity: show ? 1 : 0 }}>
-        {mountMessage && <FormattedMessage id='generic.saved' defaultMessage='Saved' />}
+      <span
+        aria-live='polite'
+        role='status'
+        className='inline-alert'
+        style={{ opacity: show ? 1 : 0 }}
+      >
+        {mountMessage && (
+          <FormattedMessage id='generic.saved' defaultMessage='Saved' />
+        )}
       </span>
     );
   }
-
 }
 
 class AccountNote extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     value: PropTypes.string,
@@ -61,11 +71,11 @@ class AccountNote extends ImmutablePureComponent {
     saved: false,
   };
 
-  UNSAFE_componentWillMount () {
+  UNSAFE_componentWillMount() {
     this._reset();
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const accountWillChange = !is(this.props.account, nextProps.account);
     const newState = {};
 
@@ -84,21 +94,21 @@ class AccountNote extends ImmutablePureComponent {
     this.setState(newState);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this._isDirty()) {
       this._save(false);
     }
   }
 
-  setTextareaRef = c => {
+  setTextareaRef = (c) => {
     this.textarea = c;
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ value: e.target.value, saving: false });
   };
 
-  handleKeyDown = e => {
+  handleKeyDown = (e) => {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       e.preventDefault();
 
@@ -124,23 +134,30 @@ class AccountNote extends ImmutablePureComponent {
     }
   };
 
-  _save (showMessage = true) {
+  _save(showMessage = true) {
     this.setState({ saving: true }, () => this.props.onSave(this.state.value));
 
     if (showMessage) {
-      this.setState({ saved: true }, () => setTimeout(() => this.setState({ saved: false }), 2000));
+      this.setState({ saved: true }, () =>
+        setTimeout(() => this.setState({ saved: false }), 2000),
+      );
     }
   }
 
-  _reset (callback) {
+  _reset(callback) {
     this.setState({ value: this.props.value }, callback);
   }
 
-  _isDirty () {
-    return !this.state.saving && this.props.value !== null && this.state.value !== null && this.state.value !== this.props.value;
+  _isDirty() {
+    return (
+      !this.state.saving &&
+      this.props.value !== null &&
+      this.state.value !== null &&
+      this.state.value !== this.props.value
+    );
   }
 
-  render () {
+  render() {
     const { account, intl } = this.props;
     const { value, saved } = this.state;
 
@@ -151,7 +168,11 @@ class AccountNote extends ImmutablePureComponent {
     return (
       <div className='account__header__account-note'>
         <label htmlFor={`account-note-${account.get('id')}`}>
-          <FormattedMessage id='account.account_note_header' defaultMessage='Note' /> <InlineAlert show={saved} />
+          <FormattedMessage
+            id='account.account_note_header'
+            defaultMessage='Note'
+          />{' '}
+          <InlineAlert show={saved} />
         </label>
 
         <Textarea
@@ -168,7 +189,6 @@ class AccountNote extends ImmutablePureComponent {
       </div>
     );
   }
-
 }
 
 export default injectIntl(AccountNote);

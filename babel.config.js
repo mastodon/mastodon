@@ -24,52 +24,47 @@ module.exports = (api) => {
       ['@babel/react', reactOptions],
       ['@babel/env', envOptions],
     ],
-    plugins: [
-      ['formatjs'],
-      'preval',
-    ],
+    plugins: [['formatjs'], 'preval'],
     overrides: [
       {
         test: /tesseract\.js/,
-        presets: [
-          ['@babel/env', { ...envOptions, modules: 'commonjs' }],
-        ],
+        presets: [['@babel/env', { ...envOptions, modules: 'commonjs' }]],
       },
     ],
   };
 
   switch (env) {
-  case 'production':
-    config.plugins.push(...[
-      'lodash',
-      [
-        'transform-react-remove-prop-types',
-        {
-          mode: 'remove',
-          removeImport: true,
-          additionalLibraries: [
-            'react-immutable-proptypes',
+    case 'production':
+      config.plugins.push(
+        ...[
+          'lodash',
+          [
+            'transform-react-remove-prop-types',
+            {
+              mode: 'remove',
+              removeImport: true,
+              additionalLibraries: ['react-immutable-proptypes'],
+            },
           ],
-        },
-      ],
-      '@babel/transform-react-inline-elements',
-      [
-        '@babel/transform-runtime',
-        {
-          helpers: true,
-          regenerator: false,
-          useESModules: true,
-        },
-      ],
-    ]);
-    break;
-  case 'development':
-    reactOptions.development = true;
-    envOptions.debug = true;
-    break;
-  case 'test':
-    envOptions.modules = 'commonjs';
-    break;
+          '@babel/transform-react-inline-elements',
+          [
+            '@babel/transform-runtime',
+            {
+              helpers: true,
+              regenerator: false,
+              useESModules: true,
+            },
+          ],
+        ],
+      );
+      break;
+    case 'development':
+      reactOptions.development = true;
+      envOptions.debug = true;
+      break;
+    case 'test':
+      envOptions.modules = 'commonjs';
+      break;
   }
 
   return config;

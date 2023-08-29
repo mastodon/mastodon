@@ -8,7 +8,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
+import {
+  PERMISSION_MANAGE_USERS,
+  PERMISSION_MANAGE_FEDERATION,
+} from 'mastodon/permissions';
 
 import DropdownMenuContainer from '../containers/dropdown_menu_container';
 import { me } from '../initial_state';
@@ -28,30 +31,66 @@ const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
   replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
-  reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost with original visibility' },
-  cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
-  cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
+  reblog_private: {
+    id: 'status.reblog_private',
+    defaultMessage: 'Boost with original visibility',
+  },
+  cancel_reblog_private: {
+    id: 'status.cancel_reblog_private',
+    defaultMessage: 'Unboost',
+  },
+  cannot_reblog: {
+    id: 'status.cannot_reblog',
+    defaultMessage: 'This post cannot be boosted',
+  },
   favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
   bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
-  removeBookmark: { id: 'status.remove_bookmark', defaultMessage: 'Remove bookmark' },
+  removeBookmark: {
+    id: 'status.remove_bookmark',
+    defaultMessage: 'Remove bookmark',
+  },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
-  muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
-  unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
+  muteConversation: {
+    id: 'status.mute_conversation',
+    defaultMessage: 'Mute conversation',
+  },
+  unmuteConversation: {
+    id: 'status.unmute_conversation',
+    defaultMessage: 'Unmute conversation',
+  },
   pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
   unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
   embed: { id: 'status.embed', defaultMessage: 'Embed' },
-  admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
-  admin_status: { id: 'status.admin_status', defaultMessage: 'Open this post in the moderation interface' },
-  admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
+  admin_account: {
+    id: 'status.admin_account',
+    defaultMessage: 'Open moderation interface for @{name}',
+  },
+  admin_status: {
+    id: 'status.admin_status',
+    defaultMessage: 'Open this post in the moderation interface',
+  },
+  admin_domain: {
+    id: 'status.admin_domain',
+    defaultMessage: 'Open moderation interface for {domain}',
+  },
   copy: { id: 'status.copy', defaultMessage: 'Copy link to post' },
   hide: { id: 'status.hide', defaultMessage: 'Hide post' },
-  blockDomain: { id: 'account.block_domain', defaultMessage: 'Block domain {domain}' },
-  unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
+  blockDomain: {
+    id: 'account.block_domain',
+    defaultMessage: 'Block domain {domain}',
+  },
+  unblockDomain: {
+    id: 'account.unblock_domain',
+    defaultMessage: 'Unblock domain {domain}',
+  },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   filter: { id: 'status.filter', defaultMessage: 'Filter this post' },
-  openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
+  openOriginalPage: {
+    id: 'account.open_original_page',
+    defaultMessage: 'Open original page',
+  },
 });
 
 const mapStateToProps = (state, { status }) => ({
@@ -59,7 +98,6 @@ const mapStateToProps = (state, { status }) => ({
 });
 
 class StatusActionBar extends ImmutablePureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
     identity: PropTypes.object,
@@ -96,11 +134,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
   // Avoid checking props that are functions (and whose equality will always
   // evaluate to false. See react-immutable-pure-component for usage.
-  updateOnProps = [
-    'status',
-    'relationship',
-    'withDismiss',
-  ];
+  updateOnProps = ['status', 'relationship', 'withDismiss'];
 
   handleReplyClick = () => {
     const { signedIn } = this.context.identity;
@@ -113,11 +147,13 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleShareClick = () => {
-    navigator.share({
-      url: this.props.status.get('url'),
-    }).catch((e) => {
-      if (e.name !== 'AbortError') console.error(e);
-    });
+    navigator
+      .share({
+        url: this.props.status.get('url'),
+      })
+      .catch((e) => {
+        if (e.name !== 'AbortError') console.error(e);
+      });
   };
 
   handleFavouriteClick = () => {
@@ -130,7 +166,7 @@ class StatusActionBar extends ImmutablePureComponent {
     }
   };
 
-  handleReblogClick = e => {
+  handleReblogClick = (e) => {
     const { signedIn } = this.context.identity;
 
     if (signedIn) {
@@ -161,11 +197,17 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleMentionClick = () => {
-    this.props.onMention(this.props.status.get('account'), this.context.router.history);
+    this.props.onMention(
+      this.props.status.get('account'),
+      this.context.router.history,
+    );
   };
 
   handleDirectClick = () => {
-    this.props.onDirect(this.props.status.get('account'), this.context.router.history);
+    this.props.onDirect(
+      this.props.status.get('account'),
+      this.context.router.history,
+    );
   };
 
   handleMuteClick = () => {
@@ -205,7 +247,12 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   handleOpen = () => {
-    this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}/${this.props.status.get('id')}`);
+    this.context.router.history.push(
+      `/@${this.props.status.getIn([
+        'account',
+        'acct',
+      ])}/${this.props.status.get('id')}`,
+    );
   };
 
   handleEmbed = () => {
@@ -233,79 +280,173 @@ class StatusActionBar extends ImmutablePureComponent {
     this.props.onFilter();
   };
 
-  render () {
-    const { status, relationship, intl, withDismiss, withCounters, scrollKey } = this.props;
+  render() {
+    const { status, relationship, intl, withDismiss, withCounters, scrollKey } =
+      this.props;
     const { signedIn, permissions } = this.context.identity;
 
-    const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
-    const pinnableStatus     = ['public', 'unlisted', 'private'].includes(status.get('visibility'));
+    const publicStatus = ['public', 'unlisted'].includes(
+      status.get('visibility'),
+    );
+    const pinnableStatus = ['public', 'unlisted', 'private'].includes(
+      status.get('visibility'),
+    );
     const mutingConversation = status.get('muted');
-    const account            = status.get('account');
-    const writtenByMe        = status.getIn(['account', 'id']) === me;
-    const isRemote           = status.getIn(['account', 'username']) !== status.getIn(['account', 'acct']);
+    const account = status.get('account');
+    const writtenByMe = status.getIn(['account', 'id']) === me;
+    const isRemote =
+      status.getIn(['account', 'username']) !==
+      status.getIn(['account', 'acct']);
 
     let menu = [];
 
-    menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
+    menu.push({
+      text: intl.formatMessage(messages.open),
+      action: this.handleOpen,
+    });
 
     if (publicStatus && isRemote) {
-      menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: status.get('url') });
+      menu.push({
+        text: intl.formatMessage(messages.openOriginalPage),
+        href: status.get('url'),
+      });
     }
 
-    menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
+    menu.push({
+      text: intl.formatMessage(messages.copy),
+      action: this.handleCopy,
+    });
 
     if (publicStatus && 'share' in navigator) {
-      menu.push({ text: intl.formatMessage(messages.share), action: this.handleShareClick });
+      menu.push({
+        text: intl.formatMessage(messages.share),
+        action: this.handleShareClick,
+      });
     }
 
     if (publicStatus && (signedIn || !isRemote)) {
-      menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
+      menu.push({
+        text: intl.formatMessage(messages.embed),
+        action: this.handleEmbed,
+      });
     }
 
     if (signedIn) {
       menu.push(null);
 
-      menu.push({ text: intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark), action: this.handleBookmarkClick });
+      menu.push({
+        text: intl.formatMessage(
+          status.get('bookmarked')
+            ? messages.removeBookmark
+            : messages.bookmark,
+        ),
+        action: this.handleBookmarkClick,
+      });
 
       if (writtenByMe && pinnableStatus) {
-        menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+        menu.push({
+          text: intl.formatMessage(
+            status.get('pinned') ? messages.unpin : messages.pin,
+          ),
+          action: this.handlePinClick,
+        });
       }
 
       menu.push(null);
 
       if (writtenByMe || withDismiss) {
-        menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
+        menu.push({
+          text: intl.formatMessage(
+            mutingConversation
+              ? messages.unmuteConversation
+              : messages.muteConversation,
+          ),
+          action: this.handleConversationMuteClick,
+        });
         menu.push(null);
       }
 
       if (writtenByMe) {
-        menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
-        menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick, dangerous: true });
-        menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick, dangerous: true });
+        menu.push({
+          text: intl.formatMessage(messages.edit),
+          action: this.handleEditClick,
+        });
+        menu.push({
+          text: intl.formatMessage(messages.delete),
+          action: this.handleDeleteClick,
+          dangerous: true,
+        });
+        menu.push({
+          text: intl.formatMessage(messages.redraft),
+          action: this.handleRedraftClick,
+          dangerous: true,
+        });
       } else {
-        menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.handleMentionClick });
-        menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.handleDirectClick });
+        menu.push({
+          text: intl.formatMessage(messages.mention, {
+            name: account.get('username'),
+          }),
+          action: this.handleMentionClick,
+        });
+        menu.push({
+          text: intl.formatMessage(messages.direct, {
+            name: account.get('username'),
+          }),
+          action: this.handleDirectClick,
+        });
         menu.push(null);
 
         if (relationship && relationship.get('muting')) {
-          menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.handleMuteClick });
+          menu.push({
+            text: intl.formatMessage(messages.unmute, {
+              name: account.get('username'),
+            }),
+            action: this.handleMuteClick,
+          });
         } else {
-          menu.push({ text: intl.formatMessage(messages.mute, { name: account.get('username') }), action: this.handleMuteClick, dangerous: true });
+          menu.push({
+            text: intl.formatMessage(messages.mute, {
+              name: account.get('username'),
+            }),
+            action: this.handleMuteClick,
+            dangerous: true,
+          });
         }
 
         if (relationship && relationship.get('blocking')) {
-          menu.push({ text: intl.formatMessage(messages.unblock, { name: account.get('username') }), action: this.handleBlockClick });
+          menu.push({
+            text: intl.formatMessage(messages.unblock, {
+              name: account.get('username'),
+            }),
+            action: this.handleBlockClick,
+          });
         } else {
-          menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.handleBlockClick, dangerous: true });
+          menu.push({
+            text: intl.formatMessage(messages.block, {
+              name: account.get('username'),
+            }),
+            action: this.handleBlockClick,
+            dangerous: true,
+          });
         }
 
         if (!this.props.onFilter) {
           menu.push(null);
-          menu.push({ text: intl.formatMessage(messages.filter), action: this.handleFilterClick, dangerous: true });
+          menu.push({
+            text: intl.formatMessage(messages.filter),
+            action: this.handleFilterClick,
+            dangerous: true,
+          });
           menu.push(null);
         }
 
-        menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.handleReport, dangerous: true });
+        menu.push({
+          text: intl.formatMessage(messages.report, {
+            name: account.get('username'),
+          }),
+          action: this.handleReport,
+          dangerous: true,
+        });
 
         if (account.get('acct') !== account.get('username')) {
           const domain = account.get('acct').split('@')[1];
@@ -313,21 +454,56 @@ class StatusActionBar extends ImmutablePureComponent {
           menu.push(null);
 
           if (relationship && relationship.get('domain_blocking')) {
-            menu.push({ text: intl.formatMessage(messages.unblockDomain, { domain }), action: this.handleUnblockDomain });
+            menu.push({
+              text: intl.formatMessage(messages.unblockDomain, { domain }),
+              action: this.handleUnblockDomain,
+            });
           } else {
-            menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.handleBlockDomain, dangerous: true });
+            menu.push({
+              text: intl.formatMessage(messages.blockDomain, { domain }),
+              action: this.handleBlockDomain,
+              dangerous: true,
+            });
           }
         }
 
-        if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS || (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION)) {
+        if (
+          (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS ||
+          (isRemote &&
+            (permissions & PERMISSION_MANAGE_FEDERATION) ===
+              PERMISSION_MANAGE_FEDERATION)
+        ) {
           menu.push(null);
-          if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
-            menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: `/admin/accounts/${status.getIn(['account', 'id'])}` });
-            menu.push({ text: intl.formatMessage(messages.admin_status), href: `/admin/accounts/${status.getIn(['account', 'id'])}/statuses/${status.get('id')}` });
+          if (
+            (permissions & PERMISSION_MANAGE_USERS) ===
+            PERMISSION_MANAGE_USERS
+          ) {
+            menu.push({
+              text: intl.formatMessage(messages.admin_account, {
+                name: account.get('username'),
+              }),
+              href: `/admin/accounts/${status.getIn(['account', 'id'])}`,
+            });
+            menu.push({
+              text: intl.formatMessage(messages.admin_status),
+              href: `/admin/accounts/${status.getIn([
+                'account',
+                'id',
+              ])}/statuses/${status.get('id')}`,
+            });
           }
-          if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
+          if (
+            isRemote &&
+            (permissions & PERMISSION_MANAGE_FEDERATION) ===
+              PERMISSION_MANAGE_FEDERATION
+          ) {
             const domain = account.get('acct').split('@')[1];
-            menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: `/admin/instances/${domain}` });
+            menu.push({
+              text: intl.formatMessage(messages.admin_domain, {
+                domain: domain,
+              }),
+              href: `/admin/instances/${domain}`,
+            });
           }
         }
       }
@@ -343,7 +519,9 @@ class StatusActionBar extends ImmutablePureComponent {
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
-    const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
+    const reblogPrivate =
+      status.getIn(['account', 'id']) === me &&
+      status.get('visibility') === 'private';
 
     let reblogTitle = '';
     if (status.get('reblogged')) {
@@ -357,15 +535,56 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     const filterButton = this.props.onFilter && (
-      <IconButton className='status__action-bar__button' title={intl.formatMessage(messages.hide)} icon='eye' onClick={this.handleHideClick} />
+      <IconButton
+        className='status__action-bar__button'
+        title={intl.formatMessage(messages.hide)}
+        icon='eye'
+        onClick={this.handleHideClick}
+      />
     );
 
     return (
       <div className='status__action-bar'>
-        <IconButton className='status__action-bar__button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} />
-        <IconButton className={classNames('status__action-bar__button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
-        <IconButton className='status__action-bar__button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
-        <IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />
+        <IconButton
+          className='status__action-bar__button'
+          title={replyTitle}
+          icon={
+            status.get('in_reply_to_account_id') ===
+            status.getIn(['account', 'id'])
+              ? 'reply'
+              : replyIcon
+          }
+          onClick={this.handleReplyClick}
+          counter={status.get('replies_count')}
+        />
+        <IconButton
+          className={classNames('status__action-bar__button', {
+            reblogPrivate,
+          })}
+          disabled={!publicStatus && !reblogPrivate}
+          active={status.get('reblogged')}
+          title={reblogTitle}
+          icon='retweet'
+          onClick={this.handleReblogClick}
+          counter={withCounters ? status.get('reblogs_count') : undefined}
+        />
+        <IconButton
+          className='status__action-bar__button star-icon'
+          animate
+          active={status.get('favourited')}
+          title={intl.formatMessage(messages.favourite)}
+          icon='star'
+          onClick={this.handleFavouriteClick}
+          counter={withCounters ? status.get('favourites_count') : undefined}
+        />
+        <IconButton
+          className='status__action-bar__button bookmark-icon'
+          disabled={!signedIn}
+          active={status.get('bookmarked')}
+          title={intl.formatMessage(messages.bookmark)}
+          icon='bookmark'
+          onClick={this.handleBookmarkClick}
+        />
 
         {filterButton}
 
@@ -383,7 +602,6 @@ class StatusActionBar extends ImmutablePureComponent {
       </div>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(StatusActionBar));

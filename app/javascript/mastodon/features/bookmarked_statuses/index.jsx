@@ -10,7 +10,10 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { fetchBookmarkedStatuses, expandBookmarkedStatuses } from 'mastodon/actions/bookmarks';
+import {
+  fetchBookmarkedStatuses,
+  expandBookmarkedStatuses,
+} from 'mastodon/actions/bookmarks';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import ColumnHeader from 'mastodon/components/column_header';
 import StatusList from 'mastodon/components/status_list';
@@ -21,14 +24,13 @@ const messages = defineMessages({
   heading: { id: 'column.bookmarks', defaultMessage: 'Bookmarks' },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   statusIds: getStatusList(state, 'bookmarks'),
   isLoading: state.getIn(['status_lists', 'bookmarks', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'bookmarks', 'next']),
 });
 
 class Bookmarks extends ImmutablePureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     statusIds: ImmutablePropTypes.list.isRequired,
@@ -39,7 +41,7 @@ class Bookmarks extends ImmutablePureComponent {
     isLoading: PropTypes.bool,
   };
 
-  UNSAFE_componentWillMount () {
+  UNSAFE_componentWillMount() {
     this.props.dispatch(fetchBookmarkedStatuses());
   }
 
@@ -62,22 +64,36 @@ class Bookmarks extends ImmutablePureComponent {
     this.column.scrollTop();
   };
 
-  setRef = c => {
+  setRef = (c) => {
     this.column = c;
   };
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandBookmarkedStatuses());
-  }, 300, { leading: true });
+  handleLoadMore = debounce(
+    () => {
+      this.props.dispatch(expandBookmarkedStatuses());
+    },
+    300,
+    { leading: true },
+  );
 
-  render () {
-    const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
+  render() {
+    const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } =
+      this.props;
     const pinned = !!columnId;
 
-    const emptyMessage = <FormattedMessage id='empty_column.bookmarked_statuses' defaultMessage="You don't have any bookmarked posts yet. When you bookmark one, it will show up here." />;
+    const emptyMessage = (
+      <FormattedMessage
+        id='empty_column.bookmarked_statuses'
+        defaultMessage="You don't have any bookmarked posts yet. When you bookmark one, it will show up here."
+      />
+    );
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.heading)}>
+      <Column
+        bindToDocument={!multiColumn}
+        ref={this.setRef}
+        label={intl.formatMessage(messages.heading)}
+      >
         <ColumnHeader
           icon='bookmark'
           title={intl.formatMessage(messages.heading)}
@@ -106,7 +122,6 @@ class Bookmarks extends ImmutablePureComponent {
       </Column>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(Bookmarks));

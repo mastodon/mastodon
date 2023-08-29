@@ -14,7 +14,6 @@ const mapStateToProps = (state, { filterId }) => ({
 });
 
 class AddedToFilter extends PureComponent {
-
   static propTypes = {
     onClose: PropTypes.func.isRequired,
     contextType: PropTypes.string,
@@ -27,14 +26,19 @@ class AddedToFilter extends PureComponent {
     onClose();
   };
 
-  render () {
+  render() {
     const { filter, contextType } = this.props;
 
     let expiredMessage = null;
     if (filter.get('expires_at') && filter.get('expires_at') < new Date()) {
       expiredMessage = (
         <>
-          <h4 className='report-dialog-modal__subtitle'><FormattedMessage id='filter_modal.added.expired_title' defaultMessage='Expired filter!' /></h4>
+          <h4 className='report-dialog-modal__subtitle'>
+            <FormattedMessage
+              id='filter_modal.added.expired_title'
+              defaultMessage='Expired filter!'
+            />
+          </h4>
           <p className='report-dialog-modal__lead'>
             <FormattedMessage
               id='filter_modal.added.expired_explanation'
@@ -46,10 +50,18 @@ class AddedToFilter extends PureComponent {
     }
 
     let contextMismatchMessage = null;
-    if (contextType && !filter.get('context').includes(toServerSideType(contextType))) {
+    if (
+      contextType &&
+      !filter.get('context').includes(toServerSideType(contextType))
+    ) {
       contextMismatchMessage = (
         <>
-          <h4 className='report-dialog-modal__subtitle'><FormattedMessage id='filter_modal.added.context_mismatch_title' defaultMessage='Context mismatch!' /></h4>
+          <h4 className='report-dialog-modal__subtitle'>
+            <FormattedMessage
+              id='filter_modal.added.context_mismatch_title'
+              defaultMessage='Context mismatch!'
+            />
+          </h4>
           <p className='report-dialog-modal__lead'>
             <FormattedMessage
               id='filter_modal.added.context_mismatch_explanation'
@@ -71,7 +83,12 @@ class AddedToFilter extends PureComponent {
 
     return (
       <>
-        <h3 className='report-dialog-modal__title'><FormattedMessage id='filter_modal.added.title' defaultMessage='Filter added!' /></h3>
+        <h3 className='report-dialog-modal__title'>
+          <FormattedMessage
+            id='filter_modal.added.title'
+            defaultMessage='Filter added!'
+          />
+        </h3>
         <p className='report-dialog-modal__lead'>
           <FormattedMessage
             id='filter_modal.added.short_explanation'
@@ -83,7 +100,12 @@ class AddedToFilter extends PureComponent {
         {expiredMessage}
         {contextMismatchMessage}
 
-        <h4 className='report-dialog-modal__subtitle'><FormattedMessage id='filter_modal.added.review_and_configure_title' defaultMessage='Filter settings' /></h4>
+        <h4 className='report-dialog-modal__subtitle'>
+          <FormattedMessage
+            id='filter_modal.added.review_and_configure_title'
+            defaultMessage='Filter settings'
+          />
+        </h4>
         <p className='report-dialog-modal__lead'>
           <FormattedMessage
             id='filter_modal.added.review_and_configure'
@@ -95,12 +117,13 @@ class AddedToFilter extends PureComponent {
         <div className='flex-spacer' />
 
         <div className='report-dialog-modal__actions'>
-          <Button onClick={this.handleCloseClick}><FormattedMessage id='report.close' defaultMessage='Done' /></Button>
+          <Button onClick={this.handleCloseClick}>
+            <FormattedMessage id='report.close' defaultMessage='Done' />
+          </Button>
         </div>
       </>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(AddedToFilter);

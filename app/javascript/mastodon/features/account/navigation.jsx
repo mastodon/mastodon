@@ -6,7 +6,14 @@ import { connect } from 'react-redux';
 import FeaturedTags from 'mastodon/features/account/containers/featured_tags_container';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 
-const mapStateToProps = (state, { match: { params: { acct } } }) => {
+const mapStateToProps = (
+  state,
+  {
+    match: {
+      params: { acct },
+    },
+  },
+) => {
   const accountId = state.getIn(['accounts_map', normalizeForLookup(acct)]);
 
   if (!accountId) {
@@ -22,7 +29,6 @@ const mapStateToProps = (state, { match: { params: { acct } } }) => {
 };
 
 class AccountNavigation extends PureComponent {
-
   static propTypes = {
     match: PropTypes.shape({
       params: PropTypes.shape({
@@ -35,8 +41,14 @@ class AccountNavigation extends PureComponent {
     isLoading: PropTypes.bool,
   };
 
-  render () {
-    const { accountId, isLoading, match: { params: { tagged } } } = this.props;
+  render() {
+    const {
+      accountId,
+      isLoading,
+      match: {
+        params: { tagged },
+      },
+    } = this.props;
 
     if (isLoading) {
       return null;
@@ -49,7 +61,6 @@ class AccountNavigation extends PureComponent {
       </>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(AccountNavigation);

@@ -22,14 +22,22 @@ const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
   open: { id: 'conversation.open', defaultMessage: 'View conversation' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
-  markAsRead: { id: 'conversation.mark_as_read', defaultMessage: 'Mark as read' },
+  markAsRead: {
+    id: 'conversation.mark_as_read',
+    defaultMessage: 'Mark as read',
+  },
   delete: { id: 'conversation.delete', defaultMessage: 'Delete conversation' },
-  muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
-  unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
+  muteConversation: {
+    id: 'status.mute_conversation',
+    defaultMessage: 'Mute conversation',
+  },
+  unmuteConversation: {
+    id: 'status.unmute_conversation',
+    defaultMessage: 'Unmute conversation',
+  },
 });
 
 class Conversation extends ImmutablePureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -38,7 +46,7 @@ class Conversation extends ImmutablePureComponent {
     conversationId: PropTypes.string.isRequired,
     accounts: ImmutablePropTypes.list.isRequired,
     lastStatus: ImmutablePropTypes.map,
-    unread:PropTypes.bool.isRequired,
+    unread: PropTypes.bool.isRequired,
     scrollKey: PropTypes.string,
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
@@ -84,7 +92,9 @@ class Conversation extends ImmutablePureComponent {
       markRead();
     }
 
-    this.context.router.history.push(`/@${lastStatus.getIn(['account', 'acct'])}/${lastStatus.get('id')}`);
+    this.context.router.history.push(
+      `/@${lastStatus.getIn(['account', 'acct'])}/${lastStatus.get('id')}`,
+    );
   };
 
   handleMarkAsRead = () => {
@@ -115,7 +125,7 @@ class Conversation extends ImmutablePureComponent {
     this.props.onToggleHidden(this.props.lastStatus);
   };
 
-  render () {
+  render() {
     const { accounts, lastStatus, unread, scrollKey, intl } = this.props;
 
     if (lastStatus === null) {
@@ -127,16 +137,40 @@ class Conversation extends ImmutablePureComponent {
       null,
     ];
 
-    menu.push({ text: intl.formatMessage(lastStatus.get('muted') ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMute });
+    menu.push({
+      text: intl.formatMessage(
+        lastStatus.get('muted')
+          ? messages.unmuteConversation
+          : messages.muteConversation,
+      ),
+      action: this.handleConversationMute,
+    });
 
     if (unread) {
-      menu.push({ text: intl.formatMessage(messages.markAsRead), action: this.handleMarkAsRead });
+      menu.push({
+        text: intl.formatMessage(messages.markAsRead),
+        action: this.handleMarkAsRead,
+      });
       menu.push(null);
     }
 
-    menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDelete });
+    menu.push({
+      text: intl.formatMessage(messages.delete),
+      action: this.handleDelete,
+    });
 
-    const names = accounts.map(a => <Link to={`/@${a.get('acct')}`} key={a.get('id')} title={a.get('acct')}><bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }} /></bdi></Link>).reduce((prev, cur) => [prev, ', ', cur]);
+    const names = accounts
+      .map((a) => (
+        <Link to={`/@${a.get('acct')}`} key={a.get('id')} title={a.get('acct')}>
+          <bdi>
+            <strong
+              className='display-name__html'
+              dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }}
+            />
+          </bdi>
+        </Link>
+      ))
+      .reduce((prev, cur) => [prev, ', ', cur]);
 
     const handlers = {
       reply: this.handleReply,
@@ -148,19 +182,37 @@ class Conversation extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={handlers}>
-        <div className={classNames('conversation focusable muted', { 'conversation--unread': unread })} tabIndex={0}>
-          <div className='conversation__avatar' onClick={this.handleClick} role='presentation'>
+        <div
+          className={classNames('conversation focusable muted', {
+            'conversation--unread': unread,
+          })}
+          tabIndex={0}
+        >
+          <div
+            className='conversation__avatar'
+            onClick={this.handleClick}
+            role='presentation'
+          >
             <AvatarComposite accounts={accounts} size={48} />
           </div>
 
           <div className='conversation__content'>
             <div className='conversation__content__info'>
               <div className='conversation__content__relative-time'>
-                {unread && <span className='conversation__unread' />} <RelativeTimestamp timestamp={lastStatus.get('created_at')} />
+                {unread && <span className='conversation__unread' />}{' '}
+                <RelativeTimestamp timestamp={lastStatus.get('created_at')} />
               </div>
 
-              <div className='conversation__content__names' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-                <FormattedMessage id='conversation.with' defaultMessage='With {names}' values={{ names: <span>{names}</span> }} />
+              <div
+                className='conversation__content__names'
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
+              >
+                <FormattedMessage
+                  id='conversation.with'
+                  defaultMessage='With {names}'
+                  values={{ names: <span>{names}</span> }}
+                />
               </div>
             </div>
 
@@ -180,7 +232,12 @@ class Conversation extends ImmutablePureComponent {
             )}
 
             <div className='status__action-bar'>
-              <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReply} />
+              <IconButton
+                className='status__action-bar-button'
+                title={intl.formatMessage(messages.reply)}
+                icon='reply'
+                onClick={this.handleReply}
+              />
 
               <div className='status__action-bar-dropdown'>
                 <DropdownMenuContainer
@@ -199,7 +256,6 @@ class Conversation extends ImmutablePureComponent {
       </HotKeys>
     );
   }
-
 }
 
 export default injectIntl(Conversation);

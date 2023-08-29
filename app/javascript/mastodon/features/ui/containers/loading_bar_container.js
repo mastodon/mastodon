@@ -1,4 +1,4 @@
-import { connect }    from 'react-redux';
+import { connect } from 'react-redux';
 
 import LoadingBar from 'react-redux-loading-bar';
 

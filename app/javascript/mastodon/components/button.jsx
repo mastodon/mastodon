@@ -4,7 +4,6 @@ import { PureComponent } from 'react';
 import classNames from 'classnames';
 
 export default class Button extends PureComponent {
-
   static propTypes = {
     text: PropTypes.node,
     type: PropTypes.string,
@@ -35,7 +34,7 @@ export default class Button extends PureComponent {
     this.node.focus();
   }
 
-  render () {
+  render() {
     const className = classNames('button', this.props.className, {
       'button-secondary': this.props.secondary,
       'button--block': this.props.block,
@@ -54,5 +53,4 @@ export default class Button extends PureComponent {
       </button>
     );
   }
-
 }

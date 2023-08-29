@@ -9,9 +9,12 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon } from 'mastodon/components/icon';
 import PollContainer from 'mastodon/containers/poll_container';
-import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
+import {
+  autoPlayGif,
+  languages as preloadedLanguages,
+} from 'mastodon/initial_state';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -21,32 +24,44 @@ const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
  * @returns {string}
  */
 export function getStatusContent(status) {
-  return status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
+  return (
+    status.getIn(['translation', 'contentHtml']) || status.get('contentHtml')
+  );
 }
 
 class TranslateButton extends PureComponent {
-
   static propTypes = {
     translation: ImmutablePropTypes.map,
     onClick: PropTypes.func,
   };
 
-  render () {
+  render() {
     const { translation, onClick } = this.props;
 
     if (translation) {
-      const language     = preloadedLanguages.find(lang => lang[0] === translation.get('detected_source_language'));
-      const languageName = language ? language[2] : translation.get('detected_source_language');
-      const provider     = translation.get('provider');
+      const language = preloadedLanguages.find(
+        (lang) => lang[0] === translation.get('detected_source_language'),
+      );
+      const languageName = language
+        ? language[2]
+        : translation.get('detected_source_language');
+      const provider = translation.get('provider');
 
       return (
         <div className='translate-button'>
           <div className='translate-button__meta'>
-            <FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider }} />
+            <FormattedMessage
+              id='status.translated_from_with'
+              defaultMessage='Translated from {lang} using {provider}'
+              values={{ lang: languageName, provider }}
+            />
           </div>
 
           <button className='link-button' onClick={onClick}>
-            <FormattedMessage id='status.show_original' defaultMessage='Show original' />
+            <FormattedMessage
+              id='status.show_original'
+              defaultMessage='Show original'
+            />
           </button>
         </div>
       );
@@ -58,15 +73,13 @@ class TranslateButton extends PureComponent {
       </button>
     );
   }
-
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   languages: state.getIn(['server', 'translationLanguages', 'items']),
 });
 
 class StatusContent extends PureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
     identity: PropTypes.object,
@@ -89,7 +102,7 @@ class StatusContent extends PureComponent {
     hidden: true,
   };
 
-  _updateStatusLinks () {
+  _updateStatusLinks() {
     const node = this.node;
 
     if (!node) {
@@ -110,14 +123,31 @@ class StatusContent extends PureComponent {
 
       link.classList.add('status-link');
 
-      mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
+      mention = this.props.status
+        .get('mentions')
+        .find((item) => link.href === item.get('url'));
 
       if (mention) {
-        link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
+        link.addEventListener(
+          'click',
+          this.onMentionClick.bind(this, mention),
+          false,
+        );
         link.setAttribute('title', `@${mention.get('acct')}`);
         link.setAttribute('href', `/@${mention.get('acct')}`);
-      } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
-        link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
+      } else if (
+        link.textContent[0] === '#' ||
+        (link.previousSibling &&
+          link.previousSibling.textContent &&
+          link.previousSibling.textContent[
+            link.previousSibling.textContent.length - 1
+          ] === '#')
+      ) {
+        link.addEventListener(
+          'click',
+          this.onHashtagClick.bind(this, link.text),
+          false,
+        );
         link.setAttribute('href', `/tags/${link.text.replace(/^#/, '')}`);
       } else {
         link.setAttribute('title', link.href);
@@ -129,10 +159,10 @@ class StatusContent extends PureComponent {
       const { collapsible, onClick } = this.props;
 
       const collapsed =
-          collapsible
-          && onClick
-          && node.clientHeight > MAX_HEIGHT
-          && status.get('spoiler_text').length === 0;
+        collapsible &&
+        onClick &&
+        node.clientHeight > MAX_HEIGHT &&
+        status.get('spoiler_text').length === 0;
 
       onCollapsedToggle(collapsed);
     }
@@ -164,11 +194,11 @@ class StatusContent extends PureComponent {
     }
   };
 
-  componentDidMount () {
+  componentDidMount() {
     this._updateStatusLinks();
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     this._updateStatusLinks();
   }
 
@@ -197,12 +227,19 @@ class StatusContent extends PureComponent {
       return;
     }
 
-    const [ startX, startY ] = this.startXY;
-    const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
+    const [startX, startY] = this.startXY;
+    const [deltaX, deltaY] = [
+      Math.abs(e.clientX - startX),
+      Math.abs(e.clientY - startY),
+    ];
 
     let element = e.target;
     while (element) {
-      if (element.localName === 'button' || element.localName === 'a' || element.localName === 'label') {
+      if (
+        element.localName === 'button' ||
+        element.localName === 'a' ||
+        element.localName === 'label'
+      ) {
         return;
       }
       element = element.parentNode;
@@ -234,18 +271,32 @@ class StatusContent extends PureComponent {
     this.node = c;
   };
 
-  render () {
+  render() {
     const { status, intl, statusContent } = this.props;
 
-    const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
+    const hidden = this.props.onExpandedToggle
+      ? !this.props.expanded
+      : this.state.hidden;
     const renderReadMore = this.props.onClick && status.get('collapsed');
     const contentLocale = intl.locale.replace(/[_-].*/, '');
-    const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
-    const renderTranslate = this.props.onTranslate && this.context.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
+    const targetLanguages = this.props.languages?.get(
+      status.get('language') || 'und',
+    );
+    const renderTranslate =
+      this.props.onTranslate &&
+      this.context.identity.signedIn &&
+      ['public', 'unlisted'].includes(status.get('visibility')) &&
+      status.get('search_index').trim().length > 0 &&
+      targetLanguages?.includes(contentLocale);
 
     const content = { __html: statusContent ?? getStatusContent(status) };
-    const spoilerContent = { __html: status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml') };
-    const language = status.getIn(['translation', 'language']) || status.get('language');
+    const spoilerContent = {
+      __html:
+        status.getIn(['translation', 'spoilerHtml']) ||
+        status.get('spoilerHtml'),
+    };
+    const language =
+      status.getIn(['translation', 'language']) || status.get('language');
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
@@ -253,13 +304,21 @@ class StatusContent extends PureComponent {
     });
 
     const readMoreButton = renderReadMore && (
-      <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
-        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' fixedWidth />
+      <button
+        className='status__content__read-more-button'
+        onClick={this.props.onClick}
+        key='read-more'
+      >
+        <FormattedMessage id='status.read_more' defaultMessage='Read more' />
+        <Icon id='angle-right' fixedWidth />
       </button>
     );
 
     const translateButton = renderTranslate && (
-      <TranslateButton onClick={this.handleTranslate} translation={status.get('translation')} />
+      <TranslateButton
+        onClick={this.handleTranslate}
+        translation={status.get('translation')}
+      />
     );
 
     const poll = !!status.get('poll') && (
@@ -269,29 +328,74 @@ class StatusContent extends PureComponent {
     if (status.get('spoiler_text').length > 0) {
       let mentionsPlaceholder = '';
 
-      const mentionLinks = status.get('mentions').map(item => (
-        <Link to={`/@${item.get('acct')}`} key={item.get('id')} className='status-link mention'>
-          @<span>{item.get('username')}</span>
-        </Link>
-      )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
+      const mentionLinks = status
+        .get('mentions')
+        .map((item) => (
+          <Link
+            to={`/@${item.get('acct')}`}
+            key={item.get('id')}
+            className='status-link mention'
+          >
+            @<span>{item.get('username')}</span>
+          </Link>
+        ))
+        .reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
-      const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
+      const toggleText = hidden ? (
+        <FormattedMessage id='status.show_more' defaultMessage='Show more' />
+      ) : (
+        <FormattedMessage id='status.show_less' defaultMessage='Show less' />
+      );
 
       if (hidden) {
         mentionsPlaceholder = <div>{mentionLinks}</div>;
       }
 
       return (
-        <div className={classNames} ref={this.setRef} tabIndex={0} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-          <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
-            <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
-            {' '}
-            <button type='button' className={`status__content__spoiler-link ${hidden ? 'status__content__spoiler-link--show-more' : 'status__content__spoiler-link--show-less'}`} onClick={this.handleSpoilerClick} aria-expanded={!hidden}>{toggleText}</button>
+        <div
+          className={classNames}
+          ref={this.setRef}
+          tabIndex={0}
+          onMouseDown={this.handleMouseDown}
+          onMouseUp={this.handleMouseUp}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+        >
+          <p
+            style={{
+              marginBottom:
+                hidden && status.get('mentions').isEmpty() ? '0px' : null,
+            }}
+          >
+            <span
+              dangerouslySetInnerHTML={spoilerContent}
+              className='translate'
+              lang={language}
+            />{' '}
+            <button
+              type='button'
+              className={`status__content__spoiler-link ${
+                hidden
+                  ? 'status__content__spoiler-link--show-more'
+                  : 'status__content__spoiler-link--show-less'
+              }`}
+              onClick={this.handleSpoilerClick}
+              aria-expanded={!hidden}
+            >
+              {toggleText}
+            </button>
           </p>
 
           {mentionsPlaceholder}
 
-          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''} translate`} lang={language} dangerouslySetInnerHTML={content} />
+          <div
+            tabIndex={!hidden ? 0 : null}
+            className={`status__content__text ${
+              !hidden ? 'status__content__text--visible' : ''
+            } translate`}
+            lang={language}
+            dangerouslySetInnerHTML={content}
+          />
 
           {!hidden && poll}
           {translateButton}
@@ -300,8 +404,21 @@ class StatusContent extends PureComponent {
     } else if (this.props.onClick) {
       return (
         <>
-          <div className={classNames} ref={this.setRef} tabIndex={0} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-            <div className='status__content__text status__content__text--visible translate' lang={language} dangerouslySetInnerHTML={content} />
+          <div
+            className={classNames}
+            ref={this.setRef}
+            tabIndex={0}
+            onMouseDown={this.handleMouseDown}
+            onMouseUp={this.handleMouseUp}
+            key='status-content'
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
+          >
+            <div
+              className='status__content__text status__content__text--visible translate'
+              lang={language}
+              dangerouslySetInnerHTML={content}
+            />
 
             {poll}
             {translateButton}
@@ -312,8 +429,18 @@ class StatusContent extends PureComponent {
       );
     } else {
       return (
-        <div className={classNames} ref={this.setRef} tabIndex={0} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-          <div className='status__content__text status__content__text--visible translate' lang={language} dangerouslySetInnerHTML={content} />
+        <div
+          className={classNames}
+          ref={this.setRef}
+          tabIndex={0}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+        >
+          <div
+            className='status__content__text status__content__text--visible translate'
+            lang={language}
+            dangerouslySetInnerHTML={content}
+          />
 
           {poll}
           {translateButton}
@@ -321,7 +448,6 @@ class StatusContent extends PureComponent {
       );
     }
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(StatusContent));

@@ -10,12 +10,11 @@ import Video from 'mastodon/features/video';
 import Footer from './components/footer';
 import Header from './components/header';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   ...state.get('picture_in_picture'),
 });
 
 class PictureInPicture extends Component {
-
   static propTypes = {
     statusId: PropTypes.string,
     accountId: PropTypes.string,
@@ -36,7 +35,7 @@ class PictureInPicture extends Component {
     dispatch(removePictureInPicture());
   };
 
-  render () {
+  render() {
     const { type, src, currentTime, accountId, statusId } = this.props;
 
     if (!currentTime) {
@@ -75,7 +74,11 @@ class PictureInPicture extends Component {
 
     return (
       <div className='picture-in-picture'>
-        <Header accountId={accountId} statusId={statusId} onClose={this.handleClose} />
+        <Header
+          accountId={accountId}
+          statusId={statusId}
+          onClose={this.handleClose}
+        />
 
         {player}
 
@@ -83,7 +86,6 @@ class PictureInPicture extends Component {
       </div>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(PictureInPicture);

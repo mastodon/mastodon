@@ -9,7 +9,7 @@ describe('<AutosuggestEmoji />', () => {
       colons: ':foobar:',
     };
     const component = renderer.create(<AutosuggestEmoji emoji={emoji} />);
-    const tree      = component.toJSON();
+    const tree = component.toJSON();
 
     expect(tree).toMatchSnapshot();
   });
@@ -22,7 +22,7 @@ describe('<AutosuggestEmoji />', () => {
       colons: ':foobar:',
     };
     const component = renderer.create(<AutosuggestEmoji emoji={emoji} />);
-    const tree      = component.toJSON();
+    const tree = component.toJSON();
 
     expect(tree).toMatchSnapshot();
   });

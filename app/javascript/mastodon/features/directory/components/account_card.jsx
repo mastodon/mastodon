@@ -26,12 +26,24 @@ import { makeGetAccount } from 'mastodon/selectors';
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Withdraw follow request' },
-  cancelFollowRequestConfirm: { id: 'confirmations.cancel_follow_request.confirm', defaultMessage: 'Withdraw request' },
-  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
+  cancel_follow_request: {
+    id: 'account.cancel_follow_request',
+    defaultMessage: 'Withdraw follow request',
+  },
+  cancelFollowRequestConfirm: {
+    id: 'confirmations.cancel_follow_request.confirm',
+    defaultMessage: 'Withdraw request',
+  },
+  requested: {
+    id: 'account.requested',
+    defaultMessage: 'Awaiting approval. Click to cancel follow request',
+  },
   unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
   unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
-  unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
+  unfollowConfirm: {
+    id: 'confirmations.unfollow.confirm',
+    defaultMessage: 'Unfollow',
+  },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
 });
 
@@ -62,21 +74,30 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
               ),
               confirm: intl.formatMessage(messages.unfollowConfirm),
               onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
-            } }),
+            },
+          }),
         );
       } else {
         dispatch(unfollowAccount(account.get('id')));
       }
     } else if (account.getIn(['relationship', 'requested'])) {
       if (unfollowModal) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-            confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
-            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
-          },
-        }));
+        dispatch(
+          openModal({
+            modalType: 'CONFIRM',
+            modalProps: {
+              message: (
+                <FormattedMessage
+                  id='confirmations.cancel_follow_request.message'
+                  defaultMessage='Are you sure you want to withdraw your request to follow {name}?'
+                  values={{ name: <strong>@{account.get('acct')}</strong> }}
+                />
+              ),
+              confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
+              onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+            },
+          }),
+        );
       } else {
         dispatch(unfollowAccount(account.get('id')));
       }
@@ -96,11 +117,9 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       dispatch(unmuteAccount(account.get('id')));
     }
   },
-
 });
 
 class AccountCard extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     intl: PropTypes.object.isRequired,
@@ -157,35 +176,80 @@ class AccountCard extends ImmutablePureComponent {
     let actionBtn;
 
     if (me !== account.get('id')) {
-      if (!account.get('relationship')) { // Wait until the relationship is loaded
+      if (!account.get('relationship')) {
+        // Wait until the relationship is loaded
         actionBtn = '';
       } else if (account.getIn(['relationship', 'requested'])) {
-        actionBtn = <Button  text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.handleFollow} />;
+        actionBtn = (
+          <Button
+            text={intl.formatMessage(messages.cancel_follow_request)}
+            title={intl.formatMessage(messages.requested)}
+            onClick={this.handleFollow}
+          />
+        );
       } else if (account.getIn(['relationship', 'muting'])) {
-        actionBtn = <Button  text={intl.formatMessage(messages.unmute)} onClick={this.handleMute} />;
+        actionBtn = (
+          <Button
+            text={intl.formatMessage(messages.unmute)}
+            onClick={this.handleMute}
+          />
+        );
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames({ 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.handleFollow} />;
+        actionBtn = (
+          <Button
+            disabled={account.getIn(['relationship', 'blocked_by'])}
+            className={classNames({
+              'button--destructive': account.getIn([
+                'relationship',
+                'following',
+              ]),
+            })}
+            text={intl.formatMessage(
+              account.getIn(['relationship', 'following'])
+                ? messages.unfollow
+                : messages.follow,
+            )}
+            onClick={this.handleFollow}
+          />
+        );
       } else if (account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button  text={intl.formatMessage(messages.unblock)} onClick={this.handleBlock} />;
+        actionBtn = (
+          <Button
+            text={intl.formatMessage(messages.unblock)}
+            onClick={this.handleBlock}
+          />
+        );
       }
     } else {
-      actionBtn = <Button  text={intl.formatMessage(messages.edit_profile)} onClick={this.handleEditProfile} />;
+      actionBtn = (
+        <Button
+          text={intl.formatMessage(messages.edit_profile)}
+          onClick={this.handleEditProfile}
+        />
+      );
     }
 
     return (
       <div className='account-card'>
-        <Link to={`/@${account.get('acct')}`} className='account-card__permalink'>
+        <Link
+          to={`/@${account.get('acct')}`}
+          className='account-card__permalink'
+        >
           <div className='account-card__header'>
             <img
               src={
-                autoPlayGif ? account.get('header') : account.get('header_static')
+                autoPlayGif
+                  ? account.get('header')
+                  : account.get('header_static')
               }
               alt=''
             />
           </div>
 
           <div className='account-card__title'>
-            <div className='account-card__title__avatar'><Avatar account={account} size={56} /></div>
+            <div className='account-card__title__avatar'>
+              <Avatar account={account} size={56} />
+            </div>
             <DisplayName account={account} />
           </div>
         </Link>
@@ -229,14 +293,13 @@ class AccountCard extends ImmutablePureComponent {
             </div>
           </div>
 
-          <div className='account-card__actions__button'>
-            {actionBtn}
-          </div>
+          <div className='account-card__actions__button'>{actionBtn}</div>
         </div>
       </div>
     );
   }
-
 }
 
-export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(AccountCard));
+export default injectIntl(
+  connect(makeMapStateToProps, mapDispatchToProps)(AccountCard),
+);

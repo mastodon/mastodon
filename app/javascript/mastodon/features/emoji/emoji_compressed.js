@@ -9,27 +9,28 @@
 
 const { emojiIndex } = require('emoji-mart');
 let data = require('emoji-mart/data/all.json');
-const { uncompress: emojiMartUncompress } = require('emoji-mart/dist/utils/data');
+const {
+  uncompress: emojiMartUncompress,
+} = require('emoji-mart/dist/utils/data');
 
 const emojiMap = require('./emoji_map.json');
 const { unicodeToFilename } = require('./unicode_to_filename');
 const { unicodeToUnifiedName } = require('./unicode_to_unified_name');
 
-
-if(data.compressed) {
+if (data.compressed) {
   data = emojiMartUncompress(data);
 }
 
 const emojiMartData = data;
 
-const excluded       = ['®', '©', '™'];
-const skinTones      = ['🏻', '🏼', '🏽', '🏾', '🏿'];
-const shortcodeMap   = {};
+const excluded = ['®', '©', '™'];
+const skinTones = ['🏻', '🏼', '🏽', '🏾', '🏿'];
+const shortcodeMap = {};
 
 const shortCodesToEmojiData = {};
 const emojisWithoutShortCodes = [];
 
-Object.keys(emojiIndex.emojis).forEach(key => {
+Object.keys(emojiIndex.emojis).forEach((key) => {
   let emoji = emojiIndex.emojis[key];
 
   // Emojis with skin tone modifiers are stored like this
@@ -40,22 +41,22 @@ Object.keys(emojiIndex.emojis).forEach(key => {
   shortcodeMap[emoji.native] = emoji.id;
 });
 
-const stripModifiers = unicode => {
-  skinTones.forEach(tone => {
+const stripModifiers = (unicode) => {
+  skinTones.forEach((tone) => {
     unicode = unicode.replace(tone, '');
   });
 
   return unicode;
 };
 
-Object.keys(emojiMap).forEach(key => {
+Object.keys(emojiMap).forEach((key) => {
   if (excluded.includes(key)) {
     delete emojiMap[key];
     return;
   }
 
   const normalizedKey = stripModifiers(key);
-  let shortcode       = shortcodeMap[normalizedKey];
+  let shortcode = shortcodeMap[normalizedKey];
 
   if (!shortcode) {
     shortcode = shortcodeMap[normalizedKey + '\uFE0F'];
@@ -81,7 +82,7 @@ Object.keys(emojiMap).forEach(key => {
   }
 });
 
-Object.keys(emojiIndex.emojis).forEach(key => {
+Object.keys(emojiIndex.emojis).forEach((key) => {
   let emoji = emojiIndex.emojis[key];
 
   // Emojis with skin tone modifiers are stored like this
@@ -93,9 +94,11 @@ Object.keys(emojiIndex.emojis).forEach(key => {
   let { short_names, search, unified } = emojiMartData.emojis[key];
 
   if (short_names[0] !== key) {
-    throw new Error('The compressor expects the first short_code to be the ' +
-      'key. It may need to be rewritten if the emoji change such that this ' +
-      'is no longer the case.');
+    throw new Error(
+      'The compressor expects the first short_code to be the ' +
+        'key. It may need to be rewritten if the emoji change such that this ' +
+        'is no longer the case.',
+    );
   }
 
   short_names = short_names.slice(1); // first short name can be inferred from the key
@@ -116,20 +119,22 @@ Object.keys(emojiIndex.emojis).forEach(key => {
 
 // JSON.parse/stringify is to emulate what @preval is doing and avoid any
 // inconsistent behavior in dev mode
-module.exports = JSON.parse(JSON.stringify([
-  shortCodesToEmojiData,
-  /*
-   * The property `skins` is not found in the current context.
-   * This could potentially lead to issues when interacting with modules or data structures
-   * that expect the presence of `skins` property.
-   * Currently, no definitions or references to `skins` property can be found in:
-   * - {@link node_modules/emoji-mart/dist/utils/data.js}
-   * - {@link node_modules/emoji-mart/data/all.json}
-   * - {@link app/javascript/mastodon/features/emoji/emoji_compressed.d.ts#Skins}
-   * Future refactorings or updates should consider adding definitions or handling for `skins` property.
-   */
-  emojiMartData.skins,
-  emojiMartData.categories,
-  emojiMartData.aliases,
-  emojisWithoutShortCodes,
-]));
+module.exports = JSON.parse(
+  JSON.stringify([
+    shortCodesToEmojiData,
+    /*
+     * The property `skins` is not found in the current context.
+     * This could potentially lead to issues when interacting with modules or data structures
+     * that expect the presence of `skins` property.
+     * Currently, no definitions or references to `skins` property can be found in:
+     * - {@link node_modules/emoji-mart/dist/utils/data.js}
+     * - {@link node_modules/emoji-mart/data/all.json}
+     * - {@link app/javascript/mastodon/features/emoji/emoji_compressed.d.ts#Skins}
+     * Future refactorings or updates should consider adding definitions or handling for `skins` property.
+     */
+    emojiMartData.skins,
+    emojiMartData.categories,
+    emojiMartData.aliases,
+    emojisWithoutShortCodes,
+  ]),
+);

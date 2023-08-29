@@ -5,7 +5,7 @@ const checkNotificationPromise = () => {
   try {
     // eslint-disable-next-line promise/valid-params, promise/catch-or-return
     Notification.requestPermission().then();
-  } catch(e) {
+  } catch (e) {
     return false;
   }
 
@@ -14,7 +14,7 @@ const checkNotificationPromise = () => {
 
 const handlePermission = (permission, callback) => {
   // Whatever the user answers, we make sure Chrome stores the information
-  if(!('permission' in Notification)) {
+  if (!('permission' in Notification)) {
     Notification.permission = permission;
   }
 
@@ -23,8 +23,12 @@ const handlePermission = (permission, callback) => {
 
 export const requestNotificationPermission = (callback) => {
   if (checkNotificationPromise()) {
-    Notification.requestPermission().then((permission) => handlePermission(permission, callback)).catch(console.warn);
+    Notification.requestPermission()
+      .then((permission) => handlePermission(permission, callback))
+      .catch(console.warn);
   } else {
-    Notification.requestPermission((permission) => handlePermission(permission, callback));
+    Notification.requestPermission((permission) =>
+      handlePermission(permission, callback),
+    );
   }
 };

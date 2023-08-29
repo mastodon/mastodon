@@ -11,28 +11,33 @@ import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import ColumnLink from 'mastodon/features/ui/components/column_link';
 
 const messages = defineMessages({
-  text: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
+  text: {
+    id: 'navigation_bar.follow_requests',
+    defaultMessage: 'Follow requests',
+  },
 });
 
-const mapStateToProps = state => ({
-  count: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
+const mapStateToProps = (state) => ({
+  count: state.getIn(
+    ['user_lists', 'follow_requests', 'items'],
+    ImmutableList(),
+  ).size,
 });
 
 class FollowRequestsColumnLink extends Component {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     count: PropTypes.number.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch } = this.props;
 
     dispatch(fetchFollowRequests());
   }
 
-  render () {
+  render() {
     const { count, intl } = this.props;
 
     if (count === 0) {
@@ -43,12 +48,17 @@ class FollowRequestsColumnLink extends Component {
       <ColumnLink
         transparent
         to='/follow_requests'
-        icon={<IconWithBadge className='column-link__icon' id='user-plus' count={count} />}
+        icon={
+          <IconWithBadge
+            className='column-link__icon'
+            id='user-plus'
+            count={count}
+          />
+        }
         text={intl.formatMessage(messages.text)}
       />
     );
   }
-
 }
 
 export default injectIntl(connect(mapStateToProps)(FollowRequestsColumnLink));

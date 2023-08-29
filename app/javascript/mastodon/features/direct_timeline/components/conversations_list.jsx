@@ -9,7 +9,6 @@ import ScrollableList from '../../../components/scrollable_list';
 import ConversationContainer from '../containers/conversation_container';
 
 export default class ConversationsList extends ImmutablePureComponent {
-
   static propTypes = {
     conversations: ImmutablePropTypes.list.isRequired,
     scrollKey: PropTypes.string.isRequired,
@@ -18,50 +17,67 @@ export default class ConversationsList extends ImmutablePureComponent {
     onLoadMore: PropTypes.func,
   };
 
-  getCurrentIndex = id => this.props.conversations.findIndex(x => x.get('id') === id);
+  getCurrentIndex = (id) =>
+    this.props.conversations.findIndex((x) => x.get('id') === id);
 
-  handleMoveUp = id => {
+  handleMoveUp = (id) => {
     const elementIndex = this.getCurrentIndex(id) - 1;
     this._selectChild(elementIndex, true);
   };
 
-  handleMoveDown = id => {
+  handleMoveDown = (id) => {
     const elementIndex = this.getCurrentIndex(id) + 1;
     this._selectChild(elementIndex, false);
   };
 
-  _selectChild (index, align_top) {
+  _selectChild(index, align_top) {
     const container = this.node.node;
-    const element = container.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
+    const element = container.querySelector(
+      `article:nth-of-type(${index + 1}) .focusable`,
+    );
 
     if (element) {
       if (align_top && container.scrollTop > element.offsetTop) {
         element.scrollIntoView(true);
-      } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
+      } else if (
+        !align_top &&
+        container.scrollTop + container.clientHeight <
+          element.offsetTop + element.offsetHeight
+      ) {
         element.scrollIntoView(false);
       }
       element.focus();
     }
   }
 
-  setRef = c => {
+  setRef = (c) => {
     this.node = c;
   };
 
-  handleLoadOlder = debounce(() => {
-    const last = this.props.conversations.last();
+  handleLoadOlder = debounce(
+    () => {
+      const last = this.props.conversations.last();
 
-    if (last && last.get('last_status')) {
-      this.props.onLoadMore(last.get('last_status'));
-    }
-  }, 300, { leading: true });
+      if (last && last.get('last_status')) {
+        this.props.onLoadMore(last.get('last_status'));
+      }
+    },
+    300,
+    { leading: true },
+  );
 
-  render () {
+  render() {
     const { conversations, isLoading, onLoadMore, ...other } = this.props;
 
     return (
-      <ScrollableList {...other} isLoading={isLoading} showLoading={isLoading && conversations.isEmpty()} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
-        {conversations.map(item => (
+      <ScrollableList
+        {...other}
+        isLoading={isLoading}
+        showLoading={isLoading && conversations.isEmpty()}
+        onLoadMore={onLoadMore && this.handleLoadOlder}
+        ref={this.setRef}
+      >
+        {conversations.map((item) => (
           <ConversationContainer
             key={item.get('id')}
             conversationId={item.get('id')}
@@ -73,5 +89,4 @@ export default class ConversationsList extends ImmutablePureComponent {
       </ScrollableList>
     );
   }
-
 }

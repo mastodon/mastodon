@@ -1,12 +1,12 @@
 import { saveSettings } from './settings';
 
-export const COLUMN_ADD           = 'COLUMN_ADD';
-export const COLUMN_REMOVE        = 'COLUMN_REMOVE';
-export const COLUMN_MOVE          = 'COLUMN_MOVE';
+export const COLUMN_ADD = 'COLUMN_ADD';
+export const COLUMN_REMOVE = 'COLUMN_REMOVE';
+export const COLUMN_MOVE = 'COLUMN_MOVE';
 export const COLUMN_PARAMS_CHANGE = 'COLUMN_PARAMS_CHANGE';
 
 export function addColumn(id, params) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: COLUMN_ADD,
       id,
@@ -18,7 +18,7 @@ export function addColumn(id, params) {
 }
 
 export function removeColumn(uuid) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: COLUMN_REMOVE,
       uuid,
@@ -29,7 +29,7 @@ export function removeColumn(uuid) {
 }
 
 export function moveColumn(uuid, direction) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: COLUMN_MOVE,
       uuid,
@@ -41,7 +41,7 @@ export function moveColumn(uuid, direction) {
 }
 
 export function changeColumnParams(uuid, path, value) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: COLUMN_PARAMS_CHANGE,
       uuid,

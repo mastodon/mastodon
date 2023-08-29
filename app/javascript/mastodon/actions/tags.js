@@ -2,32 +2,39 @@ import api, { getLinks } from '../api';
 
 export const HASHTAG_FETCH_REQUEST = 'HASHTAG_FETCH_REQUEST';
 export const HASHTAG_FETCH_SUCCESS = 'HASHTAG_FETCH_SUCCESS';
-export const HASHTAG_FETCH_FAIL    = 'HASHTAG_FETCH_FAIL';
+export const HASHTAG_FETCH_FAIL = 'HASHTAG_FETCH_FAIL';
 
-export const FOLLOWED_HASHTAGS_FETCH_REQUEST = 'FOLLOWED_HASHTAGS_FETCH_REQUEST';
-export const FOLLOWED_HASHTAGS_FETCH_SUCCESS = 'FOLLOWED_HASHTAGS_FETCH_SUCCESS';
-export const FOLLOWED_HASHTAGS_FETCH_FAIL    = 'FOLLOWED_HASHTAGS_FETCH_FAIL';
+export const FOLLOWED_HASHTAGS_FETCH_REQUEST =
+  'FOLLOWED_HASHTAGS_FETCH_REQUEST';
+export const FOLLOWED_HASHTAGS_FETCH_SUCCESS =
+  'FOLLOWED_HASHTAGS_FETCH_SUCCESS';
+export const FOLLOWED_HASHTAGS_FETCH_FAIL = 'FOLLOWED_HASHTAGS_FETCH_FAIL';
 
-export const FOLLOWED_HASHTAGS_EXPAND_REQUEST = 'FOLLOWED_HASHTAGS_EXPAND_REQUEST';
-export const FOLLOWED_HASHTAGS_EXPAND_SUCCESS = 'FOLLOWED_HASHTAGS_EXPAND_SUCCESS';
-export const FOLLOWED_HASHTAGS_EXPAND_FAIL    = 'FOLLOWED_HASHTAGS_EXPAND_FAIL';
+export const FOLLOWED_HASHTAGS_EXPAND_REQUEST =
+  'FOLLOWED_HASHTAGS_EXPAND_REQUEST';
+export const FOLLOWED_HASHTAGS_EXPAND_SUCCESS =
+  'FOLLOWED_HASHTAGS_EXPAND_SUCCESS';
+export const FOLLOWED_HASHTAGS_EXPAND_FAIL = 'FOLLOWED_HASHTAGS_EXPAND_FAIL';
 
 export const HASHTAG_FOLLOW_REQUEST = 'HASHTAG_FOLLOW_REQUEST';
 export const HASHTAG_FOLLOW_SUCCESS = 'HASHTAG_FOLLOW_SUCCESS';
-export const HASHTAG_FOLLOW_FAIL    = 'HASHTAG_FOLLOW_FAIL';
+export const HASHTAG_FOLLOW_FAIL = 'HASHTAG_FOLLOW_FAIL';
 
 export const HASHTAG_UNFOLLOW_REQUEST = 'HASHTAG_UNFOLLOW_REQUEST';
 export const HASHTAG_UNFOLLOW_SUCCESS = 'HASHTAG_UNFOLLOW_SUCCESS';
-export const HASHTAG_UNFOLLOW_FAIL    = 'HASHTAG_UNFOLLOW_FAIL';
+export const HASHTAG_UNFOLLOW_FAIL = 'HASHTAG_UNFOLLOW_FAIL';
 
-export const fetchHashtag = name => (dispatch, getState) => {
+export const fetchHashtag = (name) => (dispatch, getState) => {
   dispatch(fetchHashtagRequest());
 
-  api(getState).get(`/api/v1/tags/${name}`).then(({ data }) => {
-    dispatch(fetchHashtagSuccess(name, data));
-  }).catch(err => {
-    dispatch(fetchHashtagFail(err));
-  });
+  api(getState)
+    .get(`/api/v1/tags/${name}`)
+    .then(({ data }) => {
+      dispatch(fetchHashtagSuccess(name, data));
+    })
+    .catch((err) => {
+      dispatch(fetchHashtagFail(err));
+    });
 };
 
 export const fetchHashtagRequest = () => ({
@@ -40,7 +47,7 @@ export const fetchHashtagSuccess = (name, tag) => ({
   tag,
 });
 
-export const fetchHashtagFail = error => ({
+export const fetchHashtagFail = (error) => ({
   type: HASHTAG_FETCH_FAIL,
   error,
 });
@@ -48,12 +55,17 @@ export const fetchHashtagFail = error => ({
 export const fetchFollowedHashtags = () => (dispatch, getState) => {
   dispatch(fetchFollowedHashtagsRequest());
 
-  api(getState).get('/api/v1/followed_tags').then(response => {
-    const next = getLinks(response).refs.find(link => link.rel === 'next');
-    dispatch(fetchFollowedHashtagsSuccess(response.data, next ? next.uri : null));
-  }).catch(err => {
-    dispatch(fetchFollowedHashtagsFail(err));
-  });
+  api(getState)
+    .get('/api/v1/followed_tags')
+    .then((response) => {
+      const next = getLinks(response).refs.find((link) => link.rel === 'next');
+      dispatch(
+        fetchFollowedHashtagsSuccess(response.data, next ? next.uri : null),
+      );
+    })
+    .catch((err) => {
+      dispatch(fetchFollowedHashtagsFail(err));
+    });
 };
 
 export function fetchFollowedHashtagsRequest() {
@@ -87,12 +99,19 @@ export function expandFollowedHashtags() {
 
     dispatch(expandFollowedHashtagsRequest());
 
-    api(getState).get(url).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(expandFollowedHashtagsSuccess(response.data, next ? next.uri : null));
-    }).catch(error => {
-      dispatch(expandFollowedHashtagsFail(error));
-    });
+    api(getState)
+      .get(url)
+      .then((response) => {
+        const next = getLinks(response).refs.find(
+          (link) => link.rel === 'next',
+        );
+        dispatch(
+          expandFollowedHashtagsSuccess(response.data, next ? next.uri : null),
+        );
+      })
+      .catch((error) => {
+        dispatch(expandFollowedHashtagsFail(error));
+      });
   };
 }
 
@@ -117,17 +136,20 @@ export function expandFollowedHashtagsFail(error) {
   };
 }
 
-export const followHashtag = name => (dispatch, getState) => {
+export const followHashtag = (name) => (dispatch, getState) => {
   dispatch(followHashtagRequest(name));
 
-  api(getState).post(`/api/v1/tags/${name}/follow`).then(({ data }) => {
-    dispatch(followHashtagSuccess(name, data));
-  }).catch(err => {
-    dispatch(followHashtagFail(name, err));
-  });
+  api(getState)
+    .post(`/api/v1/tags/${name}/follow`)
+    .then(({ data }) => {
+      dispatch(followHashtagSuccess(name, data));
+    })
+    .catch((err) => {
+      dispatch(followHashtagFail(name, err));
+    });
 };
 
-export const followHashtagRequest = name => ({
+export const followHashtagRequest = (name) => ({
   type: HASHTAG_FOLLOW_REQUEST,
   name,
 });
@@ -144,17 +166,20 @@ export const followHashtagFail = (name, error) => ({
   error,
 });
 
-export const unfollowHashtag = name => (dispatch, getState) => {
+export const unfollowHashtag = (name) => (dispatch, getState) => {
   dispatch(unfollowHashtagRequest(name));
 
-  api(getState).post(`/api/v1/tags/${name}/unfollow`).then(({ data }) => {
-    dispatch(unfollowHashtagSuccess(name, data));
-  }).catch(err => {
-    dispatch(unfollowHashtagFail(name, err));
-  });
+  api(getState)
+    .post(`/api/v1/tags/${name}/unfollow`)
+    .then(({ data }) => {
+      dispatch(unfollowHashtagSuccess(name, data));
+    })
+    .catch((err) => {
+      dispatch(unfollowHashtagFail(name, err));
+    });
 };
 
-export const unfollowHashtagRequest = name => ({
+export const unfollowHashtagRequest = (name) => ({
   type: HASHTAG_UNFOLLOW_REQUEST,
   name,
 });

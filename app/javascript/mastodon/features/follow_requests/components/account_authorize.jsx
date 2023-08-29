@@ -17,7 +17,6 @@ const messages = defineMessages({
 });
 
 class AccountAuthorize extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     onAuthorize: PropTypes.func.isRequired,
@@ -25,29 +24,48 @@ class AccountAuthorize extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  render () {
+  render() {
     const { intl, account, onAuthorize, onReject } = this.props;
     const content = { __html: account.get('note_emojified') };
 
     return (
       <div className='account-authorize__wrapper'>
         <div className='account-authorize'>
-          <Link to={`/@${account.get('acct')}`} className='detailed-status__display-name'>
-            <div className='account-authorize__avatar'><Avatar account={account} size={48} /></div>
+          <Link
+            to={`/@${account.get('acct')}`}
+            className='detailed-status__display-name'
+          >
+            <div className='account-authorize__avatar'>
+              <Avatar account={account} size={48} />
+            </div>
             <DisplayName account={account} />
           </Link>
 
-          <div className='account__header__content translate' dangerouslySetInnerHTML={content} />
+          <div
+            className='account__header__content translate'
+            dangerouslySetInnerHTML={content}
+          />
         </div>
 
         <div className='account--panel'>
-          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.authorize)} icon='check' onClick={onAuthorize} /></div>
-          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.reject)} icon='times' onClick={onReject} /></div>
+          <div className='account--panel__button'>
+            <IconButton
+              title={intl.formatMessage(messages.authorize)}
+              icon='check'
+              onClick={onAuthorize}
+            />
+          </div>
+          <div className='account--panel__button'>
+            <IconButton
+              title={intl.formatMessage(messages.reject)}
+              icon='times'
+              onClick={onReject}
+            />
+          </div>
         </div>
       </div>
     );
   }
-
 }
 
 export default injectIntl(AccountAuthorize);

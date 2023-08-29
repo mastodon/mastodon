@@ -7,12 +7,12 @@ import { compareId } from '../compare_id';
 
 export const MARKERS_FETCH_REQUEST = 'MARKERS_FETCH_REQUEST';
 export const MARKERS_FETCH_SUCCESS = 'MARKERS_FETCH_SUCCESS';
-export const MARKERS_FETCH_FAIL    = 'MARKERS_FETCH_FAIL';
+export const MARKERS_FETCH_FAIL = 'MARKERS_FETCH_FAIL';
 export const MARKERS_SUBMIT_SUCCESS = 'MARKERS_SUBMIT_SUCCESS';
 
 export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
   const accessToken = getState().getIn(['meta', 'access_token'], '');
-  const params      = _buildParams(getState());
+  const params = _buildParams(getState());
 
   if (Object.keys(params).length === 0 || accessToken === '') {
     return;
@@ -27,7 +27,7 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(params),
     });
@@ -66,16 +66,24 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
 const _buildParams = (state) => {
   const params = {};
 
-  const lastHomeId         = state.getIn(['timelines', 'home', 'items'], ImmutableList()).find(item => item !== null);
+  const lastHomeId = state
+    .getIn(['timelines', 'home', 'items'], ImmutableList())
+    .find((item) => item !== null);
   const lastNotificationId = state.getIn(['notifications', 'lastReadId']);
 
-  if (lastHomeId && compareId(lastHomeId, state.getIn(['markers', 'home'])) > 0) {
+  if (
+    lastHomeId &&
+    compareId(lastHomeId, state.getIn(['markers', 'home'])) > 0
+  ) {
     params.home = {
       last_read_id: lastHomeId,
     };
   }
 
-  if (lastNotificationId && compareId(lastNotificationId, state.getIn(['markers', 'notifications'])) > 0) {
+  if (
+    lastNotificationId &&
+    compareId(lastNotificationId, state.getIn(['markers', 'notifications'])) > 0
+  ) {
     params.notifications = {
       last_read_id: lastNotificationId,
     };
@@ -84,18 +92,25 @@ const _buildParams = (state) => {
   return params;
 };
 
-const debouncedSubmitMarkers = debounce((dispatch, getState) => {
-  const accessToken = getState().getIn(['meta', 'access_token'], '');
-  const params      = _buildParams(getState());
+const debouncedSubmitMarkers = debounce(
+  (dispatch, getState) => {
+    const accessToken = getState().getIn(['meta', 'access_token'], '');
+    const params = _buildParams(getState());
 
-  if (Object.keys(params).length === 0 || accessToken === '') {
-    return;
-  }
+    if (Object.keys(params).length === 0 || accessToken === '') {
+      return;
+    }
 
-  api(getState).post('/api/v1/markers', params).then(() => {
-    dispatch(submitMarkersSuccess(params));
-  }).catch(() => {});
-}, 300000, { leading: true, trailing: true });
+    api(getState)
+      .post('/api/v1/markers', params)
+      .then(() => {
+        dispatch(submitMarkersSuccess(params));
+      })
+      .catch(() => {});
+  },
+  300000,
+  { leading: true, trailing: true },
+);
 
 export function submitMarkersSuccess({ home, notifications }) {
   return {
@@ -106,7 +121,8 @@ export function submitMarkersSuccess({ home, notifications }) {
 }
 
 export function submitMarkers(params = {}) {
-  const result = (dispatch, getState) => debouncedSubmitMarkers(dispatch, getState);
+  const result = (dispatch, getState) =>
+    debouncedSubmitMarkers(dispatch, getState);
 
   if (params.immediate === true) {
     debouncedSubmitMarkers.flush();
@@ -120,11 +136,14 @@ export const fetchMarkers = () => (dispatch, getState) => {
 
   dispatch(fetchMarkersRequest());
 
-  api(getState).get('/api/v1/markers', { params }).then(response => {
-    dispatch(fetchMarkersSuccess(response.data));
-  }).catch(error => {
-    dispatch(fetchMarkersFail(error));
-  });
+  api(getState)
+    .get('/api/v1/markers', { params })
+    .then((response) => {
+      dispatch(fetchMarkersSuccess(response.data));
+    })
+    .catch((error) => {
+      dispatch(fetchMarkersFail(error));
+    });
 };
 
 export function fetchMarkersRequest() {

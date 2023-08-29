@@ -11,31 +11,37 @@ import { fetchLists } from 'mastodon/actions/lists';
 
 import ColumnLink from './column_link';
 
-const getOrderedLists = createSelector([state => state.get('lists')], lists => {
-  if (!lists) {
-    return lists;
-  }
+const getOrderedLists = createSelector(
+  [(state) => state.get('lists')],
+  (lists) => {
+    if (!lists) {
+      return lists;
+    }
 
-  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title'))).take(4);
-});
+    return lists
+      .toList()
+      .filter((item) => !!item)
+      .sort((a, b) => a.get('title').localeCompare(b.get('title')))
+      .take(4);
+  },
+);
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   lists: getOrderedLists(state),
 });
 
 class ListPanel extends ImmutablePureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     lists: ImmutablePropTypes.list,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchLists());
   }
 
-  render () {
+  render() {
     const { lists } = this.props;
 
     if (!lists || lists.isEmpty()) {
@@ -46,13 +52,19 @@ class ListPanel extends ImmutablePureComponent {
       <div className='list-panel'>
         <hr />
 
-        {lists.map(list => (
-          <ColumnLink icon='list-ul' key={list.get('id')} strict text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
+        {lists.map((list) => (
+          <ColumnLink
+            icon='list-ul'
+            key={list.get('id')}
+            strict
+            text={list.get('title')}
+            to={`/lists/${list.get('id')}`}
+            transparent
+          />
         ))}
       </div>
     );
   }
-
 }
 
 export default withRouter(connect(mapStateToProps)(ListPanel));

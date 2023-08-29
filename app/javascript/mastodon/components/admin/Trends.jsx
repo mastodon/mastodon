@@ -9,7 +9,6 @@ import api from 'mastodon/api';
 import Hashtag from 'mastodon/components/hashtag';
 
 export default class Trends extends PureComponent {
-
   static propTypes = {
     limit: PropTypes.number.isRequired,
   };
@@ -19,20 +18,23 @@ export default class Trends extends PureComponent {
     data: null,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { limit } = this.props;
 
-    api().get('/api/v1/admin/trends/tags', { params: { limit } }).then(res => {
-      this.setState({
-        loading: false,
-        data: res.data,
+    api()
+      .get('/api/v1/admin/trends/tags', { params: { limit } })
+      .then((res) => {
+        this.setState({
+          loading: false,
+          data: res.data,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    }).catch(err => {
-      console.error(err);
-    });
   }
 
-  render () {
+  render() {
     const { limit } = this.props;
     const { loading, data } = this.state;
 
@@ -49,15 +51,27 @@ export default class Trends extends PureComponent {
     } else {
       content = (
         <div>
-          {data.map(hashtag => (
+          {data.map((hashtag) => (
             <Hashtag
               key={hashtag.name}
               name={hashtag.name}
-              to={hashtag.id === undefined ? undefined : `/admin/tags/${hashtag.id}`}
-              people={hashtag.history[0].accounts * 1 + hashtag.history[1].accounts * 1}
+              to={
+                hashtag.id === undefined
+                  ? undefined
+                  : `/admin/tags/${hashtag.id}`
+              }
+              people={
+                hashtag.history[0].accounts * 1 +
+                hashtag.history[1].accounts * 1
+              }
               uses={hashtag.history[0].uses * 1 + hashtag.history[1].uses * 1}
-              history={hashtag.history.reverse().map(day => day.uses)}
-              className={classNames(hashtag.requires_review && 'trends__item--requires-review', !hashtag.trendable && !hashtag.requires_review && 'trends__item--disabled')}
+              history={hashtag.history.reverse().map((day) => day.uses)}
+              className={classNames(
+                hashtag.requires_review && 'trends__item--requires-review',
+                !hashtag.trendable &&
+                  !hashtag.requires_review &&
+                  'trends__item--disabled',
+              )}
             />
           ))}
         </div>
@@ -66,11 +80,15 @@ export default class Trends extends PureComponent {
 
     return (
       <div className='trends trends--compact'>
-        <h4><FormattedMessage id='trends.trending_now' defaultMessage='Trending now' /></h4>
+        <h4>
+          <FormattedMessage
+            id='trends.trending_now'
+            defaultMessage='Trending now'
+          />
+        </h4>
 
         {content}
       </div>
     );
   }
-
 }

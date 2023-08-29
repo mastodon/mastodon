@@ -8,20 +8,22 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
-import { CircularProgress } from "./circular_progress";
+import { CircularProgress } from './circular_progress';
 import { IconButton } from './icon_button';
 
-const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
+const listenerOptions = supportsPassiveEvents
+  ? { passive: true, capture: true }
+  : true;
 let id = 0;
 
 class DropdownMenu extends PureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
 
   static propTypes = {
-    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]).isRequired,
+    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list])
+      .isRequired,
     loading: PropTypes.bool,
     scrollable: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
@@ -36,65 +38,79 @@ class DropdownMenu extends PureComponent {
     style: {},
   };
 
-  handleDocumentClick = e => {
+  handleDocumentClick = (e) => {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
       e.stopPropagation();
     }
   };
 
-  componentDidMount () {
-    document.addEventListener('click', this.handleDocumentClick, { capture: true });
+  componentDidMount() {
+    document.addEventListener('click', this.handleDocumentClick, {
+      capture: true,
+    });
     document.addEventListener('keydown', this.handleKeyDown, { capture: true });
-    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    document.addEventListener(
+      'touchend',
+      this.handleDocumentClick,
+      listenerOptions,
+    );
 
     if (this.focusedItem && this.props.openedViaKeyboard) {
       this.focusedItem.focus({ preventScroll: true });
     }
   }
 
-  componentWillUnmount () {
-    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
-    document.removeEventListener('keydown', this.handleKeyDown, { capture: true });
-    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleDocumentClick, {
+      capture: true,
+    });
+    document.removeEventListener('keydown', this.handleKeyDown, {
+      capture: true,
+    });
+    document.removeEventListener(
+      'touchend',
+      this.handleDocumentClick,
+      listenerOptions,
+    );
   }
 
-  setRef = c => {
+  setRef = (c) => {
     this.node = c;
   };
 
-  setFocusRef = c => {
+  setFocusRef = (c) => {
     this.focusedItem = c;
   };
 
-  handleKeyDown = e => {
+  handleKeyDown = (e) => {
     const items = Array.from(this.node.querySelectorAll('a, button'));
     const index = items.indexOf(document.activeElement);
     let element = null;
 
-    switch(e.key) {
-    case 'ArrowDown':
-      element = items[index+1] || items[0];
-      break;
-    case 'ArrowUp':
-      element = items[index-1] || items[items.length-1];
-      break;
-    case 'Tab':
-      if (e.shiftKey) {
-        element = items[index-1] || items[items.length-1];
-      } else {
-        element = items[index+1] || items[0];
-      }
-      break;
-    case 'Home':
-      element = items[0];
-      break;
-    case 'End':
-      element = items[items.length-1];
-      break;
-    case 'Escape':
-      this.props.onClose();
-      break;
+    switch (e.key) {
+      case 'ArrowDown':
+        element = items[index + 1] || items[0];
+        break;
+      case 'ArrowUp':
+        element = items[index - 1] || items[items.length - 1];
+        break;
+      case 'Tab':
+        if (e.shiftKey) {
+          element = items[index - 1] || items[items.length - 1];
+        } else {
+          element = items[index + 1] || items[0];
+        }
+        break;
+      case 'Home':
+        element = items[0];
+        break;
+      case 'End':
+        element = items[items.length - 1];
+        break;
+      case 'Escape':
+        this.props.onClose();
+        break;
     }
 
     if (element) {
@@ -104,13 +120,13 @@ class DropdownMenu extends PureComponent {
     }
   };
 
-  handleItemKeyPress = e => {
+  handleItemKeyPress = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       this.handleClick(e);
     }
   };
 
-  handleClick = e => {
+  handleClick = (e) => {
     const { onItemClick } = this.props;
     onItemClick(e);
   };
@@ -123,24 +139,43 @@ class DropdownMenu extends PureComponent {
     const { text, href = '#', target = '_blank', method, dangerous } = option;
 
     return (
-      <li className={classNames('dropdown-menu__item', { 'dropdown-menu__item--dangerous': dangerous })} key={`${text}-${i}`}>
-        <a href={href} target={target} data-method={method} rel='noopener noreferrer' role='button' tabIndex={0} ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
+      <li
+        className={classNames('dropdown-menu__item', {
+          'dropdown-menu__item--dangerous': dangerous,
+        })}
+        key={`${text}-${i}`}
+      >
+        <a
+          href={href}
+          target={target}
+          data-method={method}
+          rel='noopener noreferrer'
+          role='button'
+          tabIndex={0}
+          ref={i === 0 ? this.setFocusRef : null}
+          onClick={this.handleClick}
+          onKeyPress={this.handleItemKeyPress}
+          data-index={i}
+        >
           {text}
         </a>
       </li>
     );
   };
 
-  render () {
+  render() {
     const { items, scrollable, renderHeader, loading } = this.props;
 
     let renderItem = this.props.renderItem || this.renderItem;
 
     return (
-      <div className={classNames('dropdown-menu__container', { 'dropdown-menu__container--loading': loading })} ref={this.setRef}>
-        {loading && (
-          <CircularProgress size={30} strokeWidth={3.5} />
-        )}
+      <div
+        className={classNames('dropdown-menu__container', {
+          'dropdown-menu__container--loading': loading,
+        })}
+        ref={this.setRef}
+      >
+        {loading && <CircularProgress size={30} strokeWidth={3.5} />}
 
         {!loading && renderHeader && (
           <div className='dropdown-menu__container__header'>
@@ -149,18 +184,25 @@ class DropdownMenu extends PureComponent {
         )}
 
         {!loading && (
-          <ul className={classNames('dropdown-menu__container__list', { 'dropdown-menu__container__list--scrollable': scrollable })}>
-            {items.map((option, i) => renderItem(option, i, { onClick: this.handleClick, onKeyPress: this.handleItemKeyPress }))}
+          <ul
+            className={classNames('dropdown-menu__container__list', {
+              'dropdown-menu__container__list--scrollable': scrollable,
+            })}
+          >
+            {items.map((option, i) =>
+              renderItem(option, i, {
+                onClick: this.handleClick,
+                onKeyPress: this.handleItemKeyPress,
+              }),
+            )}
           </ul>
         )}
       </div>
     );
   }
-
 }
 
 export default class Dropdown extends PureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -168,7 +210,8 @@ export default class Dropdown extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     icon: PropTypes.string,
-    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]).isRequired,
+    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list])
+      .isRequired,
     loading: PropTypes.bool,
     size: PropTypes.number,
     title: PropTypes.string,
@@ -216,26 +259,26 @@ export default class Dropdown extends PureComponent {
   };
 
   handleButtonKeyDown = (e) => {
-    switch(e.key) {
-    case ' ':
-    case 'Enter':
-      this.handleMouseDown();
-      break;
+    switch (e.key) {
+      case ' ':
+      case 'Enter':
+        this.handleMouseDown();
+        break;
     }
   };
 
   handleKeyPress = (e) => {
-    switch(e.key) {
-    case ' ':
-    case 'Enter':
-      this.handleClick(e);
-      e.stopPropagation();
-      e.preventDefault();
-      break;
+    switch (e.key) {
+      case ' ':
+      case 'Enter':
+        this.handleClick(e);
+        e.stopPropagation();
+        e.preventDefault();
+        break;
     }
   };
 
-  handleItemClick = e => {
+  handleItemClick = (e) => {
     const { onItemClick } = this.props;
     const i = Number(e.currentTarget.getAttribute('data-index'));
     const item = this.props.items[i];
@@ -254,7 +297,7 @@ export default class Dropdown extends PureComponent {
     }
   };
 
-  setTargetRef = c => {
+  setTargetRef = (c) => {
     this.target = c;
   };
 
@@ -272,7 +315,7 @@ export default class Dropdown extends PureComponent {
     this.handleClose();
   };
 
-  render () {
+  render() {
     const {
       icon,
       items,
@@ -290,12 +333,14 @@ export default class Dropdown extends PureComponent {
 
     const open = this.state.id === openDropdownId;
 
-    const button = children ? cloneElement(Children.only(children), {
-      onClick: this.handleClick,
-      onMouseDown: this.handleMouseDown,
-      onKeyDown: this.handleButtonKeyDown,
-      onKeyPress: this.handleKeyPress,
-    }) : (
+    const button = children ? (
+      cloneElement(Children.only(children), {
+        onClick: this.handleClick,
+        onMouseDown: this.handleMouseDown,
+        onKeyDown: this.handleButtonKeyDown,
+        onKeyPress: this.handleKeyPress,
+      })
+    ) : (
       <IconButton
         icon={!open ? icon : 'close'}
         title={title}
@@ -311,14 +356,22 @@ export default class Dropdown extends PureComponent {
 
     return (
       <>
-        <span ref={this.setTargetRef}>
-          {button}
-        </span>
-        <Overlay show={open} offset={[5, 5]} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+        <span ref={this.setTargetRef}>{button}</span>
+        <Overlay
+          show={open}
+          offset={[5, 5]}
+          placement={'bottom'}
+          flip
+          target={this.findTarget}
+          popperConfig={{ strategy: 'fixed' }}
+        >
           {({ props, arrowProps, placement }) => (
             <div {...props}>
               <div className={`dropdown-animation dropdown-menu ${placement}`}>
-                <div className={`dropdown-menu__arrow ${placement}`} {...arrowProps} />
+                <div
+                  className={`dropdown-menu__arrow ${placement}`}
+                  {...arrowProps}
+                />
                 <DropdownMenu
                   items={items}
                   loading={loading}
@@ -336,5 +389,4 @@ export default class Dropdown extends PureComponent {
       </>
     );
   }
-
 }

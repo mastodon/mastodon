@@ -14,7 +14,6 @@ const messages = defineMessages({
 });
 
 class ImageModal extends PureComponent {
-
   static propTypes = {
     src: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
@@ -27,12 +26,12 @@ class ImageModal extends PureComponent {
   };
 
   toggleNavigation = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       navigationHidden: !prevState.navigationHidden,
     }));
   };
 
-  render () {
+  render() {
     const { intl, src, alt, onClose } = this.props;
     const { navigationHidden } = this.state;
 
@@ -42,7 +41,11 @@ class ImageModal extends PureComponent {
 
     return (
       <div className='modal-root__modal media-modal'>
-        <div className='media-modal__closer' role='presentation' onClick={onClose} >
+        <div
+          className='media-modal__closer'
+          role='presentation'
+          onClick={onClose}
+        >
           <ImageLoader
             src={src}
             width={400}
@@ -53,12 +56,17 @@ class ImageModal extends PureComponent {
         </div>
 
         <div className={navigationClassName}>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={40} />
+          <IconButton
+            className='media-modal__close'
+            title={intl.formatMessage(messages.close)}
+            icon='times'
+            onClick={onClose}
+            size={40}
+          />
         </div>
       </div>
     );
   }
-
 }
 
 export default injectIntl(ImageModal);

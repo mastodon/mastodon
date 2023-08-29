@@ -8,7 +8,6 @@ const iconStyle = {
 };
 
 export default class TextIconButton extends PureComponent {
-
   static propTypes = {
     label: PropTypes.string.isRequired,
     title: PropTypes.string,
@@ -17,7 +16,7 @@ export default class TextIconButton extends PureComponent {
     ariaControls: PropTypes.string,
   };
 
-  render () {
+  render() {
     const { label, title, active, ariaControls } = this.props;
 
     return (
@@ -28,11 +27,11 @@ export default class TextIconButton extends PureComponent {
         className={`text-icon-button ${active ? 'active' : ''}`}
         aria-expanded={active}
         onClick={this.props.onClick}
-        aria-controls={ariaControls} style={iconStyle}
+        aria-controls={ariaControls}
+        style={iconStyle}
       >
         {label}
       </button>
     );
   }
-
 }

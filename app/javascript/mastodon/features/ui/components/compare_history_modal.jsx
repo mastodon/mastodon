@@ -20,19 +20,18 @@ const mapStateToProps = (state, { statusId }) => ({
   versions: state.getIn(['history', statusId, 'items']),
 });
 
-const mapDispatchToProps = dispatch => ({
-
+const mapDispatchToProps = (dispatch) => ({
   onClose() {
-    dispatch(closeModal({
-      modalType: undefined,
-      ignoreFocus: false,
-    }));
+    dispatch(
+      closeModal({
+        modalType: undefined,
+        ignoreFocus: false,
+      }),
+    );
   },
-
 });
 
 class CompareHistoryModal extends PureComponent {
-
   static propTypes = {
     onClose: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
@@ -41,7 +40,7 @@ class CompareHistoryModal extends PureComponent {
     versions: ImmutablePropTypes.list.isRequired,
   };
 
-  render () {
+  render() {
     const { index, versions, language, onClose } = this.props;
     const currentVersion = versions.get(index);
 
@@ -50,22 +49,49 @@ class CompareHistoryModal extends PureComponent {
       return obj;
     }, {});
 
-    const content = { __html: emojify(currentVersion.get('content'), emojiMap) };
-    const spoilerContent = { __html: emojify(escapeTextContentForBrowser(currentVersion.get('spoiler_text')), emojiMap) };
+    const content = {
+      __html: emojify(currentVersion.get('content'), emojiMap),
+    };
+    const spoilerContent = {
+      __html: emojify(
+        escapeTextContentForBrowser(currentVersion.get('spoiler_text')),
+        emojiMap,
+      ),
+    };
 
-    const formattedDate = <RelativeTimestamp timestamp={currentVersion.get('created_at')} short={false} />;
-    const formattedName = <InlineAccount accountId={currentVersion.get('account')} />;
+    const formattedDate = (
+      <RelativeTimestamp
+        timestamp={currentVersion.get('created_at')}
+        short={false}
+      />
+    );
+    const formattedName = (
+      <InlineAccount accountId={currentVersion.get('account')} />
+    );
 
     const label = currentVersion.get('original') ? (
-      <FormattedMessage id='status.history.created' defaultMessage='{name} created {date}' values={{ name: formattedName, date: formattedDate }} />
+      <FormattedMessage
+        id='status.history.created'
+        defaultMessage='{name} created {date}'
+        values={{ name: formattedName, date: formattedDate }}
+      />
     ) : (
-      <FormattedMessage id='status.history.edited' defaultMessage='{name} edited {date}' values={{ name: formattedName, date: formattedDate }} />
+      <FormattedMessage
+        id='status.history.edited'
+        defaultMessage='{name} edited {date}'
+        values={{ name: formattedName, date: formattedDate }}
+      />
     );
 
     return (
       <div className='modal-root__modal compare-history-modal'>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' icon='times' onClick={onClose} size={20} />
+          <IconButton
+            className='report-modal__close'
+            icon='times'
+            onClick={onClose}
+            size={20}
+          />
           {label}
         </div>
 
@@ -73,23 +99,36 @@ class CompareHistoryModal extends PureComponent {
           <div className='status__content'>
             {currentVersion.get('spoiler_text').length > 0 && (
               <>
-                <div className='translate' dangerouslySetInnerHTML={spoilerContent} lang={language} />
+                <div
+                  className='translate'
+                  dangerouslySetInnerHTML={spoilerContent}
+                  lang={language}
+                />
                 <hr />
               </>
             )}
 
-            <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} lang={language} />
+            <div
+              className='status__content__text status__content__text--visible translate'
+              dangerouslySetInnerHTML={content}
+              lang={language}
+            />
 
             {!!currentVersion.get('poll') && (
               <div className='poll'>
                 <ul>
-                  {currentVersion.getIn(['poll', 'options']).map(option => (
+                  {currentVersion.getIn(['poll', 'options']).map((option) => (
                     <li key={option.get('title')}>
                       <span className='poll__input disabled' />
 
                       <span
                         className='poll__option__text translate'
-                        dangerouslySetInnerHTML={{ __html: emojify(escapeTextContentForBrowser(option.get('title')), emojiMap) }}
+                        dangerouslySetInnerHTML={{
+                          __html: emojify(
+                            escapeTextContentForBrowser(option.get('title')),
+                            emojiMap,
+                          ),
+                        }}
                         lang={language}
                       />
                     </li>
@@ -104,7 +143,9 @@ class CompareHistoryModal extends PureComponent {
       </div>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompareHistoryModal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CompareHistoryModal);

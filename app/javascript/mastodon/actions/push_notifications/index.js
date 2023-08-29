@@ -2,7 +2,7 @@ import { saveSettings } from './registerer';
 import { setAlerts } from './setter';
 
 export function changeAlerts(path, value) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(setAlerts(path, value));
     dispatch(saveSettings());
   };

@@ -6,18 +6,17 @@ import { connect } from 'react-redux';
 import { fetchServer } from 'mastodon/actions/server';
 import { domain } from 'mastodon/initial_state';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   message: state.getIn(['server', 'server', 'registrations', 'message']),
 });
 
 class ClosedRegistrationsModal extends ImmutablePureComponent {
-
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchServer());
   }
 
-  render () {
+  render() {
     let closedRegistrationsMessage;
 
     if (this.props.message) {
@@ -42,7 +41,12 @@ class ClosedRegistrationsModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal interaction-modal'>
         <div className='interaction-modal__lead'>
-          <h3><FormattedMessage id='closed_registrations_modal.title' defaultMessage='Signing up on Mastodon' /></h3>
+          <h3>
+            <FormattedMessage
+              id='closed_registrations_modal.title'
+              defaultMessage='Signing up on Mastodon'
+            />
+          </h3>
           <p>
             <FormattedMessage
               id='closed_registrations_modal.preamble'
@@ -53,25 +57,42 @@ class ClosedRegistrationsModal extends ImmutablePureComponent {
 
         <div className='interaction-modal__choices'>
           <div className='interaction-modal__choices__choice'>
-            <h3><FormattedMessage id='interaction_modal.on_this_server' defaultMessage='On this server' /></h3>
+            <h3>
+              <FormattedMessage
+                id='interaction_modal.on_this_server'
+                defaultMessage='On this server'
+              />
+            </h3>
             {closedRegistrationsMessage}
           </div>
 
           <div className='interaction-modal__choices__choice'>
-            <h3><FormattedMessage id='interaction_modal.on_another_server' defaultMessage='On a different server' /></h3>
+            <h3>
+              <FormattedMessage
+                id='interaction_modal.on_another_server'
+                defaultMessage='On a different server'
+              />
+            </h3>
             <p className='prose'>
               <FormattedMessage
                 id='closed_registrations.other_server_instructions'
                 defaultMessage='Since Mastodon is decentralized, you can create an account on another server and still interact with this one.'
               />
             </p>
-            <a href='https://joinmastodon.org/servers' className='button button--block'><FormattedMessage id='closed_registrations_modal.find_another_server' defaultMessage='Find another server' /></a>
+            <a
+              href='https://joinmastodon.org/servers'
+              className='button button--block'
+            >
+              <FormattedMessage
+                id='closed_registrations_modal.find_another_server'
+                defaultMessage='Find another server'
+              />
+            </a>
           </div>
         </div>
       </div>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(ClosedRegistrationsModal);

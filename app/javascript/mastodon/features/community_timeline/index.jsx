@@ -26,9 +26,15 @@ const messages = defineMessages({
 const mapStateToProps = (state, { columnId }) => {
   const uuid = columnId;
   const columns = state.getIn(['settings', 'columns']);
-  const index = columns.findIndex(c => c.get('uuid') === uuid);
-  const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'community', 'other', 'onlyMedia']);
-  const timelineState = state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`]);
+  const index = columns.findIndex((c) => c.get('uuid') === uuid);
+  const onlyMedia =
+    columnId && index >= 0
+      ? columns.get(index).getIn(['params', 'other', 'onlyMedia'])
+      : state.getIn(['settings', 'community', 'other', 'onlyMedia']);
+  const timelineState = state.getIn([
+    'timelines',
+    `community${onlyMedia ? ':media' : ''}`,
+  ]);
 
   return {
     hasUnread: !!timelineState && timelineState.get('unread') > 0,
@@ -37,7 +43,6 @@ const mapStateToProps = (state, { columnId }) => {
 };
 
 class CommunityTimeline extends PureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
     identity: PropTypes.object,
@@ -75,7 +80,7 @@ class CommunityTimeline extends PureComponent {
     this.column.scrollTop();
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch, onlyMedia } = this.props;
     const { signedIn } = this.context.identity;
 
@@ -86,7 +91,7 @@ class CommunityTimeline extends PureComponent {
     }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     const { signedIn } = this.context.identity;
 
     if (prevProps.onlyMedia !== this.props.onlyMedia) {
@@ -104,29 +109,33 @@ class CommunityTimeline extends PureComponent {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.disconnect) {
       this.disconnect();
       this.disconnect = null;
     }
   }
 
-  setRef = c => {
+  setRef = (c) => {
     this.column = c;
   };
 
-  handleLoadMore = maxId => {
+  handleLoadMore = (maxId) => {
     const { dispatch, onlyMedia } = this.props;
 
     dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
   };
 
-  render () {
+  render() {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column
+        bindToDocument={!multiColumn}
+        ref={this.setRef}
+        label={intl.formatMessage(messages.title)}
+      >
         <ColumnHeader
           icon='users'
           active={hasUnread}
@@ -141,12 +150,25 @@ class CommunityTimeline extends PureComponent {
         </ColumnHeader>
 
         <StatusListContainer
-          prepend={<DismissableBanner id='community_timeline'><FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} /></DismissableBanner>}
+          prepend={
+            <DismissableBanner id='community_timeline'>
+              <FormattedMessage
+                id='dismissable_banner.community_timeline'
+                defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.'
+                values={{ domain }}
+              />
+            </DismissableBanner>
+          }
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
           timelineId={`community${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
+          emptyMessage={
+            <FormattedMessage
+              id='empty_column.community'
+              defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!'
+            />
+          }
           bindToDocument={!multiColumn}
         />
 
@@ -157,7 +179,6 @@ class CommunityTimeline extends PureComponent {
       </Column>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(CommunityTimeline));

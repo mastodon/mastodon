@@ -5,10 +5,14 @@ import getRectFromEntry from '../features/ui/util/get_rect_from_entry';
 import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
 
 // Diff these props in the "unrendered" state
-const updateOnPropsForUnrendered = ['id', 'index', 'listLength', 'cachedHeight'];
+const updateOnPropsForUnrendered = [
+  'id',
+  'index',
+  'listLength',
+  'cachedHeight',
+];
 
 export default class IntersectionObserverArticle extends Component {
-
   static propTypes = {
     intersectionObserverWrapper: PropTypes.object.isRequired,
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -24,34 +28,36 @@ export default class IntersectionObserverArticle extends Component {
     isHidden: false, // set to true in requestIdleCallback to trigger un-render
   };
 
-  shouldComponentUpdate (nextProps, nextState) {
-    const isUnrendered = !this.state.isIntersecting && (this.state.isHidden || this.props.cachedHeight);
-    const willBeUnrendered = !nextState.isIntersecting && (nextState.isHidden || nextProps.cachedHeight);
+  shouldComponentUpdate(nextProps, nextState) {
+    const isUnrendered =
+      !this.state.isIntersecting &&
+      (this.state.isHidden || this.props.cachedHeight);
+    const willBeUnrendered =
+      !nextState.isIntersecting &&
+      (nextState.isHidden || nextProps.cachedHeight);
     if (!!isUnrendered !== !!willBeUnrendered) {
       // If we're going from rendered to unrendered (or vice versa) then update
       return true;
     }
     // If we are and remain hidden, diff based on props
     if (isUnrendered) {
-      return !updateOnPropsForUnrendered.every(prop => nextProps[prop] === this.props[prop]);
+      return !updateOnPropsForUnrendered.every(
+        (prop) => nextProps[prop] === this.props[prop],
+      );
     }
     // Else, assume the children have changed
     return true;
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const { intersectionObserverWrapper, id } = this.props;
 
-    intersectionObserverWrapper.observe(
-      id,
-      this.node,
-      this.handleIntersection,
-    );
+    intersectionObserverWrapper.observe(id, this.node, this.handleIntersection);
 
     this.componentMounted = true;
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     const { intersectionObserverWrapper, id } = this.props;
     intersectionObserverWrapper.unobserve(id, this.node);
 
@@ -102,7 +108,7 @@ export default class IntersectionObserverArticle extends Component {
     this.node = node;
   };
 
-  render () {
+  render() {
     const { children, id, index, listLength, cachedHeight } = this.props;
     const { isIntersecting, isHidden } = this.state;
 
@@ -112,7 +118,11 @@ export default class IntersectionObserverArticle extends Component {
           ref={this.handleRef}
           aria-posinset={index + 1}
           aria-setsize={listLength}
-          style={{ height: `${this.height || cachedHeight}px`, opacity: 0, overflow: 'hidden' }}
+          style={{
+            height: `${this.height || cachedHeight}px`,
+            opacity: 0,
+            overflow: 'hidden',
+          }}
           data-id={id}
           tabIndex={-1}
         >
@@ -122,10 +132,15 @@ export default class IntersectionObserverArticle extends Component {
     }
 
     return (
-      <article ref={this.handleRef} aria-posinset={index + 1} aria-setsize={listLength} data-id={id} tabIndex={-1}>
+      <article
+        ref={this.handleRef}
+        aria-posinset={index + 1}
+        aria-setsize={listLength}
+        data-id={id}
+        tabIndex={-1}
+      >
         {children && cloneElement(children, { hidden: false })}
       </article>
     );
   }
-
 }

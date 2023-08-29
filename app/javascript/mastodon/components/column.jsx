@@ -8,14 +8,13 @@ import { scrollTop } from '../scroll';
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 export default class Column extends PureComponent {
-
   static propTypes = {
     children: PropTypes.node,
     label: PropTypes.string,
     bindToDocument: PropTypes.bool,
   };
 
-  scrollTop () {
+  scrollTop() {
     let scrollable = null;
 
     if (this.props.bindToDocument) {
@@ -28,7 +27,7 @@ export default class Column extends PureComponent {
       if (scrollable.classList.contains('scrollable--flex')) {
         scrollable = scrollable?.querySelector('.scrollable') || scrollable;
       }
-   }
+    }
 
     if (!scrollable) {
       return;
@@ -45,11 +44,11 @@ export default class Column extends PureComponent {
     this._interruptScrollAnimation();
   };
 
-  setRef = c => {
+  setRef = (c) => {
     this.node = c;
   };
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.props.bindToDocument) {
       document.addEventListener('wheel', this.handleWheel, listenerOptions);
     } else {
@@ -57,7 +56,7 @@ export default class Column extends PureComponent {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.props.bindToDocument) {
       document.removeEventListener('wheel', this.handleWheel, listenerOptions);
     } else {
@@ -65,14 +64,18 @@ export default class Column extends PureComponent {
     }
   }
 
-  render () {
+  render() {
     const { label, children } = this.props;
 
     return (
-      <div role='region' aria-label={label} className='column' ref={this.setRef}>
+      <div
+        role='region'
+        aria-label={label}
+        className='column'
+        ref={this.setRef}
+      >
         {children}
       </div>
     );
   }
-
 }

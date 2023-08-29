@@ -8,11 +8,14 @@ export function fetchCustomEmojis() {
   return (dispatch, getState) => {
     dispatch(fetchCustomEmojisRequest());
 
-    api(getState).get('/api/v1/custom_emojis').then(response => {
-      dispatch(fetchCustomEmojisSuccess(response.data));
-    }).catch(error => {
-      dispatch(fetchCustomEmojisFail(error));
-    });
+    api(getState)
+      .get('/api/v1/custom_emojis')
+      .then((response) => {
+        dispatch(fetchCustomEmojisSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(fetchCustomEmojisFail(error));
+      });
   };
 }
 

@@ -9,7 +9,6 @@ import initialState from '../initial_state';
 import { IntlProvider } from '../locales';
 import { store } from '../store';
 
-
 if (initialState) {
   store.dispatch(hydrateStore(initialState));
 }
@@ -17,8 +16,7 @@ if (initialState) {
 store.dispatch(fetchCustomEmojis());
 
 export default class ComposeContainer extends PureComponent {
-
-  render () {
+  render() {
     return (
       <IntlProvider>
         <Provider store={store}>
@@ -27,5 +25,4 @@ export default class ComposeContainer extends PureComponent {
       </IntlProvider>
     );
   }
-
 }

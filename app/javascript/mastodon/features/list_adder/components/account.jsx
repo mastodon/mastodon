@@ -19,25 +19,25 @@ const makeMapStateToProps = () => {
 };
 
 class Account extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
   };
 
-  render () {
+  render() {
     const { account } = this.props;
     return (
       <div className='account'>
         <div className='account__wrapper'>
           <div className='account__display-name'>
-            <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
+            <div className='account__avatar-wrapper'>
+              <Avatar account={account} size={36} />
+            </div>
             <DisplayName account={account} />
           </div>
         </div>
       </div>
     );
   }
-
 }
 
 export default connect(makeMapStateToProps)(injectIntl(Account));

@@ -15,21 +15,23 @@ export class WrappedSwitch extends PureComponent {
     router: PropTypes.object,
   };
 
-  render () {
+  render() {
     const { multiColumn, children } = this.props;
     const { location } = this.context.router.route;
 
-    const decklessLocation = multiColumn && location.pathname.startsWith('/deck')
-      ? {...location, pathname: location.pathname.slice(5)}
-      : location;
+    const decklessLocation =
+      multiColumn && location.pathname.startsWith('/deck')
+        ? { ...location, pathname: location.pathname.slice(5) }
+        : location;
 
     return (
       <Switch location={decklessLocation}>
-        {Children.map(children, child => child ? cloneElement(child, { multiColumn }) : null)}
+        {Children.map(children, (child) =>
+          child ? cloneElement(child, { multiColumn }) : null,
+        )}
       </Switch>
     );
   }
-
 }
 
 WrappedSwitch.propTypes = {
@@ -41,7 +43,6 @@ WrappedSwitch.propTypes = {
 // them to the rendered component, together with the content to
 // be rendered inside (the children)
 export class WrappedRoute extends Component {
-
   static propTypes = {
     component: PropTypes.func.isRequired,
     content: PropTypes.node,
@@ -53,7 +54,7 @@ export class WrappedRoute extends Component {
     componentParams: {},
   };
 
-  static getDerivedStateFromError () {
+  static getDerivedStateFromError() {
     return {
       hasError: true,
     };
@@ -64,12 +65,19 @@ export class WrappedRoute extends Component {
     stacktrace: '',
   };
 
-  componentDidCatch (error) {
-    StackTrace.fromError(error).then(stackframes => {
-      this.setState({ stacktrace: error.toString() + '\n' + stackframes.map(frame => frame.toString()).join('\n') });
-    }).catch(err => {
-      console.error(err);
-    });
+  componentDidCatch(error) {
+    StackTrace.fromError(error)
+      .then((stackframes) => {
+        this.setState({
+          stacktrace:
+            error.toString() +
+            '\n' +
+            stackframes.map((frame) => frame.toString()).join('\n'),
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   renderComponent = ({ match }) => {
@@ -87,8 +95,20 @@ export class WrappedRoute extends Component {
     }
 
     return (
-      <BundleContainer fetchComponent={component} loading={this.renderLoading} error={this.renderError}>
-        {Component => <Component params={match.params} multiColumn={multiColumn} {...componentParams}>{content}</Component>}
+      <BundleContainer
+        fetchComponent={component}
+        loading={this.renderLoading}
+        error={this.renderError}
+      >
+        {(Component) => (
+          <Component
+            params={match.params}
+            multiColumn={multiColumn}
+            {...componentParams}
+          >
+            {content}
+          </Component>
+        )}
       </BundleContainer>
     );
   };
@@ -103,10 +123,9 @@ export class WrappedRoute extends Component {
     return <BundleColumnError {...props} errorType='network' />;
   };
 
-  render () {
+  render() {
     const { component: Component, content, ...rest } = this.props;
 
     return <Route {...rest} render={this.renderComponent} />;
   }
-
 }

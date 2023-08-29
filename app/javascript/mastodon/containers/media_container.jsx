@@ -18,7 +18,6 @@ import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
 const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
 
 export default class MediaContainer extends PureComponent {
-
   static propTypes = {
     components: PropTypes.object.isRequired,
   };
@@ -41,7 +40,9 @@ export default class MediaContainer extends PureComponent {
 
   handleOpenVideo = (lang, options) => {
     const { components } = this.props;
-    const { media } = JSON.parse(components[options.componentIndex].getAttribute('data-props'));
+    const { media } = JSON.parse(
+      components[options.componentIndex].getAttribute('data-props'),
+    );
     const mediaList = fromJS(media);
 
     document.body.classList.add('with-modals--active');
@@ -63,11 +64,11 @@ export default class MediaContainer extends PureComponent {
     });
   };
 
-  setBackgroundColor = color => {
+  setBackgroundColor = (color) => {
     this.setState({ backgroundColor: color });
   };
 
-  render () {
+  render() {
     const { components } = this.props;
 
     let handleOpenVideo;
@@ -83,20 +84,24 @@ export default class MediaContainer extends PureComponent {
           {[].map.call(components, (component, i) => {
             const componentName = component.getAttribute('data-component');
             const Component = MEDIA_COMPONENTS[componentName];
-            const { media, card, poll, hashtag, ...props } = JSON.parse(component.getAttribute('data-props'));
+            const { media, card, poll, hashtag, ...props } = JSON.parse(
+              component.getAttribute('data-props'),
+            );
 
             Object.assign(props, {
-              ...(media   ? { media:   fromJS(media)   } : {}),
-              ...(card    ? { card:    fromJS(card)    } : {}),
-              ...(poll    ? { poll:    fromJS(poll)    } : {}),
+              ...(media ? { media: fromJS(media) } : {}),
+              ...(card ? { card: fromJS(card) } : {}),
+              ...(poll ? { poll: fromJS(poll) } : {}),
               ...(hashtag ? { hashtag: fromJS(hashtag) } : {}),
 
-              ...(componentName === 'Video' ? {
-                componentIndex: i,
-                onOpenVideo: handleOpenVideo,
-              } : {
-                onOpenMedia: this.handleOpenMedia,
-              }),
+              ...(componentName === 'Video'
+                ? {
+                    componentIndex: i,
+                    onOpenVideo: handleOpenVideo,
+                  }
+                : {
+                    onOpenMedia: this.handleOpenMedia,
+                  }),
             });
 
             return createPortal(
@@ -105,7 +110,10 @@ export default class MediaContainer extends PureComponent {
             );
           })}
 
-          <ModalRoot backgroundColor={this.state.backgroundColor} onClose={this.handleCloseMedia}>
+          <ModalRoot
+            backgroundColor={this.state.backgroundColor}
+            onClose={this.handleCloseMedia}
+          >
             {this.state.media && (
               <MediaModal
                 media={this.state.media}
@@ -123,5 +131,4 @@ export default class MediaContainer extends PureComponent {
       </IntlProvider>
     );
   }
-
 }

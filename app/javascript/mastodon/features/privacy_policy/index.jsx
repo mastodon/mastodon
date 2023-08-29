@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { FormattedMessage, FormattedDate, injectIntl, defineMessages } from 'react-intl';
+import {
+  FormattedMessage,
+  FormattedDate,
+  injectIntl,
+  defineMessages,
+} from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
@@ -14,7 +19,6 @@ const messages = defineMessages({
 });
 
 class PrivacyPolicy extends PureComponent {
-
   static propTypes = {
     intl: PropTypes.object,
     multiColumn: PropTypes.bool,
@@ -26,24 +30,56 @@ class PrivacyPolicy extends PureComponent {
     isLoading: true,
   };
 
-  componentDidMount () {
-    api().get('/api/v1/instance/privacy_policy').then(({ data }) => {
-      this.setState({ content: data.content, lastUpdated: data.updated_at, isLoading: false });
-    }).catch(() => {
-      this.setState({ isLoading: false });
-    });
+  componentDidMount() {
+    api()
+      .get('/api/v1/instance/privacy_policy')
+      .then(({ data }) => {
+        this.setState({
+          content: data.content,
+          lastUpdated: data.updated_at,
+          isLoading: false,
+        });
+      })
+      .catch(() => {
+        this.setState({ isLoading: false });
+      });
   }
 
-  render () {
+  render() {
     const { intl, multiColumn } = this.props;
     const { isLoading, content, lastUpdated } = this.state;
 
     return (
-      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
+      <Column
+        bindToDocument={!multiColumn}
+        label={intl.formatMessage(messages.title)}
+      >
         <div className='scrollable privacy-policy'>
           <div className='column-title'>
-            <h3><FormattedMessage id='privacy_policy.title' defaultMessage='Privacy Policy' /></h3>
-            <p><FormattedMessage id='privacy_policy.last_updated' defaultMessage='Last updated {date}' values={{ date: isLoading ? <Skeleton width='10ch' /> : <FormattedDate value={lastUpdated} year='numeric' month='short' day='2-digit' /> }} /></p>
+            <h3>
+              <FormattedMessage
+                id='privacy_policy.title'
+                defaultMessage='Privacy Policy'
+              />
+            </h3>
+            <p>
+              <FormattedMessage
+                id='privacy_policy.last_updated'
+                defaultMessage='Last updated {date}'
+                values={{
+                  date: isLoading ? (
+                    <Skeleton width='10ch' />
+                  ) : (
+                    <FormattedDate
+                      value={lastUpdated}
+                      year='numeric'
+                      month='short'
+                      day='2-digit'
+                    />
+                  ),
+                }}
+              />
+            </p>
           </div>
 
           <div
@@ -59,7 +95,6 @@ class PrivacyPolicy extends PureComponent {
       </Column>
     );
   }
-
 }
 
 export default injectIntl(PrivacyPolicy);

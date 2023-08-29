@@ -11,7 +11,7 @@ import {
 } from '../../../actions/compose';
 import PollForm from '../components/poll_form';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   suggestions: state.getIn(['compose', 'suggestions']),
   options: state.getIn(['compose', 'poll', 'options']),
   lang: state.getIn(['compose', 'language']),
@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
   isMultiple: state.getIn(['compose', 'poll', 'multiple']),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onAddOption(title) {
     dispatch(addPollOption(title));
   },
@@ -36,18 +36,17 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changePollSettings(expiresIn, isMultiple));
   },
 
-  onClearSuggestions () {
+  onClearSuggestions() {
     dispatch(clearComposeSuggestions());
   },
 
-  onFetchSuggestions (token) {
+  onFetchSuggestions(token) {
     dispatch(fetchComposeSuggestions(token));
   },
 
-  onSuggestionSelected (position, token, accountId, path) {
+  onSuggestionSelected(position, token, accountId, path) {
     dispatch(selectComposeSuggestion(position, token, accountId, path));
   },
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PollForm);

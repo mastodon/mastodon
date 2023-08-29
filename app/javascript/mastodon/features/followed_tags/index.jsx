@@ -10,7 +10,10 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { expandFollowedHashtags, fetchFollowedHashtags } from 'mastodon/actions/tags';
+import {
+  expandFollowedHashtags,
+  fetchFollowedHashtags,
+} from 'mastodon/actions/tags';
 import ColumnHeader from 'mastodon/components/column_header';
 import Hashtag from 'mastodon/components/hashtag';
 import ScrollableList from 'mastodon/components/scrollable_list';
@@ -20,14 +23,13 @@ const messages = defineMessages({
   heading: { id: 'followed_tags', defaultMessage: 'Followed hashtags' },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   hashtags: state.getIn(['followed_tags', 'items']),
   isLoading: state.getIn(['followed_tags', 'isLoading'], true),
   hasMore: !!state.getIn(['followed_tags', 'next']),
 });
 
 class FollowedTags extends ImmutablePureComponent {
-
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -42,14 +44,23 @@ class FollowedTags extends ImmutablePureComponent {
     this.props.dispatch(fetchFollowedHashtags());
   }
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandFollowedHashtags());
-  }, 300, { leading: true });
+  handleLoadMore = debounce(
+    () => {
+      this.props.dispatch(expandFollowedHashtags());
+    },
+    300,
+    { leading: true },
+  );
 
-  render () {
+  render() {
     const { intl, hashtags, isLoading, hasMore, multiColumn } = this.props;
 
-    const emptyMessage = <FormattedMessage id='empty_column.followed_tags' defaultMessage='You have not followed any hashtags yet. When you do, they will show up here.' />;
+    const emptyMessage = (
+      <FormattedMessage
+        id='empty_column.followed_tags'
+        defaultMessage='You have not followed any hashtags yet. When you do, they will show up here.'
+      />
+    );
 
     return (
       <Column bindToDocument={!multiColumn}>
@@ -75,8 +86,15 @@ class FollowedTags extends ImmutablePureComponent {
               to={`/tags/${hashtag.get('name')}`}
               withGraph={false}
               // Taken from ImmutableHashtag. Should maybe refactor ImmutableHashtag to accept more options?
-              people={hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1}
-              history={hashtag.get('history').reverse().map((day) => day.get('uses')).toArray()}
+              people={
+                hashtag.getIn(['history', 0, 'accounts']) * 1 +
+                hashtag.getIn(['history', 1, 'accounts']) * 1
+              }
+              history={hashtag
+                .get('history')
+                .reverse()
+                .map((day) => day.get('uses'))
+                .toArray()}
             />
           ))}
         </ScrollableList>
@@ -87,7 +105,6 @@ class FollowedTags extends ImmutablePureComponent {
       </Column>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(FollowedTags));

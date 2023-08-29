@@ -8,11 +8,12 @@ const makeMapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
-  onHeightChange (key, id, height) {
+  onHeightChange(key, id, height) {
     dispatch(setHeight(key, id, height));
   },
-
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(IntersectionObserverArticle);
+export default connect(
+  makeMapStateToProps,
+  mapDispatchToProps,
+)(IntersectionObserverArticle);

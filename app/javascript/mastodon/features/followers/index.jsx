@@ -28,7 +28,8 @@ import HeaderContainer from '../account_timeline/containers/header_container';
 import Column from '../ui/components/column';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
-  const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
+  const accountId =
+    id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
 
   if (!accountId) {
     return {
@@ -38,12 +39,18 @@ const mapStateToProps = (state, { params: { acct, id } }) => {
 
   return {
     accountId,
-    remote: !!(state.getIn(['accounts', accountId, 'acct']) !== state.getIn(['accounts', accountId, 'username'])),
+    remote: !!(
+      state.getIn(['accounts', accountId, 'acct']) !==
+      state.getIn(['accounts', accountId, 'username'])
+    ),
     remoteUrl: state.getIn(['accounts', accountId, 'url']),
     isAccount: !!state.getIn(['accounts', accountId]),
     accountIds: state.getIn(['user_lists', 'followers', accountId, 'items']),
     hasMore: !!state.getIn(['user_lists', 'followers', accountId, 'next']),
-    isLoading: state.getIn(['user_lists', 'followers', accountId, 'isLoading'], true),
+    isLoading: state.getIn(
+      ['user_lists', 'followers', accountId, 'isLoading'],
+      true,
+    ),
     suspended: state.getIn(['accounts', accountId, 'suspended'], false),
     hidden: getAccountHidden(state, accountId),
     blockedBy: state.getIn(['relationships', accountId, 'blocked_by'], false),
@@ -51,7 +58,15 @@ const mapStateToProps = (state, { params: { acct, id } }) => {
 };
 
 const RemoteHint = ({ url }) => (
-  <TimelineHint url={url} resource={<FormattedMessage id='timeline_hint.resources.followers' defaultMessage='Followers' />} />
+  <TimelineHint
+    url={url}
+    resource={
+      <FormattedMessage
+        id='timeline_hint.resources.followers'
+        defaultMessage='Followers'
+      />
+    }
+  />
 );
 
 RemoteHint.propTypes = {
@@ -59,7 +74,6 @@ RemoteHint.propTypes = {
 };
 
 class Followers extends ImmutablePureComponent {
-
   static propTypes = {
     params: PropTypes.shape({
       acct: PropTypes.string,
@@ -79,15 +93,19 @@ class Followers extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  _load () {
+  _load() {
     const { accountId, isAccount, dispatch } = this.props;
 
     if (!isAccount) dispatch(fetchAccount(accountId));
     dispatch(fetchFollowers(accountId));
   }
 
-  componentDidMount () {
-    const { params: { acct }, accountId, dispatch } = this.props;
+  componentDidMount() {
+    const {
+      params: { acct },
+      accountId,
+      dispatch,
+    } = this.props;
 
     if (accountId) {
       this._load();
@@ -96,8 +114,12 @@ class Followers extends ImmutablePureComponent {
     }
   }
 
-  componentDidUpdate (prevProps) {
-    const { params: { acct }, accountId, dispatch } = this.props;
+  componentDidUpdate(prevProps) {
+    const {
+      params: { acct },
+      accountId,
+      dispatch,
+    } = this.props;
 
     if (prevProps.accountId !== accountId && accountId) {
       this._load();
@@ -106,12 +128,28 @@ class Followers extends ImmutablePureComponent {
     }
   }
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandFollowers(this.props.accountId));
-  }, 300, { leading: true });
+  handleLoadMore = debounce(
+    () => {
+      this.props.dispatch(expandFollowers(this.props.accountId));
+    },
+    300,
+    { leading: true },
+  );
 
-  render () {
-    const { accountId, accountIds, hasMore, blockedBy, isAccount, multiColumn, isLoading, suspended, hidden, remote, remoteUrl } = this.props;
+  render() {
+    const {
+      accountId,
+      accountIds,
+      hasMore,
+      blockedBy,
+      isAccount,
+      multiColumn,
+      isLoading,
+      suspended,
+      hidden,
+      remote,
+      remoteUrl,
+    } = this.props;
 
     if (!isAccount) {
       return (
@@ -132,15 +170,30 @@ class Followers extends ImmutablePureComponent {
     const forceEmptyState = blockedBy || suspended || hidden;
 
     if (suspended) {
-      emptyMessage = <FormattedMessage id='empty_column.account_suspended' defaultMessage='Account suspended' />;
+      emptyMessage = (
+        <FormattedMessage
+          id='empty_column.account_suspended'
+          defaultMessage='Account suspended'
+        />
+      );
     } else if (hidden) {
       emptyMessage = <LimitedAccountHint accountId={accountId} />;
     } else if (blockedBy) {
-      emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
+      emptyMessage = (
+        <FormattedMessage
+          id='empty_column.account_unavailable'
+          defaultMessage='Profile unavailable'
+        />
+      );
     } else if (remote && accountIds.isEmpty()) {
       emptyMessage = <RemoteHint url={remoteUrl} />;
     } else {
-      emptyMessage = <FormattedMessage id='account.followers.empty' defaultMessage='No one follows this user yet.' />;
+      emptyMessage = (
+        <FormattedMessage
+          id='account.followers.empty'
+          defaultMessage='No one follows this user yet.'
+        />
+      );
     }
 
     const remoteMessage = remote ? <RemoteHint url={remoteUrl} /> : null;
@@ -154,20 +207,23 @@ class Followers extends ImmutablePureComponent {
           hasMore={!forceEmptyState && hasMore}
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
-          prepend={<HeaderContainer accountId={this.props.accountId} hideTabs />}
+          prepend={
+            <HeaderContainer accountId={this.props.accountId} hideTabs />
+          }
           alwaysPrepend
           append={remoteMessage}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >
-          {forceEmptyState ? [] : accountIds.map(id =>
-            <AccountContainer key={id} id={id} withNote={false} />,
-          )}
+          {forceEmptyState
+            ? []
+            : accountIds.map((id) => (
+                <AccountContainer key={id} id={id} withNote={false} />
+              ))}
         </ScrollableList>
       </Column>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(Followers);

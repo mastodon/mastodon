@@ -6,10 +6,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon } from 'mastodon/components/icon';
 
 import { removeFromListAdder, addToListAdder } from '../../../actions/lists';
-import { IconButton }  from '../../../components/icon_button';
+import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({
   remove: { id: 'lists.account.remove', defaultMessage: 'Remove from list' },
@@ -18,7 +18,10 @@ const messages = defineMessages({
 
 const MapStateToProps = (state, { listId, added }) => ({
   list: state.get('lists').get(listId),
-  added: typeof added === 'undefined' ? state.getIn(['listAdder', 'lists', 'items']).includes(listId) : added,
+  added:
+    typeof added === 'undefined'
+      ? state.getIn(['listAdder', 'lists', 'items']).includes(listId)
+      : added,
 });
 
 const mapDispatchToProps = (dispatch, { listId }) => ({
@@ -27,7 +30,6 @@ const mapDispatchToProps = (dispatch, { listId }) => ({
 });
 
 class List extends ImmutablePureComponent {
-
   static propTypes = {
     list: ImmutablePropTypes.map.isRequired,
     intl: PropTypes.object.isRequired,
@@ -40,15 +42,27 @@ class List extends ImmutablePureComponent {
     added: false,
   };
 
-  render () {
+  render() {
     const { list, intl, onRemove, onAdd, added } = this.props;
 
     let button;
 
     if (added) {
-      button = <IconButton icon='times' title={intl.formatMessage(messages.remove)} onClick={onRemove} />;
+      button = (
+        <IconButton
+          icon='times'
+          title={intl.formatMessage(messages.remove)}
+          onClick={onRemove}
+        />
+      );
     } else {
-      button = <IconButton icon='plus' title={intl.formatMessage(messages.add)} onClick={onAdd} />;
+      button = (
+        <IconButton
+          icon='plus'
+          title={intl.formatMessage(messages.add)}
+          onClick={onAdd}
+        />
+      );
     }
 
     return (
@@ -59,14 +73,11 @@ class List extends ImmutablePureComponent {
             {list.get('title')}
           </div>
 
-          <div className='account__relationship'>
-            {button}
-          </div>
+          <div className='account__relationship'>{button}</div>
         </div>
       </div>
     );
   }
-
 }
 
 export default connect(MapStateToProps, mapDispatchToProps)(injectIntl(List));

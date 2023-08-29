@@ -14,14 +14,14 @@ import { makeGetAccount } from '../../../selectors';
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
 
-  const mapStateToProps = state => ({
+  const mapStateToProps = (state) => ({
     account: getAccount(state, state.getIn(['blocks', 'new', 'account_id'])),
   });
 
   return mapStateToProps;
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onConfirm(account) {
       dispatch(blockAccount(account.get('id')));
@@ -33,16 +33,17 @@ const mapDispatchToProps = dispatch => {
     },
 
     onClose() {
-      dispatch(closeModal({
-        modalType: undefined,
-        ignoreFocus: false,
-      }));
+      dispatch(
+        closeModal({
+          modalType: undefined,
+          ignoreFocus: false,
+        }),
+      );
     },
   };
 };
 
 class BlockModal extends PureComponent {
-
   static propTypes = {
     account: PropTypes.object.isRequired,
     onClose: PropTypes.func.isRequired,
@@ -73,7 +74,7 @@ class BlockModal extends PureComponent {
     this.button = c;
   };
 
-  render () {
+  render() {
     const { account } = this.props;
 
     return (
@@ -89,20 +90,37 @@ class BlockModal extends PureComponent {
         </div>
 
         <div className='block-modal__action-bar'>
-          <Button onClick={this.handleCancel} className='block-modal__cancel-button'>
-            <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
+          <Button
+            onClick={this.handleCancel}
+            className='block-modal__cancel-button'
+          >
+            <FormattedMessage
+              id='confirmation_modal.cancel'
+              defaultMessage='Cancel'
+            />
           </Button>
-          <Button onClick={this.handleSecondary} className='confirmation-modal__secondary-button'>
-            <FormattedMessage id='confirmations.block.block_and_report' defaultMessage='Block & Report' />
+          <Button
+            onClick={this.handleSecondary}
+            className='confirmation-modal__secondary-button'
+          >
+            <FormattedMessage
+              id='confirmations.block.block_and_report'
+              defaultMessage='Block & Report'
+            />
           </Button>
           <Button onClick={this.handleClick} ref={this.setRef}>
-            <FormattedMessage id='confirmations.block.confirm' defaultMessage='Block' />
+            <FormattedMessage
+              id='confirmations.block.confirm'
+              defaultMessage='Block'
+            />
           </Button>
         </div>
       </div>
     );
   }
-
 }
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlockModal));
+export default connect(
+  makeMapStateToProps,
+  mapDispatchToProps,
+)(injectIntl(BlockModal));

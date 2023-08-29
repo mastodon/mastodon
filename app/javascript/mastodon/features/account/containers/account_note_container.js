@@ -9,11 +9,9 @@ const mapStateToProps = (state, { account }) => ({
 });
 
 const mapDispatchToProps = (dispatch, { account }) => ({
-
-  onSave (value) {
-    dispatch(submitAccountNote({ id: account.get('id'), value}));
+  onSave(value) {
+    dispatch(submitAccountNote({ id: account.get('id'), value }));
   },
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountNote);

@@ -10,14 +10,14 @@ import validUrlQueryEndingChars from 'twitter-text/dist/regexp/validUrlQueryEndi
 // optional.
 
 export const urlRegex = regexSupplant(
-  '('                                                          + // $1 URL
-    '(#{validUrlPrecedingChars})'                              + // $2
-    '(https?:\\/\\/)'                                          + // $3 Protocol
-    '(#{validDomain})'                                         + // $4 Domain(s)
-    '(?::(#{validPortNumber}))?'                               + // $5 Port number (optional)
-    '(\\/#{validUrlPath}*)?'                                   + // $6 URL Path
-    '(\\?#{validUrlQueryChars}*#{validUrlQueryEndingChars})?'  + // $7 Query String
-  ')',
+  '(' + // $1 URL
+    '(#{validUrlPrecedingChars})' + // $2
+    '(https?:\\/\\/)' + // $3 Protocol
+    '(#{validDomain})' + // $4 Domain(s)
+    '(?::(#{validPortNumber}))?' + // $5 Port number (optional)
+    '(\\/#{validUrlPath}*)?' + // $6 URL Path
+    '(\\?#{validUrlQueryChars}*#{validUrlQueryEndingChars})?' + // $7 Query String
+    ')',
   {
     validUrlPrecedingChars,
     validDomain,

@@ -12,13 +12,14 @@ const normalizeAccount = (state, account) => {
   delete account.following_count;
   delete account.statuses_count;
 
-  account.hidden = state.getIn([account.id, 'hidden']) === false ? false : account.limited;
+  account.hidden =
+    state.getIn([account.id, 'hidden']) === false ? false : account.limited;
 
   return state.set(account.id, fromJS(account));
 };
 
 const normalizeAccounts = (state, accounts) => {
-  accounts.forEach(account => {
+  accounts.forEach((account) => {
     state = normalizeAccount(state, account);
   });
 
@@ -26,14 +27,14 @@ const normalizeAccounts = (state, accounts) => {
 };
 
 export default function accounts(state = initialState, action) {
-  switch(action.type) {
-  case ACCOUNT_IMPORT:
-    return normalizeAccount(state, action.account);
-  case ACCOUNTS_IMPORT:
-    return normalizeAccounts(state, action.accounts);
-  case ACCOUNT_REVEAL:
-    return state.setIn([action.id, 'hidden'], false);
-  default:
-    return state;
+  switch (action.type) {
+    case ACCOUNT_IMPORT:
+      return normalizeAccount(state, action.account);
+    case ACCOUNTS_IMPORT:
+      return normalizeAccounts(state, action.accounts);
+    case ACCOUNT_REVEAL:
+      return state.setIn([action.id, 'hidden'], false);
+    default:
+      return state;
   }
 }

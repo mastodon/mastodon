@@ -6,8 +6,7 @@ import ModalContainer from '../../ui/containers/modal_container';
 import NotificationsContainer from '../../ui/containers/notifications_container';
 
 export default class Compose extends PureComponent {
-
-  render () {
+  render() {
     return (
       <div>
         <ComposeFormContainer autoFocus />
@@ -17,5 +16,4 @@ export default class Compose extends PureComponent {
       </div>
     );
   }
-
 }

@@ -22,8 +22,10 @@ describe('<AvatarOverlay', () => {
   });
 
   it('renders a overlay avatar', () => {
-    const component = renderer.create(<AvatarOverlay account={account} friend={friend} />);
-    const tree      = component.toJSON();
+    const component = renderer.create(
+      <AvatarOverlay account={account} friend={friend} />,
+    );
+    const tree = component.toJSON();
 
     expect(tree).toMatchSnapshot();
   });

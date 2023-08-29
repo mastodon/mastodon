@@ -12,12 +12,14 @@ const initialState = ImmutableMap({
 });
 
 export default function meta(state = initialState, action) {
-  switch(action.type) {
-  case STORE_HYDRATE:
-    return state.merge(action.state.get('meta')).set('permissions', action.state.getIn(['role', 'permissions']));
-  case changeLayout.type:
-    return state.set('layout', action.payload.layout);
-  default:
-    return state;
+  switch (action.type) {
+    case STORE_HYDRATE:
+      return state
+        .merge(action.state.get('meta'))
+        .set('permissions', action.state.getIn(['role', 'permissions']));
+    case changeLayout.type:
+      return state.set('layout', action.payload.layout);
+    default:
+      return state;
   }
 }

@@ -10,7 +10,10 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
+import {
+  fetchFollowRequests,
+  expandFollowRequests,
+} from '../../actions/accounts';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import ScrollableList from '../../components/scrollable_list';
 import { me } from '../../initial_state';
@@ -22,7 +25,7 @@ const messages = defineMessages({
   heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   accountIds: state.getIn(['user_lists', 'follow_requests', 'items']),
   isLoading: state.getIn(['user_lists', 'follow_requests', 'isLoading'], true),
   hasMore: !!state.getIn(['user_lists', 'follow_requests', 'next']),
@@ -31,7 +34,6 @@ const mapStateToProps = state => ({
 });
 
 class FollowRequests extends ImmutablePureComponent {
-
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -44,18 +46,35 @@ class FollowRequests extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  UNSAFE_componentWillMount () {
+  UNSAFE_componentWillMount() {
     this.props.dispatch(fetchFollowRequests());
   }
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandFollowRequests());
-  }, 300, { leading: true });
+  handleLoadMore = debounce(
+    () => {
+      this.props.dispatch(expandFollowRequests());
+    },
+    300,
+    { leading: true },
+  );
 
-  render () {
-    const { intl, accountIds, hasMore, multiColumn, locked, domain, isLoading } = this.props;
+  render() {
+    const {
+      intl,
+      accountIds,
+      hasMore,
+      multiColumn,
+      locked,
+      domain,
+      isLoading,
+    } = this.props;
 
-    const emptyMessage = <FormattedMessage id='empty_column.follow_requests' defaultMessage="You don't have any follow requests yet. When you receive one, it will show up here." />;
+    const emptyMessage = (
+      <FormattedMessage
+        id='empty_column.follow_requests'
+        defaultMessage="You don't have any follow requests yet. When you receive one, it will show up here."
+      />
+    );
     const unlockedPrependMessage = !locked && accountIds.size > 0 && (
       <div className='follow_requests-unlocked_explanation'>
         <FormattedMessage
@@ -67,7 +86,11 @@ class FollowRequests extends ImmutablePureComponent {
     );
 
     return (
-      <Column bindToDocument={!multiColumn} icon='user-plus' heading={intl.formatMessage(messages.heading)}>
+      <Column
+        bindToDocument={!multiColumn}
+        icon='user-plus'
+        heading={intl.formatMessage(messages.heading)}
+      >
         <ColumnBackButtonSlim />
         <ScrollableList
           scrollKey='follow_requests'
@@ -79,9 +102,9 @@ class FollowRequests extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
           prepend={unlockedPrependMessage}
         >
-          {accountIds.map(id =>
-            <AccountAuthorizeContainer key={id} id={id} />,
-          )}
+          {accountIds.map((id) => (
+            <AccountAuthorizeContainer key={id} id={id} />
+          ))}
         </ScrollableList>
 
         <Helmet>
@@ -90,7 +113,6 @@ class FollowRequests extends ImmutablePureComponent {
       </Column>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(FollowRequests));

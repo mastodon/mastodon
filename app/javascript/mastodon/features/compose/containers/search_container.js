@@ -12,42 +12,40 @@ import {
 
 import Search from '../components/search';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   value: state.getIn(['search', 'value']),
   submitted: state.getIn(['search', 'submitted']),
   recent: state.getIn(['search', 'recent']).reverse(),
 });
 
-const mapDispatchToProps = dispatch => ({
-
-  onChange (value) {
+const mapDispatchToProps = (dispatch) => ({
+  onChange(value) {
     dispatch(changeSearch(value));
   },
 
-  onClear () {
+  onClear() {
     dispatch(clearSearch());
   },
 
-  onSubmit (type) {
+  onSubmit(type) {
     dispatch(submitSearch(type));
   },
 
-  onShow () {
+  onShow() {
     dispatch(showSearch());
   },
 
-  onOpenURL (q, routerHistory) {
+  onOpenURL(q, routerHistory) {
     dispatch(openURL(q, routerHistory));
   },
 
-  onClickSearchResult (q, type) {
+  onClickSearchResult(q, type) {
     dispatch(clickSearchResult(q, type));
   },
 
-  onForgetSearchResult (q) {
+  onForgetSearchResult(q) {
     dispatch(forgetSearchResult(q));
   },
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

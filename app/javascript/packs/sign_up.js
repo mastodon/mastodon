@@ -5,16 +5,19 @@ import ready from '../mastodon/ready';
 
 ready(() => {
   setInterval(() => {
-    axios.get('/api/v1/emails/check_confirmation').then((response) => {
-      if (response.data) {
-        window.location = '/start';
-      }
-    }).catch(error => {
-      console.error(error);
-    });
+    axios
+      .get('/api/v1/emails/check_confirmation')
+      .then((response) => {
+        if (response.data) {
+          window.location = '/start';
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, 5000);
 
-  document.querySelectorAll('.timer-button').forEach(button => {
+  document.querySelectorAll('.timer-button').forEach((button) => {
     let counter = 30;
 
     const container = document.createElement('span');

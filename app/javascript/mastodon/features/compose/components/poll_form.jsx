@@ -9,23 +9,49 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import AutosuggestInput from 'mastodon/components/autosuggest_input';
-import { Icon }  from 'mastodon/components/icon';
+import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 
 const messages = defineMessages({
-  option_placeholder: { id: 'compose_form.poll.option_placeholder', defaultMessage: 'Choice {number}' },
-  add_option: { id: 'compose_form.poll.add_option', defaultMessage: 'Add a choice' },
-  remove_option: { id: 'compose_form.poll.remove_option', defaultMessage: 'Remove this choice' },
-  poll_duration: { id: 'compose_form.poll.duration', defaultMessage: 'Poll duration' },
-  switchToMultiple: { id: 'compose_form.poll.switch_to_multiple', defaultMessage: 'Change poll to allow multiple choices' },
-  switchToSingle: { id: 'compose_form.poll.switch_to_single', defaultMessage: 'Change poll to allow for a single choice' },
-  minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
-  hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
-  days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
+  option_placeholder: {
+    id: 'compose_form.poll.option_placeholder',
+    defaultMessage: 'Choice {number}',
+  },
+  add_option: {
+    id: 'compose_form.poll.add_option',
+    defaultMessage: 'Add a choice',
+  },
+  remove_option: {
+    id: 'compose_form.poll.remove_option',
+    defaultMessage: 'Remove this choice',
+  },
+  poll_duration: {
+    id: 'compose_form.poll.duration',
+    defaultMessage: 'Poll duration',
+  },
+  switchToMultiple: {
+    id: 'compose_form.poll.switch_to_multiple',
+    defaultMessage: 'Change poll to allow multiple choices',
+  },
+  switchToSingle: {
+    id: 'compose_form.poll.switch_to_single',
+    defaultMessage: 'Change poll to allow for a single choice',
+  },
+  minutes: {
+    id: 'intervals.full.minutes',
+    defaultMessage: '{number, plural, one {# minute} other {# minutes}}',
+  },
+  hours: {
+    id: 'intervals.full.hours',
+    defaultMessage: '{number, plural, one {# hour} other {# hours}}',
+  },
+  days: {
+    id: 'intervals.full.days',
+    defaultMessage: '{number, plural, one {# day} other {# days}}',
+  },
 });
 
 class OptionIntl extends PureComponent {
-
   static propTypes = {
     title: PropTypes.string.isRequired,
     lang: PropTypes.string,
@@ -42,7 +68,7 @@ class OptionIntl extends PureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  handleOptionTitleChange = e => {
+  handleOptionTitleChange = (e) => {
     this.props.onChange(this.props.index, e.target.value);
   };
 
@@ -50,14 +76,13 @@ class OptionIntl extends PureComponent {
     this.props.onRemove(this.props.index);
   };
 
-
-  handleToggleMultiple = e => {
+  handleToggleMultiple = (e) => {
     this.props.onToggleMultiple();
     e.preventDefault();
     e.stopPropagation();
   };
 
-  handleCheckboxKeypress = e => {
+  handleCheckboxKeypress = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       this.handleToggleMultiple(e);
     }
@@ -72,10 +97,14 @@ class OptionIntl extends PureComponent {
   };
 
   onSuggestionSelected = (tokenStart, token, value) => {
-    this.props.onSuggestionSelected(tokenStart, token, value, ['poll', 'options', this.props.index]);
+    this.props.onSuggestionSelected(tokenStart, token, value, [
+      'poll',
+      'options',
+      this.props.index,
+    ]);
   };
 
-  render () {
+  render() {
     const { isPollMultiple, title, lang, index, autoFocus, intl } = this.props;
 
     return (
@@ -87,12 +116,22 @@ class OptionIntl extends PureComponent {
             onKeyPress={this.handleCheckboxKeypress}
             role='button'
             tabIndex={0}
-            title={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
-            aria-label={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
+            title={intl.formatMessage(
+              isPollMultiple
+                ? messages.switchToSingle
+                : messages.switchToMultiple,
+            )}
+            aria-label={intl.formatMessage(
+              isPollMultiple
+                ? messages.switchToSingle
+                : messages.switchToMultiple,
+            )}
           />
 
           <AutosuggestInput
-            placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
+            placeholder={intl.formatMessage(messages.option_placeholder, {
+              number: index + 1,
+            })}
             maxLength={50}
             value={title}
             lang={lang}
@@ -108,18 +147,21 @@ class OptionIntl extends PureComponent {
         </label>
 
         <div className='poll__cancel'>
-          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' onClick={this.handleOptionRemove} />
+          <IconButton
+            disabled={index <= 1}
+            title={intl.formatMessage(messages.remove_option)}
+            icon='times'
+            onClick={this.handleOptionRemove}
+          />
         </div>
       </li>
     );
   }
-
 }
 
 const Option = injectIntl(OptionIntl);
 
 class PollForm extends ImmutablePureComponent {
-
   static propTypes = {
     options: ImmutablePropTypes.list,
     lang: PropTypes.string,
@@ -140,7 +182,7 @@ class PollForm extends ImmutablePureComponent {
     this.props.onAddOption('');
   };
 
-  handleSelectDuration = e => {
+  handleSelectDuration = (e) => {
     this.props.onChangeSettings(e.target.value, this.props.isMultiple);
   };
 
@@ -148,8 +190,17 @@ class PollForm extends ImmutablePureComponent {
     this.props.onChangeSettings(this.props.expiresIn, !this.props.isMultiple);
   };
 
-  render () {
-    const { options, lang, expiresIn, isMultiple, onChangeOption, onRemoveOption, intl, ...other } = this.props;
+  render() {
+    const {
+      options,
+      lang,
+      expiresIn,
+      isMultiple,
+      onChangeOption,
+      onRemoveOption,
+      intl,
+      ...other
+    } = this.props;
 
     if (!options) {
       return null;
@@ -160,28 +211,63 @@ class PollForm extends ImmutablePureComponent {
     return (
       <div className='compose-form__poll-wrapper'>
         <ul>
-          {options.map((title, i) => <Option title={title} lang={lang} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} onToggleMultiple={this.handleToggleMultiple} autoFocus={i === autoFocusIndex} {...other} />)}
+          {options.map((title, i) => (
+            <Option
+              title={title}
+              lang={lang}
+              key={i}
+              index={i}
+              onChange={onChangeOption}
+              onRemove={onRemoveOption}
+              isPollMultiple={isMultiple}
+              onToggleMultiple={this.handleToggleMultiple}
+              autoFocus={i === autoFocusIndex}
+              {...other}
+            />
+          ))}
         </ul>
 
         <div className='poll__footer'>
-          <button type='button' disabled={options.size >= 4} className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
+          <button
+            type='button'
+            disabled={options.size >= 4}
+            className='button button-secondary'
+            onClick={this.handleAddOption}
+          >
+            <Icon id='plus' /> <FormattedMessage {...messages.add_option} />
+          </button>
 
           {/* eslint-disable-next-line jsx-a11y/no-onchange */}
           <select value={expiresIn} onChange={this.handleSelectDuration}>
-            <option value={300}>{intl.formatMessage(messages.minutes, { number: 5 })}</option>
-            <option value={1800}>{intl.formatMessage(messages.minutes, { number: 30 })}</option>
-            <option value={3600}>{intl.formatMessage(messages.hours, { number: 1 })}</option>
-            <option value={21600}>{intl.formatMessage(messages.hours, { number: 6 })}</option>
-            <option value={43200}>{intl.formatMessage(messages.hours, { number: 12 })}</option>
-            <option value={86400}>{intl.formatMessage(messages.days, { number: 1 })}</option>
-            <option value={259200}>{intl.formatMessage(messages.days, { number: 3 })}</option>
-            <option value={604800}>{intl.formatMessage(messages.days, { number: 7 })}</option>
+            <option value={300}>
+              {intl.formatMessage(messages.minutes, { number: 5 })}
+            </option>
+            <option value={1800}>
+              {intl.formatMessage(messages.minutes, { number: 30 })}
+            </option>
+            <option value={3600}>
+              {intl.formatMessage(messages.hours, { number: 1 })}
+            </option>
+            <option value={21600}>
+              {intl.formatMessage(messages.hours, { number: 6 })}
+            </option>
+            <option value={43200}>
+              {intl.formatMessage(messages.hours, { number: 12 })}
+            </option>
+            <option value={86400}>
+              {intl.formatMessage(messages.days, { number: 1 })}
+            </option>
+            <option value={259200}>
+              {intl.formatMessage(messages.days, { number: 3 })}
+            </option>
+            <option value={604800}>
+              {intl.formatMessage(messages.days, { number: 7 })}
+            </option>
           </select>
         </div>
       </div>
     );
   }
-
 }
 
 export default injectIntl(PollForm);

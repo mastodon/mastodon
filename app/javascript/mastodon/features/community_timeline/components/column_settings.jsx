@@ -8,7 +8,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import SettingToggle from '../../notifications/components/setting_toggle';
 
 class ColumnSettings extends PureComponent {
-
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -16,18 +15,27 @@ class ColumnSettings extends PureComponent {
     columnId: PropTypes.string,
   };
 
-  render () {
+  render() {
     const { settings, onChange } = this.props;
 
     return (
       <div>
         <div className='column-settings__row'>
-          <SettingToggle settings={settings} settingPath={['other', 'onlyMedia']} onChange={onChange} label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />} />
+          <SettingToggle
+            settings={settings}
+            settingPath={['other', 'onlyMedia']}
+            onChange={onChange}
+            label={
+              <FormattedMessage
+                id='community.column_settings.media_only'
+                defaultMessage='Media only'
+              />
+            }
+          />
         </div>
       </div>
     );
   }
-
 }
 
 export default injectIntl(ColumnSettings);

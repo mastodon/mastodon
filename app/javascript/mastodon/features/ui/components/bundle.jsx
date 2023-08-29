@@ -2,10 +2,9 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 const emptyComponent = () => null;
-const noop = () => { };
+const noop = () => {};
 
 class Bundle extends PureComponent {
-
   static propTypes = {
     fetchComponent: PropTypes.func.isRequired,
     loading: PropTypes.func,
@@ -26,7 +25,7 @@ class Bundle extends PureComponent {
     onFetchFail: noop,
   };
 
-  static cache = new Map;
+  static cache = new Map();
 
   state = {
     mod: undefined,
@@ -43,14 +42,20 @@ class Bundle extends PureComponent {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.timeout) {
       clearTimeout(this.timeout);
     }
   }
 
   load = (props) => {
-    const { fetchComponent, onFetch, onFetchSuccess, onFetchFail, renderDelay } = props || this.props;
+    const {
+      fetchComponent,
+      onFetch,
+      onFetchSuccess,
+      onFetchFail,
+      renderDelay,
+    } = props || this.props;
     const cachedMod = Bundle.cache.get(fetchComponent);
 
     if (fetchComponent === undefined) {
@@ -70,7 +75,10 @@ class Bundle extends PureComponent {
 
     if (renderDelay !== 0) {
       this.timestamp = new Date();
-      this.timeout = setTimeout(() => this.setState({ forceRender: true }), renderDelay);
+      this.timeout = setTimeout(
+        () => this.setState({ forceRender: true }),
+        renderDelay,
+      );
     }
 
     return fetchComponent()
@@ -86,12 +94,17 @@ class Bundle extends PureComponent {
   };
 
   render() {
-    const { loading: Loading, error: Error, children, renderDelay } = this.props;
+    const {
+      loading: Loading,
+      error: Error,
+      children,
+      renderDelay,
+    } = this.props;
     const { mod, forceRender } = this.state;
-    const elapsed = this.timestamp ? (new Date() - this.timestamp) : renderDelay;
+    const elapsed = this.timestamp ? new Date() - this.timestamp : renderDelay;
 
     if (mod === undefined) {
-      return (elapsed >= renderDelay || forceRender) ? <Loading /> : null;
+      return elapsed >= renderDelay || forceRender ? <Loading /> : null;
     }
 
     if (mod === null) {
@@ -100,7 +113,6 @@ class Bundle extends PureComponent {
 
     return children(mod);
   }
-
 }
 
 export default Bundle;

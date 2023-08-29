@@ -17,21 +17,20 @@ const makeMapStateToProps = () => {
 };
 
 class InlineAccount extends PureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
   };
 
-  render () {
+  render() {
     const { account } = this.props;
 
     return (
       <span className='inline-account'>
-        <Avatar size={13} account={account} /> <strong>{account.get('username')}</strong>
+        <Avatar size={13} account={account} />{' '}
+        <strong>{account.get('username')}</strong>
       </span>
     );
   }
-
 }
 
 export default connect(makeMapStateToProps)(InlineAccount);

@@ -21,14 +21,13 @@ const messages = defineMessages({
   heading: { id: 'column.mutes', defaultMessage: 'Muted users' },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   accountIds: state.getIn(['user_lists', 'mutes', 'items']),
   hasMore: !!state.getIn(['user_lists', 'mutes', 'next']),
   isLoading: state.getIn(['user_lists', 'mutes', 'isLoading'], true),
 });
 
 class Mutes extends ImmutablePureComponent {
-
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -39,15 +38,19 @@ class Mutes extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  UNSAFE_componentWillMount () {
+  UNSAFE_componentWillMount() {
     this.props.dispatch(fetchMutes());
   }
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandMutes());
-  }, 300, { leading: true });
+  handleLoadMore = debounce(
+    () => {
+      this.props.dispatch(expandMutes());
+    },
+    300,
+    { leading: true },
+  );
 
-  render () {
+  render() {
     const { intl, hasMore, accountIds, multiColumn, isLoading } = this.props;
 
     if (!accountIds) {
@@ -58,10 +61,19 @@ class Mutes extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = <FormattedMessage id='empty_column.mutes' defaultMessage="You haven't muted any users yet." />;
+    const emptyMessage = (
+      <FormattedMessage
+        id='empty_column.mutes'
+        defaultMessage="You haven't muted any users yet."
+      />
+    );
 
     return (
-      <Column bindToDocument={!multiColumn} icon='volume-off' heading={intl.formatMessage(messages.heading)}>
+      <Column
+        bindToDocument={!multiColumn}
+        icon='volume-off'
+        heading={intl.formatMessage(messages.heading)}
+      >
         <ColumnBackButtonSlim />
         <ScrollableList
           scrollKey='mutes'
@@ -71,9 +83,9 @@ class Mutes extends ImmutablePureComponent {
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >
-          {accountIds.map(id =>
-            <AccountContainer key={id} id={id} defaultAction='mute' />,
-          )}
+          {accountIds.map((id) => (
+            <AccountContainer key={id} id={id} defaultAction='mute' />
+          ))}
         </ScrollableList>
 
         <Helmet>
@@ -82,7 +94,6 @@ class Mutes extends ImmutablePureComponent {
       </Column>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(Mutes));

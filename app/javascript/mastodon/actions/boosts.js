@@ -7,23 +7,27 @@ export function initBoostModal(props) {
   return (dispatch, getState) => {
     const default_privacy = getState().getIn(['compose', 'default_privacy']);
 
-    const privacy = props.status.get('visibility') === 'private' ? 'private' : default_privacy;
+    const privacy =
+      props.status.get('visibility') === 'private'
+        ? 'private'
+        : default_privacy;
 
     dispatch({
       type: BOOSTS_INIT_MODAL,
       privacy,
     });
 
-    dispatch(openModal({
-      modalType: 'BOOST',
-      modalProps: props,
-    }));
+    dispatch(
+      openModal({
+        modalType: 'BOOST',
+        modalProps: props,
+      }),
+    );
   };
 }
 
-
 export function changeBoostPrivacy(privacy) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: BOOSTS_CHANGE_PRIVACY,
       privacy,

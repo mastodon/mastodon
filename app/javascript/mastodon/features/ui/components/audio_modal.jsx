@@ -9,11 +9,14 @@ import Footer from 'mastodon/features/picture_in_picture/components/footer';
 
 const mapStateToProps = (state, { statusId }) => ({
   status: state.getIn(['statuses', statusId]),
-  accountStaticAvatar: state.getIn(['accounts', state.getIn(['statuses', statusId, 'account']), 'avatar_static']),
+  accountStaticAvatar: state.getIn([
+    'accounts',
+    state.getIn(['statuses', statusId, 'account']),
+    'avatar_static',
+  ]),
 });
 
 class AudioModal extends ImmutablePureComponent {
-
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     statusId: PropTypes.string.isRequired,
@@ -26,11 +29,13 @@ class AudioModal extends ImmutablePureComponent {
     onChangeBackgroundColor: PropTypes.func.isRequired,
   };
 
-  render () {
+  render() {
     const { media, status, accountStaticAvatar, onClose } = this.props;
     const options = this.props.options || {};
-    const language = status.getIn(['translation', 'language']) || status.get('language');
-    const description = media.getIn(['translation', 'description']) || media.get('description');
+    const language =
+      status.getIn(['translation', 'language']) || status.get('language');
+    const description =
+      media.getIn(['translation', 'description']) || media.get('description');
 
     return (
       <div className='modal-root__modal audio-modal'>
@@ -50,12 +55,19 @@ class AudioModal extends ImmutablePureComponent {
         </div>
 
         <div className='media-modal__overlay'>
-          {status && <Footer statusId={status.get('id')} withOpenButton onClose={onClose} />}
+          {status && (
+            <Footer
+              statusId={status.get('id')}
+              withOpenButton
+              onClose={onClose}
+            />
+          )}
         </div>
       </div>
     );
   }
-
 }
 
-export default connect(mapStateToProps, null, null, { forwardRef: true })(AudioModal);
+export default connect(mapStateToProps, null, null, { forwardRef: true })(
+  AudioModal,
+);

@@ -6,17 +6,22 @@ import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon } from 'mastodon/components/icon';
 
 const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
   hide: { id: 'column_header.hide_settings', defaultMessage: 'Hide settings' },
-  moveLeft: { id: 'column_header.moveLeft_settings', defaultMessage: 'Move column to the left' },
-  moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
+  moveLeft: {
+    id: 'column_header.moveLeft_settings',
+    defaultMessage: 'Move column to the left',
+  },
+  moveRight: {
+    id: 'column_header.moveRight_settings',
+    defaultMessage: 'Move column to the right',
+  },
 });
 
 class ColumnHeader extends PureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
     identity: PropTypes.object,
@@ -84,26 +89,39 @@ class ColumnHeader extends PureComponent {
     this.props.onPin();
   };
 
-  render () {
+  render() {
     const { router } = this.context;
-    const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
+    const {
+      title,
+      icon,
+      active,
+      children,
+      pinned,
+      multiColumn,
+      extraButton,
+      showBackButton,
+      intl: { formatMessage },
+      placeholder,
+      appendContent,
+      collapseIssues,
+    } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
-      'active': active,
+      active: active,
     });
 
     const buttonClassName = classNames('column-header', {
-      'active': active,
+      active: active,
     });
 
     const collapsibleClassName = classNames('column-header__collapsible', {
-      'collapsed': collapsed,
-      'animating': animating,
+      collapsed: collapsed,
+      animating: animating,
     });
 
     const collapsibleButtonClassName = classNames('column-header__button', {
-      'active': !collapsed,
+      active: !collapsed,
     });
 
     let extraContent, pinButton, moveButtons, backButton, collapseButton;
@@ -117,37 +135,84 @@ class ColumnHeader extends PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='times' /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
+      pinButton = (
+        <button
+          key='pin-button'
+          className='text-btn column-header__setting-btn'
+          onClick={this.handlePin}
+        >
+          <Icon id='times' />{' '}
+          <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' />
+        </button>
+      );
 
       moveButtons = (
         <div key='move-buttons' className='column-header__setting-arrows'>
-          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><Icon id='chevron-left' /></button>
-          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='icon-button column-header__setting-btn' onClick={this.handleMoveRight}><Icon id='chevron-right' /></button>
+          <button
+            title={formatMessage(messages.moveLeft)}
+            aria-label={formatMessage(messages.moveLeft)}
+            className='icon-button column-header__setting-btn'
+            onClick={this.handleMoveLeft}
+          >
+            <Icon id='chevron-left' />
+          </button>
+          <button
+            title={formatMessage(messages.moveRight)}
+            aria-label={formatMessage(messages.moveRight)}
+            className='icon-button column-header__setting-btn'
+            onClick={this.handleMoveRight}
+          >
+            <Icon id='chevron-right' />
+          </button>
         </div>
       );
     } else if (multiColumn && this.props.onPin) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
-    }
-
-    if (!pinned && ((multiColumn && router.history.location?.state?.fromMastodon) || showBackButton)) {
-      backButton = (
-        <button onClick={this.handleBackClick} className='column-header__back-button'>
-          <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
-          <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
+      pinButton = (
+        <button
+          key='pin-button'
+          className='text-btn column-header__setting-btn'
+          onClick={this.handlePin}
+        >
+          <Icon id='plus' />{' '}
+          <FormattedMessage id='column_header.pin' defaultMessage='Pin' />
         </button>
       );
     }
 
-    const collapsedContent = [
-      extraContent,
-    ];
+    if (
+      !pinned &&
+      ((multiColumn && router.history.location?.state?.fromMastodon) ||
+        showBackButton)
+    ) {
+      backButton = (
+        <button
+          onClick={this.handleBackClick}
+          className='column-header__back-button'
+        >
+          <Icon
+            id='chevron-left'
+            className='column-back-button__icon'
+            fixedWidth
+          />
+          <FormattedMessage
+            id='column_back_button.label'
+            defaultMessage='Back'
+          />
+        </button>
+      );
+    }
+
+    const collapsedContent = [extraContent];
 
     if (multiColumn) {
       collapsedContent.push(pinButton);
       collapsedContent.push(moveButtons);
     }
 
-    if (this.context.identity.signedIn && (children || (multiColumn && this.props.onPin))) {
+    if (
+      this.context.identity.signedIn &&
+      (children || (multiColumn && this.props.onPin))
+    ) {
       collapseButton = (
         <button
           className={collapsibleButtonClassName}
@@ -184,7 +249,11 @@ class ColumnHeader extends PureComponent {
           </div>
         </h1>
 
-        <div className={collapsibleClassName} tabIndex={collapsed ? -1 : null} onTransitionEnd={this.handleTransitionEnd}>
+        <div
+          className={collapsibleClassName}
+          tabIndex={collapsed ? -1 : null}
+          onTransitionEnd={this.handleTransitionEnd}
+        >
           <div className='column-header__collapsible-inner'>
             {(!collapsed || animating) && collapsedContent}
           </div>
@@ -212,7 +281,6 @@ class ColumnHeader extends PureComponent {
       }
     }
   }
-
 }
 
 export default injectIntl(ColumnHeader);

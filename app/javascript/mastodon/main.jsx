@@ -21,7 +21,11 @@ function main() {
     root.render(<Mastodon {...props} />);
     store.dispatch(setupBrowserNotifications());
 
-    if (process.env.NODE_ENV === 'production' && me && 'serviceWorker' in navigator) {
+    if (
+      process.env.NODE_ENV === 'production' &&
+      me &&
+      'serviceWorker' in navigator
+    ) {
       const { Workbox } = await import('workbox-window');
       const wb = new Workbox('/sw.js');
       /** @type {ServiceWorkerRegistration} */
@@ -33,8 +37,14 @@ function main() {
         console.error(err);
       }
 
-      if (registration && 'Notification' in window && Notification.permission === 'granted') {
-        const registerPushNotifications = await import('mastodon/actions/push_notifications');
+      if (
+        registration &&
+        'Notification' in window &&
+        Notification.permission === 'granted'
+      ) {
+        const registerPushNotifications = await import(
+          'mastodon/actions/push_notifications'
+        );
 
         store.dispatch(registerPushNotifications.register());
       }

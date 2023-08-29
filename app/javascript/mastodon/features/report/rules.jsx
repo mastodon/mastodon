@@ -10,12 +10,11 @@ import Button from 'mastodon/components/button';
 
 import Option from './components/option';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   rules: state.getIn(['server', 'server', 'rules']),
 });
 
 class Rules extends PureComponent {
-
   static propTypes = {
     onNextStep: PropTypes.func.isRequired,
     rules: ImmutablePropTypes.list,
@@ -33,16 +32,26 @@ class Rules extends PureComponent {
     onToggle(value, checked);
   };
 
-  render () {
+  render() {
     const { rules, selectedRuleIds } = this.props;
 
     return (
       <>
-        <h3 className='report-dialog-modal__title'><FormattedMessage id='report.rules.title' defaultMessage='Which rules are being violated?' /></h3>
-        <p className='report-dialog-modal__lead'><FormattedMessage id='report.rules.subtitle' defaultMessage='Select all that apply' /></p>
+        <h3 className='report-dialog-modal__title'>
+          <FormattedMessage
+            id='report.rules.title'
+            defaultMessage='Which rules are being violated?'
+          />
+        </h3>
+        <p className='report-dialog-modal__lead'>
+          <FormattedMessage
+            id='report.rules.subtitle'
+            defaultMessage='Select all that apply'
+          />
+        </p>
 
         <div>
-          {rules.map(item => (
+          {rules.map((item) => (
             <Option
               key={item.get('id')}
               name='rule_ids'
@@ -58,12 +67,16 @@ class Rules extends PureComponent {
         <div className='flex-spacer' />
 
         <div className='report-dialog-modal__actions'>
-          <Button onClick={this.handleNextClick} disabled={selectedRuleIds.size < 1}><FormattedMessage id='report.next' defaultMessage='Next' /></Button>
+          <Button
+            onClick={this.handleNextClick}
+            disabled={selectedRuleIds.size < 1}
+          >
+            <FormattedMessage id='report.next' defaultMessage='Next' />
+          </Button>
         </div>
       </>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(Rules);

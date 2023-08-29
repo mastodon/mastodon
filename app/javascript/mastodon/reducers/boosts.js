@@ -13,13 +13,13 @@ const initialState = Immutable.Map({
 
 export default function mutes(state = initialState, action) {
   switch (action.type) {
-  case BOOSTS_INIT_MODAL:
-    return state.withMutations((state) => {
-      state.setIn(['new', 'privacy'], action.privacy);
-    });
-  case BOOSTS_CHANGE_PRIVACY:
-    return state.setIn(['new', 'privacy'], action.privacy);
-  default:
-    return state;
+    case BOOSTS_INIT_MODAL:
+      return state.withMutations((state) => {
+        state.setIn(['new', 'privacy'], action.privacy);
+      });
+    case BOOSTS_CHANGE_PRIVACY:
+      return state.setIn(['new', 'privacy'], action.privacy);
+    default:
+      return state;
   }
 }

@@ -22,14 +22,13 @@ const percIncrease = (a, b) => {
   } else if (b === 0 && a === 0) {
     percent = 0;
   } else {
-    percent = - 1;
+    percent = -1;
   }
 
   return percent;
 };
 
 export default class Counter extends PureComponent {
-
   static propTypes = {
     measure: PropTypes.string.isRequired,
     start_at: PropTypes.string.isRequired,
@@ -45,20 +44,28 @@ export default class Counter extends PureComponent {
     data: null,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { measure, start_at, end_at, params } = this.props;
 
-    api().post('/api/v1/admin/measures', { keys: [measure], start_at, end_at, [measure]: params }).then(res => {
-      this.setState({
-        loading: false,
-        data: res.data,
+    api()
+      .post('/api/v1/admin/measures', {
+        keys: [measure],
+        start_at,
+        end_at,
+        [measure]: params,
+      })
+      .then((res) => {
+        this.setState({
+          loading: false,
+          data: res.data,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    }).catch(err => {
-      console.error(err);
-    });
   }
 
-  render () {
+  render() {
     const { label, href, target } = this.props;
     const { loading, data } = this.state;
 
@@ -67,35 +74,53 @@ export default class Counter extends PureComponent {
     if (loading) {
       content = (
         <>
-          <span className='sparkline__value__total'><Skeleton width={43} /></span>
-          <span className='sparkline__value__change'><Skeleton width={43} /></span>
+          <span className='sparkline__value__total'>
+            <Skeleton width={43} />
+          </span>
+          <span className='sparkline__value__change'>
+            <Skeleton width={43} />
+          </span>
         </>
       );
     } else {
       const measure = data[0];
-      const percentChange = measure.previous_total && percIncrease(measure.previous_total * 1, measure.total * 1);
+      const percentChange =
+        measure.previous_total &&
+        percIncrease(measure.previous_total * 1, measure.total * 1);
 
       content = (
         <>
-          <span className='sparkline__value__total'>{measure.human_value || <FormattedNumber value={measure.total} />}</span>
-          {measure.previous_total && (<span className={classNames('sparkline__value__change', { positive: percentChange > 0, negative: percentChange < 0 })}>{percentChange > 0 && '+'}<FormattedNumber value={percentChange} style='percent' /></span>)}
+          <span className='sparkline__value__total'>
+            {measure.human_value || <FormattedNumber value={measure.total} />}
+          </span>
+          {measure.previous_total && (
+            <span
+              className={classNames('sparkline__value__change', {
+                positive: percentChange > 0,
+                negative: percentChange < 0,
+              })}
+            >
+              {percentChange > 0 && '+'}
+              <FormattedNumber value={percentChange} style='percent' />
+            </span>
+          )}
         </>
       );
     }
 
     const inner = (
       <>
-        <div className='sparkline__value'>
-          {content}
-        </div>
+        <div className='sparkline__value'>{content}</div>
 
-        <div className='sparkline__label'>
-          {label}
-        </div>
+        <div className='sparkline__label'>{label}</div>
 
         <div className='sparkline__graph'>
           {!loading && (
-            <Sparklines width={259} height={55} data={data[0].data.map(x => x.value * 1)}>
+            <Sparklines
+              width={259}
+              height={55}
+              data={data[0].data.map((x) => x.value * 1)}
+            >
               <SparklinesCurve />
             </Sparklines>
           )}
@@ -110,12 +135,7 @@ export default class Counter extends PureComponent {
         </a>
       );
     } else {
-      return (
-        <div className='sparkline'>
-          {inner}
-        </div>
-      );
+      return <div className='sparkline'>{inner}</div>;
     }
   }
-
 }

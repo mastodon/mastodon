@@ -6,7 +6,6 @@ import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
 
 export default class ColumnLoading extends ImmutablePureComponent {
-
   static propTypes = {
     title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
     icon: PropTypes.string,
@@ -23,10 +22,15 @@ export default class ColumnLoading extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnHeader icon={icon} title={title} multiColumn={multiColumn} focusable={false} placeholder />
+        <ColumnHeader
+          icon={icon}
+          title={title}
+          multiColumn={multiColumn}
+          focusable={false}
+          placeholder
+        />
         <div className='scrollable' />
       </Column>
     );
   }
-
 }

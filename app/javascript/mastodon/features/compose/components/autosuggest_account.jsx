@@ -5,20 +5,20 @@ import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
 
 export default class AutosuggestAccount extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
   };
 
-  render () {
+  render() {
     const { account } = this.props;
 
     return (
       <div className='autosuggest-account' title={account.get('acct')}>
-        <div className='autosuggest-account-icon'><Avatar account={account} size={18} /></div>
+        <div className='autosuggest-account-icon'>
+          <Avatar account={account} size={18} />
+        </div>
         <DisplayName account={account} />
       </div>
     );
   }
-
 }

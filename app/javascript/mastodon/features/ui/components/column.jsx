@@ -9,7 +9,6 @@ import { scrollTop } from '../../../scroll';
 import ColumnHeader from './column_header';
 
 export default class Column extends PureComponent {
-
   static propTypes = {
     heading: PropTypes.string,
     icon: PropTypes.string,
@@ -28,7 +27,7 @@ export default class Column extends PureComponent {
     this._interruptScrollAnimation = scrollTop(scrollable);
   };
 
-  scrollTop () {
+  scrollTop() {
     const scrollable = this.node.querySelector('.scrollable');
 
     if (!scrollable) {
@@ -37,7 +36,6 @@ export default class Column extends PureComponent {
 
     this._interruptScrollAnimation = scrollTop(scrollable);
   }
-
 
   handleScroll = debounce(() => {
     if (typeof this._interruptScrollAnimation !== 'undefined') {
@@ -49,14 +47,23 @@ export default class Column extends PureComponent {
     this.node = c;
   };
 
-  render () {
+  render() {
     const { heading, icon, children, active, hideHeadingOnMobile } = this.props;
 
-    const showHeading = heading && (!hideHeadingOnMobile || (hideHeadingOnMobile && !isMobile(window.innerWidth)));
+    const showHeading =
+      heading &&
+      (!hideHeadingOnMobile ||
+        (hideHeadingOnMobile && !isMobile(window.innerWidth)));
 
     const columnHeaderId = showHeading && heading.replace(/ /g, '-');
     const header = showHeading && (
-      <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} columnHeaderId={columnHeaderId} />
+      <ColumnHeader
+        icon={icon}
+        active={active}
+        type={heading}
+        onClick={this.handleHeaderClick}
+        columnHeaderId={columnHeaderId}
+      />
     );
     return (
       <div
@@ -71,5 +78,4 @@ export default class Column extends PureComponent {
       </div>
     );
   }
-
 }

@@ -7,7 +7,9 @@ const { env } = require('process');
 const { load } = require('js-yaml');
 
 const configPath = resolve('config', 'webpacker.yml');
-const settings = load(readFileSync(configPath), 'utf8')[env.RAILS_ENV || env.NODE_ENV];
+const settings = load(readFileSync(configPath), 'utf8')[
+  env.RAILS_ENV || env.NODE_ENV
+];
 
 const themePath = resolve('config', 'themes.yml');
 const themes = load(readFileSync(themePath), 'utf8');

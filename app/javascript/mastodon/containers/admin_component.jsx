@@ -4,19 +4,13 @@ import { PureComponent } from 'react';
 import { IntlProvider } from 'mastodon/locales';
 
 export default class AdminComponent extends PureComponent {
-
   static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  render () {
+  render() {
     const { children } = this.props;
 
-    return (
-      <IntlProvider>
-        {children}
-      </IntlProvider>
-    );
+    return <IntlProvider>{children}</IntlProvider>;
   }
-
 }

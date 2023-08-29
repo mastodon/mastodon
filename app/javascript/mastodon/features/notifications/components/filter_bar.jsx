@@ -3,19 +3,24 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon } from 'mastodon/components/icon';
 
 const tooltips = defineMessages({
   mentions: { id: 'notifications.filter.mentions', defaultMessage: 'Mentions' },
-  favourites: { id: 'notifications.filter.favourites', defaultMessage: 'Favorites' },
+  favourites: {
+    id: 'notifications.filter.favourites',
+    defaultMessage: 'Favorites',
+  },
   boosts: { id: 'notifications.filter.boosts', defaultMessage: 'Boosts' },
   polls: { id: 'notifications.filter.polls', defaultMessage: 'Poll results' },
   follows: { id: 'notifications.filter.follows', defaultMessage: 'Follows' },
-  statuses: { id: 'notifications.filter.statuses', defaultMessage: 'Updates from people you follow' },
+  statuses: {
+    id: 'notifications.filter.statuses',
+    defaultMessage: 'Updates from people you follow',
+  },
 });
 
 class FilterBar extends PureComponent {
-
   static propTypes = {
     selectFilter: PropTypes.func.isRequired,
     selectedFilter: PropTypes.string.isRequired,
@@ -23,11 +28,11 @@ class FilterBar extends PureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  onClick (notificationType) {
+  onClick(notificationType) {
     return () => this.props.selectFilter(notificationType);
   }
 
-  render () {
+  render() {
     const { selectedFilter, advancedMode, intl } = this.props;
     const renderedElement = !advancedMode ? (
       <div className='notification__filter-bar'>
@@ -107,7 +112,6 @@ class FilterBar extends PureComponent {
     );
     return renderedElement;
   }
-
 }
 
 export default injectIntl(FilterBar);

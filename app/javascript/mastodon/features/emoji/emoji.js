@@ -10,21 +10,110 @@ const trie = new Trie(Object.keys(unicodeMapping));
 
 // Convert to file names from emojis. (For different variation selector emojis)
 const emojiFilenames = (emojis) => {
-  return emojis.map(v => unicodeMapping[v].filename);
+  return emojis.map((v) => unicodeMapping[v].filename);
 };
 
 // Emoji requiring extra borders depending on theme
-const darkEmoji = emojiFilenames(['🎱', '🐜', '⚫', '🖤', '⬛', '◼️', '◾', '◼️', '✒️', '▪️', '💣', '🎳', '📷', '📸', '♣️', '🕶️', '✴️', '🔌', '💂‍♀️', '📽️', '🍳', '🦍', '💂', '🔪', '🕳️', '🕹️', '🕋', '🖊️', '🖋️', '💂‍♂️', '🎤', '🎓', '🎥', '🎼', '♠️', '🎩', '🦃', '📼', '📹', '🎮', '🐃', '🏴', '🐞', '🕺', '📱', '📲', '🚲']);
-const lightEmoji = emojiFilenames(['👽', '⚾', '🐔', '☁️', '💨', '🕊️', '👀', '🍥', '👻', '🐐', '❕', '❔', '⛸️', '🌩️', '🔊', '🔇', '📃', '🌧️', '🐏', '🍚', '🍙', '🐓', '🐑', '💀', '☠️', '🌨️', '🔉', '🔈', '💬', '💭', '🏐', '🏳️', '⚪', '⬜', '◽', '◻️', '▫️']);
+const darkEmoji = emojiFilenames([
+  '🎱',
+  '🐜',
+  '⚫',
+  '🖤',
+  '⬛',
+  '◼️',
+  '◾',
+  '◼️',
+  '✒️',
+  '▪️',
+  '💣',
+  '🎳',
+  '📷',
+  '📸',
+  '♣️',
+  '🕶️',
+  '✴️',
+  '🔌',
+  '💂‍♀️',
+  '📽️',
+  '🍳',
+  '🦍',
+  '💂',
+  '🔪',
+  '🕳️',
+  '🕹️',
+  '🕋',
+  '🖊️',
+  '🖋️',
+  '💂‍♂️',
+  '🎤',
+  '🎓',
+  '🎥',
+  '🎼',
+  '♠️',
+  '🎩',
+  '🦃',
+  '📼',
+  '📹',
+  '🎮',
+  '🐃',
+  '🏴',
+  '🐞',
+  '🕺',
+  '📱',
+  '📲',
+  '🚲',
+]);
+const lightEmoji = emojiFilenames([
+  '👽',
+  '⚾',
+  '🐔',
+  '☁️',
+  '💨',
+  '🕊️',
+  '👀',
+  '🍥',
+  '👻',
+  '🐐',
+  '❕',
+  '❔',
+  '⛸️',
+  '🌩️',
+  '🔊',
+  '🔇',
+  '📃',
+  '🌧️',
+  '🐏',
+  '🍚',
+  '🍙',
+  '🐓',
+  '🐑',
+  '💀',
+  '☠️',
+  '🌨️',
+  '🔉',
+  '🔈',
+  '💬',
+  '💭',
+  '🏐',
+  '🏳️',
+  '⚪',
+  '⬜',
+  '◽',
+  '◻️',
+  '▫️',
+]);
 
 const emojiFilename = (filename) => {
-  const borderedEmoji = (document.body && document.body.classList.contains('theme-mastodon-light')) ? lightEmoji : darkEmoji;
-  return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
+  const borderedEmoji =
+    document.body && document.body.classList.contains('theme-mastodon-light')
+      ? lightEmoji
+      : darkEmoji;
+  return borderedEmoji.includes(filename) ? filename + '_border' : filename;
 };
 
 const emojifyTextNode = (node, customEmojis) => {
-  const VS15 = 0xFE0E;
-  const VS16 = 0xFE0F;
+  const VS15 = 0xfe0e;
+  const VS16 = 0xfe0f;
 
   let str = node.textContent;
 
@@ -40,7 +129,11 @@ const emojifyTextNode = (node, customEmojis) => {
         i += str.codePointAt(i) < 65536 ? 1 : 2;
       }
     } else {
-      while (i < str.length && str[i] !== ':' && !(unicode_emoji = trie.search(str.slice(i)))) {
+      while (
+        i < str.length &&
+        str[i] !== ':' &&
+        !(unicode_emoji = trie.search(str.slice(i)))
+      ) {
         i += str.codePointAt(i) < 65536 ? 1 : 2;
       }
     }
@@ -50,8 +143,10 @@ const emojifyTextNode = (node, customEmojis) => {
       break;
     }
 
-    let rend, replacement = null;
-    if (str[i] === ':') { // Potentially the start of a custom emoji :shortcode:
+    let rend,
+      replacement = null;
+    if (str[i] === ':') {
+      // Potentially the start of a custom emoji :shortcode:
       rend = str.indexOf(':', i + 1) + 1;
 
       // no matching ending ':', skip
@@ -80,11 +175,15 @@ const emojifyTextNode = (node, customEmojis) => {
       replacement.setAttribute('src', filename);
       replacement.setAttribute('data-original', custom_emoji.url);
       replacement.setAttribute('data-static', custom_emoji.static_url);
-    } else { // start of an unicode emoji
+    } else {
+      // start of an unicode emoji
       rend = i + unicode_emoji.length;
 
       // If the matched character was followed by VS15 (for selecting text presentation), skip it.
-      if (str.codePointAt(rend - 1) !== VS16 && str.codePointAt(rend) === VS15) {
+      if (
+        str.codePointAt(rend - 1) !== VS16 &&
+        str.codePointAt(rend) === VS15
+      ) {
         i = rend + 1;
         continue;
       }
@@ -97,7 +196,10 @@ const emojifyTextNode = (node, customEmojis) => {
       replacement.setAttribute('class', 'emojione');
       replacement.setAttribute('alt', unicode_emoji);
       replacement.setAttribute('title', title);
-      replacement.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename)}.svg`);
+      replacement.setAttribute(
+        'src',
+        `${assetHost}/emoji/${emojiFilename(filename)}.svg`,
+      );
     }
 
     // Add the processed-up-to-now string and the emoji replacement
@@ -113,14 +215,14 @@ const emojifyTextNode = (node, customEmojis) => {
 
 const emojifyNode = (node, customEmojis) => {
   for (const child of node.childNodes) {
-    switch(child.nodeType) {
-    case Node.TEXT_NODE:
-      emojifyTextNode(child, customEmojis);
-      break;
-    case Node.ELEMENT_NODE:
-      if (!child.classList.contains('invisible'))
-        emojifyNode(child, customEmojis);
-      break;
+    switch (child.nodeType) {
+      case Node.TEXT_NODE:
+        emojifyTextNode(child, customEmojis);
+        break;
+      case Node.ELEMENT_NODE:
+        if (!child.classList.contains('invisible'))
+          emojifyNode(child, customEmojis);
+        break;
     }
   }
 };
@@ -129,8 +231,7 @@ const emojify = (str, customEmojis = {}) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;
 
-  if (!Object.keys(customEmojis).length)
-    customEmojis = null;
+  if (!Object.keys(customEmojis).length) customEmojis = null;
 
   emojifyNode(wrapper, customEmojis);
 
@@ -142,10 +243,10 @@ export default emojify;
 export const buildCustomEmojis = (customEmojis) => {
   const emojis = [];
 
-  customEmojis.forEach(emoji => {
+  customEmojis.forEach((emoji) => {
     const shortcode = emoji.get('shortcode');
-    const url       = autoPlayGif ? emoji.get('url') : emoji.get('static_url');
-    const name      = shortcode.replace(':', '');
+    const url = autoPlayGif ? emoji.get('url') : emoji.get('static_url');
+    const name = shortcode.replace(':', '');
 
     emojis.push({
       id: name,
@@ -163,4 +264,11 @@ export const buildCustomEmojis = (customEmojis) => {
   return emojis;
 };
 
-export const categoriesFromEmojis = customEmojis => customEmojis.reduce((set, emoji) => set.add(emoji.get('category') ? `custom-${emoji.get('category')}` : 'custom'), new Set(['custom']));
+export const categoriesFromEmojis = (customEmojis) =>
+  customEmojis.reduce(
+    (set, emoji) =>
+      set.add(
+        emoji.get('category') ? `custom-${emoji.get('category')}` : 'custom',
+      ),
+    new Set(['custom']),
+  );

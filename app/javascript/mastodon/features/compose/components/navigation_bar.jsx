@@ -12,15 +12,14 @@ import { Avatar } from '../../../components/avatar';
 import ActionBar from './action_bar';
 
 export default class NavigationBar extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     onLogout: PropTypes.func.isRequired,
     onClose: PropTypes.func,
   };
 
-  render () {
-    const username = this.props.account.get('acct')
+  render() {
+    const username = this.props.account.get('acct');
     return (
       <div className='navigation-bar'>
         <Link to={`/@${username}`}>
@@ -31,20 +30,32 @@ export default class NavigationBar extends ImmutablePureComponent {
         <div className='navigation-bar__profile'>
           <span>
             <Link to={`/@${username}`}>
-              <strong className='navigation-bar__profile-account'>@{username}</strong>
+              <strong className='navigation-bar__profile-account'>
+                @{username}
+              </strong>
             </Link>
           </span>
 
           <span>
-            <a href='/settings/profile' className='navigation-bar__profile-edit'><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a>
+            <a
+              href='/settings/profile'
+              className='navigation-bar__profile-edit'
+            >
+              <FormattedMessage
+                id='navigation_bar.edit_profile'
+                defaultMessage='Edit profile'
+              />
+            </a>
           </span>
         </div>
 
         <div className='navigation-bar__actions'>
-          <ActionBar account={this.props.account} onLogout={this.props.onLogout} />
+          <ActionBar
+            account={this.props.account}
+            onLogout={this.props.onLogout}
+          />
         </div>
       </div>
     );
   }
-
 }

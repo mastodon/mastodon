@@ -7,7 +7,7 @@ import { openModal, closeModal } from '../actions/modal';
 import DropdownMenu from '../components/dropdown_menu';
 import { isUserTouching } from '../is_mobile';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   openDropdownId: state.getIn(['dropdown_menu', 'openId']),
   openedViaKeyboard: state.getIn(['dropdown_menu', 'keyboard']),
 });
@@ -18,21 +18,27 @@ const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
       dispatch(fetchRelationships([status.getIn(['account', 'id'])]));
     }
 
-    dispatch(isUserTouching() ? openModal({
-      modalType: 'ACTIONS',
-      modalProps: {
-        status,
-        actions: items,
-        onClick: onItemClick,
-      },
-    }) : openDropdownMenu(id, keyboard, scrollKey));
+    dispatch(
+      isUserTouching()
+        ? openModal({
+            modalType: 'ACTIONS',
+            modalProps: {
+              status,
+              actions: items,
+              onClick: onItemClick,
+            },
+          })
+        : openDropdownMenu(id, keyboard, scrollKey),
+    );
   },
 
   onClose(id) {
-    dispatch(closeModal({
-      modalType: 'ACTIONS',
-      ignoreFocus: false,
-    }));
+    dispatch(
+      closeModal({
+        modalType: 'ACTIONS',
+        ignoreFocus: false,
+      }),
+    );
     dispatch(closeDropdownMenu(id));
   },
 });

@@ -14,25 +14,30 @@ import Account from './components/account';
 import List from './components/list';
 // hack
 
-const getOrderedLists = createSelector([state => state.get('lists')], lists => {
-  if (!lists) {
-    return lists;
-  }
+const getOrderedLists = createSelector(
+  [(state) => state.get('lists')],
+  (lists) => {
+    if (!lists) {
+      return lists;
+    }
 
-  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
+    return lists
+      .toList()
+      .filter((item) => !!item)
+      .sort((a, b) => a.get('title').localeCompare(b.get('title')));
+  },
+);
+
+const mapStateToProps = (state) => ({
+  listIds: getOrderedLists(state).map((list) => list.get('id')),
 });
 
-const mapStateToProps = state => ({
-  listIds: getOrderedLists(state).map(list=>list.get('id')),
-});
-
-const mapDispatchToProps = dispatch => ({
-  onInitialize: accountId => dispatch(setupListAdder(accountId)),
+const mapDispatchToProps = (dispatch) => ({
+  onInitialize: (accountId) => dispatch(setupListAdder(accountId)),
   onReset: () => dispatch(resetListAdder()),
 });
 
 class ListAdder extends ImmutablePureComponent {
-
   static propTypes = {
     accountId: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
@@ -42,17 +47,17 @@ class ListAdder extends ImmutablePureComponent {
     listIds: ImmutablePropTypes.list.isRequired,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { onInitialize, accountId } = this.props;
     onInitialize(accountId);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     const { onReset } = this.props;
     onReset();
   }
 
-  render () {
+  render() {
     const { accountId, listIds } = this.props;
 
     return (
@@ -63,14 +68,17 @@ class ListAdder extends ImmutablePureComponent {
 
         <NewListForm />
 
-
         <div className='list-adder__lists'>
-          {listIds.map(ListId => <List key={ListId} listId={ListId} />)}
+          {listIds.map((ListId) => (
+            <List key={ListId} listId={ListId} />
+          ))}
         </div>
       </div>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(ListAdder));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(injectIntl(ListAdder));

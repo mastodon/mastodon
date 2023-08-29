@@ -9,7 +9,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon } from 'mastodon/components/icon';
 
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
@@ -28,18 +28,30 @@ import { countableText } from '../util/counter';
 
 import CharacterCounter from './character_counter';
 
-const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
+const allowedAroundShortCode =
+  '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
 const messages = defineMessages({
-  placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
-  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
+  placeholder: {
+    id: 'compose_form.placeholder',
+    defaultMessage: 'What is on your mind?',
+  },
+  spoiler_placeholder: {
+    id: 'compose_form.spoiler_placeholder',
+    defaultMessage: 'Write your warning here',
+  },
   publish: { id: 'compose_form.publish', defaultMessage: 'Publish' },
-  publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
-  saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
+  publishLoud: {
+    id: 'compose_form.publish_loud',
+    defaultMessage: '{publish}!',
+  },
+  saveChanges: {
+    id: 'compose_form.save_changes',
+    defaultMessage: 'Save changes',
+  },
 });
 
 class ComposeForm extends ImmutablePureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -92,15 +104,26 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   getFulltextForCharacterCounting = () => {
-    return [this.props.spoiler? this.props.spoilerText: '', countableText(this.props.text)].join('');
+    return [
+      this.props.spoiler ? this.props.spoilerText : '',
+      countableText(this.props.text),
+    ].join('');
   };
 
   canSubmit = () => {
-    const { isSubmitting, isChangingUpload, isUploading, anyMedia } = this.props;
+    const { isSubmitting, isChangingUpload, isUploading, anyMedia } =
+      this.props;
     const fulltext = this.getFulltextForCharacterCounting();
-    const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
+    const isOnlyWhitespace =
+      fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
+    return !(
+      isSubmitting ||
+      isUploading ||
+      isChangingUpload ||
+      length(fulltext) > 500 ||
+      (isOnlyWhitespace && !anyMedia)
+    );
   };
 
   handleSubmit = (e) => {
@@ -114,7 +137,9 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
-    this.props.onSubmit(this.context.router ? this.context.router.history : null);
+    this.props.onSubmit(
+      this.context.router ? this.context.router.history : null,
+    );
 
     if (e) {
       e.preventDefault();
@@ -144,21 +169,24 @@ class ComposeForm extends ImmutablePureComponent {
   handleFocus = () => {
     if (this.composeForm && !this.props.singleColumn) {
       const { left, right } = this.composeForm.getBoundingClientRect();
-      if (left < 0 || right > (window.innerWidth || document.documentElement.clientWidth)) {
+      if (
+        left < 0 ||
+        right > (window.innerWidth || document.documentElement.clientWidth)
+      ) {
         this.composeForm.scrollIntoView();
       }
     }
   };
 
-  componentDidMount () {
-    this._updateFocusAndSelection({ });
+  componentDidMount() {
+    this._updateFocusAndSelection({});
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.timeout) clearTimeout(this.timeout);
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     this._updateFocusAndSelection(prevProps);
   }
 
@@ -171,27 +199,38 @@ class ComposeForm extends ImmutablePureComponent {
     if (this.props.focusDate && this.props.focusDate !== prevProps.focusDate) {
       let selectionEnd, selectionStart;
 
-      if (this.props.preselectDate !== prevProps.preselectDate && this.props.isInReply) {
-        selectionEnd   = this.props.text.length;
+      if (
+        this.props.preselectDate !== prevProps.preselectDate &&
+        this.props.isInReply
+      ) {
+        selectionEnd = this.props.text.length;
         selectionStart = this.props.text.search(/\s/) + 1;
       } else if (typeof this.props.caretPosition === 'number') {
         selectionStart = this.props.caretPosition;
-        selectionEnd   = this.props.caretPosition;
+        selectionEnd = this.props.caretPosition;
       } else {
-        selectionEnd   = this.props.text.length;
+        selectionEnd = this.props.text.length;
         selectionStart = selectionEnd;
       }
 
       // Because of the wicg-inert polyfill, the activeElement may not be
       // immediately selectable, we have to wait for observers to run, as
       // described in https://github.com/WICG/inert#performance-and-gotchas
-      Promise.resolve().then(() => {
-        this.autosuggestTextarea.textarea.setSelectionRange(selectionStart, selectionEnd);
-        this.autosuggestTextarea.textarea.focus();
-        this.setState({ highlighted: true });
-        this.timeout = setTimeout(() => this.setState({ highlighted: false }), 700);
-      }).catch(console.error);
-    } else if(prevProps.isSubmitting && !this.props.isSubmitting) {
+      Promise.resolve()
+        .then(() => {
+          this.autosuggestTextarea.textarea.setSelectionRange(
+            selectionStart,
+            selectionEnd,
+          );
+          this.autosuggestTextarea.textarea.focus();
+          this.setState({ highlighted: true });
+          this.timeout = setTimeout(
+            () => this.setState({ highlighted: false }),
+            700,
+          );
+        })
+        .catch(console.error);
+    } else if (prevProps.isSubmitting && !this.props.isSubmitting) {
       this.autosuggestTextarea.textarea.focus();
     } else if (this.props.spoiler !== prevProps.spoiler) {
       if (this.props.spoiler) {
@@ -210,19 +249,22 @@ class ComposeForm extends ImmutablePureComponent {
     this.spoilerText = c;
   };
 
-  setRef = c => {
+  setRef = (c) => {
     this.composeForm = c;
   };
 
   handleEmojiPick = (data) => {
-    const { text }     = this.props;
-    const position     = this.autosuggestTextarea.textarea.selectionStart;
-    const needsSpace   = data.custom && position > 0 && !allowedAroundShortCode.includes(text[position - 1]);
+    const { text } = this.props;
+    const position = this.autosuggestTextarea.textarea.selectionStart;
+    const needsSpace =
+      data.custom &&
+      position > 0 &&
+      !allowedAroundShortCode.includes(text[position - 1]);
 
     this.props.onPickEmoji(position, data, needsSpace);
   };
 
-  render () {
+  render() {
     const { intl, onPaste, autoFocus } = this.props;
     const { highlighted } = this.state;
     const disabled = this.props.isSubmitting;
@@ -231,10 +273,22 @@ class ComposeForm extends ImmutablePureComponent {
 
     if (this.props.isEditing) {
       publishText = intl.formatMessage(messages.saveChanges);
-    } else if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
-      publishText = <span className='compose-form__publish-private'><Icon id='lock' /> {intl.formatMessage(messages.publish)}</span>;
+    } else if (
+      this.props.privacy === 'private' ||
+      this.props.privacy === 'direct'
+    ) {
+      publishText = (
+        <span className='compose-form__publish-private'>
+          <Icon id='lock' /> {intl.formatMessage(messages.publish)}
+        </span>
+      );
     } else {
-      publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
+      publishText =
+        this.props.privacy !== 'unlisted'
+          ? intl.formatMessage(messages.publishLoud, {
+              publish: intl.formatMessage(messages.publish),
+            })
+          : intl.formatMessage(messages.publish);
     }
 
     return (
@@ -243,7 +297,13 @@ class ComposeForm extends ImmutablePureComponent {
 
         <ReplyIndicatorContainer />
 
-        <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef} aria-hidden={!this.props.spoiler}>
+        <div
+          className={`spoiler-input ${
+            this.props.spoiler ? 'spoiler-input--visible' : ''
+          }`}
+          ref={this.setRef}
+          aria-hidden={!this.props.spoiler}
+        >
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.spoiler_placeholder)}
             value={this.props.spoilerText}
@@ -263,7 +323,11 @@ class ComposeForm extends ImmutablePureComponent {
           />
         </div>
 
-        <div className={classNames('compose-form__highlightable', { active: highlighted })}>
+        <div
+          className={classNames('compose-form__highlightable', {
+            active: highlighted,
+          })}
+        >
           <AutosuggestTextarea
             ref={this.setAutosuggestTextarea}
             placeholder={intl.formatMessage(messages.placeholder)}
@@ -297,7 +361,10 @@ class ComposeForm extends ImmutablePureComponent {
             </div>
 
             <div className='character-counter__wrapper'>
-              <CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} />
+              <CharacterCounter
+                max={500}
+                text={this.getFulltextForCharacterCounting()}
+              />
             </div>
           </div>
         </div>
@@ -315,7 +382,6 @@ class ComposeForm extends ImmutablePureComponent {
       </form>
     );
   }
-
 }
 
 export default injectIntl(ComposeForm);

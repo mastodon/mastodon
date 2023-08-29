@@ -13,13 +13,12 @@ import ColumnBackButton from 'mastodon/components/column_back_button';
 import { EmptyAccount } from 'mastodon/components/empty_account';
 import Account from 'mastodon/containers/account_container';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   suggestions: state.getIn(['suggestions', 'items']),
   isLoading: state.getIn(['suggestions', 'isLoading']),
 });
 
 class Follows extends PureComponent {
-
   static propTypes = {
     onBack: PropTypes.func,
     dispatch: PropTypes.func.isRequired,
@@ -28,27 +27,42 @@ class Follows extends PureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchSuggestions(true));
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     const { dispatch } = this.props;
     dispatch(markAsPartial('home'));
   }
 
-  render () {
+  render() {
     const { onBack, isLoading, suggestions, multiColumn } = this.props;
 
     let loadedContent;
 
     if (isLoading) {
-      loadedContent = (new Array(8)).fill().map((_, i) => <EmptyAccount key={i} />);
+      loadedContent = new Array(8)
+        .fill()
+        .map((_, i) => <EmptyAccount key={i} />);
     } else if (suggestions.isEmpty()) {
-      loadedContent = <div className='follow-recommendations__empty'><FormattedMessage id='onboarding.follows.empty' defaultMessage='Unfortunately, no results can be shown right now. You can try using search or browsing the explore page to find people to follow, or try again later.' /></div>;
+      loadedContent = (
+        <div className='follow-recommendations__empty'>
+          <FormattedMessage
+            id='onboarding.follows.empty'
+            defaultMessage='Unfortunately, no results can be shown right now. You can try using search or browsing the explore page to find people to follow, or try again later.'
+          />
+        </div>
+      );
     } else {
-      loadedContent = suggestions.map(suggestion => <Account id={suggestion.get('account')} key={suggestion.get('account')} withBio />);
+      loadedContent = suggestions.map((suggestion) => (
+        <Account
+          id={suggestion.get('account')}
+          key={suggestion.get('account')}
+          withBio
+        />
+      ));
     }
 
     return (
@@ -57,24 +71,42 @@ class Follows extends PureComponent {
 
         <div className='scrollable privacy-policy'>
           <div className='column-title'>
-            <h3><FormattedMessage id='onboarding.follows.title' defaultMessage='Popular on Mastodon' /></h3>
-            <p><FormattedMessage id='onboarding.follows.lead' defaultMessage='You curate your own home feed. The more people you follow, the more active and interesting it will be. These profiles may be a good starting point—you can always unfollow them later!' /></p>
+            <h3>
+              <FormattedMessage
+                id='onboarding.follows.title'
+                defaultMessage='Popular on Mastodon'
+              />
+            </h3>
+            <p>
+              <FormattedMessage
+                id='onboarding.follows.lead'
+                defaultMessage='You curate your own home feed. The more people you follow, the more active and interesting it will be. These profiles may be a good starting point—you can always unfollow them later!'
+              />
+            </p>
           </div>
 
-          <div className='follow-recommendations'>
-            {loadedContent}
-          </div>
+          <div className='follow-recommendations'>{loadedContent}</div>
 
-          <p className='onboarding__lead'><FormattedMessage id='onboarding.tips.accounts_from_other_servers' defaultMessage='<strong>Did you know?</strong> Since Mastodon is decentralized, some profiles you come across will be hosted on servers other than yours. And yet you can interact with them seamlessly! Their server is in the second half of their username!' values={{ strong: chunks => <strong>{chunks}</strong> }} /></p>
+          <p className='onboarding__lead'>
+            <FormattedMessage
+              id='onboarding.tips.accounts_from_other_servers'
+              defaultMessage='<strong>Did you know?</strong> Since Mastodon is decentralized, some profiles you come across will be hosted on servers other than yours. And yet you can interact with them seamlessly! Their server is in the second half of their username!'
+              values={{ strong: (chunks) => <strong>{chunks}</strong> }}
+            />
+          </p>
 
           <div className='onboarding__footer'>
-            <button className='link-button' onClick={onBack}><FormattedMessage id='onboarding.actions.back' defaultMessage='Take me back' /></button>
+            <button className='link-button' onClick={onBack}>
+              <FormattedMessage
+                id='onboarding.actions.back'
+                defaultMessage='Take me back'
+              />
+            </button>
           </div>
         </div>
       </Column>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(Follows);

@@ -16,7 +16,6 @@ const iconStyle = {
 };
 
 class PollButton extends PureComponent {
-
   static propTypes = {
     disabled: PropTypes.bool,
     unavailable: PropTypes.bool,
@@ -29,7 +28,7 @@ class PollButton extends PureComponent {
     this.props.onClick();
   };
 
-  render () {
+  render() {
     const { intl, active, unavailable, disabled } = this.props;
 
     if (unavailable) {
@@ -40,7 +39,9 @@ class PollButton extends PureComponent {
       <div className='compose-form__poll-button'>
         <IconButton
           icon='tasks'
-          title={intl.formatMessage(active ? messages.remove_poll : messages.add_poll)}
+          title={intl.formatMessage(
+            active ? messages.remove_poll : messages.add_poll,
+          )}
           disabled={disabled}
           onClick={this.handleClick}
           className={`compose-form__poll-button-icon ${active ? 'active' : ''}`}
@@ -51,7 +52,6 @@ class PollButton extends PureComponent {
       </div>
     );
   }
-
 }
 
 export default injectIntl(PollButton);

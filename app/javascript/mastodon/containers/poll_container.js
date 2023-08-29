@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch, { pollId }) => ({
     { leading: true },
   ),
 
-  onVote (choices) {
+  onVote(choices) {
     dispatch(vote(pollId, choices));
   },
 });

@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { Check } from 'mastodon/components/check';
 
 export default class Option extends PureComponent {
-
   static propTypes = {
     name: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
@@ -18,7 +17,7 @@ export default class Option extends PureComponent {
     labelComponent: PropTypes.node,
   };
 
-  handleKeyPress = e => {
+  handleKeyPress = (e) => {
     const { value, checked, onToggle } = this.props;
 
     if (e.key === 'Enter' || e.key === ' ') {
@@ -28,28 +27,49 @@ export default class Option extends PureComponent {
     }
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { value, onToggle } = this.props;
     onToggle(value, e.target.checked);
   };
 
-  render () {
-    const { name, value, checked, label, labelComponent, description, multiple } = this.props;
+  render() {
+    const {
+      name,
+      value,
+      checked,
+      label,
+      labelComponent,
+      description,
+      multiple,
+    } = this.props;
 
     return (
       <label className='dialog-option poll__option selectable'>
-        <input type={multiple ? 'checkbox' : 'radio'} name={name} value={value} checked={checked} onChange={this.handleChange} />
+        <input
+          type={multiple ? 'checkbox' : 'radio'}
+          name={name}
+          value={value}
+          checked={checked}
+          onChange={this.handleChange}
+        />
 
         <span
-          className={classNames('poll__input', { active: checked, checkbox: multiple })}
+          className={classNames('poll__input', {
+            active: checked,
+            checkbox: multiple,
+          })}
           tabIndex={0}
           role='radio'
           onKeyPress={this.handleKeyPress}
           aria-checked={checked}
           aria-label={label}
-        >{checked && <Check />}</span>
+        >
+          {checked && <Check />}
+        </span>
 
-        {labelComponent ? labelComponent : (
+        {labelComponent ? (
+          labelComponent
+        ) : (
           <span className='poll__option__text'>
             <strong>{label}</strong>
             {description}
@@ -58,5 +78,4 @@ export default class Option extends PureComponent {
       </label>
     );
   }
-
 }

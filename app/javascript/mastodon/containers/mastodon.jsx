@@ -18,7 +18,8 @@ import initialState, { title as siteTitle } from 'mastodon/initial_state';
 import { IntlProvider } from 'mastodon/locales';
 import { store } from 'mastodon/store';
 
-const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
+const title =
+  process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
 
 const hydrateAction = hydrateStore(initialState);
 
@@ -27,7 +28,7 @@ if (initialState.meta.me) {
   store.dispatch(fetchCustomEmojis());
 }
 
-const createIdentityContext = state => ({
+const createIdentityContext = (state) => ({
   signedIn: !!state.meta.me,
   accountId: state.meta.me,
   disabledAccountId: state.meta.disabled_account_id,
@@ -36,7 +37,6 @@ const createIdentityContext = state => ({
 });
 
 export default class Mastodon extends PureComponent {
-
   static childContextTypes = {
     identity: PropTypes.shape({
       signedIn: PropTypes.bool.isRequired,
@@ -60,18 +60,22 @@ export default class Mastodon extends PureComponent {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.disconnect) {
       this.disconnect();
       this.disconnect = null;
     }
   }
 
-  shouldUpdateScroll (prevRouterProps, { location }) {
-    return !(location.state?.mastodonModalKey && location.state?.mastodonModalKey !== prevRouterProps?.location?.state?.mastodonModalKey);
+  shouldUpdateScroll(prevRouterProps, { location }) {
+    return !(
+      location.state?.mastodonModalKey &&
+      location.state?.mastodonModalKey !==
+        prevRouterProps?.location?.state?.mastodonModalKey
+    );
   }
 
-  render () {
+  render() {
     return (
       <IntlProvider>
         <ReduxProvider store={store}>
@@ -88,5 +92,4 @@ export default class Mastodon extends PureComponent {
       </IntlProvider>
     );
   }
-
 }

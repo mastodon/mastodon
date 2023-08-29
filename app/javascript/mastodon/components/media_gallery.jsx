@@ -17,11 +17,13 @@ import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
 import { IconButton } from './icon_button';
 
 const messages = defineMessages({
-  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: '{number, plural, one {Hide image} other {Hide images}}' },
+  toggle_visible: {
+    id: 'media_gallery.toggle_visible',
+    defaultMessage: '{number, plural, one {Hide image} other {Hide images}}',
+  },
 });
 
 class Item extends PureComponent {
-
   static propTypes = {
     attachment: ImmutablePropTypes.map.isRequired,
     lang: PropTypes.string,
@@ -61,7 +63,7 @@ class Item extends PureComponent {
     return this.props.autoplay || autoPlayGif;
   }
 
-  hoverToPlay () {
+  hoverToPlay() {
     const { attachment } = this.props;
     return !this.getAutoPlay() && attachment.get('type') === 'gifv';
   }
@@ -85,12 +87,14 @@ class Item extends PureComponent {
     this.setState({ loaded: true });
   };
 
-  render () {
-    const { attachment, lang, index, size, standalone, displayWidth, visible } = this.props;
+  render() {
+    const { attachment, lang, index, size, standalone, displayWidth, visible } =
+      this.props;
 
-    let badges = [], thumbnail;
+    let badges = [],
+      thumbnail;
 
-    let width  = 50;
+    let width = 50;
     let height = 100;
 
     if (size === 1) {
@@ -102,15 +106,36 @@ class Item extends PureComponent {
     }
 
     if (attachment.get('description')?.length > 0) {
-      badges.push(<span key='alt' className='media-gallery__gifv__label'>ALT</span>);
+      badges.push(
+        <span key='alt' className='media-gallery__gifv__label'>
+          ALT
+        </span>,
+      );
     }
 
-    const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
+    const description =
+      attachment.getIn(['translation', 'description']) ||
+      attachment.get('description');
 
     if (attachment.get('type') === 'unknown') {
       return (
-        <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
-          <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={description} lang={lang} target='_blank' rel='noopener noreferrer'>
+        <div
+          className={classNames('media-gallery__item', {
+            standalone,
+            'media-gallery__item--tall': height === 100,
+            'media-gallery__item--wide': width === 100,
+          })}
+          key={attachment.get('id')}
+        >
+          <a
+            className='media-gallery__item-thumbnail'
+            href={attachment.get('remote_url') || attachment.get('url')}
+            style={{ cursor: 'pointer' }}
+            title={description}
+            lang={lang}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             <Blurhash
               hash={attachment.get('blurhash')}
               className='media-gallery__preview'
@@ -120,21 +145,27 @@ class Item extends PureComponent {
         </div>
       );
     } else if (attachment.get('type') === 'image') {
-      const previewUrl   = attachment.get('preview_url');
+      const previewUrl = attachment.get('preview_url');
       const previewWidth = attachment.getIn(['meta', 'small', 'width']);
 
-      const originalUrl   = attachment.get('url');
+      const originalUrl = attachment.get('url');
       const originalWidth = attachment.getIn(['meta', 'original', 'width']);
 
-      const hasSize = typeof originalWidth === 'number' && typeof previewWidth === 'number';
+      const hasSize =
+        typeof originalWidth === 'number' && typeof previewWidth === 'number';
 
-      const srcSet = hasSize ? `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w` : null;
-      const sizes  = hasSize && (displayWidth > 0) ? `${displayWidth * (width / 100)}px` : null;
+      const srcSet = hasSize
+        ? `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w`
+        : null;
+      const sizes =
+        hasSize && displayWidth > 0
+          ? `${displayWidth * (width / 100)}px`
+          : null;
 
       const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
       const focusY = attachment.getIn(['meta', 'focus', 'y']) || 0;
-      const x      = ((focusX /  2) + .5) * 100;
-      const y      = ((focusY / -2) + .5) * 100;
+      const x = (focusX / 2 + 0.5) * 100;
+      const y = (focusY / -2 + 0.5) * 100;
 
       thumbnail = (
         <a
@@ -159,10 +190,16 @@ class Item extends PureComponent {
     } else if (attachment.get('type') === 'gifv') {
       const autoPlay = this.getAutoPlay();
 
-      badges.push(<span key='gif' className='media-gallery__gifv__label'>GIF</span>);
+      badges.push(
+        <span key='gif' className='media-gallery__gifv__label'>
+          GIF
+        </span>,
+      );
 
       thumbnail = (
-        <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
+        <div
+          className={classNames('media-gallery__gifv', { autoplay: autoPlay })}
+        >
           <video
             className='media-gallery__item-gifv-thumbnail'
             aria-label={description}
@@ -183,7 +220,14 @@ class Item extends PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
+      <div
+        className={classNames('media-gallery__item', {
+          standalone,
+          'media-gallery__item--tall': height === 100,
+          'media-gallery__item--wide': width === 100,
+        })}
+        key={attachment.get('id')}
+      >
         <Blurhash
           hash={attachment.get('blurhash')}
           dummy={!useBlurhash}
@@ -194,19 +238,13 @@ class Item extends PureComponent {
 
         {visible && thumbnail}
 
-        {badges && (
-          <div className='media-gallery__item__badges'>
-            {badges}
-          </div>
-        )}
+        {badges && <div className='media-gallery__item__badges'>{badges}</div>}
       </div>
     );
   }
-
 }
 
 class MediaGallery extends PureComponent {
-
   static propTypes = {
     sensitive: PropTypes.bool,
     media: ImmutablePropTypes.list.isRequired,
@@ -223,33 +261,51 @@ class MediaGallery extends PureComponent {
   };
 
   state = {
-    visible: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
+    visible:
+      this.props.visible !== undefined
+        ? this.props.visible
+        : (displayMedia !== 'hide_all' && !this.props.sensitive) ||
+          displayMedia === 'show_all',
     width: this.props.defaultWidth,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     window.addEventListener('resize', this.handleResize, { passive: true });
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    if (!is(nextProps.media, this.props.media) && nextProps.visible === undefined) {
-      this.setState({ visible: displayMedia !== 'hide_all' && !nextProps.sensitive || displayMedia === 'show_all' });
-    } else if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (
+      !is(nextProps.media, this.props.media) &&
+      nextProps.visible === undefined
+    ) {
+      this.setState({
+        visible:
+          (displayMedia !== 'hide_all' && !nextProps.sensitive) ||
+          displayMedia === 'show_all',
+      });
+    } else if (
+      !is(nextProps.visible, this.props.visible) &&
+      nextProps.visible !== undefined
+    ) {
       this.setState({ visible: nextProps.visible });
     }
   }
 
-  handleResize = debounce(() => {
-    if (this.node) {
-      this._setDimensions();
-    }
-  }, 250, {
-    trailing: true,
-  });
+  handleResize = debounce(
+    () => {
+      if (this.node) {
+        this._setDimensions();
+      }
+    },
+    250,
+    {
+      trailing: true,
+    },
+  );
 
   handleOpen = () => {
     if (this.props.onToggleVisibility) {
@@ -263,7 +319,7 @@ class MediaGallery extends PureComponent {
     this.props.onOpenMedia(this.props.media, index, this.props.lang);
   };
 
-  handleRef = c => {
+  handleRef = (c) => {
     this.node = c;
 
     if (this.node) {
@@ -271,7 +327,7 @@ class MediaGallery extends PureComponent {
     }
   };
 
-  _setDimensions () {
+  _setDimensions() {
     const width = this.node.offsetWidth;
 
     // offsetWidth triggers a layout, so only calculate when we need to
@@ -289,7 +345,7 @@ class MediaGallery extends PureComponent {
     return media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
   }
 
-  render () {
+  render() {
     const { media, lang, intl, sensitive, defaultWidth, autoplay } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
@@ -299,37 +355,103 @@ class MediaGallery extends PureComponent {
     const style = {};
 
     if (this.isFullSizeEligible()) {
-      style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
+      style.aspectRatio = `${this.props.media.getIn([
+        0,
+        'meta',
+        'small',
+        'aspect',
+      ])}`;
     } else {
       style.aspectRatio = '3 / 2';
     }
 
-    const size     = media.take(4).size;
-    const uncached = media.every(attachment => attachment.get('type') === 'unknown');
+    const size = media.take(4).size;
+    const uncached = media.every(
+      (attachment) => attachment.get('type') === 'unknown',
+    );
 
     if (this.isFullSizeEligible()) {
-      children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
+      children = (
+        <Item
+          standalone
+          autoplay={autoplay}
+          onClick={this.handleClick}
+          attachment={media.get(0)}
+          lang={lang}
+          displayWidth={width}
+          visible={visible}
+        />
+      );
     } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
+      children = media
+        .take(4)
+        .map((attachment, i) => (
+          <Item
+            key={attachment.get('id')}
+            autoplay={autoplay}
+            onClick={this.handleClick}
+            attachment={attachment}
+            index={i}
+            lang={lang}
+            size={size}
+            displayWidth={width}
+            visible={visible || uncached}
+          />
+        ));
     }
 
     if (uncached) {
       spoilerButton = (
         <button type='button' disabled className='spoiler-button__overlay'>
           <span className='spoiler-button__overlay__label'>
-            <FormattedMessage id='status.uncached_media_warning' defaultMessage='Preview not available' />
-            <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.open' defaultMessage='Click to open' /></span>
+            <FormattedMessage
+              id='status.uncached_media_warning'
+              defaultMessage='Preview not available'
+            />
+            <span className='spoiler-button__overlay__action'>
+              <FormattedMessage
+                id='status.media.open'
+                defaultMessage='Click to open'
+              />
+            </span>
           </span>
         </button>
       );
     } else if (visible) {
-      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible, { number: size })} icon='eye-slash' overlay onClick={this.handleOpen} ariaHidden />;
+      spoilerButton = (
+        <IconButton
+          title={intl.formatMessage(messages.toggle_visible, { number: size })}
+          icon='eye-slash'
+          overlay
+          onClick={this.handleOpen}
+          ariaHidden
+        />
+      );
     } else {
       spoilerButton = (
-        <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>
+        <button
+          type='button'
+          onClick={this.handleOpen}
+          className='spoiler-button__overlay'
+        >
           <span className='spoiler-button__overlay__label'>
-            {sensitive ? <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /> : <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />}
-            <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
+            {sensitive ? (
+              <FormattedMessage
+                id='status.sensitive_warning'
+                defaultMessage='Sensitive content'
+              />
+            ) : (
+              <FormattedMessage
+                id='status.media_hidden'
+                defaultMessage='Media hidden'
+              />
+            )}
+            <span className='spoiler-button__overlay__action'>
+              <FormattedMessage
+                id='status.media.show'
+                defaultMessage='Click to show'
+              />
+            </span>
           </span>
         </button>
       );
@@ -337,7 +459,12 @@ class MediaGallery extends PureComponent {
 
     return (
       <div className='media-gallery' style={style} ref={this.handleRef}>
-        <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible && !uncached, 'spoiler-button--click-thru': uncached })}>
+        <div
+          className={classNames('spoiler-button', {
+            'spoiler-button--minified': visible && !uncached,
+            'spoiler-button--click-thru': uncached,
+          })}
+        >
           {spoilerButton}
         </div>
 
@@ -345,7 +472,6 @@ class MediaGallery extends PureComponent {
       </div>
     );
   }
-
 }
 
 export default injectIntl(MediaGallery);

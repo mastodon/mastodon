@@ -9,11 +9,12 @@ const stylesToKeep = ['opacity', 'backgroundOpacity'];
 
 const extractValue = (value) => {
   // This is either an object with a "val" property or it's a number
-  return (typeof value === 'object' && value && 'val' in value) ? value.val : value;
+  return typeof value === 'object' && value && 'val' in value
+    ? value.val
+    : value;
 };
 
 class ReducedMotion extends Component {
-
   static propTypes = {
     defaultStyle: PropTypes.object,
     style: PropTypes.object,
@@ -21,10 +22,9 @@ class ReducedMotion extends Component {
   };
 
   render() {
-
     const { style, defaultStyle, children } = this.props;
 
-    Object.keys(style).forEach(key => {
+    Object.keys(style).forEach((key) => {
       if (stylesToKeep.includes(key)) {
         return;
       }
@@ -39,7 +39,6 @@ class ReducedMotion extends Component {
       </Motion>
     );
   }
-
 }
 
 export default ReducedMotion;

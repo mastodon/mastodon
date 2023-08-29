@@ -5,26 +5,31 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { changeListEditorTitle, submitListEditor } from 'mastodon/actions/lists';
+import {
+  changeListEditorTitle,
+  submitListEditor,
+} from 'mastodon/actions/lists';
 import Button from 'mastodon/components/button';
 
 const messages = defineMessages({
-  label: { id: 'lists.new.title_placeholder', defaultMessage: 'New list title' },
+  label: {
+    id: 'lists.new.title_placeholder',
+    defaultMessage: 'New list title',
+  },
   title: { id: 'lists.new.create', defaultMessage: 'Add list' },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   value: state.getIn(['listEditor', 'title']),
   disabled: state.getIn(['listEditor', 'isSubmitting']),
 });
 
-const mapDispatchToProps = dispatch => ({
-  onChange: value => dispatch(changeListEditorTitle(value)),
+const mapDispatchToProps = (dispatch) => ({
+  onChange: (value) => dispatch(changeListEditorTitle(value)),
   onSubmit: () => dispatch(submitListEditor(true)),
 });
 
 class NewListForm extends PureComponent {
-
   static propTypes = {
     value: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
@@ -33,11 +38,11 @@ class NewListForm extends PureComponent {
     onSubmit: PropTypes.func.isRequired,
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.props.onChange(e.target.value);
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.onSubmit();
   };
@@ -46,7 +51,7 @@ class NewListForm extends PureComponent {
     this.props.onSubmit();
   };
 
-  render () {
+  render() {
     const { value, disabled, intl } = this.props;
 
     const label = intl.formatMessage(messages.label);
@@ -74,7 +79,9 @@ class NewListForm extends PureComponent {
       </form>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(NewListForm));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(injectIntl(NewListForm));

@@ -17,7 +17,6 @@ const messages = defineMessages({
 });
 
 class FollowRequest extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     onAuthorize: PropTypes.func.isRequired,
@@ -25,7 +24,7 @@ class FollowRequest extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  render () {
+  render() {
     const { intl, hidden, account, onAuthorize, onReject } = this.props;
 
     if (!account) {
@@ -44,20 +43,34 @@ class FollowRequest extends ImmutablePureComponent {
     return (
       <div className='account'>
         <div className='account__wrapper'>
-          <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
-            <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
+          <Link
+            key={account.get('id')}
+            className='account__display-name'
+            title={account.get('acct')}
+            to={`/@${account.get('acct')}`}
+          >
+            <div className='account__avatar-wrapper'>
+              <Avatar account={account} size={36} />
+            </div>
             <DisplayName account={account} />
           </Link>
 
           <div className='account__relationship'>
-            <IconButton title={intl.formatMessage(messages.authorize)} icon='check' onClick={onAuthorize} />
-            <IconButton title={intl.formatMessage(messages.reject)} icon='times' onClick={onReject} />
+            <IconButton
+              title={intl.formatMessage(messages.authorize)}
+              icon='check'
+              onClick={onAuthorize}
+            />
+            <IconButton
+              title={intl.formatMessage(messages.reject)}
+              icon='times'
+              onClick={onReject}
+            />
           </div>
         </div>
       </div>
     );
   }
-
 }
 
 export default injectIntl(FollowRequest);

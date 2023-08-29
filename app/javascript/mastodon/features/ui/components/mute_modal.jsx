@@ -9,17 +9,29 @@ import Toggle from 'react-toggle';
 
 import { muteAccount } from '../../../actions/accounts';
 import { closeModal } from '../../../actions/modal';
-import { toggleHideNotifications, changeMuteDuration } from '../../../actions/mutes';
+import {
+  toggleHideNotifications,
+  changeMuteDuration,
+} from '../../../actions/mutes';
 import Button from '../../../components/button';
 
 const messages = defineMessages({
-  minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
-  hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
-  days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
+  minutes: {
+    id: 'intervals.full.minutes',
+    defaultMessage: '{number, plural, one {# minute} other {# minutes}}',
+  },
+  hours: {
+    id: 'intervals.full.hours',
+    defaultMessage: '{number, plural, one {# hour} other {# hours}}',
+  },
+  days: {
+    id: 'intervals.full.days',
+    defaultMessage: '{number, plural, one {# day} other {# days}}',
+  },
   indefinite: { id: 'mute_modal.indefinite', defaultMessage: 'Indefinite' },
 });
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     account: state.getIn(['mutes', 'new', 'account']),
     notifications: state.getIn(['mutes', 'new', 'notifications']),
@@ -27,17 +39,19 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onConfirm(account, notifications, muteDuration) {
       dispatch(muteAccount(account.get('id'), notifications, muteDuration));
     },
 
     onClose() {
-      dispatch(closeModal({
-        modalType: undefined,
-        ignoreFocus: false,
-      }));
+      dispatch(
+        closeModal({
+          modalType: undefined,
+          ignoreFocus: false,
+        }),
+      );
     },
 
     onToggleNotifications() {
@@ -51,7 +65,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 class MuteModal extends PureComponent {
-
   static propTypes = {
     account: PropTypes.object.isRequired,
     notifications: PropTypes.bool.isRequired,
@@ -69,7 +82,11 @@ class MuteModal extends PureComponent {
 
   handleClick = () => {
     this.props.onClose();
-    this.props.onConfirm(this.props.account, this.props.notifications, this.props.muteDuration);
+    this.props.onConfirm(
+      this.props.account,
+      this.props.notifications,
+      this.props.muteDuration,
+    );
   };
 
   handleCancel = () => {
@@ -88,7 +105,7 @@ class MuteModal extends PureComponent {
     this.props.onChangeMuteDuration(e);
   };
 
-  render () {
+  render() {
     const { account, notifications, muteDuration, intl } = this.props;
 
     return (
@@ -108,40 +125,83 @@ class MuteModal extends PureComponent {
             />
           </p>
           <div className='setting-toggle'>
-            <Toggle id='mute-modal__hide-notifications-checkbox' checked={notifications} onChange={this.toggleNotifications} />
-            <label className='setting-toggle__label' htmlFor='mute-modal__hide-notifications-checkbox'>
-              <FormattedMessage id='mute_modal.hide_notifications' defaultMessage='Hide notifications from this user?' />
+            <Toggle
+              id='mute-modal__hide-notifications-checkbox'
+              checked={notifications}
+              onChange={this.toggleNotifications}
+            />
+            <label
+              className='setting-toggle__label'
+              htmlFor='mute-modal__hide-notifications-checkbox'
+            >
+              <FormattedMessage
+                id='mute_modal.hide_notifications'
+                defaultMessage='Hide notifications from this user?'
+              />
             </label>
           </div>
           <div>
-            <span><FormattedMessage id='mute_modal.duration' defaultMessage='Duration' />: </span>
+            <span>
+              <FormattedMessage
+                id='mute_modal.duration'
+                defaultMessage='Duration'
+              />
+              :{' '}
+            </span>
 
             {/* eslint-disable-next-line jsx-a11y/no-onchange */}
             <select value={muteDuration} onChange={this.changeMuteDuration}>
-              <option value={0}>{intl.formatMessage(messages.indefinite)}</option>
-              <option value={300}>{intl.formatMessage(messages.minutes, { number: 5 })}</option>
-              <option value={1800}>{intl.formatMessage(messages.minutes, { number: 30 })}</option>
-              <option value={3600}>{intl.formatMessage(messages.hours, { number: 1 })}</option>
-              <option value={21600}>{intl.formatMessage(messages.hours, { number: 6 })}</option>
-              <option value={86400}>{intl.formatMessage(messages.days, { number: 1 })}</option>
-              <option value={259200}>{intl.formatMessage(messages.days, { number: 3 })}</option>
-              <option value={604800}>{intl.formatMessage(messages.days, { number: 7 })}</option>
+              <option value={0}>
+                {intl.formatMessage(messages.indefinite)}
+              </option>
+              <option value={300}>
+                {intl.formatMessage(messages.minutes, { number: 5 })}
+              </option>
+              <option value={1800}>
+                {intl.formatMessage(messages.minutes, { number: 30 })}
+              </option>
+              <option value={3600}>
+                {intl.formatMessage(messages.hours, { number: 1 })}
+              </option>
+              <option value={21600}>
+                {intl.formatMessage(messages.hours, { number: 6 })}
+              </option>
+              <option value={86400}>
+                {intl.formatMessage(messages.days, { number: 1 })}
+              </option>
+              <option value={259200}>
+                {intl.formatMessage(messages.days, { number: 3 })}
+              </option>
+              <option value={604800}>
+                {intl.formatMessage(messages.days, { number: 7 })}
+              </option>
             </select>
           </div>
         </div>
 
         <div className='mute-modal__action-bar'>
-          <Button onClick={this.handleCancel} className='mute-modal__cancel-button'>
-            <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
+          <Button
+            onClick={this.handleCancel}
+            className='mute-modal__cancel-button'
+          >
+            <FormattedMessage
+              id='confirmation_modal.cancel'
+              defaultMessage='Cancel'
+            />
           </Button>
           <Button onClick={this.handleClick} ref={this.setRef}>
-            <FormattedMessage id='confirmations.mute.confirm' defaultMessage='Mute' />
+            <FormattedMessage
+              id='confirmations.mute.confirm'
+              defaultMessage='Mute'
+            />
           </Button>
         </div>
       </div>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(MuteModal));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(injectIntl(MuteModal));

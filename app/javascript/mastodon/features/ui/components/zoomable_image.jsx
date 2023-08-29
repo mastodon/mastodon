@@ -6,7 +6,10 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { IconButton } from 'mastodon/components/icon_button';
 
 const messages = defineMessages({
-  compress: { id: 'lightbox.compress', defaultMessage: 'Compress image view box' },
+  compress: {
+    id: 'lightbox.compress',
+    defaultMessage: 'Compress image view box',
+  },
   expand: { id: 'lightbox.expand', defaultMessage: 'Expand image view box' },
 });
 
@@ -20,13 +23,15 @@ const getMidpoint = (p1, p2) => ({
 });
 
 const getDistance = (p1, p2) =>
-  Math.sqrt(Math.pow(p1.clientX - p2.clientX, 2) + Math.pow(p1.clientY - p2.clientY, 2));
+  Math.sqrt(
+    Math.pow(p1.clientX - p2.clientX, 2) + Math.pow(p1.clientY - p2.clientY, 2),
+  );
 
 const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 
 // Normalizing mousewheel speed across browsers
 // copy from: https://github.com/facebookarchive/fixed-data-table/blob/master/src/vendor_upstream/dom/normalizeWheel.js
-const normalizeWheel = event => {
+const normalizeWheel = (event) => {
   // Reasonable defaults
   const PIXEL_STEP = 10;
   const LINE_HEIGHT = 40;
@@ -68,10 +73,12 @@ const normalizeWheel = event => {
   }
 
   if ((pX || pY) && event.deltaMode) {
-    if (event.deltaMode === 1) { // delta in LINE units
+    if (event.deltaMode === 1) {
+      // delta in LINE units
       pX *= LINE_HEIGHT;
       pY *= LINE_HEIGHT;
-    } else { // delta in PAGE units
+    } else {
+      // delta in PAGE units
       pX *= PAGE_HEIGHT;
       pY *= PAGE_HEIGHT;
     }
@@ -79,10 +86,10 @@ const normalizeWheel = event => {
 
   // Fall-back if spin cannot be determined
   if (pX && !sX) {
-    sX = (pX < 1) ? -1 : 1;
+    sX = pX < 1 ? -1 : 1;
   }
   if (pY && !sY) {
-    sY = (pY < 1) ? -1 : 1;
+    sY = pY < 1 ? -1 : 1;
   }
 
   return {
@@ -94,7 +101,6 @@ const normalizeWheel = event => {
 };
 
 class ZoomableImage extends PureComponent {
-
   static propTypes = {
     alt: PropTypes.string,
     lang: PropTypes.string,
@@ -143,102 +149,137 @@ class ZoomableImage extends PureComponent {
   lastTouchEndTime = 0;
   lastDistance = 0;
 
-  componentDidMount () {
+  componentDidMount() {
     let handler = this.handleTouchStart;
     this.container.addEventListener('touchstart', handler);
-    this.removers.push(() => this.container.removeEventListener('touchstart', handler));
+    this.removers.push(() =>
+      this.container.removeEventListener('touchstart', handler),
+    );
     handler = this.handleTouchMove;
     // on Chrome 56+, touch event listeners will default to passive
     // https://www.chromestatus.com/features/5093566007214080
     this.container.addEventListener('touchmove', handler, { passive: false });
-    this.removers.push(() => this.container.removeEventListener('touchend', handler));
+    this.removers.push(() =>
+      this.container.removeEventListener('touchend', handler),
+    );
 
     handler = this.mouseDownHandler;
     this.container.addEventListener('mousedown', handler);
-    this.removers.push(() => this.container.removeEventListener('mousedown', handler));
+    this.removers.push(() =>
+      this.container.removeEventListener('mousedown', handler),
+    );
 
     handler = this.mouseWheelHandler;
     this.container.addEventListener('wheel', handler);
-    this.removers.push(() => this.container.removeEventListener('wheel', handler));
+    this.removers.push(() =>
+      this.container.removeEventListener('wheel', handler),
+    );
     // Old Chrome
     this.container.addEventListener('mousewheel', handler);
-    this.removers.push(() => this.container.removeEventListener('mousewheel', handler));
+    this.removers.push(() =>
+      this.container.removeEventListener('mousewheel', handler),
+    );
     // Old Firefox
     this.container.addEventListener('DOMMouseScroll', handler);
-    this.removers.push(() => this.container.removeEventListener('DOMMouseScroll', handler));
+    this.removers.push(() =>
+      this.container.removeEventListener('DOMMouseScroll', handler),
+    );
 
     this.initZoomMatrix();
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.removeEventListeners();
   }
 
-  componentDidUpdate () {
-    this.setState({ zoomState: this.state.scale >= this.state.zoomMatrix.rate ? 'compress' : 'expand' });
+  componentDidUpdate() {
+    this.setState({
+      zoomState:
+        this.state.scale >= this.state.zoomMatrix.rate ? 'compress' : 'expand',
+    });
 
     if (this.state.scale === MIN_SCALE) {
       this.container.style.removeProperty('cursor');
     }
   }
 
-  UNSAFE_componentWillReceiveProps () {
+  UNSAFE_componentWillReceiveProps() {
     // reset when slide to next image
     if (this.props.zoomButtonHidden) {
-      this.setState({
-        scale: MIN_SCALE,
-        lockTranslate: { x: 0, y: 0 },
-      }, () => {
-        this.container.scrollLeft = 0;
-        this.container.scrollTop = 0;
-      });
+      this.setState(
+        {
+          scale: MIN_SCALE,
+          lockTranslate: { x: 0, y: 0 },
+        },
+        () => {
+          this.container.scrollLeft = 0;
+          this.container.scrollTop = 0;
+        },
+      );
     }
   }
 
-  removeEventListeners () {
-    this.removers.forEach(listeners => listeners());
+  removeEventListeners() {
+    this.removers.forEach((listeners) => listeners());
     this.removers = [];
   }
 
-  mouseWheelHandler = e => {
+  mouseWheelHandler = (e) => {
     e.preventDefault();
 
     const event = normalizeWheel(e);
 
     if (this.state.zoomMatrix.type === 'width') {
       // full width, scroll vertical
-      this.container.scrollTop = Math.max(this.container.scrollTop + event.pixelY, this.state.lockScroll.y);
+      this.container.scrollTop = Math.max(
+        this.container.scrollTop + event.pixelY,
+        this.state.lockScroll.y,
+      );
     } else {
       // full height, scroll horizontal
-      this.container.scrollLeft = Math.max(this.container.scrollLeft + event.pixelY, this.state.lockScroll.x);
+      this.container.scrollLeft = Math.max(
+        this.container.scrollLeft + event.pixelY,
+        this.state.lockScroll.x,
+      );
     }
 
     // lock horizontal scroll
-    this.container.scrollLeft = Math.max(this.container.scrollLeft + event.pixelX, this.state.lockScroll.x);
+    this.container.scrollLeft = Math.max(
+      this.container.scrollLeft + event.pixelX,
+      this.state.lockScroll.x,
+    );
   };
 
-  mouseDownHandler = e => {
+  mouseDownHandler = (e) => {
     this.container.style.cursor = 'grabbing';
     this.container.style.userSelect = 'none';
 
-    this.setState({ dragPosition: {
-      left: this.container.scrollLeft,
-      top: this.container.scrollTop,
-      // Get the current mouse position
-      x: e.clientX,
-      y: e.clientY,
-    } });
+    this.setState({
+      dragPosition: {
+        left: this.container.scrollLeft,
+        top: this.container.scrollTop,
+        // Get the current mouse position
+        x: e.clientX,
+        y: e.clientY,
+      },
+    });
 
     this.image.addEventListener('mousemove', this.mouseMoveHandler);
     this.image.addEventListener('mouseup', this.mouseUpHandler);
   };
 
-  mouseMoveHandler = e => {
+  mouseMoveHandler = (e) => {
     const dx = e.clientX - this.state.dragPosition.x;
     const dy = e.clientY - this.state.dragPosition.y;
 
-    this.container.scrollLeft = Math.max(this.state.dragPosition.left - dx, this.state.lockScroll.x);
-    this.container.scrollTop = Math.max(this.state.dragPosition.top - dy, this.state.lockScroll.y);
+    this.container.scrollLeft = Math.max(
+      this.state.dragPosition.left - dx,
+      this.state.lockScroll.x,
+    );
+    this.container.scrollTop = Math.max(
+      this.state.dragPosition.top - dy,
+      this.state.lockScroll.y,
+    );
 
     this.setState({ dragged: true });
   };
@@ -251,13 +292,13 @@ class ZoomableImage extends PureComponent {
     this.image.removeEventListener('mouseup', this.mouseUpHandler);
   };
 
-  handleTouchStart = e => {
+  handleTouchStart = (e) => {
     if (e.touches.length !== 2) return;
 
     this.lastDistance = getDistance(...e.touches);
   };
 
-  handleTouchMove = e => {
+  handleTouchMove = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = this.container;
     if (e.touches.length === 1 && scrollTop !== scrollHeight - clientHeight) {
       // prevent propagating event to MediaModal
@@ -272,7 +313,11 @@ class ZoomableImage extends PureComponent {
     const distance = getDistance(...e.touches);
     const midpoint = getMidpoint(...e.touches);
     const _MAX_SCALE = Math.max(MAX_SCALE, this.state.zoomMatrix.rate);
-    const scale = clamp(MIN_SCALE, _MAX_SCALE, this.state.scale * distance / this.lastDistance);
+    const scale = clamp(
+      MIN_SCALE,
+      _MAX_SCALE,
+      (this.state.scale * distance) / this.lastDistance,
+    );
 
     this.zoom(scale, midpoint);
 
@@ -290,8 +335,10 @@ class ZoomableImage extends PureComponent {
     // scrollWidth = clientWidth * scale
     // scrollWidth' = clientWidth * nextScale
     // Solve x = x' for nextScrollLeft
-    const nextScrollLeft = (scrollLeft + midpoint.x) * nextScale / scale - midpoint.x;
-    const nextScrollTop = (scrollTop + midpoint.y) * nextScale / scale - midpoint.y;
+    const nextScrollLeft =
+      ((scrollLeft + midpoint.x) * nextScale) / scale - midpoint.x;
+    const nextScrollTop =
+      ((scrollTop + midpoint.y) * nextScale) / scale - midpoint.y;
 
     this.setState({ scale: nextScale }, () => {
       this.container.scrollLeft = nextScrollLeft;
@@ -300,15 +347,21 @@ class ZoomableImage extends PureComponent {
       if (nextScale < zoomMatrix.rate) {
         this.setState({
           lockTranslate: {
-            x: zoomMatrix.fullScreen ? 0 : zoomMatrix.translateX * ((nextScale - MIN_SCALE) / (zoomMatrix.rate - MIN_SCALE)),
-            y: zoomMatrix.fullScreen ? 0 : zoomMatrix.translateY * ((nextScale - MIN_SCALE) / (zoomMatrix.rate - MIN_SCALE)),
+            x: zoomMatrix.fullScreen
+              ? 0
+              : zoomMatrix.translateX *
+                ((nextScale - MIN_SCALE) / (zoomMatrix.rate - MIN_SCALE)),
+            y: zoomMatrix.fullScreen
+              ? 0
+              : zoomMatrix.translateY *
+                ((nextScale - MIN_SCALE) / (zoomMatrix.rate - MIN_SCALE)),
           },
         });
       }
     });
   }
 
-  handleClick = e => {
+  handleClick = (e) => {
     // don't propagate event to MediaModal
     e.stopPropagation();
     const dragged = this.state.dragged;
@@ -319,7 +372,7 @@ class ZoomableImage extends PureComponent {
     this.setState({ navigationHidden: !this.state.navigationHidden });
   };
 
-  handleMouseDown = e => {
+  handleMouseDown = (e) => {
     e.preventDefault();
   };
 
@@ -329,13 +382,23 @@ class ZoomableImage extends PureComponent {
     const { offsetWidth, offsetHeight } = this.image;
     const clientHeightFixed = clientHeight - NAV_BAR_HEIGHT;
 
-    const type = width / height < clientWidth / clientHeightFixed ? 'width' : 'height';
-    const fullScreen = type === 'width' ?  width > clientWidth : height > clientHeightFixed;
-    const rate = type === 'width' ? Math.min(clientWidth, width) / offsetWidth : Math.min(clientHeightFixed, height) / offsetHeight;
-    const scrollTop = type === 'width' ?  (clientHeight - offsetHeight) / 2 - NAV_BAR_HEIGHT : (clientHeightFixed - offsetHeight) / 2;
+    const type =
+      width / height < clientWidth / clientHeightFixed ? 'width' : 'height';
+    const fullScreen =
+      type === 'width' ? width > clientWidth : height > clientHeightFixed;
+    const rate =
+      type === 'width'
+        ? Math.min(clientWidth, width) / offsetWidth
+        : Math.min(clientHeightFixed, height) / offsetHeight;
+    const scrollTop =
+      type === 'width'
+        ? (clientHeight - offsetHeight) / 2 - NAV_BAR_HEIGHT
+        : (clientHeightFixed - offsetHeight) / 2;
     const scrollLeft = (clientWidth - offsetWidth) / 2;
-    const translateX = type === 'width' ? (width - offsetWidth) / (2 * rate) : 0;
-    const translateY = type === 'height' ? (height - offsetHeight) / (2 * rate) : 0;
+    const translateX =
+      type === 'width' ? (width - offsetWidth) / (2 * rate) : 0;
+    const translateY =
+      type === 'height' ? (height - offsetHeight) / (2 * rate) : 0;
 
     this.setState({
       zoomMatrix: {
@@ -355,62 +418,76 @@ class ZoomableImage extends PureComponent {
     });
   };
 
-  handleZoomClick = e => {
+  handleZoomClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     const { scale, zoomMatrix } = this.state;
 
-    if ( scale >= zoomMatrix.rate ) {
-      this.setState({
-        scale: MIN_SCALE,
-        lockScroll: {
-          x: 0,
-          y: 0,
+    if (scale >= zoomMatrix.rate) {
+      this.setState(
+        {
+          scale: MIN_SCALE,
+          lockScroll: {
+            x: 0,
+            y: 0,
+          },
+          lockTranslate: {
+            x: 0,
+            y: 0,
+          },
         },
-        lockTranslate: {
-          x: 0,
-          y: 0,
+        () => {
+          this.container.scrollLeft = 0;
+          this.container.scrollTop = 0;
         },
-      }, () => {
-        this.container.scrollLeft = 0;
-        this.container.scrollTop = 0;
-      });
+      );
     } else {
-      this.setState({
-        scale: zoomMatrix.rate,
-        lockScroll: {
-          x: zoomMatrix.scrollLeft,
-          y: zoomMatrix.scrollTop,
+      this.setState(
+        {
+          scale: zoomMatrix.rate,
+          lockScroll: {
+            x: zoomMatrix.scrollLeft,
+            y: zoomMatrix.scrollTop,
+          },
+          lockTranslate: {
+            x: zoomMatrix.fullScreen ? 0 : zoomMatrix.translateX,
+            y: zoomMatrix.fullScreen ? 0 : zoomMatrix.translateY,
+          },
         },
-        lockTranslate: {
-          x: zoomMatrix.fullScreen ? 0 : zoomMatrix.translateX,
-          y: zoomMatrix.fullScreen ? 0 : zoomMatrix.translateY,
+        () => {
+          this.container.scrollLeft = zoomMatrix.scrollLeft;
+          this.container.scrollTop = zoomMatrix.scrollTop;
         },
-      }, () => {
-        this.container.scrollLeft = zoomMatrix.scrollLeft;
-        this.container.scrollTop = zoomMatrix.scrollTop;
-      });
+      );
     }
 
     this.container.style.cursor = 'grab';
     this.container.style.removeProperty('user-select');
   };
 
-  setContainerRef = c => {
+  setContainerRef = (c) => {
     this.container = c;
   };
 
-  setImageRef = c => {
+  setImageRef = (c) => {
     this.image = c;
   };
 
-  render () {
+  render() {
     const { alt, lang, src, width, height, intl } = this.props;
     const { scale, lockTranslate } = this.state;
     const overflow = scale === MIN_SCALE ? 'hidden' : 'scroll';
-    const zoomButtonShouldHide = this.state.navigationHidden || this.props.zoomButtonHidden || this.state.zoomMatrix.rate <= MIN_SCALE ? 'media-modal__zoom-button--hidden' : '';
-    const zoomButtonTitle = this.state.zoomState === 'compress' ? intl.formatMessage(messages.compress) : intl.formatMessage(messages.expand);
+    const zoomButtonShouldHide =
+      this.state.navigationHidden ||
+      this.props.zoomButtonHidden ||
+      this.state.zoomMatrix.rate <= MIN_SCALE
+        ? 'media-modal__zoom-button--hidden'
+        : '';
+    const zoomButtonTitle =
+      this.state.zoomState === 'compress'
+        ? intl.formatMessage(messages.compress)
+        : intl.formatMessage(messages.expand);
 
     return (
       <>
@@ -421,7 +498,8 @@ class ZoomableImage extends PureComponent {
           onClick={this.handleZoomClick}
           size={40}
           style={{
-            fontSize: '30px', /* Fontawesome's fa-compress fa-expand is larger than fa-close */
+            fontSize:
+              '30px' /* Fontawesome's fa-compress fa-expand is larger than fa-close */,
           }}
         />
         <div
@@ -450,7 +528,6 @@ class ZoomableImage extends PureComponent {
       </>
     );
   }
-
 }
 
 export default injectIntl(ZoomableImage);

@@ -18,28 +18,39 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-const getAccountLanguages = createSelector([
-  (state, accountId) => state.getIn(['timelines', `account:${accountId}`, 'items'], ImmutableList()),
-  state => state.get('statuses'),
-], (statusIds, statuses) =>
-  new ImmutableSet(statusIds.map(statusId => statuses.get(statusId)).filter(status => !status.get('reblog')).map(status => status.get('language'))));
+const getAccountLanguages = createSelector(
+  [
+    (state, accountId) =>
+      state.getIn(
+        ['timelines', `account:${accountId}`, 'items'],
+        ImmutableList(),
+      ),
+    (state) => state.get('statuses'),
+  ],
+  (statusIds, statuses) =>
+    new ImmutableSet(
+      statusIds
+        .map((statusId) => statuses.get(statusId))
+        .filter((status) => !status.get('reblog'))
+        .map((status) => status.get('language')),
+    ),
+);
 
 const mapStateToProps = (state, { accountId }) => ({
   acct: state.getIn(['accounts', accountId, 'acct']),
   availableLanguages: getAccountLanguages(state, accountId),
-  selectedLanguages: ImmutableSet(state.getIn(['relationships', accountId, 'languages']) || ImmutableList()),
+  selectedLanguages: ImmutableSet(
+    state.getIn(['relationships', accountId, 'languages']) || ImmutableList(),
+  ),
 });
 
 const mapDispatchToProps = (dispatch, { accountId }) => ({
-
-  onSubmit (languages) {
+  onSubmit(languages) {
     dispatch(followAccount(accountId, { languages }));
   },
-
 });
 
 class SubscribedLanguagesModal extends ImmutablePureComponent {
-
   static propTypes = {
     accountId: PropTypes.string.isRequired,
     acct: PropTypes.string.isRequired,
@@ -74,8 +85,10 @@ class SubscribedLanguagesModal extends ImmutablePureComponent {
     this.props.onClose();
   };
 
-  renderItem (value) {
-    const language = this.props.languages.find(language => language[0] === value);
+  renderItem(value) {
+    const language = this.props.languages.find(
+      (language) => language[0] === value,
+    );
     const checked = this.state.selectedLanguages.includes(value);
 
     if (!language) {
@@ -95,33 +108,65 @@ class SubscribedLanguagesModal extends ImmutablePureComponent {
     );
   }
 
-  render () {
-    const { acct, availableLanguages, selectedLanguages, intl, onClose } = this.props;
+  render() {
+    const { acct, availableLanguages, selectedLanguages, intl, onClose } =
+      this.props;
 
     return (
       <div className='modal-root__modal report-dialog-modal'>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={20} />
-          <FormattedMessage id='subscribed_languages.target' defaultMessage='Change subscribed languages for {target}' values={{ target: <strong>{acct}</strong> }} />
+          <IconButton
+            className='report-modal__close'
+            title={intl.formatMessage(messages.close)}
+            icon='times'
+            onClick={onClose}
+            size={20}
+          />
+          <FormattedMessage
+            id='subscribed_languages.target'
+            defaultMessage='Change subscribed languages for {target}'
+            values={{ target: <strong>{acct}</strong> }}
+          />
         </div>
 
         <div className='report-dialog-modal__container'>
-          <p className='report-dialog-modal__lead'><FormattedMessage id='subscribed_languages.lead' defaultMessage='Only posts in selected languages will appear on your home and list timelines after the change. Select none to receive posts in all languages.' /></p>
+          <p className='report-dialog-modal__lead'>
+            <FormattedMessage
+              id='subscribed_languages.lead'
+              defaultMessage='Only posts in selected languages will appear on your home and list timelines after the change. Select none to receive posts in all languages.'
+            />
+          </p>
 
           <div>
-            {availableLanguages.union(selectedLanguages).delete(null).map(value => this.renderItem(value))}
+            {availableLanguages
+              .union(selectedLanguages)
+              .delete(null)
+              .map((value) => this.renderItem(value))}
           </div>
 
           <div className='flex-spacer' />
 
           <div className='report-dialog-modal__actions'>
-            <Button disabled={is(this.state.selectedLanguages, this.props.selectedLanguages)} onClick={this.handleSubmit}><FormattedMessage id='subscribed_languages.save' defaultMessage='Save changes' /></Button>
+            <Button
+              disabled={is(
+                this.state.selectedLanguages,
+                this.props.selectedLanguages,
+              )}
+              onClick={this.handleSubmit}
+            >
+              <FormattedMessage
+                id='subscribed_languages.save'
+                defaultMessage='Save changes'
+              />
+            </Button>
           </div>
         </div>
       </div>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SubscribedLanguagesModal));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(injectIntl(SubscribedLanguagesModal));

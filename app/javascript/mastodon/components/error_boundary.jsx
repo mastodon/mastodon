@@ -10,7 +10,6 @@ import StackTrace from 'stacktrace-js';
 import { version, source_url } from 'mastodon/initial_state';
 
 export default class ErrorBoundary extends PureComponent {
-
   static propTypes = {
     children: PropTypes.node,
   };
@@ -23,7 +22,7 @@ export default class ErrorBoundary extends PureComponent {
     componentStack: undefined,
   };
 
-  componentDidCatch (error, info) {
+  componentDidCatch(error, info) {
     this.setState({
       hasError: true,
       errorMessage: error.toString(),
@@ -32,15 +31,17 @@ export default class ErrorBoundary extends PureComponent {
       mappedStackTrace: undefined,
     });
 
-    StackTrace.fromError(error).then((stackframes) => {
-      this.setState({
-        mappedStackTrace: stackframes.map((sf) => sf.toString()).join('\n'),
+    StackTrace.fromError(error)
+      .then((stackframes) => {
+        this.setState({
+          mappedStackTrace: stackframes.map((sf) => sf.toString()).join('\n'),
+        });
+      })
+      .catch(() => {
+        this.setState({
+          mappedStackTrace: undefined,
+        });
       });
-    }).catch(() => {
-      this.setState({
-        mappedStackTrace: undefined,
-      });
-    });
   }
 
   handleCopyStackTrace = () => {
@@ -52,7 +53,7 @@ export default class ErrorBoundary extends PureComponent {
       contents.push(mappedStackTrace);
     }
 
-    textarea.textContent    = contents.join('\n\n\n');
+    textarea.textContent = contents.join('\n\n\n');
     textarea.style.position = 'fixed';
 
     document.body.appendChild(textarea);
@@ -61,7 +62,6 @@ export default class ErrorBoundary extends PureComponent {
       textarea.select();
       document.execCommand('copy');
     } catch (e) {
-
     } finally {
       document.body.removeChild(textarea);
     }
@@ -77,28 +77,59 @@ export default class ErrorBoundary extends PureComponent {
       return this.props.children;
     }
 
-    const likelyBrowserAddonIssue = errorMessage && errorMessage.includes('NotFoundError');
+    const likelyBrowserAddonIssue =
+      errorMessage && errorMessage.includes('NotFoundError');
 
     return (
       <div className='error-boundary'>
         <div>
           <p className='error-boundary__error'>
-            { likelyBrowserAddonIssue ? (
-              <FormattedMessage id='error.unexpected_crash.explanation_addons' defaultMessage='This page could not be displayed correctly. This error is likely caused by a browser add-on or automatic translation tools.' />
+            {likelyBrowserAddonIssue ? (
+              <FormattedMessage
+                id='error.unexpected_crash.explanation_addons'
+                defaultMessage='This page could not be displayed correctly. This error is likely caused by a browser add-on or automatic translation tools.'
+              />
             ) : (
-              <FormattedMessage id='error.unexpected_crash.explanation' defaultMessage='Due to a bug in our code or a browser compatibility issue, this page could not be displayed correctly.' />
+              <FormattedMessage
+                id='error.unexpected_crash.explanation'
+                defaultMessage='Due to a bug in our code or a browser compatibility issue, this page could not be displayed correctly.'
+              />
             )}
           </p>
 
           <p>
-            { likelyBrowserAddonIssue ? (
-              <FormattedMessage id='error.unexpected_crash.next_steps_addons' defaultMessage='Try disabling them and refreshing the page. If that does not help, you may still be able to use Mastodon through a different browser or native app.' />
+            {likelyBrowserAddonIssue ? (
+              <FormattedMessage
+                id='error.unexpected_crash.next_steps_addons'
+                defaultMessage='Try disabling them and refreshing the page. If that does not help, you may still be able to use Mastodon through a different browser or native app.'
+              />
             ) : (
-              <FormattedMessage id='error.unexpected_crash.next_steps' defaultMessage='Try refreshing the page. If that does not help, you may still be able to use Mastodon through a different browser or native app.' />
+              <FormattedMessage
+                id='error.unexpected_crash.next_steps'
+                defaultMessage='Try refreshing the page. If that does not help, you may still be able to use Mastodon through a different browser or native app.'
+              />
             )}
           </p>
 
-          <p className='error-boundary__footer'>Mastodon v{version} · <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='errors.unexpected_crash.report_issue' defaultMessage='Report issue' /></a> · <button onClick={this.handleCopyStackTrace} className={copied ? 'copied' : ''}><FormattedMessage id='errors.unexpected_crash.copy_stacktrace' defaultMessage='Copy stacktrace to clipboard' /></button></p>
+          <p className='error-boundary__footer'>
+            Mastodon v{version} ·{' '}
+            <a href={source_url} rel='noopener noreferrer' target='_blank'>
+              <FormattedMessage
+                id='errors.unexpected_crash.report_issue'
+                defaultMessage='Report issue'
+              />
+            </a>{' '}
+            ·{' '}
+            <button
+              onClick={this.handleCopyStackTrace}
+              className={copied ? 'copied' : ''}
+            >
+              <FormattedMessage
+                id='errors.unexpected_crash.copy_stacktrace'
+                defaultMessage='Copy stacktrace to clipboard'
+              />
+            </button>
+          </p>
         </div>
 
         <Helmet>
@@ -107,5 +138,4 @@ export default class ErrorBoundary extends PureComponent {
       </div>
     );
   }
-
 }

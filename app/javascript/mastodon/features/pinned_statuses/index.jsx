@@ -19,13 +19,12 @@ const messages = defineMessages({
   heading: { id: 'column.pins', defaultMessage: 'Pinned post' },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   statusIds: getStatusList(state, 'pins'),
   hasMore: !!state.getIn(['status_lists', 'pins', 'next']),
 });
 
 class PinnedStatuses extends ImmutablePureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     statusIds: ImmutablePropTypes.list.isRequired,
@@ -34,7 +33,7 @@ class PinnedStatuses extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  UNSAFE_componentWillMount () {
+  UNSAFE_componentWillMount() {
     this.props.dispatch(fetchPinnedStatuses());
   }
 
@@ -42,15 +41,20 @@ class PinnedStatuses extends ImmutablePureComponent {
     this.column.scrollTop();
   };
 
-  setRef = c => {
+  setRef = (c) => {
     this.column = c;
   };
 
-  render () {
+  render() {
     const { intl, statusIds, hasMore, multiColumn } = this.props;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='thumb-tack' heading={intl.formatMessage(messages.heading)} ref={this.setRef}>
+      <Column
+        bindToDocument={!multiColumn}
+        icon='thumb-tack'
+        heading={intl.formatMessage(messages.heading)}
+        ref={this.setRef}
+      >
         <ColumnBackButtonSlim />
         <StatusList
           statusIds={statusIds}
@@ -64,7 +68,6 @@ class PinnedStatuses extends ImmutablePureComponent {
       </Column>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(PinnedStatuses));

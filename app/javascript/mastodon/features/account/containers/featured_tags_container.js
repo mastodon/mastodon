@@ -10,7 +10,10 @@ const mapStateToProps = () => {
 
   return (state, { accountId }) => ({
     account: getAccount(state, accountId),
-    featuredTags: state.getIn(['user_lists', 'featured_tags', accountId, 'items'], ImmutableList()),
+    featuredTags: state.getIn(
+      ['user_lists', 'featured_tags', accountId, 'items'],
+      ImmutableList(),
+    ),
   });
 };
 

@@ -12,30 +12,29 @@ import { changeComposeSensitivity } from 'mastodon/actions/compose';
 const messages = defineMessages({
   marked: {
     id: 'compose_form.sensitive.marked',
-    defaultMessage: '{count, plural, one {Media is marked as sensitive} other {Media is marked as sensitive}}',
+    defaultMessage:
+      '{count, plural, one {Media is marked as sensitive} other {Media is marked as sensitive}}',
   },
   unmarked: {
     id: 'compose_form.sensitive.unmarked',
-    defaultMessage: '{count, plural, one {Media is not marked as sensitive} other {Media is not marked as sensitive}}',
+    defaultMessage:
+      '{count, plural, one {Media is not marked as sensitive} other {Media is not marked as sensitive}}',
   },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   active: state.getIn(['compose', 'sensitive']),
   disabled: state.getIn(['compose', 'spoiler']),
   mediaCount: state.getIn(['compose', 'media_attachments']).size,
 });
 
-const mapDispatchToProps = dispatch => ({
-
-  onClick () {
+const mapDispatchToProps = (dispatch) => ({
+  onClick() {
     dispatch(changeComposeSensitivity());
   },
-
 });
 
 class SensitiveButton extends PureComponent {
-
   static propTypes = {
     active: PropTypes.bool,
     disabled: PropTypes.bool,
@@ -44,12 +43,18 @@ class SensitiveButton extends PureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  render () {
+  render() {
     const { active, disabled, mediaCount, onClick, intl } = this.props;
 
     return (
       <div className='compose-form__sensitive-button'>
-        <label className={classNames('icon-button', { active })} title={intl.formatMessage(active ? messages.marked : messages.unmarked, { count: mediaCount })}>
+        <label
+          className={classNames('icon-button', { active })}
+          title={intl.formatMessage(
+            active ? messages.marked : messages.unmarked,
+            { count: mediaCount },
+          )}
+        >
           <input
             name='mark-sensitive'
             type='checkbox'
@@ -67,7 +72,9 @@ class SensitiveButton extends PureComponent {
       </div>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SensitiveButton));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(injectIntl(SensitiveButton));

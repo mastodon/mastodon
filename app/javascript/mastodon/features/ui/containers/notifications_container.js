@@ -16,7 +16,7 @@ const formatIfNeeded = (intl, message, values) => {
 };
 
 const mapStateToProps = (state, { intl }) => ({
-  notifications: getAlerts(state).map(alert => ({
+  notifications: getAlerts(state).map((alert) => ({
     ...alert,
     action: formatIfNeeded(intl, alert.action, alert.values),
     title: formatIfNeeded(intl, alert.title, alert.values),
@@ -25,9 +25,11 @@ const mapStateToProps = (state, { intl }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onDismiss (alert) {
+  onDismiss(alert) {
     dispatch(dismissAlert(alert));
   },
 });
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(NotificationStack));
+export default injectIntl(
+  connect(mapStateToProps, mapDispatchToProps)(NotificationStack),
+);

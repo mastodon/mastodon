@@ -8,7 +8,6 @@ import { LoadingBar } from 'react-redux-loading-bar';
 import ZoomableImage from './zoomable_image';
 
 export default class ImageLoader extends PureComponent {
-
   static propTypes = {
     alt: PropTypes.string,
     lang: PropTypes.string,
@@ -44,27 +43,29 @@ export default class ImageLoader extends PureComponent {
     return this._canvasContext;
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.loadImage(this.props);
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.src !== nextProps.src) {
       this.loadImage(nextProps);
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.removeEventListeners();
   }
 
-  loadImage (props) {
+  loadImage(props) {
     this.removeEventListeners();
     this.setState({ loading: true, error: false });
-    Promise.all([
-      props.previewSrc && this.loadPreviewCanvas(props),
-      this.hasSize() && this.loadOriginalImage(props),
-    ].filter(Boolean))
+    Promise.all(
+      [
+        props.previewSrc && this.loadPreviewCanvas(props),
+        this.hasSize() && this.loadOriginalImage(props),
+      ].filter(Boolean),
+    )
       .then(() => {
         this.setState({ loading: false, error: false });
         this.clearPreviewCanvas();
@@ -72,68 +73,70 @@ export default class ImageLoader extends PureComponent {
       .catch(() => this.setState({ loading: false, error: true }));
   }
 
-  loadPreviewCanvas = ({ previewSrc, width, height }) => new Promise((resolve, reject) => {
-    const image = new Image();
-    const removeEventListeners = () => {
-      image.removeEventListener('error', handleError);
-      image.removeEventListener('load', handleLoad);
-    };
-    const handleError = () => {
-      removeEventListeners();
-      reject();
-    };
-    const handleLoad = () => {
-      removeEventListeners();
-      this.canvasContext.drawImage(image, 0, 0, width, height);
-      resolve();
-    };
-    image.addEventListener('error', handleError);
-    image.addEventListener('load', handleLoad);
-    image.src = previewSrc;
-    this.removers.push(removeEventListeners);
-  });
+  loadPreviewCanvas = ({ previewSrc, width, height }) =>
+    new Promise((resolve, reject) => {
+      const image = new Image();
+      const removeEventListeners = () => {
+        image.removeEventListener('error', handleError);
+        image.removeEventListener('load', handleLoad);
+      };
+      const handleError = () => {
+        removeEventListeners();
+        reject();
+      };
+      const handleLoad = () => {
+        removeEventListeners();
+        this.canvasContext.drawImage(image, 0, 0, width, height);
+        resolve();
+      };
+      image.addEventListener('error', handleError);
+      image.addEventListener('load', handleLoad);
+      image.src = previewSrc;
+      this.removers.push(removeEventListeners);
+    });
 
-  clearPreviewCanvas () {
+  clearPreviewCanvas() {
     const { width, height } = this.canvas;
     this.canvasContext.clearRect(0, 0, width, height);
   }
 
-  loadOriginalImage = ({ src }) => new Promise((resolve, reject) => {
-    const image = new Image();
-    const removeEventListeners = () => {
-      image.removeEventListener('error', handleError);
-      image.removeEventListener('load', handleLoad);
-    };
-    const handleError = () => {
-      removeEventListeners();
-      reject();
-    };
-    const handleLoad = () => {
-      removeEventListeners();
-      resolve();
-    };
-    image.addEventListener('error', handleError);
-    image.addEventListener('load', handleLoad);
-    image.src = src;
-    this.removers.push(removeEventListeners);
-  });
+  loadOriginalImage = ({ src }) =>
+    new Promise((resolve, reject) => {
+      const image = new Image();
+      const removeEventListeners = () => {
+        image.removeEventListener('error', handleError);
+        image.removeEventListener('load', handleLoad);
+      };
+      const handleError = () => {
+        removeEventListeners();
+        reject();
+      };
+      const handleLoad = () => {
+        removeEventListeners();
+        resolve();
+      };
+      image.addEventListener('error', handleError);
+      image.addEventListener('load', handleLoad);
+      image.src = src;
+      this.removers.push(removeEventListeners);
+    });
 
-  removeEventListeners () {
-    this.removers.forEach(listeners => listeners());
+  removeEventListeners() {
+    this.removers.forEach((listeners) => listeners());
     this.removers = [];
   }
 
-  hasSize () {
+  hasSize() {
     const { width, height } = this.props;
     return typeof width === 'number' && typeof height === 'number';
   }
 
-  setCanvasRef = c => {
+  setCanvasRef = (c) => {
     this.canvas = c;
     if (c) this.setState({ width: c.offsetWidth });
   };
 
-  render () {
+  render() {
     const { alt, lang, src, width, height, onClick } = this.props;
     const { loading } = this.state;
 
@@ -146,7 +149,10 @@ export default class ImageLoader extends PureComponent {
       <div className={className}>
         {loading ? (
           <>
-            <div className='loading-bar__container' style={{ width: this.state.width || width }}>
+            <div
+              className='loading-bar__container'
+              style={{ width: this.state.width || width }}
+            >
               <LoadingBar className='loading-bar' loading={1} />
             </div>
             <canvas
@@ -170,5 +176,4 @@ export default class ImageLoader extends PureComponent {
       </div>
     );
   }
-
 }

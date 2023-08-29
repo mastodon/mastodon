@@ -22,7 +22,7 @@ const messages = defineMessages({
   title: { id: 'search_results.title', defaultMessage: 'Search for {q}' },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isLoading: state.getIn(['search', 'isLoading']),
   results: state.getIn(['search', 'results']),
   q: state.getIn(['search', 'searchTerm']),
@@ -32,7 +32,7 @@ const mapStateToProps = state => ({
 const INITIAL_PAGE_LIMIT = 10;
 const INITIAL_DISPLAY = 4;
 
-const hidePeek = list => {
+const hidePeek = (list) => {
   if (list.size > INITIAL_PAGE_LIMIT && list.size % INITIAL_PAGE_LIMIT === 1) {
     return list.skipLast(1);
   } else {
@@ -40,20 +40,18 @@ const hidePeek = list => {
   }
 };
 
-const renderAccounts = accounts => hidePeek(accounts).map(id => (
-  <Account key={id} id={id} />
-));
+const renderAccounts = (accounts) =>
+  hidePeek(accounts).map((id) => <Account key={id} id={id} />);
 
-const renderHashtags = hashtags => hidePeek(hashtags).map(hashtag => (
-  <Hashtag key={hashtag.get('name')} hashtag={hashtag} />
-));
+const renderHashtags = (hashtags) =>
+  hidePeek(hashtags).map((hashtag) => (
+    <Hashtag key={hashtag.get('name')} hashtag={hashtag} />
+  ));
 
-const renderStatuses = statuses => hidePeek(statuses).map(id => (
-  <Status key={id} id={id} />
-));
+const renderStatuses = (statuses) =>
+  hidePeek(statuses).map((id) => <Status key={id} id={id} />);
 
 class Results extends PureComponent {
-
   static propTypes = {
     results: ImmutablePropTypes.contains({
       accounts: ImmutablePropTypes.orderedSet,
@@ -80,7 +78,7 @@ class Results extends PureComponent {
     }
 
     return null;
-  };
+  }
 
   handleSelectAll = () => {
     const { submittedType, dispatch } = this.props;
@@ -116,7 +114,7 @@ class Results extends PureComponent {
     }
 
     this.setState({ type: 'hashtags' });
-  }
+  };
 
   handleSelectStatuses = () => {
     const { submittedType, dispatch } = this.props;
@@ -128,13 +126,13 @@ class Results extends PureComponent {
     }
 
     this.setState({ type: 'statuses' });
-  }
+  };
 
   handleLoadMoreAccounts = () => this._loadMore('accounts');
   handleLoadMoreStatuses = () => this._loadMore('statuses');
   handleLoadMoreHashtags = () => this._loadMore('hashtags');
 
-  _loadMore (type) {
+  _loadMore(type) {
     const { dispatch } = this.props;
     dispatch(expandSearch(type));
   }
@@ -147,12 +145,16 @@ class Results extends PureComponent {
     }
   };
 
-  render () {
+  render() {
     const { intl, isLoading, q, results } = this.props;
     const { type } = this.state;
 
     // We request 1 more result than we display so we can tell if there'd be a next page
-    const hasMore = type !== 'all' ? results.get(type, ImmutableList()).size > INITIAL_PAGE_LIMIT && results.get(type).size % INITIAL_PAGE_LIMIT === 1 : false;
+    const hasMore =
+      type !== 'all'
+        ? results.get(type, ImmutableList()).size > INITIAL_PAGE_LIMIT &&
+          results.get(type).size % INITIAL_PAGE_LIMIT === 1
+        : false;
 
     let filteredResults;
 
@@ -161,49 +163,123 @@ class Results extends PureComponent {
       const hashtags = results.get('hashtags', ImmutableList());
       const statuses = results.get('statuses', ImmutableList());
 
-      switch(type) {
-      case 'all':
-        filteredResults = (accounts.size + hashtags.size + statuses.size) > 0 ? (
-          <>
-            {accounts.size > 0 && (
-              <SearchSection key='accounts' title={<><Icon id='users' fixedWidth /><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></>} onClickMore={this.handleLoadMoreAccounts}>
-                {accounts.take(INITIAL_DISPLAY).map(id => <Account key={id} id={id} />)}
-              </SearchSection>
-            )}
+      switch (type) {
+        case 'all':
+          filteredResults =
+            accounts.size + hashtags.size + statuses.size > 0 ? (
+              <>
+                {accounts.size > 0 && (
+                  <SearchSection
+                    key='accounts'
+                    title={
+                      <>
+                        <Icon id='users' fixedWidth />
+                        <FormattedMessage
+                          id='search_results.accounts'
+                          defaultMessage='Profiles'
+                        />
+                      </>
+                    }
+                    onClickMore={this.handleLoadMoreAccounts}
+                  >
+                    {accounts.take(INITIAL_DISPLAY).map((id) => (
+                      <Account key={id} id={id} />
+                    ))}
+                  </SearchSection>
+                )}
 
-            {hashtags.size > 0 && (
-              <SearchSection key='hashtags' title={<><Icon id='hashtag' fixedWidth /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></>} onClickMore={this.handleLoadMoreHashtags}>
-                {hashtags.take(INITIAL_DISPLAY).map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
-              </SearchSection>
-            )}
+                {hashtags.size > 0 && (
+                  <SearchSection
+                    key='hashtags'
+                    title={
+                      <>
+                        <Icon id='hashtag' fixedWidth />
+                        <FormattedMessage
+                          id='search_results.hashtags'
+                          defaultMessage='Hashtags'
+                        />
+                      </>
+                    }
+                    onClickMore={this.handleLoadMoreHashtags}
+                  >
+                    {hashtags.take(INITIAL_DISPLAY).map((hashtag) => (
+                      <Hashtag key={hashtag.get('name')} hashtag={hashtag} />
+                    ))}
+                  </SearchSection>
+                )}
 
-            {statuses.size > 0 && (
-              <SearchSection key='statuses' title={<><Icon id='quote-right' fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></>} onClickMore={this.handleLoadMoreStatuses}>
-                {statuses.take(INITIAL_DISPLAY).map(id => <Status key={id} id={id} />)}
-              </SearchSection>
-            )}
-          </>
-        ) : [];
-        break;
-      case 'accounts':
-        filteredResults = renderAccounts(accounts);
-        break;
-      case 'hashtags':
-        filteredResults = renderHashtags(hashtags);
-        break;
-      case 'statuses':
-        filteredResults = renderStatuses(statuses);
-        break;
+                {statuses.size > 0 && (
+                  <SearchSection
+                    key='statuses'
+                    title={
+                      <>
+                        <Icon id='quote-right' fixedWidth />
+                        <FormattedMessage
+                          id='search_results.statuses'
+                          defaultMessage='Posts'
+                        />
+                      </>
+                    }
+                    onClickMore={this.handleLoadMoreStatuses}
+                  >
+                    {statuses.take(INITIAL_DISPLAY).map((id) => (
+                      <Status key={id} id={id} />
+                    ))}
+                  </SearchSection>
+                )}
+              </>
+            ) : (
+              []
+            );
+          break;
+        case 'accounts':
+          filteredResults = renderAccounts(accounts);
+          break;
+        case 'hashtags':
+          filteredResults = renderHashtags(hashtags);
+          break;
+        case 'statuses':
+          filteredResults = renderStatuses(statuses);
+          break;
       }
     }
 
     return (
       <>
         <div className='account__section-headline'>
-          <button onClick={this.handleSelectAll} className={type === 'all' ? 'active' : undefined}><FormattedMessage id='search_results.all' defaultMessage='All' /></button>
-          <button onClick={this.handleSelectAccounts} className={type === 'accounts' ? 'active' : undefined}><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></button>
-          <button onClick={this.handleSelectHashtags} className={type === 'hashtags' ? 'active' : undefined}><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></button>
-          <button onClick={this.handleSelectStatuses} className={type === 'statuses' ? 'active' : undefined}><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></button>
+          <button
+            onClick={this.handleSelectAll}
+            className={type === 'all' ? 'active' : undefined}
+          >
+            <FormattedMessage id='search_results.all' defaultMessage='All' />
+          </button>
+          <button
+            onClick={this.handleSelectAccounts}
+            className={type === 'accounts' ? 'active' : undefined}
+          >
+            <FormattedMessage
+              id='search_results.accounts'
+              defaultMessage='Profiles'
+            />
+          </button>
+          <button
+            onClick={this.handleSelectHashtags}
+            className={type === 'hashtags' ? 'active' : undefined}
+          >
+            <FormattedMessage
+              id='search_results.hashtags'
+              defaultMessage='Hashtags'
+            />
+          </button>
+          <button
+            onClick={this.handleSelectStatuses}
+            className={type === 'statuses' ? 'active' : undefined}
+          >
+            <FormattedMessage
+              id='search_results.statuses'
+              defaultMessage='Posts'
+            />
+          </button>
         </div>
 
         <div className='explore__search-results'>
@@ -212,7 +288,12 @@ class Results extends PureComponent {
             isLoading={isLoading}
             onLoadMore={this.handleLoadMore}
             hasMore={hasMore}
-            emptyMessage={<FormattedMessage id='search_results.nothing_found' defaultMessage='Could not find anything for these search terms' />}
+            emptyMessage={
+              <FormattedMessage
+                id='search_results.nothing_found'
+                defaultMessage='Could not find anything for these search terms'
+              />
+            }
             bindToDocument
           >
             {filteredResults}
@@ -225,7 +306,6 @@ class Results extends PureComponent {
       </>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(Results));

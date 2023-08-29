@@ -6,7 +6,6 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import Button from '../../../components/button';
 
 class ConfirmationModal extends PureComponent {
-
   static propTypes = {
     message: PropTypes.node.isRequired,
     confirm: PropTypes.string.isRequired,
@@ -46,28 +45,35 @@ class ConfirmationModal extends PureComponent {
     this.button = c;
   };
 
-  render () {
+  render() {
     const { message, confirm, secondary } = this.props;
 
     return (
       <div className='modal-root__modal confirmation-modal'>
-        <div className='confirmation-modal__container'>
-          {message}
-        </div>
+        <div className='confirmation-modal__container'>{message}</div>
 
         <div className='confirmation-modal__action-bar'>
-          <Button onClick={this.handleCancel} className='confirmation-modal__cancel-button'>
-            <FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' />
+          <Button
+            onClick={this.handleCancel}
+            className='confirmation-modal__cancel-button'
+          >
+            <FormattedMessage
+              id='confirmation_modal.cancel'
+              defaultMessage='Cancel'
+            />
           </Button>
           {secondary !== undefined && (
-            <Button text={secondary} onClick={this.handleSecondary} className='confirmation-modal__secondary-button' />
+            <Button
+              text={secondary}
+              onClick={this.handleSecondary}
+              className='confirmation-modal__secondary-button'
+            />
           )}
           <Button text={confirm} onClick={this.handleClick} ref={this.setRef} />
         </div>
       </div>
     );
   }
-
 }
 
 export default injectIntl(ConfirmationModal);

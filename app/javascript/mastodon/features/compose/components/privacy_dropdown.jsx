@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon } from 'mastodon/components/icon';
 
 import { IconButton } from '../../../components/icon_button';
 
@@ -16,18 +16,37 @@ const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   public_long: { id: 'privacy.public.long', defaultMessage: 'Visible for all' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Visible for all, but opted-out of discovery features' },
-  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
-  private_long: { id: 'privacy.private.long', defaultMessage: 'Visible for followers only' },
-  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
-  direct_long: { id: 'privacy.direct.long', defaultMessage: 'Visible for mentioned users only' },
-  change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
+  unlisted_long: {
+    id: 'privacy.unlisted.long',
+    defaultMessage: 'Visible for all, but opted-out of discovery features',
+  },
+  private_short: {
+    id: 'privacy.private.short',
+    defaultMessage: 'Followers only',
+  },
+  private_long: {
+    id: 'privacy.private.long',
+    defaultMessage: 'Visible for followers only',
+  },
+  direct_short: {
+    id: 'privacy.direct.short',
+    defaultMessage: 'Mentioned people only',
+  },
+  direct_long: {
+    id: 'privacy.direct.long',
+    defaultMessage: 'Visible for mentioned users only',
+  },
+  change_privacy: {
+    id: 'privacy.change',
+    defaultMessage: 'Adjust status privacy',
+  },
 });
 
-const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
+const listenerOptions = supportsPassiveEvents
+  ? { passive: true, capture: true }
+  : true;
 
 class PrivacyDropdownMenu extends PureComponent {
-
   static propTypes = {
     style: PropTypes.object,
     items: PropTypes.array.isRequired,
@@ -36,47 +55,47 @@ class PrivacyDropdownMenu extends PureComponent {
     onChange: PropTypes.func.isRequired,
   };
 
-  handleDocumentClick = e => {
+  handleDocumentClick = (e) => {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
       e.stopPropagation();
     }
   };
 
-  handleKeyDown = e => {
+  handleKeyDown = (e) => {
     const { items } = this.props;
     const value = e.currentTarget.getAttribute('data-index');
-    const index = items.findIndex(item => {
-      return (item.value === value);
+    const index = items.findIndex((item) => {
+      return item.value === value;
     });
     let element = null;
 
-    switch(e.key) {
-    case 'Escape':
-      this.props.onClose();
-      break;
-    case 'Enter':
-      this.handleClick(e);
-      break;
-    case 'ArrowDown':
-      element = this.node.childNodes[index + 1] || this.node.firstChild;
-      break;
-    case 'ArrowUp':
-      element = this.node.childNodes[index - 1] || this.node.lastChild;
-      break;
-    case 'Tab':
-      if (e.shiftKey) {
-        element = this.node.childNodes[index - 1] || this.node.lastChild;
-      } else {
+    switch (e.key) {
+      case 'Escape':
+        this.props.onClose();
+        break;
+      case 'Enter':
+        this.handleClick(e);
+        break;
+      case 'ArrowDown':
         element = this.node.childNodes[index + 1] || this.node.firstChild;
-      }
-      break;
-    case 'Home':
-      element = this.node.firstChild;
-      break;
-    case 'End':
-      element = this.node.lastChild;
-      break;
+        break;
+      case 'ArrowUp':
+        element = this.node.childNodes[index - 1] || this.node.lastChild;
+        break;
+      case 'Tab':
+        if (e.shiftKey) {
+          element = this.node.childNodes[index - 1] || this.node.lastChild;
+        } else {
+          element = this.node.childNodes[index + 1] || this.node.firstChild;
+        }
+        break;
+      case 'Home':
+        element = this.node.firstChild;
+        break;
+      case 'End':
+        element = this.node.lastChild;
+        break;
     }
 
     if (element) {
@@ -87,7 +106,7 @@ class PrivacyDropdownMenu extends PureComponent {
     }
   };
 
-  handleClick = e => {
+  handleClick = (e) => {
     const value = e.currentTarget.getAttribute('data-index');
 
     e.preventDefault();
@@ -96,32 +115,56 @@ class PrivacyDropdownMenu extends PureComponent {
     this.props.onChange(value);
   };
 
-  componentDidMount () {
-    document.addEventListener('click', this.handleDocumentClick, { capture: true });
-    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+  componentDidMount() {
+    document.addEventListener('click', this.handleDocumentClick, {
+      capture: true,
+    });
+    document.addEventListener(
+      'touchend',
+      this.handleDocumentClick,
+      listenerOptions,
+    );
     if (this.focusedItem) this.focusedItem.focus({ preventScroll: true });
   }
 
-  componentWillUnmount () {
-    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
-    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleDocumentClick, {
+      capture: true,
+    });
+    document.removeEventListener(
+      'touchend',
+      this.handleDocumentClick,
+      listenerOptions,
+    );
   }
 
-  setRef = c => {
+  setRef = (c) => {
     this.node = c;
   };
 
-  setFocusRef = c => {
+  setFocusRef = (c) => {
     this.focusedItem = c;
   };
 
-  render () {
+  render() {
     const { style, items, value } = this.props;
 
     return (
       <div style={{ ...style }} role='listbox' ref={this.setRef}>
-        {items.map(item => (
-          <div role='option' tabIndex={0} key={item.value} data-index={item.value} onKeyDown={this.handleKeyDown} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
+        {items.map((item) => (
+          <div
+            role='option'
+            tabIndex={0}
+            key={item.value}
+            data-index={item.value}
+            onKeyDown={this.handleKeyDown}
+            onClick={this.handleClick}
+            className={classNames('privacy-dropdown__option', {
+              active: item.value === value,
+            })}
+            aria-selected={item.value === value}
+            ref={item.value === value ? this.setFocusRef : null}
+          >
             <div className='privacy-dropdown__option__icon'>
               <Icon id={item.icon} fixedWidth />
             </div>
@@ -135,11 +178,9 @@ class PrivacyDropdownMenu extends PureComponent {
       </div>
     );
   }
-
 }
 
 class PrivacyDropdown extends PureComponent {
-
   static propTypes = {
     isUserTouching: PropTypes.func,
     onModalOpen: PropTypes.func,
@@ -163,7 +204,10 @@ class PrivacyDropdown extends PureComponent {
         this.props.onModalClose();
       } else {
         this.props.onModalOpen({
-          actions: this.options.map(option => ({ ...option, active: option.value === this.props.value })),
+          actions: this.options.map((option) => ({
+            ...option,
+            active: option.value === this.props.value,
+          })),
           onClick: this.handleModalActionClick,
         });
       }
@@ -184,11 +228,11 @@ class PrivacyDropdown extends PureComponent {
     this.props.onChange(value);
   };
 
-  handleKeyDown = e => {
-    switch(e.key) {
-    case 'Escape':
-      this.handleClose();
-      break;
+  handleKeyDown = (e) => {
+    switch (e.key) {
+      case 'Escape':
+        this.handleClose();
+        break;
     }
   };
 
@@ -199,11 +243,11 @@ class PrivacyDropdown extends PureComponent {
   };
 
   handleButtonKeyDown = (e) => {
-    switch(e.key) {
-    case ' ':
-    case 'Enter':
-      this.handleMouseDown();
-      break;
+    switch (e.key) {
+      case ' ':
+      case 'Enter':
+        this.handleMouseDown();
+        break;
     }
   };
 
@@ -214,27 +258,47 @@ class PrivacyDropdown extends PureComponent {
     this.setState({ open: false });
   };
 
-  handleChange = value => {
+  handleChange = (value) => {
     this.props.onChange(value);
   };
 
-  UNSAFE_componentWillMount () {
-    const { intl: { formatMessage } } = this.props;
+  UNSAFE_componentWillMount() {
+    const {
+      intl: { formatMessage },
+    } = this.props;
 
     this.options = [
-      { icon: 'globe', value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
-      { icon: 'unlock', value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
-      { icon: 'lock', value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
+      {
+        icon: 'globe',
+        value: 'public',
+        text: formatMessage(messages.public_short),
+        meta: formatMessage(messages.public_long),
+      },
+      {
+        icon: 'unlock',
+        value: 'unlisted',
+        text: formatMessage(messages.unlisted_short),
+        meta: formatMessage(messages.unlisted_long),
+      },
+      {
+        icon: 'lock',
+        value: 'private',
+        text: formatMessage(messages.private_short),
+        meta: formatMessage(messages.private_long),
+      },
     ];
 
     if (!this.props.noDirect) {
-      this.options.push(
-        { icon: 'at', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
-      );
+      this.options.push({
+        icon: 'at',
+        value: 'direct',
+        text: formatMessage(messages.direct_short),
+        meta: formatMessage(messages.direct_long),
+      });
     }
   }
 
-  setTargetRef = c => {
+  setTargetRef = (c) => {
     this.target = c;
   };
 
@@ -246,15 +310,25 @@ class PrivacyDropdown extends PureComponent {
     this.setState({ placement: state.placement });
   };
 
-  render () {
+  render() {
     const { value, container, disabled, intl } = this.props;
     const { open, placement } = this.state;
 
-    const valueOption = this.options.find(item => item.value === value);
+    const valueOption = this.options.find((item) => item.value === value);
 
     return (
-      <div className={classNames('privacy-dropdown', placement, { active: open })} onKeyDown={this.handleKeyDown}>
-        <div className={classNames('privacy-dropdown__value', { active: this.options.indexOf(valueOption) === (placement === 'bottom' ? 0 : (this.options.length - 1)) })} ref={this.setTargetRef}>
+      <div
+        className={classNames('privacy-dropdown', placement, { active: open })}
+        onKeyDown={this.handleKeyDown}
+      >
+        <div
+          className={classNames('privacy-dropdown__value', {
+            active:
+              this.options.indexOf(valueOption) ===
+              (placement === 'bottom' ? 0 : this.options.length - 1),
+          })}
+          ref={this.setTargetRef}
+        >
           <IconButton
             className='privacy-dropdown__value-icon'
             icon={valueOption.icon}
@@ -271,10 +345,22 @@ class PrivacyDropdown extends PureComponent {
           />
         </div>
 
-        <Overlay show={open} placement={'bottom'} flip target={this.findTarget} container={container} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
+        <Overlay
+          show={open}
+          placement={'bottom'}
+          flip
+          target={this.findTarget}
+          container={container}
+          popperConfig={{
+            strategy: 'fixed',
+            onFirstUpdate: this.handleOverlayEnter,
+          }}
+        >
           {({ props, placement }) => (
             <div {...props}>
-              <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>
+              <div
+                className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}
+              >
                 <PrivacyDropdownMenu
                   items={this.options}
                   value={value}
@@ -288,7 +374,6 @@ class PrivacyDropdown extends PureComponent {
       </div>
     );
   }
-
 }
 
 export default injectIntl(PrivacyDropdown);

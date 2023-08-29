@@ -17,7 +17,10 @@ import { unfollowModal } from '../initial_state';
 import { makeGetAccount } from '../selectors';
 
 const messages = defineMessages({
-  unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
+  unfollowConfirm: {
+    id: 'confirmations.unfollow.confirm',
+    defaultMessage: 'Unfollow',
+  },
 });
 
 const makeMapStateToProps = () => {
@@ -31,18 +34,28 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
-
-  onFollow (account) {
-    if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
+  onFollow(account) {
+    if (
+      account.getIn(['relationship', 'following']) ||
+      account.getIn(['relationship', 'requested'])
+    ) {
       if (unfollowModal) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-            confirm: intl.formatMessage(messages.unfollowConfirm),
-            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
-          },
-        }));
+        dispatch(
+          openModal({
+            modalType: 'CONFIRM',
+            modalProps: {
+              message: (
+                <FormattedMessage
+                  id='confirmations.unfollow.message'
+                  defaultMessage='Are you sure you want to unfollow {name}?'
+                  values={{ name: <strong>@{account.get('acct')}</strong> }}
+                />
+              ),
+              confirm: intl.formatMessage(messages.unfollowConfirm),
+              onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+            },
+          }),
+        );
       } else {
         dispatch(unfollowAccount(account.get('id')));
       }
@@ -51,7 +64,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onBlock (account) {
+  onBlock(account) {
     if (account.getIn(['relationship', 'blocking'])) {
       dispatch(unblockAccount(account.get('id')));
     } else {
@@ -59,7 +72,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onMute (account) {
+  onMute(account) {
     if (account.getIn(['relationship', 'muting'])) {
       dispatch(unmuteAccount(account.get('id')));
     } else {
@@ -67,10 +80,11 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-
-  onMuteNotifications (account, notifications) {
+  onMuteNotifications(account, notifications) {
     dispatch(muteAccount(account.get('id'), notifications));
   },
 });
 
-export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Account));
+export default injectIntl(
+  connect(makeMapStateToProps, mapDispatchToProps)(Account),
+);

@@ -13,7 +13,6 @@ import { LoadGap } from './load_gap';
 import ScrollableList from './scrollable_list';
 
 export default class StatusList extends ImmutablePureComponent {
-
   static propTypes = {
     scrollKey: PropTypes.string.isRequired,
     statusIds: ImmutablePropTypes.list.isRequired,
@@ -59,79 +58,99 @@ export default class StatusList extends ImmutablePureComponent {
     this._selectChild(elementIndex, false);
   };
 
-  handleLoadOlder = debounce(() => {
-    const { statusIds, lastId, onLoadMore } = this.props;
-    onLoadMore(lastId || (statusIds.size > 0 ? statusIds.last() : undefined));
-  }, 300, { leading: true });
+  handleLoadOlder = debounce(
+    () => {
+      const { statusIds, lastId, onLoadMore } = this.props;
+      onLoadMore(lastId || (statusIds.size > 0 ? statusIds.last() : undefined));
+    },
+    300,
+    { leading: true },
+  );
 
-  _selectChild (index, align_top) {
+  _selectChild(index, align_top) {
     const container = this.node.node;
-    const element = container.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
+    const element = container.querySelector(
+      `article:nth-of-type(${index + 1}) .focusable`,
+    );
 
     if (element) {
       if (align_top && container.scrollTop > element.offsetTop) {
         element.scrollIntoView(true);
-      } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
+      } else if (
+        !align_top &&
+        container.scrollTop + container.clientHeight <
+          element.offsetTop + element.offsetHeight
+      ) {
         element.scrollIntoView(false);
       }
       element.focus();
     }
   }
 
-  setRef = c => {
+  setRef = (c) => {
     this.node = c;
   };
 
-  render () {
-    const { statusIds, featuredStatusIds, onLoadMore, timelineId, ...other }  = this.props;
+  render() {
+    const { statusIds, featuredStatusIds, onLoadMore, timelineId, ...other } =
+      this.props;
     const { isLoading, isPartial } = other;
 
     if (isPartial) {
       return <RegenerationIndicator />;
     }
 
-    let scrollableContent = (isLoading || statusIds.size > 0) ? (
-      statusIds.map((statusId, index) => statusId === null ? (
-        <LoadGap
-          key={'gap:' + statusIds.get(index + 1)}
-          disabled={isLoading}
-          maxId={index > 0 ? statusIds.get(index - 1) : null}
-          onClick={onLoadMore}
-        />
-      ) : (
-        <StatusContainer
-          key={statusId}
-          id={statusId}
-          onMoveUp={this.handleMoveUp}
-          onMoveDown={this.handleMoveDown}
-          contextType={timelineId}
-          scrollKey={this.props.scrollKey}
-          showThread
-          withCounters={this.props.withCounters}
-        />
-      ))
-    ) : null;
+    let scrollableContent =
+      isLoading || statusIds.size > 0
+        ? statusIds.map((statusId, index) =>
+            statusId === null ? (
+              <LoadGap
+                key={'gap:' + statusIds.get(index + 1)}
+                disabled={isLoading}
+                maxId={index > 0 ? statusIds.get(index - 1) : null}
+                onClick={onLoadMore}
+              />
+            ) : (
+              <StatusContainer
+                key={statusId}
+                id={statusId}
+                onMoveUp={this.handleMoveUp}
+                onMoveDown={this.handleMoveDown}
+                contextType={timelineId}
+                scrollKey={this.props.scrollKey}
+                showThread
+                withCounters={this.props.withCounters}
+              />
+            ),
+          )
+        : null;
 
     if (scrollableContent && featuredStatusIds) {
-      scrollableContent = featuredStatusIds.map(statusId => (
-        <StatusContainer
-          key={`f-${statusId}`}
-          id={statusId}
-          featured
-          onMoveUp={this.handleMoveUp}
-          onMoveDown={this.handleMoveDown}
-          contextType={timelineId}
-          showThread
-          withCounters={this.props.withCounters}
-        />
-      )).concat(scrollableContent);
+      scrollableContent = featuredStatusIds
+        .map((statusId) => (
+          <StatusContainer
+            key={`f-${statusId}`}
+            id={statusId}
+            featured
+            onMoveUp={this.handleMoveUp}
+            onMoveDown={this.handleMoveDown}
+            contextType={timelineId}
+            showThread
+            withCounters={this.props.withCounters}
+          />
+        ))
+        .concat(scrollableContent);
     }
 
     return (
-      <ScrollableList {...other} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
+      <ScrollableList
+        {...other}
+        showLoading={isLoading && statusIds.size === 0}
+        onLoadMore={onLoadMore && this.handleLoadOlder}
+        ref={this.setRef}
+      >
         {scrollableContent}
       </ScrollableList>
     );
   }
-
 }

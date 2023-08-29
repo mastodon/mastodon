@@ -8,7 +8,11 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
-import { mountConversations, unmountConversations, expandConversations } from 'mastodon/actions/conversations';
+import {
+  mountConversations,
+  unmountConversations,
+  expandConversations,
+} from 'mastodon/actions/conversations';
 import { connectDirectStream } from 'mastodon/actions/streaming';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
@@ -20,7 +24,6 @@ const messages = defineMessages({
 });
 
 class DirectTimeline extends PureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     columnId: PropTypes.string,
@@ -48,7 +51,7 @@ class DirectTimeline extends PureComponent {
     this.column.scrollTop();
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch } = this.props;
 
     dispatch(mountConversations());
@@ -56,7 +59,7 @@ class DirectTimeline extends PureComponent {
     this.disconnect = dispatch(connectDirectStream());
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.dispatch(unmountConversations());
 
     if (this.disconnect) {
@@ -65,20 +68,24 @@ class DirectTimeline extends PureComponent {
     }
   }
 
-  setRef = c => {
+  setRef = (c) => {
     this.column = c;
   };
 
-  handleLoadMore = maxId => {
+  handleLoadMore = (maxId) => {
     this.props.dispatch(expandConversations({ maxId }));
   };
 
-  render () {
+  render() {
     const { intl, hasUnread, columnId, multiColumn } = this.props;
     const pinned = !!columnId;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column
+        bindToDocument={!multiColumn}
+        ref={this.setRef}
+        label={intl.formatMessage(messages.title)}
+      >
         <ColumnHeader
           icon='at'
           active={hasUnread}
@@ -96,9 +103,29 @@ class DirectTimeline extends PureComponent {
           timelineId='direct'
           bindToDocument={!multiColumn}
           onLoadMore={this.handleLoadMore}
-          prepend={<div className='follow_requests-unlocked_explanation'><span><FormattedMessage id='compose_form.encryption_warning' defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.' /> <a href='/terms' target='_blank'><FormattedMessage id='compose_form.direct_message_warning_learn_more' defaultMessage='Learn more' /></a></span></div>}
+          prepend={
+            <div className='follow_requests-unlocked_explanation'>
+              <span>
+                <FormattedMessage
+                  id='compose_form.encryption_warning'
+                  defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.'
+                />{' '}
+                <a href='/terms' target='_blank'>
+                  <FormattedMessage
+                    id='compose_form.direct_message_warning_learn_more'
+                    defaultMessage='Learn more'
+                  />
+                </a>
+              </span>
+            </div>
+          }
           alwaysPrepend
-          emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any private mentions yet. When you send or receive one, it will show up here." />}
+          emptyMessage={
+            <FormattedMessage
+              id='empty_column.direct'
+              defaultMessage="You don't have any private mentions yet. When you send or receive one, it will show up here."
+            />
+          }
         />
 
         <Helmet>
@@ -108,7 +135,6 @@ class DirectTimeline extends PureComponent {
       </Column>
     );
   }
-
 }
 
 export default connect()(injectIntl(DirectTimeline));

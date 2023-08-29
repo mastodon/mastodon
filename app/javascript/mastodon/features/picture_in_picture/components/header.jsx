@@ -21,7 +21,6 @@ const mapStateToProps = (state, { accountId }) => ({
 });
 
 class Header extends ImmutablePureComponent {
-
   static propTypes = {
     accountId: PropTypes.string.isRequired,
     statusId: PropTypes.string.isRequired,
@@ -30,21 +29,27 @@ class Header extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  render () {
+  render() {
     const { account, statusId, onClose, intl } = this.props;
 
     return (
       <div className='picture-in-picture__header'>
-        <Link to={`/@${account.get('acct')}/${statusId}`} className='picture-in-picture__header__account'>
+        <Link
+          to={`/@${account.get('acct')}/${statusId}`}
+          className='picture-in-picture__header__account'
+        >
           <Avatar account={account} size={36} />
           <DisplayName account={account} />
         </Link>
 
-        <IconButton icon='times' onClick={onClose} title={intl.formatMessage(messages.close)} />
+        <IconButton
+          icon='times'
+          onClick={onClose}
+          title={intl.formatMessage(messages.close)}
+        />
       </div>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(Header));

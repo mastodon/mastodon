@@ -6,10 +6,9 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { removePictureInPicture } from 'mastodon/actions/picture_in_picture';
-import { Icon }  from 'mastodon/components/icon';
+import { Icon } from 'mastodon/components/icon';
 
 class PictureInPicturePlaceholder extends PureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     aspectRatio: PropTypes.string,
@@ -20,17 +19,25 @@ class PictureInPicturePlaceholder extends PureComponent {
     dispatch(removePictureInPicture());
   };
 
-  render () {
+  render() {
     const { aspectRatio } = this.props;
 
     return (
-      <div className='picture-in-picture-placeholder' style={{ aspectRatio }} role='button' tabIndex={0} onClick={this.handleClick}>
+      <div
+        className='picture-in-picture-placeholder'
+        style={{ aspectRatio }}
+        role='button'
+        tabIndex={0}
+        onClick={this.handleClick}
+      >
         <Icon id='window-restore' />
-        <FormattedMessage id='picture_in_picture.restore' defaultMessage='Put it back' />
+        <FormattedMessage
+          id='picture_in_picture.restore'
+          defaultMessage='Put it back'
+        />
       </div>
     );
   }
-
 }
 
 export default connect()(PictureInPicturePlaceholder);

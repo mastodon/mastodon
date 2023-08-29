@@ -50,10 +50,7 @@ module.exports = {
     react: {
       version: 'detect',
     },
-    'import/ignore': [
-      'node_modules',
-      '\\.(css|scss|json)$',
-    ],
+    'import/ignore': ['node_modules', '\\.(css|scss|json)$'],
     'import/resolver': {
       typescript: {},
     },
@@ -62,17 +59,14 @@ module.exports = {
   rules: {
     'consistent-return': 'error',
     'dot-notation': 'error',
-    eqeqeq: ['error', 'always', { 'null': 'ignore' }],
+    eqeqeq: ['error', 'always', { null: 'ignore' }],
     'jsx-quotes': ['error', 'prefer-single'],
     'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
     'no-console': [
       'warn',
       {
-        allow: [
-          'error',
-          'warn',
-        ],
+        allow: ['error', 'warn'],
       },
     ],
     'no-empty': 'off',
@@ -147,9 +141,7 @@ module.exports = {
     'jsx-a11y/no-noninteractive-element-interactions': [
       'warn',
       {
-        handlers: [
-          'onClick',
-        ],
+        handlers: ['onClick'],
       },
     ],
     // recommended rule is:
@@ -167,9 +159,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': [
       'warn',
       {
-        handlers: [
-          'onClick',
-        ],
+        handlers: ['onClick'],
       },
     ],
 
@@ -241,7 +231,8 @@ module.exports = {
           },
           // Immutable / Redux / data store
           {
-            pattern: '{immutable,react-redux,react-immutable-proptypes,react-immutable-pure-component,reselect}',
+            pattern:
+              '{immutable,react-redux,react-immutable-proptypes,react-immutable-pure-component,reselect}',
             group: 'external',
             position: 'before',
           },
@@ -318,10 +309,7 @@ module.exports = {
       },
     },
     {
-      files: [
-        '**/*.ts',
-        '**/*.tsx',
-      ],
+      files: ['**/*.ts', '**/*.tsx'],
 
       extends: [
         'eslint:recommended',
@@ -348,7 +336,10 @@ module.exports = {
         '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
         '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
-        "@typescript-eslint/prefer-nullish-coalescing": ['error', {ignorePrimitives: {boolean: true}}],
+        '@typescript-eslint/prefer-nullish-coalescing': [
+          'error',
+          { ignorePrimitives: { boolean: true } },
+        ],
 
         'jsdoc/require-jsdoc': 'off',
 
@@ -356,26 +347,24 @@ module.exports = {
         // to enforce better practices when converting from JS
         'import/no-default-export': 'warn',
         'react/prefer-stateless-function': 'warn',
-        'react/function-component-definition': ['error', { namedComponents: 'arrow-function' }],
+        'react/function-component-definition': [
+          'error',
+          { namedComponents: 'arrow-function' },
+        ],
         'react/jsx-uses-react': 'off', // not needed with new JSX transform
         'react/react-in-jsx-scope': 'off', // not needed with new JSX transform
         'react/prop-types': 'off',
       },
     },
     {
-      files: [
-        '**/__tests__/*.js',
-        '**/__tests__/*.jsx',
-      ],
+      files: ['**/__tests__/*.js', '**/__tests__/*.jsx'],
 
       env: {
         jest: true,
       },
     },
     {
-      files: [
-        'streaming/**/*',
-      ],
+      files: ['streaming/**/*'],
       rules: {
         'import/no-commonjs': 'off',
       },

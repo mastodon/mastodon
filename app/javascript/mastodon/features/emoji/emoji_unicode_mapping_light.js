@@ -17,7 +17,7 @@ const [
 const unicodeMapping = {};
 
 function processEmojiMapData(emojiMapData, shortCode) {
-  let [ native, filename ] = emojiMapData;
+  let [native, filename] = emojiMapData;
   if (!filename) {
     // filename name can be derived from unicodeToFilename
     filename = unicodeToFilename(native);
@@ -29,9 +29,13 @@ function processEmojiMapData(emojiMapData, shortCode) {
 }
 
 Object.keys(shortCodesToEmojiData).forEach((shortCode) => {
-  let [ filenameData ] = shortCodesToEmojiData[shortCode];
-  filenameData.forEach(emojiMapData => processEmojiMapData(emojiMapData, shortCode));
+  let [filenameData] = shortCodesToEmojiData[shortCode];
+  filenameData.forEach((emojiMapData) =>
+    processEmojiMapData(emojiMapData, shortCode),
+  );
 });
-emojisWithoutShortCodes.forEach(emojiMapData => processEmojiMapData(emojiMapData));
+emojisWithoutShortCodes.forEach((emojiMapData) =>
+  processEmojiMapData(emojiMapData),
+);
 
 export default unicodeMapping;

@@ -8,30 +8,41 @@ import { scrollTopTimeline, loadPending } from '../../../actions/timelines';
 import StatusList from '../../../components/status_list';
 import { me } from '../../../initial_state';
 
-const makeGetStatusIds = (pending = false) => createSelector([
-  (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
-  (state, { type }) => state.getIn(['timelines', type, pending ? 'pendingItems' : 'items'], ImmutableList()),
-  (state)           => state.get('statuses'),
-], (columnSettings, statusIds, statuses) => {
-  return statusIds.filter(id => {
-    if (id === null) return true;
+const makeGetStatusIds = (pending = false) =>
+  createSelector(
+    [
+      (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
+      (state, { type }) =>
+        state.getIn(
+          ['timelines', type, pending ? 'pendingItems' : 'items'],
+          ImmutableList(),
+        ),
+      (state) => state.get('statuses'),
+    ],
+    (columnSettings, statusIds, statuses) => {
+      return statusIds.filter((id) => {
+        if (id === null) return true;
 
-    const statusForId = statuses.get(id);
-    let showStatus    = true;
+        const statusForId = statuses.get(id);
+        let showStatus = true;
 
-    if (statusForId.get('account') === me) return true;
+        if (statusForId.get('account') === me) return true;
 
-    if (columnSettings.getIn(['shows', 'reblog']) === false) {
-      showStatus = showStatus && statusForId.get('reblog') === null;
-    }
+        if (columnSettings.getIn(['shows', 'reblog']) === false) {
+          showStatus = showStatus && statusForId.get('reblog') === null;
+        }
 
-    if (columnSettings.getIn(['shows', 'reply']) === false) {
-      showStatus = showStatus && (statusForId.get('in_reply_to_id') === null || statusForId.get('in_reply_to_account_id') === me);
-    }
+        if (columnSettings.getIn(['shows', 'reply']) === false) {
+          showStatus =
+            showStatus &&
+            (statusForId.get('in_reply_to_id') === null ||
+              statusForId.get('in_reply_to_account_id') === me);
+        }
 
-    return showStatus;
-  });
-});
+        return showStatus;
+      });
+    },
+  );
 
 const makeMapStateToProps = () => {
   const getStatusIds = makeGetStatusIds();
@@ -39,10 +50,10 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, { timelineId }) => ({
     statusIds: getStatusIds(state, { type: timelineId }),
-    lastId:    state.getIn(['timelines', timelineId, 'items'])?.last(),
+    lastId: state.getIn(['timelines', timelineId, 'items'])?.last(),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], true),
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
-    hasMore:   state.getIn(['timelines', timelineId, 'hasMore']),
+    hasMore: state.getIn(['timelines', timelineId, 'hasMore']),
     numPending: getPendingStatusIds(state, { type: timelineId }).size,
   });
 
@@ -50,7 +61,6 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = (dispatch, { timelineId }) => ({
-
   onScrollToTop: debounce(() => {
     dispatch(scrollTopTimeline(timelineId, true));
   }, 100),
@@ -60,7 +70,6 @@ const mapDispatchToProps = (dispatch, { timelineId }) => ({
   }, 100),
 
   onLoadPending: () => dispatch(loadPending(timelineId)),
-
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(StatusList);

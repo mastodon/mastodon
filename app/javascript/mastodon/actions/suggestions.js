@@ -5,7 +5,7 @@ import { importFetchedAccounts } from './importer';
 
 export const SUGGESTIONS_FETCH_REQUEST = 'SUGGESTIONS_FETCH_REQUEST';
 export const SUGGESTIONS_FETCH_SUCCESS = 'SUGGESTIONS_FETCH_SUCCESS';
-export const SUGGESTIONS_FETCH_FAIL    = 'SUGGESTIONS_FETCH_FAIL';
+export const SUGGESTIONS_FETCH_FAIL = 'SUGGESTIONS_FETCH_FAIL';
 
 export const SUGGESTIONS_DISMISS = 'SUGGESTIONS_DISMISS';
 
@@ -13,14 +13,19 @@ export function fetchSuggestions(withRelationships = false) {
   return (dispatch, getState) => {
     dispatch(fetchSuggestionsRequest());
 
-    api(getState).get('/api/v2/suggestions', { params: { limit: 20 } }).then(response => {
-      dispatch(importFetchedAccounts(response.data.map(x => x.account)));
-      dispatch(fetchSuggestionsSuccess(response.data));
+    api(getState)
+      .get('/api/v2/suggestions', { params: { limit: 20 } })
+      .then((response) => {
+        dispatch(importFetchedAccounts(response.data.map((x) => x.account)));
+        dispatch(fetchSuggestionsSuccess(response.data));
 
-      if (withRelationships) {
-        dispatch(fetchRelationships(response.data.map(item => item.account.id)));
-      }
-    }).catch(error => dispatch(fetchSuggestionsFail(error)));
+        if (withRelationships) {
+          dispatch(
+            fetchRelationships(response.data.map((item) => item.account.id)),
+          );
+        }
+      })
+      .catch((error) => dispatch(fetchSuggestionsFail(error)));
   };
 }
 
@@ -48,18 +53,24 @@ export function fetchSuggestionsFail(error) {
   };
 }
 
-export const dismissSuggestion = accountId => (dispatch, getState) => {
+export const dismissSuggestion = (accountId) => (dispatch, getState) => {
   dispatch({
     type: SUGGESTIONS_DISMISS,
     id: accountId,
   });
 
-  api(getState).delete(`/api/v1/suggestions/${accountId}`).then(() => {
-    dispatch(fetchSuggestionsRequest());
+  api(getState)
+    .delete(`/api/v1/suggestions/${accountId}`)
+    .then(() => {
+      dispatch(fetchSuggestionsRequest());
 
-    api(getState).get('/api/v2/suggestions').then(response => {
-      dispatch(importFetchedAccounts(response.data.map(x => x.account)));
-      dispatch(fetchSuggestionsSuccess(response.data));
-    }).catch(error => dispatch(fetchSuggestionsFail(error)));
-  }).catch(() => {});
+      api(getState)
+        .get('/api/v2/suggestions')
+        .then((response) => {
+          dispatch(importFetchedAccounts(response.data.map((x) => x.account)));
+          dispatch(fetchSuggestionsSuccess(response.data));
+        })
+        .catch((error) => dispatch(fetchSuggestionsFail(error)));
+    })
+    .catch(() => {});
 };

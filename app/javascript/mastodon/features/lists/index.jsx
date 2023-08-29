@@ -24,20 +24,25 @@ const messages = defineMessages({
   subheading: { id: 'lists.subheading', defaultMessage: 'Your lists' },
 });
 
-const getOrderedLists = createSelector([state => state.get('lists')], lists => {
-  if (!lists) {
-    return lists;
-  }
+const getOrderedLists = createSelector(
+  [(state) => state.get('lists')],
+  (lists) => {
+    if (!lists) {
+      return lists;
+    }
 
-  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
-});
+    return lists
+      .toList()
+      .filter((item) => !!item)
+      .sort((a, b) => a.get('title').localeCompare(b.get('title')));
+  },
+);
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   lists: getOrderedLists(state),
 });
 
 class Lists extends ImmutablePureComponent {
-
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -46,11 +51,11 @@ class Lists extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  UNSAFE_componentWillMount () {
+  UNSAFE_componentWillMount() {
     this.props.dispatch(fetchLists());
   }
 
-  render () {
+  render() {
     const { intl, lists, multiColumn } = this.props;
 
     if (!lists) {
@@ -61,23 +66,42 @@ class Lists extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = <FormattedMessage id='empty_column.lists' defaultMessage="You don't have any lists yet. When you create one, it will show up here." />;
+    const emptyMessage = (
+      <FormattedMessage
+        id='empty_column.lists'
+        defaultMessage="You don't have any lists yet. When you create one, it will show up here."
+      />
+    );
 
     return (
-      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.heading)}>
-        <ColumnHeader title={intl.formatMessage(messages.heading)} icon='list-ul' multiColumn={multiColumn} />
+      <Column
+        bindToDocument={!multiColumn}
+        label={intl.formatMessage(messages.heading)}
+      >
+        <ColumnHeader
+          title={intl.formatMessage(messages.heading)}
+          icon='list-ul'
+          multiColumn={multiColumn}
+        />
 
         <NewListForm />
 
         <ScrollableList
           scrollKey='lists'
           emptyMessage={emptyMessage}
-          prepend={<ColumnSubheading text={intl.formatMessage(messages.subheading)} />}
+          prepend={
+            <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
+          }
           bindToDocument={!multiColumn}
         >
-          {lists.map(list =>
-            <ColumnLink key={list.get('id')} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />,
-          )}
+          {lists.map((list) => (
+            <ColumnLink
+              key={list.get('id')}
+              to={`/lists/${list.get('id')}`}
+              icon='list-ul'
+              text={list.get('title')}
+            />
+          ))}
         </ScrollableList>
 
         <Helmet>
@@ -87,7 +111,6 @@ class Lists extends ImmutablePureComponent {
       </Column>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(Lists));

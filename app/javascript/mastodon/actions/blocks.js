@@ -6,11 +6,11 @@ import { openModal } from './modal';
 
 export const BLOCKS_FETCH_REQUEST = 'BLOCKS_FETCH_REQUEST';
 export const BLOCKS_FETCH_SUCCESS = 'BLOCKS_FETCH_SUCCESS';
-export const BLOCKS_FETCH_FAIL    = 'BLOCKS_FETCH_FAIL';
+export const BLOCKS_FETCH_FAIL = 'BLOCKS_FETCH_FAIL';
 
 export const BLOCKS_EXPAND_REQUEST = 'BLOCKS_EXPAND_REQUEST';
 export const BLOCKS_EXPAND_SUCCESS = 'BLOCKS_EXPAND_SUCCESS';
-export const BLOCKS_EXPAND_FAIL    = 'BLOCKS_EXPAND_FAIL';
+export const BLOCKS_EXPAND_FAIL = 'BLOCKS_EXPAND_FAIL';
 
 export const BLOCKS_INIT_MODAL = 'BLOCKS_INIT_MODAL';
 
@@ -18,12 +18,17 @@ export function fetchBlocks() {
   return (dispatch, getState) => {
     dispatch(fetchBlocksRequest());
 
-    api(getState).get('/api/v1/blocks').then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(importFetchedAccounts(response.data));
-      dispatch(fetchBlocksSuccess(response.data, next ? next.uri : null));
-      dispatch(fetchRelationships(response.data.map(item => item.id)));
-    }).catch(error => dispatch(fetchBlocksFail(error)));
+    api(getState)
+      .get('/api/v1/blocks')
+      .then((response) => {
+        const next = getLinks(response).refs.find(
+          (link) => link.rel === 'next',
+        );
+        dispatch(importFetchedAccounts(response.data));
+        dispatch(fetchBlocksSuccess(response.data, next ? next.uri : null));
+        dispatch(fetchRelationships(response.data.map((item) => item.id)));
+      })
+      .catch((error) => dispatch(fetchBlocksFail(error)));
   };
 }
 
@@ -58,12 +63,17 @@ export function expandBlocks() {
 
     dispatch(expandBlocksRequest());
 
-    api(getState).get(url).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(importFetchedAccounts(response.data));
-      dispatch(expandBlocksSuccess(response.data, next ? next.uri : null));
-      dispatch(fetchRelationships(response.data.map(item => item.id)));
-    }).catch(error => dispatch(expandBlocksFail(error)));
+    api(getState)
+      .get(url)
+      .then((response) => {
+        const next = getLinks(response).refs.find(
+          (link) => link.rel === 'next',
+        );
+        dispatch(importFetchedAccounts(response.data));
+        dispatch(expandBlocksSuccess(response.data, next ? next.uri : null));
+        dispatch(fetchRelationships(response.data.map((item) => item.id)));
+      })
+      .catch((error) => dispatch(expandBlocksFail(error)));
   };
 }
 
@@ -89,7 +99,7 @@ export function expandBlocksFail(error) {
 }
 
 export function initBlockModal(account) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: BLOCKS_INIT_MODAL,
       account,

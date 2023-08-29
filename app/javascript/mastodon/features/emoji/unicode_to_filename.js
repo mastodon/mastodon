@@ -14,9 +14,11 @@ exports.unicodeToFilename = (str) => {
       if (result.length > 0) {
         result += '-';
       }
-      result += (0x10000 + ((p - 0xD800) << 10) + (charCode - 0xDC00)).toString(16);
+      result += (0x10000 + ((p - 0xd800) << 10) + (charCode - 0xdc00)).toString(
+        16,
+      );
       p = 0;
-    } else if (0xD800 <= charCode && charCode <= 0xDBFF) {
+    } else if (0xd800 <= charCode && charCode <= 0xdbff) {
       p = charCode;
     } else {
       if (result.length > 0) {

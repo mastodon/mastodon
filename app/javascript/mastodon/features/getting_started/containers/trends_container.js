@@ -4,11 +4,11 @@ import { fetchTrendingHashtags } from 'mastodon/actions/trends';
 
 import Trends from '../components/trends';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   trends: state.getIn(['trends', 'tags', 'items']),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   fetchTrends: () => dispatch(fetchTrendingHashtags()),
 });
 

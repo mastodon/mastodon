@@ -7,10 +7,10 @@ const initialState = ImmutableMap({
 });
 
 export default function meta(state = initialState, action) {
-  switch(action.type) {
-  case STORE_HYDRATE:
-    return state.merge(action.state.get('media_attachments'));
-  default:
-    return state;
+  switch (action.type) {
+    case STORE_HYDRATE:
+      return state.merge(action.state.get('media_attachments'));
+    default:
+      return state;
   }
 }

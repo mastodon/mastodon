@@ -11,7 +11,10 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
-import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'mastodon/actions/favourites';
+import {
+  fetchFavouritedStatuses,
+  expandFavouritedStatuses,
+} from 'mastodon/actions/favourites';
 import ColumnHeader from 'mastodon/components/column_header';
 import StatusList from 'mastodon/components/status_list';
 import Column from 'mastodon/features/ui/components/column';
@@ -21,14 +24,13 @@ const messages = defineMessages({
   heading: { id: 'column.favourites', defaultMessage: 'Favorites' },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   statusIds: getStatusList(state, 'favourites'),
   isLoading: state.getIn(['status_lists', 'favourites', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'favourites', 'next']),
 });
 
 class Favourites extends ImmutablePureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     statusIds: ImmutablePropTypes.list.isRequired,
@@ -39,7 +41,7 @@ class Favourites extends ImmutablePureComponent {
     isLoading: PropTypes.bool,
   };
 
-  UNSAFE_componentWillMount () {
+  UNSAFE_componentWillMount() {
     this.props.dispatch(fetchFavouritedStatuses());
   }
 
@@ -62,22 +64,36 @@ class Favourites extends ImmutablePureComponent {
     this.column.scrollTop();
   };
 
-  setRef = c => {
+  setRef = (c) => {
     this.column = c;
   };
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandFavouritedStatuses());
-  }, 300, { leading: true });
+  handleLoadMore = debounce(
+    () => {
+      this.props.dispatch(expandFavouritedStatuses());
+    },
+    300,
+    { leading: true },
+  );
 
-  render () {
-    const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
+  render() {
+    const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } =
+      this.props;
     const pinned = !!columnId;
 
-    const emptyMessage = <FormattedMessage id='empty_column.favourited_statuses' defaultMessage="You don't have any favorite posts yet. When you favorite one, it will show up here." />;
+    const emptyMessage = (
+      <FormattedMessage
+        id='empty_column.favourited_statuses'
+        defaultMessage="You don't have any favorite posts yet. When you favorite one, it will show up here."
+      />
+    );
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.heading)}>
+      <Column
+        bindToDocument={!multiColumn}
+        ref={this.setRef}
+        label={intl.formatMessage(messages.heading)}
+      >
         <ColumnHeader
           icon='star'
           title={intl.formatMessage(messages.heading)}
@@ -106,7 +122,6 @@ class Favourites extends ImmutablePureComponent {
       </Column>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(Favourites));

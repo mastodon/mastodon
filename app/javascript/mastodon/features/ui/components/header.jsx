@@ -14,7 +14,7 @@ import { Icon } from 'mastodon/components/icon';
 import { WordmarkLogo, SymbolLogo } from 'mastodon/components/logo';
 import { registrationsOpen, me, sso_redirect } from 'mastodon/initial_state';
 
-const Account = connect(state => ({
+const Account = connect((state) => ({
   account: state.getIn(['accounts', me]),
 }))(({ account }) => (
   <Link to={`/@${account.get('acct')}`} title={account.get('acct')}>
@@ -27,7 +27,9 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state) => ({
-  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
+  signupUrl:
+    state.getIn(['server', 'server', 'registrations', 'url'], null) ||
+    '/auth/sign_up',
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -36,11 +38,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   dispatchServer() {
     dispatch(fetchServer());
-  }
+  },
 });
 
 class Header extends PureComponent {
-
   static contextTypes = {
     identity: PropTypes.object,
   };
@@ -53,44 +54,74 @@ class Header extends PureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatchServer } = this.props;
     dispatchServer();
   }
 
-  render () {
+  render() {
     const { signedIn } = this.context.identity;
-    const { location, openClosedRegistrationsModal, signupUrl, intl } = this.props;
+    const { location, openClosedRegistrationsModal, signupUrl, intl } =
+      this.props;
 
     let content;
 
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/search' && <Link to='/search' className='button button-secondary' aria-label={intl.formatMessage(messages.search)}><Icon id='search' /></Link>}
-          {location.pathname !== '/publish' && <Link to='/publish' className='button button-secondary'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
+          {location.pathname !== '/search' && (
+            <Link
+              to='/search'
+              className='button button-secondary'
+              aria-label={intl.formatMessage(messages.search)}
+            >
+              <Icon id='search' />
+            </Link>
+          )}
+          {location.pathname !== '/publish' && (
+            <Link to='/publish' className='button button-secondary'>
+              <FormattedMessage
+                id='compose_form.publish_form'
+                defaultMessage='New post'
+              />
+            </Link>
+          )}
           <Account />
         </>
       );
     } else {
-
       if (sso_redirect) {
         content = (
-            <a href={sso_redirect} data-method='post' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sso_redirect' defaultMessage='Login or Register' /></a>
-        )
+          <a
+            href={sso_redirect}
+            data-method='post'
+            className='button button--block button-tertiary'
+          >
+            <FormattedMessage
+              id='sign_in_banner.sso_redirect'
+              defaultMessage='Login or Register'
+            />
+          </a>
+        );
       } else {
         let signupButton;
 
         if (registrationsOpen) {
           signupButton = (
             <a href={signupUrl} className='button'>
-              <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+              <FormattedMessage
+                id='sign_in_banner.create_account'
+                defaultMessage='Create account'
+              />
             </a>
           );
         } else {
           signupButton = (
             <button className='button' onClick={openClosedRegistrationsModal}>
-              <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+              <FormattedMessage
+                id='sign_in_banner.create_account'
+                defaultMessage='Create account'
+              />
             </button>
           );
         }
@@ -98,7 +129,12 @@ class Header extends PureComponent {
         content = (
           <>
             {signupButton}
-            <a href='/auth/sign_in' className='button button-tertiary'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
+            <a href='/auth/sign_in' className='button button-tertiary'>
+              <FormattedMessage
+                id='sign_in_banner.sign_in'
+                defaultMessage='Login'
+              />
+            </a>
           </>
         );
       }
@@ -111,13 +147,12 @@ class Header extends PureComponent {
           <SymbolLogo />
         </Link>
 
-        <div className='ui__header__links'>
-          {content}
-        </div>
+        <div className='ui__header__links'>{content}</div>
       </div>
     );
   }
-
 }
 
-export default injectIntl(withRouter(connect(mapStateToProps, mapDispatchToProps)(Header)));
+export default injectIntl(
+  withRouter(connect(mapStateToProps, mapDispatchToProps)(Header)),
+);

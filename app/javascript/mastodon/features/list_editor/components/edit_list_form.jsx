@@ -5,25 +5,29 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { changeListEditorTitle, submitListEditor } from '../../../actions/lists';
+import {
+  changeListEditorTitle,
+  submitListEditor,
+} from '../../../actions/lists';
 import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({
   title: { id: 'lists.edit.submit', defaultMessage: 'Change title' },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   value: state.getIn(['listEditor', 'title']),
-  disabled: !state.getIn(['listEditor', 'isChanged']) || !state.getIn(['listEditor', 'title']),
+  disabled:
+    !state.getIn(['listEditor', 'isChanged']) ||
+    !state.getIn(['listEditor', 'title']),
 });
 
-const mapDispatchToProps = dispatch => ({
-  onChange: value => dispatch(changeListEditorTitle(value)),
+const mapDispatchToProps = (dispatch) => ({
+  onChange: (value) => dispatch(changeListEditorTitle(value)),
   onSubmit: () => dispatch(submitListEditor(false)),
 });
 
 class ListForm extends PureComponent {
-
   static propTypes = {
     value: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
@@ -32,11 +36,11 @@ class ListForm extends PureComponent {
     onSubmit: PropTypes.func.isRequired,
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.props.onChange(e.target.value);
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.onSubmit();
   };
@@ -45,7 +49,7 @@ class ListForm extends PureComponent {
     this.props.onSubmit();
   };
 
-  render () {
+  render() {
     const { value, disabled, intl } = this.props;
 
     const title = intl.formatMessage(messages.title);
@@ -67,7 +71,9 @@ class ListForm extends PureComponent {
       </form>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(ListForm));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(injectIntl(ListForm));

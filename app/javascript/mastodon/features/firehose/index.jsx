@@ -8,8 +8,14 @@ import { NavLink } from 'react-router-dom';
 
 import { addColumn } from 'mastodon/actions/columns';
 import { changeSetting } from 'mastodon/actions/settings';
-import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';
-import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
+import {
+  connectPublicStream,
+  connectCommunityStream,
+} from 'mastodon/actions/streaming';
+import {
+  expandPublicTimeline,
+  expandCommunityTimeline,
+} from 'mastodon/actions/timelines';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import initialState, { domain } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
@@ -34,7 +40,9 @@ const useIdentity = () => ({
 
 const ColumnSettings = () => {
   const dispatch = useAppDispatch();
-  const settings = useAppSelector((state) => state.getIn(['settings', 'firehose']));
+  const settings = useAppSelector((state) =>
+    state.getIn(['settings', 'firehose']),
+  );
   const onChange = useCallback(
     (key, checked) => dispatch(changeSetting(['firehose', ...key], checked)),
     [dispatch],
@@ -47,7 +55,12 @@ const ColumnSettings = () => {
           settings={settings}
           settingPath={['onlyMedia']}
           onChange={onChange}
-          label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
+          label={
+            <FormattedMessage
+              id='community.column_settings.media_only'
+              defaultMessage='Media only'
+            />
+          }
         />
       </div>
     </div>
@@ -60,12 +73,19 @@ const Firehose = ({ feedType, multiColumn }) => {
   const { signedIn } = useIdentity();
   const columnRef = useRef(null);
 
-  const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
-  const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
+  const onlyMedia = useAppSelector((state) =>
+    state.getIn(['settings', 'firehose', 'onlyMedia'], false),
+  );
+  const hasUnread = useAppSelector(
+    (state) =>
+      state.getIn(
+        ['timelines', `${feedType}${onlyMedia ? ':media' : ''}`, 'unread'],
+        0,
+      ) > 0,
+  );
 
-  const handlePin = useCallback(
-    () => {
-      switch(feedType) {
+  const handlePin = useCallback(() => {
+    switch (feedType) {
       case 'community':
         dispatch(addColumn('COMMUNITY', { other: { onlyMedia } }));
         break;
@@ -73,91 +93,104 @@ const Firehose = ({ feedType, multiColumn }) => {
         dispatch(addColumn('PUBLIC', { other: { onlyMedia } }));
         break;
       case 'public:remote':
-        dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true } }));
+        dispatch(
+          addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true } }),
+        );
         break;
-      }
-    },
-    [dispatch, onlyMedia, feedType],
-  );
+    }
+  }, [dispatch, onlyMedia, feedType]);
 
   const handleLoadMore = useCallback(
     (maxId) => {
-      switch(feedType) {
-      case 'community':
-        dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
-        break;
-      case 'public':
-        dispatch(expandPublicTimeline({ maxId, onlyMedia }));
-        break;
-      case 'public:remote':
-        dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
-        break;
+      switch (feedType) {
+        case 'community':
+          dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
+          break;
+        case 'public':
+          dispatch(expandPublicTimeline({ maxId, onlyMedia }));
+          break;
+        case 'public:remote':
+          dispatch(
+            expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }),
+          );
+          break;
       }
     },
     [dispatch, onlyMedia, feedType],
   );
 
-  const handleHeaderClick = useCallback(() => columnRef.current?.scrollTop(), []);
+  const handleHeaderClick = useCallback(
+    () => columnRef.current?.scrollTop(),
+    [],
+  );
 
   useEffect(() => {
     let disconnect;
 
-    switch(feedType) {
-    case 'community':
-      dispatch(expandCommunityTimeline({ onlyMedia }));
-      if (signedIn) {
-        disconnect = dispatch(connectCommunityStream({ onlyMedia }));
-      }
-      break;
-    case 'public':
-      dispatch(expandPublicTimeline({ onlyMedia }));
-      if (signedIn) {
-        disconnect = dispatch(connectPublicStream({ onlyMedia }));
-      }
-      break;
-    case 'public:remote':
-      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote: true }));
-      if (signedIn) {
-        disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote: true }));
-      }
-      break;
+    switch (feedType) {
+      case 'community':
+        dispatch(expandCommunityTimeline({ onlyMedia }));
+        if (signedIn) {
+          disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+        }
+        break;
+      case 'public':
+        dispatch(expandPublicTimeline({ onlyMedia }));
+        if (signedIn) {
+          disconnect = dispatch(connectPublicStream({ onlyMedia }));
+        }
+        break;
+      case 'public:remote':
+        dispatch(expandPublicTimeline({ onlyMedia, onlyRemote: true }));
+        if (signedIn) {
+          disconnect = dispatch(
+            connectPublicStream({ onlyMedia, onlyRemote: true }),
+          );
+        }
+        break;
     }
 
     return () => disconnect?.();
   }, [dispatch, signedIn, feedType, onlyMedia]);
 
-  const prependBanner = feedType === 'community' ? (
-    <DismissableBanner id='community_timeline'>
-      <FormattedMessage
-        id='dismissable_banner.community_timeline'
-        defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.'
-        values={{ domain }}
-      />
-    </DismissableBanner>
-  ) : (
-    <DismissableBanner id='public_timeline'>
-      <FormattedMessage
-        id='dismissable_banner.public_timeline'
-        defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.'
-        values={{ domain }}
-      />
-    </DismissableBanner>
-  );
+  const prependBanner =
+    feedType === 'community' ? (
+      <DismissableBanner id='community_timeline'>
+        <FormattedMessage
+          id='dismissable_banner.community_timeline'
+          defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.'
+          values={{ domain }}
+        />
+      </DismissableBanner>
+    ) : (
+      <DismissableBanner id='public_timeline'>
+        <FormattedMessage
+          id='dismissable_banner.public_timeline'
+          defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.'
+          values={{ domain }}
+        />
+      </DismissableBanner>
+    );
 
-  const emptyMessage = feedType === 'community' ? (
-    <FormattedMessage
-      id='empty_column.community'
-      defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!'
-    />
-  ) : (
-    <FormattedMessage
-      id='empty_column.public'
-      defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up'
-    />
-  );
+  const emptyMessage =
+    feedType === 'community' ? (
+      <FormattedMessage
+        id='empty_column.community'
+        defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!'
+      />
+    ) : (
+      <FormattedMessage
+        id='empty_column.public'
+        defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up'
+      />
+    );
 
   return (
-    <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
+    <Column
+      bindToDocument={!multiColumn}
+      ref={columnRef}
+      label={intl.formatMessage(messages.title)}
+    >
       <ColumnHeader
         icon='globe'
         active={hasUnread}
@@ -172,15 +205,27 @@ const Firehose = ({ feedType, multiColumn }) => {
       <div className='scrollable scrollable--flex'>
         <div className='account__section-headline'>
           <NavLink exact to='/public/local'>
-            <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
+            <FormattedMessage
+              tagName='div'
+              id='firehose.local'
+              defaultMessage='This server'
+            />
           </NavLink>
 
           <NavLink exact to='/public/remote'>
-            <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
+            <FormattedMessage
+              tagName='div'
+              id='firehose.remote'
+              defaultMessage='Other servers'
+            />
           </NavLink>
 
           <NavLink exact to='/public'>
-            <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
+            <FormattedMessage
+              tagName='div'
+              id='firehose.all'
+              defaultMessage='All'
+            />
           </NavLink>
         </div>
 
@@ -201,7 +246,7 @@ const Firehose = ({ feedType, multiColumn }) => {
       </Helmet>
     </Column>
   );
-}
+};
 
 Firehose.propTypes = {
   multiColumn: PropTypes.bool,

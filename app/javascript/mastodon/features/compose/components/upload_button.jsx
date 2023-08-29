@@ -9,12 +9,18 @@ import { connect } from 'react-redux';
 import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({
-  upload: { id: 'upload_button.label', defaultMessage: 'Add images, a video or an audio file' },
+  upload: {
+    id: 'upload_button.label',
+    defaultMessage: 'Add images, a video or an audio file',
+  },
 });
 
 const makeMapStateToProps = () => {
-  const mapStateToProps = state => ({
-    acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']),
+  const mapStateToProps = (state) => ({
+    acceptContentTypes: state.getIn([
+      'media_attachments',
+      'accept_content_types',
+    ]),
   });
 
   return mapStateToProps;
@@ -26,7 +32,6 @@ const iconStyle = {
 };
 
 class UploadButton extends ImmutablePureComponent {
-
   static propTypes = {
     disabled: PropTypes.bool,
     unavailable: PropTypes.bool,
@@ -51,8 +56,9 @@ class UploadButton extends ImmutablePureComponent {
     this.fileElement = c;
   };
 
-  render () {
-    const { intl, resetFileKey, unavailable, disabled, acceptContentTypes } = this.props;
+  render() {
+    const { intl, resetFileKey, unavailable, disabled, acceptContentTypes } =
+      this.props;
 
     if (unavailable) {
       return null;
@@ -62,7 +68,16 @@ class UploadButton extends ImmutablePureComponent {
 
     return (
       <div className='compose-form__upload-button'>
-        <IconButton icon='paperclip' title={message} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle} />
+        <IconButton
+          icon='paperclip'
+          title={message}
+          disabled={disabled}
+          onClick={this.handleClick}
+          className='compose-form__upload-button-icon'
+          size={18}
+          inverted
+          style={iconStyle}
+        />
         <label>
           <span style={{ display: 'none' }}>{message}</span>
           <input
@@ -79,7 +94,6 @@ class UploadButton extends ImmutablePureComponent {
       </div>
     );
   }
-
 }
 
 export default connect(makeMapStateToProps)(injectIntl(UploadButton));

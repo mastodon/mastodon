@@ -21,16 +21,18 @@ import Tags from './tags';
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Explore' },
-  searchResults: { id: 'explore.search_results', defaultMessage: 'Search results' },
+  searchResults: {
+    id: 'explore.search_results',
+    defaultMessage: 'Search results',
+  },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   layout: state.getIn(['meta', 'layout']),
   isSearching: state.getIn(['search', 'submitted']) || !trendsEnabled,
 });
 
 class Explore extends PureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
     identity: PropTypes.object,
@@ -46,7 +48,7 @@ class Explore extends PureComponent {
     this.column.scrollTop();
   };
 
-  setRef = c => {
+  setRef = (c) => {
     this.column = c;
   };
 
@@ -55,10 +57,16 @@ class Explore extends PureComponent {
     const { signedIn } = this.context.identity;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column
+        bindToDocument={!multiColumn}
+        ref={this.setRef}
+        label={intl.formatMessage(messages.title)}
+      >
         <ColumnHeader
           icon={isSearching ? 'search' : 'hashtag'}
-          title={intl.formatMessage(isSearching ? messages.searchResults : messages.title)}
+          title={intl.formatMessage(
+            isSearching ? messages.searchResults : messages.title,
+          )}
           onClick={this.handleHeaderClick}
           multiColumn={multiColumn}
         />
@@ -74,21 +82,37 @@ class Explore extends PureComponent {
             <>
               <div className='account__section-headline'>
                 <NavLink exact to='/explore'>
-                  <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Posts' />
+                  <FormattedMessage
+                    tagName='div'
+                    id='explore.trending_statuses'
+                    defaultMessage='Posts'
+                  />
                 </NavLink>
 
                 <NavLink exact to='/explore/tags'>
-                  <FormattedMessage tagName='div' id='explore.trending_tags' defaultMessage='Hashtags' />
+                  <FormattedMessage
+                    tagName='div'
+                    id='explore.trending_tags'
+                    defaultMessage='Hashtags'
+                  />
                 </NavLink>
 
                 {signedIn && (
                   <NavLink exact to='/explore/suggestions'>
-                    <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='People' />
+                    <FormattedMessage
+                      tagName='div'
+                      id='explore.suggested_follows'
+                      defaultMessage='People'
+                    />
                   </NavLink>
                 )}
 
                 <NavLink exact to='/explore/links'>
-                  <FormattedMessage tagName='div' id='explore.trending_links' defaultMessage='News' />
+                  <FormattedMessage
+                    tagName='div'
+                    id='explore.trending_links'
+                    defaultMessage='News'
+                  />
                 </NavLink>
               </div>
 
@@ -111,7 +135,6 @@ class Explore extends PureComponent {
       </Column>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(injectIntl(Explore));

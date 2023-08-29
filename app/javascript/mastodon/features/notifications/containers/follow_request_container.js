@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 
-import { authorizeFollowRequest, rejectFollowRequest } from 'mastodon/actions/accounts';
+import {
+  authorizeFollowRequest,
+  rejectFollowRequest,
+} from 'mastodon/actions/accounts';
 import { makeGetAccount } from 'mastodon/selectors';
 
 import FollowRequest from '../components/follow_request';
@@ -16,11 +19,11 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = (dispatch, { id }) => ({
-  onAuthorize () {
+  onAuthorize() {
     dispatch(authorizeFollowRequest(id));
   },
 
-  onReject () {
+  onReject() {
     dispatch(rejectFollowRequest(id));
   },
 });

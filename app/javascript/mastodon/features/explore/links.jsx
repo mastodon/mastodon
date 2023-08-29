@@ -12,30 +12,32 @@ import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 
 import Story from './components/story';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   links: state.getIn(['trends', 'links', 'items']),
   isLoading: state.getIn(['trends', 'links', 'isLoading']),
 });
 
 class Links extends PureComponent {
-
   static propTypes = {
     links: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     dispatch: PropTypes.func.isRequired,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchTrendingLinks());
   }
 
-  render () {
+  render() {
     const { isLoading, links } = this.props;
 
     const banner = (
       <DismissableBanner id='explore/links'>
-        <FormattedMessage id='dismissable_banner.explore_links' defaultMessage='These are news stories being shared the most on the social web today. Newer news stories posted by more different people are ranked higher.' />
+        <FormattedMessage
+          id='dismissable_banner.explore_links'
+          defaultMessage='These are news stories being shared the most on the social web today. Newer news stories posted by more different people are ranked higher.'
+        />
       </DismissableBanner>
     );
 
@@ -45,7 +47,10 @@ class Links extends PureComponent {
           {banner}
 
           <div className='empty-column-indicator'>
-            <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />
+            <FormattedMessage
+              id='empty_column.explore_statuses'
+              defaultMessage='Nothing is trending right now. Check back later!'
+            />
           </div>
         </div>
       );
@@ -55,26 +60,32 @@ class Links extends PureComponent {
       <div className='explore__links'>
         {banner}
 
-        {isLoading ? (<LoadingIndicator />) : links.map((link, i) => (
-          <Story
-            key={link.get('id')}
-            expanded={i === 0}
-            lang={link.get('language')}
-            url={link.get('url')}
-            title={link.get('title')}
-            publisher={link.get('provider_name')}
-            publishedAt={link.get('published_at')}
-            author={link.get('author_name')}
-            sharedTimes={link.getIn(['history', 0, 'accounts']) * 1 + link.getIn(['history', 1, 'accounts']) * 1}
-            thumbnail={link.get('image')}
-            thumbnailDescription={link.get('image_description')}
-            blurhash={link.get('blurhash')}
-          />
-        ))}
+        {isLoading ? (
+          <LoadingIndicator />
+        ) : (
+          links.map((link, i) => (
+            <Story
+              key={link.get('id')}
+              expanded={i === 0}
+              lang={link.get('language')}
+              url={link.get('url')}
+              title={link.get('title')}
+              publisher={link.get('provider_name')}
+              publishedAt={link.get('published_at')}
+              author={link.get('author_name')}
+              sharedTimes={
+                link.getIn(['history', 0, 'accounts']) * 1 +
+                link.getIn(['history', 1, 'accounts']) * 1
+              }
+              thumbnail={link.get('image')}
+              thumbnailDescription={link.get('image_description')}
+              blurhash={link.get('blurhash')}
+            />
+          ))
+        )}
       </div>
     );
   }
-
 }
 
 export default connect(mapStateToProps)(Links);

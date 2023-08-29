@@ -7,26 +7,32 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon } from 'mastodon/components/icon';
 
-import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
+import {
+  fetchListSuggestions,
+  clearListSuggestions,
+  changeListSuggestions,
+} from '../../../actions/lists';
 
 const messages = defineMessages({
-  search: { id: 'lists.search', defaultMessage: 'Search among people you follow' },
+  search: {
+    id: 'lists.search',
+    defaultMessage: 'Search among people you follow',
+  },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   value: state.getIn(['listEditor', 'suggestions', 'value']),
 });
 
-const mapDispatchToProps = dispatch => ({
-  onSubmit: value => dispatch(fetchListSuggestions(value)),
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit: (value) => dispatch(fetchListSuggestions(value)),
   onClear: () => dispatch(clearListSuggestions()),
-  onChange: value => dispatch(changeListSuggestions(value)),
+  onChange: (value) => dispatch(changeListSuggestions(value)),
 });
 
 class Search extends PureComponent {
-
   static propTypes = {
     intl: PropTypes.object.isRequired,
     value: PropTypes.string.isRequired,
@@ -35,11 +41,11 @@ class Search extends PureComponent {
     onClear: PropTypes.func.isRequired,
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.props.onChange(e.target.value);
   };
 
-  handleKeyUp = e => {
+  handleKeyUp = (e) => {
     if (e.keyCode === 13) {
       this.props.onSubmit(this.props.value);
     }
@@ -49,14 +55,16 @@ class Search extends PureComponent {
     this.props.onClear();
   };
 
-  render () {
+  render() {
     const { value, intl } = this.props;
     const hasValue = value.length > 0;
 
     return (
       <div className='list-editor__search search'>
         <label>
-          <span style={{ display: 'none' }}>{intl.formatMessage(messages.search)}</span>
+          <span style={{ display: 'none' }}>
+            {intl.formatMessage(messages.search)}
+          </span>
 
           <input
             className='search__input'
@@ -68,14 +76,22 @@ class Search extends PureComponent {
           />
         </label>
 
-        <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
+        <div
+          role='button'
+          tabIndex={0}
+          className='search__icon'
+          onClick={this.handleClear}
+        >
           <Icon id='search' className={classNames({ active: !hasValue })} />
-          <Icon id='times-circle' aria-label={intl.formatMessage(messages.search)} className={classNames({ active: hasValue })} />
+          <Icon
+            id='times-circle'
+            aria-label={intl.formatMessage(messages.search)}
+            className={classNames({ active: hasValue })}
+          />
         </div>
       </div>
     );
   }
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Search));
