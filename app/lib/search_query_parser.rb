@@ -9,7 +9,7 @@ class SearchQueryParser < Parslet::Parser
   rule(:prefix)    { (term >> colon).as(:prefix) }
   rule(:shortcode) { (colon >> term >> colon.maybe).as(:shortcode) }
   rule(:phrase)    { (quote >> (term >> space.maybe).repeat >> quote).as(:phrase) }
-  rule(:clause)    { (prefix.maybe >> operator.maybe >> (phrase | term | shortcode)).as(:clause) }
+  rule(:clause)    { (operator.maybe >> prefix.maybe >> (phrase | term | shortcode)).as(:clause) }
   rule(:query)     { (clause >> space.maybe).repeat.as(:query) }
   root(:query)
 end

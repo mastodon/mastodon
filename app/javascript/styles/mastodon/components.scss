@@ -4991,6 +4991,12 @@ a.status-card {
     }
 
     &__menu {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
       &__message {
         color: $dark-text-color;
         padding: 0 10px;
@@ -5125,6 +5131,7 @@ a.status-card {
 
     &.active {
       transform: rotate(90deg);
+      opacity: 1;
     }
 
     &:hover {
@@ -8539,6 +8546,44 @@ noscript {
     }
   }
 
+  &__choices {
+    display: flex;
+    gap: 40px;
+
+    &__choice {
+      flex: 1;
+      box-sizing: border-box;
+
+      h3 {
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: $darker-text-color;
+        margin-bottom: 20px;
+        font-size: 15px;
+      }
+
+      .button {
+        margin-bottom: 10px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+    &__choices {
+      flex-direction: column;
+
+      &__choice {
+        margin-top: 40px;
+      }
+    }
+  }
+
   .link-button {
     font-size: inherit;
     display: inline;
@@ -9263,20 +9308,24 @@ noscript {
   display: flex;
   flex-wrap: wrap;
   font-size: 14px;
+  line-height: 18px;
   gap: 4px;
+  color: $darker-text-color;
 
   a {
     display: inline-flex;
-    border-radius: 4px;
-    background: rgba($highlight-text-color, 0.2);
-    color: $highlight-text-color;
-    padding: 0.4em 0.6em;
+    color: inherit;
     text-decoration: none;
 
-    &:hover,
-    &:focus,
-    &:active {
-      background: rgba($highlight-text-color, 0.3);
+    &:hover span {
+      text-decoration: underline;
     }
+  }
+
+  .link-button {
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 0;
   }
 }

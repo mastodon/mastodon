@@ -10,6 +10,7 @@ module Mastodon::CLI
       InstancesIndex,
       AccountsIndex,
       TagsIndex,
+      PublicStatusesIndex,
       StatusesIndex,
     ].freeze
 

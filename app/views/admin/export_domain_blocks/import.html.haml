@@ -1,9 +1,6 @@
 - content_for :page_title do
   = t('admin.export_domain_blocks.import.title')
 
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 %p= t('admin.export_domain_blocks.import.description_html')
 
 - if defined?(@global_private_comment) && @global_private_comment.present?
