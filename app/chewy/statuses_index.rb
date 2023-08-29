@@ -40,9 +40,7 @@ class StatusesIndex < Chewy::Index
     },
   }
 
-  # We do not use delete_if option here because it would call a method that we
-  # expect to be called with crutches without crutches, causing n+1 queries
-  index_scope ::Status.unscoped.kept.without_reblogs.includes(:media_attachments, :preview_cards, :local_mentioned, :local_favorited, :local_reblogged, :local_bookmarked, preloadable_poll: :local_voters)
+  index_scope ::Status.unscoped.kept.without_reblogs.includes(:media_attachments, :preview_cards, :local_mentioned, :local_favorited, :local_reblogged, :local_bookmarked, preloadable_poll: :local_voters), delete_if: ->(status) { status.searchable_by.empty? }
 
   root date_detection: false do
     field(:id, type: 'long')
