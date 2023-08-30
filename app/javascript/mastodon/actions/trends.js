@@ -23,6 +23,14 @@ export const fetchTrendingHashtags = () => (dispatch, getState) => {
 
   api(getState)
     .get('https://tomx.com/api/v1/trends/tags')
+    .then((response) => console.log(response))
+    .catch(err => dispatch(fetchTrendingHashtagsFail(err)));
+  api(getState)
+    .get('/api/v1/trends/tags')
+    .then((response) => console.log(response))
+    .catch(err => dispatch(fetchTrendingHashtagsFail(err)));
+  api(getState)
+    .get('/api/v1/trends/tags')
     .then(({ data }) => dispatch(fetchTrendingHashtagsSuccess(data)))
     .catch(err => dispatch(fetchTrendingHashtagsFail(err)));
 };
