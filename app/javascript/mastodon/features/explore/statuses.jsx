@@ -46,8 +46,8 @@ class Statuses extends PureComponent {
   render () {
     const { isLoading, hasMore, statusIds, multiColumn } = this.props;
 
-    const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
-    console.log(onlyMedia);
+    // const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
+    // console.log(onlyMedia);
     const emptyMessage = <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />;
 
     console.log('123');
