@@ -14,6 +14,7 @@ import StatusList from 'mastodon/components/status_list';
 import { getStatusList } from 'mastodon/selectors';
 import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
 import StatusListContainer from '../ui/containers/status_list_container';
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const mapStateToProps = state => ({
   statusIds: getStatusList(state, 'trending'),
@@ -39,12 +40,14 @@ class Statuses extends PureComponent {
   handleLoadMore = debounce(() => {
     const { dispatch } = this.props;
     dispatch(expandTrendingStatuses());
-    dispatch(expandPublicTimeline({ onlyMedia }));
+    // dispatch(expandPublicTimeline({ maxId, onlyMedia }));
   }, 300, { leading: true });
 
   render () {
     const { isLoading, hasMore, statusIds, multiColumn } = this.props;
 
+    const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
+    console.log(onlyMedia);
     const emptyMessage = <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />;
 
     console.log('123');
@@ -54,15 +57,15 @@ class Statuses extends PureComponent {
           <FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These are posts from across the social web that are gaining traction today. Newer posts with more boosts and favorites are ranked higher.' />
         </DismissableBanner>
 
-        <StatusListContainer
+        {/* <StatusListContainer
         //   prepend={prependBanner}
-          timelineId={''}
+          timelineId={'community'}
           onLoadMore={handleLoadMore}
           trackScroll
           scrollKey='firehose'
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
-        />
+        /> */}
         <StatusList
           trackScroll
           timelineId='explore'
