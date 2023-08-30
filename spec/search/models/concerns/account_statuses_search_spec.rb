@@ -9,13 +9,6 @@ describe AccountStatusesSearch do
 
   before do
     allow(Chewy).to receive(:enabled?).and_return(true)
-
-    PublicStatusesIndex.delete
-    PublicStatusesIndex.create
-  end
-
-  after do
-    PublicStatusesIndex.delete
   end
 
   describe '#add_to_public_statuses_index!' do

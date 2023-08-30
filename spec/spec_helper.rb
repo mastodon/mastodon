@@ -129,3 +129,28 @@ class StreamingServerManager
     @running_thread.join
   end
 end
+
+class SearchDataPopulator
+  def populate_search_indices
+    create_indices
+    populate_indices
+  end
+
+  def create_indices
+    AccountsIndex.create
+    PublicStatusesIndex.create
+    StatusesIndex.create
+    TagsIndex.create
+  end
+
+  def populate_indices
+    # Do the work to populate the indices here.
+  end
+
+  def delete_search_indices
+    AccountsIndex.delete
+    PublicStatusesIndex.delete
+    StatusesIndex.delete
+    TagsIndex.delete
+  end
+end
