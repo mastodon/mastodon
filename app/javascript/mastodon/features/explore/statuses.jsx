@@ -42,7 +42,8 @@ class Statuses extends PureComponent {
 
   handleLoadMore = debounce(() => {
     const { dispatch } = this.props;
-    dispatch(expandTrendingStatuses());
+    // dispatch(expandTrendingStatuses());
+    dispatch(expandCommunityTimeline({ onlyMedia }));
   }, 300, { leading: true });
 
   render () {
