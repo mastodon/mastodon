@@ -44,6 +44,7 @@ class Statuses extends PureComponent {
 
     const emptyMessage = <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!111' />;
 
+    console.log('123');
     return (
       <>
         <DismissableBanner id='explore/statuses'>
