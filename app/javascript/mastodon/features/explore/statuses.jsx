@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { PureComponent, useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -15,6 +15,7 @@ import { getStatusList } from 'mastodon/selectors';
 import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
 import StatusListContainer from '../ui/containers/status_list_container';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
+import { addColumn } from 'mastodon/actions/columns';
 
 const mapStateToProps = state => ({
   statusIds: getStatusList(state, 'trending'),
@@ -49,7 +50,14 @@ class Statuses extends PureComponent {
     // const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
     // console.log(onlyMedia);
     const emptyMessage = <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />;
+    const dispatch = useAppDispatch();
 
+    const handlePin = useCallback(
+      () => {
+        dispatch(addColumn('PUBLIC', { other: { onlyMedia } }));
+      },
+      [dispatch],
+    );
     console.log('123');
     return (
       <>
