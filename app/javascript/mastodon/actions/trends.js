@@ -21,12 +21,10 @@ export const TRENDS_STATUSES_EXPAND_FAIL    = 'TRENDS_STATUSES_EXPAND_FAIL';
 export const fetchTrendingHashtags = () => (dispatch, getState) => {
   dispatch(fetchTrendingHashtagsRequest());
 
+  console.log(api);
   api(getState)
     .get('/api/v1/trends/tags')
-    .then(({ data }) => {
-      console.log(data);
-      dispatch(fetchTrendingHashtagsSuccess(data))
-    })
+    .then(({ data }) => dispatch(fetchTrendingHashtagsSuccess(data)))
     .catch(err => dispatch(fetchTrendingHashtagsFail(err)));
 };
 
