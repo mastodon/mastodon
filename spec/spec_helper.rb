@@ -144,7 +144,21 @@ class SearchDataPopulator
   end
 
   def populate_indices
-    # Do the work to populate the indices here.
+    a = Fabricate(:account, indexable: true)
+    b = Fabricate(:account, indexable: false)
+    AccountsIndex.import!
+
+    Fabricate(:status, account: a, text: 'Lorem ipsum', visibility: :public)
+    Fabricate(:status, account: a, text: 'Foo #bar', visibility: :private)
+
+    Fabricate(:status, account: b, text: 'Lorem ipsum', visibility: :public)
+    Fabricate(:status, account: b, text: 'Bar #foo', visibility: :private)
+    PublicStatusesIndex.import!
+    StatusesIndex.import!
+
+    Fabricate(:tag)
+    Fabricate(:tag)
+    TagsIndex.import!
   end
 
   def delete_search_indices
