@@ -92,6 +92,6 @@ class Trends::Tags < Trends::Base
   end
 
   def would_be_trending?(id)
-    # score(id) > score_at_rank(options[:review_threshold] - 1)
+    score(id) > score_at_rank(options[:review_threshold] - 1)
   end
 end
