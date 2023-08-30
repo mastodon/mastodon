@@ -24,8 +24,6 @@ export const fetchHashtag = name => (dispatch, getState) => {
   dispatch(fetchHashtagRequest());
 
   api(getState).get(`/api/v1/tags/${name}`).then(({ data }) => {
-    console.log(name);
-    console.log(data);
     dispatch(fetchHashtagSuccess(name, data));
   }).catch(err => {
     dispatch(fetchHashtagFail(err));
