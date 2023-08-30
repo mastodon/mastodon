@@ -179,7 +179,7 @@ group :development do
   # Validate missing i18n keys
   gem 'i18n-tasks', '~> 1.0', require: false
 
-  gem 'twitter_cldr', '~> 6.11.4', require: false
+  gem 'twitter_cldr', '~> 6.12.0', require: false
 end
 
 group :development, :test do
