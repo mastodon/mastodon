@@ -35,7 +35,6 @@ const useIdentity = () => ({
 const ColumnSettings = () => {
   const dispatch = useAppDispatch();
   const settings = useAppSelector((state) => state.getIn(['settings', 'firehose']));
-  console.log(settings);
   const onChange = useCallback(
     (key, checked) => dispatch(changeSetting(['firehose', ...key], checked)),
     [dispatch],
