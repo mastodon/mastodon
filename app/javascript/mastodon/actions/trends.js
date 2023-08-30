@@ -23,7 +23,10 @@ export const fetchTrendingHashtags = () => (dispatch, getState) => {
 
   api(getState)
     .get('/api/v1/trends/tags')
-    .then(({ data }) => dispatch(fetchTrendingHashtagsSuccess(data)))
+    .then(({ data }) => {
+      console.log(data);
+      dispatch(fetchTrendingHashtagsSuccess(data))
+    })
     .catch(err => dispatch(fetchTrendingHashtagsFail(err)));
 };
 
