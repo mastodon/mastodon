@@ -61,6 +61,7 @@ class Statuses extends PureComponent {
           timelineId={`community`}
           onLoadMore={this.handleLoadMore}
           trackScroll
+          isLoading={isLoading}
           scrollKey='firehose'
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
