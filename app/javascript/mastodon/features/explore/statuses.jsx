@@ -14,6 +14,7 @@ import StatusList from 'mastodon/components/status_list';
 import { getStatusList } from 'mastodon/selectors';
 
 import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
+import StatusListContainer from '../ui/containers/status_list_container';
 
 const mapStateToProps = state => ({
   statusIds: getStatusList(state, 'trending'),
