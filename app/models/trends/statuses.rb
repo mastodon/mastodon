@@ -3,13 +3,13 @@
 class Trends::Statuses < Trends::Base
   PREFIX = 'trending_statuses'
 
-  BATCH_SIZE = 1
+  BATCH_SIZE = 100
 
   self.default_options = {
     threshold: 5,
-    review_threshold: 3,
+    review_threshold: 0,
     score_halflife: 2.hours.freeze,
-    decay_threshold: 0.3,
+    decay_threshold: 0.1,
   }
 
   class Query < Trends::Query
