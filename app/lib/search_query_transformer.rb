@@ -98,7 +98,7 @@ class SearchQueryTransformer < Parslet::Transform
       when 'language'
         @filter = :language
         @type = :term
-        @term = term
+        @term = language_code_from_term(term)
       when 'from'
         @filter = :account_id
         @type = :term
@@ -136,6 +136,22 @@ class SearchQueryTransformer < Parslet::Transform
       # If the account is not found, we want to return empty results, so return
       # an ID that does not exist
       account&.id || -1
+    end
+
+    def language_code_from_term(term)
+      language_code = term
+
+      return language_code if LanguagesHelper::SUPPORTED_LOCALES.key?(language_code.to_sym)
+
+      language_code = term.downcase
+
+      return language_code if LanguagesHelper::SUPPORTED_LOCALES.key?(language_code.to_sym)
+
+      language_code = term.split(/[_-]/).first.downcase
+
+      return language_code if LanguagesHelper::SUPPORTED_LOCALES.key?(language_code.to_sym)
+
+      term
     end
   end
 
