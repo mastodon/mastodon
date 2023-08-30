@@ -59,7 +59,7 @@ class Statuses extends PureComponent {
         <StatusListContainer
         //   prepend={prependBanner}
           timelineId={`community`}
-          onLoadMore={handleLoadMore}
+          onLoadMore={this.handleLoadMore}
           trackScroll
           scrollKey='firehose'
           emptyMessage={emptyMessage}
