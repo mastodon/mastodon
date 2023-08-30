@@ -285,11 +285,7 @@ jobs:
       elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:7.17.9
         env:
-          # network.host: 0.0.0.0
-          # http.port: 9200
-          # discovery.seed_hosts: localhost
           discovery.type: single-node
-          # cluster.initial_master_nodes: node-1
         options: >-
           --health-cmd "curl http://localhost:9200/_cluster/health"
           --health-interval 10s
