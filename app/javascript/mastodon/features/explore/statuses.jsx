@@ -12,6 +12,7 @@ import { fetchTrendingStatuses, expandTrendingStatuses } from 'mastodon/actions/
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import StatusList from 'mastodon/components/status_list';
 import { getStatusList } from 'mastodon/selectors';
+import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
 
 const mapStateToProps = state => ({
   statusIds: getStatusList(state, 'trending'),
@@ -37,12 +38,13 @@ class Statuses extends PureComponent {
   handleLoadMore = debounce(() => {
     const { dispatch } = this.props;
     dispatch(expandTrendingStatuses());
+    dispatch(expandPublicTimeline({ onlyMedia }));
   }, 300, { leading: true });
 
   render () {
     const { isLoading, hasMore, statusIds, multiColumn } = this.props;
 
-    const emptyMessage = <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!111' />;
+    const emptyMessage = <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />;
 
     console.log('123');
     return (
@@ -54,7 +56,8 @@ class Statuses extends PureComponent {
         <StatusList
           trackScroll
           timelineId='explore'
-          statusIds={statusIds}
+          // statusIds={statusIds}
+          statusIds={`${feedType}${onlyMedia ? ':media' : ''}`}
           scrollKey='explore-statuses'
           hasMore={hasMore}
           isLoading={isLoading}
