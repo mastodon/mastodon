@@ -111,7 +111,9 @@ const Firehose = ({ feedType, multiColumn }) => {
       break;
     case 'public':
       dispatch(expandPublicTimeline({ onlyMedia }));
+      console.log('1');
       if (signedIn) {
+        console.log('2');
         disconnect = dispatch(connectPublicStream({ onlyMedia }));
       }
       break;
