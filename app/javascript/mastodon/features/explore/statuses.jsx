@@ -21,6 +21,8 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['status_lists', 'trending', 'next']),
 });
 
+const onlyMedia = false;
+
 class Statuses extends PureComponent {
 
   static propTypes = {
@@ -34,7 +36,7 @@ class Statuses extends PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
     dispatch(fetchTrendingStatuses());
-    // dispatch(expandPublicTimeline({ onlyMedia }));
+    dispatch(expandPublicTimeline({ onlyMedia }));
   }
 
   handleLoadMore = debounce(() => {
