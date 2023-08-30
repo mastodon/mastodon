@@ -7,7 +7,7 @@ class TagManager
   include RoutingHelper
 
   def web_domain?(domain)
-    domain.nil? || domain.delete('/').casecmp(Rails.configuration.x.web_domain).zero?
+    domain.nil? || domain.delete('/').casecmp(Rails.configuration.x.local_domain).zero?
   end
 
   def local_domain?(domain)
