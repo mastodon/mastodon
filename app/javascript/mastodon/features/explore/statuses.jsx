@@ -42,7 +42,7 @@ class Statuses extends PureComponent {
   render () {
     const { isLoading, hasMore, statusIds, multiColumn } = this.props;
 
-    const emptyMessage = <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />;
+    const emptyMessage = <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!111' />;
 
     return (
       <>
