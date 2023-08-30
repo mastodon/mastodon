@@ -37,7 +37,7 @@ class Statuses extends PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
     dispatch(fetchTrendingStatuses());
-    dispatch(expandPublicTimeline({ onlyMedia }));
+    dispatch(expandCommunityTimeline({ onlyMedia }));
   }
 
   handleLoadMore = debounce(() => {
@@ -57,17 +57,19 @@ class Statuses extends PureComponent {
           <FormattedMessage id='empty_column.community' defaultMessage='These are posts from across the social web that are gaining traction today. Newer posts with more boosts and favorites are ranked higher.' />
         </DismissableBanner>
 
-        <StatusListContainer
-        //   prepend={prependBanner}
-          timelineId={`community`}
-          onLoadMore={this.handleLoadMore}
-          trackScroll
-          isLoading={isLoading}
-          scrollKey='firehose'
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-        />
-        <StatusList
+        <div className='scrollable scrollable--flex'>
+          <StatusListContainer
+          //   prepend={prependBanner}
+            timelineId={`community`}
+            onLoadMore={this.handleLoadMore}
+            trackScroll
+            isLoading={isLoading}
+            scrollKey='firehose'
+            emptyMessage={emptyMessage}
+            bindToDocument={!multiColumn}
+          />
+        </div>
+        {/* <StatusList
           trackScroll
           timelineId='explore'
           statusIds={statusIds}
@@ -78,7 +80,7 @@ class Statuses extends PureComponent {
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           withCounters
-        />
+        /> */}
       </>
     );
   }
