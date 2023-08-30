@@ -55,7 +55,7 @@ class AccountFilter
     when 'by_domain'
       Account.where(domain: value.to_s.strip)
     when 'username'
-      Account.matches_username(value.to_s.strip)
+      Account.matches_username(value.to_s.strip.delete_prefix('@'))
     when 'display_name'
       Account.matches_display_name(value.to_s.strip)
     when 'email'

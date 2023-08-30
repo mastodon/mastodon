@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_06_114142) do
-
+ActiveRecord::Schema[7.0].define(version: 2023_08_18_142253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,8 +18,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "account_id"
     t.string "acct", default: "", null: false
     t.string "uri", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id"], name: "index_account_aliases_on_account_id"
   end
 
@@ -38,15 +37,15 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
 
   create_table "account_deletion_requests", force: :cascade do |t|
     t.bigint "account_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id"], name: "index_account_deletion_requests_on_account_id"
   end
 
   create_table "account_domain_blocks", force: :cascade do |t|
     t.string "domain"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "account_id"
     t.index ["account_id", "domain"], name: "index_account_domain_blocks_on_account_id_and_domain", unique: true
   end
@@ -56,8 +55,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "acct", default: "", null: false
     t.bigint "followers_count", default: 0, null: false
     t.bigint "target_account_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id"], name: "index_account_migrations_on_account_id"
     t.index ["target_account_id"], name: "index_account_migrations_on_target_account_id", where: "(target_account_id IS NOT NULL)"
   end
@@ -66,8 +65,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.text "content", null: false
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id"], name: "index_account_moderation_notes_on_account_id"
     t.index ["target_account_id"], name: "index_account_moderation_notes_on_target_account_id"
   end
@@ -76,8 +75,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "account_id"
     t.bigint "target_account_id"
     t.text "comment", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id", "target_account_id"], name: "index_account_notes_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_account_notes_on_target_account_id"
   end
@@ -85,8 +84,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   create_table "account_pins", force: :cascade do |t|
     t.bigint "account_id"
     t.bigint "target_account_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id", "target_account_id"], name: "index_account_pins_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_account_pins_on_target_account_id"
   end
@@ -96,9 +95,9 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "statuses_count", default: 0, null: false
     t.bigint "following_count", default: 0, null: false
     t.bigint "followers_count", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "last_status_at"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "last_status_at", precision: nil
     t.index ["account_id"], name: "index_account_stats_on_account_id", unique: true
   end
 
@@ -114,15 +113,15 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.boolean "keep_self_bookmark", default: true, null: false
     t.integer "min_favs"
     t.integer "min_reblogs"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_account_statuses_cleanup_policies_on_account_id"
   end
 
   create_table "account_warning_presets", force: :cascade do |t|
     t.text "text", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "title", default: "", null: false
   end
 
@@ -131,11 +130,11 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "target_account_id"
     t.integer "action", default: 0, null: false
     t.text "text", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "report_id"
     t.string "status_ids", array: true
-    t.datetime "overruled_at"
+    t.datetime "overruled_at", precision: nil
     t.index ["account_id"], name: "index_account_warnings_on_account_id"
     t.index ["target_account_id"], name: "index_account_warnings_on_target_account_id"
   end
@@ -145,8 +144,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "domain"
     t.text "private_key"
     t.text "public_key", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.text "note", default: "", null: false
     t.string "display_name", default: "", null: false
     t.string "uri", default: "", null: false
@@ -154,15 +153,15 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "avatar_file_name"
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.datetime "avatar_updated_at", precision: nil
     t.string "header_file_name"
     t.string "header_content_type"
     t.integer "header_file_size"
-    t.datetime "header_updated_at"
+    t.datetime "header_updated_at", precision: nil
     t.string "avatar_remote_url"
     t.boolean "locked", default: false, null: false
     t.string "header_remote_url", default: "", null: false
-    t.datetime "last_webfingered_at"
+    t.datetime "last_webfingered_at", precision: nil
     t.string "inbox_url", default: "", null: false
     t.string "outbox_url", default: "", null: false
     t.string "shared_inbox_url", default: "", null: false
@@ -175,29 +174,30 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "actor_type"
     t.boolean "discoverable"
     t.string "also_known_as", array: true
-    t.datetime "silenced_at"
-    t.datetime "suspended_at"
+    t.datetime "silenced_at", precision: nil
+    t.datetime "suspended_at", precision: nil
     t.boolean "hide_collections"
     t.integer "avatar_storage_schema_version"
     t.integer "header_storage_schema_version"
     t.string "devices_url"
     t.integer "suspension_origin"
-    t.datetime "sensitized_at"
+    t.datetime "sensitized_at", precision: nil
     t.boolean "trendable"
-    t.datetime "reviewed_at"
-    t.datetime "requested_review_at"
+    t.datetime "reviewed_at", precision: nil
+    t.datetime "requested_review_at", precision: nil
+    t.boolean "indexable", default: false, null: false
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
+    t.index ["domain", "id"], name: "index_accounts_on_domain_and_id"
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id", where: "(moved_to_account_id IS NOT NULL)"
     t.index ["uri"], name: "index_accounts_on_uri"
     t.index ["url"], name: "index_accounts_on_url", opclass: :text_pattern_ops, where: "(url IS NOT NULL)"
   end
 
-  create_table "accounts_tags", id: false, force: :cascade do |t|
+  create_table "accounts_tags", primary_key: ["tag_id", "account_id"], force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "tag_id", null: false
     t.index ["account_id", "tag_id"], name: "index_accounts_tags_on_account_id_and_tag_id"
-    t.index ["tag_id", "account_id"], name: "index_accounts_tags_on_tag_id_and_account_id", unique: true
   end
 
   create_table "admin_action_logs", force: :cascade do |t|
@@ -205,8 +205,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "action", default: "", null: false
     t.string "target_type"
     t.bigint "target_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "human_identifier"
     t.string "route_param"
     t.string "permalink"
@@ -217,8 +217,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   create_table "announcement_mutes", force: :cascade do |t|
     t.bigint "account_id"
     t.bigint "announcement_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id", "announcement_id"], name: "index_announcement_mutes_on_account_id_and_announcement_id", unique: true
     t.index ["announcement_id"], name: "index_announcement_mutes_on_announcement_id"
   end
@@ -228,8 +228,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "announcement_id"
     t.string "name", default: "", null: false
     t.bigint "custom_emoji_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id", "announcement_id", "name"], name: "index_announcement_reactions_on_account_id_and_announcement_id", unique: true
     t.index ["announcement_id"], name: "index_announcement_reactions_on_announcement_id"
     t.index ["custom_emoji_id"], name: "index_announcement_reactions_on_custom_emoji_id", where: "(custom_emoji_id IS NOT NULL)"
@@ -239,12 +239,12 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.text "text", default: "", null: false
     t.boolean "published", default: false, null: false
     t.boolean "all_day", default: false, null: false
-    t.datetime "scheduled_at"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "published_at"
+    t.datetime "scheduled_at", precision: nil
+    t.datetime "starts_at", precision: nil
+    t.datetime "ends_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "published_at", precision: nil
     t.bigint "status_ids", array: true
   end
 
@@ -252,12 +252,12 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "account_id", null: false
     t.bigint "account_warning_id", null: false
     t.text "text", default: "", null: false
-    t.datetime "approved_at"
+    t.datetime "approved_at", precision: nil
     t.bigint "approved_by_account_id"
-    t.datetime "rejected_at"
+    t.datetime "rejected_at", precision: nil
     t.bigint "rejected_by_account_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_appeals_on_account_id"
     t.index ["account_warning_id"], name: "index_appeals_on_account_warning_id", unique: true
     t.index ["approved_by_account_id"], name: "index_appeals_on_approved_by_account_id", where: "(approved_by_account_id IS NOT NULL)"
@@ -268,16 +268,17 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "user_id"
     t.string "dump_file_name"
     t.string "dump_content_type"
-    t.datetime "dump_updated_at"
+    t.datetime "dump_updated_at", precision: nil
     t.boolean "processed", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "dump_file_size"
+    t.index ["user_id"], name: "index_backups_on_user_id"
   end
 
   create_table "blocks", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
     t.string "uri"
@@ -288,17 +289,42 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   create_table "bookmarks", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "status_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id", "status_id"], name: "index_bookmarks_on_account_id_and_status_id", unique: true
     t.index ["status_id"], name: "index_bookmarks_on_status_id"
+  end
+
+  create_table "bulk_import_rows", force: :cascade do |t|
+    t.bigint "bulk_import_id", null: false
+    t.jsonb "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bulk_import_id"], name: "index_bulk_import_rows_on_bulk_import_id"
+  end
+
+  create_table "bulk_imports", force: :cascade do |t|
+    t.integer "type", null: false
+    t.integer "state", null: false
+    t.integer "total_items", default: 0, null: false
+    t.integer "imported_items", default: 0, null: false
+    t.integer "processed_items", default: 0, null: false
+    t.datetime "finished_at", precision: nil
+    t.boolean "overwrite", default: false, null: false
+    t.boolean "likely_mismatched", default: false, null: false
+    t.string "original_filename", default: "", null: false
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_bulk_imports_on_account_id"
+    t.index ["id"], name: "index_bulk_imports_unconfirmed", where: "(state = 0)"
   end
 
   create_table "canonical_email_blocks", force: :cascade do |t|
     t.string "canonical_email_hash", default: "", null: false
     t.bigint "reference_account_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["canonical_email_hash"], name: "index_canonical_email_blocks_on_canonical_email_hash", unique: true
     t.index ["reference_account_id"], name: "index_canonical_email_blocks_on_reference_account_id"
   end
@@ -311,15 +337,15 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
 
   create_table "conversations", force: :cascade do |t|
     t.string "uri"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["uri"], name: "index_conversations_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
   end
 
   create_table "custom_emoji_categories", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["name"], name: "index_custom_emoji_categories_on_name", unique: true
   end
 
@@ -329,9 +355,9 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
-    t.datetime "image_updated_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "image_updated_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "disabled", default: false, null: false
     t.string "uri"
     t.string "image_remote_url"
@@ -345,27 +371,27 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "custom_filter_id", null: false
     t.text "keyword", default: "", null: false
     t.boolean "whole_word", default: true, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["custom_filter_id"], name: "index_custom_filter_keywords_on_custom_filter_id"
   end
 
   create_table "custom_filter_statuses", force: :cascade do |t|
     t.bigint "custom_filter_id", null: false
     t.bigint "status_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["custom_filter_id"], name: "index_custom_filter_statuses_on_custom_filter_id"
     t.index ["status_id"], name: "index_custom_filter_statuses_on_status_id"
   end
 
   create_table "custom_filters", force: :cascade do |t|
     t.bigint "account_id"
-    t.datetime "expires_at"
+    t.datetime "expires_at", precision: nil
     t.text "phrase", default: "", null: false
     t.string "context", default: [], null: false, array: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "action", default: 0, null: false
     t.index ["account_id"], name: "index_custom_filters_on_account_id"
   end
@@ -377,23 +403,23 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "name", default: "", null: false
     t.text "fingerprint_key", default: "", null: false
     t.text "identity_key", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["access_token_id"], name: "index_devices_on_access_token_id"
     t.index ["account_id"], name: "index_devices_on_account_id"
   end
 
   create_table "domain_allows", force: :cascade do |t|
     t.string "domain", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["domain"], name: "index_domain_allows_on_domain", unique: true
   end
 
   create_table "domain_blocks", force: :cascade do |t|
     t.string "domain", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "severity", default: 0
     t.boolean "reject_media", default: false, null: false
     t.boolean "reject_reports", default: false, null: false
@@ -405,8 +431,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
 
   create_table "email_domain_blocks", force: :cascade do |t|
     t.string "domain", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "parent_id"
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
@@ -419,15 +445,15 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.text "body", default: "", null: false
     t.text "digest", default: "", null: false
     t.text "message_franking", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["device_id"], name: "index_encrypted_messages_on_device_id"
     t.index ["from_account_id"], name: "index_encrypted_messages_on_from_account_id"
   end
 
   create_table "favourites", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "account_id", null: false
     t.bigint "status_id", null: false
     t.index ["account_id", "id"], name: "index_favourites_on_account_id_and_id"
@@ -439,9 +465,9 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "account_id", null: false
     t.bigint "tag_id", null: false
     t.bigint "statuses_count", default: 0, null: false
-    t.datetime "last_status_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "last_status_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "name"
     t.index ["account_id", "tag_id"], name: "index_featured_tags_on_account_id_and_tag_id", unique: true
     t.index ["tag_id"], name: "index_featured_tags_on_tag_id"
@@ -449,14 +475,14 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
 
   create_table "follow_recommendation_suppressions", force: :cascade do |t|
     t.bigint "account_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_follow_recommendation_suppressions_on_account_id", unique: true
   end
 
   create_table "follow_requests", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
     t.boolean "show_reblogs", default: true, null: false
@@ -467,8 +493,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   end
 
   create_table "follows", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
     t.boolean "show_reblogs", default: true, null: false
@@ -482,8 +508,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   create_table "identities", force: :cascade do |t|
     t.string "provider", default: "", null: false
     t.string "uid", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_identities_on_user_id"
   end
@@ -491,12 +517,12 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   create_table "imports", force: :cascade do |t|
     t.integer "type", null: false
     t.boolean "approved", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "data_file_name"
     t.string "data_content_type"
     t.integer "data_file_size"
-    t.datetime "data_updated_at"
+    t.datetime "data_updated_at", precision: nil
     t.bigint "account_id", null: false
     t.boolean "overwrite", default: false, null: false
   end
@@ -504,11 +530,11 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   create_table "invites", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "code", default: "", null: false
-    t.datetime "expires_at"
+    t.datetime "expires_at", precision: nil
     t.integer "max_uses"
     t.integer "uses", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "autofollow", default: false, null: false
     t.text "comment"
     t.index ["code"], name: "index_invites_on_code", unique: true
@@ -516,9 +542,9 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   end
 
   create_table "ip_blocks", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "expires_at"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "expires_at", precision: nil
     t.inet "ip", default: "0.0.0.0", null: false
     t.integer "severity", default: 0, null: false
     t.text "comment", default: "", null: false
@@ -529,17 +555,20 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "list_id", null: false
     t.bigint "account_id", null: false
     t.bigint "follow_id"
+    t.bigint "follow_request_id"
     t.index ["account_id", "list_id"], name: "index_list_accounts_on_account_id_and_list_id", unique: true
     t.index ["follow_id"], name: "index_list_accounts_on_follow_id", where: "(follow_id IS NOT NULL)"
+    t.index ["follow_request_id"], name: "index_list_accounts_on_follow_request_id", where: "(follow_request_id IS NOT NULL)"
     t.index ["list_id", "account_id"], name: "index_list_accounts_on_list_id_and_account_id"
   end
 
   create_table "lists", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.string "title", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "replies_policy", default: 0, null: false
+    t.boolean "exclusive", default: false, null: false
     t.index ["account_id"], name: "index_lists_on_account_id"
   end
 
@@ -551,7 +580,7 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "failure_reason"
     t.inet "ip"
     t.string "user_agent"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["user_id"], name: "index_login_activities_on_user_id"
   end
 
@@ -560,8 +589,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "timeline", default: "", null: false
     t.bigint "last_read_id", default: 0, null: false
     t.integer "lock_version", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["user_id", "timeline"], name: "index_markers_on_user_id_and_timeline", unique: true
   end
 
@@ -570,10 +599,10 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "file_file_name"
     t.string "file_content_type"
     t.integer "file_file_size"
-    t.datetime "file_updated_at"
+    t.datetime "file_updated_at", precision: nil
     t.string "remote_url", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "shortcode"
     t.integer "type", default: 0, null: false
     t.json "file_meta"
@@ -586,7 +615,7 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "thumbnail_file_name"
     t.string "thumbnail_content_type"
     t.integer "thumbnail_file_size"
-    t.datetime "thumbnail_updated_at"
+    t.datetime "thumbnail_updated_at", precision: nil
     t.string "thumbnail_remote_url"
     t.index ["account_id", "status_id"], name: "index_media_attachments_on_account_id_and_status_id", order: { status_id: :desc }
     t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id", where: "(scheduled_status_id IS NOT NULL)"
@@ -596,8 +625,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
 
   create_table "mentions", force: :cascade do |t|
     t.bigint "status_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "account_id"
     t.boolean "silent", default: false, null: false
     t.index ["account_id", "status_id"], name: "index_mentions_on_account_id_and_status_id", unique: true
@@ -605,12 +634,12 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   end
 
   create_table "mutes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "hide_notifications", default: true, null: false
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
-    t.datetime "expires_at"
+    t.datetime "expires_at", precision: nil
     t.index ["account_id", "target_account_id"], name: "index_mutes_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_mutes_on_target_account_id"
   end
@@ -618,8 +647,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   create_table "notifications", force: :cascade do |t|
     t.bigint "activity_id", null: false
     t.string "activity_type", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "account_id", null: false
     t.bigint "from_account_id", null: false
     t.string "type"
@@ -632,8 +661,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "token", null: false
     t.integer "expires_in", null: false
     t.text "redirect_uri", null: false
-    t.datetime "created_at", null: false
-    t.datetime "revoked_at"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "revoked_at", precision: nil
     t.string "scopes"
     t.bigint "application_id", null: false
     t.bigint "resource_owner_id", null: false
@@ -645,12 +674,12 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "token", null: false
     t.string "refresh_token"
     t.integer "expires_in"
-    t.datetime "revoked_at"
-    t.datetime "created_at", null: false
+    t.datetime "revoked_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
     t.string "scopes"
     t.bigint "application_id"
     t.bigint "resource_owner_id"
-    t.datetime "last_used_at"
+    t.datetime "last_used_at", precision: nil
     t.inet "last_used_ip"
     t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, opclass: :text_pattern_ops, where: "(refresh_token IS NOT NULL)"
     t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", where: "(resource_owner_id IS NOT NULL)"
@@ -663,14 +692,15 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "secret", null: false
     t.text "redirect_uri", null: false
     t.string "scopes", default: "", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.boolean "superapp", default: false, null: false
     t.string "website"
     t.string "owner_type"
     t.bigint "owner_id"
     t.boolean "confidential", default: true, null: false
     t.index ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type"
+    t.index ["superapp"], name: "index_oauth_applications_on_superapp", where: "(superapp = true)"
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
@@ -679,8 +709,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "key_id", default: "", null: false
     t.text "key", default: "", null: false
     t.text "signature", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["device_id"], name: "index_one_time_keys_on_device_id"
     t.index ["key_id"], name: "index_one_time_keys_on_key_id"
   end
@@ -690,7 +720,7 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.text "schema"
     t.text "relation"
     t.bigint "size"
-    t.datetime "captured_at"
+    t.datetime "captured_at", precision: nil
     t.index ["database", "captured_at"], name: "index_pghero_space_stats_on_database_and_captured_at"
   end
 
@@ -698,8 +728,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "account_id"
     t.bigint "poll_id"
     t.integer "choice", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "uri"
     t.index ["account_id"], name: "index_poll_votes_on_account_id"
     t.index ["poll_id"], name: "index_poll_votes_on_poll_id"
@@ -708,15 +738,15 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   create_table "polls", force: :cascade do |t|
     t.bigint "account_id"
     t.bigint "status_id"
-    t.datetime "expires_at"
+    t.datetime "expires_at", precision: nil
     t.string "options", default: [], null: false, array: true
     t.bigint "cached_tallies", default: [], null: false, array: true
     t.boolean "multiple", default: false, null: false
     t.boolean "hide_totals", default: false, null: false
     t.bigint "votes_count", default: 0, null: false
-    t.datetime "last_fetched_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "last_fetched_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "lock_version", default: 0, null: false
     t.bigint "voters_count"
     t.index ["account_id"], name: "index_polls_on_account_id"
@@ -728,12 +758,12 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "icon_file_name"
     t.string "icon_content_type"
     t.bigint "icon_file_size"
-    t.datetime "icon_updated_at"
+    t.datetime "icon_updated_at", precision: nil
     t.boolean "trendable"
-    t.datetime "reviewed_at"
-    t.datetime "requested_review_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "reviewed_at", precision: nil
+    t.datetime "requested_review_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["domain"], name: "index_preview_card_providers_on_domain", unique: true
   end
 
@@ -753,7 +783,7 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
-    t.datetime "image_updated_at"
+    t.datetime "image_updated_at", precision: nil
     t.integer "type", default: 0, null: false
     t.text "html", default: "", null: false
     t.string "author_name", default: "", null: false
@@ -762,30 +792,31 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "provider_url", default: "", null: false
     t.integer "width", default: 0, null: false
     t.integer "height", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "embed_url", default: "", null: false
     t.integer "image_storage_schema_version"
     t.string "blurhash"
     t.string "language"
     t.float "max_score"
-    t.datetime "max_score_at"
+    t.datetime "max_score_at", precision: nil
     t.boolean "trendable"
     t.integer "link_type"
+    t.datetime "published_at"
+    t.string "image_description", default: "", null: false
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 
-  create_table "preview_cards_statuses", id: false, force: :cascade do |t|
+  create_table "preview_cards_statuses", primary_key: ["status_id", "preview_card_id"], force: :cascade do |t|
     t.bigint "preview_card_id", null: false
     t.bigint "status_id", null: false
-    t.index ["status_id", "preview_card_id"], name: "index_preview_cards_statuses_on_status_id_and_preview_card_id"
   end
 
   create_table "relays", force: :cascade do |t|
     t.string "inbox_url", default: "", null: false
     t.string "follow_activity_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "state", default: 0, null: false
   end
 
@@ -793,8 +824,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.text "content", null: false
     t.bigint "report_id", null: false
     t.bigint "account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id"], name: "index_report_notes_on_account_id"
     t.index ["report_id"], name: "index_report_notes_on_report_id"
   end
@@ -802,8 +833,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   create_table "reports", force: :cascade do |t|
     t.bigint "status_ids", default: [], null: false, array: true
     t.text "comment", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "account_id", null: false
     t.bigint "action_taken_by_account_id"
     t.bigint "target_account_id", null: false
@@ -811,7 +842,7 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "uri"
     t.boolean "forwarded"
     t.integer "category", default: 0, null: false
-    t.datetime "action_taken_at"
+    t.datetime "action_taken_at", precision: nil
     t.bigint "rule_ids", array: true
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["action_taken_by_account_id"], name: "index_reports_on_action_taken_by_account_id", where: "(action_taken_by_account_id IS NOT NULL)"
@@ -821,15 +852,15 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
 
   create_table "rules", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.text "text", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "scheduled_statuses", force: :cascade do |t|
     t.bigint "account_id"
-    t.datetime "scheduled_at"
+    t.datetime "scheduled_at", precision: nil
     t.jsonb "params"
     t.index ["account_id"], name: "index_scheduled_statuses_on_account_id"
     t.index ["scheduled_at"], name: "index_scheduled_statuses_on_scheduled_at"
@@ -837,8 +868,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
 
   create_table "session_activations", force: :cascade do |t|
     t.string "session_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "user_agent", default: "", null: false
     t.inet "ip"
     t.bigint "access_token_id"
@@ -853,8 +884,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "var", null: false
     t.text "value"
     t.string "thing_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.bigint "thing_id"
     t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
   end
@@ -864,10 +895,10 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "file_file_name"
     t.string "file_content_type"
     t.integer "file_file_size"
-    t.datetime "file_updated_at"
+    t.datetime "file_updated_at", precision: nil
     t.json "meta"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "blurhash"
     t.index ["var"], name: "index_site_uploads_on_var", unique: true
   end
@@ -877,8 +908,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "account_id"
     t.text "text", default: "", null: false
     t.text "spoiler_text", default: "", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "ordered_media_attachment_ids", array: true
     t.text "media_descriptions", array: true
     t.string "poll_options", array: true
@@ -890,8 +921,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   create_table "status_pins", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "status_id", null: false
-    t.datetime "created_at", default: -> { "now()" }, null: false
-    t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.datetime "created_at", precision: nil, default: -> { "now()" }, null: false
+    t.datetime "updated_at", precision: nil, default: -> { "now()" }, null: false
     t.index ["account_id", "status_id"], name: "index_status_pins_on_account_id_and_status_id", unique: true
     t.index ["status_id"], name: "index_status_pins_on_status_id"
   end
@@ -901,8 +932,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "replies_count", default: 0, null: false
     t.bigint "reblogs_count", default: 0, null: false
     t.bigint "favourites_count", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["status_id"], name: "index_status_stats_on_status_id", unique: true
   end
 
@@ -920,8 +951,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   create_table "statuses", id: :bigint, default: -> { "timestamp_id('statuses'::text)" }, force: :cascade do |t|
     t.string "uri"
     t.text "text", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "in_reply_to_id"
     t.bigint "reblog_of_id"
     t.string "url"
@@ -936,8 +967,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "application_id"
     t.bigint "in_reply_to_account_id"
     t.bigint "poll_id"
-    t.datetime "deleted_at"
-    t.datetime "edited_at"
+    t.datetime "deleted_at", precision: nil
+    t.datetime "edited_at", precision: nil
     t.boolean "trendable"
     t.bigint "ordered_media_attachment_ids", array: true
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
@@ -951,40 +982,39 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.index ["uri"], name: "index_statuses_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
   end
 
-  create_table "statuses_tags", id: false, force: :cascade do |t|
+  create_table "statuses_tags", primary_key: ["tag_id", "status_id"], force: :cascade do |t|
     t.bigint "status_id", null: false
     t.bigint "tag_id", null: false
     t.index ["status_id"], name: "index_statuses_tags_on_status_id"
-    t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true
   end
 
   create_table "system_keys", force: :cascade do |t|
     t.binary "key"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "tag_follows", force: :cascade do |t|
     t.bigint "tag_id", null: false
     t.bigint "account_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["account_id", "tag_id"], name: "index_tag_follows_on_account_id_and_tag_id", unique: true
     t.index ["tag_id"], name: "index_tag_follows_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
     t.string "name", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "usable"
     t.boolean "trendable"
     t.boolean "listable"
-    t.datetime "reviewed_at"
-    t.datetime "requested_review_at"
-    t.datetime "last_status_at"
+    t.datetime "reviewed_at", precision: nil
+    t.datetime "requested_review_at", precision: nil
+    t.datetime "last_status_at", precision: nil
     t.float "max_score"
-    t.datetime "max_score_at"
+    t.datetime "max_score_at", precision: nil
     t.string "display_name"
     t.index "lower((name)::text) text_pattern_ops", name: "index_tags_on_name_lower_btree", unique: true
   end
@@ -992,8 +1022,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   create_table "tombstones", force: :cascade do |t|
     t.bigint "account_id"
     t.string "uri", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "by_moderator"
     t.index ["account_id"], name: "index_tombstones_on_account_id"
     t.index ["uri"], name: "index_tombstones_on_uri"
@@ -1001,16 +1031,16 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
 
   create_table "unavailable_domains", force: :cascade do |t|
     t.string "domain", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["domain"], name: "index_unavailable_domains_on_domain", unique: true
   end
 
   create_table "user_invite_requests", force: :cascade do |t|
     t.bigint "user_id"
     t.text "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["user_id"], name: "index_user_invite_requests_on_user_id"
   end
 
@@ -1020,24 +1050,24 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.integer "position", default: 0, null: false
     t.bigint "permissions", default: 0, null: false
     t.boolean "highlighted", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
+    t.datetime "reset_password_sent_at", precision: nil
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.boolean "admin", default: false, null: false
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
     t.string "locale"
     t.string "encrypted_otp_secret"
@@ -1045,7 +1075,7 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "encrypted_otp_secret_salt"
     t.integer "consumed_timestep"
     t.boolean "otp_required_for_login", default: false, null: false
-    t.datetime "last_emailed_at"
+    t.datetime "last_emailed_at", precision: nil
     t.string "otp_backup_codes", array: true
     t.bigint "account_id", null: false
     t.boolean "disabled", default: false, null: false
@@ -1055,17 +1085,20 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.bigint "created_by_application_id"
     t.boolean "approved", default: true, null: false
     t.string "sign_in_token"
-    t.datetime "sign_in_token_sent_at"
+    t.datetime "sign_in_token_sent_at", precision: nil
     t.string "webauthn_id"
     t.inet "sign_up_ip"
     t.boolean "skip_sign_in_token"
     t.bigint "role_id"
+    t.text "settings"
+    t.string "time_zone"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id", where: "(created_by_application_id IS NOT NULL)"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, opclass: :text_pattern_ops, where: "(reset_password_token IS NOT NULL)"
     t.index ["role_id"], name: "index_users_on_role_id", where: "(role_id IS NOT NULL)"
+    t.index ["unconfirmed_email"], name: "index_users_on_unconfirmed_email", where: "(unconfirmed_email IS NOT NULL)"
   end
 
   create_table "web_push_subscriptions", force: :cascade do |t|
@@ -1073,8 +1106,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "key_p256dh", null: false
     t.string "key_auth", null: false
     t.json "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "access_token_id"
     t.bigint "user_id"
     t.index ["access_token_id"], name: "index_web_push_subscriptions_on_access_token_id", where: "(access_token_id IS NOT NULL)"
@@ -1083,8 +1116,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
 
   create_table "web_settings", force: :cascade do |t|
     t.json "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_web_settings_on_user_id", unique: true
   end
@@ -1095,8 +1128,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "nickname", null: false
     t.bigint "sign_count", default: 0, null: false
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["external_id"], name: "index_webauthn_credentials_on_external_id", unique: true
     t.index ["user_id"], name: "index_webauthn_credentials_on_user_id"
   end
@@ -1106,8 +1139,9 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
     t.string "events", default: [], null: false, array: true
     t.string "secret", default: "", null: false
     t.boolean "enabled", default: true, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "template"
     t.index ["url"], name: "index_webhooks_on_url", unique: true
   end
 
@@ -1145,6 +1179,8 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
   add_foreign_key "bookmarks", "accounts", on_delete: :cascade
   add_foreign_key "bookmarks", "statuses", on_delete: :cascade
+  add_foreign_key "bulk_import_rows", "bulk_imports", on_delete: :cascade
+  add_foreign_key "bulk_imports", "accounts", on_delete: :cascade
   add_foreign_key "canonical_email_blocks", "accounts", column: "reference_account_id", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
@@ -1170,6 +1206,7 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
   add_foreign_key "invites", "users", on_delete: :cascade
   add_foreign_key "list_accounts", "accounts", on_delete: :cascade
+  add_foreign_key "list_accounts", "follow_requests", on_delete: :cascade
   add_foreign_key "list_accounts", "follows", on_delete: :cascade
   add_foreign_key "list_accounts", "lists", on_delete: :cascade
   add_foreign_key "lists", "accounts", on_delete: :cascade
@@ -1252,6 +1289,7 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
      FROM (domain_allows
        LEFT JOIN domain_counts ON (((domain_counts.domain)::text = (domain_allows.domain)::text)));
   SQL
+  add_index "instances", "reverse(('.'::text || (domain)::text)), domain", name: "index_instances_on_reverse_domain"
   add_index "instances", ["domain"], name: "index_instances_on_domain", unique: true
 
   create_view "user_ips", sql_definition: <<-SQL
@@ -1293,34 +1331,36 @@ ActiveRecord::Schema.define(version: 2022_12_06_114142) do
   SQL
   add_index "account_summaries", ["account_id"], name: "index_account_summaries_on_account_id", unique: true
 
-  create_view "follow_recommendations", materialized: true, sql_definition: <<-SQL
+  create_view "global_follow_recommendations", materialized: true, sql_definition: <<-SQL
       SELECT t0.account_id,
       sum(t0.rank) AS rank,
       array_agg(t0.reason) AS reason
      FROM ( SELECT account_summaries.account_id,
               ((count(follows.id))::numeric / (1.0 + (count(follows.id))::numeric)) AS rank,
               'most_followed'::text AS reason
-             FROM (((follows
+             FROM ((follows
                JOIN account_summaries ON ((account_summaries.account_id = follows.target_account_id)))
                JOIN users ON ((users.account_id = follows.account_id)))
-               LEFT JOIN follow_recommendation_suppressions ON ((follow_recommendation_suppressions.account_id = follows.target_account_id)))
-            WHERE ((users.current_sign_in_at >= (now() - 'P30D'::interval)) AND (account_summaries.sensitive = false) AND (follow_recommendation_suppressions.id IS NULL))
+            WHERE ((users.current_sign_in_at >= (now() - 'P30D'::interval)) AND (account_summaries.sensitive = false) AND (NOT (EXISTS ( SELECT 1
+                     FROM follow_recommendation_suppressions
+                    WHERE (follow_recommendation_suppressions.account_id = follows.target_account_id)))))
             GROUP BY account_summaries.account_id
            HAVING (count(follows.id) >= 5)
           UNION ALL
            SELECT account_summaries.account_id,
               (sum((status_stats.reblogs_count + status_stats.favourites_count)) / (1.0 + sum((status_stats.reblogs_count + status_stats.favourites_count)))) AS rank,
               'most_interactions'::text AS reason
-             FROM (((status_stats
+             FROM ((status_stats
                JOIN statuses ON ((statuses.id = status_stats.status_id)))
                JOIN account_summaries ON ((account_summaries.account_id = statuses.account_id)))
-               LEFT JOIN follow_recommendation_suppressions ON ((follow_recommendation_suppressions.account_id = statuses.account_id)))
-            WHERE ((statuses.id >= (((date_part('epoch'::text, (now() - 'P30D'::interval)) * (1000)::double precision))::bigint << 16)) AND (account_summaries.sensitive = false) AND (follow_recommendation_suppressions.id IS NULL))
+            WHERE ((statuses.id >= (((date_part('epoch'::text, (now() - 'P30D'::interval)) * (1000)::double precision))::bigint << 16)) AND (account_summaries.sensitive = false) AND (NOT (EXISTS ( SELECT 1
+                     FROM follow_recommendation_suppressions
+                    WHERE (follow_recommendation_suppressions.account_id = statuses.account_id)))))
             GROUP BY account_summaries.account_id
            HAVING (sum((status_stats.reblogs_count + status_stats.favourites_count)) >= (5)::numeric)) t0
     GROUP BY t0.account_id
     ORDER BY (sum(t0.rank)) DESC;
   SQL
-  add_index "follow_recommendations", ["account_id"], name: "index_follow_recommendations_on_account_id", unique: true
+  add_index "global_follow_recommendations", ["account_id"], name: "index_global_follow_recommendations_on_account_id", unique: true
 
 end

@@ -2,6 +2,10 @@
 pt-PT:
   simple_form:
     hints:
+      account:
+        display_name: O seu nome completo ou o seu nome divertido.
+        fields: A sua página inicial, os seus pronomes, idade e tudo o que quiser.
+        note: 'Pode @mencionar outras pessoas ou #hashtags.'
       account_alias:
         acct: Especifique o utilizador@domínio da conta de onde você deseja migrar
       account_migration:
@@ -37,14 +41,11 @@ pt-PT:
         current_password: Para fins de segurança, queira inserir a palavra-passe da conta atual
         current_username: Para confirmar, queira inserir o nome de utilizador da conta atual
         digest: Enviado após um longo período de inatividade e apenas se foste mencionado na tua ausência
-        discoverable: Permitir que a sua conta seja descoberta por outros através de recomendações, destaques e outras funções
         email: Será enviado um e-mail de confirmação
-        fields: Pode ter até 4 elementos expostos, em forma de tabela, no seu perfil
         header: PNG, GIF ou JPG. Ficheiros no máximo de %{size}. Serão reduzidos para %{dimensions}px
         inbox_url: Copie o URL da página inicial do repetidor que quer usar
         irreversible: Publicações filtradas irão desaparecer irremediavelmente, mesmo que o filtro seja removido posteriormente
         locale: A língua da interface de utilizador, e-mails e notificações push
-        locked: Requer aprovação manual de seguidores
         password: Use pelo menos 8 caracteres
         phrase: Será correspondido independentemente da capitalização ou do aviso de conteúdo duma publicação
         scopes: Quais as API a que será concedido acesso. Se escolher uma abrangência de nível superior, não precisará de as seleccionar individualmente.
@@ -54,12 +55,9 @@ pt-PT:
         setting_display_media_default: Esconder media marcada como problemática
         setting_display_media_hide_all: Esconder sempre toda a media
         setting_display_media_show_all: Mostrar sempre a media
-        setting_hide_network: Quem tu segues e quem te segue não será mostrado no teu perfil
-        setting_noindex: Afecta o teu perfil público e as páginas das tuas publicações
-        setting_show_application: A aplicação que usa para publicar será mostrada na vista pormenorizada das suas publicações
         setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer pormenores
         setting_use_pending_items: Ocultar atualizações da cronologia por detrás dum clique, em vez de rolar automaticamente o fluxo
-        username: O teu nome de utilizador será único em %{domain}
+        username: Pode utilizar letras, números e sublinhados
         whole_word: Quando a palavra-chave ou expressão-chave é somente alfanumérica, ela só será aplicada se corresponder à palavra completa
       domain_allow:
         domain: Este domínio será capaz de obter dados desta instância e os dados dele recebidos serão processados e armazenados
@@ -131,6 +129,7 @@ pt-PT:
         position: Cargos mais altos decidem a resolução de conflitos em certas situações. Certas ações só podem ser executadas em cargos com uma menor prioridade
       webhook:
         events: Selecione os eventos a enviar
+        template: Componha o seu próprio conteúdo JSON utilizando a interpolação de variáveis. Deixar em branco para o JSON predefinido.
         url: Para onde os eventos serão enviados
     labels:
       account:
@@ -174,7 +173,6 @@ pt-PT:
         context: Filtrar contextos
         current_password: Palavra-passe actual
         data: Dados
-        discoverable: Sugerir esta conta a outros
         display_name: Nome a apresentar
         email: Endereço de correio electrónico
         expires_in: Expira em
@@ -184,7 +182,6 @@ pt-PT:
         inbox_url: URL da caixa de entrada do repetidor
         irreversible: Expandir em vez de esconder
         locale: Língua da interface
-        locked: Exigir pedidos de seguimento
         max_uses: Número máximo de utilizações
         new_password: Nova palavra-passe
         note: Biografia
@@ -196,7 +193,6 @@ pt-PT:
         setting_always_send_emails: Enviar sempre notificações de email
         setting_auto_play_gif: Reproduzir GIF automaticamente
         setting_boost_modal: Solicitar confirmação antes de partilhar uma publicação
-        setting_crop_images: Recortar imagens para o formato 16x9 nas publicações não expandidas
         setting_default_language: Língua de publicação
         setting_default_privacy: Privacidade da publicação
         setting_default_sensitive: Marcar sempre os media como problemáticos
@@ -208,9 +204,7 @@ pt-PT:
         setting_display_media_show_all: Mostrar todos
         setting_expand_spoilers: Expandir sempre as publicações marcadas com avisos de conteúdo
         setting_hide_network: Esconder a tua rede
-        setting_noindex: Não quero ser indexado por motores de pesquisa
         setting_reduce_motion: Reduz movimento em animações
-        setting_show_application: Revelar sempre qual a aplicação usada para enviar as publicações
         setting_system_font_ui: Usar o tipo de letra padrão do sistema
         setting_theme: Tema do sítio
         setting_trends: Mostrar o que está hoje em alta
@@ -296,6 +290,7 @@ pt-PT:
         usable: Permitir que as publicações usem esta etiqueta
       user:
         role: Cargo
+        time_zone: Fuso horário
       user_role:
         color: Cor do emblema
         highlighted: Apresentar o cargo como emblema nos perfis de utilizador
@@ -304,6 +299,7 @@ pt-PT:
         position: Prioridade
       webhook:
         events: Eventos ativados
+        template: Modelo de conteúdo
         url: URL do Endpoint
     'no': Não
     not_recommended: Não recomendado

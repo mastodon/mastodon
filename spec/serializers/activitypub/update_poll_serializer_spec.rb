@@ -10,7 +10,7 @@ describe ActivityPub::UpdatePollSerializer do
   let!(:status) { Fabricate(:status, account: account, poll: poll) }
 
   before(:each) do
-    @serialization = ActiveModelSerializers::SerializableResource.new(status, serializer: ActivityPub::UpdatePollSerializer, adapter: ActivityPub::Adapter)
+    @serialization = ActiveModelSerializers::SerializableResource.new(status, serializer: described_class, adapter: ActivityPub::Adapter)
   end
 
   it 'has a Update type' do

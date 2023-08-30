@@ -93,8 +93,6 @@ kk:
       remove_header: Мұқаба суретін өшір
       resend_confirmation:
         already_confirmed: Қолданушы құпталған
-        send: Құптау хатын қайтадан жібер
-        success: Құптау хаты сәтті жіберілді!
       reset: Қалпына келтіру
       reset_password: Құпиясөзді қалпына келтіру
       resubscribe: Resubscribе
@@ -322,7 +320,6 @@ kk:
     confirmation_dialogs: Пікірталас диалогтары
     discovery: Пікірталас
     sensitive_content: Нәзік контент
-    toot_layout: Жазба формасы
   application_mailer:
     notification_preferences: Change e-mail prеferences
     settings: 'Change e-mail preferеnces: %{link}'
@@ -337,14 +334,12 @@ kk:
     warning: Be very carеful with this data. Never share it with anyone!
     your_token: Your access tokеn
   auth:
-    change_password: Құпиясөз
     delete_account: Аккаунт өшіру
     delete_account_html: Аккаунтыңызды жойғыңыз келсе, <a href="%{path}">мына жерді</a> басыңыз. Сізден растау сұралатын болады.
     description:
       prefix_invited_by_user: "@%{name} сізді Желіге қосылуға шақырады!"
       prefix_sign_up: Желіге бүгін қосылыңыз!
       suffix: Аккаунтыңызбен сіз кез-келген Mastodon серверінен және желідегі басқа адамдарды оқып, пост жаза аласыз және хат алмаса аласыз!
-    didnt_get_confirmation: Растау хаты келмеді ме?
     forgot_password: Құпиясөзіңізді ұмытып қалдыңыз ба?
     invalid_reset_password_token: Құпиясөз қайтып алу қолжетімді емес немесе мерзімі аяқталған. Қайтадан сұратыңыз.
     login: Кіру
@@ -357,30 +352,14 @@ kk:
       saml: SАML
     register: Тіркелу
     registration_closed: "%{instance} жаңа мүшелер қабылдамайды"
-    resend_confirmation: Растау нұсқаулықтарын жіберу
     reset_password: Құпиясөзді қалпына келтіру
     security: Қауіпсіздік
     set_new_password: Жаңа құпиясөз қою
-    setup:
-      email_below_hint_html: Егер төмендегі электрондық пошта мекенжайы дұрыс болмаса, оны осында өзгертіп, жаңа растау электрондық хатын ала аласыз.
-      email_settings_hint_html: Растау хаты %{email} адресіне жіберілді. Егер бұл электрондық пошта мекенжайы дұрыс болмаса, оны аккаунт параметрлерінде өзгертуге болады.
-      title: Баптау
     status:
       account_status: Аккаунт статусы
       confirming: Электрондық поштаны растау аяқталуын күтуде.
       pending: Сіздің өтінішіңіз біздің қызметкерлеріміздің қарауында. Бұл біраз уақыт алуы мүмкін. Өтінішіңіз мақұлданса, сізге электрондық пошта хабарламасы келеді.
       redirecting_to: Сіздің есептік жазбаңыз белсенді емес, себебі ол %{acct} жүйесіне қайта бағытталуда.
-  authorize_follow:
-    already_following: Бұл аккаунтқа жазылғансыз
-    error: Өкінішке орай, қашықтағы тіркелгіні іздеуде қате пайда болды
-    follow: Жазылу
-    follow_request: 'Сіз жазылуға өтініш жібердіңіз:'
-    following: 'Керемет! Сіз енді жазылдыңыз:'
-    post_follow:
-      close: Немесе терезені жаба салыңыз.
-      return: Қолданушы профилін көрсет
-      web: Вебте ашу
-    title: Жазылу %{acct}
   challenge:
     confirm: Жалғастыру
     hint_html: "<strong> Кеңес: </strong> біз келесі сағат ішінде сізден құпия сөзді қайта сұрамаймыз."
@@ -700,7 +679,6 @@ kk:
       vote: Дауыс беру
     show_more: Тағы әкел
     show_thread: Тақырыпты көрсет
-    sign_in_to_participate: Сұхбатқа қатысу үшін кіріңіз
     visibilities:
       private: Тек оқырмандарға
       private_long: Тек оқырмандарға ғана көрінеді
@@ -709,8 +687,6 @@ kk:
       unlisted: Тізімге енбеген
       unlisted_long: Бәрі көре алады, бірақ ашық тізімдерге ене алмайды
   stream_entries:
-    pinned: Жабыстырылған жазба
-    reblogged: бөлісті
     sensitive_content: Нәзік мазмұн
   tags:
     does_not_match_previous_name: алдыңғы атқа сәйкес келмейді

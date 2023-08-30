@@ -19,7 +19,19 @@ body.rtl {
     direction: rtl;
   }
 
+  .account__avatar-wrapper {
+    float: right;
+  }
+
+  .column-header__setting-arrows {
+    float: left;
+  }
+
   .admin-wrapper {
+    direction: rtl;
+  }
+
+  .react-swipeable-view-container > * {
     direction: rtl;
   }
 

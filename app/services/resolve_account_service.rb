@@ -100,13 +100,13 @@ class ResolveAccountService < BaseService
   end
 
   def split_acct(acct)
-    acct.gsub(/\Aacct:/, '').split('@')
+    acct.delete_prefix('acct:').split('@')
   end
 
   def fetch_account!
     return unless activitypub_ready?
 
-    with_lock("resolve:#{@username}@#{@domain}") do
+    with_redis_lock("resolve:#{@username}@#{@domain}") do
       @account = ActivityPub::FetchRemoteAccountService.new.call(actor_url, suppress_errors: @options[:suppress_errors])
     end
 

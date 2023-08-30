@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::CustomEmojisController, type: :controller do
+RSpec.describe Api::V1::CustomEmojisController do
   render_views
 
   describe 'GET #index' do

@@ -36,7 +36,7 @@ de:
         status:
           attributes:
             reblog:
-              taken: des Beitrags existiert bereits
+              taken: des Beitrags existiert schon
         user:
           attributes:
             email:
@@ -53,3 +53,7 @@ de:
             position:
               elevated: darf nicht höher als deine derzeitige Rolle sein
               own_role: darf nicht mit deiner aktuellen Rolle geändert werden
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: kann keine Ereignisse einschließen, für die du keine Berechtigung hast

@@ -3,21 +3,29 @@ module.exports = (api) => {
 
   const reactOptions = {
     development: false,
+    runtime: 'automatic',
   };
 
   const envOptions = {
     loose: true,
     modules: false,
     debug: false,
+    include: [
+      'transform-numeric-separator',
+      'transform-optional-chaining',
+      'transform-nullish-coalescing-operator',
+      'transform-class-properties',
+    ],
   };
 
   const config = {
     presets: [
+      '@babel/preset-typescript',
       ['@babel/react', reactOptions],
       ['@babel/env', envOptions],
     ],
     plugins: [
-      ['react-intl', { messagesDir: './build/messages' }],
+      ['formatjs'],
       'preval',
     ],
     overrides: [
@@ -66,4 +74,3 @@ module.exports = (api) => {
 
   return config;
 };
-

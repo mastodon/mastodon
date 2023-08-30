@@ -3,9 +3,16 @@ lt:
   about:
     about_mastodon_html: Mastodon, tai socialinis tinklas pagrįstas atviro kodo programavimu, ir atvirais web protokolais. Visiškai nemokamas. Ši sistema decantrilizuota kaip jūsų elektroninis paštas.
     contact_missing: Nenustatyta
+    contact_unavailable: Nėra duomenų
     hosted_on: Mastodon palaikomas naudojantis %{domain} talpinimu
+    title: Apie
   accounts:
     follow: Sekti
+    followers:
+      few: Sekėjai
+      many: Sekėjai
+      one: Sekėjas
+      other: Sekėjai
     following: Sekami
     last_active: paskutinį kartą aktyvus
     link_verified_on: Nuorodos nuosavybė paskutinį kartą tikrinta %{date}
@@ -22,6 +29,7 @@ lt:
       created_msg: Moderavimo žinutė sėkimngai sukurta!
       destroyed_msg: Moderacijos žinutė sėkmingai ištrinta!
     accounts:
+      approve: Patvirtinti
       are_you_sure: Ar esate įsitikinęs?
       avatar: Profilio nuotrauka
       by_domain: Domenas
@@ -51,6 +59,7 @@ lt:
       header: Antraštė
       inbox_url: Gautųjų URL
       invited_by: Pakvietė
+      ip: IP
       joined: Prisijungė
       location:
         all: Visi
@@ -80,12 +89,11 @@ lt:
       remove_header: Panaikinti antraštę
       resend_confirmation:
         already_confirmed: Šis vartotojas jau patvirtintas
-        send: Dar kartą išsiųsti patvirtinimo žinutę
-        success: Patvirtinimo laiškas sėkmingai išsiųstas!
       reset: Iš naujo
       reset_password: Atkurti slaptažodį
       resubscribe: Per prenumeruoti
       search: Ieškoti
+      sensitized: Pažymėti kaip jautrią informaciją
       shared_inbox_url: Bendroji gautųjų URL
       show:
         created_reports: Parašyti raportai
@@ -256,10 +264,8 @@ lt:
     warning: Būkite atsargūs su šia informacija. Niekada jos nesidalinkite!
     your_token: Jūsų prieigos žetonas
   auth:
-    change_password: Slaptažodis
     delete_account: Ištrinti paskyrą
     delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>. Jūsų prašys patvirtinti pasirinkimą.
-    didnt_get_confirmation: Negavote patvirtinimo instrukcijų?
     forgot_password: Pamiršote slaptažodį?
     invalid_reset_password_token: Slaptažodžio atkūrimo žetonas netinkamas arba jo galiojimo laikas pasibaigęs. Prašykite naujo žetono.
     login: Prisijungti
@@ -268,21 +274,9 @@ lt:
     migrate_account_html: Jeigu norite nukreipti šią paskyrą į kita, galite tai <a href="%{path}">konfiguruoti čia</a>.
     or_log_in_with: Arba prisijungti su
     register: Užsiregistruoti
-    resend_confirmation: Išsiųsti dar kartą patvirtinimo instrukcijas
     reset_password: Atstatyti slaptažodį
     security: Apsauga
     set_new_password: Nustatyti naują slaptažodį
-  authorize_follow:
-    already_following: Jūs jau sekate šią paskyrą
-    error: Dėja, aptikta klaida ieškant tolimosios paskyros
-    follow: Sekti
-    follow_request: 'Jūs išsiuntėte sekimo prašymą:'
-    following: 'Puiku! Jūs pradėjote sekti:'
-    post_follow:
-      close: Arba, Jūs galite uždaryti šį langą.
-      return: Rodyti vartotojo paskyrą
-      web: Eiti į
-    title: Sekti %{acct}
   datetime:
     distance_in_words:
       about_x_hours: "%{count} val"
@@ -419,6 +413,8 @@ lt:
     next: Kitas
     older: Senesnis
     prev: Ankstesnis
+  preferences:
+    other: Kita
   remote_follow:
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
   scheduled_statuses:
@@ -461,7 +457,6 @@ lt:
       ownership: Kitų vartotojų toot'ai negali būti prisegti
       reblog: Pakeltos žinutės negali būti prisegtos
     show_more: Daugiau
-    sign_in_to_participate: Prisijunkite jeigu norite dalyvauti pokalbyje
     visibilities:
       private: Tik sekėjams
       private_long: Rodyti tik sekėjams
@@ -470,8 +465,6 @@ lt:
       unlisted: Neįtrauktas į sąrašus
       unlisted_long: Matyti gali visi, tačiau nėra įtraukta į viešas laiko juostas
   stream_entries:
-    pinned: Prisegtas toot'as
-    reblogged: pakeltas
     sensitive_content: Jautrus turinys
   themes:
     contrast: Mastodon (Didelio Kontrasto)

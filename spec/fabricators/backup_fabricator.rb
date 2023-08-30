@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 Fabricator(:backup) do
-  user
+  user { Fabricate.build(:user) }
 end

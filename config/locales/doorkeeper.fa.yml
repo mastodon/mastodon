@@ -127,7 +127,6 @@ fa:
         bookmarks: نشانک‌ها
         conversations: گفت‌وگوها
         crypto: رمزگذاری سرتاسری
-        favourites: پسندیده‌ها
         filters: پالایه‌ها
         follow: پی‌گیری، خموشی و مسدودی‌ها
         follows: پی‌گرفتگان
@@ -149,9 +148,14 @@ fa:
     scopes:
       admin:read: خواندن تمام داده‌ها روی کارساز
       admin:read:accounts: خواندن اطّلاعات حساس از همهٔ حساب‌ها
+      admin:read:domain_allows: خواندن اطّلاعات حساس از همهٔ دامنه ها اجازه داده شد
+      admin:read:domain_blocks: خواندن اطّلاعات حساس از همهٔ دامنه های مسدودشده
+      admin:read:email_domain_blocks: خواندن اطّلاعات حساس از همهٔ دامنه های رایانامه های مسدودشده
+      admin:read:ip_blocks: خواندن اطّلاعات حساس از همهٔ IPهای مسدودشده
       admin:read:reports: خواندن اطّلاعات حساس از همهٔ گزارش‌ها و حساب‌های گزارش‌شده
       admin:write: تغییر تمام داده‌ها روی کارساز
       admin:write:accounts: انجام کنش مدیریتی روی حساب‌ها
+      admin:write:ip_blocks: انجام کنش مدیریتی روی مسدودسازی های IP
       admin:write:reports: انجام کنش مدیریتی روی گزارش‌ها
       crypto: از رمزگذاری سرتاسر استفاده کنید
       follow: پیگیری، مسدودسازی، لغو مسدودسازی، و لغو پیگیری حساب‌ها
@@ -160,7 +164,6 @@ fa:
       read:accounts: دیدن اطّلاعات حساب
       read:blocks: دیدن مسدودهایتان
       read:bookmarks: دیدن نشانک‌هایتان
-      read:favourites: دیدن برگزیده‌هایتان
       read:filters: دیدن پالایه‌هایتان
       read:follows: دیدن پی‌گیری‌هایتان
       read:lists: دیدن سیاهه‌هایتان
@@ -174,7 +177,6 @@ fa:
       write:blocks: انسداد حساب‌ها و دامنه‌ها
       write:bookmarks: نشانک‌گذاری وضعیت‌ها
       write:conversations: مکالمات را بی‌صدا و حذف کنید
-      write:favourites: برگزیدن وضعیت‌ها
       write:filters: ایحاد پالایش‌ها
       write:follows: پی‌گیری افراد
       write:lists: ایجاد سیاهه‌ها

@@ -1,50 +1,37 @@
-import React, { Fragment } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import Avatar from './avatar';
-import DisplayName from './display_name';
-import IconButton from './icon_button';
-import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me } from '../initial_state';
-import RelativeTimestamp from './relative_timestamp';
-import Skeleton from 'mastodon/components/skeleton';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import { counterRenderer } from 'mastodon/components/common_counter';
-import ShortNumber from 'mastodon/components/short_number';
-import Icon from 'mastodon/components/icon';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { EmptyAccount } from 'mastodon/components/empty_account';
+import { ShortNumber } from 'mastodon/components/short_number';
+import { VerifiedBadge } from 'mastodon/components/verified_badge';
+
+import { me } from '../initial_state';
+
+import { Avatar } from './avatar';
+import Button from './button';
+import { FollowersCounter } from './counters';
+import { DisplayName } from './display_name';
+import { IconButton } from './icon_button';
+import { RelativeTimestamp } from './relative_timestamp';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
-  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
-  unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
-  mute_notifications: { id: 'account.mute_notifications', defaultMessage: 'Mute notifications from @{name}' },
-  unmute_notifications: { id: 'account.unmute_notifications', defaultMessage: 'Unmute notifications from @{name}' },
-  mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
-  block: { id: 'account.block', defaultMessage: 'Block @{name}' },
+  cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Withdraw follow request' },
+  unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
+  unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
+  mute_notifications: { id: 'account.mute_notifications_short', defaultMessage: 'Mute notifications' },
+  unmute_notifications: { id: 'account.unmute_notifications_short', defaultMessage: 'Unmute notifications' },
+  mute: { id: 'account.mute_short', defaultMessage: 'Mute' },
+  block: { id: 'account.block_short', defaultMessage: 'Block' },
 });
-
-class VerifiedBadge extends React.PureComponent {
-
-  static propTypes = {
-    link: PropTypes.string.isRequired,
-    verifiedAt: PropTypes.string.isRequired,
-  };
-
-  render () {
-    const { link } = this.props;
-
-    return (
-      <span className='verified-badge'>
-        <Icon id='check' className='verified-badge__mark' />
-        <span dangerouslySetInnerHTML={{ __html: link }} />
-      </span>
-    );
-  }
-
-}
 
 class Account extends ImmutablePureComponent {
 
@@ -57,10 +44,12 @@ class Account extends ImmutablePureComponent {
     onMuteNotifications: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     hidden: PropTypes.bool,
+    minimal: PropTypes.bool,
     actionIcon: PropTypes.string,
     actionTitle: PropTypes.string,
     defaultAction: PropTypes.string,
     onActionClick: PropTypes.func,
+    withBio: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -92,69 +81,56 @@ class Account extends ImmutablePureComponent {
   };
 
   render () {
-    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction, size } = this.props;
+    const { account, intl, hidden, withBio, onActionClick, actionIcon, actionTitle, defaultAction, size, minimal } = this.props;
 
     if (!account) {
-      return (
-        <div className='account'>
-          <div className='account__wrapper'>
-            <div className='account__display-name'>
-              <div className='account__avatar-wrapper'><Skeleton width={36} height={36} /></div>
-
-              <div>
-                <DisplayName />
-                <Skeleton width='7ch' />
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+      return <EmptyAccount size={size} minimal={minimal} />;
     }
 
     if (hidden) {
       return (
-        <Fragment>
+        <>
           {account.get('display_name')}
           {account.get('username')}
-        </Fragment>
+        </>
       );
     }
 
     let buttons;
 
-    if (actionIcon) {
-      if (onActionClick) {
-        buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
-      }
-    } else if (account.get('id') !== me && account.get('relationship', null) !== null) {
+    if (actionIcon && onActionClick) {
+      buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
+    } else if (!actionIcon && account.get('id') !== me && account.get('relationship', null) !== null) {
       const following = account.getIn(['relationship', 'following']);
       const requested = account.getIn(['relationship', 'requested']);
       const blocking  = account.getIn(['relationship', 'blocking']);
       const muting  = account.getIn(['relationship', 'muting']);
 
       if (requested) {
-        buttons = <IconButton disabled icon='hourglass' title={intl.formatMessage(messages.requested)} />;
+        buttons = <Button text={intl.formatMessage(messages.cancel_follow_request)} onClick={this.handleFollow} />;
       } else if (blocking) {
-        buttons = <IconButton active icon='unlock' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.handleBlock} />;
+        buttons = <Button text={intl.formatMessage(messages.unblock)} onClick={this.handleBlock} />;
       } else if (muting) {
         let hidingNotificationsButton;
+
         if (account.getIn(['relationship', 'muting_notifications'])) {
-          hidingNotificationsButton = <IconButton active icon='bell' title={intl.formatMessage(messages.unmute_notifications, { name: account.get('username') })} onClick={this.handleUnmuteNotifications} />;
+          hidingNotificationsButton = <Button text={intl.formatMessage(messages.unmute_notifications)} onClick={this.handleUnmuteNotifications} />;
         } else {
-          hidingNotificationsButton = <IconButton active icon='bell-slash' title={intl.formatMessage(messages.mute_notifications, { name: account.get('username')  })} onClick={this.handleMuteNotifications} />;
+          hidingNotificationsButton = <Button text={intl.formatMessage(messages.mute_notifications)} onClick={this.handleMuteNotifications} />;
         }
+
         buttons = (
-          <Fragment>
-            <IconButton active icon='volume-up' title={intl.formatMessage(messages.unmute, { name: account.get('username') })} onClick={this.handleMute} />
+          <>
+            <Button text={intl.formatMessage(messages.unmute)} onClick={this.handleMute} />
             {hidingNotificationsButton}
-          </Fragment>
+          </>
         );
       } else if (defaultAction === 'mute') {
-        buttons = <IconButton icon='volume-off' title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;
+        buttons = <Button title={intl.formatMessage(messages.mute)} onClick={this.handleMute} />;
       } else if (defaultAction === 'block') {
-        buttons = <IconButton icon='lock' title={intl.formatMessage(messages.block, { name: account.get('username') })} onClick={this.handleBlock} />;
+        buttons = <Button text={intl.formatMessage(messages.block)} onClick={this.handleBlock} />;
       } else if (!account.get('moved') || following) {
-        buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
+        buttons = <Button text={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} />;
       }
     }
 
@@ -169,27 +145,42 @@ class Account extends ImmutablePureComponent {
     const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
 
     if (firstVerifiedField) {
-      verification = <>· <VerifiedBadge link={firstVerifiedField.get('value')} verifiedAt={firstVerifiedField.get('verified_at')} /></>;
+      verification = <VerifiedBadge link={firstVerifiedField.get('value')} />;
     }
 
     return (
-      <div className='account'>
+      <div className={classNames('account', { 'account--minimal': minimal })}>
         <div className='account__wrapper'>
           <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
             <div className='account__avatar-wrapper'>
               <Avatar account={account} size={size} />
             </div>
 
-            <div>
+            <div className='account__contents'>
               <DisplayName account={account} />
-              <ShortNumber value={account.get('followers_count')} renderer={counterRenderer('followers')} /> {verification} {muteTimeRemaining}
+              {!minimal && (
+                <div className='account__details'>
+                  <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} /> {verification} {muteTimeRemaining}
+                </div>
+              )}
             </div>
           </Link>
 
-          <div className='account__relationship'>
-            {buttons}
-          </div>
+          {!minimal && (
+            <div className='account__relationship'>
+              {buttons}
+            </div>
+          )}
         </div>
+
+        {withBio && (account.get('note').length > 0 ? (
+          <div
+            className='account__note translate'
+            dangerouslySetInnerHTML={{ __html: account.get('note_emojified') }}
+          />
+        ) : (
+          <div className='account__note account__note--missing'><FormattedMessage id='account.no_bio' defaultMessage='No description provided.' /></div>
+        ))}
       </div>
     );
   }

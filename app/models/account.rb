@@ -50,10 +50,11 @@
 #  trendable                     :boolean
 #  reviewed_at                   :datetime
 #  requested_review_at           :datetime
+#  indexable                     :boolean          default(FALSE), not null
 #
 
 class Account < ApplicationRecord
-  self.ignored_columns = %w(
+  self.ignored_columns += %w(
     subscription_expires_at
     secret
     remote_url
@@ -62,9 +63,11 @@ class Account < ApplicationRecord
     trust_level
   )
 
-  USERNAME_RE   = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
-  MENTION_RE    = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[[:word:]]+)?)/i
-  URL_PREFIX_RE = /\Ahttp(s?):\/\/[^\/]+/
+  BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
+
+  USERNAME_RE   = /[a-z0-9_]+([a-z0-9_.-]+[a-z0-9_]+)?/i
+  MENTION_RE    = %r{(?<=^|[^/[:word:]])@((#{USERNAME_RE})(?:@[[:word:].-]+[[:word:]]+)?)}i
+  URL_PREFIX_RE = %r{\Ahttp(s?)://[^/]+}
   USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
 
   include Attachmentable
@@ -78,6 +81,8 @@ class Account < ApplicationRecord
   include DomainNormalizable
   include DomainMaterializable
   include AccountMerging
+  include AccountSearch
+  include AccountStatusesSearch
 
   enum protocol: { ostatus: 0, activitypub: 1 }
   enum suspension_origin: { local: 0, remote: 1 }, _prefix: true
@@ -88,12 +93,19 @@ class Account < ApplicationRecord
   # Remote user validations, also applies to internal actors
   validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { (!local? || actor_type == 'Application') && will_save_change_to_username? }
 
+  # Remote user validations
+  validates :uri, presence: true, unless: :local?, on: :create
+
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, note_length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
+  validates :uri, absence: true, if: :local?, on: :create
+  validates :inbox_url, absence: true, if: :local?, on: :create
+  validates :shared_inbox_url, absence: true, if: :local?, on: :create
+  validates :followers_url, absence: true, if: :local?, on: :create
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
@@ -111,14 +123,14 @@ class Account < ApplicationRecord
   scope :matches_username, ->(value) { where('lower((username)::text) LIKE lower(?)', "#{value}%") }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
-  scope :without_unapproved, -> { left_outer_joins(:user).remote.or(left_outer_joins(:user).merge(User.approved.confirmed)) }
+  scope :without_unapproved, -> { left_outer_joins(:user).merge(User.approved.confirmed).or(remote) }
   scope :searchable, -> { without_unapproved.without_suspended.where(moved_to_account_id: nil) }
   scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).left_outer_joins(:account_stat) }
   scope :followable_by, ->(account) { joins(arel_table.join(Follow.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(Follow.arel_table[:target_account_id]).and(Follow.arel_table[:account_id].eq(account.id))).join_sources).where(Follow.arel_table[:id].eq(nil)).joins(arel_table.join(FollowRequest.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(FollowRequest.arel_table[:target_account_id]).and(FollowRequest.arel_table[:account_id].eq(account.id))).join_sources).where(FollowRequest.arel_table[:id].eq(nil)) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc, accounts.id desc')) }
   scope :by_recent_sign_in, -> { order(Arel.sql('(case when users.current_sign_in_at is null then 1 else 0 end) asc, users.current_sign_in_at desc, accounts.id desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
-  scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches("%.#{domain}"))) }
+  scope :by_domain_and_subdomains, ->(domain) { where(domain: Instance.by_domain_and_subdomains(domain).select(:domain)) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { where(arel_table[:domain].eq(nil).or(arel_table[:domain].not_in(account.excluded_from_timeline_domains))) }
 
@@ -139,6 +151,7 @@ class Account < ApplicationRecord
            :locale,
            :shows_application?,
            :prefers_noindex?,
+           :time_zone,
            to: :user,
            prefix: true,
            allow_nil: true
@@ -197,6 +210,12 @@ class Account < ApplicationRecord
 
   def possibly_stale?
     last_webfingered_at.nil? || last_webfingered_at <= 1.day.ago
+  end
+
+  def schedule_refresh_if_stale!
+    return unless last_webfingered_at.present? && last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
+
+    AccountRefreshWorker.perform_in(rand(6.hours.to_i), id)
   end
 
   def refresh!
@@ -298,11 +317,11 @@ class Account < ApplicationRecord
   end
 
   def fields
-    (self[:fields] || []).map do |f|
+    (self[:fields] || []).filter_map do |f|
       Account::Field.new(self, f)
     rescue
       nil
-    end.compact
+    end
   end
 
   def fields_attributes=(attributes)
@@ -410,14 +429,6 @@ class Account < ApplicationRecord
   end
 
   class << self
-    DISALLOWED_TSQUERY_CHARACTERS = /['?\\:‘’]/.freeze
-    TEXTSEARCH = "(setweight(to_tsvector('simple', accounts.display_name), 'A') || setweight(to_tsvector('simple', accounts.username), 'B') || setweight(to_tsvector('simple', coalesce(accounts.domain, '')), 'C'))"
-
-    REPUTATION_SCORE_FUNCTION = '(greatest(0, coalesce(s.followers_count, 0)) / (greatest(0, coalesce(s.following_count, 0)) + 1.0))'
-    FOLLOWERS_SCORE_FUNCTION  = 'log(greatest(0, coalesce(s.followers_count, 0)) + 2)'
-    TIME_DISTANCE_FUNCTION    = '(case when s.last_status_at is null then 0 else exp(-1.0 * ((greatest(0, abs(extract(DAY FROM age(s.last_status_at))) - 30.0)^2) / (2.0 * ((-1.0 * 30^2) / (2.0 * ln(0.3)))))) end)'
-    BOOST                     = "((#{REPUTATION_SCORE_FUNCTION} + #{FOLLOWERS_SCORE_FUNCTION} + #{TIME_DISTANCE_FUNCTION}) / 3.0)"
-
     def readonly_attributes
       super - %w(statuses_count following_count followers_count)
     end
@@ -425,37 +436,6 @@ class Account < ApplicationRecord
     def inboxes
       urls = reorder(nil).where(protocol: :activitypub).group(:preferred_inbox_url).pluck(Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url"))
       DeliveryFailureTracker.without_unavailable(urls)
-    end
-
-    def search_for(terms, limit: 10, offset: 0)
-      tsquery = generate_query_for_search(terms)
-
-      sql = <<-SQL.squish
-        SELECT
-          accounts.*,
-          #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
-        FROM accounts
-        LEFT JOIN users ON accounts.id = users.account_id
-        LEFT JOIN account_stats AS s ON accounts.id = s.account_id
-        WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
-          AND accounts.suspended_at IS NULL
-          AND accounts.moved_to_account_id IS NULL
-          AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
-        ORDER BY rank DESC
-        LIMIT :limit OFFSET :offset
-      SQL
-
-      records = find_by_sql([sql, limit: limit, offset: offset, tsquery: tsquery])
-      ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
-      records
-    end
-
-    def advanced_search_for(terms, account, limit: 10, following: false, offset: 0)
-      tsquery = generate_query_for_search(terms)
-      sql = advanced_search_for_sql_template(following)
-      records = find_by_sql([sql, id: account.id, limit: limit, offset: offset, tsquery: tsquery])
-      ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
-      records
     end
 
     def from_text(text)
@@ -472,72 +452,27 @@ class Account < ApplicationRecord
       end
     end
 
-    private
+    def inverse_alias(key, original_key)
+      define_method("#{key}=") do |value|
+        public_send("#{original_key}=", !ActiveModel::Type::Boolean.new.cast(value))
+      end
 
-    def generate_query_for_search(unsanitized_terms)
-      terms = unsanitized_terms.gsub(DISALLOWED_TSQUERY_CHARACTERS, ' ')
-
-      # The final ":*" is for prefix search.
-      # The trailing space does not seem to fit any purpose, but `to_tsquery`
-      # behaves differently with and without a leading space if the terms start
-      # with `./`, `../`, or `.. `. I don't understand why, so, in doubt, keep
-      # the same query.
-      "' #{terms} ':*"
-    end
-
-    def advanced_search_for_sql_template(following)
-      if following
-        <<-SQL.squish
-          WITH first_degree AS (
-            SELECT target_account_id
-            FROM follows
-            WHERE account_id = :id
-            UNION ALL
-            SELECT :id
-          )
-          SELECT
-            accounts.*,
-            (count(f.id) + 1) * #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
-          FROM accounts
-          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id)
-          LEFT JOIN account_stats AS s ON accounts.id = s.account_id
-          WHERE accounts.id IN (SELECT * FROM first_degree)
-            AND to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
-            AND accounts.suspended_at IS NULL
-            AND accounts.moved_to_account_id IS NULL
-          GROUP BY accounts.id, s.id
-          ORDER BY rank DESC
-          LIMIT :limit OFFSET :offset
-        SQL
-      else
-        <<-SQL.squish
-          SELECT
-            accounts.*,
-            #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank,
-            count(f.id) AS followed
-          FROM accounts
-          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
-          LEFT JOIN users ON accounts.id = users.account_id
-          LEFT JOIN account_stats AS s ON accounts.id = s.account_id
-          WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
-            AND accounts.suspended_at IS NULL
-            AND accounts.moved_to_account_id IS NULL
-            AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
-          GROUP BY accounts.id, s.id
-          ORDER BY followed DESC, rank DESC
-          LIMIT :limit OFFSET :offset
-        SQL
+      define_method(key) do
+        !public_send(original_key)
       end
     end
   end
+
+  inverse_alias :show_collections, :hide_collections
+  inverse_alias :unlocked, :locked
 
   def emojis
     @emojis ||= CustomEmoji.from_text(emojifiable_text, domain)
   end
 
-  before_create :generate_keys
   before_validation :prepare_contents, if: :local?
   before_validation :prepare_username, on: :create
+  before_create :generate_keys
   before_destroy :clean_feed_manager
 
   def ensure_keys!

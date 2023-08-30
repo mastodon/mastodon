@@ -1,25 +1,28 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { lookupAccount, fetchAccount } from '../../actions/accounts';
-import { expandAccountFeaturedTimeline, expandAccountTimeline } from '../../actions/timelines';
-import StatusList from '../../components/status_list';
-import LoadingIndicator from '../../components/loading_indicator';
-import Column from '../ui/components/column';
-import HeaderContainer from './containers/header_container';
-import ColumnBackButton from '../../components/column_back_button';
-import { List as ImmutableList } from 'immutable';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import { FormattedMessage } from 'react-intl';
-import MissingIndicator from 'mastodon/components/missing_indicator';
-import TimelineHint from 'mastodon/components/timeline_hint';
+
+import { List as ImmutableList } from 'immutable';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
+import { TimelineHint } from 'mastodon/components/timeline_hint';
+import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import { me } from 'mastodon/initial_state';
-import { connectTimeline, disconnectTimeline } from 'mastodon/actions/timelines';
-import LimitedAccountHint from './components/limited_account_hint';
-import { getAccountHidden } from 'mastodon/selectors';
-import { fetchFeaturedTags } from '../../actions/featured_tags';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
+import { getAccountHidden } from 'mastodon/selectors';
+
+import { lookupAccount, fetchAccount } from '../../actions/accounts';
+import { fetchFeaturedTags } from '../../actions/featured_tags';
+import { expandAccountFeaturedTimeline, expandAccountTimeline, connectTimeline, disconnectTimeline } from '../../actions/timelines';
+import ColumnBackButton from '../../components/column_back_button';
+import { LoadingIndicator } from '../../components/loading_indicator';
+import StatusList from '../../components/status_list';
+import Column from '../ui/components/column';
+
+import LimitedAccountHint from './components/limited_account_hint';
+import HeaderContainer from './containers/header_container';
 
 const emptyList = ImmutableList();
 
@@ -157,10 +160,7 @@ class AccountTimeline extends ImmutablePureComponent {
       );
     } else if (!isLoading && !isAccount) {
       return (
-        <Column>
-          <ColumnBackButton multiColumn={multiColumn} />
-          <MissingIndicator />
-        </Column>
+        <BundleColumnError multiColumn={multiColumn} errorType='routing' />
       );
     }
 

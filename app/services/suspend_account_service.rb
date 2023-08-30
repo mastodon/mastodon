@@ -68,7 +68,7 @@ class SuspendAccountService < BaseService
     @account.media_attachments.find_each do |media_attachment|
       attachment_names.each do |attachment_name|
         attachment = media_attachment.public_send(attachment_name)
-        styles     = [:original] | attachment.styles.keys
+        styles     = MediaAttachment::DEFAULT_STYLES | attachment.styles.keys
 
         next if attachment.blank?
 
@@ -85,7 +85,7 @@ class SuspendAccountService < BaseService
             rescue Aws::S3::Errors::NotImplemented => e
               Rails.logger.error "Error trying to change ACL on #{attachment.s3_object(style).key}: #{e.message}"
             end
-          when :fog
+          when :fog, :azure
             # Not supported
           when :filesystem
             begin

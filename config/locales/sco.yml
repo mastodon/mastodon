@@ -122,8 +122,6 @@ sco:
       removed_header_msg: Successfully taen aff %{username}'s heider image
       resend_confirmation:
         already_confirmed: This uiser is awriddy confirmt
-        send: Resen confirmation email
-        success: Confirmation email successfully sent!
       reset: Reset
       reset_password: Reset passwird
       resubscribe: Resubscribe
@@ -720,7 +718,6 @@ sco:
           approved: Approval needit fir sign up
           none: Naebody kin sign up
           open: Oniebody kin sign up
-      title: Server Settins
     site_uploads:
       delete: Delete uploadit file
       destroyed_msg: Site upload successfully deletit!
@@ -915,7 +912,6 @@ sco:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Awbody kin contribute.
     sensitive_content: Sensitive content
-    toot_layout: Post leyoot
   application_mailer:
     notification_preferences: Chynge email preferences
     salutation: "%{name},"
@@ -932,14 +928,12 @@ sco:
     your_token: Yer access token
   auth:
     apply_for_account: Request a accoont
-    change_password: Passwird
     delete_account: Delete accoont
     delete_account_html: If ye'r wantin tae delete yer accoont, ye kin <a href="%{path}">dae it here</a>. Ye'll get asked fir confirmation.
     description:
       prefix_invited_by_user: "@%{name} invites ye tae jyne this server o Mastodon!"
       prefix_sign_up: Sign up on Mastodon the day!
       suffix: Wi a accoont, ye'll be able tae follae fowk, post updates an exchynge messages wi uisers fae onie Mastodon server an mair!
-    didnt_get_confirmation: Didnae gey yer confirmation instructions?
     dont_have_your_security_key: Dinnae hae yer security key?
     forgot_password: Forgot yer passwird?
     invalid_reset_password_token: Passwird reset token isnae valid or expirit. Please request a new ane.
@@ -957,17 +951,12 @@ sco:
       saml: SAML
     register: Sign up
     registration_closed: "%{instance} isnae acceptin onie new memmers"
-    resend_confirmation: Resen confirmation instructions
     reset_password: Reset yer passwird
     rules:
       preamble: Thir's set an enforced bi the %{domain} moderators.
       title: Some grun rules.
     security: Security
     set_new_password: Set new passwird
-    setup:
-      email_below_hint_html: If the email address ablow isnae correct, ye kin chynge it here an get a new confirmation email.
-      email_settings_hint_html: The confirmation email wis sent tae %{email}. If that email address isnae correct, ye kin chynge it in accoont settins.
-      title: Setup
     sign_up:
       preamble: Wi a accoont on this Mastodon server, ye'll be able tae follae onie ither person on the netwirk, regairdless o whaur their accoont is hostit.
       title: Let's get ye set up on %{domain}.
@@ -980,18 +969,6 @@ sco:
       view_strikes: Luik at past strikes aginst yer accoont
     too_fast: Form submittit ower fast, try again.
     use_security_key: Uise security key
-  authorize_follow:
-    already_following: Ye'r awriddy follaein this accoont
-    already_requested: Ye'v awriddy sent a follae request tae that accoont
-    error: Unfortunately, there wis a error luikin up the remote accoont
-    follow: Follae
-    follow_request: 'Ye hae sent a follae request tae:'
-    following: 'Success! Ye''r noo follaein:'
-    post_follow:
-      close: Or, ye kin juist shut this windae.
-      return: Shaw the uiser's profile
-      web: Gang tae the wab
-    title: Follae %{acct}
   challenge:
     confirm: Continue
     hint_html: "<strong>wee tip:</strong> We wullnae ask ye fir yer passwird again fir the neist oor."
@@ -1481,7 +1458,6 @@ sco:
     show_newer: Shaw newer
     show_older: Shaw aulder
     show_thread: Shaw threid
-    sign_in_to_participate: Sign in fir tae tak pairt in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direck
@@ -1526,8 +1502,6 @@ sco:
     min_reblogs: Keep posts heezed at least
     min_reblogs_hint: Disnae delete onie o yer posts thit's been heezed at least this nummer o times. Lea blank fir tae delete posts regairdless o their number o heezes
   stream_entries:
-    pinned: Preent post
-    reblogged: heezed
     sensitive_content: Sensitive content
   strikes:
     errors:

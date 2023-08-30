@@ -18,21 +18,27 @@ describe Filters::StatusesController do
 
     context 'with a signed in user' do
       context 'with the filter user signed in' do
-        before { sign_in(filter.account.user) }
+        before do
+          sign_in(filter.account.user)
+          get :index, params: { filter_id: filter }
+        end
 
         it 'returns http success' do
-          get :index, params: { filter_id: filter }
-
           expect(response).to have_http_status(200)
+        end
+
+        it 'returns private cache control headers' do
+          expect(response.headers['Cache-Control']).to include('private, no-store')
         end
       end
 
       context 'with another user signed in' do
-        before { sign_in(Fabricate(:user)) }
+        before do
+          sign_in(Fabricate(:user))
+          get :index, params: { filter_id: filter }
+        end
 
         it 'returns http not found' do
-          get :index, params: { filter_id: filter }
-
           expect(response).to have_http_status(404)
         end
       end

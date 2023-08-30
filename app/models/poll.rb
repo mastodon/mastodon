@@ -101,7 +101,7 @@ class Poll < ApplicationRecord
   end
 
   def prepare_options
-    self.options = options.map(&:strip).reject(&:blank?)
+    self.options = options.map(&:strip).compact_blank
   end
 
   def reset_parent_cache

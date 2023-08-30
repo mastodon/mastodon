@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ModuleLength
-
 module LanguagesHelper
   ISO_639_1 = {
     aa: 'Afaraf',
@@ -11,7 +9,7 @@ module LanguagesHelper
     ak: 'Akan',
     am: 'አማርኛ',
     an: 'aragonés',
-    ar: 'اللغة العربية',
+    ar: 'العربية',
     as: 'অসমীয়া',
     av: 'авар мацӀ',
     ay: 'aymar aru',
@@ -70,7 +68,7 @@ module LanguagesHelper
     ia: 'Interlingua',
     id: 'Indonesia',
     ie: 'Interlingue',
-    ig: 'Asụsụ Igbo',
+    ig: 'Igbo',
     ii: 'ꆈꌠ꒿ Nuosuhxop',
     ik: 'Iñupiaq',
     io: 'Ido',
@@ -90,9 +88,9 @@ module LanguagesHelper
     ko: '한국어',
     kr: 'Kanuri',
     ks: 'कश्मीरी',
-    ku: 'Kurmancî',
+    ku: 'kurdî',
     kv: 'коми кыв',
-    kw: 'Kernewek',
+    kw: 'kernewek',
     ky: 'Кыргызча',
     la: 'latine',
     lb: 'Lëtzebuergesch',
@@ -112,7 +110,7 @@ module LanguagesHelper
     mr: 'मराठी',
     ms: 'Melayu',
     mt: 'Malti',
-    my: 'ဗမာစာ',
+    my: 'မြန်မာ',
     na: 'Ekakairũ Naoero',
     nb: 'norsk bokmål',
     nd: 'isiNdebele',
@@ -120,7 +118,7 @@ module LanguagesHelper
     ng: 'Owambo',
     nl: 'Nederlands',
     nn: 'norsk nynorsk',
-    no: 'Norsk',
+    no: 'norsk',
     nr: 'isiNdebele',
     nv: 'Diné bizaad',
     ny: 'chiCheŵa',
@@ -140,7 +138,7 @@ module LanguagesHelper
     ro: 'română',
     ru: 'русский',
     rw: 'Ikinyarwanda',
-    sa: 'संस्कृतम्',
+    sa: 'संस्कृत भाषा',
     sc: 'sardu',
     sd: 'सिन्धी',
     se: 'Davvisámegiella',
@@ -168,10 +166,10 @@ module LanguagesHelper
     to: 'faka Tonga',
     tr: 'Türkçe',
     ts: 'Xitsonga',
-    tt: 'татар теле',
+    tt: 'татар',
     tw: 'Twi',
     ty: 'Reo Tahiti',
-    ug: 'ئۇيغۇرچە‎',
+    ug: 'ئۇيغۇرچە',
     uk: 'українська',
     ur: 'اردو',
     uz: 'Ўзбек',
@@ -189,8 +187,9 @@ module LanguagesHelper
   }.freeze
 
   ISO_639_3 = {
-    ast: 'Asturianu',
-    ckb: 'سۆرانی',
+    ast: 'asturianu',
+    chr: 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ',
+    ckb: 'کوردیی ناوەندی',
     cnr: 'crnogorski',
     jbo: 'la .lojban.',
     kab: 'Taqbaylit',
@@ -200,14 +199,24 @@ module LanguagesHelper
     sco: 'Scots',
     sma: 'Åarjelsaemien Gïele',
     smj: 'Julevsámegiella',
-    szl: 'ślůnsko godka',
-    tai: 'ภาษาไท or ภาษาไต',
+    szl: 'ślōnski',
     tok: 'toki pona',
+    xal: 'Хальмг келн',
     zba: 'باليبلن',
     zgh: 'ⵜⴰⵎⴰⵣⵉⵖⵜ',
   }.freeze
 
-  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_3).freeze
+  # e.g. For Chinese, which is not a language,
+  # but a language family in spite of sharing the main locale code
+  # We need to be able to filter these
+  ISO_639_1_REGIONAL = {
+    'zh-CN': '简体中文',
+    'zh-HK': '繁體中文（香港）',
+    'zh-TW': '繁體中文（臺灣）',
+    'zh-YUE': '廣東話',
+  }.freeze
+
+  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_1_REGIONAL).merge(ISO_639_3).freeze
 
   # For ISO-639-1 and ISO-639-3 language codes, we have their official
   # names, but for some translations, we need the names of the
@@ -220,9 +229,6 @@ module LanguagesHelper
     'pt-BR': 'português (Brasil)',
     'pt-PT': 'português (Portugal)',
     'sr-Latn': 'srpski (latinica)',
-    'zh-CN': '简体中文',
-    'zh-HK': '繁體中文（香港）',
-    'zh-TW': '繁體中文（臺灣）',
   }.freeze
 
   def native_locale_name(locale)

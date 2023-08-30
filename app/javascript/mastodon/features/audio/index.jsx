@@ -1,14 +1,21 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
-import { formatTime, getPointerPosition, fileNameFromURL } from 'mastodon/features/video';
-import Icon from 'mastodon/components/icon';
+
 import classNames from 'classnames';
-import { throttle, debounce } from 'lodash';
-import Visualizer from './visualizer';
-import { displayMedia, useBlurhash } from '../../initial_state';
-import Blurhash from '../../components/blurhash';
+
 import { is } from 'immutable';
+
+import { throttle, debounce } from 'lodash';
+
+import { Icon }  from 'mastodon/components/icon';
+import { formatTime, getPointerPosition, fileNameFromURL } from 'mastodon/features/video';
+
+import { Blurhash } from '../../components/blurhash';
+import { displayMedia, useBlurhash } from '../../initial_state';
+
+import Visualizer from './visualizer';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -22,7 +29,7 @@ const messages = defineMessages({
 const TICK_SIZE = 10;
 const PADDING   = 180;
 
-class Audio extends React.PureComponent {
+class Audio extends PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,
@@ -136,7 +143,7 @@ class Audio extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
       this.setState({ revealed: nextProps.visible });
     }
@@ -384,7 +391,7 @@ class Audio extends React.PureComponent {
   }
 
   _getRadius () {
-    return parseInt(((this.state.height || this.props.height) - (PADDING * this._getScaleCoefficient()) * 2) / 2);
+    return parseInt((this.state.height || this.props.height) / 2 - PADDING * this._getScaleCoefficient());
   }
 
   _getScaleCoefficient () {
@@ -396,7 +403,7 @@ class Audio extends React.PureComponent {
   }
 
   _getCY() {
-    return Math.floor(this._getRadius() + (PADDING * this._getScaleCoefficient()));
+    return Math.floor((this.state.height || this.props.height) / 2);
   }
 
   _getAccentColor () {
@@ -463,6 +470,7 @@ class Audio extends React.PureComponent {
     const progress = Math.min((currentTime / duration) * 100, 100);
 
     let warning;
+
     if (sensitive) {
       warning = <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />;
     } else {
@@ -470,7 +478,7 @@ class Audio extends React.PureComponent {
     }
 
     return (
-      <div className={classNames('audio-player', { editable, inactive: !revealed })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), width: '100%', height: this.props.fullscreen ? '100%' : (this.state.height || this.props.height) }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} tabIndex='0' onKeyDown={this.handleKeyDown}>
+      <div className={classNames('audio-player', { editable, inactive: !revealed })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), aspectRatio: '16 / 9' }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} tabIndex={0} onKeyDown={this.handleKeyDown}>
 
         <Blurhash
           hash={blurhash}
@@ -493,7 +501,7 @@ class Audio extends React.PureComponent {
 
         <canvas
           role='button'
-          tabIndex='0'
+          tabIndex={0}
           className='audio-player__canvas'
           width={this.state.width}
           height={this.state.height}
@@ -508,16 +516,26 @@ class Audio extends React.PureComponent {
 
         <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>
           <button type='button' className='spoiler-button__overlay' onClick={this.toggleReveal}>
-            <span className='spoiler-button__overlay__label'>{warning}</span>
+            <span className='spoiler-button__overlay__label'>
+              {warning}
+              <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
+            </span>
           </button>
         </div>
 
         {(revealed || editable) && <img
           src={this.props.poster}
           alt=''
-          width={(this._getRadius() - TICK_SIZE) * 2}
-          height={(this._getRadius() - TICK_SIZE) * 2}
-          style={{ position: 'absolute', left: this._getCX(), top: this._getCY(), transform: 'translate(-50%, -50%)', borderRadius: '50%', pointerEvents: 'none' }}
+          style={{
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            height: `calc(${(100 - 2 * 100 * PADDING / 982)}% - ${TICK_SIZE * 2}px)`,
+            aspectRatio: '1',
+            transform: 'translate(-50%, -50%)',
+            borderRadius: '50%',
+            pointerEvents: 'none',
+          }}
         />}
 
         <div className='video-player__seek' onMouseDown={this.handleMouseDown} ref={this.setSeekRef}>
@@ -526,7 +544,7 @@ class Audio extends React.PureComponent {
 
           <span
             className={classNames('video-player__seek__handle', { active: dragging })}
-            tabIndex='0'
+            tabIndex={0}
             style={{ left: `${progress}%`, backgroundColor: this._getAccentColor() }}
             onKeyDown={this.handleAudioKeyDown}
           />
@@ -543,7 +561,7 @@ class Audio extends React.PureComponent {
 
                 <span
                   className='video-player__volume__handle'
-                  tabIndex='0'
+                  tabIndex={0}
                   style={{ left: `${volume * 100}%`, backgroundColor: this._getAccentColor() }}
                 />
               </div>

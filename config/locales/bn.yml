@@ -5,12 +5,14 @@ bn:
     contact_missing: নেই
     contact_unavailable: প্রযোজ্য নয়
     hosted_on: এই মাস্টাডনটি আছে %{domain} এ
+    title: পরিচিতি
   accounts:
     follow: যুক্ত
     followers:
       one: যুক্ত আছে
       other: যারা যুক্ত হয়েছে
     following: যুক্ত করা
+    instance_actor_flash: এই অ্যাকাউন্টটি একটি ভার্চুয়াল সত্তা যা সার্ভারের প্রতিনিধিত্ব করতে ব্যবহৃত হয় এবং কোনও স্বতন্ত্র ব্যবহারকারী নয়। এটি ফেডারেশনের উদ্দেশ্যে ব্যবহার করা হয় এবং স্থগিত করা উচিত নয়.
     last_active: শেষ সক্রিয় ছিল
     link_verified_on: এই লিংকের মালিকানা শেষ চেক করা হয়  %{date} তারিখে
     nothing_here: এখানে কিছুই নেই!
@@ -31,21 +33,32 @@ bn:
     accounts:
       add_email_domain_block: নিষিদ্ধ করা ই-মেইল ডোমেইন
       approve: অনুমোদন দিন
+      approved_msg: "%{username}-এর অ্যাকাউন্ট সৃষ্টি আবেদন সফলভাবে অনুমোদিত হয়েছে"
       are_you_sure: আপনি কি নিশ্চিত ?
       avatar: অবতার
       by_domain: ওয়েবসাইট/কার্যক্ষেত্র
       change_email:
+        changed_msg: ইমেল সফলভাবে পরিবর্তিত হয়েছে!
         current_email: এখনকার ইমেইল
         label: ইমেইল পরিবর্তন
         new_email: নতুন ইমেইল
         submit: ইমেইল পরিবর্তন
         title: "%{username} এর ইমেইল পরিবর্তন"
+      change_role:
+        changed_msg: ভূমিকা সফলভাবে পরিবর্তিত!
+        label: ভূমিকা পরিবর্তন করুন
+        no_role: কোন ভূমিকা বরাদ্দ করা হয়নি
+        title: "%{username}-এর ভূমিকা পরিবর্তন করুন"
       confirm: নিশ্চিত করুন
       confirmed: নিশ্চিত হয়েছে
       confirming: নিশ্চিত করা হচ্ছে
+      custom: বিশেষ
+      delete: ডেটা মুছুন
       deleted: মুছে ফেলা হয়েছে
       demote: নিচের পদে দিন
+      destroyed_msg: "%{username}-এর ডেটা এখন সারিবদ্ধভাবে মুছে ফেলা হবে"
       disable: বন্ধ করুন
+      disable_sign_in_token_auth: ই-মেইল টোকেন প্রমাণীকরণ অক্ষম করুন
       disable_two_factor_authentication: দুই পদ্ধতির প্রমাণীকরণ(2FA) বন্ধ করুন
       disabled: বন্ধ করা হয়েছে
       display_name: দেখানোর জন্য নাম
@@ -54,11 +67,14 @@ bn:
       email: ইমেইল
       email_status: ইমেইলের অবস্থা
       enable: চালু করুন
+      enable_sign_in_token_auth: ই-মেইল টোকেন প্রমাণীকরণ সক্ষম করুন
       enabled: চালু করুন
+      enabled_msg: "%{username}-এর অ্যাকাউন্ট সফলভাবে আনফ্রোজ করা হয়েছে"
       followers: অনুসরকারীরা
       follows: অনুসরণ করে
       header: শিরোলেখা
       inbox_url: চিঠি পাওয়ার বক্স লিংক
+      invite_request_text: যোগদানের কারণ
       invited_by: আমন্ত্রণ করেছে
       ip: আইপি(IP)
       joined: যোগ দিয়েছে
@@ -94,8 +110,6 @@ bn:
       remove_header: হেডার এর ছবি অপসারণ করুন
       resend_confirmation:
         already_confirmed: এই ব্যবহারকারী ইতিমধ্যে নিশ্চিত করা আছে
-        send: নিশ্চিতকরণ ইমেল পুনরায় পাঠান
-        success: নিশ্চিতকরণের ইমেল সফলভাবে পাঠানো হয়েছে!
       reset: পুনরায় সেট করুন
       reset_password: পাসওয়ার্ড পুনঃস্থাপন করুন
       resubscribe: পুনরায় সদস্যতা নিন

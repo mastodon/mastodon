@@ -4,7 +4,7 @@ module Omniauthable
   extend ActiveSupport::Concern
 
   TEMP_EMAIL_PREFIX = 'change@me'
-  TEMP_EMAIL_REGEX  = /\A#{TEMP_EMAIL_PREFIX}/.freeze
+  TEMP_EMAIL_REGEX  = /\A#{TEMP_EMAIL_PREFIX}/
 
   included do
     devise :omniauthable

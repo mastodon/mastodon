@@ -12,13 +12,13 @@ class Api::V2::Filters::KeywordsController < Api::BaseController
     render json: @keywords, each_serializer: REST::FilterKeywordSerializer
   end
 
-  def create
-    @keyword = current_account.custom_filters.find(params[:filter_id]).keywords.create!(resource_params)
-
+  def show
     render json: @keyword, serializer: REST::FilterKeywordSerializer
   end
 
-  def show
+  def create
+    @keyword = current_account.custom_filters.find(params[:filter_id]).keywords.create!(resource_params)
+
     render json: @keyword, serializer: REST::FilterKeywordSerializer
   end
 

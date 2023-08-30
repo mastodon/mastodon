@@ -6,6 +6,12 @@ module WebAppControllerConcern
   included do
     prepend_before_action :redirect_unauthenticated_to_permalinks!
     before_action :set_app_body_class
+
+    vary_by 'Accept, Accept-Language, Cookie'
+  end
+
+  def skip_csrf_meta_tags?
+    !(ENV['OMNIAUTH_ONLY'] == 'true' && Devise.omniauth_providers.length == 1) && current_user.nil?
   end
 
   def set_app_body_class

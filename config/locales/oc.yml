@@ -105,8 +105,6 @@ oc:
       remove_header: Levar la bandièra
       resend_confirmation:
         already_confirmed: Aqueste utilizaire es ja confirmat
-        send: Tornar mandar lo corrièl de confirmacion
-        success: Corrièl de confirmacion corrèctament mandat !
       reset: Reïnicializar
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
@@ -397,7 +395,6 @@ oc:
           approved: Validacion necessària per s’inscriure
           none: Degun pòt pas se marcar
           open: Tot lo monde se pòt marcar
-      title: Paramètres del servidor
     site_uploads:
       delete: Suprimir lo fichièr enviat
     statuses:
@@ -461,7 +458,6 @@ oc:
       body: Mastodon es traduch per de benevòls.
       guide_link_text: Tot lo monde pòt contribuïr.
     sensitive_content: Contengut sensible
-    toot_layout: Disposicion del tut
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
     salutation: "%{name},"
@@ -477,13 +473,11 @@ oc:
     warning: Mèfi ! Agachatz de partejar aquela donada amb degun !
     your_token: Vòstre geton d’accès
   auth:
-    change_password: Senhal
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     description:
       prefix_invited_by_user: "@%{name} vos convida a rejónher aqueste servidor Mastodon !"
       prefix_sign_up: Marcatz-vos a Mostodon uèi !
-    didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
     forgot_password: Senhal oblidat ?
     invalid_reset_password_token: Lo geton de reïnicializacion es invalid o acabat. Tornatz demandar un geton se vos plai.
     link_to_webauth: Utilizar un aparelh de claus de seguretat
@@ -499,29 +493,15 @@ oc:
       saml: SAML
     register: Se marcar
     registration_closed: "%{instance} accepta pas de nòus membres"
-    resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
     rules:
       title: Unas règlas de basa.
     security: Seguretat
     set_new_password: Picar un nòu senhal
-    setup:
-      title: Configuracion
     status:
       account_status: Estat del compte
       functional: Vòstre compte es complètament foncional.
     use_security_key: Utilizar clau de seguretat
-  authorize_follow:
-    already_following: Seguètz ja aqueste compte
-    error: O planhèm, i a agut una error al moment de cercar lo compte
-    follow: Sègre
-    follow_request: 'Avètz demandat de sègre :'
-    following: 'Felicitacion ! Seguètz ara :'
-    post_follow:
-      close: O podètz tampar aquesta fenèstra.
-      return: Veire lo perfil a la persona
-      web: Tornar a l’interfàcia Web
-    title: Sègre %{acct}
   challenge:
     confirm: Contunhar
     hint_html: "<strong>Asutúcia :</strong> vos demandarem pas vòstre senhal de nòu d’aquí unas oras."
@@ -897,7 +877,6 @@ oc:
     show_newer: Veire mai recents
     show_older: Veire mai ancians
     show_thread: Mostrar lo fil
-    sign_in_to_participate: Inscrivètz-vos per participar a la conversacion
     title: '%{name} : "%{quote}"'
     visibilities:
       direct: Dirècte
@@ -940,8 +919,6 @@ oc:
     min_reblogs: Gardar las publicacions partejadas al mens
     min_reblogs_hint: Suprimís pas vòstras publicacions qu’an agut aqueste nombre de partiment. Daissar blanc per suprimir las publicacions sens far cas als partiments
   stream_entries:
-    pinned: Tut penjat
-    reblogged: a partejat
     sensitive_content: Contengut sensible
   tags:
     does_not_match_previous_name: correspond pas al nom precedent
