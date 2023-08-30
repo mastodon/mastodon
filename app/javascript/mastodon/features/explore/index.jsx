@@ -1,211 +1,117 @@
 import PropTypes from 'prop-types';
-import { useRef, useCallback, useEffect } from 'react';
+import { PureComponent } from 'react';
 
-import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Switch, Route } from 'react-router-dom';
 
-import { addColumn } from 'mastodon/actions/columns';
-import { changeSetting } from 'mastodon/actions/settings';
-import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';
-import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
-import { DismissableBanner } from 'mastodon/components/dismissable_banner';
-import initialState, { domain } from 'mastodon/initial_state';
-import { useAppDispatch, useAppSelector } from 'mastodon/store';
+import { connect } from 'react-redux';
 
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
-import SettingToggle from '../notifications/components/setting_toggle';
-import StatusListContainer from '../ui/containers/status_list_container';
+import Column from 'mastodon/components/column';
+import ColumnHeader from 'mastodon/components/column_header';
+import Search from 'mastodon/features/compose/containers/search_container';
+import { trendsEnabled } from 'mastodon/initial_state';
+
+import Links from './links';
+import SearchResults from './results';
+import Statuses from './statuses';
+import Suggestions from './suggestions';
+import Tags from './tags';
 
 const messages = defineMessages({
-  title: { id: 'column.Explore', defaultMessage: 'Live feeds' },
+  title: { id: 'explore.title', defaultMessage: 'Explore' },
+  searchResults: { id: 'explore.search_results', defaultMessage: 'Search results' },
 });
 
-// TODO: use a proper React context later on
-const useIdentity = () => ({
-  signedIn: !!initialState.meta.me,
-  accountId: initialState.meta.me,
-  disabledAccountId: initialState.meta.disabled_account_id,
-  accessToken: initialState.meta.access_token,
-  permissions: initialState.role ? initialState.role.permissions : 0,
+const mapStateToProps = state => ({
+  layout: state.getIn(['meta', 'layout']),
+  isSearching: state.getIn(['search', 'submitted']) || !trendsEnabled,
 });
 
-const ColumnSettings = () => {
-  const dispatch = useAppDispatch();
-  const settings = useAppSelector((state) => state.getIn(['settings', 'Explore']));
-  const onChange = useCallback(
-    (key, checked) => dispatch(changeSetting(['Explore', ...key], checked)),
-    [dispatch],
-  );
+class Explore extends PureComponent {
 
-  return (
-    <div>
-      <div className='column-settings__row'>
-        <SettingToggle
-          settings={settings}
-          settingPath={['onlyMedia']}
-          onChange={onChange}
-          label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
+  static contextTypes = {
+    router: PropTypes.object,
+    identity: PropTypes.object,
+  };
+
+  static propTypes = {
+    intl: PropTypes.object.isRequired,
+    multiColumn: PropTypes.bool,
+    isSearching: PropTypes.bool,
+  };
+
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  };
+
+  setRef = c => {
+    this.column = c;
+  };
+
+  render() {
+    const { intl, multiColumn, isSearching } = this.props;
+    const { signedIn } = this.context.identity;
+
+    return (
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+        <ColumnHeader
+          icon={isSearching ? 'search' : 'hashtag'}
+          title={intl.formatMessage(isSearching ? messages.searchResults : messages.title)}
+          onClick={this.handleHeaderClick}
+          multiColumn={multiColumn}
         />
-      </div>
-    </div>
-  );
-};
 
-const Explore = ({ feedType, multiColumn }) => {
-  const dispatch = useAppDispatch();
-  const intl = useIntl();
-  const { signedIn } = useIdentity();
-  const columnRef = useRef(null);
+        <div className='explore__search-header'>
+          <Search />
+        </div>
 
-  const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'Explore', 'onlyMedia'], false));
-  const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
+        <div className='scrollable scrollable--flex' data-nosnippet>
+          {isSearching ? (
+            <SearchResults />
+          ) : (
+            <>
+              <div className='account__section-headline'>
+                <NavLink exact to='/explore'>
+                  <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Posts' />
+                </NavLink>
 
-  const handlePin = useCallback(
-    () => {
-      switch(feedType) {
-      case 'community':
-        dispatch(addColumn('COMMUNITY', { other: { onlyMedia } }));
-        break;
-      case 'public':
-        dispatch(addColumn('PUBLIC', { other: { onlyMedia } }));
-        break;
-      case 'public:remote':
-        dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true } }));
-        break;
-      }
-    },
-    [dispatch, onlyMedia, feedType],
-  );
+                <NavLink exact to='/explore/tags'>
+                  <FormattedMessage tagName='div' id='explore.trending_tags' defaultMessage='Hashtags' />
+                </NavLink>
 
-  const handleLoadMore = useCallback(
-    (maxId) => {
-      switch(feedType) {
-      case 'community':
-        dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
-        break;
-      case 'public':
-        dispatch(expandPublicTimeline({ maxId, onlyMedia }));
-        break;
-      case 'public:remote':
-        dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
-        break;
-      }
-    },
-    [dispatch, onlyMedia, feedType],
-  );
+                {signedIn && (
+                  <NavLink exact to='/explore/suggestions'>
+                    <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='People' />
+                  </NavLink>
+                )}
 
-  const handleHeaderClick = useCallback(() => columnRef.current?.scrollTop(), []);
+                <NavLink exact to='/explore/links'>
+                  <FormattedMessage tagName='div' id='explore.trending_links' defaultMessage='News' />
+                </NavLink>
+              </div>
 
-  useEffect(() => {
-    let disconnect;
+              <Switch>
+                <Route path='/explore/tags' component={Tags} />
+                <Route path='/explore/links' component={Links} />
+                <Route path='/explore/suggestions' component={Suggestions} />
+                <Route exact path={['/explore', '/explore/posts', '/search']}>
+                  <Statuses multiColumn={multiColumn} />
+                </Route>
+              </Switch>
 
-    switch(feedType) {
-    case 'community':
-      dispatch(expandCommunityTimeline({ onlyMedia }));
-      if (signedIn) {
-        disconnect = dispatch(connectCommunityStream({ onlyMedia }));
-      }
-      break;
-    case 'public':
-      dispatch(expandPublicTimeline({ onlyMedia }));
-      if (signedIn) {
-        disconnect = dispatch(connectPublicStream({ onlyMedia }));
-      }
-      break;
-    case 'public:remote':
-      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote: true }));
-      if (signedIn) {
-        disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote: true }));
-      }
-      break;
-    }
+              <Helmet>
+                <title>{intl.formatMessage(messages.title)}</title>
+                <meta name='robots' content={isSearching ? 'noindex' : 'all'} />
+              </Helmet>
+            </>
+          )}
+        </div>
+      </Column>
+    );
+  }
 
-    return () => disconnect?.();
-  }, [dispatch, signedIn, feedType, onlyMedia]);
-
-  const prependBanner = feedType === 'community' ? (
-    <DismissableBanner id='community_timeline'>
-      <FormattedMessage
-        id='dismissable_banner.community_timeline'
-        defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.'
-        values={{ domain }}
-      />
-    </DismissableBanner>
-  ) : (
-    <DismissableBanner id='public_timeline'>
-      <FormattedMessage
-        id='dismissable_banner.public_timeline'
-        defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.'
-        values={{ domain }}
-      />
-    </DismissableBanner>
-  );
-
-  const emptyMessage = feedType === 'community' ? (
-    <FormattedMessage
-      id='empty_column.community'
-      defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!'
-    />
-  ) : (
-    <FormattedMessage
-      id='empty_column.public'
-      defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up'
-    />
-  );
-
-  return (
-    <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
-      <ColumnHeader
-        icon='globe'
-        active={hasUnread}
-        title={intl.formatMessage(messages.title)}
-        onPin={handlePin}
-        onClick={handleHeaderClick}
-        multiColumn={multiColumn}
-      >
-        <ColumnSettings />
-      </ColumnHeader>
-
-      <div className='scrollable scrollable--flex'>
-        {/* <div className='account__section-headline'>
-          <NavLink exact to='/public/local'>
-            <FormattedMessage tagName='div' id='Explore.local' defaultMessage='This server' />
-          </NavLink>
-
-          <NavLink exact to='/public/remote'>
-            <FormattedMessage tagName='div' id='Explore.remote' defaultMessage='Other servers' />
-          </NavLink>
-
-          <NavLink exact to='/public'>
-            <FormattedMessage tagName='div' id='Explore.all' defaultMessage='All' />
-          </NavLink>
-        </div> */}
-
-        <StatusListContainer
-        //   prepend={prependBanner}
-          timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
-          onLoadMore={handleLoadMore}
-          trackScroll
-          scrollKey='Explore'
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-        />
-      </div>
-
-      <Helmet>
-        <title>{intl.formatMessage(messages.title)}</title>
-        <meta name='robots' content='noindex' />
-      </Helmet>
-    </Column>
-  );
 }
 
-Explore.propTypes = {
-  multiColumn: PropTypes.bool,
-  feedType: PropTypes.string,
-};
-
-export default Explore;
+export default connect(mapStateToProps)(injectIntl(Explore));
