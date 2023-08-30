@@ -4,11 +4,17 @@ ENV['RAILS_ENV'] ||= 'test'
 
 # This needs to be defined before Rails is initialized
 RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
+RUN_SEARCH_SPECS = ENV.fetch('RUN_SEARCH_SPECS', false)
 
 if RUN_SYSTEM_SPECS
   STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
   ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
 end
+
+if RUN_SEARCH_SPECS
+  # Include any configuration or setups specific to Elasticsearch tests here
+end
+
 require File.expand_path('../config/environment', __dir__)
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
@@ -69,7 +75,14 @@ end
 
 RSpec.configure do |config|
   # This is set before running spec:system, see lib/tasks/tests.rake
-  config.filter_run_excluding type: :system unless RUN_SYSTEM_SPECS
+  config.filter_run_excluding type: lambda { |type|
+    case type
+    when :system
+      !RUN_SYSTEM_SPECS
+    when :search
+      !RUN_SEARCH_SPECS
+    end
+  }
   config.fixture_path = Rails.root.join('spec', 'fixtures')
   config.use_transactional_fixtures = true
   config.order = 'random'
