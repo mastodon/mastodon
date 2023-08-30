@@ -7,9 +7,9 @@ class Trends::Statuses < Trends::Base
 
   self.default_options = {
     threshold: 5,
-    review_threshold: 30,
+    review_threshold: 3,
     score_halflife: 2.hours.freeze,
-    decay_threshold: 0.3,
+    decay_threshold: 4.3,
   }
 
   class Query < Trends::Query
