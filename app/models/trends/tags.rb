@@ -5,8 +5,8 @@ class Trends::Tags < Trends::Base
 
   self.default_options = {
     threshold: 5,
-    review_threshold: 300,
-    max_score_cooldown: 10.days.freeze,
+    review_threshold: 3,
+    max_score_cooldown: 20000.days.freeze,
     max_score_halflife: 4.hours.freeze,
     decay_threshold: 1,
   }
