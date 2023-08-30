@@ -66,7 +66,7 @@ class Statuses extends PureComponent {
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         />
-        {/* <StatusList
+        <StatusList
           trackScroll
           timelineId='explore'
           statusIds={statusIds}
@@ -77,7 +77,7 @@ class Statuses extends PureComponent {
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           withCounters
-        /> */}
+        />
       </>
     );
   }
