@@ -61,9 +61,9 @@ const Firehose = ({ feedType, multiColumn }) => {
   const columnRef = useRef(null);
 
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
+  console.log(onlyMedia);
   const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
 
-  console.log(feedType, 'feedType');
   const handlePin = useCallback(
     () => {
       switch(feedType) {
@@ -196,10 +196,10 @@ const Firehose = ({ feedType, multiColumn }) => {
         />
       </div>
 
-      {/* <Helmet>
+      <Helmet>
         <title>{intl.formatMessage(messages.title)}</title>
         <meta name='robots' content='noindex' />
-      </Helmet> */}
+      </Helmet>
     </Column>
   );
 }

@@ -13,6 +13,8 @@ import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import StatusList from 'mastodon/components/status_list';
 import { getStatusList } from 'mastodon/selectors';
 
+import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
+
 const mapStateToProps = state => ({
   statusIds: getStatusList(state, 'trending'),
   isLoading: state.getIn(['status_lists', 'trending', 'isLoading'], true),
@@ -32,6 +34,7 @@ class Statuses extends PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
     dispatch(fetchTrendingStatuses());
+    // dispatch(expandPublicTimeline({ onlyMedia }));
   }
 
   handleLoadMore = debounce(() => {
