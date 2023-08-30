@@ -196,10 +196,10 @@ const Firehose = ({ feedType, multiColumn }) => {
         />
       </div>
 
-      <Helmet>
+      {/* <Helmet>
         <title>{intl.formatMessage(messages.title)}</title>
         <meta name='robots' content='noindex' />
-      </Helmet>
+      </Helmet> */}
     </Column>
   );
 }
