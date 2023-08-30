@@ -32,6 +32,8 @@ class Tags extends PureComponent {
   render () {
     const { isLoading, hashtags } = this.props;
 
+    console.log(hashtags);
+
     const banner = (
       <DismissableBanner id='explore/tags'>
         <FormattedMessage id='dismissable_banner.explore_tags' defaultMessage='These are hashtags that are gaining traction on the social web today. Hashtags that are used by more different people are ranked higher.' />
