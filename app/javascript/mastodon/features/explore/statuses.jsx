@@ -13,6 +13,7 @@ import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import StatusList from 'mastodon/components/status_list';
 import { getStatusList } from 'mastodon/selectors';
 import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
+import StatusListContainer from '../ui/containers/status_list_container';
 
 const mapStateToProps = state => ({
   statusIds: getStatusList(state, 'trending'),
@@ -53,11 +54,19 @@ class Statuses extends PureComponent {
           <FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These are posts from across the social web that are gaining traction today. Newer posts with more boosts and favorites are ranked higher.' />
         </DismissableBanner>
 
+        <StatusListContainer
+        //   prepend={prependBanner}
+          timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
+          onLoadMore={handleLoadMore}
+          trackScroll
+          scrollKey='firehose'
+          emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
+        />
         <StatusList
           trackScroll
           timelineId='explore'
-          // statusIds={statusIds}
-          statusIds={`${feedType}${onlyMedia ? ':media' : ''}`}
+          statusIds={statusIds}
           scrollKey='explore-statuses'
           hasMore={hasMore}
           isLoading={isLoading}
