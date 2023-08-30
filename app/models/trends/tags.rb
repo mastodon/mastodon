@@ -6,7 +6,7 @@ class Trends::Tags < Trends::Base
   self.default_options = {
     threshold: 5,
     review_threshold: 3,
-    max_score_cooldown: 20000.days.freeze,
+    max_score_cooldown: 2.days.freeze,
     max_score_halflife: 4.hours.freeze,
     decay_threshold: 1,
   }
@@ -92,6 +92,6 @@ class Trends::Tags < Trends::Base
   end
 
   def would_be_trending?(id)
-    score(id) > score_at_rank(options[:review_threshold] - 1)
+    # score(id) > score_at_rank(options[:review_threshold] - 1)
   end
 end
