@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent, useCallback } from 'react';
+import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -12,10 +12,6 @@ import { fetchTrendingStatuses, expandTrendingStatuses } from 'mastodon/actions/
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import StatusList from 'mastodon/components/status_list';
 import { getStatusList } from 'mastodon/selectors';
-import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
-import StatusListContainer from '../ui/containers/status_list_container';
-import { useAppDispatch, useAppSelector } from 'mastodon/store';
-import { addColumn } from 'mastodon/actions/columns';
 
 const mapStateToProps = state => ({
   statusIds: getStatusList(state, 'trending'),
@@ -41,39 +37,19 @@ class Statuses extends PureComponent {
   handleLoadMore = debounce(() => {
     const { dispatch } = this.props;
     dispatch(expandTrendingStatuses());
-    // dispatch(expandPublicTimeline({ maxId, onlyMedia }));
   }, 300, { leading: true });
 
   render () {
     const { isLoading, hasMore, statusIds, multiColumn } = this.props;
 
-    // const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
-    // console.log(onlyMedia);
     const emptyMessage = <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />;
-    const dispatch = useAppDispatch();
 
-    const handlePin = useCallback(
-      () => {
-        dispatch(addColumn('PUBLIC', { other: { onlyMedia } }));
-      },
-      [dispatch],
-    );
-    console.log('123');
     return (
       <>
         <DismissableBanner id='explore/statuses'>
           <FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These are posts from across the social web that are gaining traction today. Newer posts with more boosts and favorites are ranked higher.' />
         </DismissableBanner>
 
-        {/* <StatusListContainer
-        //   prepend={prependBanner}
-          timelineId={'community'}
-          onLoadMore={handleLoadMore}
-          trackScroll
-          scrollKey='firehose'
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-        /> */}
         <StatusList
           trackScroll
           timelineId='explore'
