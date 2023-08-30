@@ -54,8 +54,6 @@ class Explore extends PureComponent {
     const { intl, multiColumn, isSearching } = this.props;
     const { signedIn } = this.context.identity;
 
-    console.log('home');
-
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
