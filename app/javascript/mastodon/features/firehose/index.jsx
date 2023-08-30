@@ -63,6 +63,7 @@ const Firehose = ({ feedType, multiColumn }) => {
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
   const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
 
+  console.log(feedType, 'feedType');
   const handlePin = useCallback(
     () => {
       switch(feedType) {
