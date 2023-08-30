@@ -12,7 +12,7 @@ if RUN_SYSTEM_SPECS
 end
 
 if RUN_SEARCH_SPECS
-  # Include any configuration or setups specific to Elasticsearch tests here
+  # Include any configuration or setups specific to search tests here
 end
 
 require File.expand_path('../config/environment', __dir__)
