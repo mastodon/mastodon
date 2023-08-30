@@ -18,6 +18,7 @@ import SearchResults from './results';
 import Statuses from './statuses';
 import Suggestions from './suggestions';
 import Tags from './tags';
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Explore' },
@@ -53,6 +54,9 @@ class Explore extends PureComponent {
   render() {
     const { intl, multiColumn, isSearching } = this.props;
     const { signedIn } = this.context.identity;
+
+    const settings = useAppSelector((state) => state.getIn(['settings', 'firehose']));
+    console.log(settings);
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
