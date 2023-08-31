@@ -82,7 +82,6 @@ const Firehose = ({ feedType, multiColumn }) => {
 
   const handleLoadMore = useCallback(
     (maxId) => {
-      console.log(maxId);
       switch(feedType) {
       case 'community':
         dispatch(expandCommunityTimeline({ maxId, onlyMedia }));

@@ -80,7 +80,6 @@ export const fetchTrendingStatuses = () => (dispatch, getState) => {
   dispatch(fetchTrendingStatusesRequest());
 
   api(getState).get('/api/v1/trends/statuses').then(response => {
-    console.log(response);
     const next = getLinks(response).refs.find(link => link.rel === 'next');
     dispatch(importFetchedStatuses(response.data));
     dispatch(fetchTrendingStatusesSuccess(response.data, next ? next.uri : null));
