@@ -42,7 +42,7 @@ class Statuses extends PureComponent {
 
   handleLoadMore = debounce(() => {
     const { dispatch } = this.props;
-    // dispatch(expandTrendingStatuses());
+    dispatch(expandTrendingStatuses());
     dispatch(expandCommunityTimeline({ onlyMedia }));
   }, 300, { leading: true });
 
@@ -69,7 +69,7 @@ class Statuses extends PureComponent {
             bindToDocument={!multiColumn}
           />
         {/* </div> */}
-        {/* <StatusList
+        <StatusList
           trackScroll
           timelineId='explore'
           statusIds={statusIds}
@@ -80,7 +80,7 @@ class Statuses extends PureComponent {
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           withCounters
-        /> */}
+        />
       </>
     );
   }
