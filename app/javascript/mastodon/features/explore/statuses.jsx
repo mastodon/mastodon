@@ -42,9 +42,8 @@ class Statuses extends PureComponent {
 
   handleLoadMore = debounce((maxId) => {
     const { dispatch } = this.props;
-    console.log('maxId', maxId);
     dispatch(expandTrendingStatuses());
-    dispatch(expandCommunityTimeline({ onlyMedia }));
+    dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
   }, 300, { leading: true });
 
   render () {
