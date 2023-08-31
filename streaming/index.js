@@ -28,10 +28,7 @@ log.level = process.env.LOG_LEVEL || 'verbose';
  */
 const createRedisClient = async (config) => {
   const { redisParams, redisUrl } = config;
-  let client = new Redis(redisParams);
-  if (redisUrl) {
-    client = new Redis(redisUrl, redisParams);
-  }
+  const client = new Redis(redisUrl, redisParams);
   client.on('error', (err) => log.error('Redis Client Error!', err));
 
   return client;
@@ -297,8 +294,14 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       log.verbose(`Subscribe ${channel}`);
-      redisSubscribeClient.subscribe(channel);
-      redisSubscriptions.inc();
+      redisSubscribeClient.subscribe(channel, (err, count) => {
+        if (err) {
+          log.error(`Error subscribing to ${channel}`);
+        }
+        else {
+          redisSubscriptions.set(count);
+        }
+      });
     }
 
     subs[channel].push(callback);
