@@ -62,15 +62,15 @@ class Trends::Statuses < Trends::Base
   def refresh(at_time = Time.now.utc)
     # First, recalculate scores for statuses that were trending previously. We split the queries
     # to avoid having to load all of the IDs into Ruby just to send them back into Postgres
-    # Status.where(id: StatusTrend.select(:status_id)).includes(:status_stat, :account).find_in_batches(batch_size: BATCH_SIZE) do |statuses|
-    #   calculate_scores(statuses, at_time)
-    # end
+    Status.where(id: StatusTrend.select(:status_id)).includes(:status_stat, :account).find_in_batches(batch_size: BATCH_SIZE) do |statuses|
+      calculate_scores(statuses, at_time)
+    end
 
-    # # Then, calculate scores for statuses that were used today. There are potentially some
-    # # duplicate items here that we might process one more time, but that should be fine
-    # Status.where(id: recently_used_ids(at_time)).includes(:status_stat, :account).find_in_batches(batch_size: BATCH_SIZE) do |statuses|
-    #   calculate_scores(statuses, at_time)
-    # end
+    # Then, calculate scores for statuses that were used today. There are potentially some
+    # duplicate items here that we might process one more time, but that should be fine
+    Status.where(id: recently_used_ids(at_time)).includes(:status_stat, :account).find_in_batches(batch_size: BATCH_SIZE) do |statuses|
+      calculate_scores(statuses, at_time)
+    end
 
     # Now that all trends have up-to-date scores, and all the ones below the threshold have
     # been removed, we can recalculate their positions
@@ -85,10 +85,10 @@ class Trends::Statuses < Trends::Base
       status_trends.filter_map do |trend|
         status = trend.status
 
-        # if trend.score > score_at_threshold && !status.trendable? && status.requires_review_notification?
-        #   status.account.touch(:requested_review_at)
-        #   status
-        # end
+        if trend.score > score_at_threshold && !status.trendable? && status.requires_review_notification?
+          status.account.touch(:requested_review_at)
+          status
+        end
       end
     end
   end
