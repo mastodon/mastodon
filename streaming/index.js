@@ -322,8 +322,14 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       log.verbose(`Unsubscribe ${channel}`);
-      redisSubscribeClient.unsubscribe(channel);
-      redisSubscriptions.dec();
+      redisSubscribeClient.unsubscribe(channel, (err, count) => {
+        if (err) {
+          log.error(`Error unsubscribing to ${channel}`);
+        }
+        else {
+          redisSubscriptions.set(count);
+        }
+	  });
       delete subs[channel];
     }
   };
