@@ -63,19 +63,19 @@ class Trends::Tags < Trends::Base
       max_score = tag.max_score
       max_score = 0 if max_time.nil? || max_time < (at_time - options[:max_score_cooldown])
 
-      # score = if expected > observed || observed < options[:threshold]
-      #           0
-      #         else
-      #           ((observed - expected)**2) / expected
-      #         end
+      score = if expected > observed || observed < options[:threshold]
+                0
+              else
+                ((observed - expected)**2) / expected
+              end
 
-      # if score > max_score
-      #   max_score = score
-      #   max_time  = at_time
+      if score > max_score
+        max_score = score
+        max_time  = at_time
 
-      #   # Not interested in triggering any callbacks for this
-      #   tag.update_columns(max_score: max_score, max_score_at: max_time)
-      # end
+        # Not interested in triggering any callbacks for this
+        tag.update_columns(max_score: max_score, max_score_at: max_time)
+      end
 
       decaying_score = max_score * (0.5**((at_time.to_f - max_time.to_f) / options[:max_score_halflife].to_f))
 
@@ -92,6 +92,6 @@ class Trends::Tags < Trends::Base
   end
 
   def would_be_trending?(id)
-    # score(id) > score_at_rank(options[:review_threshold] - 1)
+    score(id) > score_at_rank(options[:review_threshold] - 1)
   end
 end
