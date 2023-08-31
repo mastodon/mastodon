@@ -1,7 +1,10 @@
 - content_for :page_title do
   = t('admin.software_updates.title')
 
-%p= t('admin.software_updates.description')
+.simple_form
+  %p.lead
+    = t('admin.software_updates.description')
+    = link_to t('admin.software_updates.documentation_link'), 'https://docs.joinmastodon.org/admin/upgrading/#automated_checks', target: '_new'
 
 %hr.spacer
 
