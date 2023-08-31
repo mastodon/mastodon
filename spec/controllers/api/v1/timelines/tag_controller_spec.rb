@@ -5,36 +5,66 @@ require 'rails_helper'
 describe Api::V1::Timelines::TagController do
   render_views
 
-  let(:user) { Fabricate(:user) }
+  let(:user)   { Fabricate(:user) }
+  let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:statuses') }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
-  context 'with a user context' do
-    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id) }
+  describe 'GET #show' do
+    subject do
+      get :show, params: { id: 'test' }
+    end
 
-    describe 'GET #show' do
-      before do
-        PostStatusService.new.call(user.account, text: 'It is a #test')
+    before do
+      PostStatusService.new.call(user.account, text: 'It is a #test')
+    end
+
+    context 'when the instance allows public preview' do
+      context 'when the user is not authenticated' do
+        let(:token) { nil }
+
+        it 'returns http success', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.headers['Link'].links.size).to eq(2)
+        end
       end
 
-      it 'returns http success' do
-        get :show, params: { id: 'test' }
-        expect(response).to have_http_status(200)
-        expect(response.headers['Link'].links.size).to eq(2)
+      context 'when the user is authenticated' do
+        it 'returns http success', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.headers['Link'].links.size).to eq(2)
+        end
       end
     end
-  end
 
-  context 'without a user context' do
-    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: nil) }
+    context 'when the instance does not allow public preview' do
+      before do
+        Form::AdminSettings.new(timeline_preview: false).save
+      end
 
-    describe 'GET #show' do
-      it 'returns http success' do
-        get :show, params: { id: 'test' }
-        expect(response).to have_http_status(200)
-        expect(response.headers['Link']).to be_nil
+      context 'when the user is not authenticated' do
+        let(:token) { nil }
+
+        it 'returns http unauthorized' do
+          subject
+
+          expect(response).to have_http_status(401)
+        end
+      end
+
+      context 'when the user is authenticated' do
+        it 'returns http success', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.headers['Link'].links.size).to eq(2)
+        end
       end
     end
   end
