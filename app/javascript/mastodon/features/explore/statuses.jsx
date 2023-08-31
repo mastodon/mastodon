@@ -53,11 +53,11 @@ class Statuses extends PureComponent {
 
     return (
       <>
-        {/* <DismissableBanner id='explore/statuses'>
+        <DismissableBanner id='explore/statuses'>
           <FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These are posts from across the social web that are gaining traction today. Newer posts with more boosts and favorites are ranked higher.' />
-        </DismissableBanner> */}
+        </DismissableBanner>
 
-        <div className='scrollable scrollable--flex'>
+        {/* <div className='scrollable scrollable--flex'> */}
           <StatusListContainer
           //   prepend={prependBanner}
             timelineId={`community`}
@@ -68,7 +68,7 @@ class Statuses extends PureComponent {
             emptyMessage={emptyMessage}
             bindToDocument={!multiColumn}
           />
-        </div>
+        {/* </div> */}
         {/* <StatusList
           trackScroll
           timelineId='explore'
