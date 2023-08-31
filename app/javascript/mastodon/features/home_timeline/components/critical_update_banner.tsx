@@ -12,7 +12,7 @@ export const CriticalUpdateBanner = () => (
       <p>
         <FormattedMessage
           id='home.pending_critical_update.body'
-          defaultMessage='Please update Mastodon as soon as possible!'
+          defaultMessage='Please update your Mastodon server as soon as possible!'
         />{' '}
         <a href='/admin/software_updates'>
           <FormattedMessage
