@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StatusesIndex < Chewy::Index
+class PublicStatusesIndex < Chewy::Index
   settings index: index_preset(refresh_interval: '30s', number_of_shards: 5), analysis: {
     filter: {
       english_stop: {
@@ -40,13 +40,15 @@ class StatusesIndex < Chewy::Index
     },
   }
 
-  index_scope ::Status.unscoped.kept.without_reblogs.includes(:media_attachments, :preview_cards, :local_mentioned, :local_favorited, :local_reblogged, :local_bookmarked, preloadable_poll: :local_voters), delete_if: ->(status) { status.searchable_by.empty? }
+  index_scope ::Status.unscoped
+                      .kept
+                      .indexable
+                      .includes(:media_attachments, :preloadable_poll, :preview_cards)
 
   root date_detection: false do
     field(:id, type: 'long')
     field(:account_id, type: 'long')
     field(:text, type: 'text', analyzer: 'verbatim', value: ->(status) { status.searchable_text }) { field(:stemmed, type: 'text', analyzer: 'content') }
-    field(:searchable_by, type: 'long', value: ->(status) { status.searchable_by })
     field(:language, type: 'keyword')
     field(:properties, type: 'keyword', value: ->(status) { status.searchable_properties })
     field(:created_at, type: 'date')

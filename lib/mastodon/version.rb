@@ -16,12 +16,16 @@ module Mastodon
       0
     end
 
-    def flags
-      ENV.fetch('MASTODON_VERSION_FLAGS', '-beta2')
+    def default_prerelease
+      'beta2'
     end
 
-    def suffix
-      ENV.fetch('MASTODON_VERSION_SUFFIX', '')
+    def prerelease
+      ENV['MASTODON_VERSION_PRERELEASE'].presence || default_prerelease
+    end
+
+    def build_metadata
+      ENV.fetch('MASTODON_VERSION_METADATA', nil)
     end
 
     def to_a
@@ -29,7 +33,10 @@ module Mastodon
     end
 
     def to_s
-      [to_a.join('.'), flags, suffix].join
+      components = [to_a.join('.')]
+      components << "-#{prerelease}" if prerelease.present?
+      components << "+#{build_metadata}" if build_metadata.present?
+      components.join
     end
 
     def repository

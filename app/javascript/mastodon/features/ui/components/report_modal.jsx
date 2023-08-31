@@ -62,7 +62,7 @@ class ReportModal extends ImmutablePureComponent {
     dispatch(submitReport({
       account_id: accountId,
       status_ids: selectedStatusIds.toArray(),
-      selected_domains: selectedDomains.toArray(),
+      forward_to_domains: selectedDomains.toArray(),
       comment,
       forward: selectedDomains.size > 0,
       category,
