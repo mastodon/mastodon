@@ -71,9 +71,9 @@ class Statuses extends PureComponent {
         {/* </div> */}
         <StatusList
           trackScroll
-          timelineId='community'
+          timelineId='explore'
           statusIds={statusIds}
-          scrollKey='firehose'
+          scrollKey='explore-statuses'
           hasMore={hasMore}
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
