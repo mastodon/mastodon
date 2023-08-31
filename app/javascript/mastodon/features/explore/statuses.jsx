@@ -17,8 +17,7 @@ import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/
 import StatusListContainer from '../ui/containers/status_list_container';
 
 const mapStateToProps = state => ({
-  // statusIds: getStatusList(state, 'trending'),
-  statusIds: getStatusList(state, { type: 'community' }),
+  statusIds: getStatusList(state, 'trending'),
   isLoading: state.getIn(['status_lists', 'trending', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'trending', 'next']),
 });
@@ -70,18 +69,6 @@ class Statuses extends PureComponent {
             bindToDocument={!multiColumn}
           />
         {/* </div> */}
-        <StatusList
-          trackScroll
-          timelineId='explore'
-          statusIds={statusIds}
-          scrollKey='explore-statuses'
-          hasMore={hasMore}
-          isLoading={isLoading}
-          onLoadMore={this.handleLoadMore}
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-          withCounters
-        />
         {/* <StatusList
           trackScroll
           timelineId='explore'
