@@ -17,7 +17,8 @@ import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/
 import StatusListContainer from '../ui/containers/status_list_container';
 
 const mapStateToProps = state => ({
-  statusIds: getStatusList(state, 'trending'),
+  // statusIds: getStatusList(state, 'trending'),
+  statusIds: getStatusList(state, { type: 'community' }),
   isLoading: state.getIn(['status_lists', 'trending', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'trending', 'next']),
 });
