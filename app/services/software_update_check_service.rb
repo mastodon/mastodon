@@ -37,6 +37,10 @@ class SoftwareUpdateCheckService < BaseService
   def process_update_notices!(update_notices)
     return if update_notices.blank? || update_notices['updatesAvailable'].blank?
 
+    # Clear notices that are not listed by the update server anymore
+    SoftwareUpdate.where.not(version: update_notices['updatesAvailable'].pluck('version')).delete_all
+
+    # Check if any of the notices is new, and issue notifications
     known_versions = SoftwareUpdate.where(version: update_notices['updatesAvailable'].pluck('version')).pluck(:version)
     new_update_notices = update_notices['updatesAvailable'].filter { |notice| known_versions.exclude?(notice['version']) }
     return if new_update_notices.blank?
@@ -46,9 +50,6 @@ class SoftwareUpdateCheckService < BaseService
     end
 
     notify_devops!(new_updates)
-
-    # Clear obsolete notices
-    SoftwareUpdate.where.not(version: update_notices['updatesAvailable'].pluck('version')).delete_all
   end
 
   def should_notify_user?(user, urgent_version, patch_version)
