@@ -3,8 +3,9 @@
 require 'rails_helper'
 
 describe SearchQueryTransformer do
-  subject { described_class.new.apply(parser, current_account: nil) }
+  subject { described_class.new.apply(parser, current_account: account) }
 
+  let(:account) { Fabricate(:account) }
   let(:parser) { SearchQueryParser.new.parse(query) }
 
   context 'with "hello world"' do
