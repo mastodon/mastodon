@@ -30,10 +30,10 @@ class ScheduledStatus < ApplicationRecord
   end
 
   def validate_total_limit
-    errors.add(:base, I18n.t('scheduled_statuses.over_total_limit', limit: TOTAL_LIMIT)) if account.scheduled_statuses.count >= TOTAL_LIMIT
+    errors.add(:base, I18n.t('scheduled_statuses.over_total_limit', count: TOTAL_LIMIT)) if account.scheduled_statuses.count >= TOTAL_LIMIT
   end
 
   def validate_daily_limit
-    errors.add(:base, I18n.t('scheduled_statuses.over_daily_limit', limit: DAILY_LIMIT)) if account.scheduled_statuses.where('scheduled_at::date = ?::date', scheduled_at).count >= DAILY_LIMIT
+    errors.add(:base, I18n.t('scheduled_statuses.over_daily_limit', count: DAILY_LIMIT)) if account.scheduled_statuses.where('scheduled_at::date = ?::date', scheduled_at).count >= DAILY_LIMIT
   end
 end
