@@ -1263,7 +1263,9 @@ en:
       empty: Empty CSV file
       incompatible_type: Incompatible with the selected import type
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
-      over_rows_processing_limit: contains more than %{count} rows
+      over_rows_processing_limit:
+        one: contains more than %{count} row
+        other: contains more than %{count} rows
       too_large: File is too large
     failures: Failures
     imported: Imported
