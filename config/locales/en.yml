@@ -1412,7 +1412,9 @@ en:
     incoming_migrations_html: To move from another account to this one, first you need to <a href="%{path}">create an account alias</a>.
     moved_msg: Your account is now redirecting to %{acct} and your followers are being moved over.
     not_redirecting: Your account is not redirecting to any other account currently.
-    on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
+    on_cooldown:
+      one: You have recently migrated your account. This function will become available again in %{count} day.
+      other: You have recently migrated your account. This function will become available again in %{count} days.
     past_migrations: Past migrations
     proceed_with_move: Move followers
     redirected_msg: Your account is now redirecting to %{acct}.
