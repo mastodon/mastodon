@@ -106,7 +106,7 @@ class Search extends PureComponent {
 
   handleKeyDown = (e) => {
     const { selectedOption } = this.state;
-    const options = this._getOptions().concat(this.defaultOptions);
+    const options = searchEnabled ? this._getOptions().concat(this.defaultOptions) : this._getOptions();
 
     switch(e.key) {
     case 'Escape':
@@ -362,15 +362,19 @@ class Search extends PureComponent {
             </>
           )}
 
-          <h4><FormattedMessage id='search_popout.options' defaultMessage='Search options' /></h4>
+          {searchEnabled && (
+            <>
+              <h4><FormattedMessage id='search_popout.options' defaultMessage='Search options' /></h4>
 
-          <div className='search__popout__menu'>
-            {this.defaultOptions.map(({ key, label, action }, i) => (
-              <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === (options.length + i) })}>
-                {label}
-              </button>
-            ))}
-          </div>
+              <div className='search__popout__menu'>
+                {this.defaultOptions.map(({ key, label, action }, i) => (
+                  <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === (options.length + i) })}>
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     );
