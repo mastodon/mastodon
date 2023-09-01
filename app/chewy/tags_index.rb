@@ -26,7 +26,7 @@ class TagsIndex < Chewy::Index
   index_scope ::Tag.listable
 
   crutch :time_period do
-    57.days.ago.to_date..0.days.ago.to_date
+    7.days.ago.to_date..0.days.ago.to_date
   end
 
   root date_detection: false do

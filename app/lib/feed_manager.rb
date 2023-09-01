@@ -46,7 +46,8 @@ class FeedManager
     when :mentions
       filter_from_mentions?(status, receiver.id)
     when :tags
-      filter_from_tags?(status, receiver.id, build_crutches(receiver.id, [status]))
+      filter_from_list?(status, receiver) || filter_from_home?(status, receiver.account_id, build_crutches(receiver.account_id, [status]), :list)
+      # filter_from_tags?(status, receiver.id, build_crutches(receiver.id, [status]))
     else
       false
     end
