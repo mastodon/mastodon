@@ -329,7 +329,7 @@ const startServer = async () => {
         else {
           redisSubscriptions.set(count);
         }
-	  });
+  	  });
       delete subs[channel];
     }
   };
