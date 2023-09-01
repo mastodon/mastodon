@@ -4,12 +4,23 @@ def setup_redis_env_url(prefix = nil, defaults = true)
   prefix = "#{prefix.to_s.upcase}_" unless prefix.nil?
   prefix = '' if prefix.nil?
 
-  return if ENV["#{prefix}REDIS_URL"].present?
+  if ENV["#{prefix}REDIS_URL"].present?
+    address = Addressable::URI.parse(ENV["#{prefix}REDIS_URL"])
+    password = address.password
+    host = address.host
+    port = address.port
+    db = address.path.delete_prefix('/')
+  else
+    password = ''
+    host = 'localhost'
+    port = 6379
+    db = 0
+  end
 
-  password = ENV.fetch("#{prefix}REDIS_PASSWORD") { '' if defaults }
-  host     = ENV.fetch("#{prefix}REDIS_HOST") { 'localhost' if defaults }
-  port     = ENV.fetch("#{prefix}REDIS_PORT") { 6379 if defaults }
-  db       = ENV.fetch("#{prefix}REDIS_DB") { 0 if defaults }
+  password = ENV.fetch("#{prefix}REDIS_PASSWORD") { password if defaults }
+  host     = ENV.fetch("#{prefix}REDIS_HOST") { host if defaults }
+  port     = ENV.fetch("#{prefix}REDIS_PORT") { port if defaults }
+  db       = ENV.fetch("#{prefix}REDIS_DB") { db if defaults }
 
   ENV["#{prefix}REDIS_URL"] = begin
     if [password, host, port, db].all?(&:nil?)
