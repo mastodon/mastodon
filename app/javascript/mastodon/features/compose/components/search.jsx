@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { Icon }  from 'mastodon/components/icon';
-import { searchEnabled } from 'mastodon/initial_state';
+import { domain, searchEnabled } from 'mastodon/initial_state';
 import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';
 
 const messages = defineMessages({
@@ -354,18 +354,20 @@ class Search extends PureComponent {
             </>
           )}
 
-          {searchEnabled && (
-            <>
-              <h4><FormattedMessage id='search_popout.options' defaultMessage='Search options' /></h4>
+          <h4><FormattedMessage id='search_popout.options' defaultMessage='Search options' /></h4>
 
-              <div className='search__popout__menu'>
-                {this.defaultOptions.map(({ key, label, action }, i) => (
-                  <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === (options.length + i) })}>
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </>
+          {searchEnabled ? (
+            <div className='search__popout__menu'>
+              {this.defaultOptions.map(({ key, label, action }, i) => (
+                <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === (options.length + i) })}>
+                  {label}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className='search__popout__menu__message'>
+              <FormattedMessage id='search_popout.full_text_search_disabled_message' defaultMessage='Not available on {domain}.' values={{ domain }} />
+            </div>
           )}
         </div>
       </div>
