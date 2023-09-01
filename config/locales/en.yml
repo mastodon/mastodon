@@ -865,7 +865,9 @@ en:
           one: Shared by one person over the last week
           other: Shared by %{count} people over the last week
         title: Trending links
-        usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
+        usage_comparison:
+          one: Shared %{count} time today, compared to %{yesterday} yesterday
+          other: Shared %{count} times today, compared to %{yesterday} yesterday
       not_allowed_to_trend: Not allowed to trend
       only_allowed: Only allowed
       pending_review: Pending review
@@ -906,7 +908,9 @@ en:
         trendable: Can appear under trends
         trending_rank: 'Trending #%{rank}'
         usable: Can be used
-        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
+        usage_comparison:
+          one: Used %{count} time today, compared to %{yesterday} yesterday
+          other: Used %{count} times today, compared to %{yesterday} yesterday
         used_by_over_week:
           one: Used by one person over the last week
           other: Used by %{count} people over the last week
