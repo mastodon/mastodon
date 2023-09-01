@@ -1,49 +1,31 @@
 # frozen_string_literal: true
 
 class SearchQueryTransformer < Parslet::Transform
+  SUPPORTED_PREFIXES = %w(
+    has
+    is
+    language
+    from
+    before
+    after
+    during
+  ).freeze
+
   class Query
-    attr_reader :should_clauses, :must_not_clauses, :must_clauses, :filter_clauses
+    attr_reader :must_not_clauses, :must_clauses, :filter_clauses
 
     def initialize(clauses)
-      grouped = clauses.chunk(&:operator).to_h
-      @should_clauses = grouped.fetch(:should, [])
+      grouped = clauses.compact.chunk(&:operator).to_h
       @must_not_clauses = grouped.fetch(:must_not, [])
       @must_clauses = grouped.fetch(:must, [])
       @filter_clauses = grouped.fetch(:filter, [])
     end
 
     def apply(search)
-      should_clauses.each { |clause| search = search.query.should(clause_to_query(clause)) }
-      must_clauses.each { |clause| search = search.query.must(clause_to_query(clause)) }
-      must_not_clauses.each { |clause| search = search.query.must_not(clause_to_query(clause)) }
-      filter_clauses.each { |clause| search = search.filter(**clause_to_filter(clause)) }
+      must_clauses.each { |clause| search = search.query.must(clause.to_query) }
+      must_not_clauses.each { |clause| search = search.query.must_not(clause.to_query) }
+      filter_clauses.each { |clause| search = search.filter(**clause.to_query) }
       search.query.minimum_should_match(1)
-    end
-
-    private
-
-    def clause_to_query(clause)
-      case clause
-      when TermClause
-        { multi_match: { type: 'most_fields', query: clause.term, fields: ['text', 'text.stemmed'], operator: 'and' } }
-      when PhraseClause
-        { match_phrase: { text: { query: clause.phrase } } }
-      else
-        raise "Unexpected clause type: #{clause}"
-      end
-    end
-
-    def clause_to_filter(clause)
-      case clause
-      when PrefixClause
-        if clause.negated?
-          { bool: { must_not: { clause.type => { clause.filter => clause.term } } } }
-        else
-          { clause.type => { clause.filter => clause.term } }
-        end
-      else
-        raise "Unexpected clause type: #{clause}"
-      end
     end
   end
 
@@ -63,31 +45,38 @@ class SearchQueryTransformer < Parslet::Transform
   end
 
   class TermClause
-    attr_reader :prefix, :operator, :term
+    attr_reader :operator, :term
 
-    def initialize(prefix, operator, term)
-      @prefix = prefix
+    def initialize(operator, term)
       @operator = Operator.symbol(operator)
       @term = term
+    end
+
+    def to_query
+      { multi_match: { type: 'most_fields', query: @term, fields: ['text', 'text.stemmed'], operator: 'and' } }
     end
   end
 
   class PhraseClause
-    attr_reader :prefix, :operator, :phrase
+    attr_reader :operator, :phrase
 
-    def initialize(prefix, operator, phrase)
-      @prefix = prefix
+    def initialize(operator, phrase)
       @operator = Operator.symbol(operator)
       @phrase = phrase
+    end
+
+    def to_query
+      { match_phrase: { text: { query: @phrase } } }
     end
   end
 
   class PrefixClause
-    attr_reader :type, :filter, :operator, :term
+    attr_reader :operator, :prefix, :term
 
     def initialize(prefix, operator, term, options = {})
-      @negated  = operator == '-'
-      @options  = options
+      @prefix = prefix
+      @negated = operator == '-'
+      @options = options
       @operator = :filter
 
       case prefix
@@ -116,12 +105,16 @@ class SearchQueryTransformer < Parslet::Transform
         @type = :range
         @term = { gte: term, lte: term, time_zone: @options[:current_account]&.user_time_zone || 'UTC' }
       else
-        raise Mastodon::SyntaxError
+        raise "Unknown prefix: #{prefix}"
       end
     end
 
-    def negated?
-      @negated
+    def to_query
+      if @negated
+        { bool: { must_not: { @type => { @filter => @term } } } }
+      else
+        { @type => { @filter => @term } }
+      end
     end
 
     private
@@ -159,18 +152,26 @@ class SearchQueryTransformer < Parslet::Transform
     prefix   = clause[:prefix][:term].to_s if clause[:prefix]
     operator = clause[:operator]&.to_s
 
-    if clause[:prefix]
+    if clause[:prefix] && SUPPORTED_PREFIXES.include?(prefix)
       PrefixClause.new(prefix, operator, clause[:term].to_s, current_account: current_account)
+    elsif clause[:prefix]
+      TermClause.new(operator, "#{prefix} #{clause[:term]}")
     elsif clause[:term]
-      TermClause.new(prefix, operator, clause[:term].to_s)
+      TermClause.new(operator, clause[:term].to_s)
     elsif clause[:shortcode]
-      TermClause.new(prefix, operator, ":#{clause[:term]}:")
+      TermClause.new(operator, ":#{clause[:term]}:")
     elsif clause[:phrase]
-      PhraseClause.new(prefix, operator, clause[:phrase].is_a?(Array) ? clause[:phrase].map { |p| p[:term].to_s }.join(' ') : clause[:phrase].to_s)
+      PhraseClause.new(operator, clause[:phrase].is_a?(Array) ? clause[:phrase].map { |p| p[:term].to_s }.join(' ') : clause[:phrase].to_s)
     else
       raise "Unexpected clause type: #{clause}"
     end
   end
 
-  rule(query: sequence(:clauses)) { Query.new(clauses) }
+  rule(junk: subtree(:junk)) do
+    nil
+  end
+
+  rule(query: sequence(:clauses)) do
+    Query.new(clauses)
+  end
 end
