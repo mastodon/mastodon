@@ -22,6 +22,10 @@ describe Api::V1::Timelines::TagController do
     end
 
     context 'when the instance allows public preview' do
+      before do
+        Setting.timeline_preview = true
+      end
+
       context 'when the user is not authenticated' do
         let(:token) { nil }
 
