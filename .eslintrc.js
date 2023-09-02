@@ -195,6 +195,7 @@ module.exports = {
           'config/webpack/**',
           'app/javascript/mastodon/performance.js',
           'app/javascript/mastodon/test_setup.js',
+          'app/javascript/mastodon/test_util.tsx',
           'app/javascript/**/__tests__/**',
         ],
       },
