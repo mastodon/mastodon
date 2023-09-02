@@ -76,8 +76,6 @@ jobs:
         if: ${{ inputs.push_to_images != '' }}
         with:
           images: ${{ inputs.push_to_images }}
-          # Only tag with latest when ran against the latest stable branch
-          # This needs to be updated after each minor version release
           flavor: ${{ inputs.flavor }}
           tags: ${{ inputs.tags }}
           labels: ${{ inputs.labels }}

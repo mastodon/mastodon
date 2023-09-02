@@ -2381,6 +2381,7 @@ $ui-header-height: 55px;
 
   .filter-form {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .autosuggest-textarea__textarea {
@@ -3268,6 +3269,22 @@ $ui-header-height: 55px;
 .react-toggle--checked .react-toggle-thumb {
   inset-inline-start: 27px;
   border-color: $ui-highlight-color;
+}
+
+.switch-to-advanced {
+  color: $classic-primary-color;
+  background-color: $classic-base-color;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 18px;
+
+  .switch-to-advanced__toggle {
+    color: $ui-button-tertiary-color;
+    font-weight: bold;
+  }
 }
 
 .column-link {
