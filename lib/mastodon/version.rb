@@ -39,6 +39,10 @@ module Mastodon
       components.join
     end
 
+    def gem_version
+      @gem_version ||= Gem::Version.new(to_s.split('+')[0])
+    end
+
     def repository
       ENV.fetch('GITHUB_REPOSITORY', 'glitch-soc/mastodon')
     end

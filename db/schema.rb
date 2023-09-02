@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_18_142253) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_22_081029) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -901,6 +901,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_142253) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "blurhash"
     t.index ["var"], name: "index_site_uploads_on_var", unique: true
+  end
+
+  create_table "software_updates", force: :cascade do |t|
+    t.string "version", null: false
+    t.boolean "urgent", default: false, null: false
+    t.integer "type", default: 0, null: false
+    t.string "release_notes", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["version"], name: "index_software_updates_on_version", unique: true
   end
 
   create_table "status_edits", force: :cascade do |t|

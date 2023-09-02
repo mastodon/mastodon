@@ -8860,7 +8860,8 @@ noscript {
   }
 }
 
-.dismissable-banner {
+.dismissable-banner,
+.warning-banner {
   position: relative;
   margin: 10px;
   margin-bottom: 5px;
@@ -8934,6 +8935,21 @@ noscript {
 
     .icon-button {
       color: $highlight-text-color;
+    }
+  }
+}
+
+.warning-banner {
+  border: 1px solid $warning-red;
+  background: rgba($warning-red, 0.15);
+
+  &__message {
+    h1 {
+      color: $warning-red;
+    }
+
+    a {
+      color: $primary-text-color;
     }
   }
 }
