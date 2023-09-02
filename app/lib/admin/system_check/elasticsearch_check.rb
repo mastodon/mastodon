@@ -6,6 +6,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
     AccountsIndex,
     TagsIndex,
     StatusesIndex,
+    PublicStatusesIndex,
   ].freeze
 
   def skip?
@@ -85,7 +86,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
 
   def mismatched_indexes
     @mismatched_indexes ||= INDEXES.filter_map do |klass|
-      klass.index_name if Chewy.client.indices.get_mapping[klass.index_name]&.deep_symbolize_keys != klass.mappings_hash
+      klass.base_name if Chewy.client.indices.get_mapping[klass.index_name]&.deep_symbolize_keys != klass.mappings_hash
     end
   end
 
