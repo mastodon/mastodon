@@ -74,6 +74,12 @@ class Status < ApplicationRecord
   has_many :active_mentions, -> { active }, class_name: 'Mention', inverse_of: :status
   has_many :media_attachments, dependent: :nullify
 
+  # Those associations are used for the private search index
+  has_many :local_mentioned, -> { merge(Account.local) }, through: :active_mentions, source: :account
+  has_many :local_favorited, -> { merge(Account.local) }, through: :favourites, source: :account
+  has_many :local_reblogged, -> { merge(Account.local) }, through: :reblogs, source: :account
+  has_many :local_bookmarked, -> { merge(Account.local) }, through: :bookmarks, source: :account
+
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :preview_cards
 
