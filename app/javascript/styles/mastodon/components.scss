@@ -228,20 +228,20 @@
       color: lighten($lighter-text-color, 7%);
       background-color: transparent;
     }
+  }
 
-    &.active {
+  &.active {
+    color: $highlight-text-color;
+
+    &:hover,
+    &:active,
+    &:focus {
       color: $highlight-text-color;
+      background-color: transparent;
+    }
 
-      &:hover,
-      &:active,
-      &:focus {
-        color: $highlight-text-color;
-        background-color: transparent;
-      }
-
-      &.disabled {
-        color: lighten($highlight-text-color, 13%);
-      }
+    &.disabled {
+      color: lighten($highlight-text-color, 13%);
     }
   }
 
