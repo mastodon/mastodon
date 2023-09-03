@@ -78,6 +78,7 @@ const PageThree = ({ myAccount }) => (
         onSubmit={noop}
         onClear={noop}
         onShow={noop}
+        recent={{}}
       />
 
       <div className='pseudo-drawer'>
