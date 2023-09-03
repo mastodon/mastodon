@@ -1,9 +1,20 @@
+import regexSupplant from 'twitter-text/dist/lib/regexSupplant';
+import validDomain from 'twitter-text/dist/regexp/validDomain';
+
 import { urlRegex } from './url_regex';
 
 const urlPlaceholder = '$2xxxxxxxxxxxxxxxxxxxxxxx';
 
+const validMention = regexSupplant(
+  '(^|[^/\\w])@(([a-z0-9_]+)@(#{validDomain}))',
+  {
+    validDomain,
+  },
+  'ig'
+)
+
 export function countableText(inputText) {
   return inputText
     .replace(urlRegex, urlPlaceholder)
-    .replace(/(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/ig, '$1@$3');
+    .replace(validMention, '$1@$3');
 }
