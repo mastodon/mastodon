@@ -2381,6 +2381,7 @@ $ui-header-height: 55px;
 
   .filter-form {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .autosuggest-textarea__textarea {
@@ -3268,6 +3269,22 @@ $ui-header-height: 55px;
 .react-toggle--checked .react-toggle-thumb {
   inset-inline-start: 27px;
   border-color: $ui-highlight-color;
+}
+
+.switch-to-advanced {
+  color: $classic-primary-color;
+  background-color: $classic-base-color;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 18px;
+
+  .switch-to-advanced__toggle {
+    color: $ui-button-tertiary-color;
+    font-weight: bold;
+  }
 }
 
 .column-link {
@@ -4991,6 +5008,12 @@ a.status-card {
     }
 
     &__menu {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
       &__message {
         color: $dark-text-color;
         padding: 0 10px;
@@ -8837,7 +8860,8 @@ noscript {
   }
 }
 
-.dismissable-banner {
+.dismissable-banner,
+.warning-banner {
   position: relative;
   margin: 10px;
   margin-bottom: 5px;
@@ -8911,6 +8935,21 @@ noscript {
 
     .icon-button {
       color: $highlight-text-color;
+    }
+  }
+}
+
+.warning-banner {
+  border: 1px solid $warning-red;
+  background: rgba($warning-red, 0.15);
+
+  &__message {
+    h1 {
+      color: $warning-red;
+    }
+
+    a {
+      color: $primary-text-color;
     }
   }
 }
@@ -9302,19 +9341,24 @@ noscript {
   display: flex;
   flex-wrap: wrap;
   font-size: 14px;
+  line-height: 18px;
   gap: 4px;
+  color: $darker-text-color;
 
   a {
     display: inline-flex;
-    color: $dark-text-color;
+    color: inherit;
     text-decoration: none;
 
-    &:hover {
-      text-decoration: none;
-
-      span {
-        text-decoration: underline;
-      }
+    &:hover span {
+      text-decoration: underline;
     }
+  }
+
+  .link-button {
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 0;
   }
 }

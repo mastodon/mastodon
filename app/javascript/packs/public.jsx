@@ -7,7 +7,6 @@ import { defineMessages } from 'react-intl';
 
 import { delegate }  from '@rails/ujs';
 import axios from 'axios';
-import { createBrowserHistory }  from 'history';
 import { throttle } from 'lodash';
 
 import { start } from '../mastodon/common';
@@ -30,23 +29,6 @@ const messages = defineMessages({
 
 function loaded() {
   const { messages: localeData } = getLocale();
-
-  const scrollToDetailedStatus = () => {
-    const history = createBrowserHistory();
-    const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
-    const location = history.location;
-
-    if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
-      detailedStatuses[0].scrollIntoView();
-      history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
-    }
-  };
-
-  const getEmojiAnimationHandler = (swapTo) => {
-    return ({ target }) => {
-      target.src = target.getAttribute(swapTo);
-    };
-  };
 
   const locale = document.documentElement.lang;
 
@@ -141,27 +123,21 @@ function loaded() {
         const root = createRoot(content);
         root.render(<MediaContainer locale={locale} components={reactComponents} />);
         document.body.appendChild(content);
-        scrollToDetailedStatus();
       })
       .catch(error => {
         console.error(error);
-        scrollToDetailedStatus();
       });
-  } else {
-    scrollToDetailedStatus();
   }
 
-  delegate(document, '#user_account_attributes_username', 'input', throttle(() => {
-    const username = document.getElementById('user_account_attributes_username');
-
-    if (username.value && username.value.length > 0) {
-      axios.get('/api/v1/accounts/lookup', { params: { acct: username.value } }).then(() => {
-        username.setCustomValidity(formatMessage(messages.usernameTaken));
+  delegate(document, '#user_account_attributes_username', 'input', throttle(({ target }) => {
+    if (target.value && target.value.length > 0) {
+      axios.get('/api/v1/accounts/lookup', { params: { acct: target.value } }).then(() => {
+        target.setCustomValidity(formatMessage(messages.usernameTaken));
       }).catch(() => {
-        username.setCustomValidity('');
+        target.setCustomValidity('');
       });
     } else {
-      username.setCustomValidity('');
+      target.setCustomValidity('');
     }
   }, 500, { leading: false, trailing: true }));
 
@@ -178,9 +154,6 @@ function loaded() {
       confirmation.setCustomValidity('');
     }
   });
-
-  delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
-  delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
 
   delegate(document, '.status__content__spoiler-link', 'click', function() {
     const statusEl = this.parentNode.parentNode;
@@ -229,6 +202,9 @@ delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
     toggleSidebar();
   }
 });
+
+delegate(document, '.custom-emoji', 'mouseover', ({ target }) => target.src = target.getAttribute('data-original'));
+delegate(document, '.custom-emoji', 'mouseout', ({ target }) => target.src = target.getAttribute('data-static'));
 
 // Empty the honeypot fields in JS in case something like an extension
 // automatically filled them.

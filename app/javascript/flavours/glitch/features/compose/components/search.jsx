@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import {
-  injectIntl,
-  FormattedMessage,
-  defineMessages,
-} from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage, FormattedList } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -51,6 +47,16 @@ class Search extends PureComponent {
     selectedOption: -1,
     options: [],
   };
+
+  defaultOptions = [
+    { label: <><mark>has:</mark> <FormattedList type='disjunction' value={['media', 'poll', 'embed']} /></>, action: e => { e.preventDefault(); this._insertText('has:') } },
+    { label: <><mark>is:</mark> <FormattedList type='disjunction' value={['reply', 'sensitive']} /></>, action: e => { e.preventDefault(); this._insertText('is:') } },
+    { label: <><mark>language:</mark> <FormattedMessage id='search_popout.language_code' defaultMessage='ISO language code' /></>, action: e => { e.preventDefault(); this._insertText('language:') } },
+    { label: <><mark>from:</mark> <FormattedMessage id='search_popout.user' defaultMessage='user' /></>, action: e => { e.preventDefault(); this._insertText('from:') } },
+    { label: <><mark>before:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('before:') } },
+    { label: <><mark>during:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('during:') } },
+    { label: <><mark>after:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('after:') } },
+  ];
 
   setRef = c => {
     this.searchForm = c;
@@ -100,7 +106,7 @@ class Search extends PureComponent {
 
   handleKeyDown = (e) => {
     const { selectedOption } = this.state;
-    const options = this._getOptions();
+    const options = searchEnabled ? this._getOptions().concat(this.defaultOptions) : this._getOptions();
 
     switch(e.key) {
     case 'Escape':
@@ -131,10 +137,9 @@ class Search extends PureComponent {
       if (selectedOption === -1) {
         this._submit();
       } else if (options.length > 0) {
-        options[selectedOption].action();
+        options[selectedOption].action(e);
       }
 
-      this._unfocus();
       break;
     case 'Delete':
       if (selectedOption > -1 && options.length > 0) {
@@ -161,6 +166,7 @@ class Search extends PureComponent {
 
     router.history.push(`/tags/${query}`);
     onClickSearchResult(query, 'hashtag');
+    this._unfocus();
   };
 
   handleAccountClick = () => {
@@ -171,6 +177,7 @@ class Search extends PureComponent {
 
     router.history.push(`/@${query}`);
     onClickSearchResult(query, 'account');
+    this._unfocus();
   };
 
   handleURLClick = () => {
@@ -178,6 +185,7 @@ class Search extends PureComponent {
     const { onOpenURL } = this.props;
 
     onOpenURL(router.history);
+    this._unfocus();
   };
 
   handleStatusSearch = () => {
@@ -196,6 +204,8 @@ class Search extends PureComponent {
     } else if (search.get('type') === 'hashtag') {
       router.history.push(`/tags/${search.get('q')}`);
     }
+
+    this._unfocus();
   };
 
   handleForgetRecentSearchClick = search => {
@@ -208,6 +218,18 @@ class Search extends PureComponent {
     document.querySelector('.ui').parentElement.focus();
   }
 
+  _insertText (text) {
+    const { value, onChange } = this.props;
+
+    if (value === '') {
+      onChange(text);
+    } else if (value[value.length - 1] === ' ') {
+      onChange(`${value}${text}`);
+    } else {
+      onChange(`${value} ${text}`);
+    }
+  }
+
   _submit (type) {
     const { onSubmit, openInRoute } = this.props;
     const { router } = this.context;
@@ -217,6 +239,8 @@ class Search extends PureComponent {
     if (openInRoute) {
       router.history.push('/search');
     }
+
+    this._unfocus();
   }
 
   _getOptions () {
@@ -331,6 +355,20 @@ class Search extends PureComponent {
               <div className='search__popout__menu'>
                 {options.map(({ key, label, action }, i) => (
                   <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === i })}>
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+
+          {searchEnabled && (
+            <>
+              <h4><FormattedMessage id='search_popout.options' defaultMessage='Search options' /></h4>
+
+              <div className='search__popout__menu'>
+                {this.defaultOptions.map(({ key, label, action }, i) => (
+                  <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === (options.length + i) })}>
                     {label}
                   </button>
                 ))}

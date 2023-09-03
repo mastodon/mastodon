@@ -108,7 +108,8 @@ SimpleForm.setup do |config|
       end
     end
 
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
+    b.use :warning_hint, wrap_with: { tag: :span, class: [:hint, 'warning-hint'] }
+    b.use :hint, wrap_with: { tag: :span, class: :hint }
     b.use :error, wrap_with: { tag: :span, class: :error }
   end
 
@@ -122,8 +123,8 @@ SimpleForm.setup do |config|
   config.wrappers :with_block_label, class: [:input, :with_block_label], hint_class: :field_with_hint, error_class: :field_with_errors do |b|
     b.use :html5
     b.use :label
-    b.use :hint, wrap_with: { tag: :span, class: :hint }
     b.use :warning_hint, wrap_with: { tag: :span, class: [:hint, 'warning-hint'] }
+    b.use :hint, wrap_with: { tag: :span, class: :hint }
     b.use :input, wrap_with: { tag: :div, class: :label_input }
     b.use :error, wrap_with: { tag: :span, class: :error }
   end

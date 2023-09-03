@@ -82,6 +82,7 @@ class Account < ApplicationRecord
   include DomainMaterializable
   include AccountMerging
   include AccountSearch
+  include AccountStatusesSearch
 
   MAX_DISPLAY_NAME_LENGTH = (ENV['MAX_DISPLAY_NAME_CHARS'] || 30).to_i
   MAX_NOTE_LENGTH = (ENV['MAX_BIO_CHARS'] || 500).to_i

@@ -1,5 +1,5 @@
 {
-  "name": "Mastodon",
+  "name": "Mastodon on local machine",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -8,13 +8,23 @@
     "ghcr.io/devcontainers/features/sshd:1": {}
   },
 
-  "runServices": ["app", "db", "redis"],
-
   "forwardPorts": [3000, 4000],
 
-  "containerEnv": {
-    "ES_ENABLED": "",
-    "LIBRE_TRANSLATE_ENDPOINT": ""
+  "portsAttributes": {
+    "3000": {
+      "label": "web",
+      "onAutoForward": "notify",
+      "requireLocalPort": true
+    },
+    "4000": {
+      "label": "stream",
+      "onAutoForward": "silent",
+      "requireLocalPort": true
+    }
+  },
+
+  "otherPortsAttributes": {
+    "onAutoForward": "silent"
   },
 
   "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",

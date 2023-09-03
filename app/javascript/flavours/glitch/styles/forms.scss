@@ -103,6 +103,7 @@ code {
         }
       }
 
+      .overridden,
       .recommended,
       .not_recommended,
       .glitch_only {
@@ -1187,14 +1188,14 @@ code {
   }
 
   li:first-child .label {
-    left: auto;
     inset-inline-start: 0;
+    inset-inline-end: auto;
     text-align: start;
     transform: none;
   }
 
   li:last-child .label {
-    left: auto;
+    inset-inline-start: auto;
     inset-inline-end: 0;
     text-align: end;
     transform: none;

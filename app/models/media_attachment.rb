@@ -44,6 +44,7 @@ class MediaAttachment < ApplicationRecord
 
   MAX_VIDEO_MATRIX_LIMIT = 8_294_400 # 3840x2160px
   MAX_VIDEO_FRAME_RATE   = 120
+  MAX_VIDEO_FRAMES       = 36_000 # Approx. 5 minutes at 120 fps
 
   IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif .webp .heic .heif .avif).freeze
   VIDEO_FILE_EXTENSIONS = %w(.webm .mp4 .m4v .mov).freeze
@@ -98,17 +99,15 @@ class MediaAttachment < ApplicationRecord
     convert_options: {
       output: {
         'loglevel' => 'fatal',
-        'movflags' => 'faststart',
-        'pix_fmt' => 'yuv420p',
-        'vf' => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
-        'vsync' => 'cfr',
+        'preset' => 'veryfast',
+        'movflags' => 'faststart', # Move metadata to start of file so playback can begin before download finishes
+        'pix_fmt' => 'yuv420p', # Ensure color space for cross-browser compatibility
+        'vf' => 'crop=floor(iw/2)*2:floor(ih/2)*2', # h264 requires width and height to be even. Crop instead of scale to avoid blurring
         'c:v' => 'h264',
-        'maxrate' => '1300K',
-        'bufsize' => '1300K',
-        'b:v' => '1300K',
-        'frames:v' => 60 * 60 * 3,
-        'crf' => 18,
+        'c:a' => 'aac',
+        'b:a' => '192k',
         'map_metadata' => '-1',
+        'frames:v' => MAX_VIDEO_FRAMES,
       }.freeze,
     }.freeze,
   }.freeze
@@ -135,7 +134,7 @@ class MediaAttachment < ApplicationRecord
       convert_options: {
         output: {
           'loglevel' => 'fatal',
-          :vf => 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
+          :vf => 'scale=\'min(640\, iw):min(640\, ih)\':force_original_aspect_ratio=decrease',
         }.freeze,
       }.freeze,
       format: 'png',

@@ -2,21 +2,6 @@
 
 import 'packs/public-path';
 import { delegate } from '@rails/ujs';
-import escapeTextContentForBrowser from 'escape-html';
-
-
-import emojify from '../mastodon/features/emoji/emoji';
-
-delegate(document, '#account_display_name', 'input', ({ target }) => {
-  const name = document.querySelector('.card .display-name strong');
-  if (name) {
-    if (target.value) {
-      name.innerHTML = emojify(escapeTextContentForBrowser(target.value));
-    } else {
-      name.textContent = name.textContent = target.dataset.default;
-    }
-  }
-});
 
 delegate(document, '#edit_profile input[type=file]', 'change', ({ target }) => {
   const avatar = document.getElementById(target.id + '-preview');
@@ -24,18 +9,6 @@ delegate(document, '#edit_profile input[type=file]', 'change', ({ target }) => {
   const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
 
   avatar.src = url;
-});
-
-delegate(document, '#account_locked', 'change', ({ target }) => {
-  const lock = document.querySelector('.card .display-name i');
-
-  if (lock) {
-    if (target.checked) {
-      delete lock.dataset.hidden;
-    } else {
-      lock.dataset.hidden = 'true';
-    }
-  }
 });
 
 delegate(document, '.input-copy input', 'click', ({ target }) => {

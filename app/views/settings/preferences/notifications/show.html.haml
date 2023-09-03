@@ -22,7 +22,7 @@
     .fields-group
       = ff.input :always_send_emails, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_always_send_emails'), hint: I18n.t('simple_form.hints.defaults.setting_always_send_emails')
 
-    - if current_user.can?(:manage_reports, :manage_appeals, :manage_users, :manage_taxonomies)
+    - if current_user.can?(:manage_reports, :manage_appeals, :manage_users, :manage_taxonomies) || (SoftwareUpdate.check_enabled? && current_user.can?(:view_devops))
       %h4= t 'notifications.administration_emails'
 
       .fields-group
@@ -32,6 +32,10 @@
         = ff.input :'notification_emails.trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_tag') if current_user.can?(:manage_taxonomies)
         = ff.input :'notification_emails.link_trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_link') if current_user.can?(:manage_taxonomies)
         = ff.input :'notification_emails.status_trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_status') if current_user.can?(:manage_taxonomies)
+
+      - if SoftwareUpdate.check_enabled? && current_user.can?(:view_devops)
+        .fields-group
+          = ff.input :'notification_emails.software_updates', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.software_updates.label'), collection: %w(none critical patch all), label_method: ->(setting) { I18n.t("simple_form.labels.notification_emails.software_updates.#{setting}") }, include_blank: false, hint: false
 
   %h4= t 'notifications.other_settings'
 

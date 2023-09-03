@@ -21,9 +21,9 @@ jobs:
         uses: actions/checkout@v3
       - id: version_vars
         run: |
-          echo mastodon_version_suffix=+pr-${{ github.event.pull_request.number }}-$(git rev-parse --short HEAD) >> $GITHUB_OUTPUT
+          echo mastodon_version_metadata=pr-${{ github.event.pull_request.number }}-$(git rev-parse --short HEAD) >> $GITHUB_OUTPUT
     outputs:
-      suffix: ${{ steps.version_vars.outputs.mastodon_version_suffix }}
+      metadata: ${{ steps.version_vars.outputs.mastodon_version_metadata }}
 
   build-image:
     needs: compute-suffix
@@ -33,7 +33,7 @@ jobs:
       use_native_arm64_builder: false
       push_to_images: |
         ghcr.io/${{ github.repository_owner }}/mastodon
-      version_suffix: ${{ needs.compute-suffix.outputs.suffix }}
+      version_metadata: ${{ needs.compute-suffix.outputs.metadata }}
       flavor: |
         latest=auto
       tags: |
