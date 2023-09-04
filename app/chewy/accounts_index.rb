@@ -34,7 +34,7 @@ class AccountsIndex < Chewy::Index
       },
 
       verbatim: {
-        tokenizer: 'uax_url_email',
+        tokenizer: 'standard',
         filter: %w(lowercase asciifolding cjk_width),
       },
 

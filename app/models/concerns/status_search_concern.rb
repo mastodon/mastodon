@@ -7,26 +7,20 @@ module StatusSearchConcern
     scope :indexable, -> { without_reblogs.where(visibility: :public).joins(:account).where(account: { indexable: true }) }
   end
 
-  def searchable_by(preloaded = nil)
-    ids = []
+  def searchable_by
+    @searchable_by ||= begin
+      ids = []
 
-    ids << account_id if local?
+      ids << account_id if local?
 
-    if preloaded.nil?
-      ids += mentions.joins(:account).merge(Account.local).active.pluck(:account_id)
-      ids += favourites.joins(:account).merge(Account.local).pluck(:account_id)
-      ids += reblogs.joins(:account).merge(Account.local).pluck(:account_id)
-      ids += bookmarks.joins(:account).merge(Account.local).pluck(:account_id)
-      ids += poll.votes.joins(:account).merge(Account.local).pluck(:account_id) if poll.present?
-    else
-      ids += preloaded.mentions[id] || []
-      ids += preloaded.favourites[id] || []
-      ids += preloaded.reblogs[id] || []
-      ids += preloaded.bookmarks[id] || []
-      ids += preloaded.votes[id] || []
+      ids += local_mentioned.pluck(:id)
+      ids += local_favorited.pluck(:id)
+      ids += local_reblogged.pluck(:id)
+      ids += local_bookmarked.pluck(:id)
+      ids += preloadable_poll.local_voters.pluck(:id) if preloadable_poll.present?
+
+      ids.uniq
     end
-
-    ids.uniq
   end
 
   def searchable_text
