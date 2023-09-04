@@ -228,20 +228,20 @@
       color: lighten($lighter-text-color, 7%);
       background-color: transparent;
     }
+  }
 
-    &.active {
+  &.active {
+    color: $highlight-text-color;
+
+    &:hover,
+    &:active,
+    &:focus {
       color: $highlight-text-color;
+      background-color: transparent;
+    }
 
-      &:hover,
-      &:active,
-      &:focus {
-        color: $highlight-text-color;
-        background-color: transparent;
-      }
-
-      &.disabled {
-        color: lighten($highlight-text-color, 13%);
-      }
+    &.disabled {
+      color: lighten($highlight-text-color, 13%);
     }
   }
 
@@ -3272,8 +3272,8 @@ $ui-header-height: 55px;
 }
 
 .switch-to-advanced {
-  color: $classic-primary-color;
-  background-color: $classic-base-color;
+  color: $light-text-color;
+  background-color: $ui-base-color;
   padding: 15px;
   border-radius: 4px;
   margin-top: 4px;
