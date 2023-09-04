@@ -5,7 +5,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   include FormattingHelper
 
   attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :group, :created_at,
-             :note, :url, :avatar, :avatar_static, :header, :header_static,
+             :note, :url, :uri, :avatar, :avatar_static, :header, :header_static,
              :followers_count, :following_count, :statuses_count, :last_status_at
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
@@ -16,6 +16,8 @@ class REST::AccountSerializer < ActiveModel::Serializer
   attribute :silenced, key: :limited, if: :silenced?
   attribute :noindex, if: :local?
 
+  attribute :memorial, if: :memorial?
+
   class AccountDecorator < SimpleDelegator
     def self.model_name
       Account.model_name
@@ -25,6 +27,16 @@ class REST::AccountSerializer < ActiveModel::Serializer
       false
     end
   end
+
+  class RoleSerializer < ActiveModel::Serializer
+    attributes :id, :name, :color
+
+    def id
+      object.id.to_s
+    end
+  end
+
+  has_many :roles, serializer: RoleSerializer, if: :local?
 
   class FieldSerializer < ActiveModel::Serializer
     include FormattingHelper
@@ -52,6 +64,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def url
     ActivityPub::TagManager.instance.url_for(object)
+  end
+
+  def uri
+    ActivityPub::TagManager.instance.uri_for(object)
   end
 
   def avatar
@@ -114,11 +130,23 @@ class REST::AccountSerializer < ActiveModel::Serializer
     object.silenced?
   end
 
+  def memorial
+    object.memorial?
+  end
+
+  def roles
+    if object.suspended? || object.user.nil?
+      []
+    else
+      [object.user.role].compact.filter(&:highlighted?)
+    end
+  end
+
   def noindex
     object.user_prefers_noindex?
   end
 
-  delegate :suspended?, :silenced?, :local?, to: :object
+  delegate :suspended?, :silenced?, :local?, :memorial?, to: :object
 
   def moved_and_not_nested?
     object.moved?

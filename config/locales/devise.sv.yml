@@ -23,59 +23,59 @@ sv:
         explanation: Du har skapat ett konto på %{host} med den här e-postadressen. Du är ett klick bort från att aktivera det. Om det inte var du ignorerar det här e-postmeddelandet.
         explanation_when_pending: Du ansökte om en inbjudan till %{host} med denna e-postadress. När du har bekräftat din e-postadress kommer vi att granska din ansökan. Du kan logga in för att ändra dina uppgifter eller ta bort ditt konto, men du kan inte komma åt de flesta funktionerna förrän ditt konto har godkänts. Om din ansökan avvisas kommer dina uppgifter att tas bort, så ingen ytterligare åtgärd kommer att krävas av dig. Om detta inte var du, vänligen ignorera detta mail.
         extra_html: Vänligen observera <a href="%{terms_path}"> systemets regler</a> och <a href="%{policy_path}">våra användarvillkor</a>.
-        subject: 'Mastodon: Bekräftelse instruktioner för %{instance}'
+        subject: 'TomX: Bekräftelse instruktioner för %{instance}'
         title: Verifiera e-postadress
       email_changed:
         explanation: 'E-postadressen för ditt konto ändras till:'
         extra: Om du inte ändrade din e-post är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta serveradministratören om du är utelåst från ditt konto.
-        subject: 'Mastodon: e-post ändrad'
+        subject: 'TomX: e-post ändrad'
         title: Ny e-post adress
       password_change:
         explanation: Lösenordet för ditt konto har ändrats.
         extra: Om du inte ändrade ditt lösenord är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta serveradministratören om du är utelåst från ditt konto.
-        subject: 'Mastodon: Lösenordet har ändrats'
+        subject: 'TomX: Lösenordet har ändrats'
         title: Lösenordet har ändrats
       reconfirmation_instructions:
         explanation: Bekräfta den nya adressen för att ändra din e-post adress.
-        extra: Om den här ändringen inte initierades av dig kan du ignorera det här e-postmeddelandet. E-postadressen för Mastodon-kontot ändras inte förrän du klickar på länken ovan.
-        subject: 'Mastodon: Bekräfta e-post för %{instance}'
+        extra: Om den här ändringen inte initierades av dig kan du ignorera det här e-postmeddelandet. E-postadressen för TomX-kontot ändras inte förrän du klickar på länken ovan.
+        subject: 'TomX: Bekräfta e-post för %{instance}'
         title: Verifiera e-postadress
       reset_password_instructions:
         action: Ändra lösenord
         explanation: Du begärde ett nytt lösenord för ditt konto.
         extra: Om du inte begärt detta kan du ignorerar det här e-postmeddelandet. Ditt lösenord ändras inte förrän du öppnar länken ovan och skapar ett nytt.
-        subject: 'Mastodon: Instruktioner för återställning av lösenord'
+        subject: 'TomX: Instruktioner för återställning av lösenord'
         title: Lösenordsåterställning
       two_factor_disabled:
         explanation: Tvåfaktorsautentisering för ditt konto har inaktiverats. Det är nu möjligt att logga in med enbart e-postadress och lösenord.
-        subject: 'Mastodon: Tvåfaktorsautentisering inaktiverad'
+        subject: 'TomX: Tvåfaktorsautentisering inaktiverad'
         title: 2FA inaktiverad
       two_factor_enabled:
         explanation: Tvåfaktorsautentisering har aktiverats för ditt konto. En token som genereras av en kopplad TOTP-app kommer att krävas vid inloggning.
-        subject: 'Mastodon: Tvåfaktorsautentisering aktiverad'
+        subject: 'TomX: Tvåfaktorsautentisering aktiverad'
         title: 2FA aktiverad
       two_factor_recovery_codes_changed:
         explanation: De tidigare återställningskoderna har ogiltigförklarats och nya har genererats.
-        subject: Mastodon Tvåfaktors-återställningskoder genererades på nytt
+        subject: TomX Tvåfaktors-återställningskoder genererades på nytt
         title: 2FA-återställningskoder ändrades
       unlock_instructions:
-        subject: 'Mastodon: Lås upp instruktioner'
+        subject: 'TomX: Lås upp instruktioner'
       webauthn_credential:
         added:
           explanation: Följande säkerhetsnyckel har lagts till i ditt konto
-          subject: 'Mastodon: Ny säkerhetsnyckel'
+          subject: 'TomX: Ny säkerhetsnyckel'
           title: En ny säkerhetsnyckel har lagts till
         deleted:
           explanation: Följande säkerhetsnyckel har tagits bort från ditt konto
-          subject: 'Mastodon: Säkerhetsnyckeln borttagen'
+          subject: 'TomX: Säkerhetsnyckeln borttagen'
           title: En av dina säkerhetsnycklar har raderats
       webauthn_disabled:
         explanation: Autentisering med säkerhetsnycklar till ditt konto har inaktiverats. Inloggning är nu endast möjligt med den token som genereras av den sammankopplade TOTP-appen.
-        subject: 'Mastodon: Autentisering med säkerhetsnycklar är inaktiverat'
+        subject: 'TomX: Autentisering med säkerhetsnycklar är inaktiverat'
         title: Säkerhetsnycklar inaktiverade
       webauthn_enabled:
         explanation: Autentisering med säkerhetsnyckel till ditt konto har aktiverats. Din säkerhetsnyckel kan nu användas för inloggning.
-        subject: 'Mastodon: Autentisering med säkerhetsnyckel är aktiverat'
+        subject: 'TomX: Autentisering med säkerhetsnyckel är aktiverat'
         title: Säkerhetsnycklar aktiverade
     omniauth_callbacks:
       failure: Det gick inte att autentisera dig från %{kind} för "%{reason}".

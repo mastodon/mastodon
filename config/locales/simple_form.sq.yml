@@ -2,6 +2,10 @@
 sq:
   simple_form:
     hints:
+      account:
+        display_name: Emri juaj i plotë, ose emri juaj lojcak.
+        fields: Faqja juaj hyrëse, përemra, moshë, ç’të keni qejf.
+        note: 'Mundeni të @përmendni persona apo #hashtagë të tjerë.'
       account_alias:
         acct: Specifikoni emrinepërdoruesit@përkatësi të llogarisë prej nga doni të lëvizet
       account_migration:
@@ -39,7 +43,6 @@ sq:
         digest: I dërguar vetëm pas një periudhe të gjatë pasiviteti dhe vetëm nëse keni marrë ndonjë mesazh personal gjatë mungesës tuaj
         discoverable: Lejoni që llogaria juaj të zbulohet nga të huaj përmes rekomandimesh, gjërash në modë dhe veçorish të tjera
         email: Do t’ju dërgohet një email ripohimi
-        fields: Te profili juaj mund të keni deri në 4 objekte të shfaqur si tabelë
         header: PNG, GIF ose JPG. E shumta %{size}. Do të ripërmasohet në %{dimensions}px
         inbox_url: Kopjoni URL-në prej faqes ballore të relesë që doni të përdorni
         irreversible: Mesazhet e filtruar do të zhduken në mënyrë të pakthyeshme, edhe nëse filtri hiqet më vonë
@@ -49,7 +52,7 @@ sq:
         phrase: Do të kërkohet përputhje pavarësish se teksti ose sinjalizimi mbi lëndën e një mesazhi është shkruar me të mëdha apo me të vogla
         scopes: Cilat API do të lejohen të përdorin aplikacioni. Nëse përzgjidhni një shkallë të epërme, nuk ju duhet të përzgjidhni individualet një nga një.
         setting_aggregate_reblogs: Mos shfaq përforcime të reja për mesazhe që janë përforcuar tani së fundi (prek vetëm përforcime të marra rishtas)
-        setting_always_send_emails: Normalisht s’do të dërgohen njoftime, kur përdorni aktivisht Mastodon-in
+        setting_always_send_emails: Normalisht s’do të dërgohen njoftime, kur përdorni aktivisht TomX-in
         setting_default_sensitive: Media rezervat fshihet, si parazgjedhje, dhe mund të shfaqet me një klikim
         setting_display_media_default: Fshih media me shenjën rezervat
         setting_display_media_hide_all: Fshih përherë mediat
@@ -59,7 +62,7 @@ sq:
         setting_show_application: Aplikacioni që përdorni për mesazhe do të shfaqet te pamja e hollësishme për mesazhet tuaj
         setting_use_blurhash: Gradientët bazohen në ngjyrat e elementëve pamorë të fshehur, por errësojnë çfarëdo hollësie
         setting_use_pending_items: Fshihi përditësimet e rrjedhës kohore pas një klikimi, në vend të rrëshqitjes automatike nëpër prurje
-        username: Emri juaj i përdoruesit do të jetë unik në %{domain}
+        username: Mund të përdorni shkronja, numra dhe nënvija
         whole_word: Kur fjalëkyçi ose fraza është vetëm numerike, do të aplikohet vetëm nëse përputhet me krejt fjalën
       domain_allow:
         domain: Kjo përkatësi do të jetë në gjendje të sjellë të dhëna prej këtij shërbyesi dhe të dhënat ardhëse prej tij do të përpunohen dhe depozitohen
@@ -79,27 +82,29 @@ sq:
         bootstrap_timeline_accounts: Këto llogari do të fiksohen në krye të rekomandimeve për ndjekje nga përdorues të rinj.
         closed_registrations_message: Shfaqur kur mbyllen dritare regjistrimesh
         content_cache_retention_period: Postimet prej shërbyesve të tjerë do të fshihen pas numrit të dhënë të ditëve, kur këtij i jepet një vlerë pozitive. Kjo mund të jetë e pakthyeshme.
-        custom_css: Stile vetjakë mund të aplikoni në versionin web të Mastodon-it.
+        custom_css: Stile vetjakë mund të aplikoni në versionin web të TomX-it.
         mascot: Anashkalon ilustrimin te ndërfaqja web e thelluar.
         media_cache_retention_period: Kartelat media të shkarkuara do të fshihen pas numrit të dhënë të ditëve, kur këtij i jepet një vlerë pozitive dhe rishkarkohen po u kërkua.
         peers_api_enabled: Një listë emrash përkatësish që ky shërbyes ka hasur në fedivers. Këtu s’jepen të dhëna nëse jeni i federuar me shërbyesin e dhënë, thjesht tregohet se shërbyesi juaj e njeh. Kjo përdoret nga shërbime që mbledhin statistika mbi federimin në kuptimin e përgjithshëm.
         profile_directory: Drejtoria e profileve paraqet krejt përdoruesit që kanë zgjedhur të jenë të zbulueshëm.
         require_invite_text: Kur regjistrimet lypin miratim dorazi, bëje tekstin “Përse doni të bëheni pjesë?” të detyrueshëm, në vend se opsional
         site_contact_email: Si mund të lidhen me ju njerëzit, për çështje ligjore, ose për asistencë.
-        site_contact_username: Si mund të lidhen njerëzit me ju në Mastodon.
+        site_contact_username: Si mund të lidhen njerëzit me ju në TomX.
         site_extended_description: Çfarëdo hollësie shtesë që mund të jetë e dobishme për vizitorët dhe përdoruesit tuaj. Mund të hartohet me sintaksë Markdown.
         site_short_description: Një përshkrim i shkurtër për të ndihmuar identifikimin unik të shërbyesit tuaj. Kush e mban në punë, për kë është?
         site_terms: Përdorni rregullat tuaja të privatësisë, ose lëreni të zbrazët që të përdoren ato parazgjedhje. Mund të hartohet me sintaksë Markdown.
         site_title: Si mund t’i referohen njerëzit shërbyesit tuaj, përveç emrit të tij të përkatësisë.
+        status_page_url: URL e faqe ku njerëzit mund të shohin gjendjen e këtij shërbyesi, gjatë një ndërprerje të funksionimit
         theme: Temë që shohin vizitorët që kanë bërë daljen dhe përdorues të rinj.
         thumbnail: Një figurë afërsisht 2:1 e shfaqur tok me hollësi mbi shërbyesin tuaj.
         timeline_preview: Vizitorët që kanë bërë daljen do të jenë në gjendje të shfletojnë postimet më të freskëta publike të passhme në shërbyes.
         trendable_by_default: Anashkalo shqyrtim dorazi lënde në modë. Gjëra individuale prapë mund të hiqen nga lëndë në modë pas publikimi.
         trends: Gjërat në modë shfaqin cilat postime, hashtagë dhe histori të reja po tërheqin vëmendjen në shërbyesin tuaj.
+        trends_as_landing_page: Shfaq lëndë në modë për përdorues jo të futur në llogari dhe për vizitorë, në vend se të një përshkrimi të këtij shërbyesi. Lyp që të jenë të aktivizuara gjërat në modë.
       form_challenge:
         current_password: Po hyni në një zonë të sigurt
       imports:
-        data: Kartelë CSV të eksportuar nga një tjetër shërbyes Mastodon
+        data: Kartelë CSV të eksportuar nga një tjetër shërbyes TomX
       invite_request:
         text: Kjo do të na ndihmojë të shqyrtojmë aplikimin tuaj
       ip_block:
@@ -129,6 +134,7 @@ sq:
         position: Role më të lartë vendosin zgjidhje përplasje në disa raste. Disa veprime mund të kryhen vetëm mbi role të një shkalle më të ulët
       webhook:
         events: Përzgjidhni akte për dërgim
+        template: Hartoni ngarkesë tuajën JSON, duke përdorur ndërkëmbim ndryshoresh. Lëreni të zbrazët, për JSON-in parazgjedhje.
         url: Ku do të dërgohen aktet
     labels:
       account:
@@ -194,7 +200,6 @@ sq:
         setting_always_send_emails: Dërgo përherë njoftime me email
         setting_auto_play_gif: Vetëluaji GIF-et e animuar
         setting_boost_modal: Shfaq dialog ripohimi përpara përforcimi
-        setting_crop_images: Në mesazhe jo të zgjerueshëm, qethi figurat në 16x9
         setting_default_language: Gjuhë postimi
         setting_default_privacy: Privatësi postimi
         setting_default_sensitive: Mediave vëru përherë shenjë si rezervat
@@ -251,11 +256,13 @@ sq:
         site_short_description: Përshkrim shërbyesi
         site_terms: Rregulla Privatësie
         site_title: Emër shërbyesi
+        status_page_url: URL faqeje gjendjesh
         theme: Temë parazgjedhje
         thumbnail: Miniaturë shërbyesi
         timeline_preview: Lejo hyrje pa mirëfilltësim te rrjedha kohore publike
         trendable_by_default: Lejoni gjëra në modë pa shqyrtim paraprak
         trends: Aktivizo gjëra në modë
+        trends_as_landing_page: Përdor gjërat në modë si faqe hyrëse
       interactions:
         must_be_follower: Blloko njoftime nga jo-ndjekës
         must_be_following: Blloko njoftime nga persona që s’i ndiqni
@@ -292,6 +299,7 @@ sq:
         usable: Lejoji mesazhet të përdorin këtë hashtag
       user:
         role: Rol
+        time_zone: Zonë kohore
       user_role:
         color: Ngjyrë steme
         highlighted: Shfaqe rolin si një stemë në profile përdoruesish
@@ -300,6 +308,7 @@ sq:
         position: Përparësi
       webhook:
         events: Akte të aktivizuar
+        template: Gjedhe ngarkese
         url: URL pikëmbarimi
     'no': Jo
     not_recommended: Jo e këshilluar

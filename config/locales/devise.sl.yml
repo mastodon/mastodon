@@ -23,59 +23,59 @@ sl:
         explanation: S tem e-poštnim naslovom ste ustvarili račun na %{host}. Z enim samim klikom ga aktivirate. Če to niste bili vi, prosimo, prezrite to e-poštno sporočilo.
         explanation_when_pending: S tem e-poštnim naslovom ste zaprosili za povabilo na %{host}. Ko potrdite svoj e-poštni naslov, bomo pregledali vašo prijavo. Do takrat se ne morete prijaviti. Če bo vaša prijava zavrnjena, bodo vaši podatki odstranjeni, zato nadaljnje ukrepanje ne bo potrebno. Če to niste bili vi, prezrite to e-poštno sporočilo.
         extra_html: Preverite tudi <a href="%{terms_path}">pravila strežnika</a> in <a href="%{policy_path}">naše pogoje storitve</a>.
-        subject: 'Mastodon: Navodila za potrditev za %{instance}'
+        subject: 'TomX: Navodila za potrditev za %{instance}'
         title: Potrdi e-poštni naslov
       email_changed:
         explanation: 'E-poštni naslov za vaš račun je spremenjen v:'
         extra: Če niste spremenili e-pošte, je verjetno, da je nekdo pridobil dostop do vašega računa. Prosimo, zamenjajte geslo takoj ali se obrnite na skbrnika, če ste izklopljeni iz svojega računa.
-        subject: 'Mastodon: e-poštni naslov je spremenjen'
+        subject: 'TomX: e-poštni naslov je spremenjen'
         title: Novi e-poštni naslov
       password_change:
         explanation: Geslo za vaš račun je bilo spremenjeno.
         extra: Če niste spremenili gesla, je verjetno, da je nekdo pridobil dostop do vašega računa. Prosimo, zamenjajte geslo takoj. Če ste blokirani iz svojega računa, se obrnite na skrbnika strežnika.
-        subject: 'Mastodon: geslo je spremenjeno'
+        subject: 'TomX: geslo je spremenjeno'
         title: Geslo je spremenjeno
       reconfirmation_instructions:
         explanation: Potrdite novi naslov, da spremenite svoj e-poštni naslov.
-        extra: Če te spremembe niste sprožili, prezrite to e-poštno sporočilo. E-poštni naslov za račun Mastodon se ne bo spremenil, dokler ne kliknete zgornje povezave.
-        subject: 'Mastodon: potrdite e-pošto za %{instance}'
+        extra: Če te spremembe niste sprožili, prezrite to e-poštno sporočilo. E-poštni naslov za račun TomX se ne bo spremenil, dokler ne kliknete zgornje povezave.
+        subject: 'TomX: potrdite e-pošto za %{instance}'
         title: Potrdi e-poštni naslov
       reset_password_instructions:
         action: Spremeni geslo
         explanation: Zahtevali ste novo geslo za svoj račun.
         extra: Če tega niste zahtevali, prezrite to e-poštno sporočilo. Vaše geslo se ne bo spremenilo, dokler ne kliknete zgornje povezave in ustvarite novega.
-        subject: 'Mastodon: navodila za ponastavitev gesla'
+        subject: 'TomX: navodila za ponastavitev gesla'
         title: Ponastavitev gesla
       two_factor_disabled:
         explanation: Dvojno oz. dvofazno preverjanje pristnosti je za vaš račun onemogočeno. Prijava je zdaj možna le z e-poštnim naslovom in geslom.
-        subject: 'Mastodon: dvojno preverjanje pristnosti je onemogočeno'
+        subject: 'TomX: dvojno preverjanje pristnosti je onemogočeno'
         title: 2FA onemogočeno
       two_factor_enabled:
         explanation: Dvojno oz. dvofazno preverjanje pristnosti je za vaš račun omogočeno. Žeton, izdelan z aplikacijo TOTP, bo zahtevan zs prijavo.
-        subject: 'Mastodon: dvojno preverjanje pristnosti je omogočeno'
+        subject: 'TomX: dvojno preverjanje pristnosti je omogočeno'
         title: 2FA omogočeno
       two_factor_recovery_codes_changed:
         explanation: Prejšnje obnovitvene kode so postale neveljavne in ustvarjene so bile nove.
-        subject: 'Mastodon: varnostne obnovitvene kode za dvojno preverjanje pristnosti so ponovno izdelane'
+        subject: 'TomX: varnostne obnovitvene kode za dvojno preverjanje pristnosti so ponovno izdelane'
         title: obnovitvene kode 2FA spremenjene
       unlock_instructions:
-        subject: 'Mastodon: navodila za odklepanje'
+        subject: 'TomX: navodila za odklepanje'
       webauthn_credential:
         added:
           explanation: Naslednja varnostna koda je dodana vašemu računu
-          subject: 'Mastodon: nova varnostna koda'
+          subject: 'TomX: nova varnostna koda'
           title: Dodana je nova varnostna koda
         deleted:
           explanation: Naslednja varnostna koda je izbrisana iz vašega računa
-          subject: 'Mastodon: varnostna koda izbrisana'
+          subject: 'TomX: varnostna koda izbrisana'
           title: Ena od vaših varnostnih kod je bila izbrisana
       webauthn_disabled:
         explanation: Overjanje pristnosti z varnostnimi kodami je za vaš račun onemogočeno. Prijava je zdaj možna le z uporabo žetona, ki ga izdela oparjena aplikacija TOTP.
-        subject: 'Mastodon: overjanje pristnosti z varnosnimi kodami je onemogočeno'
+        subject: 'TomX: overjanje pristnosti z varnosnimi kodami je onemogočeno'
         title: Varnostne kode onemogočene
       webauthn_enabled:
         explanation: Overjanje z varnostno kodo je za vaš račun omogočeno. Svojo varnostno kodo lahko zdaj uporabite za prijavo.
-        subject: 'Mastodon: preverjanje pristnosti z varnostno kodo je omogočeno'
+        subject: 'TomX: preverjanje pristnosti z varnostno kodo je omogočeno'
         title: Varnostne kode omogočene
     omniauth_callbacks:
       failure: Overitev iz %{kind} ni možna zaradi "%{reason}".

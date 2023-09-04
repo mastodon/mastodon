@@ -10,13 +10,18 @@ class ApplicationController < ActionController::Base
   include SessionTrackingConcern
   include CacheConcern
   include DomainControlHelper
+  include DatabaseHelper
 
   helper_method :current_account
   helper_method :current_session
   helper_method :current_theme
   helper_method :single_user_mode?
   helper_method :use_seamless_external_login?
-  helper_method :whitelist_mode?
+  helper_method :omniauth_only?
+  helper_method :sso_account_settings
+  helper_method :limited_federation_mode?
+  helper_method :body_class_string
+  helper_method :skip_csrf_meta_tags?
 
   rescue_from ActionController::ParameterMissing, Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
   rescue_from Mastodon::NotPermittedError, with: :forbidden
@@ -33,8 +38,10 @@ class ApplicationController < ActionController::Base
     service_unavailable
   end
 
-  before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
+  before_action :store_referrer, except: :raise_not_found, if: :devise_controller?
   before_action :require_functional!, if: :user_signed_in?
+
+  before_action :set_cache_control_defaults
 
   skip_before_action :verify_authenticity_token, only: :raise_not_found
 
@@ -45,23 +52,38 @@ class ApplicationController < ActionController::Base
   private
 
   def authorized_fetch_mode?
-    ENV['AUTHORIZED_FETCH'] == 'true' || Rails.configuration.x.whitelist_mode
+    ENV['AUTHORIZED_FETCH'] == 'true' || Rails.configuration.x.limited_federation_mode
   end
 
   def public_fetch_mode?
     !authorized_fetch_mode?
   end
 
-  def store_current_location
-    store_location_for(:user, request.url) unless [:json, :rss].include?(request.format&.to_sym)
+  def store_referrer
+    return if request.referer.blank?
+
+    redirect_uri = URI(request.referer)
+    return if redirect_uri.path.start_with?('/auth')
+
+    stored_url = redirect_uri.to_s if redirect_uri.host == request.host && redirect_uri.port == request.port
+
+    store_location_for(:user, stored_url)
   end
 
   def require_functional!
     redirect_to edit_user_registration_path unless current_user.functional?
   end
 
+  def skip_csrf_meta_tags?
+    false
+  end
+
   def after_sign_out_path_for(_resource_or_scope)
-    new_user_session_path
+    if ENV['OMNIAUTH_ONLY'] == 'true' && ENV['OIDC_ENABLED'] == 'true'
+      '/auth/auth/openid_connect/logout'
+    else
+      new_user_session_path
+    end
   end
 
   protected
@@ -114,6 +136,14 @@ class ApplicationController < ActionController::Base
     Devise.pam_authentication || Devise.ldap_authentication
   end
 
+  def omniauth_only?
+    ENV['OMNIAUTH_ONLY'] == 'true'
+  end
+
+  def sso_account_settings
+    ENV.fetch('SSO_ACCOUNT_SETTINGS', nil)
+  end
+
   def current_account
     return @current_account if defined?(@current_account)
 
@@ -128,7 +158,12 @@ class ApplicationController < ActionController::Base
 
   def current_theme
     return Setting.theme unless Themes.instance.names.include? current_user&.setting_theme
+
     current_user.setting_theme
+  end
+
+  def body_class_string
+    @body_classes || ''
   end
 
   def respond_with_error(code)
@@ -136,5 +171,9 @@ class ApplicationController < ActionController::Base
       format.any  { render "errors/#{code}", layout: 'error', status: code, formats: [:html] }
       format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code }
     end
+  end
+
+  def set_cache_control_defaults
+    response.cache_control.replace(private: true, no_store: true)
   end
 end

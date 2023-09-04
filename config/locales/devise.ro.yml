@@ -23,7 +23,7 @@ ro:
         explanation: Ai creat un cont pe %{host} cu această adresă de e-mail. Ești la un click distanță de a o activa. Dacă nu ai fost tu, ignoră acest e-mail.
         explanation_when_pending: Ai solicitat o invitație către %{host} cu această adresă de e-mail. Odată ce îți confirmi adresa de e-mail, îți vom revizui cererea. Te poți autentifica pentru a-ți schimba detaliile sau pentru a-ți șterge contul, dar nu poți accesa majoritatea funcțiilor până când contul tău nu este aprobat. Dacă cererea ta este respinsă, datele tale vor fi șterse, astfel încât nu va fi necesară nicio altă acțiune din partea ta. Dacă nu ai fost tu, ignoră acest e-mail.
         extra_html: Te rugăm să verifici și <a href="%{terms_path}">regulile serverului</a> și <a href="%{policy_path}">termenii noștri de serviciu</a>.
-        subject: 'Mastodon: Instrucțiuni de confirmare pentru %{instance}'
+        subject: 'TomX: Instrucțiuni de confirmare pentru %{instance}'
         title: Verifică adresa de e-mail
       email_changed:
         explanation: 'Adresa de e-mail pentru contul tău este schimbată la:'
@@ -37,8 +37,8 @@ ro:
         title: Parolă schimbată
       reconfirmation_instructions:
         explanation: Confirmă noua adresă pentru a schimba adresa de e-mail.
-        extra: Dacă această modificare nu a fost inițiată de dvs., vă rugăm să ignorați acest e-mail. Adresa de e-mail pentru contul Mastodon nu se va schimba până când nu accesați link-ul de mai sus.
-        subject: 'Mastodon: Confirmați e-mailul pentru %{instance}'
+        extra: Dacă această modificare nu a fost inițiată de dvs., vă rugăm să ignorați acest e-mail. Adresa de e-mail pentru contul TomX nu se va schimba până când nu accesați link-ul de mai sus.
+        subject: 'TomX: Confirmați e-mailul pentru %{instance}'
         title: Verifică adresa de e-mail
       reset_password_instructions:
         action: Schimbă parola
@@ -63,19 +63,19 @@ ro:
       webauthn_credential:
         added:
           explanation: Următoarea cheie de securitate a fost adăugată în contul tău
-          subject: 'Mastodon: Noua cheie de securitate'
+          subject: 'TomX: Noua cheie de securitate'
           title: A fost adăugată o nouă cheie de securitate
         deleted:
           explanation: Următoarea cheie de securitate a fost ștearsă din contul tău
-          subject: 'Mastodon: Cheie de securitate ștearsă'
+          subject: 'TomX: Cheie de securitate ștearsă'
           title: Una dintre cheile tale de securitate a fost ștearsă
       webauthn_disabled:
         explanation: Autentificarea cu chei de securitate a fost dezactivată pentru contul tău. Conectarea este posibilă acum folosind doar token-ul generat de aplicația TOTP.
-        subject: 'Mastodon: Autentificarea cu chei de securitate dezactivată'
+        subject: 'TomX: Autentificarea cu chei de securitate dezactivată'
         title: Chei de securitate dezactivate
       webauthn_enabled:
         explanation: Autentificarea cheii de securitate a fost activată pentru contul tău. Cheia ta de securitate poate fi acum folosită pentru conectare.
-        subject: 'Mastodon: Autentificarea cheii de securitate activată'
+        subject: 'TomX: Autentificarea cheii de securitate activată'
         title: Chei de securitate activate
     omniauth_callbacks:
       failure: Nu te-am putut autentifica de la %{kind} deoarece "%{reason}".

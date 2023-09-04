@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveDuplicatedIndexesPghero < ActiveRecord::Migration[5.2]
   def up
     remove_index :account_conversations, name: :index_account_conversations_on_account_id     if index_exists?(:account_conversations, :account_id, name: :index_account_conversations_on_account_id)
@@ -19,4 +21,3 @@ class RemoveDuplicatedIndexesPghero < ActiveRecord::Migration[5.2]
     add_index :markers, :user_id, name: :index_markers_on_user_id                                       unless index_exists?(:markers, :user_id, name: :index_markers_on_user_id)
   end
 end
-

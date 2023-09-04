@@ -2,6 +2,10 @@
 cs:
   simple_form:
     hints:
+      account:
+        display_name: Vaše celé jméno nebo přezdívka.
+        fields: Vaše domovská stránka, zájmena, věk, cokoliv chcete.
+        note: 'Můžete @zmínit jiné osoby nebo #hashtagy.'
       account_alias:
         acct: Zadejte svůj účet, ze kterého se chcete přesunout jinam, ve formátu přezdívka@doména
       account_migration:
@@ -39,7 +43,6 @@ cs:
         digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste během své nepřítomnosti obdrželi osobní zprávy
         discoverable: Umožnit, aby mohli váš účet objevit neznámí lidé pomocí doporučení, trendů a dalších funkcí
         email: Bude vám poslán potvrzovací e-mail
-        fields: Na svém profilu můžete mít zobrazeny až 4 položky jako tabulku
         header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         inbox_url: Zkopírujte URL z hlavní stránky mostu, který chcete použít
         irreversible: Filtrované příspěvky nenávratně zmizí, i pokud bude filtr později odstraněn
@@ -49,7 +52,7 @@ cs:
         phrase: Shoda bude nalezena bez ohledu na velikost písmen v textu příspěvku či varování o obsahu
         scopes: Která API bude aplikace moct používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat jednotlivě.
         setting_aggregate_reblogs: Nezobrazovat nové boosty pro příspěvky, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
-        setting_always_send_emails: Jinak nebudou e-mailové notifikace posílány, když Mastodon aktivně používáte
+        setting_always_send_emails: Jinak nebudou e-mailové notifikace posílány, když TomX aktivně používáte
         setting_default_sensitive: Citlivá média jsou ve výchozím stavu skryta a mohou být zobrazena kliknutím
         setting_display_media_default: Skrývat média označená jako citlivá
         setting_display_media_hide_all: Vždy skrývat média
@@ -59,7 +62,7 @@ cs:
         setting_show_application: Aplikace, kterou používáte k odeslání příspěvků, bude zobrazena jejich detailním zobrazení
         setting_use_blurhash: Gradienty jsou založeny na barvách skryté grafiky, ale zakrývají jakékoliv detaily
         setting_use_pending_items: Aktualizovat časovou osu až po kliknutí namísto automatického rolování kanálu
-        username: Vaše uživatelské jméno bude na serveru %{domain} unikátní
+        username: Pouze písmena, číslice a podtržítka
         whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikován pouze, pokud se shoduje s celým slovem
       domain_allow:
         domain: Tato doména bude moci stahovat data z tohoto serveru a příchozí data z ní budou zpracována a uložena
@@ -79,27 +82,29 @@ cs:
         bootstrap_timeline_accounts: Tyto účty budou připnuty na vrchol nových uživatelů podle doporučení.
         closed_registrations_message: Zobrazeno při zavření registrace
         content_cache_retention_period: Příspěvky z jiných serverů budou odstraněny po zadaném počtu dní, pokud je nastavena kladná hodnota. To může být nevratné.
-        custom_css: Můžete použít vlastní styly ve verzi Mastodonu.
+        custom_css: Můžete použít vlastní styly ve verzi TomXu.
         mascot: Přepíše ilustraci v pokročilém webovém rozhraní.
         media_cache_retention_period: Stažené mediální soubory budou po zadaném počtu dní odstraněny, pokud je nastavena kladná hodnota, a na požádání znovu staženy.
         peers_api_enabled: Seznam názvů domén se kterými se tento server setkal ve fediversu. Neobsahuje žádná data o tom, zda jste federovali s daným serverem, pouze že o něm váš server ví. Toto je využíváno službami, které sbírají o federování statistiku v obecném smyslu.
         profile_directory: Adresář profilu obsahuje seznam všech uživatelů, kteří se přihlásili, aby mohli být nalezeni.
         require_invite_text: Pokud přihlášení vyžaduje ruční schválení, měl by být textový vstup „Proč se chcete připojit?“ povinný spíše než volitelný
         site_contact_email: Jak vás mohou lidé kontaktovat v případě právních dotazů nebo dotazů na podporu.
-        site_contact_username: Jak vás lidé mohou oslovit na Mastodon.
+        site_contact_username: Jak vás lidé mohou oslovit na TomX.
         site_extended_description: Jakékoli další informace, které mohou být užitečné pro návštěvníky a vaše uživatele. Může být strukturováno pomocí Markdown syntaxe.
         site_short_description: Krátký popis, který pomůže jednoznačně identifikovat váš server. Kdo ho provozuje, pro koho je určen?
         site_terms: Použijte vlastní zásady ochrany osobních údajů nebo ponechte prázdné pro použití výchozího nastavení. Může být strukturováno pomocí Markdown syntaxe.
         site_title: Jak mohou lidé odkazovat na váš server kromě názvu domény.
+        status_page_url: URL stránky, kde mohou lidé vidět stav tohoto serveru během výpadku
         theme: Vzhled stránky, který vidí noví a odhlášení uživatelé.
         thumbnail: Přibližně 2:1 obrázek zobrazený vedle informací o vašem serveru.
         timeline_preview: Odhlášení uživatelé budou moci procházet nejnovější veřejné příspěvky na serveru.
         trendable_by_default: Přeskočit manuální kontrolu populárního obsahu. Jednotlivé položky mohou být odstraněny z trendů později.
         trends: Trendy zobrazují, které příspěvky, hashtagy a zprávy získávají na serveru pozornost.
+        trends_as_landing_page: Zobrazit populární obsah odhlášeným uživatelům a návštěvníkům místo popisu tohoto serveru. Vyžaduje povolení trendů.
       form_challenge:
         current_password: Vstupujete do zabezpečeného prostoru
       imports:
-        data: Soubor CSV exportovaný z jiného serveru Mastodon
+        data: Soubor CSV exportovaný z jiného serveru TomX
       invite_request:
         text: To nám pomůže posoudit vaši žádost
       ip_block:
@@ -129,6 +134,7 @@ cs:
         position: Vyšší role rozhoduje o řešení konfliktů v určitých situacích. Některé akce lze provádět pouze na rolích s nižší prioritou
       webhook:
         events: Zvolte odesílané události
+        template: Sestavte si vlastní JSON payload pomocí interpolace proměnných. Pro výchozí JSON ponechte prázdné.
         url: Kam budou události odesílány
     labels:
       account:
@@ -194,7 +200,6 @@ cs:
         setting_always_send_emails: Vždy posílat e-mailová oznámení
         setting_auto_play_gif: Automaticky přehrávat animace GIF
         setting_boost_modal: Před boostnutím zobrazovat potvrzovací okno
-        setting_crop_images: Ořezávat obrázky v nerozbalených příspěvcích na 16x9
         setting_default_language: Jazyk příspěvků
         setting_default_privacy: Soukromí příspěvků
         setting_default_sensitive: Vždy označovat média jako citlivá
@@ -251,11 +256,13 @@ cs:
         site_short_description: Popis serveru
         site_terms: Ochrana osobních údajů
         site_title: Název serveru
+        status_page_url: URL stránky se stavem
         theme: Výchozí motiv
         thumbnail: Miniatura serveru
         timeline_preview: Povolit neověřený přístup k veřejným časovým osám
         trendable_by_default: Povolit trendy bez předchozí revize
         trends: Povolit trendy
+        trends_as_landing_page: Použít trendy jako vstupní stránku
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete
@@ -292,6 +299,7 @@ cs:
         usable: Povolit používat tento hashtag v příspěvcích
       user:
         role: Role
+        time_zone: Časové pásmo
       user_role:
         color: Barva odznaku
         highlighted: Zobrazit roli jako odznak na profilech uživatelů
@@ -300,6 +308,7 @@ cs:
         position: Priorita
       webhook:
         events: Zapnuté události
+        template: Šablona payloadu
         url: URL koncového bodu
     'no': Ne
     not_recommended: Nedoporučuje se

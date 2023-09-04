@@ -12,8 +12,6 @@
   %body.error
     .dialog
       .dialog__illustration
-        %h1
-          = link_to root_url, class: 'brand' do
-            = Setting.default_settings['site_title']
+        %img{ alt: Setting.default_settings['site_title'], src: '/oops.png' }/
       .dialog__message
         %h1= yield :content

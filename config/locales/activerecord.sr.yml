@@ -24,11 +24,11 @@ sr:
         admin/webhook:
           attributes:
             url:
-              invalid: није важећа УРЛ адреса
+              invalid: није важећа URL адреса
         doorkeeper/application:
           attributes:
             website:
-              invalid: није важећа УРЛ адреса
+              invalid: није важећа URL адреса
         import:
           attributes:
             data:
@@ -40,7 +40,7 @@ sr:
         user:
           attributes:
             email:
-              blocked: користи недозвољени провајдер е-поште
+              blocked: користи недозвољеног добављача е-поште
               unreachable: изгледа да не постоји
             role_id:
               elevated: не може бити више са вашом тренутном улогом
@@ -53,3 +53,7 @@ sr:
             position:
               elevated: не може бити више са вашом тренутном улогом
               own_role: не може да се промени са вашом тренутном улогом
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: не могу се укључити догађаји на које немате права

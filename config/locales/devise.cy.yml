@@ -23,59 +23,59 @@ cy:
         explanation: Rydych chi wedi creu cyfrif ar %{host} gyda'r cyfeiriad e-bost hwn. Rydych chi un clic i ffwrdd o'i hagor. Os nad chi oedd hwn, anwybyddwch yr e-bost hwn.
         explanation_when_pending: Gwnaethoch gais am wahoddiad i %{host} gyda'r cyfeiriad e-bost hwn. Unwaith y byddwch yn cadarnhau eich cyfeiriad e-bost, byddwn yn adolygu eich cais. Gallwch fewngofnodi i newid eich manylion neu ddileu eich cyfrif, ond ni allwch gael mynediad i'r rhan fwyaf o'r swyddogaethau nes bod eich cyfrif wedi'i gymeradwyo. Os caiff eich cais ei wrthod, bydd eich data yn cael ei ddileu, felly ni fydd angen unrhyw gamau pellach gennych. Os nad chi oedd hwn, anwybyddwch yr e-bost hwn.
         extra_html: Edrychwch hefyd ar <a href="%{terms_path}">reolau'r gweinydd</a> <a href="%{policy_path}">a'n telerau gwasanaeth</a> .
-        subject: 'Mastodon: Cyfarwyddiadau cadarnhau ar gyfer %{instance}'
+        subject: 'TomX: Cyfarwyddiadau cadarnhau ar gyfer %{instance}'
         title: Gwirio cyfeiriad e-bost
       email_changed:
         explanation: 'Mae''r cyfeiriad e-bost ar gyfer eich cyfrif yn cael ei newid i:'
         extra: Os nad ydych wedi newid eich e-bost, mae'n debygol fod rhywun wedi mewngofnodi i'ch cyfrif. Newidiwch eich cyfrinair cyn gynted â phosib neu gysylltwch â'r gweinyddwyr os ydych wedi cael eich cloi allan o'ch cyfrif.
-        subject: 'Mastodon: E-bost wedi''i newid'
+        subject: 'TomX: E-bost wedi''i newid'
         title: Cyfeiriad e-bost newydd
       password_change:
         explanation: Newidwyd cyfrinair eich cyfrif.
         extra: Os nad ydych wedi newid eich cyfrinair, mae'n debygol fod rhywun wedi mewngofnodi i'ch cyfrif. Newidiwch eich cyfrinair cyn gynted â phosib neu gysylltwch â'r gweinyddwyr os ydych wedi cael eich cloi allan o'ch cyfrif.
-        subject: 'Mastodon: Cyfrinair wedi''i newid'
+        subject: 'TomX: Cyfrinair wedi''i newid'
         title: Newidwyd cyfrinair
       reconfirmation_instructions:
         explanation: Cadarnhewch y cyfeiriad newydd i newid eich e-bost.
-        extra: Os na chychwynnwyd y newid hwn gennych chi, anwybyddwch yr e-bost hwn. Ni fydd cyfeiriad e-bost y cyfrif Mastodon yn newid nes i chi gael mynediad i'r ddolen uchod.
-        subject: 'Mastodon: Cadarnhau e-bost ar gyfer %{instance}'
+        extra: Os na chychwynnwyd y newid hwn gennych chi, anwybyddwch yr e-bost hwn. Ni fydd cyfeiriad e-bost y cyfrif TomX yn newid nes i chi gael mynediad i'r ddolen uchod.
+        subject: 'TomX: Cadarnhau e-bost ar gyfer %{instance}'
         title: Gwirio cyfeiriad e-bost
       reset_password_instructions:
         action: Newid cyfrinair
         explanation: Fe wnaethoch chi ofyn am gyfrinair newydd ar gyfer eich cyfrif.
         extra: Os na wnaethoch ofyn am hyn, anwybyddwch yr e-bost hwn. Ni fydd eich cyfrinair yn newid nes i chi gyrchu'r ddolen uchod a chreu un newydd.
-        subject: 'Mastodon: Ailosod cyfarwyddiadau cyfrinair'
+        subject: 'TomX: Ailosod cyfarwyddiadau cyfrinair'
         title: Ailosod cyfrinair
       two_factor_disabled:
         explanation: Mae dilysiad dau ffactor ar gyfer eich cyfrif wedi'i analluogi. Mae modd mewngofnodi nawr gan ddefnyddio cyfeiriad e-bost a chyfrinair yn unig.
-        subject: 'Mastodon: mae dilysu dau ffactor wedi''i alluogi'
+        subject: 'TomX: mae dilysu dau ffactor wedi''i alluogi'
         title: Dilysu dau ffactor yn anabl
       two_factor_enabled:
         explanation: Mae dilysu dau ffactor wedi'i alluogi ar gyfer eich cyfrif. Bydd angen tocyn a gynhyrchir gan yr ap TOTP pâr i fewngofnodi.
-        subject: 'Mastodon: mae dilysu dau ffactor wedi''i alluogi'
+        subject: 'TomX: mae dilysu dau ffactor wedi''i alluogi'
         title: Mae dilysu dau ffactor wedi'i alluogi
       two_factor_recovery_codes_changed:
         explanation: Mae'r codau adfer blaenorol wedi'u hannilysu a chynhyrchwyd rhai newydd.
-        subject: 'Mastodon: Mae codau adfer dau ffactor wedi''u hadfywio'
+        subject: 'TomX: Mae codau adfer dau ffactor wedi''u hadfywio'
         title: Newidiodd codau adfer 2FA
       unlock_instructions:
-        subject: 'Mastodon: Cyfarwyddiadau datgloi'
+        subject: 'TomX: Cyfarwyddiadau datgloi'
       webauthn_credential:
         added:
           explanation: Mae'r allwedd ddiogelwch ganlynol wedi'i hychwanegu at eich cyfrif
-          subject: 'Mastodon: Allwedd ddiogelwch newydd'
+          subject: 'TomX: Allwedd ddiogelwch newydd'
           title: Mae allwedd ddiogelwch newydd wedi'i hychwanegu
         deleted:
           explanation: Mae'r allwedd ddiogelwch ganlynol wedi'i dileu o'ch cyfrif
-          subject: 'Mastodon: Allwedd ddiogelwch wedi''i dileu'
+          subject: 'TomX: Allwedd ddiogelwch wedi''i dileu'
           title: Mae un o'ch allweddi diogelwch wedi'i ddileu
       webauthn_disabled:
         explanation: Mae dilysu gydag allweddi diogelwch wedi'i analluogi ar gyfer eich cyfrif. Mae mewngofnodi bellach yn bosibl gan ddefnyddio'r tocyn a gynhyrchir gan yr ap TOTP pâr yn unig.
-        subject: 'Mastodon: Dilysiad gydag allweddi diogelwch wedi''i analluogi'
+        subject: 'TomX: Dilysiad gydag allweddi diogelwch wedi''i analluogi'
         title: Allweddi diogelwch wedi'u hanalluogi
       webauthn_enabled:
         explanation: Mae dilysiad allwedd diogelwch wedi'i alluogi ar gyfer eich cyfrif. Gellir defnyddio'ch allwedd ddiogelwch nawr ar gyfer mewngofnodi.
-        subject: 'Mastodon: Dilysiad allwedd diogelwch wedi''i alluogi'
+        subject: 'TomX: Dilysiad allwedd diogelwch wedi''i alluogi'
         title: Allweddi diogelwch wedi'u galluogi
     omniauth_callbacks:
       failure: Methu eich dilysu o %{kind} oherwydd "%{reason}".

@@ -3,7 +3,7 @@ services:
   db:
     restart: always
     image: postgres:14-alpine
-    shm_size: 512mb    # 256MB is much too small, yet this is probably small enough to avoid OOMs even with 2GB RAM
+    shm_size: 256mb
     networks:
       - internal_network
     healthcheck:
@@ -23,7 +23,6 @@ services:
     volumes:
       - ./redis:/data
 
-  # disabled, as there are open issues related to it plus ES chews RAM and CPU
   # es:
   #   restart: always
   #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
@@ -39,6 +38,7 @@ services:
   #     - "discovery.type=single-node"
   #     - "thread_pool.write.queue_size=1000"
   #   networks:
+  #      - external_network
   #      - internal_network
   #   healthcheck:
   #      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
@@ -56,7 +56,7 @@ services:
 
   web:
     build: .
-    image: tootsuite/mastodon:v4.0.2
+    image: ghcr.io/mastodon/mastodon:v4.1.6
     restart: always
     env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
@@ -77,7 +77,7 @@ services:
 
   streaming:
     build: .
-    image: tootsuite/mastodon:v4.0.2
+    image: ghcr.io/mastodon/mastodon:v4.1.6
     restart: always
     env_file: .env.production
     command: node ./streaming
@@ -95,7 +95,7 @@ services:
 
   sidekiq:
     build: .
-    image: tootsuite/mastodon:v4.0.2
+    image: ghcr.io/mastodon/mastodon:v4.1.6
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq

@@ -5,16 +5,11 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings,
-             :max_toot_chars, :languages
+             :languages
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
   has_one :role, serializer: REST::RoleSerializer
 
-  def max_toot_chars
-    StatusLengthValidator::MAX_CHARS
-  end
-
-  # rubocop:disable Metrics/AbcSize
   def meta
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
@@ -27,16 +22,17 @@ class InitialStateSerializer < ActiveModel::Serializer
       repository: Mastodon::Version.repository,
       source_url: instance_presenter.source_url,
       version: instance_presenter.version,
-      limited_federation_mode: Rails.configuration.x.whitelist_mode,
+      limited_federation_mode: Rails.configuration.x.limited_federation_mode,
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
-      trends: Setting.trends,
+      trends_enabled: Setting.trends,
       registrations_open: Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode,
       timeline_preview: Setting.timeline_preview,
       activity_api_enabled: Setting.activity_api_enabled,
       single_user_mode: Rails.configuration.x.single_user_mode,
-      translation_enabled: TranslationService.configured?,
       trends_as_landing_page: Setting.trends_as_landing_page,
+      status_page_url: Setting.status_page_url,
+      sso_redirect: sso_redirect,
     }
 
     if object.current_account
@@ -45,7 +41,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:boost_modal]       = object.current_account.user.setting_boost_modal
       store[:delete_modal]      = object.current_account.user.setting_delete_modal
       store[:auto_play_gif]     = object.current_account.user.setting_auto_play_gif
-      store[:expand_usernames]  = object.current_account.user.setting_expand_usernames
       store[:display_media]     = object.current_account.user.setting_display_media
       store[:expand_spoilers]   = object.current_account.user.setting_expand_spoilers
       store[:reduce_motion]     = object.current_account.user.setting_reduce_motion
@@ -53,36 +48,30 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:advanced_layout]   = object.current_account.user.setting_advanced_layout
       store[:use_blurhash]      = object.current_account.user.setting_use_blurhash
       store[:use_pending_items] = object.current_account.user.setting_use_pending_items
-      store[:trends]            = Setting.trends && object.current_account.user.setting_trends
-      store[:crop_images]       = object.current_account.user.setting_crop_images
+      store[:show_trends]       = Setting.trends && object.current_account.user.setting_trends
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media
       store[:reduce_motion] = Setting.reduce_motion
       store[:use_blurhash]  = Setting.use_blurhash
-      store[:crop_images]   = Setting.crop_images
     end
 
     store[:disabled_account_id] = object.disabled_account.id.to_s if object.disabled_account
     store[:moved_to_account_id] = object.moved_to_account.id.to_s if object.moved_to_account
 
-    if Rails.configuration.x.single_user_mode
-      store[:owner] = object.owner&.id&.to_s
-    end
+    store[:owner] = object.owner&.id&.to_s if Rails.configuration.x.single_user_mode
 
     store
   end
-  # rubocop:enable Metrics/AbcSize
 
   def compose
     store = {}
 
     if object.current_account
-      store[:me]                 = object.current_account.id.to_s
-      store[:default_privacy]    = object.visibility || object.current_account.user.setting_default_privacy
-      store[:default_sensitive]  = object.current_account.user.setting_default_sensitive
-      store[:default_federation] = object.current_account.user.setting_default_federation
-      store[:default_language]   = object.current_account.user.preferred_posting_language
+      store[:me]                = object.current_account.id.to_s
+      store[:default_privacy]   = object.visibility || object.current_account.user.setting_default_privacy
+      store[:default_sensitive] = object.current_account.user.setting_default_sensitive
+      store[:default_language]  = object.current_account.user.preferred_posting_language
     end
 
     store[:text] = object.text if object.text
@@ -93,7 +82,10 @@ class InitialStateSerializer < ActiveModel::Serializer
   def accounts
     store = {}
 
-    ActiveRecord::Associations::Preloader.new.preload([object.current_account, object.admin, object.owner, object.disabled_account, object.moved_to_account].compact, [:account_stat, :user, { moved_to_account: [:account_stat, :user] }])
+    ActiveRecord::Associations::Preloader.new(
+      records: [object.current_account, object.admin, object.owner, object.disabled_account, object.moved_to_account].compact,
+      associations: [:account_stat, :user, { moved_to_account: [:account_stat, :user] }]
+    )
 
     store[object.current_account.id.to_s]  = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
     store[object.admin.id.to_s]            = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin
@@ -116,5 +108,9 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   def instance_presenter
     @instance_presenter ||= InstancePresenter.new
+  end
+
+  def sso_redirect
+    "/auth/auth/#{Devise.omniauth_providers[0]}" if ENV['OMNIAUTH_ONLY'] == 'true' && Devise.omniauth_providers.length == 1
   end
 end

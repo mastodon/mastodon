@@ -1,10 +1,10 @@
 ---
 kk:
   about:
-    about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты бағдарлама. Ол email сияқты орталығы жоқ құрылым.
+    about_mastodon_html: TomX - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты бағдарлама. Ол email сияқты орталығы жоқ құрылым.
     contact_missing: Бапталмаған
     contact_unavailable: Белгісіз
-    hosted_on: Mastodon орнатылған %{domain} доменінде
+    hosted_on: TomX орнатылған %{domain} доменінде
   accounts:
     follow: Жазылу
     followers:
@@ -93,8 +93,6 @@ kk:
       remove_header: Мұқаба суретін өшір
       resend_confirmation:
         already_confirmed: Қолданушы құпталған
-        send: Құптау хатын қайтадан жібер
-        success: Құптау хаты сәтті жіберілді!
       reset: Қалпына келтіру
       reset_password: Құпиясөзді қалпына келтіру
       resubscribe: Resubscribе
@@ -322,7 +320,6 @@ kk:
     confirmation_dialogs: Пікірталас диалогтары
     discovery: Пікірталас
     sensitive_content: Нәзік контент
-    toot_layout: Жазба формасы
   application_mailer:
     notification_preferences: Change e-mail prеferences
     settings: 'Change e-mail preferеnces: %{link}'
@@ -337,14 +334,12 @@ kk:
     warning: Be very carеful with this data. Never share it with anyone!
     your_token: Your access tokеn
   auth:
-    change_password: Құпиясөз
     delete_account: Аккаунт өшіру
     delete_account_html: Аккаунтыңызды жойғыңыз келсе, <a href="%{path}">мына жерді</a> басыңыз. Сізден растау сұралатын болады.
     description:
       prefix_invited_by_user: "@%{name} сізді Желіге қосылуға шақырады!"
       prefix_sign_up: Желіге бүгін қосылыңыз!
-      suffix: Аккаунтыңызбен сіз кез-келген Mastodon серверінен және желідегі басқа адамдарды оқып, пост жаза аласыз және хат алмаса аласыз!
-    didnt_get_confirmation: Растау хаты келмеді ме?
+      suffix: Аккаунтыңызбен сіз кез-келген TomX серверінен және желідегі басқа адамдарды оқып, пост жаза аласыз және хат алмаса аласыз!
     forgot_password: Құпиясөзіңізді ұмытып қалдыңыз ба?
     invalid_reset_password_token: Құпиясөз қайтып алу қолжетімді емес немесе мерзімі аяқталған. Қайтадан сұратыңыз.
     login: Кіру
@@ -357,30 +352,14 @@ kk:
       saml: SАML
     register: Тіркелу
     registration_closed: "%{instance} жаңа мүшелер қабылдамайды"
-    resend_confirmation: Растау нұсқаулықтарын жіберу
     reset_password: Құпиясөзді қалпына келтіру
     security: Қауіпсіздік
     set_new_password: Жаңа құпиясөз қою
-    setup:
-      email_below_hint_html: Егер төмендегі электрондық пошта мекенжайы дұрыс болмаса, оны осында өзгертіп, жаңа растау электрондық хатын ала аласыз.
-      email_settings_hint_html: Растау хаты %{email} адресіне жіберілді. Егер бұл электрондық пошта мекенжайы дұрыс болмаса, оны аккаунт параметрлерінде өзгертуге болады.
-      title: Баптау
     status:
       account_status: Аккаунт статусы
       confirming: Электрондық поштаны растау аяқталуын күтуде.
       pending: Сіздің өтінішіңіз біздің қызметкерлеріміздің қарауында. Бұл біраз уақыт алуы мүмкін. Өтінішіңіз мақұлданса, сізге электрондық пошта хабарламасы келеді.
       redirecting_to: Сіздің есептік жазбаңыз белсенді емес, себебі ол %{acct} жүйесіне қайта бағытталуда.
-  authorize_follow:
-    already_following: Бұл аккаунтқа жазылғансыз
-    error: Өкінішке орай, қашықтағы тіркелгіні іздеуде қате пайда болды
-    follow: Жазылу
-    follow_request: 'Сіз жазылуға өтініш жібердіңіз:'
-    following: 'Керемет! Сіз енді жазылдыңыз:'
-    post_follow:
-      close: Немесе терезені жаба салыңыз.
-      return: Қолданушы профилін көрсет
-      web: Вебте ашу
-    title: Жазылу %{acct}
   challenge:
     confirm: Жалғастыру
     hint_html: "<strong> Кеңес: </strong> біз келесі сағат ішінде сізден құпия сөзді қайта сұрамаймыз."
@@ -433,7 +412,7 @@ kk:
       content: Кешірерсіз, бірақ қазір бір қате пайда болып тұр.
       title: Бұл бет дұрыс емес екен
     '503': Уақытша сервер қатесі себебінен параққа қызмет көрсету мүмкін болмады.
-    noscript_html: Mastodon веб қосымшасын қолдану үшін, JavaScript қосыңыз. Болмай жатса, <a href="%{apps_path}">мына қосымшаларды</a> қосып көріңіз, Mastodon қолдану үшін.
+    noscript_html: TomX веб қосымшасын қолдану үшін, JavaScript қосыңыз. Болмай жатса, <a href="%{apps_path}">мына қосымшаларды</a> қосып көріңіз, TomX қолдану үшін.
   existing_username_validator:
     not_found: осындай логині бар бар жергілікті пайдаланушы табылмады
     not_found_multiple: табылмады %{usernames}
@@ -453,8 +432,6 @@ kk:
     storage: Медиа жинақ
   featured_tags:
     add_new: Жаңасын қосу
-    errors:
-      limit: Хэштег лимитинен асып кеттіңіз
     hint_html: "<strong> Ерекшеліктері бар хэштегтер дегеніміз не? </strong> Олар жалпыға қол жетімді профильде көрсетіледі және адамдарға сіздің жалпы хабарламаларыңызды сол хэштегтердің астына қарауға мүмкіндік береді. Олар шығармашылық жұмыстарды немесе ұзақ мерзімді жобаларды бақылаудың тамаша құралы."
   filters:
     contexts:
@@ -472,8 +449,6 @@ kk:
       title: Фильтрлер
     new:
       title: Жаңа фильтр қосу
-  footer:
-    trending_now: Бүгінгі трендтер
   generic:
     all: Барлығы
     changes_saved_msg: Өзгерістер сәтті сақталды!
@@ -483,8 +458,6 @@ kk:
     validation_errors:
       one: Бір нәрсе дұрыс емес! Төмендегі қатені қараңыз
       other: Бір нәрсе дұрыс емес! Төмендегі %{count} қатені қараңыз
-  html_validator:
-    invalid_markup: 'жарамсыз HTML код: %{error}'
   imports:
     modes:
       merge: Біріктіру
@@ -521,9 +494,6 @@ kk:
       expires_at: Аяқталу мерзімі
       uses: Қолданыс
     title: Адам шақыру
-  lists:
-    errors:
-      limit: Сіз тізімдердің максимум мөлшеріне жеттіңіз
   media_attachments:
     validations:
       images_and_video: Жазбаға видео қоса алмайсыз, тек сурет қосуға болады
@@ -653,7 +623,6 @@ kk:
       ios: iОS
       linux: Lіnux
       mac: Mаc
-      other: белгісіз платформа
       windows: Windоws
       windows_mobile: Windows Mоbile
       windows_phone: Windоws Phone
@@ -710,7 +679,6 @@ kk:
       vote: Дауыс беру
     show_more: Тағы әкел
     show_thread: Тақырыпты көрсет
-    sign_in_to_participate: Сұхбатқа қатысу үшін кіріңіз
     visibilities:
       private: Тек оқырмандарға
       private_long: Тек оқырмандарға ғана көрінеді
@@ -719,15 +687,13 @@ kk:
       unlisted: Тізімге енбеген
       unlisted_long: Бәрі көре алады, бірақ ашық тізімдерге ене алмайды
   stream_entries:
-    pinned: Жабыстырылған жазба
-    reblogged: бөлісті
     sensitive_content: Нәзік мазмұн
   tags:
     does_not_match_previous_name: алдыңғы атқа сәйкес келмейді
   themes:
-    contrast: Mastodon (Жоғары контраст)
-    default: Mastodon (Қою)
-    mastodon-light: Mastodon (Ашық)
+    contrast: TomX (Жоғары контраст)
+    default: TomX (Қою)
+    mastodon-light: TomX (Ашық)
   two_factor_authentication:
     disable: Ажырату
     enabled: Екі-факторлы авторизация қосылған
@@ -739,7 +705,7 @@ kk:
     recovery_instructions_html: Егер сіз телефонға кіруді жоғалтсаңыз, тіркелгіңізге кіру үшін төмендегі қалпына келтіру кодтарының бірін пайдалануға болады. <strong>Қалпына келтіру кодтарын қауіпсіз ұстаңыз </strong>. Мысалы, оларды басып шығарып, оларды басқа маңызды құжаттармен сақтауға болады.
   user_mailer:
     backup_ready:
-      explanation: Сіз Mastodon аккаунтыңыздың толық мұрағатын сұрадыңыз. Қазір жүктеуге дайын!
+      explanation: Сіз TomX аккаунтыңыздың толық мұрағатын сұрадыңыз. Қазір жүктеуге дайын!
       subject: Мұрағатыңыз түсіріп алуға дайын
       title: Мұрағатты алу
     warning:
@@ -759,7 +725,7 @@ kk:
       final_action: Жазба жазу
       full_handle: Желі тұтқасы
       full_handle_hint: This is what you would tell your friends so they can message or follow you frоm another server.
-      subject: Mastodon Желісіне қош келдіңіз
+      subject: TomX Желісіне қош келдіңіз
       title: Ортаға қош келдің, %{name}!
   users:
     follow_limit_reached: Сіз %{limit} лимитінен көп адамға жазыла алмайсыз
@@ -768,5 +734,4 @@ kk:
     seamless_external_login: Сыртқы сервис арқылы кіріпсіз, сондықтан құпиясөз және электрондық пошта параметрлері қол жетімді емес.
     signed_in_as: 'Былай кірдіңіз:'
   verification:
-    explanation_html: 'Өзіңіздің профиль метадеректеріңіздегі сілтемелердің иесі ретінде өзіңізді <strong>тексере аласыз</strong>. Ол үшін байланыстырылған веб-сайтта Mastodon профиліне <strong>сілтеме болуы керек. </strong> Сілтемеде <code>rel = «me»</code> атрибуты болуы керек. Сілтеме мәтінінің мазмұны маңызды емес. Міне мысал:'
     verification: Растау

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RemoveStatusService, type: :service do
-  subject { RemoveStatusService.new }
+  subject { described_class.new }
 
   let!(:alice)  { Fabricate(:account) }
   let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
@@ -26,40 +28,40 @@ RSpec.describe RemoveStatusService, type: :service do
 
     it 'removes status from author\'s home feed' do
       subject.call(@status)
-      expect(HomeFeed.new(alice).get(10)).to_not include(@status.id)
+      expect(HomeFeed.new(alice).get(10).pluck(:id)).to_not include(@status.id)
     end
 
     it 'removes status from local follower\'s home feed' do
       subject.call(@status)
-      expect(HomeFeed.new(jeff).get(10)).to_not include(@status.id)
+      expect(HomeFeed.new(jeff).get(10).pluck(:id)).to_not include(@status.id)
     end
 
     it 'sends Delete activity to followers' do
       subject.call(@status)
       expect(a_request(:post, 'http://example.com/inbox').with(
-        body: hash_including({
-          'type' => 'Delete',
-          'object' => {
-            'type' => 'Tombstone',
-            'id' => ActivityPub::TagManager.instance.uri_for(@status),
-            'atomUri' => OStatus::TagManager.instance.uri_for(@status),
-          },
-        })
-      )).to have_been_made.once
+               body: hash_including({
+                 'type' => 'Delete',
+                 'object' => {
+                   'type' => 'Tombstone',
+                   'id' => ActivityPub::TagManager.instance.uri_for(@status),
+                   'atomUri' => OStatus::TagManager.instance.uri_for(@status),
+                 },
+               })
+             )).to have_been_made.once
     end
 
     it 'sends Delete activity to rebloggers' do
       subject.call(@status)
       expect(a_request(:post, 'http://example2.com/inbox').with(
-        body: hash_including({
-          'type' => 'Delete',
-          'object' => {
-            'type' => 'Tombstone',
-            'id' => ActivityPub::TagManager.instance.uri_for(@status),
-            'atomUri' => OStatus::TagManager.instance.uri_for(@status),
-          },
-        })
-      )).to have_been_made.once
+               body: hash_including({
+                 'type' => 'Delete',
+                 'object' => {
+                   'type' => 'Tombstone',
+                   'id' => ActivityPub::TagManager.instance.uri_for(@status),
+                   'atomUri' => OStatus::TagManager.instance.uri_for(@status),
+                 },
+               })
+             )).to have_been_made.once
     end
 
     it 'remove status from notifications' do
@@ -78,14 +80,14 @@ RSpec.describe RemoveStatusService, type: :service do
     it 'sends Undo activity to followers' do
       subject.call(@status)
       expect(a_request(:post, 'http://example.com/inbox').with(
-        body: hash_including({
-          'type' => 'Undo',
-          'object' => hash_including({
-            'type' => 'Announce',
-            'object' => ActivityPub::TagManager.instance.uri_for(@original_status),
-          }),
-        })
-      )).to have_been_made.once
+               body: hash_including({
+                 'type' => 'Undo',
+                 'object' => hash_including({
+                   'type' => 'Announce',
+                   'object' => ActivityPub::TagManager.instance.uri_for(@original_status),
+                 }),
+               })
+             )).to have_been_made.once
     end
   end
 
@@ -98,14 +100,14 @@ RSpec.describe RemoveStatusService, type: :service do
     it 'sends Undo activity to followers' do
       subject.call(@status)
       expect(a_request(:post, 'http://example.com/inbox').with(
-        body: hash_including({
-          'type' => 'Undo',
-          'object' => hash_including({
-            'type' => 'Announce',
-            'object' => ActivityPub::TagManager.instance.uri_for(@original_status),
-          }),
-        })
-      )).to have_been_made.once
+               body: hash_including({
+                 'type' => 'Undo',
+                 'object' => hash_including({
+                   'type' => 'Announce',
+                   'object' => ActivityPub::TagManager.instance.uri_for(@original_status),
+                 }),
+               })
+             )).to have_been_made.once
     end
   end
 end

@@ -60,7 +60,7 @@ export function fetchFollowedHashtagsRequest() {
   return {
     type: FOLLOWED_HASHTAGS_FETCH_REQUEST,
   };
-};
+}
 
 export function fetchFollowedHashtagsSuccess(followed_tags, next) {
   return {
@@ -68,14 +68,14 @@ export function fetchFollowedHashtagsSuccess(followed_tags, next) {
     followed_tags,
     next,
   };
-};
+}
 
 export function fetchFollowedHashtagsFail(error) {
   return {
     type: FOLLOWED_HASHTAGS_FETCH_FAIL,
     error,
   };
-};
+}
 
 export function expandFollowedHashtags() {
   return (dispatch, getState) => {
@@ -94,13 +94,13 @@ export function expandFollowedHashtags() {
       dispatch(expandFollowedHashtagsFail(error));
     });
   };
-};
+}
 
 export function expandFollowedHashtagsRequest() {
   return {
     type: FOLLOWED_HASHTAGS_EXPAND_REQUEST,
   };
-};
+}
 
 export function expandFollowedHashtagsSuccess(followed_tags, next) {
   return {
@@ -108,14 +108,14 @@ export function expandFollowedHashtagsSuccess(followed_tags, next) {
     followed_tags,
     next,
   };
-};
+}
 
 export function expandFollowedHashtagsFail(error) {
   return {
     type: FOLLOWED_HASHTAGS_EXPAND_FAIL,
     error,
   };
-};
+}
 
 export const followHashtag = name => (dispatch, getState) => {
   dispatch(followHashtagRequest(name));

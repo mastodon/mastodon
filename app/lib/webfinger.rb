@@ -57,6 +57,7 @@ class Webfinger
       if res.code == 200
         body = res.body_with_limit
         raise Webfinger::Error, "Request for #{@uri} returned empty response" if body.empty?
+
         body
       elsif res.code == 404 && use_fallback
         body_from_host_meta
@@ -99,7 +100,7 @@ class Webfinger
   end
 
   def standard_url
-    if @domain.end_with? ".onion"
+    if @domain.end_with? '.onion'
       "http://#{@domain}/.well-known/webfinger?resource=#{@uri}"
     else
       "https://#{@domain}/.well-known/webfinger?resource=#{@uri}"
@@ -107,7 +108,7 @@ class Webfinger
   end
 
   def host_meta_url
-    if @domain.end_with? ".onion"
+    if @domain.end_with? '.onion'
       "http://#{@domain}/.well-known/host-meta"
     else
       "https://#{@domain}/.well-known/host-meta"

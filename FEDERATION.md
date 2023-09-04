@@ -1,7 +1,3 @@
-## ActivityPub federation in Hometown
-
-Hometown federates just like Mastodon, so the document below (identical to Mastodon's) still applies. The main difference is that any given `Note` object will have a `localOnly` property that is a boolean. While other servers will never see this boolean set to anything but `false` (since by definition these messages are not federated), _clients_ will see this property and can now render a post differently based on whether it is local-only.
-
 ## ActivityPub federation in Mastodon
 
 Mastodon largely follows the ActivityPub server-to-server specification but it makes uses of some non-standard extensions, some of which are required for interacting with Mastodon at all.

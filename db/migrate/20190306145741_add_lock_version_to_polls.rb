@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require Rails.root.join('lib', 'mastodon', 'migration_helpers')
 
 class AddLockVersionToPolls < ActiveRecord::Migration[5.2]
@@ -21,4 +23,3 @@ class AddLockVersionToPolls < ActiveRecord::Migration[5.2]
     remove_column :polls, :lock_version
   end
 end
-

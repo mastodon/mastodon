@@ -1,10 +1,10 @@
 ---
 et:
   about:
-    about_mastodon_html: 'Tuleviku sotsiaalvõrgustik: Reklaamivaba, korporatiivse järelvalveta, eetiline kujundus ning detsentraliseeritus! Oma enda andmeid Mastodonis!'
+    about_mastodon_html: 'Tuleviku sotsiaalvõrgustik: Reklaamivaba, korporatiivse järelvalveta, eetiline kujundus ning detsentraliseeritus! Oma enda andmeid TomXis!'
     contact_missing: Määramata
     contact_unavailable: Pole saadaval
-    hosted_on: Mastodon majutatud %{domain}-is
+    hosted_on: TomX majutatud %{domain}-is
     title: Teave
   accounts:
     follow: Jälgi
@@ -91,6 +91,7 @@ et:
       moderation:
         active: Aktiivne
         all: Kõik
+        disabled: Keelatud
         pending: Ootel
         silenced: Vaigistatud
         suspended: Kustutatud
@@ -124,8 +125,8 @@ et:
       removed_header_msg: "%{username} päisepilt eemaldatud"
       resend_confirmation:
         already_confirmed: See kasutaja on juba kinnitatud
-        send: Saada kinnituskiri uuesti
-        success: Kinnituskiri saadetud edukalt!
+        send: Saada kinnituslink uuesti
+        success: Kinnituslink saadetud edukalt!
       reset: Lähtesta
       reset_password: Salasõna lähtestamine
       resubscribe: Telli taas
@@ -133,6 +134,7 @@ et:
       search: Otsi
       search_same_email_domain: Muud kasutajad sama e-posti domeeniga
       search_same_ip: Teised kasutajad, kellel on sama IP
+      security: Turvalisus
       security_measures:
         only_password: Ainult salasõna
         password_and_2fa: Salasõna ja 2-etapine autentimine (2FA)
@@ -380,6 +382,15 @@ et:
       undo: Eemalda lubatute nimekirjast
     domain_blocks:
       add_new: Lisa uus domeeniblokeering
+      confirm_suspension:
+        cancel: Tühista
+        confirm: Peata
+        permanent_action: Peatamise tühistamine ei taasta andmeid ega seoseid.
+        preamble_html: Oled peatamas domeeni <strong>%{domain}</strong> ja selle alamdomeene.
+        remove_all_data: See eemaldab sinu serverist selle domeeni kontode kogu sisu, meedia ja profiilide info.
+        stop_communication: Sinu server lõpetab infovahetuse nende serveritega.
+        title: Kinnita domeeni %{domain} blokeerimine
+        undo_relationships: See tühistab kõik sinu ja nende serverite kontode vahel loodud jälgimisseosed.
       created_msg: Domeeni blokeeringut töödeldakse
       destroyed_msg: Domeeniblokeering on tagasi võetud
       domain: Domeen
@@ -427,6 +438,7 @@ et:
         resolve: Domeeni lahendamine
         title: Blokeeri uus e-posti domeen
       no_email_domain_block_selected: Ühtegi e-posti domeeni keeldu ei muudetud, kuna midagi polnud valitud
+      not_permitted: Ei ole lubatud
       resolved_dns_records_hint_html: Domeeninimi lahendub järgnevateks MX-domeenideks, mis vastutavad e-kirjade vastuvõtmise eest. MX-domeeni blokeerimine blokeerib liitumistaotlused kõigilt e-postiaadressidelt, mis kasutavad sama MX-domeeni, kuigi kasutatav domeeninimi on erinev. <strong>Ole tähelepanelik, et mitte blokeerida suuremaid e-postiteenuse pakkujaid.</strong>
       resolved_through_html: Lahendatud %{domain} kaudu
       title: E-posti keelunimekiri
@@ -441,6 +453,7 @@ et:
         private_comment_description_html: 'Pidamaks järge, kust imporditud keelud pärinevad, luuakse need järneva privaatse kommentaariga: <q>%{comment}</q>'
         private_comment_template: Imporditud allikast %{source} kuupäeval %{date}
         title: Domeenikeeldude import
+      invalid_domain_block: 'Üks või mitu domeeniblokeeringut jäeti vahele järgnevate vigade tõttu: %{error}'
       new:
         title: Domeenikeeldude import
       no_file: Faili pole valitud
@@ -472,6 +485,7 @@ et:
       content_policies:
         comment: Sisemine märge
         description_html: On võimalik kirjeldada sisureeglid kõigile kontodele sellelt domeenilt ja alamdomeenidelt.
+        limited_federation_mode_description_html: Saad valida, kas selle domeeniga on födereerumine lubatud.
         policies:
           reject_media: Meedia hülgamine
           reject_reports: Lükka raportid tagasi
@@ -584,15 +598,18 @@ et:
       assign_to_self: Määra mulle
       assigned: Määratud moderaator
       by_target_domain: Teavitatud konto domeen
+      cancel: Tühista
       category: Kategooria
       category_description_html: Põhjus, miks sellest kontost ja/või sisust teatati, kaasatakse raporteeritud kontoga suhtlemisel
       comment:
         none: Pole
       comment_description_html: 'Täiendava infona kirjutas %{name}:'
+      confirm: Kinnita
+      confirm_action: Kinnita @%{acct} modereering
       created_at: Teavitatud
       delete_and_resolve: Kustuta postitused
       forwarded: Edastatud
-      forwarded_to: Edastatud domeenile %{domain}
+      forwarded_to: Edastatud %{domain} domeeni
       mark_as_resolved: Märgi lahendatuks
       mark_as_sensitive: Märgi kui tundlik sisu
       mark_as_unresolved: Märgi lahendamata
@@ -605,6 +622,7 @@ et:
         placeholder: Kirjelda, mis on ette võetud või muid seotud uuendusi...
         title: Märkmed
       notes_description_html: Märkmete vaatamine ja jätmine teistele moderaatoritele ja tulevikuks endale
+      processed_msg: 'Raport #%{id} edukalt käsitletud'
       quick_actions_description_html: 'Võimalus teha kiire otsus või näha raporteeritud sisu allpool:'
       remote_user_placeholder: kaugkasutaja domeenist %{instance}
       reopen: Taasava teavitus
@@ -617,9 +635,28 @@ et:
       status: Olek
       statuses: Raporteeritud sisu
       statuses_description_html: Sobimatu sisu kaasatakse suhtlusse raporteeritud kontoga
+      summary:
+        action_preambles:
+          delete_html: 'Oled <strong>eemaldamas</strong> mõnesid <strong>@%{acct}</strong> postitusi. Selle tulemusena:'
+          mark_as_sensitive_html: 'Oled <strong>märkimas</strong> mõnesid <strong>@%{acct}</strong> postitusi <strong>tundlikuks</strong>. Selle tulemusena:'
+          silence_html: 'Oled <strong>määramas piirangut</strong> kontole <strong>@%{acct}</strong>. Selle tulemusena:'
+          suspend_html: 'Oled <strong>peatamas</strong> kontot <strong>@%{acct}</strong>. Selle tulemusena:'
+        actions:
+          delete_html: Solvava postituse eemaldamine
+          mark_as_sensitive_html: Solvava postituse meedia märkimine tundlikuks
+          silence_html: "<strong>@%{acct}</strong> ulatuse tugev piiramine muutes tema profiili ja sisu nähtavaks ainult neile, kes teda juba jälgivad, või neile, kes just tema profiili üles otsivad"
+          suspend_html: "<strong>@%{acct}</strong> peatamine, muutes tema profiili ja sisu mitteligipääsetavaks ning mitteinterakteerutavaks"
+        close_report: 'Raporti #%{id} lahendatuks märkimine'
+        close_reports_html: Märgi <strong>kõik</strong> raportid <strong>@%{acct}</strong> vastu lahendatuks
+        delete_data_html: Kustuta tänasest 30 päeva pärast kasutaja <strong>@%{acct}</strong> profiil ja sisu, kui vahepeal tema kontot ei taastata
+        preview_preamble_html: "<strong>@%{acct}</strong> saab järgmise sisuga hoiatuse:"
+        record_strike_html: Salvesta <strong>@%{acct}</strong> kohta juhtum, et aidata selle konto tulevaste rikkumiste puhul reageerida
+        send_email_html: Saada kasutajale <strong>@%{acct}</strong> hoiatus-e-kiri
+        warning_placeholder: Valikuline täiendav põhjendus modereerimisele.
       target_origin: Raporteeritud konto päritolu
       title: Teavitused
       unassign: Eemalda määramine
+      unknown_action_msg: 'Tundmatu tegevus: %{action}'
       unresolved: Lahendamata
       updated_at: Uuendatud
       view_profile: Vaata profiili
@@ -635,7 +672,7 @@ et:
         moderation: Modereerimine
         special: Eriline
       delete: Kustuta
-      description_html: "<strong>Kasutajarollide</strong> abil saab kohandada, millistele Mastodoni funktsioonidele ja piirkondadele kasutajad ligi pääsevad."
+      description_html: "<strong>Kasutajarollide</strong> abil saab kohandada, millistele TomXi funktsioonidele ja piirkondadele kasutajad ligi pääsevad."
       edit: Muuda '%{name}' rolli
       everyone: Vaikimisi load
       everyone_full_description_html: See on <strong>baasroll</strong> mõjudes <strong>kõigile kasutajatele</strong>, ka määramata rolliga. Kõik teised rollid pärivad selle rolli õigused.
@@ -698,20 +735,23 @@ et:
         rules_hint: Reeglitele, millega kasutajad peavad nõustuma, on vastav piirkond.
         title: Teave
       appearance:
-        preamble: Kohanda Mastodoni veebiliidest.
+        preamble: Kohanda TomXi veebiliidest.
         title: Välimus
       branding:
-        preamble: Serveri bränding eristab seda teistest serveritest võrgus. Seda teavet võidakse kuvada erinevates keskkondades, näiteks Mastodoni veebiliideses, rakendustes, viitade eelvaadetes teistel veebisaitidel, sõnumsiderakendustes jne. Sel põhjusel on kõige parem hoida see teave selge, lühike ja ülevaatlik.
+        preamble: Serveri bränding eristab seda teistest serveritest võrgus. Seda teavet võidakse kuvada erinevates keskkondades, näiteks TomXi veebiliideses, rakendustes, viitade eelvaadetes teistel veebisaitidel, sõnumsiderakendustes jne. Sel põhjusel on kõige parem hoida see teave selge, lühike ja ülevaatlik.
         title: Märgistus
+      captcha_enabled:
+        desc_html: See tugineb välistele hCaptcha skriptidele, mis võib olla turvalisuse ja privaatsuse probleem. Lisaks <strong>võib see muuta registreerimisprotsessi mõnede inimeste (eriti puudega inimeste) jaoks, oluliselt vähem ligipääsetavaks.</strong> Neil põhjustel kaalu palun teisi võimalusi, näiteks kinnitamis- või kutsepõhiseid registreerimislahendusi.
+        title: Nõua uutelt kasutajatelt konto kinnitamiseks CAPTCHA lahendamist
       content_retention:
-        preamble: Määra, kuidas kasutajate loodud sisu Mastodonis talletatakse.
+        preamble: Määra, kuidas kasutajate loodud sisu TomXis talletatakse.
         title: Sisu talletamine
       default_noindex:
         desc_html: Mõjub kasutajatele, kes pole seda sätet ise muutnud
         title: Otsimootorite indeksitesse kasutajaid vaikimisi ei lisata
       discovery:
         follow_recommendations: Jälgi soovitusi
-        preamble: Huvitava sisu esiletoomine on oluline uute kasutajate kaasamisel, kes ei pruugi Mastodonist kedagi tunda. Kontrolli, kuidas erinevad avastamisfunktsioonid serveris töötavad.
+        preamble: Huvitava sisu esiletoomine on oluline uute kasutajate kaasamisel, kes ei pruugi TomXist kedagi tunda. Kontrolli, kuidas erinevad avastamisfunktsioonid serveris töötavad.
         profile_directory: Kasutajate kataloog
         public_timelines: Avalikud ajajooned
         publish_discovered_servers: Avalda avastatud serverid
@@ -730,7 +770,7 @@ et:
           approved: Kinnitus vajalik konto loomisel
           none: Keegi ei saa kontoid luua
           open: Kõik võivad kontoid luua
-      title: Serveri seadistused
+      title: Serveri seaded
     site_uploads:
       delete: Kustuta üleslaetud fail
       destroyed_msg: Üleslaetud fail edukalt kustutatud!
@@ -770,6 +810,7 @@ et:
         suspend: "%{name} kustutas %{target} konto"
       appeal_approved: Vaidlustatud
       appeal_pending: Vaidlustus on ootel
+      appeal_rejected: Vaidlustus tagasi lükatud
     system_checks:
       database_schema_check:
         message_html: On ootel andmebaasi migreerimisi. Rakenduse ootuspäraseks toimimiseks palun käivita need
@@ -783,6 +824,12 @@ et:
         message_html: Serverireegleid pole defineeritud.
       sidekiq_process_check:
         message_html: Ühtegi Sidekiq protsessi pole %{value} järjekorra jaoks. Sidekiq seadistus vajab üle vaatamist
+      upload_check_privacy_error:
+        action: Klõpsa lisainfo saamiseks siia
+        message_html: "<strong>Veebiserver on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Klõpsa lisainfo saamiseks siia
+        message_html: "<strong>Objektihoidla on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
     tags:
       review: Vaata olek üle
       updated_msg: Sildi sätted edukalt uuendatud
@@ -805,6 +852,7 @@ et:
           other: Jagatud %{count} kasutaja poolt viimase nädala jooksul
         title: Trendikad viited
         usage_comparison: Jagatud %{today} korda täna, eile %{yesterday} korda
+      not_allowed_to_trend: Trend ei ole lubatud
       only_allowed: Ainult lubatud
       pending_review: Ootab ülevaatust
       preview_card_providers:
@@ -859,7 +907,7 @@ et:
     webhooks:
       add_new: Lisa lõpp-punkt
       delete: Kustuta
-      description_html: "<strong>Veebihaak</strong> võimaldab Mastodonil edastada valitud sündmuste kohta su rakendusele <strong>reaalajas märguandeid</strong>, et rakendus saaks <strong>automaatselt reaktsioone käivitada</strong>."
+      description_html: "<strong>Veebihaak</strong> võimaldab TomXil edastada valitud sündmuste kohta su rakendusele <strong>reaalajas märguandeid</strong>, et rakendus saaks <strong>automaatselt reaktsioone käivitada</strong>."
       disable: Keela
       disabled: Keelatud
       edit: Muuda lõpp-punkti
@@ -921,35 +969,41 @@ et:
     confirmation_dialogs: Kinnitusdialoogid
     discovery: Avastamine
     localization:
-      body: Mastodoni tõlgivad vabatahtlikud.
+      body: TomXi tõlgivad vabatahtlikud.
       guide_link: https://crowdin.com/project/mastodon/et
       guide_link_text: Panustada võib igaüks!
     sensitive_content: Tundlik sisu
-    toot_layout: Postituse väljanägemine
   application_mailer:
     notification_preferences: Muuda e-kirjade eelistusi
     salutation: "%{name}!"
     settings: 'Muuda e-kirjade eelistusi: %{link}'
+    unsubscribe: Loobu tellimisest
     view: 'Vaade:'
     view_profile: Vaata profiili
     view_status: Vaata postitust
   applications:
     created: Rakenduse loomine õnnestus
     destroyed: Rakenduse kustutamine õnnestus
+    logout: Logi välja
     regenerate_token: Loo uus access token
     token_regenerated: Access tokeni loomine õnnestus
     warning: Ole nende andmetega ettevaatlikud. Ära jaga neid kellegagi!
     your_token: Su juurdepääsutunnus
   auth:
     apply_for_account: Konto taotluse esitamine
-    change_password: Salasõna
+    captcha_confirmation:
+      help_html: Kui sul on probleeme CAPTCHA lahendamisega, saad meiega kontakti võta %{email} kaudu ja saame pakkuda sulle tuge.
+      hint_html: Üks asi veel! Me peame veenduma, et oled inimene (et me saaksime spämmi väljaspoole jätta!). Lahenda allpool olev CAPTCHA ja klõpsa "Jätka".
+      title: Turvalisuse kontroll
+    confirmations:
+      wrong_email_hint: Kui see e-postiaadress pole korrektne, saad seda kontosätetes muuta.
     delete_account: Konto kustutamine
     delete_account_html: Kui soovid oma konto kustutada, siis <a href="%{path}">jätka siit</a>. Pead kustutamise eraldi kinnitama.
     description:
-      prefix_invited_by_user: "@%{name} kutsub Teid liituma selle Mastodoni serveriga!"
-      prefix_sign_up: Loo Mastodoni konto juba täna!
-      suffix: Kasutajakontoga saad jälgida inimesi, postitada uudiseid ning pidada kirjavahetust ükskõik millise Mastodoni serveri kasutajatega ja muudki!
-    didnt_get_confirmation: Ei saanud kinnituse juhendeid?
+      prefix_invited_by_user: "@%{name} kutsub sind liituma selle TomXi serveriga!"
+      prefix_sign_up: Loo TomXi konto juba täna!
+      suffix: Kasutajakontoga saad jälgida inimesi, postitada uudiseid ning pidada kirjavahetust ükskõik millise TomXi serveri kasutajatega ja muudki!
+    didnt_get_confirmation: Ei saanud kinnituslinki?
     dont_have_your_security_key: Pole turvavõtit?
     forgot_password: Salasõna ununenud?
     invalid_reset_password_token: Salasõna lähtestusvõti on vale või aegunud. Palun taotle uus.
@@ -962,27 +1016,40 @@ et:
     migrate_account_html: Kui soovid konto siit ära kolida, <a href="%{path}">saad seda teha siin</a>.
     or_log_in_with: Või logi sisse koos
     privacy_policy_agreement_html: Olen tutvunud <a href="%{privacy_policy_path}" target="_blank">isikuandmete kaitse põhimõtetega</a> ja nõustun nendega
+    progress:
+      confirm: Kinnita e-post
+      details: Sinu üksikasjad
+      review: Meie ülevaatamine
+      rules: Nõustu reeglitega
     providers:
       cas: CAS
       saml: SAML
     register: Loo konto
     registration_closed: "%{instance} ei võta vastu uusi liikmeid"
-    resend_confirmation: Saada kinnitusjuhendid uuesti
+    resend_confirmation: Saada kinnituslink uuesti
     reset_password: Salasõna lähtestamine
     rules:
+      accept: Nõus
+      back: Tagasi
+      invited_by: 'Saad ühineda paigaga %{domain} tänu saadud kutsele, mille said kohast:'
       preamble: Neist kinnipidamist jälgivad %{domain} moderaatorid.
+      preamble_invited: Enne jätkamist kaalu põhireegleid, mille on kehtestanud %{domain} moderaatorid.
       title: Mõned põhireeglid.
+      title_invited: Oled kutsutud.
     security: Turvalisus
     set_new_password: Uue salasõna määramine
     setup:
-      email_below_hint_html: Kui allolev e-posti aadress on vale, saad seda muuta siin. Seejärel saadetakse uus kinnituskiri.
-      email_settings_hint_html: Kinnituskiri saadeti e-posti aadressile %{email}. Kui see aadress pole õige, saad muuta seda oma konto sätetest.
-      title: Seadistamine
+      email_below_hint_html: Kontrolli rämpspostikausta või taotle uut. Saad parandada e-postiaadressi, kui see on vale.
+      email_settings_hint_html: Klõpsa linki, mis saadeti sulle, et kinnitada %{email}. Seni me ootame.
+      link_not_received: Kas ei saanud linki?
+      new_confirmation_instructions_sent: Saad mõne minutiga uue kinnituslingiga e-kirja!
+      title: Kontrolli sisendkasti
     sign_in:
       preamble_html: Logi sisse oma <strong>%{domain}</strong> volitustega. Kui konto asub teises serveris, ei saa siin sisse logida.
       title: Logi sisse kohta %{domain}
     sign_up:
-      preamble: Selle kontoga saad jälgida ja suhelda kõigi teiste kasutajatega erinevates Mastodoni serverites.
+      manual_review: Liitumised kohas %{domain} vaadatakse meie moderaatorite poolt käsitsi läbi. Aitamaks meil sinu taotlust läbi vaadata, kirjuta palun natuke endast ja miks soovid kontot kohas %{domain}.
+      preamble: Selle kontoga saad jälgida ja suhelda kõigi teiste kasutajatega erinevates TomXi serverites.
       title: Loo konto serverisse  %{domain}.
     status:
       account_status: Konto olek
@@ -993,18 +1060,6 @@ et:
       view_strikes: Vaata enda eelnevaid juhtumeid
     too_fast: Vorm esitatud liiga kiirelt, proovi uuesti.
     use_security_key: Kasuta turvavõtit
-  authorize_follow:
-    already_following: Juba jälgid seda kontot
-    already_requested: Saatsid juba sellele kontole jälgimistaotluse
-    error: Kahjuks ilmus viga kasutaja kaugserverist otsimisel
-    follow: Jälgi
-    follow_request: 'Oled saatnud jälgimistaotluse kasutajale:'
-    following: 'Õnnestus! Jälgid nüüd kasutajat:'
-    post_follow:
-      close: Või sulge lihtsalt see aken.
-      return: Näita kasutaja profiili
-      web: Mine veebi
-    title: Jälgi %{acct}
   challenge:
     confirm: Jätka
     hint_html: "<strong>Nõuanne:</strong> Me ei küsi salasõna uuesti järgmise tunni jooksul."
@@ -1081,6 +1136,11 @@ et:
       your_appeal_rejected: Vaidlustus on tagasi lükatud
   domain_validator:
     invalid_domain: ei ole sobiv domeeni nimi
+  edit_profile:
+    basic_information: Põhiinfo
+    hint_html: "<strong>Kohanda, mida inimesed näevad su avalikul profiilil ja postituste kõrval.</strong> Inimesed alustavad tõenäolisemalt sinu jälgimist ja interakteeruvad sinuga, kui sul on täidetud profiil ja profiilipilt."
+    other: Muu
+    safety_and_privacy: Turvalisus ja privaatsus
   errors:
     '400': Esitatud päring oli vigane või valesti vormindatud.
     '403': Sul puudub õigus seda lehte vaadata.
@@ -1095,7 +1155,7 @@ et:
       content: Palume vabandust, midagi läks valesti meie pool.
       title: See lehekülg pole õige
     '503': Lehekülge ei saanud serveerida ajutise serveri vea tõttu.
-    noscript_html: Et kasutada Mastodoni veebirakendust, palun luba JavaScript. Teise võimalusena proovi mõnda <a href="%{apps_path}">rakendust</a> su platvormile.
+    noscript_html: Et kasutada TomXi veebirakendust, palun luba JavaScript. Teise võimalusena proovi mõnda <a href="%{apps_path}">rakendust</a> su platvormile.
   existing_username_validator:
     not_found: ei suutnud leida kohalikku kasutajat selle kasutajanimega
     not_found_multiple: ei suutnud leida %{usernames}
@@ -1161,8 +1221,6 @@ et:
       index:
         hint: See filter kehtib üksikute postituste valimisel, sõltumata muudest kriteeriumidest. Sellesse filtrisse saab veebiliidese kaudu rohkem postitusi lisada.
         title: Filtreeritud postitused
-  footer:
-    trending_now: Praegu trendikad
   generic:
     all: Kõik
     all_items_on_page_selected_html:
@@ -1171,7 +1229,9 @@ et:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> otsinguvaste valitud."
       other: Kõik <strong>%{count}</strong> otsinguvastet valitud.
+    cancel: Tühista
     changes_saved_msg: Muudatuste salvestamine õnnestus!
+    confirm: Kinnita
     copy: Kopeeri
     delete: Kustuta
     deselect: Ära vali midagi
@@ -1185,24 +1245,62 @@ et:
     validation_errors:
       one: Midagi pole ikka õigesti! Palun vaata allolev veateade üle
       other: Midagi pole ikka õigesti! Palun vaata all olevad %{count} veateadet üle
-  html_validator:
-    invalid_markup: 'sisaldab valet HTMLi süntaksi: %{error}'
   imports:
     errors:
+      empty: Tühi CSV-fail
+      incompatible_type: Ei sobi kokku valitud importimistüübiga
       invalid_csv_file: 'Vigane CSV-fail. Tõrge: %{error}'
       over_rows_processing_limit: sisaldab rohkem, kui %{count} rida
+      too_large: Fail on liiga suur
+    failures: Ebaõnnestumised
+    imported: Imporditud
+    mismatched_types_warning: Näib, et oled selle importimise jaoks valinud vale tüübi. Palun kontrolli üle.
     modes:
       merge: Lõimi
       merge_long: Hoia olemasolevad andmed ja lisa uusi
       overwrite: Kirjuta üle
       overwrite_long: Vaheta praegused andmed uute vastu
+    overwrite_preambles:
+      blocking_html: Oled <strong>asendamas oma blokeeringute loetelu</strong> kuni <strong>%{total_items} kontoga </strong> kohast <strong>%{filename}</strong>.
+      bookmarks_html: Oled <strong>asendamas oma järjehoidjaid</strong> kuni <strong>%{total_items} postitusega </strong> kohast <strong>%{filename}</strong>.
+      domain_blocking_html: Oled <strong>asendamas oma domeenide blokeeringute loetelu </strong> kuni <strong>%{total_items} domeeniga </strong> kohast <strong>%{filename}</strong>.
+      following_html: Oled <strong>jälgima hakkamas</strong> kuni <strong>%{total_items} kontot</strong> kohast <strong>%{filename}</strong> ja <strong>lõpetad kõigi teiste jälgimise</strong>.
+      lists_html: Oled <strong>asendamas oma loetelusid</strong> faili <strong>%{filename}</strong> sisuga. Uutesse loeteludesse lisatakse kuni <strong>%{total_items} kontot</strong>.
+      muting_html: Oled <strong>asendamas oma vaigistatud kontode loetelu</strong> kuni <strong>%{total_items} kontoga </strong> kohast <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Oled <strong>blokeerimas</strong> kuni <strong>%{total_items} kontoga </strong> kohast <strong>%{filename}</strong>.
+      bookmarks_html: Oled lisamas kuni <strong>%{total_items} postitust</strong> kohast <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
+      domain_blocking_html: Oled <strong>blokeerimas</strong> kuni <strong>%{total_items} domeeni</strong> kohast <strong>%{filename}</strong>.
+      following_html: Oled <strong>jälgima hakkamas</strong> kuni <strong>%{total_items} kontot</strong> kohast <strong>%{filename}</strong>.
+      lists_html: Oled lisamas oma <strong>loeteludesse</strong> failist <strong>%{filename}</strong> kuni <strong>%{total_items} kontot</strong>. Kui pole loetelusi, kuhu lisada, luuakse uued loetelud.
+      muting_html: Oled <strong>vaigistamas</strong> kuni <strong>%{total_items} kontot</strong> kohast <strong>%{filename}</strong>.
     preface: Saad importida mistahes andmeid, mis on eksporditud teisest serverist. Näiteks nimekirja inimestest, keda jälgid ja keda blokeerid.
+    recent_imports: Viimati imporditud
+    states:
+      finished: Valmis
+      in_progress: Töös
+      scheduled: Ajastatud
+      unconfirmed: Kinnitamata
+    status: Olek
     success: Andmete üleslaadimine õnnestus ning neid töödeldakse
+    time_started: Algus
+    titles:
+      blocking: Blokeeritud kontode importimine
+      bookmarks: Järjehoidjate importimine
+      domain_blocking: Blokeeritud domeenide importimine
+      following: Jälgitavate kontode importimine
+      lists: Loetelude importimine
+      muting: Vaigistatud kontode importimine
+    type: Importimise tüüp
+    type_groups:
+      constructive: Jälgimised & Järjehoidjad
+      destructive: Blokeerimised & Vaigistamised
     types:
       blocking: Blokeeringute nimekiri
       bookmarks: Järjehoidjad
       domain_blocking: Domeeniblokeeringute nimekiri
       following: Jälgimiste nimekiri
+      lists: Loetelud
       muting: Vaigistuse nimekiri
     upload: Lae üles
   invites:
@@ -1217,7 +1315,7 @@ et:
       '86400': 1 päev
     expires_in_prompt: Mitte kunagi
     generate: Loo
-    invited_by: 'Teid kutsus:'
+    invited_by: 'Sind kutsus:'
     max_uses:
       one: 1 kasutus
       other: "%{count} kasutust"
@@ -1241,6 +1339,21 @@ et:
     failed_sign_in_html: Nurjunud sisenemine meetodiga %{method} aadressilt %{ip} (%{browser})
     successful_sign_in_html: Edukas sisenemine meetodiga %{method} aadressilt %{ip} (%{browser})
     title: Autentimise ajalugu
+  mail_subscriptions:
+    unsubscribe:
+      action: Jah, lõpeta tellimine
+      complete: Tellimine lõpetatud
+      confirmation_html: Oled kindel, et soovid lõpetada domeenilt %{domain} TomXi %{type} teadete tellimise oma e-postile %{email}? Saad alati neid teavitusi uuesti tellida oma <a href="%{settings_path}">e-posti teavituste seadetest</a>.
+      emails:
+        notification_emails:
+          favourite: lemmikuks märkimise e-kirjad
+          follow: jälgimisest teatamise e-kirjad
+          follow_request: jälgimise taotluse e-kirjad
+          mention: mainimistest teatamise e-kirjad
+          reblog: jagamise teavitamise e-kirjad
+      resubscribe_html: Kui loobusid tellimisest ekslikult, saad uuesti tellida oma <a href="%{settings_path}">e-posti teavituste seadetest</a>.
+      success_html: Sa ei saa rohkem %{domain} TomXi jaoks %{type} teavitusi e-postiaadressile %{email}.
+      title: Loobu tellimisest
   media_attachments:
     validations:
       images_and_video: Ei saa lisada video postitusele, milles on juba pildid
@@ -1301,13 +1414,13 @@ et:
       title: Uus jälgija
     follow_request:
       action: Halda jälgimistaotlusi
-      body: "%{name} soovib Teid jälgida"
+      body: "%{name} soovib sind jälgida"
       subject: 'Ootav jälgija: %{name}'
       title: Uus jälgimistaotlus
     mention:
       action: Vasta
-      body: "%{name} mainis Teid:"
-      subject: "%{name} mainis Teid"
+      body: "%{name} mainis sind:"
+      subject: "%{name} mainis sind"
       title: Uus mainimine
     poll:
       subject: "%{name} küsitlus lõppes"
@@ -1356,6 +1469,7 @@ et:
       expired: See küsitlus on juba lõppenud
       invalid_choice: Valitud küsitluse valikut pole olemas
       over_character_limit: igaüks ei saa olla rohkem kui %{max} tähemärki
+      self_vote: Sa ei saa enda hääletustel hääletada
       too_few_options: peab olema rohkem kui üks vastus
       too_many_options: ei saa sisaldada rohkem kui %{max} vastust
   preferences:
@@ -1374,6 +1488,7 @@ et:
     confirm_remove_selected_followers: Oled kindel, et soovid eemaldada valitud jälgijad?
     confirm_remove_selected_follows: Oled kindel, et soovid eemaldada valitud jälgitavad?
     dormant: Seisev
+    follow_failure: Mõne valitud konto jälgimine polnud võimalik.
     follow_selected_followers: Valitud jälgijate jälgimine
     followers: Jälgijad
     following: Jälgib
@@ -1413,6 +1528,7 @@ et:
       electron: Electron
       firefox: Firefox
       generic: Tundmatu veebilehitseja
+      huawei_browser: Huawei veebilehitseja
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1422,10 +1538,11 @@ et:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Tundmatu veebilehitseja
       weibo: Weibo
     current_session: Praegune seanss
     description: "%{browser} platvormil %{platform}"
-    explanation: Need veebilehitsejad on praegu su Mastodoni kontole sisse loginud.
+    explanation: Need veebilehitsejad on praegu su TomXi kontole sisse loginud.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1434,9 +1551,10 @@ et:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: tundmatu platvorm
+      unknown_platform: Tundmatu platvorm
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1450,7 +1568,7 @@ et:
     aliases: Siia kolitavad kontod
     appearance: Välimus
     authorized_apps: Lubatud rakendused
-    back: Tagasi Mastodoni
+    back: Tagasi TomXi
     delete: Konto kustutamine
     development: Arendus
     edit_profile: Muuda profiili
@@ -1507,7 +1625,6 @@ et:
     show_newer: Uuemate kuvamine
     show_older: Vanemate kuvamine
     show_thread: Kuva lõim
-    sign_in_to_participate: Logi sisse, et liituda vestlusega
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Otsene
@@ -1549,12 +1666,12 @@ et:
       '7889238': 3 kuud
     min_age_label: Ajalimiit
     min_favs: Säilita postitused, meeldimistega vähemalt
-    min_favs_hint: Ei kustuta ühtegi postitust, mis on saanud vähemalt nii palju lemmikuks märkimist. Postituste kustutamiseks olenemata nende lemmikuks märkimise arvust, jäta tühjaks
+    min_favs_hint: |-
+      Ei kustuta ühtegi postitust, mis on saanud vähemalt nii palju lemmikuks märkimist. Postituste kustutamiseks olenemata nende lemmikuks märkimise arvust,
+      jäta tühjaks
     min_reblogs: Säilita postitused jagatud vähemalt
     min_reblogs_hint: Ei kustuta postitusi, kui need on jagatud vähemalt nii mitu korda. Tühjaks jättes kustuvad postitused olenemata jagamistest
   stream_entries:
-    pinned: Kinnitatud postitus
-    reblogged: jagatud
     sensitive_content: Tundlik sisu
   strikes:
     errors:
@@ -1562,9 +1679,9 @@ et:
   tags:
     does_not_match_previous_name: ei ühti eelmise nimega
   themes:
-    contrast: Mastodon (Kõrge kontrast)
-    default: Mastodon (Tume)
-    mastodon-light: Mastodon (Hele)
+    contrast: TomX (Kõrge kontrast)
+    default: TomX (Tume)
+    mastodon-light: TomX (Hele)
   time:
     formats:
       default: "%d. %B, %Y. aastal, kell %H:%M"
@@ -1596,7 +1713,7 @@ et:
       subject: "%{date} esitatud vaidlustus on tagasi lükatud"
       title: Vaidlustus tagasi lükatud
     backup_ready:
-      explanation: Taotlesid oma Mastodoni konto varukoopiat. See on nüüd valmis allalaadimiseks!
+      explanation: Taotlesid oma TomXi konto varukoopiat. See on nüüd valmis allalaadimiseks!
       subject: Arhiiv on allalaadimiseks valmis
       title: Arhiivi väljavõte
     suspicious_sign_in:
@@ -1646,19 +1763,24 @@ et:
       explanation: Siin on mõned nõuanded, mis aitavad alustada
       final_action: Alusta postitamist
       final_step: 'Nüüd tee oma esimene postitus. Hea tava on uues kohas ennast tutvustada ning kindlasti kasuta selles postituses ka teemaviidet #tutvustus. Isegi kui sul ei ole veel jälgijaid, siis su postitusi näevad kohalikul ajajoonel ka kõik teised serveri kasutajad.'
-      full_handle: Kasutajanimi Mastodon võrgustikus
+      full_handle: Kasutajanimi TomX võrgustikus
       full_handle_hint: Kui jagad kasutajanime väljaspool serverit, siis kasuta kindlasti pikka nime. Erinevates serverites võib olla sama kasutajanimega liikmeid.
-      subject: Tere tulemast Mastodoni
+      subject: Tere tulemast TomXi
       title: Tere tulemast, %{name}!
   users:
     follow_limit_reached: Ei saa jälgida rohkem kui %{limit} inimest
+    go_to_sso_account_settings: Mine oma idenditeedipakkuja kontosätetesse
     invalid_otp_token: Vale kaheastmeline võti
     otp_lost_help_html: Kui kaotasid ligipääsu mõlemale, saad võtta ühendust %{email}-iga
     seamless_external_login: Välise teenuse kaudu sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:
-    explanation_html: 'Saad <strong>kinnitada ennast oma profiili veebiviidete omanikuna</strong>. Selleks peab viidatud veebilehel olema link tagasi su Mastodoni profiilile. Tagasi saatval lingil <strong>peab</strong> olema <code>rel="me"</code> atribuut. Lingi tekstiline sisu ei ole oluline. Siin on üks näide:'
+    extra_instructions_html: <strong>Soovitus:</strong> Sinu kodulehel olev link võib olla nähtamatu. Oluline osa on <code>rel="me"</code>, mis väldib kasutaja loodud sisuga lehtedel libaisikustamist. Sa saad isegi kasutada lehe HEADER osas silti <code>link</code> sildi <code>a</code> asemel, kuid HTML peab olema kättesaadav ilma JavaScripti käivitamata.
+    here_is_how: Siin on, kuidas
+    hint_html: "<strong>Oma isiku tuvastamine on TomXis kõigi jaoks.</strong> Toetub avatud veebistandarditele, nüüd ja igavesti tasuta. Kõik, mida vajad, on isiklik veebileht, mille järgi inimesed sind tunnevad. Kui lingid oma profiililt sellele veebilehele, kontrollime me, et see veebileht lingib tagasi sinu profiilile ning näitame profiilil visuaalset tähist."
+    instructions_html: Kopeeri ja kleebi allpool olev kood oma lehe HTML lähtekoodi. Seejärel lisa oma kodulehe aadress profiili "Muuda profiili" taabi ühte lisavälja ning salvesta muudatused.
     verification: Kinnitamine
+    verified_links: Sinu kontrollitud lingid
   webauthn_credentials:
     add: Uue turvavõtme lisamine
     create:

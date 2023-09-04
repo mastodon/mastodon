@@ -228,11 +228,6 @@ h1 {
   line-height: 36px;
 }
 
-.column-cell a h1 {
-  margin: 0 8px 10px;
-  line-height: 26px;
-}
-
 h2 {
   font-size: 23px;
   line-height: 30px;
@@ -546,13 +541,13 @@ ul.rules-list {
   padding-top: 0;
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+@media only screen and (device-width >= 768px) and (device-width <= 1024px) and (orientation: landscape) {
   body {
     min-height: 1024px !important;
   }
 }
 
-@media (max-width: 697px) {
+@media (width <= 697px) {
   .email-container,
   .col-1,
   .col-2,

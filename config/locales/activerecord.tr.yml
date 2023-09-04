@@ -28,7 +28,7 @@ tr:
         doorkeeper/application:
           attributes:
             website:
-              invalid: geçerli bir URL değil
+              invalid: geçerli bir bağlantı değil
         import:
           attributes:
             data:
@@ -53,3 +53,7 @@ tr:
             position:
               elevated: mevcut rolünüzden yüksek olamaz
               own_role: mevcut rolünüzle değiştirilemez
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: erişim hakkınız olmayan olayları içeremez

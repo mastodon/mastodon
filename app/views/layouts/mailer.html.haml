@@ -22,8 +22,7 @@
                               %tr
                                 %td.column-cell
                                   = link_to root_url do
-                                    %h1
-                                      = site_title
+                                    = image_tag full_pack_url('media/images/mailer/wordmark.png'), alt: 'TomX', height: 34, class: 'logo'
 
     = yield
 
@@ -36,7 +35,7 @@
                 %tbody
                   %tr
                     %td.content-cell.content-end
-                      != "&nbsp; "
+                      != '&nbsp; '
                   %tr
                     %td.blank-cell.footer
                       .email-row
@@ -45,8 +44,8 @@
                             %tbody
                               %td.column-cell
                                 %p= t 'about.hosted_on', domain: site_hostname
-                                %p= link_to t('application_mailer.notification_preferences'), settings_preferences_notifications_url
-                              %td.column-cell.text-right
-                                = link_to root_url do
-                                  %h4
-                                    = site_title
+                                %p
+                                  = link_to t('application_mailer.notification_preferences'), settings_preferences_notifications_url
+                                  - if defined?(@unsubscribe_url)
+                                    ·
+                                    = link_to t('application_mailer.unsubscribe'), @unsubscribe_url

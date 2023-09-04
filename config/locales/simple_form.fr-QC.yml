@@ -2,6 +2,10 @@
 fr-QC:
   simple_form:
     hints:
+      account:
+        display_name: Votre nom complet ou votre nom cool.
+        fields: Votre page d'accueil, pronoms, âge, tout ce que vous voulez.
+        note: 'Vous pouvez @mentionner d’autres personnes ou des #hashtags.'
       account_alias:
         acct: Spécifiez l’identifiant@domaine du compte que vous souhaitez faire migrer
       account_migration:
@@ -18,6 +22,8 @@ fr-QC:
           disable: Empêcher l’utilisateur·rice d’utiliser son compte, mais ne pas supprimer ou masquer son contenu.
           none: Utilisez ceci pour envoyer un avertissement à l’utilisateur·rice, sans déclencher aucune autre action.
           sensitive: Forcer toutes les pièces jointes de cet·te utilisateur·rice à être signalées comme sensibles.
+          silence: Empêcher l'utilisateur⋅rice de publier des messages en visibilité publique et cacher tous ses messages et notifications aux comptes non abonnés. Cloture tous les signalements concernant ce compte.
+          suspend: Empêcher toute interaction depuis ou vers ce compte et supprimer son contenu. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
         warning_preset_id: Facultatif. Vous pouvez toujours ajouter un texte personnalisé à la fin de la présélection
       announcement:
         all_day: Coché, seules les dates de l’intervalle de temps seront affichées
@@ -37,7 +43,6 @@ fr-QC:
         digest: Uniquement envoyé après une longue période d’inactivité en cas de messages personnels reçus pendant votre absence
         discoverable: Permet à votre compte d’être découvert par des inconnus par le biais de recommandations, de tendances et autres fonctionnalités
         email: Vous recevrez un courriel de confirmation
-        fields: Vous pouvez avoir jusqu’à 4 éléments affichés en tant que tableau sur votre profil
         header: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         inbox_url: Copiez l’URL depuis la page d’accueil du relai que vous souhaitez utiliser
         irreversible: Les messages filtrés disparaîtront irrévocablement, même si le filtre est supprimé plus tard
@@ -47,7 +52,7 @@ fr-QC:
         phrase: Sera filtré peu importe la casse ou l’avertissement de contenu du message
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
         setting_aggregate_reblogs: Ne pas afficher les nouveaux partages pour les messages déjà récemment partagés (n’affecte que les partages futurs)
-        setting_always_send_emails: Normalement, les notifications par courriel ne seront pas envoyées lorsque vous utilisez Mastodon activement
+        setting_always_send_emails: Normalement, les notifications par courriel ne seront pas envoyées lorsque vous utilisez TomX activement
         setting_default_sensitive: Les médias sensibles sont cachés par défaut et peuvent être révélés d’un simple clic
         setting_display_media_default: Masquer les médias marqués comme sensibles
         setting_display_media_hide_all: Toujours masquer les médias
@@ -57,7 +62,7 @@ fr-QC:
         setting_show_application: Le nom de l’application que vous utilisez pour publier sera affichée dans la vue détaillée de vos messages
         setting_use_blurhash: Les dégradés sont basés sur les couleurs des images cachées mais n’en montrent pas les détails
         setting_use_pending_items: Cacher les mises à jour des fils d’actualités derrière un clic, au lieu de les afficher automatiquement
-        username: Votre nom d’utilisateur sera unique sur %{domain}
+        username: Vous pouvez utiliser des lettres, des chiffres, et des tirets bas
         whole_word: Si le mot-clé ou la phrase est alphanumérique, alors le filtre ne sera appliqué que s’il correspond au mot entier
       domain_allow:
         domain: Ce domaine pourra récupérer des données de ce serveur et les données entrantes seront traitées et stockées
@@ -72,30 +77,34 @@ fr-QC:
           hide: Cacher complètement le contenu filtré, faire comme s'il n'existait pas
           warn: Cacher le contenu filtré derrière un avertissement mentionnant le nom du filtre
       form_admin_settings:
+        activity_api_enabled: Nombre de messages publiés localement, de comptes actifs et de nouvelles inscriptions par tranche hebdomadaire
         backups_retention_period: Conserve les archives générées par l'utilisateur selon le nombre de jours spécifié.
         bootstrap_timeline_accounts: Ces comptes seront épinglés en tête de liste des recommandations pour les nouveaux utilisateurs.
         closed_registrations_message: Affiché lorsque les inscriptions sont fermées
         content_cache_retention_period: Les publications depuis d'autres serveurs seront supprimées après un nombre de jours spécifiés lorsque défini sur une valeur positive. Cela peut être irréversible.
-        custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
+        custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de TomX.
         mascot: Remplace l'illustration dans l'interface Web avancée.
         media_cache_retention_period: Les fichiers multimédias téléchargés seront supprimés après le nombre de jours spécifiés lorsque la valeur est positive, et seront téléchargés à nouveau sur demande.
+        peers_api_enabled: Une liste de noms de domaine que ce serveur a rencontrés dans le fédiverse. Aucune donnée indiquant si vous vous fédérez ou non avec un serveur particulier n'est incluse ici, seulement l'information que votre serveur connaît un autre serveur. Cette option est utilisée par les services qui collectent des statistiques sur la fédération en général.
         profile_directory: L'annuaire des profils répertorie tous les utilisateurs qui ont opté pour être découverts.
         require_invite_text: Lorsque les inscriptions nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
         site_contact_email: Comment les personnes peuvent vous joindre pour des demandes de renseignements juridiques ou d'assistance.
-        site_contact_username: Comment les gens peuvent vous contacter sur Mastodon.
+        site_contact_username: Comment les gens peuvent vous contacter sur TomX.
         site_extended_description: Toute information supplémentaire qui peut être utile aux visiteurs et à vos utilisateurs. Peut être structurée avec la syntaxe Markdown.
         site_short_description: Une courte description pour aider à identifier de manière unique votre serveur. Qui l'exécute, à qui il est destiné ?
         site_terms: Utilisez votre propre politique de confidentialité ou laissez vide pour utiliser la syntaxe par défaut. Peut être structurée avec la syntaxe Markdown.
         site_title: Comment les personnes peuvent se référer à votre serveur en plus de son nom de domaine.
+        status_page_url: URL d'une page où les gens peuvent voir l'état de ce serveur en cas de panne
         theme: Thème que verront les utilisateur·rice·s déconnecté·e·s ainsi que les nouveaux·elles utilisateur·rice·s.
         thumbnail: Une image d'environ 2:1 affichée à côté des informations de votre serveur.
         timeline_preview: Les visiteurs déconnectés pourront parcourir les derniers messages publics disponibles sur le serveur.
         trendable_by_default: Ignorer l'examen manuel du contenu tendance. Des éléments individuels peuvent toujours être supprimés des tendances après coup.
         trends: Les tendances montrent quelles publications, hashtags et actualités sont en train de gagner en traction sur votre serveur.
+        trends_as_landing_page: Afficher le contenu tendance au lieu d'une description de ce serveur pour les comptes déconnectés et les non-inscrit⋅e⋅s. Nécessite que les tendances soient activées.
       form_challenge:
         current_password: Vous entrez une zone sécurisée
       imports:
-        data: Un fichier CSV généré par un autre serveur de Mastodon
+        data: Un fichier CSV généré par un autre serveur de TomX
       invite_request:
         text: Cela nous aidera à considérer votre demande
       ip_block:
@@ -125,6 +134,7 @@ fr-QC:
         position: Dans certaines situations, un rôle supérieur peut trancher la résolution d'un conflit. Mais certaines opérations ne peuvent être effectuées que sur des rôles ayant une priorité inférieure
       webhook:
         events: Sélectionnez les événements à envoyer
+        template: Écrivez votre propre bloc JSON avec la possibilité d’utiliser de l’interpolation de variables. Laissez vide pour le bloc JSON par défaut.
         url: Là où les événements seront envoyés
     labels:
       account:
@@ -190,7 +200,6 @@ fr-QC:
         setting_always_send_emails: Toujours envoyer les notifications par courriel
         setting_auto_play_gif: Lire automatiquement les GIFs animés
         setting_boost_modal: Demander confirmation avant de partager un message
-        setting_crop_images: Recadrer en 16x9 les images des messages qui ne sont pas ouverts en vue détaillée
         setting_default_language: Langue de publication
         setting_default_privacy: Confidentialité des messages
         setting_default_sensitive: Toujours marquer les médias comme sensibles
@@ -221,12 +230,13 @@ fr-QC:
       email_domain_block:
         with_dns_records: Inclure les enregistrements MX et IP du domaine
       featured_tag:
-        name: Hashtag
+        name: Mot-clic
       filters:
         actions:
           hide: Cacher complètement
           warn: Cacher derrière un avertissement
       form_admin_settings:
+        activity_api_enabled: Publie des statistiques agrégées sur l'activité des utilisateur⋅rice⋅s dans l'API
         backups_retention_period: Période d'archivage utilisateur
         bootstrap_timeline_accounts: Toujours recommander ces comptes aux nouveaux utilisateurs
         closed_registrations_message: Message personnalisé lorsque les inscriptions ne sont pas disponibles
@@ -234,6 +244,7 @@ fr-QC:
         custom_css: CSS personnalisé
         mascot: Mascotte personnalisée (héritée)
         media_cache_retention_period: Durée de rétention des médias dans le cache
+        peers_api_enabled: Publie la liste des serveurs découverts dans l'API
         profile_directory: Activer l’annuaire des profils
         registrations_mode: Qui peut s’inscrire
         require_invite_text: Exiger une raison pour s’inscrire
@@ -245,11 +256,13 @@ fr-QC:
         site_short_description: Description du serveur
         site_terms: Politique de confidentialité
         site_title: Nom du serveur
+        status_page_url: URL de la page de l'état du serveur
         theme: Thème par défaut
         thumbnail: Miniature du serveur
         timeline_preview: Autoriser l’accès non authentifié aux fils publics
         trendable_by_default: Autoriser les tendances sans révision préalable
         trends: Activer les tendances
+        trends_as_landing_page: Utiliser les tendances comme page d'accueil
       interactions:
         must_be_follower: Bloquer les notifications des personnes qui ne vous suivent pas
         must_be_following: Bloquer les notifications des personnes que vous ne suivez pas
@@ -281,11 +294,12 @@ fr-QC:
         text: Règle
       tag:
         listable: Autoriser ce hashtag à apparaître dans les recherches et dans l’annuaire des profils
-        name: Hashtag
+        name: Mot-clic
         trendable: Autoriser ce hashtag à apparaitre dans les tendances
         usable: Autoriser les messages à utiliser ce hashtag
       user:
         role: Rôle
+        time_zone: Fuseau horaire
       user_role:
         color: Couleur du badge
         highlighted: Afficher le rôle avec un badge sur les profils des utilisateur·rice·s
@@ -294,6 +308,7 @@ fr-QC:
         position: Priorité
       webhook:
         events: Événements activés
+        template: Modèle de charge utile
         url: URL du point de terminaison
     'no': Non
     not_recommended: Non recommandé

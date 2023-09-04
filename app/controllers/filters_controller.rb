@@ -6,6 +6,7 @@ class FiltersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_filter, only: [:edit, :update, :destroy]
   before_action :set_body_classes
+  before_action :set_cache_headers
 
   def index
     @filters = current_account.custom_filters.includes(:keywords, :statuses).order(:phrase)
@@ -16,6 +17,8 @@ class FiltersController < ApplicationController
     @filter.keywords.build
   end
 
+  def edit; end
+
   def create
     @filter = current_account.custom_filters.build(resource_params)
 
@@ -25,8 +28,6 @@ class FiltersController < ApplicationController
       render action: :new
     end
   end
-
-  def edit; end
 
   def update
     if @filter.update(resource_params)
@@ -53,5 +54,9 @@ class FiltersController < ApplicationController
 
   def set_body_classes
     @body_classes = 'admin'
+  end
+
+  def set_cache_headers
+    response.cache_control.replace(private: true, no_store: true)
   end
 end
