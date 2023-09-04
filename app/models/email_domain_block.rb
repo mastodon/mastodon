@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: email_domain_blocks
@@ -12,7 +11,7 @@
 #
 
 class EmailDomainBlock < ApplicationRecord
-  self.ignored_columns += %w(
+  self.ignored_columns = %w(
     ips
     last_refresh_at
   )
@@ -64,17 +63,19 @@ class EmailDomainBlock < ApplicationRecord
 
         segments = uri.normalized_host.split('.')
 
-        segments.map.with_index { |_, i| segments[i..].join('.') }
+        segments.map.with_index { |_, i| segments[i..-1].join('.') }
       end
     end
 
     def extract_uris(domain_or_domains)
       Array(domain_or_domains).map do |str|
-        domain = if str.include?('@')
-                   str.split('@', 2).last
-                 else
-                   str
-                 end
+        domain = begin
+          if str.include?('@')
+            str.split('@', 2).last
+          else
+            str
+          end
+        end
 
         Addressable::URI.new.tap { |u| u.host = domain.strip } if domain.present?
       rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError

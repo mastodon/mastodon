@@ -36,11 +36,13 @@ class Form::CustomEmojiBatch
   def update!
     custom_emojis.each { |custom_emoji| authorize(custom_emoji, :update?) }
 
-    category = if category_id.present?
-                 CustomEmojiCategory.find(category_id)
-               elsif category_name.present?
-                 CustomEmojiCategory.find_or_create_by!(name: category_name)
-               end
+    category = begin
+      if category_id.present?
+        CustomEmojiCategory.find(category_id)
+      elsif category_name.present?
+        CustomEmojiCategory.find_or_create_by!(name: category_name)
+      end
+    end
 
     custom_emojis.each do |custom_emoji|
       custom_emoji.update(category_id: category&.id)
