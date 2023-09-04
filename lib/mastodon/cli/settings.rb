@@ -1,15 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../../config/boot'
-require_relative '../../config/environment'
-require_relative 'cli_helper'
+require_relative 'base'
 
-module Mastodon
-  class RegistrationsCLI < Thor
-    def self.exit_on_failure?
-      true
-    end
-
+module Mastodon::CLI
+  class Registrations < Base
     desc 'open', 'Open registrations'
     def open
       Setting.registrations_mode = 'open'
@@ -37,8 +31,8 @@ module Mastodon
     end
   end
 
-  class SettingsCLI < Thor
+  class Settings < Base
     desc 'registrations SUBCOMMAND ...ARGS', 'Manage state of registrations'
-    subcommand 'registrations', RegistrationsCLI
+    subcommand 'registrations', Registrations
   end
 end

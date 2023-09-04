@@ -1,17 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../../config/boot'
-require_relative '../../config/environment'
-require_relative 'cli_helper'
+require_relative 'base'
 
-module Mastodon
-  class FeedsCLI < Thor
-    include CLIHelper
+module Mastodon::CLI
+  class Feeds < Base
     include Redisable
-
-    def self.exit_on_failure?
-      true
-    end
 
     option :all, type: :boolean, default: false
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
@@ -25,14 +18,12 @@ module Mastodon
       Otherwise, a single user specified by USERNAME.
     LONG_DESC
     def build(username = nil)
-      dry_run = options[:dry_run] ? '(DRY RUN)' : ''
-
       if options[:all] || username.nil?
-        processed, = parallelize_with_progress(Account.joins(:user).merge(User.active)) do |account|
-          PrecomputeFeedService.new.call(account) unless options[:dry_run]
+        processed, = parallelize_with_progress(active_user_accounts) do |account|
+          PrecomputeFeedService.new.call(account) unless dry_run?
         end
 
-        say("Regenerated feeds for #{processed} accounts #{dry_run}", :green, true)
+        say("Regenerated feeds for #{processed} accounts #{dry_run_mode_suffix}", :green, true)
       elsif username.present?
         account = Account.find_local(username)
 
@@ -41,9 +32,9 @@ module Mastodon
           exit(1)
         end
 
-        PrecomputeFeedService.new.call(account) unless options[:dry_run]
+        PrecomputeFeedService.new.call(account) unless dry_run?
 
-        say("OK #{dry_run}", :green, true)
+        say("OK #{dry_run_mode_suffix}", :green, true)
       else
         say('No account(s) given', :red)
         exit(1)
@@ -53,12 +44,14 @@ module Mastodon
     desc 'clear', 'Remove all home and list feeds from Redis'
     def clear
       keys = redis.keys('feed:*')
-
-      redis.pipelined do
-        keys.each { |key| redis.del(key) }
-      end
-
+      redis.del(keys)
       say('OK', :green)
+    end
+
+    private
+
+    def active_user_accounts
+      Account.joins(:user).merge(User.active)
     end
   end
 end
