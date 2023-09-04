@@ -68,6 +68,14 @@ class Importer::BaseImporter
 
   protected
 
+  def build_bulk_body(to_import)
+    # Specialize `Chewy::Index::Import::BulkBuilder#bulk_body` to avoid a few
+    # inefficiencies, as none of our fields or join fields and we do not need
+    # `BulkBuilder`'s versatility.
+    crutches = Chewy::Index::Crutch::Crutches.new index, to_import
+    to_import.map { |object| { index: { _id: object.id, data: index.compose(object, crutches, fields: []) } } }
+  end
+
   def in_work_unit(...)
     work_unit = Concurrent::Promises.future_on(@executor, ...)
 

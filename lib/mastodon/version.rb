@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def default_prerelease
-      'beta2'
+      'beta3'
     end
 
     def prerelease
@@ -37,6 +37,10 @@ module Mastodon
       components << "-#{prerelease}" if prerelease.present?
       components << "+#{build_metadata}" if build_metadata.present?
       components.join
+    end
+
+    def gem_version
+      @gem_version ||= Gem::Version.new(to_s.split('+')[0])
     end
 
     def repository

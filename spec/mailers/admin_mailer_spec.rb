@@ -85,4 +85,46 @@ RSpec.describe AdminMailer do
       expect(mail.body.encoded).to match 'The following items need a review before they can be displayed publicly'
     end
   end
+
+  describe '.new_software_updates' do
+    let(:recipient) { Fabricate(:account, username: 'Bob') }
+    let(:mail) { described_class.with(recipient: recipient).new_software_updates }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the headers' do
+      expect(mail.subject).to eq('New Mastodon versions are available for cb6e6126.ngrok.io!')
+      expect(mail.to).to eq [recipient.user_email]
+      expect(mail.from).to eq ['notifications@localhost']
+    end
+
+    it 'renders the body' do
+      expect(mail.body.encoded).to match 'New Mastodon versions have been released, you may want to update!'
+    end
+  end
+
+  describe '.new_critical_software_updates' do
+    let(:recipient) { Fabricate(:account, username: 'Bob') }
+    let(:mail) { described_class.with(recipient: recipient).new_critical_software_updates }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the headers', :aggregate_failures do
+      expect(mail.subject).to eq('Critical Mastodon updates are available for cb6e6126.ngrok.io!')
+      expect(mail.to).to eq [recipient.user_email]
+      expect(mail.from).to eq ['notifications@localhost']
+
+      expect(mail['Importance'].value).to eq 'high'
+      expect(mail['Priority'].value).to eq 'urgent'
+      expect(mail['X-Priority'].value).to eq '1'
+    end
+
+    it 'renders the body' do
+      expect(mail.body.encoded).to match 'New critical versions of Mastodon have been released, you may want to update as soon as possible!'
+    end
+  end
 end
