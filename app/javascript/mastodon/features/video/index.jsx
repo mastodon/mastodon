@@ -418,7 +418,9 @@ class Video extends PureComponent {
 
   handleMouseEnter = () => {
     // Custom code
-    this.togglePlay();
+    if(this.state.paused) {
+      this.setState({ paused: false }, () => this.video.play());
+    }
     this.setState({ hovered: true });
   };
 
