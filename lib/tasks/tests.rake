@@ -68,10 +68,24 @@ namespace :tests do
         puts 'Preview cards not deduplicated as expected'
         exit(1)
       end
+
+      unless Account.find_local('kmruser').user.chosen_languages == %w(en ku ckb)
+        puts 'Chosen languages not migrated as expected for kmr users'
+        exit(1)
+      end
+
+      unless Account.find_local('kmruser').user.settings['default_language'] == 'ku'
+        puts 'Default posting language not migrated as expected for kmr users'
+        exit(1)
+      end
     end
 
     desc 'Populate the database with test data for 2.4.3'
     task populate_v2_4_3: :environment do # rubocop:disable Naming/VariableNumber
+      user_key = OpenSSL::PKey::RSA.new(2048)
+      user_private_key     = ActiveRecord::Base.connection.quote(user_key.to_pem)
+      user_public_key      = ActiveRecord::Base.connection.quote(user_key.public_key.to_pem)
+
       ActiveRecord::Base.connection.execute(<<~SQL)
         INSERT INTO "custom_filters"
           (id, account_id, phrase, context, whole_word, irreversible, created_at, updated_at)
@@ -118,6 +132,21 @@ namespace :tests do
           (id, thing_type, thing_id, var, value, created_at, updated_at)
         VALUES
           (3, 'User', 1, 'notification_emails', E'--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nfollow: false\nreblog: true\nfavourite: true\nmention: false\nfollow_request: true\ndigest: true\nreport: true\npending_account: false\ntrending_tag: true\nappeal: true\n', now(), now());
+
+        INSERT INTO "accounts"
+          (id, username, domain, private_key, public_key, created_at, updated_at)
+        VALUES
+          (10, 'kmruser', NULL, #{user_private_key}, #{user_public_key}, now(), now());
+
+        INSERT INTO "users"
+          (id, account_id, email, created_at, updated_at, admin, locale, chosen_languages)
+        VALUES
+          (4, 10, 'kmruser@localhost', now(), now(), false, 'ku', '{en,kmr,ku,ckb}');
+
+        INSERT INTO "settings"
+          (id, thing_type, thing_id, var, value, created_at, updated_at)
+        VALUES
+          (4, 'User', 4, 'default_language', E'--- kmr\n', now(), now());
       SQL
     end
 
@@ -197,7 +226,7 @@ namespace :tests do
         INSERT INTO "users"
           (id, account_id, email, created_at, updated_at, admin, locale)
         VALUES
-          (3, 7, 'ptuser@localhost', now(), now(), false, 'pt');
+          (3, 8, 'ptuser@localhost', now(), now(), false, 'pt');
 
         -- conversations
         INSERT INTO "conversations" (id, created_at, updated_at) VALUES (1, now(), now());
