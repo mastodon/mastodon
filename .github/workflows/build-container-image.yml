@@ -8,7 +8,9 @@ on:
         type: boolean
       push_to_images:
         type: string
-      version_suffix:
+      version_prerelease:
+        type: string
+      version_metadata:
         type: string
       flavor:
         type: string
@@ -74,8 +76,6 @@ jobs:
         if: ${{ inputs.push_to_images != '' }}
         with:
           images: ${{ inputs.push_to_images }}
-          # Only tag with latest when ran against the latest stable branch
-          # This needs to be updated after each minor version release
           flavor: ${{ inputs.flavor }}
           tags: ${{ inputs.tags }}
           labels: ${{ inputs.labels }}
@@ -83,7 +83,9 @@ jobs:
       - uses: docker/build-push-action@v4
         with:
           context: .
-          build-args: MASTODON_VERSION_SUFFIX=${{ inputs.version_suffix }}
+          build-args: |
+            MASTODON_VERSION_PRERELEASE=${{ inputs.version_prerelease }}
+            MASTODON_VERSION_METADATA=${{ inputs.version_metadata }}
           platforms: ${{ inputs.platforms }}
           provenance: false
           builder: ${{ steps.buildx.outputs.name || steps.buildx-native.outputs.name }}

@@ -193,7 +193,6 @@ module LanguagesHelper
     cnr: 'crnogorski',
     jbo: 'la .lojban.',
     kab: 'Taqbaylit',
-    kmr: 'Kurmancî',
     ldn: 'Láadan',
     lfn: 'lingua franca nova',
     sco: 'Scots',

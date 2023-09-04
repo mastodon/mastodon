@@ -309,6 +309,7 @@ en:
       unpublish: Unpublish
       unpublished_msg: Announcement successfully unpublished!
       updated_msg: Announcement successfully updated!
+    critical_update_pending: Critical update pending
     custom_emojis:
       assign_category: Assign category
       by_domain: Domain
@@ -770,10 +771,27 @@ en:
           approved: Approval required for sign up
           none: Nobody can sign up
           open: Anyone can sign up
+      security:
+        authorized_fetch: Require authentication from federated servers
+        authorized_fetch_hint: Requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks. However, this comes at the cost of a performance penalty, reduces the reach of your replies, and may introduce compatibility issues with some federated services. In addition, this will not prevent dedicated actors from fetching your public posts and accounts.
+        authorized_fetch_overridden_hint: You are currently unable to change this setting because it is overridden by an environment variable.
+        federation_authentication: Federation authentication enforcement
       title: Server settings
     site_uploads:
       delete: Delete uploaded file
       destroyed_msg: Site upload successfully deleted!
+    software_updates:
+      critical_update: Critical — please update quickly
+      description: It is recommended to keep your Mastodon installation up to date to benefit from the latest fixes and features. Moreover, it is sometimes critical to update Mastodon in a timely manner to avoid security issues. For these reasons, Mastodon checks for updates every 30 minutes, and will notify you according to your e-mail notification preferences.
+      documentation_link: Learn more
+      release_notes: Release notes
+      title: Available updates
+      type: Type
+      types:
+        major: Major release
+        minor: Minor release
+        patch: Patch release — bugfixes and easy to apply changes
+      version: Version
     statuses:
       account: Author
       application: Application
@@ -838,6 +856,12 @@ en:
         message_html: You haven't defined any server rules.
       sidekiq_process_check:
         message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
+      software_version_critical_check:
+        action: See available updates
+        message_html: A critical Mastodon update is available, please update as quickly as possible.
+      software_version_patch_check:
+        action: See available updates
+        message_html: A bugfix Mastodon update is available.
       upload_check_privacy_error:
         action: Check here for more information
         message_html: "<strong>Your web server is misconfigured. The privacy of your users is at risk.</strong>"
@@ -951,6 +975,9 @@ en:
       body: "%{target} is appealing a moderation decision by %{action_taken_by} from %{date}, which was %{type}. They wrote:"
       next_steps: You can approve the appeal to undo the moderation decision, or ignore it.
       subject: "%{username} is appealing a moderation decision on %{instance}"
+    new_critical_software_updates:
+      body: New critical versions of Mastodon have been released, you may want to update as soon as possible!
+      subject: Critical Mastodon updates are available for %{instance}!
     new_pending_account:
       body: The details of the new account are below. You can approve or reject this application.
       subject: New account up for review on %{instance} (%{username})
@@ -958,6 +985,9 @@ en:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
+    new_software_updates:
+      body: New Mastodon versions have been released, you may want to update!
+      subject: New Mastodon versions are available for %{instance}!
     new_trends:
       body: 'The following items need a review before they can be displayed publicly:'
       new_trending_links:
@@ -1709,6 +1739,10 @@ en:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+  translation:
+    errors:
+      quota_exceeded: The server-wide usage quota for the translation service has been exceeded.
+      too_many_requests: There have been too many requests to the translation service recently.
   two_factor_authentication:
     add: Add
     disable: Disable 2FA

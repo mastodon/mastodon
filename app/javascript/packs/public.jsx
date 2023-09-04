@@ -7,8 +7,6 @@ import { defineMessages } from 'react-intl';
 
 import { delegate }  from '@rails/ujs';
 import axios from 'axios';
-import escapeTextContentForBrowser from 'escape-html';
-import { createBrowserHistory }  from 'history';
 import { throttle } from 'lodash';
 
 import { start } from '../mastodon/common';
@@ -47,23 +45,6 @@ window.addEventListener('message', e => {
 
 function loaded() {
   const { messages: localeData } = getLocale();
-
-  const scrollToDetailedStatus = () => {
-    const history = createBrowserHistory();
-    const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
-    const location = history.location;
-
-    if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
-      detailedStatuses[0].scrollIntoView();
-      history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
-    }
-  };
-
-  const getEmojiAnimationHandler = (swapTo) => {
-    return ({ target }) => {
-      target.src = target.getAttribute(swapTo);
-    };
-  };
 
   const locale = document.documentElement.lang;
 
@@ -158,27 +139,21 @@ function loaded() {
         const root = createRoot(content);
         root.render(<MediaContainer locale={locale} components={reactComponents} />);
         document.body.appendChild(content);
-        scrollToDetailedStatus();
       })
       .catch(error => {
         console.error(error);
-        scrollToDetailedStatus();
       });
-  } else {
-    scrollToDetailedStatus();
   }
 
-  delegate(document, '#user_account_attributes_username', 'input', throttle(() => {
-    const username = document.getElementById('user_account_attributes_username');
-
-    if (username.value && username.value.length > 0) {
-      axios.get('/api/v1/accounts/lookup', { params: { acct: username.value } }).then(() => {
-        username.setCustomValidity(formatMessage(messages.usernameTaken));
+  delegate(document, '#user_account_attributes_username', 'input', throttle(({ target }) => {
+    if (target.value && target.value.length > 0) {
+      axios.get('/api/v1/accounts/lookup', { params: { acct: target.value } }).then(() => {
+        target.setCustomValidity(formatMessage(messages.usernameTaken));
       }).catch(() => {
-        username.setCustomValidity('');
+        target.setCustomValidity('');
       });
     } else {
-      username.setCustomValidity('');
+      target.setCustomValidity('');
     }
   }, 500, { leading: false, trailing: true }));
 
@@ -195,9 +170,6 @@ function loaded() {
       confirmation.setCustomValidity('');
     }
   });
-
-  delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
-  delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
 
   delegate(document, '.status__content__spoiler-link', 'click', function() {
     const statusEl = this.parentNode.parentNode;
@@ -220,50 +192,12 @@ function loaded() {
   });
 }
 
-delegate(document, '#account_display_name', 'input', ({ target }) => {
-  const name = document.querySelector('.card .display-name strong');
-  if (name) {
-    if (target.value) {
-      name.innerHTML = emojify(escapeTextContentForBrowser(target.value));
-    } else {
-      name.textContent = target.dataset.default;
-    }
-  }
-});
-
 delegate(document, '#edit_profile input[type=file]', 'change', ({ target }) => {
   const avatar = document.getElementById(target.id + '-preview');
   const [file] = target.files || [];
   const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
 
   avatar.src = url;
-});
-
-const getProfileAvatarAnimationHandler = (swapTo) => {
-  //animate avatar gifs on the profile page when moused over
-  return ({ target }) => {
-    const swapSrc = target.getAttribute(swapTo);
-    //only change the img source if autoplay is off and the image src is actually different
-    if(target.getAttribute('data-autoplay') !== 'true' && target.src !== swapSrc) {
-      target.src = swapSrc;
-    }
-  };
-};
-
-delegate(document, 'img#profile_page_avatar', 'mouseover', getProfileAvatarAnimationHandler('data-original'));
-
-delegate(document, 'img#profile_page_avatar', 'mouseout', getProfileAvatarAnimationHandler('data-static'));
-
-delegate(document, '#account_locked', 'change', ({ target }) => {
-  const lock = document.querySelector('.card .display-name i');
-
-  if (lock) {
-    if (target.checked) {
-      delete lock.dataset.hidden;
-    } else {
-      lock.dataset.hidden = 'true';
-    }
-  }
 });
 
 delegate(document, '.input-copy input', 'click', ({ target }) => {
@@ -324,6 +258,9 @@ delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
     toggleSidebar();
   }
 });
+
+delegate(document, '.custom-emoji', 'mouseover', ({ target }) => target.src = target.getAttribute('data-original'));
+delegate(document, '.custom-emoji', 'mouseout', ({ target }) => target.src = target.getAttribute('data-static'));
 
 // Empty the honeypot fields in JS in case something like an extension
 // automatically filled them.
