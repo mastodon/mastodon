@@ -417,7 +417,7 @@ class Video extends PureComponent {
   };
 
   handleMouseEnter = () => {
-    console.log('here');
+    // Custom code
     this.togglePlay();
     this.setState({ hovered: true });
   };
@@ -444,7 +444,6 @@ class Video extends PureComponent {
 
   handleLoadedData = () => {
     const { currentTime, volume, muted, autoPlay } = this.props;
-    console.log(this.props);
 
     if (currentTime) {
       this.video.currentTime = currentTime;
