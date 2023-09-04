@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
-require_relative 'base'
+require_relative '../../config/boot'
+require_relative '../../config/environment'
+require_relative 'cli_helper'
 
-module Mastodon::CLI
-  class Statuses < Base
+module Mastodon
+  class StatusesCLI < Thor
+    include CLIHelper
     include ActionView::Helpers::NumberHelper
+
+    def self.exit_on_failure?
+      true
+    end
 
     option :days, type: :numeric, default: 90
     option :batch_size, type: :numeric, default: 1_000, aliases: [:b], desc: 'Number of records in each batch'
@@ -61,7 +68,7 @@ module Mastodon::CLI
         # Skip accounts followed by local accounts
         clean_followed_sql = 'AND NOT EXISTS (SELECT 1 FROM follows WHERE statuses.account_id = follows.target_account_id)' unless options[:clean_followed]
 
-        ActiveRecord::Base.connection.exec_insert(<<-SQL.squish, 'SQL', [max_id])
+        ActiveRecord::Base.connection.exec_insert(<<-SQL.squish, 'SQL', [[nil, max_id]])
           INSERT INTO statuses_to_be_deleted (id)
           SELECT statuses.id FROM statuses WHERE deleted_at IS NULL AND NOT local AND uri IS NOT NULL AND (id < $1)
           AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.id = statuses1.in_reply_to_id)
@@ -86,7 +93,7 @@ module Mastodon::CLI
         c.table_name = 'statuses_to_be_deleted'
       end
 
-      Object.const_set(:StatusToBeDeleted, klass)
+      Object.const_set('StatusToBeDeleted', klass)
 
       scope     = StatusToBeDeleted
       processed = 0
@@ -168,7 +175,7 @@ module Mastodon::CLI
         c.table_name = 'conversations_to_be_deleted'
       end
 
-      Object.const_set(:ConversationsToBeDeleted, klass)
+      Object.const_set('ConversationsToBeDeleted', klass)
 
       scope     = ConversationsToBeDeleted
       processed = 0

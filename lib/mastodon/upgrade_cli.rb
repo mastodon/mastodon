@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
-require_relative 'base'
+require_relative '../../config/boot'
+require_relative '../../config/environment'
+require_relative 'cli_helper'
 
-module Mastodon::CLI
-  class Upgrade < Base
+module Mastodon
+  class UpgradeCLI < Thor
+    include CLIHelper
+
+    def self.exit_on_failure?
+      true
+    end
+
     CURRENT_STORAGE_SCHEMA_VERSION = 1
 
     option :dry_run, type: :boolean, default: false
@@ -17,6 +25,7 @@ module Mastodon::CLI
     LONG_DESC
     def storage_schema
       progress = create_progress_bar(nil)
+      dry_run  = dry_run? ? ' (DRY RUN)' : ''
       records  = 0
 
       klasses = [
@@ -41,16 +50,16 @@ module Mastodon::CLI
             styles << :original unless styles.include?(:original)
 
             styles.each do |style|
-              success = case Paperclip::Attachment.default_options[:storage]
-                        when :s3
-                          upgrade_storage_s3(progress, attachment, style)
-                        when :fog
-                          upgrade_storage_fog(progress, attachment, style)
-                        when :azure
-                          upgrade_storage_azure(progress, attachment, style)
-                        when :filesystem
-                          upgrade_storage_filesystem(progress, attachment, style)
-                        end
+              success = begin
+                case Paperclip::Attachment.default_options[:storage]
+                when :s3
+                  upgrade_storage_s3(progress, attachment, style)
+                when :fog
+                  upgrade_storage_fog(progress, attachment, style)
+                when :filesystem
+                  upgrade_storage_filesystem(progress, attachment, style)
+                end
+              end
 
               upgraded = true if style == :original && success
 
@@ -70,7 +79,7 @@ module Mastodon::CLI
       progress.total = progress.progress
       progress.finish
 
-      say("Upgraded storage schema of #{records} records#{dry_run_mode_suffix}", :green, true)
+      say("Upgraded storage schema of #{records} records#{dry_run}", :green, true)
     end
 
     private
@@ -104,11 +113,6 @@ module Mastodon::CLI
 
     def upgrade_storage_fog(_progress, _attachment, _style)
       say('The fog storage driver is not supported for this operation at this time', :red)
-      exit(1)
-    end
-
-    def upgrade_storage_azure(_progress, _attachment, _style)
-      say('The azure storage driver is not supported for this operation at this time', :red)
       exit(1)
     end
 

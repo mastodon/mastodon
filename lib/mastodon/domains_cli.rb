@@ -1,10 +1,18 @@
 # frozen_string_literal: true
 
 require 'concurrent'
-require_relative 'base'
+require_relative '../../config/boot'
+require_relative '../../config/environment'
+require_relative 'cli_helper'
 
-module Mastodon::CLI
-  class Domains < Base
+module Mastodon
+  class DomainsCLI < Thor
+    include CLIHelper
+
+    def self.exit_on_failure?
+      true
+    end
+
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean
@@ -34,6 +42,7 @@ module Mastodon::CLI
       When the --purge-domain-blocks option is given, also purge matching domain blocks.
     LONG_DESC
     def purge(*domains)
+      dry_run            = options[:dry_run] ? ' (DRY RUN)' : ''
       domains            = domains.map { |domain| TagManager.instance.normalize_domain(domain) }
       account_scope      = Account.none
       domain_block_scope = DomainBlock.none
@@ -78,23 +87,23 @@ module Mastodon::CLI
 
       # Actually perform the deletions
       processed, = parallelize_with_progress(account_scope) do |account|
-        DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless dry_run?
+        DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless options[:dry_run]
       end
 
-      say("Removed #{processed} accounts#{dry_run_mode_suffix}", :green)
+      say("Removed #{processed} accounts#{dry_run}", :green)
 
       if options[:purge_domain_blocks]
         domain_block_count = domain_block_scope.count
-        domain_block_scope.in_batches.destroy_all unless dry_run?
-        say("Removed #{domain_block_count} domain blocks#{dry_run_mode_suffix}", :green)
+        domain_block_scope.in_batches.destroy_all unless options[:dry_run]
+        say("Removed #{domain_block_count} domain blocks#{dry_run}", :green)
       end
 
       custom_emojis_count = emoji_scope.count
-      emoji_scope.in_batches.destroy_all unless dry_run?
+      emoji_scope.in_batches.destroy_all unless options[:dry_run]
 
-      Instance.refresh unless dry_run?
+      Instance.refresh unless options[:dry_run]
 
-      say("Removed #{custom_emojis_count} custom emojis#{dry_run_mode_suffix}", :green)
+      say("Removed #{custom_emojis_count} custom emojis#{dry_run}", :green)
     end
 
     option :concurrency, type: :numeric, default: 50, aliases: [:c]
@@ -130,7 +139,7 @@ module Mastodon::CLI
 
       pool = Concurrent::ThreadPoolExecutor.new(min_threads: 0, max_threads: options[:concurrency], idletime: 10, auto_terminate: true, max_queue: 0)
 
-      work_unit = lambda do |domain|
+      work_unit = ->(domain) do
         next if stats.key?(domain)
         next if options[:exclude_suspended] && domain.match?(blocked_domains)
 
@@ -139,7 +148,6 @@ module Mastodon::CLI
         begin
           Request.new(:get, "https://#{domain}/api/v1/instance").perform do |res|
             next unless res.code == 200
-
             stats[domain] = Oj.load(res.to_s)
           end
 
@@ -153,10 +161,9 @@ module Mastodon::CLI
 
           Request.new(:get, "https://#{domain}/api/v1/instance/activity").perform do |res|
             next unless res.code == 200
-
             stats[domain]['activity'] = Oj.load(res.to_s)
           end
-        rescue
+        rescue StandardError
           failed.increment
         ensure
           processed.increment

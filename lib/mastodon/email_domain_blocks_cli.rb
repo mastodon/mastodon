@@ -1,10 +1,18 @@
 # frozen_string_literal: true
 
 require 'concurrent'
-require_relative 'base'
+require_relative '../../config/boot'
+require_relative '../../config/environment'
+require_relative 'cli_helper'
 
-module Mastodon::CLI
-  class EmailDomainBlocks < Base
+module Mastodon
+  class EmailDomainBlocksCLI < Thor
+    include CLIHelper
+
+    def self.exit_on_failure?
+      true
+    end
+
     desc 'list', 'List blocked e-mail domains'
     def list
       EmailDomainBlock.where(parent_id: nil).order(id: 'DESC').find_each do |entry|
@@ -39,7 +47,7 @@ module Mastodon::CLI
       processed = 0
 
       domains.each do |domain|
-        if EmailDomainBlock.exists?(domain: domain)
+        if EmailDomainBlock.where(domain: domain).exists?
           say("#{domain} is already blocked.", :yellow)
           skipped += 1
           next
@@ -60,7 +68,7 @@ module Mastodon::CLI
         (email_domain_block.other_domains || []).uniq.each do |hostname|
           another_email_domain_block = EmailDomainBlock.new(domain: hostname, parent: email_domain_block)
 
-          if EmailDomainBlock.exists?(domain: hostname)
+          if EmailDomainBlock.where(domain: hostname).exists?
             say("#{hostname} is already blocked.", :yellow)
             skipped += 1
             next

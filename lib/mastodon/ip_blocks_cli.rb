@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 require 'rubygems/package'
-require_relative 'base'
+require_relative '../../config/boot'
+require_relative '../../config/environment'
+require_relative 'cli_helper'
 
-module Mastodon::CLI
-  class IpBlocks < Base
-    option :severity, required: true, enum: %w(no_access sign_up_requires_approval sign_up_block), desc: 'Severity of the block'
+module Mastodon
+  class IpBlocksCLI < Thor
+    def self.exit_on_failure?
+      true
+    end
+
+    option :severity, required: true, enum: %w(no_access sign_up_requires_approval), desc: 'Severity of the block'
     option :comment, aliases: [:c], desc: 'Optional comment'
     option :duration, aliases: [:d], type: :numeric, desc: 'Duration of the block in seconds'
     option :force, type: :boolean, aliases: [:f], desc: 'Overwrite existing blocks'
@@ -30,12 +36,6 @@ module Mastodon::CLI
       failed    = 0
 
       addresses.each do |address|
-        unless valid_ip_address?(address)
-          say("#{address} is invalid", :red)
-          failed += 1
-          next
-        end
-
         ip_block = IpBlock.find_by(ip: address)
 
         if ip_block.present? && !options[:force]
@@ -79,17 +79,13 @@ module Mastodon::CLI
       skipped   = 0
 
       addresses.each do |address|
-        unless valid_ip_address?(address)
-          say("#{address} is invalid", :yellow)
-          skipped += 1
-          next
+        ip_blocks = begin
+          if options[:force]
+            IpBlock.where('ip >>= ?', address)
+          else
+            IpBlock.where('ip <<= ?', address)
+          end
         end
-
-        ip_blocks = if options[:force]
-                      IpBlock.where('ip >>= ?', address)
-                    else
-                      IpBlock.where('ip <<= ?', address)
-                    end
 
         if ip_blocks.empty?
           say("#{address} is not yet blocked", :yellow)
@@ -114,9 +110,9 @@ module Mastodon::CLI
       IpBlock.where(severity: :no_access).find_each do |ip_block|
         case options[:format]
         when 'nginx'
-          say "deny #{ip_block.ip}/#{ip_block.ip.prefix};"
+          puts "deny #{ip_block.ip}/#{ip_block.ip.prefix};"
         else
-          say "#{ip_block.ip}/#{ip_block.ip.prefix}"
+          puts "#{ip_block.ip}/#{ip_block.ip.prefix}"
         end
       end
     end
@@ -131,13 +127,6 @@ module Mastodon::CLI
       else
         :red
       end
-    end
-
-    def valid_ip_address?(ip_address)
-      IPAddr.new(ip_address)
-      true
-    rescue IPAddr::InvalidAddressError
-      false
     end
   end
 end

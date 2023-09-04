@@ -1,11 +1,18 @@
 # frozen_string_literal: true
 
 require 'tty-prompt'
-require_relative 'base'
+require_relative '../../config/boot'
+require_relative '../../config/environment'
+require_relative 'cli_helper'
 
-module Mastodon::CLI
-  class PreviewCards < Base
+module Mastodon
+  class PreviewCardsCLI < Thor
     include ActionView::Helpers::NumberHelper
+    include CLIHelper
+
+    def self.exit_on_failure?
+      true
+    end
 
     option :days, type: :numeric, default: 180
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
@@ -27,6 +34,7 @@ module Mastodon::CLI
     DESC
     def remove
       time_ago = options[:days].days.ago
+      dry_run  = options[:dry_run] ? ' (DRY RUN)' : ''
       link     = options[:link] ? 'link-type ' : ''
       scope    = PreviewCard.cached
       scope    = scope.where(type: :link) if options[:link]
@@ -37,7 +45,7 @@ module Mastodon::CLI
 
         size = preview_card.image_file_size
 
-        unless dry_run?
+        unless options[:dry_run]
           preview_card.image.destroy
           preview_card.save
         end
@@ -45,7 +53,7 @@ module Mastodon::CLI
         size
       end
 
-      say("Removed #{processed} #{link}preview cards (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
+      say("Removed #{processed} #{link}preview cards (approx. #{number_to_human_size(aggregate)})#{dry_run}", :green, true)
     end
   end
 end

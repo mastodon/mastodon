@@ -1,69 +1,73 @@
 # frozen_string_literal: true
 
-require_relative 'base'
+require 'thor'
+require_relative 'mastodon/media_cli'
+require_relative 'mastodon/emoji_cli'
+require_relative 'mastodon/accounts_cli'
+require_relative 'mastodon/feeds_cli'
+require_relative 'mastodon/search_cli'
+require_relative 'mastodon/settings_cli'
+require_relative 'mastodon/statuses_cli'
+require_relative 'mastodon/domains_cli'
+require_relative 'mastodon/preview_cards_cli'
+require_relative 'mastodon/cache_cli'
+require_relative 'mastodon/upgrade_cli'
+require_relative 'mastodon/email_domain_blocks_cli'
+require_relative 'mastodon/canonical_email_blocks_cli'
+require_relative 'mastodon/ip_blocks_cli'
+require_relative 'mastodon/maintenance_cli'
+require_relative 'mastodon/version'
 
-require_relative 'accounts'
-require_relative 'cache'
-require_relative 'canonical_email_blocks'
-require_relative 'domains'
-require_relative 'email_domain_blocks'
-require_relative 'emoji'
-require_relative 'feeds'
-require_relative 'ip_blocks'
-require_relative 'maintenance'
-require_relative 'media'
-require_relative 'preview_cards'
-require_relative 'search'
-require_relative 'settings'
-require_relative 'statuses'
-require_relative 'upgrade'
+module Mastodon
+  class CLI < Thor
+    def self.exit_on_failure?
+      true
+    end
 
-module Mastodon::CLI
-  class Main < Base
     desc 'media SUBCOMMAND ...ARGS', 'Manage media files'
-    subcommand 'media', Media
+    subcommand 'media', Mastodon::MediaCLI
 
     desc 'emoji SUBCOMMAND ...ARGS', 'Manage custom emoji'
-    subcommand 'emoji', Emoji
+    subcommand 'emoji', Mastodon::EmojiCLI
 
     desc 'accounts SUBCOMMAND ...ARGS', 'Manage accounts'
-    subcommand 'accounts', Accounts
+    subcommand 'accounts', Mastodon::AccountsCLI
 
     desc 'feeds SUBCOMMAND ...ARGS', 'Manage feeds'
-    subcommand 'feeds', Feeds
+    subcommand 'feeds', Mastodon::FeedsCLI
 
     desc 'search SUBCOMMAND ...ARGS', 'Manage the search engine'
-    subcommand 'search', Search
+    subcommand 'search', Mastodon::SearchCLI
 
     desc 'settings SUBCOMMAND ...ARGS', 'Manage dynamic settings'
-    subcommand 'settings', Settings
+    subcommand 'settings', Mastodon::SettingsCLI
 
     desc 'statuses SUBCOMMAND ...ARGS', 'Manage statuses'
-    subcommand 'statuses', Statuses
+    subcommand 'statuses', Mastodon::StatusesCLI
 
     desc 'domains SUBCOMMAND ...ARGS', 'Manage account domains'
-    subcommand 'domains', Domains
+    subcommand 'domains', Mastodon::DomainsCLI
 
     desc 'preview_cards SUBCOMMAND ...ARGS', 'Manage preview cards'
-    subcommand 'preview_cards', PreviewCards
+    subcommand 'preview_cards', Mastodon::PreviewCardsCLI
 
     desc 'cache SUBCOMMAND ...ARGS', 'Manage cache'
-    subcommand 'cache', Cache
+    subcommand 'cache', Mastodon::CacheCLI
 
     desc 'upgrade SUBCOMMAND ...ARGS', 'Various version upgrade utilities'
-    subcommand 'upgrade', Upgrade
+    subcommand 'upgrade', Mastodon::UpgradeCLI
 
     desc 'email_domain_blocks SUBCOMMAND ...ARGS', 'Manage e-mail domain blocks'
-    subcommand 'email_domain_blocks', EmailDomainBlocks
+    subcommand 'email_domain_blocks', Mastodon::EmailDomainBlocksCLI
 
     desc 'ip_blocks SUBCOMMAND ...ARGS', 'Manage IP blocks'
-    subcommand 'ip_blocks', IpBlocks
+    subcommand 'ip_blocks', Mastodon::IpBlocksCLI
 
     desc 'canonical_email_blocks SUBCOMMAND ...ARGS', 'Manage canonical e-mail blocks'
-    subcommand 'canonical_email_blocks', CanonicalEmailBlocks
+    subcommand 'canonical_email_blocks', Mastodon::CanonicalEmailBlocksCLI
 
     desc 'maintenance SUBCOMMAND ...ARGS', 'Various maintenance utilities'
-    subcommand 'maintenance', Maintenance
+    subcommand 'maintenance', Mastodon::MaintenanceCLI
 
     option :dry_run, type: :boolean
     desc 'self-destruct', 'Erase the server from the federation'
@@ -94,7 +98,7 @@ module Mastodon::CLI
 
       exit(1) unless prompt.ask('Type in the domain of the server to confirm:', required: true) == Rails.configuration.x.local_domain
 
-      unless dry_run?
+      unless options[:dry_run]
         prompt.warn('This operation WILL NOT be reversible. It can also take a long time.')
         prompt.warn('While the data won\'t be erased locally, the server will be in a BROKEN STATE afterwards.')
         prompt.warn('A running Sidekiq process is required. Do not shut it down until queues clear.')
@@ -104,11 +108,12 @@ module Mastodon::CLI
 
       inboxes   = Account.inboxes
       processed = 0
+      dry_run   = options[:dry_run] ? ' (DRY RUN)' : ''
 
-      Setting.registrations_mode = 'none' unless dry_run?
+      Setting.registrations_mode = 'none' unless options[:dry_run]
 
       if inboxes.empty?
-        Account.local.without_suspended.in_batches.update_all(suspended_at: Time.now.utc, suspension_origin: :local) unless dry_run?
+        Account.local.without_suspended.in_batches.update_all(suspended_at: Time.now.utc, suspension_origin: :local) unless options[:dry_run]
         prompt.ok('It seems like your server has not federated with anything')
         prompt.ok('You can shut it down and delete it any time')
         return
@@ -116,7 +121,7 @@ module Mastodon::CLI
 
       prompt.warn('Do NOT interrupt this process...')
 
-      delete_account = lambda do |account|
+      delete_account = ->(account) do
         payload = ActiveModelSerializers::SerializableResource.new(
           account,
           serializer: ActivityPub::DeleteActorSerializer,
@@ -125,8 +130,8 @@ module Mastodon::CLI
 
         json = Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(account))
 
-        unless dry_run?
-          ActivityPub::DeliveryWorker.push_bulk(inboxes, limit: 1_000) do |inbox_url|
+        unless options[:dry_run]
+          ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
             [json, account.id, inbox_url]
           end
 
@@ -139,7 +144,7 @@ module Mastodon::CLI
       Account.local.without_suspended.find_each { |account| delete_account.call(account) }
       Account.local.suspended.joins(:deletion_request).find_each { |account| delete_account.call(account) }
 
-      prompt.ok("Queued #{inboxes.size * processed} items into Sidekiq for #{processed} accounts#{dry_run_mode_suffix}")
+      prompt.ok("Queued #{inboxes.size * processed} items into Sidekiq for #{processed} accounts#{dry_run}")
       prompt.ok('Wait until Sidekiq processes all items, then you can shut everything down and delete the data')
     rescue TTY::Reader::InputInterrupt
       exit(1)

@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
 require 'rubygems/package'
-require_relative 'base'
+require_relative '../../config/boot'
+require_relative '../../config/environment'
+require_relative 'cli_helper'
 
-module Mastodon::CLI
-  class Emoji < Base
+module Mastodon
+  class EmojiCLI < Thor
+    def self.exit_on_failure?
+      true
+    end
+
     option :prefix
     option :suffix
     option :overwrite, type: :boolean
@@ -43,7 +49,7 @@ module Mastodon::CLI
           next if filename.start_with?('._')
 
           shortcode    = [options[:prefix], filename, options[:suffix]].compact.join
-          custom_emoji = CustomEmoji.local.find_by('LOWER(shortcode) = ?', shortcode.downcase)
+          custom_emoji = CustomEmoji.local.find_by("LOWER(shortcode) = ?", shortcode.downcase)
 
           if custom_emoji && !options[:overwrite]
             skipped += 1
@@ -62,11 +68,12 @@ module Mastodon::CLI
             failed += 1
             say('Failure/Error: ', :red)
             say(entry.full_name)
-            say("    #{custom_emoji.errors[:image].join(', ')}", :red)
+            say('    ' + custom_emoji.errors[:image].join(', '), :red)
           end
         end
       end
 
+      puts
       say("Imported #{imported}, skipped #{skipped}, failed to import #{failed}", color(imported, skipped, failed))
     end
 

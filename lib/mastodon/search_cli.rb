@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'base'
+require_relative '../../config/boot'
+require_relative '../../config/environment'
+require_relative 'cli_helper'
 
-module Mastodon::CLI
-  class Search < Base
+module Mastodon
+  class SearchCLI < Thor
+    include CLIHelper
+
     # Indices are sorted by amount of data to be expected in each, so that
     # smaller indices can go online sooner
     INDICES = [
-      InstancesIndex,
       AccountsIndex,
       TagsIndex,
       StatusesIndex,
@@ -15,7 +18,7 @@ module Mastodon::CLI
 
     option :concurrency, type: :numeric, default: 5, aliases: [:c], desc: 'Workload will be split between this number of threads'
     option :batch_size, type: :numeric, default: 100, aliases: [:b], desc: 'Number of records in each batch'
-    option :only, type: :array, enum: %w(instances accounts tags statuses), desc: 'Only process these indices'
+    option :only, type: :array, enum: %w(accounts tags statuses), desc: 'Only process these indices'
     option :import, type: :boolean, default: true, desc: 'Import data from the database to the index'
     option :clean, type: :boolean, default: true, desc: 'Remove outdated documents from the index'
     desc 'deploy', 'Create or upgrade Elasticsearch indices and populate them'
@@ -30,13 +33,23 @@ module Mastodon::CLI
       database will be imported into the indices, unless overridden with --no-import.
     LONG_DESC
     def deploy
-      verify_deploy_options!
+      if options[:concurrency] < 1
+        say('Cannot run with this concurrency setting, must be at least 1', :red)
+        exit(1)
+      end
 
-      indices = if options[:only]
-                  options[:only].map { |str| "#{str.camelize}Index".constantize }
-                else
-                  INDICES
-                end
+      if options[:batch_size] < 1
+        say('Cannot run with this batch_size setting, must be at least 1', :red)
+        exit(1)
+      end
+
+      indices = begin
+        if options[:only]
+          options[:only].map { |str| "#{str.camelize}Index".constantize }
+        else
+          INDICES
+        end
+      end
 
       pool      = Concurrent::FixedThreadPool.new(options[:concurrency], max_queue: options[:concurrency] * 10)
       importers = indices.index_with { |index| "Importer::#{index.name}Importer".constantize.new(batch_size: options[:batch_size], executor: pool) }
@@ -90,27 +103,6 @@ module Mastodon::CLI
       progress.finish
 
       say("Indexed #{added} records, de-indexed #{removed}", :green, true)
-    end
-
-    private
-
-    def verify_deploy_options!
-      verify_deploy_concurrency!
-      verify_deploy_batch_size!
-    end
-
-    def verify_deploy_concurrency!
-      return unless options[:concurrency] < 1
-
-      say('Cannot run with this concurrency setting, must be at least 1', :red)
-      exit(1)
-    end
-
-    def verify_deploy_batch_size!
-      return unless options[:batch_size] < 1
-
-      say('Cannot run with this batch_size setting, must be at least 1', :red)
-      exit(1)
     end
   end
 end
