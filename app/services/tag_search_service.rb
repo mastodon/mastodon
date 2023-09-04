@@ -2,7 +2,7 @@
 
 class TagSearchService < BaseService
   def call(query, options = {})
-    @query   = query.strip.delete_prefix('#')
+    @query   = query.strip.gsub(/\A#/, '')
     @offset  = options.delete(:offset).to_i
     @limit   = options.delete(:limit).to_i
     @options = options

@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class AddIndexOnStreamEntries < ActiveRecord::Migration[5.2]
+class AddIndexOnStreamEntries < ActiveRecord::Migration[5.1]
   disable_ddl_transaction!
 
   def change

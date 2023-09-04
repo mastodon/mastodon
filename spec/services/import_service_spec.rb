@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe ImportService, type: :service do
@@ -10,17 +8,16 @@ RSpec.describe ImportService, type: :service do
   let!(:eve)     { Fabricate(:account, username: 'eve', domain: 'example.com', locked: false, protocol: :activitypub, inbox_url: 'https://example.com/inbox') }
 
   before do
-    stub_request(:post, 'https://example.com/inbox').to_return(status: 200)
+    stub_request(:post, "https://example.com/inbox").to_return(status: 200)
   end
 
-  context 'when importing old-style list of muted users' do
-    subject { described_class.new }
+  context 'import old-style list of muted users' do
+    subject { ImportService.new }
 
     let(:csv) { attachment_fixture('mute-imports.txt') }
 
     describe 'when no accounts are muted' do
       let(:import) { Import.create(account: account, type: 'muting', data: csv) }
-
       it 'mutes the listed accounts, including notifications' do
         subject.call(import)
         expect(account.muting.count).to eq 2
@@ -51,14 +48,13 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
-  context 'when importing new-style list of muted users' do
-    subject { described_class.new }
+  context 'import new-style list of muted users' do
+    subject { ImportService.new }
 
     let(:csv) { attachment_fixture('new-mute-imports.txt') }
 
     describe 'when no accounts are muted' do
       let(:import) { Import.create(account: account, type: 'muting', data: csv) }
-
       it 'mutes the listed accounts, respecting notifications' do
         subject.call(import)
         expect(account.muting.count).to eq 2
@@ -92,14 +88,13 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
-  context 'when importing old-style list of followed users' do
-    subject { described_class.new }
+  context 'import old-style list of followed users' do
+    subject { ImportService.new }
 
     let(:csv) { attachment_fixture('mute-imports.txt') }
 
     describe 'when no accounts are followed' do
       let(:import) { Import.create(account: account, type: 'following', data: csv) }
-
       it 'follows the listed accounts, including boosts' do
         subject.call(import)
 
@@ -134,14 +129,13 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
-  context 'when importing new-style list of followed users' do
-    subject { described_class.new }
+  context 'import new-style list of followed users' do
+    subject { ImportService.new }
 
     let(:csv) { attachment_fixture('new-following-imports.txt') }
 
     describe 'when no accounts are followed' do
       let(:import) { Import.create(account: account, type: 'following', data: csv) }
-
       it 'follows the listed accounts, respecting boosts' do
         subject.call(import)
         expect(account.following.count).to eq 1
@@ -181,32 +175,30 @@ RSpec.describe ImportService, type: :service do
   # Based on the bug report 20571 where UTF-8 encoded domains were rejecting import of their users
   #
   # https://github.com/mastodon/mastodon/issues/20571
-  context 'with a utf-8 encoded domains' do
-    subject { described_class.new }
+  context 'utf-8 encoded domains' do
+    subject { ImportService.new }
 
-    let!(:nare) { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
-    let(:csv) { attachment_fixture('utf8-followers.txt') }
-    let(:import) { Import.create(account: account, type: 'following', data: csv) }
+    let!(:nare)     { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
 
     # Make sure to not actually go to the remote server
     before do
-      stub_request(:post, 'https://թութ.հայ/inbox').to_return(status: 200)
+      stub_request(:post, "https://թութ.հայ/inbox").to_return(status: 200)
     end
 
+    let(:csv) { attachment_fixture('utf8-followers.txt') }
+    let(:import) { Import.create(account: account, type: 'following', data: csv) }
+
     it 'follows the listed account' do
-      expect(account.follow_requests.count).to eq 0
+    expect(account.follow_requests.count).to eq 0
       subject.call(import)
       expect(account.follow_requests.count).to eq 1
     end
   end
 
-  context 'when importing bookmarks' do
-    subject { described_class.new }
+  context 'import bookmarks' do
+    subject { ImportService.new }
 
     let(:csv) { attachment_fixture('bookmark-imports.txt') }
-    let(:local_account)  { Fabricate(:account, username: 'foo', domain: '') }
-    let!(:remote_status) { Fabricate(:status, uri: 'https://example.com/statuses/1312') }
-    let!(:direct_status) { Fabricate(:status, uri: 'https://example.com/statuses/direct', visibility: :direct) }
 
     around(:each) do |example|
       local_before = Rails.configuration.x.local_domain
@@ -218,8 +210,12 @@ RSpec.describe ImportService, type: :service do
       Rails.configuration.x.local_domain = local_before
     end
 
+    let(:local_account)  { Fabricate(:account, username: 'foo', domain: '') }
+    let!(:remote_status) { Fabricate(:status, uri: 'https://example.com/statuses/1312') }
+    let!(:direct_status) { Fabricate(:status, uri: 'https://example.com/statuses/direct', visibility: :direct) }
+
     before do
-      service = instance_double(ActivityPub::FetchRemoteStatusService)
+      service = double
       allow(ActivityPub::FetchRemoteStatusService).to receive(:new).and_return(service)
       allow(service).to receive(:call).with('https://unknown-remote.com/users/bar/statuses/1') do
         Fabricate(:status, uri: 'https://unknown-remote.com/users/bar/statuses/1')
@@ -228,13 +224,12 @@ RSpec.describe ImportService, type: :service do
 
     describe 'when no bookmarks are set' do
       let(:import) { Import.create(account: account, type: 'bookmarks', data: csv) }
-
       it 'adds the toots the user has access to to bookmarks' do
         local_status = Fabricate(:status, account: local_account, uri: 'https://local.com/users/foo/statuses/42', id: 42, local: true)
         subject.call(import)
         expect(account.bookmarks.map(&:status).map(&:id)).to include(local_status.id)
         expect(account.bookmarks.map(&:status).map(&:id)).to include(remote_status.id)
-        expect(account.bookmarks.map(&:status).map(&:id)).to_not include(direct_status.id)
+        expect(account.bookmarks.map(&:status).map(&:id)).not_to include(direct_status.id)
         expect(account.bookmarks.count).to eq 3
       end
     end

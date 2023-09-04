@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class CreateAccountModerationNotes < ActiveRecord::Migration[5.2]
+class CreateAccountModerationNotes < ActiveRecord::Migration[5.1]
   def change
     create_table :account_moderation_notes do |t|
       t.text :content, null: false

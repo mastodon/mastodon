@@ -1,7 +1,6 @@
 import api from '../api';
-
-import { showAlertForError } from './alerts';
 import { importFetchedAccounts } from './importer';
+import { showAlertForError } from './alerts';
 
 export const LIST_FETCH_REQUEST = 'LIST_FETCH_REQUEST';
 export const LIST_FETCH_SUCCESS = 'LIST_FETCH_SUCCESS';
@@ -11,9 +10,10 @@ export const LISTS_FETCH_REQUEST = 'LISTS_FETCH_REQUEST';
 export const LISTS_FETCH_SUCCESS = 'LISTS_FETCH_SUCCESS';
 export const LISTS_FETCH_FAIL    = 'LISTS_FETCH_FAIL';
 
-export const LIST_EDITOR_TITLE_CHANGE = 'LIST_EDITOR_TITLE_CHANGE';
-export const LIST_EDITOR_RESET        = 'LIST_EDITOR_RESET';
-export const LIST_EDITOR_SETUP        = 'LIST_EDITOR_SETUP';
+export const LIST_EDITOR_TITLE_CHANGE        = 'LIST_EDITOR_TITLE_CHANGE';
+export const LIST_EDITOR_IS_EXCLUSIVE_CHANGE = 'LIST_EDITOR_IS_EXCLUSIVE_CHANGE';
+export const LIST_EDITOR_RESET               = 'LIST_EDITOR_RESET';
+export const LIST_EDITOR_SETUP               = 'LIST_EDITOR_SETUP';
 
 export const LIST_CREATE_REQUEST = 'LIST_CREATE_REQUEST';
 export const LIST_CREATE_SUCCESS = 'LIST_CREATE_SUCCESS';
@@ -101,13 +101,14 @@ export const fetchListsFail = error => ({
 });
 
 export const submitListEditor = shouldReset => (dispatch, getState) => {
-  const listId = getState().getIn(['listEditor', 'listId']);
-  const title  = getState().getIn(['listEditor', 'title']);
+  const listId      = getState().getIn(['listEditor', 'listId']);
+  const title       = getState().getIn(['listEditor', 'title']);
+  const isExclusive = getState().getIn(['listEditor', 'isExclusive']);
 
   if (listId === null) {
     dispatch(createList(title, shouldReset));
   } else {
-    dispatch(updateList(listId, title, shouldReset));
+    dispatch(updateList(listId, title, shouldReset, isExclusive));
   }
 };
 
@@ -122,6 +123,11 @@ export const setupListEditor = listId => (dispatch, getState) => {
 
 export const changeListEditorTitle = value => ({
   type: LIST_EDITOR_TITLE_CHANGE,
+  value,
+});
+
+export const changeListEditorIsExclusive = value => ({
+  type: LIST_EDITOR_IS_EXCLUSIVE_CHANGE,
   value,
 });
 
@@ -154,7 +160,7 @@ export const createListFail = error => ({
 export const updateList = (id, title, shouldReset, isExclusive, replies_policy) => (dispatch, getState) => {
   dispatch(updateListRequest(id));
 
-  api(getState).put(`/api/v1/lists/${id}`, { title, replies_policy, exclusive: typeof isExclusive === 'undefined' ? undefined : !!isExclusive }).then(({ data }) => {
+  api(getState).put(`/api/v1/lists/${id}`, { title, replies_policy, is_exclusive: typeof isExclusive === 'undefined' ? undefined : !!isExclusive }).then(({ data }) => {
     dispatch(updateListSuccess(data));
 
     if (shouldReset) {

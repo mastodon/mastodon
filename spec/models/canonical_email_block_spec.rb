@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe CanonicalEmailBlock do
+RSpec.describe CanonicalEmailBlock, type: :model do
   describe '#email=' do
     let(:target_hash) { '973dfe463ec85785f5f95af5ba3906eedb2d931c24e69824a89ea65dba4e813b' }
 

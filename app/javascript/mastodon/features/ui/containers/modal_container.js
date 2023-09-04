@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-
 import { openModal, closeModal } from '../../../actions/modal';
 import ModalRoot from '../components/modal_root';
 
@@ -13,22 +12,14 @@ const mapDispatchToProps = dispatch => ({
   onClose (confirmationMessage, ignoreFocus = false) {
     if (confirmationMessage) {
       dispatch(
-        openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: confirmationMessage.message,
-            confirm: confirmationMessage.confirm,
-            onConfirm: () => dispatch(closeModal({
-              modalType: undefined,
-              ignoreFocus: { ignoreFocus },
-            })),
-          } }),
+        openModal('CONFIRM', {
+          message: confirmationMessage.message,
+          confirm: confirmationMessage.confirm,
+          onConfirm: () => dispatch(closeModal(undefined, { ignoreFocus })),
+        }),
       );
     } else {
-      dispatch(closeModal({
-        modalType: undefined,
-        ignoreFocus: { ignoreFocus },
-      }));
+      dispatch(closeModal(undefined, { ignoreFocus }));
     }
   },
 });

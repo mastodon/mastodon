@@ -1,6 +1,3 @@
-/* eslint-disable import/no-commonjs --
-   We need to use CommonJS here as its imported into a preval file (`emoji_compressed.js`) */
-
 // taken from:
 // https://github.com/twitter/twemoji/blob/47732c7/twemoji-generator.js#L848-L866
 exports.unicodeToFilename = (str) => {

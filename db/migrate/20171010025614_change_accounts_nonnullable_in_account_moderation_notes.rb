@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class ChangeAccountsNonnullableInAccountModerationNotes < ActiveRecord::Migration[5.2]
+class ChangeAccountsNonnullableInAccountModerationNotes < ActiveRecord::Migration[5.1]
   def change
     safety_assured do
       change_column_null :account_moderation_notes, :account_id, false

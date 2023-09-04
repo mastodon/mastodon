@@ -2,7 +2,7 @@
 
 class REST::Admin::AccountSerializer < ActiveModel::Serializer
   attributes :id, :username, :domain, :created_at,
-             :email, :ip, :confirmed, :suspended,
+             :email, :ip, :role, :confirmed, :suspended,
              :silenced, :sensitized, :disabled, :approved, :locale,
              :invite_request
 
@@ -11,7 +11,6 @@ class REST::Admin::AccountSerializer < ActiveModel::Serializer
 
   has_many :ips, serializer: REST::Admin::IpSerializer
   has_one :account, serializer: REST::AccountSerializer
-  has_one :role, serializer: REST::RoleSerializer
 
   def id
     object.id.to_s

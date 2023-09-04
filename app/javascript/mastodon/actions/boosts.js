@@ -14,10 +14,7 @@ export function initBoostModal(props) {
       privacy,
     });
 
-    dispatch(openModal({
-      modalType: 'BOOST',
-      modalProps: props,
-    }));
+    dispatch(openModal('BOOST', props));
   };
 }
 

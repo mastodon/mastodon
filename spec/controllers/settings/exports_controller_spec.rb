@@ -11,15 +11,15 @@ describe Settings::ExportsController do
 
       before do
         sign_in user, scope: :user
+      end
+
+      it 'renders export' do
         get :show
-      end
 
-      it 'returns http success' do
+        export = assigns(:export)
+        expect(export).to be_instance_of Export
+        expect(export.account).to eq user.account
         expect(response).to have_http_status(200)
-      end
-
-      it 'returns private cache control headers' do
-        expect(response.headers['Cache-Control']).to include('private, no-store')
       end
     end
 

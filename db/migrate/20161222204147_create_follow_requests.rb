@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateFollowRequests < ActiveRecord::Migration[5.0]
   def change
     create_table :follow_requests do |t|

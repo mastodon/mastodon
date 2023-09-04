@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class AddFieldsToAccounts < ActiveRecord::Migration[5.2]
+class AddFieldsToAccounts < ActiveRecord::Migration[5.1]
   def change
     add_column :accounts, :fields, :jsonb
   end

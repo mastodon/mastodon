@@ -1,10 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Undo do
-  subject { described_class.new(json, sender) }
-
   let(:sender) { Fabricate(:account, domain: 'example.com') }
 
   let(:json) do
@@ -16,6 +12,8 @@ RSpec.describe ActivityPub::Activity::Undo do
       object: object_json,
     }.with_indifferent_access
   end
+
+  subject { described_class.new(json, sender) }
 
   describe '#perform' do
     context 'with Announce' do
@@ -31,7 +29,7 @@ RSpec.describe ActivityPub::Activity::Undo do
         }
       end
 
-      context 'when not atomUri' do
+      context do
         before do
           Fabricate(:status, reblog: status, account: sender, uri: 'bar')
         end

@@ -16,10 +16,6 @@ module Admin
       @role = UserRole.new
     end
 
-    def edit
-      authorize @role, :update?
-    end
-
     def create
       authorize :user_role, :create?
 
@@ -32,6 +28,10 @@ module Admin
       else
         render :new
       end
+    end
+
+    def edit
+      authorize @role, :update?
     end
 
     def update

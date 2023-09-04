@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Admin::ConfirmationsController do
+RSpec.describe Admin::ConfirmationsController, type: :controller do
   render_views
 
   before do
@@ -32,13 +30,13 @@ RSpec.describe Admin::ConfirmationsController do
     end
   end
 
-  describe 'POST #resend' do
+  describe 'POST #resernd' do
     subject { post :resend, params: { account_id: user.account.id } }
 
     let!(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
 
     before do
-      allow(UserMailer).to receive(:confirmation_instructions) { instance_double(ActionMailer::MessageDelivery, deliver_later: nil) }
+      allow(UserMailer).to receive(:confirmation_instructions) { double(:email, deliver_later: nil) }
     end
 
     context 'when email is not confirmed' do
@@ -57,7 +55,7 @@ RSpec.describe Admin::ConfirmationsController do
       it 'does not resend confirmation mail' do
         expect(subject).to redirect_to admin_accounts_path
         expect(flash[:error]).to eq I18n.t('admin.accounts.resend_confirmation.already_confirmed')
-        expect(UserMailer).to_not have_received(:confirmation_instructions)
+        expect(UserMailer).not_to have_received(:confirmation_instructions)
       end
     end
   end

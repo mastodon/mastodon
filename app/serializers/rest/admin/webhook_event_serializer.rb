@@ -7,8 +7,6 @@ class REST::Admin::WebhookEventSerializer < ActiveModel::Serializer
       REST::Admin::AccountSerializer
     when 'Report'
       REST::Admin::ReportSerializer
-    when 'Status'
-      REST::StatusSerializer
     else
       super
     end

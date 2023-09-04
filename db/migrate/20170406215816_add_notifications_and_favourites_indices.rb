@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddNotificationsAndFavouritesIndices < ActiveRecord::Migration[5.0]
   def change
     add_index :notifications, [:activity_id, :activity_type]

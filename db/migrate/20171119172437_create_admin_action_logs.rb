@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class CreateAdminActionLogs < ActiveRecord::Migration[5.2]
+class CreateAdminActionLogs < ActiveRecord::Migration[5.1]
   def change
     create_table :admin_action_logs do |t|
       t.belongs_to :account, foreign_key: { on_delete: :cascade }

@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Disputes::StrikesController do
+RSpec.describe Disputes::StrikesController, type: :controller do
   render_views
 
   before { sign_in current_user, scope: :user }
@@ -25,7 +23,7 @@ RSpec.describe Disputes::StrikesController do
       let(:strike) { Fabricate(:account_warning) }
 
       it 'returns http forbidden' do
-        expect(response).to have_http_status(403)
+        expect(response).to have_http_status(:forbidden)
       end
     end
   end

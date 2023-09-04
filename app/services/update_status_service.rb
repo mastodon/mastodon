@@ -134,16 +134,16 @@ class UpdateStatusService < BaseService
 
   def broadcast_updates!
     DistributionWorker.perform_async(@status.id, { 'update' => true })
-    ActivityPub::StatusUpdateDistributionWorker.perform_async(@status.id)
+    ActivityPub::StatusUpdateDistributionWorker.perform_async(@status.id) unless @status.local_only?
   end
 
   def queue_poll_notifications!
     poll = @status.preloadable_poll
 
     # If the poll had no expiration date set but now has, or now has a sooner
-    # expiration date, schedule a notification
+    # expiration date, and people have voted, schedule a notification
 
-    return unless poll.present? && poll.expires_at.present?
+    return unless poll.present? && poll.expires_at.present? && poll.votes.exists?
 
     PollExpirationNotifyWorker.remove_from_scheduled(poll.id) if @previous_expires_at.present? && @previous_expires_at > poll.expires_at
     PollExpirationNotifyWorker.perform_at(poll.expires_at + 5.minutes, poll.id)

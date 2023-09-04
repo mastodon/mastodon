@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Api::V1::FollowedTagsController do
+RSpec.describe Api::V1::FollowedTagsController, type: :controller do
   render_views
 
   let(:user)   { Fabricate(:user) }

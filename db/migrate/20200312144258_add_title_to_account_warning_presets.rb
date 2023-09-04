@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require Rails.root.join('lib', 'mastodon', 'migration_helpers')
 
 class AddTitleToAccountWarningPresets < ActiveRecord::Migration[5.2]

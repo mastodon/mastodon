@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-describe RateLimitHeaders do
-  controller(ApplicationController) do
+describe ApplicationController do
+  controller do
     include RateLimitHeaders
 
     def show
@@ -16,7 +16,7 @@ describe RateLimitHeaders do
   end
 
   describe 'rate limiting' do
-    context 'when throttling is off' do
+    context 'throttling is off' do
       before do
         request.env['rack.attack.throttle_data'] = nil
       end
@@ -30,7 +30,7 @@ describe RateLimitHeaders do
       end
     end
 
-    context 'when throttling is on' do
+    context 'throttling is on' do
       let(:start_time) { DateTime.new(2017, 1, 1, 12, 0, 0).utc }
 
       before do

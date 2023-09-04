@@ -3,8 +3,8 @@
 class Mastodon::SidekiqMiddleware
   BACKTRACE_LIMIT = 3
 
-  def call(*, &block)
-    Chewy.strategy(:mastodon, &block)
+  def call(*)
+    yield
   rescue Mastodon::HostValidationError
     # Do not retry
   rescue => e

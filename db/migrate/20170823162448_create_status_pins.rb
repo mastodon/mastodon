@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateStatusPins < ActiveRecord::Migration[5.1]
   def change
     create_table :status_pins do |t|

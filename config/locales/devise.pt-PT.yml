@@ -23,59 +23,59 @@ pt-PT:
         explanation: Criou uma conta em %{host} com este endereço de e-mail. Está a um clique de ativá-la. Se não foi você que fez este registo, por favor ignore esta mensagem.
         explanation_when_pending: Candidatou-se com um convite para %{host} com este endereço de e-mail. Logo que confirme o seu endereço de e-mail, iremos rever a sua candidatura. Pode iniciar sessão para alterar os seus dados ou eliminar a sua conta, mas não poderá aceder à maioria das funções até que a sua conta seja aprovada. Se a sua inscrição for indeferida, os seus dados serão eliminados, pelo que não será necessária qualquer ação adicional da sua parte. Se não solicitou este convite, queira ignorar este e-mail.
         extra_html: Por favor leia as <a href="%{terms_path}">regras da instância</a> e os <a href="%{policy_path}">nossos termos de serviço</a>.
-        subject: 'TomX: Instruções de confirmação %{instance}'
+        subject: 'Mastodon: Instruções de confirmação %{instance}'
         title: Verificar o endereço de e-mail
       email_changed:
         explanation: 'O e-mail associado à sua conta será alterado para:'
         extra: Se não alterou o seu e-mail, é possível que alguém tenha conseguido aceder à sua conta. Por favor altere a sua palavra-passe imediatamente ou entra em contacto com um administrador da instância se tiver ficado sem acesso à sua conta.
-        subject: 'TomX: E-mail alterado'
+        subject: 'Mastodon: E-mail alterado'
         title: Novo endereço de e-mail
       password_change:
         explanation: A palavra-passe da tua conta foi alterada.
         extra: Se não alterou a sua palavra-passe, é possível que alguém tenha conseguido aceder à sua conta. Por favor altere a sua palavra-passe imediatamente ou entre em contacto com um administrador da instância se tiver ficado sem acesso à sua conta.
-        subject: 'TomX: palavra-passe alterada'
+        subject: 'Mastodon: palavra-passe alterada'
         title: Palavra-passe alterada
       reconfirmation_instructions:
         explanation: Confirme o seu novo endereço para alterar o e-mail.
-        extra: Se esta mudança não foi iniciada por si, queira ignorar este e-mail. O endereço de correio electrónico da sua conta do TomX não irá mudar enquanto não aceder à hiperligação acima.
-        subject: 'TomX: Confirmação de e-mail %{instance}'
+        extra: Se esta mudança não foi iniciada por si, queira ignorar este e-mail. O endereço de correio electrónico da sua conta do Mastodon não irá mudar enquanto não aceder à hiperligação acima.
+        subject: 'Mastodon: Confirmação de e-mail %{instance}'
         title: Validar o endereço de e-mail
       reset_password_instructions:
         action: Alterar palavra-passe
         explanation: Pediste a alteração da palavra-passe da tua conta.
         extra: Se não fez este pedido, queira ignorar este e-mail. A sua palavra-passe não irá mudar se não aceder à hiperligação acima e criar uma nova.
-        subject: 'TomX: Instruções para redefinir a palavra-passe'
+        subject: 'Mastodon: Instruções para redefinir a palavra-passe'
         title: Solicitar nova palavra-passe
       two_factor_disabled:
         explanation: A autenticação em duas etapas para a sua conta foi desativada. É agora possível aceder apenas com o seu endereço de e-mail e palavra-passe.
-        subject: 'TomX: Autenticação de duas etapas desativada'
+        subject: 'Mastodon: Autenticação de duas etapas desativada'
         title: 2FA desativado
       two_factor_enabled:
         explanation: A autenticação em duas etapas foi ativada para a sua conta. Um token, gerado pela aplicação TOTP emparelhada, será necessário para aceder.
-        subject: 'TomX: Autenticação em duas etapas ativada'
+        subject: 'Mastodon: Autenticação em duas etapas ativada'
         title: 2FA ativado
       two_factor_recovery_codes_changed:
         explanation: Os códigos de recuperação anteriores foram invalidados e novos foram gerados.
-        subject: 'TomX: Gerados novos códigos de recuperação em duas etapas'
+        subject: 'Mastodon: Gerados novos códigos de recuperação em duas etapas'
         title: Códigos de recuperação 2FA alterados
       unlock_instructions:
-        subject: 'TomX: Instruções para desbloquear a tua conta'
+        subject: 'Mastodon: Instruções para desbloquear a tua conta'
       webauthn_credential:
         added:
           explanation: A seguinte chave de segurança foi adicionada à sua conta
-          subject: 'TomX: Nova chave de segurança'
+          subject: 'Mastodon: Nova chave de segurança'
           title: Foi adicionada uma nova chave de segurança
         deleted:
           explanation: A seguinte chave de segurança foi eliminada da sua conta
-          subject: 'TomX: Chave de segurança eliminada'
+          subject: 'Mastodon: Chave de segurança eliminada'
           title: Uma das suas chaves de segurança foi eliminada
       webauthn_disabled:
         explanation: A autenticação com chave de segurança foi desativada para a sua conta. Tornou-se possível aceder à sua conta usando apenas o token gerado pela aplicação TOTP emparelhada.
-        subject: 'TomX: Autenticação com chave de segurança desativada'
+        subject: 'Mastodon: Autenticação com chave de segurança desativada'
         title: Chaves de segurança desativadas
       webauthn_enabled:
         explanation: A autenticação com chave de segurança foi ativada para sua conta. A sua chave de segurança pode agora ser utilizada para aceder à sua conta.
-        subject: 'TomX: Autenticação com chave de segurança ativada'
+        subject: 'Mastodon: Autenticação com chave de segurança ativada'
         title: Chaves de segurança ativadas
     omniauth_callbacks:
       failure: Não foi possível autenticar %{kind} porque "%{reason}".

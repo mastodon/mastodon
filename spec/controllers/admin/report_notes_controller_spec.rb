@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 describe Admin::ReportNotesController do
@@ -25,7 +23,7 @@ describe Admin::ReportNotesController do
           let(:params) { { report_note: { content: 'test content', report_id: report.id }, create_and_resolve: nil } }
 
           it 'creates a report note and resolves report' do
-            expect { subject }.to change(ReportNote, :count).by(1)
+            expect { subject }.to change { ReportNote.count }.by(1)
             expect(report.reload).to be_action_taken
             expect(subject).to redirect_to admin_reports_path
           end
@@ -35,8 +33,8 @@ describe Admin::ReportNotesController do
           let(:params) { { report_note: { content: 'test content', report_id: report.id } } }
 
           it 'creates a report note and does not resolve report' do
-            expect { subject }.to change(ReportNote, :count).by(1)
-            expect(report.reload).to_not be_action_taken
+            expect { subject }.to change { ReportNote.count }.by(1)
+            expect(report.reload).not_to be_action_taken
             expect(subject).to redirect_to admin_report_path(report)
           end
         end
@@ -50,8 +48,8 @@ describe Admin::ReportNotesController do
           let(:params) { { report_note: { content: 'test content', report_id: report.id }, create_and_unresolve: nil } }
 
           it 'creates a report note and unresolves report' do
-            expect { subject }.to change(ReportNote, :count).by(1)
-            expect(report.reload).to_not be_action_taken
+            expect { subject }.to change { ReportNote.count }.by(1)
+            expect(report.reload).not_to be_action_taken
             expect(subject).to redirect_to admin_report_path(report)
           end
         end
@@ -60,7 +58,7 @@ describe Admin::ReportNotesController do
           let(:params) { { report_note: { content: 'test content', report_id: report.id } } }
 
           it 'creates a report note and does not unresolve report' do
-            expect { subject }.to change(ReportNote, :count).by(1)
+            expect { subject }.to change { ReportNote.count }.by(1)
             expect(report.reload).to be_action_taken
             expect(subject).to redirect_to admin_report_path(report)
           end
@@ -85,7 +83,7 @@ describe Admin::ReportNotesController do
     let!(:report_note) { Fabricate(:report_note) }
 
     it 'deletes note' do
-      expect { subject }.to change(ReportNote, :count).by(-1)
+      expect { subject }.to change { ReportNote.count }.by(-1)
       expect(subject).to redirect_to admin_report_path(report_note.report)
     end
   end

@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-# NOTE: This is a deprecated worker, only kept to not break ongoing imports
-# on upgrade. See `Import::RowWorker` for its replacement.
-
 class Import::RelationshipWorker
   include Sidekiq::Worker
 
@@ -52,7 +49,7 @@ class Import::RelationshipWorker
         .with_error_handler { |error, handle| error.is_a?(HTTP::Error) || error.is_a?(OpenSSL::SSL::SSLError) ? handle.call(error) : raise(error) }
         .run
     else
-      yield
+      block.call
     end
   end
 end

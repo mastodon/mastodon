@@ -1,12 +1,10 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Account::Field do
+RSpec.describe Account::Field, type: :model do
   describe '#verified?' do
-    subject { described_class.new(account, 'name' => 'Foo', 'value' => 'Bar', 'verified_at' => verified_at) }
+    let(:account) { double('Account', local?: true) }
 
-    let(:account) { instance_double(Account, local?: true) }
+    subject { described_class.new(account, 'name' => 'Foo', 'value' => 'Bar', 'verified_at' => verified_at) }
 
     context 'when verified_at is set' do
       let(:verified_at) { Time.now.utc.iso8601 }
@@ -26,10 +24,10 @@ RSpec.describe Account::Field do
   end
 
   describe '#mark_verified!' do
-    subject { described_class.new(account, original_hash) }
-
-    let(:account) { instance_double(Account, local?: true) }
+    let(:account) { double('Account', local?: true) }
     let(:original_hash) { { 'name' => 'Foo', 'value' => 'Bar' } }
+
+    subject { described_class.new(account, original_hash) }
 
     before do
       subject.mark_verified!
@@ -45,14 +43,14 @@ RSpec.describe Account::Field do
   end
 
   describe '#verifiable?' do
+    let(:account) { double('Account', local?: local) }
+
     subject { described_class.new(account, 'name' => 'Foo', 'value' => value) }
 
-    let(:account) { instance_double(Account, local?: local) }
-
-    context 'with local accounts' do
+    context 'for local accounts' do
       let(:local) { true }
 
-      context 'with a URL with misleading authentication' do
+      context 'for a URL with misleading authentication' do
         let(:value) { 'https://spacex.com                                                                                            @h.43z.one' }
 
         it 'returns false' do
@@ -60,7 +58,7 @@ RSpec.describe Account::Field do
         end
       end
 
-      context 'with a URL' do
+      context 'for a URL' do
         let(:value) { 'https://example.com' }
 
         it 'returns true' do
@@ -68,7 +66,7 @@ RSpec.describe Account::Field do
         end
       end
 
-      context 'with an IDN URL' do
+      context 'for an IDN URL' do
         let(:value) { 'https://twitter.com∕dougallj∕status∕1590357240443437057.ê.cc/twitter.html' }
 
         it 'returns false' do
@@ -76,7 +74,7 @@ RSpec.describe Account::Field do
         end
       end
 
-      context 'with a URL with a non-normalized path' do
+      context 'for a URL with a non-normalized path' do
         let(:value) { 'https://github.com/octocatxxxxxxxx/../mastodon' }
 
         it 'returns false' do
@@ -84,7 +82,7 @@ RSpec.describe Account::Field do
         end
       end
 
-      context 'with text that is not a URL' do
+      context 'for text that is not a URL' do
         let(:value) { 'Hello world' }
 
         it 'returns false' do
@@ -92,15 +90,15 @@ RSpec.describe Account::Field do
         end
       end
 
-      context 'with text that contains a URL' do
+      context 'for text that contains a URL' do
         let(:value) { 'Hello https://example.com world' }
 
         it 'returns false' do
           expect(subject.verifiable?).to be false
         end
       end
-
-      context 'with text which is blank' do
+      
+      context 'for text which is blank' do
         let(:value) { '' }
 
         it 'returns false' do
@@ -109,10 +107,10 @@ RSpec.describe Account::Field do
       end
     end
 
-    context 'with remote accounts' do
+    context 'for remote accounts' do
       let(:local) { false }
 
-      context 'with a link' do
+      context 'for a link' do
         let(:value) { '<a href="https://www.patreon.com/mastodon" target="_blank" rel="nofollow noopener noreferrer me"><span class="invisible">https://www.</span><span class="">patreon.com/mastodon</span><span class="invisible"></span></a>' }
 
         it 'returns true' do
@@ -120,7 +118,7 @@ RSpec.describe Account::Field do
         end
       end
 
-      context 'with a link with misleading authentication' do
+      context 'for a link with misleading authentication' do
         let(:value) { '<a href="https://google.com                                                                                            @h.43z.one" target="_blank" rel="nofollow noopener noreferrer me"><span class="invisible">https://</span><span class="">google.com</span><span class="invisible">                                                                                            @h.43z.one</span></a>' }
 
         it 'returns false' do
@@ -128,7 +126,7 @@ RSpec.describe Account::Field do
         end
       end
 
-      context 'with HTML that has more than just a link' do
+      context 'for HTML that has more than just a link' do
         let(:value) { '<a href="https://google.com" target="_blank" rel="nofollow noopener noreferrer me"><span class="invisible">https://</span><span class="">google.com</span><span class="invisible"></span></a>                                                                                            @h.43z.one' }
 
         it 'returns false' do
@@ -136,7 +134,7 @@ RSpec.describe Account::Field do
         end
       end
 
-      context 'with a link with different visible text' do
+      context 'for a link with different visible text' do
         let(:value) { '<a href="https://google.com/bar">https://example.com/foo</a>' }
 
         it 'returns false' do
@@ -144,15 +142,15 @@ RSpec.describe Account::Field do
         end
       end
 
-      context 'with text that is a URL but is not linked' do
+      context 'for text that is a URL but is not linked' do
         let(:value) { 'https://example.com/foo' }
 
         it 'returns false' do
           expect(subject.verifiable?).to be false
         end
       end
-
-      context 'with text which is blank' do
+      
+      context 'for text which is blank' do
         let(:value) { '' }
 
         it 'returns false' do

@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Api::V1::Polls::VotesController do
+RSpec.describe Api::V1::Polls::VotesController, type: :controller do
   render_views
 
   let(:user)   { Fabricate(:user) }

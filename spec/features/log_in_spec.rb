@@ -2,45 +2,45 @@
 
 require 'rails_helper'
 
-describe 'Log in' do
+feature 'Log in' do
   include ProfileStories
 
-  subject { page }
+  given(:email)        { "test@example.com" }
+  given(:password)     { "password" }
+  given(:confirmed_at) { Time.zone.now }
 
-  let(:email)        { 'test@example.com' }
-  let(:password)     { 'password' }
-  let(:confirmed_at) { Time.zone.now }
-
-  before do
+  background do
     as_a_registered_user
     visit new_user_session_path
   end
 
-  it 'A valid email and password user is able to log in' do
+  subject { page }
+
+  scenario 'A valid email and password user is able to log in' do
     fill_in 'user_email', with: email
     fill_in 'user_password', with: password
     click_on I18n.t('auth.login')
 
-    expect(subject).to have_css('div.app-holder')
+    is_expected.to have_css('div.app-holder')
   end
 
-  it 'A invalid email and password user is not able to log in' do
+  scenario 'A invalid email and password user is not able to log in' do
     fill_in 'user_email', with: 'invalid_email'
     fill_in 'user_password', with: 'invalid_password'
     click_on I18n.t('auth.login')
 
-    expect(subject).to have_css('.flash-message', text: failure_message('invalid'))
+    is_expected.to have_css('.flash-message', text: failure_message('invalid'))
   end
 
-  context 'when confirmed at is nil' do
-    let(:confirmed_at) { nil }
+  context do
+    given(:confirmed_at) { nil }
 
-    it 'A unconfirmed user is able to log in' do
+    scenario 'A unconfirmed user is able to log in' do
       fill_in 'user_email', with: email
       fill_in 'user_password', with: password
       click_on I18n.t('auth.login')
 
-      expect(subject).to have_css('div.admin-wrapper')
+      is_expected.to have_css('div.admin-wrapper')
     end
   end
 

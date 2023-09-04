@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateWebauthnCredentials < ActiveRecord::Migration[5.2]
   def change
     create_table :webauthn_credentials do |t|

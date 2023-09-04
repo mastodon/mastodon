@@ -2,7 +2,7 @@
 
 class FetchOEmbedService
   ENDPOINT_CACHE_EXPIRES_IN = 24.hours.freeze
-  URL_REGEX                 = %r{(=(https?(%3A|:)(//|%2F%2F)))([^&]*)}i
+  URL_REGEX                 = /(=(http[s]?(%3A|:)(\/\/|%2F%2F)))([^&]*)/i.freeze
 
   attr_reader :url, :options, :format, :endpoint_url
 
@@ -82,7 +82,7 @@ class FetchOEmbedService
     return if @endpoint_url.blank?
 
     body = Request.new(:get, @endpoint_url).perform do |res|
-      res.code == 200 ? res.body_with_limit : nil
+      res.code != 200 ? nil : res.body_with_limit
     end
 
     validate(parse_for_format(body)) if body.present?

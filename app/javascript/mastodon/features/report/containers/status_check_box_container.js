@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
-
-import { makeGetStatus } from 'mastodon/selectors';
-
 import StatusCheckBox from '../components/status_check_box';
+import { makeGetStatus } from 'mastodon/selectors';
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();

@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: blocks
@@ -25,8 +24,8 @@ class Block < ApplicationRecord
     false # Force uri_for to use uri attribute
   end
 
-  before_validation :set_uri, only: :create
   after_commit :remove_blocking_cache
+  before_validation :set_uri, only: :create
 
   private
 

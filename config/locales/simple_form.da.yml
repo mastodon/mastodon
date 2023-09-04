@@ -2,10 +2,6 @@
 da:
   simple_form:
     hints:
-      account:
-        display_name: Dit fulde navn eller dit sjove navn.
-        fields: Din hjemmeside, dine pronominer, din alder, eller hvad du har lyst til.
-        note: 'Du kan @omtale andre personer eller #hashtags.'
       account_alias:
         acct: Angiv brugernavn@domain for den konto, hvorfra du vil flytte
       account_migration:
@@ -22,8 +18,6 @@ da:
           disable: Forhindre brugeren i at bruge sin konto, men slet eller skjul ikke vedkommendes indhold.
           none: Brug dette til at sende en advarsel til brugeren uden at udløse nogen anden handling.
           sensitive: Gennemtving sensitivmarkering af alle denne brugers medievedhæftninger.
-          silence: Forhindr brugeren i at udgive offentligt synlige indlæg, skjul vedkommendes indlæg samt notifikationer fra ikke-følgere. Lukker alle indrapporteringer af kontoen.
-          suspend: Forhindr alle interaktion fra/til kontoen og slet dens indhold. Kan omgøres inden for 30 dage. Lukker alle indrapporteringer af kontoen.
         warning_preset_id: Valgfri. Du kan stadig tilføje tilpasset tekst til slutningen af forvalgene
       announcement:
         all_day: Hvis markeret, vil kun datoerne for tidsintervallet blive vist
@@ -42,7 +36,8 @@ da:
         current_username: For at bekræfte, angiv brugernavnet for den aktuelle konto
         digest: Sendes kun efter en lang inaktivitetsperiode, og kun hvis du har modtaget personlige beskeder under fraværet
         discoverable: Tillad kontoen at blive fundet af fremmede via anbefalinger og øvrige funktioner
-        email: En bekræftelses-e-mail fremsendes
+        email: En bekræftelsese-mail fremsendes
+        fields: Profilen kan have op til 4 elementer vist som en tabel
         header: PNG, GIF eller JPG. Maks. %{size}. Auto-nedskaleres til %{dimensions}px
         inbox_url: Kopiér URL'en fra forsiden af den videreformidler, der skal anvendes
         irreversible: Filtrerede indlæg forsvinder permanent, selv hvis filteret senere fjernes
@@ -52,7 +47,7 @@ da:
         phrase: Matches uanset uanset brug af store/små bogstaver i teksten eller indholdsadvarsel for et indlæg
         scopes: De API'er, som applikationen vil kunne tilgå. Vælges en topniveaudstrækning, vil detailvalg være unødvendige.
         setting_aggregate_reblogs: Vis ikke nye boosts for nyligt boostede indlæg (påvirker kun nyligt modtagne boosts)
-        setting_always_send_emails: Normalt sendes ingen e-mailnotifikationer under aktivt brug af TomX
+        setting_always_send_emails: Normalt sendes ingen e-mailnotifikationer under aktivt brug af Mastodon
         setting_default_sensitive: Sensitive medier er som standard skjult og kan vises med et klik
         setting_display_media_default: Skjul medier med sensitiv-markering
         setting_display_media_hide_all: Skjul altid medier
@@ -62,7 +57,7 @@ da:
         setting_show_application: Applikationen, hvormed der postes, vil fremgå af detailvisningen af dine indlæg
         setting_use_blurhash: Gradienter er baseret på de skjulte grafikelementers farver, men slører alle detaljer
         setting_use_pending_items: Skjul tidslinjeopdateringer bag et klik i stedet for brug af auto-feedrulning
-        username: Bogstaver, cifre og understregningstegn kan benyttes
+        username: Dit brugernavn vil være unikt på %{domain}
         whole_word: Ved rent alfanumeriske nøgleord/-sætning, forudsætter brugen matchning af hele ordet
       domain_allow:
         domain: Dette domæne vil kunne hente data, som efterfølgende behandles og gemmes, fra denne server
@@ -82,29 +77,26 @@ da:
         bootstrap_timeline_accounts: Disse konti fastgøres øverst på nye brugeres følg-anbefalinger.
         closed_registrations_message: Vises, når tilmeldinger er lukket
         content_cache_retention_period: Indlæg fra andre servere slettes efter det angivne antal dage, når sat til en positiv værdi. Dette kan være irreversibelt.
-        custom_css: Man kan anvende tilpassede stilarter på TomX-webversionen.
+        custom_css: Man kan anvende tilpassede stilarter på Mastodon-webversionen.
         mascot: Tilsidesætter illustrationen i den avancerede webgrænseflade.
         media_cache_retention_period: Downloadede mediefiler slettes efter det angivne antal dage, når sat til en positiv værdi, og gendownloades på forlangende.
-        peers_api_enabled: En liste med domænenavne, som denne server har stødt på i fediverset. Ingen data inkluderes her om, hvorvidt der fødereres med en given server, blot at din server kender til det. Dette bruges af tjenester, som indsamler generelle føderationsstatistikker.
         profile_directory: Profilmappen oplister alle brugere, som har valgt at kunne opdages.
         require_invite_text: Når tilmelding kræver manuel godkendelse, så gør “Hvorfor ønsker du at deltage?” tekstinput obligatorisk i stedet for valgfrit
         site_contact_email: Hvordan folk kan opnå kontakt ifm. juridiske eller supportforespørgsler.
-        site_contact_username: Hvordan folk kan kontakte dig på TomX.
+        site_contact_username: Hvordan folk kan kontakte dig på Mastodon.
         site_extended_description: Evt. yderligere oplysninger, som kan være nyttige for både besøgende og brugere. Kan struktureres vha. Markdown-syntaks.
         site_short_description: En kort beskrivelse mhp. entydigt at kunne identificere denne server. Hvem kører den, hvem er den for?
         site_terms: Brug egen fortrolighedspolitik eller lad stå tomt for standardpolitikken. Kan struktureres med Markdown-syntaks.
         site_title: Hvordan folk kan henvise til serveren udover domænenavnet.
-        status_page_url: URL'en til en side, hvor status for denne server kan ses under en afbrydelse
         theme: Tema, som udloggede besøgende og nye brugere ser.
         thumbnail: Et ca. 2:1 billede vist sammen med serveroplysningerne.
         timeline_preview: Udloggede besøgende kan gennemse serverens seneste offentlige indlæg.
         trendable_by_default: Spring manuel gennemgang af trendindhold over. Individuelle elementer kan stadig fjernes fra trends efter kendsgerningen.
         trends: Tendenser viser, hvilke indlæg, hashtags og nyheder opnår momentum på serveren.
-        trends_as_landing_page: Vis tendensindhold til udloggede brugere og besøgende i stedet for en beskrivelse af denne server. Kræver, at tendenser er aktiveret.
       form_challenge:
         current_password: Du bevæger dig ind på et sikkert område
       imports:
-        data: CSV-fil eksporteret fra anden TomX-server
+        data: CSV-fil eksporteret fra anden Mastodon-server
       invite_request:
         text: Dette vil hjælpe os med at gennemgå din ansøgning
       ip_block:
@@ -134,7 +126,6 @@ da:
         position: Højere rolle bestemmer konfliktløsning i visse situationer. Visse handlinger kan kun udføres på roller med lavere prioritet
       webhook:
         events: Vælg begivenheder at sende
-        template: Skriv din egen JSON nyttelast ved hjælp af variabel interpolation. Lad feltet stå tomt for standard JSON.
         url: Hvor begivenheder sendes til
     labels:
       account:
@@ -200,6 +191,7 @@ da:
         setting_always_send_emails: Send altid en e-mailnotifikationer
         setting_auto_play_gif: Autoafspil animerede GIF'er
         setting_boost_modal: Vis bekræftelsesdialog inden boosting
+        setting_crop_images: Beskær billeder i ikke-ekspanderede indlæg til 16x9
         setting_default_language: Sprog for indlæg
         setting_default_privacy: Fortrolighed for indlæg
         setting_default_sensitive: Markér altid medier som sensitive
@@ -244,7 +236,6 @@ da:
         custom_css: Tilpasset CSS
         mascot: Tilpasset maskot (ældre funktion)
         media_cache_retention_period: Media-cache opbevaringsperiode
-        peers_api_enabled: Udgiv liste over fundne server i API'en
         profile_directory: Aktivér profiloversigt
         registrations_mode: Hvem, der kan tilmelde sig
         require_invite_text: Kræv tilmeldingsbegrundelse
@@ -256,13 +247,11 @@ da:
         site_short_description: Serverbeskrivelse
         site_terms: Fortrolighedspolitik
         site_title: Servernavn
-        status_page_url: Statusside-URL
         theme: Standardtema
         thumbnail: Serverminiaturebillede
         timeline_preview: Tillad ikke-godkendt adgang til offentlige tidslinjer
         trendable_by_default: Tillad ikke-reviderede tendenser
         trends: Aktivér trends
-        trends_as_landing_page: Brug tendenser som destinationssiden
       interactions:
         must_be_follower: Blokér notifikationer fra ikke-følgere
         must_be_following: Blokér notifikationer fra folk, som ikke følges
@@ -285,7 +274,7 @@ da:
         favourite: Nogen favoritmarkerede dit indlæg
         follow: Nogen begyndte at følge dig
         follow_request: Nogen anmodede om at følge dig
-        mention: Nogen omtalte dig
+        mention: Nogen nævnte dig
         pending_account: Ny konto kræver gennemgang
         reblog: Nogen boostede dit indlæg
         report: Ny anmeldelse indsendt
@@ -299,7 +288,6 @@ da:
         usable: Tillad indlæg at benytte dette hashtag
       user:
         role: Rolle
-        time_zone: Tidszone
       user_role:
         color: Badge-farve
         highlighted: Vis rolle som badge på brugerprofiler
@@ -308,7 +296,6 @@ da:
         position: Prioritet
       webhook:
         events: Aktive begivenheder
-        template: Payload skabelon
         url: Endepunkts-URL
     'no': Nej
     not_recommended: Ikke anbefalet

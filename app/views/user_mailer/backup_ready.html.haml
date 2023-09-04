@@ -36,7 +36,7 @@
                         %tbody
                           %tr
                             %td.column-cell.text-center
-                              %p= t 'user_mailer.backup_ready.explanation'
+                              %p= t('user_mailer.backup_ready.explanation', title: site_title)
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
@@ -55,5 +55,5 @@
                             %tbody
                               %tr
                                 %td.button-primary
-                                  = link_to download_backup_url(@backup) do
+                                  = link_to full_asset_url(@backup.dump.url) do
                                     %span= t 'exports.archive_takeout.download'

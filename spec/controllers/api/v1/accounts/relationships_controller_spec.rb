@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 describe Api::V1::Accounts::RelationshipsController do
@@ -21,7 +19,7 @@ describe Api::V1::Accounts::RelationshipsController do
       lewis.follow!(user.account)
     end
 
-    context 'when provided only one ID' do
+    context 'provided only one ID' do
       before do
         get :index, params: { id: simon.id }
       end
@@ -39,7 +37,7 @@ describe Api::V1::Accounts::RelationshipsController do
       end
     end
 
-    context 'when provided multiple IDs' do
+    context 'provided multiple IDs' do
       before do
         get :index, params: { id: [simon.id, lewis.id] }
       end
@@ -48,32 +46,25 @@ describe Api::V1::Accounts::RelationshipsController do
         expect(response).to have_http_status(200)
       end
 
-      context 'when there is returned JSON data' do
-        let(:json) { body_as_json }
+      it 'returns JSON with correct data' do
+        json = body_as_json
 
-        it 'returns an enumerable json' do
-          expect(json).to be_a Enumerable
-        end
+        expect(json).to be_a Enumerable
+        expect(json.first[:id]).to eq simon.id.to_s
+        expect(json.first[:following]).to be true
+        expect(json.first[:showing_reblogs]).to be true
+        expect(json.first[:followed_by]).to be false
+        expect(json.first[:muting]).to be false
+        expect(json.first[:requested]).to be false
+        expect(json.first[:domain_blocking]).to be false
 
-        it 'returns a correct first element' do
-          expect(json.first[:id]).to eq simon.id.to_s
-          expect(json.first[:following]).to be true
-          expect(json.first[:showing_reblogs]).to be true
-          expect(json.first[:followed_by]).to be false
-          expect(json.first[:muting]).to be false
-          expect(json.first[:requested]).to be false
-          expect(json.first[:domain_blocking]).to be false
-        end
-
-        it 'returns a correct second element' do
-          expect(json.second[:id]).to eq lewis.id.to_s
-          expect(json.second[:following]).to be false
-          expect(json.second[:showing_reblogs]).to be false
-          expect(json.second[:followed_by]).to be true
-          expect(json.second[:muting]).to be false
-          expect(json.second[:requested]).to be false
-          expect(json.second[:domain_blocking]).to be false
-        end
+        expect(json.second[:id]).to eq lewis.id.to_s
+        expect(json.second[:following]).to be false
+        expect(json.second[:showing_reblogs]).to be false
+        expect(json.second[:followed_by]).to be true
+        expect(json.second[:muting]).to be false
+        expect(json.second[:requested]).to be false
+        expect(json.second[:domain_blocking]).to be false
       end
 
       it 'returns JSON with correct data on cached requests too' do

@@ -1,5 +1,4 @@
 import { Map as ImmutableMap } from 'immutable';
-
 import { HEIGHT_CACHE_SET, HEIGHT_CACHE_CLEAR } from '../actions/height_cache';
 
 const initialState = ImmutableMap();

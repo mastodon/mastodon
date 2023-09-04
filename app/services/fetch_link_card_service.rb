@@ -7,7 +7,7 @@ class FetchLinkCardService < BaseService
   URL_PATTERN = %r{
     (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceding chars
     (                                                                                                                           #   $2 URL
-      (https?://)                                                                                                               #   $3 Protocol (required)
+      (https?:\/\/)                                                                                                             #   $3 Protocol (required)
       (#{Twitter::TwitterText::Regex[:valid_domain]})                                                                           #   $4 Domain(s)
       (?::(#{Twitter::TwitterText::Regex[:valid_port_number]}))?                                                                #   $5 Port number (optional)
       (/#{Twitter::TwitterText::Regex[:valid_url_path]}*)?                                                                      #   $6 URL Path and anchor
@@ -23,14 +23,14 @@ class FetchLinkCardService < BaseService
 
     @url = @original_url.to_s
 
-    with_redis_lock("fetch:#{@original_url}") do
+    with_lock("fetch:#{@original_url}") do
       @card = PreviewCard.find_by(url: @url)
       process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
     end
 
     attach_card if @card&.persisted?
   rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
-    Rails.logger.debug { "Error fetching link #{@original_url}: #{e}" }
+    Rails.logger.debug "Error fetching link #{@original_url}: #{e}"
     nil
   end
 
@@ -45,40 +45,40 @@ class FetchLinkCardService < BaseService
   def html
     return @html if defined?(@html)
 
-    @html = Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => "#{Mastodon::Version.user_agent} Bot").perform do |res|
-      next unless res.code == 200 && res.mime_type == 'text/html'
-
+    Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => Mastodon::Version.user_agent + ' Bot').perform do |res|
       # We follow redirects, and ideally we want to save the preview card for
       # the destination URL and not any link shortener in-between, so here
       # we set the URL to the one of the last response in the redirect chain
       @url  = res.request.uri.to_s
       @card = PreviewCard.find_or_initialize_by(url: @url) if @card.url != @url
 
-      @html_charset = res.charset
-
-      res.body_with_limit
+      if res.code == 200 && res.mime_type == 'text/html'
+        @html_charset = res.charset
+        @html = res.body_with_limit
+      else
+        @html_charset = nil
+        @html = nil
+      end
     end
   end
 
   def attach_card
-    with_redis_lock("attach_card:#{@status.id}") do
-      return if @status.preview_cards.any?
-
-      @status.preview_cards << @card
-      Rails.cache.delete(@status)
-      Trends.links.register(@status)
-    end
+    @status.preview_cards << @card
+    Rails.cache.delete(@status)
+    Trends.links.register(@status)
   end
 
   def parse_urls
-    urls = if @status.local?
-             @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
-           else
-             document = Nokogiri::HTML(@status.text)
-             links = document.css('a')
+    urls = begin
+      if @status.local?
+        @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
+      else
+        document = Nokogiri::HTML(@status.text)
+        links    = document.css('a')
 
-             links.filter_map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.filter_map(&:normalize)
-           end
+        links.filter_map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.filter_map(&:normalize)
+      end
+    end
 
     urls.reject { |uri| bad_url?(uri) }.first
   end

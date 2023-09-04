@@ -19,7 +19,10 @@ module Paperclip
     def make
       metadata = VideoMetadataExtractor.new(@file.path)
 
-      raise Paperclip::Error, "Error while transcoding #{@file.path}: unsupported file" unless metadata.valid?
+      unless metadata.valid?
+        Paperclip.log("Unsupported file #{@file.path}")
+        return File.open(@file.path)
+      end
 
       update_attachment_type(metadata)
       update_options_from_metadata(metadata)

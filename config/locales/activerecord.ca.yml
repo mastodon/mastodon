@@ -24,11 +24,11 @@ ca:
         admin/webhook:
           attributes:
             url:
-              invalid: no és un enllaç vàlid
+              invalid: no és una URL vàlida
         doorkeeper/application:
           attributes:
             website:
-              invalid: no és un enllaç vàlid
+              invalid: no és una URL vàlida
         import:
           attributes:
             data:
@@ -36,7 +36,7 @@ ca:
         status:
           attributes:
             reblog:
-              taken: de la publicació ja existeix
+              taken: del tut que ja existeix
         user:
           attributes:
             email:
@@ -53,7 +53,3 @@ ca:
             position:
               elevated: no pot ser superior al teu rol actual
               own_role: no es pot canviar amb el teu rol actual
-        webhook:
-          attributes:
-            events:
-              invalid_permissions: no pots incloure esdeveniments que no en tens permisos

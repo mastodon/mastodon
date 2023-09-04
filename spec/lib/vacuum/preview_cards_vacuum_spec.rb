@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe Vacuum::PreviewCardsVacuum do
-  subject { described_class.new(retention_period) }
-
   let(:retention_period) { 7.days }
+
+  subject { described_class.new(retention_period) }
 
   describe '#perform' do
     let!(:orphaned_preview_card) { Fabricate(:preview_card, created_at: 2.days.ago) }

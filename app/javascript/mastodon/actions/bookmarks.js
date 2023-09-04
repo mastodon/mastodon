@@ -1,5 +1,4 @@
 import api, { getLinks } from '../api';
-
 import { importFetchedStatuses } from './importer';
 
 export const BOOKMARKED_STATUSES_FETCH_REQUEST = 'BOOKMARKED_STATUSES_FETCH_REQUEST';

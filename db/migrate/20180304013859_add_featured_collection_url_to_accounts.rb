@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class AddFeaturedCollectionURLToAccounts < ActiveRecord::Migration[5.2]
+class AddFeaturedCollectionURLToAccounts < ActiveRecord::Migration[5.1]
   def change
     add_column :accounts, :featured_collection_url, :string
   end

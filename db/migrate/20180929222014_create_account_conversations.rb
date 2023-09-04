@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateAccountConversations < ActiveRecord::Migration[5.2]
   def change
     create_table :account_conversations do |t|

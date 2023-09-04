@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
 class Api::V1::Trends::StatusesController < Api::BaseController
-  vary_by 'Authorization, Accept-Language'
-
   before_action :set_statuses
 
   after_action :insert_pagination_headers
 
   def index
-    cache_if_unauthenticated!
     render json: @statuses, each_serializer: REST::StatusSerializer
   end
 
@@ -19,11 +16,13 @@ class Api::V1::Trends::StatusesController < Api::BaseController
   end
 
   def set_statuses
-    @statuses = if enabled?
-                  cache_collection(statuses_from_trends.offset(offset_param).limit(limit_param(DEFAULT_STATUSES_LIMIT)), Status)
-                else
-                  []
-                end
+    @statuses = begin
+      if enabled?
+        cache_collection(statuses_from_trends.offset(offset_param).limit(limit_param(DEFAULT_STATUSES_LIMIT)), Status)
+      else
+        []
+      end
+    end
   end
 
   def statuses_from_trends

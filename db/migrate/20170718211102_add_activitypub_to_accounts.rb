@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddActivityPubToAccounts < ActiveRecord::Migration[5.1]
   def change
     add_column :accounts, :inbox_url, :string, null: false, default: ''

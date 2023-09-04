@@ -1,5 +1,4 @@
 import api from '../api';
-
 import { importFetchedPoll } from './importer';
 
 export const POLL_VOTE_REQUEST = 'POLL_VOTE_REQUEST';

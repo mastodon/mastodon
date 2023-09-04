@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Api::V2::Admin::AccountsController do
+RSpec.describe Api::V2::Admin::AccountsController, type: :controller do
   render_views
 
   let(:role)   { UserRole.find_by(name: 'Moderator') }
@@ -13,6 +11,22 @@ RSpec.describe Api::V2::Admin::AccountsController do
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
+  end
+
+  shared_examples 'forbidden for wrong scope' do |wrong_scope|
+    let(:scopes) { wrong_scope }
+
+    it 'returns http forbidden' do
+      expect(response).to have_http_status(403)
+    end
+  end
+
+  shared_examples 'forbidden for wrong role' do |wrong_role|
+    let(:role) { UserRole.find_by(name: wrong_role) }
+
+    it 'returns http forbidden' do
+      expect(response).to have_http_status(403)
+    end
   end
 
   describe 'GET #index' do
@@ -51,16 +65,8 @@ RSpec.describe Api::V2::Admin::AccountsController do
         it "returns the correct accounts (#{expected_results.inspect})" do
           json = body_as_json
 
-          expect(json.map { |a| a[:id].to_i }).to eq(expected_results.map { |symbol| send(symbol).id })
+          expect(json.map { |a| a[:id].to_i }).to eq (expected_results.map { |symbol| send(symbol).id })
         end
-      end
-    end
-
-    context 'with limit param' do
-      let(:params) { { limit: 1 } }
-
-      it 'sets the correct pagination headers' do
-        expect(response.headers['Link'].find_link(%w(rel next)).href).to eq api_v2_admin_accounts_url(limit: 1, max_id: admin_account.id)
       end
     end
   end

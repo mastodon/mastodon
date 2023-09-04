@@ -4,7 +4,7 @@ import { isMobile } from '../is_mobile';
 let cachedScrollbarWidth = null;
 
 /**
- * @returns {number}
+ * @return {number}
  */
 const getActualScrollbarWidth = () => {
   const outer = document.createElement('div');
@@ -22,7 +22,7 @@ const getActualScrollbarWidth = () => {
 };
 
 /**
- * @returns {number}
+ * @return {number}
  */
 export const getScrollbarWidth = () => {
   if (cachedScrollbarWidth !== null) {

@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'webauthn/fake_client'
 
-RSpec.describe Auth::SessionsController do
+RSpec.describe Auth::SessionsController, type: :controller do
   render_views
 
   before do
@@ -51,10 +51,10 @@ RSpec.describe Auth::SessionsController do
   end
 
   describe 'POST #create' do
-    context 'when using PAM authentication', if: ENV['PAM_ENABLED'] == 'true' do
-      context 'when using a valid password' do
+    context 'using PAM authentication', if: ENV['PAM_ENABLED'] == 'true' do
+      context 'using a valid password' do
         before do
-          post :create, params: { user: { email: 'pam_user1', password: '123456' } }
+          post :create, params: { user: { email: "pam_user1", password: '123456' } }
         end
 
         it 'redirects to home' do
@@ -66,9 +66,9 @@ RSpec.describe Auth::SessionsController do
         end
       end
 
-      context 'when using an invalid password' do
+      context 'using an invalid password' do
         before do
-          post :create, params: { user: { email: 'pam_user1', password: 'WRONGPW' } }
+          post :create, params: { user: { email: "pam_user1", password: 'WRONGPW' } }
         end
 
         it 'shows a login error' do
@@ -80,7 +80,7 @@ RSpec.describe Auth::SessionsController do
         end
       end
 
-      context 'when using a valid email and existing user' do
+      context 'using a valid email and existing user' do
         let!(:user) do
           account = Fabricate.build(:account, username: 'pam_user1', user: nil)
           account.save!(validate: false)
@@ -102,10 +102,10 @@ RSpec.describe Auth::SessionsController do
       end
     end
 
-    context 'when using password authentication' do
+    context 'using password authentication' do
       let(:user) { Fabricate(:user, email: 'foo@bar.com', password: 'abcdefgh') }
 
-      context 'when using a valid password' do
+      context 'using a valid password' do
         before do
           post :create, params: { user: { email: user.email, password: user.password } }
         end
@@ -119,7 +119,7 @@ RSpec.describe Auth::SessionsController do
         end
       end
 
-      context 'when using a valid password on a previously-used account with a new IP address' do
+      context 'using a valid password on a previously-used account with a new IP address' do
         let(:previous_ip) { '1.2.3.4' }
         let(:current_ip)  { '4.3.2.1' }
 
@@ -127,8 +127,7 @@ RSpec.describe Auth::SessionsController do
 
         before do
           allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return(current_ip)
-          allow(UserMailer).to receive(:suspicious_sign_in)
-            .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later!: nil))
+          allow(UserMailer).to receive(:suspicious_sign_in).and_return(double('email', 'deliver_later!': nil))
           user.update(current_sign_in_at: 1.month.ago)
           post :create, params: { user: { email: user.email, password: user.password } }
         end
@@ -146,7 +145,7 @@ RSpec.describe Auth::SessionsController do
         end
       end
 
-      context 'when using email with uppercase letters' do
+      context 'using email with uppercase letters' do
         before do
           post :create, params: { user: { email: user.email.upcase, password: user.password } }
         end
@@ -160,7 +159,7 @@ RSpec.describe Auth::SessionsController do
         end
       end
 
-      context 'when using an invalid password' do
+      context 'using an invalid password' do
         before do
           post :create, params: { user: { email: user.email, password: 'wrongpw' } }
         end
@@ -174,7 +173,7 @@ RSpec.describe Auth::SessionsController do
         end
       end
 
-      context 'when using an unconfirmed password' do
+      context 'using an unconfirmed password' do
         before do
           request.headers['Accept-Language'] = accept_language
           post :create, params: { user: { email: unconfirmed_user.email, password: unconfirmed_user.password } }
@@ -188,14 +187,14 @@ RSpec.describe Auth::SessionsController do
         end
       end
 
-      context "when logging in from the user's page" do
+      context "logging in from the user's page" do
         before do
           allow(controller).to receive(:single_user_mode?).and_return(single_user_mode)
           allow(controller).to receive(:stored_location_for).with(:user).and_return("/@#{user.account.username}")
           post :create, params: { user: { email: user.email, password: user.password } }
         end
 
-        context 'with single user mode' do
+        context "in single user mode" do
           let(:single_user_mode) { true }
 
           it 'redirects to home' do
@@ -203,7 +202,7 @@ RSpec.describe Auth::SessionsController do
           end
         end
 
-        context 'with non-single user mode' do
+        context "in non-single user mode" do
           let(:single_user_mode) { false }
 
           it "redirects back to the user's page" do
@@ -213,7 +212,7 @@ RSpec.describe Auth::SessionsController do
       end
     end
 
-    context 'when using two-factor authentication' do
+    context 'using two-factor authentication' do
       context 'with OTP enabled as second factor' do
         let!(:user) do
           Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
@@ -225,18 +224,18 @@ RSpec.describe Auth::SessionsController do
           return codes
         end
 
-        context 'when using email and password' do
+        context 'using email and password' do
           before do
             post :create, params: { user: { email: user.email, password: user.password } }
           end
 
           it 'renders two factor authentication page' do
-            expect(controller).to render_template('two_factor')
-            expect(controller).to render_template(partial: '_otp_authentication_form')
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_otp_authentication_form")
           end
         end
 
-        context 'when using email and password after an unfinished log-in attempt to a 2FA-protected account' do
+        context 'using email and password after an unfinished log-in attempt to a 2FA-protected account' do
           let!(:other_user) do
             Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
           end
@@ -247,23 +246,23 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'renders two factor authentication page' do
-            expect(controller).to render_template('two_factor')
-            expect(controller).to render_template(partial: '_otp_authentication_form')
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_otp_authentication_form")
           end
         end
 
-        context 'when using upcase email and password' do
+        context 'using upcase email and password' do
           before do
             post :create, params: { user: { email: user.email.upcase, password: user.password } }
           end
 
           it 'renders two factor authentication page' do
-            expect(controller).to render_template('two_factor')
-            expect(controller).to render_template(partial: '_otp_authentication_form')
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_otp_authentication_form")
           end
         end
 
-        context 'when using a valid OTP' do
+        context 'using a valid OTP' do
           before do
             post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
@@ -292,7 +291,7 @@ RSpec.describe Auth::SessionsController do
           end
         end
 
-        context 'when using a valid recovery code' do
+        context 'using a valid recovery code' do
           before do
             post :create, params: { user: { otp_attempt: recovery_codes.first } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
@@ -306,7 +305,7 @@ RSpec.describe Auth::SessionsController do
           end
         end
 
-        context 'when using an invalid OTP' do
+        context 'using an invalid OTP' do
           before do
             post :create, params: { user: { otp_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
@@ -340,11 +339,11 @@ RSpec.describe Auth::SessionsController do
             external_id: public_key_credential.id,
             public_key: public_key_credential.public_key,
             sign_count: '1000'
-          )
+           )
           user.webauthn_credentials.take
         end
 
-        let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
+        let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http' }://#{Rails.configuration.x.web_domain}" }
 
         let(:fake_client) { WebAuthn::FakeClient.new(domain) }
 
@@ -354,29 +353,29 @@ RSpec.describe Auth::SessionsController do
 
         let(:fake_credential) { fake_client.get(challenge: challenge, sign_count: sign_count) }
 
-        context 'when using email and password' do
+        context 'using email and password' do
           before do
             post :create, params: { user: { email: user.email, password: user.password } }
           end
 
           it 'renders webauthn authentication page' do
-            expect(controller).to render_template('two_factor')
-            expect(controller).to render_template(partial: '_webauthn_form')
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_webauthn_form")
           end
         end
 
-        context 'when using upcase email and password' do
+        context 'using upcase email and password' do
           before do
             post :create, params: { user: { email: user.email.upcase, password: user.password } }
           end
 
           it 'renders webauthn authentication page' do
-            expect(controller).to render_template('two_factor')
-            expect(controller).to render_template(partial: '_webauthn_form')
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_webauthn_form")
           end
         end
 
-        context 'when using a valid webauthn credential' do
+        context 'using a valid webauthn credential' do
           before do
             @controller.session[:webauthn_challenge] = challenge
 
@@ -401,7 +400,7 @@ RSpec.describe Auth::SessionsController do
 
   describe 'GET #webauthn_options' do
     context 'with WebAuthn and OTP enabled as second factor' do
-      let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
+      let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http' }://#{Rails.configuration.x.web_domain}" }
 
       let(:fake_client) { WebAuthn::FakeClient.new(domain) }
 
@@ -423,7 +422,7 @@ RSpec.describe Auth::SessionsController do
 
       it 'returns http success' do
         get :webauthn_options
-        expect(response).to have_http_status 200
+        expect(response).to have_http_status :ok
       end
     end
   end

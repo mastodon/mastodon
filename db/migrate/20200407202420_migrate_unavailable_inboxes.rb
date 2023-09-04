@@ -1,15 +1,12 @@
-# frozen_string_literal: true
-
 class MigrateUnavailableInboxes < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def up
-    redis = RedisConfiguration.pool.checkout
-    urls = redis.smembers('unavailable_inboxes')
+    urls = Redis.current.smembers('unavailable_inboxes')
 
-    hosts = urls.filter_map do |url|
+    hosts = urls.map do |url|
       Addressable::URI.parse(url).normalized_host
-    end.uniq
+    end.compact.uniq
 
     UnavailableDomain.delete_all
 
@@ -17,7 +14,7 @@ class MigrateUnavailableInboxes < ActiveRecord::Migration[5.2]
       UnavailableDomain.create(domain: host)
     end
 
-    redis.del(*(['unavailable_inboxes'] + redis.keys('exhausted_deliveries:*')))
+    Redis.current.del(*(['unavailable_inboxes'] + Redis.current.keys('exhausted_deliveries:*')))
   end
 
   def down; end

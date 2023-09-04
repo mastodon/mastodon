@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CacheConcern do
+RSpec.describe CacheConcern, type: :controller do
   controller(ApplicationController) do
     include CacheConcern
 
@@ -23,14 +23,14 @@ RSpec.describe CacheConcern do
   end
 
   describe '#cache_collection' do
-    context 'when given an empty array' do
+    context 'given an empty array' do
       it 'returns an empty array' do
         get :empty_array
         expect(response.body).to eq '0'
       end
     end
 
-    context 'when given an empty relation' do
+    context 'given an empty relation' do
       it 'returns an empty array' do
         get :empty_relation
         expect(response.body).to eq '0'

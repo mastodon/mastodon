@@ -26,7 +26,6 @@ class Admin::AccountAction
   alias include_statuses? include_statuses
 
   validates :type, :target_account, :current_account, presence: true
-  validates :type, inclusion: { in: TYPES }
 
   def initialize(attributes = {})
     @send_email_notification = true
@@ -71,10 +70,6 @@ class Admin::AccountAction
       else
         TYPES - %w(none disable)
       end
-    end
-
-    def i18n_scope
-      :activerecord
     end
   end
 
@@ -171,11 +166,13 @@ class Admin::AccountAction
   end
 
   def reports
-    @reports ||= if type == 'none'
-                   with_report? ? [report] : []
-                 else
-                   Report.where(target_account: target_account).unresolved
-                 end
+    @reports ||= begin
+      if type == 'none'
+        with_report? ? [report] : []
+      else
+        Report.where(target_account: target_account).unresolved
+      end
+    end
   end
 
   def warning_preset

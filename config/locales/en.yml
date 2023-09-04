@@ -1,11 +1,62 @@
 ---
 en:
   about:
-    about_mastodon_html: 'The social network of the future: No ads, no corporate surveillance, ethical design, and decentralization! Own your data with TomX!'
+    about_hashtag_html: These are public posts tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
+    about_mastodon_html: 'Hometown is adapted from Mastodon, a decentralized social network with no ads, no corporate surveillance, and ethical design.'
+    about_this: About
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
+    administered_by: 'Administered by:'
+    api: API
+    apps: Mobile apps
+    apps_platforms: Use %{title} from iOS, Android and other platforms
+    browse_directory: Browse a profile directory and filter by interests
+    browse_local_posts: Browse a live stream of public posts from this server
+    browse_public_posts: Browse a live stream of public posts on %{title}
+    contact: Contact
     contact_missing: Not set
     contact_unavailable: N/A
-    hosted_on: TomX hosted on %{domain}
+    continue_to_web: Continue to web app
+    discover_users: Discover users
+    documentation: Documentation
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Hometown or Mastodon server and beyond.
+    get_apps: Try a mobile app
+    hosted_on: Hometown hosted on %{domain}
+    instance_actor_flash: |
+      This account is a virtual actor used to represent the server itself and not any individual user.
+      It is used for federation purposes and should not be blocked unless you want to block the whole instance, in which case you should use a domain block.
+    learn_more: Learn more
+    logged_in_as_html: You are currently logged in as %{username}.
+    logout_before_registering: You are already logged in.
+    privacy_policy: Privacy policy
+    rules: Server rules
+    rules_html: 'Below is a summary of rules you need to follow if you want to have an account on this server of Mastodon:'
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
+    source_code: Source code
+    status_count_after:
+      one: post
+      other: posts
+    status_count_before: Who published
+    tagline: Follow friends and discover new ones
+    terms: Terms of service
     title: About
+    unavailable_content: Moderated servers
+    unavailable_content_description:
+      domain: Server
+      reason: Reason
+      rejecting_media: 'Media files from these servers will not be processed or stored, and no thumbnails will be displayed, requiring manual click-through to the original file:'
+      rejecting_media_title: Filtered media
+      silenced: 'Posts from these servers will be hidden in public timelines and conversations, and no notifications will be generated from their users interactions, unless you are following them:'
+      silenced_title: Limited servers
+      suspended: 'No data from these servers will be processed, stored or exchanged, making any interaction or communication with users from these servers impossible:'
+      suspended_title: Suspended servers
+    unavailable_content_html: Hometown generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.
+    user_count_after:
+      one: user
+      other: users
+    user_count_before: Home to
+    what_is_mastodon: What is Hometown/Mastodon?
   accounts:
     follow: Follow
     followers:
@@ -91,7 +142,6 @@ en:
       moderation:
         active: Active
         all: All
-        disabled: Disabled
         pending: Pending
         silenced: Limited
         suspended: Suspended
@@ -125,8 +175,8 @@ en:
       removed_header_msg: Successfully removed %{username}'s header image
       resend_confirmation:
         already_confirmed: This user is already confirmed
-        send: Resend confirmation link
-        success: Confirmation link successfully sent!
+        send: Resend confirmation email
+        success: Confirmation email successfully sent!
       reset: Reset
       reset_password: Reset password
       resubscribe: Resubscribe
@@ -134,7 +184,6 @@ en:
       search: Search
       search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
-      security: Security
       security_measures:
         only_password: Only password
         password_and_2fa: Password and 2FA
@@ -382,15 +431,6 @@ en:
       undo: Disallow federation with domain
     domain_blocks:
       add_new: Add new domain block
-      confirm_suspension:
-        cancel: Cancel
-        confirm: Suspend
-        permanent_action: Undoing the suspension will not restore any data or relationship.
-        preamble_html: You are about to suspend <strong>%{domain}</strong> and its subdomains.
-        remove_all_data: This will remove all content, media, and profile data for this domain's accounts from your server.
-        stop_communication: Your server will stop communicating with these servers.
-        title: Confirm domain block for %{domain}
-        undo_relationships: This will undo any follow relationship between accounts of these servers and yours.
       created_msg: Domain block is now being processed
       destroyed_msg: Domain block has been undone
       domain: Domain
@@ -438,7 +478,6 @@ en:
         resolve: Resolve domain
         title: Block new e-mail domain
       no_email_domain_block_selected: No e-mail domain blocks were changed as none were selected
-      not_permitted: Not permitted
       resolved_dns_records_hint_html: The domain name resolves to the following MX domains, which are ultimately responsible for accepting e-mail. Blocking an MX domain will block sign-ups from any e-mail address which uses the same MX domain, even if the visible domain name is different. <strong>Be careful not to block major e-mail providers.</strong>
       resolved_through_html: Resolved through %{domain}
       title: Blocked e-mail domains
@@ -485,7 +524,6 @@ en:
       content_policies:
         comment: Internal note
         description_html: You can define content policies that will be applied to all accounts from this domain and any of its subdomains.
-        limited_federation_mode_description_html: You can chose whether to allow federation with this domain.
         policies:
           reject_media: Reject media
           reject_reports: Reject reports
@@ -598,13 +636,11 @@ en:
       assign_to_self: Assign to me
       assigned: Assigned moderator
       by_target_domain: Domain of reported account
-      cancel: Cancel
       category: Category
       category_description_html: The reason this account and/or content was reported will be cited in communication with the reported account
       comment:
         none: None
       comment_description_html: 'To provide more information, %{name} wrote:'
-      confirm: Confirm
       confirm_action: Confirm moderation action against @%{acct}
       created_at: Reported
       delete_and_resolve: Delete posts
@@ -672,7 +708,7 @@ en:
         moderation: Moderation
         special: Special
       delete: Delete
-      description_html: With <strong>user roles</strong>, you can customize which functions and areas of TomX your users can access.
+      description_html: With <strong>user roles</strong>, you can customize which functions and areas of Mastodon your users can access.
       edit: Edit '%{name}' role
       everyone: Default permissions
       everyone_full_description_html: This is the <strong>base role</strong> affecting <strong>all users</strong>, even those without an assigned role. All other roles inherit permissions from it.
@@ -735,23 +771,20 @@ en:
         rules_hint: There is a dedicated area for rules that your users are expected to adhere to.
         title: About
       appearance:
-        preamble: Customize TomX's web interface.
+        preamble: Customize Mastodon's web interface.
         title: Appearance
       branding:
-        preamble: Your server's branding differentiates it from other servers in the network. This information may be displayed across a variety of environments, such as TomX's web interface, native applications, in link previews on other websites and within messaging apps, and so on. For this reason, it is best to keep this information clear, short and concise.
+        preamble: Your server's branding differentiates it from other servers in the network. This information may be displayed across a variety of environments, such as Mastodon's web interface, native applications, in link previews on other websites and within messaging apps, and so on. For this reason, it is best to keep this information clear, short and concise.
         title: Branding
-      captcha_enabled:
-        desc_html: This relies on external scripts from hCaptcha, which may be a security and privacy concern. In addition, <strong>this can make the registration process significantly less accessible to some (especially disabled) people</strong>. For these reasons, please consider alternative measures such as approval-based or invite-based registration.
-        title: Require new users to solve a CAPTCHA to confirm their account
       content_retention:
-        preamble: Control how user-generated content is stored in TomX.
+        preamble: Control how user-generated content is stored in Mastodon.
         title: Content retention
       default_noindex:
         desc_html: Affects all users who have not changed this setting themselves
         title: Opt users out of search engine indexing by default
       discovery:
         follow_recommendations: Follow recommendations
-        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone TomX. Control how various discovery features work on your server.
+        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
         profile_directory: Profile directory
         public_timelines: Public timelines
         publish_discovered_servers: Publish discovered servers
@@ -762,6 +795,10 @@ en:
         all: To everyone
         disabled: To no one
         users: To logged-in local users
+      hometown:
+        title: Hometown
+        preamble: These site-wide settings are provided to you by Hometown. As the server admin, you should think carefully about what you want each setting to be, since this will have an impact in shaping your community.
+        privacy: Privacy
       registrations:
         preamble: Control who can create an account on your server.
         title: Registrations
@@ -770,7 +807,7 @@ en:
           approved: Approval required for sign up
           none: Nobody can sign up
           open: Anyone can sign up
-      title: Server settings
+      title: Server Settings
     site_uploads:
       delete: Delete uploaded file
       destroyed_msg: Site upload successfully deleted!
@@ -783,7 +820,7 @@ en:
         remove_from_report: Remove from report
         report: Report
       deleted: Deleted
-      favourites: Favorites
+      favourites: Favourites
       history: Version history
       in_reply_to: Replying to
       language: Language
@@ -810,7 +847,6 @@ en:
         suspend: "%{name} suspended %{target}'s account"
       appeal_approved: Appealed
       appeal_pending: Appeal pending
-      appeal_rejected: Appeal rejected
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
@@ -824,12 +860,6 @@ en:
         message_html: You haven't defined any server rules.
       sidekiq_process_check:
         message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
-      upload_check_privacy_error:
-        action: Check here for more information
-        message_html: "<strong>Your web server is misconfigured. The privacy of your users is at risk.</strong>"
-      upload_check_privacy_error_object_storage:
-        action: Check here for more information
-        message_html: "<strong>Your object storage is misconfigured. The privacy of your users is at risk.</strong>"
     tags:
       review: Review status
       updated_msg: Hashtag settings updated successfully
@@ -852,7 +882,6 @@ en:
           other: Shared by %{count} people over the last week
         title: Trending links
         usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
-      not_allowed_to_trend: Not allowed to trend
       only_allowed: Only allowed
       pending_review: Pending review
       preview_card_providers:
@@ -864,14 +893,14 @@ en:
       statuses:
         allow: Allow post
         allow_account: Allow author
-        description_html: These are posts that your server knows about that are currently being shared and favorited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
+        description_html: These are posts that your server knows about that are currently being shared and favourited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
         disallow: Disallow post
         disallow_account: Disallow author
         no_status_selected: No trending posts were changed as none were selected
         not_discoverable: Author has not opted-in to being discoverable
         shared_by:
-          one: Shared or favorited one time
-          other: Shared and favorited %{friendly_count} times
+          one: Shared or favourited one time
+          other: Shared and favourited %{friendly_count} times
         title: Trending posts
       tags:
         current_score: Current score %{score}
@@ -907,7 +936,7 @@ en:
     webhooks:
       add_new: Add endpoint
       delete: Delete
-      description_html: A <strong>webhook</strong> enables TomX to push <strong>real-time notifications</strong> about chosen events to your own application, so your application can <strong>automatically trigger reactions</strong>.
+      description_html: A <strong>webhook</strong> enables Mastodon to push <strong>real-time notifications</strong> about chosen events to your own application, so your application can <strong>automatically trigger reactions</strong>.
       disable: Disable
       disabled: Disabled
       edit: Edit endpoint
@@ -969,41 +998,35 @@ en:
     confirmation_dialogs: Confirmation dialogs
     discovery: Discovery
     localization:
-      body: TomX is translated by volunteers.
+      body: Mastodon is translated by volunteers.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Everyone can contribute.
     sensitive_content: Sensitive content
+    toot_layout: Post layout
   application_mailer:
     notification_preferences: Change e-mail preferences
     salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
-    unsubscribe: Unsubscribe
     view: 'View:'
     view_profile: View profile
     view_status: View post
   applications:
     created: Application successfully created
     destroyed: Application successfully deleted
-    logout: Logout
     regenerate_token: Regenerate access token
     token_regenerated: Access token successfully regenerated
     warning: Be very careful with this data. Never share it with anyone!
     your_token: Your access token
   auth:
     apply_for_account: Request an account
-    captcha_confirmation:
-      help_html: If you have issues solving the CAPTCHA, you can get in touch with us through %{email} and we can assist you.
-      hint_html: Just one more thing! We need to confirm you're a human (this is so we can keep the spam out!). Solve the CAPTCHA below and click "Continue".
-      title: Security check
-    confirmations:
-      wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
+    change_password: Password
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     description:
-      prefix_invited_by_user: "@%{name} invites you to join this server of TomX!"
-      prefix_sign_up: Sign up on TomX today!
-      suffix: With an account, you will be able to follow people, post updates and exchange messages with users from any TomX server and more!
-    didnt_get_confirmation: Didn't receive a confirmation link?
+      prefix_invited_by_user: "@%{name} invites you to join this server of Mastodon!"
+      prefix_sign_up: Sign up on Mastodon today!
+      suffix: With an account, you will be able to follow people, post updates and exchange messages with users from any Mastodon server and more!
+    didnt_get_confirmation: Didn't receive confirmation instructions?
     dont_have_your_security_key: Don't have your security key?
     forgot_password: Forgot your password?
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
@@ -1016,40 +1039,27 @@ en:
     migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
     or_log_in_with: Or log in with
     privacy_policy_agreement_html: I have read and agree to the <a href="%{privacy_policy_path}" target="_blank">privacy policy</a>
-    progress:
-      confirm: Confirm e-mail
-      details: Your details
-      review: Our review
-      rules: Accept rules
     providers:
       cas: CAS
       saml: SAML
     register: Sign up
     registration_closed: "%{instance} is not accepting new members"
-    resend_confirmation: Resend confirmation link
+    resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
     rules:
-      accept: Accept
-      back: Back
-      invited_by: 'You can join %{domain} thanks to the invitation you have received from:'
       preamble: These are set and enforced by the %{domain} moderators.
-      preamble_invited: Before you proceed, please consider the ground rules set by the moderators of %{domain}.
       title: Some ground rules.
-      title_invited: You've been invited.
     security: Security
     set_new_password: Set new password
     setup:
-      email_below_hint_html: Check your spam folder, or request another one. You can correct your e-mail address if it's wrong.
-      email_settings_hint_html: Click the link we sent you to verify %{email}. We'll wait right here.
-      link_not_received: Didn't get a link?
-      new_confirmation_instructions_sent: You will receive a new e-mail with the confirmation link in a few minutes!
-      title: Check your inbox
+      email_below_hint_html: If the below e-mail address is incorrect, you can change it here and receive a new confirmation e-mail.
+      email_settings_hint_html: The confirmation e-mail was sent to %{email}. If that e-mail address is not correct, you can change it in account settings.
+      title: Setup
     sign_in:
-      preamble_html: Login with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
-      title: Login to %{domain}
+      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Sign in to %{domain}
     sign_up:
-      manual_review: Sign-ups on %{domain} go through manual review by our moderators. To help us process your registration, write a bit about yourself and why you want an account on %{domain}.
-      preamble: With an account on this TomX server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
+      preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
       title: Let's get you set up on %{domain}.
     status:
       account_status: Account status
@@ -1060,6 +1070,18 @@ en:
       view_strikes: View past strikes against your account
     too_fast: Form submitted too fast, try again.
     use_security_key: Use security key
+  authorize_follow:
+    already_following: You are already following this account
+    already_requested: You have already sent a follow request to that account
+    error: Unfortunately, there was an error looking up the remote account
+    follow: Follow
+    follow_request: 'You have sent a follow request to:'
+    following: 'Success! You are now following:'
+    post_follow:
+      close: Or, you can just close this window.
+      return: Show the user's profile
+      web: Go to web
+    title: Follow %{acct}
   challenge:
     confirm: Continue
     hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
@@ -1136,11 +1158,6 @@ en:
       your_appeal_rejected: Your appeal has been rejected
   domain_validator:
     invalid_domain: is not a valid domain name
-  edit_profile:
-    basic_information: Basic information
-    hint_html: "<strong>Customize what people see on your public profile and next to your posts.</strong> Other people are more likely to follow you back and interact with you when you have a filled out profile and a profile picture."
-    other: Other
-    safety_and_privacy: Safety and privacy
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -1154,8 +1171,9 @@ en:
     '500':
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
+    noscript_html: To use the %{title} web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Hometown/Mastodon for your platform.
     '503': The page could not be served due to a temporary server failure.
-    noscript_html: To use the TomX web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for TomX for your platform.
+    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
   existing_username_validator:
     not_found: could not find a local user with that username
     not_found_multiple: could not find %{usernames}
@@ -1177,8 +1195,8 @@ en:
   featured_tags:
     add_new: Add new
     errors:
-      limit: You have already featured the maximum number of hashtags
-    hint_html: "<strong>Feature your most important hashtags on your profile.</strong> A great tool for keeping track of your creative works and long-term projects, featured hashtags are displayed prominently on your profile and allow quick access to your own posts."
+      limit: You have already featured the maximum amount of hashtags
+    hint_html: "<strong>What are featured hashtags?</strong> They are displayed prominently on your public profile and allow people to browse your public posts specifically under those hashtags. They are a great tool for keeping track of creative works or long-term projects."
   filters:
     contexts:
       account: Profiles
@@ -1221,6 +1239,8 @@ en:
       index:
         hint: This filter applies to select individual posts regardless of other criteria. You can add more posts to this filter from the web interface.
         title: Filtered posts
+  footer:
+    trending_now: Trending now
   generic:
     all: All
     all_items_on_page_selected_html:
@@ -1229,9 +1249,7 @@ en:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> item matching your search is selected."
       other: All <strong>%{count}</strong> items matching your search are selected.
-    cancel: Cancel
     changes_saved_msg: Changes successfully saved!
-    confirm: Confirm
     copy: Copy
     delete: Delete
     deselect: Deselect all
@@ -1245,62 +1263,24 @@ en:
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
+  html_validator:
+    invalid_markup: 'contains invalid HTML markup: %{error}'
   imports:
     errors:
-      empty: Empty CSV file
-      incompatible_type: Incompatible with the selected import type
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
       over_rows_processing_limit: contains more than %{count} rows
-      too_large: File is too large
-    failures: Failures
-    imported: Imported
-    mismatched_types_warning: It appears you may have selected the wrong type for this import, please double-check.
     modes:
       merge: Merge
       merge_long: Keep existing records and add new ones
       overwrite: Overwrite
       overwrite_long: Replace current records with the new ones
-    overwrite_preambles:
-      blocking_html: You are about to <strong>replace your block list</strong> with up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
-      bookmarks_html: You are about to <strong>replace your bookmarks</strong> with up to <strong>%{total_items} posts</strong> from <strong>%{filename}</strong>.
-      domain_blocking_html: You are about to <strong>replace your domain block list</strong> with up to <strong>%{total_items} domains</strong> from <strong>%{filename}</strong>.
-      following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
-      lists_html: You are about to <strong>replace your lists</strong> with contents of <strong>%{filename}</strong>. Up to <strong>%{total_items} accounts</strong> will be added to new lists.
-      muting_html: You are about to <strong>replace your list of muted accounts</strong> with up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
-      bookmarks_html: You are about to add up to <strong>%{total_items} posts</strong> from <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
-      domain_blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} domains</strong> from <strong>%{filename}</strong>.
-      following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
-      lists_html: You are about to add up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong> to your <strong>lists</strong>. New lists will be created if there is no list to add to.
-      muting_html: You are about to <strong>mute</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
     preface: You can import data that you have exported from another server, such as a list of the people you are following or blocking.
-    recent_imports: Recent imports
-    states:
-      finished: Finished
-      in_progress: In progress
-      scheduled: Scheduled
-      unconfirmed: Unconfirmed
-    status: Status
     success: Your data was successfully uploaded and will be processed in due time
-    time_started: Started at
-    titles:
-      blocking: Importing blocked accounts
-      bookmarks: Importing bookmarks
-      domain_blocking: Importing blocked domains
-      following: Importing followed accounts
-      lists: Importing lists
-      muting: Importing muted accounts
-    type: Import type
-    type_groups:
-      constructive: Follows & Bookmarks
-      destructive: Blocks & mutes
     types:
       blocking: Blocking list
       bookmarks: Bookmarks
       domain_blocking: Domain blocking list
       following: Following list
-      lists: Lists
       muting: Muting list
     upload: Upload
   invites:
@@ -1327,7 +1307,7 @@ en:
     title: Invite people
   lists:
     errors:
-      limit: You have reached the maximum number of lists
+      limit: You have reached the maximum amount of lists
   login_activities:
     authentication_methods:
       otp: two-factor authentication app
@@ -1339,21 +1319,6 @@ en:
     failed_sign_in_html: Failed sign-in attempt with %{method} from %{ip} (%{browser})
     successful_sign_in_html: Successful sign-in with %{method} from %{ip} (%{browser})
     title: Authentication history
-  mail_subscriptions:
-    unsubscribe:
-      action: Yes, unsubscribe
-      complete: Unsubscribed
-      confirmation_html: Are you sure you want to unsubscribe from receiving %{type} for TomX on %{domain} to your e-mail at %{email}? You can always re-subscribe from your <a href="%{settings_path}">e-mail notification settings</a>.
-      emails:
-        notification_emails:
-          favourite: favorite notification e-mails
-          follow: follow notification e-mails
-          follow_request: follow request e-mails
-          mention: mention notification e-mails
-          reblog: boost notification e-mails
-      resubscribe_html: If you've unsubscribed by mistake, you can re-subscribe from your <a href="%{settings_path}">e-mail notification settings</a>.
-      success_html: You'll no longer receive %{type} for TomX on %{domain} to your e-mail at %{email}.
-      title: Unsubscribe
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a post that already contains images
@@ -1405,9 +1370,9 @@ en:
       sign_up:
         subject: "%{name} signed up"
     favourite:
-      body: 'Your post was favorited by %{name}:'
-      subject: "%{name} favorited your post"
-      title: New favorite
+      body: 'Your post was favourited by %{name}:'
+      subject: "%{name} favourited your post"
+      title: New favourite
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
@@ -1470,7 +1435,6 @@ en:
       expired: The poll has already ended
       invalid_choice: The chosen vote option does not exist
       over_character_limit: cannot be longer than %{max} characters each
-      self_vote: You cannot vote in your own polls
       too_few_options: must have more than one item
       too_many_options: can't contain more than %{max} items
   preferences:
@@ -1489,7 +1453,6 @@ en:
     confirm_remove_selected_followers: Are you sure you want to remove selected followers?
     confirm_remove_selected_follows: Are you sure you want to remove selected follows?
     dormant: Dormant
-    follow_failure: Could not follow some of the selected accounts.
     follow_selected_followers: Follow selected followers
     followers: Followers
     following: Following
@@ -1529,7 +1492,6 @@ en:
       electron: Electron
       firefox: Firefox
       generic: Unknown browser
-      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1539,11 +1501,10 @@ en:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
-      unknown_browser: Unknown Browser
       weibo: Weibo
     current_session: Current session
     description: "%{browser} on %{platform}"
-    explanation: These are the web browsers currently logged in to your TomX account.
+    explanation: These are the web browsers currently logged in to your %{title} account.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1552,10 +1513,9 @@ en:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
-      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      unknown_platform: Unknown Platform
+      other: unknown platform
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1569,7 +1529,7 @@ en:
     aliases: Account aliases
     appearance: Appearance
     authorized_apps: Authorized apps
-    back: Back to TomX
+    back: Back home
     delete: Account deletion
     development: Development
     edit_profile: Edit profile
@@ -1580,7 +1540,7 @@ en:
     migrate: Account migration
     notifications: Notifications
     preferences: Preferences
-    profile: Public profile
+    profile: Profile
     relationships: Follows and followers
     statuses_cleanup: Automated post deletion
     strikes: Moderation strikes
@@ -1607,6 +1567,7 @@ en:
     edited_at_html: Edited %{date}
     errors:
       in_reply_not_found: The post you are trying to reply to does not appear to exist.
+    local_only: Local-only
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
@@ -1626,6 +1587,7 @@ en:
     show_newer: Show newer
     show_older: Show older
     show_thread: Show thread
+    sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direct
@@ -1640,12 +1602,14 @@ en:
     enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
     exceptions: Exceptions
     explanation: Because deleting posts is an expensive operation, this is done slowly over time when the server is not otherwise busy. For this reason, your posts may be deleted a while after they reach the age threshold.
-    ignore_favs: Ignore favorites
+    ignore_favs: Ignore favourites
     ignore_reblogs: Ignore boosts
     interaction_exceptions: Exceptions based on interactions
-    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favorite or boost threshold after having once gone over them.
+    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favourite or boost threshold after having once gone over them.
     keep_direct: Keep direct messages
     keep_direct_hint: Doesn't delete any of your direct messages
+    keep_local: Keep local-only messages
+    keep_local_hint: Doesn't delete any of your local-only posts
     keep_media: Keep posts with media attachments
     keep_media_hint: Doesn't delete any of your posts that have media attachments
     keep_pinned: Keep pinned posts
@@ -1654,8 +1618,8 @@ en:
     keep_polls_hint: Doesn't delete any of your polls
     keep_self_bookmark: Keep posts you bookmarked
     keep_self_bookmark_hint: Doesn't delete your own posts if you have bookmarked them
-    keep_self_fav: Keep posts you favorited
-    keep_self_fav_hint: Doesn't delete your own posts if you have favorited them
+    keep_self_fav: Keep posts you favourited
+    keep_self_fav_hint: Doesn't delete your own posts if you have favourited them
     min_age:
       '1209600': 2 weeks
       '15778476': 6 months
@@ -1666,11 +1630,13 @@ en:
       '63113904': 2 years
       '7889238': 3 months
     min_age_label: Age threshold
-    min_favs: Keep posts favorited at least
-    min_favs_hint: Doesn't delete any of your posts that has received at least this number of favorites. Leave blank to delete posts regardless of their number of favorites
+    min_favs: Keep posts favourited at least
+    min_favs_hint: Doesn't delete any of your posts that has received at least this amount of favourites. Leave blank to delete posts regardless of their number of favourites
     min_reblogs: Keep posts boosted at least
     min_reblogs_hint: Doesn't delete any of your posts that has been boosted at least this number of times. Leave blank to delete posts regardless of their number of boosts
   stream_entries:
+    pinned: Pinned post
+    reblogged: boosted
     sensitive_content: Sensitive content
   strikes:
     errors:
@@ -1678,9 +1644,11 @@ en:
   tags:
     does_not_match_previous_name: does not match the previous name
   themes:
-    contrast: TomX (High contrast)
-    default: TomX (Dark)
-    mastodon-light: TomX (Light)
+    contrast: Mastodon (High contrast)
+    default: Mastodon (Dark)
+    mastodon-light: Mastodon (Light)
+    macaron: Macaron (Pastel light)
+    fairy-floss: Fairy Floss (Pastel dark)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1712,7 +1680,7 @@ en:
       subject: Your appeal from %{date} has been rejected
       title: Appeal rejected
     backup_ready:
-      explanation: You requested a full backup of your TomX account. It's now ready for download!
+      explanation: You requested a full backup of your %{title} account. It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
     suspicious_sign_in:
@@ -1761,22 +1729,17 @@ en:
       final_step: 'Start posting! Even without followers, your public posts may be seen by others, for example on the local timeline or in hashtags. You may want to introduce yourself on the #introductions hashtag.'
       full_handle: Your full handle
       full_handle_hint: This is what you would tell your friends so they can message or follow you from another server.
-      subject: Welcome to TomX
+      subject: Welcome to %{title}
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
-    go_to_sso_account_settings: Go to your identity provider's account settings
     invalid_otp_token: Invalid two-factor code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
   verification:
-    extra_instructions_html: <strong>Tip:</strong> The link on your website can be invisible. The important part is <code>rel="me"</code> which prevents impersonation on websites with user-generated content. You can even use a <code>link</code> tag in the header of the page instead of <code>a</code>, but the HTML must be accessible without executing JavaScript.
-    here_is_how: Here's how
-    hint_html: "<strong>Verifying your identity on TomX is for everyone.</strong> Based on open web standards, now and forever free. All you need is a personal website that people recognize you by. When you link to this website from your profile, we will check that the website links back to your profile and show a visual indicator on it."
-    instructions_html: Copy and paste the code below into the HTML of your website. Then add the address of your website into one of the extra fields on your profile from the "Edit profile" tab and save changes.
+    explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your %{instance} profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
     verification: Verification
-    verified_links: Your verified links
   webauthn_credentials:
     add: Add new security key
     create:

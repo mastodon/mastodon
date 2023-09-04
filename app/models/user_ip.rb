@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: user_ips
@@ -12,7 +11,7 @@
 class UserIp < ApplicationRecord
   self.primary_key = :user_id
 
-  belongs_to :user
+  belongs_to :user, foreign_key: :user_id
 
   def readonly?
     true

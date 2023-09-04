@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: session_activations
@@ -36,8 +35,8 @@ class SessionActivation < ApplicationRecord
     detection.platform.id
   end
 
-  before_save   :assign_user_agent
   before_create :assign_access_token
+  before_save   :assign_user_agent
 
   class << self
     def active?(id)
@@ -52,7 +51,6 @@ class SessionActivation < ApplicationRecord
 
     def deactivate(id)
       return unless id
-
       where(session_id: id).destroy_all
     end
 
@@ -61,7 +59,7 @@ class SessionActivation < ApplicationRecord
     end
 
     def exclusive(id)
-      where.not(session_id: id).destroy_all
+      where('session_id != ?', id).destroy_all
     end
   end
 

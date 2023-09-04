@@ -3,32 +3,30 @@
 require 'rails_helper'
 
 describe ConnectionPool::SharedTimedStack do
-  subject { described_class.new(5) { |site| mini_connection_class.new(site) } }
+  class MiniConnection
+    attr_reader :site
 
-  let(:mini_connection_class) do
-    Class.new do
-      attr_reader :site
-
-      def initialize(site)
-        @site = site
-      end
+    def initialize(site)
+      @site = site
     end
   end
 
+  subject { described_class.new(5) { |site| MiniConnection.new(site) } }
+
   describe '#push' do
     it 'keeps the connection in the stack' do
-      subject.push(mini_connection_class.new('foo'))
+      subject.push(MiniConnection.new('foo'))
       expect(subject.size).to eq 1
     end
   end
 
   describe '#pop' do
     it 'returns a connection' do
-      expect(subject.pop('foo')).to be_a mini_connection_class
+      expect(subject.pop('foo')).to be_a MiniConnection
     end
 
     it 'returns the same connection that was pushed in' do
-      connection = mini_connection_class.new('foo')
+      connection = MiniConnection.new('foo')
       subject.push(connection)
       expect(subject.pop('foo')).to be connection
     end
@@ -38,8 +36,8 @@ describe ConnectionPool::SharedTimedStack do
     end
 
     it 'repurposes a connection for a different site when maximum amount is reached' do
-      5.times { subject.push(mini_connection_class.new('foo')) }
-      expect(subject.pop('bar')).to be_a mini_connection_class
+      5.times { subject.push(MiniConnection.new('foo')) }
+      expect(subject.pop('bar')).to be_a MiniConnection
     end
   end
 
@@ -49,14 +47,14 @@ describe ConnectionPool::SharedTimedStack do
     end
 
     it 'returns false when there are connections on the stack' do
-      subject.push(mini_connection_class.new('foo'))
+      subject.push(MiniConnection.new('foo'))
       expect(subject.empty?).to be false
     end
   end
 
   describe '#size' do
     it 'returns the number of connections on the stack' do
-      2.times { subject.push(mini_connection_class.new('foo')) }
+      2.times { subject.push(MiniConnection.new('foo')) }
       expect(subject.size).to eq 2
     end
   end

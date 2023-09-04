@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe UserRole do
+RSpec.describe UserRole, type: :model do
   subject { described_class.create(name: 'Foo', position: 1) }
 
   describe '#can?' do
@@ -60,7 +58,7 @@ RSpec.describe UserRole do
   end
 
   describe '#permissions_as_keys=' do
-    let(:input) {}
+    let(:input) { }
 
     before do
       subject.permissions_as_keys = input
@@ -93,7 +91,7 @@ RSpec.describe UserRole do
 
   describe '#computed_permissions' do
     context 'when the role is nobody' do
-      subject { described_class.nobody }
+      let(:subject) { described_class.nobody }
 
       it 'returns none' do
         expect(subject.computed_permissions).to eq UserRole::Flags::NONE
@@ -101,7 +99,7 @@ RSpec.describe UserRole do
     end
 
     context 'when the role is everyone' do
-      subject { described_class.everyone }
+      let(:subject) { described_class.everyone }
 
       it 'returns permissions' do
         expect(subject.computed_permissions).to eq subject.permissions
@@ -118,8 +116,10 @@ RSpec.describe UserRole do
       end
     end
 
-    it 'returns permissions combined with the everyone role' do
-      expect(subject.computed_permissions).to eq described_class.everyone.permissions
+    context do
+      it 'returns permissions combined with the everyone role' do
+        expect(subject.computed_permissions).to eq described_class.everyone.permissions
+      end
     end
   end
 
@@ -127,7 +127,7 @@ RSpec.describe UserRole do
     subject { described_class.everyone }
 
     it 'returns a role' do
-      expect(subject).to be_a(described_class)
+      expect(subject).to be_kind_of(described_class)
     end
 
     it 'is identified as the everyone role' do
@@ -139,7 +139,7 @@ RSpec.describe UserRole do
     end
 
     it 'has negative position' do
-      expect(subject.position).to eq(-1)
+      expect(subject.position).to eq -1
     end
   end
 
@@ -147,7 +147,7 @@ RSpec.describe UserRole do
     subject { described_class.nobody }
 
     it 'returns a role' do
-      expect(subject).to be_a(described_class)
+      expect(subject).to be_kind_of(described_class)
     end
 
     it 'is identified as the nobody role' do
@@ -159,7 +159,7 @@ RSpec.describe UserRole do
     end
 
     it 'has negative position' do
-      expect(subject.position).to eq(-1)
+      expect(subject.position).to eq -1
     end
   end
 

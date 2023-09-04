@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 describe Settings::MigrationsController do
@@ -7,7 +5,7 @@ describe Settings::MigrationsController do
 
   shared_examples 'authenticate user' do
     it 'redirects to sign_in page' do
-      expect(subject).to redirect_to new_user_session_path
+      is_expected.to redirect_to new_user_session_path
     end
   end
 
@@ -29,8 +27,8 @@ describe Settings::MigrationsController do
         let(:moved_to_account) { nil }
 
         it 'renders show page' do
-          expect(subject).to have_http_status 200
-          expect(subject).to render_template :show
+          is_expected.to have_http_status 200
+          is_expected.to render_template :show
         end
       end
 
@@ -38,8 +36,8 @@ describe Settings::MigrationsController do
         let(:moved_to_account) { Fabricate(:account) }
 
         it 'renders show page' do
-          expect(subject).to have_http_status 200
-          expect(subject).to render_template :show
+          is_expected.to have_http_status 200
+          is_expected.to render_template :show
         end
       end
     end
@@ -63,7 +61,7 @@ describe Settings::MigrationsController do
         let(:acct) { Fabricate(:account, also_known_as: [ActivityPub::TagManager.instance.uri_for(user.account)]) }
 
         it 'updates moved to account' do
-          expect(subject).to redirect_to settings_migration_path
+          is_expected.to redirect_to settings_migration_path
           expect(user.account.reload.moved_to_account_id).to eq acct.id
         end
       end
@@ -72,7 +70,7 @@ describe Settings::MigrationsController do
         let(:acct) { user.account }
 
         it 'renders show' do
-          expect(subject).to render_template :show
+          is_expected.to render_template :show
         end
 
         it 'does not update the moved account' do
@@ -84,7 +82,7 @@ describe Settings::MigrationsController do
         let(:acct) { Fabricate(:account, also_known_as: []) }
 
         it 'renders show' do
-          expect(subject).to render_template :show
+          is_expected.to render_template :show
         end
 
         it 'does not update the moved account' do
@@ -92,7 +90,7 @@ describe Settings::MigrationsController do
         end
       end
 
-      context 'when a recent migration already exists' do
+      context 'when a recent migration already exists ' do
         let(:acct) { Fabricate(:account, also_known_as: [ActivityPub::TagManager.instance.uri_for(user.account)]) }
 
         before do
@@ -101,7 +99,7 @@ describe Settings::MigrationsController do
         end
 
         it 'renders show' do
-          expect(subject).to render_template :show
+          is_expected.to render_template :show
         end
 
         it 'does not update the moved account' do

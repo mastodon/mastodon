@@ -5,7 +5,7 @@ class TextFormatter
   include ERB::Util
   include RoutingHelper
 
-  URL_PREFIX_REGEX = %r{\A(https?://(www\.)?|xmpp:)}
+  URL_PREFIX_REGEX = /\A(https?:\/\/(www\.)?|xmpp:)/.freeze
 
   DEFAULT_REL = %w(nofollow noopener noreferrer).freeze
 
@@ -48,26 +48,6 @@ class TextFormatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
-  class << self
-    include ERB::Util
-
-    def shortened_link(url, rel_me: false)
-      url = Addressable::URI.parse(url).to_s
-      rel = rel_me ? (DEFAULT_REL + %w(me)) : DEFAULT_REL
-
-      prefix      = url.match(URL_PREFIX_REGEX).to_s
-      display_url = url[prefix.length, 30]
-      suffix      = url[prefix.length + 30..]
-      cutoff      = url[prefix.length..].length > 30
-
-      <<~HTML.squish.html_safe # rubocop:disable Rails/OutputSafety
-        <a href="#{h(url)}" target="_blank" rel="#{rel.join(' ')}" translate="no"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
-      HTML
-    rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
-      h(url)
-    end
-  end
-
   private
 
   def rewrite
@@ -75,7 +55,7 @@ class TextFormatter
       entity[:indices].first
     end
 
-    result = +''
+    result = ''.dup
 
     last_index = entities.reduce(0) do |index, entity|
       indices = entity[:indices]
@@ -84,13 +64,25 @@ class TextFormatter
       indices.last
     end
 
-    result << h(text[last_index..])
+    result << h(text[last_index..-1])
 
     result
   end
 
   def link_to_url(entity)
-    TextFormatter.shortened_link(entity[:url], rel_me: with_rel_me?)
+    url = Addressable::URI.parse(entity[:url]).to_s
+    rel = with_rel_me? ? (DEFAULT_REL + %w(me)) : DEFAULT_REL
+
+    prefix      = url.match(URL_PREFIX_REGEX).to_s
+    display_url = url[prefix.length, 30]
+    suffix      = url[prefix.length + 30..-1]
+    cutoff      = url[prefix.length..-1].length > 30
+
+    <<~HTML.squish
+      <a href="#{h(url)}" target="_blank" rel="#{rel.join(' ')}"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
+    HTML
+  rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+    h(entity[:url])
   end
 
   def link_to_hashtag(entity)
@@ -130,7 +122,7 @@ class TextFormatter
     display_username = same_username_hits&.positive? || with_domains? ? account.pretty_acct : account.username
 
     <<~HTML.squish
-      <span class="h-card" translate="no"><a href="#{h(url)}" class="u-url mention">@<span>#{h(display_username)}</span></a></span>
+      <span class="h-card"><a href="#{h(url)}" class="u-url mention">@<span>#{h(display_username)}</span></a></span>
     HTML
   end
 

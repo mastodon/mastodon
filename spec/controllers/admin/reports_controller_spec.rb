@@ -1,12 +1,9 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 describe Admin::ReportsController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
-
   before do
     sign_in user, scope: :user
   end
@@ -57,7 +54,7 @@ describe Admin::ReportsController do
       expect(response).to redirect_to(admin_reports_path)
       report.reload
       expect(report.action_taken_by_account).to eq user.account
-      expect(report.action_taken?).to be true
+      expect(report.action_taken?).to eq true
     end
   end
 
@@ -68,8 +65,8 @@ describe Admin::ReportsController do
       put :reopen, params: { id: report }
       expect(response).to redirect_to(admin_report_path(report))
       report.reload
-      expect(report.action_taken_by_account).to be_nil
-      expect(report.action_taken?).to be false
+      expect(report.action_taken_by_account).to eq nil
+      expect(report.action_taken?).to eq false
     end
   end
 
@@ -91,7 +88,7 @@ describe Admin::ReportsController do
       put :unassign, params: { id: report }
       expect(response).to redirect_to(admin_report_path(report))
       report.reload
-      expect(report.assigned_account).to be_nil
+      expect(report.assigned_account).to eq nil
     end
   end
 end

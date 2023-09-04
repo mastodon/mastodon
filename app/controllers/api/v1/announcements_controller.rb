@@ -18,7 +18,9 @@ class Api::V1::AnnouncementsController < Api::BaseController
   private
 
   def set_announcements
-    @announcements = Announcement.published.chronological
+    @announcements = begin
+      Announcement.published.chronological
+    end
   end
 
   def set_announcement

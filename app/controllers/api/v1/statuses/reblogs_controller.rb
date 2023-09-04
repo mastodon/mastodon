@@ -2,8 +2,6 @@
 
 class Api::V1::Statuses::ReblogsController < Api::BaseController
   include Authorization
-  include Redisable
-  include Lockable
 
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }
   before_action :require_user!
@@ -12,9 +10,7 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
   override_rate_limit_headers :create, family: :statuses
 
   def create
-    with_redis_lock("reblog:#{current_account.id}:#{@reblog.id}") do
-      @status = ReblogService.new.call(current_account, @reblog, reblog_params)
-    end
+    @status = ReblogService.new.call(current_account, @reblog, reblog_params)
 
     render json: @status, serializer: REST::StatusSerializer
   end
@@ -24,18 +20,15 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
 
     if @status
       authorize @status, :unreblog?
-      @reblog = @status.reblog
-      count = [@reblog.reblogs_count - 1, 0].max
       @status.discard
       RemovalWorker.perform_async(@status.id)
+      @reblog = @status.reblog
     else
       @reblog = Status.find(params[:status_id])
-      count = @reblog.reblogs_count
       authorize @reblog, :show?
     end
 
-    relationships = StatusRelationshipsPresenter.new([@status], current_account.id, reblogs_map: { @reblog.id => false }, attributes_map: { @reblog.id => { reblogs_count: count } })
-    render json: @reblog, serializer: REST::StatusSerializer, relationships: relationships
+    render json: @reblog, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_account.id, reblogs_map: { @reblog.id => false })
   rescue Mastodon::NotPermittedError
     not_found
   end

@@ -7,7 +7,9 @@ class RemoveFromFollowersService < BaseService
     source_account.passive_relationships.where(account_id: target_accounts).find_each do |follow|
       follow.destroy
 
-      create_notification(follow) if source_account.local? && !follow.account.local? && follow.account.activitypub?
+      if source_account.local? && !follow.account.local? && follow.account.activitypub?
+        create_notification(follow)
+      end
     end
   end
 

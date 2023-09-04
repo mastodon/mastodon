@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class CreateLists < ActiveRecord::Migration[5.2]
+class CreateLists < ActiveRecord::Migration[5.1]
   def change
     create_table :lists do |t|
       t.references :account, foreign_key: { on_delete: :cascade }

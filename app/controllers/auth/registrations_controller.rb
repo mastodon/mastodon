@@ -24,14 +24,16 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     super(&:build_invite_request)
   end
 
-  def update
-    super do |resource|
-      resource.clear_other_sessions(current_session.session_id) if resource.saved_change_to_encrypted_password?
-    end
-  end
-
   def destroy
     not_found
+  end
+
+  def update
+    super do |resource|
+      if resource.saved_change_to_encrypted_password?
+        resource.clear_other_sessions(current_session.session_id)
+      end
+    end
   end
 
   protected
@@ -46,7 +48,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     super(hash)
 
     resource.locale                 = I18n.locale
-    resource.invite_code            = @invite&.code if resource.invite_code.blank?
+    resource.invite_code            = params[:invite_code] if resource.invite_code.blank?
     resource.registration_form_time = session[:registration_form_time]
     resource.sign_up_ip             = request.remote_ip
 
@@ -127,7 +129,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_sessions
-    @sessions = current_user.session_activations.order(updated_at: :desc)
+    @sessions = current_user.session_activations
   end
 
   def set_strikes
@@ -152,6 +154,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_cache_headers
-    response.cache_control.replace(private: true, no_store: true)
+    response.headers['Cache-Control'] = 'private, no-store'
   end
 end

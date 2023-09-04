@@ -57,10 +57,10 @@ module TwoFactorAuthenticationConcern
 
     if valid_webauthn_credential?(user, webauthn_credential)
       on_authentication_success(user, :webauthn)
-      render json: { redirect_path: after_sign_in_path_for(user) }, status: 200
+      render json: { redirect_path: after_sign_in_path_for(user) }, status: :ok
     else
       on_authentication_failure(user, :webauthn, :invalid_credential)
-      render json: { error: t('webauthn_credentials.invalid_credential') }, status: 422
+      render json: { error: t('webauthn_credentials.invalid_credential') }, status: :unprocessable_entity
     end
   end
 
@@ -75,15 +75,17 @@ module TwoFactorAuthenticationConcern
   end
 
   def prompt_for_two_factor(user)
-    register_attempt_in_session(user)
+    set_attempt_session(user)
 
     @body_classes     = 'lighter'
     @webauthn_enabled = user.webauthn_enabled?
-    @scheme_type      = if user.webauthn_enabled? && user_params[:otp_attempt].blank?
-                          'webauthn'
-                        else
-                          'totp'
-                        end
+    @scheme_type      = begin
+      if user.webauthn_enabled? && user_params[:otp_attempt].blank?
+        'webauthn'
+      else
+        'totp'
+      end
+    end
 
     set_locale { render :two_factor }
   end

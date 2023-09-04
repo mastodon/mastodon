@@ -2,10 +2,10 @@
 
 class Api::V1::StreamingController < Api::BaseController
   def index
-    if Rails.configuration.x.streaming_api_base_url == request.host
-      not_found
+    if Rails.configuration.x.streaming_api_base_url != request.host
+      redirect_to streaming_api_url, status: 301
     else
-      redirect_to streaming_api_url, status: 301, allow_other_host: true
+      not_found
     end
   end
 

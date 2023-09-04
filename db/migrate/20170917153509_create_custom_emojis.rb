@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateCustomEmojis < ActiveRecord::Migration[5.1]
   def change
     create_table :custom_emojis do |t|

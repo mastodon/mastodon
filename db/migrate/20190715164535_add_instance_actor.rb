@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddInstanceActor < ActiveRecord::Migration[5.2]
   class Account < ApplicationRecord
     # Dummy class, to make migration possible across version changes

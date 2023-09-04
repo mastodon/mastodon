@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe FormattingHelper do
+describe FormattingHelper, type: :helper do
   include Devise::Test::ControllerHelpers
 
   describe '#rss_status_content_format' do

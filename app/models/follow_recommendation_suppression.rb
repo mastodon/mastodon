@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: follow_recommendation_suppressions
@@ -20,9 +19,9 @@ class FollowRecommendationSuppression < ApplicationRecord
   private
 
   def remove_follow_recommendations
-    redis.pipelined do |pipeline|
+    redis.pipelined do
       I18n.available_locales.each do |locale|
-        pipeline.zrem("follow_recommendations:#{locale}", account_id)
+        redis.zrem("follow_recommendations:#{locale}", account_id)
       end
     end
   end

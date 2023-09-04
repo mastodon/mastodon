@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 namespace :branding do
   desc 'Generate necessary graphic assets for branding from source SVG files'
   task generate: :environment do
@@ -37,12 +35,12 @@ namespace :branding do
 
   desc 'Generate favicons and app icons from SVG source files'
   task generate_app_icons: :environment do
-    favicon_source  = Rails.root.join('app', 'javascript', 'images', 'logo.svg')
-    app_icon_source = Rails.root.join('app', 'javascript', 'images', 'app-icon.svg')
+    favicon_source  = Rails.root.join('app', 'javascript', 'images', 'hometown.svg')
+    app_icon_source = Rails.root.join('app', 'javascript', 'images', 'hometown-icon.svg')
     output_dest     = Rails.root.join('app', 'javascript', 'icons')
 
     rsvg_convert = Terrapin::CommandLine.new('rsvg-convert', '-w :size -h :size --keep-aspect-ratio :input -o :output')
-    convert = Terrapin::CommandLine.new('convert', ':input :output', environment: { 'MAGICK_CONFIGURE_PATH' => nil })
+    convert = Terrapin::CommandLine.new('convert', ':input :output')
 
     favicon_sizes      = [16, 32, 48]
     apple_icon_sizes   = [57, 60, 72, 76, 114, 120, 144, 152, 167, 180, 1024]
@@ -56,7 +54,7 @@ namespace :branding do
       rsvg_convert.run(size: size, input: favicon_source, output: output_path)
     end
 
-    convert.run(input: favicons, output: Rails.public_path.join('favicon.ico'))
+    convert.run(input: favicons, output: Rails.root.join('public', 'favicon.ico'))
 
     apple_icon_sizes.each do |size|
       rsvg_convert.run(size: size, input: app_icon_source, output: output_dest.join("apple-touch-icon-#{size}x#{size}.png"))
@@ -71,7 +69,7 @@ namespace :branding do
   task generate_app_badge: :environment do
     rsvg_convert = Terrapin::CommandLine.new('rsvg-convert', '--stylesheet :stylesheet -w :size -h :size --keep-aspect-ratio :input -o :output')
     badge_source = Rails.root.join('app', 'javascript', 'images', 'logo-symbol-icon.svg')
-    output_dest  = Rails.public_path
+    output_dest  = Rails.root.join('public')
     stylesheet   = Rails.root.join('lib', 'assets', 'wordmark.light.css')
 
     rsvg_convert.run(stylesheet: stylesheet, input: badge_source, size: 192, output: output_dest.join('badge.png'))

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe HtmlAwareFormatter do
@@ -11,34 +9,34 @@ RSpec.describe HtmlAwareFormatter do
       let(:text) { 'Foo bar' }
 
       it 'returns formatted text' do
-        expect(subject).to eq '<p>Foo bar</p>'
+        is_expected.to eq '<p>Foo bar</p>'
       end
     end
 
     context 'when remote' do
       let(:local) { false }
 
-      context 'when given plain text' do
+      context 'given plain text' do
         let(:text) { 'Beep boop' }
 
         it 'keeps the plain text' do
-          expect(subject).to include 'Beep boop'
+          is_expected.to include 'Beep boop'
         end
       end
 
-      context 'when given text containing script tags' do
+      context 'given text containing script tags' do
         let(:text) { '<script>alert("Hello")</script>' }
 
         it 'strips the scripts' do
-          expect(subject).to_not include '<script>alert("Hello")</script>'
+          is_expected.to_not include '<script>alert("Hello")</script>'
         end
       end
 
-      context 'when given text containing malicious classes' do
+      context 'given text containing malicious classes' do
         let(:text) { '<span class="mention  status__content__spoiler-link">Show more</span>' }
 
         it 'strips the malicious classes' do
-          expect(subject).to_not include 'status__content__spoiler-link'
+          is_expected.to_not include 'status__content__spoiler-link'
         end
       end
     end

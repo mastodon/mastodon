@@ -59,10 +59,12 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
   end
 
   def redis_info
-    @redis_info ||= if redis.is_a?(Redis::Namespace)
-                      redis.redis.info
-                    else
-                      redis.info
-                    end
+    @redis_info ||= begin
+      if redis.is_a?(Redis::Namespace)
+        redis.redis.info
+      else
+        redis.info
+      end
+    end
   end
 end

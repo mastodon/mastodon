@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ChallengableConcern do
+RSpec.describe ChallengableConcern, type: :controller do
   controller(ApplicationController) do
     include ChallengableConcern
 
@@ -31,7 +31,7 @@ RSpec.describe ChallengableConcern do
       sign_in user
     end
 
-    context 'with GET requests' do
+    context 'for GET requests' do
       before { get :foo }
 
       it 'does not ask for password' do
@@ -39,7 +39,7 @@ RSpec.describe ChallengableConcern do
       end
     end
 
-    context 'with POST requests' do
+    context 'for POST requests' do
       before { post :bar }
 
       it 'does not ask for password' do
@@ -56,7 +56,7 @@ RSpec.describe ChallengableConcern do
       sign_in user
     end
 
-    context 'with GET requests' do
+    context 'for GET requests' do
       before { get :foo, session: { challenge_passed_at: Time.now.utc } }
 
       it 'does not ask for password' do
@@ -64,7 +64,7 @@ RSpec.describe ChallengableConcern do
       end
     end
 
-    context 'with POST requests' do
+    context 'for POST requests' do
       before { post :bar, session: { challenge_passed_at: Time.now.utc } }
 
       it 'does not ask for password' do
@@ -81,7 +81,7 @@ RSpec.describe ChallengableConcern do
       sign_in user
     end
 
-    context 'with GET requests' do
+    context 'for GET requests' do
       before { get :foo }
 
       it 'renders challenge' do
@@ -91,7 +91,7 @@ RSpec.describe ChallengableConcern do
       # See Auth::ChallengesControllerSpec
     end
 
-    context 'with POST requests' do
+    context 'for POST requests' do
       before { post :bar }
 
       it 'renders challenge' do

@@ -13,8 +13,8 @@ gl:
       locked: A túa conta está bloqueada.
       not_found_in_database: "%{authentication_keys} ou contrasinal non válidos."
       pending: A túa conta aínda está baixo revisión.
-      timeout: A túa sesión caducou. Accede outra vez para continuar.
-      unauthenticated: Precisas iniciar sesión ou rexistrarte antes de continuar.
+      timeout: A túa sesión expirou. Por favor, entra de novo para continuares.
+      unauthenticated: Precisas de entrar na túa conta ou rexistrarte antes de continuar.
       unconfirmed: Tes que confirmar o teu enderezo de email antes de continuar.
     mailer:
       confirmation_instructions:
@@ -23,59 +23,59 @@ gl:
         explanation: Creaches unha conta en %{host} con este enderezo de email. Estás a un clic de activala. Se non foches ti o que fixeches este rexisto, por favor ignora esta mensaxe.
         explanation_when_pending: Solicitaches un convite para %{host} con este enderezo de email. Logo de que confirmes o teu enderezo de email, imos revisar a túa inscrición. Podes iniciar sesión para mudar os teus datos ou eliminar a túa conta, mais non poderás aceder á meirande parte das funcións até que a túa conta sexa aprobada. Se a túa inscrición for rexeitada, os teus datos serán eliminados, polo que non será necesaria calquera acción adicional da túa parte. Se non solicitaches este convite, por favor, ignora este correo.
         extra_html: Por favor, le <a href="%{terms_path}">as regras do servidor</a> e os <a href="%{policy_path}">nosos termos do servizo</a>.
-        subject: 'TomX: Instrucións de confirmación para %{instance}'
+        subject: 'Mastodon: Instrucións de confirmación para %{instance}'
         title: Verificar o enderezo de email
       email_changed:
         explanation: 'O email asociado á túa conta será mudado a:'
         extra: Se non mudaches o teu email é posíbel que alguén teña conseguido acceder á túa conta. Por favor muda o teu contrasinal de xeito imediato ou entra en contacto cun administrador do servidor se non podes acceder a túa conta.
-        subject: 'TomX: Email mudado'
+        subject: 'Mastodon: Email mudado'
         title: Novo enderezo de email
       password_change:
         explanation: O contrasinal da túa conta foi mudado.
         extra: Se non mudaches o teu contrasinal, é posíbel que alguén teña conseguido acceder á túa conta. Por favor muda o teu contrasinal de xeito imediato ou entra en contato cun administrador do servidor se non podes acceder a túa conta.
-        subject: 'TomX: Contrasinal mudado'
+        subject: 'Mastodon: Contrasinal mudado'
         title: Contrasinal mudado
       reconfirmation_instructions:
         explanation: Confirma o teu novo enderezo para mudar o email.
-        extra: Se esta mudanza non foi comezada por ti, por favor ignora este email. O enderezo de email para a túa conta do TomX non mudará mentres non accedas á ligazón de enriba.
-        subject: 'TomX: Confirmar email para %{instance}'
+        extra: Se esta mudanza non foi comezada por ti, por favor ignora este email. O enderezo de email para a túa conta do Mastodon non mudará mentres non accedas á ligazón de enriba.
+        subject: 'Mastodon: Confirmar email para %{instance}'
         title: Verificar o enderezo de email
       reset_password_instructions:
         action: Mudar contrasinal
         explanation: Solicitaches un novo contrasinal para a túa conta.
         extra: Se non fixeches esta solicitude, por favor ignora este email. O teu contrasinal non mudará se non accedes á ligazón de enriba e creas unha nova.
-        subject: 'TomX: Instrucións para restabelecer o contrasinal'
+        subject: 'Mastodon: Instrucións para restabelecer o contrasinal'
         title: Restabelecer contrasinal
       two_factor_disabled:
         explanation: A autenticación de dobre factor para a túa conta foi desactivada. É agora posíbel acceder só co teu enderezo de email e contrasinal.
-        subject: 'TomX: Autenticación de dobre factor desactivada'
+        subject: 'Mastodon: Autenticación de dobre factor desactivada'
         title: 2FA desactivado
       two_factor_enabled:
         explanation: A autenticación de dobre factor foi activada para a túa conta. Un token, xerado pola aplicación TOTP emparellada, será necesario para acceder.
-        subject: 'TomX: Activouse a autenticación de dobre factor'
+        subject: 'Mastodon: Activouse a autenticación de dobre factor'
         title: 2FA activado
       two_factor_recovery_codes_changed:
         explanation: Os códigos de recuperación anteriores fican anulados e os novos foron xerados.
-        subject: 'TomX: Xerados novos códigos de recuperación de dobre factor'
+        subject: 'Mastodon: Xerados novos códigos de recuperación de dobre factor'
         title: Códigos de recuperación 2FA mudados
       unlock_instructions:
-        subject: 'TomX: Instrucións para desbloquear'
+        subject: 'Mastodon: Instrucións para desbloquear'
       webauthn_credential:
         added:
           explanation: Engadeuse a seguinte chave de seguridade á túa conta
-          subject: 'TomX: Nova chave de seguridade'
+          subject: 'Mastodon: Nova chave de seguridade'
           title: Engadeuse unha nova chave de seguridade
         deleted:
           explanation: Eliminouse a seguinte chave de seguridade da túa conta
-          subject: 'TomX: Chave de seguridade eliminada'
+          subject: 'Mastodon: Chave de seguridade eliminada'
           title: Eliminouse unha das túas chaves de seguridade
       webauthn_disabled:
         explanation: Desactivouse para a túa conta a autenticación con chaves de seguridade. Agora a conexión é posible usando só o token creado pola app TOTP emparellada.
-        subject: 'TomX: Desactivouse a autenticación con chave de seguridade'
+        subject: 'Mastodon: Desactivouse a autenticación con chave de seguridade'
         title: Chaves de seguridade desactivadas
       webauthn_enabled:
         explanation: Activouse para a conta a autenticación con chave de seguridade. Xa podes usar a chave de seguridade para contectar.
-        subject: 'TomX: Autenticación con chave de seguridade activada'
+        subject: 'Mastodon: Autenticación con chave de seguridade activada'
         title: Chaves de seguridade activas
     omniauth_callbacks:
       failure: Non foi posible autenticarte desde %{kind} debido a "%{reason}".

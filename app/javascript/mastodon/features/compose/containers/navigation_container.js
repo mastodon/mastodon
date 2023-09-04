@@ -1,12 +1,9 @@
-import { defineMessages, injectIntl } from 'react-intl';
-
 import { connect }   from 'react-redux';
-
-import { openModal } from 'mastodon/actions/modal';
-import { logOut } from 'mastodon/utils/log_out';
-
-import { me } from '../../../initial_state';
+import { defineMessages, injectIntl } from 'react-intl';
 import NavigationBar from '../components/navigation_bar';
+import { logOut } from 'mastodon/utils/log_out';
+import { openModal } from 'mastodon/actions/modal';
+import { me } from '../../../initial_state';
 
 const messages = defineMessages({
   logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
@@ -21,14 +18,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
   onLogout () {
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: intl.formatMessage(messages.logoutMessage),
-        confirm: intl.formatMessage(messages.logoutConfirm),
-        closeWhenConfirm: false,
-        onConfirm: () => logOut(),
-      },
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.logoutMessage),
+      confirm: intl.formatMessage(messages.logoutConfirm),
+      closeWhenConfirm: false,
+      onConfirm: () => logOut(),
     }));
   },
 });

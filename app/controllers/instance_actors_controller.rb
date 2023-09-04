@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
-class InstanceActorsController < ActivityPub::BaseController
-  vary_by ''
+class InstanceActorsController < ApplicationController
+  include AccountControllerConcern
 
-  serialization_scope nil
-
-  before_action :set_account
-  skip_before_action :require_functional!
-  skip_before_action :update_user_sign_in
+  skip_before_action :check_account_confirmation
+  skip_around_action :set_locale
 
   def show
     expires_in 10.minutes, public: true

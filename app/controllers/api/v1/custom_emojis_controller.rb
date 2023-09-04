@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Api::V1::CustomEmojisController < Api::BaseController
-  vary_by '', unless: :disallow_unauthenticated_api_access?
+  skip_before_action :set_cache_headers
 
   def index
-    cache_even_if_authenticated! unless disallow_unauthenticated_api_access?
+    expires_in 3.minutes, public: true
     render_with_cache(each_serializer: REST::CustomEmojiSerializer) { CustomEmoji.listed.includes(:category) }
   end
 end

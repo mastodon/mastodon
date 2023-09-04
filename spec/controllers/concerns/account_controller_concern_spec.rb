@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-describe AccountControllerConcern do
-  controller(ApplicationController) do
+describe ApplicationController, type: :controller do
+  controller do
     include AccountControllerConcern
 
     def success

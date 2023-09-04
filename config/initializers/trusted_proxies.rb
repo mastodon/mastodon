@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Rack
   class Request
     def trusted_proxy?(ip)

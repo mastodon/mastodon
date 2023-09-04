@@ -6,15 +6,11 @@ class Api::V1::NotificationsController < Api::BaseController
   before_action :require_user!
   after_action :insert_pagination_headers, only: :index
 
-  DEFAULT_NOTIFICATIONS_LIMIT = 40
+  DEFAULT_NOTIFICATIONS_LIMIT = 15
 
   def index
-    with_read_replica do
-      @notifications = load_notifications
-      @relationships = StatusRelationshipsPresenter.new(target_statuses_from_notifications, current_user&.account_id)
-    end
-
-    render json: @notifications, each_serializer: REST::NotificationSerializer, relationships: @relationships
+    @notifications = load_notifications
+    render json: @notifications, each_serializer: REST::NotificationSerializer, relationships: StatusRelationshipsPresenter.new(target_statuses_from_notifications, current_user&.account_id)
   end
 
   def show
@@ -28,7 +24,7 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def dismiss
-    current_account.notifications.find(params[:id]).destroy!
+    current_account.notifications.find_by!(id: params[:id]).destroy!
     render_empty
   end
 
@@ -62,11 +58,15 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def next_path
-    api_v1_notifications_url pagination_params(max_id: pagination_max_id) unless @notifications.empty?
+    unless @notifications.empty?
+      api_v1_notifications_url pagination_params(max_id: pagination_max_id)
+    end
   end
 
   def prev_path
-    api_v1_notifications_url pagination_params(min_id: pagination_since_id) unless @notifications.empty?
+    unless @notifications.empty?
+      api_v1_notifications_url pagination_params(min_id: pagination_since_id)
+    end
   end
 
   def pagination_max_id

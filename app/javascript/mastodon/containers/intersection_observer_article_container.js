@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
-
-import { setHeight } from '../actions/height_cache';
 import IntersectionObserverArticle from '../components/intersection_observer_article';
+import { setHeight } from '../actions/height_cache';
 
 const makeMapStateToProps = (state, props) => ({
   cachedHeight: state.getIn(['height_cache', props.saveHeightKey, props.id]),

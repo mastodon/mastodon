@@ -9,7 +9,7 @@ describe DomainClearMediaWorker do
     let(:domain_block) { Fabricate(:domain_block, severity: :silence, reject_media: true) }
 
     it 'calls domain clear media service for relevant domain block' do
-      service = instance_double(ClearDomainMediaService, call: nil)
+      service = double(call: nil)
       allow(ClearDomainMediaService).to receive(:new).and_return(service)
       result = subject.perform(domain_block.id)
 
@@ -20,7 +20,7 @@ describe DomainClearMediaWorker do
     it 'returns true for non-existent domain block' do
       result = subject.perform('aaa')
 
-      expect(result).to be(true)
+      expect(result).to eq(true)
     end
   end
 end

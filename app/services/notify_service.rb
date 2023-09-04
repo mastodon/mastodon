@@ -3,13 +3,6 @@
 class NotifyService < BaseService
   include Redisable
 
-  NON_EMAIL_TYPES = %i(
-    admin.report
-    admin.sign_up
-    update
-    poll
-  ).freeze
-
   def call(recipient, type, activity)
     @recipient    = recipient
     @activity     = activity
@@ -38,16 +31,15 @@ class NotifyService < BaseService
 
   def following_sender?
     return @following_sender if defined?(@following_sender)
-
     @following_sender = @recipient.following?(@notification.from_account) || @recipient.requested?(@notification.from_account)
   end
 
   def optional_non_follower?
-    @recipient.user.settings['interactions.must_be_follower']  && !@notification.from_account.following?(@recipient)
+    @recipient.user.settings.interactions['must_be_follower']  && !@notification.from_account.following?(@recipient)
   end
 
   def optional_non_following?
-    @recipient.user.settings['interactions.must_be_following'] && !following_sender?
+    @recipient.user.settings.interactions['must_be_following'] && !following_sender?
   end
 
   def message?
@@ -89,7 +81,7 @@ class NotifyService < BaseService
 
   def optional_non_following_and_direct?
     direct_message? &&
-      @recipient.user.settings['interactions.must_be_following_dm'] &&
+      @recipient.user.settings.interactions['must_be_following_dm'] &&
       !following_sender? &&
       !response_to_recipient?
   end
@@ -162,12 +154,7 @@ class NotifyService < BaseService
   end
 
   def send_email!
-    return unless NotificationMailer.respond_to?(@notification.type)
-
-    NotificationMailer
-      .with(recipient: @recipient, notification: @notification)
-      .public_send(@notification.type)
-      .deliver_later(wait: 2.minutes)
+    NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later(wait: 2.minutes) if NotificationMailer.respond_to?(@notification.type)
   end
 
   def email_needed?
@@ -183,6 +170,6 @@ class NotifyService < BaseService
   end
 
   def send_email_for_notification_type?
-    NON_EMAIL_TYPES.exclude?(@notification.type) && @recipient.user.settings["notification_emails.#{@notification.type}"]
+    @recipient.user.settings.notification_emails[@notification.type.to_s]
   end
 end

@@ -63,7 +63,7 @@
       }
     }
 
-    @media screen and (width <= 740px) {
+    @media screen and (max-width: 740px) {
       .detailed-status,
       .status,
       .load-more {
@@ -77,20 +77,68 @@
   }
 }
 
-.button.logo-button svg {
-  width: 20px;
+.button.logo-button {
+  flex: 0 auto;
+  font-size: 14px;
+  background: darken($ui-highlight-color, 2%);
+  color: $primary-text-color;
+  text-transform: none;
+  line-height: 1.2;
   height: auto;
-  vertical-align: middle;
-  margin-inline-end: 5px;
-  fill: $primary-text-color;
+  min-height: 36px;
+  min-width: 88px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  padding: 0 15px;
+  border: 0;
+
+  svg {
+    width: 20px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 5px;
+    fill: $primary-text-color;
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    background: $ui-highlight-color;
+  }
+
+  &:disabled,
+  &.disabled {
+    &:active,
+    &:focus,
+    &:hover {
+      background: $ui-primary-color;
+    }
+  }
+
+  &.button--destructive {
+    &:active,
+    &:focus,
+    &:hover {
+      background: $error-red;
+    }
+  }
 
   @media screen and (max-width: $no-gap-breakpoint) {
-    display: none;
+    svg {
+      display: none;
+    }
   }
 }
 
+a.button.logo-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .embed {
-  .status__content[data-spoiler='folded'] {
+  .status__content[data-spoiler="folded"] {
     .e-content {
       display: none;
     }
@@ -114,7 +162,7 @@
     min-height: 48px + 2px;
 
     &__avatar {
-      inset-inline-start: 15px;
+      left: 15px;
       top: 17px;
 
       .account__avatar {
@@ -128,12 +176,12 @@
     }
 
     &__prepend {
-      margin-inline-start: 48px + 15px * 2;
+      margin-left: 48px + 15px * 2;
       padding-top: 15px;
     }
 
     &__prepend-icon-wrapper {
-      inset-inline-start: -32px;
+      left: -32px;
     }
 
     .media-gallery,

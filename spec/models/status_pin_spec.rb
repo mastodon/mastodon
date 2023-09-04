@@ -1,21 +1,19 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe StatusPin do
+RSpec.describe StatusPin, type: :model do
   describe 'validations' do
     it 'allows pins of own statuses' do
       account = Fabricate(:account)
       status  = Fabricate(:status, account: account)
 
-      expect(described_class.new(account: account, status: status).save).to be true
+      expect(StatusPin.new(account: account, status: status).save).to be true
     end
 
     it 'does not allow pins of statuses by someone else' do
       account = Fabricate(:account)
       status  = Fabricate(:status)
 
-      expect(described_class.new(account: account, status: status).save).to be false
+      expect(StatusPin.new(account: account, status: status).save).to be false
     end
 
     it 'does not allow pins of reblogs' do
@@ -23,21 +21,21 @@ RSpec.describe StatusPin do
       status  = Fabricate(:status, account: account)
       reblog  = Fabricate(:status, reblog: status)
 
-      expect(described_class.new(account: account, status: reblog).save).to be false
+      expect(StatusPin.new(account: account, status: reblog).save).to be false
     end
 
     it 'does allow pins of direct statuses' do
       account = Fabricate(:account)
       status  = Fabricate(:status, account: account, visibility: :private)
 
-      expect(described_class.new(account: account, status: status).save).to be true
+      expect(StatusPin.new(account: account, status: status).save).to be true
     end
 
     it 'does not allow pins of direct statuses' do
       account = Fabricate(:account)
       status  = Fabricate(:status, account: account, visibility: :direct)
 
-      expect(described_class.new(account: account, status: status).save).to be false
+      expect(StatusPin.new(account: account, status: status).save).to be false
     end
 
     max_pins = 5
@@ -50,10 +48,10 @@ RSpec.describe StatusPin do
       end
 
       max_pins.times do |i|
-        expect(described_class.new(account: account, status: status[i]).save).to be true
+        expect(StatusPin.new(account: account, status: status[i]).save).to be true
       end
 
-      expect(described_class.new(account: account, status: status[max_pins]).save).to be false
+      expect(StatusPin.new(account: account, status: status[max_pins]).save).to be false
     end
 
     it 'allows pins above the max for remote accounts' do
@@ -65,10 +63,10 @@ RSpec.describe StatusPin do
       end
 
       max_pins.times do |i|
-        expect(described_class.new(account: account, status: status[i]).save).to be true
+        expect(StatusPin.new(account: account, status: status[i]).save).to be true
       end
 
-      expect(described_class.new(account: account, status: status[max_pins]).save).to be true
+      expect(StatusPin.new(account: account, status: status[max_pins]).save).to be true
     end
   end
 end

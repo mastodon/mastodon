@@ -1,13 +1,12 @@
-import { defineMessages, injectIntl } from 'react-intl';
-
 import { connect } from 'react-redux';
-
-import { showAlert } from '../../../actions/alerts';
-import { openModal } from '../../../actions/modal';
-import { setFilter, clearNotifications, requestBrowserPermission } from '../../../actions/notifications';
-import { changeAlerts as changePushNotifications } from '../../../actions/push_notifications';
-import { changeSetting } from '../../../actions/settings';
+import { defineMessages, injectIntl } from 'react-intl';
 import ColumnSettings from '../components/column_settings';
+import { changeSetting } from '../../../actions/settings';
+import { setFilter } from '../../../actions/notifications';
+import { clearNotifications, requestBrowserPermission } from '../../../actions/notifications';
+import { changeAlerts as changePushNotifications } from '../../../actions/push_notifications';
+import { openModal } from '../../../actions/modal';
+import { showAlert } from '../../../actions/alerts';
 
 const messages = defineMessages({
   clearMessage: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all your notifications?' },
@@ -32,7 +31,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
           if (permission === 'granted') {
             dispatch(changePushNotifications(path.slice(1), checked));
           } else {
-            dispatch(showAlert({ message: messages.permissionDenied }));
+            dispatch(showAlert(undefined, messages.permissionDenied));
           }
         }));
       } else {
@@ -47,7 +46,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
           if (permission === 'granted') {
             dispatch(changeSetting(['notifications', ...path], checked));
           } else {
-            dispatch(showAlert({ message: messages.permissionDenied }));
+            dispatch(showAlert(undefined, messages.permissionDenied));
           }
         }));
       } else {
@@ -59,13 +58,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onClear () {
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: intl.formatMessage(messages.clearMessage),
-        confirm: intl.formatMessage(messages.clearConfirm),
-        onConfirm: () => dispatch(clearNotifications()),
-      },
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.clearMessage),
+      confirm: intl.formatMessage(messages.clearConfirm),
+      onConfirm: () => dispatch(clearNotifications()),
     }));
   },
 

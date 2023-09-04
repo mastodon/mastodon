@@ -1,13 +1,11 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe FollowService, type: :service do
-  subject { described_class.new }
-
   let(:sender) { Fabricate(:account, username: 'alice') }
 
-  context 'when local account' do
+  subject { FollowService.new }
+
+  context 'local account' do
     describe 'locked account' do
       let(:bob) { Fabricate(:account, locked: true, username: 'bob') }
 
@@ -138,11 +136,11 @@ RSpec.describe FollowService, type: :service do
     end
   end
 
-  context 'when remote ActivityPub account' do
+  context 'remote ActivityPub account' do
     let(:bob) { Fabricate(:account, username: 'bob', domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
 
     before do
-      stub_request(:post, 'http://example.com/inbox').to_return(status: 200, body: '', headers: {})
+      stub_request(:post, "http://example.com/inbox").to_return(status: 200, body: "", headers: {})
       subject.call(sender, bob)
     end
 

@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Api::V1::BlocksController do
+RSpec.describe Api::V1::BlocksController, type: :controller do
   render_views
 
   let(:user)   { Fabricate(:user) }
@@ -13,13 +11,13 @@ RSpec.describe Api::V1::BlocksController do
 
   describe 'GET #index' do
     it 'limits according to limit parameter' do
-      Array.new(2) { Fabricate(:block, account: user.account) }
+      2.times.map { Fabricate(:block, account: user.account) }
       get :index, params: { limit: 1 }
       expect(body_as_json.size).to eq 1
     end
 
     it 'queries blocks in range according to max_id' do
-      blocks = Array.new(2) { Fabricate(:block, account: user.account) }
+      blocks = 2.times.map { Fabricate(:block, account: user.account) }
 
       get :index, params: { max_id: blocks[1] }
 
@@ -28,7 +26,7 @@ RSpec.describe Api::V1::BlocksController do
     end
 
     it 'queries blocks in range according to since_id' do
-      blocks = Array.new(2) { Fabricate(:block, account: user.account) }
+      blocks = 2.times.map { Fabricate(:block, account: user.account) }
 
       get :index, params: { since_id: blocks[0] }
 
@@ -37,15 +35,15 @@ RSpec.describe Api::V1::BlocksController do
     end
 
     it 'sets pagination header for next path' do
-      blocks = Array.new(2) { Fabricate(:block, account: user.account) }
+      blocks = 2.times.map { Fabricate(:block, account: user.account) }
       get :index, params: { limit: 1, since_id: blocks[0] }
-      expect(response.headers['Link'].find_link(%w(rel next)).href).to eq api_v1_blocks_url(limit: 1, max_id: blocks[1])
+      expect(response.headers['Link'].find_link(['rel', 'next']).href).to eq api_v1_blocks_url(limit: 1, max_id: blocks[1])
     end
 
     it 'sets pagination header for previous path' do
       block = Fabricate(:block, account: user.account)
       get :index
-      expect(response.headers['Link'].find_link(%w(rel prev)).href).to eq api_v1_blocks_url(since_id: block)
+      expect(response.headers['Link'].find_link(['rel', 'prev']).href).to eq api_v1_blocks_url(since_id: block)
     end
 
     it 'returns http success' do

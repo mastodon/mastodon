@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::CollectionsController do
+RSpec.describe ActivityPub::CollectionsController, type: :controller do
   let!(:account) { Fabricate(:account) }
   let!(:private_pinned) { Fabricate(:status, account: account, text: 'secret private stuff', visibility: :private) }
   let(:remote_account) { nil }
@@ -10,7 +10,7 @@ RSpec.describe ActivityPub::CollectionsController do
   shared_examples 'cacheable response' do
     it 'does not set cookies' do
       expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be_nil
+      expect(response.headers['Set-Cookies']).to be nil
     end
 
     it 'does not set sessions' do
@@ -35,10 +35,10 @@ RSpec.describe ActivityPub::CollectionsController do
   describe 'GET #show' do
     context 'when id is "featured"' do
       context 'without signature' do
-        subject(:response) { get :show, params: { id: 'featured', account_username: account.username } }
-
-        let(:body) { body_as_json }
         let(:remote_account) { nil }
+
+        subject(:response) { get :show, params: { id: 'featured', account_username: account.username } }
+        subject(:body) { body_as_json }
 
         it 'returns http success' do
           expect(response).to have_http_status(200)
@@ -60,7 +60,7 @@ RSpec.describe ActivityPub::CollectionsController do
         end
 
         it 'does not include contents of private pinned status' do
-          expect(response.body).to_not include(private_pinned.text)
+          expect(response.body).not_to include(private_pinned.text)
         end
 
         context 'when account is permanently suspended' do
@@ -88,7 +88,7 @@ RSpec.describe ActivityPub::CollectionsController do
       context 'with signature' do
         let(:remote_account) { Fabricate(:account, domain: 'example.com') }
 
-        context 'when getting a featured resource' do
+        context do
           before do
             get :show, params: { id: 'featured', account_username: account.username }
           end
@@ -115,11 +115,11 @@ RSpec.describe ActivityPub::CollectionsController do
           end
 
           it 'does not include contents of private pinned status' do
-            expect(response.body).to_not include(private_pinned.text)
+            expect(response.body).not_to include(private_pinned.text)
           end
         end
 
-        context 'with authorized fetch mode' do
+        context 'in authorized fetch mode' do
           before do
             allow(controller).to receive(:authorized_fetch_mode?).and_return(true)
           end

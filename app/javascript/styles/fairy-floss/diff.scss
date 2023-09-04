@@ -1,0 +1,653 @@
+// components.scss
+.compose-form {
+  .compose-form__modifiers {
+    .compose-form__upload {
+      &-description {
+        input {
+          &::placeholder {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.reply-indicator__content,
+.reply-indicator__display-name {
+  color: $white;
+}
+
+.rich-formatting a,
+.rich-formatting p a,
+.rich-formatting li a,
+.landing-page__short-description p a,
+.status__content a,
+.reply-indicator__content a {
+  color: lighten($ui-highlight-color, 12%);
+  text-decoration: underline;
+
+  &.mention {
+    text-decoration: none;
+  }
+
+  &.mention span {
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+
+  &.status__content__spoiler-link {
+    color: $secondary-text-color;
+    text-decoration: none;
+  }
+}
+
+.status__content__read-more-button {
+  text-decoration: underline;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+.getting-started__footer a {
+  text-decoration: underline;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+.nothing-here {
+  color: $darker-text-color;
+}
+
+.public-layout .public-account-header__tabs__tabs .counter.active::after {
+  border-bottom: 4px solid $ui-highlight-color;
+}
+
+// FAIRY FLOSS CHANGES
+
+html {
+  scrollbar-color: $purple3 rgba($purple3, 0.25);
+}
+
+::-webkit-scrollbar-thumb {
+  background: $purplescrollbar;
+  border: 0 #f8f8f2;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $purplescrollbar;
+  border: 0;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: darken($purple2, 6%);
+}
+
+.loading-bar {
+  background-color: $mint;
+}
+
+// text
+.status__display-name,
+.column-header,
+.column-link,
+.navigation-bar strong {
+  color: $purple4;
+}
+
+.ui,
+.notification__filter-bar button,
+.account__section-headline button,
+body,
+body.admin {
+  background: $purple1;
+}
+
+.drawer__header {
+  background: $purple3;
+
+  a {
+    &:hover,
+    &:focus {
+      background: darken($purple3, 8%);
+    }
+  }
+}
+
+.search__input {
+  &:hover,
+  &:focus {
+    background: $purple2;
+    color: $purple4;
+  }
+
+  background: $purple2;
+  color: $purple4;
+}
+
+::placeholder {
+  color: $purple4;
+}
+
+.search-popout,
+.search-popout h4 {
+  color: $purple1;
+  background-color: $purple4;
+}
+
+.drawer__inner,
+.drawer__inner__mastodon {
+  background: $purple3;
+}
+
+.compose-form .compose-form__buttons-wrapper {
+  background: lighten($purple4, 8%);
+}
+
+.text-icon-button.active {
+  color: darken($pink, 12%);
+}
+
+.column-header,
+.column-header__button,
+.column-header__back-button {
+  background: $purple5;
+}
+
+.column-header__back-button,
+.column-header__button,
+.column-header__button.active,
+.column-header__button.active {
+  background: $purple5;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $ui-highlight-color;
+    background: lighten($purple5, 4%);
+  }
+}
+
+.notification__filter-bar button.active::after,
+.notification__filter-bar a.active::after,
+.account__section-headline button.active::after,
+.account__section-headline a.active::after {
+  border-color: transparent transparent $purple2;
+}
+
+.column > .scrollable {
+  background: $purple2;
+}
+
+.load-more:hover {
+  background: darken($purple2, 4%);
+}
+
+.empty-column-indicator,
+.error-column {
+  background: $purple2;
+}
+
+.column-link__badge,
+.column-subheading {
+  background: $purple2;
+}
+
+// link previews
+
+.status-card.compact {
+  border-color: darken($purple5, 8%);
+  background: $purple5;
+}
+
+.status-card__image {
+  background: $purple3;
+}
+
+.status-card__content {
+  background: $purple5;
+
+  &:hover,
+  &:focus {
+    background: darken($purple5, 4%);
+  }
+}
+
+.notification__filter-bar button.active,
+.notification__filter-bar a.active,
+.account__section-headline button.active,
+.account__section-headline a.active,
+.column-header > .column-header__back-button {
+  color: $mint;
+}
+
+.react-toggle--checked .react-toggle-track,
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background: $pink;
+}
+
+.react-toggle-track,
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background: $purple2;
+}
+
+.column-header__collapsible-inner,
+.column-header__button.active,
+.column-header__button.active:hover,
+.column-header__button.active:focus {
+  background: $purple3;
+  color: $purpleicon;
+}
+
+.column-inline-form,
+.column-back-button {
+  background: $purplescrollbar;
+}
+
+.flex-spacer,
+.getting-started,
+.getting-started__wrapper {
+  background: $purple2;
+}
+
+.status {
+  border-bottom: 1px solid lighten($purple2, 8%);
+}
+
+.status.status-direct {
+  background: $purple1;
+  border-right: 1px solid $purple2;
+  border-left: 1px solid $purple2;
+}
+
+.detailed-status,
+.detailed-status__action-bar {
+  background: $purplescrollbar;
+}
+
+.detailed-status__action-bar {
+  border-top: 1px solid lighten($purple3, 8%);
+  border-bottom: 1px solid lighten($purple3, 8%);
+}
+
+.focusable:focus {
+  background: $purplescrollbar;
+}
+
+.focusable {
+  &:focus {
+    outline: 0;
+    background: $purplescrollbar;
+
+    .detailed-status,
+    .detailed-status__action-bar {
+      background: lighten($purplescrollbar, 2%);
+    }
+  }
+}
+
+.icon-button.active {
+  color: $pink;
+}
+
+button.icon-button i.fa-retweet {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='209'><path d='M4.97 3.16c-.1.03-.17.1-.22.18L.8 8.24c-.2.3.03.78.4.8H3.6v2.68c0 4.26-.55 3.62 3.66 3.62h7.66l-2.3-2.84c-.03-.02-.03-.04-.05-.06H7.27c-.44 0-.72-.3-.72-.72v-2.7h2.5c.37.03.63-.48.4-.77L5.5 3.35c-.12-.17-.34-.25-.53-.2zm12.16.43c-.55-.02-1.32.02-2.4.02H7.1l2.32 2.85.03.06h5.25c.42 0 .72.28.72.72v2.7h-2.5c-.36.02-.56.54-.3.8l3.92 4.9c.18.25.6.25.78 0l3.94-4.9c.26-.28 0-.83-.37-.8H18.4v-2.7c0-3.15.4-3.62-1.25-3.66z' fill='%23ADA6BF' stroke-width='0'/><path d='M7.78 19.66c-.24.02-.44.25-.44.5v2.46h-.06c-1.08 0-1.86-.03-2.4-.03-1.64 0-1.25.43-1.25 3.65v4.47c0 4.26-.56 3.62 3.65 3.62H8.5l-1.3-1.06c-.1-.08-.18-.2-.2-.3-.02-.17.06-.35.2-.45l1.33-1.1H7.28c-.44 0-.72-.3-.72-.7v-4.48c0-.44.28-.72.72-.72h.06v2.5c0 .38.54.63.82.38l4.9-3.93c.25-.18.25-.6 0-.78l-4.9-3.92c-.1-.1-.24-.14-.38-.12zm9.34 2.93c-.54-.02-1.3.02-2.4.02h-1.25l1.3 1.07c.1.07.18.2.2.33.02.16-.06.3-.2.4l-1.33 1.1h1.28c.42 0 .72.28.72.72v4.47c0 .42-.3.72-.72.72h-.1v-2.47c0-.3-.3-.53-.6-.47-.07 0-.14.05-.2.1l-4.9 3.93c-.26.18-.26.6 0 .78l4.9 3.92c.27.25.82 0 .8-.38v-2.5h.1c4.27 0 3.65.67 3.65-3.62v-4.47c0-3.15.4-3.62-1.25-3.66zM10.34 38.66c-.24.02-.44.25-.43.5v2.47H7.3c-1.08 0-1.86-.04-2.4-.04-1.64 0-1.25.43-1.25 3.65v4.47c0 3.66-.23 3.7 2.34 3.66l-1.34-1.1c-.1-.08-.18-.2-.2-.3 0-.17.07-.35.2-.45l1.96-1.6c-.03-.06-.04-.13-.04-.2v-4.48c0-.44.28-.72.72-.72H9.9v2.5c0 .36.5.6.8.38l4.93-3.93c.24-.18.24-.6 0-.78l-4.94-3.92c-.1-.08-.23-.13-.36-.12zm5.63 2.93l1.34 1.1c.1.07.18.2.2.33.02.16-.03.3-.16.4l-1.96 1.6c.02.07.06.13.06.22v4.47c0 .42-.3.72-.72.72h-2.66v-2.47c0-.3-.3-.53-.6-.47-.06.02-.12.05-.18.1l-4.94 3.93c-.24.18-.24.6 0 .78l4.94 3.92c.28.22.78-.02.78-.38v-2.5h2.66c4.27 0 3.65.67 3.65-3.62v-4.47c0-3.66.34-3.7-2.4-3.66zM13.06 57.66c-.23.03-.4.26-.4.5v2.47H7.28c-1.08 0-1.86-.04-2.4-.04-1.64 0-1.25.43-1.25 3.65v4.87l2.93-2.37v-2.5c0-.44.28-.72.72-.72h5.38v2.5c0 .36.5.6.78.38l4.94-3.93c.24-.18.24-.6 0-.78l-4.94-3.92c-.1-.1-.24-.14-.38-.12zm5.3 6.15l-2.92 2.4v2.52c0 .42-.3.72-.72.72h-5.4v-2.47c0-.3-.32-.53-.6-.47-.07.02-.13.05-.2.1L3.6 70.52c-.25.18-.25.6 0 .78l4.93 3.92c.28.22.78-.02.78-.38v-2.5h5.42c4.27 0 3.65.67 3.65-3.62v-4.47-.44zM19.25 78.8c-.1.03-.2.1-.28.17l-.9.9c-.44-.3-1.36-.25-3.35-.25H7.28c-1.08 0-1.86-.03-2.4-.03-1.64 0-1.25.43-1.25 3.65v.7l2.93.3v-1c0-.44.28-.72.72-.72h7.44c.2 0 .37.08.5.2l-1.8 1.8c-.25.26-.08.76.27.8l6.27.7c.28.03.56-.25.53-.53l-.7-6.25c0-.27-.3-.48-.55-.44zm-17.2 6.1c-.2.07-.36.3-.33.54l.7 6.25c.02.36.58.55.83.27l.8-.8c.02 0 .04-.02.04 0 .46.24 1.37.17 3.18.17h7.44c4.27 0 3.65.67 3.65-3.62v-.75l-2.93-.3v1.05c0 .42-.3.72-.72.72H7.28c-.15 0-.3-.03-.4-.1L8.8 86.4c.3-.24.1-.8-.27-.84l-6.28-.65h-.2zM4.88 98.6c-1.33 0-1.34.48-1.3 2.3l1.14-1.37c.08-.1.22-.17.34-.2.16 0 .34.08.44.2l1.66 2.03c.04 0 .07-.03.12-.03h7.44c.34 0 .57.2.65.5h-2.43c-.34.05-.53.52-.3.78l3.92 4.95c.18.24.6.24.78 0l3.94-4.94c.22-.27-.02-.76-.37-.77H18.4c.02-3.9.6-3.4-3.66-3.4H7.28c-1.08 0-1.86-.04-2.4-.04zm.15 2.46c-.1.03-.2.1-.28.2l-3.94 4.9c-.2.28.03.77.4.78H3.6c-.02 3.94-.45 3.4 3.66 3.4h7.44c3.65 0 3.74.3 3.7-2.25l-1.1 1.34c-.1.1-.2.17-.32.2-.16 0-.34-.08-.44-.2l-1.65-2.03c-.06.02-.1.04-.18.04H7.28c-.35 0-.57-.2-.66-.5h2.44c.37 0 .63-.5.4-.78l-3.96-4.9c-.1-.15-.3-.23-.47-.2zM4.88 117.6c-1.16 0-1.3.3-1.3 1.56l1.14-1.38c.08-.1.22-.14.34-.16.16 0 .34.04.44.16l2.22 2.75h7c.42 0 .72.28.72.72v.53h-2.6c-.3.1-.43.54-.2.78l3.92 4.9c.18.25.6.25.78 0l3.94-4.9c.22-.28-.02-.77-.37-.78H18.4v-.53c0-4.2.72-3.63-3.66-3.63H7.28c-1.08 0-1.86-.03-2.4-.03zm.1 1.74c-.1.03-.17.1-.23.16L.8 124.44c-.2.28.03.77.4.78H3.6v.5c0 4.26-.55 3.62 3.66 3.62h7.44c1.03 0 1.74.02 2.28 0-.16.02-.34-.03-.44-.15l-2.22-2.76H7.28c-.44 0-.72-.3-.72-.72v-.5h2.5c.37.02.63-.5.4-.78L5.5 119.5c-.12-.15-.34-.22-.53-.16zm12.02 10c1.2-.02 1.4-.25 1.4-1.53l-1.1 1.36c-.07.1-.17.17-.3.18zM5.94 136.6l2.37 2.93h6.42c.42 0 .72.28.72.72v1.25h-2.6c-.3.1-.43.54-.2.78l3.92 4.9c.18.25.6.25.78 0l3.94-4.9c.22-.28-.02-.77-.37-.78H18.4v-1.25c0-4.2.72-3.63-3.66-3.63H7.28c-.6 0-.92-.02-1.34-.03zm-1.72.06c-.4.08-.54.3-.6.75l.6-.74zm.84.93c-.12 0-.24.08-.3.18l-3.95 4.9c-.24.3 0 .83.4.82H3.6v1.22c0 4.26-.55 3.62 3.66 3.62h7.44c.63 0 .97.02 1.4.03l-2.37-2.93H7.28c-.44 0-.72-.3-.72-.72v-1.22h2.5c.4.04.67-.53.4-.8l-3.96-4.92c-.1-.13-.27-.2-.44-.2zm13.28 10.03l-.56.7c.36-.07.5-.3.56-.7zM17.13 155.6c-.55-.02-1.32.03-2.4.03h-8.2l2.38 2.9h5.82c.42 0 .72.28.72.72v1.97H12.9c-.32.06-.48.52-.28.78l3.94 4.94c.2.23.6.22.78-.03l3.94-4.9c.22-.28-.02-.77-.37-.78H18.4v-1.97c0-3.15.4-3.62-1.25-3.66zm-12.1.28c-.1.02-.2.1-.28.18l-3.94 4.9c-.2.3.03.78.4.8H3.6v1.96c0 4.26-.55 3.62 3.66 3.62h8.24l-2.36-2.9H7.28c-.44 0-.72-.3-.72-.72v-1.97h2.5c.37.02.63-.5.4-.78l-3.96-4.9c-.1-.15-.3-.22-.47-.2zM5.13 174.5c-.15 0-.3.07-.38.2L.8 179.6c-.24.27 0 .82.4.8H3.6v2.32c0 4.26-.55 3.62 3.66 3.62h7.94l-2.35-2.9h-5.6c-.43 0-.7-.3-.7-.72v-2.3h2.5c.38.03.66-.54.4-.83l-3.97-4.9c-.1-.13-.23-.2-.38-.2zm12 .1c-.55-.02-1.32.03-2.4.03H6.83l2.35 2.9h5.52c.42 0 .72.28.72.72v2.34h-2.6c-.3.1-.43.53-.2.78l3.92 4.9c.18.24.6.24.78 0l3.94-4.9c.22-.3-.02-.78-.37-.8H18.4v-2.33c0-3.15.4-3.62-1.25-3.66zM4.97 193.16c-.1.03-.17.1-.22.18l-3.94 4.9c-.2.3.03.78.4.8H3.6v2.68c0 4.26-.55 3.62 3.66 3.62h7.66l-2.3-2.84c-.03-.02-.03-.04-.05-.06H7.27c-.44 0-.72-.3-.72-.72v-2.7h2.5c.37.03.63-.48.4-.77l-3.96-4.9c-.12-.17-.34-.25-.53-.2zm12.16.43c-.55-.02-1.32.03-2.4.03H7.1l2.32 2.84.03.06h5.25c.42 0 .72.28.72.72v2.7h-2.5c-.36.02-.56.54-.3.8l3.92 4.9c.18.25.6.25.78 0l3.94-4.9c.26-.28 0-.83-.37-.8H18.4v-2.7c0-3.15.4-3.62-1.25-3.66z' fill='%23c2ffdf' stroke-width='0'/></svg>");
+}
+
+button.icon-button i.fa-retweet:hover {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='209'><path d='M4.97 3.16c-.1.03-.17.1-.22.18L.8 8.24c-.2.3.03.78.4.8H3.6v2.68c0 4.26-.55 3.62 3.66 3.62h7.66l-2.3-2.84c-.03-.02-.03-.04-.05-.06H7.27c-.44 0-.72-.3-.72-.72v-2.7h2.5c.37.03.63-.48.4-.77L5.5 3.35c-.12-.17-.34-.25-.53-.2zm12.16.43c-.55-.02-1.32.02-2.4.02H7.1l2.32 2.85.03.06h5.25c.42 0 .72.28.72.72v2.7h-2.5c-.36.02-.56.54-.3.8l3.92 4.9c.18.25.6.25.78 0l3.94-4.9c.26-.28 0-.83-.37-.8H18.4v-2.7c0-3.15.4-3.62-1.25-3.66z' fill='%23C0BBCE' stroke-width='0'/><path d='M7.78 19.66c-.24.02-.44.25-.44.5v2.46h-.06c-1.08 0-1.86-.03-2.4-.03-1.64 0-1.25.43-1.25 3.65v4.47c0 4.26-.56 3.62 3.65 3.62H8.5l-1.3-1.06c-.1-.08-.18-.2-.2-.3-.02-.17.06-.35.2-.45l1.33-1.1H7.28c-.44 0-.72-.3-.72-.7v-4.48c0-.44.28-.72.72-.72h.06v2.5c0 .38.54.63.82.38l4.9-3.93c.25-.18.25-.6 0-.78l-4.9-3.92c-.1-.1-.24-.14-.38-.12zm9.34 2.93c-.54-.02-1.3.02-2.4.02h-1.25l1.3 1.07c.1.07.18.2.2.33.02.16-.06.3-.2.4l-1.33 1.1h1.28c.42 0 .72.28.72.72v4.47c0 .42-.3.72-.72.72h-.1v-2.47c0-.3-.3-.53-.6-.47-.07 0-.14.05-.2.1l-4.9 3.93c-.26.18-.26.6 0 .78l4.9 3.92c.27.25.82 0 .8-.38v-2.5h.1c4.27 0 3.65.67 3.65-3.62v-4.47c0-3.15.4-3.62-1.25-3.66zM10.34 38.66c-.24.02-.44.25-.43.5v2.47H7.3c-1.08 0-1.86-.04-2.4-.04-1.64 0-1.25.43-1.25 3.65v4.47c0 3.66-.23 3.7 2.34 3.66l-1.34-1.1c-.1-.08-.18-.2-.2-.3 0-.17.07-.35.2-.45l1.96-1.6c-.03-.06-.04-.13-.04-.2v-4.48c0-.44.28-.72.72-.72H9.9v2.5c0 .36.5.6.8.38l4.93-3.93c.24-.18.24-.6 0-.78l-4.94-3.92c-.1-.08-.23-.13-.36-.12zm5.63 2.93l1.34 1.1c.1.07.18.2.2.33.02.16-.03.3-.16.4l-1.96 1.6c.02.07.06.13.06.22v4.47c0 .42-.3.72-.72.72h-2.66v-2.47c0-.3-.3-.53-.6-.47-.06.02-.12.05-.18.1l-4.94 3.93c-.24.18-.24.6 0 .78l4.94 3.92c.28.22.78-.02.78-.38v-2.5h2.66c4.27 0 3.65.67 3.65-3.62v-4.47c0-3.66.34-3.7-2.4-3.66zM13.06 57.66c-.23.03-.4.26-.4.5v2.47H7.28c-1.08 0-1.86-.04-2.4-.04-1.64 0-1.25.43-1.25 3.65v4.87l2.93-2.37v-2.5c0-.44.28-.72.72-.72h5.38v2.5c0 .36.5.6.78.38l4.94-3.93c.24-.18.24-.6 0-.78l-4.94-3.92c-.1-.1-.24-.14-.38-.12zm5.3 6.15l-2.92 2.4v2.52c0 .42-.3.72-.72.72h-5.4v-2.47c0-.3-.32-.53-.6-.47-.07.02-.13.05-.2.1L3.6 70.52c-.25.18-.25.6 0 .78l4.93 3.92c.28.22.78-.02.78-.38v-2.5h5.42c4.27 0 3.65.67 3.65-3.62v-4.47-.44zM19.25 78.8c-.1.03-.2.1-.28.17l-.9.9c-.44-.3-1.36-.25-3.35-.25H7.28c-1.08 0-1.86-.03-2.4-.03-1.64 0-1.25.43-1.25 3.65v.7l2.93.3v-1c0-.44.28-.72.72-.72h7.44c.2 0 .37.08.5.2l-1.8 1.8c-.25.26-.08.76.27.8l6.27.7c.28.03.56-.25.53-.53l-.7-6.25c0-.27-.3-.48-.55-.44zm-17.2 6.1c-.2.07-.36.3-.33.54l.7 6.25c.02.36.58.55.83.27l.8-.8c.02 0 .04-.02.04 0 .46.24 1.37.17 3.18.17h7.44c4.27 0 3.65.67 3.65-3.62v-.75l-2.93-.3v1.05c0 .42-.3.72-.72.72H7.28c-.15 0-.3-.03-.4-.1L8.8 86.4c.3-.24.1-.8-.27-.84l-6.28-.65h-.2zM4.88 98.6c-1.33 0-1.34.48-1.3 2.3l1.14-1.37c.08-.1.22-.17.34-.2.16 0 .34.08.44.2l1.66 2.03c.04 0 .07-.03.12-.03h7.44c.34 0 .57.2.65.5h-2.43c-.34.05-.53.52-.3.78l3.92 4.95c.18.24.6.24.78 0l3.94-4.94c.22-.27-.02-.76-.37-.77H18.4c.02-3.9.6-3.4-3.66-3.4H7.28c-1.08 0-1.86-.04-2.4-.04zm.15 2.46c-.1.03-.2.1-.28.2l-3.94 4.9c-.2.28.03.77.4.78H3.6c-.02 3.94-.45 3.4 3.66 3.4h7.44c3.65 0 3.74.3 3.7-2.25l-1.1 1.34c-.1.1-.2.17-.32.2-.16 0-.34-.08-.44-.2l-1.65-2.03c-.06.02-.1.04-.18.04H7.28c-.35 0-.57-.2-.66-.5h2.44c.37 0 .63-.5.4-.78l-3.96-4.9c-.1-.15-.3-.23-.47-.2zM4.88 117.6c-1.16 0-1.3.3-1.3 1.56l1.14-1.38c.08-.1.22-.14.34-.16.16 0 .34.04.44.16l2.22 2.75h7c.42 0 .72.28.72.72v.53h-2.6c-.3.1-.43.54-.2.78l3.92 4.9c.18.25.6.25.78 0l3.94-4.9c.22-.28-.02-.77-.37-.78H18.4v-.53c0-4.2.72-3.63-3.66-3.63H7.28c-1.08 0-1.86-.03-2.4-.03zm.1 1.74c-.1.03-.17.1-.23.16L.8 124.44c-.2.28.03.77.4.78H3.6v.5c0 4.26-.55 3.62 3.66 3.62h7.44c1.03 0 1.74.02 2.28 0-.16.02-.34-.03-.44-.15l-2.22-2.76H7.28c-.44 0-.72-.3-.72-.72v-.5h2.5c.37.02.63-.5.4-.78L5.5 119.5c-.12-.15-.34-.22-.53-.16zm12.02 10c1.2-.02 1.4-.25 1.4-1.53l-1.1 1.36c-.07.1-.17.17-.3.18zM5.94 136.6l2.37 2.93h6.42c.42 0 .72.28.72.72v1.25h-2.6c-.3.1-.43.54-.2.78l3.92 4.9c.18.25.6.25.78 0l3.94-4.9c.22-.28-.02-.77-.37-.78H18.4v-1.25c0-4.2.72-3.63-3.66-3.63H7.28c-.6 0-.92-.02-1.34-.03zm-1.72.06c-.4.08-.54.3-.6.75l.6-.74zm.84.93c-.12 0-.24.08-.3.18l-3.95 4.9c-.24.3 0 .83.4.82H3.6v1.22c0 4.26-.55 3.62 3.66 3.62h7.44c.63 0 .97.02 1.4.03l-2.37-2.93H7.28c-.44 0-.72-.3-.72-.72v-1.22h2.5c.4.04.67-.53.4-.8l-3.96-4.92c-.1-.13-.27-.2-.44-.2zm13.28 10.03l-.56.7c.36-.07.5-.3.56-.7zM17.13 155.6c-.55-.02-1.32.03-2.4.03h-8.2l2.38 2.9h5.82c.42 0 .72.28.72.72v1.97H12.9c-.32.06-.48.52-.28.78l3.94 4.94c.2.23.6.22.78-.03l3.94-4.9c.22-.28-.02-.77-.37-.78H18.4v-1.97c0-3.15.4-3.62-1.25-3.66zm-12.1.28c-.1.02-.2.1-.28.18l-3.94 4.9c-.2.3.03.78.4.8H3.6v1.96c0 4.26-.55 3.62 3.66 3.62h8.24l-2.36-2.9H7.28c-.44 0-.72-.3-.72-.72v-1.97h2.5c.37.02.63-.5.4-.78l-3.96-4.9c-.1-.15-.3-.22-.47-.2zM5.13 174.5c-.15 0-.3.07-.38.2L.8 179.6c-.24.27 0 .82.4.8H3.6v2.32c0 4.26-.55 3.62 3.66 3.62h7.94l-2.35-2.9h-5.6c-.43 0-.7-.3-.7-.72v-2.3h2.5c.38.03.66-.54.4-.83l-3.97-4.9c-.1-.13-.23-.2-.38-.2zm12 .1c-.55-.02-1.32.03-2.4.03H6.83l2.35 2.9h5.52c.42 0 .72.28.72.72v2.34h-2.6c-.3.1-.43.53-.2.78l3.92 4.9c.18.24.6.24.78 0l3.94-4.9c.22-.3-.02-.78-.37-.8H18.4v-2.33c0-3.15.4-3.62-1.25-3.66zM4.97 193.16c-.1.03-.17.1-.22.18l-3.94 4.9c-.2.3.03.78.4.8H3.6v2.68c0 4.26-.55 3.62 3.66 3.62h7.66l-2.3-2.84c-.03-.02-.03-.04-.05-.06H7.27c-.44 0-.72-.3-.72-.72v-2.7h2.5c.37.03.63-.48.4-.77l-3.96-4.9c-.12-.17-.34-.25-.53-.2zm12.16.43c-.55-.02-1.32.03-2.4.03H7.1l2.32 2.84.03.06h5.25c.42 0 .72.28.72.72v2.7h-2.5c-.36.02-.56.54-.3.8l3.92 4.9c.18.25.6.25.78 0l3.94-4.9c.26-.28 0-.83-.37-.8H18.4v-2.7c0-3.15.4-3.62-1.25-3.66z' fill='%23c2ffdf' stroke-width='0'/></svg>");
+}
+
+.notification__favourite-icon-wrapper .star-icon,
+.star-icon.active,
+a.mention.hashtag {
+  color: $lemon;
+}
+
+.reply-indicator__content a,
+.status__content a {
+  color: $mint;
+}
+
+.reply-indicator {
+  background: $purplescrollbar;
+}
+
+a.mention,
+.notification__message .fa {
+  color: $pink;
+}
+
+.poll__link {
+  color: $purple4;
+}
+
+.poll__chart {
+  color: lighten($coral, 4%);
+}
+
+.poll__chart.leading {
+  color: $coral;
+}
+
+.emoji-mart-bar:first-child {
+  background: $purple4;
+}
+
+.emoji-mart-anchor-selected {
+  color: $purple2;
+
+  &:hover,
+  &:focus {
+    color: $purple1;
+  }
+}
+
+.emoji-mart-anchor-bar {
+  background: $purple1;
+}
+
+// profile in deck view
+
+.account__header__bar .avatar .account__avatar {
+  border-color: $purple1;
+}
+
+.account__header__image {
+  background: $purple1;
+}
+
+.notification__filter-bar,
+.account__section-headline {
+  background: $purple1;
+}
+
+.dropdown-menu,
+.dropdown-menu__item a {
+  background: $purple4;
+}
+
+.dropdown-menu__item a {
+  &:hover,
+  &:focus {
+    background: $purple2;
+  }
+}
+
+.dropdown-menu__separator {
+  border-bottom: 1px solid darken($purple4, 4%);
+}
+
+.button.logo-button.button--destructive:active,
+.button.logo-button.button--destructive:focus,
+.button.logo-button.button--destructive:hover {
+  background: $pink;
+}
+
+// public profiles
+
+.public-layout .header {
+  background: $purple3;
+}
+
+.public-layout .header .brand:active,
+.public-layout .header .brand:focus,
+.public-layout .header .brand:hover {
+  background: darken($purple3, 4%);
+}
+
+.public-layout .public-account-header__bar .avatar img {
+  background: $purple2;
+  border: 4px solid $purple2;
+}
+
+.public-layout .public-account-header__image {
+  background: $ui-base-color;
+}
+
+.public-layout .public-account-header__image .originalheader svg,
+.originalmascotimg svg {
+  fill: $ui-primary-color;
+}
+
+.public-layout .public-account-header__image .originalheader h1 a.brand {
+  color: $ui-primary-color;
+}
+
+.public-layout .header .nav-button {
+  background: darken($purple3, 4%);
+
+  &:hover,
+  &:focus {
+    background: darken($purple3, 8%);
+  }
+}
+
+.public-layout .public-account-header__bar::before {
+  background: $purplescrollbar;
+}
+
+.public-layout .public-account-header__tabs__tabs .counter.active::after {
+  border-bottom: 4px solid $lemon;
+}
+
+.public-layout .public-account-bio {
+  background: $purple3;
+}
+
+.hero-widget__text {
+  background: $purple2;
+}
+
+.activity-stream .entry {
+  background: $purple2;
+}
+
+.simple_form .hint a {
+  color: $mint;
+}
+
+.oauth-prompt strong,
+.follow-prompt strong {
+  color: $purple4;
+}
+
+.simple_form input[type="text"]:active,
+.simple_form input[type="text"]:focus,
+.simple_form input[type="number"]:active,
+.simple_form input[type="number"]:focus,
+.simple_form input[type="email"]:active,
+.simple_form input[type="email"]:focus,
+.simple_form input[type="password"]:active,
+.simple_form input[type="password"]:focus,
+.simple_form textarea:active,
+.simple_form textarea:focus {
+  border-color: $mint;
+}
+
+.nothing-here {
+  background: $purple2;
+}
+
+// admin zone
+
+.admin-wrapper .content h2 {
+  color: $purple4;
+}
+
+.admin-wrapper .sidebar ul .simple-navigation-active-leaf a {
+  background: $purpleborder;
+
+  &:hover,
+  &:focus {
+    background: lighten($purpleborder, 8%);
+  }
+}
+
+.admin-wrapper .sidebar ul ul {
+  background: $purple1;
+}
+
+.admin-wrapper .sidebar ul a:hover,
+.admin-wrapper .sidebar ul a:focus {
+  background: $purpleborder;
+}
+
+.admin-wrapper .content .muted-hint a {
+  color: $mint;
+}
+
+.card__bar {
+  background: $purplescrollbar;
+}
+
+.simple_form input[type="text"],
+.simple_form input[type="number"],
+.simple_form input[type="email"],
+.simple_form input[type="password"],
+.simple_form textarea {
+  background: darken($purple1, 6%);
+}
+
+.simple_form select {
+  background: darken($purple1, 6%) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='%23c2ffdf'/></svg>") no-repeat right 8px center/auto 16px;
+}
+
+.table th,
+.table td {
+  background: darken($purple2, 6%);
+}
+
+.table > thead > tr > th {
+  color: $lemon;
+}
+
+.table > tbody > tr:nth-child(odd) > td,
+.table > tbody > tr:nth-child(odd) > th {
+  background: $purple3;
+}
+
+// directory
+
+.accounts-table tbody td {
+  background: $purple3;
+}
+
+.page-header {
+  background: $purpleborder;
+
+  h1 {
+    color: $purple4;
+  }
+}
+
+.box-widget,
+.contact-widget,
+.landing-page__information.contact-widget {
+  background: $purple2;
+}
+
+.notice-widget a {
+  color: $mint;
+}
+
+.directory__tag a {
+  background: $purple2;
+
+  &:hover,
+  &:focus {
+    background: lighten($purple2, 4%);
+  }
+}
+
+// about/more
+
+.landing-page__call-to-action {
+  background: $purple3;
+}
+
+.rich-formatting h3,
+.rich-formatting h4,
+.rich-formatting h2,
+.rich-formatting h1 {
+  color: lighten($purpleicon, 8%);
+}
+
+.landing-page__information strong {
+  color: lighten($purpleicon, 10%);
+}
+
+// about
+
+.simple_form .input.boolean label a {
+  color: $mint;
+}
+
+::placeholder {
+  color: $purpleicon;
+}
+
+.landing .hero-widget__footer {
+  background: $purple3;
+}
+
+.status.status-direct:not(.read),
+.account {
+  border-bottom: 1px solid lighten($purple2, 8%);
+}
+
+.drawer__inner__mastodon svg#hometownlogo {
+  fill: $ui-primary-color;
+}
+
+.audio-player,
+.audio-player .video-player__controls {
+  background: $ui-base-color;
+}
+
+.video-player__buttons button {
+  color: $ui-primary-color;
+}
+
+.tabs-bar__wrapper {
+  background: $purple1;
+}
+
+.navigation-panel,
+.compose-panel {
+  hr {
+    border-top: 1px solid $purple3;
+  }
+}
+
+#navigation-panel__publish {
+  i {
+    color: $primary-text-color;
+  }
+}
+
+#navigation-panel__publish.active {
+  i {
+    background-color: lighten($ui-highlight-color, 10%);
+    color: $lighter-text-color;
+  }
+}

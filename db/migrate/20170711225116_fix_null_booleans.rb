@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FixNullBooleans < ActiveRecord::Migration[5.1]
   def change
     safety_assured do

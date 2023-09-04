@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Auth::ConfirmationsController do
+describe Auth::ConfirmationsController, type: :controller do
   render_views
 
   describe 'GET #new' do

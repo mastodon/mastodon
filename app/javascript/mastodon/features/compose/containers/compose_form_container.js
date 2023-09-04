@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-
+import ComposeForm from '../components/compose_form';
 import {
   changeCompose,
   submitCompose,
@@ -10,7 +10,6 @@ import {
   insertEmojiCompose,
   uploadCompose,
 } from '../../../actions/compose';
-import ComposeForm from '../components/compose_form';
 
 const mapStateToProps = state => ({
   text: state.getIn(['compose', 'text']),
@@ -18,6 +17,7 @@ const mapStateToProps = state => ({
   spoiler: state.getIn(['compose', 'spoiler']),
   spoilerText: state.getIn(['compose', 'spoiler_text']),
   privacy: state.getIn(['compose', 'privacy']),
+  federation: state.getIn(['compose', 'federation']),
   focusDate: state.getIn(['compose', 'focusDate']),
   caretPosition: state.getIn(['compose', 'caretPosition']),
   preselectDate: state.getIn(['compose', 'preselectDate']),
@@ -27,7 +27,6 @@ const mapStateToProps = state => ({
   isUploading: state.getIn(['compose', 'is_uploading']),
   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
-  lang: state.getIn(['compose', 'language']),
 });
 
 const mapDispatchToProps = (dispatch) => ({

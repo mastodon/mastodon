@@ -1,5 +1,4 @@
 import { Iterable, fromJS } from 'immutable';
-
 import { hydrateCompose } from './compose';
 import { importFetchedAccounts } from './importer';
 

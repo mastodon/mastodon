@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Move do
@@ -26,7 +24,7 @@ RSpec.describe ActivityPub::Activity::Move do
     stub_request(:post, old_account.inbox_url).to_return(status: 200)
     stub_request(:post, new_account.inbox_url).to_return(status: 200)
 
-    service_stub = instance_double(ActivityPub::FetchRemoteAccountService)
+    service_stub = double
     allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(service_stub)
     allow(service_stub).to receive(:call).and_return(returned_account)
   end

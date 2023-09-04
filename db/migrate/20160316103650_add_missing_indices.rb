@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddMissingIndices < ActiveRecord::Migration[4.2]
   def change
     add_index :users, :account_id

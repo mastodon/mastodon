@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateStreamEntries < ActiveRecord::Migration[4.2]
   def change
     create_table :stream_entries do |t|

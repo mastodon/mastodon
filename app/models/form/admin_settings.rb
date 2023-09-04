@@ -28,12 +28,12 @@ class Form::AdminSettings
     show_domain_blocks
     show_domain_blocks_rationale
     noindex
+    norss
+    default_federation
     require_invite_text
     media_cache_retention_period
     content_cache_retention_period
     backups_retention_period
-    status_page_url
-    captcha_enabled
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -52,8 +52,9 @@ class Form::AdminSettings
     trends_as_landing_page
     trendable_by_default
     noindex
+    norss
+    default_federation
     require_invite_text
-    captcha_enabled
   ).freeze
 
   UPLOAD_KEYS = %i(
@@ -71,18 +72,19 @@ class Form::AdminSettings
   validates :show_domain_blocks_rationale, inclusion: { in: %w(disabled users all) }, if: -> { defined?(@show_domain_blocks_rationale) }
   validates :media_cache_retention_period, :content_cache_retention_period, :backups_retention_period, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@media_cache_retention_period) || defined?(@content_cache_retention_period) || defined?(@backups_retention_period) }
   validates :site_short_description, length: { maximum: 200 }, if: -> { defined?(@site_short_description) }
-  validates :status_page_url, url: true, allow_blank: true
   validate :validate_site_uploads
 
   KEYS.each do |key|
     define_method(key) do
       return instance_variable_get("@#{key}") if instance_variable_defined?("@#{key}")
 
-      stored_value = if UPLOAD_KEYS.include?(key)
-                       SiteUpload.where(var: key).first_or_initialize(var: key)
-                     else
-                       Setting.public_send(key)
-                     end
+      stored_value = begin
+        if UPLOAD_KEYS.include?(key)
+          SiteUpload.where(var: key).first_or_initialize(var: key)
+        else
+          Setting.public_send(key)
+        end
+      end
 
       instance_variable_set("@#{key}", stored_value)
     end
@@ -130,7 +132,6 @@ class Form::AdminSettings
   def validate_site_uploads
     UPLOAD_KEYS.each do |key|
       next unless instance_variable_defined?("@#{key}")
-
       upload = instance_variable_get("@#{key}")
       next if upload.valid?
 

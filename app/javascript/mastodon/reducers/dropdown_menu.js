@@ -1,5 +1,4 @@
 import Immutable from 'immutable';
-
 import {
   DROPDOWN_MENU_OPEN,
   DROPDOWN_MENU_CLOSE,

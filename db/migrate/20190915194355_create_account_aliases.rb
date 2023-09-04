@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateAccountAliases < ActiveRecord::Migration[5.2]
   def change
     create_table :account_aliases do |t|

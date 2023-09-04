@@ -1,5 +1,4 @@
 import api, { getLinks } from '../api';
-
 import { importFetchedStatuses } from './importer';
 
 export const TRENDS_TAGS_FETCH_REQUEST = 'TRENDS_TAGS_FETCH_REQUEST';

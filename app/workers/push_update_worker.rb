@@ -25,7 +25,8 @@ class PushUpdateWorker
   def message
     Oj.dump(
       event: update? ? :'status.update' : :update,
-      payload: @payload
+      payload: @payload,
+      queued_at: (Time.now.to_f * 1000.0).to_i
     )
   end
 

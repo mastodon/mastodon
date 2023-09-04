@@ -99,7 +99,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def name
-    object.suspended? ? object.username : (object.display_name.presence || object.username)
+    object.suspended? ? '' : object.display_name
   end
 
   def summary

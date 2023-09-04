@@ -23,59 +23,59 @@ co:
         explanation: Avete creatu un contu nant’à %{host} cù st’indirizzu email. Pudete attivallu cù un clic, o ignurà quessu missaghji s’ellu un era micca voi.
         explanation_when_pending: Avete dumandatu un'invitazione à %{host}, cù st'indirizzu e-mail. Una volta ch'ellu hè cunfirmatu, avemu da dà un'ochjata à a vostra dumanda. Ùn pudete micca cunnettavi nanz'à quessa. S'ella hè righjittata a vostra dumanda, i vostri dati saranu sguassati è ùn duverete fà nund'altru. S'ellu ùn era micca voi, pudete ignurà quess'e-mail.
         extra_html: Pensate à leghje <a href="%{terms_path}">e regule di u servore</a> è <a href="%{policy_path}">i termini d’usu</a>.
-        subject: 'TomX: Istruzzione di cunfirmazione per %{instance}'
+        subject: 'Mastodon: Istruzzione di cunfirmazione per %{instance}'
         title: Verificà l’indirizzu email
       email_changed:
         explanation: 'L’indirizzu email di u vostru contu hè stata cambiata per:'
         extra: S’ellu un era micca voi ch’avete cambiatu u vostru email, qualch’un’altru hà accessu à u vostru contu. Duvete cambià a vostra chjave d’accessu o cuntattà l’amministratore di u servore s’ellu ùn hè più pussibule di cunnettavi.
-        subject: 'TomX: Email cambiatu'
+        subject: 'Mastodon: Email cambiatu'
         title: Novu indirizzu email
       password_change:
         explanation: A chjave d’accessu per u vostru contu hè stata cambiata.
         extra: S’ellu un era micca voi ch’avete cambiatu a vostra chjave d’accessu, qualch’un’altru hà accessu à u vostru contu. Duvete cambià a vostra chjave d’accessu o cuntattà l’amministratore di u servore s’ellu ùn hè più pussibule di cunnettavi.
-        subject: 'TomX: Chjave d’accessu cambiata'
+        subject: 'Mastodon: Chjave d’accessu cambiata'
         title: Chjave cambiata
       reconfirmation_instructions:
         explanation: Cunfirmà u novu indirizzu per cambià l’email.
         extra: S’ellu ùn era micca voi, ignurate stu missaghju. L’email ùn cambiarà micca s’è voi ùn cliccate micca u ligame.
-        subject: 'TomX: Cunfirmà l’email per %{instance}'
+        subject: 'Mastodon: Cunfirmà l’email per %{instance}'
         title: Verificà indirizzu email
       reset_password_instructions:
         action: Cambià a chjave d’accessu
         explanation: Avete dumandatu una nova chjave d’accessu per u vostru contu.
         extra: S’ellu ùn era micca voi, ignurate stu missaghju. A chjave d’accessu ùn cambiarà micca s’è voi ùn cliccate micca u ligame.
-        subject: 'TomX: Cambià a chjave d’accessu'
+        subject: 'Mastodon: Cambià a chjave d’accessu'
         title: Cambià a chjave
       two_factor_disabled:
         explanation: L'autentificazione à dui fattori per u vostru contu hè stata disattivata. A cunnessione hè avà pussibule cù l'usu solu di u vostru e-mail è di a chjave d'accessu.
-        subject: 'TomX: Autentificazione à dui fattori disattivata'
+        subject: 'Mastodon: Autentificazione à dui fattori disattivata'
         title: A2F disattivata
       two_factor_enabled:
         explanation: L'autentificazione à dui fattori hè stata attivata per u vostru contu. Un codice, o fiscia, generata da l'applicazione TOTP assuciata sarà dumandata per cunnettavvi.
-        subject: 'TomX: Autentificazione à dui fattori attivata'
+        subject: 'Mastodon: Autentificazione à dui fattori attivata'
         title: A2F attivata
       two_factor_recovery_codes_changed:
         explanation: I codici di ricuperazione pricidenti ùn sò più validi è un novu inseme di codici hè statu creatu.
-        subject: 'TomX: Rigenerazione di i codici à dui fattori di ricuperazione'
+        subject: 'Mastodon: Rigenerazione di i codici à dui fattori di ricuperazione'
         title: Cambiamentu di i codici di ricuperazione d'A2F
       unlock_instructions:
-        subject: 'TomX: Riapre u contu'
+        subject: 'Mastodon: Riapre u contu'
       webauthn_credential:
         added:
           explanation: A chjave di sicurità quì sottu hè stata aghjunta à u vostru contu
-          subject: 'TomX: Nova chjave di sicurità'
+          subject: 'Mastodon: Nova chjave di sicurità'
           title: Una nova chjave di sicurità hè stata aghjunta
         deleted:
           explanation: A chjave di sicurità quì sottu hè stata sguassata di u vostru contu
-          subject: 'TomX: Chjave di sicurità sguassata'
+          subject: 'Mastodon: Chjave di sicurità sguassata'
           title: Una di e vostre chjave di sicurità hè stata sguassata
       webauthn_disabled:
         explanation: L'autentificazione cù una chjave di sicurità hè stata disattivata per u vostru contu. Avà pudete solu cunnettavi cù u codice di cunnessione generatu da l'applicazione TOTP appaghjata.
-        subject: 'TomX: Autentificazione cù chjave di sicurità disattivata'
+        subject: 'Mastodon: Autentificazione cù chjave di sicurità disattivata'
         title: Chjave di sicurità disattivate
       webauthn_enabled:
         explanation: L'autentificazione cù una chjave di sicurità hè stata attivata per u vostru contu. Avà a vostra chjave pò esse utilizata per cunnettavi.
-        subject: 'TomX: Identificazione cù chjave di sicurità attivata'
+        subject: 'Mastodon: Identificazione cù chjave di sicurità attivata'
         title: Chjave di sicurità attivate
     omniauth_callbacks:
       failure: Ùn pudemu micca cunnettavi da %{kind} perchè "%{reason}".

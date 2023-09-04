@@ -1,14 +1,12 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe ActivityPub::OutboxesController do
+RSpec.describe ActivityPub::OutboxesController, type: :controller do
   let!(:account) { Fabricate(:account) }
 
   shared_examples 'cacheable response' do
     it 'does not set cookies' do
       expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be_nil
+      expect(response.headers['Set-Cookies']).to be nil
     end
 
     it 'does not set sessions' do
@@ -27,16 +25,18 @@ RSpec.describe ActivityPub::OutboxesController do
     Fabricate(:status, account: account, visibility: :private)
     Fabricate(:status, account: account, visibility: :direct)
     Fabricate(:status, account: account, visibility: :limited)
+  end
 
+  before do
     allow(controller).to receive(:signed_request_actor).and_return(remote_account)
   end
 
   describe 'GET #show' do
     context 'without signature' do
-      subject(:response) { get :show, params: { account_username: account.username, page: page } }
-
-      let(:body) { body_as_json }
       let(:remote_account) { nil }
+
+      subject(:response) { get :show, params: { account_username: account.username, page: page } }
+      subject(:body) { body_as_json }
 
       context 'with page not requested' do
         let(:page) { nil }
@@ -54,6 +54,10 @@ RSpec.describe ActivityPub::OutboxesController do
         end
 
         it_behaves_like 'cacheable response'
+
+        it 'does not have a Vary header' do
+          expect(response.headers['Vary']).to be_nil
+        end
 
         it 'does not have a Vary header' do
           expect(response.headers['Vary']).to be_nil
@@ -99,6 +103,10 @@ RSpec.describe ActivityPub::OutboxesController do
         end
 
         it_behaves_like 'cacheable response'
+
+        it 'returns Vary header with Signature' do
+          expect(response.headers['Vary']).to include 'Signature'
+        end
 
         it 'returns Vary header with Signature' do
           expect(response.headers['Vary']).to include 'Signature'

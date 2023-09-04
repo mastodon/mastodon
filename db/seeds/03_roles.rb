@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Pre-create base role
 UserRole.everyone
 

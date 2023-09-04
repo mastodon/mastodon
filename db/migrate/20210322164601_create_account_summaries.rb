@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateAccountSummaries < ActiveRecord::Migration[5.2]
   def change
     create_view :account_summaries, materialized: { no_data: true }

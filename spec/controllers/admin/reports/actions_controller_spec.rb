@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 describe Admin::Reports::ActionsController do
@@ -15,7 +13,7 @@ describe Admin::Reports::ActionsController do
     let(:report) { Fabricate(:report) }
 
     before do
-      post :preview, params: { :report_id => report.id, action => '' }
+      post :preview, params: { report_id: report.id, action => '' }
     end
 
     context 'when the action is "suspend"' do
@@ -57,37 +55,20 @@ describe Admin::Reports::ActionsController do
     let!(:media)         { Fabricate(:media_attachment, account: target_account, status: statuses[0]) }
     let(:report)         { Fabricate(:report, target_account: target_account, status_ids: statuses.map(&:id)) }
     let(:text)           { 'hello' }
-    let(:common_params) do
-      { report_id: report.id, text: text }
-    end
 
     shared_examples 'common behavior' do
-      it 'closes the report and redirects' do
-        expect { subject }.to mark_report_action_taken.and create_target_account_strike
+      it 'closes the report' do
+        expect { subject }.to change { report.reload.action_taken? }.from(false).to(true)
+      end
 
+      it 'creates a strike with the expected text' do
+        expect { subject }.to change { report.target_account.strikes.count }.by(1)
         expect(report.target_account.strikes.last.text).to eq text
+      end
+
+      it 'redirects' do
+        subject
         expect(response).to redirect_to(admin_reports_path)
-      end
-
-      context 'when text is unset' do
-        let(:common_params) do
-          { report_id: report.id }
-        end
-
-        it 'closes the report and redirects' do
-          expect { subject }.to mark_report_action_taken.and create_target_account_strike
-
-          expect(report.target_account.strikes.last.text).to eq ''
-          expect(response).to redirect_to(admin_reports_path)
-        end
-      end
-
-      def mark_report_action_taken
-        change { report.reload.action_taken? }.from(false).to(true)
-      end
-
-      def create_target_account_strike
-        change { report.target_account.strikes.count }.by(1)
       end
     end
 
@@ -135,20 +116,18 @@ describe Admin::Reports::ActionsController do
 
         it 'marks the non-deleted as sensitive' do
           subject
-          expect(media_attached_status.reload.sensitive).to be true
+          expect(media_attached_status.reload.sensitive).to eq true
         end
       end
     end
 
-    context 'with action as submit button' do
-      subject { post :create, params: common_params.merge({ action => '' }) }
-
+    context 'action as submit button' do
+      subject { post :create, params: { report_id: report.id, text: text, action => '' } }
       it_behaves_like 'all action types'
     end
 
-    context 'with moderation action as an extra field' do
-      subject { post :create, params: common_params.merge({ moderation_action: action }) }
-
+    context 'action as submit button' do
+      subject { post :create, params: { report_id: report.id, text: text, moderation_action: action } }
       it_behaves_like 'all action types'
     end
   end

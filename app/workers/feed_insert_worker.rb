@@ -2,26 +2,21 @@
 
 class FeedInsertWorker
   include Sidekiq::Worker
-  include DatabaseHelper
 
   def perform(status_id, id, type = 'home', options = {})
-    with_primary do
-      @type      = type.to_sym
-      @status    = Status.find(status_id)
-      @options   = options.symbolize_keys
+    @type      = type.to_sym
+    @status    = Status.find(status_id)
+    @options   = options.symbolize_keys
 
-      case @type
-      when :home, :tags
-        @follower = Account.find(id)
-      when :list
-        @list     = List.find(id)
-        @follower = @list.account
-      end
+    case @type
+    when :home, :tags
+      @follower = Account.find(id)
+    when :list
+      @list     = List.find(id)
+      @follower = @list.account
     end
 
-    with_read_replica do
-      check_and_insert
-    end
+    check_and_insert
   rescue ActiveRecord::RecordNotFound
     true
   end

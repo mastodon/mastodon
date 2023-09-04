@@ -1,9 +1,7 @@
-import { injectIntl, defineMessages } from 'react-intl';
-
 import { connect } from 'react-redux';
-
-import { changeComposeSpoilerness } from '../../../actions/compose';
 import TextIconButton from '../components/text_icon_button';
+import { changeComposeSpoilerness } from '../../../actions/compose';
+import { injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
   marked: { id: 'compose_form.spoiler.marked', defaultMessage: 'Text is hidden behind warning' },

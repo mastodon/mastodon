@@ -53,11 +53,15 @@ class Api::V1::FollowRequestsController < Api::BaseController
   end
 
   def next_path
-    api_v1_follow_requests_url pagination_params(max_id: pagination_max_id) if records_continue?
+    if records_continue?
+      api_v1_follow_requests_url pagination_params(max_id: pagination_max_id)
+    end
   end
 
   def prev_path
-    api_v1_follow_requests_url pagination_params(since_id: pagination_since_id) unless @accounts.empty?
+    unless @accounts.empty?
+      api_v1_follow_requests_url pagination_params(since_id: pagination_since_id)
+    end
   end
 
   def pagination_max_id

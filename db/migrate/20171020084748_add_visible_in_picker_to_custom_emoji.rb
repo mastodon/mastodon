@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
-class AddVisibleInPickerToCustomEmoji < ActiveRecord::Migration[5.2]
+class AddVisibleInPickerToCustomEmoji < ActiveRecord::Migration[5.1]
   def change
-    safety_assured do
+    safety_assured {
       add_column :custom_emojis, :visible_in_picker, :boolean, default: true, null: false
-    end
+    }
   end
 end

@@ -2,25 +2,25 @@
 
 require 'rails_helper'
 
-describe 'Profile' do
+feature 'Profile' do
   include ProfileStories
 
-  subject { page }
+  given(:local_domain) { ENV['LOCAL_DOMAIN'] }
 
-  let(:local_domain) { ENV['LOCAL_DOMAIN'] }
-
-  before do
+  background do
     as_a_logged_in_user
     with_alice_as_local_user
   end
 
-  it 'I can view Annes public account' do
+  subject { page }
+
+  scenario 'I can view Annes public account' do
     visit account_path('alice')
 
-    expect(subject).to have_title("alice (@alice@#{local_domain})")
+    is_expected.to have_title("alice (@alice@#{local_domain})")
   end
 
-  it 'I can change my account' do
+  scenario 'I can change my account' do
     visit settings_profile_path
 
     fill_in 'Display name', with: 'Bob'
@@ -28,6 +28,6 @@ describe 'Profile' do
 
     first('button[type=submit]').click
 
-    expect(subject).to have_content 'Changes successfully saved!'
+    is_expected.to have_content 'Changes successfully saved!'
   end
 end

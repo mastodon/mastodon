@@ -3,7 +3,7 @@
 class EmojiFormatter
   include RoutingHelper
 
-  DISALLOWED_BOUNDING_REGEX = /[[:alnum:]:]/
+  DISALLOWED_BOUNDING_REGEX = /[[:alnum:]:]/.freeze
 
   attr_reader :html, :custom_emojis, :options
 
@@ -12,7 +12,6 @@ class EmojiFormatter
   # @param [Hash] options
   # @option options [Boolean] :animate
   # @option options [String] :style
-  # @option options [String] :raw_shortcode
   def initialize(html, custom_emojis, options = {})
     raise ArgumentError unless html.html_safe?
 
@@ -44,7 +43,7 @@ class EmojiFormatter
           next unless (char_after.nil? || !DISALLOWED_BOUNDING_REGEX.match?(char_after)) && (emoji = emoji_map[shortcode])
 
           result << Nokogiri::XML::Text.new(text[last_index..shortname_start_index - 1], tree.document) if shortname_start_index.positive?
-          result << Nokogiri::HTML.fragment(tag_for_emoji(shortcode, emoji))
+          result << Nokogiri::HTML.fragment(image_for_emoji(shortcode, emoji))
 
           last_index = i + 1
         elsif text[i] == ':' && (i.zero? || !DISALLOWED_BOUNDING_REGEX.match?(text[i - 1]))
@@ -53,7 +52,7 @@ class EmojiFormatter
         end
       end
 
-      result << Nokogiri::XML::Text.new(text[last_index..], tree.document)
+      result << Nokogiri::XML::Text.new(text[last_index..-1], tree.document)
       node.replace(result)
     end
 
@@ -76,9 +75,7 @@ class EmojiFormatter
     end
   end
 
-  def tag_for_emoji(shortcode, emoji)
-    return content_tag(:span, ":#{shortcode}:", translate: 'no') if raw_shortcode?
-
+  def image_for_emoji(shortcode, emoji)
     original_url, static_url = emoji
 
     image_tag(
@@ -105,9 +102,5 @@ class EmojiFormatter
 
   def animate?
     @options[:animate] || @options.key?(:style)
-  end
-
-  def raw_shortcode?
-    @options[:raw_shortcode]
   end
 end
