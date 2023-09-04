@@ -41,7 +41,7 @@ RSpec.describe FetchLinkCardService, type: :service do
   end
 
   it 'redistributes status' do
-    expect(DistributionWorker).to have_received(:perform_async).with(status.id)
+    expect(DistributionWorker).to have_received(:perform_async).with(status.id, { update: true })
   end
 
   context 'with a local status' do
