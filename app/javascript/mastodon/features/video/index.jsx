@@ -442,6 +442,7 @@ class Video extends PureComponent {
 
   handleLoadedData = () => {
     const { currentTime, volume, muted, autoPlay } = this.props;
+    console.log(this.props);
 
     if (currentTime) {
       this.video.currentTime = currentTime;
