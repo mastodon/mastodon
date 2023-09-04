@@ -554,6 +554,7 @@ class Video extends PureComponent {
             aria-label={alt}
             title={alt}
             lang={lang}
+            autoPlay={true}
             volume={volume}
             onClick={this.togglePlay}
             onKeyDown={this.handleVideoKeyDown}
