@@ -11,7 +11,7 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    %link{ rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }/
+    %link{ rel: 'icon', href: '/favicon.png', type: 'image/png' }/
 
     - %w(16 32 48).each do |size|
       %link{ rel: 'icon', sizes: "#{size}x#{size}", href: asset_pack_path("media/icons/favicon-#{size}x#{size}.png"), type: 'image/png' }/
