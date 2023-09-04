@@ -8,7 +8,10 @@ class BatchedRemoveStatusService < BaseService
   # @param [Hash] options
   # @option [Boolean] :skip_side_effects Do not modify feeds and send updates to streaming API
   def call(statuses, **options)
-    ActiveRecord::Associations::Preloader.new.preload(statuses, options[:skip_side_effects] ? :reblogs : [:account, :tags, reblogs: :account])
+    ActiveRecord::Associations::Preloader.new(
+      records: statuses,
+      associations: options[:skip_side_effects] ? :reblogs : [:account, :tags, reblogs: :account]
+    )
 
     statuses_and_reblogs = statuses.flat_map { |status| [status] + status.reblogs }
 
@@ -17,7 +20,10 @@ class BatchedRemoveStatusService < BaseService
     # rely on direct visibility statuses being relatively rare.
     statuses_with_account_conversations = statuses.select(&:direct_visibility?)
 
-    ActiveRecord::Associations::Preloader.new.preload(statuses_with_account_conversations, [mentions: :account])
+    ActiveRecord::Associations::Preloader.new(
+      records: statuses_with_account_conversations,
+      associations: [mentions: :account]
+    )
 
     statuses_with_account_conversations.each(&:unlink_from_conversations!)
 
@@ -45,9 +51,9 @@ class BatchedRemoveStatusService < BaseService
 
     # Cannot be batched
     @status_id_cutoff = Mastodon::Snowflake.id_at(2.weeks.ago)
-    redis.pipelined do
+    redis.pipelined do |pipeline|
       statuses.each do |status|
-        unpush_from_public_timelines(status)
+        unpush_from_public_timelines(status, pipeline)
       end
     end
   end
@@ -70,22 +76,22 @@ class BatchedRemoveStatusService < BaseService
     end
   end
 
-  def unpush_from_public_timelines(status)
+  def unpush_from_public_timelines(status, pipeline)
     return unless status.public_visibility? && status.id > @status_id_cutoff
 
     payload = Oj.dump(event: :delete, payload: status.id.to_s)
 
-    redis.publish('timeline:public', payload)
-    redis.publish(status.local? ? 'timeline:public:local' : 'timeline:public:remote', payload)
+    pipeline.publish('timeline:public', payload)
+    pipeline.publish(status.local? ? 'timeline:public:local' : 'timeline:public:remote', payload)
 
     if status.media_attachments.any?
-      redis.publish('timeline:public:media', payload)
-      redis.publish(status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', payload)
+      pipeline.publish('timeline:public:media', payload)
+      pipeline.publish(status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', payload)
     end
 
     status.tags.map { |tag| tag.name.mb_chars.downcase }.each do |hashtag|
-      redis.publish("timeline:hashtag:#{hashtag}", payload)
-      redis.publish("timeline:hashtag:#{hashtag}:local", payload) if status.local?
+      pipeline.publish("timeline:hashtag:#{hashtag}", payload)
+      pipeline.publish("timeline:hashtag:#{hashtag}:local", payload) if status.local?
     end
   end
 end

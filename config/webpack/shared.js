@@ -1,14 +1,15 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-const webpack = require('webpack');
 const { basename, dirname, join, relative, resolve } = require('path');
+
 const { sync } = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const AssetsManifestPlugin = require('webpack-assets-manifest');
 const extname = require('path-complete-extname');
+const webpack = require('webpack');
+const AssetsManifestPlugin = require('webpack-assets-manifest');
+
 const { env, settings, themes, output } = require('./configuration');
 const rules = require('./rules');
-const localePackPaths = require('./generateLocalePacks');
 
 const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
 const entryPath = join(settings.source_path, settings.source_entry_path);
@@ -22,11 +23,6 @@ module.exports = {
       localMap[join(namespace, basename(entry, extname(entry)))] = resolve(entry);
       return localMap;
     }, {}),
-    localePackPaths.reduce((map, entry) => {
-      const localMap = map;
-      localMap[basename(entry, extname(entry, extname(entry)))] = resolve(entry);
-      return localMap;
-    }, {}),
     Object.keys(themes).reduce((themePaths, name) => {
       themePaths[name] = resolve(join(settings.source_path, themes[name]));
       return themePaths;
@@ -38,6 +34,7 @@ module.exports = {
     chunkFilename: 'js/[name]-[chunkhash].chunk.js',
     hotUpdateChunkFilename: 'js/[id]-[hash].hot-update.js',
     hashFunction: 'sha256',
+    crossOriginLoading: 'anonymous',
     path: output.path,
     publicPath: output.publicPath,
   },
@@ -55,7 +52,7 @@ module.exports = {
           chunks: 'all',
           minChunks: 2,
           minSize: 0,
-          test: /^(?!.*[\\\/]node_modules[\\\/]react-intl[\\\/]).+$/,
+          test: /^(?!.*[\\/]node_modules[\\/]react-intl[\\/]).+$/,
         },
       },
     },
@@ -64,6 +61,7 @@ module.exports = {
 
   module: {
     rules: Object.keys(rules).map(key => rules[key]),
+    strictExportPresence: true,
   },
 
   plugins: [

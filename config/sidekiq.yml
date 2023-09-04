@@ -9,52 +9,52 @@
   - [scheduler]
 :scheduler:
   :listened_queues_only: true
-:schedule:
-  scheduled_statuses_scheduler:
-    every: '5m'
-    class: Scheduler::ScheduledStatusesScheduler
-    queue: scheduler
-  trends_refresh_scheduler:
-    every: '5m'
-    class: Scheduler::Trends::RefreshScheduler
-    queue: scheduler
-  trends_review_notifications_scheduler:
-    every: '6h'
-    class: Scheduler::Trends::ReviewNotificationsScheduler
-    queue: scheduler
-  indexing_scheduler:
-    every: '5m'
-    class: Scheduler::IndexingScheduler
-    queue: scheduler
-  vacuum_scheduler:
-    cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
-    class: Scheduler::VacuumScheduler
-    queue: scheduler
-  follow_recommendations_scheduler:
-    cron: '<%= Random.rand(0..59) %> <%= Random.rand(6..9) %> * * *'
-    class: Scheduler::FollowRecommendationsScheduler
-    queue: scheduler
-  user_cleanup_scheduler:
-    cron: '<%= Random.rand(0..59) %> <%= Random.rand(4..6) %> * * *'
-    class: Scheduler::UserCleanupScheduler
-    queue: scheduler
-  ip_cleanup_scheduler:
-    cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
-    class: Scheduler::IpCleanupScheduler
-    queue: scheduler
-  pghero_scheduler:
-    cron: '0 0 * * *'
-    class: Scheduler::PgheroScheduler
-    queue: scheduler
-  instance_refresh_scheduler:
-    cron: '0 * * * *'
-    class: Scheduler::InstanceRefreshScheduler
-    queue: scheduler
-  accounts_statuses_cleanup_scheduler:
-    interval: 1 minute
-    class: Scheduler::AccountsStatusesCleanupScheduler
-    queue: scheduler
-  suspended_user_cleanup_scheduler:
-    interval: 1 minute
-    class: Scheduler::SuspendedUserCleanupScheduler
-    queue: scheduler
+  :schedule:
+    scheduled_statuses_scheduler:
+      every: '5m'
+      class: Scheduler::ScheduledStatusesScheduler
+      queue: scheduler
+    trends_refresh_scheduler:
+      every: '5m'
+      class: Scheduler::Trends::RefreshScheduler
+      queue: scheduler
+    trends_review_notifications_scheduler:
+      every: '6h'
+      class: Scheduler::Trends::ReviewNotificationsScheduler
+      queue: scheduler
+    indexing_scheduler:
+      interval: 1 minute
+      class: Scheduler::IndexingScheduler
+      queue: scheduler
+    vacuum_scheduler:
+      cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
+      class: Scheduler::VacuumScheduler
+      queue: scheduler
+    follow_recommendations_scheduler:
+      cron: '<%= Random.rand(0..59) %> <%= Random.rand(6..9) %> * * *'
+      class: Scheduler::FollowRecommendationsScheduler
+      queue: scheduler
+    user_cleanup_scheduler:
+      cron: '<%= Random.rand(0..59) %> <%= Random.rand(4..6) %> * * *'
+      class: Scheduler::UserCleanupScheduler
+      queue: scheduler
+    ip_cleanup_scheduler:
+      cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
+      class: Scheduler::IpCleanupScheduler
+      queue: scheduler
+    pghero_scheduler:
+      cron: '0 0 * * *'
+      class: Scheduler::PgheroScheduler
+      queue: scheduler
+    instance_refresh_scheduler:
+      cron: '0 * * * *'
+      class: Scheduler::InstanceRefreshScheduler
+      queue: scheduler
+    accounts_statuses_cleanup_scheduler:
+      interval: 1 minute
+      class: Scheduler::AccountsStatusesCleanupScheduler
+      queue: scheduler
+    suspended_user_cleanup_scheduler:
+      interval: 1 minute
+      class: Scheduler::SuspendedUserCleanupScheduler
+      queue: scheduler

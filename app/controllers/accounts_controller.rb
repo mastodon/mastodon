@@ -7,16 +7,17 @@ class AccountsController < ApplicationController
   include AccountControllerConcern
   include SignatureAuthentication
 
+  vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
+
   before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
-  before_action :set_cache_headers
 
   skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format&.to_sym) }
-  skip_before_action :require_functional!, unless: :whitelist_mode?
+  skip_before_action :require_functional!, unless: :limited_federation_mode?
 
   def show
     respond_to do |format|
       format.html do
-        expires_in 0, public: true unless user_signed_in?
+        expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.hour) unless user_signed_in?
 
         @rss_url = rss_url
       end
@@ -24,13 +25,8 @@ class AccountsController < ApplicationController
       format.rss do
         expires_in 1.minute, public: true
 
-        if @account&.user&.setting_norss == true
-          @statuses = []
-          next
-        end
-
         limit     = params[:limit].present? ? [params[:limit].to_i, PAGE_SIZE_MAX].min : PAGE_SIZE
-        @statuses = filtered_statuses.without_reblogs.without_local_only.limit(limit)
+        @statuses = filtered_statuses.without_reblogs.limit(limit)
         @statuses = cache_collection(@statuses, Status)
       end
 
@@ -52,11 +48,7 @@ class AccountsController < ApplicationController
   end
 
   def default_statuses
-    if current_user.nil?
-      @account.statuses.without_local_only.where(visibility: [:public, :unlisted])
-    else
-      @account.statuses.where(visibility: [:public, :unlisted])
-    end
+    @account.statuses.where(visibility: [:public, :unlisted])
   end
 
   def only_media_scope

@@ -36,7 +36,7 @@
 
 %h3= t('admin.instances.content_policies.title')
 
-- if whitelist_mode?
+- if limited_federation_mode?
   %p= t('admin.instances.content_policies.limited_federation_mode_description_html')
 
   - if @instance.domain_allow
@@ -58,7 +58,7 @@
             %td= @instance.domain_block.public_comment
           %tr
             %th= t('admin.instances.content_policies.policy')
-            %td= @instance.domain_block.policies.map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') }.join(' • ')
+            %td= @instance.domain_block.policies.map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') }.join(' · ')
 
     = link_to t('admin.domain_blocks.edit'), edit_admin_domain_block_path(@instance.domain_block), class: 'button'
     = link_to t('admin.domain_blocks.undo'), admin_domain_block_path(@instance.domain_block), class: 'button', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }

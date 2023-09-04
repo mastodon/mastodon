@@ -6,6 +6,15 @@ class PostStatusService < BaseService
 
   MIN_SCHEDULE_OFFSET = 5.minutes.freeze
 
+  class UnexpectedMentionsError < StandardError
+    attr_reader :accounts
+
+    def initialize(message, accounts)
+      super(message)
+      @accounts = accounts
+    end
+  end
+
   # Post a text status update, fetch and notify remote users mentioned
   # @param [Account] account Account from which to post
   # @param [Hash] options
@@ -21,6 +30,7 @@ class PostStatusService < BaseService
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
   # @option [Boolean] :with_rate_limit
+  # @option [Enumerable] :allowed_mentions Optional array of expected mentioned account IDs, raises `UnexpectedMentionsError` if unexpected accounts end up in mentions
   # @return [Status]
   def call(account, options = {})
     @account     = account
@@ -63,12 +73,26 @@ class PostStatusService < BaseService
   end
 
   def process_status!
+    @status = @account.statuses.new(status_attributes)
+    process_mentions_service.call(@status, save_records: false)
+    safeguard_mentions!(@status)
+
     # The following transaction block is needed to wrap the UPDATEs to
     # the media attachments when the status is created
-
     ApplicationRecord.transaction do
-      @status = @account.statuses.create!(status_attributes)
+      @status.save!
     end
+  end
+
+  def safeguard_mentions!(status)
+    return if @options[:allowed_mentions].nil?
+
+    expected_account_ids = @options[:allowed_mentions].map(&:to_i)
+
+    unexpected_accounts = status.mentions.map(&:account).to_a.reject { |mentioned_account| expected_account_ids.include?(mentioned_account.id) }
+    return if unexpected_accounts.empty?
+
+    raise UnexpectedMentionsError.new('Post would be sent to unexpected accounts', unexpected_accounts)
   end
 
   def schedule_status!
@@ -91,34 +115,12 @@ class PostStatusService < BaseService
     end
   end
 
-  def local_only_option(local_only, in_reply_to, federation_setting, text, spoiler_text)
-    # This is intended for third party clients. The admin can set a custom :local_only:
-    # emoji that users can append to force a post to be local only.
-    if text.include?(':local_only:') ||
-       spoiler_text&.include?(':local_only')
-      return true
-    end
-    if local_only.nil?
-      if in_reply_to && in_reply_to.local_only
-        return true
-      end
-      if in_reply_to && !in_reply_to.local_only
-        return false
-      end
-      return !federation_setting
-    end
-    local_only
-  end
-
   def postprocess_status!
     process_hashtags_service.call(@status)
-    process_mentions_service.call(@status)
     Trends.tags.register(@status)
     LinkCrawlWorker.perform_async(@status.id)
     DistributionWorker.perform_async(@status.id)
-    unless @status.local_only?
-      ActivityPub::DistributionWorker.perform_async(@status.id)
-    end
+    ActivityPub::DistributionWorker.perform_async(@status.id)
     PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
   end
 
@@ -174,8 +176,10 @@ class PostStatusService < BaseService
 
   def bump_potential_friendship!
     return if !@status.reply? || @account.id == @status.in_reply_to_account_id
+
     ActivityTracker.increment('activity:interactions')
     return if @account.following?(@status.in_reply_to_account_id)
+
     PotentialFriendshipTracker.record(@account.id, @status.in_reply_to_account_id, :reply)
   end
 
@@ -192,7 +196,6 @@ class PostStatusService < BaseService
       language: valid_locale_cascade(@options[:language], @account.user&.preferred_posting_language, I18n.default_locale),
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],
-      local_only: local_only_option(@options[:local_only], @in_reply_to, @account.user&.setting_default_federation, @text, @options[:spoiler_text]),
     }.compact
   end
 

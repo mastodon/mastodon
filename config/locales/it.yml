@@ -1,10 +1,10 @@
 ---
 it:
   about:
-    about_mastodon_html: 'Hometown è adattato da Mastodon, un social network decentralizzato senza pubblicità, senza controllo da parte di qualche azienda privata e design etico.'
+    about_mastodon_html: 'Il social network del futuro: Nessuna pubblicità, zero sorveglianza azienale, design etico e decentralizzazione! Sii il proprietario dei tuoi dati, con TomX!'
     contact_missing: Non impostato
     contact_unavailable: N/D
-    hosted_on: Mastodon ospitato su %{domain}
+    hosted_on: TomX ospitato su %{domain}
     title: Info
   accounts:
     follow: Segui
@@ -91,6 +91,7 @@ it:
       moderation:
         active: Attivo
         all: Tutto
+        disabled: Disattivato
         pending: In sospeso
         silenced: Limitato
         suspended: Sospeso
@@ -124,8 +125,8 @@ it:
       removed_header_msg: Immagine d'intestazione di %{username} rimossa correttamente
       resend_confirmation:
         already_confirmed: Questo utente è già confermato
-        send: Reinvia l'email di conferma
-        success: Email di conferma inviata correttamente!
+        send: Invia nuovamente il link di conferma
+        success: Link di conferma inviato con successo!
       reset: Ripristina
       reset_password: Ripristina la password
       resubscribe: Reiscriviti
@@ -133,6 +134,7 @@ it:
       search: Cerca
       search_same_email_domain: Altri utenti con lo stesso dominio email
       search_same_ip: Altri utenti con lo stesso IP
+      security: Sicurezza
       security_measures:
         only_password: Solo password
         password_and_2fa: Password e A2F
@@ -142,8 +144,8 @@ it:
       show:
         created_reports: Rapporti creati
         targeted_reports: Segnalato da altri
-      silence: Limita
-      silenced: Limitato
+      silence: Silenzia
+      silenced: Silenziato
       statuses: Toot
       strikes: Provvedimenti precedenti
       subscribe: Iscriviti
@@ -156,7 +158,7 @@ it:
       unblocked_email_msg: Indirizzo email di %{username} sbloccato correttamente
       unconfirmed_email: Email non confermata
       undo_sensitized: Annulla sensibile
-      undo_silenced: Annulla limitazione
+      undo_silenced: Rimuovi silenzia
       undo_suspension: Annulla sospensione
       unsilenced_msg: Limitazione del profilo di %{username} annullata correttamente
       unsubscribe: Disiscriviti
@@ -380,6 +382,15 @@ it:
       undo: Elimina dalla whitelist
     domain_blocks:
       add_new: Aggiungi nuovo
+      confirm_suspension:
+        cancel: Annulla
+        confirm: Sospendi
+        permanent_action: L'annullamento della sospensione non ripristinerà alcun dato o relazione.
+        preamble_html: Stai per sospendere <strong>%{domain}</strong> e i suoi sottodomini.
+        remove_all_data: Questa operazione rimuoverà dal tuo server tutti i contenuti, i file multimediali e i dati del profilo per gli account di questo dominio.
+        stop_communication: Il tuo server smetterà di comunicare con questi server.
+        title: Conferma il blocco del dominio per %{domain}
+        undo_relationships: Questo annullerà qualsiasi relazione di follow tra gli account di questi server e il tuo.
       created_msg: Il blocco del dominio sta venendo processato
       destroyed_msg: Il blocco del dominio è stato rimosso
       domain: Dominio
@@ -427,6 +438,7 @@ it:
         resolve: Risolvi dominio
         title: Nuova voce della lista nera delle email
       no_email_domain_block_selected: Nessun blocco di dominio di posta elettronica è stato modificato in quanto nessuno è stato selezionato
+      not_permitted: Non consentito
       resolved_dns_records_hint_html: Il nome di dominio si risolve ai seguenti domini MX, che sono in ultima analisi responsabili per l'accettazione di e-mail. Il blocco di un dominio MX bloccherà le iscrizioni da qualsiasi indirizzo e-mail che utilizza lo stesso dominio MX, anche se il nome di dominio visibile è diverso. <strong>Fai attenzione a non bloccare i principali provider di posta elettronica.</strong>
       resolved_through_html: Risolto attraverso %{domain}
       title: Lista nera email
@@ -441,6 +453,7 @@ it:
         private_comment_description_html: 'Per aiutarti a tenere traccia della provenienza dei blocchi importati, i blocchi importati verranno creati con il seguente commento privato: <q>%{comment}</q>'
         private_comment_template: Importato da %{source} il %{date}
         title: Importare i blocchi di dominio
+      invalid_domain_block: 'Uno o più blocchi di dominio sono stati saltati a causa dei seguenti errori: %{error}'
       new:
         title: Importare i blocchi di dominio
       no_file: Nessun file selezionato
@@ -472,6 +485,7 @@ it:
       content_policies:
         comment: Nota interna
         description_html: Puoi definire le politiche del contenuto che saranno applicate a tutti i profili da questo dominio e ognuno dei suoi sottodomini.
+        limited_federation_mode_description_html: Puoi scegliere se consentire la federazione con questo dominio.
         policies:
           reject_media: Rifiuta multimedia
           reject_reports: Rifiuta rapporti
@@ -584,11 +598,14 @@ it:
       assign_to_self: Assegna a me
       assigned: Moderatore assegnato
       by_target_domain: Dominio dell'account segnalato
+      cancel: Annulla
       category: Categoria
       category_description_html: Il motivo per cui questo account e/o contenuto è stato segnalato sarà citato nella comunicazione con l'account segnalato
       comment:
         none: Nessuno
       comment_description_html: 'Per fornire ulteriori informazioni, %{name} ha scritto:'
+      confirm: Conferma
+      confirm_action: Conferma l'azione di moderazione contro @%{acct}
       created_at: Segnalato
       delete_and_resolve: Cancella post
       forwarded: Inoltrato
@@ -605,6 +622,7 @@ it:
         placeholder: Descrivi quali azioni sono state intraprese, o ogni altro aggiornamento rilevante...
         title: Note
       notes_description_html: Visualizza e lascia note ad altri moderatori e al tuo futuro sé
+      processed_msg: 'Segnalazione #%{id} elaborata correttamente'
       quick_actions_description_html: 'Fai un''azione rapida o scorri verso il basso per vedere il contenuto segnalato:'
       remote_user_placeholder: l'utente remoto da %{instance}
       reopen: Riapri rapporto
@@ -617,9 +635,28 @@ it:
       status: Stato
       statuses: Contenuto segnalato
       statuses_description_html: Il contenuto offensivo sarà citato nella comunicazione con l'account segnalato
+      summary:
+        action_preambles:
+          delete_html: 'Stai per <strong>rimuovere</strong> alcuni post di <strong>@%{acct}</strong>. Questo conseguirà:'
+          mark_as_sensitive_html: 'Stai per <strong>contrassegnare</strong> alcuni post di <strong>@%{acct}</strong> come <strong>sensibili</strong>. Questo conseguirà:'
+          silence_html: 'Stai per <strong>limitare</strong> l''account di <strong>@%{acct}</strong>. Questo conseguirà:'
+          suspend_html: 'Stai per <strong>sospendere</strong> l''account di <strong>@%{acct}</strong>. Questo conseguirà:'
+        actions:
+          delete_html: Rimuovi i post offensivi
+          mark_as_sensitive_html: Contrassegna i file multimediali dei post offensivi come sensibili
+          silence_html: Limita severamente la portata di <strong>@%{acct}</strong> rendendo il suo profilo e il suo contenuto visibili solo a persone che già li seguono o che lo guardano manualmente
+          suspend_html: Sospendere <strong>@%{acct}</strong>, rendendo il suo profilo e i suoi contenuti inaccessibili e impossibilitandone l'interazione
+        close_report: 'Contrassegna la segnalazione #%{id} come risolta'
+        close_reports_html: Contrassegna <strong>tutte</strong> le segnalazioni contro <strong>@%{acct}</strong> come risolte
+        delete_data_html: Elimina il profilo e i contenuti di <strong>@%{acct}</strong> tra 30 giorni da ora, a meno che non vengano riattivati nel frattempo
+        preview_preamble_html: "<strong>@%{acct}</strong> riceverà un avvertimento con i seguenti contenuti:"
+        record_strike_html: Registra un provvedimento contro <strong>@%{acct}</strong> per aiutarti a gestire meglio future violazioni da questo account
+        send_email_html: Invia a <strong>@%{acct}</strong> una e-mail di avvertimento
+        warning_placeholder: Motivazione aggiuntiva facoltativa per l'azione di moderazione.
       target_origin: Origine dell'account segnalato
       title: Rapporti
       unassign: Non assegnare
+      unknown_action_msg: 'Azione sconosciuta: %{action}'
       unresolved: Non risolto
       updated_at: Aggiornato
       view_profile: Visualizza profilo
@@ -635,7 +672,7 @@ it:
         moderation: Moderazione
         special: Speciale
       delete: Cancella
-      description_html: Con i <strong>ruoli utente</strong>, puoi personalizzare a quali funzioni e aree di Mastodon i tuoi utenti possono accedere.
+      description_html: Con i <strong>ruoli utente</strong>, puoi personalizzare a quali funzioni e aree di TomX i tuoi utenti possono accedere.
       edit: Modifica il ruolo '%{name}'
       everyone: Permessi predefiniti
       everyone_full_description_html: Questo è il ruolo <strong>base</strong> che influenza <strong>tutti gli utenti</strong>, anche quelli senza un ruolo assegnato. Tutti gli altri ruoli ereditano i permessi da esso.
@@ -698,20 +735,23 @@ it:
         rules_hint: C'è un'area dedicata per le regole che i tuoi utenti dovrebbero rispettare.
         title: Info
       appearance:
-        preamble: Personalizza l'interfaccia web di Mastodon.
+        preamble: Personalizza l'interfaccia web di TomX.
         title: Aspetto
       branding:
-        preamble: 'Il marchio del tuo server lo differenzia dagli altri server nella rete. Queste informazioni possono essere visualizzate in una varietà di ambienti, come: l''interfaccia web di Mastodon, le applicazioni native, nelle anteprime dei collegamenti su altri siti Web e all''interno delle app di messaggistica e così via. Per questo motivo, è meglio mantenere queste informazioni chiare, brevi e concise.'
+        preamble: 'Il marchio del tuo server lo differenzia dagli altri server nella rete. Queste informazioni possono essere visualizzate in una varietà di ambienti, come: l''interfaccia web di TomX, le applicazioni native, nelle anteprime dei collegamenti su altri siti Web e all''interno delle app di messaggistica e così via. Per questo motivo, è meglio mantenere queste informazioni chiare, brevi e concise.'
         title: Marchio
+      captcha_enabled:
+        desc_html: Questo si basa su script esterni da hCaptcha, che possono rappresentare un problema di sicurezza e privacy. Inoltre, <strong>questo può rendere il processo di registrazione significativamente meno accessibile ad alcune persone (soprattutto disabili)</strong>. Per questi motivi, prendi in considerazione misure alternative come la registrazione basata su approvazione o su invito.
+        title: Richiedi ai nuovi utenti di risolvere un CAPTCHA per confermare il loro account
       content_retention:
-        preamble: Controlla come vengono memorizzati i contenuti generati dall'utente in Mastodon.
+        preamble: Controlla come vengono memorizzati i contenuti generati dall'utente in TomX.
         title: Conservazione dei contenuti
       default_noindex:
         desc_html: Interessa tutti gli utenti che non hanno modificato personalmente questa impostazione
         title: Esclude gli utenti dall'indicizzazione dei motori di ricerca per impostazione predefinita
       discovery:
         follow_recommendations: Segui le raccomandazioni
-        preamble: La comparsa di contenuti interessanti è determinante per l'arrivo di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla in che modo varie funzionalità di scoperta funzionano sul tuo server.
+        preamble: La comparsa di contenuti interessanti è determinante per l'arrivo di nuovi utenti che potrebbero non conoscere nessuno su TomX. Controlla in che modo varie funzionalità di scoperta funzionano sul tuo server.
         profile_directory: Directory del profilo
         public_timelines: Timeline pubbliche
         publish_discovered_servers: Pubblica i server scoperti
@@ -770,6 +810,7 @@ it:
         suspend: "%{name} ha sospeso l'account di %{target}"
       appeal_approved: Sottoposto ad appello
       appeal_pending: Appello in attesa
+      appeal_rejected: Appello respinto
     system_checks:
       database_schema_check:
         message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
@@ -783,6 +824,12 @@ it:
         message_html: Non hai definito alcuna regola del server.
       sidekiq_process_check:
         message_html: Nessun processo di Sidekiq in esecuzione per le code di %{value}. Sei pregato di revisionare la tua configurazione di Sidekiq
+      upload_check_privacy_error:
+        action: Controlla qui per maggiori informazioni
+        message_html: "<strong>Il tuo server web è mal configurato. La privacy dei tuoi utenti è a rischio.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Controlla qui per maggiori informazioni
+        message_html: "<strong>La tua archiviazione oggetti è mal configurata. La privacy dei tuoi utenti è a rischio.</strong>"
     tags:
       review: Esamina status
       updated_msg: Impostazioni hashtag aggiornate con successo
@@ -805,6 +852,7 @@ it:
           other: Condiviso da %{count} persone nell'ultima settimana
         title: Link in tendenza
         usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
+      not_allowed_to_trend: Non è consentito il trend
       only_allowed: Solo consentiti
       pending_review: Revisione in sospeso
       preview_card_providers:
@@ -859,7 +907,7 @@ it:
     webhooks:
       add_new: Aggiungi endpoint
       delete: Elimina
-      description_html: Un <strong>webhook</strong> consente a Mastodon di inviare <strong>notifiche in tempo reale</strong> su determinati eventi alla tua applicazione, così la tua applicazione può <strong>attivare automaticamente delle reazioni</strong>.
+      description_html: Un <strong>webhook</strong> consente a TomX di inviare <strong>notifiche in tempo reale</strong> su determinati eventi alla tua applicazione, così la tua applicazione può <strong>attivare automaticamente delle reazioni</strong>.
       disable: Disabilita
       disabled: Disabilitato
       edit: Modifica endpoint
@@ -923,35 +971,41 @@ it:
     confirmation_dialogs: Dialoghi di conferma
     discovery: Scoperta
     localization:
-      body: Mastodon è tradotto da volontari.
+      body: TomX è tradotto da volontari.
       guide_link: https://it.crowdin.com/project/mastodon
       guide_link_text: Tutti possono contribuire.
     sensitive_content: Contenuto sensibile
-    toot_layout: Layout dei toot
   application_mailer:
     notification_preferences: Cambia preferenze email
     salutation: "%{name},"
     settings: 'Cambia le impostazioni per le email: %{link}'
+    unsubscribe: Disiscriviti
     view: 'Guarda:'
     view_profile: Mostra profilo
     view_status: Mostra post
   applications:
     created: Applicazione creata con successo
     destroyed: Applicazione eliminata con successo
+    logout: Disconnettiti
     regenerate_token: Rigenera il token di accesso
     token_regenerated: Token di accesso rigenerato
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
     your_token: Il tuo token di accesso
   auth:
     apply_for_account: Richiedi un account
-    change_password: Password
+    captcha_confirmation:
+      help_html: Se hai problemi a risolvere il CAPTCHA, puoi metterti in contatto con noi tramite %{email} e ti possiamo aiutare.
+      hint_html: Solamente un'altra cosa! Dobbiamo confermare che tu sia un essere umano (così possiamo tenere fuori lo spam!). Risolvi il CAPTCHA sottostante e fai clic su "Continua".
+      title: Controllo di sicurezza
+    confirmations:
+      wrong_email_hint: Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
     description:
-      prefix_invited_by_user: "@%{name} ti invita a iscriverti a questo server Hometown!"
-      prefix_sign_up: Iscriviti oggi a Hometown!
-      suffix: Con un account, sarai in grado di seguire le persone, pubblicare aggiornamenti e scambiare messaggi con gli utenti da qualsiasi server di Hometown e altro ancora!
-    didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
+      prefix_invited_by_user: "@%{name} ti invita a iscriverti a questo server TomX!"
+      prefix_sign_up: Iscriviti oggi a TomX!
+      suffix: Con un account, sarai in grado di seguire le persone, pubblicare aggiornamenti e scambiare messaggi con gli utenti da qualsiasi server di TomX e altro ancora!
+    didnt_get_confirmation: Non hai ricevuto un link di conferma?
     dont_have_your_security_key: Non hai la tua chiave di sicurezza?
     forgot_password: Hai dimenticato la tua password?
     invalid_reset_password_token: Il token di reimpostazione della password non è valido o è scaduto. Per favore richiedine uno nuovo.
@@ -959,32 +1013,45 @@ it:
     link_to_webauth: Usa il tuo dispositivo chiave di sicurezza
     log_in_with: Accedi con
     login: Entra
-    logout: Esci
+    logout: Esci da TomX
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or_log_in_with: Oppure accedi con
     privacy_policy_agreement_html: Ho letto e accetto l'<a href="%{privacy_policy_path}" target="_blank">informativa sulla privacy</a>
+    progress:
+      confirm: Conferma l'e-mail
+      details: I tuoi dettagli
+      review: La nostra revisione
+      rules: Accetta le regole
     providers:
       cas: CAS
       saml: SAML
     register: Iscriviti
     registration_closed: "%{instance} non accetta nuovi membri"
-    resend_confirmation: Invia di nuovo le istruzioni di conferma
+    resend_confirmation: Invia nuovamente il link di conferma
     reset_password: Resetta la password
     rules:
+      accept: Accetta
+      back: Indietro
+      invited_by: 'Puoi unirti a %{domain} grazie all''invito che hai ricevuto da:'
       preamble: Questi sono impostati e applicati dai moderatori di %{domain}.
+      preamble_invited: Prima di procedere, si prega di considera le regole di base stabilite dai moderatori di %{domain}.
       title: Alcune regole di base.
+      title_invited: Sei stato/a invitato/a.
     security: Credenziali
     set_new_password: Imposta una nuova password
     setup:
-      email_below_hint_html: Se l'indirizzo e-mail sottostante non è corretto, puoi cambiarlo qui e ricevere una nuova e-mail di conferma.
-      email_settings_hint_html: L'email di conferma è stata inviata a %{email}. Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
-      title: Configurazione
+      email_below_hint_html: Controlla la tua cartella spam o richiedine un altro. Puoi correggere il tuo indirizzo e-mail, se fosse sbagliato.
+      email_settings_hint_html: Fai clic sul link che ti abbiamo inviato per verificare %{email}. Aspetteremo proprio qui.
+      link_not_received: Non hai ricevuto un link?
+      new_confirmation_instructions_sent: Riceverai una nuova e-mail con il link di conferma entro pochi minuti!
+      title: Controlla la tua posta in arrivo
     sign_in:
       preamble_html: Accedi con le tue credenziali <strong>%{domain}</strong>. Se il tuo account si trova su un server diverso, non potrai accedere qui.
       title: Accedi a %{domain}
     sign_up:
-      preamble: Con un account su questo server Mastodon, sarai in grado di seguire qualsiasi altra persona sulla rete, indipendentemente da dove sia ospitato il suo account.
+      manual_review: Le registrazioni su %{domain} vengono sottoposte a revisione manuale da parte dei nostri moderatori. Per aiutarci a elaborare la tua registrazione, scrivi qualcosa su di te e sul motivo per cui desideri un account su %{domain}.
+      preamble: Con un account su questo server TomX, sarai in grado di seguire qualsiasi altra persona sulla rete, indipendentemente da dove sia ospitato il suo account.
       title: Lascia che ti configuriamo su %{domain}.
     status:
       account_status: Stato dell'account
@@ -995,18 +1062,6 @@ it:
       view_strikes: Visualizza le sanzioni precedenti prese nei confronti del tuo account
     too_fast: Modulo inviato troppo velocemente, riprova.
     use_security_key: Usa la chiave di sicurezza
-  authorize_follow:
-    already_following: Stai già seguendo questo account
-    already_requested: Hai già mandato una richiesta di seguire questo account
-    error: Sfortunatamente c'è stato un errore nel consultare l'account remoto
-    follow: Segui
-    follow_request: 'Hai mandato una richiesta di seguire:'
-    following: 'Accettato! Ora stai seguendo:'
-    post_follow:
-      close: Oppure puoi chiudere questa finestra.
-      return: Mostra il profilo dell'utente
-      web: Vai al web
-    title: Segui %{acct}
   challenge:
     confirm: Continua
     hint_html: "<strong>Suggerimento:</strong> Non ti chiederemo di nuovo la tua password per la prossima ora."
@@ -1083,6 +1138,11 @@ it:
       your_appeal_rejected: Il tuo appello è stato respinto
   domain_validator:
     invalid_domain: non è un nome di dominio valido
+  edit_profile:
+    basic_information: Informazioni di base
+    hint_html: "<strong>Personalizza ciò che le persone vedono sul tuo profilo pubblico e accanto ai tuoi post.</strong> È più probabile che altre persone ti seguano e interagiscano con te quando hai un profilo compilato e un'immagine del profilo."
+    other: Altro
+    safety_and_privacy: Sicurezza e privacy
   errors:
     '400': La richiesta che hai inviato non è valida o non è corretta.
     '403': Non sei autorizzato a visualizzare questa pagina.
@@ -1097,7 +1157,7 @@ it:
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
     '503': La pagina non può essere trasmessa a causa di un errore temporaneo del server.
-    noscript_html: Per usare l'interfaccia web di %{title} dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Hometown/Mastodon per la tua piattaforma.
+    noscript_html: Per usare l'interfaccia web di TomX dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per TomX per la tua piattaforma.
   existing_username_validator:
     not_found: impossibile trovare un utente locale con quel nome utente
     not_found_multiple: impossibile trovare %{usernames}
@@ -1163,8 +1223,6 @@ it:
       index:
         hint: Questo filtro si applica a singoli post indipendentemente da altri criteri. Puoi aggiungere più post a questo filtro dall'interfaccia Web.
         title: Post filtrati
-  footer:
-    trending_now: Di tendenza ora
   generic:
     all: Tutto
     all_items_on_page_selected_html:
@@ -1173,7 +1231,9 @@ it:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> elemento corrispondente alla tua ricerca è selezionato."
       other: Tutti i <strong>%{count}</strong> elementi corrispondenti alla tua ricerca sono selezionati.
+    cancel: Annulla
     changes_saved_msg: Modifiche effettuate con successo!
+    confirm: Conferma
     copy: Copia
     delete: Cancella
     deselect: Deseleziona tutto
@@ -1187,24 +1247,62 @@ it:
     validation_errors:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
-  html_validator:
-    invalid_markup: 'contiene markup HTML non valido: %{error}'
   imports:
     errors:
+      empty: File CSV vuoto
+      incompatible_type: Incompatibile con il tipo di importazione selezionato
       invalid_csv_file: 'File CSV non valido. Errore: %{error}'
       over_rows_processing_limit: contiene più di %{count} righe
+      too_large: Il file è troppo grande
+    failures: Fallimenti
+    imported: Importato
+    mismatched_types_warning: Sembra che tu abbia selezionato il tipo sbagliato per questa importazione, ricontrolla per favore.
     modes:
       merge: Fondi
       merge_long: Mantieni record esistenti e aggiungine di nuovi
       overwrite: Sovrascrivi
       overwrite_long: Sostituisci record attuali con quelli nuovi
+    overwrite_preambles:
+      blocking_html: Stai per <strong>sostituire la tua lista di blocchi</strong> con un massimo di <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
+      bookmarks_html: Stai per <strong>sostituire i tuoi segnalibri</strong> con un massimo di <strong>%{total_items} post</strong> da <strong>%{filename}</strong>.
+      domain_blocking_html: Stai per <strong>sostituire la tua lista di domini bloccati</strong> con un massimo di <strong>%{total_items} domini</strong> da <strong>%{filename}</strong>.
+      following_html: Stai per <strong>seguire</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong> e <strong>smettere di seguire chiunque altro</strong>.
+      lists_html: Stai per <strong>sostituire le tue liste</strong> con i contenuti di <strong>%{filename}</strong>. Fino a <strong>%{total_items} profili</strong> verranno aggiunti a nuove liste.
+      muting_html: Stai per <strong>sostituire la tua lista di account silenziati</strong> con un massimo di <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Stai per <strong>bloccare</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
+      bookmarks_html: Stai per aggiungere fino a <strong>%{total_items} post</strong> da <strong>%{filename}</strong> ai tuoi <strong>segnalibri</strong>.
+      domain_blocking_html: Stai per <strong>bloccare</strong> fino a <strong>%{total_items} domini</strong> da <strong>%{filename}</strong>.
+      following_html: Stai per <strong>seguire</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
+      lists_html: Stai per aggiungere fino a <strong>%{total_items} profili</strong> da <strong>%{filename}</strong> alla tue <strong>liste</strong>. Le nuove liste saranno create se non c'è una lista a cui aggiungere.
+      muting_html: Stai per <strong>silenziare</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
     preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato su questo server, da file creati da un'esportazione su un altro server.
+    recent_imports: Importazioni recenti
+    states:
+      finished: Terminata
+      in_progress: In corso
+      scheduled: Programmata
+      unconfirmed: Non confermata
+    status: Stato
     success: Le tue impostazioni sono state importate correttamente e verranno applicate in breve tempo
+    time_started: Iniziata il
+    titles:
+      blocking: Importazione di account bloccati
+      bookmarks: Importazione dei segnalibri
+      domain_blocking: Importazione dei domini bloccati
+      following: Importazione degli account seguiti
+      lists: Importa elenchi
+      muting: Importazione degli account silenziati
+    type: Tipo d'importazione
+    type_groups:
+      constructive: Seguimenti e Segnalibri
+      destructive: Blocchi e silenzi
     types:
       blocking: Lista dei bloccati
       bookmarks: Segnalibri
       domain_blocking: Lista dei domini bloccati
       following: Lista dei seguiti
+      lists: Elenchi
       muting: Lista dei silenziati
     upload: Carica
   invites:
@@ -1243,6 +1341,21 @@ it:
     failed_sign_in_html: Tentativo di accesso fallito con %{method} da %{ip} (%{browser})
     successful_sign_in_html: Accesso riuscito con %{method} da %{ip} (%{browser})
     title: Cronologia delle autenticazioni
+  mail_subscriptions:
+    unsubscribe:
+      action: Sì, annulla l'iscrizione
+      complete: Iscrizione annullata
+      confirmation_html: Sei sicuro di voler annullare l'iscrizione alla ricezione di %{type} per TomX su %{domain} alla tua e-mail a %{email}? Puoi sempre iscriverti di nuovo dalle tue <a href="%{settings_path}">impostazioni di notifica via email</a>.
+      emails:
+        notification_emails:
+          favourite: e-mai di notifica per i post apprezzati
+          follow: e-mail di notifica per chi inizia a seguirti
+          follow_request: e-mail di notifica per la richiesta di seguirti
+          mention: e-mail di notifica per le menzioni
+          reblog: e-mail di notifica per le condivisioni
+      resubscribe_html: Se hai annullato l'iscrizione per errore, puoi iscriverti di nuovo dalle tue <a href="%{settings_path}">impostazioni di notifica via email</a>.
+      success_html: Non riceverai più %{type} per TomX su %{domain} alla tua e-mail a %{email}.
+      title: Disiscriviti
   media_attachments:
     validations:
       images_and_video: Impossibile allegare video a un post che contiene già immagini
@@ -1358,6 +1471,7 @@ it:
       expired: Il sondaggio si è già concluso
       invalid_choice: L'opzione di voto scelta non esiste
       over_character_limit: non possono essere più lunghi di %{max} caratteri ciascuno
+      self_vote: Non puoi votare nei tuoi sondaggi
       too_few_options: deve avere più di un elemento
       too_many_options: non può contenere più di %{max} elementi
   preferences:
@@ -1376,6 +1490,7 @@ it:
     confirm_remove_selected_followers: Sei sicuro di voler rimuovere i follower selezionati?
     confirm_remove_selected_follows: Sei sicuro di voler rimuovere i follow selezionati?
     dormant: Dormiente
+    follow_failure: Impossibile seguire alcuni degli account selezionati.
     follow_selected_followers: Segui i seguaci selezionati
     followers: Seguaci
     following: Seguiti
@@ -1415,6 +1530,7 @@ it:
       electron: Electron
       firefox: Firefox
       generic: Browser sconosciuto
+      huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1424,10 +1540,11 @@ it:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Browser sconosciuto
       weibo: Weibo
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
-    explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account %{title}.
+    explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account TomX.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1436,9 +1553,10 @@ it:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: piattaforma sconosciuta
+      unknown_platform: Piattaforma sconosciuta
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1452,7 +1570,7 @@ it:
     aliases: Alias dell'account
     appearance: Interfaccia
     authorized_apps: Applicazioni autorizzate
-    back: Torna a casa
+    back: Torna a TomX
     delete: Cancellazione account
     development: Sviluppo
     edit_profile: Modifica profilo
@@ -1509,7 +1627,6 @@ it:
     show_newer: Mostra più nuovi
     show_older: Mostra più vecchi
     show_thread: Mostra thread
-    sign_in_to_participate: Accedi per partecipare alla conversazione
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Diretto
@@ -1551,12 +1668,10 @@ it:
       '7889238': 3 mesi
     min_age_label: Soglia di età
     min_favs: Conserva i post preferiti più di
-    min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto più di questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
+    min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto almeno questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
     min_reblogs: Conserva i post condivisi più di
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:
-    pinned: Post fissato in cima
-    reblogged: condiviso
     sensitive_content: Materiale sensibile
   strikes:
     errors:
@@ -1564,11 +1679,9 @@ it:
   tags:
     does_not_match_previous_name: non corrisponde al nome precedente
   themes:
-    contrast: Mastodon (contrasto elevato)
-    default: Mastodon (scuro)
-    mastodon-light: Mastodon (chiaro)
-    macaron: Macaron (chiaro pastello)
-    fairy-floss: Fairy Floss (scuro pastello)
+    contrast: TomX (contrasto elevato)
+    default: TomX (scuro)
+    mastodon-light: TomX (chiaro)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1600,7 +1713,7 @@ it:
       subject: Il tuo appello del %{date} è stato respinto
       title: Appello respinto
     backup_ready:
-      explanation: Hai richiesto un backup completo del tuo account %{title}. È pronto per essere scaricato!
+      explanation: Hai richiesto un backup completo del tuo account TomX. È pronto per essere scaricato!
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
     suspicious_sign_in:
@@ -1649,17 +1762,22 @@ it:
       final_step: 'Inizia a pubblicare! Anche senza seguaci, i tuoi post pubblici possono essere visti da altri, ad esempio sulla timeline locale o negli hashtag. Potresti presentarti con l''hashtag #presentazione.'
       full_handle: Il tuo nome utente completo
       full_handle_hint: Questo è ciò che diresti ai tuoi amici in modo che possano seguirti o contattarti da un altro server.
-      subject: Benvenuto/a su %{title}
+      subject: Benvenuto/a su TomX
       title: Benvenuto a bordo, %{name}!
   users:
     follow_limit_reached: Non puoi seguire più di %{limit} persone
+    go_to_sso_account_settings: Vai alle impostazioni dell'account del tuo provider di identità
     invalid_otp_token: Codice d'accesso non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
   verification:
-    explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link deve contenere un link che punta al tuo profilo %{instance}. Il link di ritorno <strong>deve</strong> avere l''attributo <code>rel="me"</code>. Il testo del link non ha importanza. Ecco un esempio:'
+    extra_instructions_html: <strong>Suggerimento:</strong> il collegamento sul tuo sito web può essere invisibile. La parte importante è <code>rel="me"</code> che impedisce l'impersonificazione su siti web con contenuti generati dagli utenti. Puoi anche usare un tag <code>link</code> nell'intestazione della pagina invece di <code>a</code>, ma l'HTML deve essere accessibile senza eseguire JavaScript.
+    here_is_how: Ecco come
+    hint_html: "<strong>La verifica della tua identità su TomX è per tutti.</strong> Basata su standard web aperti, ora e per sempre gratis. Tutto ciò di cui hai bisogno è un sito web personale in cui le persone ti riconoscano. Quando ti colleghi a questo sito web dal tuo profilo, verificheremo che il sito web rimandi al tuo profilo e mostreremo un indicatore visivo su di esso."
+    instructions_html: Copia e incolla il codice qui sotto nell'HTML del tuo sito web. Quindi, aggiungi l'indirizzo del tuo sito web in uno dei campi aggiuntivi del tuo profilo dalla scheda "Modifica profilo" e salva le modifiche.
     verification: Verifica
+    verified_links: I tuoi collegamenti verificati
   webauthn_credentials:
     add: Aggiungi una nuova chiave di sicurezza
     create:

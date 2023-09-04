@@ -5,7 +5,7 @@
   = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
 - content_for :heading_actions do
-  - if whitelist_mode?
+  - if limited_federation_mode?
     = link_to t('admin.domain_allows.add_new'), new_admin_domain_allow_path, class: 'button', id: 'add-instance-button'
     = link_to t('admin.domain_allows.export'), export_admin_export_domain_allows_path(format: :csv), class: 'button'
     = link_to t('admin.domain_allows.import'), new_admin_export_domain_allow_path, class: 'button'
@@ -20,7 +20,7 @@
     %ul
       %li= filter_link_to t('admin.instances.moderation.all'), limited: nil
 
-      - unless whitelist_mode?
+      - unless limited_federation_mode?
         %li= filter_link_to t('admin.instances.moderation.limited'), limited: '1'
 
   .filter-subset
@@ -30,7 +30,7 @@
       %li= filter_link_to t('admin.instances.delivery.failing'), availability: 'failing'
       %li= filter_link_to t('admin.instances.delivery.unavailable'), availability: 'unavailable'
 
-- unless whitelist_mode?
+- unless limited_federation_mode?
   = form_tag admin_instances_url, method: 'GET', class: 'simple_form' do
     .fields-group
       - InstanceFilter::KEYS.each do |key|
@@ -47,7 +47,7 @@
 %hr.spacer/
 
 - if @instances.empty?
-  %div.muted-hint.center-text
+  .muted-hint.center-text
     = t 'admin.instances.empty'
 - else
   = render partial: 'instance', collection: @instances

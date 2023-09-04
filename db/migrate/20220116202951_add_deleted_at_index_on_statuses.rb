@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddDeletedAtIndexOnStatuses < ActiveRecord::Migration[6.1]
   disable_ddl_transaction!
 

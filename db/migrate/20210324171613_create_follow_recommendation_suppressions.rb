@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateFollowRecommendationSuppressions < ActiveRecord::Migration[6.1]
   def change
     create_table :follow_recommendation_suppressions do |t|

@@ -23,59 +23,59 @@ eu:
         explanation: Kontu bat sortu duzu %{host} ostalarian e-mail helbide honekin. Aktibatzeko klik bat falta zaizu. Ez baduzu zuk sortu, ez egin ezer e-mail honekin.
         explanation_when_pending: "%{host} instantziara gonbidatua izatea eskatu duzu e-mail helbide honekin. Behin zure e-mail helbidea berresten duzula, zure eskaera berrikusiko da. Ezin duzu aurretik saioa hasi. Zure eskaera ukatuko balitz, zure datuak ezabatuko lirateke, eta ez zenuke beste ezer egiteko beharrik. Hau ez bazara zu izan, ezikusi e-mail hau."
         extra_html: Egiaztatu <a href="%{terms_path}">zerbitzariaren arauak</a> eta <a href="%{policy_path}">zerbitzuaren erabilera baldintzak</a>.
-        subject: 'Mastodon: %{instance} instantziaren argibideak baieztapenerako'
+        subject: 'TomX: %{instance} instantziaren argibideak baieztapenerako'
         title: Baieztatu e-mail helbidea
       email_changed:
         explanation: 'Zure kontuaren e-mail helbidea honetara aldatuko da:'
         extra: Ez baduzu e-mail helbidea aldatu, agian baten bat zure kontura sartzea lortu du. Aldatu zure pasahitza berehala edo jarri zerbitzariko administratzailearekin kontaktuan zure kontura sartzerik ez baduzu.
-        subject: 'Mastodon: E-mail helbidea aldatuta'
+        subject: 'TomX: E-mail helbidea aldatuta'
         title: E-mail helbide berria
       password_change:
         explanation: Zure kontuaren pasahitza aldatu da.
         extra: Ez baduzu pasahitza aldatu, agian baten bat zure kontura sartzea lortu du. Aldatu zure pasahitza berehala edo jarri zerbitzariko administratzailearekin kontaktuan zure kontura sartzerik ez baduzu.
-        subject: 'Mastodon: Pasahitza aldatuta'
+        subject: 'TomX: Pasahitza aldatuta'
         title: Pasahitza aldatuta
       reconfirmation_instructions:
         explanation: Baieztatu helbide berria zure e-maila aldatzeko.
-        extra: Aldaketa hau ez baduzu zuk eskatu, ezikusi e-mail hau. Mastodon kontuaren e-mail helbidea ez da aldatuko goiko estekan sartzen ez bazara.
-        subject: 'Mastodon: Baieztatu %{instance} instantziarako e-mail helbidea'
+        extra: Aldaketa hau ez baduzu zuk eskatu, ezikusi e-mail hau. TomX kontuaren e-mail helbidea ez da aldatuko goiko estekan sartzen ez bazara.
+        subject: 'TomX: Baieztatu %{instance} instantziarako e-mail helbidea'
         title: Baieztatu e-mail helbidea
       reset_password_instructions:
         action: Aldatu pasahitza
         explanation: Pasahitza berria eskatu duzu zure konturako.
         extra: Ez baduzu hau eskatu, mesedez ezikusi e-mail hau. Zure pasahitza ez da aldatuko goiko estekara sartu eta berri bat sortzen ez baduzu.
-        subject: 'Mastodon: Pasahitza berrezartzeko argibideak'
+        subject: 'TomX: Pasahitza berrezartzeko argibideak'
         title: Pasahitza berrezartzea
       two_factor_disabled:
         explanation: Bi faktoreetako autentifikazioa desgaitu da zure kontuan. Orain saioa hasi daiteke e-mail helbidea eta pasahitza bakarrik erabilita.
-        subject: 'Mastodon: Bi faktoreetako autentifikazioa desgaituta'
+        subject: 'TomX: Bi faktoreetako autentifikazioa desgaituta'
         title: 2FA desgaituta
       two_factor_enabled:
         explanation: Bi faktoreetako autentifikazioa gaitu da zure kontuan. Token bat sortu du lotutako TOTP aplikazioak eta saioa hasteko eskatuko da.
-        subject: 'Mastodon: Bi faktoreetako autentifikazioa gaituta'
+        subject: 'TomX: Bi faktoreetako autentifikazioa gaituta'
         title: 2FA gaituta
       two_factor_recovery_codes_changed:
         explanation: Aurreko kodeak baliogabetu dira eta berriak sortu dira.
-        subject: 'Mastodon: Bi faktoreetako berreskuratze kodeak birsortuta'
+        subject: 'TomX: Bi faktoreetako berreskuratze kodeak birsortuta'
         title: 2FA berreskuratze kodeak aldatuta
       unlock_instructions:
-        subject: 'Mastodon: Desblokeatzeko argibideak'
+        subject: 'TomX: Desblokeatzeko argibideak'
       webauthn_credential:
         added:
           explanation: Segurtasun gako hau zure kontuan gehitu da
-          subject: 'Mastodon: Segurtasun gako berria'
+          subject: 'TomX: Segurtasun gako berria'
           title: Segurtasun gako berri bat gehitu da
         deleted:
           explanation: Segurtasun gako hau zure kontutik ezabatu da
-          subject: 'Mastodon: Segurtasun gakoa ezabatu da'
+          subject: 'TomX: Segurtasun gakoa ezabatu da'
           title: Zure segurtasun gakoetako bat ezabatu da
       webauthn_disabled:
         explanation: Segurtasun gako bidezko autentifikazioa desgaitu da zure kontuan. Saioa hasteko modu bakarra parekatutako TOTP aplikazioak sortutako tokena erabiltzea da orain.
-        subject: 'Mastodon: Segurtasun gakoekin autentifikatzea desgaituta'
+        subject: 'TomX: Segurtasun gakoekin autentifikatzea desgaituta'
         title: Segurtasun gakoak desgaituta
       webauthn_enabled:
         explanation: Segurtasun gako bidezko autentifikazioa gaitu da zure kontuan. Orain zure segurtasun gakoa erabil dezakezu saioa hasteko.
-        subject: 'Mastodon: Segurtasun gako bidezko autentifikazioa gaituta'
+        subject: 'TomX: Segurtasun gako bidezko autentifikazioa gaituta'
         title: Segurtasun gakoak gaituta
     omniauth_callbacks:
       failure: Ezin izan zaizu %{kind} motatik autentifikatu arrazoia "%{reason}" dela.

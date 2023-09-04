@@ -28,7 +28,7 @@ io:
       email_changed:
         explanation: 'Retpostadreso di vua konto chanjesas a:'
         extra: Se vu ne chanjesis vua retpostadreso, nulu posible acesis vua konto. Chanjez vua pasvorto quik o kontaktez serviladministratero se vu ne povas enirar vua konto.
-        subject: 'Mastodon: Retpostadreso chanjesis'
+        subject: 'TomX: Retpostadreso chanjesis'
         title: Nova retpostadreso
       password_change:
         explanation: La pasvorto di vua konto chanjesis.
@@ -37,8 +37,8 @@ io:
         title: Pasvorto chanjesis
       reconfirmation_instructions:
         explanation: Konfirmez la nova adreso por chanjar vua retpostadreso.
-        extra: Se ca chanjo ne komencesis da vu, ignorez ca retposto. La retpostadreso por konto di Mastodon ne chanjesos til vu acesas la supera ligilo.
-        subject: 'Mastodon: Konfirmez retpostadreso por %{instance}'
+        extra: Se ca chanjo ne komencesis da vu, ignorez ca retposto. La retpostadreso por konto di TomX ne chanjesos til vu acesas la supera ligilo.
+        subject: 'TomX: Konfirmez retpostadreso por %{instance}'
         title: Verifikez retpostadreso
       reset_password_instructions:
         action: Chanjez pasvorto
@@ -48,34 +48,34 @@ io:
         title: Richanjo di pasvorto
       two_factor_disabled:
         explanation: 2-faktorverifiko por vua konto deaktivigesis. Eniro esas nun posible per nur retpostadreso e pasvorto.
-        subject: 'Mastodon: 2-faktorverifiko deaktivigesis'
+        subject: 'TomX: 2-faktorverifiko deaktivigesis'
         title: 2FA deaktivigesis
       two_factor_enabled:
         explanation: 2-faktorverifiko aktivigesis por vua konto. Fisho quo facesis da parigita softwaro TOTP bezonesos por eniro.
-        subject: 'Mastodon: 2-faktorverifiko aktivigesis'
+        subject: 'TomX: 2-faktorverifiko aktivigesis'
         title: 2FA aktivigesis
       two_factor_recovery_codes_changed:
         explanation: Antea rigankodexi devalidesis e novo facesis.
-        subject: 'Mastodon: 2-faktorrigankodexi rifacesis'
+        subject: 'TomX: 2-faktorrigankodexi rifacesis'
         title: 2FA-rigankodexi chanjesis
       unlock_instructions:
         subject: Instructioni por riacendar la konto
       webauthn_credential:
         added:
           explanation: Ca sekurklefo insertesis a vua konto
-          subject: 'Mastodon: Nova sekurklefo'
+          subject: 'TomX: Nova sekurklefo'
           title: Nova sekurklefo insertesis
         deleted:
           explanation: Ca sekurklefo efacesis de vua konto
-          subject: 'Mastodon: Sekurklefo efacesis'
+          subject: 'TomX: Sekurklefo efacesis'
           title: 1 de vua sekurklefi efacesis
       webauthn_disabled:
         explanation: Verifiko per sekurklefi deaktivigesis por vua konto. Eniro nun esas posibla per nur ficho quo facesis da parita softwaro TOTP.
-        subject: 'Mastodon: Verifiko per sekurklefi deaktivigesis'
+        subject: 'TomX: Verifiko per sekurklefi deaktivigesis'
         title: Sekurklefi deaktivigesis
       webauthn_enabled:
         explanation: Sekurklefverifiko aktivigesis por vua konto. Vua sekurklefo nun povas uzesar por eniro.
-        subject: 'Mastodon: Sekurklefverifiko aktivigesis'
+        subject: 'TomX: Sekurklefverifiko aktivigesis'
         title: Sekurklefi aktivigesis
     omniauth_callbacks:
       failure: 'Ni ne povis autentikigar tu per %{kind}: ''%{reason}''.'

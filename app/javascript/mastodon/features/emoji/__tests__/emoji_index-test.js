@@ -1,5 +1,6 @@
-import { pick } from 'lodash';
 import { emojiIndex } from 'emoji-mart';
+import { pick } from 'lodash';
+
 import { search } from '../emoji_mart_search_light';
 
 const trimEmojis = emoji => pick(emoji, ['id', 'unified', 'native', 'custom']);

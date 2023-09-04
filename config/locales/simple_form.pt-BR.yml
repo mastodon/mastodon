@@ -2,6 +2,10 @@
 pt-BR:
   simple_form:
     hints:
+      account:
+        display_name: Seu nome completo ou apelido.
+        fields: Sua página inicial, pronomes, idade ou qualquer coisa que quiser.
+        note: 'Você pode @mencionar outras pessoas ou #hashtags.'
       account_alias:
         acct: Especifique o usuário@domínio de onde veio
       account_migration:
@@ -18,6 +22,8 @@ pt-BR:
           disable: Impede o usuário de usar a conta, porém sem excluí-la ou suspendê-la.
           none: Use isto para enviar uma advertência ao usuário, sem nenhuma outra ação.
           sensitive: Marca todas as mídias do usuário como sensível.
+          silence: Impede o usuário de enviar postagens visualmente públicas, além de ocultar suas publicações e notificações dos que não o seguem. Ademais, fecha todas as denúncias contra esta conta.
+          suspend: Impede qualquer interação de ou para esta conta e exclui seu conteúdo. Reversível dentro de 30 dias. Ademais, fecha todas as denúncias contra esta conta.
         warning_preset_id: Opcional. Você pode adicionar texto personalizado no final da advertência pré-definida
       announcement:
         all_day: Quando marcada, apenas as datas do período serão mostradas
@@ -37,7 +43,6 @@ pt-BR:
         digest: Enviado apenas após um longo período de inatividade com um resumo das menções recebidas durante ausência
         discoverable: Permita que a sua conta seja descoberta por estranhos através de recomendações, tendências e outros recursos
         email: Você receberá um e-mail de confirmação
-        fields: Você pode ter até 4 itens mostrados em forma de tabela no seu perfil
         header: PNG, GIF ou JPG de até %{size}. Serão redimensionados para %{dimensions}px
         inbox_url: Copie o link da página inicial do repetidor que você deseja usar
         irreversible: As publicações filtradas desaparecerão irreversivelmente, mesmo se o filtro for removido depois
@@ -47,7 +52,7 @@ pt-BR:
         phrase: Corresponderá independente de maiúsculas ou minúsculas, no texto ou no Aviso de Conteúdo de um toot
         scopes: Quais APIs o aplicativo vai ter permissão de acessar. Se você selecionar uma autorização de alto nível, você não precisa selecionar individualmente os outros.
         setting_aggregate_reblogs: Não mostra novos impulsos para publicações já receberam recentemente (afeta somente os impulsos mais recentes)
-        setting_always_send_emails: Normalmente, as notificações por e-mail não serão enviadas enquanto você estiver usando ativamente o Mastodon
+        setting_always_send_emails: Normalmente, as notificações por e-mail não serão enviadas enquanto você estiver usando ativamente o TomX
         setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
         setting_display_media_default: Sempre ocultar mídia sensível
         setting_display_media_hide_all: Sempre ocultar todas as mídias
@@ -57,7 +62,7 @@ pt-BR:
         setting_show_application: O aplicativo que você usar para publicar será exibido na visão detalhada das suas publicações
         setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
         setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
-        username: Seu nome de usuário será único em %{domain}
+        username: Você pode usar letras, números e underlines
         whole_word: Quando a palavra-chave ou frase é inteiramente alfanumérica, ela será aplicada somente se corresponder a palavra inteira
       domain_allow:
         domain: Este domínio poderá obter dados deste servidor e os dados recebidos dele serão processados e armazenados
@@ -72,29 +77,34 @@ pt-BR:
           hide: Esconder completamente o conteúdo filtrado, comportando-se como se ele não existisse
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
       form_admin_settings:
+        activity_api_enabled: Contagem de publicações locais, usuários ativos e novos usuários semanais
         backups_retention_period: Manter os arquivos de usuário gerados pelo número de dias especificados.
         bootstrap_timeline_accounts: Estas contas serão fixadas no topo das recomendações de novos usuários para seguir.
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
         content_cache_retention_period: Postagens de outros servidores serão excluídas após o número de dias especificados, quando definido com um valor positivo. Isso pode ser irreversível.
-        custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
+        custom_css: Você pode aplicar estilos personalizados na versão da web do TomX.
         mascot: Substitui a ilustração na interface web avançada.
         media_cache_retention_period: Os arquivos de mídia baixados serão excluídos após o número especificado de dias, quando definido para um valor positivo, e baixados novamente na demanda.
+        peers_api_enabled: Uma lista de nomes de domínio que este servidor encontrou no "fediverse". Nenhum dado é incluído aqui sobre se você concorda com os padroes operacionais de um determinado servidor, apenas que o seu servidor sabe disso. Esta ferramenta é utilizado por serviços que recolhem estatísticas sob as normas da federação (grupo de empresas que concordam sob paramentros operacionais específicos), em termos gerais.
         profile_directory: O diretório de perfis lista todos os usuários que optaram por permitir que suas contas sejam descobertas.
+        require_invite_text: 'Quando o cadastro de novas contas exigir aprovação manual, tornar obrigatório, ao invés de opcional, o texto de solicitação de convite: "Por que você deseja ingressar nessa comunidade?"'
         site_contact_email: Como as pessoas podem entrar em contato com você para obter informações legais ou de suporte.
-        site_contact_username: Como as pessoas podem chegar até você no Mastodon.
+        site_contact_username: Como as pessoas podem chegar até você no TomX.
         site_extended_description: Quaisquer informações adicionais que possam ser úteis para os visitantes e seus usuários. Podem ser estruturadas com formato Markdown.
         site_short_description: Uma curta descrição para ajudar unicamente a identificar a sua instância. Quem está o administrando, e para quem é direcionado?
         site_terms: Use a sua própria política de privacidade ou deixe em branco para usar o padrão. Pode ser estruturado com o formato Markdown.
         site_title: Como as pessoas podem se referir ao seu servidor além do nome do domínio.
+        status_page_url: URL de uma página onde as pessoas podem ver o status deste servidor durante uma interrupção
         theme: Tema que visitantes e novos usuários veem.
         thumbnail: Uma imagem de aproximadamente 2:1 exibida ao lado da informação de sua instância.
         timeline_preview: Visitantes conseguirão navegar pelas postagens públicas mais recentes disponíveis na instância.
         trendable_by_default: Pular a revisão manual do conteúdo em tendência. Itens individuais ainda poderão ser removidos das tendências após a sua exibição.
         trends: Tendências mostram quais publicações, hashtags e notícias estão ganhando destaque na sua instância.
+        trends_as_landing_page: Mostrar conteúdo de tendências para usuários deslogados e visitantes em vez de uma descrição deste servidor. Requer que as tendências sejam ativadas.
       form_challenge:
         current_password: Você está entrando em uma área segura
       imports:
-        data: Arquivo CSV exportado de outro servidor Mastodon
+        data: Arquivo CSV exportado de outro servidor TomX
       invite_request:
         text: Isso vai nos ajudar a revisar sua aplicação
       ip_block:
@@ -124,6 +134,7 @@ pt-BR:
         position: Um cargo superior decide a resolução de conflitos em certas situações. Certas ações só podem ser executadas com cargos de menor prioridade
       webhook:
         events: Selecione eventos para enviar
+        template: Elabore seu próprio conteúdo JSON usando interpolação de variáveis. Deixe em branco para utilizar o JSON padrão.
         url: Aonde os eventos serão enviados
     labels:
       account:
@@ -189,7 +200,6 @@ pt-BR:
         setting_always_send_emails: Sempre enviar notificações por e-mail
         setting_auto_play_gif: Reproduzir GIFs automaticamente
         setting_boost_modal: Solicitar confirmação antes de dar boost
-        setting_crop_images: Cortar imagens no formato 16x9 em publicações não expandidas
         setting_default_language: Idioma dos toots
         setting_default_privacy: Privacidade dos toots
         setting_default_sensitive: Sempre marcar mídia como sensível
@@ -226,6 +236,7 @@ pt-BR:
           hide: Ocultar completamente
           warn: Ocultar com um aviso
       form_admin_settings:
+        activity_api_enabled: Publicar estatísticas agregadas sobre atividade de usuários na API
         backups_retention_period: Período de retenção do arquivo de usuário
         bootstrap_timeline_accounts: Sempre recomendar essas contas para novos usuários
         closed_registrations_message: Mensagem personalizada quando inscrições não estão disponíveis
@@ -233,6 +244,7 @@ pt-BR:
         custom_css: CSS personalizável
         mascot: Mascote personalizado (legado)
         media_cache_retention_period: Período de retenção do cachê de mídia
+        peers_api_enabled: Publicar lista de instâncias de servidor descobertas na API
         profile_directory: Ativar diretório de perfis
         registrations_mode: Quem pode se inscrever
         require_invite_text: Exigir uma razão para entrar
@@ -244,11 +256,13 @@ pt-BR:
         site_short_description: Descrição do servidor
         site_terms: Política de privacidade
         site_title: Nome do servidor
+        status_page_url: Endereço da página de status
         theme: Tema padrão
         thumbnail: Miniatura do servidor
         timeline_preview: Permitir acesso não autenticado às linhas do tempo públicas
         trendable_by_default: Permitir tendências sem revisão prévia
         trends: Habilitar tendências
+        trends_as_landing_page: Usar tendências como página inicial
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de não-seguidos
@@ -285,6 +299,7 @@ pt-BR:
         usable: Permitir que toots usem esta hashtag
       user:
         role: Cargo
+        time_zone: Fuso horário
       user_role:
         color: Cor do emblema
         highlighted: Exibir cargo como distintivo nos perfis de usuários
@@ -293,6 +308,7 @@ pt-BR:
         position: Prioridade
       webhook:
         events: Eventos habilitados
+        template: Conteúdo JSON
         url: URL do Endpoint
     'no': Não
     not_recommended: Não recomendado

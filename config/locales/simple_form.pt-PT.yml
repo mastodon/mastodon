@@ -2,6 +2,10 @@
 pt-PT:
   simple_form:
     hints:
+      account:
+        display_name: O seu nome completo ou o seu nome divertido.
+        fields: A sua página inicial, os seus pronomes, idade e tudo o que quiser.
+        note: 'Pode @mencionar outras pessoas ou #hashtags.'
       account_alias:
         acct: Especifique o utilizador@domínio da conta de onde você deseja migrar
       account_migration:
@@ -39,7 +43,6 @@ pt-PT:
         digest: Enviado após um longo período de inatividade e apenas se foste mencionado na tua ausência
         discoverable: Permitir que a sua conta seja descoberta por outros através de recomendações, destaques e outras funções
         email: Será enviado um e-mail de confirmação
-        fields: Pode ter até 4 elementos expostos, em forma de tabela, no seu perfil
         header: PNG, GIF ou JPG. Ficheiros no máximo de %{size}. Serão reduzidos para %{dimensions}px
         inbox_url: Copie o URL da página inicial do repetidor que quer usar
         irreversible: Publicações filtradas irão desaparecer irremediavelmente, mesmo que o filtro seja removido posteriormente
@@ -49,7 +52,7 @@ pt-PT:
         phrase: Será correspondido independentemente da capitalização ou do aviso de conteúdo duma publicação
         scopes: Quais as API a que será concedido acesso. Se escolher uma abrangência de nível superior, não precisará de as seleccionar individualmente.
         setting_aggregate_reblogs: Não mostrar novos reforços de publicações recentemente reforçadas (só afecta publicações acabadas de reforçar)
-        setting_always_send_emails: Normalmente as notificações por e-mail não serão enviadas quando estiver a utilizar ativamente o Mastodon
+        setting_always_send_emails: Normalmente as notificações por e-mail não serão enviadas quando estiver a utilizar ativamente o TomX
         setting_default_sensitive: Media problemática oculta por padrão, pode ser revelada com um clique
         setting_display_media_default: Esconder media marcada como problemática
         setting_display_media_hide_all: Esconder sempre toda a media
@@ -59,7 +62,7 @@ pt-PT:
         setting_show_application: A aplicação que usa para publicar será mostrada na vista pormenorizada das suas publicações
         setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer pormenores
         setting_use_pending_items: Ocultar atualizações da cronologia por detrás dum clique, em vez de rolar automaticamente o fluxo
-        username: O teu nome de utilizador será único em %{domain}
+        username: Pode utilizar letras, números e sublinhados
         whole_word: Quando a palavra-chave ou expressão-chave é somente alfanumérica, ela só será aplicada se corresponder à palavra completa
       domain_allow:
         domain: Este domínio será capaz de obter dados desta instância e os dados dele recebidos serão processados e armazenados
@@ -79,27 +82,29 @@ pt-PT:
         bootstrap_timeline_accounts: Estas contas serão destacadas no topo das recomendações aos novos utilizadores.
         closed_registrations_message: Apresentado quando as inscrições estiverem encerradas
         content_cache_retention_period: Publicações de outros servidores serão apagadas decorrido o número de dias especificado, se estiver definido um valor positivo. Isso pode ser irreversível.
-        custom_css: Pode aplicar estilos personalizados na versão web do Mastodon.
+        custom_css: Pode aplicar estilos personalizados na versão web do TomX.
         mascot: Sobrepõe-se à ilustração na interface web avançada.
         media_cache_retention_period: Os ficheiros de media descarregados serão apagados decorrido o número de dias especificado, quando definido com um valor positivo, e descarregados novamente quando solicitados.
         peers_api_enabled: Uma lista de nomes de domínio que este servidor encontrou no fediverso. Nenhum dado é incluído aqui sobre se você federa com um determinado servidor, apenas que o seu servidor o conhece. Este serviço é utilizado por serviços que recolhem estatísticas na federação, em termos gerais.
         profile_directory: O diretório de perfis lista todos os utilizadores que optaram por ter a sua conta a ser sugerida a outros.
         require_invite_text: Quando as incrições exigirem aprovação manual, faça o texto "Por que se quer juntar a nós?" da solicitação de convite ser obrigatório, em vez de opcional
         site_contact_email: Como as pessoas podem entrar em contacto consigo para obter informações legais ou de apoio técnico.
-        site_contact_username: Como as pessoas conseguem chegar até si no Mastodon.
+        site_contact_username: Como as pessoas conseguem chegar até si no TomX.
         site_extended_description: Qualquer informação adicional que possa ser útil para os visitantes e os seus utilizadores. Pode ser estruturada com a sintaxe Markdown.
         site_short_description: Uma breve descrição para ajudar a identificar de forma única o seu servidor. Quem o está a gerir, e a quem se destina?
         site_terms: Use a sua própria política de privacidade ou deixe em branco para usar a política padrão. Pode ser estruturada com a sintaxe Markdown.
         site_title: Como as pessoas podem referir-se ao seu servidor para além do seu nome de domínio.
+        status_page_url: URL de uma página onde as pessoas podem ver o estado deste servidor durante uma interrupção
         theme: Tema que os visitantes e os novos utilizadores veem.
         thumbnail: Uma imagem de cerca de 2:1, apresentada ao lado da informação do seu servidor.
         timeline_preview: Os visitantes sem sessão iniciada poderão consultar as publicações públicas mais recentes disponíveis no servidor.
         trendable_by_default: Ignorar a revisão manual do conteúdo em alta. Elementos em avulso poderão ainda assim ser retirados das tendências mesmo após a sua apresentação.
         trends: As publicações em alta mostram quais as publicações, etiquetas e notícias que estão a ganhar destaque no seu servidor.
+        trends_as_landing_page: Mostrar conteúdo de tendências para usuários logados e visitantes em vez de uma descrição deste servidor. Requer que as tendências sejam ativadas.
       form_challenge:
         current_password: Está a entrar numa área segura
       imports:
-        data: Ficheiro CSV exportado doutra instância do Mastodon
+        data: Ficheiro CSV exportado doutra instância do TomX
       invite_request:
         text: Isto vai ajudar-nos a analisar o seu pedido
       ip_block:
@@ -129,6 +134,7 @@ pt-PT:
         position: Cargos mais altos decidem a resolução de conflitos em certas situações. Certas ações só podem ser executadas em cargos com uma menor prioridade
       webhook:
         events: Selecione os eventos a enviar
+        template: Componha o seu próprio conteúdo JSON utilizando a interpolação de variáveis. Deixar em branco para o JSON predefinido.
         url: Para onde os eventos serão enviados
     labels:
       account:
@@ -194,7 +200,6 @@ pt-PT:
         setting_always_send_emails: Enviar sempre notificações de email
         setting_auto_play_gif: Reproduzir GIF automaticamente
         setting_boost_modal: Solicitar confirmação antes de partilhar uma publicação
-        setting_crop_images: Recortar imagens para o formato 16x9 nas publicações não expandidas
         setting_default_language: Língua de publicação
         setting_default_privacy: Privacidade da publicação
         setting_default_sensitive: Marcar sempre os media como problemáticos
@@ -251,11 +256,13 @@ pt-PT:
         site_short_description: Descrição do servidor
         site_terms: Política de privacidade
         site_title: Nome do servidor
+        status_page_url: URL da página de estado
         theme: Tema predefinido
         thumbnail: Miniatura do servidor
         timeline_preview: Permitir acesso não autenticado às cronologias públicas
         trendable_by_default: Permitir publicações em alta sem revisão prévia
         trends: Activar publicações em alta
+        trends_as_landing_page: Usar tendências como página inicial
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que não segues
@@ -292,6 +299,7 @@ pt-PT:
         usable: Permitir que as publicações usem esta etiqueta
       user:
         role: Cargo
+        time_zone: Fuso horário
       user_role:
         color: Cor do emblema
         highlighted: Apresentar o cargo como emblema nos perfis de utilizador
@@ -300,6 +308,7 @@ pt-PT:
         position: Prioridade
       webhook:
         events: Eventos ativados
+        template: Modelo de conteúdo
         url: URL do Endpoint
     'no': Não
     not_recommended: Não recomendado

@@ -53,3 +53,7 @@ en-GB:
             position:
               elevated: cannot be higher than your current role
               own_role: cannot be changed with your current role
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: cannot include events you don't have the rights to

@@ -20,20 +20,20 @@
                                 %tbody
                                   %tr
                                     %td{ align: 'left', width: 48 }
-                                      = image_tag full_asset_url(status.account.avatar.url), alt:''
+                                      = image_tag full_asset_url(status.account.avatar.url), alt: ''
                                     %td{ align: 'left' }
                                       %bdi= display_name(status.account)
                                       = "@#{status.account.pretty_acct}"
 
                               - if status.spoiler_text?
-                                %div.auto-dir
+                                .auto-dir
                                   %p
                                     = status.spoiler_text
 
-                              %div.auto-dir
+                              .auto-dir
                                 = status_content_format(status)
 
-                                - if status.ordered_media_attachments.size > 0
+                                - if status.ordered_media_attachments.size.positive?
                                   %p
                                     - status.ordered_media_attachments.each do |a|
                                       - if status.local?
@@ -42,4 +42,4 @@
                                         = link_to a.remote_url, a.remote_url
 
                               %p.status-footer
-                                = link_to l(status.created_at), web_url("@#{status.account.pretty_acct}/#{status.id}")
+                                = link_to l(status.created_at.in_time_zone(time_zone.presence)), web_url("@#{status.account.pretty_acct}/#{status.id}")

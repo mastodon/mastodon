@@ -1,10 +1,10 @@
 ---
 an:
   about:
-    about_mastodon_html: 'Lo ret social d''o futuro: Sin anuncios, sin vichilancia corporativa, disenyo etico, y descentralización! Sé duenyo d''a tuya información con Mastodon!'
+    about_mastodon_html: 'Lo ret social d''o futuro: Sin anuncios, sin vichilancia corporativa, disenyo etico, y descentralización! Sé duenyo d''a tuya información con TomX!'
     contact_missing: No especificau
     contact_unavailable: No disponible
-    hosted_on: Mastodon alochau en %{domain}
+    hosted_on: TomX alochau en %{domain}
     title: Sobre
   accounts:
     follow: Seguir
@@ -124,8 +124,6 @@ an:
       removed_header_msg: S'ha eliminau con exito la imachen de capitero de %{username}
       resend_confirmation:
         already_confirmed: Este usuario ya ye confirmau
-        send: Reninviar lo correu electronico de confirmación
-        success: Correu electronico de confirmación ninviau con exito!
       reset: Reiniciar
       reset_password: Reiniciar clau
       resubscribe: Re-suscribir
@@ -635,7 +633,7 @@ an:
         moderation: Moderación
         special: Especial
       delete: Eliminar
-      description_html: Con <strong>rols d'usuario</strong>, puede personalizar las funcions y arias de Mastodon a las qualas pueden acceder los suyos usuarios.
+      description_html: Con <strong>rols d'usuario</strong>, puede personalizar las funcions y arias de TomX a las qualas pueden acceder los suyos usuarios.
       edit: Editar rol '%{name}'
       everyone: Permisos per defecto
       everyone_full_description_html: Este ye lo <strong>rol base</strong> que afecta a <strong>totz los usuarios</strong>, mesmo aquells sin un rol asignau. Totz los atros rols heredan permisos d'ell.
@@ -698,20 +696,20 @@ an:
         rules_hint: I hai una aria dedicada pa las reglas a las qualas s'aspera que los tuyos usuarios se adhieran.
         title: Sobre
       appearance:
-        preamble: Personalizar la interficie web de Mastodon.
+        preamble: Personalizar la interficie web de TomX.
         title: Apariencia
       branding:
-        preamble: La marca d'o tuyo servidor lo diferencia d'atros servidors d'o ret. Esta información puede amostrar-se a traviés d'una variedat d'entornos, como en a interficie web de Mastodon, en aplicacions nativas, en previsualizacions de vinclos en atros puestos web y en aplicacions de mensachería, etc. Per esta razón, ye millor mantener esta información clara, breu y concisa.
+        preamble: La marca d'o tuyo servidor lo diferencia d'atros servidors d'o ret. Esta información puede amostrar-se a traviés d'una variedat d'entornos, como en a interficie web de TomX, en aplicacions nativas, en previsualizacions de vinclos en atros puestos web y en aplicacions de mensachería, etc. Per esta razón, ye millor mantener esta información clara, breu y concisa.
         title: Marca
       content_retention:
-        preamble: Controlar cómo lo conteniu chenerau per l'usuario s'almagazena en Mastodon.
+        preamble: Controlar cómo lo conteniu chenerau per l'usuario s'almagazena en TomX.
         title: Retención de conteniu
       default_noindex:
         desc_html: Afecta a totz los usuarios que no han cambiau esta configuración per ells mesmos
         title: Excluyir per defecto los usuarios d'a indexación d'os motors de busqueda
       discovery:
         follow_recommendations: Recomendacions de cuentas
-        preamble: Exposar conteniu interesant a la superficie ye fundamental pa incorporar nuevos usuarios que pueden no conoixer a dengún Mastodon. Controla cómo funcionan quantas opcions d'escubrimiento en o tuyo servidor.
+        preamble: Exposar conteniu interesant a la superficie ye fundamental pa incorporar nuevos usuarios que pueden no conoixer a dengún TomX. Controla cómo funcionan quantas opcions d'escubrimiento en o tuyo servidor.
         profile_directory: Directorio de perfils
         public_timelines: Linias de tiempo publicas
         publish_discovered_servers: Publicar los servidors descubiertos
@@ -730,7 +728,6 @@ an:
           approved: Se requiere aprebación pa rechistrar-se
           none: Dengún puede rechistrar-se
           open: Qualsequiera puede rechistrar-se
-      title: Achustes d'o Servidor
     site_uploads:
       delete: Eliminar fichero puyau
       destroyed_msg: Carga d'o puesto eliminada con exito!
@@ -859,7 +856,7 @@ an:
     webhooks:
       add_new: Anyadir endpoint
       delete: Eliminar
-      description_html: Un <strong>webhook</strong> permite a Mastodon ninviar <strong>notificacions en tiempo real</strong> sobre los eventos triaus a la tuya propia aplicación, pa que la tuya aplicación pueda <strong>lanzar reaccions automaticament</strong>.
+      description_html: Un <strong>webhook</strong> permite a TomX ninviar <strong>notificacions en tiempo real</strong> sobre los eventos triaus a la tuya propia aplicación, pa que la tuya aplicación pueda <strong>lanzar reaccions automaticament</strong>.
       disable: Deshabilitar
       disabled: Deshabilitau
       edit: Editar endpoint
@@ -921,11 +918,10 @@ an:
     confirmation_dialogs: Dialogos de confirmación
     discovery: Descubrir
     localization:
-      body: Mastodon ye traduciu con la aduya de voluntarios.
+      body: TomX ye traduciu con la aduya de voluntarios.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Totz pueden contribuyir.
     sensitive_content: Conteniu sensible
-    toot_layout: Disenyo d'as publicacions
   application_mailer:
     notification_preferences: Cambiar preferencias de correu electronico
     salutation: "%{name}:"
@@ -942,14 +938,12 @@ an:
     your_token: Lo tuyo token d'acceso
   auth:
     apply_for_account: Solicitar una cuenta
-    change_password: Clau
     delete_account: Borrar cuenta
     delete_account_html: Si deseya eliminar la suya cuenta, puede <a href="%{path}">proceder aquí</a>. Será pediu d'una confirmación.
     description:
-      prefix_invited_by_user: "@%{name} te convida a unir-te a este servidor de Mastodon!"
-      prefix_sign_up: Une-te a Mastodon hue!
-      suffix: Con una cuenta podrás seguir a chent, publicar novedatz y intercambiar mensaches con usuarios de qualsequier servidor de Mastodon y mas!
-    didnt_get_confirmation: No recibió lo correu de confirmación?
+      prefix_invited_by_user: "@%{name} te convida a unir-te a este servidor de TomX!"
+      prefix_sign_up: Une-te a TomX hue!
+      suffix: Con una cuenta podrás seguir a chent, publicar novedatz y intercambiar mensaches con usuarios de qualsequier servidor de TomX y mas!
     dont_have_your_security_key: No tiens la tuya clau de seguranza?
     forgot_password: Ixuplidés la tuya clau?
     invalid_reset_password_token: Lo token de reinicio de clau ye invalido u expiró. Per favor pide un nuevo.
@@ -967,23 +961,18 @@ an:
       saml: SAML
     register: Rechistrar-se
     registration_closed: "%{instance} no ye acceptando nuevos miembros"
-    resend_confirmation: Tornar a ninviar lo correu de confirmación
     reset_password: Restablir clau
     rules:
       preamble: Estas son establidas y aplicadas per los moderadors de %{domain}.
       title: Qualques reglas basicas.
     security: Cambiar clau
     set_new_password: Establir nueva clau
-    setup:
-      email_below_hint_html: Si l'adreza de correu electronico que amaneixe contino ye incorrecta, se puede cambiar-la aquí y recibir un nuevo correu electronico de confirmación.
-      email_settings_hint_html: Lo correu electronico de confirmación estió ninviau a %{email}. Si ixa adreza de correu electronico no sía correcta, se puede cambiar-la en a configuración d'a cuenta.
-      title: Configuración
     sign_in:
       preamble_html: Inicia sesión con as tuys credencials <strong>%{domain}</strong>. Si la tuya cuenta se troba en un servidor diferent, no podrás iniciar aquí una sesión.
       title: Iniciar sesión en %{domain}
     sign_up:
-      preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a qualsequier atra persona en o ret, independientment d'o servidor en o qual se trobe.
-      title: Creyar cuenta de Mastodon en %{domain}.
+      preamble: Con una cuenta en este servidor de TomX, podrás seguir a qualsequier atra persona en o ret, independientment d'o servidor en o qual se trobe.
+      title: Creyar cuenta de TomX en %{domain}.
     status:
       account_status: Estau d'a cuenta
       confirming: Asperando confirmación de correu electronico.
@@ -993,18 +982,6 @@ an:
       view_strikes: Veyer amonestacions pasadas contra la tuya cuenta
     too_fast: Formulario ninviau masiau rapido, lo intente de nuevo.
     use_security_key: Usar la clau de seguranza
-  authorize_follow:
-    already_following: Ya yes seguindo a esta cuenta
-    already_requested: Ya has ninviau una solicitut de seguimiento a ixa cuenta
-    error: Desafortunadament, ha ocurriu una error buscando la cuenta remota
-    follow: Seguir
-    follow_request: 'Tiens una solicitut de seguimiento de:'
-    following: 'Exito! Agora yes seguindo a:'
-    post_follow:
-      close: U, puetz simplament zarrar esta finestra.
-      return: Tornar ta lo perfil de l'usuario
-      web: Ir ta lo puesto web
-    title: Seguir a %{acct}
   challenge:
     confirm: Continar
     hint_html: "<strong>Tip:</strong> No tornaremos a preguntar-te per la clau entre la siguient hora."
@@ -1095,7 +1072,7 @@ an:
       content: Lo sentimos, bella cosa ha funcionau malament per la nuestra parte.
       title: Esta pachina no ye correcta
     '503': La pachina no s'ha puesto cargar a causa d'un fallo temporal d'o servidor.
-    noscript_html: Pa usar l'aplicación web de Mastodon, per favor activa Javascript. Alternativament, preba bella d'as <a href="%{apps_path}">aplicacions nativas</a> pa Mastodon pa la tuya plataforma.
+    noscript_html: Pa usar l'aplicación web de TomX, per favor activa Javascript. Alternativament, preba bella d'as <a href="%{apps_path}">aplicacions nativas</a> pa TomX pa la tuya plataforma.
   existing_username_validator:
     not_found: no podió trobar un usuario local con ixe nombre d'usuario
     not_found_multiple: no podió trobar %{usernames}
@@ -1116,8 +1093,6 @@ an:
     storage: Almagazenamiento
   featured_tags:
     add_new: Anyadir nuevo
-    errors:
-      limit: Ya has aconseguiu la cantidat maxima de hashtags
     hint_html: "<strong>Qué son las etiquetas destacadas?</strong> S'amuestran de forma prominent en o tuyo perfil publico y permiten a los usuarios navegar per las tuyas publicacions publicas especificament baixo ixas etiquetas. Son una gran ferramienta pa fer un seguimiento de treballos creativos u prochectos a largo plazo."
   filters:
     contexts:
@@ -1161,8 +1136,6 @@ an:
       index:
         hint: Este filtro s'aplica a la selección de publicacions individuals independientment d'atros criterios. Puede anyadir mas publicacions a este filtro dende la interficie web.
         title: Publicacions filtradas
-  footer:
-    trending_now: Tendencia agora
   generic:
     all: Totz
     all_items_on_page_selected_html:
@@ -1185,8 +1158,6 @@ an:
     validation_errors:
       one: Bella cosa no ye bien! Per favor, revisa la error
       other: Bella cosa no ye bien! Per favor, revise %{count} errors mas abaixo
-  html_validator:
-    invalid_markup: 'contiene codigo HTML no valido: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Fichero CSV no valido. Error: %{error}'
@@ -1227,9 +1198,6 @@ an:
       expires_at: Expira
       uses: Usos
     title: Convidar a chent
-  lists:
-    errors:
-      limit: Has aconseguiu la cantidat maxima de listas
   login_activities:
     authentication_methods:
       otp: aplicación d'autenticación en dos pasos
@@ -1425,7 +1393,7 @@ an:
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
-    explanation: Estes son los navegadors web connectaus actualment en a tuya cuenta de Mastodon.
+    explanation: Estes son los navegadors web connectaus actualment en a tuya cuenta de TomX.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1436,7 +1404,6 @@ an:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: plataforma desconoixida
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1507,7 +1474,6 @@ an:
     show_newer: Amostrar mas recients
     show_older: Amostrar mas antigos
     show_thread: Amostrar discusión
-    sign_in_to_participate: Rechistra-te pa participar en a conversación
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Directa
@@ -1549,12 +1515,9 @@ an:
       '7889238': 3 meses
     min_age_label: Branquil de tiempo
     min_favs: Mantener mensaches con un numero de favoritos mayor que
-    min_favs_hint: No borra garra d'as publicacions que haigan recibiu mas d'esta cantidat de favoritos. Deixa en blanco pa eliminar publicacions sin importar lo numero de favoritos
     min_reblogs: Mantener publicacions reblogueadas mas de
     min_reblogs_hint: No borra garra d'as publicacions que haigan estau reblogueadas mas d'este numero de vegadas. Deixa en blanco pa eliminar publicacions sin importar lo numero de reblogueos
   stream_entries:
-    pinned: Publicación fixada
-    reblogged: retutau
     sensitive_content: Conteniu sensible
   strikes:
     errors:
@@ -1562,9 +1525,9 @@ an:
   tags:
     does_not_match_previous_name: no coincide con o nombre anterior
   themes:
-    contrast: Mastodon (Alto contraste)
-    default: Mastodon (Fosco)
-    mastodon-light: Mastodon (claro)
+    contrast: TomX (Alto contraste)
+    default: TomX (Fosco)
+    mastodon-light: TomX (claro)
   time:
     formats:
       default: "%d de %b de %Y, %H:%M"
@@ -1596,7 +1559,7 @@ an:
       subject: La tuya apelación d'o %{date} ha estau refusada
       title: Apelación refusada
     backup_ready:
-      explanation: Has solicitau una copia completa d'a tuya cuenta de Mastodon. Ya ye preparada pa descargar!
+      explanation: Has solicitau una copia completa d'a tuya cuenta de TomX. Ya ye preparada pa descargar!
       subject: Lo tuyo fichero ye preparau pa descargar
       title: Descargar fichero
     suspicious_sign_in:
@@ -1645,7 +1608,7 @@ an:
       final_step: 'Empecipia a publicar! Mesmo sin seguidores, las tuyas publicacions publicas pueden estar vistas per atros, per eixemplo en a linia de tiempo local u en etiquetas. Tal vegada quieras presentar-te con a etiqueta de #presentacions.'
       full_handle: Lo suyo sobrenombre completo
       full_handle_hint: Esto ye lo que le dirías a los tuyos amigos pa que ells puedan ninviar-te mensaches u seguir-te dende unatra instancia.
-      subject: Bienveniu a Mastodon
+      subject: Bienveniu a TomX
       title: Te damos la bienvenida a bordo, %{name}!
   users:
     follow_limit_reached: No puetz seguir a mas de %{limit} personas
@@ -1654,7 +1617,6 @@ an:
     seamless_external_login: Has iniciau sesión dende un servicio externo, asinas que los achustes de clau y correu no son disponibles.
     signed_in_as: 'Sesión iniciada como:'
   verification:
-    explanation_html: 'Puetz <strong> verificar-te a tu mesmo como lo duenyo d''os links en os metadatos d''o tuyo perfil </strong>. Pa ixo, lo puesto vinculau ha de contener un vinclo a lo tuyo perfil de Mastodon. Lo vinclo en o tuyo puesto <strong> debe </strong> tener un atributo <code> rel="me"</code>. Lo texto d''o vinclo no importa. Aquí un eixemplo:'
     verification: Verificación
   webauthn_credentials:
     add: Adhibir nueva clau de seguranza
