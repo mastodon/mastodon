@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Api::V1::MediaController do
+RSpec.describe Api::V1::MediaController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user) }
@@ -15,25 +13,29 @@ RSpec.describe Api::V1::MediaController do
   describe 'POST #create' do
     describe 'with paperclip errors' do
       context 'when imagemagick cant identify the file type' do
-        it 'returns http 422' do
-          allow_any_instance_of(Account).to receive_message_chain(:media_attachments, :create!).and_raise(Paperclip::Errors::NotIdentifiedByImageMagickError)
+        before do
+          expect_any_instance_of(Account).to receive_message_chain(:media_attachments, :create!).and_raise(Paperclip::Errors::NotIdentifiedByImageMagickError)
           post :create, params: { file: fixture_file_upload('attachment.jpg', 'image/jpeg') }
+        end
 
-          expect(response).to have_http_status(422)
+        it 'returns http 422' do
+          expect(response).to have_http_status(:unprocessable_entity)
         end
       end
 
       context 'when there is a generic error' do
-        it 'returns http 422' do
-          allow_any_instance_of(Account).to receive_message_chain(:media_attachments, :create!).and_raise(Paperclip::Error)
+        before do
+          expect_any_instance_of(Account).to receive_message_chain(:media_attachments, :create!).and_raise(Paperclip::Error)
           post :create, params: { file: fixture_file_upload('attachment.jpg', 'image/jpeg') }
+        end
 
+        it 'returns http 422' do
           expect(response).to have_http_status(500)
         end
       end
     end
 
-    context 'with image/jpeg' do
+    context 'image/jpeg' do
       before do
         post :create, params: { file: fixture_file_upload('attachment.jpg', 'image/jpeg') }
       end
@@ -55,7 +57,7 @@ RSpec.describe Api::V1::MediaController do
       end
     end
 
-    context 'with image/gif' do
+    context 'image/gif' do
       before do
         post :create, params: { file: fixture_file_upload('attachment.gif', 'image/gif') }
       end
@@ -77,7 +79,7 @@ RSpec.describe Api::V1::MediaController do
       end
     end
 
-    context 'with video/webm' do
+    context 'video/webm' do
       before do
         post :create, params: { file: fixture_file_upload('attachment.webm', 'video/webm') }
       end
@@ -104,7 +106,7 @@ RSpec.describe Api::V1::MediaController do
 
       it 'returns http not found' do
         put :update, params: { id: media.id, description: 'Lorem ipsum!!!' }
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(:not_found)
       end
     end
 
@@ -124,7 +126,7 @@ RSpec.describe Api::V1::MediaController do
         let(:status) { Fabricate(:status, account: user.account) }
 
         it 'returns http not found' do
-          expect(response).to have_http_status(404)
+          expect(response).to have_http_status(:not_found)
         end
       end
     end

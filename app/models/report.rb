@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: reports
@@ -21,7 +20,7 @@
 #
 
 class Report < ApplicationRecord
-  self.ignored_columns += %w(action_taken)
+  self.ignored_columns = %w(action_taken)
 
   include Paginable
   include RateLimitable
@@ -33,33 +32,31 @@ class Report < ApplicationRecord
   belongs_to :action_taken_by_account, class_name: 'Account', optional: true
   belongs_to :assigned_account, class_name: 'Account', optional: true
 
-  has_many :notes, class_name: 'ReportNote', inverse_of: :report, dependent: :destroy
+  has_many :notes, class_name: 'ReportNote', foreign_key: :report_id, inverse_of: :report, dependent: :destroy
   has_many :notifications, as: :activity, dependent: :destroy
 
   scope :unresolved, -> { where(action_taken_at: nil) }
   scope :resolved,   -> { where.not(action_taken_at: nil) }
   scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with({ user: [:invite_request, :invite] })) }
 
-  # A report is considered local if the reporter is local
-  delegate :local?, to: :account
-
-  validates :comment, length: { maximum: 1_000 }, if: :local?
+  validates :comment, length: { maximum: 1_000 }
   validates :rule_ids, absence: true, unless: :violation?
 
   validate :validate_rule_ids
 
-  # entries here needs to be kept in sync with app/javascript/mastodon/features/notifications/components/report.jsx
   enum category: {
     other: 0,
     spam: 1_000,
-    legal: 1_500,
     violation: 2_000,
   }
 
+  def local?
+    false # Force uri_for to use uri attribute
+  end
+
   before_validation :set_uri, only: :create
 
-  after_create_commit :trigger_create_webhooks
-  after_update_commit :trigger_update_webhooks
+  after_create_commit :trigger_webhooks
 
   def object_type
     :flag
@@ -156,11 +153,7 @@ class Report < ApplicationRecord
     errors.add(:rule_ids, I18n.t('reports.errors.invalid_rules')) unless rules.size == rule_ids&.size
   end
 
-  def trigger_create_webhooks
+  def trigger_webhooks
     TriggerWebhookWorker.perform_async('report.created', 'Report', id)
-  end
-
-  def trigger_update_webhooks
-    TriggerWebhookWorker.perform_async('report.updated', 'Report', id)
   end
 end

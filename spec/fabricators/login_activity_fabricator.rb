@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 Fabricator(:login_activity) do
-  user { Fabricate.build(:user) }
+  user
   authentication_method 'password'
   success               true
   failure_reason        nil

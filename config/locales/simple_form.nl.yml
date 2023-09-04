@@ -2,10 +2,6 @@
 nl:
   simple_form:
     hints:
-      account:
-        display_name: Jouw volledige naam of een leuke bijnaam.
-        fields: Jouw website, persoonlijke voornaamwoorden, leeftijd, alles wat je maar kwijt wilt.
-        note: 'Je kunt andere mensen @vermelden of #hashtags gebruiken.'
       account_alias:
         acct: Vermeld de gebruikersnaam@domein van het account vanwaar je wilt verhuizen
       account_migration:
@@ -22,8 +18,6 @@ nl:
           disable: Voorkom dat de gebruiker diens account gebruikt, maar verwijder of verberg de inhoud niet.
           none: Gebruik dit om een waarschuwing naar de gebruiker te sturen, zonder dat nog een andere maatregel wordt genomen.
           sensitive: Forceer dat alle mediabijlagen van deze gebruiker als gevoelig worden gemarkeerd.
-          silence: Voorkom dat de gebruiker berichten kan plaatsen met openbare zichtbaarheid, verberg diens berichten en meldingen van mensen die de gebruiker niet volgen. Sluit alle rapportages tegen dit account af.
-          suspend: Voorkom interactie van of naar dit account en verwijder de inhoud. Dit is omkeerbaar binnen 30 dagen. Dit sluit alle rapporten tegen dit account af.
         warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
       announcement:
         all_day: Wanneer dit is aangevinkt worden alleen de datums binnen het tijdvak getoond
@@ -36,13 +30,14 @@ nl:
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
-        bot: Signaal aan anderen dat het account voornamelijk geautomatiseerde acties uitvoert en mogelijk niet wordt gecontroleerd
+        bot: Signaal naar andere gebruikers toe dat dit account hoofdzakelijk geautomatiseerde berichten stuurt en mogelijk niet wordt gemonitord
         context: Een of meerdere locaties waar de filter actief moet zijn
         current_password: Voer voor veiligheidsredenen het wachtwoord van je huidige account in
         current_username: Voer ter bevestiging de gebruikersnaam van je huidige account in
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
         discoverable: Toestaan dat jouw account vindbaar is voor onbekenden, via aanbevelingen, trends en op andere manieren
         email: Je krijgt een bevestigingsmail
+        fields: Je kunt maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
         inbox_url: Kopieer de URL van de voorpagina van de relayserver die je wil gebruiken
         irreversible: Gefilterde berichten verdwijnen onomkeerbaar, zelfs als de filter later wordt verwijderd
@@ -52,7 +47,7 @@ nl:
         phrase: Komt overeen ongeacht hoofd-/kleine letters of een inhoudswaarschuwing
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor berichten die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
-        setting_always_send_emails: Normaliter worden er geen e-mailmeldingen verstuurd wanneer je actief TomX gebruikt
+        setting_always_send_emails: Normaliter worden er geen e-mailmeldingen verstuurd wanneer je actief Mastodon gebruikt
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
@@ -62,7 +57,7 @@ nl:
         setting_show_application: De toepassing de je gebruikt om berichten te plaatsen wordt in de gedetailleerde weergave van het bericht getoond
         setting_use_blurhash: Wazige kleurovergangen zijn gebaseerd op de kleuren van de verborgen media, waarmee elk detail verdwijnt
         setting_use_pending_items: De tijdlijn wordt bijgewerkt door op het aantal nieuwe items te klikken, in plaats van dat deze automatisch wordt bijgewerkt
-        username: Je kunt letters, cijfers en underscores gebruiken
+        username: Jouw gebruikersnaam is uniek op %{domain}
         whole_word: Wanneer het trefwoord of zinsdeel alfanumeriek is, wordt het alleen gefilterd wanneer het hele woord overeenkomt
       domain_allow:
         domain: Dit domein is in staat om gegevens van deze server op te halen, en binnenkomende gegevens worden verwerkt en opgeslagen
@@ -77,34 +72,30 @@ nl:
           hide: Verberg de gefilterde inhoud volledig, alsof het niet bestaat
           warn: Verberg de gefilterde inhoud achter een waarschuwing, met de titel van het filter als waarschuwingstekst
       form_admin_settings:
-        activity_api_enabled: Aantallen lokaal gepubliceerde berichten, actieve gebruikers en nieuwe registraties per week
         backups_retention_period: De aangemaakte gebruikersarchieven voor het opgegeven aantal dagen behouden.
         bootstrap_timeline_accounts: Deze accounts worden bovenaan de aanbevelingen aan nieuwe gebruikers getoond. Meerdere gebruikersnamen met komma's scheiden.
         closed_registrations_message: Weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld
-        content_cache_retention_period: Alle berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Deze berichten kunnen daarna hoogstwaarschijnlijk niet meer worden hersteld. Alle gerelateerde bladwijzers, favorieten en boosts worden eveneens onomkeerbaar verwijderd.
-        custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze TomX-server.
+        content_cache_retention_period: 'Berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Let op: Dit is onomkeerbaar.'
+        custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
         media_cache_retention_period: Mediabestanden die van andere servers zijn gedownload worden na het opgegeven aantal dagen verwijderd en worden op verzoek opnieuw gedownload.
-        peers_api_enabled: Een lijst met domeinnamen die deze server heeft aangetroffen in de fediverse. Er zijn hier geen gegevens inbegrepen over de vraag of je verbonden bent met een bepaalde server, alleen dat je server er van weet. Dit wordt gebruikt door diensten die statistieken over de federatie in algemene zin verzamelen.
         profile_directory: De gebruikersgids bevat een lijst van alle gebruikers die ervoor gekozen hebben om ontdekt te kunnen worden.
         require_invite_text: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
         site_contact_email: Hoe mensen je kunnen bereiken voor juridische vragen of support.
-        site_contact_username: Hoe mensen je op TomX kunnen bereiken.
+        site_contact_username: Hoe mensen je op Mastodon kunnen bereiken.
         site_extended_description: Alle aanvullende informatie die nuttig kan zijn voor bezoekers en jouw gebruikers. Kan worden opgemaakt met Markdown.
         site_short_description: Een korte beschrijving om het unieke karakter van je server te tonen. Wie beheert de server, wat is de doelgroep?
         site_terms: Gebruik je eigen privacybeleid of laat leeg om de standaardwaarde te gebruiken. Kan worden opgemaakt met Markdown.
         site_title: Hoe mensen buiten de domeinnaam naar je server kunnen verwijzen.
-        status_page_url: URL van een pagina waar mensen de status van deze server kunnen zien tijdens een storing
         theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
         thumbnail: Een afbeelding van ongeveer een verhouding van 2:1 die naast jouw serverinformatie wordt getoond.
         timeline_preview: Bezoekers (die niet zijn ingelogd) kunnen de meest recente, op de server aanwezige openbare berichten bekijken.
         trendable_by_default: Handmatige beoordeling van trends overslaan. Individuele items kunnen later alsnog worden afgekeurd.
         trends: Trends laten zien welke berichten, hashtags en nieuwsberichten op jouw server aan populariteit winnen.
-        trends_as_landing_page: Toon trending inhoud aan uitgelogde gebruikers en bezoekers in plaats van een beschrijving van deze server. Vereist dat trends zijn ingeschakeld.
       form_challenge:
         current_password: Je betreedt een veilige omgeving
       imports:
-        data: CSV-bestand dat op een andere TomXserver werd geëxporteerd
+        data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       invite_request:
         text: Dit helpt ons om jouw aanvraag te beoordelen
       ip_block:
@@ -134,7 +125,6 @@ nl:
         position: Een hogere rol beslist in bepaalde situaties over het oplossen van conflicten. Bepaalde acties kunnen alleen worden uitgevoerd op rollen met een lagere prioriteit
       webhook:
         events: Selecteer de te verzenden gebeurtenissen
-        template: Maak een eigen JSON payload aan met variabele interpolatie. Laat leeg voor standaard JSON.
         url: Waar gebeurtenissen naartoe worden verzonden
     labels:
       account:
@@ -142,9 +132,9 @@ nl:
           name: Label
           value: Inhoud
       account_alias:
-        acct: TomXadres van het oude account
+        acct: Mastodonadres van het oude account
       account_migration:
-        acct: TomXadres van het nieuwe account
+        acct: Mastodonadres van het nieuwe account
       account_warning_preset:
         text: Tekst van preset
         title: Titel
@@ -171,7 +161,7 @@ nl:
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
         avatar: Profielfoto
-        bot: Dit is een geautomatiseerd account
+        bot: Dit is een bot-account
         chosen_languages: Talen filteren
         confirm_new_password: Nieuw wachtwoord bevestigen
         confirm_password: Wachtwoord bevestigen
@@ -182,7 +172,7 @@ nl:
         display_name: Weergavenaam
         email: E-mailadres
         expires_in: Vervalt na
-        fields: Extra velden
+        fields: Metadata profiel
         header: Omslagfoto
         honeypot: "%{label} (niet invullen)"
         inbox_url: Inbox-URL van de relayserver
@@ -198,8 +188,9 @@ nl:
         setting_advanced_layout: Geavanceerde webomgeving inschakelen
         setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
         setting_always_send_emails: Altijd e-mailmeldingen verzenden
-        setting_auto_play_gif: Geanimeerde GIF's automatisch afspelen
+        setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
         setting_boost_modal: Vraag voor het boosten van een bericht een bevestiging
+        setting_crop_images: Afbeeldingen bijsnijden tot 16x9 in berichten op tijdlijnen
         setting_default_language: Taal van jouw berichten
         setting_default_privacy: Zichtbaarheid van nieuwe berichten
         setting_default_sensitive: Media altijd als gevoelig markeren
@@ -209,12 +200,12 @@ nl:
         setting_display_media_default: Standaard
         setting_display_media_hide_all: Alles verbergen
         setting_display_media_show_all: Alles tonen
-        setting_expand_spoilers: Berichten met inhoudswaarschuwingen altijd uitklappen
+        setting_expand_spoilers: Altijd berichten met inhoudswaarschuwingen uitklappen
         setting_hide_network: Jouw volgers en wie je volgt verbergen
         setting_noindex: Jouw berichten niet door zoekmachines laten indexeren
-        setting_reduce_motion: Beweging in animaties verminderen
+        setting_reduce_motion: Langzamere animaties
         setting_show_application: Toepassing onthullen die je voor het verzenden van berichten gebruikt
-        setting_system_font_ui: Standaardlettertype van het systeem gebruiken
+        setting_system_font_ui: Standaardlettertype van jouw systeem gebruiken
         setting_theme: Thema website
         setting_trends: Trends van vandaag tonen
         setting_unfollow_modal: Vraag voor het ontvolgen van iemand een bevestiging
@@ -236,7 +227,6 @@ nl:
           hide: Volledig verbergen
           warn: Met een waarschuwing verbergen
       form_admin_settings:
-        activity_api_enabled: Statistieken over gebruikersactiviteit via de API publiceren
         backups_retention_period: Bewaartermijn gebruikersarchief
         bootstrap_timeline_accounts: Accounts die altijd aan nieuwe gebruikers worden aanbevolen
         closed_registrations_message: Aangepast bericht wanneer registratie is uitgeschakeld
@@ -244,7 +234,6 @@ nl:
         custom_css: Aangepaste CSS
         mascot: Aangepaste mascotte (legacy)
         media_cache_retention_period: Bewaartermijn mediacache
-        peers_api_enabled: Lijst van bekende servers via de API publiceren
         profile_directory: Gebruikersgids inschakelen
         registrations_mode: Wie kan zich registreren
         require_invite_text: Opgeven van een reden is verplicht
@@ -256,17 +245,15 @@ nl:
         site_short_description: Serveromschrijving
         site_terms: Privacybeleid
         site_title: Servernaam
-        status_page_url: URL van statuspagina
         theme: Standaardthema
         thumbnail: Serverthumbnail
         timeline_preview: Toegang tot de openbare tijdlijnen zonder in te loggen toestaan
         trendable_by_default: Trends goedkeuren zonder voorafgaande beoordeling
         trends: Trends inschakelen
-        trends_as_landing_page: Laat trends op de startpagina zien
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
-        must_be_following_dm: Privéberichten van mensen die jij niet volgt blokkeren
+        must_be_following_dm: Directe berichten van mensen die jij niet volgt blokkeren
       invite:
         comment: Opmerking
       invite_request:
@@ -299,7 +286,6 @@ nl:
         usable: Toestaan dat deze hashtag in berichten gebruikt mag worden
       user:
         role: Rol
-        time_zone: Tijdzone
       user_role:
         color: Kleur van badge
         highlighted: Rol als badge op profielpagina's tonen
@@ -308,7 +294,6 @@ nl:
         position: Prioriteit
       webhook:
         events: Ingeschakelde gebeurtenissen
-        template: Sjabloon Payload
         url: Eindpunt URL
     'no': Nee
     not_recommended: Niet aanbevolen

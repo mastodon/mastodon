@@ -1,10 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Web::PushSubscription do
-  subject { described_class.new(data: data) }
-
+RSpec.describe Web::PushSubscription, type: :model do
   let(:account) { Fabricate(:account) }
 
   let(:policy) { 'all' }
@@ -23,6 +19,8 @@ RSpec.describe Web::PushSubscription do
     }
   end
 
+  subject { described_class.new(data: data) }
+
   describe '#pushable?' do
     let(:notification_type) { :mention }
     let(:notification) { Fabricate(:notification, account: account, type: notification_type) }
@@ -31,7 +29,7 @@ RSpec.describe Web::PushSubscription do
       context "when notification is a #{type}" do
         let(:notification_type) { type }
 
-        it 'returns boolean corresponding to alert setting' do
+        it "returns boolean corresponding to alert setting" do
           expect(subject.pushable?(notification)).to eq data[:alerts][type]
         end
       end
@@ -41,7 +39,7 @@ RSpec.describe Web::PushSubscription do
       let(:policy) { 'all' }
 
       it 'returns true' do
-        expect(subject.pushable?(notification)).to be true
+        expect(subject.pushable?(notification)).to eq true
       end
     end
 
@@ -49,26 +47,26 @@ RSpec.describe Web::PushSubscription do
       let(:policy) { 'none' }
 
       it 'returns false' do
-        expect(subject.pushable?(notification)).to be false
+        expect(subject.pushable?(notification)).to eq false
       end
     end
 
     context 'when policy is followed' do
       let(:policy) { 'followed' }
 
-      context 'when notification is from someone you follow' do
+      context 'and notification is from someone you follow' do
         before do
           account.follow!(notification.from_account)
         end
 
         it 'returns true' do
-          expect(subject.pushable?(notification)).to be true
+          expect(subject.pushable?(notification)).to eq true
         end
       end
 
-      context 'when notification is not from someone you follow' do
+      context 'and notification is not from someone you follow' do
         it 'returns false' do
-          expect(subject.pushable?(notification)).to be false
+          expect(subject.pushable?(notification)).to eq false
         end
       end
     end
@@ -76,19 +74,19 @@ RSpec.describe Web::PushSubscription do
     context 'when policy is follower' do
       let(:policy) { 'follower' }
 
-      context 'when notification is from someone who follows you' do
+      context 'and notification is from someone who follows you' do
         before do
           notification.from_account.follow!(account)
         end
 
         it 'returns true' do
-          expect(subject.pushable?(notification)).to be true
+          expect(subject.pushable?(notification)).to eq true
         end
       end
 
-      context 'when notification is not from someone who follows you' do
+      context 'and notification is not from someone who follows you' do
         it 'returns false' do
-          expect(subject.pushable?(notification)).to be false
+          expect(subject.pushable?(notification)).to eq false
         end
       end
     end

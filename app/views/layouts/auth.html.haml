@@ -5,8 +5,8 @@
   .container-alt
     .logo-container
       %h1
-        = link_to root_path do
-          = logo_as_symbol(:wordmark)
+        = link_to root_path, class: 'brand' do
+          = site_title
 
     .form-container
       = render 'flashes'

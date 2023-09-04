@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 describe Api::V1::Accounts::NotesController do
@@ -43,7 +41,7 @@ describe Api::V1::Accounts::NotesController do
 
       it 'does not create account note' do
         subject
-        expect(AccountNote.where(account_id: user.account.id, target_account_id: account.id)).to_not exist
+        expect(AccountNote.where(account_id: user.account.id, target_account_id: account.id).exists?).to be_falsey
       end
     end
   end

@@ -1,13 +1,9 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe ActivityPub::LinkedDataSignature do
   include JsonLdHelper
 
-  subject { described_class.new(json) }
-
-  let!(:sender) { Fabricate(:account, uri: 'http://example.com/alice', domain: 'example.com') }
+  let!(:sender) { Fabricate(:account, uri: 'http://example.com/alice') }
 
   let(:raw_json) do
     {
@@ -17,6 +13,8 @@ RSpec.describe ActivityPub::LinkedDataSignature do
   end
 
   let(:json) { raw_json.merge('signature' => signature) }
+
+  subject { described_class.new(json) }
 
   before do
     stub_jsonld_contexts!

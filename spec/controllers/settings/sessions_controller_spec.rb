@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 describe Settings::SessionsController do
@@ -7,7 +5,6 @@ describe Settings::SessionsController do
 
   let(:user) { Fabricate(:user) }
   let(:session_activation) { Fabricate(:session_activation, user: user) }
-
   before { sign_in user, scope: :user }
 
   describe 'DELETE #destroy' do
@@ -17,7 +14,7 @@ describe Settings::SessionsController do
       let(:id) { session_activation.id }
 
       it 'destroys session activation' do
-        expect(subject).to redirect_to edit_user_registration_path
+        is_expected.to redirect_to edit_user_registration_path
         expect(SessionActivation.find_by(id: id)).to be_nil
       end
     end
@@ -26,7 +23,7 @@ describe Settings::SessionsController do
       let(:id) { session_activation.id + 1000 }
 
       it 'destroys session activation' do
-        expect(subject).to have_http_status 404
+        is_expected.to have_http_status :not_found
       end
     end
   end

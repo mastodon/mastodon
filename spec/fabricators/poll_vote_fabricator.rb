@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 Fabricator(:poll_vote) do
-  account { Fabricate.build(:account) }
+  account
   poll
-  choice 0
+  choice  0
 end

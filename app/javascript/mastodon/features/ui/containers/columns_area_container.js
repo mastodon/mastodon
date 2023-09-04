@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-
 import ColumnsArea from '../components/columns_area';
 
 const mapStateToProps = state => ({

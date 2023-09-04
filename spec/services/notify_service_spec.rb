@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe NotifyService, type: :service do
@@ -49,23 +47,22 @@ RSpec.describe NotifyService, type: :service do
     expect { subject }.to_not change(Notification, :count)
   end
 
-  context 'with direct messages' do
+  context 'for direct messages' do
     let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct)) }
     let(:type)     { :mention }
 
     before do
-      user.settings.update('interactions.must_be_following_dm': enabled)
-      user.save
+      user.settings.interactions = user.settings.interactions.merge('must_be_following_dm' => enabled)
     end
 
-    context 'when recipient is supposed to be following sender' do
+    context 'if recipient is supposed to be following sender' do
       let(:enabled) { true }
 
       it 'does not notify' do
         expect { subject }.to_not change(Notification, :count)
       end
 
-      context 'when the message chain is initiated by recipient, but is not direct message' do
+      context 'if the message chain is initiated by recipient, but is not direct message' do
         let(:reply_to) { Fabricate(:status, account: recipient) }
         let!(:mention) { Fabricate(:mention, account: sender, status: reply_to) }
         let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: reply_to)) }
@@ -75,7 +72,7 @@ RSpec.describe NotifyService, type: :service do
         end
       end
 
-      context 'when the message chain is initiated by recipient, but without a mention to the sender, even if the sender sends multiple messages in a row' do
+      context 'if the message chain is initiated by recipient, but without a mention to the sender, even if the sender sends multiple messages in a row' do
         let(:reply_to) { Fabricate(:status, account: recipient) }
         let!(:mention) { Fabricate(:mention, account: sender, status: reply_to) }
         let(:dummy_reply) { Fabricate(:status, account: sender, visibility: :direct, thread: reply_to) }
@@ -86,7 +83,7 @@ RSpec.describe NotifyService, type: :service do
         end
       end
 
-      context 'when the message chain is initiated by the recipient with a mention to the sender' do
+      context 'if the message chain is initiated by the recipient with a mention to the sender' do
         let(:reply_to) { Fabricate(:status, account: recipient, visibility: :direct) }
         let!(:mention) { Fabricate(:mention, account: sender, status: reply_to) }
         let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: reply_to)) }
@@ -97,7 +94,7 @@ RSpec.describe NotifyService, type: :service do
       end
     end
 
-    context 'when recipient is NOT supposed to be following sender' do
+    context 'if recipient is NOT supposed to be following sender' do
       let(:enabled) { false }
 
       it 'does notify' do
@@ -127,7 +124,7 @@ RSpec.describe NotifyService, type: :service do
     end
   end
 
-  context 'with muted and blocked users' do
+  context do
     let(:asshole)  { Fabricate(:account, username: 'asshole') }
     let(:reply_to) { Fabricate(:status, account: asshole) }
     let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, thread: reply_to)) }
@@ -144,7 +141,7 @@ RSpec.describe NotifyService, type: :service do
     end
   end
 
-  context 'with sender as recipient' do
+  context do
     let(:sender) { recipient }
 
     it 'does not notify when recipient is the sender' do
@@ -156,8 +153,8 @@ RSpec.describe NotifyService, type: :service do
     before do
       ActionMailer::Base.deliveries.clear
 
-      user.settings.update('notification_emails.follow': enabled)
-      user.save
+      notification_emails = user.settings.notification_emails
+      user.settings.notification_emails = notification_emails.merge('follow' => enabled)
     end
 
     context 'when email notification is enabled' do

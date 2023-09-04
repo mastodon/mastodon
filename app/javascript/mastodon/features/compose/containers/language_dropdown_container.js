@@ -1,11 +1,9 @@
-import { Map as ImmutableMap } from 'immutable';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
-
+import LanguageDropdown from '../components/language_dropdown';
 import { changeComposeLanguage } from 'mastodon/actions/compose';
 import { useLanguage } from 'mastodon/actions/languages';
-
-import LanguageDropdown from '../components/language_dropdown';
+import { createSelector } from 'reselect';
+import { Map as ImmutableMap } from 'immutable';
 
 const getFrequentlyUsedLanguages = createSelector([
   state => state.getIn(['settings', 'frequentlyUsedLanguages'], ImmutableMap()),
@@ -28,7 +26,6 @@ const mapDispatchToProps = dispatch => ({
   },
 
   onClose (value) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- this is not a react hook
     dispatch(useLanguage(value));
   },
 

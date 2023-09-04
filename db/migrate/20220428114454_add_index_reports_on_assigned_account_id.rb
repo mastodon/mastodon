@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddIndexReportsOnAssignedAccountId < ActiveRecord::Migration[6.1]
   disable_ddl_transaction!
 

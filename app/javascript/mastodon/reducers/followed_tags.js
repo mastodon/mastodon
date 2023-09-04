@@ -1,5 +1,3 @@
-import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
-
 import {
   FOLLOWED_HASHTAGS_FETCH_REQUEST,
   FOLLOWED_HASHTAGS_FETCH_SUCCESS,
@@ -8,6 +6,7 @@ import {
   FOLLOWED_HASHTAGS_EXPAND_SUCCESS,
   FOLLOWED_HASHTAGS_EXPAND_FAIL,
 } from 'mastodon/actions/tags';
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialState = ImmutableMap({
   items: ImmutableList(),
@@ -40,4 +39,4 @@ export default function followed_tags(state = initialState, action) {
   default:
     return state;
   }
-}
+};

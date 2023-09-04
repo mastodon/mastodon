@@ -1,10 +1,10 @@
 ---
 ku:
   about:
-    about_mastodon_html: 'Tora civakî ya pêşerojê: Ne reklam, ne şopandina şîrketan, dîzayna nenavendî! Bi TomX re bibe xwediyê daneyên xwe!'
+    about_mastodon_html: 'Tora civakî ya pêşerojê: Ne reklam, ne şopandina şîrketan, dîzayna nenavendî! Bi Mastodon re bibe xwediyê daneyên xwe!'
     contact_missing: Nehate sazkirin
     contact_unavailable: Tune
-    hosted_on: TomX li ser %{domain} tê pêşkêşkirin
+    hosted_on: Mastodon li ser %{domain} tê pêşkêşkirin
     title: Derbar
   accounts:
     follow: Bişopîne
@@ -124,6 +124,8 @@ ku:
       removed_header_msg: Wêneyê dîwar ê %{username} bi awayekî serkeftî hate rakirin
       resend_confirmation:
         already_confirmed: Ev bikarhêner jixwe hatiye pejirandin
+        send: E-nameya pejirandinê dîsa bişîne
+        success: E-nameya pejirandinê bi awayekî serkeftî hate şandin!
       reset: Ji nû ve saz bike
       reset_password: Borînpeyvê ji nû ve saz bike
       resubscribe: Dîsa beşdar bibe
@@ -632,7 +634,7 @@ ku:
         moderation: Çavdêrî
         special: Taybet
       delete: Jê bibe
-      description_html: Bi <strong>rolên bikarhêner</strong>, tu dikarî fonksiyon û deverên TomX ku bikarhênerên wê dikarin xwe bigihînin kesane bikî.
+      description_html: Bi <strong>rolên bikarhêner</strong>, tu dikarî fonksiyon û deverên Mastodon ku bikarhênerên wê dikarin xwe bigihînin kesane bikî.
       edit: Rolê '%{name}' serrast bike
       everyone: Mafdayînên berdest
       everyone_full_description_html: Ev <strong>rola bingehîn</strong> bandorê li <strong>hemû bikarhêneran</strong> dike, tevî yên bêyî rolek diyarkirî jî. Hemû rolên din mafdayînan jê digirin.
@@ -695,20 +697,20 @@ ku:
         rules_hint: Ji bo rêbazên ku ji bikarhênerên ve tê hêvîkirin ku pê ve girêdayî bin deverek veqetandî heye.
         title: Derbar
       appearance:
-        preamble: Navrûya tevnê ya TomX kesane bike.
+        preamble: Navrûya tevnê ya Mastodon kesane bike.
         title: Xuyang
       branding:
-        preamble: Navnîşa rajekarê te wê ji rajekarên din ên di torê de cuda bike. Dibe ku ev zanyarî li ser cihên cuda, wekî navrûya bikarhêneriyê tevnê ya TomX, sepanên resen, di pêşdîtinên girêdanê de li ser malperên din û di nav sepanên peyamî de, û hwd werin nîşandan. Ji bo vê yekê, çêtir e ku mirov van zanyariyan zelal, kurt û bê kêmasî werin nîşandan.
+        preamble: Navnîşa rajekarê te wê ji rajekarên din ên di torê de cuda bike. Dibe ku ev zanyarî li ser cihên cuda, wekî navrûya bikarhêneriyê tevnê ya Mastodon, sepanên resen, di pêşdîtinên girêdanê de li ser malperên din û di nav sepanên peyamî de, û hwd werin nîşandan. Ji bo vê yekê, çêtir e ku mirov van zanyariyan zelal, kurt û bê kêmasî werin nîşandan.
         title: Marka
       content_retention:
-        preamble: Kontrol bike ka naveroka ku ji aliyê bikarhêner ve hatiye çêkirin di TomX de çawa tê tomarkirin.
+        preamble: Kontrol bike ka naveroka ku ji aliyê bikarhêner ve hatiye çêkirin di Mastodon de çawa tê tomarkirin.
         title: Parastina naverokê
       default_noindex:
         desc_html: Bandorê li ser hemû bikarhênerên ku bi xwe ev sazkarî neguhertine
         title: Pêlrêçkirna bikarhêneran ji motorê lêgerînê dûr bixe
       discovery:
         follow_recommendations: Pêşniyarên şopandinê
-        preamble: Rûbirûbûna naveroka balkêş ji bo bikarhênerên nû yên ku li ser TomX kesek nas nakin pir bi bandor e. Kontrol bike ka çend taybetmendiyên vekolînê li ser rajekarê te çawa dixebite.
+        preamble: Rûbirûbûna naveroka balkêş ji bo bikarhênerên nû yên ku li ser Mastodon kesek nas nakin pir bi bandor e. Kontrol bike ka çend taybetmendiyên vekolînê li ser rajekarê te çawa dixebite.
         profile_directory: Rêgeha profîlê
         public_timelines: Demnameya gelemperî
         title: Vekolîne
@@ -725,6 +727,7 @@ ku:
           approved: Ji bo têketinê erêkirin pêwîste
           none: Kesek nikare tomar bibe
           open: Herkes dikare tomar bibe
+      title: Sazkariyên rajekarê
     site_uploads:
       delete: Pela barkirî jê bibe
       destroyed_msg: Barkirina malperê bi serkeftî hate jêbirin!
@@ -853,7 +856,7 @@ ku:
     webhooks:
       add_new: Xala dawîbûnê tevlî bike
       delete: Jê bibe
-      description_html: "<strong>çengeleke tevnê</strong> dihêle ku TomX <strong>agahdariyên dema-rastîn</strong> ên derbarê çalakiyên hilbijartî de bisepîne ser sepana te, bi vî awayî sepana te dikare <strong>reaksiyonan bi awayekî bixweber nîşan bide</strong>."
+      description_html: "<strong>çengeleke tevnê</strong> dihêle ku Mastodon <strong>agahdariyên dema-rastîn</strong> ên derbarê çalakiyên hilbijartî de bisepîne ser sepana te, bi vî awayî sepana te dikare <strong>reaksiyonan bi awayekî bixweber nîşan bide</strong>."
       disable: Neçalak bike
       disabled: Neçalakkirî
       edit: Xala dawîbûnê serrast bike
@@ -915,10 +918,11 @@ ku:
     confirmation_dialogs: Gotûbêjên piştrastkirî
     discovery: Vedîtin
     localization:
-      body: TomX ji aliyê xêrxwazan tê wergerandin.
+      body: Mastodon ji aliyê xêrxwazan tê wergerandin.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Herkes dikare beşdar bibe.
     sensitive_content: Naveroka hestiyarî
+    toot_layout: Xêzkirina şandîya
   application_mailer:
     notification_preferences: Sazkariyên e-nameyê biguherîne
     salutation: "%{name},"
@@ -935,12 +939,14 @@ ku:
     your_token: Nîşana gihîştinê te
   auth:
     apply_for_account: Ajimêrekê bixwaze
+    change_password: Borînpeyv
     delete_account: Ajimêr jê bibe
     delete_account_html: Ku tu dixwazî ajimêra xwe jê bibe, tu dikarî <a href="%{path}">li vir bidomîne</a>. Ji te tê xwestin ku were pejirandin.
     description:
-      prefix_invited_by_user: "@%{name} te vedixwîne ku tu beşdarî vê rajekara TomX-ê bibî!"
-      prefix_sign_up: Îro li TomXê tomar bibe!
-      suffix: Bi ajimêrekê, tu yê karibî kesan bişopînî, rojanekirinan bişînî û bi bikarhênerên ji her rajekarê TomX re peyaman bişînî û bêtir!
+      prefix_invited_by_user: "@%{name} te vedixwîne ku tu beşdarî vê rajekara Mastodon-ê bibî!"
+      prefix_sign_up: Îro li Mastodonê tomar bibe!
+      suffix: Bi ajimêrekê, tu yê karibî kesan bişopînî, rojanekirinan bişînî û bi bikarhênerên ji her rajekarê Mastodon re peyaman bişînî û bêtir!
+    didnt_get_confirmation: Te rêwerzên pejirandinê wernegirt?
     dont_have_your_security_key: Kilîda te ya ewlehiyê tune ye?
     forgot_password: Te borînpeyva xwe ji bîr kir?
     invalid_reset_password_token: Ji nû ve sazkirina borînpeyvê nederbasdar e an jî qediya ye. Jkx daxwaza yeka nû bike.
@@ -958,17 +964,22 @@ ku:
       saml: SAML
     register: Tomar bibe
     registration_closed: "%{instance} endamên nû napejirîne"
+    resend_confirmation: Rêwerên pejirandinê ji nû ve bişîne
     reset_password: Borînpeyvê ji nû ve saz bike
     rules:
       preamble: Ev rêzik ji aliyê çavdêrên %{domain} ve tên sazkirin.
       title: Hinek rêzikên bingehîn.
     security: Ewlehî
     set_new_password: Borînpeyveke nû ji nû ve saz bike
+    setup:
+      email_below_hint_html: Ku navnîşana e-nameya jêrîn ne rast be, tu dikarî wê li vir biguherîne û e-nameyeke pejirandinê ya nû bistîne.
+      email_settings_hint_html: E-nameya pejirandinê ji %{email} re hate şandin. Ku ew navnîşana e-nameyê ne rast be, tu dikarî wê di sazkariyên ajimêr de biguherîne.
+      title: Damezirandin
     sign_in:
       preamble_html: Têketinê bike bi riya <strong>%{domain}</strong> xwe. Ku ajimêrê te li ser rajekareke cuda hatiye pêşkêşkirin, tu yê nikaribû têketinê bikî vir.
       title: Têkeve %{domain}
     sign_up:
-      preamble: Bi ajimêrekê li ser vê rajekarê TomX re, tu yê karîbî her keseke din li ser torê bişopînî, her ku ajimêrê wan li ku derê tê pêşkêşkirin.
+      preamble: Bi ajimêrekê li ser vê rajekarê Mastodon re, tu yê karîbî her keseke din li ser torê bişopînî, her ku ajimêrê wan li ku derê tê pêşkêşkirin.
       title: Ka em te bi rê bixin li ser %{domain}.
     status:
       account_status: Rewşa ajimêr
@@ -979,6 +990,18 @@ ku:
       view_strikes: Binpêkirinên berê yên dijî ajimêrê xwe bibîne
     too_fast: Form pir zû hat şandin, dîsa biceribîne.
     use_security_key: Kilîteke ewlehiyê bi kar bîne
+  authorize_follow:
+    already_following: Jixwe tu vê ajimêrê dişopînî
+    already_requested: Jixwe te ji vê ajimêrê re daxwazîya şopandinê şandi bû
+    error: Mixabin, dema ajimêr hat gerandin çewtiyek çêbû
+    follow: Bişopîne
+    follow_request: 'Te ji vê kesê re daxwazîya şopandinê şand:'
+    following: 'Serkeftin! Tu êdî dikarî bişopînî:'
+    post_follow:
+      close: An jî, tu dikarî tenê ev çarçoveyê bigirî.
+      return: Profîla vê bikarhênerê nîşan bike
+      web: Biçe tevneyê
+    title: "%{acct} bişopîne"
   challenge:
     confirm: Bidomîne
     hint_html: "<strong>Nîşe:</strong>Ji bo demjimêreke din em ê borînpeyva te careke din ji te nexwazin."
@@ -1069,7 +1092,7 @@ ku:
       content: Em xemgîn in, lê tiştek di aliyê me de şaş çû.
       title: Ev rûpel ne rast e
     '503': Ji ber têkçûna rajekar a demkî rûpel nayê bikaranîn.
-    noscript_html: Ji bo ku tu sepanaa TomX a tevnê bi kar bîne, jkx JavaScript-ê çalak bike. Wekî din, yek ji <a href="%{apps_path}">sepanên xwemalî</a> ji bo TomX ji bo platforma xwe biceribîne.
+    noscript_html: Ji bo ku tu sepanaa Mastodon a tevnê bi kar bîne, jkx JavaScript-ê çalak bike. Wekî din, yek ji <a href="%{apps_path}">sepanên xwemalî</a> ji bo Mastodon ji bo platforma xwe biceribîne.
   existing_username_validator:
     not_found: nikaribû bikarhênerek herêmî bi wê navê bikarhêner bibîne
     not_found_multiple: "%{usernames} nehat dîtin"
@@ -1090,6 +1113,8 @@ ku:
     storage: Bîrdanaka medyayê
   featured_tags:
     add_new: Yeka nû tevlî bike
+    errors:
+      limit: Te jixwe berê pirtirîn hashtag destnîşan kiriye
     hint_html: "<strong> Hashtagên destnîşankirî çi ne? </strong> Ew bi eşkere li ser profîla te ya gelemperî têne xuyakirin û dihêlin ku mirov bi taybetî di binê wan hashtagan de li şandiyên te yên gelemperî bigere. Ew ji bo şopandina karên afirîner an projeyên demdirêj amûrek girîng in."
   filters:
     contexts:
@@ -1133,6 +1158,8 @@ ku:
       index:
         hint: Ev parzûn bêyî pîvanên din ji bo hilbijartina şandiyên kesane tê sepandin. Tu dikarî ji navrûya tevnê bêtir şandiyan tevlî vê parzûnê bikî.
         title: Şandiyên parzûnkirî
+  footer:
+    trending_now: Niha rojevê de
   generic:
     all: Hemû
     all_items_on_page_selected_html:
@@ -1155,6 +1182,8 @@ ku:
     validation_errors:
       one: Tiştek hîn ne rast e! Ji kerema xwe çewtiya li jêr di ber çavan re derbas bike
       other: Tiştek hîn ne rast e! Ji kerema xwe %{count} çewtî li jêr di ber çavan re derbas bike
+  html_validator:
+    invalid_markup: 'di nav de nîşana HTML a nederbasdar heye: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Pelê CSV nederbasdar e. Çewtî: %{error}'
@@ -1195,6 +1224,9 @@ ku:
       expires_at: Diqede
       uses: Bikaranîn
     title: Mirovan vexwîne
+  lists:
+    errors:
+      limit: Tu gihîştî hejmara rêzika a herî zêde
   login_activities:
     authentication_methods:
       otp: sepandina rastandina du-gavî
@@ -1387,7 +1419,7 @@ ku:
       weibo: Weibo
     current_session: Danişîna heyî
     description: "%{platform} ser %{browser}"
-    explanation: Gerokên tevnê di dema heyî de hene ku têketin kirine di ajimêra te ya TomX.
+    explanation: Gerokên tevnê di dema heyî de hene ku têketin kirine di ajimêra te ya Mastodon.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1398,6 +1430,7 @@ ku:
       ios: iOS
       linux: Linux
       mac: macOS
+      other: platforma nenas
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1411,7 +1444,7 @@ ku:
     aliases: Nûçikên ajimêra
     appearance: Xuyang
     authorized_apps: Rayedarê sepanan
-    back: Vegere bo TomX
+    back: Vegere bo Mastodon
     delete: Jêbirina ajimêr
     development: Pêşdebir
     edit_profile: Profîlê serrast bike
@@ -1468,6 +1501,7 @@ ku:
     show_newer: Nûtirîn nîşan bide
     show_older: Kevntirîn nîşan bide
     show_thread: Mijarê nîşan bide
+    sign_in_to_participate: Ji bo tevlî sohbetê bibî xwe tomar bike
     title: "%{name}%{quote}"
     visibilities:
       direct: Rasterast
@@ -1509,9 +1543,12 @@ ku:
       '7889238': 3 meh
     min_age_label: Şêmûga demê
     min_favs: Peyamên ku ji wê zêdetir hatine ecibandin veşêre
+    min_favs_hint: Şandî ku ji evqas hezkirin wergirtibe nayê jêbirin. Vala bihêle da ku şandiyan jê bibî tevlî ku çiqas hezkirin wergirtibe
     min_reblogs: Şandiyên ku bêtir hatine bilindkirin veşêre
     min_reblogs_hint: Şandî ku ji ji vê hejmarê bêtir bilindkirin wergirtibe nayê jêbirin. Vala bihêle da ku şandiyan jê bibî tevlî ku çiqas hezkirin wergirtibe
   stream_entries:
+    pinned: Şandiya derzîkirî
+    reblogged: bilindkirî
     sensitive_content: Naveroka hestiyarî
   strikes:
     errors:
@@ -1519,9 +1556,9 @@ ku:
   tags:
     does_not_match_previous_name: bi navê berê re li hev nayê
   themes:
-    contrast: TomX (Dijberiya bilind)
-    default: TomX (Tarî)
-    mastodon-light: TomX (Ronahî)
+    contrast: Mastodon (Dijberiya bilind)
+    default: Mastodon (Tarî)
+    mastodon-light: Mastodon (Ronahî)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1553,7 +1590,7 @@ ku:
       subject: Îtîraza te ji %{date} nehate pejirandin
       title: Îtîraz nehate pejirandin
     backup_ready:
-      explanation: Te yedekîya tijê ya ajimêrê xwe TomXê xwest. Niha ji daxistinê re amade ye!
+      explanation: Te yedekîya tijê ya ajimêrê xwe Mastodonê xwest. Niha ji daxistinê re amade ye!
       subject: Arşîva te amede ye bo daxistinê
       title: Pakêtkirina arşîvan
     suspicious_sign_in:
@@ -1602,7 +1639,7 @@ ku:
       final_step: 'Dest bi weşandinê bike! Bêyî şopîneran jî dibe ku şandiyên te yên gelemperî ji hêla kesên din ve werin dîtin, mînakî li ser demjimêra herêmî û di hashtagan de. Dibe ku tu bixwazî xwe li ser hashtagê #nasname bidî nasandin.'
       full_handle: Hemî destikê te
       full_handle_hint: Ji hevalên xwe re, ji bona ji rajekarekê din peyam bişîne an jî ji bona ku te bikaribe bişopîne tişta ku tu bibêjî ev e.
-      subject: Tu bi xêr hatî TomX
+      subject: Tu bi xêr hatî Mastodon
       title: Bi xêr hatî, %{name}!
   users:
     follow_limit_reached: Tu nikarî zêdetirî %{limit} kesan bişopînî
@@ -1611,6 +1648,7 @@ ku:
     seamless_external_login: Te bi rajekarke biyanî re têketina xwe kir, ji ber vê yekê borînpeyv û e-name nayê bikaranîn.
     signed_in_as: 'Têketin wekî:'
   verification:
+    explanation_html: 'Tu dikarî <strong>xwe wekî xwediyê girêdanên li daneyê meta profîla xwe piştrast bikî</strong>. Ji bo vê, hewceye girêda malperê di nav profîla te ya mastodonê de girêdanekî paş hebe. Girêdana paş<strong>hewceye</strong> taybetîyek <code>rel="me"</code>hebe. Naveroka nivîsa girêdanê ne girîng e. Ev jî mînakek e:'
     verification: Piştrastkirin
   webauthn_credentials:
     add: Kilîteke ewlehiyê nû tevlî bike

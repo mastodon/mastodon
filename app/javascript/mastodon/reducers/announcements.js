@@ -1,5 +1,3 @@
-import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
-
 import {
   ANNOUNCEMENTS_FETCH_REQUEST,
   ANNOUNCEMENTS_FETCH_SUCCESS,
@@ -14,6 +12,7 @@ import {
   ANNOUNCEMENTS_DELETE,
   ANNOUNCEMENTS_DISMISS_SUCCESS,
 } from '../actions/announcements';
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialState = ImmutableMap({
   items: ImmutableList(),

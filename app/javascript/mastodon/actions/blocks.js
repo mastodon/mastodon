@@ -1,5 +1,4 @@
 import api, { getLinks } from '../api';
-
 import { fetchRelationships } from './accounts';
 import { importFetchedAccounts } from './importer';
 import { openModal } from './modal';
@@ -95,6 +94,6 @@ export function initBlockModal(account) {
       account,
     });
 
-    dispatch(openModal({ modalType: 'BLOCK' }));
+    dispatch(openModal('BLOCK'));
   };
 }

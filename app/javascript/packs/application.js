@@ -1,15 +1,13 @@
 import './public-path';
-import main from "mastodon/main"
-
+import loadPolyfills from '../mastodon/load_polyfills';
 import { start } from '../mastodon/common';
-import { loadLocale } from '../mastodon/locales';
-import { loadPolyfills } from '../mastodon/polyfills';
 
 start();
 
-loadPolyfills()
-  .then(loadLocale)
-  .then(main)
-  .catch(e => {
-    console.error(e);
-  });
+loadPolyfills().then(async () => {
+  const { default: main } = await import('mastodon/main');
+
+  return main();
+}).catch(e => {
+  console.error(e);
+});

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreatePgheroSpaceStats < ActiveRecord::Migration[5.2]
   def change
     create_table :pghero_space_stats do |t|

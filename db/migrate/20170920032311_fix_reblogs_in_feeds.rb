@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 class FixReblogsInFeeds < ActiveRecord::Migration[5.1]
   def up
-    redis = RedisConfiguration.pool.checkout
+    redis = Redis.current
     fm = FeedManager.instance
 
     # Old scheme:

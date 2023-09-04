@@ -2,10 +2,6 @@
 fy:
   simple_form:
     hints:
-      account:
-        display_name: Jo folsleine namme of in aardige bynamme.
-        fields: Jo website, persoanlike foarnammewurden, leeftiid, alles wat jo mar kwyt wolle.
-        note: 'Jo kinne oare minsken @fermelde of #hashtags brûke.'
       account_alias:
         acct: Fermeld de brûkersnamme@domein fan de account fan wêr’t jo ferhúzje wolle
       account_migration:
@@ -43,6 +39,7 @@ fy:
         digest: Wurdt allinnich nei in lange perioade fan ynaktiviteit ferstjoerd en allinnich wannear’t jo wylst jo ôfwêzigens persoanlike berjochten ûntfongen hawwe
         discoverable: Tastean dat jo account te finen is foar ûnbekenden, fia oanrekommandaasjes, trends en op oare manieren
         email: Jo krije in befêstigings-e-mailberjocht
+        fields: Jo kinne maksimaal 4 items as in tabel op jo profyl werjaan
         header: PNG, GIF of JPG. Maksimaal %{size}. Wurdt weromskeald nei %{dimensions}px
         inbox_url: Kopiearje de URL fan de foarside fan de relayserver dy’t jo brûke wolle
         irreversible: Filtere berjochten ferdwine definityf, sels as it filter letter fuortsmiten wurdt
@@ -52,7 +49,7 @@ fy:
         phrase: Komt oerien nettsjinsteande haad-/lytse letters of in ynhâldswarskôging
         scopes: Ta hokker API’s hat de tapassing tagong. Wannear’t jo in tastimming fan it boppeste nivo kieze, hoege jo gjin yndividuele tastimmingen mear te kiezen.
         setting_aggregate_reblogs: Gjin nije boosts toane foar berjochten dy’t resintlik noch boost binne (hat allinnich effekt op nij ûntfongen boosts)
-        setting_always_send_emails: Normaliter wurde der gjin e-mailmeldingen ferstjoerd wannear’t jo aktyf TomX brûke
+        setting_always_send_emails: Normaliter wurde der gjin e-mailmeldingen ferstjoerd wannear’t jo aktyf Mastodon brûke
         setting_default_sensitive: Gefoelige media wurdt standert ferstoppe en kin mei ien klik toand wurde
         setting_display_media_default: As gefoelich markearre media ferstopje
         setting_display_media_hide_all: Media altyd ferstopje
@@ -62,7 +59,7 @@ fy:
         setting_show_application: De tapassing dy’t jo brûke om berjochten te pleatsen, wurdt yn de detaillearre werjefte fan it berjocht toand
         setting_use_blurhash: Dizige kleuroergongen binne basearre op de kleuren fan de ferstoppe media, wêrmei elk detail ferdwynt
         setting_use_pending_items: De tiidline wurdt bywurke troch op it oantal nije items te klikken, yn stee fan dat dizze automatysk bywurke wurdt
-        username: Jo kinne letters, sifers en ûnderstreekjes brûke
+        username: Jo brûkersnamme is unyk op %{domain}
         whole_word: Wannear it trefwurd of part fan de sin alfanumeryk is, wurdt it allinnich filtere wannear’t it hiele wurd oerienkomt
       domain_allow:
         domain: Dit domein is yn steat om gegevens fan dizze server op te heljen, en ynkommende gegevens wurde ferwurke en bewarre
@@ -82,29 +79,26 @@ fy:
         bootstrap_timeline_accounts: Dizze accounts wurde boppe oan de oanrekommandaasjes oan nije brûkers toand. Meardere brûkersnammen troch komma’s skiede.
         closed_registrations_message: Werjûn wannear’t registraasje fan nije accounts útskeakele is
         content_cache_retention_period: 'Berjochten fan oare servers wurde nei it opjûne oantal dagen fuortsmiten. Let op: Dit is definityf.'
-        custom_css: Jo kinne oanpaste CSS tapasse op de webferzje fan dizze TomX-server.
+        custom_css: Jo kinne oanpaste CSS tapasse op de webferzje fan dizze Mastodon-server.
         mascot: Oerskriuwt de yllustraasje yn de avansearre webomjouwing.
         media_cache_retention_period: Mediabestannen dy’t fan oare servers download binne wurde nei it opjûne oantal dagen fuortsmiten en wurde op fersyk opnij download.
-        peers_api_enabled: In list mei domeinnammen, dêr’t dizze server yn fediverse kontakt hân mei hat. Hjir wurdt gjin data dield, oft jo mei in bepaalde server federearrest, mar alinnich, dat jo server dat wit. Dit wurdt foar tsjinsten brûkt, dy’t statistiken oer federaasje yn algemiene sin sammelet.
         profile_directory: De brûkersgids befettet in list fan alle brûkers dy¥t derfoar keazen hawwe om ûntdekt wurde te kinnen.
         require_invite_text: Meitsje it ynfoljen fan "Wêrom wolle jo jo hjir registrearje?" ferplicht yn stee fan opsjoneel, wannear’t registraasjes hânmjittich goedkard wurde moatte
         site_contact_email: Hoe minsken jo berikke kinne foar juridyske fragen of stipe.
-        site_contact_username: Hoe minsken jo op TomX berikke kinne.
+        site_contact_username: Hoe minsken jo op Mastodon berikke kinne.
         site_extended_description: Alle oanfoljende ynformaasje dy’t nuttich wêze kin foar besikers en jo brûkers. Kin opmakke wurde mei Markdown.
         site_short_description: In koarte beskriuwing om it unike karakter fan jo server te toanen. Wa beheart de server, wat is de doelgroep?
         site_terms: Brûk jo eigen privacybeleid of lit leech om de standertwearde te brûken. Kin mei Markdown opmakke wurde.
         site_title: Hoe minsken bûten de domeinnamme nei jo server ferwize kinne.
-        status_page_url: URL fan in side dêr’t minsken de steat fan dizze server sjen kinne wylst in steuring
         theme: Tema dy’t ôfmelde besikers en nije brûkers sjen.
         thumbnail: In ôfbylding fan ûngefear in ferhâlding fan 2:1 dy’t njonken jo serverynformaasje toand wurdt.
         timeline_preview: Net oanmelde besikers kinne de meast resinte, op de server oanwêzige iepenbiere berjochten besjen.
         trendable_by_default: Hânmjittige beoardieling fan trends oerslaan. Yndividuele items kinne letter dochs noch ôfkard wurde.
         trends: Trends toane hokker berjochten, hashtags en nijsberjochten op jo server oan populariteit winne.
-        trends_as_landing_page: Toan trending ynhâld oan ôfmelde brûkers en besikers yn stee fan in beskriuwing fan dizze server. Fereasket dat trends ynskeakele binne.
       form_challenge:
         current_password: Jo betrêdzje in feilige omjouwing
       imports:
-        data: CSV-bestân dat op in oare TomX-server eksportearre waard
+        data: CSV-bestân dat op in oare Mastodon-server eksportearre waard
       invite_request:
         text: Dit helpt ús om jo oanfraach te beoardielen
       ip_block:
@@ -134,7 +128,6 @@ fy:
         position: In hegere rol beslist yn bepaalde situaasjes oer it oplossen fan konflikten. Bepaalde aksjes kinne allinnich útfierd wurde op rollen mei in legere prioriteit
       webhook:
         events: Selektearje de te ferstjoeren eveneminten
-        template: Meitsje eigen JSON-payload oan mei fariabele ynterpolaasje. Lit leech foar standert JSON.
         url: Wêr’t eveneminten nei ta stjoerd wurde
     labels:
       account:
@@ -142,9 +135,9 @@ fy:
           name: Label
           value: Ynhâld
       account_alias:
-        acct: TomXadres fan it âlde account
+        acct: Mastodonadres fan it âlde account
       account_migration:
-        acct: TomXadres fan it nije account
+        acct: Mastodonadres fan it nije account
       account_warning_preset:
         text: Tekst fan preset
         title: Titel
@@ -200,6 +193,7 @@ fy:
         setting_always_send_emails: Altyd e-mailmeldingen ferstjoere
         setting_auto_play_gif: Spylje animearre GIF’s automatysk ôf
         setting_boost_modal: Freegje foar it boosten fan in berjocht in befêstiging
+        setting_crop_images: Ofbyldingen bysnije oant 16x9 yn berjochten op tiidlinen
         setting_default_language: Taal fan jo berjochten
         setting_default_privacy: Sichtberheid fan nije berjochten
         setting_default_sensitive: Media altyd as gefoelich markearje
@@ -256,13 +250,11 @@ fy:
         site_short_description: Serveromskriuwing
         site_terms: Privacybelied
         site_title: Servernamme
-        status_page_url: URL fan steatside
         theme: Standerttema
         thumbnail: Serverthumbnail
         timeline_preview: Tagong ta de iepenbiere tiidlinen sûnder oan te melden tastean
         trendable_by_default: Trends goedkarre sûnder yn it foar geande beoardieling
         trends: Trends ynskeakelje
-        trends_as_landing_page: Lit trends op de startside sjen
       interactions:
         must_be_follower: Meldingen fan minsken dy’t jo net folgje blokkearje
         must_be_following: Meldingen fan minsken dy’t jo net folgje blokkearje
@@ -299,7 +291,6 @@ fy:
         usable: Tastean dat dizze hashtag yn berjochten brûkt wurde mei
       user:
         role: Rol
-        time_zone: Tiidsône
       user_role:
         color: Badgekleur
         highlighted: Rol as badge op profylsiden toane
@@ -308,7 +299,6 @@ fy:
         position: Prioriteit
       webhook:
         events: Ynskeakele eveneminten
-        template: Payload-sjabloan
         url: Einpunt-URL
     'no': Nee
     not_recommended: Net oanrekommandearre

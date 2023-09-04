@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
-
-import { authorizeFollowRequest, rejectFollowRequest } from 'mastodon/actions/accounts';
-
 import FollowRequestNote from '../components/follow_request_note';
+import { authorizeFollowRequest, rejectFollowRequest } from 'mastodon/actions/accounts';
 
 const mapDispatchToProps = (dispatch, { account }) => ({
   onAuthorize () {

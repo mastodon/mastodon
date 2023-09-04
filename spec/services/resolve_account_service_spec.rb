@@ -1,21 +1,19 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe ResolveAccountService, type: :service do
   subject { described_class.new }
 
   before do
-    stub_request(:get, 'https://example.com/.well-known/host-meta').to_return(status: 404)
-    stub_request(:get, 'https://quitter.no/avatar/7477-300-20160211190340.png').to_return(request_fixture('avatar.txt'))
-    stub_request(:get, 'https://ap.example.com/.well-known/webfinger?resource=acct:foo@ap.example.com').to_return(request_fixture('activitypub-webfinger.txt'))
-    stub_request(:get, 'https://ap.example.com/users/foo').to_return(request_fixture('activitypub-actor.txt'))
-    stub_request(:get, 'https://ap.example.com/users/foo.atom').to_return(request_fixture('activitypub-feed.txt'))
-    stub_request(:get, %r{https://ap\.example\.com/users/foo/\w+}).to_return(status: 404)
+    stub_request(:get, "https://example.com/.well-known/host-meta").to_return(status: 404)
+    stub_request(:get, "https://quitter.no/avatar/7477-300-20160211190340.png").to_return(request_fixture('avatar.txt'))
+    stub_request(:get, "https://ap.example.com/.well-known/webfinger?resource=acct:foo@ap.example.com").to_return(request_fixture('activitypub-webfinger.txt'))
+    stub_request(:get, "https://ap.example.com/users/foo").to_return(request_fixture('activitypub-actor.txt'))
+    stub_request(:get, "https://ap.example.com/users/foo.atom").to_return(request_fixture('activitypub-feed.txt'))
+    stub_request(:get, %r{https://ap.example.com/users/foo/\w+}).to_return(status: 404)
     stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:hoge@example.com').to_return(status: 410)
   end
 
-  context 'when using skip_webfinger' do
+  context 'using skip_webfinger' do
     context 'when account is known' do
       let!(:remote_account) { Fabricate(:account, username: 'foo', domain: 'ap.example.com', protocol: 'activitypub') }
 
@@ -58,8 +56,8 @@ RSpec.describe ResolveAccountService, type: :service do
 
   context 'when there is an LRDD endpoint but no resolvable account' do
     before do
-      stub_request(:get, 'https://quitter.no/.well-known/host-meta').to_return(request_fixture('.host-meta.txt'))
-      stub_request(:get, 'https://quitter.no/.well-known/webfinger?resource=acct:catsrgr8@quitter.no').to_return(status: 404)
+      stub_request(:get, "https://quitter.no/.well-known/host-meta").to_return(request_fixture('.host-meta.txt'))
+      stub_request(:get, "https://quitter.no/.well-known/webfinger?resource=acct:catsrgr8@quitter.no").to_return(status: 404)
     end
 
     it 'returns nil' do
@@ -69,7 +67,7 @@ RSpec.describe ResolveAccountService, type: :service do
 
   context 'when there is no LRDD endpoint nor resolvable account' do
     before do
-      stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:catsrgr8@example.com').to_return(status: 404)
+      stub_request(:get, "https://example.com/.well-known/webfinger?resource=acct:catsrgr8@example.com").to_return(status: 404)
     end
 
     it 'returns nil' do
@@ -78,7 +76,7 @@ RSpec.describe ResolveAccountService, type: :service do
   end
 
   context 'when webfinger returns http gone' do
-    context 'with a previously known account' do
+    context 'for a previously known account' do
       before do
         Fabricate(:account, username: 'hoge', domain: 'example.com', last_webfingered_at: nil)
         allow(AccountDeletionWorker).to receive(:perform_async)
@@ -94,7 +92,7 @@ RSpec.describe ResolveAccountService, type: :service do
       end
     end
 
-    context 'with a previously unknown account' do
+    context 'for a previously unknown account' do
       it 'returns nil' do
         expect(subject.call('hoge@example.com')).to be_nil
       end
@@ -110,7 +108,7 @@ RSpec.describe ResolveAccountService, type: :service do
     it 'returns new remote account' do
       account = subject.call('Foo@redirected.example.com')
 
-      expect(account.activitypub?).to be true
+      expect(account.activitypub?).to eq true
       expect(account.acct).to eq 'foo@ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
     end
@@ -125,7 +123,7 @@ RSpec.describe ResolveAccountService, type: :service do
     it 'returns new remote account' do
       account = subject.call('Foo@redirected.example.com')
 
-      expect(account.activitypub?).to be true
+      expect(account.activitypub?).to eq true
       expect(account.acct).to eq 'foo@ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
     end
@@ -148,20 +146,20 @@ RSpec.describe ResolveAccountService, type: :service do
     it 'returns new remote account' do
       account = subject.call('foo@ap.example.com')
 
-      expect(account.activitypub?).to be true
+      expect(account.activitypub?).to eq true
       expect(account.domain).to eq 'ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
     end
 
     context 'with multiple types' do
       before do
-        stub_request(:get, 'https://ap.example.com/users/foo').to_return(request_fixture('activitypub-actor-individual.txt'))
+        stub_request(:get, "https://ap.example.com/users/foo").to_return(request_fixture('activitypub-actor-individual.txt'))
       end
 
       it 'returns new remote account' do
         account = subject.call('foo@ap.example.com')
 
-        expect(account.activitypub?).to be true
+        expect(account.activitypub?).to eq true
         expect(account.domain).to eq 'ap.example.com'
         expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
         expect(account.actor_type).to eq 'Person'
@@ -176,7 +174,7 @@ RSpec.describe ResolveAccountService, type: :service do
     it 'returns new remote account' do
       account = subject.call('foo@ap.example.com')
 
-      expect(account.activitypub?).to be true
+      expect(account.activitypub?).to eq true
       expect(account.domain).to eq 'ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
       expect(account.uri).to eq 'https://ap.example.com/users/foo'
@@ -192,12 +190,12 @@ RSpec.describe ResolveAccountService, type: :service do
 
   context 'with an already-known acct: URI changing ActivityPub id' do
     let!(:old_account) { Fabricate(:account, username: 'foo', domain: 'ap.example.com', uri: 'https://old.example.com/users/foo', last_webfingered_at: nil) }
-    let!(:status) { Fabricate(:status, account: old_account, text: 'foo') }
+    let!(:status)    { Fabricate(:status, account: old_account, text: 'foo') }
 
     it 'returns new remote account' do
       account = subject.call('foo@ap.example.com')
 
-      expect(account.activitypub?).to be true
+      expect(account.activitypub?).to eq true
       expect(account.domain).to eq 'ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
       expect(account.uri).to eq 'https://ap.example.com/users/foo'
@@ -208,6 +206,11 @@ RSpec.describe ResolveAccountService, type: :service do
     wait_for_start = true
     fail_occurred  = false
     return_values  = Concurrent::Array.new
+
+    # Preload classes that throw circular dependency errors in threads
+    Account
+    TagManager
+    DomainBlock
 
     threads = Array.new(5) do
       Thread.new do

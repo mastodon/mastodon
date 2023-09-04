@@ -62,13 +62,17 @@ class Api::V1::Lists::AccountsController < Api::BaseController
   def next_path
     return if unlimited?
 
-    api_v1_list_accounts_url pagination_params(max_id: pagination_max_id) if records_continue?
+    if records_continue?
+      api_v1_list_accounts_url pagination_params(max_id: pagination_max_id)
+    end
   end
 
   def prev_path
     return if unlimited?
 
-    api_v1_list_accounts_url pagination_params(since_id: pagination_since_id) unless @accounts.empty?
+    unless @accounts.empty?
+      api_v1_list_accounts_url pagination_params(since_id: pagination_since_id)
+    end
   end
 
   def pagination_max_id

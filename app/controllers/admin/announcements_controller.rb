@@ -14,10 +14,6 @@ class Admin::AnnouncementsController < Admin::BaseController
     @announcement = Announcement.new
   end
 
-  def edit
-    authorize :announcement, :update?
-  end
-
   def create
     authorize :announcement, :create?
 
@@ -30,6 +26,10 @@ class Admin::AnnouncementsController < Admin::BaseController
     else
       render :new
     end
+  end
+
+  def edit
+    authorize :announcement, :update?
   end
 
   def update

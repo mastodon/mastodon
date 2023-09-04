@@ -3,24 +3,22 @@
 require 'rails_helper'
 
 describe ConnectionPool::SharedConnectionPool do
-  subject { described_class.new(size: 5, timeout: 5) { |site| mini_connection_class.new(site) } }
+  class MiniConnection
+    attr_reader :site
 
-  let(:mini_connection_class) do
-    Class.new do
-      attr_reader :site
-
-      def initialize(site)
-        @site = site
-      end
+    def initialize(site)
+      @site = site
     end
   end
+
+  subject { described_class.new(size: 5, timeout: 5) { |site| MiniConnection.new(site) } }
 
   describe '#with' do
     it 'runs a block with a connection' do
       block_run = false
 
       subject.with('foo') do |connection|
-        expect(connection).to be_a mini_connection_class
+        expect(connection).to be_a MiniConnection
         block_run = true
       end
 

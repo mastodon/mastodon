@@ -1,12 +1,11 @@
-import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
-
 import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';
 import { CONTEXT_FETCH_SUCCESS } from '../actions/statuses';
 import { TIMELINE_DELETE, TIMELINE_UPDATE } from '../actions/timelines';
-import { compareId } from '../compare_id';
+import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import compareId from '../compare_id';
 
 const initialState = ImmutableMap({
   inReplyTos: ImmutableMap(),

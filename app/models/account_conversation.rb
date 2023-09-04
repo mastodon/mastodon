@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: account_conversations
@@ -17,44 +16,34 @@
 class AccountConversation < ApplicationRecord
   include Redisable
 
-  attr_writer :participant_accounts
-
-  before_validation :set_last_status
   after_commit :push_to_streaming_api
 
   belongs_to :account
   belongs_to :conversation
   belongs_to :last_status, class_name: 'Status'
 
+  before_validation :set_last_status
+
   def participant_account_ids=(arr)
     self[:participant_account_ids] = arr.sort
-    @participant_accounts = nil
   end
 
   def participant_accounts
-    @participant_accounts ||= Account.where(id: participant_account_ids).to_a
-    @participant_accounts.presence || [account]
+    if participant_account_ids.empty?
+      [account]
+    else
+      participants = Account.where(id: participant_account_ids)
+      participants.empty? ? [account] : participants
+    end
   end
 
   class << self
     def to_a_paginated_by_id(limit, options = {})
-      array = begin
-        if options[:min_id]
-          paginate_by_min_id(limit, options[:min_id], options[:max_id]).reverse
-        else
-          paginate_by_max_id(limit, options[:max_id], options[:since_id]).to_a
-        end
+      if options[:min_id]
+        paginate_by_min_id(limit, options[:min_id], options[:max_id]).reverse
+      else
+        paginate_by_max_id(limit, options[:max_id], options[:since_id]).to_a
       end
-
-      # Preload participants
-      participant_ids = array.flat_map(&:participant_account_ids)
-      accounts_by_id = Account.where(id: participant_ids).index_by(&:id)
-
-      array.each do |conversation|
-        conversation.participant_accounts = conversation.participant_account_ids.filter_map { |id| accounts_by_id[id] }
-      end
-
-      array
     end
 
     def paginate_by_min_id(limit, min_id = nil, max_id = nil)
@@ -118,7 +107,6 @@ class AccountConversation < ApplicationRecord
 
   def push_to_streaming_api
     return if destroyed? || !subscribed_to_timeline?
-
     PushConversationWorker.perform_async(id)
   end
 

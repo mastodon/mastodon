@@ -6,9 +6,9 @@ describe FetchOEmbedService, type: :service do
   subject { described_class.new }
 
   before do
-    stub_request(:get, 'https://host.test/provider.json').to_return(status: 404)
-    stub_request(:get, 'https://host.test/provider.xml').to_return(status: 404)
-    stub_request(:get, 'https://host.test/empty_provider.json').to_return(status: 200)
+    stub_request(:get, "https://host.test/provider.json").to_return(status: 404)
+    stub_request(:get, "https://host.test/provider.xml").to_return(status: 404)
+    stub_request(:get, "https://host.test/empty_provider.json").to_return(status: 200)
   end
 
   describe 'discover_provider' do
@@ -18,7 +18,7 @@ describe FetchOEmbedService, type: :service do
           stub_request(:get, 'https://www.youtube.com/watch?v=IPSbNdBmWKE').to_return(
             status: 200,
             headers: { 'Content-Type': 'text/html' },
-            body: request_fixture('oembed_youtube.html')
+            body: request_fixture('oembed_youtube.html'),
           )
           stub_request(:get, 'https://www.youtube.com/oembed?format=json&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DIPSbNdBmWKE').to_return(
             status: 200,
@@ -39,7 +39,7 @@ describe FetchOEmbedService, type: :service do
         end
       end
 
-      context 'when both of JSON and XML provider are discoverable' do
+      context 'Both of JSON and XML provider are discoverable' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
             status: 200,
@@ -62,11 +62,11 @@ describe FetchOEmbedService, type: :service do
 
         it 'does not cache OEmbed endpoint' do
           subject.call('https://host.test/oembed.html', format: :xml)
-          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to be false
+          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to eq false
         end
       end
 
-      context 'when JSON provider is discoverable while XML provider is not' do
+      context 'JSON provider is discoverable while XML provider is not' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
             status: 200,
@@ -83,11 +83,11 @@ describe FetchOEmbedService, type: :service do
 
         it 'does not cache OEmbed endpoint' do
           subject.call('https://host.test/oembed.html')
-          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to be false
+          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to eq false
         end
       end
 
-      context 'when XML provider is discoverable while JSON provider is not' do
+      context 'XML provider is discoverable while JSON provider is not' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
             status: 200,
@@ -104,11 +104,11 @@ describe FetchOEmbedService, type: :service do
 
         it 'does not cache OEmbed endpoint' do
           subject.call('https://host.test/oembed.html')
-          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to be false
+          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to eq false
         end
       end
 
-      context 'with Invalid XML provider is discoverable while JSON provider is not' do
+      context 'Invalid XML provider is discoverable while JSON provider is not' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
             status: 200,
@@ -122,7 +122,7 @@ describe FetchOEmbedService, type: :service do
         end
       end
 
-      context 'with neither of JSON and XML provider is discoverable' do
+      context 'Neither of JSON and XML provider is discoverable' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
             status: 200,
@@ -136,7 +136,7 @@ describe FetchOEmbedService, type: :service do
         end
       end
 
-      context 'when empty JSON provider is discoverable' do
+      context 'Empty JSON provider is discoverable' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
             status: 200,
@@ -151,6 +151,7 @@ describe FetchOEmbedService, type: :service do
           expect(subject.format).to eq :json
         end
       end
+
     end
 
     context 'when endpoint is cached' do

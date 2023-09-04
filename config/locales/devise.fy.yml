@@ -2,82 +2,82 @@
 fy:
   devise:
     confirmations:
-      confirmed: Jo account is befêstige.
-      send_instructions: Jo ûntfange fia in e-mailberjocht ynstruksjes hoe’t jo jo account befêstigje kinne. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
-      send_paranoid_instructions: As jo e-mailadres yn de database stiet, ûntfange jo fia in e-mailberjocht ynstruksjes hoe’t jo jo account befêstigje kinne. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
+      confirmed: Dyn account is befêstige.
+      send_instructions: Do ûntfangst fia in e-mailberjocht ynstruksjes hoe’tsto dyn account befêstigje kinst. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
+      send_paranoid_instructions: As dyn e-mailadres yn de database stiet, ûntfangsto fia in e-mailberjocht ynstruksjes hoe’tsto dyn account befêstigje kinst. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
     failure:
-      already_authenticated: Jo binne al oanmeld.
+      already_authenticated: Do bist al oanmeld.
       inactive: Jo account is noch net aktivearre.
       invalid: "%{authentication_keys} of wachtwurd ûnjildich."
-      last_attempt: Jo hawwe noch ien besykjen oer eardat jo account blokkearre wurdt.
-      locked: Jo account is blokkearre.
+      last_attempt: Do hast noch ien besykjen oer eardat dyn account blokkearre wurdt.
+      locked: Dyn account is blokkearre.
       not_found_in_database: "%{authentication_keys} of wachtwurd ûnjildich."
-      pending: Jo account moat noch hieltyd beoardiele wurde.
+      pending: Dyn account moat noch hieltyd beoardiele wurde.
       timeout: Dyn sesje is ferrûn, meld dy opnij oan.
       unauthenticated: Jo moatte oanmelde of registrearje.
-      unconfirmed: Jo moatte earst jo account befêstigje.
+      unconfirmed: Do moatst earst dyn account befêstigje.
     mailer:
       confirmation_instructions:
         action: E-mailadres ferifiearje
         action_with_app: Befêstigje en nei %{app} tebekgean
-        explanation: Jo hawwe in account op %{host} oanmakke en mei ien klik kinne jo dizze aktivearje. Wannear’t jo dizze account net oanmakke hawwe, meie jo dit e-mailberjocht negearje.
-        explanation_when_pending: Jo freegje mei dit e-mailadres in útnûging oan foar %{host}. Neidat jo jo e-mailadres befêstige hawwe, beoardielje wy jo oanfraach. Jo kinne oant dan noch net oanmelde. Wannear’t jo oanfraach ôfwêzen wurdt, wurde jo gegevens fuortsmiten en hoege jo dêrnei fierder neat mear te dwaan. Wannear’t jo dit net wiene, kinne jo dit e-mailberjocht negearje.
+        explanation: Do hast in account op %{host} oanmakke en mei ien klik kinsto dizze aktivearje. Wannear’tsto dit account net oanmakke hast, meisto dit e-mailberjocht negearje.
+        explanation_when_pending: Do fregest mei dit e-mailadres in útnûging oan foar %{host}. Neidatsto dyn e-mailadres befêstige hast, beoardielje wy dyn oanfraach. Do kinst oant dan noch net oanmelde. Wannear’t dyn oanfraach ôfwêzen wurdt, wurde dyn gegevens fuortsmiten en hoechsto dêrnei fierder neat mear te dwaan. Wannear’tsto dit net wiest, kinsto dit e-mailberjocht negearje.
         extra_html: |-
           128 / 5.000
           Kontrolearje ek <a href="%{terms_path}">de regels fan de server</a> en <a href="%{policy_path}">ús tsjinstbetingsten</a>.
-        subject: 'TomX: Befêstigingsynstruksjes foar %{instance}'
+        subject: 'Mastodon: Befêstigingsynstruksjes foar %{instance}'
         title: E-mailadres ferifiearje
       email_changed:
         explanation: 'It e-mailadres foar jo account wurdt wizige yn:'
         extra: As jo ​​jo e-mailadres net wizige hawwe, is it wierskynlik dat immen tagong hat ta jo account. Wizigje jo wachtwurd daliks of nim kontakt op mei de server-admin as jo útsletten binne fan jo account.
-        subject: 'TomX: E-mailadres is wizige'
+        subject: 'Mastodon: E-mailadres is wizige'
         title: Nij e-mailadres
       password_change:
         explanation: It wachtwurd fan dizze account is wizige.
         extra: As jo ​​jo wachtwurd net wizige hawwe, is it wierskynlik dat immen tagong hat ta jo account. Wizigje jo wachtwurd daliks of nim kontakt op mei de serveradmin as jo útsletten binne fan jo account.
-        subject: 'TomX: Wachtwurd wizige'
+        subject: 'Mastodon: Wachtwurd wizige'
         title: Wachtwurd wizige
       reconfirmation_instructions:
         explanation: Befêstigje jo nije e-mailadres om dizze te wizigjen.
-        extra: Wannear’t jo dizze wiziging net útfierd hawwe, meie jo dit e-mailberjocht negearje. It e-mailadres fan jo TomX-account wurdt pas werklik wizige oant jo de keppeling hjirboppe oanklikke.
-        subject: 'TomX: Befêstigje it e-mailadres foar %{instance}'
+        extra: Wannear’t jo dizze wiziging net útfierd hawwe, meie jo dit e-mailberjocht negearje. It e-mailadres fan jo Mastodon-account wurdt pas werklik wizige oant jo de keppeling hjirboppe oanklikke.
+        subject: 'Mastodon: Befêstigje it e-mailadres foar %{instance}'
         title: E-mailadres ferifiearje
       reset_password_instructions:
         action: Wachtwurd wizigje
         explanation: Jo hawwe in nij wachtwurd foar jo account oanfrege.
         extra: Wannear’t jo dit net oanfrege hawwe, meie jo dit e-mailberjocht negearje. Jo wachtwurd wurdt pas wizige neidat jo de keppeling hjirboppe oanklikt hawwe en in nij wachtwurd oanmeitsje.
-        subject: 'TomX: Wachtwurd opnij ynstelle'
+        subject: 'Mastodon: Wachtwurd opnij ynstelle'
         title: Wachtwurd opnij ynstelle
       two_factor_disabled:
         explanation: Twa-stapsferifikaasje foar jo account is útskeakele. Jo kinne no allinnich oanmelde mei in e-mailadres en wachtwurd.
-        subject: 'TomX: Twa-stapsferifikaasje útskeakele'
+        subject: 'Mastodon: Twa-stapsferifikaasje útskeakele'
         title: Twa-stapsferifikaasje útskeakele
       two_factor_enabled:
         explanation: Twa-stapsferifikaasje foar jo account is ynskeakele. Om oanmelde te kinnen is in troch in twa-stapsferifikaasje-app generearre tagongskoade nedich.
-        subject: 'TomX: Twa-stapsferifikaasje ynskeakele'
+        subject: 'Mastodon: Twa-stapsferifikaasje ynskeakele'
         title: Twa-stapsferifikaasje ynskeakele
       two_factor_recovery_codes_changed:
         explanation: De foarige werstelkoaden binne ûnjildich makke en nije binne oanmakke.
-        subject: 'TomX: Twa-staps-werstelkoaden binne opnij oanmakke'
+        subject: 'Mastodon: Twa-staps-werstelkoaden binne opnij oanmakke'
         title: Werstelkoaden twa-stapsferifikaasje wizige
       unlock_instructions:
-        subject: 'TomX: Ynstruksjes foar ûntskoatteljen'
+        subject: 'Mastodon: Ynstruksjes foar ûntskoatteljen'
       webauthn_credential:
         added:
           explanation: De folgjende befeiligingskaai is oan jo account tafoege
-          subject: 'TomX: Nije befeiligingskaai'
+          subject: 'Mastodon: Nije befeiligingskaai'
           title: In nije befeiligingskaai is tafoege
         deleted:
           explanation: De folgjende befeiligingskaai is út jo account fuortsmiten
-          subject: 'TomX: Befeiligingskaai fuortsmiten'
+          subject: 'Mastodon: Befeiligingskaai fuortsmiten'
           title: Ien fan jo befeiligingskaaien is fuortsmiten
       webauthn_disabled:
         explanation: Ferifikaasje mei befeiligingskaaien is útskeakele foar jo account. Oanmelden is no allinnich mooglik mei it gebrûk fan in troch in keppele TOTP-app generearre kaai.
-        subject: 'TomX: Ferifikaasje mei befeiligingskaaien is útskeakele'
+        subject: 'Mastodon: Ferifikaasje mei befeiligingskaaien is útskeakele'
         title: Befeiligingskaaien útskeakele
       webauthn_enabled:
         explanation: Ferifikaasje mei befeiligingskaaien is ynskeakele foar jo account. Jo befeiligingskaai kin no brûkt wurde om oan te melden.
-        subject: 'TomX: Ferifikaasje mei befeiligingskaaien is ynskeakele'
+        subject: 'Mastodon: Ferifikaasje mei befeiligingskaaien is ynskeakele'
         title: Befeiligingskaaien ynskeakele
     omniauth_callbacks:
       failure: Oanmelden mei jo %{kind}-account mislearre, omdat ‘%{reason}’.

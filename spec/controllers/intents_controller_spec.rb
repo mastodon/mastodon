@@ -1,12 +1,9 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe IntentsController do
+RSpec.describe IntentsController, type: :controller do
   render_views
 
   let(:user) { Fabricate(:user) }
-
   before { sign_in user, scope: :user }
 
   describe 'GET #show' do

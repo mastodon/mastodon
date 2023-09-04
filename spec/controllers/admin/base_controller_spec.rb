@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::BaseController do
+describe Admin::BaseController, type: :controller do
   controller do
     def success
       authorize :dashboard, :index?
@@ -15,15 +15,7 @@ describe Admin::BaseController do
     sign_in(Fabricate(:user))
     get :success
 
-    expect(response).to have_http_status(403)
-  end
-
-  it 'returns private cache control headers' do
-    routes.draw { get 'success' => 'admin/base#success' }
-    sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Moderator')))
-    get :success
-
-    expect(response.headers['Cache-Control']).to include('private, no-store')
+    expect(response).to have_http_status(:forbidden)
   end
 
   it 'renders admin layout as a moderator' do

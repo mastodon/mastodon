@@ -1,7 +1,7 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/index.js
 
-import * as data from './emoji_mart_data_light';
+import data from './emoji_mart_data_light';
 
 const buildSearch = (data) => {
   const search = [];
@@ -73,7 +73,7 @@ const stringFromCodePoint = _String.fromCodePoint || function () {
 
 const _JSON = JSON;
 
-const COLONS_REGEX = /^(?::([^:]+):)(?::skin-tone-(\d):)?$/;
+const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/;
 const SKINS = [
   '1F3FA', '1F3FB', '1F3FC',
   '1F3FD', '1F3FE', '1F3FF',
@@ -135,19 +135,19 @@ function getData(emoji, skin, set) {
       }
     }
 
-    if (Object.prototype.hasOwnProperty.call(data.short_names, emoji)) {
+    if (data.short_names.hasOwnProperty(emoji)) {
       emoji = data.short_names[emoji];
     }
 
-    if (Object.prototype.hasOwnProperty.call(data.emojis, emoji)) {
+    if (data.emojis.hasOwnProperty(emoji)) {
       emojiData = data.emojis[emoji];
     }
   } else if (emoji.id) {
-    if (Object.prototype.hasOwnProperty.call(data.short_names, emoji.id)) {
+    if (data.short_names.hasOwnProperty(emoji.id)) {
       emoji.id = data.short_names[emoji.id];
     }
 
-    if (Object.prototype.hasOwnProperty.call(data.emojis, emoji.id)) {
+    if (data.emojis.hasOwnProperty(emoji.id)) {
       emojiData = data.emojis[emoji.id];
       skin = skin || emoji.skin;
     }
@@ -216,7 +216,7 @@ function deepMerge(a, b) {
     let originalValue = a[key],
       value = originalValue;
 
-    if (Object.prototype.hasOwnProperty.call(b, key)) {
+    if (b.hasOwnProperty(key)) {
       value = b[key];
     }
 

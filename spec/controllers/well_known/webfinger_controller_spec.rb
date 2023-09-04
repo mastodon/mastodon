@@ -1,15 +1,9 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-describe WellKnown::WebfingerController do
+describe WellKnown::WebfingerController, type: :controller do
   render_views
 
   describe 'GET #show' do
-    subject(:perform_show!) do
-      get :show, params: { resource: resource }, format: :json
-    end
-
     let(:alternate_domains) { [] }
     let(:alice) { Fabricate(:account, username: 'alice') }
     let(:resource) { nil }
@@ -19,6 +13,10 @@ describe WellKnown::WebfingerController do
       Rails.configuration.x.alternate_domains = alternate_domains
       example.run
       Rails.configuration.x.alternate_domains = tmp
+    end
+
+    subject do
+      get :show, params: { resource: resource }, format: :json
     end
 
     shared_examples 'a successful response' do
@@ -45,7 +43,7 @@ describe WellKnown::WebfingerController do
       let(:resource) { alice.to_webfinger_s }
 
       before do
-        perform_show!
+        subject
       end
 
       it_behaves_like 'a successful response'
@@ -56,7 +54,7 @@ describe WellKnown::WebfingerController do
 
       before do
         alice.suspend!
-        perform_show!
+        subject
       end
 
       it_behaves_like 'a successful response'
@@ -68,7 +66,7 @@ describe WellKnown::WebfingerController do
       before do
         alice.suspend!
         alice.deletion_request.destroy
-        perform_show!
+        subject
       end
 
       it 'returns http gone' do
@@ -80,7 +78,7 @@ describe WellKnown::WebfingerController do
       let(:resource) { 'acct:not@existing.com' }
 
       before do
-        perform_show!
+        subject
       end
 
       it 'returns http not found' do
@@ -92,7 +90,7 @@ describe WellKnown::WebfingerController do
       let(:alternate_domains) { ['foo.org'] }
 
       before do
-        perform_show!
+        subject
       end
 
       context 'when an account exists' do
@@ -116,39 +114,11 @@ describe WellKnown::WebfingerController do
       end
     end
 
-    context 'when the old name scheme is used to query the instance actor' do
-      let(:resource) do
-        "#{Rails.configuration.x.local_domain}@#{Rails.configuration.x.local_domain}"
-      end
-
-      before do
-        perform_show!
-      end
-
-      it 'returns http success' do
-        expect(response).to have_http_status(200)
-      end
-
-      it 'does not set a Vary header' do
-        expect(response.headers['Vary']).to be_nil
-      end
-
-      it 'returns application/jrd+json' do
-        expect(response.media_type).to eq 'application/jrd+json'
-      end
-
-      it 'returns links for the internal account' do
-        json = body_as_json
-        expect(json[:subject]).to eq 'acct:mastodon.internal@cb6e6126.ngrok.io'
-        expect(json[:aliases]).to eq ['https://cb6e6126.ngrok.io/actor']
-      end
-    end
-
     context 'with no resource parameter' do
       let(:resource) { nil }
 
       before do
-        perform_show!
+        subject
       end
 
       it 'returns http bad request' do
@@ -160,7 +130,7 @@ describe WellKnown::WebfingerController do
       let(:resource) { 'df/:dfkj' }
 
       before do
-        perform_show!
+        subject
       end
 
       it 'returns http bad request' do

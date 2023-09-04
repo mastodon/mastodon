@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::TagsController do
+RSpec.describe Admin::TagsController, type: :controller do
   render_views
 
   before do

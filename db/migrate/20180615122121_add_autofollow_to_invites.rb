@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require Rails.root.join('lib', 'mastodon', 'migration_helpers')
 
 class AddAutofollowToInvites < ActiveRecord::Migration[5.2]

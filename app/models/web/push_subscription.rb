@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: web_push_subscriptions
@@ -54,21 +53,25 @@ class Web::PushSubscription < ApplicationRecord
   def associated_user
     return @associated_user if defined?(@associated_user)
 
-    @associated_user = if user_id.nil?
-                         session_activation.user
-                       else
-                         user
-                       end
+    @associated_user = begin
+      if user_id.nil?
+        session_activation.user
+      else
+        user
+      end
+    end
   end
 
   def associated_access_token
     return @associated_access_token if defined?(@associated_access_token)
 
-    @associated_access_token = if access_token_id.nil?
-                                 find_or_create_access_token.token
-                               else
-                                 access_token.token
-                               end
+    @associated_access_token = begin
+      if access_token_id.nil?
+        find_or_create_access_token.token
+      else
+        access_token.token
+      end
+    end
   end
 
   class << self

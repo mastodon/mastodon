@@ -2,10 +2,6 @@
 es-AR:
   simple_form:
     hints:
-      account:
-        display_name: Tu nombre completo o tu pseudónimo.
-        fields: Tu sitio web, pronombres, edad, o lo que quieras.
-        note: 'Podés @mencionar otras cuentas o usar #etiquetas.'
       account_alias:
         acct: Especificá el nombredeusuario@dominio de la cuenta desde la que querés mudarte
       account_migration:
@@ -43,6 +39,7 @@ es-AR:
         digest: Sólo enviado tras un largo periodo de inactividad, y sólo si recibiste mensajes personales en tu ausencia
         discoverable: Permití que tu cuenta sea descubierta por extraños a través de recomendaciones, tendencias y otras funciones
         email: Se te enviará un correo electrónico de confirmación
+        fields: Podés tener hasta 4 elementos mostrados en una tabla en tu perfil
         header: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles.'
         inbox_url: Copiá la dirección web desde la página principal del relé que querés usar
         irreversible: Los mensajes filtrados desaparecerán irreversiblemente, incluso si este filtro es eliminado después
@@ -52,7 +49,7 @@ es-AR:
         phrase: Se aplicará sin importar las mayúsculas o las advertencias de contenido de un mensaje
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionás el alcance de nivel más alto, no necesitás seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevas adhesiones de los mensajes que fueron recientemente adheridos (sólo afecta a las adhesiones recibidas recientemente)
-        setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando TomX activamente
+        setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
         setting_default_sensitive: El contenido de medios sensibles está oculto predeterminadamente y puede ser mostrado con un clic
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Siempre ocultar todos los medios
@@ -62,7 +59,7 @@ es-AR:
         setting_show_application: La aplicación que usás para enviar mensajes se mostrará en la vista detallada de tus mensajes
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar actualizaciones de la línea temporal detrás de un clic en lugar de desplazar automáticamente el flujo
-        username: Podés usar letras, números y subguiones ("_")
+        username: Tu nombre de usuario será único en %{domain}
         whole_word: Cuando la palabra clave o frase es sólo alfanumérica, sólo será aplicado si coincide con toda la palabra
       domain_allow:
         domain: Este dominio podrá recolectar datos de este servidor, y los datos entrantes serán procesados y archivados
@@ -81,30 +78,28 @@ es-AR:
         backups_retention_period: Conservar los archivos historiales generados por el usuario durante el número de días especificado.
         bootstrap_timeline_accounts: Estas cuentas serán fijadas a la parte superior de las recomendaciones de cuentas a seguir para nuevos usuarios.
         closed_registrations_message: Mostrado cuando los registros están cerrados
-        content_cache_retention_period: Todos los mensajes y adhesiones de otros servidores se eliminarán después del número especificado de días. Es posible que algunos mensajes no sean recuperables. Todos los marcadores relacionados, mensajes marcados como favoritos y adhesiones también se perderán y será imposible de deshacer.
-        custom_css: Podés aplicar estilos personalizados a la versión web de TomX.
+        content_cache_retention_period: Los mensajes de otros servidores se eliminarán después del número especificado de días cuando se establezca un valor positivo. Esto puede ser irreversible.
+        custom_css: Podés aplicar estilos personalizados a la versión web de Mastodon.
         mascot: Reemplaza la ilustración en la interface web avanzada.
         media_cache_retention_period: Los archivos de medios descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se volverán a descargar a pedido.
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Acá no se incluye ningún dato sobre si federás con un servidor determinado, sólo que tu servidor lo conoce. Esto es usado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado a que su cuenta pueda ser descubierta.
         require_invite_text: Cuando registros aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
         site_contact_email: Cómo la gente puede estar en contacto con vos para consultas legales o de ayuda.
-        site_contact_username: Cómo la gente puede estar en contacto con vos en TomX.
+        site_contact_username: Cómo la gente puede estar en contacto con vos en Mastodon.
         site_extended_description: Cualquier información adicional que pueda ser útil para los visitantes y tus usuarios. Se puede estructurar con sintaxis Markdown.
         site_short_description: Una breve descripción para ayudar a identificar individualmente a tu servidor. ¿Quién lo administra, a quién va dirigido?
         site_terms: Usá tu propia política de privacidad o dejala en blanco para usar la predeterminada. Puede estructurarse con sintaxis Markdown.
         site_title: Cómo la gente puede referirse a tu servidor además de su nombre de dominio.
-        status_page_url: Dirección web de una página donde la gente puede ver el estado de este servidor durante un apagón
         theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
         timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
         trendable_by_default: Omití la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
         trends: Las tendencias muestran qué mensajes, etiquetas y noticias están ganando tracción en tu servidor.
-        trends_as_landing_page: Mostrar contenido en tendencia para usuarios que no iniciaron sesión y visitantes, en lugar de una descripción de este servidor. Requiere que las tendencias estén habilitadas.
       form_challenge:
         current_password: Estás ingresando en un área segura
       imports:
-        data: Archivo CSV exportado desde otro servidor de TomX
+        data: Archivo CSV exportado desde otro servidor de Mastodon
       invite_request:
         text: Esto nos ayudará a revisar tu solicitud
       ip_block:
@@ -134,7 +129,6 @@ es-AR:
         position: Un rol más alto decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con prioridad inferior
       webhook:
         events: Seleccionar eventos para enviar
-        template: Creá tu propio archivo JSON usando interpolación variable. Dejalo en blanco para usar el archivo JSON predeterminado.
         url: Adónde serán enviados los eventos
     labels:
       account:
@@ -156,7 +150,7 @@ es-AR:
         types:
           disable: Congelar
           none: Enviar una advertencia
-          sensitive: Marcar como sensible
+          sensitive: Sensible
           silence: Limitar
           suspend: Suspender
         warning_preset_id: Usar una advertencia preestablecida
@@ -171,7 +165,7 @@ es-AR:
       defaults:
         autofollow: Invitar para seguir tu cuenta
         avatar: Avatar
-        bot: Esta es una cuenta automatizada
+        bot: Esta es una cuenta bot
         chosen_languages: Filtrar idiomas
         confirm_new_password: Confirmar nueva contraseña
         confirm_password: Confirmar contraseña
@@ -182,7 +176,7 @@ es-AR:
         display_name: Nombre para mostrar
         email: Dirección de correo electrónico
         expires_in: Vence después de
-        fields: Campos extras
+        fields: Metadatos de perfil
         header: Cabecera
         honeypot: "%{label} (no rellenar)"
         inbox_url: Dirección web de la bandeja de entrada del relé
@@ -200,6 +194,7 @@ es-AR:
         setting_always_send_emails: Siempre enviar notificaciones por correo electrónico
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar diálogo de confirmación antes de adherir
+        setting_crop_images: Recortar imágenes en mensajes no expandidos a 16x9
         setting_default_language: Idioma de tus mensajes
         setting_default_privacy: Privacidad de mensajes
         setting_default_sensitive: Siempre marcar medios como sensibles
@@ -256,13 +251,11 @@ es-AR:
         site_short_description: Descripción del servidor
         site_terms: Política de privacidad
         site_title: Nombre del servidor
-        status_page_url: Dirección web de la página de estado
         theme: Tema predeterminado
         thumbnail: Miniatura del servidor
         timeline_preview: Permitir el acceso no autenticado a las líneas temporales públicas
         trendable_by_default: Permitir tendencias sin revisión previa
         trends: Habilitar tendencias
-        trends_as_landing_page: Usar las tendencias como la página de destino
       interactions:
         must_be_follower: Bloquear notificaciones de cuentas que no te siguen
         must_be_following: Bloquear notificaciones de cuentas que no seguís
@@ -299,7 +292,6 @@ es-AR:
         usable: Permitir a los mensajes usar esta etiqueta
       user:
         role: Rol
-        time_zone: Zona horaria
       user_role:
         color: Color de Insignia
         highlighted: Mostrar rol como insignia en perfiles de usuario
@@ -308,7 +300,6 @@ es-AR:
         position: Prioridad
       webhook:
         events: Eventos habilitados
-        template: Plantilla de carga
         url: Dirección web del punto final
     'no': 'No'
     not_recommended: No recomendado

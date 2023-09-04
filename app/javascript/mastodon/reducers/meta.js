@@ -1,7 +1,6 @@
-import { Map as ImmutableMap } from 'immutable';
-
-import { changeLayout } from 'mastodon/actions/app';
 import { STORE_HYDRATE } from 'mastodon/actions/store';
+import { APP_LAYOUT_CHANGE } from 'mastodon/actions/app';
+import { Map as ImmutableMap } from 'immutable';
 import { layoutFromWindow } from 'mastodon/is_mobile';
 
 const initialState = ImmutableMap({
@@ -15,8 +14,8 @@ export default function meta(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
     return state.merge(action.state.get('meta')).set('permissions', action.state.getIn(['role', 'permissions']));
-  case changeLayout.type:
-    return state.set('layout', action.payload.layout);
+  case APP_LAYOUT_CHANGE:
+    return state.set('layout', action.layout);
   default:
     return state;
   }

@@ -1,67 +1,59 @@
 # frozen_string_literal: true
 
-require 'zip'
+require 'rubygems/package'
 
 class BackupService < BaseService
   include Payloadable
-  include ContextHelper
 
-  attr_reader :account, :backup
+  attr_reader :account, :backup, :collection
 
   def call(backup)
     @backup  = backup
     @account = backup.user.account
 
+    build_json!
     build_archive!
   end
 
   private
 
-  def build_outbox_json!(file)
-    skeleton = serialize(collection_presenter, ActivityPub::CollectionSerializer)
-    skeleton[:@context] = full_context
-    skeleton[:orderedItems] = ['!PLACEHOLDER!']
-    skeleton = Oj.dump(skeleton)
-    prepend, append = skeleton.split('"!PLACEHOLDER!"')
-    add_comma = false
-
-    file.write(prepend)
+  def build_json!
+    @collection = serialize(collection_presenter, ActivityPub::CollectionSerializer)
 
     account.statuses.with_includes.reorder(nil).find_in_batches do |statuses|
-      file.write(',') if add_comma
-      add_comma = true
-
-      file.write(statuses.map do |status|
-        item = serialize_payload(ActivityPub::ActivityPresenter.from_status(status), ActivityPub::ActivitySerializer)
-        item.delete('@context')
+      statuses.each do |status|
+        item = serialize_payload(ActivityPub::ActivityPresenter.from_status(status), ActivityPub::ActivitySerializer, signer: @account)
+        item.delete(:'@context')
 
         unless item[:type] == 'Announce' || item[:object][:attachment].blank?
           item[:object][:attachment].each do |attachment|
-            attachment[:url] = Addressable::URI.parse(attachment[:url]).path.delete_prefix('/system/')
+            attachment[:url] = Addressable::URI.parse(attachment[:url]).path.gsub(/\A\/system\//, '')
           end
         end
 
-        Oj.dump(item)
-      end.join(','))
+        @collection[:orderedItems] << item
+      end
 
       GC.start
     end
-
-    file.write(append)
   end
 
   def build_archive!
-    tmp_file = Tempfile.new(%w(archive .zip))
+    tmp_file = Tempfile.new(%w(archive .tar.gz))
 
-    Zip::File.open(tmp_file, create: true) do |zipfile|
-      dump_outbox!(zipfile)
-      dump_media_attachments!(zipfile)
-      dump_likes!(zipfile)
-      dump_bookmarks!(zipfile)
-      dump_actor!(zipfile)
+    File.open(tmp_file, 'wb') do |file|
+      Zlib::GzipWriter.wrap(file) do |gz|
+        Gem::Package::TarWriter.new(gz) do |tar|
+          dump_media_attachments!(tar)
+          dump_outbox!(tar)
+          dump_likes!(tar)
+          dump_bookmarks!(tar)
+          dump_actor!(tar)
+        end
+      end
     end
 
-    archive_filename = "#{['archive', Time.now.utc.strftime('%Y%m%d%H%M%S'), SecureRandom.hex(16)].join('-')}.zip"
+    archive_filename = ['archive', Time.now.utc.strftime('%Y%m%d%H%M%S'), SecureRandom.hex(16)].join('-') + '.tar.gz'
 
     @backup.dump      = ActionDispatch::Http::UploadedFile.new(tempfile: tmp_file, filename: archive_filename)
     @backup.processed = true
@@ -71,96 +63,80 @@ class BackupService < BaseService
     tmp_file.unlink
   end
 
-  def dump_media_attachments!(zipfile)
+  def dump_media_attachments!(tar)
     MediaAttachment.attached.where(account: account).reorder(nil).find_in_batches do |media_attachments|
       media_attachments.each do |m|
-        path = m.file&.path
-        next unless path
+        next unless m.file&.path
 
-        path = path.gsub(%r{\A.*/system/}, '')
-        path = path.gsub(%r{\A/+}, '')
-        download_to_zip(zipfile, m.file, path)
+        download_to_tar(tar, m.file, m.file.path)
       end
 
       GC.start
     end
   end
 
-  def dump_outbox!(zipfile)
-    zipfile.get_output_stream('outbox.json') do |io|
-      build_outbox_json!(io)
-    end
-  end
+  def dump_outbox!(tar)
+    json = Oj.dump(collection)
 
-  def dump_actor!(zipfile)
-    actor = serialize(account, ActivityPub::ActorSerializer)
-
-    actor[:icon][:url]  = "avatar#{File.extname(actor[:icon][:url])}"  if actor[:icon]
-    actor[:image][:url] = "header#{File.extname(actor[:image][:url])}" if actor[:image]
-    actor[:outbox]      = 'outbox.json'
-    actor[:likes]       = 'likes.json'
-    actor[:bookmarks]   = 'bookmarks.json'
-
-    download_to_zip(zipfile, account.avatar, "avatar#{File.extname(account.avatar.path)}") if account.avatar.exists?
-    download_to_zip(zipfile, account.header, "header#{File.extname(account.header.path)}") if account.header.exists?
-
-    json = Oj.dump(actor)
-
-    zipfile.get_output_stream('actor.json') do |io|
+    tar.add_file_simple('outbox.json', 0o444, json.bytesize) do |io|
       io.write(json)
     end
   end
 
-  def dump_likes!(zipfile)
-    skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'likes.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
-    skeleton.delete(:totalItems)
-    skeleton[:orderedItems] = ['!PLACEHOLDER!']
-    skeleton = Oj.dump(skeleton)
-    prepend, append = skeleton.split('"!PLACEHOLDER!"')
+  def dump_actor!(tar)
+    actor = serialize(account, ActivityPub::ActorSerializer)
 
-    zipfile.get_output_stream('likes.json') do |io|
-      io.write(prepend)
+    actor[:icon][:url]  = 'avatar' + File.extname(actor[:icon][:url])  if actor[:icon]
+    actor[:image][:url] = 'header' + File.extname(actor[:image][:url]) if actor[:image]
+    actor[:outbox]      = 'outbox.json'
+    actor[:likes]       = 'likes.json'
+    actor[:bookmarks]   = 'bookmarks.json'
 
-      add_comma = false
+    download_to_tar(tar, account.avatar, 'avatar' + File.extname(account.avatar.path)) if account.avatar.exists?
+    download_to_tar(tar, account.header, 'header' + File.extname(account.header.path)) if account.header.exists?
 
-      Status.reorder(nil).joins(:favourites).includes(:account).merge(account.favourites).find_in_batches do |statuses|
-        io.write(',') if add_comma
-        add_comma = true
+    json = Oj.dump(actor)
 
-        io.write(statuses.map do |status|
-          Oj.dump(ActivityPub::TagManager.instance.uri_for(status))
-        end.join(','))
-
-        GC.start
-      end
-
-      io.write(append)
+    tar.add_file_simple('actor.json', 0o444, json.bytesize) do |io|
+      io.write(json)
     end
   end
 
-  def dump_bookmarks!(zipfile)
-    skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'bookmarks.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
-    skeleton.delete(:totalItems)
-    skeleton[:orderedItems] = ['!PLACEHOLDER!']
-    skeleton = Oj.dump(skeleton)
-    prepend, append = skeleton.split('"!PLACEHOLDER!"')
+  def dump_likes!(tar)
+    collection = serialize(ActivityPub::CollectionPresenter.new(id: 'likes.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
 
-    zipfile.get_output_stream('bookmarks.json') do |io|
-      io.write(prepend)
-
-      add_comma = false
-      Status.reorder(nil).joins(:bookmarks).includes(:account).merge(account.bookmarks).find_in_batches do |statuses|
-        io.write(',') if add_comma
-        add_comma = true
-
-        io.write(statuses.map do |status|
-          Oj.dump(ActivityPub::TagManager.instance.uri_for(status))
-        end.join(','))
-
-        GC.start
+    Status.reorder(nil).joins(:favourites).includes(:account).merge(account.favourites).find_in_batches do |statuses|
+      statuses.each do |status|
+        collection[:totalItems] += 1
+        collection[:orderedItems] << ActivityPub::TagManager.instance.uri_for(status)
       end
 
-      io.write(append)
+      GC.start
+    end
+
+    json = Oj.dump(collection)
+
+    tar.add_file_simple('likes.json', 0o444, json.bytesize) do |io|
+      io.write(json)
+    end
+  end
+
+  def dump_bookmarks!(tar)
+    collection = serialize(ActivityPub::CollectionPresenter.new(id: 'bookmarks.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
+
+    Status.reorder(nil).joins(:bookmarks).includes(:account).merge(account.bookmarks).find_in_batches do |statuses|
+      statuses.each do |status|
+        collection[:totalItems] += 1
+        collection[:orderedItems] << ActivityPub::TagManager.instance.uri_for(status)
+      end
+
+      GC.start
+    end
+
+    json = Oj.dump(collection)
+
+    tar.add_file_simple('bookmarks.json', 0o444, json.bytesize) do |io|
+      io.write(json)
     end
   end
 
@@ -183,10 +159,10 @@ class BackupService < BaseService
 
   CHUNK_SIZE = 1.megabyte
 
-  def download_to_zip(zipfile, attachment, filename)
+  def download_to_tar(tar, attachment, filename)
     adapter = Paperclip.io_adapters.for(attachment)
 
-    zipfile.get_output_stream(filename) do |io|
+    tar.add_file_simple(filename, 0o444, adapter.size) do |io|
       while (buffer = adapter.read(CHUNK_SIZE))
         io.write(buffer)
       end

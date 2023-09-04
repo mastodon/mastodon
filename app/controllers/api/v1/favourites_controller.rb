@@ -21,7 +21,7 @@ class Api::V1::FavouritesController < Api::BaseController
   end
 
   def results
-    @results ||= account_favourites.joins(:status).eager_load(:status).to_a_paginated_by_id(
+    @_results ||= account_favourites.joins(:status).eager_load(:status).to_a_paginated_by_id(
       limit_param(DEFAULT_STATUSES_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )
@@ -36,11 +36,15 @@ class Api::V1::FavouritesController < Api::BaseController
   end
 
   def next_path
-    api_v1_favourites_url pagination_params(max_id: pagination_max_id) if records_continue?
+    if records_continue?
+      api_v1_favourites_url pagination_params(max_id: pagination_max_id)
+    end
   end
 
   def prev_path
-    api_v1_favourites_url pagination_params(min_id: pagination_since_id) unless results.empty?
+    unless results.empty?
+      api_v1_favourites_url pagination_params(min_id: pagination_since_id)
+    end
   end
 
   def pagination_max_id

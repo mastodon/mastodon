@@ -2,11 +2,9 @@
 
 require 'rails_helper'
 
-describe Api::BaseController do
-  before do
-    stub_const('FakeService', Class.new)
-  end
+class FakeService; end
 
+describe Api::BaseController do
   controller do
     def success
       head 200
@@ -15,12 +13,6 @@ describe Api::BaseController do
     def error
       FakeService.new
     end
-  end
-
-  it 'returns private cache control headers by default' do
-    routes.draw { get 'success' => 'api/base#success' }
-    get :success
-    expect(response.headers['Cache-Control']).to include('private, no-store')
   end
 
   describe 'forgery protection' do
@@ -74,11 +66,7 @@ describe Api::BaseController do
   end
 
   describe 'error handling' do
-    before do
-      routes.draw { get 'error' => 'api/base#error' }
-    end
-
-    {
+    ERRORS_WITH_CODES = {
       ActiveRecord::RecordInvalid => 422,
       Mastodon::ValidationError => 422,
       ActiveRecord::RecordNotFound => 404,
@@ -86,13 +74,18 @@ describe Api::BaseController do
       HTTP::Error => 503,
       OpenSSL::SSL::SSLError => 503,
       Mastodon::NotPermittedError => 403,
-    }.each do |error, code|
+    }
+
+    before do
+      routes.draw { get 'error' => 'api/base#error' }
+    end
+
+    ERRORS_WITH_CODES.each do |error, code|
       it "Handles error class of #{error}" do
-        allow(FakeService).to receive(:new).and_raise(error)
+        expect(FakeService).to receive(:new).and_raise(error)
 
         get 'error'
         expect(response).to have_http_status(code)
-        expect(FakeService).to have_received(:new)
       end
     end
   end

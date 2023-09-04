@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 module WellKnown
-  class NodeInfoController < ActionController::Base # rubocop:disable Rails/ApplicationController
+  class NodeInfoController < ActionController::Base
     include CacheConcern
 
-    # Prevent `active_model_serializer`'s `ActionController::Serialization` from calling `current_user`
-    # and thus re-issuing session cookies
-    serialization_scope nil
+    before_action { response.headers['Vary'] = 'Accept' }
 
     def index
       expires_in 3.days, public: true

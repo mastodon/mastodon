@@ -2,22 +2,24 @@
 
 module DomainControlHelper
   def domain_not_allowed?(uri_or_domain)
-    return false if uri_or_domain.blank?
+    return if uri_or_domain.blank?
 
-    domain = if uri_or_domain.include?('://')
-               Addressable::URI.parse(uri_or_domain).host
-             else
-               uri_or_domain
-             end
+    domain = begin
+      if uri_or_domain.include?('://')
+        Addressable::URI.parse(uri_or_domain).host
+      else
+        uri_or_domain
+      end
+    end
 
-    if limited_federation_mode?
+    if whitelist_mode?
       !DomainAllow.allowed?(domain)
     else
       DomainBlock.blocked?(domain)
     end
   end
 
-  def limited_federation_mode?
-    Rails.configuration.x.limited_federation_mode
+  def whitelist_mode?
+    Rails.configuration.x.whitelist_mode
   end
 end

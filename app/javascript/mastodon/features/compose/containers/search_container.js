@@ -1,21 +1,15 @@
 import { connect } from 'react-redux';
-
 import {
   changeSearch,
   clearSearch,
   submitSearch,
   showSearch,
-  openURL,
-  clickSearchResult,
-  forgetSearchResult,
-} from 'mastodon/actions/search';
-
+} from '../../../actions/search';
 import Search from '../components/search';
 
 const mapStateToProps = state => ({
   value: state.getIn(['search', 'value']),
   submitted: state.getIn(['search', 'submitted']),
-  recent: state.getIn(['search', 'recent']),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -28,24 +22,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch(clearSearch());
   },
 
-  onSubmit (type) {
-    dispatch(submitSearch(type));
+  onSubmit () {
+    dispatch(submitSearch());
   },
 
   onShow () {
     dispatch(showSearch());
-  },
-
-  onOpenURL (q, routerHistory) {
-    dispatch(openURL(q, routerHistory));
-  },
-
-  onClickSearchResult (q, type) {
-    dispatch(clickSearchResult(q, type));
-  },
-
-  onForgetSearchResult (q) {
-    dispatch(forgetSearchResult(q));
   },
 
 });

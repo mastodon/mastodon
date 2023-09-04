@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe AuthorizeFollowService, type: :service do
-  subject { described_class.new }
-
   let(:sender) { Fabricate(:account, username: 'alice') }
+
+  subject { AuthorizeFollowService.new }
 
   describe 'local' do
     let(:bob) { Fabricate(:account, username: 'bob') }

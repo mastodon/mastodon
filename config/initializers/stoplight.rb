@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'stoplight'
 
 Rails.application.reloader.to_prepare do

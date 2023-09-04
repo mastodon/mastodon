@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe HomeController do
+RSpec.describe HomeController, type: :controller do
   render_views
 
   describe 'GET #index' do
@@ -11,7 +9,7 @@ RSpec.describe HomeController do
     context 'when not signed in' do
       it 'returns http success' do
         @request.path = '/'
-        expect(subject).to have_http_status(:success)
+        is_expected.to have_http_status(:success)
       end
     end
 
@@ -23,7 +21,7 @@ RSpec.describe HomeController do
       end
 
       it 'returns http success' do
-        expect(subject).to have_http_status(:success)
+        is_expected.to have_http_status(:success)
       end
     end
   end

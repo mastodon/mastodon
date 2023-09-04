@@ -8,7 +8,7 @@ class REST::PrivacyPolicySerializer < ActiveModel::Serializer
   end
 
   def content
-    markdown.render(format(object.text, domain: Rails.configuration.x.local_domain))
+    markdown.render(object.text % { domain: Rails.configuration.x.local_domain })
   end
 
   private

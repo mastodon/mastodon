@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: favourites
@@ -39,7 +38,6 @@ class Favourite < ApplicationRecord
 
   def decrement_cache_counters
     return if association(:status).loaded? && status.marked_for_destruction?
-
     status&.decrement_count!(:favourites_count)
   end
 

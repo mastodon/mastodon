@@ -1,10 +1,8 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe InstanceActorsController do
+RSpec.describe InstanceActorsController, type: :controller do
   describe 'GET #show' do
-    context 'with JSON' do
+    context 'as JSON' do
       let(:format) { 'json' }
 
       shared_examples 'shared behavior' do
@@ -22,7 +20,7 @@ RSpec.describe InstanceActorsController do
 
         it 'does not set cookies' do
           expect(response.cookies).to be_empty
-          expect(response.headers['Set-Cookies']).to be_nil
+          expect(response.headers['Set-Cookies']).to be nil
         end
 
         it 'does not set sessions' do
@@ -45,13 +43,11 @@ RSpec.describe InstanceActorsController do
 
       context 'without authorized fetch mode' do
         let(:authorized_fetch_mode) { false }
-
         it_behaves_like 'shared behavior'
       end
 
       context 'with authorized fetch mode' do
         let(:authorized_fetch_mode) { true }
-
         it_behaves_like 'shared behavior'
       end
     end

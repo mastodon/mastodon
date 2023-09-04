@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UpdateKurdishLocales < ActiveRecord::Migration[6.1]
   class User < ApplicationRecord
     # Dummy class, to make migration possible across version changes

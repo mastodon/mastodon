@@ -2,11 +2,13 @@
 
 module Admin::Trends::StatusesHelper
   def one_line_preview(status)
-    text = if status.local?
-             status.text.split("\n").first
-           else
-             Nokogiri::HTML(status.text).css('html > body > *').first&.text
-           end
+    text = begin
+      if status.local?
+        status.text.split("\n").first
+      else
+        Nokogiri::HTML(status.text).css('html > body > *').first&.text
+      end
+    end
 
     return '' if text.blank?
 

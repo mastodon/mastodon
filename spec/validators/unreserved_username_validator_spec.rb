@@ -10,21 +10,21 @@ RSpec.describe UnreservedUsernameValidator, type: :validator do
     end
 
     let(:validator) { described_class.new }
-    let(:account)   { instance_double(Account, username: username, errors: errors) }
-    let(:errors) { instance_double(ActiveModel::Errors, add: nil) }
+    let(:account)   { double(username: username, errors: errors) }
+    let(:errors )   { double(add: nil) }
 
-    context 'when @username is blank?' do
-      let(:username) { nil }
+    context '@username.blank?' do
+      let(:username)  { nil }
 
       it 'not calls errors.add' do
-        expect(errors).to_not have_received(:add).with(:username, any_args)
+        expect(errors).not_to have_received(:add).with(:username, any_args)
       end
     end
 
-    context 'when @username is not blank?' do
-      let(:username) { 'f' }
+    context '!@username.blank?' do
+      let(:username)  { 'f' }
 
-      context 'with reserved_username?' do
+      context 'reserved_username?' do
         let(:reserved_username) { true }
 
         it 'calls errors.add' do
@@ -32,11 +32,11 @@ RSpec.describe UnreservedUsernameValidator, type: :validator do
         end
       end
 
-      context 'when username is not reserved' do
+      context '!reserved_username?' do
         let(:reserved_username) { false }
 
         it 'not calls errors.add' do
-          expect(errors).to_not have_received(:add).with(:username, any_args)
+          expect(errors).not_to have_received(:add).with(:username, any_args)
         end
       end
     end

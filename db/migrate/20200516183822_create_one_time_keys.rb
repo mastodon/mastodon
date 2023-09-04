@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateOneTimeKeys < ActiveRecord::Migration[5.2]
   def change
     create_table :one_time_keys do |t|

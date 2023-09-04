@@ -18,7 +18,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
 
     {
       key: 'mastodon',
-      human_key: 'Mastodon',
+      human_key: 'Hometown',
       value: value,
       human_value: value,
     }
@@ -58,10 +58,12 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   end
 
   def redis_info
-    @redis_info ||= if redis.is_a?(Redis::Namespace)
-                      redis.redis.info
-                    else
-                      redis.info
-                    end
+    @redis_info ||= begin
+      if redis.is_a?(Redis::Namespace)
+        redis.redis.info
+      else
+        redis.info
+      end
+    end
   end
 end

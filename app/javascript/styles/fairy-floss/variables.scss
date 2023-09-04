@@ -1,0 +1,72 @@
+// FAIRY FLOSS VARIABLES
+
+// Purples
+$purple1: #2e2b3b;
+$purple2: #504b68;
+$purple3: #5f5676;
+$purple4: #c8c4d4;
+$purple5: #474059;
+$purpleicon: #ada6bf;
+$purpleborder: #5f5676;
+$purplescrollbar: #5a5475;
+$mint: #c2ffdf;
+$pink: #ffb8d1;
+$lemon: #fff683;
+$coral: #ff857f;
+
+// Commonly used web colors
+$black: #000000;            // Black
+$white: #ffffff;            // White
+$success-green: #79bd9a !default;    // Padua
+$error-red: #df405a !default;        // Cerise
+$warning-red: #ff5050 !default;      // Sunset Orange
+$gold-star: #ca8f04 !default;        // Dark Goldenrod
+
+// Values from the classic Mastodon UI
+$classic-base-color: $purple1;         // Midnight Express
+$classic-primary-color: $purple4;      // Echo Blue
+$classic-secondary-color: #d9e1e8;    // Pattens Blue
+$classic-highlight-color: #ff857f;    // Summer Sky
+
+// Variables for defaults in UI
+$base-shadow-color: $black !default;
+$base-overlay-background: $black !default;
+$base-border-color: $white !default;
+$simple-background-color: $white !default;
+$valid-value-color: $success-green !default;
+$error-value-color: $error-red !default;
+
+// Tell UI to use selected colors
+$ui-base-color: $classic-base-color !default;                  // Darkest
+$ui-base-lighter-color: lighten($ui-base-color, 26%) !default; // Lighter darkest
+$ui-primary-color: $classic-primary-color !default;            // Lighter
+$ui-secondary-color: $classic-secondary-color !default;        // Lightest
+$ui-highlight-color: $classic-highlight-color !default;
+
+// Variables for texts
+$primary-text-color: $white !default;
+$darker-text-color: $ui-primary-color !default;
+$dark-text-color: $purpleicon !default;
+$secondary-text-color: $ui-secondary-color !default;
+$highlight-text-color: $ui-highlight-color !default;
+$action-button-color: $purpleicon !default;
+
+// For texts on inverted backgrounds
+$inverted-text-color: $ui-base-color !default;
+$lighter-text-color: $ui-base-lighter-color !default;
+$light-text-color: $ui-primary-color !default;
+
+// Language codes that uses CJK fonts
+$cjk-langs: ja, ko, zh-CN, zh-HK, zh-TW;
+
+// Variables for components
+$media-modal-media-max-width: 100%;
+
+// put margins on top and bottom of image to avoid the screen covered by image.
+$media-modal-media-max-height: 80%;
+
+$no-gap-breakpoint: 415px;
+
+$font-sans-serif: 'mastodon-font-sans-serif' !default;
+$font-display: 'mastodon-font-display' !default;
+$font-monospace: 'mastodon-font-monospace' !default;

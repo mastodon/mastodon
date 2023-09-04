@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Auth::PasswordsController do
+describe Auth::PasswordsController, type: :controller do
   include Devise::Test::ControllerHelpers
 
   describe 'GET #new' do

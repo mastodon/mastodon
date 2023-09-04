@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class AddIndexOnStatusesForApiV1AccountsAccountIdStatuses < ActiveRecord::Migration[5.2]
+class AddIndexOnStatusesForApiV1AccountsAccountIdStatuses < ActiveRecord::Migration[5.1]
   disable_ddl_transaction!
 
   def change

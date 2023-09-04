@@ -50,7 +50,9 @@ class ActivityPub::Parser::MediaAttachmentParser
     components = begin
       blurhash = @json['blurhash']
 
-      Blurhash.components(blurhash) if blurhash.present? && /^[\w#$%*+,-.:;=?@\[\]^{|}~]+$/.match?(blurhash)
+      if blurhash.present? && /^[\w#$%*+,-.:;=?@\[\]^{|}~]+$/.match?(blurhash)
+        Blurhash.components(blurhash)
+      end
     end
 
     components.present? && components.none? { |comp| comp > 5 }

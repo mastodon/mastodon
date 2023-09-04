@@ -1,8 +1,6 @@
-import { Map as ImmutableMap, fromJS } from 'immutable';
-
 import {
-  ACCOUNT_NOTE_SUBMIT_SUCCESS,
-} from '../actions/account_notes';
+  NOTIFICATIONS_UPDATE,
+} from '../actions/notifications';
 import {
   ACCOUNT_FOLLOW_SUCCESS,
   ACCOUNT_FOLLOW_REQUEST,
@@ -25,9 +23,9 @@ import {
   DOMAIN_UNBLOCK_SUCCESS,
 } from '../actions/domain_blocks';
 import {
-  NOTIFICATIONS_UPDATE,
-} from '../actions/notifications';
-
+  ACCOUNT_NOTE_SUBMIT_SUCCESS,
+} from '../actions/account_notes';
+import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const normalizeRelationship = (state, relationship) => state.set(relationship.id, fromJS(relationship));
 

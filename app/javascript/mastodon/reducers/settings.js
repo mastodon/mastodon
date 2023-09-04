@@ -1,13 +1,12 @@
-import { Map as ImmutableMap, fromJS } from 'immutable';
-
+import { SETTING_CHANGE, SETTING_SAVE } from '../actions/settings';
+import { NOTIFICATIONS_FILTER_SET } from '../actions/notifications';
 import { COLUMN_ADD, COLUMN_REMOVE, COLUMN_MOVE, COLUMN_PARAMS_CHANGE } from '../actions/columns';
+import { STORE_HYDRATE } from '../actions/store';
 import { EMOJI_USE } from '../actions/emojis';
 import { LANGUAGE_USE } from '../actions/languages';
 import { LIST_DELETE_SUCCESS, LIST_FETCH_FAIL } from '../actions/lists';
-import { NOTIFICATIONS_FILTER_SET } from '../actions/notifications';
-import { SETTING_CHANGE, SETTING_SAVE } from '../actions/settings';
-import { STORE_HYDRATE } from '../actions/store';
-import { uuid } from '../uuid';
+import { Map as ImmutableMap, fromJS } from 'immutable';
+import uuid from '../uuid';
 
 const initialState = ImmutableMap({
   saved: true,
@@ -77,10 +76,6 @@ const initialState = ImmutableMap({
       'admin.sign_up': true,
       'admin.report': true,
     }),
-  }),
-
-  firehose: ImmutableMap({
-    onlyMedia: false,
   }),
 
   community: ImmutableMap({

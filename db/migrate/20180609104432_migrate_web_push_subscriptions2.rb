@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class MigrateWebPushSubscriptions2 < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 

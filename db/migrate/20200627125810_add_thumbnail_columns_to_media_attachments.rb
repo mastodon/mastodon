@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddThumbnailColumnsToMediaAttachments < ActiveRecord::Migration[5.2]
   def up
     add_attachment :media_attachments, :thumbnail

@@ -23,59 +23,59 @@ pl:
         explanation: Utworzyłeś(-aś) konto na %{host} podając ten adres e-mail. Jedno kliknięcie dzieli Cię od aktywacji tego konta. Jeżeli to nie Ty, zignoruj ten e-mail.
         explanation_when_pending: Poprosiłeś(-aś) o zaproszenie na %{host} używajac tego adresu e-mail. Kiedy potwierdzisz swój adres e-mail, przejrzymy Twoje podanie. Do tego czasu nie możesz się zalogować. Jeżeli Twoje podanie zostanie odrzucone, Twoje dane zostaną usunięte i nie będziesz musiał(-a) podejmować żadnych dodatkowych działań. Jeżeli to nie Ty, zignoruj ten e-mail.
         extra_html: Przeczytaj też <a href="%{terms_path}">regulamin serwera</a> i <a href="%{policy_path}">nasze zasady użytkowania</a>.
-        subject: 'TomX: Instrukcje weryfikacji adresu e-mail na %{instance}'
+        subject: 'Mastodon: Instrukcje weryfikacji adresu e-mail na %{instance}'
         title: Zweryfikuj adres e-mail
       email_changed:
         explanation: 'Adres e-mail dla Twojego konta zostanie zmieniony na:'
         extra: Jeżeli nie próbowałeś(-aś) zmienić adresu e-mail, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień natychmiastowo hasło lub skontaktuj się z administratorem serwera, jeżeli nie masz dostępu do konta.
-        subject: 'TomX: Zmieniono adres e-mail'
+        subject: 'Mastodon: Zmieniono adres e-mail'
         title: Nowy adres e-mail
       password_change:
         explanation: Hasło do Twojego konta zostało zmienione.
         extra: Jeżeli nie zmieniałeś(-aś) hasła, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień hasło natychmiastowo lub skontaktuj się z administratorem serwera, jeżeli nie masz dostępu do konta.
-        subject: 'TomX: Zmieniono hasło'
+        subject: 'Mastodon: Zmieniono hasło'
         title: Zmieniono hasło
       reconfirmation_instructions:
         explanation: Potwierdź nowy adres aby zmienić e-mail.
-        extra: Jeżeli nie próbowałeś(-aś) zmienić e-maila, zignoruj tą wiadomość. Adres e-mail przypisany do konta TomXa nie ulegnie zmianie, jeżeli nie użyjesz powyższego odnośniku.
-        subject: 'TomX: Potwierdź adres e-mail na %{instance}'
+        extra: Jeżeli nie próbowałeś(-aś) zmienić e-maila, zignoruj tą wiadomość. Adres e-mail przypisany do konta Mastodona nie ulegnie zmianie, jeżeli nie użyjesz powyższego odnośniku.
+        subject: 'Mastodon: Potwierdź adres e-mail na %{instance}'
         title: Zweryfikuj adres e-mail
       reset_password_instructions:
         action: Zmień hasło
         explanation: Próbowałeś(-aś) uzyskać nowe hasło do swojego konta.
         extra: Jeżeli to nie Ty, zignoruj tą wiadomość. Twoje hasło nie ulegnie zmianie, jeżeli nie wykorzystasz powyższego odnośnika i nie utworzysz nowego hasła.
-        subject: 'TomX: Instrukcje ustawienia nowego hasła'
+        subject: 'Mastodon: Instrukcje ustawienia nowego hasła'
         title: Przywracanie hasła
       two_factor_disabled:
         explanation: Uwierzytelnianie dwuskładnikowe dla Twojego konta zostało wyłączone. Możesz się teraz logować korzystając z samego adresu e-mail i hasła.
-        subject: TomX – wyłączono uwierzytelnianie dwustopniowe
+        subject: Mastodon – wyłączono uwierzytelnianie dwustopniowe
         title: Wyłączono 2FA
       two_factor_enabled:
         explanation: Uwierzytelnianie dwuskładnikowe dla Twojego konta zostało włączone. Logując się, będziesz potrzebować tokenu z połączonej aplikacji TOTP.
-        subject: TomX – włączono uwierzytelnianie dwustopniowe
+        subject: Mastodon – włączono uwierzytelnianie dwustopniowe
         title: Włączono 2FA
       two_factor_recovery_codes_changed:
         explanation: Poprzednie kody zapasowe zostały unieważnione, a nowe zostały wygenerowane.
-        subject: TomX – wygenerowano nowe kody ratunkowe 2FA
+        subject: Mastodon – wygenerowano nowe kody ratunkowe 2FA
         title: Zmieniono kody odzyskiwania 2FA
       unlock_instructions:
-        subject: 'TomX: Instrukcje odblokowania konta'
+        subject: 'Mastodon: Instrukcje odblokowania konta'
       webauthn_credential:
         added:
           explanation: Następujący klucz bezpieczeństwa został dodany do twojego konta
-          subject: 'TomX: Nowy klucz bezpieczeństwa'
+          subject: 'Mastodon: Nowy klucz bezpieczeństwa'
           title: Dodano nowy klucz bezpieczeństwa
         deleted:
           explanation: Następujący klucz bezpieczeństwa został usunięty z Twojego konta
-          subject: 'TomX: Klucz bezpieczeństwa usunięty'
+          subject: 'Mastodon: Klucz bezpieczeństwa usunięty'
           title: Usunięto jeden z twoich kluczy bezpieczeństwa
       webauthn_disabled:
         explanation: Uwierzytelnianie kluczem bezpieczeństwa zostało wyłączone dla Twojego konta. Logowanie jest teraz możliwe tylko przy użyciu tokenu generowanego przez sparowaną aplikację TOTP.
-        subject: 'TomX: Wyłączono uwierzytelnianie z kluczami bezpieczeństwa'
+        subject: 'Mastodon: Wyłączono uwierzytelnianie z kluczami bezpieczeństwa'
         title: Wyłączono klucze bezpieczeństwa
       webauthn_enabled:
         explanation: Uwierzytelnianie klucza bezpieczeństwa zostało włączone dla Twojego konta. Klucz bezpieczeństwa może być teraz wykorzystywany do logowania.
-        subject: 'TomX: Włączono uwierzytelnianie z kluczami bezpieczeństwa'
+        subject: 'Mastodon: Włączono uwierzytelnianie z kluczami bezpieczeństwa'
         title: Włączono klucze bezpieczeństwa
     omniauth_callbacks:
       failure: 'Uwierzytelnienie przez %{kind} nie powiodło się, ponieważ: "%{reason}".'

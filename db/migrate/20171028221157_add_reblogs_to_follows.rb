@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require Rails.root.join('lib', 'mastodon', 'migration_helpers')
 
-class AddReblogsToFollows < ActiveRecord::Migration[5.2]
+class AddReblogsToFollows < ActiveRecord::Migration[5.1]
   include Mastodon::MigrationHelpers
 
   disable_ddl_transaction!

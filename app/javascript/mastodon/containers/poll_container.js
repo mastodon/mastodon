@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
-
 import { debounce } from 'lodash';
 
-import { fetchPoll, vote } from 'mastodon/actions/polls';
 import Poll from 'mastodon/components/poll';
+import { fetchPoll, vote } from 'mastodon/actions/polls';
 
 const mapDispatchToProps = (dispatch, { pollId }) => ({
   refresh: debounce(

@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Api::V1::StatusesController do
+RSpec.describe Api::V1::StatusesController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user) }
@@ -120,7 +118,7 @@ RSpec.describe Api::V1::StatusesController do
     describe 'POST #create' do
       let(:scopes) { 'write:statuses' }
 
-      context 'with a basic status body' do
+      context do
         before do
           post :create, params: { status: 'Hello world' }
         end
@@ -132,23 +130,6 @@ RSpec.describe Api::V1::StatusesController do
         it 'returns rate limit headers' do
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
           expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
-        end
-      end
-
-      context 'with a safeguard' do
-        let!(:alice) { Fabricate(:account, username: 'alice') }
-        let!(:bob)   { Fabricate(:account, username: 'bob') }
-
-        before do
-          post :create, params: { status: '@alice hm, @bob is really annoying lately', allowed_mentions: [alice.id] }
-        end
-
-        it 'returns http unprocessable entity' do
-          expect(response).to have_http_status(422)
-        end
-
-        it 'returns serialized extra accounts in body' do
-          expect(body_as_json[:unexpected_accounts].map { |a| a.slice(:id, :acct) }).to eq [{ id: bob.id.to_s, acct: bob.acct }]
         end
       end
 
@@ -197,7 +178,7 @@ RSpec.describe Api::V1::StatusesController do
       end
 
       it 'removes the status' do
-        expect(Status.find_by(id: status.id)).to be_nil
+        expect(Status.find_by(id: status.id)).to be nil
       end
     end
 
@@ -221,7 +202,7 @@ RSpec.describe Api::V1::StatusesController do
 
   context 'without an oauth token' do
     before do
-      allow(controller).to receive(:doorkeeper_token).and_return(nil)
+      allow(controller).to receive(:doorkeeper_token) { nil }
     end
 
     context 'with a private status' do

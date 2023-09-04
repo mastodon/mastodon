@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Disputes::AppealsController do
+RSpec.describe Disputes::AppealsController, type: :controller do
   render_views
 
   before { sign_in current_user, scope: :user }
@@ -14,11 +12,12 @@ RSpec.describe Disputes::AppealsController do
     let(:strike) { Fabricate(:account_warning, target_account: current_user.account) }
 
     before do
+      allow(AdminMailer).to receive(:new_appeal).and_return(double('email', deliver_later: nil))
       post :create, params: { strike_id: strike.id, appeal: { text: 'Foo' } }
     end
 
     it 'notifies staff about new appeal' do
-      expect(ActionMailer::Base.deliveries.first.to).to eq([admin.email])
+      expect(AdminMailer).to have_received(:new_appeal).with(admin.account, Appeal.last)
     end
 
     it 'redirects back to the strike page' do

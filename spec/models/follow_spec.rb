@@ -1,13 +1,16 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Follow do
+RSpec.describe Follow, type: :model do
   let(:alice) { Fabricate(:account, username: 'alice') }
   let(:bob)   { Fabricate(:account, username: 'bob') }
 
   describe 'validations' do
-    subject { described_class.new(account: alice, target_account: bob, rate_limit: true) }
+    subject { Follow.new(account: alice, target_account: bob, rate_limit: true) }
+
+    it 'has a valid fabricator' do
+      follow = Fabricate.build(:follow)
+      expect(follow).to be_valid
+    end
 
     it 'is invalid without an account' do
       follow = Fabricate.build(:follow, account: nil)
@@ -38,10 +41,10 @@ RSpec.describe Follow do
 
   describe 'recent' do
     it 'sorts so that more recent follows comes earlier' do
-      follow0 = described_class.create!(account: alice, target_account: bob)
-      follow1 = described_class.create!(account: bob, target_account: alice)
+      follow0 = Follow.create!(account: alice, target_account: bob)
+      follow1 = Follow.create!(account: bob, target_account: alice)
 
-      a = described_class.recent.to_a
+      a = Follow.recent.to_a
 
       expect(a.size).to eq 2
       expect(a[0]).to eq follow1

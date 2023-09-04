@@ -1,19 +1,6 @@
-import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
-
 import {
-  DIRECTORY_FETCH_REQUEST,
-  DIRECTORY_FETCH_SUCCESS,
-  DIRECTORY_FETCH_FAIL,
-  DIRECTORY_EXPAND_REQUEST,
-  DIRECTORY_EXPAND_SUCCESS,
-  DIRECTORY_EXPAND_FAIL,
-} from 'mastodon/actions/directory';
-import {
-  FEATURED_TAGS_FETCH_REQUEST,
-  FEATURED_TAGS_FETCH_SUCCESS,
-  FEATURED_TAGS_FETCH_FAIL,
-} from 'mastodon/actions/featured_tags';
-
+  NOTIFICATIONS_UPDATE,
+} from '../actions/notifications';
 import {
   FOLLOWERS_FETCH_REQUEST,
   FOLLOWERS_FETCH_SUCCESS,
@@ -37,6 +24,10 @@ import {
   FOLLOW_REQUEST_REJECT_SUCCESS,
 } from '../actions/accounts';
 import {
+  REBLOGS_FETCH_SUCCESS,
+  FAVOURITES_FETCH_SUCCESS,
+} from '../actions/interactions';
+import {
   BLOCKS_FETCH_REQUEST,
   BLOCKS_FETCH_SUCCESS,
   BLOCKS_FETCH_FAIL,
@@ -44,10 +35,6 @@ import {
   BLOCKS_EXPAND_SUCCESS,
   BLOCKS_EXPAND_FAIL,
 } from '../actions/blocks';
-import {
-  REBLOGS_FETCH_SUCCESS,
-  FAVOURITES_FETCH_SUCCESS,
-} from '../actions/interactions';
 import {
   MUTES_FETCH_REQUEST,
   MUTES_FETCH_SUCCESS,
@@ -57,10 +44,19 @@ import {
   MUTES_EXPAND_FAIL,
 } from '../actions/mutes';
 import {
-  NOTIFICATIONS_UPDATE,
-} from '../actions/notifications';
-
-
+  DIRECTORY_FETCH_REQUEST,
+  DIRECTORY_FETCH_SUCCESS,
+  DIRECTORY_FETCH_FAIL,
+  DIRECTORY_EXPAND_REQUEST,
+  DIRECTORY_EXPAND_SUCCESS,
+  DIRECTORY_EXPAND_FAIL,
+} from 'mastodon/actions/directory';
+import {
+  FEATURED_TAGS_FETCH_REQUEST,
+  FEATURED_TAGS_FETCH_SUCCESS,
+  FEATURED_TAGS_FETCH_FAIL,
+} from 'mastodon/actions/featured_tags';
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialListState = ImmutableMap({
   next: null,

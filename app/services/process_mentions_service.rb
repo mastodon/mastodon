@@ -3,13 +3,12 @@
 class ProcessMentionsService < BaseService
   include Payloadable
 
-  # Scan status for mentions and fetch remote mentioned users,
-  # and create local mention pointers
+  # Scan status for mentions and fetch remote mentioned users, create
+  # local mention pointers, send Salmon notifications to mentioned
+  # remote users
   # @param [Status] status
-  # @param [Boolean] save_records Whether to save records in database
-  def call(status, save_records: true)
+  def call(status)
     @status = status
-    @save_records = save_records
 
     return unless @status.local?
 
@@ -28,11 +27,13 @@ class ProcessMentionsService < BaseService
     @status.text = @status.text.gsub(Account::MENTION_RE) do |match|
       username, domain = Regexp.last_match(1).split('@')
 
-      domain = if TagManager.instance.local_domain?(domain)
-                 nil
-               else
-                 TagManager.instance.normalize_domain(domain)
-               end
+      domain = begin
+        if TagManager.instance.local_domain?(domain)
+          nil
+        else
+          TagManager.instance.normalize_domain(domain)
+        end
+      end
 
       mentioned_account = Account.find_remote(username, domain)
 
@@ -50,35 +51,34 @@ class ProcessMentionsService < BaseService
       end
 
       # If after resolving it still isn't found or isn't the right
-      # protocol, then give up
-      next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
+      # protocol, or it's a federated account and the status is local-only,
+      # then give up
+      next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended? || (!mentioned_account.local? && @status.local_only?)
 
       mention   = @previous_mentions.find { |x| x.account_id == mentioned_account.id }
-      mention ||= @current_mentions.find  { |x| x.account_id == mentioned_account.id }
-      mention ||= @status.mentions.new(account: mentioned_account)
+      mention ||= mentioned_account.mentions.new(status: @status)
 
       @current_mentions << mention
 
       "@#{mentioned_account.acct}"
     end
 
-    @status.save! if @save_records
+    @status.save!
   end
 
   def assign_mentions!
     # Make sure we never mention blocked accounts
     unless @current_mentions.empty?
-      mentioned_domains = @current_mentions.filter_map { |m| m.account.domain }.uniq
+      mentioned_domains = @current_mentions.map { |m| m.account.domain }.compact.uniq
       blocked_domains   = Set.new(mentioned_domains.empty? ? [] : AccountDomainBlock.where(account_id: @status.account_id, domain: mentioned_domains))
       mentioned_account_ids = @current_mentions.map(&:account_id)
       blocked_account_ids = Set.new(@status.account.block_relationships.where(target_account_id: mentioned_account_ids).pluck(:target_account_id))
 
-      dropped_mentions, @current_mentions = @current_mentions.partition { |mention| blocked_account_ids.include?(mention.account_id) || blocked_domains.include?(mention.account.domain) }
-      dropped_mentions.each(&:destroy)
+      @current_mentions.select! { |mention| !(blocked_account_ids.include?(mention.account_id) || blocked_domains.include?(mention.account.domain)) }
     end
 
     @current_mentions.each do |mention|
-      mention.save if mention.new_record? && @save_records
+      mention.save if mention.new_record?
     end
 
     # If previous mentions are no longer contained in the text, convert them

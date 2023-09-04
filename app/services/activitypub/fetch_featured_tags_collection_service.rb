@@ -22,12 +22,14 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
     collection = fetch_collection(collection['first']) if collection['first'].present?
 
     while collection.is_a?(Hash)
-      items = case collection['type']
-              when 'Collection', 'CollectionPage'
-                collection['items']
-              when 'OrderedCollection', 'OrderedCollectionPage'
-                collection['orderedItems']
-              end
+      items = begin
+        case collection['type']
+        when 'Collection', 'CollectionPage'
+          collection['items']
+        when 'OrderedCollection', 'OrderedCollectionPage'
+          collection['orderedItems']
+        end
+      end
 
       break if items.blank?
 
@@ -43,7 +45,7 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
 
   def fetch_collection(collection_or_uri)
     return collection_or_uri if collection_or_uri.is_a?(Hash)
-    return if non_matching_uri_hosts?(@account.uri, collection_or_uri)
+    return if invalid_origin?(collection_or_uri)
 
     fetch_resource_without_id_validation(collection_or_uri, local_follower, true)
   end

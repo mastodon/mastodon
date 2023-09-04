@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 describe ReportFilter do
   describe 'with empty params' do
     it 'defaults to unresolved reports list' do
-      filter = described_class.new({})
+      filter = ReportFilter.new({})
 
       expect(filter.results).to eq Report.unresolved
     end
@@ -13,7 +11,7 @@ describe ReportFilter do
 
   describe 'with invalid params' do
     it 'raises with key error' do
-      filter = described_class.new(wrong: true)
+      filter = ReportFilter.new(wrong: true)
 
       expect { filter.results }.to raise_error(/wrong/)
     end
@@ -21,7 +19,7 @@ describe ReportFilter do
 
   describe 'with valid params' do
     it 'combines filters on Report' do
-      filter = described_class.new(account_id: '123', resolved: true, target_account_id: '456')
+      filter = ReportFilter.new(account_id: '123', resolved: true, target_account_id: '456')
 
       allow(Report).to receive(:where).and_return(Report.none)
       allow(Report).to receive(:resolved).and_return(Report.none)

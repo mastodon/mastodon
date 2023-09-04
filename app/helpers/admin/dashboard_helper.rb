@@ -19,17 +19,19 @@ module Admin::DashboardHelper
   end
 
   def relevant_account_timestamp(account)
-    timestamp, exact = if account.user_current_sign_in_at && account.user_current_sign_in_at < 24.hours.ago
-                         [account.user_current_sign_in_at, true]
-                       elsif account.user_current_sign_in_at
-                         [account.user_current_sign_in_at, false]
-                       elsif account.user_pending?
-                         [account.user_created_at, true]
-                       elsif account.last_status_at.present?
-                         [account.last_status_at, true]
-                       else
-                         [nil, false]
-                       end
+    timestamp, exact = begin
+      if account.user_current_sign_in_at && account.user_current_sign_in_at < 24.hours.ago
+        [account.user_current_sign_in_at, true]
+      elsif account.user_current_sign_in_at
+        [account.user_current_sign_in_at, false]
+      elsif account.user_pending?
+        [account.user_created_at, true]
+      elsif account.last_status_at.present?
+        [account.last_status_at, true]
+      else
+        [nil, false]
+      end
+    end
 
     return '-' if timestamp.nil?
     return t('generic.today') unless exact

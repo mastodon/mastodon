@@ -42,11 +42,13 @@ module PamAuthenticable
     def self.pam_get_user(attributes = {})
       return nil unless attributes[:email]
 
-      resource = if Devise.check_at_sign && !attributes[:email].index('@')
-                   joins(:account).find_by(accounts: { username: attributes[:email] })
-                 else
-                   find_by(email: attributes[:email])
-                 end
+      resource = begin
+        if Devise.check_at_sign && !attributes[:email].index('@')
+          joins(:account).find_by(accounts: { username: attributes[:email] })
+        else
+          find_by(email: attributes[:email])
+        end
+      end
 
       if resource.nil?
         resource = new(email: attributes[:email], agreement: true)

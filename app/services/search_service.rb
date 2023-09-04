@@ -2,13 +2,12 @@
 
 class SearchService < BaseService
   def call(query, account, limit, options = {})
-    @query     = query&.strip
-    @account   = account
-    @options   = options
-    @limit     = limit.to_i
-    @offset    = options[:type].blank? ? 0 : options[:offset].to_i
-    @resolve   = options[:resolve] || false
-    @following = options[:following] || false
+    @query   = query&.strip
+    @account = account
+    @options = options
+    @limit   = limit.to_i
+    @offset  = options[:type].blank? ? 0 : options[:offset].to_i
+    @resolve = options[:resolve] || false
 
     default_results.tap do |results|
       next if @query.blank? || @limit.zero?
@@ -31,17 +30,16 @@ class SearchService < BaseService
       @account,
       limit: @limit,
       resolve: @resolve,
-      offset: @offset,
-      use_searchable_text: true,
-      following: @following,
-      start_with_hashtag: @query.start_with?('#')
+      offset: @offset
     )
   end
 
   def perform_statuses_search!
     definition = parsed_query.apply(StatusesIndex.filter(term: { searchable_by: @account.id }))
 
-    definition = definition.filter(term: { account_id: @options[:account_id] }) if @options[:account_id].present?
+    if @options[:account_id].present?
+      definition = definition.filter(term: { account_id: @options[:account_id] })
+    end
 
     if @options[:min_id].present? || @options[:max_id].present?
       range      = {}
@@ -53,7 +51,7 @@ class SearchService < BaseService
     results             = definition.limit(@limit).offset(@offset).objects.compact
     account_ids         = results.map(&:account_id)
     account_domains     = results.map(&:account_domain)
-    preloaded_relations = @account.relations_map(account_ids, account_domains)
+    preloaded_relations = relations_map_for_account(@account, account_ids, account_domains)
 
     results.reject { |status| StatusFilter.new(status, @account, preloaded_relations).filtered? }
   rescue Faraday::ConnectionFailed, Parslet::ParseFailed
@@ -74,7 +72,7 @@ class SearchService < BaseService
   end
 
   def url_query?
-    @resolve && %r{\Ahttps?://}.match?(@query)
+    @resolve && /\Ahttps?:\/\//.match?(@query)
   end
 
   def url_resource_results
@@ -82,7 +80,7 @@ class SearchService < BaseService
   end
 
   def url_resource
-    @url_resource ||= ResolveURLService.new.call(@query, on_behalf_of: @account)
+    @_url_resource ||= ResolveURLService.new.call(@query, on_behalf_of: @account)
   end
 
   def url_resource_symbol
@@ -92,11 +90,11 @@ class SearchService < BaseService
   def full_text_searchable?
     return false unless Chewy.enabled?
 
-    statuses_search? && !@account.nil? && !(@query.include?('@') && !@query.include?(' '))
+    statuses_search? && !@account.nil? && !((@query.start_with?('#') || @query.include?('@')) && !@query.include?(' '))
   end
 
   def account_searchable?
-    account_search? && !(@query.include?('@') && @query.include?(' '))
+    account_search? && !(@query.start_with?('#') || (@query.include?('@') && @query.include?(' ')))
   end
 
   def hashtag_searchable?
@@ -113,6 +111,16 @@ class SearchService < BaseService
 
   def statuses_search?
     @options[:type].blank? || @options[:type] == 'statuses'
+  end
+
+  def relations_map_for_account(account, account_ids, domains)
+    {
+      blocking: Account.blocking_map(account_ids, account.id),
+      blocked_by: Account.blocked_by_map(account_ids, account.id),
+      muting: Account.muting_map(account_ids, account.id),
+      following: Account.following_map(account_ids, account.id),
+      domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, account.id),
+    }
   end
 
   def parsed_query

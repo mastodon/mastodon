@@ -52,11 +52,15 @@ class Api::V1::ScheduledStatusesController < Api::BaseController
   end
 
   def next_path
-    api_v1_scheduled_statuses_url pagination_params(max_id: pagination_max_id) if records_continue?
+    if records_continue?
+      api_v1_scheduled_statuses_url pagination_params(max_id: pagination_max_id)
+    end
   end
 
   def prev_path
-    api_v1_scheduled_statuses_url pagination_params(min_id: pagination_since_id) unless @statuses.empty?
+    unless @statuses.empty?
+      api_v1_scheduled_statuses_url pagination_params(min_id: pagination_since_id)
+    end
   end
 
   def records_continue?

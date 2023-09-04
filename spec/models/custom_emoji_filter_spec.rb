@@ -4,50 +4,50 @@ require 'rails_helper'
 
 RSpec.describe CustomEmojiFilter do
   describe '#results' do
+    let!(:custom_emoji_0) { Fabricate(:custom_emoji, domain: 'a') }
+    let!(:custom_emoji_1) { Fabricate(:custom_emoji, domain: 'b') }
+    let!(:custom_emoji_2) { Fabricate(:custom_emoji, domain: nil, shortcode: 'hoge') }
+
     subject { described_class.new(params).results }
 
-    let!(:custom_emoji_domain_a) { Fabricate(:custom_emoji, domain: 'a') }
-    let!(:custom_emoji_domain_b) { Fabricate(:custom_emoji, domain: 'b') }
-    let!(:custom_emoji_domain_nil) { Fabricate(:custom_emoji, domain: nil, shortcode: 'hoge') }
-
-    context 'when params have values' do
-      context 'when local' do
+    context 'params have values' do
+      context 'local' do
         let(:params) { { local: true } }
 
         it 'returns ActiveRecord::Relation' do
-          expect(subject).to be_a(ActiveRecord::Relation)
-          expect(subject).to contain_exactly(custom_emoji_domain_nil)
+          expect(subject).to be_kind_of(ActiveRecord::Relation)
+          expect(subject).to match_array([custom_emoji_2])
         end
       end
 
-      context 'when remote' do
+      context 'remote' do
         let(:params) { { remote: true } }
 
         it 'returns ActiveRecord::Relation' do
-          expect(subject).to be_a(ActiveRecord::Relation)
-          expect(subject).to contain_exactly(custom_emoji_domain_a, custom_emoji_domain_b)
+          expect(subject).to be_kind_of(ActiveRecord::Relation)
+          expect(subject).to match_array([custom_emoji_0, custom_emoji_1])
         end
       end
 
-      context 'with by_domain' do
+      context 'by_domain' do
         let(:params) { { by_domain: 'a' } }
 
         it 'returns ActiveRecord::Relation' do
-          expect(subject).to be_a(ActiveRecord::Relation)
-          expect(subject).to contain_exactly(custom_emoji_domain_a)
+          expect(subject).to be_kind_of(ActiveRecord::Relation)
+          expect(subject).to match_array([custom_emoji_0])
         end
       end
 
-      context 'when shortcode' do
+      context 'shortcode' do
         let(:params) { { shortcode: 'hoge' } }
 
         it 'returns ActiveRecord::Relation' do
-          expect(subject).to be_a(ActiveRecord::Relation)
-          expect(subject).to contain_exactly(custom_emoji_domain_nil)
+          expect(subject).to be_kind_of(ActiveRecord::Relation)
+          expect(subject).to match_array([custom_emoji_2])
         end
       end
 
-      context 'when some other case' do
+      context 'else' do
         let(:params) { { else: 'else' } }
 
         it 'raises Mastodon::InvalidParameterError' do
@@ -58,12 +58,12 @@ RSpec.describe CustomEmojiFilter do
       end
     end
 
-    context 'when params without value' do
+    context 'params without value' do
       let(:params) { { hoge: nil } }
 
       it 'returns ActiveRecord::Relation' do
-        expect(subject).to be_a(ActiveRecord::Relation)
-        expect(subject).to contain_exactly(custom_emoji_domain_a, custom_emoji_domain_b, custom_emoji_domain_nil)
+        expect(subject).to be_kind_of(ActiveRecord::Relation)
+        expect(subject).to match_array([custom_emoji_0, custom_emoji_1, custom_emoji_2])
       end
     end
   end

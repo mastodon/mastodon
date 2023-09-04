@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 describe AccountSearchService, type: :service do
@@ -20,7 +18,7 @@ describe AccountSearchService, type: :service do
       end
     end
 
-    context 'when searching for a simple term that is not an exact match' do
+    context 'searching for a simple term that is not an exact match' do
       it 'does not return a nil entry in the array for the exact match' do
         account = Fabricate(:account, username: 'matchingusername')
         results = subject.call('match', nil, limit: 5)
@@ -53,7 +51,7 @@ describe AccountSearchService, type: :service do
 
     context 'when there is a domain but no exact match' do
       it 'follows the remote account when resolve is true' do
-        service = instance_double(ResolveAccountService, call: nil)
+        service = double(call: nil)
         allow(ResolveAccountService).to receive(:new).and_return(service)
 
         results = subject.call('newuser@remote.com', nil, limit: 10, resolve: true)
@@ -61,11 +59,11 @@ describe AccountSearchService, type: :service do
       end
 
       it 'does not follow the remote account when resolve is false' do
-        service = instance_double(ResolveAccountService, call: nil)
+        service = double(call: nil)
         allow(ResolveAccountService).to receive(:new).and_return(service)
 
         results = subject.call('newuser@remote.com', nil, limit: 10, resolve: false)
-        expect(service).to_not have_received(:call)
+        expect(service).not_to have_received(:call)
       end
     end
 
@@ -78,7 +76,7 @@ describe AccountSearchService, type: :service do
       expect(results).to eq [partial]
     end
 
-    it 'does not return suspended remote accounts' do
+    it "does not return suspended remote accounts" do
       remote  = Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e', suspended: true)
       results = subject.call('a@example.com', nil, limit: 2)
 

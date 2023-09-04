@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class MakeTagSearchCaseInsensitive < ActiveRecord::Migration[5.1]
   def up
     remove_index :tags, name: :hashtag_search_index

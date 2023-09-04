@@ -8,15 +8,17 @@ module Extractor
   module_function
 
   def extract_entities_with_indices(text, options = {}, &block)
-    entities = extract_urls_with_indices(text, options) +
-               extract_hashtags_with_indices(text, check_url_overlap: false) +
-               extract_mentions_or_lists_with_indices(text) +
-               extract_extra_uris_with_indices(text)
+    entities = begin
+      extract_urls_with_indices(text, options) +
+        extract_hashtags_with_indices(text, check_url_overlap: false) +
+        extract_mentions_or_lists_with_indices(text) +
+        extract_extra_uris_with_indices(text)
+    end
 
     return [] if entities.empty?
 
     entities = remove_overlapping_entities(entities)
-    entities.each(&block) if block
+    entities.each(&block) if block_given?
     entities
   end
 
@@ -27,7 +29,7 @@ module Extractor
 
     text.scan(Account::MENTION_RE) do |screen_name, _|
       match_data = $LAST_MATCH_INFO
-      after      = ::Regexp.last_match.post_match
+      after      = $'
 
       unless Twitter::TwitterText::Regex[:end_mention_match].match?(after)
         _, domain = screen_name.split('@')
@@ -62,9 +64,9 @@ module Extractor
       match_data     = $LAST_MATCH_INFO
       start_position = match_data.char_begin(1) - 1
       end_position   = match_data.char_end(1)
-      after          = ::Regexp.last_match.post_match
+      after          = $'
 
-      if after.start_with?('://')
+      if %r{\A://}.match?(after)
         hash_text.match(/(.+)(https?\Z)/) do |matched|
           hash_text     = matched[1]
           end_position -= matched[2].codepoint_length

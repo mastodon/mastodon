@@ -11,7 +11,7 @@ class Trends::History
     end
 
     def uses
-      with_redis { |redis| redis.mget(*@days.map { |day| day.key_for(:uses) }).sum(&:to_i) }
+      with_redis { |redis| redis.mget(*@days.map { |day| day.key_for(:uses) }).map(&:to_i).sum }
     end
 
     def accounts
@@ -87,8 +87,8 @@ class Trends::History
   end
 
   def each(&block)
-    if block
-      (0...7).map { |i| yield(get(i.days.ago)) }
+    if block_given?
+      (0...7).map { |i| block.call(get(i.days.ago)) }
     else
       to_enum(:each)
     end

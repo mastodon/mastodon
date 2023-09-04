@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
-
-import { authorizeFollowRequest, rejectFollowRequest } from 'mastodon/actions/accounts';
 import { makeGetAccount } from 'mastodon/selectors';
-
 import FollowRequest from '../components/follow_request';
+import { authorizeFollowRequest, rejectFollowRequest } from 'mastodon/actions/accounts';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();

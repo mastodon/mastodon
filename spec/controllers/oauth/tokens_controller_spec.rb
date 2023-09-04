@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Oauth::TokensController do
+RSpec.describe Oauth::TokensController, type: :controller do
   describe 'POST #revoke' do
     let!(:user) { Fabricate(:user) }
     let!(:application) { Fabricate(:application, confidential: false) }

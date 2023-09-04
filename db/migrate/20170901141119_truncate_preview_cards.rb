@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TruncatePreviewCards < ActiveRecord::Migration[5.1]
   def up
     rename_table :preview_cards, :deprecated_preview_cards

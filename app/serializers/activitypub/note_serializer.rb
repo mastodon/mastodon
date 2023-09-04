@@ -9,7 +9,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
              :atom_uri, :in_reply_to_atom_uri,
-             :conversation
+             :conversation, :local_only
 
   attribute :content
   attribute :content_map, if: :language?
@@ -107,6 +107,8 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   def sensitive
     object.account.sensitized? || object.sensitive
   end
+
+  delegate :local_only, to: :object
 
   def virtual_attachments
     object.ordered_media_attachments

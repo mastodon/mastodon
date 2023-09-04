@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Fabricator(:application, from: Doorkeeper::Application) do
   name         'Example'
   website      'http://example.com'

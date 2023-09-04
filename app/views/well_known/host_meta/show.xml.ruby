@@ -1,13 +1,4 @@
-# frozen_string_literal: true
-
 doc = Ox::Document.new(version: '1.0')
-
-ins = Ox::Instruct.new(:xml).tap do |instruct|
-  instruct[:version] = '1.0'
-  instruct[:encoding] = 'UTF-8'
-end
-
-doc << ins
 
 doc << Ox::Element.new('XRD').tap do |xrd|
   xrd['xmlns'] = 'http://docs.oasis-open.org/ns/xri/xrd-1.0'
@@ -18,4 +9,4 @@ doc << Ox::Element.new('XRD').tap do |xrd|
   end
 end
 
-Ox.dump(doc, effort: :tolerant).force_encoding('UTF-8')
+('<?xml version="1.0" encoding="UTF-8"?>' + Ox.dump(doc, effort: :tolerant)).force_encoding('UTF-8')

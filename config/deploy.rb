@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-lock '3.17.2'
+lock '3.17.1'
 
 set :repo_url, ENV.fetch('REPO', 'https://github.com/mastodon/mastodon.git')
 set :branch, ENV.fetch('BRANCH', 'main')
@@ -13,12 +13,9 @@ set :migration_role, :app
 append :linked_files, '.env.production', 'public/robots.txt'
 append :linked_dirs, 'vendor/bundle', 'node_modules', 'public/system'
 
-SYSTEMD_SERVICES = %i[sidekiq streaming web].freeze
-SERVICE_ACTIONS = %i[reload restart status].freeze
-
 namespace :systemd do
-  SYSTEMD_SERVICES.each do |service|
-    SERVICE_ACTIONS.each do |action|
+  %i[sidekiq streaming web].each do |service|
+    %i[reload restart status].each do |action|
       desc "Perform a #{action} on #{service} service"
       task "#{service}:#{action}".to_sym do
         on roles(:app) do

@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Api::V2::Filters::KeywordsController do
+RSpec.describe Api::V2::Filters::KeywordsController, type: :controller do
   render_views
 
   let(:user)         { Fabricate(:user) }
@@ -47,7 +45,7 @@ RSpec.describe Api::V2::Filters::KeywordsController do
     it 'returns a keyword' do
       json = body_as_json
       expect(json[:keyword]).to eq 'magic'
-      expect(json[:whole_word]).to be false
+      expect(json[:whole_word]).to eq false
     end
 
     it 'creates a keyword' do
@@ -80,7 +78,7 @@ RSpec.describe Api::V2::Filters::KeywordsController do
     it 'returns expected data' do
       json = body_as_json
       expect(json[:keyword]).to eq 'foo'
-      expect(json[:whole_word]).to be false
+      expect(json[:whole_word]).to eq false
     end
 
     context "when trying to access another user's filter keyword" do

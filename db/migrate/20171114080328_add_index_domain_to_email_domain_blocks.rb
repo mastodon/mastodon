@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class AddIndexDomainToEmailDomainBlocks < ActiveRecord::Migration[5.2]
+class AddIndexDomainToEmailDomainBlocks < ActiveRecord::Migration[5.1]
   disable_ddl_transaction!
 
   def change

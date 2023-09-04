@@ -1,14 +1,11 @@
-import { defineMessages, injectIntl } from 'react-intl';
-
 import { connect } from 'react-redux';
-
-import { replyCompose } from 'mastodon/actions/compose';
+import Conversation from '../components/conversation';
 import { markConversationRead, deleteConversation } from 'mastodon/actions/conversations';
+import { makeGetStatus } from 'mastodon/selectors';
+import { replyCompose } from 'mastodon/actions/compose';
 import { openModal } from 'mastodon/actions/modal';
 import { muteStatus, unmuteStatus, hideStatus, revealStatus } from 'mastodon/actions/statuses';
-import { makeGetStatus } from 'mastodon/selectors';
-
-import Conversation from '../components/conversation';
+import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
@@ -41,13 +38,10 @@ const mapDispatchToProps = (dispatch, { intl, conversationId }) => ({
       let state = getState();
 
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: intl.formatMessage(messages.replyMessage),
-            confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: () => dispatch(replyCompose(status, router)),
-          },
+        dispatch(openModal('CONFIRM', {
+          message: intl.formatMessage(messages.replyMessage),
+          confirm: intl.formatMessage(messages.replyConfirm),
+          onConfirm: () => dispatch(replyCompose(status, router)),
         }));
       } else {
         dispatch(replyCompose(status, router));

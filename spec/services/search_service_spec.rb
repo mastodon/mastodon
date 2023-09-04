@@ -13,8 +13,8 @@ describe SearchService, type: :service do
         results = subject.call('', nil, 10)
 
         expect(results).to eq(empty_results)
-        expect(AccountSearchService).to_not have_received(:new)
-        expect(Tag).to_not have_received(:search_for)
+        expect(AccountSearchService).not_to have_received(:new)
+        expect(Tag).not_to have_received(:search_for)
       end
     end
 
@@ -23,9 +23,9 @@ describe SearchService, type: :service do
         @query = 'http://test.host/query'
       end
 
-      context 'when it does not find anything' do
+      context 'that does not find anything' do
         it 'returns the empty results' do
-          service = instance_double(ResolveURLService, call: nil)
+          service = double(call: nil)
           allow(ResolveURLService).to receive(:new).and_return(service)
           results = subject.call(@query, nil, 10, resolve: true)
 
@@ -34,10 +34,10 @@ describe SearchService, type: :service do
         end
       end
 
-      context 'when it finds an account' do
+      context 'that finds an account' do
         it 'includes the account in the results' do
           account = Account.new
-          service = instance_double(ResolveURLService, call: account)
+          service = double(call: account)
           allow(ResolveURLService).to receive(:new).and_return(service)
 
           results = subject.call(@query, nil, 10, resolve: true)
@@ -46,10 +46,10 @@ describe SearchService, type: :service do
         end
       end
 
-      context 'when it finds a status' do
+      context 'that finds a status' do
         it 'includes the status in the results' do
           status = Status.new
-          service = instance_double(ResolveURLService, call: status)
+          service = double(call: status)
           allow(ResolveURLService).to receive(:new).and_return(service)
 
           results = subject.call(@query, nil, 10, resolve: true)
@@ -60,36 +60,43 @@ describe SearchService, type: :service do
     end
 
     describe 'with a non-url query' do
-      context 'when it matches an account' do
+      context 'that matches an account' do
         it 'includes the account in the results' do
           query = 'username'
           account = Account.new
-          service = instance_double(AccountSearchService, call: [account])
+          service = double(call: [account])
           allow(AccountSearchService).to receive(:new).and_return(service)
 
           results = subject.call(query, nil, 10)
-          expect(service).to have_received(:call).with(query, nil, limit: 10, offset: 0, resolve: false, start_with_hashtag: false, use_searchable_text: true, following: false)
+          expect(service).to have_received(:call).with(query, nil, limit: 10, offset: 0, resolve: false)
           expect(results).to eq empty_results.merge(accounts: [account])
         end
       end
 
-      context 'when it matches a tag' do
+      context 'that matches a tag' do
         it 'includes the tag in the results' do
           query = '#tag'
           tag = Tag.new
-          allow(Tag).to receive(:search_for).with('tag', 10, 0, { exclude_unreviewed: nil }).and_return([tag])
+          allow(Tag).to receive(:search_for).with('tag', 10, 0, exclude_unreviewed: nil).and_return([tag])
 
           results = subject.call(query, nil, 10)
           expect(Tag).to have_received(:search_for).with('tag', 10, 0, exclude_unreviewed: nil)
           expect(results).to eq empty_results.merge(hashtags: [tag])
         end
-
         it 'does not include tag when starts with @ character' do
           query = '@username'
           allow(Tag).to receive(:search_for)
 
           results = subject.call(query, nil, 10)
-          expect(Tag).to_not have_received(:search_for)
+          expect(Tag).not_to have_received(:search_for)
+          expect(results).to eq empty_results
+        end
+        it 'does not include account when starts with # character' do
+          query = '#tag'
+          allow(AccountSearchService).to receive(:new)
+
+          results = subject.call(query, nil, 10)
+          expect(AccountSearchService).to_not have_received(:new)
           expect(results).to eq empty_results
         end
       end

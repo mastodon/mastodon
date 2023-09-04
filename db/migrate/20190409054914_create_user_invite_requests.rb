@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateUserInviteRequests < ActiveRecord::Migration[5.2]
   def change
     create_table :user_invite_requests do |t|

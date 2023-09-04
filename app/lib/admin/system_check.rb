@@ -2,7 +2,6 @@
 
 class Admin::SystemCheck
   ACTIVE_CHECKS = [
-    Admin::SystemCheck::MediaPrivacyCheck,
     Admin::SystemCheck::DatabaseSchemaCheck,
     Admin::SystemCheck::SidekiqProcessCheck,
     Admin::SystemCheck::RulesCheck,

@@ -1,4 +1,4 @@
-@use 'sass:math';
+@use "sass:math";
 
 $no-columns-breakpoint: 600px;
 $sidebar-width: 240px;
@@ -39,6 +39,7 @@ $content-width: 840px;
         flex: 1 1 auto;
 
         a {
+          color: $primary-text-color;
           display: block;
           padding: 15px;
         }
@@ -76,9 +77,18 @@ $content-width: 840px;
 
     .logo {
       display: block;
-      margin-left: 20px;
-      width: 100px;
+      margin: 60px 0 0 20px;
       height: 100px;
+
+      h2 .brand {
+        color: $primary-text-color;
+        display: block;
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: 400;
+        padding-bottom: 40px;
+        border-bottom: 1px solid lighten($ui-base-color, 8%);
+      }
     }
 
     .logo--wordmark {
@@ -90,6 +100,12 @@ $content-width: 840px;
 
     @media screen and (max-width: $no-columns-breakpoint) {
       & > a:first-child {
+        display: none;
+      }
+
+      .logo,
+      .logo h2,
+      .logo h2 .brand {
         display: none;
       }
     }
@@ -117,7 +133,7 @@ $content-width: 840px;
         text-overflow: ellipsis;
 
         i.fa {
-          margin-inline-end: 5px;
+          margin-right: 5px;
         }
 
         &:hover {
@@ -128,6 +144,7 @@ $content-width: 840px;
         }
 
         &.selected {
+          background: darken($ui-base-color, 2%);
           border-radius: 4px 0 0;
         }
       }
@@ -145,9 +162,13 @@ $content-width: 840px;
 
       .simple-navigation-active-leaf a {
         color: $primary-text-color;
-        background-color: $ui-highlight-color;
+        background-color: darken($ui-highlight-color, 2%);
         border-bottom: 0;
         border-radius: 0;
+
+        &:hover {
+          background-color: $ui-highlight-color;
+        }
       }
     }
 
@@ -181,10 +202,7 @@ $content-width: 840px;
   }
 
   .content {
-    padding-top: 55px;
-    padding-bottom: 20px;
-    padding-inline-start: 25px;
-    padding-inline-end: 15px;
+    padding: 55px 15px 20px 25px;
 
     @media screen and (max-width: $no-columns-breakpoint) {
       max-width: none;
@@ -200,12 +218,11 @@ $content-width: 840px;
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        margin-top: -15px;
-        margin-inline-end: -15px;
+        margin: -15px -15px 0 0;
 
         & > * {
           margin-top: 15px;
-          margin-inline-end: 15px;
+          margin-right: 15px;
         }
       }
 
@@ -241,6 +258,12 @@ $content-width: 840px;
             font-weight: 700;
             color: $primary-text-color;
             background: $ui-highlight-color;
+
+            &:hover,
+            &:focus,
+            &:active {
+              background: lighten($ui-highlight-color, 4%);
+            }
           }
         }
       }
@@ -377,8 +400,8 @@ $content-width: 840px;
           position: fixed;
           z-index: 10;
           width: 100%;
-          height: calc(100% - 56px);
-          inset-inline-start: 0;
+          height: calc(100vh - 56px);
+          left: 0;
           bottom: 0;
           overflow-y: auto;
           background: $ui-base-color;
@@ -463,11 +486,10 @@ body,
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
 
   .filter-subset {
     flex: 0 0 auto;
-    margin-bottom: 20px;
+    margin: 0 40px 20px 0;
 
     &:last-child {
       margin-bottom: 30px;
@@ -479,7 +501,7 @@ body,
 
       li {
         display: inline-block;
-        margin-inline-end: 5px;
+        margin-right: 5px;
       }
     }
 
@@ -566,7 +588,7 @@ body,
 
   .activity-stream {
     flex: 2 0 0;
-    margin-inline-end: 20px;
+    margin-right: 20px;
     max-width: calc(100% - 60px);
 
     .entry {
@@ -619,7 +641,7 @@ body,
   }
 
   .media-spoiler-toggle-buttons {
-    margin-inline-start: auto;
+    margin-left: auto;
 
     .button {
       overflow: visible;
@@ -645,7 +667,7 @@ body,
 
 .special-action-button,
 .back-link {
-  text-align: end;
+  text-align: right;
   flex: 1 1 auto;
 }
 
@@ -663,7 +685,7 @@ body,
   display: block;
   line-height: 20px;
   padding: 15px;
-  padding-inline-start: 15px * 2 + 40px;
+  padding-left: 15px * 2 + 40px;
   background: $ui-base-color;
   border-bottom: 1px solid darken($ui-base-color, 8%);
   position: relative;
@@ -690,7 +712,7 @@ body,
 
   &__avatar {
     position: absolute;
-    inset-inline-start: 15px;
+    left: 15px;
     top: 15px;
 
     .avatar {
@@ -758,7 +780,7 @@ a.name-tag,
   .avatar {
     display: block;
     margin: 0;
-    margin-inline-end: 5px;
+    margin-right: 5px;
     border-radius: 50%;
   }
 
@@ -772,7 +794,7 @@ a.name-tag,
 
 .speech-bubble {
   margin-bottom: 20px;
-  border-inline-start: 4px solid $ui-highlight-color;
+  border-left: 4px solid $ui-highlight-color;
 
   &.positive {
     border-left-color: $success-green;
@@ -788,7 +810,7 @@ a.name-tag,
 
   &__bubble {
     padding: 16px;
-    padding-inline-start: 14px;
+    padding-left: 14px;
     font-size: 15px;
     line-height: 20px;
     border-radius: 4px 4px 4px 0;
@@ -802,7 +824,7 @@ a.name-tag,
 
   &__owner {
     padding: 8px;
-    padding-inline-start: 12px;
+    padding-left: 12px;
   }
 
   time {
@@ -826,7 +848,7 @@ a.name-tag,
       border: 0;
 
       &__avatar-wrapper {
-        margin-inline-start: 0;
+        margin-left: 0;
       }
     }
 
@@ -835,7 +857,7 @@ a.name-tag,
       font-weight: 500;
       color: $darker-text-color;
       text-transform: uppercase;
-      text-align: end;
+      text-align: right;
 
       a {
         color: inherit;
@@ -886,7 +908,7 @@ a.name-tag,
 
         &__icon {
           color: $dark-text-color;
-          margin-inline-end: 4px;
+          margin-right: 4px;
           font-weight: 500;
         }
       }
@@ -1084,7 +1106,7 @@ a.name-tag,
 
   > h4 {
     position: sticky;
-    inset-inline-start: 0;
+    left: 0;
   }
 
   &__table {
@@ -1096,7 +1118,7 @@ a.name-tag,
     &__date {
       white-space: nowrap;
       padding: 10px 0;
-      text-align: start;
+      text-align: left;
       min-width: 120px;
 
       &.retention__table__average {
@@ -1125,10 +1147,7 @@ a.name-tag,
 
       @for $i from 0 through 10 {
         &--#{10 * $i} {
-          background-color: rgba(
-            $ui-highlight-color,
-            1 * (math.div(max(1, $i), 10))
-          );
+          background-color: rgba($ui-highlight-color, 1 * (math.div(max(1, $i), 10)));
         }
       }
     }
@@ -1154,7 +1173,7 @@ a.name-tag,
 
     &__total {
       display: block;
-      margin-inline-end: 10px;
+      margin-right: 10px;
       font-weight: 500;
       font-size: 28px;
       color: $primary-text-color;
@@ -1217,12 +1236,7 @@ a.sparkline {
 
 .skeleton {
   background-color: lighten($ui-base-color, 8%);
-  background-image: linear-gradient(
-    90deg,
-    lighten($ui-base-color, 8%),
-    lighten($ui-base-color, 12%),
-    lighten($ui-base-color, 8%)
-  );
+  background-image: linear-gradient(90deg, lighten($ui-base-color, 8%), lighten($ui-base-color, 12%), lighten($ui-base-color, 8%));
   background-size: 200px 100%;
   background-repeat: no-repeat;
   border-radius: 4px;
@@ -1256,7 +1270,7 @@ a.sparkline {
     }
 
     &__value {
-      text-align: end;
+      text-align: right;
       color: $darker-text-color;
       padding: 11px 10px;
     }
@@ -1267,29 +1281,17 @@ a.sparkline {
       height: 8px;
       border-radius: 50%;
       background: $ui-highlight-color;
-      margin-inline-end: 10px;
+      margin-right: 10px;
 
       @for $i from 0 through 10 {
         &--#{10 * $i} {
-          background-color: rgba(
-            $ui-highlight-color,
-            1 * (math.div(max(1, $i), 10))
-          );
+          background-color: rgba($ui-highlight-color, 1 * (math.div(max(1, $i), 10)));
         }
       }
     }
 
     &:last-child {
       border-bottom: 0;
-    }
-
-    &.negative {
-      color: $error-value-color;
-      font-weight: 700;
-
-      .dimension__item__value {
-        color: $error-value-color;
-      }
     }
   }
 }
@@ -1312,7 +1314,7 @@ a.sparkline {
     }
 
     &__rules {
-      margin-inline-start: 30px;
+      margin-left: 30px;
     }
   }
 
@@ -1353,7 +1355,7 @@ a.sparkline {
     }
   }
 
-  @media screen and (width <= 930px) {
+  @media screen and (max-width: 930px) {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -1429,12 +1431,12 @@ a.sparkline {
 
     &::after {
       display: block;
-      content: '';
+      content: "";
       width: 50px;
       height: 21px;
       position: absolute;
       bottom: 0;
-      inset-inline-end: 15px;
+      right: 15px;
       background: linear-gradient(to left, $ui-base-color, transparent);
       pointer-events: none;
     }
@@ -1514,7 +1516,7 @@ a.sparkline {
     background: $ui-base-color;
     position: relative;
     padding: 15px;
-    padding-inline-start: 15px * 2 + 40px;
+    padding-left: 15px * 2 + 40px;
     border-bottom: 1px solid darken($ui-base-color, 8%);
 
     &:first-child {
@@ -1534,7 +1536,7 @@ a.sparkline {
 
     &__avatar {
       position: absolute;
-      inset-inline-start: 15px;
+      left: 15px;
       top: 15px;
       border-radius: 4px;
       width: 40px;
@@ -1550,7 +1552,7 @@ a.sparkline {
       .username {
         color: $primary-text-color;
         font-weight: 500;
-        margin-inline-end: 5px;
+        margin-right: 5px;
 
         a {
           color: inherit;
@@ -1565,7 +1567,7 @@ a.sparkline {
       }
 
       time {
-        margin-inline-start: 5px;
+        margin-left: 5px;
         vertical-align: baseline;
       }
     }
@@ -1600,8 +1602,8 @@ a.sparkline {
     &__actions {
       position: absolute;
       top: 15px;
-      inset-inline-end: 15px;
-      text-align: end;
+      right: 15px;
+      text-align: right;
     }
   }
 }
@@ -1624,7 +1626,7 @@ a.sparkline {
       flex: 0 0 auto;
       width: 200px;
       padding: 15px;
-      padding-inline-end: 0;
+      padding-right: 0;
 
       .button {
         display: block;
@@ -1639,7 +1641,7 @@ a.sparkline {
     }
   }
 
-  @media screen and (width <= 800px) {
+  @media screen and (max-width: 800px) {
     border: 0;
 
     &__item {
@@ -1710,7 +1712,7 @@ a.sparkline {
 
   &__rules {
     list-style: disc;
-    padding-inline-start: 15px;
+    padding-left: 15px;
     margin-bottom: 20px;
     color: $darker-text-color;
 
@@ -1799,7 +1801,7 @@ a.sparkline {
 
   li {
     counter-increment: step 1;
-    padding-inline-start: 2.5rem;
+    padding-left: 2.5rem;
     padding-bottom: 8px;
     position: relative;
     margin-bottom: 8px;
@@ -1809,7 +1811,7 @@ a.sparkline {
       content: counter(step);
       font-size: 0.625rem;
       font-weight: 500;
-      inset-inline-start: 0;
+      left: 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1823,12 +1825,12 @@ a.sparkline {
 
     &::after {
       position: absolute;
-      content: '';
+      content: "";
       width: 1px;
       background: $highlight-text-color;
       bottom: 0;
       top: calc(1.875rem + 1px);
-      inset-inline-start: 0.6875rem;
+      left: 0.6875rem;
     }
 
     &:last-child {

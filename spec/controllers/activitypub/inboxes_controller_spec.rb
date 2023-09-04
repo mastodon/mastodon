@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::InboxesController do
+RSpec.describe ActivityPub::InboxesController, type: :controller do
   let(:remote_account) { nil }
 
   before do
@@ -21,10 +21,10 @@ RSpec.describe ActivityPub::InboxesController do
         expect(response).to have_http_status(202)
       end
 
-      context 'with a specific account' do
-        subject(:response) { post :create, params: { account_username: account.username }, body: '{}' }
-
+      context 'for a specific account' do
         let(:account) { Fabricate(:account) }
+
+        subject(:response) { post :create, params: { account_username: account.username }, body: '{}' }
 
         context 'when account is permanently suspended' do
           before do
@@ -68,7 +68,7 @@ RSpec.describe ActivityPub::InboxesController do
         let(:synchronization_collection) { 'https://example.com/followers2' }
 
         it 'does not start a synchronization job' do
-          expect(ActivityPub::FollowersSynchronizationWorker).to_not have_received(:perform_async)
+          expect(ActivityPub::FollowersSynchronizationWorker).not_to have_received(:perform_async)
         end
       end
 
@@ -76,13 +76,13 @@ RSpec.describe ActivityPub::InboxesController do
         let(:synchronization_url) { 'https://example.org/followers' }
 
         it 'does not start a synchronization job' do
-          expect(ActivityPub::FollowersSynchronizationWorker).to_not have_received(:perform_async)
+          expect(ActivityPub::FollowersSynchronizationWorker).not_to have_received(:perform_async)
         end
       end
 
       context 'with matching digest' do
         it 'does not start a synchronization job' do
-          expect(ActivityPub::FollowersSynchronizationWorker).to_not have_received(:perform_async)
+          expect(ActivityPub::FollowersSynchronizationWorker).not_to have_received(:perform_async)
         end
       end
 

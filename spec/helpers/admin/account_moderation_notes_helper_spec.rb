@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::AccountModerationNotesHelper do
+RSpec.describe Admin::AccountModerationNotesHelper, type: :helper do
   include AccountsHelper
 
   describe '#admin_account_link_to' do
-    context 'when Account is nil' do
+    context 'account is nil' do
       let(:account) { nil }
 
       it 'returns nil' do
@@ -30,7 +30,7 @@ RSpec.describe Admin::AccountModerationNotesHelper do
   end
 
   describe '#admin_account_inline_link_to' do
-    context 'when Account is nil' do
+    context 'account is nil' do
       let(:account) { nil }
 
       it 'returns nil' do
@@ -42,11 +42,13 @@ RSpec.describe Admin::AccountModerationNotesHelper do
       let(:account) { Fabricate(:account) }
 
       it 'calls #link_to' do
-        result = helper.admin_account_inline_link_to(account)
+        expect(helper).to receive(:link_to).with(
+          admin_account_path(account.id),
+          class: name_tag_classes(account, true),
+          title: account.acct
+        )
 
-        expect(result).to match(name_tag_classes(account, true))
-        expect(result).to match(account.acct)
-        expect(result).to match(admin_account_path(account.id))
+        helper.admin_account_inline_link_to(account)
       end
     end
   end

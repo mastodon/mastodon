@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Api::V1::FiltersController do
+RSpec.describe Api::V1::FiltersController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user) }

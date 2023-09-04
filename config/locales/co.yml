@@ -1,10 +1,10 @@
 ---
 co:
   about:
-    about_mastodon_html: 'A rete suciale di u futuru: micca pubblicità, micca surveglianza, cuncezzione etica, è dicentralizazione! Firmate in cuntrollu di i vostri dati cù TomX!'
+    about_mastodon_html: 'A rete suciale di u futuru: micca pubblicità, micca surveglianza, cuncezzione etica, è dicentralizazione! Firmate in cuntrollu di i vostri dati cù Mastodon!'
     contact_missing: Mancante
     contact_unavailable: Micca dispunibule
-    hosted_on: TomX allughjatu nant’à %{domain}
+    hosted_on: Mastodon allughjatu nant’à %{domain}
   accounts:
     follow: Siguità
     followers:
@@ -108,6 +108,8 @@ co:
       removed_header_msg: U ritrattu di cuprendula di %{username} hè statu toltu
       resend_confirmation:
         already_confirmed: St’utilizatore hè digià cunfirmatu
+        send: Rimandà un’e-mail di cunfirmazione
+        success: L’e-mail di cunfirmazione hè statu mandatu!
       reset: Riinizializà
       reset_password: Riinizializà a chjave d’accessu
       resubscribe: Riabbunassi
@@ -533,10 +535,11 @@ co:
     confirmation_dialogs: Pop-up di cunfirmazione
     discovery: Scuperta
     localization:
-      body: TomX hè tradottu da una squadra di vuluntari.
+      body: Mastodon hè tradottu da una squadra di vuluntari.
       guide_link: https://fr.crowdin.com/project/mastodon
       guide_link_text: Tuttu u mondu pò participà.
     sensitive_content: Cuntinutu sensibile
+    toot_layout: Urganizazione
   application_mailer:
     notification_preferences: Cambià e priferenze e-mail
     salutation: "%{name},"
@@ -552,12 +555,14 @@ co:
     warning: Abbadate à quessi dati. Ùn i date à nisunu!
     your_token: Rigenerà a fiscia d’accessu
   auth:
+    change_password: Chjave d’accessu
     delete_account: Sguassà u contu
     delete_account_html: S’è voi vulete toglie u vostru contu <a href="%{path}">ghjè quì</a>. Duverete cunfirmà a vostra scelta.
     description:
-      prefix_invited_by_user: "@%{name} v'invita à raghjunghje stu servore di TomX!"
-      prefix_sign_up: Arregistratevi nant'à TomX oghji!
-      suffix: Cù un contu, puderete siguità l'altri, pustà statuti è scambià missaghji cù l'utilizatori di tutti i servori TomX è ancu di più!
+      prefix_invited_by_user: "@%{name} v'invita à raghjunghje stu servore di Mastodon!"
+      prefix_sign_up: Arregistratevi nant'à Mastodon oghji!
+      suffix: Cù un contu, puderete siguità l'altri, pustà statuti è scambià missaghji cù l'utilizatori di tutti i servori Mastodon è ancu di più!
+    didnt_get_confirmation: Ùn avete micca ricevutu l’istruzione di cunfirmazione?
     dont_have_your_security_key: Ùn avete micca a chjave di sicurità?
     forgot_password: Chjave scurdata?
     invalid_reset_password_token: U ligame di riinizializazione di a chjave d’accessu hè spiratu o ùn hè micca validu. Pudete dumandà un'altru ligame.
@@ -573,9 +578,14 @@ co:
       saml: SAML
     register: Arregistrassi
     registration_closed: "%{instance} ùn accetta micca novi socii"
+    resend_confirmation: Rimandà l’istruzzioni di cunfirmazione
     reset_password: Cambià a chjave d’accessu
     security: Sicurità
     set_new_password: Creà una nova chjave d’accessu
+    setup:
+      email_below_hint_html: S'è l'indirizzu e-mail quì sottu ùn hè micca currettu, pudete cambiallu quì è riceve un novu e-mail di cunfirmazione.
+      email_settings_hint_html: L'e-mail di cunfirmazione hè statu mandatu à l'indirizzu %{email}. S'ellu ùn hè micca currettu, pudete cambiallu in i parametri di u contu.
+      title: Stallazione
     status:
       account_status: Statutu di u contu
       confirming: In attesa di a cumplezzione di a cunfirmazione di l'e-mail.
@@ -583,6 +593,18 @@ co:
       redirecting_to: U vostru contu hè inattivu perchè riindirizza versu %{acct}.
     too_fast: Furmulariu mandatu troppu prestu, ripruvate.
     use_security_key: Utilizà a chjave di sicurità
+  authorize_follow:
+    already_following: Site digià abbunatu·a à stu contu
+    already_requested: Avete digià mandatu una dumanda d'abbunamentu à stu contu
+    error: Peccatu, c’hè statu un prublemu ricercandu u contu
+    follow: Siguità
+    follow_request: 'Avete dumandatu di siguità:'
+    following: 'Eccu! Avà seguitate:'
+    post_follow:
+      close: O pudete ancu chjude sta finestra.
+      return: Vede u prufile di l’utilizatore
+      web: Andà à l’interfaccia web
+    title: Siguità %{acct}
   challenge:
     confirm: Cuntinuvà
     hint_html: "<strong>Astuzia:</strong> Ùn avemu micca da dumandavvi stu codice per l'ore chì vene."
@@ -643,7 +665,7 @@ co:
       content: Scusate, mà c’hè statu un prublemu cù u nostru servore.
       title: Sta pagina ùn hè curretta
     '503': A pagina ùn hè micca stata servita per via di un prublemu timpuraneu di u servore.
-    noscript_html: TomX nant’à u web hà bisognu di JavaScript per funziunà. Pudete ancu pruvà <a href="%{apps_path}">l’applicazione native</a> per a vostra piattaforma.
+    noscript_html: Mastodon nant’à u web hà bisognu di JavaScript per funziunà. Pudete ancu pruvà <a href="%{apps_path}">l’applicazione native</a> per a vostra piattaforma.
   existing_username_validator:
     not_found: ùn si pudeva micca truvà un'utilizatore lucale cù stu cugnome
     not_found_multiple: ùn si pudeva micca truvà %{usernames}
@@ -664,6 +686,8 @@ co:
     storage: I vostri media
   featured_tags:
     add_new: Aghjunghje
+    errors:
+      limit: Avete digià messu in mostra u numeru massimale di hashtag
     hint_html: "<strong>Quale sò i hashtag in mostra?</strong> Sò messi in vista nant'à u vostru prufile pubblicu è permettenu à a ghjente di vede i vostri statuti ch'annu stu hashtag. Sò una bona manere di mustrà e vostre opere creative o i prughjetti à longu termine."
   filters:
     contexts:
@@ -682,6 +706,8 @@ co:
       title: Filtri
     new:
       title: Aghjunghje un novu filtru
+  footer:
+    trending_now: Tindenze d'avà
   generic:
     all: Tuttu
     changes_saved_msg: Cambiamenti salvati!
@@ -692,6 +718,8 @@ co:
     validation_errors:
       one: Qualcosa ùn và bè! Verificate u prublemu quì sottu
       other: Qualcosa ùn và bè! Verificate %{count} prublemi quì sottu
+  html_validator:
+    invalid_markup: 'cuntene codice HTML invalidu: %{error}'
   imports:
     errors:
       over_rows_processing_limit: cuntene più di %{count} filari
@@ -731,6 +759,9 @@ co:
       expires_at: Spira
       uses: Utiliza
     title: Invità ghjente
+  lists:
+    errors:
+      limit: Ùn pudete più creà altre liste
   login_activities:
     authentication_methods:
       otp: app d'identificazione à dui fattori
@@ -897,7 +928,7 @@ co:
       weibo: Weibo
     current_session: Sessione attuale
     description: "%{browser} nant’à %{platform}"
-    explanation: Quessi sò i navigatori cunnettati à u vostru contu TomX.
+    explanation: Quessi sò i navigatori cunnettati à u vostru contu Mastodon.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -906,6 +937,7 @@ co:
       ios: iOS
       linux: Linux
       mac: macOS
+      other: piattaforma scunnisciuta
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -918,7 +950,7 @@ co:
     aliases: Pseudonimi di contu
     appearance: Apparenza
     authorized_apps: Applicazione auturizate
-    back: Ritornu nant’à TomX
+    back: Ritornu nant’à Mastodon
     delete: Suppressione di u contu
     development: Sviluppu
     edit_profile: Mudificà u prufile
@@ -970,6 +1002,7 @@ co:
     show_newer: Vede i più ricenti
     show_older: Vede i più anziani
     show_thread: Vede u filu
+    sign_in_to_participate: Cunnettatevi per participà à a cunversazione
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direttu
@@ -1004,16 +1037,19 @@ co:
       '7889238': 3 mesi
     min_age_label: Età minima
     min_favs: Cunservà i statuti favurizzati più di
+    min_favs_hint: Ùn sguassa micca i vostri statuti chì anu ricevuti più chì stu numeru di favuriti. Lasciate viotu per sguassà i statuti senza piglià in contu u numaru di favuriti
     min_reblogs: Cunservà i statuti spartuti più di
     min_reblogs_hint: Ùn sguassa micca i vostri statuti chì anu ricevuti più chì stu numeru di spartere. Lasciate viotu per sguassà i statuti senza piglià in contu u numaru di spartere
   stream_entries:
+    pinned: Statutu puntarulatu
+    reblogged: hà spartutu
     sensitive_content: Cuntenutu sensibile
   tags:
     does_not_match_previous_name: ùn currisponde micca à l'anzianu nome
   themes:
-    contrast: TomX (Cuntrastu altu)
-    default: TomX (Scuru)
-    mastodon-light: TomX (Chjaru)
+    contrast: Mastodon (Cuntrastu altu)
+    default: Mastodon (Scuru)
+    mastodon-light: Mastodon (Chjaru)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1035,7 +1071,7 @@ co:
     webauthn: Chjave di sicurità
   user_mailer:
     backup_ready:
-      explanation: Avete dumandatu un’archiviu cumpletu di u vostru contu TomX. Avà hè prontu per scaricà!
+      explanation: Avete dumandatu un’archiviu cumpletu di u vostru contu Mastodon. Avà hè prontu per scaricà!
       subject: U vostru archiviu hè prontu à scaricà
       title: Archiviu prontu
     warning:
@@ -1055,7 +1091,7 @@ co:
       final_action: Principià à pustà
       full_handle: U vostru identificatore cumplettu
       full_handle_hint: Quessu ghjè cio chì direte à i vostri amichi per circavi, abbunassi à u vostru contu da altrò, o mandà missaghji.
-      subject: Benvenutu·a nant’à TomX
+      subject: Benvenutu·a nant’à Mastodon
       title: Benvenutu·a, %{name}!
   users:
     follow_limit_reached: Ùn pidete seguità più di %{limit} conti
@@ -1064,6 +1100,7 @@ co:
     seamless_external_login: Site cunnettatu·a dapoi un serviziu esternu, allora i parametri di chjave d’accessu è d’indirizzu e-mail ùn so micca dispunibili.
     signed_in_as: 'Cunnettatu·a cum’è:'
   verification:
+    explanation_html: 'Pudete <strong>verificavi cum''è u pruprietariu di i ligami in i metadati di u vostru prufile</strong>. Per quessa, u vostru situ deve avè un ligame versu a vostra pagina Mastodon. U ligame <strong>deve</strong> avè un''attributu <code>rel="me"</code>. U cuntenutu di u testu di u ligame ùn hè micca impurtante. Eccu un''esempiu:'
     verification: Verificazione
   webauthn_credentials:
     add: Aghjunghje una chjave di sicurità

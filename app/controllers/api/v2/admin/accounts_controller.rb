@@ -18,14 +18,6 @@ class Api::V2::Admin::AccountsController < Api::V1::Admin::AccountsController
 
   private
 
-  def next_path
-    api_v2_admin_accounts_url(pagination_params(max_id: pagination_max_id)) if records_continue?
-  end
-
-  def prev_path
-    api_v2_admin_accounts_url(pagination_params(min_id: pagination_since_id)) unless @accounts.empty?
-  end
-
   def filtered_accounts
     AccountFilter.new(translated_filter_params).results
   end
@@ -33,7 +25,9 @@ class Api::V2::Admin::AccountsController < Api::V1::Admin::AccountsController
   def translated_filter_params
     translated_params = filter_params.slice(*AccountFilter::KEYS)
 
-    translated_params[:role_ids] = UserRole.that_can(:manage_reports).map(&:id) if params[:permissions] == 'staff'
+    if params[:permissions] == 'staff'
+      translated_params[:role_ids] = UserRole.that_can(:manage_reports).map(&:id)
+    end
 
     translated_params
   end

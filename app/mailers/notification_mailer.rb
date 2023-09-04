@@ -1,83 +1,72 @@
 # frozen_string_literal: true
 
 class NotificationMailer < ApplicationMailer
-  helper :accounts,
-         :statuses,
-         :routing
+  helper :accounts
+  helper :statuses
 
-  before_action :process_params
-  before_action :set_status, only: [:mention, :favourite, :reblog]
-  before_action :set_account, only: [:follow, :favourite, :reblog, :follow_request]
-  after_action :set_list_headers!
+  helper RoutingHelper
 
-  default to: -> { email_address_with_name(@user.email, @me.username) }
+  def mention(recipient, notification)
+    @me     = recipient
+    @status = notification.target_status
 
-  def mention
-    return unless @user.functional? && @status.present?
+    return unless @me.user.functional? && @status.present?
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
-      mail subject: default_i18n_subject(name: @status.account.acct)
+      mail to: @me.user.email, subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
     end
   end
 
-  def follow
-    return unless @user.functional?
+  def follow(recipient, notification)
+    @me      = recipient
+    @account = notification.from_account
+
+    return unless @me.user.functional?
 
     locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @account.acct)
+      mail to: @me.user.email, subject: I18n.t('notification_mailer.follow.subject', name: @account.acct)
     end
   end
 
-  def favourite
-    return unless @user.functional? && @status.present?
+  def favourite(recipient, notification)
+    @me      = recipient
+    @account = notification.from_account
+    @status  = notification.target_status
 
-    locale_for_account(@me) do
-      thread_by_conversation(@status.conversation)
-      mail subject: default_i18n_subject(name: @account.acct)
-    end
-  end
-
-  def reblog
-    return unless @user.functional? && @status.present?
+    return unless @me.user.functional? && @status.present?
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
-      mail subject: default_i18n_subject(name: @account.acct)
+      mail to: @me.user.email, subject: I18n.t('notification_mailer.favourite.subject', name: @account.acct)
     end
   end
 
-  def follow_request
-    return unless @user.functional?
+  def reblog(recipient, notification)
+    @me      = recipient
+    @account = notification.from_account
+    @status  = notification.target_status
+
+    return unless @me.user.functional? && @status.present?
 
     locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @account.acct)
+      thread_by_conversation(@status.conversation)
+      mail to: @me.user.email, subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
+    end
+  end
+
+  def follow_request(recipient, notification)
+    @me      = recipient
+    @account = notification.from_account
+
+    return unless @me.user.functional?
+
+    locale_for_account(@me) do
+      mail to: @me.user.email, subject: I18n.t('notification_mailer.follow_request.subject', name: @account.acct)
     end
   end
 
   private
-
-  def process_params
-    @notification = params[:notification]
-    @me = params[:recipient]
-    @user = @me.user
-    @type = action_name
-    @unsubscribe_url = unsubscribe_url(token: @user.to_sgid(for: 'unsubscribe').to_s, type: @type)
-  end
-
-  def set_status
-    @status = @notification.target_status
-  end
-
-  def set_account
-    @account = @notification.from_account
-  end
-
-  def set_list_headers!
-    headers['List-ID'] = "<#{@type}.#{@me.username}.#{Rails.configuration.x.local_domain}>"
-    headers['List-Unsubscribe'] = "<#{@unsubscribe_url}>"
-    headers['List-Unsubscribe-Post'] = 'List-Unsubscribe=One-Click'
-  end
 
   def thread_by_conversation(conversation)
     return if conversation.nil?
