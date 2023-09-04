@@ -12,9 +12,9 @@ describe SearchQueryTransformer do
     let(:query) { 'hello world' }
 
     it 'transforms clauses' do
-      expect(subject.must_clauses.map(&:term)).to match_array %w(hello world)
-      expect(subject.must_not_clauses).to be_empty
-      expect(subject.filter_clauses).to be_empty
+      expect(subject.send(:must_clauses).map(&:term)).to match_array %w(hello world)
+      expect(subject.send(:must_not_clauses)).to be_empty
+      expect(subject.send(:filter_clauses)).to be_empty
     end
   end
 
@@ -22,9 +22,9 @@ describe SearchQueryTransformer do
     let(:query) { 'hello -world' }
 
     it 'transforms clauses' do
-      expect(subject.must_clauses.map(&:term)).to match_array %w(hello)
-      expect(subject.must_not_clauses.map(&:term)).to match_array %w(world)
-      expect(subject.filter_clauses).to be_empty
+      expect(subject.send(:must_clauses).map(&:term)).to match_array %w(hello)
+      expect(subject.send(:must_not_clauses).map(&:term)).to match_array %w(world)
+      expect(subject.send(:filter_clauses)).to be_empty
     end
   end
 
@@ -32,9 +32,9 @@ describe SearchQueryTransformer do
     let(:query) { 'hello is:reply' }
 
     it 'transforms clauses' do
-      expect(subject.must_clauses.map(&:term)).to match_array %w(hello)
-      expect(subject.must_not_clauses).to be_empty
-      expect(subject.filter_clauses.map(&:term)).to match_array %w(reply)
+      expect(subject.send(:must_clauses).map(&:term)).to match_array %w(hello)
+      expect(subject.send(:must_not_clauses)).to be_empty
+      expect(subject.send(:filter_clauses).map(&:term)).to match_array %w(reply)
     end
   end
 
@@ -42,9 +42,9 @@ describe SearchQueryTransformer do
     let(:query) { 'foo: bar' }
 
     it 'transforms clauses' do
-      expect(subject.must_clauses.map(&:term)).to match_array %w(foo bar)
-      expect(subject.must_not_clauses).to be_empty
-      expect(subject.filter_clauses).to be_empty
+      expect(subject.send(:must_clauses).map(&:term)).to match_array %w(foo bar)
+      expect(subject.send(:must_not_clauses)).to be_empty
+      expect(subject.send(:filter_clauses)).to be_empty
     end
   end
 
@@ -52,9 +52,9 @@ describe SearchQueryTransformer do
     let(:query) { 'foo:bar' }
 
     it 'transforms clauses' do
-      expect(subject.must_clauses.map(&:term)).to contain_exactly('foo bar')
-      expect(subject.must_not_clauses).to be_empty
-      expect(subject.filter_clauses).to be_empty
+      expect(subject.send(:must_clauses).map(&:term)).to contain_exactly('foo bar')
+      expect(subject.send(:must_not_clauses)).to be_empty
+      expect(subject.send(:filter_clauses)).to be_empty
     end
   end
 end
