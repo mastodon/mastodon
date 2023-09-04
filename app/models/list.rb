@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: lists
@@ -9,7 +10,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  replies_policy :integer          default("list"), not null
-#  is_exclusive   :boolean          default(FALSE)
+#  exclusive      :boolean          default(FALSE), not null
 #
 
 class List < ApplicationRecord
@@ -17,7 +18,7 @@ class List < ApplicationRecord
 
   PER_ACCOUNT_LIMIT = 50
 
-  enum replies_policy: [:list, :followed, :none], _prefix: :show
+  enum replies_policy: { list: 0, followed: 1, none: 2 }, _prefix: :show
 
   belongs_to :account, optional: true
 
