@@ -32,6 +32,10 @@ describe 'Public' do
     context 'when the instance allows public preview' do
       let(:expected_statuses) { [local_status, remote_status, media_status] }
 
+      before do
+        Setting.timeline_preview = true
+      end
+
       context 'with an authorized user' do
         it_behaves_like 'a successful request to the public timeline'
       end
@@ -52,6 +56,13 @@ describe 'Public' do
       context 'with remote param' do
         let(:params) { { remote: true } }
         let(:expected_statuses) { [remote_status] }
+
+        it_behaves_like 'a successful request to the public timeline'
+      end
+
+      context 'with local and remote params' do
+        let(:params) { { local: true, remote: true } }
+        let(:expected_statuses) { [local_status, remote_status, media_status] }
 
         it_behaves_like 'a successful request to the public timeline'
       end

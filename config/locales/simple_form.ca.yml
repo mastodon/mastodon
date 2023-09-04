@@ -41,25 +41,20 @@ ca:
         current_password: Per motius de seguretat, introduïu la contrasenya del compte actual
         current_username: Per a confirmar, entreu el nom d'usuari del compte actual
         digest: Només s'envia després d'un llarg període d'inactivitat i només si has rebut algun missatge personal durant la teva absència
-        discoverable: Permet que el teu compte sigui descobert per desconeguts a través de recomanacions, etiquetes i altres característiques
         email: Se t'enviarà un correu electrònic de confirmació
         header: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
         inbox_url: Copia l'enllaç de la pàgina principal del relay que vols usar
         irreversible: Els tuts filtrats desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
         locale: L'idioma de la interfície d’usuari, els correus i les notificacions push
-        locked: Controla manualment qui et pot seguir, aprovant sol·licituds
         password: Utilitza com a mínim 8 caràcters
         phrase: Es combinarà independentment del format en el text o l'avís de contingut del tut
         scopes: API permeses per a accedir a l'aplicació. Si selecciones un àmbit de nivell superior, no cal que en seleccionis un d'individual.
         setting_aggregate_reblogs: No mostra els nous impulsos dels tuts que ja s'han impulsat recentment (només afecta als impulsos nous rebuts)
-        setting_always_send_emails: Normalment, no s'enviarà cap notificació per correu electrònic mentre facis servir TomX
+        setting_always_send_emails: Normalment, no s'enviarà cap notificació per correu electrònic mentre facis servir Mastodon
         setting_default_sensitive: El contingut sensible està ocult per defecte i es pot mostrar fent-hi clic
         setting_display_media_default: Amaga el contingut gràfic marcat com a sensible
         setting_display_media_hide_all: Oculta sempre tot el contingut multimèdia
         setting_display_media_show_all: Mostra sempre el contingut gràfic
-        setting_hide_network: Qui segueixes i els que et segueixen no es mostraran en el teu perfil
-        setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
-        setting_show_application: L'aplicació que fas servir per a publicar es mostrarà a la vista detallada dels teus tuts
         setting_use_blurhash: Els degradats es basen en els colors de les imatges ocultes, però n'enfosqueixen els detalls
         setting_use_pending_items: Amaga les actualitzacions de la línia de temps després de fer un clic, en lloc de desplaçar-les automàticament
         username: Pots emprar lletres, números i subratllats
@@ -82,14 +77,14 @@ ca:
         bootstrap_timeline_accounts: Aquests comptes es fixaran en la part superior de les recomanacions de seguiment dels nous usuaris.
         closed_registrations_message: Es mostra quan el registres estan tancats
         content_cache_retention_period: Els tuts d'altres servidors se suprimiran després del nombre de dies especificat quan s'estableix un valor positiu. Això pot ser irreversible.
-        custom_css: Pots aplicar estils personalitzats en la versió web de TomX.
+        custom_css: Pots aplicar estils personalitzats en la versió web de Mastodon.
         mascot: Anul·la la il·lustració en la interfície web avançada.
         media_cache_retention_period: Els fitxers multimèdia descarregats s'esborraran després del nombre de dies especificat quan el valor configurat és positiu, i tornats a descarregats sota demanda.
         peers_api_enabled: Una llista de noms de domini que aquest servidor ha trobat al fedivers. No inclou cap dada sobre si estàs federat amb un servidor determinat, només si el teu en sap res. La fan servir, en un sentit general, serveis que recol·lecten estadístiques sobre la federació.
         profile_directory: El directori de perfils llista tots els usuaris que tenen activat ser descoberts.
         require_invite_text: Quan el registre requereixi aprovació manual, fes que sigui obligatori en lloc d'opcional d'escriure el text de la sol·licitud d'invitació "Per què vols unir-te?"
         site_contact_email: Com pot la gent comunicar amb tu per a consultes legals o de recolzament.
-        site_contact_username: Com pot la gent trobar-te a TomX.
+        site_contact_username: Com pot la gent trobar-te a Mastodon.
         site_extended_description: Qualsevol informació addicional que pot ser útil per als visitants i els teus usuaris. Es pot estructurar amb format Markdown.
         site_short_description: Una descripció curta per a ajudar a identificar de manera única el teu servidor. Qui el fa anar, per a qui és?
         site_terms: Fes servir la teva pròpia política de privacitat o deixa-ho en blanc per a la per defecte. Es pot estructurar amb format Markdown.
@@ -104,7 +99,7 @@ ca:
       form_challenge:
         current_password: Estàs entrant en una àrea segura
       imports:
-        data: Fitxer CSV exportat des d'un altre servidor de TomX
+        data: Fitxer CSV exportat des d'un altre servidor de Mastodon
       invite_request:
         text: Això ens ajudarà a revisar la teva petició
       ip_block:
@@ -178,7 +173,6 @@ ca:
         context: Filtre els contextos
         current_password: Contrasenya actual
         data: Informació
-        discoverable: Mostra aquest compte en el directori de perfils
         display_name: Nom visible
         email: Adreça de correu electrònic
         expires_in: Expira després
@@ -188,7 +182,6 @@ ca:
         inbox_url: Enllaç de la safata d'entrada del relay
         irreversible: Cau en lloc d'ocultar
         locale: Idioma de la interfície
-        locked: Requereix sol·licituds de seguiment
         max_uses: Nombre màxim d'usos
         new_password: Contrasenya nova
         note: Biografia
@@ -211,9 +204,7 @@ ca:
         setting_display_media_show_all: Mostra-ho tot
         setting_expand_spoilers: Desplega sempre els tuts marcats amb advertències de contingut
         setting_hide_network: Amaga la teva xarxa
-        setting_noindex: Desactiva la indexació dels motors de cerca
         setting_reduce_motion: Redueix el moviment de les animacions
-        setting_show_application: Revela l'aplicació utilitzada per enviar tuts
         setting_system_font_ui: Usa la lletra predeterminada del sistema
         setting_theme: Tema del lloc
         setting_trends: Mostra les tendències d'avui

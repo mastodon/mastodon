@@ -23,59 +23,59 @@ de:
         explanation: Du hast mit dieser E-Mail-Adresse ein Konto auf %{host} erstellt. Du bist nur noch einen Klick von der Aktivierung entfernt. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
         explanation_when_pending: Du hast dich für eine Einladung bei %{host} mit dieser E-Mail-Adresse beworben. Sobald du deine E-Mail-Adresse bestätigt hast, werden wir deine Anfrage überprüfen. Du kannst dich in dieser Zeit nicht anmelden. Wenn deine Anfrage abgelehnt wird, werden deine Daten entfernt – von dir ist keine weitere Handlung notwendig. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
         extra_html: Bitte beachte auch die <a href="%{terms_path}">Serverregeln</a> und <a href="%{policy_path}">unsere Datenschutzerklärung</a>.
-        subject: 'TomX: Bestätigung deines Kontos bei %{instance}'
+        subject: 'Mastodon: Bestätigung deines Kontos bei %{instance}'
         title: Verifiziere E-Mail-Adresse
       email_changed:
         explanation: 'Die E-Mail-Adresse deines Kontos wird geändert zu:'
         extra: Wenn du deine E-Mail-Adresse nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Serververwaltung, wenn du aus deinem Konto ausgesperrt bist.
-        subject: 'TomX: E-Mail-Adresse geändert'
+        subject: 'Mastodon: E-Mail-Adresse geändert'
         title: Neue E-Mail-Adresse
       password_change:
         explanation: Deine Zugangsdaten wurden geändert.
         extra: Wenn du dein Passwort nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Serververwaltung, wenn du aus deinem Konto ausgesperrt bist.
-        subject: 'TomX: Passwort geändert'
+        subject: 'Mastodon: Passwort geändert'
         title: Passwort geändert
       reconfirmation_instructions:
         explanation: Bestätige deine neue E-Mail-Adresse, um sie zu ändern.
-        extra: Wenn diese Änderung nicht von dir ausgeführt wurde, dann kannst du diese E-Mail ignorieren. Die E-Mail-Adresse für dein TomX-Konto wird sich erst ändern, wenn du den obigen Link anklickst.
-        subject: 'TomX: E-Mail-Adresse für %{instance} bestätigen'
+        extra: Wenn diese Änderung nicht von dir ausgeführt wurde, dann kannst du diese E-Mail ignorieren. Die E-Mail-Adresse für dein Mastodon-Konto wird sich erst ändern, wenn du den obigen Link anklickst.
+        subject: 'Mastodon: E-Mail-Adresse für %{instance} bestätigen'
         title: Verifiziere E-Mail-Adresse
       reset_password_instructions:
         action: Passwort ändern
         explanation: Du hast ein neues Passwort für dein Konto angefordert.
         extra: Wenn du diese Anfrage nicht gestellt hast, solltest du diese E-Mail ignorieren. Dein Passwort wird sich nicht ändern, solange du den obigen Link anklickst und ein neues erstellst.
-        subject: 'TomX: Anleitung zum Zurücksetzen deines Passworts'
+        subject: 'Mastodon: Anleitung zum Zurücksetzen deines Passworts'
         title: Passwort zurücksetzen
       two_factor_disabled:
         explanation: Zwei-Faktor-Authentisierung (2FA) für dein Konto wurde deaktiviert. Eine Anmeldung ist jetzt nur noch mit E-Mail-Adresse und Passwort möglich.
-        subject: 'TomX: Zwei‐Faktor‐Authentisierung (2FA) deaktiviert'
+        subject: 'Mastodon: Zwei‐Faktor‐Authentisierung (2FA) deaktiviert'
         title: 2FA deaktiviert
       two_factor_enabled:
         explanation: Die Zwei-Faktor-Authentisierung (2FA) wurde für dein Konto aktiviert. Das zeitbasierte Einmalkennwort, das von deiner TOTP-App generiert wird, muss bei jeder Anmeldung zusätzlich eingegeben werden.
-        subject: 'TomX: Zwei‐Faktor‐Authentisierung (2FA) aktiviert'
+        subject: 'Mastodon: Zwei‐Faktor‐Authentisierung (2FA) aktiviert'
         title: 2FA aktiviert
       two_factor_recovery_codes_changed:
         explanation: Die vorherigen Wiederherstellungscodes wurden ungültig gemacht und es wurden neue erstellt.
-        subject: 'TomX: Zwei-Faktor-Wiederherstellungscodes neu erstellt'
+        subject: 'Mastodon: Zwei-Faktor-Wiederherstellungscodes neu erstellt'
         title: 2FA-Wiederherstellungscodes geändert
       unlock_instructions:
-        subject: 'TomX: Anleitung zur Entsperrung deines Kontos'
+        subject: 'Mastodon: Anleitung zur Entsperrung deines Kontos'
       webauthn_credential:
         added:
           explanation: Der folgende Sicherheitsschlüssel wurde zu deinem Konto hinzugefügt
-          subject: 'TomX: Neuer Sicherheitsschlüssel'
+          subject: 'Mastodon: Neuer Sicherheitsschlüssel'
           title: Ein neuer Sicherheitsschlüssel wurde hinzugefügt
         deleted:
           explanation: Der folgende Sicherheitsschlüssel wurde von deinem Konto entfernt
-          subject: 'TomX: Sicherheitsschlüssel entfernt'
+          subject: 'Mastodon: Sicherheitsschlüssel entfernt'
           title: Einer deiner Sicherheitsschlüssel wurde entfernt
       webauthn_disabled:
         explanation: Die Authentisierung mit Sicherheitsschlüsseln wurde für dein Konto deaktiviert. Die Anmeldung ist jetzt nur noch mit dem Token möglich, der von der eingerichteten TOTP-App generiert wird.
-        subject: 'TomX: Authentisierung mit Sicherheitsschlüsseln deaktiviert'
+        subject: 'Mastodon: Authentisierung mit Sicherheitsschlüsseln deaktiviert'
         title: Sicherheitsschlüssel deaktiviert
       webauthn_enabled:
         explanation: Die Authentisierung mit Sicherheitsschlüssel wurde für dein Konto aktiviert. Dein Sicherheitsschlüssel kann nun für die Anmeldung verwendet werden.
-        subject: 'TomX: Authentisierung mit Sicherheitsschlüssel aktiviert'
+        subject: 'Mastodon: Authentisierung mit Sicherheitsschlüssel aktiviert'
         title: Sicherheitsschlüssel aktiviert
     omniauth_callbacks:
       failure: Du konntest nicht mit deinem %{kind}-Konto angemeldet werden, weil „%{reason}“.

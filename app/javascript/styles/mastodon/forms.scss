@@ -103,6 +103,7 @@ code {
         }
       }
 
+      .overridden,
       .recommended,
       .not_recommended {
         position: absolute;
@@ -309,8 +310,18 @@ code {
       border-radius: 4px;
       background: url('images/void.png');
 
+      &[src$='missing.png'] {
+        visibility: hidden;
+      }
+
       &:last-child {
         margin-bottom: 0;
+      }
+
+      &#account_avatar-preview {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
       }
     }
   }
@@ -1175,14 +1186,14 @@ code {
   }
 
   li:first-child .label {
-    left: auto;
     inset-inline-start: 0;
+    inset-inline-end: auto;
     text-align: start;
     transform: none;
   }
 
   li:last-child .label {
-    left: auto;
+    inset-inline-start: auto;
     inset-inline-end: 0;
     text-align: end;
     transform: none;

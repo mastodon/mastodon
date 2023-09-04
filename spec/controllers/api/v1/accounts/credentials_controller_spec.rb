@@ -75,9 +75,11 @@ describe Api::V1::Accounts::CredentialsController do
         end
       end
 
-      describe 'with invalid data' do
+      describe 'with a too long profile bio' do
         before do
-          patch :update, params: { note: 'This is too long. ' * 30 }
+          note = 'This is too long. '
+          note += 'a' * (Account::MAX_NOTE_LENGTH - note.length + 1)
+          patch :update, params: { note: note }
         end
 
         it 'returns http unprocessable entity' do

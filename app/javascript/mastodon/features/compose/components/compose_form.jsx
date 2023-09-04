@@ -14,6 +14,7 @@ import { Icon }  from 'mastodon/components/icon';
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import Button from '../../../components/button';
+import { maxChars } from '../../../initial_state';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import LanguageDropdown from '../containers/language_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
@@ -100,7 +101,7 @@ class ComposeForm extends ImmutablePureComponent {
     const fulltext = this.getFulltextForCharacterCounting();
     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars || (isOnlyWhitespace && !anyMedia));
   };
 
   handleSubmit = (e) => {
@@ -297,7 +298,7 @@ class ComposeForm extends ImmutablePureComponent {
             </div>
 
             <div className='character-counter__wrapper'>
-              <CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} />
+              <CharacterCounter max={maxChars} text={this.getFulltextForCharacterCounting()} />
             </div>
           </div>
         </div>

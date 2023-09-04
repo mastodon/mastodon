@@ -37,6 +37,9 @@ module Admin
       flash[:alert] = I18n.t('admin.custom_emojis.no_emoji_selected')
     rescue Mastodon::NotPermittedError
       flash[:alert] = I18n.t('admin.custom_emojis.not_permitted')
+    rescue ActiveRecord::RecordInvalid => e
+      error_message = action_from_button == 'copy' ? 'admin.custom_emojis.batch_copy_error' : 'admin.custom_emojis.batch_error'
+      flash[:alert] = I18n.t(error_message, message: e.message)
     ensure
       redirect_to admin_custom_emojis_path(filter_params)
     end

@@ -13,16 +13,11 @@ import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import StatusList from 'mastodon/components/status_list';
 import { getStatusList } from 'mastodon/selectors';
 
-import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
-import StatusListContainer from '../ui/containers/status_list_container';
-
 const mapStateToProps = state => ({
   statusIds: getStatusList(state, 'trending'),
   isLoading: state.getIn(['status_lists', 'trending', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'trending', 'next']),
 });
-
-const onlyMedia = false;
 
 class Statuses extends PureComponent {
 
@@ -37,13 +32,11 @@ class Statuses extends PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
     dispatch(fetchTrendingStatuses());
-    dispatch(expandCommunityTimeline({ onlyMedia }));
   }
 
-  handleLoadMore = debounce((maxId) => {
+  handleLoadMore = debounce(() => {
     const { dispatch } = this.props;
-    // dispatch(expandTrendingStatuses());
-    dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
+    dispatch(expandTrendingStatuses());
   }, 300, { leading: true });
 
   render () {
@@ -57,18 +50,6 @@ class Statuses extends PureComponent {
           <FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These are posts from across the social web that are gaining traction today. Newer posts with more boosts and favorites are ranked higher.' />
         </DismissableBanner>
 
-        {/* <div className='scrollable scrollable--flex'> */}
-          <StatusListContainer
-          //   prepend={prependBanner}
-            timelineId={`community`}
-            onLoadMore={this.handleLoadMore}
-            trackScroll
-            isLoading={isLoading}
-            scrollKey='firehose'
-            emptyMessage={emptyMessage}
-            bindToDocument={!multiColumn}
-          />
-        {/* </div> */}
         <StatusList
           trackScroll
           timelineId='explore'

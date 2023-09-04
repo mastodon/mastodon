@@ -7,6 +7,7 @@ module Admin
 
     layout 'admin'
 
+    before_action :set_pack
     before_action :set_body_classes
     before_action :set_cache_headers
 
@@ -16,6 +17,10 @@ module Admin
 
     def set_body_classes
       @body_classes = 'admin'
+    end
+
+    def set_pack
+      use_pack 'admin'
     end
 
     def set_cache_headers

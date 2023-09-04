@@ -1,0 +1,97 @@
+@mixin avatar-radius() {
+  border-radius: $ui-avatar-border-size;
+  background-position: 50%;
+  background-clip: padding-box;
+}
+
+@mixin avatar-size($size: 48px) {
+  width: $size;
+  height: $size;
+  background-size: $size $size;
+}
+
+@mixin single-column($media, $parent: '&') {
+  .auto-columns #{$parent} {
+    @media #{$media} {
+      @content;
+    }
+  }
+  .single-column #{$parent} {
+    @content;
+  }
+}
+
+@mixin limited-single-column($media, $parent: '&') {
+  .auto-columns #{$parent},
+  .single-column #{$parent} {
+    @media #{$media} {
+      @content;
+    }
+  }
+}
+
+@mixin multi-columns($media, $parent: '&') {
+  .auto-columns #{$parent} {
+    @media #{$media} {
+      @content;
+    }
+  }
+  .multi-columns #{$parent} {
+    @content;
+  }
+}
+
+@mixin fullwidth-gallery {
+  &.full-width {
+    margin-left: -14px;
+    margin-right: -14px;
+    width: inherit;
+    max-width: none;
+    border-radius: 0;
+  }
+}
+
+@mixin search-input() {
+  outline: 0;
+  box-sizing: border-box;
+  width: 100%;
+  border: 0;
+  box-shadow: none;
+  font-family: inherit;
+  background: $ui-base-color;
+  color: $darker-text-color;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 0;
+}
+
+@mixin search-popout() {
+  background: $simple-background-color;
+  border-radius: 4px;
+  padding: 10px 14px;
+  padding-bottom: 14px;
+  margin-top: 10px;
+  color: $light-text-color;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+
+  h4 {
+    text-transform: uppercase;
+    color: $light-text-color;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  li {
+    padding: 4px 0;
+  }
+
+  ul {
+    margin-bottom: 10px;
+  }
+
+  em {
+    font-weight: 500;
+    color: $inverted-text-color;
+  }
+}

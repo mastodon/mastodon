@@ -1,0 +1,42 @@
+---
+fr:
+  admin:
+    custom_emojis:
+      batch_copy_error: 'Une erreur est survenue lors de la copie de certains des émojis sélectionnés : %{message}'
+      batch_error: 'Une erreur est survenue : %{message}'
+    settings:
+      captcha_enabled:
+        desc_html: Ceci se base sur des scripts externes venant de hCaptcha, ce qui peut engendrer des soucis de sécurité et de confidentialité. De plus, <strong>cela peut rendre l'inscription beaucoup moins accessible pour certaines personnes (comme les personnes handicapées)</strong>. Pour ces raisons, veuillez préférer des mesures alternatives telles que l'inscription sur acceptation ou invitation. <br>Les utilisateurs qui ont été invités via une invitation à usage limité n'auront pas à résoudre un CAPTCHA
+        title: Obliger les nouveaux utilisateurs à résoudre un CAPTCHA pour vérifier leur compte
+      flavour_and_skin:
+        title: Apparence et thèmes
+      hide_followers_count:
+        desc_html: Ne pas afficher le nombre d'abonné·e·s sur les profils des utilisateurs
+        title: Cacher le nombre d'abonné·e·s
+      other:
+        preamble: Divers autres paramètres de glitch-soc.
+        title: Autres
+      outgoing_spoilers:
+        desc_html: Ajouter un avertissement de contenu à tous les messages lorsqu'ils sont fédérés s'ils n'en possèdent pas déjà. Cela peut être utile si votre serveur est spécialisé dans un type de contenu sur lequel les autres serveurs pourraient vouloir un Avertissement de Contenu. Les médias seront également marqués comme sensibles.
+        title: Avertissement de contenu pour les messages sortants
+      show_reblogs_in_public_timelines:
+        desc_html: Afficher les partages publics de posts publics dans le fil local et global.
+        title: Afficher les partages dans les fils publics
+      show_replies_in_public_timelines:
+        desc_html: En plus des réponses à soi-même (threads), afficher les réponses publiques dans le fil local et global.
+        title: Afficher les réponses dans les fils publics
+      trending_status_cw:
+        desc_html: Quand les posts en tendance sont activés, permettre aux posts avec des avertissements de contenu (CW) d'être éligibles. Les changements effectués sur ce paramètre ne sont pas rétroactifs.
+        title: Autoriser les posts avec des avertissements de contenu à être en tendances
+  appearance:
+    localization:
+      glitch_guide_link: https://fr.crowdin.com/project/glitch-soc
+      glitch_guide_link_text: Et c'est pareil avec glitch-soc !
+  auth:
+    captcha_confirmation:
+      hint_html: Plus qu'une étape ! Pour vérifier votre compte sur ce serveur, vous devez résoudre un CAPTCHA. Vous pouvez <a href="/about/more">contacter l'administrateur·ice du serveur</a> si vous avez des questions ou besoin d'assistance dans la vérification de votre compte.
+      title: Vérification de l'utilisateur
+  generic:
+    use_this: Utiliser ceci
+  settings:
+    flavours: Thèmes

@@ -4,7 +4,7 @@
     %meta{ 'http-equiv' => 'Content-Type', 'content' => 'text/html; charset=utf-8' }/
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0, shrink-to-fit=no' }
 
-    = stylesheet_pack_tag 'mailer'
+    = stylesheet_pack_tag 'core/mailer'
   %body{ dir: locale_direction }
     %table.email-table{ cellspacing: 0, cellpadding: 0 }
       %tbody
@@ -22,7 +22,7 @@
                               %tr
                                 %td.column-cell
                                   = link_to root_url do
-                                    = image_tag full_pack_url('media/images/mailer/wordmark.png'), alt: 'TomX', height: 34, class: 'logo'
+                                    = image_tag full_pack_url('media/images/mailer/wordmark.png'), alt: 'Mastodon', height: 34, class: 'logo'
 
     = yield
 
@@ -49,3 +49,6 @@
                                   - if defined?(@unsubscribe_url)
                                     ·
                                     = link_to t('application_mailer.unsubscribe'), @unsubscribe_url
+                              %td.column-cell.text-right
+                                = link_to root_url do
+                                  = image_tag full_pack_url('media/images/mailer/logo.png'), alt: 'Mastodon', height: 24

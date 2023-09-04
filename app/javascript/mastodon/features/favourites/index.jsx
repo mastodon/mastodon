@@ -8,7 +8,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { fetchFavourites } from 'mastodon/actions/interactions';
+import { debounce } from 'lodash';
+
+import { fetchFavourites, expandFavourites } from 'mastodon/actions/interactions';
 import ColumnHeader from 'mastodon/components/column_header';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
@@ -21,7 +23,9 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'favourited_by', props.params.statusId]),
+  accountIds: state.getIn(['user_lists', 'favourited_by', props.params.statusId, 'items']),
+  hasMore: !!state.getIn(['user_lists', 'favourited_by', props.params.statusId, 'next']),
+  isLoading: state.getIn(['user_lists', 'favourited_by', props.params.statusId, 'isLoading'], true),
 });
 
 class Favourites extends ImmutablePureComponent {
@@ -30,6 +34,8 @@ class Favourites extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     accountIds: ImmutablePropTypes.list,
+    hasMore: PropTypes.bool,
+    isLoading: PropTypes.bool,
     multiColumn: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
@@ -40,18 +46,16 @@ class Favourites extends ImmutablePureComponent {
     }
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
-      this.props.dispatch(fetchFavourites(nextProps.params.statusId));
-    }
-  }
-
   handleRefresh = () => {
     this.props.dispatch(fetchFavourites(this.props.params.statusId));
   };
 
+  handleLoadMore = debounce(() => {
+    this.props.dispatch(expandFavourites(this.props.params.statusId));
+  }, 300, { leading: true });
+
   render () {
-    const { intl, accountIds, multiColumn } = this.props;
+    const { intl, accountIds, hasMore, isLoading, multiColumn } = this.props;
 
     if (!accountIds) {
       return (
@@ -75,6 +79,9 @@ class Favourites extends ImmutablePureComponent {
 
         <ScrollableList
           scrollKey='favourites'
+          onLoadMore={this.handleLoadMore}
+          hasMore={hasMore}
+          isLoading={isLoading}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >

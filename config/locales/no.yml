@@ -1,10 +1,10 @@
 ---
 'no':
   about:
-    about_mastodon_html: TomX er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen TomX og delta sømløst i det sosiale nettverket.
+    about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
-    hosted_on: TomX driftet på %{domain}
+    hosted_on: Mastodon driftet på %{domain}
     title: Om
   accounts:
     follow: Følg
@@ -672,7 +672,7 @@
         moderation: Moderering
         special: Spesiell
       delete: Slett
-      description_html: Med <strong>brukerroller</strong>kan du tilpasse hvilke funksjoner og områder av TomX dine brukere har tilgang til.
+      description_html: Med <strong>brukerroller</strong>kan du tilpasse hvilke funksjoner og områder av Mastodon dine brukere har tilgang til.
       edit: Rediger rollen '%{name}'
       everyone: Standard-tillatelser
       everyone_full_description_html: Dette er <strong>basis-rollen</strong> som påvirker <strong>alle brukere</strong>, selv de uten en tilordnet rolle. Alle andre roller arver tillatelser fra den.
@@ -735,23 +735,23 @@
         rules_hint: Det er et eget område for regler som brukerne skal følge her.
         title: Om
       appearance:
-        preamble: Tilpass TomXs webgrensesnitt.
+        preamble: Tilpass Mastodons webgrensesnitt.
         title: Utseende
       branding:
-        preamble: Serverens merkevarebygging skiller den fra andre servere i nettverket. Denne informasjonen kan vises på tvers av en rekke miljøer, for eksempel TomXs webgrensesnitt, native applikasjoner, i forhåndsvisning av lenker på andre nettsteder og i meldingsapper, osv. Av denne grunn er det best å holde denne informasjonen klar, kort og kortfattet.
+        preamble: Serverens merkevarebygging skiller den fra andre servere i nettverket. Denne informasjonen kan vises på tvers av en rekke miljøer, for eksempel Mastodons webgrensesnitt, native applikasjoner, i forhåndsvisning av lenker på andre nettsteder og i meldingsapper, osv. Av denne grunn er det best å holde denne informasjonen klar, kort og kortfattet.
         title: Merkevare
       captcha_enabled:
         desc_html: Dette er avhengig av eksterne skript fra hCaptcha, som kan være et sikkerhets- og personvernproblem.<strong> I tillegg kan dette gjøre registreringsprosessen betydelig mindre tilgjengelig for noen (spesielt funksjonshemmede) personer</strong>. Av disse grunnene bør du vurdere alternative tiltak som godkjenningsbasert eller invitasjonsbasert registrering.
         title: Krev at nye brukere løser en CAPTCHA for å bekrefte kontoen sin
       content_retention:
-        preamble: Kontroller hvordan brukergenerert innhold lagres i TomX.
+        preamble: Kontroller hvordan brukergenerert innhold lagres i Mastodon.
         title: Oppbevaring av innhold
       default_noindex:
         desc_html: Påvirker alle brukerne som ikke selv har justert denne innstillingen
         title: Ikke la brukere indekseres av søkemotorer som standard
       discovery:
         follow_recommendations: Følg anbefalinger
-        preamble: Overflater interessant innhold er medvirkende til ombordstigning av nye brukere som kanskje ikke kjenner noen TomX. Kontroller hvordan ulike oppdagelsesfunksjoner fungerer på serveren.
+        preamble: Overflater interessant innhold er medvirkende til ombordstigning av nye brukere som kanskje ikke kjenner noen Mastodon. Kontroller hvordan ulike oppdagelsesfunksjoner fungerer på serveren.
         profile_directory: Profilkatalog
         public_timelines: Offentlige tidslinjer
         publish_discovered_servers: Publiser liste over oppdagede servere
@@ -907,7 +907,7 @@
     webhooks:
       add_new: Legg til endepunkt
       delete: Slett
-      description_html: En <strong>webhook</strong> gjør det mulig for TomX å dytte <strong>varsler i sanntid</strong> om utvalgte arrangementer til din egen applikasjon, Derfor kan søknaden din <strong>utløse reaksjoner</strong> automatisk.
+      description_html: En <strong>webhook</strong> gjør det mulig for Mastodon å dytte <strong>varsler i sanntid</strong> om utvalgte arrangementer til din egen applikasjon, Derfor kan søknaden din <strong>utløse reaksjoner</strong> automatisk.
       disable: Deaktiver
       disabled: Deaktivert
       edit: Rediger sluttpunkt
@@ -969,7 +969,7 @@
     confirmation_dialogs: Bekreftelsesdialoger
     discovery: Oppdagelse
     localization:
-      body: TomX er oversatt av frivillige.
+      body: Mastodon er oversatt av frivillige.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alle kan bidra.
     sensitive_content: Følsomt innhold
@@ -1000,9 +1000,9 @@
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette kontoen din, kan du <a href="%{path}">gå hit</a>. Du vil bli spurt om bekreftelse.
     description:
-      prefix_invited_by_user: "@%{name} inviterer deg til å bli med på denne serveren til TomX!"
-      prefix_sign_up: Registrer deg på TomX i dag!
-      suffix: Med en konto, vil kunne følge folk, skrive innlegg, og utveksle meldinger med brukere fra enhver TomX-tjener, og mer til!
+      prefix_invited_by_user: "@%{name} inviterer deg til å bli med på denne serveren til Mastodon!"
+      prefix_sign_up: Registrer deg på Mastodon i dag!
+      suffix: Med en konto, vil kunne følge folk, skrive innlegg, og utveksle meldinger med brukere fra enhver Mastodon-tjener, og mer til!
     didnt_get_confirmation: Mottok du ikke en bekreftelseslenke?
     dont_have_your_security_key: Har du ikke sikkerhetsnøkkelen din?
     forgot_password: Har du glemt passordet ditt?
@@ -1049,7 +1049,7 @@
       title: Logg inn på %{domain}
     sign_up:
       manual_review: Registreringer på %{domain} går gjennom manuell gjennomgang av moderatorene våre. For å hjelpe oss med å behandle registreringen din, skriv litt om deg selv og hvorfor du vil ha en konto på %{domain}.
-      preamble: Med en konto på denne TomX-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
+      preamble: Med en konto på denne Mastodon-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
       title: La oss få deg satt i gang på %{domain}.
     status:
       account_status: Kontostatus
@@ -1140,7 +1140,6 @@
     basic_information: Grunnleggende informasjon
     hint_html: "<strong>Tilpass hva folk ser på din offentlige profil og ved siden av dine innlegg.</strong> Det er mer sannsynlig at andre mennesker følger deg tilbake og samhandler med deg når du har fylt ut en profil og et profilbilde."
     other: Annet
-    safety_and_privacy: Sikkerhet og personvern
   errors:
     '400': Forespørselen du sendte inn var ugyldig eller feil.
     '403': Du har ikke tillatelse til å vise denne siden.
@@ -1155,7 +1154,7 @@
       content: Beklager men noe gikk galt ved vår ende.
       title: Denne siden er ikke korrekt
     '503': Siden kunne ikke vises på grunn av en midlertidig serverfeil.
-    noscript_html: For å bruke TomX webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for TomX til din plattform.
+    noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
   existing_username_validator:
     not_found: kunne ikke finne en lokal bruker med det brukernavnet
     not_found_multiple: klarte ikke å finne %{usernames}
@@ -1343,7 +1342,7 @@
     unsubscribe:
       action: Ja, avslutt abonnement
       complete: Abonnement avsluttet
-      confirmation_html: Er du sikker på at du vil slutte å motta %{type} fra TomX %{domain} i e-posten din på %{email}? Du kan når som helst gjenoppta i <a href="%{settings_path}">innstillinger for e-postvarsling</a>.
+      confirmation_html: Er du sikker på at du vil slutte å motta %{type} fra Mastodon %{domain} i e-posten din på %{email}? Du kan når som helst gjenoppta i <a href="%{settings_path}">innstillinger for e-postvarsling</a>.
       emails:
         notification_emails:
           favourite: e-poster om favorittmarkeringer
@@ -1352,7 +1351,7 @@
           mention: e-poster om nevninger
           reblog: e-poster om fremhevinger
       resubscribe_html: Hvis du har avsluttet abonnementet ved en feiltakelse, kan du abonnere på nytt i <a href="%{settings_path}">innstillinger for e-postvarsling</a>.
-      success_html: Du vil ikke lenger motta %{type} fra TomX på %{domain} i e-posten din på %{email}.
+      success_html: Du vil ikke lenger motta %{type} fra Mastodon på %{domain} i e-posten din på %{email}.
       title: Avslutt abonnement
   media_attachments:
     validations:
@@ -1542,7 +1541,7 @@
       weibo: Weibo
     current_session: Nåværende økt
     description: "%{browser} på %{platform}"
-    explanation: Dette er nettlesere som er pålogget på din TomX-konto akkurat nå.
+    explanation: Dette er nettlesere som er pålogget på din Mastodon-konto akkurat nå.
     ip: IP-adresse
     platforms:
       adobe_air: Adobe Air
@@ -1568,7 +1567,7 @@
     aliases: Kontoaliaser
     appearance: Utseende
     authorized_apps: Autoriserte applikasjoner
-    back: Tilbake til TomX
+    back: Tilbake til Mastodon
     delete: Kontosletting
     development: Utvikling
     edit_profile: Endre profil
@@ -1677,9 +1676,9 @@
   tags:
     does_not_match_previous_name: samsvarer ikke med det forrige navnet
   themes:
-    contrast: TomX (Høykontrast)
-    default: TomX
-    mastodon-light: TomX (Lyst)
+    contrast: Mastodon (Høykontrast)
+    default: Mastodon
+    mastodon-light: Mastodon (Lyst)
   time:
     formats:
       default: "%-d. %b %Y, %H:%M"
@@ -1711,7 +1710,7 @@
       subject: Din klage fra %{date} er avvist
       title: Klage avvist
     backup_ready:
-      explanation: Du ba om en fullstendig sikkerhetskopi av TomX-kontoen din. Den er nå klar for nedlasting!
+      explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
       title: Nedlasting av arkiv
     suspicious_sign_in:
@@ -1760,7 +1759,7 @@
       final_step: 'Skriv innlegg! Selv uten følgere kan dine offentlige innlegg bli sett av andre, for eksempel på den lokale tidslinjen og i emneknagger. Du kan introdusere deg selv ved å bruke emneknaggen #introduksjon.'
       full_handle: Ditt fullstendige brukernavn
       full_handle_hint: Dette er hva du forteller venner slik at de kan sende melding eller følge deg fra en annen instanse.
-      subject: Velkommen til TomX
+      subject: Velkommen til Mastodon
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan ikke følge mer enn %{limit} personer
@@ -1772,7 +1771,7 @@
   verification:
     extra_instructions_html: <strong>Tips:</strong> Lenken på din nettside kan være usynlig. Den viktige delen er <code>rel="me"</code> som sikrer at nettsteder med brukergenerert innhold ikke kan utgi seg for å være deg. Du kan til og med bruke en <code>link</code> lenke i sidens topptekst i stedet for <code>a</code>, men HTML-koden må være tilgjengelig uten å kjøre JavaScript.
     here_is_how: Slik gjør du
-    hint_html: "<strong>Verifisering av identiteten din på TomX er for alle.</strong> Basert på åpne nettstandarder, gratis nå og for alltid. Alt du trenger er en personlig nettside som gjør at folk kjenner deg igjen. Når du lenker til dette nettstedet fra din profil, vil vi sjekke at nettstedet lenker tilbake til profilen din og viser dette på profilen din."
+    hint_html: "<strong>Verifisering av identiteten din på Mastodon er for alle.</strong> Basert på åpne nettstandarder, gratis nå og for alltid. Alt du trenger er en personlig nettside som gjør at folk kjenner deg igjen. Når du lenker til dette nettstedet fra din profil, vil vi sjekke at nettstedet lenker tilbake til profilen din og viser dette på profilen din."
     instructions_html: Kopier og lim inn koden nedenfor i HTML til ditt nettsted. Deretter legger du til adressen til nettstedet ditt i et av ekstrafeltene på profilen din fra fanen "Rediger profil" og lagre endringer.
     verification: Bekreftelse
     verified_links: Dine bekreftede lenker

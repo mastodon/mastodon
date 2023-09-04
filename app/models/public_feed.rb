@@ -8,6 +8,7 @@ class PublicFeed
   # @option [Boolean] :local
   # @option [Boolean] :remote
   # @option [Boolean] :only_media
+  # @option [Boolean] :allow_local_only
   def initialize(account, options = {})
     @account = account
     @options = options
@@ -21,6 +22,7 @@ class PublicFeed
   def get(limit, max_id = nil, since_id = nil, min_id = nil)
     scope = public_scope
 
+    scope.merge!(without_local_only_scope) unless allow_local_only?
     scope.merge!(without_replies_scope) unless with_replies?
     scope.merge!(without_reblogs_scope) unless with_reblogs?
     scope.merge!(local_only_scope) if local_only?
@@ -36,6 +38,10 @@ class PublicFeed
 
   attr_reader :account, :options
 
+  def allow_local_only?
+    local_account? && (local_only? || options[:allow_local_only])
+  end
+
   def with_reblogs?
     options[:with_reblogs]
   end
@@ -45,15 +51,19 @@ class PublicFeed
   end
 
   def local_only?
-    options[:local]
+    options[:local] && !options[:remote]
   end
 
   def remote_only?
-    options[:remote]
+    options[:remote] && !options[:local]
   end
 
   def account?
     account.present?
+  end
+
+  def local_account?
+    account&.local?
   end
 
   def media_only?
@@ -82,6 +92,10 @@ class PublicFeed
 
   def media_only_scope
     Status.joins(:media_attachments).group(:id)
+  end
+
+  def without_local_only_scope
+    Status.not_local_only
   end
 
   def language_scope

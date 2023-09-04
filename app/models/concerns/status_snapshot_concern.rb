@@ -24,6 +24,7 @@ module StatusSnapshotConcern
       media_descriptions: ordered_media_attachments.map(&:description),
       poll_options: preloadable_poll&.options&.dup,
       account_id: account_id || self.account_id,
+      content_type: content_type,
       created_at: at_time || edited_at,
       rate_limit: rate_limit
     )

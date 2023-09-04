@@ -1,0 +1,42 @@
+---
+ko:
+  admin:
+    custom_emojis:
+      batch_copy_error: '선택된 에모지를 복사하던 중 오류가 발생했습니다: %{message}'
+      batch_error: '에러가 발생했습니다: %{message}'
+    settings:
+      captcha_enabled:
+        desc_html: 이것은 hCaptcha의 외부 스크립트에 의존합니다, 이것은 개인정보 보호에 위협을 가할 수도 있습니다. 추가적으로, <strong>이것은 몇몇 사람들(특히나 장애인들)에게 가입 절차의 접근성을 심각하게 떨어트릴 수 있습니다</strong>. 이러한 이유로, 대체제로 승인 전용이나 초대제를 통한 가입을 고려해보세요.<br>한정된 사용만 가능한 초대장을 통한 가입자들은 CAPTCHA를 풀지 않아도 됩니다
+        title: 새로운 사용자가 계정 확인을 위해서는 CAPTCHA를 풀어야 하도록 합니다
+      flavour_and_skin:
+        title: 풍미와 스킨
+      hide_followers_count:
+        desc_html: 사용자 프로필에 팔로워 수를 표시하지 않습니다
+        title: 팔로워 수 숨기기
+      other:
+        preamble: 다른 곳에 맞지 않는 다양한 글리치 전용 설정들.
+        title: 기타
+      outgoing_spoilers:
+        desc_html: 툿을 연합할 때 열람주의가 없다면 여기 적힌 열람주의를 추가합니다. 다른 서버에서 열람주의를 설정하기를 요하는 주제에 특화된 서버라면 유용합니다. 미디어 또한 민감함으로 설정됩니다.
+        title: 나가는 툿에 대한 열람주의
+      show_reblogs_in_public_timelines:
+        desc_html: 공개글의 공개적인 부스트를 로컬과 공개 타임라인에 표시합니다.
+        title: 부스트를 공개 타임라인에 표시
+      show_replies_in_public_timelines:
+        desc_html: 자기자신에 대한 답글(글타래)와 마찬가지로, 공개적인 답글을 로컬과 공개 타임라인에 표시합니다.
+        title: 답글을 공개 타임라인에 표시
+      trending_status_cw:
+        desc_html: 유행하는 게시물이 활성화 되었을 때, 열람주의가 설정된 글도 허용합니다. 이 설정의 변경은 소급 적용되지 않습니다.
+        title: 열람주의를 가진 글이 유행에 오를 수 있도록 허용
+  appearance:
+    localization:
+      glitch_guide_link: https://crowdin.com/project/glitch-soc
+      glitch_guide_link_text: 글리치도 마찬가지입니다!
+  auth:
+    captcha_confirmation:
+      hint_html: 한가지 단계가 남았습니다! 계정을 확인하기 위해서는, CAPTCHA를 풀어야 합니다. 질문이 있거나 계정 확인 과정에서 도움을 받고 싶은 경우 <a href="/about/more">서버의 관리자에게 연락해서</a> 해결할 수 있습니다.
+      title: 사용자 확인
+  generic:
+    use_this: 사용하기
+  settings:
+    flavours: 풍미

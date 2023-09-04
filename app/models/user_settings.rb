@@ -9,12 +9,18 @@ class UserSettings
 
   setting :always_send_emails, default: false
   setting :aggregate_reblogs, default: true
-  setting :theme, default: -> { ::Setting.theme }
+  setting :flavour, default: -> { ::Setting.flavour }
+  setting :skin, default: -> { ::Setting.skin }
   setting :noindex, default: -> { ::Setting.noindex }
   setting :show_application, default: true
   setting :default_language, default: nil
   setting :default_sensitive, default: false
   setting :default_privacy, default: nil, in: %w(public unlisted private)
+  setting :default_content_type, default: 'text/plain'
+  setting :hide_followers_count, default: false
+
+  setting_inverse_alias :indexable, :noindex
+  setting_inverse_alias :show_followers_count, :hide_followers_count
 
   namespace :web do
     setting :advanced_layout, default: false
@@ -26,10 +32,12 @@ class UserSettings
     setting :delete_modal, default: true
     setting :reblog_modal, default: false
     setting :unfollow_modal, default: true
+    setting :favourite_modal, default: false
     setting :reduce_motion, default: false
     setting :expand_content_warnings, default: false
     setting :display_media, default: 'default', in: %w(default show_all hide_all)
     setting :auto_play, default: false
+    setting :use_system_emoji_font, default: false
   end
 
   namespace :notification_emails do
@@ -41,7 +49,10 @@ class UserSettings
     setting :report, default: true
     setting :pending_account, default: true
     setting :trends, default: true
+    setting :link_trends, default: false
+    setting :status_trends, default: false
     setting :appeal, default: true
+    setting :software_updates, default: 'critical', in: %w(none critical patch all)
   end
 
   namespace :interactions do
@@ -55,31 +66,26 @@ class UserSettings
   end
 
   def [](key)
-    key = key.to_sym
+    definition = self.class.definition_for(key)
 
-    raise KeyError, "Undefined setting: #{key}" unless self.class.definition_for?(key)
+    raise KeyError, "Undefined setting: #{key}" if definition.nil?
 
-    if @original_hash.key?(key)
-      @original_hash[key]
-    else
-      self.class.definition_for(key).default_value
-    end
+    definition.value_for(key, @original_hash[definition.key])
   end
 
   def []=(key, value)
-    key = key.to_sym
+    definition = self.class.definition_for(key)
 
-    raise KeyError, "Undefined setting: #{key}" unless self.class.definition_for?(key)
+    raise KeyError, "Undefined setting: #{key}" if definition.nil?
 
-    setting_definition = self.class.definition_for(key)
-    typecast_value = setting_definition.type_cast(value)
+    typecast_value = definition.type_cast(value)
 
-    raise ArgumentError, "Invalid value for setting #{key}: #{typecast_value}" if setting_definition.in.present? && setting_definition.in.exclude?(typecast_value)
+    raise ArgumentError, "Invalid value for setting #{definition.key}: #{typecast_value}" if definition.in.present? && definition.in.exclude?(typecast_value)
 
     if typecast_value.nil?
-      @original_hash.delete(key)
+      @original_hash.delete(definition.key)
     else
-      @original_hash[key] = typecast_value
+      @original_hash[definition.key] = definition.value_for(key, typecast_value)
     end
   end
 

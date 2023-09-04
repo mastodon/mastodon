@@ -76,7 +76,7 @@ $content-width: 840px;
 
     .logo {
       display: block;
-      margin-left: 20px;
+      margin: 40px auto;
       width: 100px;
       height: 100px;
     }
@@ -141,6 +141,11 @@ $content-width: 840px;
           border: 0;
           padding: 15px 35px;
         }
+      }
+
+      .warning a {
+        color: $gold-star;
+        font-weight: 700;
       }
 
       .simple-navigation-active-leaf a {
@@ -524,6 +529,22 @@ body,
         border-bottom: 2px solid $ui-highlight-color;
       }
     }
+  }
+}
+
+.flavour-screen {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+}
+
+.flavour-description {
+  display: block;
+  font-size: 16px;
+  margin: 10px 0;
+
+  & > p {
+    margin: 10px 0;
   }
 }
 

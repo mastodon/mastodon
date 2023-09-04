@@ -188,6 +188,7 @@ module LanguagesHelper
 
   ISO_639_3 = {
     ast: ['Asturian', 'Asturianu'].freeze,
+    chr: ['Cherokee', 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ'].freeze,
     ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
     cnr: ['Montenegrin', 'crnogorski'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
@@ -200,6 +201,7 @@ module LanguagesHelper
     smj: ['Lule Sami', 'Julevsámegiella'].freeze,
     szl: ['Silesian', 'ślůnsko godka'].freeze,
     tok: ['Toki Pona', 'toki pona'].freeze,
+    xal: ['Kalmyk', 'Хальмг келн'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze

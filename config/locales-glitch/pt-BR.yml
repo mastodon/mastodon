@@ -1,0 +1,42 @@
+---
+pt-BR:
+  admin:
+    custom_emojis:
+      batch_copy_error: 'Ocorreu um erro ao copiar alguns dos emojis selecionados: %{message}'
+      batch_error: 'Ocorreu um erro: %{message}'
+    settings:
+      captcha_enabled:
+        desc_html: Isto se baseia em scripts externos de hCaptcha, o que pode ser uma preocupação de segurança e privacidade. Além disso, <strong>isto pode tornar o processo de registro significativamente menos acessível para algumas pessoas (especialmente deficientes)</strong>. Por estas razões, favor considerar medidas alternativas como o registro baseado em aprovação ou em convite.<br>Os usuários que tiverem sido convidados através de um convite de uso limitado não precisarão resolver um CAPTCHA
+        title: Exigir que novos usuários resolvam um CAPTCHA para confirmar sua conta
+      flavour_and_skin:
+        title: Sabor e tema
+      hide_followers_count:
+        desc_html: Não mostrar contagem de seguidores em perfis de usuário
+        title: Ocultar número de seguidores
+      other:
+        preamble: Várias configurações de glitch-soc que não se ajustam em outras categorias.
+        title: Outros
+      outgoing_spoilers:
+        desc_html: Ao federar toots, adicione este aviso de conteúdo aos toots que não possuem um. É útil se seu servidor for especializado em conteúdo que outros servidores podem querer ter sob um Aviso de Conteúdo. Os meios de comunicação também serão marcados como sensíveis.
+        title: Aviso de conteúdo para toots enviados
+      show_reblogs_in_public_timelines:
+        desc_html: Mostrar impulsos públicos de toots públicos nas linhas de tempo locais e públicas.
+        title: Mostrar impulsos em timelines públicas
+      show_replies_in_public_timelines:
+        desc_html: Além das auto-respostas públicas (tópicos), mostrar respostas públicas em linhas do tempo locais e públicas.
+        title: Mostrar respostas em linhas do tempo públicas
+      trending_status_cw:
+        desc_html: Quando as mensagens de tendência estiverem habilitadas, permitir que as mensagens com Avisos de Conteúdo sejam elegíveis. As alterações a esta configuração não são retroativas.
+        title: Permitir que mensagens com Avisos de Conteúdo tornem-se tendência
+  appearance:
+    localization:
+      glitch_guide_link: https://crowdin.com/project/glitch-soc
+      glitch_guide_link_text: E também para glitch-soc!
+  auth:
+    captcha_confirmation:
+      hint_html: Só mais um passo! Para confirmar a sua conta, este servidor requer que você resolva um CAPTCHA. Você pode <a href="/about/more">entrar em contato com o administrador do servidor</a> se você tiver dúvidas ou precisa de ajuda para confirmar sua conta.
+      title: Verificação de usuário
+  generic:
+    use_this: Use isto
+  settings:
+    flavours: Sabores

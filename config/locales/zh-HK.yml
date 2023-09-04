@@ -1,10 +1,10 @@
 ---
 zh-HK:
   about:
-    about_mastodon_html: TomX（萬象）是屬於未來的社交網路︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 TomX 吧！
+    about_mastodon_html: Mastodon（萬象）是屬於未來的社交網路︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 Mastodon 吧！
     contact_missing: 未設定
     contact_unavailable: 不適用
-    hosted_on: 在 %{domain} 運作的 TomX 伺服器
+    hosted_on: 在 %{domain} 運作的 Mastodon 伺服器
     title: 關於
   accounts:
     follow: 關注
@@ -648,7 +648,7 @@ zh-HK:
         moderation: 審核
         special: 特殊
       delete: 刪除
-      description_html: 透過<strong>使用者身份</strong>，你可以自訂使用者可以存取 TomX 的哪些功能和區域。
+      description_html: 透過<strong>使用者身份</strong>，你可以自訂使用者可以存取 Mastodon 的哪些功能和區域。
       edit: 編輯「%{name}」身份
       everyone: 預設權限
       everyone_full_description_html: 這是會影響所有<strong>使用者</strong>的<strong>基本身份</strong>，包括沒有被指派身份的使用者。所有身份都會繼承它的權限。
@@ -710,20 +710,20 @@ zh-HK:
         rules_hint: 這是有關你的使用者應遵守的規則的專區。
         title: 關於
       appearance:
-        preamble: 自訂 TomX 網頁介面。
+        preamble: 自訂 Mastodon 網頁介面。
         title: 外觀
       branding:
-        preamble: 你的伺服器的品牌使它與網絡上的其他伺服器區分開來。這些資訊可能會在各種情境下顯示，如 TomX 的網頁介面、原生應用程式，以及其他網站和通訊應用程式內的連結預覽等。因此，請盡量保持資訊簡短精煉。
+        preamble: 你的伺服器的品牌使它與網絡上的其他伺服器區分開來。這些資訊可能會在各種情境下顯示，如 Mastodon 的網頁介面、原生應用程式，以及其他網站和通訊應用程式內的連結預覽等。因此，請盡量保持資訊簡短精煉。
         title: 品牌
       content_retention:
-        preamble: 控制使用者生成的內容如何儲存在 TomX。
+        preamble: 控制使用者生成的內容如何儲存在 Mastodon。
         title: 內容留存
       default_noindex:
         desc_html: 影響所有未自行設定的用戶
         title: 預設用戶不在搜尋引擎索引之內
       discovery:
         follow_recommendations: 追蹤建議
-        preamble: 呈現有趣的內容有助於吸引不認識 TomX 的使用者新手上路。控制各種探索功能在你的伺服器上的運作方式。
+        preamble: 呈現有趣的內容有助於吸引不認識 Mastodon 的使用者新手上路。控制各種探索功能在你的伺服器上的運作方式。
         profile_directory: 個人檔案目錄
         public_timelines: 公共時間軸
         publish_discovered_servers: 公開已知的伺服器
@@ -875,7 +875,7 @@ zh-HK:
     webhooks:
       add_new: 新增端點
       delete: 刪除
-      description_html: "<strong>Webhook</strong> 讓 TomX 將有關所選事件的<strong>實時通知</strong>推送到你自己的應用程式，如此應用程式便可以<strong>自動觸發反應</strong>。"
+      description_html: "<strong>Webhook</strong> 讓 Mastodon 將有關所選事件的<strong>實時通知</strong>推送到你自己的應用程式，如此應用程式便可以<strong>自動觸發反應</strong>。"
       disable: 停用
       disabled: 已停用
       edit: 編輯端點
@@ -936,7 +936,7 @@ zh-HK:
     confirmation_dialogs: 確認對話框
     discovery: 探索
     localization:
-      body: TomX 是由志願者翻譯的。
+      body: Mastodon 是由志願者翻譯的。
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每個人都能貢獻。
     sensitive_content: 敏感內容
@@ -962,8 +962,8 @@ zh-HK:
     delete_account: 刪除帳號
     delete_account_html: 如果你想刪除你的帳號，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
     description:
-      prefix_invited_by_user: "@%{name} 邀請你加入這個 TomX 服務站！"
-      prefix_sign_up: 立即註冊 TomX！
+      prefix_invited_by_user: "@%{name} 邀請你加入這個 Mastodon 服務站！"
+      prefix_sign_up: 立即註冊 Mastodon！
       suffix: 有了一個帳戶，就可以從任何Mastodon服務器關注任何人，發佈更新並與任何Mastodon服務器的用戶交流！
     dont_have_your_security_key: 找不到安全密鑰？
     forgot_password: 忘記了密碼？
@@ -994,7 +994,7 @@ zh-HK:
       preamble_html: 請使用 <strong>%{domain}</strong> 的資料登入。如果您的帳戶託管在其他的伺服器，您將無法在此登入。
       title: 登入 %{domain}
     sign_up:
-      preamble: 有了這個 TomX 伺服器的帳號，無論將帳號託管在何處，你都可以追蹤網絡上任何人。
+      preamble: 有了這個 Mastodon 伺服器的帳號，無論將帳號託管在何處，你都可以追蹤網絡上任何人。
       title: 讓我為你在 %{domain} 上設定好。
     status:
       account_status: 帳戶文章
@@ -1095,7 +1095,7 @@ zh-HK:
       content: 抱歉，我們的後台出錯了。
       title: 這個頁面有問題
     '503': 因短暫的伺服器錯誤而未能提供此頁面
-    noscript_html: 使用 TomX 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
+    noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
   existing_username_validator:
     not_found: 無法找到位於本伺服器的用戶
     not_found_multiple: 無法找到%{usernames}
@@ -1416,7 +1416,7 @@ zh-HK:
       weibo: 新浪微博
     current_session: 目前的作業階段
     description: "%{platform} 上的 %{browser}"
-    explanation: 這些是現在正登入於你的 TomX 帳號的瀏覽器。
+    explanation: 這些是現在正登入於你的 Mastodon 帳號的瀏覽器。
     ip: IP 位址
     platforms:
       adobe_air: Adobe Air
@@ -1442,7 +1442,7 @@ zh-HK:
     aliases: 帳戶別名(aliases)
     appearance: 外觀設定
     authorized_apps: 授權應用程式
-    back: 回到 TomX
+    back: 回到 Mastodon
     delete: 刪除帳戶
     development: 開發
     edit_profile: 修改個人資料
@@ -1579,7 +1579,7 @@ zh-HK:
       subject: 你在 %{date} 提出的申訴已被駁回
       title: 申訴被駁回
     backup_ready:
-      explanation: 你要求的 TomX 帳號完整備份檔案現已就緒，可供下載。
+      explanation: 你要求的 Mastodon 帳號完整備份檔案現已就緒，可供下載。
       subject: 你的備份檔已可供下載
       title: 檔案匯出
     suspicious_sign_in:
@@ -1626,9 +1626,9 @@ zh-HK:
       explanation: 下面是幾個小貼士，希望它們能幫到你
       final_action: 開始發文
       final_step: '開始發文吧！即使你沒有追蹤者，其他人仍然能在本站時間軸或標籤等地方，看到你的公開帖文。試着用 #introductions 標籤來介紹自己吧。'
-      full_handle: 你的完整 TomX 地址
+      full_handle: 你的完整 Mastodon 地址
       full_handle_hint: 這訊息將顯示給你朋友們，讓他們能從另一個服務站發信息給你，或者關注你的。
-      subject: 歡迎來到 TomX (萬象)
+      subject: 歡迎來到 Mastodon (萬象)
       title: 歡迎 %{name} 加入！
   users:
     follow_limit_reached: 你不能關注多於%{limit} 人

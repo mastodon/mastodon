@@ -1,0 +1,42 @@
+---
+de:
+  admin:
+    custom_emojis:
+      batch_copy_error: 'Fehler ist beim Kopieren einiger der ausgewählten Emoji aufgetreten: %{message}'
+      batch_error: 'Ein Fehler ist aufgetreten: %{message}'
+    settings:
+      captcha_enabled:
+        desc_html: Dies beruht auf externen Skripts von hCaptcha, was Sicherheits- und Datenschutz-Bedenken auslösen kann. Zusätzlich <strong>kann das den Registrierungsprozess für manche (besonders behinderte) Leute signifikant weniger zugänglich machen</strong>. Aus diesen Gründen, bitte ziehe alternative Maßnahmen, wie Zulassungs- oder Einladungs-basierte Registrierung, in Erwägung.<br>Nutzer, die durch eine Einladung mit eingeschränkter Verwendungsanzahl eingeladen wurden, werden kein CAPTCHA lösen müssen
+        title: Neue Nutzer sollen ein CAPTCHA lösen müssen, um ihr Konto zu bestätigen
+      flavour_and_skin:
+        title: Variante und Skin
+      hide_followers_count:
+        desc_html: Follower nicht auf Nutzerprofilen anzeigen
+        title: Anzahl der Follower verbergen
+      other:
+        preamble: Verschiedene glitch-soc-Einstellungen, die nicht in andere Kategorien passen.
+        title: Sonstiges
+      outgoing_spoilers:
+        desc_html: Füge diese Inhaltswarnung bei föderierten Toots hinzu, wenn sie noch keine haben. Nützlich, wenn dein Server auf bestimmte Inhalte spezialisiert ist, die andere Server hinter einer Inhaltswarnung haben wollen. Medien werden auch als empfindlich markiert werden.
+        title: Inhaltswarnung für ausgehende Toots
+      show_reblogs_in_public_timelines:
+        desc_html: Zeige öffentlich geteilte Toots in lokalen und öffentlichen Timelines.
+        title: Zeige geteilte Toots in öffentlichen Timelines
+      show_replies_in_public_timelines:
+        desc_html: Neben öffentlichen Selbst-Antworten (Threads), öffentliche Antworten in lokalen und öffentlichen Timelines anzeigen.
+        title: Antworten in öffentlichen Timelines anzeigen
+      trending_status_cw:
+        desc_html: Erlaube Posts mit Inhaltswarnungen zu trenden, wenn angesagte Beiträge aktiviert sind. Änderungen an dieser Einstellung sind nicht rückwirkend.
+        title: Erlaube Posts mit Inhaltswarnungen zu trenden
+  appearance:
+    localization:
+      glitch_guide_link: https://crowdin.com/project/glitch-soc
+      glitch_guide_link_text: Und auch für glitch-soc!
+  auth:
+    captcha_confirmation:
+      hint_html: Nur noch ein weiterer Schritt! Um dein Konto zu bestätigen, erfordert dieser Server das Lösen eines CAPTCHA von dir. Bei Fragen oder Problemen mit der Bestätigung kannst du <a href="/about/more">den Server-Administrator kontaktieren</a>.
+      title: Nutzer-Verifizierung
+  generic:
+    use_this: Benutze das
+  settings:
+    flavours: Varianten

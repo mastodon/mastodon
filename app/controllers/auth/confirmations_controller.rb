@@ -6,6 +6,7 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
   layout 'auth'
 
   before_action :set_body_classes
+  before_action :set_pack
   before_action :set_confirmation_user!, only: [:show, :confirm_captcha]
   before_action :require_unconfirmed!
 
@@ -56,6 +57,10 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
 
   def captcha_user_bypass?
     return true if @confirmation_user.nil? || @confirmation_user.confirmed?
+  end
+
+  def set_pack
+    use_pack 'auth'
   end
 
   def require_unconfirmed!

@@ -41,25 +41,20 @@ fr:
         current_password: Par mesure de sécurité, veuillez saisir le mot de passe de ce compte
         current_username: Pour confirmer, veuillez saisir l’identifiant de ce compte
         digest: Uniquement envoyé après une longue période d’inactivité en cas de messages personnels reçus pendant votre absence
-        discoverable: Permet à votre compte d’être découvert par des inconnus par le biais de recommandations, de tendances et autres fonctionnalités
         email: Vous recevrez un courriel de confirmation
         header: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         inbox_url: Copiez l’URL depuis la page d’accueil du relais que vous souhaitez utiliser
         irreversible: Les messages filtrés disparaîtront irrévocablement, même si le filtre est supprimé plus tard
         locale: La langue de l’interface, des courriels et des notifications
-        locked: Nécessite que vous approuviez manuellement chaque abonné·e
         password: Utilisez au moins 8 caractères
         phrase: Sera filtré peu importe la casse ou l’avertissement de contenu du message
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
         setting_aggregate_reblogs: Ne pas afficher les nouveaux partages pour les messages déjà récemment partagés (n’affecte que les partages futurs)
-        setting_always_send_emails: Normalement, les notifications par courriel ne seront pas envoyées lorsque vous utilisez TomX activement
+        setting_always_send_emails: Normalement, les notifications par courriel ne seront pas envoyées lorsque vous utilisez Mastodon activement
         setting_default_sensitive: Les médias sensibles sont cachés par défaut et peuvent être révélés d’un simple clic
         setting_display_media_default: Masquer les médias marqués comme sensibles
         setting_display_media_hide_all: Toujours masquer les médias
         setting_display_media_show_all: Toujours afficher les médias
-        setting_hide_network: Ceux que vous suivez et ceux qui vous suivent ne seront pas affichés sur votre profil
-        setting_noindex: Affecte votre profil public ainsi que vos messages
-        setting_show_application: Le nom de l’application que vous utilisez pour publier sera affichée dans la vue détaillée de vos messages
         setting_use_blurhash: Les dégradés sont basés sur les couleurs des images cachées mais n’en montrent pas les détails
         setting_use_pending_items: Cacher les mises à jour des fils d’actualités derrière un clic, au lieu de les afficher automatiquement
         username: Vous pouvez utiliser des lettres, des chiffres, et des tirets bas
@@ -82,14 +77,14 @@ fr:
         bootstrap_timeline_accounts: Ces comptes seront épinglés en tête de liste des recommandations pour les nouveaux utilisateurs.
         closed_registrations_message: Affiché lorsque les inscriptions sont fermées
         content_cache_retention_period: Lorsque la valeur est positive, les messages publiés depuis d'autres serveurs seront supprimés après le nombre de jours défini. Cela peut être irréversible.
-        custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de TomX.
+        custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
         mascot: Remplace l'illustration dans l'interface Web avancée.
         media_cache_retention_period: Lorsque la valeur est positive, les fichiers multimédias téléchargés seront supprimés après le nombre de jours défini et pourront être à nouveau téléchargés sur demande.
         peers_api_enabled: Une liste de noms de domaine que ce serveur a rencontrés dans le fédiverse. Aucune donnée indiquant si vous vous fédérez ou non avec un serveur particulier n'est incluse ici, seulement l'information que votre serveur connaît un autre serveur. Cette option est utilisée par les services qui collectent des statistiques sur la fédération en général.
         profile_directory: L'annuaire des profils répertorie tous les comptes qui choisi d'être découvrables.
         require_invite_text: Lorsque les inscriptions nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
         site_contact_email: Comment l'on peut vous joindre pour des requêtes d'assistance ou d'ordre juridique.
-        site_contact_username: Comment les gens peuvent vous contacter sur TomX.
+        site_contact_username: Comment les gens peuvent vous contacter sur Mastodon.
         site_extended_description: Toute information supplémentaire qui peut être utile aux non-inscrit⋅e⋅s et à vos utilisateur⋅rice⋅s. Peut être structurée avec la syntaxe Markdown.
         site_short_description: Une description brève pour aider à faire connaître votre serveur de manière unique. Qui s'en occupe ? à qui est-il destiné ?
         site_terms: Utilisez votre propre politique de confidentialité ou laissez vide pour utiliser les conditions définies par défaut. Peut être structurée avec la syntaxe Markdown.
@@ -104,7 +99,7 @@ fr:
       form_challenge:
         current_password: Vous entrez une zone sécurisée
       imports:
-        data: Un fichier CSV généré par un autre serveur de TomX
+        data: Un fichier CSV généré par un autre serveur de Mastodon
       invite_request:
         text: Cela nous aidera à considérer votre demande
       ip_block:
@@ -178,7 +173,6 @@ fr:
         context: Contextes du filtre
         current_password: Mot de passe actuel
         data: Données
-        discoverable: Suggérer ce compte aux autres
         display_name: Nom public
         email: Adresse de courriel
         expires_in: Expire après
@@ -188,7 +182,6 @@ fr:
         inbox_url: URL de la boîte de relais
         irreversible: Supprimer plutôt que masquer
         locale: Langue de l’interface
-        locked: Verrouiller le compte
         max_uses: Nombre maximum d’utilisations
         new_password: Nouveau mot de passe
         note: Présentation
@@ -211,9 +204,7 @@ fr:
         setting_display_media_show_all: Montrer tout
         setting_expand_spoilers: Toujours déplier les messages marqués d’un avertissement de contenu
         setting_hide_network: Cacher votre réseau
-        setting_noindex: Demander aux moteurs de recherche de ne pas indexer vos informations personnelles
         setting_reduce_motion: Réduire la vitesse des animations
-        setting_show_application: Dévoiler l’application utilisée pour envoyer les messages
         setting_system_font_ui: Utiliser la police par défaut du système
         setting_theme: Thème du site
         setting_trends: Afficher les tendances du jour

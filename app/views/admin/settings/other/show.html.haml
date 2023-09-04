@@ -1,0 +1,26 @@
+- content_for :page_title do
+  = t('admin.settings.other.title')
+
+- content_for :heading do
+  %h2= t('admin.settings.title')
+  = render partial: 'admin/settings/shared/links'
+
+= simple_form_for @admin_settings, url: admin_settings_other_path, html: { method: :patch } do |f|
+  = render 'shared/error_messages', object: @admin_settings
+
+  %p.lead= t('admin.settings.other.preamble')
+
+  .fields-group
+    = f.input :hide_followers_count, as: :boolean, wrapper: :with_label, label: t('admin.settings.hide_followers_count.title'), hint: t('admin.settings.hide_followers_count.desc_html'), glitch_only: true
+
+  .fields-group
+    = f.input :show_reblogs_in_public_timelines, as: :boolean, wrapper: :with_label, label: t('admin.settings.show_reblogs_in_public_timelines.title'), hint: t('admin.settings.show_reblogs_in_public_timelines.desc_html'), glitch_only: true
+
+  .fields-group
+    = f.input :show_replies_in_public_timelines, as: :boolean, wrapper: :with_label, label: t('admin.settings.show_replies_in_public_timelines.title'), hint: t('admin.settings.show_replies_in_public_timelines.desc_html'), glitch_only: true
+
+  .fields-group
+    = f.input :outgoing_spoilers, wrapper: :with_label, label: t('admin.settings.outgoing_spoilers.title'), hint: t('admin.settings.outgoing_spoilers.desc_html'), glitch_only: true
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

@@ -1,0 +1,14 @@
+# This is needed for the Github Action
+project_id_env: CROWDIN_PROJECT_ID
+api_token_env: CROWDIN_PERSONAL_TOKEN
+
+skip_untranslated_strings: 1
+commit_message: '[ci skip]'
+preserve_hierarchy: true
+files:
+  - source: /app/javascript/flavours/glitch/locales/en.json
+    translation: /app/javascript/flavours/glitch/locales/%two_letters_code%.json
+  - source: /config/locales-glitch/en.yml
+    translation: /config/locales-glitch/%two_letters_code%.yml
+  - source: /config/locales-glitch/simple_form.en.yml
+    translation: /config/locales-glitch/simple_form.%two_letters_code%.yml

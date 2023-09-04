@@ -1,0 +1,38 @@
+---
+cs:
+  admin:
+    custom_emojis:
+      batch_copy_error: 'Při kopírování některých emoji došlo k chybě: %{message}'
+      batch_error: 'Došlo k chybě: %{message}'
+    settings:
+      captcha_enabled:
+        desc_html: Tato funkce používá externí skripty služby hCaptcha, což může být problém z hlediska bezpečí a ochrany dat. Také to může <strong>některým (hlavně postiženým) lidem registrační proces výrazně zkomplikovat</strong>. Z tohoto důvodu prosím raději zvažte jiné možnosti, jako je schvalování registrací nebo registrace pouze pro zvané.<br>Uživatelům pozvaným skrze omezenou pozvánku se CAPTCHA nezobrazí.
+        title: Vyžadovat po nových uživatelích opsání textu z obrázku (CAPTCHA)
+      flavour_and_skin:
+        title: Rozhraní a styl
+      hide_followers_count:
+        desc_html: Nezobrazovat na uživatelských profilech počet sledujících
+        title: Schovat počet sledujících
+      other:
+        preamble: Různá nastavení glitch-soc, která se nevešla do jiných kategorií.
+        title: Jiné
+      outgoing_spoilers:
+        desc_html: Při federování příspěvků se přidá toto varování o obsahu příspěvkům, které žádné nemají. To může být užitečné, pokud je váš server zaměřen na specifický obsah, pro který by jiné servery mohly varování o obsahu vyžadovat. Připojená média budou označena jako citlivá.
+        title: Varování o obsahu pro odesílané příspěvky
+      show_reblogs_in_public_timelines:
+        desc_html: Veřejné boosty veřejných příspěvků se zobrazí na místní a federované časové ose.
+        title: Zobrazovat ve veřejných časových osách boosty
+      show_replies_in_public_timelines:
+        desc_html: Na místní a federované časové ose se kromě odpovědí autora na vlastní příspěvky (vláken) zobrazí i ostatní veřejné odpovědi.
+        title: Zobrazovat ve veřejných časových osách odpovědi
+      trending_status_cw:
+        desc_html: Zobrazovat v rámci trendů (pokud jsou zapnuté) i příspěvky s varováním o obsahu. Změny tohoto nastavení se neprojeví retroaktivně.
+        title: Povolit v trendech příspěvky s varováním o obsahu
+  auth:
+    captcha_confirmation:
+      hint_html: Už jen poslední krok! Pro potvrzení svého účtu opište prosím text z obrázku (CAPTCHA). Pokud máte dotazy nebo potřebujete s potvrzením pomoct, můžete <a href="/about/more">kontaktovat administrátora</a>.
+      title: Ověření uživatele
+  generic:
+    use_this: Použít
+  settings:
+    flavours: Rozhraní

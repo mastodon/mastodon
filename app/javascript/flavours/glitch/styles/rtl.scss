@@ -1,0 +1,116 @@
+body.rtl {
+  direction: rtl;
+
+  .reactions-bar {
+    direction: rtl;
+  }
+
+  .drawer__inner__mastodon > img {
+    transform: scaleX(-1);
+  }
+
+  .boost-modal__status-time {
+    float: left;
+  }
+
+  .compose-form .autosuggest-textarea__textarea {
+    padding-right: 10px;
+    padding-left: 10px + 22px;
+  }
+
+  .columns-area {
+    direction: rtl;
+  }
+
+  .react-swipeable-view-container > * {
+    direction: rtl;
+  }
+
+  .account__avatar-wrapper {
+    float: right;
+  }
+
+  .column-header__setting-arrows {
+    float: left;
+  }
+
+  .setting-meta__label {
+    float: left;
+  }
+
+  .activity-stream .status.light {
+    padding-left: 10px;
+    padding-right: 68px;
+  }
+
+  .status__info .status__display-name,
+  .activity-stream .status.light .status__display-name {
+    padding-left: 25px;
+    padding-right: 0;
+  }
+
+  .activity-stream .pre-header {
+    padding-right: 68px;
+    padding-left: 0;
+  }
+
+  .activity-stream .pre-header .pre-header__icon {
+    left: auto;
+    right: 42px;
+  }
+
+  .account__header__tabs__buttons > .icon-button {
+    margin-right: 0;
+    margin-left: 8px;
+  }
+
+  .status__relative-time,
+  .activity-stream .status.light .status__header .status__meta {
+    float: left;
+    text-align: left;
+  }
+
+  .status__action-bar-button {
+    float: right;
+  }
+
+  .status__action-bar-dropdown {
+    float: right;
+  }
+
+  .detailed-status__display-name .display-name {
+    text-align: right;
+  }
+
+  .detailed-status__display-avatar {
+    float: right;
+  }
+
+  .admin-wrapper {
+    direction: rtl;
+  }
+
+  .simple_form .label_input__append {
+    &::after {
+      background-image: linear-gradient(
+        to left,
+        rgba(darken($ui-base-color, 10%), 0),
+        darken($ui-base-color, 10%)
+      );
+    }
+  }
+
+  .simple_form select {
+    background: darken($ui-base-color, 10%)
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
+      no-repeat left 8px center / auto 16px;
+  }
+
+  .fa-chevron-left::before {
+    content: '\F054';
+  }
+
+  .fa-chevron-right::before {
+    content: '\F053';
+  }
+}

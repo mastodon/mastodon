@@ -1,0 +1,42 @@
+---
+en:
+  admin:
+    custom_emojis:
+      batch_copy_error: 'An error occurred when copying some of the selected emoji: %{message}'
+      batch_error: 'An error occurred: %{message}'
+    settings:
+      captcha_enabled:
+        desc_html: This relies on external scripts from hCaptcha, which may be a security and privacy concern. In addition, <strong>this can make the registration process significantly less accessible to some (especially disabled) people</strong>. For these reasons, please consider alternative measures such as approval-based or invite-based registration.
+        title: Require new users to solve a CAPTCHA to confirm their account
+      flavour_and_skin:
+        title: Flavour and skin
+      hide_followers_count:
+        desc_html: Do not show followers count on user profiles
+        title: Hide followers count
+      other:
+        preamble: Various glitch-soc settings not fitting in other categories.
+        title: Other
+      outgoing_spoilers:
+        desc_html: When federating toots, add this content warning to toots that do not have one. It is useful if your server is specialized in content other servers might want to have under a Content Warning. Media will also be marked as sensitive.
+        title: Content warning for outgoing toots
+      show_reblogs_in_public_timelines:
+        desc_html: Show public boosts of public toots in local and public timelines.
+        title: Show boosts in public timelines
+      show_replies_in_public_timelines:
+        desc_html: In addition to public self-replies (threads), show public replies in local and public timelines.
+        title: Show replies in public timelines
+      trending_status_cw:
+        desc_html: When trending posts are enabled, allow posts with Content Warnings to be eligible. Changes to this setting are not retroactive.
+        title: Allow posts with Content Warnings to trend
+  appearance:
+    localization:
+      glitch_guide_link: https://crowdin.com/project/glitch-soc
+      glitch_guide_link_text: And likewise for glitch-soc!
+  auth:
+    captcha_confirmation:
+      hint_html: Just one more step! To confirm your account, this server requires you to solve a CAPTCHA. You can <a href="/about/more">contact the server administrator</a> if you have questions or need assistance with confirming your account.
+      title: User verification
+  generic:
+    use_this: Use this
+  settings:
+    flavours: Flavours

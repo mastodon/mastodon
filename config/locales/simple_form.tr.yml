@@ -41,25 +41,20 @@ tr:
         current_password: Güvenlik nedeniyle lütfen şu anki hesabın parolasını girin
         current_username: Onaylamak için lütfen şu anki hesabın kullanıcı adını girin
         digest: Sadece uzun bir süre hareketsiz kaldıktan sonra ve yalnızca yokluğunuzda herhangi bir kişisel mesaj aldıysanız gönderilir
-        discoverable: Hesabınızın öneriler, trendler ve diğer özellikler aracılığıyla yabancılar tarafından keşfedilmesine izin verin
         email: Onay e-postası gönderilir
         header: PNG, GIF ya da JPG. En fazla %{size}. %{dimensions}px boyutuna küçültülecek
         inbox_url: Kullanmak istediğiniz aktarıcının ön sayfasından URL'yi kopyalayın
         irreversible: Filtrelenmiş gönderiler, filtre daha sonra kaldırılsa bile, geri dönüşümsüz biçimde kaybolur
         locale: Kullanıcı arayüzünün dili, e-postalar ve push bildirimleri
-        locked: Takipçilerinizi manuel olarak kabul etmenizi ve gönderilerinizi varsayılan olarak sadece takipçilerinizin göreceği şekilde paylaşmanızı sağlar.
         password: En az 8 karakter kullanın
         phrase: Metnin büyük/küçük harf durumundan veya gönderinin içerik uyarısından bağımsız olarak eşleştirilecek
         scopes: Uygulamanın erişmesine izin verilen API'ler. Üst seviye bir kapsam seçtiyseniz, bireysel kapsam seçmenize gerek yoktur.
         setting_aggregate_reblogs: Yakın zamanda teşvik edilmiş gönderiler için yeni teşvikleri göstermeyin (yalnızca yeni alınan teşvikleri etkiler)
-        setting_always_send_emails: Normalde, TomX'u aktif olarak kullanırken e-posta bildirimleri gönderilmeyecektir
+        setting_always_send_emails: Normalde, Mastodon'u aktif olarak kullanırken e-posta bildirimleri gönderilmeyecektir
         setting_default_sensitive: Hassas medya varsayılan olarak gizlidir ve bir tıklama ile gösterilebilir
         setting_display_media_default: Hassas olarak işaretlenmiş medyayı gizle
         setting_display_media_hide_all: Medyayı her zaman gizle
         setting_display_media_show_all: Medyayı her zaman göster
-        setting_hide_network: Takip ettiğiniz ve sizi takip eden kişiler profilinizde gösterilmeyecek
-        setting_noindex: Herkese açık profilinizi ve durum sayfalarınızı etkiler
-        setting_show_application: Gönderi gönderimi için kullandığınız uygulama, gönderilerinizin ayrıntılı görünümünde gösterilecektir
         setting_use_blurhash: Gradyenler gizli görsellerin renklerine dayanır, ancak detayları gizler
         setting_use_pending_items: Akışı otomatik olarak kaydırmak yerine, zaman çizelgesi güncellemelerini tek bir tıklamayla gizleyin
         username: Harfleri, sayıları veya alt çizgi kullanabilirsiniz
@@ -82,14 +77,14 @@ tr:
         bootstrap_timeline_accounts: Bu hesaplar, yeni kullanıcıların takip önerilerinin tepesinde sabitlenecektir.
         closed_registrations_message: Kayıt olma kapalıyken görüntülenir
         content_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan gelen gönderiler belirli bir gün sonra silinecektir. Silme geri alınamayabilir.
-        custom_css: TomX'un web sürümüne özel biçimler uygulayabilirsiniz.
+        custom_css: Mastodon'un web sürümüne özel biçimler uygulayabilirsiniz.
         mascot: Gelişmiş web arayüzündeki illüstrasyonu geçersiz kılar.
         media_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan indirilen medya dosyaları belirli bir gün sonra silinecektir, isteğe bağlı olarak tekrar indirilebilir.
         peers_api_enabled: Bu sunucunun fediverse'te karşılaştığı alan adlarının bir listesi. İlgili sunucuyla birleştirme mi yapıyorsunuz yoksa sunucunuz sadece onu biliyor mu hakkında bir bilgi burada yok. Bu blgi genel olarak federasyın hakkında istatistik toplamak isteyen hizmetler tarafından kullanılıyor.
         profile_directory: Profil dizini keşfedilebilir olmayı kabul eden tüm kullanıcıları listeler.
         require_invite_text: Kayıt olmak elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
         site_contact_email: İnsanlar yasal konular veya destek hakkında bilgi edinmek için size nasıl ulaşabilir.
-        site_contact_username: İnsanlar size TomX'da nasıl ulaşabilir.
+        site_contact_username: İnsanlar size Mastodon'da nasıl ulaşabilir.
         site_extended_description: Ziyaretçileriniz ve kullanıcılarınıza yardımı dokunabilecek herhangi bir ek bilgi. Markdown sözdizimiyle biçimlendirilebilir.
         site_short_description: Sunucunuzu tekil olarak tanımlamaya yardımcı olacak kısa tanım. Kim işletiyor, kimin için?
         site_terms: Kendi gizlilik politikanızı kullanın veya varsayılanı kullanmak için boş bırakın. Markdown sözdizimiyle biçimlendirilebilir.
@@ -104,7 +99,7 @@ tr:
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
-        data: Diğer TomX sunucusundan dışarı aktardığınız CSV dosyası
+        data: Diğer Mastodon sunucusundan dışarı aktardığınız CSV dosyası
       invite_request:
         text: Bu, başvurunuzu gözden geçirmemize yardımcı olacaktır
       ip_block:
@@ -178,7 +173,6 @@ tr:
         context: İçeriği filtrele
         current_password: Güncel parola
         data: Veri
-        discoverable: Bu hesabı dizinde listele
         display_name: Görünen isim
         email: E-posta adresi
         expires_in: Bitiş tarihi
@@ -188,7 +182,6 @@ tr:
         inbox_url: Aktarıcı gelen kutusunun URL'si
         irreversible: Gizlemek yerine benim için sil
         locale: Arayüz dili
-        locked: Hesabı kilitle
         max_uses: Maksimum kullanım sayısı
         new_password: Yeni parola
         note: Kişisel bilgiler
@@ -211,9 +204,7 @@ tr:
         setting_display_media_show_all: Tümünü göster
         setting_expand_spoilers: İçerik uyarılarıyla işaretli gönderileri her zaman genişlet
         setting_hide_network: Sosyal grafiğini gizle
-        setting_noindex: Arama motoru dizinine eklemeyi iptal et
         setting_reduce_motion: Animasyonlarda hareketi azalt
-        setting_show_application: Gönderileri göndermek için kullanılan uygulamayı belirt
         setting_system_font_ui: Sistemin varsayılan yazı tipini kullan
         setting_theme: Site teması
         setting_trends: Bugünün gündemini göster

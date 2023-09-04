@@ -124,7 +124,7 @@ class AccountSearchService < BaseService
         multi_match: {
           query: @query,
           type: 'bool_prefix',
-          fields: %w(username username.* display_name display_name.*),
+          fields: %w(username^2 username.*^2 display_name display_name.*),
         },
       }
     end

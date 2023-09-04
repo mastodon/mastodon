@@ -22,60 +22,60 @@ nl:
         action_with_app: Bevestigen en naar %{app} teruggaan
         explanation: Je hebt een account op %{host} aangemaakt en met één klik kun je deze activeren. Wanneer jij dit account niet hebt aangemaakt, mag je deze e-mail negeren.
         explanation_when_pending: Je vroeg met dit e-mailadres een uitnodiging aan voor %{host}. Nadat je jouw e-mailadres hebt bevestigd, beoordelen we jouw aanvraag. Je kunt tot dan nog niet inloggen. Wanneer jouw aanvraag wordt afgewezen, worden jouw gegevens verwijderd en hoef je daarna verder niets meer te doen. Wanneer jij dit niet was, kun je deze e-mail negeren.
-        extra_html: Bekijk ook de <a href="%{terms_path}">regels van de TomXserver</a> en <a href="%{policy_path}">onze gebruiksvoorwaarden</a>.
-        subject: 'TomX: E-mail bevestigen voor %{instance}'
+        extra_html: Bekijk ook de <a href="%{terms_path}">regels van de Mastodonserver</a> en <a href="%{policy_path}">onze gebruiksvoorwaarden</a>.
+        subject: 'Mastodon: E-mail bevestigen voor %{instance}'
         title: E-mailadres verifiëren
       email_changed:
         explanation: 'Het e-mailadres van jouw account is gewijzigd naar:'
-        extra: Wanneer jij jouw e-mailadres niet hebt gewijzigd, heeft iemand zich waarschijnlijk toegang tot jouw account verschaft. Verander onmiddellijk jouw wachtwoord of neem contact op met de beheerder van jouw TomXserver wanneer je niet meer kunt inloggen.
-        subject: 'TomX: E-mailadres is veranderd'
+        extra: Wanneer jij jouw e-mailadres niet hebt gewijzigd, heeft iemand zich waarschijnlijk toegang tot jouw account verschaft. Verander onmiddellijk jouw wachtwoord of neem contact op met de beheerder van jouw Mastodonserver wanneer je niet meer kunt inloggen.
+        subject: 'Mastodon: E-mailadres is veranderd'
         title: Nieuw e-mailadres
       password_change:
         explanation: Het wachtwoord van dit account is gewijzigd.
-        extra: Wanneer jij jouw wachtwoord niet hebt gewijzigd, heeft iemand zich waarschijnlijk toegang tot jouw account verschaft. Verander onmiddellijk jouw wachtwoord of neem contact op met de beheerder van jouw TomXserver wanneer je niet meer kunt inloggen.
-        subject: 'TomX: Wachtwoord veranderd'
+        extra: Wanneer jij jouw wachtwoord niet hebt gewijzigd, heeft iemand zich waarschijnlijk toegang tot jouw account verschaft. Verander onmiddellijk jouw wachtwoord of neem contact op met de beheerder van jouw Mastodonserver wanneer je niet meer kunt inloggen.
+        subject: 'Mastodon: Wachtwoord veranderd'
         title: Wachtwoord gewijzigd
       reconfirmation_instructions:
         explanation: Bevestig jouw nieuw e-mailadres om deze te wijzigen.
-        extra: Wanneer jij deze wijziging niet hebt uitgevoerd, mag je deze e-mail negeren. Het e-mailadres van jouw TomXaccount wordt pas daadwerkelijk gewijzigd totdat je de link hierboven aanklikt.
-        subject: 'TomX: Bevestig het e-mailadres voor %{instance}'
+        extra: Wanneer jij deze wijziging niet hebt uitgevoerd, mag je deze e-mail negeren. Het e-mailadres van jouw Mastodonaccount wordt pas daadwerkelijk gewijzigd totdat je de link hierboven aanklikt.
+        subject: 'Mastodon: Bevestig het e-mailadres voor %{instance}'
         title: E-mailadres verifiëren
       reset_password_instructions:
         action: Wachtwoord wijzigen
         explanation: Jij hebt een nieuw wachtwoord voor jouw account aangevraagd.
         extra: Wanneer jij dit niet hebt aangevraagd, mag je deze e-mail negeren. Jouw wachtwoord wordt pas gewijzigd nadat je de link hierboven hebt aangeklikt en een nieuw wachtwoord aanmaakt.
-        subject: 'TomX: Wachtwoord opnieuw instellen'
+        subject: 'Mastodon: Wachtwoord opnieuw instellen'
         title: Wachtwoord opnieuw instellen
       two_factor_disabled:
         explanation: Tweestapsverificatie voor jouw account is uitgeschakeld. Je kunt nu alleen inloggen met een e-mailadres en wachtwoord.
-        subject: 'TomX: Tweestapsverificatie uitgeschakeld'
+        subject: 'Mastodon: Tweestapsverificatie uitgeschakeld'
         title: Tweestapsverificatie uitgeschakeld
       two_factor_enabled:
         explanation: Tweestapsverificatie voor jouw account is ingeschakeld. Om te kunnen inloggen is een door een tweestapsverificatie-app genereerde toegangscode nodig.
-        subject: 'TomX: Tweestapsverificatie ingeschakeld'
+        subject: 'Mastodon: Tweestapsverificatie ingeschakeld'
         title: Tweestapsverificatie ingeschakeld
       two_factor_recovery_codes_changed:
         explanation: De vorige herstelcodes zijn ongeldig gemaakt en nieuwe zijn aangemaakt.
-        subject: 'TomX: Tweestaps-herstelcodes zijn opnieuw aangemaakt'
+        subject: 'Mastodon: Tweestaps-herstelcodes zijn opnieuw aangemaakt'
         title: Herstelcodes tweestapsverificatie veranderd
       unlock_instructions:
-        subject: 'TomX: Instructies om opschorten account ongedaan te maken'
+        subject: 'Mastodon: Instructies om opschorten account ongedaan te maken'
       webauthn_credential:
         added:
           explanation: De volgende beveiligingssleutel is aan uw account toegevoegd
-          subject: 'TomX: Nieuwe beveiligingssleutel'
+          subject: 'Mastodon: Nieuwe beveiligingssleutel'
           title: Een nieuwe beveiligingssleutel is toegevoegd
         deleted:
           explanation: De volgende beveiligingssleutel is uit jouw account verwijderd
-          subject: 'TomX: Beveiligingssleutel verwijderd'
+          subject: 'Mastodon: Beveiligingssleutel verwijderd'
           title: Een van jouw beveiligingssleutels is verwijderd
       webauthn_disabled:
         explanation: Verificatie met beveiligingssleutels is uitgeschakeld voor jouw account. Inloggen is nu alleen mogelijk met het gebruik van een door een gepaarde TOTP-app genereerde sleutel.
-        subject: 'TomX: Verificatie met beveiligingssleutels is uitgeschakeld'
+        subject: 'Mastodon: Verificatie met beveiligingssleutels is uitgeschakeld'
         title: Beveiligingssleutels uitgeschakeld
       webauthn_enabled:
         explanation: Verificatie met beveiligingssleutels is ingeschakeld voor jouw account. Jouw beveiligingssleutel kan nu gebruikt worden om in te loggen.
-        subject: 'TomX: Verificatie met beveiligingssleutels is ingeschakeld'
+        subject: 'Mastodon: Verificatie met beveiligingssleutels is ingeschakeld'
         title: Beveiligingssleutels ingeschakeld
     omniauth_callbacks:
       failure: Kon je niet inloggen met jouw %{kind} account, omdat “%{reason}”.

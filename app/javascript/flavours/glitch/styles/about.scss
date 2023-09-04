@@ -1,0 +1,56 @@
+$maximum-width: 1235px;
+$fluid-breakpoint: $maximum-width + 20px;
+
+.container {
+  box-sizing: border-box;
+  max-width: $maximum-width;
+  margin: 0 auto;
+  position: relative;
+
+  @media screen and (max-width: $fluid-breakpoint) {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
+.brand {
+  position: relative;
+  text-decoration: none;
+}
+
+.rules-list {
+  font-size: 15px;
+  line-height: 22px;
+  color: $primary-text-color;
+  counter-reset: list-counter;
+
+  li {
+    position: relative;
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    padding: 1em 1.75em;
+    padding-inline-start: 3em;
+    font-weight: 500;
+    counter-increment: list-counter;
+
+    &::before {
+      content: counter(list-counter);
+      position: absolute;
+      inset-inline-start: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: $highlight-text-color;
+      color: $ui-base-color;
+      border-radius: 50%;
+      width: 4ch;
+      height: 4ch;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}

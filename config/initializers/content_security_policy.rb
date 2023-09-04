@@ -4,43 +4,46 @@
 # For further information see the following documentation
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 
-def host_to_url(str)
-  "http#{Rails.configuration.x.use_https ? 's' : ''}://#{str.split('/').first}" if str.present?
-end
+unless Rails.env.development?
+  assets_host = Rails.configuration.action_controller.asset_host || "https://#{ENV['WEB_DOMAIN'] || ENV['LOCAL_DOMAIN']}"
+  data_hosts = [assets_host]
 
-base_host = Rails.configuration.x.web_domain
-
-assets_host   = Rails.configuration.action_controller.asset_host
-assets_host ||= host_to_url(base_host)
-
-media_host   = host_to_url(ENV['S3_ALIAS_HOST'])
-media_host ||= host_to_url(ENV['S3_CLOUDFRONT_HOST'])
-media_host ||= host_to_url(ENV['AZURE_ALIAS_HOST'])
-media_host ||= host_to_url(ENV['S3_HOSTNAME']) if ENV['S3_ENABLED'] == 'true'
-media_host ||= assets_host
-
-Rails.application.config.content_security_policy do |p|
-  p.base_uri        :none
-  p.default_src     :none
-  p.frame_ancestors :none
-  p.font_src        :self, assets_host
-  p.img_src         :self, :https, :data, :blob, assets_host
-  p.style_src       :self, assets_host
-  p.media_src       :self, :https, :data, assets_host
-  p.frame_src       :self, :https
-  p.manifest_src    :self, assets_host
-  p.form_action     :self
-  p.child_src       :self, :blob, assets_host
-  p.worker_src      :self, :blob, assets_host
-
-  if Rails.env.development?
-    webpacker_urls = %w(ws http).map { |protocol| "#{protocol}#{Webpacker.dev_server.https? ? 's' : ''}://#{Webpacker.dev_server.host_with_port}" }
-
-    p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url, *webpacker_urls
-    p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host
+  if ENV['S3_ENABLED'] == 'true'
+    attachments_host = "https://#{ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST'] || ENV['AZURE_ALIAS_HOST'] || ENV['S3_HOSTNAME'] || "s3-#{ENV['S3_REGION'] || 'us-east-1'}.amazonaws.com"}"
+    attachments_host = "https://#{Addressable::URI.parse(attachments_host).host}"
+  elsif ENV['SWIFT_ENABLED'] == 'true'
+    attachments_host = ENV['SWIFT_OBJECT_URL']
+    attachments_host = "https://#{Addressable::URI.parse(attachments_host).host}"
   else
-    p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url
-    p.script_src  :self, assets_host, "'wasm-unsafe-eval'"
+    attachments_host = nil
+  end
+
+  data_hosts << attachments_host unless attachments_host.nil?
+
+  if ENV['PAPERCLIP_ROOT_URL']
+    url = Addressable::URI.parse(assets_host) + ENV['PAPERCLIP_ROOT_URL']
+    data_hosts << "https://#{url.host}"
+  end
+
+  data_hosts.concat(ENV['EXTRA_DATA_HOSTS'].split('|')) if ENV['EXTRA_DATA_HOSTS']
+
+  data_hosts.uniq!
+
+  Rails.application.config.content_security_policy do |p|
+    p.base_uri        :none
+    p.default_src     :none
+    p.frame_ancestors :none
+    p.script_src      :self, assets_host, "'wasm-unsafe-eval'"
+    p.font_src        :self, assets_host
+    p.img_src         :self, :data, :blob, *data_hosts
+    p.style_src       :self, assets_host
+    p.media_src       :self, :data, *data_hosts
+    p.frame_src       :self, :https
+    p.child_src       :self, :blob, assets_host
+    p.worker_src      :self, :blob, assets_host
+    p.connect_src     :self, :blob, :data, Rails.configuration.x.streaming_api_base_url, *data_hosts
+    p.manifest_src    :self, assets_host
+    p.form_action     :self
   end
 end
 

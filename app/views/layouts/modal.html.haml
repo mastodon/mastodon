@@ -1,6 +1,3 @@
-- content_for :header_tags do
-  = javascript_pack_tag 'public', crossorigin: 'anonymous'
-
 - content_for :content do
   - if user_signed_in? && !@hide_header
     .account-header

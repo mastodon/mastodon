@@ -19,7 +19,7 @@ export async function loadLocale() {
 
     const localeData = (await import(
       /* webpackMode: "lazy" */
-      /* webpackChunkName: "locale/[request]" */
+      /* webpackChunkName: "locales/vanilla/[request]" */
       /* webpackInclude: /\.json$/ */
       /* webpackPreload: true */
       `mastodon/locales/${locale}.json`

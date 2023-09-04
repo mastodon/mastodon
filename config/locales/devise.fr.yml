@@ -37,7 +37,7 @@ fr:
         title: Mot de passe modifié
       reconfirmation_instructions:
         explanation: Confirmez la nouvelle adresse pour changer votre courriel.
-        extra: Si ce changement n’a pas été initié par vous, veuillez ignorer ce courriel. L’adresse de courriel du compte TomX ne changera pas tant que vous n’aurez pas cliqué sur le lien ci-dessus.
+        extra: Si ce changement n’a pas été initié par vous, veuillez ignorer ce courriel. L’adresse de courriel du compte Mastodon ne changera pas tant que vous n’aurez pas cliqué sur le lien ci-dessus.
         subject: 'Mastodon : Confirmez l’adresse de courriel pour %{instance}'
         title: Vérifier l’adresse courriel
       reset_password_instructions:
@@ -63,19 +63,19 @@ fr:
       webauthn_credential:
         added:
           explanation: La clé de sécurité suivante a été ajoutée à votre compte
-          subject: 'TomX: Nouvelle clé de sécurité'
+          subject: 'Mastodon: Nouvelle clé de sécurité'
           title: Une nouvelle clé de sécurité a été ajoutée
         deleted:
           explanation: La clé de sécurité suivante a été supprimée de votre compte
-          subject: 'TomX: Clé de sécurité supprimée'
+          subject: 'Mastodon: Clé de sécurité supprimée'
           title: Une de vos clés de sécurité a été supprimée
       webauthn_disabled:
         explanation: L'authentification avec les clés de sécurité a été désactivée pour votre compte. La connexion est maintenant possible en utilisant uniquement le jeton généré par l'application TOTP appairée.
-        subject: 'TomX: Authentification avec clés de sécurité désactivée'
+        subject: 'Mastodon: Authentification avec clés de sécurité désactivée'
         title: Clés de sécurité désactivées
       webauthn_enabled:
         explanation: L'authentification par clé de sécurité a été activée pour votre compte. Votre clé de sécurité peut maintenant être utilisée pour vous connecter.
-        subject: 'TomX: Authentification de la clé de sécurité activée'
+        subject: 'Mastodon: Authentification de la clé de sécurité activée'
         title: Clés de sécurité activées
     omniauth_callbacks:
       failure: 'Nous n’avons pas pu vous authentifier via %{kind} : ''%{reason}''.'

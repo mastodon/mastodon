@@ -1,0 +1,20 @@
+- content_for :page_title do
+  = t "flavours.#{@selected}.name", default: @selected
+
+= simple_form_for current_user, url: settings_flavour_path(@selected), html: { method: :put } do |f|
+  = render 'shared/error_messages', object: current_user
+
+  - Themes.instance.flavour(@selected)['screenshot'].each do |screen|
+    %img.flavour-screen{ src: full_pack_url("media/#{screen}"), alt: '' }
+
+  .flavour-description
+    = t "flavours.#{@selected}.description", default: ''
+
+  %hr/
+
+  - if Themes.instance.skins_for(@selected).length > 1
+    .fields-group
+      = f.input :setting_skin, collection: Themes.instance.skins_for(@selected), label_method: ->(skin) { I18n.t("skins.#{@selected}.#{skin}", default: skin) }, wrapper: :with_label, include_blank: false
+
+  .actions
+    = f.button :button, t('generic.use_this'), type: :submit
