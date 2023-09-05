@@ -131,16 +131,7 @@ class StreamingServerManager
 end
 
 class SearchDataManager
-  def indexes
-    [
-      AccountsIndex,
-      PublicStatusesIndex,
-      StatusesIndex,
-      TagsIndex,
-    ]
-  end
-
-  def populate
+  def prepare_test_data
     4.times do |i|
       username = "search_test_account_#{i + 1}"
       account = Fabricate.create(:account, username: username, indexable: i.even?)
@@ -152,18 +143,31 @@ class SearchDataManager
     3.times do |i|
       Fabricate.create(:tag, name: "search_test_tag_#{i}")
     end
+  end
 
+  def indexes
+    [
+      AccountsIndex,
+      PublicStatusesIndex,
+      StatusesIndex,
+      TagsIndex,
+    ]
+  end
+
+  def populate_indexes
     indexes.each do |index_class|
       index_class.purge!
       index_class.import!
     end
   end
 
-  def destroy
+  def remove_indexes
+    indexes.each(&:delete!)
+  end
+
+  def cleanup_test_data
     Status.destroy_all
     Account.destroy_all
     Tag.destroy_all
-
-    indexes.each(&:delete!)
   end
 end
