@@ -36,7 +36,7 @@ Sidekiq.logger = nil
 # System tests config
 DatabaseCleaner.strategy = [:deletion]
 streaming_server_manager = StreamingServerManager.new
-search_data_populator = SearchDataPopulator.new
+search_data_manager = SearchDataManager.new
 
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in
@@ -128,13 +128,16 @@ RSpec.configure do |config|
       streaming_server_manager.start(port: STREAMING_PORT)
     end
 
-    search_data_populator.populate_search_indices if RUN_SEARCH_SPECS
+    if RUN_SEARCH_SPECS
+      Chewy.strategy(:urgent)
+      search_data_manager.populate
+    end
   end
 
   config.after :suite do
     streaming_server_manager.stop
 
-    search_data_populator.delete_search_indices if RUN_SEARCH_SPECS
+    search_data_manager.destroy if RUN_SEARCH_SPECS
   end
 
   config.around :each, type: :system do |example|

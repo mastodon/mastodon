@@ -3,40 +3,53 @@
 require 'rails_helper'
 
 describe AccountStatusesSearch do
-  let(:account) { Fabricate(:account, indexable: indexable) }
-  # indexable must be true in order for the statuses to end up in the index
-  let(:indexable) { true }
-
   before do
     allow(Chewy).to receive(:enabled?).and_return(true)
   end
 
-  describe '#add_to_public_statuses_index!' do
-    it 'adds the statuses to the PublicStatusesIndex' do
-      expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(0)
+  describe 'a non-indexable account becoming indexable' do
+    let(:account) { Account.find_by(username: 'search_test_account_2') }
 
-      Fabricate(:status, account: account, text: 'status 1', visibility: :public)
-      Fabricate(:status, account: account, text: 'status 2', visibility: :public)
-      account.add_to_public_statuses_index!
+    context 'when picking a non-indexable account' do
+      it 'has no statuses in the PublicStatusesIndex' do
+        expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(0)
+      end
 
-      expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(2)
+      it 'has statuses in the StatusesIndex' do
+        expect(StatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.count)
+      end
+    end
+
+    context 'when the non-indexable account becomes indexable' do
+      it 'adds the public statuses to the PublicStatusesIndex' do
+        account.indexable = true
+        account.save!
+        expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.where(visibility: :public).count)
+        expect(StatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.count)
+      end
     end
   end
 
-  describe '#remove_from_public_statuses_index!' do
-    let(:status_one) { Fabricate(:status, account: account, text: 'status 1') }
-    let(:status_two) { Fabricate(:status, account: account, text: 'status 2') }
+  describe 'an indexable account becoming non-indexable' do
+    let(:account) { Account.find_by(username: 'search_test_account_1') }
 
-    before do
-      PublicStatusesIndex.import([status_one, status_two])
+    context 'when picking an indexable account' do
+      it 'has statuses in the PublicStatusesIndex' do
+        expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.where(visibility: :public).count)
+      end
+
+      it 'has statuses in the StatusesIndex' do
+        expect(StatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.count)
+      end
     end
 
-    it 'removes the statuses from the PublicStatusesIndex' do
-      expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(2)
-
-      account.remove_from_public_statuses_index!
-
-      expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(0)
+    context 'when the indexable account becomes non-indexable' do
+      it 'removes the statuses from the PublicStatusesIndex' do
+        account.indexable = false
+        account.save!
+        expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(0)
+        expect(StatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.count)
+      end
     end
   end
 end

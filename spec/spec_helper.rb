@@ -130,41 +130,41 @@ class StreamingServerManager
   end
 end
 
-class SearchDataPopulator
-  def populate_search_indices
-    create_indices
-    populate_indices
+class SearchDataManager
+  def indexes
+    [
+      AccountsIndex,
+      PublicStatusesIndex,
+      StatusesIndex,
+      TagsIndex,
+    ]
   end
 
-  def create_indices
-    AccountsIndex.create
-    PublicStatusesIndex.create
-    StatusesIndex.create
-    TagsIndex.create
+  def populate
+    4.times do |i|
+      username = "search_test_account_#{i + 1}"
+      account = Fabricate.create(:account, username: username, indexable: i.even?)
+      2.times do |j|
+        Fabricate.create(:status, account: account, text: "#{username}'s #{j + 1} post", visibility: j.even? ? :public : :private)
+      end
+    end
+
+    3.times do |i|
+      Fabricate.create(:tag, name: "search_test_tag_#{i}")
+    end
+
+    indexes.each do |index_class|
+      index_class.purge!
+      index_class.import!
+    end
+
   end
 
-  def populate_indices
-    a = Fabricate(:account, indexable: true)
-    b = Fabricate(:account, indexable: false)
-    AccountsIndex.import!
+  def destroy
+    Status.destroy_all
+    Account.destroy_all
+    Tag.destroy_all
 
-    Fabricate(:status, account: a, text: 'Lorem ipsum', visibility: :public)
-    Fabricate(:status, account: a, text: 'Foo #bar', visibility: :private)
-
-    Fabricate(:status, account: b, text: 'Lorem ipsum', visibility: :public)
-    Fabricate(:status, account: b, text: 'Bar #foo', visibility: :private)
-    PublicStatusesIndex.import!
-    StatusesIndex.import!
-
-    Fabricate(:tag)
-    Fabricate(:tag)
-    TagsIndex.import!
-  end
-
-  def delete_search_indices
-    AccountsIndex.delete
-    PublicStatusesIndex.delete
-    StatusesIndex.delete
-    TagsIndex.delete
+    indexes.each(&:delete!)
   end
 end
