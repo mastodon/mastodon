@@ -90,7 +90,7 @@ class BackfillAdminActionLogsAgain < ActiveRecord::Migration[6.1]
         log.update_attribute('route_param', log.user.account_id)
       end
 
-      Admin::ActionLog.where(target_type: 'Report', human_identifier: nil).in_batches.update_all('human_identifier = target_id::text')
+      AdminActionLog.where(target_type: 'Report', human_identifier: nil).in_batches.update_all('human_identifier = target_id::text')
 
       AdminActionLog.includes(:domain_block).where(target_type: 'DomainBlock').find_each do |log|
         next if log.domain_block.nil?

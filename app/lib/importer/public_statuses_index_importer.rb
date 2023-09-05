@@ -27,6 +27,6 @@ class Importer::PublicStatusesIndexImporter < Importer::BaseImporter
   end
 
   def scope
-    Status.indexable
+    Status.indexable.reorder(nil)
   end
 end
