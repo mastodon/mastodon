@@ -10,7 +10,8 @@ RSpec.describe SuspendAccountService, type: :service do
     let!(:list)           { Fabricate(:list, account: local_follower) }
 
     before do
-      allow(FeedManager.instance).to receive_messages(unmerge_from_home: nil, unmerge_from_list: nil)
+      allow(FeedManager.instance).to receive(:unmerge_from_home).and_return(nil)
+      allow(FeedManager.instance).to receive(:unmerge_from_list).and_return(nil)
 
       local_follower.follow!(account)
       list.accounts << account

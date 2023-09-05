@@ -110,7 +110,7 @@ group :test do
   gem 'fuubar', '~> 2.5'
 
   # Extra RSpec extenion methods and helpers for sidekiq
-  gem 'rspec-sidekiq', '~> 4.0'
+  gem 'rspec-sidekiq', '~> 3.1'
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
@@ -198,7 +198,6 @@ end
 gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 gem 'xorcist', '~> 1.1'
-
 gem 'cocoon', '~> 1.2'
 
 gem 'net-http', '~> 0.3.2'

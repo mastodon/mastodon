@@ -11,11 +11,6 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "locales": ["app/javascript/locales"],
-      "styles/*": ["app/javascript/styles/*"],
-      "packs/public-path": ["app/javascript/packs/public-path"],
-      "flavours/glitch": ["app/javascript/flavours/glitch"],
-      "flavours/glitch/*": ["app/javascript/flavours/glitch/*"],
       "mastodon": ["app/javascript/mastodon"],
       "mastodon/*": ["app/javascript/mastodon/*"]
     }
@@ -23,8 +18,6 @@
   "include": [
     "app/javascript/mastodon",
     "app/javascript/packs",
-    "app/javascript/types",
-    "app/javascript/flavours/glitch",
-    "app/javascript/core"
+    "app/javascript/types"
   ]
 }

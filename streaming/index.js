@@ -6,12 +6,12 @@ const url = require('url');
 
 const dotenv = require('dotenv');
 const express = require('express');
-const Redis = require('ioredis');
 const { JSDOM } = require('jsdom');
 const log = require('npmlog');
 const pg = require('pg');
 const dbUrlToConfig = require('pg-connection-string').parse;
 const metrics = require('prom-client');
+const redis = require('redis');
 const uuid = require('uuid');
 const WebSocket = require('ws');
 
@@ -24,12 +24,30 @@ dotenv.config({
 log.level = process.env.LOG_LEVEL || 'verbose';
 
 /**
- * @param {Object.<string, any>} config
+ * @param {Object.<string, any>} defaultConfig
+ * @param {string} redisUrl
  */
-const createRedisClient = async (config) => {
-  const { redisParams, redisUrl } = config;
-  const client = new Redis(redisUrl, redisParams);
+const redisUrlToClient = async (defaultConfig, redisUrl) => {
+  const config = defaultConfig;
+
+  let client;
+
+  if (!redisUrl) {
+    client = redis.createClient(config);
+  } else if (redisUrl.startsWith('unix://')) {
+    client = redis.createClient(Object.assign(config, {
+      socket: {
+        path: redisUrl.slice(7),
+      },
+    }));
+  } else {
+    client = redis.createClient(Object.assign(config, {
+      url: redisUrl,
+    }));
+  }
+
   client.on('error', (err) => log.error('Redis Client Error!', err));
+  await client.connect();
 
   return client;
 };
@@ -92,11 +110,6 @@ const pgConfigFromEnv = (env) => {
 
   if (env.DATABASE_URL) {
     baseConfig = dbUrlToConfig(env.DATABASE_URL);
-
-    // Support overriding the database password in the connection URL
-    if (!baseConfig.password && env.DB_PASS) {
-      baseConfig.password = env.DB_PASS;
-    }
   } else {
     baseConfig = pgConfigs[environment];
 
@@ -129,21 +142,22 @@ const pgConfigFromEnv = (env) => {
  * @returns {Object.<string, any>} configuration for the Redis connection
  */
 const redisConfigFromEnv = (env) => {
-  // ioredis *can* transparently add prefixes for us, but it doesn't *in some cases*,
-  // which means we can't use it. But this is something that should be looked into.
-  const redisPrefix = env.REDIS_NAMESPACE ? `${env.REDIS_NAMESPACE}:` : '';
+  const redisNamespace = env.REDIS_NAMESPACE || null;
 
   const redisParams = {
-    host: env.REDIS_HOST || '127.0.0.1',
-    port: env.REDIS_PORT || 6379,
-    db: env.REDIS_DB || 0,
+    socket: {
+      host: env.REDIS_HOST || '127.0.0.1',
+      port: env.REDIS_PORT || 6379,
+    },
+    database: env.REDIS_DB || 0,
     password: env.REDIS_PASSWORD || undefined,
   };
 
-  // redisParams.path takes precedence over host and port.
-  if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
-    redisParams.path = env.REDIS_URL.slice(7);
+  if (redisNamespace) {
+    redisParams.namespace = redisNamespace;
   }
+
+  const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
 
   return {
     redisParams,
@@ -160,15 +174,15 @@ const startServer = async () => {
   const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
   const server = http.createServer(app);
 
+  const { redisParams, redisUrl, redisPrefix } = redisConfigFromEnv(process.env);
+
   /**
    * @type {Object.<string, Array.<function(Object<string, any>): void>>}
    */
   const subs = {};
 
-  const redisConfig = redisConfigFromEnv(process.env);
-  const redisSubscribeClient = await createRedisClient(redisConfig);
-  const redisClient = await createRedisClient(redisConfig);
-  const { redisPrefix } = redisConfig;
+  const redisSubscribeClient = await redisUrlToClient(redisParams, redisUrl);
+  const redisClient = await redisUrlToClient(redisParams, redisUrl);
 
   // Collect metrics from Node.js
   metrics.collectDefaultMetrics();
@@ -258,13 +272,13 @@ const startServer = async () => {
   };
 
   /**
-   * @param {string} channel
    * @param {string} message
+   * @param {string} channel
    */
-  const onRedisMessage = (channel, message) => {
+  const onRedisMessage = (message, channel) => {
     const callbacks = subs[channel];
 
-    log.silly(`New message on channel ${redisPrefix}${channel}`);
+    log.silly(`New message on channel ${channel}`);
 
     if (!callbacks) {
       return;
@@ -275,7 +289,6 @@ const startServer = async () => {
 
     callbacks.forEach(callback => callback(json));
   };
-  redisSubscribeClient.on("message", onRedisMessage);
 
   /**
    * @callback SubscriptionListener
@@ -294,14 +307,8 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       log.verbose(`Subscribe ${channel}`);
-      redisSubscribeClient.subscribe(channel, (err, count) => {
-        if (err) {
-          log.error(`Error subscribing to ${channel}`);
-        }
-        else {
-          redisSubscriptions.set(count);
-        }
-      });
+      redisSubscribeClient.subscribe(channel, onRedisMessage);
+      redisSubscriptions.inc();
     }
 
     subs[channel].push(callback);
@@ -322,14 +329,8 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       log.verbose(`Unsubscribe ${channel}`);
-      redisSubscribeClient.unsubscribe(channel, (err, count) => {
-        if (err) {
-          log.error(`Error unsubscribing to ${channel}`);
-        }
-        else {
-          redisSubscriptions.set(count);
-        }
-      });
+      redisSubscribeClient.unsubscribe(channel);
+      redisSubscriptions.dec();
       delete subs[channel];
     }
   };
@@ -706,10 +707,9 @@ const startServer = async () => {
    * @param {function(string, string): void} output
    * @param {undefined | function(string[], SubscriptionListener): void} attachCloseHandler
    * @param {boolean=} needsFiltering
-   * @param {boolean=} allowLocalOnly
    * @returns {SubscriptionListener}
    */
-  const streamFrom = (ids, req, output, attachCloseHandler, needsFiltering = false, allowLocalOnly = false) => {
+  const streamFrom = (ids, req, output, attachCloseHandler, needsFiltering = false) => {
     const accountId = req.accountId || req.remoteAddress;
 
     log.verbose(req.requestId, `Starting stream from ${ids.join(', ')} for ${accountId}`);
@@ -728,12 +728,6 @@ const startServer = async () => {
     /** @type {SubscriptionListener} */
     const listener = message => {
       const { event, payload } = message;
-
-      // Only send local-only statuses to logged-in users
-      if ((event === 'update' || event === 'status.update') && payload.local_only && !(req.accountId && allowLocalOnly)) {
-        log.silly(req.requestId, `Message ${payload.id} filtered because it was local-only`);
-        return;
-      }
 
       // Streaming only needs to apply filtering to some channels and only to
       // some events. This is because majority of the filtering happens on the
@@ -1038,7 +1032,7 @@ const startServer = async () => {
       const onSend = streamToHttp(req, res);
       const onEnd = streamHttpEnd(req, subscriptionHeartbeat(channelIds));
 
-      streamFrom(channelIds, req, onSend, onEnd, options.needsFiltering, options.allowLocalOnly);
+      streamFrom(channelIds, req, onSend, onEnd, options.needsFiltering);
     }).catch(err => {
       log.verbose(req.requestId, 'Subscription error:', err.toString());
       httpNotFound(res);
@@ -1111,77 +1105,63 @@ const startServer = async () => {
     case 'user':
       resolve({
         channelIds: channelsForUserStream(req),
-        options: { needsFiltering: false, allowLocalOnly: true },
+        options: { needsFiltering: false },
       });
 
       break;
     case 'user:notification':
       resolve({
         channelIds: [`timeline:${req.accountId}:notifications`],
-        options: { needsFiltering: false, allowLocalOnly: true },
+        options: { needsFiltering: false },
       });
 
       break;
     case 'public':
       resolve({
         channelIds: ['timeline:public'],
-        options: { needsFiltering: true, allowLocalOnly: isTruthy(params.allow_local_only) },
-      });
-
-      break;
-    case 'public:allow_local_only':
-      resolve({
-        channelIds: ['timeline:public'],
-        options: { needsFiltering: true, allowLocalOnly: true },
+        options: { needsFiltering: true },
       });
 
       break;
     case 'public:local':
       resolve({
         channelIds: ['timeline:public:local'],
-        options: { needsFiltering: true, allowLocalOnly: true },
+        options: { needsFiltering: true },
       });
 
       break;
     case 'public:remote':
       resolve({
         channelIds: ['timeline:public:remote'],
-        options: { needsFiltering: true, allowLocalOnly: false },
+        options: { needsFiltering: true },
       });
 
       break;
     case 'public:media':
       resolve({
         channelIds: ['timeline:public:media'],
-        options: { needsFiltering: true, allowLocalOnly: isTruthy(params.allow_local_only) },
-      });
-
-      break;
-    case 'public:allow_local_only:media':
-      resolve({
-        channelIds: ['timeline:public:media'],
-        options: { needsFiltering: true, allowLocalOnly: true },
+        options: { needsFiltering: true },
       });
 
       break;
     case 'public:local:media':
       resolve({
         channelIds: ['timeline:public:local:media'],
-        options: { needsFiltering: true, allowLocalOnly: true },
+        options: { needsFiltering: true },
       });
 
       break;
     case 'public:remote:media':
       resolve({
         channelIds: ['timeline:public:remote:media'],
-        options: { needsFiltering: true, allowLocalOnly: false },
+        options: { needsFiltering: true },
       });
 
       break;
     case 'direct':
       resolve({
         channelIds: [`timeline:direct:${req.accountId}`],
-        options: { needsFiltering: false, allowLocalOnly: true },
+        options: { needsFiltering: false },
       });
 
       break;
@@ -1191,7 +1171,7 @@ const startServer = async () => {
       } else {
         resolve({
           channelIds: [`timeline:hashtag:${normalizeHashtag(params.tag)}`],
-          options: { needsFiltering: true, allowLocalOnly: true },
+          options: { needsFiltering: true },
         });
       }
 
@@ -1202,7 +1182,7 @@ const startServer = async () => {
       } else {
         resolve({
           channelIds: [`timeline:hashtag:${normalizeHashtag(params.tag)}:local`],
-          options: { needsFiltering: true, allowLocalOnly: true },
+          options: { needsFiltering: true },
         });
       }
 
@@ -1211,7 +1191,7 @@ const startServer = async () => {
       authorizeListAccess(params.list, req).then(() => {
         resolve({
           channelIds: [`timeline:list:${params.list}`],
-          options: { needsFiltering: false, allowLocalOnly: true },
+          options: { needsFiltering: false },
         });
       }).catch(() => {
         reject('Not authorized to stream this list');
@@ -1262,7 +1242,7 @@ const startServer = async () => {
 
       const onSend = streamToWs(request, socket, streamNameFromChannelName(channelName, params));
       const stopHeartbeat = subscriptionHeartbeat(channelIds);
-      const listener = streamFrom(channelIds, request, onSend, undefined, options.needsFiltering, options.allowLocalOnly);
+      const listener = streamFrom(channelIds, request, onSend, undefined, options.needsFiltering);
 
       connectedChannels.labels({ type: 'websocket', channel: channelName }).inc();
 

@@ -8,7 +8,6 @@ const config = {
     '<rootDir>/log/',
     '<rootDir>/public/',
     '<rootDir>/tmp/',
-    '<rootDir>/app/javascript/themes/',
   ],
   setupFilesAfterEnv: ['<rootDir>/app/javascript/mastodon/test_setup.js'],
   collectCoverageFrom: [

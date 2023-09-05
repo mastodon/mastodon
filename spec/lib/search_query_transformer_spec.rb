@@ -3,57 +3,16 @@
 require 'rails_helper'
 
 describe SearchQueryTransformer do
-  subject { described_class.new.apply(parser, current_account: nil) }
+  describe 'initialization' do
+    let(:parser) { SearchQueryParser.new.parse('query') }
 
-  let(:parser) { SearchQueryParser.new.parse(query) }
+    it 'sets attributes' do
+      transformer = described_class.new.apply(parser)
 
-  context 'with "hello world"' do
-    let(:query) { 'hello world' }
-
-    it 'transforms clauses' do
-      expect(subject.must_clauses.map(&:term)).to match_array %w(hello world)
-      expect(subject.must_not_clauses).to be_empty
-      expect(subject.filter_clauses).to be_empty
-    end
-  end
-
-  context 'with "hello -world"' do
-    let(:query) { 'hello -world' }
-
-    it 'transforms clauses' do
-      expect(subject.must_clauses.map(&:term)).to match_array %w(hello)
-      expect(subject.must_not_clauses.map(&:term)).to match_array %w(world)
-      expect(subject.filter_clauses).to be_empty
-    end
-  end
-
-  context 'with "hello is:reply"' do
-    let(:query) { 'hello is:reply' }
-
-    it 'transforms clauses' do
-      expect(subject.must_clauses.map(&:term)).to match_array %w(hello)
-      expect(subject.must_not_clauses).to be_empty
-      expect(subject.filter_clauses.map(&:term)).to match_array %w(reply)
-    end
-  end
-
-  context 'with "foo: bar"' do
-    let(:query) { 'foo: bar' }
-
-    it 'transforms clauses' do
-      expect(subject.must_clauses.map(&:term)).to match_array %w(foo bar)
-      expect(subject.must_not_clauses).to be_empty
-      expect(subject.filter_clauses).to be_empty
-    end
-  end
-
-  context 'with "foo:bar"' do
-    let(:query) { 'foo:bar' }
-
-    it 'transforms clauses' do
-      expect(subject.must_clauses.map(&:term)).to contain_exactly('foo bar')
-      expect(subject.must_not_clauses).to be_empty
-      expect(subject.filter_clauses).to be_empty
+      expect(transformer.should_clauses.first).to be_a(SearchQueryTransformer::TermClause)
+      expect(transformer.must_clauses.first).to be_nil
+      expect(transformer.must_not_clauses.first).to be_nil
+      expect(transformer.filter_clauses.first).to be_nil
     end
   end
 end

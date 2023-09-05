@@ -16,16 +16,12 @@ module Mastodon
       0
     end
 
-    def default_prerelease
-      'beta2'
+    def flags
+      ENV.fetch('MASTODON_VERSION_FLAGS', '-beta1')
     end
 
-    def prerelease
-      ENV['MASTODON_VERSION_PRERELEASE'].presence || default_prerelease
-    end
-
-    def build_metadata
-      ['glitch', ENV.fetch('MASTODON_VERSION_METADATA', nil)].compact.join('.')
+    def suffix
+      ENV.fetch('MASTODON_VERSION_SUFFIX', '')
     end
 
     def to_a
@@ -33,18 +29,11 @@ module Mastodon
     end
 
     def to_s
-      components = [to_a.join('.')]
-      components << "-#{prerelease}" if prerelease.present?
-      components << "+#{build_metadata}" if build_metadata.present?
-      components.join
-    end
-
-    def gem_version
-      @gem_version ||= Gem::Version.new(to_s.split('+')[0])
+      [to_a.join('.'), flags, suffix].join
     end
 
     def repository
-      ENV.fetch('GITHUB_REPOSITORY', 'glitch-soc/mastodon')
+      ENV.fetch('GITHUB_REPOSITORY', 'mastodon/mastodon')
     end
 
     def source_base_url
