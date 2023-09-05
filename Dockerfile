@@ -46,7 +46,7 @@ RUN apt-get update && \
 
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
 
-RUN npm install -g npm@latest && \
+RUN npm install -g npm@9 && \
 	npm install -g yarn && \
 	gem install bundler && \
 	apt-get update && \
