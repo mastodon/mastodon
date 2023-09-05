@@ -13,31 +13,24 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
 
       scope.find_in_batches(batch_size: @batch_size) do |tmp|
         in_work_unit(tmp.map(&:status_id)) do |status_ids|
-          bulk = ActiveRecord::Base.connection_pool.with_connection do
-            Chewy::Index::Import::BulkBuilder.new(index, to_index: Status.includes(:media_attachments, :preloadable_poll).where(id: status_ids)).bulk_body
-          end
-
-          indexed = 0
           deleted = 0
 
-          # We can't use the delete_if proc to do the filtering because delete_if
-          # is called before rendering the data and we need to filter based
-          # on the results of the filter, so this filtering happens here instead
-          bulk.map! do |entry|
-            new_entry = if entry[:index] && entry.dig(:index, :data, 'searchable_by').blank?
-                          { delete: entry[:index].except(:data) }
-                        else
-                          entry
-                        end
-
-            if new_entry[:index]
-              indexed += 1
-            else
-              deleted += 1
+          bulk = ActiveRecord::Base.connection_pool.with_connection do
+            to_index = index.adapter.default_scope.where(id: status_ids)
+            crutches = Chewy::Index::Crutch::Crutches.new index, to_index
+            to_index.map do |object|
+              # This is unlikely to happen, but the post may have been
+              # un-interacted with since it was queued for indexing
+              if object.searchable_by.empty?
+                deleted += 1
+                { delete: { _id: object.id } }
+              else
+                { index: { _id: object.id, data: index.compose(object, crutches, fields: []) } }
+              end
             end
-
-            new_entry
           end
+
+          indexed = bulk.size - deleted
 
           Chewy::Index::Import::BulkRequest.new(index).perform(bulk)
 

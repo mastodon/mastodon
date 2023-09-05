@@ -24,6 +24,9 @@
 
   %p.lead= t('privacy.search_hint_html')
 
+  .fields-group
+    = f.input :indexable, as: :boolean, wrapper: :with_label
+
   = f.simple_fields_for :settings, current_user.settings do |ff|
     .fields-group
       = ff.input :indexable, wrapper: :with_label

@@ -21,12 +21,13 @@ class AccountsIndex < Chewy::Index
 
     analyzer: {
       natural: {
-        tokenizer: 'uax_url_email',
+        tokenizer: 'standard',
         filter: %w(
-          english_possessive_stemmer
           lowercase
           asciifolding
           cjk_width
+          elision
+          english_possessive_stemmer
           english_stop
           english_stemmer
         ),
@@ -62,6 +63,6 @@ class AccountsIndex < Chewy::Index
     field(:last_status_at, type: 'date', value: ->(account) { account.last_status_at || account.created_at })
     field(:display_name, type: 'text', analyzer: 'verbatim') { field :edge_ngram, type: 'text', analyzer: 'edge_ngram', search_analyzer: 'verbatim' }
     field(:username, type: 'text', analyzer: 'verbatim', value: ->(account) { [account.username, account.domain].compact.join('@') }) { field :edge_ngram, type: 'text', analyzer: 'edge_ngram', search_analyzer: 'verbatim' }
-    field(:text, type: 'text', value: ->(account) { account.searchable_text }) { field :stemmed, type: 'text', analyzer: 'natural' }
+    field(:text, type: 'text', analyzer: 'verbatim', value: ->(account) { account.searchable_text }) { field :stemmed, type: 'text', analyzer: 'natural' }
   end
 end
