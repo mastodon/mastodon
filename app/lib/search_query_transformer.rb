@@ -9,23 +9,90 @@ class SearchQueryTransformer < Parslet::Transform
     before
     after
     during
+    in
   ).freeze
 
   class Query
-    attr_reader :must_not_clauses, :must_clauses, :filter_clauses
+    def initialize(clauses, options = {})
+      raise ArgumentError if options[:current_account].nil?
 
-    def initialize(clauses)
-      grouped = clauses.compact.chunk(&:operator).to_h
-      @must_not_clauses = grouped.fetch(:must_not, [])
-      @must_clauses = grouped.fetch(:must, [])
-      @filter_clauses = grouped.fetch(:filter, [])
+      @clauses = clauses
+      @options = options
+
+      flags_from_clauses!
     end
 
-    def apply(search)
+    def request
+      search = Chewy::Search::Request.new(*indexes).filter(default_filter)
+
       must_clauses.each { |clause| search = search.query.must(clause.to_query) }
       must_not_clauses.each { |clause| search = search.query.must_not(clause.to_query) }
       filter_clauses.each { |clause| search = search.filter(**clause.to_query) }
-      search.query.minimum_should_match(1)
+
+      search
+    end
+
+    private
+
+    def clauses_by_operator
+      @clauses_by_operator ||= @clauses.compact.chunk(&:operator).to_h
+    end
+
+    def flags_from_clauses!
+      @flags = clauses_by_operator.fetch(:flag, []).to_h { |clause| [clause.prefix, clause.term] }
+    end
+
+    def must_clauses
+      clauses_by_operator.fetch(:must, [])
+    end
+
+    def must_not_clauses
+      clauses_by_operator.fetch(:must_not, [])
+    end
+
+    def filter_clauses
+      clauses_by_operator.fetch(:filter, [])
+    end
+
+    def indexes
+      case @flags['in']
+      when 'library'
+        [StatusesIndex]
+      else
+        [PublicStatusesIndex, StatusesIndex]
+      end
+    end
+
+    def default_filter
+      {
+        bool: {
+          should: [
+            {
+              term: {
+                _index: PublicStatusesIndex.index_name,
+              },
+            },
+            {
+              bool: {
+                must: [
+                  {
+                    term: {
+                      _index: StatusesIndex.index_name,
+                    },
+                  },
+                  {
+                    term: {
+                      searchable_by: @options[:current_account].id,
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+
+          minimum_should_match: 1,
+        },
+      }
     end
   end
 
@@ -53,7 +120,11 @@ class SearchQueryTransformer < Parslet::Transform
     end
 
     def to_query
-      { multi_match: { type: 'most_fields', query: @term, fields: ['text', 'text.stemmed'], operator: 'and' } }
+      if @term.start_with?('#')
+        { match: { tags: { query: @term } } }
+      else
+        { multi_match: { type: 'most_fields', query: @term, fields: ['text', 'text.stemmed'], operator: 'and' } }
+      end
     end
   end
 
@@ -95,15 +166,18 @@ class SearchQueryTransformer < Parslet::Transform
       when 'before'
         @filter = :created_at
         @type = :range
-        @term = { lt: term, time_zone: @options[:current_account]&.user_time_zone || 'UTC' }
+        @term = { lt: term, time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
       when 'after'
         @filter = :created_at
         @type = :range
-        @term = { gt: term, time_zone: @options[:current_account]&.user_time_zone || 'UTC' }
+        @term = { gt: term, time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
       when 'during'
         @filter = :created_at
         @type = :range
-        @term = { gte: term, lte: term, time_zone: @options[:current_account]&.user_time_zone || 'UTC' }
+        @term = { gte: term, lte: term, time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
+      when 'in'
+        @operator = :flag
+        @term = term
       else
         raise "Unknown prefix: #{prefix}"
       end
@@ -172,6 +246,6 @@ class SearchQueryTransformer < Parslet::Transform
   end
 
   rule(query: sequence(:clauses)) do
-    Query.new(clauses)
+    Query.new(clauses, current_account: current_account)
   end
 end
