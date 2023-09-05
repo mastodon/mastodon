@@ -37,17 +37,17 @@ export function submitSearch(type) {
     const signedIn = !!getState().getIn(['meta', 'me']);
 
     if (value.length === 0) {
-      dispatch(fetchSearchSuccess({ accounts: [], statuses: [], hashtags: [] }, ''));
+      dispatch(fetchSearchSuccess({ accounts: [], statuses: [], hashtags: [] }, '', type));
       return;
     }
 
-    dispatch(fetchSearchRequest());
+    dispatch(fetchSearchRequest(type));
 
     api(getState).get('/api/v2/search', {
       params: {
         q: value,
         resolve: signedIn,
-        limit: 5,
+        limit: 11,
         type,
       },
     }).then(response => {
@@ -59,7 +59,7 @@ export function submitSearch(type) {
         dispatch(importFetchedStatuses(response.data.statuses));
       }
 
-      dispatch(fetchSearchSuccess(response.data, value));
+      dispatch(fetchSearchSuccess(response.data, value, type));
       dispatch(fetchRelationships(response.data.accounts.map(item => item.id)));
     }).catch(error => {
       dispatch(fetchSearchFail(error));
@@ -67,16 +67,18 @@ export function submitSearch(type) {
   };
 }
 
-export function fetchSearchRequest() {
+export function fetchSearchRequest(searchType) {
   return {
     type: SEARCH_FETCH_REQUEST,
+    searchType,
   };
 }
 
-export function fetchSearchSuccess(results, searchTerm) {
+export function fetchSearchSuccess(results, searchTerm, searchType) {
   return {
     type: SEARCH_FETCH_SUCCESS,
     results,
+    searchType,
     searchTerm,
   };
 }
@@ -90,15 +92,16 @@ export function fetchSearchFail(error) {
 
 export const expandSearch = type => (dispatch, getState) => {
   const value  = getState().getIn(['search', 'value']);
-  const offset = getState().getIn(['search', 'results', type]).size;
+  const offset = getState().getIn(['search', 'results', type]).size - 1;
 
-  dispatch(expandSearchRequest());
+  dispatch(expandSearchRequest(type));
 
   api(getState).get('/api/v2/search', {
     params: {
       q: value,
       type,
       offset,
+      limit: 11,
     },
   }).then(({ data }) => {
     if (data.accounts) {
@@ -116,8 +119,9 @@ export const expandSearch = type => (dispatch, getState) => {
   });
 };
 
-export const expandSearchRequest = () => ({
+export const expandSearchRequest = (searchType) => ({
   type: SEARCH_EXPAND_REQUEST,
+  searchType,
 });
 
 export const expandSearchSuccess = (results, searchTerm, searchType) => ({
