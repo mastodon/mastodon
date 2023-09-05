@@ -12,8 +12,8 @@ A "vulnerability in Mastodon" is a vulnerability in the code distributed through
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 3.5.x   | Yes                |
-| 3.4.x   | Yes                |
+| 3.5.x   | Until 2023-12-31   |
+| 3.4.x   | No                 |
 | 3.3.x   | No                 |
 | < 3.3   | No                 |
 
