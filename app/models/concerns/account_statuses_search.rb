@@ -31,7 +31,7 @@ module AccountStatusesSearch
   def add_to_public_statuses_index!
     return unless Chewy.enabled?
 
-    statuses.without_reblogs.where(visibility: :public).find_in_batches do |batch|
+    statuses.without_reblogs.where(visibility: :public).reorder(nil).find_in_batches do |batch|
       PublicStatusesIndex.import(batch)
     end
   end
