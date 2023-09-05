@@ -48,10 +48,7 @@ class Report < ApplicationRecord
 
   validate :validate_rule_ids
 
-  # entries here need to be kept in sync with the front-end:
-  # - app/javascript/mastodon/features/notifications/components/report.jsx
-  # - app/javascript/mastodon/features/report/category.jsx
-  # - app/javascript/mastodon/components/admin/ReportReasonSelector.jsx
+  # entries here needs to be kept in sync with app/javascript/mastodon/features/notifications/components/report.jsx
   enum category: {
     other: 0,
     spam: 1_000,

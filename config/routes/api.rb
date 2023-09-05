@@ -37,7 +37,6 @@ namespace :api, format: false do
     end
 
     namespace :timelines do
-      resource :direct, only: :show, controller: :direct
       resource :home, only: :show, controller: :home
       resource :public, only: :show, controller: :public
       resources :tag, only: :show
@@ -97,11 +96,6 @@ namespace :api, format: false do
     resources :endorsements, only: [:index]
     resources :markers, only: [:index, :create]
 
-    namespace :profile do
-      resource :avatar, only: :destroy
-      resource :header, only: :destroy
-    end
-
     namespace :apps do
       get :verify_credentials, to: 'credentials#show'
     end
@@ -145,10 +139,9 @@ namespace :api, format: false do
       end
     end
 
-    resources :notifications, only: [:index, :show, :destroy] do
+    resources :notifications, only: [:index, :show] do
       collection do
         post :clear
-        delete :destroy_multiple
       end
 
       member do

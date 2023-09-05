@@ -6,7 +6,6 @@ class StatusesCleanupController < ApplicationController
   before_action :authenticate_user!
   before_action :set_policy
   before_action :set_body_classes
-  before_action :set_pack
   before_action :set_cache_headers
 
   def show; end
@@ -26,10 +25,6 @@ class StatusesCleanupController < ApplicationController
   end
 
   private
-
-  def set_pack
-    use_pack 'settings'
-  end
 
   def set_policy
     @policy = current_account.statuses_cleanup_policy || current_account.build_statuses_cleanup_policy(enabled: false)

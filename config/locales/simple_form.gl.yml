@@ -41,20 +41,25 @@ gl:
         current_password: Por razóns de seguridade, introduce o contrasinal da conta actual
         current_username: Para confirmar, introduce o nome de usuaria da conta actual
         digest: Enviar só tras un longo período de inactividade e só se recibiches algunha mensaxe directa na tua ausencia
+        discoverable: Permite que a túa conta poida ser descuberta por persoas descoñecidas a través de recomendacións, tendencias e outras ferramentas
         email: Ímosche enviar un correo de confirmación
         header: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
         inbox_url: Copiar o URL desde a páxina de inicio do repetidor que queres utilizar
         irreversible: As publicacións filtradas desaparecerán de xeito irreversible, incluso se despois se elimina o filtro
         locale: O idioma da interface de usuaria, correos e notificacións
+        locked: Xestionar manualmente quen pode seguirte aprobando as solicitudes de seguimento
         password: Utiliza 8 caracteres ao menos
         phrase: Concordará independentemente das maiúsculas ou avisos de contido na publicación
         scopes: A que APIs terá acceso a aplicación. Se escolles un ámbito de alto nivel, non precisas seleccionar elementos individuais.
         setting_aggregate_reblogs: Non mostrar novas promocións de publicacións que foron promovidas recentemente (só afecta a promocións recén recibidas)
-        setting_always_send_emails: Como norma xeral non che enviamos correos electrónicos se usas activamente Mastodon
+        setting_always_send_emails: Como norma xeral non che enviamos correos electrónicos se usas activamente TomX
         setting_default_sensitive: Medios sensibles marcados como ocultos por defecto e móstranse cun click
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Ocultar sempre os medios
         setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
+        setting_hide_network: Non se mostrará no teu perfil quen te segue e a quen estás a seguir
+        setting_noindex: Afecta ao teu perfil público e páxinas de publicación
+        setting_show_application: A aplicación que estás a utilizar para enviar publicacións mostrarase na vista detallada da publicación
         setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esvaecendo tódolos detalles
         setting_use_pending_items: Agochar actualizacións da cronoloxía tras un click no lugar de desprazar automáticamente os comentarios
         username: Podes usar letras, números e trazos baixos
@@ -77,14 +82,14 @@ gl:
         bootstrap_timeline_accounts: Estas contas aparecerán fixas na parte superior das recomendacións para as usuarias.
         closed_registrations_message: Móstrase cando non se admiten novas usuarias
         content_cache_retention_period: As publicacións desde outros servidores serán eliminadas despois do número de días indicados ao poñer un valor positivo. É unha acción irreversible.
-        custom_css: Podes aplicar deseños personalizados na versión web de Mastodon.
+        custom_css: Podes aplicar deseños personalizados na versión web de TomX.
         mascot: Sobrescribe a ilustración na interface web avanzada.
         media_cache_retention_period: Os ficheiros multimedia descargados serán eliminados despois do número de días indicado ao establecer un valor positivo, e voltos a descargar baixo petición.
         peers_api_enabled: Unha lista dos nomes de dominio que este servidor atopou no fediverso. Non se inclúen aquí datos acerca de se estás a federar con eles ou non, só que o teu servidor os recoñeceu. Ten utilidade para servizos que recollen estatísticas acerca da federación nun amplo senso.
         profile_directory: O directorio de perfís inclúe a tódalas usuarias que optaron por ser descubribles.
         require_invite_text: Cando os rexistros requiren aprobación manual, facer que o texto "Por que te queres rexistrar?" do convite sexa obrigatorio en lugar de optativo
         site_contact_email: De que xeito se pode contactar contigo para temas legais ou obter axuda.
-        site_contact_username: De que xeito se pode contactar contigo en Mastodon.
+        site_contact_username: De que xeito se pode contactar contigo en TomX.
         site_extended_description: Calquera información adicional que poida ser útil para visitantes e usuarias. Pode utilizarse sintaxe Markdown.
         site_short_description: Breve descrición que axuda a identificar de xeito único o teu servidor. Quen o xestiona, a quen vai dirixido?
         site_terms: Escribe a túa propia política de privacidade ou usa o valor por defecto. Podes usar sintaxe Markdow.
@@ -99,7 +104,7 @@ gl:
       form_challenge:
         current_password: Estás entrando nun área segura
       imports:
-        data: Ficheiro CSV exportado desde outro servidor Mastodon
+        data: Ficheiro CSV exportado desde outro servidor TomX
       invite_request:
         text: Esto axudaranos a revisar a tua solicitude
       ip_block:
@@ -173,6 +178,7 @@ gl:
         context: Contextos do filtro
         current_password: Contrasinal actual
         data: Datos
+        discoverable: Suxerir esta conta a outras persoas
         display_name: Nome mostrado
         email: Enderezo de email
         expires_in: Caduca tras
@@ -182,6 +188,7 @@ gl:
         inbox_url: URL da caixa de entrada do repetidor
         irreversible: Desbotar en lugar de agochar
         locale: Idioma da interface
+        locked: Requerir aprobar seguimento
         max_uses: Número máximo de usos
         new_password: Novo contrasinal
         note: Acerca de ti
@@ -204,7 +211,9 @@ gl:
         setting_display_media_show_all: Mostrar todo
         setting_expand_spoilers: Despregar sempre as publicacións marcadas con avisos de contido
         setting_hide_network: Non mostrar contactos
+        setting_noindex: Pedir non aparecer nas buscas dos motores de busca
         setting_reduce_motion: Reducir o movemento nas animacións
+        setting_show_application: Mostrar a aplicación utilizada para publicar
         setting_system_font_ui: Utilizar a tipografía por defecto do sistema
         setting_theme: Decorado da instancia
         setting_trends: Mostrar as tendencias de hoxe

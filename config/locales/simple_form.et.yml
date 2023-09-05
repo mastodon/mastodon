@@ -41,20 +41,25 @@ et:
         current_password: Sisesta turvalisuse huvides oma siinse konto salasõna
         current_username: Kinnitamiseks palun sisesta oma konto kasutajanimi
         digest: Saadetakse ainult pärast pikka tegevusetuse perioodi ja ainult siis, kui on saadetud otsesõnumeid
+        discoverable: Konto on leitav võhivõõraste jaoks soovituste ja trendide sirvimise teel vm sarnaste vahenditega
         email: Sulle saadetakse e-posti teel kinnituskiri
         header: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         inbox_url: Kopeeri soovitud vahendaja avalehe URL
         irreversible: Filtreeritud postitused kaovad taastamatult, isegi kui filter on hiljem eemaldatud
         locale: Kasutajaliidese, e-kirjade ja tõuketeadete keel
+        locked: Nõuab käsitsi jälgijate kinnitamist
         password: Vajalik on vähemalt 8 märki
         phrase: Kattub olenemata postituse teksti suurtähtedest või sisuhoiatusest
         scopes: Milliseid API-sid see rakendus tohib kasutada. Kui valid kõrgeima taseme, ei pea üksikuid eraldi valima.
         setting_aggregate_reblogs: Ära kuva uusi postituste jagamisi, mis on hiljuti jagatud (kehtib vaid uutele jagamistele)
-        setting_always_send_emails: Mastodoni aktiivsel kasutamisel sulle tavaliselt meilile teavitusi ei saadeta
+        setting_always_send_emails: TomXi aktiivsel kasutamisel sulle tavaliselt meilile teavitusi ei saadeta
         setting_default_sensitive: Tundlik meedia on vaikimisi peidetud ning seda saab avada sellele klikkides
         setting_display_media_default: Peida tundlikuks märgitud meedia
         setting_display_media_hide_all: Alati peida kõik meedia
         setting_display_media_show_all: Alati näita tundlikuks märgistatud meedia
+        setting_hide_network: Profiilil ei kuvata, keda sa jälgid ja kes sind jälgib
+        setting_noindex: Mõjutab avalikku profiili ja postituste lehekülgi
+        setting_show_application: Postitamiseks kasutatud rakenduse infot kuvatakse postituse üksikasjavaates
         setting_use_blurhash: Värvid põhinevad peidetud visuaalidel, kuid hägustavad igasuguseid detaile
         setting_use_pending_items: Voo automaatse kerimise asemel peida ajajoone uuendused kliki taha
         username: Võid kasutada ladina tähti, numbreid ja allkriipsu
@@ -77,14 +82,14 @@ et:
         bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
         content_cache_retention_period: Teiste serverite postitused kustutatakse pärast määratud päevade arvu, kui see on seatud positiivsele väärtusele. See võib olla pöördumatu.
-        custom_css: Kohandatud stiile on võimalik kasutada Mastodoni veebiliideses.
+        custom_css: Kohandatud stiile on võimalik kasutada TomXi veebiliideses.
         mascot: Asendab kohandatud veebiliidese illustratsiooni.
         media_cache_retention_period: Positiivse väärtuse korral kustutatakse allalaetud meediafailid määratud päevade möödudes. Vajadusel laaditakse need uuesti alla.
         peers_api_enabled: Domeeninimede loetelu, mida see server on Fediversumis kohanud. Mitte mingeid andmeid selle serveri födereerumise kohta antud serverite pole, vaid üksnes info, et sellest serverist ollakse teadlik. Seda kasutavad teenused, mis koguvad üldist födereerumise statistikat.
         profile_directory: Kasutajate kataloog kuvab nimekirja kasutajatest, kes on seda lubanud.
         require_invite_text: Kui liitumisi on tarvis kinnitada, oleks "Miks soovid liituda?" vastus vajalik
         site_contact_email: Kui peaks tekkima vajadus ühendust võtta täiendavate küsimuste osas.
-        site_contact_username: Kuidas Mastodoni kaudu ühendust võtta.
+        site_contact_username: Kuidas TomXi kaudu ühendust võtta.
         site_extended_description: Igasugune lisateave, mis võib külastajatele ja kasutajatele kasulik olla. Saab liigendada Markdown süntaksiga.
         site_short_description: Lühikirjeldus serveri unikaalseks identifitseerimiseks. Kes haldab, kellele mõeldud?
         site_terms: Lisa siia serveri isikuandmete kaitse põhimõtted või jäta tühjaks, et kasutada geneerilisi. Tekstis on lubatud Markdowni süntaks.
@@ -99,7 +104,7 @@ et:
       form_challenge:
         current_password: Turvalisse alasse sisenemine
       imports:
-        data: CSV fail eksporditi teisest Mastodoni serverist
+        data: CSV fail eksporditi teisest TomXi serverist
       invite_request:
         text: See aitab meil sinu taotlust üle vaadata
       ip_block:
@@ -173,6 +178,7 @@ et:
         context: Filtreeri kontekste
         current_password: Kehtiv salasõna
         data: Andmed
+        discoverable: Lisa see konto kataloogi
         display_name: Kuvanimi
         email: E-posti aadress
         expires_in: Aegu pärast
@@ -182,6 +188,7 @@ et:
         inbox_url: Vahendaja sisendkausta URL
         irreversible: Kustuta selle asemel, et peita
         locale: Kasutajaliidese keel
+        locked: Lukusta konto
         max_uses: Maksimum kasutajate arv
         new_password: Uus salasõna
         note: Elulugu
@@ -204,7 +211,9 @@ et:
         setting_display_media_show_all: Kuva kõik
         setting_expand_spoilers: Alati näita tundlikuks märgitud postituste sisu
         setting_hide_network: Peida oma võrk
+        setting_noindex: Keeldu otsingumootorite indekseerimistest
         setting_reduce_motion: Vähenda animatsioonides liikumist
+        setting_show_application: Avalikusta postituste tegemisel kasutatud rakendus
         setting_system_font_ui: Kasuta süsteemi vaikefonti
         setting_theme: Saidi teema
         setting_trends: Näita tänaseid trende

@@ -10,10 +10,6 @@ module UserSettings::DSL
       end
     end
 
-    def setting_inverse_alias(key, original_key)
-      @definitions[key] = @definitions[original_key].inverse_of(key)
-    end
-
     def namespace(key, &block)
       @definitions ||= {}
 

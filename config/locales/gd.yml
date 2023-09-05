@@ -1,10 +1,10 @@
 ---
 gd:
   about:
-    about_mastodon_html: 'An lìonra sòisealta dhan àm ri teachd: Gun sanasachd, gun chaithris corporra, dealbhadh beusail agus dì-mheadhanachadh! Gabh sealbh air an dàta agad fhèin le Mastodon!'
+    about_mastodon_html: 'An lìonra sòisealta dhan àm ri teachd: Gun sanasachd, gun chaithris corporra, dealbhadh beusail agus dì-mheadhanachadh! Gabh sealbh air an dàta agad fhèin le TomX!'
     contact_missing: Cha deach a shuidheachadh
     contact_unavailable: Chan eil seo iomchaidh
-    hosted_on: Mastodon ’ga òstadh air %{domain}
+    hosted_on: TomX ’ga òstadh air %{domain}
     title: Mu dhèidhinn
   accounts:
     follow: Lean
@@ -593,7 +593,7 @@ gd:
       pending: A’ feitheamh ri aontachadh an ath-sheachadain
       save_and_enable: Sàbhail ’s cuir an comas
       setup: Suidhich ceangal ri ath-sheachadain
-      signatures_not_enabled: Dh’fhaoidte nach obraich ath-sheachadain mar bu chòir nuair a bhios am modh tèarainte no modh a’ cho-nasgaidh chuingichte an comas
+      signatures_not_enabled: Chan obraich ath-sheachadain mar bu chòir nuair a bhios am modh tèarainte no modh a’ cho-nasgaidh chuingichte an comas
       status: Staid
       title: Ath-sheachadain
     report_notes:
@@ -772,14 +772,14 @@ gd:
         desc_html: Tha seo an eisimeil air sgriobtaichean hCaptcha on taobh a-muigh a dh’fhaodadh a bhith ’na dhragh tèarainteachd ’s prìobhaideachd. A bharrachd air sin, <strong>nì seo an clàradh mòran nas do-ruigsinn no chuid (gu h-àraidh an fheadhainn air a bheil ciorram)</strong>. Air na h-adhbharan sin, beachdaich air dòighean eile mar clàradh stèidhichte air aontachadh no cuireadh.
         title: Iarr air cleachdaichean ùra gum fuasgail iad CAPTCHA gus an cunntas aca a dhearbhadh
       content_retention:
-        preamble: Stiùirich mar a tha susbaint an luchd-cleachdaidh ’ga stòradh ann am Mastodon.
+        preamble: Stiùirich mar a tha susbaint an luchd-cleachdaidh ’ga stòradh ann am TomX.
         title: Glèidheadh na susbaint
       default_noindex:
         desc_html: Bidh buaidh air a h-uile cleachdaiche nach do dh’atharraich an roghainn seo dhaibh fhèin
         title: Thoir air falbh ro-aonta nan cleachdaichean air inneacsadh le einnseanan-luirg mar a’ bhun-roghainn
       discovery:
         follow_recommendations: Molaidhean leantainn
-        preamble: Tha tighinn an uachdar susbainte inntinniche fìor-chudromach airson toiseach-tòiseachaidh an luchd-cleachdaidh ùr nach eil eòlach air duine sam bith air Mastodon, ma dh’fhaoidte. Stiùirich mar a dh’obraicheas gleusan an rannsachaidh air an fhrithealaiche agad.
+        preamble: Tha tighinn an uachdar susbainte inntinniche fìor-chudromach airson toiseach-tòiseachaidh an luchd-cleachdaidh ùr nach eil eòlach air duine sam bith air TomX, ma dh’fhaoidte. Stiùirich mar a dh’obraicheas gleusan an rannsachaidh air an fhrithealaiche agad.
         profile_directory: Eòlaire nam pròifil
         public_timelines: Loidhnichean-ama poblach
         publish_discovered_servers: Foillsich na frithealaichean a chaidh a lorg
@@ -900,10 +900,10 @@ gd:
         no_status_selected: Cha deach post a’ treandadh sam bith atharrachadh o nach deach gin dhiubh a thaghadh
         not_discoverable: Cha do chuir an t-ùghdar roimhe gun gabh a rùrachadh
         shared_by:
-          few: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} tursan
-          one: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} turas
-          other: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} turas
-          two: Chaidh a cho-roinneadh no a chur ris na h-annsachdan %{friendly_count} thuras
+          few: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} tursan
+          one: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} turas
+          other: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} turas
+          two: Chaidh a cho-roinneadh no ’na annsachd %{friendly_count} thuras
         title: Postaichean a’ treandadh
       tags:
         current_score: Sgòr làithreach de %{score}
@@ -1005,7 +1005,7 @@ gd:
     confirmation_dialogs: Còmhraidhean dearbhaidh
     discovery: Rùrachadh
     localization:
-      body: Tha Mastodon ’ga eadar-theangachadh le saor-thoilich.
+      body: Tha TomX ’ga eadar-theangachadh le saor-thoilich.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: "’S urrainn do neach sam bith cuideachadh."
     sensitive_content: Susbaint fhrionasach
@@ -1037,8 +1037,8 @@ gd:
     delete_account_html: Nam bu mhiann leat an cunntas agad a sguabadh às, <a href="%{path}">nì thu an-seo e</a>. Thèid dearbhadh iarraidh ort.
     description:
       prefix_invited_by_user: Thug @%{name} cuireadh dhut ach am faigh thu ballrachd air an fhrithealaiche seo de Mhastodon!
-      prefix_sign_up: Clàraich le Mastodon an-diugh!
-      suffix: Le cunntas, ’s urrainn dhut daoine a leantainn, naidheachdan a phostadh agus conaltradh leis an luchd-chleachdaidh air frithealaiche Mastodon sam bith is a bharrachd!
+      prefix_sign_up: Clàraich le TomX an-diugh!
+      suffix: Le cunntas, ’s urrainn dhut daoine a leantainn, naidheachdan a phostadh agus conaltradh leis an luchd-chleachdaidh air frithealaiche TomX sam bith is a bharrachd!
     didnt_get_confirmation: Nach d’fhuair thu an ceangal dearbhaidh?
     dont_have_your_security_key: Nach eil iuchair tèarainteachd agad?
     forgot_password: Na dhìochuimhnich thu am facal-faire agad?
@@ -1085,7 +1085,7 @@ gd:
       title: Clàraich a-steach gu %{domain}
     sign_up:
       manual_review: Nì na maoir againn lèirmheas a làimh air clàraidhean air %{domain}. Airson ar cuideachadh le làimhseachadh do chlàraidh, sgrìobh beagan mu do dhèidhinn agus carson a tha thu ag iarraidh cunntas air %{domain}.
-      preamble: Le cunntas air an fhrithealaiche Mastodon seo, ’s urrainn dhut neach sam bith a leantainn air an lìonra, ge b’ e càit a bheil an cunntas aca-san ’ga òstadh.
+      preamble: Le cunntas air an fhrithealaiche TomX seo, ’s urrainn dhut neach sam bith a leantainn air an lìonra, ge b’ e càit a bheil an cunntas aca-san ’ga òstadh.
       title: Suidhicheamaid %{domain} dhut.
     status:
       account_status: Staid a’ chunntais
@@ -1176,6 +1176,7 @@ gd:
     basic_information: Fiosrachadh bunasach
     hint_html: "<strong>Gnàthaich na chithear air a’ phròifil phoblach agad is ri taobh nam postaichean agad.</strong> Bidh càch nas buailtiche do leantainn agus conaltradh leat nuair a bhios tu air a’ phròifil agad a lìonadh agus dealbh rithe."
     other: Eile
+    safety_and_privacy: Sàbhailteachd is prìobhaideachd
   errors:
     '400': Cha robh an t-iarrtas a chuir thu a-null dligheach no bha droch-chruth air.
     '403': Chan eil cead agad gus an duilleag seo a shealltainn.
@@ -1190,7 +1191,7 @@ gd:
       content: Tha sinn duilich ach chaidh rudeigin ceàrr a-bhos an-seo.
       title: Chan eil an duilleag seo mar bu chòir
     '503': Cha b’ urrainn an duilleag fhrithealadh ri linn mearachd sealach an fhrithealaiche.
-    noscript_html: Airson aplacaid-lìn Mastodon a chleachdadh, cuir JavaScript an comas. Mar roghainn eile, ’s urrainn dhut fear dhe na <a href="%{apps_path}">cliantan tùsail</a> airson Mastodon dhan ùrlar agad fheuchainn.
+    noscript_html: Airson aplacaid-lìn TomX a chleachdadh, cuir JavaScript an comas. Mar roghainn eile, ’s urrainn dhut fear dhe na <a href="%{apps_path}">cliantan tùsail</a> airson TomX dhan ùrlar agad fheuchainn.
   existing_username_validator:
     not_found: cha b’ urrainn dhuinn cleachdaiche ionadail a lorg air a bheil an t-ainm-cleachdaiche seo
     not_found_multiple: cha b’ urrainn dhuinn %{usernames} a lorg
@@ -1593,7 +1594,7 @@ gd:
       weibo: Weibo
     current_session: An seisean làithreach
     description: "%{browser} air %{platform}"
-    explanation: Seo na bhrabhsairean-lìn a tha clàraichte a-staigh sa chunntas Mastodon agad aig an àm seo.
+    explanation: Seo na bhrabhsairean-lìn a tha clàraichte a-staigh sa chunntas TomX agad aig an àm seo.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1619,7 +1620,7 @@ gd:
     aliases: Aliasan a’ chunntais
     appearance: Coltas
     authorized_apps: Aplacaidean ùghdarraichte
-    back: Till gu Mastodon
+    back: Till gu TomX
     delete: Sguabadh às cunntais
     development: Leasachadh
     edit_profile: Deasaich a’ phròifil
@@ -1630,7 +1631,7 @@ gd:
     migrate: Imrich cunntais
     notifications: Brathan
     preferences: Roghainnean
-    profile: Pròifil phoblach
+    profile: Pròifil
     relationships: Dàimhean leantainn
     statuses_cleanup: Sguabadh às fèin-obrachail phostaichean
     strikes: Rabhaidhean na maorsainneachd
@@ -1716,7 +1717,7 @@ gd:
     keep_polls_hint: Cha dèid gin dhe na cunntasan-bheachd agad a sguabadh às
     keep_self_bookmark: Cùm na chuir thu ris comharran-lìn
     keep_self_bookmark_hint: Cha dèid gin dhe na postaichean agad fhèin a chuir thu ris na comharran-lìn agad a sguabadh às
-    keep_self_fav: Cùm na postaichean a chuir thu ris na h-annsachdan
+    keep_self_fav: Cùm na chuir thu ris na h-annsachdan
     keep_self_fav_hint: Cha dèid gin dhe na postaichean agad fhèin a chuir thu ris na h-annsachdan agad a sguabadh às
     min_age:
       '1209600': 2 sheachdain
@@ -1728,8 +1729,8 @@ gd:
       '63113904': 2 bhliadhna
       '7889238': 3 mìosan
     min_age_label: Stairsneach aoise
-    min_favs: Cùm na postaichean a chaidh a chur ris na h-annsachdan co-dhiù
-    min_favs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a chaidh a chur ris na h-annsachdan an àireamh seo de thursan air a char as lugha. Fàg seo bàn airson na postaichean a sguabadh às ge b’ e co mheud neach a chuir ris na h-annsachdan iad
+    min_favs: Cùm na tha ’na annsachd aig co-dhiù
+    min_favs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a tha ’nan annsachd an àireamh de thursan seo air a char as lugha. Fàg seo bàn airson postaichean a sguabadh às ge b’ e co mheud turas a tha iad ’nan annsachd
     min_reblogs: Cùm na tha ’ga bhrosnachadh le co-dhiù
     min_reblogs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a tha ’gam brosnachadh an àireamh de thursan seo air a char as lugha. Fàg seo bàn airson postaichean a sguabadh às ge b’ e co mheud turas a tha iad ’gam brosnachadh
   stream_entries:
@@ -1740,9 +1741,9 @@ gd:
   tags:
     does_not_match_previous_name: "– chan eil seo a-rèir an ainm roimhe"
   themes:
-    contrast: Mastodon (iomsgaradh àrd)
-    default: Mastodon (dorcha)
-    mastodon-light: Mastodon (soilleir)
+    contrast: TomX (iomsgaradh àrd)
+    default: TomX (dorcha)
+    mastodon-light: TomX (soilleir)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1774,7 +1775,7 @@ gd:
       subject: Chaidh an t-ath-thagradh agad o %{date} a dhiùltadh
       title: Chaidh ath-thagradh a dhiùltadh
     backup_ready:
-      explanation: Dh’iarr thu lethbhreac-glèidhidh slàn dhen chunntas Mastodon agad. Tha e deis ri luchdadh a-nuas a-nis!
+      explanation: Dh’iarr thu lethbhreac-glèidhidh slàn dhen chunntas TomX agad. Tha e deis ri luchdadh a-nuas a-nis!
       subject: Tha an tasg-lann agad deis ri luchdadh a-nuas
       title: Tasg-lann dhut
     suspicious_sign_in:
@@ -1823,7 +1824,7 @@ gd:
       final_step: 'Tòisich air postadh! Fiù ’s mur eil duine sam bith ’gad leantainn, chì cuid mhath na postaichean poblach agad, can air an loidhne-ama ionadail no le tagaichean hais. Saoil an innis thu beagan mu d’ dhèidhinn air an taga hais #fàilte?'
       full_handle: D’ ainm-cleachdaiche slàn
       full_handle_hint: Seo na bheir thu dha na caraidean agad ach an urrainn dhaibh teachdaireachd a chur thugad no ’gad leantainn o fhrithealaiche eile.
-      subject: Fàilte gu Mastodon
+      subject: Fàilte gu TomX
       title: Fàilte air bòrd, %{name}!
   users:
     follow_limit_reached: Chan urrainn dhut còrr is %{limit} daoine a leantainn
@@ -1835,7 +1836,7 @@ gd:
   verification:
     extra_instructions_html: <strong>Gliocas:</strong>Faodaidh an ceangal air an làrach-lìn agad a bhith do-fhaicsinneach. ’S e <code>rel="me"</code> a tha sa phàirt chudromach a bhacas riochd cuideigin eile air làraichean-lìn le susbaint air a gintinn o chleachdaiche. ’S urrainn dhut fiù taga <code>link</code> a chleachdadh ann am bann-cinn na duilleige seach <code>a</code> ach feumaidh sinn an HTML ruigsinn gun a bhith a’ ruith JavaScript.
     here_is_how: Seo mar a nì thu e
-    hint_html: "<strong>Gheibh duine sam bith dearbhadh an aithne air Mastodon.</strong> Tha seo stèidhichte air stannardan-lìn fosgailte agus bidh e saor ’s an-asgaidh gu bràth. Chan fheum thu dad ach làrach-lìn phearsanta leis an aithnich daoine thu. Nuair a nì thu ceangal dhan làrach-lìn sin on phròifil agad, dearbhaidh sinn gu bheil an làrach-lìn a’ ceangal air ais dhan phròifil agad agus seallaidh sinn taisbeanair lèirsinneach oirre."
+    hint_html: "<strong>Gheibh duine sam bith dearbhadh an aithne air TomX.</strong> Tha seo stèidhichte air stannardan-lìn fosgailte agus bidh e saor ’s an-asgaidh gu bràth. Chan fheum thu dad ach làrach-lìn phearsanta leis an aithnich daoine thu. Nuair a nì thu ceangal dhan làrach-lìn sin on phròifil agad, dearbhaidh sinn gu bheil an làrach-lìn a’ ceangal air ais dhan phròifil agad agus seallaidh sinn taisbeanair lèirsinneach oirre."
     instructions_html: Dèan lethbhreac dhen chòd gu h-ìosal is cuir a-steach ann an HTML na làraich-lìn agad e. An uairsin, cuir seòladh na làraich-lìn agad ri fear dhe na raointean a bharrachd air a’ phròifil agad o thaba “Deasaich a’ phròifil” agus sàbhail na h-atharraichean.
     verification: Dearbhadh
     verified_links: Na ceanglaichean dearbhte agad

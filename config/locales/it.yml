@@ -1,10 +1,10 @@
 ---
 it:
   about:
-    about_mastodon_html: 'Il social network del futuro: Nessuna pubblicità, zero sorveglianza azienale, design etico e decentralizzazione! Sii il proprietario dei tuoi dati, con Mastodon!'
+    about_mastodon_html: 'Il social network del futuro: Nessuna pubblicità, zero sorveglianza azienale, design etico e decentralizzazione! Sii il proprietario dei tuoi dati, con TomX!'
     contact_missing: Non impostato
     contact_unavailable: N/D
-    hosted_on: Mastodon ospitato su %{domain}
+    hosted_on: TomX ospitato su %{domain}
     title: Info
   accounts:
     follow: Segui
@@ -672,7 +672,7 @@ it:
         moderation: Moderazione
         special: Speciale
       delete: Cancella
-      description_html: Con i <strong>ruoli utente</strong>, puoi personalizzare a quali funzioni e aree di Mastodon i tuoi utenti possono accedere.
+      description_html: Con i <strong>ruoli utente</strong>, puoi personalizzare a quali funzioni e aree di TomX i tuoi utenti possono accedere.
       edit: Modifica il ruolo '%{name}'
       everyone: Permessi predefiniti
       everyone_full_description_html: Questo è il ruolo <strong>base</strong> che influenza <strong>tutti gli utenti</strong>, anche quelli senza un ruolo assegnato. Tutti gli altri ruoli ereditano i permessi da esso.
@@ -735,23 +735,23 @@ it:
         rules_hint: C'è un'area dedicata per le regole che i tuoi utenti dovrebbero rispettare.
         title: Info
       appearance:
-        preamble: Personalizza l'interfaccia web di Mastodon.
+        preamble: Personalizza l'interfaccia web di TomX.
         title: Aspetto
       branding:
-        preamble: 'Il marchio del tuo server lo differenzia dagli altri server nella rete. Queste informazioni possono essere visualizzate in una varietà di ambienti, come: l''interfaccia web di Mastodon, le applicazioni native, nelle anteprime dei collegamenti su altri siti Web e all''interno delle app di messaggistica e così via. Per questo motivo, è meglio mantenere queste informazioni chiare, brevi e concise.'
+        preamble: 'Il marchio del tuo server lo differenzia dagli altri server nella rete. Queste informazioni possono essere visualizzate in una varietà di ambienti, come: l''interfaccia web di TomX, le applicazioni native, nelle anteprime dei collegamenti su altri siti Web e all''interno delle app di messaggistica e così via. Per questo motivo, è meglio mantenere queste informazioni chiare, brevi e concise.'
         title: Marchio
       captcha_enabled:
         desc_html: Questo si basa su script esterni da hCaptcha, che possono rappresentare un problema di sicurezza e privacy. Inoltre, <strong>questo può rendere il processo di registrazione significativamente meno accessibile ad alcune persone (soprattutto disabili)</strong>. Per questi motivi, prendi in considerazione misure alternative come la registrazione basata su approvazione o su invito.
         title: Richiedi ai nuovi utenti di risolvere un CAPTCHA per confermare il loro account
       content_retention:
-        preamble: Controlla come vengono memorizzati i contenuti generati dall'utente in Mastodon.
+        preamble: Controlla come vengono memorizzati i contenuti generati dall'utente in TomX.
         title: Conservazione dei contenuti
       default_noindex:
         desc_html: Interessa tutti gli utenti che non hanno modificato personalmente questa impostazione
         title: Esclude gli utenti dall'indicizzazione dei motori di ricerca per impostazione predefinita
       discovery:
         follow_recommendations: Segui le raccomandazioni
-        preamble: La comparsa di contenuti interessanti è determinante per l'arrivo di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla in che modo varie funzionalità di scoperta funzionano sul tuo server.
+        preamble: La comparsa di contenuti interessanti è determinante per l'arrivo di nuovi utenti che potrebbero non conoscere nessuno su TomX. Controlla in che modo varie funzionalità di scoperta funzionano sul tuo server.
         profile_directory: Directory del profilo
         public_timelines: Timeline pubbliche
         publish_discovered_servers: Pubblica i server scoperti
@@ -907,7 +907,7 @@ it:
     webhooks:
       add_new: Aggiungi endpoint
       delete: Elimina
-      description_html: Un <strong>webhook</strong> consente a Mastodon di inviare <strong>notifiche in tempo reale</strong> su determinati eventi alla tua applicazione, così la tua applicazione può <strong>attivare automaticamente delle reazioni</strong>.
+      description_html: Un <strong>webhook</strong> consente a TomX di inviare <strong>notifiche in tempo reale</strong> su determinati eventi alla tua applicazione, così la tua applicazione può <strong>attivare automaticamente delle reazioni</strong>.
       disable: Disabilita
       disabled: Disabilitato
       edit: Modifica endpoint
@@ -971,7 +971,7 @@ it:
     confirmation_dialogs: Dialoghi di conferma
     discovery: Scoperta
     localization:
-      body: Mastodon è tradotto da volontari.
+      body: TomX è tradotto da volontari.
       guide_link: https://it.crowdin.com/project/mastodon
       guide_link_text: Tutti possono contribuire.
     sensitive_content: Contenuto sensibile
@@ -1002,9 +1002,9 @@ it:
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
     description:
-      prefix_invited_by_user: "@%{name} ti invita a iscriverti a questo server Mastodon!"
-      prefix_sign_up: Iscriviti oggi a Mastodon!
-      suffix: Con un account, sarai in grado di seguire le persone, pubblicare aggiornamenti e scambiare messaggi con gli utenti da qualsiasi server di Mastodon e altro ancora!
+      prefix_invited_by_user: "@%{name} ti invita a iscriverti a questo server TomX!"
+      prefix_sign_up: Iscriviti oggi a TomX!
+      suffix: Con un account, sarai in grado di seguire le persone, pubblicare aggiornamenti e scambiare messaggi con gli utenti da qualsiasi server di TomX e altro ancora!
     didnt_get_confirmation: Non hai ricevuto un link di conferma?
     dont_have_your_security_key: Non hai la tua chiave di sicurezza?
     forgot_password: Hai dimenticato la tua password?
@@ -1013,7 +1013,7 @@ it:
     link_to_webauth: Usa il tuo dispositivo chiave di sicurezza
     log_in_with: Accedi con
     login: Entra
-    logout: Esci da Mastodon
+    logout: Esci da TomX
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or_log_in_with: Oppure accedi con
@@ -1051,7 +1051,7 @@ it:
       title: Accedi a %{domain}
     sign_up:
       manual_review: Le registrazioni su %{domain} vengono sottoposte a revisione manuale da parte dei nostri moderatori. Per aiutarci a elaborare la tua registrazione, scrivi qualcosa su di te e sul motivo per cui desideri un account su %{domain}.
-      preamble: Con un account su questo server Mastodon, sarai in grado di seguire qualsiasi altra persona sulla rete, indipendentemente da dove sia ospitato il suo account.
+      preamble: Con un account su questo server TomX, sarai in grado di seguire qualsiasi altra persona sulla rete, indipendentemente da dove sia ospitato il suo account.
       title: Lascia che ti configuriamo su %{domain}.
     status:
       account_status: Stato dell'account
@@ -1142,6 +1142,7 @@ it:
     basic_information: Informazioni di base
     hint_html: "<strong>Personalizza ciò che le persone vedono sul tuo profilo pubblico e accanto ai tuoi post.</strong> È più probabile che altre persone ti seguano e interagiscano con te quando hai un profilo compilato e un'immagine del profilo."
     other: Altro
+    safety_and_privacy: Sicurezza e privacy
   errors:
     '400': La richiesta che hai inviato non è valida o non è corretta.
     '403': Non sei autorizzato a visualizzare questa pagina.
@@ -1156,7 +1157,7 @@ it:
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
     '503': La pagina non può essere trasmessa a causa di un errore temporaneo del server.
-    noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Mastodon per la tua piattaforma.
+    noscript_html: Per usare l'interfaccia web di TomX dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per TomX per la tua piattaforma.
   existing_username_validator:
     not_found: impossibile trovare un utente locale con quel nome utente
     not_found_multiple: impossibile trovare %{usernames}
@@ -1344,7 +1345,7 @@ it:
     unsubscribe:
       action: Sì, annulla l'iscrizione
       complete: Iscrizione annullata
-      confirmation_html: Sei sicuro di voler annullare l'iscrizione alla ricezione di %{type} per Mastodon su %{domain} alla tua e-mail a %{email}? Puoi sempre iscriverti di nuovo dalle tue <a href="%{settings_path}">impostazioni di notifica via email</a>.
+      confirmation_html: Sei sicuro di voler annullare l'iscrizione alla ricezione di %{type} per TomX su %{domain} alla tua e-mail a %{email}? Puoi sempre iscriverti di nuovo dalle tue <a href="%{settings_path}">impostazioni di notifica via email</a>.
       emails:
         notification_emails:
           favourite: e-mai di notifica per i post apprezzati
@@ -1353,7 +1354,7 @@ it:
           mention: e-mail di notifica per le menzioni
           reblog: e-mail di notifica per le condivisioni
       resubscribe_html: Se hai annullato l'iscrizione per errore, puoi iscriverti di nuovo dalle tue <a href="%{settings_path}">impostazioni di notifica via email</a>.
-      success_html: Non riceverai più %{type} per Mastodon su %{domain} alla tua e-mail a %{email}.
+      success_html: Non riceverai più %{type} per TomX su %{domain} alla tua e-mail a %{email}.
       title: Disiscriviti
   media_attachments:
     validations:
@@ -1543,7 +1544,7 @@ it:
       weibo: Weibo
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
-    explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account Mastodon.
+    explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account TomX.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1569,7 +1570,7 @@ it:
     aliases: Alias dell'account
     appearance: Interfaccia
     authorized_apps: Applicazioni autorizzate
-    back: Torna a Mastodon
+    back: Torna a TomX
     delete: Cancellazione account
     development: Sviluppo
     edit_profile: Modifica profilo
@@ -1678,9 +1679,9 @@ it:
   tags:
     does_not_match_previous_name: non corrisponde al nome precedente
   themes:
-    contrast: Mastodon (contrasto elevato)
-    default: Mastodon (scuro)
-    mastodon-light: Mastodon (chiaro)
+    contrast: TomX (contrasto elevato)
+    default: TomX (scuro)
+    mastodon-light: TomX (chiaro)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1712,7 +1713,7 @@ it:
       subject: Il tuo appello del %{date} è stato respinto
       title: Appello respinto
     backup_ready:
-      explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
+      explanation: Hai richiesto un backup completo del tuo account TomX. È pronto per essere scaricato!
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
     suspicious_sign_in:
@@ -1761,7 +1762,7 @@ it:
       final_step: 'Inizia a pubblicare! Anche senza seguaci, i tuoi post pubblici possono essere visti da altri, ad esempio sulla timeline locale o negli hashtag. Potresti presentarti con l''hashtag #presentazione.'
       full_handle: Il tuo nome utente completo
       full_handle_hint: Questo è ciò che diresti ai tuoi amici in modo che possano seguirti o contattarti da un altro server.
-      subject: Benvenuto/a su Mastodon
+      subject: Benvenuto/a su TomX
       title: Benvenuto a bordo, %{name}!
   users:
     follow_limit_reached: Non puoi seguire più di %{limit} persone
@@ -1773,7 +1774,7 @@ it:
   verification:
     extra_instructions_html: <strong>Suggerimento:</strong> il collegamento sul tuo sito web può essere invisibile. La parte importante è <code>rel="me"</code> che impedisce l'impersonificazione su siti web con contenuti generati dagli utenti. Puoi anche usare un tag <code>link</code> nell'intestazione della pagina invece di <code>a</code>, ma l'HTML deve essere accessibile senza eseguire JavaScript.
     here_is_how: Ecco come
-    hint_html: "<strong>La verifica della tua identità su Mastodon è per tutti.</strong> Basata su standard web aperti, ora e per sempre gratis. Tutto ciò di cui hai bisogno è un sito web personale in cui le persone ti riconoscano. Quando ti colleghi a questo sito web dal tuo profilo, verificheremo che il sito web rimandi al tuo profilo e mostreremo un indicatore visivo su di esso."
+    hint_html: "<strong>La verifica della tua identità su TomX è per tutti.</strong> Basata su standard web aperti, ora e per sempre gratis. Tutto ciò di cui hai bisogno è un sito web personale in cui le persone ti riconoscano. Quando ti colleghi a questo sito web dal tuo profilo, verificheremo che il sito web rimandi al tuo profilo e mostreremo un indicatore visivo su di esso."
     instructions_html: Copia e incolla il codice qui sotto nell'HTML del tuo sito web. Quindi, aggiungi l'indirizzo del tuo sito web in uno dei campi aggiuntivi del tuo profilo dalla scheda "Modifica profilo" e salva le modifiche.
     verification: Verifica
     verified_links: I tuoi collegamenti verificati

@@ -25,10 +25,7 @@ class BatchedRemoveStatusService < BaseService
       associations: [mentions: :account]
     )
 
-    statuses_with_account_conversations.each do |status|
-      status.unlink_from_conversations!
-      unpush_from_direct_timelines(status)
-    end
+    statuses_with_account_conversations.each(&:unlink_from_conversations!)
 
     # We do not batch all deletes into one to avoid having a long-running
     # transaction lock the database, but we use the delete method instead
@@ -38,10 +35,7 @@ class BatchedRemoveStatusService < BaseService
 
     # Since we skipped all callbacks, we also need to manually
     # deindex the statuses
-    if Chewy.enabled?
-      Chewy.strategy.current.update(StatusesIndex, statuses_and_reblogs)
-      Chewy.strategy.current.update(PublicStatusesIndex, statuses_and_reblogs)
-    end
+    Chewy.strategy.current.update(StatusesIndex, statuses_and_reblogs) if Chewy.enabled?
 
     return if options[:skip_side_effects]
 
@@ -98,12 +92,6 @@ class BatchedRemoveStatusService < BaseService
     status.tags.map { |tag| tag.name.mb_chars.downcase }.each do |hashtag|
       pipeline.publish("timeline:hashtag:#{hashtag}", payload)
       pipeline.publish("timeline:hashtag:#{hashtag}:local", payload) if status.local?
-    end
-  end
-
-  def unpush_from_direct_timelines(status)
-    status.mentions.each do |mention|
-      FeedManager.instance.unpush_from_direct(mention.account, status) if mention.account.local?
     end
   end
 end

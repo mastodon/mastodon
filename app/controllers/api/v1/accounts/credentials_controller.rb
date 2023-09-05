@@ -30,7 +30,6 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
       :bot,
       :discoverable,
       :hide_collections,
-      :indexable,
       fields_attributes: [:name, :value]
     )
   end

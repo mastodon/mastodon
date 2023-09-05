@@ -170,7 +170,7 @@ const Firehose = ({ feedType, multiColumn }) => {
       </ColumnHeader>
 
       <div className='scrollable scrollable--flex'>
-        <div className='account__section-headline'>
+        {/* <div className='account__section-headline'>
           <NavLink exact to='/public/local'>
             <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
           </NavLink>
@@ -182,10 +182,10 @@ const Firehose = ({ feedType, multiColumn }) => {
           <NavLink exact to='/public'>
             <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
           </NavLink>
-        </div>
+        </div> */}
 
         <StatusListContainer
-          prepend={prependBanner}
+        //   prepend={prependBanner}
           timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
           onLoadMore={handleLoadMore}
           trackScroll

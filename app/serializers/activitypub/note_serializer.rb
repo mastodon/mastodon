@@ -3,7 +3,7 @@
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
   include FormattingHelper
 
-  context_extensions :atom_uri, :conversation, :sensitive, :voters_count, :direct_message
+  context_extensions :atom_uri, :conversation, :sensitive, :voters_count
 
   attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
@@ -14,8 +14,6 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   attribute :content
   attribute :content_map, if: :language?
   attribute :updated, if: :edited?
-
-  attribute :direct_message, if: :non_public?
 
   has_many :virtual_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
@@ -31,8 +29,6 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   attribute :voters_count, if: :poll_and_voters_count?
 
   def id
-    raise Mastodon::NotPermittedError, 'Local-only statuses should not be serialized' if object.local_only? && !instance_options[:allow_local_only]
-
     ActivityPub::TagManager.instance.uri_for(object)
   end
 
@@ -41,15 +37,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def summary
-    object.spoiler_text.presence || (instance_options[:allow_local_only] ? nil : Setting.outgoing_spoilers.presence)
-  end
-
-  def direct_message
-    object.direct_visibility?
-  end
-
-  def non_public?
-    !object.distributable?
+    object.spoiler_text.presence
   end
 
   def content
@@ -117,7 +105,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def sensitive
-    object.account.sensitized? || object.sensitive || (!instance_options[:allow_local_only] && Setting.outgoing_spoilers.present?)
+    object.account.sensitized? || object.sensitive
   end
 
   def virtual_attachments

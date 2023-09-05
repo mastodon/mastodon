@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 module Payloadable
-  include AuthorizedFetchHelper
-
   # @param [ActiveModelSerializers::Model] record
   # @param [ActiveModelSerializers::Serializer] serializer
   # @param [Hash] options
@@ -25,6 +23,6 @@ module Payloadable
   end
 
   def signing_enabled?
-    !authorized_fetch_mode?
+    ENV['AUTHORIZED_FETCH'] != 'true' && !Rails.configuration.x.limited_federation_mode
   end
 end

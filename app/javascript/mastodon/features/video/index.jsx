@@ -417,6 +417,8 @@ class Video extends PureComponent {
   };
 
   handleMouseEnter = () => {
+    // Custom code
+    this.togglePlay();
     this.setState({ hovered: true });
   };
 
@@ -554,6 +556,7 @@ class Video extends PureComponent {
             aria-label={alt}
             title={alt}
             lang={lang}
+            autoPlay={true}
             volume={volume}
             onClick={this.togglePlay}
             onKeyDown={this.handleVideoKeyDown}

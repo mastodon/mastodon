@@ -2,7 +2,6 @@
 
 class Auth::PasswordsController < Devise::PasswordsController
   before_action :check_validity_of_reset_password_token, only: :edit
-  before_action :set_pack
   before_action :set_body_classes
 
   layout 'auth'
@@ -32,9 +31,5 @@ class Auth::PasswordsController < Devise::PasswordsController
 
   def reset_password_token_is_valid?
     resource_class.with_reset_password_token(params[:reset_password_token]).present?
-  end
-
-  def set_pack
-    use_pack 'auth'
   end
 end

@@ -115,10 +115,7 @@ export default class ModalRoot extends PureComponent {
         {visible && (
           <>
             <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
-              {(SpecificComponent) => {
-                const ref = typeof SpecificComponent !== 'function' ? this.setModalRef : undefined;
-                return <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={ref} />
-              }}
+              {(SpecificComponent) => <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={this.setModalRef} />}
             </BundleContainer>
 
             <Helmet>

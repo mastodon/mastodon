@@ -50,7 +50,6 @@ namespace :admin do
     resource :about, only: [:show, :update], controller: 'about'
     resource :appearance, only: [:show, :update], controller: 'appearance'
     resource :discovery, only: [:show, :update], controller: 'discovery'
-    resource :other, only: [:show, :update], controller: 'other'
   end
 
   resources :site_uploads, only: [:destroy]
@@ -202,6 +201,4 @@ namespace :admin do
       end
     end
   end
-
-  resources :software_updates, only: [:index]
 end

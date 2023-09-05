@@ -41,20 +41,25 @@ pt-PT:
         current_password: Para fins de segurança, queira inserir a palavra-passe da conta atual
         current_username: Para confirmar, queira inserir o nome de utilizador da conta atual
         digest: Enviado após um longo período de inatividade e apenas se foste mencionado na tua ausência
+        discoverable: Permitir que a sua conta seja descoberta por outros através de recomendações, destaques e outras funções
         email: Será enviado um e-mail de confirmação
         header: PNG, GIF ou JPG. Ficheiros no máximo de %{size}. Serão reduzidos para %{dimensions}px
         inbox_url: Copie o URL da página inicial do repetidor que quer usar
         irreversible: Publicações filtradas irão desaparecer irremediavelmente, mesmo que o filtro seja removido posteriormente
         locale: A língua da interface de utilizador, e-mails e notificações push
+        locked: Requer aprovação manual de seguidores
         password: Use pelo menos 8 caracteres
         phrase: Será correspondido independentemente da capitalização ou do aviso de conteúdo duma publicação
         scopes: Quais as API a que será concedido acesso. Se escolher uma abrangência de nível superior, não precisará de as seleccionar individualmente.
         setting_aggregate_reblogs: Não mostrar novos reforços de publicações recentemente reforçadas (só afecta publicações acabadas de reforçar)
-        setting_always_send_emails: Normalmente as notificações por e-mail não serão enviadas quando estiver a utilizar ativamente o Mastodon
+        setting_always_send_emails: Normalmente as notificações por e-mail não serão enviadas quando estiver a utilizar ativamente o TomX
         setting_default_sensitive: Media problemática oculta por padrão, pode ser revelada com um clique
         setting_display_media_default: Esconder media marcada como problemática
         setting_display_media_hide_all: Esconder sempre toda a media
         setting_display_media_show_all: Mostrar sempre a media
+        setting_hide_network: Quem tu segues e quem te segue não será mostrado no teu perfil
+        setting_noindex: Afecta o teu perfil público e as páginas das tuas publicações
+        setting_show_application: A aplicação que usa para publicar será mostrada na vista pormenorizada das suas publicações
         setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer pormenores
         setting_use_pending_items: Ocultar atualizações da cronologia por detrás dum clique, em vez de rolar automaticamente o fluxo
         username: Pode utilizar letras, números e sublinhados
@@ -77,14 +82,14 @@ pt-PT:
         bootstrap_timeline_accounts: Estas contas serão destacadas no topo das recomendações aos novos utilizadores.
         closed_registrations_message: Apresentado quando as inscrições estiverem encerradas
         content_cache_retention_period: Publicações de outros servidores serão apagadas decorrido o número de dias especificado, se estiver definido um valor positivo. Isso pode ser irreversível.
-        custom_css: Pode aplicar estilos personalizados na versão web do Mastodon.
+        custom_css: Pode aplicar estilos personalizados na versão web do TomX.
         mascot: Sobrepõe-se à ilustração na interface web avançada.
         media_cache_retention_period: Os ficheiros de media descarregados serão apagados decorrido o número de dias especificado, quando definido com um valor positivo, e descarregados novamente quando solicitados.
         peers_api_enabled: Uma lista de nomes de domínio que este servidor encontrou no fediverso. Nenhum dado é incluído aqui sobre se você federa com um determinado servidor, apenas que o seu servidor o conhece. Este serviço é utilizado por serviços que recolhem estatísticas na federação, em termos gerais.
         profile_directory: O diretório de perfis lista todos os utilizadores que optaram por ter a sua conta a ser sugerida a outros.
         require_invite_text: Quando as incrições exigirem aprovação manual, faça o texto "Por que se quer juntar a nós?" da solicitação de convite ser obrigatório, em vez de opcional
         site_contact_email: Como as pessoas podem entrar em contacto consigo para obter informações legais ou de apoio técnico.
-        site_contact_username: Como as pessoas conseguem chegar até si no Mastodon.
+        site_contact_username: Como as pessoas conseguem chegar até si no TomX.
         site_extended_description: Qualquer informação adicional que possa ser útil para os visitantes e os seus utilizadores. Pode ser estruturada com a sintaxe Markdown.
         site_short_description: Uma breve descrição para ajudar a identificar de forma única o seu servidor. Quem o está a gerir, e a quem se destina?
         site_terms: Use a sua própria política de privacidade ou deixe em branco para usar a política padrão. Pode ser estruturada com a sintaxe Markdown.
@@ -99,7 +104,7 @@ pt-PT:
       form_challenge:
         current_password: Está a entrar numa área segura
       imports:
-        data: Ficheiro CSV exportado doutra instância do Mastodon
+        data: Ficheiro CSV exportado doutra instância do TomX
       invite_request:
         text: Isto vai ajudar-nos a analisar o seu pedido
       ip_block:
@@ -173,6 +178,7 @@ pt-PT:
         context: Filtrar contextos
         current_password: Palavra-passe actual
         data: Dados
+        discoverable: Sugerir esta conta a outros
         display_name: Nome a apresentar
         email: Endereço de correio electrónico
         expires_in: Expira em
@@ -182,6 +188,7 @@ pt-PT:
         inbox_url: URL da caixa de entrada do repetidor
         irreversible: Expandir em vez de esconder
         locale: Língua da interface
+        locked: Exigir pedidos de seguimento
         max_uses: Número máximo de utilizações
         new_password: Nova palavra-passe
         note: Biografia
@@ -204,7 +211,9 @@ pt-PT:
         setting_display_media_show_all: Mostrar todos
         setting_expand_spoilers: Expandir sempre as publicações marcadas com avisos de conteúdo
         setting_hide_network: Esconder a tua rede
+        setting_noindex: Não quero ser indexado por motores de pesquisa
         setting_reduce_motion: Reduz movimento em animações
+        setting_show_application: Revelar sempre qual a aplicação usada para enviar as publicações
         setting_system_font_ui: Usar o tipo de letra padrão do sistema
         setting_theme: Tema do sítio
         setting_trends: Mostrar o que está hoje em alta

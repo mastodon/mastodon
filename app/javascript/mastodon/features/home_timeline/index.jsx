@@ -14,7 +14,7 @@ import { fetchAnnouncements, toggleShowAnnouncements } from 'mastodon/actions/an
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import AnnouncementsContainer from 'mastodon/features/getting_started/containers/announcements_container';
-import { me, criticalUpdatesPending } from 'mastodon/initial_state';
+import { me } from 'mastodon/initial_state';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { expandHomeTimeline } from '../../actions/timelines';
@@ -23,7 +23,6 @@ import ColumnHeader from '../../components/column_header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import { ColumnSettings } from './components/column_settings';
-import { CriticalUpdateBanner } from './components/critical_update_banner';
 import { ExplorePrompt } from './components/explore_prompt';
 
 const messages = defineMessages({
@@ -157,9 +156,8 @@ class HomeTimeline extends PureComponent {
     const { intl, hasUnread, columnId, multiColumn, tooSlow, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
     const pinned = !!columnId;
     const { signedIn } = this.context.identity;
-    const banners = [];
 
-    let announcementsButton;
+    let announcementsButton, banner;
 
     if (hasAnnouncements) {
       announcementsButton = (
@@ -175,12 +173,8 @@ class HomeTimeline extends PureComponent {
       );
     }
 
-    if (criticalUpdatesPending) {
-      banners.push(<CriticalUpdateBanner key='critical-update-banner' />);
-    }
-
     if (tooSlow) {
-      banners.push(<ExplorePrompt key='explore-prompt' />);
+      banner = <ExplorePrompt />;
     }
 
     return (
@@ -202,7 +196,7 @@ class HomeTimeline extends PureComponent {
 
         {signedIn ? (
           <StatusListContainer
-            prepend={banners}
+            prepend={banner}
             alwaysPrepend
             trackScroll={!pinned}
             scrollKey={`home_timeline-${columnId}`}

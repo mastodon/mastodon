@@ -8,11 +8,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { debounce } from 'lodash';
-
 import { Icon }  from 'mastodon/components/icon';
 
-import { fetchReblogs, expandReblogs } from '../../actions/interactions';
+import { fetchReblogs } from '../../actions/interactions';
 import ColumnHeader from '../../components/column_header';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
@@ -24,9 +22,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'reblogged_by', props.params.statusId, 'items']),
-  hasMore: !!state.getIn(['user_lists', 'reblogged_by', props.params.statusId, 'next']),
-  isLoading: state.getIn(['user_lists', 'reblogged_by', props.params.statusId, 'isLoading'], true),
+  accountIds: state.getIn(['user_lists', 'reblogged_by', props.params.statusId]),
 });
 
 class Reblogs extends ImmutablePureComponent {
@@ -35,8 +31,6 @@ class Reblogs extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     accountIds: ImmutablePropTypes.list,
-    hasMore: PropTypes.bool,
-    isLoading: PropTypes.bool,
     multiColumn: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
@@ -45,18 +39,20 @@ class Reblogs extends ImmutablePureComponent {
     if (!this.props.accountIds) {
       this.props.dispatch(fetchReblogs(this.props.params.statusId));
     }
-  };
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
+      this.props.dispatch(fetchReblogs(nextProps.params.statusId));
+    }
+  }
 
   handleRefresh = () => {
     this.props.dispatch(fetchReblogs(this.props.params.statusId));
   };
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandReblogs(this.props.params.statusId));
-  }, 300, { leading: true });
-
   render () {
-    const { intl, accountIds, hasMore, isLoading, multiColumn } = this.props;
+    const { intl, accountIds, multiColumn } = this.props;
 
     if (!accountIds) {
       return (
@@ -80,9 +76,6 @@ class Reblogs extends ImmutablePureComponent {
 
         <ScrollableList
           scrollKey='reblogs'
-          onLoadMore={this.handleLoadMore}
-          hasMore={hasMore}
-          isLoading={isLoading}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >

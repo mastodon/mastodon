@@ -6,7 +6,6 @@ class Filters::StatusesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_filter
   before_action :set_status_filters
-  before_action :set_pack
   before_action :set_body_classes
   before_action :set_cache_headers
 
@@ -26,10 +25,6 @@ class Filters::StatusesController < ApplicationController
   end
 
   private
-
-  def set_pack
-    use_pack 'admin'
-  end
 
   def set_filter
     @filter = current_account.custom_filters.find(params[:filter_id])

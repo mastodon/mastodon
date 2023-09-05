@@ -37,20 +37,25 @@ zh-HK:
         current_password: 基於保安緣故，請輸入目前帳號的密碼
         current_username: 請輸入目前帳戶的使用者名稱以確認
         digest: 僅在你長時間未登錄，且收到了私信時發送
+        discoverable: 允許陌生人從推薦、趨勢及其他功能發現你的帳號
         email: 你將收到一封確認電郵
         header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
         inbox_url: 在你想要使用的中繼站首頁，複製它的網址
         irreversible: 文章過濾是不可還原的，即使日後過濾器被移除，也無法重新看到被它濾走的文章
         locale: 使用者介面、電郵和通知的語言
+        locked: 你必須手動審核每個人對你的關注請求
         password: 使用至少 8 個字元
         phrase: 過濾器會閱讀文章和內容警告標語的字眼，然後決定過濾與否
         scopes: 選擇應用程式可以存取的 API。 若你選擇最高階的權限範圍，則無須選擇個別項目。
         setting_aggregate_reblogs: 請勿顯示新近被轉推的文章（只影響最新被推的文章）
-        setting_always_send_emails: 通常當你積極使用 Mastodon 時，我們不會發送電郵通知給你
+        setting_always_send_emails: 通常當你積極使用 TomX 時，我們不會發送電郵通知給你
         setting_default_sensitive: 敏感媒體預設隱藏，且按一下即可重新顯示
         setting_display_media_default: 隱藏標為敏感的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
         setting_display_media_show_all: 總是顯示標為敏感的媒體
+        setting_hide_network: 你所關注的人，和關注你的人，將不會在你的個人資料頁上顯示
+        setting_noindex: 此設定會影響到你的公開個人資料以及文章頁面
+        setting_show_application: 你用來發表文章的應用程式，將會顯示在你文章的詳細檢視中
         setting_use_blurhash: 漸變圖樣會基於隱藏媒體內容產生，但所有細節會變得模糊
         setting_use_pending_items: 關閉自動滾動更新，時間軸會在點擊後更新
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
@@ -58,7 +63,7 @@ zh-HK:
         domain: 此網域將能從此站獲取資料，而此站發出的數據也會被處理和存儲。
       email_domain_block:
         domain: 這可以是電郵地址所示的域名或它使用的 MX 紀錄。註冊時系統將檢查它。
-        with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，然後與解析結果一併封禁
+        with_dns_records: TomX 會嘗試解析所給域名的 DNS 記錄，然後與解析結果一併封禁
       featured_tag:
         name: 以下是你最近常用的標籤：
       filters:
@@ -72,14 +77,14 @@ zh-HK:
         bootstrap_timeline_accounts: 這些帳號會被置頂在新使用者的追蹤建議上。
         closed_registrations_message: 關閉註冊時顯示
         content_cache_retention_period: 當設定為正數時，來自其他伺服器的帖文將在指定天數後被刪除。無法還原這個操作。
-        custom_css: 你可以在 Mastodon 網頁版套用自訂樣式。
+        custom_css: 你可以在 TomX 網頁版套用自訂樣式。
         mascot: 覆蓋進階網頁介面中的插圖。
         media_cache_retention_period: 當設定為正數時，已下載的媒體檔案將在指定天數後被刪除，並視乎需要重新下載。
         peers_api_enabled: 本伺服器於聯邦宇宙相遇的網域名單。這裏不包括你與某伺服器有否聯網的數據，僅表示你的伺服器已知的網域。這是供收集一般跨站數據的服務使用。
         profile_directory: 個人檔案目錄羅列了所有選擇被發現的使用者。
         require_invite_text: 如果需要手動審核註冊，請將「為何你想加入？」文字欄設定為必填，而非選填。
         site_contact_email: 大家如何聯絡你有關法律或支援的查詢。
-        site_contact_username: 大家如何在 Mastodon 聯繫你。
+        site_contact_username: 大家如何在 TomX 聯繫你。
         site_extended_description: 所有對訪客和使用者有用的額外資訊，都可以用 Markdown 語法編寫。
         site_short_description: 用作辨別你的伺服器的一段簡短描述。誰營運它，它為誰服務的？
         site_terms: 使用你的私隱政策，或者留空使用預設的，可以用 Markdown 語法編寫。
@@ -167,6 +172,7 @@ zh-HK:
         context: 所過濾情境
         current_password: 目前密碼
         data: 資料
+        discoverable: 在目錄列出此帳號
         display_name: 顯示名稱
         email: 電郵地址
         expires_in: 失效時間
@@ -176,6 +182,7 @@ zh-HK:
         inbox_url: 中繼收件匣的 URL
         irreversible: 丟棄而非隱藏
         locale: 介面語言
+        locked: 將帳號轉為「私人」
         max_uses: 最大使用次數
         new_password: 新密碼
         note: 簡介
@@ -198,7 +205,9 @@ zh-HK:
         setting_display_media_show_all: 全部顯示
         setting_expand_spoilers: 永遠展開標有內容警告的文章
         setting_hide_network: 隱藏你的社交網絡
+        setting_noindex: 聲明本站不希望搜尋器讓外界搜尋
         setting_reduce_motion: 減少動畫效果
+        setting_show_application: 顯示用來發表文章的應用程式
         setting_system_font_ui: 使用系統預設字型
         setting_theme: 網站主題
         setting_trends: 顯示今天的趨勢

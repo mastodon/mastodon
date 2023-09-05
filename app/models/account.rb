@@ -50,7 +50,6 @@
 #  trendable                     :boolean
 #  reviewed_at                   :datetime
 #  requested_review_at           :datetime
-#  indexable                     :boolean          default(FALSE), not null
 #
 
 class Account < ApplicationRecord
@@ -62,8 +61,6 @@ class Account < ApplicationRecord
     hub_url
     trust_level
   )
-
-  BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
 
   USERNAME_RE   = /[a-z0-9_]+([a-z0-9_.-]+[a-z0-9_]+)?/i
   MENTION_RE    = %r{(?<=^|[^/[:word:]])@((#{USERNAME_RE})(?:@[[:word:].-]+[[:word:]]+)?)}i
@@ -82,11 +79,6 @@ class Account < ApplicationRecord
   include DomainMaterializable
   include AccountMerging
   include AccountSearch
-  include AccountStatusesSearch
-
-  MAX_DISPLAY_NAME_LENGTH = (ENV['MAX_DISPLAY_NAME_CHARS'] || 30).to_i
-  MAX_NOTE_LENGTH = (ENV['MAX_BIO_CHARS'] || 500).to_i
-  DEFAULT_FIELDS_SIZE = (ENV['MAX_PROFILE_FIELDS'] || 4).to_i
 
   enum protocol: { ostatus: 0, activitypub: 1 }
   enum suspension_origin: { local: 0, remote: 1 }, _prefix: true
@@ -103,9 +95,9 @@ class Account < ApplicationRecord
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
-  validates :display_name, length: { maximum: MAX_DISPLAY_NAME_LENGTH }, if: -> { local? && will_save_change_to_display_name? }
-  validates :note, note_length: { maximum: MAX_NOTE_LENGTH }, if: -> { local? && will_save_change_to_note? }
-  validates :fields, length: { maximum: DEFAULT_FIELDS_SIZE }, if: -> { local? && will_save_change_to_fields? }
+  validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
+  validates :note, note_length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
+  validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
   validates :uri, absence: true, if: :local?, on: :create
   validates :inbox_url, absence: true, if: :local?, on: :create
   validates :shared_inbox_url, absence: true, if: :local?, on: :create
@@ -216,12 +208,6 @@ class Account < ApplicationRecord
     last_webfingered_at.nil? || last_webfingered_at <= 1.day.ago
   end
 
-  def schedule_refresh_if_stale!
-    return unless last_webfingered_at.present? && last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
-
-    AccountRefreshWorker.perform_in(rand(6.hours.to_i), id)
-  end
-
   def refresh!
     ResolveAccountService.new.call(acct) unless local?
   end
@@ -280,6 +266,10 @@ class Account < ApplicationRecord
 
   def memorialize!
     update!(memorial: true)
+  end
+
+  def trendable?
+    boolean_with_default('trendable', Setting.trendable_by_default)
   end
 
   def sign?
@@ -343,6 +333,8 @@ class Account < ApplicationRecord
 
     self[:fields] = fields
   end
+
+  DEFAULT_FIELDS_SIZE = 4
 
   def build_fields
     return if fields.size >= DEFAULT_FIELDS_SIZE
@@ -449,20 +441,7 @@ class Account < ApplicationRecord
         EntityCache.instance.mention(username, domain)
       end
     end
-
-    def inverse_alias(key, original_key)
-      define_method("#{key}=") do |value|
-        public_send("#{original_key}=", !ActiveModel::Type::Boolean.new.cast(value))
-      end
-
-      define_method(key) do
-        !public_send(original_key)
-      end
-    end
   end
-
-  inverse_alias :show_collections, :hide_collections
-  inverse_alias :unlocked, :locked
 
   def emojis
     @emojis ||= CustomEmoji.from_text(emojifiable_text, domain)

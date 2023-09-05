@@ -23,28 +23,28 @@ hu:
         explanation: Ezzel az emailcímmel kezdeményeztél egy regisztrációt a %{host} kiszolgálón. Csak egy kattintásra vagy az aktiválástól. Ha a regisztrációt nem te indítottad, tekintsd ezt az emailt tárgytalannak.
         explanation_when_pending: Ezzel az email címmel meghívást kértél a %{host} kiszolgálóra. Amint az emailcímedet megerősítetted, áttekintjük a jelentkezésedet. Ennek ideje alatt bejelentkezhetsz az adataid módosításához vagy a fiókod törléséhez, de a funkciók többségét nem használhatod a fiókod jóváhagyásáig. Ha a jelentkezésed elutasításra kerül, az adataid törlésre kerülnek, így nincs más teendőd. Ha nem te kezdeményezted ezt, tekintsd ezt az emailt tárgytalannak.
         extra_html: Tekintsd át a <a href="%{terms_path}">a kiszolgáló szabályait</a> és <a href="%{policy_path}">a felhasználási feltételeket</a>.
-        subject: 'Mastodon: Megerősítési utasítások: %{instance}'
+        subject: 'TomX: Megerősítési utasítások: %{instance}'
         title: Emailcím megerősítése
       email_changed:
         explanation: 'A fiókodhoz tartozó e-mail cím a következőre változik:'
         extra: Ha nem változtattad meg az e-mail címed, akkor valószínű, hogy valaki hozzáférhetett a fiókodhoz. Kérjük, azonnal változtasd meg a jelszavadat, vagy lépj kapcsolatba a szerver adminisztrátorával, ha ki vagy zárva a fiókodból.
-        subject: 'Mastodon: Email megváltozott'
+        subject: 'TomX: Email megváltozott'
         title: Új emailcím
       password_change:
         explanation: A fiókodhoz tartozó jelszót megváltoztattuk.
         extra: Ha nem te kérted a fiókod jelszavának módosítását, akkor valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot a kiszolgálód adminisztrátorával.
-        subject: 'Mastodon: A jelszó megváltoztatásra került'
+        subject: 'TomX: A jelszó megváltoztatásra került'
         title: A jelszó megváltoztatásra került
       reconfirmation_instructions:
         explanation: Az emailcím megváltoztatásához meg kell erősítened az új címet.
-        extra: Amennyiben nem te kezdeményezted ezt a módosítást, kérjük tekintsd ezt az emailt tárgytalannak. A Mastodon fiókodhoz tartozó emailcímed változatlan marad mindaddig, amíg rá nem kattintasz a fenti linkre.
-        subject: 'Mastodon: Email cím megerősítése: %{instance}'
+        extra: Amennyiben nem te kezdeményezted ezt a módosítást, kérjük tekintsd ezt az emailt tárgytalannak. A TomX fiókodhoz tartozó emailcímed változatlan marad mindaddig, amíg rá nem kattintasz a fenti linkre.
+        subject: 'TomX: Email cím megerősítése: %{instance}'
         title: Emailcím megerősítése
       reset_password_instructions:
         action: Jelszó módosítása
         explanation: A fiókodhoz tartozó jelszó módosítását kezdeményezted.
         extra: Amennyiben nem te kezdeményezted a módosítást, kérjük tekintsd ezt az emailt tárgytalannak. A jelszavad változatlan marad mindaddig, amíg újat nem hozol létre a fenti linkre kattintva.
-        subject: 'Mastodon: Jelszó visszaállítási lépések'
+        subject: 'TomX: Jelszó visszaállítási lépések'
         title: Jelszó visszaállítása
       two_factor_disabled:
         explanation: A fiókod kétlépcsős hitelesítését kikapcsoltuk. A bejelentkezés mostantól csak az e-mail cím és a jelszó használatával lesz lehetséges.
@@ -59,23 +59,23 @@ hu:
         subject: Kétlépcsős helyreállítási kódok újra létrejöttek
         title: A kétlépcsős kódok megváltoztak
       unlock_instructions:
-        subject: 'Mastodon: Feloldási lépések'
+        subject: 'TomX: Feloldási lépések'
       webauthn_credential:
         added:
           explanation: A következő biztonsági kulcsot hozzáadtuk a fiókodhoz
-          subject: 'Mastodon: Új biztonsági kulcs'
+          subject: 'TomX: Új biztonsági kulcs'
           title: Új biztonsági kulcs lett hozzáadva
         deleted:
           explanation: A következő biztonsági kulcsot töröltük a fiókodból
-          subject: 'Mastodon: A biztonsági kulcs törlésre került'
+          subject: 'TomX: A biztonsági kulcs törlésre került'
           title: Az egyik biztonsági kulcsodat törölték
       webauthn_disabled:
         explanation: A biztonsági kulccsal történő hitelesítést letiltottuk a fiókodon. Bejelentkezni csak a párosított TOTP app által generált tokennel lehet.
-        subject: 'Mastodon: A biztonsági kulccsal történő hitelesítés letiltásra került'
+        subject: 'TomX: A biztonsági kulccsal történő hitelesítés letiltásra került'
         title: A biztonsági kulcsok letiltásra kerültek
       webauthn_enabled:
         explanation: A biztonsági kulccsal történő hitelesítést engedélyeztük a fiókodon. A biztonsági kulcsodat mostantól használhatod bejelentkezésre.
-        subject: 'Mastodon: A biztonsági kulcsos hitelesítés engedélyezésre került'
+        subject: 'TomX: A biztonsági kulcsos hitelesítés engedélyezésre került'
         title: A biztonsági kulcsok engedélyezésre kerültek
     omniauth_callbacks:
       failure: Sikertelen hitelesítés %{kind} fiókról, mert "%{reason}".

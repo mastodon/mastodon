@@ -1,10 +1,10 @@
 ---
 sco:
   about:
-    about_mastodon_html: 'The social network o wir future: Nae adverts, nae corporate surveillance; ethical design, an decentralization! Ain yer ain data wi Mastodon!'
+    about_mastodon_html: 'The social network o wir future: Nae adverts, nae corporate surveillance; ethical design, an decentralization! Ain yer ain data wi TomX!'
     contact_missing: No set
     contact_unavailable: N/A
-    hosted_on: Mastodon hostit on %{domain}
+    hosted_on: TomX hostit on %{domain}
     title: Aboot
   accounts:
     follow: Follae
@@ -628,7 +628,7 @@ sco:
         moderation: Moderation
         special: Special
       delete: Delete
-      description_html: Wi <strong>uiser roles</strong>, ye kin customize whit functions an areas o Mastodon yer uisers kin access.
+      description_html: Wi <strong>uiser roles</strong>, ye kin customize whit functions an areas o TomX yer uisers kin access.
       edit: Edit '%{name}' role
       everyone: Defaut permissions
       everyone_full_description_html: This is the <strong>base role</strong> affectin <strong>aw uisers</strong>, even thaim athoot a assignt role. Aw ither roles inherit permissions fae it.
@@ -691,17 +691,17 @@ sco:
         rules_hint: There a dedicatit area fir the rules thit yer uisers ur expectit tae haud tae.
         title: Aboot
       appearance:
-        preamble: Customize Mastodon's wab interface.
+        preamble: Customize TomX's wab interface.
         title: Appearance
       branding:
-        preamble: Yer server's ain brandin haes it staun oot fae ither servers in the netwirk. This information wull mibbie get displayit athort a variety o environments, sic as Mastodon's wab interface, native applications, in link previews on ither wabsteids an athin messaging apps, an mair asides. Fir this raison, it is best fir tae keep this information claer, short an concise.
+        preamble: Yer server's ain brandin haes it staun oot fae ither servers in the netwirk. This information wull mibbie get displayit athort a variety o environments, sic as TomX's wab interface, native applications, in link previews on ither wabsteids an athin messaging apps, an mair asides. Fir this raison, it is best fir tae keep this information claer, short an concise.
         title: Brandin
       content_retention:
-        preamble: Control hou uiser-generatit content is stored in Mastodon.
+        preamble: Control hou uiser-generatit content is stored in TomX.
         title: Content retention
       discovery:
         follow_recommendations: Follae recommendations
-        preamble: Bringin forret interestin content helps ye tae bring in new uisers thit mibbie wullnae ken oniebody on Mastodon yit. Control hou various discovery features wirk on yer server.
+        preamble: Bringin forret interestin content helps ye tae bring in new uisers thit mibbie wullnae ken oniebody on TomX yit. Control hou various discovery features wirk on yer server.
         profile_directory: Profile directory
         public_timelines: Public timelines
         title: Discovery
@@ -846,7 +846,7 @@ sco:
     webhooks:
       add_new: Add enpynt
       delete: Delete
-      description_html: A <strong>wabhook</strong> lets Mastodon push <strong>rael-time notifications</strong> aboot srlectit events tae yer ain application, sae thit yer application kin <strong>automatically trigger reactions</strong>.
+      description_html: A <strong>wabhook</strong> lets TomX push <strong>rael-time notifications</strong> aboot srlectit events tae yer ain application, sae thit yer application kin <strong>automatically trigger reactions</strong>.
       disable: Turn aff
       disabled: Turnt aff
       edit: Edit enpynt
@@ -908,7 +908,7 @@ sco:
     confirmation_dialogs: Confirmation dialogs
     discovery: Discovery
     localization:
-      body: Mastodon is translatit bi volunteers.
+      body: TomX is translatit bi volunteers.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Awbody kin contribute.
     sensitive_content: Sensitive content
@@ -931,9 +931,9 @@ sco:
     delete_account: Delete accoont
     delete_account_html: If ye'r wantin tae delete yer accoont, ye kin <a href="%{path}">dae it here</a>. Ye'll get asked fir confirmation.
     description:
-      prefix_invited_by_user: "@%{name} invites ye tae jyne this server o Mastodon!"
-      prefix_sign_up: Sign up on Mastodon the day!
-      suffix: Wi a accoont, ye'll be able tae follae fowk, post updates an exchynge messages wi uisers fae onie Mastodon server an mair!
+      prefix_invited_by_user: "@%{name} invites ye tae jyne this server o TomX!"
+      prefix_sign_up: Sign up on TomX the day!
+      suffix: Wi a accoont, ye'll be able tae follae fowk, post updates an exchynge messages wi uisers fae onie TomX server an mair!
     dont_have_your_security_key: Dinnae hae yer security key?
     forgot_password: Forgot yer passwird?
     invalid_reset_password_token: Passwird reset token isnae valid or expirit. Please request a new ane.
@@ -958,7 +958,7 @@ sco:
     security: Security
     set_new_password: Set new passwird
     sign_up:
-      preamble: Wi a accoont on this Mastodon server, ye'll be able tae follae onie ither person on the netwirk, regairdless o whaur their accoont is hostit.
+      preamble: Wi a accoont on this TomX server, ye'll be able tae follae onie ither person on the netwirk, regairdless o whaur their accoont is hostit.
       title: Let's get ye set up on %{domain}.
     status:
       account_status: Accoont status
@@ -1059,7 +1059,7 @@ sco:
       content: We're sorry, but somethin went wrang on oor en.
       title: This page isnae correct
     '503': The page cuidnae be served doon tae a temporary server failure.
-    noscript_html: Fir tae uise the Mastodon wab application, please turn on JavaScript. Alternatively, try ane o the <a href="%{apps_path}">native apps</a> fir Mastodon fir yer platform.
+    noscript_html: Fir tae uise the TomX wab application, please turn on JavaScript. Alternatively, try ane o the <a href="%{apps_path}">native apps</a> fir TomX fir yer platform.
   existing_username_validator:
     not_found: cuidnae fin a local uiser wi that uisernemm
     not_found_multiple: cuidnae fin %{usernames}
@@ -1377,7 +1377,7 @@ sco:
       weibo: Weibo
     current_session: Current session
     description: "%{browser} on %{platform}"
-    explanation: Thir's the wab broosers logged in tae yer Mastodon accoont the noo.
+    explanation: Thir's the wab broosers logged in tae yer TomX accoont the noo.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1401,7 +1401,7 @@ sco:
     aliases: Accoont aliases
     appearance: Appearance
     authorized_apps: Authorized apps
-    back: Back tae Mastodon
+    back: Back tae TomX
     delete: Accoont deletion
     development: Development
     edit_profile: Edit profile
@@ -1509,9 +1509,9 @@ sco:
   tags:
     does_not_match_previous_name: disnae match the previous nemm
   themes:
-    contrast: Mastodon (Heich contrast)
-    default: Mastodon (Daurk)
-    mastodon-light: Mastodon (Licht)
+    contrast: TomX (Heich contrast)
+    default: TomX (Daurk)
+    mastodon-light: TomX (Licht)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1543,7 +1543,7 @@ sco:
       subject: Yer appeal fae %{date} haes been rejectit
       title: Appeal rejectit
     backup_ready:
-      explanation: Ye wantit a ful backup o yer Mastodon accoont. It's riddy fir tae doonload noo!
+      explanation: Ye wantit a ful backup o yer TomX accoont. It's riddy fir tae doonload noo!
       subject: Yer archive is riddy fir doonload
       title: Archive takoot
     suspicious_sign_in:
@@ -1592,7 +1592,7 @@ sco:
       final_step: 'Stert postin! Even athout follaers, yer public posts kin stull be seen bi ithers, fir example on the local timeline or in hashtags. Ye mibbie want tae introduce yersel on the #introductions hashtag.'
       full_handle: Yer ful haunnle
       full_handle_hint: This is whit ye wad tell yer pals sae thit they kin message or follae ye fae anither server.
-      subject: Welcome tae Mastodon, 'mon in
+      subject: Welcome tae TomX, 'mon in
       title: Welcome aboord, %{name}!
   users:
     follow_limit_reached: Ye cannae follae mair than %{limit} fowk

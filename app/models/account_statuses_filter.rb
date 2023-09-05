@@ -35,7 +35,7 @@ class AccountStatusesFilter
     return Status.none if suspended?
 
     if anonymous?
-      account.statuses.not_local_only.where(visibility: %i(public unlisted))
+      account.statuses.where(visibility: %i(public unlisted))
     elsif author?
       account.statuses.all # NOTE: #merge! does not work without the #all
     elsif blocked?

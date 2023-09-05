@@ -3,7 +3,6 @@
 class Auth::SetupController < ApplicationController
   layout 'auth'
 
-  before_action :set_pack
   before_action :authenticate_user!
   before_action :require_unconfirmed_or_pending!
   before_action :set_body_classes
@@ -42,9 +41,5 @@ class Auth::SetupController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email)
-  end
-
-  def set_pack
-    use_pack 'sign_up'
   end
 end

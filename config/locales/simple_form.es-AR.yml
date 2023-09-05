@@ -41,20 +41,25 @@ es-AR:
         current_password: Por razones de seguridad, por favor, ingresá la contraseña de la cuenta actual
         current_username: Para confirmar, por favor, ingresá el nombre de usuario de la cuenta actual
         digest: Sólo enviado tras un largo periodo de inactividad, y sólo si recibiste mensajes personales en tu ausencia
+        discoverable: Permití que tu cuenta sea descubierta por extraños a través de recomendaciones, tendencias y otras funciones
         email: Se te enviará un correo electrónico de confirmación
         header: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles.'
         inbox_url: Copiá la dirección web desde la página principal del relé que querés usar
         irreversible: Los mensajes filtrados desaparecerán irreversiblemente, incluso si este filtro es eliminado después
         locale: El idioma de la interface de usuario, correos electrónicos y notificaciones push
+        locked: Controlá manualmente quién puede seguirte al aprobar solicitudes de seguimiento
         password: Usá al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o las advertencias de contenido de un mensaje
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionás el alcance de nivel más alto, no necesitás seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevas adhesiones de los mensajes que fueron recientemente adheridos (sólo afecta a las adhesiones recibidas recientemente)
-        setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
+        setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando TomX activamente
         setting_default_sensitive: El contenido de medios sensibles está oculto predeterminadamente y puede ser mostrado con un clic
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Siempre ocultar todos los medios
         setting_display_media_show_all: Siempre mostrar todos los medios
+        setting_hide_network: Las cuentas que seguís y tus seguidores serán ocultados en tu perfil
+        setting_noindex: Afecta a tu perfil público y páginas de mensajes
+        setting_show_application: La aplicación que usás para enviar mensajes se mostrará en la vista detallada de tus mensajes
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar actualizaciones de la línea temporal detrás de un clic en lugar de desplazar automáticamente el flujo
         username: Podés usar letras, números y subguiones ("_")
@@ -77,14 +82,14 @@ es-AR:
         bootstrap_timeline_accounts: Estas cuentas serán fijadas a la parte superior de las recomendaciones de cuentas a seguir para nuevos usuarios.
         closed_registrations_message: Mostrado cuando los registros están cerrados
         content_cache_retention_period: Todos los mensajes y adhesiones de otros servidores se eliminarán después del número especificado de días. Es posible que algunos mensajes no sean recuperables. Todos los marcadores relacionados, mensajes marcados como favoritos y adhesiones también se perderán y será imposible de deshacer.
-        custom_css: Podés aplicar estilos personalizados a la versión web de Mastodon.
+        custom_css: Podés aplicar estilos personalizados a la versión web de TomX.
         mascot: Reemplaza la ilustración en la interface web avanzada.
         media_cache_retention_period: Los archivos de medios descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se volverán a descargar a pedido.
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Acá no se incluye ningún dato sobre si federás con un servidor determinado, sólo que tu servidor lo conoce. Esto es usado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado a que su cuenta pueda ser descubierta.
         require_invite_text: Cuando registros aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
         site_contact_email: Cómo la gente puede estar en contacto con vos para consultas legales o de ayuda.
-        site_contact_username: Cómo la gente puede estar en contacto con vos en Mastodon.
+        site_contact_username: Cómo la gente puede estar en contacto con vos en TomX.
         site_extended_description: Cualquier información adicional que pueda ser útil para los visitantes y tus usuarios. Se puede estructurar con sintaxis Markdown.
         site_short_description: Una breve descripción para ayudar a identificar individualmente a tu servidor. ¿Quién lo administra, a quién va dirigido?
         site_terms: Usá tu propia política de privacidad o dejala en blanco para usar la predeterminada. Puede estructurarse con sintaxis Markdown.
@@ -99,7 +104,7 @@ es-AR:
       form_challenge:
         current_password: Estás ingresando en un área segura
       imports:
-        data: Archivo CSV exportado desde otro servidor de Mastodon
+        data: Archivo CSV exportado desde otro servidor de TomX
       invite_request:
         text: Esto nos ayudará a revisar tu solicitud
       ip_block:
@@ -173,6 +178,7 @@ es-AR:
         context: Filtrar contextos
         current_password: Contraseña actual
         data: Datos
+        discoverable: Sugerir cuenta a otros
         display_name: Nombre para mostrar
         email: Dirección de correo electrónico
         expires_in: Vence después de
@@ -182,6 +188,7 @@ es-AR:
         inbox_url: Dirección web de la bandeja de entrada del relé
         irreversible: Dejar en lugar de ocultar
         locale: Idioma de la interface
+        locked: Requerir solicitudes de seguimiento
         max_uses: Número máximo de usos
         new_password: Nueva contraseña
         note: Biografía
@@ -204,7 +211,9 @@ es-AR:
         setting_display_media_show_all: Mostrar todo
         setting_expand_spoilers: Siempre expandir los mensajes marcados con advertencias de contenido
         setting_hide_network: Ocultá tu gráfica social
+        setting_noindex: Excluirse del indexado de motores de búsqueda
         setting_reduce_motion: Reducir el movimiento de las animaciones
+        setting_show_application: Mostrar aplicación usada para enviar mensajes
         setting_system_font_ui: Utilizar la tipografía predeterminada del sistema
         setting_theme: Tema del sitio
         setting_trends: Mostrar las tendencias de hoy

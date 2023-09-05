@@ -3,13 +3,9 @@ en:
   simple_form:
     hints:
       account:
-        discoverable: Your public posts and profile may be featured or recommended in various areas of Mastodon and your profile may be suggested to other users.
         display_name: Your full name or your fun name.
         fields: Your homepage, pronouns, age, anything you want.
-        indexable: Your public posts may appear in search results on Mastodon. People who have interacted with your posts may be able to search them regardless.
         note: 'You can @mention other people or #hashtags.'
-        show_collections: People will be able to browse through your follows and followers. People that you follow will see that you follow them regardless.
-        unlocked: People will be able to follow you without requesting approval. Uncheck if you want to review follow requests and chose whether to accept or reject new followers.
       account_alias:
         acct: Specify the username@domain of the account you want to move from
       account_migration:
@@ -45,20 +41,25 @@ en:
         current_password: For security purposes please enter the password of the current account
         current_username: To confirm, please enter the username of the current account
         digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
+        discoverable: Allow your account to be discovered by strangers through recommendations, trends and other features
         email: You will be sent a confirmation e-mail
         header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         inbox_url: Copy the URL from the frontpage of the relay you want to use
         irreversible: Filtered posts will disappear irreversibly, even if filter is later removed
         locale: The language of the user interface, e-mails and push notifications
+        locked: Manually control who can follow you by approving follow requests
         password: Use at least 8 characters
         phrase: Will be matched regardless of casing in text or content warning of a post
         scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
         setting_aggregate_reblogs: Do not show new boosts for posts that have been recently boosted (only affects newly-received boosts)
-        setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using Mastodon
+        setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using TomX
         setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Hide media marked as sensitive
         setting_display_media_hide_all: Always hide media
         setting_display_media_show_all: Always show media
+        setting_hide_network: Who you follow and who follows you will be hidden on your profile
+        setting_noindex: Affects your public profile and post pages
+        setting_show_application: The application you use to post will be displayed in the detailed view of your posts
         setting_use_blurhash: Gradients are based on the colors of the hidden visuals but obfuscate any details
         setting_use_pending_items: Hide timeline updates behind a click instead of automatically scrolling the feed
         username: You can use letters, numbers, and underscores
@@ -81,14 +82,14 @@ en:
         bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
         closed_registrations_message: Displayed when sign-ups are closed
         content_cache_retention_period: All posts and boosts from other servers will be deleted after the specified number of days. Some posts may not be recoverable. All related bookmarks, favourites and boosts will also be lost and impossible to undo.
-        custom_css: You can apply custom styles on the web version of Mastodon.
+        custom_css: You can apply custom styles on the web version of TomX.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
         peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: The profile directory lists all users who have opted-in to be discoverable.
         require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
         site_contact_email: How people can reach you for legal or support inquiries.
-        site_contact_username: How people can reach you on Mastodon.
+        site_contact_username: How people can reach you on TomX.
         site_extended_description: Any additional information that may be useful to visitors and your users. Can be structured with Markdown syntax.
         site_short_description: A short description to help uniquely identify your server. Who is running it, who is it for?
         site_terms: Use your own privacy policy or leave blank to use the default. Can be structured with Markdown syntax.
@@ -103,7 +104,7 @@ en:
       form_challenge:
         current_password: You are entering a secure area
       imports:
-        data: CSV file exported from another Mastodon server
+        data: CSV file exported from another TomX server
       invite_request:
         text: This will help us review your application
       ip_block:
@@ -120,9 +121,6 @@ en:
       sessions:
         otp: 'Enter the two-factor code generated by your phone app or use one of your recovery codes:'
         webauthn: If it's an USB key be sure to insert it and, if necessary, tap it.
-      settings:
-        indexable: Your profile page may appear in search results on Google, Bing, and others.
-        show_application: You will always be able to see which app published your post regardless.
       tag:
         name: You can only change the casing of the letters, for example, to make it more readable
       user:
@@ -140,13 +138,9 @@ en:
         url: Where events will be sent to
     labels:
       account:
-        discoverable: Feature profile and posts in discovery algorithms
         fields:
           name: Label
           value: Content
-        indexable: Include public posts in search results
-        show_collections: Show follows and followers on profile
-        unlocked: Automatically accept new followers
       account_alias:
         acct: Handle of the old account
       account_migration:
@@ -184,6 +178,7 @@ en:
         context: Filter contexts
         current_password: Current password
         data: Data
+        discoverable: Suggest account to others
         display_name: Display name
         email: E-mail address
         expires_in: Expire after
@@ -193,6 +188,7 @@ en:
         inbox_url: URL of the relay inbox
         irreversible: Drop instead of hide
         locale: Interface language
+        locked: Require follow requests
         max_uses: Max number of uses
         new_password: New password
         note: Bio
@@ -215,7 +211,9 @@ en:
         setting_display_media_show_all: Show all
         setting_expand_spoilers: Always expand posts marked with content warnings
         setting_hide_network: Hide your social graph
+        setting_noindex: Opt-out of search engine indexing
         setting_reduce_motion: Reduce motion in animations
+        setting_show_application: Disclose application used to send posts
         setting_system_font_ui: Use system's default font
         setting_theme: Site theme
         setting_trends: Show today's trends
@@ -291,18 +289,9 @@ en:
         pending_account: New account needs review
         reblog: Someone boosted your post
         report: New report is submitted
-        software_updates:
-          all: Notify on all updates
-          critical: Notify on critical updates only
-          label: A new Mastodon version is available
-          none: Never notify of updates (not recommended)
-          patch: Notify on bugfix updates
         trending_tag: New trend requires review
       rule:
         text: Rule
-      settings:
-        indexable: Include profile page in search engines
-        show_application: Display from which app you sent a post
       tag:
         listable: Allow this hashtag to appear in searches and suggestions
         name: Hashtag
@@ -323,7 +312,6 @@ en:
         url: Endpoint URL
     'no': 'No'
     not_recommended: Not recommended
-    overridden: Overridden
     recommended: Recommended
     required:
       mark: "*"

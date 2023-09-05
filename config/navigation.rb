@@ -3,21 +3,12 @@
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |n|
     n.item :web, safe_join([fa_icon('chevron-left fw'), t('settings.back')]), root_path
-
-    n.item :software_updates, safe_join([fa_icon('exclamation-circle fw'), t('admin.critical_update_pending')]), admin_software_updates_path, if: -> { ENV['UPDATE_CHECK_URL'] != '' && current_user.can?(:view_devops) && SoftwareUpdate.urgent_pending? }, html: { class: 'warning' }
-
-    n.item :profile, safe_join([fa_icon('user fw'), t('settings.profile')]), settings_profile_path, if: -> { current_user.functional? }, highlights_on: %r{/settings/profile|/settings/featured_tags|/settings/verification|/settings/privacy}
+    n.item :profile, safe_join([fa_icon('user fw'), t('settings.profile')]), settings_profile_path, if: -> { current_user.functional? }, highlights_on: %r{/settings/profile|/settings/featured_tags|/settings/verification}
 
     n.item :preferences, safe_join([fa_icon('cog fw'), t('settings.preferences')]), settings_preferences_path, if: -> { current_user.functional? } do |s|
       s.item :appearance, safe_join([fa_icon('desktop fw'), t('settings.appearance')]), settings_preferences_appearance_path
       s.item :notifications, safe_join([fa_icon('bell fw'), t('settings.notifications')]), settings_preferences_notifications_path
       s.item :other, safe_join([fa_icon('cog fw'), t('preferences.other')]), settings_preferences_other_path
-    end
-
-    n.item :flavours, safe_join([fa_icon('paint-brush fw'), t('settings.flavours')]), settings_flavours_path do |flavours|
-      Themes.instance.flavours.each do |flavour|
-        flavours.item flavour.to_sym, safe_join([fa_icon('star fw'), t("flavours.#{flavour}.name", default: flavour)]), settings_flavour_path(flavour)
-      end
     end
 
     n.item :relationships, safe_join([fa_icon('users fw'), t('settings.relationships')]), relationships_path, if: -> { current_user.functional? }

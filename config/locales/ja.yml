@@ -1,10 +1,10 @@
 ---
 ja:
   about:
-    about_mastodon_html: Mastodonは、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
+    about_mastodon_html: TomXは、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     contact_missing: 未設定
     contact_unavailable: N/A
-    hosted_on: Mastodon hosted on %{domain}
+    hosted_on: TomX hosted on %{domain}
     title: このサーバーについて
   accounts:
     follow: フォロー
@@ -659,7 +659,7 @@ ja:
         moderation: モデレーション
         special: スペシャル
       delete: 削除
-      description_html: "<strong>ユーザー ロール</strong>を使用すると、ユーザーがアクセスできる Mastodon の機能や領域をカスタマイズできます。"
+      description_html: "<strong>ユーザー ロール</strong>を使用すると、ユーザーがアクセスできる TomX の機能や領域をカスタマイズできます。"
       edit: "『%{name}』のロールを編集"
       everyone: デフォルトの権限
       everyone_full_description_html: これは、割り当てられたロールを持っていないものであっても、 <strong>すべてのユーザー</strong> に影響を与える <strong>基本ロール</strong>です。 他のすべてのロールは、そこから権限を継承します。
@@ -730,14 +730,14 @@ ja:
         desc_html: この機能は hCaptcha による外部スクリプトを使用しますが、hCaptcha にはセキュリティとプライバシーの懸念が考えられます。また、<strong>CAPTCHAにより新規登録のアクセシビリティが大幅に損なわれる可能性があり、身体および精神障害者においては特に顕著です。</strong>以上の理由から、承認制や招待制を基本とするなど、代わりの登録手順を提供することを検討してください。
         title: 新規ユーザーのアカウント確認にCHAPCHAを要求する
       content_retention:
-        preamble: ユーザーが生成したコンテンツがどのように Mastodon に保存されるかを管理します。
+        preamble: ユーザーが生成したコンテンツがどのように TomX に保存されるかを管理します。
         title: コンテンツの保持
       default_noindex:
         desc_html: この設定を自分で変更していない全ユーザーに影響します
         title: デフォルトで検索エンジンによるインデックスを拒否する
       discovery:
         follow_recommendations: おすすめフォロー
-        preamble: Mastodon を知らないユーザーを取り込むには、興味深いコンテンツを浮上させることが重要です。サーバー上で様々なディスカバリー機能がどのように機能するかを制御します。
+        preamble: TomX を知らないユーザーを取り込むには、興味深いコンテンツを浮上させることが重要です。サーバー上で様々なディスカバリー機能がどのように機能するかを制御します。
         profile_directory: ディレクトリ
         public_timelines: 公開タイムライン
         publish_discovered_servers: 接続しているサーバーを公開する
@@ -951,7 +951,7 @@ ja:
     confirmation_dialogs: 確認ダイアログ
     discovery: 見つける
     localization:
-      body: Mastodonは有志によって翻訳されています。
+      body: TomXは有志によって翻訳されています。
       guide_link: https://ja.crowdin.com/project/mastodon
       guide_link_text: 誰でも参加することができます。
     sensitive_content: 閲覧注意コンテンツ
@@ -1031,7 +1031,7 @@ ja:
       title: "%{domain}にログイン"
     sign_up:
       manual_review: "%{domain} への登録にはモデレーターによる承認が必要です。審査の参考になるように、簡単な自己紹介や %{domain} に登録したい理由などを記入してください。"
-      preamble: この Mastodon サーバーのアカウントがあれば、ネットワーク上の他の人のアカウントがどこでホストされているかに関係なく、その人をフォローすることができます。
+      preamble: この TomX サーバーのアカウントがあれば、ネットワーク上の他の人のアカウントがどこでホストされているかに関係なく、その人をフォローすることができます。
       title: さあ %{domain} でセットアップしましょう.
     status:
       account_status: アカウントの状態
@@ -1122,6 +1122,7 @@ ja:
     basic_information: 基本情報
     hint_html: "<strong>アカウントのトップページや投稿の隣に表示される公開情報です。</strong>プロフィールとアイコンを設定することで、ほかのユーザーは親しみやすく、またフォローしやすくなります。"
     other: その他
+    safety_and_privacy: 安全とプライバシー
   errors:
     '400': 送信されたリクエストは無効であるか、または不正なフォーマットです。
     '403': このページを表示する権限がありません。
@@ -1136,7 +1137,7 @@ ja:
       content: もうしわけありませんが、なにかが間違っています。
       title: このページは正しくありません
     '503': 一時的なサーバー障害のため利用することができません。
-    noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="%{apps_path}">Mastodonネイティブアプリ</a>を探すことができます。
+    noscript_html: TomXのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="%{apps_path}">Mastodonネイティブアプリ</a>を探すことができます。
   existing_username_validator:
     not_found: そのようなユーザー名はローカルに見つかりませんでした
     not_found_multiple: "%{usernames}さんは見つかりませんでした"
@@ -1316,7 +1317,7 @@ ja:
     unsubscribe:
       action: 購読を解除する
       complete: 購読を解除しました
-      confirmation_html: '%{domain} の Mastodon による %{email} への%{type}を購読解除しますか？ 再購読が必要になった場合は<a href="%{settings_path}">メール通知の設定</a>からいつでも再開できます。'
+      confirmation_html: '%{domain} の TomX による %{email} への%{type}を購読解除しますか？ 再購読が必要になった場合は<a href="%{settings_path}">メール通知の設定</a>からいつでも再開できます。'
       emails:
         notification_emails:
           favourite: お気に入り登録の通知メール
@@ -1325,7 +1326,7 @@ ja:
           mention: 返信の通知メール
           reblog: ブーストの通知メール
       resubscribe_html: 間違って配信を停止した場合は、 <a href="%{settings_path}">メール通知設定</a>から再登録できます。
-      success_html: "%{domain} の Mastodon から %{email} への%{type}の配信が停止されました。"
+      success_html: "%{domain} の TomX から %{email} への%{type}の配信が停止されました。"
       title: 購読の解除
   media_attachments:
     validations:
@@ -1541,7 +1542,7 @@ ja:
     aliases: アカウントエイリアス
     appearance: 外観
     authorized_apps: 認証済みアプリ
-    back: Mastodonに戻る
+    back: TomXに戻る
     delete: アカウントの削除
     development: 開発
     edit_profile: プロフィールを編集
@@ -1644,9 +1645,9 @@ ja:
   tags:
     does_not_match_previous_name: 以前の名前と一致しません
   themes:
-    contrast: Mastodon (ハイコントラスト)
-    default: Mastodon (ダーク)
-    mastodon-light: Mastodon (ライト)
+    contrast: TomX (ハイコントラスト)
+    default: TomX (ダーク)
+    mastodon-light: TomX (ライト)
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
@@ -1678,7 +1679,7 @@ ja:
       subject: "%{date}の申し立てが拒否されました"
       title: 却下された抗議
     backup_ready:
-      explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
+      explanation: TomXアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
       subject: アーカイブの準備ができました
       title: アーカイブの取り出し
     suspicious_sign_in:
@@ -1729,7 +1730,7 @@ ja:
       final_step: 'さあ、始めましょう！ たとえフォロワーがまだいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどを通じて誰かの目にとまるはずです。自己紹介をしたいときには #introductions ハッシュタグが便利かもしれません。'
       full_handle: あなたの正式なユーザーID
       full_handle_hint: 別のサーバーの友達とフォローやメッセージをやり取りする際には、これを伝えることになります。
-      subject: Mastodonへようこそ
+      subject: TomXへようこそ
       title: ようこそ、%{name}さん！
   users:
     follow_limit_reached: あなたは現在 %{limit}人以上フォローできません

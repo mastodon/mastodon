@@ -39,10 +39,6 @@ module HasUserSettings
     settings['web.delete_modal']
   end
 
-  def setting_favourite_modal
-    settings['web.favourite_modal']
-  end
-
   def setting_reduce_motion
     settings['web.reduce_motion']
   end
@@ -51,20 +47,12 @@ module HasUserSettings
     settings['web.use_system_font']
   end
 
-  def setting_system_emoji_font
-    settings['web.use_system_emoji_font']
-  end
-
   def setting_noindex
     settings['noindex']
   end
 
-  def setting_flavour
-    settings['flavour']
-  end
-
-  def setting_skin
-    settings['skin']
+  def setting_theme
+    settings['theme']
   end
 
   def setting_display_media
@@ -115,14 +103,6 @@ module HasUserSettings
     settings['default_privacy'] || (account.locked? ? 'private' : 'public')
   end
 
-  def setting_default_content_type
-    settings['default_content_type']
-  end
-
-  def setting_hide_followers_count
-    settings['hide_followers_count']
-  end
-
   def allows_report_emails?
     settings['notification_emails.report']
   end
@@ -137,18 +117,6 @@ module HasUserSettings
 
   def allows_trends_review_emails?
     settings['notification_emails.trends']
-  end
-
-  def allows_trending_tags_review_emails?
-    settings['notification_emails.trends']
-  end
-
-  def allows_trending_links_review_emails?
-    settings['notification_emails.link_trends']
-  end
-
-  def allows_trending_statuses_review_emails?
-    settings['notification_emails.status_trends']
   end
 
   def aggregates_reblogs?

@@ -21,16 +21,12 @@ const messages = defineMessages({
 
 const mapStateToProps = (state, { accountId }) => ({
   displayNameHtml: state.getIn(['accounts', accountId, 'display_name_html']),
-  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSignupClick() {
-    dispatch(closeModal({
-        modalType: undefined,
-        ignoreFocus: false,
-      }));
-    dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
+    dispatch(closeModal());
+    dispatch(openModal('CLOSED_REGISTRATIONS'));
   },
 });
 
@@ -298,7 +294,6 @@ class InteractionModal extends React.PureComponent {
     url: PropTypes.string,
     type: PropTypes.oneOf(['reply', 'reblog', 'favourite', 'follow']),
     onSignupClick: PropTypes.func.isRequired,
-    signupUrl: PropTypes.string.isRequired,
   };
 
   handleSignupClick = () => {
@@ -306,7 +301,7 @@ class InteractionModal extends React.PureComponent {
   };
 
   render () {
-    const { url, type, displayNameHtml, signupUrl } = this.props;
+    const { url, type, displayNameHtml } = this.props;
 
     const name = <bdi dangerouslySetInnerHTML={{ __html: displayNameHtml }} />;
 
@@ -345,7 +340,7 @@ class InteractionModal extends React.PureComponent {
       );
     } else if (registrationsOpen) {
       signupButton = (
-        <a href={signupUrl} className='link-button'>
+        <a href='/auth/sign_up' className='link-button'>
           <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
         </a>
       );

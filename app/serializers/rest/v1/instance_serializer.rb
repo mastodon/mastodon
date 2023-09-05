@@ -4,7 +4,7 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :uri, :title, :short_description, :description, :email,
-             :version, :urls, :stats, :thumbnail, :max_toot_chars, :poll_limits,
+             :version, :urls, :stats, :thumbnail,
              :languages, :registrations, :approval_required, :invites_enabled,
              :configuration
 
@@ -34,19 +34,6 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
 
   def thumbnail
     instance_presenter.thumbnail ? full_asset_url(instance_presenter.thumbnail.file.url(:'@1x')) : full_pack_url('media/images/preview.png')
-  end
-
-  def max_toot_chars
-    StatusLengthValidator::MAX_CHARS
-  end
-
-  def poll_limits
-    {
-      max_options: PollValidator::MAX_OPTIONS,
-      max_option_chars: PollValidator::MAX_OPTION_CHARS,
-      min_expiration: PollValidator::MIN_EXPIRATION,
-      max_expiration: PollValidator::MAX_EXPIRATION,
-    }
   end
 
   def stats
@@ -79,7 +66,6 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
         max_characters: StatusLengthValidator::MAX_CHARS,
         max_media_attachments: 4,
         characters_reserved_per_url: StatusLengthValidator::URL_PLACEHOLDER_CHARS,
-        supported_mime_types: HtmlAwareFormatter::STATUS_MIME_TYPES,
       },
 
       media_attachments: {

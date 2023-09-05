@@ -5,7 +5,7 @@ class Api::V1::Trends::TagsController < Api::BaseController
 
   after_action :insert_pagination_headers
 
-  DEFAULT_TAGS_LIMIT = (ENV['MAX_TRENDING_TAGS'] || 10).to_i
+  DEFAULT_TAGS_LIMIT = 10
 
   def index
     cache_if_unauthenticated!

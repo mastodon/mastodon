@@ -41,20 +41,25 @@ is:
         current_password: Í öryggisskyni skaltu setja inn lykilorðið fyrir þennan notandaaðgang
         current_username: Til að staðfesta skaltu setja inn notandanafnið fyrir þennan notandaaðgang
         digest: Er aðeins sent eftir lengri tímabil án virkni og þá aðeins ef þú hefur fengið persónuleg skilaboð á meðan þú hefur ekki verið á línunni
+        discoverable: Gerðu öðrum kleift að finna aðganginn þinn í gegnum meðmæli, vinsældir og annað slíkt
         email: Þú munt fá sendan staðfestingarpóst
         header: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         inbox_url: Afritaðu slóðina af forsíðu endurvarpans sem þú vilt nota
         irreversible: Síaðar færslur munu hverfa óendurkræft, jafnvel þó sían sé seinna fjarlægð
         locale: Tungumál notandaviðmótsins, tölvupósts og ýti-tilkynninga
+        locked: Krefst þess að þú samþykkir fylgjendur handvirkt
         password: Notaðu minnst 8 stafi
         phrase: Verður notað til samsvörunar burtséð frá stafstöðu texta eða viðvörunar vegna efnis í færslu
         scopes: Að hvaða API-kerfisviðmótum forritið fær aðgang. Ef þú velur efsta-stigs svið, þarftu ekki að gefa einstakar heimildir.
         setting_aggregate_reblogs: Ekki sýna nýjar endurbirtingar á færslum sem hafa nýlega verið endurbirtar (hefur bara áhrif á ný-mótteknar endurbirtingar)
-        setting_always_send_emails: Venjulega eru tilkynningar í tölvupósti ekki sendar þegar þú ert virk/ur í að nota Mastodon
+        setting_always_send_emails: Venjulega eru tilkynningar í tölvupósti ekki sendar þegar þú ert virk/ur í að nota TomX
         setting_default_sensitive: Viðkvæmt myndefni er sjálfgefið falið og er hægt að birta með smelli
         setting_display_media_default: Fela myndefni sem merkt er viðkvæmt
         setting_display_media_hide_all: Alltaf fela allt myndefni
         setting_display_media_show_all: Alltaf birta myndefni sem merkt er viðkvæmt
+        setting_hide_network: Hverjum þú fylgist með og hverjir fylgjast með þér verður ekki birt á notandasniðinu þínu
+        setting_noindex: Hefur áhrif á opinbera notandasniðið þitt og færslusíður
+        setting_show_application: Nafnið á forritinu sem þú notar til að senda færslur mun birtast í ítarlegri sýn á færslunum þínum
         setting_use_blurhash: Litstiglarnir byggja á litunum í földu myndunum, en gera öll smáatriði óskýr
         setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er, í stað þess að hún skruni streyminu sjálfvirkt
         username: Þú mátt nota bókstafi, tölur og undirstrik
@@ -77,14 +82,14 @@ is:
         bootstrap_timeline_accounts: Þessir notendaaðgangar verða festir efst í meðmælum til nýrra notenda um að fylgjast með þeim.
         closed_registrations_message: Birtist þegar lokað er á nýskráningar
         content_cache_retention_period: Færslum af öðrum netþjónum verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi. Þetta gæti verið óafturkallanleg aðgerð.
-        custom_css: Þú getur virkjað sérsniðna stíla í vefútgáfu Mastodon.
+        custom_css: Þú getur virkjað sérsniðna stíla í vefútgáfu TomX.
         mascot: Þetta tekyr yfir myndskreytinguna í ítarlega vefviðmótinu.
         media_cache_retention_period: Sóttu myndefni verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi og síðan sótt aftur eftir þörfum.
         peers_api_enabled: Listi yfir þau lénaheiti sem þessi netþjónn hefur rekist á í skýjasambandinu. Engin gögn eru hér sem gefa til kynna hvort þú sért í sambandi við tiltekinn netþjón, bara að netþjónninn þinn viti um hann. Þetta er notað af þjónustum sem safna tölfræði um skýjasambönd á almennan hátt.
         profile_directory: Notendamappan telur upp alla þá notendur sem hafa valið að vera uppgötvanlegir.
         require_invite_text: Þegar nýskráningar krefjast handvirks samþykkis, þá skal gera textann í “Hvers vegna viltu taka þátt?” að kröfu en ekki valkvæðan
         site_contact_email: Hovernig fólk getur haft samband við þig til að fá aðstoð eða vegna lagalegra mála.
-        site_contact_username: Hovernig fólk getur haft samband við þig á Mastodon.
+        site_contact_username: Hovernig fólk getur haft samband við þig á TomX.
         site_extended_description: Hverjar þær viðbótarupplýsingar sem gætu nýst gestum þínum og notendum. Má sníða með Markdown-málskipan.
         site_short_description: Stutt lýsing sem hjálpar til við að auðkenna netþjóninn þinn. Hver er að reka hann, fyrir hverja er hann?
         site_terms: Notaðu þína eigin persónuverndarstefnu eða skildu þetta eftir autt til að nota sjálfgefna stefnu. Má sníða með Markdown-málskipan.
@@ -99,7 +104,7 @@ is:
       form_challenge:
         current_password: Þú ert að fara inn á öryggissvæði
       imports:
-        data: CSV-skrá sem flutt hefur verið út af öðrum Mastodon-þjóni
+        data: CSV-skrá sem flutt hefur verið út af öðrum TomX-þjóni
       invite_request:
         text: Þetta mun hjálpa okkur við að yfirfara umsóknina þína
       ip_block:
@@ -173,6 +178,7 @@ is:
         context: Samhengi síu
         current_password: Núverandi lykilorð
         data: Gögn
+        discoverable: Hafa þennan aðgang með í notendaskránni
         display_name: Birtingarnafn
         email: Tölvupóstfang
         expires_in: Rennur út eftir
@@ -182,6 +188,7 @@ is:
         inbox_url: URL-slóð á innhólf endurvarpa
         irreversible: Fella niður í staðinn fyrir að fela
         locale: Tungumál viðmóts
+        locked: Krefjast fylgjendabeiðna
         max_uses: Hámarksfjöldi afnota
         new_password: Nýtt lykilorð
         note: Æviágrip
@@ -204,7 +211,9 @@ is:
         setting_display_media_show_all: Birta allt
         setting_expand_spoilers: Alltaf útfella færslur sem eru með aðvörun vegna efnisins
         setting_hide_network: Fela félagsnetið þitt
+        setting_noindex: Afþakka atriðaskráningu í leitarvélum
         setting_reduce_motion: Minnka hreyfingu í hreyfimyndum
+        setting_show_application: Upplýsa um forrit sem er til að senda færslur
         setting_system_font_ui: Nota sjálfgefið letur kerfisins
         setting_theme: Þema vefsvæðis
         setting_trends: Birta það sem er efst á baugi í dag

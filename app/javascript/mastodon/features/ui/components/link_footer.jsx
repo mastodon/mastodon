@@ -89,7 +89,7 @@ class LinkFooter extends PureComponent {
           <Link to='/privacy-policy' target={multiColumn ? '_blank' : undefined}><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
         </p>
 
-        <p>
+        {/* <p>
           <strong>Mastodon</strong>:
           {' '}
           <a href='https://joinmastodon.org' target='_blank'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
@@ -101,7 +101,7 @@ class LinkFooter extends PureComponent {
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
           {DividingCircle}
           v{version}
-        </p>
+        </p> */}
       </div>
     );
   }

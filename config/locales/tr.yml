@@ -1,10 +1,10 @@
 ---
 tr:
   about:
-    about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
+    about_mastodon_html: TomX <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi TomX sunucusunu kurabilir ve sorunsuz bir şekilde TomX <em>sosyal ağına</em> dahil edebilir.
     contact_missing: Ayarlanmadı
     contact_unavailable: Bulunamadı
-    hosted_on: Mastodon %{domain} üzerinde barındırılıyor
+    hosted_on: TomX %{domain} üzerinde barındırılıyor
     title: Hakkında
   accounts:
     follow: Takip et
@@ -672,7 +672,7 @@ tr:
         moderation: Denetim
         special: Özel
       delete: Sil
-      description_html: "<strong>Kullanıcı rolleri</strong> ile, kullanıcılarınızın Mastodon'un hangi işlevlerine ve alanlarına erişebileceğini düzenleyebilirsiniz."
+      description_html: "<strong>Kullanıcı rolleri</strong> ile, kullanıcılarınızın TomX'un hangi işlevlerine ve alanlarına erişebileceğini düzenleyebilirsiniz."
       edit: "'%{name}' rolünü düzenle"
       everyone: Varsayılan izinler
       everyone_full_description_html: Bu, herhangi bir rol atanmamış olanlar da olmak üzere <strong>tüm kullanıcıları</strong> etkileyen <strong>temel rol</strong>dür. Diğer tüm roller izinleri bu rolden alıyorlar.
@@ -735,23 +735,23 @@ tr:
         rules_hint: Kullanıcılarınızın uyması beklenen kurallar için özel bir alan var.
         title: Hakkında
       appearance:
-        preamble: Mastodon'un web arayüzünü düzenleyin.
+        preamble: TomX'un web arayüzünü düzenleyin.
         title: Görünüm
       branding:
-        preamble: Sunucunuzun markalaşması ağdaki diğer sunuculardan farklıdır. Bu bilgiler Mastodon'un web arayüzü, doğal uygulamalar, diğer sitelerdeki ve ileti uygulamalarındaki bağlantı önizlemeleri, vb. gibi çeşitli ortamlarda görüntülenebilir. Bu nedenle bu bilgiyi açık, kısa ve özlü tutmak en iyisidir.
+        preamble: Sunucunuzun markalaşması ağdaki diğer sunuculardan farklıdır. Bu bilgiler TomX'un web arayüzü, doğal uygulamalar, diğer sitelerdeki ve ileti uygulamalarındaki bağlantı önizlemeleri, vb. gibi çeşitli ortamlarda görüntülenebilir. Bu nedenle bu bilgiyi açık, kısa ve özlü tutmak en iyisidir.
         title: Marka
       captcha_enabled:
         desc_html: Bu, güvenlik ve gizlilikle ilgili bir endişe kaynağı olabilecek hCaptcha'nın harici komut dosyalarına dayanır. Ayrıca <strong>bu, kayıt sürecini bazı (özellikle engelli) kişiler için önemli ölçüde daha az erişilebilir hale getirebilir</strong>. Bu nedenlerle, lütfen onaya dayalı veya davete dayalı kayıt gibi alternatif önlemleri göz önünde bulundurun.
         title: Yeni kullanıcıların hesaplarını doğrulamaları için bir CAPTCHA çözmelerini gerektir
       content_retention:
-        preamble: Kullanıcıların ürettiği içeriğin Mastodon'da nasıl saklanacağını denetleyin.
+        preamble: Kullanıcıların ürettiği içeriğin TomX'da nasıl saklanacağını denetleyin.
         title: İçerik saklama
       default_noindex:
         desc_html: Bu ayarı kendileri değiştirmeyen tüm kullanıcıları etkiler
         title: Varsayılan olarak kullanıcıları arama motoru indekslemesinin dışında tut
       discovery:
         follow_recommendations: Takip önerileri
-        preamble: İlginç içeriği gezinmek, Mastodon'da kimseyi tanımayan yeni kullanıcıları alıştırmak için oldukça etkilidir. Sunucunuzdaki çeşitli keşif özelliklerinin nasıl çalıştığını denetleyin.
+        preamble: İlginç içeriği gezinmek, TomX'da kimseyi tanımayan yeni kullanıcıları alıştırmak için oldukça etkilidir. Sunucunuzdaki çeşitli keşif özelliklerinin nasıl çalıştığını denetleyin.
         profile_directory: Profil dizini
         public_timelines: Genel zaman çizelgeleri
         publish_discovered_servers: Keşfedilen sunucuları yayınla
@@ -907,7 +907,7 @@ tr:
     webhooks:
       add_new: Uç nokta ekle
       delete: Sil
-      description_html: Bir <strong>web kancası</strong> Mastodon'un, uygulamanızda seçili olaylar hakkında <strong>gerçek zamanlı bildirimler</strong> göndermesini sağlar, böylece uygulamanız <strong>otomatik olarak tepkileri tetikleyebilir</strong>.
+      description_html: Bir <strong>web kancası</strong> TomX'un, uygulamanızda seçili olaylar hakkında <strong>gerçek zamanlı bildirimler</strong> göndermesini sağlar, böylece uygulamanız <strong>otomatik olarak tepkileri tetikleyebilir</strong>.
       disable: Devre dışı bırak
       disabled: Devre dışı
       edit: Uç nokta düzenle
@@ -969,7 +969,7 @@ tr:
     confirmation_dialogs: Onay iletişim kutuları
     discovery: Keşfet
     localization:
-      body: Mastodon, gönüllüler tarafından çevrilmektedir.
+      body: TomX, gönüllüler tarafından çevrilmektedir.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Herkes katkıda bulunabilir.
     sensitive_content: Hassas içerik
@@ -1000,9 +1000,9 @@ tr:
     delete_account: Hesabı sil
     delete_account_html: Hesabını silmek istersen, <a href="%{path}">buradan devam edebilirsin</a>. Onay istenir.
     description:
-      prefix_invited_by_user: "@%{name} sizi bu Mastodon sunucusuna katılmaya davet ediyor!"
-      prefix_sign_up: Bugün Mastodon'a kaydolun!
-      suffix: Bir hesapla, kişileri takip edebilir, güncellemeler gönderebilir, herhangi bir Mastodon sunucusundan kullanıcılarla mesaj alışverişinde bulunabilir ve daha birçok şey yapabilirsin!
+      prefix_invited_by_user: "@%{name} sizi bu TomX sunucusuna katılmaya davet ediyor!"
+      prefix_sign_up: Bugün TomX'a kaydolun!
+      suffix: Bir hesapla, kişileri takip edebilir, güncellemeler gönderebilir, herhangi bir TomX sunucusundan kullanıcılarla mesaj alışverişinde bulunabilir ve daha birçok şey yapabilirsin!
     didnt_get_confirmation: Onaylama bağlantısını almadınız mı?
     dont_have_your_security_key: Güvenlik anahtarınız yok mu?
     forgot_password: Parolanızı mı unuttunuz?
@@ -1049,7 +1049,7 @@ tr:
       title: "%{domain} giriş yapın"
     sign_up:
       manual_review: "%{domain} kayıtları moderatörler tarafından manuel olarak inceleniyor. Kaydınızı işlememizi kolaylaştırmak için kendiniz ve %{domain} sunucusundan neden hesap istediğiniz hakkında biraz bilgi verin."
-      preamble: Bu Mastodon sunucusu üzerinden bir hesap ile ağdaki herhangi bir kişiyi, hesabı hangi sunucuda saklanırsa saklansın, takip edebilirsiniz.
+      preamble: Bu TomX sunucusu üzerinden bir hesap ile ağdaki herhangi bir kişiyi, hesabı hangi sunucuda saklanırsa saklansın, takip edebilirsiniz.
       title: "%{domain} için kurulumunuzu yapalım."
     status:
       account_status: Hesap durumu
@@ -1140,6 +1140,7 @@ tr:
     basic_information: Temel bilgiler
     hint_html: "<strong>İnsanlara herkese açık profilinizde ve gönderilerinizin yanında ne göstermek istediğinizi düzenleyin.</strong> Dolu bir profile ve bir profil resmine sahip olduğunuzda diğer insanlar daha yüksek ihtimalle sizi takip etmek ve sizinle etkileşime geçmek isteyeceklerdir."
     other: Diğer
+    safety_and_privacy: Güvenlik ve gizlilik
   errors:
     '400': Gönderdiğiniz istek geçersiz veya hatalı biçimlendirilmiş.
     '403': Bu sayfayı görmek için izniniz yok.
@@ -1154,7 +1155,7 @@ tr:
       content: Üzgünüz, ancak bir şey ters gitti.
       title: Bu sayfa doğru değil
     '503': Geçici sunucu hatası nedeniyle sayfa görüntülenemedi.
-    noscript_html: Mastodon web uygulamasını kullanmak için lütfen JavaScript'i etkinleştirin. Alternatif olarak, platformunuz için Mastodon <a href="%{apps_path}">yerel uygulamalardan</a> birini deneyin.
+    noscript_html: TomX web uygulamasını kullanmak için lütfen JavaScript'i etkinleştirin. Alternatif olarak, platformunuz için TomX <a href="%{apps_path}">yerel uygulamalardan</a> birini deneyin.
   existing_username_validator:
     not_found: bu kullanıcı adına sahip yerel bir kullanıcı bulunamadı
     not_found_multiple: "%{usernames} bulunamadı"
@@ -1342,7 +1343,7 @@ tr:
     unsubscribe:
       action: Evet, abonelikten çık
       complete: Abonelikten çık
-      confirmation_html: '%{domain} üzerindeki Mastodon için %{type} almayı durdurarak %{email} adresindeki aboneliğinizi iptal etmek istediğinizden emin misiniz? <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> her zaman yeniden abone olabilirsiniz.'
+      confirmation_html: '%{domain} üzerindeki TomX için %{type} almayı durdurarak %{email} adresindeki aboneliğinizi iptal etmek istediğinizden emin misiniz? <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> her zaman yeniden abone olabilirsiniz.'
       emails:
         notification_emails:
           favourite: bildirim e-postalarını favorile
@@ -1351,7 +1352,7 @@ tr:
           mention: bildirim e-postalarına değin
           reblog: bildirim e-postalarını yükselt
       resubscribe_html: Abonelikten yanlışlıkla çıktıysanız, <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> yeniden abone olabilirsiniz.
-      success_html: Artık %{email} adresindeki e-postanıza %{domain} üzerindeki Mastodon için %{type} almayacaksınız.
+      success_html: Artık %{email} adresindeki e-postanıza %{domain} üzerindeki TomX için %{type} almayacaksınız.
       title: Abonelikten çık
   media_attachments:
     validations:
@@ -1541,7 +1542,7 @@ tr:
       weibo: Weibo
     current_session: Geçerli oturum
     description: "%{platform} - %{browser}"
-    explanation: Bunlar, Mastodon hesabınızda şu anda oturum açmış web tarayıcılarıdır.
+    explanation: Bunlar, TomX hesabınızda şu anda oturum açmış web tarayıcılarıdır.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1567,7 +1568,7 @@ tr:
     aliases: Hesap takma adları
     appearance: Görünüm
     authorized_apps: Yetkili uygulamalar
-    back: Mastodon'a geri dön
+    back: TomX'a geri dön
     delete: Hesap silme
     development: Geliştirme
     edit_profile: Profili düzenle
@@ -1676,9 +1677,9 @@ tr:
   tags:
     does_not_match_previous_name: önceki adla eşleşmiyor
   themes:
-    contrast: Mastodon (Yüksek karşıtlık)
-    default: Mastodon (Karanlık)
-    mastodon-light: Mastodon (Açık)
+    contrast: TomX (Yüksek karşıtlık)
+    default: TomX (Karanlık)
+    mastodon-light: TomX (Açık)
   time:
     formats:
       default: "%d %b %Y %H:%M"
@@ -1710,7 +1711,7 @@ tr:
       subject: "%{date} tarihli itirazınız reddedildi"
       title: İtiraz reddedildi
     backup_ready:
-      explanation: Mastodon hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
+      explanation: TomX hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
       subject: Arşiviniz indirilmeye hazır
       title: Arşiv paketlemesi
     suspicious_sign_in:
@@ -1759,7 +1760,7 @@ tr:
       final_step: 'Gönderi yazmaya başlayın! Takipçiler olmadan bile, herkese açık gönderileriniz başkaları tarafından görülebilir, örneğin yerel zaman tünelinde veya etiketlerde. Kendinizi #introductions etiketinde tanıtmak isteyebilirsiniz.'
       full_handle: Tanıtıcınız
       full_handle_hint: Arkadaşlarınıza, size başka bir sunucudan mesaj atabilmeleri veya sizi takip edebilmeleri için söyleyeceğiniz şey budur.
-      subject: Mastodon'a hoş geldiniz
+      subject: TomX'a hoş geldiniz
       title: Gemiye hoşgeldin, %{name}!
   users:
     follow_limit_reached: "%{limit} kişiden daha fazlasını takip edemezsiniz"

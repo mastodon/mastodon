@@ -1,60 +1,33 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-const { resolve } = require('path');
+const { basename, dirname, join, relative, resolve } = require('path');
 
-const CircularDependencyPlugin = require('circular-dependency-plugin');
+const { sync } = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const extname = require('path-complete-extname');
 const webpack = require('webpack');
 const AssetsManifestPlugin = require('webpack-assets-manifest');
 
-const { env, settings, core, flavours, output } = require('./configuration');
+const { env, settings, themes, output } = require('./configuration');
 const rules = require('./rules');
 
-function reducePacks (data, into = {}) {
-  if (!data.pack) return into;
-
-  for (const entry in data.pack) {
-    const pack = data.pack[entry];
-    if (!pack) continue;
-
-    let packFiles = [];
-    if (typeof pack === 'string')
-      packFiles = [pack];
-    else if (Array.isArray(pack))
-      packFiles = pack;
-    else
-      packFiles = [pack.filename];
-
-    if (packFiles) {
-      into[data.name ? `flavours/${data.name}/${entry}` : `core/${entry}`] = packFiles.map(packFile => resolve(data.pack_directory, packFile));
-    }
-  }
-
-  if (!data.name) return into;
-
-  for (const skinName in data.skin) {
-    const skin = data.skin[skinName];
-    if (!skin) continue;
-
-    for (const entry in skin) {
-      const packFile = skin[entry];
-      if (!packFile) continue;
-
-      into[`skins/${data.name}/${skinName}/${entry}`] = resolve(packFile);
-    }
-  }
-
-  return into;
-}
-
-const entries = Object.assign(
-  reducePacks(core),
-  Object.values(flavours).reduce((map, data) => reducePacks(data, map), {}),
-);
-
+const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
+const entryPath = join(settings.source_path, settings.source_entry_path);
+const packPaths = sync(join(entryPath, extensionGlob));
 
 module.exports = {
-  entry: entries,
+  entry: Object.assign(
+    packPaths.reduce((map, entry) => {
+      const localMap = map;
+      const namespace = relative(join(entryPath), dirname(entry));
+      localMap[join(namespace, basename(entry, extname(entry)))] = resolve(entry);
+      return localMap;
+    }, {}),
+    Object.keys(themes).reduce((themePaths, name) => {
+      themePaths[name] = resolve(join(settings.source_path, themes[name]));
+      return themePaths;
+    }, {}),
+  ),
 
   output: {
     filename: 'js/[name]-[chunkhash].js',
@@ -76,9 +49,7 @@ module.exports = {
         vendors: false,
         common: {
           name: 'common',
-          chunks (chunk) {
-            return !(chunk.name in entries);
-          },
+          chunks: 'all',
           minChunks: 2,
           minSize: 0,
           test: /^(?!.*[\\/]node_modules[\\/]react-intl[\\/]).+$/,
@@ -113,9 +84,6 @@ module.exports = {
       writeToDisk: true,
       publicPath: true,
     }),
-    new CircularDependencyPlugin({
-      failOnError: true,
-    })
   ],
 
   resolve: {

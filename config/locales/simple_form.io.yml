@@ -35,20 +35,25 @@ io:
         current_password: Por sekuresorezoni, pozez pasvorto di ca konto
         current_username: Por konfirmar, pozez uzantonomo di ca konto
         digest: Nur sendesas pos longa neaktiveso e nur se vu ganis irga mesaji dum ke vu esas neprezenta
+        discoverable: Permisez vua konto deskovresar da nekonociti tra rekomendi, tendenci e altra traiti
         email: Vu sendesos konfirmretposto
         header: En la formato PNG, GIF o JPG. Til %{size}. Esos mikrigita a %{dimensions}px
         inbox_url: Kopiez URL de frontpagino de relayo quon vu volas uzar
         irreversible: Filtrita posti neinversigeble desaparos, mem se filtro efacesas pose
         locale: Linguo di uzantointervizajo, retposti e pulsavizi
+        locked: Tu devos aprobar omna demandi di sequado, e tua mesaji esos senchanje nur por tua sequanti.
         password: Uzes minime 8 litri
         phrase: Parigesos ne ye textosituaciono o konteneyoaverto di posto
         scopes: Quala API quon softwaro permisesas acesar. Se vu selektas alta skopo, vu ne mustas selektar individui.
         setting_aggregate_reblogs: Ne montrez nova busti di posti quo recente bustesas (nova busti)
-        setting_always_send_emails: Normale retpostoavizi ne sendesas kande vu aktiva uzas Mastodon
+        setting_always_send_emails: Normale retpostoavizi ne sendesas kande vu aktiva uzas TomX
         setting_default_sensitive: Sentoza medii originala celesas e povas revelesar per klikto
         setting_display_media_default: Celez medii quo markizesis quale sentoza
         setting_display_media_hide_all: Sempre celez medii
         setting_display_media_show_all: Sempre montrez medii
+        setting_hide_network: Vua sequato e sequanto celesos che vua profilo
+        setting_noindex: Efektigar vua publika profilo e postopagini
+        setting_show_application: Softwaro quon vu uzar por postigar montresos che detala vidajo di vua posti
         setting_use_blurhash: Inklini esas segun kolori di celesis vidaji ma kovras irga detali
         setting_use_pending_items: Celez tempolineonovi dop kliktar e ne automatike movigar niuzeto
         whole_word: Kande klefvorto o fraz esas nur litera e nombra, ol nur aplikesos se ol parigesas la tota vorto
@@ -67,13 +72,13 @@ io:
         bootstrap_timeline_accounts: Ca konti pinglagesos a super sequorekomendi di nova uzanti.
         closed_registrations_message: Montresas kande registradi klozesas
         content_cache_retention_period: Posti de altra servili efacesos pos la diiquanto kande fixesas a positiva nombro. Co darfas desagesar.
-        custom_css: Vu povas pozar kustumizita staili en retverso di Mastodon.
+        custom_css: Vu povas pozar kustumizita staili en retverso di TomX.
         mascot: Remplas montreso en avanca retintervizajo.
         media_cache_retention_period: Deschargita mediifaili efacesos pos la diiquanto kande fixesas a positiva nombro, e rideschargesas irgatempe.
         profile_directory: La profilcheflisto montras omna uzanti quo voluntale volas esar deskovrebla.
         require_invite_text: Kande registradi bezonas manuala aprobo, ol kauzigas "Por quo vu volas juntas?" textoenpozo esar obliganta
         site_contact_email: Quale personi povas kontaktar vu por legala o suportquestioni.
-        site_contact_username: Quale personi povas kontaktar vu en Mastodon.
+        site_contact_username: Quale personi povas kontaktar vu en TomX.
         site_extended_description: Irga plusa informi quo forsan esar utila por vizitanti e uzanti. Povas strukturigesar per sintaxo di Markdown.
         site_short_description: Kurta deskripto por helpar unala identifikar ca servilo. Qua funcionigar lu e por qua?
         site_terms: Uzez vua sua privatesguidilo o ignorez por uzar la originalo. Povas strukturigesar per sintaxo di Markdown.
@@ -86,7 +91,7 @@ io:
       form_challenge:
         current_password: Vu eniras sekura areo
       imports:
-        data: Dosiero CSV de altra instaluro di Mastodon
+        data: Dosiero CSV de altra instaluro di TomX
       invite_request:
         text: Co helpos ni kontrolar vua apliko
       ip_block:
@@ -159,6 +164,7 @@ io:
         context: Filtrez kuntexti
         current_password: Nuna pasvorto
         data: Datumi
+        discoverable: Sugestez konto a altra personi
         display_name: Publika nomo
         email: Retpost-adreso
         expires_in: Expiras pos
@@ -168,6 +174,7 @@ io:
         inbox_url: URL di relayomesajbuxo
         irreversible: Deslevez e ne celez
         locale: Linguo
+        locked: Privatigar la konto
         max_uses: Maxima uzi
         new_password: Nova pasvorto
         note: Suprizento
@@ -190,7 +197,9 @@ io:
         setting_display_media_show_all: Montrez omno
         setting_expand_spoilers: Sempre expansigez posti quo markizesis kun kontenajaverti
         setting_hide_network: Celez vua sociala grafiko
+        setting_noindex: Desjuntez trovmotorindexigo
         setting_reduce_motion: Diminutez moveso di animacii
+        setting_show_application: Montrez softwaro quo uzesis por sendar posti
         setting_system_font_ui: Uzez originala literfonto di sistemo
         setting_theme: Sittemo
         setting_trends: Montrez tendenco di hodie

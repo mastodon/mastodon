@@ -5,7 +5,6 @@ class Oauth::AuthorizationsController < Doorkeeper::AuthorizationsController
 
   before_action :store_current_location
   before_action :authenticate_resource_owner!
-  before_action :set_pack
   before_action :set_cache_headers
 
   content_security_policy do |p|
@@ -18,10 +17,6 @@ class Oauth::AuthorizationsController < Doorkeeper::AuthorizationsController
 
   def store_current_location
     store_location_for(:user, request.url)
-  end
-
-  def set_pack
-    use_pack 'auth'
   end
 
   def render_success

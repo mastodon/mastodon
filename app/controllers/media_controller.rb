@@ -10,7 +10,6 @@ class MediaController < ApplicationController
   before_action :verify_permitted_status!
   before_action :check_playable, only: :player
   before_action :allow_iframing, only: :player
-  before_action :set_pack, only: :player
 
   content_security_policy only: :player do |policy|
     policy.frame_ancestors(false)
@@ -47,9 +46,5 @@ class MediaController < ApplicationController
 
   def allow_iframing
     response.headers.delete('X-Frame-Options')
-  end
-
-  def set_pack
-    use_pack 'public'
   end
 end

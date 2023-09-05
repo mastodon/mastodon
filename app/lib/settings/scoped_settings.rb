@@ -3,8 +3,7 @@
 module Settings
   class ScopedSettings
     DEFAULTING_TO_UNSCOPED = %w(
-      flavour
-      skin
+      theme
       noindex
     ).freeze
 
