@@ -157,7 +157,6 @@ class SearchDataManager
       index_class.purge!
       index_class.import!
     end
-
   end
 
   def destroy
