@@ -16,9 +16,9 @@ jobs:
         env:
           TZ: Etc/UTC
         run: |
-          echo mastodon_version_suffix=nightly-$(date +'%Y-%m-%d')>> $GITHUB_OUTPUT
+          echo mastodon_version_prerelease=nightly.$(date +'%Y-%m-%d')>> $GITHUB_OUTPUT
     outputs:
-      suffix: ${{ steps.version_vars.outputs.mastodon_version_suffix }}
+      prerelease: ${{ steps.version_vars.outputs.mastodon_version_prerelease }}
 
   build-image:
     needs: compute-suffix
@@ -29,8 +29,7 @@ jobs:
       push_to_images: |
         tootsuite/mastodon
         ghcr.io/mastodon/mastodon
-      # The `+` is important here, result will be v4.1.2+nightly-2022-03-05
-      version_suffix: +${{ needs.compute-suffix.outputs.suffix }}
+      version_prerelease: ${{ needs.compute-suffix.outputs.prerelease }}
       labels: |
         org.opencontainers.image.description=Nightly build image used for testing purposes
       flavor: |
@@ -38,5 +37,5 @@ jobs:
       tags: |
         type=raw,value=edge
         type=raw,value=nightly
-        type=schedule,pattern=${{ needs.compute-suffix.outputs.suffix }}
+        type=schedule,pattern=${{ needs.compute-suffix.outputs.prerelease }}
     secrets: inherit

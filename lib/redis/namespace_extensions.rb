@@ -2,8 +2,8 @@
 
 class Redis
   module NamespaceExtensions
-    def exists?(*args, &block)
-      call_with_namespace('exists?', *args, &block)
+    def exists?(...)
+      call_with_namespace('exists?', ...)
     end
   end
 end

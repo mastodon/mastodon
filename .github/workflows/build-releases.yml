@@ -17,6 +17,8 @@ jobs:
       push_to_images: |
         tootsuite/mastodon
         ghcr.io/mastodon/mastodon
+      # Only tag with latest when ran against the latest stable branch
+      # This needs to be updated after each minor version release
       flavor: |
         latest=${{ startsWith(github.ref, 'refs/tags/v4.1.') }}
       tags: |

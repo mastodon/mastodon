@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountsIndex < Chewy::Index
-  settings index: { refresh_interval: '30s' }, analysis: {
+  settings index: index_preset(refresh_interval: '30s'), analysis: {
     filter: {
       english_stop: {
         type: 'stop',
@@ -21,19 +21,20 @@ class AccountsIndex < Chewy::Index
 
     analyzer: {
       natural: {
-        tokenizer: 'uax_url_email',
+        tokenizer: 'standard',
         filter: %w(
-          english_possessive_stemmer
           lowercase
           asciifolding
           cjk_width
+          elision
+          english_possessive_stemmer
           english_stop
           english_stemmer
         ),
       },
 
       verbatim: {
-        tokenizer: 'whitespace',
+        tokenizer: 'standard',
         filter: %w(lowercase asciifolding cjk_width),
       },
 
@@ -62,6 +63,6 @@ class AccountsIndex < Chewy::Index
     field(:last_status_at, type: 'date', value: ->(account) { account.last_status_at || account.created_at })
     field(:display_name, type: 'text', analyzer: 'verbatim') { field :edge_ngram, type: 'text', analyzer: 'edge_ngram', search_analyzer: 'verbatim' }
     field(:username, type: 'text', analyzer: 'verbatim', value: ->(account) { [account.username, account.domain].compact.join('@') }) { field :edge_ngram, type: 'text', analyzer: 'edge_ngram', search_analyzer: 'verbatim' }
-    field(:text, type: 'text', value: ->(account) { account.searchable_text }) { field :stemmed, type: 'text', analyzer: 'natural' }
+    field(:text, type: 'text', analyzer: 'verbatim', value: ->(account) { account.searchable_text }) { field :stemmed, type: 'text', analyzer: 'natural' }
   end
 end

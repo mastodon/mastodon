@@ -21,12 +21,16 @@ const messages = defineMessages({
 
 const mapStateToProps = (state, { accountId }) => ({
   displayNameHtml: state.getIn(['accounts', accountId, 'display_name_html']),
+  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSignupClick() {
-    dispatch(closeModal());
-    dispatch(openModal('CLOSED_REGISTRATIONS'));
+    dispatch(closeModal({
+        modalType: undefined,
+        ignoreFocus: false,
+      }));
+    dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
   },
 });
 
@@ -294,6 +298,7 @@ class InteractionModal extends React.PureComponent {
     url: PropTypes.string,
     type: PropTypes.oneOf(['reply', 'reblog', 'favourite', 'follow']),
     onSignupClick: PropTypes.func.isRequired,
+    signupUrl: PropTypes.string.isRequired,
   };
 
   handleSignupClick = () => {
@@ -301,7 +306,7 @@ class InteractionModal extends React.PureComponent {
   };
 
   render () {
-    const { url, type, displayNameHtml } = this.props;
+    const { url, type, displayNameHtml, signupUrl } = this.props;
 
     const name = <bdi dangerouslySetInnerHTML={{ __html: displayNameHtml }} />;
 
@@ -331,36 +336,24 @@ class InteractionModal extends React.PureComponent {
     }
 
     let signupButton;
-    let signUpOrSignInButton;
 
     if (sso_redirect) {
-      signUpOrSignInButton = (
-        <a href={sso_redirect} data-method='post' className='button button--block button-tertiary'>
-          <FormattedMessage id='sign_in_banner.sso_redirect' defaultMessage='Login or Register' />
+      signupButton = (
+        <a href={sso_redirect} data-method='post' className='link-button'>
+          <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
         </a>
-      )
+      );
+    } else if (registrationsOpen) {
+      signupButton = (
+        <a href={signupUrl} className='link-button'>
+          <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+        </a>
+      );
     } else {
-      if(registrationsOpen) {
-        signupButton = (
-          <a href='/auth/sign_up' className='link-button'>
-            <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
-          </a>
-        );
-      } else {
-        signupButton = (
-          <button className='button button--block button-tertiary' onClick={this.handleSignupClick}>
-            <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
-          </button>
-        );
-      }
-
-      signUpOrSignInButton = (
-        <>
-          <a href='/auth/sign_in' className='button button--block'>
-            <FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' />
-          </a>
-          {signupButton}
-        </>
+      signupButton = (
+        <button className='link-button' onClick={this.handleSignupClick}>
+          <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+        </button>
       );
     }
 
@@ -369,13 +362,6 @@ class InteractionModal extends React.PureComponent {
         <div className='interaction-modal__lead'>
           <h3><span className='interaction-modal__icon'>{icon}</span> {title}</h3>
           <p>{actionDescription} <strong><FormattedMessage id='interaction_modal.sign_in' defaultMessage='You are not logged in to this server. Where is your account hosted?' /></strong></p>
-        </div>
-
-        <div className='interaction-modal__choices'>
-          <div className='interaction-modal__choices__choice'>
-            <h3><FormattedMessage id='interaction_modal.on_this_server' defaultMessage='On this server' /></h3>
-            {signUpOrSignInButton}
-          </div>
         </div>
 
         <IntlLoginForm resourceUrl={url} />
