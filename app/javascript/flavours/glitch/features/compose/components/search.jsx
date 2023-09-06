@@ -9,7 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 
 import { Icon } from 'flavours/glitch/components/icon';
-import { searchEnabled } from 'flavours/glitch/initial_state';
+import { domain, searchEnabled } from 'flavours/glitch/initial_state';
 import { focusRoot } from 'flavours/glitch/utils/dom_helpers';
 import { HASHTAG_REGEX } from 'flavours/glitch/utils/hashtags';
 
@@ -363,18 +363,20 @@ class Search extends PureComponent {
             </>
           )}
 
-          {searchEnabled && (
-            <>
-              <h4><FormattedMessage id='search_popout.options' defaultMessage='Search options' /></h4>
+          <h4><FormattedMessage id='search_popout.options' defaultMessage='Search options' /></h4>
 
-              <div className='search__popout__menu'>
-                {this.defaultOptions.map(({ key, label, action }, i) => (
-                  <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === (options.length + i) })}>
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </>
+          {searchEnabled ? (
+            <div className='search__popout__menu'>
+              {this.defaultOptions.map(({ key, label, action }, i) => (
+                <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === (options.length + i) })}>
+                  {label}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className='search__popout__menu__message'>
+              <FormattedMessage id='search_popout.full_text_search_disabled_message' defaultMessage='Not available on {domain}.' values={{ domain }} />
+            </div>
           )}
         </div>
       </div>
