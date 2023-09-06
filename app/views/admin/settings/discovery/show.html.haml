@@ -49,10 +49,5 @@
   .fields-group
     = f.input :bootstrap_timeline_accounts, wrapper: :with_block_label
 
-  %h4= t('admin.settings.discovery.profile_directory')
-
-  .fields-group
-    = f.input :profile_directory, as: :boolean, wrapper: :with_label
-
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

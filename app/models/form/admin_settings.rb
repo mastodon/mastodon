@@ -21,7 +21,6 @@ class Form::AdminSettings
     peers_api_enabled
     preview_sensitive_media
     custom_css
-    profile_directory
     thumbnail
     mascot
     trends
@@ -50,7 +49,6 @@ class Form::AdminSettings
     activity_api_enabled
     peers_api_enabled
     preview_sensitive_media
-    profile_directory
     trends
     trends_as_landing_page
     trendable_by_default

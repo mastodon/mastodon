@@ -63,7 +63,6 @@
  * @property {string=} me
  * @property {string=} moved_to_account_id
  * @property {string=} owner
- * @property {boolean} profile_directory
  * @property {boolean} registrations_open
  * @property {boolean} reduce_motion
  * @property {string} repository
@@ -124,7 +123,6 @@ export const mascot = getMeta('mascot');
 export const me = getMeta('me');
 export const movedToAccountId = getMeta('moved_to_account_id');
 export const owner = getMeta('owner');
-export const profile_directory = getMeta('profile_directory');
 export const reduceMotion = getMeta('reduce_motion');
 export const registrationsOpen = getMeta('registrations_open');
 export const repository = getMeta('repository');

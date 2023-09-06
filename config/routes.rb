@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     /bookmarks
     /pinned
     /start
-    /directory
     /explore/(*any)
     /search
     /publish

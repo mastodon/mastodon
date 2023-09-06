@@ -135,8 +135,6 @@ namespace :api, format: false do
 
     resource :domain_blocks, only: [:show, :create, :destroy]
 
-    resource :directory, only: [:show]
-
     resources :follow_requests, only: [:index] do
       member do
         post :authorize

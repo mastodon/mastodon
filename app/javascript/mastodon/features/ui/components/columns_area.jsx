@@ -19,7 +19,6 @@ import {
   FavouritedStatuses,
   BookmarkedStatuses,
   ListTimeline,
-  Directory,
 } from '../util/async-components';
 
 import BundleColumnError from './bundle_column_error';
@@ -40,7 +39,6 @@ const componentMap = {
   'FAVOURITES': FavouritedStatuses,
   'BOOKMARKS': BookmarkedStatuses,
   'LIST': ListTimeline,
-  'DIRECTORY': Directory,
 };
 
 export default class ColumnsArea extends ImmutablePureComponent {

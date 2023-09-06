@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { openModal } from 'mastodon/actions/modal';
-import { domain, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'mastodon/initial_state';
+import { domain, version, source_url, statusPageUrl } from 'mastodon/initial_state';
 import { PERMISSION_INVITE_USERS } from 'mastodon/permissions';
 import { logOut } from 'mastodon/utils/log_out';
 
@@ -57,7 +57,6 @@ class LinkFooter extends PureComponent {
     const { multiColumn } = this.props;
 
     const canInvite = signedIn && ((permissions & PERMISSION_INVITE_USERS) === PERMISSION_INVITE_USERS);
-    const canProfileDirectory = profileDirectory;
 
     const DividingCircle = <span aria-hidden>{' · '}</span>;
 
@@ -77,12 +76,6 @@ class LinkFooter extends PureComponent {
             <>
               {DividingCircle}
               <a href='/invites' target='_blank'><FormattedMessage id='footer.invite' defaultMessage='Invite people' /></a>
-            </>
-          )}
-          {canProfileDirectory && (
-            <>
-              {DividingCircle}
-              <Link to='/directory'><FormattedMessage id='footer.directory' defaultMessage='Profiles directory' /></Link>
             </>
           )}
           {DividingCircle}
