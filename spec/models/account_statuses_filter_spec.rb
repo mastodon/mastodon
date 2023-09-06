@@ -209,7 +209,7 @@ RSpec.describe AccountStatusesFilter do
         end
 
         it 'does not return reblog of blocked domain' do
-          expect(subject.results.pluck(:id)).not_to include(reblog.id)
+          expect(subject.results.pluck(:id)).to_not include(reblog.id)
         end
       end
 
