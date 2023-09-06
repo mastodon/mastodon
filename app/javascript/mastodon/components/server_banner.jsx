@@ -40,7 +40,7 @@ class ServerBanner extends PureComponent {
     const isLoading = server.get('isLoading');
 
     return (
-      <div className='server-banner'>
+      <div className='server-banner 123'>
         {/* <div className='server-banner__introduction'>
           <FormattedMessage id='server_banner.introduction' defaultMessage='{domain} is part of the decentralized social network powered by {mastodon}.' values={{ domain: <strong>{domain}</strong>, mastodon: <a href='https://joinmastodon.org' target='_blank'>Mastodon</a> }} />
         </div> */}
