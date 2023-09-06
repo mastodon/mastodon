@@ -137,6 +137,6 @@ class Admin::StatusBatchAction
   end
 
   def allowed_status_ids
-    AccountStatusesFilter.new(@report.target_account, current_account).results.with_discarded.where(id: status_ids).pluck(:id)
+    Admin::AccountStatusesFilter.new(@report.target_account, current_account).results.with_discarded.where(id: status_ids).pluck(:id)
   end
 end
