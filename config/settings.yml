@@ -2,7 +2,7 @@
 # important settings can be changed from the admin interface.
 
 defaults: &defaults
-  site_title: Mastodon
+  site_title: 'Mastodon Glitch Edition'
   site_short_description: ''
   site_description: ''
   site_extended_description: ''
@@ -12,14 +12,17 @@ defaults: &defaults
   registrations_mode: 'open'
   profile_directory: true
   closed_registrations_message: ''
-  timeline_preview: true
+  timeline_preview: false
   show_staff_badge: true
   preview_sensitive_media: false
   noindex: false
-  theme: 'default'
+  flavour: 'glitch'
+  skin: 'default'
   trends: true
   trends_as_landing_page: true
   trendable_by_default: false
+  trending_status_cw: true
+  hide_followers_count: false
   reserved_usernames:
     - admin
     - support
@@ -33,8 +36,12 @@ defaults: &defaults
   bootstrap_timeline_accounts: ''
   activity_api_enabled: true
   peers_api_enabled: true
+  show_reblogs_in_public_timelines: false
+  show_replies_in_public_timelines: false
+  default_content_type: 'text/plain'
   show_domain_blocks: 'disabled'
   show_domain_blocks_rationale: 'disabled'
+  outgoing_spoilers: ''
   require_invite_text: false
   backups_retention_period: 7
   captcha_enabled: false

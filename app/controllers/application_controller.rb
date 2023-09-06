@@ -10,11 +10,14 @@ class ApplicationController < ActionController::Base
   include SessionTrackingConcern
   include CacheConcern
   include DomainControlHelper
+  include ThemingConcern
   include DatabaseHelper
+  include AuthorizedFetchHelper
 
   helper_method :current_account
   helper_method :current_session
-  helper_method :current_theme
+  helper_method :current_flavour
+  helper_method :current_skin
   helper_method :single_user_mode?
   helper_method :use_seamless_external_login?
   helper_method :omniauth_only?
@@ -50,10 +53,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  def authorized_fetch_mode?
-    ENV['AUTHORIZED_FETCH'] == 'true' || Rails.configuration.x.limited_federation_mode
-  end
 
   def public_fetch_mode?
     !authorized_fetch_mode?
@@ -156,19 +155,16 @@ class ApplicationController < ActionController::Base
     @current_session = SessionActivation.find_by(session_id: cookies.signed['_session_id']) if cookies.signed['_session_id'].present?
   end
 
-  def current_theme
-    return Setting.theme unless Themes.instance.names.include? current_user&.setting_theme
-
-    current_user.setting_theme
-  end
-
   def body_class_string
     @body_classes || ''
   end
 
   def respond_with_error(code)
     respond_to do |format|
-      format.any  { render "errors/#{code}", layout: 'error', status: code, formats: [:html] }
+      format.any do
+        use_pack 'error'
+        render "errors/#{code}", layout: 'error', status: code, formats: [:html]
+      end
       format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code }
     end
   end

@@ -246,7 +246,7 @@ class User < ApplicationRecord
   end
 
   def functional?
-    functional_or_moved? && account.moved_to_account_id.nil?
+    functional_or_moved?
   end
 
   def functional_or_moved?

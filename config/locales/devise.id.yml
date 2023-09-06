@@ -23,59 +23,59 @@ id:
         explanation: Anda membuat akun di %{host} dengan email ini. Anda hanya perlu satu klik untuk mengaktifkannya. Jika ini bukan Anda, abaikan email ini.
         explanation_when_pending: Anda melamar undangan ke %{host} dengan email ini. Saat Anda mengonfirmasi alamat email Anda, kami akan meninjaunya. Anda dapat masuk untuk mengubah detail Anda atau menghapus akun Anda, tapi Anda tak dapat mengakses mayoritas fungsi sampai akun disetujui. Jika lamaran Anda ditolak, data Anda akan dihapus, jadi Anda tak perlu melakukan apa-apa. Jika ini bukan Anda, abaikan email ini.
         extra_html: Tolong cek juga <a href="%{terms_path}">peraturan server</a> dan <a href="%{policy_path}">ketentuan layanan kami</a>.
-        subject: 'TomX: Petunjuk mengkonfirmasi untuk %{instance}'
+        subject: 'Mastodon: Petunjuk mengkonfirmasi untuk %{instance}'
         title: Verifikasi alamat email
       email_changed:
         explanation: 'Alamat email akun Anda diubah menjadi:'
         extra: Jika Anda tak mengganti email Anda, mungkin seseorang telah mendapatkan akses ke akun Anda. Mohon ubah kata sandi secepatnya atau hubungi admin server jika akun Anda terkunci.
-        subject: 'TomX: Email diganti'
+        subject: 'Mastodon: Email diganti'
         title: Alamat email baru
       password_change:
         explanation: Kata sandi akun Anda telah diganti.
         extra: Jika Anda tak mengubah kata sandi Anda, mungkin seseorang telah mendapatkan akses ke akun Anda. Mohon ubah kata sandi secepatnya atau hubungi admin server jika Anda dikunci dari akun Anda.
-        subject: 'TomX: Kata sandi telah diubah'
+        subject: 'Mastodon: Kata sandi telah diubah'
         title: Kata sandi diubah
       reconfirmation_instructions:
         explanation: Konfirmasi alamat baru untuk mengubah email Anda.
-        extra: Jika perubahan ini tidak dimulai dari Anda, abaikan email ini. Alamat email untuk akun TomX tak berubah sampai Anda mengakses tautan di atas.
-        subject: 'TomX: Konfirmasi email untuk %{instance}'
+        extra: Jika perubahan ini tidak dimulai dari Anda, abaikan email ini. Alamat email untuk akun Mastodon tak berubah sampai Anda mengakses tautan di atas.
+        subject: 'Mastodon: Konfirmasi email untuk %{instance}'
         title: Verifikasi alamat email
       reset_password_instructions:
         action: Ubah kata sandi
         explanation: Kata sandi baru yang diminta untuk akun Anda.
         extra: Jika Anda tak meminta ini, abaikan email ini. Kata sandi tak berubah sampai Anda mengakses tautan di atas dan membuatnya yang baru.
-        subject: 'TomX: Petunjuk mereset kata sandi'
+        subject: 'Mastodon: Petunjuk mereset kata sandi'
         title: Reset kata sandi
       two_factor_disabled:
         explanation: Otentifikasi dua-faktor untuk akun Anda dimatikan. Kini Masuk dapat dilakukan hanya dengan alamat email dan kata sandi.
-        subject: 'TomX: Otentifikasi dua-faktor dimatikan'
+        subject: 'Mastodon: Otentifikasi dua-faktor dimatikan'
         title: 2FA dimatikan
       two_factor_enabled:
         explanation: Otentifikasi dua-faktor telah dimatikan untuk Akun Anda. Token yang dibuat menggunakan aplikasi TOTP berpasangan akan diperlukan untuk masuk.
-        subject: 'TomX: Otentifikasi dua-faktor diaktifkan'
+        subject: 'Mastodon: Otentifikasi dua-faktor diaktifkan'
         title: 2FA diaktifkan
       two_factor_recovery_codes_changed:
         explanation: Kode pemulihan sebelumnya telah dibatalkan dan yang baru telah dibuat.
-        subject: 'TomX: Kode pemulihan dua-faktor dibuat ulang'
+        subject: 'Mastodon: Kode pemulihan dua-faktor dibuat ulang'
         title: Kode pemulihan 2FA diubah
       unlock_instructions:
-        subject: 'TomX: Petunjuk membuka'
+        subject: 'Mastodon: Petunjuk membuka'
       webauthn_credential:
         added:
           explanation: Kunci keamanan berikut telah ditambahkan ke akun Anda
-          subject: 'TomX: Kunci keamanan baru'
+          subject: 'Mastodon: Kunci keamanan baru'
           title: Kunci keamanan baru telah ditambahkan
         deleted:
           explanation: Kunci keamanan berikut telah dihapus dari akun Anda
-          subject: 'TomX: Kunci keamanan dihapus'
+          subject: 'Mastodon: Kunci keamanan dihapus'
           title: Salah satu dari kunci keamanan Anda telah dihapus
       webauthn_disabled:
         explanation: Autentikasi dengan kunci keamanan telah dinonaktifkan untuk akun ini. Proses masuk akun hanya mungkin menggunakan token yang dibuat dengan aplikasi TOTP.
-        subject: 'TomX: Autentikasi dengan kunci keamanan dinoaktifkan'
+        subject: 'Mastodon: Autentikasi dengan kunci keamanan dinoaktifkan'
         title: Kunci keamanan dinonaktifkan
       webauthn_enabled:
         explanation: Autentikasi kunci keamanan telah diaktifkan untuk akun Anda. Kunci keamanan Anda kini dapat dipakai untuk masuk.
-        subject: 'TomX: Autentikasi kunci keamanan aktif'
+        subject: 'Mastodon: Autentikasi kunci keamanan aktif'
         title: Kunci keamanan aktif
     omniauth_callbacks:
       failure: Tidak dapat mengautentikasi anda dari %{kind} karena "%{reason}".

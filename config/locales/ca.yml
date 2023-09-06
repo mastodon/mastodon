@@ -1,10 +1,10 @@
 ---
 ca:
   about:
-    about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, amb un disseny ètic i descentralització. Amb TomX controles les teves dades!'
+    about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, amb un disseny ètic i descentralització. Amb Mastodon controles les teves dades!'
     contact_missing: No configurat
     contact_unavailable: N/D
-    hosted_on: TomX allotjat a %{domain}
+    hosted_on: Mastodon allotjat a %{domain}
     title: Quant a
   accounts:
     follow: Segueix
@@ -672,7 +672,7 @@ ca:
         moderation: Moderació
         special: Especial
       delete: Elimina
-      description_html: Amb <strong>rols d'usuari</strong>, pots personalitzar quines funcions i àrees de TomX els teus usuaris poden accedir.
+      description_html: Amb <strong>rols d'usuari</strong>, pots personalitzar quines funcions i àrees de Mastodon els teus usuaris poden accedir.
       edit: Editar el rol %{name}
       everyone: Permisos per defecte
       everyone_full_description_html: Aquest és el <strong>rol base</strong> que afecta <strong>tots els usuaris</strong>, fins i tot els que no en tenen cap d'assignat. Tots els altres n'hereten els permisos.
@@ -735,7 +735,7 @@ ca:
         rules_hint: Hi ha un àrea dedicada a les normes a les que s'espera que els teus usuaris s'hi adhereixin.
         title: Quant a
       appearance:
-        preamble: Personalitza l'interfície web de TomX.
+        preamble: Personalitza l'interfície web de Mastodon.
         title: Aparença
       branding:
         preamble: La marca del teu servidor el diferencia dels altres servidors de la xarxa. Aquesta informació es pot mostrar en diversos entorns com ara en la interfície web, en les aplicacions natives, en les previsualitzacions dels enllaços en altres webs, dins les aplicacions de missatgeria i d'altres. Per aquesta raó, val més mantenir aquesta informació clara, breu i precisa.
@@ -744,14 +744,14 @@ ca:
         desc_html: Això es basa en scripts externs de hCaptcha, que poden ser un problema de privacitat i seguretat. A més, <strong>això pot fer que el procés de registre sigui significativament menys accesible per algunes (especialment discapacitades) persones</strong>. Per aquestes raons, si us plau considera alternatives com ara registre amb aprovació necessària o basada en invitacions.
         title: Demana als nous usuaris que resolguin un CAPTCHA per a confirmar el seu compte
       content_retention:
-        preamble: Controla com es desa a TomX el contingut generat per l'usuari.
+        preamble: Controla com es desa a Mastodon el contingut generat per l'usuari.
         title: Retenció de contingut
       default_noindex:
         desc_html: Afecta tothom qui no ha canviat per si mateix aquest paràmetre
         title: Exclou per defecte els usuaris de la indexació dels motors de cerca
       discovery:
         follow_recommendations: Seguir les recomanacions
-        preamble: L'aparició de contingut interessant és fonamental per atraure els nous usuaris que podrien no saber res de TomX. Controla com funcionen diverses opcions de descobriment en el teu servidor.
+        preamble: L'aparició de contingut interessant és fonamental per atraure els nous usuaris que podrien no saber res de Mastodon. Controla com funcionen diverses opcions de descobriment en el teu servidor.
         profile_directory: Directori de perfils
         public_timelines: Línies de temps públiques
         publish_discovered_servers: Publica els servidors descoberts
@@ -907,7 +907,7 @@ ca:
     webhooks:
       add_new: Afegir extrem
       delete: Elimina
-      description_html: Un <strong>webhook</strong> habilita TomX per a empènyer <strong>notificacions en temps real</strong> sobre els esdeveniments escollits de la teva pròpia aplicació, per tant la teva aplicació pot <strong>activar reaccions automaticament</strong>.
+      description_html: Un <strong>webhook</strong> habilita Mastodon per a empènyer <strong>notificacions en temps real</strong> sobre els esdeveniments escollits de la teva pròpia aplicació, per tant la teva aplicació pot <strong>activar reaccions automaticament</strong>.
       disable: Desactiva
       disabled: Desactivat
       edit: Editar extrem
@@ -969,7 +969,7 @@ ca:
     confirmation_dialogs: Diàlegs de confirmació
     discovery: Descobriment
     localization:
-      body: TomX és traduït per voluntaris.
+      body: Mastodon és traduït per voluntaris.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Tothom hi pot contribuir.
     sensitive_content: Contingut sensible
@@ -1000,9 +1000,9 @@ ca:
     delete_account: Elimina el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
     description:
-      prefix_invited_by_user: "@%{name} t'ha invitat a unir-te a aquest servidor de TomX!"
-      prefix_sign_up: Registra't avui a TomX!
-      suffix: Amb un compte seràs capaç de seguir persones, publicar i intercanviar missatges amb usuaris de qualsevol servidor de TomX i més!
+      prefix_invited_by_user: "@%{name} t'ha invitat a unir-te a aquest servidor de Mastodon!"
+      prefix_sign_up: Registra't avui a Mastodon!
+      suffix: Amb un compte seràs capaç de seguir persones, publicar i intercanviar missatges amb usuaris de qualsevol servidor de Mastodon i més!
     didnt_get_confirmation: No has rebut l'enllaç de confirmació?
     dont_have_your_security_key: No tens la teva clau de seguretat?
     forgot_password: Has oblidat la contrasenya?
@@ -1049,7 +1049,7 @@ ca:
       title: Inicia sessió a %{domain}
     sign_up:
       manual_review: Els registres a %{domain} passen per una revisió manual dels nostres moderadors. Per ajudar-nos a processar el teu registre, escriu-nos quelcom sobre tu i perquè vols un compte a %{domain}.
-      preamble: Amb un compte en aquest servidor TomX podràs seguir qualsevol altra persona de la xarxa, independentment d'on tingui el compte.
+      preamble: Amb un compte en aquest servidor Mastodon podràs seguir qualsevol altra persona de la xarxa, independentment d'on tingui el compte.
       title: Configurem-te a %{domain}.
     status:
       account_status: Estat del compte
@@ -1140,7 +1140,6 @@ ca:
     basic_information: Informació bàsica
     hint_html: "<strong>Personalitza el que la gent veu en el teu perfil públic i a prop dels teus tuts..</strong> És més probable que altres persones et segueixin i interaccionin amb tu quan tens emplenat el teu perfil i amb la teva imatge."
     other: Altres
-    safety_and_privacy: Seguretat i privacitat
   errors:
     '400': La sol·licitud que vas emetre no era vàlida o no era correcta.
     '403': No tens permís per a veure aquesta pàgina.
@@ -1155,7 +1154,7 @@ ca:
       content: Ho sentim, però alguna cosa ha fallat a la nostra banda.
       title: Aquesta pàgina no es correcta
     '503': La pàgina no podria ser servida a causa d'un error temporal del servidor.
-    noscript_html: Per a usar TomX, activa el JavaScript. També pots provar una de les <a href="%{apps_path}"> aplicacions natives</a> de TomX per a la teva plataforma.
+    noscript_html: Per a usar Mastodon, activa el JavaScript. També pots provar una de les <a href="%{apps_path}"> aplicacions natives</a> de Mastodon per a la teva plataforma.
   existing_username_validator:
     not_found: no s'ha pogut trobar cap usuari local amb aquest nom d'usuari
     not_found_multiple: no s'ha pogut trobar %{usernames}
@@ -1343,7 +1342,7 @@ ca:
     unsubscribe:
       action: Sí, canceŀla la subscripció
       complete: Subscripció cancel·lada
-      confirmation_html: Estàs segur que vols donar-te de baixa de rebre %{type} de TomX a %{domain} en el teu correu electrònic a %{email}? Sempre pots subscriure't de nou des de la <a href="%{settings_path}">configuració de les notificacions per correu electrònic</a>.
+      confirmation_html: Estàs segur que vols donar-te de baixa de rebre %{type} de Mastodon a %{domain} en el teu correu electrònic a %{email}? Sempre pots subscriure't de nou des de la <a href="%{settings_path}">configuració de les notificacions per correu electrònic</a>.
       emails:
         notification_emails:
           favourite: notificacions dels favorits per correu electrònic
@@ -1352,7 +1351,7 @@ ca:
           mention: correus electrònics de notificacions de mencions
           reblog: correus electrònics de notificacions d'impulsos
       resubscribe_html: Si ets dones de baixa per error, pots donar-te d'alta des de la <a href="%{settings_path}">configuració de les notificacions per correu electrònic</a>.
-      success_html: Ja no rebràs %{type} de TomX a %{domain} en la teva safata a %{email}.
+      success_html: Ja no rebràs %{type} de Mastodon a %{domain} en la teva safata a %{email}.
       title: Cancel·la la subscripció
   media_attachments:
     validations:
@@ -1542,7 +1541,7 @@ ca:
       weibo: Weibo
     current_session: Sessió actual
     description: "%{browser} de %{platform}"
-    explanation: Aquests són els navegadors web que actualment han iniciat la sessió amb el teu compte de TomX.
+    explanation: Aquests són els navegadors web que actualment han iniciat la sessió amb el teu compte de Mastodon.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1568,7 +1567,7 @@ ca:
     aliases: Àlies de compte
     appearance: Aparença
     authorized_apps: Aplicacions autoritzades
-    back: Torna a TomX
+    back: Torna a Mastodon
     delete: Eliminació del compte
     development: Desenvolupament
     edit_profile: Edita el perfil
@@ -1677,9 +1676,9 @@ ca:
   tags:
     does_not_match_previous_name: no coincideix amb el nom anterior
   themes:
-    contrast: TomX (alt contrast)
-    default: TomX (fosc)
-    mastodon-light: TomX (clar)
+    contrast: Mastodon (alt contrast)
+    default: Mastodon (fosc)
+    mastodon-light: Mastodon (clar)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1711,7 +1710,7 @@ ca:
       subject: La teva apel·lació del %{date} ha estat rebutjada
       title: Apel·lació rebutjada
     backup_ready:
-      explanation: Has sol·licitat una copia completa del teu compte TomX. Ara ja està a punt per a descàrrega!
+      explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
       subject: L'arxiu està preparat per a descàrrega
       title: Recollida de l'arxiu
     suspicious_sign_in:
@@ -1760,7 +1759,7 @@ ca:
       final_step: 'Comença a publicar! Fins i tot sense seguidors, els altres poden veure els teus missatges públics, per exemple, a la línia de temps local i a les etiquetes. És possible que vulguis presentar-te amb l''etiqueta #introductions.'
       full_handle: El teu nom d'usuari sencer
       full_handle_hint: Això és el que has de dir als teus amics perquè puguin enviar-te missatges o seguir-te des d'un altre servidor.
-      subject: Et donem la benvinguda a TomX
+      subject: Et donem la benvinguda a Mastodon
       title: Benvingut a bord, %{name}!
   users:
     follow_limit_reached: No pots seguir més de %{limit} persones
@@ -1772,7 +1771,7 @@ ca:
   verification:
     extra_instructions_html: <strong>Consell:</strong> l'enllaç al vostre lloc web pot ser invisible. La part important és <code>rel="me"</code> que evita que us suplantin la identitat a llocs web amb contingut generat pels usuaris. Fins i tot podeu generar una etiqueta <code>link</code> a la capçalera de la pàgina en comptes d'una <code>a</code>, però el codi HTML ha de ser accessible sense requerir executar JavaScript.
     here_is_how: Així és com
-    hint_html: "<strong>Verificar la pròpia identitat a TomX és per a tothom.</strong> Basat en estàndarts webs oberts, ara i per sempre. Només et cat un lloc web personal que la gent reconegui com a teu. Quan hi enllacis des del teu perfil, comprovarem que el web retorna l'enllaç al perfil i hi posarem un indicador visual."
+    hint_html: "<strong>Verificar la pròpia identitat a Mastodon és per a tothom.</strong> Basat en estàndarts webs oberts, ara i per sempre. Només et cat un lloc web personal que la gent reconegui com a teu. Quan hi enllacis des del teu perfil, comprovarem que el web retorna l'enllaç al perfil i hi posarem un indicador visual."
     instructions_html: Copieu i enganxeu el següent codi HTML al vostre lloc web. Després, afegiu l'adreça del vostre lloc web dins d'un dels camps extres del vostre perfil i deseu els canvis.
     verification: Verificació
     verified_links: Els teus enllaços verificats

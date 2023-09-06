@@ -23,59 +23,59 @@ eo:
         explanation: Vi kreis konton en %{host} per ĉi tiu retadreso. Nur klako restas por aktivigi ĝin. Se tio ne estis vi, bonvolu ignori ĉi tiun retmesaĝon.
         explanation_when_pending: Vi petis inviton al %{host} per ĉi tiu retpoŝta adreso. Kiam vi konfirmas vian retpoŝtan adreson, ni revizios vian kandidatiĝon. Vi ne povas ensaluti ĝis tiam. Se via kandidatiĝo estas rifuzita, viaj datumoj estos forigitaj, do neniu alia ago estos postulita de vi. Se tio ne estis vi, bonvolu ignori ĉi tiun retpoŝton.
         extra_html: Bonvolu rigardi <a href="%{terms_path}">la regulojn de la servilo</a> kaj <a href="%{policy_path}">niajn uzkondiĉojn</a>.
-        subject: 'TomX: Konfirmaj instrukcioj por %{instance}'
+        subject: 'Mastodon: Konfirmaj instrukcioj por %{instance}'
         title: Konfirmi retpoŝton
       email_changed:
         explanation: 'La retpoŝtadreso de via konto ŝanĝiĝas al:'
         extra: Se vi ne volis ŝanĝi vian retadreson, iu verŝajne aliris al via konto. Bonvolu tuj ŝanĝi vian pasvorton aŭ kontakti la administranton de la servilo, se vi estas blokita ekster via konto.
-        subject: 'TomX: Retpoŝton ŝanĝiĝis'
+        subject: 'Mastodon: Retpoŝton ŝanĝiĝis'
         title: Nova retadreso
       password_change:
         explanation: La pasvorto de via konto estis ŝanĝita.
         extra: Se vi ne ŝanĝis vian pasvorton, iu verŝajne aliris al via konto. Bonvolu ŝanĝi vian pasvorton tuj aŭ kontakti la administranton de la servilo, se vi estas blokita ekster via konto.
-        subject: 'TomX: Pasvorto ŝanĝita'
+        subject: 'Mastodon: Pasvorto ŝanĝita'
         title: Pasvorto estas ŝanĝita
       reconfirmation_instructions:
         explanation: Retajpu la novan adreson por ŝanĝi vian retpoŝtadreson.
-        extra: Se ĉi tiu ŝanĝo ne estis komencita de vi, bonvolu ignori ĉi tiun retmesaĝon. La retadreso por la TomX-konto ne ŝanĝiĝos se vi ne aliras la supran ligilon.
-        subject: 'TomX: Konfirmi retpoŝton por %{instance}'
+        extra: Se ĉi tiu ŝanĝo ne estis komencita de vi, bonvolu ignori ĉi tiun retmesaĝon. La retadreso por la Mastodon-konto ne ŝanĝiĝos se vi ne aliras la supran ligilon.
+        subject: 'Mastodon: Konfirmi retpoŝton por %{instance}'
         title: Kontrolu retpoŝtadreson
       reset_password_instructions:
         action: Ŝanĝi pasvorton
         explanation: Vi petis novan pasvorton por via konto.
         extra: Se vi ne petis ĉi tion, bonvolu ignori ĉi tiun retmesaĝon. Via pasvorto ne ŝanĝiĝos se vi ne aliras la supran ligilon kaj kreas novan.
-        subject: 'TomX: Instrukcioj por ŝanĝi pasvorton'
+        subject: 'Mastodon: Instrukcioj por ŝanĝi pasvorton'
         title: Pasvorto restarigita
       two_factor_disabled:
         explanation: Dufaktora aŭtentigo por via konto malebligis. Ensalutado nun eblas per nur retpoŝtadreso kaj pasvorto.
-        subject: 'TomX: dufaktora aŭtentigo malebligita'
+        subject: 'Mastodon: dufaktora aŭtentigo malebligita'
         title: 2FA estas malŝaltita
       two_factor_enabled:
         explanation: Dufaktora aŭtentigo sukcese ebligita por via akonto. Vi bezonos ĵetonon kreitan per parigitan aplikaĵon por ensaluti.
-        subject: 'TomX: Dufaktora aŭtentigo ebligita'
+        subject: 'Mastodon: Dufaktora aŭtentigo ebligita'
         title: 2FA aktivigita
       two_factor_recovery_codes_changed:
         explanation: La antaŭaj reakiraj kodoj estis nuligitaj kaj novaj estis generitaj.
-        subject: 'TomX: Reakiraj kodoj de dufaktora aŭtentigo rekreitaj'
+        subject: 'Mastodon: Reakiraj kodoj de dufaktora aŭtentigo rekreitaj'
         title: Reakiraj kodoj de 2FA estas ŝanĝitaj
       unlock_instructions:
-        subject: 'TomX: Instrukcioj por malŝlosi'
+        subject: 'Mastodon: Instrukcioj por malŝlosi'
       webauthn_credential:
         added:
           explanation: La sekva sekureca ŝlosilo estis aldonita al via konto
-          subject: 'TomX: Nova sekureca ŝlosilo'
+          subject: 'Mastodon: Nova sekureca ŝlosilo'
           title: Nova sekureca ŝlosilo estis aldonita
         deleted:
           explanation: La sekva sekureca ŝlosilo estis forigita de via konto
-          subject: 'TomX: sekureca ŝlosilo forigita'
+          subject: 'Mastodon: sekureca ŝlosilo forigita'
           title: Unu el viaj sekurecaj ŝlosiloj estis forigita
       webauthn_disabled:
         explanation: Aŭtentikigo per sekurecaj ŝlosiloj estis malebligita por via konto. Ensaluto nun eblas per nur la signo generita de la parigita TOTP-programo.
-        subject: 'TomX: sekureca-ŝlosila aŭtentigo malebligita'
+        subject: 'Mastodon: sekureca-ŝlosila aŭtentigo malebligita'
         title: Sekurecaj ŝlosiloj malaktivigitaj
       webauthn_enabled:
         explanation: Sekureca ŝlosila aŭtentokontrolo estis ebligita por via konto. Via sekureca ŝlosilo nun uzeblas por ensaluti.
-        subject: 'TomX: sekureca-ŝlosila aŭtentigo ebligita'
+        subject: 'Mastodon: sekureca-ŝlosila aŭtentigo ebligita'
         title: Sekurecaj ŝlosiloj aktivigitaj
     omniauth_callbacks:
       failure: 'Ni ne povis aŭtentigi vin per %{kind}: ''%{reason}''.'

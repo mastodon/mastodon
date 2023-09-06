@@ -1,0 +1,381 @@
+.card {
+  & > a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    border-radius: 4px;
+
+    &:hover,
+    &:active,
+    &:focus {
+      .card__bar {
+        background: lighten($ui-base-color, 8%);
+      }
+    }
+  }
+
+  &__img {
+    height: 130px;
+    position: relative;
+    background: darken($ui-base-color, 12%);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      object-fit: cover;
+    }
+
+    @media screen and (width <= 600px) {
+      height: 200px;
+    }
+  }
+
+  &__bar {
+    position: relative;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: lighten($ui-base-color, 4%);
+
+    .avatar {
+      flex: 0 0 auto;
+      width: 48px;
+      height: 48px;
+      @include avatar-size(48px);
+
+      padding-top: 2px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        margin: 0;
+        border-radius: 4px;
+        @include avatar-radius;
+
+        background: darken($ui-base-color, 8%);
+        object-fit: cover;
+      }
+    }
+
+    .display-name {
+      margin-inline-start: 15px;
+      text-align: start;
+
+      i[data-hidden] {
+        display: none;
+      }
+
+      strong {
+        font-size: 15px;
+        color: $primary-text-color;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      span {
+        display: block;
+        font-size: 14px;
+        color: $darker-text-color;
+        font-weight: 400;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.pagination {
+  padding: 30px 0;
+  text-align: center;
+  overflow: hidden;
+
+  a,
+  .current,
+  .newer,
+  .older,
+  .page,
+  .gap {
+    font-size: 14px;
+    color: $primary-text-color;
+    font-weight: 500;
+    display: inline-block;
+    padding: 6px 10px;
+    text-decoration: none;
+  }
+
+  .current {
+    background: $simple-background-color;
+    border-radius: 100px;
+    color: $inverted-text-color;
+    cursor: default;
+    margin: 0 10px;
+  }
+
+  .gap {
+    cursor: default;
+  }
+
+  .older,
+  .newer {
+    text-transform: uppercase;
+    color: $secondary-text-color;
+  }
+
+  .older {
+    float: left;
+    padding-inline-start: 0;
+
+    .fa {
+      display: inline-block;
+      margin-inline-end: 5px;
+    }
+  }
+
+  .newer {
+    float: right;
+    padding-inline-start: 0;
+
+    .fa {
+      display: inline-block;
+      margin-inline-start: 5px;
+    }
+  }
+
+  .disabled {
+    cursor: default;
+    color: lighten($inverted-text-color, 10%);
+  }
+
+  @media screen and (width <= 700px) {
+    padding: 30px 20px;
+
+    .page {
+      display: none;
+    }
+
+    .newer,
+    .older {
+      display: inline-block;
+    }
+  }
+}
+
+.nothing-here {
+  background: $ui-base-color;
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  color: $light-text-color;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+  border-radius: 4px;
+  padding: 20px;
+  min-height: 30vh;
+
+  &--under-tabs {
+    border-radius: 0 0 4px 4px;
+  }
+
+  &--flexible {
+    box-sizing: border-box;
+    min-height: 100%;
+  }
+}
+
+.account-role,
+.information-badge,
+.simple_form .overridden,
+.simple_form .recommended,
+.simple_form .not_recommended,
+.simple_form .glitch_only {
+  display: inline-block;
+  padding: 4px 6px;
+  cursor: default;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 500;
+  color: $ui-secondary-color;
+  background-color: var(--user-role-background, rgba($ui-secondary-color, 0.1));
+  border: 1px solid var(--user-role-border, rgba($ui-secondary-color, 0.5));
+
+  &.moderator {
+    color: $success-green;
+    background-color: rgba($success-green, 0.1);
+    border-color: rgba($success-green, 0.5);
+  }
+
+  &.admin {
+    color: lighten($error-red, 12%);
+    background-color: rgba(lighten($error-red, 12%), 0.1);
+    border-color: rgba(lighten($error-red, 12%), 0.5);
+  }
+}
+
+.simple_form .not_recommended {
+  color: lighten($error-red, 12%);
+  background-color: rgba(lighten($error-red, 12%), 0.1);
+  border-color: rgba(lighten($error-red, 12%), 0.5);
+}
+
+.simple_form .glitch_only {
+  color: lighten($warning-red, 12%);
+  background-color: rgba(lighten($warning-red, 12%), 0.1);
+  border-color: rgba(lighten($warning-red, 12%), 0.5);
+}
+
+.account__header__fields {
+  max-width: 100vw;
+  padding: 0;
+  margin: 15px -15px -15px;
+  border: 0 none;
+  border-top: 1px solid lighten($ui-base-color, 12%);
+  border-bottom: 1px solid lighten($ui-base-color, 12%);
+  font-size: 14px;
+  line-height: 20px;
+
+  dl {
+    display: flex;
+    border-bottom: 1px solid lighten($ui-base-color, 12%);
+  }
+
+  dt,
+  dd {
+    box-sizing: border-box;
+    padding: 14px;
+    text-align: center;
+    max-height: 48px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  dt {
+    font-weight: 500;
+    width: 120px;
+    flex: 0 0 auto;
+    color: $secondary-text-color;
+    background: rgba(darken($ui-base-color, 8%), 0.5);
+  }
+
+  dd {
+    flex: 1 1 auto;
+    color: $darker-text-color;
+  }
+
+  a {
+    color: $highlight-text-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  .verified {
+    border: 1px solid rgba($valid-value-color, 0.5);
+    background: rgba($valid-value-color, 0.25);
+
+    a {
+      color: $valid-value-color;
+      font-weight: 500;
+    }
+
+    &__mark {
+      color: $valid-value-color;
+    }
+  }
+
+  dl:last-child {
+    border-bottom: 0;
+  }
+}
+
+.directory__tag .trends__item__current {
+  width: auto;
+}
+
+.pending-account {
+  &__header {
+    color: $darker-text-color;
+
+    a {
+      color: $ui-secondary-color;
+      text-decoration: none;
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+
+    strong {
+      color: $primary-text-color;
+      font-weight: 700;
+    }
+  }
+
+  &__body {
+    margin-top: 10px;
+  }
+}
+
+.batch-table__row--muted {
+  color: lighten($ui-base-color, 26%);
+}
+
+.batch-table__row--muted .pending-account__header,
+.batch-table__row--muted .accounts-table,
+.batch-table__row--muted .name-tag {
+  &,
+  a,
+  strong {
+    color: lighten($ui-base-color, 26%);
+  }
+}
+
+.batch-table__row--muted .name-tag .avatar {
+  opacity: 0.5;
+}
+
+.batch-table__row--muted .accounts-table {
+  tbody td.accounts-table__extra,
+  &__count,
+  &__count small {
+    color: lighten($ui-base-color, 26%);
+  }
+}
+
+.batch-table__row--attention {
+  color: $gold-star;
+}
+
+.batch-table__row--attention .pending-account__header,
+.batch-table__row--attention .accounts-table,
+.batch-table__row--attention .name-tag {
+  &,
+  a,
+  strong {
+    color: $gold-star;
+  }
+}
+
+.batch-table__row--attention .accounts-table {
+  tbody td.accounts-table__extra,
+  &__count,
+  &__count small {
+    color: $gold-star;
+  }
+}

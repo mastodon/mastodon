@@ -2,6 +2,8 @@ module.exports = {
   extends: ['stylelint-config-standard-scss'],
   ignoreFiles: [
     'app/javascript/styles/mastodon/reset.scss',
+    'app/javascript/flavours/glitch/styles/reset.scss',
+    'app/javascript/styles/win95.scss',
     'coverage/**/*',
     'node_modules/**/*',
     'public/assets/**/*',

@@ -1,10 +1,10 @@
 ---
 lv:
   about:
-    about_mastodon_html: 'Nākotnes sociālais tīkls: bez reklāmām, bez korporatīvās uzraudzības, ētisks dizains un decentralizācija! Pārvaldi savus datus ar TomX!'
+    about_mastodon_html: 'Nākotnes sociālais tīkls: bez reklāmām, bez korporatīvās uzraudzības, ētisks dizains un decentralizācija! Pārvaldi savus datus ar Mastodon!'
     contact_missing: Nav uzstādīts
     contact_unavailable: N/A
-    hosted_on: TomX mitināts %{domain}
+    hosted_on: Mastodon mitināts %{domain}
     title: Par
   accounts:
     follow: Sekot
@@ -676,7 +676,7 @@ lv:
         moderation: Moderācija
         special: Īpašās
       delete: Dzēst
-      description_html: Izmantojot <strong>lietotāju lomas</strong>, vari pielāgot, kurām TomX funkcijām un apgabaliem var piekļūt tavi lietotāji.
+      description_html: Izmantojot <strong>lietotāju lomas</strong>, vari pielāgot, kurām Mastodon funkcijām un apgabaliem var piekļūt tavi lietotāji.
       edit: Rediģēt lomu '%{name}'
       everyone: Noklusētās atļaujas
       everyone_full_description_html: Šī ir <strong>pamata loma</strong>, kas ietekmē <strong>visus lietotājus</strong>, pat tos, kuriem nav piešķirta loma. Visas pārējās lomas manto atļaujas no šīs.
@@ -740,20 +740,20 @@ lv:
         rules_hint: Noteikumiem, kas taviem lietotājiem ir jāievēro, ir īpaša sadaļa.
         title: Par
       appearance:
-        preamble: Pielāgo TomX tīmekļa saskarni.
+        preamble: Pielāgo Mastodon tīmekļa saskarni.
         title: Izskats
       branding:
-        preamble: Tava servera zīmols to atšķir no citiem tīkla serveriem. Šī informācija var tikt parādīta dažādās vidēs, piemēram, TomX tīmekļa saskarnē, vietējās lietojumprogrammās, saišu priekšskatījumos citās vietnēs un ziņojumapmaiņas lietotnēs un tā tālāk. Šī iemesla dēļ vislabāk ir saglabāt šo informāciju skaidru, īsu un kodolīgu.
+        preamble: Tava servera zīmols to atšķir no citiem tīkla serveriem. Šī informācija var tikt parādīta dažādās vidēs, piemēram, Mastodon tīmekļa saskarnē, vietējās lietojumprogrammās, saišu priekšskatījumos citās vietnēs un ziņojumapmaiņas lietotnēs un tā tālāk. Šī iemesla dēļ vislabāk ir saglabāt šo informāciju skaidru, īsu un kodolīgu.
         title: Zīmola veidošana
       content_retention:
-        preamble: Kontrolē, kā TomX tiek glabāts lietotāju ģenerēts saturs.
+        preamble: Kontrolē, kā Mastodon tiek glabāts lietotāju ģenerēts saturs.
         title: Satura saglabāšana
       default_noindex:
         desc_html: Ietekmē visus lietotājus, kuri paši nav mainījuši šo iestatījumu
         title: Pēc noklusējuma lietotāji būs atteikušies no meklētājprogrammu indeksēšanas
       discovery:
         follow_recommendations: Sekotšanas rekomendācijas
-        preamble: Interesanta satura parādīšana palīdz piesaistīt jaunus lietotājus, kuri, iespējams, nepazīst nevienu TomX. Kontrolē, kā tavā serverī darbojas dažādi atklāšanas līdzekļi.
+        preamble: Interesanta satura parādīšana palīdz piesaistīt jaunus lietotājus, kuri, iespējams, nepazīst nevienu Mastodon. Kontrolē, kā tavā serverī darbojas dažādi atklāšanas līdzekļi.
         profile_directory: Profila direktorija
         public_timelines: Publiskās ziņu lentas
         publish_discovered_servers: Publicēt atklātos serverus
@@ -911,7 +911,7 @@ lv:
     webhooks:
       add_new: Pievienot galapunktu
       delete: Dzēst
-      description_html: Izmantojot <strong>tīmekļa aizķeri</strong>, TomX var nosūtīt jūsu lietojumprogrammai <strong>reāllaika paziņojumus</strong> par izvēlētajiem notikumiem, lai tava lietojumprogramma varētu <strong>automātiski izraisīt reakcijas</strong>.
+      description_html: Izmantojot <strong>tīmekļa aizķeri</strong>, Mastodon var nosūtīt jūsu lietojumprogrammai <strong>reāllaika paziņojumus</strong> par izvēlētajiem notikumiem, lai tava lietojumprogramma varētu <strong>automātiski izraisīt reakcijas</strong>.
       disable: Atspējot
       disabled: Atspējots
       edit: Rediģēt galapunktu
@@ -974,7 +974,7 @@ lv:
     confirmation_dialogs: Apstiprināšanas dialogi
     discovery: Atklāšana
     localization:
-      body: TomX ir tulkojuši brīvprātīgie.
+      body: Mastodon ir tulkojuši brīvprātīgie.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Ikviens var piedalīties.
     sensitive_content: Sensitīvs saturs
@@ -1000,9 +1000,9 @@ lv:
     delete_account: Dzēst kontu
     delete_account_html: Ja vēlies dzēst savu kontu, tu vari <a href="%{path}">turpināt šeit</a>. Tev tiks lūgts apstiprinājums.
     description:
-      prefix_invited_by_user: "@%{name} aicina tevi pievienoties šim TomX serverim!"
-      prefix_sign_up: Reģistrējies TomX jau šodien!
-      suffix: Izmantojot kontu, tu varēsi sekot cilvēkiem, publicēt atjauninājumus un apmainīties ar ziņojumiem ar lietotājiem no jebkura TomX servera un daudz ko citu!
+      prefix_invited_by_user: "@%{name} aicina tevi pievienoties šim Mastodon serverim!"
+      prefix_sign_up: Reģistrējies Mastodon jau šodien!
+      suffix: Izmantojot kontu, tu varēsi sekot cilvēkiem, publicēt atjauninājumus un apmainīties ar ziņojumiem ar lietotājiem no jebkura Mastodon servera un daudz ko citu!
     didnt_get_confirmation: Vai nesaņēmi apstiprinājuma saiti?
     dont_have_your_security_key: Vai tev nav drošības atslēgas?
     forgot_password: Aizmirsi paroli?
@@ -1046,7 +1046,7 @@ lv:
       title: Pierakstīties %{domain}
     sign_up:
       manual_review: Reģistrācijas domēnā %{domain} manuāli pārbauda mūsu moderatori. Lai palīdzētu mums apstrādāt tavu reģistrāciju, uzraksti mazliet par sevi un to, kāpēc vēlies kontu %{domain}.
-      preamble: Izmantojot kontu šajā TomX serverī, tu varēsi sekot jebkurai citai personai tīklā neatkarīgi no tā, kur tiek mitināts viņas konts.
+      preamble: Izmantojot kontu šajā Mastodon serverī, tu varēsi sekot jebkurai citai personai tīklā neatkarīgi no tā, kur tiek mitināts viņas konts.
       title: Atļauj tevi iestatīt %{domain}.
     status:
       account_status: Konta statuss
@@ -1147,7 +1147,7 @@ lv:
       content: Atvaino, bet kaut kas mūsu pusē nogāja greizi.
       title: Šī lapa nav pareiza
     '503': Lapu nevarēja apkalpot īslaicīgas servera kļūmes dēļ.
-    noscript_html: Lai izmantotu TomX web lietojumu, lūdzu, iespējo JavaScript. Vai arī izmēģini kādu no <a href="%{apps_path}">vietējām lietotnēm</a> TomX savai platformai.
+    noscript_html: Lai izmantotu Mastodon web lietojumu, lūdzu, iespējo JavaScript. Vai arī izmēģini kādu no <a href="%{apps_path}">vietējām lietotnēm</a> Mastodon savai platformai.
   existing_username_validator:
     not_found: nevarēja atrast lokālo lietotāju ar šādu lietotājvārdu
     not_found_multiple: nevarēja atrast %{usernames}
@@ -1522,7 +1522,7 @@ lv:
       weibo: Weibo
     current_session: Pašreizējā sesija
     description: "%{browser} uz %{platform}"
-    explanation: Šīs ir tīmekļa pārlūkprogrammas, kurās pašlaik esi pieteicies savā TomX kontā.
+    explanation: Šīs ir tīmekļa pārlūkprogrammas, kurās pašlaik esi pieteicies savā Mastodon kontā.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1548,7 +1548,7 @@ lv:
     aliases: Konta aizstājvārdi
     appearance: Izskats
     authorized_apps: Autorizētās lietotnes
-    back: Atgriezties TomX
+    back: Atgriezties Mastodon
     delete: Konta dzēšana
     development: Izstrāde
     edit_profile: Rediģēt profilu
@@ -1663,9 +1663,9 @@ lv:
   tags:
     does_not_match_previous_name: nesakrīt ar iepriekšējo nosaukumu
   themes:
-    contrast: TomX (Augsts kontrasts)
-    default: TomX (Tumšs)
-    mastodon-light: TomX (Gaišs)
+    contrast: Mastodon (Augsts kontrasts)
+    default: Mastodon (Tumšs)
+    mastodon-light: Mastodon (Gaišs)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1697,7 +1697,7 @@ lv:
       subject: Jūsu %{date} apelācija ir noraidīta
       title: Apelācija noraidīta
     backup_ready:
-      explanation: Tu pieprasīji pilnu sava TomX konta dublējumu. Tagad tas ir gatavs lejupielādei!
+      explanation: Tu pieprasīji pilnu sava Mastodon konta dublējumu. Tagad tas ir gatavs lejupielādei!
       subject: Tavs arhīvs ir gatavs lejupielādei
       title: Arhīva līdzņemšana
     suspicious_sign_in:
@@ -1746,7 +1746,7 @@ lv:
       final_step: 'Sāc publicēt! Pat bez sekotājiem tavas publiskās ziņas var redzēt citi, piemēram, vietējā ziņu lentā vai atsaucēs. Iespējams, tu vēlēsies iepazīstināt ar sevi, izmantojot tēmturi #introductions.'
       full_handle: Tavs pilnais lietotājvārds
       full_handle_hint: Šis ir tas, ko tu pasaki saviem draugiem, lai viņi varētu tev ziņot vai sekot tev no cita servera.
-      subject: Laipni lūgts TomX
+      subject: Laipni lūgts Mastodon
       title: Laipni lūgts uz borta, %{name}!
   users:
     follow_limit_reached: Tu nevari sekot vairāk par %{limit} cilvēkiem

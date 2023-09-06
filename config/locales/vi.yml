@@ -1,10 +1,10 @@
 ---
 vi:
   about:
-    about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không bán thông tin người dùng và phi tập trung! Làm chủ dữ liệu của bạn với TomX!'
+    about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không bán thông tin người dùng và phi tập trung! Làm chủ dữ liệu của bạn với Mastodon!'
     contact_missing: Chưa thiết lập
     contact_unavailable: N/A
-    hosted_on: "%{domain} vận hành nhờ TomX"
+    hosted_on: "%{domain} vận hành nhờ Mastodon"
     title: Giới thiệu
   accounts:
     follow: Theo dõi
@@ -168,14 +168,14 @@ vi:
     action_logs:
       action_types:
         approve_appeal: Chấp nhận kháng cáo
-        approve_user: Chấp nhận người dùng
+        approve_user: Chấp nhận đăng ký
         assigned_to_self_report: Tự xử lý báo cáo
         change_email_user: Đổi email
-        change_role_user: Thay đổi vai trò
+        change_role_user: Đổi vai trò
         confirm_user: Xác minh
         create_account_warning: Cảnh cáo
         create_announcement: Tạo thông báo mới
-        create_canonical_email_block: Tạo chặn tên miền email mới
+        create_canonical_email_block: Tạo chặn tên miền email
         create_custom_emoji: Tạo emoji
         create_domain_allow: Cho phép máy chủ
         create_domain_block: Chặn máy chủ
@@ -187,7 +187,7 @@ vi:
         destroy_announcement: Xóa thông báo
         destroy_canonical_email_block: Bỏ chặn tên miền email
         destroy_custom_emoji: Xóa emoji
-        destroy_domain_allow: Bỏ cho phép máy chủ
+        destroy_domain_allow: Bỏ thanh trừng máy chủ
         destroy_domain_block: Bỏ chặn máy chủ
         destroy_email_domain_block: Bỏ chặn tên miền email
         destroy_instance: Thanh trừng máy chủ
@@ -205,7 +205,7 @@ vi:
         memorialize_account: Đánh dấu tưởng niệm
         promote_user: Chỉ định vai trò
         reject_appeal: Từ chối kháng cáo
-        reject_user: Từ chối người dùng
+        reject_user: Từ chối đăng ký
         remove_avatar_user: Xóa ảnh đại diện
         reopen_report: Mở lại báo cáo
         resend_user: Gửi lại email xác nhận
@@ -343,9 +343,9 @@ vi:
     dashboard:
       active_users: người hoạt động
       interactions: tương tác
-      media_storage: Dung lượng lưu trữ
+      media_storage: Media
       new_users: người mới
-      opened_reports: tổng báo cáo
+      opened_reports: báo cáo
       pending_appeals_html:
         other: "<strong>%{count}</strong> kháng cáo đang chờ"
       pending_reports_html:
@@ -357,7 +357,7 @@ vi:
       resolved_reports: báo cáo đã xử lí
       software: Phần mềm
       sources: Nguồn đăng ký
-      space: Dung lượng lưu trữ
+      space: Lưu trữ
       title: Thống kê
       top_languages: Ngôn ngữ phổ biến
       top_servers: Máy chủ phổ biến
@@ -450,7 +450,7 @@ vi:
         title: Nhập máy chủ chặn
       no_file: Không có tập tin nào được chọn
     follow_recommendations:
-      description_html: "<strong>Gợi ý theo dõi là cách giúp những người mới nhanh chóng tìm thấy những nội dung thú vị</strong>. Khi một người chưa đủ tương tác với những người khác để hình thành các đề xuất theo dõi được cá nhân hóa, thì những người này sẽ được đề xuất. Nó bao gồm những người có số lượt tương tác gần đây cao nhất và số lượng người theo dõi cao nhất cho một ngôn ngữ nhất định trong máy chủ."
+      description_html: "<strong>Gợi ý theo dõi giúp những người mới nhanh chóng tìm thấy những nội dung thú vị</strong>. Khi một người chưa đủ tương tác với những người khác để hình thành các đề xuất theo dõi được cá nhân hóa, thì những người này sẽ được đề xuất. Nó bao gồm những người có số lượt tương tác gần đây cao nhất và số lượng người theo dõi cao nhất cho một ngôn ngữ nhất định trong máy chủ."
       language: Theo ngôn ngữ
       status: Trạng thái
       suppress: Tắt gợi ý theo dõi
@@ -659,7 +659,7 @@ vi:
         moderation: Kiểm duyệt
         special: Đặc biệt
       delete: Xóa
-      description_html: Thông qua <strong>vai trò</strong>, bạn có thể tùy chỉnh những tính năng và vị trí của TomX mà mọi người có thể truy cập.
+      description_html: Thông qua <strong>vai trò</strong>, bạn có thể tùy chỉnh những tính năng và vị trí của Mastodon mà mọi người có thể truy cập.
       edit: Sửa vai trò '%{name}'
       everyone: Quyền hạn mặc định
       everyone_full_description_html: Đây <strong>vai trò cơ bản</strong> ảnh hưởng tới <strong>mọi người khác</strong>, kể cả những người không có vai trò được chỉ định. Tất cả các vai trò khác đều kế thừa quyền từ vai trò đó.
@@ -721,23 +721,23 @@ vi:
         rules_hint: Có một khu vực dành riêng cho các nội quy mà người tham gia máy chủ của bạn phải tuân thủ.
         title: Giới thiệu
       appearance:
-        preamble: Tùy chỉnh giao diện web của TomX.
+        preamble: Tùy chỉnh giao diện web của Mastodon.
         title: Giao diện
       branding:
-        preamble: Thương hiệu máy chủ của bạn phân biệt nó với các máy chủ khác trong mạng. Thông tin này có thể được hiển thị trên nhiều môi trường khác nhau, chẳng hạn như giao diện web của TomX, các ứng dụng gốc, trong bản xem trước liên kết trên các trang web khác và trong các ứng dụng nhắn tin, v.v. Vì lý do này, cách tốt nhất là giữ cho thông tin này rõ ràng, ngắn gọn và súc tích.
+        preamble: Thương hiệu máy chủ của bạn phân biệt nó với các máy chủ khác trong mạng. Thông tin này có thể được hiển thị trên nhiều môi trường khác nhau, chẳng hạn như giao diện web của Mastodon, các ứng dụng gốc, trong bản xem trước liên kết trên các trang web khác và trong các ứng dụng nhắn tin, v.v. Vì lý do này, cách tốt nhất là giữ cho thông tin này rõ ràng, ngắn gọn và súc tích.
         title: Thương hiệu
       captcha_enabled:
         desc_html: Điều này phụ thuộc vào các mã lệnh bên ngoài từ hCaptcha, đây có thể là mối lo ngại về bảo mật và quyền riêng tư. Thêm vào đó, <strong>điều này có thể làm cho quá trình đăng ký khó hơn đối với một số người (đặc biệt là người khuyết tật)</strong>. Vì những lý do này, vui lòng xem xét các biện pháp thay thế như duyệt đăng ký thủ công hoặc tạo thư mời.
         title: Yêu cầu người dùng mới dùng CAPTCHA để xác minh tài khoản của họ
       content_retention:
-        preamble: Kiểm soát cách lưu trữ nội dung cá nhân trong TomX.
+        preamble: Kiểm soát cách lưu trữ nội dung cá nhân trong Mastodon.
         title: Lưu giữ nội dung
       default_noindex:
         desc_html: Ảnh hưởng đến tất cả người không tự thay đổi cài đặt này
         title: Mặc định người dùng không xuất hiện trong công cụ tìm kiếm
       discovery:
         follow_recommendations: Gợi ý theo dõi
-        preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trong TomX. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
+        preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trong Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
         profile_directory: Cộng đồng
         public_timelines: Bảng tin
         publish_discovered_servers: Công khai các máy chủ được phát hiện
@@ -835,15 +835,15 @@ vi:
           no_publisher_selected: Không có nguồn đăng nào thay đổi vì không có nguồn đăng nào được chọn
         shared_by_over_week:
           other: "%{count} người chia sẻ tuần rồi"
-        title: Liên kết nổi bật
+        title: Tin tức nổi bật
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
       not_allowed_to_trend: Không được phép thành xu hướng
       only_allowed: Chỉ cho phép
       pending_review: Đang chờ
       preview_card_providers:
-        allowed: Liên kết từ nguồn đăng này có thể nổi bật
+        allowed: Tin tức từ nguồn này có thể lên xu hướng
         description_html: Đây là những nguồn mà từ đó các liên kết thường được chia sẻ trên máy chủ của bạn. Các liên kết sẽ không thể thịnh hành trừ khi bạn cho phép nguồn. Sự cho phép (hoặc cấm) của bạn áp dụng luôn cho các tên miền phụ.
-        rejected: Liên kết từ nguồn đăng không thể nổi bật
+        rejected: Tin tức từ nguồn này không thể lên xu hướng
         title: Nguồn đăng
       rejected: Đã cấm
       statuses:
@@ -890,7 +890,7 @@ vi:
     webhooks:
       add_new: Thêm endpoint
       delete: Xóa bỏ
-      description_html: "<strong>Webhook</strong> cho phép TomX gửi nhận <strong>thông báo đẩy thời gian thật</strong> về những sự kiện cho ứng dụng thứ ba của bạn, cho ứng dụng của bạn có thể <strong>tự động kích hoạt reaction</strong>."
+      description_html: "<strong>Webhook</strong> cho phép Mastodon gửi nhận <strong>thông báo đẩy thời gian thật</strong> về những sự kiện cho ứng dụng thứ ba của bạn, cho ứng dụng của bạn có thể <strong>tự động kích hoạt reaction</strong>."
       disable: Tắt
       disabled: Đã tắt
       edit: Sửa endpoint
@@ -929,7 +929,7 @@ vi:
     new_trends:
       body: 'Các mục sau đây cần được xem xét trước khi chúng hiển thị công khai:'
       new_trending_links:
-        title: Liên kết nổi bật
+        title: Tin tức nổi bật
       new_trending_statuses:
         title: Tút nổi bật
       new_trending_tags:
@@ -946,12 +946,12 @@ vi:
     remove: Bỏ liên kết bí danh
   appearance:
     advanced_web_interface: Bố cục
-    advanced_web_interface_hint: 'Bố cục nhiều cột cho phép bạn chuyển bố cục hiển thị thành nhiều cột khác nhau. Bao gồm: Bảng tin, thông báo, thế giới, cũng như danh sách và hashtag. Thích hợp nếu bạn đang dùng màn hình rộng.'
-    animations_and_accessibility: Bảng tin
+    advanced_web_interface_hint: Bố cục nhiều cột cho phép bạn chuyển bố cục hiển thị thành nhiều cột khác nhau. Thích hợp với màn hình rộng.
+    animations_and_accessibility: Hiệu ứng
     confirmation_dialogs: Hộp thoại xác nhận
     discovery: Khám phá
     localization:
-      body: TomX được dịch bởi tình nguyện viên.
+      body: Mastodon được dịch bởi tình nguyện viên.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Ai cũng có thể đóng góp.
     sensitive_content: Nội dung nhạy cảm
@@ -982,9 +982,9 @@ vi:
     delete_account: Xóa tài khoản
     delete_account_html: Nếu bạn muốn xóa tài khoản của mình, hãy <a href="%{path}">yêu cầu tại đây</a>. Bạn sẽ được yêu cầu xác nhận.
     description:
-      prefix_invited_by_user: "@%{name} mời bạn tham gia máy chủ TomX này!"
-      prefix_sign_up: Tham gia TomX ngay hôm nay!
-      suffix: Với tài khoản, bạn sẽ có thể theo dõi mọi người, đăng tút và nhắn tin với người từ bất kỳ máy chủ TomX khác!
+      prefix_invited_by_user: "@%{name} mời bạn tham gia máy chủ Mastodon này!"
+      prefix_sign_up: Tham gia Mastodon ngay hôm nay!
+      suffix: Với tài khoản, bạn sẽ có thể theo dõi mọi người, đăng tút và nhắn tin với người từ bất kỳ máy chủ Mastodon khác!
     didnt_get_confirmation: Không nhận được email yêu cầu xác thực?
     dont_have_your_security_key: Bạn có khóa bảo mật chưa?
     forgot_password: Quên mật khẩu
@@ -1027,11 +1027,11 @@ vi:
       new_confirmation_instructions_sent: Bạn sẽ nhận được một email mới với liên kết xác nhận sau vài phút!
       title: Kiểm tra email của bạn
     sign_in:
-      preamble_html: Đăng nhập bằng tài khoản <strong>%{domain}</strong>. Nếu tài khoản của bạn được lưu trữ trên một máy chủ khác, bạn sẽ không thể đăng nhập tại đây.
+      preamble_html: Đăng nhập bằng tài khoản <strong>%{domain}</strong>. Nếu đăng ký trên một máy chủ khác, bạn sẽ không thể đăng nhập tại đây.
       title: Đăng nhập %{domain}
     sign_up:
       manual_review: "%{domain} sẽ duyệt đăng ký thủ công. Để giúp chúng tôi duyệt nhanh, hãy viết một chút về bản thân và lý do bạn muốn có một tài khoản trên %{domain}."
-      preamble: Với tài khoản trên máy chủ TomX này, bạn sẽ có thể theo dõi bất kỳ người nào trên các máy chủ khác, bất kể tài khoản của họ ở đâu.
+      preamble: Với tài khoản trên máy chủ Mastodon này, bạn sẽ có thể theo dõi bất kỳ người nào trên các máy chủ khác, bất kể tài khoản của họ ở đâu.
       title: Đang đăng ký trên %{domain}.
     status:
       account_status: Trạng thái tài khoản
@@ -1120,9 +1120,8 @@ vi:
     invalid_domain: không phải là một tên miền hợp lệ
   edit_profile:
     basic_information: Thông tin cơ bản
-    hint_html: "<strong>Tùy chỉnh những gì mọi người nhìn thấy trên hồ sơ công khai của bạn và bên cạnh tút của bạn.</strong> Mọi người sẽ muốn theo dõi lại bạn và tương tác với bạn hơn khi bạn có một hồ sơ đầy đủ và một ảnh hồ sơ."
+    hint_html: "<strong>Tùy chỉnh những gì mọi người nhìn thấy trên hồ sơ công khai và bên cạnh tút của bạn.</strong> Mọi người sẽ muốn theo dõi và tương tác với bạn hơn nếu bạn có ảnh đại diện và một hồ sơ hoàn chỉnh."
     other: Khác
-    safety_and_privacy: An toàn và bảo mật
   errors:
     '400': Yêu cầu bạn gửi không hợp lệ hoặc sai hình thức.
     '403': Bạn không có quyền xem trang này.
@@ -1137,7 +1136,7 @@ vi:
       content: Chúng tôi xin lỗi, nhưng đã xảy ra sự cố.
       title: Múi giờ trên thiết bị không đúng
     '503': Trang không thể hiển thị do lỗi máy chủ tạm thời.
-    noscript_html: Để vào TomX bản web, vui lòng bật JavaScript. Ngoài ra, hãy thử dùng một <a href="%{apps_path}">ứng dụng lướt TomX</a> cho thiết bị của bạn.
+    noscript_html: Để vào Mastodon bản web, vui lòng bật JavaScript. Ngoài ra, hãy thử dùng một <a href="%{apps_path}">ứng dụng lướt Mastodon</a> cho thiết bị của bạn.
   existing_username_validator:
     not_found: không có tên người dùng này trên máy chủ
     not_found_multiple: không tìm thấy %{usernames}
@@ -1160,11 +1159,11 @@ vi:
     add_new: Thêm mới
     errors:
       limit: Bạn đã đạt tới số lượng hashtag tối đa
-    hint_html: "<strong>Hashtag thường dùng</strong> là gì? Chúng là những hashtag sẽ được hiển thị nổi bật trên trang hồ sơ của bạn, cho phép mọi người tìm kiếm các bài đăng công khai của bạn có chứa các hashtag đó. Tính năng này có thể dùng để đánh dấu chuỗi tác phẩm sáng tạo hoặc dự án dài hạn."
+    hint_html: "<strong>Làm nổi bật những hashtag thường dùng.</strong> Một công cụ tuyệt vời để theo dõi các tác phẩm sáng tạo và dự án dài hạn của bạn, các hashtag thường dùng sẽ hiển thị nổi bật trên hồ sơ của bạn và cho phép truy cập nhanh vào các tút."
   filters:
     contexts:
       account: Trang hồ sơ
-      home: Bảng tin
+      home: Trang chính và danh sách
       notifications: Thông báo
       public: Tin công khai
       thread: Thảo luận
@@ -1213,7 +1212,7 @@ vi:
     delete: Xóa
     deselect: Bỏ chọn tất cả
     none: Trống
-    order_by: Sắp xếp
+    order_by: Xếp theo
     save_changes: Lưu thay đổi
     select_all_matching_items:
       other: Chọn tất cả%{count} mục trùng hợp với tìm kiếm của bạn.
@@ -1317,7 +1316,7 @@ vi:
     unsubscribe:
       action: Đúng, hủy đăng ký
       complete: Đã hủy đăng ký
-      confirmation_html: Bạn có có chắc muốn hủy đăng ký %{type} TomX trên %{domain} cho %{email}? Bạn có thể đăng ký lại từ <a href="%{settings_path}">cài đặt thông báo email</a>.
+      confirmation_html: Bạn có có chắc muốn hủy đăng ký %{type} Mastodon trên %{domain} cho %{email}? Bạn có thể đăng ký lại từ <a href="%{settings_path}">cài đặt thông báo email</a>.
       emails:
         notification_emails:
           favourite: email thông báo lượt thích
@@ -1326,7 +1325,7 @@ vi:
           mention: email thông báo lượt nhắc đến
           reblog: email thông báo lượt đăng lại
       resubscribe_html: Nếu đổi ý, bạn có thể đăng ký lại từ <a href="%{settings_path}">cài đặt thông báo email</a>.
-      success_html: Bạn sẽ không còn nhận %{type} TomX trên %{domain} cho %{email}.
+      success_html: Bạn sẽ không còn nhận %{type} Mastodon trên %{domain} cho %{email}.
       title: Hủy đăng ký
   media_attachments:
     validations:
@@ -1409,7 +1408,7 @@ vi:
   notifications:
     email_events: Email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
-    other_settings: Thông báo khác
+    other_settings: Chặn thông báo từ
   number:
     human:
       decimal_units:
@@ -1469,14 +1468,14 @@ vi:
     invited: Đã mời
     last_active: Hoạt động lần cuối
     most_recent: Mới nhất
-    moved: Đã xóa
+    moved: Đã chuyển
     mutual: Đồng thời
-    primary: Hoạt động
+    primary: Còn
     relationship: Quan hệ
     remove_selected_domains: Xóa hết người theo dõi từ các máy chủ đã chọn
     remove_selected_followers: Xóa những người theo dõi đã chọn
     remove_selected_follows: Bỏ theo dõi những người đã chọn
-    status: Trạng thái của họ
+    status: Trạng thái
   remote_follow:
     missing_resource: Không tìm thấy URL chuyển hướng cho tài khoản của bạn
   reports:
@@ -1493,7 +1492,7 @@ vi:
     too_soon: Ngày lên lịch phải trong tương lai
   sessions:
     activity: Gần đây nhất
-    browser: Trình duyệt
+    browser: Ứng dụng
     browsers:
       alipay: Alipay
       blackberry: BlackBerry
@@ -1501,7 +1500,7 @@ vi:
       edge: Edge
       electron: Electron
       firefox: Firefox
-      generic: Trình duyệt khác
+      generic: Chưa rõ
       huawei_browser: Huawei Browser
       ie: Internet Explorer
       micro_messenger: MicroMes hành khách
@@ -1516,7 +1515,7 @@ vi:
       weibo: Weibo
     current_session: Phiên hiện tại
     description: "%{browser} trên %{platform}"
-    explanation: Đây là các trình duyệt web đã từng đăng nhập vào tài khoản TomX của bạn.
+    explanation: Đây là các ứng dụng đã từng đăng nhập vào tài khoản Mastodon của bạn.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1542,7 +1541,7 @@ vi:
     aliases: Kết nối tài khoản
     appearance: Giao diện
     authorized_apps: Ứng dụng
-    back: Quay lại TomX
+    back: Quay lại Mastodon
     delete: Xóa tài khoản
     development: Lập trình
     edit_profile: Sửa hồ sơ
@@ -1645,9 +1644,9 @@ vi:
   tags:
     does_not_match_previous_name: không khớp với tên trước
   themes:
-    contrast: TomX (Độ tương phản cao)
-    default: TomX (Tối)
-    mastodon-light: TomX (Sáng)
+    contrast: Mastodon (Tương phản)
+    default: Mastodon (Tối)
+    mastodon-light: Mastodon (Sáng)
   time:
     formats:
       default: "%-d.%m.%Y %H:%M"
@@ -1679,7 +1678,7 @@ vi:
       subject: Khiếu nại của bạn từ %{date} đã bị từ chối
       title: Khiếu nại bị từ chối
     backup_ready:
-      explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản TomX của mình. Bây giờ có thể tải về!
+      explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ có thể tải về!
       subject: Dữ liệu cá nhân của bạn đã sẵn sàng để tải về
       title: Nhận dữ liệu cá nhân
     suspicious_sign_in:
@@ -1728,7 +1727,7 @@ vi:
       final_step: 'Viết tút mới! Ngay cả khi chưa có người theo dõi, người khác vẫn có thể xem tút công khai của bạn trên bảng tin máy chủ và qua hashtag. Hãy giới thiệu bản thân với hashtag #introductions.'
       full_handle: Tên đầy đủ của bạn
       full_handle_hint: Đây cũng là địa chỉ được dùng để giao tiếp với tất cả mọi người.
-      subject: Chào mừng đến với TomX
+      subject: Chào mừng đến với Mastodon
       title: Xin chào %{name}!
   users:
     follow_limit_reached: Bạn chỉ có thể theo dõi tối đa %{limit} người
@@ -1740,8 +1739,8 @@ vi:
   verification:
     extra_instructions_html: <strong>Mẹo:</strong> Liên kết trên trang web của bạn có thể ẩn. Phần quan trọng là <code>rel="me"</code> ngăn chặn việc mạo danh trên các trang web có nội dung do người dùng tạo. Bạn thậm chí có thể sử dụng một thẻ <code>link</code> trên header của trang thay vì <code>a</code>, nhưng HTML phải có thể truy cập được mà không cần thực thi JavaScript.
     here_is_how: Cách thực hiện
-    hint_html: "<strong>Xác minh danh tính trên TomX là dành cho tất cả mọi người.</strong> Dựa trên các tiêu chuẩn web mở, miễn phí bây giờ và mãi mãi. Tất cả những gì bạn cần là một trang web cá nhân để mọi người nhận ra bạn. Khi bạn liên kết đến trang web này từ hồ sơ của mình, chúng tôi sẽ kiểm tra xem trang web đó có liên kết lại với hồ sơ của bạn hay không và hiển thị một chỉ báo trực quan trên đó."
-    instructions_html: Sao chép và dán mã bên dưới vào HTML của trang web của bạn. Sau đó, thêm địa chỉ trang web của bạn vào một trong các trường bổ sung trên hồ sơ của bạn từ tab "Chỉnh sửa hồ sơ" và lưu các thay đổi.
+    hint_html: "<strong>Xác minh danh tính trên Mastodon là dành cho tất cả mọi người.</strong> Dựa trên các tiêu chuẩn web mở, miễn phí bây giờ và mãi mãi. Tất cả những gì bạn cần là một trang web cá nhân để mọi người nhận ra bạn. Khi bạn liên kết đến trang web này từ hồ sơ của mình, chúng tôi sẽ kiểm tra xem trang web đó có liên kết lại với hồ sơ của bạn hay không và hiển thị một chỉ báo trực quan trên đó."
+    instructions_html: Sao chép và dán mã bên dưới vào mã nguồn trang web của bạn. Sau đó, thêm địa chỉ trang web của bạn vào một trong các trường metadata trên hồ sơ của bạn từ tab "Sửa hồ sơ" và lưu thay đổi.
     verification: Xác minh
     verified_links: Những liên kết bạn đã xác minh
   webauthn_credentials:

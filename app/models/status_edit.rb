@@ -11,6 +11,7 @@
 #  spoiler_text                 :text             default(""), not null
 #  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
+#  content_type                 :string
 #  ordered_media_attachment_ids :bigint(8)        is an Array
 #  media_descriptions           :text             is an Array
 #  poll_options                 :string           is an Array

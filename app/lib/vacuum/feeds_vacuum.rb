@@ -4,6 +4,7 @@ class Vacuum::FeedsVacuum
   def perform
     vacuum_inactive_home_feeds!
     vacuum_inactive_list_feeds!
+    vacuum_inactive_direct_feeds!
   end
 
   private
@@ -17,6 +18,12 @@ class Vacuum::FeedsVacuum
   def vacuum_inactive_list_feeds!
     inactive_users_lists.select(:id).in_batches do |lists|
       feed_manager.clean_feeds!(:list, lists.ids)
+    end
+  end
+
+  def vacuum_inactive_direct_feeds!
+    inactive_users_lists.select(:id).find_in_batches do |lists|
+      feed_manager.clean_feeds!(:direct, lists.map(&:id))
     end
   end
 

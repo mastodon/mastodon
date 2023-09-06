@@ -294,6 +294,31 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'when directMessage attribute is false' do
+        let(:recipient) { Fabricate(:account) }
+
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            directMessage: false,
+            to: ActivityPub::TagManager.instance.uri_for(recipient),
+            tag: {
+              type: 'Mention',
+              href: ActivityPub::TagManager.instance.uri_for(recipient),
+            },
+          }
+        end
+
+        it 'creates status with limited visibility' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.visibility).to eq 'limited'
+        end
+      end
+
       context 'when direct' do
         let(:recipient) { Fabricate(:account) }
 
@@ -307,6 +332,27 @@ RSpec.describe ActivityPub::Activity::Create do
               type: 'Mention',
               href: ActivityPub::TagManager.instance.uri_for(recipient),
             },
+          }
+        end
+
+        it 'creates status with direct visibility' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.visibility).to eq 'direct'
+        end
+      end
+
+      context 'when directMessage attribute is true' do
+        let(:recipient) { Fabricate(:account) }
+
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            to: ActivityPub::TagManager.instance.uri_for(recipient),
+            directMessage: true,
           }
         end
 

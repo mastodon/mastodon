@@ -1,10 +1,10 @@
 ---
 zh-CN:
   about:
-    about_mastodon_html: 来自未来的社交网络：无广告、无监视、去中心化、合乎道德！使用 TomX 夺回你的数据！
+    about_mastodon_html: 来自未来的社交网络：无广告、无监视、去中心化、合乎道德！使用 Mastodon 夺回你的数据！
     contact_missing: 未设定
     contact_unavailable: 未公开
-    hosted_on: 运行在 %{domain} 上的 TomX 实例
+    hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     title: 关于本站
   accounts:
     follow: 关注
@@ -721,23 +721,23 @@ zh-CN:
         rules_hint: 有一个专门区域用于显示用户需要遵守的规则。
         title: 关于本站
       appearance:
-        preamble: 自定义 TomX 的网页界面。
+        preamble: 自定义 Mastodon 的网页界面。
         title: 外观
       branding:
-        preamble: 你的服务器与网络中其他服务器的招牌区别。此信息将可能在多种环境下显示，包括 TomX 网页界面、原生应用和其他网站的链接预览等。因此应尽量简明扼要。
+        preamble: 你的服务器与网络中其他服务器的招牌区别。此信息将可能在多种环境下显示，包括 Mastodon 网页界面、原生应用和其他网站的链接预览等。因此应尽量简明扼要。
         title: 招牌
       captcha_enabled:
         desc_html: 这依赖于来自hCaptcha的外部脚本，可能会带来安全和隐私问题。此外，<strong>这可能使注册过程对某些人（尤其是残疾人）的注册简易程度大幅下降</strong>。出于这些原因，请考虑采取其他措施，如基于批准或邀请的注册方式。
         title: 要求新用户输入验证码以确认他们的账户
       content_retention:
-        preamble: 控制用户生成的内容在 TomX 中如何存储。
+        preamble: 控制用户生成的内容在 Mastodon 中如何存储。
         title: 内容保留
       default_noindex:
         desc_html: 影响所有尚未更改此设置的用户
         title: 默认不让用户被搜索引擎索引
       discovery:
         follow_recommendations: 关注推荐
-        preamble: 露出有趣的内容有助于新加入 TomX 的用户融入。可在这里控制多种发现功能如何在你的服务器上工作。
+        preamble: 露出有趣的内容有助于新加入 Mastodon 的用户融入。可在这里控制多种发现功能如何在你的服务器上工作。
         profile_directory: 个人资料目录
         public_timelines: 公共时间轴
         publish_discovered_servers: 已公开实例的服务器
@@ -890,7 +890,7 @@ zh-CN:
     webhooks:
       add_new: 新增对端
       delete: 删除
-      description_html: "<strong>Webhook</strong> 使 TomX 能够推送 <strong>关于所选事件的实时通知</strong> 到你自己的应用程序，进而由你的应用程序<strong>自动触发反应</strong>。"
+      description_html: "<strong>Webhook</strong> 使 Mastodon 能够推送 <strong>关于所选事件的实时通知</strong> 到你自己的应用程序，进而由你的应用程序<strong>自动触发反应</strong>。"
       disable: 禁用
       disabled: 已禁用
       edit: 编辑对端
@@ -951,7 +951,7 @@ zh-CN:
     confirmation_dialogs: 确认对话框
     discovery: 发现
     localization:
-      body: TomX 由志愿者翻译。
+      body: Mastodon 由志愿者翻译。
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每个人都可以参与翻译。
     sensitive_content: 敏感内容
@@ -983,8 +983,8 @@ zh-CN:
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
     description:
       prefix_invited_by_user: "@%{name} 邀请你加入这个Mastodon服务器！"
-      prefix_sign_up: 现在就注册 TomX！
-      suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其它任何 TomX 服务器上的用户交流，而且还有其它更多功能！
+      prefix_sign_up: 现在就注册 Mastodon！
+      suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其它任何 Mastodon 服务器上的用户交流，而且还有其它更多功能！
     didnt_get_confirmation: 没有收到确认链接？
     dont_have_your_security_key: 没有你的安全密钥？
     forgot_password: 忘记密码？
@@ -1057,18 +1057,18 @@ zh-CN:
       with_month_name: "%Y年%m月%d日"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}时"
-      about_x_months: "%{count}个月"
-      about_x_years: "%{count}年"
-      almost_x_years: "%{count}年"
+      about_x_hours: "%{count}小时前"
+      about_x_months: "%{count}个月前"
+      about_x_years: "%{count}年前"
+      almost_x_years: "%{count}年前"
       half_a_minute: 刚刚
-      less_than_x_minutes: "%{count}分"
+      less_than_x_minutes: "%{count}分钟前"
       less_than_x_seconds: 刚刚
-      over_x_years: "%{count}年"
-      x_days: "%{count}天"
-      x_minutes: "%{count}分"
-      x_months: "%{count}个月"
-      x_seconds: "%{count}秒"
+      over_x_years: "%{count}年前"
+      x_days: "%{count}天前"
+      x_minutes: "%{count}分钟前"
+      x_months: "%{count}个月前"
+      x_seconds: "%{count}秒前"
   deletes:
     challenge_not_passed: 你输入的信息不正确
     confirm_password: 输入你当前的密码来验证身份
@@ -1122,7 +1122,6 @@ zh-CN:
     basic_information: 基本信息
     hint_html: "<strong>自定义公开资料和帖子旁边显示的内容。</strong>当您填写完整的个人资料并设置了头像时，其他人更有可能关注您并与您互动。"
     other: 其他
-    safety_and_privacy: 安全和隐私
   errors:
     '400': 你提交的请求无效或格式不正确。
     '403': 你没有访问这个页面的权限。
@@ -1137,7 +1136,7 @@ zh-CN:
       content: 抱歉，我们的后台出错了。
       title: 这个页面有问题
     '503': 服务暂时不可用，无法请求该页面。
-    noscript_html: 使用 TomX 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">Mastodon 应用</a>。
+    noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">Mastodon 应用</a>。
   existing_username_validator:
     not_found: 在本站找不到此用户
     not_found_multiple: 找不到 %{usernames}
@@ -1317,7 +1316,7 @@ zh-CN:
     unsubscribe:
       action: 是，取消订阅
       complete: 已取消订阅
-      confirmation_html: 您确定要取消订阅来自 %{domain} 上的 TomX 的 %{type} 到您的邮箱 %{email} 吗？您可以随时在<a href="%{settings_path}">电子邮件通知设置</a>重新订阅。
+      confirmation_html: 您确定要取消订阅来自 %{domain} 上的 Mastodon 的 %{type} 到您的邮箱 %{email} 吗？您可以随时在<a href="%{settings_path}">电子邮件通知设置</a>重新订阅。
       emails:
         notification_emails:
           favourite: 嘟文被点赞邮件通知
@@ -1326,7 +1325,7 @@ zh-CN:
           mention: 账户被提及邮件通知
           reblog: 被转嘟邮件通知
       resubscribe_html: 如果您不小心取消订阅，可以从您的<a href="%{settings_path}">电子邮件通知设置</a>重新订阅。
-      success_html: 您将不会在您的邮箱 %{email} 中收到 %{domain} 上的 TomX的 %{type}
+      success_html: 您将不会在您的邮箱 %{email} 中收到 %{domain} 上的 Mastodon的 %{type}
       title: 取消订阅
   media_attachments:
     validations:
@@ -1516,7 +1515,7 @@ zh-CN:
       weibo: 新浪微博
     current_session: 当前会话
     description: "%{platform} 上的 %{browser}"
-    explanation: 你的 TomX 账户目前已在这些浏览器上登录。
+    explanation: 你的 Mastodon 账户目前已在这些浏览器上登录。
     ip: IP 地址
     platforms:
       adobe_air: Adobe Air
@@ -1542,7 +1541,7 @@ zh-CN:
     aliases: 账号别名
     appearance: 外观
     authorized_apps: 已授权的应用
-    back: 返回 TomX
+    back: 返回 Mastodon
     delete: 删除账户
     development: 开发
     edit_profile: 更改个人资料
@@ -1645,9 +1644,9 @@ zh-CN:
   tags:
     does_not_match_previous_name: 和之前的名称不匹配
   themes:
-    contrast: TomX（高对比度）
-    default: TomX（暗色主题）
-    mastodon-light: TomX（亮色主题）
+    contrast: Mastodon（高对比度）
+    default: Mastodon（暗色主题）
+    mastodon-light: Mastodon（亮色主题）
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
@@ -1679,7 +1678,7 @@ zh-CN:
       subject: 你于 %{date} 提出的申诉已被驳回
       title: 申诉已驳回
     backup_ready:
-      explanation: 你请求了一份 TomX 账户的完整备份。现在你可以下载了！
+      explanation: 你请求了一份 Mastodon 账户的完整备份。现在你可以下载了！
       subject: 你的存档已经准备完毕
       title: 存档导出
     suspicious_sign_in:
@@ -1728,7 +1727,7 @@ zh-CN:
       final_step: '开始发布嘟文！ 即使没有关注者，您的公开嘟文也可能会被其他人看到，例如在本地时间轴或话题标签中。 您可能想在 #introductions 话题标签上介绍自己。'
       full_handle: 你的完整用户地址
       full_handle_hint: 你需要把这个告诉你的朋友们，这样他们就能从另一台服务器向你发送信息或者关注你。
-      subject: 欢迎来到 TomX
+      subject: 欢迎来到 Mastodon
       title: "%{name}，欢迎你的加入！"
   users:
     follow_limit_reached: 你不能关注超过 %{limit} 个人

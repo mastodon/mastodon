@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HtmlAwareFormatter
+  STATUS_MIME_TYPES = %w(text/plain text/markdown text/html).freeze
+
   attr_reader :text, :local, :options
 
   alias local? local
@@ -33,6 +35,10 @@ class HtmlAwareFormatter
   end
 
   def linkify
-    TextFormatter.new(text, options).to_s
+    if %w(text/markdown text/html).include?(@options[:content_type])
+      AdvancedTextFormatter.new(text, options).to_s
+    else
+      TextFormatter.new(text, options).to_s
+    end
   end
 end

@@ -23,59 +23,59 @@ zh-HK:
         explanation: 你已成功用這個電郵在 %{host} 上建立了帳號。只需點擊下面的連結，即可啟用帳戶。如果你並沒有建立過帳戶，請忽略此郵件。
         explanation_when_pending: 你使用此電郵地址申請了%{host} 帳戶。確認電郵地址後，我們將審核你的申請。你可在登入後更改詳細信息，或刪除帳戶，但在帳戶獲得批准之前，你將無法使用大部份功能。如果你的申請被拒絕，你的資料會被直接刪除，而無需你採取任何動作。如果申請人不是你，請忽略此電郵。
         extra_html: 請閱讀<a href="%{terms_path}">站規</a>和<a href="%{policy_path}">我們的使用條款</a>。
-        subject: 'TomX: 確認電郵地址 %{instance}'
+        subject: 'Mastodon: 確認電郵地址 %{instance}'
         title: 驗證電子郵件地址
       email_changed:
         explanation: 你的帳號的電郵地址即將變更為：
         extra: 如果你沒有更改你的電郵地址，那很有可能已經有其他人入侵你的帳號。請立即更改你的密碼；如果你已經無法訪問你的帳戶，請聯繫服務站的管理員請求協助。
-        subject: TomX：電郵地址已被更改
+        subject: Mastodon：電郵地址已被更改
         title: 新電郵地址
       password_change:
         explanation: 你的帳號的密碼已被更改。
         extra: 如果你沒有更改你的密碼，那很有可能已經有其他人入侵你的帳號。請立即更改你的密碼；如果你已經無法訪問你的帳戶，請聯繫服務站的管理員請求協助。
-        subject: 'TomX: 密碼已被更改'
+        subject: 'Mastodon: 密碼已被更改'
         title: 密碼已被更改
       reconfirmation_instructions:
         explanation: 點擊下面的連結來確認你的新電郵地址。
-        extra: 如果你沒有請求本次變更，請忽略此郵件。 TomX 帳戶的電子郵件地址只有在你點擊上面的連結後才會更改。
-        subject: TomX：確認 %{instance} 電郵地址
+        extra: 如果你沒有請求本次變更，請忽略此郵件。 Mastodon 帳戶的電子郵件地址只有在你點擊上面的連結後才會更改。
+        subject: Mastodon：確認 %{instance} 電郵地址
         title: 驗證電郵地址
       reset_password_instructions:
         action: 更改密碼
         explanation: 點擊下面的連結來更改帳號的密碼。
         extra: 如果你沒有請求修改帳號，請忽略此郵件。在你點擊進上面連結並設定新密碼前，帳號密碼會維持不變。
-        subject: 'TomX: 重設密碼'
+        subject: 'Mastodon: 重設密碼'
         title: 重設密碼
       two_factor_disabled:
         explanation: 帳號的雙重認證已被停用。現在只需使用電郵地址和密碼，即可登入。
-        subject: TomX：已關閉雙重認證
+        subject: Mastodon：已關閉雙重認證
         title: 已關閉雙重認證
       two_factor_enabled:
         explanation: 賬號的雙重認證已被啟用。登錄時，將需要已配對 TOTP 應用程式生成的驗證碼。
-        subject: TomX：已啟用雙重認證
+        subject: Mastodon：已啟用雙重認證
         title: 已啟用雙重認證
       two_factor_recovery_codes_changed:
         explanation: 之前的恢復碼失效了，新的已生成。
-        subject: TomX：已產生新的雙重認證恢復碼
+        subject: Mastodon：已產生新的雙重認證恢復碼
         title: 雙重認證恢復碼已更改
       unlock_instructions:
-        subject: 'TomX: 解除帳號鎖定'
+        subject: 'Mastodon: 解除帳號鎖定'
       webauthn_credential:
         added:
           explanation: 以下的安全鑰匙已經加進你的帳號
-          subject: 'TomX: 新的安全鑰匙'
+          subject: 'Mastodon: 新的安全鑰匙'
           title: 已經加入一個新的安全鑰匙
         deleted:
           explanation: 以下的安全鑰匙已經從你的帳號中移除了
-          subject: 'TomX: 安全鑰匙已移除'
+          subject: 'Mastodon: 安全鑰匙已移除'
           title: 你其中的一個安全鑰匙已經被移除了
       webauthn_disabled:
         explanation: 你的帳號的安全鑰匙身份驗證已經停用。你只可以用過去已經配對好的基於時間一次性密碼程式生成的密碼來登錄。
-        subject: 'TomX: 安全鑰匙身份驗證已經停用'
+        subject: 'Mastodon: 安全鑰匙身份驗證已經停用'
         title: 已停用安全鑰匙
       webauthn_enabled:
         explanation: 安全鑰匙身份驗證已啟用。你的安全鑰匙現在可以用來登錄。
-        subject: 'TomX: 安全鑰匙身份驗證已啟用'
+        subject: 'Mastodon: 安全鑰匙身份驗證已啟用'
         title: 已啟用安全鑰匙
     omniauth_callbacks:
       failure: 無法以 %{kind} 登入你的帳號，原因是︰「%{reason}」。

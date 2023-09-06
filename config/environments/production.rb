@@ -152,6 +152,7 @@ Rails.application.configure do
     'X-Frame-Options'        => 'DENY',
     'X-Content-Type-Options' => 'nosniff',
     'X-XSS-Protection'       => '0',
+    'X-Clacks-Overhead'      => 'GNU Natalie Nguyen',
     'Referrer-Policy'        => 'same-origin',
   }
 

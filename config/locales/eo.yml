@@ -1,10 +1,10 @@
 ---
 eo:
   about:
-    about_mastodon_html: 'La socia retejo de la estonteco: sen reklamo, sen observado por firmao, etika desegno, kaj malcentrigo! Regu viajn informojn per TomX!'
+    about_mastodon_html: 'La socia retejo de la estonteco: sen reklamo, sen observado por firmao, etika desegno, kaj malcentrigo! Regu viajn informojn per Mastodon!'
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
-    hosted_on: "%{domain} estas nodo de TomX"
+    hosted_on: "%{domain} estas nodo de Mastodon"
     title: Pri
   accounts:
     follow: Sekvi
@@ -672,7 +672,7 @@ eo:
         moderation: Moderigado
         special: Specialaj
       delete: Forigi
-      description_html: Per <strong>uzantoroloj</strong>, vi povas personecigi funkciojn kaj areon de TomX.
+      description_html: Per <strong>uzantoroloj</strong>, vi povas personecigi funkciojn kaj areon de Mastodon.
       edit: Redakti rolon de '%{name}'
       everyone: Defaŭltaj permesoj
       everyone_full_description_html: Jen la <strong>baza rolo</strong>, kiu afektas <strong>ĉiujn uzantojn</strong>, eĉ tiuj sen atribuata rolo. Ĉiuj aliaj roloj heredas permesojn de ĝi.
@@ -735,7 +735,7 @@ eo:
         rules_hint: Havas apartan areon por regulojn kiujn via uzantoj devus sekvi.
         title: Pri
       appearance:
-        preamble: Personecigi retinterfaco de TomX.
+        preamble: Personecigi retinterfaco de Mastodon.
         title: Apero
       branding:
         preamble: Via markeco de servilo malsamigas ĝin de aliaj servilojn en la reto. Do, la informo devus esti simpla kaj mallonga.
@@ -744,7 +744,7 @@ eo:
         desc_html: Ĉi tio dependas de eksteraj hCaptcha-skriptoj, kiuj povas esti problemo pri sekureco kaj privateco. Ankaŭ, <strong>ĝi povas igi la registran procezon multe malpli alirebla por iuj homoj (precipe homoj kun handikapoj)</strong>. Pro ĉi tiuj kialoj, bonvolu konsideri alternativajn rimedojn kiel registradon per aprobo aŭ per invito.
         title: Postuli novajn uzantojn solvi CAPTCHA por konfirmi sian konton
       content_retention:
-        preamble: Regi kiel uzantogenerita enhavo konservitis en TomX.
+        preamble: Regi kiel uzantogenerita enhavo konservitis en Mastodon.
         title: Enhavkonservo
       default_noindex:
         desc_html: Efektiviĝas por ĉiuj uzantoj, kiuj mem ne agordis ĉi tion
@@ -906,7 +906,7 @@ eo:
     webhooks:
       add_new: Aldoni finpunkton
       delete: Forigi
-      description_html: "<strong>Rethoko</strong> ebligas TomX sendi <strong>realtempan sciigon</strong> pri kelkaj eventoj al la via sia programaro por <strong>automata ekigi</strong>."
+      description_html: "<strong>Rethoko</strong> ebligas Mastodon sendi <strong>realtempan sciigon</strong> pri kelkaj eventoj al la via sia programaro por <strong>automata ekigi</strong>."
       disable: Neebligi
       disabled: Neebligita
       edit: Redakti finpunkton
@@ -968,7 +968,7 @@ eo:
     confirmation_dialogs: Konfirmaj fenestroj
     discovery: Eltrovo
     localization:
-      body: TomX estas tradukita de volontuloj.
+      body: Mastodon estas tradukita de volontuloj.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Ĉiu povas kontribui.
     sensitive_content: Tikla enhavo
@@ -998,9 +998,9 @@ eo:
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
     description:
-      prefix_invited_by_user: "@%{name} invitigi vin aligiĝi ĉi tiu servilo de TomX!"
-      prefix_sign_up: Registriĝu en TomX hodiaŭ!
-      suffix: Per konto, vi povos sekvi aliajn homojn, afiŝi kaj interŝanĝi mesaĝojn kun uzantoj de ajna TomXa servilo kaj multe pli!
+      prefix_invited_by_user: "@%{name} invitigi vin aligiĝi ĉi tiu servilo de Mastodon!"
+      prefix_sign_up: Registriĝu en Mastodon hodiaŭ!
+      suffix: Per konto, vi povos sekvi aliajn homojn, afiŝi kaj interŝanĝi mesaĝojn kun uzantoj de ajna Mastodona servilo kaj multe pli!
     didnt_get_confirmation: Ĉu vi ne ricevis konfirman ligilon?
     dont_have_your_security_key: Ne havas vi vian sekurecan ŝlosilon?
     forgot_password: Pasvorto forgesita?
@@ -1045,7 +1045,7 @@ eo:
       preamble_html: Ensalutu per via detaloj de <strong>%{domain}</strong>. Se via konto gastigantigas sur malsama servilo, vi ne povas ensaluti ĉi tie.
       title: Saluti en %{domain}
     sign_up:
-      preamble: Per konto ĉe ĉi tiu TomX-servilo, vi povas sekvi ajn personojn en la reto.
+      preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povas sekvi ajn personojn en la reto.
       title: Ni pretigu vin ĉe %{domain}.
     status:
       account_status: Statuso de la konto
@@ -1135,7 +1135,6 @@ eo:
   edit_profile:
     basic_information: Baza informo
     other: Alia
-    safety_and_privacy: Sekureco kaj privateco
   errors:
     '400': La peto kiun vi sendis estas nevalida au malformas.
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
@@ -1151,8 +1150,8 @@ eo:
       title: Ĉi tiu paĝo ne estas ĝusta
     '503': La paĝo ne povas montritis pro malpermanenta servilmalfunkcio.
     noscript_html: |-
-      Por uzi la retan aplikaĵon de TomX, bonvolu ebligi JavaScript. Alimaniere, provu unu el la
-      <a href="%{apps_path}">operaciumaj aplikaĵoj</a> por TomX por via platformo.
+      Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la
+      <a href="%{apps_path}">operaciumaj aplikaĵoj</a> por Mastodon por via platformo.
   existing_username_validator:
     not_found: Ne povas trovi lokaj uzanto kun tiu uzantnomo
     not_found_multiple: Ne povas trovi %{usernames}
@@ -1492,7 +1491,7 @@ eo:
       weibo: Weibo
     current_session: Nuna seanco
     description: "%{browser} en %{platform}"
-    explanation: Ĉi tiuj estas la retumiloj nun ensalutintaj al via TomX-konto.
+    explanation: Ĉi tiuj estas la retumiloj nun ensalutintaj al via Mastodon-konto.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1518,7 +1517,7 @@ eo:
     aliases: Kontoj alinomoj
     appearance: Apero
     authorized_apps: Rajtigitaj aplikaĵoj
-    back: Reveni al TomX
+    back: Reveni al Mastodon
     delete: Konta forigo
     development: Evoluigado
     edit_profile: Redakti profilon
@@ -1627,9 +1626,9 @@ eo:
   tags:
     does_not_match_previous_name: ne kongruas kun la antaŭa nomo
   themes:
-    contrast: TomX (Forta kontrasto)
-    default: TomX (Malhela)
-    mastodon-light: TomX (Hela)
+    contrast: Mastodon (Forta kontrasto)
+    default: Mastodon (Malhela)
+    mastodon-light: Mastodon (Hela)
   time:
     formats:
       default: "%Y.%b.%d, %H:%M"
@@ -1661,7 +1660,7 @@ eo:
       subject: Via apelacio de %{date} estis malaprobita
       title: Apelacio estis malaprobita
     backup_ready:
-      explanation: Vi petis kompletan arkivon de via TomX-konto. Ĝi nun pretas por elŝutado!
+      explanation: Vi petis kompletan arkivon de via Mastodon-konto. Ĝi nun pretas por elŝutado!
       subject: Via arkivo estas preta por elŝutado
       title: Arkiva elŝuto
     suspicious_sign_in:
@@ -1710,7 +1709,7 @@ eo:
       final_step: 'Ekmesaĝu! Eĉ sen sekvantoj, viaj publikaj mesaĝoj povas esti vidataj de aliaj, ekzemple en la loka templinio aŭ per kradvortoj. Eble vi ŝatus prezenti vin per la kradvorto #introductions / #konigo.'
       full_handle: Via kompleta uzantnomo
       full_handle_hint: Jen kion vi dirus al viaj amikoj, por ke ili mesaĝu aŭ sekvu vin de alia servilo.
-      subject: Bonvenon en TomX
+      subject: Bonvenon en Mastodon
       title: Bonvenon, %{name}!
   users:
     follow_limit_reached: Vi ne povas sekvi pli ol %{limit} homo(j)

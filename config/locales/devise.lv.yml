@@ -23,59 +23,59 @@ lv:
         explanation: Ar šo e-pasta adresi esi izveidojis kontu vietnē %{host}. Tu esi viena klikšķa attālumā no tā aktivizēšanas. Ja tas nebiji tu, lūdzu, ignorē šo e-pasta ziņojumu.
         explanation_when_pending: Tu pieteicies uzaicinājumam uz %{host} ar šo e-pasta adresi. Kad būsi apstiprinājis savu e-pasta adresi, mēs izskatīsim pieteikumu. Tu vari pierakstīties, lai mainītu savu informāciju vai dzēstu savu kontu, taču nevari piekļūt lielākajai daļai funkciju, kamēr tavs konts nav apstiprināts. Ja tavs pieteikums tiks noraidīts, tavi dati tiks noņemti, tāpēc tev nebūs jāveic nekādas darbības. Ja tas nebiji tu, lūdzu, ignorē šo e-pasta ziņojumu.
         extra_html: Lūdzu, pārskati arī <a href="%{terms_path}">servera noteikumus</a> un <a href="%{policy_path}"> mūsu pakalpojumu sniegšanas noteikumus</a>.
-        subject: 'TomX: Apstiprināšanas norādījumi %{instance}'
+        subject: 'Mastodon: Apstiprināšanas norādījumi %{instance}'
         title: Apstiprini savu e-pasta adresi
       email_changed:
         explanation: 'Tava konta e-pasta adrese tiek mainīta uz:'
         extra: Ja neesi mainījis savu e-pasta adresi, iespējams, kāds ir ieguvis piekļuvi tavam kontam. Lūdzu, nekavējoties nomaini paroli vai sazinies ar servera administratoru, ja nevari piekļūt savam kontam.
-        subject: 'TomX: E-pasts nomainīts'
+        subject: 'Mastodon: E-pasts nomainīts'
         title: Jaunā e-pasta adrese
       password_change:
         explanation: Tava konta parole ir nomainīta.
         extra: Ja neesi mainījis savu paroli, iespējams, kāds ir ieguvis piekļuvi tavam kontam. Lūdzu, nekavējoties nomaini paroli vai sazinies ar servera administratoru, ja nevari piekļūt savam kontam.
-        subject: 'TomX: Parole ir nomainīta'
+        subject: 'Mastodon: Parole ir nomainīta'
         title: Parole nomainīta
       reconfirmation_instructions:
         explanation: Apstiprini jauno adresi, lai mainītu savu e-pastu.
-        extra: Ja šīs izmaiņas neesi veicis tu, lūdzu, ignorē šo e-pasta ziņojumu. TomX konta e-pasta adrese nemainīsies, kamēr nebūsi piekļuvis iepriekš norādītajai saitei.
-        subject: 'TomX: Apstiprini e-pastu %{instance}'
+        extra: Ja šīs izmaiņas neesi veicis tu, lūdzu, ignorē šo e-pasta ziņojumu. Mastodon konta e-pasta adrese nemainīsies, kamēr nebūsi piekļuvis iepriekš norādītajai saitei.
+        subject: 'Mastodon: Apstiprini e-pastu %{instance}'
         title: Apstiprini e-pasta adresi
       reset_password_instructions:
         action: Nomainīt paroli
         explanation: Tu pieprasīji jaunu paroli savam kontam.
         extra: Ja neesi to pieprasījis, lūdzu, ignorē šo e-pasta ziņojumu. Tava parole nemainīsies, kamēr neesi piekļuvis iepriekš norādītajai saitei un izveidojis jaunu.
-        subject: 'TomX: Norādījumi paroles atiestatīšanai'
+        subject: 'Mastodon: Norādījumi paroles atiestatīšanai'
         title: Paroles atiestatīšana
       two_factor_disabled:
         explanation: Tavam kontam divfaktoru autentifikācija ir atspējota. Pieteikšanās tagad ir iespējama, izmantojot tikai e-pasta adresi un paroli.
-        subject: 'TomX: Divfaktoru autentifikācija atspējota'
+        subject: 'Mastodon: Divfaktoru autentifikācija atspējota'
         title: 2FA atspējota
       two_factor_enabled:
         explanation: Tavam kontam ir iespējota divfaktoru autentifikācija. Lai pieteiktos, būs nepieciešams kods, ko ģenerējusi pārī savienotā TOTP lietotne.
-        subject: 'TomX: Divfaktoru autentifikācija iespējota'
+        subject: 'Mastodon: Divfaktoru autentifikācija iespējota'
         title: 2FA iespējota
       two_factor_recovery_codes_changed:
         explanation: Iepriekšējie atkopšanas kodi ir atzīti par nederīgiem un ģenerēti jauni.
-        subject: 'TomX: Divfaktoru atkopšanas kodi pārģenerēti'
+        subject: 'Mastodon: Divfaktoru atkopšanas kodi pārģenerēti'
         title: 2FA atkopšanas kodi mainīti
       unlock_instructions:
-        subject: 'TomX: Norādījumi atbloķēšanai'
+        subject: 'Mastodon: Norādījumi atbloķēšanai'
       webauthn_credential:
         added:
           explanation: Tavam kontam ir pievienota šāda drošības atslēga
-          subject: 'TomX: Jauna drošības atslēga'
+          subject: 'Mastodon: Jauna drošības atslēga'
           title: Tika pievienota jauna drošības atslēga
         deleted:
           explanation: Tālāk norādītā drošības atslēga ir izdzēsta no tava konta
-          subject: 'TomX: Drošības atslēga izdzēsta'
+          subject: 'Mastodon: Drošības atslēga izdzēsta'
           title: Viena no tavām drošības atslēgām tika izdzēsta
       webauthn_disabled:
         explanation: Tavam kontam ir atspējota autentifikācija ar drošības atslēgām. Pieteikšanās tagad ir iespējama, izmantojot tikai kodu, ko ģenerējusi pārī savienotā TOTP lietotne.
-        subject: 'TomX: Autentifikācija ar drošības atslēgām ir atspējota'
+        subject: 'Mastodon: Autentifikācija ar drošības atslēgām ir atspējota'
         title: Drošības atslēgas atspējotas
       webauthn_enabled:
         explanation: Tavam kontam ir iespējota drošības atslēgas autentifikācija. Tavu drošības atslēgu tagad var izmantot, lai pieteiktos.
-        subject: 'TomX: Drošības atslēgas autentifikācija iespējota'
+        subject: 'Mastodon: Drošības atslēgas autentifikācija iespējota'
         title: Drošības atslēgas iespējotas
     omniauth_callbacks:
       failure: Nevarēja autentificēt tevi no %{kind}, jo "%{reason}".

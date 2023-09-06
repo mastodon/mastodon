@@ -23,59 +23,59 @@ da:
         explanation: Du har oprettet en konto på %{host} med denne e-mailadresse og er nu ét klik fra at aktivere den. Har du ikke oprettet dig, så ignorér blot denne e-mail.
         explanation_when_pending: Du har ansøgt om en invitation til %{host} med denne e-mailadresse. Når du har bekræftet adressen, gennemgås din ansøgning. Du kan logge ind for at ændre oplysninger eller slette kontoen, men hovedparten af funktionerne kan ikke tilgås, før kontoen er godkendt. Afvises ansøgningen, fjernes dine data, så ingen yderligere handling fra dig er nødvendig. Har du ikke ansøgt, så ignorér blot denne e-mail.
         extra_html: Tjek også <a href="%{terms_path}">reglerne for serveren</a> samt <a href="%{policy_path}">vores tjenestevilkår</a>.
-        subject: 'TomX: Bekræftelsesinstrukser for %{instance}'
+        subject: 'Mastodon: Bekræftelsesinstrukser for %{instance}'
         title: Bekræft e-mailadresse
       email_changed:
         explanation: 'Din kontos e-mailadressen ændres til:'
         extra: Har du ikke selv skiftet din e-mailadresse, har nogen sandsynligvis opnået adgang til din konto. Skift derfor straks din adgangskode eller kontakt serveradministratoren, hvis du er låst ude af kontoen.
-        subject: 'TomX: E-mail skiftet'
+        subject: 'Mastodon: E-mail skiftet'
         title: Ny e-mailadresse
       password_change:
         explanation: Din kontoadgangskode er skiftet.
         extra: Har du ikke selv skiftet din adgangskode, har nogen sandsynligvis opnået adgang til din konto. Skift derfor straks din adgangskode eller kontakt serveradministratoren, hvis du er låst ude af kontoen.
-        subject: 'TomX: Adgangskode skiftet'
+        subject: 'Mastodon: Adgangskode skiftet'
         title: Adgangskode skiftet
       reconfirmation_instructions:
         explanation: Bekræft den nye adresse for at skifte din e-mail.
-        extra: Er denne ændring ikke foranlediget af dig, så ignorér denne e-mail. TomX-kontoens e-mailadresse kan kun skiftes vha. linket ovenfor.
-        subject: 'TomX: Bekræft e-mail for %{instance}'
+        extra: Er denne ændring ikke foranlediget af dig, så ignorér denne e-mail. Mastodon-kontoens e-mailadresse kan kun skiftes vha. linket ovenfor.
+        subject: 'Mastodon: Bekræft e-mail for %{instance}'
         title: Bekræft e-mailadresse
       reset_password_instructions:
         action: Skift adgangskode
         explanation: Du har anmodet om en ny kontoadgangskode.
         extra: Har du ikke anmodet om dette, så ignorér denne e-mail. Din adgangskode skiftes først, når en ny er oprettet vha. linket ovenfor.
-        subject: 'TomX: Instruktioner til adgangskodenulstilling'
+        subject: 'Mastodon: Instruktioner til adgangskodenulstilling'
         title: Adgangskodenulstilling
       two_factor_disabled:
         explanation: Tofaktorgodkendelse for kontoen er blevet deaktiveret. Indlogning er nu kun mulig via email og adgangskode.
-        subject: 'TomX: Tofaktorgodkendelse deaktiveret'
+        subject: 'Mastodon: Tofaktorgodkendelse deaktiveret'
         title: 2FA deaktiveret
       two_factor_enabled:
         explanation: Tofaktorgodkendelse er blevet aktiveret for kontoen. Indlogning vil kærve et token genereret af den parrede TOTP-app.
-        subject: 'TomX: Tofaktorgodkendelse aktiveret'
+        subject: 'Mastodon: Tofaktorgodkendelse aktiveret'
         title: 2FA aktiveret
       two_factor_recovery_codes_changed:
         explanation: De tidligere gendannelseskoder er ugyldiggjorte og nye er genereret.
         subject: 'Mastodan: Tofaktorgendannelseskoder genereret igen'
         title: 2FA gendannelseskoder skiftet
       unlock_instructions:
-        subject: 'TomX: Oplåsningsinstruktioner'
+        subject: 'Mastodon: Oplåsningsinstruktioner'
       webauthn_credential:
         added:
           explanation: Flg. sikkerhedsnøgle er tilføjet din konto
-          subject: 'TomX: Ny sikkerhedsnøgle'
+          subject: 'Mastodon: Ny sikkerhedsnøgle'
           title: En ny sikkerhedsnøgle er tilføjet
         deleted:
           explanation: Flg. sikkerhedsnøgle er slettet fra din konto
-          subject: 'TomX: Sikkerhedsnøgle slettet'
+          subject: 'Mastodon: Sikkerhedsnøgle slettet'
           title: En af dine sikkerhedsnøgler er blevet slettet
       webauthn_disabled:
         explanation: Godkendelse med sikkerhedsnøgler er blevet deaktiveret for kontoen. Indlogning er nu kun mulig via token genereret af den parrede TOTP-app.
-        subject: 'TomX: Godkendelse med sikkerhedsnøgler deaktiveret'
+        subject: 'Mastodon: Godkendelse med sikkerhedsnøgler deaktiveret'
         title: Sikkerhedsnøgler deaktiveret
       webauthn_enabled:
         explanation: Sikkerhedsnøglegodkendelse er aktiveret for kontoen. Din sikkerhedsnøgle kan nu bruges til indlogning.
-        subject: 'TomX: Sikkerhedsnøglegodkendelse aktiveret'
+        subject: 'Mastodon: Sikkerhedsnøglegodkendelse aktiveret'
         title: Sikkerhedsnøgler aktiveret
     omniauth_callbacks:
       failure: Kunne ikke godkende dig fra %{kind} fordi "%{reason}".

@@ -1,10 +1,10 @@
 ---
 de:
   about:
-    about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung durch Unternehmen – dafür dezentral und mit Anstand! Beherrsche deine Daten mit TomX!'
+    about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung durch Unternehmen – dafür dezentral und mit Anstand! Beherrsche deine Daten mit Mastodon!'
     contact_missing: Nicht festgelegt
     contact_unavailable: Nicht verfügbar
-    hosted_on: TomX, gehostet auf %{domain}
+    hosted_on: Mastodon, gehostet auf %{domain}
     title: Über
   accounts:
     follow: Folgen
@@ -672,7 +672,7 @@ de:
         moderation: Moderation
         special: Besonderheit
       delete: Entfernen
-      description_html: Mit <strong>Rollen</strong> kannst du die Funktionen und Bereiche von TomX anpassen, auf die deine Benutzer*innen zugreifen können.
+      description_html: Mit <strong>Rollen</strong> kannst du die Funktionen und Bereiche von Mastodon anpassen, auf die deine Benutzer*innen zugreifen können.
       edit: Rolle „%{name}“ bearbeiten
       everyone: Standard
       everyone_full_description_html: Das ist die <strong>Basis-Rolle</strong>, die für <strong>alle Benutzer*innen</strong> gilt – auch für diejenigen ohne zugewiesene Rolle. Alle anderen Rollen erben Berechtigungen davon.
@@ -695,7 +695,7 @@ de:
         manage_custom_emojis: Eigene Emojis verwalten
         manage_custom_emojis_description: Erlaubt es Benutzer*innen, eigene Emojis auf dem Server zu verwalten
         manage_federation: Föderation verwalten
-        manage_federation_description: Erlaubt Benutzer*innen, Domains anderer TomX-Server zu sperren oder zuzulassen – und die Zustellbarkeit zu steuern
+        manage_federation_description: Erlaubt Benutzer*innen, Domains anderer Mastodon-Server zu sperren oder zuzulassen – und die Zustellbarkeit zu steuern
         manage_invites: Einladungen verwalten
         manage_invites_description: Erlaubt es Benutzer*innen, Einladungslinks zu durchsuchen und zu deaktivieren
         manage_reports: Meldungen verwalten
@@ -735,23 +735,23 @@ de:
         rules_hint: Es gibt einen eigenen Bereich für Regeln, die deine Benutzer*innen einhalten müssen.
         title: Über
       appearance:
-        preamble: Passe das Webinterface von TomX an.
+        preamble: Passe das Webinterface von Mastodon an.
         title: Design
       branding:
-        preamble: Das Branding deines Servers unterscheidet ihn von anderen Servern im Netzwerk. Diese Informationen können in einer Vielzahl von Umgebungen angezeigt werden, z. B. in der Weboberfläche von TomX, in nativen Anwendungen, in Linkvorschauen auf anderen Websites und in Messaging-Apps und so weiter. Aus diesem Grund ist es am besten, diese Informationen klar, kurz und prägnant zu halten.
+        preamble: Das Branding deines Servers unterscheidet ihn von anderen Servern im Netzwerk. Diese Informationen können in einer Vielzahl von Umgebungen angezeigt werden, z. B. in der Weboberfläche von Mastodon, in nativen Anwendungen, in Linkvorschauen auf anderen Websites und in Messaging-Apps und so weiter. Aus diesem Grund ist es am besten, diese Informationen klar, kurz und prägnant zu halten.
         title: Branding
       captcha_enabled:
         desc_html: Dies beruht auf externen Skripten von hCaptcha, die ein Sicherheits- und Datenschutzproblem darstellen könnten. Darüber hinaus <strong>kann das den Registrierungsprozess für manche Menschen (insbesondere für Menschen mit Behinderung) erheblich erschweren</strong>. Aus diesen Gründen solltest du alternative Maßnahmen wie Zulassungs- oder Einladungs-basierte Registrierungen in Erwägung ziehen.
         title: Neue Nutzer*innen müssen ein CAPTCHA lösen, um das Konto zu bestätigen
       content_retention:
-        preamble: Lege fest, wie lange Inhalte von Nutzer*innen auf deinem TomX-Server gespeichert bleiben.
+        preamble: Lege fest, wie lange Inhalte von Nutzer*innen auf deinem Mastodon-Server gespeichert bleiben.
         title: Cache & Archive
       default_noindex:
         desc_html: Betrifft alle Profile, die diese Einstellung bei sich nicht geändert haben
         title: Profile standardmäßig von der Suchmaschinen-Indizierung ausnehmen
       discovery:
         follow_recommendations: Folgeempfehlungen
-        preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die TomX noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
+        preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
         profile_directory: Profilverzeichnis
         public_timelines: Öffentliche Timeline
         publish_discovered_servers: Entdeckte Server offenlegen
@@ -907,7 +907,7 @@ de:
     webhooks:
       add_new: Endpunkt hinzufügen
       delete: Löschen
-      description_html: Ein <strong>Webhook</strong> ermöglicht TomX, <strong>Echtzeitbenachrichtigungen</strong> über ausgewählte Ereignisse an deine eigene Anwendung zu senden, damit deine Anwendung <strong>automatisch Reaktionen auslösen kann</strong>.
+      description_html: Ein <strong>Webhook</strong> ermöglicht Mastodon, <strong>Echtzeitbenachrichtigungen</strong> über ausgewählte Ereignisse an deine eigene Anwendung zu senden, damit deine Anwendung <strong>automatisch Reaktionen auslösen kann</strong>.
       disable: Deaktivieren
       disabled: Deaktiviert
       edit: Endpunkt bearbeiten
@@ -969,7 +969,7 @@ de:
     confirmation_dialogs: Bestätigungsdialoge
     discovery: Entdecken
     localization:
-      body: TomX wird von Freiwilligen übersetzt.
+      body: Mastodon wird von Freiwilligen übersetzt.
       guide_link: https://de.crowdin.com/project/mastodon/de
       guide_link_text: Alle können mitmachen und etwas dazu beitragen.
     sensitive_content: Inhaltswarnung
@@ -1000,9 +1000,9 @@ de:
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto endgültig löschen möchtest, kannst du das <a href="%{path}">hier vornehmen</a>. Du musst dies zusätzlich bestätigen.
     description:
-      prefix_invited_by_user: "@%{name} lädt dich ein, diesem TomX-Server beizutreten!"
-      prefix_sign_up: Registriere dich noch heute bei TomX!
-      suffix: Mit einem Konto kannst du Profilen folgen, neue Beiträge veröffentlichen, Nachrichten mit Personen von jedem TomX-Server austauschen und vieles mehr!
+      prefix_invited_by_user: "@%{name} lädt dich ein, diesem Mastodon-Server beizutreten!"
+      prefix_sign_up: Registriere dich noch heute bei Mastodon!
+      suffix: Mit einem Konto kannst du Profilen folgen, neue Beiträge veröffentlichen, Nachrichten mit Personen von jedem Mastodon-Server austauschen und vieles mehr!
     didnt_get_confirmation: Keinen Bestätigungslink erhalten?
     dont_have_your_security_key: Du hast keinen Sicherheitsschlüssel?
     forgot_password: Passwort vergessen?
@@ -1018,7 +1018,7 @@ de:
     privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und stimme ihr zu
     progress:
       confirm: E-Mail-Adresse bestätigen
-      details: Deine Daten
+      details: Deine Details
       review: Unsere Überprüfung
       rules: Regeln akzeptieren
     providers:
@@ -1049,7 +1049,7 @@ de:
       title: Bei %{domain} anmelden
     sign_up:
       manual_review: Registrierungen für den Server %{domain} werden manuell durch unsere Moderator*innen überprüft. Um uns dabei zu unterstützen, schreibe etwas über dich und sage uns, weshalb du ein Konto auf %{domain} anlegen möchtest.
-      preamble: Mit einem Konto auf diesem TomX-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Konto registriert ist.
+      preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Konto registriert ist.
       title: Lass uns dein Konto auf %{domain} einrichten.
     status:
       account_status: Kontostatus
@@ -1140,7 +1140,6 @@ de:
     basic_information: Allgemeine Informationen
     hint_html: "<strong>Bestimme, was andere auf deinem öffentlichen Profil und neben deinen Beiträgen sehen können.</strong> Wenn du ein Profilbild festlegst und dein Profil vervollständigst, werden andere eher mit dir interagieren und dir folgen."
     other: Andere
-    safety_and_privacy: Sicherheit und Datenschutz
   errors:
     '400': Die Anfrage, die du gestellt hast, war ungültig oder fehlerhaft.
     '403': Dir fehlt die Berechtigung, diese Seite aufzurufen.
@@ -1155,7 +1154,7 @@ de:
       content: Wir bitten um Verzeihung, aber etwas ist bei uns schiefgegangen.
       title: Diese Seite enthält einen Fehler
     '503': Die Seite konnte wegen eines temporären Serverfehlers nicht angezeigt werden.
-    noscript_html: Bitte aktiviere JavaScript, um das Webinterface von TomX zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Apps</a> für TomX nutzen.
+    noscript_html: Bitte aktiviere JavaScript, um das Webinterface von Mastodon zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Apps</a> für Mastodon nutzen.
   existing_username_validator:
     not_found: kann lokale Konten mit diesem Profilnamen nicht finden
     not_found_multiple: "%{usernames} konnten nicht gefunden werden"
@@ -1274,7 +1273,7 @@ de:
       following_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
       lists_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Liste gibt, zu der etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
       muting_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename} stummzuschalten</strong>.
-    preface: Daten, die du von einem TomX-Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du blockiert hast.
+    preface: Daten, die du von einem Mastodon-Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du blockiert hast.
     recent_imports: Zuletzt importiert
     states:
       finished: Fertig
@@ -1343,7 +1342,7 @@ de:
     unsubscribe:
       action: Ja, abbestellen
       complete: Abbestellt
-      confirmation_html: Möchtest du %{type} für TomX auf %{domain} an deine E-Mail-Adresse %{email} wirklich abbestellen? Du kannst dies später in den Einstellungen <a href="%{settings_path}">Benachrichtigungen per E-Mail</a> rückgängig machen.
+      confirmation_html: Möchtest du %{type} für Mastodon auf %{domain} an deine E-Mail-Adresse %{email} wirklich abbestellen? Du kannst dies später in den Einstellungen <a href="%{settings_path}">Benachrichtigungen per E-Mail</a> rückgängig machen.
       emails:
         notification_emails:
           favourite: E-Mail-Benachrichtigungen für Favoriten
@@ -1352,7 +1351,7 @@ de:
           mention: E-Mail-Benachrichtigungen für Erwähnungen
           reblog: E-Mail-Benachrichtigungen für geteilte Beiträge
       resubscribe_html: Falls du etwas irrtümlich abbestellt hast, kannst du das in den Einstellungen <a href="%{settings_path}">Benachrichtigungen per E-Mail</a> rückgängig machen.
-      success_html: Du wirst nicht länger %{type} für TomX auf %{domain} an deine E-Mail-Adresse %{email} erhalten.
+      success_html: Du wirst nicht länger %{type} für Mastodon auf %{domain} an deine E-Mail-Adresse %{email} erhalten.
       title: Abbestellen
   media_attachments:
     validations:
@@ -1542,7 +1541,7 @@ de:
       weibo: Weibo
     current_session: Aktuelle Sitzung
     description: "%{browser} auf %{platform}"
-    explanation: Dies sind die Webbrowser, die derzeit mit deinem TomX-Konto verbunden sind.
+    explanation: Dies sind die Webbrowser, die derzeit mit deinem Mastodon-Konto verbunden sind.
     ip: IP-Adresse
     platforms:
       adobe_air: Adobe Air
@@ -1568,7 +1567,7 @@ de:
     aliases: Konto-Aliasse
     appearance: Design
     authorized_apps: Autorisierte Anwendungen
-    back: Zurück zu TomX
+    back: Zurück zu Mastodon
     delete: Kontolöschung
     development: Entwicklung
     edit_profile: Profil bearbeiten
@@ -1638,7 +1637,7 @@ de:
     enabled: Alte Beiträge automatisch entfernen
     enabled_hint: Löscht automatisch deine Beiträge, sobald sie die angegebene Altersgrenze erreicht haben, es sei denn, sie entsprechen einer der unten angegebenen Ausnahmen
     exceptions: Ausnahmen
-    explanation: Damit TomX nicht durch das Löschen von Beiträgen ausgebremst wird, wartet der Server damit, bis wenig los ist. Aus diesem Grund werden deine Beiträge ggf. erst einige Zeit nach Erreichen der Altersgrenze gelöscht.
+    explanation: Damit Mastodon nicht durch das Löschen von Beiträgen ausgebremst wird, wartet der Server damit, bis wenig los ist. Aus diesem Grund werden deine Beiträge ggf. erst einige Zeit nach Erreichen der Altersgrenze gelöscht.
     ignore_favs: Favoriten ignorieren
     ignore_reblogs: Geteilte Beiträge ignorieren
     interaction_exceptions: Ausnahmen basierend auf Interaktionen
@@ -1677,9 +1676,9 @@ de:
   tags:
     does_not_match_previous_name: entspricht nicht dem vorherigen Namen
   themes:
-    contrast: TomX (Hoher Kontrast)
-    default: TomX (Dunkel)
-    mastodon-light: TomX (Hell)
+    contrast: Mastodon (Hoher Kontrast)
+    default: Mastodon (Dunkel)
+    mastodon-light: Mastodon (Hell)
   time:
     formats:
       default: "%d.%m.%Y um %H:%M Uhr"
@@ -1711,7 +1710,7 @@ de:
       subject: Dein Einspruch vom %{date} wurde abgelehnt
       title: Einspruch abgelehnt
     backup_ready:
-      explanation: Du hast eine vollständige Sicherung deines TomX-Kontos angefordert. Das Backup kann jetzt heruntergeladen werden!
+      explanation: Du hast eine vollständige Sicherung deines Mastodon-Kontos angefordert. Das Backup kann jetzt heruntergeladen werden!
       subject: Dein persönliches Archiv kann heruntergeladen werden
       title: Archiv-Download
     suspicious_sign_in:
@@ -1760,7 +1759,7 @@ de:
       final_step: 'Fang jetzt an zu posten! Selbst ohne Follower werden deine öffentlichen Beiträge von anderen gesehen, zum Beispiel in der lokalen Timeline oder über die Hashtags. Möglicherweise möchtest du dich allen mit dem Hashtag #neuhier vorstellen.'
       full_handle: Dein vollständiger Profilname
       full_handle_hint: Dies würdest du deinen Freund*innen mitteilen, damit sie dich anschreiben oder dir von einem anderen Server folgen können.
-      subject: Willkommen bei TomX!
+      subject: Willkommen bei Mastodon!
       title: Willkommen an Bord, %{name}!
   users:
     follow_limit_reached: Du kannst nicht mehr als %{limit} Profilen folgen
@@ -1772,7 +1771,7 @@ de:
   verification:
     extra_instructions_html: <strong>Hinweis:</strong> Der Link auf deiner Website kann unsichtbar sein. Der wichtige Teil ist <code>rel="me"</code>, wodurch das Nachahmen von Personen auf Websites mit nutzergenerierten Inhalten verhindert wird. Du kannst auch ein <code>link</code>-Tag statt <code>a</code> im Header auf der Seite verwenden, jedoch muss der HTML-Code ohne das Ausführen von JavaScript zugänglich sein.
     here_is_how: So funktioniert's
-    hint_html: "<strong>Alle können ihre Identität auf TomX verifizieren.</strong> Basierend auf offenen Standards – jetzt und für immer kostenlos. Alles, was du brauchst, ist eine eigene Website. Wenn du von deinem Profil auf diese Website verlinkst, überprüfen wir, ob die Website zu deinem Profil zurückverlinkt, und zeigen einen visuellen Hinweis an."
+    hint_html: "<strong>Alle können ihre Identität auf Mastodon verifizieren.</strong> Basierend auf offenen Standards – jetzt und für immer kostenlos. Alles, was du brauchst, ist eine eigene Website. Wenn du von deinem Profil auf diese Website verlinkst, überprüfen wir, ob die Website zu deinem Profil zurückverlinkt, und zeigen einen visuellen Hinweis an."
     instructions_html: Kopiere den unten stehenden Code und füge ihn in das HTML deiner Website ein. Trage anschließend diese Website-Adresse in eines der Felder für die Metadaten deines Profils ein – und speichere die Änderungen.
     verification: Verifizierung
     verified_links: Deine verifizierten Links

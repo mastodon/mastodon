@@ -37,25 +37,20 @@ eu:
         current_password: Segurtasunagatik sartu uneko kontuaren pasahitza
         current_username: Berresteko sartu uneko kontuaren erabiltzaile-izena
         digest: Jarduerarik gabeko epe luze bat eta gero mezu pertsonalen bat jaso baduzu, besterik ez
-        discoverable: Baimendu zure kontua ezezagunek aurkitu ahal izatea gomendio, joera eta beste ezaugarrien bidez
         email: Baieztapen e-mail bat bidaliko zaizu
         header: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px eskalara txikituko da
         inbox_url: Kopiatu erabili nahi duzun errelearen hasiera orriaren URLa
         irreversible: Iragazitako tootak betirako galduko dira, geroago iragazkia kentzen baduzu ere
         locale: Erabiltzaile-interfazea, e-mail mezuen eta jakinarazpenen hizkuntza
-        locked: Jarraitzaileak eskuz onartu behar dituzu
         password: Erabili 8 karaktere gutxienez
         phrase: Bat egingo du Maiuskula/minuskula kontuan hartu gabe eta edukiaren abisua kontuan hartu gabe
         scopes: Zeintzuk API atzitu ditzakeen aplikazioak. Goi mailako arloa aukeratzen baduzu, ez dituzu azpikoak aukeratu behar.
         setting_aggregate_reblogs: Ez erakutsi bultzada berriak berriki bultzada jaso duten tootentzat (berriki jasotako bultzadei eragiten die bakarrik)
-        setting_always_send_emails: Normalean eposta jakinarazpenak ez dira bidaliko TomX aktiboki erabiltzen ari zaren bitartean
+        setting_always_send_emails: Normalean eposta jakinarazpenak ez dira bidaliko Mastodon aktiboki erabiltzen ari zaren bitartean
         setting_default_sensitive: Multimedia hunkigarria lehenetsita ezkutatzen da, eta sakatuz ikusi daiteke
         setting_display_media_default: Ezkutatu hunkigarri gisa markatutako multimedia
         setting_display_media_hide_all: Ezkutatu multimedia guztia beti
         setting_display_media_show_all: Erakutsi beti hunkigarri gisa markatutako multimedia
-        setting_hide_network: Nor jarraitzen duzun eta nork jarraitzen zaituen ez da bistaratuko zure profilean
-        setting_noindex: Zure profil publiko eta tooten orrietan eragina du
-        setting_show_application: Tootak bidaltzeko erabiltzen duzun aplikazioa zure tooten ikuspegi xehetsuan bistaratuko da
         setting_use_blurhash: Gradienteak ezkutatutakoaren koloreetan oinarritzen dira, baina xehetasunak ezkutatzen dituzte
         setting_use_pending_items: Ezkutatu denbora-lerroko eguneraketak klik baten atzean jarioa automatikoki korritu ordez
         username: Hizkiak, zenbakiak eta azpimarrak erabil ditzakezu
@@ -78,14 +73,14 @@ eu:
         bootstrap_timeline_accounts: Kontu hauek erabiltzaile berrien jarraitzeko gomendioen goiko aldean ainguratuko dira.
         closed_registrations_message: Izen-ematea itxia dagoenean bistaratua
         content_cache_retention_period: Balio positibo bat ezarriz gero, egun kopuru horretara iristean beste zerbitzarietako bidalketak ezabatuko dira. Hau ezin da desegin.
-        custom_css: Estilo pertsonalizatuak aplikatu ditzakezu TomXen web bertsioan.
+        custom_css: Estilo pertsonalizatuak aplikatu ditzakezu Mastodonen web bertsioan.
         mascot: Web interfaze aurreratuko ilustrazioa gainidazten du.
         media_cache_retention_period: Balio positibo bat ezarriz gero, egun kopuru horretara iristean beste zerbitzarietatik deskargatutako multimedia fitxategiak ezabatuko dira. Ondoren, eskatu ahala deskargatuko dira berriz.
         peers_api_enabled: Zerbitzari honek fedibertsoan ikusi dituen zerbitzarien domeinu-izenen zerrenda. Ez da daturik ematen zerbitzari jakin batekin federatzearen ala ez federatzearen inguruan, zerbitzariak haien berri duela soilik. Federazioari buruzko estatistika orokorrak biltzen dituzten zerbitzuek erabiltzen dute hau.
         profile_directory: Profilen direktorioan ikusgai egotea aukeratu duten erabiltzaile guztiak zerrendatzen dira.
         require_invite_text: Izen emateak eskuz onartu behar direnean, "Zergatik elkartu nahi duzu?" testu sarrera derrigorrezko bezala ezarri, ez hautazko
         site_contact_email: Jendeak kontsulta legalak egin edo laguntza eskatzeko bidea.
-        site_contact_username: Jendea TomXen zurekin harremanetan jartzeko bidea.
+        site_contact_username: Jendea Mastodonen zurekin harremanetan jartzeko bidea.
         site_extended_description: Bisitari eta erabiltzaileentzat erabilgarria izan daitekeen informazio gehigarria. Markdown sintaxiarekin egituratu daiteke.
         site_short_description: Zure zerbitzaria identifikatzen laguntzen duen deskribapen laburra. Nork du ardura? Nori zuzendua dago?
         site_terms: Erabili zure pribatutasun politika edo hutsik utzi lehenetsia erabiltzeko. Markdown sintaxiarekin egituratu daiteke.
@@ -100,7 +95,7 @@ eu:
       form_challenge:
         current_password: Zonalde seguruan sartzen ari zara
       imports:
-        data: Beste TomX zerbitzari batetik esportatutako CSV fitxategia
+        data: Beste Mastodon zerbitzari batetik esportatutako CSV fitxategia
       invite_request:
         text: Honek zure eskaera berrikustean lagunduko digu
       ip_block:
@@ -173,7 +168,6 @@ eu:
         context: Iragazkiaren testuinguruak
         current_password: Oraingo pasahitza
         data: Datuak
-        discoverable: Zerrendatu kontu hau direktorioan
         display_name: Pantaila-izena
         email: E-mail helbidea
         expires_in: Iraungitzea
@@ -183,7 +177,6 @@ eu:
         inbox_url: Errelearen sarrera ontziaren URLa
         irreversible: Baztertu ezkutatu ordez
         locale: Interfazearen hizkuntza
-        locked: Giltzapetu kontua
         max_uses: Gehieneko erabiltzaile kopurua
         new_password: Pasahitz berria
         note: Biografia
@@ -206,9 +199,7 @@ eu:
         setting_display_media_show_all: Erakutsi guztia
         setting_expand_spoilers: Hedatu beti edukia abisua (CW) duten  tootak
         setting_hide_network: Ezkutatu zure sarea
-        setting_noindex: Atera bilaketa motorraren indexaziotik
         setting_reduce_motion: Murriztu animazioen mugimenduak
-        setting_show_application: Utzi agerian tootak bidaltzeko erabilitako aplikazioa
         setting_system_font_ui: Erabili sistemako tipografia lehenetsia
         setting_theme: Gunearen azala
         setting_trends: Erakutsi gaurko joerak

@@ -15,10 +15,22 @@ class AddUniqueIndexOnPreviewCardsStatuses < ActiveRecord::Migration[6.1]
 
   private
 
+  def supports_concurrent_reindex?
+    @supports_concurrent_reindex ||= begin
+      version = select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
+      version >= 12_000
+    end
+  end
+
   def deduplicate_and_reindex!
     deduplicate_preview_cards!
 
-    safety_assured { execute 'REINDEX INDEX CONCURRENTLY preview_cards_statuses_pkey' }
+    if supports_concurrent_reindex?
+      safety_assured { execute 'REINDEX INDEX CONCURRENTLY preview_cards_statuses_pkey' }
+    else
+      remove_index :preview_cards_statuses, name: :preview_cards_statuses_pkey
+      add_index :preview_cards_statuses, [:status_id, :preview_card_id], name: :preview_cards_statuses_pkey, algorithm: :concurrently, unique: true
+    end
   rescue ActiveRecord::RecordNotUnique
     retry
   end

@@ -1,10 +1,10 @@
 ---
 en-GB:
   about:
-    about_mastodon_html: 'The social network of the future: No ads, no corporate surveillance, ethical design, and decentralisation! Own your data with TomX!'
+    about_mastodon_html: 'The social network of the future: No ads, no corporate surveillance, ethical design, and decentralisation! Own your data with Mastodon!'
     contact_missing: Not set
     contact_unavailable: N/A
-    hosted_on: TomX hosted on %{domain}
+    hosted_on: Mastodon hosted on %{domain}
     title: About
   accounts:
     follow: Follow
@@ -672,7 +672,7 @@ en-GB:
         moderation: Moderation
         special: Special
       delete: Delete
-      description_html: With <strong>user roles</strong>, you can customize which functions and areas of TomX your users can access.
+      description_html: With <strong>user roles</strong>, you can customize which functions and areas of Mastodon your users can access.
       edit: Edit '%{name}' role
       everyone: Default permissions
       everyone_full_description_html: This is the <strong>base role</strong> affecting <strong>all users</strong>, even those without an assigned role. All other roles inherit permissions from it.
@@ -735,23 +735,23 @@ en-GB:
         rules_hint: There is a dedicated area for rules that your users are expected to adhere to.
         title: About
       appearance:
-        preamble: Customise TomX's web interface.
+        preamble: Customise Mastodon's web interface.
         title: Appearance
       branding:
-        preamble: Your server's branding differentiates it from other servers in the network. This information may be displayed across a variety of environments, such as TomX's web interface, native applications, in link previews on other websites and within messaging apps, and so on. For this reason, it is best to keep this information clear, short and concise.
+        preamble: Your server's branding differentiates it from other servers in the network. This information may be displayed across a variety of environments, such as Mastodon's web interface, native applications, in link previews on other websites and within messaging apps, and so on. For this reason, it is best to keep this information clear, short and concise.
         title: Branding
       captcha_enabled:
         desc_html: This relies on external scripts from hCaptcha, which may be a security and privacy concern. In addition, <strong>this can make the registration process significantly less accessible to some (especially disabled) people</strong>. For these reasons, please consider alternative measures such as approval-based or invite-based registration.
         title: Require new users to solve a CAPTCHA to confirm their account
       content_retention:
-        preamble: Control how user-generated content is stored in TomX.
+        preamble: Control how user-generated content is stored in Mastodon.
         title: Content retention
       default_noindex:
         desc_html: Affects all users who have not changed this setting themselves
         title: Opt users out of search engine indexing by default
       discovery:
         follow_recommendations: Follow recommendations
-        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone TomX. Control how various discovery features work on your server.
+        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
         profile_directory: Profile directory
         public_timelines: Public timelines
         publish_discovered_servers: Publish discovered servers
@@ -907,7 +907,7 @@ en-GB:
     webhooks:
       add_new: Add endpoint
       delete: Delete
-      description_html: A <strong>webhook</strong> enables TomX to push <strong>real-time notifications</strong> about chosen events to your own application, so your application can <strong>automatically trigger reactions</strong>.
+      description_html: A <strong>webhook</strong> enables Mastodon to push <strong>real-time notifications</strong> about chosen events to your own application, so your application can <strong>automatically trigger reactions</strong>.
       disable: Disable
       disabled: Disabled
       edit: Edit endpoint
@@ -969,7 +969,7 @@ en-GB:
     confirmation_dialogs: Confirmation dialogues
     discovery: Discovery
     localization:
-      body: TomX is translated by volunteers.
+      body: Mastodon is translated by volunteers.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Everyone can contribute.
     sensitive_content: Sensitive content
@@ -1000,9 +1000,9 @@ en-GB:
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     description:
-      prefix_invited_by_user: "@%{name} invites you to join this server of TomX!"
-      prefix_sign_up: Sign up on TomX today!
-      suffix: With an account, you will be able to follow people, post updates and exchange messages with users from any TomX server and more!
+      prefix_invited_by_user: "@%{name} invites you to join this server of Mastodon!"
+      prefix_sign_up: Sign up on Mastodon today!
+      suffix: With an account, you will be able to follow people, post updates and exchange messages with users from any Mastodon server and more!
     didnt_get_confirmation: Didn't receive a confirmation link?
     dont_have_your_security_key: Don't have your security key?
     forgot_password: Forgot your password?
@@ -1049,7 +1049,7 @@ en-GB:
       title: Sign in to %{domain}
     sign_up:
       manual_review: Sign-ups on %{domain} go through manual review by our moderators. To help us process your registration, write a bit about yourself and why you want an account on %{domain}.
-      preamble: With an account on this TomX server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
+      preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
       title: Let's get you set up on %{domain}.
     status:
       account_status: Account status
@@ -1140,7 +1140,6 @@ en-GB:
     basic_information: Basic information
     hint_html: "<strong>Customise what people see on your public profile and next to your posts.</strong> Other people are more likely to follow you back and interact with you when you have a filled out profile and a profile picture."
     other: Other
-    safety_and_privacy: Safety and privacy
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -1155,7 +1154,7 @@ en-GB:
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
     '503': The page could not be served due to a temporary server failure.
-    noscript_html: To use the TomX web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for TomX for your platform.
+    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
   existing_username_validator:
     not_found: could not find a local user with that username
     not_found_multiple: could not find %{usernames}
@@ -1343,7 +1342,7 @@ en-GB:
     unsubscribe:
       action: Yes, unsubscribe
       complete: Unsubscribed
-      confirmation_html: Are you sure you want to unsubscribe from receiving %{type} for TomX on %{domain} to your e-mail at %{email}? You can always re-subscribe from your <a href="%{settings_path}">e-mail notification settings</a>.
+      confirmation_html: Are you sure you want to unsubscribe from receiving %{type} for Mastodon on %{domain} to your e-mail at %{email}? You can always re-subscribe from your <a href="%{settings_path}">e-mail notification settings</a>.
       emails:
         notification_emails:
           favourite: favourite notification e-mails
@@ -1352,7 +1351,7 @@ en-GB:
           mention: mention notification e-mails
           reblog: boost notification e-mails
       resubscribe_html: If you've unsubscribed by mistake, you can re-subscribe from your <a href="%{settings_path}">e-mail notification settings</a>.
-      success_html: You'll no longer receive %{type} for TomX on %{domain} to your e-mail at %{email}.
+      success_html: You'll no longer receive %{type} for Mastodon on %{domain} to your e-mail at %{email}.
       title: Unsubscribe
   media_attachments:
     validations:
@@ -1542,7 +1541,7 @@ en-GB:
       weibo: Weibo
     current_session: Current session
     description: "%{browser} on %{platform}"
-    explanation: These are the web browsers currently logged in to your TomX account.
+    explanation: These are the web browsers currently logged in to your Mastodon account.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1568,7 +1567,7 @@ en-GB:
     aliases: Account aliases
     appearance: Appearance
     authorized_apps: Authorised apps
-    back: Back to TomX
+    back: Back to Mastodon
     delete: Account deletion
     development: Development
     edit_profile: Edit profile
@@ -1677,9 +1676,9 @@ en-GB:
   tags:
     does_not_match_previous_name: does not match the previous name
   themes:
-    contrast: TomX (High contrast)
-    default: TomX (Dark)
-    mastodon-light: TomX (Light)
+    contrast: Mastodon (High contrast)
+    default: Mastodon (Dark)
+    mastodon-light: Mastodon (Light)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1711,7 +1710,7 @@ en-GB:
       subject: Your appeal from %{date} has been rejected
       title: Appeal rejected
     backup_ready:
-      explanation: You requested a full backup of your TomX account. It's now ready for download!
+      explanation: You requested a full backup of your Mastodon account. It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
     suspicious_sign_in:
@@ -1760,7 +1759,7 @@ en-GB:
       final_step: 'Start posting! Even without followers, your public posts may be seen by others, for example on the local timeline or in hashtags. You may want to introduce yourself on the #introductions hashtag.'
       full_handle: Your full handle
       full_handle_hint: This is what you would tell your friends so they can message or follow you from another server.
-      subject: Welcome to TomX
+      subject: Welcome to Mastodon
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
@@ -1772,7 +1771,7 @@ en-GB:
   verification:
     extra_instructions_html: <strong>Tip:</strong> The link on your website can be invisible. The important part is <code>rel="me"</code> which prevents impersonation on websites with user-generated content. You can even use a <code>link</code> tag in the header of the page instead of <code>a</code>, but the HTML must be accessible without executing JavaScript.
     here_is_how: Here's how
-    hint_html: "<strong>Verifying your identity on TomX is for everyone.</strong> Based on open web standards, now and forever free. All you need is a personal website that people recognize you by. When you link to this website from your profile, we will check that the website links back to your profile and show a visual indicator on it."
+    hint_html: "<strong>Verifying your identity on Mastodon is for everyone.</strong> Based on open web standards, now and forever free. All you need is a personal website that people recognize you by. When you link to this website from your profile, we will check that the website links back to your profile and show a visual indicator on it."
     instructions_html: Copy and paste the code below into the HTML of your website. Then add the address of your website into one of the extra fields on your profile from the "Edit profile" tab and save changes.
     verification: Verification
     verified_links: Your verified links

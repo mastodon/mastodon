@@ -1,0 +1,21 @@
+---
+cs:
+  simple_form:
+    hints:
+      defaults:
+        setting_default_content_type_html: Předpokládat, že nové příspěvky jsou napsané v HTML, pokud není uvedeno jinak
+        setting_default_content_type_markdown: Předpokládat, že nové příspěvky používají pro formátování Markdown, pokud není uvedeno jinak
+        setting_default_content_type_plain: Předpokládat, že nové příspěvky nejsou nijak formátované, pokud není uvedeno jinak (standardní chování Mastodonu)
+        setting_default_language: Jazyk vašich příspěvků lze detekovat automaticky, ale není to vždycky přesné
+        setting_skin: Aplikuje barevný styl na zvolené rozhraní Mastodonu
+    labels:
+      defaults:
+        setting_default_content_type: Výchozí formát příspěvků
+        setting_default_content_type_plain: Prostý text
+        setting_favourite_modal: Před oblíbením příspěvku zobrazit potvrzovací dialog (pouze pro rozhraní Glitch)
+        setting_skin: Styl
+        setting_system_emoji_font: Použít výchozí emoji systému (pouze pro rozhraní Glitch)
+      notification_emails:
+        trending_link: Nový populární odkaz vyžaduje schválení
+        trending_status: Nový populární příspěvek vyžaduje schválení
+        trending_tag: Nový populární hashtag vyžaduje schválení

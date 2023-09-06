@@ -1,0 +1,43 @@
+.regeneration-indicator {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: $dark-text-color;
+  background: $ui-base-color;
+  cursor: default;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  &__figure {
+    &,
+    img {
+      display: block;
+      width: auto;
+      height: 160px;
+      margin: 0;
+    }
+  }
+
+  &--without-header {
+    padding-top: 20px + 48px;
+  }
+
+  &__label {
+    margin-top: 30px;
+
+    strong {
+      display: block;
+      margin-bottom: 10px;
+      color: $dark-text-color;
+    }
+
+    span {
+      font-size: 15px;
+      font-weight: 400;
+    }
+  }
+}

@@ -32,5 +32,9 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       headers: :any,
       methods: [:post],
       credentials: false
+    resource '/assets/*', headers: :any, methods: [:get, :head, :options]
+    resource '/stylesheets/*', headers: :any, methods: [:get, :head, :options]
+    resource '/javascripts/*', headers: :any, methods: [:get, :head, :options]
+    resource '/packs/*', headers: :any, methods: [:get, :head, :options]
   end
 end

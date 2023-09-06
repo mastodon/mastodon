@@ -58,3 +58,7 @@
       interval: 1 minute
       class: Scheduler::SuspendedUserCleanupScheduler
       queue: scheduler
+    software_update_check_scheduler:
+      interval: 30 minutes
+      class: Scheduler::SoftwareUpdateCheckScheduler
+      queue: scheduler

@@ -1,10 +1,10 @@
 ---
 gl:
   about:
-    about_mastodon_html: 'A rede social do futuro: Sen publicidade, sen seguimento por empresas, deseño ético e descentralización! En TomX ti posúes os teus datos!'
+    about_mastodon_html: 'A rede social do futuro: Sen publicidade, sen seguimento por empresas, deseño ético e descentralización! En Mastodon ti posúes os teus datos!'
     contact_missing: Non establecido
     contact_unavailable: Non dispoñíbel
-    hosted_on: TomX aloxado en %{domain}
+    hosted_on: Mastodon aloxado en %{domain}
     title: Acerca de
   accounts:
     follow: Seguir
@@ -672,7 +672,7 @@ gl:
         moderation: Moderación
         special: Especial
       delete: Eliminar
-      description_html: Cos <strong>roles das usuarias</strong> podes personalizar as funcións e áreas de TomX ás que as usuarias poden acceder.
+      description_html: Cos <strong>roles das usuarias</strong> podes personalizar as funcións e áreas de Mastodon ás que as usuarias poden acceder.
       edit: Editar rol '%{name}'
       everyone: Permisos por defecto
       everyone_full_description_html: Este é o <strong>rol básico</strong> que afecta a <strong>tódalas usuarias</strong>, incluso aquelas sen un rol asignado. Tódolos outros roles herdan os seus permisos.
@@ -735,23 +735,23 @@ gl:
         rules_hint: Hai un espazo dedicado para as normas que é de agardar as usuarias acaten.
         title: Acerca de
       appearance:
-        preamble: Personalizar a interface web de TomX.
+        preamble: Personalizar a interface web de Mastodon.
         title: Aparencia
       branding:
-        preamble: A personalización do teu servidor diferénciao doutros servidores da rede. A información podería mostrarse en diversos entornos, como a interface web de TomX, aplicacións nativas, vista previa das ligazóns noutras webs e apps de mensaxería, e similares. Debido a isto é recomendable que a información sexa clara, curta e concisa.
+        preamble: A personalización do teu servidor diferénciao doutros servidores da rede. A información podería mostrarse en diversos entornos, como a interface web de Mastodon, aplicacións nativas, vista previa das ligazóns noutras webs e apps de mensaxería, e similares. Debido a isto é recomendable que a información sexa clara, curta e concisa.
         title: Personalización
       captcha_enabled:
         desc_html: Ten dependencia de scripts externos desde hCaptcha, que podería ser un problema de seguridade e privacidade. Ademáis, <strong>pode diminuír a accesiblidade para algunhas persoas (principalmente as discapacitadas)</strong>. Por estas razóns, considera medidas alternativas como o rexistro por convite e a aprobación manual das contas.
         title: Pedirlle ás novas usuarias resolver un CAPTCHA para confirmar a súa conta
       content_retention:
-        preamble: Controla como se gardan en TomX os contidos creados polas usuarias.
+        preamble: Controla como se gardan en Mastodon os contidos creados polas usuarias.
         title: Retención do contido
       default_noindex:
         desc_html: Aféctalle a tódalas usuarias que non cambiaron este axuste elas mesmas
         title: Por omisión exclúe as usuarias do indexado por servidores de busca
       discovery:
         follow_recommendations: Recomendacións de seguimento
-        preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en TomX. Xestiona os diferentes xeitos de promocionar contidos.
+        preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en Mastodon. Xestiona os diferentes xeitos de promocionar contidos.
         profile_directory: Directorio de perfís
         public_timelines: Cronoloxías públicas
         publish_discovered_servers: Publicar os servidores descubertos
@@ -907,7 +907,7 @@ gl:
     webhooks:
       add_new: Engadir punto de extremo
       delete: Eliminar
-      description_html: Un <strong>webhook</strong> permítelle a TomX enviar <strong>notificacións en tempo real</strong> á túa aplicación acerca dos eventos elexidos e así, a aplicación <strong>activará automáticamente</strong> a súa programación.
+      description_html: Un <strong>webhook</strong> permítelle a Mastodon enviar <strong>notificacións en tempo real</strong> á túa aplicación acerca dos eventos elexidos e así, a aplicación <strong>activará automáticamente</strong> a súa programación.
       disable: Desactivar
       disabled: Desactivado
       edit: Editar extremo
@@ -969,7 +969,7 @@ gl:
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
     localization:
-      body: TomX tradúceno persoas voluntarias.
+      body: Mastodon tradúceno persoas voluntarias.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Todas podemos contribuír.
     sensitive_content: Contido sensible
@@ -1000,9 +1000,9 @@ gl:
     delete_account: Eliminar conta
     delete_account_html: Se queres eliminar a túa conta, podes <a href="%{path}">facelo aquí</a>. Deberás confirmar a acción.
     description:
-      prefix_invited_by_user: "@%{name} convídate a que te unas a este servidor TomX!"
-      prefix_sign_up: Rexístrate agora en TomX!
-      suffix: Ao abrir unha conta, poderás seguir a xente, actualizacións das publicacións e intercambiar mensaxes coas usuarias de calquera servidor de TomX e moito máis!
+      prefix_invited_by_user: "@%{name} convídate a que te unas a este servidor Mastodon!"
+      prefix_sign_up: Rexístrate agora en Mastodon!
+      suffix: Ao abrir unha conta, poderás seguir a xente, actualizacións das publicacións e intercambiar mensaxes coas usuarias de calquera servidor de Mastodon e moito máis!
     didnt_get_confirmation: Non recibiches a ligazón de confirmación?
     dont_have_your_security_key: "¿Non tes a túa chave de seguridade?"
     forgot_password: Non lembras o contrasinal?
@@ -1049,7 +1049,7 @@ gl:
       title: Accede a %{domain}
     sign_up:
       manual_review: As novas contas en %{domain} son comprobadas manualmente pola moderación. Para axudarnos a xestionar o teu rexistro, escribe algo acerca de ti e por que queres unha conta en %{domain}.
-      preamble: Cunha conta neste servidor TomX poderás seguir a calquera outra persoa na rede, independentemente de onde estivese hospedada esa conta.
+      preamble: Cunha conta neste servidor Mastodon poderás seguir a calquera outra persoa na rede, independentemente de onde estivese hospedada esa conta.
       title: Imos crear a túa conta en %{domain}.
     status:
       account_status: Estado da conta
@@ -1140,7 +1140,6 @@ gl:
     basic_information: Información básica
     hint_html: "<strong>Personaliza o que van ver no teu perfil público e ao lado das túas publicacións.</strong> As outras persoas estarán máis animadas a seguirte e interactuar contigo se engades algún dato sobre ti así como unha imaxe de perfil."
     other: Outros
-    safety_and_privacy: Seguridade e privacidade
   errors:
     '400': A solicitude que enviou non é válida ou ten formato incorrecto.
     '403': Non ten permiso para ver esta páxina.
@@ -1155,7 +1154,7 @@ gl:
       content: Sentímolo, pero algo do noso lado falloou.
       title: Esta páxina non é correcta
     '503': A páxina non se puido servir debido a un fallo temporal no servidor.
-    noscript_html: Para utilizar a aplicación web de TomX debes activar JavaScript. De xeito alternativo, proba cunha das <a href="%{apps_path}">apps nativas</a> para TomX na túa plataforma.
+    noscript_html: Para utilizar a aplicación web de Mastodon debes activar JavaScript. De xeito alternativo, proba cunha das <a href="%{apps_path}">apps nativas</a> para Mastodon na túa plataforma.
   existing_username_validator:
     not_found: non se atopou unha usuaria local con ese alcume
     not_found_multiple: non se atopou a %{usernames}
@@ -1343,7 +1342,7 @@ gl:
     unsubscribe:
       action: Si, retirar subscrición
       complete: Subscrición anulada
-      confirmation_html: Tes a certeza de querer retirar a subscrición a TomX en %{domain} para recibir %{type} no teu correo electrónico en %{email}? Poderás volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo</a>.
+      confirmation_html: Tes a certeza de querer retirar a subscrición a Mastodon en %{domain} para recibir %{type} no teu correo electrónico en %{email}? Poderás volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo</a>.
       emails:
         notification_emails:
           favourite: notificacións de favoritos
@@ -1352,7 +1351,7 @@ gl:
           mention: notificacións de mencións
           reblog: notificacións de promocións
       resubscribe_html: Se por un erro eliminaches a subscrición, podes volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo electrónico</a>.
-      success_html: Non vas recibir %{type} de TomX en %{domain} no teu enderezo %{email}.
+      success_html: Non vas recibir %{type} de Mastodon en %{domain} no teu enderezo %{email}.
       title: Anular subscrición
   media_attachments:
     validations:
@@ -1568,7 +1567,7 @@ gl:
     aliases: Alcumes da conta
     appearance: Aparencia
     authorized_apps: Apps autorizadas
-    back: Volver a TomX
+    back: Volver a Mastodon
     delete: Eliminación da conta
     development: Desenvolvemento
     edit_profile: Editar perfil
@@ -1677,9 +1676,9 @@ gl:
   tags:
     does_not_match_previous_name: non concorda co nome anterior
   themes:
-    contrast: TomX (Alto contraste)
-    default: TomX (Escuro)
-    mastodon-light: TomX (Claro)
+    contrast: Mastodon (Alto contraste)
+    default: Mastodon (Escuro)
+    mastodon-light: Mastodon (Claro)
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
@@ -1711,7 +1710,7 @@ gl:
       subject: A túa apelación do %{date} foi rexeitada
       title: Apelación rexeitada
     backup_ready:
-      explanation: Solicitaches os datos completos da túa conta de TomX. Xa está preparados para descargar!
+      explanation: Solicitaches os datos completos da túa conta de Mastodon. Xa está preparados para descargar!
       subject: O teu ficheiro xa está preparado para descargar
       title: Leve o ficheiro
     suspicious_sign_in:
@@ -1760,7 +1759,7 @@ gl:
       final_step: 'Publica! Incluso sen seguidoras, as túas mensaxes públicas serán vistas por outras persoas, por exemplo na cronoloxía local e nos cancelos. Poderías presentarte ao #fediverso utilizando o cancelo #introductions.'
       full_handle: O teu alcume completo
       full_handle_hint: Compárteo coas túas amizades para que poidan seguirte ou enviarche mensaxes desde outros servidores.
-      subject: Benvida a TomX
+      subject: Benvida a Mastodon
       title: Benvida, %{name}!
   users:
     follow_limit_reached: Non pode seguir a máis de %{limit} persoas
@@ -1772,7 +1771,7 @@ gl:
   verification:
     extra_instructions_html: <strong>Truco:</strong> A ligazón pode estar agochada na túa páxina web. A parte importante é <code>rel="me"</code> que impide a suplantación en sitios web con contido creado polas usuarias. Incluso podes usar a etiqueta <code>link</code> na cabeceira da páxina en lugar de <code>a</code>, pero o HTML debe ser accesible sen precisar usar JavaScript.
     here_is_how: Podes facelo así
-    hint_html: "<strong>É moi fácil verificar a túa identidade en TomX.</strong> Baseado en estándares web, gratuíto para sempre. O único que precisas é un sitio web persoal polo que a xente te recoñeza. Cando relacionas ese sitio web co teu perfil, nós comprobamos que esa web ten unha ligazón de volta ao teu perfil e mostraremos unha indicación visual nel."
+    hint_html: "<strong>É moi fácil verificar a túa identidade en Mastodon.</strong> Baseado en estándares web, gratuíto para sempre. O único que precisas é un sitio web persoal polo que a xente te recoñeza. Cando relacionas ese sitio web co teu perfil, nós comprobamos que esa web ten unha ligazón de volta ao teu perfil e mostraremos unha indicación visual nel."
     instructions_html: Copia e pega o código inferior no HTML do teu sitio web. Despois engade o enderezo da túa web nun dos campos de datos extra do teu perfil dispoñibles na lapela "Editar perfil" e garda os cambios.
     verification: Validación
     verified_links: As túas ligazóns verificadas

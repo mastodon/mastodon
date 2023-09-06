@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # have alternative format representations requiring separate controllers
   web_app_paths = %w(
     /getting-started
+    /getting-started-misc
     /keyboard-shortcuts
     /home
     /public

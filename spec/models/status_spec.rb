@@ -205,6 +205,43 @@ RSpec.describe Status do
     end
   end
 
+  describe 'on create' do
+    subject { described_class.new }
+
+    let(:local_account) { Fabricate(:account, username: 'local', domain: nil) }
+    let(:remote_account) { Fabricate(:account, username: 'remote', domain: 'example.com') }
+
+    describe 'on a status that ends with the local-only emoji' do
+      before do
+        subject.text = "A toot #{subject.local_only_emoji}"
+      end
+
+      context 'when the status originates from this instance' do
+        before do
+          subject.account = local_account
+        end
+
+        it 'is marked local-only' do
+          subject.save!
+
+          expect(subject).to be_local_only
+        end
+      end
+
+      context 'when the status is remote' do
+        before do
+          subject.account = remote_account
+        end
+
+        it 'is not marked local-only' do
+          subject.save!
+
+          expect(subject).to_not be_local_only
+        end
+      end
+    end
+  end
+
   describe '.mutes_map' do
     subject { described_class.mutes_map([status.conversation.id], account) }
 
@@ -250,6 +287,56 @@ RSpec.describe Status do
     it 'contains true value' do
       Fabricate(:status, account: account, reblog: status)
       expect(subject[status.id]).to be true
+    end
+  end
+
+  describe '.as_direct_timeline' do
+    subject(:results) { described_class.as_direct_timeline(account) }
+
+    let(:account) { Fabricate(:account) }
+    let(:followed) { Fabricate(:account) }
+    let(:not_followed) { Fabricate(:account) }
+
+    let!(:self_public_status) { Fabricate(:status, account: account, visibility: :public) }
+    let!(:self_direct_status) { Fabricate(:status, account: account, visibility: :direct) }
+    let!(:followed_public_status) { Fabricate(:status, account: followed, visibility: :public) }
+    let!(:followed_direct_status) { Fabricate(:status, account: followed, visibility: :direct) }
+    let!(:not_followed_direct_status) { Fabricate(:status, account: not_followed, visibility: :direct) }
+
+    before do
+      account.follow!(followed)
+    end
+
+    it 'does not include public statuses from self' do
+      expect(results).to_not include(self_public_status)
+    end
+
+    it 'includes direct statuses from self' do
+      expect(results).to include(self_direct_status)
+    end
+
+    it 'does not include public statuses from followed' do
+      expect(results).to_not include(followed_public_status)
+    end
+
+    it 'does not include direct statuses not mentioning recipient from followed' do
+      expect(results).to_not include(followed_direct_status)
+    end
+
+    it 'does not include direct statuses not mentioning recipient from non-followed' do
+      expect(results).to_not include(not_followed_direct_status)
+    end
+
+    it 'includes direct statuses mentioning recipient from followed' do
+      Fabricate(:mention, account: account, status: followed_direct_status)
+      results2 = described_class.as_direct_timeline(account)
+      expect(results2).to include(followed_direct_status)
+    end
+
+    it 'includes direct statuses mentioning recipient from non-followed' do
+      Fabricate(:mention, account: account, status: not_followed_direct_status)
+      results2 = described_class.as_direct_timeline(account)
+      expect(results2).to include(not_followed_direct_status)
     end
   end
 

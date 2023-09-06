@@ -1,5 +1,4 @@
 - content_for :header_tags do
   = render_initial_state
-  = javascript_pack_tag 'share', crossorigin: 'anonymous'
 
 #mastodon-compose{ data: { props: Oj.dump(default_props) } }

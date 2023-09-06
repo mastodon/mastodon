@@ -1,0 +1,55 @@
+$emojis-requiring-inversion: 'back' 'copyright' 'curly_loop' 'currency_exchange'
+  'end' 'heavy_check_mark' 'heavy_division_sign' 'heavy_dollar_sign'
+  'heavy_minus_sign' 'heavy_multiplication_x' 'heavy_plus_sign' 'on'
+  'registered' 'soon' 'spider' 'telephone_receiver' 'tm' 'top' 'wavy_dash' !default;
+
+%emoji-color-inversion {
+  filter: invert(1);
+}
+
+.emojione {
+  @each $emoji in $emojis-requiring-inversion {
+    &[title=':#{$emoji}:'] {
+      @extend %emoji-color-inversion;
+    }
+  }
+}
+
+// Display a checkmark on active UI elements otherwise differing only by color
+.status__action-bar-button,
+.detailed-status__button .icon-button {
+  position: relative;
+
+  &.active::after {
+    position: absolute;
+    content: '\F00C';
+    font-size: 50%;
+    inset-inline-end: -0.55em;
+    top: -0.44em;
+
+    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword -- this is an icon font, this can't use a generic font */
+    font-family: FontAwesome;
+  }
+}
+
+.hicolor-privacy-icons {
+  .status__visibility-icon.fa-globe,
+  .privacy-dropdown__option .fa-globe {
+    color: #1976d2;
+  }
+
+  .status__visibility-icon.fa-unlock,
+  .privacy-dropdown__option .fa-unlock {
+    color: #388e3c;
+  }
+
+  .status__visibility-icon.fa-lock,
+  .privacy-dropdown__option .fa-lock {
+    color: #ffa000;
+  }
+
+  .status__visibility-icon.fa-envelope,
+  .privacy-dropdown__option .fa-envelope {
+    color: #d32f2f;
+  }
+}

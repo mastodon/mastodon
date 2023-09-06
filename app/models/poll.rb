@@ -28,6 +28,7 @@ class Poll < ApplicationRecord
 
   has_many :votes, class_name: 'PollVote', inverse_of: :poll, dependent: :delete_all
   has_many :voters, -> { group('accounts.id') }, through: :votes, class_name: 'Account', source: :account
+  has_many :local_voters, -> { group('accounts.id').merge(Account.local) }, through: :votes, class_name: 'Account', source: :account
 
   has_many :notifications, as: :activity, dependent: :destroy
 

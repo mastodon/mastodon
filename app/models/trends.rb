@@ -32,10 +32,13 @@ module Trends
     tags_requiring_review     = tags.request_review
     statuses_requiring_review = statuses.request_review
 
-    return if links_requiring_review.empty? && tags_requiring_review.empty? && statuses_requiring_review.empty?
-
     User.those_who_can(:manage_taxonomies).includes(:account).find_each do |user|
-      AdminMailer.with(recipient: user.account).new_trends(links_requiring_review, tags_requiring_review, statuses_requiring_review).deliver_later! if user.allows_trends_review_emails?
+      links    = user.allows_trending_links_review_emails? ? links_requiring_review : []
+      tags     = user.allows_trending_tags_review_emails? ? tags_requiring_review : []
+      statuses = user.allows_trending_statuses_review_emails? ? statuses_requiring_review : []
+      next if links.empty? && tags.empty? && statuses.empty?
+
+      AdminMailer.with(recipient: user.account).new_trends(links, tags, statuses).deliver_later! if user.allows_trends_review_emails?
     end
   end
 

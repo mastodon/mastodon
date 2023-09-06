@@ -1,13 +1,19 @@
 # frozen_string_literal: true
 
-def render_static_page(action, dest:, **opts)
-  html = ApplicationController.render(action, opts)
-  File.write(dest, html)
-end
-
 namespace :assets do
   desc 'Generate static pages'
   task generate_static_pages: :environment do
+    def render_static_page(action, dest:, **opts)
+      renderer = Class.new(ApplicationController) do
+        def current_user
+          nil
+        end
+      end
+
+      html = renderer.render(action, opts)
+      File.write(dest, html)
+    end
+
     render_static_page 'errors/500', layout: 'error', dest: Rails.public_path.join('assets', '500.html')
   end
 end

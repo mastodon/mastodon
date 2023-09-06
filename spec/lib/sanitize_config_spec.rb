@@ -3,11 +3,9 @@
 require 'rails_helper'
 
 describe Sanitize::Config do
-  describe '::MASTODON_STRICT' do
-    subject { Sanitize::Config::MASTODON_STRICT }
-
-    it 'converts h1 to p strong' do
-      expect(Sanitize.fragment('<h1>Foo</h1>', subject)).to eq '<p><strong>Foo</strong></p>'
+  shared_examples 'common HTML sanitization' do
+    it 'keeps h1' do
+      expect(Sanitize.fragment('<h1>Foo</h1>', subject)).to eq '<h1>Foo</h1>'
     end
 
     it 'keeps ul' do
@@ -52,6 +50,27 @@ describe Sanitize::Config do
 
     it 'keeps a with supported scheme and no host' do
       expect(Sanitize.fragment('<a href="dweb:/a/foo">Test</a>', subject)).to eq '<a href="dweb:/a/foo" rel="nofollow noopener noreferrer" target="_blank">Test</a>'
+    end
+
+    it 'keeps title in abbr' do
+      expect(Sanitize.fragment('<abbr title="HyperText Markup Language">HTML</abbr>', subject)).to eq '<abbr title="HyperText Markup Language">HTML</abbr>'
+    end
+  end
+
+  describe '::MASTODON_OUTGOING' do
+    subject { Sanitize::Config::MASTODON_OUTGOING }
+
+    around do |example|
+      original_web_domain = Rails.configuration.x.web_domain
+      example.run
+      Rails.configuration.x.web_domain = original_web_domain
+    end
+
+    it_behaves_like 'common HTML sanitization'
+
+    it 'keeps a with href and rel tag, not adding to rel or target if url is local' do
+      Rails.configuration.x.web_domain = 'domain.test'
+      expect(Sanitize.fragment('<a href="http://domain.test/tags/foo" rel="tag">Test</a>', subject)).to eq '<a href="http://domain.test/tags/foo" rel="tag">Test</a>'
     end
   end
 end

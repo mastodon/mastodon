@@ -23,59 +23,59 @@ fr-QC:
         explanation: Vous avez créé un compte sur %{host} avec cette adresse courriel. Vous êtes à un clic de l’activer. Si ce n'était pas vous, veuiller ignorer ce courriel.
         explanation_when_pending: Vous avez demandé à vous inscrire à %{host} avec cette adresse courriel. Une fois que vous aurez confirmé cette adresse, nous étudierons votre demande. Vous pouvez vous connecter pour changer vos détails ou supprimer votre compte, mais vous ne pouvez pas accéder à la plupart des fonctionalités du compte avant que votre compte ne soit approuvé. Si votre demande est rejetée, vos données seront supprimées, donc aucune action supplémentaire ne sera requise de votre part. Si ce n'était pas vous, veuiller ignorer ce courriel.
         extra_html: Veuillez également consulter <a href="%{terms_path}">les règles du serveur</a> et <a href="%{policy_path}">nos conditions d’utilisation</a>.
-        subject: 'TomX: Instructions de confirmation pour %{instance}'
+        subject: 'Mastodon: Instructions de confirmation pour %{instance}'
         title: Vérifier l’adresse courriel
       email_changed:
         explanation: 'L’adresse courriel de votre compte est en cours de modification pour devenir:'
         extra: Si vous n’avez pas changé votre adresse courriel, il est probable que quelqu’un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l’administrateur·rice du serveur si vous êtes bloqué hors de votre compte.
-        subject: 'TomX: Courriel modifié'
+        subject: 'Mastodon: Courriel modifié'
         title: Nouvelle adresse courriel
       password_change:
         explanation: Le mot de passe de votre compte a été changé.
         extra: Si vous n’avez pas changé votre mot de passe, il est probable que quelqu’un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l’administrateur·rice du serveur si vous êtes bloqué hors de votre compte.
-        subject: 'TomX: Mot de passe modifié'
+        subject: 'Mastodon: Mot de passe modifié'
         title: Mot de passe modifié
       reconfirmation_instructions:
         explanation: Confirmez la nouvelle adresse pour changer votre courriel.
-        extra: Si ce changement n’a pas été initié par vous, veuillez ignorer ce courriel. L’adresse courriel du compte TomX ne changera pas tant que vous n’aurez pas cliqué sur le lien ci-dessus.
-        subject: 'TomX: Confirmer l’adresse courriel pour %{instance}'
+        extra: Si ce changement n’a pas été initié par vous, veuillez ignorer ce courriel. L’adresse courriel du compte Mastodon ne changera pas tant que vous n’aurez pas cliqué sur le lien ci-dessus.
+        subject: 'Mastodon: Confirmer l’adresse courriel pour %{instance}'
         title: Vérifier l’adresse courriel
       reset_password_instructions:
         action: Changer votre mot de passe
         explanation: Vous avez demandé un nouveau mot de passe pour votre compte.
         extra: Si vous ne avez pas demandé ceci, veuillez ignorer ce courriel. Votre mot de passe ne changera pas tant que vous n’aurez pas cliqué sur le lien ci-dessus et n’en aurez pas créé un nouveau.
-        subject: 'TomX: Instructions pour changer votre mot de passe'
+        subject: 'Mastodon: Instructions pour changer votre mot de passe'
         title: Réinitialisation du mot de passe
       two_factor_disabled:
         explanation: L'authentification à deux facteurs pour votre compte a été désactivée. La connexion est maintenant possible en utilisant uniquement l'adresse courriel et le mot de passe.
-        subject: 'TomX: authentification à deux facteurs désactivée'
+        subject: 'Mastodon: authentification à deux facteurs désactivée'
         title: A2F désactivée
       two_factor_enabled:
         explanation: L'authentification à deux facteurs a été activée pour votre compte. Un jeton généré par l'application appairée TOTP sera nécessaire pour vous connecter.
-        subject: 'TomX: authentification à deux facteurs activée'
+        subject: 'Mastodon: authentification à deux facteurs activée'
         title: A2F activée
       two_factor_recovery_codes_changed:
         explanation: Les codes de récupération précédents ont été invalidés et de nouveaux ont été générés.
-        subject: 'TomX: codes de récupération à deux facteurs régénérés'
+        subject: 'Mastodon: codes de récupération à deux facteurs régénérés'
         title: Codes de récupération A2F modifiés
       unlock_instructions:
-        subject: 'TomX: Instructions pour déverrouiller votre compte'
+        subject: 'Mastodon: Instructions pour déverrouiller votre compte'
       webauthn_credential:
         added:
           explanation: La clé de sécurité suivante a été ajoutée à votre compte
-          subject: 'TomX: Nouvelle clé de sécurité'
+          subject: 'Mastodon: Nouvelle clé de sécurité'
           title: Une nouvelle clé de sécurité a été ajoutée
         deleted:
           explanation: La clé de sécurité suivante a été supprimée de votre compte
-          subject: 'TomX: Clé de sécurité supprimée'
+          subject: 'Mastodon: Clé de sécurité supprimée'
           title: Une de vos clés de sécurité a été supprimée
       webauthn_disabled:
         explanation: L'authentification avec les clés de sécurité a été désactivée pour votre compte. La connexion est maintenant possible en utilisant uniquement le jeton généré par l'application TOTP appairée.
-        subject: 'TomX: Authentification avec clés de sécurité désactivée'
+        subject: 'Mastodon: Authentification avec clés de sécurité désactivée'
         title: Clés de sécurité désactivées
       webauthn_enabled:
         explanation: L'authentification par clé de sécurité a été activée pour votre compte. Votre clé de sécurité peut maintenant être utilisée pour vous connecter.
-        subject: 'TomX: Authentification de la clé de sécurité activée'
+        subject: 'Mastodon: Authentification de la clé de sécurité activée'
         title: Clés de sécurité activées
     omniauth_callbacks:
       failure: Nous n’avons pas pu vous authentifier via %{kind} car « %{reason} ».
