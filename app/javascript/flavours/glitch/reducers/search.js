@@ -14,8 +14,7 @@ import {
   SEARCH_SHOW,
   SEARCH_EXPAND_REQUEST,
   SEARCH_EXPAND_SUCCESS,
-  SEARCH_RESULT_CLICK,
-  SEARCH_RESULT_FORGET,
+  SEARCH_HISTORY_UPDATE,
 } from 'flavours/glitch/actions/search';
 
 const initialState = ImmutableMap({
@@ -73,10 +72,8 @@ export default function search(state = initialState, action) {
   case SEARCH_EXPAND_SUCCESS:
     const results = action.searchType === 'hashtags' ? ImmutableOrderedSet(fromJS(action.results.hashtags)) : action.results[action.searchType].map(item => item.id);
     return state.updateIn(['results', action.searchType], list => list.union(results));
-  case SEARCH_RESULT_CLICK:
-    return state.update('recent', set => set.add(fromJS(action.result)));
-  case SEARCH_RESULT_FORGET:
-    return state.update('recent', set => set.filterNot(result => result.get('q') === action.q));
+  case SEARCH_HISTORY_UPDATE:
+    return state.set('recent', ImmutableOrderedSet(fromJS(action.recent)));
   default:
     return state;
   }
