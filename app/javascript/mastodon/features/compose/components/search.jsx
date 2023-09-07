@@ -16,6 +16,17 @@ const messages = defineMessages({
   placeholderSignedIn: { id: 'search.search_or_paste', defaultMessage: 'Search or paste URL' },
 });
 
+const labelForRecentSearch = search => {
+  switch(search.get('type')) {
+  case 'account':
+    return `@${search.get('q')}`;
+  case 'hashtag':
+    return `#${search.get('q')}`;
+  default:
+    return search.get('q');
+  }
+};
+
 class Search extends PureComponent {
 
   static contextTypes = {
@@ -187,12 +198,16 @@ class Search extends PureComponent {
   };
 
   handleRecentSearchClick = search => {
+    const { onChange } = this.props;
     const { router } = this.context;
 
     if (search.get('type') === 'account') {
       router.history.push(`/@${search.get('q')}`);
     } else if (search.get('type') === 'hashtag') {
       router.history.push(`/tags/${search.get('q')}`);
+    } else {
+      onChange(search.get('q'));
+      this._submit(search.get('type'));
     }
 
     this._unfocus();
@@ -221,10 +236,14 @@ class Search extends PureComponent {
   }
 
   _submit (type) {
-    const { onSubmit, openInRoute } = this.props;
+    const { onSubmit, openInRoute, value, onClickSearchResult } = this.props;
     const { router } = this.context;
 
     onSubmit(type);
+
+    if (value) {
+      onClickSearchResult(value, type);
+    }
 
     if (openInRoute) {
       router.history.push('/search');
@@ -243,7 +262,7 @@ class Search extends PureComponent {
     const { recent } = this.props;
 
     return recent.toArray().map(search => ({
-      label: search.get('type') === 'account' ? `@${search.get('q')}` : `#${search.get('q')}`,
+      label: labelForRecentSearch(search),
 
       action: () => this.handleRecentSearchClick(search),
 
@@ -359,7 +378,7 @@ class Search extends PureComponent {
           {searchEnabled ? (
             <div className='search__popout__menu'>
               {this.defaultOptions.map(({ key, label, action }, i) => (
-                <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === (options.length + i) })}>
+                <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === ((options.length || recent.size) + i) })}>
                   {label}
                 </button>
               ))}
