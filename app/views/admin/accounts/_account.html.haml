@@ -1,3 +1,5 @@
+- current = @current_user
+
 .batch-table__row{ class: [!account.suspended? && account.user_pending? && 'batch-table__row--attention', (account.suspended? || account.user_unconfirmed?) && 'batch-table__row--muted'] }
   %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
     = f.check_box :account_ids, { multiple: true, include_hidden: false }, account.id
@@ -23,13 +25,16 @@
             = relevant_account_timestamp(account)
             %small= t('accounts.last_active')
           %td.accounts-table__extra
-            - if account.local?
-              - if account.user_email
-                = link_to account.user_email.split('@').last, admin_accounts_path(email: "%@#{account.user_email.split('@').last}"), title: account.user_email
-              - else
-                \-
-              %br/
-              %samp.ellipsized-ip= relevant_account_ip(account, params[:ip])
+            - if @current_user.can?(:sensitive_user_data)
+              - if account.local?
+                - if account.user_email
+                  = link_to account.user_email.split('@').last, admin_accounts_path(email: "%@#{account.user_email.split('@').last}"), title: account.user_email
+                - else
+                  \-
+                %br/
+                %samp.ellipsized-ip= relevant_account_ip(account, params[:ip])
+            - else
+              \-
     - if !account.suspended? && account.user_pending? && account.user&.invite_request&.text&.present?
       .batch-table__row__content__quote
         %p= account.user&.invite_request&.text
