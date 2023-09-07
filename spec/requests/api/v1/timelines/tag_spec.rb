@@ -13,7 +13,7 @@ RSpec.describe 'Tag' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json.pluck(:id)).to match_array(expected_statuses.map(&:id).map(&:to_s))
+      expect(body_as_json.pluck(:id)).to match_array(expected_statuses.map { |status| status.id.to_s })
     end
   end
 
@@ -75,6 +75,37 @@ RSpec.describe 'Tag' do
 
         expect(headers.find_link(%w(rel prev)).href).to eq(api_v1_timelines_tag_url(limit: 1, min_id: love_status.id.to_s))
         expect(headers.find_link(%w(rel next)).href).to eq(api_v1_timelines_tag_url(limit: 1, max_id: love_status.id.to_s))
+      end
+    end
+
+    context 'when the instance allows public preview' do
+      context 'when the user is not authenticated' do
+        let(:headers) { {} }
+        let(:expected_statuses) { [life_status] }
+
+        it_behaves_like 'a successful request to the tag timeline'
+      end
+    end
+
+    context 'when the instance does not allow public preview' do
+      before do
+        Form::AdminSettings.new(timeline_preview: false).save
+      end
+
+      context 'when the user is not authenticated' do
+        let(:headers) { {} }
+
+        it 'returns http unauthorized' do
+          subject
+
+          expect(response).to have_http_status(401)
+        end
+      end
+
+      context 'when the user is authenticated' do
+        let(:expected_statuses) { [life_status] }
+
+        it_behaves_like 'a successful request to the tag timeline'
       end
     end
   end
