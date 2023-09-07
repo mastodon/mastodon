@@ -15,12 +15,13 @@ describe Api::V1::DirectoriesController do
   describe 'GET #show' do
     context 'with no params' do
       before do
-        _local_unconfirmed_account = Fabricate(
+        local_unconfirmed_account = Fabricate(
           :account,
           domain: nil,
           user: Fabricate(:user, confirmed_at: nil, approved: true),
           username: 'local_unconfirmed'
         )
+        local_unconfirmed_account.create_account_stat!
 
         local_unapproved_account = Fabricate(
           :account,
@@ -28,15 +29,17 @@ describe Api::V1::DirectoriesController do
           user: Fabricate(:user, confirmed_at: 10.days.ago),
           username: 'local_unapproved'
         )
+        local_unapproved_account.create_account_stat!
         local_unapproved_account.user.update(approved: false)
 
-        _local_undiscoverable_account = Fabricate(
+        local_undiscoverable_account = Fabricate(
           :account,
           domain: nil,
           user: Fabricate(:user, confirmed_at: 10.days.ago, approved: true),
           discoverable: false,
           username: 'local_undiscoverable'
         )
+        local_undiscoverable_account.create_account_stat!
 
         excluded_from_timeline_account = Fabricate(
           :account,
@@ -44,14 +47,16 @@ describe Api::V1::DirectoriesController do
           discoverable: true,
           username: 'remote_excluded_from_timeline'
         )
+        excluded_from_timeline_account.create_account_stat!
         Fabricate(:block, account: user.account, target_account: excluded_from_timeline_account)
 
-        _domain_blocked_account = Fabricate(
+        domain_blocked_account = Fabricate(
           :account,
           domain: 'test.example',
           discoverable: true,
           username: 'remote_domain_blocked'
         )
+        domain_blocked_account.create_account_stat!
         Fabricate(:account_domain_block, account: user.account, domain: 'test.example')
       end
 
@@ -63,6 +68,7 @@ describe Api::V1::DirectoriesController do
           discoverable: true,
           username: 'local_discoverable'
         )
+        local_discoverable_account.create_account_stat!
 
         eligible_remote_account = Fabricate(
           :account,
@@ -70,6 +76,7 @@ describe Api::V1::DirectoriesController do
           discoverable: true,
           username: 'eligible_remote'
         )
+        eligible_remote_account.create_account_stat!
 
         get :show
 
@@ -84,6 +91,8 @@ describe Api::V1::DirectoriesController do
         user = Fabricate(:user, confirmed_at: 10.days.ago, approved: true)
         local_account = Fabricate(:account, domain: nil, user: user)
         remote_account = Fabricate(:account, domain: 'host.example')
+        local_account.create_account_stat!
+        remote_account.create_account_stat!
 
         get :show, params: { local: '1' }
 
@@ -110,9 +119,9 @@ describe Api::V1::DirectoriesController do
 
     context 'when ordered by new' do
       it 'returns accounts in order of creation' do
-        account_old = Fabricate(:account)
+        account_old = Fabricate(:account_stat).account
         travel_to 10.seconds.from_now
-        account_new = Fabricate(:account)
+        account_new = Fabricate(:account_stat).account
 
         get :show, params: { order: 'new' }
 
