@@ -121,7 +121,7 @@ class SearchQueryTransformer < Parslet::Transform
 
     def to_query
       if @term.start_with?('#')
-        { match: { tags: { query: @term } } }
+        { match: { tags: { query: @term, operator: 'and' } } }
       else
         { multi_match: { type: 'most_fields', query: @term, fields: ['text', 'text.stemmed'], operator: 'and' } }
       end
