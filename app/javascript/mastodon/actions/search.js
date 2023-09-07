@@ -1,3 +1,7 @@
+import { fromJS } from 'immutable';
+
+import { searchHistory } from 'mastodon/settings';
+
 import api from '../api';
 
 import { fetchRelationships } from './accounts';
@@ -15,8 +19,7 @@ export const SEARCH_EXPAND_REQUEST = 'SEARCH_EXPAND_REQUEST';
 export const SEARCH_EXPAND_SUCCESS = 'SEARCH_EXPAND_SUCCESS';
 export const SEARCH_EXPAND_FAIL    = 'SEARCH_EXPAND_FAIL';
 
-export const SEARCH_RESULT_CLICK  = 'SEARCH_RESULT_CLICK';
-export const SEARCH_RESULT_FORGET = 'SEARCH_RESULT_FORGET';
+export const SEARCH_HISTORY_UPDATE  = 'SEARCH_HISTORY_UPDATE';
 
 export function changeSearch(value) {
   return {
@@ -170,16 +173,34 @@ export const openURL = (value, history, onFailure) => (dispatch, getState) => {
   });
 };
 
-export const clickSearchResult = (q, type) => ({
-  type: SEARCH_RESULT_CLICK,
+export const clickSearchResult = (q, type) => (dispatch, getState) => {
+  const previous = getState().getIn(['search', 'recent']);
+  const me = getState().getIn(['meta', 'me']);
+  const current = previous.add(fromJS({ type, q })).takeLast(4);
 
-  result: {
-    type,
-    q,
-  },
+  searchHistory.set(me, current.toJS());
+  dispatch(updateSearchHistory(current));
+};
+
+export const forgetSearchResult = q => (dispatch, getState) => {
+  const previous = getState().getIn(['search', 'recent']);
+  const me = getState().getIn(['meta', 'me']);
+  const current = previous.filterNot(result => result.get('q') === q);
+
+  searchHistory.set(me, current.toJS());
+  dispatch(updateSearchHistory(current));
+};
+
+export const updateSearchHistory = recent => ({
+  type: SEARCH_HISTORY_UPDATE,
+  recent,
 });
 
-export const forgetSearchResult = q => ({
-  type: SEARCH_RESULT_FORGET,
-  q,
-});
+export const hydrateSearch = () => (dispatch, getState) => {
+  const me = getState().getIn(['meta', 'me']);
+  const history = searchHistory.get(me);
+
+  if (history !== null) {
+    dispatch(updateSearchHistory(history));
+  }
+};
