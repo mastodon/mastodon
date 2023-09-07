@@ -133,10 +133,10 @@ end
 class SearchDataManager
   def prepare_test_data
     4.times do |i|
-      username = "search_test_account_#{i + 1}"
-      account = Fabricate.create(:account, username: username, indexable: i.even?)
+      username = "search_test_account_#{i}"
+      account = Fabricate.create(:account, username: username, indexable: i.even?, discoverable: i.even?, note: "Lover of #{i}.")
       2.times do |j|
-        Fabricate.create(:status, account: account, text: "#{username}'s #{j + 1} post", visibility: j.even? ? :public : :private)
+        Fabricate.create(:status, account: account, text: "#{username}'s #{j} post", visibility: j.even? ? :public : :private)
       end
     end
 

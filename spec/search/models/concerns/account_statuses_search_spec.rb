@@ -3,12 +3,8 @@
 require 'rails_helper'
 
 describe AccountStatusesSearch do
-  before do
-    allow(Chewy).to receive(:enabled?).and_return(true)
-  end
-
   describe 'a non-indexable account becoming indexable' do
-    let(:account) { Account.find_by(username: 'search_test_account_2') }
+    let(:account) { Account.find_by(username: 'search_test_account_1') }
 
     context 'when picking a non-indexable account' do
       it 'has no statuses in the PublicStatusesIndex' do
@@ -24,6 +20,7 @@ describe AccountStatusesSearch do
       it 'adds the public statuses to the PublicStatusesIndex' do
         account.indexable = true
         account.save!
+
         expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.where(visibility: :public).count)
         expect(StatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.count)
       end
@@ -31,7 +28,7 @@ describe AccountStatusesSearch do
   end
 
   describe 'an indexable account becoming non-indexable' do
-    let(:account) { Account.find_by(username: 'search_test_account_1') }
+    let(:account) { Account.find_by(username: 'search_test_account_0') }
 
     context 'when picking an indexable account' do
       it 'has statuses in the PublicStatusesIndex' do
@@ -47,6 +44,7 @@ describe AccountStatusesSearch do
       it 'removes the statuses from the PublicStatusesIndex' do
         account.indexable = false
         account.save!
+
         expect(PublicStatusesIndex.filter(term: { account_id: account.id }).count).to eq(0)
         expect(StatusesIndex.filter(term: { account_id: account.id }).count).to eq(account.statuses.count)
       end
