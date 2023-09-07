@@ -508,8 +508,10 @@ class Video extends PureComponent {
 
   render () {
     const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, lang, letterbox, fullwidth, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
-    const { currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
+    const { currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
+    const muted = this.state.muted || volume === 0;
+
     const playerStyle = {};
 
     if (inline) {
@@ -603,12 +605,12 @@ class Video extends PureComponent {
               <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
 
               <div className={classNames('video-player__volume', { active: this.state.hovered })} onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
-                <div className='video-player__volume__current' style={{ width: `${volume * 100}%` }} />
+                <div className='video-player__volume__current' style={{ width: `${muted ? 0 : volume * 100}%` }} />
 
                 <span
                   className={classNames('video-player__volume__handle')}
                   tabIndex={0}
-                  style={{ left: `${volume * 100}%` }}
+                  style={{ left: `${muted ? 0 : volume * 100}%` }}
                 />
               </div>
 
