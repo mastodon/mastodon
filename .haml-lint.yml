@@ -1,108 +1,14 @@
-# Whether to ignore frontmatter at the beginning of HAML documents for
-# frameworks such as Jekyll/Middleman
-skip_frontmatter: false
+inherits_from: .haml-lint_todo.yml
 
 exclude:
   - 'vendor/**/*'
-  - 'spec/**/*'
-  - 'lib/templates/**/*'
-  - 'app/views/kaminari/**/*'
+  - lib/templates/haml/scaffold/_form.html.haml
+
+require:
+  - ./lib/linter/haml_middle_dot.rb
 
 linters:
   AltText:
-    enabled: false
-
-  ClassAttributeWithStaticValue:
     enabled: true
-
-  ClassesBeforeIds:
-    enabled: true
-
-  ConsecutiveComments:
-    enabled: true
-
-  ConsecutiveSilentScripts:
-    enabled: true
-    max_consecutive: 2
-
-  EmptyObjectReference:
-    enabled: true
-
-  EmptyScript:
-    enabled: true
-
-  FinalNewline:
-    enabled: true
-    present: true
-
-  HtmlAttributes:
-    enabled: true
-
-  ImplicitDiv:
-    enabled: true
-
-  LeadingCommentSpace:
-    enabled: true
-
-  LineLength:
-    enabled: false
-    max: 80
-
-  MultilinePipe:
-    enabled: true
-
-  MultilineScript:
-    enabled: true
-
-  ObjectReferenceAttributes:
-    enabled: true
-
-  RuboCop:
-    enabled: true
-    # These cops are incredibly noisy when it comes to HAML templates, so we
-    # ignore them.
-    ignored_cops:
-      - Lint/BlockAlignment
-      - Lint/EndAlignment
-      - Lint/Void
-      - Metrics/BlockLength
-      - Metrics/LineLength
-      - Style/AlignParameters
-      - Style/BlockNesting
-      - Style/ElseAlignment
-      - Style/EndOfLine
-      - Style/FileName
-      - Style/FinalNewline
-      - Style/FrozenStringLiteralComment
-      - Style/IfUnlessModifier
-      - Style/IndentationWidth
-      - Style/Next
-      - Style/TrailingBlankLines
-      - Style/TrailingWhitespace
-      - Style/WhileUntilModifier
-
-  RubyComments:
-    enabled: true
-
-  SpaceBeforeScript:
-    enabled: true
-
-  SpaceInsideHashAttributes:
-    enabled: true
-    style: space
-
-  Indentation:
-    enabled: true
-    character: space # or tab
-
-  TagName:
-    enabled: true
-
-  TrailingWhitespace:
-    enabled: true
-
-  UnnecessaryInterpolation:
-    enabled: true
-
-  UnnecessaryStringOutput:
+  MiddleDot:
     enabled: true

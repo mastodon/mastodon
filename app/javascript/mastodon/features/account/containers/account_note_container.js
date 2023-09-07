@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
+
 import { submitAccountNote } from 'mastodon/actions/account_notes';
+
 import AccountNote from '../components/account_note';
 
 const mapStateToProps = (state, { account }) => ({

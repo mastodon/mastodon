@@ -1,6 +1,7 @@
-import { ACCOUNT_IMPORT, ACCOUNTS_IMPORT } from '../actions/importer';
-import { ACCOUNT_LOOKUP_FAIL } from '../actions/accounts';
 import { Map as ImmutableMap } from 'immutable';
+
+import { ACCOUNT_LOOKUP_FAIL } from '../actions/accounts';
+import { ACCOUNT_IMPORT, ACCOUNTS_IMPORT } from '../actions/importer';
 
 export const normalizeForLookup = str => str.toLowerCase();
 
@@ -17,4 +18,4 @@ export default function accountsMap(state = initialState, action) {
   default:
     return state;
   }
-};
+}

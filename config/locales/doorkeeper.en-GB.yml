@@ -122,14 +122,14 @@ en-GB:
         admin/accounts: Administration of accounts
         admin/all: All administrative functions
         admin/reports: Administration of reports
-        all: Everything
+        all: Full access to your Mastodon account
         blocks: Blocks
         bookmarks: Bookmarks
         conversations: Conversations
         crypto: End-to-end encryption
         favourites: Favourites
         filters: Filters
-        follow: Relationships
+        follow: Follows, Mutes and Blocks
         follows: Follows
         lists: Lists
         media: Media attachments
@@ -149,9 +149,19 @@ en-GB:
     scopes:
       admin:read: read all data on the server
       admin:read:accounts: read sensitive information of all accounts
+      admin:read:canonical_email_blocks: read sensitive information of all canonical email blocks
+      admin:read:domain_allows: read sensitive information of all domain allows
+      admin:read:domain_blocks: read sensitive information of all domain blocks
+      admin:read:email_domain_blocks: read sensitive information of all email domain blocks
+      admin:read:ip_blocks: read sensitive information of all IP blocks
       admin:read:reports: read sensitive information of all reports and reported accounts
       admin:write: modify all data on the server
       admin:write:accounts: perform moderation actions on accounts
+      admin:write:canonical_email_blocks: perform moderation actions on canonical email blocks
+      admin:write:domain_allows: perform moderation actions on domain allows
+      admin:write:domain_blocks: perform moderation actions on domain blocks
+      admin:write:email_domain_blocks: perform moderation actions on email domain blocks
+      admin:write:ip_blocks: perform moderation actions on IP blocks
       admin:write:reports: perform moderation actions on reports
       crypto: use end-to-end encryption
       follow: modify account relationships

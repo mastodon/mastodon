@@ -23,9 +23,7 @@ module Admin
         @import = Admin::Import.new(import_params)
         return render :new unless @import.validate
 
-        parse_import_data!(export_headers)
-
-        @data.take(Admin::Import::ROWS_PROCESSING_LIMIT).each do |row|
+        @import.csv_rows.each do |row|
           domain = row['#domain'].strip
           next if DomainAllow.allowed?(domain)
 

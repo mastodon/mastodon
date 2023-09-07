@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Accounts::PinsController, type: :controller do
+RSpec.describe Api::V1::Accounts::PinsController do
   let(:john)  { Fabricate(:user) }
   let(:kevin) { Fabricate(:user) }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: john.id, scopes: 'write:accounts') }

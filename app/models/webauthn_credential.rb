@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: webauthn_credentials
@@ -18,5 +19,5 @@ class WebauthnCredential < ApplicationRecord
   validates :external_id, uniqueness: true
   validates :nickname, uniqueness: { scope: :user_id }
   validates :sign_count,
-            numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 2**63 - 1 }
+            numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: (2**63) - 1 }
 end

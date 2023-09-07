@@ -121,8 +121,6 @@ ro:
       removed_header_msg: S-a îndepărtat cu succes coperta utilizatorului %{username}
       resend_confirmation:
         already_confirmed: Acest utilizator este deja confirmat
-        send: Retrimite e-mail de confirmare
-        success: E-mail de confirmare trimis cu succes!
       reset: Resetează
       reset_password: Resetează parola
       resubscribe: Resubscrie-te
@@ -410,7 +408,6 @@ ro:
     localization:
       guide_link_text: Toată lumea poate contribui.
     sensitive_content: Conținut sensibil
-    toot_layout: Aspect postare
   application_mailer:
     notification_preferences: Modifică preferințe e-mail
     settings: 'Modifică preferințe e-mail: %{link}'
@@ -425,14 +422,12 @@ ro:
     warning: Fiți foarte atent cu aceste date. Nu le împărtășiți niciodată cu cineva!
     your_token: Token-ul tău de acces
   auth:
-    change_password: Parolă
     delete_account: Șterge contul
     delete_account_html: Dacă vrei să ștergi acest cont <a href="%{path}">poți începe aici</a>. Va trebui să confirmi această acțiune.
     description:
       prefix_invited_by_user: "@%{name} vă invită să vă alăturați acestui server de Mastodon!"
       prefix_sign_up: Înscrie-te pe Mastodon astăzi!
       suffix: Cu un cont, vei putea să urmărești oameni, să postezi actualizări și să schimbi mesaje cu utilizatorii de pe orice server Mastodon și multe altele!
-    didnt_get_confirmation: Nu ai primit instrucțiunile de confirmare?
     forgot_password: Ai uitat parola?
     invalid_reset_password_token: Această cerere este invalidă sau a expirat. Încearcă resetarea parolei din nou.
     login: Conectare
@@ -442,31 +437,14 @@ ro:
     or_log_in_with: Sau conectează-te cu
     register: Înregistrare
     registration_closed: "%{instance} nu acceptă membri noi"
-    resend_confirmation: Retrimite instrucțiunile de confirmare
     reset_password: Resetare parolă
     security: Securitate
     set_new_password: Setează o nouă parolă
-    setup:
-      email_below_hint_html: Dacă adresa de e-mail de mai jos este incorectă, o puteți schimba aici și puteți primi un nou e-mail de confirmare.
-      email_settings_hint_html: E-mailul de confirmare a fost trimis la %{email}. Dacă această adresă de e-mail nu este corectă, o puteți schimba în setările contului.
-      title: Configurare
     status:
       account_status: Starea contului
       confirming: Se așteaptă finalizarea confirmării prin e-mail.
       pending: Cererea dvs. este în curs de revizuire de către personalul nostru. Este posibil să dureze ceva timp. Veți primi un e-mail dacă cererea dvs. este aprobată.
       redirecting_to: Contul dvs. este inactiv deoarece în prezent se redirecționează către %{acct}.
-  authorize_follow:
-    already_following: Urmărești deja acest cont
-    already_requested: Ați trimis deja o cerere de urmărire către acel cont
-    error: Din păcate a apărut o eroare
-    follow: Urmărește
-    follow_request: 'Ai trimis o cerere de urmărire către:'
-    following: 'Gata! De acum urmărești:'
-    post_follow:
-      close: Sau, poți închide această fereastră.
-      return: Arată profilul utilizatorului
-      web: Mergi la web
-    title: Urmărește %{acct}
   challenge:
     confirm: Continuă
     hint_html: "<strong>Sfat:</strong> Nu vă vom mai cere parola pentru următoarea oră."
@@ -576,9 +554,6 @@ ro:
       expires_at: Expiră
       uses: Utilizări
     title: Invită persoane
-  lists:
-    errors:
-      limit: Ați atins valoarea maximă a listelor
   media_attachments:
     validations:
       images_and_video: Nu se poate atașa un videoclip la o stare care conține deja imagini
@@ -691,7 +666,6 @@ ro:
       vote: Votează
     show_more: Arată mai mult
     show_thread: Arată discuția
-    sign_in_to_participate: Conectează-te pentru a participa la conversație
     visibilities:
       private: Doar urmăritorii
       private_long: Arată doar urmăritorilor
@@ -699,8 +673,6 @@ ro:
       unlisted: Nelistat
       unlisted_long: Toată lumea poate vedea, dar nu este listată pe fluxurile publice
   stream_entries:
-    pinned: Postare fixată
-    reblogged: impulsionată
     sensitive_content: Conținut sensibil
   tags:
     does_not_match_previous_name: nu se potrivește cu numele anterior
@@ -752,5 +724,4 @@ ro:
     seamless_external_login: Sunteți autentificat prin intermediul unui serviciu extern, astfel încât parola și setările de e-mail nu sunt disponibile.
     signed_in_as: 'Conectat ca:'
   verification:
-    explanation_html: 'Poți <strong>să te verifici ca proprietar al link-urilor din metadatele profilului tău</strong>. Pentru aceasta, site-ul web asociat trebuie să conțină un link înapoi la profilul tău. Link-ul înapoi <strong>trebuie</strong> să aibă un atribut <code>rel="me"</code>. Conținut textului link-ului nu contează. Iată un exemplu:'
     verification: Verificare

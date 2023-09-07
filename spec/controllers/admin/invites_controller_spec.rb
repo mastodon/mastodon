@@ -26,16 +26,16 @@ describe Admin::InvitesController do
     subject { post :create, params: { invite: { max_uses: '10', expires_in: 1800 } } }
 
     it 'succeeds to create a invite' do
-      expect { subject }.to change { Invite.count }.by(1)
+      expect { subject }.to change(Invite, :count).by(1)
       expect(subject).to redirect_to admin_invites_path
       expect(Invite.last).to have_attributes(user_id: user.id, max_uses: 10)
     end
   end
 
   describe 'DELETE #destroy' do
-    let!(:invite) { Fabricate(:invite, expires_at: nil) }
-
     subject { delete :destroy, params: { id: invite.id } }
+
+    let!(:invite) { Fabricate(:invite, expires_at: nil) }
 
     it 'expires invite' do
       expect(subject).to redirect_to admin_invites_path

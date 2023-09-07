@@ -106,8 +106,6 @@ sc:
       removed_header_msg: S'immàgine de intestatzione de %{username} est istada bogada
       resend_confirmation:
         already_confirmed: Custa persone est giai cunfirmada
-        send: Torra a imbiare messàgiu eletrònicu de cunfirmatzione
-        success: Messàgiu eletrònicu de cunfirmatzione imbiadu.
       reset: Reseta
       reset_password: Reseta sa crae
       resubscribe: Torra a sutascrìere
@@ -493,7 +491,6 @@ sc:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Chie si siat podet contribuire.
     sensitive_content: Cuntenutu sensìbile
-    toot_layout: Dispositzione de is tuts
   application_mailer:
     notification_preferences: Muda is preferèntzias de posta
     salutation: "%{name},"
@@ -509,14 +506,12 @@ sc:
     warning: Dae cara a custos datos. Non ddos cumpartzas mai cun nemos!
     your_token: S'identificadore tuo de atzessu
   auth:
-    change_password: Crae
     delete_account: Cantzella su contu
     delete_account_html: Si boles cantzellare su contu, ddu podes <a href="%{path}">fàghere inoghe</a>. T'amus a dimandare una cunfirmatzione.
     description:
       prefix_invited_by_user: "@%{name} t'at invitadu a custu serbidore de Mastodon!"
       prefix_sign_up: Registra·ti oe a Mastodon!
       suffix: Cun unu contu as a pòdere sighire gente, publicare e cuncambiare messàgios cun persones de cale si siat serbidore de Mastodon e àteru!
-    didnt_get_confirmation: No as retzidu su messàgiu de cunfirmatzione?
     dont_have_your_security_key: Non tenes sa crae de seguresa tua?
     forgot_password: Ti ses iscarèssidu de sa crae?
     invalid_reset_password_token: Su còdighe de autorizatzione pro resetare sa crae no est vàlidu o est iscadidu. Dimanda·nde un'àteru.
@@ -532,14 +527,9 @@ sc:
       saml: SAML
     register: Registru
     registration_closed: "%{instance} no atzetat àteras persones"
-    resend_confirmation: Torra a imbiare is istrutziones de cunfirmatzione
     reset_password: Reseta sa crae
     security: Seguresa
     set_new_password: Cunfigura una crae noa
-    setup:
-      email_below_hint_html: Si s'indiritzu de posta eletrònica imbeniente no est curreta, dda podes mudare inoghe e as a retzire unu messàgiu de cunfirmatzione nou.
-      email_settings_hint_html: Messàgiu de cunfirmatzione imbiadu a %{email}. Si custu indiritzu de posta eletrònica no est curretu, ddu podes mudare dae is cunfiguratziones de su contu.
-      title: Cunfiguratzione
     status:
       account_status: Istadu de su contu
       confirming: Isetende chi sa posta eletrònica siat cumpletada.
@@ -547,18 +537,6 @@ sc:
       redirecting_to: Su contu tuo est inativu pro ite in die de oe est torrende a indiritzare a %{acct}.
     too_fast: Formulàriu imbiadu tropu a lestru, torra a proare.
     use_security_key: Imprea una crae de seguresa
-  authorize_follow:
-    already_following: Ses giai sighende custu contu
-    already_requested: As giai imbiadu una dimanda de sighidura a custa persone
-    error: Faddina in sa chirca de su contu remotu
-    follow: Sighi
-    follow_request: 'As imbiadu una dimanda de sighidura a:'
-    following: 'Fatu! Immoe ses sighende a:'
-    post_follow:
-      close: O, podes serrare custa ventana.
-      return: Ammustra su profilu de custa persone
-      web: Bae a su situ web
-    title: Sighi a %{acct}
   challenge:
     confirm: Sighi
     hint_html: "<strong>Cussìgiu:</strong> No t'amus a torrare a dimandare sa crae in s'ora imbeniente."
@@ -640,8 +618,6 @@ sc:
     storage: Immagasinamentu
   featured_tags:
     add_new: Agiunghe noa
-    errors:
-      limit: As giai evidentziadu sa cantidade màssima de etichetas
     hint_html: "<strong>Ite sunt is etichetas in evidèntzia?</strong> Sunt ammustradas in evidèntzia in su profilu pùblicu tuo e permitint a sa gente de navigare is messàgios pùblicos tuos in cussas etichetas ispetzìficas. Sunt unu traste perfetu pro tènnere unu registru de òperas creativas o progetos longos."
   filters:
     contexts:
@@ -660,8 +636,6 @@ sc:
       title: Filtros
     new:
       title: Agiunghe unu filtru nou
-  footer:
-    trending_now: Est tendèntzia immoe
   generic:
     all: Totus
     changes_saved_msg: Modìficas sarvadas.
@@ -672,8 +646,6 @@ sc:
     validation_errors:
       one: Calicuna cosa ancora no est andende. Bide sa faddina in bàsciu
       other: Calicuna cosa ancora no est andende. Bide is %{count} faddinas in bàsciu
-  html_validator:
-    invalid_markup: 'cuntenet etichetas HTML non vàlidas: %{error}'
   imports:
     errors:
       over_rows_processing_limit: cuntenet prus de %{count} filas
@@ -713,9 +685,6 @@ sc:
       expires_at: Iscadit
       uses: Impreos
     title: Invita gente
-  lists:
-    errors:
-      limit: Cantidade màssima de listas cròmpida
   media_attachments:
     validations:
       images_and_video: Non si podet allegare unu vìdeu in una publicatzione chi cuntenet giai immàgines
@@ -885,7 +854,6 @@ sc:
       ios: iOS
       linux: Linux
       mac: macOS
-      other: prataforma disconnota
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -950,7 +918,6 @@ sc:
     show_newer: Ammustra is prus noos
     show_older: Ammustra is prus betzos
     show_thread: Ammustra su tema
-    sign_in_to_participate: Identìfica·ti pro partetzipare in s'arresonada
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Deretu
@@ -971,8 +938,6 @@ sc:
       '63113904': 2 annos
       '7889238': 3 meses
   stream_entries:
-    pinned: Tut apicadu
-    reblogged: cumpartzidu
     sensitive_content: Cuntenutu sensìbile
   tags:
     does_not_match_previous_name: non cointzidet cun su nòmine anteriore
@@ -1030,7 +995,6 @@ sc:
     seamless_external_login: As abertu sa sessione pro mèdiu de unu servìtziu esternu, e pro custa resone is cunfiguratziones de sa crae de intrada e de posta eletrònica non sunt a disponimentu.
     signed_in_as: 'Sessione aberta comente:'
   verification:
-    explanation_html: 'Ti podes <strong>verificare a sa sola comente mere de is ligòngios in is metadatos de su profilu tuo</strong>. Pro ddu fàghere su situ ligadu depet cuntènnere unu ligòngiu chi torret a su profilu de Mastodon tuo. Su ligòngiu in su situ <strong>depet</strong> tènnere un''atributu <code>rel="me"</code>. Su testu cuntenutu in su ligòngiu no est de importu. Custu est un''esèmpiu:'
     verification: Verìfica
   webauthn_credentials:
     add: Agiunghe una crae de seguresa noa

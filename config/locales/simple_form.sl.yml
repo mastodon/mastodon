@@ -2,6 +2,10 @@
 sl:
   simple_form:
     hints:
+      account:
+        display_name: Vaše polno ime ali lažno ime.
+        fields: Vaša domača stran, starost, kar koli.
+        note: 'Druge osebe lahko @omenite ali #ključnite.'
       account_alias:
         acct: Določite uporabniškoime@domena računa, od katerega se želite preseliti
       account_migration:
@@ -18,8 +22,8 @@ sl:
           disable: Preprečite uporabniku, da uporablja svoj račun, vendar ne izbrišite ali skrijte njegove vsebine.
           none: Uporabite to, da pošljete opozorilo uporabnik, ne da bi sprožili kakšno drugo dejanje.
           sensitive: Vsilite, da so vse medijske priponke tega uporabnika označene kot občutljive.
-          silence: Prepreči uporabniku, da lahko objavlja javno, skrije njihove objave in obvestila pred osebami, ki mu ne sledijo.
-          suspend: Prepreči vsakršno interakcijo od ali do tega računa in izbriše njegovo vsebino. Povratno v roku 30 dni.
+          silence: Prepreči uporabniku, da lahko objavlja javno, skrije njihove objave in obvestila pred osebami, ki mu ne sledijo. Zaključi vse prijave zoper ta račun.
+          suspend: Prepreči vsakršno interakcijo od ali do tega računa in izbriše njegovo vsebino. Povratno v roku 30 dni. Zaključi vse prijave zoper ta račun.
         warning_preset_id: Neobvezno. Še vedno lahko dodate besedilo po meri na konec prednastavitve
       announcement:
         all_day: Če je potrjeno, bodo prikazani le datumi časovnega obsega
@@ -37,14 +41,11 @@ sl:
         current_password: Iz varnostnih razlogov vnesite geslo trenutnega računa
         current_username: Za potrditev vnesite uporabniško ime trenutnega računa
         digest: Pošlje se le po dolgem obdobju nedejavnosti in samo, če ste prejeli osebna sporočila v vaši odsotnosti
-        discoverable: Dovolite, da vaš račun odkrijejo neznanci prek priporočil, trendov in drugih funkcij
         email: Poslali vam bomo potrditveno e-pošto
-        fields: Na svojem profilu lahko imate do 4 predmete prikazane kot tabelo.
         header: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
         inbox_url: Kopirajte URL naslov s prve strani releja, ki ga želite uporabiti
         irreversible: Filtrirane objave bodo nepovratno izginile, tudi če je filter kasneje odstranjen
         locale: Jezik uporabniškega vmesnika, e-poštnih sporočil in potisnih obvestil
-        locked: Zahteva, da ročno odobrite sledilce
         password: Uporabite najmanj 8 znakov
         phrase: Se bo ujemal, ne glede na začetnice v besedilu ali opozorilo o vsebini objave
         scopes: Do katerih API-jev bo imel program dostop. Če izberete obseg najvišje ravni, vam ni treba izbrati posameznih.
@@ -54,12 +55,9 @@ sl:
         setting_display_media_default: Skrij medij, ki je označen kot občutljiv
         setting_display_media_hide_all: Vedno skrij vse medije
         setting_display_media_show_all: Vedno pokaži medij, ki je označen kot občutljiv
-        setting_hide_network: Kogar spremljate in kdo vas spremlja ne bo prikazano na vašem profilu
-        setting_noindex: Vpliva na vaš javni profil in na strani z objavami
-        setting_show_application: Aplikacija, ki jo uporabljate za objavljanje, bo prikazana v podrobnem pogledu vaših objav
         setting_use_blurhash: Prelivi temeljijo na barvah skrite vizualne slike, vendar zakrivajo vse podrobnosti
         setting_use_pending_items: Skrij posodobitev časovnice za klikom namesto samodejnega posodabljanja
-        username: Vaše uporabniško ime bo edinstveno na %{domain}
+        username: Uporabite lahko črke, števke in podčrtaje.
         whole_word: Ko je ključna beseda ali fraza samo alfanumerična, se bo uporabljala le, če se bo ujemala s celotno besedo
       domain_allow:
         domain: Ta domena bo lahko prejela podatke s tega strežnika, dohodni podatki z nje pa bodo obdelani in shranjeni
@@ -74,6 +72,7 @@ sl:
           hide: Povsem skrij filtrirano vsebino, kot da ne bi obstajala
           warn: Skrij filtrirano vsebino za opozorilom, ki pomenja naslov filtra
       form_admin_settings:
+        activity_api_enabled: Številke krajevno objavljenih objav, dejavnih uporabnikov in novih registracij na tedenskih seznamih
         backups_retention_period: Hani tvorjene arhive uporabnikov navedeno število dni.
         bootstrap_timeline_accounts: Ti računi bodo pripeti na vrh priporočenih sledenj za nove uporabnike.
         closed_registrations_message: Prikazano, ko so registracije zaprte
@@ -81,6 +80,7 @@ sl:
         custom_css: Spletni različici Mastodona lahko uveljavite sloge po meri.
         mascot: Preglasi ilustracijo v naprednem spletnem vmesniku.
         media_cache_retention_period: Prenesene predstavnostne datoteke bodo izbrisane po navedenem številu dni, če je vrednost pozitivna, in ponovno prenesene na zahtevo.
+        peers_api_enabled: Seznam imen domen, na katere je ta strežnik naletel v fediverzumu. Sem niso vključeni podatki o tem, ali ste v federaciji z danim strežnikom, zgolj to, ali vaš strežnik ve zanj. To uporabljajo storitve, ki zbirajo statistične podatke o federaciji v splošnem smislu.
         profile_directory: Imenik profilov izpiše vse uporabnike, ki so dovolili, da so v njem navedeni.
         require_invite_text: Če registracije zahtevajo ročno potrditev, nastavite vnos besedila pod »Zakaj se želite pridružiti?« za obveznega.
         site_contact_email: Kako vas lahko uporabniki dosežejo glede pravnih ali podpornih vprašanj.
@@ -89,11 +89,13 @@ sl:
         site_short_description: Kratek opis v pomoč za identifikacijo vašega strežnika. Kdo ga vzdržuje, komu je namenjen?
         site_terms: Uporabite svoj lasten pravilnik o zasebnosti ali pustite prazno za privzetega. Lahko ga strukturirate s skladnjo Markdown.
         site_title: Kako naj imenujejo vaš strežnik poleg njegovega domenskega imena.
+        status_page_url: URL strani, kjer je moč videti stanje tega strežnika med prekinjenim delovanjem
         theme: Tema, ki jo vidijo odjavljeni obiskovalci in novi uporabniki.
         thumbnail: Slika v razmerju stranic približno 2:1, prikazana vzdolž podatkov o vašem strežniku.
         timeline_preview: Odjavljeni obiskovalci bodo lahko brskali po najnovejših javnih objavah, ki so na voljo na strežniku.
         trendable_by_default: Preskočite ročni pregled vsebine v trendu. Posamezne elemente še vedno lahko odstranite iz trenda post festum.
         trends: Trendi prikažejo, katere objave, ključniki in novice privlačijo zanimanje na vašem strežniku.
+        trends_as_landing_page: Odjavljenim uporabnikom in obiskovalcem namesto opisa tega strežnika pokažite vsebine v trendu. Trendi morajo biti omogočeni.
       form_challenge:
         current_password: Vstopate v varovano območje
       imports:
@@ -127,6 +129,7 @@ sl:
         position: Višja vloga se odloča o razrešitvi sporov v določenih situacijah. Določena dejanja lahko izvede le na vlogah z nižjo prioriteto
       webhook:
         events: Izberite dogodke za pošiljanje
+        template: Sestavite svojo obremenitev JSON z uporabo interpolacije spremenljivk. Za privzeti JSON pustite prazno.
         url: Kam bodo poslani dogodki
     labels:
       account:
@@ -170,7 +173,6 @@ sl:
         context: Filtriraj vsebino
         current_password: Trenutno geslo
         data: Podatki
-        discoverable: Dodaj ta račun v imenik
         display_name: Prikazno ime
         email: E-poštni naslov
         expires_in: Preteče po
@@ -180,7 +182,6 @@ sl:
         inbox_url: URL mape "Prejeto"
         irreversible: Opusti namesto skrij
         locale: Jezik vmesnika
-        locked: Zaklenjen račun
         max_uses: Največje število uporabnikov
         new_password: Novo geslo
         note: Biografija
@@ -192,7 +193,6 @@ sl:
         setting_always_send_emails: Vedno pošlji e-obvestila
         setting_auto_play_gif: Samodejno predvajanje animiranih GIF-ov
         setting_boost_modal: Pred izpostavljanjem pokaži potrditveno okno
-        setting_crop_images: Obreži slike v nerazširjenih objavah v razmerju 16:9
         setting_default_language: Jezik objavljanja
         setting_default_privacy: Zasebnost objave
         setting_default_sensitive: Vedno označi medije kot občutljive
@@ -204,9 +204,7 @@ sl:
         setting_display_media_show_all: Prikaži vse
         setting_expand_spoilers: Vedno razširi objave, označene z opozorili o vsebini
         setting_hide_network: Skrij svoje omrežje
-        setting_noindex: Odsotnost indeksiranja iskalnikov
         setting_reduce_motion: Zmanjšanje premikanja v animacijah
-        setting_show_application: Razkrij aplikacijo za pošiljanje objav
         setting_system_font_ui: Uporabi privzeto pisavo sistema
         setting_theme: Tema strani
         setting_trends: Pokaži današnje trende
@@ -229,6 +227,7 @@ sl:
           hide: Povsem skrij
           warn: Skrij z opozorilom
       form_admin_settings:
+        activity_api_enabled: Objavi združeno statistiko o dejavnosti uporabnikov v API-ju
         backups_retention_period: Obdobje hrambe arhivov uporabnikov
         bootstrap_timeline_accounts: Vedno priporočaj te račune novim uporabnikom
         closed_registrations_message: Sporočilo po meri, ko registracije niso na voljo
@@ -236,6 +235,7 @@ sl:
         custom_css: CSS po meri
         mascot: Maskota po meri (opuščeno)
         media_cache_retention_period: Obdobje hrambe predpomnilnika predstavnosti
+        peers_api_enabled: Objavi seznam odkritih strežnikov v API-ju
         profile_directory: Omogoči imenik profilov
         registrations_mode: Kdo se lahko registrira
         require_invite_text: Zahtevaj razlog za pridružitev
@@ -247,11 +247,13 @@ sl:
         site_short_description: Opis strežnika
         site_terms: Pravilnik o zasebnosti
         site_title: Ime strežnika
+        status_page_url: URL strani stanja
         theme: Privzeta tema
         thumbnail: Sličica strežnika
         timeline_preview: Omogoči neoverjen dostop do javnih časovnic
         trendable_by_default: Dovoli trende brez predhodnega pregleda
         trends: Omogoči trende
+        trends_as_landing_page: Uporabi trende za pristopno stran
       interactions:
         must_be_follower: Blokiraj obvestila nesledilcev
         must_be_following: Blokiraj obvestila oseb, ki jim ne sledite
@@ -288,6 +290,7 @@ sl:
         usable: Dovoli, da objave uporabljajo ta ključnik
       user:
         role: Vloga
+        time_zone: Časovni pas
       user_role:
         color: Barva značke
         highlighted: Prikaži vlogo kot značko na uporabniškem profilu
@@ -296,6 +299,7 @@ sl:
         position: Prioriteta
       webhook:
         events: Omogočeni dogodki
+        template: Predloga obremenitev
         url: URL končne točke
     'no': Ne
     not_recommended: Ni priporočeno

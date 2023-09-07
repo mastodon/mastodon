@@ -2,30 +2,34 @@
 pl:
   simple_form:
     hints:
+      account:
+        display_name: Twoje imię lub pseudonim.
+        fields: Co ci się tylko podoba – twoja strona domowa, zaimki, wiek…
+        note: 'Możesz @wspomnieć użytkowników albo #hasztagi.'
       account_alias:
         acct: Określ nazwę@domenę konta z którego chcesz się przenieść
       account_migration:
         acct: Określ nazwę@domenę konta na które chcesz się przenieść
       account_warning_preset:
         text: Możesz korzystać ze składni której używasz we wpisach, takiej jak adresy URL, hashtagi i wspomnienia
-        title: Nieobowiązkowe. Niewidoczne dla odbiorcy
+        title: Opcjonalnie. Niewidoczne dla odbiorcy
       admin_account_action:
         include_statuses: Użytkownik zobaczy, których wpisów dotyczyło działanie moderacji lub ostrzeżenie
         send_email_notification: Użytkownik otrzyma informację, co stało się z jego kontem
-        text_html: Możesz używać składni której używasz we wpisach. Możesz <a href="%{path}">dodać szablon ostrzeżenia</a> aby zaoszczędzić czas
+        text_html: Opcjonalnie. Możesz używać składni której używasz we wpisach. Możesz <a href="%{path}">dodać szablon ostrzeżenia</a> aby zaoszczędzić czas
         type_html: Wybierz co chcesz zrobić z <strong>%{acct}</strong>
         types:
           disable: Nie pozwalaj użytkownikowi na korzystanie ze swojego konta, ale nie usuwaj ani nie ukrywaj jego zawartości.
           none: Użyj tego, aby wysłać użytkownikowi ostrzeżenie, nie wywołując żadnego innego działania.
           sensitive: Wymuś oznaczanie wszystkich załączników multimedialnych tego użytkownika jako wrażliwe.
-          silence: Zablokuj użytkownikowi możliwość publikowania z widocznością publiczną, ukrywaj jego wpisy i powiadomienia przed osobami, które go nie obserwują.
-          suspend: Zapobiegaj wszelkim interakcjom z tym kontem i usuń jego zawartość. Odwracalne w ciągu 30 dni.
-        warning_preset_id: Nieobowiązkowe. Możesz dodać niestandardowy tekst do końcowki szablonu
+          silence: Uniemożliwia użytkownikowi publikowanie postów z publiczną widocznością, ukrywanie swoich postów i powiadomień od osób nieśledzących ich. Zamyka wszystkie zgłoszenia dotyczące tego konta.
+          suspend: Uniemożliwienie wszelkich interakcji z lub na tym koncie oraz usunięcie jego zawartości. Możliwość odwrócenia w ciągu 30 dni. Zamyka wszelkie zgłoszenia dotyczące tego konta.
+        warning_preset_id: Opcjonalnie. Możesz dodać niestandardowy tekst do końcówki szablonu
       announcement:
         all_day: Jeżeli zaznaczone, tylko daty z przedziału czasu będą wyświetlane
-        ends_at: Nieobowiązkowe. Ogłoszenie zostanie automatycznie wycofane w tym czasie
+        ends_at: Opcjonalnie. Ogłoszenie zostanie automatycznie wycofane w tym czasie
         scheduled_at: Pozostaw puste, aby opublikować ogłoszenie natychmiastowo
-        starts_at: Nieobowiązkowe. Jeżeli ogłoszenie jest związane z danym przedziałem czasu
+        starts_at: Opcjonalnie. Jeżeli ogłoszenie jest związane z danym przedziałem czasu
         text: Możesz używać składni wpisu. Pamiętaj o tym, ile miejsca zajmie ogłoszenie na ekranie użytkownika
       appeal:
         text: Możesz wysłać odwołanie do ostrzeżenia tylko raz
@@ -37,14 +41,11 @@ pl:
         current_password: Ze względów bezpieczeństwa wprowadź hasło obecnego konta
         current_username: Aby potwierdzić, wprowadź nazwę użytkownika obecnego konta
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
-        discoverable: Pozwala na odkrywanie twojego konta przez nieznajomych poprzez rekomendacje, popularne wpisy i inne funkcje
         email: Otrzymasz e-mail potwierdzający
-        fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         inbox_url: Skopiuj adres ze strony głównej przekaźnika, którego chcesz użyć
         irreversible: Filtrowane wpisy znikną bezpowrotnie, nawet gdy filtr zostanie usunięty
         locale: Język interfejsu, wiadomości e-mail i powiadomieniach push
-        locked: Musisz akceptować prośby o możliwość obserwacji
         password: Użyj co najmniej 8 znaków
         phrase: Zostanie wykryte nawet, gdy znajduje się za ostrzeżeniem o zawartości
         scopes: Wybór API, do których aplikacja będzie miała dostęp. Jeżeli wybierzesz nadrzędny zakres, nie musisz wybierać jego elementów.
@@ -54,12 +55,9 @@ pl:
         setting_display_media_default: Ukrywaj zawartość multimedialną oznaczoną jako wrażliwa
         setting_display_media_hide_all: Zawsze ukrywaj zawartość multimedialną
         setting_display_media_show_all: Zawsze pokazuj zawartość multimedialną
-        setting_hide_network: Informacje o tym, kto Cię obserwuje i kogo obserwujesz nie będą widoczne
-        setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
-        setting_show_application: W informacjach o wpisie będzie widoczna informacja o aplikacji, z której został wysłany
         setting_use_blurhash: Gradienty są oparte na kolorach ukrywanej zawartości, ale uniewidaczniają wszystkie szczegóły
         setting_use_pending_items: Ukryj aktualizacje osi czasu za kliknięciem, zamiast automatycznego przewijania strumienia
-        username: Twoja nazwa użytkownika będzie niepowtarzalna na %{domain}
+        username: Możesz używać liter, cyfr i podkreślników
         whole_word: Jeśli słowo lub fraza składa się jedynie z liter lub cyfr, filtr będzie zastosowany tylko do pełnych wystąpień
       domain_allow:
         domain: Ta domena będzie mogła pobierać dane z serwera, a dane przychodzące z niej będą przetwarzane i przechowywane
@@ -74,6 +72,7 @@ pl:
           hide: Całkowicie ukryj przefiltrowaną zawartość, jakby nie istniała
           warn: Ukryj filtrowaną zawartość za ostrzeżeniem wskazującym tytuł filtra
       form_admin_settings:
+        activity_api_enabled: Liczby opublikowanych lokalnych postów, aktywnych użytkowników i nowych rejestracji w tygodniowych przedziałach
         backups_retention_period: Zachowaj wygenerowane archiwa użytkownika przez określoną liczbę dni.
         bootstrap_timeline_accounts: Te konta zostaną przypięte na górze rekomendacji obserwacji nowych użytkowników.
         closed_registrations_message: Wyświetlane po zamknięciu rejestracji
@@ -81,6 +80,7 @@ pl:
         custom_css: Możesz zastosować niestandardowe style w internetowej wersji Mastodon.
         mascot: Nadpisuje ilustrację w zaawansowanym interfejsie internetowym.
         media_cache_retention_period: Pobrane pliki multimedialne zostaną usunięte po określonej liczbie dni po ustawieniu na wartość dodatnią i ponownie pobrane na żądanie.
+        peers_api_enabled: Lista nazw domen, z którymi ten serwer spotkał się w fediverse. Nie są tu zawarte żadne dane o tym, czy użytkownik dokonuje federacji z danym serwerem, a jedynie, że jego serwer o tym wie. Jest to wykorzystywane przez serwisy, które zbierają statystyki dotyczące federacji w ogólnym sensie.
         profile_directory: Katalog profili zawiera listę wszystkich użytkowników, którzy zgodzili się na bycie znalezionymi.
         require_invite_text: Kiedy rejestracje wymagają ręcznego zatwierdzenia, ustaw pole "Dlaczego chcesz dołączyć?" jako obowiązkowe, a nie opcjonalne
         site_contact_email: Jak ludzie mogą się z Tobą skontaktować w celu uzyskania odpowiedzi na zapytania prawne lub wsparcie.
@@ -89,11 +89,13 @@ pl:
         site_short_description: Krótki opis, który pomoże w unikalnym zidentyfikowaniu Twojego serwera. Kto go obsługuje, do kogo jest skierowany?
         site_terms: Użyj własnej polityki prywatności lub zostaw puste, aby użyć domyślnej. Może być sformatowana za pomocą składni Markdown.
         site_title: Jak ludzie mogą odwoływać się do Twojego serwera inaczej niże przez nazwę jego domeny.
+        status_page_url: Adres URL strony, na której odwiedzający mogą zobaczyć status tego serwera w trakcie awarii
         theme: Motyw, który widzą wylogowani i nowi użytkownicy.
         thumbnail: Obraz o proporcjach mniej więcej 2:1 wyświetlany obok informacji o serwerze.
         timeline_preview: Wylogowani użytkownicy będą mogli przeglądać najnowsze publiczne wpisy dostępne na serwerze.
         trendable_by_default: Pomiń ręczny przegląd treści trendów. Pojedyncze elementy nadal mogą być usuwane z trendów po fakcie.
         trends: Tendencje pokazują, które posty, hasztagi i newsy zyskują popularność na Twoim serwerze.
+        trends_as_landing_page: Pokaż najpopularniejsze treści niezalogowanym użytkownikom i odwiedzającym zamiast opisu tego serwera. Wymaga włączenia trendów.
       form_challenge:
         current_password: Wchodzisz w strefę bezpieczną
       imports:
@@ -101,7 +103,7 @@ pl:
       invite_request:
         text: To pomoże nam w recenzji Twojej aplikacji
       ip_block:
-        comment: Niewymagane. Pamiętaj, dlaczego dodałeś tę regułę.
+        comment: Opcjonalnie. Pamiętaj, dlaczego dodałeś tę regułę.
         expires_in: Adresy IP to ograniczony zasób, czasami są współdzielone i często zmieniają właściciela. Z tego powodu blokady adresów IP nie są zalecane.
         ip: Wprowadź adres IPv4 lub IPv6. Możesz zablokować całe zakresy za pomocą składni CIDR. Uważaj, aby się nie zablokować!
         severities:
@@ -127,6 +129,7 @@ pl:
         position: Wyższa rola decyduje o rozwiązywaniu konfliktów w pewnych sytuacjach. Niektóre działania mogą być wykonywane tylko na rolach z niższym priorytetem
       webhook:
         events: Wybierz zdarzenia do wysłania
+        template: Poskładaj zawartość JSON, podstawiając zmienne. Użyjemy domyślnej wartości, jeżeli pole zostawisz pustym.
         url: Dokąd będą wysłane zdarzenia
     labels:
       account:
@@ -170,7 +173,6 @@ pl:
         context: Filtruj zawartość
         current_password: Obecne hasło
         data: Dane
-        discoverable: Wyświetlaj ten profil w katalogu
         display_name: Widoczna nazwa
         email: Adres e-mail
         expires_in: Wygaśnie po
@@ -180,7 +182,6 @@ pl:
         inbox_url: Adres skrzynki przekaźnika
         irreversible: Usuwaj zamiast ukrywać
         locale: Język interfejsu
-        locked: Ustaw konto jako prywatne
         max_uses: Maksymalna liczba użyć
         new_password: Nowe hasło
         note: Biogram
@@ -192,7 +193,6 @@ pl:
         setting_always_send_emails: Zawsze wysyłaj powiadomienia e-mail
         setting_auto_play_gif: Automatycznie odtwarzaj animowane GIFy
         setting_boost_modal: Pytaj o potwierdzenie przed podbiciem
-        setting_crop_images: Przycinaj obrazki w nierozwiniętych wpisach do 16x9
         setting_default_language: Język wpisów
         setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
@@ -204,9 +204,7 @@ pl:
         setting_display_media_show_all: Pokaż wszystko
         setting_expand_spoilers: Zawsze rozwijaj wpisy oznaczone ostrzeżeniem o zawartości
         setting_hide_network: Ukryj swoją sieć
-        setting_noindex: Nie indeksuj mojego profilu w wyszukiwarkach internetowych
         setting_reduce_motion: Ogranicz ruch w animacjach
-        setting_show_application: Informuj o aplikacji z której wysłano wpisy
         setting_system_font_ui: Używaj domyślnej czcionki systemu
         setting_theme: Motyw strony
         setting_trends: Pokazuj dzisiejsze „Na czasie”
@@ -229,6 +227,7 @@ pl:
           hide: Ukryj całkowicie
           warn: Ukryj z ostrzeżeniem
       form_admin_settings:
+        activity_api_enabled: Publikuj zagregowane statystyki dotyczące aktywności użytkownika w API
         backups_retention_period: Okres przechowywania archiwum użytkownika
         bootstrap_timeline_accounts: Zawsze rekomenduj te konta nowym użytkownikom
         closed_registrations_message: Niestandardowa wiadomość, gdy rejestracje nie są dostępne
@@ -236,6 +235,7 @@ pl:
         custom_css: Niestandardowy CSS
         mascot: Własna ikona
         media_cache_retention_period: Okres przechowywania pamięci podręcznej
+        peers_api_enabled: Opublikuj listę odkrytych serwerów w API
         profile_directory: Włącz katalog profilów
         registrations_mode: Kto może się zarejestrować
         require_invite_text: Wymagaj powodu, aby dołączyć
@@ -247,11 +247,13 @@ pl:
         site_short_description: Opis serwera
         site_terms: Polityka prywatności
         site_title: Nazwa serwera
+        status_page_url: Adres URL strony statusu
         theme: Domyślny motyw
         thumbnail: Miniaturka serwera
         timeline_preview: Zezwalaj na nieuwierzytelniony dostęp do publicznych osi czasu
         trendable_by_default: Zezwalaj na trendy bez wcześniejszego przeglądu
         trends: Włącz trendy
+        trends_as_landing_page: Użyj trendów jako strony początkowej
       interactions:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie obserwują
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie obserwujesz
@@ -277,17 +279,18 @@ pl:
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
         pending_account: Wyślij e-mail kiedy nowe konto potrzebuje recenzji
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
-        report: Nowy raport został wysłany
+        report: Nowe zgłoszenie zostało wysłane
         trending_tag: Nowe popularne wymagają przeglądu
       rule:
         text: Zasada
       tag:
         listable: Pozwól, aby ten hashtag pojawiał się w wynikach wyszukiwania i katalogu profilów
-        name: Hashtag
+        name: Hasztag
         trendable: Pozwól na wyświetlanie tego hashtagu w „Na czasie”
         usable: Pozwól na umieszczanie tego hashtagu we wpisach
       user:
         role: Rola
+        time_zone: Strefa czasowa
       user_role:
         color: Kolor odznaki
         highlighted: Wyświetl rolę jako odznakę na profilach użytkowników
@@ -296,6 +299,7 @@ pl:
         position: Priorytet
       webhook:
         events: Włączone zdarzenia
+        template: Szablon zawartości
         url: Endpoint URL
     'no': Nie
     not_recommended: Niezalecane

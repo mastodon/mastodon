@@ -4,7 +4,7 @@ zh-TW:
     attributes:
       poll:
         expires_at: 截止時間
-        options: 選擇
+        options: 選項
       user:
         agreement: 服務同意書
         email: 電子郵件地址
@@ -53,3 +53,7 @@ zh-TW:
             position:
               elevated: 不能高於您目前的角色
               own_role: 無法被您目前的角色更改
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: 無法包含您無存取權之事件

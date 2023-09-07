@@ -1,7 +1,3 @@
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-  = javascript_pack_tag 'public', async: true, crossorigin: 'anonymous'
-
 - content_for :page_title do
   = t('admin.reports.report', id: @report.id)
 
@@ -92,7 +88,7 @@
             = t('simple_form.yes')
           - else
             = t('simple_form.no')
-    - if !@report.action_taken_by_account.nil?
+    - if @report.action_taken_by_account.present?
       .report-header__details__item
         .report-header__details__item__header
           %strong= t('admin.reports.action_taken_by')
@@ -144,11 +140,8 @@
             = link_to @report.account.username, admin_account_path(@report.account_id)
           - else
             = link_to @report.account.domain, admin_instance_path(@report.account.domain)
-        %time{ datetime: @report.created_at.iso8601, title: l(@report.created_at) }
-          - if @report.created_at.today?
-            = t('admin.report_notes.today_at', time: l(@report.created_at, format: :time))
-          - else
-            = l @report.created_at.to_date
+        %time.relative-formatted{ datetime: @report.created_at.iso8601 }
+          = l @report.created_at.to_date
 
       .report-notes__item__content
         = simple_format(h(@report.comment))
@@ -184,7 +177,7 @@
 - if @report.unresolved?
   %hr.spacer/
 
-  %p#actions= t 'admin.reports.actions_description_html'
+  %p#actions= t(@report.target_account.local? ? 'admin.reports.actions_description_html' : 'admin.reports.actions_description_remote_html')
 
   = render partial: 'admin/reports/actions'
 

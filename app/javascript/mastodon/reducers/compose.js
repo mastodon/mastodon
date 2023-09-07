@@ -1,3 +1,5 @@
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
+
 import {
   COMPOSE_MOUNT,
   COMPOSE_UNMOUNT,
@@ -46,14 +48,14 @@ import {
   COMPOSE_CHANGE_MEDIA_DESCRIPTION,
   COMPOSE_CHANGE_MEDIA_FOCUS,
   COMPOSE_SET_STATUS,
+  COMPOSE_FOCUS,
 } from '../actions/compose';
-import { TIMELINE_DELETE } from '../actions/timelines';
-import { STORE_HYDRATE } from '../actions/store';
 import { REDRAFT } from '../actions/statuses';
-import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
-import uuid from '../uuid';
+import { STORE_HYDRATE } from '../actions/store';
+import { TIMELINE_DELETE } from '../actions/timelines';
 import { me } from '../initial_state';
 import { unescapeHTML } from '../utils/html';
+import { uuid } from '../uuid';
 
 const initialState = ImmutableMap({
   mounted: 0,
@@ -108,7 +110,7 @@ function statusToTextMentions(state, status) {
   }
 
   return set.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')} `)).join('');
-};
+}
 
 function clearAll(state) {
   return state.withMutations(map => {
@@ -126,7 +128,7 @@ function clearAll(state) {
     map.set('poll', null);
     map.set('idempotencyKey', uuid());
   });
-};
+}
 
 function appendMedia(state, media, file) {
   const prevSize = state.get('media_attachments').size;
@@ -146,7 +148,7 @@ function appendMedia(state, media, file) {
       map.set('sensitive', true);
     }
   });
-};
+}
 
 function removeMedia(state, mediaId) {
   const prevSize = state.get('media_attachments').size;
@@ -159,7 +161,7 @@ function removeMedia(state, mediaId) {
       map.set('sensitive', false);
     }
   });
-};
+}
 
 const insertSuggestion = (state, position, token, completion, path) => {
   return state.withMutations(map => {
@@ -186,11 +188,12 @@ const ignoreSuggestion = (state, position, token, completion, path) => {
 };
 
 const sortHashtagsByUse = (state, tags) => {
-  const personalHistory = state.get('tagHistory');
+  const personalHistory = state.get('tagHistory').map(tag => tag.toLowerCase());
 
-  return tags.sort((a, b) => {
-    const usedA = personalHistory.includes(a.name);
-    const usedB = personalHistory.includes(b.name);
+  const tagsWithLowercase = tags.map(t => ({ ...t, lowerName: t.name.toLowerCase() }));
+  const sorted = tagsWithLowercase.sort((a, b) => {
+    const usedA = personalHistory.includes(a.lowerName);
+    const usedB = personalHistory.includes(b.lowerName);
 
     if (usedA === usedB) {
       return 0;
@@ -200,6 +203,8 @@ const sortHashtagsByUse = (state, tags) => {
       return 1;
     }
   });
+  sorted.forEach(tag => delete tag.lowerName);
+  return sorted;
 };
 
 const insertEmoji = (state, position, emojiData, needsSpace) => {
@@ -222,8 +227,8 @@ const privacyPreference = (a, b) => {
 const hydrate = (state, hydratedState) => {
   state = clearAll(state.merge(hydratedState));
 
-  if (hydratedState.has('text')) {
-    state = state.set('text', hydratedState.get('text'));
+  if (hydratedState.get('text')) {
+    state = state.set('text', hydratedState.get('text')).set('focusDate', new Date());
   }
 
   return state;
@@ -330,6 +335,8 @@ export default function compose(state = initialState, action) {
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
 
+      map.update('media_attachments', list => list.filter(media => media.get('unattached')));
+
       if (action.status.get('language') && !action.status.has('translation')) {
         map.set('language', action.status.get('language'));
       } else {
@@ -431,6 +438,8 @@ export default function compose(state = initialState, action) {
   case TIMELINE_DELETE:
     if (action.id === state.get('in_reply_to')) {
       return state.set('in_reply_to', null);
+    } else if (action.id === state.get('id')) {
+      return state.set('id', null);
     } else {
       return state;
     }
@@ -442,7 +451,7 @@ export default function compose(state = initialState, action) {
       .setIn(['media_modal', 'dirty'], false)
       .update('media_attachments', list => list.map(item => {
         if (item.get('id') === action.media.id) {
-          return fromJS(action.media).set('unattached', true);
+          return fromJS(action.media).set('unattached', !action.attached);
         }
 
         return item;
@@ -519,7 +528,9 @@ export default function compose(state = initialState, action) {
     return state.update('poll', poll => poll.set('expires_in', action.expiresIn).set('multiple', action.isMultiple));
   case COMPOSE_LANGUAGE_CHANGE:
     return state.set('language', action.language);
+  case COMPOSE_FOCUS:
+    return state.set('focusDate', new Date()).update('text', text => text.length > 0 ? text : action.defaultText);
   default:
     return state;
   }
-};
+}

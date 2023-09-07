@@ -36,14 +36,17 @@ oc:
       avatar: Avatar
       by_domain: Domeni
       change_email:
+        changed_msg: Adreça corrèctament cambiada !
         current_email: Adreça actuala
         label: Cambiar d’adreça
         new_email: Novèla adreça
         submit: Cambiar l’adreça
         title: Cambiar l’adreça a %{username}
       change_role:
+        changed_msg: Ròtle corrèctament cambiat !
         label: Cambiar lo ròtle
         no_role: Cap de ròtle
+        title: Cambiar lo ròtle de %{username}
       confirm: Confirmar
       confirmed: Confirmat
       confirming: Confirmacion
@@ -88,6 +91,7 @@ oc:
       most_recent_ip: IP mai recenta
       no_account_selected: Cap de compte pas cambiat estant que cap èra pas seleccionat
       no_limits_imposed: Cap de limit impausat
+      no_role_assigned: Cap de ròtle pas assignat
       not_subscribed: Pas seguidor
       pending: Revision en espèra
       perform_full_suspension: Suspendre
@@ -101,8 +105,6 @@ oc:
       remove_header: Levar la bandièra
       resend_confirmation:
         already_confirmed: Aqueste utilizaire es ja confirmat
-        send: Tornar mandar lo corrièl de confirmacion
-        success: Corrièl de confirmacion corrèctament mandat !
       reset: Reïnicializar
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
@@ -144,11 +146,13 @@ oc:
         create_announcement: Crear una anóncia
         create_custom_emoji: Crear un emoji personalizat
         create_ip_block: Crear una règla IP
+        create_user_role: Crear un ròtle
         demote_user: Retrogradar l’utilizaire
         destroy_announcement: Suprimir l’anóncia
         destroy_custom_emoji: Suprimir l’emoji personalizat
         destroy_domain_block: Suprimir lo blocatge de domeni
         destroy_status: Suprimir l’estatut
+        destroy_user_role: Destruire ròtle
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar l’emoji personalizat
         disable_user: Desactivar l’utilizaire
@@ -165,7 +169,9 @@ oc:
         unsilence_account: Levar lo silenci del compte
         update_announcement: Actualizar l’anóncia
         update_custom_emoji: Actualizar l’emoji personalizat
+        update_ip_block: Actualizar règla IP
         update_status: Actualizar l’estatut
+        update_user_role: Actualizar ròtle
       empty: Cap de jornal pas trobat.
       filter_by_action: Filtrar per accion
       filter_by_user: Filtrar per utilizaire
@@ -389,7 +395,6 @@ oc:
           approved: Validacion necessària per s’inscriure
           none: Degun pòt pas se marcar
           open: Tot lo monde se pòt marcar
-      title: Paramètres del servidor
     site_uploads:
       delete: Suprimir lo fichièr enviat
     statuses:
@@ -453,7 +458,6 @@ oc:
       body: Mastodon es traduch per de benevòls.
       guide_link_text: Tot lo monde pòt contribuïr.
     sensitive_content: Contengut sensible
-    toot_layout: Disposicion del tut
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
     salutation: "%{name},"
@@ -469,13 +473,11 @@ oc:
     warning: Mèfi ! Agachatz de partejar aquela donada amb degun !
     your_token: Vòstre geton d’accès
   auth:
-    change_password: Senhal
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     description:
       prefix_invited_by_user: "@%{name} vos convida a rejónher aqueste servidor Mastodon !"
       prefix_sign_up: Marcatz-vos a Mostodon uèi !
-    didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
     forgot_password: Senhal oblidat ?
     invalid_reset_password_token: Lo geton de reïnicializacion es invalid o acabat. Tornatz demandar un geton se vos plai.
     link_to_webauth: Utilizar un aparelh de claus de seguretat
@@ -491,27 +493,15 @@ oc:
       saml: SAML
     register: Se marcar
     registration_closed: "%{instance} accepta pas de nòus membres"
-    resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
+    rules:
+      title: Unas règlas de basa.
     security: Seguretat
     set_new_password: Picar un nòu senhal
-    setup:
-      title: Configuracion
     status:
       account_status: Estat del compte
       functional: Vòstre compte es complètament foncional.
     use_security_key: Utilizar clau de seguretat
-  authorize_follow:
-    already_following: Seguètz ja aqueste compte
-    error: O planhèm, i a agut una error al moment de cercar lo compte
-    follow: Sègre
-    follow_request: 'Avètz demandat de sègre :'
-    following: 'Felicitacion ! Seguètz ara :'
-    post_follow:
-      close: O podètz tampar aquesta fenèstra.
-      return: Veire lo perfil a la persona
-      web: Tornar a l’interfàcia Web
-    title: Sègre %{acct}
   challenge:
     confirm: Contunhar
     hint_html: "<strong>Asutúcia :</strong> vos demandarem pas vòstre senhal de nòu d’aquí unas oras."
@@ -590,8 +580,6 @@ oc:
     storage: Mèdias gardats
   featured_tags:
     add_new: Ajustar una etiqueta nòva
-    errors:
-      limit: Avètz ja utilizat lo maximum d’etiquetas
   filters:
     contexts:
       account: Perfils
@@ -619,8 +607,6 @@ oc:
       title: Filtres
     new:
       title: Ajustar un nòu filtre
-  footer:
-    trending_now: Tendéncia del moment
   generic:
     all: Tot
     changes_saved_msg: Cambiaments ben realizats !
@@ -632,8 +618,6 @@ oc:
     validation_errors:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
       other: I a quicòm que truca ! Mercés de corregir las %{count} errors çai-jos
-  html_validator:
-    invalid_markup: 'conten un balisatge HTML invalid : %{error}'
   imports:
     modes:
       merge: Fondre
@@ -671,9 +655,6 @@ oc:
       expires_at: Expirats
       uses: Usatges
     title: Convidar de monde
-  lists:
-    errors:
-      limit: Avètz atengut lo maximum de listas
   login_activities:
     authentication_methods:
       password: senhal
@@ -829,7 +810,6 @@ oc:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: plataforma desconeguda
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -897,7 +877,6 @@ oc:
     show_newer: Veire mai recents
     show_older: Veire mai ancians
     show_thread: Mostrar lo fil
-    sign_in_to_participate: Inscrivètz-vos per participar a la conversacion
     title: '%{name} : "%{quote}"'
     visibilities:
       direct: Dirècte
@@ -937,12 +916,9 @@ oc:
       '7889238': 3 meses
     min_age_label: Sulhet d’ancianetat
     min_favs: Gardar al mens las publicacion en favorit
-    min_favs_hint: Suprimís pas las publicacions qu’an recebut al mens aquesta quantitat de favorits. Daissar blanc per suprimir las publicacion quina quantitat de favorits qu’ajan
     min_reblogs: Gardar las publicacions partejadas al mens
     min_reblogs_hint: Suprimís pas vòstras publicacions qu’an agut aqueste nombre de partiment. Daissar blanc per suprimir las publicacions sens far cas als partiments
   stream_entries:
-    pinned: Tut penjat
-    reblogged: a partejat
     sensitive_content: Contengut sensible
   tags:
     does_not_match_previous_name: correspond pas al nom precedent
@@ -1005,7 +981,6 @@ oc:
     seamless_external_login: Sètz connectat via un servici extèrn, los paramètres de senhal e de corrièl son doncas pas disponibles.
     signed_in_as: 'Session a :'
   verification:
-    explanation_html: 'Podètz <strong>verificar vosautres meteisses coma proprietari dels ligams per las metadonadas de vòstre perfil</strong>. Per aquò far, lo site Web ligat deu conténer un ligam cap a vòstre perfil Mastodon. Lo ligam <strong>deu</strong> aver un atribut <code>rel="me"</code>. Lo contengut tèxte del ligam impòrta pas. Vaquí un exemple :'
     verification: Verificacion
   webauthn_credentials:
     add: Apondre una clau de seguretat novèla

@@ -2,6 +2,10 @@
 is:
   simple_form:
     hints:
+      account:
+        display_name: Fullt nafn þitt eða eitthvað til gamans.
+        fields: Heimasíðan þín, fornöfn, aldur eða eitthvað sem þú vilt koma á framfæri.
+        note: 'Þú getur @minnst á annað fólk eða #myllumerki.'
       account_alias:
         acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast frá
       account_migration:
@@ -18,8 +22,8 @@ is:
           disable: Koma í veg fyrir að notandinn noti aðganginn sinn, en ekki eyða eða fela efnið þeirra.
           none: Nota þetta til að senda aðvörun til notandans, án þess að setja neina aðra aðgerð í gang.
           sensitive: Þvinga fram að öll myndefnisviðhengi þessa notanda verði flögguð sem viðkvæmt efni.
-          silence: Koma í veg fyrir að notandinn geti birt færslur opinberlega, fela færslur þeirra og tilkynningar fyrir fólki sem ekki er að fylgjast með notandanum.
-          suspend: Koma í veg fyrir öll samskipti til eða frá þessum aðgangi og eyða öllu efni hans. Afturkallanlegt innan 30 daga.
+          silence: Koma í veg fyrir að notandinn geti birt færslur opinberlega, fela færslur þeirra og tilkynningar fyrir fólki sem ekki er að fylgjast með notandanum. Lokar öllum kærum gagnvart þessum aðgangi.
+          suspend: Koma í veg fyrir öll samskipti til eða frá þessum aðgangi og eyða öllu efni hans. Afturkallanlegt innan 30 daga. Lokar öllum kærum gagnvart þessum aðgangi.
         warning_preset_id: Valkvætt. Þú getur ennþá bætt sérsniðnum texta við enda forstillinga
       announcement:
         all_day: Þegar merkt er við þetta, munu einungis birtast dagsetningar tímarammans
@@ -37,14 +41,11 @@ is:
         current_password: Í öryggisskyni skaltu setja inn lykilorðið fyrir þennan notandaaðgang
         current_username: Til að staðfesta skaltu setja inn notandanafnið fyrir þennan notandaaðgang
         digest: Er aðeins sent eftir lengri tímabil án virkni og þá aðeins ef þú hefur fengið persónuleg skilaboð á meðan þú hefur ekki verið á línunni
-        discoverable: Gerðu öðrum kleift að finna aðganginn þinn í gegnum meðmæli, vinsældir og annað slíkt
         email: Þú munt fá sendan staðfestingarpóst
-        fields: Þú getur birt allt að 4 atriði sem töflu á notandasniðinu þínu
         header: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         inbox_url: Afritaðu slóðina af forsíðu endurvarpans sem þú vilt nota
         irreversible: Síaðar færslur munu hverfa óendurkræft, jafnvel þó sían sé seinna fjarlægð
         locale: Tungumál notandaviðmótsins, tölvupósts og ýti-tilkynninga
-        locked: Krefst þess að þú samþykkir fylgjendur handvirkt
         password: Notaðu minnst 8 stafi
         phrase: Verður notað til samsvörunar burtséð frá stafstöðu texta eða viðvörunar vegna efnis í færslu
         scopes: Að hvaða API-kerfisviðmótum forritið fær aðgang. Ef þú velur efsta-stigs svið, þarftu ekki að gefa einstakar heimildir.
@@ -54,12 +55,9 @@ is:
         setting_display_media_default: Fela myndefni sem merkt er viðkvæmt
         setting_display_media_hide_all: Alltaf fela allt myndefni
         setting_display_media_show_all: Alltaf birta myndefni sem merkt er viðkvæmt
-        setting_hide_network: Hverjum þú fylgist með og hverjir fylgjast með þér verður ekki birt á notandasniðinu þínu
-        setting_noindex: Hefur áhrif á opinbera notandasniðið þitt og færslusíður
-        setting_show_application: Nafnið á forritinu sem þú notar til að senda færslur mun birtast í ítarlegri sýn á færslunum þínum
         setting_use_blurhash: Litstiglarnir byggja á litunum í földu myndunum, en gera öll smáatriði óskýr
         setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er, í stað þess að hún skruni streyminu sjálfvirkt
-        username: Notandanafnið þitt verður einstakt á %{domain}
+        username: Þú mátt nota bókstafi, tölur og undirstrik
         whole_word: Þegar stikkorð eða setning er einungis tölur og bókstafir, verður það aðeins notað ef það samsvarar heilu orði
       domain_allow:
         domain: Þetta lén mun geta sótt gögn af þessum vefþjóni og tekið verður á móti innsendum gögnum frá léninu til vinnslu og geymslu
@@ -74,6 +72,7 @@ is:
           hide: Fela síað efni algerlega, rétt eins og það sé ekki til staðar
           warn: Fela síað efni á bakvið aðvörun sem tekur fram titil síunnar
       form_admin_settings:
+        activity_api_enabled: Fjöldi staðværra stöðufærslna, virkra notenda og nýskráninga í vikulegum skömmtum
         backups_retention_period: Halda safni notandans í tiltekinn fjölda daga.
         bootstrap_timeline_accounts: Þessir notendaaðgangar verða festir efst í meðmælum til nýrra notenda um að fylgjast með þeim.
         closed_registrations_message: Birtist þegar lokað er á nýskráningar
@@ -81,6 +80,7 @@ is:
         custom_css: Þú getur virkjað sérsniðna stíla í vefútgáfu Mastodon.
         mascot: Þetta tekyr yfir myndskreytinguna í ítarlega vefviðmótinu.
         media_cache_retention_period: Sóttu myndefni verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi og síðan sótt aftur eftir þörfum.
+        peers_api_enabled: Listi yfir þau lénaheiti sem þessi netþjónn hefur rekist á í skýjasambandinu. Engin gögn eru hér sem gefa til kynna hvort þú sért í sambandi við tiltekinn netþjón, bara að netþjónninn þinn viti um hann. Þetta er notað af þjónustum sem safna tölfræði um skýjasambönd á almennan hátt.
         profile_directory: Notendamappan telur upp alla þá notendur sem hafa valið að vera uppgötvanlegir.
         require_invite_text: Þegar nýskráningar krefjast handvirks samþykkis, þá skal gera textann í “Hvers vegna viltu taka þátt?” að kröfu en ekki valkvæðan
         site_contact_email: Hovernig fólk getur haft samband við þig til að fá aðstoð eða vegna lagalegra mála.
@@ -89,11 +89,13 @@ is:
         site_short_description: Stutt lýsing sem hjálpar til við að auðkenna netþjóninn þinn. Hver er að reka hann, fyrir hverja er hann?
         site_terms: Notaðu þína eigin persónuverndarstefnu eða skildu þetta eftir autt til að nota sjálfgefna stefnu. Má sníða með Markdown-málskipan.
         site_title: Hvað fólk kallar netþjóninn þinn annað en með heiti lénsins.
+        status_page_url: Slóð á síðu þar sem fólk getur séð ástand netþjónsins þegar vandræði koma upp
         theme: Þema sem útskráðir gestir og nýjir notendur sjá.
         thumbnail: Mynd um það bil 2:1 sem birtist samhliða upplýsingum um netþjóninn þinn.
         timeline_preview: Gestir sem ekki eru skráðir inn munu geta skoðað nýjustu opinberu færslurnar sem tiltækar eru á þjóninum.
         trendable_by_default: Sleppa handvirkri yfirferð á vinsælu efni. Áfram verður hægt að fjarlægja stök atriði úr vinsældarlistum.
         trends: Vinsældir sýna hvaða færslur, myllumerki og fréttasögur séu í umræðunni á netþjóninum þínum.
+        trends_as_landing_page: Sýna vinsælt efni til ekki-innskráðra notenda í stað lýsingar á þessum netþjóni. Krefst þess að vinsældir efnis sé virkjað.
       form_challenge:
         current_password: Þú ert að fara inn á öryggissvæði
       imports:
@@ -127,6 +129,7 @@ is:
         position: Rétthærra hlutverk ákvarðar lausn árekstra í ákveðnum tilfellum. Sumar aðgerðir er aðeins hægt að framkvæma á hlutverk með lægri forgangi
       webhook:
         events: Veldu atburði sem á að senda
+        template: Sníddu eigin JSON með breytilegri brúun. Skiljið eftir autt fyrir sjálfgefið JSON.
         url: Hvert atburðir verða sendir
     labels:
       account:
@@ -170,7 +173,6 @@ is:
         context: Samhengi síu
         current_password: Núverandi lykilorð
         data: Gögn
-        discoverable: Hafa þennan aðgang með í notendaskránni
         display_name: Birtingarnafn
         email: Tölvupóstfang
         expires_in: Rennur út eftir
@@ -180,7 +182,6 @@ is:
         inbox_url: URL-slóð á innhólf endurvarpa
         irreversible: Fella niður í staðinn fyrir að fela
         locale: Tungumál viðmóts
-        locked: Krefjast fylgjendabeiðna
         max_uses: Hámarksfjöldi afnota
         new_password: Nýtt lykilorð
         note: Æviágrip
@@ -192,7 +193,6 @@ is:
         setting_always_send_emails: Alltaf senda tilkynningar í tölvupósti
         setting_auto_play_gif: Spila sjálfkrafa GIF-hreyfimyndir
         setting_boost_modal: Sýna staðfestingarglugga fyrir endurbirtingu
-        setting_crop_images: Utansníða myndir í ekki-útfelldum færslum í 16x9
         setting_default_language: Tungumál sem skrifað er á
         setting_default_privacy: Gagnaleynd færslna
         setting_default_sensitive: Alltaf merkja myndefni sem viðkvæmt
@@ -203,10 +203,8 @@ is:
         setting_display_media_hide_all: Fela allt
         setting_display_media_show_all: Birta allt
         setting_expand_spoilers: Alltaf útfella færslur sem eru með aðvörun vegna efnisins
-        setting_hide_network: Fela netkerfið þitt
-        setting_noindex: Afþakka atriðaskráningu í leitarvélum
+        setting_hide_network: Fela félagsnetið þitt
         setting_reduce_motion: Minnka hreyfingu í hreyfimyndum
-        setting_show_application: Upplýsa um forrit sem er til að senda færslur
         setting_system_font_ui: Nota sjálfgefið letur kerfisins
         setting_theme: Þema vefsvæðis
         setting_trends: Birta það sem er efst á baugi í dag
@@ -229,6 +227,7 @@ is:
           hide: Fela alveg
           warn: Fela með aðvörun
       form_admin_settings:
+        activity_api_enabled: Birta samantektartölfræði um virkni notanda í API-kerfisviðmótinu
         backups_retention_period: Tímalengd sem safni notandans er haldið eftir
         bootstrap_timeline_accounts: Alltaf mæla með þessum notendaaðgöngum fyrir nýja notendur
         closed_registrations_message: Sérsniðin skilaboð þegar ekki er hægt að nýskrá
@@ -236,6 +235,7 @@ is:
         custom_css: Sérsniðið CSS
         mascot: Sérsniðið gæludýr (eldra)
         media_cache_retention_period: Tímalengd sem myndefni haldið
+        peers_api_enabled: Birta lista yfir uppgötvaða netþjóna í API-kerfisviðmótinu
         profile_directory: Virkja notendamöppu
         registrations_mode: Hverjir geta nýskráð sig
         require_invite_text: Krefjast ástæðu fyrir þátttöku
@@ -247,11 +247,13 @@ is:
         site_short_description: Lýsing á vefþjóni
         site_terms: Persónuverndarstefna
         site_title: Heiti vefþjóns
+        status_page_url: Slóð á ástandssíðu
         theme: Sjálfgefið þema
         thumbnail: Smámynd vefþjóns
         timeline_preview: Leyfa óauðkenndan aðgang að opinberum tímalínum
         trendable_by_default: Leyfa vinsælt efni án undanfarandi yfirferðar
         trends: Virkja vinsælt
+        trends_as_landing_page: Nota vinsælasta sem upphafssíðu
       interactions:
         must_be_follower: Loka á tilkynningar frá þeim sem ekki eru fylgjendur
         must_be_following: Loka á tilkynningar frá þeim sem þú fylgist ekki með
@@ -288,6 +290,7 @@ is:
         usable: Leyfa færslum að nota þetta myllumerki
       user:
         role: Hlutverk
+        time_zone: Tímabelti
       user_role:
         color: Litur merkis
         highlighted: Birta hlutverk sem merki á notandaauðkenni
@@ -296,6 +299,7 @@ is:
         position: Forgangur
       webhook:
         events: Virkjaðir atburðir
+        template: Sniðmát gagna
         url: Slóð á endapunkt
     'no': Nei
     not_recommended: Ekki mælt með þessu

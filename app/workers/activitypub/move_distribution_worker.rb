@@ -10,7 +10,7 @@ class ActivityPub::MoveDistributionWorker
     @migration = AccountMigration.find(migration_id)
     @account   = @migration.account
 
-    ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
+    ActivityPub::DeliveryWorker.push_bulk(inboxes, limit: 1_000) do |inbox_url|
       [signed_payload, @account.id, inbox_url]
     end
 

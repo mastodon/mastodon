@@ -4,21 +4,22 @@ require 'rails_helper'
 
 RSpec.describe BlacklistedEmailValidator, type: :validator do
   describe '#validate' do
-    let(:user)   { double(email: 'info@mail.com', sign_up_ip: '1.2.3.4', errors: errors) }
-    let(:errors) { double(add: nil) }
+    subject { described_class.new.validate(user); errors }
+
+    let(:user)   { instance_double(User, email: 'info@mail.com', sign_up_ip: '1.2.3.4', errors: errors) }
+    let(:errors) { instance_double(ActiveModel::Errors, add: nil) }
 
     before do
-      allow(user).to receive(:valid_invitation?) { false }
-      allow_any_instance_of(described_class).to receive(:blocked_email_provider?) { blocked_email }
+      allow(user).to receive(:valid_invitation?).and_return(false)
+      allow(EmailDomainBlock).to receive(:block?) { blocked_email }
     end
-
-    subject { described_class.new.validate(user); errors }
 
     context 'when e-mail provider is blocked' do
       let(:blocked_email) { true }
 
       it 'adds error' do
-        expect(subject).to have_received(:add).with(:email, :blocked)
+        described_class.new.validate(user)
+        expect(errors).to have_received(:add).with(:email, :blocked).once
       end
     end
 
@@ -26,7 +27,8 @@ RSpec.describe BlacklistedEmailValidator, type: :validator do
       let(:blocked_email) { false }
 
       it 'does not add errors' do
-        expect(subject).not_to have_received(:add).with(:email, :blocked)
+        described_class.new.validate(user)
+        expect(errors).to_not have_received(:add)
       end
 
       context 'when canonical e-mail is blocked' do
@@ -37,7 +39,8 @@ RSpec.describe BlacklistedEmailValidator, type: :validator do
         end
 
         it 'adds error' do
-          expect(subject).to have_received(:add).with(:email, :taken)
+          described_class.new.validate(user)
+          expect(errors).to have_received(:add).with(:email, :taken).once
         end
       end
     end

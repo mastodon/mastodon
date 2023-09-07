@@ -15,7 +15,7 @@ export function addColumn(id, params) {
 
     dispatch(saveSettings());
   };
-};
+}
 
 export function removeColumn(uuid) {
   return dispatch => {
@@ -26,7 +26,7 @@ export function removeColumn(uuid) {
 
     dispatch(saveSettings());
   };
-};
+}
 
 export function moveColumn(uuid, direction) {
   return dispatch => {
@@ -38,7 +38,7 @@ export function moveColumn(uuid, direction) {
 
     dispatch(saveSettings());
   };
-};
+}
 
 export function changeColumnParams(uuid, path, value) {
   return dispatch => {

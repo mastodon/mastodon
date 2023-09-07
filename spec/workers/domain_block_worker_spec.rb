@@ -9,7 +9,7 @@ describe DomainBlockWorker do
     let(:domain_block) { Fabricate(:domain_block) }
 
     it 'calls domain block service for relevant domain block' do
-      service = double(call: nil)
+      service = instance_double(BlockDomainService, call: nil)
       allow(BlockDomainService).to receive(:new).and_return(service)
       result = subject.perform(domain_block.id)
 
@@ -20,7 +20,7 @@ describe DomainBlockWorker do
     it 'returns true for non-existent domain block' do
       result = subject.perform('aaa')
 
-      expect(result).to eq(true)
+      expect(result).to be(true)
     end
   end
 end
