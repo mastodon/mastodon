@@ -55,7 +55,7 @@ describe Api::V1::DirectoriesController do
         Fabricate(:account_domain_block, account: user.account, domain: 'test.example')
       end
 
-      it 'returns only the local discoverable account' do
+      it 'returns the local discoverable account and the remote discoverable account' do
         local_discoverable_account = Fabricate(
           :account,
           domain: nil,
@@ -75,8 +75,7 @@ describe Api::V1::DirectoriesController do
 
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq(2)
-        expect(body_as_json.first[:id]).to include(eligible_remote_account.id.to_s)
-        expect(body_as_json.second[:id]).to include(local_discoverable_account.id.to_s)
+        expect(body_as_json.pluck(:id)).to contain_exactly(eligible_remote_account.id.to_s, local_discoverable_account.id.to_s)
       end
     end
 
@@ -97,16 +96,15 @@ describe Api::V1::DirectoriesController do
 
     context 'when ordered by active' do
       it 'returns accounts in order of most recent status activity' do
-        status_old = Fabricate(:status)
-        travel_to 10.seconds.from_now
-        status_new = Fabricate(:status)
+        old_stat = Fabricate(:account_stat, last_status_at: 1.day.ago)
+        new_stat = Fabricate(:account_stat, last_status_at: 1.minute.ago)
 
         get :show, params: { order: 'active' }
 
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq(2)
-        expect(body_as_json.first[:id]).to include(status_new.account.id.to_s)
-        expect(body_as_json.second[:id]).to include(status_old.account.id.to_s)
+        expect(body_as_json.first[:id]).to include(new_stat.account_id.to_s)
+        expect(body_as_json.second[:id]).to include(old_stat.account_id.to_s)
       end
     end
 
