@@ -101,7 +101,7 @@ RUN bundle install;
 
 # Perform Node Install
 RUN \
-  yarn install --immutable --production --network-timeout 600000; \
+  yarn install --pure-lockfile --production --network-timeout 600000; \
   yarn cache clean --all;
 
 # Set the running user
