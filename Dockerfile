@@ -14,7 +14,7 @@ ARG MASTODON_VERSION_METADATA=""
 ARG NODE_MAJOR_VERSION="20"
 ARG RAILS_SERVE_STATIC_FILES="true"
 ARG RUBY_YJIT_ENABLE="0"
-ARG DEBIAN_MM_REPO="0"
+ARG DEBIAN_MM_ENABLE="0"
 ARG TZ="Etc/UTC"
 
 # Applied to resulting container image, use ARG above to change these values
@@ -25,16 +25,19 @@ ENV \
   RUBY_YJIT_ENABLE=${RUBY_YJIT_ENABLE} \
   TZ=${TZ}
 
-# Static variables
+# It is not recommended to change the user/group IDs
+ARG UID="991"
+ARG GID="991"
+
+# Static variables not reccomended to change
 ENV \
   BIND="0.0.0.0" \
   NODE_ENV="production" \
   RAILS_ENV="production" \
-  DEBIAN_FRONTEND="noninteractive"
+  DEBIAN_FRONTEND="noninteractive" \
+  PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin" 
 
 SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
-
-ENV PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
 
 # Install build tools and dependencies from APT
 RUN \
@@ -56,6 +59,7 @@ RUN \
     libpq-dev \
     libssl-dev \
     make \
+    patchelf \
     procps \
     python3 \
     shared-mime-info \
@@ -68,7 +72,7 @@ RUN \
   wget -nv -O - https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
   echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR_VERSION}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list; \
   echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list; \
-  if [ "${DEBIAN_MM_REPO}" = "1" ]; then \
+  if [ "${DEBIAN_MM_ENABLE}" = "1" ]; then \
     wget -nv -O - https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb | dpkg-deb -x - ./ && gpg --dearmor ./etc/apt/trusted.gpg.d/deb-multimedia-keyring.gpg; \
     mv ./etc/apt/trusted.gpg.d/deb-multimedia-keyring.gpg /usr/share/keyrings/deb-multimedia-keyring.gpg >/dev/null; \
     echo "deb [signed-by=/usr/share/keyrings/deb-multimedia-keyring.gpg] https://mirror.csclub.uwaterloo.ca/debian-multimedia/ bookworm main non-free" | tee /etc/apt/sources.list.d/deb-mm.list; \
@@ -86,27 +90,31 @@ RUN \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
-ARG UID="991"
-ARG GID="991"
- 
+# Patch Jemalloc for use only by Ruby
+RUN patchelf --add-needed libjemalloc.so.2 /usr/local/bin/ruby 
+
+# Create dedicated mastodon user account
 RUN \
   groupadd -g "${GID}" mastodon; \
   useradd -l -u "${UID}" -g "${GID}" -m -d /opt/mastodon mastodon; \
   ln -s /opt/mastodon /mastodon;
 
+# Set mastodon working directory
 WORKDIR /opt/mastodon
 
+# Configure bundle
 RUN bundle config set --global frozen "true"; \
     bundle config set --global cache_all "false"; \
     bundle config set --local without "development test";
 
+# Copy Mastodon source code from local build system to container
 COPY --chown=mastodon:mastodon Gemfile* package.json yarn.lock /opt/mastodon/
 COPY --chown=mastodon:mastodon . /opt/mastodon
 
-# Perform Ruby Install
+# Fetch necessary Ruby gem dependencies
 RUN bundle install;
 
-# Perform Node Install
+# Fetch necessary Node dependencies with Yarn
 RUN \
   yarn install --pure-lockfile --production --network-timeout 600000; \
   yarn cache clean --all;
@@ -114,8 +122,8 @@ RUN \
 # Set the running user
 USER mastodon
 
-# Use Jemalloc
-ENV LD_PRELOAD="libjemalloc.so.2"
+# Set Jemalloc environment variables
+# ENV MALLOC_CONF="abort_conf: true, narenas:2, background_thread: true, thp: never, dirty_decay_ms: 1000, muzzy_decay_ms: 0"
 
 # Precompile assets
 RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile
