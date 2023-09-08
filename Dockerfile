@@ -57,6 +57,7 @@ RUN \
   apt-get upgrade -y; \
   apt-get install -y --no-install-recommends \
     ca-certificates \
+    curl \
     ffmpeg \
     file \
     gnupg2 \
@@ -66,15 +67,14 @@ RUN \
     procps \
     tini \
     tzdata \
-    wget \
   ; \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 # Add Node/Yarn Packages
 RUN \
-  wget -nv -O - https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null; \
-  wget -nv -O - https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
+  curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null; \
+  curl -s https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
   echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR_VERSION}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list; \
   echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list; \
   apt-get update; \
