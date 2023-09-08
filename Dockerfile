@@ -96,7 +96,7 @@ RUN set -eux; \
     bundle config set --local without 'development test';
 
 ########################################################################################################################
-FROM base as base-builder 
+FROM base as builder-base
 
 RUN set -eux; \
     apt-get update; \
@@ -104,7 +104,7 @@ RUN set -eux; \
     rm -rf /var/lib/apt/lists/*;
 
 ########################################################################################################################
-FROM base-builder as ruby-builder
+FROM builder-base as ruby-builder
 
 # Install gems
 #
@@ -126,7 +126,7 @@ RUN \
     bundle install --no-cache;
 
 ########################################################################################################################
-FROM base-builder as node-builder
+FROM builder-base as node-builder
 
 # Download and install yarn packages
 #
