@@ -106,16 +106,10 @@ RUN set -eux; \
 ########################################################################################################################
 FROM builder-base as ruby-builder
 
+ADD Gemfile* /opt/mastodon/
+
 # Install gems
-#
-# NOTE: Instead of copying Gemfile and Gemfile.lock, we bind them to the container at build time
-# this avoids the issue of the files "changing" (e.g. a newline) invalidating the cache,
-# even though the "parsed" content is the same, and makes the file read-only and immutable
-# inside the build step, preventing "quiet" changes to the files
-RUN \
-    --mount=type=bind,source=Gemfile,target=Gemfile \
-    --mount=type=bind,source=Gemfile.lock,target=Gemfile.lock \
-    set -eux; \
+RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         git \
@@ -128,16 +122,10 @@ RUN \
 ########################################################################################################################
 FROM builder-base as node-builder
 
+ADD package.json yarn.lock /opt/mastodon/
+
 # Download and install yarn packages
-#
-# Note: Instead of copying package.json and yarn.lock, we bind them to the container at build time
-# this avoids the issue of the files "changing" (e.g. a newline) invalidating the cache,
-# even though the "parsed" content is the same, and makes the file read-only and immutable
-# inside the build step, preventing "quiet" changes to the files
-RUN \
-    --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=yarn.lock,target=yarn.lock \
-    set -eux; \
+RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         python3 \
