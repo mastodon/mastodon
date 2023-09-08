@@ -212,11 +212,11 @@ class Audio extends PureComponent {
   };
 
   toggleMute = () => {
-    const muted = !this.state.muted;
+    const muted = !(this.state.muted || this.state.volume === 0);
 
-    this.setState({ muted }, () => {
+    this.setState((state) => ({ muted, volume: Math.max(state.volume || 0.5, 0.05) }), () => {
       if (this.gainNode) {
-        this.gainNode.gain.value = muted ? 0 : this.state.volume;
+        this.gainNode.gain.value = this.state.muted ? 0 : this.state.volume;
       }
     });
   };
@@ -294,7 +294,7 @@ class Audio extends PureComponent {
     const { x } = getPointerPosition(this.volume, e);
 
     if(!isNaN(x)) {
-      this.setState({ volume: x }, () => {
+      this.setState((state) => ({ volume: x, muted: state.muted && x === 0 }), () => {
         if (this.gainNode) {
           this.gainNode.gain.value = this.state.muted ? 0 : x;
         }
