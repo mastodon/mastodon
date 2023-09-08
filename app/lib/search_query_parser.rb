@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 class SearchQueryParser < Parslet::Parser
+  SUPPORTED_PREFIXES = %w(
+    has
+    is
+    language
+    from
+    before
+    after
+    during
+    in
+  ).freeze
+
   # Efficiently matches disjoint strings
   class StrList < Parslet::Atoms::Base
     attr_reader :strings
@@ -41,7 +52,7 @@ class SearchQueryParser < Parslet::Parser
   rule(:colon)     { str(':') }
   rule(:space)     { match('\s').repeat(1) }
   rule(:operator)  { (str('+') | str('-')).as(:operator) }
-  rule(:prefix_operator) { StrList.new(%w(has is language from before after during in)) }
+  rule(:prefix_operator) { StrList.new(SUPPORTED_PREFIXES) }
   rule(:prefix)    { prefix_operator.as(:prefix_operator) >> colon }
   rule(:phrase)    do
     (str('"') >> match('[^"]').repeat.as(:phrase) >> str('"')) |
