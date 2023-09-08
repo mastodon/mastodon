@@ -3,6 +3,7 @@
 ARG TARGETPLATFORM="${TARGETPLATFORM}"
 ARG BUILDPLATFORM="${BUILDPLATFORM}"
 
+# Sets baseline for official Ruby container image
 ARG RUBY_VERSION="3.2.2"
 ARG DEBIAN_VERSION="bookworm"
 FROM ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION}
