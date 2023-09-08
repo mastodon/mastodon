@@ -126,10 +126,6 @@ ADD package.json yarn.lock /opt/mastodon/
 
 # Download and install yarn packages
 RUN set -eux; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends \
-        python3 \
-    ; \
     yarn install --immutable; \
     yarn cache clean --all;
 
