@@ -18,7 +18,6 @@ describe AccountSearch do
       it 'its bio is added to the AccountsIndex' do
         account.discoverable = true
         account.save!
-        AccountsIndex.import
 
         results = AccountsIndex.filter(term: { username: account.username })
         expect(results.count).to eq(1)
