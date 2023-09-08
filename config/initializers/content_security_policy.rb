@@ -19,6 +19,22 @@ media_host ||= host_to_url(ENV['AZURE_ALIAS_HOST'])
 media_host ||= host_to_url(ENV['S3_HOSTNAME']) if ENV['S3_ENABLED'] == 'true'
 media_host ||= assets_host
 
+def sso_host
+  return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true'
+  return unless ENV['OMNIAUTH_ONLY'] == 'true'
+  return unless Devise.omniauth_providers.length == 1
+
+  provider = Devise.omniauth_configs[Devise.omniauth_providers[0]]
+  @sso_host ||= begin
+    # using CAS
+    provider.cas_url if ENV['CAS_ENABLED'] == 'true'
+    # using SAML
+    provider.options[:idp_sso_target_url] if ENV['SAML_ENABLED'] == 'true'
+    # or using OIDC
+    ENV['OIDC_AUTH_ENDPOINT'] || (OpenIDConnect::Discovery::Provider::Config.discover!(ENV['OIDC_ISSUER']).authorization_endpoint if ENV['OIDC_ENABLED'] == 'true')
+  end
+end
+
 Rails.application.config.content_security_policy do |p|
   p.base_uri        :none
   p.default_src     :none
@@ -29,7 +45,13 @@ Rails.application.config.content_security_policy do |p|
   p.media_src       :self, :https, :data, assets_host
   p.frame_src       :self, :https
   p.manifest_src    :self, assets_host
-  p.form_action     :self
+
+  if sso_host.present?
+    p.form_action     :self, sso_host
+  else
+    p.form_action     :self
+  end
+
   p.child_src       :self, :blob, assets_host
   p.worker_src      :self, :blob, assets_host
 
