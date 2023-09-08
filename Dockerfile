@@ -14,22 +14,22 @@ ARG NODE_MAJOR_VERSION="20"
 ARG RAILS_SERVE_STATIC_FILES="true"
 ARG RUBY_YJIT_ENABLE="0"
 ARG DEBIAN_MM_REPO="0"
-ARG BIND="0.0.0.0"
 ARG TZ="Etc/UTC"
-ARG RAILS_ENV="production"
-ARG NODE_ENV="production"
 
 # Applied to resulting container image, use ARG above to change these values
 ENV \
   MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
   MASTODON_VERSION_METADATA="${MASTODON_VERSION_METADATA}" \
-  DEBIAN_FRONTEND="noninteractive" \
-  TZ=${TZ} \
-  RAILS_ENV=${RAILS_ENV} \
-  NODE_ENV=${NODE_ENV} \
   RAILS_SERVE_STATIC_FILES=${RAILS_SERVE_STATIC_FILES} \
   RUBY_YJIT_ENABLE=${RUBY_YJIT_ENABLE} \
-  BIND=${BIND}
+  TZ=${TZ}
+
+# Static variables
+ENV \
+  BIND="0.0.0.0" \
+  NODE_ENV="production" \
+  RAILS_ENV="production" \
+  DEBIAN_FRONTEND="noninteractive"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
 
