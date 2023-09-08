@@ -1,104 +1,115 @@
 # syntax=docker/dockerfile:1.4
-# This needs to be bookworm-slim because the Ruby image is built on bookworm-slim
-ARG NODE_VERSION="16.20-bookworm-slim"
 
-FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.2-slim as ruby
-FROM node:${NODE_VERSION} as build
+ARG TARGETPLATFORM="${TARGETPLATFORM}"
+ARG BUILDPLATFORM="${BUILDPLATFORM}"
 
-COPY --link --from=ruby /opt/ruby /opt/ruby
+ARG RUBY_VERSION="3.2.2"
+ARG DEBIAN_VERSION="bookworm"
+FROM ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION}
 
-ENV DEBIAN_FRONTEND="noninteractive" \
-    PATH="${PATH}:/opt/ruby/bin"
-
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
-WORKDIR /opt/mastodon
-COPY Gemfile* package.json yarn.lock /opt/mastodon/
-
-# hadolint ignore=DL3008
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends build-essential \
-        git \
-        libicu-dev \
-        libidn-dev \
-        libpq-dev \
-        libjemalloc-dev \
-        zlib1g-dev \
-        libgdbm-dev \
-        libgmp-dev \
-        libssl-dev \
-        libyaml-0-2 \
-        ca-certificates \
-        libreadline8 \
-        python3 \
-        shared-mime-info && \
-    bundle config set --local deployment 'true' && \
-    bundle config set --local without 'development test' && \
-    bundle config set silence_root_warning true && \
-    bundle install -j"$(nproc)" && \
-    yarn install --pure-lockfile --production --network-timeout 600000 && \
-    yarn cache clean
-
-FROM node:${NODE_VERSION}
-
-# Use those args to specify your own version flags & suffixes
+# Modify these settings here or use build flags [--build-arg ARG_NAME="value"] to change default values
 ARG MASTODON_VERSION_PRERELEASE=""
 ARG MASTODON_VERSION_METADATA=""
+ARG NODE_MAJOR_VERSION="20"
+ARG RAILS_SERVE_STATIC_FILES="true"
+ARG RUBY_YJIT_ENABLE="0"
+ARG DEBIAN_MM_REPO="0"
+ARG BIND="0.0.0.0"
+ARG TZ="Etc/UTC"
+ARG RAILS_ENV="production"
+ARG NODE_ENV="production"
+
+# Applied to resulting container image, use ARG above to change these values
+ENV \
+  MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
+  MASTODON_VERSION_METADATA="${MASTODON_VERSION_METADATA}" \
+  DEBIAN_FRONTEND="noninteractive" \
+  TZ=${TZ} \
+  RAILS_ENV=${RAILS_ENV} \
+  NODE_ENV=${NODE_ENV} \
+  RAILS_SERVE_STATIC_FILES=${RAILS_SERVE_STATIC_FILES} \
+  RUBY_YJIT_ENABLE=${RUBY_YJIT_ENABLE} \
+  BIND=${BIND}
+
+SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
+
+ENV PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
+
+# Install build tools and dependencies from APT
+RUN \
+  echo "${TZ}" > /etc/localtime; \
+  apt-get update; \
+  apt-get upgrade -y; \
+  apt-get install -y --no-install-recommends \
+    ca-certificates \
+    file \
+    g++ \
+    gcc \
+    git \
+    gnupg2 \
+    libgdbm-dev \
+    libgmp-dev \
+    libicu-dev \
+    libidn-dev \
+    libjemalloc2 \
+    libpq-dev \
+    libssl-dev \
+    make \
+    procps \
+    python3 \
+    shared-mime-info \
+    tini \
+    tzdata \
+    wget \
+    zlib1g-dev \
+  ; \
+  if [ "${DEBIAN_MM_REPO}" = "1" ]; then wget -nv -O - https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb | dpkg-deb -x - ./ && gpg --dearmor ./etc/apt/trusted.gpg.d/deb-multimedia-keyring.gpg && mv ./etc/apt/trusted.gpg.d/deb-multimedia-keyring.gpg /usr/share/keyrings/deb-multimedia-keyring.gpg >/dev/null; fi; \
+  wget -nv -O - https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null; \
+  wget -nv -O - https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
+  if [ "${DEBIAN_MM_REPO}" = "1" ]; then echo "deb [signed-by=/usr/share/keyrings/deb-multimedia-keyring.gpg] https://mirror.csclub.uwaterloo.ca/debian-multimedia/ bookworm main non-free" | tee /etc/apt/sources.list.d/deb-mm.list; fi; \
+  echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR_VERSION}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list; \
+  echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list; \
+  apt-get update; \
+  if [ "${DEBIAN_MM_REPO}" = "1" ]; then apt-get install -y --no-install-recommends imagemagick-7; else apt-get install -y --no-install-recommends imagemagick; fi; \
+  apt-get install -y --no-install-recommends \
+    ffmpeg \
+    nodejs \
+    yarn \
+  ; \
+  rm -rf /var/lib/apt/lists/*; \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 ARG UID="991"
 ARG GID="991"
+ 
+RUN \
+  groupadd -g "${GID}" mastodon; \
+  useradd -l -u "${UID}" -g "${GID}" -m -d /opt/mastodon mastodon; \
+  ln -s /opt/mastodon /mastodon;
 
-COPY --link --from=ruby /opt/ruby /opt/ruby
-
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
-ENV DEBIAN_FRONTEND="noninteractive" \
-    PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
-
-# Ignoring these here since we don't want to pin any versions and the Debian image removes apt-get content after use
-# hadolint ignore=DL3008,DL3009
-RUN apt-get update && \
-    echo "Etc/UTC" > /etc/localtime && \
-    groupadd -g "${GID}" mastodon && \
-    useradd -l -u "$UID" -g "${GID}" -m -d /opt/mastodon mastodon && \
-    apt-get -y --no-install-recommends install whois \
-        wget \
-        procps \
-        libssl3 \
-        libpq5 \
-        imagemagick \
-        ffmpeg \
-        libjemalloc2 \
-        libicu72 \
-        libidn12 \
-        libyaml-0-2 \
-        file \
-        ca-certificates \
-        tzdata \
-        libreadline8 \
-        tini && \
-    ln -s /opt/mastodon /mastodon
-
-# Note: no, cleaning here since Debian does this automatically
-# See the file /etc/apt/apt.conf.d/docker-clean within the Docker image's filesystem
-
-COPY --chown=mastodon:mastodon . /opt/mastodon
-COPY --chown=mastodon:mastodon --from=build /opt/mastodon /opt/mastodon
-
-ENV RAILS_ENV="production" \
-    NODE_ENV="production" \
-    RAILS_SERVE_STATIC_FILES="true" \
-    BIND="0.0.0.0" \
-    MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
-    MASTODON_VERSION_METADATA="${MASTODON_VERSION_METADATA}"
-
-# Set the run user
-USER mastodon
 WORKDIR /opt/mastodon
 
-# Precompile assets
-RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile
+RUN bundle config set --global frozen "true"; \
+    bundle config set --global cache_all "false"; \
+    bundle config set --local without "development test";
 
-# Set the work dir and the container entry point
+COPY --chown=mastodon:mastodon Gemfile* package.json yarn.lock /opt/mastodon/
+COPY --chown=mastodon:mastodon . /opt/mastodon
+
+RUN \
+  bundle install; \
+  yarn install --immutable --production --network-timeout 600000; \
+  yarn cache clean --all;
+
+# Set the running user
+USER mastodon
+
+# Use Jemalloc
+ENV LD_PRELOAD="libjemalloc.so.2"
+
+# Precompile assets
+RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile
+
+# Set container entry point and expose ports
 ENTRYPOINT ["/usr/bin/tini", "--"]
 EXPOSE 3000 4000
