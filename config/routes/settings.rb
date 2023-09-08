@@ -37,7 +37,7 @@ namespace :settings do
     end
   end
 
-  resource :otp_authentication, only: [:show, :create], controller: 'two_factor_authentication/otp_authentication'
+  resource :otp_authentication, only: [:show, :create, :destroy], controller: 'two_factor_authentication/otp_authentication'
 
   resources :webauthn_credentials, only: [:index, :new, :create, :destroy],
                                    path: 'security_keys',

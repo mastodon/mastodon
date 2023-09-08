@@ -20,6 +20,12 @@ module Settings
         redirect_to new_settings_two_factor_authentication_confirmation_path
       end
 
+      def destroy
+        current_user.disable_otp_login!
+
+        redirect_to settings_two_factor_authentication_methods_path
+      end
+
       private
 
       def verify_otp_not_enabled

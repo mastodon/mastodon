@@ -119,4 +119,32 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
       end
     end
   end
+
+  describe 'GET #destroy' do
+    context 'when signed in' do
+      before do
+        sign_in user, scope: :user
+      end
+
+      it 'redirects to two factor authentication methods list page' do
+        delete :destroy
+
+        expect(response).to redirect_to settings_two_factor_authentication_methods_path
+      end
+
+      it 'calls #disable_otp_login! for the current user' do
+        expect_any_instance_of(User).to receive(:disable_otp_login!)
+
+        delete :destroy
+      end
+    end
+
+    context 'when not signed in' do
+      it 'redirects to login' do
+        delete :destroy
+
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+  end
 end

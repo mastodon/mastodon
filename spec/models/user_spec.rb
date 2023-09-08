@@ -277,6 +277,52 @@ RSpec.describe User do
     end
   end
 
+  describe '#disable_otp_login!' do
+    describe 'when user has OTP enabled' do
+      let(:user) do
+        Fabricate(
+          :user,
+          otp_required_for_login: true,
+          otp_secret: 'oldotpcode'
+        )
+      end
+
+      it 'saves false for otp_required_for_login' do
+        user.disable_otp_login!
+
+        expect(user.reload.otp_required_for_login).to be false
+      end
+
+      it 'saves nil for otp_secret' do
+        user.disable_otp_login!
+
+        expect(user.reload.otp_secret).to be_nil
+      end
+    end
+
+    describe 'when user does not have OTP enabled' do
+      let(:user) do
+        Fabricate(
+          :user,
+          otp_required_for_login: false,
+          otp_secret: nil
+        )
+      end
+
+      it 'does not change for otp_required_for_login' do
+        user.disable_otp_login!
+
+        expect(user.reload.otp_required_for_login).to be false
+      end
+
+      it 'does not change for otp_secret' do
+        user.disable_otp_login!
+
+        expect(user.reload.otp_secret).to be_nil
+      end
+    end
+  end
+
   describe '#disable_two_factor!' do
     it 'saves false for otp_required_for_login' do
       user = Fabricate.build(:user, otp_required_for_login: true)
