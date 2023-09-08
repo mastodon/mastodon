@@ -96,8 +96,11 @@ RUN bundle config set --global frozen "true"; \
 COPY --chown=mastodon:mastodon Gemfile* package.json yarn.lock /opt/mastodon/
 COPY --chown=mastodon:mastodon . /opt/mastodon
 
+# Perform Ruby Install
+RUN bundle install;
+
+# Perform Node Install
 RUN \
-  bundle install; \
   yarn install --immutable --production --network-timeout 600000; \
   yarn cache clean --all;
 
