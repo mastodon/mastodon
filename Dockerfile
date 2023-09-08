@@ -68,19 +68,16 @@ RUN \
   wget -nv -O - https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
   echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR_VERSION}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list; \
   echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list; \
-  apt-get update; \
   if [ "${DEBIAN_MM_REPO}" = "1" ]; then \
     wget -nv -O - https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb | dpkg-deb -x - ./ && gpg --dearmor ./etc/apt/trusted.gpg.d/deb-multimedia-keyring.gpg; \
-      mv ./etc/apt/trusted.gpg.d/deb-multimedia-keyring.gpg /usr/share/keyrings/deb-multimedia-keyring.gpg >/dev/null; \
-    echo "deb [signed-by=/usr/share/keyrings/deb-multimedia-keyring.gpg] https://mirror.csclub.uwaterloo.ca/debian-multimedia/ bookworm main non-free" | tee /etc/apt/sources.list.d/deb-mm.list; fi; \
+    mv ./etc/apt/trusted.gpg.d/deb-multimedia-keyring.gpg /usr/share/keyrings/deb-multimedia-keyring.gpg >/dev/null; \
+    echo "deb [signed-by=/usr/share/keyrings/deb-multimedia-keyring.gpg] https://mirror.csclub.uwaterloo.ca/debian-multimedia/ bookworm main non-free" | tee /etc/apt/sources.list.d/deb-mm.list; \
     apt-get update; \
-    apt-get install -y --no-install-recommends \
-      imagemagick-7; \
+    apt-get install -y --no-install-recommends imagemagick-7; \
   else \
     apt-get update; \
-    apt-get install -y --no-install-recommends \
-      imagemagick; \
-  fi \
+    apt-get install -y --no-install-recommends imagemagick; \
+  fi; \
   apt-get install -y --no-install-recommends \
     ffmpeg \
     nodejs \
