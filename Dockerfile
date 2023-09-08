@@ -67,7 +67,6 @@ RUN node --version; \
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
-        ca-certificates \
         ffmpeg \
         file \
         imagemagick \
@@ -75,11 +74,9 @@ RUN set -eux; \
         libidn12 \
         libjemalloc2 \
         libpq5 \
-        libssl3 \
         tini \
         tzdata \
         wget \
-        zlib1g \
     ; \
     rm -rf /var/lib/apt/lists/*;
 
@@ -116,8 +113,6 @@ RUN \
         libicu-dev \
         libidn-dev \
         libpq-dev \
-        libssl-dev \
-        zlib1g-dev \
     ; \
     bundle install --no-cache;
 
