@@ -54,6 +54,9 @@ FROM node:${NODE_VERSION}-bookworm-slim as node
 
 ########################################################################################################################
 FROM ruby:${RUBY_VERSION}-slim-bookworm as base
+ARG TZ
+ARG UID
+ARG GID
 
 COPY --link --from=node /usr/local /usr/local
 COPY --link --from=node /opt /opt
@@ -80,11 +83,17 @@ RUN set -eux; \
     ; \
     rm -rf /var/lib/apt/lists/*;
 
+WORKDIR /opt/mastodon
+
 RUN set -eux; \
+    echo "${TZ}" > /etc/localtime; \
+    groupadd -g "${GID}" mastodon; \
+    useradd -l -u "${UID}" -g "${GID}" -m -d /opt/mastodon mastodon; \
+    # Symlink /opt/mastodon to /mastodon
+    ln -s /opt/mastodon /mastodon; \
+    # Set bundle configs
     bundle config set --local deployment 'true'; \
     bundle config set --local without 'development test';
-
-WORKDIR /opt/mastodon
 
 ########################################################################################################################
 FROM base as base-builder 
@@ -138,21 +147,13 @@ RUN \
 
 ########################################################################################################################
 FROM base
-ARG UID
-ARG GID
 ARG TZ
 ARG RAILS_ENV
 ARG NODE_ENV
 ARG RAILS_SERVE_STATIC_FILES
+ARG BIND
 ARG MASTODON_VERSION_PRERELEASE
 ARG MASTODON_VERSION_METADATA
-
-RUN set -eux; \
-    echo "${TZ}" > /etc/localtime; \
-    groupadd -g "${GID}" mastodon; \
-    useradd -l -u "$UID" -g "${GID}" -m -d /opt/mastodon mastodon; \
-    # Symlink /opt/mastodon to /mastodon
-    ln -s /opt/mastodon /mastodon;
 
 # [1/3] Copy the git source code into the image layer
 COPY --link . /opt/mastodon
