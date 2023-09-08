@@ -91,7 +91,8 @@ RUN \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 # Patch Jemalloc for use only by Ruby
-RUN patchelf --add-needed libjemalloc.so.2 /usr/local/bin/ruby 
+RUN patchelf --add-needed libjemalloc.so.2 /usr/local/bin/ruby
+ENV MALLOC_CONF="narenas:2,background_thread:true,thp:never,dirty_decay_ms:1000,muzzy_decay_ms:0"
 
 # Create dedicated mastodon user account
 RUN \
@@ -121,9 +122,6 @@ RUN \
 
 # Set the running user
 USER mastodon
-
-# Set Jemalloc environment variables
-# ENV MALLOC_CONF="abort_conf: true, narenas:2, background_thread: true, thp: never, dirty_decay_ms: 1000, muzzy_decay_ms: 0"
 
 # Precompile assets
 RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile
