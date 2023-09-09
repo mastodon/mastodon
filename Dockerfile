@@ -62,7 +62,8 @@ COPY --link --from=node /usr/local /usr/local
 COPY --link --from=node /opt /opt
 
 # Smoke test for node, yarn
-RUN node --version; \
+RUN set -eux; \
+    node --version; \
     yarn --version; \
     rm -rf /tmp/*;
 
