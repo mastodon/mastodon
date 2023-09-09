@@ -58,18 +58,6 @@ ARG TZ
 ARG UID
 ARG GID
 
-# Node image contains node and yarn on /usr/local and /opt
-#
-# See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
-COPY --link --from=node /usr/local /usr/local
-COPY --link --from=node /opt /opt
-
-# Smoke test for node, yarn
-RUN set -eux; \
-    node --version; \
-    yarn --version; \
-    rm -rf /tmp/*;
-
 # Install Runtime dependencies
 RUN set -eux; \
     apt-get update; \
@@ -87,6 +75,18 @@ RUN set -eux; \
         wget \
     ; \
     rm -rf /var/lib/apt/lists/*;
+
+# Node image contains node and yarn on /usr/local and /opt
+#
+# See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
+COPY --link --from=node /usr/local /usr/local
+COPY --link --from=node /opt /opt
+
+# Smoke test for node, yarn
+RUN set -eux; \
+    node --version; \
+    yarn --version; \
+    rm -rf /tmp/*;
 
 WORKDIR /opt/mastodon
 
