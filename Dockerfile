@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.4
 
-ARG TARGETPLATFORM="${TARGETPLATFORM}"
-ARG BUILDPLATFORM="${BUILDPLATFORM}"
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
 
 # Sets baseline for official Ruby container image
 ARG RUBY_VERSION="3.2.2"
@@ -35,7 +35,8 @@ ENV \
   NODE_ENV="production" \
   RAILS_ENV="production" \
   DEBIAN_FRONTEND="noninteractive" \
-  PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin" 
+  PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin" \
+  MALLOC_CONF="narenas:2,background_thread:true,thp:never,dirty_decay_ms:1000,muzzy_decay_ms:0"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
 
@@ -51,6 +52,7 @@ WORKDIR /opt/mastodon
 # Copy Mastodon source code from local build system to container
 COPY --chown=mastodon:mastodon Gemfile* package.json yarn.lock /opt/mastodon/
 
+# Install dependencies needed by all operations
 RUN \
   echo "${TZ}" > /etc/localtime; \
   apt-get update; \
@@ -63,19 +65,10 @@ RUN \
     gnupg2 \
     imagemagick \
     libjemalloc2 \
+    patchelf \
     procps \
     tini \
     tzdata \
-  ; \
-  rm -rf /var/lib/apt/lists/*; \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
-
-# Add Node & Yarn Repos, Install Node
-RUN \
-  apt-get update; \
-  apt-get upgrade -y; \
-  apt-get install -y --no-install-recommends \
-    gnupg2 \
   ; \
   curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null; \
   curl -s https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
@@ -84,25 +77,15 @@ RUN \
   apt-get update; \
   apt-get install -y --no-install-recommends \
     nodejs \
-#    yarn \
-  ; \
-  apt-get purge -y gnupg2; \
-  rm -rf /var/lib/apt/lists/*; \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
-
-# Patch Jemalloc for use only by Ruby
-RUN \ 
-  apt-get update; \
-  apt-get install -y --no-install-recommends \
-      patchelf \
+    yarn \
   ; \
   patchelf --add-needed libjemalloc.so.2 /usr/local/bin/ruby; \
-  apt-get purge -y patchelf; \
+  apt-get purge -y \
+    gnupg2 \
+    patchelf \
+  ; \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
-
-# Improve Jemalloc 5.x performance
-ENV MALLOC_CONF="narenas:2,background_thread:true,thp:never,dirty_decay_ms:1000,muzzy_decay_ms:0"
 
 FROM base as work
 # Install build tools and dependencies from APT
@@ -129,10 +112,11 @@ RUN \
 
 FROM work as ruby
 # Configure bundle
-RUN bundle config set --global frozen "true"; \
-    bundle config set --global cache_all "false"; \
-    bundle config set --local without "development test"; \
-    bundle install;
+RUN \ 
+  bundle config set --global frozen "true"; \
+  bundle config set --global cache_all "false"; \
+  bundle config set --local without "development test"; \
+  bundle install;
 
 FROM work as node
 # Fetch necessary Node dependencies with Yarn
@@ -156,18 +140,14 @@ RUN \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 COPY --chown=mastodon:mastodon . /opt/mastodon
-COPY --from=ruby /opt/mastodon /opt/mastodon/
-COPY --from=ruby /usr/local/bundle/ /usr/local/bundle/
-COPY --from=node /opt/mastodon /opt/mastodon/
+COPY --from=ruby --chown=mastodon:mastodon /opt/mastodon /opt/mastodon/
+COPY --from=ruby --chown=mastodon:mastodon /usr/local/bundle/ /usr/local/bundle/
+COPY --from=node --chown=mastodon:mastodon /opt/mastodon /opt/mastodon/
 
 # Precompile assets
 RUN \
-  apt-get update; \
-  apt-get install -y --no-install-recommends yarn; \
   OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile; \
-  apt-get purge -y yarn; \
-  rm -rf /var/lib/apt/lists/*; \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
+  rm -fr /opt/mastodon/tmp;
 
 # Set the running user
 USER mastodon
