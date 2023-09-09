@@ -58,6 +58,9 @@ ARG TZ
 ARG UID
 ARG GID
 
+# Node image contains node and yarn on /usr/local and /opt
+#
+# See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
 COPY --link --from=node /usr/local /usr/local
 COPY --link --from=node /opt /opt
 
@@ -74,6 +77,7 @@ RUN set -eux; \
         ffmpeg \
         file \
         imagemagick \
+        libatomic1 \
         libicu72 \
         libidn12 \
         libjemalloc2 \
