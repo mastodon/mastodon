@@ -65,12 +65,10 @@ ENV \
 SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
 
 ### Run commands in base image ###
-# Disable automatic apt docker-clean script
 # Sets timezone
 # Creates mastodon user/group and sets home direcotry
 # Creates symlink for /mastodon folder
 RUN \
-  rm -f /etc/apt/apt.conf.d/docker-clean; \
   echo "${TZ}" > /etc/localtime; \
   groupadd -g "${GID}" mastodon; \
   useradd -l -u "${UID}" -g "${GID}" -m -d /opt/mastodon mastodon; \
