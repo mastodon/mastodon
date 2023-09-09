@@ -57,4 +57,24 @@ describe SearchQueryTransformer do
       expect(subject.send(:filter_clauses)).to be_empty
     end
   end
+
+  context 'with \'"hello world"\'' do
+    let(:query) { '"hello world"' }
+
+    it 'transforms clauses' do
+      expect(subject.send(:must_clauses).map(&:phrase)).to contain_exactly('hello world')
+      expect(subject.send(:must_not_clauses)).to be_empty
+      expect(subject.send(:filter_clauses)).to be_empty
+    end
+  end
+
+  context 'with \'before:"2022-01-01 23:00"\'' do
+    let(:query) { 'before:"2022-01-01 23:00"' }
+
+    it 'transforms clauses' do
+      expect(subject.send(:must_clauses)).to be_empty
+      expect(subject.send(:must_not_clauses)).to be_empty
+      expect(subject.send(:filter_clauses).map(&:term)).to contain_exactly(lt: '2022-01-01 23:00', time_zone: 'UTC')
+    end
+  end
 end
