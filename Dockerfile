@@ -63,7 +63,6 @@ RUN \
     gnupg2 \
     imagemagick \
     libjemalloc2 \
-    patchelf \
     procps \
     tini \
     tzdata \
@@ -71,8 +70,13 @@ RUN \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
-# Add Node/Yarn Packages
+# Add Node & Yarn Repos, Install Node
 RUN \
+  apt-get update; \
+  apt-get upgrade -y; \
+  apt-get install -y --no-install-recommends \
+    gnupg2 \
+  ; \
   curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null; \
   curl -s https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
   echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR_VERSION}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list; \
@@ -80,16 +84,27 @@ RUN \
   apt-get update; \
   apt-get install -y --no-install-recommends \
     nodejs \
-    yarn \
+#    yarn \
   ; \
+  apt-get purge -y gnupg2; \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 # Patch Jemalloc for use only by Ruby
-RUN patchelf --add-needed libjemalloc.so.2 /usr/local/bin/ruby
+RUN \ 
+  apt-get update; \
+  apt-get install -y --no-install-recommends \
+      patchelf \
+  ; \
+  patchelf --add-needed libjemalloc.so.2 /usr/local/bin/ruby; \
+  apt-get purge -y patchelf; \
+  rm -rf /var/lib/apt/lists/*; \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
+
+# Improve Jemalloc 5.x performance
 ENV MALLOC_CONF="narenas:2,background_thread:true,thp:never,dirty_decay_ms:1000,muzzy_decay_ms:0"
 
-FROM base as builder
+FROM base as work
 # Install build tools and dependencies from APT
 RUN \
   apt-get update; \
@@ -106,17 +121,20 @@ RUN \
     make \
     python3 \
     shared-mime-info \
+    yarn \
     zlib1g-dev \
   ; \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
+FROM work as ruby
 # Configure bundle
 RUN bundle config set --global frozen "true"; \
     bundle config set --global cache_all "false"; \
     bundle config set --local without "development test"; \
-    bundle install --no-cache;
+    bundle install;
 
+FROM work as node
 # Fetch necessary Node dependencies with Yarn
 RUN \
   yarn install --pure-lockfile --production --network-timeout 600000; \
@@ -138,11 +156,18 @@ RUN \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 COPY --chown=mastodon:mastodon . /opt/mastodon
-COPY --from=builder /opt/mastodon /opt/mastodon/
-COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
+COPY --from=ruby /opt/mastodon /opt/mastodon/
+COPY --from=ruby /usr/local/bundle/ /usr/local/bundle/
+COPY --from=node /opt/mastodon /opt/mastodon/
 
 # Precompile assets
-RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile
+RUN \
+  apt-get update; \
+  apt-get install -y --no-install-recommends yarn; \
+  OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile; \
+  apt-get purge -y yarn; \
+  rm -rf /var/lib/apt/lists/*; \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 # Set the running user
 USER mastodon
