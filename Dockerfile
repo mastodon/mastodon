@@ -155,20 +155,20 @@ FROM work as ruby
 # Configure bundle to prevent changes to Gemfile and Gemfile.lock
 # Configure bundle to not cache downloaded Gems
 # Configure bundle to only process production Gems
-# Download and install required Gems 
-RUN \ 
+# Download and install required Gems
+RUN \
   bundle config set --global frozen "true"; \
   bundle config set --global cache_all "false"; \
   bundle config set --local without "development test"; \
   bundle install;
-  
+
 ### Create temporary node specific build layer from base layer ###
 ## base >> work >> node
 FROM work as node
 # Configure yarn to prevent changes to package.json and yarn.lock
 # Configure yarn to only process production Node packages
 # Download and install required Node packages
-# Cleanup cache of downloaded Node packages 
+# Cleanup cache of downloaded Node packages
 RUN \
   yarn install --pure-lockfile --production --network-timeout 600000; \
   yarn cache clean --all;
