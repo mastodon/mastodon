@@ -192,8 +192,8 @@ RUN \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 ### Copy source code into base layer ###
-# Copy Mastodon source code from build system
-COPY /opt/mastodon /opt/mastodon
+# Copy Mastodon source code from base system
+COPY --from=base /opt/mastodon /opt/mastodon
 # Copy the bundler output from work-ruby layer to /opt/mastodon
 COPY --from=ruby /opt/mastodon /opt/mastodon/
 # Copy the bundler output from work-ruby layer to /usr/local/bundle/
