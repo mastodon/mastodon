@@ -88,6 +88,7 @@ COPY --chown=mastodon:mastodon Gemfile* package.json yarn.lock /opt/mastodon/
 # Patch Ruby to use jemalloc
 # Discard patchelf and gnupg2 after use
 # Cleanup Apt
+# hadolint ignore=DL3008
 RUN \
   apt-get update; \
   apt-get upgrade -y; \
@@ -126,6 +127,7 @@ RUN \
 FROM base as work
 # Install build tools and bundler dependencies from APT
 # Cleanup Apt
+# hadolint ignore=DL3008
 RUN \
   apt-get update; \
   apt-get install -y --no-install-recommends \
@@ -175,6 +177,7 @@ RUN \
 FROM base
 # Apt update install non-dev versions of necessary components
 # Cleanup Apt
+# hadolint ignore=DL3008
 RUN \
   apt-get update; \
   apt-get install -y --no-install-recommends \
@@ -190,7 +193,7 @@ RUN \
 
 ### Copy source code into base layer ###
 # Copy Mastodon source code from build system
-COPY . /opt/mastodon
+COPY /opt/mastodon /opt/mastodon
 # Copy the bundler output from work-ruby layer to /opt/mastodon
 COPY --from=ruby /opt/mastodon /opt/mastodon/
 # Copy the bundler output from work-ruby layer to /usr/local/bundle/
