@@ -61,6 +61,8 @@ namespace :api, format: false do
       end
     end
 
+    resources :notices, only: [:index, :destroy]
+
     # namespace :crypto do
     #   resources :deliveries, only: :create
 
