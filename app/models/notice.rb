@@ -5,7 +5,9 @@ class Notice < ActiveModelSerializers::Model
 
   # Notices a user has seen are stored as a bitmap in
   # `users.seen_notifications`.
-  NOTICE_BIT_MAP = {}.freeze
+  NOTICE_BIT_MAP = {
+    mastodon_privacy_4_2: 1, # rubocop:disable Naming/VariableNumber
+  }.freeze
 
   def dismiss_for_user!(user)
     user.update!(seen_notices: (user.seen_notices || 0) | NOTICE_BIT_MAP[id])
@@ -28,6 +30,23 @@ class Notice < ActiveModelSerializers::Model
       throw ActiveRecord::RecordNotFound unless NOTICE_BIT_MAP.key?(key.to_sym)
 
       send("#{key}_notice")
+    end
+
+    private
+
+    def mastodon_privacy_4_2_notice
+      new(
+        id: :mastodon_privacy_4_2, # rubocop:disable Naming/VariableNumber
+        icon: nil,
+        title: I18n.t('notices.mastodon_privacy_4_2.title'),
+        message: I18n.t('notices.mastodon_privacy_4_2.message'),
+        actions: [
+          Action.new(
+            label: I18n.t('notices.mastodon_privacy_4_2.review'),
+            url: settings_privacy_url
+          ),
+        ]
+      )
     end
   end
 end
