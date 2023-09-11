@@ -62,7 +62,7 @@ class DeliveryFailureTracker
         key.delete_prefix(exhausted_deliveries_key_by(''))
       end
 
-      domains - UnavailableDomain.all.pluck(:domain)
+      domains - UnavailableDomain.pluck(:domain)
     end
 
     def warning_domains_map(domains = nil)
