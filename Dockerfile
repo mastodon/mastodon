@@ -122,9 +122,28 @@ RUN \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
+### Create future run layer from base layer ###
+FROM base as run
+## base >> run
+# Apt update install non-dev versions of necessary components
+# Cleanup Apt
+# hadolint ignore=DL3008
+RUN \
+  apt-get update; \
+  apt-get install -y --no-install-recommends \
+    libssl3 \
+    libpq5 \
+    libicu72 \
+    libidn12 \
+    libreadline8 \
+    libyaml-0-2 \
+  ; \
+  rm -rf /var/lib/apt/lists/*; \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
+
 ### Create temporary build layer from base layer ###
-## base >> work
-FROM base as work
+## base >> build
+FROM base as build
 # Install build tools and bundler dependencies from APT
 # Cleanup Apt
 # hadolint ignore=DL3008
@@ -150,8 +169,8 @@ RUN \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 ### Create temporary ruby specific build layer from base layer ###
-## base >> work >> ruby
-FROM work as ruby
+## base >> build >> build-ruby
+FROM build as build-ruby
 # Configure bundle to prevent changes to Gemfile and Gemfile.lock
 # Configure bundle to not cache downloaded Gems
 # Configure bundle to only process production Gems
@@ -162,9 +181,9 @@ RUN \
   bundle config set --local without "development test"; \
   bundle install;
 
-### Create temporary node specific build layer from base layer ###
-## base >> work >> node
-FROM work as node
+### Create temporary node specific layer from build layer ###
+## base >> build >> build-node
+FROM build as build-node
 # Configure yarn to prevent changes to package.json and yarn.lock
 # Configure yarn to only process production Node packages
 # Download and install required Node packages
@@ -173,33 +192,18 @@ RUN \
   yarn install --pure-lockfile --production --network-timeout 600000; \
   yarn cache clean --all;
 
-### Switch back to original base layer ###
-FROM base
-# Apt update install non-dev versions of necessary components
-# Cleanup Apt
-# hadolint ignore=DL3008
-RUN \
-  apt-get update; \
-  apt-get install -y --no-install-recommends \
-    libssl3 \
-    libpq5 \
-    libicu72 \
-    libidn12 \
-    libreadline8 \
-    libyaml-0-2 \
-  ; \
-  rm -rf /var/lib/apt/lists/*; \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
+### Switch back to original run layer ###
+FROM run
 
-### Copy source code into base layer ###
-# Copy Mastodon source code from base system
+### Copy source code into run layer ###
+# Copy Mastodon source code from run system
 COPY . /opt/mastodon
-# Copy the bundler output from work-ruby layer to /opt/mastodon
-COPY --from=ruby /opt/mastodon /opt/mastodon/
-# Copy the bundler output from work-ruby layer to /usr/local/bundle/
-COPY --from=ruby /usr/local/bundle/ /usr/local/bundle/
-# Copy the yarn output from work-node layer to /opt/mastodon
-COPY --from=node /opt/mastodon /opt/mastodon/
+# Copy the bundler output from build-ruby layer to /opt/mastodon
+COPY --from=build-ruby /opt/mastodon /opt/mastodon/
+# Copy the bundler output from build-ruby layer to /usr/local/bundle/
+COPY --from=build-ruby /usr/local/bundle/ /usr/local/bundle/
+# Copy the yarn output from build-node layer to /opt/mastodon
+COPY --from=build-node /opt/mastodon /opt/mastodon/
 
 ### Mastodon asset (CSS/JS/Image) creation ###
 # Use Ruby on Rails to create Mastodon assets
