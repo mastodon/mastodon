@@ -13,6 +13,7 @@ import { HotKeys } from 'react-hotkeys';
 
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
+import { fetchNotices } from 'mastodon/actions/notices';
 import { INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
 import PictureInPicture from 'mastodon/features/picture_in_picture';
 import { layoutFromWindow } from 'mastodon/is_mobile';
@@ -401,6 +402,7 @@ class UI extends PureComponent {
     }
 
     if (signedIn) {
+      this.props.dispatch(fetchNotices());
       this.props.dispatch(fetchMarkers());
       this.props.dispatch(expandHomeTimeline());
       this.props.dispatch(expandNotifications());
