@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_07_150100) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_11_094812) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -1103,6 +1103,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_150100) do
     t.bigint "role_id"
     t.text "settings"
     t.string "time_zone"
+    t.bigint "seen_notices"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id", where: "(created_by_application_id IS NOT NULL)"
