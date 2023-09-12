@@ -6,6 +6,8 @@
 # See the Securing Rails Applications Guide for more information:
 # https://guides.rubyonrails.org/security.html#content-security-policy-header
 
+require_relative '../../app/lib/content_security_policy'
+
 def host_to_url(str)
   return if str.blank?
 
@@ -14,10 +16,10 @@ def host_to_url(str)
   uri.to_s
 end
 
-base_host = Rails.configuration.x.web_domain
+policy = ContentSecurityPolicy.new
 
 assets_host   = Rails.configuration.action_controller.asset_host
-assets_host ||= host_to_url(base_host)
+assets_host ||= host_to_url(policy.base_host)
 
 media_host   = host_to_url(ENV['S3_ALIAS_HOST'])
 media_host ||= host_to_url(ENV['S3_CLOUDFRONT_HOST'])
