@@ -29,7 +29,8 @@ class Api::V1::Admin::TagsController < Api::BaseController
     if @tag.update(tag_params.merge(reviewed_at: Time.now.utc))
       render json: @tag, serializer: REST::Admin::TagSerializer
     else
-      render json: @tag, serializer: REST::Admin::TagUpdateErrorSerializer, status: 422
+      @tag.reload
+      render json: { error: I18n.t('tags.does_not_match_previous_name') }, status: 422 unless tag_params[:display_name].casecmp(@tag.name.mb_chars).zero?
     end
   end
 
