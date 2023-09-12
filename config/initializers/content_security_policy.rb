@@ -18,8 +18,7 @@ end
 
 policy = ContentSecurityPolicy.new
 
-assets_host   = Rails.configuration.action_controller.asset_host
-assets_host ||= host_to_url(policy.base_host)
+assets_host = policy.assets_host
 
 media_host   = host_to_url(ENV['S3_ALIAS_HOST'])
 media_host ||= host_to_url(ENV['S3_CLOUDFRONT_HOST'])
