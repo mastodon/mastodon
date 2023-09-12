@@ -28,11 +28,7 @@ class ContentSecurityPolicy
   end
 
   def host_to_url(host_string)
-    return if host_string.blank?
-
-    Addressable::URI.parse("http#{Rails.configuration.x.use_https ? 's' : ''}://#{host_string}").tap do |uri|
-      uri.path += '/' unless uri.path.blank? || uri.path.end_with?('/')
-    end.to_s
+    uri_from_configuration_and_string(host_string) if host_string.present?
   end
 
   def s3_alias_host
@@ -49,5 +45,19 @@ class ContentSecurityPolicy
 
   def s3_hostname_host
     host_to_url ENV.fetch('S3_HOSTNAME', nil)
+  end
+
+  def uri_from_configuration_and_string(host_string)
+    Addressable::URI.parse("#{host_protocol}://#{host_from_string_with_optional_path(host_string)}").tap do |uri|
+      uri.path += '/' unless uri.path.blank? || uri.path.end_with?('/')
+    end.to_s
+  end
+
+  def host_protocol
+    Rails.configuration.x.use_https ? 'https' : 'http'
+  end
+
+  def host_from_string_with_optional_path(host_string)
+    host_string.split('/').first
   end
 end
