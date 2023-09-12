@@ -44,7 +44,7 @@ class FeedManager
     when :list
       filter_from_list?(status, receiver) || filter_from_home?(status, receiver.account_id, build_crutches(receiver.account_id, [status]), :list)
     when :mentions
-      filter_from_mentions?(status, receiver.id)
+      filter_from_mentions?(status, receiver)
     when :tags
       filter_from_tags?(status, receiver.id, build_crutches(receiver.id, [status]))
     else
@@ -409,10 +409,10 @@ class FeedManager
   # Check if status should not be added to the mentions feed
   # @see NotifyService
   # @param [Status] status
-  # @param [Integer] receiver_id
+  # @param [Account] receiver
   # @return [Boolean]
-  def filter_from_mentions?(status, receiver_id)
-    return true if receiver_id == status.account_id
+  def filter_from_mentions?(status, receiver)
+    return true if receiver.id == status.account_id
 
     # This filter is called from NotifyService, but already after the sender of
     # the notification has been checked for mute/block. Therefore, it's not
@@ -420,10 +420,25 @@ class FeedManager
     check_for_blocks = status.active_mentions.pluck(:account_id)
     check_for_blocks.push(status.in_reply_to_account) if status.reply? && !status.in_reply_to_account_id.nil?
 
-    should_filter   = blocks_or_mutes?(receiver_id, check_for_blocks, :mentions)                                                       # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked (or muted)
-    should_filter ||= status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists? # of if the account is silenced and I'm not following them
+    # Filter if it's from someone blocked, in reply to someone blocked, or mentioning someone blocked (or muted)
+    should_filter   = blocks_or_mutes?(receiver.id, check_for_blocks, :mentions)
+    # or if it's a silenced user and the recipient's settings don't allow that
+    should_filter ||= status.account.silenced? && !bypass_silenced?(receiver, status.account)
 
     should_filter
+  end
+
+  def bypass_silenced?(receiver, sender)
+    return receiver.following?(sender) if receiver.user.nil?
+
+    case receiver.user.settings['show_limited_users']
+    when 'none'
+      receiver.following?(sender)
+    when 'followers'
+      receiver.following?(sender) || receiver.followed_by?(sender)
+    when 'all'
+      true
+    end
   end
 
   # Check if status should not be added to the list feed

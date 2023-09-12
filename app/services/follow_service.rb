@@ -36,7 +36,7 @@ class FollowService < BaseService
     # and the feeds are being merged
     mark_home_feed_as_partial! if @source_account.not_following_anyone?
 
-    if (@target_account.locked? && !@options[:bypass_locked]) || @source_account.silenced? || @target_account.activitypub?
+    if (@target_account.locked? && !@options[:bypass_locked]) || (@source_account.silenced? && !bypass_silence?) || @target_account.activitypub?
       request_follow!
     elsif @target_account.local?
       direct_follow!
@@ -44,6 +44,19 @@ class FollowService < BaseService
   end
 
   private
+
+  def bypass_silence?
+    return false if @target_account.user.nil?
+
+    case @target_account.user.settings['show_limited_users']
+    when 'none'
+      @target_account.following?(@source_account) || @target_account.requested?(@source_account)
+    when 'followers'
+      false
+    when 'all'
+      true
+    end
+  end
 
   def mark_home_feed_as_partial!
     redis.set("account:#{@source_account.id}:regeneration", true, nx: true, ex: 1.day.seconds)

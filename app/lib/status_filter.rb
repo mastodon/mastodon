@@ -38,7 +38,20 @@ class StatusFilter
   end
 
   def silenced_account?
-    !account&.silenced? && status_account_silenced? && !account_following_status_account?
+    status_account_silenced? && !bypass_silence?
+  end
+
+  def bypass_silence?
+    return account_following_status_account? if @account&.user.nil?
+
+    case @account.user.settings['show_limited_users']
+    when 'none'
+      account_following_status_account?
+    when 'followers'
+      account_followed_by_status_account?
+    when 'all'
+      true
+    end
   end
 
   def status_account_silenced?
@@ -47,6 +60,10 @@ class StatusFilter
 
   def account_following_status_account?
     @preloaded_relations[:following] ? @preloaded_relations[:following][status.account_id] : account&.following?(status.account_id)
+  end
+
+  def account_followed_by_status_account?
+    @preloaded_relations[:followed_by] ? @preloaded_relations[:followed_by][status.account_id] : account&.followed_by?(status.account)
   end
 
   def blocked_by_policy?

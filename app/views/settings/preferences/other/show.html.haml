@@ -23,6 +23,13 @@
     .fields-group
       = ff.input :default_sensitive, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_default_sensitive'), hint: I18n.t('simple_form.hints.defaults.setting_default_sensitive')
 
+    %h4= t 'preferences.limited_accounts'
+
+    %p.hint= t 'preferences.limited_accounts_hint'
+
+    .fields-group
+      = ff.input :show_limited_users, collection: %w(none followers all), label_method: ->(item) { safe_join([t("simple_form.labels.defaults.setting_show_limited_users_#{item}"), content_tag(:span, t("simple_form.hints.defaults.setting_show_limited_users_#{item}"), class: 'hint')]) }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+
   %h4= t 'preferences.public_timelines'
 
   .fields-group
