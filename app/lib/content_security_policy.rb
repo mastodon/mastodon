@@ -9,17 +9,45 @@ class ContentSecurityPolicy
     url_from_configured_asset_host || url_from_base_host
   end
 
+  def media_host
+    cdn_host_value || assets_host
+  end
+
   private
 
   def url_from_configured_asset_host
     Rails.configuration.action_controller.asset_host
   end
 
+  def cdn_host_value
+    s3_alias_host || s3_cloudfront_host || azure_alias_host || s3_hostname_host
+  end
+
   def url_from_base_host
     host_to_url(base_host)
   end
 
-  def host_to_url(str)
-    "http#{Rails.configuration.x.use_https ? 's' : ''}://#{str.split('/').first}" if str.present?
+  def host_to_url(host_string)
+    return if host_string.blank?
+
+    Addressable::URI.parse("http#{Rails.configuration.x.use_https ? 's' : ''}://#{host_string}").tap do |uri|
+      uri.path += '/' unless uri.path.blank? || uri.path.end_with?('/')
+    end.to_s
+  end
+
+  def s3_alias_host
+    host_to_url ENV.fetch('S3_ALIAS_HOST', nil)
+  end
+
+  def s3_cloudfront_host
+    host_to_url ENV.fetch('S3_CLOUDFRONT_HOST', nil)
+  end
+
+  def azure_alias_host
+    host_to_url ENV.fetch('AZURE_ALIAS_HOST', nil)
+  end
+
+  def s3_hostname_host
+    host_to_url ENV.fetch('S3_HOSTNAME', nil)
   end
 end

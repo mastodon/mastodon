@@ -58,4 +58,60 @@ describe ContentSecurityPolicy do
       end
     end
   end
+
+  describe '#media_host' do
+    context 'when there is no configured CDN' do
+      it 'defaults to using the assets_host value' do
+        expect(subject.media_host).to eq(subject.assets_host)
+      end
+    end
+
+    context 'when an S3 alias host is configured' do
+      around do |example|
+        ClimateControl.modify S3_ALIAS_HOST: 'asset-host.s3-alias.example' do
+          example.run
+        end
+      end
+
+      it 'uses the s3 alias host value' do
+        expect(subject.media_host).to eq 'https://asset-host.s3-alias.example'
+      end
+    end
+
+    context 'when an S3 cloudfront host is configured' do
+      around do |example|
+        ClimateControl.modify S3_CLOUDFRONT_HOST: 'asset-host.s3-cloudfront.example' do
+          example.run
+        end
+      end
+
+      it 'uses the s3 cloudfront host value' do
+        expect(subject.media_host).to eq 'https://asset-host.s3-cloudfront.example'
+      end
+    end
+
+    context 'when an azure alias host is configured' do
+      around do |example|
+        ClimateControl.modify AZURE_ALIAS_HOST: 'asset-host.azure-alias.example' do
+          example.run
+        end
+      end
+
+      it 'uses the azure alias host value' do
+        expect(subject.media_host).to eq 'https://asset-host.azure-alias.example'
+      end
+    end
+
+    context 'when s3_enabled is configured' do
+      around do |example|
+        ClimateControl.modify S3_ENABLED: 'true', S3_HOSTNAME: 'asset-host.s3.example' do
+          example.run
+        end
+      end
+
+      it 'uses the s3 hostname host value' do
+        expect(subject.media_host).to eq 'https://asset-host.s3.example'
+      end
+    end
+  end
 end

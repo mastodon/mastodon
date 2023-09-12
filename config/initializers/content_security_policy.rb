@@ -8,23 +8,9 @@
 
 require_relative '../../app/lib/content_security_policy'
 
-def host_to_url(str)
-  return if str.blank?
-
-  uri = Addressable::URI.parse("http#{Rails.configuration.x.use_https ? 's' : ''}://#{str}")
-  uri.path += '/' unless uri.path.blank? || uri.path.end_with?('/')
-  uri.to_s
-end
-
 policy = ContentSecurityPolicy.new
-
 assets_host = policy.assets_host
-
-media_host   = host_to_url(ENV['S3_ALIAS_HOST'])
-media_host ||= host_to_url(ENV['S3_CLOUDFRONT_HOST'])
-media_host ||= host_to_url(ENV['AZURE_ALIAS_HOST'])
-media_host ||= host_to_url(ENV['S3_HOSTNAME']) if ENV['S3_ENABLED'] == 'true'
-media_host ||= assets_host
+media_host = policy.media_host
 
 def sso_host
   return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true'
