@@ -201,7 +201,7 @@ module Mastodon
     # We use our own middleware for this
     config.public_file_server.enabled = false
 
-    config.middleware.use PublicFileServerMiddleware if Rails.env.development? || Rails.env.test? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true'
+    config.middleware.use PublicFileServerMiddleware if Rails.env.local? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true' # rubocop:disable Rails/UnknownEnv
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware
 
