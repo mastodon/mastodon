@@ -12,7 +12,7 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
       # could end up being a very large array
 
       scope.reorder(nil).find_in_batches(batch_size: @batch_size) do |tmp|
-        in_work_unit(get_status_ids(tmp)) do |status_ids|
+        in_work_unit(tmp.map(&:status_id)) do |status_ids|
           deleted = 0
 
           bulk = ActiveRecord::Base.connection_pool.with_connection do
@@ -59,12 +59,6 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
     ]
   end
 
-  def get_status_ids(scope)
-    scope.map(&:status_id)
-  rescue NoMethodError
-    scope.map(&:in_reply_to_id)  # local_replied_scope
-  end
-
   def local_mentions_scope
     Mention.where(account: Account.local, silent: false).select(:id, :status_id)
   end
@@ -86,6 +80,6 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
   end
 
   def local_replied_scope
-    Status.local.where.not(in_reply_to_id: nil).where('in_reply_to_account_id != account_id').select(:id, :in_reply_to_id)
+    Status.local.where.not(in_reply_to_id: nil).where('in_reply_to_account_id != account_id').select(:id, 'in_reply_to_id AS status_id')
   end
 end
