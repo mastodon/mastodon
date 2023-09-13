@@ -309,6 +309,7 @@ et:
       unpublish: Tühista avaldamine
       unpublished_msg: Teadaande eemaldamine avalikkusest õnnestus!
       updated_msg: Teadaande uuendamine õnnestus!
+    critical_update_pending: Kriitiline turvauuendus ootel
     custom_emojis:
       assign_category: Määra kategooria
       by_domain: Domeen
@@ -770,10 +771,27 @@ et:
           approved: Kinnitus vajalik konto loomisel
           none: Keegi ei saa kontoid luua
           open: Kõik võivad kontoid luua
+      security:
+        authorized_fetch: Nõua föderatiivse serveripoolset autoriseerimist
+        authorized_fetch_hint: Föderatiivsete serverite poolse autoriseerimise nõudmine võimaldab nii kasutaja- kui ka serveritasandi blokeeringute rangemat jõustamist. See toob aga kaasa jõudluse vähenemise, vähendab vastuste ulatust ja võib tekitada ühilduvusprobleeme mõne ühendatud teenusega. Lisaks ei takista see teatud kasutajatel sinu avalike postituste ja kontode kättesaamist.
+        authorized_fetch_overridden_hint: Sa ei saa hetkel seda seadistust muuta, sest see on keskkonnamuutuja poolt alistatud.
+        federation_authentication: Föderatiivse autentimise jõustamine
       title: Serveri seaded
     site_uploads:
       delete: Kustuta üleslaetud fail
       destroyed_msg: Üleslaetud fail edukalt kustutatud!
+    software_updates:
+      critical_update: Kriitiline — uuenda kiiresti
+      description: On soovitav hoida oma Mastodoni paigaldus kõige uuemal kujul, et saada kasu kõige värskematest parandustest ja oskustest. Lisaks, vahel on Mastodoni kiire uuendamine kriitiline, et vältida turvaprobleeme. Neil põhjustel kontrollib Mastodon uuendusi iga 30 minuti tagant ja teavitab sind vastavalt su e-posti teavituste eelistustele.
+      documentation_link: Saa rohkem teada
+      release_notes: Väljalaskemärkused
+      title: Saadaval uuendused
+      type: Tüüp
+      types:
+        major: Suur uuendus
+        minor: Väike uuendus
+        patch: Parandusuuendus — veaparandused ja hõlpsalt rakendatavad muudatused
+      version: Versioon
     statuses:
       account: Autor
       application: Rakendus
@@ -824,6 +842,12 @@ et:
         message_html: Serverireegleid pole defineeritud.
       sidekiq_process_check:
         message_html: Ühtegi Sidekiq protsessi pole %{value} järjekorra jaoks. Sidekiq seadistus vajab üle vaatamist
+      software_version_critical_check:
+        action: Vaata saadaolevaid uuendusi
+        message_html: Saadaval on Mastodoni kriitiline uuendus, uuenda nii kiiresti kui võimalik.
+      software_version_patch_check:
+        action: Vaata saadaolevaid uuendusi
+        message_html: Saadaval on Mastodoni veaparandusuuendus.
       upload_check_privacy_error:
         action: Klõpsa lisainfo saamiseks siia
         message_html: "<strong>Veebiserver on valesti seadistatud. Kasutajate privaatsus on ohustatud.</strong>"
@@ -937,6 +961,9 @@ et:
       body: "%{target} vaidlustab %{action_taken_by} modereerimisotsuse kuupäevaga %{date}: %{type}. Põhjendus:"
       next_steps: Võid modereeringu tagasi pööramiseks vaidlustuse rahuldada, või ka mitte.
       subject: "%{username} on vaidlustanud %{instance} modereerimisotsuse"
+    new_critical_software_updates:
+      body: Avaldatud on Mastodoni uus kriitiline versioon, sa võiksid selle paigaldada nii ruttu kui võimalik!
+      subject: Saadaval on Mastodoni kriitilised uuendused %{instance} jaoks!
     new_pending_account:
       body: Uue konto üksikasjad on allpool. Saad taotluse vastu võtta või tagasi lükata.
       subject: Uus konto valmis ülevaatluseks serveril %{instance} (%{username})
@@ -944,6 +971,9 @@ et:
       body: "%{reporter} teavitas kasutajast %{target}"
       body_remote: Keegi domeenist %{domain} teavitas kasutajast %{target}
       subject: Uus teavitus %{instance}-ile (#%{id})
+    new_software_updates:
+      body: Avaldatud on Mastodoni uued versioonid. Sa võiksid uuendada!
+      subject: Saadaval on Mastodoni uued versioonid %{instance} jaoks!
     new_trends:
       body: 'Järgmised üksused vajavad enne avalikustamist ülevaatust:'
       new_trending_links:
@@ -1432,6 +1462,7 @@ et:
     update:
       subject: "%{name} muutis postitust"
   notifications:
+    administration_emails: Admini e-postiteavitused
     email_events: E-posti teadete sündmused
     email_events_hint: 'Vali sündmused, mille kohta soovid teavitusi:'
     other_settings: Muud teadete sätted
@@ -1475,6 +1506,15 @@ et:
     other: Muu
     posting_defaults: Postitamise vaikesätted
     public_timelines: Avalikud ajajooned
+  privacy:
+    hint_html: "<strong>Kohanda, kuidas peaks su postitused ja profiil leitav olema.</strong> Mastodonis olevad paljud oskused võimaldavad jõuda sul rohkemate inimesteni, kui need lubada. Võta üks hetk, et vaadata need üle, et veenduda, kas sinu puhul need sobivad."
+    privacy: Privaatsus
+    privacy_hint_html: Määra, kui palju soovid teiste heaks infot avaldada. Inimesed leiavad huvitavaid profiile ning lahedaid äppe sirvides teiste inimeste jälgimisi ja vaadates, milliste äppidega nad postitavad, kuid sa võid soovida hoida seda varjatuna.
+    reach: Ulatus
+    reach_hint_html: Määra, kas soovid olla leitav ja jälgitav uute inimeste poolt. Kas soovid, et su postitused ilmuksid uurimise ekraanil? Kas soovid, et teised inimesed näeksid sind oma jälgitavate soovituste hulgas? Kas soovid nõustuda kõigi uute jälgijatega automaatselt või soovid igaühe puhul täpsemaid valikuid?
+    search: Otsi
+    search_hint_html: Määra, kuidas sind leitakse. Kas soovid, et inimesed leiavad sind su avalike postituste alusel? Kas soovid, et väljaspool Mastodoni olevad inimesed leiavad veebis otsides su profiili? Pea meeles, et avaliku info puhul pole kõigist otsimootoritest info välistamine tagatav.
+    title: Privaatsus ja ulatus
   privacy_policy:
     title: Isikuandmete kaitse
   reactions:
@@ -1686,6 +1726,11 @@ et:
       default: "%d. %B, %Y. aastal, kell %H:%M"
       month: "%B %Y"
       time: "%H:%M"
+      with_time_zone: "%b. %d %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Üle-serveriline tõlketeenuse kasutuskvoot on ületatud.
+      too_many_requests: Viimane aeg on tõlketeenusele esitatud liiga palju taotlusi.
   two_factor_authentication:
     add: Lisa
     disable: Keela 2FA

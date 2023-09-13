@@ -1,7 +1,7 @@
 ---
 nl:
   about:
-    about_mastodon_html: 'Het sociale netwerk van de toekomst: geen advertenties, geen bedrijven die meekijken, ethisch ontworpen, en gedecentraliseerd! Wees eigenaar van jouw eigen gegevens met Mastodon!'
+    about_mastodon_html: 'Het sociale netwerk van de toekomst: geen reclame, geen meekijkende bedrijven, ethisch ontwerp, en gedecentraliseerd! Met Mastodon ben je baas over je eigen gegevens!'
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
     hosted_on: Mastodon op %{domain}
@@ -309,6 +309,7 @@ nl:
       unpublish: Uitschakelen
       unpublished_msg: Ongedaan maken van gepubliceerde mededeling geslaagd!
       updated_msg: Bijwerken van mededeling geslaagd!
+    critical_update_pending: Kritieke update in behandeling
     custom_emojis:
       assign_category: Categorie toewijzen
       by_domain: Domein
@@ -770,10 +771,27 @@ nl:
           approved: Goedkeuring vereist om te kunnen registreren
           none: Niemand kan zich registreren
           open: Iedereen kan zich registreren
+      security:
+        authorized_fetch: Verificatie van gefedeerde servers vereisen
+        authorized_fetch_hint: Verificatie vereisen van gefedereerde servers maakt een striktere handhaving van blokkades op gebruikersniveau en serverniveau mogelijk. Dit gaat echter ten koste van de prestaties, vermindert het bereik van je reacties en kan compatibiliteitsproblemen met sommige gefedereerde services opleveren. Bovendien zal dit niet voorkomen dat personen met slechte bedoelingen je openbare berichten en accounts kunnen ophalen.
+        authorized_fetch_overridden_hint: Je kunt momenteel deze instelling niet wijzigen, omdat deze is overschreven door een omgevingsvariabele.
+        federation_authentication: Afgedwongen federatie-verificatie
       title: Serverinstellingen
     site_uploads:
       delete: Geüpload bestand verwijderen
       destroyed_msg: Verwijderen website-upload geslaagd!
+    software_updates:
+      critical_update: Kritiek — update snel
+      description: Het wordt aanbevolen om je Mastodon-installatie up-to-date te houden om gebruik te kunnen maken van de nieuwste oplossingen en functies. Bovendien is het soms cruciaal om Mastodon tijdig bij te werken om veiligheidsproblemen te voorkomen. Om deze redenen controleert Mastodon elke 30 minuten updates en brengt je hiervan op de hoogte volgens jouw voorkeuren voor e-mailmeldingen.
+      documentation_link: Meer leren
+      release_notes: Release-opmerkingen
+      title: Beschikbare updates
+      type: Type
+      types:
+        major: Grote release
+        minor: Kleine release
+        patch: Patchrelease - bugfixes en eenvoudig toe te passen wijzigingen
+      version: Versie
     statuses:
       account: Account
       application: Toepassing
@@ -814,6 +832,20 @@ nl:
     system_checks:
       database_schema_check:
         message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
+      elasticsearch_health_red:
+        message_html: Elasticsearch-cluster is ongezond (rode status), zoekfuncties zijn niet beschikbaar
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch-cluster is ongezond (gele status), misschien wil je de reden onderzoeken
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch-indextoewijzingen zijn verouderd. Voer <code>tootctl search deploy --only=%{value}</code> uit
+      elasticsearch_preset:
+        action: Zie documentatie
+        message_html: Jouw Elasticsearch-cluster heeft meer dan één node, maar Mastodon is niet geconfigureerd om ze te gebruiken.
+      elasticsearch_preset_single_node:
+        action: Zie documentatie
+        message_html: Jouw Elasticsearch-cluster heeft slechts één node, <code>ES_PRESET</code> moet worden ingesteld op <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Jouw Elasticsearch-systeemindex is verouderd vanwege een instellingswijziging. Voer <code>tootctl search deploy --reset-chewy</code> uit om het bij te werken.
       elasticsearch_running_check:
         message_html: Kon geen verbinding maken met Elasticsearch. Controleer dat Elasticsearch wordt uitgevoerd of schakel full-text-zoeken uit
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ nl:
         message_html: Je hebt voor deze server geen regels opgesteld.
       sidekiq_process_check:
         message_html: Er draait geen Sidekiqproces voor de wachtrij(en) %{value}. Controleer je Sidekiqconfiguratie
+      software_version_critical_check:
+        action: Bekijk de beschikbare updates
+        message_html: Er is een kritieke update voor Mastodon beschikbaar. Update zo snel mogelijk.
+      software_version_patch_check:
+        action: Beschikbare updates bekijken
+        message_html: Er is een Mastodon-update voor een bugfix beschikbaar.
       upload_check_privacy_error:
         action: Klik hier voor meer informatie
         message_html: "<strong>Jouw webserver is verkeerd geconfigureerd. De privacy van je gebruikers is in gevaar.</strong>"
@@ -937,6 +975,9 @@ nl:
       body: "%{target} maakt bezwaar tegen een moderatiemaatregel door %{action_taken_by} op %{date}, betreffende %{type}. De gebruiker schrijft:"
       next_steps: Je kunt het bezwaar goedkeuren om daarmee de moderatiemaatregel ongedaan te maken, of je kunt het verwerpen.
       subject: "%{username} maakt bezwaar tegen een moderatiemaatregel op %{instance}"
+    new_critical_software_updates:
+      body: Nieuwe kritische versies van Mastodon zijn vrijgegeven. Je zou zo snel mogelijk moeten bijwerken!
+      subject: Kritieke Mastodon-updates zijn beschikbaar voor %{instance}!
     new_pending_account:
       body: Zie hieronder de details van het nieuwe account. Je kunt de aanvraag goedkeuren of afwijzen.
       subject: Er dient een nieuw account op %{instance} te worden beoordeeld (%{username})
@@ -944,6 +985,9 @@ nl:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: Nieuwe rapportage op %{instance} (#%{id})
+    new_software_updates:
+      body: Nieuwe versies van Mastodon zijn vrijgegeven. Je wilt misschien bijwerken!
+      subject: Nieuwe versies van Mastodon zijn beschikbaar voor %{instance}!
     new_trends:
       body: 'De volgende items moeten worden beoordeeld voordat ze openbaar kunnen worden getoond:'
       new_trending_links:
@@ -1432,6 +1476,7 @@ nl:
     update:
       subject: "%{name} bewerkte een bericht"
   notifications:
+    administration_emails: E-mailmeldingen beheerder
     email_events: E-mailmeldingen voor gebeurtenissen
     email_events_hint: 'Selecteer gebeurtenissen waarvoor je meldingen wilt ontvangen:'
     other_settings: Andere meldingsinstellingen
@@ -1475,6 +1520,15 @@ nl:
     other: Overig
     posting_defaults: Standaardinstellingen voor berichten
     public_timelines: Openbare tijdlijnen
+  privacy:
+    hint_html: "<strong>Hoe wil je dat jouw profiel en berichten kunnen worden gevonden?</strong> Een verscheidenheid aan functies in Mastodon kunnen je helpen om een groter publiek te bereiken als ze zijn ingeschakeld. Neem rustig de tijd om deze instellingen te bekijken, om er zo zeker van te zijn dat ze aan jouw wensen voldoen."
+    privacy: Privacy
+    privacy_hint_html: Hoeveel informatie wil je aan andere gebruikers kwijt? Mensen ontdekken interessante accounts en coole apps door te bekijken welke accounts jij volgt en door te bekijken welke app jij gebruikt voor het plaatsen van berichten. Het kan achter zo zijn dat je dit liever verborgen houdt.
+    reach: Bereik
+    reach_hint_html: Wil je door nieuwe mensen worden ontdekt en gevolgd? Wil je dat jouw berichten op de pagina Verkennen worden getoond? Wil je aan andere mensen worden aanbevolen en in de gebruikersgids staan? Wil je nieuwe volgers automatisch accepteren of wil je die handmatig kunnen goedkeuren?
+    search: Zoeken
+    search_hint_html: Hoe wil je worden gevonden? Wil je dat mensen jou kunnen vinden via jouw openbare berichten? Wil je dat mensen buiten Mastodon jouw profiel kunnen vinden wanneer ze op het web zoeken? Vergeet echter niet dat jouw openbare berichten en profiel nooit volledig beschermd kunnen worden tegen zoekmachines.
+    title: Privacy en bereik
   privacy_policy:
     title: Privacybeleid
   reactions:
@@ -1684,6 +1738,11 @@ nl:
       default: "%d %B %Y om %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Het gebruikersquotum voor de vertaaldienst is overschreden.
+      too_many_requests: Er zijn de laatste tijd te veel verzoeken ingediend bij de vertaaldienst.
   two_factor_authentication:
     add: Toevoegen
     disable: Tweestapsverificatie uitschakelen

@@ -5,7 +5,7 @@ sk:
     contact_missing: Nezadaný
     contact_unavailable: Neuvedený/á
     hosted_on: Mastodon hostovaný na %{domain}
-    title: O
+    title: Ohľadom
   accounts:
     follow: Nasleduj
     followers:
@@ -174,6 +174,7 @@ sk:
         confirm_user: Potvrď užívateľa
         create_account_warning: Vytvor výstrahu
         create_announcement: Vytvor oboznámenie
+        create_canonical_email_block: Vytvor blokovanie emailu
         create_custom_emoji: Vytvor vlastné emotikony
         create_domain_allow: Vytvor povolenie pre doménu
         create_domain_block: Vytvor zákaz domény
@@ -212,21 +213,34 @@ sk:
         unsilence_account: Zvráť obmedzenie účtu
         unsuspend_account: Odblokuj účet
         update_announcement: Aktualizuj oboznámenie
+        update_custom_emoji: Aktualizuj vlastné emotikony
         update_domain_block: Aktualizuj zákaz domény
         update_ip_block: Aktualizovať IP pravidlo
         update_status: Aktualizuj stav
         update_user_role: Aktualizovať rolu
       actions:
+        approve_appeal_html: "%{name} odsúhlasil/a námietku na moderátorské rozhodnutie od %{target}"
+        approve_user_html: "%{name} odsúhlasil/a registráciu od %{target}"
         assigned_to_self_report_html: "%{name} pridelil/a hlásenie užívateľa %{target} sebe"
         change_email_user_html: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
+        change_role_user_html: "%{name} zmenil/a rolu pre %{target}"
         confirm_user_html: "%{name} potvrdil/a emailovú adresu používateľa %{target}"
         create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
+        create_announcement_html: "%{name} vytvoril/a nové oboznámenie %{target}"
+        create_custom_emoji_html: "%{name} nahral/a novú emotikonu %{target}"
+        create_domain_block_html: "%{name} zablokoval/a doménu %{target}"
+        create_email_domain_block_html: "%{name} zablokoval/a e-mailovú doménu %{target}"
+        create_user_role_html: "%{name} vytvoril/a rolu pre %{target}"
         demote_user_html: "%{name} degradoval/a užívateľa %{target}"
+        destroy_announcement_html: "%{name} vymazal/a oboznámenie %{target}"
         destroy_canonical_email_block_html: "%{name} odblokoval/i email z hašom %{target}"
+        destroy_custom_emoji_html: "%{name} vymazal/a emotikonu %{target}"
         destroy_domain_allow_html: "%{name} zakázal/a federáciu s doménou %{target}"
         destroy_domain_block_html: "%{name} odblokoval/i doménu %{target}"
+        destroy_email_domain_block_html: "%{name} odblokoval/a e-mailovú doménu %{target}"
         destroy_ip_block_html: "%{name} vymazal/a pravidlo pre IP %{target}"
         destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
+        destroy_user_role_html: "%{name} vymazal/a rolu pre %{target}"
         memorialize_account_html: "%{name} zmenil/a účet %{target} na pamätnú stránku"
         reject_appeal_html: "%{name} zamietol/la námietku moderovacieho rozhodnutia od %{target}"
         reopen_report_html: "%{name} znovu otvoril/a nahlásenie %{target}"
@@ -237,6 +251,7 @@ sk:
         silence_account_html: "%{name} obmedzil/a účet %{target}"
         suspend_account_html: "%{name} zablokoval/a účet používateľa %{target}"
         unassigned_report_html: "%{name} odobral/a report od %{target}"
+        update_user_role_html: "%{name} zmenil/a rolu pre %{target}"
       deleted_account: zmazaný účet
       empty: Žiadne záznamy nenájdené.
       filter_by_action: Filtruj podľa úkonu
@@ -257,6 +272,7 @@ sk:
       scheduled_msg: Oboznámenie bolo naplánované na zverejnenie!
       title: Oboznámenia
       unpublish: Zruš zverejnenie
+      updated_msg: Oboznámenie úspešne aktualizované!
     custom_emojis:
       assign_category: Priraď kategóriu
       by_domain: Doména
@@ -402,6 +418,7 @@ sk:
         instance_accounts_dimension: Najsledovanejšie účty
         instance_accounts_measure: uložené účty
         instance_follows_measure: ich sledovatelia tu
+        instance_reports_measure: hlásenia o nich
         instance_statuses_measure: uložené príspevky
       delivery:
         all: Všetko
@@ -418,7 +435,7 @@ sk:
       total_blocked_by_us: Nami blokované
       total_followed_by_them: Nimi sledované
       total_followed_by_us: Nami sledované
-      total_reported: Nahlásenia o nich
+      total_reported: Hlásenia o nich
       total_storage: Mediálne prílohy
     invites:
       deactivate_all: Pozastav všetky
@@ -553,7 +570,7 @@ sk:
       title: Serverové pravidlá
     settings:
       about:
-        title: O
+        title: Ohľadom
       appearance:
         title: Vzhľad
       discovery:
@@ -1134,6 +1151,9 @@ sk:
   time:
     formats:
       default: "%b %d, %R, %H:%M"
+  translation:
+    errors:
+      too_many_requests: V poslednej dobe bolo na prekladateľskú službu vykonaných priveľa požiadaviek.
   two_factor_authentication:
     disable: Zakáž
     enabled: Dvojfázové overovanie je povolené

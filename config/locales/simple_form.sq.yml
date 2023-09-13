@@ -3,9 +3,13 @@ sq:
   simple_form:
     hints:
       account:
+        discoverable: Postimet dhe profili juaj publik mund të shfaqen, ose rekomandohen në zona të ndryshme të Mastodon-it dhe profili juaj mund të sugjerohet përdoruesve të tjerë.
         display_name: Emri juaj i plotë, ose emri juaj lojcak.
         fields: Faqja juaj hyrëse, përemra, moshë, ç’të keni qejf.
+        indexable: Postimet tuaja publike mund të shfaqen në përfundime kërkimesh në Mastodon. Pavarësisht nga kjo, personat që kanë ndërvepruar me postimet tuaja, mund të jenë në gjendje të kërkojnë për to.
         note: 'Mundeni të @përmendni persona apo #hashtagë të tjerë.'
+        show_collections: Njerëzit do të jenë në gjendje të shfletojnë ndjekjet dhe ndjekësit tuaj. Njerëzit që ndiqni, do ta shohin që i ndiqni.
+        unlocked: Njerëzit do të jenë në gjendje t’ju ndjekin pa u dashur miratim. Hiqjani shenjën, nëse doni të shqyrtoni kërkesa ndjekjeje dhe të zgjidhni pranimin apo hedhjen poshtë e ndjekësve të rinj.
       account_alias:
         acct: Specifikoni emrinepërdoruesit@përkatësi të llogarisë prej nga doni të lëvizet
       account_migration:
@@ -116,6 +120,9 @@ sq:
       sessions:
         otp: 'Jepni kodin dyfaktorësh të prodhuar nga aplikacioni i telefonit tuaj ose përdorni një nga kodet tuaj të rikthimeve:'
         webauthn: Nëse është një diskth USB, sigurohuni se e keni futur dhe, në qoftë e nevojshme, prekeni.
+      settings:
+        indexable: Faqja e profilit tuaj mund të shfaqet në përfundime kërkimi në Google, Bing dhe të tjerë.
+        show_application: Pavarësisht nga kjo, do të jeni përherë në gjendje të shihni cili aplikacion botoi postimin tuaj.
       tag:
         name: Mund të ndryshoni shkronjat vetëm nga të mëdha në të vogla ose anasjelltas, për shembull, për t’i bërë më të lexueshme
       user:
@@ -133,9 +140,13 @@ sq:
         url: Ku do të dërgohen aktet
     labels:
       account:
+        discoverable: Profilin dhe postimet bëji objekt të algoritmeve të zbulimit
         fields:
           name: Etiketë
           value: Lëndë
+        indexable: Përfshi postime publike në përfundime kërkimi
+        show_collections: Shfaq te profili ndjekje dhe ndjekës
+        unlocked: Prano automatikisht ndjekës të rinj
       account_alias:
         acct: Trajtim i llogarisë së vjetër
       account_migration:
@@ -280,9 +291,18 @@ sq:
         pending_account: Llogaria e re lyp shqyrtim
         reblog: Dikush përforcoi gjendjen tuaj
         report: Parashtrohet raportim i ri
+        software_updates:
+          all: Njofto për krejt përditësimet
+          critical: Njofto vetëm për përditësime kritike
+          label: Ka gati një version të ri Mastodon-i
+          none: Mos njofto apo përditëso kurrë (nuk rekomandohet)
+          patch: Njofto për ndreqje të metash
         trending_tag: Për gjëra të reja në modë lypset shqyrtim
       rule:
         text: Rregull
+      settings:
+        indexable: Përfshi faqe profili në motorë kërkimesh
+        show_application: Shfaq prej cilit aplikacion dërguat një postim
       tag:
         listable: Lejoje këtë hashtag të shfaqet në kërkime dhe në drejtori profilesh
         name: Hashtag
@@ -303,6 +323,7 @@ sq:
         url: URL pikëmbarimi
     'no': Jo
     not_recommended: Jo e këshilluar
+    overridden: I anashkaluar
     recommended: E rekomanduar
     required:
       mark: "*"

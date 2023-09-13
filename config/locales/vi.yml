@@ -306,6 +306,7 @@ vi:
       unpublish: Hủy đăng
       unpublished_msg: Xóa bỏ thông báo thành xong!
       updated_msg: Cập nhật thông báo thành công!
+    critical_update_pending: Cập nhật quan trọng đang chờ
     custom_emojis:
       assign_category: Xếp vào danh mục
       by_domain: Máy chủ
@@ -756,10 +757,27 @@ vi:
           approved: Yêu cầu phê duyệt để đăng ký
           none: Không ai có thể đăng ký
           open: Bất cứ ai cũng có thể đăng ký
+      security:
+        authorized_fetch: Yêu cầu xác thực từ các máy chủ liên hợp
+        authorized_fetch_hint: Yêu cầu xác thực từ các máy chủ liên hợp cho phép thực thi chặt chẽ hơn việc chặn cấp độ người dùng và cấp độ máy chủ. Tuy nhiên, điều này phải trả giá bằng một hình phạt về hiệu suất, làm giảm phạm vi tiếp cận của các lượt trả lời của bạn và có thể gây ra các vấn đề về khả năng tương thích với một số dịch vụ được liên hợp. Ngoài ra, điều này sẽ không ngăn cản các tác nhân chuyên dụng tìm nạp các tút và tài khoản công khai của bạn.
+        authorized_fetch_overridden_hint: Hiện tại, bạn không thể thay đổi cài đặt này vì nó bị ghi đè bởi biến môi trường.
+        federation_authentication: Thực thi xác thực liên hợp
       title: Cài đặt máy chủ
     site_uploads:
       delete: Xóa tập tin đã tải lên
       destroyed_msg: Đã xóa tập tin tải lên thành công!
+    software_updates:
+      critical_update: Quan trọng — vui lòng cập nhật sớm
+      description: Bạn nên cập nhật Mastodon phiên bản mới nhất để được hưởng lợi từ các bản sửa lỗi và thêm tính năng mới. Hơn nữa, quan trọng là phải cập nhật Mastodon kịp thời để tránh các vấn đề bảo mật. Vì những lý do này, Mastodon sẽ kiểm tra các bản cập nhật 30 phút một lần và sẽ thông báo cho bạn theo tùy chọn thông báo qua email của bạn.
+      documentation_link: Tìm hiểu thêm
+      release_notes: Có gì mới?
+      title: Bản cập nhật mới
+      type: Loại
+      types:
+        major: Bản cập nhật lớn
+        minor: Bản cập nhật nhỏ
+        patch: Bản vá - sửa lỗi và dễ dàng áp dụng các thay đổi
+      version: Phiên bản
     statuses:
       account: Tác giả
       application: Ứng dụng
@@ -800,6 +818,20 @@ vi:
     system_checks:
       database_schema_check:
         message_html: Có cơ sở dữ liệu đang chờ xử lý. Xin khởi động nó để ứng dụng có thể hoạt động một cách ổn định nhất
+      elasticsearch_health_red:
+        message_html: Cụm Elaticsearch không tốt (trạng thái đỏ), tính năng tìm kiếm không khả dụng
+      elasticsearch_health_yellow:
+        message_html: Cụm Elaticsearch không tốt (trạng thái vàng), bạn có thể muốn biết lý do
+      elasticsearch_index_mismatch:
+        message_html: Mapping chỉ mục Elaticsearch đã lỗi thời. Hãy chạy <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Xem tài liệu
+        message_html: Cụm Elaticsearch của bạn có nhiều node nhưng Mastodon không được định cấu hình để sử dụng chúng.
+      elasticsearch_preset_single_node:
+        action: Xem tài liệu
+        message_html: Cụm Elaticsearch của bạn chỉ có một node, <code>ES_PRESET</code> nên đặt thành <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Chỉ mục hệ thống Elaticsearch của bạn đã lỗi thời do thay đổi cài đặt. Hãy chạy <code>tootctl search deploy --reset-chewy</code> để cập nhật.
       elasticsearch_running_check:
         message_html: Không thể kết nối Elasticsearch. Hãy kiểm tra xem nó có đang chạy, hay tìm kiếm full-text bị tắt
       elasticsearch_version_check:
@@ -810,6 +842,12 @@ vi:
         message_html: Bạn chưa cập nhật nội quy máy chủ.
       sidekiq_process_check:
         message_html: Sidekiq không hoạt động khi truy vấn %{value}. Hãy kiểm tra lại cấu hình Sidekiq
+      software_version_critical_check:
+        action: Bản cập nhật mới
+        message_html: Có bản cập nhật quan trọng của Mastodon, vui lòng cập nhật nhanh nhất có thể.
+      software_version_patch_check:
+        action: Bản cập nhật mới
+        message_html: Có bản cập nhật sửa lỗi Mastodon.
       upload_check_privacy_error:
         action: Nhấn vào đây để biết thêm thông tin
         message_html: "<strong>Máy chủ web của bạn bị cấu hình sai. Có nguy cơ ảnh hưởng bảo mật của người dùng.</strong>"
@@ -919,6 +957,9 @@ vi:
       body: "%{target} đã khiếu nại vì bị %{action_taken_by} %{type} vào %{date}. Họ cho biết:"
       next_steps: Bạn có thể chấp nhận kháng cáo để hủy kiểm duyệt hoặc bỏ qua.
       subject: "%{username} đang khiếu nại quyết định kiểm duyệt trên %{instance}"
+    new_critical_software_updates:
+      body: Các phiên bản quan trọng mới của Mastodon đã được phát hành, bạn nên cập nhật càng sớm càng tốt!
+      subject: Các bản cập nhật quan trọng của Mastodon cho %{instance}!
     new_pending_account:
       body: Thông tin chi tiết của tài khoản mới ở phía dưới. Bạn có thể phê duyệt hoặc từ chối người này.
       subject: Tài khoản chờ xét duyệt trên %{instance} (%{username})
@@ -926,6 +967,9 @@ vi:
       body: "%{reporter} vừa báo cáo %{target}"
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
       subject: "(%{instance}) Báo cáo #%{id}"
+    new_software_updates:
+      body: Phiên bản Mastodon mới đã được phát hành, bạn nên cập nhật!
+      subject: Các bản cập nhật mới của Mastodon cho %{instance}!
     new_trends:
       body: 'Các mục sau đây cần được xem xét trước khi chúng hiển thị công khai:'
       new_trending_links:
@@ -1406,6 +1450,7 @@ vi:
     update:
       subject: "%{name} đã sửa một tút"
   notifications:
+    administration_emails: Email thông báo admin
     email_events: Email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
     other_settings: Chặn thông báo từ
@@ -1449,6 +1494,15 @@ vi:
     other: Khác
     posting_defaults: Mặc định cho tút
     public_timelines: Bảng tin
+  privacy:
+    hint_html: "<strong>Tùy chỉnh cách mọi người tìm thấy hồ sơ và các tút của bạn.</strong> Nhiều tính năng trong Mastodon có thể giúp bạn tiếp cận nhiều đối tượng hơn khi được bật. Hãy xem lại các cài đặt này để đảm bảo chúng phù hợp với bạn."
+    privacy: Riêng tư
+    privacy_hint_html: Kiểm soát mức độ chi tiết bạn muốn tiết lộ. Mọi người khám phá các hồ sơ thú vị và các ứng dụng thú vị bằng cách theo dõi những người khác và xem họ đăng từ ứng dụng nào, nhưng có thể bạn muốn ẩn nó đi.
+    reach: Tiếp cận
+    reach_hint_html: Kiểm soát cách bạn được khám phá và theo dõi. Bạn có muốn tút của mình xuất hiện trên màn hình Khám phá không? Bạn có muốn người khác nhìn thấy bạn trong các đề xuất theo dõi của họ không? Bạn muốn tự động chấp nhận tất cả những người theo dõi mới hay tự duyệt từng người theo dõi?
+    search: Tìm kiếm
+    search_hint_html: Kiểm soát cách tìm thấy bạn. Bạn có muốn mọi người tìm thấy bạn bằng những gì bạn đã đăng công khai không? Bạn có muốn những người bên ngoài Mastodon tìm thấy hồ sơ của bạn khi tìm kiếm trên web không? Xin lưu ý rằng không thể đảm bảo loại trừ hoàn toàn khỏi tất cả các công cụ tìm kiếm đối với thông tin công khai.
+    title: Riêng tư và tiếp cận
   privacy_policy:
     title: Chính sách bảo mật
   reactions:
@@ -1652,6 +1706,11 @@ vi:
       default: "%-d.%m.%Y %H:%M"
       month: "%B %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Đã vượt quá hạn ngạch sử dụng trên toàn máy chủ cho dịch vụ dịch thuật.
+      too_many_requests: Gần đây có quá nhiều yêu cầu dịch vụ dịch thuật.
   two_factor_authentication:
     add: Thêm
     disable: Vô hiệu hóa

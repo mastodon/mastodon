@@ -309,6 +309,7 @@ sq:
       unpublish: Hiqi publikimin
       unpublished_msg: Lajmërimi u botua me sukses!
       updated_msg: Lajmërimi u përditësua me sukses!
+    critical_update_pending: Përditësim kritik pezull
     custom_emojis:
       assign_category: Caktojini kategori
       by_domain: Përkatësi
@@ -738,6 +739,7 @@ sq:
         preamble: Elementët e markës të shërbyesit tuaj e dallojnë atë nga shërbyes të tjerë në rrjet. Këto hollësi mund të shfaqen në një larmi mjedisesh, bie fjala, në ndërfaqen web të Mastodon-it, aplikacione për platforma të ndryshme, në paraparje lidhjesh në sajte të tjerë dhe brenda aplikacionesh për shkëmbim mesazhesh, e me radhë. Për këtë arsyes, më e mira është që këto hollësi të jenë të qarta, të shkurtra dhe të kursyera.
         title: Elementë marke
       captcha_enabled:
+        desc_html: Kjo bazohet në programthe të jashtëm prej hCaptcha, çka mund të përbëjë një shqetësim për sigurinë dhe privatësinë. Veç kësaj, <strong>kjo mund ta bëjë procesin e regjistrimit në shkallë të madhe më pak të përdorshëm për disa persona (veçanërisht ata me paaftësi)</strong>. Për këto arsye, ju lutemi, shihni mundësinë e masave alternative, fjala vjen, bazuar në miratim, ose regjistrim vetëm me ftesa.
         title: Kërko prej përdoruesve të rinj të zgjidhin një CAPTCHA, si ripohim të llogarisë të tyre
       content_retention:
         preamble: Kontrolloni se si depozitohen në Mastodon lënda e prodhuar nga përdoruesit.
@@ -766,9 +768,27 @@ sq:
           approved: Për regjistrim, lypset miratimi
           none: S’mund të regjistrohet ndokush
           open: Mund të regjistrohet gjithkush
+      security:
+        authorized_fetch: Kërko doemos mirëfilltësim prej shërbyes të federuar
+        authorized_fetch_hint: Kërkimi doemos i kryerjes së mirëfilltësimit për shërbyes të federuar aktivizon detyrim më strikt të bllokimeve si në shkallë përdoruesi, ashtu edhe në shkallë shërbyesi. Por kjo vjen me koston e një keqësimi të funksionimit, redukton përhapjen e përgjigjeve tuaja dhe mund të sjellë probleme përputhshmërie me disa shërbime të federuara. Veç kësaj, kjo s’do t’ua pengojë, aktorëve vënë kësaj, të sjellin postimet dhe llogaritë tuaja publike.
+        authorized_fetch_overridden_hint: Aktualisht s’jeni në gjendje të ndryshoni këtë rregullim, ngaqë anashkalohet nga një ndryshore mjedisi.
+        federation_authentication: Detyrim mirëfilltësimi të federuarish
+      title: Rregullime shërbyesi
     site_uploads:
       delete: Fshi kartelën e ngarkuar
       destroyed_msg: Ngarkimi në sajt u fshi me sukses!
+    software_updates:
+      critical_update: Kritik — ju lutemi, përditësojeni pa humbur kohë
+      description: Rekomandohet ta mbani të përditësuar instalimin tuaj të Mastodon-it, që të përfitoni nga ndreqjet dhe veçoritë më të reja. Për më tej, ndonjëherë është kritike të përditësohet Mastodon-i në kohën e duhur, për të shmangur probleme sigurie. Për këto arsye, Mastodon-i kontrollon për përditësime çdo 30 minuta dhe do t’ju njoftojë, sipas parapëlqimeve tuaja për njoftime me email.
+      documentation_link: Mësoni më tepër
+      release_notes: Shënime hedhjeje në qarkullim
+      title: Përditësime të gatshme
+      type: Lloj
+      types:
+        major: Hedhje e rëndësishme në qarkullim
+        minor: Hedhje e vockël në qarkullim
+        patch: Hedhje në qarkullim arnimesh — ndreqje të meash dhe ndryshime të lehta për t’u aplikuar
+      version: Version
     statuses:
       account: Autor
       application: Aplikacion
@@ -809,6 +829,12 @@ sq:
     system_checks:
       database_schema_check:
         message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
+      elasticsearch_preset:
+        action: Shihni documentimin
+      elasticsearch_preset_single_node:
+        action: Shihni documentimin
+      elasticsearch_reset_chewy:
+        message_html: Treguesi juaj i sistemit Elasticsearch është i vjetruar, për shkak të një ndryshimi rregullimesh. Për ta përditësuar, ju lutemi, xhironi <code>tootctl search deploy --reset-chewy</code>.
       elasticsearch_running_check:
         message_html: S’u lidh dot me Elasticsearch. Ju lutemi, kontrolloni nëse ky xhiron, ose çaktivizoni kërkimin në tërë tekstin
       elasticsearch_version_check:
@@ -819,6 +845,12 @@ sq:
         message_html: S’keni përcaktuar ndonjë rregull shërbyesi.
       sidekiq_process_check:
         message_html: S’ka proces Sidekiq në punë për %{value} radhë. Ju lutemi, shqyrtoni formësimin tuaj për Sidekiq-un
+      software_version_critical_check:
+        action: Shihni përditësimet e gatshme
+        message_html: Ka të gatshëm një përditësim kritik të Mastodon-it, ju lutemi, përditësojeni sa më shpejt të jetë e mundur.
+      software_version_patch_check:
+        action: Shihni përditësimet e gatshme
+        message_html: Ka të gatshëm një përditësim ndreqjeje të metash Mastodon-i.
       upload_check_privacy_error:
         action: Për më tepër hollësi, shihni këtu
         message_html: "<strong>Shërbyesi juaj është formësuar keq. Privatësia e përdoruesve tuaj është në rrezik.</strong>"
@@ -930,6 +962,9 @@ sq:
       body: "%{target} po apelon një vendim moderimi nga %{action_taken_by} të marrë më %{date}, që qe %{type}. Shkruan:"
       next_steps: Apelimin mund të miratoni, që të zhbëhet vendimi i marrë, ose ta shpërfillni.
       subject: "%{username} po apelon një vendim moderimi te %{instance}"
+    new_critical_software_updates:
+      body: Janë hedhur në qarkullim versione të rinj të Mastodon-it, mund të donit ta përditësonit sa më shpejt të jetë e mundur!
+      subject: Për %{instance} ka përditësime kritike Mastodon-i!
     new_pending_account:
       body: Hollësitë e llogarisë së re gjenden më poshtë. Mund ta miratoni ose hidhni poshtë këtë aplikim.
       subject: Llogari e re për shqyrtim në %{instance} (%{username})
@@ -937,6 +972,9 @@ sq:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
       subject: Raportim i ri për %{instance} (#%{id})
+    new_software_updates:
+      body: Janë hedhur në qarkullim versione të rinj Mastodon-i, mund të donit ta përditësoni!
+      subject: Për %{instance} ka të gatshëm versione të rinj Mastodon-i!
     new_trends:
       body: 'Gjërat vijuese lypin një shqyrtim, përpara se të mund të shfaqen publikisht:'
       new_trending_links:
@@ -1256,12 +1294,14 @@ sq:
       bookmarks_html: Ju ndan një hap nga <strong>zëvendësimi i faqerojtësve tuaj</strong> me <strong>%{total_items} postime</strong> nga <strong>%{filename}</strong>.
       domain_blocking_html: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimit të përkatësive</strong> me <strong>%{total_items} përkatësi</strong> nga <strong>%{filename}</strong>.
       following_html: Ju ndan një hap nga <strong>ndjekja</strong> e <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong> dhe <strong>reshtja së ndjekuri këdo tjetër</strong>.
+      lists_html: Ju ndan një hap nga <strong>zëvendësimi i listave tuaja</strong> me lëndë nga <strong>%{filename}</strong>. Te listat e reja do të shtohen deri në <strong>%{total_items} llogari</strong>.
       muting_html: Ju ndan një hpa nga <strong>zëvendësimi i listës suaj të llogarive të heshtuara</strong> me <strong>%{total_items} llogari</strong> nga <strong>%{filename}</strong>.
     preambles:
       blocking_html: Ju ndan një hap nga <strong>bllokimi</strong> i <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong>.
       bookmarks_html: Ju ndan një hap nga shtimi te <strong>faqerojtësit</strong> tuaj i <strong>%{total_items} postimeve</strong> nga <strong>%{filename}</strong>.
       domain_blocking_html: Ju ndan një hap nga <strong>bllokimi</strong> i <strong>%{total_items} përkatësive</strong> nga <strong>%{filename}</strong>.
       following_html: Ju ndan një hap nga <strong>ndjekja</strong> e <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong>.
+      lists_html: Jui nda një hap nga shtimi te <strong>listat</strong> tuaja i deri <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong>. Nëse s’ka listë ku të shtohen, do të krijohen lista të reja.
       muting_html: Ju ndan një hap nga <strong>heshtimi</strong> i <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong>.
     preface: Mund të importoni të dhëna që keni eksportuar nga një shërbyes tjetër, bie fjala, një listë të personave që ndiqni ose bllokoni.
     recent_imports: Importime së fundi
@@ -1278,6 +1318,7 @@ sq:
       bookmarks: Po importohen faqerojtës
       domain_blocking: Po importohen përkatësi të bllokuara
       following: Po importohen llogari të ndjekura
+      lists: Po importohen lista
       muting: Po importohen llogari të heshtuara
     type: Lloj importimi
     type_groups:
@@ -1288,6 +1329,7 @@ sq:
       bookmarks: Faqerojtës
       domain_blocking: Listë bllokimesh përkatësish
       following: Listë ndjekjesh
+      lists: Lista
       muting: Listë heshtimesh
     upload: Ngarkoje
   invites:
@@ -1331,6 +1373,12 @@ sq:
       action: Po, shpajtomëni
       complete: U shpajtuat
       confirmation_html: Jeni i sigurt se doni të shpajtoheni prej marrjes së %{type} për Mastodon në %{domain} te email-i juaj në %{email}? Mundeni përherë të ripajtoheni, që prej <a href="%{settings_path}">rregullimeve tuaja për njoftime me email</a>.
+      emails:
+        notification_emails:
+          follow: email-e njoftimi ndjekjesh
+          follow_request: email-e kërkesash për ndjekje
+          mention: email-e njoftimi përmendjesh
+          reblog: email-e njoftimi përforcimesh
       resubscribe_html: Nëse u shpajtuat gabimisht, mund të ripajtoheni që nga <a href="%{settings_path}">rregullimet tuaja për njoftime me email</a>.
       success_html: S’do të merrni më %{type} për Mastodon në %{domain} te email juaj %{email}.
       title: Shpajtohuni
@@ -1456,6 +1504,15 @@ sq:
     other: Tjetër
     posting_defaults: Parazgjedhje postimesh
     public_timelines: Rrjedha kohore publike
+  privacy:
+    hint_html: "<strong>Përshtatni mënyrën se si dëshironi të gjenden prej të tjerëve profili dhe postimet tuaja.</strong> Një larmi veçorish të Mastodon-it mund t’ju ndihmojnë të shtriheni në një publik më të gjerë, kur aktivizohen. Ndaluni një çast t’i shqyrtoni këto rregullime, për t’u siguruar se i përshtaten rastit tuaj."
+    privacy: Privatësi
+    privacy_hint_html: Kontrolloni sa doni të tregoni prej vetes për të mirën e të tjerëve. Njerëzit zbulojnë profile interensante dhe aplikacione të lezetshme duke shfletuar ndjekjet e personave të tjerë dhe duke parë se prej cilëve aplikacione postuan, por mund të parapëlqeni ta mbani të fshehur këtë.
+    reach: Shtrirje
+    reach_hint_html: Kontrolloni zbulimin dhe ndjekjen tuaj nga persona të rinj. Doni që postimet tuaja të shfaqen në skenën Exploroni? Doni që persona të tjerë t’ju shohin te rekomandimet për ndjekje prej tyre? Doni të pranohen automatikisht ndjekësit e rinj, apo të keni kontroll të imët mbi secilin rast?
+    search: Kërkim
+    search_hint_html: Kontrolloni mënyrën se si do t’ju gjejnë. Doni që njerëzit t’ju gjejnë përmes çka keni postuar botërisht? Doni që njerëz jashtë Mastodon-it ta gjejnë profilin tuaj kur kërkojnë në internet? Ju lutemi, kini parasysh se për informacione publike s’mund të garantohet përjashtimi tërësor nga krejt motorët e kërkimeve.
+    title: Privatësi dhe shtrirje
   privacy_policy:
     title: Rregulla Privatësie
   reactions:
@@ -1665,6 +1722,11 @@ sq:
       default: "%d %b, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Është tejkaluar kuota e përdorimit për shërbimin e përkthimit në krejt shërbyesin.
+      too_many_requests: Tani së fundi ka patur shumë kërkesa ndaj shërbimit të përkthimit.
   two_factor_authentication:
     add: Shtoje
     disable: Çaktivizoje
