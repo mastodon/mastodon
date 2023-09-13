@@ -26,12 +26,14 @@ def sso_host
 
   provider = Devise.omniauth_configs[Devise.omniauth_providers[0]]
   @sso_host ||= begin
-    # using CAS
-    provider.cas_url if ENV['CAS_ENABLED'] == 'true'
-    # using SAML
-    provider.options[:idp_sso_target_url] if ENV['SAML_ENABLED'] == 'true'
-    # or using OIDC
-    ENV['OIDC_AUTH_ENDPOINT'] || (OpenIDConnect::Discovery::Provider::Config.discover!(ENV['OIDC_ISSUER']).authorization_endpoint if ENV['OIDC_ENABLED'] == 'true')
+    case provider.provider
+    when :cas
+      provider.cas_url
+    when :saml
+      provider.options[:idp_sso_target_url]
+    when :openid_connect
+      provider.options.dig(:client_options, :authorization_endpoint) || OpenIDConnect::Discovery::Provider::Config.discover!(provider.options[:issuer]).authorization_endpoint
+    end
   end
 end
 
