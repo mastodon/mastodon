@@ -459,7 +459,11 @@ ms:
       unsuppress: Tetap semula saranan ikutan
     instances:
       availability:
+        description_html:
+          other: Jika penghantaran ke domain gagal <strong>%{count} hari</strong> tanpa berjaya, tiada percubaan penghantaran selanjutnya akan dibuat melainkan penghantaran <em>dari</em> domain diterima.
         failure_threshold_reached: Ambang kegagalan dicapai pada %{date}.
+        failures_recorded:
+          other: Percubaan gagal pada %{count} hari.
         no_failures_recorded: Tiada kegagalan dalam rekod.
         title: Ketersediaan
         warning: Percubaan terakhir untuk menyambung ke pelayan ini tidak berjaya
@@ -796,6 +800,20 @@ ms:
     system_checks:
       database_schema_check:
         message_html: Terdapat migrasi pangkalan data yang belum selesai. Sila jalankannya untuk memastikan aplikasi berfungsi seperti yang diharapkan
+      elasticsearch_health_red:
+        message_html: Kelompok Elasticsearch tidak sihat (status merah), ciri carian tidak tersedia
+      elasticsearch_health_yellow:
+        message_html: Kelompok Elasticsearch tidak sihat (status kuning), anda mungkin ingin menyiasat sebabnya
+      elasticsearch_index_mismatch:
+        message_html: Pemetaan indeks Elasticsearch sudah lapuk. Sila jalankan <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Lihat dokumentasi
+        message_html: Kelompok Elasticsearch anda mempunyai lebih daripada satu nod, tetapi Mastodon tidak dikonfigurasikan untuk menggunakannya.
+      elasticsearch_preset_single_node:
+        action: Lihat dokumentasi
+        message_html: Kelompok Elasticsearch anda hanya mempunyai satu nod, <code>ES_PRESET</code> hendaklah ditetapkan kepada <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Indeks sistem Elasticsearch anda sudah lapuk kerana perubahan tetapan. Sila jalankan <code>tootctl search deploy --reset-chewy</code> untuk mengemas kininya.
       elasticsearch_running_check:
         message_html: Tidak dapat menyambung ke Elasticsearch. Sila semak sama ada ia sedang berjalan atau lumpuhkan carian teks penuh
       elasticsearch_version_check:
@@ -829,12 +847,15 @@ ms:
         no_link_selected: Tiada pautan ditukar kerana tiada pautan dipilih
         publishers:
           no_publisher_selected: Tiada penerbit ditukar kerana tiada penerbit dipilih
+        shared_by_over_week:
+          other: Dikongsi oleh %{count} orang sepanjang minggu lepas
         title: Pautan yang sedang sohor kini
         usage_comparison: Dikongsi %{today} kali hari ini, berbanding %{yesterday} semalam
       not_allowed_to_trend: Tidak dibenarkan menjadi trend
       only_allowed: Hanya dibenarkan
       pending_review: Menunggu semak semula
       preview_card_providers:
+        allowed: Pautan daripada penerbit ini boleh mengikut aliran
         description_html: Ini adalah domain dari mana pautan sering dikongsi pada server anda. Pautan tidak akan menjadi aliran secara terbuka melainkan domain pautan itu diluluskan. Kelulusan (atau penolakan) anda dilanjutkan kepada subdomain.
         rejected: Pautan daripada penerbit ini tidak akan menjadi sohor kini
         title: Penerbit
@@ -842,8 +863,13 @@ ms:
       statuses:
         allow: Izinkan hantaran
         allow_account: Izinkan penulis
+        description_html: Ini adalah post yang server anda tahu tentang yang sedang dikongsi dan menjadi kegemaran ramai pada masa ini. Ia boleh membantu pengguna baharu dan kembali anda mencari lebih ramai orang untuk diikuti. Tiada pos dipaparkan secara terbuka sehingga anda meluluskan pengarang dan pengarang membenarkan akaun mereka dicadangkan kepada orang lain. Anda juga boleh membenarkan atau menolak pos individu.
         disallow: Tidak membenarkan hantaran
         disallow_account: Tidak membenarkan penulis
+        no_status_selected: Tiada pos sohor kini ditukar kerana tiada yang dipilih
+        not_discoverable: Pengarang tidak mengikut serta untuk dapat ditemui
+        shared_by:
+          other: Dikongsi dan digemari %{friendly_count} kali
         title: Hantaran hangat
       tags:
         current_score: Markah semasa %{score}
@@ -853,22 +879,41 @@ ms:
           tag_servers_dimension: Pelayan teratas
           tag_servers_measure: pelayan lain
           tag_uses_measure: penggunaan keseluruhan
+        description_html: Ini adalah hashtag yang kini muncul dalam banyak pos yang server anda lihat. Ia boleh membantu pengguna anda mengetahui perkara yang paling ramai dibincangkan pada masa ini. Tiada hashtag dipaparkan secara terbuka sehingga anda meluluskannya.
         listable: Boleh dicadangkan
+        no_tag_selected: Tiada tag ditukar kerana tiada yang dipilih
+        not_listable: Tidak akan dicadangkan
+        not_trendable: Tidak akan muncul di bawah sohor kini
         not_usable: Tidak boleh digunakan
         peaked_on_and_decaying: Di atas pada %{date}, kini menurun
         title: Tanda pagar sedang sohor kini
         trendable: Boleh muncul di bawah sohor kini
         trending_rank: 'Sohor kini #%{rank}'
         usable: Boleh digunakan
+        usage_comparison: Digunakan %{today} kali hari ini, berbanding %{yesterday} semalam
+        used_by_over_week:
+          other: Digunakan oleh %{count} orang sepanjang minggu lepas
       title: Sohor kini
       trending: Sohor kini
     warning_presets:
+      add_new: Tambah baharu
       delete: Padam
+      edit_preset: Edit pratetap amaran
+      empty: Anda belum menentukan sebarang pratetap amaran lagi.
+      title: Urus pratetap amaran
     webhooks:
+      add_new: Tambah titik akhir
       delete: Padam
+      description_html: "<strong>Webhook</strong> membolehkan Mastodon menolak <strong>pemberitahuan masa nyata</strong> tentang acara yang dipilih ke aplikasi anda sendiri, supaya aplikasi anda boleh <strong>mencetuskan reaksi secara automatik</strong>."
+      disable: Lumpuhkan
+      disabled: Dilumpuhkan
+      edit: Edit titik akhir
       empty: You don't have any webhook endpoints configured yet.
       enable: Dayakan
       enabled: Aktif
+      enabled_events:
+        other: "%{count} acara yang didayakan"
+      events: Acara
       new: Webhook baru
       rotate_secret: Putar rahsia
       secret: Menandatangani rahsia
@@ -904,65 +949,157 @@ ms:
       new_trending_tags:
         no_approved_tags: Pada masa ini tiada hashtag sohor kini yang diluluskan.
         requirements: 'Mana-mana calon ini boleh melepasi hashtag arah aliran #%{rank} yang diluluskan, yang pada masa ini ialah #%{lowest_tag_name} dengan markah %{lowest_tag_score}.'
+        title: Hashtag sohor kini
+      subject: Trend baharu untuk kesemakan pada %{instance}
+  aliases:
+    add_new: Buat alias
+    created_msg: Berjaya mencipta alias baharu. Anda kini boleh memulakan perpindahan daripada akaun lama.
+    deleted_msg: Berjaya mengalih keluar alias. Beralih dari akaun itu ke akaun ini tidak akan dapat dilakukan lagi.
+    empty: Anda tidak mempunyai alias.
+    hint_html: Jika anda ingin beralih dari akaun lain ke akaun ini, di sini anda boleh membuat alias, yang diperlukan sebelum anda boleh meneruskan dengan memindahkan pengikut dari akaun lama ke akaun ini. Tindakan ini dengan sendirinya <strong>tidak berbahaya dan boleh diterbalikkan</strong>. <strong>Penghijrahan akaun dimulakan daripada akaun lama</strong>.
+    remove: Nyahpaut alias
   appearance:
+    advanced_web_interface: Antara muka web lanjutan
     advanced_web_interface_hint: 'Jika anda ingin menggunakan keseluruhan lebar skrin anda, antara muka web lanjutan membolehkan anda mengkonfigurasi banyak lajur berbeza untuk melihat seberapa banyak maklumat pada masa yang sama seperti yang anda mahu: Laman Utama, pemberitahuan, garis masa bersekutu, sebarang bilangan senarai dan hashteg.'
+    animations_and_accessibility: Animasi dan kebolehaksesan
+    confirmation_dialogs: Dialog pengesahan
     discovery: Penemuan
     localization:
+      body: Mastodon diterjemahkan oleh sukarelawan.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Sesiapa sahaja boleh memberi sumbangan.
     sensitive_content: Kandungan sensitif
   application_mailer:
     notification_preferences: Tukar keutamaan e-mel
     salutation: "%{name},"
+    settings: 'Tukar pilihan e-mel: %{link}'
+    unsubscribe: Nyahlanggan
     view: 'Lihat:'
     view_profile: Lihat profil
     view_status: Lihat hantaran
   applications:
+    created: Aplikasi berjaya dibuat
+    destroyed: Aplikasi berjaya dipadamkan
     logout: Log keluar
+    regenerate_token: Menjana semula token akses
+    token_regenerated: Token akses berjaya dijana semula
+    warning: Berhati-hati dengan data ini. Jangan sekali-kali berkongsi dengan sesiapa pun!
     your_token: Token akses anda
   auth:
     apply_for_account: Minta akaun
     captcha_confirmation:
+      help_html: Jika anda menghadapi masalah menyelesaikan CAPTCHA, anda boleh menghubungi kami melalui %{email} dan kami boleh membantu anda.
+      hint_html: Hanya satu perkara lagi! Kami perlu mengesahkan anda seorang manusia (ini supaya kami dapat mengelakkan spam!). Selesaikan CAPTCHA di bawah dan klik "Teruskan".
       title: Pemeriksaan keselamatan
+    confirmations:
+      wrong_email_hint: Jika alamat e-mel itu tidak betul, anda boleh menukarnya dalam tetapan akaun.
     delete_account: Padam akaun
+    delete_account_html: Jika anda ingin memadamkan akaun anda, anda boleh <a href="%{path}">teruskan ke sini</a>. Anda akan diminta untuk pengesahan.
     description:
+      prefix_invited_by_user: "@%{name} menjemput anda untuk menyertai server Mastodon ini!"
       prefix_sign_up: Daftar pada Mastodon hari ini!
       suffix: Dengan akaun, anda akan dapat mengikuti orang, menyiarkan kemas kini dan bertukar-tukar mesej dengan pengguna dari mana-mana server Mastodon dan banyak lagi!
     didnt_get_confirmation: Tidak menerima pautan pengesahan?
     dont_have_your_security_key: Tiada kunci keselamatan anda?
     forgot_password: Terlupa kata laluan anda?
     invalid_reset_password_token: Token tetapan semula kata laluan tidak sah atau tamat tempoh. Sila minta yang baharu.
+    link_to_otp: Masukkan kod dua faktor dari telefon anda atau kod pemulihan
+    link_to_webauth: Gunakan peranti kunci keselamatan anda
     log_in_with: Daftar masuk dengan
     login: Daftar masuk
     logout: Daftar keluar
     migrate_account: Pindah kepada akaun lain
     migrate_account_html: Jika anda ingin mengubah hala akaun ini kepada akaun lain, anda boleh <a href="%{path}">konfigurasikannya di sini</a>.
     or_log_in_with: Atau daftar masuk dengan
+    privacy_policy_agreement_html: Saya telah membaca dan bersetuju menerima <a href="%{privacy_policy_path}" target="_blank">dasar privasi</a>
     progress:
       confirm: Sahkan E-mel
       details: Maklumat anda
+      review: Ulasan kami
+      rules: Terima peraturan
     providers:
       cas: CAS
       saml: SAML
     register: Daftar
     registration_closed: "%{instance} tidak menerima ahli-ahli baru"
+    resend_confirmation: Hantar semula pautan pengesahan
+    reset_password: Tetapkan semula kata laluan
     rules:
       accept: Terima
       back: Kembali
+      invited_by: 'Anda boleh menyertai %{domain} terima kasih kepada jemputan yang anda terima daripada:'
+      preamble: Ini ditetapkan dan dikuatkuasakan oleh penyederhana %{domain}.
+      preamble_invited: Sebelum anda meneruskan, sila pertimbangkan peraturan asas yang ditetapkan oleh penyederhana %{domain}.
+      title: Beberapa peraturan asas.
+      title_invited: Anda telah dijemput.
     security: Keselamatan
+    set_new_password: Tetapkan kata laluan baharu
+    setup:
+      email_below_hint_html: Semak folder spam anda atau minta folder lain. Anda boleh membetulkan alamat e-mel anda jika ia salah.
+      email_settings_hint_html: Klik pautan yang kami hantar kepada anda untuk mengesahkan %{email}. Kami akan tunggu di sini.
+      link_not_received: Tidak mendapat pautan?
+      new_confirmation_instructions_sent: Anda akan menerima e-mel baharu dengan pautan pengesahan dalam beberapa minit!
+      title: Semak peti masuk anda
+    sign_in:
+      preamble_html: Log masuk dengan bukti kelayakan <strong>%{domain}</strong> anda. Jika akaun anda dihoskan pada server lain, anda tidak akan dapat log masuk di sini.
+      title: Log masuk ke %{domain}
+    sign_up:
+      manual_review: Pendaftaran pada %{domain} melalui semakan manual oleh penyederhana kami. Untuk membantu kami memproses pendaftaran anda, tulis sedikit tentang diri anda dan sebab anda mahukan akaun di %{domain}.
+      preamble: Dengan akaun pada server Mastodon ini, anda akan dapat mengikuti mana-mana orang lain di rangkaian, tidak kira di mana akaun mereka dihoskan.
+      title: Mari sediakan anda pada %{domain}.
     status:
       account_status: Status akaun
+      confirming: Menunggu pengesahan e-mel untuk diselesaikan.
+      functional: Akaun anda beroperasi sepenuhnya.
+      pending: Permohonan anda sedang menunggu semakan oleh kakitangan kami. Ini mungkin mengambil sedikit masa. Anda akan menerima e-mel sekiranya permohonan anda diluluskan.
+      redirecting_to: Akaun anda tidak aktif kerana ia sedang mengubah hala ke %{acct}.
       view_strikes: Lihat pelanggaran yang lepas terhadap akaun anda
+    too_fast: Borang diserahkan terlalu cepat, cuba lagi.
     use_security_key: Gunakan kunci keselamatan
   challenge:
     confirm: Teruskan
+    hint_html: "<strong>Petua:</strong> Kami tidak akan meminta kata laluan anda lagi untuk sejam berikutnya."
     invalid_password: Kata laluan tidak sah
     prompt: Sahkan kata laluan untuk teruskan
+  crypto:
+    errors:
+      invalid_key: bukan kunci Ed25519 atau Curve25519 yang sah
+      invalid_signature: bukan tandatangan Ed25519 yang sah
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}j"
+      about_x_months: "%{count}bln"
+      about_x_years: "%{count}thn"
+      almost_x_years: "%{count}thn"
       half_a_minute: Sebentar tadi
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Baru sahaja
+      over_x_years: "%{count}thn"
+      x_days: "%{count}h"
+      x_minutes: "%{count}m"
+      x_months: "%{count}bln"
+      x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: Maklumat yang anda masukkan tidak betul
+    confirm_password: Masukkan kata laluan semasa anda untuk mengesahkan identiti anda
+    confirm_username: Masukkan nama pengguna anda untuk mengesahkan prosedur
     proceed: Padam akaun
+    success_msg: Akaun anda telah berjaya dipadamkan
+    warning:
+      before: 'Sebelum meneruskan, sila baca nota ini dengan teliti:'
+      caches: Kandungan yang telah dicache oleh server lain mungkin berterusan
+      data_removal: Pos anda dan data lain akan dialih keluar secara kekal
+      email_change_html: Anda boleh <a href="%{path}">menukar alamat e-mel anda</a> tanpa memadamkan akaun anda
+      email_contact_html: Jika ia masih tidak sampai, anda boleh menghantar e-mel kepada <a href="mailto:%{email}">%{email}</a> untuk mendapatkan bantuan
+      email_reconfirmation_html: Jika anda tidak menerima e-mel pengesahan, anda boleh <a href="%{path}">memintanya semula</a>
+      irreversible: Anda tidak akan dapat memulihkan atau mengaktifkan semula akaun anda
+      more_details_html: Untuk butiran lanjut, lihat <a href="%{terms_path}">dasar privasi</a>.
+      username_available: Nama pengguna anda akan tersedia semula
+      username_unavailable: Nama pengguna anda akan kekal tidak tersedia
   disputes:
     strikes:
       action_taken: Tindakan diambil
@@ -993,6 +1130,12 @@ ms:
       your_appeal_approved: Rayuan anda telah diluluskan
       your_appeal_pending: Anda telah menghantar rayuan
       your_appeal_rejected: Rayuan anda telah ditolak
+  domain_validator:
+    invalid_domain: bukan nama domain yang sah
+  edit_profile:
+    basic_information: Maklumat Asas
+    hint_html: "<strong>Sesuaikan perkara yang orang lihat pada profil awam anda dan di sebelah siaran anda.</strong> Orang lain lebih berkemungkinan mengikuti anda kembali dan berinteraksi dengan anda apabila anda mempunyai profil dan gambar profil yang telah diisi."
+    other: Lain-lain
   errors:
     '400': Permintaan yang anda serahkan tidak sah atau salah bentuk.
     '403': Anda tidak mempunyai kebenaran untuk melihat halaman ini.
@@ -1000,60 +1143,149 @@ ms:
     '406': Halaman ini tidak tersedia dalam format yang diminta.
     '410': Halaman yang anda cari tidak wujud di sini lagi.
     '422':
+      content: Pengesahan keselamatan gagal. Adakah anda menyekat kuki?
       title: Pengesahan keselamatan gagal
     '429': Terlalu banyak permintaan
+    '500':
+      content: Kami minta maaf, tetapi ada masalah di pihak kami.
+      title: Halaman ini tidak betul
     '503': Halaman tidak dapat disampaikan kerana kegagalan pelayan sementara.
+    noscript_html: Untuk menggunakan aplikasi web Mastodon, sila dayakan JavaScript. Sebagai alternatif, cuba salah satu <a href="%{apps_path}">apl asli</a> untuk Mastodon untuk platform anda.
+  existing_username_validator:
+    not_found: tidak dapat mencari pengguna tempatan dengan nama pengguna itu
+    not_found_multiple: tidak dapat mencari %{usernames}
   exports:
     archive_takeout:
       date: Tarikh
+      download: Muat turun arkib anda
+      hint_html: Anda boleh meminta arkib <strong>pos dan media yang dimuat naik</strong> anda. Data yang dieksport akan berada dalam format ActivityPub, boleh dibaca oleh mana-mana perisian yang mematuhi. Anda boleh meminta arkib setiap 7 hari.
       in_progress: Mengkompil arkib anda...
       request: Minta arkib anda
       size: Saiz
     blocks: Blok anda
+    bookmarks: Penanda buku
     csv: CSV
     domain_blocks: Domain disekat
     lists: Senarai
+    mutes: Awak bisu
+    storage: Storan Media
+  featured_tags:
+    add_new: Tambah baharu
+    errors:
+      limit: Anda telah memaparkan bilangan maksimum hashtag
+    hint_html: "<strong>Tampilkan hashtag paling penting anda pada profil anda.</strong> Alat yang hebat untuk menjejaki karya kreatif dan projek jangka panjang anda, hashtag yang ditampilkan dipaparkan dengan jelas pada profil anda dan membenarkan akses pantas kepada pos anda sendiri."
   filters:
     contexts:
       account: Profil
+      home: Rumah dan senarai
       notifications: Pemberitahuan
+      public: Garis masa awam
+      thread: Perbualan
     edit:
       add_keyword: Tambah kata kunci
       keywords: Kata kunci
+      statuses: Pos individu
+      statuses_hint_html: Penapis ini digunakan untuk memilih pos individu tanpa mengira sama ada ia sepadan dengan kata kunci di bawah. <a href="%{path}">Semak atau alih keluar siaran daripada penapis</a>.
       title: Sunting penapis
+    errors:
+      deprecated_api_multiple_keywords: Parameter ini tidak boleh ditukar daripada aplikasi ini kerana ia digunakan pada lebih daripada satu kata kunci penapis. Gunakan aplikasi yang lebih terkini atau antara muka web.
+      invalid_context: Tiada atau konteks tidak sah dibekalkan
     index:
+      contexts: Penapis dalam %{contexts}
       delete: Padam
       empty: Anda tiada penapis.
+      expires_in: Tamat tempoh dalam %{distance}
+      expires_on: Tamat tempoh pada %{date}
       keywords:
         other: "%{count} kata kunci"
       statuses:
         other: "%{count} hantaran"
+      statuses_long:
+        other: "%{count} pos individu disembunyikan"
       title: Penapis
     new:
       save: Simpan penapis baru
       title: Tambah penapis baru
     statuses:
       back_to_filter: Balik kepada penapis
+      batch:
+        remove: Alih keluar daripada penapis
       index:
+        hint: Penapis ini digunakan untuk memilih pos individu tanpa mengira kriteria lain. Anda boleh menambah lebih banyak siaran pada penapis ini daripada antara muka web.
         title: Hantaran ditapis
   generic:
     all: Semua
+    cancel: Batal
+    changes_saved_msg: Perubahan berjaya disimpan!
+    confirm: Konfirm
     copy: Salin
     delete: Padam
     deselect: Nyahpilih semua
     none: Tiada
+    order_by: Disusun mengikut
+    save_changes: Simpan perubahan
+    today: hari ini
+    validation_errors:
+      other: Ada yang belum betul! Sila semak %{count} ralat di bawah
   imports:
     errors:
+      empty: Fail CSV kosong
+      incompatible_type: Tidak serasi dengan jenis import yang dipilih
+      invalid_csv_file: 'Fail CSV tidak sah. Ralat: %{error}'
+      over_rows_processing_limit: mengandungi lebih daripada %{count} baris
       too_large: Fail terlalu besar
+    failures: Kegagalan
+    imported: Diimport
+    mismatched_types_warning: Nampaknya anda mungkin telah memilih jenis yang salah untuk import ini, sila semak semula.
+    modes:
+      merge: Gabung
+      merge_long: Simpan rekod sedia ada dan tambah rekod baharu
+      overwrite: Tulis ganti
+      overwrite_long: Gantikan rekod semasa dengan yang baharu
+    overwrite_preambles:
+      blocking_html: Anda akan <strong>menggantikan senarai blok anda</strong> dengan sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
+      bookmarks_html: Anda akan <strong>menggantikan penanda halaman anda</strong> dengan sehingga <strong>%{total_items} siaran</strong> daripada <strong>%{filename}</strong>.
+      domain_blocking_html: Anda akan <strong>menggantikan senarai blok domain anda</strong> dengan sehingga <strong>%{total_items} domain</strong> daripada <strong>%{filename}</strong>.
+      following_html: Anda akan <strong>mengikuti</strong> sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong> dan <strong>berhenti mengikuti orang lain</strong>.
+      lists_html: Anda akan <strong>menggantikan senarai anda</strong> dengan kandungan <strong>%{filename}</strong>. Sehingga <strong>%{total_items} akaun</strong> akan ditambahkan pada senarai baharu.
+      muting_html: Anda akan <strong>menggantikan senarai akaun yang diredamkan</strong> dengan sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Anda akan <strong>menyekat</strong> sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
+      bookmarks_html: Anda akan menambah sehingga <strong>%{total_items} pos</strong> daripada <strong>%{filename}</strong> ke <strong>penanda halaman</strong> anda.
+      domain_blocking_html: Anda akan <strong>menyekat</strong> sehingga <strong>%{total_items} domain</strong> daripada <strong>%{filename}</strong>.
+      following_html: Anda akan <strong>mengikuti</strong> sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
+      lists_html: Anda akan menambah sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong> ke <strong>senarai</strong> anda. Senarai baharu akan dibuat jika tiada senarai untuk ditambah.
+      muting_html: Anda akan <strong>membisukan</strong> sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
+    preface: Anda boleh mengimport data yang telah anda eksport dari server lain, seperti senarai orang yang anda ikuti atau sekat.
+    recent_imports: Import terkini
     states:
       finished: Selesai
       in_progress: Dalam proses
       scheduled: Dijadualkan
+      unconfirmed: Tidak disahkan
     status: Status
+    success: Data anda telah berjaya dimuat naik dan akan diproses dalam masa yang ditetapkan
+    time_started: Mula pada
+    titles:
+      blocking: Mengimport akaun yang disekat
+      bookmarks: Mengimport penanda halaman
+      domain_blocking: Mengimport domain yang disekat
+      following: Mengimport akaun diikuti
+      lists: Mengimport senarai
+      muting: Mengimport akaun diredam
+    type: Jenis import
+    type_groups:
+      constructive: Ikutan & Penanda Halaman
     types:
+      blocking: Senarai menyekat
+      bookmarks: Penanda buku
+      domain_blocking: Senarai sekatan domain
+      following: Senarai berikut
       lists: Senarai
+      muting: Senyapkan senarai
     upload: Muat naik
   invites:
+    delete: Nyahaktifkan
     expired: Tamat tempoh
     expires_in:
       '1800': 30 minit
@@ -1063,42 +1295,215 @@ ms:
       '604800': Seminggu
       '86400': Sehari
     expires_in_prompt: Jangan
+    generate: Hasilkan pautan jemputan
+    invited_by: 'Anda telah dijemput oleh:'
+    max_uses_prompt: Tiada had
+    prompt: Jana dan kongsi pautan dengan orang lain untuk memberikan akses kepada server ini
+    table:
+      expires_at: Tamat Tempoh
+      uses: Kegunaan
+    title: Jemput orang
+  lists:
+    errors:
+      limit: Anda telah mencapai bilangan maksimum senarai
   login_activities:
     authentication_methods:
+      otp: aplikasi pengesahan dua faktor
       password: kata laluan
       sign_in_token: e-mel kod keselamatan
       webauthn: kunci keselamatan
+    description_html: Jika anda melihat aktiviti yang anda tidak kenali, pertimbangkan untuk menukar kata laluan anda dan dayakan pengesahan dua faktor.
+    empty: Tiada sejarah pengesahan tersedia
+    failed_sign_in_html: Percubaan log masuk gagal dengan %{method} daripada %{ip} (%{browser})
+    successful_sign_in_html: Log masuk yang berjaya dengan %{method} daripada %{ip} (%{browser})
+    title: Sejarah pengesahan
   mail_subscriptions:
     unsubscribe:
+      action: Ya, nyahlanggan
+      complete: Menyahlanggan
+      confirmation_html: Adakah anda pasti mahu berhenti melanggan daripada menerima %{type} untuk Mastodon pada %{domain} ke e-mel anda di %{email}? Anda sentiasa boleh melanggan semula daripada <a href="%{settings_path}">tetapan pemberitahuan e-mel</a> anda.
+      emails:
+        notification_emails:
+          favourite: e-mel pemberitahuan kegemaran
+          follow: ikuti e-mel notifikasi
+          follow_request: ikuti e-mel permintaan
+          mention: menyebut e-mel pemberitahuan
+          reblog: meningkatkan e-mel notifikasi
+      resubscribe_html: Jika anda tersilap menyahlanggan, anda boleh melanggan semula daripada <a href="%{settings_path}">tetapan pemberitahuan e-mel</a> anda.
+      success_html: Anda tidak lagi akan menerima %{type} untuk Mastodon pada %{domain} ke e-mel anda di %{email}.
       title: Hentikan langganan
+  media_attachments:
+    validations:
+      images_and_video: Tidak boleh melampirkan video pada pos yang sudah mengandungi imej
+      not_ready: Tidak boleh melampirkan fail yang belum selesai diproses. Cuba lagi sebentar lagi!
+      too_many: Tidak boleh melampirkan lebih daripada 4 fail
   migrations:
     acct: Dipindah ke
+    cancel: Batalkan ubah hala
+    cancel_explanation: Membatalkan ubah hala akan mengaktifkan semula akaun semasa anda, tetapi tidak akan mengembalikan pengikut yang telah dialihkan ke akaun tersebut.
+    cancelled_msg: Berjaya membatalkan ubah hala.
     errors:
+      already_moved: ialah akaun yang sama yang telah anda pindahkan
+      missing_also_known_as: bukan alias untuk akaun ini
+      move_to_self: tidak boleh menjadi akaun semasa
       not_found: tidak dapat dicarikan
+    followers_count: Pengikut semasa bergerak
+    incoming_migrations: Beralih dari akaun lain
+    incoming_migrations_html: Untuk beralih dari akaun lain ke akaun ini, mula-mula anda perlu <a href="%{path}">membuat alias akaun</a>.
+    moved_msg: Akaun anda kini mengubah hala ke %{acct} dan pengikut anda sedang dialihkan.
+    not_redirecting: Akaun anda tidak mengubah hala ke mana-mana akaun lain pada masa ini.
+    on_cooldown: Anda telah memindahkan akaun anda baru-baru ini. Fungsi ini akan tersedia semula dalam %{count} hari.
+    past_migrations: Penghijrahan yang lalu
     proceed_with_move: Pindah pengikut
+    redirected_msg: Akaun anda kini mengubah hala ke %{acct}.
+    redirecting_to: Akaun anda mengubah hala ke %{acct}.
+    set_redirect: Tetapkan ubah hala
     warning:
       backreference_required: Akaun baharu mesti terlebih dahulu dikonfigurasikan untuk merujuk semula akaun ini
+      before: 'Sebelum meneruskan, sila baca nota ini dengan teliti:'
+      cooldown: Selepas berpindah terdapat tempoh menunggu di mana anda tidak akan dapat bergerak lagi
+      disabled_account: Akaun semasa anda tidak akan dapat digunakan sepenuhnya selepas itu. Walau bagaimanapun, anda akan mempunyai akses kepada eksport data serta pengaktifan semula.
+      followers: Tindakan ini akan mengalihkan semua pengikut daripada akaun semasa ke akaun baharu
+      only_redirect_html: Sebagai alternatif, anda boleh <a href="%{path}">hanya meletakkan ubah hala pada profil anda</a>.
+      other_data: Tiada data lain akan dialihkan secara automatik
+      redirect: Profil akaun semasa anda akan dikemas kini dengan notis ubah hala dan dikecualikan daripada carian
+  moderation:
+    title: Penyederhanaan
+  move_handler:
+    carry_blocks_over_text: Pengguna ini berpindah dari %{acct}, yang telah anda sekat.
+    carry_mutes_over_text: Pengguna ini berpindah dari %{acct}, yang telah anda redamkan.
+    copy_account_note_text: 'Pengguna ini berpindah dari %{acct}, berikut ialah nota anda yang terdahulu tentang mereka:'
+  navigation:
+    toggle_menu: Togol menu
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} menyerahkan laporan"
+      sign_up:
+        subject: "%{name} telah mendaftar"
+    favourite:
+      body: 'Pos anda telah digemari oleh %{name}:'
+      subject: "%{name} menggemari siaran anda"
+      title: Kegemaran baru
     follow:
+      body: "%{name} kini mengikuti anda!"
+      subject: "%{name} kini mengikuti anda"
       title: Pengikut baru
     follow_request:
+      action: Urus permintaan ikut
+      body: "%{name} telah meminta untuk mengikuti anda"
+      subject: 'Pengikut belum selesai: %{name}'
       title: Permintaan ikutan baru
     mention:
       action: Balas
+      body: 'Anda telah disebut oleh %{name} dalam:'
+      subject: Anda telah disebut oleh %{name}
+      title: Sebutan baru
+    poll:
+      subject: Tinjauan pendapat oleh %{name} telah tamat
+    reblog:
+      body: 'Siaran anda telah dirangsang oleh %{name}:'
+      subject: "%{name} meningkatkan siaran anda"
+      title: Rangsangan baru
+    status:
+      subject: "%{name} baru sahaja diposkan"
     update:
       subject: "%{name} telah menyunting satu hantaran"
+  notifications:
+    administration_emails: Notifikasi e-mel pentadbir
+    email_events: Acara untuk pemberitahuan e-mel
+    email_events_hint: 'Pilih acara yang ingin anda terima pemberitahuan:'
+    other_settings: Tetapan notifikasi lain
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: J
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  otp_authentication:
+    code_hint: Masukkan kod yang dijana oleh apl pengesah anda untuk mengesahkan
+    description_html: Jika anda mendayakan <strong>pengesahan dua faktor</strong> menggunakan apl pengesah, log masuk memerlukan anda untuk memiliki telefon anda, yang akan menjana token untuk anda masukkan.
+    enable: Dayakan
+    instructions_html: "<strong>Imbas kod QR ini ke dalam Google Authenticator atau apl TOTP serupa pada telefon anda</strong>. Mulai sekarang, aplikasi itu akan menjana token yang perlu anda masukkan semasa log masuk."
+    manual_instructions: 'Jika anda tidak dapat mengimbas kod QR dan perlu memasukkannya secara manual, berikut ialah rahsia teks biasa:'
+    setup: Sediakan
+    wrong_code: Kod yang dimasukkan adalah tidak sah! Adakah masa server dan masa peranti betul?
+  pagination:
+    newer: Lebih baharu
+    next: Seterusnya
+    older: Lebih lama
+    prev: Sebelum ini
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Anda telah pun mengundi pada tinjauan pendapat ini
+      duplicate_options: mengandungi item pendua
+      duration_too_long: terlalu jauh ke masa hadapan
+      duration_too_short: terlalu cepat
+      expired: Undian telah pun tamat
+      invalid_choice: Pilihan undi yang dipilih tidak wujud
+      over_character_limit: tidak boleh lebih panjang daripada %{max} aksara setiap satu
+      self_vote: Anda tidak boleh mengundi dalam tinjauan pendapat anda sendiri
+      too_few_options: mesti mempunyai lebih daripada satu item
+      too_many_options: tidak boleh mengandungi lebih daripada %{max} item
+  preferences:
+    other: Lain-lain
+    posting_defaults: Penyiaran lalai
+    public_timelines: Garis masa awam
+  privacy:
+    hint_html: "<strong>Sesuaikan cara anda mahu profil anda dan pos anda ditemui.</strong> Pelbagai ciri dalam Mastodon boleh membantu anda menjangkau khalayak yang lebih luas apabila didayakan. Luangkan sedikit masa untuk menyemak tetapan ini untuk memastikan ia sesuai dengan kes penggunaan anda."
+    privacy: Privasi
+    privacy_hint_html: Kawal berapa banyak yang anda ingin dedahkan untuk manfaat orang lain. Orang ramai menemui profil menarik dan apl hebat dengan menyemak imbas ikutan orang lain dan melihat apl mana yang mereka siarkan, tetapi anda mungkin lebih suka menyembunyikannya.
+    reach: Tercapai
+    reach_hint_html: Kawal sama ada anda ingin ditemui dan diikuti oleh orang baharu. Adakah anda mahu pos anda dipaparkan pada skrin Teroka? Adakah anda mahu orang lain melihat anda dalam pengesyoran ikutan mereka? Adakah anda mahu menerima semua pengikut baharu secara automatik atau mempunyai kawalan terperinci ke atas setiap pengikut?
+    search: Cari
+    search_hint_html: Kawal cara anda ingin ditemui. Adakah anda mahu orang mencari anda melalui perkara yang anda siarkan secara terbuka? Adakah anda mahu orang di luar Mastodon mencari profil anda semasa mencari di web? Harap maklum bahawa jumlah pengecualian daripada semua enjin carian tidak boleh dijamin untuk maklumat awam.
+    title: Privasi dan capaian
   privacy_policy:
     title: Dasar Privasi
+  reactions:
+    errors:
+      limit_reached: Had tindak balas yang berbeza dicapai
+      unrecognized_emoji: bukan emoji yang diiktiraf
   relationships:
+    activity: Aktiviti akaun
+    confirm_follow_selected_followers: Adakah anda pasti mahu mengikuti pengikut yang dipilih?
+    confirm_remove_selected_followers: Adakah anda pasti mahu mengalih keluar pengikut yang dipilih?
+    confirm_remove_selected_follows: Adakah anda pasti mahu mengalih keluar mengikuti yang dipilih?
+    dormant: Tidak aktif
+    follow_failure: Tidak dapat mengikuti beberapa akaun yang dipilih.
     follow_selected_followers: Ikut pengikut yang dipilih
     followers: Pengikut
     following: Ikutan
+    invited: Dijemput
     last_active: Terakhir aktif
     most_recent: Terkini
+    moved: Dipindah
+    mutual: Saling setuju
+    primary: Utama
     relationship: Hubungan
+    remove_selected_domains: Alih keluar semua pengikut daripada domain yang dipilih
+    remove_selected_followers: Alih keluar pengikut yang dipilih
+    remove_selected_follows: Nyahikut pengguna yang dipilih
     status: Status akaun
+  remote_follow:
+    missing_resource: Tidak dapat mencari URL ubah hala yang diperlukan untuk akaun anda
+  reports:
+    errors:
+      invalid_rules: tidak merujuk peraturan yang sah
   rss:
     content_warning: 'Amaran kandungan:'
+    descriptions:
+      account: Pos awam daripada @%{acct}
+      tag: 'Siaran awam ditandakan #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Anda telah melebihi had %{limit} pos berjadual untuk hari ini
+    over_total_limit: Anda telah melebihi had %{limit} pos berjadual
+    too_soon: Tarikh yang dijadualkan mestilah pada masa hadapan
   sessions:
     activity: Aktiviti terakhir
     browser: Pelayar
@@ -1106,27 +1511,59 @@ ms:
       alipay: Alipay
       blackberry: BlackBerry
       chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Pelayar yang tidak diketahui
+      huawei_browser: Pelayar Huawei
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Pelayar Nokia S40 Ovi
       opera: Opera
       otter: Otter
+      phantom_js: PhantomJS
+      qq: Pelayar QQ
       safari: Safari
+      uc_browser: Pelayar UC
+      unknown_browser: Pelayar yang tidak diketahui
+      weibo: Weibo
     current_session: Sesi sekarang
     description: "%{browser} pada %{platform}"
     explanation: Pelayar-pelayar web berikut sedang didaftar masuk pada akaun Mastodon anda.
     ip: IP
     platforms:
+      adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
+      mac: macOS
+      unknown_platform: Platform yang tidak diketahui
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Batalkan
+    revoke_success: Sesi berjaya dibatalkan
     title: Sesi
+    view_authentication_history: Lihat sejarah pengesahan akaun anda
   settings:
     account: Akaun
     account_settings: Tetapan akaun
+    aliases: Alias ​​akaun
+    appearance: Penampilan
+    authorized_apps: Apl yang dibenarkan
+    back: Kembali ke Mastodon
     delete: Pemadaman akaun
+    development: Pembangunan
     edit_profile: Sunting profil
     export: Eksport data
     featured_tags: Tanda pagar terpilih
     import: Import
     import_and_export: Import dan eksport
+    migrate: Penghijrahan akaun
     notifications: Pemberitahuan
     preferences: Keutamaan
     profile: Profil
@@ -1136,21 +1573,65 @@ ms:
     two_factor_authentication: Pengesahan Dua Faktor
     webauthn_authentication: Kunci keselamatan
   statuses:
+    attached:
+      audio:
+        other: "%{count} audio"
+      description: 'Dilampirkan: %{attached}'
+      image:
+        other: "%{count} imej"
+      video:
+        other: "%{count} video"
+    boosted_from_html: Dirangsang daripada %{acct_link}
     content_warning: 'Amaran kandungan: %{warning}'
     default_language: Sama dengan bahasa antara muka
+    disallowed_hashtags:
+      other: 'mengandungi hashtag yang tidak dibenarkan: %{tags}'
     edited_at_html: Disunting %{date}
+    errors:
+      in_reply_not_found: Pos yang anda cuba balas nampaknya tidak wujud.
+    open_in_web: Buka dalam web
+    over_character_limit: had aksara %{max} melebihi
+    pin_errors:
+      direct: Pos yang hanya boleh dilihat oleh pengguna yang disebut tidak boleh disematkan
+      limit: Anda telah menyematkan bilangan maksimum pos
+      ownership: Siaran orang lain tidak boleh disematkan
+      reblog: Rangsangan tidak boleh disematkan
     poll:
+      total_people:
+        other: "%{count} orang"
+      total_votes:
+        other: "%{count} undi"
       vote: Undi
+    show_more: Tunjuk lebih banyak
+    show_newer: Tunjuk lebih baharu
+    show_older: Tunjuk lebih tua
+    show_thread: Tunjuk bebenang
+    title: '%{name}: "%{quote}"'
     visibilities:
       direct: Terus
       private: Pengikut sahaja
+      private_long: Hanya tunjukkan kepada pengikut
       public: Awam
       public_long: Semua orang boleh melihat
       unlisted: Tidak tersenarai
+      unlisted_long: Semua orang boleh melihat, tetapi tidak disenaraikan pada garis masa awam
   statuses_cleanup:
     enabled: Padam hantaran lama secara automatik
+    enabled_hint: Memadamkan pos anda secara automatik setelah mereka mencapai ambang umur yang ditentukan, melainkan ia sepadan dengan salah satu pengecualian di bawah
+    exceptions: Pengecualian
+    explanation: Oleh kerana pemadaman pos adalah operasi yang mahal, ini dilakukan perlahan-lahan dari semasa ke semasa apabila server tidak sibuk. Atas sebab ini, pos anda mungkin dipadamkan seketika selepas ia mencapai ambang umur.
+    ignore_favs: Abaikan kegemaran
+    ignore_reblogs: Abaikan rangsangan
+    interaction_exceptions: Pengecualian berdasarkan interaksi
+    interaction_exceptions_explanation: Sila ambil perhatian bahawa tiada jaminan untuk pos dipadamkan jika ia berada di bawah ambang kegemaran atau tingkatkan selepas sekali melepasinya.
+    keep_direct: Simpan mesej langsung
+    keep_direct_hint: Tidak memadamkan sebarang mesej langsung anda
+    keep_media: Simpan siaran dengan lampiran media
+    keep_media_hint: Tidak memadamkan mana-mana pos anda yang mempunyai lampiran media
     keep_pinned: Simpan hantaran disemat
     keep_pinned_hint: Tidak memadamkan mana-mana hantaran yang anda sematkan
+    keep_polls: Kekalkan tinjauan pendapat
+    keep_polls_hint: Tidak memadamkan mana-mana tinjauan pendapat anda
     keep_self_bookmark: Simpan hantaran yang anda menandabuku
     keep_self_bookmark_hint: Tidak memadamkan hantaran anda jika anda sudah menandabukunya
     keep_self_fav: Simpan hantaran yang anda gemarkan
@@ -1164,38 +1645,136 @@ ms:
       '604800': Seminggu
       '63113904': 2 tahun
       '7889238': 3 bulan
+    min_age_label: Ambang umur
     min_favs: Simpan hantaran digemarkan sekurang-kurangnya
+    min_favs_hint: Tidak memadamkan mana-mana pos anda yang telah menerima sekurang-kurangnya bilangan kegemaran ini. Biarkan kosong untuk memadamkan pos tanpa mengira bilangan kegemaran mereka
+    min_reblogs: Pastikan pos dipertingkatkan sekurang-kurangnya
+    min_reblogs_hint: Tidak memadamkan mana-mana pos anda yang telah dirangsang sekurang-kurangnya bilangan kali ini. Biarkan kosong untuk memadamkan pos tanpa mengira bilangan rangsangannya
   stream_entries:
     sensitive_content: Kandungan sensitif
   strikes:
     errors:
       too_late: Rayuan pelanggaran ini sudah terlalu lambat
+  tags:
+    does_not_match_previous_name: tidak sepadan dengan nama sebelumnya
+  themes:
+    contrast: Mastodon (Kontras tinggi)
+    default: Mastodon (Gelap)
+    mastodon-light: Mastodon (Cahaya)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+  translation:
+    errors:
+      quota_exceeded: Kuota penggunaan seluruh server untuk perkhidmatan terjemahan telah melebihi.
+      too_many_requests: Terdapat terlalu banyak permintaan kepada perkhidmatan terjemahan baru-baru ini.
   two_factor_authentication:
     add: Tambah
     disable: Nyahdayakan 2FA
+    disabled_success: Pengesahan dua faktor berjaya dilumpuhkan
     edit: Sunting
+    enabled: Pengesahan dua faktor didayakan
+    enabled_success: Pengesahan dua faktor berjaya didayakan
+    generate_recovery_codes: Pengesahan dua faktor berjaya didayakan
+    lost_recovery_codes: Kod pemulihan membolehkan anda mendapatkan semula akses kepada akaun anda jika anda kehilangan telefon anda. Jika anda telah kehilangan kod pemulihan anda, anda boleh menjana semula kod tersebut di sini. Kod pemulihan lama anda akan menjadi tidak sah.
     methods: Kaedah dua faktor
     otp: App pengesahan
+    recovery_codes: Kod pemulihan sandaran
+    recovery_codes_regenerated: Kod pemulihan berjaya dijana semula
+    recovery_instructions_html: Jika anda pernah kehilangan akses kepada telefon anda, anda boleh menggunakan salah satu kod pemulihan di bawah untuk mendapatkan semula akses kepada akaun anda. <strong>Pastikan kod pemulihan selamat</strong>. Sebagai contoh, anda boleh mencetaknya dan menyimpannya bersama dokumen penting lain.
+    webauthn: Kunci keselamatan
   user_mailer:
     appeal_approved:
       action: Pergi ke akaun anda
       explanation: Rayuan pelanggaran yang dikemukakan pada %{appeal_date} terhadap akaun anda pada %{strike_date} telah diluluskan. Akaun anda kini dalam kedudukan yang baik.
+      subject: Rayuan anda dari %{date} telah diluluskan
       title: Rayuan diluluskan
     appeal_rejected:
       explanation: Rayuan pelanggaran yang dikemukakan pada %{appeal_date} terhadap akaun anda pada %{strike_date} telah ditolak.
+      subject: Rayuan anda dari %{date} telah ditolak
       title: Rayuan ditolak
+    backup_ready:
+      explanation: Anda meminta sandaran penuh akaun Mastodon anda. Ia kini sedia untuk dimuat turun!
+      subject: Arkib anda sedia untuk dimuat turun
+      title: Arkibkan bawa pulang
     suspicious_sign_in:
+      change_password: tukar kata laluan anda
+      details: 'Berikut ialah butiran log masuk:'
+      explanation: Kami telah mengesan log masuk ke akaun anda daripada alamat IP baharu.
+      further_actions_html: Jika ini bukan anda, kami mengesyorkan agar anda %{action} dengan segera dan dayakan pengesahan dua faktor untuk memastikan akaun anda selamat.
+      subject: Akaun anda telah diakses daripada alamat IP baharu
       title: Daftar masuk baru
+    warning:
+      appeal: Hantar rayuan
+      appeal_description: Jika anda percaya ini adalah satu kesilapan, anda boleh menyerahkan rayuan kepada kakitangan %{instance}.
+      categories:
+        spam: Spam
+        violation: Kandungan melanggar garis panduan komuniti berikut
+      explanation:
+        delete_statuses: Sesetengah pos anda didapati melanggar satu atau lebih garis panduan komuniti dan kemudiannya telah dialih keluar oleh penyederhana %{instance}.
+        disable: Anda tidak lagi boleh menggunakan akaun anda, tetapi profil anda dan data lain kekal utuh. Anda boleh meminta sandaran data anda, menukar tetapan akaun atau memadam akaun anda.
+        mark_statuses_as_sensitive: Sesetengah pos anda telah ditandakan sebagai sensitif oleh penyederhana %{instance}. Ini bermakna orang ramai perlu mengetik media dalam pos sebelum pratonton dipaparkan. Anda boleh menandai media sebagai sensitif sendiri apabila menyiarkan pada masa hadapan.
+        sensitive: Mulai sekarang, semua fail media anda yang dimuat naik akan ditandakan sebagai sensitif dan tersembunyi di sebalik amaran klik lalu.
+        silence: Anda masih boleh menggunakan akaun anda tetapi hanya orang yang sudah mengikuti anda akan melihat pos anda pada server ini dan anda mungkin dikecualikan daripada pelbagai ciri penemuan. Walau bagaimanapun, orang lain mungkin masih mengikuti anda secara manual.
+        suspend: Anda tidak lagi boleh menggunakan akaun anda dan profil anda serta data lain tidak lagi boleh diakses. Anda masih boleh log masuk untuk meminta sandaran data anda sehingga data dialih keluar sepenuhnya dalam masa kira-kira 30 hari, tetapi kami akan mengekalkan beberapa data asas untuk menghalang anda daripada mengelak daripada penggantungan.
+      reason: 'Sebab:'
+      statuses: 'Catatan yang dipetik:'
+      subject:
+        delete_statuses: Pos anda pada %{acct} telah dialih keluar
+        disable: Akaun %{acct} anda telah dibekukan
+        mark_statuses_as_sensitive: Pos anda pada %{acct} telah ditandakan sebagai sensitif
+        none: Amaran untuk %{acct}
+        sensitive: Pos anda di %{acct} akan ditandakan sebagai sensitif mulai sekarang
+        silence: Akaun %{acct} anda telah dihadkan
+        suspend: Akaun %{acct} anda telah digantung
+      title:
+        delete_statuses: Pos dialih keluar
+        disable: Akaun dibekukan
+        mark_statuses_as_sensitive: Pos ditandakan sebagai sensitif
+        none: Amaran
+        sensitive: Akaun ditandakan sebagai sensitif
+        silence: Akaun terhad
+        suspend: Akaun digantung
     welcome:
+      edit_profile_action: Sediakan profil
+      edit_profile_step: Anda boleh menyesuaikan profil anda dengan memuat naik gambar profil, menukar nama paparan anda dan banyak lagi. Anda boleh ikut serta untuk menyemak pengikut baharu sebelum mereka dibenarkan mengikuti anda.
+      explanation: Berikut ialah beberapa petua untuk anda bermula
+      final_action: Mula menyiarkan
+      final_step: 'Mula menyiarkan! Walaupun tanpa pengikut, pos awam anda mungkin dilihat oleh orang lain, contohnya pada garis masa tempatan atau dalam hashtag. Anda mungkin ingin memperkenalkan diri anda pada hashtag #introductions.'
+      full_handle: Pemegang penuh anda
+      full_handle_hint: Inilah yang anda akan beritahu rakan anda supaya mereka boleh menghantar mesej atau mengikuti anda dari server lain.
       subject: Selamat datang kepada Mastodon
       title: Selamat datang, %{name}!
   users:
     follow_limit_reached: Anda tidak boleh mengikut lebih daripada %{limit} orang
+    go_to_sso_account_settings: Pergi ke tetapan akaun pembekal identiti anda
+    invalid_otp_token: Kod dua faktor tidak sah
+    otp_lost_help_html: Jika anda kehilangan akses kepada kedua-duanya, anda boleh menghubungi %{email}
+    seamless_external_login: Anda telah log masuk melalui perkhidmatan luaran, jadi kata laluan dan tetapan e-mel tidak tersedia.
     signed_in_as: 'Didaftar masuk sebagai:'
   verification:
+    extra_instructions_html: <strong>Petua:</strong> Pautan di tapak web anda mungkin tidak kelihatan. Bahagian penting ialah <code>rel="me"</code> yang menghalang penyamaran pada tapak web dengan kandungan yang dijana pengguna. Anda juga boleh menggunakan tag <code>link</code> dalam pengepala halaman dan bukannya <code>a</code>, tetapi HTML mesti boleh diakses tanpa melaksanakan JavaScript.
+    here_is_how: Ini caranya
+    hint_html: "<strong>Mengesahkan identiti anda di Mastodon adalah untuk semua orang.</strong> Berdasarkan standard web terbuka, percuma kini dan selamanya. Apa yang anda perlukan ialah tapak web peribadi yang orang mengenali anda. Apabila anda memaut ke tapak web ini dari profil anda, kami akan menyemak sama ada tapak web tersebut memaut kembali ke profil anda dan menunjukkan penunjuk visual padanya."
+    instructions_html: Salin dan tampal kod di bawah ke dalam HTML tapak web anda. Kemudian tambahkan alamat tapak web anda ke dalam salah satu medan tambahan pada profil anda daripada tab "Edit profil" dan simpan perubahan.
     verification: Pengesahan
+    verified_links: Pautan anda yang disahkan
   webauthn_credentials:
+    add: Tambahkan kunci keselamatan baharu
+    create:
+      error: Terdapat masalah menambah kunci keselamatan anda. Sila cuba lagi.
+      success: Kunci keselamatan anda telah berjaya ditambahkan.
+    delete: Padam
+    delete_confirmation: Adakah anda pasti mahu memadamkan kunci keselamatan ini?
+    description_html: Jika anda mendayakan <strong>pengesahan kunci keselamatan</strong>, log masuk memerlukan anda menggunakan salah satu kunci keselamatan anda.
+    destroy:
+      error: Terdapat masalah memadamkan kunci keselamatan anda. Sila cuba lagi.
+      success: Kunci keselamatan anda telah berjaya dipadamkan.
     invalid_credential: Kunci keselamatan tidak sah
+    nickname_hint: Masukkan nama panggilan kunci keselamatan baharu anda
+    not_enabled: Anda belum mendayakan WebAuthn lagi
     not_supported: Pelayan ini tidak menyokong kunci keselamatan
     otp_required: Untuk menggunakan kunci keselamatan, sila mengaktifkan pengesahan dua faktor dahulu.
     registered_on: Didaftar pada %{date}

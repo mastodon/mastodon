@@ -309,6 +309,7 @@ hu:
       unpublish: Közzététel visszavonása
       unpublished_msg: A közlemény közzététele sikeresen visszavonva!
       updated_msg: A közlemény sikeresen frissítve!
+    critical_update_pending: Függőben levő kritikus frissítés
     custom_emojis:
       assign_category: Kategória hozzárendelése
       by_domain: Domain
@@ -770,10 +771,27 @@ hu:
           approved: A regisztráció engedélyhez kötött
           none: Senki sem regisztrálhat
           open: Bárki regisztrálhat
+      security:
+        authorized_fetch: Hitelesítés szükséges a föderációs kiszolgálóktól
+        authorized_fetch_hint: A föderációs szerverek hitelesítésének szükségessége lehetővé teszi mind a felhasználói mind a szerver szintű blokkok szigorúbb végrehajtását. Ez azonban a teljesítménybüntetés árán jár, csökkenti a válaszok elérhetőségét és kompatibilitási problémákat vethet fel egyes föderációs szolgáltatásokkal. Emellett ez nem akadályozza meg a dedikált szereplőket abban, hogy nyilvános bejegyzéseiket és fiókjaikat letöltsék.
+        authorized_fetch_overridden_hint: Jelenleg nem lehet ezt a beállítást megváltoztatni, mert azt egy környezeti változó felülbírálja.
+        federation_authentication: Föderációs hitelesítés kikényszerítése
       title: Kiszolgáló-beállítások
     site_uploads:
       delete: Feltöltött fájl törlése
       destroyed_msg: Sikeresen töröltük a site feltöltését!
+    software_updates:
+      critical_update: Kritikus - frissíts gyorsan
+      description: Javasolt, hogy a Mastodon telepítésed naprakész legyen, hogy kihasználhasd a legújabb javításokat és funkciókat. Ezenkívül néha különösen fontos a Mastodon időben történő frissítése a biztonsági problémák elkerülése érdekében. Ezen okok miatt a Mastodon 30 percenként ellenőrzi a frissítéseket és az email értesítési preferenciáknak megfelelően értesítést küld.
+      documentation_link: További információ
+      release_notes: Kiadási megjegyzések
+      title: Elérhető frissítések
+      type: Típus
+      types:
+        major: Fő kiadás
+        minor: Kisebb kiadás
+        patch: Javító kiadás - hibajavítások és könnyen alkalmazható változtatások
+      version: Verzió
     statuses:
       account: Szerző
       application: Alkalmazás
@@ -814,6 +832,20 @@ hu:
     system_checks:
       database_schema_check:
         message_html: Vannak esedékes adatbázis migrációink. Kérlek, futtasd őket, hogy biztosítsd, hogy az alkalmazás megfelelően működjön
+      elasticsearch_health_red:
+        message_html: Az Elasticsearch klaszter egészségtelen (piros állapotú), a keresési funkciók nem érhetők el
+      elasticsearch_health_yellow:
+        message_html: Az Elasticsearch klaszter egészségtelen (sárga állapotú), érdemes megvizsgálni az okát
+      elasticsearch_index_mismatch:
+        message_html: Az Elasticsearch index leképezések elavultak. Futtasd le a <code>tootctl search deploy --only=%{value}</code> parancsot
+      elasticsearch_preset:
+        action: Dokumentáció megtekintése
+        message_html: Az Elasticsearch klaszter egynél több csomóponttal rendelkezik, de a Mastodon nincs beállítva ezek használatára.
+      elasticsearch_preset_single_node:
+        action: Dokumentácó megtekintése
+        message_html: Az Elasticsearch klaszterednek csak egy csomópontja van, az <code>ES_PRESET</code> értéket <code>single_node_cluster</code> értékre kell állítani.
+      elasticsearch_reset_chewy:
+        message_html: Az Elasticsearch rendszerindexed egy beállításmódosítás miatt elavult. A frissítéshez futtasd a <code>tootctl search deploy --reset-chewy</code> parancsot.
       elasticsearch_running_check:
         message_html: Nem sikerült az Elasticsearchhöz kapcsolódni. Ellenőrizze, hogy fut-e, vagy kapcsolja ki a teljes szöveges keresést.
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ hu:
         message_html: Még nem definiáltál egy szerver szabályt sem.
       sidekiq_process_check:
         message_html: Nincs Sidekiq folyamat, mely a %{value} sorhoz van rendelve. Kérlek, nézd át a Sidekiq beállításait
+      software_version_critical_check:
+        action: Elérhető frissítések megtekintése
+        message_html: Kritikus Mastodon frissítés érhető el, frissíts a lehető leggyorsabban.
+      software_version_patch_check:
+        action: Elérhető frissítések megtekintése
+        message_html: Egy hibajavító Mastodon-frissítés elérhető.
       upload_check_privacy_error:
         action: Itt találsz több információt
         message_html: "<strong>A webkiszolgálód félre van konfigurálva. Kockázat merül fel a felhasználóid adatainak biztonságával kapcsolatban.</strong>"
@@ -937,6 +975,9 @@ hu:
       body: "%{target} fellebbezi %{action_taken_by} moderátor %{date}-i, %{type} szóló döntését. Ezt írták:"
       next_steps: Jóváhagyhatod a fellebbezést, hogy semmissé tedd a moderátori döntést, vagy figyelmen kívül hagyhatod.
       subject: "%{username} fellebbez egy moderátori döntést a %{instance} szerveren"
+    new_critical_software_updates:
+      body: Megjelent a Mastodon új kritikus verziója, érdemes lehet a lehető leghamarabb frissíteni!
+      subject: A %{instance} kiszolgálóhoz kritikus Mastodon frissítések érhetőek el!
     new_pending_account:
       body: Az új fiók részletesen alább látható. Ezt a jelentkezést engedélyezheted vagy elutasíthatod.
       subject: Új fiók (%{username}) engedélyezésre vár a %{instance} szerveren
@@ -944,6 +985,9 @@ hu:
       body: "%{reporter} jelentette: %{target}"
       body_remote: Valaki a %{domain} domainről jelentette %{target}
       subject: 'Új jelentés az alábbi szerveren: %{instance} (#%{id})'
+    new_software_updates:
+      body: Új Mastodon verziók jelentek meg, amelyeket érdemes frissíteni!
+      subject: Új Mastodon verziók érhetőek el a %{instance} kiszolgálóhoz!
     new_trends:
       body: 'A következő elemeket ellenőrizni kell, mielőtt nyilvánosan megjelennének:'
       new_trending_links:
@@ -1432,6 +1476,7 @@ hu:
     update:
       subject: "%{name} szerkesztett egy bejegyzést"
   notifications:
+    administration_emails: Adminisztrátori e-mail-értesítések
     email_events: Események email értesítésekhez
     email_events_hint: 'Válaszd ki azokat az eseményeket, melyekről értesítést szeretnél:'
     other_settings: Értesítések egyéb beállításai
@@ -1475,6 +1520,15 @@ hu:
     other: Egyéb
     posting_defaults: Bejegyzések alapértelmezései
     public_timelines: Nyilvános idővonalak
+  privacy:
+    hint_html: "<strong>Testreszabható a profil és a bejegyzések megjelenése.</strong> A Mastodon számos funkciója segíthet szélesebb közönség elérésében, ha engedélyezve van. Szánj egy percet a beállítások áttekintésére, hogy megbizonyosodj arról, hogy ezek megfelelnek a te felhasználási esetednek."
+    privacy: Adatvédelem
+    privacy_hint_html: Szabályozd, hogy mások számára miket szeretnél nyilvánosságra hozni. Az emberek érdekes profilokat és nagyszerű alkalmazásokat fedezhetnek fel, amikor böngésznek mások követései között és látják, hogy mely alkalmazásokból tesznek közzé bejegyzéseket, de az is lehet, hogy inkább elrejtenéd ezeket az infókat.
+    reach: Elérés
+    reach_hint_html: Szabályozd, hogy szeretnéd-e, hogy új emberek felfedezzenek és kövessenek. Szeretnéd, hogy a bejegyzéseid megjelenjenek a Felfedezés képernyőn? Szeretnéd, hogy mások is lássanak téged a követési ajánlataikban? Szeretnéd automatikusan elfogadni az összes új követőt vagy egyesével szabályozni mindegyiket?
+    search: Keresés
+    search_hint_html: Irányítsd, hogyan találjanak meg. Szeretnéd, hogy az emberek megtaláljanak az alapján, amiről nyilvános bejegyzést írtál? Szeretnéd, hogy a Mastodonon kívüli emberek megtalálják a profilodat, amikor az interneten keresnek? Ne feledd, hogy a nyilvános információk esetében nem garantálható az összes keresőmotorból való teljes kizárás.
+    title: Adatvédelem és elérés
   privacy_policy:
     title: Adatvédelmi irányelvek
   reactions:
@@ -1684,6 +1738,11 @@ hu:
       default: "%Y. %b %d., %H:%M"
       month: "%Y %b"
       time: "%H:%M"
+      with_time_zone: "%Y. %b %d., %H:%M"
+  translation:
+    errors:
+      quota_exceeded: A fordítási szolgáltatás szerver szintű felhasználási korlátját túlléptük.
+      too_many_requests: Az előzőekben túl sok kérés érkezett a fordítási szolgáltatáshoz.
   two_factor_authentication:
     add: Hozzáadás
     disable: Kikapcsolás

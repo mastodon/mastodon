@@ -3,9 +3,13 @@ fi:
   simple_form:
     hints:
       account:
+        discoverable: Julkisia viestejäsi ja profiiliasi voidaan pitää esillä tai suositella Mastodonin eri alueilla, ja profiiliasi voidaan myös ehdottaa suoraan toisille käyttäjille.
         display_name: Koko nimesi tai lempinimesi.
         fields: Kotisivusi, pronominit, ikä, mitä ikinä haluatkin.
+        indexable: Julkiset viestit voivat näkyä hakutuloksissa Mastodonissa. Ihmiset, jotka ovat olleet vuorovaikutuksessa viestiesi kanssa, voivat etsiä niitä siitä riippumatta.
         note: 'Voit @mainita muita käyttäjiä tai #aihetunnisteita.'
+        show_collections: Käyttäjät eivät näe ketä seuraat ja ketkä seuraavat sinua. Käyttäjät, joita sinä seuraat, näkevät kuitenkin sinun seuraavan heitä.
+        unlocked: Käyttäjät voivat seurata sinua pyytämättä hyväksyntää. Poista valinta, jos haluat tarkistaa ja hyväksyä tai hylätä vastaanottamasi seurantapyynnöt.
       account_alias:
         acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, josta haluat siirtyä
       account_migration:
@@ -116,6 +120,9 @@ fi:
       sessions:
         otp: Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.
         webauthn: Jos kyseessä on USB-avain, muista laittaa se paikalleen ja tarvittaessa napauttaa sitä.
+      settings:
+        indexable: Profiilisi voi näkyä Googlen, Bingin ja muiden hakukoneiden hakutuloksissa.
+        show_application: Voit siitä huolimatta aina nähdä, millä sovelluksella julkaisusi laadittiin.
       tag:
         name: Voit muuttaa esimerkiksi kirjaimia paremmin luettavaksi
       user:
@@ -133,9 +140,13 @@ fi:
         url: Mihin tapahtumat lähetetään
     labels:
       account:
+        discoverable: Sisällytä profiili ja julkaisut etsintäalgoritmeihin
         fields:
           name: Nimike
           value: Sisältö
+        indexable: Sisällytä julkiset viestit hakutuloksiin
+        show_collections: Näytä seuratut ja seuraajat profiilissa
+        unlocked: Hyväksy uudet seuraajat automaattisesti
       account_alias:
         acct: Vanhan tilin käsittely
       account_migration:
@@ -280,9 +291,18 @@ fi:
         pending_account: Uusi tili tarvitsee tarkastusta
         reblog: Lähetä sähköposti, kun joku tehosti viestiäsi
         report: Uusi raportti on lähetetty
+        software_updates:
+          all: Ilmoita kaikista päivityksistä
+          critical: Ilmoita vain kriittisistä päivityksistä
+          label: Uusi Mastodon-versio on saatavilla
+          none: Älä koskaan ilmoita päivityksistä (ei suositeltu)
+          patch: Ilmoita virhekorjauspäivityksistä
         trending_tag: Uusi trendi vaatii tarkastelua
       rule:
         text: Sääntö
+      settings:
+        indexable: Sisällytä profiilisivu hakukoneisiin
+        show_application: Näytä, mistä sovelluksesta lähetit viestin
       tag:
         listable: Salli tämän aihetunnisteen näkyä hauissa ja ehdotuksissa
         name: Aihetunniste
@@ -303,6 +323,7 @@ fi:
         url: Päätepisteen URL
     'no': Ei
     not_recommended: Ei suositella
+    overridden: Ohitettu
     recommended: Suositeltu
     required:
       mark: "*"
