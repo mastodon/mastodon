@@ -3,9 +3,13 @@
 class Settings::PrivacyController < Settings::BaseController
   before_action :set_account
 
-  def show; end
+  def show
+    Notice.find(:mastodon_privacy_4_2).dismiss_for_user!(@account.user) # rubocop:disable Naming/VariableNumber
+  end
 
   def update
+    Notice.find(:mastodon_privacy_4_2).dismiss_for_user!(@account.user) # rubocop:disable Naming/VariableNumber
+
     if UpdateAccountService.new.call(@account, account_params.except(:settings))
       current_user.update!(settings_attributes: account_params[:settings])
       ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
