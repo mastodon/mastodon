@@ -3,9 +3,13 @@ zh-TW:
   simple_form:
     hints:
       account:
+        discoverable: 公開嘟文及個人檔案可能於各 Mastodon 功能中被推薦，並且您的個人檔案可能被推薦至其他使用者。
         display_name: 完整名稱或暱稱。
         fields: 烘培雞，自我認同代稱，年齡，及任何您想分享的。
+        indexable: 您的公開嘟文可能會顯示於 Mastodon 之搜尋結果中。曾與您嘟文互動過的人可能無論如何都能搜尋它們。
         note: '您可以 @mention 其他人或者使用 #主題標籤。'
+        show_collections: 人們將能瀏覽您跟隨中及跟隨者帳號。您所跟隨之人能得知您正在跟隨其帳號。
+        unlocked: 人們將無需額外請求您的同意便能跟隨您的帳號。取消勾選以審查跟隨請求並選擇是否同意或拒絕新跟隨者。
       account_alias:
         acct: 指定要移動的帳號的「使用者名稱@網域名稱」
       account_migration:
@@ -41,13 +45,11 @@ zh-TW:
         current_password: 因安全因素，請輸入目前帳號的密碼
         current_username: 請輸入目前帳號的使用者名稱以確認
         digest: 僅在您長時間未登入且在未登入期間收到私訊時傳送
-        discoverable: 允許陌生人透過推薦、熱門趨勢及其他功能發現您的帳號
         email: 您將收到一封確認電子郵件
         header: 支援 PNG、GIF 或 JPG 圖片格式，檔案最大為 %{size}，會等比例縮減至 %{dimensions} 像素
         inbox_url: 從您想要使用的中繼首頁複製網址
         irreversible: 已過濾的嘟文將會不可逆地消失，即便之後移除過濾器也一樣
         locale: 使用者介面、電子郵件和推播通知的語言
-        locked: 需要您手動批准跟隨請求
         password: 使用至少 8 個字元
         phrase: 無論是嘟文的本文或是內容警告都會被過濾
         scopes: 允許讓應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
@@ -57,9 +59,6 @@ zh-TW:
         setting_display_media_default: 隱藏標為敏感內容的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
         setting_display_media_show_all: 總是顯示標為敏感內容的媒體
-        setting_hide_network: 您跟隨的人與跟隨您的人將不會在您的個人檔案頁面上顯示
-        setting_noindex: 會影響您的公開個人檔案與嘟文頁面
-        setting_show_application: 您用來發嘟文的應用程式將會在您嘟文的詳細檢視顯示
         setting_use_blurhash: 彩色漸層圖樣是基於隱藏媒體內容顏色產生，所有細節會變得模糊
         setting_use_pending_items: 關閉自動捲動更新，時間軸只會在點擊後更新
         username: 您可以使用字幕、數字與底線
@@ -121,6 +120,9 @@ zh-TW:
       sessions:
         otp: 請輸入產生自您手機 App 的兩階段驗證碼，或輸入其中一個備用驗證碼：
         webauthn: 如果它是 USB 安全金鑰的話，請確認已正確插入，如有需要請觸擊。
+      settings:
+        indexable: 個人檔案可能出現於 Google、Bing、或其他搜尋引擎。
+        show_application: 將總是顯示您發嘟文之應用程式
       tag:
         name: 您只能變更大小寫，例如，以使其更易讀。
       user:
@@ -138,9 +140,13 @@ zh-TW:
         url: 事件會被傳送至何處
     labels:
       account:
+        discoverable: 於探索演算法中推薦個人檔案及嘟文
         fields:
           name: 標籤
           value: 內容
+        indexable: 允許公開嘟文顯示於搜尋結果中
+        show_collections: 於個人檔案中顯示跟隨中及跟隨者
+        unlocked: 自動同意新跟隨者
       account_alias:
         acct: 舊帳號名稱
       account_migration:
@@ -178,7 +184,6 @@ zh-TW:
         context: 過濾情境
         current_password: 目前密碼
         data: 資料
-        discoverable: 在目錄列出此帳號
         display_name: 顯示名稱
         email: 電子郵件地址
         expires_in: 失效時間
@@ -188,7 +193,6 @@ zh-TW:
         inbox_url: 中繼收件匣 URL
         irreversible: 放棄而非隱藏
         locale: 介面語言
-        locked: 鎖定帳號
         max_uses: 最大使用次數
         new_password: 新密碼
         note: 個人簡介
@@ -211,9 +215,7 @@ zh-TW:
         setting_display_media_show_all: 全部顯示
         setting_expand_spoilers: 永遠展開標有內容警告的嘟文
         setting_hide_network: 隱藏您的社交網路
-        setting_noindex: 阻止搜尋引擎建立索引
         setting_reduce_motion: 減少過渡動畫效果
-        setting_show_application: 顯示用來傳送嘟文的應用程式
         setting_system_font_ui: 使用系統預設字型
         setting_theme: 佈景主題
         setting_trends: 顯示本日熱門趨勢
@@ -289,9 +291,18 @@ zh-TW:
         pending_account: 有新的帳號需要審核
         reblog: 當有使用者轉嘟您的嘟文時，傳送電子郵件通知
         report: 新回報已遞交
+        software_updates:
+          all: 通知所有更新
+          critical: 僅通知重要更新
+          label: 有可取得的 Mastodon 新版本
+          none: 永不通知更新（不建議）
+          patch: 通知錯誤修正更新
         trending_tag: 新熱門趨勢需要審核
       rule:
         text: 規則
+      settings:
+        indexable: 於搜尋引擎中包含個人檔案頁面
+        show_application: 顯示您發嘟文之應用程式
       tag:
         listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
         name: 主題標籤
@@ -312,6 +323,7 @@ zh-TW:
         url: 端點 URL
     'no': 否
     not_recommended: 不建議
+    overridden: 已覆寫
     recommended: 建議
     required:
       mark: "*"

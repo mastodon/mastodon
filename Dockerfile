@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4
-# This needs to be bullseye-slim because the Ruby image is built on bullseye-slim
-ARG NODE_VERSION="16.20-bullseye-slim"
+# This needs to be bookworm-slim because the Ruby image is built on bookworm-slim
+ARG NODE_VERSION="20.6-bookworm-slim"
 
 FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.2-slim as ruby
 FROM node:${NODE_VERSION} as build
@@ -20,7 +20,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends build-essential \
         git \
         libicu-dev \
-        libidn11-dev \
+        libidn-dev \
         libpq-dev \
         libjemalloc-dev \
         zlib1g-dev \
@@ -42,8 +42,8 @@ RUN apt-get update && \
 FROM node:${NODE_VERSION}
 
 # Use those args to specify your own version flags & suffixes
-ARG MASTODON_VERSION_FLAGS=""
-ARG MASTODON_VERSION_SUFFIX=""
+ARG MASTODON_VERSION_PRERELEASE=""
+ARG MASTODON_VERSION_METADATA=""
 
 ARG UID="991"
 ARG GID="991"
@@ -64,13 +64,13 @@ RUN apt-get update && \
     apt-get -y --no-install-recommends install whois \
         wget \
         procps \
-        libssl1.1 \
+        libssl3 \
         libpq5 \
         imagemagick \
         ffmpeg \
         libjemalloc2 \
-        libicu67 \
-        libidn11 \
+        libicu72 \
+        libidn12 \
         libyaml-0-2 \
         file \
         ca-certificates \
@@ -89,8 +89,8 @@ ENV RAILS_ENV="production" \
     NODE_ENV="production" \
     RAILS_SERVE_STATIC_FILES="true" \
     BIND="0.0.0.0" \
-    MASTODON_VERSION_FLAGS="${MASTODON_VERSION_FLAGS}" \
-    MASTODON_VERSION_SUFFIX="${MASTODON_VERSION_SUFFIX}"
+    MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
+    MASTODON_VERSION_METADATA="${MASTODON_VERSION_METADATA}"
 
 # Set the run user
 USER mastodon

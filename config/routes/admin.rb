@@ -201,4 +201,6 @@ namespace :admin do
       end
     end
   end
+
+  resources :software_updates, only: [:index]
 end

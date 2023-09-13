@@ -308,6 +308,7 @@ ca:
       unpublish: Despublicar
       unpublished_msg: L’anunci s’ha despublicat amb èxit!
       updated_msg: L'anunci s'ha actualitzat correctament!
+    critical_update_pending: Actualització crítica pendent
     custom_emojis:
       assign_category: Assigna una categoria
       by_domain: Domini
@@ -447,7 +448,7 @@ ca:
       no_file: No s'ha seleccionat cap fitxer
     export_domain_blocks:
       import:
-        description_html: Estàs a punt d'importar una llista de dominis blocats. Si us plau, revisa aquesta llista amb molta cura, especialment si no l'has creada tu mateix.
+        description_html: Esteu a punt d'importar una llista de dominis blocats. Reviseu aquesta llista amb molta cura, especialment si no l'heu creada vós mateix.
         existing_relationships_warning: Relacions de seguiment existents
         private_comment_description_html: 'Per a ajudar-te a fer un seguiment d''on provenen els bloquejos importats, es crearan amb el següent comentari privat: <q>%{comment}</q>'
         private_comment_template: Importar des de %{source} el %{date}
@@ -457,7 +458,7 @@ ca:
         title: Importa dominis bloquejats
       no_file: No s'ha seleccionat cap fitxer
     follow_recommendations:
-      description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb d'altres com per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen a diari a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
+      description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb altres per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen diàriament a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
       language: Per idioma
       status: Estat
       suppress: Suprimeix les recomanacions de seguiment
@@ -769,10 +770,27 @@ ca:
           approved: Cal l’aprovació per a registrar-se
           none: No es pot registrar ningú
           open: Qualsevol pot registrar-se
+      security:
+        authorized_fetch: Requereix autenticació dels servidors federats
+        authorized_fetch_hint: Requerir l'autenticació dels servidors federats permet una aplicació més estricta dels bloqueigs a nivell d'usuari i a nivell de servidor. Tanmateix, això provoca una penalització del rendiment, redueix l'abast de les seves respostes i pot introduir problemes de compatibilitat amb alguns serveis federats. A més, això no impedirà que els actors dedicats busquin les teves publicacions i comptes públics.
+        authorized_fetch_overridden_hint: Actualment no pots canviar aquesta configuració perquè està anul·lada per una variable d'entorn.
+        federation_authentication: Aplicació de l'autenticació de la federació
       title: Configuració del servidor
     site_uploads:
       delete: Esborra el fitxer pujat
       destroyed_msg: La càrrega al lloc s'ha suprimit correctament!
+    software_updates:
+      critical_update: Crítica - si us plau, actualitza ràpidament
+      description: Es recomana mantenir actualizada la teva instal·lació de Mastodon per a beneficiar-se de les darreres correccions i característiques. A més, de vegades és fonamental actualitzar Mastodon periòdicament per evitar problemes de seguretat. Per aquestes raons, Mastodon comprova si hi ha actualitzacions cada 30 minuts i et notificarà d'acord amb les teves preferències de notificacions per correu electrònic.
+      documentation_link: Més informació
+      release_notes: Notes de llançament
+      title: Actualitzacions disponibles
+      type: Tipus
+      types:
+        major: Llançament important
+        minor: Llançament menor
+        patch: 'Llançament de pedaços: correccions d''errors i canvis fàcils d''aplicar'
+      version: Versió
     statuses:
       account: Autor
       application: Aplicació
@@ -812,9 +830,23 @@ ca:
       appeal_rejected: Apel·lació rebutjada
     system_checks:
       database_schema_check:
-        message_html: Hi ha pendents migracions de la base de dades. Si us plau executa-les per a assegurar que l'aplicació es comporta com s'espera
+        message_html: Hi ha pendents migracions de la base de dades. Executeu-les per a assegurar que l'aplicació es comporta com s'espera
+      elasticsearch_health_red:
+        message_html: El cluster de Elasticsearch no es saludable (estat vermell), les funcions de cerca no estan disponibles
+      elasticsearch_health_yellow:
+        message_html: El cluster de Elasticsearch no es saludable (estat groc), és possible que vulguis investigar la raó
+      elasticsearch_index_mismatch:
+        message_html: Els mapes de índex de Elasticsearch estan desactualizats. Si us plau executa <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Veure la documentació
+        message_html: El teu clúster de Elasticsearch té més d'un node però Mastodon no està configurat per a emprar-los.
+      elasticsearch_preset_single_node:
+        action: Veure la documentació
+        message_html: El teu clúster de Elasticsearch té només un node, <code>ES_PRESET</code> hauria de ser configurat com <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: L'índex del teu sistema Elasticsearch està desactualizat degut a un canvi de configuració. Si us plau executa <code>tootctl search deploy --reset-chewy</code> per a actualitzar-lo.
       elasticsearch_running_check:
-        message_html: No s'ha pogut connectar a Elasticsearch. Si us plau verifica que estigui funcionant o desactiva la cerca de text complet
+        message_html: No s'ha pogut connectar a Elasticsearch. Verifiqueu que funciona o desactiveu la cerca de text complet
       elasticsearch_version_check:
         message_html: 'Versió incompatible de Elasticsearch: %{value}'
         version_comparison: Elasticsearch %{running_version} està funcionant mentre %{required_version} és requerida
@@ -822,7 +854,13 @@ ca:
         action: Gestiona les normes del servidor
         message_html: No has definit cap norma del servidor.
       sidekiq_process_check:
-        message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Si us plau revisa la teva configuració de Sidekiq
+        message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Reviseu la configuració de Sidekiq
+      software_version_critical_check:
+        action: Veure actualitzacions disponibles
+        message_html: Hi ha disponible una actualització crítica de Mastodon, si us plau, actualitza-la el més abans possible.
+      software_version_patch_check:
+        action: Veure actualitzacions disponibles
+        message_html: Hi ha disponible una actualització de correcció d'errors de Mastodon.
       upload_check_privacy_error:
         action: Consulta aquí per a més informació
         message_html: "<strong>El teu servidor no està ben configurat. La privacitat dels teus usuaris està en risc.</strong>"
@@ -936,6 +974,9 @@ ca:
       body: "%{target} està apel·lant una decisió de moderació de %{action_taken_by} el %{date}, del tipus %{type}. Han escrit:"
       next_steps: Pots aprovar l'apel·lació per a desfer la decisió de moderació o ignorar-la.
       subject: "%{username} està apel·lant una decisió de moderació a %{instance}"
+    new_critical_software_updates:
+      body: S'han alliberat noves versions crítiques de Mastodon, és possible que vulguis actualitzar-les el més aviat possible!
+      subject: Hi ha disponibles actualitzacions crítiques de Mastodon per a %{instance}!
     new_pending_account:
       body: A continuació trobaràs els detalls del compte nou. Pots aprovar o rebutjar aquest registre.
       subject: Nou compte per a revisar a %{instance} (%{username})
@@ -943,6 +984,9 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des del domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
+    new_software_updates:
+      body: S'han alliberat noves versions de Mastodon, és possible que desitgis actualitzar!
+      subject: Hi ha disponibles noves versions de Mastodon per a %{instance}!
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
       new_trending_links:
@@ -1093,7 +1137,7 @@ ca:
     proceed: Elimina el compte
     success_msg: El compte s'ha eliminat correctament
     warning:
-      before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
+      before: 'Abans de procedir, llegiu amb cura aquestes notes:'
       caches: El contingut que ha estat memoritzat en la memòria cau per altres servidors pot persistir
       data_removal: Els teus tuts i altres dades seran permanentment eliminades
       email_change_html: Pots <a href="%{path}">canviar la teva adreça de correu electrònic</a> sense eliminar el teu compte
@@ -1139,7 +1183,6 @@ ca:
     basic_information: Informació bàsica
     hint_html: "<strong>Personalitza el que la gent veu en el teu perfil públic i a prop dels teus tuts..</strong> És més probable que altres persones et segueixin i interaccionin amb tu quan tens emplenat el teu perfil i amb la teva imatge."
     other: Altres
-    safety_and_privacy: Seguretat i privacitat
   errors:
     '400': La sol·licitud que vas emetre no era vàlida o no era correcta.
     '403': No tens permís per a veure aquesta pàgina.
@@ -1243,7 +1286,7 @@ ca:
     today: avui
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
-      other: Alguna cosa no va bé! Si us plau, revisa %{count} errors més a baix
+      other: Alguna cosa no va bé! Reviseu els %{count} errors següents
   imports:
     errors:
       empty: Fitxer CSV buit
@@ -1365,7 +1408,7 @@ ca:
     cancelled_msg: Redirecció cancel·lada amb èxit.
     errors:
       already_moved: és el mateix compte al que ja t'has mogut
-      missing_also_known_as: no fa referencia a aquest compte
+      missing_also_known_as: no fa referència a aquest compte
       move_to_self: no pot ser el compte actual
       not_found: podria no ser trobat
       on_cooldown: Estàs en temps de refredament
@@ -1382,7 +1425,7 @@ ca:
     set_redirect: Ajusta la redirecció
     warning:
       backreference_required: El compte nou primer ha de ser configurat per a referenciar aquest
-      before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
+      before: 'Abans de procedir, llegiu amb cura aquestes notes:'
       cooldown: Després de moure't hi ha un període de recuperació durant el qual no seràs capaç de moure't un altre cop
       disabled_account: El teu compte actual no serà plenament utilitzable després. Tanmateix, tindràs accés a exportació de dades així com reactivació.
       followers: Aquesta acció mourà tots els seguidors des de l'actual al compte nou
@@ -1432,6 +1475,7 @@ ca:
     update:
       subject: "%{name} ha editat una publicació"
   notifications:
+    administration_emails: Notificacions per correu-e de l'Admin
     email_events: Esdeveniments per a notificacions de correu electrònic
     email_events_hint: 'Selecciona els esdeveniments per als quals vols rebre notificacions:'
     other_settings: Altres opcions de notificació
@@ -1475,6 +1519,15 @@ ca:
     other: Altre
     posting_defaults: Valors per defecte de publicació
     public_timelines: Línies de temps públiques
+  privacy:
+    hint_html: "<strong>Personalitza com vols que siguin trobats el teu perfil i els teus tuts.</strong> Una varietat de característiques de Mastodon et poden ajudar a arribar a una major audiència quan les actives. Dedica una estona a revisar aquests ajustaments per assegurar que son els que necessites."
+    privacy: Privacitat
+    privacy_hint_html: Controla quant vols revelar en benefici d'altres. La gent descobreix perfils interessants i aplicacions genials tot navegant per els usuaris seguits d'altres persones i veient des de quines aplicacions publiquen, però pots preferir mantenir-ho amagat.
+    reach: Arribar a
+    reach_hint_html: Controla si vols ser descobert i seguit per gent nova. Vols que els teus tuts apareguin en la pantalla de Explora? Vols que altres persones et vegin en les seves recomanacions de seguiment? Vols acceptar automàticament als nous seguidors o tenir un control granular sobre cadascun d'ells?
+    search: Cerca
+    search_hint_html: Controla com vols ser trobat. Vols que la gent et trobi per el que publiques? Vols que la gent fora de Mastodon trobi el teu perfil quan cerquin la web? Has de tenir en compte que no es pot garantir la exclusió total de tots els motors de cerca per a la informació pública.
+    title: Privacitat i arribar
   privacy_policy:
     title: Política de Privacitat
   reactions:
@@ -1683,6 +1736,11 @@ ca:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: S'ha superat la quota d'ús de tot el servidor per el servei de traducció.
+      too_many_requests: Hi ha hagut massa sol·licituds al servei de traducció recentment.
   two_factor_authentication:
     add: Afegeix
     disable: Desactiva
@@ -1789,5 +1847,5 @@ ca:
     nickname_hint: Introdueix el sobrenom de la teva clau de seguretat nova
     not_enabled: Encara no has activat WebAuthn
     not_supported: Aquest navegador no suporta claus de seguretat
-    otp_required: Per emprar claus de seguretat si us plau activa primer l'autenticació de dos factors.
+    otp_required: Per a usar claus de seguretat, activeu primer l'autenticació de dos factors.
     registered_on: Registrat en %{date}

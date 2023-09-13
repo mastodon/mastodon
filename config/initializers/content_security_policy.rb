@@ -19,6 +19,24 @@ media_host ||= host_to_url(ENV['AZURE_ALIAS_HOST'])
 media_host ||= host_to_url(ENV['S3_HOSTNAME']) if ENV['S3_ENABLED'] == 'true'
 media_host ||= assets_host
 
+def sso_host
+  return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true'
+  return unless ENV['OMNIAUTH_ONLY'] == 'true'
+  return unless Devise.omniauth_providers.length == 1
+
+  provider = Devise.omniauth_configs[Devise.omniauth_providers[0]]
+  @sso_host ||= begin
+    case provider.provider
+    when :cas
+      provider.cas_url
+    when :saml
+      provider.options[:idp_sso_target_url]
+    when :openid_connect
+      provider.options.dig(:client_options, :authorization_endpoint) || OpenIDConnect::Discovery::Provider::Config.discover!(provider.options[:issuer]).authorization_endpoint
+    end
+  end
+end
+
 Rails.application.config.content_security_policy do |p|
   p.base_uri        :none
   p.default_src     :none
@@ -29,12 +47,19 @@ Rails.application.config.content_security_policy do |p|
   p.media_src       :self, :https, :data, assets_host
   p.frame_src       :self, :https
   p.manifest_src    :self, assets_host
-  p.form_action     :self
+
+  if sso_host.present?
+    p.form_action     :self, sso_host
+  else
+    p.form_action     :self
+  end
+
   p.child_src       :self, :blob, assets_host
   p.worker_src      :self, :blob, assets_host
 
   if Rails.env.development?
-    webpacker_urls = %w(ws http).map { |protocol| "#{protocol}#{Webpacker.dev_server.https? ? 's' : ''}://#{Webpacker.dev_server.host_with_port}" }
+    webpacker_public_host = ENV.fetch('WEBPACKER_DEV_SERVER_PUBLIC', Webpacker.config.dev_server[:public])
+    webpacker_urls = %w(ws http).map { |protocol| "#{protocol}#{Webpacker.dev_server.https? ? 's' : ''}://#{webpacker_public_host}" }
 
     p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url, *webpacker_urls
     p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host

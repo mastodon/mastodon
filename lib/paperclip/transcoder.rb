@@ -4,6 +4,9 @@ module Paperclip
   # This transcoder is only to be used for the MediaAttachment model
   # to check when uploaded videos are actually gifv's
   class Transcoder < Paperclip::Processor
+    # This is the H.264 "High" value taken from https://www.dr-lex.be/info-stuff/videocalc.html
+    BITS_PER_PIXEL = 0.11
+
     def initialize(file, options = {}, attachment = nil)
       super
 
@@ -37,12 +40,17 @@ module Paperclip
         @output_options['f']       = 'image2'
         @output_options['vframes'] = 1
       when 'mp4'
-        @output_options['acodec'] = 'aac'
-        @output_options['strict'] = 'experimental'
+        unless eligible_to_passthrough?(metadata)
+          bitrate = (metadata.width * metadata.height * 30 * BITS_PER_PIXEL) / 1_000
 
-        if high_vfr?(metadata) && !eligible_to_passthrough?(metadata)
-          @output_options['vsync'] = 'vfr'
-          @output_options['r'] = @vfr_threshold
+          @output_options['b:v']     = "#{bitrate}k"
+          @output_options['maxrate'] = "#{bitrate + 192}k"
+          @output_options['bufsize'] = "#{bitrate * 5}k"
+
+          if high_vfr?(metadata)
+            @output_options['vsync'] = 'vfr'
+            @output_options['r'] = @vfr_threshold
+          end
         end
       end
 

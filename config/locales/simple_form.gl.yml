@@ -3,9 +3,13 @@ gl:
   simple_form:
     hints:
       account:
+        discoverable: As túas publicacións públicas e perfil poden mostrarse ou recomendarse en varias zonas de Mastodon e o teu perfil ser suxerido a outras usuarias.
         display_name: O teu nome completo ou un nome divertido.
         fields: Páxina web, pronome, idade, o que ti queiras.
+        indexable: As túas publicacións públicas poderían aparecer nos resultados das buscas en Mastodon. En calquera caso, as persoas que interactúen coas túas publicacións poderán buscalas igualmente.
         note: 'Podes @mencionar a outras persoas ou #cancelos.'
+        show_collections: Calquera poderá ver os teus seguimentos e seguidoras, e as persoas ás que segues tamén poden ver que as segues.
+        unlocked: Poderán seguirte directamente sen solicitar o seguimento. Desmarca isto se queres revisar manualmente cada solicitude e decidir se aceptas ou rexeitas novos seguimentos.
       account_alias:
         acct: Indica o usuaria@servidor da conta desde a cal queres migrar
       account_migration:
@@ -41,13 +45,11 @@ gl:
         current_password: Por razóns de seguridade, introduce o contrasinal da conta actual
         current_username: Para confirmar, introduce o nome de usuaria da conta actual
         digest: Enviar só tras un longo período de inactividade e só se recibiches algunha mensaxe directa na tua ausencia
-        discoverable: Permite que a túa conta poida ser descuberta por persoas descoñecidas a través de recomendacións, tendencias e outras ferramentas
         email: Ímosche enviar un correo de confirmación
         header: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
         inbox_url: Copiar o URL desde a páxina de inicio do repetidor que queres utilizar
         irreversible: As publicacións filtradas desaparecerán de xeito irreversible, incluso se despois se elimina o filtro
         locale: O idioma da interface de usuaria, correos e notificacións
-        locked: Xestionar manualmente quen pode seguirte aprobando as solicitudes de seguimento
         password: Utiliza 8 caracteres ao menos
         phrase: Concordará independentemente das maiúsculas ou avisos de contido na publicación
         scopes: A que APIs terá acceso a aplicación. Se escolles un ámbito de alto nivel, non precisas seleccionar elementos individuais.
@@ -57,9 +59,6 @@ gl:
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Ocultar sempre os medios
         setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
-        setting_hide_network: Non se mostrará no teu perfil quen te segue e a quen estás a seguir
-        setting_noindex: Afecta ao teu perfil público e páxinas de publicación
-        setting_show_application: A aplicación que estás a utilizar para enviar publicacións mostrarase na vista detallada da publicación
         setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esvaecendo tódolos detalles
         setting_use_pending_items: Agochar actualizacións da cronoloxía tras un click no lugar de desprazar automáticamente os comentarios
         username: Podes usar letras, números e trazos baixos
@@ -121,6 +120,9 @@ gl:
       sessions:
         otp: 'Escribe o código do segundo factor creado pola aplicación do teu móbil ou usa un dos códigos de recuperación:'
         webauthn: Se é unha chave USB asegúrate de que está conectada e preme o botón.
+      settings:
+        indexable: A túa páxina de perfil podería aparecer nos resultados de busca de Google, Bing e outros.
+        show_application: Independentemente, ti sempre poderás ver a app coa que publicaches a túa publicación.
       tag:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       user:
@@ -138,9 +140,13 @@ gl:
         url: A onde se enviarán os eventos
     labels:
       account:
+        discoverable: Perfil destacado e publicacións nos algoritmos de descubrimento
         fields:
           name: Etiqueta
           value: Contido
+        indexable: Incluír publicacións públicas nos resultados das buscas
+        show_collections: Mostrar os seguimentos e seguidoras no perfil
+        unlocked: Aceptar automáticamente os novos seguimentos
       account_alias:
         acct: Xestiona a conta antiga
       account_migration:
@@ -178,7 +184,6 @@ gl:
         context: Contextos do filtro
         current_password: Contrasinal actual
         data: Datos
-        discoverable: Suxerir esta conta a outras persoas
         display_name: Nome mostrado
         email: Enderezo de email
         expires_in: Caduca tras
@@ -188,7 +193,6 @@ gl:
         inbox_url: URL da caixa de entrada do repetidor
         irreversible: Desbotar en lugar de agochar
         locale: Idioma da interface
-        locked: Requerir aprobar seguimento
         max_uses: Número máximo de usos
         new_password: Novo contrasinal
         note: Acerca de ti
@@ -211,9 +215,7 @@ gl:
         setting_display_media_show_all: Mostrar todo
         setting_expand_spoilers: Despregar sempre as publicacións marcadas con avisos de contido
         setting_hide_network: Non mostrar contactos
-        setting_noindex: Pedir non aparecer nas buscas dos motores de busca
         setting_reduce_motion: Reducir o movemento nas animacións
-        setting_show_application: Mostrar a aplicación utilizada para publicar
         setting_system_font_ui: Utilizar a tipografía por defecto do sistema
         setting_theme: Decorado da instancia
         setting_trends: Mostrar as tendencias de hoxe
@@ -289,9 +291,18 @@ gl:
         pending_account: Enviar un correo cando unha nova conta precisa revisión
         reblog: Enviar un correo cando alguén promociona a tua mensaxe
         report: Enviouse unha nova denuncia
+        software_updates:
+          all: Notificar todas as actualizacións
+          critical: Notificar só as actualizacións críticas
+          label: Hai unha nova versión de Mastodon dispoñible
+          none: Non notificar nunca as actualizacións (non se recomenda)
+          patch: Notificar as actualizacións de arranxos
         trending_tag: Hai que revisar unha nova tendencia
       rule:
         text: Regra
+      settings:
+        indexable: Incluír páxina de perfil nos motores de busca
+        show_application: Mostrar a app coa que enviaches unha publicación
       tag:
         listable: Permitir que este cancelo apareza en buscas e no directorio de perfil
         name: Cancelo
@@ -312,6 +323,7 @@ gl:
         url: URL do extremo
     'no': Non
     not_recommended: Non é recomendable
+    overridden: Sobreescrita
     recommended: Recomendado
     required:
       mark: "*"
