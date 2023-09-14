@@ -3,9 +3,13 @@ vi:
   simple_form:
     hints:
       account:
+        discoverable: Các tút và hồ sơ công khai của bạn có thể được giới thiệu hoặc đề xuất ở nhiều khu vực khác nhau của Mastodon và hồ sơ của bạn có thể được đề xuất cho những người dùng khác.
         display_name: Tên đầy đủ hoặc biệt danh đều được.
         fields: Trang blog của bạn, nghề nghiệp, tuổi hoặc bất cứ thứ gì.
+        indexable: Tút công khai của bạn sẽ xuất hiện khi tìm kiếm trên Mastodon. Những người đã tương tác với tút của bạn có thể tìm kiếm chúng.
         note: 'Bạn có thể @nhắnriêng ai đó hoặc #hashtags.'
+        show_collections: Mọi người sẽ biết những bạn theo dõi và người theo dõi bạn. Những người bạn theo dõi sẽ vẫn thấy rằng bạn theo dõi họ.
+        unlocked: Mọi người sẽ theo dõi bạn mà không cần bạn cho phép.
       account_alias:
         acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
       account_migration:
@@ -116,6 +120,9 @@ vi:
       sessions:
         otp: 'Nhập mã xác minh 2 bước được tạo bởi ứng dụng điện thoại của bạn hoặc dùng một trong các mã khôi phục của bạn:'
         webauthn: Nếu đây là USB key, hãy cắm vào và thử xoay chiều.
+      settings:
+        indexable: Trang của bạn có thể xuất hiện trong kết quả tìm kiếm trên Google, Bing và các nơi khác.
+        show_application: Bạn sẽ luôn có thể xem ứng dụng nào đã đăng tút của mình.
       tag:
         name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
       user:
@@ -133,9 +140,13 @@ vi:
         url: Nơi những sự kiện được gửi đến
     labels:
       account:
+        discoverable: Cho phép hiện hồ sơ và tút trong thuật toán khám phá
         fields:
           name: Nhãn
           value: Nội dung
+        indexable: Cho phép hiện tút công khai trong kết quả tìm kiếm
+        show_collections: Hiện lượt theo dõi và người theo dõi
+        unlocked: Duyệt tự động người theo dõi mới
       account_alias:
         acct: Tài khoản cũ
       account_migration:
@@ -257,7 +268,7 @@ vi:
       interactions:
         must_be_follower: Những người không theo dõi bạn
         must_be_following: Những người bạn không theo dõi
-        must_be_following_dm: những người bạn không theo dõi (nhắn riêng)
+        must_be_following_dm: Những người bạn không theo dõi (nhắn riêng)
       invite:
         comment: Bình luận
       invite_request:
@@ -280,9 +291,18 @@ vi:
         pending_account: Phê duyệt tài khoản mới
         reblog: Ai đó đăng lại tút của bạn
         report: Ai đó gửi báo cáo
+        software_updates:
+          all: Thông báo về mọi bản cập nhật
+          critical: Chỉ thông báo bản cập nhật quan trọng
+          label: Đã có phiên bản Mastodon mới
+          none: Không bao giờ thông báo (không đề xuất)
+          patch: Thông báo bản cập sửa lỗi
         trending_tag: Phê duyệt nội dung nổi bật mới
       rule:
         text: Nội quy
+      settings:
+        indexable: Cho phép hiện hồ sơ trong công cụ tìm kiếm
+        show_application: Cho phép hiện ứng dụng dùng để đăng tút
       tag:
         listable: Cho phép xuất hiện trong tìm kiếm và đề xuất
         name: Hashtag
@@ -303,6 +323,7 @@ vi:
         url: URL endpoint
     'no': Tắt
     not_recommended: Không đề xuất
+    overridden: Đã ghi đè
     recommended: Đề xuất
     required:
       mark: "*"

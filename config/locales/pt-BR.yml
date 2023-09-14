@@ -309,6 +309,7 @@ pt-BR:
       unpublish: Cancelar publicação
       unpublished_msg: Anúncio desfeito!
       updated_msg: Anúncio atualizado!
+    critical_update_pending: Atualização crítica pendente
     custom_emojis:
       assign_category: Atribuir categoria
       by_domain: Domínio
@@ -770,9 +771,27 @@ pt-BR:
           approved: Aprovação necessária para criar conta
           none: Ninguém pode criar conta
           open: Qualquer um pode criar conta
+      security:
+        authorized_fetch: Exigir autenticação por parte de servidores federados
+        authorized_fetch_hint: Exigir autenticação de servidores federados permite uma aplicação mais rigorosa de bloqueios tanto de nível de usuário como de servidor. No entanto, isso traz como custo uma penalidade no desempenho, reduz o alcance das suas respostas e pode introduzir problemas de compatibilidade com alguns serviços federados. Além disso, não impedirá atores dedicados de consultar suas publicações e contas públicas.
+        authorized_fetch_overridden_hint: Você atualmente não pode alterar esta configuração porque ela é sobreposta por uma variável de ambiente.
+        federation_authentication: Aplicação de autenticação da Federação
+      title: Configurações do servidor
     site_uploads:
       delete: Excluir arquivo enviado
       destroyed_msg: Upload do site excluído com sucesso!
+    software_updates:
+      critical_update: Crítico — por favor, atualize rapidamente
+      description: Recomenda-se manter a instalação do Mastodon atualizada para se beneficiar das funcionalidades e correções mais recentes. Além disso, por vezes é fundamental atualizar Mastodon em tempo hábil para evitar problemas de segurança. Por estes motivos, o Mastodon verifica atualizações a cada 30 minutos e lhe notificará de acordo com suas preferências de notificação por e-mail.
+      documentation_link: Saiba mais
+      release_notes: Notas de lançamento
+      title: Atualizações disponíveis
+      type: Tipo
+      types:
+        major: Versão maior
+        minor: Versão menor
+        patch: Versão de atualização — correções de erros e alterações de fácil aplicação
+      version: Versão
     statuses:
       account: Autor
       application: Aplicativo
@@ -813,6 +832,20 @@ pt-BR:
     system_checks:
       database_schema_check:
         message_html: Existem migrações de banco de dados pendentes. Execute-as para garantir que o aplicativo se comporte como esperado
+      elasticsearch_health_red:
+        message_html: O agrupamento de Elasticsearch não é saudável (estado vermelho); os recursos de pesquisa não estão disponíveis
+      elasticsearch_health_yellow:
+        message_html: O agrupamento de Elasticsearch não é saudável (estado amarelo); talvez você queira investigar o motivo
+      elasticsearch_index_mismatch:
+        message_html: Os mapeamentos de índice do Elasticsearch estão desatualizados. Por favor, execute <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Ver documentação
+        message_html: Seu agrupamento de Elasticsearch tem mais de um nó, mas o Mastodon não está configurado para usá-los.
+      elasticsearch_preset_single_node:
+        action: Ver documentação
+        message_html: Seu agrupamento de Elasticsearch tem apenas um nó, <code>ES_PRESET</code> deve ser definido como <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Seu índice do sistema Elasticsearch está desatualizado devido a uma alteração de configuração. Por favor, execute <code>tootctl search deploy --reset-chewy</code> para atualizá-lo.
       elasticsearch_running_check:
         message_html: Não foi possível conectar ao Elasticsearch. Verifique se ele está em execução ou desative a pesquisa de texto completo
       elasticsearch_version_check:
@@ -823,6 +856,12 @@ pt-BR:
         message_html: Você não definiu nenhuma regra de servidor.
       sidekiq_process_check:
         message_html: Nenhum processo Sidekiq rodando para a(s) fila(s) %{value}. Por favor, revise a sua configuração para Sidekiq
+      software_version_critical_check:
+        action: Ver atualizações disponíveis
+        message_html: Uma atualização crítica do Mastodon está disponível. Por favor, atualize o mais rápido possível.
+      software_version_patch_check:
+        action: Ver atualizações disponíveis
+        message_html: Uma atualização do Mastodon para correções está disponível.
       upload_check_privacy_error:
         action: Confira aqui para mais informações
         message_html: "<strong>Seu servidor está mal configurado. A privacidade de seus usuários está em risco.</strong>"
@@ -936,6 +975,9 @@ pt-BR:
       body: "%{target} está solicitando uma revisão da decisão da moderação por %{action_taken_by} em %{date}, que era %{type}. Ele escreveu:"
       next_steps: Você pode aprovar a revisão para desfazer a decisão da moderação ou ignorá-la.
       subject: "%{username} está solicitando uma revisão da decisão da moderação em %{instance}"
+    new_critical_software_updates:
+      body: Novas versões críticas do Mastodon foram lançadas. Talvez queira atualizar o mais breve possível!
+      subject: Atualizações críticas do Mastodon estão disponíveis para %{instance}!
     new_pending_account:
       body: Os detalhes da nova conta estão abaixo. Você pode aprovar ou vetar.
       subject: Nova conta para revisão em %{instance} (%{username})
@@ -943,6 +985,9 @@ pt-BR:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém de %{domain} denunciou %{target}
       subject: Nova denúncia sobre %{instance} (#%{id})
+    new_software_updates:
+      body: Novas versões do Mastodon foram lançadas, talvez você queira atualizar!
+      subject: Novas versões do Mastodon estão disponíveis para %{instance}!
     new_trends:
       body: 'Os seguintes itens precisam de uma análise antes que possam ser exibidos publicamente:'
       new_trending_links:
@@ -1263,12 +1308,14 @@ pt-BR:
       bookmarks_html: Você está prestes a <strong>substituir seus favoritos</strong> por até <strong>%{total_items} posts</strong> de <strong>%{filename}</strong>.
       domain_blocking_html: Você está prestes a <strong>substituir sua lista de bloqueio de domínio</strong> com até <strong>domínios%{total_items}</strong> de <strong>%{filename}</strong>.
       following_html: Você está prestes a <strong>seguir</strong> até <strong>%{total_items} contas</strong> de <strong>%{filename}</strong> e <strong>parar de seguir todos os outros</strong>.
+      lists_html: Você está prestes a <strong>substituir sua lista</strong> pelo conteúdo de <strong>%{filename}</strong>. Até <strong>%{total_items} contas</strong> serão adicionadas a novas listas.
       muting_html: Você está prestes a <strong>substituir sua lista de contas silenciadas</strong> com até <strong>%{total_items} contas</strong> de <strong>%{filename}</strong>.
     preambles:
       blocking_html: Você está prestes a <strong>bloquear</strong> até <strong>%{total_items} contas</strong> de <strong>%{filename}</strong>.
       bookmarks_html: Você está prestes a adicionar até <strong>%{total_items} posts</strong> de <strong>%{filename}</strong> para seus <strong>favoritos</strong>.
       domain_blocking_html: Você está prestes a <strong>bloquear</strong> até <strong>%{total_items} domínios</strong> de <strong>%{filename}</strong>.
       following_html: Você está prestes a <strong>seguir</strong> até <strong>%{total_items} contas</strong> de <strong>%{filename}</strong>.
+      lists_html: Você está prestes a adicionar até <strong>%{total_items} contas</strong> a partir de <strong>%{filename}</strong> para suas <strong>listas</strong>. Novas listas serão criadas se não houver uma para a qual adicionar.
       muting_html: Você está prestes a <strong>silenciar</strong> até <strong>contas%{total_items}</strong> de <strong>%{filename}</strong>.
     preface: Você pode importar dados que você exportou de outro servidor, como a lista de pessoas que você segue ou bloqueou.
     recent_imports: Importações recentes
@@ -1285,6 +1332,7 @@ pt-BR:
       bookmarks: Importando favoritos
       domain_blocking: Importando contas bloqueadas
       following: Importando contas seguidas
+      lists: Importando listas
       muting: Importando contas silenciadas
     type: Tipo de importação
     type_groups:
@@ -1295,6 +1343,7 @@ pt-BR:
       bookmarks: Marcadores
       domain_blocking: Lista de domínios bloqueados
       following: Pessoas que você segue
+      lists: Listas
       muting: Lista de silenciados
     upload: Enviar
   invites:
@@ -1427,6 +1476,7 @@ pt-BR:
     update:
       subject: "%{name} editou uma publicação"
   notifications:
+    administration_emails: Notificações por e-mail sobre administração
     email_events: Eventos para notificações por e-mail
     email_events_hint: 'Selecione os eventos que deseja receber notificações:'
     other_settings: Outras opções para notificações
@@ -1470,6 +1520,15 @@ pt-BR:
     other: Outro
     posting_defaults: Padrões de publicação
     public_timelines: Linhas públicas
+  privacy:
+    hint_html: "<strong>Personalize como você quer que seu perfil e suas publicações sejam encontrados.</strong> Uma variedade de funcionalidades no Mastodon pode ajudar a alcançar um público mais amplo quando habilitado. Reserve um momento para revisar estas configurações para garantir que atendem ao seu caso de uso."
+    privacy: Privacidade
+    privacy_hint_html: Controle o quanto você deseja revelar para o benefício de outros. As pessoas descobrem perfis interessantes e aplicativos legais navegando pelos seguidores de outras pessoas e vendo de quais aplicativos eles publicam, mas você pode preferir manter isso oculto.
+    reach: Alcance
+    reach_hint_html: Controle se você quer ser descoberto e seguido por novas pessoas. Deseja que suas publicações apareçam na tela Explorar? Você quer que outras pessoas lhe vejam nas recomendações sobre quem seguir? Você quer aceitar todos os novos seguidores automaticamente ou ter controle granular sobre cada um?
+    search: Buscar
+    search_hint_html: Controle como você deseja que lhe encontrem. Quer que as pessoas lhe encontrem pelo que você publicou abertamente? Quer que pessoas fora do Mastodon encontrem seu perfil quando pesquisarem na web? Por favor, tenha em mente que a exclusão total de todos os motores de busca não pode ser garantida para informações públicas.
+    title: Privacidade e alcance
   privacy_policy:
     title: Política de Privacidade
   reactions:
@@ -1679,6 +1738,11 @@ pt-BR:
       default: "%H:%M em %d de %b de %Y"
       month: "%b de %Y"
       time: "%H:%M"
+      with_time_zone: "%d de %b de %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: A cota de uso do servidor para o serviço de tradução foi excedida.
+      too_many_requests: Recentemente há muitas solicitações para o serviço de tradução.
   two_factor_authentication:
     add: Adicionar
     disable: Desativar autenticação de dois fatores

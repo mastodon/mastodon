@@ -309,6 +309,7 @@ bg:
       unpublish: Без публикуване
       unpublished_msg: Успешно скрито оповестяване!
       updated_msg: Успешно осъвременено оповестяване!
+    critical_update_pending: Чака се критично обновяване
     custom_emojis:
       assign_category: Категоризиране
       by_domain: Домейн
@@ -770,9 +771,27 @@ bg:
           approved: Изисква се одобрение за регистриране
           none: Никой не може да се регистрира
           open: Всеки може да се регистрира
+      security:
+        authorized_fetch: Изисква се удостоверяване от федеративни сървъри
+        authorized_fetch_hint: Изискването удостоверяване от феративните сървъри позволява по-строго прилагане на блокирания както на ниво потребител, така и на ниво сървър. Това обаче снижава производителността, намалява обхвата на вашите отговори и може да възникнат проблеми със съвместимостта с някои федеративни услуги. Освен това, то не пречи на посветени участници да извличат вашите обществени публикации и акаунти.
+        authorized_fetch_overridden_hint: В момента сте неспособни да променяте тази настройка, защото тя се замества от променлива на средата.
+        federation_authentication: Налагане на удостоверяване на обединени сървъри
+      title: Настройки на сървъра
     site_uploads:
       delete: Изтриване на качения файл
       destroyed_msg: Успешно изтриване на качването на сайта!
+    software_updates:
+      critical_update: Критично важно - обновете бързо
+      description: Препоръчва се да държите осъвременена своята инсталация на Mastodon, за да се възползвате от най-новите поправки и функции. Освен това, понякога е много важно да се осъвременява навреме Mastodon, за да се избегне проблем с безопасността. Заради тези причини Mastodon проверява за обновление на всеки 30 минути и ви известява за това в съответствие с предпочитанията ви за известяване по имейла.
+      documentation_link: Научете повече
+      release_notes: Бележки към изданието
+      title: Налични обновявания
+      type: Вид
+      types:
+        major: Главна версия
+        minor: Второстепенна версия
+        patch: Издание на кръпката - оправени бъгове и лесни за прилагане промени
+      version: Версия
     statuses:
       account: Автор
       application: Приложение
@@ -813,6 +832,20 @@ bg:
     system_checks:
       database_schema_check:
         message_html: Има миграции на базата данни, които чакат да бъдат изпълнени. Моля, изпълнете ги, за да осигурите изправността на приложението
+      elasticsearch_health_red:
+        message_html: Клъстерът Elasticsearch е нездрав (червено състояние), функциите за търсене не са налични
+      elasticsearch_health_yellow:
+        message_html: Клъстерът Elasticsearch е нездрав (жълто състояние), може да искате да разследвате причината
+      elasticsearch_index_mismatch:
+        message_html: Картографиранията на показатели в Elasticsearch са остарели. Пуснете <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Преглед на документацията
+        message_html: Вашият клъстер в Elasticsearch има повече от един възел, но Mastodon не е настроен да ги употребява.
+      elasticsearch_preset_single_node:
+        action: Преглед на документацията
+        message_html: Вашият клъстер в Elasticsearch има само един възел, то <code>ES_PRESET</code> би трябвало да се зададе да е <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Вашият системен показател в Elasticsearch е остарял поради промяна на настройката. Пуснете <code>tootctl search deploy --reset-chewy</code>, за да го осъвремените.
       elasticsearch_running_check:
         message_html: Не можа да се свърже с Elasticsearch. Проверете дали работи или изключете пълнотекстовото търсене
       elasticsearch_version_check:
@@ -823,6 +856,12 @@ bg:
         message_html: Не сте определили никакви правила на сървъра.
       sidekiq_process_check:
         message_html: Не работи процес Sidekiq за %{value} опашка/и. Прегледайте настройките си за Sidekiq
+      software_version_critical_check:
+        action: Преглед на наличните обновявания
+        message_html: Налично e критично обновяване на Mastodon. Обновете възможно най-бързо.
+      software_version_patch_check:
+        action: Преглед на наличните обновявания
+        message_html: Налично е обновяване на Mastodon за оправяне на бъговете.
       upload_check_privacy_error:
         action: Щракнете тук за повече информация
         message_html: "<strong>Вашият уеб сървър е погрешно конфигуриран. Поверителността на потребителите ви е изложена на риск.</strong>"
@@ -936,6 +975,9 @@ bg:
       body: "%{target} обжалва модераторското решение от %{action_taken_by} на %{date}, което е било %{type}. Жалбата гласи:"
       next_steps: Можете да одобрите жалбата и да отмените модераторското решение или да я игнорирате.
       subject: "%{username} обжалва модераторското решение в %{instance}"
+    new_critical_software_updates:
+      body: Нови критични версии на Mastodon са издадени и може да искате да обновите възможно най-скоро!
+      subject: Критични обновявания на Mastodon са налични за %{instance}!
     new_pending_account:
       body: Подробностите за новия акаунт са по-долу. Може да одобрите или отхвърлите заявлението.
       subject: Нов акаунт за преглед на %{instance} (%{username})
@@ -943,6 +985,9 @@ bg:
       body: "%{reporter} докладва %{target}"
       body_remote: Някого от %{domain} докладва %{target}
       subject: Нов доклад за %{instance} (#%{id})
+    new_software_updates:
+      body: Нови версии на Mastodon са издадени и може да искате да осъвремените!
+      subject: Нови версии на Mastodon са налични за %{instance}!
     new_trends:
       body: 'Следните елементи се нуждаят от преглед преди да могат да бъдат показани публично:'
       new_trending_links:
@@ -1263,12 +1308,14 @@ bg:
       bookmarks_html: На път сте да <strong>замените списъка си с отметки</strong> с до <strong>%{total_items} публикации</strong> от <strong>%{filename}</strong>.
       domain_blocking_html: На път сте да <strong>замените списъка си с блокирани домейни</strong> с до <strong>%{total_items} домейна</strong> от <strong>%{filename}</strong>.
       following_html: На път сте да <strong>последвате</strong> до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong> и <strong>да спрете да следвате някой друг</strong>.
+      lists_html: На път сте да <strong>замените списъците си</strong> със съдържание от <strong>%{filename}</strong>. До <strong>%{total_items} акаунта</strong> ще се добавят към новите списъци.
       muting_html: На път сте да <strong>замените списъка си със заглушени акаунти</strong> с до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong>.
     preambles:
       blocking_html: На път сте да <strong>блокирате</strong> до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong>.
       bookmarks_html: На път сте да добавите до <strong>%{total_items} публикации</strong> от <strong>%{filename}</strong> в <strong>отметките</strong> си.
       domain_blocking_html: На път сте да <strong>блокирате</strong> до <strong>%{total_items} домейна</strong> от <strong>%{filename}</strong>.
       following_html: На път сте да <strong>последвате</strong> до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong>.
+      lists_html: На път сте да добавите до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong> към вашите <strong>списъци</strong>. Нови списъци ще се сътворят, ако няма списъци за добавяне.
       muting_html: На път сте да <strong>заглушите</strong> до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong>.
     preface: Можеш да импортираш някои данни, като например всички хора, които следваш или блокираш в акаунта си на тази инстанция, от файлове, създадени чрез експорт в друга инстанция.
     recent_imports: Скорошни внасяния
@@ -1285,6 +1332,7 @@ bg:
       bookmarks: Внасяне на отметките
       domain_blocking: Внасяне на блокираните домейни
       following: Внасяне на последваните акаунти
+      lists: Внасяне на списъци
       muting: Внасяне на заглушените акаунти
     type: Тип на внасяне
     type_groups:
@@ -1295,6 +1343,7 @@ bg:
       bookmarks: Отметки
       domain_blocking: Списък с блокирания на домейни
       following: Списък на последователите
+      lists: Списъци
       muting: Списък заглушавания
     upload: Качване
   invites:
@@ -1427,6 +1476,7 @@ bg:
     update:
       subject: "%{name} промени публикация"
   notifications:
+    administration_emails: Администраторски известия по имейла
     email_events: Събития за известия по имейл
     email_events_hint: 'Изберете събития, за които искате да получавате известия:'
     other_settings: Настройки за други известия
@@ -1470,6 +1520,15 @@ bg:
     other: Друго
     posting_defaults: По подразбиране за публикации
     public_timelines: Публични инфопотоци
+  privacy:
+    hint_html: "<strong>Персонализирайте как искате профилът ви и публикациите ви да се намират.</strong> Разнообразие от функции в Mastodon може да ви помогнат да достигнете по-широка публика, когато е включено. Отделете малко време, за да прегледате тези настройки, за да се уверите, че отговарят на вашия случай на употреба."
+    privacy: Поверителност
+    privacy_hint_html: Управлявате колко искате да разкриете в полза на другите. Хората разкриват интересни профили и отлични приложения, разглеждайки последванията на другите и виждайки от кои приложения публикуват, но може да предпочитате да ги държите скрити.
+    reach: Обхват
+    reach_hint_html: Управлявайте дали искате да бъдете открити и последвани от нови хора. Искате ли публикациите ви да се появяват в главния екран? Искате ли другите да ви виждат в препоръките им за последване? Желаете ли да приемате автоматично всички нови последователи или да имате подробен контрол върху всеки един?
+    search: Търсене
+    search_hint_html: Управлявайте как искате да бъдете открити. Желаете ли хората да ви открият по това, за което сте публикували публично? Искате ли хората извън Mastodon да намират профила ви, търсейки из мрежата? Обърнете внимание, че общото изключване от всички търсачки не може да гарантира за публичната информация.
+    title: Поверителност и обхват
   privacy_policy:
     title: Политика за поверителност
   reactions:
@@ -1679,6 +1738,11 @@ bg:
       default: "%d %b, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Сървърът-широка употреба на квота за услугата за превод е била надвишена.
+      too_many_requests: Наскоро имаше премного заявки към услугата за превод.
   two_factor_authentication:
     add: Добавяне
     disable: Деактивирай

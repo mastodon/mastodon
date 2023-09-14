@@ -309,6 +309,7 @@ ca:
       unpublish: Despublicar
       unpublished_msg: L’anunci s’ha despublicat amb èxit!
       updated_msg: L'anunci s'ha actualitzat correctament!
+    critical_update_pending: Actualització crítica pendent
     custom_emojis:
       assign_category: Assigna una categoria
       by_domain: Domini
@@ -770,10 +771,27 @@ ca:
           approved: Cal l’aprovació per a registrar-se
           none: No es pot registrar ningú
           open: Qualsevol pot registrar-se
+      security:
+        authorized_fetch: Requereix autenticació dels servidors federats
+        authorized_fetch_hint: Requerir l'autenticació dels servidors federats permet una aplicació més estricta dels bloqueigs a nivell d'usuari i a nivell de servidor. Tanmateix, això provoca una penalització del rendiment, redueix l'abast de les seves respostes i pot introduir problemes de compatibilitat amb alguns serveis federats. A més, això no impedirà que els actors dedicats busquin les teves publicacions i comptes públics.
+        authorized_fetch_overridden_hint: Actualment no pots canviar aquesta configuració perquè està anul·lada per una variable d'entorn.
+        federation_authentication: Aplicació de l'autenticació de la federació
       title: Configuració del servidor
     site_uploads:
       delete: Esborra el fitxer pujat
       destroyed_msg: La càrrega al lloc s'ha suprimit correctament!
+    software_updates:
+      critical_update: Crítica - si us plau, actualitza ràpidament
+      description: Es recomana mantenir actualizada la teva instal·lació de Mastodon per a beneficiar-se de les darreres correccions i característiques. A més, de vegades és fonamental actualitzar Mastodon periòdicament per evitar problemes de seguretat. Per aquestes raons, Mastodon comprova si hi ha actualitzacions cada 30 minuts i et notificarà d'acord amb les teves preferències de notificacions per correu electrònic.
+      documentation_link: Més informació
+      release_notes: Notes de llançament
+      title: Actualitzacions disponibles
+      type: Tipus
+      types:
+        major: Llançament important
+        minor: Llançament menor
+        patch: 'Llançament de pedaços: correccions d''errors i canvis fàcils d''aplicar'
+      version: Versió
     statuses:
       account: Autor
       application: Aplicació
@@ -814,6 +832,20 @@ ca:
     system_checks:
       database_schema_check:
         message_html: Hi ha pendents migracions de la base de dades. Executeu-les per a assegurar que l'aplicació es comporta com s'espera
+      elasticsearch_health_red:
+        message_html: El cluster de Elasticsearch no es saludable (estat vermell), les funcions de cerca no estan disponibles
+      elasticsearch_health_yellow:
+        message_html: El cluster de Elasticsearch no es saludable (estat groc), és possible que vulguis investigar la raó
+      elasticsearch_index_mismatch:
+        message_html: Els mapes de índex de Elasticsearch estan desactualizats. Si us plau executa <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Veure la documentació
+        message_html: El teu clúster de Elasticsearch té més d'un node però Mastodon no està configurat per a emprar-los.
+      elasticsearch_preset_single_node:
+        action: Veure la documentació
+        message_html: El teu clúster de Elasticsearch té només un node, <code>ES_PRESET</code> hauria de ser configurat com <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: L'índex del teu sistema Elasticsearch està desactualizat degut a un canvi de configuració. Si us plau executa <code>tootctl search deploy --reset-chewy</code> per a actualitzar-lo.
       elasticsearch_running_check:
         message_html: No s'ha pogut connectar a Elasticsearch. Verifiqueu que funciona o desactiveu la cerca de text complet
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ ca:
         message_html: No has definit cap norma del servidor.
       sidekiq_process_check:
         message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Reviseu la configuració de Sidekiq
+      software_version_critical_check:
+        action: Veure actualitzacions disponibles
+        message_html: Hi ha disponible una actualització crítica de Mastodon, si us plau, actualitza-la el més abans possible.
+      software_version_patch_check:
+        action: Veure actualitzacions disponibles
+        message_html: Hi ha disponible una actualització de correcció d'errors de Mastodon.
       upload_check_privacy_error:
         action: Consulta aquí per a més informació
         message_html: "<strong>El teu servidor no està ben configurat. La privacitat dels teus usuaris està en risc.</strong>"
@@ -937,6 +975,9 @@ ca:
       body: "%{target} està apel·lant una decisió de moderació de %{action_taken_by} el %{date}, del tipus %{type}. Han escrit:"
       next_steps: Pots aprovar l'apel·lació per a desfer la decisió de moderació o ignorar-la.
       subject: "%{username} està apel·lant una decisió de moderació a %{instance}"
+    new_critical_software_updates:
+      body: S'han alliberat noves versions crítiques de Mastodon, és possible que vulguis actualitzar-les el més aviat possible!
+      subject: Hi ha disponibles actualitzacions crítiques de Mastodon per a %{instance}!
     new_pending_account:
       body: A continuació trobaràs els detalls del compte nou. Pots aprovar o rebutjar aquest registre.
       subject: Nou compte per a revisar a %{instance} (%{username})
@@ -944,6 +985,9 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des del domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
+    new_software_updates:
+      body: S'han alliberat noves versions de Mastodon, és possible que desitgis actualitzar!
+      subject: Hi ha disponibles noves versions de Mastodon per a %{instance}!
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
       new_trending_links:
@@ -1432,6 +1476,7 @@ ca:
     update:
       subject: "%{name} ha editat una publicació"
   notifications:
+    administration_emails: Notificacions per correu-e de l'Admin
     email_events: Esdeveniments per a notificacions de correu electrònic
     email_events_hint: 'Selecciona els esdeveniments per als quals vols rebre notificacions:'
     other_settings: Altres opcions de notificació
@@ -1475,6 +1520,15 @@ ca:
     other: Altre
     posting_defaults: Valors per defecte de publicació
     public_timelines: Línies de temps públiques
+  privacy:
+    hint_html: "<strong>Personalitza com vols que siguin trobats el teu perfil i els teus tuts.</strong> Una varietat de característiques de Mastodon et poden ajudar a arribar a una major audiència quan les actives. Dedica una estona a revisar aquests ajustaments per assegurar que son els que necessites."
+    privacy: Privacitat
+    privacy_hint_html: Controla quant vols revelar en benefici d'altres. La gent descobreix perfils interessants i aplicacions genials tot navegant per els usuaris seguits d'altres persones i veient des de quines aplicacions publiquen, però pots preferir mantenir-ho amagat.
+    reach: Arribar a
+    reach_hint_html: Controla si vols ser descobert i seguit per gent nova. Vols que els teus tuts apareguin en la pantalla de Explora? Vols que altres persones et vegin en les seves recomanacions de seguiment? Vols acceptar automàticament als nous seguidors o tenir un control granular sobre cadascun d'ells?
+    search: Cerca
+    search_hint_html: Controla com vols ser trobat. Vols que la gent et trobi per el que publiques? Vols que la gent fora de Mastodon trobi el teu perfil quan cerquin la web? Has de tenir en compte que no es pot garantir la exclusió total de tots els motors de cerca per a la informació pública.
+    title: Privacitat i arribar
   privacy_policy:
     title: Política de Privacitat
   reactions:
@@ -1684,6 +1738,11 @@ ca:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: S'ha superat la quota d'ús de tot el servidor per el servei de traducció.
+      too_many_requests: Hi ha hagut massa sol·licituds al servei de traducció recentment.
   two_factor_authentication:
     add: Afegeix
     disable: Desactiva

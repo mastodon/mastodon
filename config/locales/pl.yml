@@ -315,6 +315,7 @@ pl:
       unpublish: Cofnij publikację
       unpublished_msg: Pomyślnie wycofano publikację ogłoszenia!
       updated_msg: Pomyślnie zaktualizowano ogłoszenie!
+    critical_update_pending: Czeka krytyczna aktualizacja
     custom_emojis:
       assign_category: Ustaw kategorię
       by_domain: Domeny
@@ -798,10 +799,27 @@ pl:
           approved: Przyjęcie jest wymagane do rejestracji
           none: Nikt nie może się zarejestrować
           open: Każdy może się zarejestrować
+      security:
+        authorized_fetch: Wymagaj uwierzytelnienia od sfederowanych serwerów
+        authorized_fetch_hint: Wymaganie uwierzytelnienia ze sfederowanych serwerów pozwala na ściślejsze wymuszanie bloków z poziomu użytkowników i serwera, ale jest wolniejsze, redukuje zasięg odpowiedzi, i może być niekompatybilne z niektórymi sfederowanymi usługami. Nie chroni również publicznych kont i wpisów przed oddanymi użytkownikami.
+        authorized_fetch_overridden_hint: Nie możesz zmienić tego ustawienia bo jest nadpisane przez zmienną środowiskową.
+        federation_authentication: Wymuszanie uwierzytelnienia dla federacji
       title: Ustawienia serwera
     site_uploads:
       delete: Usuń przesłany plik
       destroyed_msg: Pomyślnie usunięto przesłany plik!
+    software_updates:
+      critical_update: Krytyczna — zaktualizuj szybko
+      description: Zalecamy aktualizować instalacje Mastodona na bieżąco by korzystać z najnowszych poprawek i funkcji. Co więcej, czasami krytycznym jest aktualizować szybko by uniknąć problemów zw. z bezpieczeństwem. Z tego powodu, Mastodon co pół godziny sprawdza czy wydane zostały aktualizacje i powiadomi cię o tym zgodnie z twoimi ustawieniami powiadomień.
+      documentation_link: Dowiedz się więcej
+      release_notes: Informacje o wydaniu
+      title: Dostępne aktualizacje
+      type: Rodzaj
+      types:
+        major: Główne wydanie
+        minor: Wydanie pomniejsze
+        patch: Łatka — poprawki błędów i zmiany łatwe do zastosowania
+      version: Wersja
     statuses:
       account: Autor
       application: Aplikacja
@@ -842,6 +860,20 @@ pl:
     system_checks:
       database_schema_check:
         message_html: Istnieją oczekujące migracje bazy danych. Uruchom je, aby upewnić się, że aplikacja działa tak, jak powinna
+      elasticsearch_health_red:
+        message_html: 'Klaster Elasticseach jest chory (status: czerwony); szukanie jest niedostępne'
+      elasticsearch_health_yellow:
+        message_html: 'Klaster Elasticseach jest chory (status: żółty); możliwe, że chcesz zbadać tego powód'
+      elasticsearch_index_mismatch:
+        message_html: Mapa indeksu Elasticsearch jest przestarzała. Uruchom <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Dokumentacja
+        message_html: Twój klaster Elasticsearch ma więcej niż jeden node, ale Mastodon nie jest odpowiednio ustawiony by ich używać.
+      elasticsearch_preset_single_node:
+        action: Dokumentacja
+        message_html: Twój klaster Elasticsearch ma tylko jeden node, więc <code>ES_PRESET</code> powinno mieć wartość <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Indeks główny Elasticsearch jest przestarzały przez zmianę ustawień. Uruchom <code>tootctl search deploy --reset-chewy</code> żeby go odświeżyć.
       elasticsearch_running_check:
         message_html: Nie można połączyć się z Elasticsearch. Sprawdź czy jest uruchomiony lub wyłącz wyszukiwanie pełnotekstowe
       elasticsearch_version_check:
@@ -852,6 +884,12 @@ pl:
         message_html: Nie zdefiniowano żadnych reguł serwera.
       sidekiq_process_check:
         message_html: Brak uruchomionego procesu Sidekiq dla kolejki(-ek) %{value}. Sprawdź konfigurację Sidekiq
+      software_version_critical_check:
+        action: Pokaż dostępne aktualizacje
+        message_html: Dostępna krytyczna aktualizacja Mastodona, zaktualizuj jak tylko będzie to możliwe.
+      software_version_patch_check:
+        action: Pokaż dostępne aktualizacje
+        message_html: Dostępna aktualizacja poprawkowa Mastodona.
       upload_check_privacy_error:
         action: Kliknij tutaj, aby dowiedzieć się więcej
         message_html: "<strong>Twój serwer internetowy jest nieprawidłowo skonfigurowany. Prywatność twoich użytkowników jest zagrożona.</strong>"
@@ -973,6 +1011,9 @@ pl:
       body: "%{target} odwołuje się od decyzji moderatora %{action_taken_by} z %{date}, czyli %{type}. Napisał:"
       next_steps: Możesz zaakceptować odwołanie o cofnięcie decyzji o moderacji lub je zignorować.
       subject: "%{username} odwołuje się od decyzji moderacyjnej na %{instance}"
+    new_critical_software_updates:
+      body: Zostały wydane nowe krytyczne wersje Mastodona, pewnie chcesz zaktualizować jak najszybciej!
+      subject: Krytyczne aktualizacje Mastodona dostępne dla %{instance}!
     new_pending_account:
       body: Poniżej znajdują się szczegóły dotycząće nowego konta. Możesz przyjąć lub odrzucić to podanie.
       subject: Nowe konto czeka na przegląd na %{instance} (%{username})
@@ -980,6 +1021,9 @@ pl:
       body: Użytkownik %{reporter} zgłosił(a) %{target}
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
+    new_software_updates:
+      body: Zostały wydane nowe wersje Mastodona, pewnie chcesz zaktualizować!
+      subject: Nowe wersje Mastodona dostępne dla %{instance}!
     new_trends:
       body: 'Następujące elementy potrzebują recenzji zanim będą mogły być wyświetlane publicznie:'
       new_trending_links:
@@ -1484,6 +1528,7 @@ pl:
     update:
       subject: "%{name} edytował/a wpis"
   notifications:
+    administration_emails: Administracyjne powiadomienia e-mail
     email_events: 'Powiadamiaj e-mailem o:'
     email_events_hint: 'Wybierz wydarzenia, o których chcesz otrzymywać powiadomienia:'
     other_settings: Inne ustawienia powiadomień
@@ -1527,6 +1572,15 @@ pl:
     other: Pozostałe
     posting_defaults: Domyślne ustawienia wpisów
     public_timelines: Publiczne osie czasu
+  privacy:
+    hint_html: "<strong>Dostosuj tryb odnajdowania twojego profilu i wpisów.</strong> Funkcje Mastodona mogą pomóc ci zwiększać twoją publiczność – przejrzyj te ustawienia i dostosuj je do swojego sposobu użytkowania."
+    privacy: Prywatność
+    privacy_hint_html: Ustaw, ile chcesz ujawniać innym. Ciekawe profile i programy często znajduje się przy przeglądaniu cudzych list obserwowanych i tego, z jakich programów zamieszczają, ale może wolisz to ukryć.
+    reach: Zasięg
+    reach_hint_html: Ustaw, czy chcesz dać się odkryć i zaobserwować. Chcesz, żeby twoje wpisy pojawiały się w zakładce "Odkrywaj"? Chcesz, żeby sugerowano twoje konto do obserwacji? Chcesz przyjmować nowych obserwujących automatycznie, czy aprobować ich ręcznie?
+    search: Wyszukiwanie
+    search_hint_html: Ustaw, w jakim zakresie będziesz znajdowalny(a). Chcesz pojawiać się w wynikach po twoich publicznych wpisach? Chcesz by twój profil dało się znaleźć spoza Mastodona? Pamiętaj, że nie da się zapewnić całkowitego wykluczenia wszystkich informacji publicznie dostępnych z wyszukiwarek.
+    title: Prywatność i zasięg
   privacy_policy:
     title: Polityka prywatności
   reactions:
@@ -1748,6 +1802,11 @@ pl:
       default: "%d. %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%-d %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Przekroczono limit użycia usługi tłumaczeń dla całego serwera.
+      too_many_requests: Ostatnio było zbyt wiele zapytań do usługi tłumaczeniowej.
   two_factor_authentication:
     add: Dodaj
     disable: Wyłącz

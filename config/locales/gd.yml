@@ -315,6 +315,7 @@ gd:
       unpublish: Neo-fhoillsich
       unpublished_msg: Chaidh am brath-fios a dhì-fhoillseachadh!
       updated_msg: Chaidh am brath-fios ùrachadh!
+    critical_update_pending: Ùrachadh èiginneach ri dhèiligeadh
     custom_emojis:
       assign_category: Iomruin roinn-seòrsa dha
       by_domain: Àrainn
@@ -798,10 +799,27 @@ gd:
           approved: Tha aontachadh riatanach airson clàradh
           none: Chan fhaod neach sam bith clàradh
           open: "’S urrainn do neach sam bith clàradh"
+      security:
+        authorized_fetch: Iarr dearbhadh o fhrithealaichean co-naisgte
+        authorized_fetch_hint: Ma dh’iarras tu dearbhadh o fhrithealaichean cho-naisgte, gheibh thu an comas gus bacaidhean èigneachadh nas teinne an dà chuid air ìre an luchd-cleachdaidh ’s an fhrithealaiche. Gidheadh, ceannaichidh tu an comas seo le dèanadas nas miosa is ruigsinn nas lugha nam freagairtean agad agus dh’fhaoidte gun èirich duilgheadasan co-chòrdalachd le cuid a sheirbheisean cho-naisgte. A bharrachd air sin, cha bhac seo an fheadhainn dian o fhaighinn nam postaichean is cunntasan poblach agad.
+        authorized_fetch_overridden_hint: Chan urrainn dhut an roghainn seo atharrachadh an-dràsta on a tha caochladair àrainne ’ga thar-àithneadh.
+        federation_authentication: Èigneachadh dearbhadh a’ cho-nasgaidh
       title: Roghainnean an fhrithealaiche
     site_uploads:
       delete: Sguab às am faidhle a chaidh a luchdadh suas
       destroyed_msg: Chaidh an luchdadh suas dhan làrach a sguabadh às!
+    software_updates:
+      critical_update: Èiginneach – ùraich cho luath ’s a ghabhas
+      description: Mholamaid gun cùm thu an stàladh agad de Mhastodon ùraichte ach am faigh thu buannachd às na càraidhean ’s gleusan as ùire. A bharrachd air sin, bidh e èiginneach aig amannan gun ùraich thu Mastodon gun dàil airson duilgheadasan tèarainteachd a sheachnadh. Seo as adhbhar gun doir Mastodon sùil airson ùrachaidhean gach leth-uair a thìde ’s gun cuir e brath thugad a-rèir nan roghainnean puist-d agad.
+      documentation_link: Barrachd fiosrachaidh
+      release_notes: Nòtaichean sgaoilidh
+      title: Ùrachaidhean a tha ri fhaighinn
+      type: Seòrsa
+      types:
+        major: Sgaoileadh mòr
+        minor: Sgaoileadh beag
+        patch: Sgaoileadh brèide – càraidhean aig bugaichean ’s atharraichean a tha furasta a chur an sàs
+      version: Tionndadh
     statuses:
       account: Ùghdar
       application: Aplacaid
@@ -842,6 +860,20 @@ gd:
     system_checks:
       database_schema_check:
         message_html: Tha imrichean stòir-dhàta ri dhèiligeadh ann. Ruith iad a dhèanamh cinnteach gum bi giùlan na h-aplacaid mar a bhiodhte ’n dùil
+      elasticsearch_health_red:
+        message_html: Tha droch-shlàinte air bagaid Elasticsearch (staid dhearg), chan eil gleusan an luirg ri fhaighinn
+      elasticsearch_health_yellow:
+        message_html: Tha droch-shlàinte air bagaid Elasticsearch (staid bhuidhe), bu chòir dhut sgrùdadh carson
+      elasticsearch_index_mismatch:
+        message_html: Tha mapachaidhean nan inneacsan Elasticsearch ro shean. Ruith <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Faic an docamaideadh
+        message_html: Tha iomadh nòd aig a’ bhagaid Elasticsearch agad ach cha deach Mastodon a rèiteachadh gus an cleachdadh uile.
+      elasticsearch_preset_single_node:
+        action: Faic an docamaideadh
+        message_html: Chan eil ach aon nòd a-mhàin air a’ bhagaid Elasticsearch agad, bu chòir dhut <code>single_node_cluster</code> a chur air <code>ES_PRESET</code>.
+      elasticsearch_reset_chewy:
+        message_html: Tha inneacs siostam Elasticsearch ro shean ri linn atharrachadh roghainne. Ruith <code>tootctl search deploy --reset-chewy</code> airson ùrachadh.
       elasticsearch_running_check:
         message_html: Cha b’ urrainn dhuinn ceangal ri Elasticsearch. Dearbh thu bheil e a’ ruith no cuir an lorg làn-teacsa à comas
       elasticsearch_version_check:
@@ -852,6 +884,12 @@ gd:
         message_html: Cha do mhìnich thu riaghailtean an fhrithealaiche fhathast.
       sidekiq_process_check:
         message_html: Chan eil pròiseas Sidekiq sam bith a ruith dhan chiutha/dha na ciuthan %{value}. Thoir sùil air an rèiteachadh Sidekiq agad
+      software_version_critical_check:
+        action: Faic na h-ùrachaidhean a tha ri fhaighinn
+        message_html: Tha ùrachadh èiginneach air Mastodon ri fhaighinn, ùraich cho luath ’s a ghabhas.
+      software_version_patch_check:
+        action: Faic na h-ùrachaidhean a tha ri fhaighinn
+        message_html: Tha ùrachadh Mastodon le càraidhean ri fhaighinn.
       upload_check_privacy_error:
         action: Thoir sùil an-seo airson barrachd fiosrachaidh
         message_html: "<strong>Chaidh am frithealaiche agad a dhroch-rèiteachadh. Tha prìobhaideachd an luchd-cleachdaidh agad fo chunnart.</strong>"
@@ -921,7 +959,7 @@ gd:
         not_usable: Cha ghabh a chleachdadh
         peaked_on_and_decaying: Air a’ bhàrr %{date}, a’ crìonadh an-dràsta
         title: Tagaichean hais a’ treandadh
-        trendable: Faodaidh e nochdadh am measg nan treandaichean
+        trendable: Nochd am measg nan treandaichean
         trending_rank: 'A’ treandadh #%{rank}'
         usable: Gabhaidh a chleachdadh
         usage_comparison: Chaidh a chleachdadh %{today} tura(i)s an-diugh an coimeas ri %{yesterday} an-dè
@@ -973,6 +1011,9 @@ gd:
       body: 'Tha %{target} ag ath-thagradh co-dhùnadh na maorsainneachd a thug %{action_taken_by} %{date} agus ’s e %{type} a bh’ ann. Sgrìobh iad:'
       next_steps: "’S urrainn dhut aontachadh ris an ath-thagradh air co-dhùnadh na maorsainneachd no a leigeil seachad."
       subject: Tha %{username} ag ath-thagradh co-dhùnadh na maorsainneachd air %{instance}
+    new_critical_software_updates:
+      body: Chaidh tionndaidhean èiginneach ùra de Mhastodon a sgaoileadh, bu chòir dhut ùrachadh cho luath ’s a ghabhas!
+      subject: Tha ùrachaidhean èiginneach air Mastodon ri fhaighinn dha %{instance}!
     new_pending_account:
       body: Chì thu mion-fhiosrachadh a’ chunntais ùir gu h-ìosal. ’S urrainn dhut gabhail ris an iarrtas seo no a dhiùltadh.
       subject: Tha cunntas ùr air %{instance} a’ feitheamh air lèirmheas (%{username})
@@ -980,6 +1021,9 @@ gd:
       body: Rinn %{reporter} gearan air %{target}
       body_remote: Rinn cuideigin o %{domain} gearan air %{target}
       subject: Tha gearan ùr aig %{instance} (#%{id})
+    new_software_updates:
+      body: Chaidh tionndaidhean ùra de Mhastodon a sgaoileadh, saoil an dèan thu ùrachadh?
+      subject: Tha tionndaidhean ùra de Mhastodon ri fhaighinn dha %{instance}!
     new_trends:
       body: 'Tha na nithean seo feumach air lèirmheas mus nochd iad gu poblach:'
       new_trending_links:
@@ -1213,7 +1257,7 @@ gd:
     add_new: Cuir fear ùr ris
     errors:
       limit: Bhrosnaich thu an uiread as motha de thagaichean hais mu thràth
-    hint_html: "<strong>Dè th’ anns na tagaichean hais brosnaichte?</strong> Thèid an sealltainn gu follaiseach air a’ phròifil phoblach agad agus ’s urrainnear na postaichean poblach agad sa bheil na tagaichean hais sònraichte sin a bhrabhsadh leotha. ’S e deagh-acainn a th’ annta airson sùil a chumail air obair chruthachail no pròiseactan fada."
+    hint_html: "<strong>Brosnaich na tagaichean hais as cudromaiche agad air a’ phròifil agad.</strong> ’S e deagh-acainn a th’ annta airson sùil a chumail air an obair chruthachail no na pròiseactan fada agad on a thèid na tagaichean hais brosnaichte a shealltainn gu follaiseach air a’ phròifil agad agus ’s urrainnear na postaichean agad inntrigeadh gu luath leotha."
   filters:
     contexts:
       account: Pròifilean
@@ -1484,6 +1528,7 @@ gd:
     update:
       subject: Dheasaich %{name} post
   notifications:
+    administration_emails: Brathan puist-d na rianachd
     email_events: Tachartasan nam brathan puist-d
     email_events_hint: 'Tagh na tachartasan dhan a bheil thu airson brathan fhaighinn:'
     other_settings: Roghainnean eile nam brathan
@@ -1527,6 +1572,15 @@ gd:
     other: Eile
     posting_defaults: Bun-roghainnean a’ phostaidh
     public_timelines: Loidhnichean-ama poblach
+  privacy:
+    hint_html: "<strong>Gnàthaich an dòigh air an dèid a’ phròifil ’s na postaichean agad a lorg.</strong> Tha grunn ghleusan aig Mastodon a chuidicheas ach an ruig thu èisteachd nas fharsainge nuair a bhios iad an comas. Thoir sùil air na roghainnean seo a dhèanamh cinnteach gum freagair iad ri d’ fheumalachdan."
+    privacy: Prìobhaideachd
+    privacy_hint_html: Stiùirich na tha thu airson foillseachadh do chàch. Gheibh daoine lorg air pròifilean inntinneach is deagh aplacaidean a’ brabhsadh cò tha daoine eile a’ leantainn ’s a’ faicinn nan aplacaidean a chleachdas iad airson postadh ach dh’fhaoidte gum b’ fheàrr leat seo a chumail falaichte.
+    reach: Ruigse
+    reach_hint_html: Stiùirich am bu mhiann leat gun lorg ’s gun lean daoine ùra thu gus nach bu mhiann. A bheil thu airson ’s gun nochd na postaichean agad air duilleag an rùrachaidh? No gum faic càch thu am measg nam molaidhean leantainn aca? An gabh thu ri luchd-leantainn ùr sam bith gu fèin-obrachail no an cùm thu fhèin smachd air gach neach fa leth?
+    search: Lorg
+    search_hint_html: Stiùirich an dòigh air an dèid do lorg. Am bu mhiann leat gun lorg daoine thu leis na phostaich thu gu poblach? Am bu mhiann leat gun lorg daoine taobh a-muigh Mastodon a’ phròifil agad nuair a bhios iad a lorg an lìn? Thoir an aire nach urrainn dhuinn gealladh le cinnt gun dèid am fiosrachadh poblach agad a dhùnadh a-mach gu tur às gach einnsean-luirg poblach.
+    title: Prìobhaideachd ’s ruigse
   privacy_policy:
     title: Poileasaidh prìobhaideachd
   reactions:
@@ -1748,6 +1802,11 @@ gd:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Chaidh am frithealaiche thar cuota cleachdadh seirbheis an eadar-theangachaidh.
+      too_many_requests: Rinneadh cus iarrtasan air seirbheis an eadar-theangachaidh o chionn goirid.
   two_factor_authentication:
     add: Cuir ris
     disable: Cuir an dearbhadh dà-cheumnach à comas

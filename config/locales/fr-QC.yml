@@ -309,6 +309,7 @@ fr-QC:
       unpublish: Retirer l'annonce
       unpublished_msg: L’annonce a été dépubliée avec succès !
       updated_msg: L’annonce a été mise à jour avec succès !
+    critical_update_pending: Mise à jour critique en attente
     custom_emojis:
       assign_category: Attribuer une catégorie
       by_domain: Domaine
@@ -770,10 +771,27 @@ fr-QC:
           approved: Approbation requise pour s’inscrire
           none: Personne ne peut s’inscrire
           open: N’importe qui peut s’inscrire
+      security:
+        authorized_fetch: Exiger une authentification de la part des serveurs fédérés
+        authorized_fetch_hint: Exiger l’authentification des serveurs fédérés permet une application plus stricte des blocages définis par les utilisateurs et le serveur. Cependant, cela entraîne une baisse des performances, réduit la portée de vos réponses et peut poser des problèmes de compatibilité avec certains services fédérés. En outre, cela n’empêchera pas les acteurs déterminés d’aller chercher vos messages et comptes publics.
+        authorized_fetch_overridden_hint: Vous ne pouvez pas modifier ce paramètre actuellement, car il est surchargé par une variable d’environnement.
+        federation_authentication: Contrôle de l’authentification de la fédération
       title: Paramètres du serveur
     site_uploads:
       delete: Supprimer le fichier téléversé
       destroyed_msg: Téléversement sur le site supprimé avec succès !
+    software_updates:
+      critical_update: Critique — veuillez mettre à jour au plus vite
+      description: Il est recommandé de maintenir votre installation de Mastodon à jour afin de bénéficier des derniers correctifs et des dernières fonctionnalités. Il est également essentiel de mettre à jour Mastodon rapidement dans certains cas afin d’éviter des problèmes de sécurité. Pour ces raisons, Mastodon vérifie les mises à jour toutes les 30 minutes, et vous en informera selon vos préférences de notification par e-mail.
+      documentation_link: En savoir plus
+      release_notes: Notes de mises à jour
+      title: Mises à jour disponibles
+      type: Type
+      types:
+        major: Mise à jour majeure
+        minor: Mise à jour mineure
+        patch: Mise à jour « patch » — correctifs de bugs et changements faciles à faire
+      version: Version
     statuses:
       account: Auteur·rice
       application: Application
@@ -814,6 +832,20 @@ fr-QC:
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
+      elasticsearch_health_red:
+        message_html: Le cluster Elasticsearch n’est pas sain (statut rouge), les fonctionnalités de recherche ne sont pas disponible
+      elasticsearch_health_yellow:
+        message_html: Le cluster Elasticsearch n’est pas sain (statut jaune), il est possible que vous souhaitiez en investiguer la raison
+      elasticsearch_index_mismatch:
+        message_html: Les correspondances (mappings) des indexes Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Voir la documentation
+        message_html: Votre cluster Elasticsearch a plus d’un nœud, mais Mastodon n’a pas été configuré pour les utiliser.
+      elasticsearch_preset_single_node:
+        action: Voir la documentation
+        message_html: Votre cluster Elasticsearch n’a qu’un seul nœud, <code>ES_PRESET</code> devrait avoir la valeur <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: L’index de votre système Elasticsearch n’est plus à jour à cause d’un changement de paramètre. Veuillez lancer <code>tootctl search deploy --reset-chewy</code> pour le mettre à jour.
       elasticsearch_running_check:
         message_html: Impossible de se connecter à Elasticsearch. Veuillez vérifier qu’il est en cours d’exécution ou désactiver la recherche en plein texte
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ fr-QC:
         message_html: Vous n'avez pas défini de règles pour le serveur.
       sidekiq_process_check:
         message_html: Aucun processus Sidekiq en cours d'exécution pour la/les file(s) d'attente %{value}. Veuillez vérifier votre configuration de Sidekiq
+      software_version_critical_check:
+        action: Voir les mises à jour disponibles
+        message_html: Une mise à jour critique de Mastodon est disponible, veuillez mettre à jour le plus rapidement possible.
+      software_version_patch_check:
+        action: Voir les mises à jour disponibles
+        message_html: Une mise à jour de correction de bug de Mastodon est disponible.
       upload_check_privacy_error:
         action: Pour plus d'informations, cliquez ici
         message_html: "<strong>Votre serveur web est mal configuré. La confidentialité de vos utilisateurs est en péril.</strong>"
@@ -937,6 +975,9 @@ fr-QC:
       body: "%{target} fait appel de la décision de modération émise par %{action_taken_by} le %{date} et qui était : %{type}. Cette personne a écrit :"
       next_steps: Vous pouvez approuver l'appel pour annuler la décision de modération, ou l'ignorer.
       subject: "%{username} fait appel d'une décision de modération sur %{instance}"
+    new_critical_software_updates:
+      body: Des nouvelles mises à jour critiques de Mastodon ont été publiées, vous avez sans doute envie de les appliquer dès que possible !
+      subject: Des mises à jour critiques de Mastodon sont disponibles pour %{instance} !
     new_pending_account:
       body: Les détails du nouveau compte se trouvent ci-dessous. Vous pouvez approuver ou rejeter cette demande.
       subject: Nouveau compte à examiner sur %{instance} (%{username})
@@ -944,6 +985,9 @@ fr-QC:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: Nouveau signalement sur %{instance} (#%{id})
+    new_software_updates:
+      body: De nouvelles mises à jour de Mastodon ont été publiées, vous avez sans doute envie de les appliquer !
+      subject: Nouvelles mises à jour disponibles pour %{instance} !
     new_trends:
       body: 'Les éléments suivants doivent être approuvés avant de pouvoir être affichés publiquement :'
       new_trending_links:
@@ -1432,6 +1476,7 @@ fr-QC:
     update:
       subject: "%{name} a modifié un message"
   notifications:
+    administration_emails: Notifications par e-mail de l’admin
     email_events: Événements pour les notifications par courriel
     email_events_hint: 'Sélectionnez les événements pour lesquels vous souhaitez recevoir des notifications :'
     other_settings: Autres paramètres de notifications
@@ -1475,6 +1520,15 @@ fr-QC:
     other: Autre
     posting_defaults: Paramètres de publication par défaut
     public_timelines: Fils publics
+  privacy:
+    hint_html: "<strong>Personnalisez la façon dont votre profil et vos messages peuvent être découverts.</strong> Mastodon peut vous aider à atteindre un public plus large lorsque certains paramètres sont activés. Prenez le temps de les examiner pour vous assurer qu’ils sont configurés comme vous le souhaitez."
+    privacy: Confidentialité
+    privacy_hint_html: Contrôlez ce que vous souhaitez divulguer. Les gens découvrent des profils intéressants en parcourant ceux suivis par d’autres personnes et des applications sympas en voyant lesquelles sont utilisées par d’autres pour publier des messages, mais vous préférez peut-être ne pas dévoiler ces informations.
+    reach: Portée
+    reach_hint_html: Contrôlez si vous souhaitez être découvert et suivi par de nouvelles personnes. Voulez-vous que vos publications apparaissent sur l’écran Explorer ? Voulez-vous que d’autres personnes vous voient dans leurs recommandations de suivi ? Souhaitez-vous approuver automatiquement tous les nouveaux abonnés ou avoir un contrôle granulaire sur chacun d’entre eux ?
+    search: Recherche
+    search_hint_html: Contrôlez la façon dont vous voulez être retrouvé. Voulez-vous que les gens vous trouvent selon ce que vous avez publié publiquement ? Voulez-vous que des personnes extérieures à Mastodon trouvent votre profil en faisant des recherches sur le web ? N’oubliez pas que l’exclusion totale de tous les moteurs de recherche ne peut être garantie pour les informations publiques.
+    title: Confidentialité et portée
   privacy_policy:
     title: Politique de confidentialité
   reactions:
@@ -1684,6 +1738,11 @@ fr-QC:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Le quota d’utilisation du service de traduction à l’échelle du serveur a été dépassé.
+      too_many_requests: Il y a eu trop de requêtes au service de traduction récemment.
   two_factor_authentication:
     add: Ajouter
     disable: Désactiver

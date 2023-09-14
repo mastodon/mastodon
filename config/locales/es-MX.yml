@@ -309,6 +309,7 @@ es-MX:
       unpublish: Retirar publicación
       unpublished_msg: "¡Anuncio despublicado con éxito!"
       updated_msg: "¡Anuncio actualizado con éxito!"
+    critical_update_pending: Actualización crítica pendiente
     custom_emojis:
       assign_category: Asignar categoría
       by_domain: Dominio
@@ -770,10 +771,27 @@ es-MX:
           approved: Se requiere aprobación para registrarse
           none: Nadie puede registrarse
           open: Cualquiera puede registrarse
+      security:
+        authorized_fetch: Requerir autenticación de servidores federados
+        authorized_fetch_hint: Requerir autenticación de servidores federados permite un cumplimiento más estricto tanto de los bloqueos a nivel de usuario como a nivel de servidor. Sin embargo, esto se produce a costa de una penalización en el rendimiento, reduce el alcance de tus respuestas y puede introducir problemas de compatibilidad con algunos servicios federados. Además, esto no impedirá que actores dedicados obtengan tus cuentas y publicaciones públicas.
+        authorized_fetch_overridden_hint: No puedes cambiar esta configuración porque está sobreescrita por una variable de entorno.
+        federation_authentication: Forzar autenticación federada
       title: Ajustes del servidor
     site_uploads:
       delete: Eliminar archivo subido
       destroyed_msg: "¡Carga del sitio eliminada con éxito!"
+    software_updates:
+      critical_update: Crítico — por favor actualiza rápidamente
+      description: Se recomienda mantener actualizada su instalación de Mastodon para beneficiarse de las últimas correcciones y características. Además, a veces es crítico actualizar Mastodon de manera oportuna para evitar problemas de seguridad. Por estas razones, Mastodon comprueba si hay actualizaciones cada 30 minutos, y le notificará de acuerdo a sus preferencias de notificación por correo electrónico.
+      documentation_link: Saber más
+      release_notes: Notas de la versión
+      title: Actualizaciones disponibles
+      type: Tipo
+      types:
+        major: Versión principal
+        minor: Versión menor
+        patch: Versión del parche — correcciones de errores y cambios fáciles de aplicar
+      version: Versión
     statuses:
       account: Autor
       application: Aplicación
@@ -814,6 +832,20 @@ es-MX:
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecútalas para asegurarte de que la aplicación funciona como debería
+      elasticsearch_health_red:
+        message_html: Clúster de Elasticsearch no es saludable (estado rojo), las funciones de búsqueda no están disponibles
+      elasticsearch_health_yellow:
+        message_html: Clúster de Elasticsearch es poco saludable (estado amarillo), es posible que quiera investigar la razón
+      elasticsearch_index_mismatch:
+        message_html: Las asignaciones de índices de Elasticsearch están desactualizadas. Por favor, ejecute <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Ver documentación
+        message_html: Tu clúster de Elasticsearch tiene más de un nodo, pero Mastodon no está configurado para usarlos.
+      elasticsearch_preset_single_node:
+        action: Ver documentación
+        message_html: Tu clúster de Elasticsearch solo tiene un nodo, <code>ES_PRESET</code> debe establecerse a <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Tu sistema de indexado Elasticsearch está desactualizado debido a un cambio de configuración. Ejecute <code>tootctl search deploy --reset-chewy</code> para actualizarlo.
       elasticsearch_running_check:
         message_html: No se pudo conectar a Elasticsearch. Por favor, comprueba que está ejecutándose, o desactiva la búsqueda de texto completo
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ es-MX:
         message_html: No ha definido ninguna regla del servidor.
       sidekiq_process_check:
         message_html: No hay ningún proceso Sidekiq en ejecución para la(s) cola(s) %{value}. Por favor, revise su configuración de Sidekiq
+      software_version_critical_check:
+        action: Ver actualizaciones disponibles
+        message_html: Una actualización crítica de Mastodon está disponible, por favor actualice lo antes posible.
+      software_version_patch_check:
+        action: Ver actualizaciones disponibles
+        message_html: Hay disponible una corrección de errores en la actualización de Mastodon.
       upload_check_privacy_error:
         action: Para más información aquí
         message_html: "<strong>Su servidor web no está configurado. Está en riesgo la privacidad de sus usuarios.</strong>"
@@ -937,6 +975,9 @@ es-MX:
       body: "%{target} está apelando a una solicitud de moderación de %{action_taken_by} el %{date}, del tipo %{type}. Ellos escribieron:"
       next_steps: Puedes aprobar la apelación para deshacer la decisión de moderación, o ignorarla.
       subject: "%{username} está apelando a una decisión de moderación en %{instance}"
+    new_critical_software_updates:
+      body: Se han lanzado nuevas versiones críticas de Mastodon, ¡es posible que quiera actualizar lo antes posible!
+      subject: "¡Las actualizaciones críticas de Mastodon están disponibles para %{instance}!"
     new_pending_account:
       body: Los detalles de la nueva cuenta están abajos. Puedes aprobar o rechazar esta aplicación.
       subject: Nueva cuenta para revisión en %{instance} (%{username})
@@ -944,6 +985,9 @@ es-MX:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: Nuevo reporte para la %{instance} (#%{id})
+    new_software_updates:
+      body: Se han liberado nuevas versiones de Mastodon, ¡es posible que quiera actualizar!
+      subject: "¡Nuevas versiones de Mastodon están disponibles para %{instance}!"
     new_trends:
       body: 'Los siguientes elementos necesitan una revisión antes de que se puedan mostrar públicamente:'
       new_trending_links:
@@ -1264,7 +1308,7 @@ es-MX:
       bookmarks_html: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{total_items} publicaciones</strong> provenientes de <strong>%{filename}</strong>.
       domain_blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
       following_html: Estás a punto de <strong>seguir</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
-      lists_html: Estás a punto de <strong>reemplazar tus listas</strong> con contenidos de <strong>%{filename}</strong>. Se añadirán <strong>%{total_items} cuentas</strong> a nuevas listas.
+      lists_html: Estás a punto de <strong>reemplazar tus listas</strong> con contenidos de <strong>%{filename}</strong>. <strong>%{total_items} cuentas</strong> se añadirán a listas nuevas.
       muting_html: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
     preambles:
       blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
@@ -1432,6 +1476,7 @@ es-MX:
     update:
       subject: "%{name} editó una publicación"
   notifications:
+    administration_emails: Notificaciones de administración por correo electrónico
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Selecciona los eventos para los que deseas recibir notificaciones:'
     other_settings: Otros ajustes de notificaciones
@@ -1475,6 +1520,15 @@ es-MX:
     other: Otros
     posting_defaults: Configuración por defecto de publicaciones
     public_timelines: Líneas de tiempo públicas
+  privacy:
+    hint_html: "<strong>Personaliza el descubrimiento de tu perfil y tus publicaciones.</strong> En Mastodon tienes distintas características que te ayudarán a alcanzar una mayor audiencia si las activas. Tómate un momento para revisar estas configuraciones y asegurarte de que cumplen tus necesidades."
+    privacy: Privacidad
+    privacy_hint_html: Controla cuánto deseas revelar a los demás. Las personas descubren perfiles y aplicaciones interesantes navegando por los seguidores de otras personas y viendo desde qué aplicaciones publican, pero puede que prefieras mantenerlo oculto.
+    reach: Alcance
+    reach_hint_html: Controla si quieres ser descubierto y seguido por nuevas personas. ¿Quieres que tus publicaciones aparezcan en la sección de Explorar? ¿Quieres que tu cuenta se recomiende a otras personas? ¿Quieres aceptar automáticamente a todos los nuevos seguidores o tener control sobre cada uno de ellos?
+    search: Búsqueda
+    search_hint_html: Controla cómo quieres que te encuentren. ¿Quieres que otras personas te encuentren por lo que has publicado públicamente? ¿Quieres que las personas de fuera de Mastodon encuentren tu perfil al buscar en la web? Por favor, ten en cuenta que la exclusión total de todos los motores de búsqueda no puede ser garantizada para información pública.
+    title: Privacidad y alcance
   privacy_policy:
     title: Política de Privacidad
   reactions:
@@ -1684,6 +1738,11 @@ es-MX:
       default: "%d de %b del %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d de %b de %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Se ha sobrepasado la cuota de uso del servicio de traducción para todo el servidor.
+      too_many_requests: Ha habido demasiadas solicitudes al servicio de traducción recientemente.
   two_factor_authentication:
     add: Añadir
     disable: Deshabilitar

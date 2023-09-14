@@ -1,7 +1,7 @@
 ---
 sr-Latn:
   about:
-    about_mastodon_html: 'Društvena mreža budućnosti: bez reklama, bez korporativnog praćenja, etički dizajn, i decentralizacija! Posedujte svoje podatke sa Mastodonom!'
+    about_mastodon_html: 'Društvena mreža budućnosti: bez reklama, bez korporativnog praćenja, etički dizajn, i decentralizacija! Posedujte svoje podatke sa Mastodon-om!'
     contact_missing: Nije postavljeno
     contact_unavailable: Nije dostupno
     hosted_on: Mastodon hostovan na %{domain}
@@ -312,6 +312,7 @@ sr-Latn:
       unpublish: Povuci objavu
       unpublished_msg: Objava saopštenja je uspešno povučena!
       updated_msg: Saopštenje je uspešno ažurirano!
+    critical_update_pending: Kritično ažuriranje je na čekanju
     custom_emojis:
       assign_category: Dodeli kategoriju
       by_domain: Domen
@@ -685,7 +686,7 @@ sr-Latn:
         moderation: Moderacija
         special: Posebno
       delete: Izbriši
-      description_html: Pomoću <strong>korisničkih uloga</strong> možete da podesite kojim funkcijama i delovima Mastodona Vaši korisnici mogu da pristupe.
+      description_html: Pomoću <strong>korisničkih uloga</strong> možete da podesite kojim funkcijama i delovima Mastodon-a vaši korisnici mogu da pristupe.
       edit: Izmeni ulogu '%{name}'
       everyone: Podrazumevana ovlašćenja
       everyone_full_description_html: Ovo je <strong>osnovna uloga</strong> koja se odnosi na <strong>sve korisnike</strong>, čak i one kojima nije dodeljena uloga. Sve druge uloge nasleđuju ovlašćenja od osnovne uloge.
@@ -749,23 +750,23 @@ sr-Latn:
         rules_hint: Postoji predviđeno mesto za pravila koja se od korisnika očekuje da poštuju.
         title: Naziv
       appearance:
-        preamble: Prilagodite veb interfejs Mastodona.
+        preamble: Prilagodite veb okruženje Mastodon-a.
         title: Izgled
       branding:
-        preamble: Brendiranje Vašeg servera ga izdvaja od drugih servera na mreži. Ove informacije mogu biti prikazane u raznim okruženjima, poput Mastodonovog veb interfejsa, nativnih aplikacija, u pregledima linkova na drugim serverima i u aplikacijama za razmenu poruka, itd. Iz ovog razloga, najbolje je da ove informacije budu kratke, jasne i koncizne.
+        preamble: Brendiranje Vašeg servera ga izdvaja od drugih servera na mreži. Ove informacije mogu biti prikazane u raznim okruženjima, poput Mastodon-ovog veb okruženja, nativnih aplikacija, u pregledima linkova na drugim serverima i u aplikacijama za razmenu poruka, itd. Iz ovog razloga, najbolje je da ove informacije budu kratke, jasne i koncizne.
         title: Brendiranje
       captcha_enabled:
         desc_html: Ovo se oslanja na eksterne skripte iz hCaptcha, što može predstavljati zabrinutost za bezbednost i privatnost. Pored toga, <strong>ovo može učiniti proces registracije znatno manje dostupnim nekim (posebno osobama sa invaliditetom)</strong>. Iz ovih razloga, razmotrite alternativne mere kao što je registracija zasnovana na odobrenju ili na pozivu.
         title: Zahtevaj od novih korisnika da reše CAPTCHA da bi potvrdili svoj nalog
       content_retention:
-        preamble: Kontrolišite kako se sadržaj generisan od strane korisnika skladišti na Mastodonu.
+        preamble: Kontrolišite kako se sadržaj generisan od strane korisnika skladišti na Mastodon-u.
         title: Zadržavanje sadržaja
       default_noindex:
         desc_html: Utiče na sve korisnike koji nisu sami promenili ovu postavku
         title: Podrazumevano isključi korisnike iz indeksiranja pretraživača
       discovery:
         follow_recommendations: Preporuke za praćenje
-        preamble: Održavanje zanimljivih sadržaja na površini je ključno u privlačenju novih korisnika koji možda ne znaju nikoga na Mastodonu. Kontrolišite kako različiti načini istraživanja funkcionišu na Vašem serveru.
+        preamble: Održavanje zanimljivih sadržaja na površini je ključno u privlačenju novih korisnika koji možda ne znaju nikoga na Mastodon-u. Kontrolišite kako različiti načini istraživanja funkcionišu na vašem serveru.
         profile_directory: Direktorijum profilâ
         public_timelines: Javne vremenske linije
         publish_discovered_servers: Objavi otkrivene servere
@@ -784,10 +785,27 @@ sr-Latn:
           approved: Odobrenje neophodno za registraciju
           none: Niko ne može da se registruje
           open: Bilo ko može da se registruje
+      security:
+        authorized_fetch: Zahtevaj autentifikaciju sa združenih servera
+        authorized_fetch_hint: Zahtevanje autentifikacije sa združenih servera omogućuje strožiju primenu blokova i na nivou korisnika i na nivou servera. Međutim, ovo dolazi po cenu smanjenja performansi, smanjuje domet vaših odgovora i može dovesti do problema kompatibilnosti sa nekim združenim uslugama. Pored toga, ovo neće sprečiti posvećene aktere da preuzimaju vaše javne objave i naloge.
+        authorized_fetch_overridden_hint: Trenutno ne možete da promenite ovo podešavanje jer ga zamenjuje promenljiva okruženja.
+        federation_authentication: Sprovođenje združene autentifikacije
       title: Podešavanja servera
     site_uploads:
       delete: Obriši otpremljeni fajl
       destroyed_msg: Otpremanje uspešno obrisano!
+    software_updates:
+      critical_update: Kritično — ažurirajte brzo
+      description: Preporučuje se da svoju Mastodon instalaciju održavate ažurnom kako biste imali koristi od najnovijih ispravki i funkcija. Štaviše, ponekad je ključno ažurirati Mastodon na vreme kako bi se izbegli bezbednosni problemi. Iz ovih razloga, Mastodon proverava da li postoje ažuriranja svakih 30 minuta, i obavestiće vas u skladu sa vašim podešavanjima obaveštenja putem e-pošte.
+      documentation_link: Saznajte više
+      release_notes: Beleške o izdanju
+      title: Dostupna ažuriranja
+      type: Tip
+      types:
+        major: Glavno izdanje
+        minor: Manje izdanje
+        patch: Izdanje zakrpe — ispravke grešaka i promene koje se lako primenjuju
+      version: Verzija
     statuses:
       account: Autor
       application: Aplikacija
@@ -828,6 +846,20 @@ sr-Latn:
     system_checks:
       database_schema_check:
         message_html: Selidbe bazâ podataka su na čekanju. Molimo Vas obavite ih da bi se aplikacija ponašala kako treba
+      elasticsearch_health_red:
+        message_html: Elasticsearch klaster je nezdrav (crveni status), funkcije pretrage su nedostupne
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch klaster je nezdrav (žuti status), možda biste želeli da istražite razlog
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch mapiranja indeksa su zastarela. Pokrenite <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Pogledaj dokumentaciju
+        message_html: Vaš Elasticsearch klaster ima više od jednog čvora, ali Mastodon nije konfigurisan da ih koristi.
+      elasticsearch_preset_single_node:
+        action: Pogledaj dokumentaciju
+        message_html: Vaš Elasticsearch klaster ima samo jedan čvor, <code>ES_PRESET</code>treba postaviti na<code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Vaš Elasticsearch klaster ima samo jedan čvor, <code>ES_PRESET</code>treba postaviti na<code>single_node_cluster</code>.
       elasticsearch_running_check:
         message_html: Povezivanje na Elasticsearch nije bilo moguće. Molimo Vas proverite da li je pokrenut, ili onemogućite pretragu celog teksta
       elasticsearch_version_check:
@@ -838,6 +870,12 @@ sr-Latn:
         message_html: Niste definisali nijedno pravilo servera.
       sidekiq_process_check:
         message_html: Nijedan Sidekiq proces nije pokrenut za red(ove) %{value}. Molimo Vas pregledajte svoju Sidekiq konfiguraciju
+      software_version_critical_check:
+        action: Pogledajte dostupna ažuriranja
+        message_html: Dostupno je kritično ažuriranje za Mastodon, ažurirajte ga što je pre moguće.
+      software_version_patch_check:
+        action: Pogledajte dostupna ažuriranja
+        message_html: Dostupna je ispravka grešaka za Mastodon.
       upload_check_privacy_error:
         action: Proverite ovde za više informacija
         message_html: "<strong>Vaš veb server je pogrešno konfigurisan. Privatnost vaših korisnika je izložena riziku.</strong>"
@@ -924,7 +962,7 @@ sr-Latn:
     webhooks:
       add_new: Dodaj krajnju tačku
       delete: Izbriši
-      description_html: "<strong>Webhook</strong> omogućava Mastodonu da Vašoj aplikaciji isporučuje <strong>obaveštenja u realnom vremenu</strong> o odabranim događajima, tako da Vaša aplikacija može da <strong>automatski izazove reakciju</strong>."
+      description_html: "<strong>Webhook</strong> omogućava Mastodon-u da vašoj aplikaciji isporučuje <strong>obaveštenja u realnom vremenu</strong> o odabranim događajima, tako da vaša aplikacija može da <strong>automatski izazove reakciju</strong>."
       disable: Onemogući
       disabled: Onemogućeno
       edit: Izmeni krajnju tačku
@@ -955,6 +993,9 @@ sr-Latn:
       body: "%{target} prilaže žalbu na moderacijsku odluku korisnika %{action_taken_by} od %{date}, koja je glasila %{type}. U žalbi piše:"
       next_steps: Možete uvažiti žalbu da biste povukli moderacijsku odluku, ili je možete ignorisati.
       subject: "%{username} prilaže žalbu na moderacijsku odluku sa %{instance}"
+    new_critical_software_updates:
+      body: Objavljene su nove kritične verzije Mastodon-a, možda ćete želeti da ažurirate što je pre moguće!
+      subject: Kritična Mastodon ažuriranja su dostupna za %{instance}!
     new_pending_account:
       body: Detalji novog naloga su navedeni dole. Možete odobriti ili odbiti ovaj zahtev.
       subject: Nov nalog za pregled na %{instance} (%{username})
@@ -962,6 +1003,9 @@ sr-Latn:
       body: "%{reporter} je prijavio %{target}"
       body_remote: Neka sa domena %{domain} je prijavio %{target}
       subject: Nova prijava za %{instance} (#%{id})
+    new_software_updates:
+      body: Objavljene su nove verzije Mastodon-a, možda ćete želeti da ažurirate!
+      subject: Nove Mastodon verzije su dostupne za %{instance}}!
     new_trends:
       body: 'Sledeće stavke je potrebno pregledati pre nego što mogu javno da se prikažu:'
       new_trending_links:
@@ -1018,8 +1062,8 @@ sr-Latn:
     delete_account: Brisanje naloga
     delete_account_html: Ako želite da izbrišete vaš nalog, možete <a href="%{path}">nastaviti ovde</a>. Od vas će se tražiti potvrda.
     description:
-      prefix_invited_by_user: "@%{name} Vas poziva da se pridružite ovom serveru Mastodona!"
-      prefix_sign_up: Pridružite se Mastodonu danas!
+      prefix_invited_by_user: "@%{name} vas poziva da se pridružite ovom serveru Mastodon-a!"
+      prefix_sign_up: Pridružite se Mastodon-u danas!
       suffix: Sa nalogom, moći ćete da pratite ljude, objavljujete novosti i razmenjujete poruke sa korisnicima bilo kog Mastodon servera i više!
     didnt_get_confirmation: Niste primili vezu za potvrdu?
     dont_have_your_security_key: Nemate sigurnosni ključ?
@@ -1172,7 +1216,7 @@ sr-Latn:
       content: Izvinjavamo se, nešto je pošlo po zlu sa ove strane.
       title: Strana nije ispravna
     '503': Stranicu nije bilo moguće dostaviti usled privremenog pada servera.
-    noscript_html: Da biste koristili Mastodont veb aplikaciju, omogućite JavaScript. U suprotnom, probajte neku od <a href="%{apps_path}">originalnih aplikacija</a> za Mastodont za Vašu platformu.
+    noscript_html: Da biste koristili Mastodon veb aplikaciju, omogućite JavaScript. U suprotnom, probajte neku od <a href="%{apps_path}">originalnih aplikacija</a> za Mastodon za vašu platformu.
   existing_username_validator:
     not_found: nije bilo moguće pronaći lokalnog korisnika sa tim korisničkim imenom
     not_found_multiple: nije bilo moguće pronaći %{usernames}
@@ -1195,7 +1239,7 @@ sr-Latn:
     add_new: Dodaj novu
     errors:
       limit: Već ste istakli maksimalan broj heš oznaka
-    hint_html: "<strong>Šta su istaknute heš onake?</strong> One se prikazuju istaknuto na vašem javnom profilu i omogućuju ljudima da pregledaju vaše javne objave konkretno pod tim heš oznakama. One su sjajan alat za praćenje kreativnih radova ili dugoročnih projekata."
+    hint_html: "<strong>Istaknite najvažnije heš oznake na svom profilu.</strong> Odličan alat za praćenje vaših kreativnih radova i dugoročnih projekata, istaknute heš oznake su istaknute na vašem profilu i omogućuju brz pristup vašim objavama."
   filters:
     contexts:
       account: Profili
@@ -1289,14 +1333,14 @@ sr-Latn:
       bookmarks_html: Upravo ćete <strong>zameniti svoje obeleživače</strong> sa do <strong>%{total_items} objava</strong> iz <strong>%{filename}</strong>.
       domain_blocking_html: Upravo ćete <strong>zameniti svoju listu blokiranih domena</strong> sa do <strong>%{total_items} domena</strong> iz <strong>%{filename}</strong>.
       following_html: Upravo ćete <strong>pratiti</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong> and <strong>i prestati sa praćenjem bilo koga drugog</strong>.
-      lists_html: Spremate se da <strong>zamenite svoje liste</strong> sadržajem od <strong>%{filename}</strong>. Do <strong>%{total_items} naloga</strong> će biti dodato na nove liste.
+      lists_html: Spremate se da <strong>zamenite svoje liste</strong> sadržajem od <strong>%{filename}</strong>. Do <strong>%{total_items} naloga</strong> će biti dodato na nove liste.
       muting_html: Upravo ćete <strong>zameniti svoju listu ignorisanih naloga</strong> sa do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
     preambles:
       blocking_html: Upravo ćete <strong>blokirati</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
       bookmarks_html: Upravo ćete dodati do <strong>%{total_items} objava</strong> iz <strong>%{filename}</strong> u vaše <strong>obeleživače</strong>.
       domain_blocking_html: Upravo ćete <strong>blokirati</strong> do <strong>%{total_items} domena</strong> iz <strong>%{filename}</strong>.
       following_html: Upravo ćete <strong>pratiti</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
-      lists_html: Spremate se da dodate do <strong>%{total_items} naloga</strong> od <strong>%{filename}</strong> na svoje <strong>liste</strong>. Nove liste će biti kreirane ako ne postoji lista za dodavanje.
+      lists_html: Spremate se da dodate do <strong>%{total_items} naloga</strong> od <strong>%{filename}</strong> na svoje <strong>liste</strong>. Nove liste će biti kreirane ako ne postoji lista za dodavanje.
       muting_html: Upravo ćete <strong>ignorisati</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
     preface: Možete uvesti podatke koje ste izvezli sa druge instance, kao što su liste ljudi koje ste pratili ili blokirali.
     recent_imports: Nedavni uvozi
@@ -1430,8 +1474,8 @@ sr-Latn:
       sign_up:
         subject: "%{name} se registrovao/-la"
     favourite:
-      body: "%{name} je postavio kao omiljen Vaš status:"
-      subject: "%{name} je postavio kao omiljen Vaš status"
+      body: "%{name} je označio kao omiljenu vašu objavu:"
+      subject: "%{name} je označio kao omiljenu vašu objavu"
       title: Novi omiljeni
     follow:
       body: "%{name} Vas je zapratio!"
@@ -1458,6 +1502,7 @@ sr-Latn:
     update:
       subject: "%{name} je izmenio/-la objavu"
   notifications:
+    administration_emails: Obaveštenja e-poštom od administratora
     email_events: Događaji za obaveštenja e-poštom
     email_events_hint: 'Izaberite dešavanja za koja želite da primate obaveštenja:'
     other_settings: Ostala podešavanja obaveštenja
@@ -1501,6 +1546,15 @@ sr-Latn:
     other: Ostalo
     posting_defaults: Podrazumevana podešavanja objavljivanja
     public_timelines: Javne vremenske linije
+  privacy:
+    hint_html: "<strong>Prilagodite način na koji želite da vaš profil i vaše objave budu pronađeni.</strong> Različite funkcije u Mastodon-u mogu vam pomoći da dosegnete širu publiku kada su omogućene. Odvojite malo vremena da pregledate ova podešavanja kako biste bili sigurni da odgovaraju vašem slučaju upotrebe."
+    privacy: Privatnost
+    privacy_hint_html: Kontrolišite koliko želite da otkrijete u korist drugih. Ljudi otkrivaju zanimljive profile i aplikacije tako što pregledaju pratioce drugih ljudi i vide iz kojih aplikacija objavljuju, ali možda ćete radije da to držite skrivenim.
+    reach: Doseg
+    reach_hint_html: Kontrolišite da li želite da vas otkrivaju i prate novi ljudi. Da li želite da se vaše objave pojavljuju na ekranu za istraživanje? Da li želite da vas drugi ljudi vide u svojim preporukama? Da li želite da automatski prihvatite sve nove pratioce ili da imate detaljnu kontrolu nad svakim od njih?
+    search: Pretraga
+    search_hint_html: Kontrolišite kako želite da budete pronađeni. Da li želite da vas ljudi pronađu po onome o čemu ste javno objavili? Da li želite da ljudi izvan Mastodon-a pronađu vaš profil kada pretražuju veb? Imajte na umu da se za javne informacije ne može garantovati potpuno isključenje iz svih pretraživača.
+    title: Privatnost i doseg
   privacy_policy:
     title: Politika privatnosti
   reactions:
@@ -1567,7 +1621,7 @@ sr-Latn:
       weibo: Veibo
     current_session: Trenutna sesija
     description: "%{browser} sa %{platform}"
-    explanation: Ovo su veb pretraživači koji su trenutno prijavljeni na Vaš Mastodon nalog.
+    explanation: Ovo su veb pretraživači koji su trenutno prijavljeni na vaš Mastodon nalog.
     ip: IP
     platforms:
       adobe_air: Adob Er-a
@@ -1604,7 +1658,7 @@ sr-Latn:
     migrate: Prebacivanje naloga
     notifications: Obaveštenja
     preferences: Podešavanja
-    profile: Nalog
+    profile: Javni profil
     relationships: Praćenja i pratioci
     statuses_cleanup: Automatsko brisanje objava
     strikes: Moderacijski prestupi
@@ -1629,7 +1683,7 @@ sr-Latn:
     content_warning: 'Upozorenje na sadržaj: %{warning}'
     default_language: Isto kao jezik okruženja
     disallowed_hashtags:
-      few: 'sadrži zabranjene heštegove: %{tags}'
+      few: 'sadrži zabranjene heš oznake: %{tags}'
       one: 'sadrži zabranjenu heš oznaku: %{tags}'
       other: 'sadrži zabranjene heš oznake: %{tags}'
     edited_at_html: Izmenjeno %{date}
@@ -1709,13 +1763,17 @@ sr-Latn:
     does_not_match_previous_name: ne poklapa se sa prethodnim imenom
   themes:
     contrast: Veliki kontrast
-    default: Mastodon
+    default: Mastodon (tamno)
     mastodon-light: Mastodon (svetlo)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+  translation:
+    errors:
+      quota_exceeded: Prekoračena je kvota korišćenja usluge prevođenja na celom serveru.
+      too_many_requests: Nedavno je bilo previše zahteva za uslugu prevođenja.
   two_factor_authentication:
     add: Dodaj
     disable: Isključi
@@ -1742,7 +1800,7 @@ sr-Latn:
       subject: Vaša žalba podneta %{date} je odbijena
       title: Žalba odbijena
     backup_ready:
-      explanation: Tražili ste potpunu rezervnu kopiju vašeg Mastodon računa. Spremna za preuzimanje!
+      explanation: Tražili ste potpunu rezervnu kopiju vašeg Mastodon naloga. Spremna je za preuzimanje!
       subject: Vaša arhiva je spremna za preuzimanje
       title: Izvoz arhive
     suspicious_sign_in:

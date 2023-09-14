@@ -3,9 +3,13 @@ et:
   simple_form:
     hints:
       account:
+        discoverable: Su profiili ja avalikke postitusi võidakse Mastodoni erinevates piirkondades esile tõsta või soovitada ning su profiili soovitada teistele kasutajatele.
         display_name: Su täisnimi või naljanimi.
         fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
+        indexable: Sinu avalikud postitused võivad ilmuda Mastodoni otsingutulemustes. Inimesed, kes on sinu postitustele reageerinud, saavad neid otsida nii või naa.
         note: 'Saad @mainida teisi inimesi või #silte.'
+        show_collections: Inimesed saavad sirvida su jälgijaid ja jälgitavaid. Inimesed, keda sa jälgid, näevad seda sõltumata häälestuse valikust.
+        unlocked: Inimesed saavad sind jälgima hakata kinnitamist taotlemata. Eemalda märge, kui soovid jälgimistaotlusi üle vaadata ja valida, kas nõustuda või keelduda uute jälgijatega.
       account_alias:
         acct: Sisesta konto kasutajanimi@domeen, mille soovid siia ümber kolida
       account_migration:
@@ -116,6 +120,9 @@ et:
       sessions:
         otp: 'Kaheastmelise autentimise kood telefonirakendusest või mõni taastekood:'
         webauthn: Kui see on USB-võti, sisesta see ning vajadusel aktiveeri.
+      settings:
+        indexable: Su profiilileht võib ilmuda Google, Bingi ja teiste otsimootorite tulemustes.
+        show_application: Sa saad sõltumata sellest vaadata, milline äpp su postituse postitas.
       tag:
         name: Saad muuta ainult tähtede suurtähelisust, näiteks selleks, et muuta seda loetavamaks
       user:
@@ -133,9 +140,13 @@ et:
         url: Kuhu sündmused saadetakse
     labels:
       account:
+        discoverable: Tõsta postitused ja profiil avastamise algoritmides esile
         fields:
           name: Nimetus
           value: Sisu
+        indexable: Kaasa avalikud postitused otsingutulemustesse
+        show_collections: Näita profiilil jälgitavaid ja jälgijaid
+        unlocked: Nõustu automaatselt uute jälgijatega
       account_alias:
         acct: Vana konto aadress
       account_migration:
@@ -280,9 +291,18 @@ et:
         pending_account: Saada e-kiri, kui uus konto vajab ülevaatlust
         reblog: Keegi jagas postitust
         report: Esitatud on uus raport
+        software_updates:
+          all: Teata kõikidest uuendustest
+          critical: Teata vaid kriitilistest uuendustest
+          label: Saadaval on Mastodoni uus versioon
+          none: Ära teata ühestki uuendusest (pole soovitatav)
+          patch: Teata veaparandusuuendustest
         trending_tag: Uus trend vajab ülevaatust
       rule:
         text: Reegel
+      settings:
+        indexable: Kaasa profiilileht otsimootoritesse
+        show_application: Näita, millisest äpist postituse saatsid
       tag:
         listable: Luba sellel sildil ilmuda profiilide kataloogis
         name: Silt
@@ -303,6 +323,7 @@ et:
         url: Lõpp-punkti URL
     'no': Ei
     not_recommended: Pole soovitatav
+    overridden: Ülekirjutatud
     recommended: Soovituslik
     required:
       mark: "*"

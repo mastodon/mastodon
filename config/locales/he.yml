@@ -315,6 +315,7 @@ he:
       unpublish: ביטול פרסום
       unpublished_msg: פרסום ההכרזה בוטל בהצלחה!
       updated_msg: ההכרזה עודכנה בהצלחה!
+    critical_update_pending: עידכון קריטי ממתין
     custom_emojis:
       assign_category: הקצאת קטגוריה
       by_domain: לפי קהילה
@@ -798,10 +799,27 @@ he:
           approved: נדרש אישור הרשמה
           none: אף אחד לא יכול להרשם
           open: כל אחד יכול להרשם
+      security:
+        authorized_fetch: לדרוש הזדהות מול שרתים בפדרציה
+        authorized_fetch_hint: הדרישה להזדהות מול שרתים בפדרציה מאפשרת חסימה יותר יעילה ברמת המשתמש וברמת שרת. עם זאת, הדרישה באה עם מחיר של נפילת ביצועים, מקטינה את מעגל התפוצה של התשובות שלך, ועשויה ליצור אי תאימות מול שירותים אחרים בפדרציה. בנוסף, זה לא ימנע מצדדים החלטיים לקבל גישת קריאה להודעות ופרופילים ציבוריים.
+        authorized_fetch_overridden_hint: אין באפשרותך כרגע לשנות את ההגדרה כיוון שהערך נאכף על ידי משתנה סביבתי קודם במערכת ההפעלה.
+        federation_authentication: חיוב אימות פדרטיבי
       title: הגדרות שרת
     site_uploads:
       delete: מחיקת קובץ שהועלה
       destroyed_msg: העלאת אתר נמחקה בהצלחה!
+    software_updates:
+      critical_update: חשוב -- יש לעדכן במהירות
+      description: מומלץ לשמור את התקנת המסטודון שלך עדכנית כדי להרוויח מהיכולות והתיקונים האחרונים. למעלה מכך, לעיתים קריטי לעדכן את מסטודון בהקדם כדי להמנע מפרצות אבטחה. מסיבות אלו, השרת יבדוק כל 30 דקות, ויודיע לך לפי העדפות הדואל שלך.
+      documentation_link: למידע נוסף
+      release_notes: פרטי הגרסה
+      title: עדכונים זמינים
+      type: סוג
+      types:
+        major: שחרור משמעותי (Major release)
+        minor: שחרור משני (Minor release)
+        patch: עדכון טלאי — תיקוני שקצים ושינויים קלים
+      version: גרסה
     statuses:
       account: מחבר
       application: יישום
@@ -842,6 +860,20 @@ he:
     system_checks:
       database_schema_check:
         message_html: נדרשות הגירות מבני נתונים. אנא הריצו אותן כדי להבטיח שהיישום מתנהג כצפוי
+      elasticsearch_health_red:
+        message_html: אשכול שירותי חיפוש Elasticsearch אינו זמין כעת (מצב אדום), אפשרויות חיפוש אינן זמינות כרגע
+      elasticsearch_health_yellow:
+        message_html: אשכול שירותי חיפוש Elasticsearch אינו כשיר כעת (מצב צהוב), מומלץ לבדוק מה סיבת הבעיה
+      elasticsearch_index_mismatch:
+        message_html: מיפוי האינדקסים של Elasticsearch אינו עדכני. יש להריץ <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: יש לבדוק בתיעוד
+        message_html: אשכול שירותי חיפוש Elasticsearch שלך מכיל יותר משרת אחד, אך מסטודון אינו מכוון לשימוש בכולם.
+      elasticsearch_preset_single_node:
+        action: יש לבדוק בתיעוד
+        message_html: אשכול שירותי חיפוש Elasticsearch שלך מכיל רק שרת אחד, <code>ES_PRESET</code> צריך להכיל את הערך <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: מיפוי האינדקסים של Elasticsearch אינו עדכני עקב שינוי תצורה. יש להריץ <code>tootctl search deploy --reset-chewy</code> כדי לעדכנו.
       elasticsearch_running_check:
         message_html: לא ניתן להתחבר לחיפוש אלסטיק. בדקו בבקשה הוא רץ, או בטלו את חיפוש הטקסט המלא
       elasticsearch_version_check:
@@ -852,6 +884,12 @@ he:
         message_html: לא הוגדרו שום כללי שרת.
       sidekiq_process_check:
         message_html: שום הליכי Sidekiq לא רצים עבור %{value} תור(ות). בחנו בבקשה את הגדרות Sidekiq
+      software_version_critical_check:
+        action: ראו עדכונים זמינים
+        message_html: יצא עדכון קריטי למסטודון, נא לעדכן את תוכנת מסטודון בהקדם האפשרי.
+      software_version_patch_check:
+        action: ראו עדכונים זמינים
+        message_html: יצא עדכון מסטודון המכיל תיקוני שקצים.
       upload_check_privacy_error:
         action: למידע נוסף
         message_html: "<strong>שרת הווב שלך אינו מכוון כראוי. פרטיות המשתמשות והמשתמשים שלך בסכנה.</strong>"
@@ -973,6 +1011,9 @@ he:
       body: "%{target} מערערים על החלטת מנהלי הקהילה ב-%{action_taken_by} מתאריך %{date}, שהיה %{type}. הם כתבו:"
       next_steps: ניתן לאשר את הערער כדי להפוך את החלטת מנהלי הקהילה, או להתעלם ממנו.
       subject: "%{username} מערערים על החלטת מנהלי הקהילה במופע %{instance}"
+    new_critical_software_updates:
+      body: יצא עדכון קריטי למסטודון, נא לעדכן את תוכנת מסטודון בהקדם האפשרי!
+      subject: יצא עדכון קריטי למסטודון שעל %{instance}!
     new_pending_account:
       body: פרטי החשבון החדש מובאים להלן. ניתן לאשר או לדחות את הבקשה.
       subject: חשבון חדש מובא לסקירה ב-%{instance} (%{username})
@@ -980,6 +1021,9 @@ he:
       body: "%{reporter} דיווחו על %{target}"
       body_remote: מישהם מהמופע %{domain} דיווחו על %{target}
       subject: דו"ח חדש מהמופע %{instance} (#%{id})
+    new_software_updates:
+      body: יצאו עדכוני גרסת מסטודון חדשים, כדאי לעדכן!
+      subject: יצאו עדכוני גרסת מסטודון חדשים בשביל %{instance}!
     new_trends:
       body: 'הפריטים הבאים זקוקים לסקירה לפני שניתן יהיה להציגם פומבית:'
       new_trending_links:
@@ -1484,6 +1528,7 @@ he:
     update:
       subject: "%{name} ערכו הודעה"
   notifications:
+    administration_emails: התראות לדוא"ל חשבון מנהל
     email_events: ארועים להתראות דוא"ל
     email_events_hint: 'בחר/י ארועים עבורים תרצה/י לקבל התראות:'
     other_settings: הגדרות התראות אחרות
@@ -1527,6 +1572,15 @@ he:
     other: שונות
     posting_defaults: ברירות מחדל להודעות
     public_timelines: פידים פומביים
+  privacy:
+    hint_html: "<strong>ניתן להתאים את הצורה שבה תירצו שיראו את פרופיל המשתמש וההודעות שלכם.</strong> מגוון אפשרויות במסטודון יכולות לעזור לכם להיחשף לקהל רחב יותר כאשר תפעילו אותן. הקדישו רגע לבדוק את ההגדרות הללו כדי לוודא שהן מתאימות לכם."
+    privacy: פרטיות
+    privacy_hint_html: הגדירו כמה תרצו לחשוף עצמכם לאחרים. משתמשים מגלים משתמשים מעניינים ואפליקציות מגניבות על ידי דפדוף ב-"מעקבים" של משתמשים אחרים ורואים מאילו אפליקציות הם מפרסמים, אבל אולי תעדיפו להסתיר את המידע הזה מפני אחרים.
+    reach: מידת חשיפה
+    reach_hint_html: הגדר כמה אנשים חדשים אתה רוצה שיגלו עליך ויעקבו אחריך. האם אתה רוצה שהפוסטים שלך יופיעו בדף הבית של האתר? האם אתה רוצה שאנשים אחרים יראו את המשתמש שלך בהמלצות המעקב שלהם? האם אתה רוצה לאשר את כל העוקבים החדשים שלך באופן אוטומטי, או שאתה רוצה לאשר אותם באופן ידני?
+    search: חיפוש
+    search_hint_html: הגדירו כיצד תרצו שימצאו אתכם. האם תרצו שאנשים ימצאו אתכם דרך הפוסטים שהועלו? האם תרצו שאנשים מחוץ למסטודון ימצאו את הפרופיל על ידי חיפוש באינטרנט? אנא זכרו שלא ניתן להבטיח החרגה מוחלטת מכל מנועי החיפוש עבור מידע ציבורי.
+    title: פרטיות ומידת חשיפה
   privacy_policy:
     title: מדיניות פרטיות
   reactions:
@@ -1748,6 +1802,11 @@ he:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: השימוש בשירות התירגום בשרת זה עבר את המכסה שהוקצתה.
+      too_many_requests: לאחרונה היו יותר מדי פניות אל שירות התרגום.
   two_factor_authentication:
     add: הוספה
     disable: כיבוי
