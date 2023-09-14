@@ -27,7 +27,6 @@
     "onAutoForward": "silent"
   },
 
-  "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
   "postCreateCommand": ".devcontainer/post-create.sh",
   "waitFor": "postCreateCommand",
 
