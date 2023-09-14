@@ -17,6 +17,7 @@ COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
 # hadolint ignore=DL3008
 RUN apt-get update && \
+    apt-get -yq dist-upgrade && \
     apt-get install -y --no-install-recommends build-essential \
         ca-certificates \
         git \
