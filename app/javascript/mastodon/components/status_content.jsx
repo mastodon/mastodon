@@ -124,6 +124,7 @@ class StatusContent extends PureComponent {
         link.setAttribute('href', `/tags/${link.text.replace(/^#/, '')}`);
       } else {
         link.setAttribute('title', link.href);
+        link.setAttribute('href', `/redirect?url=${encodeURIComponent(link.href)}`);
         link.classList.add('unhandled-link');
       }
     }
