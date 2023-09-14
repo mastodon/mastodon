@@ -115,11 +115,7 @@ class HomeTimeline extends PureComponent {
   };
 
   componentDidMount () {
-    const { signedIn } = this.context.identity;
-    console.warn(123, signedIn)
-    if (signedIn) {
-      setTimeout(() => this.props.dispatch(fetchAnnouncements()), 700);
-    }
+    setTimeout(() => this.props.dispatch(fetchAnnouncements()), 700);
     this._checkIfReloadNeeded(false, this.props.isPartial);
   }
 
