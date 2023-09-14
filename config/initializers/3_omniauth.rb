@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+# OmniAuth providers need to be initialized before the CSP initializer
+# in `config/initializers/content_security_policy.rb`, which sets the
+# `form-action` directive based on them.
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   # Vanilla omniauth strategies
 end

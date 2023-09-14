@@ -3,9 +3,13 @@ ms:
   simple_form:
     hints:
       account:
+        discoverable: Siaran awam dan profil anda mungkin dipaparkan atau disyorkan dalam pelbagai kawasan Mastodon dan profil anda mungkin dicadangkan kepada pengguna lain.
         display_name: Nama penuh anda atau nama anda yang menyeronokkan.
         fields: Halaman utama anda, kata ganti nama, umur, apa sahaja yang anda mahukan.
+        indexable: Pos awam anda mungkin muncul dalam hasil carian di Mastodon. Orang yang telah berinteraksi dengan pos anda mungkin boleh mencarinya tanpa mengira.
         note: 'Anda boleh @menyebut orang lain atau #hashtags.'
+        show_collections: Orang akan dapat menyemak imbas mengikut dan pengikut anda. Orang yang anda ikuti akan melihat bahawa anda mengikuti mereka tanpa mengira.
+        unlocked: Orang akan dapat mengikuti anda tanpa meminta kelulusan. Nyahtanda jika anda ingin menyemak permintaan ikuti dan pilih sama ada untuk menerima atau menolak pengikut baharu.
       account_alias:
         acct: Tentukan namapengguna@domain akaun yang ingin anda alihkan daripada
       account_migration:
@@ -55,8 +59,34 @@ ms:
         setting_display_media_default: Sembunyikan media yang ditanda sebagai sensitif
         setting_display_media_hide_all: Sentiasa sembunyikan media
         setting_display_media_show_all: Sentiasa paparkan media
+        setting_use_blurhash: Kecerunan adalah berdasarkan warna visual tersembunyi tetapi mengelirukan sebarang butiran
+        setting_use_pending_items: Sembunyikan kemas kini garis masa di belakang satu klik dan bukannya menatal suapan secara automatik
+        username: Anda boleh menggunakan huruf, nombor dan garis bawah
+        whole_word: Apabila kata kunci atau frasa adalah alfanumerik sahaja, ia hanya akan digunakan jika ia sepadan dengan keseluruhan perkataan
+      domain_allow:
+        domain: Domain ini akan dapat mengambil data daripada server ini dan data masuk daripadanya akan diproses dan disimpan
+      email_domain_block:
+        domain: Ini boleh menjadi nama domain yang dipaparkan dalam alamat e-mel atau rekod MX yang digunakannya. Mereka akan diperiksa semasa mendaftar.
+        with_dns_records: Percubaan untuk menyelesaikan rekod DNS domain yang diberikan akan dibuat dan hasilnya juga akan disekat
+      featured_tag:
+        name: 'Berikut ialah beberapa hashtag yang paling anda gunakan baru-baru ini:'
+      filters:
+        action: Pilih tindakan yang hendak dilakukan apabila siaran sepadan dengan penapis
+        actions:
+          hide: Sembunyikan sepenuhnya kandungan yang ditapis, berkelakuan seolah-olah ia tidak wujud
+          warn: Sembunyikan kandungan yang ditapis di sebalik amaran yang menyebut tajuk penapis
       form_admin_settings:
+        activity_api_enabled: Kiraan siaran tempatan yang diterbitkan, pengguna aktif dan pendaftaran baharu dalam baldi mingguan
+        backups_retention_period: Simpan arkib pengguna yang dijana untuk bilangan hari yang ditentukan.
+        bootstrap_timeline_accounts: Akaun ini akan disematkan pada bahagian atas cadangan ikutan pengguna baharu.
         closed_registrations_message: Dipaparkan semasa pendaftaran ditutup
+        content_cache_retention_period: Semua pos dan rangsangan daripada server lain akan dipadamkan selepas bilangan hari yang ditentukan. Sesetengah siaran mungkin tidak boleh dipulihkan. Semua penanda halaman, kegemaran dan rangsangan yang berkaitan juga akan hilang dan mustahil untuk dibuat asal.
+        custom_css: Anda boleh menggunakan gaya tersuai pada versi web Mastodon.
+        mascot: Mengatasi ilustrasi dalam antara muka web lanjutan.
+        media_cache_retention_period: Fail media yang dimuat turun akan dipadamkan selepas bilangan hari yang ditetapkan apabila ditetapkan kepada nilai positif dan dimuat turun semula atas permintaan.
+        peers_api_enabled: Senarai nama domain yang pernah ditemui oleh server ini dalam fediverse. Tiada data disertakan di sini tentang sama ada anda bersekutu dengan server tertentu, cuma server anda mengetahuinya. Ini digunakan oleh perkhidmatan yang mengumpul statistik mengenai persekutuan dalam pengertian umum.
+        profile_directory: Direktori profil menyenaraikan semua pengguna yang telah mengikut serta untuk ditemui.
+        require_invite_text: Apabila pendaftaran memerlukan kelulusan manual, buat "Mengapa anda mahu menyertai?" input teks wajib dan bukannya pilihan
         site_contact_email: Cara orang boleh menghubungi anda untuk pertanyaan undang-undang atau sokongan.
         site_contact_username: Bagaimana orang boleh menghubungi anda pada Mastodon.
         site_extended_description: Apa-apa maklumat tambahan yang mungkin berguna untuk pelawat dan pengguna anda. Boleh distruktur dengan sintaks Markdown.
@@ -68,6 +98,8 @@ ms:
         thumbnail: Imej kira-kira 2:1 dipaparkan bersama maklumat server anda.
         timeline_preview: Pelawat yang log keluar akan dapat menyemak imbas siaran awam terkini yang tersedia pada server.
         trendable_by_default: Langkau semakan manual kandungan sohor kini. Item individu masih boleh dialih keluar daripada trend selepas fakta itu.
+        trends: Aliran menunjukkan pos, hashtag dan cerita berita yang mendapat tarikan pada server anda.
+        trends_as_landing_page: Tunjukkan kandungan trend kepada pengguna dan pelawat yang log keluar dan bukannya penerangan tentang server ini. Memerlukan trend untuk didayakan.
       form_challenge:
         current_password: Anda sedang memasuki kawasan selamat
       imports:
@@ -75,27 +107,60 @@ ms:
       invite_request:
         text: Ini akan membantu kami menyemak permohonan anda
       ip_block:
+        comment: Pilihan. Ingat sebab anda menambahkan peraturan ini.
+        expires_in: Alamat IP adalah sumber terhingga, kadangkala dikongsi dan sering bertukar tangan. Atas sebab ini, blok IP tidak ditentukan tidak disyorkan.
+        ip: Masukkan alamat IPv4 atau IPv6. Anda boleh menyekat keseluruhan julat menggunakan sintaks CIDR. Berhati-hati untuk tidak mengunci diri anda!
         severities:
           no_access: Menyekat akses kepada semua sumber
           sign_up_block: Pendaftaran baru tidak akan dibenarkan
           sign_up_requires_approval: Pendaftaran baru akan memerlukan kelulusan anda
+        severity: Pilih perkara yang akan berlaku dengan permintaan daripada IP ini
+      rule:
+        text: Terangkan peraturan atau keperluan untuk pengguna pada server ini. Cuba pastikan ia pendek dan ringkas
+      sessions:
+        otp: 'Masukkan kod dua faktor yang dijana oleh apl telefon anda atau gunakan salah satu kod pemulihan anda:'
+        webauthn: Jika ia adalah kunci USB, pastikan anda memasukkannya dan, jika perlu, ketiknya.
+      settings:
+        indexable: Halaman profil anda mungkin muncul dalam hasil carian di Google, Bing dan lain-lain.
+        show_application: Anda akan sentiasa dapat melihat apl yang menerbitkan siaran anda tanpa mengira.
+      tag:
+        name: Anda hanya boleh menukar selongsong huruf, sebagai contoh, untuk menjadikannya lebih mudah dibaca
+      user:
+        chosen_languages: Apabila disemak, hanya siaran dalam bahasa terpilih akan dipaparkan dalam garis masa awam
+        role: Peranan mengawal kebenaran yang dimiliki oleh pengguna
       user_role:
         color: Warna yang akan digunakan untuk peranan ini dalam seluruh UI, sebagai RGB dalam format hex
         highlighted: Ini menjadikan peranan ini dipaparkan secara umum
+        name: Nama awam peranan, jika peranan ditetapkan untuk dipaparkan sebagai lencana
         permissions_as_keys: Pengguna dengan peranan ini akan mempunyai akses kepada...
+        position: Peranan yang lebih tinggi menentukan penyelesaian konflik dalam situasi tertentu. Tindakan tertentu hanya boleh dilakukan pada peranan dengan keutamaan yang lebih rendah
       webhook:
+        events: Pilih acara untuk dihantar
+        template: Karang muatan JSON anda sendiri menggunakan interpolasi berubah-ubah. Biarkan kosong untuk JSON lalai.
         url: Di mana acara akan dihantar
     labels:
       account:
+        discoverable: Ciri profil dan siaran dalam algoritma penemuan
         fields:
           name: Label
           value: Kandungan
+        indexable: Sertakan pos awam dalam hasil carian
+        show_collections: Tunjukkan ikutan dan pengikut pada profil
+        unlocked: Terima pengikut baharu secara automatik
+      account_alias:
+        acct: Pemegang akaun lama
+      account_migration:
+        acct: Pengendali akaun baharu
       account_warning_preset:
+        text: Teks pratetap
         title: Tajuk
       admin_account_action:
+        include_statuses: Sertakan siaran yang dilaporkan dalam e-mel
+        send_email_notification: Beritahu pengguna setiap e-mel
         text: Amaran tersuai
         type: Tindakan
         types:
+          disable: Bekukan
           none: Hantar amaran
           sensitive: Sensitif
           silence: Hadkan
@@ -104,11 +169,13 @@ ms:
       announcement:
         all_day: Acara sepanjang hari
         ends_at: Tamat acara
+        scheduled_at: Jadual penerbitan
         starts_at: Permulaan acara
         text: Pengumuman
       appeal:
         text: Jelaskan mengapa keputusan ini patut diterbalikkan
       defaults:
+        autofollow: Jemput mengikuti akaun anda
         avatar: Gambar profil
         bot: Ini ialah akaun bot
         chosen_languages: Tapis bahasa
@@ -121,32 +188,49 @@ ms:
         email: Alamat e-mel
         expires_in: Tamat tempoh selepas
         fields: Metadata profil
+        header: Gambar Tajuk
         honeypot: "%{label} (jangan isi)"
+        inbox_url: URL peti masuk geganti
         irreversible: Sebaliknya sembunyikan, jatuhkan
         locale: Bahasa antara muka
+        max_uses: Bilangan maksimum penggunaan
         new_password: Kata laluan baru
         note: Bio
         otp_attempt: Kod dua faktor
         password: Kata laluan
         phrase: Kata kunci atau frasa
         setting_advanced_layout: Dayakan antara muka web lanjutan
+        setting_aggregate_reblogs: Rangsangan kumpulan dalam garis masa
+        setting_always_send_emails: Sentiasa hantar pemberitahuan e-mel
+        setting_auto_play_gif: Automain GIF animasi
+        setting_boost_modal: Tunjukkan dialog pengesahan sebelum meningkatkan
         setting_default_language: Bahasa hantaran
         setting_default_privacy: Privasi hantaran
         setting_default_sensitive: Selalu tandakan media sebagai sensitif
+        setting_delete_modal: Tunjukkan dialog pengesahan sebelum memadamkan pos
+        setting_disable_swiping: Lumpuhkan gerakan meleret
         setting_display_media: Paparan media
         setting_display_media_default: Lalai
         setting_display_media_hide_all: Sembunyikan semua
         setting_display_media_show_all: Paparkan semua
+        setting_expand_spoilers: Sentiasa kembangkan pos yang ditandakan dengan amaran kandungan
         setting_hide_network: Sembunyikan graf sosial anda
+        setting_reduce_motion: Kurangkan gerakan dalam animasi
         setting_system_font_ui: Gunakan fon lalai sistem
         setting_theme: Tema halaman
         setting_trends: Paparkan trend hari ini
+        setting_unfollow_modal: Tunjukkan dialog pengesahan sebelum berhenti mengikuti seseorang
+        setting_use_blurhash: Tunjukkan kecerunan berwarna-warni untuk media tersembunyi
+        setting_use_pending_items: Mod perlahan
+        severity: Keterukan
         sign_in_token_attempt: Kod keselamatan
         title: Tajuk
         type: Jenis import
         username: Nama pengguna
         username_or_email: Nama Pengguna atau E-mel
         whole_word: Seluruh perkataan
+      email_domain_block:
+        with_dns_records: Sertakan rekod MX dan IP domain
       featured_tag:
         name: Tanda pagar
       filters:
@@ -154,7 +238,15 @@ ms:
           hide: Sembunyikan sepenuhnya
           warn: Sembunyikan dengan amaran
       form_admin_settings:
+        activity_api_enabled: Terbitkan statistik agregat tentang aktiviti pengguna dalam API
+        backups_retention_period: Tempoh pengekalan arkib pengguna
+        bootstrap_timeline_accounts: Sentiasa mengesyorkan akaun ini kepada pengguna baharu
+        closed_registrations_message: Mesej tersuai apabila pendaftaran tidak tersedia
+        content_cache_retention_period: Tempoh pengekalan cache kandungan
         custom_css: CSS tersuai
+        mascot: Maskot tersuai (warisan)
+        media_cache_retention_period: Tempoh pengekalan cache media
+        peers_api_enabled: Terbitkan senarai pelayan yang ditemui dalam API
         profile_directory: Dayakan direktori profil
         registrations_mode: Siapa boleh mendaftar
         require_invite_text: Memerlukan sebab penyertaan
@@ -168,7 +260,15 @@ ms:
         site_title: Nama pelayan
         status_page_url: URL halaman status
         theme: Tema asal
+        thumbnail: Server thumbnail
+        timeline_preview: Benarkan akses tidak disahkan kepada garis masa awam
+        trendable_by_default: Benarkan aliran tanpa semakan terlebih dahulu
         trends: Dayakan trend
+        trends_as_landing_page: Gunakan trend sebagai halaman pendaratan
+      interactions:
+        must_be_follower: Sekat pemberitahuan daripada bukan pengikut
+        must_be_following: Sekat pemberitahuan daripada orang yang anda tidak ikuti
+        must_be_following_dm: Sekat mesej langsung daripada orang yang anda tidak ikuti
       invite:
         comment: Komen
       invite_request:
@@ -182,6 +282,8 @@ ms:
           sign_up_requires_approval: Hadkan pendaftaran
         severity: Peraturan
       notification_emails:
+        appeal: Seseorang merayu keputusan moderator
+        digest: Hantar e-mel ringkasan
         favourite: Seorang menggemarkan hantaran anda
         follow: Seorang mengikuti anda
         follow_request: Seorang meminta untuk mengikuti anda
@@ -192,21 +294,34 @@ ms:
         trending_tag: Trend baru memerlukan semakan
       rule:
         text: Peraturan
+      settings:
+        indexable: Sertakan halaman profil dalam enjin carian
+        show_application: Paparkan daripada apl yang anda hantar siaran
       tag:
+        listable: Benarkan hashtag ini muncul dalam carian dan cadangan
         name: Tanda pagar
+        trendable: Benarkan hashtag ini muncul di bawah aliran
         usable: Benarkan siaran untuk menggunakan tanda pagar ini
       user:
         role: Peranan
         time_zone: Zon masa
       user_role:
         color: Warna lencana
+        highlighted: Paparkan peranan sebagai lencana pada profil pengguna
         name: Nama
         permissions_as_keys: Kebenaran
         position: Keutamaan
+      webhook:
+        events: Acara yang didayakan
+        template: Templat muatan
+        url: URL titik akhir
     'no': Tidak
     not_recommended: Tidak disyorkan
     recommended: Disyorkan
     required:
       mark: "*"
       text: diperlukan
+    title:
+      sessions:
+        webauthn: Gunakan salah satu kunci keselamatan anda untuk log masuk
     'yes': Ya

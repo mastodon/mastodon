@@ -55,7 +55,14 @@ class AccountStatusesFilter
   end
 
   def filtered_reblogs_scope
-    Status.left_outer_joins(:reblog).where(reblog_of_id: nil).or(Status.where.not(reblogs_statuses: { account_id: current_account.excluded_from_timeline_account_ids }))
+    scope = Status.left_outer_joins(reblog: :account)
+    scope
+      .where(reblog_of_id: nil)
+      .or(
+        scope
+          .where.not(reblog: { account_id: current_account.excluded_from_timeline_account_ids })
+          .where.not(reblog: { accounts: { domain: current_account.excluded_from_timeline_domains } })
+      )
   end
 
   def only_media_scope

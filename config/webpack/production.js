@@ -4,7 +4,7 @@ const { createHash } = require('crypto');
 const { readFileSync } = require('fs');
 const { resolve } = require('path');
 
-const CompressionPlugin = require('compression-webpack-plugin');
+const CompressionPlugin = require('@renchap/compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { merge } = require('webpack-merge');

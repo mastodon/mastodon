@@ -3,9 +3,13 @@ cy:
   simple_form:
     hints:
       account:
+        discoverable: Mae'n bosibl y bydd eich postiadau cyhoeddus a'ch proffil yn cael sylw neu'n cael eu hargymell mewn gwahanol feysydd o Mastodon ac efallai y bydd eich proffil yn cael ei awgrymu i ddefnyddwyr eraill.
         display_name: Eich enw llawn neu'ch enw hwyl.
         fields: Eich tudalen cartref, rhagenwau, oed, neu unrhyw beth.
+        indexable: Mae'n bosib y bydd eich postiadau cyhoeddus yn ymddangos yng nghanlyniadau chwilio ar Mastodon. Mae'n bosibl y bydd pobl sydd wedi rhyngweithio â'ch postiadau yn dal i allu eu chwilio.
         note: 'Gallwch @grybwyll pobl eraill neu #hashnodau.'
+        show_collections: Bydd pobl yn gallu pori trwy'r rhai rydych yn eu dilyn a'ch dilynwyr. Bydd y bobl rydych chi'n eu dilyn yn gweld eich bod chi'n eu dilyn beth bynnag.
+        unlocked: Bydd pobl yn gallu eich dilyn heb ofyn am ganiatâd. Dad-diciwch os ydych am adolygu ceisiadau dilyn a dewis a ydych am dderbyn neu wrthod dilynwyr newydd.
       account_alias:
         acct: Rhowch enwdefnyddiwr@parth y cyfrif y hoffech chi symud ohono
       account_migration:
@@ -116,6 +120,9 @@ cy:
       sessions:
         otp: 'Mewnbynnwch y cod dau gam a gynhyrchwyd gan eich ap ffôn neu defnyddiwch un o''ch codau adfer:'
         webauthn: Os mai allwedd USB ydyw, gwnewch yn siŵr ei fewnosod ac, os oes angen, tapiwch ef.
+      settings:
+        indexable: Mae'n bosib y bydd eich tudalen broffil yn ymddangos mewn canlyniadau chwilio ar Google, Bing ac eraill.
+        show_application: Byddwch bob amser yn gallu gweld pa ap a gyhoeddodd eich postiad beth bynnag.
       tag:
         name: Dim ond er mwyn ei gwneud yn fwy darllenadwy y gallwch chi newid y llythrennau, er enghraifft
       user:
@@ -133,9 +140,13 @@ cy:
         url: I ble bydd digwyddiadau'n cael eu hanfon
     labels:
       account:
+        discoverable: Proffil nodwedd a phostiadau mewn algorithmau darganfod
         fields:
           name: Label
           value: Cynnwys
+        indexable: Cynnwys postiadau cyhoeddus mewn canlyniadau chwilio
+        show_collections: Dangos y rhaid rydych yn eu dilyn a'ch dilynwyr ar eich proffil
+        unlocked: Derbyn dilynwyr newydd yn awtomatig
       account_alias:
         acct: Enw'r hen gyfrif
       account_migration:
@@ -273,16 +284,19 @@ cy:
       notification_emails:
         appeal: Mae rhywun yn apelio yn erbyn penderfyniad y cymedrolwr
         digest: Anfonwch e-byst crynhoi
-        favourite: Mae rhywun wedi ffafrio eich post
+        favourite: Mae rhywun wedi ffafrio eich postiad
         follow: Mae rhywun yn eich dilyn chi
         follow_request: Mae rhywun yn ceisio eich dilyn chi
         mention: Mae rhywun yn sôn amdanoch chi
         pending_account: Mae cyfrif newydd angen adolygiad
-        reblog: Mae rhywun wedi hybu eich post
+        reblog: Mae rhywun wedi hybu eich postiad
         report: Cyflwynwyd adroddiad newydd
         trending_tag: Mae pwnc llosg newydd angen adolygiad
       rule:
         text: Rheol
+      settings:
+        indexable: Cynnwys tudalen proffil mewn peiriannau chwilio
+        show_application: Dangoswch o ba ap yr anfonoch chi bostiad
       tag:
         listable: Caniatáu i'r hashnod hwn ymddangos mewn chwiliadau ac awgrymiadau
         name: Hashnod
@@ -299,7 +313,7 @@ cy:
         position: Blaenoriaeth
       webhook:
         events: Digwyddiadau wedi'u galluogi
-        template: Templed llwyth tâl
+        template: Templed prif lwyth
         url: URL diweddbwynt
     'no': Na
     not_recommended: Heb ei argymell

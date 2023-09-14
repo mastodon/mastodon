@@ -121,7 +121,7 @@ class SearchQueryTransformer < Parslet::Transform
 
     def to_query
       if @term.start_with?('#')
-        { match: { tags: { query: @term } } }
+        { match: { tags: { query: @term, operator: 'and' } } }
       else
         { multi_match: { type: 'most_fields', query: @term, fields: ['text', 'text.stemmed'], operator: 'and' } }
       end
@@ -225,17 +225,16 @@ class SearchQueryTransformer < Parslet::Transform
   rule(clause: subtree(:clause)) do
     prefix   = clause[:prefix][:term].to_s if clause[:prefix]
     operator = clause[:operator]&.to_s
+    term     = clause[:phrase] ? clause[:phrase].map { |term| term[:term].to_s }.join(' ') : clause[:term].to_s
 
     if clause[:prefix] && SUPPORTED_PREFIXES.include?(prefix)
-      PrefixClause.new(prefix, operator, clause[:term].to_s, current_account: current_account)
+      PrefixClause.new(prefix, operator, term, current_account: current_account)
     elsif clause[:prefix]
-      TermClause.new(operator, "#{prefix} #{clause[:term]}")
+      TermClause.new(operator, "#{prefix} #{term}")
     elsif clause[:term]
-      TermClause.new(operator, clause[:term].to_s)
-    elsif clause[:shortcode]
-      TermClause.new(operator, ":#{clause[:term]}:")
+      TermClause.new(operator, term)
     elsif clause[:phrase]
-      PhraseClause.new(operator, clause[:phrase].is_a?(Array) ? clause[:phrase].map { |p| p[:term].to_s }.join(' ') : clause[:phrase].to_s)
+      PhraseClause.new(operator, term)
     else
       raise "Unexpected clause type: #{clause}"
     end

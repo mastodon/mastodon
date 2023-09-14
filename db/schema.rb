@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_04_134623) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_07_150100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,6 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_134623) do
     t.datetime "updated_at", precision: nil, null: false
     t.datetime "last_status_at", precision: nil
     t.index ["account_id"], name: "index_account_stats_on_account_id", unique: true
+    t.index ["last_status_at", "account_id"], name: "index_account_stats_on_last_status_at_and_account_id", order: { last_status_at: "DESC NULLS LAST" }
   end
 
   create_table "account_statuses_cleanup_policies", force: :cascade do |t|

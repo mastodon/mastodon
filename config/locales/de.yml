@@ -33,7 +33,7 @@ de:
     accounts:
       add_email_domain_block: E-Mail-Domain sperren
       approve: Genehmigen
-      approved_msg: Anmeldeantrag von %{username} erfolgreich genehmigt
+      approved_msg: Antrag zur Registrierung von %{username} erfolgreich genehmigt
       are_you_sure: Bist du dir sicher?
       avatar: Profilbild
       by_domain: Domain
@@ -172,7 +172,7 @@ de:
       action_types:
         approve_appeal: Einspruch zulassen
         approve_user: Benutzer*in genehmigen
-        assigned_to_self_report: Bericht zuweisen
+        assigned_to_self_report: Meldung zuweisen
         change_email_user: E-Mail-Adresse des Kontos ändern
         change_role_user: Rolle des Profils ändern
         confirm_user: Benutzer*in bestätigen
@@ -309,6 +309,7 @@ de:
       unpublish: Veröffentlichung rückgängig machen
       unpublished_msg: Ankündigung erfolgreich unveröffentlicht!
       updated_msg: Ankündigung erfolgreich aktualisiert!
+    critical_update_pending: Kritisches Update ausstehend
     custom_emojis:
       assign_category: Kategorie zuweisen
       by_domain: Domain
@@ -386,7 +387,7 @@ de:
         cancel: Abbrechen
         confirm: Sperren
         permanent_action: Das Aufheben der Sperre wird keine Daten oder Beziehungen wiederherstellen.
-        preamble_html: Du bist dabei, <strong>%{domain}</strong> und seine Subdomains zu sperren.
+        preamble_html: Du bist dabei, <strong>%{domain}</strong> und alle Subdomains zu sperren.
         remove_all_data: Alle Inhalte, Medien und Profildaten werden für die Konten dieser Domain von deinem Server entfernt.
         stop_communication: Dein Server wird nicht länger mit diesen Servern kommunizieren.
         title: Sperre für Domain %{domain} bestätigen
@@ -409,7 +410,7 @@ de:
           suspend: Sperren
         title: Neue Domain einschränken
       no_domain_block_selected: Keine Domains gesperrt, weil keine ausgewählt wurde(n)
-      not_permitted: Dir ist es nicht erlaubt, diese Handlung durchzuführen
+      not_permitted: Du bist nicht berechtigt, diese Aktion durchzuführen
       obfuscate: Domain-Name verschleiern
       obfuscate_hint: Den Domain-Namen öffentlich nur teilweise bekannt geben, sofern die Liste der Domain-Beschränkungen aktiviert ist
       private_comment: Interne bzw. nicht-öffentliche Notiz
@@ -458,7 +459,7 @@ de:
         title: Domains importieren
       no_file: Keine Datei ausgewählt
     follow_recommendations:
-      description_html: "<strong>Folgeempfehlungen helfen neuen Nutzer*innen, interessante Inhalte schnell zu finden</strong>. Wenn ein*e Nutzer*in noch nicht genug mit anderen interagiert hat, um personalisierte Folgeempfehlungen zu erhalten, werden stattdessen diese Profile verwendet. Sie werden täglich, basierend auf einer Mischung aus am meisten interagierenden Konten und jenen mit den meisten Followern für eine bestimmte Sprache, neu berechnet."
+      description_html: "<strong>Follower-Empfehlungen helfen neuen Nutzer*innen, interessante Inhalte schnell zu finden</strong>. Wenn ein*e Nutzer*in noch nicht genug mit anderen interagiert hat, um personalisierte Follower-Empfehlungen zu erhalten, werden stattdessen diese Profile vorgeschlagen. Sie werden täglich, basierend auf einer Mischung aus am meisten interagierenden Konten und jenen mit den meisten Followern für eine bestimmte Sprache neu berechnet."
       language: Für Sprache
       status: Status
       suppress: Folgeempfehlung unterbinden
@@ -525,7 +526,7 @@ de:
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
       purge: Säubern
-      purge_description_html: Wenn du glaubst, dass diese Domain endgültig offline ist, kannst du alle Kontodatensätze und zugehörigen Daten von diesem Server löschen. Das kann eine Weile dauern.
+      purge_description_html: Wenn du glaubst, dass diese Domain endgültig offline ist, dann kannst du alle Kontodatensätze und zugehörigen Daten von diesem Server löschen. Das kann eine Weile dauern.
       title: Föderation
       total_blocked_by_us: Von uns gesperrt
       total_followed_by_them: Gefolgt von denen
@@ -559,21 +560,21 @@ de:
     relationships:
       title: Beziehungen von %{acct}
     relays:
-      add_new: Neues Relais hinzufügen
+      add_new: Neues Relay hinzufügen
       delete: Entfernen
-      description_html: Ein <strong>Föderierungsrelais</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern, die das Relais abonnieren und zu ihm veröffentlichen, austauscht.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf externen Servern durch lokale Nutzer*innen erfordern würde.
+      description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern, die das Relay abonnieren und zu ihm veröffentlichen, austauscht.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf externen Servern durch lokale Nutzer*innen erfordern würde.
       disable: Ausschalten
       disabled: Ausgeschaltet
       enable: Einschalten
-      enable_hint: Sobald aktiviert, wird dein Server alle öffentlichen Beiträge dieses Relais abonnieren und alle öffentlichen Beiträge dieses Servers an dieses senden.
+      enable_hint: Sobald aktiviert, wird dein Server alle öffentlichen Beiträge dieses Relays abonnieren und alle öffentlichen Beiträge dieses Servers an dieses senden.
       enabled: Eingeschaltet
       inbox_url: Relay-URL
       pending: Warte auf Zustimmung des Relays
       save_and_enable: Speichern und aktivieren
-      setup: Neues Relais verbinden
-      signatures_not_enabled: Die Relais funktionieren nicht korrekt, wenn der abgesicherte Modus aktiviert oder die Föderation eingeschränkt ist
+      setup: Neues Relay verbinden
+      signatures_not_enabled: Die Relays funktionieren nicht korrekt, wenn der abgesicherte Modus aktiviert oder die Föderation eingeschränkt ist
       status: Status
-      title: Relais
+      title: Relays
     report_notes:
       created_msg: Notiz zur Meldung erfolgreich erstellt!
       destroyed_msg: Notiz zur Meldung erfolgreich entfernt!
@@ -745,12 +746,12 @@ de:
         title: Neue Nutzer*innen müssen ein CAPTCHA lösen, um das Konto zu bestätigen
       content_retention:
         preamble: Lege fest, wie lange Inhalte von Nutzer*innen auf deinem Mastodon-Server gespeichert bleiben.
-        title: Cache & Archive
+        title: Aufbewahrung von Inhalten
       default_noindex:
         desc_html: Betrifft alle Profile, die diese Einstellung bei sich nicht geändert haben
         title: Profile standardmäßig von der Suchmaschinen-Indizierung ausnehmen
       discovery:
-        follow_recommendations: Folgeempfehlungen
+        follow_recommendations: Follower-Empfehlungen
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
         profile_directory: Profilverzeichnis
         public_timelines: Öffentliche Timeline
@@ -770,10 +771,27 @@ de:
           approved: Registrierung muss genehmigt werden
           none: Niemand darf sich registrieren
           open: Alle können sich registrieren
+      security:
+        authorized_fetch: Authentisierung von föderierten Servern erforderlich machen
+        authorized_fetch_hint: Das Anfordern einer Authentisierung von föderierten Servern ermöglicht ein strengeres Durchsetzen von Sperren sowohl auf Ebene der Benutzer*innen als auch des Servers. Allerdings ist das mit Leistungseinbußen verbunden, reduziert die Reichweite deiner Antworten und kann zu Kompatibilitätsproblemen mit einigen föderierten Diensten führen. Darüber hinaus wird das Abrufen deiner öffentlichen Beiträge und Konten durch spezialisierte Akteur*innen nicht verhindert.
+        authorized_fetch_overridden_hint: Diese Einstellung wird derzeit von einer Umgebungsvariable überschrieben und kann daher nicht geändert werden.
+        federation_authentication: Authentisierung von föderierten Servern durchsetzen
       title: Servereinstellungen
     site_uploads:
       delete: Hochgeladene Datei löschen
       destroyed_msg: Upload erfolgreich gelöscht!
+    software_updates:
+      critical_update: Kritisch — bitte zügig aktualisieren
+      description: Es wird empfohlen, deine Mastodon-Installation auf dem aktuellen Stand zu halten, um von den neuesten Fehlerbehebungen und Funktionen zu profitieren. Darüber hinaus ist es wichtig, Mastodon zeitnah zu aktualisieren, um Sicherheitslücken zu schließen. Aus diesen Gründen prüft Mastodon alle 30 Minuten auf Updates und du wirst entsprechend deiner Einstellungen per E-Mail informiert.
+      documentation_link: Mehr erfahren
+      release_notes: Versionshinweise
+      title: Verfügbare Updates
+      type: Art
+      types:
+        major: Hauptversion
+        minor: Nebenversion
+        patch: Revision — Fehlerbehebungen und einfach zu implementierende Änderungen
+      version: Version
     statuses:
       account: Autor*in
       application: Anwendung
@@ -814,6 +832,20 @@ de:
     system_checks:
       database_schema_check:
         message_html: Es gibt ausstehende Datenbankmigrationen. Bitte führe sie aus, um sicherzustellen, dass sich die Anwendung wie erwartet verhält
+      elasticsearch_health_red:
+        message_html: Elasticsearch-Cluster ist fehlerhaft (roter Status) – Suchfunktionen sind nicht verfügbar
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch-Cluster ist fehlerhaft (gelber Status) – du solltest den Grund dafür untersuchen
+      elasticsearch_index_mismatch:
+        message_html: 'Elasticsearch-Index-Mappings sind veraltet. Bitte führe Folgendes aus: <code>tootctl search deploy --only=%{value}</code>'
+      elasticsearch_preset:
+        action: Dokumentation ansehen
+        message_html: Elasticsearch-Cluster besitzt mehr als einen Knoten, aber Mastodon ist nicht für die Verwendung dieser Knoten konfiguriert.
+      elasticsearch_preset_single_node:
+        action: Dokumentation ansehen
+        message_html: Elasticsearch-Cluster besitzt nur einen Knoten. <code>ES_PRESET</code> sollte auf <code>single_node_cluster</code> gesetzt werden.
+      elasticsearch_reset_chewy:
+        message_html: 'Elasticsearch-Systemindex ist aufgrund einer Einstellungsänderung veraltet. Bitte führe Folgendes zum Aktualisieren aus: <code>tootctl search deploy --reset-chewy</code>'
       elasticsearch_running_check:
         message_html: Verbindung mit Elasticsearch konnte nicht hergestellt werden. Bitte prüfe, ob Elasticsearch läuft, oder deaktiviere die Volltextsuche
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ de:
         message_html: Du hast keine Serverregeln festgelegt.
       sidekiq_process_check:
         message_html: Kein Sidekiq-Prozess läuft für die %{value} Warteschlange(n). Bitte überprüfe deine Sidekiq-Konfiguration
+      software_version_critical_check:
+        action: Verfügbare Updates ansehen
+        message_html: Ein kritisches Mastodon-Update ist verfügbar – bitte aktualisiere so schnell wie möglich.
+      software_version_patch_check:
+        action: Verfügbare Updates ansehen
+        message_html: Ein Mastodon-Update für Fehlerbehebungen ist verfügbar.
       upload_check_privacy_error:
         action: Für weitere Informationen hier klicken
         message_html: "<strong>Die Konfiguration deines Servers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
@@ -937,6 +975,9 @@ de:
       body: "%{target} erhebt Einspruch gegen eine Moderationsentscheidung von %{action_taken_by} vom %{date} (%{type}). Folgendes wurde geschrieben:"
       next_steps: Du kannst dem Einspruch zustimmen, um die Moderationsentscheidung rückgängig zu machen, oder ihn ignorieren.
       subject: "%{username} hat Einspruch gegen eine Moderationsentscheidung auf %{instance} erhoben"
+    new_critical_software_updates:
+      body: Kritische Updates wurden für Mastodon veröffentlicht – du solltest so schnell wie möglich aktualisieren!
+      subject: Kritische Mastodon-Updates sind für %{instance} verfügbar!
     new_pending_account:
       body: Die Details von diesem neuem Konto sind unten. Du kannst die Anfrage akzeptieren oder ablehnen.
       subject: Neues Konto zur Überprüfung auf %{instance} verfügbar (%{username})
@@ -944,6 +985,9 @@ de:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: Neue Meldung auf %{instance} (Nr. %{id})
+    new_software_updates:
+      body: Neue Mastodon-Versionen wurden veröffentlicht – du solltest aktualisieren!
+      subject: Neue Mastodon-Versionen sind für %{instance} verfügbar!
     new_trends:
       body: 'Die folgenden Einträge müssen überprüft werden, bevor sie öffentlich angezeigt werden können:'
       new_trending_links:
@@ -964,7 +1008,7 @@ de:
     remove: Alle Aliasse aufheben
   appearance:
     advanced_web_interface: Erweitertes Webinterface
-    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit dem erweiterten Webinterface weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Mitteilungen, die föderierte Timeline sowie beliebig viele deiner Listen und Hashtags.
+    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit dem erweiterten Webinterface weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Benachrichtigungen, die föderierte Timeline sowie beliebig viele deiner Listen und Hashtags.
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsdialoge
     discovery: Entdecken
@@ -985,10 +1029,10 @@ de:
     created: Anwendung erfolgreich erstellt
     destroyed: Anwendung erfolgreich gelöscht
     logout: Abmelden
-    regenerate_token: Zugangs-Token neu erstellen
+    regenerate_token: Zugriffstoken neu erstellen
     token_regenerated: Zugriffstoken erfolgreich neu erstellt
     warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
-    your_token: Dein Zugangs-Token
+    your_token: Dein Zugriffstoken
   auth:
     apply_for_account: Konto beantragen
     captcha_confirmation:
@@ -1018,21 +1062,21 @@ de:
     privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und stimme ihr zu
     progress:
       confirm: E-Mail-Adresse bestätigen
-      details: Deine Details
+      details: Deine Daten
       review: Unsere Überprüfung
       rules: Regeln akzeptieren
     providers:
       cas: CAS
       saml: SAML
     register: Registrieren
-    registration_closed: "%{instance} akzeptiert keine neuen Mitglieder"
+    registration_closed: "%{instance} akzeptiert keine neuen Mitglieder*innen"
     resend_confirmation: Bestätigungslink erneut zusenden
     reset_password: Passwort zurücksetzen
     rules:
       accept: Akzeptieren
       back: Zurück
       invited_by: 'Du kannst %{domain} beitreten – dank der Einladung von:'
-      preamble: Diese werden von den %{domain}-Moderator*innen festgelegt und erzwungen.
+      preamble: Diese werden von den Moderator*innen von %{domain} festgelegt und durchgesetzt.
       preamble_invited: Bevor du fortfährst, beachte bitte die Grundregeln der Moderator*innen von %{domain}.
       title: Einige Grundregeln.
       title_invited: Du wurdest eingeladen.
@@ -1040,7 +1084,7 @@ de:
     set_new_password: Neues Passwort einrichten
     setup:
       email_below_hint_html: Überprüfe deinen Spam-Ordner oder lass dir den Bestätigungslink erneut zusenden. Falls die angegebene E-Mail-Adresse falsch ist, kannst du sie auch korrigieren.
-      email_settings_hint_html: Klicke den Bestätigungslink in der E-Mail an, damit wir deine Adresse %{email} verifizieren können. Wir warten hier auf dich.
+      email_settings_hint_html: Klicke auf den Bestätigungslink, den wir an %{email} gesendet haben, um die Adresse zu verifizieren. Wir warten hier solange auf dich.
       link_not_received: Keinen Bestätigungslink erhalten?
       new_confirmation_instructions_sent: In wenigen Minuten wirst du eine neue E-Mail mit dem Bestätigungslink erhalten!
       title: Überprüfe dein E-Mail-Postfach
@@ -1115,7 +1159,7 @@ de:
       appeals:
         submit: Einspruch erheben
       approve_appeal: Einspruch annehmen
-      associated_report: Zugehöriger Bericht
+      associated_report: Zugehörige Meldung
       created_at: Datum
       description_html: Dies sind Maßnahmen, die gegen dein Konto ergriffen worden sind, und Warnungen, die dir die Mitarbeiter*innen von %{instance} gesendet haben.
       recipient: Adressiert an
@@ -1182,7 +1226,7 @@ de:
     contexts:
       account: Profile
       home: Startseite und Listen
-      notifications: Mitteilungen
+      notifications: Benachrichtigungen
       public: Öffentliche Timelines
       thread: Unterhaltungen
     edit:
@@ -1432,9 +1476,10 @@ de:
     update:
       subject: "%{name} bearbeitete einen Beitrag"
   notifications:
+    administration_emails: Admin-E-Mail-Benachrichtigungen
     email_events: Benachrichtigungen per E-Mail
     email_events_hint: 'Bitte die Ereignisse auswählen, für die du Benachrichtigungen per E-Mail erhalten möchtest:'
-    other_settings: Erweitere Einstellungen
+    other_settings: Weitere Benachrichtigungseinstellungen
   number:
     human:
       decimal_units:
@@ -1475,6 +1520,15 @@ de:
     other: Erweitert
     posting_defaults: Standardeinstellungen für Beiträge
     public_timelines: Öffentliche Timelines
+  privacy:
+    hint_html: "<strong>Bestimme, wie dein Profil und deine Beiträge gefunden werden sollen.</strong> Eine Vielzahl von Funktionen in Mastodon können dir helfen, eine größere Reichweite zu erlangen, wenn sie aktiviert sind. Nimm dir einen Moment Zeit, um diese Einstellungen zu überprüfen und sicherzustellen, dass sie für deinen Anwendungsfall geeignet sind."
+    privacy: Datenschutz
+    privacy_hint_html: Bestimme, wie viele Informationen du für andere preisgeben möchtest. Viele Menschen entdecken interessante Profile und coole Apps, indem sie die Follower anderer Profile durchstöbern und die Apps sehen, über die Beiträge veröffentlicht wurden – möglicherweise möchtest du diese Informationen ausblenden.
+    reach: Reichweite
+    reach_hint_html: Bestimme, ob Profile dich entdecken und dir folgen dürfen. Möchtest du, dass deine Beiträge unter „Entdecken“ erscheinen? Möchtest du, dass andere dich in ihren Follower-Empfehlungen sehen? Möchtest du alle neuen Follower automatisch akzeptieren oder jeden einzelnen genehmigen?
+    search: Suche
+    search_hint_html: Bestimme, wie du entdeckt werden möchtest. Möchtest du, dass die Leute dich anhand deiner öffentlichen Beiträge finden können? Möchtest du, dass Menschen außerhalb von Mastodon dein Profil finden, wenn sie im Internet suchen? Bitte beachte, dass ein vollständiger Ausschluss aus allen Suchmaschinen für öffentlich zugängliche Informationen nicht garantiert werden kann.
+    title: Datenschutz und Reichweite
   privacy_policy:
     title: Datenschutzerklärung
   reactions:
@@ -1483,7 +1537,7 @@ de:
       unrecognized_emoji: ist ein unbekanntes Emoji
   relationships:
     activity: Kontoaktivität
-    confirm_follow_selected_followers: Bist du dir sicher, dass du den ausgewählten Followern folgen möchtest?
+    confirm_follow_selected_followers: Möchtest du den ausgewählten Followern folgen?
     confirm_remove_selected_followers: Möchtest du die ausgewählten Follower wirklich entfernen?
     confirm_remove_selected_follows: Möchtest du den ausgewählten Konten wirklich entfolgen?
     dormant: Inaktiv
@@ -1578,7 +1632,7 @@ de:
     migrate: Kontoumzug
     notifications: Benachrichtigungen
     preferences: Einstellungen
-    profile: Profil
+    profile: Öffentliches Profil
     relationships: Follower und Folge ich
     statuses_cleanup: Automatische Löschung
     strikes: Maßnahmen
@@ -1681,9 +1735,14 @@ de:
     mastodon-light: Mastodon (Hell)
   time:
     formats:
-      default: "%d.%m.%Y um %H:%M Uhr"
+      default: "%d. %b %Y, %H:%M Uhr"
       month: "%b %Y"
       time: "%H:%M Uhr"
+      with_time_zone: "%d. %b %Y, %H:%M Uhr %Z"
+  translation:
+    errors:
+      quota_exceeded: Das Kontingent, das dem Server zur Verfügung steht, wurde für den Übersetzungsdienst überschritten.
+      too_many_requests: Der Übersetzungsdienst hat kürzlich zu viele Anfragen erhalten.
   two_factor_authentication:
     add: Hinzufügen
     disable: Zwei-Faktor-Authentisierung (2FA) deaktivieren
@@ -1758,7 +1817,7 @@ de:
       final_action: Mit erstem Beitrag starten
       final_step: 'Fang jetzt an zu posten! Selbst ohne Follower werden deine öffentlichen Beiträge von anderen gesehen, zum Beispiel in der lokalen Timeline oder über die Hashtags. Möglicherweise möchtest du dich allen mit dem Hashtag #neuhier vorstellen.'
       full_handle: Dein vollständiger Profilname
-      full_handle_hint: Dies würdest du deinen Freund*innen mitteilen, damit sie dich anschreiben oder dir von einem anderen Server folgen können.
+      full_handle_hint: Deinen vollständigen Profilnamen kannst du deinen Freund*innen mitteilen, damit sie dich anschreiben oder dir von einem anderen Server folgen können.
       subject: Willkommen bei Mastodon!
       title: Willkommen an Bord, %{name}!
   users:
@@ -1772,7 +1831,7 @@ de:
     extra_instructions_html: <strong>Hinweis:</strong> Der Link auf deiner Website kann unsichtbar sein. Der wichtige Teil ist <code>rel="me"</code>, wodurch das Nachahmen von Personen auf Websites mit nutzergenerierten Inhalten verhindert wird. Du kannst auch ein <code>link</code>-Tag statt <code>a</code> im Header auf der Seite verwenden, jedoch muss der HTML-Code ohne das Ausführen von JavaScript zugänglich sein.
     here_is_how: So funktioniert's
     hint_html: "<strong>Alle können ihre Identität auf Mastodon verifizieren.</strong> Basierend auf offenen Standards – jetzt und für immer kostenlos. Alles, was du brauchst, ist eine eigene Website. Wenn du von deinem Profil auf diese Website verlinkst, überprüfen wir, ob die Website zu deinem Profil zurückverlinkt, und zeigen einen visuellen Hinweis an."
-    instructions_html: Kopiere den unten stehenden Code und füge ihn in das HTML deiner Website ein. Trage anschließend diese Website-Adresse in eines der Felder für die Metadaten deines Profils ein – und speichere die Änderungen.
+    instructions_html: Kopiere den unten stehenden Code und füge ihn in das HTML deiner Website ein. Trage anschließend die Adresse deiner Website in ein Zusatzfeld auf deinem Profil ein und speichere die Änderungen. Die Zusatzfelder befinden sich im Reiter „Profil bearbeiten“.
     verification: Verifizierung
     verified_links: Deine verifizierten Links
   webauthn_credentials:

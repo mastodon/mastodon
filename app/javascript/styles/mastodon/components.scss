@@ -836,7 +836,7 @@ body > [data-popper-placement] {
   }
 
   p {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     white-space: pre-wrap;
     unicode-bidi: plaintext;
 
@@ -5061,6 +5061,11 @@ a.status-card {
           font-weight: 700;
           color: $primary-text-color;
         }
+
+        span {
+          overflow: inherit;
+          text-overflow: inherit;
+        }
       }
     }
   }
@@ -8877,7 +8882,6 @@ noscript {
   border-radius: 8px;
   border: 1px solid $highlight-text-color;
   background: rgba($highlight-text-color, 0.15);
-  padding-inline-end: 45px;
   overflow: hidden;
 
   &__background-image {
@@ -8940,7 +8944,7 @@ noscript {
     position: absolute;
     inset-inline-end: 0;
     top: 0;
-    padding: 10px;
+    padding: 15px 10px;
 
     .icon-button {
       color: $highlight-text-color;
