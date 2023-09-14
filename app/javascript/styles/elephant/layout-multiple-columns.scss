@@ -1,5 +1,5 @@
 /* Mastodon Bird UI by @rolle@mementomori.social
-   1.7.2-nightly */
+   1.7.4-nightly */
 
 /* CSS variables */
 :root {
@@ -1971,8 +1971,14 @@ body.embed .detailed-status__meta .detailed-status__link .fa-retweet,
   border-bottom-right-radius: 9999px;
   border-top-left-radius: 9999px;
   border-top-right-radius: 9999px;
+  bottom: -1px;
+  content: "";
+  display: block;
   height: 4px;
+  left: 50%;
   min-width: 56px;
+  position: absolute;
+  transform: translateX(-50%);
 }
 
 .layout-multiple-columns .account__section-headline a.active::before,
@@ -3383,6 +3389,19 @@ body.embed .button.logo-button:hover,
 
   .layout-multiple-columns .navigation-panel .column-link:nth-child(12) {
     order: 12;
+  }
+}
+
+/* Add bottom padding to the navigation panel for the
+   Safari PWA on iPhones with the portrait mode home bar */
+@media screen and (device-width: 375px) and (device-height: 812px) and (min-resolution: 2dppx) and (orientation: portrait) and (display-mode: standalone), /* iPhone 12, iPhone 12 Pro, iPhone 13, iPhone 13 Pro, and iPhone 14 */ screen and (device-width: 390px) and (device-height: 844px) and (min-resolution: 3dppx) and (orientation: portrait) and (display-mode: standalone), /* iPhone 14 Pro */ screen and (device-width: 393px) and (device-height: 852px) and (min-resolution: 3dppx) and (orientation: portrait) and (display-mode: standalone), /* iPhone XR and iPhone 11 */ screen and (device-width: 414px) and (device-height: 896px) and (min-resolution: 2dppx) and (orientation: portrait) and (display-mode: standalone), /* iPhone Xs Max and iPhone 11 Pro Max */ screen and (device-width: 414px) and (device-height: 896px) and (min-resolution: 3dppx) and (orientation: portrait) and (display-mode: standalone), /* iPhone 12 Pro Max, iPhone 13 Pro Max, and iPhone 14 Plus */ screen and (device-width: 428px) and (device-height: 926px) and (min-resolution: 3dppx) and (orientation: portrait) and (display-mode: standalone), /* iPhone 14 Pro Max */ screen and (device-width: 430px) and (device-height: 932px) and (min-resolution: 3dppx) and (orientation: portrait) and (display-mode: standalone) {
+  .layout-multiple-columns .columns-area__panels__pane--navigational .columns-area__panels__pane__inner {
+    padding-bottom: 26px;
+  }
+
+  /* Fix top header overlapping in /publish on iPhone */
+  .layout-multiple-columns .columns-area--mobile:has(.compose-form) {
+    top: 34px;
   }
 }
 
