@@ -88,10 +88,10 @@ COPY --chown=mastodon:mastodon Gemfile* package.json yarn.lock /opt/mastodon/
 # Patch Ruby to use jemalloc
 # Discard patchelf and gnupg2 after use
 # Cleanup Apt
-# hadolint ignore=DL3008
+# hadolint ignore=DL3008,DL3005
 RUN \
   apt-get update; \
-  apt-get upgrade -y; \
+  apt-get dist-upgrade -yq; \
   apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
