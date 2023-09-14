@@ -18,3 +18,7 @@ RUN gem install foreman
 RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g yarn" 2>&1
 
 COPY welcome-message.txt /usr/local/etc/vscode-dev-containers/first-run-notice.txt
+
+WORKDIR /mastodon
+
+ENV PATH=/mastodon/bin:${PATH}
