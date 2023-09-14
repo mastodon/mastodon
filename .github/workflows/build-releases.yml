@@ -17,6 +17,8 @@ jobs:
       push_to_images: |
         tootsuite/mastodon
         ghcr.io/mastodon/mastodon
+      # Do not use cache when building releases, so apt update is always ran and the release always contain the latest packages
+      cache: false
       flavor: |
         latest=false
       tags: |
