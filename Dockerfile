@@ -58,22 +58,16 @@ ARG TZ
 ARG UID
 ARG GID
 
-# Install Runtime dependencies
+# Install Base dependencies
 RUN set -eux; \
     apt-get update; \
 	apt-get -yq dist-upgrade; \
     apt-get install -y --no-install-recommends \
-        ffmpeg \
-        file \
-        imagemagick \
         libatomic1 \
         libicu72 \
         libidn12 \
-        libjemalloc2 \
         libpq5 \
-        tini \
         tzdata \
-        wget \
     ; \
     rm -rf /var/lib/apt/lists/*;
 
@@ -144,6 +138,19 @@ ARG RAILS_SERVE_STATIC_FILES
 ARG BIND
 ARG MASTODON_VERSION_PRERELEASE
 ARG MASTODON_VERSION_METADATA
+
+# Install Runtime dependencies
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        ffmpeg \
+        file \
+        imagemagick \
+        libjemalloc2 \
+        tini \
+        wget \
+    ; \
+    rm -rf /var/lib/apt/lists/*;
 
 # [1/3] Copy the git source code into the image layer
 COPY --link . /opt/mastodon
