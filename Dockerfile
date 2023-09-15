@@ -143,7 +143,6 @@ ARG MASTODON_VERSION_METADATA
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
-        ffmpeg \
         file \
         imagemagick \
         libjemalloc2 \
@@ -151,6 +150,30 @@ RUN set -eux; \
         wget \
     ; \
     rm -rf /var/lib/apt/lists/*;
+
+RUN set -eux; \
+    dpkgArch="$(dpkg --print-architecture)"; \
+    savedAptMark="$(apt-mark showmanual)"; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        xz-utils \
+    ; \
+    wget -q "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-${dpkgArch}-static.tar.xz"; \
+    wget -q "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-${dpkgArch}-static.tar.xz.md5"; \
+    md5sum -c ffmpeg-release-${dpkgArch}-static.tar.xz.md5; \
+    tmp="$(mktemp -d)"; \
+    tar -xJf "ffmpeg-release-${dpkgArch}-static.tar.xz" -C "${tmp}" --strip-components=1 --no-same-owner; \
+    rm "ffmpeg-release-${dpkgArch}-static.tar.xz" "ffmpeg-release-${dpkgArch}-static.tar.xz.md5"; \
+    mv "${tmp}/ffmpeg" /usr/local/bin/; \
+    mv "${tmp}/ffprobe" /usr/local/bin/; \
+    rm -r "${tmp}"; \
+    apt-mark auto '.*' > /dev/null; \
+    apt-mark manual $savedAptMark > /dev/null; \
+    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+    rm -rf /var/lib/apt/lists/*; \
+    # smoke tests
+    ffmpeg -version; \
+    ffprobe -version;
 
 # [1/3] Copy the git source code into the image layer
 COPY --link . /opt/mastodon
