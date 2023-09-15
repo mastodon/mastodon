@@ -31,7 +31,7 @@ class Admin::StatusBatchAction
     case type
     when 'delete'
       handle_delete!
-    when 'mark_as_sensitive'
+    when 'mark_as_sensitive', 'sensitive'
       handle_mark_as_sensitive!
     when 'report'
       handle_report!
