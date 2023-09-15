@@ -20,10 +20,10 @@ de:
       confirmation_instructions:
         action: E-Mail-Adresse verifizieren
         action_with_app: Bestätigen – und dann zur App %{app} zurückkehren
-        explanation: Du hast mit dieser E-Mail-Adresse ein Konto auf %{host} erstellt. Du bist nur noch einen Klick von der Aktivierung entfernt. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
-        explanation_when_pending: Du hast dich für eine Einladung bei %{host} mit dieser E-Mail-Adresse beworben. Sobald du deine E-Mail-Adresse bestätigt hast, werden wir deine Anfrage überprüfen. Du kannst dich in dieser Zeit nicht anmelden. Wenn deine Anfrage abgelehnt wird, werden deine Daten entfernt – von dir ist keine weitere Handlung notwendig. Wenn du das nicht warst, kannst du diese E-Mail ignorieren.
+        explanation: Du hast mit dieser E-Mail-Adresse ein Konto auf %{host} erstellt. Du bist nur noch einen Klick von der Aktivierung entfernt. Wenn du das nicht warst, dann kannst du diese E-Mail ignorieren.
+        explanation_when_pending: Du hast dich für eine Einladung bei %{host} mit dieser E-Mail-Adresse beworben. Sobald du deine E-Mail-Adresse bestätigt hast, werden wir deine Anfrage überprüfen. Du kannst dich in dieser Zeit nicht anmelden. Wenn deine Anfrage abgelehnt wird, werden deine Daten entfernt – von dir ist keine weitere Handlung notwendig. Wenn du das nicht warst, dann kannst du diese E-Mail ignorieren.
         extra_html: Bitte beachte auch die <a href="%{terms_path}">Serverregeln</a> und <a href="%{policy_path}">unsere Datenschutzerklärung</a>.
-        subject: 'Mastodon: Bestätigung deines Kontos bei %{instance}'
+        subject: 'Mastodon: Anleitung zum Bestätigen deines Kontos auf %{instance}'
         title: Verifiziere E-Mail-Adresse
       email_changed:
         explanation: 'Die E-Mail-Adresse deines Kontos wird geändert zu:'
@@ -31,7 +31,7 @@ de:
         subject: 'Mastodon: E-Mail-Adresse geändert'
         title: Neue E-Mail-Adresse
       password_change:
-        explanation: Deine Zugangsdaten wurden geändert.
+        explanation: Das Passwort für dein Konto wurde geändert.
         extra: Wenn du dein Passwort nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Serververwaltung, wenn du aus deinem Konto ausgesperrt bist.
         subject: 'Mastodon: Passwort geändert'
         title: Passwort geändert
@@ -39,11 +39,11 @@ de:
         explanation: Bestätige deine neue E-Mail-Adresse, um sie zu ändern.
         extra: Wenn diese Änderung nicht von dir ausgeführt wurde, dann kannst du diese E-Mail ignorieren. Die E-Mail-Adresse für dein Mastodon-Konto wird sich erst ändern, wenn du den obigen Link anklickst.
         subject: 'Mastodon: E-Mail-Adresse für %{instance} bestätigen'
-        title: Verifiziere E-Mail-Adresse
+        title: E-Mail-Adresse verifizieren
       reset_password_instructions:
         action: Passwort ändern
         explanation: Du hast ein neues Passwort für dein Konto angefordert.
-        extra: Wenn du diese Anfrage nicht gestellt hast, solltest du diese E-Mail ignorieren. Dein Passwort wird sich nicht ändern, solange du den obigen Link anklickst und ein neues erstellst.
+        extra: Wenn du diese Anfrage nicht gestellt hast, dann kannst du diese E-Mail ignorieren. Dein Passwort wird sich erst ändern, wenn du den obigen Link anklickst und ein neues Passwort erstellst.
         subject: 'Mastodon: Anleitung zum Zurücksetzen deines Passworts'
         title: Passwort zurücksetzen
       two_factor_disabled:
@@ -51,7 +51,7 @@ de:
         subject: 'Mastodon: Zwei‐Faktor‐Authentisierung (2FA) deaktiviert'
         title: 2FA deaktiviert
       two_factor_enabled:
-        explanation: Die Zwei-Faktor-Authentisierung (2FA) wurde für dein Konto aktiviert. Das zeitbasierte Einmalkennwort, das von deiner TOTP-App generiert wird, muss bei jeder Anmeldung zusätzlich eingegeben werden.
+        explanation: Die Zwei-Faktor-Authentisierung (2FA) wurde für dein Konto aktiviert. Das zeitbasierte Einmalpasswort, das von deiner TOTP-App generiert wird, muss bei jeder Anmeldung zusätzlich eingegeben werden.
         subject: 'Mastodon: Zwei‐Faktor‐Authentisierung (2FA) aktiviert'
         title: 2FA aktiviert
       two_factor_recovery_codes_changed:
@@ -59,7 +59,7 @@ de:
         subject: 'Mastodon: Zwei-Faktor-Wiederherstellungscodes neu erstellt'
         title: 2FA-Wiederherstellungscodes geändert
       unlock_instructions:
-        subject: 'Mastodon: Anleitung zur Entsperrung deines Kontos'
+        subject: 'Mastodon: Anleitung zum Entsperren deines Kontos'
       webauthn_credential:
         added:
           explanation: Der folgende Sicherheitsschlüssel wurde zu deinem Konto hinzugefügt
@@ -70,7 +70,7 @@ de:
           subject: 'Mastodon: Sicherheitsschlüssel entfernt'
           title: Einer deiner Sicherheitsschlüssel wurde entfernt
       webauthn_disabled:
-        explanation: Die Authentisierung mit Sicherheitsschlüsseln wurde für dein Konto deaktiviert. Die Anmeldung ist jetzt nur noch mit dem Token möglich, der von der eingerichteten TOTP-App generiert wird.
+        explanation: Das Authentisieren mit Sicherheitsschlüsseln wurde für dein Konto deaktiviert. Die Anmeldung ist jetzt nur noch mit dem zeitbasierten Einmalpasswort möglich, das von deiner TOTP-App generiert wird.
         subject: 'Mastodon: Authentisierung mit Sicherheitsschlüsseln deaktiviert'
         title: Sicherheitsschlüssel deaktiviert
       webauthn_enabled:

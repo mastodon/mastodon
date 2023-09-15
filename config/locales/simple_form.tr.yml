@@ -3,9 +3,13 @@ tr:
   simple_form:
     hints:
       account:
+        discoverable: Herkese açık gönderileriniz ve profiliniz Mastodon'un çeşitli kısımlarında öne çıkarılabilir veya önerilebilir ve profiliniz başka kullanıcılara önerilebilir.
         display_name: Tam adınız veya kullanıcı adınız.
         fields: Ana sayfanız, zamirleriniz, yaşınız, istediğiniz herhangi bir şey.
+        indexable: Herkese açık gönderileriniz Mastodon arama sonuçlarında görünebilir. Gönderilerinizle etkileşen kullanıcılar her halükarda onları arayabilirler.
         note: 'Diğer insanlara @değinebilir veya #etiketler kullanabilirsiniz.'
+        show_collections: İnsanlar takip ettiklerinize ve takipçilerinize göz gezdirebilir. Takip ettiğiniz kişiler sizin onları takip ettiğinizi her halükarda görecektir.
+        unlocked: İnsanlar sizi onayınızı almadan takip edebileceklerdir. Takip isteklerini gözden geçirmek ve yeni takipçileri kabul veya reddetmek istiyorsanız seçimi kaldırın.
       account_alias:
         acct: Taşımak istediğiniz hesabı kullanıcıadı@alanadı şeklinde belirtin
       account_migration:
@@ -116,6 +120,9 @@ tr:
       sessions:
         otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
         webauthn: Bir USB anahtarıysa, taktığınızdan ve gerekirse üzerine tıkladığınızdan emin olun.
+      settings:
+        indexable: Profil sayfanız Google, Bing ve diğerlerindeki arama sonuçlarında görüntülenebilir.
+        show_application: Ne olursa olsun gönderinizi yayınlayan uygulamayı her zaman görebileceksiniz.
       tag:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
       user:
@@ -133,9 +140,13 @@ tr:
         url: Olayların gönderileceği yer
     labels:
       account:
+        discoverable: Profil ve gönderileri keşif algoritmalarında kullan
         fields:
           name: Etiket
           value: İçerik
+        indexable: Herkese açık gönderileri arama sonuçlarına ekle
+        show_collections: Takipleri ve takipçileri profilde göster
+        unlocked: Yeni takipçileri otomatik olarak kabul et
       account_alias:
         acct: Eski hesabın tanıtıcısı
       account_migration:
@@ -280,9 +291,18 @@ tr:
         pending_account: Yeni hesabın incelenmesi gerekiyor
         reblog: Birisi gönderini boostladı
         report: Yeni rapor gönderildi
+        software_updates:
+          all: Tüm güncellemeleri bildir
+          critical: Sadece kritik güncellemeleri bildir
+          label: Yeni bir Mastodon sürümü mevcut
+          none: Güncellemeleri hiç bir zaman bildirme (önerilmiyor)
+          patch: Yama güncellemelerini bildir
         trending_tag: Yeni eğilimin gözden geçmesi gerekiyor
       rule:
         text: Kural
+      settings:
+        indexable: Arama motorları profil sayfasını içersin
+        show_application: Gönderiyi hangi uygulamadan gönderdiğiniz görüntülensin
       tag:
         listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
         name: Etiket
@@ -303,6 +323,7 @@ tr:
         url: Uç nokta URL’si
     'no': Hayır
     not_recommended: Önerilmez
+    overridden: Geçersiz kılındı
     recommended: Önerilen
     required:
       mark: "*"

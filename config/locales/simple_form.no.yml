@@ -3,11 +3,15 @@
   simple_form:
     hints:
       account:
+        discoverable: Dine offentlige innlegg og profil kan bli omtalt eller anbefalt i ulike deler av Mastodon, og profilen din kan foreslås til andre brukere.
         display_name: Ditt fulle navn eller ditt morsomme navn.
         fields: Din hjemmeside, uttalelse, alder, eller alt annet du vil.
+        indexable: Dine offentlige innlegg kan vises i søkeresultat på Mastodon. Personer som har samhandlet med innleggene dine kan finne de uansett.
         note: 'Du kan @nevne andre eller #emneknagger.'
+        show_collections: Folk vil kunne bla gjennom de du følger og dine følgere. Folk du følger vil uansett se at du følger dem.
+        unlocked: Folk vil kunne følge deg uten å be om godkjenning. Fjern markeringen om du vil gjennomgå følge-forespørsler og velge om du vil akseptere eller avvise nye følgere.
       account_alias:
-        acct: Spesifiser brukernavn@domene til brukeren du vil flytte fra
+        acct: Spesifiser brukernavn@domene til kontoen du vil flytte fra
       account_migration:
         acct: Spesifiser brukernavn@domene til brukeren du vil flytte til
       account_warning_preset:
@@ -22,7 +26,7 @@
           disable: Forhindre brukeren fra å bruke kontoen sin, men ikke slett eller skjul innholdet deres.
           none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
           sensitive: Tving alle denne brukerens medievedlegg til å bli merket som følsomme.
-          silence: Forhindre at brukeren kan legge ut innlegg med offentlig synlighet, skjule innleggene og varslene sine fra folk som ikke følger dem. Lukker alle rapporter mot denne kontoen.
+          silence: Forhindre at brukeren kan legge ut innlegg med offentlig synlighet, skjul innleggene deres og varslene fra folk som ikke følger dem. Lukker alle rapporter mot denne kontoen.
           suspend: Forhindre interaksjon fra eller til denne kontoen og slett innholdet. Tilbakestiller innholdet innen 30 dager. Lukk alle rapporter mot denne kontoen.
         warning_preset_id: Valgfritt. Du kan fortsatt legge til tilpasset tekst til slutten av forhåndsinnstillingen
       announcement:
@@ -116,6 +120,9 @@
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
         webauthn: Hvis det er en USB-nøkkel må du sette den inn og om nødvendig trykke på den.
+      settings:
+        indexable: Profilsiden din kan vises i søkeresultater på Google, Bing og så videre.
+        show_application: Du vil uansett kunne se hvilken app publiserte ditt innlegg.
       tag:
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
@@ -133,9 +140,13 @@
         url: Hvor hendelser vil bli sendt til
     labels:
       account:
+        discoverable: Anbefal profil og innlegg i Mastodons algoritmer
         fields:
           name: Etikett
           value: Innhold
+        indexable: Inkluder offentlige innlegg i søkeresultater
+        show_collections: Vis de du følger og dine følgere på profilen
+        unlocked: Godta nye følgere automatisk
       account_alias:
         acct: Brukernavnet til den gamle brukeren
       account_migration:
@@ -283,6 +294,9 @@
         trending_tag: Ny trend krever gjennomgang
       rule:
         text: Regler
+      settings:
+        indexable: Inkluder profilside i søkemotorer
+        show_application: Vis hvilket program du brukte når du sendte et innlegg
       tag:
         listable: Tillat denne emneknaggen å vises i søk og på profilmappen
         name: Emneknagg

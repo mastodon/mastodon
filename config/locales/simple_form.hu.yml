@@ -3,9 +3,13 @@ hu:
   simple_form:
     hints:
       account:
+        discoverable: A nyilvános bejegyzéseid és a profilod kiemelhető vagy ajánlható a Mastodon különböző területein, a profilod más felhasználóknak is javasolható.
         display_name: Teljes neved vagy vicces neved.
         fields: Weboldalad, megszólításaid, korod, bármi, amit szeretnél.
+        indexable: A nyilvános bejegyzéseid megjelenhetnek a Mastodon keresési eredményei között. Azok, akik kapcsolatba léptek a bejegyzéseiddel, ettől függetlenül kereshetik azokat.
         note: 'Megemlíthetsz @másokat vagy #hashtag-eket.'
+        show_collections: Mások böngészhetnek a követőid és követetteid között. Ettől függetlenül a követetteid látják majd, hogy követed őket.
+        unlocked: Mások jóváhagyás kérése nélkül követhetnek téged. Töröld a jelölést, ha szeretnéd áttekinteni a követési kéréseket és választani az új követők elfogadása vagy elutasítása közül.
       account_alias:
         acct: Add meg annak a fióknak a felhasználónév@domain párosát, ahonnan át szeretnéd mozgatni
       account_migration:
@@ -116,6 +120,9 @@ hu:
       sessions:
         otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
         webauthn: Ha ez egy USB kulcs, ellenőrizd, hogy csatlakoztattad és ha szükséges, aktiváltad is.
+      settings:
+        indexable: A profiloldalad megjelenhet a Google, a Bing és más keresőmotorok keresési eredményei között.
+        show_application: Ettől függetlenül mindig láthatod, melyik alkalmazás tette közzé a bejegyzésedet.
       tag:
         name: Csak a kis/nagybetűséget változtathatod meg, pl. hogy olvashatóbb legyen
       user:
@@ -133,9 +140,13 @@ hu:
         url: Ahová az eseményket küldjük
     labels:
       account:
+        discoverable: Profil és bejegyzések szerepeltetése a felfedezési algoritmusokban
         fields:
           name: Címke
           value: Tartalom
+        indexable: Nyilvános bejegyzések szerepeltetése a keresési eredményekben
+        show_collections: Követők és követettek megjelnítése a profilban
+        unlocked: Új követők automatikus elfogadása
       account_alias:
         acct: Régi fiók kezelése
       account_migration:
@@ -280,9 +291,18 @@ hu:
         pending_account: E-mail küldése, ha új fiókot kell engedélyezni
         reblog: Valaki megtolta a bejegyzésedet
         report: Új bejelentést küldtek be
+        software_updates:
+          all: Értesítés az összes frissítésről
+          critical: Értesítés csak a kritikus frissítésekről
+          label: Új Mastodon verzió érhető el
+          none: Nincs értesítés a frissítésekről (nem ajánlott)
+          patch: Értesítés hibajavítási frissítésekről
         trending_tag: Új trend felülvizsgálatra vár
       rule:
         text: Szabály
+      settings:
+        indexable: A profiloldal szerepeltetése a keresőmotorokban
+        show_application: A bejegyzést küldő alkalmazás megjelenítése
       tag:
         listable: A hashtag megjelenhet a profiladatbázisban
         name: Hashtag
@@ -303,6 +323,7 @@ hu:
         url: Végponti URL
     'no': Nem
     not_recommended: Nem ajánlott
+    overridden: Felülbírálva
     recommended: Ajánlott
     required:
       mark: "*"

@@ -3,9 +3,13 @@ ca:
   simple_form:
     hints:
       account:
+        discoverable: El teu perfil i els teus tuts públics poden aparèixer o ser recomanats en diverses àreas de Mastodon i el teu perfil pot ser suggerit a altres usuaris.
         display_name: El teu nom complet o el teu nom divertit.
         fields: La teva pàgina d'inici, pronoms, edat, el que vulguis.
+        indexable: Els teus tuts públics Mastodon poden aparèixer en els resultats de cerca de Mastodon. Les persones que han interaccionat amb el teus tuts seran sempre capaços de cercar-los.
         note: 'Pots @mencionar altra gent o #etiquetes.'
+        show_collections: La gent podrà navegar pels teus seguits i seguidors. Qui segueixis sí que veurà que els segueixes.
+        unlocked: La gent serà capaç de seguir-te sense sol·licitar-ho. Desmarca si vols revisar les sol·licituds i triar si acceptes o no els nous seguidors.
       account_alias:
         acct: Especifica l'usuari@domini del compte des d'on et vols traslladar
       account_migration:
@@ -116,6 +120,9 @@ ca:
       sessions:
         otp: 'Introdueix el codi de dos factors generat per el teu telèfon o utilitza un dels teus codis de recuperació:'
         webauthn: Si és una clau USB, assegura't que està inserida i, si cal, toca-la.
+      settings:
+        indexable: La pàgina del teu perfil podria aparèixer en els resultats de cerca de Google, Bing i altres.
+        show_application: Sempre podràs veure quina aplicació ha publicat els teus tuts.
       tag:
         name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       user:
@@ -133,9 +140,13 @@ ca:
         url: On els esdeveniments seran enviats
     labels:
       account:
+        discoverable: Permet el perfil i el tuts en els algorismes de descobriment
         fields:
           name: Etiqueta
           value: Contingut
+        indexable: Inclou tuts públics en els resultats de cerca
+        show_collections: Mostra seguits i seguidors en el perfil
+        unlocked: Accepta automàticament els nous seguidors
       account_alias:
         acct: Nom del compte vell
       account_migration:
@@ -280,9 +291,18 @@ ca:
         pending_account: Un nou compte necessita revisió
         reblog: Algú comparteix el teu estat
         report: S'ha enviat l'informe nou
+        software_updates:
+          all: Notificar sobre totes les actualitzacions
+          critical: Notificar només actualitzacions crítiques
+          label: Hi ha disponible una nova versió de Mastodon
+          none: No notifiquis mai les actualitzacions (no és recomanable)
+          patch: Notificar sobre les actualitzacions de correcció d'errors
         trending_tag: Nova tendència requereix revisió
       rule:
         text: Norma
+      settings:
+        indexable: Inclou la pàgina del perfil en els motors de cerca
+        show_application: Mostra amb quina aplicació has enviat el tut
       tag:
         listable: Permet que aquesta etiqueta aparegui en les cerques i en el directori de perfils
         name: Etiqueta
@@ -303,6 +323,7 @@ ca:
         url: Enllaç de l'extrem
     'no': 'No'
     not_recommended: No recomanat
+    overridden: Anul·lat
     recommended: Recomanat
     required:
       mark: "*"

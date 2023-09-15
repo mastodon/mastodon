@@ -122,6 +122,8 @@ zh-HK:
       removed_header_msg: 成功刪除 %{username} 的頁面頂端圖片
       resend_confirmation:
         already_confirmed: 這個使用者先前已經被確認過
+        send: 重寄確認連結
+        success: 成功寄送確認連結！
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
@@ -304,6 +306,7 @@ zh-HK:
       unpublish: 未發佈
       unpublished_msg: 成功取消發布公告！
       updated_msg: 成功更新公告！
+    critical_update_pending: 待處理重要更新
     custom_emojis:
       assign_category: 指定分類
       by_domain: 網域
@@ -373,6 +376,15 @@ zh-HK:
       undo: 從白名單移除
     domain_blocks:
       add_new: 新增域名阻隔規則
+      confirm_suspension:
+        cancel: 取消
+        confirm: 停權
+        permanent_action: 撤銷停權不會恢復任何資料和追蹤關係。
+        preamble_html: 你將停權 <strong>%{domain}</strong> 及其所有子網域。
+        remove_all_data: 這將會從你的伺服器中移除該網域帳號的所有內容、媒體和個人檔案資料。
+        stop_communication: 你的伺服器將停止與這些伺服器通訊。
+        title: 確認封鎖網域 %{domain}
+        undo_relationships: 你伺服器上的帳號將取消追蹤這些伺服器上的帳號。
       created_msg: 正處理阻隔域名的請求
       destroyed_msg: 已撤銷域名阻隔
       domain: 域名阻隔
@@ -715,6 +727,9 @@ zh-HK:
       branding:
         preamble: 你的伺服器的品牌使它與網絡上的其他伺服器區分開來。這些資訊可能會在各種情境下顯示，如 Mastodon 的網頁介面、原生應用程式，以及其他網站和通訊應用程式內的連結預覽等。因此，請盡量保持資訊簡短精煉。
         title: 品牌
+      captcha_enabled:
+        desc_html: 這倚賴 hCaptcha 的外部腳本，或會引起安全和私隱疑慮。此外，<strong>此註冊流程亦可能對特定人士（尤其是殘疾人士）有較多障礙</strong>。有鑑於此，請考慮使用其他以審核或邀請的註冊方式。
+        title: 要求新使用者解答 CAPTCHA 以驗證帳號
       content_retention:
         preamble: 控制使用者生成的內容如何儲存在 Mastodon。
         title: 內容留存
@@ -742,9 +757,27 @@ zh-HK:
           approved: 註冊需要核准
           none: 沒有人可註冊
           open: 任何人皆能註冊
+      security:
+        authorized_fetch: 要求跨站驗證
+        authorized_fetch_hint: 要求跨站驗證可更嚴謹地執行使用者級及伺服器級的封鎖。然而，這會犧牲性能，降低你回覆的觸及範圍，跨站服務亦可能出現兼容問題。此外，這並無法阻止他人蓄意擷取你的公開帖文和帳號。
+        authorized_fetch_overridden_hint: 由於此設定被某環境變數覆寫，因此你目前無法更改此設定。
+        federation_authentication: 強制跨站驗證
+      title: 伺服器設定
     site_uploads:
       delete: 刪除上傳的檔案
       destroyed_msg: 成功刪除站台的上傳項目！
+    software_updates:
+      critical_update: 重要 — 請盡快更新
+      description: 建議保持安裝最新的 Mastodon，以獲取最新的修正和功能。此外，及時更新 Mastodon 對於保安至關重要。有鑑於此，Mastodon 每 30 分鐘會檢查更新，並根據你的電郵通知偏好通知你。
+      documentation_link: 了解更多
+      release_notes: 版本資訊
+      title: 可用的更新
+      type: 類型
+      types:
+        major: 主要版本更新
+        minor: 次要版本更新
+        patch: 修正發佈 — 除錯及些微修改
+      version: 版本
     statuses:
       account: 作者
       application: 應用程式
@@ -785,6 +818,20 @@ zh-HK:
     system_checks:
       database_schema_check:
         message_html: 有待處理的資料庫轉移 (database migration) 。請執行以確保應用程式行為合乎預期
+      elasticsearch_health_red:
+        message_html: Elasticsearch 叢集狀態不健康（紅色狀態），無法使用搜尋功能
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch 叢集狀態不健康（黃色狀態），你可能需要調查其原因
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch 索引配置已過期。請執行<code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: 查看文檔
+        message_html: 你的 Elasticsearch 叢集有多個節點，但 Mastodon 並未配置來使用它們。
+      elasticsearch_preset_single_node:
+        action: 查看文檔
+        message_html: 你的 Elasticsearch 叢集只有一個節點，<code>ES_PRESET</code>應設定為<code>single_node_cluster</code>。
+      elasticsearch_reset_chewy:
+        message_html: 由於設定變更，你的 Elasticsearch 系統索引已過期。請執行<code>tootctl search deploy --reset-chewy</code>來更新它。
       elasticsearch_running_check:
         message_html: 無法連接到 Elasticsearch。請檢查它是否運行中，或停用全文搜索。
       elasticsearch_version_check:
@@ -795,6 +842,12 @@ zh-HK:
         message_html: 您尚未定義任何伺服器規則
       sidekiq_process_check:
         message_html: 沒有 %{value} 佇列的 Sidekiq 處理程序。請檢查 Sidekiq 設定檔案
+      software_version_critical_check:
+        action: 查看可用的更新
+        message_html: 有重要的 Mastodon 更新可用，請盡快更新。
+      software_version_patch_check:
+        action: 查看可用的更新
+        message_html: 有可用的 Mastodon 除錯更新。
       upload_check_privacy_error:
         action: 在此查看更多資訊
         message_html: "<strong>你的網絡伺服器配置錯誤。你的使用者的私隱有危險。</strong>"
@@ -904,6 +957,9 @@ zh-HK:
       body: "%{target} 對 %{action_taken_by} 於 %{date} 做出的 %{type} 審核裁決提出申訴。他們寫道："
       next_steps: 您可以批准此申訴以撤銷審核裁決，又或者忽略它。
       subject: "%{username} 對 %{instance} 上的審核裁決提出申訴"
+    new_critical_software_updates:
+      body: 全新關鍵性 Mastodon 版本已釋出，你也許想盡快更新！
+      subject: "%{instance} 有關鍵的 Mastodon 更新可用！"
     new_pending_account:
       body: 以下是新帳戶的資訊。你可以審核這項申請。
       subject: 在 %{instance} 上未審核的新用戶(%{username})
@@ -911,6 +967,9 @@ zh-HK:
       body: "%{reporter} 舉報了 %{target}"
       body_remote: 來自 %{domain} 的人舉報了 %{target}
       subject: 針對 %{instance} 的舉報（#%{id}）
+    new_software_updates:
+      body: 已推出全新 Mastodon 版本，你或許想要更新它！
+      subject: "%{instance} 有全新的 Mastodon 版本可用！"
     new_trends:
       body: 以下項目需要經過審核才能公開顯示：
       new_trending_links:
@@ -944,6 +1003,7 @@ zh-HK:
     notification_preferences: 更改電郵設定
     salutation: "%{name}："
     settings: 修改電郵設定︰%{link}
+    unsubscribe: 取消訂閱
     view: 進入瀏覽︰
     view_profile: 檢視個人資料頁
     view_status: 檢視文章
@@ -957,6 +1017,10 @@ zh-HK:
     your_token: token
   auth:
     apply_for_account: 申請帳號
+    captcha_confirmation:
+      help_html: 如果用 CAPTCHA 時遇到問題，你可以透過 %{email} 與我們聯絡，我們會協助你。
+      hint_html: 還有最後一步！我們需要確認你是人類（這樣我們才能杜絕垃圾郵件！）。解答下方的 CAPTCHA，然後點擊「繼續」。
+      title: 安全檢查
     confirmations:
       wrong_email_hint: 如果該電郵地址不正確，你可以在帳號設定中修改。
     delete_account: 刪除帳號
@@ -965,6 +1029,7 @@ zh-HK:
       prefix_invited_by_user: "@%{name} 邀請你加入這個 Mastodon 服務站！"
       prefix_sign_up: 立即註冊 Mastodon！
       suffix: 有了一個帳戶，就可以從任何Mastodon服務器關注任何人，發佈更新並與任何Mastodon服務器的用戶交流！
+    didnt_get_confirmation: 沒有收到確認連結嗎？
     dont_have_your_security_key: 找不到安全密鑰？
     forgot_password: 忘記了密碼？
     invalid_reset_password_token: 密碼重置 token 無效或已過期。請重新重設密碼。
@@ -977,23 +1042,39 @@ zh-HK:
     migrate_account_html: 想要將這個帳號指向另一個帳號可<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或登入於
     privacy_policy_agreement_html: 我已閱讀且同意<a href="%{privacy_policy_path}" target="_blank">私隱政策</a>
+    progress:
+      confirm: 確認電郵
+      details: 你的資料
+      review: 我們的審核
+      rules: 接受規則
     providers:
       cas: CAS
       saml: SAML
     register: 登記
     registration_closed: "%{instance} 並不接受新成員請求"
+    resend_confirmation: 重寄確認連結
     reset_password: 重設密碼
     rules:
       accept: 接受
       back: 返回
+      invited_by: 你可以藉着收到的邀請加入 %{domain}，該邀請來自：
       preamble: 這些是由 %{domain} 管理員制訂和執行的。
+      preamble_invited: 在你繼續之前，請細閱 %{domain} 管理員擬訂的基本規則。
       title: 一些基本規則。
+      title_invited: 你已被邀請。
     security: 登入資訊
     set_new_password: 設定新密碼
+    setup:
+      email_below_hint_html: 請檢查你的垃圾郵件資料夾，或請求發送另一封郵件。如果你的電郵地址有誤，你可以更正它。
+      email_settings_hint_html: 請點擊我們發送給你的連結來驗證 %{email}。我們會等着你。
+      link_not_received: 收不到連結嗎？
+      new_confirmation_instructions_sent: 你將在幾分鐘內收到附有確認連結的新電郵！
+      title: 檢查你的信箱
     sign_in:
       preamble_html: 請使用 <strong>%{domain}</strong> 的資料登入。如果您的帳戶託管在其他的伺服器，您將無法在此登入。
       title: 登入 %{domain}
     sign_up:
+      manual_review: "%{domain} 的註冊均需要我們的管理員手動審核。為了幫助我們處理你的註冊，請填寫一些關於你的資訊，以及為何想在 %{domain} 上開設帳號。"
       preamble: 有了這個 Mastodon 伺服器的帳號，無論將帳號託管在何處，你都可以追蹤網絡上任何人。
       title: 讓我為你在 %{domain} 上設定好。
     status:
@@ -1081,6 +1162,10 @@ zh-HK:
       your_appeal_rejected: 你的申訴已被駁回
   domain_validator:
     invalid_domain: 不是一個可用域名
+  edit_profile:
+    basic_information: 基本資料
+    hint_html: "<strong>自訂你的公開個人檔案和帖文內容。</strong>當你有完整的個人檔案和頭像時，其他人更願意追蹤你和與你互動。"
+    other: 其他
   errors:
     '400': 你的請求無效或格式不正確。
     '403': 你沒有觀看本頁的權限。
@@ -1164,7 +1249,9 @@ zh-HK:
       other: 已選取此頁面上的 <strong>%{count}</strong> 個項目。
     all_matching_items_selected_html:
       other: 已選取符合你搜尋的 <strong>%{count}</strong> 個項目。
+    cancel: 取消
     changes_saved_msg: 已成功儲存修改。
+    confirm: 確定
     copy: 複製
     delete: 刪除
     deselect: 取消全選
@@ -1178,20 +1265,60 @@ zh-HK:
       other: 提交的資料有 %{count} 項問題
   imports:
     errors:
+      empty: 空白 CSV 檔案
+      incompatible_type: 與選擇的匯入類型不相符
       invalid_csv_file: 無效的 CSV 檔案。錯誤：%{error}
       over_rows_processing_limit: 包含超過 %{count} 行
+      too_large: 檔案太大
+    failures: 失敗
+    imported: 已匯入
+    mismatched_types_warning: 看來你選擇了不正確的類型來匯入，請再檢查一次。
     modes:
       merge: 合併
       merge_long: 留下舊有記錄並添加新的資訊
       overwrite: 覆蓋
       overwrite_long: 用新記錄覆蓋當前記錄
+    overwrite_preambles:
+      blocking_html: 你將以<strong>%{filename}</strong>的最多<strong>%{total_items}個帳號</strong>，來<strong>取代你現有的封鎖列表</strong>。
+      bookmarks_html: 你將以<strong>%{filename}</strong>的最多<strong>%{total_items}個帳號</strong>，來<strong>取代你現有的書籤</strong>。
+      domain_blocking_html: 你將以<strong>%{filename}</strong>的最多<strong>%{total_items} 個帳號</strong>，來<strong>取代你現有的網域封鎖列表</strong>。
+      following_html: 你將從<strong>%{filename}</strong><strong>追蹤</strong>最多<strong>%{total_items} 個帳號</strong>，並<strong>取消追蹤其他人</strong>。
+      lists_html: 你將根據<strong>%{filename}</strong>的內容<strong>取代的你列表</strong>。最多新增 <strong>%{total_items} 個帳號</strong> 到新列表。
+      muting_html: 你將根據<strong>%{filename}</strong>中最多 <strong>%{total_items} 個帳號</strong><strong>取代你的靜音帳號列表</strong>。
+    preambles:
+      blocking_html: 你將根據<strong>%{filename}</strong><strong>封鎖</strong>最多 <strong>%{total_items} 個帳號</strong>。
+      bookmarks_html: 你將加入 <strong>%{filename}</strong> 中最多 <strong>%{total_items} 篇帖文</strong>到你的<strong>書籤</strong>中。
+      domain_blocking_html: 你將<strong>封鎖</strong>來自<strong>%{filename}</strong>的最多 <strong>%{total_items} 個網域</strong>。
+      following_html: 你將<strong>追蹤</strong> 來自 <strong>%{filename}</strong> 最多 <strong>%{total_items} 個帳號</strong>。
+      lists_html: 你將加入來自<strong>%{filename}</strong>最多 <strong>%{total_items} 個帳號</strong>到你的<strong>列表</strong>中。如果現時沒有列表，將會建立新列表。
+      muting_html: 你將<strong>靜音</strong>來自<strong>%{filename}</strong>的最多 <strong>%{total_items} 個帳號</strong>。
     preface: 你可以在此匯入你在其他服務站所匯出的資料檔，包括︰你所關注的用戶，被你封鎖的用戶。
+    recent_imports: 最近的匯入
+    states:
+      finished: 完成
+      in_progress: 進行中
+      scheduled: 已排程
+      unconfirmed: 未確認
+    status: 狀態
     success: 你已成功上載資料檔，我們正將資料匯入，請稍候
+    time_started: 開始於
+    titles:
+      blocking: 正在匯入已封鎖帳號
+      bookmarks: 正在匯入書籤
+      domain_blocking: 正在匯入已封鎖網域
+      following: 正在匯入已追蹤帳號
+      lists: 正在匯入列表
+      muting: 正在匯入已靜音帳號
+    type: 匯入類型
+    type_groups:
+      constructive: 追蹤與書籤
+      destructive: 封鎖與靜音
     types:
       blocking: 被你封鎖的用戶名單
       bookmarks: 書籤
       domain_blocking: 域名封鎖名單
       following: 你所關注的用戶名單
+      lists: 列表
       muting: 靜音名單
     upload: 上載
   invites:
@@ -1229,6 +1356,21 @@ zh-HK:
     failed_sign_in_html: 以 %{method} 從 %{ip} (%{browser}) 登入失敗
     successful_sign_in_html: 以 %{method} 從 %{ip} (%{browser}) 成功登入
     title: 驗證操作歷史
+  mail_subscriptions:
+    unsubscribe:
+      action: 沒錯，取消訂閱
+      complete: 已取消訂閱
+      confirmation_html: 你確定要取消接收 Mastodon 在%{domain}上的%{type}到你的電郵 %{email} 嗎？你隨時可以從 <a href="%{settings_path}">電郵通知設定</a>重新訂閱。
+      emails:
+        notification_emails:
+          favourite: 最愛電郵通知
+          follow: 追蹤電郵通知
+          follow_request: 追蹤請求電郵
+          mention: 提及電郵通知
+          reblog: 轉推電郵通知
+      resubscribe_html: 如果你不小心取消訂閱，你可以從<a href="%{settings_path}">電郵通知設定</a>重新訂閱。
+      success_html: 你將不再收到 Mastodon 在%{domain}上的%{type}到你的電郵 %{email}。
+      title: 取消訂閱
   media_attachments:
     validations:
       images_and_video: 不能在已有圖片的文章上加入影片
@@ -1308,6 +1450,7 @@ zh-HK:
     update:
       subject: "%{name} 編輯了帖文"
   notifications:
+    administration_emails: 管理員電郵通知
     email_events: 電郵通知活動
     email_events_hint: 選擇你想接收通知的活動：
     other_settings: 其他通知設定
@@ -1344,12 +1487,22 @@ zh-HK:
       expired: 投票已結束
       invalid_choice: 你所選的投票選項不存在
       over_character_limit: 不能多於 %{max} 個字符
+      self_vote: 你不能在自己建立的投票活動中投票
       too_few_options: 一定要多於一個項目
       too_many_options: 不能多於 %{max} 個項目
   preferences:
     other: 其他
     posting_defaults: 發佈預設值
     public_timelines: 公共時間軸
+  privacy:
+    hint_html: "<strong>自訂個人檔案和帖文被他人找到的方式。</strong>啟用 Mastodon 一系列的功能助你觸及更多受眾。花點時間查閱這些設定並確保它符合你的用法。"
+    privacy: 私隱
+    privacy_hint_html: 控制你欲向他人透露的資訊。透過瀏覽他人的追蹤可發現有趣的個人檔案，展示發佈所用的媒介也幫助他人發掘酷炫的應用程式，但你也能選擇隱藏它們。
+    reach: 觸及
+    reach_hint_html: 控制你是否被使用者發現和追蹤。你希望自己的帖文出現在探索中嗎？想讓他人在追蹤推薦中看到你嗎？自動接受新追蹤者，還是逐一設定？
+    search: 搜尋
+    search_hint_html: 控制你被發現的方式。你想他人從你公開發佈的內容找到你嗎？想讓 Mastodon 以外的人們在網站搜尋中找到你的個人檔案？請注意，公開資訊無法被搜尋引擎全部排除。
+    title: 私隱及觸及
   privacy_policy:
     title: 私隱政策
   reactions:
@@ -1553,6 +1706,10 @@ zh-HK:
       default: "%Y年%-m月%d日 %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+  translation:
+    errors:
+      quota_exceeded: 已超出伺服器範圍的翻譯服務之使用配額。
+      too_many_requests: 最近翻譯服務的請求太多。
   two_factor_authentication:
     add: 新增
     disable: 停用
@@ -1638,7 +1795,12 @@ zh-HK:
     seamless_external_login: 因為你正在使用第三方服務登入，所以不能設定密碼和電郵。
     signed_in_as: 目前登入的帳戶：
   verification:
+    extra_instructions_html: <strong>提示：</strong>你是可以隱藏網站上的連結的。重點是<code>rel="me"</code>，它可以防止有用戶生成內容的網站假冒身份。你甚至可以在頁面標頭 (header) 使用 <code>link</code> 標籤，而非 <code>a</code>，但你必須確保沒有執行 Javascript 下也可存取 HTML。
+    here_is_how: 驗證方法
+    hint_html: "<strong>所有人都可以在 Mastodon 上驗證身份。</strong>基於開放網絡標準，不論是現在還是以後也是免費的。你只需要一個可以識別你的個人網站。當你連接個人檔案到該網站時，我們會檢查該網站是否有反向連結到個人檔案，若成功偵測便會在個人檔案標示它。"
+    instructions_html: 複製並貼上以下的程式碼到你網站的 HTML 中，然後在個人檔案的「修改個人檔案」頁籤中的額外欄位加入你該網址，並儲存變更。
     verification: 驗證
+    verified_links: 已驗證的連結
   webauthn_credentials:
     add: 新增安全密鑰裝置
     create:

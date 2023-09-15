@@ -309,6 +309,7 @@ is:
       unpublish: Taka úr birtingu
       unpublished_msg: Það tókst að taka auglýsinguna úr birtingu!
       updated_msg: Það tókst að uppfæra auglýsinguna!
+    critical_update_pending: Áríðandi uppfærsla í bið
     custom_emojis:
       assign_category: Úthluta flokki
       by_domain: Lén
@@ -772,10 +773,27 @@ is:
           approved: Krafist er samþykkt nýskráningar
           none: Enginn getur nýskráð sig
           open: Allir geta nýskráð sig
+      security:
+        authorized_fetch: Krefjast auðkenningar frá netþjónum í skýjasambandi
+        authorized_fetch_hint: Að krefjast auðkenningar frá netþjónum í skýjasambandi kallar fram strangari útfærslu á útilokunum, bæði varðandi notendur og netþjóna. Hins vegar kemur þetta niður á afköstum, minnkar útbreiðslu á svörum þínum og gæti valdið samhæfnivandamálum við sumar sambandsþjónustur. Að auki kemur þetta ekki í veg fyrir að aðilar sem ætla sér að ná í opinberar færslur og notendaaðganga frá þér geri það.
+        authorized_fetch_overridden_hint: Þú getur eins og er ekki breytt þessari stillingu því hún er yfirtekin af umhverfisbreytu.
+        federation_authentication: Krafa um auðkenningu í skýjasambandi
       title: Stillingar netþjóns
     site_uploads:
       delete: Eyða innsendri skrá
       destroyed_msg: Það tókst að eyða innsendingu á vefsvæði!
+    software_updates:
+      critical_update: Áríðandi - uppfærðu eins fljótt og auðið er
+      description: Mælt er með því að þú haldir Mastodon-uppsetningunni þinni uppfærðri til að vera með nýjustu lagfæringar og eiginleika. Aukinheldur er mikilvægt að halda Mastodon uppfærðu til að komast hjá öryggisveilum. Af þessum ástæðum athugar Mastodon með uppfærslur á 30 mínútna fresti og mun gera þér viðvart í samræmi við stillingar þínar á tilkynningum í tölvupósti.
+      documentation_link: Kanna nánar
+      release_notes: Útgáfuupplýsingar
+      title: Tiltækar uppfærslur
+      type: Tegund
+      types:
+        major: Aðalútgáfa
+        minor: Aukaútgáfa
+        patch: Viðgerðauppfærsla - lagfæringar og ýmsar minniháttar breytingar
+      version: Útgáfa
     statuses:
       account: Höfundur
       application: Forrit
@@ -816,6 +834,20 @@ is:
     system_checks:
       database_schema_check:
         message_html: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum. Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
+      elasticsearch_health_red:
+        message_html: Elasticsearch-klasinn er ekki í góðu standi (rauð staða), leitareiginleikar eru ekki tiltækir
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch-klasinn er ekki í góðu standi (gul staða), þú gætir viljað rannsaka málið
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch atriðaskráningin er úrelt. Þú ættir að keyra <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Skoðaðu hjálparskjölin
+        message_html: Elasticsearch-klasinn þinn er með meira en einn hnút, en Mastodon er ekki sett upp til að nota þá.
+      elasticsearch_preset_single_node:
+        action: Skoðaðu hjálparskjölin
+        message_html: Elasticsearch-klasinn þinn er með aðeins einn hnút, <code>ES_PRESET</code> ætti að vera stillt á <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Elasticsearch-kerfisatriðaskráin þín er úrelt vegna breytinga á stillingum. Þú ættir að keyra <code>tootctl search deploy --reset-chewy</code> til að uppfæra hana.
       elasticsearch_running_check:
         message_html: Gat ekki tengst við Elasticsearch-leitina. Gakktu úr skugga um að hún sé í gangi, eða gerðu leit í öllum texta óvirka
       elasticsearch_version_check:
@@ -826,6 +858,12 @@ is:
         message_html: Þú hefur ekki skilgreint neinar reglur fyrir netþjón.
       sidekiq_process_check:
         message_html: Ekkert Sidekiq-ferli er í gangi fyrir %{value} biðröð/biðraðir. Endilega athugaðu Sidekiq-uppsetninguna þína
+      software_version_critical_check:
+        action: Skoða tiltækar uppfærslur
+        message_html: Áríðandi uppfærsla Mastodon er tiltæk, uppfærðu eins fljótt og auðið er.
+      software_version_patch_check:
+        action: Skoða tiltækar uppfærslur
+        message_html: Uppfærsla með lagfæringum á Mastodon er tiltæk.
       upload_check_privacy_error:
         action: Skoðaðu hér til að fá frekari upplýsingar
         message_html: "<strong>Vefþjónninn þinn er ekki rétt stilltur. Friðhelgi notendanna þinna gæti verið í hættu.</strong>"
@@ -939,6 +977,9 @@ is:
       body: "%{target} er að áfrýja ákvörðun umsjónarmanns tekinni af %{action_taken_by} frá %{date}, sem var %{type}. Viðkomandi skrifaði:"
       next_steps: Þú getur samþykkt áfrýjunina til að afturkalla ákvörðun umsjónarmanns, eða hunsað hana.
       subject: "%{username} er að áfrýja ákvörðun umsjónarmanns tekinni á %{instance}"
+    new_critical_software_updates:
+      body: Nýjar áríðandi uppfærslur fyrir Mastodon hafa verið gefnar út, þú gætir viljað uppfæra eins fljótt og mögulegt er!
+      subject: Áríðandi Mastodon-uppfærslur eru tiltækar fyrir %{instance}!
     new_pending_account:
       body: Nákvæmari upplýsingar um nýja notandaaðganginn eru hér fyrir neðan. Þú getur samþykkt eða hafnað þessari umsókn.
       subject: Nýr notandaaðgangur er kominn til yfirferðar á %{instance} (%{username})
@@ -946,6 +987,9 @@ is:
       body: "%{reporter} hefur kært %{target}"
       body_remote: Einhver frá %{domain} hefur kært %{target}
       subject: Ný kæra vegna %{instance} (#%{id})
+    new_software_updates:
+      body: Nýjar uppfærslur fyrir Mastodon hafa verið gefnar út, þú gætir viljað uppfæra!
+      subject: Nýjar Mastodon-uppfærslur eru tiltækar fyrir %{instance}!
     new_trends:
       body: 'Eftirfarandi atriði þarfnast yfirferðar áður en hægt er að birta þau opinberlega:'
       new_trending_links:
@@ -1436,6 +1480,7 @@ is:
     update:
       subject: "%{name} breytti færslu"
   notifications:
+    administration_emails: Kerfisstjórnunartilkynningar í tölvupósti
     email_events: Atburðir fyrir tilkynningar í tölvupósti
     email_events_hint: 'Veldu þá atburði sem þú vilt fá tilkynningar í tölvupósti þegar þeir koma upp:'
     other_settings: Aðrar stillingar varðandi tilkynningar
@@ -1479,6 +1524,15 @@ is:
     other: Annað
     posting_defaults: Sjálfgefin gildi við gerð færslna
     public_timelines: Opinberar tímalínur
+  privacy:
+    hint_html: "<strong>Sérsníddu hvernig þú vilt að finna megi notandasnið þitt og færslur.</strong> Ýmsir eiginleikar í Mastodon geta hjálpað þér að ná til breiðari áheyrendahóps, séu þeir virkjaðir. Taktu þér tíma til að yfirfara þessar stillingar svo að þær henti þér."
+    privacy: Gagnaleynd
+    privacy_hint_html: Stýrðu því hve miklar upplýsingar þú birtir sem gætu gagnast öðrum. Fólk uppgötvar áhugaverða notendur og sniðug forrit með því að skoða hvað annað fólk fylgist með og hvaða forrit það notar til að birta færslur, en hinsvegar er þér frjálst að halda þessu leyndu.
+    reach: Útbreiðsla
+    reach_hint_html: Stýrðu hvort annað fólk geti fundið þig og fylgst með þér. Viltu að færslur frá þér birtist á Kanna-skjánum? Viltu að annað fólk sjái þigþar sem mælt er með hverjum hægt sé að fylgjast með? Viltu samþykkja alla nýja fylgjendur sjálfkrafa, eða viltu stýra því fyrir hvern og einn?
+    search: Leit
+    search_hint_html: Stýrðu hvernig hægt sé að finna þig. Viltu að fólk finni þig út frá því sem þú hefur birt opinberlega? Viltu að fólk utan Mastodon geti fundið notandasniðið þitt þegar það leitar á vefnum? Athugaðu að ekki er hægt að tryggja algjöra útilokun frá öllum leitarvélum þegar um opinberlega birtar upplýsingar er að ræða.
+    title: Gagnaleynd og útbreiðsla
   privacy_policy:
     title: Persónuverndarstefna
   reactions:
@@ -1688,6 +1742,11 @@ is:
       default: "%d. %b, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%e. %b. %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Notkunarkvóti þýðingaþjónustunnar fyrir netþjóninn er uppurinn.
+      too_many_requests: Það hafa verið of margar beiðnir á þýðingaþjónustuna að undanförnu.
   two_factor_authentication:
     add: Bæta við
     disable: Gera óvirkt

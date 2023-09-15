@@ -309,6 +309,7 @@ pt-PT:
       unpublish: Anular publicação
       unpublished_msg: Comunicado correctamente retirado de publicação!
       updated_msg: Comunicado correctamente actualizado!
+    critical_update_pending: Atualização crítica pendente
     custom_emojis:
       assign_category: Atribuir categoria
       by_domain: Domínio
@@ -366,7 +367,7 @@ pt-PT:
       sources: Origem de inscrições
       space: Utilização do espaço
       title: Painel de controlo
-      top_languages: Principais línguas activas
+      top_languages: Principais idiomas activos
       top_servers: Servidores mais activos
       website: Página na teia
     disputes:
@@ -459,7 +460,7 @@ pt-PT:
       no_file: Nenhum ficheiro selecionado
     follow_recommendations:
       description_html: "<strong>Recomendações de quem seguir ajudam novos utilizadores a encontrar conteúdo interessante rapidamente.</strong>. Quando um utilizador não interage com outros o suficiente para formar recomendações personalizadas, estas contas são recomendadas. Elas são recalculadas diariamente a partir de uma mistura de contas com mais atividade recente e maior número de seguidores locais para um determinado idioma."
-      language: Para a língua
+      language: Para o idioma
       status: Estado
       suppress: Suprimir recomendação de contas a seguir
       suppressed: Suprimida
@@ -499,7 +500,7 @@ pt-PT:
         instance_accounts_measure: contas armazenadas
         instance_followers_measure: nossos seguidores lá
         instance_follows_measure: os seus seguidores aqui
-        instance_languages_dimension: Liderança de línguas
+        instance_languages_dimension: Idiomas mais populares
         instance_media_attachments_measure: anexos de media armazenados
         instance_reports_measure: denúncias sobre eles
         instance_statuses_measure: publicações armazenadas
@@ -770,10 +771,27 @@ pt-PT:
           approved: Registo sujeito a aprovação
           none: Ninguém se pode registar
           open: Qualquer pessoa se pode registar
+      security:
+        authorized_fetch: Exigir autenticação de servidores federados
+        authorized_fetch_hint: Exigir autenticação de servidores federados permite uma aplicação mais rigorosa de bloqueios tanto ao nível do utilizador como do servidor. No entanto, isso é feito à custa de uma diminuição de desempenho, reduz o alcance das suas respostas e pode introduzir problemas de compatibilidade com alguns serviços federados. Além disso, isso não impede os atores mais empenhados de aceder às suas publicações e contas públicas.
+        authorized_fetch_overridden_hint: Atualmente não pode alterar esta configuração porque ela é substituída por uma variável de ambiente.
+        federation_authentication: Imposição de autenticação da federação
       title: Definições do servidor
     site_uploads:
       delete: Eliminar arquivo carregado
       destroyed_msg: Envio de sítio na teia correctamente eliminado!
+    software_updates:
+      critical_update: Crítico — por favor, atualize rapidamente
+      description: Recomenda-se manter a instalação do Mastodon atualizada para beneficiar das funcionalidades e correções mais recentes. Além disso, por vezes é fundamental actualizar o Mastodon de forma atempada para evitar problemas de segurança. Por estes motivos, o Mastodon procura por atualizações a cada 30 minutos e envia-lhe uma notificação de acordo com suas preferências de notificação por e-mail.
+      documentation_link: Saber mais
+      release_notes: Notas de lançamento
+      title: Atualizações disponíveis
+      type: Tipo
+      types:
+        major: Versão principal
+        minor: Versão menor
+        patch: Versão de atualização — correções de problemas e alterações fáceis de aplicar
+      version: Versão
     statuses:
       account: Autor
       application: Aplicação
@@ -786,7 +804,7 @@ pt-PT:
       favourites: Marcadores
       history: Histórico de versões
       in_reply_to: A responder a
-      language: Língua
+      language: Idioma
       media:
         title: Media
       metadata: Metadados
@@ -814,6 +832,20 @@ pt-PT:
     system_checks:
       database_schema_check:
         message_html: Há migrações de base de dados pendentes. Queira executá-las, para garantir que a aplicação se comporta como o esperado
+      elasticsearch_health_red:
+        message_html: O cluster elasticsearch não está de boa saúde (estado vermelho), as funcionalidades de pesquisa não estão disponíveis
+      elasticsearch_health_yellow:
+        message_html: O cluster elasticsearch não está de boa saúde (estado amarelo), pode querer investigar o motivo
+      elasticsearch_index_mismatch:
+        message_html: Os mapeamentos elasticsearch estão desatualizados. Por favor, execute <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Ver a documentação
+        message_html: O seu cluster elasticsearch tem mais de um nó, mas o Mastodon não está configurado para os usar.
+      elasticsearch_preset_single_node:
+        action: Ver documentação
+        message_html: O seu cluster elasticsearch tem apenas um nó, <code>ES_PRESET</code> deve ser configurado para <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: O seu índice de sistema elasticsearch está desatualizado devido a uma mudança de configuração. Por favor, execute <code>tootctl search deploy --reset-chewy</code> para o atualizar.
       elasticsearch_running_check:
         message_html: Não foi possível conectar ao Elasticsearch. Por favor, verifique se está em execução, ou desabilite a pesquisa de texto completo
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ pt-PT:
         message_html: Não definiu nenhuma regra para a instância.
       sidekiq_process_check:
         message_html: Nenhum processo Sidekiq em execução para a(s) fila(s) %{value}. Reveja a configuração do seu Sidekiq
+      software_version_critical_check:
+        action: Ver atualizações disponíveis
+        message_html: Está disponível uma atualização crítica do Mastodon. Por favor, atualize assim que possível.
+      software_version_patch_check:
+        action: Ver atualizações disponíveis
+        message_html: Está disponível uma atualização do Mastodon com correções de problemas.
       upload_check_privacy_error:
         action: Verifique aqui para mais informações
         message_html: "<strong>O seu servidor web está mal configurado. A privacidade dos seus utilizadores está em risco.</strong>"
@@ -877,7 +915,7 @@ pt-PT:
         current_score: Pontuação atual %{score}
         dashboard:
           tag_accounts_measure: utilizadores únicos
-          tag_languages_dimension: Liderança de línguas
+          tag_languages_dimension: Idiomas mais populares
           tag_servers_dimension: Topo de servidores
           tag_servers_measure: servidores diferentes
           tag_uses_measure: utilizações totais
@@ -937,6 +975,9 @@ pt-PT:
       body: "%{target} está a recorrer de uma decisão de moderação de %{action_taken_by} a %{date}, que consistiu em %{type}. Escreveu:"
       next_steps: Pode aprovar o recurso para reverter a decisão de moderação, ou ignorá-lo.
       subject: "%{username} está a recorrer da decisão de moderação em %{instance}"
+    new_critical_software_updates:
+      body: Foram lançadas novas versões críticas do Mastodon. Pode querer atualizar assim que possível!
+      subject: Estão disponíveis atualizações críticas do Mastodon para %{instance}!
     new_pending_account:
       body: Abaixo, estão os pormenores da nova conta. Pode aprovar ou rejeitar esta inscrição.
       subject: Nova conta para revisão em %{instance} (%{username})
@@ -944,6 +985,9 @@ pt-PT:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém de %{domain} denunciou %{target}
       subject: Nova denúncia para %{instance} (#%{id})
+    new_software_updates:
+      body: Foram lançadas novas versões do Mastodon, talvez queira atualizar!
+      subject: Estão disponíveis novas versões do Mastodon para %{instance}!
     new_trends:
       body: 'Os seguintes itens precisam ser revistos antes de poderem ser exibidos publicamente:'
       new_trending_links:
@@ -1432,6 +1476,7 @@ pt-PT:
     update:
       subject: "%{name} editou uma publicação"
   notifications:
+    administration_emails: Notificções administrativas por e-mail
     email_events: Eventos para notificações por e-mail
     email_events_hint: 'Selecione os casos para os quais deseja receber notificações:'
     other_settings: Outras opções de notificações
@@ -1475,6 +1520,15 @@ pt-PT:
     other: Outro
     posting_defaults: Padrões de publicação
     public_timelines: Cronologias públicas
+  privacy:
+    hint_html: "<strong>Defina como quer que o seu perfil e as suas publicações sejam encontrados.</strong> Várias funcionalidades no Mastodon podem ajudar a alcançar um público mais amplo quando ativadas. Tire um momento para rever estas definições para garantir que se aplicam ao seu caso de uso."
+    privacy: Privacidade
+    privacy_hint_html: Controle quanto pretende partilhar para o benefício de outros. As pessoas descobrem perfis e aplicações interessantes navegando pelos seguidores de outras pessoas e vendo que aplicações eles usam para publicar, mas pode preferir não revelar essa informação.
+    reach: Alcance
+    reach_hint_html: Controle se quer ser descoberto e seguido por novas pessoas. Quer que as suas publicações apareçam no ecrã Explorar? Pretende que outras pessoas o vejam nas suas recomendações? Quer aceitar todos os novos seguidores automaticamente, ou ter um controlo individual sobre cada um?
+    search: Pesquisa
+    search_hint_html: Controle como deseja ser encontrado. Quer que as pessoas o encontrem com base nas suas publicações? Que pessoas fora do Mastodon encontrem o seu perfil quando pesquisarem na web? Note que a exclusão total de todos os motores de busca não pode ser garantida para informação pública.
+    title: Privacidade e alcance
   privacy_policy:
     title: Política de Privacidade
   reactions:
@@ -1598,7 +1652,7 @@ pt-PT:
         other: "%{count} vídeos"
     boosted_from_html: Reforçado por %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
-    default_language: A mesma língua que a da interface
+    default_language: Igual ao idioma da interface
     disallowed_hashtags:
       one: 'continha uma #etiqueta proibida: %{tags}'
       other: 'continha as hashtags proibidas: %{tags}'
@@ -1684,6 +1738,11 @@ pt-PT:
       default: "%H:%M em %d de %b de %Y"
       month: "%b de %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b de %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: A quota de uso do servidor para o serviço de tradução foi excedida.
+      too_many_requests: Houve muitos pedidos ao serviço de tradução ultimamente.
   two_factor_authentication:
     add: Adicionar
     disable: Desactivar autenticação por dois factores (2FA)

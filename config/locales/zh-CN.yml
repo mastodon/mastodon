@@ -57,7 +57,7 @@ zh-CN:
       destroyed_msg: "%{username} 的数据已被安排至删除队列"
       disable: 冻结
       disable_sign_in_token_auth: 禁用电子邮件令牌认证
-      disable_two_factor_authentication: 停用双重认证
+      disable_two_factor_authentication: 停用双因素认证
       disabled: 已冻结
       display_name: 昵称
       domain: 域名
@@ -134,7 +134,7 @@ zh-CN:
       security: 安全性
       security_measures:
         only_password: 仅密码
-        password_and_2fa: 密码和双重认证
+        password_and_2fa: 密码和双因素认证
       sensitive: 敏感内容
       sensitized: 已标记为敏感内容
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
@@ -195,7 +195,7 @@ zh-CN:
         destroy_status: 删除嘟文
         destroy_unavailable_domain: 删除不可用域名
         destroy_user_role: 销毁角色
-        disable_2fa_user: 停用双重认证
+        disable_2fa_user: 停用双因素认证
         disable_custom_emoji: 禁用自定义表情符号
         disable_sign_in_token_auth_user: 为用户禁用电子邮件令牌认证
         disable_user: 禁用用户
@@ -254,7 +254,7 @@ zh-CN:
         destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
         destroy_user_role_html: "%{name} 删除了 %{target} 角色"
-        disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双重认证"
+        disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双因素认证"
         disable_custom_emoji_html: "%{name} 停用了自定义表情 %{target}"
         disable_sign_in_token_auth_user_html: "%{name} 已为 %{target} 禁用电子邮件令牌认证"
         disable_user_html: "%{name} 将用户 %{target} 设置为禁止登录"
@@ -306,6 +306,7 @@ zh-CN:
       unpublish: 取消发布
       unpublished_msg: 公告已取消发布！
       updated_msg: 公告已成功更新！
+    critical_update_pending: 紧急更新待处理
     custom_emojis:
       assign_category: 指定类别
       by_domain: 域名
@@ -695,7 +696,7 @@ zh-CN:
         manage_taxonomies: 管理分类
         manage_taxonomies_description: 允许用户查看热门内容并更新标签设置
         manage_user_access: 管理访问
-        manage_user_access_description: 允许用户禁用其他用户的双重身份验证, 更改他们的电子邮件地址, 并重置他们的密码
+        manage_user_access_description: 允许用户禁用其他用户的双因素认证、更改他们的电子邮件地址，以及重置他们的密码
         manage_users: 管理用户
         manage_users_description: 允许用户查看其他用户的信息并执行管理操作
         manage_webhooks: 管理 Webhooks
@@ -756,10 +757,27 @@ zh-CN:
           approved: 注册时需要批准
           none: 关闭注册
           open: 开放注册
+      security:
+        authorized_fetch: 需要跨站认证
+        authorized_fetch_hint: 要求跨站验证可以更严格地执行用户级和服务器级的封锁。然而，这会产生性能上的代价，减少你的回复触达范围，并可能导致与一些联邦服务的兼容问题。此外，这并不能阻止专门的参与者获取你的公共帖子和账户。
+        authorized_fetch_overridden_hint: 由于此设置被环境变量覆盖，目前无法更改。
+        federation_authentication: 强制跨站认证
       title: 服务器设置
     site_uploads:
       delete: 删除已上传的文件
       destroyed_msg: 站点上传的文件已经成功删除！
+    software_updates:
+      critical_update: 紧急 — 请尽快更新
+      description: 建议您及时更新Mastodon实例，以便获得最新修复和功能。此外，为避免安全问题，有时候及时更新Mastodon是至关重要的。出于这些原因，Mastodon每30分钟检查一次更新，并根据您的电子邮件通知偏好向您发送通知。
+      documentation_link: 了解详情
+      release_notes: 更新日志
+      title: 可用的更新
+      type: 类型
+      types:
+        major: 大版本更新
+        minor: 小版本更新
+        patch: 补丁级更新 - 修复了错误并进行了易于应用的更改
+      version: 版本
     statuses:
       account: 作者
       application: 应用
@@ -800,6 +818,20 @@ zh-CN:
     system_checks:
       database_schema_check:
         message_html: 有待处理的数据库迁移。请运行它们以确保应用程序正常运行。
+      elasticsearch_health_red:
+        message_html: Elasticsearch 集群状态不健康（红色），搜索功能不可用
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch 集群不健康(黄色状态)，您可能想要调查原因
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch索引映射已过时。请运行<code>tootctl search deploy --only=%{value}</code>。
+      elasticsearch_preset:
+        action: 查看文档
+        message_html: 您的Elasticsearch集群有多个节点，但Mastodon未配置好使用它们。
+      elasticsearch_preset_single_node:
+        action: 查看文档
+        message_html: 您的Elasticsearch集群只有一个节点，<code>ES_PRESET</code>应该设置为<code>single_node_cluster</code>。
+      elasticsearch_reset_chewy:
+        message_html: 您的Elasticsearch系统索引已过时，可能是由于设置更改导致的。请运行<code>tootctl search deploy --reset-chewy</code>命令来更新它。
       elasticsearch_running_check:
         message_html: 无法连接到 Elasticsearch。请检查它是否正在运行，或禁用全文搜索
       elasticsearch_version_check:
@@ -810,6 +842,12 @@ zh-CN:
         message_html: 你没有定义任何服务器规则。
       sidekiq_process_check:
         message_html: "%{value} 队列未运行任何 Sidekiq 进程。请检查你的 Sidekiq 配置"
+      software_version_critical_check:
+        action: 查看可用更新
+        message_html: 有一个紧急Mastodon紧急更新可用，请尽快更新。
+      software_version_patch_check:
+        action: 查看可用更新
+        message_html: 有一个Mastodon错误修复更新可用。
       upload_check_privacy_error:
         action: 点击这里查看更多信息
         message_html: "<strong>您的网站服务器配置错误，您用户的隐私处于危险中。</strong>"
@@ -919,6 +957,9 @@ zh-CN:
       body: "%{target} 对 %{action_taken_by} 于 %{date} 做出的 %{type} 审核结果提出申诉，写道："
       next_steps: 你可以批准此申诉并撤销该审核结果，也可以忽略此申诉。
       subject: "%{username} 对 %{instance} 的审核结果提出了申诉"
+    new_critical_software_updates:
+      body: 新的紧急更新版本Mastodon已经发布，您可能希望尽快更新！
+      subject: 适用于 %{instance} 的Mastodon紧急更新已经可用。
     new_pending_account:
       body: 新账户的详细信息如下。你可以批准或拒绝此申请。
       subject: 在 %{instance} 上有新账号 (%{username}) 需要审核
@@ -926,6 +967,9 @@ zh-CN:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: 来自 %{instance} 的用户举报（#%{id}）
+    new_software_updates:
+      body: 新的 Mastodon 版本已发布，您可能想要更新！
+      subject: 适用于 %{instance} 的Mastodon版本更新已经可用！
     new_trends:
       body: 以下项目需要审核才能公开显示：
       new_trending_links:
@@ -989,7 +1033,7 @@ zh-CN:
     dont_have_your_security_key: 没有你的安全密钥？
     forgot_password: 忘记密码？
     invalid_reset_password_token: 密码重置令牌无效或已过期。请重新发起重置密码请求。
-    link_to_otp: 输入从手机中获得的两步验证代码或恢复代码
+    link_to_otp: 输入从手机中获得的双因素认证代码或恢复代码
     link_to_webauth: 使用你的安全密钥设备
     log_in_with: 通过外部服务登录
     login: 登录
@@ -1406,6 +1450,7 @@ zh-CN:
     update:
       subject: "%{name} 编辑了嘟文"
   notifications:
+    administration_emails: 管理员电子邮件通知
     email_events: 电子邮件通知事件
     email_events_hint: 选择你想要收到通知的事件：
     other_settings: 其它通知设置
@@ -1421,7 +1466,7 @@ zh-CN:
           trillion: T
   otp_authentication:
     code_hint: 输入认证应用生成的代码以确认操作
-    description_html: 如果你使用身份验证应用启用了 <strong>双重身份验证</strong>， 登录将需要用到你的手机，它将生成你需要的令牌。
+    description_html: 如果你使用身份验证应用并启用了<strong>双因素认证</strong>，登录时将需要用到你的手机，由它生成所需的令牌。
     enable: 启用
     instructions_html: "<strong>请使用 Google 身份验证器或其他的TOTP双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，在登录时，你需要输入该应用生成的代码。"
     manual_instructions: 如果你无法扫描二维码，请手动输入下列文本：
@@ -1449,6 +1494,15 @@ zh-CN:
     other: 其他
     posting_defaults: 发布默认值
     public_timelines: 公共时间轴
+  privacy:
+    hint_html: "<strong>自定义您希望如何找到您的个人资料和嘟文。</strong>启用Mastodon中的各种功能可以帮助您扩大受众范围。请花点时间查看这些设置，确保它们适合您的使用情况。"
+    privacy: 隐私
+    privacy_hint_html: 控制你愿意向他人透露多少信息。通过浏览他人的关注列表和查看他们发嘟所用的应用，人们可以发现有趣的用户和酷炫的应用，但你可能更喜欢将其隐藏起来。
+    reach: 范围
+    reach_hint_html: 控制您是否希望被新人发现和关注。您是否希望您的帖子出现在“探索”屏幕上？您是否希望其他人在关注推荐中看到您？您是想自动接受所有新粉丝，还是对每个粉丝都进行仔细的筛选？
+    search: 搜索
+    search_hint_html: 控制你希望被找到的方式。你想让人们通过你公开发布的内容来找到你吗？当在网络上搜索时，你是否希望Mastodon之外的人能够找到你的个人资料？请注意，我们无法保证完全排除所有搜索引擎对公开信息的索引。
+    title: 隐私与可达性
   privacy_policy:
     title: 隐私政策
   reactions:
@@ -1556,7 +1610,7 @@ zh-CN:
     relationships: 关注管理
     statuses_cleanup: 自动删除嘟文
     strikes: 操作记录
-    two_factor_authentication: 双重认证
+    two_factor_authentication: 双因素认证
     webauthn_authentication: 安全密钥
   statuses:
     attached:
@@ -1652,16 +1706,21 @@ zh-CN:
       default: "%Y年%m月%d日 %H:%M"
       month: "%Y年%m月"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: 服务器的翻译服务使用配额已超过限制。
+      too_many_requests: 最近向翻译服务发起的请求过多。
   two_factor_authentication:
     add: 添加
-    disable: 停用双重认证
-    disabled_success: 双重身份验证成功禁用
+    disable: 停用双因素认证
+    disabled_success: 已成功禁用双因素认证
     edit: 编辑
-    enabled: 双重认证已启用
-    enabled_success: 双重认证启用成功
+    enabled: 已启用双因素认证
+    enabled_success: 已成功启用双因素认证
     generate_recovery_codes: 生成恢复代码
     lost_recovery_codes: 如果你的手机不慎丢失，你可以使用恢复代码来重新获得对账户的访问权。如果你遗失了恢复代码，可以在此处重新生成。之前使用的恢复代码将会失效。
-    methods: 双重认证
+    methods: 双因素认证方式
     otp: 身份验证应用
     recovery_codes: 备份恢复代码
     recovery_codes_regenerated: 恢复代码重新生成成功
@@ -1685,7 +1744,7 @@ zh-CN:
       change_password: 更改密码
       details: 以下是该次登录的详细信息：
       explanation: 我们检测到有新 IP 地址登录了您的账号。
-      further_actions_html: 如果不是您自己的操作，我们建议您立即 %{action} 并启用双重验证，确保账号安全。
+      further_actions_html: 如果不是您本人操作，我们建议您立即 %{action} 并启用双因素认证，以确保账号安全。
       subject: 已有新 IP 地址访问了您的账号
       title: 新登录
     warning:
@@ -1732,7 +1791,7 @@ zh-CN:
   users:
     follow_limit_reached: 你不能关注超过 %{limit} 个人
     go_to_sso_account_settings: 转到您的身份提供商进行账户设置
-    invalid_otp_token: 输入的双重认证代码无效
+    invalid_otp_token: 输入的双因素认证代码无效
     otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
     signed_in_as: 当前登录的账户：
@@ -1758,5 +1817,5 @@ zh-CN:
     nickname_hint: 输入你的新安全密钥的昵称
     not_enabled: 你尚未启用WebAuthn
     not_supported: 此浏览器不支持安全密钥
-    otp_required: 要使用安全密钥，请先启用两步验证。
+    otp_required: 要使用安全密钥，请先启用双因素认证。
     registered_on: 注册于 %{date}

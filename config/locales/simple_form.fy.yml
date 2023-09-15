@@ -3,9 +3,13 @@ fy:
   simple_form:
     hints:
       account:
+        discoverable: Jo iepenbiere berjochten kinne útljochte wurde op ferskate plakken binnen Mastodon en jo account kin oanrekommandearre wurde oan oare brûkers.
         display_name: Jo folsleine namme of in aardige bynamme.
         fields: Jo website, persoanlike foarnammewurden, leeftiid, alles wat jo mar kwyt wolle.
+        indexable: Jo iepenbiere berjochten kinne ferskine yn de sykresultaten op Mastodon. Minsken dy’t reagearre hawwe op jo berjochten kinne se hoe dan ek trochsykje.
         note: 'Jo kinne oare minsken @fermelde of #hashtags brûke.'
+        show_collections: Minsken kinne sjen wa’t jo folgje en wa’t jo folget.
+        unlocked: Minsken kinne jo folgje sûnder dêrfoar tastimming freegje te hoegen. Wannear’t jo nije folgers hânmjittich goedkarre wolle, moatte jo dizze opsje deselektearje.
       account_alias:
         acct: Fermeld de brûkersnamme@domein fan de account fan wêr’t jo ferhúzje wolle
       account_migration:
@@ -116,6 +120,9 @@ fy:
       sessions:
         otp: 'Fier de twa-stapstagongskoade fan jo mobile telefoan ôf yn of brûk ien fan jo werstelkoaden:'
         webauthn: Wannear’t it in USB-kaai is, soargje der dan foar dat jo dizze yn de kompjûter stekke en, wannear nedich, aktivearje.
+      settings:
+        indexable: Jo profylside kin yn de sykresultaten fan Google, Bing, DuckDuckGo en oare sykmasinen ferskine.
+        show_application: Jo kinne sels altyd sjen mei hokker app jo in berjocht pleatst hawwe.
       tag:
         name: Jo kinne elk wurd mei in haadletter begjinne, om sa bygelyks de tekst mear lêsber te meitsjen
       user:
@@ -133,9 +140,13 @@ fy:
         url: Wêr’t eveneminten nei ta stjoerd wurde
     labels:
       account:
+        discoverable: Profyl en bydragen yn sykalgoritmen opnimme litte
         fields:
           name: Label
           value: Ynhâld
+        indexable: Iepenbiere berjochten opnimme yn sykresultaten
+        show_collections: Accounts dy’t jó folgje en dy’t jo fólgje op jo profyl toane
+        unlocked: Automatysk nije folgers akseptearje
       account_alias:
         acct: Mastodonadres fan it âlde account
       account_migration:
@@ -280,9 +291,18 @@ fy:
         pending_account: Wannear in nij account beoardiele wurde moat
         reblog: Wannear ien jo berjocht boost hat
         report: Nije rapportaazje yntsjinne is
+        software_updates:
+          all: Meldingen jaan foar alle fernijingen
+          critical: Allinnich meldingen foar kritike fernijingen jaan
+          label: Der is in nije ferzje fan Mastodon beskikber
+          none: Nea meldingen fan fernijingen jaan (net oanrekommandearre)
+          patch: Meldingen by bugfix-fernijingen
         trending_tag: Nije trend beoardieling fereasket
       rule:
         text: Regel
+      settings:
+        indexable: Sykmasinen jo profylside fine litte
+        show_application: App dy’t jo foar it pleatsen fan berjochten brûke toane
       tag:
         listable: Tastean dat dizze hashtag yn sykopdrachten en oanrekommandaasjes te sjen is
         name: Hashtag
@@ -303,6 +323,7 @@ fy:
         url: Einpunt-URL
     'no': Nee
     not_recommended: Net oanrekommandearre
+    overridden: Oerskreaun
     recommended: Oanrekommandearre
     required:
       mark: "*"

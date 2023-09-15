@@ -309,6 +309,7 @@ gl:
       unpublish: Retirar publicación
       unpublished_msg: Anuncio desbotado de xeito correcto!
       updated_msg: Anuncio actualizado de xeito correcto!
+    critical_update_pending: Actualización crítica pendente
     custom_emojis:
       assign_category: Atribuír categoría
       by_domain: Dominio
@@ -770,10 +771,27 @@ gl:
           approved: Precisa aprobación para rexistrarse
           none: Rexistro pechado
           open: Rexistro aberto
+      security:
+        authorized_fetch: Require autenticación desde os servidores federados
+        authorized_fetch_hint: Ao requerir autenticación desde os servidores federados activas un reforzamento das políticas de bloqueo a nivel usuaria e nivel servidor. Este proceder ten un custo no rendemento, reducindo o alcance das túas respostas e podería introducir problemas de compatibilidade con algúns servizos federados. Ademais, non evitará que contas con tal propósito vexan as túas publicacións públicas e contas.
+        authorized_fetch_overridden_hint: Actualmente non podes cambiar este axuste porque está controlado por unha variable xeral do sistema.
+        federation_authentication: Reforzo da autenticación na federación
       title: Axustes do servidor
     site_uploads:
       delete: Eliminar o ficheiro subido
       destroyed_msg: Eliminado correctamente o subido!
+    software_updates:
+      critical_update: Crítica - actualiza axiña
+      description: Recomendamos manter actualizado o teu servidor Mastodon para beneficiarte dos últimos arranxos e características. A maiores, de cando en vez hai actualizacións para evitar problemas importantes de seguridade. Debido a isto, Mastodon comproba cada 30 minutos se hai actualizacións e avisarate seguindo as túas preferencias de notificación por correo electrónico.
+      documentation_link: Saber máis
+      release_notes: Notas da versión
+      title: Actualizacións dispoñibles
+      type: Tipo
+      types:
+        major: Versión principal
+        minor: Versión intermedia
+        patch: Versión de arranxos - solución de problemas e cambios simples
+      version: Versión
     statuses:
       account: Autoría
       application: Aplicación
@@ -814,6 +832,20 @@ gl:
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
+      elasticsearch_health_red:
+        message_html: O grupo Elasticsearch non está ben (en vermello), as ferramentas de busca non están dispoñibles
+      elasticsearch_health_yellow:
+        message_html: O grupo Elasticsearch non está ben (en amarelo), deberías investigar a causa
+      elasticsearch_index_mismatch:
+        message_html: Os índices de mapeo de Elasticsearch están desactualizados. Executa <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Ver a documentación
+        message_html: O teu grupo Elasticsearch ten máis dun nodo, pero Mastodon non está configurado para usalos.
+      elasticsearch_preset_single_node:
+        action: Ver a documentación
+        message_html: O teu grupo Elasticsearch só ten un nodo, <code>ES_PRESET</code> debería configurarse como <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: O teu índice do sistema Elasticsearch está desactualizado debido a un cambio nos axustes. Executa <code>tootctl search deploy --reset-chewy</code> para actualizalo.
       elasticsearch_running_check:
         message_html: Non se puido conectar con Elasticsearch. Comproba que está funcionando, ou desactiva a busca por texto completo
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ gl:
         message_html: Non tes definidas regras para o servidor.
       sidekiq_process_check:
         message_html: Non hai procesos Sidekiq a funcionar para a cola(s) %{value}. Revisa a túa configuración para Sidekiq
+      software_version_critical_check:
+        action: Mira as actualizacións dispoñibles
+        message_html: Hai unha actualización crítica de Mastodon dispoñible, actualiza axiña.
+      software_version_patch_check:
+        action: Mira as actualizacións dispoñibles
+        message_html: Hai unha actualización de arranxo de problemas de Mastodon.
       upload_check_privacy_error:
         action: Mira aquí para máis información
         message_html: "<strong>O teu servidor non está ben configurado. A privacidade das usuarias está en risco.</strong>"
@@ -937,6 +975,9 @@ gl:
       body: "%{target} apelou a decisión de moderación de %{action_taken_by} o %{date}, de tipo %{type}. Escribiu:"
       next_steps: Podes aprobar o recurso e desfacer a decisión de moderación, ou ignoralo.
       subject: "%{username} fixo unha apelación á decisión de moderación en %{instance}"
+    new_critical_software_updates:
+      body: Publicáronse novas versións de Mastodon para arranxar problemas importantes, deberías actualizar axiña!
+      subject: Actualizacións críticas de Mastodon dispoñibles para %{instance}!
     new_pending_account:
       body: Abaixo están os detalles da conta. Podes aprobar ou rexeitar esta solicitude.
       subject: Hai unha conta nova para revisar en %{instance} (%{username})
@@ -944,6 +985,9 @@ gl:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
       subject: Nova denuncia sobre %{instance} (#%{id})
+    new_software_updates:
+      body: Publicáronse novas versións de Mastodon, convenche actualizar!
+      subject: Hai novas versións de Mastodon dispoñibles para %{instance}!
     new_trends:
       body: 'Os seguintes elementos precisan revisión antes de ser mostrados públicamente:'
       new_trending_links:
@@ -1432,6 +1476,7 @@ gl:
     update:
       subject: "%{name} editou unha publicación"
   notifications:
+    administration_emails: Notificacións de Admin por correo electrónico
     email_events: Eventos para os correos de notificación
     email_events_hint: 'Escolle os eventos sobre os que queres recibir notificacións:'
     other_settings: Outros axustes das notificacións
@@ -1475,6 +1520,15 @@ gl:
     other: Outro
     posting_defaults: Valores por omisión
     public_timelines: Cronoloxías públicas
+  privacy:
+    hint_html: "<strong>Personaliza o xeito no que queres que se atope o teu perfil e publicacións.</strong> Mastodon ten variedade de ferramentas para axudarche a acadar unha audiencia maior. Dedica un minuto a revisalas e confirma que se axustan ao teu caso persoal."
+    privacy: Privacidade
+    privacy_hint_html: Controla canto queres mostrar ás demais persoas. As usuarias descubren perfís interesantes e apps estupendas mirando a quen seguen outras persoas e vendo as apps desde as que publican, pero ti poderías querer non mostralas.
+    reach: Alcance
+    reach_hint_html: Indica o xeito en que queres que outras persoas poidan atoparte e seguirte. Queres aparecer na pantalla Descubrir? Queres que outras persoas poidan incluirte entre as súas recomendacións de seguimento? Queres aceptar os seguimentos automáticamente, ou ter control individual sobre as solicitudes?
+    search: Buscar
+    search_hint_html: Xestiona o xeito en que poden atoparte. Queres que te atopen a través do que publicaches de xeito público? Queres que as persoas de fóra de Mastodon atopen o teu perfil cando fan buscas na web? Por favor, ten en conta que a exclusión total de todos os buscadores non se pode garantir para a información pública.
+    title: Privacidade e alcance
   privacy_policy:
     title: Política de Privacidade
   reactions:
@@ -1684,6 +1738,11 @@ gl:
       default: "%d %b, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d de %b de %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Superouse a cota de uso do servizo de tradución para todo o servidor.
+      too_many_requests: Ultimamente houbo demasiadas solicitudes ao servizo de tradución.
   two_factor_authentication:
     add: Engadir
     disable: Deshabilitar

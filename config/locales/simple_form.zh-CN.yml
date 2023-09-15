@@ -3,9 +3,13 @@ zh-CN:
   simple_form:
     hints:
       account:
+        discoverable: 您的公开帖子和个人资料可能会在Mastodon的各个领域中被推荐，您的个人资料可能会被推荐给其他用户。
         display_name: 您的全名或昵称。
         fields: 你的主页、人称代词、年龄，以及任何你想要添加的内容。
+        indexable: 您的公开嘟文可能会出现在Mastodon的搜索结果中。与您的嘟文互动过的人可能能够进行搜索并找到它们。
         note: '您可以提及 @其他人 或 #标签 。'
+        show_collections: 人们将能够浏览您的关注和追随者。您关注的人会看到您关注他们。
+        unlocked: 人们将能够在不请求批准的情况下关注您。如果您希望审核关注请求并选择接受或拒绝新的粉丝，请取消勾选此项。
       account_alias:
         acct: 指定你想要迁移过来的原账号：用户名@站点域名
       account_migration:
@@ -114,8 +118,11 @@ zh-CN:
       rule:
         text: 描述这个服务器上的用户规则或要求。尽量确保简洁、清晰易懂
       sessions:
-        otp: 输入你手机应用上生成的双重认证码，或者任意一个恢复代码：
+        otp: 输入你手机应用上生成的双因素认证代码，或者任意一个恢复代码：
         webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
+      settings:
+        indexable: 您的个人资料页面可能会出现在Google、Bing等搜索结果中。
+        show_application: 无论如何，您始终可以看到是哪个应用发布了您的嘟文。
       tag:
         name: 你只能改变字母的大小写，让它更易读
       user:
@@ -133,9 +140,13 @@ zh-CN:
         url: 事件将被发往的目的地
     labels:
       account:
+        discoverable: 在发现算法中展示您的个人资料和嘟文
         fields:
           name: 标签
           value: 内容
+        indexable: 在搜索结果中包含公共嘟文
+        show_collections: 在个人资料中显示关注和关注者
+        unlocked: 自动接受新关注者
       account_alias:
         acct: 处理旧账号
       account_migration:
@@ -185,7 +196,7 @@ zh-CN:
         max_uses: 最大使用次数
         new_password: 新密码
         note: 简介
-        otp_attempt: 双重认证代码
+        otp_attempt: 双因素认证代码
         password: 密码
         phrase: 关键词
         setting_advanced_layout: 启用高级 Web 界面
@@ -280,9 +291,18 @@ zh-CN:
         pending_account: 在有账号需要审核时，发送电子邮件提醒我
         reblog: 当有用户转嘟了我的嘟文时，发送电子邮件提醒我
         report: 新举报已提交
+        software_updates:
+          all: 通知所有更新
+          critical: 仅在有关键更新时通知
+          label: 有新的 Mastodon 版本可用
+          none: 从不通知更新（不推荐）
+          patch: 通知错误修复更新
         trending_tag: 新热门待审核
       rule:
         text: 规则
+      settings:
+        indexable: 允许搜索引擎索引个人资料页面
+        show_application: 显示您发嘟所用的应用
       tag:
         listable: 允许这个话题标签在用户目录中显示
         name: 话题标签
@@ -303,6 +323,7 @@ zh-CN:
         url: 对端 URL
     'no': 否
     not_recommended: 不推荐
+    overridden: 已覆盖
     recommended: 推荐
     required:
       mark: "*"

@@ -309,6 +309,7 @@ tr:
       unpublish: Yayından kaldır
       unpublished_msg: Duyuru başarıyla yayından kaldırıldı!
       updated_msg: Duyuru başarıyla güncellendi!
+    critical_update_pending: Kritik güncelleme bekliyor
     custom_emojis:
       assign_category: Kategori ata
       by_domain: Alan adı
@@ -770,10 +771,27 @@ tr:
           approved: Kayıt için onay gerekli
           none: Hiç kimse kayıt olamaz
           open: Herkes kaydolabilir
+      security:
+        authorized_fetch: Dağıtık sunuculardan kimlik doğrulama gerektir
+        authorized_fetch_hint: Dağıtık sunuculardan kimlik doğrulaması istemek, hem kullanıcı düzeyinde hem de sunucu düzeyinde blokların daha sıkı bir şekilde uygulanmasını sağlar. Ancak bu performans kaybına sebep olur, yanıtlarınızın erişimini azaltır ve bazı dağıtık hizmetlerle uyumluluk sorunları ortaya çıkarabilir. Ayrıca bu, özel aktörlerin herkese açık gönderilerinizi ve hesaplarınızı getirilmesini engellemez.
+        authorized_fetch_overridden_hint: Bir ortam değişkeni tarafından geçersiz kılındığı için şu anda bu ayarı değiştiremezsiniz.
+        federation_authentication: Dağıtık kimlik doğrulama uygulaması
       title: Sunucu ayarları
     site_uploads:
       delete: Yüklenen dosyayı sil
       destroyed_msg: Site yüklemesi başarıyla silindi!
+    software_updates:
+      critical_update: Kritik — lütfen hemen güncelleyin
+      description: Son düzeltme ve özelliklerden yararlanmak için Mastodon kurulumunu güncel tutmanızı öneriyoruz. Üstelik güvenlik sorunlarından kaçınmak için Mastodon'u zamanında güncellemek kritiktir. Bu nedenlerle Mastodon her 30 dakikada bir güncellemeleri denetler ve e-posta bildirim seçeneğinize göre size haber verir.
+      documentation_link: Daha fazlası
+      release_notes: Sürüm notları
+      title: Mevcut güncellemeler
+      type: Tür
+      types:
+        major: Ana sürüm
+        minor: Alt sürüm
+        patch: Yama sürümü — hata düzeltmeleri ve uygulaması kolay değişiklikler
+      version: Sürüm
     statuses:
       account: Yazar
       application: Uygulama
@@ -814,6 +832,20 @@ tr:
     system_checks:
       database_schema_check:
         message_html: Beklemede olan veritabanı güncellemeleri mevcut. Uygulamanın beklenildiği gibi çalışması için lütfen onları çalıştırın
+      elasticsearch_health_red:
+        message_html: Elasticsearch kümesi sağlıksız (kırmızı durum), arama özellikleri mevcut değil
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch kümesi sağlıksız (sarı durum), nedenini incelemek isteyebilirsiniz
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch indeks eşlemeleri artık güncel değil. Lütfen <code>tootctl search deploy --only=%{value}</code> komutunu çalıştırın
+      elasticsearch_preset:
+        action: Belgelere bakın
+        message_html: Elasticsearch kümenizin birden fazla düğümü var ama Mastodon onları kullanmak üzere yapılandırılmamış.
+      elasticsearch_preset_single_node:
+        action: Belgelere bakın
+        message_html: Elasticsearch kümenizin tek bir düğümü var, <code>ES_PRESET</code> değişkenine <code>single_node_cluster</code> değeri verilmelidir.
+      elasticsearch_reset_chewy:
+        message_html: Elasticsearch sistem indeksi, bir ayar değişikliği nedeniyle güncelliğini yitirmiş. Lütfen <code>tootctl search deploy --reset-chewy</code> komutunu çalıştırın.
       elasticsearch_running_check:
         message_html: Elasticsearch'e bağlanılamıyor. Çalıştığından emin olun veya tüm metin aramayı devre dışı bırakın
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ tr:
         message_html: Herhangi bir sunucu kuralı belirlemediniz.
       sidekiq_process_check:
         message_html: "%{value} kuyruk(lar)ı için herhangi bir Sidekiq süreci çalışmıyor. Lütfen Sidekiq yapılandırmanızı gözden geçirin"
+      software_version_critical_check:
+        action: Mevcut güncellemeleri göster
+        message_html: Kritik bir Mastodon güncellemesi var, lütfen en kısa sürede güncelleyin.
+      software_version_patch_check:
+        action: Mevcut güncellemeleri göster
+        message_html: Mastodon yama güncellemesi mevcut.
       upload_check_privacy_error:
         action: Daha fazla bilgi için buraya tıklayın
         message_html: "<strong>Web sunucunuz hatalı yapılandırılmış. Kullanıcılarınızın gizliliği tehlikede.</strong>"
@@ -937,6 +975,9 @@ tr:
       body: "%{target}, %{date} tarihinde %{action_taken_by} tarafından alınan %{type} yönetim kararına itiraz etti. Şunu yazdılar:"
       next_steps: Yönetim kararını geri almak için itirazı onaylayabilir veya itirazı görmezden gelebilirsiniz.
       subject: "%{username}, %{instance} hakkındaki bir yönetim kararına itiraz ediyor"
+    new_critical_software_updates:
+      body: Mastodon'un yeni kritik sürümleri yayınlandı, en kısa sürede güncellemek isteyebilirsiniz!
+      subject: "%{instance} için kritik Mastodon güncellemeleri mevcut!"
     new_pending_account:
       body: Yeni hesabın detayları aşağıdadır. Bu başvuruyu onaylayabilir ya da reddedebilirsiniz.
       subject: "%{instance} üzerinde gözden geçirmek için yeni hesap (%{username})"
@@ -944,6 +985,9 @@ tr:
       body: "%{reporter}, %{target} kişisini bildirdi"
       body_remote: "%{domain} alan adından birisi %{target} kişisini bildirdi"
       subject: "%{instance} için yeni şikayet (#%{id})"
+    new_software_updates:
+      body: Yeni Mastodon sürümleri yayınlandı, güncellemek isteyebilirsiniz!
+      subject: "%{instance} için yeni Mastodon sürümleri mevcut!"
     new_trends:
       body: 'Aşağıdaki öğeler herkese açık olarak gösterilmeden önce gözden geçirilmelidir:'
       new_trending_links:
@@ -1432,6 +1476,7 @@ tr:
     update:
       subject: "%{name} bir gönderiyi düzenledi"
   notifications:
+    administration_emails: Yönetici e-posta bildirimleri
     email_events: E-posta bildirimi gönderilecek etkinlikler
     email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
     other_settings: Diğer bildirim ayarları
@@ -1475,6 +1520,15 @@ tr:
     other: Diğer
     posting_defaults: Gönderi varsayılanları
     public_timelines: Genel zaman çizelgeleri
+  privacy:
+    hint_html: "<strong>Profilinizin ve gönderilerinizin nasıl bulunmasını istediğinizi yapılandırın.</strong> Mastodon'daki çeşitli özellik etkinleştirildiklerinde çok daha geniş bir izleyici kitlesine ulaşmanıza yardımcı olabilir. Durumunuza uyup uymadığını anlamak için bu ayarlara bir göz atın."
+    privacy: Gizlilik
+    privacy_hint_html: Başkalarına ne kadar bilgi göstermek istediğinizi denetleyin. İnsanlar ilginç profilleri ve havalı uygulamaları diğer kişilerin takiplerine ve gönderileri paylaştıkları uygulamalara bakarak keşfederler, ama belki de gizli tutmak isteyebilirsiniz.
+    reach: Erişim
+    reach_hint_html: Yeni insanlar tarafından ne kadar keşfedilmek ve takip edilmek istediğinizi denetleyin. Gönderilerinizin Keşfet ekranında görüntülenmesini istiyor musunuz? Başkalarının takip önerileri listesinde görünmek istiyor musunuz? Tüm yeni takipçileri otomatik olarak kabul etmek mi yoksa her bir istek üzerinden ayrıntılı denetim mi istiyorsunuz?
+    search: Ara
+    search_hint_html: Nasıl bulunmak istediğinizi denetleyin. Herkese açık gönderileriniz aracılığıyla daha fazla insanın sizi bulmasını istiyor musunuz? Mastodon dışındaki kişilerin webte arama yaptığında profilinizi bulmasını istiyor musunuz? Tüm arama motorlarından tamamen çıkmanın herkese açık bilgiler için garanti olmadığını lütfen unutmayın.
+    title: Gizlilik ve erişim
   privacy_policy:
     title: Gizlilik Politikası
   reactions:
@@ -1684,6 +1738,11 @@ tr:
       default: "%d %b %Y %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d.%m.%Y %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Çeviri hizmetinin sunucu kapsamındaki kullanım kotası aşıldı.
+      too_many_requests: Çeviri hizmetine son zamanlarda çok fazla istek yapıldı.
   two_factor_authentication:
     add: Ekle
     disable: 2FA'yı devre dışı bırak
