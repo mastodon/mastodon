@@ -1,0 +1,30 @@
+# syntax=docker/dockerfile:1.4
+
+FROM node:20-alpine
+
+ARG TZ="Etc/UTC"
+# Linux UID (user id) for the mastodon user, change with [--build-arg UID=1234]
+ARG UID="991"
+# Linux GID (group id) for the mastodon user, change with [--build-arg GID=1234]
+ARG GID="991"
+
+ENV BIND="0.0.0.0"
+
+# Creates symlink for /mastodon folder
+RUN \
+  echo "${TZ}" > /etc/localtime; \
+  groupadd -g "${GID}" mastodon; \
+  useradd -l -u "${UID}" -g "${GID}" -m -d /opt/mastodon mastodon; \
+  ln -s /opt/mastodon /mastodon;
+
+WORKDIR /opt/mastodon
+
+COPY . /opt/mastodon
+
+RUN \
+  yarn install --pure-lockfile --production --network-timeout 600000; \
+  yarn cache clean --all;
+
+USER mastodon
+
+EXPOSE 4000
