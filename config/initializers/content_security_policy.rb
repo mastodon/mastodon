@@ -4,6 +4,22 @@
 # For further information see the following documentation
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 
+def sso_host
+  return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true'
+  return unless ENV['OMNIAUTH_ONLY'] == 'true'
+  return unless Devise.omniauth_providers.length == 1
+
+  provider = Devise.omniauth_configs[Devise.omniauth_providers[0]]
+  @sso_host ||= begin
+    # using CAS
+    provider.cas_url if ENV['CAS_ENABLED'] == 'true'
+    # using SAML
+    provider.options[:idp_sso_target_url] if ENV['SAML_ENABLED'] == 'true'
+    # or using OIDC
+    ENV['OIDC_AUTH_ENDPOINT'] || (OpenIDConnect::Discovery::Provider::Config.discover!(ENV['OIDC_ISSUER']).authorization_endpoint if ENV['OIDC_ENABLED'] == 'true')
+  end
+end
+
 unless Rails.env.development?
   assets_host = Rails.configuration.action_controller.asset_host || "https://#{ENV['WEB_DOMAIN'] || ENV['LOCAL_DOMAIN']}"
   data_hosts = [assets_host]
@@ -43,7 +59,12 @@ unless Rails.env.development?
     p.worker_src      :self, :blob, assets_host
     p.connect_src     :self, :blob, :data, Rails.configuration.x.streaming_api_base_url, *data_hosts
     p.manifest_src    :self, assets_host
-    p.form_action     :self
+
+    if sso_host.present?
+      p.form_action     :self, sso_host
+    else
+      p.form_action     :self
+    end
   end
 end
 
