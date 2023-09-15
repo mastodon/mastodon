@@ -3,9 +3,13 @@ ko:
   simple_form:
     hints:
       account:
+        discoverable: 내 공개 게시물과 프로필이 마스토돈의 다양한 추천 기능에 나타날 수 있고 프로필이 다른 사용자에게 제안될 수 있습니다
         display_name: 실명 혹은 별명.
         fields: 홈페이지, 호칭, 나이, 뭐든지 적고 싶은 것들.
+        indexable: 내 공개 게시물이 마스토돈의 검색 결과에 나타날 수 있습니다. 내 게시물과 상호작용했던 사람들은 이 설정과 관계 없이 그 게시물을 검색할 수 있습니다.
         note: '남을 @mention 하거나 #hashtag 태그를 달 수 있습니다.'
+        show_collections: 사람들이 내 계정의 팔로우와 팔로워를 볼 수 있습니다. 내가 팔로우 하는 사람은 이 설정에 관계 없이 내가 팔로우 했다는 사실을 알 수 있습니다.
+        unlocked: 사람들이 승인 요청 없이 나를 팔로우 할 수 있습니다. 팔로우 요청을 심사하고 새 팔로워를 승인할지 거부할지 선택하고 싶다면 해제하세요.
       account_alias:
         acct: 이동하고자 하는 계정의 사용자이름@도메인을 설정하세요
       account_migration:
@@ -116,6 +120,9 @@ ko:
       sessions:
         otp: '휴대전화에서 생성된 이중 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
         webauthn: USB 키라면 삽입했는지 확인하고, 필요하다면 누르세요.
+      settings:
+        indexable: 내 프로필 페이지가 구글, 빙 등의 검색엔진에 표시될 수 있습니다.
+        show_application: 나 자신은 이 설정과 관계 없이 어떤 앱으로 게시물을 작성했는지 볼 수 있습니다.
       tag:
         name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
       user:
@@ -133,9 +140,13 @@ ko:
         url: 이벤트가 어디로 전송될 지
     labels:
       account:
+        discoverable: 발견하기 알고리즘에 프로필과 게시물을 추천하기
         fields:
           name: 라벨
           value: 내용
+        indexable: 공개 게시물을 검색 결과에 포함시키기
+        show_collections: 프로필에 팔로우와 팔로워 보이기
+        unlocked: 새 팔로워를 자동으로 수락하기
       account_alias:
         acct: 기존 계정의 핸들
       account_migration:
@@ -280,9 +291,18 @@ ko:
         pending_account: 새 계정이 심사가 필요할 때
         reblog: 누군가 내 게시물을 부스트 했을 때
         report: 새 신고가 접수되었을 때
+        software_updates:
+          all: 모든 업데이트에 대해 알림
+          critical: 긴급한 업데이트에 대해서만 알림
+          label: 새 마스토돈 버전이 사용 가능합니다
+          none: 업데이트에 대해 알리지 않기 (비추천)
+          patch: 버그픽스 업데이트에 대해 알림
         trending_tag: 검토해야 할 새 유행
       rule:
         text: 규칙
+      settings:
+        indexable: 검색 엔진에 프로필 페이지 기재하기
+        show_application: 어떤 앱으로 게시물을 보냈는지 표시
       tag:
         listable: 이 해시태그가 검색과 추천에 보여지도록 허용
         name: 해시태그
@@ -303,6 +323,7 @@ ko:
         url: 엔드포인트 URL
     'no': 아니요
     not_recommended: 추천하지 않음
+    overridden: 덮어씌워짐
     recommended: 추천함
     required:
       mark: "*"

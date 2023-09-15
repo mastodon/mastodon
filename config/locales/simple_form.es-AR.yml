@@ -3,9 +3,13 @@ es-AR:
   simple_form:
     hints:
       account:
+        discoverable: Tu perfil y publicaciones pueden ser destacadas o recomendadas en varias áreas de Mastodon, y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu pseudónimo.
         fields: Tu sitio web, pronombres, edad, o lo que quieras.
+        indexable: Tus mensajes públicos pueden aparecer en los resultados de la búsqueda en Mastodon. La gente que interactuó con tus mensajes puede ser capaz de buscarlos sin importar el momento.
         note: 'Podés @mencionar otras cuentas o usar #etiquetas.'
+        show_collections: La gente podrá navegar a través de tus seguidos y seguidores. Sin embargo, la gente que sigás, sabrá que lo estás haciendo.
+        unlocked: La gente podrá seguirte sin solicitar aprobación. Desmarcá si querés revisar las solicitudes de seguimiento y elegir si aceptar o rechazar nuevos seguidores.
       account_alias:
         acct: Especificá el nombredeusuario@dominio de la cuenta desde la que querés mudarte
       account_migration:
@@ -116,6 +120,9 @@ es-AR:
       sessions:
         otp: 'Ingresá el código de autenticación de dos factores generado por la aplicación en tu dispositivo, o usá uno de tus códigos de recuperación:'
         webauthn: Si es una llave USB, asegurate de insertarla y, de ser necesario, tocarla.
+      settings:
+        indexable: Tu página de perfil podría aparecer en los resultados de búsqueda en Google, Bing y otros motores de búsqueda.
+        show_application: Sin embargo, siempre podrás ver desde qué aplicación se envió tu mensaje.
       tag:
         name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
       user:
@@ -133,9 +140,13 @@ es-AR:
         url: Adónde serán enviados los eventos
     labels:
       account:
+        discoverable: Destacar perfil y mensajes en algoritmos de descubrimiento
         fields:
           name: Nombre de campo
           value: Valor de campo
+        indexable: Incluir mensajes públicos en los resultados de la búsqueda
+        show_collections: Mostrar seguidos y seguidores en el perfil
+        unlocked: Automáticamente aceptar nuevos seguidores
       account_alias:
         acct: Alias de la cuenta antigua
       account_migration:
@@ -280,9 +291,18 @@ es-AR:
         pending_account: Una nueva cuenta necesita revisión
         reblog: Una cuenta adhiere a tu mensaje
         report: Se envió una nueva denuncia
+        software_updates:
+          all: Notificar en todas las actualizaciones
+          critical: Notificar solamente sobre actualizaciones críticas
+          label: Una nueva versión de Mastodon está disponible
+          none: Nunca notificar sobre actualizaciones (no recomendado)
+          patch: Notificar sobre actualizaciones de corrección de errores
         trending_tag: Una nueva tendencia requiere revisión
       rule:
         text: Regla
+      settings:
+        indexable: Incluir la página de perfil en los motores de búsqueda
+        show_application: Mostrar desde qué aplicación enviaste un mensaje
       tag:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en las sugerencias
         name: Etiqueta
@@ -303,6 +323,7 @@ es-AR:
         url: Dirección web del punto final
     'no': 'No'
     not_recommended: No recomendado
+    overridden: Sobrescrito
     recommended: Opción recomendada
     required:
       mark: "*"

@@ -3,7 +3,7 @@ da:
   activerecord:
     attributes:
       poll:
-        expires_at: 截止时间
+        expires_at: Tidsfrist
         options: Valgmuligheder
       user:
         agreement: Tjenesteaftale
@@ -24,19 +24,19 @@ da:
         admin/webhook:
           attributes:
             url:
-              invalid: "'er ikke en gyldig URL"
+              invalid: er ikke en gyldig URL
         doorkeeper/application:
           attributes:
             website:
-              invalid: "'er ikke en gyldig URL"
+              invalid: er ikke en gyldig URL
         import:
           attributes:
             data:
-              malformed: er forkert udformet
+              malformed: har ugyldigt format
         status:
           attributes:
             reblog:
-              taken: af allerede eksisterende status
+              taken: af status findes allerede
         user:
           attributes:
             email:

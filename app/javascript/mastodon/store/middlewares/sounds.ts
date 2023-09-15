@@ -34,10 +34,7 @@ const play = (audio: HTMLAudioElement) => {
   void audio.play();
 };
 
-export const soundsMiddleware = (): Middleware<
-  Record<string, never>,
-  RootState
-> => {
+export const soundsMiddleware = (): Middleware<unknown, RootState> => {
   const soundCache: Record<string, HTMLAudioElement> = {};
 
   void ready(() => {

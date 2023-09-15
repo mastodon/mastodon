@@ -321,6 +321,7 @@ cy:
       unpublish: Dadgyhoeddi
       unpublished_msg: Cyhoeddiad wedi'i ddad gyhoeddi'n llwyddiannus!
       updated_msg: Cyhoeddiad wedi'i ddiweddaru'n llwyddiannus!
+    critical_update_pending: Diweddariad hanfodol ar ei ffordd
     custom_emojis:
       assign_category: Neilltuo categori
       by_domain: Parth
@@ -826,10 +827,27 @@ cy:
           approved: Mae angen cymeradwyaeth i gofrestru
           none: Nid oes neb yn gallu cofrestru
           open: Gall unrhyw un cofrestru
+      security:
+        authorized_fetch: Mae angen dilysu gan weinyddion ffederal
+        authorized_fetch_hint: Mae gofyn am ddilysiad gan weinyddion ffederal yn galluogi gorfodi llymach ar flociau lefel defnyddiwr a lefel gweinydd. Fodd bynnag, daw hyn ar gost perfformiad arafach, mae'n lleihau cyrhaeddiad eich atebion, a gall gyflwyno materion cydnawsedd gyda rhai gwasanaethau ffederal. Yn ogystal, ni fydd hyn yn atal actorion ymroddedig rhag estyn eich postiadau a'ch cyfrifon cyhoeddus.
+        authorized_fetch_overridden_hint: Nid oes modd i chi newid y gosodiad hwn ar hyn o bryd oherwydd ei fod yn cael ei ddiystyru gan newidyn amgylcheddol.
+        federation_authentication: Gorfodi dilysu ffederasiwn
       title: Gosodiadau gweinydd
     site_uploads:
       delete: Dileu ffeil sydd wedi'i llwytho
       destroyed_msg: Llwytho i fyny i'r wefan wedi'i dileu yn llwyddiannus!
+    software_updates:
+      critical_update: Hanfodol - diweddarwch yn fuan
+      description: Rydym yn argymell eich bod yn cadw'ch gosodiad Mastodon yn gyfredol i elwa o'r atgyweiriadau a'r nodweddion diweddaraf. Hefyd, weithiau mae'n hanfodol diweddaru Mastodon yn amserol er mwyn osgoi materion diogelwch. Am y rhesymau hyn, mae Mastodon yn gwirio am ddiweddariadau bob 30 munud, a bydd yn eich hysbysu yn unol â'ch dewisiadau hysbysu e-bost.
+      documentation_link: Dysgu rhagor
+      release_notes: Nodiadau ryddhau
+      title: Diweddariadau ar gael
+      type: Math
+      types:
+        major: Rhyddhad mawr
+        minor: Ryddhad llai
+        patch: Rhyddhad cywiro - cywiriadau gwallau a newidiadau hawdd eu gosod
+      version: Fersiwn
     statuses:
       account: Awdur
       application: Rhaglen
@@ -870,6 +888,20 @@ cy:
     system_checks:
       database_schema_check:
         message_html: Mae mudo cronfa ddata ar fin digwydd. Rhedwch nhw i sicrhau bod y rhaglen yn ymddwyn yn ôl y disgwyl
+      elasticsearch_health_red:
+        message_html: Mae clwstwr Elasticsearch yn afiach (statws coch), nid yw'r nodweddion chwilio ar gael
+      elasticsearch_health_yellow:
+        message_html: Mae clwstwr Elasticsearch yn afiach (statws melyn), efallai y byddwch am ymchwilio i'r rheswm
+      elasticsearch_index_mismatch:
+        message_html: Mae mapiau mynegai Elasticsearch yn hen ffasiwn. Rhedwch <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Darllenwch y ddogfennaeth
+        message_html: Mae gan eich clwstwr Elasticsearch fwy nag un nod, ond nid yw Mastodon wedi'i ffurfweddu i'w defnyddio.
+      elasticsearch_preset_single_node:
+        action: Darllenwch y ddogfennaeth
+        message_html: Dim ond un nod sydd gan eich clwstwr Elasticsearch, mae angen gosod <code>ES_PRESET</code> i <code>single_node_cluster</code> .
+      elasticsearch_reset_chewy:
+        message_html: Mae eich mynegai system Elasticsearch wedi dyddio oherwydd newid gosodiad. Rhedwch chwiliad <code>tootctl search deploy --reset-chewy</code> i'w ddiweddaru.
       elasticsearch_running_check:
         message_html: Methu cysylltu ag Elasticsearch. Gwiriwch ei fod yn rhedeg, neu analluogwch chwiliad testun llawn
       elasticsearch_version_check:
@@ -880,6 +912,12 @@ cy:
         message_html: Nid ydych wedi diffinio unrhyw reolau gweinydd.
       sidekiq_process_check:
         message_html: Does dim proses Sidekiq yn rhedeg ar gyfer y ciw(iau) %{value}. Adolygwch eich ffurfweddiad Sidekiq
+      software_version_critical_check:
+        action: Gweld y diweddariadau sydd ar gael
+        message_html: Mae diweddariad hanfodol Mastodon ar gael, diweddarwch cyn gynted â phosibl.
+      software_version_patch_check:
+        action: Gweld y diweddariadau sydd ar gael
+        message_html: Mae diweddariad cywiro gwal Mastodon ar gael.
       upload_check_privacy_error:
         action: Ewch yma am fwy o wybodaeth
         message_html: "<strong>Mae eich gweinydd gwe wedi'i gam ffurfweddu.. Mae preifatrwydd eich defnyddwyr mewn perygl.</strong>"
@@ -1009,6 +1047,9 @@ cy:
       body: 'Mae %{target} yn apelio yn erbyn penderfyniad cymedroli gan %{action_taken_by} ar %{date}, sef %{type}. Mae nhw''n dweud:'
       next_steps: Gallwch gymeradwyo'r apêl i ddadwneud y penderfyniad cymedroli, neu ei anwybyddu.
       subject: Mae %{username} yn apelio yn erbyn penderfyniad cymedroli ar %{instance}
+    new_critical_software_updates:
+      body: Mae fersiynau hanfodol newydd o Mastodon wedi'u rhyddhau, efallai y byddwch am eu diweddaru cyn gynted â phosibl!
+      subject: Mae diweddariadau hanfodol Mastodon ar gael ar gyfer %{instance}!
     new_pending_account:
       body: Mae manylion y cyfrif newydd yn isod. Gallwch gymeradwyo neu wrthod y cais hwn.
       subject: Cyfrif newydd i'w adolygu ar %{instance} (%{username})
@@ -1016,6 +1057,9 @@ cy:
       body: Mae %{reporter} wedi adrodd am %{target}
       body_remote: Mae rhywun o %{domain} wedi adrodd am %{target}
       subject: Adroddiad newydd am %{instance} (#%{id})
+    new_software_updates:
+      body: Mae fersiynau Mastodon newydd wedi'u rhyddhau, efallai y byddwch am eu diweddaru!
+      subject: Mae fersiynau Mastodon newydd ar gael ar gyfer %{instance}!
     new_trends:
       body: 'Mae angen adolygu''r eitemau canlynol cyn y mae modd eu dangos yn gyhoeddus:'
       new_trending_links:
@@ -1536,6 +1580,7 @@ cy:
     update:
       subject: Golygodd %{name} bostiad
   notifications:
+    administration_emails: Hysbysiadau e-bost gweinyddol
     email_events: Digwyddiadau ar gyfer hysbysiadau e-bost
     email_events_hint: 'Dewiswch ddigwyddiadau yr ydych am dderbyn hysbysiadau ar eu cyfer:'
     other_settings: Gosodiadau hysbysiadau arall
@@ -1579,6 +1624,15 @@ cy:
     other: Arall
     posting_defaults: Rhagosodiadau postio
     public_timelines: Ffrydiau cyhoeddus
+  privacy:
+    hint_html: "<strong>Cyfaddaswch sut rydych chi am i'ch proffil a'ch postiadau gael eu canfod.</strong> Gall amrywiaeth o nodweddion yn Mastodon eich helpu i gyrraedd cynulleidfa ehangach pan fyddwch wedi'ch eu galluogi. Cymerwch eiliad i adolygu'r gosodiadau hyn i sicrhau eu bod yn cyd-fynd â'ch pwrpas defnydd."
+    privacy: Preifatrwydd
+    privacy_hint_html: Rheolwch faint rydych chi am ei ddatgelu er budd eraill. Mae pobl yn darganfod proffiliau diddorol ac apiau difyr trwy bori trwy ddilynwyr pobl eraill a gweld o ba apiau maen nhw'n postio, ond efallai y byddai'n well gennych ei gadw'n gudd.
+    reach: Ymestyn
+    reach_hint_html: Rheolwch a ydych am gael eich darganfod a'ch dilyn gan bobl newydd. Ydych chi am i'ch postiadau ymddangos ar y sgrin Archwilio? Ydych chi am i bobl eraill eich gweld chi yn eu hargymhellion dilynol? Ydych chi am dderbyn pob dilynwr newydd yn awtomatig, neu gael rheolaeth gronynnog dros bob un?
+    search: Chwilio
+    search_hint_html: Rheolwch sut rydych chi am gael eich darganfod. Ydych chi am i bobl ddod o hyd i chi yn ôl yr hyn rydych chi wedi'i bostio'n gyhoeddus amdano? Ydych chi eisiau i bobl y tu allan i Mastodon ddod o hyd i'ch proffil wrth chwilio'r we? Cofiwch nad oes modd gwarantu gwaharddiad llwyr o bob peiriant chwilio ynghylch gwybodaeth gyhoeddus.
+    title: Preifatrwydd a chyrhaeddiad
   privacy_policy:
     title: Polisi preifatrwydd
   reactions:
@@ -1656,7 +1710,7 @@ cy:
       ios: iOS
       kai_os: KaiOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       unknown_platform: Platfform Anhysbys
       windows: Windows
       windows_mobile: Windows Mobile
@@ -1751,7 +1805,7 @@ cy:
     show_more: Dangos mwy
     show_newer: Dangos y diweddaraf
     show_older: Dangos pethau hŷn
-    show_thread: Dangos trywydd
+    show_thread: Dangos edefyn
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Uniongyrchol
@@ -1812,6 +1866,10 @@ cy:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+  translation:
+    errors:
+      quota_exceeded: Aethpwyd y tu hwnt i gwota defnydd y gweinydd cyfan ar gyfer y gwasanaeth cyfieithu.
+      too_many_requests: Bu gormod o geisiadau i'r gwasanaeth cyfieithu yn ddiweddar.
   two_factor_authentication:
     add: Ychwanegu
     disable: Analluogi 2FA

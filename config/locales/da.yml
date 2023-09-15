@@ -109,7 +109,7 @@ da:
       previous_strikes_description_html:
         one: Denne konto har <strong>en</strong> anmeldelse.
         other: Denne konto har <strong>%{count}</strong> anmeldelser.
-      promote: Forfrem
+      promote: Fremhæv
       protocol: Protokol
       public: Offentlig
       push_subscription_expires: PuSH-abonnement udløber
@@ -309,6 +309,7 @@ da:
       unpublish: Afpublicér
       unpublished_msg: Bekendtgørelsen er afpubliceret!
       updated_msg: Bekendtgørelsen er opdateret!
+    critical_update_pending: Kritisk opdatering afventer
     custom_emojis:
       assign_category: Tildel kategori
       by_domain: Domæne
@@ -770,10 +771,27 @@ da:
           approved: Tilmeldingsgodkendelse kræves
           none: Ingen kan tilmelde sig
           open: Alle kan tilmelde sig
+      security:
+        authorized_fetch: Kræver godkendelse fra fødererede servere
+        authorized_fetch_hint: Krav om godkendelse fra fødererede servere muliggør strengere håndhævelse af både bruger- og serverniveaublokeringer. Omkostningen er dog en ydelsesreduktion, reduceret udstrækning af dine svar samt potentielle kompatibilitetsproblemer med visse fødererede tjenester. Derudover vil dette ikke hindre målrettede aktører i at hente dine offentlige indlæg og konti.
+        authorized_fetch_overridden_hint: Da denne indstilling tilsidesættes af en miljøvariabel, kan du p.t. ikke ændre den.
+        federation_authentication: Håndhævelse af føderationsgodkendelse
       title: Serverindstillinger
     site_uploads:
       delete: Slet uploadet fil
       destroyed_msg: Websteds-upload blev slettet!
+    software_updates:
+      critical_update: Kritisk – opdatér hurtigst muligt
+      description: Det anbefales at holde Mastodon-installationen opdateret for at drage fordel af de seneste fejlrettelser og funktioner. Undertiden kan det desuden være kritisk at opdatere Mastodon rettidigt for at undgå sikkerhedsproblemer. Mastodon tjekker derfor for opdateringer hvert 30. minut og notificerer dig jf. dine e-mailnotifikationsindstillinger.
+      documentation_link: Læs mere
+      release_notes: Udgivelsesnoter
+      title: Tilgængelige opdateringer
+      type: Type
+      types:
+        major: Større version
+        minor: Mindre version
+        patch: Patch-version – fejlrettelser og ukomplicerede ændringer
+      version: Version
     statuses:
       account: Forfatter
       application: Applikation
@@ -814,6 +832,20 @@ da:
     system_checks:
       database_schema_check:
         message_html: Databasemigreringer afventer. Kør dem for at sikre den forventede adfærd fra applikationen
+      elasticsearch_health_red:
+        message_html: Elasticsearch-klynge er syg (rød status), søgefunktioner er utilgængelige
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch klynge er syg (gul status), man ønsker måske at tjekke årsagen
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch-indekseringer er forældede. Kør <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Se dokumentation
+        message_html: Dit Elasticsearch-cluster har mere end én node, men Mastodon er ikke konfigureret til at bruge dem.
+      elasticsearch_preset_single_node:
+        action: Se dokumentation
+        message_html: Dit Elasticsearch-cluster har kun én node, <code>ES_PRESET</code> skal sættes til <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Elasticsearch-systemindekset er forældet grundet en indstillingsændring. Kør <code>tootctl search deploy --reset-chewy</code> for at opdatere det.
       elasticsearch_running_check:
         message_html: Kunne ikke oprette forbindelse til Elasticsearch. Tjek, at den kører, eller deaktivér fuldtekstsøgning
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ da:
         message_html: Ingen serverregler defineret.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-proces kører for %{value}-kø(er). Gennemgå Sidekiq-opsætningen
+      software_version_critical_check:
+        action: Se tilgængelige opdateringer
+        message_html: En kritisk Mastodon-opdatering er tilgængelig. Opdatér hurtigst muligt.
+      software_version_patch_check:
+        action: Se tilgængelige opdateringer
+        message_html: En Mastodon-fejlrettelsesopdatering er tilgængelig.
       upload_check_privacy_error:
         action: Tjek her for flere oplysninger
         message_html: "<strong>Webserveren er fejlopsat. Brugernes fortrolighed er i fare.</strong>"
@@ -937,6 +975,9 @@ da:
       body: "%{target} appellerer en moderationsbeslutning fra %{action_taken_by} pr. %{date} om at %{type}. Vedkommende skrev:"
       next_steps: Appellen kan godkendes for at fortryde moderationsbeslutningen eller den ignoreres.
       subject: "%{username} appellerer en moderationsbeslutning for %{instance}"
+    new_critical_software_updates:
+      body: Nye, kritiske Mastodon--versioner er udgivet. Opdatering bør ske hurtigst muligt!
+      subject: Kritiske Mastodon-opdateringer er tilgængelige til %{instance}!
     new_pending_account:
       body: Detaljerne for den nye konto fremgår nedenfor. Du kan godkende eller afvise denne ansøgning.
       subject: Ny konto til gennemgang på %{instance} (%{username})
@@ -944,6 +985,9 @@ da:
       body: "%{reporter} har anmeldt %{target}"
       body_remote: Nogen fra %{domain} har anmeldt %{target}
       subject: Ny anmeldelse for %{instance} (#%{id})
+    new_software_updates:
+      body: Nye Mastodon-versioner er udgivet. Opgradering bør overvejes!
+      subject: Nye Mastodon-versioner er tilgængelige til %{instance}!
     new_trends:
       body: 'Flg. emner kræver revision, inden de kan vises offentligt:'
       new_trending_links:
@@ -1071,8 +1115,8 @@ da:
       invalid_signature: er ikke en gylidig Ed25519-signatur
   date:
     formats:
-      default: "%b %d, %Y"
-      with_month_name: "%B %d, %Y"
+      default: "%d. %b %Y"
+      with_month_name: "%d. %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
@@ -1163,7 +1207,7 @@ da:
       date: Dato
       download: Download dit arkiv
       hint_html: Du kan anmode om et arkiv af dine <strong>trut og oplagt medie</strong>. Den eksporterede data vil være i ActivityPub formattet, læseligt af enhvert kompatibelt program. Du kan anmode om et arkiv én gang om ugen.
-      in_progress: Kompilerer dit arkiv...
+      in_progress: Forbereder dit arkiv...
       request: Anmod om dit arkiv
       size: Størrelse
     blocks: Du blokerer
@@ -1323,7 +1367,7 @@ da:
     table:
       expires_at: Udløber
       uses: Benyttelser
-    title: Invitere personer
+    title: Invitér personer
   lists:
     errors:
       limit: Maks. listeantal nået
@@ -1432,6 +1476,7 @@ da:
     update:
       subject: "%{name} redigerede et indlæg"
   notifications:
+    administration_emails: Admin e-mailnotifikationer
     email_events: Begivenheder for e-mailnotifikationer
     email_events_hint: 'Vælg begivenheder, for hvilke notifikationer skal modtages:'
     other_settings: Andre notifikationsindstillinger
@@ -1475,6 +1520,15 @@ da:
     other: Andet
     posting_defaults: Standarder for indlæg
     public_timelines: Offentlige tidslinjer
+  privacy:
+    hint_html: "<strong>Tilpas hvordan din profil og dine indlæg kan findes.</strong> En række funktioner i Mastodon kan hjælpe dig med at nå ud til et bredere publikum, hvis du aktiverer dem. Tjek indstillingerne herunder for at sikre, at de passer til dit brugsscenarie."
+    privacy: Privatliv
+    privacy_hint_html: Styr, hvor meget der ønskes synliggjort til gavn for andre. Folk finder interessante profiler og apps ved at tjekke andres følgere ud, samt se hvilke apps de sender fra, men dine præferencer ønskes muligvis ikke synliggjort.
+    reach: Udbredelse
+    reach_hint_html: Indstil om du vil blive opdaget og fulgt af nye mennesker. Ønsker du, at dine indlæg skal vises på Udforsk-siden? Ønsker du, at andre skal se dig i deres følg-anbefalinger? Ønsker du at acceptere alle nye følgere automatisk, eller vil du have detaljeret kontrol over hver og en?
+    search: Søg
+    search_hint_html: Indstil hvordan du vil findes. Ønsker du, at folk skal finde dig gennem hvad du har skrevet offentligt? Vil du have folk udenfor Mastodon til at finde din profil, når de søger på nettet? Vær opmærksom på, at det ikke kan garanteres at dine offentlige indlæg er udelukket fra alle søgemaskiner.
+    title: Fortrolighed og udbredelse
   privacy_policy:
     title: Privatlivspolitik
   reactions:
@@ -1681,9 +1735,14 @@ da:
     mastodon-light: Mastodon (lyst)
   time:
     formats:
-      default: "%a %d %b %Y, %H:%M"
+      default: "%d. %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d. %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Serverens forbrugskvote hos oversættelsestjenesten er opbrugt.
+      too_many_requests: Oversættelsestjenesten har på det seneste haft for mange forespørgsler.
   two_factor_authentication:
     add: Tilføj
     disable: Deaktivér 2FA
@@ -1714,7 +1773,7 @@ da:
       subject: Dit arkiv er klar til download
       title: Arkiv download
     suspicious_sign_in:
-      change_password: skift din adgangskode
+      change_password: ændrer din adgangskode
       details: 'Her er nogle detaljer om login-forsøget:'
       explanation: Indlogning på din konto fra en ny IP-adresse detekteret.
       further_actions_html: Hvis dette ikke var dig, anbefaler vi, at du %{action} med det samme og aktiverer to-faktor godkendelse for at holde din konto sikker.
@@ -1772,9 +1831,9 @@ da:
     extra_instructions_html: <strong>Tip:</strong> Linket på din hjemmeside kan være usynligt. Den vigtige del er <code>rel="me"</code> , som forhindrer impersonation på websteder med brugergenereret indhold. Du kan endda bruge et <code>link</code> tag i overskriften på siden i stedet for <code>a</code>, men HTML skal være tilgængelig uden at udføre JavaScript.
     here_is_how: Sådan gør du
     hint_html: "<strong>Bekræftelse af din identitet på Mastodon er for alle.</strong> Baseret på åbne webstandarder, nu og for evigt gratis. Alt du behøver er en personlig hjemmeside, som folk genkende dig ved. Når du linker til denne hjemmeside fra din profil, vi vil kontrollere, at hjemmesiden linker tilbage til din profil og vise en visuel indikator på det."
-    instructions_html: Kopier og indsæt koden nedenfor i HTML på din hjemmeside. Tilføj derefter adressen på dit websted i et af de ekstra felter på din profil fra fanen "Rediger profil" og gem ændringer.
+    instructions_html: Kopier og indsæt koden nedenfor i HTML på din hjemmeside. Tilføj derefter adressen på din hjemmeside i et af de ekstra felter på din profil på fanen "Redigér profil" og gem ændringer.
     verification: Bekræftelse
-    verified_links: "%d bekræftede links"
+    verified_links: Dine bekræftede links
   webauthn_credentials:
     add: Tilføj ny sikkerhedsnøgle
     create:

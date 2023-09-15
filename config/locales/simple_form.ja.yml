@@ -3,9 +3,13 @@ ja:
   simple_form:
     hints:
       account:
+        discoverable: プロフィールと公開投稿をMastodonのおすすめやハイライトとしてほかのユーザーに表示することを許可します。
         display_name: フルネーム、ハンドルネームなど
         fields: ホームページ、代名詞、年齢など何でも構いません。
+        indexable: "「公開」で送信された投稿がMastodonの検索結果にヒットするようになります。ここのチェック状態にかかわらず、ほかのユーザーにブーストやお気に入り登録された投稿はそのユーザーから検索されることがあります。"
         note: '自己紹介には #ハッシュタグ や、ほかのアカウントのユーザー名 (@user) を使用できます'
+        show_collections: チェックを入れるとフォローとフォロワーの一覧を誰でも見られるようにします。チェックをはずすとこれらの情報を非公開にできますが、あなたがフォローしているユーザーからは、あなたがフォロワーになっていることがわかります。
+        unlocked: 新しいフォロワーを自動的に承認します。チェックをはずすとフォローリクエストとその承認が必要になり、新しいフォロワーを受け入れるか拒否するかを自分で選べるようになります。
       account_alias:
         acct: 引っ越し元のユーザー名@ドメインを指定してください
       account_migration:
@@ -116,6 +120,9 @@ ja:
       sessions:
         otp: '携帯電話のアプリで生成された二要素認証コードを入力するか、リカバリーコードを使用してください:'
         webauthn: USBキーの場合は、必ず挿入し、必要に応じてタップしてください。
+      settings:
+        indexable: プロフィールがGoogleやBingなどの検索結果にヒットするようになります。
+        show_application: 自分で自分の投稿の送信元アプリを確認することは、ここのチェック状態にかかわらず可能です。
       tag:
         name: 視認性向上などのためにアルファベット大文字小文字の変更のみ行うことができます
       user:
@@ -133,9 +140,13 @@ ja:
         url: イベントの送信先
     labels:
       account:
+        discoverable: アカウントを見つけやすくする
         fields:
           name: ラベル
           value: 内容
+        indexable: 公開投稿を検索できるようにする
+        show_collections: フォローとフォロワーの一覧を開示する
+        unlocked: フォローリクエストを不要にする
       account_alias:
         acct: 引っ越し元のユーザー ID
       account_migration:
@@ -280,9 +291,18 @@ ja:
         pending_account: 新しいアカウントの承認が必要な時
         reblog: 投稿がブーストされた時
         report: 新しい通報が送信された時
+        software_updates:
+          all: すべてのアップデートを通知する
+          critical: 緊急のアップデートのみ通知する
+          label: 新しいMastodonバージョンが利用可能です
+          none: 通知しない (非推奨)
+          patch: 緊急のアップデートとバグ修正アップデートを通知する
         trending_tag: 新しいトレンドのレビューをする必要がある時
       rule:
         text: ルール
+      settings:
+        indexable: 検索エンジンからアクセスできるようにする
+        show_application: 投稿に使ったアプリを開示する
       tag:
         listable: 検索とディレクトリへの使用を許可する
         name: ハッシュタグ
@@ -303,6 +323,7 @@ ja:
         url: エンドポイントURL
     'no': いいえ
     not_recommended: 非推奨
+    overridden: 上書き済み
     recommended: おすすめ
     required:
       mark: "*"

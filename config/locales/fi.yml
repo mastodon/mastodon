@@ -309,6 +309,7 @@ fi:
       unpublish: Lopeta julkaisu
       unpublished_msg: Ilmoituksen julkaisu lopetettu!
       updated_msg: Ilmoitus päivitetty onnistuneesti!
+    critical_update_pending: Kriittinen päivitys odottaa
     custom_emojis:
       assign_category: Aseta kategoria
       by_domain: Verkkotunnus
@@ -770,10 +771,27 @@ fi:
           approved: Rekisteröinti vaatii hyväksynnän
           none: Kukaan ei voi rekisteröityä
           open: Kaikki voivat rekisteröityä
+      security:
+        authorized_fetch: Vaadi todennus yhdistetyiltä palvelimilta
+        authorized_fetch_hint: Todennuksen vaatiminen yhdistetyiltä palvelimilta mahdollistaa sekä käyttäjätason että palvelintason alueiden tiukemmat estot. Tämä tapahtuu kuitenkin suorituskyvyn kustannuksella, vähentää vastauksien ulottuvuutta ja voi luoda yhteensopivuusongelmia joidenkin yhdistettyjen palveluiden kanssa. Lisäksi, tämä ei myöskään estä muita toimijoita hakemasta julkisia viestejäsi ja tilejäsi.
+        authorized_fetch_overridden_hint: Et voi tällä hetkellä muuttaa tätä asetusta, koska se on ohitettu ympäristömuuttujalla.
+        federation_authentication: Yhdistettyjen palvelinten todentamisen täytäntöönpano
       title: Palvelimen asetukset
     site_uploads:
       delete: Poista ladattu tiedosto
       destroyed_msg: Sivuston lataus onnistuneesti poistettu!
+    software_updates:
+      critical_update: Kriittinen – päivitä viivyttelemättä
+      description: On suositeltavaa pitää Mastodon-asennus ajantasaisena ja siten hyödyntää uusimpia korjauksia sekä ominaisuuksia. Lisäksi joskus on ratkaisevan tärkeää päivittää Mastodon ajoissa tietoturvaongelmien välttämiseksi. Näistä syistä Mastodon tarkistaa päivitykset 30 minuutin välein, ja ilmoittaa sinulle sähköposti-ilmoitusasetustesi mukaisesti.
+      documentation_link: Lue lisää
+      release_notes: Julkaisutiedot
+      title: Saatavilla olevat päivitykset
+      type: Tyyppi
+      types:
+        major: Pääversiojulkaisu
+        minor: Väliversiojulkaisu
+        patch: Korjausjulkaisu — korjauksia virheisiin sekä yksinkertaisia muutoksia
+      version: Versio
     statuses:
       account: Tekijä
       application: Sovellus
@@ -814,6 +832,20 @@ fi:
     system_checks:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
+      elasticsearch_health_red:
+        message_html: Elasticsearch-klusteri on vikatilassa (punainen tila); hakuominaisuudet eivät ole käytettävissä
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch-klusteri on häiriötilassa (keltainen tila), joten suosittelemme tutkimaan syyn
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch-indeksin sidokset ovat vanhentuneet. Suorita <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Katso käyttöohjeet
+        message_html: Elasticsearch-klusterissa on useampi kuin yksi solmu, mutta Mastodonia ei ole määritetty käyttämään niitä.
+      elasticsearch_preset_single_node:
+        action: Katso käyttöohjeet
+        message_html: Elasticsearch-klusterissa on vain yksi solmu, <code>ES_PRESET</code> tulisi asettaa arvoon <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Elasticsearch-järjestelmäindeksi on vanhentunut asetusmuutoksen vuoksi. Suorita <code>tootctl search deploy --reset-chewy</code> päivittääksesi sen.
       elasticsearch_running_check:
         message_html: Ei saatu yhteyttä Elasticsearch. Tarkista, että se on käynnissä tai poista kokotekstihaku käytöstä
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ fi:
         message_html: Et ole määrittänyt mitään palvelimen sääntöä.
       sidekiq_process_check:
         message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
+      software_version_critical_check:
+        action: Näytä saatavilla olevat päivitykset
+        message_html: Kriittinen Mastodon-päivitys on saatavilla. Tee päivitys mahdollisimman ripeästi.
+      software_version_patch_check:
+        action: Näytä saatavilla olevat päivitykset
+        message_html: Mastodonin virhekorjauspäivitys on saatavilla.
       upload_check_privacy_error:
         action: Katso täältä lisätietoja
         message_html: "<strong>Verkkopalvelimesi on määritetty virheellisesti, ja käyttäjiesi yksityisyys on vaarassa.</strong>"
@@ -937,6 +975,9 @@ fi:
       body: "%{target} on valittanut valvojan päätöksestä %{action_taken_by} aika %{date}, joka oli %{type}. He kirjoittivat:"
       next_steps: Voit hyväksyä vetoomuksen ja kumota päätöksen tai jättää sen huomiotta.
       subject: "%{username} valittaa valvojan päätöksestä, joka koskee instanssia %{instance}"
+    new_critical_software_updates:
+      body: Mastodonin uusia kriittisen tärkeitä versioita on julkaistu, joten saatat haluta päivittää niin pian kuin mahdollista!
+      subject: Kriittisiä Mastodon-päivityksiä on saatavilla instanssille %{instance}!
     new_pending_account:
       body: Uuden tilin tiedot ovat alla. Voit hyväksyä tai hylätä tämän hakemuksen.
       subject: Uusi tili tarkastettavana instanssissa %{instance} (%{username})
@@ -944,6 +985,9 @@ fi:
       body: "%{reporter} on raportoinut kohteen %{target}"
       body_remote: Joku osoitteesta %{domain} on raportoinut kohteen %{target}
       subject: Uusi raportti instanssista %{instance} (nro %{id})
+    new_software_updates:
+      body: Uusia Mastodon-versioita on julkaistu, joten saatat haluta päivittää!
+      subject: Uusia Mastodon-versioita ovat saatavilla instanssille %{instance}!
     new_trends:
       body: 'Seuraavat kohteet on tarkistettava ennen kuin ne voidaan näyttää julkisesti:'
       new_trending_links:
@@ -1432,6 +1476,7 @@ fi:
     update:
       subject: "%{name} muokkasi viestiä"
   notifications:
+    administration_emails: Ylläpitäjän sähköposti-ilmoitukset
     email_events: Sähköposti-ilmoitusten tapahtumat
     email_events_hint: 'Valitse tapahtumat, joista haluat saada ilmoituksia:'
     other_settings: Muut ilmoitusasetukset
@@ -1475,6 +1520,15 @@ fi:
     other: Muut
     posting_defaults: Viestien oletusasetukset
     public_timelines: Julkiset aikajanat
+  privacy:
+    hint_html: "<strong>Määritä, kuinka haluat profiilisi ja julkaisujesi löytyvän.</strong> Mastodonissa on monia ominaisuuksia, joiden käyttöönotto voi auttaa sinua saavuttamaan laajemman yleisön. Käytä hetki aikaa tarkistaaksesi, soveltuvatko nämä vaihtoehdot tarpeisiisi."
+    privacy: Yksityisyys
+    privacy_hint_html: Määritä miten paljon muita avustavia tietoja haluat paljastaa. Käyttäjät löytävät kiinnostavia profiileja sekä hienoja sovelluksia selaillen toisten seuraamia käyttäjiä, ja näkemällä, millä sovelluksilla nämä julkaisevat. Saatat kuitenkin haluta piilottaa nämä tiedot.
+    reach: Tavoittavuus
+    reach_hint_html: Päätä, haluatko tulla uusien käyttäjien löytämäksi ja seuraamaksi. Haluatko viestiesi näkyvän Selaa-sivulla? Haluatko käyttäjien näkevän sinut heidän seuraussuosituksissaan? Haluatko hyväksyä uudet seuraajat automaattisesti vai haluatko hyväksyä jokaisen erikseen?
+    search: Haku
+    search_hint_html: Määritä, kuinka haluat tulla löydetyksi. Haluatko, että ihmiset löytävät sinut julkisten julkaisujesi perusteella? Haluatko, että ihmiset Mastodonin ulkopuolella löytävät profiilisi tehdessään hakuja verkossa? Huomioithan, ettei täyttä poisjättäytymistä kaikista hakukoneista voida taata julkisille tiedoille.
+    title: Yksityisyys ja tavoittavuus
   privacy_policy:
     title: Tietosuojakäytäntö
   reactions:
@@ -1684,6 +1738,11 @@ fi:
       default: "%d.%m.%Y klo %H.%M"
       month: "%b %Y"
       time: "%H.%M"
+      with_time_zone: "%d.%m.%Y klo %H.%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Palvelimen käännöspalvelun käyttökiintiö on ylitetty.
+      too_many_requests: Käännöspalvelulle on hiljattain esitetty liian monta pyyntöä.
   two_factor_authentication:
     add: Lisää
     disable: Poista käytöstä

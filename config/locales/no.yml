@@ -389,7 +389,7 @@
         preamble_html: Du er i ferd med å suspendere <strong>%{domain}</strong> og dens underdomener.
         remove_all_data: Dette vil fjerne alt innhold, medier og profildata for domenets kontoer på serveren din.
         stop_communication: Serveren din vil slutte å kommunisere med disse serverne.
-        title: Bekreft domene blokkering for %{domain}
+        title: Bekreft domeneblokkering for %{domain}
         undo_relationships: Dette vil angre ethvert følgeforhold mellom kontoene til disse serverne og dine.
       created_msg: Domeneblokkering blir nå behandlet
       destroyed_msg: Domeneblokkering har nå blitt angret
@@ -751,7 +751,7 @@
         title: Ikke la brukere indekseres av søkemotorer som standard
       discovery:
         follow_recommendations: Følg anbefalinger
-        preamble: Overflater interessant innhold er medvirkende til ombordstigning av nye brukere som kanskje ikke kjenner noen Mastodon. Kontroller hvordan ulike oppdagelsesfunksjoner fungerer på serveren.
+        preamble: Å fremheve interessant innhold er viktig i ombordstigning av nye brukere som kanskje ikke kjenner noen Mastodon. Kontroller hvordan ulike oppdagelsesfunksjoner fungerer på serveren.
         profile_directory: Profilkatalog
         public_timelines: Offentlige tidslinjer
         publish_discovered_servers: Publiser liste over oppdagede servere
@@ -814,6 +814,20 @@
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
+      elasticsearch_health_red:
+        message_html: Elasticsearch klyngen er usunn (rød status), søkefunksjoner er utilgjengelige
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch klyngen er usunn (gul status), du bør vurdere å undersøke årsaken
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch indeksen ("index mappings") er utdatert. Vennligst kjør <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Se dokumentasjon
+        message_html: Din Elasticsearch-klynge har mer enn en node, men Mastodon er ikke konfigurert til å bruke dem.
+      elasticsearch_preset_single_node:
+        action: Se dokumentasjon
+        message_html: Din Elasticsearch-klynge har bare en node, <code>ES_PRESET</code> bør settes til <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Din Elasticsearch systemindeks er utdatert på grunn av en forandring i innstillingene. Vennligst kjør <code>tootctl search deploy --reset-chewy</code> for å oppdatere den.
       elasticsearch_running_check:
         message_html: Kunne ikke koble til Elasticsearch. Kontroller at den kjører, eller deaktiver fulltekstsøk
       elasticsearch_version_check:
@@ -857,7 +871,7 @@
       pending_review: Avventer gjennomgang
       preview_card_providers:
         allowed: Lenker fra denne utgiveren kan "trende"
-        description_html: Dette er domener som lenker ofte deles fra på serveren din. Lenker vil ikke bli populært offentlig med mindre domenet til lenken er godkjent. Din godkjenning (eller avvisning) strekker seg til underdomener.
+        description_html: Lenker deles på serveren din, fra disse domenene. Lenker vil ikke trende offentlig med mindre domenet til lenken er godkjent. Din godkjenning (eller avvisning) gjelder også underdomener.
         rejected: Lenker fra denne utgiveren vil ikke "trende"
         title: Utgivere
       rejected: Avvist
@@ -919,8 +933,8 @@
         other: "%{count} aktiverte hendelser"
       events: Hendelser
       new: Ny webhook
-      rotate_secret: Roter hemmelighet
-      secret: Signer hemmelighet
+      rotate_secret: Roter hemmelighet (secret)
+      secret: Signeringshemmelighet (signing secret)
       status: Status
       title: Webhooks
       webhook: Webhook
@@ -935,7 +949,7 @@
         silence: for å begrense deres konto
         suspend: for å avslutte kontoen
       body: "%{target} klager på en moderasjonsbeslutning av %{action_taken_by} fra %{date}, noe som var %{type}. De skrev:"
-      next_steps: Du kan godkjenne anken for å angre på moderasjonsvedtaket eller ignorere det.
+      next_steps: Du kan godkjenne klagen for å angre på moderasjonsvedtaket eller ignorere det.
       subject: "%{username} klager på en moderasjonsbeslutning for %{instance}"
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
@@ -1026,7 +1040,7 @@
       saml: SAML
     register: Meld deg på
     registration_closed: "%{instance} tar ikke imot nye medlemmer"
-    resend_confirmation: Send bekreftelse lenke på nytt
+    resend_confirmation: Send bekreftelseslenke på nytt
     reset_password: Tilbakestill passord
     rules:
       accept: Godta
@@ -1042,13 +1056,13 @@
       email_below_hint_html: Sjekk søppelpostmappen din, eller be om en ny. Du kan korrigere e-postadressen din hvis den er feil.
       email_settings_hint_html: Klikk på lenken vi sendte deg for å bekrefte %{email}. Vi venter her.
       link_not_received: Fikk du ikke lenken?
-      new_confirmation_instructions_sent: Du vil motta en ny e-post med bekreftelse lenke om noen minutter!
+      new_confirmation_instructions_sent: Du vil motta en ny e-post med bekreftelseslenken om noen minutter!
       title: Sjekk innboksen din
     sign_in:
       preamble_html: Logg inn med ditt <strong>%{domain}</strong> brukeropplysninger. Hvis kontoen din er plassert på en annen server, vil du ikke kunne logge inn her.
       title: Logg inn på %{domain}
     sign_up:
-      manual_review: Registreringer på %{domain} går gjennom manuell gjennomgang av moderatorene våre. For å hjelpe oss med å behandle registreringen din, skriv litt om deg selv og hvorfor du vil ha en konto på %{domain}.
+      manual_review: Registreringer på %{domain} krever manuell gjennomgang av moderatorene våre. For å hjelpe oss med å behandle registreringen din, skriv litt om deg selv og hvorfor du vil ha en konto på %{domain}.
       preamble: Med en konto på denne Mastodon-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
       title: La oss få deg satt i gang på %{domain}.
     status:
@@ -1192,7 +1206,7 @@
       statuses_hint_html: Dette filteret gjelder for utvalgte enkeltinnlegg, uavhengig av om de samsvarer med søkeordene nedenfor.<a href="%{path}">Se gjennom eller fjern innlegg fra filteret.</a>.
       title: Rediger filter
     errors:
-      deprecated_api_multiple_keywords: Disse parameterne kan ikke endres fra dette programmet fordi de gjelder for mer enn ett filter nøkkelord. Bruk et nyere program eller webgrensesnittet.
+      deprecated_api_multiple_keywords: Disse parameterne kan ikke endres fra dette programmet fordi de gjelder for mer enn ett filternøkkelord. Bruk et nyere program eller webgrensesnittet.
       invalid_context: Ingen eller ugyldig kontekst angitt
     index:
       contexts: Filtre i %{contexts}
@@ -1432,6 +1446,7 @@
     update:
       subject: "%{name} redigerte et innlegg"
   notifications:
+    administration_emails: Administrators e-postvarslinger
     email_events: E-postvarslinger for hendelser
     email_events_hint: 'Velg hendelser som du vil motta varslinger for:'
     other_settings: Andre varslingsinnstillinger
@@ -1475,6 +1490,15 @@
     other: Annet
     posting_defaults: Innleggsstandarder
     public_timelines: Offentlige tidslinjer
+  privacy:
+    hint_html: "<strong>Tilpass hvordan du vil at din profil og dine innlegg skal bli funnet.</strong> En rekke funksjoner i Mastodon kan hjelpe deg med å nå et bredere publikum når de aktiverte. Ta deg et øyeblikk til å vurdere disse innstillingene for å forsikre deg om at de passer deg og ditt bruk."
+    privacy: Personvern
+    privacy_hint_html: Kontrollér hvor mye du ønsker å dele til fordel for andre. Folk oppdager interessante profiler og kule app'er ved å bla gjennom andres følgere og ved å se hvilke app'er de bruker, men du kan velge å holde det skjult.
+    reach: Rekkevidde
+    reach_hint_html: Kontrollér om du ønsker å kunne bli oppdaget og fulgt av nye personer. Vil du at dine innlegg vises på Utforsk-siden? Vil du at andre personer skal kunne se deg i sine følgeranbefalinger? Vil du akseptere alle nye følgere automatisk, eller godkjenne hver enkelt?
+    search: Søk
+    search_hint_html: Kontrollér hvordan du ønsker å bli oppdaget. Vil du at folk skal kunne finne deg basert på dine offentlige innlegg? Vil du at personer utenfor Mastodon skal kunne finne din profil når de søker på nettet? Vennligst husk at en total utestengelse fra alle søkemotorer ikke kan garanteres for offentlig informasjon.
+    title: Personvern og rekkevidde
   privacy_policy:
     title: Retningslinjer for personvern
   reactions:
@@ -1483,9 +1507,9 @@
       unrecognized_emoji: er ikke en gjenkjent emoji
   relationships:
     activity: Kontoaktivitet
-    confirm_follow_selected_followers: Er du sikker på at du vil følge utvalgte følgere?
+    confirm_follow_selected_followers: Er du sikker på at du vil følge valgte følgere?
     confirm_remove_selected_followers: Er du sikker på at du vil fjerne valgte følgere?
-    confirm_remove_selected_follows: Er du sikker på at du vil fjerne valgte følger?
+    confirm_remove_selected_follows: Er du sikker på at du vil fjerne valgte følginger?
     dormant: Dormende
     follow_failure: Kunne ikke følge noen av de valgte kontoene.
     follow_selected_followers: Følg valgte tilhengere

@@ -3,9 +3,13 @@ de:
   simple_form:
     hints:
       account:
+        discoverable: Deine öffentlichen Beiträge und dein Profil können in verschiedenen Bereichen auf Mastodon angezeigt oder empfohlen werden und dein Profil kann anderen vorgeschlagen werden.
         display_name: Dein richtiger Name oder dein Fantasiename.
         fields: Deine Website, Pronomen, dein Alter – alles, was du möchtest.
+        indexable: Deine öffentlichen Beiträge können in den Suchergebnissen auf Mastodon erscheinen. Profile, die bereits mit deinen Beiträgen interagiert haben, können deine Beiträge immer auffinden.
         note: 'Du kannst andere @Profile erwähnen oder #Hashtags verwenden.'
+        show_collections: Andere können deine Follower und „Folge ich“ durchstöbern. Profile, denen du folgst, werden immer sehen können, dass du ihnen folgst.
+        unlocked: Andere können dir folgen, ohne vorher manuell genehmigt werden zu müssen. Wenn du Follower-Anfragen manuell akzeptieren oder ablehnen möchtest, dann lass diese Einstellung deaktiviert.
       account_alias:
         acct: Gib profilname@domain des Kontos an, von dem du umziehen möchtest
       account_migration:
@@ -116,6 +120,9 @@ de:
       sessions:
         otp: 'Gib den Zwei-Faktor-Code von deinem Smartphone ein oder verwende einen deiner Wiederherstellungscodes:'
         webauthn: Wenn es sich um einen USB-Schlüssel handelt, vergewissere dich, dass du ihn einsteckst und – falls erforderlich – antippst.
+      settings:
+        indexable: Deine Profilseite kann in Suchergebnissen auf Google, Bing und anderen erscheinen.
+        show_application: Du wirst immer sehen können, über welche App dein Beitrag veröffentlicht wurde.
       tag:
         name: Du kannst nur die Groß- und Kleinschreibung der Buchstaben ändern, um es z. B. lesbarer zu machen
       user:
@@ -133,9 +140,13 @@ de:
         url: Wohin Ereignisse gesendet werden
     labels:
       account:
+        discoverable: Profil und Beiträge in Suchalgorithmen berücksichtigen
         fields:
           name: Beschriftung
           value: Inhalt
+        indexable: Öffentliche Beiträge in die Suchergebnisse einbeziehen
+        show_collections: Follower und „Folge ich“ im Profil anzeigen
+        unlocked: Neue Follower automatisch akzeptieren
       account_alias:
         acct: Profilname des alten Kontos
       account_migration:
@@ -176,10 +187,10 @@ de:
         display_name: Anzeigename
         email: E-Mail-Adresse
         expires_in: Läuft ab
-        fields: Metadaten
+        fields: Zusatzfelder
         header: Titelbild
         honeypot: "%{label} (nicht ausfüllen)"
-        inbox_url: Inbox-URL des Relais
+        inbox_url: URL des Relay-Posteingangs
         irreversible: Endgültig, nicht nur temporär ausblenden
         locale: Sprache des Webinterface
         max_uses: Maximale Anzahl von Verwendungen
@@ -198,7 +209,7 @@ de:
         setting_default_sensitive: Medien immer mit einer Inhaltswarnung versehen
         setting_delete_modal: Bestätigungsdialog beim Löschen eines Beitrags anzeigen
         setting_disable_swiping: Wischgesten deaktivieren
-        setting_display_media: Medien-Anzeige
+        setting_display_media: Darstellung von Medien
         setting_display_media_default: Standard
         setting_display_media_hide_all: Alle Medien ausblenden
         setting_display_media_show_all: Alle Medien anzeigen
@@ -273,16 +284,25 @@ de:
       notification_emails:
         appeal: Jemand hat Einspruch gegen eine Moderationsentscheidung erhoben
         digest: Zusammenfassung senden
-        favourite: wenn jemand meinen Beitrag favorisiert
-        follow: wenn mir jemand Neues gefolgt ist
-        follow_request: wenn mir jemand folgen möchte
-        mention: wenn mich jemand erwähnt
-        pending_account: wenn ein neues Konto überprüft werden muss
-        reblog: wenn jemand meinen Beitrag teilt
-        report: Neue Meldung wurde eingereicht
+        favourite: Mein Beitrag wurde favorisiert
+        follow: Jemand Neues folgt mir
+        follow_request: Jemand möchte mir folgen
+        mention: Ich wurde erwähnt
+        pending_account: Ein neues Konto muss überprüft werden
+        reblog: Mein Beitrag wurde geteilt
+        report: Eine neue Meldung wurde eingereicht
+        software_updates:
+          all: Über alle Updates informieren
+          critical: Nur über kritische Updates informieren
+          label: Eine neue Mastodon-Version ist verfügbar
+          none: Nie über Updates informieren (nicht empfohlen)
+          patch: Über Fehlerbehebungen informieren
         trending_tag: Neuer Trend erfordert eine Überprüfung
       rule:
         text: Regel
+      settings:
+        indexable: Profilseite in Suchmaschinen einbeziehen
+        show_application: App anzeigen, über die ich einen Beitrag veröffentlicht habe
       tag:
         listable: Erlaube, dass dieser Hashtag in Suchen und Empfehlungen erscheint
         name: Hashtag
@@ -303,6 +323,7 @@ de:
         url: Endpunkt-URL
     'no': Nein
     not_recommended: Nicht empfohlen
+    overridden: Überschrieben
     recommended: Empfohlen
     required:
       mark: "*"

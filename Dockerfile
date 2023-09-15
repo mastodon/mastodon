@@ -61,6 +61,7 @@ ARG GID
 # Install Runtime dependencies
 RUN set -eux; \
     apt-get update; \
+	apt-get -yq dist-upgrade; \
     apt-get install -y --no-install-recommends \
         ffmpeg \
         file \
