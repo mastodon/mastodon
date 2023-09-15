@@ -78,7 +78,7 @@ RUN \
 WORKDIR /opt/mastodon
 
 ### Copy Ruby and Node package configuration files from build system to container ###
-COPY --chown=mastodon:mastodon Gemfile* package.json yarn.lock /opt/mastodon/
+COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
 ### Run commands in base image ###
 # Apt update & upgrade to check for security updates to Debian image
