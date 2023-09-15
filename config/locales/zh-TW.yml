@@ -306,6 +306,7 @@ zh-TW:
       unpublish: 取消發布
       unpublished_msg: 成功取消發布公告！
       updated_msg: 成功更新公告！
+    critical_update_pending: 重要更新待升級
     custom_emojis:
       assign_category: 指定分類
       by_domain: 站點
@@ -760,10 +761,27 @@ zh-TW:
           approved: 註冊需要核准
           none: 沒有人可註冊
           open: 任何人皆能註冊
+      security:
+        authorized_fetch: 要求自聯邦宇宙伺服器之驗證
+        authorized_fetch_hint: 要求聯邦宇宙伺服器進行驗證將更嚴格地執行使用者層級及伺服器層級之封鎖。然而，這將會帶來一些性能損失、減少您的回嘟觸及量、並可能會引入與某些聯邦宇宙伺服器之相容性問題。 此外，這無法阻止專門服務抓取您的公開嘟文及帳號資料。
+        authorized_fetch_overridden_hint: 由於環境變數之設定值覆寫，您目前無法變更此設定。
+        federation_authentication: 強制聯邦宇宙伺服器驗證
       title: 伺服器設定
     site_uploads:
       delete: 刪除上傳的檔案
       destroyed_msg: 成功刪除站台的上傳項目！
+    software_updates:
+      critical_update: 重要 — 請儘速升級
+      description: 建議將您的 Mastodon 伺服器升級至最新狀態，以獲得最新錯誤修正及功能更新。此外，即時更新 Mastodon 以避免偶發之安全問題非常重要。因此，Mastodon 每 30 分鐘將檢查一次更新，並依據您的電子郵件通知設定通知您。
+      documentation_link: 了解更多
+      release_notes: 版本資訊
+      title: 可取得的更新
+      type: 類型
+      types:
+        major: 主要版本更新 (major release)
+        minor: 次要版本更新 (minor release)
+        patch: 修正版本 (patch release) — 錯誤修正及易於套用之變更
+      version: 版本
     statuses:
       account: 作者
       application: 應用程式
@@ -804,6 +822,20 @@ zh-TW:
     system_checks:
       database_schema_check:
         message_html: 發現尚待處理的資料庫遷移 (database migration)。請執行它們以確保應用程式如期運行。
+      elasticsearch_health_red:
+        message_html: Elasticsearch 叢集健康狀態異常 (紅色)，無法提供搜尋功能
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch 叢集健康狀態異常 (黃色)，您可能想進一步調查原因
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch 索引對應 (index mappings) 已過期。請執行 <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: 檢視文件
+        message_html: 您的 Elasticsaerch 叢集由多個節點構成，但 Mastodon 並沒有設定使用它們。
+      elasticsearch_preset_single_node:
+        action: 檢視文件
+        message_html: 您的 Elasticsearch 叢集只有一個節點，<code>ES_PRESET</code> 應設定為 <code>single_node_cluster</code>。
+      elasticsearch_reset_chewy:
+        message_html: 您的 Elasticsearch 系統索引 (index) 已過期並需執行設定變更。請執行 <code>tootctl search deploy --reset-chewy</code> 以更新它。
       elasticsearch_running_check:
         message_html: 無法連接 Elasticsearch。請檢查是否正在執行中，或者已關閉全文搜尋。
       elasticsearch_version_check:
@@ -814,6 +846,12 @@ zh-TW:
         message_html: 您尚未定義任何伺服器規則。
       sidekiq_process_check:
         message_html: 沒有佇列 %{value} 的 Sidekiq 行程，請檢查您的 Sidekiq 設定組態
+      software_version_critical_check:
+        action: 檢視可取得的更新
+        message_html: 有可取得的重要 Mastodon 更新，請立即升級。
+      software_version_patch_check:
+        action: 檢視可取得的更新
+        message_html: 有可取得的 Mastodon 錯誤修正更新。
       upload_check_privacy_error:
         action: 檢查這裡以取得更多資訊
         message_html: "<strong>您的網頁伺服器設定錯誤。您的使用者隱私正暴露於風險之中。</strong>"
@@ -923,6 +961,9 @@ zh-TW:
       body: "%{target} 正在就 %{date} 的 %{action_taken_by} 做出的審核決定提出申訴，該決定是 %{type}。他們寫道："
       next_steps: 您可以批准申訴以還原審核決定，或是忽略它。
       subject: "%{username} 正在申訴 %{instance} 上的審核決定"
+    new_critical_software_updates:
+      body: 有可取得的重要 Mastodon 新版本，請立即升級！
+      subject: "%{instance} 有可取得的重要 Mastodon 更新！"
     new_pending_account:
       body: 以下是新帳號的詳細資訊。您可以同意或拒絕這項申請。
       subject: "%{instance} 上有新帳號 (%{username}) 待審核"
@@ -930,6 +971,9 @@ zh-TW:
       body: "%{reporter} 已檢舉使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者已檢舉使用者 %{target}
       subject: 來自 %{instance} 的使用者檢舉（#%{id}）
+    new_software_updates:
+      body: Mastodon 新版本已發佈，您可能想升級！
+      subject: "%{instance} 有可取得的 Mastodon 新版本！"
     new_trends:
       body: 以下項目需要經過審核才能公開顯示：
       new_trending_links:
@@ -1222,7 +1266,7 @@ zh-TW:
       other: 選取 %{count} 個符合您搜尋的項目。
     today: 今天
     validation_errors:
-      other: 唔…這是什麼鳥？請檢查以下 %{count} 項錯誤
+      other: 恩...似乎不太對勁耶？請檢查以下 %{count} 項錯誤
   imports:
     errors:
       empty: 空的 CSV 檔案
@@ -1410,6 +1454,7 @@ zh-TW:
     update:
       subject: "%{name} 已編輯嘟文"
   notifications:
+    administration_emails: 管理員電子郵件通知
     email_events: 電子郵件通知設定
     email_events_hint: 選取您想接收通知的事件：
     other_settings: 其他通知設定
@@ -1453,6 +1498,17 @@ zh-TW:
     other: 其他
     posting_defaults: 嘟文預設值
     public_timelines: 公開時間軸
+  privacy:
+    hint_html: |-
+      <strong>自訂您希望如何讓您的個人檔案及嘟文被找到。</strong>
+      藉由啟用一系列 Mastodon 功能以幫助您觸及更廣的受眾。煩請花些時間確認您是否欲啟用這些設定。
+    privacy: 隱私權
+    privacy_hint_html: 控制您希望向其他人揭露之內容。人們透過瀏覽其他人的跟隨者與其發嘟之應用程式發現有趣的個人檔案和酷炫的 Mastodon 應用程式，但您能選擇將其隱藏。
+    reach: 觸及
+    reach_hint_html: 控制您希望被新使用者探索或跟隨之方式。想讓您的嘟文出現於探索頁面嗎？想讓其他人透過他們的跟隨建議找到您嗎？想自動接受所有新跟隨者嗎？或是想逐一控制跟隨請求嗎？
+    search: 搜尋
+    search_hint_html: 控制您希望如何被發現。您想透過您的公開嘟文被人們發現嗎？您想透過網頁搜尋被 Mastodon 以外的人找到您的個人檔案嗎？請注意，公開資訊可能無法全面地被所有搜尋引擎所排除。
+    title: 隱私權及觸及
   privacy_policy:
     title: 隱私權政策
   reactions:
@@ -1656,6 +1712,11 @@ zh-TW:
       default: "%Y 年 %b 月 %d 日 %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: 伺服器之翻譯服務使用容量已逾上限。
+      too_many_requests: 最近對翻譯服務之請求過多。
   two_factor_authentication:
     add: 新增
     disable: 停用兩階段驗證

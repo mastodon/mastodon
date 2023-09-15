@@ -309,6 +309,7 @@ fo:
       unpublish: Tak útgávu aftur
       unpublished_msg: Kunngerð tikin aftur!
       updated_msg: Kunngerð dagførd!
+    critical_update_pending: Kritisk dagføring bíðar
     custom_emojis:
       assign_category: Tilluta bólk
       by_domain: Økisnavn
@@ -770,10 +771,27 @@ fo:
           approved: Góðkenning kravd fyri tilmelding
           none: Eingin kann tilmelda seg
           open: Øll kunnu tilmelda seg
+      security:
+        authorized_fetch: Krev samgildi frá sameindum ambætarum
+        authorized_fetch_hint: At krevja samgildi frá sameindum ambætarum ger strangari útinning av blokkum bæði á brúkara- og ambætara-stigi møguliga. Tó so, kostnaðurin er ein avriksstraffur, minkar um hvussu langt svarini hjá tær røkka og kann viðføra sambæristruplleikar við summar sameindar tænastur. Harafturat forðar hetta ikki teimum, ið miðvíst leggja seg eftir at heinta tínar almennu postar og kontur.
+        authorized_fetch_overridden_hint: Í løtuni er ikki møguligt hjá tær at broyta hesa stillingina, tí hon verður ógildað av einum umhvørvisbrigdli.
+        federation_authentication: Tvungið sameint samgildi
       title: Ambætarastillingar
     site_uploads:
       delete: Strika fílu, sum er løgd upp
       destroyed_msg: Vevstaðs-uppsending strikað!
+    software_updates:
+      critical_update: Kritiskt - vinarliga dagfør beinan vegin
+      description: Mælt verður til, at Mastodon-innleggingin hjá tær altíð er dagførd, soleiðis at hon fær gagn av nýggjastu ábótunum og hentleikunum. Harumframt er tað summatíðir kritiskt, at Mastodon umgangandi verður dagført fyri at mótvirka trygdartrupulleikum. Tí kekkar Mastodon hvørjar 30 minuttir, um dagføringar eru neyðugar, og letur teg frætta samsvarandi teldubrævafráboðanarstillingunum hjá tær.
+      documentation_link: Lær meira
+      release_notes: Útgávuviðmerkingar
+      title: Tøkar dagføringar
+      type: Slag
+      types:
+        major: Høvuðsútgáva
+        minor: Minni útgáva
+        patch: Bótarútgáva - feilrættingar og broytingar, sum eru lættar at íverkseta
+      version: Útgáva
     statuses:
       account: Høvundi
       application: Nýtsluskipan
@@ -814,6 +832,20 @@ fo:
     system_checks:
       database_schema_check:
         message_html: Dátugrunnaflytingar bíða. Vinarliga koyr flytingarnar fyri at tryggja at skipanin skikkar sær sum hon skal
+      elasticsearch_health_red:
+        message_html: Elasticsearch cluster er ósunt (reyð støða), leitimøguleikar eru ikki tøkir
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch cluster er ósunt (gul støða), kanska tú vil kanna, hvør orsøkin er
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch indeks-mappingar eru avoldaðar. Vinarliga koyr <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Sí skjalfesting
+        message_html: Elasticsearch cluster'ið hjá tær hevur meira enn eina nodu, men Mastodon er ikki sett upp at brúka tær.
+      elasticsearch_preset_single_node:
+        action: Sí skjalfesting
+        message_html: Elasticsearch cluster'ið hjá tær hevur einans eina nodu, <code>ES_PRESET</code> átt at verið sett til <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Elasticsearch skipanar-indeksið hjá tær er avoldað orsakað av eini broyting í stillingunum. Vinarliga koyr <code>tootctl search deploy --reset-chewy</code> fyri at dagføra tað.
       elasticsearch_running_check:
         message_html: Fekk ikki samband við Elasticsearch. Vinarliga kanna eftir, at tað koyrir, ella ger fulltekstaleiting óvirkna
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ fo:
         message_html: Tú hevur ikki ásett nakrar ambætarareglur.
       sidekiq_process_check:
         message_html: Eingin Sidekiq gongd koyrir fyri %{value} bíðirøðina(r). Vinarliga eftirkanna Sidekiq uppsetingina
+      software_version_critical_check:
+        action: Sí tøkar dagføringar
+        message_html: Ein kritisk Mastodon-dagføring er tøk, vinarliga dagfør sum skjótast.
+      software_version_patch_check:
+        action: Sí tøkar dagføringar
+        message_html: Ein Mastdon-dagføring við feilrættingum er tøk.
       upload_check_privacy_error:
         action: Kekka her fyri at fáa fleiri upplýsingar
         message_html: "<strong>Vevambætarin hjá tær er skeivt uppsettur. Privatlívið hjá brúkarunum hjá tær er í vanda.</strong>"
@@ -937,6 +975,9 @@ fo:
       body: "%{target} kærir eina umsjónaravgerð hjá %{action_taken_by} frá %{date}, sum var %{type}. Tey skrivaðu:"
       next_steps: Tú kanst góðtaka kæruna og soleiðis ógilda umsjónaravgerðina, ella ikki látast at síggja hana.
       subject: "%{username} kærir eina umsjónaravgerð á %{instance}"
+    new_critical_software_updates:
+      body: Nýggjar kritiskar útgávur av Mastodon eru útgivnar. Dagfør sum skjótast!
+      subject: Kritiskar Mastodon-dagføringar eru tøkar fyri %{instance}!
     new_pending_account:
       body: Smálutirnir hjá tí nýggju kontuni eru niðanfyri. Tú kanst góðkenna ella vraka hesa umsóknina.
       subject: Nýggj konta klár til ummælis á %{instance} (%{username})
@@ -944,6 +985,9 @@ fo:
       body: "%{reporter} hevur meldað %{target}"
       body_remote: Onkur frá %{domain} hevur meldað %{target}
       subject: Nýggj melding fyri %{instance} (#%{id})
+    new_software_updates:
+      body: Nýggjar Mastodon-útgávur eru útgivnar; umhugsa at dagføra!
+      subject: Nýggjar Mastodon-útgávur eru tøkar fyri %{instance}!
     new_trends:
       body: 'Niðanfyristandandi lutir mugu eftirhyggjast áðrenn teir kunnu verða vístir alment:'
       new_trending_links:
@@ -1432,6 +1476,7 @@ fo:
     update:
       subject: "%{name} rættaði ein post"
   notifications:
+    administration_emails: Fráboðanir um teldupost til umsitarar
     email_events: Hendingar fyri teldupostfráboðanir
     email_events_hint: 'Vel hendingar, sum tú vil hava fráboðanir um:'
     other_settings: Aðrar fráboðanarstillingar
@@ -1475,6 +1520,15 @@ fo:
     other: Annað
     posting_defaults: Postingarstillingar
     public_timelines: Almennar tíðarlinjur
+  privacy:
+    hint_html: "<strong>Tillaga hvussu tú vilt hava tín vanga og tínar postar at blíva funnar</strong> Eitt úrval av tættum í Mastodon kunnu hjálpa tær at røkka einum størri skara, tá teir eru settir til. Brúka eina løtu at eftirhyggja hesar stillingar fyri at fáa vissu um at tær eru hóskandi fyri teg."
+    privacy: Privatlív
+    privacy_hint_html: Stýr hvussu nógv tú vil avdúka til gagns fyri onnur. Fólk varnast áhugaverdar vangar og kular appir tá tey síggja, hvørji fólk fylgja teimum og hvørjar appir, tey brúka at posta við, men tað kann vera, at tú heldur vilt halda tað fjalt.
+    reach: Útbreiðsla
+    reach_hint_html: Stýr um onnur skulu kunna finna teg og fylgja tær. Vilt tú hava, at postar tínir síggjast á Rannsaka-síðuni? Vilt tú hava at onnur síggja teg í viðmælum um hvørji tey skulu fylgja? Vilt tú góðkenna allar nýggjar fylgjarar sjálvvirkandi ella vilt tú stýra nágreiniliga hvør kann fylgja tær?
+    search: Leita
+    search_hint_html: Stýr, hvussu tú verður funnin. Vilt tú hava at fólk finna teg við tí, sum tú hevur postað fyri almenninginum? Vilt tú hava, at fólk uttan fyri Mastodon finna vangan hjá tær tá tey leita á netinum? Gev gætur, at vissa fyri fullkomnari verja móti øllum leitimaskinum ikki kann gevast fyri almennar upplýsingar.
+    title: Privatlív og skotmál
   privacy_policy:
     title: Privatlívspolitikkur
   reactions:
@@ -1684,6 +1738,11 @@ fo:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d. %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Ambætarin hevur brúkt alla kvotuna, sum hann hevði hjá umsetaratænstuni.
+      too_many_requests: Ov nógv kall hava verið til umsetaratænastuna nýliga.
   two_factor_authentication:
     add: Legg afturat
     disable: Ger 2FA óvirkið

@@ -312,6 +312,7 @@ lv:
       unpublish: Atcelt publicēšanu
       unpublished_msg: Paziņojuma publicēšana veiksmīgi atcelta!
       updated_msg: Paziņojums ir veiksmīgi atjaunināts!
+    critical_update_pending: Gaida kritisko atjauninājumu
     custom_emojis:
       assign_category: Piešķirt kategoriju
       by_domain: Domēns
@@ -389,6 +390,15 @@ lv:
       undo: Aizliegt federāciju ar domēnu
     domain_blocks:
       add_new: Pievienot jaunu domēna bloku
+      confirm_suspension:
+        cancel: Atcelt
+        confirm: Apturēt
+        permanent_action: Apturēšanas atsaukšana neatjaunos nekādus datus vai attiecības.
+        preamble_html: Tu gatavojies apturēt domēna <strong>%{domain}</strong> un tā apakšdomēnu darbību.
+        remove_all_data: Tādējādi no tava servera tiks noņemts viss šī domēna kontu saturs, multivide un profila dati.
+        stop_communication: Jūsu serveris pārtrauks sazināties ar šiem serveriem.
+        title: Apstiprināt domēna %{domain} bloķēšanu
+        undo_relationships: Tādējādi tiks atsauktas jebkuras sekošanas attiecības starp šo un tavu serveru kontiem.
       created_msg: Domēna bloķēšana tagad tiek apstrādāta
       destroyed_msg: Domēna bloķēšana ir atsaukta
       domain: Domēns
@@ -745,6 +755,9 @@ lv:
       branding:
         preamble: Tava servera zīmols to atšķir no citiem tīkla serveriem. Šī informācija var tikt parādīta dažādās vidēs, piemēram, Mastodon tīmekļa saskarnē, vietējās lietojumprogrammās, saišu priekšskatījumos citās vietnēs un ziņojumapmaiņas lietotnēs un tā tālāk. Šī iemesla dēļ vislabāk ir saglabāt šo informāciju skaidru, īsu un kodolīgu.
         title: Zīmola veidošana
+      captcha_enabled:
+        desc_html: Tas balstās uz ārējiem skriptiem no hCaptcha, kas var radīt bažas par drošību un privātumu. Turklāt <strong>tas var padarīt reģistrācijas procesu ievērojami mazāk pieejamu dažiem cilvēkiem (īpaši invalīdiem)</strong>. Šo iemeslu dēļ, lūdzu, apsver alternatīvus pasākumus, piemēram, reģistrāciju, kas balstīta uz apstiprinājumu vai uzaicinājumu.
+        title: Pieprasīt jaunajiem lietotājiem atrisināt CAPTCHA, lai apstiprinātu savu kontu
       content_retention:
         preamble: Kontrolē, kā Mastodon tiek glabāts lietotāju ģenerēts saturs.
         title: Satura saglabāšana
@@ -772,9 +785,27 @@ lv:
           approved: Reģistrācijai nepieciešams apstiprinājums
           none: Neviens nevar reģistrēties
           open: Jebkurš var reģistrēties
+      security:
+        authorized_fetch: Pieprasīt autentifikāciju no federētajiem serveriem
+        authorized_fetch_hint: Pieprasot autentifikāciju no federētajiem serveriem, tiek nodrošināta stingrāka gan lietotāja līmeņa, gan servera līmeņa bloku izpilde. Tomēr tas ir saistīts ar izpildes sodu, samazina tavu atbilžu sasniedzamību un var radīt saderības problēmas ar dažiem federētajiem pakalpojumiem. Turklāt tas netraucēs īpašiem dalībniekiem ienest tavas publiskās ziņas un kontus.
+        authorized_fetch_overridden_hint: Tu pašlaik nevari mainīt šo iestatījumu, jo to aizstāj vides mainīgais.
+        federation_authentication: Federācijas autentifikācijas izpilde
+      title: Servera iestatījumi
     site_uploads:
       delete: Dzēst augšupielādēto failu
       destroyed_msg: Vietnes augšupielāde ir veiksmīgi izdzēsta!
+    software_updates:
+      critical_update: Kritiski - lūdzu, ātri atjaunini
+      description: Ieteicams uzturēt savu Mastodon instalāciju atjauninātu, lai gūtu labumu no jaunākajiem labojumiem un funkcijām. Turklāt dažreiz ir ļoti svarīgi atjaunināt Mastodon savlaicīgi, lai izvairītos no drošības problēmām. Šo iemeslu dēļ Mastodon pārbauda atjauninājumus ik pēc 30 minūtēm un informēs tevi atbilstoši tavu e-pasta paziņojumu iestatījumiem.
+      documentation_link: Uzzināt vairāk
+      release_notes: Laidiena piezīmes
+      title: Pieejamie atjauninājumi
+      type: Veids
+      types:
+        major: Galvenais laidiens
+        minor: Neliels laidiens
+        patch: Ielāpa laidiens - kļūdu labojumi un viegli piemērojamas izmaiņas
+      version: Versija
     statuses:
       account: Autors
       application: Lietotne
@@ -815,6 +846,20 @@ lv:
     system_checks:
       database_schema_check:
         message_html: Notiek datubāzu migrācijas. Lūdzu, palaid tās, lai nodrošinātu, ka lietojumprogramma darbojas, kā paredzēts
+      elasticsearch_health_red:
+        message_html: Elasticsearch klasteris ir neveselīgs (sarkans statuss), meklēšanas līdzekļi nav pieejami
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch klasteris ir neveselīgs (dzeltens statuss), tu varētu vēlēties meklēt iemeslu
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch indeksa kartējumi ir novecojuši. Lūdzu, palaid <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Skatīt dokumentāciju
+        message_html: Tavam Elasticsearch klasterim ir vairāk nekā viens mezgls, taču Mastodon nav konfigurēts to lietošanai.
+      elasticsearch_preset_single_node:
+        action: Skatīt dokumentāciju
+        message_html: Tavam Elasticsearch klasterim ir tikai viens mezgls, <code>ES_PRESET</code> ir jāiestata uz <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Tavas Elasticsearch sistēmas indekss ir novecojis iestatījuma izmaiņu dēļ. Lūdzu, palaid <code>tootctl search deploy --reset-chewy</code>, lai to atjauninātu.
       elasticsearch_running_check:
         message_html: Nevarēja izveidot savienojumu ar Elasticsearch. Lūdzu, pārbaudi, vai tā darbojas, vai atspējo pilna teksta meklēšanu
       elasticsearch_version_check:
@@ -825,6 +870,12 @@ lv:
         message_html: Tu neesi definējis nevienu servera nosacījumu.
       sidekiq_process_check:
         message_html: Rindā(s) %{value} nedarbojas neviens Sidekiq process. Lūdzu, pārskati savu Sidekiq konfigurāciju
+      software_version_critical_check:
+        action: Skatīt pieejamos atjauninājumus
+        message_html: Ir pieejams kritisks Mastodon atjauninājums. Lūdzu, atjaunini to pēc iespējas ātrāk.
+      software_version_patch_check:
+        action: Skatīt pieejamos atjauninājumus
+        message_html: Ir pieejams Mastodon kļūdu labojums.
       upload_check_privacy_error:
         action: Pārbaudi šeit, lai iegūtu plašāku informāciju
         message_html: "<strong>Tavs tīmekļa serveris ir nepareizi konfigurēts. Tavu lietotāju privātums ir apdraudēts.</strong>"
@@ -942,6 +993,9 @@ lv:
       body: "%{target} pārsūdzēja %{action_taken_by} moderēšanas lēmumu no %{date}, kas bija %{type}. Viņi rakstīja:"
       next_steps: Varat apstiprināt apelāciju, lai atsauktu regulēšanas lēmumu, vai ignorēt to.
       subject: "%{username} pārsūdz moderēšanas lēmumu par %{instance}"
+    new_critical_software_updates:
+      body: Ir izlaistas jaunas Mastodon svarīgās versijas, iespējams, vēlēsies to atjaunināt pēc iespējas ātrāk!
+      subject: "%{instance} ir pieejami svarīgi Mastodon atjauninājumi!"
     new_pending_account:
       body: Sīkāka informācija par jauno kontu ir sniegta zemāk. Tu vari apstiprināt vai noraidīt šo pieteikumu.
       subject: Jauns konts pārskatīšanai %{instance} (%{username})
@@ -949,6 +1003,9 @@ lv:
       body: "%{reporter} ziņoja par %{target}"
       body_remote: Kāds no %{domain} ziņoja par %{target}
       subject: Jauns ziņojums par %{instance} (#%{id})
+    new_software_updates:
+      body: Ir izlaistas jaunas Mastodon versijas, iespējams, vēlēsies atjaunināt!
+      subject: "%{instance} ir pieejamas jaunas Mastodon versijas!"
     new_trends:
       body: 'Tālāk norādītie vienumi ir jāpārskata, lai tos varētu parādīt publiski:'
       new_trending_links:
@@ -982,6 +1039,7 @@ lv:
     notification_preferences: Mainīt e-pasta uztādījumus
     salutation: "%{name},"
     settings: 'Mainīt e-pasta uztādījumus: %{link}'
+    unsubscribe: Atcelt abonēšanu
     view: 'Skatījums:'
     view_profile: Skatīt profilu
     view_status: Skatīt ziņu
@@ -995,6 +1053,10 @@ lv:
     your_token: Tavs piekļuves marķieris
   auth:
     apply_for_account: Pieprasīt kontu
+    captcha_confirmation:
+      help_html: Ja tev ir problēmas ar CAPTCHA risināšanu, vari sazināties ar mums, izmantojot %{email}, un mēs varam tev palīdzēt.
+      hint_html: Vēl tikai viena lieta! Mums ir jāapstiprina, ka tu esi cilvēks (tas ir tāpēc, lai mēs varētu nepieļaut surogātpasta izsūtīšanu!). Atrisini tālāk norādīto CAPTCHA un noklikšķini uz "Turpināt".
+      title: Drošības pārbaude
     confirmations:
       wrong_email_hint: Ja šī e-pasta adrese nav pareiza, varat to mainīt konta iestatījumos.
     delete_account: Dzēst kontu
@@ -1031,8 +1093,11 @@ lv:
     rules:
       accept: Pieņemt
       back: Atpakaļ
+      invited_by: 'Tu vari pievienoties %{domain}, pateicoties uzaicinājumam, ko saņēmi no:'
       preamble: Tos iestata un ievieš %{domain} moderatori.
+      preamble_invited: Pirms turpināt, lūdzu, apsver galvenos noteikumus, ko noteikuši %{domain} moderatori.
       title: Daži pamatnoteikumi.
+      title_invited: Tu esi uzaicināts.
     security: Drošība
     set_new_password: Iestatīt jaunu paroli
     setup:
@@ -1133,6 +1198,10 @@ lv:
       your_appeal_rejected: Jūsu apelācija ir noraidīta
   domain_validator:
     invalid_domain: nav derīgs domēna nosaukums
+  edit_profile:
+    basic_information: Pamata informācija
+    hint_html: "<strong>Pielāgo to, ko cilvēki redz tavā publiskajā profilā un blakus tavām ziņām.</strong> Citas personas, visticamāk, sekos tev un sazināsies ar tevi, ja tev būs aizpildīts profils un profila attēls."
+    other: Cits
   errors:
     '400': Tevis iesniegtais pieprasījums bija nederīgs vai nepareizi izveidots.
     '403': Tev nav atļauts aplūkot šo lapu.
@@ -1264,12 +1333,14 @@ lv:
       bookmarks_html: Tu gatavojies <strong>aizstāt savas bloķētās izlases</strong> ar līdz pat <strong>%{total_items} ziņām</strong> no <strong>%{filename}</strong>.
       domain_blocking_html: Tu gatavojies <strong>aizstāt savu bloķēto domēnu sarakstu</strong> ar līdz pat <strong>%{total_items} domēniem</strong> no <strong>%{filename}</strong>.
       following_html: Tu gatavojies <strong>sekot</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong> un <strong>pārtrauksi sekot citiem</strong>.
+      lists_html: Tu gatavojies <strong>aizstāt savus sarakstus</strong> ar <strong>%{filename}</strong> saturu. Līdz <strong>%{total_items} kontiem</strong> tiks pievienoti jauni saraksti.
       muting_html: Tu gatavojies <strong>aizstāt savu noklusināto kontu sarakstu</strong> ar līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
     preambles:
       blocking_html: Tu gatavojies <strong>bloķēt</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
       bookmarks_html: Tu gatavojies pievienot līdz pat <strong>%{total_items} ziņām</strong> no <strong>%{filename}</strong> savām <strong>grāmatzīmēm</strong>.
       domain_blocking_html: Tu gatavojies <strong>bloķēt</strong> līdz pat <strong>%{total_items} domēniem</strong> no <strong>%{filename}</strong>.
       following_html: Tu gatavojies <strong>sekot</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
+      lists_html: Tu gatavojies pievienot līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong> saviem <strong>sarakstiem</strong>. Jauni saraksti tiks izveidoti, ja nav saraksta, ko pievienot.
       muting_html: Tu gatavojies <strong>noklusināt</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
     preface: Tu vari importēt datus, kurus esi eksportējis no cita servera, piemēram, to personu sarakstu, kurām tu seko vai kuras bloķē.
     recent_imports: Nesen importēts
@@ -1286,6 +1357,7 @@ lv:
       bookmarks: Importē grāmatzīmes
       domain_blocking: Importē bloķētos domēnus
       following: Importē sekotos kontus
+      lists: Importē sarakstus
       muting: Importē noklusinātos kontus
     type: Importa veids
     type_groups:
@@ -1296,6 +1368,7 @@ lv:
       bookmarks: Grāmatzīmes
       domain_blocking: Bloķēto domēnu saraksts
       following: Turpmākais saraksts
+      lists: Saraksti
       muting: Apklusināto lietotāju saraksts
     upload: Augšupielādēt
   invites:
@@ -1335,6 +1408,21 @@ lv:
     failed_sign_in_html: Neizdevies pierakstīšanās mēģinājums ar %{method} no %{ip} (%{browser})
     successful_sign_in_html: Veiksmīga pierakstīšanās ar %{method} no %{ip} (%{browser})
     title: Autentifikācijas vēsture
+  mail_subscriptions:
+    unsubscribe:
+      action: Jā, atcelt abonēšanu
+      complete: Anulēts
+      confirmation_html: Vai tiešām vēlies atteikties no %{type} saņemšanas Mastodon vietnē %{domain} uz savu e-pastu %{email}? Tu vienmēr vari atkārtot abonēšanu, izmantojot <a href="%{settings_path}">e-pasta paziņojumu iestatījumus</a>.
+      emails:
+        notification_emails:
+          favourite: iecienītākie paziņojuma e-pasti
+          follow: sekot paziņojuma e-pastiem
+          follow_request: sekot pieprasījuma e-pastiem
+          mention: pieminēt paziņojumu e-pastus
+          reblog: izcelt paziņojumu e-pastus
+      resubscribe_html: Ja anulē abonementu kļūdas dēļ, tu vari atkārtoti abonēt, izmantojot <a href="%{settings_path}">e-pasta paziņojumu iestatījumus</a>.
+      success_html: Tu vairs nesaņemsi %{type} par Mastodon %{domain} uz tavu e-pastu %{email}.
+      title: Atcelt abonēšanu
   media_attachments:
     validations:
       images_and_video: Nevar pievienot videoklipu tādai ziņai, kura jau satur attēlus
@@ -1414,6 +1502,7 @@ lv:
     update:
       subject: "%{name} rediģējis rakstu"
   notifications:
+    administration_emails: Administrators e-pasta paziņojumi
     email_events: E-pasta paziņojumu notikumi
     email_events_hint: 'Atlasi notikumus, par kuriem vēlies saņemt paziņojumus:'
     other_settings: Citu paziņojumu iestatījumi
@@ -1450,12 +1539,22 @@ lv:
       expired: Aptauja jau ir beigusies
       invalid_choice: Izvēlētā balsošanas iespēja nepastāv
       over_character_limit: katrs nedrīkst būt garāks par %{max} rakstzīmēm
+      self_vote: Tu nevari balsot pats savā aptaujā
       too_few_options: jābūt vairāk nekā vienam vienumam
       too_many_options: nevar saturēt vairāk par %{max} vienumiem
   preferences:
     other: Citi
     posting_defaults: Publicēšanas noklusējuma iestatījumi
     public_timelines: Publiskās ziņu lentas
+  privacy:
+    hint_html: "<strong>Pielāgo, kā vēlies atrast savu profilu un ziņas.</strong> Dažādas Mastodon funkcijas var palīdzēt sasniegt plašāku auditoriju, ja tās ir iespējotas. Velti laiku, lai pārskatītu šos iestatījumus, lai pārliecinātos, ka tie atbilst tavam lietošanas gadījumam."
+    privacy: Privātums
+    privacy_hint_html: Kontrolē, cik daudz vēlies izpaust citu labā. Cilvēki atklāj interesantus profilus un lieliskas lietotnes, pārlūkojot citu cilvēku sekotājus un redzot, no kurām lietotnēm viņi izliek ziņas, taču tu, iespējams, vēlēsies to slēpt.
+    reach: Sasniedzamība
+    reach_hint_html: Kontrolē, vai vēlies, lai tevi atklātu un sekotu jauni cilvēki. Vai vēlies, lai tavas ziņas tiktu parādītas ekrānā Izpēte? Vai vēlies, lai citi cilvēki tevi redzētu savos ieteikumos? Vai vēlies automātiski pieņemt visus jaunos sekotājus vai arī tev ir pilnīga kontrole pār katru?
+    search: Meklēt
+    search_hint_html: Kontrolē, kā vēlies tikt atrasts. Vai vēlies, lai cilvēki tevi atrod pēc tā, ko esi publiski publicējis? Vai vēlies, lai cilvēki ārpus Mastodon atrastu tavu profilu, meklējot tīmeklī? Lūdzu, ņem vērā, ka nevar garantēt publiskas informācijas pilnīgu izslēgšanu no visām meklētājprogrammām.
+    title: Privātums un sasniedzamība
   privacy_policy:
     title: Privātuma Politika
   reactions:
@@ -1671,6 +1770,11 @@ lv:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Ir pārsniegta tulkošanas pakalpojuma izmantošanas kvota visā serverī.
+      too_many_requests: Pēdējā laikā tulkošanas pakalpojumā ir saņemts pārāk daudz pieprasījumu.
   two_factor_authentication:
     add: Pievienot
     disable: Atspējot 2FA
@@ -1756,7 +1860,12 @@ lv:
     seamless_external_login: Tu esi pieteicies, izmantojot ārēju pakalpojumu, tāpēc paroles un e-pasta iestatījumi nav pieejami.
     signed_in_as: 'Pierakstījies kā:'
   verification:
+    extra_instructions_html: <strong>Padoms.</strong> saite tavā vietnē var būt neredzama. Svarīga daļa ir <code>rel="me"</code>, kas novērš uzdošanos vietnēs ar lietotāju ģenerētu saturu. Tu vari pat lapas galvenē izmantot tagu <code>link</code>, nevis <code>a</code>, taču HTML ir jābūt pieejamam, neizpildot JavaScript.
+    here_is_how: Lūk, kā
+    hint_html: "<strong>Ikviens var apliecināt savu identitāti Mastodon.</strong> Pamatojoties uz atvērtiem tīmekļa standartiem, tagad un uz visiem laikiem bez maksas. Viss, kas tev nepieciešams, ir personīga vietne, pēc kuras cilvēki tevi atpazīst. Kad no sava profila izveidosi saiti uz šo vietni, mēs pārbaudīsim, vai vietne novirza atpakaļ uz tavu profilu, un tajā tiks parādīts vizuāls indikators."
+    instructions_html: Nokopē un ielīmē tālāk norādīto kodu savas vietnes HTML. Pēc tam pievieno savas vietnes adresi vienā no papildu laukiem savā profilā no cilnes "Rediģēt profilu" un saglabā izmaiņas.
     verification: Pārbaude
+    verified_links: Tavas verifikācijas saites
   webauthn_credentials:
     add: Pievienot jaunu drošības atslēgu
     create:

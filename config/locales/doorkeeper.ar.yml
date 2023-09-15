@@ -3,10 +3,10 @@ ar:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: التسمية
+        name: اسم التطبيق
         redirect_uri: عنوان التحويل
         scopes: المجالات
-        website: تطبيق الويب
+        website: موقع ويب التطبيق
     errors:
       models:
         doorkeeper/application:
@@ -19,30 +19,30 @@ ar:
   doorkeeper:
     applications:
       buttons:
-        authorize: ترخيص
+        authorize: تخويل
         cancel: إلغاء
         destroy: إبطال
         edit: تعديل
         submit: إرسال
       confirmations:
-        destroy: متأكد ؟
+        destroy: هل أنت متأكد؟
       edit:
         title: تعديل التطبيق
       form:
-        error: عفوا! تحقق من خُلوّ الاستمارة من الأخطاء من فضلك
+        error: عفوا! تحقق من خُلوّ الاستمارة من أخطاء مُحتمَلة من فضلك
       help:
         native_redirect_uri: إستخدم %{native_redirect_uri} للاختبار و التجريب محليا
         redirect_uri: إستخدم خطا واحدا لكل رابط
         scopes: تقسيم المجالات بمسافات بيضاء. بدون تحديد قيمة يعني ذلك استخدام المجالات الإفتراضية.
       index:
         application: تطبيق
-        callback_url: رابط رد النداء
+        callback_url: الرابط التشعبي لرد النداء
         delete: حذف
         empty: ليس لديك أية تطبيقات.
         name: التسمية
         new: تطبيق جديد
-        scopes: المجالات
-        show: عرض
+        scopes: النطاقات
+        show: إظهار
         title: تطبيقاتك
       new:
         title: تطبيق جديد
@@ -170,6 +170,7 @@ ar:
       read:accounts: معاينة معلومات الحساب
       read:blocks: رؤية الحسابات التي قمت بحجبها
       read:bookmarks: اطّلع على فواصلك المرجعية
+      read:favourites: رؤية مفضلاتك
       read:filters: رؤية عوامل التصفية الخاصة بك
       read:follows: رؤية متابِعيك
       read:lists: رؤية قوائمك
@@ -183,6 +184,7 @@ ar:
       write:blocks: حجب الحسابات و النطاقات
       write:bookmarks: الإحتفاظ بالمنشورات في الفواصل المرجعية
       write:conversations: كتم وحذف المحادثات
+      write:favourites: إضافة المنشورات إلى المفضلة
       write:filters: إنشاء عوامل تصفية
       write:follows: متابَعة الأشخاص
       write:lists: إنشاء القوائم

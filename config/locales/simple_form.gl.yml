@@ -3,9 +3,13 @@ gl:
   simple_form:
     hints:
       account:
+        discoverable: As túas publicacións públicas e perfil poden mostrarse ou recomendarse en varias zonas de Mastodon e o teu perfil ser suxerido a outras usuarias.
         display_name: O teu nome completo ou un nome divertido.
         fields: Páxina web, pronome, idade, o que ti queiras.
+        indexable: As túas publicacións públicas poderían aparecer nos resultados das buscas en Mastodon. En calquera caso, as persoas que interactúen coas túas publicacións poderán buscalas igualmente.
         note: 'Podes @mencionar a outras persoas ou #cancelos.'
+        show_collections: Calquera poderá ver os teus seguimentos e seguidoras, e as persoas ás que segues tamén poden ver que as segues.
+        unlocked: Poderán seguirte directamente sen solicitar o seguimento. Desmarca isto se queres revisar manualmente cada solicitude e decidir se aceptas ou rexeitas novos seguimentos.
       account_alias:
         acct: Indica o usuaria@servidor da conta desde a cal queres migrar
       account_migration:
@@ -116,6 +120,9 @@ gl:
       sessions:
         otp: 'Escribe o código do segundo factor creado pola aplicación do teu móbil ou usa un dos códigos de recuperación:'
         webauthn: Se é unha chave USB asegúrate de que está conectada e preme o botón.
+      settings:
+        indexable: A túa páxina de perfil podería aparecer nos resultados de busca de Google, Bing e outros.
+        show_application: Independentemente, ti sempre poderás ver a app coa que publicaches a túa publicación.
       tag:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       user:
@@ -133,9 +140,13 @@ gl:
         url: A onde se enviarán os eventos
     labels:
       account:
+        discoverable: Perfil destacado e publicacións nos algoritmos de descubrimento
         fields:
           name: Etiqueta
           value: Contido
+        indexable: Incluír publicacións públicas nos resultados das buscas
+        show_collections: Mostrar os seguimentos e seguidoras no perfil
+        unlocked: Aceptar automáticamente os novos seguimentos
       account_alias:
         acct: Xestiona a conta antiga
       account_migration:
@@ -280,9 +291,18 @@ gl:
         pending_account: Enviar un correo cando unha nova conta precisa revisión
         reblog: Enviar un correo cando alguén promociona a tua mensaxe
         report: Enviouse unha nova denuncia
+        software_updates:
+          all: Notificar todas as actualizacións
+          critical: Notificar só as actualizacións críticas
+          label: Hai unha nova versión de Mastodon dispoñible
+          none: Non notificar nunca as actualizacións (non se recomenda)
+          patch: Notificar as actualizacións de arranxos
         trending_tag: Hai que revisar unha nova tendencia
       rule:
         text: Regra
+      settings:
+        indexable: Incluír páxina de perfil nos motores de busca
+        show_application: Mostrar a app coa que enviaches unha publicación
       tag:
         listable: Permitir que este cancelo apareza en buscas e no directorio de perfil
         name: Cancelo
@@ -303,6 +323,7 @@ gl:
         url: URL do extremo
     'no': Non
     not_recommended: Non é recomendable
+    overridden: Sobreescrita
     recommended: Recomendado
     required:
       mark: "*"

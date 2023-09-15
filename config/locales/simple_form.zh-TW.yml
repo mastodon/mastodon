@@ -3,9 +3,13 @@ zh-TW:
   simple_form:
     hints:
       account:
+        discoverable: 公開嘟文及個人檔案可能於各 Mastodon 功能中被推薦，並且您的個人檔案可能被推薦至其他使用者。
         display_name: 完整名稱或暱稱。
         fields: 烘培雞，自我認同代稱，年齡，及任何您想分享的。
+        indexable: 您的公開嘟文可能會顯示於 Mastodon 之搜尋結果中。曾與您嘟文互動過的人可能無論如何都能搜尋它們。
         note: '您可以 @mention 其他人或者使用 #主題標籤。'
+        show_collections: 人們將能瀏覽您跟隨中及跟隨者帳號。您所跟隨之人能得知您正在跟隨其帳號。
+        unlocked: 人們將無需額外請求您的同意便能跟隨您的帳號。取消勾選以審查跟隨請求並選擇是否同意或拒絕新跟隨者。
       account_alias:
         acct: 指定要移動的帳號的「使用者名稱@網域名稱」
       account_migration:
@@ -116,6 +120,9 @@ zh-TW:
       sessions:
         otp: 請輸入產生自您手機 App 的兩階段驗證碼，或輸入其中一個備用驗證碼：
         webauthn: 如果它是 USB 安全金鑰的話，請確認已正確插入，如有需要請觸擊。
+      settings:
+        indexable: 個人檔案可能出現於 Google、Bing、或其他搜尋引擎。
+        show_application: 將總是顯示您發嘟文之應用程式
       tag:
         name: 您只能變更大小寫，例如，以使其更易讀。
       user:
@@ -133,9 +140,13 @@ zh-TW:
         url: 事件會被傳送至何處
     labels:
       account:
+        discoverable: 於探索演算法中推薦個人檔案及嘟文
         fields:
           name: 標籤
           value: 內容
+        indexable: 允許公開嘟文顯示於搜尋結果中
+        show_collections: 於個人檔案中顯示跟隨中及跟隨者
+        unlocked: 自動同意新跟隨者
       account_alias:
         acct: 舊帳號名稱
       account_migration:
@@ -280,9 +291,18 @@ zh-TW:
         pending_account: 有新的帳號需要審核
         reblog: 當有使用者轉嘟您的嘟文時，傳送電子郵件通知
         report: 新回報已遞交
+        software_updates:
+          all: 通知所有更新
+          critical: 僅通知重要更新
+          label: 有可取得的 Mastodon 新版本
+          none: 永不通知更新（不建議）
+          patch: 通知錯誤修正更新
         trending_tag: 新熱門趨勢需要審核
       rule:
         text: 規則
+      settings:
+        indexable: 於搜尋引擎中包含個人檔案頁面
+        show_application: 顯示您發嘟文之應用程式
       tag:
         listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
         name: 主題標籤
@@ -303,6 +323,7 @@ zh-TW:
         url: 端點 URL
     'no': 否
     not_recommended: 不建議
+    overridden: 已覆寫
     recommended: 建議
     required:
       mark: "*"
