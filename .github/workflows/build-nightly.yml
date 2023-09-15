@@ -26,6 +26,7 @@ jobs:
     with:
       platforms: linux/amd64,linux/arm64
       use_native_arm64_builder: false
+      cache: false
       push_to_images: |
         ghcr.io/${{ github.repository_owner }}/mastodon
       version_prerelease: ${{ needs.compute-suffix.outputs.prerelease }}
