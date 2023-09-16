@@ -59,9 +59,11 @@ ARG UID
 ARG GID
 
 RUN set -eux; \
+    # Update apt due to /var/lib/apt/lists is empty
     apt-get update; \
+    # Upgrade packages
 	apt-get -yq dist-upgrade; \
-    # Install Base dependencies
+    # Install base dependencies
     apt-get install -y --no-install-recommends \
         libatomic1 \
         libicu72 \
@@ -69,6 +71,7 @@ RUN set -eux; \
         libpq5 \
         tzdata \
     ; \
+    # Remove /var/lib/apt/lists as cache
     rm -rf /var/lib/apt/lists/*; \
     # Set local timezone
     echo "${TZ}" > /etc/localtime;
@@ -79,10 +82,11 @@ RUN set -eux; \
 COPY --link --from=node /usr/local /usr/local
 COPY --link --from=node /opt /opt
 
-# Smoke test for node, yarn
 RUN set -eux; \
+    # Smoke test for node, yarn
     node --version; \
     yarn --version; \
+    # Remove tmp files from node
     rm -rf /tmp/*;
 
 RUN set -eux; \
@@ -103,7 +107,9 @@ RUN set -eux; \
 FROM base as builder-base
 
 RUN set -eux; \
+    # Update apt due to /var/lib/apt/lists is empty
     apt-get update; \
+    # Install builder dependencies
     apt-get install -y --no-install-recommends build-essential;
 
 ########################################################################################################################
@@ -111,14 +117,15 @@ FROM builder-base as ruby-builder
 
 ADD Gemfile* /opt/mastodon/
 
-# Install gems
 RUN set -eux; \
+    # Install ruby gems dependencies
     apt-get install -y --no-install-recommends \
         git \
         libicu-dev \
         libidn-dev \
         libpq-dev \
     ; \
+    # Install gems
     bundle install --no-cache;
 
 ########################################################################################################################
@@ -126,8 +133,8 @@ FROM builder-base as node-builder
 
 ADD package.json yarn.lock /opt/mastodon/
 
-# Download and install yarn packages
 RUN set -eux; \
+    # Download and install yarn packages
     yarn install --immutable; \
     yarn cache clean --all;
 
@@ -141,9 +148,10 @@ ARG BIND
 ARG MASTODON_VERSION_PRERELEASE
 ARG MASTODON_VERSION_METADATA
 
-# Install Runtime dependencies
 RUN set -eux; \
+    # Update apt due to /var/lib/apt/lists is empty
     apt-get update; \
+    # Install runtime dependencies
     apt-get install -y --no-install-recommends \
         file \
         imagemagick \
@@ -151,15 +159,20 @@ RUN set -eux; \
         tini \
         wget \
     ; \
+    # Remove /var/lib/apt/lists as cache
     rm -rf /var/lib/apt/lists/*;
 
 RUN set -eux; \
     dpkgArch="$(dpkg --print-architecture)"; \
+    # Marks currently installed apt packages
     savedAptMark="$(apt-mark showmanual)"; \
+    # Update apt due to /var/lib/apt/lists is empty
     apt-get update; \
+    # Install ffmpeg installation dependencies
     apt-get install -y --no-install-recommends \
         xz-utils \
     ; \
+    # Download and install ffmpeg latest release version
     wget -q "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-${dpkgArch}-static.tar.xz"; \
     wget -q "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-${dpkgArch}-static.tar.xz.md5"; \
     md5sum -c ffmpeg-release-${dpkgArch}-static.tar.xz.md5; \
@@ -169,11 +182,13 @@ RUN set -eux; \
     mv "${tmp}/ffmpeg" /usr/local/bin/; \
     mv "${tmp}/ffprobe" /usr/local/bin/; \
     rm -r "${tmp}"; \
+    # Remove unrequired packages on runtime
     apt-mark auto '.*' > /dev/null; \
     apt-mark manual $savedAptMark > /dev/null; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+    # Remove /var/lib/apt/lists as cache
     rm -rf /var/lib/apt/lists/*; \
-    # smoke tests
+    # smoke tests for ffmpeg, ffprobe
     ffmpeg -version; \
     ffprobe -version;
 
@@ -204,9 +219,10 @@ ENV PATH="${PATH}:/opt/mastodon/bin" \
 # Use the mastodon user from here on out
 USER mastodon
 
-# Precompile assets
 RUN set -eux; \
+    # Precompile assets
     OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile; \
+    # Remove tmp files from node
     rm -rf /tmp/*;
 
 # Set the work dir and the container entry point
