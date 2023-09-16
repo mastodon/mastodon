@@ -41,5 +41,7 @@ class Api::V1::Peers::SearchController < Api::BaseController
       domain = TagManager.instance.normalize_domain(domain)
       @domains = Instance.searchable.where(Instance.arel_table[:domain].matches("#{Instance.sanitize_sql_like(domain)}%", false, true)).limit(10).pluck(:domain)
     end
+  rescue Addressable::URI::InvalidURIError
+    @domains = []
   end
 end

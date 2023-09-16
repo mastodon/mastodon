@@ -104,6 +104,10 @@ module Mastodon::Snowflake
       id
     end
 
+    def to_time(id)
+      Time.at((id >> 16) / 1000).utc
+    end
+
     private
 
     def already_defined?

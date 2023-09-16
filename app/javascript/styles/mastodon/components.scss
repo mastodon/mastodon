@@ -836,7 +836,7 @@ body > [data-popper-placement] {
   }
 
   p {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     white-space: pre-wrap;
     unicode-bidi: plaintext;
 
@@ -5061,6 +5061,11 @@ a.status-card {
           font-weight: 700;
           color: $primary-text-color;
         }
+
+        span {
+          overflow: inherit;
+          text-overflow: inherit;
+        }
       }
     }
   }
@@ -5172,21 +5177,38 @@ a.status-card {
 }
 
 .search-results__section {
-  margin-bottom: 5px;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
 
-  h5 {
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &__header {
     background: darken($ui-base-color, 4%);
     border-bottom: 1px solid lighten($ui-base-color, 8%);
-    cursor: default;
-    display: flex;
     padding: 15px;
     font-weight: 500;
-    font-size: 16px;
-    color: $dark-text-color;
+    font-size: 14px;
+    color: $darker-text-color;
+    display: flex;
+    justify-content: space-between;
 
-    .fa {
-      display: inline-block;
+    h3 .fa {
       margin-inline-end: 5px;
+    }
+
+    button {
+      color: $highlight-text-color;
+      padding: 0;
+      border: 0;
+      background: 0;
+      font: inherit;
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -6815,14 +6837,14 @@ a.status-card {
 
 .notification__filter-bar,
 .account__section-headline {
-  background: darken($ui-base-color, 4%);
+  background: $ui-base-color;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
   display: flex;
   flex-shrink: 0;
 
   button {
-    background: darken($ui-base-color, 4%);
+    background: transparent;
     border: 0;
     margin: 0;
   }
@@ -6842,26 +6864,18 @@ a.status-card {
     white-space: nowrap;
 
     &.active {
-      color: $secondary-text-color;
+      color: $primary-text-color;
 
-      &::before,
-      &::after {
+      &::before {
         display: block;
         content: '';
         position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 0;
-        transform: translateX(-50%);
-        border-style: solid;
-        border-width: 0 10px 10px;
-        border-color: transparent transparent lighten($ui-base-color, 8%);
-      }
-
-      &::after {
         bottom: -1px;
-        border-color: transparent transparent $ui-base-color;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 4px;
+        background: $highlight-text-color;
       }
     }
   }
@@ -8868,7 +8882,6 @@ noscript {
   border-radius: 8px;
   border: 1px solid $highlight-text-color;
   background: rgba($highlight-text-color, 0.15);
-  padding-inline-end: 45px;
   overflow: hidden;
 
   &__background-image {
@@ -8928,10 +8941,8 @@ noscript {
   }
 
   &__action {
-    position: absolute;
-    inset-inline-end: 0;
-    top: 0;
-    padding: 10px;
+    float: right;
+    padding: 15px 10px;
 
     .icon-button {
       color: $highlight-text-color;

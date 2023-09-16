@@ -309,6 +309,7 @@ nn:
       unpublish: Avpubliser
       unpublished_msg: Kunngjøring upublisert!
       updated_msg: Kunngjøringen er oppdatert!
+    critical_update_pending: Kritisk oppdatering ventar
     custom_emojis:
       assign_category: Vel kategori
       by_domain: Domene
@@ -770,10 +771,27 @@ nn:
           approved: Godkjenning kreves for påmelding
           none: Ingen kan melda seg inn
           open: Kven som helst kan melda seg inn
+      security:
+        authorized_fetch: Krev autentisering frå fødererte tenarar
+        authorized_fetch_hint: Krav om autentisering frå fødererte tenarar gjer det mogleg med strengare handheving av blokkering, både på brukar- og tenar-nivå. Likevel, dette har ein kostnad når det gjeld yting, reduserer rekkevidda til svara dine og kan medføra kompabilitetsproblem med enkelte fødererte tenester. Dette vil heller ikkje hindra dei som verkeleg vil i å henta dei offentlege innlegga eller kontoane dine.
+        authorized_fetch_overridden_hint: Du kan ikkje endre denne innstillinga no, fordi den er overstyrt av ein miljøvariabel.
+        federation_authentication: Krav om autentisering ved føderering
       title: Tenarinstillingar
     site_uploads:
       delete: Slett opplasta fil
       destroyed_msg: Vellukka sletting av sideopplasting!
+    software_updates:
+      critical_update: Kritisk – gjer vel og oppdater snart
+      description: Det er anbefalt å halda Mastodon-installasjonen oppdatert for å dra nytte av nye feilrettingar og funksjonar. Dessutan er det av og til kritisk å oppdatera Mastodon til rett tid for å ungå sikkerheitsproblem. På grunn av dette vil Mastodon sjå etter oppdateringar kvart 30. minutt og halda deg orientert etter innstillingane du har sett for e-postvarsling.
+      documentation_link: Lær meir
+      release_notes: Oppdateringsnotat
+      title: Tilgjengelege oppdateringar
+      type: Type
+      types:
+        major: Stor oppdatering
+        minor: Mindre oppdatering
+        patch: Lita oppdatering – feilrettingar og endringar som er lette å leggja til
+      version: Versjon
     statuses:
       account: Forfatter
       application: Applikasjon
@@ -814,6 +832,20 @@ nn:
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
+      elasticsearch_health_red:
+        message_html: Elasticsearch-klynga er usunn (raud status), og søkjefunksjonane er utilgjengelege
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch-klyna er usunn (gul status), så du bør undersøkja kvifor
+      elasticsearch_index_mismatch:
+        message_html: Indekskarta for Elasticsearch er utdaterte. Køyr <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Sjå dokumentasjonen
+        message_html: Elasticsearch-klynga di har meir enn ein node, men Mastodon er ikkje sett opp til å bruka dei.
+      elasticsearch_preset_single_node:
+        action: Sjå dokumentasjonen
+        message_html: Elasticsearch-klynga di har berre ein node. <code>ES_PRESET</code> bør vera <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Elasticsearch-systemindeksen er utdatert på grunn av ei endra innstilling. Køyr <code>tootctl search deploy --reset-chewy</code> for å oppdatera indeksen.
       elasticsearch_running_check:
         message_html: Kunne ikke koble til Elasticsearch. Kontroller at den kjører, eller deaktiver fulltekstsøk
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ nn:
         message_html: Du har ikke definert noen serverregler.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
+      software_version_critical_check:
+        action: Sjå tilgjengelege oppdateringar
+        message_html: Ei kritisk oppdatering til Mastodon er tilgjengeleg. Oppdater så snart som mogleg.
+      software_version_patch_check:
+        action: Sjå tilgjengelege oppdateringar
+        message_html: Ei feilretting for Mastodon er tilgjengeleg.
       upload_check_privacy_error:
         action: Sjekk her for meir informasjon
         message_html: "<strong>Vevtenaren din er sett opp feil. Personvernet til brukarane din er i fare.</strong>"
@@ -937,6 +975,9 @@ nn:
       body: "%{target} ankar på ei modereringsavgjerd av %{action_taken_by} den %{date}, som var %{type}. Dei skreiv:"
       next_steps: Du kan godkjenna anken for å endra modereringsavgjerda, eller du kan oversjå anken.
       subject: "%{username} ankar ei modereringsavgjer på %{instance}"
+    new_critical_software_updates:
+      body: Nye kritiske versjonar av Mastodon er tilgjengeleg. Du vil kanskje oppdatera så snart som mogleg!
+      subject: Kritiske Mastodon-oppdateringar er tilgjengeleg for %{instance}!
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
       subject: Ny konto opp til vurdering på %{instance} (%{username})
@@ -944,6 +985,9 @@ nn:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
       subject: Ny rapport for %{instance} (#%{id})
+    new_software_updates:
+      body: Nye versjonar av Mastodon er tilgjengeleg, du vil kanskje oppdatera!
+      subject: Nye versjonar av Mastodon er tilgjengeleg for %{instance}!
     new_trends:
       body: 'Du må sjå gjennom desse elementa før dei kan visast offentleg:'
       new_trending_links:
@@ -1432,6 +1476,7 @@ nn:
     update:
       subject: "%{name} redigerte et innlegg"
   notifications:
+    administration_emails: Administrator sine epost-varsler
     email_events: E-postvarslinger for hendelser
     email_events_hint: 'Velg hendelser som du vil motta varslinger for:'
     other_settings: Andre varslingsinnstillinger
@@ -1475,6 +1520,15 @@ nn:
     other: Anna
     posting_defaults: Innleggsstandarder
     public_timelines: Offentlege tidsliner
+  privacy:
+    hint_html: "<strong>Tilpass korleis du vil at andre skal finna profilen og innlegga dine.</strong> Mastodon har fleire funksjonar du kan ta i bruk for å få kontakt med eit større publikum. Sjå gjerne gjennom innstillingane slik at du er sikker på at dei passar til deg og din bruk."
+    privacy: Personvern
+    privacy_hint_html: Ha kontroll over kor mykje du vil dela. Folk finn interessante profilar og fine appar ved å sjå gjennom kva andre fylgjer og kva appar dei legg ut innlegg med, men det kan henda du vil gøyma desse opplysingane.
+    reach: Nå andre
+    reach_hint_html: Hald styring med om du vil at andre skal kunna oppdaga og fylgja deg. Vil du at innlegga dine skal stå på Utforsk-sida? Vil du at andre skal sjå deg i tilrådingane for kven dei skal fylgja? Vil du ta imot nye fylgjarar automatisk, eller vil du kontrollera kvar einskild fylgjar?
+    search: Søk
+    search_hint_html: Kontroller korleis du vil at folk skal finna deg. Vil du at folk skal finna deg ut frå dei offentlege innlegga dine? Vil du at folk utanfor Mastodon skal kunna finna profilen din når dei søkjer på nettet? Ver merksam på at det er uråd å garantera heilt for at søkjemotorar ikkje finn deg.
+    title: Personvern og rekkjevidd
   privacy_policy:
     title: Retningslinjer for personvern
   reactions:
@@ -1684,6 +1738,11 @@ nn:
       default: "%d.%b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d. %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Tenaren si kvote for omsetjingstenesta er brukt opp.
+      too_many_requests: Det har vore for mange førespurnader til omsetjingstenesta i det siste.
   two_factor_authentication:
     add: Legg til
     disable: Slå av

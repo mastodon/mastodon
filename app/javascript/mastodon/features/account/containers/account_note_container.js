@@ -11,7 +11,7 @@ const mapStateToProps = (state, { account }) => ({
 const mapDispatchToProps = (dispatch, { account }) => ({
 
   onSave (value) {
-    dispatch(submitAccountNote(account.get('id'), value));
+    dispatch(submitAccountNote({ id: account.get('id'), value}));
   },
 
 });

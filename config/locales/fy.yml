@@ -309,6 +309,7 @@ fy:
       unpublish: Depublisearje
       unpublished_msg: Ungedien meitsjen fan publisearre meidieling is slagge!
       updated_msg: Bywurkjen fan meidieling slagge!
+    critical_update_pending: Kritike fernijing yn behanneling
     custom_emojis:
       assign_category: Kategory tawize
       by_domain: Domein
@@ -770,10 +771,27 @@ fy:
           approved: Goedkarring fereaske om te registrearje te kinnen
           none: Net ien kin harren registrearje
           open: Elkenien kin harren registrearje
+      security:
+        authorized_fetch: Ferifikaasje fan fedearre servers fereaskje
+        authorized_fetch_hint: Ferifikaasje fereaskje fan federearre servers, makket in striktere hanthaving fan sawol brûkersnivo as server-levelblokken mooglik. Dit giet wol ten koste fan de prestaasjes, ferminderet it berik fan jo antwurden en kin kompatibiliteitsproblemen mei guon federearre services opleverje. Boppedat sil dit net foarkomme dat tawijde spilers jo iepenbiere artikelen en accounts ophelje.
+        authorized_fetch_overridden_hint: Jo kinne op dit stuit dizze ynstelling net wizigje, omdat dizze oerskreaun is troch in omjouwingsfariabele.
+        federation_authentication: Oftwongen federaasje-autentikaasje
       title: Serverynstellingen
     site_uploads:
       delete: Opladen bestân fuortsmite
       destroyed_msg: Fuortsmiten website-oplaad slagge!
+    software_updates:
+      critical_update: Krityk — fernij sa gau as mooglik
+      description: It wurdt oanrekommandearre om jo Mastodon-ynstallaasje by-de-tiid te hâlden om gebrûk meitsje te kinnen fan de nijste oplossingen en funksjes. Boppe dat is it somtiden krúsjaal om Mastodon tidich by te wurkjen om feiligheidsproblemen foar te kommen. Om dizze redenen kontrolearret Mastodon elke 30 minuten fernijingen en bringt jo hjirfan op de hichte neffens jo foarkarren foar e-mailmeldingen.
+      documentation_link: Mear ynfo
+      release_notes: Utjefte-opmerkingen
+      title: Beskikbere fernijingen
+      type: Type
+      types:
+        major: Haadferzje
+        minor: Lytse ferzje
+        patch: Patchferzje – bugfixes en ienfâldich ta te passen wizigingen
+      version: Ferzje
     statuses:
       account: Auteur
       application: Tapassing
@@ -814,6 +832,20 @@ fy:
     system_checks:
       database_schema_check:
         message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
+      elasticsearch_health_red:
+        message_html: Elasticsearch-cluster is net sûn (reade status), sykfunksjes binne net beskikber
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch-cluster is net sûn (giele status), miskien wolle jo de reden ûndersykje
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch-yndekstawizingen binne ferâldere. Fier <code>tootctl search deploy --only=%{value}</code> út
+      elasticsearch_preset:
+        action: Dokumintaasje besjen
+        message_html: Jo Elasticsearch-cluster hat mear as ien node, mar Mastodon is net konfigurearre om se te brûken.
+      elasticsearch_preset_single_node:
+        action: Dokumintaasje besjen
+        message_html: Jo Elasticsearch-cluster hat mar ien node, <code>ES_PRESET</code> moat ynsteld wurde op <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Jo Elasticsearch-systeemyndeks is ferâldere fanwegen in ynstellingswiziging. Fier <code>tootctl search deploy --reset-chewy</code> út om it by te wurkjen.
       elasticsearch_running_check:
         message_html: Koe gjin ferbining meitsje mei Elasticsearch. Kontrolearje dat Elasticsearch útfierd wurdt of skeakelje full-text-sykjen út
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ fy:
         message_html: Jo hawwe foar dizze server gjin regels opsteld.
       sidekiq_process_check:
         message_html: Der draait gjin Sidekiq-proses foar de wachtrige(n) %{value}. Kontrolearje jo Sidekiq-konfiguraasje
+      software_version_critical_check:
+        action: Beskikbere fernijingen besjen
+        message_html: Der is in kritike fernijing foar Mastodon beskikber. Wurkje sa gau as mooglik by.
+      software_version_patch_check:
+        action: Beskikbere fernijingen besjen
+        message_html: Der is in Mastodon-fernijing foar in bugfix beskikber.
       upload_check_privacy_error:
         action: Klik hjir foar mear ynformaasje
         message_html: "<strong>Jo webserver is ferkeard konfigurearre. De privacy fan jo brûkers is yn gefaar.</strong>"
@@ -937,6 +975,9 @@ fy:
       body: "%{target} makket beswier tsjin in moderaasjemaatregel troch %{action_taken_by} op %{date}, oangeande %{type}. De brûker skriuwt:"
       next_steps: Jo kinne it beswier goedkarre om dêrmei de moderaasjemaatregel ûngedien te meitsjen, of jo kinne it ferwerpe.
       subject: "%{username} makket beswier tsjin in moderaasjemaatregel op %{instance}"
+    new_critical_software_updates:
+      body: Nije krityske ferzjes fan Mastodon binne frijjûn. Jo moatte sa gau as mooglik bywurkje!
+      subject: Kritike Mastodon-fernijingen binne beskikber foar %{instance}!
     new_pending_account:
       body: Sjoch hjirûnder de details fan it nije account. Jo kinne de oanfraach goedkarre of ôfwize.
       subject: Der moat in nij account op %{instance} beoardiele wurde (%{username})
@@ -944,6 +985,9 @@ fy:
       body: "%{reporter} hat %{target} rapportearre"
       body_remote: Ien fan %{domain} hat %{target} rapportearre
       subject: Nije rapportaazje op %{instance} (#%{id})
+    new_software_updates:
+      body: Nije ferzjes fan Mastodon binne frijjûn. Jo wolle miskien bywurkje!
+      subject: Nije ferzjes fan Mastodon binne beskikber foar %{instance}!
     new_trends:
       body: 'De folgjende items moatte beoardiele wurde eardat se iepenbier toand wurde kinne:'
       new_trending_links:
@@ -1264,12 +1308,14 @@ fy:
       bookmarks_html: Jo steane op it punt om <strong>jo blêdwizers</strong> mei mear as <strong>%{total_items} artikelen</strong> fan <strong>%{filename}</strong> te ferfangen.
       domain_blocking_html: Jo steane op it punt om <strong>jo domeinblokkearlist</strong> mei mear as <strong>%{total_items} domeinen</strong> fan <strong>%{filename}</strong> te ferfangen.
       following_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> út <strong>%{filename}</strong> <strong>te folgjen</strong> en <strong>te stopjen mei folgjen fan alle oaren</strong>.
+      lists_html: Jo steane op it punt <strong>jo listen</strong> te ferfangen troch ynhâld fan <strong>%{filename}</strong>. Oant <strong>%{total_items} accounts</strong> sille oan nije listen tafoege wurde.
       muting_html: Jo steane op it punt om <strong>jo list mei negearre accounts</strong> mei mear as <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te ferfangen.
     preambles:
       blocking_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te <strong>blokkearjen</strong>.
       bookmarks_html: Jo steane op it punt om <strong>%{total_items} berjochten</strong> fan <strong>%{filename}</strong> út oan jo <strong>blêdwizers</strong> ta te foegjen.
       domain_blocking_html: Jo steane op it punt om <strong>%{total_items} domeinen</strong> fan <strong>%{filename}</strong> út te <strong>blokkearjen</strong>.
       following_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te <strong>folgjen</strong>.
+      lists_html: Jo steane op it punt om oant <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> ta te foegjen oan jo <strong>listen</strong>. Nije listen wurde oanmakke as der gjin list is om oan ta te foegjen.
       muting_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te <strong>negearjen</strong>.
     preface: Jo kinne bepaalde gegevens, lykas de minsken dy’t jo folgje of blokkearre hawwe, nei jo account op dizze server ymportearje. Jo moatte dizze gegevens wol earst op de oarspronklike server eksportearje.
     recent_imports: Resinte ymports
@@ -1286,6 +1332,7 @@ fy:
       bookmarks: Blêdwizers ymportearje
       domain_blocking: Blokkearre domeinen ymportearje
       following: Folge accounts ymportearje
+      lists: Listen ymportearje
       muting: Negearre accounts ymportearje
     type: Ymporttype
     type_groups:
@@ -1296,6 +1343,7 @@ fy:
       bookmarks: Blêdwizers
       domain_blocking: Domeinblokkearlist
       following: Folchlist
+      lists: Listen
       muting: Negearlist
     upload: Oplade
   invites:
@@ -1428,6 +1476,7 @@ fy:
     update:
       subject: "%{name} hat in berjocht bewurke"
   notifications:
+    administration_emails: E-mailmeldingen behearder
     email_events: E-mailmeldingen foar eveneminten
     email_events_hint: 'Selektearje eveneminten wêrfoar’t jo meldingen ûntfange wolle:'
     other_settings: Oare meldingsynstellingen
@@ -1471,6 +1520,15 @@ fy:
     other: Oars
     posting_defaults: Standertynstellingen foar berjochten
     public_timelines: Iepenbiere tiidlinen
+  privacy:
+    hint_html: "<strong>Hoe wolle jo dat jo profyl en berjochten fûn wurde kinne?</strong> In ferskaat oan funksjes yn Mastodon kinne jo helpe om een grutter publyk te berikken as se ynskeakele binne. Nim de tiid om dizze ynstellingen te besjen, om der wis fan te wêzen dat se oan jo winsken foldogge."
+    privacy: Privacy
+    privacy_hint_html: Hoefolle ynformaasje wolle jo oan oare brûkers kwyt? Minsken ûntdekke ynteressante accounts en coole apps troch te besjen hokker accounts jo folgje en troch te besjen hokker app jo brûke foar it pleatsen fan berjochten. It kin lykwols sa wêze dat jo dit leaver ferburgen hâlde.
+    reach: Berik
+    reach_hint_html: Wolle jo troch nije minsken ûntdekt en folge wurde? Wolle jo dat jo berjochten op de side Ferkenne toand wurde? Wolle jo oan oare minsken Oanrekommandearre wurde en yn de brûkersgids stean? Wolle jo nije folgers automatysk akseptearje of wolle jo dy hânmjittich goedkarre kinne?
+    search: Sykje
+    search_hint_html: Hoe wolle jo fûn wurde? Wolle jo dat minsken jo fine kinne fia jo iepenbiere berjochten? Wolle jo dat minsken bûten Mastodon jo profyl fine kinne wannear’t se op it web sykje? Ferjit lykwols net dat jo iepenbiere berjochten en profyl nea folslein beskerme wurde kinnen tsjin sykmasinen.
+    title: Privacy en berik
   privacy_policy:
     title: Privacybelied
   reactions:
@@ -1680,6 +1738,11 @@ fy:
       default: "%d %B %Y om %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: It brûkerskwotum foar de oersettsjinst is oer de limyt.
+      too_many_requests: Der binne de lêste tiid te folle fersiken west by de oersettsjinst.
   two_factor_authentication:
     add: Tafoegje
     disable: 2FA útskeakelje

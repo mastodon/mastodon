@@ -37,7 +37,7 @@ Layout/HashAlignment:
 Layout/LeadingCommentSpace:
   Exclude:
     - 'config/application.rb'
-    - 'config/initializers/omniauth.rb'
+    - 'config/initializers/3_omniauth.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: Max, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
@@ -86,7 +86,7 @@ Lint/UnusedBlockArgument:
 Lint/UselessAssignment:
   Exclude:
     - 'app/services/activitypub/process_status_update_service.rb'
-    - 'config/initializers/omniauth.rb'
+    - 'config/initializers/3_omniauth.rb'
     - 'db/migrate/20190511134027_add_silenced_at_suspended_at_to_accounts.rb'
     - 'db/post_migrate/20190511152737_remove_suspended_silenced_account_fields.rb'
     - 'spec/controllers/api/v1/favourites_controller_spec.rb'
@@ -576,11 +576,11 @@ Style/FetchEnvVar:
     - 'config/environments/development.rb'
     - 'config/environments/production.rb'
     - 'config/initializers/2_limited_federation_mode.rb'
+    - 'config/initializers/3_omniauth.rb'
     - 'config/initializers/blacklists.rb'
     - 'config/initializers/cache_buster.rb'
     - 'config/initializers/content_security_policy.rb'
     - 'config/initializers/devise.rb'
-    - 'config/initializers/omniauth.rb'
     - 'config/initializers/paperclip.rb'
     - 'config/initializers/vapid.rb'
     - 'lib/mastodon/premailer_webpack_strategy.rb'
@@ -814,7 +814,7 @@ Style/StringLiterals:
 # AllowedMethods: define_method, mail, respond_to
 Style/SymbolProc:
   Exclude:
-    - 'config/initializers/omniauth.rb'
+    - 'config/initializers/3_omniauth.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, AllowSafeAssignment.

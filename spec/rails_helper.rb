@@ -4,11 +4,17 @@ ENV['RAILS_ENV'] ||= 'test'
 
 # This needs to be defined before Rails is initialized
 RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
+RUN_SEARCH_SPECS = ENV.fetch('RUN_SEARCH_SPECS', false)
 
 if RUN_SYSTEM_SPECS
   STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
   ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
 end
+
+if RUN_SEARCH_SPECS
+  # Include any configuration or setups specific to search tests here
+end
+
 require File.expand_path('../config/environment', __dir__)
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
@@ -30,6 +36,7 @@ Sidekiq.logger = nil
 # System tests config
 DatabaseCleaner.strategy = [:deletion]
 streaming_server_manager = StreamingServerManager.new
+search_data_manager = SearchDataManager.new
 
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in
@@ -69,7 +76,14 @@ end
 
 RSpec.configure do |config|
   # This is set before running spec:system, see lib/tasks/tests.rake
-  config.filter_run_excluding type: :system unless RUN_SYSTEM_SPECS
+  config.filter_run_excluding type: lambda { |type|
+    case type
+    when :system
+      !RUN_SYSTEM_SPECS
+    when :search
+      !RUN_SEARCH_SPECS
+    end
+  }
   config.fixture_path = Rails.root.join('spec', 'fixtures')
   config.use_transactional_fixtures = true
   config.order = 'random'
@@ -113,10 +127,17 @@ RSpec.configure do |config|
       Webpacker.compile
       streaming_server_manager.start(port: STREAMING_PORT)
     end
+
+    if RUN_SEARCH_SPECS
+      Chewy.strategy(:urgent)
+      search_data_manager.prepare_test_data
+    end
   end
 
   config.after :suite do
     streaming_server_manager.stop
+
+    search_data_manager.cleanup_test_data if RUN_SEARCH_SPECS
   end
 
   config.around :each, type: :system do |example|
@@ -135,6 +156,12 @@ RSpec.configure do |config|
     end
 
     self.use_transactional_tests = true
+  end
+
+  config.around :each, type: :search do |example|
+    search_data_manager.populate_indexes
+    example.run
+    search_data_manager.remove_indexes
   end
 
   config.before(:each) do |example|

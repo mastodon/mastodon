@@ -2,6 +2,14 @@
 lv:
   simple_form:
     hints:
+      account:
+        discoverable: Tavas publiskās ziņas un profils var tikt piedāvāti vai ieteikti dažādās Mastodon vietās, un tavs profils var tikt ieteikts citiem lietotājiem.
+        display_name: Tavs pilnais vārds vai tavs joku vārds.
+        fields: Tava mājas lapa, vietniekvārdi, vecums, viss, ko vēlies.
+        indexable: Tavas publiskās ziņas var tikt parādītas Mastodon meklēšanas rezultātos. Personas, kuras ir mijiedarbojušās ar tavām ziņām, var tās meklēt neatkarīgi no tā.
+        note: 'Tu vari @minēt citus cilvēkus vai #mirkļbirkas.'
+        show_collections: Cilvēki varēs pārlūkot tavus sekotājus un kam tu seko. Cilvēki, kuriem seko, redzēs, ka tu seko viņiem neatkarīgi no tā.
+        unlocked: Cilvēki varēs tev sekot, neprasot apstiprinājumu. Noņem atzīmi, ja vēlies pārskatīt sekošanas pieprasījumus un izvēlēties, pieņemt vai noraidīt jaunus sekotājus.
       account_alias:
         acct: Norādi konta lietotājvārdu@domēnu, no kura vēlies pārvākties
       account_migration:
@@ -112,6 +120,9 @@ lv:
       sessions:
         otp: 'Ievadi divfaktoru kodu, ko ģenerējusi tava tālruņa lietotne, vai izmanto kādu no atkopšanas kodiem:'
         webauthn: Ja tā ir USB atslēga, noteikti ievieto to un, ja nepieciešams, pieskaries tai.
+      settings:
+        indexable: Tava profila lapa var tikt parādīta Google, Bing un citu meklēšanas dzinēju rezultātos.
+        show_application: Tu vienmēr varēsi redzēt, kura lietotne publicēja tavu ziņu.
       tag:
         name: Tu vari mainīt tikai burtu lielumu, piemēram, lai tie būtu vieglāk lasāmi
       user:
@@ -125,12 +136,17 @@ lv:
         position: What is "alower"?
       webhook:
         events: Atlasi nosūtāmos notikums
+        template: Izveido savu JSON lietderīgo slodzi, izmantojot mainīgo interpolāciju. Atstāj tukšu noklusējuma JSON.
         url: Kur notikumi tiks nosūtīti
     labels:
       account:
+        discoverable: Funkcijas profils un ziņas atklāšanas algoritmos
         fields:
           name: Marķējums
           value: Saturs
+        indexable: Iekļaut meklēšanas rezultātos publiskas ziņas
+        show_collections: Rādīt profilā sekotājus un sekojamos
+        unlocked: Automātiski akceptēt jaunus sekotājus
       account_alias:
         acct: Vecā konta rokturis
       account_migration:
@@ -275,9 +291,18 @@ lv:
         pending_account: Jāpārskata jaunu kontu
         reblog: Kāds izcēla tavu ierakstu
         report: Tika iesniegts jauns ziņojums
+        software_updates:
+          all: Paziņot par visiem atjauninājumiem
+          critical: Paziņot tikai par kritiskajiem atjauninājumiem
+          label: Ir pieejama jauna Mastodon versija
+          none: Nekad neziņot par atjauninājumiem (nerekomendēts)
+          patch: Paziņot par novērsto kļūdu atjauninājumiem
         trending_tag: Jaunā tendence ir jāpārskata
       rule:
         text: Noteikumi
+      settings:
+        indexable: Ietvert profila lapu muklēšanas dzinējos
+        show_application: Parādi, no kuras lietotnes nosūtīji ziņu
       tag:
         listable: Atļaut šim tēmturim parādīties meklējumos un ieteikumos
         name: Tēmturis
@@ -285,6 +310,7 @@ lv:
         usable: Atļaut lietot ziņās šo tēmturi
       user:
         role: Loma
+        time_zone: Laika josla
       user_role:
         color: Emblēmas krāsa
         highlighted: Atainot lomu kā emblēmu lietotāju profilos
@@ -293,9 +319,11 @@ lv:
         position: Prioritāte
       webhook:
         events: Iespējotie notikumi
+        template: Noslodzes veidne
         url: Galapunkta URL
     'no': Nē
     not_recommended: Nav ieteicams
+    overridden: Ignorēts
     recommended: Ieteicams
     required:
       mark: "*"

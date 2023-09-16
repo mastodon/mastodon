@@ -132,21 +132,38 @@
 }
 
 .search-results__section {
-  margin-bottom: 5px;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
 
-  h5 {
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &__header {
     background: darken($ui-base-color, 4%);
     border-bottom: 1px solid lighten($ui-base-color, 8%);
-    cursor: default;
-    display: flex;
     padding: 15px;
     font-weight: 500;
-    font-size: 16px;
-    color: $dark-text-color;
+    font-size: 14px;
+    color: $darker-text-color;
+    display: flex;
+    justify-content: space-between;
 
-    .fa {
-      display: inline-block;
+    h3 .fa {
       margin-inline-end: 5px;
+    }
+
+    button {
+      color: $highlight-text-color;
+      padding: 0;
+      border: 0;
+      background: 0;
+      font: inherit;
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: underline;
+      }
     }
   }
 

@@ -315,6 +315,7 @@ sl:
       unpublish: Umakni iz objave
       unpublished_msg: Obvestilo je bilo uspešno umaknjeno!
       updated_msg: Obvestilo je bilo uspešno posodobljeno!
+    critical_update_pending: Nujna posodobitev v teku
     custom_emojis:
       assign_category: Dodeli kategorijo
       by_domain: Domena
@@ -400,6 +401,7 @@ sl:
         cancel: Prekliči
         confirm: Suspendiraj
         permanent_action: Z razveljavitvijo suzpenza ne boste obnovili nobenih podatkov ali razmerij.
+        remove_all_data: S tem boste odstranili celotno vsebino, medijske vsebine ter podatke iz profila za rčune te domene na vašem strežniku.
         stop_communication: Vaš strežnik bo prenehal komunicirati s temi strežniki.
         title: Potrdi domenski blok za %{domain}
       created_msg: Domenski blok se sedaj obdeluje
@@ -792,10 +794,23 @@ sl:
           approved: Potrebna je odobritev za prijavo
           none: Nihče se ne more prijaviti
           open: Vsakdo se lahko prijavi
+      security:
+        authorized_fetch_overridden_hint: Trenutno ne morete spremeniti te nastavitve, ker jo preglasi okoljska spremenljivka.
       title: Nastavitve strežnika
     site_uploads:
       delete: Izbriši naloženo datoteko
       destroyed_msg: Prenos na strežnik uspešno izbrisan!
+    software_updates:
+      critical_update: Kritično — čim prej posodobite
+      documentation_link: Več o tem
+      release_notes: Opombe ob izdaji
+      title: Razpoložljive posodobitve
+      type: Vrsta
+      types:
+        major: Osrednja izdaja
+        minor: Izdaja z manjšimi spremembami
+        patch: Izdaja popravkov - popravki hroščev in enostavne spremembe v kodi
+      version: Različica
     statuses:
       account: Avtor
       application: Program
@@ -836,6 +851,10 @@ sl:
     system_checks:
       database_schema_check:
         message_html: Na čakanju so migracije zbirke podatkov. Prosimo, izvedite jih, da zagotovite, da se program vede pričakovano
+      elasticsearch_preset:
+        action: Glejte dokumentacijo
+      elasticsearch_preset_single_node:
+        action: Glejte dokumentacijo
       elasticsearch_running_check:
         message_html: Povezava z Elasticsearch ni uspela. Preverite, da deluje, ali onemogočite iskanje po vsem besedilu
       elasticsearch_version_check:
@@ -846,6 +865,10 @@ sl:
         message_html: Nobenih pravil strežnika niste določili.
       sidekiq_process_check:
         message_html: Noben proces Sidekiq ne poteka za %{value} vrst. Preglejte svojo prilagoditev Sidekiq
+      software_version_critical_check:
+        action: Glejte razpoložljive posodobitve
+      software_version_patch_check:
+        action: Glejte razpoložljive posodobitve
       upload_check_privacy_error:
         action: Preverite tukaj za več informacij
         message_html: "<strong>Vaš spletni strežnik je napačno nastavljen. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
@@ -1369,6 +1392,14 @@ sl:
     unsubscribe:
       action: Da, odjavi me
       complete: Odjavljeni
+      emails:
+        notification_emails:
+          favourite: e-sporočil z obvestili o priljubljenosti
+          follow: e-sporočil z obvestili o sledenju
+          follow_request: e-sporočil o zahtevah za sledenje
+          mention: e-sporočil z obvestili o omembah
+          reblog: e-sporočil z obvestili o izpostavljanju
+      success_html: Nič več ne boste prejemali %{type} za Mastodon na %{domain} na svoj e-naslov %{email}.
       title: Odjavi od naročnine
   media_attachments:
     validations:
@@ -1449,6 +1480,7 @@ sl:
     update:
       subject: "%{name} je uredil(a) objavo"
   notifications:
+    administration_emails: E-poštna obvestila skrbnika
     email_events: Dogodki za e-obvestila
     email_events_hint: 'Izberite dogodke, za katere želite prejmati obvestila:'
     other_settings: Druge nastavitve obvestil
@@ -1492,6 +1524,11 @@ sl:
     other: Ostalo
     posting_defaults: Privzete nastavitev objavljanja
     public_timelines: Javne časovnice
+  privacy:
+    privacy: Zasebnost
+    reach: Dosegljivost
+    search: Iskanje
+    title: Zasebnost in dosegljivost
   privacy_policy:
     title: Pravilnik o zasebnosti
   reactions:
@@ -1713,6 +1750,7 @@ sl:
       default: "%b %d %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d.  %b. %Y %H:%M %Z"
   two_factor_authentication:
     add: Dodaj
     disable: Onemogoči

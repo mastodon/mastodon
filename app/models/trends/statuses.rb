@@ -8,7 +8,7 @@ class Trends::Statuses < Trends::Base
   self.default_options = {
     threshold: 5,
     review_threshold: 3,
-    score_halflife: 2.hours.freeze,
+    score_halflife: 1.hour.freeze,
     decay_threshold: 0.3,
   }
 

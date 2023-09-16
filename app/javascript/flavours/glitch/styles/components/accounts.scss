@@ -365,7 +365,7 @@
   flex-shrink: 0;
 
   button {
-    background: darken($ui-base-color, 4%);
+    background: transparent;
     border: 0;
     margin: 0;
   }
@@ -383,26 +383,18 @@
     position: relative;
 
     &.active {
-      color: $secondary-text-color;
+      color: $primary-text-color;
 
-      &::before,
-      &::after {
+      &::before {
         display: block;
         content: '';
         position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 0;
-        transform: translateX(-50%);
-        border-style: solid;
-        border-width: 0 10px 10px;
-        border-color: transparent transparent lighten($ui-base-color, 8%);
-      }
-
-      &::after {
         bottom: -1px;
-        border-color: transparent transparent $ui-base-color;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 4px;
+        background: $highlight-text-color;
       }
     }
   }

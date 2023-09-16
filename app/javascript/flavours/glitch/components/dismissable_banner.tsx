@@ -33,8 +33,6 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
 
   return (
     <div className='dismissable-banner'>
-      <div className='dismissable-banner__message'>{children}</div>
-
       <div className='dismissable-banner__action'>
         <IconButton
           icon='times'
@@ -42,6 +40,8 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
           onClick={handleDismiss}
         />
       </div>
+
+      <div className='dismissable-banner__message'>{children}</div>
     </div>
   );
 };

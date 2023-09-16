@@ -33,7 +33,7 @@ function main() {
         console.error(err);
       }
 
-      if (registration) {
+      if (registration && 'Notification' in window && Notification.permission === 'granted') {
         const registerPushNotifications = await import('flavours/glitch/actions/push_notifications');
 
         store.dispatch(registerPushNotifications.register());
