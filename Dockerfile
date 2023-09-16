@@ -195,9 +195,9 @@ RUN set -eux; \
 # [1/3] Copy the git source code into the image layer
 COPY --link . /opt/mastodon
 # [2/3] Copy output of the "bundle install" build stage into this layer
-COPY --link --from=ruby-builder /opt/mastodon /opt/mastodon
+COPY --link --from=ruby-builder /opt/mastodon/vendor/bundle /opt/mastodon/vendor/bundle
 # [3/3] Copy output of the "yarn install" build stage into this image layer
-COPY --link --from=node-builder /opt/mastodon /opt/mastodon
+COPY --link --from=node-builder /opt/mastodon/node_modules /opt/mastodon/node_modules
 
 RUN set -eux; \
     # Create some dirs as mastodon:mastodon
