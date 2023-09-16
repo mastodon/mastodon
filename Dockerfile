@@ -3,10 +3,10 @@
 # See: https://github.com/hadolint/hadolint/wiki/DL3008
 # hadolint global ignore=DL3008,DL3009
 
-# Ruby image to use for building and runtime, change with [--build-arg RUBY_VERSION=]
+# Ruby version to use, change with [--build-arg RUBY_VERSION=]
 ARG RUBY_VERSION="3.2.2"
 
-# Node image to use for building and runtime, change with [--build-arg NODE_VERSION=]
+# Node version to use, change with [--build-arg NODE_VERSION=]
 ARG NODE_VERSION="20.6.0"
 
 # Image variant to use for ruby and node, change with [--build-arg IMAGE_VARIANT=]
