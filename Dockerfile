@@ -83,17 +83,19 @@ RUN set -eux; \
     yarn --version; \
     rm -rf /tmp/*;
 
-WORKDIR /opt/mastodon
-
 RUN set -eux; \
+    # Set local timezone
     echo "${TZ}" > /etc/localtime; \
+    # Add mastodon group and user
     groupadd -g "${GID}" mastodon; \
-    useradd -l -u "${UID}" -g "${GID}" -m -d /opt/mastodon mastodon; \
+    useradd -u "${UID}" -g "${GID}" -l -m -d /opt/mastodon mastodon; \
     # Symlink /opt/mastodon to /mastodon
     ln -s /opt/mastodon /mastodon; \
     # Set bundle configs
     bundle config set --local deployment 'true'; \
     bundle config set --local without 'development test';
+
+WORKDIR /opt/mastodon
 
 ########################################################################################################################
 FROM base as builder-base
