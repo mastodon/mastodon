@@ -102,8 +102,7 @@ FROM base as builder-base
 
 RUN set -eux; \
     apt-get update; \
-    apt-get install -y --no-install-recommends build-essential; \
-    rm -rf /var/lib/apt/lists/*;
+    apt-get install -y --no-install-recommends build-essential;
 
 ########################################################################################################################
 FROM builder-base as ruby-builder
@@ -112,7 +111,6 @@ ADD Gemfile* /opt/mastodon/
 
 # Install gems
 RUN set -eux; \
-    apt-get update; \
     apt-get install -y --no-install-recommends \
         git \
         libicu-dev \
