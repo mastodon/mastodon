@@ -9,6 +9,15 @@ ARG RUBY_VERSION="3.2.2"
 # Node image to use for building and runtime, change with [--build-arg NODE_VERSION=]
 ARG NODE_VERSION="20.6.0"
 
+# Image variant to use for ruby and node, change with [--build-arg IMAGE_VARIANT=]
+ARG IMAGE_VARIANT="bookworm"
+
+# Image variant to use for ruby, change with [--build-arg RUBY_IMAGE_VARIANT=]
+ARG RUBY_IMAGE_VARIANT="slim-${IMAGE_VARIANT}"
+
+# Image variant to use for node, change with [--build-arg NODE_IMAGE_VARIANT=]
+ARG NODE_IMAGE_VARIANT="${IMAGE_VARIANT}-slim"
+
 # Linux UID (user id) for the mastodon user, change with [--build-arg UID=1234]
 ARG UID="991"
 
@@ -50,10 +59,10 @@ ARG RAILS_SERVE_STATIC_FILES="true"
 ARG BIND="0.0.0.0"
 
 ########################################################################################################################
-FROM node:${NODE_VERSION}-bookworm-slim as node
+FROM node:${NODE_VERSION}-${NODE_IMAGE_VARIANT} as node
 
 ########################################################################################################################
-FROM ruby:${RUBY_VERSION}-slim-bookworm as base
+FROM ruby:${RUBY_VERSION}-${RUBY_IMAGE_VARIANT} as base
 ARG TZ
 ARG UID
 ARG GID
