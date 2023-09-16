@@ -58,10 +58,10 @@ ARG TZ
 ARG UID
 ARG GID
 
-# Install Base dependencies
 RUN set -eux; \
     apt-get update; \
 	apt-get -yq dist-upgrade; \
+    # Install Base dependencies
     apt-get install -y --no-install-recommends \
         libatomic1 \
         libicu72 \
@@ -69,7 +69,9 @@ RUN set -eux; \
         libpq5 \
         tzdata \
     ; \
-    rm -rf /var/lib/apt/lists/*;
+    rm -rf /var/lib/apt/lists/*; \
+    # Set local timezone
+    echo "${TZ}" > /etc/localtime;
 
 # Node image contains node and yarn on /usr/local and /opt
 #
@@ -84,18 +86,18 @@ RUN set -eux; \
     rm -rf /tmp/*;
 
 RUN set -eux; \
-    # Set local timezone
-    echo "${TZ}" > /etc/localtime; \
     # Add mastodon group and user
     groupadd -g "${GID}" mastodon; \
     useradd -u "${UID}" -g "${GID}" -l -m -d /opt/mastodon mastodon; \
     # Symlink /opt/mastodon to /mastodon
-    ln -s /opt/mastodon /mastodon; \
+    ln -s /opt/mastodon /mastodon;
+
+WORKDIR /opt/mastodon
+
+RUN set -eux; \
     # Set bundle configs
     bundle config set --local deployment 'true'; \
     bundle config set --local without 'development test';
-
-WORKDIR /opt/mastodon
 
 ########################################################################################################################
 FROM base as builder-base
