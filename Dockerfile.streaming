@@ -43,7 +43,6 @@ WORKDIR /opt/mastodon
 
 ### Copy Node package configuration files from build system to container ###
 COPY package.json yarn.lock /opt/mastodon/
-COPY ./certs /opt/mastodon/certs
 COPY ./streaming /opt/mastodon/streaming
 
 # Configure yarn to prevent changes to package.json and yarn.lock
