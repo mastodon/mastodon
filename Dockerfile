@@ -222,8 +222,8 @@ USER mastodon
 RUN set -eux; \
     # Precompile assets
     OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile; \
-    # Remove tmp files from node
-    rm -rf /tmp/*;
+    # Remove tmp files from assets:precompile
+    rm -rf /tmp/* tmp/* .cache;
 
 # Set the work dir and the container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]
