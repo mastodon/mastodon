@@ -182,7 +182,12 @@ COPY --link --from=ruby-builder /opt/mastodon /opt/mastodon
 # [3/3] Copy output of the "yarn install" build stage into this image layer
 COPY --link --from=node-builder /opt/mastodon /opt/mastodon
 
-RUN mkdir /opt/mastodon/tmp && chown mastodon:mastodon /opt/mastodon/tmp
+RUN set -eux; \
+    # Create some dirs as mastodon:mastodon
+    mkdir /opt/mastodon/tmp && chown mastodon:mastodon /opt/mastodon/tmp; \
+    mkdir /opt/mastodon/public/assets && chown mastodon:mastodon /opt/mastodon/public/assets; \
+    mkdir /opt/mastodon/public/packs && chown mastodon:mastodon /opt/mastodon/public/packs; \
+    mkdir /opt/mastodon/public/system && chown mastodon:mastodon /opt/mastodon/public/system;
 
 ENV PATH="${PATH}:/opt/mastodon/bin" \
     LD_PRELOAD="libjemalloc.so.2" \
@@ -194,13 +199,13 @@ ENV PATH="${PATH}:/opt/mastodon/bin" \
     MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
     MASTODON_VERSION_METADATA="${MASTODON_VERSION_METADATA}"
 
+# Use the mastodon user from here on out
+USER mastodon
+
 # Precompile assets
 RUN set -eux; \
     OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile; \
     rm -rf /tmp/*;
-
-# Use the mastodon user from here on out
-USER mastodon
 
 # Set the work dir and the container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]
