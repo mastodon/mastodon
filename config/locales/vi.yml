@@ -122,7 +122,7 @@ vi:
       removed_header_msg: Đã xóa bỏ ảnh bìa của %{username}
       resend_confirmation:
         already_confirmed: Người này đã được xác minh
-        send: Gửi lại email xác nhận
+        send: Gửi lại email xác minh
         success: Xác nhận đã được gửi đi thành công!
       reset: Đặt lại
       reset_password: Đặt lại mật khẩu
@@ -208,7 +208,7 @@ vi:
         reject_user: Từ chối đăng ký
         remove_avatar_user: Xóa ảnh đại diện
         reopen_report: Mở lại báo cáo
-        resend_user: Gửi lại email xác nhận
+        resend_user: Gửi lại email xác minh
         reset_password_user: Đặt lại mật khẩu
         resolve_report: Xử lý báo cáo
         sensitive_account: Áp đặt nhạy cảm
@@ -267,7 +267,7 @@ vi:
         reject_user_html: "%{name} đã từ chối đăng ký từ %{target}"
         remove_avatar_user_html: "%{name} đã xóa ảnh đại diện của %{target}"
         reopen_report_html: "%{name} mở lại báo cáo %{target}"
-        resend_user_html: "%{name} gửi lại email xác nhận cho %{target}"
+        resend_user_html: "%{name} gửi lại email xác minh cho %{target}"
         reset_password_user_html: "%{name} đã đặt lại mật khẩu của %{target}"
         resolve_report_html: "%{name} đã xử lý báo cáo %{target}"
         sensitive_account_html: "%{name} đánh dấu nội dung của %{target} là nhạy cảm"
@@ -694,7 +694,7 @@ vi:
         manage_settings: Quản lý thiết lập
         manage_settings_description: Cho phép thay đổi thiết lập máy chủ
         manage_taxonomies: Quản lý phân loại
-        manage_taxonomies_description: Cho phép đánh giá nội dung thịnh hành và cập nhật cài đặt hashtag
+        manage_taxonomies_description: Cho phép đánh giá nội dung xu hướng và cập nhật cài đặt hashtag
         manage_user_access: Quản lý người truy cập
         manage_user_access_description: Cho phép vô hiệu hóa xác thực hai bước của người khác, thay đổi địa chỉ email và đặt lại mật khẩu của họ
         manage_users: Quản lý người
@@ -744,7 +744,7 @@ vi:
         publish_discovered_servers: Công khai các máy chủ được phát hiện
         publish_statistics: Công khai số liệu thống kê
         title: Khám phá
-        trends: Thịnh hành
+        trends: Xu hướng
       domain_blocks:
         all: Tới mọi người
         disabled: Không ai
@@ -800,7 +800,7 @@ vi:
       reblogs: Lượt đăng lại
       status_changed: Tút đã thay đổi
       title: Toàn bộ tút
-      trending: Thịnh hành
+      trending: Xu hướng
       visibility: Hiển thị
       with_media: Có media
     strikes:
@@ -880,7 +880,7 @@ vi:
       pending_review: Đang chờ
       preview_card_providers:
         allowed: Tin tức từ nguồn này có thể lên xu hướng
-        description_html: Đây là những nguồn mà từ đó các liên kết thường được chia sẻ trên máy chủ của bạn. Các liên kết sẽ không thể thịnh hành trừ khi bạn cho phép nguồn. Sự cho phép (hoặc cấm) của bạn áp dụng luôn cho các tên miền phụ.
+        description_html: Đây là những nguồn mà từ đó các liên kết thường được chia sẻ trên máy chủ của bạn. Các liên kết sẽ không thể lên xu hướng trừ khi bạn cho phép nguồn. Sự cho phép (hoặc cấm) của bạn áp dụng luôn cho các tên miền phụ.
         rejected: Tin tức từ nguồn này không thể lên xu hướng
         title: Nguồn đăng
       rejected: Đã cấm
@@ -890,11 +890,11 @@ vi:
         description_html: Đây là những tút đang được chia sẻ và yêu thích rất nhiều trên máy chủ của bạn. Nó có thể giúp người mới và người cũ tìm thấy nhiều người hơn để theo dõi. Không có tút nào được hiển thị công khai cho đến khi bạn cho phép người đăng và người cho phép đề xuất tài khoản của họ cho người khác. Bạn cũng có thể cho phép hoặc từ chối từng tút riêng.
         disallow: Cấm tút
         disallow_account: Cấm người đăng
-        no_status_selected: Không có tút thịnh hành nào thay đổi vì không có tút nào được chọn
+        no_status_selected: Không có tút xu hướng nào thay đổi vì không có tút nào được chọn
         not_discoverable: Tác giả đã chọn không tham gia mục khám phá
         shared_by:
           other: Được thích và đăng lại %{friendly_count} lần
-        title: Tút nổi bật
+        title: Tút xu hướng
       tags:
         current_score: Chỉ số gần đây %{score}
         dashboard:
@@ -905,20 +905,20 @@ vi:
           tag_uses_measure: tổng lượt dùng
         description_html: Đây là những hashtag đang xuất hiện trong rất nhiều tút trên máy chủ của bạn. Nó có thể giúp mọi người tìm ra những gì đang được quan tâm nhiều nhất vào lúc này. Không có hashtag nào được hiển thị công khai cho đến khi bạn cho phép chúng.
         listable: Có thể đề xuất
-        no_tag_selected: Không có hashtag thịnh hành nào thay đổi vì không có hashtag nào được chọn
+        no_tag_selected: Không có hashtag xu hướng nào thay đổi vì không có hashtag nào được chọn
         not_listable: Không thể đề xuất
-        not_trendable: Không cho thịnh hành
+        not_trendable: Không cho lên xu hướng
         not_usable: Không được phép dùng
         peaked_on_and_decaying: Đỉnh điểm %{date}, giờ đang giảm
         title: Hashtag nổi bật
-        trendable: Cho phép thịnh hành
+        trendable: Cho phép lên xu hướng
         trending_rank: 'Nổi bật #%{rank}'
         usable: Có thể dùng
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
         used_by_over_week:
           other: "%{count} người dùng tuần rồi"
       title: Xu hướng
-      trending: Thịnh hành
+      trending: Xu hướng
     warning_presets:
       add_new: Thêm mới
       delete: Xóa bỏ
@@ -1029,7 +1029,7 @@ vi:
       prefix_invited_by_user: "@%{name} mời bạn tham gia máy chủ Mastodon này!"
       prefix_sign_up: Tham gia Mastodon ngay hôm nay!
       suffix: Với tài khoản, bạn sẽ có thể theo dõi mọi người, đăng tút và nhắn tin với người từ bất kỳ máy chủ Mastodon khác!
-    didnt_get_confirmation: Không nhận được email yêu cầu xác thực?
+    didnt_get_confirmation: Không nhận được email xác minh?
     dont_have_your_security_key: Bạn có khóa bảo mật chưa?
     forgot_password: Quên mật khẩu
     invalid_reset_password_token: Mã đặt lại mật khẩu không hợp lệ hoặc hết hạn. Vui lòng yêu cầu một cái mới.
@@ -1052,7 +1052,7 @@ vi:
       saml: SAML
     register: Đăng ký
     registration_closed: "%{instance} tạm dừng đăng ký mới"
-    resend_confirmation: Gửi lại email xác nhận
+    resend_confirmation: Gửi lại email xác minh
     reset_password: Đặt lại mật khẩu
     rules:
       accept: Chấp nhận
@@ -1068,14 +1068,14 @@ vi:
       email_below_hint_html: Kiểm tra hộp thư rác hoặc yêu cầu gửi lại. Bạn có thể sửa địa chỉ email của mình nếu sai.
       email_settings_hint_html: Nhấn vào liên kết chúng tôi vừa gửi để xác minh %{email}. Nhanh nhé bạn.
       link_not_received: Không nhận được mã?
-      new_confirmation_instructions_sent: Bạn sẽ nhận được một email mới với liên kết xác nhận sau vài phút!
+      new_confirmation_instructions_sent: Bạn sẽ nhận được một email mới với liên kết xác minh sau vài phút!
       title: Kiểm tra email của bạn
     sign_in:
       preamble_html: Đăng nhập bằng tài khoản <strong>%{domain}</strong>. Nếu đăng ký trên một máy chủ khác, bạn sẽ không thể đăng nhập tại đây.
       title: Đăng nhập %{domain}
     sign_up:
       manual_review: "%{domain} sẽ duyệt đăng ký thủ công. Để giúp chúng tôi duyệt nhanh, hãy viết một chút về bản thân và lý do bạn muốn có một tài khoản trên %{domain}."
-      preamble: Với tài khoản trên máy chủ Mastodon này, bạn sẽ có thể theo dõi bất kỳ người nào trên các máy chủ khác, bất kể tài khoản của họ ở đâu.
+      preamble: Với tài khoản trên máy chủ Mastodon này, bạn sẽ có thể theo dõi bất kỳ người nào thuộc các máy chủ khác.
       title: Đang đăng ký trên %{domain}.
     status:
       account_status: Trạng thái tài khoản
@@ -1125,7 +1125,7 @@ vi:
       data_removal: Bài viết của bạn và dữ liệu khác sẽ bị xóa vĩnh viễn
       email_change_html: Bạn có thể <a href="%{path}">thay đổi địa chỉ email</a> mà không cần phải xóa tài khoản
       email_contact_html: Nếu vẫn không nhận được, bạn có thể liên hệ <a href="mailto:%{email}">%{email}</a> để được giúp đỡ
-      email_reconfirmation_html: Nếu bạn không nhận được email xác nhận, hãy thử <a href="%{path}">yêu cầu lại</a>
+      email_reconfirmation_html: Nếu bạn không nhận được email xác minh, hãy thử <a href="%{path}">yêu cầu lại</a>
       irreversible: Bạn sẽ không thể khôi phục hoặc kích hoạt lại tài khoản của mình
       more_details_html: Đọc <a href="%{terms_path}">chính sách bảo mật</a> để biết thêm chi tiết.
       username_available: Tên người dùng của bạn sẽ có thể đăng ký lại
@@ -1209,7 +1209,7 @@ vi:
       account: Trang hồ sơ
       home: Trang chính và danh sách
       notifications: Thông báo
-      public: Tin công khai
+      public: Tút công khai
       thread: Thảo luận
     edit:
       add_keyword: Thêm từ khoá
@@ -1292,7 +1292,7 @@ vi:
       following_html: Bạn sắp <strong>theo dõi</strong> tới <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
       lists_html: Bạn sắp thêm <strong>%{total_items} tài khoản</strong> từ <strong>%{filename}</strong> vào <strong>danh sách của bạn</strong>. Những danh sách mới sẽ được tạo nếu bạn chưa có danh sách nào.
       muting_html: Bạn sắp <strong>ẩn</strong> lên tới <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
-    preface: Bạn có thể nhập dữ liệu mà bạn đã xuất từ một máy chủ khác, chẳng hạn như danh sách những người bạn đang theo dõi hoặc chặn.
+    preface: Bạn có thể nhập dữ liệu mà bạn đã xuất từ một máy chủ khác, chẳng hạn danh sách những người đang theo dõi hoặc chặn.
     recent_imports: Đã nhập gần đây
     states:
       finished: Đã hoàn thành
@@ -1466,7 +1466,7 @@ vi:
           trillion: T
   otp_authentication:
     code_hint: Nhập mã được tạo bởi ứng dụng xác minh của bạn để xác nhận
-    description_html: Nếu kích hoạt <strong>xác minh 2 bước</strong> thông qua ứng dụng, bạn sẽ đăng nhập bằng mã token được tạo bởi chính điện thoại của bạn.
+    description_html: Bạn sẽ đăng nhập bằng mã token được tạo ra bởi điện thoại của bạn.
     enable: Kích hoạt
     instructions_html: "<strong>Quét mã QR bằng Google Authenticator hoặc một ứng dụng TOTP tương tự trên điện thoại của bạn</strong>. Kể từ bây giờ, ứng dụng đó sẽ tạo những token để bạn đăng nhập."
     manual_instructions: 'Nếu bạn không thể quét mã QR, đây sẽ là dòng chữ gợi ý:'
