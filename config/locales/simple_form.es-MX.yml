@@ -3,13 +3,13 @@ es-MX:
   simple_form:
     hints:
       account:
-        discoverable: Tu perfil y publicaciones públicas pueden ser destacadas o recomendadas en varias áreas de Mastodon y tu perfil puede ser sugerido a otros usuarios.
+        discoverable: Tu perfil y las publicaciones públicas pueden ser destacadas o recomendadas en varias áreas de Mastodon y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu nick.
         fields: Tu página de inicio, pronombres, edad, todo lo que quieras.
-        indexable: Tus publicaciones públicas pueden aparecer en los resultados de búsqueda en Mastodon. Las personas que han interactuado con tus publicaciones pueden ser capaces de buscarlas sin importar su visibilidad.
+        indexable: Tus publicaciones públicas pueden aparecer en los resultados de búsqueda en Mastodon. Las personas que han interactuado con tus publicaciones pueden buscarlas en cualquier momento.
         note: 'Puedes @mencionar a otra gente o #hashtags.'
-        show_collections: Las personas podrán navegar a través de tus seguidos y seguidores. Esto no impide que las personas que sigues sepan que las estás siguiendo.
-        unlocked: Las personas podrán seguirte sin pedir aprobación. Desmarca si deseas revisar las solicitudes de seguimiento y aceptar o rechazar nuevos seguidores.
+        show_collections: Las personas pueden navegar a través de tus seguidos y seguidores. Las personas que te siguen pueden ver que las sigues.
+        unlocked: Las personas pueden seguirte sin solicitar la aprobación. No lo selecciones si quieres revisar las solicitudes de seguimiento y elegir si aceptas o rechazas a nuevos seguidores.
       account_alias:
         acct: Especifique el nombre de usuario@dominio de la cuenta desde la cual se desea migrar
       account_migration:
@@ -121,8 +121,8 @@ es-MX:
         otp: 'Introduce el código de autenticación de dos factores generado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
         webauthn: Si es una tecla USB, asegúrese de insertarla y, si es necesario, púlsela.
       settings:
-        indexable: Puede que tu página de perfil aparezca en los resultados de búsqueda en Google, Bing y otros.
-        show_application: Tú siempre podrás ver desde qué aplicación se ha publicado tu publicación.
+        indexable: Tu página de perfil puede aparecer en los resultados de búsqueda en Google, Bing, entre otros.
+        show_application: Siempre podrás ver desde cuál aplicación realizaste una publicación.
       tag:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       user:
@@ -140,13 +140,13 @@ es-MX:
         url: Donde los eventos serán enviados
     labels:
       account:
-        discoverable: Destacar perfil y publicaciones en algoritmos de descubrimiento
+        discoverable: Destacar el perfil y las publicaciones en el algoritmo de descubrimiento
         fields:
           name: Etiqueta
           value: Contenido
         indexable: Incluir publicaciones públicas en los resultados de búsqueda
-        show_collections: Mostrar seguidos y seguidores en el perfil
-        unlocked: Aceptar automáticamente nuevos seguidores
+        show_collections: Mostrar los seguidos y seguidores en el perfil
+        unlocked: Aceptar automáticamente a nuevos seguidores
       account_alias:
         acct: Maneja la cuenta antigua
       account_migration:
@@ -301,8 +301,8 @@ es-MX:
       rule:
         text: Norma
       settings:
-        indexable: Incluye la página de perfil en los buscadores
-        show_application: Mostrar desde qué aplicación enviaste una publicación
+        indexable: Incluir la página de perfil en los motores de búsqueda
+        show_application: Mostrar desde cuál aplicación enviaste una publicación
       tag:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en el directorio del perfil
         name: Etiqueta
