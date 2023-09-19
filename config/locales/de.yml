@@ -77,14 +77,14 @@ de:
       invite_request_text: Begründung für das Beitreten
       invited_by: Eingeladen von
       ip: IP-Adresse
-      joined: Registriert
+      joined: Beigetreten
       location:
         all: Alle
         local: Lokal
         remote: Extern
         title: Herkunft
       login_status: Status
-      media_attachments: Medieninhalte
+      media_attachments: Medienanhänge
       memorialize: In Gedenkseite umwandeln
       memorialized: Gedenkseite
       memorialized_msg: "%{username} wurde erfolgreich in ein Gedenkseiten-Konto umgewandelt"
@@ -167,7 +167,7 @@ de:
       view_domain: Übersicht für Domain anzeigen
       warn: Verwarnen
       web: Web
-      whitelisted: Auf der Whitelist
+      whitelisted: Für Föderation zugelassen
     action_logs:
       action_types:
         approve_appeal: Einspruch zulassen
@@ -376,7 +376,7 @@ de:
         title: Einsprüche
     domain_allows:
       add_new: Föderation mit Domain erlauben
-      created_msg: Domain wurde erfolgreich zur Whitelist hinzugefügt
+      created_msg: Domain wurde erfolgreich für die Föderation zugelassen
       destroyed_msg: Domain wurde von der Föderation ausgeschlossen
       export: Exportieren
       import: Importieren
@@ -404,7 +404,7 @@ de:
         create: Server einschränken
         hint: Die Einschränkung einer Domain wird nicht verhindern, dass Konteneinträge in der Datenbank erstellt werden. Es werden aber alle Moderationsmethoden rückwirkend und automatisch auf diese Konten angewendet.
         severity:
-          desc_html: "<strong>Stummschalten</strong> wird Beiträge von Konten unter dieser Domain für alle unsichtbar machen, die den Konten nicht folgen. <strong>Sperren</strong> wird alle Inhalte, Medien und Profildaten für die Konten dieser Domain von deinem Server entfernen. Verwende <strong>Kein</strong>, wenn du nur Medieninhalte ablehnen möchtest."
+          desc_html: "<strong>Stummschalten</strong> wird Beiträge von Konten unter dieser Domain für alle unsichtbar machen, die den Konten nicht folgen. <strong>Sperren</strong> wird alle Inhalte, Medien und Profildaten für die Konten dieser Domain von deinem Server entfernen. Verwende <strong>Kein</strong>, wenn du nur Mediendateien ablehnen möchtest."
           noop: Kein
           silence: Stummschaltung
           suspend: Sperren
@@ -486,7 +486,7 @@ de:
       content_policies:
         comment: Interne Notiz
         description_html: Du kannst Inhaltsrichtlinien definieren, die auf alle Konten dieser Domain und einer ihrer Subdomains angewendet werden.
-        limited_federation_mode_description_html: Du kannst wählen, ob du eine Föderation mit dieser Domain gestattest.
+        limited_federation_mode_description_html: Du kannst auswählen, ob du eine Föderation mit dieser Domain erlaubst.
         policies:
           reject_media: Medien ablehnen
           reject_reports: Meldungen ablehnen
@@ -532,7 +532,7 @@ de:
       total_followed_by_them: Gefolgt von denen
       total_followed_by_us: Gefolgt von uns
       total_reported: Beschwerden über sie
-      total_storage: Medieninhalte
+      total_storage: Medienanhänge
       totals_time_period_hint_html: Die unten angezeigten Summen enthalten Daten für alle Zeiten.
     invites:
       deactivate_all: Alle deaktivieren
@@ -587,7 +587,7 @@ de:
       action_taken_by: Maßnahme ergriffen von
       actions:
         delete_description_html: Der gemeldete Beitrag wird gelöscht und die ergriffene Maßnahme wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Kontos zu helfen.
-        mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden mit einer Inhaltswarnung versehen und der Vorfall wird gesichert, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können.
+        mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden mit einer Inhaltswarnung versehen und der Vorfall wird vermerkt, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können.
         other_description_html: Weitere Optionen zur Steuerung des Kontoverhaltens und zur Anpassung der Kommunikation mit dem gemeldeten Konto.
         resolve_description_html: Es wird keine Maßnahme gegen das gemeldete Konto ergriffen und der Vorgang wird nicht aufgezeichnet – die Meldung wird hiermit geschlossen.
         silence_description_html: Das Konto wird nur für diejenigen sichtbar sein, die dem Konto bereits folgen oder es manuell suchen, was die Reichweite stark einschränkt. Kann jederzeit rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
@@ -742,7 +742,7 @@ de:
         preamble: Das Branding deines Servers unterscheidet ihn von anderen Servern im Netzwerk. Diese Informationen können in einer Vielzahl von Umgebungen angezeigt werden, z. B. in der Weboberfläche von Mastodon, in nativen Anwendungen, in Linkvorschauen auf anderen Websites und in Messaging-Apps und so weiter. Aus diesem Grund ist es am besten, diese Informationen klar, kurz und prägnant zu halten.
         title: Branding
       captcha_enabled:
-        desc_html: Dies beruht auf externen Skripten von hCaptcha, die ein Sicherheits- und Datenschutzproblem darstellen könnten. Darüber hinaus <strong>kann das den Registrierungsprozess für manche Menschen (insbesondere für Menschen mit Behinderung) erheblich erschweren</strong>. Aus diesen Gründen solltest du alternative Maßnahmen wie Zulassungs- oder Einladungs-basierte Registrierungen in Erwägung ziehen.
+        desc_html: Dies beruht auf externen Skripten von hCaptcha, die ein Sicherheits- und Datenschutzproblem darstellen könnten. Darüber hinaus <strong>kann das den Registrierungsprozess für manche Menschen (insbesondere für Menschen mit Behinderung) erheblich erschweren</strong>. Aus diesen Gründen solltest du alternative Maßnahmen in Betracht ziehen, z. B. eine Registrierung basierend auf einer Einladung oder auf Genehmigungen.
         title: Neue Nutzer*innen müssen ein CAPTCHA lösen, um das Konto zu bestätigen
       content_retention:
         preamble: Lege fest, wie lange Inhalte von Nutzer*innen auf deinem Mastodon-Server gespeichert bleiben.
@@ -980,7 +980,7 @@ de:
       subject: Kritische Mastodon-Updates sind für %{instance} verfügbar!
     new_pending_account:
       body: Die Details von diesem neuem Konto sind unten. Du kannst die Anfrage akzeptieren oder ablehnen.
-      subject: Neues Konto zur Überprüfung auf %{instance} verfügbar (%{username})
+      subject: Neues Konto zum Überprüfen auf %{instance} verfügbar (%{username})
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
@@ -1198,7 +1198,7 @@ de:
       content: Wir bitten um Verzeihung, aber etwas ist bei uns schiefgegangen.
       title: Diese Seite enthält einen Fehler
     '503': Die Seite konnte wegen eines temporären Serverfehlers nicht angezeigt werden.
-    noscript_html: Bitte aktiviere JavaScript, um das Webinterface von Mastodon zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Apps</a> für Mastodon nutzen.
+    noscript_html: Bitte aktiviere JavaScript, um das Webinterface von Mastodon zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Apps</a> für Mastodon verwenden.
   existing_username_validator:
     not_found: kann lokale Konten mit diesem Profilnamen nicht finden
     not_found_multiple: "%{usernames} konnten nicht gefunden werden"
@@ -1399,9 +1399,9 @@ de:
       title: Abbestellen
   media_attachments:
     validations:
-      images_and_video: Es kann kein Video zu einem Beitrag hinzugefügt werden, der bereits Bilder enthält
-      not_ready: Dateien, die noch nicht verarbeitet wurden, können nicht hinzugefügt werden. Versuche es gleich noch einmal!
-      too_many: Mehr als vier Medien können nicht hinzugefügt werden
+      images_and_video: Es kann kein Video an einen Beitrag angehängt werden, der bereits Bilder enthält
+      not_ready: Dateien, die noch nicht verarbeitet wurden, können nicht angehängt werden. Versuche es gleich noch einmal!
+      too_many: Mehr als vier Dateien können nicht angehängt werden
   migrations:
     acct: umgezogen nach
     cancel: Weiterleitung beenden
@@ -1487,9 +1487,9 @@ de:
         units:
           billion: Mrd.
           million: Mio.
-          quadrillion: Q
+          quadrillion: Brd.
           thousand: Tsd.
-          trillion: T
+          trillion: Bio.
   otp_authentication:
     code_hint: Gib den Code ein, den deine 2FA- bzw. TOTP-App generiert hat, um den Vorgang zu bestätigen
     description_html: Wenn du die <strong>Zwei-Faktor-Authentisierung</strong> (2FA) mit einer Authentifizierungs-App deines Smartphones aktivierst, benötigst du neben dem regulären Passwort zusätzlich auch den zeitbasierten Code der 2FA-App, um dich anmelden zu können.
@@ -1699,7 +1699,7 @@ de:
     keep_direct: Private Nachrichten behalten
     keep_direct_hint: Löscht keinen deiner Beiträge, die nur für erwähnte Profile sichtbar sind
     keep_media: Beiträge mit Medien behalten
-    keep_media_hint: Löscht keinen deiner Beiträge mit Medieninhalten
+    keep_media_hint: Löscht keinen deiner Beiträge mit Medienanhängen
     keep_pinned: Angeheftete Beiträge behalten
     keep_pinned_hint: Löscht keinen deiner angehefteten Beiträge
     keep_polls: Umfragen behalten
@@ -1751,7 +1751,7 @@ de:
     enabled: Zwei-Faktor-Authentisierung (2FA) ist aktiviert
     enabled_success: Zwei-Faktor-Authentisierung (2FA) erfolgreich aktiviert
     generate_recovery_codes: Wiederherstellungscodes erstellen
-    lost_recovery_codes: Wiederherstellungscodes erlauben es dir, wieder Zugang zu deinem Konto zu erlangen, falls du keinen Zugriff mehr auf die Zwei-Faktor-Authentisierung (2FA) oder den Sicherheitsschlüssel hast. Solltest du diese Wiederherstellungscodes verloren haben, kannst du sie hier neu generieren. Deine alten, bereits erstellten Wiederherstellungscodes werden dadurch ungültig.
+    lost_recovery_codes: Wiederherstellungscodes ermöglichen es dir, wieder Zugang zu deinem Konto zu erlangen, falls du keinen Zugriff mehr auf die Zwei-Faktor-Authentisierung (2FA) oder den Sicherheitsschlüssel hast. Solltest du diese Wiederherstellungscodes verloren haben, kannst du sie hier neu generieren. Deine alten, bereits erstellten Wiederherstellungscodes werden dadurch ungültig.
     methods: Methoden der Zwei-Faktor-Authentisierung (2FA)
     otp: Authentisierungs-App
     recovery_codes: Wiederherstellungscodes sichern
@@ -1760,7 +1760,7 @@ de:
     webauthn: Sicherheitsschlüssel
   user_mailer:
     appeal_approved:
-      action: Gehe zu deinem Konto
+      action: Dein Konto aufrufen
       explanation: Der Einspruch gegen deinen Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in gutem Zustand.
       subject: Dein Einspruch vom %{date} wurde angenommen
       title: Einspruch angenommen
@@ -1789,7 +1789,7 @@ de:
         delete_statuses: Einige deiner Beiträge haben gegen eine oder mehrere Serverregeln verstoßen und wurden daher von den Moderator*innen von %{instance} entfernt.
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und deine anderen Daten bleiben erhalten. Du kannst eine Sicherung deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
         mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderator*innen von %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass die Medien in den Beiträgen erst angeklickt werden müssen, bevor sie angezeigt werden. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
-        sensitive: Von nun an werden alle deine hochgeladenen Medieninhalte mit einer Inhaltswarnung versehen und hinter einer Warnung versteckt.
+        sensitive: Von nun an werden alle deine hochgeladenen Mediendateien mit einer Inhaltswarnung versehen und hinter einer Warnung versteckt.
         silence: Du kannst dein Konto weiterhin verwenden, aber nur Personen, die dir bereits folgen, sehen deine Beiträge auf diesem Server. Ebenso kannst du aus verschiedenen Suchfunktionen ausgeschlossen werden. Andere können dir jedoch weiterhin manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um eine Sicherung deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
       reason: 'Begründung:'

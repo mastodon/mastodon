@@ -769,7 +769,7 @@ ko:
       delete: 업로드한 파일 삭제
       destroyed_msg: 사이트 업로드를 성공적으로 삭제했습니다!
     software_updates:
-      critical_update: 긴급 — 빨리 업데이트 해주세요
+      critical_update: 긴급 — 빠른 업데이트 요망
       description: 최신 수정 사항과 기능을 활용하기 위해 Mastodon 설치를 최신 상태로 유지하기를 권장합니다. 더욱이, 때로는 보안 문제를 피하기 위해 Mastodon을 적절한 시점에 긴급 업데이트해야 하는 경우도 있습니다. 따라서 Mastodon은 30분마다 업데이트를 확인하며, 이메일 알림 환경설정에 따라 사용자에게 알려드립니다.
       documentation_link: 더 알아보기
       release_notes: 릴리스 노트
@@ -778,7 +778,7 @@ ko:
       types:
         major: 메이저 릴리스
         minor: 마이너 릴리스
-        patch: 패치 릴리스 — 버그픽스이며 변경을 적용하기 쉽습니다
+        patch: 패치 릴리스 — 버그픽스 그리고 변경점의 빠른 적용
       version: 버전
     statuses:
       account: 작성자
@@ -1442,7 +1442,7 @@ ko:
       subject: "%{name} 님의 멘션"
       title: 새 답글
     poll:
-      subject: "%{name}의 투표가 종료되었습니다"
+      subject: "%{name}의 설문이 종료됨"
     reblog:
       body: '당신의 게시물을 %{name} 님이 부스트 했습니다:'
       subject: "%{name} 님이 내 게시물을 부스트 했습니다"
@@ -1482,15 +1482,15 @@ ko:
     truncate: "&hellip;"
   polls:
     errors:
-      already_voted: 이미 투표에 참여하셨습니다
-      duplicate_options: 중복된 항목이 있습니다
-      duration_too_long: 너무 먼 미래입니다
-      duration_too_short: 너무 가깝습니다
-      expired: 투표가 이미 끝났습니다
-      invalid_choice: 선택한 투표 항목이 존재하지 않습니다
-      over_character_limit: 각각 %{max} 글자를 넘을 수 없습니다
-      self_vote: 내가 만든 투표엔 투표 할 수 없습니다
-      too_few_options: 한가지 이상의 항목을 포함해야 합니다
+      already_voted: 이미 참여한 설문
+      duplicate_options: 중복된 항목 있음
+      duration_too_long: 지나치게 먼 미래
+      duration_too_short: 너무 짧음
+      expired: 이미 종료된 설문
+      invalid_choice: 선택한 투표 항목이 존재하지 않음
+      over_character_limit: 각 문자가 %{max} 보다 짧아야 함
+      self_vote: 자신이 만든 설문에는 투표할 수 없음
+      too_few_options: 둘 이상의 항목이 있어야 함
       too_many_options: 항목은 %{max}개를 넘을 수 없습니다
   preferences:
     other: 기타
@@ -1500,11 +1500,11 @@ ko:
     hint_html: "<strong>내 프로필과 게시물이 어떻게 발견될지를 제어합니다.</strong> 활성화 하면 마스토돈의 다양한 기능들이 내가 더 많은 사람에게 도달할 수 있도록 도와줍니다. 이 설정이 내 용도에 맞는지 잠시 검토하세요."
     privacy: 개인정보
     privacy_hint_html: 다른 이들을 위해 노출할 수 있는 정보의 양을 조절합니다. 누군가는 다른 이들의 팔로우를 둘러보고 어떤 앱에서 게시물을 올렸는지 살피면서 흥미로운 프로필과 멋진 앱을 발견할 수 있지만, 누군가는 이를 숨기고 싶을 수도 있겠죠.
-    reach: 거리감
-    reach_hint_html: 새로운 사람들이 나를 발견하고 팔로우하도록 허용할지 여부를 제어합니다. 탐색 화면에 게시물이 표시되기를 바라나요? 다른 사람들의 팔로우 추천에 표시되기를 바라나요? 모든 새 팔로워를 자동으로 수락하거나 각 팔로워를 세세하게 제어할까요?
+    reach: 도달
+    reach_hint_html: 새로운 사람들이 나를 발견하고 팔로우하도록 허용할지 여부를 제어합니다. 발견하기 화면에 게시물이 표시되기를 바라나요? 다른 사람들의 팔로우 추천에 표시되기를 바라나요? 모든 새 팔로워를 자동으로 수락하거나 각 팔로워를 세세하게 제어할까요?
     search: 검색
     search_hint_html: 내가 어떻게 발견될지를 제어합니다. 내가 공개적으로 게시한 것들로 인해 사람들이 날 발견하길 원하나요? 마스토돈 바깥의 사람들이 웹에서 검색을 통해 내 프로필을 발견하길 원하나요? 공개적인 정보에 대해서 모든 검색엔진의 검색결과에서 제외하는 것은 보장할 수 없다는 점에 주의해주세요.
-    title: 개인정보와 거리감
+    title: 개인정보와 도달
   privacy_policy:
     title: 개인정보처리방침
   reactions:
@@ -1672,8 +1672,8 @@ ko:
     keep_media_hint: 미디어가 첨부된 게시물을 삭제하지 않습니다
     keep_pinned: 고정된 게시물 유지
     keep_pinned_hint: 고정 게시물을 삭제하지 않습니다
-    keep_polls: 투표 유지
-    keep_polls_hint: 투표를 삭제하지 않습니다
+    keep_polls: 설문 유지
+    keep_polls_hint: 설문을 삭제하지 않았음
     keep_self_bookmark: 북마크한 게시물 유지
     keep_self_bookmark_hint: 북마크한 본인의 게시물을 삭제하지 않습니다
     keep_self_fav: 마음에 들어한 게시물 유지
