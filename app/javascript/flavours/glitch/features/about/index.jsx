@@ -6,6 +6,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
+import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
@@ -161,7 +162,7 @@ class About extends PureComponent {
           </Section>
 
           <Section title={intl.formatMessage(messages.rules)}>
-            {!isLoading && (server.get('rules', []).isEmpty() ? (
+            {!isLoading && (server.get('rules', ImmutableList()).isEmpty() ? (
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
             ) : (
               <ol className='rules-list'>
