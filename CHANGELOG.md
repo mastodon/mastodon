@@ -8,6 +8,21 @@ All notable changes to this project will be documented in this file.
 **The 4.0.x branch will not receive any update after 2023-10-31.**
 This means that no security fix will be made available for this branch after this date, and you will need to update to a more recent version (such as the 4.1.x branch) to receive security fixes.
 
+## [4.0.10] - 2023-09-19
+
+### Fixed
+
+- Fix moderator rights inconsistencies ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/26729))
+- Fix crash when encountering invalid URL ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/26814))
+- Fix cached posts including stale stats ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/26409))
+- Fix uploading of video files for which `ffprobe` reports `0/0` average framerate ([NicolaiSoeborg](https://github.com/mastodon/mastodon/pull/26500))
+- Fix unexpected audio stream transcoding when uploaded video is eligible to passthrough ([yufushiro](https://github.com/mastodon/mastodon/pull/26608))
+
+### Security
+
+- Fix missing HTML sanitization in translation API (CVE-2023-42452)
+- Fix incorrect domain name normalization (CVE-2023-42451)
+
 ## [4.0.9] - 2023-09-05
 
 ### Changed
