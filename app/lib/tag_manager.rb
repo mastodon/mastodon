@@ -7,18 +7,18 @@ class TagManager
   include RoutingHelper
 
   def web_domain?(domain)
-    domain.nil? || domain.delete('/').casecmp(Rails.configuration.x.web_domain).zero?
+    domain.nil? || domain.delete_suffix('/').casecmp(Rails.configuration.x.web_domain).zero?
   end
 
   def local_domain?(domain)
-    domain.nil? || domain.delete('/').casecmp(Rails.configuration.x.local_domain).zero?
+    domain.nil? || domain.delete_suffix('/').casecmp(Rails.configuration.x.local_domain).zero?
   end
 
   def normalize_domain(domain)
     return if domain.nil?
 
     uri = Addressable::URI.new
-    uri.host = domain.delete('/')
+    uri.host = domain.delete_suffix('/')
     uri.normalized_host
   end
 
