@@ -3,9 +3,13 @@ es-AR:
   simple_form:
     hints:
       account:
+        discoverable: Tu perfil y publicaciones pueden ser destacadas o recomendadas en varias áreas de Mastodon, y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu pseudónimo.
         fields: Tu sitio web, pronombres, edad, o lo que quieras.
+        indexable: Tus mensajes públicos pueden aparecer en los resultados de la búsqueda en Mastodon. La gente que interactuó con tus mensajes puede ser capaz de buscarlos sin importar el momento.
         note: 'Podés @mencionar otras cuentas o usar #etiquetas.'
+        show_collections: La gente podrá navegar a través de tus seguidos y seguidores. Sin embargo, la gente que sigás, sabrá que lo estás haciendo.
+        unlocked: La gente podrá seguirte sin solicitar aprobación. Desmarcá si querés revisar las solicitudes de seguimiento y elegir si aceptar o rechazar nuevos seguidores.
       account_alias:
         acct: Especificá el nombredeusuario@dominio de la cuenta desde la que querés mudarte
       account_migration:
@@ -41,13 +45,11 @@ es-AR:
         current_password: Por razones de seguridad, por favor, ingresá la contraseña de la cuenta actual
         current_username: Para confirmar, por favor, ingresá el nombre de usuario de la cuenta actual
         digest: Sólo enviado tras un largo periodo de inactividad, y sólo si recibiste mensajes personales en tu ausencia
-        discoverable: Permití que tu cuenta sea descubierta por extraños a través de recomendaciones, tendencias y otras funciones
         email: Se te enviará un correo electrónico de confirmación
         header: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles.'
         inbox_url: Copiá la dirección web desde la página principal del relé que querés usar
         irreversible: Los mensajes filtrados desaparecerán irreversiblemente, incluso si este filtro es eliminado después
         locale: El idioma de la interface de usuario, correos electrónicos y notificaciones push
-        locked: Controlá manualmente quién puede seguirte al aprobar solicitudes de seguimiento
         password: Usá al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o las advertencias de contenido de un mensaje
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionás el alcance de nivel más alto, no necesitás seleccionar las individuales.
@@ -57,9 +59,6 @@ es-AR:
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Siempre ocultar todos los medios
         setting_display_media_show_all: Siempre mostrar todos los medios
-        setting_hide_network: Las cuentas que seguís y tus seguidores serán ocultados en tu perfil
-        setting_noindex: Afecta a tu perfil público y páginas de mensajes
-        setting_show_application: La aplicación que usás para enviar mensajes se mostrará en la vista detallada de tus mensajes
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar actualizaciones de la línea temporal detrás de un clic en lugar de desplazar automáticamente el flujo
         username: Podés usar letras, números y subguiones ("_")
@@ -121,6 +120,9 @@ es-AR:
       sessions:
         otp: 'Ingresá el código de autenticación de dos factores generado por la aplicación en tu dispositivo, o usá uno de tus códigos de recuperación:'
         webauthn: Si es una llave USB, asegurate de insertarla y, de ser necesario, tocarla.
+      settings:
+        indexable: Tu página de perfil podría aparecer en los resultados de búsqueda en Google, Bing y otros motores de búsqueda.
+        show_application: Sin embargo, siempre podrás ver desde qué aplicación se envió tu mensaje.
       tag:
         name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
       user:
@@ -138,9 +140,13 @@ es-AR:
         url: Adónde serán enviados los eventos
     labels:
       account:
+        discoverable: Destacar perfil y mensajes en algoritmos de descubrimiento
         fields:
           name: Nombre de campo
           value: Valor de campo
+        indexable: Incluir mensajes públicos en los resultados de la búsqueda
+        show_collections: Mostrar seguidos y seguidores en el perfil
+        unlocked: Automáticamente aceptar nuevos seguidores
       account_alias:
         acct: Alias de la cuenta antigua
       account_migration:
@@ -178,7 +184,6 @@ es-AR:
         context: Filtrar contextos
         current_password: Contraseña actual
         data: Datos
-        discoverable: Sugerir cuenta a otros
         display_name: Nombre para mostrar
         email: Dirección de correo electrónico
         expires_in: Vence después de
@@ -188,7 +193,6 @@ es-AR:
         inbox_url: Dirección web de la bandeja de entrada del relé
         irreversible: Dejar en lugar de ocultar
         locale: Idioma de la interface
-        locked: Requerir solicitudes de seguimiento
         max_uses: Número máximo de usos
         new_password: Nueva contraseña
         note: Biografía
@@ -211,9 +215,7 @@ es-AR:
         setting_display_media_show_all: Mostrar todo
         setting_expand_spoilers: Siempre expandir los mensajes marcados con advertencias de contenido
         setting_hide_network: Ocultá tu gráfica social
-        setting_noindex: Excluirse del indexado de motores de búsqueda
         setting_reduce_motion: Reducir el movimiento de las animaciones
-        setting_show_application: Mostrar aplicación usada para enviar mensajes
         setting_system_font_ui: Utilizar la tipografía predeterminada del sistema
         setting_theme: Tema del sitio
         setting_trends: Mostrar las tendencias de hoy
@@ -289,9 +291,18 @@ es-AR:
         pending_account: Una nueva cuenta necesita revisión
         reblog: Una cuenta adhiere a tu mensaje
         report: Se envió una nueva denuncia
+        software_updates:
+          all: Notificar en todas las actualizaciones
+          critical: Notificar solamente sobre actualizaciones críticas
+          label: Una nueva versión de Mastodon está disponible
+          none: Nunca notificar sobre actualizaciones (no recomendado)
+          patch: Notificar sobre actualizaciones de corrección de errores
         trending_tag: Una nueva tendencia requiere revisión
       rule:
         text: Regla
+      settings:
+        indexable: Incluir la página de perfil en los motores de búsqueda
+        show_application: Mostrar desde qué aplicación enviaste un mensaje
       tag:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en las sugerencias
         name: Etiqueta
@@ -312,6 +323,7 @@ es-AR:
         url: Dirección web del punto final
     'no': 'No'
     not_recommended: No recomendado
+    overridden: Sobrescrito
     recommended: Opción recomendada
     required:
       mark: "*"

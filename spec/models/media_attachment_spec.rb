@@ -105,6 +105,9 @@ RSpec.describe MediaAttachment, paperclip_processing: true do
 
       # sets file extension
       expect(media.file_file_name).to end_with extension
+
+      # Rack::Mime (used by PublicFileServerMiddleware) recognizes file extension
+      expect(Rack::Mime.mime_type(extension, nil)).to eq content_type
     end
 
     it 'saves media attachment with correct size metadata' do

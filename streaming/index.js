@@ -6,12 +6,12 @@ const url = require('url');
 
 const dotenv = require('dotenv');
 const express = require('express');
+const Redis = require('ioredis');
 const { JSDOM } = require('jsdom');
 const log = require('npmlog');
 const pg = require('pg');
 const dbUrlToConfig = require('pg-connection-string').parse;
 const metrics = require('prom-client');
-const redis = require('redis');
 const uuid = require('uuid');
 const WebSocket = require('ws');
 
@@ -24,30 +24,12 @@ dotenv.config({
 log.level = process.env.LOG_LEVEL || 'verbose';
 
 /**
- * @param {Object.<string, any>} defaultConfig
- * @param {string} redisUrl
+ * @param {Object.<string, any>} config
  */
-const redisUrlToClient = async (defaultConfig, redisUrl) => {
-  const config = defaultConfig;
-
-  let client;
-
-  if (!redisUrl) {
-    client = redis.createClient(config);
-  } else if (redisUrl.startsWith('unix://')) {
-    client = redis.createClient(Object.assign(config, {
-      socket: {
-        path: redisUrl.slice(7),
-      },
-    }));
-  } else {
-    client = redis.createClient(Object.assign(config, {
-      url: redisUrl,
-    }));
-  }
-
+const createRedisClient = async (config) => {
+  const { redisParams, redisUrl } = config;
+  const client = new Redis(redisUrl, redisParams);
   client.on('error', (err) => log.error('Redis Client Error!', err));
-  await client.connect();
 
   return client;
 };
@@ -110,6 +92,11 @@ const pgConfigFromEnv = (env) => {
 
   if (env.DATABASE_URL) {
     baseConfig = dbUrlToConfig(env.DATABASE_URL);
+
+    // Support overriding the database password in the connection URL
+    if (!baseConfig.password && env.DB_PASS) {
+      baseConfig.password = env.DB_PASS;
+    }
   } else {
     baseConfig = pgConfigs[environment];
 
@@ -142,22 +129,21 @@ const pgConfigFromEnv = (env) => {
  * @returns {Object.<string, any>} configuration for the Redis connection
  */
 const redisConfigFromEnv = (env) => {
-  const redisNamespace = env.REDIS_NAMESPACE || null;
+  // ioredis *can* transparently add prefixes for us, but it doesn't *in some cases*,
+  // which means we can't use it. But this is something that should be looked into.
+  const redisPrefix = env.REDIS_NAMESPACE ? `${env.REDIS_NAMESPACE}:` : '';
 
   const redisParams = {
-    socket: {
-      host: env.REDIS_HOST || '127.0.0.1',
-      port: env.REDIS_PORT || 6379,
-    },
-    database: env.REDIS_DB || 0,
+    host: env.REDIS_HOST || '127.0.0.1',
+    port: env.REDIS_PORT || 6379,
+    db: env.REDIS_DB || 0,
     password: env.REDIS_PASSWORD || undefined,
   };
 
-  if (redisNamespace) {
-    redisParams.namespace = redisNamespace;
+  // redisParams.path takes precedence over host and port.
+  if (env.REDIS_URL && env.REDIS_URL.startsWith('unix://')) {
+    redisParams.path = env.REDIS_URL.slice(7);
   }
-
-  const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
 
   return {
     redisParams,
@@ -165,6 +151,28 @@ const redisConfigFromEnv = (env) => {
     redisUrl: env.REDIS_URL,
   };
 };
+
+const PUBLIC_CHANNELS = [
+  'public',
+  'public:media',
+  'public:local',
+  'public:local:media',
+  'public:remote',
+  'public:remote:media',
+  'hashtag',
+  'hashtag:local',
+];
+
+// Used for priming the counters/gauges for the various metrics that are
+// per-channel
+const CHANNEL_NAMES = [
+  'system',
+  'user',
+  'user:notification',
+  'list',
+  'direct',
+  ...PUBLIC_CHANNELS
+];
 
 const startServer = async () => {
   const app = express();
@@ -174,15 +182,15 @@ const startServer = async () => {
   const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
   const server = http.createServer(app);
 
-  const { redisParams, redisUrl, redisPrefix } = redisConfigFromEnv(process.env);
-
   /**
    * @type {Object.<string, Array.<function(Object<string, any>): void>>}
    */
   const subs = {};
 
-  const redisSubscribeClient = await redisUrlToClient(redisParams, redisUrl);
-  const redisClient = await redisUrlToClient(redisParams, redisUrl);
+  const redisConfig = redisConfigFromEnv(process.env);
+  const redisSubscribeClient = await createRedisClient(redisConfig);
+  const redisClient = await createRedisClient(redisConfig);
+  const { redisPrefix } = redisConfig;
 
   // Collect metrics from Node.js
   metrics.collectDefaultMetrics();
@@ -217,9 +225,6 @@ const startServer = async () => {
     labelNames: ['type'],
   });
 
-  connectedClients.set({ type: 'websocket' }, 0);
-  connectedClients.set({ type: 'eventsource' }, 0);
-
   const connectedChannels = new metrics.Gauge({
     name: 'connected_channels',
     help: 'The number of channels the streaming server is streaming to',
@@ -230,6 +235,35 @@ const startServer = async () => {
     name: 'redis_subscriptions',
     help: 'The number of Redis channels the streaming server is subscribed to',
   });
+
+  const redisMessagesReceived = new metrics.Counter({
+    name: 'redis_messages_received_total',
+    help: 'The total number of messages the streaming server has received from redis subscriptions'
+  });
+
+  const messagesSent = new metrics.Counter({
+    name: 'messages_sent_total',
+    help: 'The total number of messages the streaming server sent to clients per connection type',
+    labelNames: [ 'type' ]
+  });
+
+  // Prime the gauges so we don't loose metrics between restarts:
+  redisSubscriptions.set(0);
+  connectedClients.set({ type: 'websocket' }, 0);
+  connectedClients.set({ type: 'eventsource' }, 0);
+
+  // For each channel, initialize the gauges at zero; There's only a finite set of channels available
+  CHANNEL_NAMES.forEach(( channel ) => {
+    connectedChannels.set({ type: 'websocket', channel }, 0);
+    connectedChannels.set({ type: 'eventsource', channel }, 0);
+  })
+
+  // Prime the counters so that we don't loose metrics between restarts.
+  // Unfortunately counters don't support the set() API, so instead I'm using
+  // inc(0) to achieve the same result.
+  redisMessagesReceived.inc(0);
+  messagesSent.inc({ type: 'websocket' }, 0);
+  messagesSent.inc({ type: 'eventsource' }, 0);
 
   // When checking metrics in the browser, the favicon is requested this
   // prevents the request from falling through to the API Router, which would
@@ -272,13 +306,15 @@ const startServer = async () => {
   };
 
   /**
-   * @param {string} message
    * @param {string} channel
+   * @param {string} message
    */
-  const onRedisMessage = (message, channel) => {
+  const onRedisMessage = (channel, message) => {
+    redisMessagesReceived.inc();
+
     const callbacks = subs[channel];
 
-    log.silly(`New message on channel ${channel}`);
+    log.silly(`New message on channel ${redisPrefix}${channel}`);
 
     if (!callbacks) {
       return;
@@ -289,6 +325,7 @@ const startServer = async () => {
 
     callbacks.forEach(callback => callback(json));
   };
+  redisSubscribeClient.on("message", onRedisMessage);
 
   /**
    * @callback SubscriptionListener
@@ -307,8 +344,14 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       log.verbose(`Subscribe ${channel}`);
-      redisSubscribeClient.subscribe(channel, onRedisMessage);
-      redisSubscriptions.inc();
+      redisSubscribeClient.subscribe(channel, (err, count) => {
+        if (err) {
+          log.error(`Error subscribing to ${channel}`);
+        }
+        else {
+          redisSubscriptions.set(count);
+        }
+      });
     }
 
     subs[channel].push(callback);
@@ -329,8 +372,14 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       log.verbose(`Unsubscribe ${channel}`);
-      redisSubscribeClient.unsubscribe(channel);
-      redisSubscriptions.dec();
+      redisSubscribeClient.unsubscribe(channel, (err, count) => {
+        if (err) {
+          log.error(`Error unsubscribing to ${channel}`);
+        }
+        else {
+          redisSubscriptions.set(count);
+        }
+      });
       delete subs[channel];
     }
   };
@@ -490,17 +539,6 @@ const startServer = async () => {
       return undefined;
     }
   };
-
-  const PUBLIC_CHANNELS = [
-    'public',
-    'public:media',
-    'public:local',
-    'public:local:media',
-    'public:remote',
-    'public:remote:media',
-    'hashtag',
-    'hashtag:local',
-  ];
 
   /**
    * @param {any} req
@@ -706,10 +744,11 @@ const startServer = async () => {
    * @param {any} req
    * @param {function(string, string): void} output
    * @param {undefined | function(string[], SubscriptionListener): void} attachCloseHandler
+   * @param {'websocket' | 'eventsource'} destinationType
    * @param {boolean=} needsFiltering
    * @returns {SubscriptionListener}
    */
-  const streamFrom = (ids, req, output, attachCloseHandler, needsFiltering = false) => {
+  const streamFrom = (ids, req, output, attachCloseHandler, destinationType, needsFiltering = false) => {
     const accountId = req.accountId || req.remoteAddress;
 
     log.verbose(req.requestId, `Starting stream from ${ids.join(', ')} for ${accountId}`);
@@ -717,6 +756,8 @@ const startServer = async () => {
     const transmit = (event, payload) => {
       // TODO: Replace "string"-based delete payloads with object payloads:
       const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
+
+      messagesSent.labels({ type: destinationType }).inc(1);
 
       log.silly(req.requestId, `Transmitting for ${accountId}: ${event} ${encodedPayload}`);
       output(event, encodedPayload);
@@ -1032,7 +1073,7 @@ const startServer = async () => {
       const onSend = streamToHttp(req, res);
       const onEnd = streamHttpEnd(req, subscriptionHeartbeat(channelIds));
 
-      streamFrom(channelIds, req, onSend, onEnd, options.needsFiltering);
+      streamFrom(channelIds, req, onSend, onEnd, 'eventsource', options.needsFiltering);
     }).catch(err => {
       log.verbose(req.requestId, 'Subscription error:', err.toString());
       httpNotFound(res);
@@ -1242,7 +1283,7 @@ const startServer = async () => {
 
       const onSend = streamToWs(request, socket, streamNameFromChannelName(channelName, params));
       const stopHeartbeat = subscriptionHeartbeat(channelIds);
-      const listener = streamFrom(channelIds, request, onSend, undefined, options.needsFiltering);
+      const listener = streamFrom(channelIds, request, onSend, undefined, 'websocket', options.needsFiltering);
 
       connectedChannels.labels({ type: 'websocket', channel: channelName }).inc();
 

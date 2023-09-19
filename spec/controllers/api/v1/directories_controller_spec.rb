@@ -15,12 +15,13 @@ describe Api::V1::DirectoriesController do
   describe 'GET #show' do
     context 'with no params' do
       before do
-        _local_unconfirmed_account = Fabricate(
+        local_unconfirmed_account = Fabricate(
           :account,
           domain: nil,
           user: Fabricate(:user, confirmed_at: nil, approved: true),
           username: 'local_unconfirmed'
         )
+        local_unconfirmed_account.create_account_stat!
 
         local_unapproved_account = Fabricate(
           :account,
@@ -28,15 +29,17 @@ describe Api::V1::DirectoriesController do
           user: Fabricate(:user, confirmed_at: 10.days.ago),
           username: 'local_unapproved'
         )
+        local_unapproved_account.create_account_stat!
         local_unapproved_account.user.update(approved: false)
 
-        _local_undiscoverable_account = Fabricate(
+        local_undiscoverable_account = Fabricate(
           :account,
           domain: nil,
           user: Fabricate(:user, confirmed_at: 10.days.ago, approved: true),
           discoverable: false,
           username: 'local_undiscoverable'
         )
+        local_undiscoverable_account.create_account_stat!
 
         excluded_from_timeline_account = Fabricate(
           :account,
@@ -44,18 +47,20 @@ describe Api::V1::DirectoriesController do
           discoverable: true,
           username: 'remote_excluded_from_timeline'
         )
+        excluded_from_timeline_account.create_account_stat!
         Fabricate(:block, account: user.account, target_account: excluded_from_timeline_account)
 
-        _domain_blocked_account = Fabricate(
+        domain_blocked_account = Fabricate(
           :account,
           domain: 'test.example',
           discoverable: true,
           username: 'remote_domain_blocked'
         )
+        domain_blocked_account.create_account_stat!
         Fabricate(:account_domain_block, account: user.account, domain: 'test.example')
       end
 
-      it 'returns only the local discoverable account' do
+      it 'returns the local discoverable account and the remote discoverable account' do
         local_discoverable_account = Fabricate(
           :account,
           domain: nil,
@@ -63,6 +68,7 @@ describe Api::V1::DirectoriesController do
           discoverable: true,
           username: 'local_discoverable'
         )
+        local_discoverable_account.create_account_stat!
 
         eligible_remote_account = Fabricate(
           :account,
@@ -70,13 +76,13 @@ describe Api::V1::DirectoriesController do
           discoverable: true,
           username: 'eligible_remote'
         )
+        eligible_remote_account.create_account_stat!
 
         get :show
 
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq(2)
-        expect(body_as_json.first[:id]).to include(eligible_remote_account.id.to_s)
-        expect(body_as_json.second[:id]).to include(local_discoverable_account.id.to_s)
+        expect(body_as_json.pluck(:id)).to contain_exactly(eligible_remote_account.id.to_s, local_discoverable_account.id.to_s)
       end
     end
 
@@ -85,6 +91,8 @@ describe Api::V1::DirectoriesController do
         user = Fabricate(:user, confirmed_at: 10.days.ago, approved: true)
         local_account = Fabricate(:account, domain: nil, user: user)
         remote_account = Fabricate(:account, domain: 'host.example')
+        local_account.create_account_stat!
+        remote_account.create_account_stat!
 
         get :show, params: { local: '1' }
 
@@ -97,24 +105,23 @@ describe Api::V1::DirectoriesController do
 
     context 'when ordered by active' do
       it 'returns accounts in order of most recent status activity' do
-        status_old = Fabricate(:status)
-        travel_to 10.seconds.from_now
-        status_new = Fabricate(:status)
+        old_stat = Fabricate(:account_stat, last_status_at: 1.day.ago)
+        new_stat = Fabricate(:account_stat, last_status_at: 1.minute.ago)
 
         get :show, params: { order: 'active' }
 
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq(2)
-        expect(body_as_json.first[:id]).to include(status_new.account.id.to_s)
-        expect(body_as_json.second[:id]).to include(status_old.account.id.to_s)
+        expect(body_as_json.first[:id]).to include(new_stat.account_id.to_s)
+        expect(body_as_json.second[:id]).to include(old_stat.account_id.to_s)
       end
     end
 
     context 'when ordered by new' do
       it 'returns accounts in order of creation' do
-        account_old = Fabricate(:account)
+        account_old = Fabricate(:account_stat).account
         travel_to 10.seconds.from_now
-        account_new = Fabricate(:account)
+        account_new = Fabricate(:account_stat).account
 
         get :show, params: { order: 'new' }
 

@@ -10,7 +10,8 @@
 
       %br/
 
-      = t('admin.trends.tags.used_by_over_week', count: tag.history.reduce(0) { |sum, day| sum + day.accounts })
+      = link_to tag_path(tag), target: '_blank' do
+        = t('admin.trends.tags.used_by_over_week', count: tag.history.reduce(0) { |sum, day| sum + day.accounts })
 
       - if tag.trendable? && (rank = Trends.tags.rank(tag.id))
         ·

@@ -59,7 +59,7 @@ gem 'httplog', '~> 1.6.2'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
-gem 'mime-types', '~> 3.4.1', require: 'mime/types/columnar'
+gem 'mime-types', '~> 3.5.0', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.15'
 gem 'nsa', github: 'jhawthorn/nsa', ref: 'e020fcc3a54d993ab45b7194d89ab720296c111b'
 gem 'oj', '~> 3.14'
@@ -110,7 +110,7 @@ group :test do
   gem 'fuubar', '~> 2.5'
 
   # Extra RSpec extenion methods and helpers for sidekiq
-  gem 'rspec-sidekiq', '~> 3.1'
+  gem 'rspec-sidekiq', '~> 4.0'
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
@@ -186,9 +186,7 @@ group :development, :test do
   gem 'ruby-prof', require: false
   gem 'stackprof', require: false
   gem 'test-prof'
-end
 
-group :development, :test do
   # RSpec runner for rails
   gem 'rspec-rails', '~> 6.0'
 end

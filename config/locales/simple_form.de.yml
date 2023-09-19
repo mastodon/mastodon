@@ -3,34 +3,38 @@ de:
   simple_form:
     hints:
       account:
+        discoverable: Deine öffentlichen Beiträge und dein Profil können in verschiedenen Bereichen auf Mastodon angezeigt oder empfohlen werden und dein Profil kann anderen vorgeschlagen werden.
         display_name: Dein richtiger Name oder dein Fantasiename.
         fields: Deine Website, Pronomen, dein Alter – alles, was du möchtest.
+        indexable: Deine öffentlichen Beiträge können in den Suchergebnissen auf Mastodon erscheinen. Profile, die bereits mit deinen Beiträgen interagiert haben, können deine Beiträge immer auffinden.
         note: 'Du kannst andere @Profile erwähnen oder #Hashtags verwenden.'
+        show_collections: Andere können deine Follower und „Folge ich“ durchstöbern. Profile, denen du folgst, werden immer sehen können, dass du ihnen folgst.
+        unlocked: Andere können dir folgen, ohne vorher manuell genehmigt werden zu müssen. Wenn du Follower-Anfragen manuell akzeptieren oder ablehnen möchtest, dann lass diese Einstellung deaktiviert.
       account_alias:
         acct: Gib profilname@domain des Kontos an, von dem du umziehen möchtest
       account_migration:
         acct: Gib profilname@domain des Kontos an, zu dem du umziehen möchtest
       account_warning_preset:
-        text: Du kannst Beitragssyntax verwenden, wie z. B. URLs, Hashtags und Erwähnungen
-        title: Optional. Für Empfänger*in nicht sichtbar
+        text: Du kannst die Syntax wie für Beiträge verwenden – z. B. URLs, Hashtags und Erwähnungen
+        title: "(Optional) Für Empfänger*in nicht sichtbar"
       admin_account_action:
         include_statuses: Die Person wird sehen, welche Inhalte dich zu dieser Maßnahme veranlasst haben
         send_email_notification: Benutzer*in wird eine Erklärung erhalten, was mit dem Konto geschehen ist
-        text_html: Optional. Du kannst Beitragssyntax verwenden. Du kannst <a href="%{path}">Warnvorlagen hinzufügen</a>, um Zeit zu sparen
+        text_html: (Optional) Du kannst die Syntax wie für Beiträge verwenden. Du kannst <a href="%{path}">Warnvorlagen hinzufügen</a>, um Zeit zu sparen
         type_html: Wähle aus, wie mit <strong>%{acct}</strong> vorgegangen werden soll
         types:
           disable: Benutzer*in daran hindern, das Konto verwenden zu können, aber die Inhalte nicht löschen oder ausblenden.
           none: Dem Konto eine Warnung zusenden, ohne dabei eine andere Aktion vorzunehmen.
-          sensitive: Erzwingen, dass alle Medieninhalte dieses Profils mit einer Inhaltswarnung versehen werden.
+          sensitive: Erzwingen, dass alle Medienanhänge dieses Profils mit einer Inhaltswarnung versehen werden.
           silence: Verhindert, dass dieses Profil öffentlich sichtbare Beiträge verfassen kann, und verbirgt alle Beiträge und Benachrichtigungen vor Personen, die diesem Profil nicht folgen. Alle Meldungen zu diesem Konto werden geschlossen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
-        warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
+        warning_preset_id: "(Optional) Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen"
       announcement:
         all_day: Falls aktiviert, werden nur der Tag bzw. die Tage innerhalb des Zeitraums angezeigt
-        ends_at: Optional. Die Ankündigung wird zu diesem Zeitpunkt automatisch zurückgezogen
+        ends_at: "(Optional) Die Ankündigung wird zu diesem Zeitpunkt automatisch zurückgezogen"
         scheduled_at: Leer lassen, um die Ankündigung sofort zu veröffentlichen
-        starts_at: Optional. Nur für den Fall, dass deine Ankündigung an einen bestimmten Zeitraum gebunden ist
-        text: Du kannst die reguläre Syntax wie für Beiträge verwenden, also auch Profile erwähnen und Hashtags nutzen. Bitte beachte den Platz, den die Ankündigung auf dem Bildschirm der Benutzer*innen einnehmen wird
+        starts_at: "(Optional) Für den Fall, dass deine Ankündigung an einen bestimmten Zeitraum gebunden ist"
+        text: Du kannst die Syntax wie für Beiträge verwenden. Bitte berücksichtige den Platz, den die Ankündigung auf dem Bildschirm der Benutzer*innen einnehmen wird
       appeal:
         text: Du kannst nur einmal Einspruch gegen eine Maßnahme einlegen
       defaults:
@@ -40,14 +44,12 @@ de:
         context: Orte, an denen der Filter aktiv sein soll
         current_password: Gib aus Sicherheitsgründen bitte das Passwort des aktuellen Kontos ein
         current_username: Um das zu bestätigen, gib den Profilnamen des aktuellen Kontos ein
-        digest: Wenn du eine längere Zeit inaktiv bist oder du in deiner Abwesenheit eine Direktnachricht erhalten hast
-        discoverable: Dein Konto kann von Fremden durch Empfehlungen, Trends und andere Funktionen entdeckt werden
+        digest: Wenn du eine längere Zeit inaktiv bist oder du während deiner Abwesenheit in einer privaten Nachricht erwähnt worden bist
         email: Du wirst eine E-Mail zur Verifizierung dieser E-Mail-Adresse erhalten
         header: PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
         inbox_url: Kopiere die URL von der Startseite des gewünschten Relays
         irreversible: Bereinigte Beiträge verschwinden unwiderruflich für dich, auch dann, wenn dieser Filter zu einem späteren wieder entfernt wird
         locale: Die Sprache der Bedienoberfläche, E-Mails und Push-Benachrichtigungen
-        locked: Wer dir folgen möchte, muss um deine Erlaubnis bitten
         password: Verwende mindestens 8 Zeichen
         phrase: Wird unabhängig von der Groß- und Kleinschreibung im Text oder der Inhaltswarnung eines Beitrags abgeglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
@@ -57,9 +59,6 @@ de:
         setting_display_media_default: Medien mit Inhaltswarnung ausblenden
         setting_display_media_hide_all: Medien immer ausblenden
         setting_display_media_show_all: Medien mit Inhaltswarnung immer anzeigen
-        setting_hide_network: Wem du folgst und wer dir folgt, wird auf deinem Profil nicht angezeigt
-        setting_noindex: Betrifft dein öffentliches Profil und deine Beiträge
-        setting_show_application: Die Anwendung die du nutzt wird in der detaillierten Ansicht deiner Beiträge angezeigt
         setting_use_blurhash: Der Farbverlauf basiert auf den Farben der ausgeblendeten Medien, verschleiert aber jegliche Details
         setting_use_pending_items: Neue Beiträge hinter einem Klick verstecken, anstatt automatisch zu scrollen
         username: Du kannst Buchstaben, Zahlen und Unterstriche verwenden
@@ -108,7 +107,7 @@ de:
       invite_request:
         text: Dies wird uns bei der Überprüfung deiner Anmeldung behilflich sein
       ip_block:
-        comment: Optional. Zur Erinnerung, weshalb du diese Regel eingeführt hast.
+        comment: "(Optional) Zur Erinnerung, weshalb du diese Regel eingeführt hast."
         expires_in: IP-Adressen sind eine begrenzte Ressource. Sie können außerdem auf viele Computer aufgeteilt sein und auch die Zuordnungen ändern sich. Deshalb werden unbestimmte IP-Sperren nicht empfohlen.
         ip: Gib eine IPv4- oder IPv6-Adresse an. Du kannst ganze Bereiche mit der CIDR-Syntax blockieren. Achte darauf, dass du dich nicht selbst aussperrst!
         severities:
@@ -121,6 +120,9 @@ de:
       sessions:
         otp: 'Gib den Zwei-Faktor-Code von deinem Smartphone ein oder verwende einen deiner Wiederherstellungscodes:'
         webauthn: Wenn es sich um einen USB-Schlüssel handelt, vergewissere dich, dass du ihn einsteckst und – falls erforderlich – antippst.
+      settings:
+        indexable: Deine Profilseite kann in Suchergebnissen auf Google, Bing und anderen erscheinen.
+        show_application: Du wirst immer sehen können, über welche App dein Beitrag veröffentlicht wurde.
       tag:
         name: Du kannst nur die Groß- und Kleinschreibung der Buchstaben ändern, um es z. B. lesbarer zu machen
       user:
@@ -138,9 +140,13 @@ de:
         url: Wohin Ereignisse gesendet werden
     labels:
       account:
+        discoverable: Profil und Beiträge in Suchalgorithmen berücksichtigen
         fields:
           name: Beschriftung
           value: Inhalt
+        indexable: Öffentliche Beiträge in die Suchergebnisse einbeziehen
+        show_collections: Follower und „Folge ich“ im Profil anzeigen
+        unlocked: Neue Follower automatisch akzeptieren
       account_alias:
         acct: Profilname des alten Kontos
       account_migration:
@@ -178,17 +184,15 @@ de:
         context: Nach Bereichen filtern
         current_password: Derzeitiges Passwort
         data: Daten
-        discoverable: Anderen dieses Konto empfehlen
         display_name: Anzeigename
         email: E-Mail-Adresse
         expires_in: Läuft ab
         fields: Zusatzfelder
         header: Titelbild
         honeypot: "%{label} (nicht ausfüllen)"
-        inbox_url: Inbox-URL des Relais
+        inbox_url: URL des Relay-Posteingangs
         irreversible: Endgültig, nicht nur temporär ausblenden
         locale: Sprache des Webinterface
-        locked: Geschütztes Profil
         max_uses: Maximale Anzahl von Verwendungen
         new_password: Neues Passwort
         note: Biografie
@@ -205,15 +209,13 @@ de:
         setting_default_sensitive: Medien immer mit einer Inhaltswarnung versehen
         setting_delete_modal: Bestätigungsdialog beim Löschen eines Beitrags anzeigen
         setting_disable_swiping: Wischgesten deaktivieren
-        setting_display_media: Medien-Anzeige
+        setting_display_media: Darstellung von Medien
         setting_display_media_default: Standard
         setting_display_media_hide_all: Alle Medien ausblenden
         setting_display_media_show_all: Alle Medien anzeigen
         setting_expand_spoilers: Beiträge mit Inhaltswarnung immer ausklappen
         setting_hide_network: Follower und „Folge ich“ nicht anzeigen
-        setting_noindex: Suchmaschinen-Indexierung verhindern
         setting_reduce_motion: Bewegung in Animationen verringern
-        setting_show_application: Anwendung für das Veröffentlichen von Beiträgen offenlegen
         setting_system_font_ui: Standardschriftart des Browsers verwenden
         setting_theme: Design
         setting_trends: Heutige Trends anzeigen
@@ -226,7 +228,7 @@ de:
         type: Typ
         username: Profilname
         username_or_email: Profilname oder E-Mail
-        whole_word: Phrasensuche mit exakter Zeichenfolge erzwingen
+        whole_word: Exakte Zeichenfolge
       email_domain_block:
         with_dns_records: MX-Einträge und IP-Adressen der Domain einbeziehen
       featured_tag:
@@ -259,14 +261,14 @@ de:
         status_page_url: Statusseite (URL)
         theme: Standard-Design
         thumbnail: Vorschaubild des Servers
-        timeline_preview: Nicht-authentifizierten Zugriff auf die öffentliche Timeline gestatten
+        timeline_preview: Nicht-authentisierten Zugriff auf öffentliche Timelines gestatten
         trendable_by_default: Trends ohne vorherige Überprüfung erlauben
         trends: Trends aktivieren
         trends_as_landing_page: Trends als Landingpage verwenden
       interactions:
-        must_be_follower: Benachrichtigungen von Profilen unterdrücken, die mir nicht folgen
-        must_be_following: Benachrichtigungen von Profilen unterdrücken, denen ich nicht folge
-        must_be_following_dm: Direktnachrichten von Profilen, denen ich nicht folge, ablehnen
+        must_be_follower: Benachrichtigungen von Profilen, die mir nicht folgen, ausblenden
+        must_be_following: Benachrichtigungen von Profilen, denen ich nicht folge, ausblenden
+        must_be_following_dm: Private Nachrichten von Profilen, denen ich nicht folge, ausblenden
       invite:
         comment: Kommentar
       invite_request:
@@ -282,16 +284,25 @@ de:
       notification_emails:
         appeal: Jemand hat Einspruch gegen eine Moderationsentscheidung erhoben
         digest: Zusammenfassung senden
-        favourite: wenn jemand meinen Beitrag favorisiert
-        follow: wenn mir jemand Neues gefolgt ist
-        follow_request: wenn mir jemand folgen möchte
-        mention: wenn mich jemand erwähnt
-        pending_account: wenn ein neues Konto überprüft werden muss
-        reblog: wenn jemand meinen Beitrag teilt
-        report: Neue Meldung wurde eingereicht
+        favourite: Mein Beitrag wurde favorisiert
+        follow: Jemand Neues folgt mir
+        follow_request: Jemand möchte mir folgen
+        mention: Ich wurde erwähnt
+        pending_account: Ein neues Konto muss überprüft werden
+        reblog: Mein Beitrag wurde geteilt
+        report: Eine neue Meldung wurde eingereicht
+        software_updates:
+          all: Über alle Updates informieren
+          critical: Nur über kritische Updates informieren
+          label: Eine neue Mastodon-Version ist verfügbar
+          none: Nie über Updates informieren (nicht empfohlen)
+          patch: Über Fehlerbehebungen informieren
         trending_tag: Neuer Trend erfordert eine Überprüfung
       rule:
         text: Regel
+      settings:
+        indexable: Profilseite in Suchmaschinen einbeziehen
+        show_application: App anzeigen, über die ich einen Beitrag veröffentlicht habe
       tag:
         listable: Erlaube, dass dieser Hashtag in Suchen und Empfehlungen erscheint
         name: Hashtag
@@ -312,6 +323,7 @@ de:
         url: Endpunkt-URL
     'no': Nein
     not_recommended: Nicht empfohlen
+    overridden: Überschrieben
     recommended: Empfohlen
     required:
       mark: "*"

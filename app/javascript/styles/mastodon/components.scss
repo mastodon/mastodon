@@ -228,20 +228,20 @@
       color: lighten($lighter-text-color, 7%);
       background-color: transparent;
     }
+  }
 
-    &.active {
+  &.active {
+    color: $highlight-text-color;
+
+    &:hover,
+    &:active,
+    &:focus {
       color: $highlight-text-color;
+      background-color: transparent;
+    }
 
-      &:hover,
-      &:active,
-      &:focus {
-        color: $highlight-text-color;
-        background-color: transparent;
-      }
-
-      &.disabled {
-        color: lighten($highlight-text-color, 13%);
-      }
+    &.disabled {
+      color: lighten($highlight-text-color, 13%);
     }
   }
 
@@ -836,7 +836,7 @@ body > [data-popper-placement] {
   }
 
   p {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     white-space: pre-wrap;
     unicode-bidi: plaintext;
 
@@ -1111,7 +1111,8 @@ body > [data-popper-placement] {
     .audio-player,
     .attachment-list,
     .picture-in-picture-placeholder,
-    .status-card {
+    .status-card,
+    .hashtag-bar {
       margin-inline-start: $thread-margin;
       width: calc(100% - ($thread-margin));
     }
@@ -2380,6 +2381,7 @@ $ui-header-height: 55px;
 
   .filter-form {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .autosuggest-textarea__textarea {
@@ -3267,6 +3269,22 @@ $ui-header-height: 55px;
 .react-toggle--checked .react-toggle-thumb {
   inset-inline-start: 27px;
   border-color: $ui-highlight-color;
+}
+
+.switch-to-advanced {
+  color: $light-text-color;
+  background-color: $ui-base-color;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 18px;
+
+  .switch-to-advanced__toggle {
+    color: $ui-button-tertiary-color;
+    font-weight: bold;
+  }
 }
 
 .column-link {
@@ -4990,6 +5008,12 @@ a.status-card {
     }
 
     &__menu {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
       &__message {
         color: $dark-text-color;
         padding: 0 10px;
@@ -5036,6 +5060,11 @@ a.status-card {
           background: transparent;
           font-weight: 700;
           color: $primary-text-color;
+        }
+
+        span {
+          overflow: inherit;
+          text-overflow: inherit;
         }
       }
     }
@@ -5124,6 +5153,7 @@ a.status-card {
 
     &.active {
       transform: rotate(90deg);
+      opacity: 1;
     }
 
     &:hover {
@@ -5147,21 +5177,38 @@ a.status-card {
 }
 
 .search-results__section {
-  margin-bottom: 5px;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
 
-  h5 {
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &__header {
     background: darken($ui-base-color, 4%);
     border-bottom: 1px solid lighten($ui-base-color, 8%);
-    cursor: default;
-    display: flex;
     padding: 15px;
     font-weight: 500;
-    font-size: 16px;
-    color: $dark-text-color;
+    font-size: 14px;
+    color: $darker-text-color;
+    display: flex;
+    justify-content: space-between;
 
-    .fa {
-      display: inline-block;
+    h3 .fa {
       margin-inline-end: 5px;
+    }
+
+    button {
+      color: $highlight-text-color;
+      padding: 0;
+      border: 0;
+      background: 0;
+      font: inherit;
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -6790,14 +6837,14 @@ a.status-card {
 
 .notification__filter-bar,
 .account__section-headline {
-  background: darken($ui-base-color, 4%);
+  background: $ui-base-color;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
   display: flex;
   flex-shrink: 0;
 
   button {
-    background: darken($ui-base-color, 4%);
+    background: transparent;
     border: 0;
     margin: 0;
   }
@@ -6817,26 +6864,18 @@ a.status-card {
     white-space: nowrap;
 
     &.active {
-      color: $secondary-text-color;
+      color: $primary-text-color;
 
-      &::before,
-      &::after {
+      &::before {
         display: block;
         content: '';
         position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 0;
-        transform: translateX(-50%);
-        border-style: solid;
-        border-width: 0 10px 10px;
-        border-color: transparent transparent lighten($ui-base-color, 8%);
-      }
-
-      &::after {
         bottom: -1px;
-        border-color: transparent transparent $ui-base-color;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 4px;
+        background: $highlight-text-color;
       }
     }
   }
@@ -8538,6 +8577,44 @@ noscript {
     }
   }
 
+  &__choices {
+    display: flex;
+    gap: 40px;
+
+    &__choice {
+      flex: 1;
+      box-sizing: border-box;
+
+      h3 {
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: $darker-text-color;
+        margin-bottom: 20px;
+        font-size: 15px;
+      }
+
+      .button {
+        margin-bottom: 10px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+    &__choices {
+      flex-direction: column;
+
+      &__choice {
+        margin-top: 40px;
+      }
+    }
+  }
+
   .link-button {
     font-size: inherit;
     display: inline;
@@ -8797,14 +8874,14 @@ noscript {
   }
 }
 
-.dismissable-banner {
+.dismissable-banner,
+.warning-banner {
   position: relative;
   margin: 10px;
   margin-bottom: 5px;
   border-radius: 8px;
   border: 1px solid $highlight-text-color;
   background: rgba($highlight-text-color, 0.15);
-  padding-inline-end: 45px;
   overflow: hidden;
 
   &__background-image {
@@ -8864,13 +8941,26 @@ noscript {
   }
 
   &__action {
-    position: absolute;
-    inset-inline-end: 0;
-    top: 0;
-    padding: 10px;
+    float: right;
+    padding: 15px 10px;
 
     .icon-button {
       color: $highlight-text-color;
+    }
+  }
+}
+
+.warning-banner {
+  border: 1px solid $warning-red;
+  background: rgba($warning-red, 0.15);
+
+  &__message {
+    h1 {
+      color: $warning-red;
+    }
+
+    a {
+      color: $primary-text-color;
     }
   }
 }
@@ -9254,5 +9344,32 @@ noscript {
       line-height: 33px;
       font-weight: 700;
     }
+  }
+}
+
+.hashtag-bar {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  line-height: 18px;
+  gap: 4px;
+  color: $darker-text-color;
+
+  a {
+    display: inline-flex;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover span {
+      text-decoration: underline;
+    }
+  }
+
+  .link-button {
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 0;
   }
 }

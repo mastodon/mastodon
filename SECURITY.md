@@ -1,8 +1,11 @@
 # Security Policy
 
-If you believe you've identified a security vulnerability in Mastodon (a bug that allows something to happen that shouldn't be possible), you can reach us at <security@joinmastodon.org>.
+If you believe you've identified a security vulnerability in Mastodon (a bug that allows something to happen that shouldn't be possible), you can either:
 
-You should _not_ report such issues on GitHub or in other public spaces to give us time to publish a fix for the issue without exposing Mastodon's users to increased risk.
+- open a [Github security issue on the Mastodon project](https://github.com/mastodon/mastodon/security/advisories/new)
+- reach us at <security@joinmastodon.org>
+
+You should _not_ report such issues on public GitHub issues or in other public spaces to give us time to publish a fix for the issue without exposing Mastodon's users to increased risk.
 
 ## Scope
 
@@ -10,9 +13,9 @@ A "vulnerability in Mastodon" is a vulnerability in the code distributed through
 
 ## Supported Versions
 
-| Version | Supported |
-| ------- | --------- |
-| 4.1.x   | Yes       |
-| 4.0.x   | Yes       |
-| 3.5.x   | Yes       |
-| < 3.5   | No        |
+| Version | Supported        |
+| ------- | ---------------- |
+| 4.1.x   | Yes              |
+| 4.0.x   | Until 2023-10-31 |
+| 3.5.x   | Until 2023-12-31 |
+| < 3.5   | No               |

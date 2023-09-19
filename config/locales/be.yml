@@ -315,6 +315,7 @@ be:
       unpublish: Зняць з публікацыі
       unpublished_msg: Аб'ява паспяхова схована!
       updated_msg: Аб'ява паспяхова адноўлена!
+    critical_update_pending: Чакаецца крытычнае абнаўленне
     custom_emojis:
       assign_category: Прызначыць катэгорыю
       by_domain: Дамен
@@ -798,10 +799,23 @@ be:
           approved: Для рэгістрацыі патрабуецца пацвярджэнне
           none: Нікому не магчыма зарэгістравацца
           open: Любому магчыма зарэгістравацца
+      security:
+        authorized_fetch: Патрабаваць аўтэнтыфікацыю ад федэратыўных сервераў
+        authorized_fetch_overridden_hint: Вы не можаце змяніць гэты параметр, паколькі ён перавызначаны зменнай асяроддзя.
       title: Налады сервера
     site_uploads:
       delete: Выдаліць запампаваны файл
       destroyed_msg: Загрузка сайту паспяхова выдалена!
+    software_updates:
+      critical_update: Крытычна - зрабіце абнаўленне як мага хутчэй
+      documentation_link: Даведацца больш
+      release_notes: Журнал змен
+      title: Даступныя абнаўленні
+      type: Тып
+      types:
+        major: Буйны рэліз
+        minor: Малы рэліз
+      version: Версія
     statuses:
       account: Аўтар
       application: Праграма
@@ -842,6 +856,20 @@ be:
     system_checks:
       database_schema_check:
         message_html: Ёсць незавершаныя міграцыі базы дадзеных. Калі ласка, запусціце іх, каб пераканацца, што дадатак паводзіць сябе належным чынам
+      elasticsearch_health_red:
+        message_html: Кластар Elasticsearch нездаровы (чырвоны статус), функцыі пошуку недаступныя
+      elasticsearch_health_yellow:
+        message_html: Кластар Elasticsearch нездаровы (жоўты статус), магчыма, неабходна высветліць прычыну
+      elasticsearch_index_mismatch:
+        message_html: Супастаўленне індэксаў Elasticsearch састарэла. Калі ласка, выканайце каманду <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Падрабязней у дакументацыі
+        message_html: Ваш кластар Elasticsearch мае больш за адзін вузел, але Mastodon не наладжаны на іх выкарыстанне.
+      elasticsearch_preset_single_node:
+        action: Падрабязней у дакументацыі
+        message_html: Ваш кластар Elasticsearch мае толькі адзін вузел, <code>ES_PRESET</code> варта ўсталяваць у значэнне <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Ваш сістэмны індэкс Elasticsearch састарэлы з-за змены налад. Для яго абнаўлення выканайце каманду <code>tootctl search deploy --reset-chewy</code>.
       elasticsearch_running_check:
         message_html: Немагчыма падключыцца да Elasticsearch. Калі ласка, праверце, што ён запушчаны, або адключыце паўнатэкставы пошук
       elasticsearch_version_check:
@@ -852,6 +880,11 @@ be:
         message_html: Вы не вызначылі ніякіх правілаў сервера.
       sidekiq_process_check:
         message_html: Не працуе працэс Sidekiq для %{value} чаргі. Калі ласка праверце вашу канфігурацыю Sidekiq
+      software_version_critical_check:
+        action: Прагледзець даступныя абнаўленні
+        message_html: Даступна крытычнае абнаўленне Mastodon, калі ласка, зрабіце абнаўленне як мага хутчэй.
+      software_version_patch_check:
+        action: Прагледзець даступныя абнаўленні
       upload_check_privacy_error:
         action: Для падрабязнасцей націсніце тут
         message_html: "<strong>Ваш сервер не наладжаны. Прыватнасць карыстальнікаў пад пагрозай.</strong>"
@@ -973,6 +1006,8 @@ be:
       body: "%{target} абскарджвае рашэнне мадэратара %{action_taken_by} ад %{date}, якая была %{type}. Яны напісалі:"
       next_steps: Вы можаце ўхваліць апеляцыю каб адмяніць рашэнне мадэратараў ці ігнараваць яе.
       subject: "%{username} абскарджвае рашэнне мадэратараў на %{instance}"
+    new_critical_software_updates:
+      subject: Даступны крытычныя абнаўленні Mastodon для %{instance}!
     new_pending_account:
       body: Падрабязнасці новага ўліковага запісу прыведзены ніжэй. Вы можаце зацвердзіць або адхіліць гэтую заяўку.
       subject: Новы ўліковы запіс для разгляду ў %{instance} (%{username})
@@ -980,6 +1015,9 @@ be:
       body: "%{reporter} паскардзіўся на %{target}"
       body_remote: Нехта з %{domain} паскардзіўся на %{target}
       subject: Новая скарга на %{instance} (#%{id})
+    new_software_updates:
+      body: Выйшлі новыя версіі Mastodon, магчыма, вам варта абнавіцца!
+      subject: Новыя версіі Mastodon даступныя для %{instance}!
     new_trends:
       body: 'Гэтыя элементы трэба праверыць, перш чым публікаваць:'
       new_trending_links:
@@ -1176,7 +1214,6 @@ be:
     basic_information: Асноўная інфармацыя
     hint_html: "<strong>Наладзьце тое, што людзі будуць бачыць у вашым профілі і побач з вашымі паведамленнямі.</strong> Іншыя людзі з большай верагоднасцю будуць сачыць і ўзаемадзейнічаць з вамі, калі ў вас ёсць запоўнены профіль і фота профілю."
     other: Іншае
-    safety_and_privacy: Бяспека і прыватнасць
   errors:
     '400': Запыт, які вы адправілі, памылковы або няправільны.
     '403': У вас няма дазволу на прагляд гэтай старонкі.
@@ -1485,6 +1522,7 @@ be:
     update:
       subject: "%{name} адрэдагаваў допіс"
   notifications:
+    administration_emails: Апавяшчэнні эл. пошты для адміністратара
     email_events: Падзеі для апавяшчэнняў эл. пошты
     email_events_hint: 'Выберыце падзеі, аб якіх вы хочаце атрымліваць апавяшчэнні:'
     other_settings: Іншыя налады апавяшчэнняў
@@ -1528,6 +1566,15 @@ be:
     other: Іншае
     posting_defaults: Публікаваць па змаўчанні
     public_timelines: Публічныя стужкі
+  privacy:
+    hint_html: "<strong>Наладзьце тое, якім чынам ваш профіль і вашы паведамленні могуць быць знойдзеныя.</strong> Розныя функцыі ў Mastodon могуць дапамагчы вам ахапіць шырэйшую аўдыторыю. Удзяліце час гэтым наладам, каб пераканацца, што яны падыходзяць вам."
+    privacy: Прыватнасць
+    privacy_hint_html: Кантралюйце, колькі інфармацыі вы хочаце раскрыць для карысці іншых. Людзі адкрываюць для сябе цікавыя профілі і класныя праграмы, праглядаючы допісы іншых людзей і даведваючыся, з якіх праграм яны пішуць, але, магчыма, вы аддаеце перавагу трымаць гэта ў таямніцы.
+    reach: Дасяжнасць
+    reach_hint_html: Кантралюйце, ці вы хочаце, каб пра вас даведваліся і на вас падпісваліся новыя людзі. Ці вы хочаце, каб вашы паведамленні з'яўляліся на старонцы "агляд"? Ці вы хочаце, каб іншыя людзі бачылі вас у сваіх рэкамендацыях? Ці вы хочаце аўтаматычна прымаць усіх новых падпісчыкаў або мець магчымасць дэталёва кантраляваць кожнага з іх?
+    search: Пошук
+    search_hint_html: Кантралюйце тое, якім чынам вас можна знайсці. Ці хочаце вы, каб людзі знаходзілі вас па тым, пра што вы публічна апублікавалі? Ці вы хочаце, каб людзі за межамі Mastodon знаходзілі ваш профіль пры пошуку ў Інтэрнэце? Трэба памятаць, што поўнае выключэнне з усіх пошукавых сістэм не можа быць гарантавана для публічнай інфармацыі.
+    title: Прыватнасць і дасяжнасць
   privacy_policy:
     title: Палітыка канфідэнцыйнасці
   reactions:
@@ -1749,6 +1796,11 @@ be:
       default: "%d.%m.%Y %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Сервер перавысіў квоту на выкарыстанне службы перакладу.
+      too_many_requests: Занадта шмат запытаў у сервіс перакладаў.
   two_factor_authentication:
     add: Дадаць
     disable: Адключыць 2FA

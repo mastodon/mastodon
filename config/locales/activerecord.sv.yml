@@ -53,3 +53,7 @@ sv:
             position:
               elevated: kan inte vara högre än din nuvarande roll
               own_role: kan inte ändras med din nuvarande roll
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: kan inte inkludera händelser som du inte har rättigheter till
