@@ -5,10 +5,11 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   include Redisable
   include Lockable
 
-  def call(status, json, request_id: nil)
+  def call(status, activity_json, object_json, request_id: nil)
     raise ArgumentError, 'Status has unsaved changes' if status.changed?
 
-    @json                      = json
+    @activity_json             = activity_json
+    @json                      = object_json
     @status_parser             = ActivityPub::Parser::StatusParser.new(@json)
     @uri                       = @status_parser.uri
     @status                    = status
@@ -306,6 +307,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def forwarder
-    @forwarder ||= ActivityPub::Forwarder.new(@account, @json, @status)
+    @forwarder ||= ActivityPub::Forwarder.new(@account, @activity_json, @status)
   end
 end

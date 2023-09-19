@@ -75,7 +75,9 @@ class TranslateStatusService < BaseService
 
       case source
       when :content
-        status_translation.content = unwrap_emoji_shortcodes(translation.text).to_html
+        node = unwrap_emoji_shortcodes(translation.text)
+        Sanitize.node!(node, Sanitize::Config::MASTODON_STRICT)
+        status_translation.content = node.to_html
       when :spoiler_text
         status_translation.spoiler_text = unwrap_emoji_shortcodes(translation.text).content
       when Poll::Option
