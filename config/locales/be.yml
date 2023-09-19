@@ -315,6 +315,7 @@ be:
       unpublish: Зняць з публікацыі
       unpublished_msg: Аб'ява паспяхова схована!
       updated_msg: Аб'ява паспяхова адноўлена!
+    critical_update_pending: Чакаецца крытычнае абнаўленне
     custom_emojis:
       assign_category: Прызначыць катэгорыю
       by_domain: Дамен
@@ -798,11 +799,22 @@ be:
           approved: Для рэгістрацыі патрабуецца пацвярджэнне
           none: Нікому не магчыма зарэгістравацца
           open: Любому магчыма зарэгістравацца
+      security:
+        authorized_fetch: Патрабаваць аўтэнтыфікацыю ад федэратыўных сервераў
+        authorized_fetch_overridden_hint: Вы не можаце змяніць гэты параметр, паколькі ён перавызначаны зменнай асяроддзя.
       title: Налады сервера
     site_uploads:
       delete: Выдаліць запампаваны файл
       destroyed_msg: Загрузка сайту паспяхова выдалена!
     software_updates:
+      critical_update: Крытычна - зрабіце абнаўленне як мага хутчэй
+      documentation_link: Даведацца больш
+      release_notes: Журнал змен
+      title: Даступныя абнаўленні
+      type: Тып
+      types:
+        major: Буйны рэліз
+        minor: Малы рэліз
       version: Версія
     statuses:
       account: Аўтар
@@ -868,6 +880,11 @@ be:
         message_html: Вы не вызначылі ніякіх правілаў сервера.
       sidekiq_process_check:
         message_html: Не працуе працэс Sidekiq для %{value} чаргі. Калі ласка праверце вашу канфігурацыю Sidekiq
+      software_version_critical_check:
+        action: Прагледзець даступныя абнаўленні
+        message_html: Даступна крытычнае абнаўленне Mastodon, калі ласка, зрабіце абнаўленне як мага хутчэй.
+      software_version_patch_check:
+        action: Прагледзець даступныя абнаўленні
       upload_check_privacy_error:
         action: Для падрабязнасцей націсніце тут
         message_html: "<strong>Ваш сервер не наладжаны. Прыватнасць карыстальнікаў пад пагрозай.</strong>"
@@ -989,6 +1006,8 @@ be:
       body: "%{target} абскарджвае рашэнне мадэратара %{action_taken_by} ад %{date}, якая была %{type}. Яны напісалі:"
       next_steps: Вы можаце ўхваліць апеляцыю каб адмяніць рашэнне мадэратараў ці ігнараваць яе.
       subject: "%{username} абскарджвае рашэнне мадэратараў на %{instance}"
+    new_critical_software_updates:
+      subject: Даступны крытычныя абнаўленні Mastodon для %{instance}!
     new_pending_account:
       body: Падрабязнасці новага ўліковага запісу прыведзены ніжэй. Вы можаце зацвердзіць або адхіліць гэтую заяўку.
       subject: Новы ўліковы запіс для разгляду ў %{instance} (%{username})
@@ -996,6 +1015,9 @@ be:
       body: "%{reporter} паскардзіўся на %{target}"
       body_remote: Нехта з %{domain} паскардзіўся на %{target}
       subject: Новая скарга на %{instance} (#%{id})
+    new_software_updates:
+      body: Выйшлі новыя версіі Mastodon, магчыма, вам варта абнавіцца!
+      subject: Новыя версіі Mastodon даступныя для %{instance}!
     new_trends:
       body: 'Гэтыя элементы трэба праверыць, перш чым публікаваць:'
       new_trending_links:
@@ -1774,6 +1796,7 @@ be:
       default: "%d.%m.%Y %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
   translation:
     errors:
       quota_exceeded: Сервер перавысіў квоту на выкарыстанне службы перакладу.

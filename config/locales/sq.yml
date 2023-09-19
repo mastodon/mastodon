@@ -829,10 +829,18 @@ sq:
     system_checks:
       database_schema_check:
         message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
+      elasticsearch_health_red:
+        message_html: Grupi juaj i instancave Elasticsearch s’është i shëndetshëm (gjendje e verdhë), s’mund të përdoren veçoritë e kërkimit
+      elasticsearch_health_yellow:
+        message_html: Grupi juaj i instancave Elasticsearch s’është i shëndetshëm (gjendje e verdhë), mund të doni të hetoni shkakun
+      elasticsearch_index_mismatch:
+        message_html: Përshoqërimet e treguesit të Elasticsearch-it janë të vjetruara. Ju lutemi, xhironi <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_preset:
         action: Shihni documentimin
+        message_html: Grupi i instancave tuaja Elasticsearch ka më shumë se një nyjë, por Mastodon-i s’është formësuar t’i përdorë ato.
       elasticsearch_preset_single_node:
         action: Shihni documentimin
+        message_html: Grupi i instancave tuaja Elasticsearch ka vetëm një nyjë, <code>ES_PRESET</code> i duhet dhënë vlera <code>single_node_cluster</code>.
       elasticsearch_reset_chewy:
         message_html: Treguesi juaj i sistemit Elasticsearch është i vjetruar, për shkak të një ndryshimi rregullimesh. Për ta përditësuar, ju lutemi, xhironi <code>tootctl search deploy --reset-chewy</code>.
       elasticsearch_running_check:
@@ -1375,6 +1383,7 @@ sq:
       confirmation_html: Jeni i sigurt se doni të shpajtoheni prej marrjes së %{type} për Mastodon në %{domain} te email-i juaj në %{email}? Mundeni përherë të ripajtoheni, që prej <a href="%{settings_path}">rregullimeve tuaja për njoftime me email</a>.
       emails:
         notification_emails:
+          favourite: email-e njoftimesh për të parapëlqyer
           follow: email-e njoftimi ndjekjesh
           follow_request: email-e kërkesash për ndjekje
           mention: email-e njoftimi përmendjesh
@@ -1461,6 +1470,7 @@ sq:
     update:
       subject: "%{name} përpunoi një postim"
   notifications:
+    administration_emails: Njoftime email për përgjegjësin
     email_events: Akte për njoftim me email
     email_events_hint: 'Përzgjidhni akte për të cilët doni të merrni njoftime:'
     other_settings: Rregullimet të tjera njoftimesh

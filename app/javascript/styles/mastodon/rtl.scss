@@ -58,4 +58,11 @@ body.rtl {
   .fa-chevron-right::before {
     content: '\F053';
   }
+
+  .dismissable-banner,
+  .warning-banner {
+    &__action {
+      float: left;
+    }
+  }
 }

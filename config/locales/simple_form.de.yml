@@ -15,26 +15,26 @@ de:
       account_migration:
         acct: Gib profilname@domain des Kontos an, zu dem du umziehen möchtest
       account_warning_preset:
-        text: Du kannst Beitragssyntax verwenden, wie z. B. URLs, Hashtags und Erwähnungen
-        title: Optional. Für Empfänger*in nicht sichtbar
+        text: Du kannst die Syntax wie für Beiträge verwenden – z. B. URLs, Hashtags und Erwähnungen
+        title: "(Optional) Für Empfänger*in nicht sichtbar"
       admin_account_action:
         include_statuses: Die Person wird sehen, welche Inhalte dich zu dieser Maßnahme veranlasst haben
         send_email_notification: Benutzer*in wird eine Erklärung erhalten, was mit dem Konto geschehen ist
-        text_html: Optional. Du kannst Beitragssyntax verwenden. Du kannst <a href="%{path}">Warnvorlagen hinzufügen</a>, um Zeit zu sparen
+        text_html: (Optional) Du kannst die Syntax wie für Beiträge verwenden. Du kannst <a href="%{path}">Warnvorlagen hinzufügen</a>, um Zeit zu sparen
         type_html: Wähle aus, wie mit <strong>%{acct}</strong> vorgegangen werden soll
         types:
           disable: Benutzer*in daran hindern, das Konto verwenden zu können, aber die Inhalte nicht löschen oder ausblenden.
           none: Dem Konto eine Warnung zusenden, ohne dabei eine andere Aktion vorzunehmen.
-          sensitive: Erzwingen, dass alle Medieninhalte dieses Profils mit einer Inhaltswarnung versehen werden.
+          sensitive: Erzwingen, dass alle Medienanhänge dieses Profils mit einer Inhaltswarnung versehen werden.
           silence: Verhindert, dass dieses Profil öffentlich sichtbare Beiträge verfassen kann, und verbirgt alle Beiträge und Benachrichtigungen vor Personen, die diesem Profil nicht folgen. Alle Meldungen zu diesem Konto werden geschlossen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
-        warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
+        warning_preset_id: "(Optional) Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen"
       announcement:
         all_day: Falls aktiviert, werden nur der Tag bzw. die Tage innerhalb des Zeitraums angezeigt
-        ends_at: Optional. Die Ankündigung wird zu diesem Zeitpunkt automatisch zurückgezogen
+        ends_at: "(Optional) Die Ankündigung wird zu diesem Zeitpunkt automatisch zurückgezogen"
         scheduled_at: Leer lassen, um die Ankündigung sofort zu veröffentlichen
-        starts_at: Optional. Nur für den Fall, dass deine Ankündigung an einen bestimmten Zeitraum gebunden ist
-        text: Du kannst die reguläre Syntax wie für Beiträge verwenden, also auch Profile erwähnen und Hashtags nutzen. Bitte beachte den Platz, den die Ankündigung auf dem Bildschirm der Benutzer*innen einnehmen wird
+        starts_at: "(Optional) Für den Fall, dass deine Ankündigung an einen bestimmten Zeitraum gebunden ist"
+        text: Du kannst die Syntax wie für Beiträge verwenden. Bitte berücksichtige den Platz, den die Ankündigung auf dem Bildschirm der Benutzer*innen einnehmen wird
       appeal:
         text: Du kannst nur einmal Einspruch gegen eine Maßnahme einlegen
       defaults:
@@ -107,7 +107,7 @@ de:
       invite_request:
         text: Dies wird uns bei der Überprüfung deiner Anmeldung behilflich sein
       ip_block:
-        comment: Optional. Zur Erinnerung, weshalb du diese Regel eingeführt hast.
+        comment: "(Optional) Zur Erinnerung, weshalb du diese Regel eingeführt hast."
         expires_in: IP-Adressen sind eine begrenzte Ressource. Sie können außerdem auf viele Computer aufgeteilt sein und auch die Zuordnungen ändern sich. Deshalb werden unbestimmte IP-Sperren nicht empfohlen.
         ip: Gib eine IPv4- oder IPv6-Adresse an. Du kannst ganze Bereiche mit der CIDR-Syntax blockieren. Achte darauf, dass du dich nicht selbst aussperrst!
         severities:
