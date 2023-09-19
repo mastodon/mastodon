@@ -293,7 +293,7 @@ class DetailedStatus extends ImmutablePureComponent {
     }
 
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
-    const expanded = !status.get('hidden')
+    const expanded = !status.get('hidden') || status.get('spoiler_text').length === 0;
 
     return (
       <div style={outerStyle}>
