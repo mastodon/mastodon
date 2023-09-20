@@ -37,7 +37,7 @@ class TranslationService::LibreTranslate < TranslationService
 
     raise UnexpectedResponseError unless json.is_a?(Hash)
 
-    Translation.new(text: json['translatedText'], detected_source_language: source_language, provider: 'LibreTranslate')
+    Translation.new(text: Sanitize.fragment(json['translatedText'], Sanitize::Config::MASTODON_STRICT), detected_source_language: source_language, provider: 'LibreTranslate')
   rescue Oj::ParseError
     raise UnexpectedResponseError
   end
