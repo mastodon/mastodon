@@ -29,7 +29,7 @@ const unicodeMapping: UnicodeMapping = {};
 
 function processEmojiMapData(
   emojiMapData: FilenameData[number],
-  shortCode?: ShortCodesToEmojiDataKey
+  shortCode?: ShortCodesToEmojiDataKey,
 ) {
   const [native, _filename] = emojiMapData;
   let filename = emojiMapData[1];
@@ -50,11 +50,11 @@ Object.keys(shortCodesToEmojiData).forEach(
     filenameData.forEach((emojiMapData) => {
       processEmojiMapData(emojiMapData, shortCode);
     });
-  }
+  },
 );
 
-emojisWithoutShortCodes.forEach((emojiMapData) =>
-  processEmojiMapData(emojiMapData)
-);
+emojisWithoutShortCodes.forEach((emojiMapData) => {
+  processEmojiMapData(emojiMapData);
+});
 
 export { unicodeMapping };
