@@ -3,6 +3,12 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [4.1.9] - 2023-09-20
+
+### Fixed
+
+- Fix post translation erroring out ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/26990))
+
 ## [4.1.8] - 2023-09-19
 
 ### Fixed
