@@ -37,7 +37,7 @@ export type ShortCodesToEmojiData = Record<
   ShortCodesToEmojiDataKey,
   [FilenameData, SearchData]
 >;
-type EmojisWithoutShortCodes = FilenameData[];
+type EmojisWithoutShortCodes = FilenameData;
 
 type EmojiCompressed = [
   ShortCodesToEmojiData,
