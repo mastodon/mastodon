@@ -21,7 +21,7 @@ jobs:
       # Only tag with latest when ran against the latest stable branch
       # This needs to be updated after each minor version release
       flavor: |
-        latest=${{ startsWith(github.ref, 'refs/tags/v4.1.') }}
+        latest=${{ startsWith(github.ref, 'refs/tags/v4.2.') }}
       tags: |
         type=pep440,pattern={{raw}}
         type=pep440,pattern=v{{major}}.{{minor}}
