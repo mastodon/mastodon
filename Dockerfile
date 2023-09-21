@@ -144,7 +144,9 @@ RUN set -eux; \
     apt-get install -y --no-install-recommends \
         build-essential \
         git \
+        nasm \
         pkg-config \
+        xz-utils \
     ;
 
 ########################################################################################################################
@@ -178,7 +180,6 @@ ARG FFMPEG_VERSION
 
 RUN set -eux; \
     apt-get install -y --no-install-recommends \
-        nasm \
         libaom-dev \
         libdav1d-dev \
         libdrm-dev \
@@ -191,8 +192,6 @@ RUN set -eux; \
         libx264-dev \
         libx265-dev \
         zlib1g-dev \
-        xz-utils \
-        yasm \
     ; \
     ffmpeg_workdir="$(mktemp -d)"; \
     ffmpeg_prefix="/opt/ffmpeg"; \
