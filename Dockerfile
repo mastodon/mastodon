@@ -74,11 +74,15 @@ RUN set -eux; \
 	apt-get -yq dist-upgrade; \
     # Install base dependencies
     apt-get install -y --no-install-recommends \
-        libatomic1 \
+        # Dependencies for all
+        tzdata \
+        wget \
+        # Dependencies for ruby gems
         libicu72 \
         libidn12 \
         libpq5 \
-        tzdata \
+        # Dependencies for nodejs
+        libatomic1 \
     ; \
     # Remove /var/lib/apt/lists as cache
     rm -rf /var/lib/apt/lists/*; \
@@ -148,6 +152,66 @@ RUN set -eux; \
     yarn cache clean --all;
 
 ########################################################################################################################
+FROM builder-base as ffmpeg-builder
+ARG FFMPEG_VERSION
+
+RUN set -eux; \
+    apt-get install -y --no-install-recommends \
+        libaom-dev \
+        libdav1d-dev \
+        libdrm-dev \
+        libmp3lame-dev \
+        libnuma-dev \
+        libopus-dev \
+        libva-dev \
+        libvorbis-dev \
+        libvpx-dev \
+        libx264-dev \
+        libx265-dev \
+        zlib1g-dev \
+        xz-utils \
+    ; \
+    ffmpeg_workdir="$(mktemp -d)"; \
+    ffmpeg_prefix="/opt/ffmpeg"; \
+    cd ${ffmpeg_workdir}; \
+    wget -q https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz; \
+    tar -xJf ffmpeg-${FFMPEG_VERSION}.tar.xz --strip-components=1; \
+    ./configure \
+        --prefix="${ffmpeg_prefix}" \
+        --enable-rpath \
+        --enable-gpl \
+        --enable-version3 \
+        --enable-nonfree \
+        --disable-static \
+        --enable-shared \
+        # Program Options
+        --disable-programs \
+        --enable-ffmpeg \
+        --enable-ffprobe \
+        # Documentation Options
+        --disable-doc \
+        # External Library Support
+        --enable-libaom \
+        --enable-libdav1d \
+        --enable-libdrm \
+        --enable-libmp3lame \
+        --enable-libopus \
+        --enable-libvorbis \
+        --enable-libvpx \
+        --enable-libx264 \
+        --enable-libx265 \
+        --enable-openssl \
+        --enable-vaapi \
+    ; \
+    make -j$(nproc); \
+    make install; \
+    rm -r \
+        /opt/ffmpeg/include \
+        /opt/ffmpeg/lib/pkgconfig \
+        /opt/ffmpeg/share \
+    ;
+
+########################################################################################################################
 FROM base
 ARG TZ
 ARG RAILS_ENV
@@ -160,13 +224,12 @@ ARG MASTODON_VERSION_METADATA
 RUN set -eux; \
     # Update apt due to /var/lib/apt/lists is empty
     apt-get update; \
-    # Install runtime dependencies
+    # Install runtime-only dependencies
     apt-get install -y --no-install-recommends \
         file \
         imagemagick \
         libjemalloc2 \
         tini \
-        wget \
     ; \
     # Remove /var/lib/apt/lists as cache
     rm -rf /var/lib/apt/lists/*;
