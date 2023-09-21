@@ -268,7 +268,6 @@ COPY --link --from=ffmpeg-builder /opt/ffmpeg /opt/ffmpeg
 RUN set -eux; \
     ln -s /opt/ffmpeg/bin/ffmpeg /usr/local/bin/; \
     ln -s /opt/ffmpeg/bin/ffprobe /usr/local/bin/; \
-    ls /opt/ffmpeg/lib; \
     # smoke tests for ffmpeg, ffprobe
     ffmpeg -version; \
     ffprobe -version;
