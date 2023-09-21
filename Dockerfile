@@ -82,7 +82,6 @@ RUN set -eux; \
     apt-get install -y --no-install-recommends \
         # Dependencies for all
         tzdata \
-        wget \
         # Dependencies for ruby gems
         libicu72 \
         libidn12 \
@@ -244,8 +243,7 @@ RUN set -eux; \
     ffmpeg_workdir="$(mktemp -d)"; \
     ffmpeg_prefix="/opt/ffmpeg"; \
     cd ${ffmpeg_workdir}; \
-    wget -q https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz; \
-    tar -xJf ffmpeg-${FFMPEG_VERSION}.tar.xz --strip-components=1; \
+    git clone -b "n${FFMPEG_VERSION}" --depth 1 https://github.com/FFmpeg/FFmpeg.git .; \
     ./configure \
         --prefix="${ffmpeg_prefix}" \
         --enable-rpath \
@@ -302,6 +300,7 @@ RUN set -eux; \
         file \
         libjemalloc2 \
         tini \
+        wget \
     ; \
     # Remove /var/lib/apt/lists as cache
     rm -rf /var/lib/apt/lists/*;
