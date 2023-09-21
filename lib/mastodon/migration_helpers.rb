@@ -202,7 +202,7 @@ module Mastodon
     def supports_add_column_with_default?
       version = select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
 
-      version >= 11_000
+      version >= 110_000
     end
 
     # Adds a foreign key with only minimal locking on the tables involved.
