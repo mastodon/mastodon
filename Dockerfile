@@ -184,20 +184,25 @@ ARG IMAGEMAGICK_VERSION
 RUN set -eux; \
     apt-get install -y --no-install-recommends \
         libltdl-dev \
+        zlib1g-dev \
     ; \
     imagemagick_workdir="$(mktemp -d)"; \
     imagemagick_prefix="/opt/magick"; \
     cd ${imagemagick_workdir}; \
     git clone -b ${IMAGEMAGICK_VERSION} --depth 1 https://github.com/ImageMagick/ImageMagick.git .; \
-    LDFLAGS="-Wl,-rpath,'$$ORIGIN/../lib'" ./configure \
+    LDFLAGS="-Wl,-rpath,'\$\$ORIGIN/../lib'" ./configure \
         --prefix="${imagemagick_prefix}" \
         # Optional Features
         --disable-openmp \
         --enable-shared \
         --disable-static \
+        --disable-deprecated \
         --disable-docs \
         # Optional Packages
-        --without-x \
+        --with-security-policy=websafe \
+        --without-magick-plus-plus \
+        --without-fontconfig \
+        --without-freetype \
     ; \
     make -j$(nproc); \
     make install; \
