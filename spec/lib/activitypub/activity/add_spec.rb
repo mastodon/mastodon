@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Add do
@@ -24,7 +26,7 @@ RSpec.describe ActivityPub::Activity::Add do
     end
 
     context 'when status was not known before' do
-      let(:service_stub) { double }
+      let(:service_stub) { instance_double(ActivityPub::FetchRemoteStatusService) }
 
       let(:json) do
         {
@@ -48,10 +50,10 @@ RSpec.describe ActivityPub::Activity::Add do
         end
 
         it 'fetches the status and pins it' do
-          allow(service_stub).to receive(:call) do |uri, id: true, on_behalf_of: nil, request_id: nil|
+          allow(service_stub).to receive(:call) do |uri, id: true, on_behalf_of: nil, request_id: nil| # rubocop:disable Lint/UnusedBlockArgument
             expect(uri).to eq 'https://example.com/unknown'
-            expect(id).to eq true
-            expect(on_behalf_of&.following?(sender)).to eq true
+            expect(id).to be true
+            expect(on_behalf_of&.following?(sender)).to be true
             status
           end
           subject.perform
@@ -62,10 +64,10 @@ RSpec.describe ActivityPub::Activity::Add do
 
       context 'when there is no local follower' do
         it 'tries to fetch the status' do
-          allow(service_stub).to receive(:call) do |uri, id: true, on_behalf_of: nil, request_id: nil|
+          allow(service_stub).to receive(:call) do |uri, id: true, on_behalf_of: nil, request_id: nil| # rubocop:disable Lint/UnusedBlockArgument
             expect(uri).to eq 'https://example.com/unknown'
-            expect(id).to eq true
-            expect(on_behalf_of).to eq nil
+            expect(id).to be true
+            expect(on_behalf_of).to be_nil
             nil
           end
           subject.perform

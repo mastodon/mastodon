@@ -2,6 +2,10 @@
 cs:
   simple_form:
     hints:
+      account:
+        display_name: Vaše celé jméno nebo přezdívka.
+        fields: Vaše domovská stránka, zájmena, věk, cokoliv chcete.
+        note: 'Můžete @zmínit jiné osoby nebo #hashtagy.'
       account_alias:
         acct: Zadejte svůj účet, ze kterého se chcete přesunout jinam, ve formátu přezdívka@doména
       account_migration:
@@ -37,14 +41,11 @@ cs:
         current_password: Z bezpečnostních důvodů prosím zadejte heslo současného účtu
         current_username: Potvrďte prosím tuto akci zadáním uživatelského jména aktuálního účtu
         digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste během své nepřítomnosti obdrželi osobní zprávy
-        discoverable: Umožnit, aby mohli váš účet objevit neznámí lidé pomocí doporučení, trendů a dalších funkcí
         email: Bude vám poslán potvrzovací e-mail
-        fields: Na svém profilu můžete mít zobrazeny až 4 položky jako tabulku
         header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         inbox_url: Zkopírujte URL z hlavní stránky mostu, který chcete použít
         irreversible: Filtrované příspěvky nenávratně zmizí, i pokud bude filtr později odstraněn
         locale: Jazyk uživatelského rozhraní, e-mailů a push notifikací
-        locked: Kontrolujte, kdo vás může sledovat pomocí schvalování žádostí o sledování
         password: Použijte alespoň 8 znaků
         phrase: Shoda bude nalezena bez ohledu na velikost písmen v textu příspěvku či varování o obsahu
         scopes: Která API bude aplikace moct používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat jednotlivě.
@@ -54,12 +55,9 @@ cs:
         setting_display_media_default: Skrývat média označená jako citlivá
         setting_display_media_hide_all: Vždy skrývat média
         setting_display_media_show_all: Vždy zobrazovat média
-        setting_hide_network: Koho sledujete a kdo sleduje vás bude na vašem profilu skryto
-        setting_noindex: Ovlivňuje váš veřejný profil a stránky příspěvků
-        setting_show_application: Aplikace, kterou používáte k odeslání příspěvků, bude zobrazena jejich detailním zobrazení
         setting_use_blurhash: Gradienty jsou založeny na barvách skryté grafiky, ale zakrývají jakékoliv detaily
         setting_use_pending_items: Aktualizovat časovou osu až po kliknutí namísto automatického rolování kanálu
-        username: Vaše uživatelské jméno bude na serveru %{domain} unikátní
+        username: Pouze písmena, číslice a podtržítka
         whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikován pouze, pokud se shoduje s celým slovem
       domain_allow:
         domain: Tato doména bude moci stahovat data z tohoto serveru a příchozí data z ní budou zpracována a uložena
@@ -131,6 +129,7 @@ cs:
         position: Vyšší role rozhoduje o řešení konfliktů v určitých situacích. Některé akce lze provádět pouze na rolích s nižší prioritou
       webhook:
         events: Zvolte odesílané události
+        template: Sestavte si vlastní JSON payload pomocí interpolace proměnných. Pro výchozí JSON ponechte prázdné.
         url: Kam budou události odesílány
     labels:
       account:
@@ -174,7 +173,6 @@ cs:
         context: Kontexty filtrů
         current_password: Současné heslo
         data: Data
-        discoverable: Navrhovat účet ostatním
         display_name: Zobrazované jméno
         email: E-mailová adresa
         expires_in: Vypršet za
@@ -184,7 +182,6 @@ cs:
         inbox_url: URL příchozí schránky mostu
         irreversible: Zahodit místo skrytí
         locale: Jazyk rozhraní
-        locked: Vynutit žádosti o sledování
         max_uses: Maximální počet použití
         new_password: Nové heslo
         note: O vás
@@ -196,7 +193,6 @@ cs:
         setting_always_send_emails: Vždy posílat e-mailová oznámení
         setting_auto_play_gif: Automaticky přehrávat animace GIF
         setting_boost_modal: Před boostnutím zobrazovat potvrzovací okno
-        setting_crop_images: Ořezávat obrázky v nerozbalených příspěvcích na 16x9
         setting_default_language: Jazyk příspěvků
         setting_default_privacy: Soukromí příspěvků
         setting_default_sensitive: Vždy označovat média jako citlivá
@@ -208,9 +204,7 @@ cs:
         setting_display_media_show_all: Zobrazit vše
         setting_expand_spoilers: Vždy rozbalit příspěvky označené varováními o obsahu
         setting_hide_network: Skrýt mou síť
-        setting_noindex: Neindexovat svůj profil vyhledávači
         setting_reduce_motion: Omezit pohyb v animacích
-        setting_show_application: Odhalit aplikaci použitou k odeslání příspěvků
         setting_system_font_ui: Použít výchozí písmo systému
         setting_theme: Vzhled stránky
         setting_trends: Zobrazit dnešní trendy
@@ -296,6 +290,7 @@ cs:
         usable: Povolit používat tento hashtag v příspěvcích
       user:
         role: Role
+        time_zone: Časové pásmo
       user_role:
         color: Barva odznaku
         highlighted: Zobrazit roli jako odznak na profilech uživatelů
@@ -304,6 +299,7 @@ cs:
         position: Priorita
       webhook:
         events: Zapnuté události
+        template: Šablona payloadu
         url: URL koncového bodu
     'no': Ne
     not_recommended: Nedoporučuje se

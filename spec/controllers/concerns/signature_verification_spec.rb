@@ -2,18 +2,20 @@
 
 require 'rails_helper'
 
-describe ApplicationController, type: :controller do
-  class WrappedActor
-    attr_reader :wrapped_account
+describe SignatureVerification do
+  let(:wrapped_actor_class) do
+    Class.new do
+      attr_reader :wrapped_account
 
-    def initialize(wrapped_account)
-      @wrapped_account = wrapped_account
+      def initialize(wrapped_account)
+        @wrapped_account = wrapped_account
+      end
+
+      delegate :uri, :keypair, to: :wrapped_account
     end
-
-    delegate :uri, :keypair, to: :wrapped_account
   end
 
-  controller do
+  controller(ApplicationController) do
     include SignatureVerification
 
     before_action :require_actor_signature!, only: [:signature_required]
@@ -33,8 +35,8 @@ describe ApplicationController, type: :controller do
 
   before do
     routes.draw do
-      match via: [:get, :post], 'success' => 'anonymous#success'
-      match via: [:get, :post], 'signature_required' => 'anonymous#signature_required'
+      match :via => [:get, :post], 'success' => 'anonymous#success'
+      match :via => [:get, :post], 'signature_required' => 'anonymous#signature_required'
     end
   end
 
@@ -93,7 +95,7 @@ describe ApplicationController, type: :controller do
     end
 
     context 'with a valid actor that is not an Account' do
-      let(:actor) { WrappedActor.new(author) }
+      let(:actor) { wrapped_actor_class.new(author) }
 
       before do
         get :success
@@ -127,7 +129,7 @@ describe ApplicationController, type: :controller do
       end
     end
 
-    context 'with request with unparseable Date header' do
+    context 'with request with unparsable Date header' do
       before do
         get :success
 

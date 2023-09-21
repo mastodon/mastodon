@@ -2,6 +2,14 @@
 lv:
   simple_form:
     hints:
+      account:
+        discoverable: Tavas publiskās ziņas un profils var tikt piedāvāti vai ieteikti dažādās Mastodon vietās, un tavs profils var tikt ieteikts citiem lietotājiem.
+        display_name: Tavs pilnais vārds vai tavs joku vārds.
+        fields: Tava mājas lapa, vietniekvārdi, vecums, viss, ko vēlies.
+        indexable: Tavas publiskās ziņas var tikt parādītas Mastodon meklēšanas rezultātos. Personas, kuras ir mijiedarbojušās ar tavām ziņām, var tās meklēt neatkarīgi no tā.
+        note: 'Tu vari @minēt citus cilvēkus vai #mirkļbirkas.'
+        show_collections: Cilvēki varēs pārlūkot tavus sekotājus un kam tu seko. Cilvēki, kuriem seko, redzēs, ka tu seko viņiem neatkarīgi no tā.
+        unlocked: Cilvēki varēs tev sekot, neprasot apstiprinājumu. Noņem atzīmi, ja vēlies pārskatīt sekošanas pieprasījumus un izvēlēties, pieņemt vai noraidīt jaunus sekotājus.
       account_alias:
         acct: Norādi konta lietotājvārdu@domēnu, no kura vēlies pārvākties
       account_migration:
@@ -37,14 +45,11 @@ lv:
         current_password: Drošības nolūkos, lūdzu, ievadi pašreizējā konta paroli
         current_username: Lai apstiprinātu, lūdzu, ievadi pašreizējā konta paroli
         digest: Sūta tikai pēc ilgstošas neaktivitātes un tikai tad, ja savas prombūtnes laikā neesi saņēmis personiskas ziņas
-        discoverable: Ļauj svešiniekiem atklāt savu kontu caur ieteikumiem, tendencēm un citām iespējām
         email: Tev tiks nosūtīts apstiprinājuma e-pasts
-        fields: Savā profilā kā tabulu vari parādīt līdz 4 vienumiem
         header: PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
         inbox_url: Nokopē URL no tā releja sākumlapas, kuru vēlies izmantot
         irreversible: Filtrētās ziņas neatgriezeniski pazudīs, pat ja filtrs vēlāk tiks noņemts
         locale: Lietotāja saskarnes, e-pasta ziņojumu un push paziņojumu valoda
-        locked: Manuāli kontrolē, kas var tev sekot, apstiprinot sekošanas pieprasījumus
         password: Izmanto vismaz 8 rakstzīmes
         phrase: Tiks saskaņots neatkarīgi no ziņas teksta reģistra vai satura brīdinājuma
         scopes: Kuriem API lietojumprogrammai būs atļauta piekļuve. Ja izvēlies augstākā līmeņa tvērumu, tev nav jāatlasa atsevišķi vienumi.
@@ -54,12 +59,9 @@ lv:
         setting_display_media_default: Paslēpt multividi, kas atzīmēta kā sensitīva
         setting_display_media_hide_all: Vienmēr slēpt multividi
         setting_display_media_show_all: Vienmēr rādīt multividi
-        setting_hide_network: Tavā profilā netiks rādīts, kam tu seko un kurš seko tev
-        setting_noindex: Ietekmē tavu publisko profilu un ziņu lapas
-        setting_show_application: Lietojumprogramma, ko tu izmanto publicēšanai, tiks parādīta tavu ziņu detalizētajā skatā
         setting_use_blurhash: Gradientu pamatā ir paslēpto vizuālo attēlu krāsas, bet neskaidras visas detaļas
         setting_use_pending_items: Paslēpt laika skalas atjauninājumus aiz klikšķa, nevis automātiski ritini plūsmu
-        username: Tavs lietotājvārds %{domain} būs unikāls
+        username: Tu vari lietot burtus, ciparus un zemsvītras
         whole_word: Ja atslēgvārds vai frāze ir tikai burtciparu, tas tiks lietots tikai tad, ja tas atbilst visam vārdam
       domain_allow:
         domain: Šis domēns varēs izgūt datus no šī servera, un no tā ienākošie dati tiks apstrādāti un saglabāti
@@ -118,6 +120,9 @@ lv:
       sessions:
         otp: 'Ievadi divfaktoru kodu, ko ģenerējusi tava tālruņa lietotne, vai izmanto kādu no atkopšanas kodiem:'
         webauthn: Ja tā ir USB atslēga, noteikti ievieto to un, ja nepieciešams, pieskaries tai.
+      settings:
+        indexable: Tava profila lapa var tikt parādīta Google, Bing un citu meklēšanas dzinēju rezultātos.
+        show_application: Tu vienmēr varēsi redzēt, kura lietotne publicēja tavu ziņu.
       tag:
         name: Tu vari mainīt tikai burtu lielumu, piemēram, lai tie būtu vieglāk lasāmi
       user:
@@ -131,12 +136,17 @@ lv:
         position: What is "alower"?
       webhook:
         events: Atlasi nosūtāmos notikums
+        template: Izveido savu JSON lietderīgo slodzi, izmantojot mainīgo interpolāciju. Atstāj tukšu noklusējuma JSON.
         url: Kur notikumi tiks nosūtīti
     labels:
       account:
+        discoverable: Funkcijas profils un ziņas atklāšanas algoritmos
         fields:
           name: Marķējums
           value: Saturs
+        indexable: Iekļaut meklēšanas rezultātos publiskas ziņas
+        show_collections: Rādīt profilā sekotājus un sekojamos
+        unlocked: Automātiski akceptēt jaunus sekotājus
       account_alias:
         acct: Vecā konta rokturis
       account_migration:
@@ -174,7 +184,6 @@ lv:
         context: Filtrēt kontekstus
         current_password: Pašreizējā parole
         data: Dati
-        discoverable: Ieteikt kontu citiem
         display_name: Parādāmais vārds
         email: E-pasta adrese
         expires_in: Beidzas pēc
@@ -184,7 +193,6 @@ lv:
         inbox_url: URL vai releja pastkaste
         irreversible: Nomest, nevis paslēpt
         locale: Saskarnes valoda
-        locked: Pieprasīt sekotāju pieprasījumus
         max_uses: Maksimālais lietojumu skaits
         new_password: Jauna parole
         note: Par sevi
@@ -196,7 +204,6 @@ lv:
         setting_always_send_emails: Vienmēr sūtīt e-pasta paziņojumus
         setting_auto_play_gif: Automātiski atskaņot animētos GIF
         setting_boost_modal: Rādīt apstiprinājuma dialogu pirms izcelšanas
-        setting_crop_images: Apgrieziet attēlus neizvērstajās ziņās līdz 16x9
         setting_default_language: Publicēšanas valoda
         setting_default_privacy: Publicēšanas privātums
         setting_default_sensitive: Atļaut atzīmēt multividi kā sensitīvu
@@ -208,9 +215,7 @@ lv:
         setting_display_media_show_all: Parādīt visu
         setting_expand_spoilers: Vienmēr izvērst ziņas, kas apzīmētas ar brīdinājumiem par saturu
         setting_hide_network: Slēpt savu sociālo grafu
-        setting_noindex: Atteikties no meklētājprogrammu indeksēšanas
         setting_reduce_motion: Ierobežot kustību animācijās
-        setting_show_application: Atklāt lietojumprogrammu, ko izmanto ziņu nosūtīšanai
         setting_system_font_ui: Lietot sistēmas noklusējuma fontu
         setting_theme: Vietnes motīvs
         setting_trends: Parādīt šodienas tendences
@@ -286,9 +291,18 @@ lv:
         pending_account: Jāpārskata jaunu kontu
         reblog: Kāds izcēla tavu ierakstu
         report: Tika iesniegts jauns ziņojums
+        software_updates:
+          all: Paziņot par visiem atjauninājumiem
+          critical: Paziņot tikai par kritiskajiem atjauninājumiem
+          label: Ir pieejama jauna Mastodon versija
+          none: Nekad neziņot par atjauninājumiem (nerekomendēts)
+          patch: Paziņot par novērsto kļūdu atjauninājumiem
         trending_tag: Jaunā tendence ir jāpārskata
       rule:
         text: Noteikumi
+      settings:
+        indexable: Ietvert profila lapu muklēšanas dzinējos
+        show_application: Parādi, no kuras lietotnes nosūtīji ziņu
       tag:
         listable: Atļaut šim tēmturim parādīties meklējumos un ieteikumos
         name: Tēmturis
@@ -296,6 +310,7 @@ lv:
         usable: Atļaut lietot ziņās šo tēmturi
       user:
         role: Loma
+        time_zone: Laika josla
       user_role:
         color: Emblēmas krāsa
         highlighted: Atainot lomu kā emblēmu lietotāju profilos
@@ -304,9 +319,11 @@ lv:
         position: Prioritāte
       webhook:
         events: Iespējotie notikumi
+        template: Noslodzes veidne
         url: Galapunkta URL
     'no': Nē
     not_recommended: Nav ieteicams
+    overridden: Ignorēts
     recommended: Ieteicams
     required:
       mark: "*"

@@ -7,5 +7,8 @@
   .fields-group
     = f.input :events, collection: Webhook::EVENTS, wrapper: :with_block_label, include_blank: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', disabled: Webhook::EVENTS.filter { |event| !current_user.role.can?(Webhook.permission_for_event(event)) }
 
+  .fields-group
+    = f.input :template, wrapper: :with_block_label, input_html: { placeholder: '{ "content": "Hello {{object.username}}" }' }
+
   .actions
     = f.button :button, @webhook.new_record? ? t('admin.webhooks.add_new') : t('generic.save_changes'), type: :submit

@@ -1,7 +1,7 @@
 ---
 ca:
   about:
-    about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Tingues el control de les teves dades amb Mastodon!'
+    about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, amb un disseny ètic i descentralització. Amb Mastodon controles les teves dades!'
     contact_missing: No configurat
     contact_unavailable: N/D
     hosted_on: Mastodon allotjat a %{domain}
@@ -31,9 +31,9 @@ ca:
       created_msg: La nota de moderació s'ha creat correctament!
       destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
-      add_email_domain_block: Bloquejar el domini de l'adreça de correu electrònic
+      add_email_domain_block: Bloca el domini del correu
       approve: Aprova
-      approved_msg: L’aplicació del registre de %{username} s’ha aprovat amb èxit
+      approved_msg: S'ha aprovat la petició de registre de %{username}
       are_you_sure: N'estàs segur?
       avatar: Avatar
       by_domain: Domini
@@ -73,7 +73,7 @@ ca:
       followers: Seguidors
       follows: Seguits
       header: Capçalera
-      inbox_url: URL de la safata d'entrada
+      inbox_url: Enllaç de la safata d'entrada
       invite_request_text: Motiu del registre
       invited_by: Convidat per
       ip: IP
@@ -91,6 +91,7 @@ ca:
       moderation:
         active: Actiu
         all: Tot
+        disabled: Desactivat
         pending: Pendent
         silenced: Limitat
         suspended: Suspès
@@ -115,7 +116,7 @@ ca:
       redownload: Actualitza el perfil
       redownloaded_msg: El perfil de %{username} s’ha refrescat des de l’origen amb èxit
       reject: Rebutja
-      rejected_msg: L’aplicació de registre de %{username} s’ha rebutjat amb èxit
+      rejected_msg: S'ha rebutjat la petició de registre de %{username}
       remote_suspension_irreversible: Les dades d'aquest compte s'han esborrat irreversiblement.
       remote_suspension_reversible_hint_html: El compte ha estat suspès en el seu servidor i les dades seran totalment suprimides el %{date}. Fins llavors, el servidor remot pot restaurar aquest compte sense efectes negatius. Si vols suprimir immediatament totes les dades del compte, ho pots fer a continuació.
       remove_avatar: Eliminar avatar
@@ -124,8 +125,8 @@ ca:
       removed_header_msg: S’ha suprimit amb èxit l’imatge de capçalera de %{username}
       resend_confirmation:
         already_confirmed: Aquest usuari ja està confirmat
-        send: Reenviar el correu electrònic de confirmació
-        success: Correu electrònic de confirmació enviat amb èxit!
+        send: Reenvia l'enllaç de confirmació
+        success: Enllaç de confirmació enviat amb èxit!
       reset: Reinicialitza
       reset_password: Restableix la contrasenya
       resubscribe: Torna a subscriure
@@ -133,12 +134,13 @@ ca:
       search: Cerca
       search_same_email_domain: Altres usuaris amb el mateix domini de correu
       search_same_ip: Altres usuaris amb la mateixa IP
+      security: Seguretat
       security_measures:
         only_password: Només contrasenya
         password_and_2fa: Contrasenya i 2FA
       sensitive: Sensible
       sensitized: marcar com a sensible
-      shared_inbox_url: URL de la safata d'entrada compartida
+      shared_inbox_url: Enllaç de la safata d'entrada compartida
       show:
         created_reports: Informes creats
         targeted_reports: Informes realitzats per altres
@@ -170,7 +172,7 @@ ca:
       action_types:
         approve_appeal: Aprova l'apel·lació
         approve_user: Aprova l'usuari
-        assigned_to_self_report: Assigna l'informe
+        assigned_to_self_report: Assigna un informe
         change_email_user: Canvia l'adreça electrònica per l'usuari
         change_role_user: Canvia el Rol del Usuari
         confirm_user: Confirma l'usuari
@@ -180,7 +182,7 @@ ca:
         create_custom_emoji: Crea un emoji personalitzat
         create_domain_allow: Crea un domini permès
         create_domain_block: Crea un bloqueig de domini
-        create_email_domain_block: Crea un bloqueig de domini d'adreça de correu
+        create_email_domain_block: Crea un bloqueig de domini de correu
         create_ip_block: Crear regla IP
         create_unavailable_domain: Crea un domini no disponible
         create_user_role: Crea Rol
@@ -188,9 +190,9 @@ ca:
         destroy_announcement: Esborra l'anunci
         destroy_canonical_email_block: Esborra el bloqueig de correu electrònic
         destroy_custom_emoji: Esborra l'emoji personalitzat
-        destroy_domain_allow: Esborra el domini permès
+        destroy_domain_allow: Esborra el permís del domini
         destroy_domain_block: Esborra el bloqueig de domini
-        destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
+        destroy_email_domain_block: Esborra el bloqueig de domini de correu
         destroy_instance: Purga Domini
         destroy_ip_block: Eliminar regla IP
         destroy_status: Elimina la publicació
@@ -198,10 +200,10 @@ ca:
         destroy_user_role: Destrueix Rol
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
-        disable_sign_in_token_auth_user: Desactivar l'autenticació de token per correu per l'usuari
+        disable_sign_in_token_auth_user: Desactivr l'autenticació de token per correu per a l'usuari
         disable_user: Deshabilita l'usuari
         enable_custom_emoji: Activa l'emoji personalitzat
-        enable_sign_in_token_auth_user: Activar l'autenticació de token per correu pel l'usuari
+        enable_sign_in_token_auth_user: Activa l'autenticació de token per correu per a l'usuari
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
@@ -274,7 +276,7 @@ ca:
         sensitive_account_html: "%{name} ha marcat els mèdia de %{target} com a sensibles"
         silence_account_html: "%{name} ha silenciat el compte de %{target}"
         suspend_account_html: "%{name} ha suspès el compte de %{target}"
-        unassigned_report_html: "%{name} ha des-assignat l'informe %{target}"
+        unassigned_report_html: "%{name} ha eliminat l'assignació de l'informe %{target}"
         unblock_email_account_html: "%{name} ha desbloquejat l'adreça de correu de %{target}"
         unsensitive_account_html: "%{name} ha desmarcat com sensibles els mèdia de %{target}"
         unsilence_account_html: "%{name} ha llevat el silenci del compte %{target}"
@@ -307,6 +309,7 @@ ca:
       unpublish: Despublicar
       unpublished_msg: L’anunci s’ha despublicat amb èxit!
       updated_msg: L'anunci s'ha actualitzat correctament!
+    critical_update_pending: Actualització crítica pendent
     custom_emojis:
       assign_category: Assigna una categoria
       by_domain: Domini
@@ -372,15 +375,24 @@ ca:
         empty: No s'ha trobat cap apel·lació.
         title: Apel·lacions
     domain_allows:
-      add_new: Dominis autoritzats
-      created_msg: El domini ha estat correctament autoritzat
-      destroyed_msg: S'ha esborrat el domini de la llista blanca
+      add_new: Permet la federació amb el domini
+      created_msg: El domini ha estat autoritzat per a la federació
+      destroyed_msg: El domini ha estat desautoritzat de la federació
       export: Exporta
       import: Importa
-      undo: Treure de la llista blanca
+      undo: No permetis la federació amb el domini
     domain_blocks:
-      add_new: Afegir nou bloqueig de domini
-      created_msg: El bloqueig de domini ara s'està processant
+      add_new: Afegeix nou bloqueig de domini
+      confirm_suspension:
+        cancel: Cancel·la
+        confirm: Suspèn
+        permanent_action: Desfer la suspensió no restaurarà cap dada o relació.
+        preamble_html: Ets a punt de suspendre <strong>%{domain}</strong> i els seus sub dominis.
+        remove_all_data: Això eliminarà tot el contingut, mèdia i dades dels perfils dels comptes d'aquest domini en el teu servidor.
+        stop_communication: El teu servidor deixarà de comunicar-se amb aquests servidors.
+        title: Confirma el bloqueig de domini per a %{domain}
+        undo_relationships: Això desferà qualsevol relació de seguiment entre els comptes d'aquests servidors i el teu.
+      created_msg: S'està processant el bloqueig de domini
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
       edit: Editar el bloqueig del domini
@@ -396,7 +408,7 @@ ca:
           noop: Cap
           silence: Limitar
           suspend: Suspensió
-        title: Bloqueig de domini nou
+        title: Nou bloqueig de domini
       no_domain_block_selected: No s'ha canviat cap bloqueig de domini perquè no se n'ha seleccionat cap
       not_permitted: No tens permís per a realitzar aquesta acció
       obfuscate: Oculta el nom del domini
@@ -427,7 +439,8 @@ ca:
         resolve: Resol domini
         title: Nova adreça de correu en la llista negra
       no_email_domain_block_selected: No s'han canviat els bloquejos de domini perquè cap s'ha seleccionat
-      resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, els quals son els responsables finals per a acceptar els correus. Bloquejar un domini MX bloquejarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible del domini sigui diferent. <strong>Ves amb compte no bloquegis els grans proveïdors de correu electrònic.</strong>
+      not_permitted: No permés
+      resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, els quals són els responsables finals per a acceptar els correus. Blocar un domini MX blocarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible del domini sigui diferent. <strong>Ves amb compte no bloquegis els grans proveïdors de correu electrònic.</strong>
       resolved_through_html: Resolt mitjançant %{domain}
       title: Llista negra de correus electrònics
     export_domain_allows:
@@ -436,7 +449,7 @@ ca:
       no_file: No s'ha seleccionat cap fitxer
     export_domain_blocks:
       import:
-        description_html: Estàs a punt d'importar una llista de dominis blocats. Si us plau, revisa aquesta llista amb molta cura, especialment si no l'has creada tu mateix.
+        description_html: Esteu a punt d'importar una llista de dominis blocats. Reviseu aquesta llista amb molta cura, especialment si no l'heu creada vós mateix.
         existing_relationships_warning: Relacions de seguiment existents
         private_comment_description_html: 'Per a ajudar-te a fer un seguiment d''on provenen els bloquejos importats, es crearan amb el següent comentari privat: <q>%{comment}</q>'
         private_comment_template: Importar des de %{source} el %{date}
@@ -446,7 +459,7 @@ ca:
         title: Importa dominis bloquejats
       no_file: No s'ha seleccionat cap fitxer
     follow_recommendations:
-      description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb d'altres com per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen a diari a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
+      description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb altres per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen diàriament a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
       language: Per idioma
       status: Estat
       suppress: Suprimeix les recomanacions de seguiment
@@ -473,6 +486,7 @@ ca:
       content_policies:
         comment: Nota interna
         description_html: Pots definir polítiques de contingut que seran aplicades a tots els comptes d'aquest domini i a qualsevol dels seus subdominis.
+        limited_federation_mode_description_html: Pots triar si permets la federació amb aquest domini.
         policies:
           reject_media: Rebutja mèdia
           reject_reports: Rebutja informes
@@ -554,11 +568,11 @@ ca:
       enable: Activat
       enable_hint: Una vegada habilitat, el teu servidor es subscriurà a tots els tuts públics d'aquest relay i començarà a enviar-hi tots els tuts públics d'aquest servidor.
       enabled: Activat
-      inbox_url: URL del Relay
+      inbox_url: Enllaç del Relay
       pending: S'està esperant l'aprovació del relay
       save_and_enable: Desa i activa
       setup: Configura una connexió de relay
-      signatures_not_enabled: Els relays no treballaran correctament mentre estiguin habilitats el mode segur o llista blanca
+      signatures_not_enabled: Els relays no funcionaran bé mentre estiguin habilitats els modes segur o de llista blanca
       status: Estat
       title: Relays
     report_notes:
@@ -585,11 +599,13 @@ ca:
       assign_to_self: Assigna'm
       assigned: Moderador assignat
       by_target_domain: Domini del compte denunciat
+      cancel: Cancel·la
       category: Categoria
       category_description_html: El motiu pel qual aquest compte o contingut ha estat denunciat se citarà en la comunicació amb el compte denunciat
       comment:
         none: Cap
       comment_description_html: 'Per a donar més informació, %{name} ha escrit:'
+      confirm: Confirma
       confirm_action: Confirma l'acció de moderació contra @%{acct}
       created_at: Denunciat
       delete_and_resolve: Elimina les publicacions
@@ -640,7 +656,7 @@ ca:
         warning_placeholder: Opcional raó adicional d'aquesta acció de moderació.
       target_origin: Origen del compte denunciat
       title: Informes
-      unassign: Treu l'assignació
+      unassign: Elimina l'assignació
       unknown_action_msg: 'Acció desconeguda: %{action}'
       unresolved: No resolt
       updated_at: Actualitzat
@@ -660,7 +676,7 @@ ca:
       description_html: Amb <strong>rols d'usuari</strong>, pots personalitzar quines funcions i àrees de Mastodon els teus usuaris poden accedir.
       edit: Editar el rol %{name}
       everyone: Permisos per defecte
-      everyone_full_description_html: Aquest és el <strong>rol base</strong> que afecta <strong>tots els usuaris</strong>, fins i tot els que no en tenen cap d'assignat. Tots els altres rols n'hereten els permisos.
+      everyone_full_description_html: Aquest és el <strong>rol base</strong> que afecta <strong>tots els usuaris</strong>, fins i tot els que no en tenen cap d'assignat. Tots els altres n'hereten els permisos.
       permissions_count:
         one: "%{count} permís"
         other: "%{count} permisos"
@@ -686,7 +702,7 @@ ca:
         manage_reports: Gestiona informes
         manage_reports_description: Permet als usuaris revisar informes i realitzar accions de moderació contra ells
         manage_roles: Gestionar rols
-        manage_roles_description: Permet als usuaris gestionar i assignar rols per sota dels seus
+        manage_roles_description: Permet als usuaris de gestionar i assignar rols per sota dels seus
         manage_rules: Gestiona normes
         manage_rules_description: Permet als usuaris canviar les normes del servidor
         manage_settings: Gestiona configuració
@@ -725,6 +741,9 @@ ca:
       branding:
         preamble: La marca del teu servidor el diferencia dels altres servidors de la xarxa. Aquesta informació es pot mostrar en diversos entorns com ara en la interfície web, en les aplicacions natives, en les previsualitzacions dels enllaços en altres webs, dins les aplicacions de missatgeria i d'altres. Per aquesta raó, val més mantenir aquesta informació clara, breu i precisa.
         title: Marca
+      captcha_enabled:
+        desc_html: Això es basa en scripts externs de hCaptcha, que poden ser un problema de privacitat i seguretat. A més, <strong>això pot fer que el procés de registre sigui significativament menys accesible per algunes (especialment discapacitades) persones</strong>. Per aquestes raons, si us plau considera alternatives com ara registre amb aprovació necessària o basada en invitacions.
+        title: Demana als nous usuaris que resolguin un CAPTCHA per a confirmar el seu compte
       content_retention:
         preamble: Controla com es desa a Mastodon el contingut generat per l'usuari.
         title: Retenció de contingut
@@ -749,13 +768,30 @@ ca:
         title: Registres
       registrations_mode:
         modes:
-          approved: Es requereix l’aprovació per registrar-se
-          none: Ningú no pot registrar-se
+          approved: Cal l’aprovació per a registrar-se
+          none: No es pot registrar ningú
           open: Qualsevol pot registrar-se
-      title: Paràmetres del servidor
+      security:
+        authorized_fetch: Requereix autenticació dels servidors federats
+        authorized_fetch_hint: Requerir l'autenticació dels servidors federats permet una aplicació més estricta dels bloqueigs a nivell d'usuari i a nivell de servidor. Tanmateix, això provoca una penalització del rendiment, redueix l'abast de les seves respostes i pot introduir problemes de compatibilitat amb alguns serveis federats. A més, això no impedirà que els actors dedicats busquin les teves publicacions i comptes públics.
+        authorized_fetch_overridden_hint: Actualment no pots canviar aquesta configuració perquè està anul·lada per una variable d'entorn.
+        federation_authentication: Aplicació de l'autenticació de la federació
+      title: Configuració del servidor
     site_uploads:
       delete: Esborra el fitxer pujat
       destroyed_msg: La càrrega al lloc s'ha suprimit correctament!
+    software_updates:
+      critical_update: Crítica - si us plau, actualitza ràpidament
+      description: Es recomana mantenir actualizada la teva instal·lació de Mastodon per a beneficiar-se de les darreres correccions i característiques. A més, de vegades és fonamental actualitzar Mastodon periòdicament per evitar problemes de seguretat. Per aquestes raons, Mastodon comprova si hi ha actualitzacions cada 30 minuts i et notificarà d'acord amb les teves preferències de notificacions per correu electrònic.
+      documentation_link: Més informació
+      release_notes: Notes de llançament
+      title: Actualitzacions disponibles
+      type: Tipus
+      types:
+        major: Llançament important
+        minor: Llançament menor
+        patch: 'Llançament de pedaços: correccions d''errors i canvis fàcils d''aplicar'
+      version: Versió
     statuses:
       account: Autor
       application: Aplicació
@@ -792,11 +828,26 @@ ca:
         suspend: "%{name} ha suspès el compte de %{target}"
       appeal_approved: Apel·lat
       appeal_pending: Apel·lació pendent
+      appeal_rejected: Apel·lació rebutjada
     system_checks:
       database_schema_check:
-        message_html: Hi ha pendents migracions de la base de dades. Si us plau executa-les per a assegurar que l'aplicació es comporta com s'espera
+        message_html: Hi ha pendents migracions de la base de dades. Executeu-les per a assegurar que l'aplicació es comporta com s'espera
+      elasticsearch_health_red:
+        message_html: El cluster de Elasticsearch no es saludable (estat vermell), les funcions de cerca no estan disponibles
+      elasticsearch_health_yellow:
+        message_html: El cluster de Elasticsearch no es saludable (estat groc), és possible que vulguis investigar la raó
+      elasticsearch_index_mismatch:
+        message_html: Els mapes de índex de Elasticsearch estan desactualizats. Si us plau executa <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Veure la documentació
+        message_html: El teu clúster de Elasticsearch té més d'un node però Mastodon no està configurat per a emprar-los.
+      elasticsearch_preset_single_node:
+        action: Veure la documentació
+        message_html: El teu clúster de Elasticsearch té només un node, <code>ES_PRESET</code> hauria de ser configurat com <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: L'índex del teu sistema Elasticsearch està desactualizat degut a un canvi de configuració. Si us plau executa <code>tootctl search deploy --reset-chewy</code> per a actualitzar-lo.
       elasticsearch_running_check:
-        message_html: No s'ha pogut connectar a Elasticsearch. Si us plau verifica que estigui funcionant o desactiva la cerca de text complet
+        message_html: No s'ha pogut connectar a Elasticsearch. Verifiqueu que funciona o desactiveu la cerca de text complet
       elasticsearch_version_check:
         message_html: 'Versió incompatible de Elasticsearch: %{value}'
         version_comparison: Elasticsearch %{running_version} està funcionant mentre %{required_version} és requerida
@@ -804,7 +855,19 @@ ca:
         action: Gestiona les normes del servidor
         message_html: No has definit cap norma del servidor.
       sidekiq_process_check:
-        message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Si us plau revisa la teva configuració de Sidekiq
+        message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Reviseu la configuració de Sidekiq
+      software_version_critical_check:
+        action: Veure actualitzacions disponibles
+        message_html: Hi ha disponible una actualització crítica de Mastodon, si us plau, actualitza-la el més abans possible.
+      software_version_patch_check:
+        action: Veure actualitzacions disponibles
+        message_html: Hi ha disponible una actualització de correcció d'errors de Mastodon.
+      upload_check_privacy_error:
+        action: Consulta aquí per a més informació
+        message_html: "<strong>El teu servidor no està ben configurat. La privacitat dels teus usuaris està en risc.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Consulta aquí per a més informació
+        message_html: "<strong>El teu emagatzamatge d'objectes no està ben configurat. La privacitat dels teus usuaris està en risc.</strong>"
     tags:
       review: Revisar l'estat
       updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
@@ -827,6 +890,7 @@ ca:
           other: Compartit per %{count} persones en la darrera setmana
         title: Enllaços en tendència
         usage_comparison: Compartit %{today} vegades avui, comparat amb %{yesterday} d'ahir
+      not_allowed_to_trend: No es permet la tendència
       only_allowed: Només permesos
       pending_review: Revisió pendent
       preview_card_providers:
@@ -894,7 +958,7 @@ ca:
       events: Esdeveniments
       new: Nou webhook
       rotate_secret: Rota el secret
-      secret: Signant el secret
+      secret: Clau de la signatura
       status: Estat
       title: Webhooks
       webhook: Webhook
@@ -911,6 +975,9 @@ ca:
       body: "%{target} està apel·lant una decisió de moderació de %{action_taken_by} el %{date}, del tipus %{type}. Han escrit:"
       next_steps: Pots aprovar l'apel·lació per a desfer la decisió de moderació o ignorar-la.
       subject: "%{username} està apel·lant una decisió de moderació a %{instance}"
+    new_critical_software_updates:
+      body: S'han alliberat noves versions crítiques de Mastodon, és possible que vulguis actualitzar-les el més aviat possible!
+      subject: Hi ha disponibles actualitzacions crítiques de Mastodon per a %{instance}!
     new_pending_account:
       body: A continuació trobaràs els detalls del compte nou. Pots aprovar o rebutjar aquest registre.
       subject: Nou compte per a revisar a %{instance} (%{username})
@@ -918,6 +985,9 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des del domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
+    new_software_updates:
+      body: S'han alliberat noves versions de Mastodon, és possible que desitgis actualitzar!
+      subject: Hi ha disponibles noves versions de Mastodon per a %{instance}!
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
       new_trending_links:
@@ -947,24 +1017,28 @@ ca:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Tothom hi pot contribuir.
     sensitive_content: Contingut sensible
-    toot_layout: Disseny dels tuts
   application_mailer:
     notification_preferences: Canvia les preferències de correu
     salutation: "%{name},"
     settings: 'Canvia les preferències de correu: %{link}'
+    unsubscribe: Cancel·la la subscripció
     view: 'Visualització:'
     view_profile: Mostra el perfil
     view_status: Mostra el tut
   applications:
     created: L'aplicació s'ha creat correctament
     destroyed: L'aplicació s'ha suprimit correctament
+    logout: Surt
     regenerate_token: Torna a generar l'identificador d'accés
     token_regenerated: L'identificador d'accés s'ha generat correctament
     warning: Aneu amb compte amb aquestes dades. No les compartiu mai amb ningú!
     your_token: El teu identificador d'accés
   auth:
     apply_for_account: Sol·licitar un compte
-    change_password: Contrasenya
+    captcha_confirmation:
+      help_html: Si tens problemes resolguent el CAPTCHA, pots posar-te en contacte amb nosaltres via %{email} i nosaltres podrem ajudar-te.
+      hint_html: Una cosa més! Necessitem confirmar que ets una persona humana (és així com mantenim a ratlla l'spam). Resolt el CAPTCHA inferior i clica a "Segueix".
+      title: Revisió de seguretat
     confirmations:
       wrong_email_hint: Si aquesta adreça de correu electrònic no és correcte, pots canviar-la en els ajustos del compte.
     delete_account: Elimina el compte
@@ -973,7 +1047,7 @@ ca:
       prefix_invited_by_user: "@%{name} t'ha invitat a unir-te a aquest servidor de Mastodon!"
       prefix_sign_up: Registra't avui a Mastodon!
       suffix: Amb un compte seràs capaç de seguir persones, publicar i intercanviar missatges amb usuaris de qualsevol servidor de Mastodon i més!
-    didnt_get_confirmation: No has rebut el correu de confirmació?
+    didnt_get_confirmation: No has rebut l'enllaç de confirmació?
     dont_have_your_security_key: No tens la teva clau de seguretat?
     forgot_password: Has oblidat la contrasenya?
     invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és vàlid o ha caducat. Torna-ho a provar.
@@ -986,28 +1060,41 @@ ca:
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots <a href="%{path}">configurar aquí</a>.
     or_log_in_with: O inicia sessió amb
     privacy_policy_agreement_html: He llegit i estic d'acord amb la <a href="%{privacy_policy_path}" target="_blank">política de privacitat</a>
+    progress:
+      confirm: Confirma correu electrònic
+      details: Els teus detalls
+      review: La nostra revisió
+      rules: Accepta les normes
     providers:
       cas: CAS
       saml: SAML
     register: Registrar-se
     registration_closed: "%{instance} no accepta nous membres"
-    resend_confirmation: Torna a enviar el correu de confirmació
+    resend_confirmation: Reenvia l'enllaç de confirmació
     reset_password: Restableix la contrasenya
     rules:
+      accept: Accepta
+      back: Enrere
+      invited_by: 'Pots unir-te a %{domain} gràcies a l''invitació que has rebut de:'
       preamble: Aquestes regles estan establertes i aplicades per els moderadors de %{domain}.
+      preamble_invited: Abans de seguir, si us plau considera les normes establertes pels moderadors de %{domain}.
       title: Algunes regles bàsiques.
+      title_invited: T'han convidat.
     security: Seguretat
     set_new_password: Estableix una contrasenya nova
     setup:
-      email_below_hint_html: Si l’adreça de correu electrònic següent és incorrecta, podeu canviar-la aquí i rebre un nou correu electrònic de confirmació.
-      email_settings_hint_html: El correu electrònic de confirmació es va enviar a %{email}. Si aquesta adreça de correu electrònic no és correcta, la podeu canviar a la configuració del compte.
-      title: Configuració
+      email_below_hint_html: Verifica la carpeta fe correu brossa o demana'n un altre. Pots corregir la teva adreça de correu electrònic si no és correcte.
+      email_settings_hint_html: Toca l'enllaç que t'hem enviat per a verificar %{email}. Esperarem aquí mateix.
+      link_not_received: No has rebut l'enllaç?
+      new_confirmation_instructions_sent: Rebràs un nou correu electrònic amb l'enllaç de confirmació en pocs minuts!
+      title: Comprova la teva safata d'entrada
     sign_in:
-      preamble_html: Inicia sessió amb les teves credencials <strong>%{domain}</strong>. Si el teu compte es troba a un servidor diferent, no podràs iniciar una sessió aquí.
+      preamble_html: Inicia la sessió amb les teves credencials de <strong>%{domain}</strong>. Si el teu compte es troba a un servidor diferent, no podràs iniciar sessió aquí.
       title: Inicia sessió a %{domain}
     sign_up:
-      preamble: Amb un compte en aquest servidor Mastodon, podràs seguir qualsevol altre persona de la xarxa, independentment d'on tingui el seu compte.
-      title: Anem a configurar-te a %{domain}.
+      manual_review: Els registres a %{domain} passen per una revisió manual dels nostres moderadors. Per ajudar-nos a processar el teu registre, escriu-nos quelcom sobre tu i perquè vols un compte a %{domain}.
+      preamble: Amb un compte en aquest servidor Mastodon podràs seguir qualsevol altra persona de la xarxa, independentment d'on tingui el compte.
+      title: Configurem-te a %{domain}.
     status:
       account_status: Estat del compte
       confirming: Esperant que es completi la confirmació del correu electrònic.
@@ -1017,18 +1104,6 @@ ca:
       view_strikes: Veure accions del passat contra el teu compte
     too_fast: Formulari enviat massa ràpid, torna a provar-ho.
     use_security_key: Usa clau de seguretat
-  authorize_follow:
-    already_following: Ja estàs seguint aquest compte
-    already_requested: Ja has enviat una sol·licitud de seguiment a aquest usuari
-    error: Malauradament, ha ocorregut un error cercant el compte remot
-    follow: Segueix
-    follow_request: 'Has enviat una sol·licitud de seguiment a:'
-    following: 'Perfecte! Ara segueixes:'
-    post_follow:
-      close: O bé, pots tancar aquesta finestra.
-      return: Mostra el perfil de l'usuari
-      web: Vés a la web
-    title: Segueix %{acct}
   challenge:
     confirm: Continua
     hint_html: "<strong>Pista:</strong> No et preguntarem un altre cop la teva contrasenya en la pròxima hora."
@@ -1063,7 +1138,7 @@ ca:
     proceed: Elimina el compte
     success_msg: El compte s'ha eliminat correctament
     warning:
-      before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
+      before: 'Abans de procedir, llegiu amb cura aquestes notes:'
       caches: El contingut que ha estat memoritzat en la memòria cau per altres servidors pot persistir
       data_removal: Els teus tuts i altres dades seran permanentment eliminades
       email_change_html: Pots <a href="%{path}">canviar la teva adreça de correu electrònic</a> sense eliminar el teu compte
@@ -1105,6 +1180,10 @@ ca:
       your_appeal_rejected: La teva apel·lació ha estat rebutjada
   domain_validator:
     invalid_domain: no es un nom de domini vàlid
+  edit_profile:
+    basic_information: Informació bàsica
+    hint_html: "<strong>Personalitza el que la gent veu en el teu perfil públic i a prop dels teus tuts..</strong> És més probable que altres persones et segueixin i interaccionin amb tu quan tens emplenat el teu perfil i amb la teva imatge."
+    other: Altres
   errors:
     '400': La sol·licitud que vas emetre no era vàlida o no era correcta.
     '403': No tens permís per a veure aquesta pàgina.
@@ -1139,7 +1218,7 @@ ca:
     mutes: Persones silenciades
     storage: Emmagatzematge
   featured_tags:
-    add_new: Afegir nova etiqueta
+    add_new: Afegeix-ne una de nova
     errors:
       limit: Ja has mostrat la quantitat màxima d'etiquetes
     hint_html: "<strong>Què son les etiquetes destacades?</strong> Es mostren de manera destacada en el teu perfil públic i permeten a les persones navegar per els teus tuts gràcies a aquestes etiquetes. Són una gran eina per fer un seguiment de treballs creatius o de projectes a llarg termini."
@@ -1185,8 +1264,6 @@ ca:
       index:
         hint: Aquest filtre aplica als tuts seleccionats independentment d'altres criteris. Pots afegir més tuts a aquest filtre des de la interfície Web.
         title: Tuts filtrats
-  footer:
-    trending_now: En tendència
   generic:
     all: Tot
     all_items_on_page_selected_html:
@@ -1195,7 +1272,9 @@ ca:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> article coincident amb la teva cerca està seleccionat."
       other: Tots <strong>%{count}</strong> articles coincidents amb la teva cerca estan seleccionats.
+    cancel: Cancel·la
     changes_saved_msg: Els canvis s'han desat correctament!
+    confirm: Confirma
     copy: Copiar
     delete: Elimina
     deselect: Desfer selecció
@@ -1208,25 +1287,63 @@ ca:
     today: avui
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
-      other: Alguna cosa no va bé! Si us plau, revisa %{count} errors més a baix
-  html_validator:
-    invalid_markup: 'conté HTML markup no vàlid: %{error}'
+      other: Alguna cosa no va bé! Reviseu els %{count} errors següents
   imports:
     errors:
+      empty: Fitxer CSV buit
+      incompatible_type: Incompatible amb el tipus d'importació seleccionada
       invalid_csv_file: 'Fitxer CSV invàlid. Error: %{error}'
       over_rows_processing_limit: conté més de %{count} files
+      too_large: El fitxer és massa gran
+    failures: Fallades
+    imported: Importat
+    mismatched_types_warning: Sembla que has seleccionat un tipus erròni per aquesta importació, si ja plau revisa-ho.
     modes:
       merge: Fusionar
       merge_long: Mantenir els registres existents i afegir-ne de nous
       overwrite: Sobreescriu
       overwrite_long: Reemplaça els registres actuals amb els nous
+    overwrite_preambles:
+      blocking_html: Ets a punt per a <strong>reemplaçar la teva llista de bloquejos</strong> de fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
+      bookmarks_html: Ets a punt de <strong>reemplaçar els teus marcadors</strong> de fins a <strong>%{total_items} tuts</strong> des de <strong>%{filename}</strong>.
+      domain_blocking_html: Ets a punt de <strong>reemplaçar la teva llista de dominis bloquejats</strong> de fins a <strong>%{total_items} dominis</strong> des de <strong>%{filename}</strong>.
+      following_html: Ets a punt de <strong>seguir</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong> i <strong>deixar de seguir a la resta</strong>.
+      lists_html: Estàs a punt de <strong>reemplaçar les teves llistes</strong> amb contactes de <strong>%{filename}</strong>. S'afegiran fins a <strong>%{total_items} comptes</strong> a les noves llistes.
+      muting_html: Ets a punt de <strong>reemplaçar la teva llista de comptes silenciats</strong> de fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Ets a punt de <strong>bloquejar</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
+      bookmarks_html: Ets a punt d'afegir fins a <strong>%{total_items} tuts</strong> des de <strong>%{filename}</strong> als teus <strong>marcadors</strong>.
+      domain_blocking_html: Ets a punt de <strong>bloquejar</strong> fins a <strong>%{total_items} dominis</strong> des de <strong>%{filename}</strong>.
+      following_html: Ets a punt de <strong>seguir</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
+      lists_html: Estàs a punt d'afegir <strong>%{total_items} comptes</strong> de <strong>%{filename}</strong> a les teves <strong>llistes</strong>. Es crearan noves llistes si no hi ha cap llista on afegir-los.
+      muting_html: Ets a punt de <strong>silenciar</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
     preface: Pots importar algunes les dades que has exportat des d'un altre servidor, com ara el llistat de les persones que estàs seguint o bloquejant.
+    recent_imports: Importacions recents
+    states:
+      finished: Finalitzat
+      in_progress: En curs
+      scheduled: Planificat
+      unconfirmed: Sense confirmar
+    status: Estat
     success: Les dades s'han rebut correctament i es processaran en breu
+    time_started: Va començar el
+    titles:
+      blocking: Important comptes bloquejats
+      bookmarks: Important marcadors
+      domain_blocking: Important dominis bloquejats
+      following: Important comptes seguits
+      lists: Important llistes
+      muting: Important comptes silenciats
+    type: Tipus d'importació
+    type_groups:
+      constructive: Seguits i Marcadors
+      destructive: Bloquejos i Silenciats
     types:
       blocking: Llista de blocats
       bookmarks: Marcadors
       domain_blocking: Llistat de dominis bloquejats
       following: Llista de seguits
+      lists: Llistes
       muting: Llista de silenciats
     upload: Carrega
   invites:
@@ -1262,9 +1379,24 @@ ca:
       webauthn: claus de seguretat
     description_html: Si veus activitat que no reconeixes, considera canviar la teva contrasenya i activar l'autenticació de dos factors.
     empty: Historial d'autenticació no disponible
-    failed_sign_in_html: Intent d'inici de sessió errat amb %{method} des-de %{ip} (%{browser})
-    successful_sign_in_html: Inici de sessió exitós amb %{method} des-de %{ip} (%{browser})
+    failed_sign_in_html: Intent d'inici de sessió errat amb %{method} des de %{ip} (%{browser})
+    successful_sign_in_html: Inici de sessió exitós amb %{method} des de %{ip} (%{browser})
     title: Historial d'autenticació
+  mail_subscriptions:
+    unsubscribe:
+      action: Sí, canceŀla la subscripció
+      complete: Subscripció cancel·lada
+      confirmation_html: Estàs segur que vols donar-te de baixa de rebre %{type} de Mastodon a %{domain} en el teu correu electrònic a %{email}? Sempre pots subscriure't de nou des de la <a href="%{settings_path}">configuració de les notificacions per correu electrònic</a>.
+      emails:
+        notification_emails:
+          favourite: notificacions dels favorits per correu electrònic
+          follow: notificacions dels seguiments per correu electrònic
+          follow_request: correus electrònics de peticions de seguiment
+          mention: correus electrònics de notificacions de mencions
+          reblog: correus electrònics de notificacions d'impulsos
+      resubscribe_html: Si ets dones de baixa per error, pots donar-te d'alta des de la <a href="%{settings_path}">configuració de les notificacions per correu electrònic</a>.
+      success_html: Ja no rebràs %{type} de Mastodon a %{domain} en la teva safata a %{email}.
+      title: Cancel·la la subscripció
   media_attachments:
     validations:
       images_and_video: No es pot adjuntar un vídeo a una publicació que ja contingui imatges
@@ -1277,7 +1409,7 @@ ca:
     cancelled_msg: Redirecció cancel·lada amb èxit.
     errors:
       already_moved: és el mateix compte al que ja t'has mogut
-      missing_also_known_as: no fa referencia a aquest compte
+      missing_also_known_as: no fa referència a aquest compte
       move_to_self: no pot ser el compte actual
       not_found: podria no ser trobat
       on_cooldown: Estàs en temps de refredament
@@ -1294,7 +1426,7 @@ ca:
     set_redirect: Ajusta la redirecció
     warning:
       backreference_required: El compte nou primer ha de ser configurat per a referenciar aquest
-      before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
+      before: 'Abans de procedir, llegiu amb cura aquestes notes:'
       cooldown: Després de moure't hi ha un període de recuperació durant el qual no seràs capaç de moure't un altre cop
       disabled_account: El teu compte actual no serà plenament utilitzable després. Tanmateix, tindràs accés a exportació de dades així com reactivació.
       followers: Aquesta acció mourà tots els seguidors des de l'actual al compte nou
@@ -1344,6 +1476,7 @@ ca:
     update:
       subject: "%{name} ha editat una publicació"
   notifications:
+    administration_emails: Notificacions per correu-e de l'Admin
     email_events: Esdeveniments per a notificacions de correu electrònic
     email_events_hint: 'Selecciona els esdeveniments per als quals vols rebre notificacions:'
     other_settings: Altres opcions de notificació
@@ -1380,12 +1513,22 @@ ca:
       expired: L'enquesta ja ha finalitzat
       invalid_choice: L’opció de vot escollida no existeix
       over_character_limit: no pot ser superior a %{max} caràcters cadascun
+      self_vote: No pots votar en les teves propies enquestes
       too_few_options: ha de tenir més d'una opció
       too_many_options: no pot contenir més de %{max} opcions
   preferences:
     other: Altre
     posting_defaults: Valors per defecte de publicació
     public_timelines: Línies de temps públiques
+  privacy:
+    hint_html: "<strong>Personalitza com vols que siguin trobats el teu perfil i els teus tuts.</strong> Una varietat de característiques de Mastodon et poden ajudar a arribar a una major audiència quan les actives. Dedica una estona a revisar aquests ajustaments per assegurar que son els que necessites."
+    privacy: Privacitat
+    privacy_hint_html: Controla quant vols revelar en benefici d'altres. La gent descobreix perfils interessants i aplicacions genials tot navegant per els usuaris seguits d'altres persones i veient des de quines aplicacions publiquen, però pots preferir mantenir-ho amagat.
+    reach: Arribar a
+    reach_hint_html: Controla si vols ser descobert i seguit per gent nova. Vols que els teus tuts apareguin en la pantalla de Explora? Vols que altres persones et vegin en les seves recomanacions de seguiment? Vols acceptar automàticament als nous seguidors o tenir un control granular sobre cadascun d'ells?
+    search: Cerca
+    search_hint_html: Controla com vols ser trobat. Vols que la gent et trobi per el que publiques? Vols que la gent fora de Mastodon trobi el teu perfil quan cerquin la web? Has de tenir en compte que no es pot garantir la exclusió total de tots els motors de cerca per a la informació pública.
+    title: Privacitat i arribar
   privacy_policy:
     title: Política de Privacitat
   reactions:
@@ -1398,6 +1541,7 @@ ca:
     confirm_remove_selected_followers: Segur que vols esborrar els seguidors seleccionats?
     confirm_remove_selected_follows: Segur que vols esborrar els seguits seleccionats?
     dormant: Inactiu
+    follow_failure: No es poden seguir alguns dels comptes seleccionats.
     follow_selected_followers: Segueix als seguidors seleccionats
     followers: Seguidors
     following: Seguint
@@ -1413,7 +1557,7 @@ ca:
     remove_selected_follows: Deixa de seguir els usuaris seleccionats
     status: Estat del compte
   remote_follow:
-    missing_resource: No s'ha pogut trobar l'URL de redirecció necessària per al compte
+    missing_resource: No s'ha pogut trobar l'enllaç de redirecció necessari per al compte
   reports:
     errors:
       invalid_rules: no fa referència a normes vàlides
@@ -1437,15 +1581,17 @@ ca:
       electron: Electron
       firefox: Firefox
       generic: Navegador desconegut
+      huawei_browser: Navegador Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
+      nokia: Navegador Nokia S40 Ovi
       opera: Opera
       otter: Otter
       phantom_js: PhantomJS
-      qq: QQ Browser
+      qq: Navegador QQ
       safari: Safari
       uc_browser: Navegador UC
+      unknown_browser: Navegador Desconegut
       weibo: Weibo
     current_session: Sessió actual
     description: "%{browser} de %{platform}"
@@ -1458,9 +1604,10 @@ ca:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: Mac
-      other: plataforma desconeguda
+      unknown_platform: Plataforma desconeguda
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1531,7 +1678,6 @@ ca:
     show_newer: Mostra els més nous
     show_older: Mostra els més vells
     show_thread: Mostra el fil
-    sign_in_to_participate: Inicia la sessió per participar a la conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Directe
@@ -1573,12 +1719,10 @@ ca:
       '7889238': 3 mesos
     min_age_label: Antiguitat
     min_favs: Mantenir els tuts afavorits més de
-    min_favs_hint: No suprimeix cap dels teus tuts que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per a suprimir tuts independentment del nombre de favorits que tinguin
+    min_favs_hint: No suprimeix cap dels teus tuts que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per a suprimir tuts independentment del nombre de favorits
     min_reblogs: Mantenir les publicacions impulsades més de
     min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest nombre de vegades. Deixa-ho en blanc per a suprimir les publicacions independentment del nombre d'impulsos que tinguin.
   stream_entries:
-    pinned: Publicació fixada
-    reblogged: ha impulsat
     sensitive_content: Contingut sensible
   strikes:
     errors:
@@ -1594,6 +1738,11 @@ ca:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: S'ha superat la quota d'ús de tot el servidor per el servei de traducció.
+      too_many_requests: Hi ha hagut massa sol·licituds al servei de traducció recentment.
   two_factor_authentication:
     add: Afegeix
     disable: Desactiva
@@ -1625,11 +1774,11 @@ ca:
       title: Recollida de l'arxiu
     suspicious_sign_in:
       change_password: canvia la teva contrasenya
-      details: 'Aquí estan els detalls del inici de sessió:'
-      explanation: Hem detectat un inici de sessió del teu compte des d'una nova adreça IP.
-      further_actions_html: Si no has estat tu, et recomanem %{action} immediatament i activis l'autenticació de dos-factors per a mantenir el teu compte segur.
+      details: 'Aquest són els detalls de l''inici de sessió:'
+      explanation: Hem detectat un inici de sessió del teu compte des d'una adreça IP nova.
+      further_actions_html: Si no has estat tu, %{action} immediatament i activa l'autenticació de dos-factors per a mantenir el teu compte segur.
       subject: S'ha accedit al teu compte des d'una adreça IP nova
-      title: Un nou inici de sessió
+      title: Un inici de sessió nou
     warning:
       appeal: Envia una apel·lació
       appeal_description: Si creus que això és un error, pots enviar una apel·lació a l'equip de %{instance}.
@@ -1639,8 +1788,8 @@ ca:
       explanation:
         delete_statuses: S'ha trobat que algunes de les teves publicacions violen una o més directrius de la comunitat i, per tant, han estat eliminades pels moderadors de %{instance}.
         disable: Ja no pots utilitzar el teu compte, però el teu perfil i altres dades encara són intactes. Pots demanar una còpia de les teves dades, canviar els ajustaments del teu compte o esborrar-lo.
-        mark_statuses_as_sensitive: Algunes de les teves publicacions han estat marcades com a sensibles pels moderadors de %{instance}. Això significa que la gent necessitarà tocar els mèdia en les publicacions perquè la previsualització es mostri. Tu mateix pots marcar els teus mèdia com a sensibles quan publiquis en el futur.
-        sensitive: A partir d'ara, tots els mèdia pujats seran marcats com a sensibles i ocultats darrere d'un avís.
+        mark_statuses_as_sensitive: Algunes de les teves publicacions han estat marcades com a sensibles pels moderadors de %{instance}. Això significa que la gent haurà de tocar els mèdia a les publicacions perquè es mostri la previsualització. Pots marcar els teus mateixos mèdia com a sensibles quan publiquis en el futur.
+        sensitive: A partir d'ara, tots els fitxers pujats seran marcats com a sensibles i ocultats darrere d'un avís.
         silence: Encara pots fer servir el teu compte però només la gent que ja t'està seguint veuran les teves publicacions en aquest servidor i tu podries ser exclòs de les diverses opcions de descobriment. De totes maneres altres podrien encara seguir-te manualment.
         suspend: Ja no pots usar el teu compte i el teu perfil i altres dades ja no són accessibles. Encara pots iniciar sessió per a demanar una còpia de les teves dades fins que siguin totalment eliminades al cap de 30 dies, però es mantindran les dades bàsiques per a evitar que esquivis la suspensió.
       reason: 'Motiu:'
@@ -1663,7 +1812,7 @@ ca:
         suspend: Compte suspès
     welcome:
       edit_profile_action: Configura el perfil
-      edit_profile_step: Pots personalitzar el teu perfil pujant-hi un avatar, canviant el teu nom de visualització i molt més. Si ho prefereixes, pots revisar els seguidors nous abans de que et puguin seguir.
+      edit_profile_step: Pots personalitzar el teu perfil pujant-hi un avatar, canviant el teu nom de visualització i molt més. Si ho prefereixes, pots revisar els seguidors nous abans que et puguin seguir.
       explanation: Aquests són alguns consells per a començar
       final_action: Comença a publicar
       final_step: 'Comença a publicar! Fins i tot sense seguidors, els altres poden veure els teus missatges públics, per exemple, a la línia de temps local i a les etiquetes. És possible que vulguis presentar-te amb l''etiqueta #introductions.'
@@ -1673,13 +1822,18 @@ ca:
       title: Benvingut a bord, %{name}!
   users:
     follow_limit_reached: No pots seguir més de %{limit} persones
+    go_to_sso_account_settings: Ves a la configuració del compte del teu proveïdor d'identitat
     invalid_otp_token: El codi de dos factors no és correcte
     otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
   verification:
-    explanation_html: 'Pots <strong>verificar-te com a propietari dels enllaços a les metadades del teu perfil</strong>. Per això, el lloc web enllaçat ha de contenir un enllaç al teu perfil de Mastodon. El vincle <strong>ha de</strong> tenir l''atribut <code>rel="me"</code>. El contingut del text de l''enllaç no importa. Aquí tens un exemple:'
+    extra_instructions_html: <strong>Consell:</strong> l'enllaç al vostre lloc web pot ser invisible. La part important és <code>rel="me"</code> que evita que us suplantin la identitat a llocs web amb contingut generat pels usuaris. Fins i tot podeu generar una etiqueta <code>link</code> a la capçalera de la pàgina en comptes d'una <code>a</code>, però el codi HTML ha de ser accessible sense requerir executar JavaScript.
+    here_is_how: Així és com
+    hint_html: "<strong>Verificar la pròpia identitat a Mastodon és per a tothom.</strong> Basat en estàndarts webs oberts, ara i per sempre. Només et cat un lloc web personal que la gent reconegui com a teu. Quan hi enllacis des del teu perfil, comprovarem que el web retorna l'enllaç al perfil i hi posarem un indicador visual."
+    instructions_html: Copieu i enganxeu el següent codi HTML al vostre lloc web. Després, afegiu l'adreça del vostre lloc web dins d'un dels camps extres del vostre perfil i deseu els canvis.
     verification: Verificació
+    verified_links: Els teus enllaços verificats
   webauthn_credentials:
     add: Afegir nova clau de seguretat
     create:
@@ -1695,5 +1849,5 @@ ca:
     nickname_hint: Introdueix el sobrenom de la teva clau de seguretat nova
     not_enabled: Encara no has activat WebAuthn
     not_supported: Aquest navegador no suporta claus de seguretat
-    otp_required: Per emprar claus de seguretat si us plau activa primer l'autenticació de dos factors.
+    otp_required: Per a usar claus de seguretat, activeu primer l'autenticació de dos factors.
     registered_on: Registrat en %{date}

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe FetchRemoteStatusService, type: :service do
@@ -7,15 +9,16 @@ RSpec.describe FetchRemoteStatusService, type: :service do
   let(:note) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
-      id: "https://example.org/@foo/1234",
+      id: 'https://example.org/@foo/1234',
       type: 'Note',
       content: 'Lorem ipsum',
       attributedTo: ActivityPub::TagManager.instance.uri_for(account),
     }
   end
 
-  context 'protocol is :activitypub' do
+  context 'when protocol is :activitypub' do
     subject { described_class.new.call(note[:id], prefetched_body: prefetched_body) }
+
     let(:prefetched_body) { Oj.dump(note) }
 
     before do

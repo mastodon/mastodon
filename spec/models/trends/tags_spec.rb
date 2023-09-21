@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Trends::Tags do
@@ -22,45 +24,47 @@ RSpec.describe Trends::Tags do
   end
 
   describe '#query' do
-    pending
+    it 'returns a composable query scope' do
+      expect(subject.query).to be_a Trends::Query
+    end
   end
 
   describe '#refresh' do
     let!(:today) { at_time }
     let!(:yesterday) { today - 1.day }
 
-    let!(:tag1) { Fabricate(:tag, name: 'Catstodon', trendable: true) }
-    let!(:tag2) { Fabricate(:tag, name: 'DogsOfMastodon', trendable: true) }
-    let!(:tag3) { Fabricate(:tag, name: 'OCs', trendable: true) }
+    let!(:tag_cats) { Fabricate(:tag, name: 'Catstodon', trendable: true) }
+    let!(:tag_dogs) { Fabricate(:tag, name: 'DogsOfMastodon', trendable: true) }
+    let!(:tag_ocs) { Fabricate(:tag, name: 'OCs', trendable: true) }
 
     before do
-      2.times  { |i| subject.add(tag1, i, yesterday) }
-      13.times { |i| subject.add(tag3, i, yesterday) }
-      16.times { |i| subject.add(tag1, i, today) }
-      4.times  { |i| subject.add(tag2, i, today) }
+      2.times  { |i| subject.add(tag_cats, i, yesterday) }
+      13.times { |i| subject.add(tag_ocs, i, yesterday) }
+      16.times { |i| subject.add(tag_cats, i, today) }
+      4.times  { |i| subject.add(tag_dogs, i, today) }
     end
 
-    context do
+    context 'when tag trends are refreshed' do
       before do
         subject.refresh(yesterday + 12.hours)
         subject.refresh(at_time)
       end
 
       it 'calculates and re-calculates scores' do
-        expect(subject.query.limit(10).to_a).to eq [tag1, tag3]
+        expect(subject.query.limit(10).to_a).to eq [tag_cats, tag_ocs]
       end
 
       it 'omits hashtags below threshold' do
-        expect(subject.query.limit(10).to_a).to_not include(tag2)
+        expect(subject.query.limit(10).to_a).to_not include(tag_dogs)
       end
     end
 
     it 'decays scores' do
       subject.refresh(yesterday + 12.hours)
-      original_score = subject.score(tag3.id)
+      original_score = subject.score(tag_ocs.id)
       expect(original_score).to eq 144.0
       subject.refresh(yesterday + 12.hours + subject.options[:max_score_halflife])
-      decayed_score = subject.score(tag3.id)
+      decayed_score = subject.score(tag_ocs.id)
       expect(decayed_score).to be <= original_score / 2
     end
   end

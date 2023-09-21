@@ -26,15 +26,13 @@ module JsonLdHelper
   # The url attribute can be a string, an array of strings, or an array of objects.
   # The objects could include a mimeType. Not-included mimeType means it's text/html.
   def url_to_href(value, preferred_type = nil)
-    single_value = begin
-      if value.is_a?(Array) && !value.first.is_a?(String)
-        value.find { |link| preferred_type.nil? || ((link['mimeType'].presence || 'text/html') == preferred_type) }
-      elsif value.is_a?(Array)
-        value.first
-      else
-        value
-      end
-    end
+    single_value = if value.is_a?(Array) && !value.first.is_a?(String)
+                     value.find { |link| preferred_type.nil? || ((link['mimeType'].presence || 'text/html') == preferred_type) }
+                   elsif value.is_a?(Array)
+                     value.first
+                   else
+                     value
+                   end
 
     if single_value.nil? || single_value.is_a?(String)
       single_value
@@ -65,11 +63,11 @@ module JsonLdHelper
     uri.nil? || !uri.start_with?('http://', 'https://')
   end
 
-  def invalid_origin?(url)
-    return true if unsupported_uri_scheme?(url)
+  def non_matching_uri_hosts?(base_url, comparison_url)
+    return true if unsupported_uri_scheme?(comparison_url)
 
-    needle   = Addressable::URI.parse(url).host
-    haystack = Addressable::URI.parse(@account.uri).host
+    needle = Addressable::URI.parse(comparison_url).host
+    haystack = Addressable::URI.parse(base_url).host
 
     !haystack.casecmp(needle).zero?
   end

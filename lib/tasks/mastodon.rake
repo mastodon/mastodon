@@ -21,7 +21,7 @@ namespace :mastodon do
       env['LOCAL_DOMAIN'] = prompt.ask('Domain name:') do |q|
         q.required true
         q.modify :strip
-        q.validate(/\A[a-z0-9\.\-]+\z/i)
+        q.validate(/\A[a-z0-9.-]+\z/i)
         q.messages[:valid?] = 'Invalid domain. If you intend to use unicode characters, enter punycode here'
       end
 
@@ -92,7 +92,7 @@ namespace :mastodon do
           prompt.ok 'Database configuration works! 🎆'
           db_connection_works = true
           break
-        rescue StandardError => e
+        rescue => e
           prompt.error 'Database connection could not be established with this configuration, try again.'
           prompt.error e.message
           break unless prompt.yes?('Try again?')
@@ -132,7 +132,7 @@ namespace :mastodon do
           redis.ping
           prompt.ok 'Redis configuration works! 🎆'
           break
-        rescue StandardError => e
+        rescue => e
           prompt.error 'Redis connection could not be established with this configuration, try again.'
           prompt.error e.message
           break unless prompt.yes?('Try again?')
@@ -240,7 +240,7 @@ namespace :mastodon do
           end
 
           env['S3_PROTOCOL'] = env['S3_ENDPOINT'].start_with?('https') ? 'https' : 'http'
-          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(/\Ahttps?:\/\//, '')
+          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(%r{\Ahttps?://}, '')
 
           env['S3_BUCKET'] = prompt.ask('Minio bucket name:') do |q|
             q.required true
@@ -264,12 +264,12 @@ namespace :mastodon do
 
           env['S3_ENDPOINT'] = prompt.ask('Storj DCS endpoint URL:') do |q|
             q.required true
-            q.default "https://gateway.storjshare.io"
+            q.default 'https://gateway.storjshare.io'
             q.modify :strip
           end
 
           env['S3_PROTOCOL'] = env['S3_ENDPOINT'].start_with?('https') ? 'https' : 'http'
-          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(/\Ahttps?:\/\//, '')
+          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(%r{\Ahttps?://}, '')
 
           env['S3_BUCKET'] = prompt.ask('Storj DCS bucket name:') do |q|
             q.required true
@@ -286,13 +286,13 @@ namespace :mastodon do
             q.required true
             q.modify :strip
           end
-          
+
           linksharing_access_key = prompt.ask('Storj Linksharing access key (uplink share --register --public --readonly=true --disallow-lists --not-after=none sj://bucket):') do |q|
             q.required true
             q.modify :strip
           end
           env['S3_ALIAS_HOST'] = "link.storjshare.io/raw/#{linksharing_access_key}/#{env['S3_BUCKET']}"
-          
+
         when 'Google Cloud Storage'
           env['S3_ENABLED']             = 'true'
           env['S3_PROTOCOL']            = 'https'
@@ -399,14 +399,14 @@ namespace :mastodon do
           end
 
           ActionMailer::Base.smtp_settings = {
-            port:                 env['SMTP_PORT'],
-            address:              env['SMTP_SERVER'],
-            user_name:            env['SMTP_LOGIN'].presence,
-            password:             env['SMTP_PASSWORD'].presence,
-            domain:               env['LOCAL_DOMAIN'],
-            authentication:       env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
-            openssl_verify_mode:  env['SMTP_OPENSSL_VERIFY_MODE'],
-            enable_starttls:      enable_starttls,
+            port: env['SMTP_PORT'],
+            address: env['SMTP_SERVER'],
+            user_name: env['SMTP_LOGIN'].presence,
+            password: env['SMTP_PASSWORD'].presence,
+            domain: env['LOCAL_DOMAIN'],
+            authentication: env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
+            openssl_verify_mode: env['SMTP_OPENSSL_VERIFY_MODE'],
+            enable_starttls: enable_starttls,
             enable_starttls_auto: enable_starttls_auto,
           }
 
@@ -417,12 +417,16 @@ namespace :mastodon do
           mail = ActionMailer::Base.new.mail to: send_to, subject: 'Test', body: 'Mastodon SMTP configuration works!'
           mail.deliver
           break
-        rescue StandardError => e
+        rescue => e
           prompt.error 'E-mail could not be sent with this configuration, try again.'
           prompt.error e.message
           break unless prompt.yes?('Try again?')
         end
       end
+
+      prompt.say "\n"
+
+      env['UPDATE_CHECK_URL'] = '' unless prompt.yes?('Do you want Mastodon to periodically check for important updates and notify you? (Recommended)', default: true)
 
       prompt.say "\n"
       prompt.say 'This configuration will be written to .env.production'
@@ -438,14 +442,9 @@ namespace :mastodon do
           "#{key}=#{escaped}"
         end.join("\n")
 
-        generated_header = "# Generated with mastodon:setup on #{Time.now.utc}\n\n".dup
+        generated_header = generate_header(incompatible_syntax)
 
-        if incompatible_syntax
-          generated_header << "# Some variables in this file will be interpreted differently whether you are\n"
-          generated_header << "# using docker-compose or not.\n\n"
-        end
-
-        File.write(Rails.root.join('.env.production'), "#{generated_header}#{env_contents}\n")
+        Rails.root.join('.env.production').write("#{generated_header}#{env_contents}\n")
 
         if using_docker
           prompt.ok 'Below is your configuration, save it to an .env.production file outside Docker:'
@@ -538,6 +537,19 @@ namespace :mastodon do
       puts "VAPID_PUBLIC_KEY=#{vapid_key.public_key}"
     end
   end
+
+  private
+
+  def generate_header(include_warning)
+    default_message = "# Generated with mastodon:setup on #{Time.now.utc}\n\n"
+
+    default_message.tap do |string|
+      if include_warning
+        string << "# Some variables in this file will be interpreted differently whether you are\n"
+        string << "# using docker-compose or not.\n\n"
+      end
+    end
+  end
 end
 
 def disable_log_stdout!
@@ -573,7 +585,7 @@ def dotenv_escape(value)
 
   # As long as the value doesn't include single quotes, we can safely
   # rely on single quotes
-  return "'#{value}'" unless /[']/.match?(value)
+  return "'#{value}'" unless value.include?("'")
 
   # If the value contains the string '\n' or '\r' we simply can't use
   # a double-quoted string, because Dotenv will expand \n or \r no

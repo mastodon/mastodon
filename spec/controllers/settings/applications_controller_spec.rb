@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Settings::ApplicationsController do
@@ -11,13 +13,17 @@ describe Settings::ApplicationsController do
   end
 
   describe 'GET #index' do
-    let!(:other_app) { Fabricate(:application) }
-
-    it 'shows apps' do
+    before do
+      Fabricate(:application)
       get :index
+    end
+
+    it 'returns http success' do
       expect(response).to have_http_status(200)
-      expect(assigns(:applications)).to include(app)
-      expect(assigns(:applications)).to_not include(other_app)
+    end
+
+    it 'returns private cache control headers' do
+      expect(response.headers['Cache-Control']).to include('private, no-store')
     end
   end
 
@@ -32,27 +38,27 @@ describe Settings::ApplicationsController do
       app.update!(owner: nil)
 
       get :show, params: { id: app.id }
-      expect(response.status).to eq 404
+      expect(response).to have_http_status 404
     end
   end
 
   describe 'GET #new' do
-    it 'works' do
+    it 'returns http success' do
       get :new
       expect(response).to have_http_status(200)
     end
   end
 
   describe 'POST #create' do
-    context 'success (passed scopes as a String)' do
+    context 'when success (passed scopes as a String)' do
       def call_create
         post :create, params: {
           doorkeeper_application: {
             name: 'My New App',
             redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
             website: 'http://google.com',
-            scopes: 'read write follow'
-          }
+            scopes: 'read write follow',
+          },
         }
         response
       end
@@ -66,15 +72,15 @@ describe Settings::ApplicationsController do
       end
     end
 
-    context 'success (passed scopes as an Array)' do
+    context 'when success (passed scopes as an Array)' do
       def call_create
         post :create, params: {
           doorkeeper_application: {
             name: 'My New App',
             redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
             website: 'http://google.com',
-            scopes: [ 'read', 'write', 'follow' ]
-          }
+            scopes: %w(read write follow),
+          },
         }
         response
       end
@@ -88,15 +94,15 @@ describe Settings::ApplicationsController do
       end
     end
 
-    context 'failure' do
+    context 'with failure request' do
       before do
         post :create, params: {
           doorkeeper_application: {
             name: '',
             redirect_uri: '',
             website: '',
-            scopes: []
-          }
+            scopes: [],
+          },
         }
       end
 
@@ -111,17 +117,17 @@ describe Settings::ApplicationsController do
   end
 
   describe 'PATCH #update' do
-    context 'success' do
-      let(:opts) {
+    context 'when success' do
+      let(:opts) do
         {
-          website: 'https://foo.bar/'
+          website: 'https://foo.bar/',
         }
-      }
+      end
 
       def call_update
         patch :update, params: {
           id: app.id,
-          doorkeeper_application: opts
+          doorkeeper_application: opts,
         }
         response
       end
@@ -136,7 +142,7 @@ describe Settings::ApplicationsController do
       end
     end
 
-    context 'failure' do
+    context 'with failure request' do
       before do
         patch :update, params: {
           id: app.id,
@@ -144,8 +150,8 @@ describe Settings::ApplicationsController do
             name: '',
             redirect_uri: '',
             website: '',
-            scopes: []
-          }
+            scopes: [],
+          },
         }
       end
 
@@ -175,12 +181,11 @@ describe Settings::ApplicationsController do
 
   describe 'regenerate' do
     let(:token) { user.token_for_app(app) }
-    before do
+
+    it 'creates new token' do
       expect(token).to_not be_nil
       post :regenerate, params: { id: app.id }
-    end
 
-    it 'should create new token' do
       expect(user.token_for_app(app)).to_not eql(token)
     end
   end

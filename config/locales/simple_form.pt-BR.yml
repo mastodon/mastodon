@@ -2,6 +2,14 @@
 pt-BR:
   simple_form:
     hints:
+      account:
+        discoverable: Suas publicações e perfil públicos podem ser destaques ou recomendados em várias áreas de Mastodon, e seu perfil pode ser sugerido a outros usuários.
+        display_name: Seu nome completo ou apelido.
+        fields: Sua página inicial, pronomes, idade ou qualquer coisa que quiser.
+        indexable: Suas publicações públicas podem aparecer nos resultados da pesquisa em Mastodon. As pessoas que interagiram com suas publicações podem conseguir pesquisá-las independentemente disso.
+        note: 'Você pode @mencionar outras pessoas ou #hashtags.'
+        show_collections: As pessoas poderão navegar entre os seus seguidores e seguidores. As pessoas que você segue verão que você as segue independentemente disso.
+        unlocked: As pessoas poderão te seguir sem pedir aprovação. Desmarque se você deseja revisar pedidos e escolher se aceita ou rejeita novos seguidores.
       account_alias:
         acct: Especifique o usuário@domínio de onde veio
       account_migration:
@@ -37,14 +45,11 @@ pt-BR:
         current_password: Para fins de segurança, digite a senha da conta atual
         current_username: Para confirmar, digite o nome de usuário da conta atual
         digest: Enviado apenas após um longo período de inatividade com um resumo das menções recebidas durante ausência
-        discoverable: Permita que a sua conta seja descoberta por estranhos através de recomendações, tendências e outros recursos
         email: Você receberá um e-mail de confirmação
-        fields: Você pode ter até 4 itens mostrados em forma de tabela no seu perfil
         header: PNG, GIF ou JPG de até %{size}. Serão redimensionados para %{dimensions}px
         inbox_url: Copie o link da página inicial do repetidor que você deseja usar
         irreversible: As publicações filtradas desaparecerão irreversivelmente, mesmo se o filtro for removido depois
         locale: O idioma da interface do usuário, e-mails e notificações
-        locked: Requer aprovação manual de seguidores
         password: Use pelo menos 8 caracteres
         phrase: Corresponderá independente de maiúsculas ou minúsculas, no texto ou no Aviso de Conteúdo de um toot
         scopes: Quais APIs o aplicativo vai ter permissão de acessar. Se você selecionar uma autorização de alto nível, você não precisa selecionar individualmente os outros.
@@ -54,12 +59,9 @@ pt-BR:
         setting_display_media_default: Sempre ocultar mídia sensível
         setting_display_media_hide_all: Sempre ocultar todas as mídias
         setting_display_media_show_all: Sempre mostrar mídia sensível
-        setting_hide_network: Quem você segue e seus seguidores não serão mostrados no seu perfil
-        setting_noindex: Afeta seu perfil público e as páginas das suas publicações
-        setting_show_application: O aplicativo que você usar para publicar será exibido na visão detalhada das suas publicações
         setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
         setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
-        username: Seu nome de usuário será único em %{domain}
+        username: Você pode usar letras, números e underlines
         whole_word: Quando a palavra-chave ou frase é inteiramente alfanumérica, ela será aplicada somente se corresponder a palavra inteira
       domain_allow:
         domain: Este domínio poderá obter dados deste servidor e os dados recebidos dele serão processados e armazenados
@@ -91,11 +93,13 @@ pt-BR:
         site_short_description: Uma curta descrição para ajudar unicamente a identificar a sua instância. Quem está o administrando, e para quem é direcionado?
         site_terms: Use a sua própria política de privacidade ou deixe em branco para usar o padrão. Pode ser estruturado com o formato Markdown.
         site_title: Como as pessoas podem se referir ao seu servidor além do nome do domínio.
+        status_page_url: URL de uma página onde as pessoas podem ver o status deste servidor durante uma interrupção
         theme: Tema que visitantes e novos usuários veem.
         thumbnail: Uma imagem de aproximadamente 2:1 exibida ao lado da informação de sua instância.
         timeline_preview: Visitantes conseguirão navegar pelas postagens públicas mais recentes disponíveis na instância.
         trendable_by_default: Pular a revisão manual do conteúdo em tendência. Itens individuais ainda poderão ser removidos das tendências após a sua exibição.
         trends: Tendências mostram quais publicações, hashtags e notícias estão ganhando destaque na sua instância.
+        trends_as_landing_page: Mostrar conteúdo de tendências para usuários deslogados e visitantes em vez de uma descrição deste servidor. Requer que as tendências sejam ativadas.
       form_challenge:
         current_password: Você está entrando em uma área segura
       imports:
@@ -116,6 +120,9 @@ pt-BR:
       sessions:
         otp: 'Digite o código de dois fatores gerado pelo aplicativo no seu celular ou use um dos códigos de recuperação:'
         webauthn: Se for uma chave USB tenha certeza de inseri-la e, se necessário, tocar nela.
+      settings:
+        indexable: Sua página de perfil pode aparecer nos resultados de pesquisa no Google, Bing e outros.
+        show_application: Você sempre conseguirá ver qual aplicativo realizou sua publicação independentemente disso.
       tag:
         name: Você pode mudar a capitalização das letras, por exemplo, para torná-la mais legível
       user:
@@ -129,12 +136,17 @@ pt-BR:
         position: Um cargo superior decide a resolução de conflitos em certas situações. Certas ações só podem ser executadas com cargos de menor prioridade
       webhook:
         events: Selecione eventos para enviar
+        template: Elabore seu próprio conteúdo JSON usando interpolação de variáveis. Deixe em branco para utilizar o JSON padrão.
         url: Aonde os eventos serão enviados
     labels:
       account:
+        discoverable: Destacar perfil e publicações nos algoritmos de descoberta
         fields:
           name: Rótulo
           value: Conteúdo
+        indexable: Incluir publicações abertas nos resultados da pesquisa
+        show_collections: Mostrar quem segue e seguidores no perfil
+        unlocked: Aceitar automaticamente novos seguidores
       account_alias:
         acct: Nome de usuário da conta antiga
       account_migration:
@@ -172,7 +184,6 @@ pt-BR:
         context: Contextos do filtro
         current_password: Senha atual
         data: Dados
-        discoverable: Mostrar conta no diretório de perfis
         display_name: Nome de exibição
         email: E-mail
         expires_in: Expira em
@@ -182,7 +193,6 @@ pt-BR:
         inbox_url: Link da caixa de entrada do repetidor
         irreversible: Ignorar ao invés de ocultar
         locale: Idioma da interface
-        locked: Trancar perfil
         max_uses: Limite de uso
         new_password: Nova senha
         note: Biografia
@@ -194,7 +204,6 @@ pt-BR:
         setting_always_send_emails: Sempre enviar notificações por e-mail
         setting_auto_play_gif: Reproduzir GIFs automaticamente
         setting_boost_modal: Solicitar confirmação antes de dar boost
-        setting_crop_images: Cortar imagens no formato 16x9 em publicações não expandidas
         setting_default_language: Idioma dos toots
         setting_default_privacy: Privacidade dos toots
         setting_default_sensitive: Sempre marcar mídia como sensível
@@ -206,9 +215,7 @@ pt-BR:
         setting_display_media_show_all: Mostrar tudo
         setting_expand_spoilers: Sempre expandir toots com Aviso de Conteúdo
         setting_hide_network: Ocultar suas relações
-        setting_noindex: Não quero ser indexado por mecanismos de pesquisa
         setting_reduce_motion: Reduzir animações
-        setting_show_application: Mostrar o aplicativo usado para enviar as publicações
         setting_system_font_ui: Usar fonte padrão do sistema
         setting_theme: Tema do site
         setting_trends: Mostrar em alta hoje
@@ -251,11 +258,13 @@ pt-BR:
         site_short_description: Descrição do servidor
         site_terms: Política de privacidade
         site_title: Nome do servidor
+        status_page_url: Endereço da página de status
         theme: Tema padrão
         thumbnail: Miniatura do servidor
         timeline_preview: Permitir acesso não autenticado às linhas do tempo públicas
         trendable_by_default: Permitir tendências sem revisão prévia
         trends: Habilitar tendências
+        trends_as_landing_page: Usar tendências como página inicial
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de não-seguidos
@@ -282,9 +291,18 @@ pt-BR:
         pending_account: Enviar e-mail quando uma nova conta precisa ser revisada
         reblog: Enviar e-mail quando alguém der boost nos teus toots
         report: Nova denúncia foi enviada
+        software_updates:
+          all: Notificar sobre todas as atualizações
+          critical: Notificar apenas sobre atualizações críticas
+          label: Uma nova versão do Mastodon está disponível
+          none: Nunca notificar sobre atualizações (não recomendado)
+          patch: Notificar sobre atualizações de correções
         trending_tag: Uma nova tendência requer revisão
       rule:
         text: Regra
+      settings:
+        indexable: Incluir página de perfil nos motores de busca
+        show_application: Exibir a partir de qual aplicativo você publicou
       tag:
         listable: Permitir que esta hashtag apareça em pesquisas e sugestões
         name: Hashtag
@@ -292,6 +310,7 @@ pt-BR:
         usable: Permitir que toots usem esta hashtag
       user:
         role: Cargo
+        time_zone: Fuso horário
       user_role:
         color: Cor do emblema
         highlighted: Exibir cargo como distintivo nos perfis de usuários
@@ -300,9 +319,11 @@ pt-BR:
         position: Prioridade
       webhook:
         events: Eventos habilitados
+        template: Conteúdo JSON
         url: URL do Endpoint
     'no': Não
     not_recommended: Não recomendado
+    overridden: Sobreposto
     recommended: Recomendado
     required:
       mark: "*"

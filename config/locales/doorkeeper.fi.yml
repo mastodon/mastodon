@@ -14,14 +14,14 @@ fi:
             redirect_uri:
               fragment_present: ei voi sisältää osia.
               invalid_uri: on oltava kelvollinen URI.
-              relative_uri: on oltava täydellinen URI.
+              relative_uri: on oltava täysi URI.
               secured_uri: on oltava HTTPS/SSL-URI.
   doorkeeper:
     applications:
       buttons:
         authorize: Valtuuta
         cancel: Peruuta
-        destroy: Tuhoa
+        destroy: Poista
         edit: Muokkaa
         submit: Lähetä
       confirmations:
@@ -29,11 +29,11 @@ fi:
       edit:
         title: Muokkaa sovellusta
       form:
-        error: Hups! Tarkista, että lomakkeessa ei ole virheitä
+        error: Hupsis! Tarkista, ettei lomakkeessasi ole virheitä
       help:
         native_redirect_uri: Käytä %{native_redirect_uri} paikallisiin testeihin
         redirect_uri: Lisää jokainen URI omalle rivilleen
-        scopes: Erota oikeudet välilyönnein. Jos kenttä jätetään tyhjäksi, käytetään oletusoikeuksia.
+        scopes: Erota oikeudet välilyönneillä. Jätä kenttä tyhjäksi, jos haluat käyttää oletusoikeuksia.
       index:
         application: Sovellus
         callback_url: Takaisinkutsu-URL
@@ -48,19 +48,19 @@ fi:
         title: Uusi sovellus
       show:
         actions: Toiminnot
-        application_id: Asiakasohjelman tunnus
+        application_id: Ohjelman tunnus
         callback_urls: Takaisinkutsu-URL:t
         scopes: Oikeudet
-        secret: Asiakasohjelman salainen avain
+        secret: Ohjelman salaisuus
         title: 'Sovellus: %{name}'
     authorizations:
       buttons:
         authorize: Valtuuta
-        deny: Evää
+        deny: Estä
       error:
         title: Tapahtui virhe
       new:
-        prompt_html: "%{client_name} pyytää lupaa käyttää tiliäsi. Se on kolmannen osapuolen sovellus. <strong>Jos et luota siihen, sinun ei pitäisi sallia sitä.</strong>"
+        prompt_html: "%{client_name} pyytää lupaa käyttää tiliäsi. Se on kolmannen osapuolen sovellus. <strong>Jos et luota siihen, älä valtuuta sitä.</strong>"
         review_permissions: Tarkista käyttöoikeudet
         title: Valtuutus vaaditaan
       show:
@@ -81,7 +81,7 @@ fi:
     errors:
       messages:
         access_denied: Resurssin omistaja tai valtuutuspalvelin hylkäsi pyynnön.
-        credential_flow_not_configured: Resurssin omistajan salasana epäonnistui, koska asetusta Doorkeeper.configure.resource_owner_from_credentials ei ole konfiguroitu.
+        credential_flow_not_configured: Resurssin omistajan salasanatietojen luku epäonnistui, koska asetusta Doorkeeper.configure.resource_owner_from_credentials ei ole konfiguroitu.
         invalid_client: Asiakasohjelman valtuutus epäonnistui, koska asiakas on tuntematon, asiakkaan valtuutus ei ollut mukana tai valtuutustapaa ei tueta.
         invalid_grant: Valtuutuslupa on virheellinen, umpeutunut, peruttu, valtuutuspyynnössä käytettyä uudelleenohjaus-URI:tä vastaamaton tai myönnetty toiselle asiakkaalle.
         invalid_redirect_uri: Uudelleenohjaus-URI on virheellinen.
@@ -111,12 +111,12 @@ fi:
           notice: Sovellus päivitetty.
       authorized_applications:
         destroy:
-          notice: Sovellus peruttu.
+          notice: Sovellus poistettu.
     grouped_scopes:
       access:
         read: Vain luku
         read/write: Luku- ja kirjoitusoikeudet
-        write: Vain kirjoitus
+        write: Vain kirjoitusoikeus
       title:
         accounts: Tilit
         admin/accounts: Tilien hallinta
@@ -170,7 +170,7 @@ fi:
       read:accounts: nähdä tilin tiedot
       read:blocks: katso lohkosi
       read:bookmarks: katso kirjanmerkkisi
-      read:favourites: katso suosikkisi
+      read:favourites: näytä suosikkisi
       read:filters: katso suodattimesi
       read:follows: katso ketä seuraat
       read:lists: katso listasi
@@ -184,7 +184,7 @@ fi:
       write:blocks: estää tilit ja palvelimet
       write:bookmarks: kirjanmerkki viestit
       write:conversations: mykistä ja poistaa keskustelut
-      write:favourites: suosikki viestit
+      write:favourites: suosikkijulkaisut
       write:filters: luoda suodattimia
       write:follows: seurata ihmisiä
       write:lists: luoda listoja

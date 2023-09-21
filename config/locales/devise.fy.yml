@@ -2,26 +2,26 @@
 fy:
   devise:
     confirmations:
-      confirmed: Dyn account is befêstige.
-      send_instructions: Do ûntfangst fia in e-mailberjocht ynstruksjes hoe’tsto dyn account befêstigje kinst. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
-      send_paranoid_instructions: As dyn e-mailadres yn de database stiet, ûntfangsto fia in e-mailberjocht ynstruksjes hoe’tsto dyn account befêstigje kinst. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
+      confirmed: Jo account is befêstige.
+      send_instructions: Jo ûntfange fia in e-mailberjocht ynstruksjes hoe’t jo jo account befêstigje kinne. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
+      send_paranoid_instructions: As jo e-mailadres yn de database stiet, ûntfange jo fia in e-mailberjocht ynstruksjes hoe’t jo jo account befêstigje kinne. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
     failure:
-      already_authenticated: Do bist al oanmeld.
+      already_authenticated: Jo binne al oanmeld.
       inactive: Jo account is noch net aktivearre.
       invalid: "%{authentication_keys} of wachtwurd ûnjildich."
-      last_attempt: Do hast noch ien besykjen oer eardat dyn account blokkearre wurdt.
-      locked: Dyn account is blokkearre.
+      last_attempt: Jo hawwe noch ien besykjen oer eardat jo account blokkearre wurdt.
+      locked: Jo account is blokkearre.
       not_found_in_database: "%{authentication_keys} of wachtwurd ûnjildich."
-      pending: Dyn account moat noch hieltyd beoardiele wurde.
+      pending: Jo account moat noch hieltyd beoardiele wurde.
       timeout: Dyn sesje is ferrûn, meld dy opnij oan.
       unauthenticated: Jo moatte oanmelde of registrearje.
-      unconfirmed: Do moatst earst dyn account befêstigje.
+      unconfirmed: Jo moatte earst jo account befêstigje.
     mailer:
       confirmation_instructions:
         action: E-mailadres ferifiearje
         action_with_app: Befêstigje en nei %{app} tebekgean
-        explanation: Do hast in account op %{host} oanmakke en mei ien klik kinsto dizze aktivearje. Wannear’tsto dit account net oanmakke hast, meisto dit e-mailberjocht negearje.
-        explanation_when_pending: Do fregest mei dit e-mailadres in útnûging oan foar %{host}. Neidatsto dyn e-mailadres befêstige hast, beoardielje wy dyn oanfraach. Do kinst oant dan noch net oanmelde. Wannear’t dyn oanfraach ôfwêzen wurdt, wurde dyn gegevens fuortsmiten en hoechsto dêrnei fierder neat mear te dwaan. Wannear’tsto dit net wiest, kinsto dit e-mailberjocht negearje.
+        explanation: Jo hawwe in account op %{host} oanmakke en mei ien klik kinne jo dizze aktivearje. Wannear’t jo dizze account net oanmakke hawwe, meie jo dit e-mailberjocht negearje.
+        explanation_when_pending: Jo freegje mei dit e-mailadres in útnûging oan foar %{host}. Neidat jo jo e-mailadres befêstige hawwe, beoardielje wy jo oanfraach. Jo kinne oant dan noch net oanmelde. Wannear’t jo oanfraach ôfwêzen wurdt, wurde jo gegevens fuortsmiten en hoege jo dêrnei fierder neat mear te dwaan. Wannear’t jo dit net wiene, kinne jo dit e-mailberjocht negearje.
         extra_html: |-
           128 / 5.000
           Kontrolearje ek <a href="%{terms_path}">de regels fan de server</a> en <a href="%{policy_path}">ús tsjinstbetingsten</a>.

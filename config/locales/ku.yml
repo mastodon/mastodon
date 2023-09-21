@@ -124,8 +124,6 @@ ku:
       removed_header_msg: Wêneyê dîwar ê %{username} bi awayekî serkeftî hate rakirin
       resend_confirmation:
         already_confirmed: Ev bikarhêner jixwe hatiye pejirandin
-        send: E-nameya pejirandinê dîsa bişîne
-        success: E-nameya pejirandinê bi awayekî serkeftî hate şandin!
       reset: Ji nû ve saz bike
       reset_password: Borînpeyvê ji nû ve saz bike
       resubscribe: Dîsa beşdar bibe
@@ -727,7 +725,6 @@ ku:
           approved: Ji bo têketinê erêkirin pêwîste
           none: Kesek nikare tomar bibe
           open: Herkes dikare tomar bibe
-      title: Sazkariyên rajekarê
     site_uploads:
       delete: Pela barkirî jê bibe
       destroyed_msg: Barkirina malperê bi serkeftî hate jêbirin!
@@ -922,7 +919,6 @@ ku:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Herkes dikare beşdar bibe.
     sensitive_content: Naveroka hestiyarî
-    toot_layout: Xêzkirina şandîya
   application_mailer:
     notification_preferences: Sazkariyên e-nameyê biguherîne
     salutation: "%{name},"
@@ -939,14 +935,12 @@ ku:
     your_token: Nîşana gihîştinê te
   auth:
     apply_for_account: Ajimêrekê bixwaze
-    change_password: Borînpeyv
     delete_account: Ajimêr jê bibe
     delete_account_html: Ku tu dixwazî ajimêra xwe jê bibe, tu dikarî <a href="%{path}">li vir bidomîne</a>. Ji te tê xwestin ku were pejirandin.
     description:
       prefix_invited_by_user: "@%{name} te vedixwîne ku tu beşdarî vê rajekara Mastodon-ê bibî!"
       prefix_sign_up: Îro li Mastodonê tomar bibe!
       suffix: Bi ajimêrekê, tu yê karibî kesan bişopînî, rojanekirinan bişînî û bi bikarhênerên ji her rajekarê Mastodon re peyaman bişînî û bêtir!
-    didnt_get_confirmation: Te rêwerzên pejirandinê wernegirt?
     dont_have_your_security_key: Kilîda te ya ewlehiyê tune ye?
     forgot_password: Te borînpeyva xwe ji bîr kir?
     invalid_reset_password_token: Ji nû ve sazkirina borînpeyvê nederbasdar e an jî qediya ye. Jkx daxwaza yeka nû bike.
@@ -964,17 +958,12 @@ ku:
       saml: SAML
     register: Tomar bibe
     registration_closed: "%{instance} endamên nû napejirîne"
-    resend_confirmation: Rêwerên pejirandinê ji nû ve bişîne
     reset_password: Borînpeyvê ji nû ve saz bike
     rules:
       preamble: Ev rêzik ji aliyê çavdêrên %{domain} ve tên sazkirin.
       title: Hinek rêzikên bingehîn.
     security: Ewlehî
     set_new_password: Borînpeyveke nû ji nû ve saz bike
-    setup:
-      email_below_hint_html: Ku navnîşana e-nameya jêrîn ne rast be, tu dikarî wê li vir biguherîne û e-nameyeke pejirandinê ya nû bistîne.
-      email_settings_hint_html: E-nameya pejirandinê ji %{email} re hate şandin. Ku ew navnîşana e-nameyê ne rast be, tu dikarî wê di sazkariyên ajimêr de biguherîne.
-      title: Damezirandin
     sign_in:
       preamble_html: Têketinê bike bi riya <strong>%{domain}</strong> xwe. Ku ajimêrê te li ser rajekareke cuda hatiye pêşkêşkirin, tu yê nikaribû têketinê bikî vir.
       title: Têkeve %{domain}
@@ -990,18 +979,6 @@ ku:
       view_strikes: Binpêkirinên berê yên dijî ajimêrê xwe bibîne
     too_fast: Form pir zû hat şandin, dîsa biceribîne.
     use_security_key: Kilîteke ewlehiyê bi kar bîne
-  authorize_follow:
-    already_following: Jixwe tu vê ajimêrê dişopînî
-    already_requested: Jixwe te ji vê ajimêrê re daxwazîya şopandinê şandi bû
-    error: Mixabin, dema ajimêr hat gerandin çewtiyek çêbû
-    follow: Bişopîne
-    follow_request: 'Te ji vê kesê re daxwazîya şopandinê şand:'
-    following: 'Serkeftin! Tu êdî dikarî bişopînî:'
-    post_follow:
-      close: An jî, tu dikarî tenê ev çarçoveyê bigirî.
-      return: Profîla vê bikarhênerê nîşan bike
-      web: Biçe tevneyê
-    title: "%{acct} bişopîne"
   challenge:
     confirm: Bidomîne
     hint_html: "<strong>Nîşe:</strong>Ji bo demjimêreke din em ê borînpeyva te careke din ji te nexwazin."
@@ -1113,8 +1090,6 @@ ku:
     storage: Bîrdanaka medyayê
   featured_tags:
     add_new: Yeka nû tevlî bike
-    errors:
-      limit: Te jixwe berê pirtirîn hashtag destnîşan kiriye
     hint_html: "<strong> Hashtagên destnîşankirî çi ne? </strong> Ew bi eşkere li ser profîla te ya gelemperî têne xuyakirin û dihêlin ku mirov bi taybetî di binê wan hashtagan de li şandiyên te yên gelemperî bigere. Ew ji bo şopandina karên afirîner an projeyên demdirêj amûrek girîng in."
   filters:
     contexts:
@@ -1158,8 +1133,6 @@ ku:
       index:
         hint: Ev parzûn bêyî pîvanên din ji bo hilbijartina şandiyên kesane tê sepandin. Tu dikarî ji navrûya tevnê bêtir şandiyan tevlî vê parzûnê bikî.
         title: Şandiyên parzûnkirî
-  footer:
-    trending_now: Niha rojevê de
   generic:
     all: Hemû
     all_items_on_page_selected_html:
@@ -1182,8 +1155,6 @@ ku:
     validation_errors:
       one: Tiştek hîn ne rast e! Ji kerema xwe çewtiya li jêr di ber çavan re derbas bike
       other: Tiştek hîn ne rast e! Ji kerema xwe %{count} çewtî li jêr di ber çavan re derbas bike
-  html_validator:
-    invalid_markup: 'di nav de nîşana HTML a nederbasdar heye: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Pelê CSV nederbasdar e. Çewtî: %{error}'
@@ -1224,9 +1195,6 @@ ku:
       expires_at: Diqede
       uses: Bikaranîn
     title: Mirovan vexwîne
-  lists:
-    errors:
-      limit: Tu gihîştî hejmara rêzika a herî zêde
   login_activities:
     authentication_methods:
       otp: sepandina rastandina du-gavî
@@ -1430,7 +1398,6 @@ ku:
       ios: iOS
       linux: Linux
       mac: macOS
-      other: platforma nenas
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1501,7 +1468,6 @@ ku:
     show_newer: Nûtirîn nîşan bide
     show_older: Kevntirîn nîşan bide
     show_thread: Mijarê nîşan bide
-    sign_in_to_participate: Ji bo tevlî sohbetê bibî xwe tomar bike
     title: "%{name}%{quote}"
     visibilities:
       direct: Rasterast
@@ -1543,12 +1509,9 @@ ku:
       '7889238': 3 meh
     min_age_label: Şêmûga demê
     min_favs: Peyamên ku ji wê zêdetir hatine ecibandin veşêre
-    min_favs_hint: Şandî ku ji evqas hezkirin wergirtibe nayê jêbirin. Vala bihêle da ku şandiyan jê bibî tevlî ku çiqas hezkirin wergirtibe
     min_reblogs: Şandiyên ku bêtir hatine bilindkirin veşêre
     min_reblogs_hint: Şandî ku ji ji vê hejmarê bêtir bilindkirin wergirtibe nayê jêbirin. Vala bihêle da ku şandiyan jê bibî tevlî ku çiqas hezkirin wergirtibe
   stream_entries:
-    pinned: Şandiya derzîkirî
-    reblogged: bilindkirî
     sensitive_content: Naveroka hestiyarî
   strikes:
     errors:
@@ -1648,7 +1611,6 @@ ku:
     seamless_external_login: Te bi rajekarke biyanî re têketina xwe kir, ji ber vê yekê borînpeyv û e-name nayê bikaranîn.
     signed_in_as: 'Têketin wekî:'
   verification:
-    explanation_html: 'Tu dikarî <strong>xwe wekî xwediyê girêdanên li daneyê meta profîla xwe piştrast bikî</strong>. Ji bo vê, hewceye girêda malperê di nav profîla te ya mastodonê de girêdanekî paş hebe. Girêdana paş<strong>hewceye</strong> taybetîyek <code>rel="me"</code>hebe. Naveroka nivîsa girêdanê ne girîng e. Ev jî mînakek e:'
     verification: Piştrastkirin
   webauthn_credentials:
     add: Kilîteke ewlehiyê nû tevlî bike

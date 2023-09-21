@@ -4,6 +4,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   include FormattingHelper
 
   def perform
+    @account.schedule_refresh_if_stale!
+
     dereference_object!
 
     case @object['type']
@@ -17,7 +19,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   private
 
   def create_encrypted_message
-    return reject_payload! if invalid_origin?(object_uri) || @options[:delivered_to_account_id].blank?
+    return reject_payload! if non_matching_uri_hosts?(@account.uri, object_uri) || @options[:delivered_to_account_id].blank?
 
     target_account = Account.find(@options[:delivered_to_account_id])
     target_device  = target_account.devices.find_by(device_id: @object.dig('to', 'deviceId'))
@@ -45,9 +47,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def create_status
-    return reject_payload! if unsupported_object_type? || invalid_origin?(object_uri) || tombstone_exists? || !related_to_local_activity?
+    return reject_payload! if unsupported_object_type? || non_matching_uri_hosts?(@account.uri, object_uri) || tombstone_exists? || !related_to_local_activity?
 
-    with_lock("create:#{object_uri}") do
+    with_redis_lock("create:#{object_uri}") do
       return if delete_arrived_first?(object_uri) || poll_vote?
 
       @status = find_existing_status
@@ -108,26 +110,24 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def process_status_params
     @status_parser = ActivityPub::Parser::StatusParser.new(@json, followers_collection: @account.followers_url)
 
-    @params = begin
-      {
-        uri: @status_parser.uri,
-        url: @status_parser.url || @status_parser.uri,
-        account: @account,
-        text: converted_object_type? ? converted_text : (@status_parser.text || ''),
-        language: @status_parser.language,
-        spoiler_text: converted_object_type? ? '' : (@status_parser.spoiler_text || ''),
-        created_at: @status_parser.created_at,
-        edited_at: @status_parser.edited_at && @status_parser.edited_at != @status_parser.created_at ? @status_parser.edited_at : nil,
-        override_timestamps: @options[:override_timestamps],
-        reply: @status_parser.reply,
-        sensitive: @account.sensitized? || @status_parser.sensitive || false,
-        visibility: @status_parser.visibility,
-        thread: replied_to_status,
-        conversation: conversation_from_uri(@object['conversation']),
-        media_attachment_ids: process_attachments.take(4).map(&:id),
-        poll: process_poll,
-      }
-    end
+    @params = {
+      uri: @status_parser.uri,
+      url: @status_parser.url || @status_parser.uri,
+      account: @account,
+      text: converted_object_type? ? converted_text : (@status_parser.text || ''),
+      language: @status_parser.language,
+      spoiler_text: converted_object_type? ? '' : (@status_parser.spoiler_text || ''),
+      created_at: @status_parser.created_at,
+      edited_at: @status_parser.edited_at && @status_parser.edited_at != @status_parser.created_at ? @status_parser.edited_at : nil,
+      override_timestamps: @options[:override_timestamps],
+      reply: @status_parser.reply,
+      sensitive: @account.sensitized? || @status_parser.sensitive || false,
+      visibility: @status_parser.visibility,
+      thread: replied_to_status,
+      conversation: conversation_from_uri(@object['conversation']),
+      media_attachment_ids: process_attachments.take(4).map(&:id),
+      poll: process_poll,
+    }
   end
 
   def process_audience
@@ -315,7 +315,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     poll = replied_to_status.preloadable_poll
     already_voted = true
 
-    with_lock("vote:#{replied_to_status.poll_id}:#{@account.id}") do
+    with_redis_lock("vote:#{replied_to_status.poll_id}:#{@account.id}") do
       already_voted = poll.votes.where(account: @account).exists?
       poll.votes.create!(account: @account, choice: poll.options.index(@object['name']), uri: object_uri)
     end
@@ -327,7 +327,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def resolve_thread(status)
     return unless status.reply? && status.thread.nil? && Request.valid_url?(in_reply_to_uri)
 
-    ThreadResolveWorker.perform_async(status.id, in_reply_to_uri, { 'request_id' => @options[:request_id]})
+    ThreadResolveWorker.perform_async(status.id, in_reply_to_uri, { 'request_id' => @options[:request_id] })
   end
 
   def fetch_replies(status)
@@ -338,7 +338,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return unless replies.nil?
 
     uri = value_or_id(collection)
-    ActivityPub::FetchRepliesWorker.perform_async(status.id, uri, { 'request_id' => @options[:request_id]}) unless uri.nil?
+    ActivityPub::FetchRepliesWorker.perform_async(status.id, uri, { 'request_id' => @options[:request_id] }) unless uri.nil?
   end
 
   def conversation_from_uri(uri)

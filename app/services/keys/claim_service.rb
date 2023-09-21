@@ -9,10 +9,10 @@ class Keys::ClaimService < BaseService
 
     def initialize(account, device_id, key_attributes = {})
       super(
-        account:   account,
+        account: account,
         device_id: device_id,
-        key_id:    key_attributes[:key_id],
-        key:       key_attributes[:key],
+        key_id: key_attributes[:key_id],
+        key: key_attributes[:key],
         signature: key_attributes[:signature],
       )
     end

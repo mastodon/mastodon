@@ -5,19 +5,6 @@ html {
   scrollbar-color: $ui-base-color rgba($ui-base-color, 0.25);
 }
 
-// Change the colors of button texts
-.button {
-  color: $white;
-
-  &.button-alternative-2 {
-    color: $white;
-  }
-
-  &.button-tertiary {
-    color: $highlight-text-color;
-  }
-}
-
 .simple_form .button.button-tertiary {
   color: $highlight-text-color;
 }
@@ -37,11 +24,14 @@ html {
 .column > .scrollable,
 .getting-started,
 .column-inline-form,
-.error-column,
 .regeneration-indicator {
   background: $white;
   border: 1px solid lighten($ui-base-color, 8%);
   border-top: 0;
+}
+
+.error-column {
+  border: 1px solid lighten($ui-base-color, 8%);
 }
 
 .column > .scrollable.about {
@@ -88,6 +78,10 @@ html {
 .column-header__button.active,
 .account__header {
   background: $white;
+}
+
+.column-header {
+  border-bottom: 0;
 }
 
 .column-header__button.active {
@@ -152,7 +146,7 @@ html {
 }
 
 .compose-form__autosuggest-wrapper,
-.poll__option input[type="text"],
+.poll__option input[type='text'],
 .compose-form .spoiler-input__input,
 .compose-form__poll-wrapper select,
 .search__input,
@@ -179,7 +173,9 @@ html {
 }
 
 .compose-form__poll-wrapper select {
-  background: $simple-background-color url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 8%))}'/></svg>") no-repeat right 8px center / auto 16px;
+  background: $simple-background-color
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 8%))}'/></svg>")
+    no-repeat right 8px center / auto 16px;
 }
 
 .compose-form__poll-wrapper,
@@ -205,7 +201,9 @@ html {
 }
 
 .drawer__inner__mastodon {
-  background: $white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>') no-repeat bottom / 100% auto;
+  background: $white
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>')
+    no-repeat bottom / 100% auto;
 }
 
 // Change the colors used in compose-form
@@ -260,7 +258,7 @@ html {
 
 // Change the background colors of statuses
 .focusable:focus {
-  background: $ui-base-color;
+  background: lighten($white, 4%);
 }
 
 .detailed-status,
@@ -336,11 +334,13 @@ html {
   color: $white;
 }
 
-.language-dropdown__dropdown__results__item .language-dropdown__dropdown__results__item__common-name {
+.language-dropdown__dropdown__results__item
+  .language-dropdown__dropdown__results__item__common-name {
   color: lighten($ui-base-color, 8%);
 }
 
-.language-dropdown__dropdown__results__item.active .language-dropdown__dropdown__results__item__common-name {
+.language-dropdown__dropdown__results__item.active
+  .language-dropdown__dropdown__results__item__common-name {
   color: darken($ui-base-color, 12%);
 }
 
@@ -421,33 +421,17 @@ html {
 .column-header__collapsible-inner {
   background: darken($ui-base-color, 4%);
   border: 1px solid lighten($ui-base-color, 8%);
-  border-top: 0;
+  border-bottom: 0;
+}
+
+.column-settings__hashtags .column-select__option {
+  color: $white;
 }
 
 .dashboard__quick-access,
 .focal-point__preview strong,
 .admin-wrapper .content__heading__tabs a.selected {
   color: $white;
-}
-
-.button.button-tertiary {
-  &:hover,
-  &:focus,
-  &:active {
-    color: $white;
-  }
-}
-
-.button.button-secondary {
-  border-color: $darker-text-color;
-  color: $darker-text-color;
-
-  &:hover,
-  &:focus,
-  &:active {
-    border-color: darken($darker-text-color, 8%);
-    color: darken($darker-text-color, 8%);
-  }
 }
 
 .flash-message.warning {
@@ -494,7 +478,8 @@ html {
   background: darken($ui-secondary-color, 10%);
 }
 
-.react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled)
+  .react-toggle-track {
   background: lighten($ui-highlight-color, 10%);
 }
 
@@ -526,10 +511,10 @@ html {
 }
 
 .simple_form {
-  input[type="text"],
-  input[type="number"],
-  input[type="email"],
-  input[type="password"],
+  input[type='text'],
+  input[type='number'],
+  input[type='email'],
+  input[type='password'],
   textarea {
     &:hover {
       border-color: lighten($ui-base-color, 12%);
@@ -646,23 +631,10 @@ html {
   border: 1px solid lighten($ui-base-color, 8%);
 }
 
-.dismissable-banner {
-  border-left: 1px solid lighten($ui-base-color, 8%);
-  border-right: 1px solid lighten($ui-base-color, 8%);
-}
-
 .status__content,
 .reply-indicator__content {
   a {
     color: $highlight-text-color;
-  }
-}
-
-.button.logo-button {
-  color: $white;
-
-  svg {
-    fill: $white;
   }
 }
 
@@ -686,5 +658,15 @@ html {
 
 .mute-modal select {
   border: 1px solid lighten($ui-base-color, 8%);
-  background: $simple-background-color url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 8%))}'/></svg>") no-repeat right 8px center / auto 16px;
+  background: $simple-background-color
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 8%))}'/></svg>")
+    no-repeat right 8px center / auto 16px;
+}
+
+.status__wrapper-direct {
+  background-color: rgba($ui-highlight-color, 0.1);
+
+  &:focus {
+    background-color: rgba($ui-highlight-color, 0.15);
+  }
 }

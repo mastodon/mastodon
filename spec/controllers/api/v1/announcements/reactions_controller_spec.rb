@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
+RSpec.describe Api::V1::Announcements::ReactionsController do
   render_views
 
   let(:user)   { Fabricate(:user) }
@@ -15,7 +15,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
     context 'without token' do
       it 'returns http unauthorized' do
         put :update, params: { announcement_id: announcement.id, id: '😂' }
-        expect(response).to have_http_status :unauthorized
+        expect(response).to have_http_status 401
       end
     end
 
@@ -43,7 +43,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
     context 'without token' do
       it 'returns http unauthorized' do
         delete :destroy, params: { announcement_id: announcement.id, id: '😂' }
-        expect(response).to have_http_status :unauthorized
+        expect(response).to have_http_status 401
       end
     end
 

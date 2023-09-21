@@ -24,16 +24,14 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     super(&:build_invite_request)
   end
 
-  def destroy
-    not_found
-  end
-
   def update
     super do |resource|
-      if resource.saved_change_to_encrypted_password?
-        resource.clear_other_sessions(current_session.session_id)
-      end
+      resource.clear_other_sessions(current_session.session_id) if resource.saved_change_to_encrypted_password?
     end
+  end
+
+  def destroy
+    not_found
   end
 
   protected
@@ -129,7 +127,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_sessions
-    @sessions = current_user.session_activations
+    @sessions = current_user.session_activations.order(updated_at: :desc)
   end
 
   def set_strikes
@@ -154,6 +152,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_cache_headers
-    response.headers['Cache-Control'] = 'private, no-store'
+    response.cache_control.replace(private: true, no_store: true)
   end
 end

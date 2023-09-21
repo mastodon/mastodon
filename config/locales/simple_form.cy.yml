@@ -2,6 +2,14 @@
 cy:
   simple_form:
     hints:
+      account:
+        discoverable: Mae'n bosibl y bydd eich postiadau cyhoeddus a'ch proffil yn cael sylw neu'n cael eu hargymell mewn gwahanol feysydd o Mastodon ac efallai y bydd eich proffil yn cael ei awgrymu i ddefnyddwyr eraill.
+        display_name: Eich enw llawn neu'ch enw hwyl.
+        fields: Eich tudalen cartref, rhagenwau, oed, neu unrhyw beth.
+        indexable: Mae'n bosib y bydd eich postiadau cyhoeddus yn ymddangos yng nghanlyniadau chwilio ar Mastodon. Mae'n bosibl y bydd pobl sydd wedi rhyngweithio â'ch postiadau yn dal i allu eu chwilio.
+        note: 'Gallwch @grybwyll pobl eraill neu #hashnodau.'
+        show_collections: Bydd pobl yn gallu pori trwy'r rhai rydych yn eu dilyn a'ch dilynwyr. Bydd y bobl rydych chi'n eu dilyn yn gweld eich bod chi'n eu dilyn beth bynnag.
+        unlocked: Bydd pobl yn gallu eich dilyn heb ofyn am ganiatâd. Dad-diciwch os ydych am adolygu ceisiadau dilyn a dewis a ydych am dderbyn neu wrthod dilynwyr newydd.
       account_alias:
         acct: Rhowch enwdefnyddiwr@parth y cyfrif y hoffech chi symud ohono
       account_migration:
@@ -37,14 +45,11 @@ cy:
         current_password: At ddibenion diogelwch, nodwch gyfrinair y cyfrif cyfredol
         current_username: I gadarnhau, nodwch enw defnyddiwr y cyfrif cyfredol
         digest: Ond yn cael eu hanfon ar ôl cyfnod hir o anweithgarwch ac ond os ydych wedi derbyn unrhyw negeseuon personol yn eich absenoldeb
-        discoverable: Caniatáu i'ch cyfrif gael ei ddarganfod gan ddieithriaid trwy argymhellion, pynciau llosg a nodweddion eraill
         email: Byddwch yn derbyn e-bost cadarnhau
-        fields: Mae modd i chi ddangos hyd at 4 eitem fel tabl ar eich proffil
         header: PNG, GIF neu JPG. %{size} ar y mwyaf. Bydd yn cael ei israddio i %{dimensions}px
         inbox_url: Copïwch yr URL o dudalen flaen y relái yr ydych am ei ddefnyddio
         irreversible: Bydd postiadau wedi'u hidlo'n diflannu'n ddiwrthdro, hyd yn oed os caiff yr hidlydd ei dynnu'n ddiweddarach
         locale: Iaith y rhyngwyneb, e-byst a hysbysiadau gwthiadwy
-        locked: Mae hyn yn eich galluogi i reoli pwy sy'n gallu eich dilyn drwy gymeradwyo ceisiadau dilyn
         password: Defnyddiwch o leiaf 8 nod
         phrase: Caiff ei gyfateb heb ystyriaeth o briflythrennu mewn testun neu rhybudd ynghylch cynnwys postiad
         scopes: Pa APIs y bydd y rhaglen yn cael mynediad iddynt. Os dewiswch gwmpas lefel uchaf, nid oes angen i chi ddewis rhai unigol.
@@ -54,12 +59,9 @@ cy:
         setting_display_media_default: Cuddio cyfryngau wedi eu marcio'n sensitif
         setting_display_media_hide_all: Cuddio cyfryngau bob tro
         setting_display_media_show_all: Dangos cyfryngau bob tro
-        setting_hide_network: Ni fydd y pobl yr ydych chi'n eu dilyn a'ch dilynwyr yn ymddangos ar eich proffil
-        setting_noindex: Mae hyn yn effeithio ar eich proffil cyhoeddus a'ch tudalennau statws
-        setting_show_application: Bydd y cymhwysiad a ddefnyddiwch i bostio yn cael ei arddangos yng ngolwg fanwl eich postiadau
         setting_use_blurhash: Mae graddiannau wedi'u seilio ar liwiau'r delweddau cudd ond maen nhw'n cuddio unrhyw fanylion
         setting_use_pending_items: Cuddio diweddariadau llinell amser y tu ôl i glic yn lle sgrolio'n awtomatig
-        username: Bydd eich enw defnyddiwr yn unigryw ar %{domain}
+        username: Gallwch ddefnyddio nodau, rhifau a thanlinellau
         whole_word: Os yw'r allweddair neu'r ymadrodd yn alffaniwmerig yn unig, mi fydd ond yn cael ei osod os yw'n cyfateb a'r gair cyfan
       domain_allow:
         domain: Bydd y parth hwn yn gallu nôl data o'r gweinydd hwn a bydd data sy'n dod i mewn ohono yn cael ei brosesu a'i storio
@@ -118,6 +120,9 @@ cy:
       sessions:
         otp: 'Mewnbynnwch y cod dau gam a gynhyrchwyd gan eich ap ffôn neu defnyddiwch un o''ch codau adfer:'
         webauthn: Os mai allwedd USB ydyw, gwnewch yn siŵr ei fewnosod ac, os oes angen, tapiwch ef.
+      settings:
+        indexable: Mae'n bosib y bydd eich tudalen broffil yn ymddangos mewn canlyniadau chwilio ar Google, Bing ac eraill.
+        show_application: Byddwch bob amser yn gallu gweld pa ap a gyhoeddodd eich postiad beth bynnag.
       tag:
         name: Dim ond er mwyn ei gwneud yn fwy darllenadwy y gallwch chi newid y llythrennau, er enghraifft
       user:
@@ -131,12 +136,17 @@ cy:
         position: Mae rôl uwch yn penderfynu ar ddatrys gwrthdrawiadau mewn rhai sefyllfaoedd. Dim ond ar rolau â blaenoriaeth is y gellir cyflawni rhai gweithredoedd
       webhook:
         events: Dewiswch ddigwyddiadau i'w hanfon
+        template: Cyfansoddwch eich llwyth tâl JSON eich hun gan ddefnyddio rhyngosod newidiol. Gadewch yn wag ar gyfer JSON rhagosodedig.
         url: I ble bydd digwyddiadau'n cael eu hanfon
     labels:
       account:
+        discoverable: Proffil nodwedd a phostiadau mewn algorithmau darganfod
         fields:
           name: Label
           value: Cynnwys
+        indexable: Cynnwys postiadau cyhoeddus mewn canlyniadau chwilio
+        show_collections: Dangos y rhaid rydych yn eu dilyn a'ch dilynwyr ar eich proffil
+        unlocked: Derbyn dilynwyr newydd yn awtomatig
       account_alias:
         acct: Enw'r hen gyfrif
       account_migration:
@@ -174,7 +184,6 @@ cy:
         context: Hidlo cyd-destunau
         current_password: Cyfrinair cyfredol
         data: Data
-        discoverable: Awgrymu cyfrif i eraill
         display_name: Enw dangos
         email: Cyfeiriad e-bost
         expires_in: Yn dod i ben ar ôl
@@ -184,7 +193,6 @@ cy:
         inbox_url: URL y mewnflwch relái
         irreversible: Gollwng yn hytrach na chuddio
         locale: Iaith y rhyngwyneb
-        locked: Angen ceisiadau dilyn
         max_uses: Nifer y ddefnyddiau uchafswm
         new_password: Cyfrinair newydd
         note: Bywgraffiad
@@ -196,7 +204,6 @@ cy:
         setting_always_send_emails: Anfonwch hysbysiadau e-bost bob amser
         setting_auto_play_gif: Chwarae GIFs wedi'u hanimeiddio yn awtomatig
         setting_boost_modal: Dangos deialog cadarnhau cyn rhoi hwb
-        setting_crop_images: Tocio delweddau o fewn postiadau nad ydynt wedi'u hehangu i 16x9
         setting_default_language: Iaith postio
         setting_default_privacy: Preifatrwydd cyhoeddi
         setting_default_sensitive: Marcio cyfryngau fel eu bod yn sensitif bob tro
@@ -208,9 +215,7 @@ cy:
         setting_display_media_show_all: Dangos popeth
         setting_expand_spoilers: Dangos postiadau wedi'u marcio â rhybudd cynnwys bob tro
         setting_hide_network: Cuddio eich graff cymdeithasol
-        setting_noindex: Peidio mynegeio peiriannau chwilio
         setting_reduce_motion: Lleihau mudiant mewn animeiddiadau
-        setting_show_application: Datgelu rhaglen a ddefnyddir i anfon postiadau
         setting_system_font_ui: Defnyddio ffont rhagosodedig y system
         setting_theme: Thema'r wefan
         setting_trends: Dangos pynciau llosg heddiw
@@ -255,7 +260,7 @@ cy:
         site_title: Enw'r gweinydd
         status_page_url: URL tudalen statws
         theme: Thema ragosodedig
-        thumbnail: Lluniau bach gweinydd
+        thumbnail: Bawdlun y gweinydd
         timeline_preview: Caniatáu mynediad heb ei ddilysu i linellau amser cyhoeddus
         trendable_by_default: Caniatáu pynciau llosg heb adolygiad
         trends: Galluogi pynciau llosg
@@ -279,16 +284,19 @@ cy:
       notification_emails:
         appeal: Mae rhywun yn apelio yn erbyn penderfyniad y cymedrolwr
         digest: Anfonwch e-byst crynhoi
-        favourite: Mae rhywun wedi ffafrio eich post
+        favourite: Mae rhywun wedi ffafrio eich postiad
         follow: Mae rhywun yn eich dilyn chi
         follow_request: Mae rhywun yn ceisio eich dilyn chi
         mention: Mae rhywun yn sôn amdanoch chi
         pending_account: Mae cyfrif newydd angen adolygiad
-        reblog: Mae rhywun wedi hybu eich post
+        reblog: Mae rhywun wedi hybu eich postiad
         report: Cyflwynwyd adroddiad newydd
         trending_tag: Mae pwnc llosg newydd angen adolygiad
       rule:
         text: Rheol
+      settings:
+        indexable: Cynnwys tudalen proffil mewn peiriannau chwilio
+        show_application: Dangoswch o ba ap yr anfonoch chi bostiad
       tag:
         listable: Caniatáu i'r hashnod hwn ymddangos mewn chwiliadau ac awgrymiadau
         name: Hashnod
@@ -296,6 +304,7 @@ cy:
         usable: Caniatáu i bostiadau ddefnyddio'r hashnod hwn
       user:
         role: Rôl
+        time_zone: Cylchfa amser
       user_role:
         color: Lliw bathodyn
         highlighted: Dangos rôl fel bathodyn ar broffiliau defnyddwyr
@@ -304,6 +313,7 @@ cy:
         position: Blaenoriaeth
       webhook:
         events: Digwyddiadau wedi'u galluogi
+        template: Templed prif lwyth
         url: URL diweddbwynt
     'no': Na
     not_recommended: Heb ei argymell

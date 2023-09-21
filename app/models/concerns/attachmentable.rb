@@ -5,7 +5,7 @@ require 'mime/types/columnar'
 module Attachmentable
   extend ActiveSupport::Concern
 
-  MAX_MATRIX_LIMIT = 16_777_216 # 4096x4096px or approx. 16MB
+  MAX_MATRIX_LIMIT = 33_177_600 # 7680x4320px or approx. 847MB in RAM
   GIF_MATRIX_LIMIT = 921_600    # 1280x720px
 
   # For some file extensions, there exist different content
@@ -45,7 +45,7 @@ module Attachmentable
   def set_file_extension(attachment) # rubocop:disable Naming/AccessorMethodName
     return if attachment.blank?
 
-    attachment.instance_write :file_name, [Paperclip::Interpolations.basename(attachment, :original), appropriate_extension(attachment)].delete_if(&:blank?).join('.')
+    attachment.instance_write :file_name, [Paperclip::Interpolations.basename(attachment, :original), appropriate_extension(attachment)].compact_blank!.join('.')
   end
 
   def check_image_dimension(attachment)

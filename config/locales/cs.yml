@@ -95,6 +95,7 @@ cs:
       moderation:
         active: Aktivní
         all: Vše
+        disabled: Deaktivován
         pending: Čekající
         silenced: Omezeno
         suspended: Pozastavené
@@ -130,8 +131,8 @@ cs:
       removed_header_msg: Úspěšně odstraněn obrázek záhlaví uživatele %{username}
       resend_confirmation:
         already_confirmed: Tento uživatel je již potvrzen
-        send: Znovu odeslat potvrzovací e-mail
-        success: Potvrzovací e-mail byl úspěšně odeslán!
+        send: Znovu odeslat potvrzovací odkaz
+        success: Potvrzovací odkaz byl úspěšně odeslán!
       reset: Obnovit
       reset_password: Obnovit heslo
       resubscribe: Znovu odebírat
@@ -139,6 +140,7 @@ cs:
       search: Hledat
       search_same_email_domain: Ostatní uživatelé se stejnou e-mailovou doménou
       search_same_ip: Další uživatelé se stejnou IP adresou
+      security: Zabezpečení
       security_measures:
         only_password: Pouze heslo
         password_and_2fa: Heslo a 2FA
@@ -443,6 +445,7 @@ cs:
         resolve: Přeložit doménu
         title: Blokovat novou e-mailovou doménu
       no_email_domain_block_selected: Žádné blokace e-mailové domény nebyly změněny, protože nebyly žádné vybrány
+      not_permitted: Nepovoleno
       resolved_dns_records_hint_html: Doménové jméno vede na následující MX domény, které mají nakonec na starost přijímání e-mailů. Blokování MX domény zablokuje registrace z jakékoliv e-mailové adresy, která používá stejnou MX doménu, i když je viditelné doménové jméno jiné. <strong>Dejte si pozor, abyste nezablokovali velké e-mailové poskytovatele.</strong>
       resolved_through_html: Přeložena přes %{domain}
       title: Blokované e-mailové domény
@@ -457,6 +460,7 @@ cs:
         private_comment_description_html: 'Abychom vám pomohli sledovat, odkud pochází importované bloky, budou tyto importované bloky vytvořeny s následující soukromou poznámkou: <q>%{comment}</q>'
         private_comment_template: Importováno z %{source} dne %{date}
         title: Importovat blokované domény
+      invalid_domain_block: 'Jeden nebo více bloků domén bylo přeskočeno z důvodu chyb(y): %{error}'
       new:
         title: Importovat blokované domény
       no_file: Nebyl vybrán žádný soubor
@@ -492,6 +496,7 @@ cs:
       content_policies:
         comment: Interní poznámka
         description_html: Můžete definovat politiky obsahu, které budou aplikovány na všechny účty z této domény i jakoukoliv z jejích subdomén.
+        limited_federation_mode_description_html: Můžete si vybrat, zda povolit federaci s touto doménou.
         policies:
           reject_media: Odmítat média
           reject_reports: Odmítat hlášení
@@ -608,11 +613,14 @@ cs:
       assign_to_self: Přidělit ke mně
       assigned: Přiřazený moderátor
       by_target_domain: Doména nahlášeného účtu
+      cancel: Zrušit
       category: Kategorie
       category_description_html: Důvod nahlášení tohoto účtu a/nebo obsahu bude uveden v komunikaci s nahlášeným účtem
       comment:
         none: Žádné
       comment_description_html: 'Pro upřesnění uživatel %{name} napsal:'
+      confirm: Potvrdit
+      confirm_action: Potvrdit moderátorskou akci vůči @%{acct}
       created_at: Nahlášené
       delete_and_resolve: Smazat příspěvky
       forwarded: Přeposláno
@@ -629,6 +637,7 @@ cs:
         placeholder: Popište, jaké akce byly vykonány, nebo jakékoliv jiné související aktuality…
         title: Poznámky
       notes_description_html: Zobrazit a zanechat poznámky pro ostatní moderátory i sebe v budoucnu
+      processed_msg: Nahlášení č.%{id} bylo úspěšně zpracováno
       quick_actions_description_html: 'Proveďte rychlou akci nebo skrolujte dolů pro nahlášený obsah:'
       remote_user_placeholder: vzdálený uživatel z %{instance}
       reopen: Znovu otevřít hlášení
@@ -641,6 +650,24 @@ cs:
       status: Stav
       statuses: Nahlášený obsah
       statuses_description_html: Obsah porušující pravidla bude uveden v komunikaci s nahlášeným účtem
+      summary:
+        action_preambles:
+          delete_html: 'Chystáte se <strong>odstranit</strong> některé z příspěvků uživatele <strong>@%{acct}</strong>. To znamená:'
+          mark_as_sensitive_html: 'Chystáte se <strong>označit</strong> některé z příspěvků <strong>@%{acct}</strong>jako <strong>citlivé</strong>. To znamená:'
+          silence_html: 'Chystáte se omezit účet <strong></strong> <strong>@%{acct}</strong>. To znamená:'
+          suspend_html: 'Chystáte se <strong>pozastavit</strong> účet <strong>@%{acct}</strong>. To znamená:'
+        actions:
+          delete_html: Odstranit urážlivé příspěvky
+          mark_as_sensitive_html: Označit média urážejících příspěvků za citlivá
+          silence_html: Výrazně omezit dosah <strong>@%{acct}</strong> tím, že daný profil a jeho obsah bude viditelný pouze těm lidem, kteří ho sledují nebo jej ručně vyhledají
+          suspend_html: Pozastavit <strong>@%{acct}</strong>, což daný profil a obsah znepřístupní a neumožní se interakce s ním
+        close_report: Označit nahlášení č.%{id} za vyřešené
+        close_reports_html: Označit <strong>všechna</strong> hlášení proti <strong>@%{acct}</strong> jako vyřešená
+        delete_data_html: Odstranit profil a obsah <strong>@%{acct}</strong> ode dneška po 30 dní, pokud mezitím nebude zrušeno jeho pozastavení
+        preview_preamble_html: "<strong>@%{acct}</strong> obdrží varování s následujícím obsahem:"
+        record_strike_html: Zaznamenat prohřešek <strong>@%{acct}</strong> pro pomoc s řešením budoucích přestupků z tohoto účtu
+        send_email_html: Poslat varovný e-mail pro <strong>@%{acct}</strong>
+        warning_placeholder: Volitelné další odůvodnění moderační akce.
       target_origin: Původ nahlášeného účtu
       title: Hlášení
       unassign: Odebrat
@@ -759,7 +786,6 @@ cs:
           approved: Pro registraci je vyžadováno schválení
           none: Nikdo se nemůže registrovat
           open: Kdokoliv se může registrovat
-      title: Nastavení serveru
     site_uploads:
       delete: Odstranit nahraný soubor
       destroyed_msg: Upload stránky byl úspěšně smazán!
@@ -799,6 +825,7 @@ cs:
         suspend: Uživatel %{name} pozastavil účet %{target}
       appeal_approved: Podáno odvolání
       appeal_pending: Čekající odvolání
+      appeal_rejected: Odvolání zamítnuto
     system_checks:
       database_schema_check:
         message_html: Na spuštění čekají databázové migrace. Nechte je prosím proběhnout pro zajištění očekávaného chování aplikace
@@ -812,6 +839,12 @@ cs:
         message_html: Nedefinovali jste žádná pravidla serveru.
       sidekiq_process_check:
         message_html: Pro %{value} frontu/fronty neběží žádný Sidekiq proces. Zkontrolujte prosím svou Sidekiq konfiguraci
+      upload_check_privacy_error:
+        action: Pro více informací se podívejte zde
+        message_html: "<strong>Váš webový server je špatně nakonfigurován. Soukromí vašich uživatelů je ohroženo.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Pro více informací se podívejte zde
+        message_html: "<strong>Váš object storage je špatně nakonfigurován. Soukromí vašich uživatelů je ohroženo.</strong>"
     tags:
       review: Stav posouzení
       updated_msg: Nastavení hashtagů bylo úspěšně aktualizováno
@@ -836,6 +869,7 @@ cs:
           other: Sdílený %{count} lidmi za poslední týden
         title: Populární odkazy
         usage_comparison: Za dnešek %{today} sdílení, oproti %{yesterday} včera
+      not_allowed_to_trend: Trendování není povoleno
       only_allowed: Jen povolené
       pending_review: Čeká na posouzení
       preview_card_providers:
@@ -962,7 +996,6 @@ cs:
       guide_link: https://cs.crowdin.com/project/mastodon
       guide_link_text: Zapojit se může každý.
     sensitive_content: Citlivý obsah
-    toot_layout: Rozložení příspěvků
   application_mailer:
     notification_preferences: Změnit předvolby e-mailů
     salutation: "%{name},"
@@ -973,13 +1006,13 @@ cs:
   applications:
     created: Aplikace úspěšně vytvořena
     destroyed: Aplikace úspěšně smazána
+    logout: Odhlásit se
     regenerate_token: Znovu vygenerovat přístupový token
     token_regenerated: Přístupový token byl úspěšně vygenerován
     warning: Zacházejte s těmito daty opatrně. Nikdy je s nikým nesdílejte!
     your_token: Váš přístupový token
   auth:
     apply_for_account: Požádat o účet
-    change_password: Heslo
     confirmations:
       wrong_email_hint: Pokud není e-mail správný, můžete si ho změnit v nastavení účtu.
     delete_account: Odstranit účet
@@ -988,7 +1021,7 @@ cs:
       prefix_invited_by_user: "@%{name} vás zve na tento server Mastodon!"
       prefix_sign_up: Registrujte se na Mastodonu již dnes!
       suffix: S účtem budete moci sledovat lidi, psát příspěvky a vyměňovat si zprávy s uživateli z kteréhokoliv serveru Mastodon a dalších služeb!
-    didnt_get_confirmation: Neobdrželi jste pokyny pro potvrzení?
+    didnt_get_confirmation: Neobdrželi jste potvrzovací odkaz?
     dont_have_your_security_key: Nemáte svůj bezpečnostní klíč?
     forgot_password: Zapomněli jste heslo?
     invalid_reset_password_token: Token pro obnovení hesla je buď neplatný, nebo vypršel. Vyžádejte si prosím nový.
@@ -1001,26 +1034,36 @@ cs:
     migrate_account_html: Zde můžete <a href="%{path}">nastavit přesměrování tohoto účtu na jiný</a>.
     or_log_in_with: Nebo se přihlaste pomocí
     privacy_policy_agreement_html: Četl jsem a souhlasím se zásadami <a href="%{privacy_policy_path}" target="_blank">ochrany osobních údajů</a>
+    progress:
+      confirm: Confirm e-mail
+      details: Vaše údaje
+      review: Naše hodnocení
+      rules: Přijmout pravidla
     providers:
       cas: CAS
       saml: SAML
     register: Registrovat
     registration_closed: "%{instance} nepřijímá nové členy"
-    resend_confirmation: Znovu odeslat pokyny pro potvrzení
+    resend_confirmation: Znovu odeslat potvrzovací odkaz
     reset_password: Obnovit heslo
     rules:
+      accept: Přijmout
+      back: Zpět
       preamble: Tohle nastavují a prosazují moderátoři %{domain}.
       title: Některá základní pravidla.
     security: Zabezpečení
     set_new_password: Nastavit nové heslo
     setup:
-      email_below_hint_html: Pokud je níže uvedená e-mailová adresa nesprávná, můžete ji změnit zde a nechat si poslat nový potvrzovací e-mail.
-      email_settings_hint_html: Potvrzovací e-mail byl odeslán na %{email}. Pokud je tato adresa nesprávná, můžete ji změnit v nastavení účtu.
-      title: Nastavení
+      email_below_hint_html: Zkontrolujte složku se spamem, nebo požádejte o jinou. Pokud je to špatné, můžete opravit svou e-mailovou adresu.
+      email_settings_hint_html: Klikněte na odkaz, který jsme Vám poslali k ověření %{email}. Budeme zde čekat.
+      link_not_received: Nedostali jste odkaz?
+      new_confirmation_instructions_sent: Za několik minut obdržíte nový e-mail s potvrzovacím odkazem!
+      title: Zkontrolujte doručenou poštu
     sign_in:
       preamble_html: Přihlaste se se svýma <strong>%{domain}</strong> údajema. Pokud je váš účet hostován na jiném serveru, nemůžete se zde přihlásit.
       title: Přihlásit se k %{domain}
     sign_up:
+      manual_review: Registrace na %{domain} procházejí manuálním hodnocením od našich moderátorů. Abyste nám pomohli zpracovat Vaši registraci, napište trochu o sobě a proč chcete účet na %{domain}.
       preamble: S účtem na tomto serveru Mastodon budete moci sledovat jakoukoliv jinou osobu v síti bez ohledu na to, kde je jejich účet hostován.
       title: Pojďme vás nastavit na %{domain}.
     status:
@@ -1032,18 +1075,6 @@ cs:
       view_strikes: Zobrazit minulé prohřešky vašeho účtu
     too_fast: Formulář byl odeslán příliš rychle, zkuste to znovu.
     use_security_key: Použít bezpečnostní klíč
-  authorize_follow:
-    already_following: Tento účet již sledujete
-    already_requested: Tomuto účtu už jste žádost o sledování zaslali
-    error: Při hledání vzdáleného účtu bohužel nastala chyba
-    follow: Sledovat
-    follow_request: 'Poslali jste žádost o sledování uživateli:'
-    following: 'Podařilo se! Nyní sledujete uživatele:'
-    post_follow:
-      close: Nebo můžete toto okno klidně zavřít.
-      return: Zobrazit profil uživatele
-      web: Přejít na web
-    title: Sledovat %{acct}
   challenge:
     confirm: Pokračovat
     hint_html: "<strong>Tip:</strong> Po dobu jedné hodiny vás o heslo nebudeme znovu žádat."
@@ -1206,8 +1237,6 @@ cs:
       index:
         hint: Tento filtr se vztahuje na výběr jednotlivých příspěvků bez ohledu na jiná kritéria. Do tohoto filtru můžete přidat více příspěvků z webového rozhraní.
         title: Filtrované příspěvky
-  footer:
-    trending_now: Právě populární
   generic:
     all: Všechny
     all_items_on_page_selected_html:
@@ -1220,7 +1249,9 @@ cs:
       many: "<strong>%{count}</strong> položek odpovídající vašemu hledání je vybráno."
       one: "<strong>%{count}</strong> položka odpovídající vašemu hledání je vybrána."
       other: Všech <strong>%{count}</strong> položek odpovídající vašemu hledání je vybráno.
+    cancel: Zrušit
     changes_saved_msg: Změny byly úspěšně uloženy!
+    confirm: Potvrdit
     copy: Kopírovat
     delete: Smazat
     deselect: Zrušit výběr všeho
@@ -1238,19 +1269,38 @@ cs:
       many: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyb uvedených níže
       one: Něco ještě není úplně v pořádku! Zkontrolujte prosím chybu uvedenou níže
       other: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyb uvedených níže
-  html_validator:
-    invalid_markup: 'obsahuje neplatný HTML kód: %{error}'
   imports:
     errors:
+      empty: Prázdný CSV soubor
+      incompatible_type: Nekompatibilní s vybraným typem importu
       invalid_csv_file: 'Neplatný soubor CSV. Chyba: %{error}'
       over_rows_processing_limit: obsahuje více než %{count} řádků
+      too_large: Soubor je příliš velký
+    failures: Chyby
+    imported: Importováno
+    mismatched_types_warning: Zdá se, že jste pro tento import vybrali nesprávný typ, zkontrolujte, prosím, znova.
     modes:
       merge: Sloučit
       merge_long: Ponechat existující záznamy a přidat nové
       overwrite: Přepsat
       overwrite_long: Nahradit aktuální záznamy novými
     preface: Můžete importovat data, která jste exportovali z jiného serveru, jako například seznam lidí, které sledujete či blokujete.
+    recent_imports: Nedávné importy
+    states:
+      finished: Dokončeno
+      in_progress: Probíhá
+      scheduled: Naplánováno
+      unconfirmed: Nepotvrzeno
+    status: Stav
     success: Vaše data byla úspěšně nahrána a budou zpracována v pravý čas
+    time_started: Zahájeno v
+    titles:
+      blocking: Import blokovaných účtů
+      bookmarks: Import záložek
+      domain_blocking: Import blokovaných domén
+      following: Import sledovaných účtů
+      muting: Import ztlumených účtů
+    type: Typ importu
     types:
       blocking: Seznam blokovaných
       bookmarks: Záložky
@@ -1284,7 +1334,7 @@ cs:
     title: Pozvat lidi
   lists:
     errors:
-      limit: Dosáhli jste maximálního počtu seznamů
+      limit: Dosáhl jste maximálního počtu seznamů
   login_activities:
     authentication_methods:
       otp: aplikací pro dvoufaktorové ověření
@@ -1429,6 +1479,7 @@ cs:
     confirm_remove_selected_followers: Jste si jisti, že chcete odebrat vybrané sledující?
     confirm_remove_selected_follows: Jste si jisti, že chcete odstranit vybrané sledované?
     dormant: Nečinné
+    follow_failure: Nelze sledovat některé z vybraných účtů.
     follow_selected_followers: Sledovat vybrané sledující
     followers: Sledující
     following: Sledovaní
@@ -1468,6 +1519,7 @@ cs:
       electron: Electron
       firefox: Firefox
       generic: Neznámý prohlížeč
+      huawei_browser: Prohlížeč Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1477,6 +1529,7 @@ cs:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Neznámý prohlížeč
       weibo: Weibo
     current_session: Aktuální relace
     description: "%{browser} na systému %{platform}"
@@ -1489,9 +1542,10 @@ cs:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: neznámá platforma
+      unknown_platform: Neznámá platforma
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1574,7 +1628,6 @@ cs:
     show_newer: Zobrazit novější
     show_older: Zobrazit starší
     show_thread: Zobrazit vlákno
-    sign_in_to_participate: Chcete-li se zúčastnit této konverzace, přihlaste se
     title: "%{name}: „%{quote}“"
     visibilities:
       direct: Přímé
@@ -1616,12 +1669,10 @@ cs:
       '7889238': 3 měsíce
     min_age_label: Hranice stáří
     min_favs: Zachovat příspěvky oblíbené alespoň
-    min_favs_hint: Nesmaže žádný z vašich příspěvků, který obdržel alespoň dané množství oblíbení. Ponechte prázdné pro mazání příspěvků bez ohledu na počet jejich oblíbení
+    min_favs_hint: Neodstraňuje žádný z vašich příspěvků, které obdržely alespoň tento počet oblíbených. Nechte prázdné pro odstranění příspěvků bez ohledu na jejich počet oblíbených
     min_reblogs: Zachovat příspěvky boostnuté alespoň
     min_reblogs_hint: Nesmaže žádný z vašich příspěvků, který byl boostnut alespoň tolikrát. Ponechte prázdné pro mazání příspěvků bez ohledu na počet jejich boostnutí
   stream_entries:
-    pinned: Připnutý příspěvek
-    reblogged: boostnul
     sensitive_content: Citlivý obsah
   strikes:
     errors:
@@ -1716,12 +1767,12 @@ cs:
       title: Vítejte na palubě, %{name}!
   users:
     follow_limit_reached: Nemůžete sledovat více než %{limit} lidí
+    go_to_sso_account_settings: Přejděte do nastavení účtu poskytovatele identity
     invalid_otp_token: Neplatný kód pro dvoufázové ověřování
     otp_lost_help_html: Pokud jste ztratili přístup k oběma, spojte se s %{email}
     seamless_external_login: Jste přihlášeni přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
     signed_in_as: 'Přihlášeni jako:'
   verification:
-    explanation_html: 'Můžete se <strong>ověřit jako vlastník odkazů v metadatech profilu</strong>. Pro tento účel musí stránka v odkazu obsahovat odkaz zpět na váš profil na Mastodonu. Odkaz zpět <strong>musí</strong> mít atribut <code>rel="me"</code>. Na textu odkazu nezáleží. Zde je příklad:'
     verification: Ověření
   webauthn_credentials:
     add: Přidat nový bezpečnostní klíč

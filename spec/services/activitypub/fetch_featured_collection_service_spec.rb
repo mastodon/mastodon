@@ -1,37 +1,41 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
+  subject { described_class.new }
+
   let(:actor) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/account', featured_collection_url: 'https://example.com/account/pinned') }
 
   let!(:known_status) { Fabricate(:status, account: actor, uri: 'https://example.com/account/pinned/1') }
 
-  let(:status_json_1) do
+  let(:status_json_pinned_known) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
       type: 'Note',
-      id: 'https://example.com/account/pinned/1',
+      id: 'https://example.com/account/pinned/known',
       content: 'foo',
       attributedTo: actor.uri,
       to: 'https://www.w3.org/ns/activitystreams#Public',
     }
   end
 
-  let(:status_json_2) do
+  let(:status_json_pinned_unknown_inlined) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
       type: 'Note',
-      id: 'https://example.com/account/pinned/2',
+      id: 'https://example.com/account/pinned/unknown-inlined',
       content: 'foo',
       attributedTo: actor.uri,
       to: 'https://www.w3.org/ns/activitystreams#Public',
     }
   end
 
-  let(:status_json_4) do
+  let(:status_json_pinned_unknown_unreachable) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
       type: 'Note',
-      id: 'https://example.com/account/pinned/4',
+      id: 'https://example.com/account/pinned/unknown-reachable',
       content: 'foo',
       attributedTo: actor.uri,
       to: 'https://www.w3.org/ns/activitystreams#Public',
@@ -40,10 +44,10 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
 
   let(:items) do
     [
-      'https://example.com/account/pinned/1', # known
-      status_json_2, # unknown inlined
-      'https://example.com/account/pinned/3', # unknown unreachable
-      'https://example.com/account/pinned/4', # unknown reachable
+      'https://example.com/account/pinned/known', # known
+      status_json_pinned_unknown_inlined, # unknown inlined
+      'https://example.com/account/pinned/unknown-unreachable', # unknown unreachable
+      'https://example.com/account/pinned/unknown-reachable', # unknown reachable
     ]
   end
 
@@ -56,20 +60,22 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
     }.with_indifferent_access
   end
 
-  subject { described_class.new }
-
   shared_examples 'sets pinned posts' do
     before do
-      stub_request(:get, 'https://example.com/account/pinned/1').to_return(status: 200, body: Oj.dump(status_json_1))
-      stub_request(:get, 'https://example.com/account/pinned/2').to_return(status: 200, body: Oj.dump(status_json_2))
-      stub_request(:get, 'https://example.com/account/pinned/3').to_return(status: 404)
-      stub_request(:get, 'https://example.com/account/pinned/4').to_return(status: 200, body: Oj.dump(status_json_4))
+      stub_request(:get, 'https://example.com/account/pinned/known').to_return(status: 200, body: Oj.dump(status_json_pinned_known))
+      stub_request(:get, 'https://example.com/account/pinned/unknown-inlined').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_inlined))
+      stub_request(:get, 'https://example.com/account/pinned/unknown-unreachable').to_return(status: 404)
+      stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_unreachable))
 
       subject.call(actor, note: true, hashtag: false)
     end
 
     it 'sets expected posts as pinned posts' do
-      expect(actor.pinned_statuses.pluck(:uri)).to match_array ['https://example.com/account/pinned/1', 'https://example.com/account/pinned/2', 'https://example.com/account/pinned/4']
+      expect(actor.pinned_statuses.pluck(:uri)).to contain_exactly(
+        'https://example.com/account/pinned/known',
+        'https://example.com/account/pinned/unknown-inlined',
+        'https://example.com/account/pinned/unknown-reachable'
+      )
     end
   end
 
@@ -109,7 +115,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
             type: 'CollectionPage',
             partOf: actor.featured_collection_url,
             items: items,
-          }
+          },
         }.with_indifferent_access
       end
 

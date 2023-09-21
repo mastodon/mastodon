@@ -1,7 +1,7 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/index.js
 
-import data from './emoji_mart_data_light';
+import * as data from './emoji_mart_data_light';
 
 const buildSearch = (data) => {
   const search = [];
@@ -73,7 +73,7 @@ const stringFromCodePoint = _String.fromCodePoint || function () {
 
 const _JSON = JSON;
 
-const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/;
+const COLONS_REGEX = /^(?::([^:]+):)(?::skin-tone-(\d):)?$/;
 const SKINS = [
   '1F3FA', '1F3FB', '1F3FC',
   '1F3FD', '1F3FE', '1F3FF',

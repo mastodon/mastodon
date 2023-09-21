@@ -113,8 +113,6 @@ si:
       removed_header_msg: "%{username}හි ශීර්ෂ රූපය සාර්ථකව ඉවත් කරන ලදී"
       resend_confirmation:
         already_confirmed: මෙම පරිශීලකයා දැනටමත් තහවුරු කර ඇත
-        send: තහවුරුකිරීමේ විද්යුත් තැපැල් පණිවිඩය නැවත එවන්න
-        success: තහවුරු කිරීමේ විද්‍යුත් තැපෑල සාර්ථකව යවා ඇත!
       reset: නැවත සකසන්න
       reset_password: මුරපදය නැවතසකසන්න
       resubscribe: නැවත දායක වන්න
@@ -759,7 +757,6 @@ si:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: සෑම කෙනෙකුටම දායක විය හැකිය.
     sensitive_content: සංවේදී අන්තර්ගතය
-    toot_layout: පෝස්ට් පිරිසැලසුම
   application_mailer:
     notification_preferences: ඊමේල් මනාප වෙනස් කරන්න
     salutation: "%{name},"
@@ -775,14 +772,12 @@ si:
     warning: මෙම දත්ත සමඟ ඉතා ප්රවේශම් වන්න. එය කිසි විටෙක කිසිවෙකු සමඟ බෙදා නොගන්න!
     your_token: ඔබේ ප්‍රවේශ ටෝකනය
   auth:
-    change_password: මුර පදය
     delete_account: ගිණුම මකන්න
     delete_account_html: ඔබට ඔබගේ ගිණුම මකා දැමීමට අවශ්‍ය නම්, ඔබට <a href="%{path}">මෙතැනින් ඉදිරියට යා හැක</a>. තහවුරු කිරීම සඳහා ඔබෙන් අසනු ඇත.
     description:
       prefix_invited_by_user: "@%{name} ඔබට Mastodon හි මෙම සේවාදායකයට සම්බන්ධ වීමට ආරාධනා කරයි!"
       prefix_sign_up: අදම මාස්ටඩන් හි ලියාපදිංචි වන්න!
       suffix: ගිණුමක් සමඟ, ඔබට ඕනෑම Mastodon සේවාදායකයකින් සහ තවත් බොහෝ දේ භාවිතා කරන්නන් සමඟ පුද්ගලයින් අනුගමනය කිරීමට, යාවත්කාලීන කිරීම් පළ කිරීමට සහ පණිවිඩ හුවමාරු කර ගැනීමට හැකි වනු ඇත!
-    didnt_get_confirmation: තහවුරු කිරීමේ උපදෙස් ලැබුණේ නැද්ද?
     dont_have_your_security_key: ඔබගේ ආරක්ෂක යතුර නොමැතිද?
     forgot_password: මුරපදය අමතක වුනාද?
     invalid_reset_password_token: මුරපද යළි පිහිටුවීමේ ටෝකනය අවලංගු හෝ කල් ඉකුත් වී ඇත. කරුණාකර අලුත් එකක් ඉල්ලන්න.
@@ -796,14 +791,9 @@ si:
     or_log_in_with: හෝ සමඟින් පිවිසෙන්න
     register: ලියාපදිංචිය
     registration_closed: "%{instance} නව සාමාජිකයින් පිළිගන්නේ නැත"
-    resend_confirmation: තහවුරු කිරීමේ උපදෙස් නැවත යවන්න
     reset_password: මුරපදය නැවත සකසන්න
     security: ආරක්ෂාව
     set_new_password: නව මුරපදය සකසන්න
-    setup:
-      email_below_hint_html: පහත විද්‍යුත් තැපැල් ලිපිනය වැරදි නම්, ඔබට එය මෙතැනින් වෙනස් කර නව තහවුරු කිරීමේ විද්‍යුත් තැපෑලක් ලබා ගත හැක.
-      email_settings_hint_html: තහවුරු කිරීමේ විද්‍යුත් තැපෑල %{email}වෙත යවන ලදී. එම විද්‍යුත් තැපැල් ලිපිනය නිවැරදි නොවේ නම්, ඔබට එය ගිණුම් සැකසුම් තුළ වෙනස් කළ හැක.
-      title: සැලසුම
     status:
       account_status: ගිණුමේ තත්වය
       confirming: විද්‍යුත් තැපෑල තහවුරු කිරීම සම්පූර්ණ කිරීම සඳහා රැඳී සිටිමින්.
@@ -813,18 +803,6 @@ si:
       view_strikes: ඔබගේ ගිණුමට එරෙහිව පසුගිය වර්ජන බලන්න
     too_fast: පෝරමය ඉතා වේගයෙන් ඉදිරිපත් කර ඇත, නැවත උත්සාහ කරන්න.
     use_security_key: ආරක්ෂක යතුර භාවිතා කරන්න
-  authorize_follow:
-    already_following: ඔබ දැනටමත් මෙම ගිණුම අනුගමනය කරයි
-    already_requested: ඔබ දැනටමත් එම ගිණුමට අනුගමනය ඉල්ලීමක් යවා ඇත
-    error: අවාසනාවකට, දුරස්ථ ගිණුම සෙවීමේදී දෝෂයක් ඇති විය
-    follow: අනුගමනය
-    follow_request: 'ඔබ පහත ඉල්ලීමක් යවා ඇත:'
-    following: 'සාර්ථකත්වය! ඔබ දැන් පහත දැක්වේ:'
-    post_follow:
-      close: හෝ ඔබට මෙම කවුළුව වසාදැමිය හැකිය.
-      return: පරිශීලකගේ පැතිකඩ පෙන්වන්න
-      web: වියමන ට යන්න
-    title: "%{acct} අනුගමනය"
   challenge:
     confirm: ඉදිරියට
     hint_html: "<strong>ඉඟිය:</strong> අපි ඉදිරි පැය සඳහා නැවත ඔබගේ මුරපදය ඔබෙන් නොඉල්ලමු."
@@ -931,8 +909,6 @@ si:
     storage: මාධ්‍ය ගබඩාව
   featured_tags:
     add_new: අලුතින් එකතු කරන්න
-    errors:
-      limit: ඔබ දැනටමත් උපරිම හෑෂ් ටැග් ප්‍රමාණය විශේෂාංග කර ඇත
     hint_html: "<strong>විශේෂාංගගත හැෂ් ටැග් මොනවාද?</strong> ඒවා ඔබේ පොදු පැතිකඩෙහි ප්‍රමුඛව ප්‍රදර්ශනය වන අතර එම හැෂ් ටැග් යටතේ ඔබේ පොදු පළ කිරීම් බ්‍රවුස් කිරීමට මිනිසුන්ට ඉඩ සලසයි. නිර්මාණාත්මක කෘති හෝ දිගු කාලීන ව්යාපෘති පිළිබඳ වාර්තාවක් තබා ගැනීම සඳහා ඔවුන් විශිෂ්ට මෙවලමක් වේ."
   filters:
     contexts:
@@ -961,8 +937,6 @@ si:
     new:
       save: නව පෙරහන සුරකින්න
       title: නව පෙරහනක් එකතු කරන්න
-  footer:
-    trending_now: දැන් ප්‍රවණතාවය
   generic:
     all: සියල්ල
     changes_saved_msg: වෙනස්කම් සාර්ථකව සුරකින ලදී!
@@ -975,8 +949,6 @@ si:
     validation_errors:
       one: යමක් තවමත් හරි නැත! කරුණාකර පහත දෝෂය සමාලෝචනය කරන්න
       other: යමක් තවමත් හරි නැත! කරුණාකර පහත දෝෂ %{count} ක් සමාලෝචනය කරන්න
-  html_validator:
-    invalid_markup: 'වලංගු නොවන HTML සලකුණු අඩංගු වේ: %{error}'
   imports:
     errors:
       over_rows_processing_limit: පේළි %{count} කට වඩා අඩංගු වේ
@@ -1016,9 +988,6 @@ si:
       expires_at: කල් ඉකුත් වේ
       uses: භාවිතා කරයි
     title: මිනිසුන්ට ආරාධනා කරන්න
-  lists:
-    errors:
-      limit: ඔබ උපරිම ලැයිස්තු ප්‍රමාණයට ළඟා වී ඇත
   login_activities:
     authentication_methods:
       otp: ද්වි-සාධක සත්‍යාපන යෙදුම
@@ -1213,7 +1182,6 @@ si:
       ios: අයිඕඑස්
       linux: ලිනක්ස්
       mac: මැක්ඕඑස්
-      other: නොදන්නා වේදිකාව
       windows: වින්ඩෝස්
       windows_mobile: වින්ඩෝස් මොබයිල්
       windows_phone: වින්ඩෝස් පෝන්
@@ -1284,7 +1252,6 @@ si:
     show_newer: අලුත්ම පෙන්වන්න
     show_older: පැරණි පෙන්වන්න
     show_thread: නූල් පෙන්වන්න
-    sign_in_to_participate: සංවාදයට සහභාගී වීමට පුරන්න
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: සෘජු
@@ -1326,12 +1293,9 @@ si:
       '7889238': මාස 3 යි
     min_age_label: වයස් සීමාව
     min_favs: අඩුම තරමින් පෝස්ට් ප්‍රිය කරන ලෙස තබා ගන්න
-    min_favs_hint: අවම වශයෙන් මෙම ප්‍රියතම ප්‍රමාණය ලබා ඇති ඔබේ පළ කිරීම් කිසිවක් මකන්නේ නැත. ඔවුන්ගේ ප්‍රියතමයන් ගණන නොතකා පළ කිරීම් මැකීමට හිස්ව තබන්න
     min_reblogs: අඩුම තරමේ පෝස්ට් බූස්ට් කරගෙන තියාගන්න
     min_reblogs_hint: අඩුම තරමින් මෙම වාර ගණන වැඩි කර ඇති ඔබගේ පළ කිරීම් කිසිවක් මකා නොදමන්න. බූස්ට් ගණන නොතකා පළ කිරීම් මැකීමට හිස්ව තබන්න
   stream_entries:
-    pinned: ඇමිණූ ලිපිය
-    reblogged: ඉහල නැංවීය
     sensitive_content: සංවේදී අන්තර්ගතයකි
   strikes:
     errors:
@@ -1424,7 +1388,6 @@ si:
     seamless_external_login: ඔබ බාහිර සේවාවක් හරහා ලොග් වී ඇත, එබැවින් මුරපදය සහ ඊමේල් සැකසුම් නොමැත.
     signed_in_as: 'මෙසේ පුරනය වී ඇත:'
   verification:
-    explanation_html: 'ඔබගේ පැතිකඩ පාරදත්ත</strong>හි ඇති සබැඳි වල හිමිකරු ලෙස ඔබට <strong>සත්‍යාපනය කළ හැක. ඒ සඳහා, සම්බන්ධිත වෙබ් අඩවියේ ඔබේ Mastodon පැතිකඩ වෙත ආපසු සබැඳියක් තිබිය යුතුය. සබැඳිය ආපසු <strong></code> </strong> <code>යුතුය. සබැඳියේ පෙළ අන්තර්ගතය වැදගත් නොවේ. මෙන්න උදාහරණයක්:'
     verification: සත්යාපනය
   webauthn_credentials:
     add: නව ආරක්ෂක යතුර එක් කරන්න

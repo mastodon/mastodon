@@ -24,7 +24,7 @@ class ActivityPub::ProcessAccountService < BaseService
     # The key does not need to be unguessable, it just needs to be somewhat unique
     @options[:request_id] ||= "#{Time.now.utc.to_i}-#{username}@#{domain}"
 
-    with_lock("process_account:#{@uri}") do
+    with_redis_lock("process_account:#{@uri}") do
       @account            = Account.remote.find_by(uri: @uri) if @options[:only_key]
       @account          ||= Account.find_remote(@username, @domain)
       @old_public_key     = @account&.public_key
@@ -79,7 +79,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
     set_immediate_protocol_attributes!
 
-    @account.save
+    @account.save!
   end
 
   def update_account
@@ -115,6 +115,8 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.fields                  = property_values || {}
     @account.also_known_as           = as_array(@json['alsoKnownAs'] || []).map { |item| value_or_id(item) }
     @account.discoverable            = @json['discoverable'] || false
+    @account.indexable               = @json['indexable'] || false
+    @account.memorial                = @json['memorial'] || false
   end
 
   def set_fetchable_key!
@@ -229,6 +231,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def property_values
     return unless @json['attachment'].is_a?(Array)
+
     as_array(@json['attachment']).select { |attachment| attachment['type'] == 'PropertyValue' }.map { |attachment| attachment.slice('name', 'value') }
   end
 
@@ -292,6 +295,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def domain_block
     return @domain_block if defined?(@domain_block)
+
     @domain_block = DomainBlock.rule_for(@domain)
   end
 

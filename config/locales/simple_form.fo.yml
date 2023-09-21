@@ -2,6 +2,14 @@
 fo:
   simple_form:
     hints:
+      account:
+        discoverable: Tínir almennu postar og tín vangi kunnu vera drigin fram og viðmæld ymsa staðni í Mastodon og vangin hjá tær kann vera viðmæltur øðrum brúkarum.
+        display_name: Títt fulla navn og títt stuttliga navn.
+        fields: Heimasíðan hjá tær, fornøvn, aldur ella hvat tú vil.
+        indexable: Almennu postar tínir kunnu vera sjónligir í leitiúrslitum á Mastodon. Óansæð, so kunnu fólk, sum hava samvirkað við tínar postar, finna teir.
+        note: 'Tú kanst @umrøða onnur fólk ella #frámerki.'
+        show_collections: Tað verður gjørligt hjá fólki at kaga í listan yvir tey, sum fylgja tær, og tey, sum tú fylgir. Tó so, fólk, sum tú fylgir, síggja at tú fylgir teimum.
+        unlocked: Fólk kunnu fylgja tær uttan at biðja um loyvi. Frável hetta, um tú vilt eftirkanna umbønir og góðkenna ella avvísa nýggjar fylgjarar.
       account_alias:
         acct: Upplýs brúkaranavn@navnaøki á kontuni, sum tú vilt flyta frá
       account_migration:
@@ -37,14 +45,11 @@ fo:
         current_password: Av trygdarávum vinarliga les inn loyniorðið hjá verandi kontu
         current_username: Fyri at vátta, vinarliga les inn brúkaranavnið á verandi kontu
         digest: Einans sent eftir eitt langt tíðarskeið við óvirkni og einans um tú hevur móttikið persónlig boð meðan tú var burtur
-        discoverable: Loyv kontu tíni at verða funnin av fremmandum gjøgnum viðmæli, rák og aðrar hentleikar
         email: Tú fær sendandi ein váttanarteldupost
-        fields: Tú kanst hava upp til 4 lutir vístar sum eina talvu á vanga tínum
         header: PNG, GIF ella JPG. Ikki størri enn %{size}. Verður minkað til %{dimensions}px
         inbox_url: Avrita URL'in frá forsíðuni hjá reiðlagnum, sum tú vilt brúka
         irreversible: Filtreraðir postar blíva burtur med alla, eisini sjálvt um filtrið seinni verður strikað
         locale: Málið, sum verður brúkt í brúkaramarkamótinum, teldupostum og skumpiboðum
-        locked: Stýr hvør kann fylgja tær við at góðtaka ella vraka umbønir um at fylgja
         password: Skriva minst 8 tekin
         phrase: Fer at samsvara óanæsð um tað er skrivað við lítlum ella stórum ella um postar hava innihaldsávaringar
         scopes: Hvørji API nýtsluskipanin fær atgongd til. Velur tú eitt vav á hægsta stigi, so er ikki neyðugt at velja tey einstøku.
@@ -54,12 +59,9 @@ fo:
         setting_display_media_default: Fjal miðlafílur, sum eru merktar sum viðkvæmar
         setting_display_media_hide_all: Fjal altíð miðlafílur
         setting_display_media_show_all: Vís altíð miðlafílur
-        setting_hide_network: Tey, ið tú fylgir og tey, ið fylgja tær, verða ikki víst á tínum vanga
-        setting_noindex: Ávirkar almenna vangan og síður við postum hjá tær
-        setting_show_application: Nýtsluskipanin, sum tú brúkar at posta við, verður víst í nágreinligu vísingini av postum tínum
         setting_use_blurhash: Gradientar eru grundaðir á litirnar av fjaldu myndunum, men grugga allar smálutir
         setting_use_pending_items: Fjal tíðarlinjudagføringar aftan fyri eitt klikk heldur enn at skrulla tilføringina sjálvvirkandi
-        username: Brúkaranavnið hjá tær verður eindømi á %{domain}
+        username: Tú kanst brúka bókstavir, tøl og botnstrikur
         whole_word: Tá lyklaorðið ella frasan einans hevur bókstavir og tøl, so verður hon einans nýtt, um tú samsvarar við alt orðið
       domain_allow:
         domain: Økisnavnið kann heinta dátur frá hesum ambætaranum og inngangandi dátur frá honum verða viðgjørdar og goymdar
@@ -118,6 +120,9 @@ fo:
       sessions:
         otp: 'Skriva tvey-faktor koduna frá telefon-appini ella brúka eina av tínum endurgerðskodum:'
         webauthn: Er tað ein geymi, minst so til at seta hann í og, um neyðugt, pikka hann.
+      settings:
+        indexable: Vangasíðan hjá tær kann síggjast í leitiúrslitum á Google, Bing og aðrastaðni.
+        show_application: Óansæð, so er altíð møguligt hjá tær at síggja, hvør app postaði tín post.
       tag:
         name: Tú kanst einans broyta millum stórar og smáar stavir, til dømis fyri at gera tað meira lesiligt
       user:
@@ -131,12 +136,17 @@ fo:
         position: Hægri leiklutur er avgerandi fyri loysn av ósemjum í ávísum støðum. Ávísar atgerðir kunnu einans verða gjørdar móti leiklutum, sum hava eina lægri raðfesting
       webhook:
         events: Vel hendingar at senda
+        template: Samanset títt egna JSON farm við at brúka variabul-interpolasjón. Lat vera blankt fyri sjálvgaldandi JSON.
         url: Hvar hendingar verða sendar til
     labels:
       account:
+        discoverable: Framheva vanga og postar í uppdagingar-algoritmum
         fields:
           name: Spjaldur
           value: Innihald
+        indexable: Tak almennar postar við í leitiúrslit
+        show_collections: Vís fylgjarar og tey, tú fylgir, á vanganum
+        unlocked: Góðtak nýggjar fylgjarar sjálvvirkandi
       account_alias:
         acct: Brúkaranavn á gomlu kontuni
       account_migration:
@@ -174,7 +184,6 @@ fo:
         context: Filtrera kontekstir
         current_password: Núverandi loyniorð
         data: Dáta
-        discoverable: Skjót kontuna upp fyri øðrum
         display_name: Navn, sum skal vísast
         email: Teldubrævabústaður
         expires_in: Endar aftan á
@@ -184,7 +193,6 @@ fo:
         inbox_url: URL'ur hjá innbakkanum hjá reiðlagnum
         irreversible: Strika heldur enn at fjala
         locale: Markamótsmál
-        locked: Krev umbønir um at fylgja
         max_uses: Ikki brúka oftari enn
         new_password: Nýtt loyniorð
         note: Ævilýsing
@@ -196,7 +204,6 @@ fo:
         setting_always_send_emails: Send altíð fráboðanir við telduposti
         setting_auto_play_gif: Spæl teknimyndagjørdar GIFar sjálvvirkandi
         setting_boost_modal: Vís váttanarmynd, áðrenn tú stimbrar postar
-        setting_crop_images: Sker myndir til lutfallið 16x9 í postum, sum ikki eru víðkaðir
         setting_default_language: Mál, sum verður brúkt til postar
         setting_default_privacy: Hvussu privatir eru postar?
         setting_default_sensitive: Merk altíð miðlafílur sum viðkvæmar
@@ -208,9 +215,7 @@ fo:
         setting_display_media_show_all: Vís alt
         setting_expand_spoilers: Víðka altíð postar, sum eru merktir við innihaldsávaringum
         setting_hide_network: Fjal sosiala grafin hjá tær
-        setting_noindex: Frábið tær indeksering á leitimaskinum
         setting_reduce_motion: Minka um rørslu í teknimyndum
-        setting_show_application: Avdúka serskipan, sum verður brúkt til at senda postar
         setting_system_font_ui: Brúka vanliga skriftaslagið hjá skipanini
         setting_theme: Uppsetingareyðkenni
         setting_trends: Vís dagsins rák
@@ -286,9 +291,18 @@ fo:
         pending_account: Nýggj konta krevur viðgerð
         reblog: Onkur stimbraði postin hjá tær
         report: Nýggj melding er send inn
+        software_updates:
+          all: Gev fráboðan um allar dagføringar
+          critical: Gev einans fráboðan um kritiskar dagføringar
+          label: Ein nýggj Mastodon-útgáva er tøk
+          none: Gev aldrin fráboðan um dagføringar (ikki viðmælt)
+          patch: Gev fráboðan um feilrættingardagføringar
         trending_tag: Broytt rák skal kannast
       rule:
         text: Regla
+      settings:
+        indexable: Lat vangasíðu vera tøka í leitimaskinum
+        show_application: Vís frá hvørjari app tú sendi ein post
       tag:
         listable: Loyva hesum tvíkrossið, at verða vístur í leitingum og uppskotum
         name: Tvíkrossur
@@ -296,6 +310,7 @@ fo:
         usable: Loyva uppsløgum at brúka hendan tvíkross
       user:
         role: Leiklutur
+        time_zone: Tíðarsona
       user_role:
         color: Litur á tignarmerki
         highlighted: Vís leiklut sum tignarmerki á brúkaravangum
@@ -304,9 +319,11 @@ fo:
         position: Raðfesting
       webhook:
         events: Virknar hendingar
+        template: Farmaformur
         url: Endapunkts-URLur
     'no': Nei
     not_recommended: Ikki viðmælt
+    overridden: Ógildað
     recommended: Viðmælt
     required:
       mark: "*"

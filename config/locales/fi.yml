@@ -9,9 +9,9 @@ fi:
   accounts:
     follow: Seuraa
     followers:
-      one: Seuraaja
-      other: Seuraajat
-    following: Seuraaja
+      one: seuraaja
+      other: seuraajaa
+    following: seurattu(a)
     instance_actor_flash: Tämä on virtuaalitili, jota käytetään edustamaan itse palvelinta eikä yksittäistä käyttäjää. Sitä käytetään yhdistämistarkoituksiin, eikä sitä tule jäädyttää.
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
@@ -19,8 +19,8 @@ fi:
     pin_errors:
       following: Sinun täytyy seurata henkilöä jota haluat tukea
     posts:
-      one: Julkaisu
-      other: Viestit
+      one: viesti
+      other: viestiä
     posts_tab_heading: Viestit
   admin:
     account_actions:
@@ -43,7 +43,7 @@ fi:
         label: Vaihda sähköposti
         new_email: Uusi sähköposti
         submit: Vaihda sähköposti
-        title: Vaihda sähköposti käyttäjälle %{username}
+        title: Vaihda käyttäjän %{username} sähköposti-osoite
       change_role:
         changed_msg: Rooli vaihdettu onnistuneesti!
         label: Vaihda roolia
@@ -91,6 +91,7 @@ fi:
       moderation:
         active: Aktiivinen
         all: Kaikki
+        disabled: Ei käytössä
         pending: Odottavat
         silenced: Rajoitettu
         suspended: Jäähyllä
@@ -124,8 +125,8 @@ fi:
       removed_header_msg: Käyttäjän %{username} otsakekuva poistettiin onnistuneesti
       resend_confirmation:
         already_confirmed: Tämä käyttäjä on jo vahvistettu
-        send: Lähetä vahvistusviesti uudelleen
-        success: Vahvistusviesti onnistuneesti lähetetty!
+        send: Lähetä vahvistuslinkki uudelleen
+        success: Vahvistuslinkki on lähetetty!
       reset: Palauta
       reset_password: Palauta salasana
       resubscribe: Tilaa uudelleen
@@ -133,6 +134,7 @@ fi:
       search: Hae
       search_same_email_domain: Muut käyttäjät, joilla on sama sähköpostin verkkotunnus
       search_same_ip: Muut käyttäjät, joilla on sama IP-osoite
+      security: Turvallisuus
       security_measures:
         only_password: Vain salasana
         password_and_2fa: Salasana ja kaksivaiheinen tunnistautuminen
@@ -307,6 +309,7 @@ fi:
       unpublish: Lopeta julkaisu
       unpublished_msg: Ilmoituksen julkaisu lopetettu!
       updated_msg: Ilmoitus päivitetty onnistuneesti!
+    critical_update_pending: Kriittinen päivitys odottaa
     custom_emojis:
       assign_category: Aseta kategoria
       by_domain: Verkkotunnus
@@ -314,9 +317,9 @@ fi:
       copy: Kopioi
       copy_failed_msg: Emojista ei voitu tehdä paikallista kopiota
       create_new_category: Luo uusi kategoria
-      created_msg: Emojin luonti onnistui!
+      created_msg: Emojin luotu!
       delete: Poista
-      destroyed_msg: Emojon poisto onnistui!
+      destroyed_msg: Emojo poistettu!
       disable: Poista käytöstä
       disabled: Ei käytössä
       disabled_msg: Emojin poisto käytöstä onnistui
@@ -331,7 +334,7 @@ fi:
         title: Lisää uusi mukautettu emoji
       no_emoji_selected: Emojeita ei muutettu, koska yhtään ei valittu
       not_permitted: Sinulla ei ole oikeutta suorittaa tätä toimintoa
-      overwrite: Kirjoita yli
+      overwrite: Korvaa
       shortcode: Lyhennekoodi
       shortcode_hint: Vähintään kaksi merkkiä, vain kirjaimia, numeroita ja alaviivoja
       title: Mukautetut emojit
@@ -380,6 +383,15 @@ fi:
       undo: Estä liitto verkkotunnukselle
     domain_blocks:
       add_new: Lisää uusi
+      confirm_suspension:
+        cancel: Peruuta
+        confirm: Jäädytä
+        permanent_action: Jäädytyksen kumoaminen ei palauta mitään tietoja tai suhteita.
+        preamble_html: Olet jäädyttämässä verkkotunnuksen <strong>%{domain}</strong> ja sen aliverkkotunnukset.
+        remove_all_data: Tämä toiminto poistaa palvelimeltasi kaiken sisällön, median ja profiilitiedot tämän palvelun tileiltä.
+        stop_communication: Palvelimesi lopettaa näiden palvelinten viestinnän.
+        title: Vahvista verkkotunnuksen %{domain} esto
+        undo_relationships: Tämä kumoaa näiden palvelimien ja sinun tilien välisen seurannan.
       created_msg: Verkkotunnuksen estoa käsitellään
       destroyed_msg: Verkkotunnuksen esto on peruttu
       domain: Verkkotunnus
@@ -420,13 +432,14 @@ fi:
       delete: Poista
       dns:
         types:
-          mx: MX tietue
+          mx: MX-tietue
       domain: Verkkotunnus
       new:
         create: Lisää verkkotunnus
         resolve: Ratkaise verkkotunnus
         title: Uusi sähköpostiestolistan merkintä
       no_email_domain_block_selected: Sähköpostin verkkotunnuksia ei muutettu, koska yhtään ei valittu
+      not_permitted: Ei sallittu
       resolved_dns_records_hint_html: Verkkotunnuksen nimi määräytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää kirjautumisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostin palveluntarjoajia.</strong>
       resolved_through_html: Ratkaistu %{domain} kautta
       title: Sähköpostiestolista
@@ -473,6 +486,7 @@ fi:
       content_policies:
         comment: Sisäinen huomautus
         description_html: Voit määrittää sisältökäytännöt, joita sovelletaan kaikkiin tämän verkkotunnuksen ja sen aliverkkotunnuksien tileihin.
+        limited_federation_mode_description_html: Voit valita sallitaanko federointi tällä verkkotunnuksella.
         policies:
           reject_media: Hylkää media
           reject_reports: Hylkää raportit
@@ -585,11 +599,13 @@ fi:
       assign_to_self: Ota tehtäväksi
       assigned: Määritetty valvoja
       by_target_domain: Ilmoitetun tilin verkkotunnus
+      cancel: Peruuta
       category: Kategoria
       category_description_html: Syy, miksi tämä tili ja/tai sisältö ilmoitettiin, mainitaan yhteydenotossa ilmoitettuun tiliin
       comment:
         none: Ei mitään
       comment_description_html: 'Antaakseen lisätietoja %{name} kirjoitti:'
+      confirm: Vahvista
       confirm_action: Vahvista moderointitoiminto käyttäjää @%{acct} kohtaan
       created_at: Raportoitu
       delete_and_resolve: Poista viestejä
@@ -725,6 +741,9 @@ fi:
       branding:
         preamble: Palvelimesi brändäys erottaa sen muista verkon palvelimista. Nämä tiedot voidaan näyttää useissa eri ympäristöissä, kuten Mastodonin käyttöliittymässä, sovelluksissa, linkkien esikatselu muilla sivustoilla ja viestisovelluksien sisällä ja niin edelleen. Tästä syystä on parasta pitää nämä tiedot selkeinä, lyhyinä ja ytimekkäinä.
         title: Brändäys
+      captcha_enabled:
+        desc_html: Tämä perustuu ulkoisiin skripteihin hCaptchasta, mikä voi olla turvallisuus- ja yksityisyysongelma. Lisäksi <strong>tämä voi tehdä rekisteröinnin ihmisille huomattavasti (erityisesti vammaisten) helpommaksi</strong>. Harkitse vaihtoehtoisia toimenpiteitä, kuten hyväksymisperusteista tai kutsupohjaista rekisteröintiä.
+        title: Vaadi uusia käyttäjiä vahvistaamaan tilinsä ratkaisemalla CAPTCHA-vahvistus
       content_retention:
         preamble: Määritä, miten käyttäjän luoma sisältö tallennetaan Mastodoniin.
         title: Sisällön säilyttäminen
@@ -752,10 +771,27 @@ fi:
           approved: Rekisteröinti vaatii hyväksynnän
           none: Kukaan ei voi rekisteröityä
           open: Kaikki voivat rekisteröityä
+      security:
+        authorized_fetch: Vaadi todennus yhdistetyiltä palvelimilta
+        authorized_fetch_hint: Todennuksen vaatiminen yhdistetyiltä palvelimilta mahdollistaa sekä käyttäjätason että palvelintason alueiden tiukemmat estot. Tämä tapahtuu kuitenkin suorituskyvyn kustannuksella, vähentää vastauksien ulottuvuutta ja voi luoda yhteensopivuusongelmia joidenkin yhdistettyjen palveluiden kanssa. Lisäksi, tämä ei myöskään estä muita toimijoita hakemasta julkisia viestejäsi ja tilejäsi.
+        authorized_fetch_overridden_hint: Et voi tällä hetkellä muuttaa tätä asetusta, koska se on ohitettu ympäristömuuttujalla.
+        federation_authentication: Yhdistettyjen palvelinten todentamisen täytäntöönpano
       title: Palvelimen asetukset
     site_uploads:
       delete: Poista ladattu tiedosto
       destroyed_msg: Sivuston lataus onnistuneesti poistettu!
+    software_updates:
+      critical_update: Kriittinen – päivitä viivyttelemättä
+      description: On suositeltavaa pitää Mastodon-asennus ajantasaisena ja siten hyödyntää uusimpia korjauksia sekä ominaisuuksia. Lisäksi joskus on ratkaisevan tärkeää päivittää Mastodon ajoissa tietoturvaongelmien välttämiseksi. Näistä syistä Mastodon tarkistaa päivitykset 30 minuutin välein, ja ilmoittaa sinulle sähköposti-ilmoitusasetustesi mukaisesti.
+      documentation_link: Lue lisää
+      release_notes: Julkaisutiedot
+      title: Saatavilla olevat päivitykset
+      type: Tyyppi
+      types:
+        major: Pääversiojulkaisu
+        minor: Väliversiojulkaisu
+        patch: Korjausjulkaisu — korjauksia virheisiin sekä yksinkertaisia muutoksia
+      version: Versio
     statuses:
       account: Tekijä
       application: Sovellus
@@ -785,16 +821,31 @@ fi:
       actions:
         delete_statuses: "%{name} poisti käyttäjän %{target} viestit"
         disable: "%{name} jäädytti %{target} tilin"
-        mark_statuses_as_sensitive: "%{name} merkitsi %{target} viestiä arkaluonteiseksi"
+        mark_statuses_as_sensitive: "%{name} merkitsi käyttäjän %{target} viestit arkaluonteisiksi"
         none: "%{name} lähetti varoituksen henkilölle %{target}"
         sensitive: "%{name} merkitsi käyttäjän %{target} tilin arkaluonteiseksi"
         silence: "%{name} rajoitti käyttäjän %{target} tilin"
         suspend: "%{name} jäädytti käyttäjän %{target} tilin"
       appeal_approved: Valitti
       appeal_pending: Valitus vireillä
+      appeal_rejected: Muutoksenhaku hylättiin
     system_checks:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
+      elasticsearch_health_red:
+        message_html: Elasticsearch-klusteri on vikatilassa (punainen tila); hakuominaisuudet eivät ole käytettävissä
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch-klusteri on häiriötilassa (keltainen tila), joten suosittelemme tutkimaan syyn
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch-indeksin sidokset ovat vanhentuneet. Suorita <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Katso käyttöohjeet
+        message_html: Elasticsearch-klusterissa on useampi kuin yksi solmu, mutta Mastodonia ei ole määritetty käyttämään niitä.
+      elasticsearch_preset_single_node:
+        action: Katso käyttöohjeet
+        message_html: Elasticsearch-klusterissa on vain yksi solmu, <code>ES_PRESET</code> tulisi asettaa arvoon <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Elasticsearch-järjestelmäindeksi on vanhentunut asetusmuutoksen vuoksi. Suorita <code>tootctl search deploy --reset-chewy</code> päivittääksesi sen.
       elasticsearch_running_check:
         message_html: Ei saatu yhteyttä Elasticsearch. Tarkista, että se on käynnissä tai poista kokotekstihaku käytöstä
       elasticsearch_version_check:
@@ -805,6 +856,18 @@ fi:
         message_html: Et ole määrittänyt mitään palvelimen sääntöä.
       sidekiq_process_check:
         message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
+      software_version_critical_check:
+        action: Näytä saatavilla olevat päivitykset
+        message_html: Kriittinen Mastodon-päivitys on saatavilla. Tee päivitys mahdollisimman ripeästi.
+      software_version_patch_check:
+        action: Näytä saatavilla olevat päivitykset
+        message_html: Mastodonin virhekorjauspäivitys on saatavilla.
+      upload_check_privacy_error:
+        action: Katso täältä lisätietoja
+        message_html: "<strong>Verkkopalvelimesi on määritetty virheellisesti, ja käyttäjiesi yksityisyys on vaarassa.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Katso täältä lisätietoja
+        message_html: "<strong>Objektivarastosi on määritetty virheellisesti, ja käyttäjiesi yksityisyys on vaarassa.</strong>"
     tags:
       review: Tarkista tila
       updated_msg: Aihetunnisteen asetukset päivitetty onnistuneesti
@@ -827,6 +890,7 @@ fi:
           other: Jakanut %{count} henkilöä viimeisen viikon aikana
         title: Suositut linkit
         usage_comparison: Jaettu %{today} kertaa tänään verrattuna eilen %{yesterday}
+      not_allowed_to_trend: Ei saa trendata
       only_allowed: Vain sallittu
       pending_review: Odottaa tarkistusta
       preview_card_providers:
@@ -844,8 +908,8 @@ fi:
         no_status_selected: Suosittuja viestejä ei muutettu, koska yhtään ei valittu
         not_discoverable: Tekijä ei ole ilmoittanut olevansa löydettävissä
         shared_by:
-          one: Jaettu tai suosikki kerran
-          other: Jaettu ja lisätty suosikkeihin %{friendly_count} kertaa
+          one: Jaettu tai merkitty suosikiksi kerran
+          other: Jaettu tai merkitty suosikiksi %{friendly_count} kertaa
         title: Suositut viestit
       tags:
         current_score: Nykyinen tulos %{score}
@@ -876,12 +940,12 @@ fi:
       add_new: Lisää uusi
       delete: Poista
       edit_preset: Muokkaa varoituksen esiasetusta
-      empty: Et ole vielä määrittänyt yhtään varoitusesiasetusta.
-      title: Hallinnoi varoitusesiasetuksia
+      empty: Et ole vielä määrittänyt yhtäkään varoitusten esiasetusta.
+      title: Hallinnoi varoitusten esiasetuksia
     webhooks:
       add_new: Lisää päätepiste
       delete: Poista
-      description_html: A <strong>webhook</strong> mahdollistaa Mastodonin työntää <strong>reaaliaikaisia ilmoituksia</strong> valituista tapahtumista omaan sovellukseesi, joten sovelluksesi voi <strong>laukaista automaattisesti reaktioita</strong>.
+      description_html: "<strong>Webhook</strong> mahdollistaa Mastodonin työntää <strong>reaaliaikaisia ilmoituksia</strong> valituista tapahtumista omaan sovellukseesi, joten sovelluksesi voi <strong>laukaista automaattisesti reaktioita</strong>."
       disable: Poista käytöstä
       disabled: Ei käytössä
       edit: Muokkaa päätepistettä
@@ -911,6 +975,9 @@ fi:
       body: "%{target} on valittanut valvojan päätöksestä %{action_taken_by} aika %{date}, joka oli %{type}. He kirjoittivat:"
       next_steps: Voit hyväksyä vetoomuksen ja kumota päätöksen tai jättää sen huomiotta.
       subject: "%{username} valittaa valvojan päätöksestä, joka koskee instanssia %{instance}"
+    new_critical_software_updates:
+      body: Mastodonin uusia kriittisen tärkeitä versioita on julkaistu, joten saatat haluta päivittää niin pian kuin mahdollista!
+      subject: Kriittisiä Mastodon-päivityksiä on saatavilla instanssille %{instance}!
     new_pending_account:
       body: Uuden tilin tiedot ovat alla. Voit hyväksyä tai hylätä tämän hakemuksen.
       subject: Uusi tili tarkastettavana instanssissa %{instance} (%{username})
@@ -918,6 +985,9 @@ fi:
       body: "%{reporter} on raportoinut kohteen %{target}"
       body_remote: Joku osoitteesta %{domain} on raportoinut kohteen %{target}
       subject: Uusi raportti instanssista %{instance} (nro %{id})
+    new_software_updates:
+      body: Uusia Mastodon-versioita on julkaistu, joten saatat haluta päivittää!
+      subject: Uusia Mastodon-versioita ovat saatavilla instanssille %{instance}!
     new_trends:
       body: 'Seuraavat kohteet on tarkistettava ennen kuin ne voidaan näyttää julkisesti:'
       new_trending_links:
@@ -946,25 +1016,29 @@ fi:
       body: Mastodonin ovat kääntäneet vapaaehtoiset.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Kaikki voivat osallistua.
-    sensitive_content: Arkaluontoista sisältöä
-    toot_layout: Viestin asettelu
+    sensitive_content: Arkaluonteinen sisältö
   application_mailer:
     notification_preferences: Muuta sähköpostiasetuksia
     salutation: "%{name},"
     settings: 'Muuta sähköpostiasetuksia: %{link}'
+    unsubscribe: Lopeta tilaus
     view: 'Näytä:'
     view_profile: Näytä profiili
     view_status: Näytä tila
   applications:
     created: Sovelluksen luonti onnistui
     destroyed: Sovelluksen poisto onnistui
+    logout: Kirjaudu ulos
     regenerate_token: Luo pääsytunnus uudelleen
     token_regenerated: Pääsytunnuksen uudelleenluonti onnistui
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
     your_token: Pääsytunnus
   auth:
     apply_for_account: Pyydä tiliä
-    change_password: Salasana
+    captcha_confirmation:
+      help_html: Jos kohtaat ongelmia CAPTCHAn ratkaisemisessa, voit pyytää meiltä apua osoitteella %{email}.
+      hint_html: Vielä yksi juttu! Meidän on vahvistettava, että olet ihminen (tämän avulla pidämme roskapostin poissa!). Ratkaise alla oleva CAPTCHA-vahvistus ja paina "Jatka".
+      title: Turvatarkastus
     confirmations:
       wrong_email_hint: Jos sähköpostiosoite ei ole oikein, voit muuttaa sen tilin asetuksista.
     delete_account: Poista tili
@@ -973,10 +1047,10 @@ fi:
       prefix_invited_by_user: "@%{name} kutsuu sinut liittymään tälle Mastodonin palvelimelle!"
       prefix_sign_up: Liity Mastodoniin tänään!
       suffix: Tilillä voit seurata ihmisiä, julkaista päivityksiä ja lähetellä viestejä muille käyttäjille miltä palvelimelta tahansa ja paljon muuta!
-    didnt_get_confirmation: Etkö saanut vahvistusohjeita?
+    didnt_get_confirmation: Etkö saanut vahvistuslinkkiä?
     dont_have_your_security_key: Eikö sinulla ole suojausavainta?
     forgot_password: Unohditko salasanasi?
-    invalid_reset_password_token: Salasananpalautustunnus on virheellinen tai vanhentunut. Pyydä uusi.
+    invalid_reset_password_token: Salasanan palautustunnus on virheellinen tai vanhentunut. Pyydä uusi.
     link_to_otp: Syötä puhelimesi kaksivaiheinen koodi tai palautuskoodi
     link_to_webauth: Käytä suojausavaintasi
     log_in_with: Kirjaudu käyttäen
@@ -986,49 +1060,50 @@ fi:
     migrate_account_html: Jos haluat ohjata tämän tilin toiseen tiliin, voit <a href="%{path}">asettaa toisen tilin tästä</a>.
     or_log_in_with: Tai käytä kirjautumiseen
     privacy_policy_agreement_html: Olen lukenut ja hyväksynyt <a href="%{privacy_policy_path}" target="_blank">tietosuojakäytännön</a>
+    progress:
+      confirm: Vahvista sähköpostiosoite
+      details: Omat tietosi
+      review: Arviomme
+      rules: Hyväksy säännöt
     providers:
       cas: CAS
       saml: SAML
     register: Rekisteröidy
     registration_closed: "%{instance} ei hyväksy uusia jäseniä"
-    resend_confirmation: Lähetä vahvistusohjeet uudestaan
+    resend_confirmation: Lähetä vahvistuslinkki uudelleen
     reset_password: Palauta salasana
     rules:
+      accept: Hyväksy
+      back: Takaisin
+      invited_by: 'Seuraavalta käyttäjältä vastaanottamasi kutsun ansiosta voit liittyä palvelimelle %{domain}:'
       preamble: "%{domain} valvojat määrittävät ja valvovat sääntöjä."
+      preamble_invited: Ennen kuin jatkat, huomioi palvelimen %{domain} valvojien asettamat perussäännöt.
       title: Joitakin perussääntöjä.
+      title_invited: Sinut on kutsuttu.
     security: Tunnukset
     set_new_password: Aseta uusi salasana
     setup:
-      email_below_hint_html: Jos alla oleva sähköpostiosoite on virheellinen, voit muuttaa sitä täällä ja tilata uuden vahvistussähköpostiviestin.
-      email_settings_hint_html: Vahvistussähköposti lähetettiin osoitteeseen %{email}. Jos sähköpostiosoite ei ole oikea, voit muuttaa sitä tiliasetuksissa.
-      title: Asetukset
+      email_below_hint_html: Tarkista roskapostikansiosi tai pyydä uusi viesti. Voit korjata sähköpostiosoitteesi, jos se oli väärin.
+      email_settings_hint_html: Napsauta lähettämäämme linkkiä vahvistaaksesi osoitteen %{email}. Odotamme täällä.
+      link_not_received: Etkö saanut linkkiä?
+      new_confirmation_instructions_sent: Saat uuden vahvistuslinkin sisältävän sähköpostiviestin muutaman minuutin sisällä!
+      title: Tarkista saamasi viestit
     sign_in:
-      preamble_html: Kirjaudu sisään <strong>%{domain}</strong>-tunnuksillasi. Jos tilisi sijaitsee eri palvelimella, et voi sisäänkirjautua täällä.
-      title: Kirjaudu palveluun %{domain}
+      preamble_html: Kirjaudu <strong>%{domain}</strong>-tunnuksellasi. Jos tilisi sijaitsee eri palvelimella, et voi kirjautua täällä.
+      title: Kirjaudu palvelimelle %{domain}
     sign_up:
+      manual_review: Palvelimen %{domain} ylläpito tarkastaa rekisteröitymiset käsin. Helpottaaksesi rekisteröitymisesi käsittelyä, kerro hieman itsestäsi ja miksi haluat luoda käyttäjätilin palvelimelle %{domain}.
       preamble: Kun sinulla on tili tällä Mastodon-palvelimella, voit seurata kaikkia muita verkossa olevia henkilöitä riippumatta siitä, missä heidän tilinsä on.
       title: Otetaan sinulle käyttöön %{domain}.
     status:
       account_status: Tilin tila
       confirming: Odotetaan sähköpostivahvistuksen valmistumista.
-      functional: Tilisi on täysin toimiva.
+      functional: Tilisi on täysin toiminnassa.
       pending: Hakemuksesi odottaa henkilökuntamme tarkastusta. Tämä voi kestää jonkin aikaa. Saat sähköpostiviestin, jos hakemuksesi on hyväksytty.
       redirecting_to: Tilisi ei ole aktiivinen, koska se ohjaa tällä hetkellä kohteeseen %{acct}.
       view_strikes: Näytä tiliäsi koskevia aiempia varoituksia
     too_fast: Lomake lähetettiin liian nopeasti, yritä uudelleen.
     use_security_key: Käytä suojausavainta
-  authorize_follow:
-    already_following: Sinä seuraat jo tätä tiliä
-    already_requested: Olet jo lähettänyt seurantapyynnön tälle tilille
-    error: Valitettavasti etätilin haussa tapahtui virhe
-    follow: Seuraa
-    follow_request: 'Olet lähettänyt seuraamispyynnön käyttäjälle:'
-    following: 'Onnistui! Seuraat käyttäjää:'
-    post_follow:
-      close: Tai voit sulkea tämän ikkunan.
-      return: Palaa käyttäjän profiiliin
-      web: Siirry verkkosivulle
-    title: Seuraa käyttäjää %{acct}
   challenge:
     confirm: Jatka
     hint_html: "<strong>Vihje:</strong> Emme pyydä sinulta salasanaa uudelleen seuraavan tunnin aikana."
@@ -1036,7 +1111,7 @@ fi:
     prompt: Vahvista salasanasi jatkaaksesi
   crypto:
     errors:
-      invalid_key: ei ole kelvollinen Ed25519- tai Curve25519 -avain
+      invalid_key: ei ole kelvollinen Ed25519- tai Curve25519-avain
       invalid_signature: ei ole kelvollinen Ed25519-allekirjoitus
   date:
     formats:
@@ -1044,16 +1119,16 @@ fi:
       with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count} h"
+      about_x_hours: "%{count} t"
       about_x_months: "%{count} kk"
       about_x_years: "%{count} v"
       almost_x_years: "%{count} v"
       half_a_minute: Nyt
-      less_than_x_minutes: "%{count} m"
+      less_than_x_minutes: "%{count} min"
       less_than_x_seconds: Nyt
       over_x_years: "%{count} v"
       x_days: "%{count} pv"
-      x_minutes: "%{count} m"
+      x_minutes: "%{count} min"
       x_months: "%{count} kk"
       x_seconds: "%{count} s"
   deletes:
@@ -1105,6 +1180,10 @@ fi:
       your_appeal_rejected: Valituksesi on hylätty
   domain_validator:
     invalid_domain: ei ole kelvollinen toimialueen nimi
+  edit_profile:
+    basic_information: Perustiedot
+    hint_html: "<strong>Mukauta mitä ihmiset näkevät julkisessa profiilissasi ja sinun julkaisujen vieressä.</strong> Ihmiset todennäköisesti seuraavat ja kirjoittavat sinulle, kun sinulla on täytetty profiili ja profiilikuva."
+    other: Muu
   errors:
     '400': Lähettämäsi pyyntö oli virheellinen tai muotoiltu virheellisesti.
     '403': Sinulla ei ole lupaa nähdä tätä sivua.
@@ -1127,21 +1206,21 @@ fi:
     archive_takeout:
       date: Päiväys
       download: Lataa arkisto
-      hint_html: Voit pyytää arkistoa omista <strong>tuuttauksistasi ja mediastasi</strong>. Vientitiedot ovat ActivityPub-muodossa, ja ne voi lukea millä tahansa yhteensopivalla ohjelmalla.
+      hint_html: Voit pyytää arkistoa omista <strong>viesteistä ja mediasta</strong>. Viedyt tiedot ovat ActivityPub-muodossa, ja ne voi lukea millä tahansa yhteensopivalla ohjelmalla. Voit pyytää arkistoa viikon välein.
       in_progress: Arkistoa kootaan...
       request: Pyydä arkisto
       size: Koko
     blocks: Estot
     bookmarks: Kirjanmerkit
     csv: CSV
-    domain_blocks: Verkkotunnus estetty
+    domain_blocks: Verkkotunnusten estot
     lists: Listat
     mutes: Mykistetyt
     storage: Media-arkisto
   featured_tags:
     add_new: Lisää uusi
     errors:
-      limit: Olet jo lisännyt enimmäismäärän aihetunnisteita
+      limit: Olet jo nostanut esille enimmäismäärän aihetunnisteita
     hint_html: "<strong>Mitä ovat näkyvillä olevat hashtagit eli aihetunnisteet?</strong> Ne ovat näkyvissä julkisessa profiilissasi ja niiden avulla ihmiset voivat selata julkisia viestejäsi nimenomaan näiden aihetunnisteiden alla. Ne auttavat esimerkiksi luovan työn tai pitkäaikaisten projektien seurannassa."
   filters:
     contexts:
@@ -1153,11 +1232,11 @@ fi:
     edit:
       add_keyword: Lisää avainsana
       keywords: Avainsanat
-      statuses: Yksittäiset postaukset
-      statuses_hint_html: Tämä suodatin koskee yksittäisten postausten valintaa riippumatta siitä, vastaavatko ne alla olevia avainsanoja. <a href="%{path}">Tarkista tai poista viestit suodattimesta</a>.
+      statuses: Yksittäiset viestit
+      statuses_hint_html: Tämä suodatin koskee yksittäisten viestien valintaa riippumatta siitä, vastaavatko ne alla olevia avainsanoja. <a href="%{path}">Tarkista tai poista viestit suodattimesta</a>.
       title: Muokkaa suodatinta
     errors:
-      deprecated_api_multiple_keywords: Näitä parametreja ei voi muuttaa tästä sovelluksesta, koska ne koskevat useampaa kuin yhtä suodattimen avainsanaa. Käytä uudempaa sovellusta tai web-käyttöliittymää.
+      deprecated_api_multiple_keywords: Näitä parametreja ei voi muuttaa tästä sovelluksesta, koska ne koskevat useampaa kuin yhtä suodattimen avainsanaa. Käytä uudempaa sovellusta tai selainkäyttöliittymää.
       invalid_context: Ei sisältöä tai se on virheellinen
     index:
       contexts: Suodattimet %{contexts}
@@ -1185,17 +1264,17 @@ fi:
       index:
         hint: Tämä suodatin koskee yksittäisten viestien valintaa muista kriteereistä riippumatta. Voit lisätä lisää viestejä tähän suodattimeen web-käyttöliittymästä.
         title: Suodatetut viestit
-  footer:
-    trending_now: Suosittua nyt
   generic:
     all: Kaikki
     all_items_on_page_selected_html:
       one: "<strong>%{count}</strong> kohde tällä sivulla on valittu."
       other: Kaikki <strong>%{count}</strong> kohdetta tällä sivulla on valittu.
     all_matching_items_selected_html:
-      one: "<strong>%{count}</strong> tuotetta, joka vastaa hakuasi."
+      one: "<strong>%{count}</strong> kohde, joka vastaa hakuasi."
       other: Kaikki <strong>%{count}</strong> kohdetta, jotka vastaavat hakuasi.
+    cancel: Peruuta
     changes_saved_msg: Muutosten tallennus onnistui!
+    confirm: Vahvista
     copy: Kopioi
     delete: Poista
     deselect: Poista kaikki valinnat
@@ -1203,30 +1282,68 @@ fi:
     order_by: Järjestä
     save_changes: Tallenna muutokset
     select_all_matching_items:
-      one: Valitse %{count} kohdetta, joka vastaa hakuasi.
+      one: Valitse %{count} kohde, joka vastaa hakuasi.
       other: Valitse kaikki %{count} kohdetta, jotka vastaavat hakuasi.
     today: tänään
     validation_errors:
       one: Kaikki ei ole aivan oikein! Tarkasta alla oleva virhe
       other: Kaikki ei ole aivan oikein! Tarkasta alla olevat %{count} virhettä
-  html_validator:
-    invalid_markup: 'sisältää virheellisen HTML-merkinnän: %{error}'
   imports:
     errors:
+      empty: Tyhjä CSV-tiedosto
+      incompatible_type: Yhteensopimaton valitun tuontityypin kanssa
       invalid_csv_file: 'Epäkelpo CSV-tiedosto. Virhe: %{error}'
       over_rows_processing_limit: sisältää yli %{count} riviä
+      too_large: Tiedosto on liian suuri
+    failures: Virheet
+    imported: Tuodut
+    mismatched_types_warning: Vaikuttaa siltä, ettei tuontityypin valinta ole oikea. Ole hyvä ja tarkista asia.
     modes:
       merge: Yhdistä
       merge_long: Säilytä olemassa olevat tietueet ja lisää uusia
       overwrite: Korvaa
       overwrite_long: Korvaa nykyiset tietueet uusilla
+    overwrite_preambles:
+      blocking_html: Olet aikeissa <strong>korvata estoluettelon</strong> kaikkiaan <strong>%{total_items} tilillä</strong> tiedostoon <strong>%{filename}</strong> perustuen.
+      bookmarks_html: Olet aikeissa <strong>korvata kirjanmerkit</strong> kaikkiaan <strong>%{total_items} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+      domain_blocking_html: Olet aikeissa <strong>korvata verkkotunnusestot</strong> kaikkiaan <strong>%{total_items} verkkotunnuksella</strong> tiedostoon <strong>%{filename}</strong> perustuen.
+      following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostoon <strong>%{filename}</strong> perustuen. Aiot lisäksi <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+      lists_html: Olet <strong>korvaamassa listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{total_items} tiliä</strong>.
+      muting_html: Olet <strong>korvaamassa mykistettyjä tilejäsi</strong> kaikkiaan <strong>%{total_items} tilillä</strong> tiedostoon <strong>%{filename}</strong> perustuen.
+    preambles:
+      blocking_html: Olet <strong>estämässä</strong> yhteensä <strong>%{total_items} tiliä</strong> tiedostoon <strong>%{filename}</strong> perustuen.
+      bookmarks_html: Olet lisäämässä <strong>%{total_items} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
+      domain_blocking_html: Olet <strong>estämässä</strong> yhteensä <strong>%{total_items} verkkotunnusta</strong> tiedoston <strong>%{filename}</strong> nojalla.
+      following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostoon <strong>%{filename}</strong> perustuen.
+      lists_html: Olet lisäämässä <strong>listoihisi</strong> <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uudet listat luodaan, jos sopivaa kohdelistaa ei ole olemassa.
+      muting_html: Olet <strong>hiljentämässä</strong> yhteensä <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
     preface: Voit tuoda toisesta instanssista viemiäsi tietoja, kuten esimerkiksi seuraamiesi tai estämiesi henkilöiden listan.
+    recent_imports: Viimeksi tuotu
+    states:
+      finished: Valmis
+      in_progress: Toiminto käynnissä
+      scheduled: Ajoitettu
+      unconfirmed: Varmistamaton
+    status: Tila
     success: Tietojen lähettäminen onnistui, ja ne käsitellään kohtapuoliin
+    time_started: Aloitettu
+    titles:
+      blocking: Tuodaan estettyjä tilejä
+      bookmarks: Tuodaan kirjanmerkkejä
+      domain_blocking: Tuodaan estettyjä verkkotunnuksia
+      following: Tuodaan seurattuja tilejä
+      lists: Listojen tuonti
+      muting: Tuodaan hiljennettyjä tilejä
+    type: Tuonnin tyyppi
+    type_groups:
+      constructive: Seuratut ja kirjanmerkit
+      destructive: Estot ja hiljennykset
     types:
       blocking: Estettyjen lista
       bookmarks: Kirjanmerkit
       domain_blocking: Verkkoalueen estolista
       following: Seurattujen lista
+      lists: Listat
       muting: Mykistettyjen lista
     upload: Lähetä
   invites:
@@ -1253,7 +1370,7 @@ fi:
     title: Kutsu ihmisiä
   lists:
     errors:
-      limit: Sinulla on jo suurin sallittu määrä listoja
+      limit: Sinulla on enimmäismäärä listoja
   login_activities:
     authentication_methods:
       otp: kaksivaiheinen todennussovellus
@@ -1265,6 +1382,21 @@ fi:
     failed_sign_in_html: Kirjautumisyritys epäonnistui %{method} - %{ip} (%{browser})
     successful_sign_in_html: Kirjautuminen onnistui %{method} - %{ip} (%{browser})
     title: Todennushistoria
+  mail_subscriptions:
+    unsubscribe:
+      action: Kyllä, peru tilaus
+      complete: Tilaus lopetettiin
+      confirmation_html: Olethan varma, että haluat lopettaa %{type} -aiheisten Mastodonin sähköposti-ilmoitusten vastaanoton palvelimelta %{domain} osoitteeseesi %{email}? Voit toki milloin tahansa ottaa jälleen käyttöön muun muassa nämä viestit <a href="%{settings_path}">sähköposti-ilmoitusasetusten</a> kautta.
+      emails:
+        notification_emails:
+          favourite: sähköpostit ilmoituksille
+          follow: seuraa sähköpostin ilmoituksia
+          follow_request: seuraa pyyntöjä sähköpostiin
+          mention: mainitse sähköpostin ilmoitukset
+          reblog: tehosta sähköpostien ilmoituksia
+      resubscribe_html: Jos olet perunut ilmoitusviestien vastaanottamisen suotta, pääset jälleentilaamaan ilmoitusviestejä <a href="%{settings_path}">sähköposti-ilmoitusasetusten</a> kautta.
+      success_html: Sinulle ei vastedes lähetetä %{type} -aihepiirin Mastodon-sähköposti-ilmoituksia palvelimelta %{domain} osoitteeseen %{email}.
+      title: Lopeta tilaus
   media_attachments:
     validations:
       images_and_video: Videota ei voi liittää tilapäivitykseen, jossa on jo kuvia
@@ -1314,7 +1446,7 @@ fi:
       report:
         subject: "%{name} lähetti raportin"
       sign_up:
-        subject: "%{name} kirjautunut"
+        subject: "%{name} rekisteröityi"
     favourite:
       body: "%{name} tykkäsi tilastasi:"
       subject: "%{name} tykkäsi tilastasi"
@@ -1344,6 +1476,7 @@ fi:
     update:
       subject: "%{name} muokkasi viestiä"
   notifications:
+    administration_emails: Ylläpitäjän sähköposti-ilmoitukset
     email_events: Sähköposti-ilmoitusten tapahtumat
     email_events_hint: 'Valitse tapahtumat, joista haluat saada ilmoituksia:'
     other_settings: Muut ilmoitusasetukset
@@ -1380,12 +1513,22 @@ fi:
       expired: Äänestys on jo loppunut
       invalid_choice: Valittua äänestysvaihtoehtoa ei ole
       over_character_limit: voi olla enintään %{max} merkkiä
+      self_vote: Et voi äänestää omissa äänestyksissäsi
       too_few_options: on oltava useampi kuin yksi
       too_many_options: ei voi sisältää enempää kuin %{max} kohdetta
   preferences:
     other: Muut
-    posting_defaults: Julkaisujen oletusasetukset
+    posting_defaults: Viestien oletusasetukset
     public_timelines: Julkiset aikajanat
+  privacy:
+    hint_html: "<strong>Määritä, kuinka haluat profiilisi ja julkaisujesi löytyvän.</strong> Mastodonissa on monia ominaisuuksia, joiden käyttöönotto voi auttaa sinua saavuttamaan laajemman yleisön. Käytä hetki aikaa tarkistaaksesi, soveltuvatko nämä vaihtoehdot tarpeisiisi."
+    privacy: Yksityisyys
+    privacy_hint_html: Määritä miten paljon muita avustavia tietoja haluat paljastaa. Käyttäjät löytävät kiinnostavia profiileja sekä hienoja sovelluksia selaillen toisten seuraamia käyttäjiä, ja näkemällä, millä sovelluksilla nämä julkaisevat. Saatat kuitenkin haluta piilottaa nämä tiedot.
+    reach: Tavoittavuus
+    reach_hint_html: Päätä, haluatko tulla uusien käyttäjien löytämäksi ja seuraamaksi. Haluatko viestiesi näkyvän Selaa-sivulla? Haluatko käyttäjien näkevän sinut heidän seuraussuosituksissaan? Haluatko hyväksyä uudet seuraajat automaattisesti vai haluatko hyväksyä jokaisen erikseen?
+    search: Haku
+    search_hint_html: Määritä, kuinka haluat tulla löydetyksi. Haluatko, että ihmiset löytävät sinut julkisten julkaisujesi perusteella? Haluatko, että ihmiset Mastodonin ulkopuolella löytävät profiilisi tehdessään hakuja verkossa? Huomioithan, ettei täyttä poisjättäytymistä kaikista hakukoneista voida taata julkisille tiedoille.
+    title: Yksityisyys ja tavoittavuus
   privacy_policy:
     title: Tietosuojakäytäntö
   reactions:
@@ -1398,6 +1541,7 @@ fi:
     confirm_remove_selected_followers: Haluatko varmasti poistaa valitut seuraajat?
     confirm_remove_selected_follows: Haluatko varmasti poistaa valitut seuraamiset?
     dormant: Horroksessa
+    follow_failure: Joitain valittuja tilejä ei voitu seurata.
     follow_selected_followers: Seuraa valittuja seuraajia
     followers: Seuraajat
     following: Seuratut
@@ -1418,7 +1562,7 @@ fi:
     errors:
       invalid_rules: ei viittaa voimassa oleviin sääntöihin
   rss:
-    content_warning: 'Sisällön varoitus:'
+    content_warning: 'Sisältövaroitus:'
     descriptions:
       account: Julkiset viestit lähettäjältä @%{acct}
       tag: 'Julkiset viestit merkitty #%{hashtag}'
@@ -1437,6 +1581,7 @@ fi:
       electron: Electron
       firefox: Firefox
       generic: Tuntematon selain
+      huawei_browser: Huawei-selain
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi -selain
@@ -1446,6 +1591,7 @@ fi:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Tuntematon selain
       weibo: Weibo
     current_session: Nykyinen istunto
     description: "%{browser} alustalla %{platform}"
@@ -1458,9 +1604,10 @@ fi:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: tuntematon alusta
+      unknown_platform: Tuntematon alusta
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1481,7 +1628,7 @@ fi:
     export: Vie tietoja
     featured_tags: Esitellyt aihetunnisteet
     import: Tuo
-    import_and_export: Tuo / Vie
+    import_and_export: Tuo ja vie
     migrate: Tilin muutto muualle
     notifications: Ilmoitukset
     preferences: Ominaisuudet
@@ -1516,8 +1663,8 @@ fi:
     over_character_limit: merkkimäärän rajoitus %{max} ylitetty
     pin_errors:
       direct: Viestejä, jotka ovat näkyvissä vain mainituille käyttäjille, ei voi kiinnittää
-      limit: Olet jo kiinnittänyt suurimman mahdollisen määrän tuuttauksia
-      ownership: Muiden tuuttauksia ei voi kiinnittää
+      limit: Olet jo kiinnittänyt suurimman mahdollisen määrän viestejä
+      ownership: Muiden viestejä ei voi kiinnittää
       reblog: Tehostusta ei voi kiinnittää
     poll:
       total_people:
@@ -1531,7 +1678,6 @@ fi:
     show_newer: Näytä uudemmat
     show_older: Näytä vanhempi
     show_thread: Näytä ketju
-    sign_in_to_participate: Kirjaudu sisään osallistuaksesi keskusteluun
     title: "%{name}: ”%{quote}”"
     visibilities:
       direct: Suoraan
@@ -1573,12 +1719,10 @@ fi:
       '7889238': 3 kuukautta
     min_age_label: Ikäraja
     min_favs: Pidä viestit suosikeissa vähintään
-    min_favs_hint: Ei poista yhtään julkaisuasi, jotka ovat saaneet vähintään tämän määrän tykkäyksiä. Jätä tyhjäksi, jos haluat poistaa julkaisuja tykkäyksien määrästä riippumatta
+    min_favs_hint: Toiminto ei poista julkaisujasi, joista on tykätty vähintään tässä kohtaa määritellyn monesti. Jätä kenttä tyhjäksi, jos haluat poistaa julkaisut tykkäyksistä huolimatta
     min_reblogs: Pidä viestit tehostettuna vähintään
     min_reblogs_hint: Ei poista yhtään viestiäsi, jota on tehostettu vähintään näin monta kertaa. Jätä tyhjäksi poistaaksesi viestejä riippumatta niiden tehosteiden määrästä
   stream_entries:
-    pinned: Kiinnitetty tuuttaus
-    reblogged: tehosti
     sensitive_content: Arkaluontoista sisältöä
   strikes:
     errors:
@@ -1593,7 +1737,12 @@ fi:
     formats:
       default: "%d.%m.%Y klo %H.%M"
       month: "%b %Y"
-      time: "%H:%M"
+      time: "%H.%M"
+      with_time_zone: "%d.%m.%Y klo %H.%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Palvelimen käännöspalvelun käyttökiintiö on ylitetty.
+      too_many_requests: Käännöspalvelulle on hiljattain esitetty liian monta pyyntöä.
   two_factor_authentication:
     add: Lisää
     disable: Poista käytöstä
@@ -1662,24 +1811,29 @@ fi:
         silence: Rajoitettu tili
         suspend: Tilin käyttäminen jäädytetty
     welcome:
-      edit_profile_action: Aseta profiili
-      edit_profile_step: Voit muokata profiiliasi lataamalla profiilikuvan, vaihtamalla näyttönimeä ja paljon muuta. Voit halutessasi arvioida uudet seuraajat ennen kuin he saavat seurata sinua.
+      edit_profile_action: Määritä profiili
+      edit_profile_step: Voit mukauttaa profiiliasi mm. profiilikuvalla ja uudella näyttönimellä. Voit myös valita haluatko tarkastaa ja hyväksyä uudet seuraajat itse.
       explanation: Näillä vinkeillä pääset alkuun
       final_action: Ala julkaista
-      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, monet voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla ja aihetunnisteilla. Kannattaa myös esittäytyä! Käytä aihetunnistetta #esittely.'
+      final_step: 'Aloita julkaiseminen! Vaikkei sinulla ole seuraajia, voivat muut nähdä julkiset julkaisusi esimerkiksi paikallisella aikajanalla ja aihetunnisteilla. Kannattaa myös esittäytyä käyttämällä aihetunnistetta #introductions.'
       full_handle: Koko käyttäjätunnuksesi
-      full_handle_hint: Kerro tämä ystävillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut toisen instanssin kautta.
+      full_handle_hint: Kerro tämä kavereillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut muiden palvelimien kautta.
       subject: Tervetuloa Mastodoniin
       title: Tervetuloa mukaan, %{name}!
   users:
     follow_limit_reached: Et voi seurata yli %{limit} henkilöä
+    go_to_sso_account_settings: Avaa identiteettitarjoajasi tiliasetukset
     invalid_otp_token: Virheellinen kaksivaiheisen todentamisen koodi
     otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyttä osoitteeseen %{email}
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
-    signed_in_as: 'Kirjautunut henkilönä:'
+    signed_in_as: 'Kirjautunut tilillä:'
   verification:
-    explanation_html: 'Voit <strong>vahvistaa olevasi profiilisi metatiedoissa olevien linkkien omistaja.</strong>. Tätä varten linkitetyn verkkosivuston täytyy sisältää linkki takaisin Mastodon-profiiliisi. Palauttavalla linkillä <strong>täytyy</strong> olla <code>rel="me"</code>-arvo. Linkin tekstisisällöllä ei ole merkitystä. Tässä on esimerkki:'
+    extra_instructions_html: <strong>Vinkki:</strong> Tämä linkitys verkkosivustollasi voidaan toteuttaa myös näkymättömänä. Tärkeä osuus on <code>rel="me"</code> -määre, jolla ehkäistään valeprofiilikäyttötarkoituksia sivustoilla, joiden sisältö perustuu käyttäjiensä julkaisuihin. Voit siis käyttää linkkiviittauselementtiä <code>link</code> HTML-lähdekoodin otsakeosassa (head) sen sijaan, että käyttäisit näkyvää hyperlinkkielementtiä <code>a</code>. HTML-lähdekoodin tulee tuolta osin kuitenkin olla JavaScriptistä riippumatonta.
+    here_is_how: Näin voit tehdä sen
+    hint_html: "<strong>Mastodonissa henkilöllisyyden vahventaminen on jokaisen käyttäjän ulottuvilla.</strong> Tämä perustuu avoimiin standardeihin, maksuttomasti nyt ja aina. Kaikki mitä tarvitset on henkilökohtainen verkkosivusto, jonka avulla sinut voidaan tunnistaa. Kun Mastodon-profiilistasi on linkki kyseiselle verkkosivustollesi, ja sieltä löytyy vastaviittaus tai -linkitys profiiliisi, näkyy profiilissasi vahvistustunniste."
+    instructions_html: Kopioi ja liitä alla oleva koodi verkkosivusi HTML-lähdekoodiin. Lisää sitten verkkosivustosi osoite johonkin ylimääräisistä kentistä profiiliasetuksissa, "Muokkaa profiilia" -välilehdestä, ja tallenna muutokset.
     verification: Vahvistus
+    verified_links: Vahvistetut linkkisi
   webauthn_credentials:
     add: Lisää uusi suojausavain
     create:

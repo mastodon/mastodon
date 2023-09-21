@@ -11,10 +11,14 @@ class ApplicationMailer < ActionMailer::Base
 
   protected
 
-  def locale_for_account(account)
-    I18n.with_locale(account.user_locale || I18n.default_locale) do
-      yield
-    end
+  def locale_for_account(account, &block)
+    I18n.with_locale(account.user_locale || I18n.default_locale, &block)
+  end
+
+  def set_autoreply_headers!
+    headers['Precedence'] = 'list'
+    headers['X-Auto-Response-Suppress'] = 'All'
+    headers['Auto-Submitted'] = 'auto-generated'
   end
 
   def set_autoreply_headers!

@@ -1,0 +1,54 @@
+[Unit]
+Description=mastodon-streaming on port %I
+After=network.target
+# handles using `systemctl restart mastodon-streaming`
+PartOf=mastodon-streaming.service
+ReloadPropagatedFrom=mastodon-streaming.service
+
+[Service]
+Type=simple
+User=mastodon
+WorkingDirectory=/home/mastodon/live
+Environment="NODE_ENV=production"
+Environment="PORT=%i"
+ExecStart=/usr/bin/node ./streaming
+TimeoutSec=15
+Restart=always
+LimitNOFILE=65536
+# Proc filesystem
+ProcSubset=pid
+ProtectProc=invisible
+# Capabilities
+CapabilityBoundingSet=
+# Security
+NoNewPrivileges=true
+# Sandboxing
+ProtectSystem=strict
+PrivateTmp=true
+PrivateDevices=true
+PrivateUsers=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET
+RestrictAddressFamilies=AF_INET6
+RestrictAddressFamilies=AF_NETLINK
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+LockPersonality=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RemoveIPC=true
+PrivateMounts=true
+ProtectClock=true
+# System Call Filtering
+SystemCallArchitectures=native
+SystemCallFilter=~@cpu-emulation @debug @keyring @ipc @memlock @mount @obsolete @privileged @resources @setuid
+SystemCallFilter=pipe
+SystemCallFilter=pipe2
+ReadWritePaths=/home/mastodon/live
+
+[Install]
+WantedBy=multi-user.target mastodon-streaming.service

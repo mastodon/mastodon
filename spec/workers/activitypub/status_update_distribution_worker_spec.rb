@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe ActivityPub::StatusUpdateDistributionWorker do
   subject { described_class.new }
 
   let(:status)   { Fabricate(:status, text: 'foo') }
-  let(:follower) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example.com') }
+  let(:follower) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example.com', domain: 'example.com') }
 
   describe '#perform' do
     before do

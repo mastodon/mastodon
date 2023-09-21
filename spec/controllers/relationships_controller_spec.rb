@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe RelationshipsController do
@@ -5,42 +7,39 @@ describe RelationshipsController do
 
   let(:user) { Fabricate(:user) }
 
-  shared_examples 'authenticate user' do
-    it 'redirects when not signed in' do
-      is_expected.to redirect_to '/auth/sign_in'
-    end
-  end
-
   describe 'GET #show' do
-    subject { get :show, params: { page: 2, relationship: 'followed_by' } }
+    context 'when signed in' do
+      before do
+        sign_in user, scope: :user
+        get :show, params: { page: 2, relationship: 'followed_by' }
+      end
 
-    it 'assigns @accounts' do
-      Fabricate(:account, domain: 'old').follow!(user.account)
-      Fabricate(:account, domain: 'recent').follow!(user.account)
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
 
-      sign_in user, scope: :user
-      subject
-
-      assigned = assigns(:accounts).per(1).to_a
-      expect(assigned.size).to eq 1
-      expect(assigned[0].domain).to eq 'old'
+      it 'returns private cache control headers' do
+        expect(response.headers['Cache-Control']).to include('private, no-store')
+      end
     end
 
-    it 'returns http success' do
-      sign_in user, scope: :user
-      subject
-      expect(response).to have_http_status(200)
-    end
+    context 'when not signed in' do
+      before do
+        get :show, params: { page: 2, relationship: 'followed_by' }
+      end
 
-    include_examples 'authenticate user'
+      it 'redirects when not signed in' do
+        expect(response).to redirect_to '/auth/sign_in'
+      end
+    end
   end
 
   describe 'PATCH #update' do
-    let(:poopfeast) { Fabricate(:account, username: 'poopfeast', domain: 'example.com') }
+    let(:alice) { Fabricate(:account, username: 'alice', domain: 'example.com') }
 
     shared_examples 'redirects back to followers page' do
       it 'redirects back to followers page' do
-        poopfeast.follow!(user.account)
+        alice.follow!(user.account)
 
         sign_in user, scope: :user
         subject
@@ -51,31 +50,41 @@ describe RelationshipsController do
 
     context 'when select parameter is not provided' do
       subject { patch :update }
+
       include_examples 'redirects back to followers page'
     end
 
     context 'when select parameter is provided' do
-      subject { patch :update, params: { form_account_batch: { account_ids: [poopfeast.id] }, remove_domains_from_followers: '' } }
+      subject { patch :update, params: { form_account_batch: { account_ids: [alice.id] }, remove_domains_from_followers: '' } }
 
       it 'soft-blocks followers from selected domains' do
-        poopfeast.follow!(user.account)
+        alice.follow!(user.account)
 
         sign_in user, scope: :user
         subject
 
-        expect(poopfeast.following?(user.account)).to be false
+        expect(alice.following?(user.account)).to be false
       end
 
       it 'does not unfollow users from selected domains' do
-        user.account.follow!(poopfeast)
+        user.account.follow!(alice)
 
         sign_in user, scope: :user
         subject
 
-        expect(user.account.following?(poopfeast)).to be true
+        expect(user.account.following?(alice)).to be true
       end
 
-      include_examples 'authenticate user'
+      context 'when not signed in' do
+        before do
+          subject
+        end
+
+        it 'redirects when not signed in' do
+          expect(response).to redirect_to '/auth/sign_in'
+        end
+      end
+
       include_examples 'redirects back to followers page'
     end
   end

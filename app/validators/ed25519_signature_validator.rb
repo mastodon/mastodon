@@ -8,7 +8,7 @@ class Ed25519SignatureValidator < ActiveModel::EachValidator
     signature  = Base64.decode64(value)
     message    = option_to_value(record, :message)
 
-    record.errors[attribute] << I18n.t('crypto.errors.invalid_signature') unless verified?(verify_key, signature, message)
+    record.errors.add(attribute, I18n.t('crypto.errors.invalid_signature')) unless verified?(verify_key, signature, message)
   end
 
   private

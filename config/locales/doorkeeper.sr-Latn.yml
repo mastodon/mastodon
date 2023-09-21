@@ -122,16 +122,18 @@ sr-Latn:
         admin/accounts: Administracija naloga
         admin/all: Sve funkcije administracije
         admin/reports: Administracija prijava
+        all: Potpuni pristup vašem Mastodon nalogu
         blocks: Blokirani
         bookmarks: Obeleživači
         conversations: Razgovori
         crypto: End-to-end enkripcija
-        favourites: Omiljeni
+        favourites: Omiljeno
         filters: Filteri
+        follow: Praćenja, ignorisanja i blokiranja
         follows: Praćeni
         lists: Liste
         media: Multimedijalni prilozi
-        mutes: Utišani
+        mutes: Ignorisani
         notifications: Obaveštenja
         push: Prosleđena obaveštenja
         reports: Prijave
@@ -147,17 +149,22 @@ sr-Latn:
     scopes:
       admin:read: čitanje svih podataka na serveru
       admin:read:accounts: čitanje osetljivih podataka za sve naloge
+      admin:read:canonical_email_blocks: pročitaj osetljive informacije i kanonske imejl blokove
       admin:read:domain_allows: pročitaj osetljive informacije za sve dozvole domena
       admin:read:domain_blocks: pročitaj osetljive informacije za sve blokove domena
+      admin:read:email_domain_blocks: pročitaj osetljive informacije svih blokova imejl domena
       admin:read:ip_blocks: pročitaj osetljive informacije za sve IP blokove
       admin:read:reports: čitanje osetljivih podataka svih izveštaja i prijavljenih naloga
       admin:write: menjanje svih podataka na serveru
       admin:write:accounts: vršenje moderatorskih aktivnosti nad nalozima
+      admin:write:canonical_email_blocks: izvrši moderacijske radnje nad kanonskim imejl blokovima
+      admin:write:domain_allows: izvrši moderacijske radnje nad dozvolama domena
       admin:write:domain_blocks: izvrši moderatorske aktivnosti na blokovima domena
+      admin:write:email_domain_blocks: izvrši moderacijske radnje nad blokovima imejl domena
       admin:write:ip_blocks: izvrši moderatorske aktivnosti na IP blokovima
       admin:write:reports: vršenje moderatorskih aktivnosti nad izveštajima
       crypto: korišćenje end-to-end enkripcije
-      follow: prati, blokira, odblokira i otprati naloge
+      follow: menja odnose naloga
       push: primanje prosleđenih obaveštenja
       read: čita podatke Vašeg naloga
       read:accounts: pogledaj informacije o nalozima
@@ -167,7 +174,7 @@ sr-Latn:
       read:filters: pogledaj svoje filtere
       read:follows: pogledaj koga pratiš
       read:lists: pogledaj svoje liste
-      read:mutes: pogledaj svoje utišane
+      read:mutes: pogledaj ignorisanja
       read:notifications: pogledaj svoja obaveštenja
       read:reports: pogledaj svoje prijave
       read:search: pretraži u svoje ime
@@ -176,13 +183,13 @@ sr-Latn:
       write:accounts: izmeni svoj profil
       write:blocks: blokiraj naloge i domene
       write:bookmarks: obeleži objave
-      write:conversations: utišaj i obriši razgovore
+      write:conversations: ignoriši i izbriši razgovore
       write:favourites: omiljene objave
       write:filters: kreiraj filtere
       write:follows: prati korisnike
       write:lists: kreiraj liste
       write:media: otpremi medijske datoteke
-      write:mutes: utišaj korinsike i razgovore
+      write:mutes: ignoriši korisnike i razgovore
       write:notifications: obriši svoja obaveštenja
       write:reports: prijavi druge korisnike
       write:statuses: objavi objave

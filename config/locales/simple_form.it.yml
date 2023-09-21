@@ -2,6 +2,14 @@
 it:
   simple_form:
     hints:
+      account:
+        discoverable: I tuoi post pubblici e il tuo profilo potrebbero essere presenti o consigliati in varie aree di Mastodon e il tuo profilo potrebbe essere suggerito ad altri utenti.
+        display_name: Il tuo nome completo o il tuo soprannome.
+        fields: La tua homepage, i pronomi, l'età, tutto quello che vuoi.
+        indexable: I tuoi post pubblici potrebbero apparire nei risultati di ricerca su Mastodon. Le persone che hanno interagito con i tuoi post potrebbero essere in grado di cercarli indipendentemente.
+        note: 'Puoi @menzionare altre persone o usare gli #hashtags.'
+        show_collections: Le persone saranno in grado di navigare attraverso i tuoi seguaci e seguaci. Le persone che segui vedranno che li seguirai indipendentemente dalle tue impostazioni.
+        unlocked: Le persone saranno in grado di seguirti senza richiedere l'approvazione. Deseleziona se vuoi controllare le richieste di seguirti e scegli se accettare o rifiutare nuovi follower.
       account_alias:
         acct: Indica il nomeutente@dominio dell'account dal quale vuoi trasferirti
       account_migration:
@@ -37,14 +45,11 @@ it:
         current_password: Per motivi di sicurezza inserisci la password dell'account attuale
         current_username: Per confermare, inserisci il nome utente dell'account attuale
         digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
-        discoverable: Consenti al tuo account di essere scoperto da sconosciuti tramite consigli, tendenze e altre funzionalità
         email: Ti manderemo una email di conferma
-        fields: Puoi avere fino a 4 voci visualizzate come una tabella sul tuo profilo
         header: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
         inbox_url: Copia la URL dalla pagina iniziale del ripetitore che vuoi usare
         irreversible: I post filtrati scompariranno in modo irreversibile, anche se il filtro viene eliminato
         locale: La lingua dell'interfaccia utente, di email e notifiche push
-        locked: Richiede che approvi i follower manualmente
         password: Usa almeno 8 caratteri
         phrase: Il confronto sarà eseguito ignorando minuscole/maiuscole e i content warning
         scopes: A quali API l'applicazione potrà avere accesso. Se selezionate un ambito di alto livello, non c'è bisogno di selezionare quelle singole.
@@ -54,12 +59,9 @@ it:
         setting_display_media_default: Nascondi media segnati come sensibili
         setting_display_media_hide_all: Nascondi sempre tutti i media
         setting_display_media_show_all: Mostra sempre i media segnati come sensibili
-        setting_hide_network: Chi segui e chi segue te non saranno mostrati sul tuo profilo
-        setting_noindex: Ha effetto sul tuo profilo pubblico e sulle pagine degli status
-        setting_show_application: L'applicazione che usi per pubblicare i toot sarà mostrata nella vista di dettaglio dei tuoi toot
         setting_use_blurhash: I gradienti sono basati sui colori delle immagini nascoste ma offuscano tutti i dettagli
         setting_use_pending_items: Fare clic per mostrare i nuovi messaggi invece di aggiornare la timeline automaticamente
-        username: Il tuo nome utente sarà unico su %{domain}
+        username: Puoi usare lettere, numeri e caratteri di sottolineatura
         whole_word: Quando la parola chiave o la frase è solo alfanumerica, si applica solo se corrisponde alla parola intera
       domain_allow:
         domain: Questo dominio potrà recuperare i dati da questo server e i dati in arrivo da esso verranno elaborati e memorizzati
@@ -118,6 +120,9 @@ it:
       sessions:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
         webauthn: Se si tratta di una chiavetta USB assicurati di inserirla e, se necessario, toccarla.
+      settings:
+        indexable: La pagina del tuo profilo potrebbe apparire nei risultati di ricerca su Google, Bing e altri.
+        show_application: Sarai sempre in grado di vedere quale app ha pubblicato il tuo post indipendentemente.
       tag:
         name: Puoi cambiare solo il minuscolo/maiuscolo delle lettere, ad esempio, per renderlo più leggibile
       user:
@@ -131,12 +136,17 @@ it:
         position: Un ruolo più alto decide la risoluzione dei conflitti in determinate situazioni. Alcune azioni possono essere eseguite solo su ruoli con priorità più bassa
       webhook:
         events: Seleziona eventi da inviare
+        template: Componi il tuo carico utile JSON utilizzando l'interpolazione variabile. Lascia vuoto per il JSON predefinito.
         url: Dove gli eventi saranno inviati
     labels:
       account:
+        discoverable: Include il profilo e i post negli algoritmi di scoperta
         fields:
           name: Etichetta
           value: Contenuto
+        indexable: Includi i post pubblici nei risultati di ricerca
+        show_collections: Mostra chi segui e chi ti segue sul profilo
+        unlocked: Accetta automaticamente nuovi follower
       account_alias:
         acct: Handle del vecchio account
       account_migration:
@@ -174,7 +184,6 @@ it:
         context: Contesti del filtro
         current_password: Password corrente
         data: Dati
-        discoverable: Inserisci questo account nella directory
         display_name: Nome visualizzato
         email: Indirizzo email
         expires_in: Scade dopo
@@ -184,7 +193,6 @@ it:
         inbox_url: URL della inbox del ripetitore
         irreversible: Elimina invece di nascondere
         locale: Lingua dell'interfaccia
-        locked: Blocca account
         max_uses: Numero massimo di utilizzi
         new_password: Nuova password
         note: Biografia
@@ -196,7 +204,6 @@ it:
         setting_always_send_emails: Manda sempre notifiche via email
         setting_auto_play_gif: Riproduci automaticamente le GIF animate
         setting_boost_modal: Mostra dialogo di conferma prima del boost
-        setting_crop_images: Ritaglia immagini in post non espansi a 16x9
         setting_default_language: Lingua dei post
         setting_default_privacy: Privacy dei post
         setting_default_sensitive: Segna sempre i media come sensibili
@@ -208,9 +215,7 @@ it:
         setting_display_media_show_all: Mostra tutti
         setting_expand_spoilers: Espandi sempre post con content warning
         setting_hide_network: Nascondi la tua rete
-        setting_noindex: Non farti indicizzare dai motori di ricerca
         setting_reduce_motion: Riduci movimento nelle animazioni
-        setting_show_application: Rendi pubblica l'applicazione usata per inviare i post
         setting_system_font_ui: Usa il carattere predefinito del sistema
         setting_theme: Tema del sito
         setting_trends: Mostra tendenze di oggi
@@ -259,7 +264,7 @@ it:
         timeline_preview: Consenti l'accesso non autenticato alle timeline pubbliche
         trendable_by_default: Consenti le tendenze senza revisione preventiva
         trends: Abilita le tendenze
-        trends_as_landing_page: Utilizza le tendenze come pagina di destinazione
+        trends_as_landing_page: Usa le tendenze come pagina di destinazione
       interactions:
         must_be_follower: Blocca notifiche da chi non ti segue
         must_be_following: Blocca notifiche dalle persone che non segui
@@ -286,9 +291,18 @@ it:
         pending_account: Invia e-mail quando un nuovo account richiede l'approvazione
         reblog: Qualcuno ha condiviso il tuo post
         report: Una nuova segnalazione è stata inviata
+        software_updates:
+          all: Notifica su tutti gli aggiornamenti
+          critical: Notifica soltanto sugli aggiornamenti critici
+          label: Una nuova versione di Mastodon è disponibile
+          none: Non notificare mai sugli aggiornamenti (sconsigliato)
+          patch: Notifica sulle correzioni di bug
         trending_tag: La nuova tendenza richiede un controllo
       rule:
         text: Regola
+      settings:
+        indexable: Includi la pagina del profilo nei motori di ricerca
+        show_application: Mostra da quale app hai inviato un post
       tag:
         listable: Permetti a questo hashtag di apparire nella directory dei profili
         name: Hashtag
@@ -296,6 +310,7 @@ it:
         usable: Permetti ai post di usare questo hashtag
       user:
         role: Ruolo
+        time_zone: Fuso orario
       user_role:
         color: Colore distintivo
         highlighted: Mostra il ruolo come distintivo sui profili utente
@@ -304,9 +319,11 @@ it:
         position: Priorità
       webhook:
         events: Eventi abilitati
+        template: Modello di carico utile
         url: URL endpoint
     'no': 'No'
     not_recommended: Non consigliato
+    overridden: Sostituito
     recommended: Consigliato
     required:
       mark: "*"

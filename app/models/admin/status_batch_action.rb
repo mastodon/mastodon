@@ -22,7 +22,7 @@ class Admin::StatusBatchAction
   private
 
   def statuses
-    Status.with_discarded.where(id: status_ids)
+    Status.with_discarded.where(id: status_ids).reorder(nil)
   end
 
   def process_action!
