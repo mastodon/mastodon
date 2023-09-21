@@ -156,45 +156,43 @@ class Results extends PureComponent {
 
     let filteredResults;
 
-    if (!isLoading) {
-      const accounts = results.get('accounts', ImmutableList());
-      const hashtags = results.get('hashtags', ImmutableList());
-      const statuses = results.get('statuses', ImmutableList());
+    const accounts = results.get('accounts', ImmutableList());
+    const hashtags = results.get('hashtags', ImmutableList());
+    const statuses = results.get('statuses', ImmutableList());
 
-      switch(type) {
-      case 'all':
-        filteredResults = (accounts.size + hashtags.size + statuses.size) > 0 ? (
-          <>
-            {accounts.size > 0 && (
-              <SearchSection key='accounts' title={<><Icon id='users' fixedWidth /><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></>} onClickMore={this.handleLoadMoreAccounts}>
-                {accounts.take(INITIAL_DISPLAY).map(id => <Account key={id} id={id} />)}
-              </SearchSection>
-            )}
+    switch(type) {
+    case 'all':
+      filteredResults = (accounts.size + hashtags.size + statuses.size) > 0 ? (
+        <>
+          {accounts.size > 0 && (
+            <SearchSection key='accounts' title={<><Icon id='users' fixedWidth /><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></>} onClickMore={this.handleLoadMoreAccounts}>
+              {accounts.take(INITIAL_DISPLAY).map(id => <Account key={id} id={id} />)}
+            </SearchSection>
+          )}
 
-            {hashtags.size > 0 && (
-              <SearchSection key='hashtags' title={<><Icon id='hashtag' fixedWidth /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></>} onClickMore={this.handleLoadMoreHashtags}>
-                {hashtags.take(INITIAL_DISPLAY).map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
-              </SearchSection>
-            )}
+          {hashtags.size > 0 && (
+            <SearchSection key='hashtags' title={<><Icon id='hashtag' fixedWidth /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></>} onClickMore={this.handleLoadMoreHashtags}>
+              {hashtags.take(INITIAL_DISPLAY).map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
+            </SearchSection>
+          )}
 
-            {statuses.size > 0 && (
-              <SearchSection key='statuses' title={<><Icon id='quote-right' fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></>} onClickMore={this.handleLoadMoreStatuses}>
-                {statuses.take(INITIAL_DISPLAY).map(id => <Status key={id} id={id} />)}
-              </SearchSection>
-            )}
-          </>
-        ) : [];
-        break;
-      case 'accounts':
-        filteredResults = renderAccounts(accounts);
-        break;
-      case 'hashtags':
-        filteredResults = renderHashtags(hashtags);
-        break;
-      case 'statuses':
-        filteredResults = renderStatuses(statuses);
-        break;
-      }
+          {statuses.size > 0 && (
+            <SearchSection key='statuses' title={<><Icon id='quote-right' fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></>} onClickMore={this.handleLoadMoreStatuses}>
+              {statuses.take(INITIAL_DISPLAY).map(id => <Status key={id} id={id} />)}
+            </SearchSection>
+          )}
+        </>
+      ) : [];
+      break;
+    case 'accounts':
+      filteredResults = renderAccounts(accounts);
+      break;
+    case 'hashtags':
+      filteredResults = renderHashtags(hashtags);
+      break;
+    case 'statuses':
+      filteredResults = renderStatuses(statuses);
+      break;
     }
 
     return (
