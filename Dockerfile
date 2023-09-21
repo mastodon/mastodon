@@ -9,6 +9,9 @@ ARG RUBY_VERSION="3.2.2"
 # Node version to use, change with [--build-arg NODE_VERSION=]
 ARG NODE_VERSION="20.6.0"
 
+# FFmpeg version to use, change with [--build-arg FFMPEG_VERSION=]
+ARG FFMPEG_VERSION="6.0"
+
 # Image variant to use for ruby and node, change with [--build-arg IMAGE_VARIANT=]
 ARG IMAGE_VARIANT="bookworm"
 
@@ -83,6 +86,21 @@ RUN set -eux; \
         libpq5 \
         # Dependencies for nodejs
         libatomic1 \
+        # Dependencies for ffmpeg
+        libaom3 \
+        libdav1d6 \
+        libdrm2 \
+        libmp3lame0 \
+        libnuma1 \
+        libopus0 \
+        libva-drm2 \
+        libvorbis0a \
+        libvorbisenc2 \
+        libvorbisfile3 \
+        libvpx7 \
+        libx264-164 \
+        libx265-199 \
+        zlib1g \
     ; \
     # Remove /var/lib/apt/lists as cache
     rm -rf /var/lib/apt/lists/*; \
@@ -123,7 +141,11 @@ RUN set -eux; \
     # Update apt due to /var/lib/apt/lists is empty
     apt-get update; \
     # Install builder dependencies
-    apt-get install -y --no-install-recommends build-essential;
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        git \
+        pkg-config \
+    ;
 
 ########################################################################################################################
 FROM builder-base as ruby-builder
@@ -133,7 +155,6 @@ ADD Gemfile* /opt/mastodon/
 RUN set -eux; \
     # Install ruby gems dependencies
     apt-get install -y --no-install-recommends \
-        git \
         libicu-dev \
         libidn-dev \
         libpq-dev \
@@ -234,42 +255,22 @@ RUN set -eux; \
     # Remove /var/lib/apt/lists as cache
     rm -rf /var/lib/apt/lists/*;
 
+# [1/4] Copy the git source code into the image layer
+COPY --link . /opt/mastodon
+# [2/4] Copy output of the "bundle install" build stage into this layer
+COPY --link --from=ruby-builder /opt/mastodon/vendor/bundle /opt/mastodon/vendor/bundle
+# [3/4] Copy output of the "yarn install" build stage into this image layer
+COPY --link --from=node-builder /opt/mastodon/node_modules /opt/mastodon/node_modules
+# [4/4] Copy output of the ffmpeg-builder into this image layer
+COPY --link --from=ffmpeg-builder /opt/ffmpeg /opt/ffmpeg
+
 RUN set -eux; \
-    dpkgArch="$(dpkg --print-architecture)"; \
-    # Marks currently installed apt packages
-    savedAptMark="$(apt-mark showmanual)"; \
-    # Update apt due to /var/lib/apt/lists is empty
-    apt-get update; \
-    # Install ffmpeg installation dependencies
-    apt-get install -y --no-install-recommends \
-        xz-utils \
-    ; \
-    # Download and install ffmpeg latest release version
-    wget -q "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-${dpkgArch}-static.tar.xz"; \
-    wget -q "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-${dpkgArch}-static.tar.xz.md5"; \
-    md5sum -c ffmpeg-release-${dpkgArch}-static.tar.xz.md5; \
-    tmp="$(mktemp -d)"; \
-    tar -xJf "ffmpeg-release-${dpkgArch}-static.tar.xz" -C "${tmp}" --strip-components=1 --no-same-owner; \
-    rm "ffmpeg-release-${dpkgArch}-static.tar.xz" "ffmpeg-release-${dpkgArch}-static.tar.xz.md5"; \
-    mv "${tmp}/ffmpeg" /usr/local/bin/; \
-    mv "${tmp}/ffprobe" /usr/local/bin/; \
-    rm -r "${tmp}"; \
-    # Remove unrequired packages on runtime
-    apt-mark auto '.*' > /dev/null; \
-    apt-mark manual $savedAptMark > /dev/null; \
-    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-    # Remove /var/lib/apt/lists as cache
-    rm -rf /var/lib/apt/lists/*; \
+    ln -s /opt/ffmpeg/bin/ffmpeg /usr/local/bin/; \
+    ln -s /opt/ffmpeg/bin/ffprobe /usr/local/bin/; \
+    ls /opt/ffmpeg/lib; \
     # smoke tests for ffmpeg, ffprobe
     ffmpeg -version; \
     ffprobe -version;
-
-# [1/3] Copy the git source code into the image layer
-COPY --link . /opt/mastodon
-# [2/3] Copy output of the "bundle install" build stage into this layer
-COPY --link --from=ruby-builder /opt/mastodon/vendor/bundle /opt/mastodon/vendor/bundle
-# [3/3] Copy output of the "yarn install" build stage into this image layer
-COPY --link --from=node-builder /opt/mastodon/node_modules /opt/mastodon/node_modules
 
 RUN set -eux; \
     # Create some dirs as mastodon:mastodon
