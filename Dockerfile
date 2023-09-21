@@ -178,6 +178,7 @@ ARG FFMPEG_VERSION
 
 RUN set -eux; \
     apt-get install -y --no-install-recommends \
+        nasm \
         libaom-dev \
         libdav1d-dev \
         libdrm-dev \
@@ -191,6 +192,7 @@ RUN set -eux; \
         libx265-dev \
         zlib1g-dev \
         xz-utils \
+        yasm \
     ; \
     ffmpeg_workdir="$(mktemp -d)"; \
     ffmpeg_prefix="/opt/ffmpeg"; \
