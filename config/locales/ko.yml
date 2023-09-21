@@ -306,7 +306,7 @@ ko:
       unpublish: 게시 취소
       unpublished_msg: 공지가 성공적으로 발행 취소되었습니다!
       updated_msg: 공지가 성공적으로 업데이트되었습니다!
-    critical_update_pending: 긴급한 업데이트 보류 중
+    critical_update_pending: 긴급 업데이트 보류 중
     custom_emojis:
       assign_category: 분류 지정
       by_domain: 도메인
@@ -846,7 +846,7 @@ ko:
         message_html: "%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요"
       software_version_critical_check:
         action: 사용 가능한 업데이트 보기
-        message_html: 긴급한 마스토돈 업데이트가 사용 가능합니다. 되도록 빨리 업데이트 해주세요.
+        message_html: 긴급 마스토돈 업데이트가 있으니, 가능한 서둘러 업데이트 해주세요.
       software_version_patch_check:
         action: 사용 가능한 업데이트 보기
         message_html: 마스토돈 버그픽스 업데이트가 있습니다.
@@ -960,8 +960,8 @@ ko:
       next_steps: 중재 결정사항을 되돌리기 위해서 상소를 승인하거나, 무시할 수 있습니다.
       subject: "%{username} 님이 %{instance}에서 발생한 중재 결정에 대해 소명을 제출했습니다"
     new_critical_software_updates:
-      body: 마스토돈의 긴급한 업데이트가 릴리스되었습니다. 되도록 빨리 업데이트 하시길 바랍니다!
-      subject: "%{instance}에 대해 긴급한 업데이트가 있습니다!"
+      body: 마스토돈의 긴급 업데이트가 릴리스 되었으니, 가능한 서둘러 업데이트를 바랍니다!
+      subject: "%{instance}에 대해 긴급 업데이트가 있습니다!"
     new_pending_account:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
       subject: "%{instance}의 새 계정(%{username})에 대한 심사가 대기중입니다"
@@ -1501,7 +1501,7 @@ ko:
     privacy: 개인정보
     privacy_hint_html: 다른 이들을 위해 노출할 수 있는 정보의 양을 조절합니다. 누군가는 다른 이들의 팔로우를 둘러보고 어떤 앱에서 게시물을 올렸는지 살피면서 흥미로운 프로필과 멋진 앱을 발견할 수 있지만, 누군가는 이를 숨기고 싶을 수도 있겠죠.
     reach: 도달
-    reach_hint_html: 새로운 사람들이 나를 발견하고 팔로우하도록 허용할지 여부를 제어합니다. 발견하기 화면에 게시물이 표시되기를 바라나요? 다른 사람들의 팔로우 추천에 표시되기를 바라나요? 모든 새 팔로워를 자동으로 수락하거나 각 팔로워를 세세하게 제어할까요?
+    reach_hint_html: 새로운 사람들이 나를 발견하고 팔로우하도록 허용할지 여부를 제어합니다. 둘러보기 화면에 게시물이 표시되기를 바라나요? 다른 사람들의 팔로우 추천에 표시되기를 바라나요? 모든 새 팔로워를 자동으로 수락하거나 각 팔로워를 세세하게 제어할까요?
     search: 검색
     search_hint_html: 내가 어떻게 발견될지를 제어합니다. 내가 공개적으로 게시한 것들로 인해 사람들이 날 발견하길 원하나요? 마스토돈 바깥의 사람들이 웹에서 검색을 통해 내 프로필을 발견하길 원하나요? 공개적인 정보에 대해서 모든 검색엔진의 검색결과에서 제외하는 것은 보장할 수 없다는 점에 주의해주세요.
     title: 개인정보와 도달
