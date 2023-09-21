@@ -110,10 +110,15 @@ RUN set -eux; \
     # Set local timezone
     echo "${TZ}" > /etc/localtime;
 
-# Node image contains node and yarn on /usr/local and /opt
+# Node image contains node on /usr/local
 #
 # See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
-COPY --link --from=node /usr/local /usr/local
+COPY --link --from=node /usr/local/bin /usr/local/bin
+COPY --link --from=node /usr/local/lib /usr/local/lib
+
+# Node image contains yarn on /opt
+#
+# See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
 COPY --link --from=node /opt /opt
 
 RUN set -eux; \
@@ -139,6 +144,11 @@ RUN set -eux; \
 
 ########################################################################################################################
 FROM base as builder-base
+
+# Node image contains node on /usr/local
+#
+# See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
+COPY --link --from=node /usr/local/include /usr/local/include
 
 RUN set -eux; \
     # Update apt due to /var/lib/apt/lists is empty
