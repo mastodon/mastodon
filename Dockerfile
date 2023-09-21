@@ -12,6 +12,9 @@ ARG NODE_VERSION="20.6.0"
 # FFmpeg version to use, change with [--build-arg FFMPEG_VERSION=]
 ARG FFMPEG_VERSION="6.0"
 
+# ImageMagick version to use, change with [--build-arg IMAGEMAGICK_VERSION=]
+ARG IMAGEMAGICK_VERSION="7.1.1-17"
+
 # Image variant to use for ruby and node, change with [--build-arg IMAGE_VARIANT=]
 ARG IMAGE_VARIANT="bookworm"
 
@@ -86,6 +89,8 @@ RUN set -eux; \
         libpq5 \
         # Dependencies for nodejs
         libatomic1 \
+        # Dependencies for ImageMagick
+        libltdl7 \
         # Dependencies for FFmpeg
         libaom3 \
         libdav1d6 \
@@ -175,6 +180,36 @@ RUN set -eux; \
     yarn cache clean --all;
 
 ########################################################################################################################
+FROM builder-base as imagemagick-builder
+ARG IMAGEMAGICK_VERSION
+
+RUN set -eux; \
+    apt-get install -y --no-install-recommends \
+        libltdl-dev \
+    ; \
+    imagemagick_workdir="$(mktemp -d)"; \
+    imagemagick_prefix="/opt/magick"; \
+    cd ${imagemagick_workdir}; \
+    git clone -b ${IMAGEMAGICK_VERSION} --depth 1 https://github.com/ImageMagick/ImageMagick.git .; \
+    LDFLAGS="-Wl,-rpath,'$$ORIGIN/../lib'" ./configure \
+        --prefix="${imagemagick_prefix}" \
+        # Optional Features
+        --disable-openmp \
+        --enable-shared \
+        --disable-static \
+        --disable-docs \
+        # Optional Packages
+        --without-x \
+    ; \
+    make -j$(nproc); \
+    make install; \
+    rm -r \
+        "${imagemagick_prefix}/include" \
+        "${imagemagick_prefix}/lib/pkgconfig" \
+        "${imagemagick_prefix}/share" \
+    ;
+
+########################################################################################################################
 FROM builder-base as ffmpeg-builder
 ARG FFMPEG_VERSION
 
@@ -252,22 +287,27 @@ RUN set -eux; \
     # Install runtime-only dependencies
     apt-get install -y --no-install-recommends \
         file \
-        imagemagick \
         libjemalloc2 \
         tini \
     ; \
     # Remove /var/lib/apt/lists as cache
     rm -rf /var/lib/apt/lists/*;
 
-# [1/4] Copy the git source code into the image layer
+# [1/5] Copy the git source code into the image layer
 COPY --link . /opt/mastodon
-# [2/4] Copy output of the "bundle install" build stage into this layer
+# [2/5] Copy output of the "bundle install" build stage into this layer
 COPY --link --from=ruby-builder /opt/mastodon/vendor/bundle /opt/mastodon/vendor/bundle
-# [3/4] Copy output of the "yarn install" build stage into this image layer
+# [3/5] Copy output of the "yarn install" build stage into this image layer
 COPY --link --from=node-builder /opt/mastodon/node_modules /opt/mastodon/node_modules
-# [4/4] Copy output of the ffmpeg-builder into this image layer
-COPY --link --from=ffmpeg-builder /opt/ffmpeg /opt/ffmpeg
+# [4/5] Copy output of the imagemagick-builder into this image layer
+COPY --link --from=imagemagick-builder /opt/magick /opt/magick
+RUN set -eux; \
+    ln -s /opt/magick/bin/* /usr/local/bin/; \
+    # smoke tests for magick
+    magick -version;
 
+# [5/5] Copy output of the ffmpeg-builder into this image layer
+COPY --link --from=ffmpeg-builder /opt/ffmpeg /opt/ffmpeg
 RUN set -eux; \
     ln -s /opt/ffmpeg/bin/* /usr/local/bin/; \
     # smoke tests for ffmpeg, ffprobe
