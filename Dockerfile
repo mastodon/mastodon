@@ -89,8 +89,6 @@ RUN set -eux; \
         libpq5 \
         # Dependencies for nodejs
         libatomic1 \
-        # Dependencies for ImageMagick
-        libltdl7 \
         # Dependencies for FFmpeg
         libaom3 \
         libdav1d6 \
