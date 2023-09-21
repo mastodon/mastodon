@@ -86,7 +86,7 @@ RUN set -eux; \
         libpq5 \
         # Dependencies for nodejs
         libatomic1 \
-        # Dependencies for ffmpeg
+        # Dependencies for FFmpeg
         libaom3 \
         libdav1d6 \
         libdrm2 \
@@ -228,9 +228,9 @@ RUN set -eux; \
     make -j$(nproc); \
     make install; \
     rm -r \
-        /opt/ffmpeg/include \
-        /opt/ffmpeg/lib/pkgconfig \
-        /opt/ffmpeg/share \
+        "${ffmpeg_prefix}/include" \
+        "${ffmpeg_prefix}/lib/pkgconfig" \
+        "${ffmpeg_prefix}/share" \
     ;
 
 ########################################################################################################################
@@ -266,8 +266,7 @@ COPY --link --from=node-builder /opt/mastodon/node_modules /opt/mastodon/node_mo
 COPY --link --from=ffmpeg-builder /opt/ffmpeg /opt/ffmpeg
 
 RUN set -eux; \
-    ln -s /opt/ffmpeg/bin/ffmpeg /usr/local/bin/; \
-    ln -s /opt/ffmpeg/bin/ffprobe /usr/local/bin/; \
+    ln -s /opt/ffmpeg/bin/* /usr/local/bin/; \
     # smoke tests for ffmpeg, ffprobe
     ffmpeg -version; \
     ffprobe -version;
