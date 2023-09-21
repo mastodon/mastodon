@@ -212,6 +212,10 @@ RUN set -eux; \
         --enable-ffprobe \
         # Documentation Options
         --disable-doc \
+        # Component Options
+        --disable-network \
+        --disable-bsfs \
+        --disable-filters \
         # External Library Support
         --enable-libaom \
         --enable-libdav1d \
@@ -222,7 +226,6 @@ RUN set -eux; \
         --enable-libvpx \
         --enable-libx264 \
         --enable-libx265 \
-        --enable-openssl \
         --enable-vaapi \
     ; \
     make -j$(nproc); \
