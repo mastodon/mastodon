@@ -95,11 +95,13 @@ RUN set -eux; \
         libmp3lame0 \
         libnuma1 \
         libopus0 \
+        libva2 \
         libva-drm2 \
         libvorbis0a \
         libvorbisenc2 \
         libvorbisfile3 \
         libvpx7 \
+        libvulkan1 \
         libx264-164 \
         libx265-199 \
         zlib1g \
@@ -236,6 +238,7 @@ RUN set -eux; \
         libva-dev \
         libvorbis-dev \
         libvpx-dev \
+        libvulkan-dev \
         libx264-dev \
         libx265-dev \
         zlib1g-dev \
@@ -273,6 +276,7 @@ RUN set -eux; \
         --enable-libx264 \
         --enable-libx265 \
         --enable-vaapi \
+        --enable-vulkan \
     ; \
     make -j$(nproc); \
     make install; \
