@@ -183,6 +183,7 @@ RUN set -eux; \
 
 ########################################################################################################################
 FROM builder-base as node-builder
+ARG NODE_ENV
 
 ADD package.json yarn.lock /opt/mastodon/
 
