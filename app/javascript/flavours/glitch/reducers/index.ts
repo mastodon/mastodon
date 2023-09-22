@@ -16,7 +16,7 @@ import contexts from './contexts';
 import conversations from './conversations';
 import custom_emojis from './custom_emojis';
 import domain_lists from './domain_lists';
-import dropdown_menu from './dropdown_menu';
+import { dropdownMenuReducer } from './dropdown_menu';
 import filters from './filters';
 import followed_tags from './followed_tags';
 import height_cache from './height_cache';
@@ -49,7 +49,7 @@ import user_lists from './user_lists';
 
 const reducers = {
   announcements,
-  dropdown_menu,
+  dropdownMenu: dropdownMenuReducer,
   timelines,
   meta,
   alerts,

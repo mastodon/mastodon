@@ -6,9 +6,12 @@ import DropdownMenu from 'flavours/glitch/components/dropdown_menu';
 
 import { isUserTouching } from '../is_mobile';
 
+/**
+ * @param {import('flavours/glitch/store').RootState} state
+ */
 const mapStateToProps = state => ({
-  openDropdownId: state.getIn(['dropdown_menu', 'openId']),
-  openedViaKeyboard: state.getIn(['dropdown_menu', 'keyboard']),
+  openDropdownId: state.dropdownMenu.openId,
+  openedViaKeyboard: state.dropdownMenu.keyboard,
 });
 
 const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
@@ -20,7 +23,7 @@ const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
         actions: items,
         onClick: onItemClick,
       },
-    }) : openDropdownMenu(id, keyboard, scrollKey));
+    }) : openDropdownMenu({ id, keyboard, scrollKey }));
   },
 
   onClose(id) {
@@ -28,7 +31,7 @@ const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
       modalType: 'ACTIONS',
       ignoreFocus: false,
     }));
-    dispatch(closeDropdownMenu(id));
+    dispatch(closeDropdownMenu({ id }));
   },
 });
 
