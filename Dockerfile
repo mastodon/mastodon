@@ -69,9 +69,9 @@ FROM node:${NODE_VERSION}-${NODE_IMAGE_VARIANT} as node
 
 ########################################################################################################################
 FROM ruby:${RUBY_VERSION}-${RUBY_IMAGE_VARIANT} as base
-ARG TZ
 ARG UID
 ARG GID
+ARG TZ
 
 RUN set -eux; \
     # Update apt due to /var/lib/apt/lists is empty
@@ -109,7 +109,14 @@ RUN set -eux; \
     # Remove /var/lib/apt/lists as cache
     rm -rf /var/lib/apt/lists/*; \
     # Set local timezone
-    echo "${TZ}" > /etc/localtime;
+    echo "${TZ}" > /etc/localtime; \
+    # Add mastodon group and user
+    groupadd -g "${GID}" mastodon; \
+    useradd -u "${UID}" -g "${GID}" -l -M -d /opt/mastodon mastodon; \
+    # Symlink /opt/mastodon to /mastodon
+    ln -s /opt/mastodon /mastodon;
+
+WORKDIR /opt/mastodon
 
 # Node image contains node on /usr/local
 #
@@ -128,15 +135,6 @@ RUN set -eux; \
     yarn --version; \
     # Remove tmp files from node
     rm -rf /tmp/*;
-
-RUN set -eux; \
-    # Add mastodon group and user
-    groupadd -g "${GID}" mastodon; \
-    useradd -u "${UID}" -g "${GID}" -l -m -d /opt/mastodon mastodon; \
-    # Symlink /opt/mastodon to /mastodon
-    ln -s /opt/mastodon /mastodon;
-
-WORKDIR /opt/mastodon
 
 ########################################################################################################################
 FROM base as builder-base
@@ -310,7 +308,12 @@ RUN set -eux; \
         wget \
     ; \
     # Remove /var/lib/apt/lists as cache
-    rm -rf /var/lib/apt/lists/*;
+    rm -rf /var/lib/apt/lists/*; \
+    # Create some dirs as 1777
+    mkdir -p /opt/mastodon/tmp && chmod 1777 /opt/mastodon/tmp; \
+    mkdir -p /opt/mastodon/public/assets && chmod 1777 /opt/mastodon/public/assets; \
+    mkdir -p /opt/mastodon/public/packs && chmod 1777 /opt/mastodon/public/packs; \
+    mkdir -p /opt/mastodon/public/system && chmod 1777 /opt/mastodon/public/system;
 
 # [1/5] Copy the git source code into the image layer
 COPY --link . /opt/mastodon
@@ -333,13 +336,6 @@ RUN set -eux; \
     # smoke tests for ffmpeg, ffprobe
     ffmpeg -version; \
     ffprobe -version;
-
-RUN set -eux; \
-    # Create some dirs as mastodon:mastodon
-    mkdir /opt/mastodon/tmp && chown mastodon:mastodon /opt/mastodon/tmp; \
-    mkdir /opt/mastodon/public/assets && chown mastodon:mastodon /opt/mastodon/public/assets; \
-    mkdir /opt/mastodon/public/packs && chown mastodon:mastodon /opt/mastodon/public/packs; \
-    mkdir /opt/mastodon/public/system && chown mastodon:mastodon /opt/mastodon/public/system;
 
 ENV PATH="${PATH}:/opt/mastodon/bin" \
     LD_PRELOAD="libjemalloc.so.2" \
