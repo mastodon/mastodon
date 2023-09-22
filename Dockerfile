@@ -187,7 +187,7 @@ ADD package.json yarn.lock /opt/mastodon/
 
 RUN set -eux; \
     # Download and install yarn packages
-    yarn install --immutable; \
+    yarn install --frozen-lockfile --network-timeout 600000; \
     yarn cache clean --all;
 
 ########################################################################################################################
