@@ -138,11 +138,6 @@ RUN set -eux; \
 
 WORKDIR /opt/mastodon
 
-RUN set -eux; \
-    # Set bundle configs
-    bundle config set --local deployment 'true'; \
-    bundle config set --local without 'development test';
-
 ########################################################################################################################
 FROM base as builder-base
 
@@ -165,6 +160,7 @@ RUN set -eux; \
 
 ########################################################################################################################
 FROM builder-base as ruby-builder
+ARG RAILS_ENV
 
 ADD Gemfile* /opt/mastodon/
 
@@ -175,6 +171,13 @@ RUN set -eux; \
         libidn-dev \
         libpq-dev \
     ; \
+    # Set bundle configs
+    bundle config set --local deployment 'true'; \
+    case "${RAILS_ENV}" in \
+        development) bundle config set --local without 'test';; \
+        test) bundle config set --local without 'development';; \
+        production) bundle config set --local without 'development test';; \
+    esac; \
     # Install gems
     bundle install --no-cache;
 
@@ -312,6 +315,7 @@ RUN set -eux; \
 # [1/5] Copy the git source code into the image layer
 COPY --link . /opt/mastodon
 # [2/5] Copy output of the "bundle install" build stage into this layer
+COPY --link --from=ruby-builder ${BUNDLE_APP_CONFIG}/config ${BUNDLE_APP_CONFIG}/config
 COPY --link --from=ruby-builder /opt/mastodon/vendor/bundle /opt/mastodon/vendor/bundle
 # [3/5] Copy output of the "yarn install" build stage into this image layer
 COPY --link --from=node-builder /opt/mastodon/node_modules /opt/mastodon/node_modules
