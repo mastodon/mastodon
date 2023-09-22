@@ -7,7 +7,7 @@
 ARG RUBY_VERSION="3.2.2"
 
 # Node version to use, change with [--build-arg NODE_VERSION=]
-ARG NODE_VERSION="20.6.0"
+ARG NODE_VERSION="20.7.0"
 
 # FFmpeg version to use, change with [--build-arg FFMPEG_VERSION=]
 ARG FFMPEG_VERSION="6.0"
