@@ -197,6 +197,7 @@ module.exports = defineConfig({
         devDependencies: [
           '.eslintrc.js',
           'config/webpack/**',
+          'config/vite.config.ts',
           'app/javascript/mastodon/performance.js',
           'app/javascript/mastodon/test_setup.js',
           'app/javascript/**/__tests__/**',

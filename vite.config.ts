@@ -9,19 +9,20 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import CompressionPlugin from 'vite-plugin-compression';
 import RubyPlugin from 'vite-plugin-ruby';
+import svgr from 'vite-plugin-svgr';
 import { configDefaults } from 'vitest/config';
 
 const sourceCodeDir = 'app/javascript';
 const items = fs.readdirSync(sourceCodeDir);
 const directories = items.filter((item) =>
-  fs.lstatSync(path.join(sourceCodeDir, item)).isDirectory()
+  fs.lstatSync(path.join(sourceCodeDir, item)).isDirectory(),
 );
 const aliasesFromJavascriptRoot: Record<string, string> = {};
 directories.forEach((directory) => {
   aliasesFromJavascriptRoot[directory] = path.resolve(
     __dirname,
     sourceCodeDir,
-    directory
+    directory,
   );
 });
 
@@ -33,7 +34,7 @@ export default defineConfig({
         // Use a custom name for chunks, to avoid having too many of them called "index"
         chunkFileNames: (chunkInfo) => {
           if (chunkInfo.name === 'index' && chunkInfo.facadeModuleId) {
-            const parts = chunkInfo.facadeModuleId?.split('/');
+            const parts = chunkInfo.facadeModuleId.split('/');
 
             const parent = parts.at(-2);
 
@@ -63,6 +64,7 @@ export default defineConfig({
         ],
       },
     }),
+    svgr(),
     optimizeLodashImports(),
     CompressionPlugin({ verbose: false }),
     CompressionPlugin({ verbose: false, algorithm: 'brotliCompress' }),
