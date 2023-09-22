@@ -292,7 +292,6 @@ RUN set -eux; \
 
 ########################################################################################################################
 FROM base
-ARG TZ
 ARG RAILS_ENV
 ARG NODE_ENV
 ARG RAILS_SERVE_STATIC_FILES
@@ -344,7 +343,6 @@ RUN set -eux; \
 
 ENV PATH="${PATH}:/opt/mastodon/bin" \
     LD_PRELOAD="libjemalloc.so.2" \
-    TZ="${TZ}" \
     RAILS_ENV="${RAILS_ENV}" \
     NODE_ENV="${NODE_ENV}" \
     RAILS_SERVE_STATIC_FILES="${RAILS_SERVE_STATIC_FILES}" \
