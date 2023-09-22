@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 
 import type { ApiAccountJSON } from '../api_types/accounts';
-// To be replaced once FakeApiNotificationJSON type exists
+// To be replaced once ApiNotificationJSON type exists
 interface FakeApiNotificationJSON {
   type: string;
   account: ApiAccountJSON;
