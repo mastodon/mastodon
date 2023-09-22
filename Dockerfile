@@ -308,15 +308,19 @@ RUN set -eux; \
         wget \
     ; \
     # Remove /var/lib/apt/lists as cache
-    rm -rf /var/lib/apt/lists/*; \
+    rm -rf /var/lib/apt/lists/*;
+
+# [1/5] Copy the git source code into the image layer
+COPY --link . /opt/mastodon
+RUN set -eux; \
     # Create some dirs as 1777
     mkdir -p /opt/mastodon/tmp && chmod 1777 /opt/mastodon/tmp; \
+    mkdir -p /opt/mastodon/log && chmod 1777 /opt/mastodon/log; \
+    mkdir -p /opt/mastodon/public && chmod 1777 /opt/mastodon/public; \
     mkdir -p /opt/mastodon/public/assets && chmod 1777 /opt/mastodon/public/assets; \
     mkdir -p /opt/mastodon/public/packs && chmod 1777 /opt/mastodon/public/packs; \
     mkdir -p /opt/mastodon/public/system && chmod 1777 /opt/mastodon/public/system;
 
-# [1/5] Copy the git source code into the image layer
-COPY --link . /opt/mastodon
 # [2/5] Copy output of the "bundle install" build stage into this layer
 COPY --link --from=ruby-builder ${BUNDLE_APP_CONFIG}/config ${BUNDLE_APP_CONFIG}/config
 COPY --link --from=ruby-builder /opt/mastodon/vendor/bundle /opt/mastodon/vendor/bundle
