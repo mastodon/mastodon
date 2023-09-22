@@ -112,7 +112,7 @@ RUN set -eux; \
     echo "${TZ}" > /etc/localtime; \
     # Add mastodon group and user
     groupadd -g "${GID}" mastodon; \
-    useradd -u "${UID}" -g "${GID}" -l -M -d /opt/mastodon mastodon; \
+    useradd -u "${UID}" -g "${GID}" -l -m -d /opt/mastodon mastodon; \
     # Symlink /opt/mastodon to /mastodon
     ln -s /opt/mastodon /mastodon;
 
