@@ -15,7 +15,6 @@ import { loadLocale, getLocale } from '../mastodon/locales';
 import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
 
-import "styles/application.scss";
 import 'cocoon-js-vanilla';
 
 start();

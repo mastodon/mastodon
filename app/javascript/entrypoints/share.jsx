@@ -4,8 +4,6 @@ import { start } from '../mastodon/common';
 import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
 
-import 'styles/application.scss';
-
 start();
 
 async function loaded() {

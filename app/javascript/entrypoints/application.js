@@ -1,8 +1,6 @@
 import { start } from '../mastodon/common';
-import { loadLocale } from '../mastodon/load_locale';
+import { loadLocale } from '../mastodon/locales/load_locale';
 import { loadPolyfills } from '../mastodon/polyfills';
-
-import 'styles/application.scss';
 
 start();
 
