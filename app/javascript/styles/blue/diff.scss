@@ -15,6 +15,7 @@ html {
   
     &.button-tertiary {
       color: $highlight-text-color;
+      background: darken($ui-primary-color, 15%);
     }
   }
   
@@ -789,9 +790,7 @@ html {
   }
   
   .dismissable-banner {
-    border-left: 1px solid $ui-base-color;
-    border-right: 1px solid $ui-base-color;
-    background-color: darken($ui-base-color, 8%);
+    background-color: rgba($ui-base-color, 0.15);
   }
   
   .status__content,

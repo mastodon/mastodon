@@ -201,7 +201,7 @@
     width:1.5em;
   }
 
-  & #mcd_rolebadge{
+  & .mcd_rolebadge{
     fill:var(--user-role-accent, rgba($ui-secondary-color, 1));
   }
   border-radius: 4px;
@@ -222,6 +222,12 @@
   border: 1px solid rgba($ui-secondary-color, 0.5);
 }
 
+.mcd_rolebadge_parent{
+  border: none;
+  background-color: transparent;
+  font-size: inherit;
+}
+
 .account-role {
   display: inline-flex;
   padding: 4px;
@@ -235,6 +241,10 @@
   gap: 4px;
   border-radius: 6px;
   align-items: center;
+
+  & .mcd_rolebadge{
+    fill:var(--user-role-accent, rgba($ui-secondary-color, 1));
+  }
 
   svg {
     width: auto;

@@ -7,6 +7,15 @@ $classic-primary-color: #9baec8;
 $classic-secondary-color: #d9e1e8;
 $classic-highlight-color: #72c425;
 
+$red-600: #b7253d !default; // Deep Carmine
+$red-500: #df405a !default; // Cerise
+$blurple-600: #ffb20c;
+$blurple-500: #ffbd2f;
+$blurple-400: #ffc853;
+$blurple-300: #ffcf68;
+$grey-600: #4e4c5a; // Trout
+$grey-100: #dadaf3; // Topaz
+
 // Differences
 $success-green: lighten(#1e8f40, 8%);
 
@@ -26,6 +35,28 @@ $ui-base-lighter-color: $ui-color-green;
 $ui-primary-color: $ui-color-blue;
 $ui-secondary-color: $classic-base-color !default;
 $ui-highlight-color: $classic-highlight-color !default;
+
+$ui-button-color: $white !default;
+$ui-button-background-color: $blurple-500 !default;
+$ui-button-focus-background-color: $blurple-600 !default;
+$ui-button-focus-outline-color: $blurple-400 !default;
+$ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !default;
+
+$ui-button-secondary-color: $grey-100 !default;
+$ui-button-secondary-border-color: $grey-100 !default;
+$ui-button-secondary-focus-background-color: $grey-600 !default;
+$ui-button-secondary-focus-color: $white !default;
+
+$ui-button-tertiary-color: $blurple-300 !default;
+$ui-button-tertiary-border-color: $blurple-300 !default;
+$ui-button-tertiary-focus-background-color: $blurple-600 !default;
+$ui-button-tertiary-focus-color: $white !default;
+
+$ui-button-destructive-background-color: $red-500 !default;
+$ui-button-destructive-focus-background-color: $red-600 !default;
+
+$ui-button-icon-focus-outline: $ui-button-focus-outline !default;
+$ui-button-icon-hover-background-color: rgba(140, 141, 255, 40%) !default;
 
 $primary-text-color: $black !default;
 $darker-text-color: $classic-base-color !default;

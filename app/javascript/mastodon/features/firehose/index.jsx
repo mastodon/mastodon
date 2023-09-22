@@ -159,7 +159,7 @@ const Firehose = ({ feedType, multiColumn }) => {
   return (
     <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
-        icon='globe'
+        icon='satellite-dish'
         active={hasUnread}
         title={intl.formatMessage(messages.title)}
         onPin={handlePin}

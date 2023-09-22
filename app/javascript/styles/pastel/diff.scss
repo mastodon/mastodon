@@ -15,6 +15,7 @@ html {
   
     &.button-tertiary {
       color: $highlight-text-color;
+      background: darken($ui-color-orange, 15%);
     }
   }
   
@@ -809,9 +810,9 @@ html {
     }
   
     .recommended {
-      border-color: $ui-highlight-color;
+      border-color: lighten($ui-color-orange, 25%);
       color: lighten($ui-color-orange, 25%);
-      background-color: rgba($ui-color-orange, 0.1);
+      background-color: rgba($ui-color-orange, 0.5);
     }
   }
   
@@ -831,9 +832,7 @@ html {
   }
   
   .dismissable-banner {
-    border-left: 1px solid $ui-base-color;
-    border-right: 1px solid $ui-base-color;
-    background-color: darken($ui-base-color, 8%);
+    background-color: rgba($ui-base-color, 0.15);
   }
   
   .status__content,

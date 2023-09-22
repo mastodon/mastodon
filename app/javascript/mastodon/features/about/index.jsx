@@ -16,6 +16,7 @@ import { Icon  }  from 'mastodon/components/icon';
 import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import { Skeleton } from 'mastodon/components/skeleton';
 import Account from 'mastodon/containers/account_container';
+import { ShortNumber } from 'mastodon/components/short_number';
 import LinkFooter from 'mastodon/features/ui/components/link_footer';
 
 const messages = defineMessages({
@@ -120,7 +121,7 @@ class About extends PureComponent {
         <div className='scrollable about'>
           <div className='about__header'>
             <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
-            <h1>{isLoading ? <Skeleton width='10ch' /> : server.get('domain')}</h1>
+            <h1>{isLoading ? <Skeleton width='10ch' /> : server.get('title')}</h1>
             <p><FormattedMessage id='about.powered_by' defaultMessage='Decentralized social media powered by {mastodon}' values={{ mastodon: <a href='https://joinmastodon.org' className='about__mail' target='_blank'>Mastodon</a> }} /></p>
           </div>
 
