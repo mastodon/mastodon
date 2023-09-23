@@ -208,8 +208,15 @@ RUN \
   yarn install --pure-lockfile --production --network-timeout 600000; \
   yarn cache clean --all;
 
+### Mastodon asset (CSS/JS/Image) creation ###
+# Use Ruby on Rails to create Mastodon assets
+# Cleanup temporary directory
+RUN \
+  OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile; \
+  rm -fr /opt/mastodon/tmp;
+
 ### Switch back to original run layer ###
-FROM run as combine
+FROM run
 
 ### Copy source code into run layer ###
 # Copy Mastodon source code from run system
@@ -220,17 +227,6 @@ COPY --from=build-ruby /opt/mastodon /opt/mastodon/
 COPY --from=build-ruby /usr/local/bundle/ /usr/local/bundle/
 # Copy the yarn output from build-node layer to /opt/mastodon
 COPY --from=build-node /opt/mastodon /opt/mastodon/
-
-### Mastodon asset (CSS/JS/Image) creation ###
-# Use Ruby on Rails to create Mastodon assets
-# Cleanup temporary directory
-RUN \
-  OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile; \
-  rm -fr /opt/mastodon/tmp;
-
-FROM run
-COPY --from=combine /opt/mastodon /opt/mastodon/
-COPY --from=build-ruby /usr/local/bundle/ /usr/local/bundle/
 
 ### Finalize image output ###
 # Set the running user for resulting container
