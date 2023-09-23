@@ -208,13 +208,9 @@ RUN \
   yarn install --pure-lockfile --production --network-timeout 600000; \
   yarn cache clean --all;
 
-FROM build-node as combine
-
 COPY --from=build-ruby /opt/mastodon /opt/mastodon/
 # Copy the bundler output from build-ruby layer to /usr/local/bundle/
 COPY --from=build-ruby /usr/local/bundle/ /usr/local/bundle/
-# Copy the yarn output from build-node layer to /opt/mastodon
-COPY --from=build-node /opt/mastodon /opt/mastodon/
 
 ### Mastodon asset (CSS/JS/Image) creation ###
 # Use Ruby on Rails to create Mastodon assets
@@ -225,7 +221,7 @@ RUN \
 
 FROM run
 COPY . /opt/mastodon/
-COPY --from=combine /opt/mastodon /opt/mastodon/
+COPY --from=build-node /opt/mastodon /opt/mastodon/
 COPY --from=build-ruby /usr/local/bundle/ /usr/local/bundle/
 
 ### Finalize image output ###
