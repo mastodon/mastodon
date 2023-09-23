@@ -217,7 +217,8 @@ FROM run
 # Copy Mastodon source code to container
 COPY . /opt/mastodon/
 # Copy compiled assets to layer
-COPY --from=build-assets /opt/mastodon/public/packs /opt/mastodon/public/assets
+COPY --from=build-assets /opt/mastodon/public/packs /opt/mastodon/public/packs
+COPY --from=build-assets /opt/mastodon/public/assets /opt/mastodon/public/assets
 # Copy bundler components to run layer
 COPY --from=build-bundler /opt/mastodon/ /opt/mastodon/
 COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
