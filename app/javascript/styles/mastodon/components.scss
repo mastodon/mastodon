@@ -5979,7 +5979,7 @@ a.status-card {
     max-height: 50vh;
     border: 0;
 
-    @media screen and (max-height: 600px) {
+    @media screen and (height <= 600px) {
       max-height: 20vh;
     }
 
