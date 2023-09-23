@@ -1,5 +1,5 @@
 /* Mastodon Bird UI by @rolle@mementomori.social
-   1.7.4-nightly */
+   1.7.5 */
 
 /* CSS variables */
 :root {
@@ -1923,6 +1923,7 @@ body.embed .detailed-status__meta .detailed-status__link .fa-retweet,
   transition: all 200ms;
 }
 
+.layout-multiple-columns .dropdown-menu__item a:hover,
 .layout-multiple-columns .notification__filter-bar button:hover,
 .layout-multiple-columns .account__section-headline a:hover {
   background-color: var(--color-column-link-hover);
@@ -2293,9 +2294,13 @@ body.embed .button.logo-button,
   border-top-right-radius: 9999px;
   color: var(--color-light-text);
   font-size: var(--font-size);
+  max-width: 36vw;
+  overflow: hidden;
   padding-left: 16px;
   padding-right: 16px;
+  text-overflow: ellipsis;
   transition: all 200ms;
+  white-space: nowrap;
 }
 
 /* Dark button borders and other things that have borders all around */
