@@ -199,7 +199,7 @@ RUN \
 # Create temporary assets build layer from build layer
 FROM build as build-assets
 
-# Copy Mastodon source code from build system to container
+# Copy Mastodon source code to layer
 COPY . /opt/mastodon/
 # Copy bundler and node packages from build layer to container
 COPY --from=build-bundler /opt/mastodon /opt/mastodon/
@@ -214,10 +214,12 @@ RUN \
 
 # Switch back to final Mastodon run layer
 FROM run
-
-# Copy source code and compiled assets to run layer
-COPY --from=build-assets /opt/mastodon /opt/mastodon/
+# Copy Mastodon source code to container
+COPY . /opt/mastodon/
+# Copy compiled assets to layer
+COPY --from=build-assets /opt/mastodon/public/packs /opt/mastodon/public/assets
 # Copy bundler components to run layer
+COPY --from=build-bundler /opt/mastodon/ /opt/mastodon/
 COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
 
 # Set the running user for resulting container
