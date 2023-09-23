@@ -144,6 +144,9 @@ RUN \
 ### Create temporary build layer from base layer ###
 ## base >> build
 FROM base as build
+# Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
+ARG NODE_MAJOR_VERSION="20"
+
 # Install build tools and bundler dependencies from APT
 # Cleanup Apt
 # hadolint ignore=DL3008
@@ -194,9 +197,6 @@ RUN \
 ### Create temporary node specific layer from build layer ###
 ## base >> build >> build-node
 FROM build as build-node
-
-# Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
-ARG NODE_MAJOR_VERSION="20"
 
 # Configure yarn to prevent changes to package.json and yarn.lock
 # Configure yarn to only process production Node packages
