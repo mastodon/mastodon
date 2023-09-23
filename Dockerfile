@@ -209,6 +209,7 @@ RUN \
 
 FROM build as combine
 
+COPY . /opt/mastodon/
 COPY --from=build-ruby /opt/mastodon /opt/mastodon/
 COPY --from=build-ruby /usr/local/bundle/ /usr/local/bundle/
 COPY --from=build-node /opt/mastodon /opt/mastodon/
@@ -221,7 +222,6 @@ RUN \
   rm -fr /opt/mastodon/tmp;
 
 FROM run
-COPY . /opt/mastodon/
 COPY --from=combine /opt/mastodon /opt/mastodon/
 COPY --from=build-ruby /usr/local/bundle/ /usr/local/bundle/
 
