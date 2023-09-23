@@ -289,8 +289,6 @@ RUN set -eux; \
         --disable-doc \
         # Component Options
         --disable-network \
-        --disable-bsfs \
-        --disable-filters \
         # External Library Support
         --enable-libaom \
         --enable-libdav1d \
