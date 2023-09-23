@@ -23,9 +23,14 @@ const MOUSE_IDLE_DELAY = 300;
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
+/**
+ *
+ * @param {import('mastodon/store').RootState} state
+ * @param {*} props
+ */
 const mapStateToProps = (state, { scrollKey }) => {
   return {
-    preventScroll: scrollKey === state.getIn(['dropdown_menu', 'scroll_key']),
+    preventScroll: scrollKey === state.dropdownMenu.scrollKey,
   };
 };
 
