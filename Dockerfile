@@ -182,7 +182,7 @@ RUN \
 # Configure bundle to not warn about root user
   bundle config set silence_root_warning true; \
 # Download and install required Gems
-  bundle install;
+  bundle install -j"$(nproc);
 
 # Create temporary yarn specific build layer from build layer
 FROM build as build-yarn
