@@ -88,6 +88,19 @@ RUN set -eux; \
         libpq5 \
         # Dependencies for nodejs
         libatomic1 \
+        # Dependencies for ImageMagick and FFmpeg
+        libbz2-1.0 \
+        liblzma5 \
+        # Dependencies for ImageMagick
+        libheif1 \
+        libjxl0.7 \
+        libpng16-16 \
+        libraw20 \
+        libtiff6 \
+        libwebp7 \
+        libwebpdemux2 \
+        libwebpmux3 \
+        libzip4 \
         # Dependencies for FFmpeg
         libaom3 \
         libdav1d6 \
@@ -196,7 +209,16 @@ ARG IMAGEMAGICK_VERSION
 
 RUN set -eux; \
     apt-get install -y --no-install-recommends \
+        libbz2-dev \
+        libheif-dev \
+        libjxl-dev \
         libltdl-dev \
+        liblzma-dev \
+        libpng-dev \
+        libraw-dev \
+        libtiff-dev \
+        libwebp-dev \
+        libzip-dev \
         zlib1g-dev \
     ; \
     imagemagick_workdir="$(mktemp -d)"; \
@@ -232,8 +254,10 @@ ARG FFMPEG_VERSION
 RUN set -eux; \
     apt-get install -y --no-install-recommends \
         libaom-dev \
+        libbz2-dev \
         libdav1d-dev \
         libdrm-dev \
+        liblzma-dev \
         libmp3lame-dev \
         libnuma-dev \
         libopus-dev \
