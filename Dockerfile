@@ -83,6 +83,7 @@ RUN set -eux; \
         # Dependencies for all (includes runtime)
         file \
         libjemalloc2 \
+        tini \
         tzdata \
         wget \
         # Dependencies for ruby gems
@@ -374,5 +375,8 @@ RUN set -eux; \
     OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile; \
     # Remove tmp files from assets:precompile
     rm -rf /tmp/* tmp/* log/* .cache/*;
+
+# Set the work dir and the container entry point
+ENTRYPOINT ["/usr/bin/tini", "--"]
 
 EXPOSE 3000 4000
