@@ -153,6 +153,7 @@ RUN \
     g++ \
     gcc \
     git \
+    gpg \
     libgdbm-dev \
     libgmp-dev \
     libicu-dev \
@@ -164,6 +165,15 @@ RUN \
     shared-mime-info \
     yarn \
     zlib1g-dev \
+  ; \
+  curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null; \
+  curl -s https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
+  echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR_VERSION}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list; \
+  echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list; \
+  apt-get update; \
+  apt-get install -y --no-install-recommends \
+    nodejs \
+    yarn \
   ; \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
@@ -194,23 +204,14 @@ ARG NODE_MAJOR_VERSION="20"
 # Cleanup cache of downloaded Node packages
 # hadolint ignore=DL3008
 RUN \
-  apt update; \
-  apt install gpg -y --no-install-recommends; \
-  curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null; \
-  curl -s https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
-  echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR_VERSION}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list; \
-  echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list; \
-  apt-get update; \
-  apt-get install -y --no-install-recommends \
-    nodejs \
-    yarn \
-  ; \
   yarn install --pure-lockfile --production --network-timeout 600000; \
   yarn cache clean --all;
 
+FROM build as combine
+
 COPY --from=build-ruby /opt/mastodon /opt/mastodon/
-# Copy the bundler output from build-ruby layer to /usr/local/bundle/
 COPY --from=build-ruby /usr/local/bundle/ /usr/local/bundle/
+COPY --from=build-node /opt/mastodon /opt/mastodon/
 
 ### Mastodon asset (CSS/JS/Image) creation ###
 # Use Ruby on Rails to create Mastodon assets
@@ -221,7 +222,7 @@ RUN \
 
 FROM run
 COPY . /opt/mastodon/
-COPY --from=build-node /opt/mastodon /opt/mastodon/
+COPY --from=combine /opt/mastodon /opt/mastodon/
 COPY --from=build-ruby /usr/local/bundle/ /usr/local/bundle/
 
 ### Finalize image output ###
