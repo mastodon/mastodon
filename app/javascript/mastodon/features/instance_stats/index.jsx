@@ -1,16 +1,21 @@
+import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
 import { Chart as ChartJS, registerables } from 'chart.js';
 import 'chartjs-adapter-moment';
+import { Line } from 'react-chartjs-2';
+
 import { fetchInstanceStats } from 'mastodon/actions/instance_stats';
 import Column from 'mastodon/components/column';
 import { Skeleton } from 'mastodon/components/skeleton';
 import 'moment';
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
-import { Line } from 'react-chartjs-2';
-import { Helmet } from 'react-helmet';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages, injectIntl } from 'react-intl';
-import { connect } from 'react-redux';
 
 ChartJS.register(...registerables);
 
@@ -92,13 +97,11 @@ const renderStats = (header, stats) => {
   ChartJS.defaults.color = '#bbb';
 
   return (
-    <>
-      <div className='about__header'>
-        <p>{header}</p>
+    <div className='about__header'>
+      <p>{header}</p>
 
-        {chart}
-      </div>
-    </>
+      {chart}
+    </div>
   );
 };
 
