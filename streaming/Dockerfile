@@ -7,7 +7,6 @@
 ARG TARGETPLATFORM="${TARGETPLATFORM}"
 ARG BUILDPLATFORM="${BUILDPLATFORM}"
 
-### Set software version targets for base image ###
 # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 ARG NODE_MAJOR_VERSION="20"
 # Node image to use for base image based on combined variables (ex: 20-alpine)
@@ -23,14 +22,13 @@ ARG GID="991"
 # Configure the IP to bind Mastodon to when serving traffic
 ENV BIND="0.0.0.0"
 
-### Run commands in base image ###
-# Sets timezone
-# Creates mastodon user/group and sets home direcotry
-# Creates symlink for /mastodon folder
 RUN \
+# Sets timezone
   echo "${TZ}" > /etc/localtime; \
+# Creates mastodon user/group and sets home directory
   groupadd -g "${GID}" mastodon; \
   useradd -l -u "${UID}" -g "${GID}" -m -d /opt/mastodon mastodon; \
+# Creates symlink for /mastodon folder
   ln -s /opt/mastodon /mastodon;
 
 # APK update & upgrade to check for security updates to Alpine image
@@ -45,12 +43,12 @@ WORKDIR /opt/mastodon
 COPY package.json yarn.lock /opt/mastodon/
 COPY ./streaming /opt/mastodon/streaming
 
+RUN \
 # Configure yarn to prevent changes to package.json and yarn.lock
 # Configure yarn to only process production Node packages
 # Download and install required Node packages
-# Cleanup cache of downloaded Node packages
-RUN \
   yarn install --pure-lockfile --production --network-timeout 600000; \
+# Cleanup cache of downloaded Node packages
   yarn cache clean --all;
 
 # Set the running user for resulting container
