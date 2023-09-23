@@ -11,7 +11,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   attributes :domain, :title, :version, :source_url, :description,
              :usage, :thumbnail, :languages, :configuration,
-             :registrations
+             :registrations, :max_toot_chars
 
   has_one :contact, serializer: ContactSerializer
   has_many :rules, serializer: REST::RuleSerializer
@@ -88,7 +88,11 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       url: ENV.fetch('SSO_ACCOUNT_SIGN_UP', nil),
     }
   end
-
+  
+  def max_toot_chars
+    2000
+  end
+  
   private
 
   def registrations_enabled?
