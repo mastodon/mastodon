@@ -180,9 +180,9 @@ RUN \
 # Configure bundle to only process production Gems
   bundle config set --local without "development test"; \
 # Configure bundle to not warn about root user
-  bundle config set silence_root_warning true; \
+  bundle config set silence_root_warning "true"; \
 # Download and install required Gems
-  bundle install -j"$(nproc);
+  bundle install -j$(nproc);
 
 # Create temporary yarn specific build layer from build layer
 FROM build as build-yarn
