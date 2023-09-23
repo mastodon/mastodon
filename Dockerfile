@@ -179,6 +179,8 @@ RUN \
   bundle config set --global cache_all "false"; \
 # Configure bundle to only process production Gems
   bundle config set --local without "development test"; \
+# Configure bundle to not warn about root user
+  bundle config set silence_root_warning true; \
 # Download and install required Gems
   bundle install;
 
