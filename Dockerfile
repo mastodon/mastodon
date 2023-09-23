@@ -80,8 +80,12 @@ RUN set -eux; \
 	apt-get -yq dist-upgrade; \
     # Install base dependencies
     apt-get install -y --no-install-recommends \
-        # Dependencies for all
+        # Dependencies for all (includes runtime)
+        file \
+        libjemalloc2 \
+        tini \
         tzdata \
+        wget \
         # Dependencies for ruby gems
         libicu72 \
         libidn12 \
@@ -318,19 +322,6 @@ ARG RAILS_SERVE_STATIC_FILES
 ARG BIND
 ARG MASTODON_VERSION_PRERELEASE
 ARG MASTODON_VERSION_METADATA
-
-RUN set -eux; \
-    # Update apt due to /var/lib/apt/lists is empty
-    apt-get update; \
-    # Install runtime-only dependencies
-    apt-get install -y --no-install-recommends \
-        file \
-        libjemalloc2 \
-        tini \
-        wget \
-    ; \
-    # Remove /var/lib/apt/lists as cache
-    rm -rf /var/lib/apt/lists/*;
 
 # [1/5] Copy the git source code into the image layer
 COPY --link . /opt/mastodon
