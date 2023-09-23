@@ -110,10 +110,8 @@ RUN \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 # Copy ffmpeg and ffprobe from mwader/static-ffmpeg:6.0
-COPY --from=mwader/static-ffmpeg:6.0 /ffmpeg /usr/local/bin/
-COPY --from=mwader/static-ffmpeg:6.0 /ffprobe /usr/local/bin/
-
-# COPY --from=dpokidov/imagemagick:latest /usr/local/bin/convert /usr/local/bin/convert
+COPY --from=docker.io/mwader/static-ffmpeg:6.0 /ffmpeg /usr/local/bin/
+COPY --from=docker.io/mwader/static-ffmpeg:6.0 /ffprobe /usr/local/bin/
 
 # Create final Mastodon run layer
 FROM base as run
@@ -147,7 +145,6 @@ RUN \
     g++ \
     gcc \
     git \
-    gnupg2 \
     libgdbm-dev \
     libgmp-dev \
     libicu-dev \
@@ -155,32 +152,21 @@ RUN \
     libpq-dev \
     libssl-dev \
     make \
-    # python3 \
     shared-mime-info \
     yarn \
     zlib1g-dev \
   ; \
-# # Add Node and Yarn package repositories for Debian
-#   curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null; \
-#   curl -s https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
-#   echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR_VERSION}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list; \
-#   echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list; \
-# # Install nodejs and yarn
-#   apt-get update; \
-#   apt-get install -y --no-install-recommends \
-#     nodejs \
-#     yarn \
-#   ; \
-# Cleanup Apt
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
-COPY --from=docker.io/node:20-bookworm-slim /usr/local/bin /usr/local/bin
-COPY --from=docker.io/node:20-bookworm-slim  /usr/local/lib /usr/local/lib
+COPY --from=docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim /usr/local/bin /usr/local/bin
+COPY --from=docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim /usr/local/lib /usr/local/lib
 
 RUN \
+# Remove existing yarn and enable corepack
   rm /usr/local/bin/yarn*; \
 	corepack enable; \
+# Set yarn to use classic mode
   yarn set version classic;
 
 # Create temporary bundler specific build layer from build layer
