@@ -140,17 +140,17 @@ WORKDIR /opt/mastodon
 COPY --link --from=node /usr/local/bin /usr/local/bin
 COPY --link --from=node /usr/local/lib /usr/local/lib
 
-# Node image contains yarn on /opt
-#
-# See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
-COPY --link --from=node /opt /opt
+ENV COREPACK_HOME /usr/local/corepack
 
 RUN set -eux; \
+    rm /usr/local/bin/yarn*; \
+    corepack enable; \
+    yarn set version classic; \
     # Smoke test for node, yarn
     node --version; \
     yarn --version; \
     # Remove tmp files from node
-    rm -rf /tmp/*;
+    rm -rf .yarn* /tmp/*;
 
 ########################################################################################################################
 FROM base as builder-base
