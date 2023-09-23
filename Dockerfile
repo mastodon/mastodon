@@ -14,8 +14,8 @@ ARG RUBY_VERSION="3.2.2"
 ARG DEBIAN_VERSION="bookworm"
 # Ruby image to use for base image based on combined variables (ex: 3.2.2-slim-bookworm)
 FROM ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} as base
-# Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
-ARG NODE_MAJOR_VERSION="20"
+# # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
+# ARG NODE_MAJOR_VERSION="20"
 
 ### Set Mastodon version string suffix ###
 # Resulting version string is vX.X.X-MASTODON_VERSION_PRERELEASE+MASTODON_VERSION_METADATA
@@ -105,18 +105,18 @@ RUN \
     tini \
     tzdata \
   ; \
-  curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null; \
-  curl -s https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
-  echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR_VERSION}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list; \
-  echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list; \
-  apt-get update; \
-  apt-get install -y --no-install-recommends \
-    nodejs \
-    yarn \
-  ; \
+  # curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null; \
+  # curl -s https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
+  # echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR_VERSION}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list; \
+  # echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list; \
+  # apt-get update; \
+  # apt-get install -y --no-install-recommends \
+  #   nodejs \
+  #   yarn \
+  # ; \
   patchelf --add-needed libjemalloc.so.2 /usr/local/bin/ruby; \
   apt-get purge -y \
-    gnupg2 \
+    # gnupg2 \
     patchelf \
   ; \
   rm -rf /var/lib/apt/lists/*; \
@@ -184,16 +184,32 @@ RUN \
 ### Create temporary node specific layer from build layer ###
 ## base >> build >> build-node
 FROM build as build-node
+
+# Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
+ARG NODE_MAJOR_VERSION="20"
+
 # Configure yarn to prevent changes to package.json and yarn.lock
 # Configure yarn to only process production Node packages
 # Download and install required Node packages
 # Cleanup cache of downloaded Node packages
+# hadolint ignore=DL3008
 RUN \
+  apt update; \
+  apt install gpg -y --no-install-recommends; \
+  curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null; \
+  curl -s https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null; \
+  echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR_VERSION}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list; \
+  echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list; \
+  apt-get update; \
+  apt-get install -y --no-install-recommends \
+    nodejs \
+    yarn \
+  ; \
   yarn install --pure-lockfile --production --network-timeout 600000; \
   yarn cache clean --all;
 
 ### Switch back to original run layer ###
-FROM run
+FROM run as combine
 
 ### Copy source code into run layer ###
 # Copy Mastodon source code from run system
@@ -212,6 +228,10 @@ RUN \
   OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile; \
   rm -fr /opt/mastodon/tmp;
 
+FROM run
+COPY --from=combine /opt/mastodon /opt/mastodon/
+COPY --from=build-ruby /usr/local/bundle/ /usr/local/bundle/
+
 ### Finalize image output ###
 # Set the running user for resulting container
 USER mastodon
@@ -219,4 +239,4 @@ USER mastodon
 # Set container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]
 # Expose default Puma and Streaming ports
-EXPOSE 3000 4000
+EXPOSE 3000
