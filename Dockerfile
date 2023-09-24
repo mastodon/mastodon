@@ -9,12 +9,6 @@ ARG RUBY_VERSION="3.2.2"
 # Node version to use, change with [--build-arg NODE_VERSION=]
 ARG NODE_VERSION="20.7.0"
 
-# FFmpeg version to use, change with [--build-arg FFMPEG_VERSION=]
-ARG FFMPEG_VERSION="6.0"
-
-# ImageMagick version to use, change with [--build-arg IMAGEMAGICK_VERSION=]
-ARG IMAGEMAGICK_VERSION="7.1.1-17"
-
 # Image variant to use for ruby and node, change with [--build-arg IMAGE_VARIANT=]
 ARG IMAGE_VARIANT="bookworm"
 
@@ -81,7 +75,9 @@ RUN set -eux; \
     # Install base dependencies
     apt-get install -y --no-install-recommends \
         # Dependencies for all (includes runtime)
+        ffmpeg \
         file \
+        imagemagick \
         libjemalloc2 \
         tini \
         tzdata \
@@ -92,36 +88,6 @@ RUN set -eux; \
         libpq5 \
         # Dependencies for nodejs
         libatomic1 \
-        # Dependencies for ImageMagick and FFmpeg
-        libbz2-1.0 \
-        liblzma5 \
-        # Dependencies for ImageMagick
-        libheif1 \
-        libjxl0.7 \
-        libpng16-16 \
-        libraw20 \
-        libtiff6 \
-        libwebp7 \
-        libwebpdemux2 \
-        libwebpmux3 \
-        libzip4 \
-        # Dependencies for FFmpeg
-        libaom3 \
-        libdav1d6 \
-        libdrm2 \
-        libmp3lame0 \
-        libnuma1 \
-        libopus0 \
-        libva2 \
-        libva-drm2 \
-        libvorbis0a \
-        libvorbisenc2 \
-        libvorbisfile3 \
-        libvpx7 \
-        libvulkan1 \
-        libx264-164 \
-        libx265-199 \
-        zlib1g \
     ; \
     # Remove /var/lib/apt/lists as cache
     rm -rf /var/lib/apt/lists/*; \
@@ -208,113 +174,6 @@ RUN set -eux; \
     yarn cache clean --all;
 
 ########################################################################################################################
-FROM builder-base as imagemagick-builder
-ARG IMAGEMAGICK_VERSION
-
-RUN set -eux; \
-    apt-get install -y --no-install-recommends \
-        libbz2-dev \
-        libheif-dev \
-        libjxl-dev \
-        libltdl-dev \
-        liblzma-dev \
-        libpng-dev \
-        libraw-dev \
-        libtiff-dev \
-        libwebp-dev \
-        libzip-dev \
-        zlib1g-dev \
-    ; \
-    imagemagick_workdir="$(mktemp -d)"; \
-    imagemagick_prefix="/opt/magick"; \
-    cd ${imagemagick_workdir}; \
-    git clone -b ${IMAGEMAGICK_VERSION} --depth 1 https://github.com/ImageMagick/ImageMagick.git .; \
-    LDFLAGS="-Wl,-rpath,'\$\$ORIGIN/../lib'" ./configure \
-        --prefix="${imagemagick_prefix}" \
-        # Optional Features
-        --disable-openmp \
-        --enable-shared \
-        --disable-static \
-        --disable-deprecated \
-        --disable-docs \
-        # Optional Packages
-        --with-security-policy=websafe \
-        --without-magick-plus-plus \
-        --without-fontconfig \
-        --without-freetype \
-    ; \
-    make -j$(nproc); \
-    make install; \
-    rm -r \
-        "${imagemagick_prefix}/include" \
-        "${imagemagick_prefix}/lib/pkgconfig" \
-        "${imagemagick_prefix}/share" \
-    ;
-
-########################################################################################################################
-FROM builder-base as ffmpeg-builder
-ARG FFMPEG_VERSION
-
-RUN set -eux; \
-    apt-get install -y --no-install-recommends \
-        libaom-dev \
-        libbz2-dev \
-        libdav1d-dev \
-        libdrm-dev \
-        liblzma-dev \
-        libmp3lame-dev \
-        libnuma-dev \
-        libopus-dev \
-        libva-dev \
-        libvorbis-dev \
-        libvpx-dev \
-        libvulkan-dev \
-        libx264-dev \
-        libx265-dev \
-        zlib1g-dev \
-    ; \
-    ffmpeg_workdir="$(mktemp -d)"; \
-    ffmpeg_prefix="/opt/ffmpeg"; \
-    cd ${ffmpeg_workdir}; \
-    git clone -b "n${FFMPEG_VERSION}" --depth 1 https://github.com/FFmpeg/FFmpeg.git .; \
-    ./configure \
-        --prefix="${ffmpeg_prefix}" \
-        --enable-rpath \
-        --enable-gpl \
-        --enable-version3 \
-        --enable-nonfree \
-        --disable-static \
-        --enable-shared \
-        # Program Options
-        --disable-programs \
-        --enable-ffmpeg \
-        --enable-ffprobe \
-        # Documentation Options
-        --disable-doc \
-        # Component Options
-        --disable-network \
-        # External Library Support
-        --enable-libaom \
-        --enable-libdav1d \
-        --enable-libdrm \
-        --enable-libmp3lame \
-        --enable-libopus \
-        --enable-libvorbis \
-        --enable-libvpx \
-        --enable-libx264 \
-        --enable-libx265 \
-        --enable-vaapi \
-        --enable-vulkan \
-    ; \
-    make -j$(nproc); \
-    make install; \
-    rm -r \
-        "${ffmpeg_prefix}/include" \
-        "${ffmpeg_prefix}/lib/pkgconfig" \
-        "${ffmpeg_prefix}/share" \
-    ;
-
-########################################################################################################################
 FROM base
 ARG RAILS_ENV
 ARG NODE_ENV
@@ -323,7 +182,7 @@ ARG BIND
 ARG MASTODON_VERSION_PRERELEASE
 ARG MASTODON_VERSION_METADATA
 
-# [1/5] Copy the git source code into the image layer
+# Copy the git source code into the image layer
 COPY --link . /opt/mastodon
 RUN set -eux; \
     # Create some dirs as 1777
@@ -334,25 +193,12 @@ RUN set -eux; \
     mkdir -p /opt/mastodon/public/packs && chmod 1777 /opt/mastodon/public/packs; \
     mkdir -p /opt/mastodon/public/system && chmod 1777 /opt/mastodon/public/system;
 
-# [2/5] Copy output of the "bundle install" build stage into this layer
+# Copy output of the "bundle install" build stage into this layer
 COPY --link --from=ruby-builder ${BUNDLE_APP_CONFIG}/config ${BUNDLE_APP_CONFIG}/config
 COPY --link --from=ruby-builder /opt/mastodon/vendor/bundle /opt/mastodon/vendor/bundle
-# [3/5] Copy output of the "yarn install" build stage into this image layer
-COPY --link --from=node-builder /opt/mastodon/node_modules /opt/mastodon/node_modules
-# [4/5] Copy output of the imagemagick-builder into this image layer
-COPY --link --from=imagemagick-builder /opt/magick /opt/magick
-RUN set -eux; \
-    ln -s /opt/magick/bin/* /usr/local/bin/; \
-    # smoke tests for magick
-    magick -version;
 
-# [5/5] Copy output of the ffmpeg-builder into this image layer
-COPY --link --from=ffmpeg-builder /opt/ffmpeg /opt/ffmpeg
-RUN set -eux; \
-    ln -s /opt/ffmpeg/bin/* /usr/local/bin/; \
-    # smoke tests for ffmpeg, ffprobe
-    ffmpeg -version; \
-    ffprobe -version;
+# Copy output of the "yarn install" build stage into this image layer
+COPY --link --from=node-builder /opt/mastodon/node_modules /opt/mastodon/node_modules
 
 ENV PATH="${PATH}:/opt/mastodon/bin" \
     LD_PRELOAD="libjemalloc.so.2" \
