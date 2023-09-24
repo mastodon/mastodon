@@ -11,8 +11,8 @@ ARG BUILDPLATFORM="${BUILDPLATFORM}"
 ARG NODE_MAJOR_VERSION="20"
 # Ruby image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
 ARG DEBIAN_VERSION="bookworm"
-# Node image to use for base image based on combined variables (ex: 20-alpine)
-FROM node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}
+# Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
+FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim as node
 
 # Timezone used by the Docker container and runtime, change with [--build-arg TZ=Europe/Berlin]
 ARG TZ="Etc/UTC"
