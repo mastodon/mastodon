@@ -57,6 +57,8 @@ RUN \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
+    # Update apt due to /var/lib/apt/lists is empty
+    apt-get update; \
     # Install builder dependencies
     apt-get install -y --no-install-recommends \
         # Dependencies for all (includes runtime)
