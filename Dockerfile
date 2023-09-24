@@ -28,10 +28,6 @@ ARG GID="991"
 ARG MASTODON_HOME="/opt/mastodon"
 
 # Timezone used by the Docker container and runtime, change with [--build-arg TZ=Europe/Berlin]
-#
-# NOTE: This will also be written to /etc/localtime
-#
-# See: https://blog.packagecloud.io/set-environment-variable-save-thousands-of-system-calls/
 ARG TZ="Etc/UTC"
 
 # Allow specifying your own version prerelease, change with [--build-arg MASTODON_VERSION_PRERELEASE="hello"]
@@ -66,7 +62,6 @@ FROM node:${NODE_VERSION}-${NODE_IMAGE_VARIANT} as node
 
 ########################################################################################################################
 FROM ruby:${RUBY_VERSION}-${RUBY_IMAGE_VARIANT} as base
-ARG TZ
 ARG RAILS_ENV
 ARG NODE_ENV
 
@@ -95,9 +90,7 @@ RUN \
         libpq5 \
         # Dependencies for nodejs
         libatomic1 \
-    ; \
-    # Set local timezone
-    echo "${TZ}" > /etc/localtime;
+    ;
 
 # Node image contains node on /usr/local
 #
@@ -182,6 +175,7 @@ FROM base
 ARG UID
 ARG GID
 ARG MASTODON_HOME
+ARG TZ
 ARG RAILS_ENV
 ARG NODE_ENV
 ARG RAILS_SERVE_STATIC_FILES
@@ -190,6 +184,7 @@ ARG MASTODON_VERSION_PRERELEASE
 ARG MASTODON_VERSION_METADATA
 
 ENV MASTODON_HOME="${MASTODON_HOME}" \
+    TZ="${TZ}" \
     RAILS_ENV="${RAILS_ENV}" \
     NODE_ENV="${NODE_ENV}"
 
