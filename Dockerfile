@@ -184,6 +184,15 @@ ARG MASTODON_VERSION_METADATA
 
 # Copy the git source code into the image layer
 COPY --link . /opt/mastodon
+
+# Copy output of the "bundle install" build stage into this layer
+COPY --link --from=ruby-builder ${BUNDLE_APP_CONFIG}/config ${BUNDLE_APP_CONFIG}/config
+COPY --link --from=ruby-builder /opt/mastodon/vendor/bundle /opt/mastodon/vendor/bundle
+
+# Copy output of the "yarn install" build stage into this image layer
+COPY --link --from=node-builder /opt/mastodon/node_modules /opt/mastodon/node_modules
+
+# Run commands before the mastodon user used
 RUN set -eux; \
     # Create some dirs as 1777
     mkdir -p /opt/mastodon/tmp && chmod 1777 /opt/mastodon/tmp; \
@@ -193,13 +202,7 @@ RUN set -eux; \
     mkdir -p /opt/mastodon/public/packs && chmod 1777 /opt/mastodon/public/packs; \
     mkdir -p /opt/mastodon/public/system && chmod 1777 /opt/mastodon/public/system;
 
-# Copy output of the "bundle install" build stage into this layer
-COPY --link --from=ruby-builder ${BUNDLE_APP_CONFIG}/config ${BUNDLE_APP_CONFIG}/config
-COPY --link --from=ruby-builder /opt/mastodon/vendor/bundle /opt/mastodon/vendor/bundle
-
-# Copy output of the "yarn install" build stage into this image layer
-COPY --link --from=node-builder /opt/mastodon/node_modules /opt/mastodon/node_modules
-
+# Set runtime envs
 ENV PATH="${PATH}:/opt/mastodon/bin" \
     LD_PRELOAD="libjemalloc.so.2" \
     RAILS_ENV="${RAILS_ENV}" \
