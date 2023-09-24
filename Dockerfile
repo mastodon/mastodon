@@ -225,9 +225,10 @@ COPY --from=build-bundler /opt/mastodon/ /opt/mastodon/
 COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
 
 # Pre-create and chown system volume to Mastodon user
- RUN mkdir -p /opt/mastodon/public/system && \
-     chown mastodon:mastodon /opt/mastodon/public/system
- VOLUME /opt/mastodon/public/system
+RUN \
+  mkdir -p /opt/mastodon/public/system; \
+  chown mastodon:mastodon /opt/mastodon/public/system;
+VOLUME /opt/mastodon/public/system
 
 # Set the running user for resulting container
 USER mastodon
