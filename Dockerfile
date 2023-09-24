@@ -134,9 +134,6 @@ RUN set -eux; \
     apt-get install -y --no-install-recommends \
         build-essential \
         git \
-        nasm \
-        pkg-config \
-        xz-utils \
     ;
 
 ########################################################################################################################
