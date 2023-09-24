@@ -24,6 +24,9 @@ ARG UID="991"
 # Linux GID (group id) for the mastodon user, change with [--build-arg GID=1234]
 ARG GID="991"
 
+# Mastodon home directory for the mastodon user and project, change with [--build-arg MASTODON_HOME=/some/path]
+ARG MASTODON_HOME="/opt/mastodon"
+
 # Timezone used by the Docker container and runtime, change with [--build-arg TZ=Europe/Berlin]
 #
 # NOTE: This will also be written to /etc/localtime
@@ -63,9 +66,9 @@ FROM node:${NODE_VERSION}-${NODE_IMAGE_VARIANT} as node
 
 ########################################################################################################################
 FROM ruby:${RUBY_VERSION}-${RUBY_IMAGE_VARIANT} as base
-ARG UID
-ARG GID
 ARG TZ
+ARG RAILS_ENV
+ARG NODE_ENV
 
 RUN set -eux; \
     # Update apt due to /var/lib/apt/lists is empty
@@ -92,14 +95,7 @@ RUN set -eux; \
     # Remove /var/lib/apt/lists as cache
     rm -rf /var/lib/apt/lists/*; \
     # Set local timezone
-    echo "${TZ}" > /etc/localtime; \
-    # Add mastodon group and user
-    groupadd -g "${GID}" mastodon; \
-    useradd -u "${UID}" -g "${GID}" -l -m -d /opt/mastodon mastodon; \
-    # Symlink /opt/mastodon to /mastodon
-    ln -s /opt/mastodon /mastodon;
-
-WORKDIR /opt/mastodon
+    echo "${TZ}" > /etc/localtime;
 
 # Node image contains node on /usr/local
 #
@@ -121,6 +117,9 @@ RUN set -eux; \
 
 ########################################################################################################################
 FROM base as builder-base
+ARG MASTODON_HOME
+
+WORKDIR ${MASTODON_HOME}
 
 # Node image contains node on /usr/local
 #
@@ -138,9 +137,8 @@ RUN set -eux; \
 
 ########################################################################################################################
 FROM builder-base as ruby-builder
-ARG RAILS_ENV
 
-ADD Gemfile* /opt/mastodon/
+ADD Gemfile* ${MASTODON_HOME}/
 
 RUN set -eux; \
     # Install ruby gems dependencies
@@ -161,9 +159,8 @@ RUN set -eux; \
 
 ########################################################################################################################
 FROM builder-base as node-builder
-ARG NODE_ENV
 
-ADD package.json yarn.lock /opt/mastodon/
+ADD package.json yarn.lock ${MASTODON_HOME}/
 
 RUN set -eux; \
     # Download and install yarn packages
@@ -172,6 +169,9 @@ RUN set -eux; \
 
 ########################################################################################################################
 FROM base
+ARG UID
+ARG GID
+ARG MASTODON_HOME
 ARG RAILS_ENV
 ARG NODE_ENV
 ARG RAILS_SERVE_STATIC_FILES
@@ -179,31 +179,40 @@ ARG BIND
 ARG MASTODON_VERSION_PRERELEASE
 ARG MASTODON_VERSION_METADATA
 
+ENV MASTODON_HOME="${MASTODON_HOME}" \
+    RAILS_ENV="${RAILS_ENV}" \
+    NODE_ENV="${NODE_ENV}"
+
+RUN set -eux; \
+    # Add mastodon group and user
+    groupadd -g "${GID}" mastodon; \
+    useradd -u "${UID}" -g "${GID}" -l -m -d "${MASTODON_HOME}" mastodon;
+
+WORKDIR ${MASTODON_HOME}
+
 # Copy the git source code into the image layer
-COPY --link . /opt/mastodon
+COPY --link . ${MASTODON_HOME}
 
 # Copy output of the "bundle install" build stage into this layer
 COPY --link --from=ruby-builder ${BUNDLE_APP_CONFIG}/config ${BUNDLE_APP_CONFIG}/config
-COPY --link --from=ruby-builder /opt/mastodon/vendor/bundle /opt/mastodon/vendor/bundle
+COPY --link --from=ruby-builder ${MASTODON_HOME}/vendor/bundle ${MASTODON_HOME}/vendor/bundle
 
 # Copy output of the "yarn install" build stage into this image layer
-COPY --link --from=node-builder /opt/mastodon/node_modules /opt/mastodon/node_modules
+COPY --link --from=node-builder ${MASTODON_HOME}/node_modules ${MASTODON_HOME}/node_modules
 
 # Run commands before the mastodon user used
 RUN set -eux; \
     # Create some dirs as 1777
-    mkdir -p /opt/mastodon/tmp && chmod 1777 /opt/mastodon/tmp; \
-    mkdir -p /opt/mastodon/log && chmod 1777 /opt/mastodon/log; \
-    mkdir -p /opt/mastodon/public && chmod 1777 /opt/mastodon/public; \
-    mkdir -p /opt/mastodon/public/assets && chmod 1777 /opt/mastodon/public/assets; \
-    mkdir -p /opt/mastodon/public/packs && chmod 1777 /opt/mastodon/public/packs; \
-    mkdir -p /opt/mastodon/public/system && chmod 1777 /opt/mastodon/public/system;
+    mkdir -p ${MASTODON_HOME}/tmp && chmod 1777 ${MASTODON_HOME}/tmp; \
+    mkdir -p ${MASTODON_HOME}/log && chmod 1777 ${MASTODON_HOME}/log; \
+    mkdir -p ${MASTODON_HOME}/public && chmod 1777 ${MASTODON_HOME}/public; \
+    mkdir -p ${MASTODON_HOME}/public/assets && chmod 1777 ${MASTODON_HOME}/public/assets; \
+    mkdir -p ${MASTODON_HOME}/public/packs && chmod 1777 ${MASTODON_HOME}/public/packs; \
+    mkdir -p ${MASTODON_HOME}/public/system && chmod 1777 ${MASTODON_HOME}/public/system;
 
 # Set runtime envs
-ENV PATH="${PATH}:/opt/mastodon/bin" \
+ENV PATH="${PATH}:${MASTODON_HOME}/bin" \
     LD_PRELOAD="libjemalloc.so.2" \
-    RAILS_ENV="${RAILS_ENV}" \
-    NODE_ENV="${NODE_ENV}" \
     RAILS_SERVE_STATIC_FILES="${RAILS_SERVE_STATIC_FILES}" \
     BIND="${BIND}" \
     MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
