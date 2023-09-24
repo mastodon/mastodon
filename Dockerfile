@@ -160,11 +160,13 @@ COPY --from=node /usr/local/bin /usr/local/bin
 COPY --from=node /usr/local/lib /usr/local/lib
 
 RUN \
-# Remove existing yarn and enable corepack
+# Remove existing yarn
   rm /usr/local/bin/yarn*; \
-	corepack enable; \
-# Set yarn to use classic mode
-  yarn set version classic;
+# Set yarn to use classic mode and enable corepack
+	# corepack enable; \
+  # yarn set version classic;
+# Enable corepack
+  corepack enable;
 
 # Create temporary bundler specific build layer from build layer
 FROM build as build-bundler
@@ -188,8 +190,10 @@ FROM build as build-yarn
 RUN \
 # Configure yarn to prevent changes to package.json and yarn.lock
 # Configure yarn to only process production Node packages
-# Download and install required Node packages
-  yarn install --pure-lockfile --production --network-timeout 600000; \
+# Download and install required Node packages (yarn 1)
+  # yarn install --pure-lockfile --production --network-timeout 600000; \
+# Download and install required Node packages (yarn 3)
+  yarn workspaces focus --all --production; \
 # Cleanup cache of downloaded Node packages
   yarn cache clean --all;
 
