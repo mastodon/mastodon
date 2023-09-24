@@ -42,12 +42,12 @@ RUN \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
-### Set /opt/mastodon as working directory ###
+# Set /opt/mastodon as working directory
 WORKDIR /opt/mastodon
 
-### Copy Node package configuration files from build system to container (yarn 1)
+# Copy Node package configuration files from build system to container (yarn 1)
 COPY package.json yarn.lock /opt/mastodon/
-### Copy Node package configuration files from build system to container (yarn 3)
+# Copy Node package configuration files from build system to container (yarn 3)
 COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
 COPY .yarn /opt/mastodon/.yarn
 # Copy Streaming source code from build system to container
