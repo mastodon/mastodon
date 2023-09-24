@@ -104,7 +104,7 @@ RUN \
   ; \
 # Patch Ruby to use jemalloc
   patchelf --add-needed libjemalloc.so.2 /usr/local/bin/ruby; \
-# Discard patchelf and gnupg2 after use
+# Discard patchelf after use
   apt-get purge -y \
     patchelf \
   ; \

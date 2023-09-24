@@ -9,8 +9,10 @@ ARG BUILDPLATFORM="${BUILDPLATFORM}"
 
 # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 ARG NODE_MAJOR_VERSION="20"
+# Ruby image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
+ARG DEBIAN_VERSION="bookworm"
 # Node image to use for base image based on combined variables (ex: 20-alpine)
-FROM node:${NODE_MAJOR_VERSION}-alpine
+FROM node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}
 
 # Timezone used by the Docker container and runtime, change with [--build-arg TZ=Europe/Berlin]
 ARG TZ="Etc/UTC"
@@ -31,10 +33,14 @@ RUN \
 # Creates symlink for /mastodon folder
   ln -s /opt/mastodon /mastodon;
 
-# APK update & upgrade to check for security updates to Alpine image
+# hadolint ignore=DL3008,DL3005
 RUN \
-  apk update; \
-  apk upgrade;
+# Apt update & upgrade to check for security updates to Debian image
+  apt-get update; \
+  apt-get dist-upgrade -yq; \
+# Cleanup Apt
+  rm -rf /var/lib/apt/lists/*; \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 ### Set /opt/mastodon as working directory ###
 WORKDIR /opt/mastodon
