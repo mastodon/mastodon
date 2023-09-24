@@ -38,7 +38,7 @@ RUN \
     # Update apt due to /var/lib/apt/lists is empty
     apt-get update; \
     # Upgrade packages
-	apt-get -yq dist-upgrade; \
+    apt-get -yq dist-upgrade; \
     # Install base dependencies
     apt-get install -y --no-install-recommends \
         # Dependencies for nodejs
