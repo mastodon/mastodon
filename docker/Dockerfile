@@ -51,6 +51,8 @@ ARG UID
 ARG GID
 ARG MASTODON_HOME
 ARG TZ
+ARG RAILS_ENV
+ARG NODE_ENV
 
 RUN \
     --mount=type=cache,target=/var/cache,sharing=locked \
@@ -74,7 +76,14 @@ RUN \
     ; \
     # Add mastodon group and user
     groupadd -g "${GID}" mastodon; \
-    useradd -u "${UID}" -g "${GID}" -l -m -d "${MASTODON_HOME}" mastodon;
+    useradd -u "${UID}" -g "${GID}" -l -m -d "${MASTODON_HOME}" mastodon; \
+    # Set bundle configs
+    bundle config set --local deployment 'true'; \
+    case "${RAILS_ENV}" in \
+        development) bundle config set --local without 'test';; \
+        test) bundle config set --local without 'development';; \
+        production) bundle config set --local without 'development test';; \
+    esac;
 
 ENV MASTODON_HOME="${MASTODON_HOME}" \
     TZ="${TZ}" \
@@ -115,13 +124,6 @@ RUN \
         libidn-dev \
         libpq-dev \
     ; \
-    # Set bundle configs
-    bundle config set --local deployment 'true'; \
-    case "${RAILS_ENV}" in \
-        development) bundle config set --local without 'test';; \
-        test) bundle config set --local without 'development';; \
-        production) bundle config set --local without 'development test';; \
-    esac; \
     # Install gems
     bundle install --no-cache;
 
@@ -137,12 +139,6 @@ RUN set -eux; \
 
 ########################################################################################################################
 FROM base
-ARG UID
-ARG GID
-ARG MASTODON_HOME
-ARG TZ
-ARG RAILS_ENV
-ARG NODE_ENV
 ARG RAILS_SERVE_STATIC_FILES
 ARG BIND
 ARG MASTODON_VERSION_PRERELEASE
@@ -152,7 +148,6 @@ ARG MASTODON_VERSION_METADATA
 COPY --link . ${MASTODON_HOME}
 
 # Copy output of the "bundle install" build stage into this layer
-COPY --link --from=bundle-installer ${BUNDLE_APP_CONFIG}/config ${BUNDLE_APP_CONFIG}/config
 COPY --link --from=bundle-installer ${MASTODON_HOME}/vendor/bundle ${MASTODON_HOME}/vendor/bundle
 
 # Copy output of the "yarn install" build stage into this image layer
