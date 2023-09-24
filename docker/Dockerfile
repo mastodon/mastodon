@@ -63,7 +63,7 @@ RUN \
     apt-get update; \
     # Install builder dependencies
     apt-get install -y --no-install-recommends \
-        # Dependencies for all (includes runtime)
+        # Dependencies for runtime
         file \
         libjemalloc2 \
         tini \
