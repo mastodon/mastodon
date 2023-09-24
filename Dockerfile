@@ -70,7 +70,11 @@ ARG TZ
 ARG RAILS_ENV
 ARG NODE_ENV
 
-RUN set -eux; \
+RUN \
+    --mount=type=cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=tmpfs,target=/var/log \
+    set -eux; \
     # Update apt due to /var/lib/apt/lists is empty
     apt-get update; \
     # Upgrade packages
@@ -92,8 +96,6 @@ RUN set -eux; \
         # Dependencies for nodejs
         libatomic1 \
     ; \
-    # Remove /var/lib/apt/lists as cache
-    rm -rf /var/lib/apt/lists/*; \
     # Set local timezone
     echo "${TZ}" > /etc/localtime;
 
@@ -126,9 +128,11 @@ WORKDIR ${MASTODON_HOME}
 # See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
 COPY --link --from=node /usr/local/include /usr/local/include
 
-RUN set -eux; \
-    # Update apt due to /var/lib/apt/lists is empty
-    apt-get update; \
+RUN \
+    --mount=type=cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=tmpfs,target=/var/log \
+    set -eux; \
     # Install builder dependencies
     apt-get install -y --no-install-recommends \
         build-essential \
@@ -140,13 +144,19 @@ FROM builder-base as ruby-builder
 
 ADD Gemfile* ${MASTODON_HOME}/
 
-RUN set -eux; \
+RUN \
+    --mount=type=cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=tmpfs,target=/var/log \
+    set -eux; \
     # Install ruby gems dependencies
     apt-get install -y --no-install-recommends \
         libicu-dev \
         libidn-dev \
         libpq-dev \
-    ; \
+    ;
+
+RUN set -eux; \
     # Set bundle configs
     bundle config set --local deployment 'true'; \
     case "${RAILS_ENV}" in \
