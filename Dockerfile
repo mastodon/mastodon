@@ -9,12 +9,14 @@ ARG BUILDPLATFORM="${BUILDPLATFORM}"
 
 # Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.2.2"]
 ARG RUBY_VERSION="3.2.2"
+# # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
+ARG NODE_MAJOR_VERSION="20"
 # Ruby image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
 ARG DEBIAN_VERSION="bookworm"
+# Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
+FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim as node
 # Ruby image to use for base image based on combined variables (ex: 3.2.2-slim-bookworm)
-FROM ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} as base
-# # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
-# ARG NODE_MAJOR_VERSION="20"
+FROM docker.io/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} as ruby
 
 # Resulting version string is vX.X.X-MASTODON_VERSION_PRERELEASE+MASTODON_VERSION_METADATA
 # Example: v4.2.0-nightly.2023.11.09+something
@@ -76,7 +78,8 @@ RUN \
 WORKDIR /opt/mastodon
 
 # Copy Ruby and Node package configuration files from build system to container
-COPY Gemfile* package.json yarn.lock /opt/mastodon/
+# COPY Gemfile* package.json yarn.lock /opt/mastodon/
+COPY . /opt/mastodon/
 
 # hadolint ignore=DL3008,DL3005
 RUN \
@@ -96,7 +99,7 @@ RUN \
   ; \
 # Install ffmpeg and imagemagick for media processing
   apt-get install -y --no-install-recommends \
-    # ffmpeg \
+    ffmpeg \
     imagemagick \
   ; \
 # Patch Ruby to use jemalloc
@@ -109,12 +112,8 @@ RUN \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
-# Copy ffmpeg and ffprobe from mwader/static-ffmpeg:6.0
-COPY --from=docker.io/mwader/static-ffmpeg:6.0 /ffmpeg /usr/local/bin/
-COPY --from=docker.io/mwader/static-ffmpeg:6.0 /ffprobe /usr/local/bin/
-
 # Create final Mastodon run layer
-FROM base as run
+FROM ruby as run
 
 # hadolint ignore=DL3008
 RUN \
@@ -133,9 +132,7 @@ RUN \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 # Create temporary build layer from base image
-FROM base as build
-# Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
-ARG NODE_MAJOR_VERSION="20"
+FROM ruby as build
 
 # hadolint ignore=DL3008
 RUN \
@@ -159,8 +156,8 @@ RUN \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
-COPY --from=docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim /usr/local/bin /usr/local/bin
-COPY --from=docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim /usr/local/lib /usr/local/lib
+COPY --from=node /usr/local/bin /usr/local/bin
+COPY --from=node /usr/local/lib /usr/local/lib
 
 RUN \
 # Remove existing yarn and enable corepack
@@ -200,7 +197,7 @@ RUN \
 FROM build as build-assets
 
 # Copy Mastodon source code to layer
-COPY . /opt/mastodon/
+# COPY . /opt/mastodon/
 # Copy bundler and node packages from build layer to container
 COPY --from=build-bundler /opt/mastodon /opt/mastodon/
 COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
@@ -215,7 +212,7 @@ RUN \
 # Switch back to final Mastodon run layer
 FROM run
 # Copy Mastodon source code to container
-COPY . /opt/mastodon/
+# COPY . /opt/mastodon/
 # Copy compiled assets to layer
 COPY --from=build-assets /opt/mastodon/public/packs /opt/mastodon/public/packs
 COPY --from=build-assets /opt/mastodon/public/assets /opt/mastodon/public/assets
