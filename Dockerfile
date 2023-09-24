@@ -11,7 +11,7 @@ ARG BUILDPLATFORM="${BUILDPLATFORM}"
 ARG RUBY_VERSION="3.2.2"
 # # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 ARG NODE_MAJOR_VERSION="20"
-# Ruby image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
+# Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
 ARG DEBIAN_VERSION="bookworm"
 # Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
 FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim as node
