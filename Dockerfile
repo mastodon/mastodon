@@ -62,6 +62,10 @@ FROM node:${NODE_VERSION}-${NODE_IMAGE_VARIANT} as node
 
 ########################################################################################################################
 FROM ruby:${RUBY_VERSION}-${RUBY_IMAGE_VARIANT} as base
+ARG UID
+ARG GID
+ARG MASTODON_HOME
+ARG TZ
 ARG RAILS_ENV
 ARG NODE_ENV
 
@@ -76,7 +80,13 @@ RUN \
 	apt-get -yq dist-upgrade; \
     # Install base dependencies
     apt-get install -y --no-install-recommends \
-        # Dependencies for all (includes runtime)
+        # Dependencies for nodejs
+        libatomic1 \
+        # Dependencies for ruby gems
+        libicu72 \
+        libidn12 \
+        libpq5 \
+        # Dependencies for mastodon runtime
         ffmpeg \
         file \
         imagemagick \
@@ -84,18 +94,13 @@ RUN \
         tini \
         tzdata \
         wget \
-        # Dependencies for ruby gems
-        libicu72 \
-        libidn12 \
-        libpq5 \
-        # Dependencies for nodejs
-        libatomic1 \
     ;
 
-# Node image contains node on /usr/local
+# Node image contains node on /usr/local without /usr/local/share
 #
 # See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
 COPY --link --from=node /usr/local/bin /usr/local/bin
+COPY --link --from=node /usr/local/include /usr/local/include
 COPY --link --from=node /usr/local/lib /usr/local/lib
 
 ENV COREPACK_HOME /usr/local/corepack
@@ -110,16 +115,22 @@ RUN set -eux; \
     # Remove tmp files from node
     rm -rf .yarn* /tmp/*;
 
-########################################################################################################################
-FROM base as builder-base
-ARG MASTODON_HOME
+RUN set -eux; \
+    # Add mastodon group and user
+    groupadd -g "${GID}" mastodon; \
+    useradd -u "${UID}" -g "${GID}" -l -m -d "${MASTODON_HOME}" mastodon; \
+    # Set bundle configs
+    bundle config set --local deployment 'true'; \
+    case "${RAILS_ENV}" in \
+        development) bundle config set --local without 'test';; \
+        test) bundle config set --local without 'development';; \
+        production) bundle config set --local without 'development test';; \
+    esac;
 
 WORKDIR ${MASTODON_HOME}
 
-# Node image contains node on /usr/local
-#
-# See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
-COPY --link --from=node /usr/local/include /usr/local/include
+########################################################################################################################
+FROM base as builder-base
 
 RUN \
     --mount=type=cache,target=/var/cache,sharing=locked \
@@ -133,7 +144,7 @@ RUN \
     ;
 
 ########################################################################################################################
-FROM builder-base as ruby-builder
+FROM builder-base as bundle-installer
 
 ADD Gemfile* ${MASTODON_HOME}/
 
@@ -161,7 +172,7 @@ RUN set -eux; \
     bundle install --no-cache;
 
 ########################################################################################################################
-FROM builder-base as node-builder
+FROM builder-base as yarn-installer
 
 ADD package.json yarn.lock ${MASTODON_HOME}/
 
@@ -172,38 +183,19 @@ RUN set -eux; \
 
 ########################################################################################################################
 FROM base
-ARG UID
-ARG GID
-ARG MASTODON_HOME
-ARG TZ
-ARG RAILS_ENV
-ARG NODE_ENV
 ARG RAILS_SERVE_STATIC_FILES
 ARG BIND
 ARG MASTODON_VERSION_PRERELEASE
 ARG MASTODON_VERSION_METADATA
 
-ENV MASTODON_HOME="${MASTODON_HOME}" \
-    TZ="${TZ}" \
-    RAILS_ENV="${RAILS_ENV}" \
-    NODE_ENV="${NODE_ENV}"
-
-RUN set -eux; \
-    # Add mastodon group and user
-    groupadd -g "${GID}" mastodon; \
-    useradd -u "${UID}" -g "${GID}" -l -m -d "${MASTODON_HOME}" mastodon;
-
-WORKDIR ${MASTODON_HOME}
-
 # Copy the git source code into the image layer
 COPY --link . ${MASTODON_HOME}
 
 # Copy output of the "bundle install" build stage into this layer
-COPY --link --from=ruby-builder ${BUNDLE_APP_CONFIG}/config ${BUNDLE_APP_CONFIG}/config
-COPY --link --from=ruby-builder ${MASTODON_HOME}/vendor/bundle ${MASTODON_HOME}/vendor/bundle
+COPY --link --from=bundle-installer ${MASTODON_HOME}/vendor/bundle ${MASTODON_HOME}/vendor/bundle
 
 # Copy output of the "yarn install" build stage into this image layer
-COPY --link --from=node-builder ${MASTODON_HOME}/node_modules ${MASTODON_HOME}/node_modules
+COPY --link --from=yarn-installer ${MASTODON_HOME}/node_modules ${MASTODON_HOME}/node_modules
 
 # Run commands before the mastodon user used
 RUN set -eux; \
