@@ -242,11 +242,11 @@ html {
   
   @media screen and (max-width: $no-gap-breakpoint) {
     .layout-single-column .ui__header {
-      background: $ui-primary-color;
+      background: $ui-color-pink;
     }
     .columns-area__panels__pane--navigational {
       .navigation-panel {
-        background: $ui-color-mint;
+        background: darken($ui-color-orange, 15%);
         border-left: none;
       }
     }
@@ -811,7 +811,7 @@ html {
   
     .recommended {
       border-color: lighten($ui-color-orange, 25%);
-      color: lighten($ui-color-orange, 25%);
+      color: $grey-600;
       background-color: rgba($ui-color-orange, 0.5);
     }
   }
