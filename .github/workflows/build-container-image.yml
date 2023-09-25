@@ -61,14 +61,14 @@ jobs:
 
       - name: Log in to Docker Hub
         if: contains(inputs.push_to_images, 'tootsuite')
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Log in to the Github Container registry
         if: contains(inputs.push_to_images, 'ghcr.io')
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
