@@ -75,10 +75,12 @@ RUN \
         zlib1g \
     ;
 
-# Node image contains node on /usr/local
+# Node image contains node on /usr/local without /usr/local/share
 #
 # See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
-COPY --link --from=node /usr/local /usr/local
+COPY --link --from=node /usr/local/bin /usr/local/bin
+COPY --link --from=node /usr/local/include /usr/local/include
+COPY --link --from=node /usr/local/lib /usr/local/lib
 
 ENV COREPACK_HOME /usr/local/corepack
 
@@ -97,11 +99,6 @@ FROM base as builder-base
 ARG MASTODON_HOME
 
 WORKDIR ${MASTODON_HOME}
-
-# Node image contains node on /usr/local
-#
-# See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
-COPY --link --from=node /usr/local/include /usr/local/include
 
 RUN \
     --mount=type=cache,target=/var/cache,sharing=locked \
