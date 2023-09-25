@@ -1132,7 +1132,7 @@ body > [data-popper-placement] {
     width: 0;
     position: absolute;
     top: 0;
-    inset-inline-start: 16px + ((46px - 2px) * 0.5);
+    inset-inline-start: 13px + ((46px - 2px) * 0.5);
 
     &--full {
       top: 0;
@@ -1153,6 +1153,7 @@ body > [data-popper-placement] {
     &--first {
       top: 16px + 46px + 4px;
       height: calc(100% - (16px + 46px + 4px));
+      inset-inline-start: 16px + ((46px - 2px) * 0.5);
 
       &::before {
         display: none;
