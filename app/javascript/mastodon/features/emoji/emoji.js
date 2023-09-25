@@ -134,7 +134,7 @@ const emojify = (str, customEmojis = {}) => {
 
   emojifyNode(wrapper, customEmojis);
 
-  if((wrapper.innerHTML.match('h-card') || []).length==1&&(wrapper.innerHTML.match('emojione') || []).length==1&&wrapper.innerHTML.replace(/^<p><span class=.h-card.>.+<\/span>[ (\u{200b})(<br>)]+<img [^<]+?>[ (\u{200b})(<br>)]?<\/p>$/u,'')==''){
+  if((wrapper.innerHTML.match('h-card') || []).length==1&&(wrapper.innerHTML.match('emojione') || []).length==1&&wrapper.innerHTML.replace(/^<p><span class=.h-card. translate=.no.>.+<\/span>[ (\u{200b})(<br>)]+<img [^<]+?>[ (\u{200b})(<br>)]?<\/p>$/u,'')==''){
     wrapper.innerHTML = wrapper.innerHTML.replace('emojione','emojione mcd__singleEmoji').replace('<img','<br><img');
   }else if((wrapper.innerHTML.match('emojione') || []).length==1&&wrapper.innerHTML.replace(/^<p>\u{200b}?<img [^<]+?>\u{200b}?<\/p>$/u,'')==''){
     wrapper.innerHTML = wrapper.innerHTML.replace('emojione','emojione mcd__singleEmoji');
