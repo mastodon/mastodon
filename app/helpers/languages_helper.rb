@@ -205,6 +205,21 @@ module LanguagesHelper
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
 
+  TEST_ARRAY = {
+    ckb: [english: 'Sorani (Kurdish)', native: 'سۆرانی'].freeze,
+    cnr: [english: 'Montenegrin', native: 'crnogorski'].freeze,
+    zgh: [english: 'Standard Moroccan Tamazight', native: 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
+  }.freeze
+
+  # TEST_ARRAY..sort_by!(&:last[0]).freeze
+
+  TEST_ARRAY2 = {
+    bar: ['foo'],
+    foo: ['bar'],
+  }.freeze
+
+  TEST_ARRAY2 = TEST_ARRAY2.sort_by { |_, value| value[0] }
+
   # e.g. For Chinese, which is not a language,
   # but a language family in spite of sharing the main locale code
   # We need to be able to filter these
@@ -215,6 +230,8 @@ module LanguagesHelper
     'zh-YUE': ['Cantonese', '廣東話'].freeze,
   }.freeze
 
+  # .sort_by!(&:last[0])
+  # .sort_by{|_, value| value[0]}
   SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_1_REGIONAL).merge(ISO_639_3).freeze
 
   # For ISO-639-1 and ISO-639-3 language codes, we have their official
