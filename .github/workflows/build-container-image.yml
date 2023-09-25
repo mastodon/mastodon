@@ -32,7 +32,7 @@ jobs:
       - uses: docker/setup-qemu-action@v2
         if: contains(inputs.platforms, 'linux/arm64') && !inputs.use_native_arm64_builder
 
-      - uses: docker/setup-buildx-action@v2
+      - uses: docker/setup-buildx-action@v3
         id: buildx
         if: ${{ !(inputs.use_native_arm64_builder && contains(inputs.platforms, 'linux/arm64')) }}
 
@@ -41,7 +41,7 @@ jobs:
         run: |
           docker run --rm -d --name buildkitd -p 1234:1234 --privileged moby/buildkit:latest --addr tcp://0.0.0.0:1234
 
-      - uses: docker/setup-buildx-action@v2
+      - uses: docker/setup-buildx-action@v3
         id: buildx-native
         if: inputs.use_native_arm64_builder && contains(inputs.platforms, 'linux/arm64')
         with:
