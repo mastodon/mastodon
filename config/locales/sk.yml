@@ -425,6 +425,7 @@ sk:
         failing: Zlyhávajúce
         unavailable: Nedostupné
       delivery_available: Je v dosahu doručovania
+      empty: Nenájdené žiadne domény.
       moderation:
         all: Všetky
         limited: Obmedzené
@@ -482,6 +483,12 @@ sk:
       created_msg: Poznámka o nahlásení úspešne vytvorená!
       destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
     reports:
+      account:
+        notes:
+          few: "%{count} poznámok"
+          many: "%{count} poznámok"
+          one: "%{count} poznámka"
+          other: "%{count} poznámky"
       action_taken_by: Zákrok vykonal/a
       actions:
         suspend_description_html: Tento účet a všetok jeho obsah bude nedostupný a nakoniec zmazaný, interaktovať s ním bude nemožné. Zvrátiteľné v rámci 30 dní. Uzatvára všetky hlásenia voči tomuto účtu.
@@ -1015,6 +1022,8 @@ sk:
     other: Ostatné
     posting_defaults: Východiskové nastavenia príspevkov
     public_timelines: Verejné časové osi
+  privacy:
+    title: Súkromie a dosah
   reactions:
     errors:
       limit_reached: Maximálny počet rôznorodých reakcií bol dosiahnutý
