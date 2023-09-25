@@ -306,6 +306,7 @@ my:
       unpublish: ပြန်ဖြုတ်ပါ
       unpublished_msg: ကြေညာချက်ကို ဖြုတ်ပြီးပါပြီ
       updated_msg: ကြေညာချက်ကို ပြင်ဆင်ပြီးပါပြီ။
+    critical_update_pending: အရေးကြီးသောအပ်ဒိတ်ကို ဆိုင်းငံ့ထားသည်
     custom_emojis:
       assign_category: အမျိုးအစားသတ်မှတ်ရန်
       by_domain: ဒိုမိန်း
@@ -756,10 +757,21 @@ my:
           approved: အကောင့်ဖွင့်ရန်အတွက် အတည်ပြုချက် လိုအပ်ပါသည်
           none: မည်သူမျှ အကောင့်ဖွင့်၍မရပါ
           open: မည်သူမဆို အကောင့်ဖွင့်နိုင်ပါသည်
+      security:
+        authorized_fetch: ဖက်ဒီဆာဗာများမှ စစ်မှန်ကြောင်းအထောက်အထားပြရန် လိုအပ်သည်။
       title: ဆာဗာသတ်မှတ်ချက်များ
     site_uploads:
       delete: တင်ထားသောဖိုင်ဖျက်ရန်
       destroyed_msg: ဆိုက်အပ်လုဒ်ကို အောင်မြင်စွာ ဖျက်လိုက်ပါပြီ။
+    software_updates:
+      critical_update: အရေးကြီးသည် — ကျေးဇူးပြု၍ မြန်မြန်အပ်ဒိတ်လုပ်ပါ
+      documentation_link: ပိုမိုသိရှိရန်
+      release_notes: ထုတ်ဝေမှုမှတ်စုများ
+      title: ရရှိနိုင်သော အပ်ဒိတ်များ
+      type: အမျိုးအစား
+      types:
+        major: အဓိကထုတ်ဝေမှု
+      version: ဗားရှင်း
     statuses:
       account: ရေးသားသူ
       application: အက်ပလီကေးရှင်း
@@ -814,6 +826,12 @@ my:
         message_html: သင်သည် မည်သည့်ဆာဗာစည်းမျဉ်းများကိုမျှ မသတ်မှတ်ထားပါ။
       sidekiq_process_check:
         message_html: "%{value} တန်းစီ(s) အတွက် Sidekiq လုပ်ငန်းစဉ် မရှိပါ။ သင်၏ Sidekiq ဖွဲ့စည်းမှုကို ပြန်လည်သုံးသပ်ပါ။"
+      software_version_critical_check:
+        action: ရရှိနိုင်သော အပ်ဒိတ်များကြည့်ပါ
+        message_html: Mastodon အပ်ဒိတ်ရနိုင်သည်၊ ကျေးဇူးပြု၍ မြန်မြန် အပ်ဒိတ်လုပ်ပါ။
+      software_version_patch_check:
+        action: ရရှိနိုင်သော အပ်ဒိတ်များကြည့်ပါ
+        message_html: ပြင်ဆင်ပြီးသော Mastodon အပ်ဒိတ် ရနိုင်ပါသည်
       upload_check_privacy_error:
         action: နောက်ထပ်အချက်အလက်များအတွက် ဤနေရာတွင် ကြည့်ပါ
         message_html: "<strong>သင်၏ဝဘ်ဆာဗာကို မှားယွင်းစွာပြုလုပ်ထားသည်။ သင့်အသုံးပြုသူများ၏ လျှို့ဝှက်ချက်များသည် အန္တရာယ်ရှိသည်။</strong>"
@@ -923,6 +941,9 @@ my:
       body: "%{target} သည် %{type} ဖြစ်သည့်  %{date} တွင်  %{action_taken_by} ဖြင့် စိစစ်မှုတစ်ခုအား အယူခံဝင်နေပါသည်။ သူတို့ရေးသားခဲ့သည် -"
       next_steps: စိစစ်ဆုံးဖြတ်ချက်ပြန်ဖျက်ရန်အတွက် တင်ပြနိုင်သည် သို့မဟုတ် ၎င်းကို လျစ်လျူရှုနိုင်သည်။
       subject: "%{username} က %{instance} တွင် စိစစ်ဆုံးဖြတ်ချက်ကို တင်ပြနေသည်"
+    new_critical_software_updates:
+      body: Mastodon ၏ ဗားရှင်းအသစ်များကို ထုတ်ဝေလိုက်ပါပြီ၊ အမြန်ဆုံး အပ်ဒိတ်လုပ်နိုင်ပါသည်။
+      subject: Mastodon အပ်ဒိတ်များကို %{instance} အတွက် ရနိုင်ပါသည်။
     new_pending_account:
       body: အကောင့်သစ်၏အသေးစိတ်ကို အောက်တွင်ဖော်ပြထားသည်။ ၎င်းကို အတည်ပြုနိုင်သည် သို့မဟုတ် ငြင်းပယ်နိုင်သည်။
       subject: " (%{username}) %{instance} ပေါ်ရှိ ပြန်လည်သုံးသပ်ရမည့် အကောင့်သစ်"
@@ -930,6 +951,9 @@ my:
       body: "%{reporter} က %{target} ကို တိုင်ကြားခဲ့သည်"
       body_remote: "%{domain} မှ တစ်စုံတစ်ယောက်က %{target} ကို တိုင်ကြားခဲ့သည်"
       subject: "%{instance} (#%{id}) အတွက် တိုင်ကြားစာအသစ်"
+    new_software_updates:
+      body: Mastodon ဗားရှင်းအသစ်များ ထွက်ရှိပြီးပါပြီ၊ သင် update လုပ်နိုင်ပါပြီ။
+      subject: Mastodon ဗားရှင်းအသစ်များကို %{instance} အတွက် ရနိုင်ပါသည်
     new_trends:
       body: အောက်ပါအရာများကို အများကိုမပြမီ ပြန်လည်သုံးသပ်ရန် လိုအပ်သည် -
       new_trending_links:
@@ -1663,6 +1687,11 @@ my:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: ဘာသာပြန်ဝန်ဆောင်မှုအတွက် ဆာဗာတစ်ခုလုံးအသုံးပြုမှုခွဲတမ်းကို ကျော်လွန်သွားပါပြီ။
+      too_many_requests: မကြာသေးမီက ဘာသာပြန်ဝန်ဆောင်မှုသို့ တောင်းဆိုမှု အများအပြားရှိခဲ့သည်။
   two_factor_authentication:
     add: ထည့်ရန်
     disable: 2FA ကို ပိတ်ပါ

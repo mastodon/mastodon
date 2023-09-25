@@ -41,13 +41,13 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
     elsif cluster_health['status'] == 'red'
       Admin::SystemCheck::Message.new(:elasticsearch_health_red)
     elsif cluster_health['number_of_nodes'] < 2 && es_preset != 'single_node_cluster'
-      Admin::SystemCheck::Message.new(:elasticsearch_preset_single_node, nil, 'https://docs.joinmastodon.org/admin/optional/elasticsearch/#scaling')
+      Admin::SystemCheck::Message.new(:elasticsearch_preset_single_node, nil, 'https://docs.joinmastodon.org/admin/elasticsearch/#scaling')
     elsif Chewy.client.indices.get_settings[Chewy::Stash::Specification.index_name]&.dig('settings', 'index', 'number_of_replicas')&.to_i&.positive? && es_preset == 'single_node_cluster'
       Admin::SystemCheck::Message.new(:elasticsearch_reset_chewy)
     elsif cluster_health['status'] == 'yellow'
       Admin::SystemCheck::Message.new(:elasticsearch_health_yellow)
     else
-      Admin::SystemCheck::Message.new(:elasticsearch_preset, nil, 'https://docs.joinmastodon.org/admin/optional/elasticsearch/#scaling')
+      Admin::SystemCheck::Message.new(:elasticsearch_preset, nil, 'https://docs.joinmastodon.org/admin/elasticsearch/#scaling')
     end
   rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
     Admin::SystemCheck::Message.new(:elasticsearch_running_check)
