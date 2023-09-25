@@ -378,12 +378,12 @@ ja:
       add_new: ドメインブロックを追加
       confirm_suspension:
         cancel: キャンセル
-        confirm: ブロック
-        permanent_action: 失われたデータやフォロー関係は、ブロックを解除しても元に戻せません。
-        preamble_html: "<strong>%{domain}</strong> と、そのサブドメインをブロックします。"
+        confirm: 停止
+        permanent_action: 失われたデータやフォロー関係は、停止を解除しても元に戻せません。
+        preamble_html: "<strong>%{domain}</strong> と、そのサブドメインに「停止」の処置を行います。"
         remove_all_data: この操作により、対象のドメインにあるアカウントからのコンテンツやメディア、プロフィール情報はすべて削除されます。
-        stop_communication: ブロックしたサーバーとは通信を行わなくなります。
-        title: "%{domain} をブロック"
+        stop_communication: 対象のサーバーとは通信を行わなくなります。
+        title: "「%{domain}」ドメインブロックの確認"
         undo_relationships: この操作により、このサーバーと対象サーバーのアカウント間のフォロー関係はすべて解除されます。
       created_msg: ドメインブロック処理を完了しました
       destroyed_msg: ドメインブロックを外しました
