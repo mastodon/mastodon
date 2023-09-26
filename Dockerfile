@@ -97,10 +97,10 @@ RUN \
     tini \
     tzdata \
   ; \
-# Install ffmpeg and imagemagick for media processing
+# Install ffmpeg for video processing
+  apt update; \
   apt-get install -y --no-install-recommends \
     ffmpeg \
-    imagemagick \
   ; \
 # Patch Ruby to use jemalloc
   patchelf --add-needed libjemalloc.so.2 /usr/local/bin/ruby; \
@@ -112,20 +112,22 @@ RUN \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
-# Create final Mastodon run layer
-FROM ruby as run
-
-# hadolint ignore=DL3008
+# hadolint ignore=DL3008,DL3005
 RUN \
-# Apt update install non-dev versions of necessary components
   apt-get update; \
   apt-get install -y --no-install-recommends \
-    libssl3 \
-    libpq5 \
-    libicu72 \
-    libidn12 \
-    libreadline8 \
-    libyaml-0-2 \
+    # Dependencies for ImageMagick
+    libbz2-1.0 \
+    liblzma5 \
+    libheif1 \
+    libjxl0.7 \
+    libpng16-16 \
+    libraw20 \
+    libtiff6 \
+    libwebp7 \
+    libwebpdemux2 \
+    libwebpmux3 \
+    libzip4 \
   ; \
 # Cleanup Apt
   rm -rf /var/lib/apt/lists/*; \
@@ -133,6 +135,12 @@ RUN \
 
 # Create temporary build layer from base image
 FROM ruby as build
+
+# ImageMagick version to use, change with [--build-arg IMAGEMAGICK_VERSION=]
+ARG IMAGEMAGICK_VERSION="7.1.1-18"
+
+COPY --from=node /usr/local/bin /usr/local/bin
+COPY --from=node /usr/local/lib /usr/local/lib
 
 # hadolint ignore=DL3008
 RUN \
@@ -152,21 +160,56 @@ RUN \
     shared-mime-info \
     yarn \
     zlib1g-dev \
+    # Dependencies for ImageMagick
+    libbz2-dev \
+    libheif-dev \
+    libjxl-dev \
+    libltdl-dev \
+    liblzma-dev \
+    libpng-dev \
+    libraw-dev \
+    libtiff-dev \
+    libwebp-dev \
+    libzip-dev \
+    zlib1g-dev \
   ; \
   rm -rf /var/lib/apt/lists/*; \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
-
-COPY --from=node /usr/local/bin /usr/local/bin
-COPY --from=node /usr/local/lib /usr/local/lib
-
-RUN \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 # Remove existing yarn
   rm /usr/local/bin/yarn*; \
 # Set yarn to use classic mode and enable corepack (yarn 1)
 	corepack enable; \
-  yarn set version classic;
+  yarn set version classic; \
 # Enable corepack (yarn 3)
-  # corepack enable;
+  # corepack enable; \
+  # Configure ImageMagick working directory
+  imagemagick_workdir="$(mktemp -d)"; \
+  imagemagick_prefix="/opt/magick"; \
+  cd ${imagemagick_workdir}; \
+  # Clone ImageMagick source code
+  git clone -b ${IMAGEMAGICK_VERSION} --depth 1 https://github.com/ImageMagick/ImageMagick.git .; \
+  LDFLAGS="-Wl,-rpath,\"\\$\$ORIGIN/../lib\"" ./configure \
+      --prefix="${imagemagick_prefix}" \
+      # Optional Features
+      --disable-openmp \
+      --enable-shared \
+      --disable-static \
+      --disable-deprecated \
+      --disable-docs \
+      # Optional Packages
+      --with-security-policy=websafe \
+      --without-magick-plus-plus \
+      --without-fontconfig \
+      --without-freetype \
+  ; \
+  # Compile ImageMagick
+  make -j"$(nproc)"; \
+  make install; \
+  rm -r \
+      "${imagemagick_prefix}/include" \
+      "${imagemagick_prefix}/lib/pkgconfig" \
+      "${imagemagick_prefix}/share" \
+  ;
 
 # Create temporary bundler specific build layer from build layer
 FROM build as build-bundler
@@ -181,7 +224,7 @@ RUN \
 # Configure bundle to not warn about root user
   bundle config set silence_root_warning "true"; \
 # Download and install required Gems
-  bundle install -j$(nproc);
+  bundle install -j"$(nproc)";
 
 # Create temporary yarn specific build layer from build layer
 FROM build as build-yarn
@@ -213,8 +256,25 @@ RUN \
 # Cleanup temporary files
   rm -fr /opt/mastodon/tmp;
 
-# Switch back to final Mastodon run layer
-FROM run
+# Prep final Mastodon Ruby layer
+FROM ruby
+
+# hadolint ignore=DL3008
+RUN \
+# Apt update install non-dev versions of necessary components
+  apt-get update; \
+  apt-get install -y --no-install-recommends \
+    libssl3 \
+    libpq5 \
+    libicu72 \
+    libidn12 \
+    libreadline8 \
+    libyaml-0-2 \
+  ; \
+# Cleanup Apt
+  rm -rf /var/lib/apt/lists/*; \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
+
 # Copy Mastodon source code to container
 # COPY . /opt/mastodon/
 # Copy compiled assets to layer
@@ -224,8 +284,16 @@ COPY --from=build-assets /opt/mastodon/public/assets /opt/mastodon/public/assets
 COPY --from=build-bundler /opt/mastodon/ /opt/mastodon/
 COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
 
-# Pre-create and chown system volume to Mastodon user
+# Copy output of the imagemagick into this image layer
+COPY --link --from=build /opt/magick /opt/magick
+
 RUN \
+  ln -s /opt/magick/bin/* /usr/local/bin/; \
+  # Test ImageMagick and ffmpeg availablity
+  magick -version; \
+  ffmpeg -version; \
+  ffprobe -version; \
+# Pre-create and chown system volume to Mastodon user
   mkdir -p /opt/mastodon/public/system; \
   chown mastodon:mastodon /opt/mastodon/public/system;
 
