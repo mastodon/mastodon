@@ -205,21 +205,6 @@ module LanguagesHelper
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
 
-  TEST_ARRAY = {
-    ckb: [english: 'Sorani (Kurdish)', native: 'سۆرانی'].freeze,
-    cnr: [english: 'Montenegrin', native: 'crnogorski'].freeze,
-    zgh: [english: 'Standard Moroccan Tamazight', native: 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
-  }.freeze
-
-  # TEST_ARRAY..sort_by!(&:last[0]).freeze
-
-  TEST_ARRAY2 = {
-    bar: ['foo'],
-    foo: ['bar'],
-  }.freeze
-
-  TEST_ARRAY2 = TEST_ARRAY2.sort_by { |_, value| value[0] }
-
   # e.g. For Chinese, which is not a language,
   # but a language family in spite of sharing the main locale code
   # We need to be able to filter these
@@ -230,8 +215,6 @@ module LanguagesHelper
     'zh-YUE': ['Cantonese', '廣東話'].freeze,
   }.freeze
 
-  # .sort_by!(&:last[0])
-  # .sort_by{|_, value| value[0]}
   SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_1_REGIONAL).merge(ISO_639_3).freeze
 
   # For ISO-639-1 and ISO-639-3 language codes, we have their official
@@ -247,6 +230,34 @@ module LanguagesHelper
     'sr-Latn': 'Srpski (latinica)',
   }.freeze
 
+  # Helper for self.sorted_locale_keys
+  private_class_method def self.locale_name_for_sorting(locale)
+    if locale.blank? || locale == 'und'
+      '000'
+    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
+      if /.*[a-zA-Z].*/.match?(supported_locale[1])
+        # Strip accents from Latin characters so e.g. Íslenska won't be bumped to the bottom.
+        # We have to exclude non-Latin languages from the transliterator, because results are dire.
+        ActiveSupport::Inflector.transliterate(supported_locale[1]).downcase
+      else
+        supported_locale[1].downcase
+      end
+    elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
+      if /.*[a-zA-Z].*/.match?(regional_locale)
+        ActiveSupport::Inflector.transliterate(regional_locale).downcase
+      else
+        regional_locale.downcase
+      end
+    else
+      locale
+    end
+  end
+
+  # Sort locales by native name for dropdown menus
+  def self.sorted_locale_keys(locale_keys)
+    locale_keys.sort_by { |key, _| locale_name_for_sorting(key) }
+  end
+
   def native_locale_name(locale)
     if locale.blank? || locale == 'und'
       I18n.t('generic.none')
@@ -257,22 +268,6 @@ module LanguagesHelper
     else
       locale
     end
-  end
-
-  def self.native_locale_name2(locale)
-    if locale.blank? || locale == 'und'
-      I18n.t('generic.none')
-    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
-      supported_locale[1]
-    elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
-      regional_locale
-    else
-      locale
-    end
-  end
-
-  def self.sorted_locale_keys(locales)
-    locales.sort_by { |key, _| native_locale_name2(key) }
   end
 
   def standard_locale_name(locale)
