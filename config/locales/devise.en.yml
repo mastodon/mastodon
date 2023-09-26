@@ -13,15 +13,15 @@ en:
       locked: Your account is locked.
       not_found_in_database: Invalid %{authentication_keys} or password.
       pending: Your account is still under review.
-      timeout: Your session expired. Please login again to continue.
-      unauthenticated: You need to login or sign up before continuing.
+      timeout: Your session expired. Please log in again to continue.
+      unauthenticated: You need to log in or sign up before continuing.
       unconfirmed: You have to confirm your email address before continuing.
     mailer:
       confirmation_instructions:
         action: Verify email address
         action_with_app: Confirm and return to %{app}
         explanation: You have created an account on %{host} with this email address. You are one click away from activating it. If this wasn't you, please ignore this email.
-        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can login to change your details or delete your account, but you cannot access most of the functions until your account is approved. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
+        explanation_when_pending: You applied for an invite to %{host} with this email address. Once you confirm your e-mail address, we will review your application. You can log in to change your details or delete your account, but you cannot access most of the functions until your account is approved. If your application is rejected, your data will be removed, so no further action will be required from you. If this wasn't you, please ignore this email.
         extra_html: Please also check out <a href="%{terms_path}">the rules of the server</a> and <a href="%{policy_path}">our terms of service</a>.
         subject: 'Mastodon: Confirmation instructions for %{instance}'
         title: Verify email address
@@ -102,7 +102,7 @@ en:
     unlocks:
       send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes. Please check your spam folder if you didn't receive this email.
       send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes. Please check your spam folder if you didn't receive this email.
-      unlocked: Your account has been unlocked successfully. Please login to continue.
+      unlocked: Your account has been unlocked successfully. Please log in to continue.
   errors:
     messages:
       already_confirmed: was already confirmed, please try signing in
