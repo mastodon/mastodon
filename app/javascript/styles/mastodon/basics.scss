@@ -6,6 +6,52 @@
   @return '%23' + unquote($color);
 }
 
+// Hide the top bar when scrolling down, show it when scrolling up
+body.layout-single-column.scroll-down .ui:after,
+body.layout-single-column.scroll-down .ui__header,
+body.layout-single-column.scroll-down .tabs-bar__wrapper {
+  transform: translateY(-300%);
+}
+/* Also hide the bottom bar when scrolling down */
+body.layout-single-column.scroll-down .columns-area__panels__pane__inner {
+  transform: translateY(100%);
+}
+body.layout-single-column.scroll-up .columns-area__panels__pane__inner,
+body.layout-single-column.scroll-up .ui:after,
+body.layout-single-column.scroll-up .ui__header,
+body.layout-single-column.scroll-up .tabs-bar__wrapper {
+  transform: translateY(0);
+}
+body.layout-single-column.scroll-top .columns-area__panels__pane__inner,
+body.layout-single-column.scroll-top .ui:after,
+body.layout-single-column.scroll-top .ui__header,
+body.layout-single-column.scroll-top .tabs-bar__wrapper {
+  transform: translateY(0);
+}
+body.layout-single-column .columns-area__panels__pane__inner,
+body.layout-single-column .ui:after,
+body.layout-single-column .ui__header,
+body.layout-single-column .tabs-bar__wrapper {
+  transition: transform 500ms ease-in-out;
+}
+// Notification filter bar sticky on mobile
+body.layout-single-column .notification__filter-bar {
+  background-color: var(--color-bg);
+  transition: all 500ms ease-in-out;
+}
+body.layout-single-column .notification__filter-bar.notification__filter-bar--fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+// For PWA on Safari
+@supports(padding-bottom: env(safe-area-inset-bottom, 20px)) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+}
+
 body {
   font-family: $font-sans-serif, sans-serif;
   background: darken($ui-base-color, 7%);
