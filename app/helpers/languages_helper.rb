@@ -259,6 +259,22 @@ module LanguagesHelper
     end
   end
 
+  def self.native_locale_name2(locale)
+    if locale.blank? || locale == 'und'
+      I18n.t('generic.none')
+    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
+      supported_locale[1]
+    elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
+      regional_locale
+    else
+      locale
+    end
+  end
+
+  def self.sorted_locale_keys(locales)
+    locales.sort_by { |key, _| native_locale_name2(key) }
+  end
+
   def standard_locale_name(locale)
     if locale.blank?
       I18n.t('generic.none')

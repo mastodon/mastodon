@@ -2,7 +2,7 @@
 
 module SettingsHelper
   def filterable_languages
-    LanguagesHelper::SUPPORTED_LOCALES.keys
+    LanguagesHelper.sorted_locale_keys(LanguagesHelper::SUPPORTED_LOCALES.keys)
   end
 
   def session_device_icon(session)
