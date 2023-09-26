@@ -40,7 +40,7 @@ class CustomEmoji < ApplicationRecord
 
   has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode, inverse_of: false
 
-  has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce +profile "!icc,*" +set modify-date +set create-date' } }, validate_media_type: false
+  has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' } }, validate_media_type: false
 
   before_validation :downcase_domain
 
