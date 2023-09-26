@@ -55,8 +55,10 @@ const homeTooSlow = createSelector([
   getHomeFeedSpeed,
 ], (isLoading, isPartial, speed) =>
   !isLoading && !isPartial // Only if the home feed has finished loading
-  && (speed.gap > (30 * 60) // If the average gap between posts is more than 20 minutes
-  || (Date.now() - speed.newest) > (1000 * 3600)) // If the most recent post is from over an hour ago
+  && (
+    (speed.gap > (30 * 60) // If the average gap between posts is more than 30 minutes
+    || (Date.now() - speed.newest) > (1000 * 3600)) // If the most recent post is from over an hour ago
+  )
 );
 
 const mapStateToProps = state => ({

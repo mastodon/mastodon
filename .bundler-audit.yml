@@ -1,0 +1,4 @@
+---
+ignore:
+  # Sidekiq security issue, fixes in the latest Sidekiq 7 but we can not upgrade. Will be fixed in Sidekiq 6.5.10
+  - CVE-2023-26141
