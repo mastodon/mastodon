@@ -41,7 +41,7 @@ class RedisConfiguration
   def url
     if ENV['REDIS_SENTINEL']
       m = ENV.fetch('REDIS_SENTINEL_MASTER', 'mymaster')
-      p = ENV.fetch('REDIS_PASSWORD', 'mymaster')
+      p = ENV.fetch('REDIS_PASSWORD', '')
       "redis://:#{p}@#{m}"
     else
       ENV['REDIS_URL']
