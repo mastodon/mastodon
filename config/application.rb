@@ -205,6 +205,10 @@ module Mastodon
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware
 
+    initializer :deprecator do |app|
+      app.deprecators[:mastodon] = ActiveSupport::Deprecation.new('4.3', 'mastodon/mastodon')
+    end
+
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
