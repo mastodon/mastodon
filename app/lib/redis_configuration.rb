@@ -39,12 +39,37 @@ class RedisConfiguration
   end
 
   def url
-    ENV['REDIS_URL']
+    if ENV['REDIS_SENTINEL']
+      m = ENV.fetch('REDIS_SENTINEL_MASTER', 'mymaster')
+      p = ENV.fetch('REDIS_PASSWORD', 'mymaster')
+      "redis://:#{p}@#{m}"
+    else
+      ENV['REDIS_URL']
+    end
+  end
+
+  def sentinels
+    ENV['REDIS_SENTINEL']
+    unless ENV['REDIS_SENTINEL'].include? ','
+      ips = Resolv.getaddresses(ENV['REDIS_SENTINEL'])
+      ENV['REDIS_SENTINEL'] = ips.map do |ip|
+        port = ENV.fetch('REDIS_SENTINEL_PORT', '26379')
+        "#{ip}:#{port}"
+      end.join(',')
+    end
+    ENV['REDIS_SENTINEL'].split(',').map do |server|
+      host, port = server.split(':')
+      { host: host, port: port.to_i }
+    end
+  end
+
+  def master_name
+    ENV.fetch('REDIS_SENTINEL_MASTER', 'mymaster')
   end
 
   private
 
   def raw_connection
-    Redis.new(url: url, driver: :hiredis)
+    Redis.new(url: url, driver: :hiredis, sentinels: sentinels, master_name: master_name)
   end
 end
