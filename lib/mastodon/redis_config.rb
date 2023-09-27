@@ -21,7 +21,7 @@ def setup_redis_env_url(prefix = nil, defaults = true)
     end
   end
 
-  return unless ENV["#{prefix}REDIS_SENTINEL"].present
+  return unless ENV["#{prefix}REDIS_SENTINEL"]
 
   sentinel_master = ENV.fetch("#{prefix}REDIS_SENTINEL_MASTER") { 'mymaster' if defaults }
 
