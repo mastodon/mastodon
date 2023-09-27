@@ -49,7 +49,8 @@ class RedisConfiguration
   end
 
   def sentinels
-    ENV['REDIS_SENTINEL']
+    return unless ENV['REDIS_SENTINEL']
+
     unless ENV['REDIS_SENTINEL'].include? ','
       ips = Resolv.getaddresses(ENV['REDIS_SENTINEL'])
       ENV['REDIS_SENTINEL'] = ips.map do |ip|
