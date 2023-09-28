@@ -1028,7 +1028,7 @@ en-GB:
   applications:
     created: Application successfully created
     destroyed: Application successfully deleted
-    logout: Logout
+    logout: Log out
     regenerate_token: Regenerate access token
     token_regenerated: Access token successfully regenerated
     warning: Be very careful with this data. Never share it with anyone!
@@ -1055,7 +1055,7 @@ en-GB:
     link_to_webauth: Use your security key device
     log_in_with: Log in with
     login: Log in
-    logout: Logout
+    logout: Log out
     migrate_account: Move to a different account
     migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
     or_log_in_with: Or log in with
@@ -1089,8 +1089,8 @@ en-GB:
       new_confirmation_instructions_sent: You will receive a new e-mail with the confirmation link in a few minutes!
       title: Check your inbox
     sign_in:
-      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
-      title: Sign in to %{domain}
+      preamble_html: Log in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Log in to %{domain}
     sign_up:
       manual_review: Sign-ups on %{domain} go through manual review by our moderators. To help us process your registration, write a bit about yourself and why you want an account on %{domain}.
       preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
@@ -1379,8 +1379,8 @@ en-GB:
       webauthn: security keys
     description_html: If you see activity that you don't recognise, consider changing your password and enabling two-factor authentication.
     empty: No authentication history available
-    failed_sign_in_html: Failed sign-in attempt with %{method} from %{ip} (%{browser})
-    successful_sign_in_html: Successful sign-in with %{method} from %{ip} (%{browser})
+    failed_sign_in_html: Failed login attempt with %{method} from %{ip} (%{browser})
+    successful_sign_in_html: Successful login with %{method} from %{ip} (%{browser})
     title: Authentication history
   mail_subscriptions:
     unsubscribe:
@@ -1773,11 +1773,11 @@ en-GB:
       title: Archive takeout
     suspicious_sign_in:
       change_password: change your password
-      details: 'Here are details of the sign-in:'
-      explanation: We've detected a sign-in to your account from a new IP address.
+      details: 'Here are details of the login:'
+      explanation: We've detected a login to your account from a new IP address.
       further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
       subject: Your account has been accessed from a new IP address
-      title: A new sign-in
+      title: A new login
     warning:
       appeal: Submit an appeal
       appeal_description: If you believe this is an error, you can submit an appeal to the staff of %{instance}.
@@ -1790,7 +1790,7 @@ en-GB:
         mark_statuses_as_sensitive: Some of your posts have been marked as sensitive by the moderators of %{instance}. This means that people will need to tap the media in the posts before a preview is displayed. You can mark media as sensitive yourself when posting in the future.
         sensitive: From now on, all your uploaded media files will be marked as sensitive and hidden behind a click-through warning.
         silence: You can still use your account but only people who are already following you will see your posts on this server, and you may be excluded from various discovery features. However, others may still manually follow you.
-        suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed in about 30 days, but we will retain some basic data to prevent you from evading the suspension.
+        suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still log in to request a backup of your data until the data is fully removed in about 30 days, but we will retain some basic data to prevent you from evading the suspension.
       reason: 'Reason:'
       statuses: 'Posts cited:'
       subject:
@@ -1825,7 +1825,7 @@ en-GB:
     invalid_otp_token: Invalid two-factor code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
-    signed_in_as: 'Signed in as:'
+    signed_in_as: 'Logged in as:'
   verification:
     extra_instructions_html: <strong>Tip:</strong> The link on your website can be invisible. The important part is <code>rel="me"</code> which prevents impersonation on websites with user-generated content. You can even use a <code>link</code> tag in the header of the page instead of <code>a</code>, but the HTML must be accessible without executing JavaScript.
     here_is_how: Here's how
