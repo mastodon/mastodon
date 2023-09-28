@@ -13,9 +13,6 @@ module Admin
       @pending_reports_count = Report.unresolved.count
       @pending_tags_count    = Tag.pending_review.count
       @pending_appeals_count = Appeal.pending.count
-
-      # Define server_timezone
-      @server_timezone = Time.zone.name
     end
   end
 end
