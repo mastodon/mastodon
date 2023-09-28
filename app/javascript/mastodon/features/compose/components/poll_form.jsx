@@ -93,7 +93,7 @@ class OptionIntl extends PureComponent {
 
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
-            maxLength={50}
+            maxLength={200}
             value={title}
             lang={lang}
             spellCheck
