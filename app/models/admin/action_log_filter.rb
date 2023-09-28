@@ -31,7 +31,7 @@ class Admin::ActionLogFilter
     destroy_instance: { target_type: 'Instance', action: 'destroy' }.freeze,
     destroy_unavailable_domain: { target_type: 'UnavailableDomain', action: 'destroy' }.freeze,
     destroy_status: { target_type: 'Status', action: 'destroy' }.freeze,
-    disable_2fa_user: { target_type: 'User', action: 'disable' }.freeze,
+    disable_2fa_user: { target_type: 'User', action: 'disable_2fa' }.freeze,
     disable_custom_emoji: { target_type: 'CustomEmoji', action: 'disable' }.freeze,
     disable_user: { target_type: 'User', action: 'disable' }.freeze,
     enable_custom_emoji: { target_type: 'CustomEmoji', action: 'enable' }.freeze,
