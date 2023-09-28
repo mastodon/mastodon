@@ -64,25 +64,25 @@ describe LanguagesHelper do
   describe 'sorted_locales' do
     context 'when sorting with native name' do
       it 'returns Suomi after Gàidhlig' do
-        expect(helper.sorted_locale_keys(%w(fi gd))).to eq(%w(gd fi))
+        expect(described_class.sorted_locale_keys(%w(fi gd))).to eq(%w(gd fi))
       end
     end
 
     context 'when sorting with diacritics' do
       it 'returns Íslensk before Suomi' do
-        expect(helper.sorted_locale_keys(%w(fi is))).to eq(%w(is fi))
+        expect(described_class.sorted_locale_keys(%w(fi is))).to eq(%w(is fi))
       end
     end
 
     context 'when sorting with non-Latin' do
       it 'returns Suomi before Amharic' do
-        expect(helper.sorted_locale_keys(%w(am fi))).to eq(%w(fi am))
+        expect(described_class.sorted_locale_keys(%w(am fi))).to eq(%w(fi am))
       end
     end
 
     context 'when sorting with local variants' do
       it 'returns variant in-line' do
-        expect(helper.sorted_locale_keys(%w(en eo en-GB))).to eq(%w(en en-GB eo))
+        expect(described_class.sorted_locale_keys(%w(en eo en-GB))).to eq(%w(en en-GB eo))
       end
     end
   end
