@@ -235,19 +235,9 @@ module LanguagesHelper
     if locale.blank? || locale == 'und'
       '000'
     elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
-      if /.*[a-zA-Z].*/.match?(supported_locale[1])
-        # Strip accents from Latin characters so e.g. Íslenska won't be bumped to the bottom.
-        # We have to exclude non-Latin languages from the transliterator, because results are dire.
-        ActiveSupport::Inflector.transliterate(supported_locale[1]).downcase
-      else
-        supported_locale[1].downcase
-      end
+      ASCIIFolding.new.fold(supported_locale[1]).downcase
     elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
-      if /.*[a-zA-Z].*/.match?(regional_locale)
-        ActiveSupport::Inflector.transliterate(regional_locale).downcase
-      else
-        regional_locale.downcase
-      end
+      ASCIIFolding.new.fold(regional_locale).downcase
     else
       locale
     end
