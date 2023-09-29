@@ -11,9 +11,9 @@ fi:
         show_collections: Käyttäjät voivat selata seurattujasi ja seuraajiasi. Käyttäjät, joita seuraat, näkevät joka tapauksessa, että seuraat heitä.
         unlocked: Käyttäjät voivat seurata sinua pyytämättä hyväksyntää. Poista valinta, jos haluat tarkistaa ja hyväksyä tai hylätä vastaanottamasi seuraamispyynnöt.
       account_alias:
-        acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, josta haluat siirtyä
+        acct: Määrittele sen tilin käyttäjänimi@verkkotunnus, josta haluat siirtyä
       account_migration:
-        acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, johon haluat siirtyä
+        acct: Määrittele sen tilin käyttäjänimi@verkkotunnus, johon haluat siirtyä
       account_warning_preset:
         text: Voit käyttää julkaisun syntaksia, kuten URL-osoitteita, aihetunnisteita ja mainintoja
         title: Valinnainen. Ei näy vastaanottajalle
@@ -41,7 +41,7 @@ fi:
         autofollow: Henkilöt, jotka rekisteröityvät kutsun kautta, seuraavat sinua automaattisesti
         avatar: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         bot: Tämä tili suorittaa enimmäkseen automaattisia toimintoja eikä sitä ehkä valvota
-        context: Yksi tai useampi asiayhteys, jossa suodattimen pitäisi olla käytössä
+        context: Ainakin yksi konteksti, jossa suodattimen pitäisi olla voimassa
         current_password: Turvallisuussyistä kirjoita nykyisen tilin salasana
         current_username: Vahvista kirjoittamalla nykyisen tilin käyttäjätunnus
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
@@ -54,15 +54,15 @@ fi:
         phrase: Täsmää riippumatta tekstin aakkoslajista tai julkaisun sisältövaroituksesta
         scopes: Mihin sovellusliittymiin sovellus pääsee käsiksi. Jos valitset ylätason laajuuden, sinun ei tarvitse valita yksittäisiä.
         setting_aggregate_reblogs: Älä näytä uusia tehostuksia julkaisuille, joita on äskettäin tehostettu (koskee vain juuri vastaanotettuja tehostuksia)
-        setting_always_send_emails: Yleensä sähköposti-ilmoituksia ei lähetetä, kun käytät aktiivisesti Mastodonia
-        setting_default_sensitive: Arkaluontoinen media on oletuksena piilotettu ja se voidaan näyttää yhdellä napsautuksella
+        setting_always_send_emails: Yleensä sähköposti-ilmoituksia ei lähetetä, kun käytät Mastodonia aktiivisesti
+        setting_default_sensitive: Arkaluonteinen media on oletuksena piilotettu, ja se voidaan näyttää yhdellä napsautuksella
         setting_display_media_default: Piilota arkaluonteiseksi merkitty media
         setting_display_media_hide_all: Piilota media aina
         setting_display_media_show_all: Näytä media aina
         setting_use_blurhash: Liukuvärit perustuvat piilotettujen kuvien väreihin, mutta sumentavat yksityiskohdat
         setting_use_pending_items: Piilota aikajanan päivitykset napsautuksen taakse syötteen automaattisen vierityksen sijaan
         username: Voit käyttää kirjaimia, numeroita ja alaviivoja
-        whole_word: Kun avainsana tai lause on vain aakkosnumeerinen, se otetaan käyttöön, jos se vastaa koko sanaa
+        whole_word: Kun avainsana tai -fraasi on kokonaan aakkosnumeerinen, se on voimassa vain, jos se vastaa koko sanaa
       domain_allow:
         domain: Tämä verkkotunnus voi noutaa tietoja tältä palvelimelta ja sieltä saapuvat tiedot käsitellään ja tallennetaan
       email_domain_block:
@@ -71,7 +71,7 @@ fi:
       featured_tag:
         name: 'Tässä muutamia hiljattain käyttämiäsi aihetunnisteita:'
       filters:
-        action: Valitse, mikä toiminto suoritetaan, kun viesti vastaa suodatinta
+        action: Valitse, mikä toiminto suoritetaan, kun julkaisu vastaa suodatinta
         actions:
           hide: Piilota suodatettu sisältö kokonaan ja käyttäydy ikään kuin sitä ei olisi olemassa
           warn: Piilota suodatettu sisältö varoituksen taakse, jossa mainitaan suodattimen nimi
@@ -126,7 +126,7 @@ fi:
       tag:
         name: Voit muuttaa esimerkiksi kirjaimia paremmin luettavaksi
       user:
-        chosen_languages: Kun valittu, vain valituilla kielillä julkaistut viestit näkyvät julkisilla aikajanoilla
+        chosen_languages: Kun valittu, vain valituilla kielillä kirjoitetut julkaisut näkyvät julkisilla aikajanoilla
         role: Rooli määrää, mitkä käyttöoikeudet käyttäjällä on
       user_role:
         color: Väri, jota käytetään roolin koko käyttöliittymässä, RGB heksamuodossa
@@ -148,21 +148,21 @@ fi:
         show_collections: Näytä seuratut ja seuraajat profiilissa
         unlocked: Hyväksy uudet seuraajat automaattisesti
       account_alias:
-        acct: Vanhan tilin käsittely
+        acct: Vanhan tilin käyttäjätunnus
       account_migration:
-        acct: Uuden tilin käsittely
+        acct: Uuden tilin käyttäjätunnus
       account_warning_preset:
         text: Esiasetettu teksti
-        title: Otsikko
+        title: Nimi
       admin_account_action:
         include_statuses: Sisällytä raportoidut viestit sähköpostiin
         send_email_notification: Ilmoita käyttäjälle sähköpostitse
         text: Mukautettu varoitus
-        type: Toimenpide
+        type: Toimi
         types:
           disable: Poista kirjautuminen käytöstä
           none: Älä tee mitään
-          sensitive: Arkaluontoinen
+          sensitive: Arkaluonteinen
           silence: Hiljennä
           suspend: Poista käytöstä ja tuhoa käyttäjätunnuksen tiedot peruuttamattomasti
         warning_preset_id: Käytä varoitusmallia
@@ -181,7 +181,7 @@ fi:
         chosen_languages: Suodata kieliä
         confirm_new_password: Vahvista uusi salasana
         confirm_password: Vahvista salasana
-        context: Suodata konteksteista
+        context: Suodattimen kontekstit
         current_password: Nykyinen salasana
         data: Tiedot
         display_name: Näyttönimi
@@ -198,15 +198,15 @@ fi:
         note: Elämäkerta
         otp_attempt: Kaksivaiheisen tunnistuksen koodi
         password: Salasana
-        phrase: Avainsana tai lause
-        setting_advanced_layout: Ota käyttöön edistynyt selainkäyttöliittymä
-        setting_aggregate_reblogs: Ryhmitä tehostukset aikajanalla
-        setting_always_send_emails: Lähetä aina sähköposti-ilmoituksia
+        phrase: Avainsana tai -fraasi
+        setting_advanced_layout: Ota edistynyt selainkäyttöliittymä käyttöön
+        setting_aggregate_reblogs: Ryhmitä tehostukset aikajanoilla
+        setting_always_send_emails: Lähetä sähköposti-ilmoitukset aina
         setting_auto_play_gif: Toista GIF-animaatiot automaattisesti
         setting_boost_modal: Kysy vahvistusta ennen tehostusta
-        setting_default_language: Viestien kieli
-        setting_default_privacy: Viestin näkyvyys
-        setting_default_sensitive: Merkitse media aina arkaluontoiseksi
+        setting_default_language: Julkaisun kieli
+        setting_default_privacy: Julkaisun näkyvyys
+        setting_default_sensitive: Merkitse media aina arkaluonteiseksi
         setting_delete_modal: Kysy vahvistusta ennen julkaisun poistamista
         setting_disable_swiping: Poista pyyhkäisyt käytöstä
         setting_display_media: Median näyttäminen
@@ -224,7 +224,7 @@ fi:
         setting_use_pending_items: Hidas tila
         severity: Vakavuus
         sign_in_token_attempt: Turvakoodi
-        title: Otsikko
+        title: Nimi
         type: Tuontilaji
         username: Käyttäjänimi
         username_or_email: Käyttäjänimi tai sähköposti
@@ -236,7 +236,7 @@ fi:
       filters:
         actions:
           hide: Piilota kokonaan
-          warn: Piilota varoituksella
+          warn: Piilota ja näytä varoitus
       form_admin_settings:
         activity_api_enabled: Julkaise yhteenlasketut tilastot käyttäjätoiminnasta rajapinnassa
         backups_retention_period: Käyttäjän arkiston säilytysaika
@@ -268,14 +268,14 @@ fi:
       interactions:
         must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
         must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa
-        must_be_following_dm: Estä suorat viestit käyttäjiltä, joita et seuraa
+        must_be_following_dm: Estä yksityisviestit käyttäjiltä, joita et seuraa
       invite:
         comment: Kommentoi
       invite_request:
         text: Miksi haluat liittyä?
       ip_block:
         comment: Kommentti
-        ip: IP
+        ip: IP-osoite
         severities:
           no_access: Estä pääsy
           sign_up_block: Estä kirjautumiset
@@ -284,11 +284,11 @@ fi:
       notification_emails:
         appeal: Joku valittaa valvojan päätöksestä
         digest: Lähetä koosteviestejä sähköpostitse
-        favourite: Lähetä sähköposti, kun joku tykkää tilastasi
-        follow: Lähetä sähköposti, kun joku seuraa sinua
-        follow_request: Lähetä sähköposti, kun joku pyytää seurata sinua
-        mention: Lähetä sähköposti, kun sinut mainitaan
-        pending_account: Uusi tili tarvitsee tarkastusta
+        favourite: Joku lisäsi julkaisusi suosikkeihinsa
+        follow: Joku seurasi sinua
+        follow_request: Joku pyysi saada seurata sinua
+        mention: Joku mainitsi sinut
+        pending_account: Uusi tili tarvitsee tarkistusta
         reblog: Joku tehosti julkaisuasi
         report: Uusi raportti on lähetetty
         software_updates:
@@ -297,7 +297,7 @@ fi:
           label: Uusi Mastodon-versio on saatavilla
           none: Älä koskaan ilmoita päivityksistä (ei suositeltu)
           patch: Ilmoita virhekorjauspäivityksistä
-        trending_tag: Uusi trendi vaatii tarkastelua
+        trending_tag: Uusi trendi vaatii tarkistusta
       rule:
         text: Sääntö
       settings:
