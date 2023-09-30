@@ -62,6 +62,7 @@ FROM node:${NODE_VERSION}-${NODE_IMAGE_VARIANT} as node
 
 ########################################################################################################################
 FROM ruby:${RUBY_VERSION}-${RUBY_IMAGE_VARIANT} as base
+ARG TARGETPLATFORM
 ARG UID
 ARG GID
 ARG MASTODON_HOME
@@ -70,8 +71,8 @@ ARG RAILS_ENV
 ARG NODE_ENV
 
 RUN \
-    --mount=type=cache,target=/var/cache,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
     # Update apt due to /var/lib/apt/lists is empty
@@ -131,10 +132,11 @@ WORKDIR ${MASTODON_HOME}
 
 ########################################################################################################################
 FROM base as builder-base
+ARG TARGETPLATFORM
 
 RUN \
-    --mount=type=cache,target=/var/cache,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
     # Install builder dependencies
@@ -145,12 +147,13 @@ RUN \
 
 ########################################################################################################################
 FROM builder-base as bundle-installer
+ARG TARGETPLATFORM
 
 ADD Gemfile* ${MASTODON_HOME}/
 
 RUN \
-    --mount=type=cache,target=/var/cache,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
     # Install ruby gems dependencies
