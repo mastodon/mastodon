@@ -29,10 +29,11 @@ FROM node:${NODE_VERSION}-${NODE_IMAGE_VARIANT} as node
 
 ########################################################################################################################
 FROM ruby:${RUBY_VERSION}-${RUBY_IMAGE_VARIANT} as base
+ARG TARGETPLATFORM
 
 RUN \
-    --mount=type=cache,target=/var/cache,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
     # Update apt due to /var/lib/apt/lists is empty
@@ -96,13 +97,14 @@ RUN set -eux; \
 
 ########################################################################################################################
 FROM base as builder-base
+ARG TARGETPLATFORM
 ARG MASTODON_HOME
 
 WORKDIR ${MASTODON_HOME}
 
 RUN \
-    --mount=type=cache,target=/var/cache,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
     # Install builder dependencies
@@ -115,11 +117,12 @@ RUN \
 
 ########################################################################################################################
 FROM builder-base as imagemagick-builder
+ARG TARGETPLATFORM
 ARG IMAGEMAGICK_VERSION
 
 RUN \
-    --mount=type=cache,target=/var/cache,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
     apt-get install -y --no-install-recommends \
@@ -165,11 +168,12 @@ RUN set -eux; \
 
 ########################################################################################################################
 FROM builder-base as ffmpeg-builder
+ARG TARGETPLATFORM
 ARG FFMPEG_VERSION
 
 RUN \
-    --mount=type=cache,target=/var/cache,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
     apt-get install -y --no-install-recommends \
