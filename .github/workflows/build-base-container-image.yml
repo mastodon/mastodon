@@ -24,7 +24,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - uses: docker/metadata-action@v5
         id: meta
         with:
@@ -32,8 +32,8 @@ jobs:
           flavor: |
             latest=true
           tags: |
-            type=schedule
-      
+            type=schedule,pattern={{date 'YYYYMMDD'}}
+
       - uses: docker/build-push-action@v5
         with:
           context: .
