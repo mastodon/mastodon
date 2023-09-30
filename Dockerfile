@@ -101,12 +101,13 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
-    # Install builder dependencies
+    # Install builder dependencies for node-gyp, ruby gem native extensions
     apt-get install -y --no-install-recommends \
-        build-essential \
+        gcc \
         git \
-        nasm \
-        pkg-config \
+        g++ \
+        make \
+        python3 \
     ;
 
 ########################################################################################################################
