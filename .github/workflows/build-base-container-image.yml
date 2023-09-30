@@ -41,7 +41,6 @@ jobs:
           context: .
           file: ./Dockerfile.base
           platforms: linux/amd64,linux/arm64
-          builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
