@@ -254,6 +254,7 @@ module LanguagesHelper
 
   def valid_locale_or_nil(str)
     return if str.blank?
+    return str if valid_locale?(str)
 
     code, = str.to_s.split(/[_-]/) # Strip out the region from e.g. en_US or ja-JP
 
