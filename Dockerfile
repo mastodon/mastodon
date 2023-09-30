@@ -98,9 +98,10 @@ RUN \
     tzdata \
   ; \
 # Install ffmpeg for video processing
-  apt update; \
+  apt-get update; \
   apt-get install -y --no-install-recommends \
     ffmpeg \
+    imagemagick \
   ; \
 # Patch Ruby to use jemalloc
   patchelf --add-needed libjemalloc.so.2 /usr/local/bin/ruby; \
@@ -112,26 +113,26 @@ RUN \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
-# hadolint ignore=DL3008,DL3005
-RUN \
-  apt-get update; \
-  apt-get install -y --no-install-recommends \
-    # Dependencies for ImageMagick
-    libbz2-1.0 \
-    liblzma5 \
-    libheif1 \
-    libjxl0.7 \
-    libpng16-16 \
-    libraw20 \
-    libtiff6 \
-    libwebp7 \
-    libwebpdemux2 \
-    libwebpmux3 \
-    libzip4 \
-  ; \
-# Cleanup Apt
-  rm -rf /var/lib/apt/lists/*; \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
+# # hadolint ignore=DL3008,DL3005
+# RUN \
+#   apt-get update; \
+#   apt-get install -y --no-install-recommends \
+#     # Dependencies for ImageMagick
+#     libbz2-1.0 \
+#     liblzma5 \
+#     libheif1 \
+#     libjxl0.7 \
+#     libpng16-16 \
+#     libraw20 \
+#     libtiff6 \
+#     libwebp7 \
+#     libwebpdemux2 \
+#     libwebpmux3 \
+#     libzip4 \
+#   ; \
+# # Cleanup Apt
+#   rm -rf /var/lib/apt/lists/*; \
+#   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 # Create temporary build layer from base image
 FROM ruby as build
@@ -161,17 +162,17 @@ RUN \
     yarn \
     zlib1g-dev \
     # Dependencies for ImageMagick
-    libbz2-dev \
-    libheif-dev \
-    libjxl-dev \
-    libltdl-dev \
-    liblzma-dev \
-    libpng-dev \
-    libraw-dev \
-    libtiff-dev \
-    libwebp-dev \
-    libzip-dev \
-    zlib1g-dev \
+    # libbz2-dev \
+    # libheif-dev \
+    # libjxl-dev \
+    # libltdl-dev \
+    # liblzma-dev \
+    # libpng-dev \
+    # libraw-dev \
+    # libtiff-dev \
+    # libwebp-dev \
+    # libzip-dev \
+    # zlib1g-dev \
   ; \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
@@ -183,32 +184,32 @@ RUN \
 # Enable corepack (yarn 3)
   # corepack enable; \
   # Configure ImageMagick working directory
-  imagemagick_workdir="$(mktemp -d)"; \
-  imagemagick_prefix="/opt/magick"; \
-  cd ${imagemagick_workdir}; \
-  # Clone ImageMagick source code
-  git clone -b ${IMAGEMAGICK_VERSION} --depth 1 https://github.com/ImageMagick/ImageMagick.git .; \
-  LDFLAGS="-Wl,-rpath,\"\\$\$ORIGIN/../lib\"" ./configure \
-      --prefix="${imagemagick_prefix}" \
-      # Optional Features
-      --disable-openmp \
-      --enable-shared \
-      --disable-static \
-      --disable-deprecated \
-      --disable-docs \
-      # Optional Packages
-      --with-security-policy=websafe \
-      --without-magick-plus-plus \
-      --without-fontconfig \
-      --without-freetype \
-  ; \
-  # Compile ImageMagick
-  make -j"$(nproc)"; \
-  make install; \
-  rm -r \
-      "${imagemagick_prefix}/include" \
-      "${imagemagick_prefix}/lib/pkgconfig" \
-      "${imagemagick_prefix}/share" \
+  # imagemagick_workdir="$(mktemp -d)"; \
+  # imagemagick_prefix="/opt/magick"; \
+  # cd ${imagemagick_workdir}; \
+  # # Clone ImageMagick source code
+  # git clone -b ${IMAGEMAGICK_VERSION} --depth 1 https://github.com/ImageMagick/ImageMagick.git .; \
+  # LDFLAGS="-Wl,-rpath,\"\\$\$ORIGIN/../lib\"" ./configure \
+  #     --prefix="${imagemagick_prefix}" \
+  #     # Optional Features
+  #     --disable-openmp \
+  #     --enable-shared \
+  #     --disable-static \
+  #     --disable-deprecated \
+  #     --disable-docs \
+  #     # Optional Packages
+  #     --with-security-policy=websafe \
+  #     --without-magick-plus-plus \
+  #     --without-fontconfig \
+  #     --without-freetype \
+  # ; \
+  # # Compile ImageMagick
+  # make -j"$(nproc)"; \
+  # make install; \
+  # rm -r \
+  #     "${imagemagick_prefix}/include" \
+  #     "${imagemagick_prefix}/lib/pkgconfig" \
+  #     "${imagemagick_prefix}/share" \
   ;
 
 # Create temporary bundler specific build layer from build layer
@@ -285,7 +286,7 @@ COPY --from=build-bundler /opt/mastodon/ /opt/mastodon/
 COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
 
 # Copy output of the imagemagick into this image layer
-COPY --link --from=build /opt/magick /opt/magick
+# COPY --link --from=build /opt/magick /opt/magick
 
 RUN \
   ln -s /opt/magick/bin/* /usr/local/bin/; \
