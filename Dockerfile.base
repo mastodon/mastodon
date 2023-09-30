@@ -18,17 +18,17 @@ ARG IMAGEMAGICK_VERSION="7.1.1-17"
 # Image variant to use for ruby and node, change with [--build-arg IMAGE_VARIANT=]
 ARG IMAGE_VARIANT="bookworm"
 
-# Image variant to use for ruby, change with [--build-arg RUBY_IMAGE_VARIANT=]
-ARG RUBY_IMAGE_VARIANT="slim-${IMAGE_VARIANT}"
+# Image to use for ruby, change with [--build-arg RUBY_IMAGE=]
+ARG RUBY_IMAGE="ruby:${RUBY_VERSION}-slim-${IMAGE_VARIANT}"
 
-# Image variant to use for node, change with [--build-arg NODE_IMAGE_VARIANT=]
-ARG NODE_IMAGE_VARIANT="${IMAGE_VARIANT}-slim"
-
-########################################################################################################################
-FROM node:${NODE_VERSION}-${NODE_IMAGE_VARIANT} as node
+# Image to use for node, change with [--build-arg NODE_IMAGE=]
+ARG NODE_IMAGE="node:${NODE_VERSION}-${IMAGE_VARIANT}-slim"
 
 ########################################################################################################################
-FROM ruby:${RUBY_VERSION}-${RUBY_IMAGE_VARIANT} as base
+FROM ${NODE_IMAGE} as node
+
+########################################################################################################################
+FROM ${RUBY_IMAGE} as base
 ARG TARGETPLATFORM
 
 RUN \
