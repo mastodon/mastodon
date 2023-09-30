@@ -4,7 +4,6 @@
 # hadolint global ignore=DL3008,DL3009
 
 ARG BASE_IMAGE="gchr.io/mastodon/mastodon/base"
-ARG BASE_IMAGE_TAG="latest"
 
 # Linux UID (user id) for the mastodon user, change with [--build-arg UID=1234]
 ARG UID="991"
@@ -46,7 +45,7 @@ ARG RAILS_SERVE_STATIC_FILES="true"
 ARG BIND="0.0.0.0"
 
 ########################################################################################################################
-FROM ${BASE_IMAGE}:${BASE_IMAGE_TAG} as base
+FROM ${BASE_IMAGE} as base
 ARG UID
 ARG GID
 ARG MASTODON_HOME
