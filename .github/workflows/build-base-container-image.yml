@@ -1,8 +1,28 @@
 name: Build base container image
 on:
-  workflow_dispatch:
   schedule:
     - cron: '0 1 * * *' # run at 1 AM UTC
+  workflow_call:
+    inputs:
+      docker_platforms:
+        type: string
+        default: linux/amd64,linux/arm64
+      docker_cache:
+        type: boolean
+        default: true
+      docker_tags:
+        type: string
+        default: |
+          type=schedule,pattern={{date 'YYYYMMDD'}}
+          type=ref,event=branch
+          type=ref,event=tag
+          type=ref,event=pr
+          type=sha
+    outputs:
+      docker_digest:
+        type: string
+        value: ${{ jobs.build-image.outputs.docker_digest }}
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -12,13 +32,16 @@ jobs:
   build-image:
     runs-on: ubuntu-latest
 
+    outputs:
+      docker_digest: ${{ steps.build.outputs.digest }}
+
     steps:
       - uses: actions/checkout@v4
 
       - uses: docker/setup-qemu-action@v3
 
       - uses: docker/setup-buildx-action@v3
-      
+
       - uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -29,20 +52,16 @@ jobs:
         id: meta
         with:
           images: ghcr.io/${{ github.repository }}/base
-          tags: |
-            type=schedule,pattern={{date 'YYYYMMDD'}}
-            type=ref,event=branch
-            type=ref,event=tag
-            type=ref,event=pr
-            type=sha
+          tags: ${{ inputs.docker_tags }}
 
       - uses: docker/build-push-action@v5
+        id: build
         with:
           context: .
           file: ./Dockerfile.base
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ inputs.docker_platforms }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: ${{ inputs.docker_cache && 'type=gha' || '' }}
+          cache-to: ${{ inputs.docker_cache && 'type=gha,mode=max' || '' }}
