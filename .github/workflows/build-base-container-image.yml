@@ -20,7 +20,6 @@ on:
           type=sha
     outputs:
       docker_digest:
-        type: string
         value: ${{ jobs.build-image.outputs.docker_digest }}
   workflow_dispatch:
 
