@@ -3,7 +3,7 @@ on:
   schedule:
     - cron: '0 1 * * *' # run at 1 AM UTC
   workflow_call:
-    inputs: &inputs
+    inputs:
       docker_platforms:
         description: 'Platforms to build image'
         type: string
@@ -26,7 +26,14 @@ on:
         value: ${{ jobs.build-image.outputs.docker_digest }}
   workflow_dispatch:
     inputs:
-      << : *inputs
+      docker_platforms:
+        description: 'Platforms to build image'
+        type: string
+        default: linux/amd64,linux/arm64
+      docker_cache:
+        description: 'Cache Docker build to GitHub Action'
+        type: boolean
+        default: true
 
 permissions:
   contents: read
