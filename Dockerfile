@@ -291,7 +291,7 @@ COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
 RUN \
   # ln -s /opt/magick/bin/* /usr/local/bin/; \
   # Test ImageMagick and ffmpeg availablity
-  magick -version; \
+  convert -version; \
   ffmpeg -version; \
   ffprobe -version; \
 # Pre-create and chown system volume to Mastodon user
