@@ -3,14 +3,17 @@ on:
   schedule:
     - cron: '0 1 * * *' # run at 1 AM UTC
   workflow_call:
-    inputs:
+    inputs: &inputs
       docker_platforms:
+        description: 'Platforms to build image'
         type: string
         default: linux/amd64,linux/arm64
       docker_cache:
+        description: 'Cache Docker build to GitHub Action'
         type: boolean
         default: true
       docker_tags:
+        description: 'Tags to build image'
         type: string
         default: |
           type=schedule,pattern={{date 'YYYYMMDD'}}
@@ -22,6 +25,8 @@ on:
       docker_digest:
         value: ${{ jobs.build-image.outputs.docker_digest }}
   workflow_dispatch:
+    inputs:
+      << : *inputs
 
 permissions:
   contents: read
