@@ -87,6 +87,7 @@ jobs:
         with:
           context: .
           build-args: |
+            BASE_IMAGE="gchr.io/${{ github.repository }}/base"
             MASTODON_VERSION_PRERELEASE=${{ inputs.version_prerelease }}
             MASTODON_VERSION_METADATA=${{ inputs.version_metadata }}
           platforms: ${{ inputs.platforms }}
