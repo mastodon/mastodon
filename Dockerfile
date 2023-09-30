@@ -289,7 +289,7 @@ COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
 # COPY --link --from=build /opt/magick /opt/magick
 
 RUN \
-  ln -s /opt/magick/bin/* /usr/local/bin/; \
+  # ln -s /opt/magick/bin/* /usr/local/bin/; \
   # Test ImageMagick and ffmpeg availablity
   magick -version; \
   ffmpeg -version; \
