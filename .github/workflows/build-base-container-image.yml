@@ -29,10 +29,12 @@ jobs:
         id: meta
         with:
           images: ghcr.io/${{ github.repository }}/base
-          flavor: |
-            latest=true
           tags: |
             type=schedule,pattern={{date 'YYYYMMDD'}}
+            type=ref,event=branch
+            type=ref,event=tag
+            type=ref,event=pr
+            type=sha
 
       - uses: docker/build-push-action@v5
         with:
