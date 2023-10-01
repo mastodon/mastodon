@@ -123,11 +123,13 @@ RUN set -eux; \
     groupadd -g "${GID}" mastodon; \
     useradd -u "${UID}" -g "${GID}" -l -m -d "${MASTODON_HOME}" mastodon; \
     # Set bundle configs
-    bundle config set --local deployment 'true'; \
+    bundle config set --local path 'vendor/bundle'; \
     case "${RAILS_ENV}" in \
-        development) bundle config set --local without 'test';; \
         test) bundle config set --local without 'development';; \
-        production) bundle config set --local without 'development test';; \
+        production) \
+            bundle config set --local deployment 'true'; \
+            bundle config set --local without 'development test'; \
+        ;; \
     esac;
 
 WORKDIR ${MASTODON_HOME}
