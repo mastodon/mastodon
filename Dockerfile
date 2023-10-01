@@ -72,7 +72,9 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
-    # Update apt due to /var/lib/apt/lists is empty
+    # Remove /etc/apt/apt.conf.d/docker-clean for keeping caches
+    rm -f /etc/apt/apt.conf.d/docker-clean; \
+    # Update apt
     apt-get update; \
     # Upgrade packages
 	apt-get -yq dist-upgrade; \
@@ -115,6 +117,8 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
+    # Update apt
+    apt-get update; \
     # Install dependencies
     apt-get install -y --no-install-recommends \
         # Dependencies for ruby gems
@@ -161,6 +165,8 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
+    # Update apt
+    apt-get update; \
     # Install builder dependencies for node-gyp, ruby gem native extensions
     apt-get install -y --no-install-recommends \
         gcc \
@@ -181,6 +187,8 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
+    # Update apt
+    apt-get update; \
     # Install ruby gems dependencies
     apt-get install -y --no-install-recommends \
         libicu-dev \
