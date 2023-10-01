@@ -116,7 +116,7 @@ RUN set -eux; \
     node --version; \
     yarn --version; \
     # Remove tmp files from node
-    rm -rf .yarn* /tmp/*;
+    rm -rf .yarn* /tmp/* /usr/local/share/.cache;
 
 RUN set -eux; \
     # Add mastodon group and user
