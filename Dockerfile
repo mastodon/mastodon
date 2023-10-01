@@ -60,6 +60,9 @@ ARG BIND="0.0.0.0"
 ########################################################################################################################
 FROM ${NODE_IMAGE} as node
 
+RUN set -eux; \
+    rm /usr/local/bin/yarn* /usr/local/bin/docker-entrypoint.sh;
+
 ########################################################################################################################
 FROM ${RUBY_IMAGE} as base
 ARG TARGETPLATFORM
@@ -107,7 +110,6 @@ COPY --link --from=node /usr/local/lib /usr/local/lib
 ENV COREPACK_HOME /usr/local/corepack
 
 RUN set -eux; \
-    rm /usr/local/bin/yarn*; \
     corepack enable; \
     yarn set version classic; \
     # Smoke test for node, yarn
