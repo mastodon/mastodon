@@ -222,16 +222,10 @@ ENV PATH="${PATH}:${MASTODON_HOME}/bin" \
 USER mastodon
 
 RUN set -eux; \
-    # assets:precompile when RAILS_ENV is not development
-    case "${RAILS_ENV}" in \
-        development) exit 0;; \
-        *) \
-            # Precompile assets
-            OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile; \
-            # Remove tmp files from assets:precompile
-            rm -rf /tmp/* tmp/* log/* .cache/*; \
-        ;; \
-    esac;
+    # Precompile assets
+    OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile; \
+    # Remove tmp files from assets:precompile
+    rm -rf /tmp/* tmp/* log/* .cache/*;
 
 # Set the work dir and the container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]
