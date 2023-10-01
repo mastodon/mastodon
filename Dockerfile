@@ -76,7 +76,7 @@ RUN \
     apt-get update; \
     # Upgrade packages
 	apt-get -yq dist-upgrade; \
-    # Install base dependencies
+    # Install dependencies
     apt-get install -y --no-install-recommends \
         # Dependencies for nodejs
         libatomic1 \
@@ -115,7 +115,7 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
-    # Install base dependencies
+    # Install dependencies
     apt-get install -y --no-install-recommends \
         # Dependencies for ruby gems
         libicu72 \
