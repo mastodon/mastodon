@@ -181,8 +181,13 @@ ADD package.json yarn.lock ${MASTODON_HOME}/
 
 RUN set -eux; \
     # Download and install yarn packages
-    yarn install --frozen-lockfile --network-timeout 600000; \
-    yarn cache clean --all;
+    case "${NODE_ENV}" in \
+        production) yarn install --frozen-lockfile --network-timeout 600000;; \
+        *) yarn install --network-timeout 600000;; \
+    esac; \
+    yarn cache clean --all; \
+    # Remove tmp files from node
+    rm -rf .yarn* /tmp/* /usr/local/share/.cache;
 
 ########################################################################################################################
 FROM base
