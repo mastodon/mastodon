@@ -66,12 +66,6 @@ RUN set -eux; \
 ########################################################################################################################
 FROM ${RUBY_IMAGE} as base
 ARG TARGETPLATFORM
-ARG UID
-ARG GID
-ARG MASTODON_HOME
-ARG TZ
-ARG RAILS_ENV
-ARG NODE_ENV
 
 RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/cache,target=/var/cache,sharing=locked \
@@ -86,18 +80,6 @@ RUN \
     apt-get install -y --no-install-recommends \
         # Dependencies for nodejs
         libatomic1 \
-        # Dependencies for ruby gems
-        libicu72 \
-        libidn12 \
-        libpq5 \
-        # Dependencies for mastodon runtime
-        ffmpeg \
-        file \
-        imagemagick \
-        libjemalloc2 \
-        tini \
-        tzdata \
-        wget \
     ;
 
 # Node image contains node on /usr/local without /usr/local/share
@@ -118,6 +100,37 @@ RUN set -eux; \
     # Remove tmp files from node
     rm -rf .yarn* /tmp/* /usr/local/share/.cache;
 
+########################################################################################################################
+FROM base as mastodon-base
+ARG TARGETPLATFORM
+ARG UID
+ARG GID
+ARG MASTODON_HOME
+ARG TZ
+ARG RAILS_ENV
+ARG NODE_ENV
+
+RUN \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
+    --mount=type=tmpfs,target=/var/log \
+    set -eux; \
+    # Install base dependencies
+    apt-get install -y --no-install-recommends \
+        # Dependencies for ruby gems
+        libicu72 \
+        libidn12 \
+        libpq5 \
+        # Dependencies for mastodon runtime
+        ffmpeg \
+        file \
+        imagemagick \
+        libjemalloc2 \
+        tini \
+        tzdata \
+        wget \
+    ;
+
 RUN set -eux; \
     # Add mastodon group and user
     groupadd -g "${GID}" mastodon; \
@@ -132,10 +145,15 @@ RUN set -eux; \
         ;; \
     esac;
 
+ENV MASTODON_HOME="${MASTODON_HOME}" \
+    TZ="${TZ}" \
+    RAILS_ENV="${RAILS_ENV}" \
+    NODE_ENV="${NODE_ENV}"
+
 WORKDIR ${MASTODON_HOME}
 
 ########################################################################################################################
-FROM base as builder-base
+FROM mastodon-base as builder-base
 ARG TARGETPLATFORM
 
 RUN \
@@ -187,7 +205,7 @@ RUN set -eux; \
     rm -rf .yarn* /tmp/* /usr/local/share/.cache;
 
 ########################################################################################################################
-FROM base
+FROM mastodon-base
 ARG RAILS_SERVE_STATIC_FILES
 ARG BIND
 ARG MASTODON_VERSION_PRERELEASE
