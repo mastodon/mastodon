@@ -59,12 +59,12 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
-    # Update apt due to /var/lib/apt/lists is empty
+    # Update apt
     apt-get update; \
     # Upgrade packages
     apt-get -yq dist-upgrade; \
     # Install dependencies
-    apt-get install -y --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         # Dependencies for runtime
         file \
         libjemalloc2 \
@@ -107,8 +107,10 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
+    # Update apt
+    apt-get update; \
     # Install builder dependencies for node-gyp, ruby gem native extensions
-    apt-get install -y --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         gcc \
         git \
         g++ \
@@ -127,8 +129,10 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
+    # Update apt
+    apt-get update; \
     # Install ruby gems dependencies
-    apt-get install -y --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         libicu-dev \
         libidn-dev \
         libpq-dev \

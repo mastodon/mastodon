@@ -39,12 +39,14 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
-    # Update apt due to /var/lib/apt/lists is empty
+    # Remove /etc/apt/apt.conf.d/docker-clean for keeping caches
+    rm -f /etc/apt/apt.conf.d/docker-clean; \
+    # Update apt
     apt-get update; \
     # Upgrade packages
     apt-get -yq dist-upgrade; \
     # Install dependencies
-    apt-get install -y --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         # Dependencies for nodejs
         libatomic1 \
     ;
@@ -72,8 +74,10 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
+    # Update apt
+    apt-get update; \
     # Install dependencies
-    apt-get install -y --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         # Dependencies for ImageMagick and FFmpeg
         libbz2-1.0 \
         liblzma5 \
@@ -118,8 +122,10 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
+    # Update apt
+    apt-get update; \
     # Install builder dependencies
-    apt-get install -y --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         autoconf \
         automake \
         cmake \
@@ -144,7 +150,10 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
-    apt-get install -y --no-install-recommends \
+    # Update apt
+    apt-get update; \
+    # Install ImageMagick build dependencies
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         libbz2-dev \
         libheif-dev \
         libjxl-dev \
@@ -195,7 +204,10 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
-    apt-get install -y --no-install-recommends \
+    # Update apt
+    apt-get update; \
+    # Install FFmpeg build dependencies
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         libaom-dev \
         libbz2-dev \
         libdav1d-dev \
