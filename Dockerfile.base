@@ -120,9 +120,17 @@ RUN \
     set -eux; \
     # Install builder dependencies
     apt-get install -y --no-install-recommends \
-        build-essential \
+        autoconf \
+        automake \
+        cmake \
+        gcc \
         git \
+        g++ \
+        libtool \
+        make \
+        meson \
         nasm \
+        ninja-build \
         pkg-config \
     ;
 
