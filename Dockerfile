@@ -161,7 +161,7 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
-    # Install packages less as possible for builder
+    # Install builder dependencies for node-gyp, ruby gem native extensions
     apt-get install -y --no-install-recommends \
         gcc \
         git \
