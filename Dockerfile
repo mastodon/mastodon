@@ -161,10 +161,13 @@ RUN \
     --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     --mount=type=tmpfs,target=/var/log \
     set -eux; \
-    # Install builder dependencies
+    # Install packages less as possible for builder
     apt-get install -y --no-install-recommends \
-        build-essential \
+        gcc \
         git \
+        g++ \
+        make \
+        python3 \
     ;
 
 ########################################################################################################################
