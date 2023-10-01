@@ -79,7 +79,7 @@ RUN \
     # Upgrade packages
 	apt-get -yq dist-upgrade; \
     # Install dependencies
-    apt-get install -y --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         # Dependencies for nodejs
         libatomic1 \
     ;
@@ -120,7 +120,7 @@ RUN \
     # Update apt
     apt-get update; \
     # Install dependencies
-    apt-get install -y --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         # Dependencies for ruby gems
         libicu72 \
         libidn12 \
@@ -168,7 +168,7 @@ RUN \
     # Update apt
     apt-get update; \
     # Install builder dependencies for node-gyp, ruby gem native extensions
-    apt-get install -y --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         gcc \
         git \
         g++ \
@@ -190,7 +190,7 @@ RUN \
     # Update apt
     apt-get update; \
     # Install ruby gems dependencies
-    apt-get install -y --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         libicu-dev \
         libidn-dev \
         libpq-dev \
