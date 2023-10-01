@@ -1,3 +1,20 @@
+x-mastodon: &mastodon
+  build: .
+  image: ghcr.io/mastodon/mastodon:v4.2.0
+  env_file: .env.production
+  restart: always
+  networks:
+    - external_network
+    - internal_network
+  depends_on: &mastodon-depends_on
+    db:
+      condition: service_started
+    redis:
+      condition: service_started
+    # es:
+    #   condition: service_started
+    #   required: false
+
 services:
   db:
     restart: always
@@ -54,35 +71,19 @@ services:
   #     - '127.0.0.1:9200:9200'
 
   web:
-    build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.0
-    restart: always
-    env_file: .env.production
+    <<: *mastodon
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
-    networks:
-      - external_network
-      - internal_network
     healthcheck:
       # prettier-ignore
       test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:3000/health || exit 1']
     ports:
       - '127.0.0.1:3000:3000'
-    depends_on:
-      - db
-      - redis
-      # - es
     volumes:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.0
-    restart: always
-    env_file: .env.production
+    <<: *mastodon
     command: node ./streaming
-    networks:
-      - external_network
-      - internal_network
     healthcheck:
       # prettier-ignore
       test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1']
@@ -93,25 +94,16 @@ services:
       - redis
 
   sidekiq:
-    build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.0
-    restart: always
-    env_file: .env.production
+    <<: *mastodon
     command: bundle exec sidekiq
-    depends_on:
-      - db
-      - redis
-    networks:
-      - external_network
-      - internal_network
-    volumes:
-      - ./public/system:/mastodon/public/system
     healthcheck:
       test:
         [
           'CMD-SHELL',
           '(REDIS_URL=redis://$$REDIS_HOST:$$REDIS_PORT bundle exec sidekiqmon processes | grep $(hostname)) || exit 1',
         ]
+    volumes:
+      - ./public/system:/mastodon/public/system
 
   ## Uncomment to enable federation with tor instances along with adding the following ENV variables
   ## http_proxy=http://privoxy:8118
