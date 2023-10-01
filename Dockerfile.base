@@ -27,6 +27,9 @@ ARG NODE_IMAGE="node:${NODE_VERSION}-${IMAGE_VARIANT}-slim"
 ########################################################################################################################
 FROM ${NODE_IMAGE} as node
 
+RUN set -eux; \
+    rm /usr/local/bin/yarn* /usr/local/bin/docker-entrypoint.sh;
+
 ########################################################################################################################
 FROM ${RUBY_IMAGE} as base
 ARG TARGETPLATFORM
@@ -40,10 +43,37 @@ RUN \
     apt-get update; \
     # Upgrade packages
     apt-get -yq dist-upgrade; \
-    # Install base dependencies
+    # Install dependencies
     apt-get install -y --no-install-recommends \
         # Dependencies for nodejs
         libatomic1 \
+    ;
+
+# Node image contains node on /usr/local without /usr/local/share
+#
+# See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
+COPY --link --from=node /usr/local/bin /usr/local/bin
+COPY --link --from=node /usr/local/include /usr/local/include
+COPY --link --from=node /usr/local/lib /usr/local/lib
+
+ENV COREPACK_HOME /usr/local/corepack
+
+RUN set -eux; \
+    corepack enable; \
+    yarn set version classic; \
+    # Smoke test for node, yarn
+    node --version; \
+    yarn --version; \
+    # Remove tmp files from node
+    rm -rf .yarn* /tmp/* /usr/local/share/.cache;
+
+RUN \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,id=${TARGETPLATFORM}-/var/lib/apt,target=/var/lib/apt,sharing=locked \
+    --mount=type=tmpfs,target=/var/log \
+    set -eux; \
+    # Install dependencies
+    apt-get install -y --no-install-recommends \
         # Dependencies for ImageMagick and FFmpeg
         libbz2-1.0 \
         liblzma5 \
@@ -74,26 +104,7 @@ RUN \
         libx264-164 \
         libx265-199 \
         zlib1g \
-    ;
-
-# Node image contains node on /usr/local without /usr/local/share
-#
-# See: https://github.com/nodejs/docker-node/blob/151ec75067877000120d634fc7fd2a18c544e3d4/20/bookworm-slim/Dockerfile
-COPY --link --from=node /usr/local/bin /usr/local/bin
-COPY --link --from=node /usr/local/include /usr/local/include
-COPY --link --from=node /usr/local/lib /usr/local/lib
-
-ENV COREPACK_HOME /usr/local/corepack
-
-RUN set -eux; \
-    rm /usr/local/bin/yarn*; \
-    corepack enable; \
-    yarn set version classic; \
-    # Smoke test for node, yarn
-    node --version; \
-    yarn --version; \
-    # Remove tmp files from node
-    rm -rf .yarn* /tmp/*;
+    ;   
 
 ########################################################################################################################
 FROM base as builder-base
