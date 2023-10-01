@@ -63,7 +63,7 @@ RUN \
     apt-get update; \
     # Upgrade packages
     apt-get -yq dist-upgrade; \
-    # Install builder dependencies
+    # Install dependencies
     apt-get install -y --no-install-recommends \
         # Dependencies for runtime
         file \
