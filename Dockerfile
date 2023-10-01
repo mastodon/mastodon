@@ -166,13 +166,6 @@ RUN \
     ;
 
 RUN set -eux; \
-    # Set bundle configs
-    bundle config set --local deployment 'true'; \
-    case "${RAILS_ENV}" in \
-        development) bundle config set --local without 'test';; \
-        test) bundle config set --local without 'development';; \
-        production) bundle config set --local without 'development test';; \
-    esac; \
     # Install gems
     bundle install --no-cache;
 
