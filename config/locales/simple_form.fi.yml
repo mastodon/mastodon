@@ -3,7 +3,7 @@ fi:
   simple_form:
     hints:
       account:
-        discoverable: Julkisia viestejäsi ja profiiliasi voidaan pitää esillä tai suositella Mastodonin eri alueilla ja profiiliasi voidaan ehdottaa toisille käyttäjille.
+        discoverable: Julkisia julkaisujasi ja profiiliasi voidaan pitää esillä tai suositella Mastodonin eri alueilla ja profiiliasi voidaan ehdottaa toisille käyttäjille.
         display_name: Koko nimesi tai lempinimesi.
         fields: Kotisivusi, pronominit, ikä, mitä ikinä haluat.
         indexable: Julkiset julkaisusi voivat näkyä hakutuloksissa Mastodonissa. Ihmiset, jotka ovat olleet vuorovaikutuksessa julkaisujesi kanssa, voivat etsiä niitä asetuksesta riippumatta.
@@ -49,7 +49,7 @@ fi:
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         inbox_url: Kopioi URL-osoite haluamasi välittäjän etusivulta
         irreversible: Suodatetut julkaisut katoavat lopullisesti, vaikka suodatin poistettaisiin myöhemmin
-        locale: Käyttöliittymän, sähköpostien ja ilmoitusten kieli
+        locale: Käyttöliittymän, sähköpostien ja puskuilmoitusten kieli
         password: Käytä vähintään 8 merkkiä
         phrase: Täsmää riippumatta tekstin aakkoslajista tai julkaisun sisältövaroituksesta
         scopes: Mihin sovellusliittymiin sovellus pääsee käsiksi. Jos valitset ylätason laajuuden, sinun ei tarvitse valita yksittäisiä.
@@ -136,7 +136,7 @@ fi:
         position: Korkeampi rooli ratkaisee konfliktit tietyissä tilanteissa. Tiettyjä toimintoja voidaan suorittaa vain rooleille, joiden prioriteetti on pienempi
       webhook:
         events: Valitse lähetettävät tapahtumat
-        template: Luo oma JSON-hyötykuorma käyttäen muuttujainterpolointia. Jättäessäsi kentän tyhjäksi, käytetään vakio-JSON-kuormaa.
+        template: Luo oma JSON-hyötykuorma käyttäen muuttujien interpolointia. Jätä kenttä tyhjäksi käyttääksesi vakio-JSON-kuormaa.
         url: Mihin tapahtumat lähetetään
     labels:
       account:
