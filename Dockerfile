@@ -180,7 +180,7 @@ RUN \
   rm /usr/local/bin/yarn*; \
 # Set yarn to use classic mode and enable corepack (yarn 1)
 	corepack enable; \
-  yarn set version classic; 
+  yarn set version classic;
 # Enable corepack (yarn 3)
   # corepack enable; \
   # Configure ImageMagick working directory
@@ -210,7 +210,7 @@ RUN \
   #     "${imagemagick_prefix}/include" \
   #     "${imagemagick_prefix}/lib/pkgconfig" \
   #     "${imagemagick_prefix}/share" \
-  # ; 
+  # ;
 
 # Create temporary bundler specific build layer from build layer
 FROM build as build-bundler
