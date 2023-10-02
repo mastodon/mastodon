@@ -87,7 +87,7 @@ class ManifestSerializer < ActiveModel::Serializer
       {
         name: 'Explore',
         url: '/explore',
-      },
+      }
     ]
   end
 
@@ -98,19 +98,19 @@ class ManifestSerializer < ActiveModel::Serializer
   def related_applications
     [
       {
-        "platform": "play",
-        "url": "https://play.google.com/store/apps/details?id=org.joinmastodon.android",
-        "id": "org.joinmastodon.android"
+        platform: 'play',
+        url: 'https://play.google.com/store/apps/details?id=org.joinmastodon.android',
+        id: 'org.joinmastodon.android'
       },
       {
-        "platform": "itunes",
-        "url": "https://apps.apple.com/us/app/mastodon-for-iphone/id1571998974",
-        "id": "id1571998974"
+        platform: 'itunes',
+        url: 'https://apps.apple.com/us/app/mastodon-for-iphone/id1571998974',
+        id: 'id1571998974'
       },
       {
-        "platform": "f-droid",
-        "url": "https://f-droid.org/en/packages/org.joinmastodon.android/",
-        "id": "org.joinmastodon.android"
+        platform: 'f-droid',
+        url: 'https://f-droid.org/en/packages/org.joinmastodon.android/',
+        id: 'org.joinmastodon.android'
       }
     ]
   end
