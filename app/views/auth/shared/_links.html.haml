@@ -5,9 +5,6 @@
     - if controller_name != 'sessions'
       %li= link_to_login t('auth.login')
 
-    - if controller_name != 'registrations'
-      %li= link_to t('auth.register'), new_user_registration_path
-
     - if controller_name != 'passwords' && controller_name != 'registrations'
       %li= link_to t('auth.forgot_password'), new_user_password_path
 
