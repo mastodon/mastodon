@@ -7,7 +7,7 @@
 ARG RUBY_VERSION="3.2.2"
 
 # Node version to use, change with [--build-arg NODE_VERSION=]
-ARG NODE_VERSION="20.7.0"
+ARG NODE_VERSION="20.8.0"
 
 # Image variant to use for ruby and node, change with [--build-arg IMAGE_VARIANT=]
 ARG IMAGE_VARIANT="bookworm"
