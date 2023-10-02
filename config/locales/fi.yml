@@ -1,7 +1,7 @@
 ---
 fi:
   about:
-    about_mastodon_html: 'Tulevaisuuden sosiaalinen verkosto: Ei mainoksia, ei valvontaa, toteutettu avoimilla protokollilla ja hajautettu! Pidä tietosi ominasi Mastodonilla!'
+    about_mastodon_html: 'Tulevaisuuden sosiaalinen verkosto: ei mainoksia, ei valvontaa, toteutettu avoimilla protokollilla ja hajautettu rakenne! Pidä tietosi ominasi Mastodonin avulla!'
     contact_missing: Ei asetettu
     contact_unavailable: Ei saatavilla
     hosted_on: Mastodon palvelimella %{domain}
@@ -262,8 +262,8 @@ fi:
         disable_sign_in_token_auth_user_html: "%{name} poisti sähköpostitunnuksen %{target} todennuksen käytöstä"
         disable_user_html: "%{name} poisti kirjautumisen käyttäjältä %{target}"
         enable_custom_emoji_html: "%{name} otti käyttöön emojin %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} aktivoi sähköpostitunnuksen käyttäjälle %{target}"
-        enable_user_html: "%{name} salli kirjautumisen käyttäjälle %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} otti todennuksen sähköpostivaltuutuksella käyttöön käyttäjälle %{target}"
+        enable_user_html: "%{name} otti kirjautumisen käyttöön käyttäjälle %{target}"
         memorialize_account_html: "%{name} muutti käyttäjän %{target} tilin muistosivuksi"
         promote_user_html: "%{name} ylensi käyttäjän %{target}"
         reject_appeal_html: "%{name} hylkäsi valvontapäätöksen valituksen käyttäjältä %{target}"
@@ -584,7 +584,7 @@ fi:
           one: "%{count} ilmoitus"
           other: "%{count} ilmoitusta"
       action_log: Tarkastusloki
-      action_taken_by: Toimenpiteen tekijä
+      action_taken_by: Toimen tehnyt
       actions:
         delete_description_html: Raportoidut julkaisut poistetaan ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
         mark_as_sensitive_description_html: Raportoitujen julkaisujen media merkitään arkaluonteiseksi ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
@@ -673,7 +673,7 @@ fi:
         moderation: Valvonta
         special: Erikois
       delete: Poista
-      description_html: Käyttäjän <strong>roolit</strong>, voit muokata toimintoja ja alueita mitä sinun Mastodon käyttäjät voivat käyttää.
+      description_html: "<strong>Käyttäjärooleilla</strong> voit muokata, mihin toimintoihin ja alueisiin käyttäjäsi pääsevät käsiksi."
       edit: Muokkaa "%{name}" roolia
       everyone: Oletus käyttöoikeudet
       everyone_full_description_html: Tämä on <strong>perusrooli</strong> joka vaikuttaa <strong>kaikkiin käyttäjiin</strong>, jopa ilman määrättyä roolia. Kaikki muut roolit perivät sen käyttöoikeudet.
@@ -945,11 +945,11 @@ fi:
     webhooks:
       add_new: Lisää päätepiste
       delete: Poista
-      description_html: "<strong>Webhook</strong> mahdollistaa Mastodonin työntää <strong>reaaliaikaisia ilmoituksia</strong> valituista tapahtumista omaan sovellukseesi, joten sovelluksesi voi <strong>laukaista automaattisesti reaktioita</strong>."
+      description_html: "<strong>Webhookin</strong> avulla Mastodon voi puskea sovellukseesi <strong>reaaliaikaisia ilmoituksia</strong> valituista tapahtumista, jotta sovelluksesi voi <strong>laukaista reaktioita automaattisesti</strong>."
       disable: Poista käytöstä
-      disabled: Ei käytössä
+      disabled: Pois käytöstä
       edit: Muokkaa päätepistettä
-      empty: Sinulla ei ole vielä määritetty webhook-päätepisteitä.
+      empty: Et ole vielä määrittänyt webhook-päätepisteitä.
       enable: Ota käyttöön
       enabled: Aktiivinen
       enabled_events:
@@ -1150,7 +1150,7 @@ fi:
       username_unavailable: Käyttäjänimesi ei tule saataville enää uudestaan
   disputes:
     strikes:
-      action_taken: Toteutetut toimet
+      action_taken: Tehty toimi
       appeal: Vetoomus
       appeal_approved: Tähän valitukseen on haettu muutosta, eikä se ole enää voimassa
       appeal_rejected: Valitus on hylätty
@@ -1389,13 +1389,13 @@ fi:
       confirmation_html: Haluatko varmasti lopettaa Mastodonin sähköposti-ilmoitusten vastaanottamisen aiheesta %{type} palvelimelta %{domain} osoitteeseesi %{email}? Voit tilata ilmoitusviestejä milloin tahansa uudelleen <a href="%{settings_path}">sähköposti-ilmoitusten asetuksista</a>.
       emails:
         notification_emails:
-          favourite: sähköpostit ilmoituksille
-          follow: seuraa sähköpostin ilmoituksia
-          follow_request: seuraa pyyntöjä sähköpostiin
-          mention: mainitse sähköpostin ilmoitukset
-          reblog: tehosta sähköpostien ilmoituksia
+          favourite: sähköposti-ilmoituksia suosikkeihin lisäämisistä
+          follow: sähköposti-ilmoituksia seuraamisista
+          follow_request: sähköposti-ilmoituksia seuraamispyynnöistä
+          mention: sähköposti-ilmoituksia maininnoista
+          reblog: sähköposti-ilmoituksia tehostuksista
       resubscribe_html: Jos olet perunut tilauksen erehdyksessä, voit tilata ilmoitusviestejä uudelleen <a href="%{settings_path}">sähköposti-ilmoitusten asetuksista</a>.
-      success_html: Sinulle ei vastedes lähetetä %{type} -aihepiirin Mastodon-sähköposti-ilmoituksia palvelimelta %{domain} osoitteeseen %{email}.
+      success_html: Sinulle ei enää lähetetä Mastodonin %{type} palvelimelta %{domain} osoitteeseen %{email}.
       title: Lopeta tilaus
   media_attachments:
     validations:
@@ -1812,7 +1812,7 @@ fi:
         suspend: Tili jäädytetty
     welcome:
       edit_profile_action: Määritä profiili
-      edit_profile_step: Voit mukauttaa profiiliasi mm. profiilikuvalla ja uudella näyttönimellä. Voit myös valita haluatko tarkastaa ja hyväksyä uudet seuraajat itse.
+      edit_profile_step: Voit mukauttaa profiiliasi muun muassa profiilikuvalla ja uudella näyttönimellä. Voit myös valita, haluatko tarkastaa ja hyväksyä uudet seuraajat itse.
       explanation: Näillä vinkeillä pääset alkuun
       final_action: Ala julkaista
       final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, voivat muut nähdä julkisia julkaisujasi esimerkiksi paikallisella aikajanalla tai aihetunnisteissa. Kannattaa myös esitellä itsensä aihetunnisteella #esittely.'
@@ -1847,7 +1847,7 @@ fi:
       success: Suojausavaimesi poistaminen onnistui.
     invalid_credential: Virheellinen suojausavain
     nickname_hint: Anna uuden suojausaivaimesi lempinimi
-    not_enabled: Et ole vielä ottanut käyttöön WebAuthn-ohjelmaa
+    not_enabled: Et ole vielä ottanut WebAuthn-ohjelmaa käyttöön
     not_supported: Tämä selain ei tue suojausavaimia
     otp_required: Jos haluat käyttää suojausavaimia, ota ensin kaksivaiheinen todennus käyttöön.
     registered_on: Rekisteröity %{date}
