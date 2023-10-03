@@ -12,7 +12,6 @@ class Auth::SessionsController < Devise::SessionsController
   include TwoFactorAuthenticationConcern
 
   before_action :set_instance_presenter, only: [:new]
-  before_action :set_app_view
   before_action :set_body_classes
 
   def check_suspicious!
@@ -95,10 +94,6 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   private
-
-  def set_app_view
-    @app_view = request.user_agent =~ /iPhone|iPad|Android/
-  end
 
   def set_instance_presenter
     @instance_presenter = InstancePresenter.new
