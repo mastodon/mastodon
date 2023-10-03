@@ -76,18 +76,20 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
   end
 
   def compatible_version?
-    return false if running_version.nil?
-
     running_version_ok? || compatible_wire_version_ok?
   rescue ArgumentError
     false
   end
 
   def running_version_ok?
+    return false if running_version.blank?
+
     gem_version_running >= gem_version_required
   end
 
   def compatible_wire_version_ok?
+    return false if compatible_wire_version.blank?
+
     gem_version_compatible_wire >= gem_version_required
   end
 
