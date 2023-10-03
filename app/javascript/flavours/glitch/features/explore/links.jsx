@@ -62,7 +62,7 @@ class Links extends PureComponent {
     }
 
     return (
-      <div className='explore__links'>
+      <div className='explore__links scrollable' data-nosnippet>
         {banner}
 
         {isLoading ? (<LoadingIndicator />) : links.map((link, i) => (
