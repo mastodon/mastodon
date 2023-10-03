@@ -29,10 +29,7 @@ class MagicController < ApplicationController
     owapath = URI("#{parsed.scheme}://#{host}#{port == 80 ? '' : ":#{port}"}/owa")
     debug("Sending to #{owapath}")
 
-    # I could not find a better way to get the user URL  (account.url is empty)
-    # I found this way in the content_security_policy.rb initializer
-    base_host = Rails.configuration.x.web_domain
-    user_url = "#{host_to_url(base_host)}/@#{account.username}"
+    user_url = ActivityPub::TagManager.instance.key_uri_for(account)
     debug("User URL: #{user_url}")
 
     headers = {
