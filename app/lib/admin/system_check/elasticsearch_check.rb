@@ -78,10 +78,22 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
   def compatible_version?
     return false if running_version.nil?
 
-    Gem::Version.new(running_version) >= Gem::Version.new(required_version) ||
-      Gem::Version.new(compatible_wire_version) >= Gem::Version.new(required_version)
+    gem_version_running >= gem_version_required ||
+      gem_version_compatible_wire >= gem_version_required
   rescue ArgumentError
     false
+  end
+
+  def gem_version_running
+    Gem::Version.new(running_version)
+  end
+
+  def gem_version_required
+    Gem::Version.new(required_version)
+  end
+
+  def gem_version_compatible_wire
+    Gem::Version.new(compatible_wire_version)
   end
 
   def mismatched_indexes
