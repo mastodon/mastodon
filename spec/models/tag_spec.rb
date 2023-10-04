@@ -32,6 +32,10 @@ RSpec.describe Tag do
       expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)#Lawsuit')).to be_nil
     end
 
+    it 'does not match URLs with hashtag-like anchors after an empty query parameter' do
+      expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)?foo=#Lawsuit')).to be_nil
+    end
+
     it 'matches ﻿#ａｅｓｔｈｅｔｉｃ' do
       expect(subject.match('﻿this is #ａｅｓｔｈｅｔｉｃ').to_s).to eq ' #ａｅｓｔｈｅｔｉｃ'
     end
