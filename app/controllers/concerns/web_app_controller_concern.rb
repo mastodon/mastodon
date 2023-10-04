@@ -4,10 +4,10 @@ module WebAppControllerConcern
   extend ActiveSupport::Concern
 
   included do
-    prepend_before_action :redirect_unauthenticated_to_permalinks!
-    before_action :set_app_body_class
-
     vary_by 'Accept, Accept-Language, Cookie'
+
+    before_action :redirect_unauthenticated_to_permalinks!
+    before_action :set_app_body_class
   end
 
   def skip_csrf_meta_tags?
