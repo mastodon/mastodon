@@ -71,7 +71,7 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
 
     client_info = Chewy.client.info
 
-    value = Chewy.client.indices.stats['indices'].values.map { |index_data| index_data['primaries']['store']['size_in_bytes'] }.sum
+    value = Chewy.client.indices.stats['indices'].values.sum { |index_data| index_data['primaries']['store']['size_in_bytes'] }
 
     {
       key: 'search',
