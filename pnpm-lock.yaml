@@ -387,6 +387,9 @@ devDependencies:
   '@types/express':
     specifier: ^4.17.17
     version: 4.17.18
+  '@types/history':
+    specifier: 4.7.11
+    version: 4.7.11
   '@types/http-link-header':
     specifier: ^1.0.3
     version: 1.0.3
@@ -435,9 +438,12 @@ devDependencies:
   '@types/react-overlays':
     specifier: ^3.1.0
     version: 3.1.0(react-dom@18.2.0)(react@18.2.0)
+  '@types/react-router':
+    specifier: ^4.0.25
+    version: 4.4.5
   '@types/react-router-dom':
-    specifier: ^5.3.3
-    version: 5.3.3
+    specifier: ^4.2.6
+    version: 4.3.5
   '@types/react-select':
     specifier: ^5.0.1
     version: 5.0.1(@types/react@18.2.25)(react-dom@18.2.0)(react@18.2.0)
@@ -3099,16 +3105,16 @@ packages:
       - react-dom
     dev: true
 
-  /@types/react-router-dom@5.3.3:
-    resolution: {integrity: sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==}
+  /@types/react-router-dom@4.3.5:
+    resolution: {integrity: sha512-eFajSUASYbPHg2BDM1G8Btx+YqGgvROPIg6sBhl3O4kbDdYXdFdfrgQFf/pcBuQVObjfT9AL/dd15jilR5DIEA==}
     dependencies:
       '@types/history': 4.7.11
       '@types/react': 18.2.25
-      '@types/react-router': 5.1.20
+      '@types/react-router': 4.4.5
     dev: true
 
-  /@types/react-router@5.1.20:
-    resolution: {integrity: sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==}
+  /@types/react-router@4.4.5:
+    resolution: {integrity: sha512-12+VOu1+xiC8RPc9yrgHCyLI79VswjtuqeS2gPrMcywH6tkc8rGIUhs4LaL3AJPqo5d+RPnfRpNKiJ7MK2Qhcg==}
     dependencies:
       '@types/history': 4.7.11
       '@types/react': 18.2.25

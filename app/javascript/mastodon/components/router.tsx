@@ -2,6 +2,7 @@ import type { PropsWithChildren } from 'react';
 import React from 'react';
 
 import { createBrowserHistory } from 'history';
+import type { RouterProps } from 'react-router';
 import { Router as OriginalRouter } from 'react-router';
 
 import { layoutFromWindow } from 'mastodon/is_mobile';
@@ -41,6 +42,11 @@ browserHistory.replace = (path: string, state?: MastodonLocationState) => {
   }
 };
 
+// Needed as react-router v4 types have not been updated after the change requiring `children` props to be explicitely declared
+const TypedRouter = OriginalRouter as React.ComponentClass<
+  PropsWithChildren<RouterProps>
+>;
+
 export const Router: React.FC<PropsWithChildren> = ({ children }) => {
-  return <OriginalRouter history={browserHistory}>{children}</OriginalRouter>;
+  return <TypedRouter history={browserHistory}>{children}</TypedRouter>;
 };
