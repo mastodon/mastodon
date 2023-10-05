@@ -6,7 +6,7 @@ on:
       - 'renovate/**'
     paths:
       - 'package.json'
-      - 'yarn.lock'
+      - 'pnpm-lock.yaml'
       - '.nvmrc'
       - '.prettier*'
       - '**/*.json'
@@ -16,7 +16,7 @@ on:
   pull_request:
     paths:
       - 'package.json'
-      - 'yarn.lock'
+      - 'pnpm-lock.yaml'
       - '.nvmrc'
       - '.prettier*'
       - '**/*.json'
@@ -31,14 +31,17 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          cache: yarn
+          cache: pnpm
           node-version-file: '.nvmrc'
 
-      - name: Install all yarn packages
-        run: yarn --frozen-lockfile
+      - name: Install all yarJSn packages
+        run: pnpm install --frozen-lockfile
 
       - name: Prettier
-        run: yarn lint:json
+        run: pnpm lint:json

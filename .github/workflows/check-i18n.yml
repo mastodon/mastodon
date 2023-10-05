@@ -30,18 +30,21 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          cache: yarn
+          cache: pnpm
           node-version-file: '.nvmrc'
 
-      - name: Install all yarn packages
-        run: yarn --frozen-lockfile
+      - name: Install all JS packages
+        run: pnpm install --frozen-lockfile
 
       - name: Check for missing strings in English JSON
         run: |
-          yarn i18n:extract --throws
+          pnpm i18n:extract --throws
           git diff --exit-code
 
       - name: Check locale file normalization

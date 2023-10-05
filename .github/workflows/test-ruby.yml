@@ -34,10 +34,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          cache: yarn
+          cache: pnpm
           node-version-file: '.nvmrc'
 
       - name: Install native Ruby dependencies
@@ -51,7 +54,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - run: yarn --frozen-lockfile --production
+      - run: pnpm install --frozen-lockfile --prod
       - name: Precompile assets
         # Previously had set this, but it's not supported
         # export NODE_OPTIONS=--openssl-legacy-provider
@@ -212,10 +215,13 @@ jobs:
       - name: Update package index
         run: sudo apt-get update
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          cache: yarn
+          cache: pnpm
           node-version-file: '.nvmrc'
 
       - name: Install native Ruby dependencies
@@ -230,7 +236,7 @@ jobs:
           ruby-version: ${{ matrix.ruby-version}}
           bundler-cache: true
 
-      - run: yarn --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
@@ -330,10 +336,13 @@ jobs:
       - name: Update package index
         run: sudo apt-get update
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          cache: yarn
+          cache: pnpm
           node-version-file: '.nvmrc'
 
       - name: Install native Ruby dependencies
@@ -348,7 +357,7 @@ jobs:
           ruby-version: ${{ matrix.ruby-version}}
           bundler-cache: true
 
-      - run: yarn --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'

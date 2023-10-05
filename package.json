@@ -7,12 +7,12 @@
   "scripts": {
     "build:development": "cross-env RAILS_ENV=development NODE_ENV=development ./bin/webpack",
     "build:production": "cross-env RAILS_ENV=production NODE_ENV=production ./bin/webpack",
-    "fix:js": "yarn lint:js --fix",
+    "fix:js": "pnpm lint:js --fix",
     "fix:json": "prettier --write \"**/*.{json,json5}\"",
     "fix:md": "prettier --write \"**/*.md\"",
     "fix:sass": "stylelint --fix \"**/*.{css,scss}\" && prettier --write \"**/*.{css,scss}\"",
     "fix:yml": "prettier --write \"**/*.{yaml,yml}\"",
-    "fix": "yarn fix:js && yarn fix:json && yarn fix:sass && yarn fix:yml",
+    "fix": "pnpm fix:js && pnpm fix:json && pnpm fix:sass && pnpm fix:yml",
     "i18n:extract": "formatjs extract 'app/javascript/**/*.{js,jsx,ts,tsx}' '--ignore=**/*.d.ts' --out-file app/javascript/mastodon/locales/en.json --format config/formatjs-formatter.js",
     "jest": "cross-env NODE_ENV=test jest",
     "lint:js": "eslint . --ext=.js,.jsx,.ts,.tsx --cache --report-unused-disable-directives",
@@ -20,11 +20,11 @@
     "lint:md": "prettier --check \"**/*.md\"",
     "lint:sass": "stylelint \"**/*.{css,scss}\" && prettier --check \"**/*.{css,scss}\"",
     "lint:yml": "prettier --check \"**/*.{yaml,yml}\"",
-    "lint": "yarn lint:js && yarn lint:json && yarn lint:sass && yarn lint:yml",
+    "lint": "pnpm lint:js && pnpm lint:json && pnpm lint:sass && pnpm lint:yml",
     "postversion": "git push --tags",
-    "prepare": "husky install",
+    "prepare": "test -d node_modules/husky && husky install || echo \"husky is not installed\"",
     "start": "node ./streaming/index.js",
-    "test": "yarn lint && yarn run typecheck && yarn jest",
+    "test": "pnpm lint && pnpm run typecheck && pnpm jest",
     "typecheck": "tsc --noEmit"
   },
   "repository": {
@@ -32,6 +32,7 @@
     "url": "https://github.com/mastodon/mastodon.git"
   },
   "private": true,
+  "packageManager": "pnpm@8.8.0",
   "dependencies": {
     "@babel/core": "^7.22.1",
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.22.3",
@@ -133,6 +134,7 @@
     "substring-trie": "^1.0.2",
     "terser-webpack-plugin": "^4.2.3",
     "tesseract.js": "^2.1.5",
+    "tesseract.js-core": "^2.1.5",
     "tiny-queue": "^0.2.1",
     "twitter-text": "3.1.0",
     "uuid": "^9.0.0",
@@ -211,11 +213,6 @@
     "typescript": "^5.0.4",
     "webpack-dev-server": "^3.11.3",
     "yargs": "^17.7.2"
-  },
-  "resolutions": {
-    "@types/react": "^18.0.26",
-    "kind-of": "^6.0.3",
-    "webpack/terser-webpack-plugin": "^4.2.3"
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.7",

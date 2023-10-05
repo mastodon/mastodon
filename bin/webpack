@@ -12,6 +12,7 @@ require "bundler/setup"
 
 require "webpacker"
 require "webpacker/webpack_runner"
+require_relative '../lib/webpacker/pnpm'
 
 APP_ROOT = File.expand_path("..", __dir__)
 Dir.chdir(APP_ROOT) do
