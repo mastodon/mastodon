@@ -16,8 +16,6 @@ si:
     last_active: අවසාන ක්රියාකාරී
     link_verified_on: මෙම සබැඳියේ හිමිකාරිත්වය %{date}හි පරීක්ෂා කරන ලදී
     nothing_here: මෙහි කිසිවක් නැත!
-    pin_errors:
-      following: ඔබට අනුමත කිරීමට අවශ්‍ය පුද්ගලයා ඔබ දැනටමත් අනුගමනය කරමින් සිටිය යුතුය
     posts:
       one: ලිපිය
       other: ලිපි
@@ -69,7 +67,7 @@ si:
       invite_request_text: එක්වීමට හේතුව
       invited_by: විසින් ආරාධනා කරන ලදී
       ip: අ.ජා. කෙ. (IP)
-      joined: එක් වී ඇත
+      joined: එක් වූ දිනය
       location:
         all: සියල්ල
         local: ස්ථානීය
@@ -123,7 +121,7 @@ si:
       security_measures:
         only_password: මුරපදය පමණි
         password_and_2fa: මුරපදය සහ 2FA
-      sensitized: සංවේදී ලෙස සලකුණු කර ඇත
+      sensitized: සංවේදී බව සලකුණු කර ඇත
       shared_inbox_url: බෙදාගත් එන ලිපි URL
       show:
         created_reports: වාර්තා හැදුවා
@@ -173,7 +171,7 @@ si:
         destroy_email_domain_block: ඊමේල් ඩොමේන් බ්ලොක් එක මකන්න
         destroy_instance: වසම පිරිසිදු කරන්න
         destroy_ip_block: IP රීතිය මකන්න
-        destroy_status: පළ කිරීම මකන්න
+        destroy_status: ලිපිය මකන්න
         destroy_unavailable_domain: ලබා ගත නොහැකි වසම මකන්න
         disable_2fa_user: 2FA අබල කරන්න
         disable_custom_emoji: අභිරුචි ඉමෝජි අබල කරන්න
@@ -199,7 +197,7 @@ si:
         update_announcement: නිවේදනය යාවත්කාල කරන්න
         update_custom_emoji: අභිරුචි ඉමොජි යාවත්කාලීන කරන්න
         update_domain_block: ඩොමේන් බ්ලොක් යාවත්කාලීන කරන්න
-        update_status: පළ කිරීම යාවත්කාලීන කරන්න
+        update_status: ලිපිය යාවත්කාල කරන්න
       actions:
         approve_user_html: "%{name} අනුමත ලියාපදිංචිය %{target}සිට"
         assigned_to_self_report_html: "%{name} වාර්තාව %{target} තමන්ටම පවරා ඇත"
@@ -220,7 +218,6 @@ si:
         destroy_email_domain_block_html: "%{name} අවහිර නොකළ විද්‍යුත් තැපැල් වසම %{target}"
         destroy_instance_html: "%{name} පිරිසිදු කරන ලද වසම %{target}"
         destroy_ip_block_html: IP %{target}සඳහා %{name} මකා දැමූ රීතිය
-        destroy_status_html: "%{name} පෝස්ට් %{target}විසින් ඉවත් කරන ලදී"
         destroy_unavailable_domain_html: "%{name} වසම %{target}වෙත බෙදා හැරීම නැවත ආරම්භ විය"
         disable_2fa_user_html: "%{name} පරිශීලක %{target}සඳහා සාධක දෙකක අවශ්‍යතාවය අක්‍රීය කර ඇත"
         disable_custom_emoji_html: "%{name} ආබාධිත ඉමොජි %{target}"
@@ -236,18 +233,17 @@ si:
         reopen_report_html: "%{name} නැවත විවෘත කළ වාර්තාව %{target}"
         reset_password_user_html: "%{name} පරිශීලක %{target}හි මුරපදය යළි පිහිටුවන්න"
         resolve_report_html: "%{name} විසඳන ලද වාර්තාව %{target}"
-        sensitive_account_html: "%{name} %{target}හි මාධ්‍ය සංවේදී ලෙස සලකුණු කර ඇත"
+        sensitive_account_html: "%{target}ගේ මාධ්‍ය සංවේදී බව %{name} සලකුණු කර ඇත"
         silence_account_html: "%{name} සීමිත %{target}ගිණුමක්"
         suspend_account_html: "%{name} %{target}ගේ ගිණුම අත්හිටුවා ඇත"
         unassigned_report_html: "%{name} පවරා නොදුන් වාර්තාව %{target}"
         unblock_email_account_html: "%{name} %{target}ගේ ඊමේල් ලිපිනය අවහිර කිරීම ඉවත් කරන ලදී"
-        unsensitive_account_html: "%{name} සලකුණු නොකළ %{target}ගේ මාධ්‍ය සංවේදී ලෙස"
+        unsensitive_account_html: "%{target}ගේ මාධ්‍ය සංවේදී බව %{name} ඉවත් කර ඇත"
         unsilence_account_html: "%{target}ගිණුමේ %{name} undid සීමාව"
         unsuspend_account_html: "%{name} අත්හිටුවන ලද %{target}ගිණුම"
         update_announcement_html: "%{name} යාවත්කාලීන නිවේදනය %{target}"
         update_custom_emoji_html: "%{name} යාවත්කාලීන කළ ඉමොජි %{target}"
         update_domain_block_html: "%{target}සඳහා %{name} යාවත්කාලීන කරන ලද වසම් වාරණ"
-        update_status_html: "%{name} %{target}යාවත්කාලීන කරන ලද පළ කිරීම"
       empty: ලඝු-සටහන් හමු නොවිණි.
       filter_by_action: ක්‍රියාමාර්ගය අනුව පෙරන්න
       filter_by_user: පරිශ්‍රීලකයා අනුව පෙරන්න
@@ -305,8 +301,8 @@ si:
     dashboard:
       active_users: ක්රියාකාරී පරිශීලකයන්
       interactions: අන්තර්ක්රියා
-      media_storage: මාධ්ය ගබඩාව
-      new_users: නව පරිශීලකයන්
+      media_storage: මාධ්‍ය ආචයනය
+      new_users: නව පරිශ්‍රීලකයින්
       opened_reports: විවෘත වාර්තා
       pending_appeals_html:
         one: "<strong>%{count}</strong> අභියාචනයක් බලාපොරොත්තු වේ"
@@ -435,7 +431,7 @@ si:
         unavailable: ලබා ගත නොහැක
       delivery_available: බෙදා හැරීම ලබා ගත හැකිය
       delivery_error_days: බෙදා හැරීමේ දෝෂ සහිත දින
-      delivery_error_hint: දින %{count} ක් සඳහා බෙදා හැරීම කළ නොහැකි නම්, එය ස්වයංක්‍රීයව බෙදා හැරිය නොහැකි ලෙස ලකුණු කරනු ලැබේ.
+      delivery_error_hint: දවස් %{count} කින් බාරදීමට නොහැකි වුවහොත්, බාරදීමට නොහැකි බව ස්වයංක්‍රීයව සලකුණු වේ.
       destroyed_msg: "%{domain} සිට දත්ත දැන් ආසන්න මකාදැමීම සඳහා පෝලිම් කර ඇත."
       empty: වසම් කිසිවක් හමු නොවීය.
       known_accounts:
@@ -454,7 +450,7 @@ si:
       total_followed_by_them: ඔවුන් විසින් අනුගමනය කරන ලදී
       total_followed_by_us: අප විසින් අනුගමනය කරන ලදී
       total_reported: ඔවුන් ගැන වාර්තා
-      total_storage: මාධ්ය ඇමුණුම්
+      total_storage: මාධ්‍ය ඇමුණුම්
       totals_time_period_hint_html: පහත දැක්වෙන එකතුවෙහි සියලු කාලය සඳහා දත්ත ඇතුළත් වේ.
     invites:
       deactivate_all: සියල්ල අක්‍රිය කරන්න
@@ -483,11 +479,9 @@ si:
     relays:
       add_new: නව රිලේ එක් කරන්න
       delete: මකන්න
-      description_html: "<strong>ෆෙඩරේෂන් රිලේ</strong> යනු එයට දායක වී ප්‍රකාශයට පත් කරන සේවාදායකයන් අතර විශාල ප්‍රසිද්ධ පළ කිරීම් හුවමාරු කරන අතරමැදි සේවාදායකයකි. <strong>එය කුඩා සහ මධ්‍යම සේවාදායකයන්ට fediverse</strong>වෙතින් අන්තර්ගතය සොයා ගැනීමට උදවු කළ හැකි අතර, එසේ නොමැති නම් දේශීය පරිශීලකයින්ට දුරස්ථ සේවාදායකයන් මත වෙනත් පුද්ගලයින් හස්තීයව අනුගමනය කිරීම අවශ්‍ය වේ."
       disable: අබල කරන්න
       disabled: අබලයි
       enable: සබල කරන්න
-      enable_hint: සක්‍රිය කළ පසු, ඔබේ සේවාදායකය මෙම රිලේ වෙතින් සියලුම පොදු පළ කිරීම් සඳහා දායක වන අතර, මෙම සේවාදායකයේ පොදු පළ කිරීම් එයට යැවීම ආරම්භ කරනු ඇත.
       enabled: සබල කර ඇත
       inbox_url: රිලේ URL
       pending: රිලේ අනුමැතිය සඳහා රැඳී සිටිමින්
@@ -507,8 +501,6 @@ si:
       action_log: විගණන සටහන
       action_taken_by: විසින් ගන්නා ලද පියවර
       actions:
-        delete_description_html: වාර්තා කරන ලද පළ කිරීම් මකා දැමෙනු ඇති අතර එම ගිණුමේම අනාගත උල්ලංඝනයන් තීව්‍ර කිරීමට ඔබට උදවු කිරීමට වර්ජනයක් වාර්තා කරනු ඇත.
-        mark_as_sensitive_description_html: වාර්තා කරන ලද පළ කිරීම් වල මාධ්‍ය සංවේදී ලෙස සලකුණු කරනු ලබන අතර එම ගිණුම මගින් අනාගත උල්ලංඝනයන් උත්සන්න කිරීමට ඔබට උපකාර කිරීමට වර්ජනයක් වාර්තා කරනු ඇත.
         other_description_html: ගිණුමේ හැසිරීම පාලනය කිරීම සහ වාර්තා කළ ගිණුමට සන්නිවේදනය අභිරුචිකරණය කිරීම සඳහා තවත් විකල්ප බලන්න.
         resolve_description_html: වාර්තා කරන ලද ගිණුමට එරෙහිව කිසිදු ක්‍රියාමාර්ගයක් නොගනු ඇත, වැඩ වර්ජනයක් වාර්තා නොකෙරේ, වාර්තාව වසා දමනු ඇත.
       actions_description_html: මෙම වාර්තාව විසඳීමට ගත යුතු ක්‍රියාමාර්ගය තීරණය කරන්න. ඔබ වාර්තා කරන ලද ගිණුමට එරෙහිව දණ්ඩනීය ක්‍රියාමාර්ගයක් ගන්නේ නම්, <strong>Spam</strong> කාණ්ඩය තෝරාගත් විට හැර, ඔවුන්ට විද්‍යුත් තැපෑලෙන් දැනුම්දීමක් යවනු ලැබේ.
@@ -526,14 +518,14 @@ si:
       delete_and_resolve: ලිපි මකන්න
       forwarded: හරවා යවා ඇත
       forwarded_to: "%{domain} වෙත හරවා යැවිණි"
-      mark_as_resolved: විසඳා ඇති ලෙස ලකුණු කරන්න
-      mark_as_sensitive: සංවේදී ලෙස ලකුණු කරන්න
-      mark_as_unresolved: නොවිසඳුනු ලෙස ලකුණු කරන්න
+      mark_as_resolved: විසඳූ බව යොදන්න
+      mark_as_sensitive: සංවේදී බව යොදන්න
+      mark_as_unresolved: නොවිසඳූ බව යොදන්න
       no_one_assigned: කිසිවෙක් නැත
       notes:
         create: සටහන එකතු කරන්න
-        create_and_resolve: සටහන සමඟ විසඳන්න
-        create_and_unresolve: සටහනක් සමඟ නැවත විවෘත කරන්න
+        create_and_resolve: සටහනක් සමඟ විසඳන්න
+        create_and_unresolve: සටහනක් සමඟ නැවත අරින්න
         delete: මකන්න
         placeholder: ගෙන ඇති ක්‍රියාමාර්ග, හෝ වෙනත් අදාළ යාවත්කාලීන විස්තර කරන්න...
         title: සටහන්
@@ -564,7 +556,12 @@ si:
         moderation: මැදිහත්කරණය
         special: විශේෂ
       delete: මකන්න
+      permissions_count:
+        one: අවසර %{count}
+        other: අවසර %{count}
       privileges:
+        administrator: පරිපාලක
+        delete_user_data: පරිශ්‍රීලක දත්ත මකන්න
         invite_users: ආරාධනා කරන්න
         manage_announcements: නිවේදනය කළමනාකරණය
         manage_federation: ඒකාබද්ධ කළමනාකරණය
@@ -592,6 +589,7 @@ si:
         title: පෙනුම
       discovery:
         profile_directory: පැතිකඩ නාමාවලිය
+        public_timelines: ප්‍රසිද්ධ කාලරේඛා
       domain_blocks:
         all: හැමෝටම
         disabled: කාටවත් නෑ
@@ -626,7 +624,7 @@ si:
       media:
         title: මාධ්‍යය
       metadata: පාරදත්ත
-      no_status_selected: කිසිවක් තෝරා නොගත් බැවින් තනතුරු කිසිවක් වෙනස් කර නැත
+      no_status_selected: කිසිවක් නොතේරූ බැවින් ලිපි කිසිවක් වෙනස් කර නැත
       open: ලිපිය අරින්න
       original_status: මුල් ලිපිය
       status_changed: ලිපිය සංශෝධිතයි
@@ -639,7 +637,7 @@ si:
         disable: "%{name} %{target}ගේ ගිණුම නිශ්චල කළේය"
         mark_statuses_as_sensitive: "%{target}ගේ ලිපි සංවේදී බව %{name} සලකුණු කර ඇත"
         none: "%{name} %{target}අනතුරු ඇඟවීමක් යවා ඇත"
-        sensitive: "%{name} %{target}ගේ ගිණුම සංවේදී ලෙස ලකුණු කර ඇත"
+        sensitive: "%{target}ගේ ගිණුම සංවේදී බව %{name} සලකුණු කර ඇත"
         silence: "%{name} සීමිත %{target}ගිණුමක්"
         suspend: "%{name} %{target}ගේ ගිණුම අත්හිටුවා ඇත"
       appeal_approved: අභියාචනා කළා
@@ -691,9 +689,9 @@ si:
         title: ප්‍රකාශකයන්
       rejected: ප්‍රතික්ෂේප කළා
       statuses:
-        allow: පළ කිරීමට ඉඩ දෙන්න
+        allow: පළ කිරීමට ඉඩදෙන්න
         allow_account: කතුවරයාට ඉඩ දෙන්න
-        disallow: පළ කිරීමට ඉඩ නොදෙන්න
+        disallow: ප්‍රකාශනයට ඉඩ නොදෙන්න
         disallow_account: කතුවරයාට ඉඩ නොදෙන්න
         not_discoverable: කර්තෘ සොයා ගත හැකි බව තෝරාගෙන නැත
         shared_by:
@@ -732,12 +730,12 @@ si:
     webhooks:
       add_new: අන්ත ලක්ෂ්‍යය එක් කරන්න
       delete: මකන්න
-      disable: අක්රිය කරන්න
-      disabled: ආබාධිතයි
+      disable: අබල කරන්න
+      disabled: අබලයි
       edit: අන්ත ලක්ෂ්‍යය සංස්කරණය කරන්න
       empty: ඔබට තවම වින්‍යාස කර ඇති කිසිදු webhook අන්ත ලක්ෂ්‍යයක් නොමැත.
       enable: සබල කරන්න
-      enabled: ක්රියාකාරී
+      enabled: ක්‍රියාත්මකයි
       enabled_events:
         one: සබල සිදුවීම් 1
         other: සබල සිදුවීම් %{count}
@@ -752,7 +750,6 @@ si:
       actions:
         delete_statuses: ඔවුන්ගේ පළ කිරීම් මකා දැමීමට
         disable: ඔවුන්ගේ ගිණුම කැටි කිරීමට
-        mark_statuses_as_sensitive: ඔවුන්ගේ තනතුරු සංවේදී ලෙස සලකුණු කිරීමට
         none: අනතුරු ඇඟවීමක්
         sensitive: ඔවුන්ගේ ගිණුම සංවේදී ලෙස සලකුණු කිරීමට
         silence: ඔවුන්ගේ ගිණුම සීමා කිරීමට
@@ -769,7 +766,7 @@ si:
       new_trending_links:
         title: නැඟී එන සබැඳි
       new_trending_statuses:
-        title: ප්‍රවණතා පළ කිරීම්
+        title: නැගී එන ලිපි
       new_trending_tags:
         no_approved_tags: දැනට අනුමත ප්‍රවණතා හැෂ් ටැග් නොමැත.
         requirements: 'මෙම ඕනෑම අපේක්ෂකයෙකුට #%{rank} අනුමත ප්‍රවණතා හැෂ් ටැගය අභිබවා යා හැකිය, එය දැනට ලකුණු %{lowest_tag_score}ක් සමඟ #%{lowest_tag_name} වේ.'
@@ -803,11 +800,13 @@ si:
   applications:
     created: යෙදුම සාර්ථකව සෑදිණි
     destroyed: යෙදුම සාර්ථකව මකා ඇත
+    logout: නික්මෙන්න
     regenerate_token: ප්‍රවේශ ටෝකනය නැවත උත්පාදනය කරන්න
     token_regenerated: ප්‍රවේශ ටෝකනය සාර්ථකව ප්‍රතිජනනය කරන ලදී
     warning: මෙම දත්ත සමඟ ඉතා ප්රවේශම් වන්න. එය කිසි විටෙක කිසිවෙකු සමඟ බෙදා නොගන්න!
     your_token: ඔබේ ප්‍රවේශ ටෝකනය
   auth:
+    apply_for_account: ගිණුමක් ඉල්ලන්න
     delete_account: ගිණුම මකන්න
     delete_account_html: ඔබට ඔබගේ ගිණුම මකා දැමීමට අවශ්‍ය නම්, ඔබට <a href="%{path}">මෙතැනින් ඉදිරියට යා හැක</a>. තහවුරු කිරීම සඳහා ඔබෙන් අසනු ඇත.
     description:
@@ -823,14 +822,25 @@ si:
     logout: නික්මෙන්න
     migrate_account: වෙනත් ගිණුමකට යන්න
     migrate_account_html: ඔබට මෙම ගිණුම වෙනත් එකකට හරවා යැවීමට අවශ්‍ය නම්, ඔබට එය <a href="%{path}">මෙහි වින්‍යාසගත කළ හැක</a>.
+    progress:
+      details: ඔබගේ විස්තර
+      rules: නීති පිළිගන්න
+    providers:
+      cas: CAS
+      saml: SAML
     register: ලියාපදිංචිය
     registration_closed: "%{instance} නව සාමාජිකයින් පිළිගන්නේ නැත"
     reset_password: මුරපදය යළි සකසන්න
     rules:
       accept: පිළිගන්න
       back: ආපසු
+      title_invited: ඔබට ආරාධනා කර ඇත.
     security: ආරක්‍ෂාව
     set_new_password: නව මුරපදය සකසන්න
+    setup:
+      title: ඔබගේ එනලිපි බලන්න
+    sign_in:
+      title: "%{domain} වෙත පිවිසෙන්න"
     status:
       account_status: ගිණුමේ තත්වය
       confirming: විද්‍යුත් තැපෑල තහවුරු කිරීම සම්පූර්ණ කිරීම සඳහා රැඳී සිටිමින්.
@@ -876,7 +886,7 @@ si:
     warning:
       before: 'ඉදිරියට යාමට පෙර, කරුණාකර මෙම සටහන් හොඳින් කියවන්න:'
       caches: වෙනත් සේවාදායකයන් විසින් හැඹිලිගත කර ඇති අන්තර්ගතය දිගටම පැවතිය හැක
-      data_removal: ඔබගේ පළ කිරීම් සහ අනෙකුත් දත්ත ස්ථිරවම ඉවත් කරනු ලැබේ
+      data_removal: ඔබගේ ලිපි සහ අනෙකුත් දත්ත සදහටම ඉවත් කෙරෙනු ඇත
       email_change_html: ඔබට ඔබගේ ගිණුම මකා</a> <a href="%{path}">කළ හැක
       email_contact_html: එය තවමත් නොපැමිණියේ නම්, ඔබට උදව් සඳහා <a href="mailto:%{email}">%{email}</a> විද්‍යුත් තැපෑලෙන් යැවිය හැක
       email_reconfirmation_html: ඔබට තහවුරු කිරීමේ විද්‍යුත් තැපෑල නොලැබුනේ නම්, ඔබට එය <a href="%{path}">නැවත ඉල්ලා සිටිය හැක</a>
@@ -900,13 +910,12 @@ si:
       description_html: මේවා ඔබගේ ගිණුමට එරෙහිව ගන්නා ලද ක්‍රියා සහ %{instance}හි කාර්ය මණ්ඩලය විසින් ඔබට එවා ඇති අනතුරු ඇඟවීම් වේ.
       recipient: වෙත යොමු කරන ලදී
       reject_appeal: අභියාචනය ප්‍රතික්ෂේප කරන්න
-      status: 'පළ කිරීම #%{id}'
-      status_removed: පළ කිරීම දැනටමත් පද්ධතියෙන් ඉවත් කර ඇත
+      status: "#%{id} ලිපිය"
+      status_removed: ලිපිය දැනටමත් පද්ධතියෙන් ඉවත් කර ඇත
       title: "%{action} සිට %{date}"
       title_actions:
-        delete_statuses: පසු ඉවත් කිරීම
+        delete_statuses: ලිපි ඉවත් කිරීම
         disable: ගිණුම කැටි කිරීම
-        mark_statuses_as_sensitive: තනතුරු සංවේදී ලෙස සලකුණු කිරීම
         none: අවවාදයයි
         sensitive: ගිණුම සංවේදී ලෙස සලකුණු කිරීම
         silence: ගිණුම සීමා කිරීම
@@ -941,7 +950,7 @@ si:
     archive_takeout:
       date: දිනය
       download: ඔබගේ සංරක්‍ෂිතය බාගන්න
-      hint_html: ඔබට ඔබගේ පළ කිරීම් <strong>සහ උඩුගත කළ මාධ්‍ය</strong>හි සංරක්ෂිතයක් ඉල්ලා සිටිය හැක. නිර්යාත කළ දත්ත ActivityPub ආකෘතියෙන්, ඕනෑම අනුකූල මෘදුකාංගයකට කියවිය හැකිය. ඔබට දින 7කට වරක් ලේඛනාගාරයක් ඉල්ලා සිටිය හැක.
+      hint_html: ඔබට <strong>ලිපි සහ උඩුගත කළ මාධ්‍යවල</strong> සංරක්‍ෂණයක් ඉල්ලීමට හැකිය. නිර්යාත කළ දත්ත ActivityPub ආකෘතියට ගැළපෙන ඕනෑම මෘදුකාංගයකින් කියවීමට හැකිය. ඔබට දවස් 7 කට වරක් සංරක්‍ෂණයක් ඉල්ලීමට හැකිය.
       in_progress: ඔබගේ සංරක්ෂිතය සම්පාදනය කරමින්...
       request: ඔබගේ සංරක්ෂිතය ඉල්ලන්න
       size: ප්‍රමාණය
@@ -951,16 +960,15 @@ si:
     domain_blocks: වසම් අවහිර කිරීම්
     lists: ලැයිස්තු
     mutes: ඔබ නිහඬ කරන්න
-    storage: මාධ්‍ය ගබඩාව
+    storage: මාධ්‍ය ආචයනය
   featured_tags:
     add_new: අලුතින් එකතු කරන්න
-    hint_html: "<strong>විශේෂාංගගත හැෂ් ටැග් මොනවාද?</strong> ඒවා ඔබේ පොදු පැතිකඩෙහි ප්‍රමුඛව ප්‍රදර්ශනය වන අතර එම හැෂ් ටැග් යටතේ ඔබේ පොදු පළ කිරීම් බ්‍රවුස් කිරීමට මිනිසුන්ට ඉඩ සලසයි. නිර්මාණාත්මක කෘති හෝ දිගු කාලීන ව්යාපෘති පිළිබඳ වාර්තාවක් තබා ගැනීම සඳහා ඔවුන් විශිෂ්ට මෙවලමක් වේ."
   filters:
     contexts:
       account: පැතිකඩයන්
       home: මුල සහ ලැයිස්තු
       notifications: දැනුම්දීම්
-      public: පොදු කාලරේඛා
+      public: ප්‍රසිද්ධ කාලරේඛා
       thread: සංවාද
     edit:
       add_keyword: මූල පදය එක් කරන්න
@@ -1018,9 +1026,12 @@ si:
       overwrite: උඩින් ලියන්න
       overwrite_long: වත්මන් වාර්තා නව ඒවා සමඟ ප්‍රතිස්ථාපනය කරන්න
     preface: ඔබ අනුගමන කරන හෝ අවහිර කරන පුද්ගලයින්ගේ ලැයිස්තුවක් වැනි වෙනත් සේවාදායකයකින් ඔබ නිර්යාත කර ඇති දත්ත ඔබට ආයාත කළ හැක.
+    status: තත්‍වය
     success: ඔබගේ දත්ත සාර්ථකව උඩුගත කර ඇති අතර නියමිත වේලාවට සැකසෙනු ඇත
     titles:
       lists: ලැයිස්තු ආයාත වෙමින්
+    type_groups:
+      constructive: අනුගමන හා පොත්යොමු
     types:
       blocking: අවහිර ලැයිස්තුව
       bookmarks: පොත්යොමු
@@ -1064,7 +1075,7 @@ si:
     title: සත්‍යාපන ඉතිහාසය
   media_attachments:
     validations:
-      images_and_video: දැනටමත් පින්තූර අඩංගු පළ කිරීමකට වීඩියෝවක් ඇමිණිය නොහැක
+      images_and_video: දැනටමත් රූප අඩංගු ලිපියකට දෘශ්‍යකයක් ඇමිණීමට නොහැකිය
       not_ready: සැකසීම අවසන් නොකළ ගොනු ඇමිණිය නොහැක. මොහොතකින් නැවත උත්සාහ කරන්න!
       too_many: ගොනු 4කට වඩා ඇමිණිය නොහැක
   migrations:
@@ -1168,8 +1179,8 @@ si:
       too_many_options: අථක %{max} කට වඩා අඩංගු නොවිය යුතුය
   preferences:
     other: වෙනත්
-    posting_defaults: පෙරනිමි පළ කිරීම
-    public_timelines: පොදු කාලරේඛා
+    posting_defaults: සැමවිට පළ කරන ආකාරය
+    public_timelines: ප්‍රසිද්ධ කාලරේඛා
   privacy:
     search: සොයන්න
   privacy_policy:
@@ -1203,11 +1214,8 @@ si:
   rss:
     content_warning: 'අන්තර්ගත අනතුරු ඇඟවීම:'
     descriptions:
-      account: "@%{acct}සිට පොදු පළ කිරීම්"
-      tag: "#%{hashtag}ටැග් කර ඇති පොදු පළ කිරීම්"
+      account: "@%{acct} වෙතින් ප්‍රසිද්ධ ලිපි"
   scheduled_statuses:
-    over_daily_limit: ඔබ අද දිනට නියමිත පළ කිරීම් %{limit} සීමාව ඉක්මවා ඇත
-    over_total_limit: ඔබ නියමිත පළ කිරීම් %{limit} සීමාව ඉක්මවා ඇත
     too_soon: නියමිත දිනය අනාගතයේ විය යුතුය
   sessions:
     activity: අවසාන ක්‍රියාකාරකම
@@ -1259,7 +1267,7 @@ si:
     account_settings: ගිණුමේ සැකසුම්
     aliases: ගිණුම් අන්වර්ථ නාමයන්
     appearance: පෙනුම
-    authorized_apps: අවසර ලත් යෙදුම්
+    authorized_apps: බලයලත් යෙදුම්
     back: මාස්ටඩන් වෙත ආපසු
     delete: ගිණුම මැකීම
     development: සංවර්ධනය
@@ -1273,7 +1281,7 @@ si:
     preferences: අභිප්‍රේත
     profile: ප්‍රසිද්ධ පැතිකඩ
     relationships: අනුගාමිකයින් සහ අනුගාමිකයින්
-    statuses_cleanup: ස්වයංක්‍රීය පළ කිරීම් මකාදැමීම
+    statuses_cleanup: ස්වයංක්‍රීය ලිපි මැකීම
     two_factor_authentication: ද්වි සාධක Aut
     webauthn_authentication: ආරක්‍ෂණ යතුරු
   statuses:
@@ -1295,13 +1303,13 @@ si:
       other: 'අනුමත නොකළ හැෂ් ටැග් අඩංගු විය: %{tags}'
     edited_at_html: සංස්කරණය %{date}
     errors:
-      in_reply_not_found: ඔබ පිළිතුරු දීමට උත්සාහ කරන පළ කිරීම පවතින බවක් නොපෙනේ.
+      in_reply_not_found: ඔබ පිළිතුරු දීමට තැත් කරන ලිපිය නොපවතින බව පෙනෙයි.
     open_in_web: වෙබයේ විවෘත කරන්න
     over_character_limit: අක්ෂර සීමාව %{max} ඉක්මවා ඇත
     pin_errors:
-      direct: සඳහන් කළ පරිශීලකයින්ට පමණක් පෙනෙන පළ කිරීම් ඇමිණිය නොහැක
-      limit: ඔබ දැනටමත් උපරිම පළ කිරීම් සංඛ්‍යාව අමුණා ඇත
-      ownership: වෙනත් කෙනෙකුගේ පළ කිරීමක් ඇමිණිය නොහැක
+      direct: සඳහන් කළ අයට පමණක් පෙනෙන ලිපි ඇමිණීමට නොහැකිය
+      limit: දැනටමත් මුදුනට ඇමිණිමට හැකි ලිපි සීමාවට ළඟා වී ඇත
+      ownership: වෙනත් අයගේ ලිපි ඇමිණීමට නොහැකිය
     poll:
       total_people:
         one: පුද්ගලයින් %{count}
@@ -1324,16 +1332,14 @@ si:
       unlisted: ලැයිස්තුගත නොකළ
       unlisted_long: සෑම කෙනෙකුටම දැකිය හැක, නමුත් පොදු කාලරාමුවෙහි ලැයිස්තුගත කර නොමැත
   statuses_cleanup:
-    enabled: පැරණි පළ කිරීම් ස්වයංක්‍රීයව මකන්න
-    enabled_hint: ඔබේ පළ කිරීම් පහත ව්‍යතිරේකවලින් එකකට ගැලපෙන්නේ නම් මිස, ඒවා නිශ්චිත වයස් සීමාවකට ළඟා වූ පසු ස්වයංක්‍රීයව මකයි
+    enabled: පරණ ලිපි ස්වයංක්‍රීයව මකන්න
     exceptions: හැර දැමීම්
-    explanation: පළ කිරීම් මකා දැමීම මිල අධික මෙහෙයුමක් වන බැවින්, සේවාදායකය වෙනත් ආකාරයකින් කාර්යබහුල නොවන විට කාලයත් සමඟ මෙය සෙමින් සිදු කෙරේ. මෙම හේතුව නිසා, ඔබේ පළ කිරීම් වයස් සීමාවට ළඟා වූ පසු ටික වේලාවකට පසුව මකා දැමිය හැක.
     ignore_favs: ප්‍රියතමයන් නොසලකන්න
     interaction_exceptions: අන්තර්ක්‍රියා මත පදනම් වූ ව්‍යතිරේක
     keep_direct: සෘජු පණිවිඩ තබාගන්න
     keep_direct_hint: ඔබගේ සෘජු පණිවිඩ කිසිවක් මැකෙන්නේ නැත
     keep_media: මාධ්‍ය ඇමුණුම් සහිත ලිපි තබාගන්න
-    keep_media_hint: මාධ්‍ය ඇමුණුම් ඇති ඔබේ පළ කිරීම් කිසිවක් මකන්නේ නැත
+    keep_media_hint: මාධ්‍ය ඇමුණුම් සහිත ඔබගේ ලිපි කිසිවක් මැකෙන්නේ නැත
     keep_pinned: ඇමිණූ ලිපි තබාගන්න
     keep_pinned_hint: ඔබ ඇමිණූ ලිපි කිසිවක් නොමැකෙයි
     keep_polls_hint: ඔබගේ මත විමසුම් මැකෙන්නේ නැත
@@ -1374,12 +1380,12 @@ si:
     edit: සංස්කරණය
     enabled: ද්වි-සාධක සත්‍යාපනය සක්‍රීය කර ඇත
     enabled_success: ද්වි-සාධක සත්‍යාපනය සාර්ථකව සබල කර ඇත
-    generate_recovery_codes: ප්‍රතිසාධන කේත ජනනය කරන්න
+    generate_recovery_codes: ප්‍රතිසාධන කේත උත්පාදනය කරන්න
     lost_recovery_codes: ඔබගේ දුරකථනය නැති වුවහොත් ඔබගේ ගිණුමට ප්‍රවේශය නැවත ලබා ගැනීමට ප්‍රතිසාධන කේත ඔබට ඉඩ සලසයි. ඔබට ඔබේ ප්‍රතිසාධන කේත නැති වී ඇත්නම්, ඔබට ඒවා මෙහි නැවත උත්පාදනය කළ හැක. ඔබගේ පැරණි ප්‍රතිසාධන කේත අවලංගු වනු ඇත.
-    methods: ද්වි සාධක ක්රම
+    methods: ද්වි සාධක ක්‍රම
     otp: Authenticator යෙදුම
-    recovery_codes: උපස්ථ ප්‍රතිසාධන කේත
-    recovery_codes_regenerated: ප්‍රතිසාධන කේත සාර්ථකව ප්‍රතිජනනය කරන ලදී
+    recovery_codes: ප්‍රතිසාධන කේත උපස්ථය
+    recovery_codes_regenerated: ප්‍රතිසාධන කේත නැවත උත්පාදනය කෙරිණි
     recovery_instructions_html: ඔබට කවදා හෝ ඔබගේ දුරකථනයට ප්‍රවේශය අහිමි වුවහොත්, ඔබගේ ගිණුමට ප්‍රවේශය නැවත ලබා ගැනීමට පහත ප්‍රතිසාධන කේත වලින් එකක් භාවිතා කළ හැක. <strong>ප්‍රතිසාධන කේත ආරක්ෂිතව තබා ගන්න</strong>. උදාහරණයක් ලෙස, ඔබට ඒවා මුද්‍රණය කර වෙනත් වැදගත් ලේඛන සමඟ ගබඩා කළ හැකිය.
     webauthn: ආරක්‍ෂණ යතුරු
   user_mailer:
@@ -1407,19 +1413,17 @@ si:
       appeal: අභියාචනයක් ඉදිරිපත් කරන්න
       appeal_description: මෙය දෝෂයක් බව ඔබ විශ්වාස කරන්නේ නම්, ඔබට %{instance}හි කාර්ය මණ්ඩලයට අභියාචනයක් ඉදිරිපත් කළ හැක.
       categories:
-        spam: ආයාචිත තැපැල්
+        spam: ආයාචිත
         violation: අන්තර්ගතය පහත ප්‍රජා මාර්ගෝපදේශ උල්ලංඝනය කරයි
       explanation:
         disable: ඔබට තවදුරටත් ඔබගේ ගිණුම භාවිතා කළ නොහැක, නමුත් ඔබගේ පැතිකඩ සහ අනෙකුත් දත්ත නොවෙනස්ව පවතී. ඔබට ඔබගේ දත්තවල උපස්ථයක් ඉල්ලා සිටීමට, ගිණුම් සැකසීම් වෙනස් කිරීමට හෝ ඔබගේ ගිණුම මකා දැමීමට හැකිය.
-        sensitive: මෙතැන් සිට, ඔබගේ උඩුගත කරන ලද සියලුම මාධ්‍ය ගොනු සංවේදී ලෙස සලකුණු කර ක්ලික්-හරහා අනතුරු ඇඟවීමක් පිටුපස සඟවනු ඇත.
-        silence: ඔබට තවමත් ඔබගේ ගිණුම භාවිතා කළ හැකි නමුත් දැනටමත් ඔබව අනුගමනය කරන පුද්ගලයින් පමණක් මෙම සේවාදායකයේ ඔබගේ පළ කිරීම් දකිනු ඇති අතර, විවිධ සොයාගැනීම් විශේෂාංග වලින් ඔබව බැහැර කරනු ලැබිය හැක. කෙසේ වෙතත්, අනෙක් අය තවමත් ඔබව අතින් අනුගමනය කළ හැක.
+        sensitive: මේ මොහොත් සිට ඔබ උඩුගත කරන සියලුම මාධ්‍ය ගොනු සංවේදී ලෙස සලකා අවවාදයක් පිටුපස සඟවනු ඇත.
         suspend: ඔබට තවදුරටත් ඔබගේ ගිණුම භාවිතා කළ නොහැකි අතර, ඔබගේ පැතිකඩ සහ අනෙකුත් දත්ත තවදුරටත් ප්‍රවේශ විය නොහැක. දින 30කින් පමණ දත්ත සම්පූර්ණයෙන් ඉවත් කරන තෙක් ඔබට තවමත් ඔබේ දත්තවල උපස්ථයක් ඉල්ලා සිටීමට පුරනය විය හැක, නමුත් ඔබව අත්හිටුවීම මගහැර යාම වැළැක්වීමට අපි මූලික දත්ත කිහිපයක් රඳවා ගන්නෙමු.
       reason: 'හේතුව:'
-      statuses: 'උපුටා දක්වන ලද පළ කිරීම්:'
       subject:
-        delete_statuses: "%{acct} හි ඔබගේ පළ කිරීම් ඉවත් කර ඇත"
+        delete_statuses: "%{acct} හි ඔබගේ ලිපිය ඉවත් කර ඇත"
         disable: ඔබගේ ගිණුම %{acct} කර ඇත
-        mark_statuses_as_sensitive: "%{acct} හි ඔබගේ පළ කිරීම් සංවේදී ලෙස සලකුණු කර ඇත"
+        mark_statuses_as_sensitive: ඔබගේ %{acct} ලිපි සංවේදී බව සලකුණු කර ඇත
         none: "%{acct} සඳහා අවවාදය"
         sensitive: ඔබගේ %{acct} ලිපිය මේ මොහොතේ සිට සංවේදී ලෙස සලකයි
         silence: ඔබගේ ගිණුම %{acct} සීමා කර ඇත
@@ -1427,7 +1431,7 @@ si:
       title:
         delete_statuses: ලිපි ඉවත් කර ඇත
         disable: ගිණුම නිශ්චල කර ඇත
-        mark_statuses_as_sensitive: පළ කිරීම් සංවේදී ලෙස ලකුණු කර ඇත
+        mark_statuses_as_sensitive: ලිපි සංවේදී බව සලකුණු කර ඇත
         none: අවවාදයයි
         sensitive: ගිණුම සංවේදී බව යොදා ඇත
         silence: ගිණුම සීමා කර ඇත
