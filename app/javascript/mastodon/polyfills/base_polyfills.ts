@@ -1,4 +1,5 @@
 import 'core-js/features/object/assign';
+import 'core-js/features/object/has-own';
 import 'core-js/features/object/values';
 import 'core-js/features/symbol';
 import 'core-js/features/promise/finally';
