@@ -48,7 +48,7 @@ import {
 } from '../actions/statuses';
 import Status from '../components/status';
 import { boostModal, deleteModal } from '../initial_state';
-import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
+import { makeGetStatus, makeGetPictureInPicture, makeGetAccount } from '../selectors';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -66,16 +66,26 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
   const getPictureInPicture = makeGetPictureInPicture();
 
-  const mapStateToProps = (state, props) => ({
-    status: getStatus(state, props),
-    nextInReplyToId: props.nextId ? state.getIn(['statuses', props.nextId, 'in_reply_to_id']) : null,
-    pictureInPicture: getPictureInPicture(state, props),
-  });
+  const getAccount = makeGetAccount();
+
+  const mapStateToProps = (state, props) => {
+    const status = getStatus(state, props);
+    const accountId = status.getIn(['account', 'id']);
+    const account = getAccount(state, accountId);
+    return {
+      status,
+      account,
+      nextInReplyToId: props.nextId ? state.getIn(['statuses', props.nextId, 'in_reply_to_id']) : null,
+      pictureInPicture: getPictureInPicture(state, props),
+    }
+  };
 
   return mapStateToProps;
 };
 
 const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
+
+  contextType,
 
   onReply (status, router) {
     dispatch((_, getState) => {

@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import React from 'react';
+
 
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 
@@ -77,6 +79,7 @@ class Status extends ImmutablePureComponent {
   };
 
   static propTypes = {
+    contextType: PropTypes.string,
     status: ImmutablePropTypes.map,
     account: ImmutablePropTypes.map,
     previousId: PropTypes.string,
@@ -347,7 +350,11 @@ class Status extends ImmutablePureComponent {
   render () {
     const { intl, hidden, featured, unread, showThread, scrollKey, pictureInPicture, previousId, nextInReplyToId, rootId } = this.props;
 
-    let { status, account, ...other } = this.props;
+    let { status, account, contextType, ...other } = this.props;
+
+    let reblog_account = null;
+    const followingAccount = account.getIn(['relationship','following']);
+    const followedTags = this.props.status.get('tags').filter((tag)=>tag.get('following'))
 
     if (status === null) {
       return null;
@@ -423,7 +430,7 @@ class Status extends ImmutablePureComponent {
 
       rebloggedByText = intl.formatMessage({ id: 'status.reblogged_by', defaultMessage: '{name} boosted' }, { name: status.getIn(['account', 'acct']) });
 
-      account = status.get('account');
+      reblog_account = status.get('account');
       status  = status.get('reblog');
     } else if (status.get('visibility') === 'direct') {
       prepend = (
@@ -439,6 +446,25 @@ class Status extends ImmutablePureComponent {
         <div className='status__prepend'>
           <div className='status__prepend-icon-wrapper'><Icon id='reply' className='status__prepend-icon' fixedWidth /></div>
           <FormattedMessage id='status.replied_to' defaultMessage='Replied to {name}' values={{ name: <a onClick={this.handlePrependAccountClick} data-id={status.getIn(['account', 'id'])} href={`/@${status.getIn(['account', 'acct'])}`} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
+        </div>
+      );
+    } else if (contextType==="home" && !followingAccount && followedTags.size > 0) {
+
+      const followedTagsAsLinks = followedTags.map((tag, index) => {
+        const tagName = { __html: "#"+tag.get("name") };
+
+        return (
+          <React.Fragment key={index} >
+            { !!index && <span>, </span> }
+            { <a href={tag.get("url")}><bdi><strong dangerouslySetInnerHTML={tagName} /></bdi></a> }
+          </React.Fragment>
+        )
+      });
+
+      prepend = (
+        <div className='status__prepend'>
+          <div className='status__prepend-icon-wrapper'><Icon id='hashtag' className='status__prepend-icon' fixedWidth /></div>
+          <FormattedMessage id='status.followed_hashtags' defaultMessage='Followed hashtag(s): {hashtags}' values={{ hashtags: <span>{ followedTagsAsLinks }</span> }} />
         </div>
       );
     }
@@ -530,10 +556,10 @@ class Status extends ImmutablePureComponent {
       );
     }
 
-    if (account === undefined || account === null) {
+    if (reblog_account === undefined || reblog_account === null) {
       statusAvatar = <Avatar account={status.get('account')} size={46} />;
     } else {
-      statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
+      statusAvatar = <AvatarOverlay account={status.get('account')} friend={reblog_account} />;
     }
 
     const visibilityIconInfo = {
@@ -587,7 +613,7 @@ class Status extends ImmutablePureComponent {
 
             {expanded && hashtagBar}
 
-            <StatusActionBar scrollKey={scrollKey} status={status} account={account} onFilter={matchedFilters ? this.handleFilterClick : null} {...other} />
+            <StatusActionBar scrollKey={scrollKey} status={status} account={reblog_account} onFilter={matchedFilters ? this.handleFilterClick : null} {...other} />
           </div>
         </div>
       </HotKeys>
