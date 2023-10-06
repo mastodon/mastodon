@@ -40,7 +40,7 @@ module StatusSearchConcern
       properties << 'media' if with_media?
       properties << 'poll' if with_poll?
       properties << 'link' if with_preview_card?
-      properties << 'embed' if preview_cards.any?(&:video?)
+      properties << 'embed' if preview_card&.video?
       properties << 'sensitive' if sensitive?
       properties << 'reply' if reply?
     end
