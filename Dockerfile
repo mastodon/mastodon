@@ -113,32 +113,8 @@ RUN \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
-# # hadolint ignore=DL3008,DL3005
-# RUN \
-#   apt-get update; \
-#   apt-get install -y --no-install-recommends \
-#     # Dependencies for ImageMagick
-#     libbz2-1.0 \
-#     liblzma5 \
-#     libheif1 \
-#     libjxl0.7 \
-#     libpng16-16 \
-#     libraw20 \
-#     libtiff6 \
-#     libwebp7 \
-#     libwebpdemux2 \
-#     libwebpmux3 \
-#     libzip4 \
-#   ; \
-# # Cleanup Apt
-#   rm -rf /var/lib/apt/lists/*; \
-#   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
-
 # Create temporary build layer from base image
 FROM ruby as build
-
-# ImageMagick version to use, change with [--build-arg IMAGEMAGICK_VERSION=]
-ARG IMAGEMAGICK_VERSION="7.1.1-18"
 
 COPY --from=node /usr/local/bin /usr/local/bin
 COPY --from=node /usr/local/lib /usr/local/lib
@@ -161,56 +137,23 @@ RUN \
     shared-mime-info \
     yarn \
     zlib1g-dev \
-    # Dependencies for ImageMagick
-    # libbz2-dev \
-    # libheif-dev \
-    # libjxl-dev \
-    # libltdl-dev \
-    # liblzma-dev \
-    # libpng-dev \
-    # libraw-dev \
-    # libtiff-dev \
-    # libwebp-dev \
-    # libzip-dev \
-    # zlib1g-dev \
   ; \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-# Remove existing yarn
-  rm /usr/local/bin/yarn*; \
-# Set yarn to use classic mode and enable corepack (yarn 1)
-	corepack enable; \
-  yarn set version classic;
-# Enable corepack (yarn 3)
-  # corepack enable; \
-  # Configure ImageMagick working directory
-  # imagemagick_workdir="$(mktemp -d)"; \
-  # imagemagick_prefix="/opt/magick"; \
-  # cd ${imagemagick_workdir}; \
-  # # Clone ImageMagick source code
-  # git clone -b ${IMAGEMAGICK_VERSION} --depth 1 https://github.com/ImageMagick/ImageMagick.git .; \
-  # LDFLAGS="-Wl,-rpath,\"\\$\$ORIGIN/../lib\"" ./configure \
-  #     --prefix="${imagemagick_prefix}" \
-  #     # Optional Features
-  #     --disable-openmp \
-  #     --enable-shared \
-  #     --disable-static \
-  #     --disable-deprecated \
-  #     --disable-docs \
-  #     # Optional Packages
-  #     --with-security-policy=websafe \
-  #     --without-magick-plus-plus \
-  #     --without-fontconfig \
-  #     --without-freetype \
-  # ; \
-  # # Compile ImageMagick
-  # make -j"$(nproc)"; \
-  # make install; \
-  # rm -r \
-  #     "${imagemagick_prefix}/include" \
-  #     "${imagemagick_prefix}/lib/pkgconfig" \
-  #     "${imagemagick_prefix}/share" \
-  # ;
+  # Configure Corepack
+  if [ -e .yarnrc.yml ]; then \
+    # Yarn 3 detected
+    rm /usr/local/bin/yarn*; \
+    corepack enable; \
+  elif [ -e pnpm-lock.yaml ]; then \
+    # NPM detected
+    corepack enable && corepack prepare --activate; \
+  else \
+    # Yarn 1 detected
+    rm /usr/local/bin/yarn*; \
+  	corepack enable; \
+    yarn set version classic; \
+  fi;
 
 # Create temporary bundler specific build layer from build layer
 FROM build as build-bundler
@@ -228,18 +171,23 @@ RUN \
   bundle install -j"$(nproc)";
 
 # Create temporary yarn specific build layer from build layer
-FROM build as build-yarn
+FROM build as build-node
 
 # hadolint ignore=DL3008
 RUN \
-# Configure yarn to prevent changes to package.json and yarn.lock
-# Configure yarn to only process production Node packages
-# Download and install required Node packages (yarn 1)
-  yarn install --pure-lockfile --production --network-timeout 600000; \
-# Download and install required Node packages (yarn 3)
-  # yarn workspaces focus --all --production; \
-# Cleanup cache of downloaded Node packages
-  yarn cache clean --all;
+# Configure Node package manager
+  if [ -e .yarnrc.yml ]; then \
+    # Yarn 3 detected
+    yarn workspaces focus --all --production; \
+    yarn cache clean; \
+  elif [ -e pnpm-lock.yaml ]; then \
+    # NPM detected
+    pnpm install --frozen-lockfile --prod; \
+  else \
+    # Yarn 1 detected
+    yarn install --pure-lockfile --production --network-timeout 600000; \
+    yarn cache clean; \
+  fi;
 
 # Create temporary assets build layer from build layer
 FROM build as build-assets
@@ -249,7 +197,7 @@ FROM build as build-assets
 # Copy bundler and node packages from build layer to container
 COPY --from=build-bundler /opt/mastodon /opt/mastodon/
 COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
-COPY --from=build-yarn /opt/mastodon /opt/mastodon/
+COPY --from=build-node /opt/mastodon /opt/mastodon/
 
 RUN \
 # Use Ruby on Rails to create Mastodon assets
@@ -289,7 +237,6 @@ COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
 # COPY --link --from=build /opt/magick /opt/magick
 
 RUN \
-  # ln -s /opt/magick/bin/* /usr/local/bin/; \
   # Test ImageMagick and ffmpeg availablity
   convert -version; \
   ffmpeg -version; \

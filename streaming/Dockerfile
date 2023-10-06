@@ -45,23 +45,25 @@ RUN \
 # Set /opt/mastodon as working directory
 WORKDIR /opt/mastodon
 
-# Copy Node package configuration files from build system to container (yarn 1)
-COPY package.json yarn.lock /opt/mastodon/
-# Copy Node package configuration files from build system to container (yarn 3)
-# COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
-# COPY .yarn /opt/mastodon/.yarn
+# Copy Node package configuration files from build system to container
+COPY package.json *yarn* *pnpm* /opt/mastodon/
 # Copy Streaming source code from build system to container
 COPY ./streaming /opt/mastodon/streaming
 
 RUN \
-# Configure yarn to prevent changes to package.json and yarn.lock
-# Configure yarn to only process production Node packages
-# Download and install required Node packages (yarn 1)
-  yarn install --pure-lockfile --production --network-timeout 600000; \
-# Download and install required Node packages (yarn 3)
-  # yarn workspaces focus --all --production; \
-# Cleanup cache of downloaded Node packages
-  yarn cache clean --all;
+# Configure Node package manager
+  if [ -e .yarnrc.yml ]; then \
+    # Yarn 3 detected
+    yarn workspaces focus --all --production; \
+    yarn cache clean; \
+  elif [ -e pnpm-lock.yaml ]; then \
+    # NPM detected
+    pnpm install --frozen-lockfile --prod; \
+  else \
+    # Yarn 1 detected
+    yarn install --pure-lockfile --production --network-timeout 600000; \
+    yarn cache clean; \
+  fi;
 
 # Set the running user for resulting container
 USER mastodon
