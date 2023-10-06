@@ -6296,7 +6296,8 @@ a.status-card {
 .media-gallery {
   box-sizing: border-box;
   margin-top: 8px;
-  overflow: hidden;
+
+  // overflow: hidden;
   border-radius: 8px;
   position: relative;
   width: 100%;
@@ -6363,6 +6364,11 @@ a.status-card {
   overflow: hidden;
   position: relative;
   width: 100%;
+
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
+    outline-offset: -2px;
+  }
 }
 
 .media-gallery__item-gifv-thumbnail {
