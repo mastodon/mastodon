@@ -217,6 +217,11 @@
     "bufferutil": "^4.0.7",
     "utf-8-validate": "^6.0.3"
   },
+  "pnpm": {
+    "overrides": {
+      "terser-webpack-plugin": "^4.2.3"
+    }
+  },
   "lint-staged": {
     "*": "prettier --ignore-unknown --write",
     "Capfile|Gemfile|*.{rb,ruby,ru,rake}": "bundle exec rubocop --force-exclusion -a",
