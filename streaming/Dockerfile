@@ -51,6 +51,22 @@ COPY package.json *yarn* *pnpm* /opt/mastodon/
 COPY ./streaming /opt/mastodon/streaming
 
 RUN \
+  rm /usr/local/bin/yarn*; \
+  # Configure Corepack
+  if [ -e .yarnrc.yml ]; then \
+    # Yarn 3 detected
+    corepack enable; \
+  elif [ -e pnpm-lock.yaml ]; then \
+    # NPM detected
+    corepack enable; \
+    corepack prepare --activate; \
+  else \
+    # Yarn 1 detected
+  	corepack enable; \
+    yarn set version classic; \
+  fi;
+
+RUN \
 # Configure Node package manager
   if [ -e .yarnrc.yml ]; then \
     # Yarn 3 detected

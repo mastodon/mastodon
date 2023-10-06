@@ -139,18 +139,20 @@ RUN \
     zlib1g-dev \
   ; \
   rm -rf /var/lib/apt/lists/*; \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
+
+RUN \
+  rm /usr/local/bin/yarn*; \
   # Configure Corepack
   if [ -e .yarnrc.yml ]; then \
     # Yarn 3 detected
-    rm /usr/local/bin/yarn*; \
     corepack enable; \
   elif [ -e pnpm-lock.yaml ]; then \
     # NPM detected
-    corepack enable && corepack prepare --activate; \
+    corepack enable; \
+    corepack prepare --activate; \
   else \
     # Yarn 1 detected
-    rm /usr/local/bin/yarn*; \
   	corepack enable; \
     yarn set version classic; \
   fi;
@@ -170,7 +172,7 @@ RUN \
 # Download and install required Gems
   bundle install -j"$(nproc)";
 
-# Create temporary yarn specific build layer from build layer
+# Create temporary node specific build layer from build layer
 FROM build as build-node
 
 # hadolint ignore=DL3008
