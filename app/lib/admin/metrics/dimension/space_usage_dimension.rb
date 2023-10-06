@@ -11,7 +11,7 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
   protected
 
   def perform_query
-    [postgresql_size, redis_size, media_size, search_size]
+    [postgresql_size, redis_size, media_size, search_size].compact
   end
 
   def postgresql_size
