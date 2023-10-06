@@ -112,7 +112,7 @@ class RelationshipFilter
   def activity_scope(value)
     case value
     when 'dormant'
-      AccountStat.where(last_status_at: nil).or(AccountStat.where(AccountStat.arel_table[:last_status_at].lt(1.month.ago)))
+      Account.joins(:account_stat).where(account_stat: { last_status_at: [nil, ...1.month.ago] })
     else
       raise "Unknown activity: #{value}"
     end
