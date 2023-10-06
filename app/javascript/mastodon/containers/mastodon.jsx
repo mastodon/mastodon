@@ -18,6 +18,8 @@ import initialState, { title as siteTitle } from 'mastodon/initial_state';
 import { IntlProvider } from 'mastodon/locales';
 import { store } from 'mastodon/store';
 
+import { IdentityContext, createLegacyIdentityContext } from './identity_context';
+
 const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
 
 const hydrateAction = hydrateStore(initialState);
@@ -27,16 +29,7 @@ if (initialState.meta.me) {
   store.dispatch(fetchCustomEmojis());
 }
 
-const createIdentityContext = state => ({
-  signedIn: !!state.meta.me,
-  accountId: state.meta.me,
-  disabledAccountId: state.meta.disabled_account_id,
-  accessToken: state.meta.access_token,
-  permissions: state.role ? state.role.permissions : 0,
-});
-
 export default class Mastodon extends PureComponent {
-
   static childContextTypes = {
     identity: PropTypes.shape({
       signedIn: PropTypes.bool.isRequired,
@@ -46,7 +39,7 @@ export default class Mastodon extends PureComponent {
     }).isRequired,
   };
 
-  identity = createIdentityContext(initialState);
+  identity = createLegacyIdentityContext(initialState);
 
   getChildContext() {
     return {
@@ -60,25 +53,27 @@ export default class Mastodon extends PureComponent {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.disconnect) {
       this.disconnect();
       this.disconnect = null;
     }
   }
 
-  shouldUpdateScroll (prevRouterProps, { location }) {
+  shouldUpdateScroll(prevRouterProps, { location }) {
     return !(location.state?.mastodonModalKey && location.state?.mastodonModalKey !== prevRouterProps?.location?.state?.mastodonModalKey);
   }
 
-  render () {
+  render() {
     return (
       <IntlProvider>
         <ReduxProvider store={store}>
           <ErrorBoundary>
             <Router>
               <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
-                <Route path='/' component={UI} />
+                <IdentityContext.Provider value={this.identity}>
+                  <Route path='/' component={UI} />
+                </IdentityContext.Provider>
               </ScrollContext>
             </Router>
 

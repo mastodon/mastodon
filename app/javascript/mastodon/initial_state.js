@@ -84,11 +84,17 @@
  */
 
 /**
+ * @typedef InitialStateRole
+ * @property {number} permissions
+ */
+
+/**
  * @typedef InitialState
  * @property {Record<string, Account>} accounts
  * @property {InitialStateLanguage[]} languages
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
+ * @property {InitialStateRole} [role]
  */
 
 const element = document.getElementById('initial-state');
