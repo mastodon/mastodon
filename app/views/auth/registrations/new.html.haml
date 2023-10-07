@@ -26,7 +26,7 @@
     = f.input :confirm_password, as: :string, placeholder: t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), required: false, input_html: { 'aria-label': t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), autocomplete: 'off' }, hint: false
     = f.input :website, as: :url, wrapper: :with_label, label: t('simple_form.labels.defaults.honeypot', label: 'Website'), required: false, input_html: { 'aria-label': t('simple_form.labels.defaults.honeypot', label: 'Website'), autocomplete: 'off' }
 
-  - if approved_registrations? && !@invite.present?
+  - if approved_registrations? && @invite.blank?
     %p.lead= t('auth.sign_up.manual_review', domain: site_hostname)
 
     .fields-group
