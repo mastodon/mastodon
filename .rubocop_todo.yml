@@ -14,14 +14,6 @@ Bundler/OrderedGems:
     - 'Gemfile'
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: with_first_argument, with_fixed_indentation
-Layout/ArgumentAlignment:
-  Exclude:
-    - 'config/initializers/cors.rb'
-    - 'config/initializers/session_store.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowMultipleStyles, EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
 # SupportedHashRocketStyles: key, separator, table
 # SupportedColonStyles: key, separator, table
@@ -844,6 +836,5 @@ Style/TrailingCommaInHashLiteral:
 Style/WordArray:
   Exclude:
     - 'app/helpers/languages_helper.rb'
-    - 'config/initializers/cors.rb'
     - 'spec/controllers/settings/imports_controller_spec.rb'
     - 'spec/models/form/import_spec.rb'

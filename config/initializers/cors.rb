@@ -11,30 +11,16 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins '*'
 
-    resource '/.well-known/*',
-      headers: :any,
-      methods: [:get],
-      credentials: false
-    resource '/@:username',
-      headers: :any,
-      methods: [:get],
-      credentials: false
-    resource '/users/:username',
-      headers: :any,
-      methods: [:get],
-      credentials: false
-    resource '/api/*',
-      headers: :any,
-      methods: [:post, :put, :delete, :get, :patch, :options],
-      credentials: false,
-      expose: ['Link', 'X-RateLimit-Reset', 'X-RateLimit-Limit', 'X-RateLimit-Remaining', 'X-Request-Id']
-    resource '/oauth/token',
-      headers: :any,
-      methods: [:post],
-      credentials: false
-    resource '/assets/*', headers: :any, methods: [:get, :head, :options]
-    resource '/stylesheets/*', headers: :any, methods: [:get, :head, :options]
-    resource '/javascripts/*', headers: :any, methods: [:get, :head, :options]
-    resource '/packs/*', headers: :any, methods: [:get, :head, :options]
+    with_options headers: :any, credentials: false do
+      with_options methods: [:get] do
+        resource '/.well-known/*'
+        resource '/@:username'
+        resource '/users/:username'
+      end
+      resource '/api/*',
+               expose: %w(Link X-RateLimit-Reset X-RateLimit-Limit X-RateLimit-Remaining X-Request-Id),
+               methods: %i(post put delete get patch options)
+      resource '/oauth/token', methods: [:post]
+    end
   end
 end
