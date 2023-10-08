@@ -11,7 +11,6 @@ si:
         title: විකල්ප. ලබන්නාට නොපෙනේ
       admin_account_action:
         send_email_notification: පරිශීලකයාට ඔවුන්ගේ ගිණුම සමඟ සිදු වූ දේ පිළිබඳ පැහැදිලි කිරීමක් ලැබෙනු ඇත
-        text_html: විකල්ප. ඔබට post syntax භාවිතා කළ හැක. කාලය ඉතිරි කර ගැනීම සඳහා ඔබට අනතුරු ඇඟවීමේ</a> <a href="%{path}">කළ හැක
         type_html: "<strong>%{acct}</strong>සමඟ කළ යුතු දේ තෝරන්න"
         types:
           disable: පරිශීලකයාගේ ගිණුම භාවිතා කිරීමෙන් වළක්වන්න, නමුත් ඔවුන්ගේ අන්තර්ගතය මකා දැමීම හෝ සඟවන්න එපා.
@@ -23,7 +22,7 @@ si:
         ends_at: විකල්ප. මෙම අවස්ථාවේදී නිවේදනය ස්වයංක්‍රීයව ප්‍රකාශනය කිරීමෙන් ඉවත් වනු ඇත
         scheduled_at: නිවේදනය වහාම ප්‍රකාශයට පත් කිරීමට හිස්ව තබන්න
         starts_at: විකල්ප. ඔබගේ නිවේදනය නිශ්චිත කාල පරාසයකට බැඳී ඇත්නම්
-        text: ඔබට post syntax භාවිතා කළ හැක. කරුණාකර පරිශීලකයාගේ තිරය මත නිවේදනය ලබා ගන්නා ඉඩ ගැන සැලකිලිමත් වන්න
+        text: ඔබට ලිපි පද ගැළපුම් භාවිතා කිරීමට හැකිය. කරුණාකර නිවේදනයෙන් පරිශ්‍රීලකයින්ගේ තිරයේ ඉඩ කෙතරම් ඇහිරෙනවා ද පිළිබඳව සැලකිලිමත් වන්න
       appeal:
         text: ඔබට වර්ජනයකට අභියාචනා කළ හැක්කේ එක් වරක් පමණි
       defaults:
@@ -120,7 +119,7 @@ si:
         text: මෙම තීරණය ආපසු හැරවිය යුත්තේ මන්දැයි පැහැදිලි කරන්න
       defaults:
         autofollow: ඔබගේ ගිණුම අනුගමනය කිරීමට ආරාධනා කරන්න
-        avatar: අවතාරය
+        avatar: පැතිකඩ ඡායාරූපය
         chosen_languages: භාෂා පෙරන්න
         confirm_new_password: නව මුරපදය තහවුරු කරන්න
         confirm_password: මුරපදය තහවුරු කරන්න
@@ -148,7 +147,6 @@ si:
         setting_default_privacy: ලිපියේ රහස්‍යතාව
         setting_default_sensitive: සෑමවිට මාධ්‍ය සංවේදී බව සලකුණු කරන්න
         setting_delete_modal: ලිපියක් මැකීමට පෙර ඒ ගැන විමසන්න
-        setting_disable_swiping: ස්වයිප් චලන අක්‍රීය කරන්න
         setting_display_media: මාධ්ය සංදර්ශකය
         setting_display_media_default: පෙරනිමි
         setting_display_media_hide_all: සියල්ල සඟවන්න
@@ -156,7 +154,7 @@ si:
         setting_expand_spoilers: අන්තර්ගත අවවාද සහිත ලිපි සැමවිට දිගහරින්න
         setting_hide_network: ඔබගේ ජාලය සඟවන්න
         setting_reduce_motion: සජීවිකරණවල චලනය අඩු කරන්න
-        setting_system_font_ui: පද්ධතියේ පෙරනිමි අකුරු භාවිතා කරන්න
+        setting_system_font_ui: පද්ධතියේ පෙරනිමි රුවකුරු භාවිතා කරන්න
         setting_theme: අඩවියේ තේමාව
         setting_trends: අද ප්‍රවණතා පෙන්වන්න
         setting_unfollow_modal: යමෙකු අනුගමනය නොකිරීමට පෙර තහවුරු කිරීමේ සංවාදය පෙන්වන්න
@@ -175,8 +173,8 @@ si:
         name: හෑෂ් ටැගය
       filters:
         actions:
-          hide: සම්පූර්ණයෙන්ම සඟවන්න
-          warn: අනතුරු ඇඟවීමක් සමඟ සඟවන්න
+          hide: මුළුමනින්ම සඟවන්න
+          warn: අවවාදයක් සහිතව සඟවන්න
       form_admin_settings:
         custom_css: අභිරුචි CSS
         profile_directory: පැතිකඩ නාමාවලිය සබල කරන්න
@@ -184,8 +182,6 @@ si:
         site_title: සේවාදායකයේ නම
         theme: පෙරනිමි තේමාව
       interactions:
-        must_be_follower: අනුගාමිකයින් නොවන අයගේ දැනුම්දීම් අවහිර කරන්න
-        must_be_following: ඔබ අනුගමනය නොකරන පුද්ගලයින්ගේ දැනුම්දීම් අවහිර කරන්න
         must_be_following_dm: ඔබ නොදන්නා අයගෙන් සෘජු පණිවිඩ ලැබීම අවහිර කරන්න
       invite:
         comment: අදහස
@@ -201,12 +197,9 @@ si:
       notification_emails:
         digest: digest ඊමේල් යවන්න
         favourite: යමෙක් ඔබගේ ලිපියට ප්‍රිය කළා
-        follow: කවුරුහරි ඔබව අනුගමනය කළා
-        follow_request: කවුරුහරි ඔබව අනුගමනය කරන ලෙස ඉල්ලා සිටියේය
-        mention: කවුරුහරි ඔබව සඳහන් කළා
-        pending_account: නව ගිණුම සමාලෝචනය අවශ්‍යයි
-        report: නව වාර්තාවක් ඉදිරිපත් කෙරේ
-        trending_tag: නව ප්‍රවණතාවයට සමාලෝචනයක් අවශ්‍ය වේ
+        follow: යමෙක් ඔබව අනුගමනය කළා
+        mention: යමෙක් ඔබව සඳහන් කළා
+        report: නව වාර්තාවක් යොමු කර ඇත
       rule:
         text: නීතිය
       tag:
