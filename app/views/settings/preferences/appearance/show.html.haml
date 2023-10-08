@@ -7,8 +7,7 @@
 = simple_form_for current_user, url: settings_preferences_appearance_path, html: { method: :put, id: 'edit_user' } do |f|
   .fields-row
     .fields-group.fields-row__column.fields-row__column-6
-      = f.input :locale, collection: I18n.available_locales, wrapper: :with_label, include_blank: false, label_method: ->(locale) { native_locale_name(locale) }, selected: I18n.locale, hint: false
-
+      = f.input :locale, collection: ui_languages, wrapper: :with_label, include_blank: false, label_method: ->(locale) { native_locale_name(locale) }, selected: I18n.locale, hint: false
     .fields-group.fields-row__column.fields-row__column-6
       = f.input :time_zone, wrapper: :with_label, collection: ActiveSupport::TimeZone.all.map { |tz| ["(GMT#{tz.formatted_offset}) #{tz.name}", tz.tzinfo.name] }, hint: false
 
