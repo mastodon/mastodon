@@ -52,17 +52,16 @@ COPY ./streaming /opt/mastodon/streaming
 
 RUN \
   rm /usr/local/bin/yarn*; \
+  corepack enable; \
   # Configure Corepack
   if [ -e .yarnrc.yml ]; then \
     # Yarn 3 detected
-    corepack enable; \
+    corepack prepare --activate; \
   elif [ -e pnpm-lock.yaml ]; then \
     # NPM detected
-    corepack enable; \
     corepack prepare --activate; \
   else \
     # Yarn 1 detected
-  	corepack enable; \
     yarn set version classic; \
   fi;
 
