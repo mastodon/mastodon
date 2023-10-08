@@ -76,7 +76,7 @@ fi:
       inbox_url: Saapuvan postilaatikon osoite
       invite_request_text: Syitä liittymiseen
       invited_by: Kutsuja
-      ip: IP
+      ip: IP-osoite
       joined: Liittynyt
       location:
         all: Kaikki
@@ -736,10 +736,10 @@ fi:
         rules_hint: On olemassa erityinen alue sääntöjä, joita käyttäjien odotetaan noudattavan.
         title: Tietoja
       appearance:
-        preamble: Muokkaa Mastodonin web-käyttöliittymää.
+        preamble: Mukauta Mastodonin verkkokäyttöliittymää.
         title: Ulkoasu
       branding:
-        preamble: Palvelimesi brändäys erottaa sen muista verkon palvelimista. Nämä tiedot voivat näkyä monissa eri ympäristöissä, kuten Mastodonin web-käyttöliittymässä, natiivisovelluksissa, linkkien esikatseluissa muilla sivustoilla, viestintäsovelluksissa ja niin edelleen. Siksi nämä tiedot kannattaa pitää selkeinä, lyhyinä ja ytimekkäinä.
+        preamble: Palvelimesi brändäys erottaa sen muista verkon palvelimista. Nämä tiedot voivat näkyä monissa eri ympäristöissä, kuten Mastodonin verkkokäyttöliittymässä, natiivisovelluksissa, linkkien esikatseluissa muilla sivustoilla, viestintäsovelluksissa ja niin edelleen. Siksi nämä tiedot kannattaa pitää selkeinä, lyhyinä ja ytimekkäinä.
         title: Brändäys
       captcha_enabled:
         desc_html: Tämä perustuu ulkoisiin skripteihin hCaptchasta, mikä voi olla turvallisuus- ja yksityisyysongelma. Lisäksi <strong>tämä voi tehdä rekisteröinnin ihmisille huomattavasti (erityisesti vammaisten) helpommaksi</strong>. Harkitse vaihtoehtoisia toimenpiteitä, kuten hyväksymisperusteista tai kutsupohjaista rekisteröintiä.
@@ -853,7 +853,7 @@ fi:
         version_comparison: Elasticsearch %{running_version} on käynnissä, kun %{required_version} vaaditaan
       rules_check:
         action: Hallitse palvelimen sääntöjä
-        message_html: Et ole määrittänyt mitään palvelimen sääntöä.
+        message_html: Et ole määrittänyt lainkaan palvelimen sääntöjä.
       sidekiq_process_check:
         message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
       software_version_critical_check:
@@ -864,7 +864,7 @@ fi:
         message_html: Mastodonin virhekorjauspäivitys on saatavilla.
       upload_check_privacy_error:
         action: Katso täältä lisätietoja
-        message_html: "<strong>Verkkopalvelimesi on määritetty virheellisesti, ja käyttäjiesi yksityisyys on vaarassa.</strong>"
+        message_html: "<strong>Verkkopalvelimesi on määritetty väärin. Käyttäjiesi yksityisyys on vaarassa.</strong>"
       upload_check_privacy_error_object_storage:
         action: Katso täältä lisätietoja
         message_html: "<strong>Objektivarastosi on määritetty virheellisesti, ja käyttäjiesi yksityisyys on vaarassa.</strong>"
@@ -1004,7 +1004,7 @@ fi:
     created_msg: Uusi alias luotiin onnistuneesti. Voit nyt aloittaa siirron vanhasta tilistä.
     deleted_msg: Alias poistettiin onnistuneesti. Siirtyminen tuolta tililtä tähän ei ole enää mahdollista.
     empty: Sinulla ei ole aliaksia.
-    hint_html: Jos haluat siirtyä toisesta tilistä tähän tiliin, voit luoda aliasin, joka on pakollinen, ennen kuin voit siirtää seuraajia vanhasta tilistä tähän tiliin. Tämä toiminto on itsessään <strong>vaaraton ja palautuva</strong>. <strong>Tilin siirtyminen aloitetaan vanhalta tililtä</strong>.
+    hint_html: Jos haluat muuttaa toiselta tililtä tälle tilille, voit luoda tässä aliaksen, mitä vaaditaan ennen kuin voit edetä siirtämään seuraajat vanhalta tililtä tälle tilille. Tänä toiminto on itsessään <strong>vaaraton ja kumottavissa</strong>. <strong>Tilin muuttaminen aloitetaan vanhalta tililtä</strong>.
     remove: Poista aliaksen linkitys
   appearance:
     advanced_web_interface: Edistynyt selainkäyttöliittymä
@@ -1042,7 +1042,7 @@ fi:
     confirmations:
       wrong_email_hint: Jos sähköpostiosoite ei ole oikein, voit muuttaa sen tilin asetuksista.
     delete_account: Poista tili
-    delete_account_html: Jos haluat poistaa tilisi, <a href="%{path}">paina tästä</a>. Poisto on vahvistettava.
+    delete_account_html: Jos haluat poistaa tilisi, voit <a href="%{path}">edetä tästä</a>. Sinua pyydetään vahvistamaan poisto.
     description:
       prefix_invited_by_user: "@%{name} kutsuu sinut liittymään tälle Mastodonin palvelimelle!"
       prefix_sign_up: Liity Mastodoniin tänään!
@@ -1051,13 +1051,13 @@ fi:
     dont_have_your_security_key: Eikö sinulla ole suojausavainta?
     forgot_password: Unohditko salasanasi?
     invalid_reset_password_token: Salasanan palautustunnus on virheellinen tai vanhentunut. Pyydä uusi.
-    link_to_otp: Syötä puhelimesi kaksivaiheinen koodi tai palautuskoodi
+    link_to_otp: Syötä puhelimesi kaksivaiheisen todennuksen koodi tai palautuskoodi
     link_to_webauth: Käytä suojausavaintasi
     log_in_with: Kirjaudu käyttäen
     login: Kirjaudu sisään
     logout: Kirjaudu ulos
     migrate_account: Muuta toiseen tiliin
-    migrate_account_html: Jos haluat ohjata tämän tilin toiseen tiliin, voit <a href="%{path}">asettaa toisen tilin tästä</a>.
+    migrate_account_html: Jos haluat ohjata tämän tilin toiseen, voit <a href="%{path}">asettaa toisen tilin tästä</a>.
     or_log_in_with: Tai käytä kirjautumiseen
     privacy_policy_agreement_html: Olen lukenut ja hyväksynyt <a href="%{privacy_policy_path}" target="_blank">tietosuojakäytännön</a>
     progress:
@@ -1138,7 +1138,7 @@ fi:
     proceed: Poista tili
     success_msg: Tilin poisto onnistui
     warning:
-      before: 'Ennen kuin jatkat, lue nämä huomautukset huolellisesti:'
+      before: 'Ennen kuin etenet, lue nämä huomautukset huolellisesti:'
       caches: Muiden palvelimien välimuistiin tallentamaa sisältöä voi vielä löytyä
       data_removal: Julkaisusi ja muut tietosi poistetaan pysyvästi
       email_change_html: Voit <a href="%{path}">muuttaa sähköpostiosoitettasi</a> poistamatta tiliäsi
@@ -1198,7 +1198,7 @@ fi:
       content: Valitettavasti jokin meni pieleen meidän päässämme.
       title: Sivu ei ole oikein
     '503': Sivua ei voitu näyttää palvelimen väliaikaisen vian vuoksi.
-    noscript_html: Käyttääksesi Mastodon-verkkopalvelua, ota JavaScript käyttöön. Vaihtoehtoisesti voit kokeilla myös jotakin juuri käyttämällesi alustalle kehitettyä Mastodon-<a href="%{apps_path}">sovellusta</a>.
+    noscript_html: Käyttääksesi Mastodonin verkkosovellusta, ota JavaScript käyttöön. Vaihtoehtoisesti voit kokeilla käyttämällesi alustalle kehitettyjä Mastodonin <a href="%{apps_path}">natiivisovelluksia</a>.
   existing_username_validator:
     not_found: paikallista käyttäjää ei löydy kyseisellä käyttäjänimellä
     not_found_multiple: "%{usernames} ei löytynyt"
@@ -1236,7 +1236,7 @@ fi:
       statuses_hint_html: Tämä suodatin koskee yksittäisten julkaisujen valintaa riippumatta siitä, vastaavatko ne alla olevia avainsanoja. <a href="%{path}">Tarkista tai poista julkaisut suodattimesta</a>.
       title: Muokkaa suodatinta
     errors:
-      deprecated_api_multiple_keywords: Näitä parametreja ei voi muuttaa tästä sovelluksesta, koska ne koskevat useampaa kuin yhtä suodattimen avainsanaa. Käytä uudempaa sovellusta tai selainkäyttöliittymää.
+      deprecated_api_multiple_keywords: Näitä parametreja ei voi muuttaa tästä sovelluksesta, koska ne koskevat useampaa kuin yhtä suodattimen avainsanaa. Käytä uudempaa sovellusta tai verkkokäyttöliittymää.
       invalid_context: Ei sisältöä tai se on virheellinen
     index:
       contexts: Suodattimet %{contexts}
@@ -1262,7 +1262,7 @@ fi:
       batch:
         remove: Poista suodattimista
       index:
-        hint: Tämä suodatin koskee yksittäisten julkaisujen valintaa muista kriteereistä riippumatta. Voit lisätä lisää julkaisuja tähän suodattimeen web-käyttöliittymästä.
+        hint: Tämä suodatin koskee yksittäisten julkaisujen valintaa muista kriteereistä riippumatta. Voit lisätä lisää julkaisuja tähän suodattimeen verkkokäyttöliittymästä.
         title: Suodatetut julkaisut
   generic:
     all: Kaikki
@@ -1279,7 +1279,7 @@ fi:
     delete: Poista
     deselect: Poista kaikki valinnat
     none: Ei mitään
-    order_by: Järjestä
+    order_by: Järjestys
     save_changes: Tallenna muutokset
     select_all_matching_items:
       one: Valitse %{count} kohde, joka vastaa hakuasi.
@@ -1373,7 +1373,7 @@ fi:
       limit: Sinulla on enimmäismäärä listoja
   login_activities:
     authentication_methods:
-      otp: kaksivaiheinen todennussovellus
+      otp: kaksivaiheisen todennuksen sovellus
       password: salasana
       sign_in_token: sähköpostin turvakoodi
       webauthn: suojausavaimet
@@ -1415,7 +1415,7 @@ fi:
       on_cooldown: Sinä olet jäähyllä
     followers_count: Seuraajat muuton aikana
     incoming_migrations: Siirtyminen toiselta tililtä
-    incoming_migrations_html: Siirtääksesi toisesta tilistä tähän tiliin, sinun täytyy ensin <a href="%{path}">luoda tilin alias</a>.
+    incoming_migrations_html: Siirtyäksesi toisesta tilistä tähän, sinun täytyy ensin <a href="%{path}">luoda tilin alias</a>.
     moved_msg: Tilisi ohjaa nyt kohteeseen %{acct} ja seuraajiasi siirretään.
     not_redirecting: Tilisi ei ohjaa tällä hetkellä mihinkään muuhun tiliin.
     on_cooldown: Olet siirtänyt tilisi äskettäin. Tämä toiminto tulee saataville uudelleen %{count} päivän kuluttua.
@@ -1426,13 +1426,13 @@ fi:
     set_redirect: Aseta uudelleenohjaus
     warning:
       backreference_required: Uusi tili on ensin määritettävä viittaamaan tähän tiliin
-      before: 'Ennen jatkamista, lue nämä huomautukset huolellisesti:'
-      cooldown: Muuton jälkeen on odotusaika, jonka aikana et pysty enää liikkumaan
-      disabled_account: Nykyinen tilisi ei ole täysin käytettävissä jälkikäteen. Sinulla on kuitenkin pääsy tietojen vientiin ja uudelleenaktivointiin.
+      before: 'Ennen kuin etenet, lue nämä huomautukset huolellisesti:'
+      cooldown: Muuton jälkeen on odotusaika, jonka aikana et pysty enää muuttamaan
+      disabled_account: Nykyinen tilisi ei ole täysin käytettävissä tämän jälkeen. Sinulla on kuitenkin pääsy tietojen vientiin ja uudelleenaktivointiin.
       followers: Tämä toiminto siirtää kaikki seuraajat nykyisestä tilistä uudelle tilille
-      only_redirect_html: Vaihtoehtoisesti voit <a href="%{path}">asettaa vain uudelleenohjauksen profiiliisi</a>.
+      only_redirect_html: Vaihtoehtoisesti voit <a href="%{path}">asettaa vain ohjauksen profiiliisi</a>.
       other_data: Muita tietoja ei siirretä automaattisesti
-      redirect: Nykyinen tilisi profiili päivitetään, ohjataan uudelleen ja jätetään pois hausta
+      redirect: Nykyisen tilisi profiili päivitetään ohjaushuomautuksella ja suljetaan pois hauista
   moderation:
     title: Valvonta
   move_handler:
@@ -1492,7 +1492,7 @@ fi:
           trillion: B
   otp_authentication:
     code_hint: Anna todennussovelluksen luoma koodi vahvistaaksesi
-    description_html: Jos otat käyttöön <strong>kaksivaiheisen todentamisen</strong>, käyttämällä todennussovellusta, kirjautumiseen vaaditaan puhelin, jolla voidaan luoda kirjautumistunnuksia.
+    description_html: Jos otat <strong>kaksivaiheisen todennuksen</strong> käyttöön käyttämällä todennussovellusta, kirjautumiseen vaaditaan puhelin, jolla voidaan luoda kirjautumistunnuksia.
     enable: Ota käyttöön
     instructions_html: "<strong>Lue tämä QR-koodi puhelimen Google Authenticator- tai vastaavalla TOTP-sovelluksella</strong>. Sen jälkeen sovellus luo tunnuksia, joita tarvitset kun kirjaudut sisään."
     manual_instructions: 'Jos et voi lukea QR-koodia ja haluat syöttää sen käsin, tässä on salainen koodi tekstinä:'
@@ -1547,10 +1547,10 @@ fi:
     following: Seuratut
     invited: Kutsutut
     last_active: Viimeksi aktiivinen
-    most_recent: Viimeisin
-    moved: Muuttanut
+    most_recent: Viimeisimmät
+    moved: Muuttaneet
     mutual: Molemmat
-    primary: Ensisijainen
+    primary: Ensisijaiset
     relationship: Suhde
     remove_selected_domains: Poista kaikki seuraajat valituista verkkotunnuksista
     remove_selected_followers: Poista valitut seuraajat
@@ -1595,7 +1595,7 @@ fi:
       weibo: Weibo
     current_session: Nykyinen istunto
     description: "%{browser} alustalla %{platform}"
-    explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneet Mastodon-tilillesi.
+    explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneena Mastodon-tilillesi.
     ip: IP-osoite
     platforms:
       adobe_air: Adobe AIR
@@ -1636,7 +1636,7 @@ fi:
     relationships: Seuratut ja seuraajat
     statuses_cleanup: Autom. julkaisujen poisto
     strikes: Valvontavaroitukset
-    two_factor_authentication: Kaksivaiheinen todentaminen
+    two_factor_authentication: Kaksivaiheinen todennus
     webauthn_authentication: Suojausavaimet
   statuses:
     attached:
@@ -1681,7 +1681,7 @@ fi:
     title: "%{name}: ”%{quote}”"
     visibilities:
       direct: Suoraan
-      private: Vain seuraajille
+      private: Vain seuraajat
       private_long: Näytä vain seuraajille
       public: Julkinen
       public_long: Kaikki voivat nähdä
@@ -1694,7 +1694,7 @@ fi:
     explanation: Koska julkaisujen poistaminen on raskas toimi, se tapahtuu hitaasti ajan mittaan, kun palvelin ei ole muutoin ruuhkainen. Siksi viestejäsi voi poistua vasta tovi sen jälkeen, kun ne ovat saavuttaneet ikärajan.
     ignore_favs: Ohita suosikit
     ignore_reblogs: Ohita tehostukset
-    interaction_exceptions: Poikkeukset, jotka perustuvat vuorovaikutukseen
+    interaction_exceptions: Vuorovaikutuksiin perustuvat poikkeukset
     interaction_exceptions_explanation: Huomaa, ettei julkaisujen poistumisesta ole varmuutta, jos ne alittavat suosikki- tai tehostusrajan sen jälkeen kun ne on kerran ylitetty.
     keep_direct: Säilytä yksityisviestit
     keep_direct_hint: Ei poista yksityisviestejäsi
@@ -1703,7 +1703,7 @@ fi:
     keep_pinned: Säilytä kiinnitetyt julkaisut
     keep_pinned_hint: Ei poista kiinnitettyjä julkaisujasi
     keep_polls: Säilytä äänestykset
-    keep_polls_hint: Ei poista yhtäkään äänestystä
+    keep_polls_hint: Ei poista äänestyksiäsi
     keep_self_bookmark: Säilytä kirjanmerkkeihin lisäämäsi julkaisut
     keep_self_bookmark_hint: Ei poista julkaisujasi, jos olet lisännyt ne kirjanmerkkeihin
     keep_self_fav: Säilytä suosikkeihin lisäämäsi julkaisut
@@ -1745,16 +1745,16 @@ fi:
       too_many_requests: Käännöspalvelulle on hiljattain esitetty liian monta pyyntöä.
   two_factor_authentication:
     add: Lisää
-    disable: Poista käytöstä
+    disable: Poista 2FA käytöstä
     disabled_success: Kaksivaiheinen todennus on poistettu käytöstä
     edit: Muokkaa
-    enabled: Kaksivaiheinen todentaminen käytössä
-    enabled_success: Kaksivaiheisen todentamisen käyttöönotto onnistui
+    enabled: Kaksivaiheinen todennus käytössä
+    enabled_success: Kaksivaiheisen todennuksen käyttöönotto onnistui
     generate_recovery_codes: Luo palautuskoodit
-    lost_recovery_codes: Palautuskoodien avulla voit käyttää tiliä, jos menetät puhelimesi. Jos olet hukannut palautuskoodit, voit luoda uudet tästä. Vanhat palautuskoodit poistetaan käytöstä.
-    methods: Kaksivaiheisen tunnistautumisen menetelmät
+    lost_recovery_codes: Palautuskoodien avulla voit käyttää tiliä, jos menetät puhelimesi. Jos olet hukannut palautuskoodisi, voit luoda uudet tästä. Vanhat palautuskoodit poistetaan käytöstä.
+    methods: Kaksivaiheisen todennuksen menetelmät
     otp: Todennussovellus
-    recovery_codes: Varapalautuskoodit
+    recovery_codes: Ota palautuskoodit talteen
     recovery_codes_regenerated: Uusien palautuskoodien luonti onnistui
     recovery_instructions_html: Jos menetät puhelimesi, voit kirjautua tilillesi jollakin alla olevista palautuskoodeista. <strong>Pidä palautuskoodit hyvässä tallessa</strong>. Voit esimerkiksi tulostaa ne ja säilyttää muiden tärkeiden papereiden joukossa.
     webauthn: Suojausavaimet
@@ -1776,7 +1776,7 @@ fi:
       change_password: vaihda salasanasi
       details: 'Tässä on tiedot kirjautumisesta:'
       explanation: Olemme havainneet kirjautumisen tilillesi uudesta IP-osoitteesta.
-      further_actions_html: Jos tämä et ollut sinä, suosittelemme että %{action} välittömästi ja ota kaksivaiheinen todennus käyttöön säilyttääksesi tilisi turvallisena.
+      further_actions_html: Jos tämä et ollut sinä, suosittelemme, että %{action} heti ja otat käyttöön kaksivaiheisen todennuksen pitääksesi tilisi turvassa.
       subject: Tiliäsi on käytetty uudesta IP-osoitteesta
       title: Uusi kirjautuminen
     warning:
@@ -1828,26 +1828,26 @@ fi:
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut tilillä:'
   verification:
-    extra_instructions_html: <strong>Vinkki:</strong> Tämä linkitys verkkosivustollasi voidaan toteuttaa myös näkymättömänä. Tärkeä osuus on <code>rel="me"</code> -määre, jolla ehkäistään valeprofiilikäyttötarkoituksia sivustoilla, joiden sisältö perustuu käyttäjiensä julkaisuihin. Voit siis käyttää linkkiviittauselementtiä <code>link</code> HTML-lähdekoodin otsakeosassa (head) sen sijaan, että käyttäisit näkyvää hyperlinkkielementtiä <code>a</code>. HTML-lähdekoodin tulee tuolta osin kuitenkin olla JavaScriptistä riippumatonta.
+    extra_instructions_html: <strong>Vinkki:</strong> Verkkosivustollasi oleva linkki voi olla myös näkymätön. Olennainen osuus on <code>rel="me"</code>, joka estää toiseksi henkilöksi tekeytymisen verkkosivustoilla, joilla on käyttäjien luomaa sisältöä. Voit käyttää jopa <code>link</code>-elementtiä sivun <code>head</code>-osassa elementin <code>a</code> sijaan, mutta HTML:n pitää olla käytettävissä ilman JavaScript-koodin suorittamista.
     here_is_how: Näin voit tehdä sen
-    hint_html: "<strong>Mastodonissa henkilöllisyyden vahventaminen on jokaisen käyttäjän ulottuvilla.</strong> Tämä perustuu avoimiin standardeihin, maksuttomasti nyt ja aina. Kaikki mitä tarvitset on henkilökohtainen verkkosivusto, jonka avulla sinut voidaan tunnistaa. Kun Mastodon-profiilistasi on linkki kyseiselle verkkosivustollesi, ja sieltä löytyy vastaviittaus tai -linkitys profiiliisi, näkyy profiilissasi vahvistustunniste."
-    instructions_html: Kopioi ja liitä alla oleva koodi verkkosivusi HTML-lähdekoodiin. Lisää sitten verkkosivustosi osoite johonkin ylimääräisistä kentistä profiiliasetuksissa, "Muokkaa profiilia" -välilehdestä, ja tallenna muutokset.
+    hint_html: "<strong>Henkilöllisyyden vahvistaminen on Mastodonissa jokaisen käyttäjän ulottuvilla.</strong> Se perustuu avoimiin standardeihin ja on maksutonta nyt ja aina. Tarvitset vain henkilökohtaisen verkkosivuston, jonka perusteella sinut voidaan tunnistaa. Kun teet linkin tuolle verkkosivulle profiilistasi, tarkistamme, että verkkosivustolla on linkki takaisin profiiliisi, ja näytämme profiilissasi visuaalisen ilmaisimen."
+    instructions_html: Kopioi ja liitä alla oleva koodi verkkosivustosi HTML-lähdekoodiin. Lisää sitten verkkosivustosi osoite johonkin profiilisi lisäkentistä ”Muokkaa profiilia” -välilehdellä ja tallenna muutokset.
     verification: Vahvistus
     verified_links: Vahvistetut linkkisi
   webauthn_credentials:
     add: Lisää uusi suojausavain
     create:
-      error: Suojausavaimen lisäämisessä tapahtui ongelma. Yritä uudelleen.
-      success: Sinun suojausavaimen lisääminen onnistui.
+      error: Suojausavaimen lisäämisessä oli ongelma. Yritä uudelleen.
+      success: Suojausavaimesi lisääminen onnistui.
     delete: Poista
     delete_confirmation: Haluatko varmasti poistaa tämän suojausavaimen?
     description_html: Jos otat <strong>suojausavaimen todennuksen</strong> käyttöön, kirjautuminen edellyttää jonkin suojausavaimen käyttämistä.
     destroy:
-      error: Suojausavaimen poistamisessa tapahtui ongelma. Yritä uudelleen.
-      success: Sinun suojausavaimen poistaminen onnistui.
+      error: Suojausavaimen poistamisessa oli ongelma. Yritä uudelleen.
+      success: Suojausavaimesi poistaminen onnistui.
     invalid_credential: Virheellinen suojausavain
-    nickname_hint: Anna nimimerkki uudelle suojausavaimelle
+    nickname_hint: Anna uuden suojausaivaimesi lempinimi
     not_enabled: Et ole vielä ottanut käyttöön WebAuthn-ohjelmaa
     not_supported: Tämä selain ei tue suojausavaimia
-    otp_required: Jos haluat käyttää suojausavaimia, ota ensin käyttöön kaksivaiheinen todennus.
+    otp_required: Jos haluat käyttää suojausavaimia, ota ensin kaksivaiheinen todennus käyttöön.
     registered_on: Rekisteröity %{date}
