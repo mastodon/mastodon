@@ -30,7 +30,7 @@ export default class Column extends PureComponent {
       if (scrollable.classList.contains('scrollable--flex')) {
         scrollable = scrollable?.querySelector('.scrollable') || scrollable;
       }
-   }
+    }
 
     if (!scrollable) {
       return;

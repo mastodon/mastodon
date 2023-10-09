@@ -221,7 +221,7 @@ const Firehose = ({ feedType, multiColumn }) => {
       </Helmet>
     </Column>
   );
-}
+};
 
 Firehose.propTypes = {
   multiColumn: PropTypes.bool,
