@@ -80,7 +80,7 @@ class Results extends PureComponent {
     }
 
     return null;
-  };
+  }
 
   handleSelectAll = () => {
     const { submittedType, dispatch } = this.props;
@@ -116,7 +116,7 @@ class Results extends PureComponent {
     }
 
     this.setState({ type: 'hashtags' });
-  }
+  };
 
   handleSelectStatuses = () => {
     const { submittedType, dispatch } = this.props;
@@ -128,7 +128,7 @@ class Results extends PureComponent {
     }
 
     this.setState({ type: 'statuses' });
-  }
+  };
 
   handleLoadMoreAccounts = () => this._loadMore('accounts');
   handleLoadMoreStatuses = () => this._loadMore('statuses');

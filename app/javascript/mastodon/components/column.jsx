@@ -22,7 +22,7 @@ export default class Column extends PureComponent {
       scrollable = document.scrollingElement;
     } else {
       scrollable = this.node.querySelector('.scrollable');
-   }
+    }
 
     if (!scrollable) {
       return;

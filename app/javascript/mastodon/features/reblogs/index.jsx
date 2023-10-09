@@ -45,7 +45,7 @@ class Reblogs extends ImmutablePureComponent {
     if (!this.props.accountIds) {
       this.props.dispatch(fetchReblogs(this.props.params.statusId));
     }
-  };
+  }
 
   handleRefresh = () => {
     this.props.dispatch(fetchReblogs(this.props.params.statusId));
