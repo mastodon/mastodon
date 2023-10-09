@@ -220,6 +220,8 @@ class Status extends ImmutablePureComponent {
 
   componentDidMount () {
     attachFullscreenListener(this.onFullScreenChange);
+
+    this._scrollStatusIntoView();
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
@@ -579,10 +581,10 @@ class Status extends ImmutablePureComponent {
     this.node = c;
   };
 
-  componentDidUpdate (prevProps) {
-    const { status, ancestorsIds, multiColumn } = this.props;
+  _scrollStatusIntoView () {
+    const { status, multiColumn } = this.props;
 
-    if (status && (ancestorsIds.size > prevProps.ancestorsIds.size || prevProps.status?.get('id') !== status.get('id'))) {
+    if (status) {
       window.requestAnimationFrame(() => {
         this.node?.querySelector('.detailed-status__wrapper')?.scrollIntoView(true);
 
@@ -596,6 +598,14 @@ class Status extends ImmutablePureComponent {
           }
         }
       });
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    const { status, ancestorsIds } = this.props;
+
+    if (status && (ancestorsIds.size > prevProps.ancestorsIds.size || prevProps.status?.get('id') !== status.get('id'))) {
+      this._scrollStatusIntoView();
     }
   }
 
