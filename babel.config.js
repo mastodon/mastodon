@@ -18,29 +18,14 @@ module.exports = (api) => {
     ],
   };
 
-  const config = {
-    presets: [
-      '@babel/preset-typescript',
-      ['@babel/react', reactOptions],
-      ['@babel/env', envOptions],
-    ],
-    plugins: [
-      ['formatjs'],
-      'preval',
-    ],
-    overrides: [
-      {
-        test: /tesseract\.js/,
-        presets: [
-          ['@babel/env', { ...envOptions, modules: 'commonjs' }],
-        ],
-      },
-    ],
-  };
+  const plugins = [
+    ['formatjs'],
+    'preval',
+  ];
 
   switch (env) {
   case 'production':
-    config.plugins.push(...[
+    plugins.push(...[
       'lodash',
       [
         'transform-react-remove-prop-types',
@@ -63,14 +48,29 @@ module.exports = (api) => {
       ],
     ]);
     break;
+
   case 'development':
     reactOptions.development = true;
     envOptions.debug = true;
     break;
-  case 'test':
-    envOptions.modules = 'commonjs';
-    break;
   }
+
+  const config = {
+    presets: [
+      '@babel/preset-typescript',
+      ['@babel/react', reactOptions],
+      ['@babel/env', envOptions],
+    ],
+    plugins,
+    overrides: [
+      {
+        test: /tesseract\.js/,
+        presets: [
+          ['@babel/env', { ...envOptions, modules: 'commonjs' }],
+        ],
+      },
+    ],
+  };
 
   return config;
 };
