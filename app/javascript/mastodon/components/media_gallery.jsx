@@ -47,12 +47,12 @@ class Item extends PureComponent {
 
   handlePlay = (e) => {
     e.target.play();
-  }
+  };
 
   handlePause = (e) => {
     e.target.pause();
     e.target.currentTime = 0;
-  }
+  };
 
   handleMouseEnter = (e) => {
     if (this.hoverToPlay()) {
@@ -80,7 +80,7 @@ class Item extends PureComponent {
 
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       if (this.hoverToPlay()) {
-        this.handlePause(e)
+        this.handlePause(e);
       }
       e.preventDefault();
       onClick(index);
@@ -90,7 +90,7 @@ class Item extends PureComponent {
   };
 
   handleKeyPress = (e) => {
-    const child = e.target.children[0]
+    const child = e.target.children[0];
     if (e.code === "Space" || e.code === "Enter"){
       this.keyPlay = !this.keyPlay;
       if (this.keyPlay) {
@@ -102,7 +102,7 @@ class Item extends PureComponent {
       this.keyPlay = false;
       this.handlePause({target: child});
     }
-  }
+  };
 
   handleImageLoad = () => {
     this.setState({ loaded: true });
