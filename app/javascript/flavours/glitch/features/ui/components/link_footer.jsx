@@ -100,7 +100,7 @@ class LinkFooter extends PureComponent {
           {DividingCircle}
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
           {DividingCircle}
-          v{version}
+          <span class='version'>v{version}</span>
         </p>
       </div>
     );

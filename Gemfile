@@ -170,12 +170,6 @@ group :development do
   # Linter CLI for HAML files
   gem 'haml_lint', require: false
 
-  # Deployment automation
-  gem 'capistrano', '~> 3.17'
-  gem 'capistrano-rails', '~> 1.6'
-  gem 'capistrano-rbenv', '~> 2.2'
-  gem 'capistrano-yarn', '~> 2.0'
-
   # Validate missing i18n keys
   gem 'i18n-tasks', '~> 1.0', require: false
 end

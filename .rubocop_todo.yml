@@ -14,45 +14,11 @@ Bundler/OrderedGems:
     - 'Gemfile'
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: with_first_argument, with_fixed_indentation
-Layout/ArgumentAlignment:
-  Exclude:
-    - 'config/initializers/cors.rb'
-    - 'config/initializers/session_store.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowMultipleStyles, EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
-# SupportedHashRocketStyles: key, separator, table
-# SupportedColonStyles: key, separator, table
-# SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
-Layout/HashAlignment:
-  Exclude:
-    - 'config/environments/production.rb'
-    - 'config/initializers/rack_attack.rb'
-    - 'config/routes.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowDoxygenCommentStyle, AllowGemfileRubyComment.
-Layout/LeadingCommentSpace:
-  Exclude:
-    - 'config/application.rb'
-    - 'config/initializers/3_omniauth.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: Max, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
 # URISchemes: http, https
 Layout/LineLength:
   Exclude:
     - 'app/models/account.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: require_no_space, require_space
-Layout/SpaceInLambdaLiteral:
-  Exclude:
-    - 'config/environments/production.rb'
-    - 'config/initializers/content_security_policy.rb'
 
 # Configuration parameters: AllowComments, AllowEmptyLambdas.
 Lint/EmptyBlock:
@@ -290,10 +256,6 @@ RSpec/MultipleMemoizedHelpers:
 # Configuration parameters: AllowedGroups.
 RSpec/NestedGroups:
   Max: 6
-
-RSpec/PendingWithoutReason:
-  Exclude:
-    - 'spec/models/account_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Rails/ApplicationController:
@@ -844,6 +806,5 @@ Style/TrailingCommaInHashLiteral:
 Style/WordArray:
   Exclude:
     - 'app/helpers/languages_helper.rb'
-    - 'config/initializers/cors.rb'
     - 'spec/controllers/settings/imports_controller_spec.rb'
     - 'spec/models/form/import_spec.rb'

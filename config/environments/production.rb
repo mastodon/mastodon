@@ -44,7 +44,7 @@ Rails.application.configure do
   config.force_ssl = true
   config.ssl_options = {
     redirect: {
-      exclude: -> request { request.path.start_with?('/health') || request.headers["Host"].end_with?('.onion') || request.headers["Host"].end_with?('.i2p') }
+      exclude: ->request { request.path.start_with?('/health') || request.headers["Host"].end_with?('.onion') || request.headers["Host"].end_with?('.i2p') }
     }
   }
 
@@ -148,12 +148,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
 
   config.action_dispatch.default_headers = {
-    'Server'                 => 'Mastodon',
-    'X-Frame-Options'        => 'DENY',
+    'Server' => 'Mastodon',
+    'X-Frame-Options' => 'DENY',
     'X-Content-Type-Options' => 'nosniff',
-    'X-XSS-Protection'       => '0',
-    'X-Clacks-Overhead'      => 'GNU Natalie Nguyen',
-    'Referrer-Policy'        => 'same-origin',
+    'X-XSS-Protection' => '0',
+    'X-Clacks-Overhead' => 'GNU Natalie Nguyen',
+    'Referrer-Policy' => 'same-origin',
   }
 
   config.x.otp_secret = ENV.fetch('OTP_SECRET')

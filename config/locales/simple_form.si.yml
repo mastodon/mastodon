@@ -7,12 +7,10 @@ si:
       account_migration:
         acct: ඔබට යාමට අවශ්‍ය ගිණුමේ username@domain සඳහන් කරන්න
       account_warning_preset:
-        text: ඔබට URL, හෑෂ් ටැග් සහ සඳහන් කිරීම් වැනි පෝස්ට් සින්ටැක්ස් භාවිතා කළ හැක
+        text: ඔබට ඒ.ස.නි., පූරක අනන්‍යන සහ සැඳහුම් වැනි ලිපි පද ගැළපුම් භාවිතා කිරීමට හැකිය
         title: විකල්ප. ලබන්නාට නොපෙනේ
       admin_account_action:
-        include_statuses: මධ්‍යස්ථ ක්‍රියාව හෝ අනතුරු ඇඟවීමට හේතු වී ඇත්තේ කුමන පළ කිරීම්දැයි පරිශීලකයා දකිනු ඇත
         send_email_notification: පරිශීලකයාට ඔවුන්ගේ ගිණුම සමඟ සිදු වූ දේ පිළිබඳ පැහැදිලි කිරීමක් ලැබෙනු ඇත
-        text_html: විකල්ප. ඔබට post syntax භාවිතා කළ හැක. කාලය ඉතිරි කර ගැනීම සඳහා ඔබට අනතුරු ඇඟවීමේ</a> <a href="%{path}">කළ හැක
         type_html: "<strong>%{acct}</strong>සමඟ කළ යුතු දේ තෝරන්න"
         types:
           disable: පරිශීලකයාගේ ගිණුම භාවිතා කිරීමෙන් වළක්වන්න, නමුත් ඔවුන්ගේ අන්තර්ගතය මකා දැමීම හෝ සඟවන්න එපා.
@@ -24,7 +22,7 @@ si:
         ends_at: විකල්ප. මෙම අවස්ථාවේදී නිවේදනය ස්වයංක්‍රීයව ප්‍රකාශනය කිරීමෙන් ඉවත් වනු ඇත
         scheduled_at: නිවේදනය වහාම ප්‍රකාශයට පත් කිරීමට හිස්ව තබන්න
         starts_at: විකල්ප. ඔබගේ නිවේදනය නිශ්චිත කාල පරාසයකට බැඳී ඇත්නම්
-        text: ඔබට post syntax භාවිතා කළ හැක. කරුණාකර පරිශීලකයාගේ තිරය මත නිවේදනය ලබා ගන්නා ඉඩ ගැන සැලකිලිමත් වන්න
+        text: ඔබට ලිපි පද ගැළපුම් භාවිතා කිරීමට හැකිය. කරුණාකර නිවේදනයෙන් පරිශ්‍රීලකයින්ගේ තිරයේ ඉඩ කෙතරම් ඇහිරෙනවා ද පිළිබඳව සැලකිලිමත් වන්න
       appeal:
         text: ඔබට වර්ජනයකට අභියාචනා කළ හැක්කේ එක් වරක් පමණි
       defaults:
@@ -38,17 +36,16 @@ si:
         email: ඔබට තහවුරු කිරීමේ විද්‍යුත් තැපෑලක් එවනු ලැබේ
         header: PNG, GIF හෝ JPG. වැඩිම %{size}. %{dimensions}px දක්වා අඩු කරනු ඇත
         inbox_url: ඔබට භාවිතා කිරීමට අවශ්‍ය රිලේ හි මුල් පිටුවෙන් URL එක පිටපත් කරන්න
-        irreversible: පෙරහන පසුව ඉවත් කළද, පෙරූ පළ කිරීම් ආපසු හැරවිය නොහැකි ලෙස අතුරුදහන් වනු ඇත
-        locale: පරිශීලක අතුරුමුහුණතේ භාෂාව, ඊමේල් සහ තල්ලු දැනුම්දීම්
+        irreversible: පෙරහන පසුව ඉවත් කළ ද, පෙරූ ලිපි අප්‍රතිවර්ත්‍යව අතුරුදහන් වනු ඇත
+        locale: වි-තැපැල්, තල්ලු දැනුම්දීම් සහ පරිශ්‍රීලක අතුරුමුහුණතේ භාෂාව
         password: අවම වශයෙන් අක්ෂර 8 ක් භාවිතා කරන්න
-        phrase: පළ කිරීමක පෙළ හෝ අන්තර්ගත අනතුරු ඇඟවීම නොසලකා ගැලපේ
+        phrase: ලිපිවල පෙළ හෝ අන්තර්ගත අවවාද නොසලකා ගැළපෙනු ඇත
         scopes: යෙදුමට ප්‍රවේශ වීමට ඉඩ දෙන්නේ කුමන API වලටද. ඔබ ඉහළ මට්ටමේ විෂය පථයක් තෝරා ගන්නේ නම්, ඔබට තනි ඒවා තෝරා ගැනීමට අවශ්‍ය නොවේ.
-        setting_aggregate_reblogs: මෑතකදී බූස්ට් කරන ලද පළ කිරීම් සඳහා නව බූස්ට් පෙන්වන්න එපා (අලුතින් ලැබුණු බූස්ට් වලට පමණක් බලපායි)
-        setting_always_send_emails: සාමාන්‍යයෙන් ඔබ Mastodon සක්‍රියව භාවිතා කරන විට විද්‍යුත් තැපැල් දැනුම්දීම් නොයවනු ඇත
+        setting_always_send_emails: ඔබ නිතර මාස්ටඩන් භාවිතා කරන විට වි-තැපැල් දැනුම්දීම් නොලැබෙයි
         setting_default_sensitive: සංවේදී මාධ්‍ය පෙරනිමියෙන් සඟවා ඇති අතර ක්ලික් කිරීමකින් හෙළිදරව් කළ හැක
-        setting_display_media_default: සංවේදී ලෙස සලකුණු කළ මාධ්‍ය සඟවන්න
-        setting_display_media_hide_all: සෑම විටම මාධ්‍ය සඟවන්න
-        setting_display_media_show_all: සෑම විටම මාධ්‍ය පෙන්වන්න
+        setting_display_media_default: සංවේදී බව සලකුණු කළ මාධ්‍ය සඟවන්න
+        setting_display_media_hide_all: සැමවිට මාධ්‍ය සඟවන්න
+        setting_display_media_show_all: සැමවිට මාධ්‍ය පෙන්වන්න
         setting_use_blurhash: අනුක්‍රමණ සැඟවුණු දෘශ්‍යවල වර්ණ මත පදනම් වන නමුත් ඕනෑම විස්තරයක් අපැහැදිලි කරයි
         setting_use_pending_items: සංග්‍රහය ස්වයංක්‍රීයව අනුචලනය කරනවා වෙනුවට ක්ලික් කිරීමක් පිටුපස කාලරේඛා යාවත්කාලීන සඟවන්න
         whole_word: මූල පදය හෝ වාක්‍ය ඛණ්ඩය අක්ෂරාංක පමණක් වන විට, එය යෙදෙන්නේ එය සම්පූර්ණ වචනයට ගැලපේ නම් පමණි
@@ -58,14 +55,14 @@ si:
         domain: මෙය විද්‍යුත් තැපැල් ලිපිනයේ හෝ එය භාවිතා කරන MX වාර්තාවේ පෙන්වන ඩොමේන් නාමය විය හැක. ලියාපදිංචි වූ පසු ඒවා පරීක්ෂා කරනු ලැබේ.
         with_dns_records: ලබා දී ඇති වසමේ DNS වාර්තා විසඳීමට උත්සාහ කරන අතර ප්‍රතිඵල ද අවහිර කරනු ලැබේ
       filters:
-        action: පළ කිරීමක් පෙරහනට ගැළපෙන විට සිදු කළ යුතු ක්‍රියාව තෝරන්න
+        action: ලිපියක් පෙරහනට ගැළපෙන විට ඉටු විය යුතු ක්‍රියාමාර්ගය තෝරන්න
         actions:
           hide: පෙරහන් කළ අන්තර්ගතය සම්පූර්ණයෙන්ම සඟවන්න, එය නොපවතින ලෙස හැසිරෙන්න
           warn: පෙරහන මාතෘකාව සඳහන් කරන අනතුරු ඇඟවීමක් පිටුපස පෙරූ අන්තර්ගතය සඟවන්න
       form_challenge:
         current_password: ඔබ ආරක්ෂිත ප්‍රදේශයකට ඇතුල් වේ
       imports:
-        data: CSV ගොනුව වෙනත් Mastodon සේවාදායකයකින් අපනයනය කරන ලදී
+        data: CSV ගොනුව වෙනත් මාස්ටඩන් සේවාදායකයකින් නිර්යාත කර ඇත
       invite_request:
         text: මෙය ඔබගේ අයදුම්පත සමාලෝචනය කිරීමට අපට උපකාරී වනු ඇත
       ip_block:
@@ -84,7 +81,7 @@ si:
       tag:
         name: ඔබට අකුරු වල ආවරණය පමණක් වෙනස් කළ හැකිය, උදාහරණයක් ලෙස, එය වඩාත් කියවිය හැකි කිරීමට
       user:
-        chosen_languages: පරීක්ෂා කළ විට, තෝරාගත් භාෂාවලින් පළ කිරීම් පමණක් පොදු කාලරේඛා තුළ සංදර්ශන කෙරේ
+        chosen_languages: සබල නම්, තෝරාගත් භාෂාවල ලිපි පමණක් ප්‍රසිද්ධ කාල රේඛාවේ දිස්වේ
       webhook:
         events: යැවීමට සිදුවීම් තෝරන්න
         url: සිදුවීම් යවනු ලබන ස්ථානය
@@ -99,16 +96,16 @@ si:
         acct: නව ගිණුමේ හැසිරවීම
       account_warning_preset:
         text: පෙර සැකසූ පෙළ
-        title: ශීර්ෂය
+        title: සිරැසිය
       admin_account_action:
-        include_statuses: විද්‍යුත් තැපෑලෙහි වාර්තා කරන ලද පළ කිරීම් ඇතුළත් කරන්න
+        include_statuses: වි-තැපෑලට වාර්තා කරන ලද ලිපි ද ඇතුළත් කරන්න
         send_email_notification: විද්‍යුත් තැපෑලෙන් පරිශීලකයාට දැනුම් දෙන්න
         text: අභිරුචි අනතුරු ඇඟවීම
         type: ක්‍රියාමාර්ගය
         types:
           disable: කැටි කරන්න
           none: අනතුරු ඇඟවීමක් යවන්න
-          sensitive: පවතී
+          sensitive: සංවේදීතාව
           silence: සීමාව
           suspend: අත්හිටුවන්න
         warning_preset_id: අනතුරු ඇඟවීමේ පෙරසිටුවක් භාවිතා කරන්න
@@ -122,13 +119,12 @@ si:
         text: මෙම තීරණය ආපසු හැරවිය යුත්තේ මන්දැයි පැහැදිලි කරන්න
       defaults:
         autofollow: ඔබගේ ගිණුම අනුගමනය කිරීමට ආරාධනා කරන්න
-        avatar: අවතාරය
-        bot: මෙය ස්වයං ක්‍රමලේඛගත ගිණුමකි
-        chosen_languages: භාෂා පෙරහන් කරන්න
-        confirm_new_password: නව මුර පදය තහවුරු කරන්න
-        confirm_password: මුරපදය තහවුරු කර ඇත
-        context: සන්දර්භ පෙරහන් කරන්න
-        current_password: වත්මන් මුර පදය
+        avatar: පැතිකඩ ඡායාරූපය
+        chosen_languages: භාෂා පෙරන්න
+        confirm_new_password: නව මුරපදය තහවුරු කරන්න
+        confirm_password: මුරපදය තහවුරු කරන්න
+        context: සන්දර්භ පෙරන්න
+        current_password: වත්මන් මුරපදය
         data: දත්ත
         display_name: ප්රදර්ශන නාමය
         email: වි-තැපැල් ලිපිනය
@@ -138,39 +134,35 @@ si:
         honeypot: "%{label} (පුරවන්න එපා)"
         inbox_url: රිලේ එන ලිපි URL
         irreversible: සැඟවීම වෙනුවට අතහරින්න
-        locale: අතුරු මුහුණත භාෂාව
+        locale: අතුරු මුහුණතේ භාෂාව
         max_uses: උපරිම භාවිත ගණන
         new_password: නව මුරපදය
-        note: ජෛව
         otp_attempt: ද්වි සාධක කේතය
         password: මුරපදය
         phrase: මූල පදය හෝ වාක්‍ය ඛණ්ඩය
         setting_advanced_layout: උසස් වෙබ් අතුරු මුහුණත සබල කරන්න
-        setting_aggregate_reblogs: කණ්ඩායම් කාලරේඛාව වැඩි කරයි
         setting_always_send_emails: සෑම විටම විද්‍යුත් තැපැල් දැනුම්දීම් යවන්න
         setting_auto_play_gif: සජීවිකරණ GIF ස්වයංක්‍රීයව ධාවනය කරන්න
-        setting_boost_modal: වැඩි කිරීමට පෙර තහවුරු කිරීමේ සංවාදය පෙන්වන්න
-        setting_default_language: පළ කිරීමේ භාෂාව
-        setting_default_privacy: පුද්ගලිකත්වය පළ කිරීම
-        setting_default_sensitive: සෑම විටම මාධ්‍ය සංවේදී ලෙස සලකුණු කරන්න
-        setting_delete_modal: පළ කිරීමක් මැකීමට පෙර තහවුරු කිරීමේ සංවාදය පෙන්වන්න
-        setting_disable_swiping: ස්වයිප් චලන අක්‍රීය කරන්න
+        setting_default_language: ලිපිවල භාෂාව
+        setting_default_privacy: ලිපියේ රහස්‍යතාව
+        setting_default_sensitive: සෑමවිට මාධ්‍ය සංවේදී බව සලකුණු කරන්න
+        setting_delete_modal: ලිපියක් මැකීමට පෙර ඒ ගැන විමසන්න
         setting_display_media: මාධ්ය සංදර්ශකය
-        setting_display_media_default: පෙරනිමිය
+        setting_display_media_default: පෙරනිමි
         setting_display_media_hide_all: සියල්ල සඟවන්න
         setting_display_media_show_all: සියල්ල පෙන්වන්න
-        setting_expand_spoilers: අන්තර්ගත අනතුරු ඇඟවීම් සමඟ සලකුණු කර ඇති පළ කිරීම් සැමවිටම පුළුල් කරන්න
+        setting_expand_spoilers: අන්තර්ගත අවවාද සහිත ලිපි සැමවිට දිගහරින්න
         setting_hide_network: ඔබගේ ජාලය සඟවන්න
         setting_reduce_motion: සජීවිකරණවල චලනය අඩු කරන්න
-        setting_system_font_ui: පද්ධතියේ පෙරනිමි අකුරු භාවිතා කරන්න
+        setting_system_font_ui: පද්ධතියේ පෙරනිමි රුවකුරු භාවිතා කරන්න
         setting_theme: අඩවියේ තේමාව
         setting_trends: අද ප්‍රවණතා පෙන්වන්න
         setting_unfollow_modal: යමෙකු අනුගමනය නොකිරීමට පෙර තහවුරු කිරීමේ සංවාදය පෙන්වන්න
         setting_use_blurhash: සැඟවුණු මාධ්‍ය සඳහා වර්ණවත් අනුක්‍රමික පෙන්වන්න
-        setting_use_pending_items: මන්දගාමී මාදිලිය
+        setting_use_pending_items: මන්දගාමී ප්‍රකාරය
         severity: බරපතලකම
         sign_in_token_attempt: ආරක්‍ෂණ කේතය
-        title: ශීර්ෂය
+        title: සිරැසිය
         type: ආයාත වර්ගය
         username: පරිශීලක නාමය
         username_or_email: පරි. නාමය හෝ වි-තැපෑල
@@ -181,12 +173,16 @@ si:
         name: හෑෂ් ටැගය
       filters:
         actions:
-          hide: සම්පූර්ණයෙන්ම සඟවන්න
-          warn: අනතුරු ඇඟවීමක් සමඟ සඟවන්න
+          hide: මුළුමනින්ම සඟවන්න
+          warn: අවවාදයක් සහිතව සඟවන්න
+      form_admin_settings:
+        custom_css: අභිරුචි CSS
+        profile_directory: පැතිකඩ නාමාවලිය සබල කරන්න
+        site_terms: රහස්‍යතා ප්‍රතිපත්තිය
+        site_title: සේවාදායකයේ නම
+        theme: පෙරනිමි තේමාව
       interactions:
-        must_be_follower: අනුගාමිකයින් නොවන අයගේ දැනුම්දීම් අවහිර කරන්න
-        must_be_following: ඔබ අනුගමනය නොකරන පුද්ගලයින්ගේ දැනුම්දීම් අවහිර කරන්න
-        must_be_following_dm: ඔබ අනුගමනය නොකරන පුද්ගලයින්ගෙන් සෘජු පණිවිඩ අවහිර කරන්න
+        must_be_following_dm: ඔබ නොදන්නා අයගෙන් සෘජු පණිවිඩ ලැබීම අවහිර කරන්න
       invite:
         comment: අදහස
       invite_request:
@@ -195,31 +191,34 @@ si:
         comment: අදහස
         ip: අ.ජා. කෙ. (IP)
         severities:
-          no_access: ප්රවේශය අවහිර කරන්න
+          no_access: ප්‍රවේශය අවහිර කරන්න
           sign_up_requires_approval: ලියාපදිංචි වීම සීමා කරන්න
         severity: නීතිය
       notification_emails:
-        appeal: යමෙක් උපපරිපාලක තීරණයකට අභියාචනා කරයි
         digest: digest ඊමේල් යවන්න
-        favourite: කවුරුහරි ඔබේ පළ කිරීම ප්‍රිය කළා
-        follow: කවුරුහරි ඔබව අනුගමනය කළා
-        follow_request: කවුරුහරි ඔබව අනුගමනය කරන ලෙස ඉල්ලා සිටියේය
-        mention: කවුරුහරි ඔබව සඳහන් කළා
-        pending_account: නව ගිණුම සමාලෝචනය අවශ්‍යයි
-        reblog: කවුරුහරි ඔබේ පළ කිරීම වැඩි කළා
-        report: නව වාර්තාවක් ඉදිරිපත් කෙරේ
-        trending_tag: නව ප්‍රවණතාවයට සමාලෝචනයක් අවශ්‍ය වේ
+        favourite: යමෙක් ඔබගේ ලිපියට ප්‍රිය කළා
+        follow: යමෙක් ඔබව අනුගමනය කළා
+        mention: යමෙක් ඔබව සඳහන් කළා
+        report: නව වාර්තාවක් යොමු කර ඇත
       rule:
         text: නීතිය
       tag:
         listable: මෙම හැෂ් ටැගය සෙවීම් සහ යෝජනා වල දිස් වීමට ඉඩ දෙන්න
         name: හෑෂ් ටැගය
         trendable: මෙම හැෂ් ටැගය ප්‍රවණතා යටතේ දිස් වීමට ඉඩ දෙන්න
-        usable: මෙම හැෂ් ටැගය භාවිතා කිරීමට පළ කිරීම් වලට ඉඩ දෙන්න
+        usable: ලිපි සඳහා මෙම පූරක අනන්‍යනය භාවිතයට ඉඩදෙන්න
+      user:
+        role: භූමිකාව
+        time_zone: වේලා කලාපය
+      user_role:
+        color: චිහ්නයේ පාට
+        name: නම
+        permissions_as_keys: අවසර
+        position: ප්‍රමුඛත්‍වය
       webhook:
         events: සබල කළ සිදුවීම්
         url: අන්ත ලක්ෂ්‍ය URL
-    'no': නැත
+    'no': නැහැ
     recommended: නිර්දේශිත
     required:
       mark: "*"

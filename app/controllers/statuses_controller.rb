@@ -10,7 +10,6 @@ class StatusesController < ApplicationController
 
   before_action :require_account_signature!, only: [:show, :activity], if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_status
-  before_action :set_instance_presenter
   before_action :redirect_to_original, only: :show
   before_action :set_body_classes, only: :embed
 
@@ -66,10 +65,6 @@ class StatusesController < ApplicationController
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
     not_found
-  end
-
-  def set_instance_presenter
-    @instance_presenter = InstancePresenter.new
   end
 
   def redirect_to_original

@@ -22,12 +22,6 @@ export default class Column extends PureComponent {
       scrollable = document.scrollingElement;
     } else {
       scrollable = this.node.querySelector('.scrollable');
-
-      // Some columns have nested `.scrollable` containers, with the outer one
-      // being a wrapper while the actual scrollable content is deeper.
-      if (scrollable.classList.contains('scrollable--flex')) {
-        scrollable = scrollable?.querySelector('.scrollable') || scrollable;
-      }
    }
 
     if (!scrollable) {
