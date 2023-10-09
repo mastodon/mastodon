@@ -11,7 +11,7 @@ si:
     followers:
       one: අනුගාමිකයා
       other: අනුගාමිකයින්
-    following: අනුගමනය
+    following: අනුගමන
     instance_actor_flash: මෙම ගිණුම සේවාදායකයම නියෝජනය කිරීමට භාවිතා කරන අතථ්‍ය නළුවෙකු වන අතර කිසිදු තනි පරිශීලකයෙකු නොවේ. එය ෆෙඩරේෂන් අරමුණු සඳහා භාවිතා කරන අතර අත්හිටුවිය යුතු නොවේ.
     last_active: අවසාන ක්රියාකාරී
     link_verified_on: මෙම සබැඳියේ හිමිකාරිත්වය %{date}හි පරීක්ෂා කරන ලදී
@@ -383,7 +383,7 @@ si:
       status: තත්‍වය
       suppress: අනුගමනය නිර්දේශය යටපත් කරන්න
       suppressed: යටපත් කළා
-      title: නිර්දේශ අනුගමනය කරන්න
+      title: අනුගමනයට නිර්දේශ
       unsuppress: නිර්දේශ පිළිපැදීම ප්‍රතිසාධනය කරන්න
     instances:
       availability:
@@ -622,7 +622,7 @@ si:
       history: අනුවාද ඉතිහාසය
       language: භාෂාව
       media:
-        title: මාධ්‍යය
+        title: මාධ්‍ය
       metadata: පාරදත්ත
       no_status_selected: කිසිවක් නොතේරූ බැවින් ලිපි කිසිවක් වෙනස් කර නැත
       open: ලිපිය අරින්න
@@ -788,7 +788,7 @@ si:
     localization:
       body: මාස්ටඩන් ස්වේච්ඡාවෙන් පරිවර්තනය කර ඇත.
       guide_link: https://crowdin.com/project/mastodon
-      guide_link_text: සෑම කෙනෙකුටම දායක විය හැකිය.
+      guide_link_text: පරිවර්තකයින්ට දායක වීමට හැකිය.
     sensitive_content: සංවේදී අන්තර්ගත
   application_mailer:
     notification_preferences: ඊමේල් මනාප වෙනස් කරන්න
@@ -1192,7 +1192,7 @@ si:
   relationships:
     activity: ගිණුමේ ක්‍රියාකාරකම්
     dormant: නිදිමතයි
-    follow_selected_followers: තෝරාගත් අනුගාමිකයින් අනුගමනය කරන්න
+    follow_selected_followers: තේරූ අනුගාමිකයින් අනුගමනය කරන්න
     followers: අනුගාමිකයින්
     following: අනුගමනය
     invited: ආරාධනා කළා
@@ -1202,9 +1202,9 @@ si:
     mutual: අන්යෝන්ය
     primary: ප්‍රාථමික
     relationship: සම්බන්ධතාවය
-    remove_selected_domains: තෝරාගත් වසම් වලින් සියලුම අනුගාමිකයින් ඉවත් කරන්න
-    remove_selected_followers: තෝරාගත් අනුගාමිකයින් ඉවත් කරන්න
-    remove_selected_follows: තෝරාගත් පරිශීලකයින් අනුගමනය නොකරන්න
+    remove_selected_domains: තේරූ වසම් වල සියලුම අනුගාමිකයින් ඉවත් කරන්න
+    remove_selected_followers: තේරූ අනුගාමිකයින් ඉවත් කරන්න
+    remove_selected_follows: තේරූ අය අනුගමනය නොකරන්න
     status: ගිණුමේ තත්‍වය
   remote_follow:
     missing_resource: ඔබගේ ගිණුම සඳහා අවශ්‍ය යළි-යොමුවීම් URL එක සොයා ගැනීමට නොහැකි විය
@@ -1280,7 +1280,7 @@ si:
     notifications: දැනුම්දීම්
     preferences: අභිප්‍රේත
     profile: ප්‍රසිද්ධ පැතිකඩ
-    relationships: අනුගාමිකයින් සහ අනුගාමිකයින්
+    relationships: අනුගමන හා අනුගාමික
     statuses_cleanup: ස්වයංක්‍රීය ලිපි මැකීම
     two_factor_authentication: ද්වි සාධක Aut
     webauthn_authentication: ආරක්‍ෂණ යතුරු
@@ -1325,7 +1325,7 @@ si:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: සෘජු
-      private: අනුගාමිකයින්-පමණි
+      private: අනුගාමිකයින් පමණි
       private_long: අනුගාමිකයින්ට පමණක් පෙන්වන්න
       public: ප්‍රසිද්ධ
       public_long: හැමෝටම පේනවා
@@ -1337,12 +1337,13 @@ si:
     ignore_favs: ප්‍රියතමයන් නොසලකන්න
     interaction_exceptions: අන්තර්ක්‍රියා මත පදනම් වූ ව්‍යතිරේක
     keep_direct: සෘජු පණිවිඩ තබාගන්න
-    keep_direct_hint: ඔබගේ සෘජු පණිවිඩ කිසිවක් මැකෙන්නේ නැත
+    keep_direct_hint: ඔබගේ සෘජු පණිවිඩ කිසිවක් නොමැකෙයි
     keep_media: මාධ්‍ය ඇමුණුම් සහිත ලිපි තබාගන්න
-    keep_media_hint: මාධ්‍ය ඇමුණුම් සහිත ඔබගේ ලිපි කිසිවක් මැකෙන්නේ නැත
+    keep_media_hint: මාධ්‍ය ඇමුණුම් සහිත ඔබගේ ලිපි කිසිවක් නොමැකෙයි
     keep_pinned: ඇමිණූ ලිපි තබාගන්න
     keep_pinned_hint: ඔබ ඇමිණූ ලිපි කිසිවක් නොමැකෙයි
-    keep_polls_hint: ඔබගේ මත විමසුම් මැකෙන්නේ නැත
+    keep_polls: මත විමසුම් තබාගන්න
+    keep_polls_hint: ඔබගේ මත විමසුම් නොමැකෙයි
     keep_self_bookmark: ඔබ පොත්යොමු තැබූ ලිපි තබාගන්න
     keep_self_bookmark_hint: ඔබගේම ලිපි වලට පොත්යොමු තබා ඇත්නම් ඒවා මකා නොදැමෙයි
     keep_self_fav: ඔබ ප්‍රිය කළ ලිපි තබාගන්න
@@ -1356,7 +1357,7 @@ si:
       '604800': සති 1
       '63113904': අවුරුදු 2
       '7889238': මාස 3
-    min_age_label: වයස් සීමාව
+    min_age_label: කාල සීමාව
     min_favs: අවම වශයෙන් ප්‍රිය කළ ලිපි තබාගන්න
   stream_entries:
     sensitive_content: සංවේදී අන්තර්ගතයකි
