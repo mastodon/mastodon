@@ -76,7 +76,8 @@ path.logs: /var/log/elasticsearch
 network.host: 0.0.0.0
 http.port: 9200
 discovery.seed_hosts: ["localhost"]
-cluster.initial_master_nodes: ["node-1"]' > /etc/elasticsearch/elasticsearch.yml
+cluster.initial_master_nodes: ["node-1"]
+xpack.security.enabled: false' > /etc/elasticsearch/elasticsearch.yml
 
 sudo systemctl restart elasticsearch
 

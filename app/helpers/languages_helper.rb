@@ -193,7 +193,6 @@ module LanguagesHelper
     cnr: ['Montenegrin', 'crnogorski'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
-    kmr: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,
     lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
     sco: ['Scots', 'Scots'].freeze,
@@ -231,6 +230,24 @@ module LanguagesHelper
     'sr-Latn': 'Srpski (latinica)',
   }.freeze
 
+  # Helper for self.sorted_locale_keys
+  private_class_method def self.locale_name_for_sorting(locale)
+    if locale.blank? || locale == 'und'
+      '000'
+    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
+      ASCIIFolding.new.fold(supported_locale[1]).downcase
+    elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
+      ASCIIFolding.new.fold(regional_locale).downcase
+    else
+      locale
+    end
+  end
+
+  # Sort locales by native name for dropdown menus
+  def self.sorted_locale_keys(locale_keys)
+    locale_keys.sort_by { |key, _| locale_name_for_sorting(key) }
+  end
+
   def native_locale_name(locale)
     if locale.blank? || locale == 'und'
       I18n.t('generic.none')
@@ -255,6 +272,7 @@ module LanguagesHelper
 
   def valid_locale_or_nil(str)
     return if str.blank?
+    return str if valid_locale?(str)
 
     code, = str.to_s.split(/[_-]/) # Strip out the region from e.g. en_US or ja-JP
 

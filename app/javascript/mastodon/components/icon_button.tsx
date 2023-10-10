@@ -24,7 +24,6 @@ interface Props {
   overlay: boolean;
   tabIndex: number;
   counter?: number;
-  obfuscateCount?: boolean;
   href?: string;
   ariaHidden: boolean;
 }
@@ -105,7 +104,6 @@ export class IconButton extends PureComponent<Props, States> {
       tabIndex,
       title,
       counter,
-      obfuscateCount,
       href,
       ariaHidden,
     } = this.props;
@@ -131,7 +129,7 @@ export class IconButton extends PureComponent<Props, States> {
         <Icon id={icon} fixedWidth aria-hidden='true' />{' '}
         {typeof counter !== 'undefined' && (
           <span className='icon-button__counter'>
-            <AnimatedNumber value={counter} obfuscate={obfuscateCount} />
+            <AnimatedNumber value={counter} />
           </span>
         )}
       </>

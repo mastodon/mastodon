@@ -309,6 +309,7 @@ it:
       unpublish: Annulla la pubblicazione
       unpublished_msg: Annuncio ritirato!
       updated_msg: Annuncio aggiornato!
+    critical_update_pending: Aggiornamento critico in sospeso
     custom_emojis:
       assign_category: Assegna categoria
       by_domain: Dominio
@@ -770,10 +771,27 @@ it:
           approved: Approvazione richiesta per le iscrizioni
           none: Nessuno può iscriversi
           open: Chiunque può iscriversi
+      security:
+        authorized_fetch: Richiede l'autenticazione dai server federati
+        authorized_fetch_hint: La richiesta di autenticazione da server federati consente un'applicazione più rigorosa dei blocchi sia a livello di utente che a livello di server. Tuttavia, ciò comporta una riduzione delle prestazioni, riduce la portata delle tue risposte e potrebbe introdurre problemi di compatibilità con alcuni servizi federati. Inoltre, ciò non impedirà agli attori dedicati di recuperare i tuoi post pubblici e account.
+        authorized_fetch_overridden_hint: Al momento non puoi modificare questa impostazione perché è sostituita da una variabile di ambiente.
+        federation_authentication: Applicazione dell'autenticazione della federazione
       title: Impostazioni del server
     site_uploads:
       delete: Cancella il file caricato
       destroyed_msg: Caricamento sito eliminato!
+    software_updates:
+      critical_update: 'Critico: ti preghiamo di aggiornare rapidamente'
+      description: Si consiglia di mantenere aggiornata la tua installazione di Mastodon, per beneficiare delle ultime correzioni e funzionalità. Inoltre, talvolta, è cruciale aggiornare Mastodon tempestivamente, per evitare i problemi di sicurezza. Per questo, Mastodon verifica la presenza di aggiornamenti ogni 30 minuti e ti notificherà a seconda delle tue preferenze di notifica via email.
+      documentation_link: Scopri di più
+      release_notes: Note di rilascio
+      title: Aggiornamenti disponibili
+      type: Tipo
+      types:
+        major: Rilascio principale
+        minor: Rilascio secondario
+        patch: 'Patch: correzioni di bug e modifiche facili da applicare'
+      version: Versione
     statuses:
       account: Autore
       application: Applicazione
@@ -814,6 +832,20 @@ it:
     system_checks:
       database_schema_check:
         message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
+      elasticsearch_health_red:
+        message_html: Il cluster Elasticsearch non è integro (stato rosso), le funzionalità di ricerca non sono disponibili
+      elasticsearch_health_yellow:
+        message_html: Il cluster Elasticsearch non è integro (stato giallo), potresti voler indagare sul motivo
+      elasticsearch_index_mismatch:
+        message_html: Le mappature degli indici Elasticsearch sono obsolete. Si prega di eseguire <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Vedi la documentazione
+        message_html: Il tuo cluster Elasticsearch ha più di un nodo, ma Mastodon non è configurato per utilizzarli.
+      elasticsearch_preset_single_node:
+        action: Vedi la documentazione
+        message_html: Il tuo cluster Elasticsearch ha un solo nodo, <code>ES_PRESET</code> dovrebbe essere impostato su <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Il tuo sistema di indicizzazione Elasticsearch è obsoleto a causa di una modifica delle impostazioni. Si prega di eseguire <code>tootctl search deploy --reset-chewy</code> per aggiornarlo.
       elasticsearch_running_check:
         message_html: Impossibile connettersi a Elasticsearch. Verificare che sia in esecuzione o disabilitare la ricerca full-text
       elasticsearch_version_check:
@@ -824,6 +856,12 @@ it:
         message_html: Non hai definito alcuna regola del server.
       sidekiq_process_check:
         message_html: Nessun processo di Sidekiq in esecuzione per le code di %{value}. Sei pregato di revisionare la tua configurazione di Sidekiq
+      software_version_critical_check:
+        action: Visualizza gli aggiornamenti disponibili
+        message_html: Un aggiornamento critico di Mastodon è disponibile, ti preghiamo di aggiornare il più rapidamente possibile.
+      software_version_patch_check:
+        action: Visualizza gli aggiornamenti disponibili
+        message_html: È disponibile un aggiornamento di correzione dei bug di Mastodon.
       upload_check_privacy_error:
         action: Controlla qui per maggiori informazioni
         message_html: "<strong>Il tuo server web è mal configurato. La privacy dei tuoi utenti è a rischio.</strong>"
@@ -937,6 +975,9 @@ it:
       body: "%{target} sta facendo appello contro una decisione di moderazione di %{action_taken_by} da %{date}, che era %{type}. Ha scritto:"
       next_steps: Puoi approvare l'appello per annullare la decisione di moderazione, oppure ignorarlo.
       subject: "%{username} sta facendo appello contro una decisione di moderazione su %{instance}"
+    new_critical_software_updates:
+      body: Sono state rilasciate delle nuove versioni critiche di Mastodon, potresti volerlo aggiornare il prima possibile!
+      subject: Aggiornamenti critici di Mastodon disponibili per %{instance}!
     new_pending_account:
       body: I dettagli del nuovo account sono qui sotto. Puoi approvare o rifiutare questa richiesta.
       subject: Nuovo account pronto per la revisione su %{instance} (%{username})
@@ -944,6 +985,9 @@ it:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
       subject: Nuova segnalazione per %{instance} (#%{id})
+    new_software_updates:
+      body: Sono state rilasciate delle nuove versioni di Mastodon, potresti volerlo aggiornare!
+      subject: Sono disponibili delle nuove versioni di Mastodon per %{instance}!
     new_trends:
       body: 'I seguenti elementi necessitano di un controllo prima che possano essere visualizzati pubblicamente:'
       new_trending_links:
@@ -1434,6 +1478,7 @@ it:
     update:
       subject: "%{name} ha modificato un post"
   notifications:
+    administration_emails: Notifiche email amministratore
     email_events: Eventi per notifiche via email
     email_events_hint: 'Seleziona gli eventi per i quali vuoi ricevere le notifiche:'
     other_settings: Altre impostazioni delle notifiche
@@ -1477,6 +1522,15 @@ it:
     other: Altro
     posting_defaults: Predefinite di pubblicazione
     public_timelines: Timeline pubbliche
+  privacy:
+    hint_html: "<strong>Personalizza il modo in cui vuoi che il tuo profilo e i tuoi post vengano trovati.</strong> Una varietà di funzionalità in Mastodon possono aiutarti a raggiungere un pubblico più ampio se abilitato. Prenditi un momento per rivedere queste impostazioni per assicurarti che si adattino al tuo caso d'uso."
+    privacy: Privacy
+    privacy_hint_html: Controlla quanto tu voglia mostrare a beneficio degli altri. Le persone scoprono profili interessanti e app fantastiche sfogliando il seguito di altre persone e vedendo da quali app pubblichino, ma potresti preferire tenerlo nascosto.
+    reach: Copertura
+    reach_hint_html: Controlla se vuoi essere scoperto e seguito da nuove persone. Vuoi che i tuoi post vengano visualizzati nella schermata Esplora? Vuoi che altre persone ti vedano tra i loro consigli di utenti da seguire? Vuoi accettare automaticamente tutti i nuovi seguaci o avere un controllo granulare su ciascuno di essi?
+    search: Cerca
+    search_hint_html: Controlla come vuoi essere trovato. Vuoi che le persone ti trovino in base a ciò che hai postato pubblicamente? Vuoi che le persone al di fuori di Mastodon trovino il tuo profilo durante la ricerca sul web? Si prega di notare che l'esclusione totale da tutti i motori di ricerca non può essere garantita per le informazioni pubbliche.
+    title: Privacy e copertura
   privacy_policy:
     title: Politica sulla privacy
   reactions:
@@ -1686,6 +1740,11 @@ it:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: La quota di utilizzo del server per il servizio di traduzione è stata superata.
+      too_many_requests: Ci sono state troppe richieste al servizio di traduzione di recente.
   two_factor_authentication:
     add: Aggiungi
     disable: Disabilita

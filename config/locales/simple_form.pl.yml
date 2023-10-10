@@ -3,9 +3,13 @@ pl:
   simple_form:
     hints:
       account:
+        discoverable: Twój profil i publiczne wpisy mogą być promowane lub polecane na Mastodonie i twój profil może być sugerowany innym użytkownikom.
         display_name: Twoje imię lub pseudonim.
         fields: Co ci się tylko podoba – twoja strona domowa, zaimki, wiek…
+        indexable: Twoje publiczne wpisy mogą pojawiać się w wynikach wyszukiwania w Mastodonie. Użytkownicy, którzy wchodzili w interakcje z twoimi wpisami będą mogli je znaleźć niezależnie od tego ustawienia.
         note: 'Możesz @wspomnieć użytkowników albo #hasztagi.'
+        show_collections: Twoja lista obserwowanych i obserwujących będzie widoczna dla wszystkich. Użytkownicy których obserwujesz będą jednak o tym wiedzieli.
+        unlocked: Inni użytkownicy będą mogli cię obserwować bez proszenia o zgodę. Odznacz, jeżeli chcesz aprobować obserwujących ręcznie po przejrzeniu próśb o obserwowanie.
       account_alias:
         acct: Określ nazwę@domenę konta z którego chcesz się przenieść
       account_migration:
@@ -116,6 +120,9 @@ pl:
       sessions:
         otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych:'
         webauthn: Jeżeli jest to klucz USB, upewnij się, że go włożyłeś i, jeśli to konieczne, naciśnij go.
+      settings:
+        indexable: Twój profil pojawi się w wynikach wyszukiwarek internetowych.
+        show_application: Ty zawsze widzisz program użyty do zamieszczenia.
       tag:
         name: Możesz zmieniać tylko wielkość liter, np. aby były bardziej widoczne
       user:
@@ -133,9 +140,13 @@ pl:
         url: Dokąd będą wysłane zdarzenia
     labels:
       account:
+        discoverable: Udostępniaj profil i wpisy funkcjom odkrywania
         fields:
           name: Nazwa
           value: Zawartość
+        indexable: Pokaż publiczne wpisy w wynikach wyszukiwania
+        show_collections: Pokazuj na profilu listę obserwowanych i obserwujących
+        unlocked: Automatycznie przyjmuj nowych obserwujących
       account_alias:
         acct: Nazwa starego konta
       account_migration:
@@ -280,9 +291,18 @@ pl:
         pending_account: Wyślij e-mail kiedy nowe konto potrzebuje recenzji
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
         report: Nowe zgłoszenie zostało wysłane
+        software_updates:
+          all: Powiadamiaj o wszystkich aktualizacjach
+          critical: Powiadamiaj tylko o aktualizacjach krytycznych
+          label: Dostępna nowa wersja Mastodona
+          none: Nigdy nie powiadamiaj o aktualizacjach (niezalecane)
+          patch: Powiadamiaj o aktualizacjach naprawiających błędy
         trending_tag: Nowe popularne wymagają przeglądu
       rule:
         text: Zasada
+      settings:
+        indexable: Udostępniaj profil wyszukiwarkom
+        show_application: Pokazuj program z którego zamieszczasz wpisy
       tag:
         listable: Pozwól, aby ten hashtag pojawiał się w wynikach wyszukiwania i katalogu profilów
         name: Hasztag
@@ -303,6 +323,7 @@ pl:
         url: Endpoint URL
     'no': Nie
     not_recommended: Niezalecane
+    overridden: Nadpisane
     recommended: Polecane
     required:
       mark: "*"

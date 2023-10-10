@@ -11,7 +11,7 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
       # from a different scope to avoid indexing them multiple times, but that
       # could end up being a very large array
 
-      scope.find_in_batches(batch_size: @batch_size) do |tmp|
+      scope.reorder(nil).find_in_batches(batch_size: @batch_size) do |tmp|
         in_work_unit(tmp.map(&:status_id)) do |status_ids|
           deleted = 0
 

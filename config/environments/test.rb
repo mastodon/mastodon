@@ -50,6 +50,9 @@ Rails.application.configure do
   config.x.vapid_private_key = vapid_key.private_key
   config.x.vapid_public_key = vapid_key.public_key
 
+  # Raise exceptions when a reorder occurs in in_batches
+  config.active_record.error_on_ignored_order = true
+
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
 

@@ -23,9 +23,14 @@ const MOUSE_IDLE_DELAY = 300;
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
+/**
+ *
+ * @param {import('mastodon/store').RootState} state
+ * @param {*} props
+ */
 const mapStateToProps = (state, { scrollKey }) => {
   return {
-    preventScroll: scrollKey === state.getIn(['dropdown_menu', 'scroll_key']),
+    preventScroll: scrollKey === state.dropdownMenu.scrollKey,
   };
 };
 
@@ -73,7 +78,7 @@ class ScrollableList extends PureComponent {
       const clientHeight = this.getClientHeight();
       const offset = scrollHeight - scrollTop - clientHeight;
 
-      if (400 > offset && this.props.onLoadMore && this.props.hasMore && !this.props.isLoading) {
+      if (scrollTop > 0 && offset < 400 && this.props.onLoadMore && this.props.hasMore && !this.props.isLoading) {
         this.props.onLoadMore();
       }
 
