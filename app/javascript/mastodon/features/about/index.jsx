@@ -208,11 +208,11 @@ class About extends PureComponent {
 
           <Section title={intl.formatMessage(messages.aboutMastodon)}>
             <div className='prose'>
-              <p><FormattedMessage id='about.mastodon.version' defaultMessage='{domain} is powered by Mastodon {version}.' values={{ domain, version: server.get('version') }} /></p>
+              <p><FormattedMessage id='about.mastodon.version' defaultMessage='{domain} is powered by Mastodon v{version}.' values={{ domain, version: server.get('version') }} /></p>
               <p><FormattedMessage id='about.mastodon.license' defaultMessage='Mastodon is free and open-source software, under the AGPLv3 licence. You can {download}.' values={{ download: <a href={source_url} target='_blank' rel='noopener noreferrer'><FormattedMessage id='about.mastodon.download' defaultMessage='download the source code' /></a>}} /></p>
               <p><FormattedMessage id='about.mastodon.more' defaultMessage='For more information, please visit {link}.' values={{ link: <a href='https://joinmastodon.org' target='_blank'>joinmastodon.org</a> }} /></p>
               <p><FormattedMessage id='about.mastodon.trademark' defaultMessage='“Mastodon” is a trademark of Mastodon gGmbH.' /></p>
-             </div>
+            </div>
           </Section>
 
           <LinkFooter />
