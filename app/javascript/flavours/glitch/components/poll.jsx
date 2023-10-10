@@ -133,7 +133,7 @@ class Poll extends ImmutablePureComponent {
 
   handleReveal = () => {
     this.setState({ revealed: true });
-  }
+  };
 
   renderOption (option, optionIndex, showResults) {
     const { poll, lang, disabled, intl } = this.props;

@@ -56,4 +56,4 @@ export const showAlertForError = (error, skipNotFound = false) => {
     title: messages.unexpectedTitle,
     message: messages.unexpectedMessage,
   });
-}
+};

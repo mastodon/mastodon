@@ -77,8 +77,8 @@ class Header extends PureComponent {
 
       if (sso_redirect) {
         content = (
-            <a href={sso_redirect} data-method='post' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sso_redirect' defaultMessage='Login or Register' /></a>
-        )
+          <a href={sso_redirect} data-method='post' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sso_redirect' defaultMessage='Login or Register' /></a>
+        );
       } else {
         let signupButton;
 
