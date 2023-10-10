@@ -37,7 +37,6 @@
 
 # This is bad form, but there are enough differences that it's impractical to do
 # otherwise:
-# rubocop:disable all
 
 module Mastodon
   module MigrationHelpers
@@ -202,7 +201,7 @@ module Mastodon
     def supports_add_column_with_default?
       version = select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
 
-      version >= 11_000
+      version >= 110_000
     end
 
     # Adds a foreign key with only minimal locking on the tables involved.
@@ -989,5 +988,3 @@ into similar problems in the future (e.g. when new tables are created).
     end
   end
 end
-
-# rubocop:enable all

@@ -3,10 +3,10 @@ zh-CN:
   simple_form:
     hints:
       account:
-        discoverable: 您的公开帖子和个人资料可能会在Mastodon的各个领域中被推荐，您的个人资料可能会被推荐给其他用户。
+        discoverable: 您的公开嘟文和个人资料可能会在 Mastodon 的多个位置展示，您的个人资料可能会被推荐给其他用户。
         display_name: 您的全名或昵称。
         fields: 你的主页、人称代词、年龄，以及任何你想要添加的内容。
-        indexable: 您的公开嘟文可能会出现在Mastodon的搜索结果中。与您的嘟文互动过的人可能能够进行搜索并找到它们。
+        indexable: 您的公开嘟文会出现在 Mastodon 的搜索结果中。无论是否勾选，与您的嘟文有过交互的人都可能通过搜索找到它们。
         note: '您可以提及 @其他人 或 #标签 。'
         show_collections: 人们将能够浏览您的关注和追随者。您关注的人会看到您关注他们。
         unlocked: 人们将能够在不请求批准的情况下关注您。如果您希望审核关注请求并选择接受或拒绝新的粉丝，请取消勾选此项。
@@ -71,12 +71,12 @@ zh-CN:
       featured_tag:
         name: 以下是你最近使用过的标签：
       filters:
-        action: 选择在帖子匹配过滤器时要执行的操作
+        action: 选择在嘟文命中过滤器时要执行的操作
         actions:
           hide: 彻底屏蔽过滤内容，犹如它不曾存在过一般
           warn: 在警告中提及过滤器标题后，隐藏过滤内容
       form_admin_settings:
-        activity_api_enabled: 本地发布的帖子、 活跃用户和每周的注册数
+        activity_api_enabled: 本站每周的嘟文数、活跃用户数和新注册用户数
         backups_retention_period: 将在指定天数内保留生成的用户存档。
         bootstrap_timeline_accounts: 这些账号将在新用户关注推荐中置顶。
         closed_registrations_message: 在关闭注册时显示
@@ -144,7 +144,7 @@ zh-CN:
         fields:
           name: 标签
           value: 内容
-        indexable: 在搜索结果中包含公共嘟文
+        indexable: 将公开嘟文纳入搜索范围
         show_collections: 在个人资料中显示关注和关注者
         unlocked: 自动接受新关注者
       account_alias:

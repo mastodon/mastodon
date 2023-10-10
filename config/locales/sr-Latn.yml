@@ -1151,7 +1151,7 @@ sr-Latn:
       x_seconds: "%{count} sek."
   deletes:
     challenge_not_passed: Lozinka koju ste uneli nije bila ispravna
-    confirm_password: Unesite trenutnu lozinku da bismo proverili Vaš identitet
+    confirm_password: Unesite trenutnu lozinku za verifikaciju vašeg identiteta
     confirm_username: Unesite svoje korisničko ime da biste potvrdili proceduru
     proceed: Obriši nalog
     success_msg: Vaš nalog je uspešno obrisan
@@ -1209,8 +1209,8 @@ sr-Latn:
     '406': Ova stranica nije dostupna u izabranom formatu.
     '410': Strana koju ste tražili više ne postoji.
     '422':
-      content: Bezbedonosna provera nije uspela. Da ne blokirate kolačiće?
-      title: Bezbedonosna provera nije uspela
+      content: Bezbedonosna verifikacija nije uspela. Da li blokirate kolačiće?
+      title: Bezbedonosna verifikacija nije uspela
     '429': Uspored
     '500':
       content: Izvinjavamo se, nešto je pošlo po zlu sa ove strane.
@@ -1296,7 +1296,7 @@ sr-Latn:
       one: "<strong>%{count}</strong> stavka koja se poklapa sa Vašom pretragom je izabrana."
       other: Svih <strong>%{count}</strong> stavki koje se poklapaju sa Vašom pretragom su izabrane.
     cancel: Otkaži
-    changes_saved_msg: Izmene uspešno sačuvane!
+    changes_saved_msg: Promene su uspešno sačuvane!
     confirm: Potvrdi
     copy: Kopiraj
     delete: Izbriši
@@ -1770,6 +1770,7 @@ sr-Latn:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d. %b %Y, %H:%M %Z"
   translation:
     errors:
       quota_exceeded: Prekoračena je kvota korišćenja usluge prevođenja na celom serveru.
@@ -1863,7 +1864,7 @@ sr-Latn:
     here_is_how: Evo kako
     hint_html: "<strong>Verifikacija vašeg identiteta na Mastodon-u je za svakoga.</strong> Zasnovano na otvorenim veb standardima, sada i zauvek besplatno. Sve što vam treba je lični veb sajt po kome vas ljudi prepoznaju. Kada se povežete sa ovim veb sajtom sa svog profila, proverićemo da li je veb sajt povezan sa vašim profilom i na njemu ćemo prikazati vizuelni indikator."
     instructions_html: Kopirajte i nalepite kod ispod u HTML svog veb sajta. Zatim dodajte adresu svog veb sajta u jedno od dodatnih polja na svom profilu sa kartice „Uredi profil” i sačuvajte promene.
-    verification: Provera
+    verification: Verifikacija
     verified_links: Vaše verifikovane veze
   webauthn_credentials:
     add: Dodajte novi sigurnosni ključ

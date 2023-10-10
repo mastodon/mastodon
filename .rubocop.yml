@@ -28,6 +28,7 @@ AllCops:
     - 'Vagrantfile'
     - 'vendor/**/*'
     - 'lib/json_ld/*' # Generated files
+    - 'lib/mastodon/migration_helpers.rb' # Vendored from GitLab
     - 'lib/templates/**/*'
 
 # Reason: Prefer Hashes without extreme indentation
@@ -74,12 +75,6 @@ Metrics/AbcSize:
   Exclude:
     - 'lib/mastodon/cli/*.rb'
     - db/*migrate/**/*
-
-# Reason:
-# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsblocknesting
-Metrics/BlockNesting:
-  Exclude:
-    - 'lib/mastodon/cli/*.rb'
 
 # Reason: Currently disabled in .rubocop_todo.yml
 # https://docs.rubocop.org/rubocop/cops_metrics.html#metricscyclomaticcomplexity

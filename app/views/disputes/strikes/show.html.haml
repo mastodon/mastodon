@@ -25,7 +25,7 @@
       - unless @strike.none_action?
         %p= t "user_mailer.warning.explanation.#{@strike.action}", instance: Rails.configuration.x.local_domain
 
-      - unless @strike.text.blank?
+      - if @strike.text.present?
         = linkify(@strike.text)
 
       - if @strike.report && !@strike.report.other?
@@ -57,7 +57,7 @@
                       = fa_icon 'link'
                       = media_attachment.file_file_name
                 .strike-card__statuses-list__item__meta
-                  = link_to ActivityPub::TagManager.instance.url_for(status), target: '_blank' do
+                  = link_to ActivityPub::TagManager.instance.url_for(status), target: '_blank', rel: 'noopener noreferrer' do
                     %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
                   - unless status.application.nil?
                     ·

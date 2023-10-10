@@ -284,6 +284,7 @@
   font-size: 11px;
   padding: 0 3px;
   line-height: 27px;
+  white-space: nowrap;
 
   &:hover,
   &:active,
@@ -8278,6 +8279,9 @@ noscript {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  background: $ui-base-color;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .story {
@@ -9008,6 +9012,10 @@ noscript {
     color: $dark-text-color;
     margin-bottom: 20px;
 
+    .version {
+      white-space: nowrap;
+    }
+
     strong {
       font-weight: 500;
     }
@@ -9283,13 +9291,16 @@ noscript {
     0 10px 15px -3px rgba($base-shadow-color, 0.25),
     0 4px 6px -4px rgba($base-shadow-color, 0.25);
   cursor: default;
-  transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);
-  transform: translateZ(0);
   font-size: 15px;
   line-height: 21px;
 
   &.notification-bar-active {
     inset-inline-start: 1rem;
+  }
+
+  .no-reduce-motion & {
+    transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);
+    transform: translateZ(0);
   }
 }
 

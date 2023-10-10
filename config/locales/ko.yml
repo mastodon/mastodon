@@ -47,7 +47,7 @@ ko:
         label: 역할 변경
         no_role: 역할 없음
         title: "%{username}의 역할 변경"
-      confirm: 확정
+      confirm: 신원 확인
       confirmed: 확인됨
       confirming: 확인 중
       custom: 사용자 지정
@@ -269,7 +269,7 @@ ko:
         reopen_report_html: "%{name} 님이 신고 %{target}을 다시 열었습니다"
         resend_user_html: "%{name} 님이 %{target} 님에 대한 확인 메일을 다시 보냈습니다"
         reset_password_user_html: "%{name} 님이 사용자 %{target}의 암호를 초기화했습니다"
-        resolve_report_html: "%{name} 중재자가 %{target}번 신고를 해결로 변경하였습니다"
+        resolve_report_html: "%{name} 님이 %{target}번 신고를 해결로 변경하였습니다"
         sensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감함으로 표시했습니다"
         silence_account_html: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
         suspend_account_html: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
@@ -306,7 +306,7 @@ ko:
       unpublish: 게시 취소
       unpublished_msg: 공지가 성공적으로 발행 취소되었습니다!
       updated_msg: 공지가 성공적으로 업데이트되었습니다!
-    critical_update_pending: 긴급한 업데이트 보류 중
+    critical_update_pending: 긴급 업데이트 보류 중
     custom_emojis:
       assign_category: 분류 지정
       by_domain: 도메인
@@ -833,7 +833,7 @@ ko:
         action: 문서 참조
         message_html: Elasticsearch 클러스터가 한 대의 노드만 사용하고 있습니다. <code>ES_PRESET</code>이 <code>single_node_cluster</code>로 설정되어야 합니다.
       elasticsearch_reset_chewy:
-        message_html: 설정 변경으로 인해Elasticsearch 시스템 인덱스가 최신상태가 아닙니다. <code>tootctl search deploy --reset-chewy</code> 명령으로 업데이트 하세요.
+        message_html: 설정 변경으로 인해 Elasticsearch 시스템 인덱스가 최신상태가 아닙니다. <code>tootctl search deploy --reset-chewy</code> 명령으로 업데이트 하세요.
       elasticsearch_running_check:
         message_html: Elasticsearch에 연결할 수 없습니다. 실행중인지 확인하거나, 전문검색을 비활성화하세요
       elasticsearch_version_check:
@@ -846,7 +846,7 @@ ko:
         message_html: "%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요"
       software_version_critical_check:
         action: 사용 가능한 업데이트 보기
-        message_html: 긴급한 마스토돈 업데이트가 사용 가능합니다. 되도록 빨리 업데이트 해주세요.
+        message_html: 긴급 마스토돈 업데이트가 있으니, 가능한 서둘러 업데이트 해주세요.
       software_version_patch_check:
         action: 사용 가능한 업데이트 보기
         message_html: 마스토돈 버그픽스 업데이트가 있습니다.
@@ -960,8 +960,8 @@ ko:
       next_steps: 중재 결정사항을 되돌리기 위해서 상소를 승인하거나, 무시할 수 있습니다.
       subject: "%{username} 님이 %{instance}에서 발생한 중재 결정에 대해 소명을 제출했습니다"
     new_critical_software_updates:
-      body: 마스토돈의 긴급한 업데이트가 릴리스되었습니다. 되도록 빨리 업데이트 하시길 바랍니다!
-      subject: "%{instance}에 대해 긴급한 업데이트가 있습니다!"
+      body: 마스토돈의 긴급 업데이트가 릴리스 되었으니, 가능한 서둘러 업데이트를 바랍니다!
+      subject: "%{instance}에 대해 긴급 업데이트가 있습니다!"
     new_pending_account:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
       subject: "%{instance}의 새 계정(%{username})에 대한 심사가 대기중입니다"
@@ -1303,7 +1303,7 @@ ko:
       unconfirmed: 미확인
     status: 상태
     success: 파일이 정상적으로 업로드되었으며, 현재 처리 중입니다
-    time_started: 시작 시간
+    time_started: 시작 시각
     titles:
       blocking: 차단한 계정 가져오는 중
       bookmarks: 북마크 가져오는 중
@@ -1501,7 +1501,7 @@ ko:
     privacy: 개인정보
     privacy_hint_html: 다른 이들을 위해 노출할 수 있는 정보의 양을 조절합니다. 누군가는 다른 이들의 팔로우를 둘러보고 어떤 앱에서 게시물을 올렸는지 살피면서 흥미로운 프로필과 멋진 앱을 발견할 수 있지만, 누군가는 이를 숨기고 싶을 수도 있겠죠.
     reach: 도달
-    reach_hint_html: 새로운 사람들이 나를 발견하고 팔로우하도록 허용할지 여부를 제어합니다. 발견하기 화면에 게시물이 표시되기를 바라나요? 다른 사람들의 팔로우 추천에 표시되기를 바라나요? 모든 새 팔로워를 자동으로 수락하거나 각 팔로워를 세세하게 제어할까요?
+    reach_hint_html: 새로운 사람들이 나를 발견하고 팔로우하도록 허용할지 여부를 제어합니다. 둘러보기 화면에 게시물이 표시되기를 바라나요? 다른 사람들의 팔로우 추천에 표시되기를 바라나요? 모든 새 팔로워를 자동으로 수락하거나 각 팔로워를 세세하게 제어할까요?
     search: 검색
     search_hint_html: 내가 어떻게 발견될지를 제어합니다. 내가 공개적으로 게시한 것들로 인해 사람들이 날 발견하길 원하나요? 마스토돈 바깥의 사람들이 웹에서 검색을 통해 내 프로필을 발견하길 원하나요? 공개적인 정보에 대해서 모든 검색엔진의 검색결과에서 제외하는 것은 보장할 수 없다는 점에 주의해주세요.
     title: 개인정보와 도달

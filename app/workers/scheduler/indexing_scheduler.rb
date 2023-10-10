@@ -5,7 +5,7 @@ class Scheduler::IndexingScheduler
   include Redisable
   include DatabaseHelper
 
-  sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
+  sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 30.minutes.to_i
 
   IMPORT_BATCH_SIZE = 1000
   SCAN_BATCH_SIZE = 10 * IMPORT_BATCH_SIZE
