@@ -135,7 +135,7 @@ RUN \
     libssl-dev \
     make \
     shared-mime-info \
-    yarn \
+    # yarn \
     zlib1g-dev \
   ; \
   rm -rf /var/lib/apt/lists/*; \
