@@ -163,7 +163,7 @@ fi:
       unsilenced_msg: Tilin %{username} rajoituksen kumoaminen onnistui
       unsubscribe: Lopeta tilaus
       unsuspended_msg: Tilin %{username} jäädytyksen kumoaminen onnistui
-      username: Käyttäjätunnus
+      username: Käyttäjänimi
       view_domain: Näytä verkkotunnuksen yhteenveto
       warn: Varoita
       web: Verkko
@@ -833,7 +833,7 @@ fi:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
       elasticsearch_health_red:
-        message_html: Elasticsearch-klusteri on vikatilassa (punainen tila); hakuominaisuudet eivät ole käytettävissä
+        message_html: Elasticsearch-klusteri on vikatilassa (punainen tila), joten hakuominaisuudet eivät ole käytettävissä
       elasticsearch_health_yellow:
         message_html: Elasticsearch-klusteri on häiriötilassa (keltainen tila), joten suosittelemme tutkimaan syyn
       elasticsearch_index_mismatch:
@@ -843,13 +843,13 @@ fi:
         message_html: Elasticsearch-klusterissa on useampi kuin yksi solmu, mutta Mastodonia ei ole määritetty käyttämään niitä.
       elasticsearch_preset_single_node:
         action: Katso käyttöohjeet
-        message_html: Elasticsearch-klusterissa on vain yksi solmu, <code>ES_PRESET</code> tulisi asettaa arvoon <code>single_node_cluster</code>.
+        message_html: Elasticsearch-klusterissa on vain yksi solmu. <code>ES_PRESET</code> tulisi asettaa arvoon <code>single_node_cluster</code>.
       elasticsearch_reset_chewy:
         message_html: Elasticsearch-järjestelmäindeksi on vanhentunut asetusmuutoksen vuoksi. Suorita <code>tootctl search deploy --reset-chewy</code> päivittääksesi sen.
       elasticsearch_running_check:
-        message_html: Ei saatu yhteyttä Elasticsearch. Tarkista, että se on käynnissä tai poista kokotekstihaku käytöstä
+        message_html: Ei saatu yhteyttä Elasticsearchiin. Tarkista, että se on käynnissä tai poista kokotekstihaku käytöstä
       elasticsearch_version_check:
-        message_html: 'Yhteensopimaton Elasticsearch versio: %{value}'
+        message_html: 'Yhteensopimaton Elasticsearch-versio: %{value}'
         version_comparison: Elasticsearch %{running_version} on käynnissä, kun %{required_version} vaaditaan
       rules_check:
         action: Hallitse palvelimen sääntöjä
@@ -1089,7 +1089,7 @@ fi:
       new_confirmation_instructions_sent: Saat uuden vahvistuslinkin sisältävän sähköpostiviestin muutamassa minuutissa!
       title: Tarkista sähköpostilaatikkosi
     sign_in:
-      preamble_html: Kirjaudu <strong>%{domain}</strong>-tunnuksellasi. Jos tilisi sijaitsee eri palvelimella, et voi kirjautua täällä.
+      preamble_html: Kirjaudu <strong>%{domain}</strong>-tunnuksellasi. Jos tilisi sijaitsee eri palvelimella, et voi kirjautua tässä.
       title: Kirjaudu palvelimelle %{domain}
     sign_up:
       manual_review: Palvelimen %{domain} valvojat tarkistavat rekisteröitymiset käsin. Helpottaaksesi rekisteröitymisesi käsittelyä kerro hieman itsestäsi ja miksi haluat luoda käyttäjätilin palvelimelle %{domain}.
@@ -1271,7 +1271,7 @@ fi:
       other: Kaikki <strong>%{count}</strong> kohdetta tällä sivulla on valittu.
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> kohde, joka vastaa hakuasi."
-      other: Kaikki <strong>%{count}</strong> kohdetta, jotka vastaavat hakuasi.
+      other: Kaikki <strong>%{count}</strong> hakuasi vastaavaa kohdetta.
     cancel: Peruuta
     changes_saved_msg: Muutosten tallennus onnistui!
     confirm: Vahvista
@@ -1283,7 +1283,7 @@ fi:
     save_changes: Tallenna muutokset
     select_all_matching_items:
       one: Valitse %{count} kohde, joka vastaa hakuasi.
-      other: Valitse kaikki %{count} kohdetta, jotka vastaavat hakuasi.
+      other: Valitse kaikki %{count} hakuasi vastaavaa kohdetta.
     today: tänään
     validation_errors:
       one: Kaikki ei ole aivan oikein! Tarkasta alla oleva virhe
@@ -1403,7 +1403,7 @@ fi:
       not_ready: Ei voi liittää tiedostoja, joiden käsittely on kesken. Yritä hetken kuluttua uudelleen!
       too_many: Tiedostoja voi liittää enintään 4
   migrations:
-    acct: uuden tilin käyttäjätunnus@verkkotunnus
+    acct: Muuttanut tunnukselle
     cancel: Peruuta uudelleenohjaus
     cancel_explanation: Uudelleenohjauksen peruuttaminen aktivoi uudelleen nykyisen tilisi, mutta ei palauta seuraajia, jotka on siirretty kyseiselle tilille.
     cancelled_msg: Uudelleenohjaus peruttu onnistuneesti.
@@ -1526,7 +1526,7 @@ fi:
     privacy_hint_html: Määritä, kuinka paljon muita avustavia tietoja haluat paljastaa. Käyttäjät löytävät kiinnostavia profiileja ja hienoja sovelluksia, kun he selaavat toisten seuraamia käyttäjiä ja kun he näkevät, millä sovelluksilla nämä julkaisevat. Saatat kuitenkin haluta piilottaa nämä tiedot.
     reach: Tavoittavuus
     reach_hint_html: Määritä, haluatko tulla uusien käyttäjien löytämäksi ja seuraamaksi. Haluatko julkaisujesi näkyvän Selaa-sivulla? Haluatko muiden käyttäjien näkevän sinut seuraamissuosituksissaan? Haluatko hyväksyä kaikki uudet seuraajat automaattisesti vai päättää jokaisesta erikseen?
-    search: Haku
+    search: Hae
     search_hint_html: Määritä, kuinka haluat tulla löydetyksi. Haluatko, että ihmiset löytävät sinut julkisten julkaisujesi perusteella? Haluatko, että ihmiset Mastodonin ulkopuolella löytävät profiilisi tehdessään hakuja verkossa? Otathan huomioon, ettei julkisten tietojen täyttä kaikista hakukoneista poisjäämistä voi taata.
     title: Yksityisyys ja tavoittavuus
   privacy_policy:
