@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def default_prerelease
-      ''
+      '~klog'
     end
 
     def prerelease
