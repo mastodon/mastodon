@@ -1,4 +1,4 @@
-- progress_index = { rules: 0, details: 1, confirm: 2 }[stage.to_sym]
+- progress_index = { rules: 0, details: 1, confirm: 2, completed: 3 }[stage.to_sym]
 
 %ol.progress-tracker
   %li{ class: progress_index.positive? ? 'completed' : 'active' }

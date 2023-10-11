@@ -1040,6 +1040,12 @@ en:
       hint_html: Just one more thing! We need to confirm you're a human (this is so we can keep the spam out!). Solve the CAPTCHA below and click "Continue".
       title: Security check
     confirmations:
+      clicking_this_link: clicking this link
+      login_link: log in
+      proceed_to_login_html: You can now proceed to %{login_link}.
+      redirect_to_app_html: You should have been redirected to the <strong>%{app_name}</strong> app. If that did not happen, try %{clicking_this_link} or manually return to the app.
+      registration_complete: Your registration on %{domain} is now complete!
+      welcome_title: Welcome, %{name}!
       wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.

@@ -38,6 +38,12 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
     show
   end
 
+  def redirect_to_app?
+    truthy_param?(:redirect_to_app)
+  end
+
+  helper_method :redirect_to_app?
+
   private
 
   def require_captcha_if_needed!
@@ -81,7 +87,7 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
   end
 
   def after_confirmation_path_for(_resource_name, user)
-    if user.created_by_application && truthy_param?(:redirect_to_app)
+    if user.created_by_application && redirect_to_app?
       user.created_by_application.confirmation_redirect_uri
     elsif user_signed_in?
       web_url('start')
