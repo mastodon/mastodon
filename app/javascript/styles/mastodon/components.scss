@@ -4975,11 +4975,13 @@ a.status-card {
       height: 18px;
     }
 
-    &__heading__container {
-      &--flex {
-        padding-right: 10px;
-        display: flex;
-        justify-content: space-between;
+    &__heading-container {
+      padding-right: 10px;
+      display: flex;
+      justify-content: space-between;
+
+      .icon-button {
+        margin-top: -10px;
       }
     }
 
