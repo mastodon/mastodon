@@ -3,15 +3,19 @@
 
 - if resource.errors.of_kind?(:email, :already_confirmed)
   .simple_form
-    = render 'auth/shared/progress', stage: 'completed'
+    = render 'auth/shared/progress', stage: resource.approved? ? 'completed' : 'confirmed'
 
-    %h1.title= t('auth.confirmations.welcome_title', name: resource.account.username)
-    %p.lead= t('auth.confirmations.registration_complete', domain: site_hostname)
-    - if resource.created_by_application && redirect_to_app?
-      - app = resource.created_by_application
-      %p.lead= t('auth.confirmations.redirect_to_app_html', app_name: app.name, clicking_this_link: link_to(t('auth.confirmations.clicking_this_link'), app.confirmation_redirect_uri))
+    - if resource.approved?
+      %h1.title= t('auth.confirmations.welcome_title', name: resource.account.username)
+      %p.lead= t('auth.confirmations.registration_complete', domain: site_hostname)
+      - if resource.created_by_application && redirect_to_app?
+        - app = resource.created_by_application
+        %p.lead= t('auth.confirmations.redirect_to_app_html', app_name: app.name, clicking_this_link: link_to(t('auth.confirmations.clicking_this_link'), app.confirmation_redirect_uri))
+      - else
+        %p.lead= t('auth.confirmations.proceed_to_login_html', login_link: link_to_login(t('auth.confirmations.login_link')))
     - else
-      %p.lead= t('auth.confirmations.proceed_to_login_html', login_link: link_to_login(t('auth.confirmations.login_link')))
+      %h1.title= t('auth.confirmations.awaiting_review_title')
+      %p.lead= t('auth.confirmations.awaiting_review', domain: site_hostname)
 - else
   = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
     = render 'shared/error_messages', object: resource
