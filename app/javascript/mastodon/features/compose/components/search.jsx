@@ -224,9 +224,9 @@ class Search extends PureComponent {
   handleForgetAllRecentSearchClick = () => {
     const { recent } = this.props;
     recent.toArray().map((search) => {
-        this.handleForgetRecentSearchClick(search);
-    })
-  }
+      this.handleForgetRecentSearchClick(search);
+    });
+  };
 
   _unfocus () {
     document.querySelector('.ui').parentElement.focus();
@@ -351,10 +351,10 @@ class Search extends PureComponent {
           {options.length === 0 && (
             <>
               <div className='search__popout__heading-container'>
-              <h4><FormattedMessage id='search_popout.recent' defaultMessage='Recent searches' /></h4>
-              {recent.size > 0 &&
+                <h4><FormattedMessage id='search_popout.recent' defaultMessage='Recent searches' /></h4>
+                {recent.size > 0 &&
                 (<button className='icon-button' onMouseDown={this.handleForgetAllRecentSearchClick}><Icon id='trash' /></button>)
-              }
+                }
               </div>
 
               <div className='search__popout__menu'>
