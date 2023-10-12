@@ -7,6 +7,11 @@ on:
       - .github/workflows/build-releases.yml
       - .github/workflows/test-image-build.yml
       - Dockerfile
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 

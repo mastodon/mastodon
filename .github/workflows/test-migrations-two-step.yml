@@ -6,6 +6,10 @@ on:
       - 'renovate/**'
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   pre_job:
     runs-on: ubuntu-latest

@@ -3,6 +3,10 @@ on:
   pull_request:
     types: [labeled, synchronize, reopened, ready_for_review, opened]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
   packages: write

@@ -23,6 +23,10 @@ on:
       - '**/*.rake'
       - '.github/workflows/lint-ruby.yml'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     runs-on: ubuntu-latest

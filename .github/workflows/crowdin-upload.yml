@@ -14,6 +14,10 @@ on:
       - config/locales/doorkeeper.en.yml
       - .github/workflows/crowdin-upload.yml
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   upload-translations:
     runs-on: ubuntu-latest
