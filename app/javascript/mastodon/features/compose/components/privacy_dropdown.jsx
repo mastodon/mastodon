@@ -253,25 +253,23 @@ class PrivacyDropdown extends PureComponent {
     const valueOption = this.options.find(item => item.value === value);
 
     return (
-      <div className={classNames('privacy-dropdown', placement, { active: open })} onKeyDown={this.handleKeyDown}>
-        <div className={classNames('privacy-dropdown__value', { active: this.options.indexOf(valueOption) === (placement === 'bottom' ? 0 : (this.options.length - 1)) })} ref={this.setTargetRef}>
-          <IconButton
-            className='privacy-dropdown__value-icon'
-            icon={valueOption.icon}
-            title={intl.formatMessage(messages.change_privacy)}
-            size={18}
-            expanded={open}
-            active={open}
-            inverted
-            onClick={this.handleToggle}
-            onMouseDown={this.handleMouseDown}
-            onKeyDown={this.handleButtonKeyDown}
-            style={{ height: null, lineHeight: '27px' }}
-            disabled={disabled}
-          />
-        </div>
+      <div ref={this.setTargetRef} onKeyDown={this.handleKeyDown}>
+        <IconButton
+          className='privacy-dropdown__value-icon'
+          icon={valueOption.icon}
+          title={intl.formatMessage(messages.change_privacy)}
+          size={18}
+          expanded={open}
+          active={open}
+          inverted
+          onClick={this.handleToggle}
+          onMouseDown={this.handleMouseDown}
+          onKeyDown={this.handleButtonKeyDown}
+          style={{ height: null, lineHeight: '27px' }}
+          disabled={disabled}
+        />
 
-        <Overlay show={open} placement={'bottom'} flip target={this.findTarget} container={container} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
+        <Overlay show={open} placement={placement} flip target={this.findTarget} container={container} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
           {({ props, placement }) => (
             <div {...props}>
               <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>

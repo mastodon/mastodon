@@ -79,7 +79,7 @@ class Bookmarks extends ImmutablePureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.heading)}>
         <ColumnHeader
-          icon='bookmark'
+          icon='bookmarks'
           title={intl.formatMessage(messages.heading)}
           onPin={this.handlePin}
           onMove={this.handleMove}

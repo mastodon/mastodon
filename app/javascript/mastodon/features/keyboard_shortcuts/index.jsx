@@ -27,7 +27,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
       <Column>
         <ColumnHeader
           title={intl.formatMessage(messages.heading)}
-          icon='question'
+          icon='info-circle'
           multiColumn={multiColumn}
         />
 

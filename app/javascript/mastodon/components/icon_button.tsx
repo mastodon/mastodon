@@ -85,10 +85,8 @@ export class IconButton extends PureComponent<Props, States> {
 
   render() {
     const style = {
-      fontSize: `${this.props.size}px`,
-      width: `${this.props.size * 1.28571429}px`,
-      height: `${this.props.size * 1.28571429}px`,
-      lineHeight: `${this.props.size}px`,
+      width: this.props.size * 1.28571429,
+      height: this.props.size * 1.28571429,
       ...this.props.style,
       ...(this.props.active ? this.props.activeStyle : {}),
     };
@@ -126,7 +124,7 @@ export class IconButton extends PureComponent<Props, States> {
 
     let contents = (
       <>
-        <Icon id={icon} fixedWidth aria-hidden='true' />{' '}
+        <Icon id={icon} aria-hidden='true' />{' '}
         {typeof counter !== 'undefined' && (
           <span className='icon-button__counter'>
             <AnimatedNumber value={counter} />

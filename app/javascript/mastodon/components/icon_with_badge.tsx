@@ -15,7 +15,7 @@ export const IconWithBadge: React.FC<Props> = ({
   className,
 }) => (
   <i className='icon-with-badge'>
-    <Icon id={id} fixedWidth className={className} />
+    <Icon id={id} className={className} />
     {count > 0 && (
       <i className='icon-with-badge__badge'>{formatNumber(count)}</i>
     )}
