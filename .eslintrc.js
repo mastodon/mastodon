@@ -9,7 +9,6 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:promise/recommended',
     'plugin:jsdoc/recommended',
-    'plugin:prettier/recommended',
   ],
 
   env: {
@@ -63,7 +62,9 @@ module.exports = {
     'consistent-return': 'error',
     'dot-notation': 'error',
     eqeqeq: ['error', 'always', { 'null': 'ignore' }],
+    'indent': ['error', 2],
     'jsx-quotes': ['error', 'prefer-single'],
+    'semi': ['error', 'always'],
     'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
     'no-console': [

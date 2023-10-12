@@ -109,7 +109,7 @@ export function computeHashtagBarForStatus(status: StatusLike): {
 
   const lastChild = template.content.lastChild;
 
-  if (!lastChild) return defaultResult;
+  if (!lastChild || lastChild.nodeType === Node.TEXT_NODE) return defaultResult;
 
   template.content.removeChild(lastChild);
   const contentWithoutLastLine = template;

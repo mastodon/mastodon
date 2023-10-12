@@ -1,5 +1,5 @@
 import './public-path';
-import main from "mastodon/main"
+import main from "mastodon/main";
 
 import { start } from '../mastodon/common';
 import { loadLocale } from '../mastodon/locales';
