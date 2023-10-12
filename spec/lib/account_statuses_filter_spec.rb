@@ -17,6 +17,10 @@ RSpec.describe AccountStatusesFilter do
     Fabricate(:status, account: account, visibility: visibility, tags: [tag])
   end
 
+  def status_with_sensitive_content!(visibility)
+    Fabricate(:status, account: account, visibility: visibility, sensitive: true)
+  end
+
   def status_with_parent!(visibility)
     Fabricate(:status, account: account, visibility: visibility, thread: Fabricate(:status))
   end
@@ -46,6 +50,7 @@ RSpec.describe AccountStatusesFilter do
       status!(:private)
       status_with_parent!(:public)
       status_with_reblog!(:public)
+      status_with_sensitive_content!(:public)
       status_with_tag!(:public, tag)
       status_with_mention!(:direct)
       status_with_media_attachment!(:public)
@@ -81,6 +86,14 @@ RSpec.describe AccountStatusesFilter do
 
         it 'returns only statuses that are not reblogs' do
           expect(subject.results.none?(&:reblog?)).to be true
+        end
+      end
+
+      context 'with exclude sensitive param' do
+        let(:params) { { exclude_sensitive: true } }
+
+        it 'does not return sensitive statuses' do
+          expect(subject.results.none?(&:sensitive?)).to be true
         end
       end
     end

@@ -7,6 +7,7 @@ class AccountStatusesFilter
     only_media
     exclude_replies
     exclude_reblogs
+    exclude_sensitive
   ).freeze
 
   attr_reader :params, :account, :current_account
@@ -24,7 +25,8 @@ class AccountStatusesFilter
     scope.merge!(only_media_scope) if only_media?
     scope.merge!(no_replies_scope) if exclude_replies?
     scope.merge!(no_reblogs_scope) if exclude_reblogs?
-    scope.merge!(hashtag_scope)    if tagged?
+    scope.merge!(no_sensitive_scope) if exclude_sensitive?
+    scope.merge!(hashtag_scope) if tagged?
 
     scope
   end
@@ -81,6 +83,10 @@ class AccountStatusesFilter
     Status.without_reblogs
   end
 
+  def no_sensitive_scope
+    Status.without_sensitive
+  end
+
   def pinned_scope
     account.pinned_statuses.group(Status.arel_table[:id], StatusPin.arel_table[:created_at])
   end
@@ -133,6 +139,10 @@ class AccountStatusesFilter
 
   def exclude_reblogs?
     truthy_param?(:exclude_reblogs)
+  end
+
+  def exclude_sensitive?
+    truthy_param?(:exclude_sensitive)
   end
 
   def tagged?
