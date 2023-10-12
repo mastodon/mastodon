@@ -14,7 +14,8 @@
 - if policy(:invite).create?
   %p= t('invites.prompt')
 
-  = render 'invites/form'
+  = simple_form_for(@invite, url: admin_invites_path) do |form|
+    = render partial: 'invites/form', object: form
 
   %hr.spacer/
 

@@ -37,7 +37,6 @@
 
 # This is bad form, but there are enough differences that it's impractical to do
 # otherwise:
-# rubocop:disable all
 
 module Mastodon
   module MigrationHelpers
@@ -989,5 +988,3 @@ into similar problems in the future (e.g. when new tables are created).
     end
   end
 end
-
-# rubocop:enable all

@@ -463,20 +463,40 @@ hy:
     regenerate_token: Ստեղծել նոր հասանելիութեան կտրոն
     your_token: Քո մուտքի բանալին
   auth:
+    apply_for_account: Ուղարկել
     delete_account: Ջնջել հաշիվը
     description:
       prefix_sign_up: Գրանցուի՛ր Մաստոդոնում հենց այսօր
+    didnt_get_confirmation: Չե՞ս ստացել հաստատման յղում
     dont_have_your_security_key: Չունե՞ս անվտանգութեան բանալի։
     forgot_password: Մոռացե՞լ ես գաղտնաբառդ
     login: Մտնել
     logout: Դուրս գալ
     migrate_account: Տեղափոխուել այլ հաշիւ
     or_log_in_with: Կամ մուտք գործել օգտագործելով՝
+    privacy_policy_agreement_html: Ես կարդացել եւ ընդունել եմ <a href="%{privacy_policy_path}" target="_blank">գաղնիութեան քաղաքականութիւնը</a>
+    progress:
+      confirm: Փոստի հաստատում
+      details: Ձեր տուեալները
+      review: Վաւերացում
+      rules: Ընդունել կանոները
     register: Գրանցվել
     registration_closed: "%{instance}ը չի ընդունում նոր անդամներ"
     reset_password: Վերականգնել գաղտանաբառը
+    rules:
+      accept: Հաստատել
+      back: Վերադառնալ
+      preamble: Կանոնները սահմանում եւ կիրառում են %{domain}-ի մոդերատորները։
+      title: Մի քանի հիմանական կանոններ։
     security: Անվտանգություն
     set_new_password: Սահմանել նոր գաղտնաբառ
+    sign_in:
+      preamble_html: Մուտքագրէք <strong>%{domain}</strong>-ի ձեր տուեալները։ Եթե ձեր հաշիւը ուրիշ սպասարկիչի վրայ է, այտեղ մտնել չի ստացուի։
+      title: Մտնել %{domain}
+    sign_up:
+      manual_review: Գրանցումները %{domain}-ում վաւերացնում են մոդերատորնրը։ Մեզ օգնելու համար մի փոքր պատմէք ձեր մասին եւ թե ինչու էք ուզում գրանցուել։
+      preamble: Այս հանգոյցում հաշիւ ունենալով դուք կարող էք հերտեւել դաշնեզերքի ցանկացած օգտատիրոջ, անկախ նրանից թե որտեղ է նրա հաշիւը տեղակայուած։
+      title: Ստեղծի՜ր հաշիւ %{domain}-ում
     status:
       account_status: Հաշուի կարգավիճակ
       pending: Դիմումը պէտք է քննուի մեր անձնակազմի կողմից, ինչը կարող է մի փոքր ժամանակ խլել։ Դիմումի հաստատուելու դէպքում, կտեղեկացնենք նամակով։
@@ -685,6 +705,8 @@ hy:
     other: Այլ
     posting_defaults: Կանխադիր կարգաւորումներ
     public_timelines: Հանրային հոսք
+  privacy:
+    search: Որոնել
   privacy_policy:
     title: Գաղտնիութեան քաղաքականութիւն
   reactions:
