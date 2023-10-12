@@ -282,8 +282,8 @@ jobs:
         ports:
           - 6379:6379
 
-      elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.17.13
+      search:
+        image: ${{ matrix.search-image }}
         env:
           discovery.type: single-node
           xpack.security.enabled: false
@@ -313,6 +313,11 @@ jobs:
           - '3.0'
           - '3.1'
           - '.ruby-version'
+        search-image:
+          - docker.elastic.co/elasticsearch/elasticsearch:7.17.13
+        include:
+          - ruby-version: '.ruby-version'
+            search-image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
 
     steps:
       - uses: actions/checkout@v4
