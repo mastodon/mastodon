@@ -51,7 +51,7 @@ class CustomFilter < ApplicationRecord
     return @expires_in if defined?(@expires_in)
     return nil if expires_at.nil?
 
-    [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].find { |expires_in| expires_in.from_now >= expires_at }
+    CustomFilter.expires_in_options.find { |expires_in| expires_in.from_now >= expires_at }
   end
 
   def irreversible=(value)
@@ -60,6 +60,10 @@ class CustomFilter < ApplicationRecord
 
   def irreversible?
     hide_action?
+  end
+
+  def self.expires_in_options
+    [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week, 1.month]
   end
 
   def self.cached_filters_for(account_id)

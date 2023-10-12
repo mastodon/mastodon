@@ -1238,6 +1238,16 @@ en:
     errors:
       deprecated_api_multiple_keywords: These parameters cannot be changed from this application because they apply to more than one filter keyword. Use a more recent application or the web interface.
       invalid_context: None or invalid context supplied
+    expired: Expired
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '2629746': 1 month
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
+    expires_in_prompt: Never
     index:
       contexts: Filters in %{contexts}
       delete: Delete

@@ -5,7 +5,7 @@
     - if filter.expires?
       .expiration{ title: t('filters.index.expires_on', date: l(filter.expires_at)) }
         - if filter.expired?
-          = t('invites.expired')
+          = t('filters.expired')
         - else
           = t('filters.index.expires_in', distance: distance_of_time_in_words_to_now(filter.expires_at))
 

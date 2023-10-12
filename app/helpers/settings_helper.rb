@@ -5,6 +5,10 @@ module SettingsHelper
     LanguagesHelper.sorted_locale_keys(LanguagesHelper::SUPPORTED_LOCALES.keys)
   end
 
+  def filter_expires_in_options
+    CustomFilter.expires_in_options
+  end
+
   def ui_languages
     LanguagesHelper.sorted_locale_keys(I18n.available_locales)
   end
