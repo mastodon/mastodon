@@ -1,12 +1,12 @@
 /*  TangerineUI 🍊 for Mastodon
-    version: 1.9.2
+    version: 1.9.3
 
     A Tangerine redesign for Mastodon's Web UI.
     https://github.com/nileane/TangerineUI-for-Mastodon/
 
     by @nileane@nileane.fr
 
-    Compatible with: Mastodon v4.2.0 ✅
+    Compatible with: Mastodon v4.2.1 ✅
 */
 
 
@@ -211,7 +211,6 @@ body.layout-single-column  {
 }
 
 /* Resetting borders */
-.layout-single-column .column>.scrollable,
 .layout-single-column .getting-started,
 .layout-single-column .regeneration-indicator,
 .layout-single-column .audio-player,
@@ -525,6 +524,7 @@ body.layout-single-column  {
 }
 .layout-single-column .navigation-bar {
     border-radius: 8px 8px 0 0;
+    padding: 21px 15px 22px;
     background-color: var(--color-content-secondary-bg);
     border-top: 1px solid var(--color-lines);
     border-left: 1px solid var(--color-lines);
@@ -570,7 +570,7 @@ body.layout-single-column  {
 .layout-single-column .compose-form .compose-form__buttons-wrapper .icon-button,
 .layout-single-column .compose-form .compose-form__buttons-wrapper .text-icon-button,
 .layout-single-column .compose-form .character-counter {
-    color: var(--color-fg);
+    color: var(--color-content-fg);
     height: 27px;
 }
 .layout-single-column .compose-form .compose-form__buttons-wrapper .icon-button.active {
@@ -831,7 +831,8 @@ body.layout-single-column  {
 }
 .layout-single-column .scrollable > div:last-child > div:last-child > .status__wrapper,
 .layout-single-column .scrollable > div:last-child > .status__wrapper,
-.layout-single-column .scrollable > div > article:last-child > div > .status__wrapper {
+.layout-single-column .scrollable > div > article:last-child > div > .status__wrapper,
+.layout-single-column .search-results__section > div:last-child >.status__wrapper {
     border-bottom: 1px solid var(--color-lines);
 }
 .layout-single-column .dismissable-banner + .scrollable > div > article:first-child > div > .status__wrapper {
@@ -847,7 +848,8 @@ body.layout-single-column  {
     }
     .layout-single-column .scrollable > div:last-child > div:last-child > .status__wrapper,
     .layout-single-column .scrollable > div:last-child > .status__wrapper,
-    .layout-single-column .scrollable > div > article:last-child > div > .status__wrapper {
+    .layout-single-column .scrollable > div > article:last-child > div > .status__wrapper,
+    .layout-single-column .search-results__section > div:last-child >.status__wrapper {
         border-bottom-right-radius: 8px;
         border-bottom-left-radius: 8px;
     }
@@ -936,7 +938,9 @@ body.layout-single-column  {
 .layout-single-column .notification .status::before, /* no dividers on posts _inside_ notifications */
 .layout-single-column .account-timeline__header + article .status::before, /* no divider above first post on profile pages */
 .layout-single-column .scrollable > div:first-child > .status::before, /* no divider above first post in a column thread */
-.layout-single-column .scrollable > div:first-child > div:first-child .status::before /* no divider above first post in a column thread (backwards compatibility with 4.1.*) */ {
+.layout-single-column .scrollable > div:first-child > div:first-child .status::before, /* no divider above first post in a column thread (backwards compatibility with 4.1.*) */
+.layout-single-column .hashtag-header + article .status::before,
+.layout-single-column .search-results__section .search-results__section__header + div .status::before {
     display: none;
 }
 @media screen and (min-width:890px) and (max-width:1174px) { /* no divider above first post in a column thread on medium-size devices */
@@ -1112,11 +1116,32 @@ body.layout-single-column  {
 .layout-single-column .hashtag-bar a,
 .layout-single-column .hashtag-bar .link-button {
     color: var(--color-fg-muted);
+    font-size: 90%;
+}
+.layout-single-column .hashtag-bar .link-button {
+    font-size: 80%;
+    margin-left: 3px;
+}
+.layout-single-column .hashtag-bar a {
+    background-color: var(--color-content-secondary-bg);
     transition: all .3s;
+    padding: 3px 8px;
+    border-radius: 8px;
 }
 .layout-single-column .hashtag-bar a:hover,
 .layout-single-column .hashtag-bar .link-button:hover {
     color: var(--color-accent);
+}
+.layout-single-column .hashtag-bar a:hover {
+    background-color: var(--color-accent-bg);
+}
+.layout-single-column .hashtag-bar a:active,
+.layout-single-column .hashtag-bar a:focus {
+    color: var(--color-accent-fg);
+    background-color: var(--color-accent);
+}
+.layout-single-column .hashtag-bar a:hover span {
+    text-decoration: none;
 }
 
 /* ⭐ Action bar */
@@ -1388,6 +1413,9 @@ body.layout-single-column  {
 .layout-single-column .muted .poll__chart.leading {
     opacity: 1;
 }
+.layout-single-column .muted .poll {
+    color: var(--color-content-fg-muted);
+}
 .layout-single-column .poll__footer {
     color: var(--color-content-fg);
 }
@@ -1541,7 +1569,7 @@ body.layout-single-column  {
 }
 .layout-single-column .detailed-status-direct .fa.fa-at::before,
 .layout-single-column .detailed-status__wrapper-direct .fa.fa-at::before {
-    background-position: center 4px;
+    background-position: center 2px;
 }
 .layout-single-column .status-direct.muted .status__content {
     background: rgba(155, 174, 200, 0.1);
@@ -2440,10 +2468,11 @@ body.layout-single-column  {
 /* Hashtag header */
 .layout-single-column .hashtag-header {
     font-size: 15px;
+    padding: 18px 20px 20px;
     color: var(--color-content-fg);
-    background-color: var(--color-accent-bg);
-    border-top: 1px solid var(--color-accent-lines);
-    border-bottom: 1px solid var(--color-lines);
+    background-color: var(--color-content-secondary-bg);
+    border-top: 1px solid var(--color-lines);
+    border-bottom: 0;
 }
 .layout-single-column .hashtag-header__header {
     margin-bottom: 0;
@@ -2451,6 +2480,14 @@ body.layout-single-column  {
 .layout-single-column .hashtag-header__header h1 {
     color: var(--color-content-fg);
 }
+.layout-single-column .hashtag-header .hashtag-header__header + div {
+    color: var(--color-content-fg);
+    font-size: 85%;
+    opacity: .8;
+    margin-top: -5px;
+    width: max-content;
+}
+
 @media screen and (min-width:890px) and (max-width:1174px) {
     .layout-single-column .hashtag-header {
         margin-top: 15px;
@@ -2460,8 +2497,11 @@ body.layout-single-column  {
     .layout-single-column .hashtag-header {
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
-        border-left: 1px solid var(--color-accent-lines);
-        border-right: 1px solid var(--color-accent-lines);
+        border-left: 1px solid var(--color-lines);
+        border-right: 1px solid var(--color-lines);
+    }
+    .layout-single-column .hashtag-header .hashtag-header__header button {
+        transform: translate(0, 8px);
     }
 }
 
@@ -2626,11 +2666,11 @@ body.layout-single-column  {
     border-bottom: 0;
 }
 .layout-single-column .search-results__section__header {
-    background-color: var(--color-accent-bg);
-    border-top: 1px solid var(--color-accent-lines);
-    border-left: 1px solid var(--color-accent-lines);
-    border-right: 1px solid var(--color-accent-lines);
-    border-bottom: 1px solid var(--color-accent-lines);
+    background-color: var(--color-content-secondary-bg);
+    border-top: 1px solid var(--color-lines);
+    border-left: 1px solid var(--color-lines);
+    border-right: 1px solid var(--color-lines);
+    border-bottom: 0;
     color: var(--color-content-fg);
 }
 .layout-single-column .search-results__section__header button {
@@ -3073,6 +3113,7 @@ body.layout-single-column  {
 .layout-single-column .reply-indicator__content .status__content__spoiler-link,
 .layout-single-column .status__content .status__content__spoiler-link {
     background-color: var(--color-accent-bg);
+    border-radius: 8px;
 }
 .layout-single-column .account__header__tabs__buttons .icon-button {
     padding: 3px;
