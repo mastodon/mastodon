@@ -26,19 +26,10 @@ RSpec.describe Api::V1::ReportsController do
       post :create, params: { status_ids: [status.id], account_id: target_account.id, comment: 'reasons', category: category, rule_ids: rule_ids, forward: forward }
     end
 
-    it 'returns http success' do
+    it 'creates a report', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
-
-    it 'creates a report' do
       expect(target_account.targeted_reports).to_not be_empty
-    end
-
-    it 'saves comment' do
       expect(target_account.targeted_reports.first.comment).to eq 'reasons'
-    end
-
-    it 'sends e-mails to admins' do
       expect(ActionMailer::Base.deliveries.first.to).to eq([admin.email])
     end
 
@@ -63,11 +54,8 @@ RSpec.describe Api::V1::ReportsController do
       let(:category) { 'violation' }
       let(:rule_ids) { [rule.id] }
 
-      it 'saves category' do
+      it 'saves category and rule_ids' do
         expect(target_account.targeted_reports.first.violation?).to be true
-      end
-
-      it 'saves rule_ids' do
         expect(target_account.targeted_reports.first.rule_ids).to contain_exactly(rule.id)
       end
     end

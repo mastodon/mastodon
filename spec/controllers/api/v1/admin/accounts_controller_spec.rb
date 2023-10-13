@@ -44,11 +44,9 @@ RSpec.describe Api::V1::Admin::AccountsController do
       context "when called with #{params.inspect}" do
         let(:params) { params }
 
-        it 'returns http success' do
+        it "returns the correct accounts (#{expected_results.inspect})", :aggregate_failures do
           expect(response).to have_http_status(200)
-        end
 
-        it "returns the correct accounts (#{expected_results.inspect})" do
           json = body_as_json
 
           expect(json.map { |a| a[:id].to_i }).to eq(expected_results.map { |symbol| send(symbol).id })
@@ -79,15 +77,10 @@ RSpec.describe Api::V1::Admin::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
+    it 'approves user', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
-
-    it 'approves user' do
       expect(account.reload.user_approved?).to be true
-    end
 
-    it 'logs action' do
       log_item = Admin::ActionLog.last
 
       expect(log_item).to_not be_nil
@@ -106,15 +99,10 @@ RSpec.describe Api::V1::Admin::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
+    it 'removes user', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
-
-    it 'removes user' do
       expect(User.where(id: account.user.id).count).to eq 0
-    end
 
-    it 'logs action' do
       log_item = Admin::ActionLog.last
 
       expect(log_item).to_not be_nil
@@ -133,11 +121,8 @@ RSpec.describe Api::V1::Admin::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
+    it 'enables user', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
-
-    it 'enables user' do
       expect(account.reload.user_disabled?).to be false
     end
   end
@@ -151,11 +136,8 @@ RSpec.describe Api::V1::Admin::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
+    it 'unsuspends account', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
-
-    it 'unsuspends account' do
       expect(account.reload.suspended?).to be false
     end
   end
@@ -169,11 +151,8 @@ RSpec.describe Api::V1::Admin::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
+    it 'unsensitizes account', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
-
-    it 'unsensitizes account' do
       expect(account.reload.sensitized?).to be false
     end
   end
@@ -187,11 +166,8 @@ RSpec.describe Api::V1::Admin::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
+    it 'unsilences account', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
-
-    it 'unsilences account' do
       expect(account.reload.silenced?).to be false
     end
   end

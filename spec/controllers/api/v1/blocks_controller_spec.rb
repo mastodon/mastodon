@@ -12,45 +12,48 @@ RSpec.describe Api::V1::BlocksController do
   before { allow(controller).to receive(:doorkeeper_token) { token } }
 
   describe 'GET #index' do
-    it 'limits according to limit parameter' do
+    it 'limits according to limit parameter', :aggregate_failures do
       Array.new(2) { Fabricate(:block, account: user.account) }
       get :index, params: { limit: 1 }
+
+      expect(response).to have_http_status(200)
       expect(body_as_json.size).to eq 1
     end
 
-    it 'queries blocks in range according to max_id' do
+    it 'queries blocks in range according to max_id', :aggregate_failures do
       blocks = Array.new(2) { Fabricate(:block, account: user.account) }
 
       get :index, params: { max_id: blocks[1] }
 
+      expect(response).to have_http_status(200)
       expect(body_as_json.size).to eq 1
       expect(body_as_json[0][:id]).to eq blocks[0].target_account_id.to_s
     end
 
-    it 'queries blocks in range according to since_id' do
+    it 'queries blocks in range according to since_id', :aggregate_failures do
       blocks = Array.new(2) { Fabricate(:block, account: user.account) }
 
       get :index, params: { since_id: blocks[0] }
 
+      expect(response).to have_http_status(200)
       expect(body_as_json.size).to eq 1
       expect(body_as_json[0][:id]).to eq blocks[1].target_account_id.to_s
     end
 
-    it 'sets pagination header for next path' do
+    it 'sets pagination header for next path', :aggregate_failures do
       blocks = Array.new(2) { Fabricate(:block, account: user.account) }
       get :index, params: { limit: 1, since_id: blocks[0] }
+
+      expect(response).to have_http_status(200)
       expect(response.headers['Link'].find_link(%w(rel next)).href).to eq api_v1_blocks_url(limit: 1, max_id: blocks[1])
     end
 
-    it 'sets pagination header for previous path' do
+    it 'sets pagination header for previous path', :aggregate_failures do
       block = Fabricate(:block, account: user.account)
       get :index
-      expect(response.headers['Link'].find_link(%w(rel prev)).href).to eq api_v1_blocks_url(since_id: block)
-    end
 
-    it 'returns http success' do
-      get :index
       expect(response).to have_http_status(200)
+      expect(response.headers['Link'].find_link(%w(rel prev)).href).to eq api_v1_blocks_url(since_id: block)
     end
 
     context 'with wrong scopes' do
