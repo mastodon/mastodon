@@ -30,15 +30,10 @@ RSpec.describe 'Accounts' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:lists'
 
-    it 'returns http success' do
+    it 'returns the accounts in the requested list', :aggregate_failures do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the accounts in the requested list' do
-      subject
-
       expect(body_as_json).to match_array(expected_response)
     end
 
@@ -69,15 +64,10 @@ RSpec.describe 'Accounts' do
         user.account.follow!(bob)
       end
 
-      it 'returns http success' do
+      it 'adds account to the list', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'adds account to the list' do
-        subject
-
         expect(list.accounts).to include(bob)
       end
     end
@@ -87,29 +77,19 @@ RSpec.describe 'Accounts' do
         user.account.follow_requests.create!(target_account: bob)
       end
 
-      it 'returns http success' do
+      it 'adds account to the list', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'adds account to the list' do
-        subject
-
         expect(list.accounts).to include(bob)
       end
     end
 
     context 'when the added account is not followed' do
-      it 'returns http not found' do
+      it 'does not add the account to the list', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(404)
-      end
-
-      it 'does not add the account to the list' do
-        subject
-
         expect(list.accounts).to_not include(bob)
       end
     end
@@ -159,15 +139,10 @@ RSpec.describe 'Accounts' do
         list.accounts << [bob, peter]
       end
 
-      it 'returns http success' do
+      it 'removes the specified account from the list', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'removes the specified account from the list' do
-        subject
-
         expect(list.accounts).to_not include(bob)
       end
 
@@ -180,15 +155,10 @@ RSpec.describe 'Accounts' do
       context 'when the specified account is not in the list' do
         let(:params) { { account_ids: [0] } }
 
-        it 'returns http success' do
+        it 'does not remove any account from the list', :aggregate_failures do
           subject
 
           expect(response).to have_http_status(200)
-        end
-
-        it 'does not remove any account from the list' do
-          subject
-
           expect(list.accounts).to contain_exactly(bob, peter)
         end
       end
