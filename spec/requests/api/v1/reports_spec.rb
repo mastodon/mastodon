@@ -33,33 +33,21 @@ RSpec.describe 'Reports' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:reports'
 
-    it 'returns http success' do
-      subject
-
-      expect(response).to have_http_status(200)
-    end
-
-    it 'returns the created report' do
-      subject
-
-      expect(body_as_json).to match(
-        a_hash_including(
-          status_ids: [status.id.to_s],
-          category: category,
-          comment: 'reasons'
-        )
-      )
-    end
-
-    it 'creates a report' do
-      subject
-
-      expect(target_account.targeted_reports).to_not be_empty
-    end
-
-    it 'sends e-mails to admins' do
+    it 'creates a report', :aggregate_failures do
       perform_enqueued_jobs do
         subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json).to match(
+          a_hash_including(
+            status_ids: [status.id.to_s],
+            category: category,
+            comment: 'reasons'
+          )
+        )
+
+        expect(target_account.targeted_reports).to_not be_empty
+        expect(target_account.targeted_reports.first.comment).to eq 'reasons'
 
         expect(ActionMailer::Base.deliveries.first.to).to eq([admin.email])
       end
@@ -90,15 +78,10 @@ RSpec.describe 'Reports' do
       let(:category) { 'violation' }
       let(:rule_ids) { [rule.id] }
 
-      it 'saves category' do
+      it 'saves category and rule_ids' do
         subject
 
         expect(target_account.targeted_reports.first.violation?).to be true
-      end
-
-      it 'saves rule_ids' do
-        subject
-
         expect(target_account.targeted_reports.first.rule_ids).to contain_exactly(rule.id)
       end
     end
