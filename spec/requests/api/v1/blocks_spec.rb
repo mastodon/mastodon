@@ -22,15 +22,10 @@ RSpec.describe 'Blocks' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:blocks'
 
-    it 'returns http success' do
+    it 'returns the blocked accounts', :aggregate_failures do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the blocked accounts' do
-      subject
-
       expect(body_as_json).to match_array(expected_response)
     end
 
@@ -53,6 +48,32 @@ RSpec.describe 'Blocks' do
         subject
 
         expect(response.headers['Link'].find_link(%w(rel next)).href).to eq(api_v1_blocks_url(limit: params[:limit], max_id: blocks[1].id))
+      end
+    end
+
+    context 'with max_id param' do
+      let(:params) { { max_id: blocks[1].id } }
+
+      it 'queries the blocks in range according to max_id', :aggregate_failures do
+        subject
+
+        response_body = body_as_json
+
+        expect(response_body.size).to be 1
+        expect(response_body[0][:id]).to eq(blocks[0].target_account.id.to_s)
+      end
+    end
+
+    context 'with since_id param' do
+      let(:params) { { since_id: blocks[1].id } }
+
+      it 'queries the blocks in range according to since_id', :aggregate_failures do
+        subject
+
+        response_body = body_as_json
+
+        expect(response_body.size).to be 1
+        expect(response_body[0][:id]).to eq(blocks[2].target_account.id.to_s)
       end
     end
   end
