@@ -70,7 +70,7 @@ describe ExistingUsernameValidator do
         end
 
         context 'when multiple is true' do
-          it 'adds errors to the record' do
+          it 'does not add errors to the record' do
             record.friends = 'user@example.com'
 
             expect(record).to be_valid
