@@ -192,6 +192,7 @@ class FeedManager
     # also tagged with another followed hashtag or from a followed user
     scope = from_tag.statuses
                     .where(id: timeline_status_ids)
+                    .where.not(account: into_account)
                     .where.not(account: into_account.following)
                     .tagged_with_none(TagFollow.where(account: into_account).pluck(:tag_id))
 
