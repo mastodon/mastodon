@@ -9146,6 +9146,11 @@ noscript {
       background: lighten($ui-base-color, 4%);
       color: $highlight-text-color;
       cursor: pointer;
+      list-style: none;
+    }
+
+    &__title::-webkit-details-marker {
+      display: none;
     }
 
     &.active &__title {
