@@ -169,31 +169,29 @@ const Firehose = ({ feedType, multiColumn }) => {
         <ColumnSettings />
       </ColumnHeader>
 
-      <div className='scrollable scrollable--flex'>
-        <div className='account__section-headline'>
-          <NavLink exact to='/public/local'>
-            <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
-          </NavLink>
+      <div className='account__section-headline'>
+        <NavLink exact to='/public/local'>
+          <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
+        </NavLink>
 
-          <NavLink exact to='/public/remote'>
-            <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
-          </NavLink>
+        <NavLink exact to='/public/remote'>
+          <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
+        </NavLink>
 
-          <NavLink exact to='/public'>
-            <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
-          </NavLink>
-        </div>
-
-        <StatusListContainer
-          prepend={prependBanner}
-          timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
-          onLoadMore={handleLoadMore}
-          trackScroll
-          scrollKey='firehose'
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-        />
+        <NavLink exact to='/public'>
+          <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
+        </NavLink>
       </div>
+
+      <StatusListContainer
+        prepend={prependBanner}
+        timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
+        onLoadMore={handleLoadMore}
+        trackScroll
+        scrollKey='firehose'
+        emptyMessage={emptyMessage}
+        bindToDocument={!multiColumn}
+      />
 
       <Helmet>
         <title>{intl.formatMessage(messages.title)}</title>
