@@ -85,6 +85,12 @@ RSpec.configure do |config|
   config.include Redisable
   config.include SignedRequestHelpers, type: :request
 
+  config.around(:each, use_transactional_tests: false) do |example|
+    self.use_transactional_tests = false
+    example.run
+    self.use_transactional_tests = true
+  end
+
   config.before :each, type: :cli do
     stub_stdout
     stub_reset_connection_pools
