@@ -8,6 +8,14 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as EditIcon } from '@material-design-icons/svg/filled/edit.svg';
+import { ReactComponent as FlagIcon } from '@material-design-icons/svg/filled/flag.svg';
+import { ReactComponent as HomeIcon } from '@material-design-icons/svg/filled/home.svg';
+import { ReactComponent as PersonIcon } from '@material-design-icons/svg/filled/person.svg';
+import { ReactComponent as PersonAddIcon } from '@material-design-icons/svg/filled/person_add.svg';
+import { ReactComponent as RepeatIcon } from '@material-design-icons/svg/filled/repeat.svg';
+import { ReactComponent as StarIcon } from '@material-design-icons/svg/filled/star.svg';
+import { ReactComponent as InsertChartIcon } from '@material-design-icons/svg/outlined/insert_chart.svg';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon }  from 'mastodon/components/icon';
@@ -128,7 +136,7 @@ class Notification extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-follow focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.follow, { name: account.get('acct') }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='user-plus' fixedWidth />
+            <Icon id='user-plus' icon={PersonAddIcon} fixedWidth />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
@@ -148,7 +156,7 @@ class Notification extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-follow-request focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.follow_request', defaultMessage: '{name} has requested to follow you' }, { name: account.get('acct') }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='user' fixedWidth />
+            <Icon id='user' icon={PersonIcon} fixedWidth />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.follow_request' defaultMessage='{name} has requested to follow you' values={{ name: link }} />
@@ -186,7 +194,7 @@ class Notification extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-favourite focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.favourite, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='star' className='star-icon' fixedWidth />
+            <Icon id='star' icon={StarIcon} className='star-icon' fixedWidth />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.favourite' defaultMessage='{name} favorited your status' values={{ name: link }} />
@@ -216,7 +224,7 @@ class Notification extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-reblog focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.reblog, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='retweet' fixedWidth />
+            <Icon id='retweet' icon={RepeatIcon} fixedWidth />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
@@ -250,7 +258,7 @@ class Notification extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-status focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.status, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='home' fixedWidth />
+            <Icon id='home' icon={HomeIcon} fixedWidth />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.status' defaultMessage='{name} just posted' values={{ name: link }} />
@@ -285,7 +293,7 @@ class Notification extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-update focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.update, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='pencil' fixedWidth />
+            <Icon id='pencil' icon={EditIcon} fixedWidth />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.update' defaultMessage='{name} edited a post' values={{ name: link }} />
@@ -322,7 +330,7 @@ class Notification extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-poll focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, message, notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='tasks' fixedWidth />
+            <Icon id='tasks' icon={InsertChartIcon} fixedWidth />
 
             <span title={notification.get('created_at')}>
               {ownPoll ? (
@@ -357,7 +365,7 @@ class Notification extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-admin-sign-up focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.adminSignUp, { name: account.get('acct') }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='user-plus' fixedWidth />
+            <Icon id='user-plus' icon={PersonAddIcon} fixedWidth />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.admin.sign_up' defaultMessage='{name} signed up' values={{ name: link }} />
@@ -385,7 +393,7 @@ class Notification extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-admin-report focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.adminReport, { name: account.get('acct'), target: notification.getIn(['report', 'target_account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='flag' fixedWidth />
+            <Icon id='flag' icon={FlagIcon} fixedWidth />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.admin.report' defaultMessage='{name} reported {target}' values={{ name: link, target: targetLink }} />

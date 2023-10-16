@@ -6,6 +6,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { ReactComponent as ListAltIcon } from '@material-design-icons/svg/filled/list_alt.svg';
+
 import { Icon }  from 'mastodon/components/icon';
 
 import { removeFromListAdder, addToListAdder } from '../../../actions/lists';
@@ -55,7 +57,7 @@ class List extends ImmutablePureComponent {
       <div className='list'>
         <div className='list__wrapper'>
           <div className='list__display-name'>
-            <Icon id='list-ul' className='column-link__icon' fixedWidth />
+            <Icon id='list-ul' icon={ListAltIcon} className='column-link__icon' fixedWidth />
             {list.get('title')}
           </div>
 

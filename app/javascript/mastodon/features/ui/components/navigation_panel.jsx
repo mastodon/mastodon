@@ -5,6 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import { ReactComponent as MoreHorizIcon } from '@material-design-icons/svg/filled/more_horiz.svg';
+
 import { WordmarkLogo } from 'mastodon/components/logo';
 import { NavigationPortal } from 'mastodon/components/navigation_portal';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
@@ -118,7 +120,7 @@ class NavigationPanel extends Component {
 
         <div className='navigation-panel__legal'>
           <hr />
-          <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
+          <ColumnLink transparent to='/about' icon='ellipsis-h' iconComponent={MoreHorizIcon} text={intl.formatMessage(messages.about)} />
         </div>
 
         <NavigationPortal />

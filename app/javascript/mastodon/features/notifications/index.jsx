@@ -10,6 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { ReactComponent as DoneAllIcon } from '@material-design-icons/svg/filled/done_all.svg';
 import { debounce } from 'lodash';
 
 import { compareId } from 'mastodon/compare_id';
@@ -260,7 +261,7 @@ class Notifications extends PureComponent {
           onClick={this.handleMarkAsRead}
           className='column-header__button'
         >
-          <Icon id='done-all' />
+          <Icon id='done-all' icon={DoneAllIcon} />
         </button>
       );
     }

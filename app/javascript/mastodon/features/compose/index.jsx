@@ -9,6 +9,13 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { ReactComponent as HomeIcon } from '@material-design-icons/svg/filled/home.svg';
+import { ReactComponent as LogoutIcon } from '@material-design-icons/svg/filled/logout.svg';
+import { ReactComponent as MenuIcon } from '@material-design-icons/svg/filled/menu.svg';
+import { ReactComponent as NotificationsIcon } from '@material-design-icons/svg/filled/notifications.svg';
+import { ReactComponent as PeopleIcon } from '@material-design-icons/svg/filled/people.svg';
+import { ReactComponent as SettingsIcon } from '@material-design-icons/svg/filled/settings.svg';
+import { ReactComponent as PublicIcon } from '@material-design-icons/svg/outlined/public.svg';
 import spring from 'react-motion/lib/spring';
 
 import { openModal } from 'mastodon/actions/modal';
@@ -101,21 +108,21 @@ class Compose extends PureComponent {
       return (
         <div className='drawer' role='region' aria-label={intl.formatMessage(messages.compose)}>
           <nav className='drawer__header'>
-            <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-label={intl.formatMessage(messages.start)}><Icon id='bars' fixedWidth /></Link>
+            <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-label={intl.formatMessage(messages.start)}><Icon id='bars' icon={MenuIcon} fixedWidth /></Link>
             {!columns.some(column => column.get('id') === 'HOME') && (
-              <Link to='/home' className='drawer__tab' title={intl.formatMessage(messages.home_timeline)} aria-label={intl.formatMessage(messages.home_timeline)}><Icon id='home' fixedWidth /></Link>
+              <Link to='/home' className='drawer__tab' title={intl.formatMessage(messages.home_timeline)} aria-label={intl.formatMessage(messages.home_timeline)}><Icon id='home' icon={HomeIcon} fixedWidth /></Link>
             )}
             {!columns.some(column => column.get('id') === 'NOTIFICATIONS') && (
-              <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)} aria-label={intl.formatMessage(messages.notifications)}><Icon id='bell' fixedWidth /></Link>
+              <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)} aria-label={intl.formatMessage(messages.notifications)}><Icon id='bell' icon={NotificationsIcon} fixedWidth /></Link>
             )}
             {!columns.some(column => column.get('id') === 'COMMUNITY') && (
-              <Link to='/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)}><Icon id='users' fixedWidth /></Link>
+              <Link to='/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)}><Icon id='users' icon={PeopleIcon} fixedWidth /></Link>
             )}
             {!columns.some(column => column.get('id') === 'PUBLIC') && (
-              <Link to='/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' fixedWidth /></Link>
+              <Link to='/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' icon={PublicIcon} fixedWidth /></Link>
             )}
-            <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' fixedWidth /></a>
-            <a href='/auth/sign_out' className='drawer__tab' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)} onClick={this.handleLogoutClick}><Icon id='sign-out' fixedWidth /></a>
+            <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' icon={SettingsIcon} fixedWidth /></a>
+            <a href='/auth/sign_out' className='drawer__tab' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)} onClick={this.handleLogoutClick}><Icon id='sign-out' icon={LogoutIcon} fixedWidth /></a>
           </nav>
 
           {multiColumn && <SearchContainer /> }

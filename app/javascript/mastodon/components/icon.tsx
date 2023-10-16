@@ -8,11 +8,8 @@ import { ReactComponent as BlockIcon } from '@material-design-icons/svg/filled/b
 import { ReactComponent as BookmarkIcon } from '@material-design-icons/svg/filled/bookmark.svg';
 import { ReactComponent as BookmarksIcon } from '@material-design-icons/svg/filled/bookmarks.svg';
 import { ReactComponent as CancelIcon } from '@material-design-icons/svg/filled/cancel.svg';
-import { ReactComponent as CancelPresentationIcon } from '@material-design-icons/svg/filled/cancel_presentation.svg';
 import { ReactComponent as CheckIcon } from '@material-design-icons/svg/filled/check.svg';
 import { ReactComponent as CheckBoxOutlineBlankIcon } from '@material-design-icons/svg/filled/check_box_outline_blank.svg';
-import { ReactComponent as ChevronLeftIcon } from '@material-design-icons/svg/filled/chevron_left.svg';
-import { ReactComponent as ChevronRightIcon } from '@material-design-icons/svg/filled/chevron_right.svg';
 import { ReactComponent as CloseIcon } from '@material-design-icons/svg/filled/close.svg';
 import { ReactComponent as ContentCopyIcon } from '@material-design-icons/svg/filled/content_copy.svg';
 import { ReactComponent as DeleteIcon } from '@material-design-icons/svg/filled/delete.svg';
@@ -22,18 +19,15 @@ import { ReactComponent as DoneAllIcon } from '@material-design-icons/svg/filled
 import { ReactComponent as DownloadIcon } from '@material-design-icons/svg/filled/download.svg';
 import { ReactComponent as EditIcon } from '@material-design-icons/svg/filled/edit.svg';
 import { ReactComponent as EditNoteIcon } from '@material-design-icons/svg/filled/edit_note.svg';
-import { ReactComponent as ExpandMoreIcon } from '@material-design-icons/svg/filled/expand_more.svg';
 import { ReactComponent as FindInPageIcon } from '@material-design-icons/svg/filled/find_in_page.svg';
 import { ReactComponent as FlagIcon } from '@material-design-icons/svg/filled/flag.svg';
 import { ReactComponent as FullscreenIcon } from '@material-design-icons/svg/filled/fullscreen.svg';
 import { ReactComponent as FullscreenExitIcon } from '@material-design-icons/svg/filled/fullscreen_exit.svg';
 import { ReactComponent as HomeIcon } from '@material-design-icons/svg/filled/home.svg';
 import { ReactComponent as InfoIcon } from '@material-design-icons/svg/filled/info.svg';
-import { ReactComponent as LinkIcon } from '@material-design-icons/svg/filled/link.svg';
 import { ReactComponent as ListAltIcon } from '@material-design-icons/svg/filled/list_alt.svg';
 import { ReactComponent as LogoutIcon } from '@material-design-icons/svg/filled/logout.svg';
 import { ReactComponent as MenuIcon } from '@material-design-icons/svg/filled/menu.svg';
-import { ReactComponent as MoreHorizIcon } from '@material-design-icons/svg/filled/more_horiz.svg';
 import { ReactComponent as NotificationsIcon } from '@material-design-icons/svg/filled/notifications.svg';
 import { ReactComponent as OpenInNewIcon } from '@material-design-icons/svg/filled/open_in_new.svg';
 import { ReactComponent as PauseIcon } from '@material-design-icons/svg/filled/pause.svg';
@@ -41,7 +35,6 @@ import { ReactComponent as PeopleIcon } from '@material-design-icons/svg/filled/
 import { ReactComponent as PersonIcon } from '@material-design-icons/svg/filled/person.svg';
 import { ReactComponent as PersonAddIcon } from '@material-design-icons/svg/filled/person_add.svg';
 import { ReactComponent as PlayArrowIcon } from '@material-design-icons/svg/filled/play_arrow.svg';
-import { ReactComponent as PushPinIcon } from '@material-design-icons/svg/filled/push_pin.svg';
 import { ReactComponent as RefreshIcon } from '@material-design-icons/svg/filled/refresh.svg';
 import { ReactComponent as RepeatIcon } from '@material-design-icons/svg/filled/repeat.svg';
 import { ReactComponent as ReplyIcon } from '@material-design-icons/svg/filled/reply.svg';
@@ -63,18 +56,15 @@ import { ReactComponent as LockOpenIcon } from '@material-design-icons/svg/outli
 import { ReactComponent as PublicIcon } from '@material-design-icons/svg/outlined/public.svg';
 import { ReactComponent as RectangleIcon } from '@material-design-icons/svg/outlined/rectangle.svg';
 
-interface Props extends React.HTMLAttributes<HTMLImageElement> {
-  id: string;
-  className?: string;
+interface Props extends React.SVGProps<SVGSVGElement> {
   children?: never;
+  id: string;
+  icon?: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
 type IconMap = Record<string, React.FC<{ className?: string }> | undefined>;
 
 const iconIdMap: IconMap = {
-  'address-book-o': PeopleIcon,
-  'angle-left': ChevronLeftIcon,
-  'angle-right': ChevronRightIcon,
   'arrows-alt': FullscreenIcon,
   at: AlternateEmailIcon,
   ban: BlockIcon,
@@ -84,17 +74,12 @@ const iconIdMap: IconMap = {
   bookmarks: BookmarksIcon,
   'caret-down': ArrowDropDownIcon,
   check: CheckIcon,
-  'chevron-down': ExpandMoreIcon,
-  'chevron-left': ChevronLeftIcon,
-  'chevron-right': ChevronRightIcon,
   close: CloseIcon,
   cog: SettingsIcon,
   compress: FullscreenExitIcon,
   copy: ContentCopyIcon,
   'done-all': DoneAllIcon,
   download: DownloadIcon,
-  'ellipsis-h': MoreHorizIcon,
-  'ellipsis-v': MoreHorizIcon,
   eraser: DeleteForeverIcon,
   expand: RectangleIcon,
   'external-link': OpenInNewIcon,
@@ -107,7 +92,6 @@ const iconIdMap: IconMap = {
   hashtag: TagIcon,
   home: HomeIcon,
   'info-circle': InfoIcon,
-  link: LinkIcon,
   'list-ul': ListAltIcon,
   lock: LockIcon,
   music: AudiotrackIcon,
@@ -127,7 +111,6 @@ const iconIdMap: IconMap = {
   sliders: TuneIcon,
   star: StarIcon,
   tasks: InsertChartIcon,
-  'thumb-tack': PushPinIcon,
   times: CloseIcon,
   'times-circle': CancelIcon,
   trash: DeleteIcon,
@@ -138,10 +121,21 @@ const iconIdMap: IconMap = {
   users: PeopleIcon,
   'volume-off': VolumeOffIcon,
   'volume-up': VolumeUpIcon,
-  'window-restore': CancelPresentationIcon,
 };
 
 export const Icon: React.FC<Props> = ({ id, className, ...other }) => {
+  if ('icon' in other && other.icon) {
+    const IconComponent = other.icon;
+
+    return (
+      <IconComponent
+        className={classNames('icon', `icon-${id}`, className)}
+        id={id}
+        {...other}
+      />
+    );
+  }
+
   if (!iconIdMap[id]) {
     console.warn('Missing icon', id);
   }

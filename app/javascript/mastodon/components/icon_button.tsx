@@ -9,6 +9,7 @@ interface Props {
   className?: string;
   title: string;
   icon: string;
+  iconComponent?: React.ComponentProps<typeof Icon>['icon'];
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
@@ -97,6 +98,7 @@ export class IconButton extends PureComponent<Props, States> {
       disabled,
       expanded,
       icon,
+      iconComponent,
       inverted,
       overlay,
       tabIndex,
@@ -124,7 +126,7 @@ export class IconButton extends PureComponent<Props, States> {
 
     let contents = (
       <>
-        <Icon id={icon} aria-hidden='true' />{' '}
+        <Icon id={icon} icon={iconComponent} aria-hidden='true' />{' '}
         {typeof counter !== 'undefined' && (
           <span className='icon-button__counter'>
             <AnimatedNumber value={counter} />

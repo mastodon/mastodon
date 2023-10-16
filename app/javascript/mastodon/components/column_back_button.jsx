@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { FormattedMessage } from 'react-intl';
 
 import { withRouter } from 'react-router-dom';
+import { ReactComponent as ChevronLeftIcon } from '@material-design-icons/svg/filled/chevron_left.svg';
 
 import { Icon }  from 'mastodon/components/icon';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
@@ -34,7 +35,7 @@ class ColumnBackButton extends PureComponent {
 
     const component = (
       <button onClick={this.handleClick} className='column-back-button'>
-        <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
+        <Icon id='chevron-left' icon={ChevronLeftIcon} className='column-back-button__icon' fixedWidth />
         <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
       </button>
     );

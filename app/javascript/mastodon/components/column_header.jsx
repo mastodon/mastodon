@@ -7,6 +7,12 @@ import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 
+import { ReactComponent as AddIcon } from '@material-design-icons/svg/filled/add.svg';
+import { ReactComponent as ChevronLeftIcon } from '@material-design-icons/svg/filled/chevron_left.svg';
+import { ReactComponent as ChevronRightIcon } from '@material-design-icons/svg/filled/chevron_right.svg';
+import { ReactComponent as CloseIcon } from '@material-design-icons/svg/filled/close.svg';
+import { ReactComponent as TuneIcon } from '@material-design-icons/svg/filled/tune.svg';
+
 import { Icon }  from 'mastodon/components/icon';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
@@ -27,6 +33,7 @@ class ColumnHeader extends PureComponent {
     intl: PropTypes.object.isRequired,
     title: PropTypes.node,
     icon: PropTypes.string,
+    iconComponent: PropTypes.node,
     active: PropTypes.bool,
     multiColumn: PropTypes.bool,
     extraButton: PropTypes.node,
@@ -87,7 +94,7 @@ class ColumnHeader extends PureComponent {
   };
 
   render () {
-    const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues, history } = this.props;
+    const { title, icon, iconComponent, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues, history } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -118,22 +125,22 @@ class ColumnHeader extends PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='times' /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
+      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='times' icon={CloseIcon} /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
 
       moveButtons = (
         <div key='move-buttons' className='column-header__setting-arrows'>
-          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><Icon id='chevron-left' /></button>
-          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='icon-button column-header__setting-btn' onClick={this.handleMoveRight}><Icon id='chevron-right' /></button>
+          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><Icon id='chevron-left' icon={ChevronLeftIcon} /></button>
+          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='icon-button column-header__setting-btn' onClick={this.handleMoveRight}><Icon id='chevron-right' icon={ChevronRightIcon} /></button>
         </div>
       );
     } else if (multiColumn && this.props.onPin) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
+      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' icon={AddIcon} /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
     if (!pinned && ((multiColumn && history.location?.state?.fromMastodon) || showBackButton)) {
       backButton = (
         <button onClick={this.handleBackClick} className='column-header__back-button'>
-          <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
+          <Icon id='chevron-left' icon={ChevronLeftIcon} className='column-back-button__icon' fixedWidth />
           <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
         </button>
       );
@@ -157,21 +164,21 @@ class ColumnHeader extends PureComponent {
           onClick={this.handleToggleClick}
         >
           <i className='icon-with-badge'>
-            <Icon id='sliders' />
+            <Icon id='sliders' icon={TuneIcon} />
             {collapseIssues && <i className='icon-with-badge__issue-badge' />}
           </i>
         </button>
       );
     }
 
-    const hasTitle = icon && title;
+    const hasTitle = (icon || iconComponent) && title;
 
     const component = (
       <div className={wrapperClassName}>
         <h1 className={buttonClassName}>
           {hasTitle && (
             <button onClick={this.handleTitleClick}>
-              <Icon id={icon} fixedWidth className='column-header__icon' />
+              <Icon id={icon} iconComponent={iconComponent} fixedWidth className='column-header__icon' />
               {title}
             </button>
           )}

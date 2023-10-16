@@ -8,6 +8,7 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as MoreHorizIcon } from '@material-design-icons/svg/filled/more_horiz.svg';
 import { HotKeys } from 'react-hotkeys';
 
 import AttachmentList from 'mastodon/components/attachment_list';
@@ -186,6 +187,7 @@ class Conversation extends ImmutablePureComponent {
                   status={lastStatus}
                   items={menu}
                   icon='ellipsis-h'
+                  iconComponent={MoreHorizIcon}
                   size={18}
                   direction='right'
                   title={intl.formatMessage(messages.more)}
