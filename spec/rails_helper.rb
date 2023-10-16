@@ -100,14 +100,6 @@ RSpec.configure do |config|
     Capybara.current_driver = :rack_test
   end
 
-  config.before :each, type: :controller do
-    stub_jsonld_contexts!
-  end
-
-  config.before :each, type: :service do
-    stub_jsonld_contexts!
-  end
-
   config.before :suite do
     if RUN_SYSTEM_SPECS
       Webpacker.compile
@@ -197,10 +189,4 @@ def stub_reset_connection_pools
   # (Avoids reset_connection_pools! in test env)
   allow(ActiveRecord::Base).to receive(:establish_connection)
   allow(RedisConfiguration).to receive(:establish_pool)
-end
-
-def stub_jsonld_contexts!
-  stub_request(:get, 'https://www.w3.org/ns/activitystreams').to_return(request_fixture('json-ld.activitystreams.txt'))
-  stub_request(:get, 'https://w3id.org/identity/v1').to_return(request_fixture('json-ld.identity.txt'))
-  stub_request(:get, 'https://w3id.org/security/v1').to_return(request_fixture('json-ld.security.txt'))
 end
