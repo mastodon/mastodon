@@ -18,4 +18,12 @@ describe Admin::Settings::RegistrationsController do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'PUT #update' do
+    it 'updates the settings' do
+      put :update, params: { form_admin_settings: { registrations_mode: 'open' } }
+
+      expect(response).to redirect_to(admin_settings_registrations_path)
+    end
+  end
 end

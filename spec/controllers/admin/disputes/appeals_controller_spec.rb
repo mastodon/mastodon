@@ -15,6 +15,16 @@ RSpec.describe Admin::Disputes::AppealsController do
   let(:strike) { Fabricate(:account_warning, target_account: target_account, action: :suspend) }
   let(:appeal) { Fabricate(:appeal, strike: strike, account: target_account) }
 
+  describe 'GET #index' do
+    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+
+    it 'lists appeals' do
+      get :index
+
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'POST #approve' do
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
