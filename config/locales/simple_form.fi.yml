@@ -25,7 +25,7 @@ fi:
         types:
           disable: Estä käyttäjää käyttämästä tiliään, mutta älä poista tai piilota sen sisältöä.
           none: Käytä tätä lähettääksesi varoituksen käyttäjälle käynnistämättä mitään muita toimintoja.
-          sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluontoisiksi.
+          sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluonteisiksi.
           silence: Estä käyttäjää lähettämästä viestejä julkisesti, piilota hänen viestinsä ja ilmoituksensa ihmisiltä, jotka eivät seuraa häntä. Sulkee kaikki tämän tilin raportit.
           suspend: Estä kaikki vuorovaikutus tältä -tai tälle tilille ja poista sen kaikki sisältö. Päätös voidaan peruuttaa 30 päivän aikana. Sulkee kaikki raportit tätä tiliä vasten.
         warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
@@ -79,14 +79,14 @@ fi:
         activity_api_enabled: Paikallisesti julkaistujen julkaisujen, aktiivisten käyttäjien ja rekisteröitymisten viikoittainen määrä
         backups_retention_period: Säilytä luodut arkistot määritetyn määrän päiviä.
         bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien seuraamissuositusten yläpuolelle.
-        closed_registrations_message: Näkyy, kun ilmoittautuminen on suljettu
-        content_cache_retention_period: Viestit muilta palvelimilta poistetaan määritetyn määrän päiviä jälkeen, kun arvo on asetettu positiiviseksi. Tämä voi olla peruuttamatonta.
+        closed_registrations_message: Näkyy, kun rekisteröityminen on suljettu
+        content_cache_retention_period: Kaikki julkaisut ja tehostukset muilta palvelimilta poistetaan, kun määritelty määrä päiviä on kulunut. Osaa julkaisuista voi olla mahdoton palauttaa. Kaikki julkaisuihin liittyvät kirjanmerkit, suosikit ja tehostukset menetetään, eikä niitä voi palauttaa.
         custom_css: Voit käyttää mukautettuja tyylejä Mastodonin verkkoversiossa.
         mascot: Ohittaa kuvituksen edistyneessä selainkäyttöliittymässä.
         media_cache_retention_period: Ladatut mediatiedostot poistetaan määritetyn määrän päiviä jälkeen, kun arvo on positiivinen ja ladataan uudelleen pyynnöstä.
-        peers_api_enabled: Luettelo verkkotunnuksista, jotka tämä palvelin on kohdannut fediversumissa. Se ei kerro, oletko liitossa tietyn palvelimen kanssa, vaan että palvelimesi on ylipäätään tietoinen siitä. Tätä tietoa käytetään palveluissa, jotka keräävät tilastoja liittoutumisesta yleisellä tasolla.
+        peers_api_enabled: Luettelo verkkotunnuksista, jotka tämä palvelin on kohdannut fediversumissa. Se ei kerro, oletko liitossa tietyn palvelimen kanssa, vaan että palvelimesi on ylipäätään tietoinen siitä. Tätä tietoa käytetään palveluissa, jotka keräävät tilastoja federoinnista yleisellä tasolla.
         profile_directory: Profiilihakemisto lueteloi kaikki käyttäjät, jotka ovat ilmoittaneet olevansa löydettävissä.
-        require_invite_text: Kun kirjautuminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” teksti syötetään pakolliseksi eikä vapaaehtoiseksi
+        require_invite_text: Kun rekisteröityminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” -tekstikentästä pakollinen vapaaehtoisen sijaan
         site_contact_email: Kuinka ihmiset voivat tavoittaa sinut oikeudellisissa tai tukikysymyksissä.
         site_contact_username: Miten ihmiset voivat tavoittaa sinut Mastodonissa.
         site_extended_description: Kaikki lisätiedot, jotka voivat olla hyödyllisiä kävijöille ja käyttäjille. Voidaan jäsentää Markdown-syntaksilla.
@@ -96,10 +96,10 @@ fi:
         status_page_url: URL-osoite sivulle, jonka kautta tämän palvelimen tila voidaan ongelmatilanteissa tarkastaa
         theme: Teema, jonka uloskirjautuneet vierailijat ja uudet käyttäjät näkevät.
         thumbnail: Noin 2:1 kuva näytetään palvelimen tietojen rinnalla.
-        timeline_preview: Uloskirjautuneet vierailijat voivat selata uusimpia julkisia viestejä, jotka ovat saatavilla palvelimella.
+        timeline_preview: Uloskirjautuneet vierailijat voivat selata uusimpia julkisia julkaisuja, jotka ovat saatavilla palvelimella.
         trendable_by_default: Ohita suositun sisällön manuaalinen tarkistus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
         trends: Trendit osoittavat, mitkä julkaisut, aihetunnisteet ja uutiset ovat saamassa vetoa palvelimellasi.
-        trends_as_landing_page: Näytä vierailijoille ja uloskirjautuneille käyttäjille suosittu sisältö palvelininstanssin kuvaustekstin sijaan. Edellytyksenä on, että suosittu sisältö -ominaisuus on käytössä.
+        trends_as_landing_page: Näytä vierailijoille ja uloskirjautuneille käyttäjille suosittua sisältöä palvelimen kuvauksen sijaan. Edellyttää, että trendit on otettu käyttöön.
       form_challenge:
         current_password: Olet menossa suojatulle alueelle
       imports:
@@ -129,9 +129,9 @@ fi:
         chosen_languages: Kun valittu, vain valituilla kielillä kirjoitetut julkaisut näkyvät julkisilla aikajanoilla
         role: Rooli määrää, mitkä käyttöoikeudet käyttäjällä on
       user_role:
-        color: Väri, jota käytetään roolin koko käyttöliittymässä, RGB heksamuodossa
+        color: Väri, jota käytetään roolille kaikkialla käyttöliittymässä, RGB-heksadesimaalimuodossa
         highlighted: Tämä tekee roolista julkisesti näkyvän
-        name: Roolin julkinen nimi, jos rooli on asetettu näytettäväksi mekkinä
+        name: Roolin julkinen nimi, jos rooli on asetettu näytettäväksi merkkinä
         permissions_as_keys: Käyttäjillä, joilla on tämä rooli, on käyttöoikeus...
         position: Korkeampi rooli ratkaisee konfliktit tietyissä tilanteissa. Tiettyjä toimintoja voidaan suorittaa vain rooleille, joiden prioriteetti on pienempi
       webhook:
@@ -238,10 +238,10 @@ fi:
           hide: Piilota kokonaan
           warn: Piilota ja näytä varoitus
       form_admin_settings:
-        activity_api_enabled: Julkaise yhteenlasketut tilastot käyttäjätoiminnasta rajapinnassa
+        activity_api_enabled: Julkaise yhteenlasketut tilastot käyttäjätoiminnasta ohjelmointirajapinnassa
         backups_retention_period: Käyttäjän arkiston säilytysaika
         bootstrap_timeline_accounts: Suosittele aina näitä tilejä uusille käyttäjille
-        closed_registrations_message: Mukautettu viesti, kun kirjautumisia ei ole saatavilla
+        closed_registrations_message: Mukautettu viesti, kun rekisteröityminen ei ole saatavilla
         content_cache_retention_period: Sisällön välimuistin säilytysaika
         custom_css: Mukautettu CSS
         mascot: Mukautettu maskotti (legacy)
@@ -251,7 +251,7 @@ fi:
         registrations_mode: Kuka voi rekisteröityä
         require_invite_text: Vaadi syy liittyä
         show_domain_blocks: Näytä verkkotunnusten estot
-        show_domain_blocks_rationale: Näytä miksi verkkotunnukset on estetty
+        show_domain_blocks_rationale: Näytä, miksi verkkotunnukset on estetty
         site_contact_email: Ota yhteyttä sähköpostilla
         site_contact_username: Yhteyshenkilön käyttäjänimi
         site_extended_description: Laajennettu kuvaus
@@ -261,10 +261,10 @@ fi:
         status_page_url: Tilasivun URL-osoite
         theme: Oletusteema
         thumbnail: Palvelimen pikkukuva
-        timeline_preview: Salli todentamaton pääsy julkiselle aikajanalle
+        timeline_preview: Salli todentamaton pääsy julkisille aikajanoille
         trendable_by_default: Salli trendit ilman ennakkotarkastusta
-        trends: Trendit käyttöön
-        trends_as_landing_page: Käytä suosittua sisältöä aloitussivuna
+        trends: Ota trendit käyttöön
+        trends_as_landing_page: Käytä trendejä aloitussivuna
       interactions:
         must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
         must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa
@@ -313,7 +313,7 @@ fi:
         time_zone: Aikavyöhyke
       user_role:
         color: Merkin väri
-        highlighted: Näyttä rooli merkkinä käyttäjäprofiileissa
+        highlighted: Näytä rooli merkkinä käyttäjäprofiileissa
         name: Nimi
         permissions_as_keys: Oikeudet
         position: Prioriteetti
