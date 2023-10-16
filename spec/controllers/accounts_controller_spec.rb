@@ -7,25 +7,6 @@ RSpec.describe AccountsController do
 
   let(:account) { Fabricate(:account) }
 
-  shared_examples 'cacheable response' do
-    it 'does not set cookies' do
-      expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be_nil
-    end
-
-    it 'does not set sessions' do
-      expect(session).to be_empty
-    end
-
-    it 'returns Vary header' do
-      expect(response.headers['Vary']).to include 'Accept'
-    end
-
-    it 'returns public Cache-Control header' do
-      expect(response.headers['Cache-Control']).to include 'public'
-    end
-  end
-
   describe 'GET #show' do
     let(:format) { 'html' }
 
@@ -186,7 +167,7 @@ RSpec.describe AccountsController do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
-        it_behaves_like 'cacheable response'
+        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
         it 'renders account' do
           json = body_as_json
@@ -244,7 +225,7 @@ RSpec.describe AccountsController do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
-        it_behaves_like 'cacheable response'
+        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
         it 'renders account' do
           json = body_as_json
@@ -311,7 +292,7 @@ RSpec.describe AccountsController do
           expect(response).to have_http_status(200)
         end
 
-        it_behaves_like 'cacheable response'
+        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
       end
 
       context 'with a normal account in an RSS request' do
