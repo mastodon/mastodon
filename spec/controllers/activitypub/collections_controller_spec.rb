@@ -32,7 +32,7 @@ RSpec.describe ActivityPub::CollectionsController do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
-        it_behaves_like 'cacheable response', expects_vary: false
+        it_behaves_like 'cacheable response'
 
         it 'returns orderedItems with pinned statuses' do
           expect(body[:orderedItems]).to be_an Array
@@ -85,7 +85,7 @@ RSpec.describe ActivityPub::CollectionsController do
             expect(response.media_type).to eq 'application/activity+json'
           end
 
-          it_behaves_like 'cacheable response', expects_vary: false
+          it_behaves_like 'cacheable response'
 
           it 'returns orderedItems with pinned statuses' do
             json = body_as_json

@@ -69,7 +69,7 @@ describe StatusesController do
       context 'with JSON' do
         let(:format) { 'json' }
 
-        it_behaves_like 'cacheable response'
+        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
         it 'renders ActivityPub Note object successfully', :aggregate_failures do
           expect(response).to have_http_status(200)
@@ -352,7 +352,7 @@ describe StatusesController do
         context 'with JSON' do
           let(:format) { 'json' }
 
-          it_behaves_like 'cacheable response'
+          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'renders ActivityPub Note object successfully', :aggregate_failures do
             expect(response).to have_http_status(200)

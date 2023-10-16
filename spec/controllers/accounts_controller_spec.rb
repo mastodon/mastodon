@@ -167,7 +167,7 @@ RSpec.describe AccountsController do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
-        it_behaves_like 'cacheable response'
+        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
         it 'renders account' do
           json = body_as_json
@@ -225,7 +225,7 @@ RSpec.describe AccountsController do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
-        it_behaves_like 'cacheable response'
+        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
         it 'renders account' do
           json = body_as_json
@@ -292,7 +292,7 @@ RSpec.describe AccountsController do
           expect(response).to have_http_status(200)
         end
 
-        it_behaves_like 'cacheable response'
+        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
       end
 
       context 'with a normal account in an RSS request' do

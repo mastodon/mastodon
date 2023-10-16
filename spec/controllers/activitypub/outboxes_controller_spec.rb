@@ -37,7 +37,7 @@ RSpec.describe ActivityPub::OutboxesController do
           expect(body[:totalItems]).to eq 4
         end
 
-        it_behaves_like 'cacheable response', expects_vary: false
+        it_behaves_like 'cacheable response'
 
         it 'does not have a Vary header' do
           expect(response.headers['Vary']).to be_nil
@@ -82,7 +82,7 @@ RSpec.describe ActivityPub::OutboxesController do
           expect(body[:orderedItems].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
         end
 
-        it_behaves_like 'cacheable response', expects_vary: false
+        it_behaves_like 'cacheable response'
 
         it 'returns Vary header with Signature' do
           expect(response.headers['Vary']).to include 'Signature'

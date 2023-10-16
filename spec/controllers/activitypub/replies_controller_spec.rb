@@ -77,7 +77,7 @@ RSpec.describe ActivityPub::RepliesController do
         expect(response.media_type).to eq 'application/activity+json'
       end
 
-      it_behaves_like 'cacheable response', expects_vary: false
+      it_behaves_like 'cacheable response'
 
       context 'without only_other_accounts' do
         it "returns items with thread author's replies" do
