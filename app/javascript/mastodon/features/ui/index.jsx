@@ -549,6 +549,18 @@ class UI extends PureComponent {
     this.context.router.history.push('/follow_requests');
   };
 
+  handleModalOpened = () => {
+    if (!this.context.router.history.location.state?.modalOpen) {
+      this.context.router.history.push(this.context.router.history.pathname, { modalOpen: true });
+    }
+  };
+
+  handleModalClosed = () => {
+    if (this.context.router.history.location.state?.modalOpen) {
+      this.context.router.history.goBack();
+    }
+  };
+
   render () {
     const { draggingOver } = this.state;
     const { children, isComposing, location, dropdownMenuIsOpen, layout } = this.props;
@@ -587,7 +599,7 @@ class UI extends PureComponent {
           {layout !== 'mobile' && <PictureInPicture />}
           <NotificationsContainer />
           <LoadingBarContainer className='loading-bar' />
-          <ModalContainer />
+          <ModalContainer beforeOpen={this.handleModalOpened} afterClose={this.handleModalClosed} />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
         </div>
       </HotKeys>

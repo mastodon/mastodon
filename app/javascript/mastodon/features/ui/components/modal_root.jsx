@@ -61,6 +61,8 @@ export default class ModalRoot extends PureComponent {
     props: PropTypes.object,
     onClose: PropTypes.func.isRequired,
     ignoreFocus: PropTypes.bool,
+    beforeOpen: PropTypes.func,
+    afterClose: PropTypes.func,
   };
 
   state = {
@@ -81,6 +83,10 @@ export default class ModalRoot extends PureComponent {
     }
   }
 
+  componentDidMount() {
+    this.props.beforeOpen();
+  }
+
   setBackgroundColor = color => {
     this.setState({ backgroundColor: color });
   };
@@ -96,9 +102,10 @@ export default class ModalRoot extends PureComponent {
   };
 
   handleClose = (ignoreFocus = false) => {
-    const { onClose } = this.props;
+    const { onClose, afterClose } = this.props;
     const message = this._modal?.getCloseConfirmationMessage?.();
     onClose(message, ignoreFocus);
+    afterClose();
   };
 
   setModalRef = (c) => {
