@@ -62,11 +62,10 @@ class Section extends PureComponent {
     collapsed: !this.props.open,
   };
 
-  handleClick = () => {
+  handleClick = (e) => {
     const { onOpen } = this.props;
-    const { collapsed } = this.state;
-
-    this.setState({ collapsed: !collapsed }, () => onOpen && onOpen());
+    
+    this.setState({ collapsed: !e.currentTarget.open }, () => onOpen && onOpen());
   };
 
   render () {
@@ -74,7 +73,7 @@ class Section extends PureComponent {
     const { collapsed } = this.state;
 
     return (
-      <details open={!collapsed} onOpen={this.handleClick} className={classNames('about__section', { active: !collapsed })}>
+      <details open={!collapsed} onToggle={this.handleClick} className={classNames('about__section', { active: !collapsed })}>
         <summary className='about__section__title'>
           <Icon id={collapsed ? 'chevron-right' : 'chevron-down'} icon={collapsed ? ChevronRightIcon : ExpandMoreIcon} /> {title}
         </summary>
