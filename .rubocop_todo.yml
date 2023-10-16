@@ -519,12 +519,6 @@ Style/ClassVars:
   Exclude:
     - 'config/initializers/devise.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/CombinableLoops:
-  Exclude:
-    - 'app/models/form/custom_emoji_batch.rb'
-    - 'app/models/form/ip_block_batch.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowedVars.
 Style/FetchEnvVar:
