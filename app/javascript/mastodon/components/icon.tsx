@@ -56,10 +56,12 @@ import { ReactComponent as LockOpenIcon } from '@material-design-icons/svg/outli
 import { ReactComponent as PublicIcon } from '@material-design-icons/svg/outlined/public.svg';
 import { ReactComponent as RectangleIcon } from '@material-design-icons/svg/outlined/rectangle.svg';
 
+export type IconProp = React.FC<React.SVGProps<SVGSVGElement>>;
+
 interface Props extends React.SVGProps<SVGSVGElement> {
   children?: never;
   id: string;
-  icon?: React.FC<React.SVGProps<SVGSVGElement>>;
+  icon?: IconProp;
 }
 
 type IconMap = Record<string, React.FC<{ className?: string }> | undefined>;

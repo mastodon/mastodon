@@ -9,7 +9,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { ReactComponent as ContentCopyIcon } from '@material-design-icons/svg/filled/content_copy.svg';
+import { ReactComponent as EditNoteIcon } from '@material-design-icons/svg/filled/edit_note.svg';
 import { ReactComponent as PeopleIcon } from '@material-design-icons/svg/filled/people.svg';
+import { ReactComponent as PersonAddIcon } from '@material-design-icons/svg/filled/person_add.svg';
 import { debounce } from 'lodash';
 
 import illustration from 'mastodon/../images/elephant_ui_conversation.svg';
@@ -117,9 +120,9 @@ class Onboarding extends ImmutablePureComponent {
 
           <div className='onboarding__steps'>
             <Step onClick={this.handleProfileClick} href='/settings/profile' completed={(!account.get('avatar').endsWith('missing.png')) || (account.get('display_name').length > 0 && account.get('note').length > 0)} icon='address-book-o' iconComponent={PeopleIcon} label={<FormattedMessage id='onboarding.steps.setup_profile.title' defaultMessage='Customize your profile' />} description={<FormattedMessage id='onboarding.steps.setup_profile.body' defaultMessage='Others are more likely to interact with you with a filled out profile.' />} />
-            <Step onClick={this.handleFollowClick} completed={(account.get('following_count') * 1) >= 7} icon='user-plus' label={<FormattedMessage id='onboarding.steps.follow_people.title' defaultMessage='Find at least {count, plural, one {one person} other {# people}} to follow' values={{ count: 7 }} />} description={<FormattedMessage id='onboarding.steps.follow_people.body' defaultMessage="You curate your own home feed. Let's fill it with interesting people." />} />
-            <Step onClick={this.handleComposeClick} completed={(account.get('statuses_count') * 1) >= 1} icon='pencil-square-o' label={<FormattedMessage id='onboarding.steps.publish_status.title' defaultMessage='Make your first post' />} description={<FormattedMessage id='onboarding.steps.publish_status.body' defaultMessage='Say hello to the world.' values={{ emoji: <img className='emojione' alt='🐘' src={`${assetHost}/emoji/1f418.svg`} /> }} />} />
-            <Step onClick={this.handleShareClick} completed={shareClicked} icon='copy' label={<FormattedMessage id='onboarding.steps.share_profile.title' defaultMessage='Share your profile' />} description={<FormattedMessage id='onboarding.steps.share_profile.body' defaultMessage='Let your friends know how to find you on Mastodon!' />} />
+            <Step onClick={this.handleFollowClick} completed={(account.get('following_count') * 1) >= 7} icon='user-plus' iconComponent={PersonAddIcon} label={<FormattedMessage id='onboarding.steps.follow_people.title' defaultMessage='Find at least {count, plural, one {one person} other {# people}} to follow' values={{ count: 7 }} />} description={<FormattedMessage id='onboarding.steps.follow_people.body' defaultMessage="You curate your own home feed. Let's fill it with interesting people." />} />
+            <Step onClick={this.handleComposeClick} completed={(account.get('statuses_count') * 1) >= 1} icon='pencil-square-o' iconComponent={EditNoteIcon} label={<FormattedMessage id='onboarding.steps.publish_status.title' defaultMessage='Make your first post' />} description={<FormattedMessage id='onboarding.steps.publish_status.body' defaultMessage='Say hello to the world.' values={{ emoji: <img className='emojione' alt='🐘' src={`${assetHost}/emoji/1f418.svg`} /> }} />} />
+            <Step onClick={this.handleShareClick} completed={shareClicked} icon='copy' iconComponent={ContentCopyIcon} label={<FormattedMessage id='onboarding.steps.share_profile.title' defaultMessage='Share your profile' />} description={<FormattedMessage id='onboarding.steps.share_profile.body' defaultMessage='Let your friends know how to find you on Mastodon!' />} />
           </div>
 
           <p className='onboarding__lead'><FormattedMessage id='onboarding.start.skip' defaultMessage="Don't need help getting started?" /></p>

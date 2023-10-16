@@ -3,13 +3,14 @@ import { PureComponent } from 'react';
 import classNames from 'classnames';
 
 import { AnimatedNumber } from './animated_number';
+import type { IconProp } from './icon';
 import { Icon } from './icon';
 
 interface Props {
   className?: string;
   title: string;
   icon: string;
-  iconComponent?: React.ComponentProps<typeof Icon>['icon'];
+  iconComponent?: IconProp;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;

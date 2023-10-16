@@ -5,7 +5,16 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import { ReactComponent as AlternateEmailIcon } from '@material-design-icons/svg/filled/alternate_email.svg';
+import { ReactComponent as BookmarksIcon } from '@material-design-icons/svg/filled/bookmarks.svg';
+import { ReactComponent as HomeIcon } from '@material-design-icons/svg/filled/home.svg';
+import { ReactComponent as ListAltIcon } from '@material-design-icons/svg/filled/list_alt.svg';
 import { ReactComponent as MoreHorizIcon } from '@material-design-icons/svg/filled/more_horiz.svg';
+import { ReactComponent as SearchIcon } from '@material-design-icons/svg/filled/search.svg';
+import { ReactComponent as SettingsIcon } from '@material-design-icons/svg/filled/settings.svg';
+import { ReactComponent as StarIcon } from '@material-design-icons/svg/filled/star.svg';
+import { ReactComponent as TagIcon } from '@material-design-icons/svg/filled/tag.svg';
+import { ReactComponent as PublicIcon } from '@material-design-icons/svg/outlined/public.svg';
 
 import { WordmarkLogo } from 'mastodon/components/logo';
 import { NavigationPortal } from 'mastodon/components/navigation_portal';
@@ -80,20 +89,20 @@ class NavigationPanel extends Component {
 
         {signedIn && (
           <>
-            <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
+            <ColumnLink transparent to='/home' icon='home' iconComponent={HomeIcon} text={intl.formatMessage(messages.home)} />
             <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='column-link__icon' />} text={intl.formatMessage(messages.notifications)} />
             <FollowRequestsColumnLink />
           </>
         )}
 
         {trendsEnabled ? (
-          <ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} />
+          <ColumnLink transparent to='/explore' icon='hashtag' iconComponent={TagIcon} text={intl.formatMessage(messages.explore)} />
         ) : (
-          <ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} />
+          <ColumnLink transparent to='/search' icon='search' iconComponent={SearchIcon} text={intl.formatMessage(messages.search)} />
         )}
 
         {(signedIn || timelinePreview) && (
-          <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' text={intl.formatMessage(messages.firehose)} />
+          <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' iconComponent={PublicIcon} text={intl.formatMessage(messages.firehose)} />
         )}
 
         {!signedIn && (
@@ -105,16 +114,16 @@ class NavigationPanel extends Component {
 
         {signedIn && (
           <>
-            <ColumnLink transparent to='/conversations' icon='at' text={intl.formatMessage(messages.direct)} />
-            <ColumnLink transparent to='/bookmarks' icon='bookmarks' text={intl.formatMessage(messages.bookmarks)} />
-            <ColumnLink transparent to='/favourites' icon='star' text={intl.formatMessage(messages.favourites)} />
-            <ColumnLink transparent to='/lists' icon='list-ul' text={intl.formatMessage(messages.lists)} />
+            <ColumnLink transparent to='/conversations' icon='at' iconComponent={AlternateEmailIcon} text={intl.formatMessage(messages.direct)} />
+            <ColumnLink transparent to='/bookmarks' icon='bookmarks' iconComponent={BookmarksIcon} text={intl.formatMessage(messages.bookmarks)} />
+            <ColumnLink transparent to='/favourites' icon='star' iconComponent={StarIcon} text={intl.formatMessage(messages.favourites)} />
+            <ColumnLink transparent to='/lists' icon='list-ul' iconComponent={ListAltIcon} text={intl.formatMessage(messages.lists)} />
 
             <ListPanel />
 
             <hr />
 
-            <ColumnLink transparent href='/settings/preferences' icon='cog' text={intl.formatMessage(messages.preferences)} />
+            <ColumnLink transparent href='/settings/preferences' icon='cog' iconComponent={SettingsIcon} text={intl.formatMessage(messages.preferences)} />
           </>
         )}
 

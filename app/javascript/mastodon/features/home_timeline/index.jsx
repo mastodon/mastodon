@@ -10,6 +10,8 @@ import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { ReactComponent as CampaignIcon } from '@material-design-icons/svg/filled/campaign.svg';
+
 import { fetchAnnouncements, toggleShowAnnouncements } from 'mastodon/actions/announcements';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
@@ -181,7 +183,7 @@ class HomeTimeline extends PureComponent {
           aria-label={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
           onClick={this.handleToggleAnnouncementsClick}
         >
-          <IconWithBadge id='bullhorn' count={unreadAnnouncements} />
+          <IconWithBadge id='bullhorn' icon={CampaignIcon} count={unreadAnnouncements} />
         </button>
       );
     }

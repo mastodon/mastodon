@@ -5,8 +5,14 @@ import { injectIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
+
+import { ReactComponent as AlternateEmailIcon } from '@material-design-icons/svg/filled/alternate_email.svg';
+import { ReactComponent as LockIcon } from '@material-design-icons/svg/outlined/lock.svg';
+import { ReactComponent as LockOpenIcon } from '@material-design-icons/svg/outlined/lock_open.svg';
+import { ReactComponent as PublicIcon } from '@material-design-icons/svg/outlined/public.svg';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
+
 
 import { Icon }  from 'mastodon/components/icon';
 
@@ -123,7 +129,7 @@ class PrivacyDropdownMenu extends PureComponent {
         {items.map(item => (
           <div role='option' tabIndex={0} key={item.value} data-index={item.value} onKeyDown={this.handleKeyDown} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
             <div className='privacy-dropdown__option__icon'>
-              <Icon id={item.icon} fixedWidth />
+              <Icon id={item.icon} icon={item.iconComponent} fixedWidth />
             </div>
 
             <div className='privacy-dropdown__option__content'>
@@ -222,14 +228,14 @@ class PrivacyDropdown extends PureComponent {
     const { intl: { formatMessage } } = this.props;
 
     this.options = [
-      { icon: 'globe', value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
-      { icon: 'unlock', value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
-      { icon: 'lock', value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
+      { icon: 'globe', iconComponent: PublicIcon, value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
+      { icon: 'unlock', iconComponent: LockOpenIcon,  value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
+      { icon: 'lock', iconComponent: LockIcon, value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
     ];
 
     if (!this.props.noDirect) {
       this.options.push(
-        { icon: 'at', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
+        { icon: 'at', iconComponent: AlternateEmailIcon, value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
       );
     }
   }
@@ -257,6 +263,7 @@ class PrivacyDropdown extends PureComponent {
         <IconButton
           className='privacy-dropdown__value-icon'
           icon={valueOption.icon}
+          iconComponent={valueOption.iconComponent}
           title={intl.formatMessage(messages.change_privacy)}
           size={18}
           expanded={open}
