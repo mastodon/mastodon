@@ -34,30 +34,6 @@
       "note": ""
     },
     {
-      "warning_type": "Denial of Service",
-      "warning_code": 76,
-      "fingerprint": "7b6abba5699755348e7ee82a4694bfbf574b41c7cce2d0db0f7c11ae3f983c72",
-      "check_name": "RegexDoS",
-      "message": "Model attribute used in regular expression",
-      "file": "lib/mastodon/cli/domains.rb",
-      "line": 128,
-      "link": "https://brakemanscanner.org/docs/warning_types/denial_of_service/",
-      "code": "/\\.?(#{DomainBlock.where(:severity => 1).pluck(:domain).map do\n Regexp.escape(domain)\n end.join(\"|\")})$/",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Mastodon::CLI::Domains",
-        "method": "crawl"
-      },
-      "user_input": "DomainBlock.where(:severity => 1).pluck(:domain)",
-      "confidence": "Weak",
-      "cwe_id": [
-        20,
-        185
-      ],
-      "note": ""
-    },
-    {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 4,
       "fingerprint": "cd5cfd7f40037fbfa753e494d7129df16e358bfc43ef0da3febafbf4ee1ed3ac",

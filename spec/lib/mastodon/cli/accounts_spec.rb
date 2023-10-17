@@ -6,6 +6,24 @@ require 'mastodon/cli/accounts'
 describe Mastodon::CLI::Accounts do
   let(:cli) { described_class.new }
 
+  # `parallelize_with_progress` cannot run in transactions, so instead,
+  # stub it with an alternative implementation that runs sequentially
+  # and can run in transactions.
+  def stub_parallelize_with_progress!
+    allow(cli).to receive(:parallelize_with_progress) do |scope, &block|
+      aggregate = 0
+      total = 0
+
+      scope.reorder(nil).find_each do |record|
+        value = block.call(record)
+        aggregate += value if value.is_a?(Integer)
+        total += 1
+      end
+
+      [total, aggregate]
+    end
+  end
+
   describe '.exit_on_failure?' do
     it 'returns true' do
       expect(described_class.exit_on_failure?).to be true
@@ -551,20 +569,15 @@ describe Mastodon::CLI::Accounts do
       let!(:follower_rony)    { Fabricate(:account, username: 'rony') }
       let!(:follower_charles) { Fabricate(:account, username: 'charles') }
       let(:follow_service)    { instance_double(FollowService, call: nil) }
-      let(:scope)             { Account.local.without_suspended }
 
       before do
-        allow(cli).to receive(:parallelize_with_progress).and_yield(follower_bob)
-                                                         .and_yield(follower_rony)
-                                                         .and_yield(follower_charles)
-                                                         .and_return([3, nil])
         allow(FollowService).to receive(:new).and_return(follow_service)
+        stub_parallelize_with_progress!
       end
 
       it 'makes all local accounts follow the target account' do
         cli.follow(target_account.username)
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(follow_service).to have_received(:call).with(follower_bob, target_account, any_args).once
         expect(follow_service).to have_received(:call).with(follower_rony, target_account, any_args).once
         expect(follow_service).to have_received(:call).with(follower_charles, target_account, any_args).once
@@ -572,7 +585,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'displays a successful message' do
         expect { cli.follow(target_account.username) }.to output(
-          a_string_including('OK, followed target from 3 accounts')
+          a_string_including("OK, followed target from #{Account.local.count} accounts")
         ).to_stdout
       end
     end
@@ -592,26 +605,21 @@ describe Mastodon::CLI::Accounts do
 
     context 'when the given username is found' do
       let!(:target_account)  { Fabricate(:account) }
-      let!(:follower_chris)  { Fabricate(:account, username: 'chris') }
-      let!(:follower_rambo)  { Fabricate(:account, username: 'rambo') }
-      let!(:follower_ana)    { Fabricate(:account, username: 'ana') }
+      let!(:follower_chris)  { Fabricate(:account, username: 'chris', domain: nil) }
+      let!(:follower_rambo)  { Fabricate(:account, username: 'rambo', domain: nil) }
+      let!(:follower_ana)    { Fabricate(:account, username: 'ana', domain: nil) }
       let(:unfollow_service) { instance_double(UnfollowService, call: nil) }
-      let(:scope)            { target_account.followers.local }
 
       before do
         accounts = [follower_chris, follower_rambo, follower_ana]
-        accounts.each { |account| target_account.follow!(account) }
-        allow(cli).to receive(:parallelize_with_progress).and_yield(follower_chris)
-                                                         .and_yield(follower_rambo)
-                                                         .and_yield(follower_ana)
-                                                         .and_return([3, nil])
+        accounts.each { |account| account.follow!(target_account) }
         allow(UnfollowService).to receive(:new).and_return(unfollow_service)
+        stub_parallelize_with_progress!
       end
 
       it 'makes all local accounts unfollow the target account' do
         cli.unfollow(target_account.username)
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(unfollow_service).to have_received(:call).with(follower_chris, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_rambo, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_ana, target_account).once
@@ -671,6 +679,8 @@ describe Mastodon::CLI::Accounts do
       let(:scope)                       { Account.remote }
 
       before do
+        # TODO: we should be using `stub_parallelize_with_progress!` but
+        # this makes the assertions harder to write
         allow(cli).to receive(:parallelize_with_progress).and_yield(remote_account_example_com)
                                                          .and_yield(account_example_net)
                                                          .and_return([2, nil])
@@ -1112,26 +1122,19 @@ describe Mastodon::CLI::Accounts do
 
   describe '#cull' do
     let(:delete_account_service) { instance_double(DeleteAccountService, call: nil) }
-    let!(:tom)                   { Fabricate(:account, updated_at: 30.days.ago, username: 'tom', uri: 'https://example.com/users/tom', domain: 'example.com') }
-    let!(:bob)                   { Fabricate(:account, updated_at: 30.days.ago, last_webfingered_at: nil, username: 'bob', uri: 'https://example.org/users/bob', domain: 'example.org') }
-    let!(:gon)                   { Fabricate(:account, updated_at: 15.days.ago, last_webfingered_at: 15.days.ago, username: 'gon', uri: 'https://example.net/users/gon', domain: 'example.net') }
-    let!(:ana)                   { Fabricate(:account, username: 'ana', uri: 'https://example.com/users/ana', domain: 'example.com') }
-    let!(:tales)                 { Fabricate(:account, updated_at: 10.days.ago, last_webfingered_at: nil, username: 'tales', uri: 'https://example.net/users/tales', domain: 'example.net') }
+    let!(:tom)   { Fabricate(:account, updated_at: 30.days.ago, username: 'tom', uri: 'https://example.com/users/tom', domain: 'example.com', protocol: :activitypub) }
+    let!(:bob)   { Fabricate(:account, updated_at: 30.days.ago, last_webfingered_at: nil, username: 'bob', uri: 'https://example.org/users/bob', domain: 'example.org', protocol: :activitypub) }
+    let!(:gon)   { Fabricate(:account, updated_at: 15.days.ago, last_webfingered_at: 15.days.ago, username: 'gon', uri: 'https://example.net/users/gon', domain: 'example.net', protocol: :activitypub) }
+    let!(:ana)   { Fabricate(:account, username: 'ana', uri: 'https://example.com/users/ana', domain: 'example.com', protocol: :activitypub) }
+    let!(:tales) { Fabricate(:account, updated_at: 10.days.ago, last_webfingered_at: nil, username: 'tales', uri: 'https://example.net/users/tales', domain: 'example.net', protocol: :activitypub) }
 
     before do
       allow(DeleteAccountService).to receive(:new).and_return(delete_account_service)
     end
 
     context 'when no domain is specified' do
-      let(:scope) { Account.remote.where(protocol: :activitypub).partitioned }
-
       before do
-        allow(cli).to receive(:parallelize_with_progress).and_yield(tom)
-                                                         .and_yield(bob)
-                                                         .and_yield(gon)
-                                                         .and_yield(ana)
-                                                         .and_yield(tales)
-                                                         .and_return([5, 3])
+        stub_parallelize_with_progress!
         stub_request(:head, 'https://example.org/users/bob').to_return(status: 404)
         stub_request(:head, 'https://example.net/users/gon').to_return(status: 410)
         stub_request(:head, 'https://example.net/users/tales').to_return(status: 200)
@@ -1140,7 +1143,6 @@ describe Mastodon::CLI::Accounts do
       it 'deletes all inactive remote accounts that longer exist in the origin server' do
         cli.cull
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(delete_account_service).to have_received(:call).with(bob, reserve_username: false).once
         expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
       end
@@ -1148,35 +1150,27 @@ describe Mastodon::CLI::Accounts do
       it 'does not delete any active remote account that still exists in the origin server' do
         cli.cull
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(delete_account_service).to_not have_received(:call).with(tom, reserve_username: false)
         expect(delete_account_service).to_not have_received(:call).with(ana, reserve_username: false)
         expect(delete_account_service).to_not have_received(:call).with(tales, reserve_username: false)
       end
 
       it 'touches inactive remote accounts that have not been deleted' do
-        allow(tales).to receive(:touch)
-
-        cli.cull
-
-        expect(tales).to have_received(:touch).once
+        expect { cli.cull }.to(change { tales.reload.updated_at })
       end
 
       it 'displays the summary correctly' do
         expect { cli.cull }.to output(
-          a_string_including('Visited 5 accounts, removed 3')
+          a_string_including('Visited 5 accounts, removed 2')
         ).to_stdout
       end
     end
 
     context 'when a domain is specified' do
       let(:domain) { 'example.net' }
-      let(:scope)  { Account.remote.where(protocol: :activitypub, domain: domain).partitioned }
 
       before do
-        allow(cli).to receive(:parallelize_with_progress).and_yield(gon)
-                                                         .and_yield(tales)
-                                                         .and_return([2, 2])
+        stub_parallelize_with_progress!
         stub_request(:head, 'https://example.net/users/gon').to_return(status: 410)
         stub_request(:head, 'https://example.net/users/tales').to_return(status: 404)
       end
@@ -1184,13 +1178,12 @@ describe Mastodon::CLI::Accounts do
       it 'deletes inactive remote accounts that longer exist in the specified domain' do
         cli.cull(domain)
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
         expect(delete_account_service).to have_received(:call).with(tales, reserve_username: false).once
       end
 
       it 'displays the summary correctly' do
-        expect { cli.cull }.to output(
+        expect { cli.cull(domain) }.to output(
           a_string_including('Visited 2 accounts, removed 2')
         ).to_stdout
       end
@@ -1199,7 +1192,9 @@ describe Mastodon::CLI::Accounts do
     context 'when a domain is unavailable' do
       shared_examples 'an unavailable domain' do
         before do
-          allow(cli).to receive(:parallelize_with_progress).and_yield(tales).and_return([1, 0])
+          stub_parallelize_with_progress!
+          stub_request(:head, 'https://example.org/users/bob').to_return(status: 200)
+          stub_request(:head, 'https://example.net/users/gon').to_return(status: 200)
         end
 
         it 'skips accounts from the unavailable domain' do
@@ -1210,7 +1205,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'displays the summary correctly' do
           expect { cli.cull }.to output(
-            a_string_including("Visited 1 accounts, removed 0\nThe following domains were not available during the check:\n    example.net")
+            a_string_including("Visited 5 accounts, removed 0\nThe following domains were not available during the check:\n    example.net")
           ).to_stdout
         end
       end

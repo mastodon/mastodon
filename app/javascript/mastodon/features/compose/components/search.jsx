@@ -64,7 +64,7 @@ class Search extends PureComponent {
     { label: <><mark>before:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('before:'); } },
     { label: <><mark>during:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('during:'); } },
     { label: <><mark>after:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('after:'); } },
-    { label: <><mark>in:</mark> <FormattedList type='disjunction' value={['all', 'library']} /></>, action: e => { e.preventDefault(); this._insertText('in:'); } }
+    { label: <><mark>in:</mark> <FormattedList type='disjunction' value={['all', 'library', 'public']} /></>, action: e => { e.preventDefault(); this._insertText('in:'); } }
   ];
 
   setRef = c => {
