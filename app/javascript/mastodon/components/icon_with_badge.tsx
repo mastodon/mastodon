@@ -5,7 +5,7 @@ const formatNumber = (num: number): number | string => (num > 40 ? '40+' : num);
 
 interface Props {
   id: string;
-  icon?: IconProp;
+  icon: IconProp;
   count: number;
   issueBadge: boolean;
   className: string;
