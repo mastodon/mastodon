@@ -10,6 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { ReactComponent as AddIcon } from '@material-design-icons/svg/filled/add.svg';
+import { ReactComponent as ChevronLeftIcon } from '@material-design-icons/svg/filled/chevron_left.svg';
 import { ReactComponent as ChevronRightIcon } from '@material-design-icons/svg/filled/chevron_right.svg';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
@@ -442,7 +443,7 @@ class Announcements extends ImmutablePureComponent {
 
           {announcements.size > 1 && (
             <div className='announcements__pagination'>
-              <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.previous)} icon='chevron-left' onClick={this.handlePrevClick} size={13} />
+              <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.previous)} icon='chevron-left' iconComponent={ChevronLeftIcon} onClick={this.handlePrevClick} size={13} />
               <span>{index + 1} / {announcements.size}</span>
               <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.next)} icon='chevron-right' iconComponent={ChevronRightIcon} onClick={this.handleNextClick} size={13} />
             </div>

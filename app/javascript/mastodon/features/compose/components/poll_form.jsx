@@ -9,6 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { ReactComponent as AddIcon } from '@material-design-icons/svg/filled/add.svg';
+import { ReactComponent as CloseIcon } from '@material-design-icons/svg/filled/close.svg';
 
 import AutosuggestInput from 'mastodon/components/autosuggest_input';
 import { Icon }  from 'mastodon/components/icon';
@@ -110,7 +111,7 @@ class OptionIntl extends PureComponent {
         </label>
 
         <div className='poll__cancel'>
-          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' onClick={this.handleOptionRemove} />
+          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' iconComponent={CloseIcon} onClick={this.handleOptionRemove} />
         </div>
       </li>
     );

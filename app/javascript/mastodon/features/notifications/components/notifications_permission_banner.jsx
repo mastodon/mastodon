@@ -5,6 +5,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import { ReactComponent as CloseIcon } from '@material-design-icons/svg/filled/close.svg';
 import { ReactComponent as TuneIcon } from '@material-design-icons/svg/filled/tune.svg';
 
 import { requestBrowserPermission } from 'mastodon/actions/notifications';
@@ -38,7 +39,7 @@ class NotificationsPermissionBanner extends PureComponent {
     return (
       <div className='notifications-permission-banner'>
         <div className='notifications-permission-banner__close'>
-          <IconButton icon='times' onClick={this.handleClose} title={intl.formatMessage(messages.close)} />
+          <IconButton icon='times' iconComponent={CloseIcon} onClick={this.handleClose} title={intl.formatMessage(messages.close)} />
         </div>
 
         <h2><FormattedMessage id='notifications_permission_banner.title' defaultMessage='Never miss a thing' /></h2>

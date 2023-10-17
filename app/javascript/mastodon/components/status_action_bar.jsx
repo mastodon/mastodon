@@ -9,8 +9,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { ReactComponent as BookmarkIcon } from '@material-design-icons/svg/filled/bookmark.svg';
 import { ReactComponent as MoreHorizIcon } from '@material-design-icons/svg/filled/more_horiz.svg';
 import { ReactComponent as RepeatIcon } from '@material-design-icons/svg/filled/repeat.svg';
+import { ReactComponent as ReplyIcon } from '@material-design-icons/svg/filled/reply.svg';
+import { ReactComponent as ReplyAllIcon } from '@material-design-icons/svg/filled/reply_all.svg';
+import { ReactComponent as StarIcon } from '@material-design-icons/svg/filled/star.svg';
+import { ReactComponent as VisibilityIcon } from '@material-design-icons/svg/filled/visibility.svg';
 
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
@@ -339,12 +344,15 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     let replyIcon;
+    let replyIconComponent;
     let replyTitle;
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
+      replyIconComponent = ReplyIcon;
       replyTitle = intl.formatMessage(messages.reply);
     } else {
       replyIcon = 'reply-all';
+      replyIconComponent = ReplyAllIcon;
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
@@ -362,15 +370,17 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     const filterButton = this.props.onFilter && (
-      <IconButton className='status__action-bar__button' title={intl.formatMessage(messages.hide)} icon='eye' onClick={this.handleHideClick} />
+      <IconButton className='status__action-bar__button' title={intl.formatMessage(messages.hide)} icon='eye' iconComponent={VisibilityIcon} onClick={this.handleHideClick} />
     );
+
+    const isReply = status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);
 
     return (
       <div className='status__action-bar'>
-        <IconButton size={18} className='status__action-bar__button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} />
+        <IconButton size={18} className='status__action-bar__button' title={replyTitle} icon={isReply ? 'reply' : replyIcon} iconComponent={isReply ? ReplyIcon : replyIconComponent} onClick={this.handleReplyClick} counter={status.get('replies_count')} />
         <IconButton size={18} className={classNames('status__action-bar__button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' iconComponent={RepeatIcon} onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
-        <IconButton size={18} className='status__action-bar__button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
-        <IconButton size={18} className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />
+        <IconButton size={18} className='status__action-bar__button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={StarIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
+        <IconButton size={18} className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' iconComponent={BookmarkIcon} onClick={this.handleBookmarkClick} />
 
         {filterButton}
 

@@ -9,6 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { ReactComponent as MoreHorizIcon } from '@material-design-icons/svg/filled/more_horiz.svg';
+import { ReactComponent as ReplyIcon } from '@material-design-icons/svg/filled/reply.svg';
 import { HotKeys } from 'react-hotkeys';
 
 import AttachmentList from 'mastodon/components/attachment_list';
@@ -179,7 +180,7 @@ class Conversation extends ImmutablePureComponent {
             )}
 
             <div className='status__action-bar'>
-              <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReply} />
+              <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' iconComponent={ReplyIcon} onClick={this.handleReply} />
 
               <div className='status__action-bar-dropdown'>
                 <DropdownMenuContainer

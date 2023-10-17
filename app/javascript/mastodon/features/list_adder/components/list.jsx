@@ -6,6 +6,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { ReactComponent as AddIcon } from '@material-design-icons/svg/filled/add.svg';
+import { ReactComponent as CloseIcon } from '@material-design-icons/svg/filled/close.svg';
 import { ReactComponent as ListAltIcon } from '@material-design-icons/svg/filled/list_alt.svg';
 
 import { Icon }  from 'mastodon/components/icon';
@@ -48,9 +50,9 @@ class List extends ImmutablePureComponent {
     let button;
 
     if (added) {
-      button = <IconButton icon='times' title={intl.formatMessage(messages.remove)} onClick={onRemove} />;
+      button = <IconButton icon='times' iconComponent={CloseIcon} title={intl.formatMessage(messages.remove)} onClick={onRemove} />;
     } else {
-      button = <IconButton icon='plus' title={intl.formatMessage(messages.add)} onClick={onAdd} />;
+      button = <IconButton icon='plus' iconComponent={AddIcon} title={intl.formatMessage(messages.add)} onClick={onAdd} />;
     }
 
     return (

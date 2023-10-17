@@ -9,6 +9,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { ReactComponent as ChevronLeftIcon } from '@material-design-icons/svg/filled/chevron_left.svg';
 import { ReactComponent as ChevronRightIcon } from '@material-design-icons/svg/filled/chevron_right.svg';
+import { ReactComponent as CloseIcon } from '@material-design-icons/svg/filled/close.svg';
 import ReactSwipeableViews from 'react-swipeable-views';
 
 import { getAverageFromBlurhash } from 'mastodon/blurhash';
@@ -245,7 +246,7 @@ class MediaModal extends ImmutablePureComponent {
         </div>
 
         <div className={navigationClassName}>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={40} />
+          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={CloseIcon} onClick={onClose} size={40} />
 
           {leftNav}
           {rightNav}

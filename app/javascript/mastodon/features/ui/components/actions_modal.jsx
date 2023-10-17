@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as CloseIcon } from '@material-design-icons/svg/filled/close.svg';
+
 import { IconButton } from '../../../components/icon_button';
 
 export default class ActionsModal extends ImmutablePureComponent {
@@ -25,7 +27,7 @@ export default class ActionsModal extends ImmutablePureComponent {
     return (
       <li key={`${text}-${i}`}>
         <a href={href} target='_blank' rel='noopener noreferrer' onClick={this.props.onClick} data-index={i} className={classNames({ active })}>
-          {icon && <IconButton title={text} icon={icon} role='presentation' tabIndex={-1} inverted />}
+          {icon && <IconButton title={text} icon={icon} iconComponent={CloseIcon} role='presentation' tabIndex={-1} inverted />}
           <div>
             <div className={classNames({ 'actions-modal__item-label': !!meta })}>{text}</div>
             <div>{meta}</div>

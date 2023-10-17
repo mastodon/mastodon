@@ -11,6 +11,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { ReactComponent as CheckIcon } from '@material-design-icons/svg/filled/check.svg';
 import { ReactComponent as MoreHorizIcon } from '@material-design-icons/svg/filled/more_horiz.svg';
+import { ReactComponent as NotificationsIcon } from '@material-design-icons/svg/filled/notifications.svg';
+import { ReactComponent as NotificationsActiveIcon } from '@material-design-icons/svg/filled/notifications_active.svg';
 import { ReactComponent as LockIcon } from '@material-design-icons/svg/outlined/lock.svg';
 
 import { Avatar } from 'mastodon/components/avatar';
@@ -262,7 +264,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
-      bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell' : 'bell-o'} size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
+      bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell' : 'bell-o'} iconComponent={account.getIn(['relationship', 'notifying']) ? NotificationsIcon : NotificationsActiveIcon}  size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
     }
 
     if (me !== account.get('id')) {
