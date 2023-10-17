@@ -5,6 +5,7 @@ module TwoFactorAuthenticationConcern
 
   included do
     prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
+    helper_method :webauthn_enabled?
   end
 
   def two_factor_enabled?
@@ -88,5 +89,11 @@ module TwoFactorAuthenticationConcern
                         end
 
     set_locale { render :two_factor }
+  end
+
+  protected
+
+  def webauthn_enabled?
+    @webauthn_enabled
   end
 end
