@@ -12,14 +12,10 @@ describe 'Credentials' do
       let(:token)   { Fabricate(:accessible_access_token, scopes: 'read', application: Fabricate(:application)) }
       let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-      it 'returns http success' do
+      it 'returns the app information correctly', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'returns the app information correctly' do
-        subject
 
         expect(body_as_json).to match(
           a_hash_including(
