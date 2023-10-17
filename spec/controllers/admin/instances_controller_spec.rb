@@ -34,6 +34,63 @@ RSpec.describe Admin::InstancesController do
     end
   end
 
+  describe 'GET #show' do
+    it 'shows an instance page' do
+      get :show, params: { id: account_popular_main.domain }
+
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'POST #clear_delivery_errors' do
+    let(:tracker) { instance_double(DeliveryFailureTracker, clear_failures!: true) }
+
+    before { allow(DeliveryFailureTracker).to receive(:new).and_return(tracker) }
+
+    it 'clears instance delivery errors' do
+      post :clear_delivery_errors, params: { id: account_popular_main.domain }
+
+      expect(response).to redirect_to(admin_instance_path(account_popular_main.domain))
+      expect(tracker).to have_received(:clear_failures!)
+    end
+  end
+
+  describe 'POST #restart_delivery' do
+    let(:tracker) { instance_double(DeliveryFailureTracker, track_success!: true) }
+
+    before { allow(DeliveryFailureTracker).to receive(:new).and_return(tracker) }
+
+    context 'with an unavailable instance' do
+      before { Fabricate(:unavailable_domain, domain: account_popular_main.domain) }
+
+      it 'tracks success on the instance' do
+        post :restart_delivery, params: { id: account_popular_main.domain }
+
+        expect(response).to redirect_to(admin_instance_path(account_popular_main.domain))
+        expect(tracker).to have_received(:track_success!)
+      end
+    end
+
+    context 'with an available instance' do
+      it 'does not track success on the instance' do
+        post :restart_delivery, params: { id: account_popular_main.domain }
+
+        expect(response).to redirect_to(admin_instance_path(account_popular_main.domain))
+        expect(tracker).to_not have_received(:track_success!)
+      end
+    end
+  end
+
+  describe 'POST #stop_delivery' do
+    it 'clears instance delivery errors' do
+      expect do
+        post :stop_delivery, params: { id: account_popular_main.domain }
+      end.to change(UnavailableDomain, :count).by(1)
+
+      expect(response).to redirect_to(admin_instance_path(account_popular_main.domain))
+    end
+  end
+
   describe 'DELETE #destroy' do
     subject { delete :destroy, params: { id: Instance.first.id } }
 
