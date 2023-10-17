@@ -232,7 +232,7 @@ RSpec.describe AccountsController do
             expect(response).to have_http_status(200)
           end
 
-          it_behaves_like 'cacheable response'
+          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
         end
 
         context 'with a normal account in an RSS request' do
