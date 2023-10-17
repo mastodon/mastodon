@@ -27,4 +27,5 @@ More information on HTTP Signatures, as well as examples, can be found here: htt
 
 - Linked-Data Signatures: https://docs.joinmastodon.org/spec/security/#ld
 - Bearcaps: https://docs.joinmastodon.org/spec/bearcaps/
-- Followers collection synchronization: https://git.activitypub.dev/ActivityPubDev/Fediverse-Enhancement-Proposals/src/branch/main/feps/fep-8fcf.md
+- Followers collection synchronization: https://codeberg.org/fediverse/fep/src/branch/main/fep/8fcf/fep-8fcf.md
+- Search indexing consent for actors: https://codeberg.org/fediverse/fep/src/branch/main/fep/5feb/fep-5feb.md

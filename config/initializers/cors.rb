@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Be sure to restart your server when you modify this file.
 
 # Avoid CORS issues when API is called from the frontend app.
@@ -9,26 +11,17 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins '*'
 
-    resource '/.well-known/*',
-      headers: :any,
-      methods: [:get],
-      credentials: false
-    resource '/@:username',
-      headers: :any,
-      methods: [:get],
-      credentials: false
-    resource '/users/:username',
-      headers: :any,
-      methods: [:get],
-      credentials: false
-    resource '/api/*',
-      headers: :any,
-      methods: [:post, :put, :delete, :get, :patch, :options],
-      credentials: false,
-      expose: ['Link', 'X-RateLimit-Reset', 'X-RateLimit-Limit', 'X-RateLimit-Remaining', 'X-Request-Id']
-    resource '/oauth/token',
-      headers: :any,
-      methods: [:post],
-      credentials: false
+    with_options headers: :any, credentials: false do
+      with_options methods: [:get] do
+        resource '/.well-known/*'
+        resource '/nodeinfo/*'
+        resource '/@:username'
+        resource '/users/:username'
+      end
+      resource '/api/*',
+               expose: %w(Link X-RateLimit-Reset X-RateLimit-Limit X-RateLimit-Remaining X-Request-Id),
+               methods: %i(post put delete get patch options)
+      resource '/oauth/token', methods: [:post]
+    end
   end
 end

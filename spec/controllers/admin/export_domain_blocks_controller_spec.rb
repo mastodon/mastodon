@@ -1,10 +1,20 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
+RSpec.describe Admin::ExportDomainBlocksController do
   render_views
 
   before do
     sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
+  end
+
+  describe 'GET #new' do
+    it 'returns http success' do
+      get :new
+
+      expect(response).to have_http_status(200)
+    end
   end
 
   describe 'GET #export' do
@@ -16,7 +26,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
 
       get :export, params: { format: :csv }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq(IO.read(File.join(file_fixture_path, 'domain_blocks.csv')))
+      expect(response.body).to eq(File.read(File.join(file_fixture_path, 'domain_blocks.csv')))
     end
   end
 
@@ -27,7 +37,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
       end
 
       it 'renders page with expected domain blocks' do
-        expect(assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }).to match_array [['bad.domain', :silence], ['worse.domain', :suspend], ['reject.media', :noop]]
+        expect(assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }).to contain_exactly(['bad.domain', :silence], ['worse.domain', :suspend], ['reject.media', :noop])
       end
 
       it 'returns http success' do
@@ -41,7 +51,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
       end
 
       it 'renders page with expected domain blocks' do
-        expect(assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }).to match_array [['bad.domain', :suspend], ['worse.domain', :suspend], ['reject.media', :suspend]]
+        expect(assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }).to contain_exactly(['bad.domain', :suspend], ['worse.domain', :suspend], ['reject.media', :suspend])
       end
 
       it 'returns http success' do

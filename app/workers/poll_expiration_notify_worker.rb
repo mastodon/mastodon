@@ -3,7 +3,7 @@
 class PollExpirationNotifyWorker
   include Sidekiq::Worker
 
-  sidekiq_options lock: :until_executed
+  sidekiq_options lock: :until_executing
 
   def perform(poll_id)
     @poll = Poll.find(poll_id)

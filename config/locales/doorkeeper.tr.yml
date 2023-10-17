@@ -19,7 +19,7 @@ tr:
   doorkeeper:
     applications:
       buttons:
-        authorize: İzin Ver
+        authorize: Yetkilendir
         cancel: İptal Et
         destroy: Yok Et
         edit: Düzenle
@@ -29,19 +29,19 @@ tr:
       edit:
         title: Uygulamayı düzenle
       form:
-        error: Hata! Olası hatalar için formunuzu kontrol edin
+        error: Opps! Olası hatalar için formunuzu kontrol edin
       help:
         native_redirect_uri: Yerel testler için %{native_redirect_uri} kullanın
-        redirect_uri: URL başına bir satır kullanın
+        redirect_uri: URL başına tek satır kullanın
         scopes: Kapsamları boşluklarla ayırın. Varsayılan kapsamları kullanmak için boş bırakın.
       index:
         application: Uygulama
-        callback_url: Geri Dönüş URL
+        callback_url: Geri Dönüş bağlantısı
         delete: Sil
         empty: Hiç uygulamanız yok.
         name: İsim
         new: Yeni uygulama
-        scopes: Kapsam
+        scopes: Kapsamlar
         show: Göster
         title: Uygulamalarınız
       new:
@@ -49,13 +49,13 @@ tr:
       show:
         actions: Eylemler
         application_id: İstemci anahtarı
-        callback_urls: Callback URL
+        callback_urls: Geri Dönüş bağlantıları
         scopes: Kapsamlar
         secret: İstemci gizli anahtarı
         title: 'Uygulama: %{name}'
     authorizations:
       buttons:
-        authorize: İzin Ver
+        authorize: Yetkilendir
         deny: Reddet
       error:
         title: Bir hata oluştu
@@ -127,7 +127,7 @@ tr:
         bookmarks: Yer imleri
         conversations: Sohbetler
         crypto: Uçtan uca şifreleme
-        favourites: Beğeniler
+        favourites: Favoriler
         filters: Filtreler
         follow: Takipler, Sessizler ve Engeller
         follows: Takip edilenler
@@ -170,7 +170,7 @@ tr:
       read:accounts: hesap bilgilerini görün
       read:blocks: engellemelerinizi görün
       read:bookmarks: yer imlerinizi görün
-      read:favourites: beğenilerinizi görün
+      read:favourites: favorilerinizi görün
       read:filters: filtrelerinizi görün
       read:follows: takip ettiklerinizi görün
       read:lists: listelerinizi görün
@@ -184,7 +184,7 @@ tr:
       write:blocks: hesapları ve alan adlarını engelleyin
       write:bookmarks: durumları yer imleyin
       write:conversations: sessize al ve sohbetleri sil
-      write:favourites: durumları beğenin
+      write:favourites: favori gönderiler
       write:filters: filtreler oluşturun
       write:follows: insanları takip edin
       write:lists: listeler oluşturun

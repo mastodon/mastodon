@@ -5,10 +5,11 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   include Redisable
   include Lockable
 
-  def call(status, json, request_id: nil)
+  def call(status, activity_json, object_json, request_id: nil)
     raise ArgumentError, 'Status has unsaved changes' if status.changed?
 
-    @json                      = json
+    @activity_json             = activity_json
+    @json                      = object_json
     @status_parser             = ActivityPub::Parser::StatusParser.new(@json)
     @uri                       = @status_parser.uri
     @status                    = status
@@ -35,7 +36,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     last_edit_date = @status.edited_at.presence || @status.created_at
 
     # Only allow processing one create/update per status at a time
-    with_lock("create:#{@uri}") do
+    with_redis_lock("create:#{@uri}") do
       Status.transaction do
         record_previous_edit!
         update_media_attachments!
@@ -58,7 +59,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def handle_implicit_update!
-    with_lock("create:#{@uri}") do
+    with_redis_lock("create:#{@uri}") do
       update_poll!(allow_significant_changes: false)
       queue_poll_notifications!
     end
@@ -80,9 +81,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
         # If a previously existing media attachment was significantly updated, mark
         # media attachments as changed even if none were added or removed
-        if media_attachment_parser.significantly_changes?(media_attachment)
-          @media_attachments_changed = true
-        end
+        @media_attachments_changed = true if media_attachment_parser.significantly_changes?(media_attachment)
 
         media_attachment.description          = media_attachment_parser.description
         media_attachment.focus                = media_attachment_parser.focus
@@ -94,7 +93,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
         @next_media_attachments << media_attachment
       rescue Addressable::URI::InvalidURIError => e
-        Rails.logger.debug "Invalid URL in attachment: #{e}"
+        Rails.logger.debug { "Invalid URL in attachment: #{e}" }
       end
     end
 
@@ -308,6 +307,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def forwarder
-    @forwarder ||= ActivityPub::Forwarder.new(@account, @json, @status)
+    @forwarder ||= ActivityPub::Forwarder.new(@account, @activity_json, @status)
   end
 end

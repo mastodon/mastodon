@@ -2,27 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::RepliesController, type: :controller do
+RSpec.describe ActivityPub::RepliesController do
   let(:status) { Fabricate(:status, visibility: parent_visibility) }
   let(:remote_account)  { Fabricate(:account, domain: 'foobar.com') }
   let(:remote_reply_id) { 'https://foobar.com/statuses/1234' }
   let(:remote_querier) { nil }
-
-  shared_examples 'cacheable response' do
-    it 'does not set cookies' do
-      expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be nil
-    end
-
-    it 'does not set sessions' do
-      response
-      expect(session).to be_empty
-    end
-
-    it 'returns public Cache-Control header' do
-      expect(response.headers['Cache-Control']).to include 'public'
-    end
-  end
 
   shared_examples 'common behavior' do
     context 'when status is private' do
@@ -181,6 +165,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
 
   describe 'GET #index' do
     subject(:response) { get :index, params: { account_username: status.account.username, status_id: status.id, only_other_accounts: only_other_accounts } }
+
     let(:only_other_accounts) { nil }
 
     context 'with no signature' do

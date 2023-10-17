@@ -18,13 +18,13 @@ sr-Latn:
       unconfirmed: Pre nastavka morate potvrditi svoj nalog.
     mailer:
       confirmation_instructions:
-        action: Potvrdite adresu e-pošte
+        action: Verifikujte adresu e-pošte
         action_with_app: Potvrdi i vrati se na %{app}
         explanation: Napravili ste nalog na %{host} sa adresom ove e-pošte. Na jedan klik ste udaljeni od aktiviranja. Ako ovo niste vi, molimo ignorišite ovu e-poštu.
         explanation_when_pending: Prijavili ste se za poziv %{host} sa ovim imejlom. Kada potvrdite svoj imejl, pregledaćemo vašu prijavu. Možete se prijaviti da biste promenili detalje ili izbrisali nalog, ali ne možete pristupiti većini funkcija dok vam nalog ne bude odobren. Ako vaša prijava bude odbijena, vaši podaci će biti uklonjeni, tako da od vas neće biti potrebne dalje radnje. Ako ovo niste bili vi, zanemarite ovaj imejl.
         extra_html: Molimo da takođe proverite <a href="%{terms_path}"> pravila ove instance i <a href="%{policy_path}"> naše uslove korišćenja.
         subject: 'Mastodont: Uputstvo za potvrdu korisničkog naloga na instanci %{instance}'
-        title: Potvrdite adresu e-pošte
+        title: Verifikujte adresu e-pošte
       email_changed:
         explanation: 'Adresa ove e-pošte za vaš nalog će biti promenjena u:'
         extra: Ako niste promenili vašu e-poštu, sasvim je moguće da je neko drugi dobio pristup vašem nalogu. Molimo promenite lozinku odmah ili kontaktirajte administratora instance ako ste zaključani izvan vašeg naloga.
@@ -39,7 +39,7 @@ sr-Latn:
         explanation: Potvrdite novu adresu da biste promenili e-poštu.
         extra: Ako ova promena nije inicirana sa vaše strane, molimo ignorišite ovu e-poštu. Adresa e-pošta za ovaj Mastodon nalog neće biti promenjena dok ne pristupite poveznici/linku iznad.
         subject: 'Mastodon: Potvrdite e-poštu za %{instance}'
-        title: Potvrdite adresu e-pošte
+        title: Verifikujte adresu e-pošte
       reset_password_instructions:
         action: Lozinka promenjena
         explanation: Zatražili ste novu lozinku za vaš nalog.
@@ -93,7 +93,7 @@ sr-Latn:
       signed_up_but_locked: Uspešno ste se registrovali. Nažalost ne možete se prijaviti zato što je Vaš nalog zaključan.
       signed_up_but_pending: Na vaš imejl poslata je poruka sa vezom za potvrdu. Nakon što kliknete na vezu, pregledaćemo vašu prijavu. Bićete obavešteni ako bude odobreno.
       signed_up_but_unconfirmed: Poruka za potvrdu Vašeg naloga je poslata na Vašu imejl adresu. Kliknite na vezu u imejlu da potvrdite svoj nalog. Molimo proverite i spam fasciklu ako niste primili poruku.
-      update_needs_confirmation: Uspešno ste ažurirali svoj nalog, ali treba da potvrdimo novu adresu Vaše e-pošte. Molimo Vas da proverite e-poštu i pratite link za potvrdu nove adrese Vaše e-pošte.
+      update_needs_confirmation: Uspešno ste ažurirali svoj nalog, ali moramo da verifikujemo vašu novu adresu e-pošte. Proverite svoju e-poštu i pratite vezu za potvrdu da biste potvrdili novu adresu e-pošte. Proverite svoju fasciklu neželjene pošte ako niste primili ovu e-poštu.
       updated: Vaš nalog je uspešno ažuriran.
     sessions:
       already_signed_out: Uspešno ste se odjavili.

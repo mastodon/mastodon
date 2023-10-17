@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe HomeFeed, type: :model do
-  let(:account) { Fabricate(:account) }
-
+RSpec.describe HomeFeed do
   subject { described_class.new(account) }
+
+  let(:account) { Fabricate(:account) }
 
   describe '#get' do
     before do

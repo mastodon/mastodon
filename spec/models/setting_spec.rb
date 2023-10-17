@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Setting, type: :model do
+RSpec.describe Setting do
   describe '#to_param' do
     let(:setting) { Fabricate(:setting, var: var) }
     let(:var)     { 'var' }
@@ -19,7 +19,7 @@ RSpec.describe Setting, type: :model do
 
     let(:key) { 'key' }
 
-    context 'rails_initialized? is falsey' do
+    context 'when rails_initialized? is falsey' do
       let(:rails_initialized) { false }
 
       it 'calls RailsSettings::Base#[]' do
@@ -28,7 +28,7 @@ RSpec.describe Setting, type: :model do
       end
     end
 
-    context 'rails_initialized? is truthy' do
+    context 'when rails_initialized? is truthy' do
       before do
         allow(RailsSettings::Base).to receive(:cache_key).with(key, nil).and_return(cache_key)
       end
@@ -38,11 +38,11 @@ RSpec.describe Setting, type: :model do
       let(:cache_value)       { 'cache-value' }
 
       it 'calls not RailsSettings::Base#[]' do
-        expect(RailsSettings::Base).not_to receive(:[]).with(key)
+        expect(RailsSettings::Base).to_not receive(:[]).with(key)
         described_class[key]
       end
 
-      context 'Rails.cache does not exists' do
+      context 'when Rails.cache does not exists' do
         before do
           allow(RailsSettings::Settings).to receive(:object).with(key).and_return(object)
           allow(described_class).to receive(:default_settings).and_return(default_settings)
@@ -60,11 +60,11 @@ RSpec.describe Setting, type: :model do
           described_class[key]
         end
 
-        context 'RailsSettings::Settings.object returns truthy' do
+        context 'when RailsSettings::Settings.object returns truthy' do
           let(:object) { db_val }
-          let(:db_val) { double(value: 'db_val') }
+          let(:db_val) { instance_double(described_class, value: 'db_val') }
 
-          context 'default_value is a Hash' do
+          context 'when default_value is a Hash' do
             let(:default_value) { { default_value: 'default_value' } }
 
             it 'calls default_value.with_indifferent_access.merge!' do
@@ -75,7 +75,7 @@ RSpec.describe Setting, type: :model do
             end
           end
 
-          context 'default_value is not a Hash' do
+          context 'when default_value is not a Hash' do
             let(:default_value) { 'default_value' }
 
             it 'returns db_val.value' do
@@ -84,7 +84,7 @@ RSpec.describe Setting, type: :model do
           end
         end
 
-        context 'RailsSettings::Settings.object returns falsey' do
+        context 'when RailsSettings::Settings.object returns falsey' do
           let(:object) { nil }
 
           it 'returns default_settings[key]' do
@@ -93,7 +93,7 @@ RSpec.describe Setting, type: :model do
         end
       end
 
-      context 'Rails.cache exists' do
+      context 'when Rails.cache exists' do
         before do
           Rails.cache.write(cache_key, cache_value)
         end
@@ -104,7 +104,7 @@ RSpec.describe Setting, type: :model do
           ActiveSupport::Notifications.subscribed callback, 'sql.active_record' do
             described_class[key]
           end
-          expect(callback).not_to have_received(:call)
+          expect(callback).to_not have_received(:call)
         end
 
         it 'returns the cached value' do
@@ -127,10 +127,10 @@ RSpec.describe Setting, type: :model do
     let(:records)          { [original_setting] }
 
     it 'returns a Hash' do
-      expect(described_class.all_as_records).to be_kind_of Hash
+      expect(described_class.all_as_records).to be_a Hash
     end
 
-    context 'records includes Setting with var as the key' do
+    context 'when records includes Setting with var as the key' do
       let(:records) { [original_setting] }
 
       it 'includes the original Setting' do
@@ -139,20 +139,20 @@ RSpec.describe Setting, type: :model do
       end
     end
 
-    context 'records includes nothing' do
+    context 'when records includes nothing' do
       let(:records) { [] }
 
-      context 'default_value is not a Hash' do
+      context 'when default_value is not a Hash' do
         it 'includes Setting with value of default_value' do
           setting = described_class.all_as_records[key]
 
-          expect(setting).to be_kind_of Setting
+          expect(setting).to be_a described_class
           expect(setting).to have_attributes(var: key)
           expect(setting).to have_attributes(value: 'default_value')
         end
       end
 
-      context 'default_value is a Hash' do
+      context 'when default_value is a Hash' do
         let(:default_value) { { 'foo' => 'fuga' } }
 
         it 'returns {}' do
@@ -163,25 +163,25 @@ RSpec.describe Setting, type: :model do
   end
 
   describe '.default_settings' do
+    subject { described_class.default_settings }
+
     before do
       allow(RailsSettings::Default).to receive(:enabled?).and_return(enabled)
     end
 
-    subject { described_class.default_settings }
-
-    context 'RailsSettings::Default.enabled? is false' do
+    context 'when RailsSettings::Default.enabled? is false' do
       let(:enabled) { false }
 
       it 'returns {}' do
-        is_expected.to eq({})
+        expect(subject).to eq({})
       end
     end
 
-    context 'RailsSettings::Settings.enabled? is true' do
+    context 'when RailsSettings::Settings.enabled? is true' do
       let(:enabled) { true }
 
       it 'returns instance of RailsSettings::Default' do
-        is_expected.to be_kind_of RailsSettings::Default
+        expect(subject).to be_a RailsSettings::Default
       end
     end
   end

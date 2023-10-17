@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: preview_cards
@@ -29,13 +30,15 @@
 #  max_score_at                 :datetime
 #  trendable                    :boolean
 #  link_type                    :integer
+#  published_at                 :datetime
+#  image_description            :string           default(""), not null
 #
 
 class PreviewCard < ApplicationRecord
   include Attachmentable
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
-  LIMIT = 1.megabytes
+  LIMIT = 2.megabytes
 
   BLURHASH_OPTIONS = {
     x_comp: 4,
@@ -44,13 +47,13 @@ class PreviewCard < ApplicationRecord
 
   self.inheritance_column = false
 
-  enum type: [:link, :photo, :video, :rich]
-  enum link_type: [:unknown, :article]
+  enum type: { link: 0, photo: 1, video: 2, rich: 3 }
+  enum link_type: { unknown: 0, article: 1 }
 
   has_and_belongs_to_many :statuses
   has_one :trend, class_name: 'PreviewCardTrend', inverse_of: :preview_card, dependent: :destroy
 
-  has_attached_file :image, processors: [:thumbnail, :blurhash_transcoder], styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 90 +profile "!icc,*" +set modify-date +set create-date' }, validate_media_type: false
+  has_attached_file :image, processors: [:thumbnail, :blurhash_transcoder], styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' }, validate_media_type: false
 
   validates :url, presence: true, uniqueness: true
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES
@@ -120,7 +123,7 @@ class PreviewCard < ApplicationRecord
     def image_styles(file)
       styles = {
         original: {
-          geometry: '400x400>',
+          pixels: 230_400, # 640x360px
           file_geometry_parser: FastGeometryParser,
           convert_options: '-coalesce',
           blurhash: BLURHASH_OPTIONS,

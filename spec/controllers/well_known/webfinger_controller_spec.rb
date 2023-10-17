@@ -1,9 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe WellKnown::WebfingerController, type: :controller do
+describe WellKnown::WebfingerController do
+  include RoutingHelper
+
   render_views
 
   describe 'GET #show' do
+    subject(:perform_show!) do
+      get :show, params: { resource: resource }, format: :json
+    end
+
     let(:alternate_domains) { [] }
     let(:alice) { Fabricate(:account, username: 'alice') }
     let(:resource) { nil }
@@ -13,10 +21,6 @@ describe WellKnown::WebfingerController, type: :controller do
       Rails.configuration.x.alternate_domains = alternate_domains
       example.run
       Rails.configuration.x.alternate_domains = tmp
-    end
-
-    subject do
-      get :show, params: { resource: resource }, format: :json
     end
 
     shared_examples 'a successful response' do
@@ -43,7 +47,7 @@ describe WellKnown::WebfingerController, type: :controller do
       let(:resource) { alice.to_webfinger_s }
 
       before do
-        subject
+        perform_show!
       end
 
       it_behaves_like 'a successful response'
@@ -54,7 +58,7 @@ describe WellKnown::WebfingerController, type: :controller do
 
       before do
         alice.suspend!
-        subject
+        perform_show!
       end
 
       it_behaves_like 'a successful response'
@@ -66,7 +70,7 @@ describe WellKnown::WebfingerController, type: :controller do
       before do
         alice.suspend!
         alice.deletion_request.destroy
-        subject
+        perform_show!
       end
 
       it 'returns http gone' do
@@ -78,7 +82,7 @@ describe WellKnown::WebfingerController, type: :controller do
       let(:resource) { 'acct:not@existing.com' }
 
       before do
-        subject
+        perform_show!
       end
 
       it 'returns http not found' do
@@ -90,7 +94,7 @@ describe WellKnown::WebfingerController, type: :controller do
       let(:alternate_domains) { ['foo.org'] }
 
       before do
-        subject
+        perform_show!
       end
 
       context 'when an account exists' do
@@ -114,11 +118,39 @@ describe WellKnown::WebfingerController, type: :controller do
       end
     end
 
+    context 'when the old name scheme is used to query the instance actor' do
+      let(:resource) do
+        "#{Rails.configuration.x.local_domain}@#{Rails.configuration.x.local_domain}"
+      end
+
+      before do
+        perform_show!
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'does not set a Vary header' do
+        expect(response.headers['Vary']).to be_nil
+      end
+
+      it 'returns application/jrd+json' do
+        expect(response.media_type).to eq 'application/jrd+json'
+      end
+
+      it 'returns links for the internal account' do
+        json = body_as_json
+        expect(json[:subject]).to eq 'acct:mastodon.internal@cb6e6126.ngrok.io'
+        expect(json[:aliases]).to eq ['https://cb6e6126.ngrok.io/actor']
+      end
+    end
+
     context 'with no resource parameter' do
       let(:resource) { nil }
 
       before do
-        subject
+        perform_show!
       end
 
       it 'returns http bad request' do
@@ -130,12 +162,74 @@ describe WellKnown::WebfingerController, type: :controller do
       let(:resource) { 'df/:dfkj' }
 
       before do
-        subject
+        perform_show!
       end
 
       it 'returns http bad request' do
         expect(response).to have_http_status(400)
       end
     end
+
+    context 'when an account has an avatar' do
+      let(:alice) { Fabricate(:account, username: 'alice', avatar: attachment_fixture('attachment.jpg')) }
+      let(:resource) { alice.to_webfinger_s }
+
+      it 'returns avatar in response' do
+        perform_show!
+
+        avatar_link = get_avatar_link(body_as_json)
+        expect(avatar_link).to_not be_nil
+        expect(avatar_link[:type]).to eq alice.avatar.content_type
+        expect(avatar_link[:href]).to eq full_asset_url(alice.avatar)
+      end
+
+      context 'with limited federation mode' do
+        before do
+          allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(true)
+        end
+
+        it 'does not return avatar in response' do
+          perform_show!
+
+          avatar_link = get_avatar_link(body_as_json)
+          expect(avatar_link).to be_nil
+        end
+      end
+
+      context 'when enabling DISALLOW_UNAUTHENTICATED_API_ACCESS' do
+        around do |example|
+          ClimateControl.modify DISALLOW_UNAUTHENTICATED_API_ACCESS: 'true' do
+            example.run
+          end
+        end
+
+        it 'does not return avatar in response' do
+          perform_show!
+
+          avatar_link = get_avatar_link(body_as_json)
+          expect(avatar_link).to be_nil
+        end
+      end
+    end
+
+    context 'when an account does not have an avatar' do
+      let(:alice) { Fabricate(:account, username: 'alice', avatar: nil) }
+      let(:resource) { alice.to_webfinger_s }
+
+      before do
+        perform_show!
+      end
+
+      it 'does not return avatar in response' do
+        avatar_link = get_avatar_link(body_as_json)
+        expect(avatar_link).to be_nil
+      end
+    end
+  end
+
+  private
+
+  def get_avatar_link(json)
+    json[:links].find { |link| link[:rel] == 'http://webfinger.net/rel/avatar' }
   end
 end

@@ -2,6 +2,14 @@
 is:
   simple_form:
     hints:
+      account:
+        discoverable: Opinberar færslur og notandasnið þitt geta birst eða verið mælt með á hinum ýmsu svæðum í Mastodon auk þess sem hægt er að mæla með þér við aðra notendur.
+        display_name: Fullt nafn þitt eða eitthvað til gamans.
+        fields: Heimasíðan þín, fornöfn, aldur eða eitthvað sem þú vilt koma á framfæri.
+        indexable: Opinberar færslur þínar gætu birst í leitarniðurstöðum á Mastodon. Fólk sem hefur haft afskipti af færslunum mun eftir sem áður geta leitað í þeim.
+        note: 'Þú getur @minnst á annað fólk eða #myllumerki.'
+        show_collections: Fólk mun geta skoðað þá sem fylgjast með þér og með hverjum þú fylgist. Fólk sem þú fylgist með mun alltaf sjá að þú sért að gera það.
+        unlocked: Fólk mun geta fylgst með þér án þess að bíða eftir samykki. Taktu merkið úr þessu ef þú vilt yfirfara fylgjendabeiðnir og velja hvort þú samþykkir eða hafnar nýjum fylgjendum.
       account_alias:
         acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast frá
       account_migration:
@@ -37,14 +45,11 @@ is:
         current_password: Í öryggisskyni skaltu setja inn lykilorðið fyrir þennan notandaaðgang
         current_username: Til að staðfesta skaltu setja inn notandanafnið fyrir þennan notandaaðgang
         digest: Er aðeins sent eftir lengri tímabil án virkni og þá aðeins ef þú hefur fengið persónuleg skilaboð á meðan þú hefur ekki verið á línunni
-        discoverable: Gerðu öðrum kleift að finna aðganginn þinn í gegnum meðmæli, vinsældir og annað slíkt
         email: Þú munt fá sendan staðfestingarpóst
-        fields: Þú getur birt allt að 4 atriði sem töflu á notandasniðinu þínu
         header: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         inbox_url: Afritaðu slóðina af forsíðu endurvarpans sem þú vilt nota
         irreversible: Síaðar færslur munu hverfa óendurkræft, jafnvel þó sían sé seinna fjarlægð
         locale: Tungumál notandaviðmótsins, tölvupósts og ýti-tilkynninga
-        locked: Krefst þess að þú samþykkir fylgjendur handvirkt
         password: Notaðu minnst 8 stafi
         phrase: Verður notað til samsvörunar burtséð frá stafstöðu texta eða viðvörunar vegna efnis í færslu
         scopes: Að hvaða API-kerfisviðmótum forritið fær aðgang. Ef þú velur efsta-stigs svið, þarftu ekki að gefa einstakar heimildir.
@@ -54,12 +59,9 @@ is:
         setting_display_media_default: Fela myndefni sem merkt er viðkvæmt
         setting_display_media_hide_all: Alltaf fela allt myndefni
         setting_display_media_show_all: Alltaf birta myndefni sem merkt er viðkvæmt
-        setting_hide_network: Hverjum þú fylgist með og hverjir fylgjast með þér verður ekki birt á notandasniðinu þínu
-        setting_noindex: Hefur áhrif á opinbera notandasniðið þitt og færslusíður
-        setting_show_application: Nafnið á forritinu sem þú notar til að senda færslur mun birtast í ítarlegri sýn á færslunum þínum
         setting_use_blurhash: Litstiglarnir byggja á litunum í földu myndunum, en gera öll smáatriði óskýr
         setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er, í stað þess að hún skruni streyminu sjálfvirkt
-        username: Notandanafnið þitt verður einstakt á %{domain}
+        username: Þú mátt nota bókstafi, tölur og undirstrik
         whole_word: Þegar stikkorð eða setning er einungis tölur og bókstafir, verður það aðeins notað ef það samsvarar heilu orði
       domain_allow:
         domain: Þetta lén mun geta sótt gögn af þessum vefþjóni og tekið verður á móti innsendum gögnum frá léninu til vinnslu og geymslu
@@ -91,11 +93,13 @@ is:
         site_short_description: Stutt lýsing sem hjálpar til við að auðkenna netþjóninn þinn. Hver er að reka hann, fyrir hverja er hann?
         site_terms: Notaðu þína eigin persónuverndarstefnu eða skildu þetta eftir autt til að nota sjálfgefna stefnu. Má sníða með Markdown-málskipan.
         site_title: Hvað fólk kallar netþjóninn þinn annað en með heiti lénsins.
+        status_page_url: Slóð á síðu þar sem fólk getur séð ástand netþjónsins þegar vandræði koma upp
         theme: Þema sem útskráðir gestir og nýjir notendur sjá.
         thumbnail: Mynd um það bil 2:1 sem birtist samhliða upplýsingum um netþjóninn þinn.
         timeline_preview: Gestir sem ekki eru skráðir inn munu geta skoðað nýjustu opinberu færslurnar sem tiltækar eru á þjóninum.
         trendable_by_default: Sleppa handvirkri yfirferð á vinsælu efni. Áfram verður hægt að fjarlægja stök atriði úr vinsældarlistum.
         trends: Vinsældir sýna hvaða færslur, myllumerki og fréttasögur séu í umræðunni á netþjóninum þínum.
+        trends_as_landing_page: Sýna vinsælt efni til ekki-innskráðra notenda í stað lýsingar á þessum netþjóni. Krefst þess að vinsældir efnis sé virkjað.
       form_challenge:
         current_password: Þú ert að fara inn á öryggissvæði
       imports:
@@ -116,6 +120,9 @@ is:
       sessions:
         otp: 'Settu inn tveggja-þátta kóðann sem farsímaforritið útbjó eða notaðu einn af endurheimtukóðunum þínum:'
         webauthn: Ef þetta er USB-lykill, gakktu úr skugga um að honum sé stungið í samband og ef þörf þykir að ýta á hann.
+      settings:
+        indexable: Síðan með notandasniðinu þínu gæti birst í leitarniðurstöðum Google, Bing og fleiri.
+        show_application: Þú munt alltaf geta séð hvaða forrit birti færsluna þína.
       tag:
         name: Þú getur aðeins breytt stafstöði mill há-/lágstafa, til gæmis til að gera þetta læsilegra
       user:
@@ -129,12 +136,17 @@ is:
         position: Rétthærra hlutverk ákvarðar lausn árekstra í ákveðnum tilfellum. Sumar aðgerðir er aðeins hægt að framkvæma á hlutverk með lægri forgangi
       webhook:
         events: Veldu atburði sem á að senda
+        template: Sníddu eigin JSON með breytilegri brúun. Skiljið eftir autt fyrir sjálfgefið JSON.
         url: Hvert atburðir verða sendir
     labels:
       account:
+        discoverable: Hafa notandasnið og færslur með í reikniritum leitar
         fields:
           name: Skýring
           value: Efni
+        indexable: Hafa opinberar færslur með í leitarniðurstöðum
+        show_collections: Birta fylgjendur og þá sem fylgst er með í notandasniði
+        unlocked: Samþykkja nýja fylgjendur sjálfkrafa
       account_alias:
         acct: Auðkenni gamla aðgangsins
       account_migration:
@@ -172,7 +184,6 @@ is:
         context: Samhengi síu
         current_password: Núverandi lykilorð
         data: Gögn
-        discoverable: Hafa þennan aðgang með í notendaskránni
         display_name: Birtingarnafn
         email: Tölvupóstfang
         expires_in: Rennur út eftir
@@ -182,7 +193,6 @@ is:
         inbox_url: URL-slóð á innhólf endurvarpa
         irreversible: Fella niður í staðinn fyrir að fela
         locale: Tungumál viðmóts
-        locked: Krefjast fylgjendabeiðna
         max_uses: Hámarksfjöldi afnota
         new_password: Nýtt lykilorð
         note: Æviágrip
@@ -194,7 +204,6 @@ is:
         setting_always_send_emails: Alltaf senda tilkynningar í tölvupósti
         setting_auto_play_gif: Spila sjálfkrafa GIF-hreyfimyndir
         setting_boost_modal: Sýna staðfestingarglugga fyrir endurbirtingu
-        setting_crop_images: Utansníða myndir í ekki-útfelldum færslum í 16x9
         setting_default_language: Tungumál sem skrifað er á
         setting_default_privacy: Gagnaleynd færslna
         setting_default_sensitive: Alltaf merkja myndefni sem viðkvæmt
@@ -206,9 +215,7 @@ is:
         setting_display_media_show_all: Birta allt
         setting_expand_spoilers: Alltaf útfella færslur sem eru með aðvörun vegna efnisins
         setting_hide_network: Fela félagsnetið þitt
-        setting_noindex: Afþakka atriðaskráningu í leitarvélum
         setting_reduce_motion: Minnka hreyfingu í hreyfimyndum
-        setting_show_application: Upplýsa um forrit sem er til að senda færslur
         setting_system_font_ui: Nota sjálfgefið letur kerfisins
         setting_theme: Þema vefsvæðis
         setting_trends: Birta það sem er efst á baugi í dag
@@ -251,11 +258,13 @@ is:
         site_short_description: Lýsing á vefþjóni
         site_terms: Persónuverndarstefna
         site_title: Heiti vefþjóns
+        status_page_url: Slóð á ástandssíðu
         theme: Sjálfgefið þema
         thumbnail: Smámynd vefþjóns
         timeline_preview: Leyfa óauðkenndan aðgang að opinberum tímalínum
         trendable_by_default: Leyfa vinsælt efni án undanfarandi yfirferðar
         trends: Virkja vinsælt
+        trends_as_landing_page: Nota vinsælasta sem upphafssíðu
       interactions:
         must_be_follower: Loka á tilkynningar frá þeim sem ekki eru fylgjendur
         must_be_following: Loka á tilkynningar frá þeim sem þú fylgist ekki með
@@ -282,9 +291,18 @@ is:
         pending_account: Nýr notandaaðgangur þarfnast yfirferðar
         reblog: Einhver endurbirti færsluna þína
         report: Ný kæra hefur verið send inn
+        software_updates:
+          all: Láta vita við allar uppfærslur
+          critical: Láta einungis vita við áríðandi uppfærslur
+          label: Ný útgáfa á Mastodon er tiltæk
+          none: Aldrei láta vita um uppfærslur (ekki mælt með því)
+          patch: Láta vita við uppfærslur með lagfæringum
         trending_tag: Nýtt vinsælt efni krefst yfirferðar
       rule:
         text: Regla
+      settings:
+        indexable: Hafa notandasnið með í leitarvélum
+        show_application: Birta úr hvaða forriti þú sendir færslu
       tag:
         listable: Leyfa þessu myllumerki að birtast í leitum og í persónusniðamöppunni
         name: Myllumerki
@@ -292,6 +310,7 @@ is:
         usable: Leyfa færslum að nota þetta myllumerki
       user:
         role: Hlutverk
+        time_zone: Tímabelti
       user_role:
         color: Litur merkis
         highlighted: Birta hlutverk sem merki á notandaauðkenni
@@ -300,9 +319,11 @@ is:
         position: Forgangur
       webhook:
         events: Virkjaðir atburðir
+        template: Sniðmát gagna
         url: Slóð á endapunkt
     'no': Nei
     not_recommended: Ekki mælt með þessu
+    overridden: Yfirtekið
     recommended: Mælt með
     required:
       mark: "*"

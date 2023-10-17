@@ -5,27 +5,27 @@ class OStatus::TagManager
   include RoutingHelper
 
   VERBS = {
-    post:           'http://activitystrea.ms/schema/1.0/post',
-    share:          'http://activitystrea.ms/schema/1.0/share',
-    favorite:       'http://activitystrea.ms/schema/1.0/favorite',
-    unfavorite:     'http://activitystrea.ms/schema/1.0/unfavorite',
-    delete:         'http://activitystrea.ms/schema/1.0/delete',
-    follow:         'http://activitystrea.ms/schema/1.0/follow',
+    post: 'http://activitystrea.ms/schema/1.0/post',
+    share: 'http://activitystrea.ms/schema/1.0/share',
+    favorite: 'http://activitystrea.ms/schema/1.0/favorite',
+    unfavorite: 'http://activitystrea.ms/schema/1.0/unfavorite',
+    delete: 'http://activitystrea.ms/schema/1.0/delete',
+    follow: 'http://activitystrea.ms/schema/1.0/follow',
     request_friend: 'http://activitystrea.ms/schema/1.0/request-friend',
-    authorize:      'http://activitystrea.ms/schema/1.0/authorize',
-    reject:         'http://activitystrea.ms/schema/1.0/reject',
-    unfollow:       'http://ostatus.org/schema/1.0/unfollow',
-    block:          'http://mastodon.social/schema/1.0/block',
-    unblock:        'http://mastodon.social/schema/1.0/unblock',
+    authorize: 'http://activitystrea.ms/schema/1.0/authorize',
+    reject: 'http://activitystrea.ms/schema/1.0/reject',
+    unfollow: 'http://ostatus.org/schema/1.0/unfollow',
+    block: 'http://mastodon.social/schema/1.0/block',
+    unblock: 'http://mastodon.social/schema/1.0/unblock',
   }.freeze
 
   TYPES = {
-    activity:   'http://activitystrea.ms/schema/1.0/activity',
-    note:       'http://activitystrea.ms/schema/1.0/note',
-    comment:    'http://activitystrea.ms/schema/1.0/comment',
-    person:     'http://activitystrea.ms/schema/1.0/person',
+    activity: 'http://activitystrea.ms/schema/1.0/activity',
+    note: 'http://activitystrea.ms/schema/1.0/note',
+    comment: 'http://activitystrea.ms/schema/1.0/comment',
+    person: 'http://activitystrea.ms/schema/1.0/person',
     collection: 'http://activitystrea.ms/schema/1.0/collection',
-    group:      'http://activitystrea.ms/schema/1.0/group',
+    group: 'http://activitystrea.ms/schema/1.0/group',
   }.freeze
 
   COLLECTIONS = {

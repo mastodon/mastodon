@@ -64,8 +64,8 @@
       max-width: calc(100% - 45px - 25px);
     }
 
-    input[type="radio"],
-    input[type="checkbox"] {
+    input[type='radio'],
+    input[type='checkbox'] {
       display: none;
     }
 
@@ -73,7 +73,7 @@
       flex: 1 1 auto;
     }
 
-    input[type="text"] {
+    input[type='text'] {
       display: block;
       box-sizing: border-box;
       width: 100%;
@@ -121,16 +121,16 @@
       border-radius: 4px;
     }
 
-    &.active {
-      border-color: $valid-value-color;
-      background: $valid-value-color;
-    }
-
     &:active,
     &:focus,
     &:hover {
       border-color: lighten($valid-value-color, 15%);
       border-width: 4px;
+    }
+
+    &.active {
+      background-color: $valid-value-color;
+      border-color: $valid-value-color;
     }
 
     &::-moz-focus-inner {
@@ -216,6 +216,14 @@
     padding: 10px;
   }
 
+  .poll__input {
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: $ui-button-focus-background-color;
+    }
+  }
+
   .poll__footer {
     border-top: 1px solid darken($simple-background-color, 8%);
     padding: 10px;
@@ -241,6 +249,14 @@
     color: $action-button-color;
     border-color: $action-button-color;
     margin-inline-end: 5px;
+
+    &:hover,
+    &:focus,
+    &.active {
+      border-color: $action-button-color;
+      background-color: $action-button-color;
+      color: $ui-button-color;
+    }
   }
 
   li {
@@ -263,11 +279,13 @@
     width: auto;
     outline: 0;
     font-family: inherit;
-    background: $simple-background-color url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>") no-repeat right 8px center / auto 16px;
+    background: $simple-background-color
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>")
+      no-repeat right 8px center / auto 16px;
     border: 1px solid darken($simple-background-color, 14%);
     border-radius: 4px;
     padding: 6px 10px;
-    padding-right: 30px;
+    padding-inline-end: 30px;
   }
 
   .icon-button.disabled {

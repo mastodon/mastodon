@@ -10,6 +10,12 @@ describe Api::V1::Statuses::ReblogsController do
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'write:statuses', application: app) }
 
   context 'with an oauth token' do
+    around do |example|
+      Sidekiq::Testing.fake! do
+        example.run
+      end
+    end
+
     before do
       allow(controller).to receive(:doorkeeper_token) { token }
     end
@@ -22,19 +28,13 @@ describe Api::V1::Statuses::ReblogsController do
       end
 
       context 'with public status' do
-        it 'returns http success' do
+        it 'reblogs the status', :aggregate_failures do
           expect(response).to have_http_status(200)
-        end
 
-        it 'updates the reblogs count' do
           expect(status.reblogs.count).to eq 1
-        end
 
-        it 'updates the reblogged attribute' do
           expect(user.account.reblogged?(status)).to be true
-        end
 
-        it 'returns json with updated attributes' do
           hash_body = body_as_json
 
           expect(hash_body[:reblog][:id]).to eq status.id.to_s
@@ -61,19 +61,13 @@ describe Api::V1::Statuses::ReblogsController do
           post :destroy, params: { status_id: status.id }
         end
 
-        it 'returns http success' do
+        it 'destroys the reblog', :aggregate_failures do
           expect(response).to have_http_status(200)
-        end
 
-        it 'updates the reblogs count' do
           expect(status.reblogs.count).to eq 0
-        end
 
-        it 'updates the reblogged attribute' do
           expect(user.account.reblogged?(status)).to be false
-        end
 
-        it 'returns json with updated attributes' do
           hash_body = body_as_json
 
           expect(hash_body[:id]).to eq status.id.to_s
@@ -91,19 +85,13 @@ describe Api::V1::Statuses::ReblogsController do
           post :destroy, params: { status_id: status.id }
         end
 
-        it 'returns http success' do
+        it 'destroys the reblog', :aggregate_failures do
           expect(response).to have_http_status(200)
-        end
 
-        it 'updates the reblogs count' do
           expect(status.reblogs.count).to eq 0
-        end
 
-        it 'updates the reblogged attribute' do
           expect(user.account.reblogged?(status)).to be false
-        end
 
-        it 'returns json with updated attributes' do
           hash_body = body_as_json
 
           expect(hash_body[:id]).to eq status.id.to_s
