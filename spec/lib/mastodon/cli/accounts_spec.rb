@@ -1368,12 +1368,7 @@ describe Mastodon::CLI::Accounts do
 
     before do
       Fabricate(:mention, account: mentioned_account, status: Fabricate(:status, account: Fabricate(:account)))
-      allow(cli).to receive(:parallelize_with_progress).and_yield(prunable_accounts[0])
-                                                       .and_yield(prunable_accounts[1])
-                                                       .and_yield(prunable_accounts[2])
-                                                       .and_yield(bot_account)
-                                                       .and_yield(group_account)
-                                                       .and_return([nil, 3])
+      stub_parallelize_with_progress!
     end
 
     it 'prunes all remote accounts with no interactions with local users' do
@@ -1381,7 +1376,6 @@ describe Mastodon::CLI::Accounts do
 
       prunable_account_ids = prunable_accounts.pluck(:id)
 
-      expect(cli).to have_received(:parallelize_with_progress).once
       expect(Account.where(id: prunable_account_ids).count).to eq(0)
     end
 
