@@ -22,7 +22,11 @@ declare module '*.png' {
 declare module '*.svg' {
   import type React from 'react';
 
-  export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
+  interface SVGPropsWithTitle extends React.SVGProps<SVGSVGElement> {
+    title?: string;
+  }
+
+  export const ReactComponent: React.FC<SVGPropsWithTitle>;
 
   const path: string;
   export default path;

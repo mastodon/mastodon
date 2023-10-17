@@ -7,6 +7,7 @@ module.exports = {
       loader: '@svgr/webpack',
       options: {
         svgo: false,
+        titleProp: true,
       },
     },
   ],

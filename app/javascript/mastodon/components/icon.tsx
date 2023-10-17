@@ -56,11 +56,16 @@ import { ReactComponent as LockOpenIcon } from '@material-design-icons/svg/outli
 import { ReactComponent as PublicIcon } from '@material-design-icons/svg/outlined/public.svg';
 import { ReactComponent as RectangleIcon } from '@material-design-icons/svg/outlined/rectangle.svg';
 
-export type IconProp = React.FC<React.SVGProps<SVGSVGElement>>;
+interface SVGPropsWithTitle extends React.SVGProps<SVGSVGElement> {
+  title?: string;
+}
+
+export type IconProp = React.FC<SVGPropsWithTitle>;
 
 interface Props extends React.SVGProps<SVGSVGElement> {
   children?: never;
   id: string;
+  title?: string;
   icon?: IconProp;
 }
 
@@ -125,14 +130,28 @@ const iconIdMap: IconMap = {
   'volume-up': VolumeUpIcon,
 };
 
-export const Icon: React.FC<Props> = ({ id, className, ...other }) => {
+export const Icon: React.FC<Props> = ({
+  id,
+  className,
+  title: titleProp,
+  ...other
+}) => {
+  const ariaHidden = titleProp ? undefined : true;
+  const role = !ariaHidden ? 'img' : undefined;
+
+  // Set the title to an empty string to remove the built-in SVG one if any
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  const title = titleProp || '';
+
   if ('icon' in other && other.icon) {
     const IconComponent = other.icon;
 
     return (
       <IconComponent
         className={classNames('icon', `icon-${id}`, className)}
-        id={id}
+        title={title}
+        aria-hidden={ariaHidden}
+        role={role}
         {...other}
       />
     );
@@ -145,6 +164,12 @@ export const Icon: React.FC<Props> = ({ id, className, ...other }) => {
   const SVG = iconIdMap[id] ?? CheckBoxOutlineBlankIcon;
 
   return (
-    <SVG className={classNames('icon', `icon-${id}`, className)} {...other} />
+    <SVG
+      className={classNames('icon', `icon-${id}`, className)}
+      title={title}
+      aria-hidden={ariaHidden}
+      role={role}
+      {...other}
+    />
   );
 };
