@@ -42,7 +42,7 @@ Step.propTypes = {
   label: PropTypes.node,
   description: PropTypes.node,
   icon: PropTypes.string,
-  iconComponent: PropTypes.node,
+  iconComponent: PropTypes.func,
   completed: PropTypes.bool,
   href: PropTypes.string,
   onClick: PropTypes.func,

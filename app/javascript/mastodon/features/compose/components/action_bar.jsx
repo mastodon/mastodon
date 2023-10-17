@@ -5,6 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { ReactComponent as MenuIcon } from '@material-design-icons/svg/filled/menu.svg';
+
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 
 const messages = defineMessages({
@@ -60,7 +62,7 @@ class ActionBar extends PureComponent {
     return (
       <div className='compose__action-bar'>
         <div className='compose__action-bar-dropdown'>
-          <DropdownMenuContainer items={menu} icon='bars' size={24} direction='right' />
+          <DropdownMenuContainer items={menu} icon='bars' iconComponent={MenuIcon} size={24} direction='right' />
         </div>
       </div>
     );

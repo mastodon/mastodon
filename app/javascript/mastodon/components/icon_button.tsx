@@ -10,7 +10,7 @@ interface Props {
   className?: string;
   title: string;
   icon: string;
-  iconComponent?: IconProp;
+  iconComponent: IconProp;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;

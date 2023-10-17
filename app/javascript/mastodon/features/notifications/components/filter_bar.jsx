@@ -73,42 +73,42 @@ class FilterBar extends PureComponent {
           onClick={this.onClick('mention')}
           title={intl.formatMessage(tooltips.mentions)}
         >
-          <Icon id='reply-all' icon={ReplyAllIcon} fixedWidth />
+          <Icon id='reply-all' icon={ReplyAllIcon} />
         </button>
         <button
           className={selectedFilter === 'favourite' ? 'active' : ''}
           onClick={this.onClick('favourite')}
           title={intl.formatMessage(tooltips.favourites)}
         >
-          <Icon id='star' icon={StarIcon} fixedWidth />
+          <Icon id='star' icon={StarIcon} />
         </button>
         <button
           className={selectedFilter === 'reblog' ? 'active' : ''}
           onClick={this.onClick('reblog')}
           title={intl.formatMessage(tooltips.boosts)}
         >
-          <Icon id='retweet' icon={RepeatIcon} fixedWidth />
+          <Icon id='retweet' icon={RepeatIcon} />
         </button>
         <button
           className={selectedFilter === 'poll' ? 'active' : ''}
           onClick={this.onClick('poll')}
           title={intl.formatMessage(tooltips.polls)}
         >
-          <Icon id='tasks' icon={InsertChartIcon} fixedWidth />
+          <Icon id='tasks' icon={InsertChartIcon} />
         </button>
         <button
           className={selectedFilter === 'status' ? 'active' : ''}
           onClick={this.onClick('status')}
           title={intl.formatMessage(tooltips.statuses)}
         >
-          <Icon id='home' icon={HomeIcon} fixedWidth />
+          <Icon id='home' icon={HomeIcon} />
         </button>
         <button
           className={selectedFilter === 'follow' ? 'active' : ''}
           onClick={this.onClick('follow')}
           title={intl.formatMessage(tooltips.follows)}
         >
-          <Icon id='user-plus' icon={PersonAddIcon} fixedWidth />
+          <Icon id='user-plus' icon={PersonAddIcon} />
         </button>
       </div>
     );

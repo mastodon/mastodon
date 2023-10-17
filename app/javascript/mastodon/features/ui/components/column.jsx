@@ -13,7 +13,7 @@ export default class Column extends PureComponent {
   static propTypes = {
     heading: PropTypes.string,
     icon: PropTypes.string,
-    iconComponent: PropTypes.node,
+    iconComponent: PropTypes.func,
     children: PropTypes.node,
     active: PropTypes.bool,
     hideHeadingOnMobile: PropTypes.bool,
