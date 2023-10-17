@@ -33,7 +33,7 @@ RSpec.describe AccountsController do
   shared_examples 'temporarily suspended account check' do |code: 403|
     before { account.suspend! }
 
-    it 'returns http forbidden' do
+    it 'returns appropriate http response code' do
       get :show, params: { username: account.username, format: format }
 
       expect(response).to have_http_status(code)
