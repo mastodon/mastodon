@@ -8,6 +8,9 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
+import { ReactComponent as SearchIcon } from '@material-design-icons/svg/filled/search.svg';
+import { ReactComponent as TagIcon } from '@material-design-icons/svg/filled/tag.svg';
+
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import Search from 'mastodon/features/compose/containers/search_container';
@@ -57,6 +60,7 @@ class Explore extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon={isSearching ? 'search' : 'hashtag'}
+          iconComponent={isSearching ? SearchIcon : TagIcon}
           title={intl.formatMessage(isSearching ? messages.searchResults : messages.title)}
           onClick={this.handleHeaderClick}
           multiColumn={multiColumn}

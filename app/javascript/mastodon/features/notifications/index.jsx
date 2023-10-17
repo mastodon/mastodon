@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { ReactComponent as DoneAllIcon } from '@material-design-icons/svg/filled/done_all.svg';
+import { ReactComponent as NotificationsIcon } from '@material-design-icons/svg/filled/notifications.svg';
 import { debounce } from 'lodash';
 
 import { compareId } from 'mastodon/compare_id';
@@ -270,6 +271,7 @@ class Notifications extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setColumnRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='bell'
+          iconComponent={NotificationsIcon}
           active={isUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

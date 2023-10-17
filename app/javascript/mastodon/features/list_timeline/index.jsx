@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 
 import { ReactComponent as DeleteIcon } from '@material-design-icons/svg/filled/delete.svg';
 import { ReactComponent as EditIcon } from '@material-design-icons/svg/filled/edit.svg';
+import { ReactComponent as ListAltIcon } from '@material-design-icons/svg/filled/list_alt.svg';
 import Toggle from 'react-toggle';
 
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
@@ -183,6 +184,7 @@ class ListTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={title}>
         <ColumnHeader
           icon='list-ul'
+          iconComponent={ListAltIcon}
           active={hasUnread}
           title={title}
           onPin={this.handlePin}
