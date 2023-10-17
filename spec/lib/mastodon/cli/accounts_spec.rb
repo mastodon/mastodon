@@ -6,6 +6,9 @@ require 'mastodon/cli/accounts'
 describe Mastodon::CLI::Accounts do
   let(:cli) { described_class.new }
 
+  # `parallelize_with_progress` cannot run in transactions, so instead,
+  # stub it with an alternative implementation that runs sequentially
+  # and can run in transactions.
   def stub_parallelize_with_progress!
     allow(cli).to receive(:parallelize_with_progress) do |scope, &block|
       aggregate = 0
