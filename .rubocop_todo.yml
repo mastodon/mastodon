@@ -210,13 +210,6 @@ Rails/ApplicationController:
   Exclude:
     - 'app/controllers/health_controller.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: Severity.
-Rails/DuplicateAssociation:
-  Exclude:
-    - 'app/serializers/activitypub/collection_serializer.rb'
-    - 'app/serializers/activitypub/note_serializer.rb'
-
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
 Rails/HasAndBelongsToMany:
