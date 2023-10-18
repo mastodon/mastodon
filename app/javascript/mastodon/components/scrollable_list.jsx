@@ -40,15 +40,15 @@ const IOArticleContainerWrapper = ({id, index, listLength, intersectionObserverW
   const location = useLocation();
 
   return (<IntersectionObserverArticleContainer
-          id={id}
-          index={index}
-          listLength={listLength}
-          intersectionObserverWrapper={intersectionObserverWrapper}
-          saveHeightKey={trackScroll ? `${location.key}:${scrollKey}` : null}
-        >
-          {children}
-        </IntersectionObserverArticleContainer>);
-}
+    id={id}
+    index={index}
+    listLength={listLength}
+    intersectionObserverWrapper={intersectionObserverWrapper}
+    saveHeightKey={trackScroll ? `${location.key}:${scrollKey}` : null}
+  >
+    {children}
+  </IntersectionObserverArticleContainer>);
+};
 
 IOArticleContainerWrapper.propTypes =  {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

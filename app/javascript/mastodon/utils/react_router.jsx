@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
 import { __RouterContext } from "react-router";
 
@@ -8,13 +8,13 @@ export const WithRouterPropTypes = {
   match: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-}
+};
 
 export const WithOptionalRouterPropTypes = {
   match: PropTypes.object,
   location: PropTypes.object,
   history: PropTypes.object,
-}
+};
 
 // This is copied from https://github.com/remix-run/react-router/blob/v5.3.4/packages/react-router/modules/withRouter.js
 // but does not fail if called outside of a React Router context
