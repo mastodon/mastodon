@@ -33,7 +33,7 @@ fi:
     accounts:
       add_email_domain_block: Estä sähköpostiverkkotunnus
       approve: Hyväksy
-      approved_msg: Käyttäjän %{username} liittymishakemus hyväksyttiin
+      approved_msg: Käyttäjän %{username} rekisteröitymishakemus hyväksyttiin
       are_you_sure: Oletko varma?
       avatar: Profiilikuva
       by_domain: Verkkotunnus
@@ -364,7 +364,7 @@ fi:
         other: "<strong>%{count}</strong> odottavaa käyttäjää"
       resolved_reports: ratkaistut raportit
       software: Ohjelmisto
-      sources: Rekisteröitymisen lähteet
+      sources: Rekisteröitymislähteet
       space: Tilankäyttö
       title: Hallintapaneeli
       top_languages: Aktiivisimmat kielet
@@ -440,7 +440,7 @@ fi:
         title: Estä uusi sähköpostiverkkotunnus
       no_email_domain_block_selected: Sähköpostin verkkotunnuksia ei muutettu, koska yhtään ei ollut valittuna
       not_permitted: Ei sallittu
-      resolved_dns_records_hint_html: Verkkotunnuksen nimi määräytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää kirjautumisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostin palveluntarjoajia.</strong>
+      resolved_dns_records_hint_html: Verkkotunnuksen nimi määräytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää rekisteröitymisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostin palveluntarjoajia.</strong>
       resolved_through_html: Ratkaistu %{domain} kautta
       title: Estetyt sähköpostiverkkotunnukset
     export_domain_allows:
@@ -1405,7 +1405,7 @@ fi:
   migrations:
     acct: Muuttanut tunnukselle
     cancel: Peruuta uudelleenohjaus
-    cancel_explanation: Uudelleenohjauksen peruuttaminen aktivoi uudelleen nykyisen tilisi, mutta ei palauta seuraajia, jotka on siirretty kyseiselle tilille.
+    cancel_explanation: Uudelleenohjauksen peruuttaminen aktivoi nykyisen tilisi uudelleen mutta ei palauta seuraajia, jotka on siirretty kyseiselle tilille.
     cancelled_msg: Uudelleenohjaus peruttu onnistuneesti.
     errors:
       already_moved: on sama tili, jonka olet jo siirtänyt
