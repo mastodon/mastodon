@@ -86,20 +86,6 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Max: 27
 
-# Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers, AllowedPatterns.
-# SupportedStyles: snake_case, normalcase, non_integer
-# AllowedIdentifiers: capture3, iso8601, rfc1123_date, rfc822, rfc2822, rfc3339, x86_64
-Naming/VariableNumber:
-  Exclude:
-    - 'db/migrate/20180106000232_add_index_on_statuses_for_api_v1_accounts_account_id_statuses.rb'
-    - 'db/migrate/20180514140000_revert_index_change_on_statuses_for_api_v1_accounts_account_id_statuses.rb'
-    - 'db/migrate/20190820003045_update_statuses_index.rb'
-    - 'db/migrate/20190823221802_add_local_index_to_statuses.rb'
-    - 'db/migrate/20200119112504_add_public_index_to_statuses.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/domain_block_spec.rb'
-    - 'spec/models/user_spec.rb'
-
 Performance/MapMethodChain:
   Exclude:
     - 'app/models/feed.rb'
