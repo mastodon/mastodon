@@ -1,0 +1,42 @@
+<h2>Log in</h2>
+
+<%= form_with(
+      model: resource,
+      as: resource_name,
+      url: user_session_path,
+      data: {
+        "challenge_url": new_user_session_challenge_url,
+        "credential_field_name": "#{resource_name}[passkey_credential]"
+      }
+) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <fieldset>
+    <table>
+      <tr>
+        <th><%= f.label :email %></th>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "username webauthn", required: true %></td>
+      </tr>
+      <tr>
+        <th><%= f.check_box :remember_me %></th>
+        <td><%= f.label :remember_me %></td>
+      </tr>
+    </table>
+  </fieldset>
+
+  <%= f.hidden_field :passkey_credential %>
+
+  <section>
+    <button type="submit"><%= image_tag("passkey-black.svg", width: "25", height: "25") %> Sign in</button>
+  </section>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+
+<script type="module">
+  import {startConditionalMediation, submitFormEvent} from 'session_form'
+
+  startConditionalMediation(document.querySelector('form'))
+  document.querySelector('form').addEventListener('submit', submitFormEvent)
+</script>

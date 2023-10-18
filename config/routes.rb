@@ -90,6 +90,30 @@ Rails.application.routes.draw do
     confirmations:      'auth/confirmations',
   }
 
+  devise_for :pkusers, controllers: {
+    registrations: 'pkusers/registrations',
+    sessions: 'pkusers/sessions'
+  }
+  devise_scope :pkuser do
+    post 'sign_up/new_challenge', to: 'pkusers/registrations#new_challenge', as: :new_user_registration_challenge
+    post 'sign_in/new_challenge', to: 'pkusers/sessions#new_challenge', as: :new_user_session_challenge
+
+    post 'reauthenticate/new_challenge', to: 'pkusers/reauthentication#new_challenge', as: :new_user_reauthentication_challenge
+    post 'reauthenticate', to: 'pkusers/reauthentication#reauthenticate', as: :user_reauthentication
+
+    namespace :pkusers do
+      resources :passkeys, only: [:index, :create, :destroy] do
+        collection do
+          post :new_create_challenge
+        end
+
+        member do
+          post :new_destroy_challenge
+        end
+      end
+    end
+  end
+
   get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
   get '/users/:username/following', to: redirect('/@%{username}/following'), constraints: lambda { |req| req.format.nil? || req.format.html? }
   get '/users/:username/followers', to: redirect('/@%{username}/followers'), constraints: lambda { |req| req.format.nil? || req.format.html? }

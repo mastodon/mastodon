@@ -31,6 +31,8 @@
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
     = preload_pack_asset "locale/#{I18n.locale}-json.js"
     = csrf_meta_tags unless skip_csrf_meta_tags?
+    = javascript_importmap_tags
+
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 
     = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'

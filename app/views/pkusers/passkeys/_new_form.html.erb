@@ -1,0 +1,49 @@
+<%= form_with(
+      scope: :passkey,
+      url: users_passkeys_url,
+      method: :post,
+      id: :"add-passkey-form",
+      data: {
+        "reauthentication_challenge_url": new_user_reauthentication_challenge_url,
+        "reauthentication_token_url": user_reauthentication_url,
+        "reauthentication_token_field_name": "passkey[reauthentication_token]",
+
+        "challenge_url": new_create_challenge_users_passkeys_url,
+        "credential_field_name": "passkey[credential]"
+      }
+) do |f| %>
+  <h2>Add a passkey</h2>
+
+  <fieldset>
+    <button id="unlock-button" type="button"><%= image_tag("passkey-black.svg", width: "25", height: "25") %> Unlock</button>
+    <%= f.text_field :reauthentication_token, readonly: true%>
+  </fieldset>
+
+  <fieldset id='new-passkey-fields' disabled>
+    <table>
+      <tr>
+        <th><%= f.label :label %></th>
+        <td><%= f.text_field :label, autofocus: "off", required: true %>
+      </tr>
+    </table>
+    <%= f.hidden_field :credential %>
+
+    <button type="submit"><%= image_tag("passkey-black.svg", width: "25", height: "25") %> Add passkey</button>
+  </fieldset>
+<% end %>
+
+
+<script type="module">
+  import {getReauthenticationToken} from 'passkey_reauthentication_handler'
+  import {submitFormEvent} from 'registration_form'
+
+  let unlockFormEvent = async function(event){
+    let unlockButton = event.currentTarget
+    let form = unlockButton.closest('form')
+    await getReauthenticationToken(form)
+    form.querySelector('#new-passkey-fields').removeAttribute("disabled")
+  }
+
+  document.querySelector('#unlock-button').addEventListener('click', unlockFormEvent)
+  document.querySelector('#add-passkey-form').addEventListener('submit', submitFormEvent)
+</script>

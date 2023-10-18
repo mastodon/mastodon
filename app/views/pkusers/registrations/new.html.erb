@@ -1,0 +1,41 @@
+<h2>Sign up</h2>
+
+<%= form_with(
+      model: resource,
+      as: resource_name,
+      url: registration_path(resource_name),
+      data: {
+        "challenge_url": new_user_registration_challenge_url,
+        "credential_field_name": "#{resource_name}[passkey_credential]"
+      }
+) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <fieldset>
+    <table>
+      <tr>
+        <th><%= f.label :email %></th>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :passkey_label %></th>
+        <td><%= f.text_field :passkey_label, autofocus: "off", required: true %>
+      </tr>
+    </table>
+  </fieldset>
+
+  <%= f.hidden_field :passkey_credential %>
+
+  <section>
+    <button type="submit"><%= image_tag("passkey-black.svg", width: "25", height: "25") %> Sign up</button>
+  </section>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+
+<script type="module">
+  import {submitFormEvent} from 'registration_form'
+
+  document.querySelector('form').addEventListener('submit', submitFormEvent)
+</script>
