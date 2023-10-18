@@ -204,3 +204,7 @@ gem 'net-http', '~> 0.3.2'
 gem 'rubyzip', '~> 2.3'
 
 gem 'hcaptcha', '~> 7.1'
+
+gem 'devise-passkeys' 
+
+gem "importmap-rails","1.2.1"
