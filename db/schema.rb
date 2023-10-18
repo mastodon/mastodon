@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_161611) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id"], name: "index_account_aliases_on_account_id"
+    t.index ["uri", "account_id"], name: "index_account_aliases_on_uri_and_account_id", unique: true
   end
 
   create_table "account_conversations", force: :cascade do |t|
