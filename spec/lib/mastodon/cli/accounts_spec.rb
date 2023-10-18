@@ -1502,20 +1502,22 @@ describe Mastodon::CLI::Accounts do
       end
 
       context 'when the specified account has a previous migration' do
-        let(:migration) { instance_double(AccountMigration, target_account: target_account, target_account_id: target_account.id) }
-
         before do
-          allow(Account).to receive(:find_local).with(source_account.username).and_return(source_account)
-          allow(source_account).to receive(:moved_to_account_id).and_return(target_account.id)
-          allow(source_account.migrations).to receive(:last).and_return(migration)
+          allow(resolve_account_service).to receive(:call).with(source_account.acct, any_args).and_return(source_account)
+          allow(resolve_account_service).to receive(:call).with(target_account.acct, any_args).and_return(target_account)
+          target_account.aliases.create!(acct: source_account.acct)
+          source_account.migrations.create!(acct: target_account.acct)
+          source_account.update!(moved_to_account: target_account)
         end
 
         it_behaves_like 'a successful migration'
 
         context 'when the specified account is redirecting to a different target account' do
-          it 'exits with an error message' do
-            allow(source_account).to receive(:moved_to_account_id).and_return(-1)
+          before do
+            source_account.update!(moved_to_account: nil)
+          end
 
+          it 'exits with an error message' do
             expect { cli.invoke(:migrate, arguments, options) }.to output(
               a_string_including('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway')
             ).to_stdout
@@ -1525,10 +1527,6 @@ describe Mastodon::CLI::Accounts do
 
         context 'with --force option' do
           let(:options) { { replay: true, force: true } }
-
-          before do
-            allow(source_account).to receive(:moved_to_account_id).and_return(-1)
-          end
 
           it_behaves_like 'a successful migration'
         end
