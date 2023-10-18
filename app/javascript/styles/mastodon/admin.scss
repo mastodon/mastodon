@@ -1130,10 +1130,7 @@ a.name-tag,
 
       @for $i from 0 through 10 {
         &--#{10 * $i} {
-          background-color: rgba(
-            $ui-highlight-color,
-            1 * (math.div(max(1, $i), 10))
-          );
+          background-color: rgba($ui-highlight-color, 1 * (max(1, $i) / 10));
         }
       }
     }
@@ -1276,10 +1273,7 @@ a.sparkline {
 
       @for $i from 0 through 10 {
         &--#{10 * $i} {
-          background-color: rgba(
-            $ui-highlight-color,
-            1 * (math.div(max(1, $i), 10))
-          );
+          background-color: rgba($ui-highlight-color, 1 * (max(1, $i) / 10));
         }
       }
     }
@@ -1358,7 +1352,7 @@ a.sparkline {
     }
   }
 
-  @media screen and (width <= 930px) {
+  @media screen and (max-width: 930px) {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -1644,7 +1638,7 @@ a.sparkline {
     }
   }
 
-  @media screen and (width <= 800px) {
+  @media screen and (max-width: 800px) {
     border: 0;
 
     &__item {

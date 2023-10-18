@@ -208,3 +208,5 @@ gem 'hcaptcha', '~> 7.1'
 gem 'devise-passkeys' 
 
 gem "importmap-rails","1.2.1"
+gem "sass-rails", "~> 6.0"
+
