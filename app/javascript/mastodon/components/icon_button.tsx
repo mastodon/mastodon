@@ -15,7 +15,6 @@ interface Props {
   onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
   onKeyPress?: React.KeyboardEventHandler<HTMLButtonElement>;
-  size: number;
   active: boolean;
   expanded?: boolean;
   style?: React.CSSProperties;
@@ -35,7 +34,6 @@ interface States {
 }
 export class IconButton extends PureComponent<Props, States> {
   static defaultProps = {
-    size: 18,
     active: false,
     disabled: false,
     animate: false,
@@ -87,8 +85,6 @@ export class IconButton extends PureComponent<Props, States> {
 
   render() {
     const style = {
-      width: this.props.size * 1.28571429,
-      height: this.props.size * 1.28571429,
       ...this.props.style,
       ...(this.props.active ? this.props.activeStyle : {}),
     };
@@ -120,10 +116,6 @@ export class IconButton extends PureComponent<Props, States> {
       overlayed: overlay,
       'icon-button--with-counter': typeof counter !== 'undefined',
     });
-
-    if (typeof counter !== 'undefined') {
-      style.width = 'auto';
-    }
 
     let contents = (
       <>

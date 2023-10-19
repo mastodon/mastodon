@@ -17,8 +17,8 @@ import EditedTimestamp from 'mastodon/components/edited_timestamp';
 import { getHashtagBarForStatus } from 'mastodon/components/hashtag_bar';
 import { Icon }  from 'mastodon/components/icon';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
-import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
@@ -322,5 +322,4 @@ class DetailedStatus extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(DetailedStatus));
-
+export default withRouter(DetailedStatus);

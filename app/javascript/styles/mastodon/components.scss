@@ -186,8 +186,9 @@
 }
 
 .icon {
-  width: 18px;
-  height: 18px;
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
 
   path {
     fill: currentColor;
@@ -196,7 +197,6 @@
 
 .icon-button {
   display: inline-flex;
-  padding: 0;
   color: $action-button-color;
   border: 0;
   border-radius: 4px;
@@ -207,11 +207,7 @@
   height: 100%;
   text-decoration: none;
   gap: 4px;
-
-  .icon {
-    width: calc(100% / 1.28571429);
-    height: calc(100% / 1.28571429);
-  }
+  flex: 0 0 auto;
 
   a {
     color: inherit;
@@ -283,17 +279,9 @@
     }
   }
 
-  &--with-counter {
-    display: inline-flex;
-    align-items: center;
-    width: auto !important;
-    padding: 0 4px 0 2px;
-  }
-
   &__counter {
-    display: inline-block;
+    display: block;
     width: auto;
-    margin-inline-start: 4px;
     font-size: 12px;
     font-weight: 500;
   }
@@ -693,6 +681,7 @@ body > [data-popper-placement] {
 
     .compose-form__buttons {
       display: flex;
+      gap: 2px;
 
       .compose-form__upload-button-icon {
         line-height: 27px;
@@ -1950,6 +1939,11 @@ a.account__display-name {
       pointer-events: auto;
       transform: scale(1, 1) translate(0, 0);
       opacity: 1;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
     }
   }
 }
@@ -4957,6 +4951,10 @@ a.status-card {
       font-weight: 500;
       padding: 0 10px;
       margin-bottom: 10px;
+    }
+
+    .icon-button {
+      padding: 0;
     }
 
     &__menu {

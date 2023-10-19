@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { FormattedMessage } from 'react-intl';
 
 import { withRouter } from 'react-router-dom';
+
 import { ReactComponent as ChevronLeftIcon } from '@material-design-icons/svg/filled/chevron_left.svg';
 
 import { Icon }  from 'mastodon/components/icon';
