@@ -1356,4 +1356,254 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#prune' do
+    let!(:local_account)     { Fabricate(:account) }
+    let!(:bot_account)       { Fabricate(:account, bot: true, domain: 'example.com') }
+    let!(:group_account)     { Fabricate(:account, actor_type: 'Group', domain: 'example.com') }
+    let!(:mentioned_account) { Fabricate(:account, domain: 'example.com') }
+    let!(:prunable_accounts) do
+      Fabricate.times(3, :account, domain: 'example.com', bot: false, suspended_at: nil, silenced_at: nil)
+    end
+
+    before do
+      Fabricate(:mention, account: mentioned_account, status: Fabricate(:status, account: Fabricate(:account)))
+      stub_parallelize_with_progress!
+    end
+
+    it 'prunes all remote accounts with no interactions with local users' do
+      cli.prune
+
+      prunable_account_ids = prunable_accounts.pluck(:id)
+
+      expect(Account.where(id: prunable_account_ids).count).to eq(0)
+    end
+
+    it 'displays a successful message' do
+      expect { cli.prune }.to output(
+        a_string_including("OK, pruned #{prunable_accounts.size} accounts")
+      ).to_stdout
+    end
+
+    it 'does not prune local accounts' do
+      cli.prune
+
+      expect(Account.exists?(id: local_account.id)).to be(true)
+    end
+
+    it 'does not prune bot accounts' do
+      cli.prune
+
+      expect(Account.exists?(id: bot_account.id)).to be(true)
+    end
+
+    it 'does not prune group accounts' do
+      cli.prune
+
+      expect(Account.exists?(id: group_account.id)).to be(true)
+    end
+
+    it 'does not prune accounts that have been mentioned' do
+      cli.prune
+
+      expect(Account.exists?(id: mentioned_account.id)).to be true
+    end
+
+    context 'with --dry-run option' do
+      before do
+        cli.options = { dry_run: true }
+      end
+
+      it 'does not prune any account' do
+        cli.prune
+
+        prunable_account_ids = prunable_accounts.pluck(:id)
+
+        expect(Account.where(id: prunable_account_ids).count).to eq(prunable_accounts.size)
+      end
+
+      it 'displays a successful message with (DRY RUN)' do
+        expect { cli.prune }.to output(
+          a_string_including("OK, pruned #{prunable_accounts.size} accounts (DRY RUN)")
+        ).to_stdout
+      end
+    end
+  end
+
+  describe '#migrate' do
+    let!(:source_account)         { Fabricate(:account) }
+    let!(:target_account)         { Fabricate(:account, domain: 'example.com') }
+    let(:arguments)               { [source_account.username] }
+    let(:resolve_account_service) { instance_double(ResolveAccountService, call: nil) }
+    let(:move_service)            { instance_double(MoveService, call: nil) }
+
+    before do
+      allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service)
+      allow(MoveService).to receive(:new).and_return(move_service)
+    end
+
+    shared_examples 'a successful migration' do
+      it 'calls the MoveService for the last migration' do
+        cli.invoke(:migrate, arguments, options)
+
+        last_migration = source_account.migrations.last
+
+        expect(move_service).to have_received(:call).with(last_migration).once
+      end
+
+      it 'displays a successful message' do
+        expect { cli.invoke(:migrate, arguments, options) }.to output(
+          a_string_including("OK, migrated #{source_account.acct} to #{target_account.acct}")
+        ).to_stdout
+      end
+    end
+
+    context 'when both --replay and --target options are given' do
+      let(:options) { { replay: true, target: "#{target_account.username}@example.com" } }
+
+      it 'exits with an error message indicating that using both options is not possible' do
+        expect { cli.invoke(:migrate, arguments, options) }.to output(
+          a_string_including('Use --replay or --target, not both')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when no option is given' do
+      it 'exits with an error message indicating that at least one option must be used' do
+        expect { cli.invoke(:migrate, arguments, {}) }.to output(
+          a_string_including('Use either --replay or --target')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when the given username is not found' do
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'exits with an error message indicating that there is no such account' do
+        expect { cli.invoke(:migrate, arguments, replay: true) }.to output(
+          a_string_including("No such account: #{arguments.first}")
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'with --replay option' do
+      let(:options) { { replay: true } }
+
+      context 'when the specified account has no previous migrations' do
+        it 'exits with an error message indicating that the given account has no previous migrations' do
+          expect { cli.invoke(:migrate, arguments, options) }.to output(
+            a_string_including('The specified account has not performed any migration')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'when the specified account has a previous migration' do
+        before do
+          allow(resolve_account_service).to receive(:call).with(source_account.acct, any_args).and_return(source_account)
+          allow(resolve_account_service).to receive(:call).with(target_account.acct, any_args).and_return(target_account)
+          target_account.aliases.create!(acct: source_account.acct)
+          source_account.migrations.create!(acct: target_account.acct)
+          source_account.update!(moved_to_account: target_account)
+        end
+
+        it_behaves_like 'a successful migration'
+
+        context 'when the specified account is redirecting to a different target account' do
+          before do
+            source_account.update!(moved_to_account: nil)
+          end
+
+          it 'exits with an error message' do
+            expect { cli.invoke(:migrate, arguments, options) }.to output(
+              a_string_including('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway')
+            ).to_stdout
+              .and raise_error(SystemExit)
+          end
+        end
+
+        context 'with --force option' do
+          let(:options) { { replay: true, force: true } }
+
+          it_behaves_like 'a successful migration'
+        end
+      end
+    end
+
+    context 'with --target option' do
+      let(:options) { { target: target_account.acct } }
+
+      before do
+        allow(resolve_account_service).to receive(:call).with(source_account.acct, any_args).and_return(source_account)
+        allow(resolve_account_service).to receive(:call).with(target_account.acct, any_args).and_return(target_account)
+      end
+
+      context 'when the specified target account is not found' do
+        before do
+          allow(resolve_account_service).to receive(:call).with(target_account.acct).and_return(nil)
+        end
+
+        it 'exits with an error message indicating that there is no such account' do
+          expect { cli.invoke(:migrate, arguments, options) }.to output(
+            a_string_including("The specified target account could not be found: #{options[:target]}")
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'when the specified target account exists' do
+        before do
+          target_account.aliases.create!(acct: source_account.acct)
+        end
+
+        it 'creates a migration for the specified account with the target account' do
+          cli.invoke(:migrate, arguments, options)
+
+          last_migration = source_account.migrations.last
+
+          expect(last_migration.acct).to eq(target_account.acct)
+        end
+
+        it_behaves_like 'a successful migration'
+      end
+
+      context 'when the migration record is invalid' do
+        it 'exits with an error indicating that the validation failed' do
+          expect { cli.invoke(:migrate, arguments, options) }.to output(
+            a_string_including('Error: Validation failed')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'when the specified account is redirecting to a different target account' do
+        before do
+          allow(Account).to receive(:find_local).with(source_account.username).and_return(source_account)
+          allow(source_account).to receive(:moved_to_account_id).and_return(-1)
+        end
+
+        it 'exits with an error message' do
+          expect { cli.invoke(:migrate, arguments, options) }.to output(
+            a_string_including('The specified account is redirecting to a different target account. Use --force if you want to change the migration target')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'with --target and --force options' do
+        let(:options) { { target: target_account.acct, force: true } }
+
+        before do
+          target_account.aliases.create!(acct: source_account.acct)
+          allow(Account).to receive(:find_local).with(source_account.username).and_return(source_account)
+          allow(source_account).to receive(:moved_to_account_id).and_return(-1)
+        end
+
+        it_behaves_like 'a successful migration'
+      end
+    end
+  end
 end

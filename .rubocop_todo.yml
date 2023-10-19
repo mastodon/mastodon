@@ -48,27 +48,6 @@ Lint/UnusedBlockArgument:
     - 'config/initializers/paperclip.rb'
     - 'config/initializers/simple_form.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Lint/UselessAssignment:
-  Exclude:
-    - 'app/services/activitypub/process_status_update_service.rb'
-    - 'config/initializers/3_omniauth.rb'
-    - 'db/migrate/20190511134027_add_silenced_at_suspended_at_to_accounts.rb'
-    - 'db/post_migrate/20190511152737_remove_suspended_silenced_account_fields.rb'
-    - 'spec/controllers/api/v1/favourites_controller_spec.rb'
-    - 'spec/controllers/concerns/account_controller_concern_spec.rb'
-    - 'spec/helpers/jsonld_helper_spec.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/domain_block_spec.rb'
-    - 'spec/models/status_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/models/webauthn_credentials_spec.rb'
-    - 'spec/services/account_search_service_spec.rb'
-    - 'spec/services/post_status_service_spec.rb'
-    - 'spec/services/precompute_feed_service_spec.rb'
-    - 'spec/services/resolve_url_service_spec.rb'
-    - 'spec/views/statuses/show.html.haml_spec.rb'
-
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 144
@@ -87,26 +66,6 @@ Metrics/CyclomaticComplexity:
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/PerceivedComplexity:
   Max: 27
-
-# Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers, AllowedPatterns.
-# SupportedStyles: snake_case, normalcase, non_integer
-# AllowedIdentifiers: capture3, iso8601, rfc1123_date, rfc822, rfc2822, rfc3339, x86_64
-Naming/VariableNumber:
-  Exclude:
-    - 'db/migrate/20180106000232_add_index_on_statuses_for_api_v1_accounts_account_id_statuses.rb'
-    - 'db/migrate/20180514140000_revert_index_change_on_statuses_for_api_v1_accounts_account_id_statuses.rb'
-    - 'db/migrate/20190820003045_update_statuses_index.rb'
-    - 'db/migrate/20190823221802_add_local_index_to_statuses.rb'
-    - 'db/migrate/20200119112504_add_public_index_to_statuses.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/domain_block_spec.rb'
-    - 'spec/models/user_spec.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: SafeMultiline.
-Performance/DeletePrefix:
-  Exclude:
-    - 'app/models/featured_tag.rb'
 
 Performance/MapMethodChain:
   Exclude:
