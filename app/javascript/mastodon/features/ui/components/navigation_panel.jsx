@@ -59,10 +59,10 @@ class NavigationPanel extends Component {
           <Link to='/' className='column-link column-link--logo'><WordmarkLogo /></Link>
 
           {transientSingleColumn ? (
-            <div class='switch-to-advanced'>
+            <div className='switch-to-advanced'>
               {intl.formatMessage(messages.openedInClassicInterface)}
               {" "}
-              <a href={`/deck${location.pathname}`} class='switch-to-advanced__toggle'>
+              <a href={`/deck${location.pathname}`} className='switch-to-advanced__toggle'>
                 {intl.formatMessage(messages.advancedInterface)}
               </a>
             </div>
