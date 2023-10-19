@@ -44,6 +44,7 @@
 #
 
 class User < ApplicationRecord
+
   self.ignored_columns += %w(
     remember_created_at
     remember_token
@@ -75,6 +76,8 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :validatable,
          :confirmable
 
+  devise :passkey_authenticatable, :registerable, :rememberable
+
   include Omniauthable
   include PamAuthenticable
   include LdapAuthenticable
@@ -91,6 +94,8 @@ class User < ApplicationRecord
   has_many :markers, inverse_of: :user, dependent: :destroy
   has_many :webauthn_credentials, dependent: :destroy
   has_many :ips, class_name: 'UserIp', inverse_of: :user
+
+  has_many :passkeys, dependent: :destroy
 
   has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
@@ -139,6 +144,14 @@ class User < ApplicationRecord
 
   attr_reader :invite_code
   attr_writer :external, :bypass_invite_request_check, :current_account
+
+  def self.passkeys_class
+    Passkey
+  end
+
+  def self.find_for_passkey(passkey)
+    self.find_by(id: passkey.user.id)
+  end
 
   def self.those_who_can(*any_of_privileges)
     matching_role_ids = UserRole.that_can(*any_of_privileges).map(&:id)
@@ -503,3 +516,9 @@ class User < ApplicationRecord
     TriggerWebhookWorker.perform_async('account.created', 'Account', account_id)
   end
 end
+
+Devise.add_module :passkey_authenticatable,
+                  model: 'devise/passkeys/model',
+                  route: {session: [nil, :new, :create, :destroy] },
+                  controller: 'controller/sessions',
+                  strategy: true

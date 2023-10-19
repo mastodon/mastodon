@@ -13,9 +13,9 @@
 #  updated_at   :datetime         not null
 #
 class Passkey < ApplicationRecord
-    belongs_to :pkuser
-  
-    validates :label, uniqueness: { scope: :pkuser}
+    belongs_to :user
+
+    validates :label, uniqueness: { scope: :user}
     validates :external_id, uniqueness: true
     validates :public_key, uniqueness: true
   end
