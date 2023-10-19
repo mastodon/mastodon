@@ -166,7 +166,5 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     response.cache_control.replace(private: true, no_store: true)
   end
 
-  def set_relying_party_in_request_env
-    request.env[relying_party_key] = relying_party
-  end
+
 end
