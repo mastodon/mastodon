@@ -6,6 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import AttachmentList from 'mastodon/components/attachment_list';
+import { WithOptionalRouterPropTypes, withOptionalRouter } from 'mastodon/utils/react_router';
 
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
@@ -17,14 +18,11 @@ const messages = defineMessages({
 
 class ReplyIndicator extends ImmutablePureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     status: ImmutablePropTypes.map,
     onCancel: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    ...WithOptionalRouterPropTypes,
   };
 
   handleClick = () => {
@@ -34,7 +32,7 @@ class ReplyIndicator extends ImmutablePureComponent {
   handleAccountClick = (e) => {
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
+      this.props.history?.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
     }
   };
 
@@ -72,4 +70,4 @@ class ReplyIndicator extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(ReplyIndicator);
+export default withOptionalRouter(injectIntl(ReplyIndicator));
