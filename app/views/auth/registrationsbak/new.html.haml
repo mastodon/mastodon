@@ -1,30 +1,46 @@
-%h2 Sign up
+- content_for :page_title do
+  = t('auth.register')
 
-= simple_form_for(resource,
-  as: resource_name,
-  url: registration_path(resource_name),
-  html: {data: {challenge_url: new_user_registration_challenge_url,credential_field_name: "#{resource_name}[passkey_credential]"}}) do |f|
-  = render "devise/shared/error_messages", resource: resource
+- content_for :header_tags do
+  = render partial: 'shared/og', locals: { description: description_for_sign_up(@invite) }
 
-  %fieldset
-    %table
-      %tr
-        %th= f.label :email
-        %td= f.email_field :email, autofocus: true, autocomplete: "email", required: true
-      %tr
-        %th= f.label :passkey_label
-        %td= f.text_field :passkey_label, autofocus: "off", required: true
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { novalidate: false }) do |f|
+  = render 'auth/shared/progress', stage: 'details'
 
-  = f.hidden_field :passkey_credential
+  %h1.title= t('auth.sign_up.title', domain: site_hostname)
+  %p.lead= t('auth.sign_up.preamble')
 
-  %section
-    %button{type: "submit"}
-      = image_tag("passkey-black.svg", width: "25", height: "25")
-      | Sign up
+  = render 'shared/error_messages', object: resource
 
-= render "devise/shared/links"
+  - if @invite.present? && @invite.autofollow?
+    .fields-group.invited-by
+      %p.hint= t('invites.invited_by')
+      = render 'application/card', account: @invite.user.account
 
-:javascript
-  import { submitFormEvent } from 'registration_form';
+  .fields-group
+    = f.simple_fields_for :account do |ff|
+      = ff.input :username, wrapper: :with_label, label: false, required: true, input_html: { 'aria-label': t('simple_form.labels.defaults.username'), autocomplete: 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-zA-Z0-9_]+', maxlength: 30 }, append: "@#{site_hostname}"
+    = f.input :email, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label': t('simple_form.labels.defaults.email'), autocomplete: 'username' }, hint: false
+    = f.input :password, placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label': t('simple_form.labels.defaults.password'), autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last }, hint: false
+    = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label': t('simple_form.labels.defaults.confirm_password'), autocomplete: 'new-password' }, hint: false
+    = f.input :confirm_password, as: :string, placeholder: t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), required: false, input_html: { 'aria-label': t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), autocomplete: 'off' }, hint: false
+    = f.input :website, as: :url, wrapper: :with_label, label: t('simple_form.labels.defaults.honeypot', label: 'Website'), required: false, input_html: { 'aria-label': t('simple_form.labels.defaults.honeypot', label: 'Website'), autocomplete: 'off' }
 
-  document.querySelector('form').addEventListener('submit', submitFormEvent);
+  - if approved_registrations? && !@invite.present?
+    %p.lead= t('auth.sign_up.manual_review', domain: site_hostname)
+
+    .fields-group
+      = f.simple_fields_for :invite_request, resource.invite_request || resource.build_invite_request do |invite_request_fields|
+        = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: Setting.require_invite_text, label: false, hint: false
+
+
+  = hidden_field_tag :accept, params[:accept]
+  = f.input :invite_code, as: :hidden
+
+  .fields-group
+    = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.privacy_policy_agreement_html', rules_path: about_more_path, privacy_policy_path: privacy_policy_path), required: true
+
+  .actions
+    = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit
+
+.form-footer= render 'auth/shared/links'

@@ -46,6 +46,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def build_resource(hash = nil)
+    logger.debug("Auth::RegistrationsController::build_resource")
     super(hash)
 
     resource.locale                 = I18n.locale
@@ -57,6 +58,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_sign_up_params
+    logger.debug("Auth::RegistrationsController::configure_sign_up_params")
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
       user_params.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password)
     end
@@ -146,11 +148,13 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def require_rules_acceptance!
+    logger.debug("Auth::RegistrationsController::require_rules_acceptance!::1")
     return if @rules.empty? || (session[:accept_token].present? && params[:accept] == session[:accept_token])
 
     @accept_token = session[:accept_token] = SecureRandom.hex
     @invite_code  = invite_code
 
+    logger.debug("Auth::RegistrationsController::require_rules_acceptance!::2")
     set_locale { render :rules }
   end
 
