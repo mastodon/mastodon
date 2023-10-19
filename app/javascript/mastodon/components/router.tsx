@@ -32,7 +32,7 @@ browserHistory.push = (path: HistoryPath, state?: MastodonLocationState) => {
   const realPath = extractRealPath(path);
   if (!realPath) return;
 
-  if (layoutFromWindow() === 'multi-column' && realPath.startsWith('/deck')) {
+  if (layoutFromWindow() === 'multi-column' && !realPath.startsWith('/deck')) {
     originalPush(`/deck${realPath}`, state);
   } else {
     originalPush(path, state);
