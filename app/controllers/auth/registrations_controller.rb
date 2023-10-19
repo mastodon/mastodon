@@ -5,7 +5,12 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   include Devise::Passkeys::Controllers::RegistrationsControllerConcern
   include RelyingParty
 
-  layout :auth
+  skip_before_action :require_functional!
+
+  skip_around_action :set_locale
+  skip_before_action :update_user_sign_in
+
+  layout 'auth'
 
   # before_action :set_invite, only: [:new, :create]
   # before_action :check_enabled_registrations, only: [:new, :create]
