@@ -100,7 +100,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, path: 'auth', format: false, controllers: {
-    # omniauth_callbacks: 'auth/omniauth_callbacks',
+    omniauth_callbacks: 'auth/omniauth_callbacks',
     sessions:           'auth/sessions',
     registrations:      'auth/registrations',
     passwords:          'auth/passwords',
