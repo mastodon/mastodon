@@ -73,7 +73,9 @@ Rails.application.routes.draw do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
 
     resource :unsubscribe, only: [:show, :create], controller: :mail_subscriptions
-    namespace :users do
+
+
+    namespace :auth do
       resources :passkeys, only: [:index, :create, :destroy] do
         collection do
           post :new_create_challenge
@@ -83,9 +85,6 @@ Rails.application.routes.draw do
           post :new_destroy_challenge
         end
       end
-    end
-
-    namespace :auth do
       resource :setup, only: [:show, :update], controller: :setup
       resource :challenge, only: [:create], controller: :challenges
       resources :passkeys, only: [:index, :create, :destroy] do
