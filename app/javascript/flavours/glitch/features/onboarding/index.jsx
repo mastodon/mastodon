@@ -4,7 +4,7 @@ import React from 'react';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -19,6 +19,7 @@ import Column from 'flavours/glitch/features/ui/components/column';
 import { me } from 'flavours/glitch/initial_state';
 import { makeGetAccount } from 'flavours/glitch/selectors';
 import { assetHost } from 'flavours/glitch/utils/config';
+import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 import illustration from 'mastodon/../images/elephant_ui_conversation.svg';
 
 import ArrowSmallRight from './components/arrow_small_right';
@@ -39,15 +40,11 @@ const mapStateToProps = () => {
 };
 
 class Onboarding extends ImmutablePureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     account: ImmutablePropTypes.map,
     multiColumn: PropTypes.bool,
+    ...WithRouterPropTypes,
   };
 
   state = {
@@ -57,11 +54,10 @@ class Onboarding extends ImmutablePureComponent {
   };
 
   handleClose = () => {
-    const { dispatch } = this.props;
-    const { router } = this.context;
+    const { dispatch, history } = this.props;
 
     dispatch(closeOnboarding());
-    router.history.push('/home');
+    history.push('/home');
   };
 
   handleProfileClick = () => {
@@ -73,10 +69,9 @@ class Onboarding extends ImmutablePureComponent {
   };
 
   handleComposeClick = () => {
-    const { dispatch, intl } = this.props;
-    const { router } = this.context;
+    const { dispatch, intl, history } = this.props;
 
-    dispatch(focusCompose(router.history, intl.formatMessage(messages.template)));
+    dispatch(focusCompose(history, intl.formatMessage(messages.template)));
   };
 
   handleShareClick = () => {
@@ -151,4 +146,4 @@ class Onboarding extends ImmutablePureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(Onboarding));
+export default withRouter(connect(mapStateToProps)(injectIntl(Onboarding)));
