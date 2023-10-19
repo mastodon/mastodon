@@ -130,6 +130,7 @@ class User < ApplicationRecord
   before_validation :sanitize_languages
   before_validation :sanitize_role
   before_create :set_approved
+  before_create :auto_confirm
   after_commit :send_pending_devise_notifications
   after_create_commit :trigger_webhooks
 
@@ -438,6 +439,10 @@ class User < ApplicationRecord
         open_registrations? || valid_invitation? || external?
       end
     end
+  end
+
+  def auto_confirm
+    self.confirmed_at = Time.now.utc
   end
 
   def sign_up_from_ip_requires_approval?
