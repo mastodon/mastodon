@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Auth::PasskeysController < DeviseController
+  layout 'auth'
+
   include Devise::Passkeys::Controllers::PasskeysControllerConcern
   include RelyingParty
 
