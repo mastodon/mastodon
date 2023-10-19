@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('settings.account_settings')
 
-= render 'status'
+= render partial: 'status', locals: { user: @user, strikes: @strikes }
 
 %h3= t('auth.security')
 

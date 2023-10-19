@@ -9,7 +9,6 @@ RSpec.describe AfterBlockDomainFromAccountService, type: :service do
   let!(:alice) { Fabricate(:account, username: 'alice') }
 
   before do
-    stub_jsonld_contexts!
     allow(ActivityPub::DeliveryWorker).to receive(:perform_async)
   end
 

@@ -50,6 +50,6 @@
       - if @accounts.empty?
         = nothing_here 'nothing-here--under-tabs'
       - else
-        = render partial: 'account', collection: @accounts, locals: { f: f }
+        = render partial: 'account', collection: @accounts, locals: { f: f, relationships: @relationships }
 
 = paginate @accounts
