@@ -57,10 +57,10 @@ class NavigationPanel extends Component {
       <div className='navigation-panel'>
         {transientSingleColumn && (
           <div className='navigation-panel__logo'>
-            <div class='switch-to-advanced'>
+            <div className='switch-to-advanced'>
               {intl.formatMessage(messages.openedInClassicInterface)}
               {" "}
-              <a href={`/deck${location.pathname}`} class='switch-to-advanced__toggle'>
+              <a href={`/deck${location.pathname}`} className='switch-to-advanced__toggle'>
                 {intl.formatMessage(messages.advancedInterface)}
               </a>
             </div>

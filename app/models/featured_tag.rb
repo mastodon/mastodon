@@ -51,7 +51,7 @@ class FeaturedTag < ApplicationRecord
   private
 
   def strip_name
-    self.name = name&.strip&.gsub(/\A#/, '')
+    self.name = name&.strip&.delete_prefix('#')
   end
 
   def set_tag
