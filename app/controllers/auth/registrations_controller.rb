@@ -126,11 +126,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   #     invite if invite&.valid_for_use?
   #   end
   # end
-  #
-  # def determine_layout
-  #   %w(edit update).include?(action_name) ? 'admin' : 'auth'
-  # end
-  #
+
+  def determine_layout
+    %w(edit update).include?(action_name) ? 'admin' : 'auth'
+  end
+
   # def set_sessions
   #   @sessions = current_user.session_activations.order(updated_at: :desc)
   # end
