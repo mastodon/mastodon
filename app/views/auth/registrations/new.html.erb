@@ -5,7 +5,7 @@
       as: resource_name,
       url: registration_path(resource_name),
       data: {
-        "challenge_url": new_user_registration_challenge_url,
+        "challenge_url": new_auth_registration_challenge_url,
         "credential_field_name": "#{resource_name}[passkey_credential]"
       }
 ) do |f| %>
