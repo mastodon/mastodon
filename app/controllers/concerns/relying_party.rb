@@ -1,9 +1,6 @@
 module RelyingParty
   extend ActiveSupport::Concern
 
-  included do
-
-  end
   def relying_party
     return WebAuthn::RelyingParty.new(
       # This value needs to match `window.location.origin` evaluated by
