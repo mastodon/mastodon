@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Auth::RegistrationsController < Devise::RegistrationsController
-  include RegistrationSpamConcern
+  # include RegistrationSpamConcern
   include Devise::Passkeys::Controllers::RegistrationsControllerConcern
   include RelyingParty
 
