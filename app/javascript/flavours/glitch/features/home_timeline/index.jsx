@@ -37,7 +37,7 @@ const getHomeFeedSpeed = createSelector([
   state => state.getIn(['timelines', 'home', 'pendingItems'], ImmutableList()),
   state => state.get('statuses'),
 ], (statusIds, pendingStatusIds, statusMap) => {
-  const recentStatusIds = pendingStatusIds.size > 0 ? pendingStatusIds : statusIds;
+  const recentStatusIds = pendingStatusIds.concat(statusIds);
   const statuses = recentStatusIds.filter(id => id !== null).map(id => statusMap.get(id)).filter(status => status?.get('account') !== me).take(20);
 
   if (statuses.isEmpty()) {
