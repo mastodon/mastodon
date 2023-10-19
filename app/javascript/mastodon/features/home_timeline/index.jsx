@@ -195,7 +195,7 @@ class HomeTimeline extends PureComponent {
     }
 
     return (
-      <Column bindToDocument={!multiColumn} innerRef={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='home'
           active={hasUnread}
