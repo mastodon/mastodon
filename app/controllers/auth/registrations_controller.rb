@@ -2,8 +2,9 @@
 
 class Auth::RegistrationsController < Devise::RegistrationsController
   include RegistrationSpamConcern
-  include Devise::Passkeys::Controllers::RegistrationsControllerConcern
   include RelyingParty
+
+  include Devise::Passkeys::Controllers::RegistrationsControllerConcern
 
 
 
