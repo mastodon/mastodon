@@ -74,11 +74,11 @@ Rails.application.routes.draw do
 
     resource :unsubscribe, only: [:show, :create], controller: :mail_subscriptions
 
-    post 'sign_up/new_challenge', to: 'auth/registrations#new_challenge', as: :new_user_registration_challenge
-    post 'sign_in/new_challenge', to: 'auth/sessions#new_challenge', as: :new_user_session_challenge
+    post 'sign_up/new_challenge', to: 'auth/registrations#new_challenge', as: :new_auth_registration_challenge
+    post 'sign_in/new_challenge', to: 'auth/sessions#new_challenge', as: :new_auth_session_challenge
 
-    post 'reauthenticate/new_challenge', to: 'auth/reauthentication#new_challenge', as: :new_user_reauthentication_challenge
-    post 'reauthenticate', to: 'auth/reauthentication#reauthenticate', as: :user_reauthentication
+    post 'reauthenticate/new_challenge', to: 'auth/reauthentication#new_challenge', as: :new_auth_reauthentication_challenge
+    post 'reauthenticate', to: 'auth/reauthentication#reauthenticate', as: :auth_reauthentication
 
 
     namespace :auth do
