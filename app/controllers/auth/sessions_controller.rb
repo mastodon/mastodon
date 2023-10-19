@@ -3,8 +3,8 @@
 class Auth::SessionsController < Devise::SessionsController
   layout 'auth'
 
-  include Devise::Passkeys::Controllers::SessionsControllerConcern
   include RelyingParty
+  include Devise::Passkeys::Controllers::SessionsControllerConcern
 
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :require_functional!
