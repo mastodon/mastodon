@@ -44,16 +44,16 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  def build_resource(hash = nil)
-    super(hash)
-
-    resource.locale                 = I18n.locale
-    resource.invite_code            = @invite&.code if resource.invite_code.blank?
-    resource.registration_form_time = session[:registration_form_time]
-    resource.sign_up_ip             = request.remote_ip
-
-    resource.build_account if resource.account.nil?
-  end
+  # def build_resource(hash = nil)
+  #   super(hash)
+  #
+  #   resource.locale                 = I18n.locale
+  #   resource.invite_code            = @invite&.code if resource.invite_code.blank?
+  #   resource.registration_form_time = session[:registration_form_time]
+  #   resource.sign_up_ip             = request.remote_ip
+  #
+  #   resource.build_account if resource.account.nil?
+  # end
 
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
