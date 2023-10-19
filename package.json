@@ -222,9 +222,6 @@
     "utf-8-validate": "^6.0.3"
   },
   "lint-staged": {
-    "*": "prettier --ignore-unknown --write",
-    "Capfile|Gemfile|*.{rb,ruby,ru,rake}": "bundle exec rubocop --force-exclusion -a",
-    "*.{js,jsx,ts,tsx}": "eslint --fix",
-    "*.{css,scss}": "stylelint --fix"
+    "*": "prettier --ignore-unknown --write"
   }
 }
