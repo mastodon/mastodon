@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 
-import { withRouter } from 'react-router-dom';
-
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
@@ -55,4 +53,4 @@ class ListPanel extends ImmutablePureComponent {
 
 }
 
-export default withRouter(connect(mapStateToProps)(ListPanel));
+export default connect(mapStateToProps)(ListPanel);

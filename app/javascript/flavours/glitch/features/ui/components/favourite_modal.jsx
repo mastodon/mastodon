@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -15,6 +16,7 @@ import { Icon } from 'flavours/glitch/components/icon';
 import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
 import StatusContent from 'flavours/glitch/components/status_content';
 import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
+import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
@@ -22,15 +24,12 @@ const messages = defineMessages({
 
 class FavouriteModal extends ImmutablePureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     onFavourite: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    ...WithRouterPropTypes,
   };
 
   componentDidMount() {
@@ -46,7 +45,7 @@ class FavouriteModal extends ImmutablePureComponent {
     if (e.button === 0) {
       e.preventDefault();
       this.props.onClose();
-      this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
+      this.props.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
     }
   };
 
@@ -100,4 +99,4 @@ class FavouriteModal extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(FavouriteModal);
+export default withRouter(injectIntl(FavouriteModal));

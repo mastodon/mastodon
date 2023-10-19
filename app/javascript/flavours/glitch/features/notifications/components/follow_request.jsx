@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -14,6 +15,7 @@ import { DisplayName } from 'flavours/glitch/components/display_name';
 import { Icon } from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import Permalink from 'flavours/glitch/components/permalink';
+import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import NotificationOverlayContainer from '../containers/overlay_container';
 
@@ -31,6 +33,7 @@ class FollowRequest extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     notification: ImmutablePropTypes.map.isRequired,
     unread: PropTypes.bool,
+    ...WithRouterPropTypes,
   };
 
   handleMoveUp = () => {
@@ -48,15 +51,15 @@ class FollowRequest extends ImmutablePureComponent {
   };
 
   handleOpenProfile = () => {
-    const { notification } = this.props;
-    this.context.router.history.push(`/@${notification.getIn(['account', 'acct'])}`);
+    const { history, notification } = this.props;
+    history.push(`/@${notification.getIn(['account', 'acct'])}`);
   };
 
   handleMention = e => {
     e.preventDefault();
 
-    const { notification, onMention } = this.props;
-    onMention(notification.get('account'), this.context.router.history);
+    const { history, notification, onMention } = this.props;
+    onMention(notification.get('account'), history);
   };
 
   getHandlers () {
@@ -135,4 +138,4 @@ class FollowRequest extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(FollowRequest);
+export default withRouter(injectIntl(FollowRequest));

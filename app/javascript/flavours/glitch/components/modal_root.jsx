@@ -2,14 +2,13 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import 'wicg-inert';
+
 import { multiply } from 'color-blend';
 import { createBrowserHistory } from 'history';
 
-export default class ModalRoot extends PureComponent {
+import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/glitch/utils/react_router';
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
+class ModalRoot extends PureComponent {
 
   static propTypes = {
     children: PropTypes.node,
@@ -21,6 +20,7 @@ export default class ModalRoot extends PureComponent {
     }),
     noEsc: PropTypes.bool,
     ignoreFocus: PropTypes.bool,
+    ...WithOptionalRouterPropTypes,
   };
 
   activeElement = this.props.children ? document.activeElement : null;
@@ -56,7 +56,7 @@ export default class ModalRoot extends PureComponent {
   componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);
     window.addEventListener('keydown', this.handleKeyDown, false);
-    this.history = this.context.router ? this.context.router.history : createBrowserHistory();
+    this.history = this.props.history || createBrowserHistory();
 
     if (this.props.children) {
       this._handleModalOpen();
@@ -160,3 +160,5 @@ export default class ModalRoot extends PureComponent {
   }
 
 }
+
+export default withOptionalRouter(ModalRoot);

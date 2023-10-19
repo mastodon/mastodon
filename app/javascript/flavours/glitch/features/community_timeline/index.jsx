@@ -44,7 +44,6 @@ class CommunityTimeline extends PureComponent {
   };
 
   static contextTypes = {
-    router: PropTypes.object,
     identity: PropTypes.object,
   };
 

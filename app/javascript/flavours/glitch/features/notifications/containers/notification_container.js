@@ -1,7 +1,5 @@
-//  Package imports.
 import { connect } from 'react-redux';
 
-//  Our imports.
 import { mentionCompose } from 'flavours/glitch/actions/compose';
 import { makeGetNotification } from 'flavours/glitch/selectors';
 
@@ -19,8 +17,8 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onMention: (account, router) => {
-    dispatch(mentionCompose(account, router));
+  onMention: (account, history) => {
+    dispatch(mentionCompose(account, history));
   },
 });
 

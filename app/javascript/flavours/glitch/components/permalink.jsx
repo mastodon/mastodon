@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-export default class Permalink extends PureComponent {
+import { withOptionalRouter, WithOptionalRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
+class Permalink extends PureComponent {
 
   static propTypes = {
     className: PropTypes.string,
@@ -13,6 +11,7 @@ export default class Permalink extends PureComponent {
     to: PropTypes.string.isRequired,
     children: PropTypes.node,
     onInterceptClick: PropTypes.func,
+    ...WithOptionalRouterPropTypes,
   };
 
   handleClick = (e) => {
@@ -22,9 +21,9 @@ export default class Permalink extends PureComponent {
         return;
       }
 
-      if (this.context.router) {
+      if (this.props.history) {
         e.preventDefault();
-        this.context.router.history.push(this.props.to);
+        this.props.history.push(this.props.to);
       }
     }
   };
@@ -47,3 +46,5 @@ export default class Permalink extends PureComponent {
   }
 
 }
+
+export default withOptionalRouter(Permalink);

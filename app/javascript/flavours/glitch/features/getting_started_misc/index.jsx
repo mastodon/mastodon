@@ -28,7 +28,6 @@ const messages = defineMessages({
 class GettingStartedMisc extends ImmutablePureComponent {
 
   static contextTypes = {
-    router: PropTypes.object.isRequired,
     identity: PropTypes.object,
   };
 

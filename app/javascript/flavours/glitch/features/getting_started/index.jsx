@@ -88,7 +88,6 @@ const badgeDisplay = (number, limit) => {
 class GettingStarted extends ImmutablePureComponent {
 
   static contextTypes = {
-    router: PropTypes.object.isRequired,
     identity: PropTypes.object,
   };
 

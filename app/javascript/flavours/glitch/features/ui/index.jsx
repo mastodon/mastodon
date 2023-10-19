@@ -22,6 +22,7 @@ import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import PermaLink from 'flavours/glitch/components/permalink';
 import PictureInPicture from 'flavours/glitch/features/picture_in_picture';
 import { layoutFromWindow } from 'flavours/glitch/is_mobile';
+import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import initialState, { me, owner, singleUserMode, trendsEnabled, trendsAsLanding } from '../../initial_state';
 
@@ -269,8 +270,6 @@ class UI extends Component {
     hasMediaAttachments: PropTypes.bool,
     canUploadMore: PropTypes.bool,
     match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
     unreadNotifications: PropTypes.number,
@@ -280,6 +279,7 @@ class UI extends Component {
     layout: PropTypes.string.isRequired,
     firstLaunch: PropTypes.bool,
     username: PropTypes.string,
+    ...WithRouterPropTypes,
   };
 
   state = {
@@ -416,7 +416,7 @@ class UI extends Component {
 
     // On first launch, redirect to the follow recommendations page
     if (signedIn && this.props.firstLaunch) {
-      this.context.router.history.replace('/start');
+      this.props.history.replace('/start');
       // TODO: this.props.dispatch(closeOnboarding());
     }
 
