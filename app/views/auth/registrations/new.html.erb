@@ -14,12 +14,20 @@
   <fieldset>
     <table>
       <tr>
+        <th><%= f.label :username %></th>
+        <td><%= f.text_field :username, autofocus: "off", required: true %>
+      </tr>
+      <tr>
         <th><%= f.label :email %></th>
         <td><%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></td>
       </tr>
       <tr>
         <th><%= f.label :passkey_label %></th>
         <td><%= f.text_field :passkey_label, autofocus: "off", required: true %>
+      </tr>
+      <tr>
+        <th><%= f.label :password %></th>
+        <td><%= f.text_field :password, autofocus: "off", required: true %>
       </tr>
     </table>
   </fieldset>
