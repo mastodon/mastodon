@@ -104,15 +104,15 @@ class User < ApplicationRecord
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
   validates_with EmailMxValidator, if: :validate_email_dns?
-  validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
+  # validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
   validates :time_zone, inclusion: { in: ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo.name } }, allow_blank: true
 
   # Honeypot/anti-spam fields
   attr_accessor :registration_form_time, :website, :confirm_password
 
   validates_with RegistrationFormTimeValidator, on: :create
-  validates :website, absence: true, on: :create
-  validates :confirm_password, absence: true, on: :create
+  # validates :website, absence: true, on: :create
+  # validates :confirm_password, absence: true, on: :create
   validate :validate_role_elevation
 
   scope :recent, -> { order(id: :desc) }

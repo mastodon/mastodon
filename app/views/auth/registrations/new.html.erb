@@ -14,8 +14,9 @@
   <fieldset>
     <table>
       <tr>
-        <th><%= f.label :username %></th>
-        <td><%= f.text_field :username, autofocus: "off", required: true %>
+        <%= f.simple_fields_for :account do |ff| %>
+          <%= ff.input :username, wrapper: :with_label, label: false, required: true, input_html: { 'aria-label': t('simple_form.labels.defaults.username'), autocomplete: 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-zA-Z0-9_]+', maxlength: 30 }, append: "@#{site_hostname}" %>
+        <% end %>
       </tr>
       <tr>
         <th><%= f.label :email %></th>
