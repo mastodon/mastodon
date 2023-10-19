@@ -356,7 +356,7 @@ RSpec.describe Account do
     end
 
     it 'does not return suspended users' do
-      match = Fabricate(
+      Fabricate(
         :account,
         display_name: 'Display Name',
         username: 'username',
@@ -483,7 +483,7 @@ RSpec.describe Account do
       end
 
       it 'does not return non-followed accounts' do
-        match = Fabricate(
+        Fabricate(
           :account,
           display_name: 'A & l & i & c & e',
           username: 'username',
@@ -495,7 +495,7 @@ RSpec.describe Account do
       end
 
       it 'does not return suspended users' do
-        match = Fabricate(
+        Fabricate(
           :account,
           display_name: 'Display Name',
           username: 'username',
@@ -535,7 +535,7 @@ RSpec.describe Account do
     end
 
     it 'does not return suspended users' do
-      match = Fabricate(
+      Fabricate(
         :account,
         display_name: 'Display Name',
         username: 'username',

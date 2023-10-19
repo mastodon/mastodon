@@ -9,9 +9,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 
 Devise.setup do |config|
-  # Devise omniauth strategies
-  options = {}
-
   # CAS strategy
   if ENV['CAS_ENABLED'] == 'true'
     cas_options = {}

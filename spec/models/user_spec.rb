@@ -63,7 +63,7 @@ RSpec.describe User do
 
     describe 'confirmed' do
       it 'returns an array of users who are confirmed' do
-        unconfirmed_user = Fabricate(:user, confirmed_at: nil)
+        Fabricate(:user, confirmed_at: nil)
         confirmed_user = Fabricate(:user, confirmed_at: Time.zone.now)
         expect(described_class.confirmed).to contain_exactly(confirmed_user)
       end
