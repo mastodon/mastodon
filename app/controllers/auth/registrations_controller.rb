@@ -53,7 +53,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     resource.sign_up_ip             = request.remote_ip
 
     resource.build_account if resource.account.nil?
-    resource.passkey_label = I18n.locale
   end
 
   def configure_sign_up_params
