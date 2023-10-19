@@ -5,7 +5,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   include Devise::Passkeys::Controllers::RegistrationsControllerConcern
   include RelyingParty
 
-  layout :determine_layout
+  layout :auth
 
   # before_action :set_invite, only: [:new, :create]
   # before_action :check_enabled_registrations, only: [:new, :create]
