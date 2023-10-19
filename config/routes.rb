@@ -74,17 +74,15 @@ Rails.application.routes.draw do
 
     resource :unsubscribe, only: [:show, :create], controller: :mail_subscriptions
 
+    post 'sign_up/new_challenge', to: 'auth/registrations#new_challenge', as: :new_user_registration_challenge
+    post 'sign_in/new_challenge', to: 'auth/sessions#new_challenge', as: :new_user_session_challenge
+
+    post 'reauthenticate/new_challenge', to: 'auth/reauthentication#new_challenge', as: :new_user_reauthentication_challenge
+    post 'reauthenticate', to: 'auth/reauthentication#reauthenticate', as: :user_reauthentication
+
 
     namespace :auth do
-      resources :passkeys, only: [:index, :create, :destroy] do
-        collection do
-          post :new_create_challenge
-        end
 
-        member do
-          post :new_destroy_challenge
-        end
-      end
       resource :setup, only: [:show, :update], controller: :setup
       resource :challenge, only: [:create], controller: :challenges
       resources :passkeys, only: [:index, :create, :destroy] do
