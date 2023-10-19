@@ -73,10 +73,30 @@ Rails.application.routes.draw do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
 
     resource :unsubscribe, only: [:show, :create], controller: :mail_subscriptions
+    namespace :users do
+      resources :passkeys, only: [:index, :create, :destroy] do
+        collection do
+          post :new_create_challenge
+        end
+
+        member do
+          post :new_destroy_challenge
+        end
+      end
+    end
 
     namespace :auth do
       resource :setup, only: [:show, :update], controller: :setup
       resource :challenge, only: [:create], controller: :challenges
+      resources :passkeys, only: [:index, :create, :destroy] do
+        collection do
+          post :new_create_challenge
+        end
+
+        member do
+          post :new_destroy_challenge
+        end
+      end
       get 'sessions/security_key_options', to: 'sessions#webauthn_options'
       post 'captcha_confirmation', to: 'confirmations#confirm_captcha', as: :captcha_confirmation
     end
