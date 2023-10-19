@@ -2,6 +2,8 @@
 
 class Auth::RegistrationsController < Devise::RegistrationsController
   include RegistrationSpamConcern
+  include Devise::Passkeys::Controllers::RegistrationsControllerConcern
+  include RelyingParty
 
   layout :determine_layout
 
