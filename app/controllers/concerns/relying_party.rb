@@ -8,7 +8,7 @@ module RelyingParty
       origin: "https://passkey.zjl123.xyz",
 
       # Relying Party name for display purposes
-      name: "devise-passkeys-template"
+      name: "Maskodon PoC"
 
       # Optionally configure a client timeout hint, in milliseconds.
       # This hint specifies how long the browser should wait for any
