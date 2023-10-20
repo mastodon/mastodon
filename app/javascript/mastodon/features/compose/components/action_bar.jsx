@@ -5,7 +5,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as MenuIcon } from '@material-design-icons/svg/filled/menu.svg';
+import { ReactComponent as MenuIcon } from '@material-symbols/svg-400/outlined/menu.svg';
 
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 

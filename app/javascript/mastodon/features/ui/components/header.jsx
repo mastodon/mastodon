@@ -7,7 +7,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as SearchIcon } from '@material-design-icons/svg/filled/search.svg';
+import { ReactComponent as SearchIcon } from '@material-symbols/svg-400/outlined/search.svg';
 
 import { openModal } from 'mastodon/actions/modal';
 import { fetchServer } from 'mastodon/actions/server';

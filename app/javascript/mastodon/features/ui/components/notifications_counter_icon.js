@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { ReactComponent as NotificationsIcon } from '@material-design-icons/svg/filled/notifications.svg';
+import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-400/outlined/notifications-fill.svg';
 
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 

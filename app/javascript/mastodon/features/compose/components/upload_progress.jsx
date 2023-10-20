@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { ReactComponent as UploadFileIcon } from '@material-design-icons/svg/filled/upload_file.svg';
+import { ReactComponent as UploadFileIcon } from '@material-symbols/svg-400/outlined/upload_file.svg';
 import spring from 'react-motion/lib/spring';
 
 import { Icon }  from 'mastodon/components/icon';

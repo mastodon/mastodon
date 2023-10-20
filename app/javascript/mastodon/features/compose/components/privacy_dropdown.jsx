@@ -6,10 +6,10 @@ import { injectIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 
 
-import { ReactComponent as AlternateEmailIcon } from '@material-design-icons/svg/filled/alternate_email.svg';
-import { ReactComponent as LockIcon } from '@material-design-icons/svg/outlined/lock.svg';
-import { ReactComponent as LockOpenIcon } from '@material-design-icons/svg/outlined/lock_open.svg';
-import { ReactComponent as PublicIcon } from '@material-design-icons/svg/outlined/public.svg';
+import { ReactComponent as AlternateEmailIcon } from '@material-symbols/svg-400/outlined/alternate_email.svg';
+import { ReactComponent as LockIcon } from '@material-symbols/svg-400/outlined/lock.svg';
+import { ReactComponent as LockOpenIcon } from '@material-symbols/svg-400/outlined/lock_open.svg';
+import { ReactComponent as PublicIcon } from '@material-symbols/svg-400/outlined/public.svg';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 

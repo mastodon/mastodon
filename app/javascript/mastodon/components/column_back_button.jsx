@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { withRouter } from 'react-router-dom';
 
-import { ReactComponent as ChevronLeftIcon } from '@material-design-icons/svg/filled/chevron_left.svg';
+import { ReactComponent as ChevronLeftIcon } from '@material-symbols/svg-400/outlined/chevron_left.svg';
 
 import { Icon }  from 'mastodon/components/icon';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';

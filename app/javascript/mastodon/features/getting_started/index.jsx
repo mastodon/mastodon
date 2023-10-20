@@ -9,17 +9,17 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as AlternateEmailIcon } from '@material-design-icons/svg/filled/alternate_email.svg';
-import { ReactComponent as BookmarksIcon } from '@material-design-icons/svg/filled/bookmarks.svg';
-import { ReactComponent as HomeIcon } from '@material-design-icons/svg/filled/home.svg';
-import { ReactComponent as ListAltIcon } from '@material-design-icons/svg/filled/list_alt.svg';
-import { ReactComponent as MenuIcon } from '@material-design-icons/svg/filled/menu.svg';
-import { ReactComponent as PeopleIcon } from '@material-design-icons/svg/filled/people.svg';
-import { ReactComponent as PersonAddIcon } from '@material-design-icons/svg/filled/person_add.svg';
-import { ReactComponent as SettingsIcon } from '@material-design-icons/svg/filled/settings.svg';
-import { ReactComponent as StarIcon } from '@material-design-icons/svg/filled/star.svg';
-import { ReactComponent as TagIcon } from '@material-design-icons/svg/filled/tag.svg';
-import { ReactComponent as PublicIcon } from '@material-design-icons/svg/outlined/public.svg';
+import { ReactComponent as AlternateEmailIcon } from '@material-symbols/svg-400/outlined/alternate_email.svg';
+import { ReactComponent as BookmarksIcon } from '@material-symbols/svg-400/outlined/bookmarks-fill.svg';
+import { ReactComponent as PeopleIcon } from '@material-symbols/svg-400/outlined/group.svg';
+import { ReactComponent as HomeIcon } from '@material-symbols/svg-400/outlined/home-fill.svg';
+import { ReactComponent as ListAltIcon } from '@material-symbols/svg-400/outlined/list_alt.svg';
+import { ReactComponent as MenuIcon } from '@material-symbols/svg-400/outlined/menu.svg';
+import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-400/outlined/person_add.svg';
+import { ReactComponent as PublicIcon } from '@material-symbols/svg-400/outlined/public.svg';
+import { ReactComponent as SettingsIcon } from '@material-symbols/svg-400/outlined/settings-fill.svg';
+import { ReactComponent as StarIcon } from '@material-symbols/svg-400/outlined/star.svg';
+import { ReactComponent as TagIcon } from '@material-symbols/svg-400/outlined/tag.svg';
 
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import Column from 'mastodon/components/column';

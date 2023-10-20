@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CheckIcon } from '@material-design-icons/svg/filled/check.svg';
+import { ReactComponent as CheckIcon } from '@material-symbols/svg-400/outlined/check.svg';
 import escapeTextContentForBrowser from 'escape-html';
 import spring from 'react-motion/lib/spring';
 

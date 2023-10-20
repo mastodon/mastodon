@@ -3,12 +3,12 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
-import { ReactComponent as HomeIcon } from '@material-design-icons/svg/filled/home.svg';
-import { ReactComponent as PersonAddIcon } from '@material-design-icons/svg/filled/person_add.svg';
-import { ReactComponent as RepeatIcon } from '@material-design-icons/svg/filled/repeat.svg';
-import { ReactComponent as ReplyAllIcon } from '@material-design-icons/svg/filled/reply_all.svg';
-import { ReactComponent as StarIcon } from '@material-design-icons/svg/filled/star.svg';
-import { ReactComponent as InsertChartIcon } from '@material-design-icons/svg/outlined/insert_chart.svg';
+import { ReactComponent as HomeIcon } from '@material-symbols/svg-400/outlined/home-fill.svg';
+import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-400/outlined/insert_chart.svg';
+import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-400/outlined/person_add.svg';
+import { ReactComponent as RepeatIcon } from '@material-symbols/svg-400/outlined/repeat.svg';
+import { ReactComponent as ReplyAllIcon } from '@material-symbols/svg-400/outlined/reply_all.svg';
+import { ReactComponent as StarIcon } from '@material-symbols/svg-400/outlined/star.svg';
 
 import { Icon }  from 'mastodon/components/icon';
 

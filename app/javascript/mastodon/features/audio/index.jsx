@@ -7,12 +7,12 @@ import classNames from 'classnames';
 
 import { is } from 'immutable';
 
-import { ReactComponent as DownloadIcon } from '@material-design-icons/svg/filled/download.svg';
-import { ReactComponent as PauseIcon } from '@material-design-icons/svg/filled/pause.svg';
-import { ReactComponent as PlayArrowIcon } from '@material-design-icons/svg/filled/play_arrow.svg';
-import { ReactComponent as VisibilityOffIcon } from '@material-design-icons/svg/filled/visibility_off.svg';
-import { ReactComponent as VolumeOffIcon } from '@material-design-icons/svg/filled/volume_off.svg';
-import { ReactComponent as VolumeUpIcon } from '@material-design-icons/svg/filled/volume_up.svg';
+import { ReactComponent as DownloadIcon } from '@material-symbols/svg-400/outlined/download.svg';
+import { ReactComponent as PauseIcon } from '@material-symbols/svg-400/outlined/pause.svg';
+import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-400/outlined/play_arrow.svg';
+import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-400/outlined/visibility_off.svg';
+import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-400/outlined/volume_off.svg';
+import { ReactComponent as VolumeUpIcon } from '@material-symbols/svg-400/outlined/volume_up.svg';
 import { throttle, debounce } from 'lodash';
 
 import { Icon }  from 'mastodon/components/icon';

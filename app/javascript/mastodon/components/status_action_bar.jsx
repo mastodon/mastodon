@@ -9,15 +9,15 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as BookmarkIcon } from '@material-design-icons/svg/filled/bookmark.svg';
-import { ReactComponent as BookmarkBorderIcon } from '@material-design-icons/svg/filled/bookmark_border.svg';
-import { ReactComponent as MoreHorizIcon } from '@material-design-icons/svg/filled/more_horiz.svg';
-import { ReactComponent as RepeatIcon } from '@material-design-icons/svg/filled/repeat.svg';
-import { ReactComponent as ReplyIcon } from '@material-design-icons/svg/filled/reply.svg';
-import { ReactComponent as ReplyAllIcon } from '@material-design-icons/svg/filled/reply_all.svg';
-import { ReactComponent as StarIcon } from '@material-design-icons/svg/filled/star.svg';
-import { ReactComponent as StarBorderIcon } from '@material-design-icons/svg/filled/star_border.svg';
-import { ReactComponent as VisibilityIcon } from '@material-design-icons/svg/filled/visibility.svg';
+import { ReactComponent as BookmarkIcon } from '@material-symbols/svg-400/outlined/bookmark-fill.svg';
+import { ReactComponent as BookmarkBorderIcon } from '@material-symbols/svg-400/outlined/bookmark.svg';
+import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-400/outlined/more_horiz.svg';
+import { ReactComponent as RepeatIcon } from '@material-symbols/svg-400/outlined/repeat.svg';
+import { ReactComponent as ReplyIcon } from '@material-symbols/svg-400/outlined/reply.svg';
+import { ReactComponent as ReplyAllIcon } from '@material-symbols/svg-400/outlined/reply_all.svg';
+import { ReactComponent as StarIcon } from '@material-symbols/svg-400/outlined/star-fill.svg';
+import { ReactComponent as StarBorderIcon } from '@material-symbols/svg-400/outlined/star.svg';
+import { ReactComponent as VisibilityIcon } from '@material-symbols/svg-400/outlined/visibility.svg';
 
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';

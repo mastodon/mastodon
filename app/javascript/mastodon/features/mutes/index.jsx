@@ -8,7 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as VolumeOffIcon } from '@material-design-icons/svg/filled/volume_off.svg';
+import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-400/outlined/volume_off.svg';
 import { debounce } from 'lodash';
 
 import { fetchMutes, expandMutes } from '../../actions/mutes';

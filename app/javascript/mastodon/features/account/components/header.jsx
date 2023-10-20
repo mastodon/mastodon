@@ -9,11 +9,11 @@ import { NavLink, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CheckIcon } from '@material-design-icons/svg/filled/check.svg';
-import { ReactComponent as MoreHorizIcon } from '@material-design-icons/svg/filled/more_horiz.svg';
-import { ReactComponent as NotificationsIcon } from '@material-design-icons/svg/filled/notifications.svg';
-import { ReactComponent as NotificationsActiveIcon } from '@material-design-icons/svg/filled/notifications_active.svg';
-import { ReactComponent as LockIcon } from '@material-design-icons/svg/outlined/lock.svg';
+import { ReactComponent as CheckIcon } from '@material-symbols/svg-400/outlined/check.svg';
+import { ReactComponent as LockIcon } from '@material-symbols/svg-400/outlined/lock.svg';
+import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-400/outlined/more_horiz.svg';
+import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-400/outlined/notifications-fill.svg';
+import { ReactComponent as NotificationsActiveIcon } from '@material-symbols/svg-400/outlined/notifications_active.svg';
 
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';

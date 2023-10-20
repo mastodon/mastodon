@@ -5,7 +5,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CloseIcon } from '@material-design-icons/svg/filled/close.svg';
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-400/outlined/close.svg';
 
 import AttachmentList from 'mastodon/components/attachment_list';
 import { WithOptionalRouterPropTypes, withOptionalRouter } from 'mastodon/utils/react_router';

@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { ReactComponent as DeleteForeverIcon } from '@material-design-icons/svg/filled/delete_forever.svg';
+import { ReactComponent as DeleteForeverIcon } from '@material-symbols/svg-400/outlined/delete_forever.svg';
 
 import { Icon }  from 'mastodon/components/icon';
 

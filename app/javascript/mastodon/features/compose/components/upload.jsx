@@ -5,9 +5,9 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CloseIcon } from '@material-design-icons/svg/filled/close.svg';
-import { ReactComponent as EditIcon } from '@material-design-icons/svg/filled/edit.svg';
-import { ReactComponent as InfoIcon } from '@material-design-icons/svg/filled/info.svg';
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-400/outlined/close.svg';
+import { ReactComponent as EditIcon } from '@material-symbols/svg-400/outlined/edit.svg';
+import { ReactComponent as InfoIcon } from '@material-symbols/svg-400/outlined/info.svg';
 import spring from 'react-motion/lib/spring';
 
 import { Icon }  from 'mastodon/components/icon';

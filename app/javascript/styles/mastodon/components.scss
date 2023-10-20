@@ -56,6 +56,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   font-family: inherit;
   font-size: 15px;
   font-weight: 500;
@@ -204,7 +205,6 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  height: 100%;
   text-decoration: none;
   gap: 4px;
   flex: 0 0 auto;
@@ -682,6 +682,10 @@ body > [data-popper-placement] {
     .compose-form__buttons {
       display: flex;
       gap: 2px;
+
+      .icon-button {
+        height: 100%;
+      }
 
       .compose-form__upload-button-icon {
         line-height: 27px;
@@ -4955,6 +4959,11 @@ a.status-card {
 
     .icon-button {
       padding: 0;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
     }
 
     &__menu {

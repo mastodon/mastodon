@@ -7,11 +7,11 @@ import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 
-import { ReactComponent as AddIcon } from '@material-design-icons/svg/filled/add.svg';
-import { ReactComponent as ChevronLeftIcon } from '@material-design-icons/svg/filled/chevron_left.svg';
-import { ReactComponent as ChevronRightIcon } from '@material-design-icons/svg/filled/chevron_right.svg';
-import { ReactComponent as CloseIcon } from '@material-design-icons/svg/filled/close.svg';
-import { ReactComponent as TuneIcon } from '@material-design-icons/svg/filled/tune.svg';
+import { ReactComponent as AddIcon } from '@material-symbols/svg-400/outlined/add.svg';
+import { ReactComponent as ChevronLeftIcon } from '@material-symbols/svg-400/outlined/chevron_left.svg';
+import { ReactComponent as ChevronRightIcon } from '@material-symbols/svg-400/outlined/chevron_right.svg';
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-400/outlined/close.svg';
+import { ReactComponent as TuneIcon } from '@material-symbols/svg-400/outlined/tune.svg';
 
 import { Icon }  from 'mastodon/components/icon';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';

@@ -3,8 +3,8 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { ReactComponent as FullscreenExitIcon } from '@material-design-icons/svg/filled/fullscreen_exit.svg';
-import { ReactComponent as RectangleIcon } from '@material-design-icons/svg/outlined/rectangle.svg';
+import { ReactComponent as FullscreenExitIcon } from '@material-symbols/svg-400/outlined/fullscreen_exit.svg';
+import { ReactComponent as RectangleIcon } from '@material-symbols/svg-400/outlined/rectangle.svg';
 
 import { IconButton } from 'mastodon/components/icon_button';
 

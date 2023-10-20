@@ -5,7 +5,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as AddIcon } from '@material-design-icons/svg/filled/add.svg';
+import { ReactComponent as AddIcon } from '@material-symbols/svg-400/outlined/add.svg';
 import fuzzysort from 'fuzzysort';
 
 import { Icon }  from 'mastodon/components/icon';

@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CheckIcon } from '@material-design-icons/svg/filled/check.svg';
-import { ReactComponent as CloseIcon } from '@material-design-icons/svg/filled/close.svg';
+import { ReactComponent as CheckIcon } from '@material-symbols/svg-400/outlined/check.svg';
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-400/outlined/close.svg';
 
 import { Avatar } from 'mastodon/components/avatar';
 import { DisplayName } from 'mastodon/components/display_name';

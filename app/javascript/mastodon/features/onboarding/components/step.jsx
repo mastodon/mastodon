@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-import { Check } from 'mastodon/components/check';
-import { Icon }  from 'mastodon/components/icon';
+import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-400/outlined/arrow_right_alt.svg';
+import { ReactComponent as CheckIcon } from '@material-symbols/svg-400/outlined/done.svg';
 
-import ArrowSmallRight from './arrow_small_right';
+import { Icon }  from 'mastodon/components/icon';
 
 const Step = ({ label, description, icon, iconComponent, completed, onClick, href }) => {
   const content = (
@@ -18,7 +18,7 @@ const Step = ({ label, description, icon, iconComponent, completed, onClick, hre
       </div>
 
       <div className={completed ? 'onboarding__steps__item__progress' : 'onboarding__steps__item__go'}>
-        {completed ? <Check /> : <ArrowSmallRight />}
+        {completed ? <Icon icon={CheckIcon} /> : <Icon icon={ArrowRightAltIcon} />}
       </div>
     </>
   );

@@ -8,8 +8,8 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as MoreHorizIcon } from '@material-design-icons/svg/filled/more_horiz.svg';
-import { ReactComponent as ReplyIcon } from '@material-design-icons/svg/filled/reply.svg';
+import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-400/outlined/more_horiz.svg';
+import { ReactComponent as ReplyIcon } from '@material-symbols/svg-400/outlined/reply.svg';
 import { HotKeys } from 'react-hotkeys';
 
 import AttachmentList from 'mastodon/components/attachment_list';

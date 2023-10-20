@@ -9,23 +9,24 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as ContentCopyIcon } from '@material-design-icons/svg/filled/content_copy.svg';
-import { ReactComponent as EditNoteIcon } from '@material-design-icons/svg/filled/edit_note.svg';
-import { ReactComponent as PeopleIcon } from '@material-design-icons/svg/filled/people.svg';
-import { ReactComponent as PersonAddIcon } from '@material-design-icons/svg/filled/person_add.svg';
+import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-400/outlined/arrow_right_alt.svg';
+import { ReactComponent as ContentCopyIcon } from '@material-symbols/svg-400/outlined/content_copy.svg';
+import { ReactComponent as EditNoteIcon } from '@material-symbols/svg-400/outlined/edit_note.svg';
+import { ReactComponent as PeopleIcon } from '@material-symbols/svg-400/outlined/group.svg';
+import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-400/outlined/person_add.svg';
 import { debounce } from 'lodash';
 
 import illustration from 'mastodon/../images/elephant_ui_conversation.svg';
 import { fetchAccount } from 'mastodon/actions/accounts';
 import { focusCompose } from 'mastodon/actions/compose';
 import { closeOnboarding } from 'mastodon/actions/onboarding';
+import { Icon }  from 'mastodon/components/icon';
 import Column from 'mastodon/features/ui/components/column';
 import { me } from 'mastodon/initial_state';
 import { makeGetAccount } from 'mastodon/selectors';
 import { assetHost } from 'mastodon/utils/config';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
-import ArrowSmallRight from './components/arrow_small_right';
 import Step from './components/step';
 import Follows from './follows';
 import Share from './share';
@@ -130,12 +131,12 @@ class Onboarding extends ImmutablePureComponent {
           <div className='onboarding__links'>
             <Link to='/explore' className='onboarding__link'>
               <FormattedMessage id='onboarding.actions.go_to_explore' defaultMessage='Take me to trending' />
-              <ArrowSmallRight />
+              <Icon icon={ArrowRightAltIcon} />
             </Link>
 
             <Link to='/home' className='onboarding__link'>
               <FormattedMessage id='onboarding.actions.go_to_home' defaultMessage='Take me to my home feed' />
-              <ArrowSmallRight />
+              <Icon icon={ArrowRightAltIcon} />
             </Link>
           </div>
         </div>

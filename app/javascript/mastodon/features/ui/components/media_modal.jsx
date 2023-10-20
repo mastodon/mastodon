@@ -7,9 +7,9 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as ChevronLeftIcon } from '@material-design-icons/svg/filled/chevron_left.svg';
-import { ReactComponent as ChevronRightIcon } from '@material-design-icons/svg/filled/chevron_right.svg';
-import { ReactComponent as CloseIcon } from '@material-design-icons/svg/filled/close.svg';
+import { ReactComponent as ChevronLeftIcon } from '@material-symbols/svg-400/outlined/chevron_left.svg';
+import { ReactComponent as ChevronRightIcon } from '@material-symbols/svg-400/outlined/chevron_right.svg';
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-400/outlined/close.svg';
 import ReactSwipeableViews from 'react-swipeable-views';
 
 import { getAverageFromBlurhash } from 'mastodon/blurhash';

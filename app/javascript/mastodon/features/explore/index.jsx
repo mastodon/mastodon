@@ -8,8 +8,8 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as SearchIcon } from '@material-design-icons/svg/filled/search.svg';
-import { ReactComponent as TagIcon } from '@material-design-icons/svg/filled/tag.svg';
+import { ReactComponent as SearchIcon } from '@material-symbols/svg-400/outlined/search.svg';
+import { ReactComponent as TagIcon } from '@material-symbols/svg-400/outlined/tag.svg';
 
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';

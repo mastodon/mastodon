@@ -7,8 +7,8 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as CancelIcon } from '@material-design-icons/svg/filled/cancel.svg';
-import { ReactComponent as SearchIcon } from '@material-design-icons/svg/filled/search.svg';
+import { ReactComponent as CancelIcon } from '@material-symbols/svg-400/outlined/cancel.svg';
+import { ReactComponent as SearchIcon } from '@material-symbols/svg-400/outlined/search.svg';
 
 import { Icon }  from 'mastodon/components/icon';
 

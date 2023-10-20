@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as AlternateEmailIcon } from '@material-design-icons/svg/filled/alternate_email.svg';
+import { ReactComponent as AlternateEmailIcon } from '@material-symbols/svg-400/outlined/alternate_email.svg';
 
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { mountConversations, unmountConversations, expandConversations } from 'mastodon/actions/conversations';

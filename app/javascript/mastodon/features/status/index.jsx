@@ -12,8 +12,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { ReactComponent as VisibilityIcon } from '@material-design-icons/svg/filled/visibility.svg';
-import { ReactComponent as VisibilityOffIcon } from '@material-design-icons/svg/filled/visibility_off.svg';
+import { ReactComponent as VisibilityIcon } from '@material-symbols/svg-400/outlined/visibility.svg';
+import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-400/outlined/visibility_off.svg';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon }  from 'mastodon/components/icon';

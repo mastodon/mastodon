@@ -8,14 +8,14 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as EditIcon } from '@material-design-icons/svg/filled/edit.svg';
-import { ReactComponent as FlagIcon } from '@material-design-icons/svg/filled/flag.svg';
-import { ReactComponent as HomeIcon } from '@material-design-icons/svg/filled/home.svg';
-import { ReactComponent as PersonIcon } from '@material-design-icons/svg/filled/person.svg';
-import { ReactComponent as PersonAddIcon } from '@material-design-icons/svg/filled/person_add.svg';
-import { ReactComponent as RepeatIcon } from '@material-design-icons/svg/filled/repeat.svg';
-import { ReactComponent as StarIcon } from '@material-design-icons/svg/filled/star.svg';
-import { ReactComponent as InsertChartIcon } from '@material-design-icons/svg/outlined/insert_chart.svg';
+import { ReactComponent as EditIcon } from '@material-symbols/svg-400/outlined/edit.svg';
+import { ReactComponent as FlagIcon } from '@material-symbols/svg-400/outlined/flag.svg';
+import { ReactComponent as HomeIcon } from '@material-symbols/svg-400/outlined/home-fill.svg';
+import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-400/outlined/insert_chart.svg';
+import { ReactComponent as PersonIcon } from '@material-symbols/svg-400/outlined/person.svg';
+import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-400/outlined/person_add.svg';
+import { ReactComponent as RepeatIcon } from '@material-symbols/svg-400/outlined/repeat.svg';
+import { ReactComponent as StarIcon } from '@material-symbols/svg-400/outlined/star.svg';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon }  from 'mastodon/components/icon';

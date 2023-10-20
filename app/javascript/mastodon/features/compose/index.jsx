@@ -9,13 +9,13 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as HomeIcon } from '@material-design-icons/svg/filled/home.svg';
-import { ReactComponent as LogoutIcon } from '@material-design-icons/svg/filled/logout.svg';
-import { ReactComponent as MenuIcon } from '@material-design-icons/svg/filled/menu.svg';
-import { ReactComponent as NotificationsIcon } from '@material-design-icons/svg/filled/notifications.svg';
-import { ReactComponent as PeopleIcon } from '@material-design-icons/svg/filled/people.svg';
-import { ReactComponent as SettingsIcon } from '@material-design-icons/svg/filled/settings.svg';
-import { ReactComponent as PublicIcon } from '@material-design-icons/svg/outlined/public.svg';
+import { ReactComponent as PeopleIcon } from '@material-symbols/svg-400/outlined/group.svg';
+import { ReactComponent as HomeIcon } from '@material-symbols/svg-400/outlined/home-fill.svg';
+import { ReactComponent as LogoutIcon } from '@material-symbols/svg-400/outlined/logout.svg';
+import { ReactComponent as MenuIcon } from '@material-symbols/svg-400/outlined/menu.svg';
+import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-400/outlined/notifications-fill.svg';
+import { ReactComponent as PublicIcon } from '@material-symbols/svg-400/outlined/public.svg';
+import { ReactComponent as SettingsIcon } from '@material-symbols/svg-400/outlined/settings-fill.svg';
 import spring from 'react-motion/lib/spring';
 
 import { openModal } from 'mastodon/actions/modal';

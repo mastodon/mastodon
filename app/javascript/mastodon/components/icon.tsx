@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import { ReactComponent as CheckBoxOutlineBlankIcon } from '@material-design-icons/svg/filled/check_box_outline_blank.svg';
+import { ReactComponent as CheckBoxOutlineBlankIcon } from '@material-symbols/svg-400/outlined/check_box_outline_blank.svg';
 
 interface SVGPropsWithTitle extends React.SVGProps<SVGSVGElement> {
   title?: string;

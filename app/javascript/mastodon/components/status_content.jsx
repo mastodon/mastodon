@@ -9,7 +9,7 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as ChevronRightIcon } from '@material-design-icons/svg/filled/chevron_right.svg';
+import { ReactComponent as ChevronRightIcon } from '@material-symbols/svg-400/outlined/chevron_right.svg';
 
 import { Icon }  from 'mastodon/components/icon';
 import PollContainer from 'mastodon/containers/poll_container';

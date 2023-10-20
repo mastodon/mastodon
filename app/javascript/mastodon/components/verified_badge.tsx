@@ -1,4 +1,4 @@
-import { ReactComponent as CheckIcon } from '@material-design-icons/svg/filled/check.svg';
+import { ReactComponent as CheckIcon } from '@material-symbols/svg-400/outlined/check.svg';
 
 import { Icon } from './icon';
 
