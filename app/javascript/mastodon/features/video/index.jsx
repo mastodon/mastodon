@@ -358,6 +358,8 @@ class Video extends PureComponent {
     document.addEventListener('MSFullscreenChange', this.handleFullscreenChange, true);
 
     window.addEventListener('scroll', this.handleScroll);
+
+    this._syncVideoFromLocalStorage();
   }
 
   componentWillUnmount () {
@@ -473,8 +475,6 @@ class Video extends PureComponent {
     if (muted !== undefined) {
       this.video.muted = muted;
     }
-
-    this._syncVideoFromLocalStorage();
 
     if (autoPlay) {
       this.video.play();
