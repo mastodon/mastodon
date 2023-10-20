@@ -38,6 +38,40 @@ RSpec.describe ActivityPub::LinkedDataSignature do
       end
     end
 
+    context 'when local account record is missing a public key' do
+      let(:raw_signature) do
+        {
+          'creator' => 'http://example.com/alice',
+          'created' => '2017-09-23T20:21:34Z',
+        }
+      end
+
+      let(:signature) { raw_signature.merge('type' => 'RsaSignature2017', 'signatureValue' => sign(sender, raw_signature, raw_json)) }
+
+      let(:service_stub) { instance_double(ActivityPub::FetchRemoteKeyService) }
+
+      before do
+        # Ensure signature is computed with the old key
+        signature
+
+        # Unset key
+        old_key = sender.public_key
+        sender.update!(private_key: '', public_key: '')
+
+        allow(ActivityPub::FetchRemoteKeyService).to receive(:new).and_return(service_stub)
+
+        allow(service_stub).to receive(:call).with('http://example.com/alice', id: false) do
+          sender.update!(public_key: old_key)
+          sender
+        end
+      end
+
+      it 'fetches key and returns creator' do
+        expect(subject.verify_actor!).to eq sender
+        expect(service_stub).to have_received(:call).with('http://example.com/alice', id: false).once
+      end
+    end
+
     context 'when signature is missing' do
       let(:signature) { nil }
 
