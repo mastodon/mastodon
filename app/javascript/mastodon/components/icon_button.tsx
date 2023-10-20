@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import { PureComponent, createRef } from 'react';
 
 import classNames from 'classnames';
 
@@ -33,6 +33,8 @@ interface States {
   deactivate: boolean;
 }
 export class IconButton extends PureComponent<Props, States> {
+  buttonRef = createRef<HTMLButtonElement>();
+
   static defaultProps = {
     active: false,
     disabled: false,
@@ -151,6 +153,7 @@ export class IconButton extends PureComponent<Props, States> {
         style={style}
         tabIndex={tabIndex}
         disabled={disabled}
+        ref={this.buttonRef}
       >
         {contents}
       </button>

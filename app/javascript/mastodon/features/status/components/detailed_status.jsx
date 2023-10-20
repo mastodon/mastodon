@@ -10,7 +10,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { ReactComponent as AlternateEmailIcon } from '@material-symbols/svg-400/outlined/alternate_email.svg';
 import { ReactComponent as RepeatIcon } from '@material-symbols/svg-400/outlined/repeat.svg';
-import { ReactComponent as StarIcon } from '@material-symbols/svg-400/outlined/star.svg';
+import { ReactComponent as StarIcon } from '@material-symbols/svg-400/outlined/star-fill.svg';
 
 import { AnimatedNumber } from 'mastodon/components/animated_number';
 import EditedTimestamp from 'mastodon/components/edited_timestamp';

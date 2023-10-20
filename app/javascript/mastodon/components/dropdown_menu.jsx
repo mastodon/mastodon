@@ -257,7 +257,7 @@ class Dropdown extends PureComponent {
   };
 
   findTarget = () => {
-    return this.target;
+    return this.target?.buttonRef?.current;
   };
 
   componentWillUnmount = () => {
@@ -294,6 +294,7 @@ class Dropdown extends PureComponent {
       onMouseDown: this.handleMouseDown,
       onKeyDown: this.handleButtonKeyDown,
       onKeyPress: this.handleKeyPress,
+      ref: this.setTargetRef,
     }) : (
       <IconButton
         icon={!open ? icon : 'close'}
@@ -306,14 +307,14 @@ class Dropdown extends PureComponent {
         onMouseDown={this.handleMouseDown}
         onKeyDown={this.handleButtonKeyDown}
         onKeyPress={this.handleKeyPress}
+        ref={this.setTargetRef}
       />
     );
 
     return (
       <>
-        <span ref={this.setTargetRef}>
-          {button}
-        </span>
+        {button}
+
         <Overlay show={open} offset={[5, 5]} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
           {({ props, arrowProps, placement }) => (
             <div {...props}>

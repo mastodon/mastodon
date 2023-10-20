@@ -1,9 +1,13 @@
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import Column from '../../../components/column';
+import ColumnHeader from '../../../components/column_header';
 
-export const ColumnLoading: React.FC = () => (
+interface Props {
+  multiColumn?: boolean;
+}
+
+export const ColumnLoading: React.FC<Props> = (otherProps) => (
   <Column>
-    <ColumnHeader />
+    <ColumnHeader {...otherProps} />
     <div className='scrollable' />
   </Column>
 );

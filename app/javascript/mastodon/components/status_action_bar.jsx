@@ -386,17 +386,15 @@ class StatusActionBar extends ImmutablePureComponent {
 
         {filterButton}
 
-        <div className='status__action-bar__dropdown'>
-          <DropdownMenuContainer
-            scrollKey={scrollKey}
-            status={status}
-            items={menu}
-            icon='ellipsis-h'
-            iconComponent={MoreHorizIcon}
-            direction='right'
-            title={intl.formatMessage(messages.more)}
-          />
-        </div>
+        <DropdownMenuContainer
+          scrollKey={scrollKey}
+          status={status}
+          items={menu}
+          icon='ellipsis-h'
+          iconComponent={MoreHorizIcon}
+          direction='right'
+          title={intl.formatMessage(messages.more)}
+        />
       </div>
     );
   }
