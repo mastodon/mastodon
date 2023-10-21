@@ -4,6 +4,7 @@ import { PureComponent } from 'react';
 import { defineMessages, injectIntl, FormattedMessage, FormattedDate } from 'react-intl';
 
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -20,6 +21,7 @@ import EmojiPickerDropdown from 'mastodon/features/compose/containers/emoji_pick
 import unicodeMapping from 'mastodon/features/emoji/emoji_unicode_mapping_light';
 import { autoPlayGif, reduceMotion, disableSwiping, mascot } from 'mastodon/initial_state';
 import { assetHost } from 'mastodon/utils/config';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -27,14 +29,10 @@ const messages = defineMessages({
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
 });
 
-class Content extends ImmutablePureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
+class ContentWithRouter extends ImmutablePureComponent {
   static propTypes = {
     announcement: ImmutablePropTypes.map.isRequired,
+    ...WithRouterPropTypes,
   };
 
   setRef = c => {
@@ -89,25 +87,25 @@ class Content extends ImmutablePureComponent {
   }
 
   onMentionClick = (mention, e) => {
-    if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+    if (this.props.history && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/@${mention.get('acct')}`);
+      this.props.history.push(`/@${mention.get('acct')}`);
     }
   };
 
   onHashtagClick = (hashtag, e) => {
     hashtag = hashtag.replace(/^#/, '');
 
-    if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+    if (this.props.history&& e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/tags/${hashtag}`);
+      this.props.history.push(`/tags/${hashtag}`);
     }
   };
 
   onStatusClick = (status, e) => {
-    if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+    if (this.props.history && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
+      this.props.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
     }
   };
 
@@ -152,6 +150,8 @@ class Content extends ImmutablePureComponent {
   }
 
 }
+
+const Content = withRouter(ContentWithRouter);
 
 class Emoji extends PureComponent {
 

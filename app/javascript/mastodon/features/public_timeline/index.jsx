@@ -41,7 +41,6 @@ const mapStateToProps = (state, { columnId }) => {
 class PublicTimeline extends PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object,
     identity: PropTypes.object,
   };
 

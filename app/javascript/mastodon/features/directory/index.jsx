@@ -36,10 +36,6 @@ const mapStateToProps = state => ({
 
 class Directory extends PureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     isLoading: PropTypes.bool,
     accountIds: ImmutablePropTypes.list.isRequired,

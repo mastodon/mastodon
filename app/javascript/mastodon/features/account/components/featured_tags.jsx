@@ -14,10 +14,6 @@ const messages = defineMessages({
 
 class FeaturedTags extends ImmutablePureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     account: ImmutablePropTypes.map,
     featuredTags: ImmutablePropTypes.list,

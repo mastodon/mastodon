@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -12,6 +13,7 @@ import { changeBoostPrivacy } from 'mastodon/actions/boosts';
 import AttachmentList from 'mastodon/components/attachment_list';
 import { Icon }  from 'mastodon/components/icon';
 import PrivacyDropdown from 'mastodon/features/compose/components/privacy_dropdown';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import { Avatar } from '../../../components/avatar';
 import Button from '../../../components/button';
@@ -43,11 +45,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 class BoostModal extends ImmutablePureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     onReblog: PropTypes.func.isRequired,
@@ -55,6 +52,7 @@ class BoostModal extends ImmutablePureComponent {
     onChangeBoostPrivacy: PropTypes.func.isRequired,
     privacy: PropTypes.string.isRequired,
     intl: PropTypes.object.isRequired,
+    ...WithRouterPropTypes,
   };
 
   componentDidMount() {
@@ -70,7 +68,7 @@ class BoostModal extends ImmutablePureComponent {
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.props.onClose();
-      this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
+      this.props.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
     }
   };
 
@@ -143,4 +141,4 @@ class BoostModal extends ImmutablePureComponent {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(BoostModal));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(injectIntl(BoostModal)));

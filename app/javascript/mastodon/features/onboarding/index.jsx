@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -19,6 +19,7 @@ import Column from 'mastodon/features/ui/components/column';
 import { me } from 'mastodon/initial_state';
 import { makeGetAccount } from 'mastodon/selectors';
 import { assetHost } from 'mastodon/utils/config';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import ArrowSmallRight from './components/arrow_small_right';
 import Step from './components/step';
@@ -38,15 +39,11 @@ const mapStateToProps = () => {
 };
 
 class Onboarding extends ImmutablePureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     account: ImmutablePropTypes.map,
     multiColumn: PropTypes.bool,
+    ...WithRouterPropTypes,
   };
 
   state = {
@@ -56,11 +53,10 @@ class Onboarding extends ImmutablePureComponent {
   };
 
   handleClose = () => {
-    const { dispatch } = this.props;
-    const { router } = this.context;
+    const { dispatch, history } = this.props;
 
     dispatch(closeOnboarding());
-    router.history.push('/home');
+    history.push('/home');
   };
 
   handleProfileClick = () => {
@@ -72,10 +68,9 @@ class Onboarding extends ImmutablePureComponent {
   };
 
   handleComposeClick = () => {
-    const { dispatch, intl } = this.props;
-    const { router } = this.context;
+    const { dispatch, intl, history } = this.props;
 
-    dispatch(focusCompose(router.history, intl.formatMessage(messages.template)));
+    dispatch(focusCompose(history, intl.formatMessage(messages.template)));
   };
 
   handleShareClick = () => {
@@ -150,4 +145,4 @@ class Onboarding extends ImmutablePureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(Onboarding));
+export default withRouter(connect(mapStateToProps)(injectIntl(Onboarding)));

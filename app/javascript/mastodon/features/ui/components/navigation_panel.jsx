@@ -6,7 +6,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import { WordmarkLogo } from 'mastodon/components/logo';
-import NavigationPortal from 'mastodon/components/navigation_portal';
+import { NavigationPortal } from 'mastodon/components/navigation_portal';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
 
@@ -37,7 +37,6 @@ const messages = defineMessages({
 class NavigationPanel extends Component {
 
   static contextTypes = {
-    router: PropTypes.object.isRequired,
     identity: PropTypes.object.isRequired,
   };
 
