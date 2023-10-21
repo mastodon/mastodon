@@ -6,7 +6,7 @@ import { injectIntl, defineMessages } from 'react-intl';
 import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 
-import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-400/outlined/person_add.svg';
+import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
 
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';

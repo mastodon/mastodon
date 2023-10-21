@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import { ReactComponent as ArrowBackIcon } from '@material-symbols/svg-400/outlined/arrow_back.svg';
+import { ReactComponent as ArrowBackIcon } from '@material-symbols/svg-600/outlined/arrow_back.svg';
 
 import { Icon }  from 'mastodon/components/icon';
 

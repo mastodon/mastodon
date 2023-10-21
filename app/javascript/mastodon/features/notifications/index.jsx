@@ -10,8 +10,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { ReactComponent as DoneAllIcon } from '@material-symbols/svg-400/outlined/done_all.svg';
-import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-400/outlined/notifications-fill.svg';
+import { ReactComponent as DoneAllIcon } from '@material-symbols/svg-600/outlined/done_all.svg';
+import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications-fill.svg';
 import { debounce } from 'lodash';
 
 import { compareId } from 'mastodon/compare_id';

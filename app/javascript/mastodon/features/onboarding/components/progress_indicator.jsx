@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 
 import classNames from 'classnames';
 
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-400/outlined/done.svg';
+import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/done.svg';
 
 import { Icon }  from 'mastodon/components/icon';
 

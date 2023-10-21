@@ -9,7 +9,7 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as PeopleIcon } from '@material-symbols/svg-400/outlined/group.svg';
+import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
 
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'mastodon/actions/columns';
 import { fetchDirectory, expandDirectory } from 'mastodon/actions/directory';

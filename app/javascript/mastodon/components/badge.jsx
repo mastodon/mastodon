@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import { ReactComponent as GroupsIcon } from '@material-symbols/svg-400/outlined/group.svg';
-import { ReactComponent as PersonIcon } from '@material-symbols/svg-400/outlined/person.svg';
-import { ReactComponent as SmartToyIcon } from '@material-symbols/svg-400/outlined/smart_toy.svg';
+import { ReactComponent as GroupsIcon } from '@material-symbols/svg-600/outlined/group.svg';
+import { ReactComponent as PersonIcon } from '@material-symbols/svg-600/outlined/person.svg';
+import { ReactComponent as SmartToyIcon } from '@material-symbols/svg-600/outlined/smart_toy.svg';
 
 
 export const Badge = ({ icon, label, domain }) => (

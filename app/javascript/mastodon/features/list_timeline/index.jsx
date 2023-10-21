@@ -9,9 +9,9 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as DeleteIcon } from '@material-symbols/svg-400/outlined/delete.svg';
-import { ReactComponent as EditIcon } from '@material-symbols/svg-400/outlined/edit.svg';
-import { ReactComponent as ListAltIcon } from '@material-symbols/svg-400/outlined/list_alt.svg';
+import { ReactComponent as DeleteIcon } from '@material-symbols/svg-600/outlined/delete.svg';
+import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
+import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
 import Toggle from 'react-toggle';
 
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';

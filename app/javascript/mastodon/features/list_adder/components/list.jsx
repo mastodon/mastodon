@@ -6,9 +6,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as AddIcon } from '@material-symbols/svg-400/outlined/add.svg';
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-400/outlined/close.svg';
-import { ReactComponent as ListAltIcon } from '@material-symbols/svg-400/outlined/list_alt.svg';
+import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
 
 import { Icon }  from 'mastodon/components/icon';
 

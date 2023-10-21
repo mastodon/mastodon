@@ -5,10 +5,10 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as FindInPageIcon } from '@material-symbols/svg-400/outlined/find_in_page.svg';
-import { ReactComponent as PeopleIcon } from '@material-symbols/svg-400/outlined/group.svg';
-import { ReactComponent as SearchIcon } from '@material-symbols/svg-400/outlined/search.svg';
-import { ReactComponent as TagIcon } from '@material-symbols/svg-400/outlined/tag.svg';
+import { ReactComponent as FindInPageIcon } from '@material-symbols/svg-600/outlined/find_in_page.svg';
+import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
+import { ReactComponent as SearchIcon } from '@material-symbols/svg-600/outlined/search.svg';
+import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
 
 import { Icon }  from 'mastodon/components/icon';
 import { LoadMore } from 'mastodon/components/load_more';

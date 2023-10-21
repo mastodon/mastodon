@@ -9,11 +9,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-400/outlined/arrow_right_alt.svg';
-import { ReactComponent as ContentCopyIcon } from '@material-symbols/svg-400/outlined/content_copy.svg';
-import { ReactComponent as EditNoteIcon } from '@material-symbols/svg-400/outlined/edit_note.svg';
-import { ReactComponent as PeopleIcon } from '@material-symbols/svg-400/outlined/group.svg';
-import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-400/outlined/person_add.svg';
+import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-600/outlined/arrow_right_alt.svg';
+import { ReactComponent as ContentCopyIcon } from '@material-symbols/svg-600/outlined/content_copy.svg';
+import { ReactComponent as EditNoteIcon } from '@material-symbols/svg-600/outlined/edit_note.svg';
+import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
+import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
 import { debounce } from 'lodash';
 
 import illustration from 'mastodon/../images/elephant_ui_conversation.svg';

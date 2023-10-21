@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-400/outlined/arrow_right_alt.svg';
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-400/outlined/done.svg';
+import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-600/outlined/arrow_right_alt.svg';
+import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/done.svg';
 
 import { Icon }  from 'mastodon/components/icon';
 
