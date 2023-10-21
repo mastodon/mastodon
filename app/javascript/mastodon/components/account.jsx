@@ -15,7 +15,7 @@ import { VerifiedBadge } from 'mastodon/components/verified_badge';
 import { me } from '../initial_state';
 
 import { Avatar } from './avatar';
-import Button from './button';
+import { Button } from './button';
 import { FollowersCounter } from './counters';
 import { DisplayName } from './display_name';
 import { IconButton } from './icon_button';
