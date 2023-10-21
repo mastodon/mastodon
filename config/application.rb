@@ -103,7 +103,6 @@ module Mastodon
       :el,
       :en,
       :'en-GB',
-      :'en-L',
       :eo,
       :es,
       :'es-AR',

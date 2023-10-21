@@ -221,7 +221,6 @@ module LanguagesHelper
   # names, but for some translations, we need the names of the
   # regional variants specifically
   REGIONAL_LOCALE_NAMES = {
-    'en-L': 'English (Legacy)',
     'en-GB': 'English (British)',
     'es-AR': 'Español (Argentina)',
     'es-MX': 'Español (México)',
