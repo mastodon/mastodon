@@ -1,50 +1,55 @@
-<h2>Sign up</h2>
 
-<%= form_with(
-      model: resource,
-      as: resource_name,
-      url: registration_path(resource_name),
-      data: {
-        "challenge_url": new_user_registration_challenge_url,
-        "credential_field_name": "#{resource_name}[passkey_credential]"
-      }
-) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md space-y-8">
+    <div>
+      <!--        <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900"><%#= t(".heading") %></h2>-->
+    </div>
+    <%= form_with(
+                  url: new_auth_registration_pksignup_path(format: :json),
+                  data: {
+                    controller: "new-registration",
+                    action: "new-registration#submit"
+                  },
+                  class: "mt-8 space-y-6") do |form| %>
+      <div class="-space-y-px rounded-md shadow-sm">
+        <div>
+          <table>
+    <tr>
+      <%= form.fields_for :account do |ff| %>
+        <td>
+          <%= ff.label :username, class: "sr-only" %>
+          <%= ff.text_field :username, wrapper: :with_label, label: false, required: true, input_html: { 'aria-label': t('simple_form.labels.defaults.username'), autocomplete: 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-zA-Z0-9_]+', maxlength: 30 }, append: "@#{site_hostname}" %>
+        </td>
+      <% end %>
+    </tr>
+    <tr>
+      <th><%= form.label :email %></th>
+      <td><%= form.email_field :email, autofocus: true, autocomplete: "email", required: true %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :passkey_label %></th>
+      <td><%= form.text_field :passkey_label, autofocus: "off", required: true %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :password %></th>
+      <td><%= form.text_field :password, autofocus: "off", required: true %></td>
+    </tr>
+  </table>
+        </div>
+      </div>
 
-  <fieldset>
-    <table>
-      <tr>
-        <%= f.simple_fields_for :account do |ff| %>
-          <%= ff.input :username, wrapper: :with_label, label: false, required: true, input_html: { 'aria-label': t('simple_form.labels.defaults.username'), autocomplete: 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-zA-Z0-9_]+', maxlength: 30 }, append: "@#{site_hostname}" %>
+      <div>
+        <%= form.button(class: "group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2") do |button| %>
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+              <!-- Heroicon name: mini/lock-closed -->
+              <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
+              </svg>
+            </span>
+          <%= button %>
         <% end %>
-      </tr>
-      <tr>
-        <th><%= f.label :email %></th>
-        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :passkey_label %></th>
-        <td><%= f.text_field :passkey_label, autofocus: "off", required: true %>
-      </tr>
-      <tr>
-        <th><%= f.label :password %></th>
-        <td><%= f.text_field :password, autofocus: "off", required: true %>
-      </tr>
-    </table>
-  </fieldset>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-  <%= f.hidden_field :passkey_credential %>
-
-  <section>
-    <button type="submit"><%= image_tag("passkey-black.svg", width: "25", height: "25") %> Sign up</button>
-  </section>
-<% end %>
-
-<%= render "devise/shared/links" %>
-
-
-<script type="module">
-  import {submitFormEvent} from 'registration_form'
-
-  document.querySelector('form').addEventListener('submit', submitFormEvent)
-</script>

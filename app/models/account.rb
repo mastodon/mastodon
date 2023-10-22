@@ -4,7 +4,6 @@
 #
 # Table name: accounts
 #
-#  id                            :bigint(8)        not null, primary key
 #  username                      :string           default(""), not null
 #  domain                        :string
 #  private_key                   :text
@@ -17,11 +16,11 @@
 #  url                           :string
 #  avatar_file_name              :string
 #  avatar_content_type           :string
-#  avatar_file_size              :integer
+#  avatar_file_size              :bigint(8)
 #  avatar_updated_at             :datetime
 #  header_file_name              :string
 #  header_content_type           :string
-#  header_file_size              :integer
+#  header_file_size              :bigint(8)
 #  header_updated_at             :datetime
 #  avatar_remote_url             :string
 #  locked                        :boolean          default(FALSE), not null
@@ -32,6 +31,7 @@
 #  shared_inbox_url              :string           default(""), not null
 #  followers_url                 :string           default(""), not null
 #  protocol                      :integer          default("ostatus"), not null
+#  id                            :bigint(8)        not null, primary key
 #  memorial                      :boolean          default(FALSE), not null
 #  moved_to_account_id           :bigint(8)
 #  featured_collection_url       :string
@@ -45,8 +45,8 @@
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
 #  devices_url                   :string
-#  suspension_origin             :integer
 #  sensitized_at                 :datetime
+#  suspension_origin             :integer
 #  trendable                     :boolean
 #  reviewed_at                   :datetime
 #  requested_review_at           :datetime

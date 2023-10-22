@@ -3,8 +3,8 @@
 class Auth::SessionsController < Devise::SessionsController
   layout 'auth'
 
-  include RelyingParty
-  include Devise::Passkeys::Controllers::SessionsControllerConcern
+  # include Devise::Passkeys::Controllers::SessionsControllerConcern
+  # include RelyingParty
 
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :require_functional!
@@ -33,6 +33,74 @@ class Auth::SessionsController < Devise::SessionsController
       # authentication methods
 
       on_authentication_success(resource, :password) unless @on_authentication_success_called
+    end
+  end
+  def new_pksignin
+    user = User.find_by(email: params[:email])
+
+
+    if user
+      get_options = WebAuthn::Credential.options_for_get(
+        allow: user.credentials.pluck(:external_id),
+        user_verification: 'required'
+      )
+
+      save_authentication('challenge' => get_options.challenge, 'email' => params[:email])
+
+      hash = {
+        original_url: session['original_uri'],
+        callback_url: new_auth_session_callback_path(format: :json),
+        get_options: get_options
+      }
+
+      respond_to do |format|
+        logger.debug { "respond with: #{hash}" }
+        format.json { render json: hash }
+      end
+    else
+      respond_to do |format|
+        logger.debug { "Username #{params[:email]} does not exist" }
+        format.json { render json: { errors: ['Username does not exist'] }, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+  def external_id(webauthn_credential)
+    Base64.strict_encode64(webauthn_credential.raw_id)
+  end
+
+  # POST   /session/callback(.:format)
+  def callback
+    logger.debug { 'in session#callback' }
+
+    webauthn_credential = WebAuthn::Credential.from_get(params)
+
+    user = User.find_by(email: saved_email)
+
+
+    raise "user #{saved_email} never initiated sign up" unless user
+
+    credential = user.credentials.find_by(external_id: external_id(webauthn_credential))
+
+    begin
+
+      on_authentication_success(user, params[:email]) unless @on_authentication_success_called
+
+      webauthn_credential.verify(
+        saved_challenge,
+        public_key: credential.public_key,
+        sign_count: credential.sign_count,
+        user_verification: true
+      )
+
+      credential.update!(sign_count: webauthn_credential.sign_count)
+
+      render json: { status: 'ok' }, status: :ok
+    rescue WebAuthn::Error => e
+      render json: "Verification failed: #{e.message}", status: :unprocessable_entity
+    ensure
+      session.delete(:current_authentication)
     end
   end
 
@@ -171,4 +239,29 @@ class Auth::SessionsController < Devise::SessionsController
       user_agent: request.user_agent
     )
   end
+
+  def username_param
+    session_params[:username]
+  end
+
+  def session_params
+    params.require(:session).permit(:username)
+  end
+
+  def saved_authentication
+    session['current_authentication']
+  end
+
+  def save_authentication(v)
+    session['current_authentication'] = v
+  end
+
+  def saved_email
+    saved_authentication['email']
+  end
+
+  def saved_challenge
+    saved_authentication['challenge']
+  end
 end
+

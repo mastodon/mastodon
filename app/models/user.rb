@@ -76,7 +76,6 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :validatable,
          :confirmable
 
-  devise :passkey_authenticatable, :registerable, :rememberable
 
   include Omniauthable
   include PamAuthenticable
@@ -95,7 +94,6 @@ class User < ApplicationRecord
   has_many :webauthn_credentials, dependent: :destroy
   has_many :ips, class_name: 'UserIp', inverse_of: :user
 
-  has_many :passkeys, dependent: :destroy
 
   has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
@@ -146,12 +144,18 @@ class User < ApplicationRecord
   attr_reader :invite_code
   attr_writer :external, :bypass_invite_request_check, :current_account
 
-  def self.passkeys_class
-    Passkey
+
+  CREDENTIAL_MIN_AMOUNT = 1
+
+  has_many :credentials, dependent: :delete_all
+
+
+  after_initialize do
+    self.webauthn_id ||= WebAuthn.generate_user_id
   end
 
-  def self.find_for_passkey(passkey)
-    self.find_by(id: passkey.user.id)
+  def can_delete_credentials?
+    credentials.size > CREDENTIAL_MIN_AMOUNT
   end
 
   def self.those_who_can(*any_of_privileges)
@@ -522,8 +526,3 @@ class User < ApplicationRecord
   end
 end
 
-Devise.add_module :passkey_authenticatable,
-                  model: 'devise/passkeys/model',
-                  route: {session: [nil, :new, :create, :destroy] },
-                  controller: 'controller/sessions',
-                  strategy: true

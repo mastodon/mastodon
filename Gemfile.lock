@@ -747,6 +747,8 @@ GEM
       net-ssh (>= 2.8.0)
     stackprof (0.2.25)
     statsd-ruby (1.5.0)
+    stimulus-rails (1.3.0)
+      railties (>= 6.0.0)
     stoplight (3.0.2)
       redlock (~> 1.0)
     strong_migrations (0.8.0)
@@ -779,6 +781,10 @@ GEM
       tty-screen (~> 0.8)
       wisper (~> 2.0)
     tty-screen (0.8.1)
+    turbo-rails (1.5.0)
+      actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
+      railties (>= 6.0.0)
     twitter-text (3.1.0)
       idn-ruby
       unf (~> 0.1.0)
@@ -958,11 +964,13 @@ DEPENDENCIES
   sprockets (~> 3.7.2)
   sprockets-rails (~> 3.4)
   stackprof
+  stimulus-rails
   stoplight (~> 3.0.1)
   strong_migrations (~> 0.8)
   test-prof
   thor (~> 1.2)
   tty-prompt (~> 0.23)
+  turbo-rails
   twitter-text (~> 3.1.0)
   tzinfo-data (~> 1.2023)
   webauthn (~> 3.0)
