@@ -63,7 +63,3 @@
       interval: 30 minutes
       class: Scheduler::SoftwareUpdateCheckScheduler
       queue: scheduler
-    self_destruct_scheduler:
-      interval: 1 minute
-      class: Scheduler::SelfDestructScheduler
-      queue: scheduler

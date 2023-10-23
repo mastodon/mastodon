@@ -3,7 +3,6 @@
 class Scheduler::AccountsStatusesCleanupScheduler
   include Sidekiq::Worker
   include Redisable
-  include SelfDestructHelper
 
   # This limit is mostly to be nice to the fediverse at large and not
   # generate too much traffic.
@@ -36,7 +35,7 @@ class Scheduler::AccountsStatusesCleanupScheduler
   sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform
-    return if self_destruct? || under_load?
+    return if under_load?
 
     budget = compute_budget
 
