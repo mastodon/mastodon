@@ -10,7 +10,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import { Avatar } from 'flavours/glitch/components/avatar';
-import Button from 'flavours/glitch/components/button';
+import { Button } from 'flavours/glitch/components/button';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { Icon } from 'flavours/glitch/components/icon';
 import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
@@ -32,10 +32,6 @@ class FavouriteModal extends ImmutablePureComponent {
     ...WithRouterPropTypes,
   };
 
-  componentDidMount() {
-    this.button.focus();
-  }
-
   handleFavourite = () => {
     this.props.onFavourite(this.props.status);
     this.props.onClose();
@@ -47,10 +43,6 @@ class FavouriteModal extends ImmutablePureComponent {
       this.props.onClose();
       this.props.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
     }
-  };
-
-  setRef = (c) => {
-    this.button = c;
   };
 
   render () {
@@ -91,7 +83,7 @@ class FavouriteModal extends ImmutablePureComponent {
 
         <div className='boost-modal__action-bar'>
           <div><FormattedMessage id='favourite_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='star' /></span> }} /></div>
-          <Button text={intl.formatMessage(messages.favourite)} onClick={this.handleFavourite} ref={this.setRef} />
+          <Button text={intl.formatMessage(messages.favourite)} onClick={this.handleFavourite} autoFocus />
         </div>
       </div>
     );

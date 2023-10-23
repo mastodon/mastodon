@@ -13,7 +13,7 @@ import { requestBrowserPermission } from 'flavours/glitch/actions/notifications'
 import { changeSetting, saveSettings } from 'flavours/glitch/actions/settings';
 import { fetchSuggestions } from 'flavours/glitch/actions/suggestions';
 import { markAsPartial } from 'flavours/glitch/actions/timelines';
-import Button from 'flavours/glitch/components/button';
+import { Button } from 'flavours/glitch/components/button';
 import Column from 'flavours/glitch/features/ui/components/column';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 import imageGreeting from 'mastodon/../images/elephant_ui_greeting.svg';

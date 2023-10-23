@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { revealAccount } from 'flavours/glitch/actions/accounts';
-import Button from 'flavours/glitch/components/button';
+import { Button } from 'flavours/glitch/components/button';
 import { domain } from 'flavours/glitch/initial_state';
 
 const mapDispatchToProps = (dispatch, { accountId }) => ({

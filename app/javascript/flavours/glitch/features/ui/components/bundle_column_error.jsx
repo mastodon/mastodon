@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
-import Button from 'flavours/glitch/components/button';
+import { Button } from 'flavours/glitch/components/button';
 import Column from 'flavours/glitch/components/column';
 import { autoPlayGif } from 'flavours/glitch/initial_state';
 

@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { followAccount } from 'flavours/glitch/actions/accounts';
-import Button from 'flavours/glitch/components/button';
+import { Button } from 'flavours/glitch/components/button';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import Option from 'flavours/glitch/features/report/components/option';
 import { languages as preloadedLanguages } from 'flavours/glitch/initial_state';

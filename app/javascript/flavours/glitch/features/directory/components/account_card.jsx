@@ -16,7 +16,7 @@ import {
 } from 'flavours/glitch/actions/accounts';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { Avatar } from 'flavours/glitch/components/avatar';
-import Button from 'flavours/glitch/components/button';
+import { Button } from 'flavours/glitch/components/button';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import Permalink from 'flavours/glitch/components/permalink';

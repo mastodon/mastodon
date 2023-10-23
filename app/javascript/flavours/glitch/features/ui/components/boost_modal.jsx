@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { changeBoostPrivacy } from 'flavours/glitch/actions/boosts';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import { Avatar } from 'flavours/glitch/components/avatar';
-import Button from 'flavours/glitch/components/button';
+import { Button } from 'flavours/glitch/components/button';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { Icon } from 'flavours/glitch/components/icon';
 import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
@@ -50,10 +50,6 @@ class BoostModal extends ImmutablePureComponent {
     ...WithRouterPropTypes,
   };
 
-  componentDidMount() {
-    this.button.focus();
-  }
-
   handleReblog = () => {
     this.props.onReblog(this.props.status, this.props.privacy);
     this.props.onClose();
@@ -69,10 +65,6 @@ class BoostModal extends ImmutablePureComponent {
 
   _findContainer = () => {
     return document.getElementsByClassName('modal-root__container')[0];
-  };
-
-  setRef = (c) => {
-    this.button = c;
   };
 
   render () {
@@ -127,7 +119,7 @@ class BoostModal extends ImmutablePureComponent {
               onChange={this.props.onChangeBoostPrivacy}
             />
           )}
-          <Button text={intl.formatMessage(buttonText)} onClick={this.handleReblog} ref={this.setRef} />
+          <Button text={intl.formatMessage(buttonText)} onClick={this.handleReblog} autoFocus />
         </div>
       </div>
     );
