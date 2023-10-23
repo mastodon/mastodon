@@ -181,14 +181,6 @@ const titleFromStatus = (intl, status) => {
   return text ? `${user}: "${truncate(text, 30)}"` : intl.formatMessage(messages.statusTitleWithAttachments, { user, attachmentCount });
 };
 
-const RemoteHint = ({ url }) => (
-  <TimelineHint url={url} resource={<FormattedMessage id='timeline_hint.resources.replies' defaultMessage='Some replies' />} />
-);
-
-RemoteHint.propTypes = {
-  url: PropTypes.string.isRequired,
-};
-
 class Status extends ImmutablePureComponent {
   static propTypes = {
     identity: identityContextPropShape,
@@ -637,7 +629,7 @@ class Status extends ImmutablePureComponent {
     const isIndexable = !status.getIn(['account', 'noindex']);
 
     if (!isLocal) {
-      remoteHint = <RemoteHint url={status.get('url')} />
+      remoteHint = <TimelineHint url={status.get('url')} resource={<FormattedMessage id='timeline_hint.resources.replies' defaultMessage='Some replies' />} />
     }
 
     const handlers = {
