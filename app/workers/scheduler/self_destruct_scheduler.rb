@@ -26,12 +26,23 @@ class Scheduler::SelfDestructScheduler
   end
 
   def delete_accounts!
+    # We currently do not distinguish between deleted accounts and suspended
+    # accounts, and we do not want to remove the records in this scheduler, as
+    # we still rely on it for account delivery and don't want to perform
+    # needless work when the database can be outright dropped after the
+    # self-destruct.
+    # Deleted accounts are suspended accounts that do not have a pending
+    # deletion request.
+
+    # This targets accounts that have not been deleted nor marked for deletion yet
     Account.local.without_suspended.reorder(id: :asc).take(MAX_ACCOUNT_DELETIONS_PER_JOB).each do |account|
       delete_account!(account)
     end
 
     return if sidekiq_overwhelmed?
 
+    # This targets accounts that have been marked for deletion but have not been
+    # deleted yet
     Account.local.suspended.joins(:deletion_request).take(MAX_ACCOUNT_DELETIONS_PER_JOB).each do |account|
       delete_account!(account)
       account.deletion_request&.destroy

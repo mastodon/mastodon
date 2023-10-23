@@ -119,7 +119,7 @@ module Mastodon::CLI
       exit(1) if prompt.no?('Are you sure you want to proceed?')
 
       self_destruct_value = Rails.application.message_verifier('self-destruct').generate(Rails.configuration.x.local_domain)
-      prompt.ok('To switch Mastodon to self-destruct mode, add the following line to your `.env.production` and restart all Mastodon processes:')
+      prompt.ok('To switch Mastodon to self-destruct mode, add the following variable to your evironment (e.g. by adding a line to your `.env.production`) and restart all Mastodon processes:')
       prompt.ok("  SELF_DESTRUCT=#{self_destruct_value}")
       prompt.ok("\nYou can re-run this command to see the state of the self-destruct process.")
     rescue TTY::Reader::InputInterrupt

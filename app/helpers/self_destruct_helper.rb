@@ -2,7 +2,8 @@
 
 module SelfDestructHelper
   def self.self_destruct?
-    ENV.fetch('SELF_DESTRUCT', nil).present? && Rails.application.message_verifier('self-destruct').verify(ENV.fetch('SELF_DESTRUCT', nil)) == ENV['LOCAL_DOMAIN']
+    value = ENV.fetch('SELF_DESTRUCT', nil)
+    value.present? && Rails.application.message_verifier('self-destruct').verify(value) == ENV['LOCAL_DOMAIN']
   rescue ActiveSupport::MessageVerifier::InvalidSignature
     false
   end
