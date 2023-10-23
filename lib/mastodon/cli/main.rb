@@ -112,9 +112,9 @@ module Mastodon::CLI
 
       exit(1) unless prompt.ask('Type in the domain of the server to confirm:', required: true) == Rails.configuration.x.local_domain
 
-      prompt.warn('This operation WILL NOT be reversible. It can also take a long time.')
+      prompt.warn('This operation WILL NOT be reversible.')
       prompt.warn('While the data won\'t be erased locally, the server will be in a BROKEN STATE afterwards.')
-      prompt.warn('A running Sidekiq process is required. Do not shut it down until queues clear.')
+      prompt.warn('The deletion process itself may take a long time, and will be handled by Sidekiq, so do not shut it down until it has finished (you will be able to re-run this command to see the state of the self-destruct process).')
 
       exit(1) if prompt.no?('Are you sure you want to proceed?')
 
