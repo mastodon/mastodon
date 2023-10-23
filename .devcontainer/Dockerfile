@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/devcontainers/ruby:1-3.2-bullseye
 # Install Rails
 # RUN gem install rails webdrivers
 
-ARG NODE_VERSION="16"
+ARG NODE_VERSION="20"
 RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"
 
 # [Optional] Uncomment this section to install additional OS packages.

@@ -2,8 +2,11 @@
   "name": "@mastodon/mastodon",
   "license": "AGPL-3.0-or-later",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
+  "workspaces": [
+    "."
+  ],
   "scripts": {
     "build:development": "cross-env RAILS_ENV=development NODE_ENV=development ./bin/webpack",
     "build:production": "cross-env RAILS_ENV=production NODE_ENV=production ./bin/webpack",
@@ -228,5 +231,6 @@
     "Capfile|Gemfile|*.{rb,ruby,ru,rake}": "bundle exec rubocop --force-exclusion -a",
     "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.{css,scss}": "stylelint --fix"
-  }
+  },
+  "packageManager": "yarn@4.0.1"
 }
