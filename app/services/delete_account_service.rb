@@ -74,6 +74,7 @@ class DeleteAccountService < BaseService
   # @option [Boolean] :skip_side_effects Side effects are ActivityPub and streaming API payloads
   # @option [Boolean] :skip_activitypub Skip sending ActivityPub payloads. Implied by :skip_side_effects
   # @option [Time]    :suspended_at Only applicable when :reserve_username is true
+  # @option [RelationshipSeveranceEvent] :relationship_severance_event Event used to record severed relationships not initiated by the user
   def call(account, **options)
     @account = account
     @options = { reserve_username: true, reserve_email: true }.merge(options)
@@ -86,6 +87,7 @@ class DeleteAccountService < BaseService
 
     @options[:skip_activitypub] = true if @options[:skip_side_effects]
 
+    record_severed_relationships!
     distribute_activities!
     purge_content!
     fulfill_deletion_request!
@@ -268,6 +270,20 @@ class DeleteAccountService < BaseService
     end
   end
 
+  def record_severed_relationships!
+    return if relationship_severance_event.nil?
+
+    @account.active_relationships.in_batches do |follows|
+      # NOTE: these follows are passive with regards to the local accounts
+      relationship_severance_event.import_from_passive_follows!(follows)
+    end
+
+    @account.passive_relationships.in_batches do |follows|
+      # NOTE: these follows are active with regards to the local accounts
+      relationship_severance_event.import_from_active_follows!(follows)
+    end
+  end
+
   def delete_actor_json
     @delete_actor_json ||= Oj.dump(serialize_payload(@account, ActivityPub::DeleteActorSerializer, signer: @account, always_sign: true))
   end
@@ -306,5 +322,9 @@ class DeleteAccountService < BaseService
 
   def skip_activitypub?
     @options[:skip_activitypub]
+  end
+
+  def relationship_severance_event
+    @options[:relationship_severance_event]
   end
 end
