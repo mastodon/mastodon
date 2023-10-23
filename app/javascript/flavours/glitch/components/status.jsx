@@ -14,7 +14,7 @@ import PollContainer from 'flavours/glitch/containers/poll_container';
 import NotificationOverlayContainer from 'flavours/glitch/features/notifications/containers/overlay_container';
 import { displayMedia } from 'flavours/glitch/initial_state';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
-import { withOptionalRouter, WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { withOptionalRouter, WithOptionalRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import Card from '../features/status/components/card';
 import Bundle from '../features/ui/components/bundle';
@@ -114,7 +114,7 @@ class Status extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
-    ...WithRouterPropTypes,
+    ...WithOptionalRouterPropTypes,
   };
 
   state = {
