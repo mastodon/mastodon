@@ -16,7 +16,7 @@ import PrivacyDropdown from 'mastodon/features/compose/components/privacy_dropdo
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import { Avatar } from '../../../components/avatar';
-import Button from '../../../components/button';
+import { Button } from '../../../components/button';
 import { DisplayName } from '../../../components/display_name';
 import { RelativeTimestamp } from '../../../components/relative_timestamp';
 import StatusContent from '../../../components/status_content';
@@ -55,10 +55,6 @@ class BoostModal extends ImmutablePureComponent {
     ...WithRouterPropTypes,
   };
 
-  componentDidMount() {
-    this.button.focus();
-  }
-
   handleReblog = () => {
     this.props.onReblog(this.props.status, this.props.privacy);
     this.props.onClose();
@@ -74,10 +70,6 @@ class BoostModal extends ImmutablePureComponent {
 
   _findContainer = () => {
     return document.getElementsByClassName('modal-root__container')[0];
-  };
-
-  setRef = (c) => {
-    this.button = c;
   };
 
   render () {
@@ -133,7 +125,7 @@ class BoostModal extends ImmutablePureComponent {
               onChange={this.props.onChangeBoostPrivacy}
             />
           )}
-          <Button text={intl.formatMessage(buttonText)} onClick={this.handleReblog} ref={this.setRef} />
+          <Button text={intl.formatMessage(buttonText)} onClick={this.handleReblog} autoFocus />
         </div>
       </div>
     );

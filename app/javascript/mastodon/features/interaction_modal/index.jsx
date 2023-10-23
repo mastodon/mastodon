@@ -11,7 +11,7 @@ import { throttle, escapeRegExp } from 'lodash';
 
 import { openModal, closeModal } from 'mastodon/actions/modal';
 import api from 'mastodon/api';
-import Button from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button';
 import { Icon }  from 'mastodon/components/icon';
 import { registrationsOpen, sso_redirect } from 'mastodon/initial_state';
 
