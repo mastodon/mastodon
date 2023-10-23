@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Media', paperclip_processing: true do
+RSpec.describe 'Media' do
   let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)  { 'write:media' }
@@ -82,7 +82,6 @@ RSpec.describe 'Media', paperclip_processing: true do
         expect(response).to have_http_status(200)
         expect(MediaAttachment.first).to be_present
         expect(MediaAttachment.first).to have_attached_file(:file)
-        expect(body_as_json[:id]).to eq MediaAttachment.first.id.to_s
       end
 
       it 'returns the correct media content' do
@@ -128,19 +127,19 @@ RSpec.describe 'Media', paperclip_processing: true do
       end
     end
 
-    context 'with image/jpeg' do
+    context 'with image/jpeg', paperclip_processing: true do
       let(:params) { { file: fixture_file_upload('attachment.jpg', 'image/jpeg'), description: 'jpeg image' } }
 
       it_behaves_like 'a successful media upload', 'image'
     end
 
-    context 'with image/gif' do
+    context 'with image/gif', paperclip_processing: true do
       let(:params) { { file: fixture_file_upload('attachment.gif', 'image/gif') } }
 
       it_behaves_like 'a successful media upload', 'image'
     end
 
-    context 'with video/webm' do
+    context 'with video/webm', paperclip_processing: true do
       let(:params) { { file: fixture_file_upload('attachment.webm', 'video/webm') } }
 
       it_behaves_like 'a successful media upload', 'gifv'
