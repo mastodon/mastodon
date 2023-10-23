@@ -35,7 +35,8 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - uses: ./.github/actions/setup-javascript
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
 
       - uses: xt0rted/stylelint-problem-matcher@v1
 

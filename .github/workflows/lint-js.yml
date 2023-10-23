@@ -39,7 +39,8 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - uses: ./.github/actions/setup-javascript
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
 
       - name: ESLint
         run: yarn lint:js --max-warnings 0

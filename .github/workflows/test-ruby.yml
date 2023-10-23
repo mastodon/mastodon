@@ -34,18 +34,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install native Ruby dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libicu-dev libidn11-dev
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
 
-      - name: Set up bundler cache
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
-
-      - uses: ./.github/actions/setup-javascript
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
         with:
           onlyProduction: 'true'
 
@@ -132,20 +125,11 @@ jobs:
           path: './public'
           name: ${{ github.sha }}
 
-      - name: Update package index
-        run: sudo apt-get update
-
-      - name: Install native Ruby dependencies
-        run: sudo apt-get install -y libicu-dev libidn11-dev
-
-      - name: Install additional system dependencies
-        run: sudo apt-get install -y ffmpeg imagemagick libpam-dev
-
-      - name: Set up bundler cache
-        uses: ruby/setup-ruby@v1
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          bundler-cache: true
+          additional-system-dependencies: ffmpeg imagemagick libpam-dev
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
@@ -207,24 +191,14 @@ jobs:
           path: './public'
           name: ${{ github.sha }}
 
-      - name: Update package index
-        run: sudo apt-get update
-
-      - name: Install native Ruby dependencies
-        run: sudo apt-get install -y libicu-dev libidn11-dev
-
-      - name: Install additional system dependencies
-        run: sudo apt-get install -y ffmpeg imagemagick
-
-      - name: Set up bundler cache
-        uses: ruby/setup-ruby@v1
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          bundler-cache: true
+          additional-system-dependencies: ffmpeg imagemagick
 
-      - uses: ./.github/actions/setup-javascript
-        with:
-          onlyProduction: 'true'
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
@@ -321,24 +295,14 @@ jobs:
           path: './public'
           name: ${{ github.sha }}
 
-      - name: Update package index
-        run: sudo apt-get update
-
-      - name: Install native Ruby dependencies
-        run: sudo apt-get install -y libicu-dev libidn11-dev
-
-      - name: Install additional system dependencies
-        run: sudo apt-get install -y ffmpeg imagemagick
-
-      - name: Set up bundler cache
-        uses: ruby/setup-ruby@v1
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          bundler-cache: true
+          additional-system-dependencies: ffmpeg imagemagick
 
-      - uses: ./.github/actions/setup-javascript
-        with:
-          onlyProduction: 'true'
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
