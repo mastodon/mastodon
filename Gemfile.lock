@@ -262,7 +262,7 @@ GEM
     erubi (1.12.0)
     et-orbi (1.2.7)
       tzinfo
-    excon (0.100.0)
+    excon (0.104.0)
     fabrication (2.30.0)
     faker (3.2.1)
       i18n (>= 1.8.11, < 2)
@@ -297,19 +297,18 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
-    fog-core (2.1.0)
+    fog-core (2.3.0)
       builder
-      excon (~> 0.58)
-      formatador (~> 0.2)
+      excon (~> 0.71)
+      formatador (>= 0.2, < 2.0)
       mime-types
     fog-json (1.2.0)
       fog-core
       multi_json (~> 1.10)
-    fog-openstack (0.3.10)
-      fog-core (>= 1.45, <= 2.1.0)
+    fog-openstack (1.1.0)
+      fog-core (~> 2.1)
       fog-json (>= 1.0)
-      ipaddress (>= 0.8)
-    formatador (0.3.0)
+    formatador (1.1.0)
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
@@ -369,7 +368,6 @@ GEM
       terminal-table (>= 1.5.1)
     idn-ruby (0.1.5)
     io-console (0.6.0)
-    ipaddress (0.8.3)
     irb (1.8.1)
       rdoc
       reline (>= 0.3.8)
@@ -451,7 +449,7 @@ GEM
     memory_profiler (1.0.1)
     mime-types (3.5.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2023.0808)
+    mime-types-data (3.2023.1003)
     mini_mime (1.1.5)
     mini_portile2 (2.8.4)
     minitest (5.20.0)
@@ -858,7 +856,7 @@ DEPENDENCIES
   fast_blank (~> 1.0)
   fastimage
   fog-core (<= 2.4.0)
-  fog-openstack (~> 0.3)
+  fog-openstack (~> 1.0)
   fuubar (~> 2.5)
   haml-rails (~> 2.0)
   haml_lint
