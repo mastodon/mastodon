@@ -233,9 +233,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-passkeys (0.3.0)
-      devise (>= 4.7.1)
-      warden-webauthn (>= 0.3.0)
     devise-two-factor (4.1.0)
       activesupport (< 7.1)
       attr_encrypted (>= 1.3, < 5, != 2)
@@ -805,9 +802,6 @@ GEM
       public_suffix
     warden (1.2.9)
       rack (>= 2.0.9)
-    warden-webauthn (0.3.0)
-      warden
-      webauthn (>= 3)
     webauthn (3.0.0)
       android_key_attestation (~> 0.3.0)
       awrence (~> 1.1)
@@ -868,7 +862,6 @@ DEPENDENCIES
   connection_pool
   database_cleaner-active_record
   devise (~> 4.9)
-  devise-passkeys
   devise-two-factor (~> 4.1)
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)

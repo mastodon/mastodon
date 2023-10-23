@@ -50,7 +50,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
     logger.info("Paramsxxxx: #{user.to_json}")
       hash = {
-        original_url: session['original_uri'],
+        original_url: "/auth/sign_in",
         callback_url: new_auth_registration_callback_path,
         create_options: create_options
       }

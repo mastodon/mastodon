@@ -48,7 +48,7 @@ class Auth::SessionsController < Devise::SessionsController
       save_authentication('challenge' => get_options.challenge, 'email' => params[:email])
 
       hash = {
-        original_url: session['original_uri'],
+        original_url: "/",
         callback_url: new_auth_session_callback_path(format: :json),
         get_options: get_options
       }
