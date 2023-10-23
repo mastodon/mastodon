@@ -4,7 +4,104 @@ require 'concurrent'
 require_relative 'base'
 
 module Mastodon::CLI
+  # This class is a helper so we can reuse the validation logic in
+  # Admin::Import, which typically expects ActionDispatch::Parameters as an
+  # argument
+  class DomainBlocklistData
+    attr_accessor :original_filename, :path
+
+    def self.from(filename, filepath)
+      import_data = new
+      import_data.original_filename = filename
+      import_data.path = filepath
+      import_data
+    end
+  end
+
+  class DomainBlocklist < Base
+    desc 'import [NAME] [URL]', 'Imports a blocklist from the given URL'
+    def import(name, url)
+      # TODO: don't clobber private comments: https://github.com/mastodon/mastodon/issues/25659
+      global_private_comment = "Initial import of #{name} blocklist"
+      filename = "#{name}.csv"
+
+      tmpfile = Tempfile.new(filename)
+
+      begin
+        say('Fetching blocklist...')
+        response = HTTP.headers(
+          'Accept' => 'text/csv',
+          'User-Agent' => Mastodon::Version.user_agent
+        ).get(url)
+
+        unless response.code == 200
+          say("Error: Failed to fetch blocklist from: #{url}", :red)
+          exit(1)
+        end
+
+        tmpfile.write(response.body.to_s)
+
+        import = Admin::Import.new(data: DomainBlocklistData.from(filename, tmpfile.path))
+        unless import.validate
+          import_errors = import.errors.full_messages.map { |err| "- #{err}" }.join("\n")
+
+          say("Error: Failed to import blocklist, invalid list:\n#{import_errors}", :red)
+          exit(1)
+        end
+
+        import_size = import.csv_rows.count
+
+        say("Importing #{import_size} domain blocks... (this may take a while)")
+        progress = create_progress_bar(import_size)
+
+        result = import.csv_rows.filter_map do |row|
+          domain = row['#domain'].strip
+
+          if DomainBlock.rule_for(domain).present?
+            progress.log pastel.yellow("Skipped existing domain block rule for: #{domain}")
+            progress.increment
+            next
+          end
+
+          domain_block = DomainBlock.new(domain: domain,
+                                         severity: row.fetch('#severity', :suspend),
+                                         reject_media: row.fetch('#reject_media', false),
+                                         reject_reports: row.fetch('#reject_reports', false),
+                                         private_comment: global_private_comment,
+                                         public_comment: row['#public_comment'],
+                                         obfuscate: row.fetch('#obfuscate', false))
+
+          if domain_block.invalid?
+            progress.log pastel.red("Error processing #{domain}: #{domain_block.errors.full_messages.join(', ')}")
+            progress.increment
+            next
+          end
+
+          begin
+            domain_block.save!
+            DomainBlockWorker.perform_async(domain_block.id)
+          rescue => e
+            progress.log pastel.red("Error processing #{item.id}: #{e}")
+          ensure
+            progress.increment
+            next domain_block
+          end
+        end
+
+        progress.stop
+
+        say("Imported #{result.length} domain blocks")
+      ensure
+        tmpfile.close
+        tmpfile.unlink
+      end
+    end
+  end
+
   class Domains < Base
+    desc 'blocklist SUBCOMMAND ...ARGS', 'Tools for working with domain blocklists'
+    subcommand 'blocklist', DomainBlocklist
+
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean

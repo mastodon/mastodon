@@ -733,6 +733,8 @@ GEM
       openssl (> 2.0)
       openssl-signature_algorithm (~> 1.0)
     tty-color (0.6.0)
+    tty-command (0.10.1)
+      pastel (~> 0.8)
     tty-cursor (0.7.1)
     tty-prompt (0.23.1)
       pastel (~> 0.8)
@@ -916,6 +918,7 @@ DEPENDENCIES
   strong_migrations (~> 0.8)
   test-prof
   thor (~> 1.2)
+  tty-command (~> 0.10)
   tty-prompt (~> 0.23)
   twitter-text (~> 3.1.0)
   tzinfo-data (~> 1.2023)
