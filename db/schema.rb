@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_10_123453) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_12_105620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -871,6 +871,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_10_123453) do
     t.string "url"
   end
 
+  create_table "relationship_severance_events", force: :cascade do |t|
+    t.integer "type", null: false
+    t.string "target_name", null: false
+    t.boolean "purged", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type", "target_name"], name: "index_relationship_severance_events_on_type_and_target_name"
+  end
+
   create_table "relays", force: :cascade do |t|
     t.string "inbox_url", default: "", null: false
     t.string "follow_activity_id"
@@ -948,6 +957,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_10_123453) do
     t.datetime "updated_at", precision: nil
     t.bigint "thing_id"
     t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
+  end
+
+  create_table "severed_relationships", force: :cascade do |t|
+    t.bigint "relationship_severance_event_id", null: false
+    t.bigint "local_account_id", null: false
+    t.bigint "remote_account_id", null: false
+    t.integer "direction", null: false
+    t.boolean "show_reblogs"
+    t.boolean "notify"
+    t.string "languages", array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["local_account_id", "relationship_severance_event_id"], name: "index_severed_relationships_on_local_account_and_event"
+    t.index ["relationship_severance_event_id", "local_account_id", "direction", "remote_account_id"], name: "index_severed_relationships_on_unique_tuples", unique: true
+    t.index ["remote_account_id"], name: "index_severed_relationships_on_remote_account_id"
   end
 
   create_table "site_uploads", force: :cascade do |t|
@@ -1320,6 +1344,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_10_123453) do
   add_foreign_key "scheduled_statuses", "accounts", on_delete: :cascade
   add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", name: "fk_957e5bda89", on_delete: :cascade
   add_foreign_key "session_activations", "users", name: "fk_e5fda67334", on_delete: :cascade
+  add_foreign_key "severed_relationships", "accounts", column: "local_account_id", on_delete: :cascade
+  add_foreign_key "severed_relationships", "accounts", column: "remote_account_id", on_delete: :cascade
+  add_foreign_key "severed_relationships", "relationship_severance_events", on_delete: :cascade
   add_foreign_key "status_edits", "accounts", on_delete: :nullify
   add_foreign_key "status_edits", "statuses", on_delete: :cascade
   add_foreign_key "status_pins", "accounts", name: "fk_d4cb435b62", on_delete: :cascade

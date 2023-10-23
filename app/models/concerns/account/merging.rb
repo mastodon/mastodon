@@ -48,6 +48,18 @@ module Account::Merging
       record.update_attribute(:account_warning_id, id)
     end
 
+    SeveredRelationship.where(local_account_id: other_account.id).reorder(nil).find_each do |record|
+      record.update_attribute(:local_account_id, id)
+    rescue ActiveRecord::RecordNotUnique
+      next
+    end
+
+    SeveredRelationship.where(remote_account_id: other_account.id).reorder(nil).find_each do |record|
+      record.update_attribute(:remote_account_id, id)
+    rescue ActiveRecord::RecordNotUnique
+      next
+    end
+
     # Some follow relationships have moved, so the cache is stale
     Rails.cache.delete_matched("followers_hash:#{id}:*")
     Rails.cache.delete_matched("relationships:#{id}:*")

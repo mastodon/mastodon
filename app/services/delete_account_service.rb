@@ -58,6 +58,8 @@ class DeleteAccountService < BaseService
     reports
     targeted_moderation_notes
     targeted_reports
+    severed_relationships
+    remote_severed_relationships
   ).freeze
 
   # Suspend or remove an account and remove as much of its data
