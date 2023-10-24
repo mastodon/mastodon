@@ -142,6 +142,7 @@ namespace :mastodon do
         rescue => e
           prompt.error 'Redis connection could not be established with this configuration, try again.'
           prompt.error e.message
+
           unless prompt.yes?('Try again?')
             return prompt.warn 'Nothing saved. Bye!' unless prompt.yes?('Continue anyway?')
 
@@ -432,6 +433,7 @@ namespace :mastodon do
         rescue => e
           prompt.error 'E-mail could not be sent with this configuration, try again.'
           prompt.error e.message
+
           unless prompt.yes?('Try again?')
             return prompt.warn 'Nothing saved. Bye!' unless prompt.yes?('Continue anyway?')
 

@@ -3,6 +3,8 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { withRouter } from 'react-router-dom';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
@@ -10,6 +12,7 @@ import { fetchTrendingHashtags } from 'mastodon/actions/trends';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const mapStateToProps = state => ({
   hashtags: state.getIn(['trends', 'tags', 'items']),
@@ -22,10 +25,17 @@ class Tags extends PureComponent {
     hashtags: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     dispatch: PropTypes.func.isRequired,
+    ...WithRouterPropTypes,
   };
 
   componentDidMount () {
-    const { dispatch } = this.props;
+    const { dispatch, history, hashtags } = this.props;
+
+    // If we're navigating back to the screen, do not trigger a reload
+    if (history.action === 'POP' && hashtags.size > 0) {
+      return;
+    }
+
     dispatch(fetchTrendingHashtags());
   }
 
@@ -63,4 +73,4 @@ class Tags extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(Tags);
+export default connect(mapStateToProps)(withRouter(Tags));
