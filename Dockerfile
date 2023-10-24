@@ -83,7 +83,7 @@ COPY . /opt/mastodon/
 
 # hadolint ignore=DL3008,DL3005
 RUN \
-# Mount Apt cache and lib directories as caches
+# Mount Apt cache and lib directories from Docker buildx caches
 --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
 --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
 # Apt update & upgrade to check for security updates to Debian image
@@ -117,11 +117,10 @@ COPY --from=node /usr/local/lib /usr/local/lib
 
 # hadolint ignore=DL3008
 RUN \
-# Mount Apt cache and lib directories as caches
+# Mount Apt cache and lib directories from Docker buildx caches
 --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
 --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
 # Install build tools and bundler dependencies from APT
-  # apt-get update; \
   apt-get install -y --no-install-recommends \
     g++ \
     gcc \
@@ -191,8 +190,6 @@ RUN \
 # Create temporary assets build layer from build layer
 FROM build as build-assets
 
-# Copy Mastodon source code to layer
-# COPY . /opt/mastodon/
 # Copy bundler and node packages from build layer to container
 COPY --from=build-bundler /opt/mastodon /opt/mastodon/
 COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
@@ -209,13 +206,13 @@ FROM ruby
 
 # hadolint ignore=DL3008
 RUN \
-# Mount Apt cache and lib directories as caches
+# Mount Apt cache and lib directories from Docker buildx caches
 --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
 --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+# Mount Corepack and Yarn caches from Docker buildx caches
 --mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
 --mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
 # Apt update install non-dev versions of necessary components
-  # apt-get update; \
   apt-get install -y --no-install-recommends \
     libssl3 \
     libpq5 \
@@ -225,20 +222,15 @@ RUN \
     libyaml-0-2 \
   ;
 
-# Copy Mastodon source code to container
-# COPY . /opt/mastodon/
 # Copy compiled assets to layer
 COPY --from=build-assets /opt/mastodon/public/packs /opt/mastodon/public/packs
 COPY --from=build-assets /opt/mastodon/public/assets /opt/mastodon/public/assets
-# Copy bundler components to run layer
+# Copy bundler components to layer
 COPY --from=build-bundler /opt/mastodon/ /opt/mastodon/
 COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
 
-# Copy output of the imagemagick into this image layer
-# COPY --link --from=build /opt/magick /opt/magick
-
 RUN \
-  # Test ImageMagick and ffmpeg availablity
+# Test ImageMagick and ffmpeg availablity
   convert -version; \
   ffmpeg -version; \
   ffprobe -version; \
