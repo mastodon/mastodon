@@ -13,6 +13,7 @@ import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import LinkFooter from 'mastodon/features/ui/components/link_footer';
+import { canManageReports, canViewAdminDashboard } from 'mastodon/permissions';
 
 import { me, showTrends } from '../../initial_state';
 import NavigationContainer from '../compose/containers/navigation_container';
@@ -31,6 +32,8 @@ const messages = defineMessages({
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  administration: { id: 'navigation_bar.administration', defaultMessage: 'Administration' },
+  moderation: { id: 'navigation_bar.moderation', defaultMessage: 'Moderation Reports' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
@@ -91,7 +94,7 @@ class GettingStarted extends ImmutablePureComponent {
 
   render () {
     const { intl, myAccount, multiColumn, unreadFollowRequests } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn, permissions } = this.context.identity;
 
     const navItems = [];
 
@@ -128,6 +131,13 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnSubheading key='header-settings' text={intl.formatMessage(messages.settings_subheading)} />,
         <ColumnLink key='preferences' icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
       );
+
+      if (canViewAdminDashboard(permissions)) {
+        navItems.push(<ColumnLink key='administration' href='/admin/dashboard' icon='tachometer' text={intl.formatMessage(messages.administration)} />);
+      }
+      if (canManageReports(permissions)) {
+        navItems.push(<ColumnLink key='moderation' href='/admin/reports' icon='flag' text={intl.formatMessage(messages.moderation)} />);
+      }
     }
 
     return (
