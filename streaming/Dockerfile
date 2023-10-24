@@ -73,14 +73,12 @@ RUN \
   if [ -e .yarnrc.yml ]; then \
     # Yarn 3 detected
     yarn workspaces focus --all --production; \
-    yarn cache clean; \
   elif [ -e pnpm-lock.yaml ]; then \
     # NPM detected
     pnpm install --frozen-lockfile --prod; \
   else \
     # Yarn 1 detected
     yarn install --pure-lockfile --production --network-timeout 600000; \
-    yarn cache clean; \
   fi;
 
 # Set the running user for resulting container
