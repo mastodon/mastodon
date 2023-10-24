@@ -5,7 +5,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   include Redisable
   include Lockable
 
-  def call(status, activity_json, object_json, request_id: nil, editor_id: nil)
+  def call(status, activity_json, object_json, request_id: nil, activity_account_id: nil)
     raise ArgumentError, 'Status has unsaved changes' if status.changed?
 
     @activity_json             = activity_json
@@ -17,7 +17,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @media_attachments_changed = false
     @poll_changed              = false
     @request_id                = request_id
-    @editor_id                 = editor_id
+    @activity_account_id       = activity_account_id
 
     # Only native types can be updated at the moment
     return @status if !expected_type? || already_updated_more_recently?
@@ -252,8 +252,11 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     return unless significant_changes?
 
     @previous_edit&.save!
-    account_id = @editor_id || @account.id
-    @status.snapshot!(account_id: account_id, rate_limit: false)
+    @status.snapshot!(account_id: editor_account_id, rate_limit: false)
+  end
+
+  def editor_account_id
+    @activity_account_id || @account.id
   end
 
   def skip_download?
