@@ -1,7 +1,7 @@
 //  This file will be loaded on settings pages, regardless of theme.
 
 import 'packs/public-path';
-import { delegate } from '@rails/ujs';
+import delegate from '@rails/ujs';
 
 delegate(document, '#edit_profile input[type=file]', 'change', ({ target }) => {
   const avatar = document.getElementById(target.id + '-preview');

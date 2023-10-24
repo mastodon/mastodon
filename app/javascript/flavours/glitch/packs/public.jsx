@@ -4,7 +4,7 @@ import { createRoot }  from 'react-dom/client';
 import { IntlMessageFormat } from 'intl-messageformat';
 import { defineMessages } from 'react-intl';
 
-import { delegate }  from '@rails/ujs';
+import delegate from '@rails/ujs';
 import axios from 'axios';
 import { createBrowserHistory }  from 'history';
 import { throttle } from 'lodash';

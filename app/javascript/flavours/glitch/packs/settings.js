@@ -1,5 +1,5 @@
 import 'packs/public-path';
-import { delegate }  from '@rails/ujs';
+import delegate from '@rails/ujs';
 
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
 import { loadPolyfills } from 'flavours/glitch/polyfills';
