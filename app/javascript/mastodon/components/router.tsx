@@ -32,7 +32,11 @@ function normalizePath(
 
   if (location.state === undefined && state !== undefined) {
     location.state = state;
-  } else if (location.state !== undefined && state !== undefined) {
+  } else if (
+    location.state !== undefined &&
+    state !== undefined &&
+    process.env.NODE_ENV === 'development'
+  ) {
     // eslint-disable-next-line no-console
     console.log(
       'You should avoid providing a 2nd state argument to push when the 1st argument is a location-like object that already has state; it is ignored',
