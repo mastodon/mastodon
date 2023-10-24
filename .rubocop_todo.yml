@@ -319,10 +319,6 @@ Rails/SkipsModelValidations:
     - 'app/workers/move_worker.rb'
     - 'app/workers/scheduler/ip_cleanup_scheduler.rb'
     - 'app/workers/scheduler/scheduled_statuses_scheduler.rb'
-    - 'db/migrate/20180528141303_fix_accounts_unique_index.rb'
-    - 'db/migrate/20180609104432_migrate_web_push_subscriptions2.rb'
-    - 'db/migrate/20181207011115_downcase_custom_emoji_domains.rb'
-    - 'db/migrate/20190511134027_add_silenced_at_suspended_at_to_accounts.rb'
     - 'db/migrate/20191007013357_update_pt_locales.rb'
     - 'db/migrate/20220316233212_update_kurdish_locales.rb'
     - 'db/post_migrate/20190511152737_remove_suspended_silenced_account_fields.rb'
@@ -387,8 +383,6 @@ Rails/WhereExists:
     - 'app/validators/reaction_validator.rb'
     - 'app/validators/vote_validator.rb'
     - 'app/workers/move_worker.rb'
-    - 'db/migrate/20190529143559_preserve_old_layout_for_existing_users.rb'
-    - 'lib/tasks/tests.rake'
     - 'spec/models/account_spec.rb'
     - 'spec/services/activitypub/process_collection_service_spec.rb'
     - 'spec/services/purge_domain_service_spec.rb'
@@ -497,7 +491,6 @@ Style/HashAsLastArrayItem:
     - 'app/models/status.rb'
     - 'app/services/batched_remove_status_service.rb'
     - 'app/services/notify_service.rb'
-    - 'db/migrate/20181024224956_migrate_account_conversations.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/HashTransformValues:
