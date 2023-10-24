@@ -35,12 +35,11 @@ RUN \
 
 # hadolint ignore=DL3008,DL3005
 RUN \
-# Apt update & upgrade to check for security updates to Debian image
-  apt-get update; \
-  apt-get dist-upgrade -yq; \
-# Cleanup Apt
-  rm -rf /var/lib/apt/lists/*; \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
+# Mount Apt cache and lib directories as caches
+--mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
+--mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+# upgrade to check for security updates to Debian image
+  apt-get dist-upgrade -yq;
 
 # Set /opt/mastodon as working directory
 WORKDIR /opt/mastodon
@@ -51,6 +50,8 @@ COPY package.json *yarn* *pnpm* /opt/mastodon/
 COPY ./streaming /opt/mastodon/streaming
 
 RUN \
+--mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
+--mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
   rm /usr/local/bin/yarn*; \
   corepack enable; \
   # Configure Corepack
@@ -66,6 +67,8 @@ RUN \
   fi;
 
 RUN \
+--mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
+--mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
 # Configure Node package manager
   if [ -e .yarnrc.yml ]; then \
     # Yarn 3 detected

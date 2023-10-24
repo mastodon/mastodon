@@ -83,6 +83,9 @@ COPY . /opt/mastodon/
 
 # hadolint ignore=DL3008,DL3005
 RUN \
+# Mount Apt cache and lib directories as caches
+--mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
+--mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
 # Apt update & upgrade to check for security updates to Debian image
   apt-get update; \
   apt-get dist-upgrade -yq; \
@@ -90,28 +93,21 @@ RUN \
   apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
+    ffmpeg \
     file \
+    imagemagick \
     libjemalloc2 \
     patchelf \
     procps \
     tini \
     tzdata \
   ; \
-# Install ffmpeg for video processing
-  apt-get update; \
-  apt-get install -y --no-install-recommends \
-    ffmpeg \
-    imagemagick \
-  ; \
 # Patch Ruby to use jemalloc
   patchelf --add-needed libjemalloc.so.2 /usr/local/bin/ruby; \
 # Discard patchelf after use
   apt-get purge -y \
     patchelf \
-  ; \
-# Cleanup Apt
-  rm -rf /var/lib/apt/lists/*; \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
+  ;
 
 # Create temporary build layer from base image
 FROM ruby as build
@@ -121,8 +117,11 @@ COPY --from=node /usr/local/lib /usr/local/lib
 
 # hadolint ignore=DL3008
 RUN \
+# Mount Apt cache and lib directories as caches
+--mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
+--mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
 # Install build tools and bundler dependencies from APT
-  apt-get update; \
+  # apt-get update; \
   apt-get install -y --no-install-recommends \
     g++ \
     gcc \
@@ -135,16 +134,13 @@ RUN \
     libssl-dev \
     make \
     shared-mime-info \
-    # yarn \
     zlib1g-dev \
-  ; \
-  rm -rf /var/lib/apt/lists/*; \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
+  ;
 
 RUN \
+# Configure Corepack
   rm /usr/local/bin/yarn*; \
   corepack enable; \
-  # Configure Corepack
   if [ -e .yarnrc.yml ]; then \
     # Yarn 3 detected
     corepack prepare --activate; \
@@ -160,6 +156,8 @@ RUN \
 FROM build as build-bundler
 
 RUN \
+# Mount Ruby Gem caches
+--mount=type=cache,id=gem-cache-${TARGETPLATFORM},target=/usr/local/bundle/cache/,sharing=locked \
 # Configure bundle to prevent changes to Gemfile and Gemfile.lock
   bundle config set --global frozen "true"; \
 # Configure bundle to not cache downloaded Gems
@@ -176,6 +174,8 @@ FROM build as build-node
 
 # hadolint ignore=DL3008
 RUN \
+--mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
+--mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
 # Configure Node package manager
   if [ -e .yarnrc.yml ]; then \
     # Yarn 3 detected
@@ -211,8 +211,13 @@ FROM ruby
 
 # hadolint ignore=DL3008
 RUN \
+# Mount Apt cache and lib directories as caches
+--mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
+--mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+--mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
+--mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
 # Apt update install non-dev versions of necessary components
-  apt-get update; \
+  # apt-get update; \
   apt-get install -y --no-install-recommends \
     libssl3 \
     libpq5 \
@@ -220,10 +225,7 @@ RUN \
     libidn12 \
     libreadline8 \
     libyaml-0-2 \
-  ; \
-# Cleanup Apt
-  rm -rf /var/lib/apt/lists/*; \
-  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
+  ;
 
 # Copy Mastodon source code to container
 # COPY . /opt/mastodon/
