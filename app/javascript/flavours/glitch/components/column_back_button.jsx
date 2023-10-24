@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
-class ColumnBackButton extends PureComponent {
+export class ColumnBackButton extends PureComponent {
 
   static propTypes = {
     multiColumn: PropTypes.bool,

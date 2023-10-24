@@ -35,7 +35,6 @@ class ColumnBackButtonSlim extends PureComponent {
       </div>
     );
   }
-
 }
 
 export default withRouter(ColumnBackButtonSlim);
