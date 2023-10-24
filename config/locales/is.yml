@@ -534,6 +534,7 @@ is:
       total_reported: Kærur um þá
       total_storage: Myndaviðhengi
       totals_time_period_hint_html: Samtölurnar sem birtar eru hér fyrir neðan innihalda gögn frá upphafi.
+      unknown_instance: Í augnablikinu er engin færsla um þetta lén á þessum netþjóni.
     invites:
       deactivate_all: Gera allt óvirkt
       filter:
@@ -1105,6 +1106,7 @@ is:
       functional: Notandaaðgangurinn þinn er með fulla virkni.
       pending: Umsóknin þín bíður eftir að starfsfólkið okkar fari yfir hana. Það gæti tekið nokkurn tíma. Þú munt fá tölvupóst ef umsóknin er samþykkt.
       redirecting_to: Notandaaðgangurinn þinn er óvirkur vegna þess að hann endurbeinist á %{acct}.
+      self_destruct: Þar sem %{domain} er að hætta starfsemi, muntu aðeins halda takmörkuðum aðgangi að aðgangnum þínum.
       view_strikes: Skoða fyrri bönn notandaaðgangsins þíns
     too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
     use_security_key: Nota öryggislykil
@@ -1574,6 +1576,9 @@ is:
     over_daily_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur fyrir þennan dag
     over_total_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur
     too_soon: Áætluð dagsetning verður að vera í framtíðinni
+  self_destruct:
+    lead_html: Því miður, <strong>%{domain}</strong> er að hætta starfsemi endanlega. Ef þú varst með aðgang þar, muntu ekki geta haldið áfram að nota hann, en þú getur áfram beðið um afrit af gögnunum þínum.
+    title: Þessi netþjónn er að hætta starfsemi
   sessions:
     activity: Síðasta virkni
     browser: Vafri

@@ -9,6 +9,10 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { ReactComponent as FindInPageIcon } from '@material-symbols/svg-600/outlined/find_in_page.svg';
+import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
+import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
+
 import { submitSearch, expandSearch } from 'mastodon/actions/search';
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { Icon } from 'mastodon/components/icon';
@@ -80,7 +84,7 @@ class Results extends PureComponent {
     }
 
     return null;
-  };
+  }
 
   handleSelectAll = () => {
     const { submittedType, dispatch } = this.props;
@@ -116,7 +120,7 @@ class Results extends PureComponent {
     }
 
     this.setState({ type: 'hashtags' });
-  }
+  };
 
   handleSelectStatuses = () => {
     const { submittedType, dispatch } = this.props;
@@ -128,7 +132,7 @@ class Results extends PureComponent {
     }
 
     this.setState({ type: 'statuses' });
-  }
+  };
 
   handleLoadMoreAccounts = () => this._loadMore('accounts');
   handleLoadMoreStatuses = () => this._loadMore('statuses');
@@ -165,19 +169,19 @@ class Results extends PureComponent {
       filteredResults = (accounts.size + hashtags.size + statuses.size) > 0 ? (
         <>
           {accounts.size > 0 && (
-            <SearchSection key='accounts' title={<><Icon id='users' fixedWidth /><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></>} onClickMore={this.handleLoadMoreAccounts}>
+            <SearchSection key='accounts' title={<><Icon id='users' icon={PeopleIcon} /><FormattedMessage id='search_results.accounts' defaultMessage='Profiles' /></>} onClickMore={this.handleLoadMoreAccounts}>
               {accounts.take(INITIAL_DISPLAY).map(id => <Account key={id} id={id} />)}
             </SearchSection>
           )}
 
           {hashtags.size > 0 && (
-            <SearchSection key='hashtags' title={<><Icon id='hashtag' fixedWidth /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></>} onClickMore={this.handleLoadMoreHashtags}>
+            <SearchSection key='hashtags' title={<><Icon id='hashtag' icon={TagIcon} /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></>} onClickMore={this.handleLoadMoreHashtags}>
               {hashtags.take(INITIAL_DISPLAY).map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
             </SearchSection>
           )}
 
           {statuses.size > 0 && (
-            <SearchSection key='statuses' title={<><Icon id='quote-right' fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></>} onClickMore={this.handleLoadMoreStatuses}>
+            <SearchSection key='statuses' title={<><Icon id='quote-right' icon={FindInPageIcon} /><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></>} onClickMore={this.handleLoadMoreStatuses}>
               {statuses.take(INITIAL_DISPLAY).map(id => <Status key={id} id={id} />)}
             </SearchSection>
           )}
@@ -204,7 +208,7 @@ class Results extends PureComponent {
           <button onClick={this.handleSelectStatuses} className={type === 'statuses' ? 'active' : undefined}><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></button>
         </div>
 
-        <div className='explore__search-results'>
+        <div className='explore__search-results' data-nosnippet>
           <ScrollableList
             scrollKey='search-results'
             isLoading={isLoading}

@@ -534,6 +534,7 @@ en:
       total_reported: Reports about them
       total_storage: Media attachments
       totals_time_period_hint_html: The totals displayed below include data for all time.
+      unknown_instance: There is currently no record of this domain on this server.
     invites:
       deactivate_all: Deactivate all
       filter:
@@ -1101,6 +1102,7 @@ en:
       functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
       redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
+      self_destruct: As %{domain} is closing down, you will only get limited access to your account.
       view_strikes: View past strikes against your account
     too_fast: Form submitted too fast, try again.
     use_security_key: Use security key
@@ -1571,6 +1573,9 @@ en:
     over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
     over_total_limit: You have exceeded the limit of %{limit} scheduled posts
     too_soon: The scheduled date must be in the future
+  self_destruct:
+    lead_html: Unfortunately, <strong>%{domain}</strong> is permanently closing down. If you had an account there, you will not be able to continue using it, but you can still request a backup of your data.
+    title: This server is closing down
   sessions:
     activity: Last activity
     browser: Browser

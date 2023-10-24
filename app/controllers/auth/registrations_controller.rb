@@ -17,6 +17,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :require_rules_acceptance!, only: :new
   before_action :set_registration_form_time, only: :new
 
+  skip_before_action :check_self_destruct!, only: [:edit, :update]
   skip_before_action :require_functional!, only: [:edit, :update]
 
   def new

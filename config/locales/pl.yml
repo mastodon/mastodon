@@ -556,6 +556,7 @@ pl:
       total_reported: Zgłoszenia dotyczące ich
       total_storage: Załączniki multimedialne
       totals_time_period_hint_html: Poniższe sumy zawierają dane od początku serwera.
+      unknown_instance: Obecnie ta domena jest nieznana na tym serwerze.
     invites:
       deactivate_all: Unieważnij wszystkie
       filter:
@@ -1137,6 +1138,7 @@ pl:
       functional: Twoje konto jest w pełni funkcjonalne.
       pending: Twoje zgłoszenie czeka na zatwierdzenie przez nas. Może to trochę potrwać. Jeżeli zgłoszenie zostanie przyjęte, otrzymasz wiadomość e-mail.
       redirecting_to: Twoje konto jest nieaktywne, ponieważ obecnie przekierowuje je na %{acct}.
+      self_destruct: "%{domain} jest zamykane, dostęp do konta będzie ograniczony."
       view_strikes: Zobacz dawne ostrzeżenia nałożone na twoje konto
     too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
     use_security_key: Użyj klucza bezpieczeństwa
@@ -1622,6 +1624,9 @@ pl:
     over_daily_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów na ten dzień
     over_total_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów
     too_soon: Zaplanowana data musi wypadać w przyszłości
+  self_destruct:
+    lead_html: Niestety, <strong>%{domain}</strong> jest permanentnie zamykane. Konta z tego serwera nie będą dostępne, ale można jeszcze odzyskać kopię zapasową danych.
+    title: Ten serwer jest zamykany
   sessions:
     activity: Ostatnia aktywność
     browser: Przeglądarka

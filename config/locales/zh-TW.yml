@@ -390,7 +390,7 @@ zh-TW:
       domain: 站點
       edit: 更改封鎖的站台
       existing_domain_block: 您已對 %{name} 施加更嚴格的限制。
-      existing_domain_block_html: 您已對 %{name} 施加更嚴格的限制，您需要先 <a href="%{unblock_url}">解除封鎖</a>。
+      existing_domain_block_html: 您已對 %{name} 施加更嚴格的限制，您需要先<a href="%{unblock_url}">解除封鎖</a>。
       export: 匯出
       import: 匯入
       new:
@@ -451,9 +451,7 @@ zh-TW:
         title: 匯入網域黑名單
       no_file: 尚未選擇檔案
     follow_recommendations:
-      description_html: |-
-        <strong>跟隨建議幫助新使用者們快速找到有趣的內容</strong>。當使用者沒有與其他帳號有足夠多的互動以建立個人化跟隨建議時，這些帳號將會被推薦。這些帳號將基於某選定語言之高互動和高本地跟隨者數量帳號而
-        每日重新更新。
+      description_html: "<strong>跟隨建議幫助新使用者們快速找到有趣的內容</strong>。當使用者沒有與其他帳號有足夠多的互動以建立個人化跟隨建議時，這些帳號將會被推薦。這些帳號將基於某選定語言之高互動和高本地跟隨者數量帳號而每日重新更新。"
       language: 對於語言
       status: 狀態
       suppress: 取消跟隨建議
@@ -525,6 +523,7 @@ zh-TW:
       total_reported: 關於他們的檢舉報告
       total_storage: 多媒體附加檔案
       totals_time_period_hint_html: 以下顯示之總和包含所有時間的資料。
+      unknown_instance: 此伺服器目前沒有這個網域的紀錄。
     invites:
       deactivate_all: 全部停用
       filter:
@@ -553,7 +552,7 @@ zh-TW:
     relays:
       add_new: 新增中繼站
       delete: 刪除
-      description_html: "<strong>聯邦中繼站</strong> 是種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦宇宙中探索內容</strong>，而無須本地使用者手動跟隨遠端伺服器的其他使用者。"
+      description_html: "<strong>聯邦中繼站</strong> 是種中繼伺服器，會於訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦宇宙中探索內容</strong>，而無須本地使用者手動跟隨遠端伺服器的其他使用者。"
       disable: 停用
       disabled: 停用
       enable: 啟用
@@ -580,7 +579,7 @@ zh-TW:
         mark_as_sensitive_description_html: 被檢舉的嘟文中的媒體將會被標記為敏感內容，並將會記錄一次警告，以協助您升級同一帳號未來的違規行為。
         other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
         resolve_description_html: 被檢舉的帳號將不被採取任何行動，不會加以刪除線標記，並且此份報告將被關閉。
-        silence_description_html: 此帳號僅會對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。關閉所有對此帳號之檢舉報告。
+        silence_description_html: 此帳號僅對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。關閉所有對此帳號之檢舉報告。
         suspend_description_html: 此帳號及其所有內容將不可被存取並且最終被移除，並且無法與之進行互動。三十天內可以撤銷此動作。關閉所有對此帳號之檢舉報告。
       actions_description_html: 決定應對此報告採取何種行動。若您對檢舉之帳號採取懲罰措施，則將對他們發送 e-mail 通知，如非選擇了 <strong>垃圾郵件</strong> 類別。
       actions_description_remote_html: 決定將對此檢舉報告採取何種動作。這將僅作用於<strong>您的伺服器</strong>與此遠端帳號及其內容之通訊行為。
@@ -988,9 +987,9 @@ zh-TW:
   aliases:
     add_new: 建立別名
     created_msg: 成功建立別名。您可以自舊帳號開始轉移。
-    deleted_msg: 成功移除別名。您將無法再由舊帳號轉移到目前的帳號。
+    deleted_msg: 成功移除別名。您將無法再由舊帳號轉移至目前的帳號。
     empty: 您目前沒有任何別名。
-    hint_html: 如果想由其他帳號轉移至此帳號，您可以在此處新增別名，稍後系統將容許您將跟隨者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
+    hint_html: 如果想由其他帳號轉移至此帳號，您可以於此處新增別名，稍後系統將容許您將跟隨者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
     remove: 取消連結別名
   appearance:
     advanced_web_interface: 進階網頁介面
@@ -999,7 +998,7 @@ zh-TW:
     confirmation_dialogs: 確認對話框
     discovery: 探索
     localization:
-      body: Mastodon 是由志願者翻譯的。
+      body: Mastodon 是由志願者所翻譯。
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每個人都能貢獻。
     sensitive_content: 敏感內容
@@ -1042,8 +1041,8 @@ zh-TW:
     log_in_with: 登入，使用
     login: 登入
     logout: 登出
-    migrate_account: 轉移到另一個帳號
-    migrate_account_html: 如果您希望引導他人跟隨另一個帳號，請 <a href="%{path}">到這裡設定</a>。
+    migrate_account: 轉移至另一個帳號
+    migrate_account_html: 如果您希望引導他人跟隨另一個帳號，請<a href="%{path}">至這裡設定</a>。
     or_log_in_with: 或透過其他方式登入
     privacy_policy_agreement_html: 我已閱讀且同意 <a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
     progress:
@@ -1072,10 +1071,10 @@ zh-TW:
       email_below_hint_html: 請檢查您的垃圾郵件資料夾，或是請求另一個。如果是錯的，您可以更正您的電子郵件地址。
       email_settings_hint_html: 請點擊我們寄給您連結以驗證 %{email}。我們將於此稍候。
       link_not_received: 無法取得連結嗎？
-      new_confirmation_instructions_sent: 您將會在幾分鐘之內收到新的包含確認連結的電子郵件！
+      new_confirmation_instructions_sent: 您將於幾分鐘之內收到新的包含確認連結的電子郵件！
       title: 請檢查您的收件匣
     sign_in:
-      preamble_html: 請使用您於 <strong>%{domain}</strong> 的帳號密碼登入。若您的帳號託管於其他伺服器，您將無法在此登入。
+      preamble_html: 請使用您於 <strong>%{domain}</strong> 的帳號密碼登入。若您的帳號託管於其他伺服器，您將無法於此登入。
       title: 登入 %{domain}
     sign_up:
       manual_review: "%{domain} 上的註冊由我們的管理員進行人工審核。為協助我們處理您的註冊，請寫一些關於您自己的資訊以及您想要在 %{domain} 上註冊帳號的原因。"
@@ -1084,9 +1083,10 @@ zh-TW:
     status:
       account_status: 帳號狀態
       confirming: 等待電子郵件確認完成。
-      functional: 您的帳號可以正常使用了。
+      functional: "您的帳號可以正常使用了。🎉"
       pending: 管管們正在處理您的申請，這可能需要一點時間處理。我們將於申請通過後以電子郵件方式通知您。
       redirecting_to: 您的帳號因目前重定向至 %{acct} 而被停用。
+      self_destruct: 由於 %{domain} 即將停止服務，您只能有限地存取您的帳號。
       view_strikes: 檢視針對您帳號過去的警示
     too_fast: 送出表單的速度太快跟不上，請稍後再試。
     use_security_key: 使用安全金鑰
@@ -1296,7 +1296,7 @@ zh-TW:
       following_html: 您將要 <strong>跟隨</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
       lists_html: 您將自 <strong>%{filename}</strong> 新增 <strong>%{total_items} 個帳號</strong>至您的<strong>列表</strong>。若不存在列表用以新增帳號，則會建立新列表。
       muting_html: 您將要 <strong>靜音</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
-    preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括跟隨的使用者、封鎖的使用者名單。
+    preface: 您能於此匯入您在其他伺服器所匯出的資料檔，包括跟隨中的使用者、封鎖的使用者名單等。
     recent_imports: 最近匯入的
     states:
       finished: 已完成
@@ -1410,7 +1410,7 @@ zh-TW:
       followers: 此動作將會將目前帳號的所有跟隨者轉移至新帳號
       only_redirect_html: 或者，您也可以<a href="%{path}">僅在您的個人檔案中設定重新導向</a>。
       other_data: 其他資料並不會自動轉移
-      redirect: 您目前的帳號將會在個人檔案頁面新增重新導向公告，並會被排除在搜尋結果之外
+      redirect: 您目前的帳號將於個人檔案頁面新增重新導向公告，並會被排除在搜尋結果之外
   moderation:
     title: 站務
   move_handler:
@@ -1499,9 +1499,7 @@ zh-TW:
     posting_defaults: 嘟文預設值
     public_timelines: 公開時間軸
   privacy:
-    hint_html: |-
-      <strong>自訂您希望如何讓您的個人檔案及嘟文被找到。</strong>
-      藉由啟用一系列 Mastodon 功能以幫助您觸及更廣的受眾。煩請花些時間確認您是否欲啟用這些設定。
+    hint_html: "<strong>自訂您希望如何讓您的個人檔案及嘟文被發現。</strong>藉由啟用一系列 Mastodon 功能以幫助您觸及更廣的受眾。煩請花些時間確認您是否欲啟用這些設定。"
     privacy: 隱私權
     privacy_hint_html: 控制您希望向其他人揭露之內容。人們透過瀏覽其他人的跟隨者與其發嘟之應用程式發現有趣的個人檔案和酷炫的 Mastodon 應用程式，但您能選擇將其隱藏。
     reach: 觸及
@@ -1550,6 +1548,9 @@ zh-TW:
     over_daily_limit: 您已經超過了本日排定發嘟的限額 (%{limit})
     over_total_limit: 您已經超過排程發嘟的限額 (%{limit})
     too_soon: 嘟文不可以改變過去哦，只能預定未來 (咦)
+  self_destruct:
+    lead_html: 很遺憾，<strong>%{domain}</strong> 即將永久停止服務。如果您於該伺服器擁有帳號，您將無法繼續使用它，但您仍然可以請求您的資料備份。
+    title: 這個伺服器即將停止服務
   sessions:
     activity: 最近活動
     browser: 瀏覽器
@@ -1665,7 +1666,7 @@ zh-TW:
     enabled: 自動刪除舊嘟文
     enabled_hint: 一旦達到指定的保存期限，就會自動刪除您的嘟文，除非該嘟文符合下列例外
     exceptions: 例外
-    explanation: 因為刪除嘟文是耗費資源的操作，當伺服器不那麼忙碌時才會慢慢完成。因此，您的嘟文會在到達保存期限後一段時間才會被刪除。
+    explanation: 因為刪除嘟文是耗費資源的操作，當伺服器不那麼忙碌時才會慢慢完成。因此，您的嘟文將於到達保存期限後一段時間才會被刪除。
     ignore_favs: 忽略最愛數
     ignore_reblogs: 忽略轉嘟數
     interaction_exceptions: 基於互動的例外規則

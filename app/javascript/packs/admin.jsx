@@ -2,7 +2,7 @@ import './public-path';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { delegate } from '@rails/ujs';
+import delegate from '@rails/ujs';
 
 import ready from '../mastodon/ready';
 

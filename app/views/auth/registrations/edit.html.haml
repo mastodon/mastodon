@@ -1,7 +1,11 @@
 - content_for :page_title do
   = t('settings.account_settings')
 
-= render 'status'
+- if self_destruct?
+  .flash-message.warning
+    = t('auth.status.self_destruct', domain: ENV.fetch('LOCAL_DOMAIN'))
+- else
+  = render partial: 'status', locals: { user: @user, strikes: @strikes }
 
 %h3= t('auth.security')
 
@@ -32,7 +36,7 @@
 
 = render partial: 'sessions', object: @sessions
 
-- unless current_account.suspended?
+- unless current_account.suspended? || self_destruct?
   %hr.spacer/
 
   %h3= t('auth.migrate_account')
