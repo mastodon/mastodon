@@ -70,8 +70,11 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation cannot be found).
-  config.i18n.fallbacks = true
+  # English when a translation cannot be found).
+  # This setting would typically be `true` to use the `I18n.default_locale`.
+  # Some locales are missing translation entries and would have errors:
+  # https://github.com/mastodon/mastodon/pull/24727
+  config.i18n.fallbacks = [:en]
 
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
