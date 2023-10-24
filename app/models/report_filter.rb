@@ -19,7 +19,7 @@ class ReportFilter
     scope = Report.unresolved
 
     params.each do |key, value|
-      scope = scope.merge scope_for(key, value), rewhere: true
+      scope = scope.merge scope_for(key, value)
     end
 
     scope

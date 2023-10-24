@@ -6,7 +6,7 @@ class DeliveryFailureTracker
   FAILURE_DAYS_THRESHOLD = 7
 
   def initialize(url_or_host)
-    @host = url_or_host.start_with?('https://') || url_or_host.start_with?('http://') ? Addressable::URI.parse(url_or_host).normalized_host : url_or_host
+    @host = url_or_host.start_with?('https://', 'http://') ? Addressable::URI.parse(url_or_host).normalized_host : url_or_host
   end
 
   def track_failure!
@@ -65,8 +65,13 @@ class DeliveryFailureTracker
       domains - UnavailableDomain.all.pluck(:domain)
     end
 
-    def warning_domains_map
-      warning_domains.index_with { |domain| redis.scard(exhausted_deliveries_key_by(domain)) }
+    def warning_domains_map(domains = nil)
+      if domains.nil?
+        warning_domains.index_with { |domain| redis.scard(exhausted_deliveries_key_by(domain)) }
+      else
+        domains -= UnavailableDomain.where(domain: domains).pluck(:domain)
+        domains.index_with { |domain| redis.scard(exhausted_deliveries_key_by(domain)) }.filter { |_, days| days.positive? }
+      end
     end
 
     private

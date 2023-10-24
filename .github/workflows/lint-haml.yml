@@ -1,0 +1,39 @@
+name: Haml Linting
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+      - 'renovate/**'
+    paths:
+      - '.github/workflows/haml-lint-problem-matcher.json'
+      - '.github/workflows/lint-haml.yml'
+      - '.haml-lint*.yml'
+      - '.rubocop*.yml'
+      - '.ruby-version'
+      - '**/*.haml'
+      - 'Gemfile*'
+
+  pull_request:
+    paths:
+      - '.github/workflows/haml-lint-problem-matcher.json'
+      - '.github/workflows/lint-haml.yml'
+      - '.haml-lint*.yml'
+      - '.rubocop*.yml'
+      - '.ruby-version'
+      - '**/*.haml'
+      - 'Gemfile*'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
+
+      - name: Run haml-lint
+        run: |
+          echo "::add-matcher::.github/workflows/haml-lint-problem-matcher.json"
+          bundle exec haml-lint

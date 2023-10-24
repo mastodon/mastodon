@@ -5,6 +5,7 @@ module TwoFactorAuthenticationConcern
 
   included do
     prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
+    helper_method :webauthn_enabled?
   end
 
   def two_factor_enabled?
@@ -57,10 +58,10 @@ module TwoFactorAuthenticationConcern
 
     if valid_webauthn_credential?(user, webauthn_credential)
       on_authentication_success(user, :webauthn)
-      render json: { redirect_path: after_sign_in_path_for(user) }, status: :ok
+      render json: { redirect_path: after_sign_in_path_for(user) }, status: 200
     else
       on_authentication_failure(user, :webauthn, :invalid_credential)
-      render json: { error: t('webauthn_credentials.invalid_credential') }, status: :unprocessable_entity
+      render json: { error: t('webauthn_credentials.invalid_credential') }, status: 422
     end
   end
 
@@ -75,18 +76,22 @@ module TwoFactorAuthenticationConcern
   end
 
   def prompt_for_two_factor(user)
-    set_attempt_session(user)
+    register_attempt_in_session(user)
 
     @body_classes     = 'lighter'
     @webauthn_enabled = user.webauthn_enabled?
-    @scheme_type      = begin
-      if user.webauthn_enabled? && user_params[:otp_attempt].blank?
-        'webauthn'
-      else
-        'totp'
-      end
-    end
+    @scheme_type      = if user.webauthn_enabled? && user_params[:otp_attempt].blank?
+                          'webauthn'
+                        else
+                          'totp'
+                        end
 
     set_locale { render :two_factor }
+  end
+
+  protected
+
+  def webauthn_enabled?
+    @webauthn_enabled
   end
 end

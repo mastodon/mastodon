@@ -3,10 +3,10 @@ fy:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Namme fan applikaasje
+        name: Tapassingsnamme
         redirect_uri: Redirect-URI
         scopes: Tastimmingen
-        website: Webstee fan applikaasje
+        website: Tapassingswebsite
     errors:
       models:
         doorkeeper/application:
@@ -15,7 +15,7 @@ fy:
               fragment_present: mei gjin fragmint befetsje.
               invalid_uri: moat in jildige URI wêze.
               relative_uri: moat in absolute URI wêze.
-              secured_uri: moat in HTTPS/SSL URI wêze.
+              secured_uri: moat in HTTPS/SSL-URI wêze.
   doorkeeper:
     applications:
       buttons:
@@ -38,12 +38,12 @@ fy:
         application: Tapassing
         callback_url: Callback-URL
         delete: Fuortsmite
-        empty: Do hast gjin tapassingen konfigurearre.
+        empty: Jo hawwe gjin tapassingen konfigurearre.
         name: Namme
         new: Nije tapassing
         scopes: Tastimmingen
         show: Toane
-        title: Dyn tapassingen
+        title: Jo tapassingen
       new:
         title: Nije tapassing
       show:
@@ -60,7 +60,7 @@ fy:
       error:
         title: Der is in flater bard
       new:
-        prompt_html: "%{client_name} hat tastimming nedich om tagong te krijen ta dyn account. It giet om in tapassing fan in tredde partij.<strong>Asto dit net fertroust, moatsto gjin tastimming jaan.</strong>"
+        prompt_html: "%{client_name} hat tastimming nedich om tagong te krijen ta jo account. It giet om in tapassing fan in tredde partij.<strong>As jo dit net fertrouwe, moatte jo gjin tastimming jaan.</strong>"
         review_permissions: Tastimmingen beoardiele
         title: Autorisaasje fereaske
       show:
@@ -69,15 +69,15 @@ fy:
       buttons:
         revoke: Ynlûke
       confirmations:
-        revoke: Bisto wis?
+        revoke: Binne jo wis?
       index:
         authorized_at: Autorisearre op %{date}
-        description_html: Dit binne tapassingen dy’t tagong hawwe ta dyn account fia de API. As der tapassingen tusken steane dy’tsto net werkenst of in tapassing harren misdraacht, kinsto de tagongsrjochten fan de tapassing ynlûke.
+        description_html: Dit binne tapassingen dy’t fia de API tagong hawwe ta jo account. As der tapassingen tusken steane dy’t jo net werkenne of in tapassing harren misdraacht, kinne jo de tagongsrjochten fan de tapassing ynlûke.
         last_used_at: Lêst brûkt op %{date}
         never_used: Nea brûkt
         scopes: Tastimmingen
         superapp: Yntern
-        title: Dyn autorisearre tapassingen
+        title: Jo autorisearre tapassingen
     errors:
       messages:
         access_denied: De boarne-eigener of autorisaasjeserver hat it fersyk wegere.
@@ -122,14 +122,14 @@ fy:
         admin/accounts: Accountbehear
         admin/all: Alle behearfunksjes
         admin/reports: Rapportaazjebehear
-        all: Alles
+        all: Folsleine tagong ta jo Mastodon-account
         blocks: Blokkearje
         bookmarks: Blêdwizers
         conversations: Petearen
         crypto: End-to-end-fersifering
         favourites: Favoriten
         filters: Filters
-        follow: Relaasjes
+        follow: Folgers, negearre en blokkearre brûkers
         follows: Folgjend
         lists: Listen
         media: Mediabylagen
@@ -149,37 +149,47 @@ fy:
     scopes:
       admin:read: alle gegevens op de server lêze
       admin:read:accounts: gefoelige ynformaasje fan alle accounts lêze
+      admin:read:canonical_email_blocks: lês gefoelige ynformaasje fan alle kanonike e-mailblokken
+      admin:read:domain_allows: lês gefoelige ynformaasje fan alle domeinen
+      admin:read:domain_blocks: lês gefoelige ynformaasje fan alle domeinblokken
+      admin:read:email_domain_blocks: lês gefoelige ynformaasje fan alle e-maildomeinblokken
+      admin:read:ip_blocks: lês gefoelige ynformaasje fan alle IP-blokken
       admin:read:reports: gefoelige ynformaasje fan alle rapportaazjes en rapportearre accounts lêze
       admin:write: wizigje alle gegevens op de server
       admin:write:accounts: moderaasjemaatregelen tsjin accounts nimme
+      admin:write:canonical_email_blocks: fier moderaasje-aksjes út op kanonike e-mailblokken
+      admin:write:domain_allows: fier moderaasje-aksjes út op domeintastimmingen
+      admin:write:domain_blocks: fier moderaasje-aksjes út op domeinblokkaden
+      admin:write:email_domain_blocks: fier moderaasje-aksjes út op e-maildomeinen
+      admin:write:ip_blocks: fier moderaasje-aksjes út op IP-adresblokken
       admin:write:reports: moderaasjemaatregelen nimme yn rapportaazjes
-      crypto: end-to-end-encryptie brûke
+      crypto: ein-ta-ein-fersifering brûke
       follow: relaasjes tusken accounts bewurkje
-      push: dyn pushmeldingen ûntfange
-      read: alle gegevens fan dyn account lêze
+      push: jo pushmeldingen ûntfange
+      read: alle gegevens fan jo account lêze
       read:accounts: accountynformaasje besjen
-      read:blocks: dyn blokkearre brûkers besjen
-      read:bookmarks: dyn blêdwizers besjen
-      read:favourites: dyn favoriten besjen
-      read:filters: dyn filters besjen
+      read:blocks: jo blokkearre brûkers besjen
+      read:bookmarks: jo blêdwizers besjen
+      read:favourites: jo favoriten besjen
+      read:filters: jo filters besjen
       read:follows: de accounts dy’tsto folgest besjen
-      read:lists: dyn listen besjen
-      read:mutes: dyn negearre brûkers besjen
-      read:notifications: dyn meldingen besjen
-      read:reports: dyn rapportearre berjochten besjen
-      read:search: út dyn namme sykje
+      read:lists: jo listen besjen
+      read:mutes: jo negearre brûkers besjen
+      read:notifications: jo meldingen besjen
+      read:reports: jo rapportearre berjochten besjen
+      read:search: út jo namme sykje
       read:statuses: alle berjochten besjen
-      write: alle gegevens fan dyn account bewurkje
-      write:accounts: dyn profyl bewurkje
+      write: alle gegevens fan jo account bewurkje
+      write:accounts: jo profyl bewurkje
       write:blocks: accounts en domeinen blokkearje
       write:bookmarks: berjochten oan blêdwizers tafoegje
       write:conversations: petearen negearre en fuortsmite
-      write:favourites: berjochten as favoryt markearje
+      write:favourites: favorite berjochten
       write:filters: filters oanmeitsje
       write:follows: minsken folgje
       write:lists: listen oanmeitsje
       write:media: mediabestannen oplade
-      write:mutes: minsken en petearen negearre
+      write:mutes: minsken en petearen dôvje
       write:notifications: meldingen fuortsmite
       write:reports: oare minsken rapportearje
       write:statuses: berjochten pleatse

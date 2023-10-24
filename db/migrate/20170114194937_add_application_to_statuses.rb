@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddApplicationToStatuses < ActiveRecord::Migration[5.0]
   def change
     add_column :statuses, :application_id, :int

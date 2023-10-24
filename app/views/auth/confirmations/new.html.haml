@@ -5,7 +5,7 @@
   = render 'shared/error_messages', object: resource
 
   .fields-group
-    = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.email'), input_html: { 'aria-label': t('simple_form.labels.defaults.email') }, hint: false
+    = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.email'), input_html: { 'aria-label': t('simple_form.labels.defaults.email') }, readonly: current_user.present?, hint: current_user.present? && t('auth.confirmations.wrong_email_hint')
 
   .actions
     = f.button :button, t('auth.resend_confirmation'), type: :submit

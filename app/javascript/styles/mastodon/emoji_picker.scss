@@ -71,7 +71,7 @@
 .emoji-mart-anchor-bar {
   position: absolute;
   bottom: -5px;
-  left: 0;
+  inset-inline-start: 0;
   width: 100%;
   height: 4px;
   background-color: $highlight-text-color;
@@ -106,7 +106,7 @@
 
 .emoji-mart-search {
   padding: 10px;
-  padding-right: 45px;
+  padding-inline-end: 45px;
   background: $simple-background-color;
   position: relative;
 
@@ -114,7 +114,7 @@
     font-size: 16px;
     font-weight: 400;
     padding: 7px 9px;
-    padding-right: 25px;
+    padding-inline-end: 25px;
     font-family: inherit;
     display: block;
     width: 100%;
@@ -142,7 +142,7 @@
 .emoji-mart-search-icon {
   position: absolute;
   top: 18px;
-  right: 45px + 5px;
+  inset-inline-end: 45px + 5px;
   z-index: 2;
   padding: 2px 5px 1px;
   border: 0;
@@ -174,10 +174,10 @@
 
   &:hover::before {
     z-index: -1;
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
-    left: 0;
+    inset-inline-start: 0;
     width: 100%;
     height: 100%;
     background-color: rgba($ui-secondary-color, 0.7);

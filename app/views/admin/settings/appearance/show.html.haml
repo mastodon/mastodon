@@ -1,6 +1,3 @@
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 - content_for :page_title do
   = t('admin.settings.appearance.title')
 
@@ -14,7 +11,7 @@
   %p.lead= t('admin.settings.appearance.preamble')
 
   .fields-group
-    = f.input :theme, collection: Themes.instance.names, label_method: lambda { |theme| I18n.t("themes.#{theme}", default: theme) }, wrapper: :with_label, include_blank: false
+    = f.input :theme, collection: Themes.instance.names, label_method: ->(theme) { I18n.t("themes.#{theme}", default: theme) }, wrapper: :with_label, include_blank: false
 
   .fields-group
     = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }

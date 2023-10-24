@@ -9,6 +9,10 @@ module FormattingHelper
     TextFormatter.new(text, options).to_s
   end
 
+  def url_for_preview_card(preview_card)
+    preview_card.url
+  end
+
   def extract_status_plain_text(status)
     PlainTextFormatter.new(status.text, status.local?).to_s
   end
@@ -21,21 +25,26 @@ module FormattingHelper
   def rss_status_content_format(status)
     html = status_content_format(status)
 
-    before_html = begin
-      if status.spoiler_text?
-        "<p><strong>#{I18n.t('rss.content_warning', locale: available_locale_or_nil(status.language) || I18n.default_locale)}</strong> #{h(status.spoiler_text)}</p><hr />"
-      else
-        ''
-      end
-    end.html_safe # rubocop:disable Rails/OutputSafety
+    before_html = if status.spoiler_text?
+                    tag.p do
+                      tag.strong do
+                        I18n.t('rss.content_warning', locale: available_locale_or_nil(status.language) || I18n.default_locale)
+                      end
 
-    after_html = begin
-      if status.preloadable_poll
-        "<p>#{status.preloadable_poll.options.map { |o| "<input type=#{status.preloadable_poll.multiple? ? 'checkbox' : 'radio'} disabled /> #{h(o)}" }.join('<br />')}</p>"
-      else
-        ''
-      end
-    end.html_safe # rubocop:disable Rails/OutputSafety
+                      status.spoiler_text
+                    end + tag.hr
+                  end
+
+    after_html = if status.preloadable_poll
+                   tag.p do
+                     safe_join(
+                       status.preloadable_poll.options.map do |o|
+                         tag.send(status.preloadable_poll.multiple? ? 'checkbox' : 'radio', o, disabled: true)
+                       end,
+                       tag.br
+                     )
+                   end
+                 end
 
     prerender_custom_emojis(
       safe_join([before_html, html, after_html]),
@@ -49,6 +58,10 @@ module FormattingHelper
   end
 
   def account_field_value_format(field, with_rel_me: true)
-    html_aware_format(field.value, field.account.local?, with_rel_me: with_rel_me, with_domains: true, multiline: false)
+    if field.verified? && !field.account.local?
+      TextFormatter.shortened_link(field.value_for_verification)
+    else
+      html_aware_format(field.value, field.account.local?, with_rel_me: with_rel_me, with_domains: true, multiline: false)
+    end
   end
 end

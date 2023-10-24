@@ -1,20 +1,21 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UnsuspendAccountService, type: :service do
-  shared_examples 'common behavior' do
+  shared_context 'with common context' do
+    subject { described_class.new.call(account) }
+
     let!(:local_follower) { Fabricate(:user, current_sign_in_at: 1.hour.ago).account }
     let!(:list)           { Fabricate(:list, account: local_follower) }
 
-    subject { described_class.new.call(account) }
-
     before do
-      allow(FeedManager.instance).to receive(:merge_into_home).and_return(nil)
-      allow(FeedManager.instance).to receive(:merge_into_list).and_return(nil)
+      allow(FeedManager.instance).to receive_messages(merge_into_home: nil, merge_into_list: nil)
 
       local_follower.follow!(account)
       list.accounts << account
 
-      account.suspend!(origin: :local)
+      account.unsuspend!
     end
   end
 
@@ -30,14 +31,14 @@ RSpec.describe UnsuspendAccountService, type: :service do
       stub_request(:post, 'https://bob.com/inbox').to_return(status: 201)
     end
 
-    it 'marks account as unsuspended' do
-      expect { subject }.to change { account.suspended? }.from(true).to(false)
+    it 'does not change the “suspended” flag' do
+      expect { subject }.to_not change(account, :suspended?)
     end
 
-    include_examples 'common behavior' do
+    include_examples 'with common context' do
       let!(:account)         { Fabricate(:account) }
-      let!(:remote_follower) { Fabricate(:account, uri: 'https://alice.com', inbox_url: 'https://alice.com/inbox', protocol: :activitypub) }
-      let!(:remote_reporter) { Fabricate(:account, uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
+      let!(:remote_follower) { Fabricate(:account, uri: 'https://alice.com', inbox_url: 'https://alice.com/inbox', protocol: :activitypub, domain: 'alice.com') }
+      let!(:remote_reporter) { Fabricate(:account, uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
       let!(:report)          { Fabricate(:report, account: remote_reporter, target_account: account) }
 
       before do
@@ -59,9 +60,9 @@ RSpec.describe UnsuspendAccountService, type: :service do
   end
 
   describe 'unsuspending a remote account' do
-    include_examples 'common behavior' do
+    include_examples 'with common context' do
       let!(:account)                 { Fabricate(:account, domain: 'bob.com', uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
-      let!(:resolve_account_service) { double }
+      let!(:resolve_account_service) { instance_double(ResolveAccountService) }
 
       before do
         allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service)
@@ -83,8 +84,8 @@ RSpec.describe UnsuspendAccountService, type: :service do
           expect(FeedManager.instance).to have_received(:merge_into_list).with(account, list)
         end
 
-        it 'marks account as unsuspended' do
-          expect { subject }.to change { account.suspended? }.from(true).to(false)
+        it 'does not change the “suspended” flag' do
+          expect { subject }.to_not change(account, :suspended?)
         end
       end
 
@@ -107,8 +108,8 @@ RSpec.describe UnsuspendAccountService, type: :service do
           expect(FeedManager.instance).to_not have_received(:merge_into_list).with(account, list)
         end
 
-        it 'does not mark the account as unsuspended' do
-          expect { subject }.not_to change { account.suspended? }
+        it 'marks account as suspended' do
+          expect { subject }.to change(account, :suspended?).from(false).to(true)
         end
       end
 

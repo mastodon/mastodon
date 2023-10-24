@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Admin::InstancesController, type: :controller do
+RSpec.describe Admin::InstancesController do
   render_views
 
   let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
-  let!(:account)     { Fabricate(:account, domain: 'popular') }
-  let!(:account2)    { Fabricate(:account, domain: 'popular') }
-  let!(:account3)    { Fabricate(:account, domain: 'less.popular') }
+  let!(:account_popular_main) { Fabricate(:account, domain: 'popular') }
+  let!(:account_popular_other) { Fabricate(:account, domain: 'popular') }
+  let!(:account_less_popular) { Fabricate(:account, domain: 'less.popular') }
 
   before do
     sign_in current_user, scope: :user
@@ -32,6 +34,63 @@ RSpec.describe Admin::InstancesController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    it 'shows an instance page' do
+      get :show, params: { id: account_popular_main.domain }
+
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'POST #clear_delivery_errors' do
+    let(:tracker) { instance_double(DeliveryFailureTracker, clear_failures!: true) }
+
+    before { allow(DeliveryFailureTracker).to receive(:new).and_return(tracker) }
+
+    it 'clears instance delivery errors' do
+      post :clear_delivery_errors, params: { id: account_popular_main.domain }
+
+      expect(response).to redirect_to(admin_instance_path(account_popular_main.domain))
+      expect(tracker).to have_received(:clear_failures!)
+    end
+  end
+
+  describe 'POST #restart_delivery' do
+    let(:tracker) { instance_double(DeliveryFailureTracker, track_success!: true) }
+
+    before { allow(DeliveryFailureTracker).to receive(:new).and_return(tracker) }
+
+    context 'with an unavailable instance' do
+      before { Fabricate(:unavailable_domain, domain: account_popular_main.domain) }
+
+      it 'tracks success on the instance' do
+        post :restart_delivery, params: { id: account_popular_main.domain }
+
+        expect(response).to redirect_to(admin_instance_path(account_popular_main.domain))
+        expect(tracker).to have_received(:track_success!)
+      end
+    end
+
+    context 'with an available instance' do
+      it 'does not track success on the instance' do
+        post :restart_delivery, params: { id: account_popular_main.domain }
+
+        expect(response).to redirect_to(admin_instance_path(account_popular_main.domain))
+        expect(tracker).to_not have_received(:track_success!)
+      end
+    end
+  end
+
+  describe 'POST #stop_delivery' do
+    it 'clears instance delivery errors' do
+      expect do
+        post :stop_delivery, params: { id: account_popular_main.domain }
+      end.to change(UnavailableDomain, :count).by(1)
+
+      expect(response).to redirect_to(admin_instance_path(account_popular_main.domain))
+    end
+  end
+
   describe 'DELETE #destroy' do
     subject { delete :destroy, params: { id: Instance.first.id } }
 
@@ -42,7 +101,7 @@ RSpec.describe Admin::InstancesController, type: :controller do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
       it 'succeeds in purging instance' do
-        is_expected.to redirect_to admin_instances_path
+        expect(subject).to redirect_to admin_instances_path
       end
     end
 
@@ -50,7 +109,7 @@ RSpec.describe Admin::InstancesController, type: :controller do
       let(:role) { nil }
 
       it 'fails to purge instance' do
-        is_expected.to have_http_status :forbidden
+        expect(subject).to have_http_status 403
       end
     end
   end

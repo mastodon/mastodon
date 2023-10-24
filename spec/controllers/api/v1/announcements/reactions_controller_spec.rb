@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
+RSpec.describe Api::V1::Announcements::ReactionsController do
   render_views
 
   let(:user)   { Fabricate(:user) }
@@ -15,7 +15,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
     context 'without token' do
       it 'returns http unauthorized' do
         put :update, params: { announcement_id: announcement.id, id: '😂' }
-        expect(response).to have_http_status :unauthorized
+        expect(response).to have_http_status 401
       end
     end
 
@@ -25,11 +25,8 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
         put :update, params: { announcement_id: announcement.id, id: '😂' }
       end
 
-      it 'returns http success' do
+      it 'creates reaction', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'creates reaction' do
         expect(announcement.announcement_reactions.find_by(name: '😂', account: user.account)).to_not be_nil
       end
     end
@@ -43,7 +40,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
     context 'without token' do
       it 'returns http unauthorized' do
         delete :destroy, params: { announcement_id: announcement.id, id: '😂' }
-        expect(response).to have_http_status :unauthorized
+        expect(response).to have_http_status 401
       end
     end
 
@@ -53,11 +50,8 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :controller do
         delete :destroy, params: { announcement_id: announcement.id, id: '😂' }
       end
 
-      it 'returns http success' do
+      it 'creates reaction', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'creates reaction' do
         expect(announcement.announcement_reactions.find_by(name: '😂', account: user.account)).to be_nil
       end
     end

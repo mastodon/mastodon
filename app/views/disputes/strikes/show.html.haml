@@ -21,51 +21,7 @@
 
 .report-header
   .report-header__card
-    .strike-card
-      - unless @strike.none_action?
-        %p= t "user_mailer.warning.explanation.#{@strike.action}", instance: Rails.configuration.x.local_domain
-
-      - unless @strike.text.blank?
-        = linkify(@strike.text)
-
-      - if @strike.report && !@strike.report.other?
-        %p
-          %strong= t('user_mailer.warning.reason')
-          = t("user_mailer.warning.categories.#{@strike.report.category}")
-
-        - if @strike.report.violation? && @strike.report.rule_ids.present?
-          %ul.strike-card__rules
-            - @strike.report.rules.each do |rule|
-              %li
-                %span.strike-card__rules__text= rule.text
-
-      - if @strike.status_ids.present? && !@strike.status_ids.empty?
-        %p
-          %strong= t('user_mailer.warning.statuses')
-
-        .strike-card__statuses-list
-          - status_map = @strike.statuses.includes(:application, :media_attachments).index_by(&:id)
-
-          - @strike.status_ids.each do |status_id|
-            .strike-card__statuses-list__item
-              - if (status = status_map[status_id.to_i])
-                .one-liner
-                  = link_to short_account_status_url(@strike.target_account, status_id), class: 'emojify' do
-                    = one_line_preview(status)
-
-                    - status.ordered_media_attachments.each do |media_attachment|
-                      %abbr{ title: media_attachment.description }
-                        = fa_icon 'link'
-                        = media_attachment.file_file_name
-                .strike-card__statuses-list__item__meta
-                  %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
-                  - unless status.application.nil?
-                    ·
-                    = status.application.name
-              - else
-                .one-liner= t('disputes.strikes.status', id: status_id)
-                .strike-card__statuses-list__item__meta
-                  = t('disputes.strikes.status_removed')
+    = render 'card', strike: @strike
 
   .report-header__details
     .report-header__details__item
@@ -110,11 +66,8 @@
       .report-notes__item__header
         %span.username
           = link_to @appeal.account.username, can?(:show, @appeal.account) ? admin_account_path(@appeal.account_id) : short_account_url(@appeal.account)
-        %time{ datetime: @appeal.created_at.iso8601, title: l(@appeal.created_at) }
-          - if @appeal.created_at.today?
-            = t('admin.report_notes.today_at', time: l(@appeal.created_at, format: :time))
-          - else
-            = l @appeal.created_at.to_date
+        %time.relative-formatted{ datetime: @appeal.created_at.iso8601 }
+          = l @appeal.created_at.to_date
 
       .report-notes__item__content
         = simple_format(h(@appeal.text))

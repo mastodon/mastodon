@@ -1,1 +1,55 @@
+---
 an:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Vencimiento
+        options: Opcions
+      user:
+        agreement: Acuerdo de Servicio
+        email: Adreza de correu electronico
+        locale: Idioma
+        password: Clau
+      user/account:
+        username: Nombre d'usuario
+      user/invite_request:
+        text: Razón
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: nomás puede contener letras, numeros y guions baixos
+              reserved: ye reservau
+        admin/webhook:
+          attributes:
+            url:
+              invalid: no ye una URL valida
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: no ye una URL valida
+        import:
+          attributes:
+            data:
+              malformed: tiene un formato incorrecto
+        status:
+          attributes:
+            reblog:
+              taken: d'o estau ya existe
+        user:
+          attributes:
+            email:
+              blocked: utiliza un furnidor de correu no autorizau
+              unreachable: no pareixe existir
+            role_id:
+              elevated: no puede estar mayor que lo tuyo rol actual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: incluyir permisos que no son seguros pa lo rol base
+              elevated: no se pueden incluyir permisos que lo tuyo rol actual no poseiga
+              own_role: no se puede cambiar con o tuyo rol actual
+            position:
+              elevated: no puede estar mayor que lo tuyo rol actual
+              own_role: no se puede cambiar con o tuyo rol actual

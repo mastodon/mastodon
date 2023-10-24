@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Settings::DeletesController do
@@ -9,19 +11,26 @@ describe Settings::DeletesController do
 
       before do
         sign_in user, scope: :user
+        get :show
       end
 
       it 'renders confirmation page' do
-        get :show
         expect(response).to have_http_status(200)
+      end
+
+      it 'returns private cache control headers' do
+        expect(response.headers['Cache-Control']).to include('private, no-store')
       end
 
       context 'when suspended' do
         let(:user) { Fabricate(:user, account_attributes: { suspended_at: Time.now.utc }) }
 
         it 'returns http forbidden' do
-          get :show
           expect(response).to have_http_status(403)
+        end
+
+        it 'returns private cache control headers' do
+          expect(response.headers['Cache-Control']).to include('private, no-store')
         end
       end
     end

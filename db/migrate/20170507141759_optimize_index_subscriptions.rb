@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OptimizeIndexSubscriptions < ActiveRecord::Migration[5.0]
   def up
     add_index :subscriptions, [:account_id, :callback_url], unique: true

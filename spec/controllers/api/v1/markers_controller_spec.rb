@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Api::V1::MarkersController, type: :controller do
+RSpec.describe Api::V1::MarkersController do
   render_views
 
   let!(:user)  { Fabricate(:user) }
@@ -16,13 +18,10 @@ RSpec.describe Api::V1::MarkersController, type: :controller do
       get :index, params: { timeline: %w(home notifications) }
     end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(200)
-    end
-
-    it 'returns markers' do
+    it 'returns markers', :aggregate_failures do
       json = body_as_json
 
+      expect(response).to have_http_status(200)
       expect(json.key?(:home)).to be true
       expect(json[:home][:last_read_id]).to eq '123'
       expect(json.key?(:notifications)).to be true
@@ -36,13 +35,10 @@ RSpec.describe Api::V1::MarkersController, type: :controller do
         post :create, params: { home: { last_read_id: '69420' } }
       end
 
-      it 'returns http success' do
+      it 'creates a marker', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'creates a marker' do
         expect(user.markers.first.timeline).to eq 'home'
-        expect(user.markers.first.last_read_id).to eq 69420
+        expect(user.markers.first.last_read_id).to eq 69_420
       end
     end
 
@@ -52,13 +48,10 @@ RSpec.describe Api::V1::MarkersController, type: :controller do
         post :create, params: { home: { last_read_id: '70120' } }
       end
 
-      it 'returns http success' do
+      it 'updates a marker', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'updates a marker' do
         expect(user.markers.first.timeline).to eq 'home'
-        expect(user.markers.first.last_read_id).to eq 70120
+        expect(user.markers.first.last_read_id).to eq 70_120
       end
     end
   end

@@ -1,6 +1,3 @@
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 - content_for :page_title do
   = "##{@tag.display_name}"
 
@@ -12,7 +9,7 @@
 
   .dashboard
     .dashboard__item
-      = react_admin_component :counter, measure: 'tag_accounts', start_at: @time_period.first, end_at: @time_period.last, params: { id: @tag.id }, label: t('admin.trends.tags.dashboard.tag_accounts_measure'), href: tag_url(@tag), target: '_blank'
+      = react_admin_component :counter, measure: 'tag_accounts', start_at: @time_period.first, end_at: @time_period.last, params: { id: @tag.id }, label: t('admin.trends.tags.dashboard.tag_accounts_measure'), href: tag_url(@tag), target: '_blank', rel: 'noopener noreferrer'
     .dashboard__item
       = react_admin_component :counter, measure: 'tag_uses', start_at: @time_period.first, end_at: @time_period.last, params: { id: @tag.id }, label: t('admin.trends.tags.dashboard.tag_uses_measure')
     .dashboard__item

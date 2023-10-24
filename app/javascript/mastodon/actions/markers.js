@@ -1,7 +1,9 @@
-import api from '../api';
-import { debounce } from 'lodash';
-import compareId from '../compare_id';
 import { List as ImmutableList } from 'immutable';
+
+import { debounce } from 'lodash';
+
+import api from '../api';
+import { compareId } from '../compare_id';
 
 export const MARKERS_FETCH_REQUEST = 'MARKERS_FETCH_REQUEST';
 export const MARKERS_FETCH_SUCCESS = 'MARKERS_FETCH_SUCCESS';
@@ -55,7 +57,7 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
     client.open('POST', '/api/v1/markers', false);
     client.setRequestHeader('Content-Type', 'application/json');
     client.setRequestHeader('Authorization', `Bearer ${accessToken}`);
-    client.SUBMIT(JSON.stringify(params));
+    client.send(JSON.stringify(params));
   } catch (e) {
     // Do not make the BeforeUnload handler error out
   }
@@ -101,7 +103,7 @@ export function submitMarkersSuccess({ home, notifications }) {
     home: (home || {}).last_read_id,
     notifications: (notifications || {}).last_read_id,
   };
-};
+}
 
 export function submitMarkers(params = {}) {
   const result = (dispatch, getState) => debouncedSubmitMarkers(dispatch, getState);
@@ -111,7 +113,7 @@ export function submitMarkers(params = {}) {
   }
 
   return result;
-};
+}
 
 export const fetchMarkers = () => (dispatch, getState) => {
   const params = { timeline: ['notifications'] };
@@ -130,7 +132,7 @@ export function fetchMarkersRequest() {
     type: MARKERS_FETCH_REQUEST,
     skipLoading: true,
   };
-};
+}
 
 export function fetchMarkersSuccess(markers) {
   return {
@@ -138,7 +140,7 @@ export function fetchMarkersSuccess(markers) {
     markers,
     skipLoading: true,
   };
-};
+}
 
 export function fetchMarkersFail(error) {
   return {
@@ -147,4 +149,4 @@ export function fetchMarkersFail(error) {
     skipLoading: true,
     skipAlert: true,
   };
-};
+}

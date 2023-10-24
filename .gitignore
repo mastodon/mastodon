@@ -31,9 +31,6 @@
 # Ignore Vagrant files
 .vagrant/
 
-# Ignore Capistrano customizations
-/config/deploy/*
-
 # Ignore IDE files
 .vscode/
 .idea/
@@ -43,12 +40,6 @@
 /postgres14
 /redis
 /elasticsearch
-
-# ignore Helm charts
-/chart/*.tgz
-
-# ignore Helm dependency charts
-/chart/charts/*.tgz
 
 # Ignore Apple files
 .DS_Store

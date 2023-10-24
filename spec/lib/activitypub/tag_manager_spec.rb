@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::TagManager do
@@ -137,7 +139,7 @@ RSpec.describe ActivityPub::TagManager do
     end
 
     it 'returns the remote account by matching URI without fragment part' do
-      account = Fabricate(:account, uri: 'https://example.com/123')
+      account = Fabricate(:account, uri: 'https://example.com/123', domain: 'example.com')
       expect(subject.uri_to_resource('https://example.com/123#456', Account)).to eq account
     end
 

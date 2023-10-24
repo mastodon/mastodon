@@ -1,23 +1,40 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Admin::Disputes::AppealsController, type: :controller do
+RSpec.describe Admin::Disputes::AppealsController do
   render_views
 
-  before { sign_in current_user, scope: :user }
+  before do
+    sign_in current_user, scope: :user
+
+    target_account.suspend!
+  end
 
   let(:target_account) { Fabricate(:account) }
   let(:strike) { Fabricate(:account_warning, target_account: target_account, action: :suspend) }
   let(:appeal) { Fabricate(:appeal, strike: strike, account: target_account) }
 
-  before do
-    target_account.suspend!
+  describe 'GET #index' do
+    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+
+    before { appeal }
+
+    it 'returns a page that lists details of appeals' do
+      get :index
+
+      expect(response).to have_http_status(:success)
+      expect(response.body).to include("<span class=\"username\">#{strike.account.username}</span>")
+      expect(response.body).to include("<span class=\"target\">#{appeal.account.username}</span>")
+    end
   end
 
   describe 'POST #approve' do
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
     before do
-      allow(UserMailer).to receive(:appeal_approved).and_return(double('email', deliver_later: nil))
+      allow(UserMailer).to receive(:appeal_approved)
+        .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later: nil))
       post :approve, params: { id: appeal.id }
     end
 
@@ -38,7 +55,8 @@ RSpec.describe Admin::Disputes::AppealsController, type: :controller do
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
     before do
-      allow(UserMailer).to receive(:appeal_rejected).and_return(double('email', deliver_later: nil))
+      allow(UserMailer).to receive(:appeal_rejected)
+        .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later: nil))
       post :reject, params: { id: appeal.id }
     end
 
