@@ -17,7 +17,7 @@ import { AnimatedNumber } from 'flavours/glitch/components/animated_number';
 import { Icon } from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import EmojiPickerDropdown from 'flavours/glitch/features/compose/containers/emoji_picker_dropdown_container';
-import unicodeMapping from 'flavours/glitch/features/emoji/emoji_unicode_mapping_light';
+import { unicodeMapping } from 'flavours/glitch/features/emoji/emoji_unicode_mapping_light';
 import { autoPlayGif, reduceMotion, disableSwiping, mascot } from 'flavours/glitch/initial_state';
 import { assetHost } from 'flavours/glitch/utils/config';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
