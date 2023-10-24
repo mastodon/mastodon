@@ -73,7 +73,7 @@
 
   %hr.spacer/
 
-  - if @account.user&.invite_request&.text&.present?
+  - if @account.user&.invite_request&.text.present?
     .speech-bubble
       .speech-bubble__bubble
         = @account.user&.invite_request&.text
