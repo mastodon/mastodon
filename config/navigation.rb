@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
 SimpleNavigation::Configuration.run do |navigation|
+  self_destruct = SelfDestructHelper.self_destruct?
+
   navigation.items do |n|
     n.item :web, safe_join([fa_icon('chevron-left fw'), t('settings.back')]), root_path
 
     n.item :software_updates, safe_join([fa_icon('exclamation-circle fw'), t('admin.critical_update_pending')]), admin_software_updates_path, if: -> { ENV['UPDATE_CHECK_URL'] != '' && current_user.can?(:view_devops) && SoftwareUpdate.urgent_pending? }, html: { class: 'warning' }
 
-    n.item :profile, safe_join([fa_icon('user fw'), t('settings.profile')]), settings_profile_path, if: -> { current_user.functional? }, highlights_on: %r{/settings/profile|/settings/featured_tags|/settings/verification|/settings/privacy}
+    n.item :profile, safe_join([fa_icon('user fw'), t('settings.profile')]), settings_profile_path, if: -> { current_user.functional? && !self_destruct }, highlights_on: %r{/settings/profile|/settings/featured_tags|/settings/verification|/settings/privacy}
 
-    n.item :preferences, safe_join([fa_icon('cog fw'), t('settings.preferences')]), settings_preferences_path, if: -> { current_user.functional? } do |s|
+    n.item :preferences, safe_join([fa_icon('cog fw'), t('settings.preferences')]), settings_preferences_path, if: -> { current_user.functional? && !self_destruct } do |s|
       s.item :appearance, safe_join([fa_icon('desktop fw'), t('settings.appearance')]), settings_preferences_appearance_path
       s.item :notifications, safe_join([fa_icon('bell fw'), t('settings.notifications')]), settings_preferences_notifications_path
       s.item :other, safe_join([fa_icon('cog fw'), t('preferences.other')]), settings_preferences_other_path
@@ -20,31 +22,31 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
-    n.item :relationships, safe_join([fa_icon('users fw'), t('settings.relationships')]), relationships_path, if: -> { current_user.functional? }
-    n.item :filters, safe_join([fa_icon('filter fw'), t('filters.index.title')]), filters_path, highlights_on: %r{/filters}, if: -> { current_user.functional? }
-    n.item :statuses_cleanup, safe_join([fa_icon('history fw'), t('settings.statuses_cleanup')]), statuses_cleanup_path, if: -> { current_user.functional_or_moved? }
+    n.item :relationships, safe_join([fa_icon('users fw'), t('settings.relationships')]), relationships_path, if: -> { current_user.functional? && !self_destruct }
+    n.item :filters, safe_join([fa_icon('filter fw'), t('filters.index.title')]), filters_path, highlights_on: %r{/filters}, if: -> { current_user.functional? && !self_destruct }
+    n.item :statuses_cleanup, safe_join([fa_icon('history fw'), t('settings.statuses_cleanup')]), statuses_cleanup_path, if: -> { current_user.functional_or_moved? && !self_destruct }
 
     n.item :security, safe_join([fa_icon('lock fw'), t('settings.account')]), edit_user_registration_path do |s|
       s.item :password, safe_join([fa_icon('lock fw'), t('settings.account_settings')]), edit_user_registration_path, highlights_on: %r{/auth/edit|/settings/delete|/settings/migration|/settings/aliases|/settings/login_activities|^/disputes}
       s.item :two_factor_authentication, safe_join([fa_icon('mobile fw'), t('settings.two_factor_authentication')]), settings_two_factor_authentication_methods_path, highlights_on: %r{/settings/two_factor_authentication|/settings/otp_authentication|/settings/security_keys}
-      s.item :authorized_apps, safe_join([fa_icon('list fw'), t('settings.authorized_apps')]), oauth_authorized_applications_path
+      s.item :authorized_apps, safe_join([fa_icon('list fw'), t('settings.authorized_apps')]), oauth_authorized_applications_path, if: -> { !self_destruct }
     end
 
     n.item :data, safe_join([fa_icon('cloud-download fw'), t('settings.import_and_export')]), settings_export_path do |s|
-      s.item :import, safe_join([fa_icon('cloud-upload fw'), t('settings.import')]), settings_imports_path, if: -> { current_user.functional? }
+      s.item :import, safe_join([fa_icon('cloud-upload fw'), t('settings.import')]), settings_imports_path, if: -> { current_user.functional? && !self_destruct }
       s.item :export, safe_join([fa_icon('cloud-download fw'), t('settings.export')]), settings_export_path
     end
 
-    n.item :invites, safe_join([fa_icon('user-plus fw'), t('invites.title')]), invites_path, if: -> { current_user.can?(:invite_users) && current_user.functional? }
-    n.item :development, safe_join([fa_icon('code fw'), t('settings.development')]), settings_applications_path, if: -> { current_user.functional? }
+    n.item :invites, safe_join([fa_icon('user-plus fw'), t('invites.title')]), invites_path, if: -> { current_user.can?(:invite_users) && current_user.functional? && !self_destruct }
+    n.item :development, safe_join([fa_icon('code fw'), t('settings.development')]), settings_applications_path, if: -> { current_user.functional? && !self_destruct }
 
-    n.item :trends, safe_join([fa_icon('fire fw'), t('admin.trends.title')]), admin_trends_statuses_path, if: -> { current_user.can?(:manage_taxonomies) } do |s|
+    n.item :trends, safe_join([fa_icon('fire fw'), t('admin.trends.title')]), admin_trends_statuses_path, if: -> { current_user.can?(:manage_taxonomies) && !self_destruct } do |s|
       s.item :statuses, safe_join([fa_icon('comments-o fw'), t('admin.trends.statuses.title')]), admin_trends_statuses_path, highlights_on: %r{/admin/trends/statuses}
       s.item :tags, safe_join([fa_icon('hashtag fw'), t('admin.trends.tags.title')]), admin_trends_tags_path, highlights_on: %r{/admin/tags|/admin/trends/tags}
       s.item :links, safe_join([fa_icon('newspaper-o fw'), t('admin.trends.links.title')]), admin_trends_links_path, highlights_on: %r{/admin/trends/links}
     end
 
-    n.item :moderation, safe_join([fa_icon('gavel fw'), t('moderation.title')]), nil, if: -> { current_user.can?(:manage_reports, :view_audit_log, :manage_users, :manage_invites, :manage_taxonomies, :manage_federation, :manage_blocks) } do |s|
+    n.item :moderation, safe_join([fa_icon('gavel fw'), t('moderation.title')]), nil, if: -> { current_user.can?(:manage_reports, :view_audit_log, :manage_users, :manage_invites, :manage_taxonomies, :manage_federation, :manage_blocks) && !self_destruct } do |s|
       s.item :reports, safe_join([fa_icon('flag fw'), t('admin.reports.title')]), admin_reports_path, highlights_on: %r{/admin/reports}, if: -> { current_user.can?(:manage_reports) }
       s.item :accounts, safe_join([fa_icon('users fw'), t('admin.accounts.title')]), admin_accounts_path(origin: 'local'), highlights_on: %r{/admin/accounts|/admin/pending_accounts|/admin/disputes|/admin/users}, if: -> { current_user.can?(:manage_users) }
       s.item :invites, safe_join([fa_icon('user-plus fw'), t('admin.invites.title')]), admin_invites_path, if: -> { current_user.can?(:manage_invites) }
@@ -55,7 +57,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :action_logs, safe_join([fa_icon('bars fw'), t('admin.action_logs.title')]), admin_action_logs_path, if: -> { current_user.can?(:view_audit_log) }
     end
 
-    n.item :admin, safe_join([fa_icon('cogs fw'), t('admin.title')]), nil, if: -> { current_user.can?(:view_dashboard, :manage_settings, :manage_rules, :manage_announcements, :manage_custom_emojis, :manage_webhooks, :manage_federation) } do |s|
+    n.item :admin, safe_join([fa_icon('cogs fw'), t('admin.title')]), nil, if: -> { current_user.can?(:view_dashboard, :manage_settings, :manage_rules, :manage_announcements, :manage_custom_emojis, :manage_webhooks, :manage_federation) && !self_destruct } do |s|
       s.item :dashboard, safe_join([fa_icon('tachometer fw'), t('admin.dashboard.title')]), admin_dashboard_path, if: -> { current_user.can?(:view_dashboard) }
       s.item :settings, safe_join([fa_icon('cogs fw'), t('admin.settings.title')]), admin_settings_path, if: -> { current_user.can?(:manage_settings) }, highlights_on: %r{/admin/settings}
       s.item :rules, safe_join([fa_icon('gavel fw'), t('admin.rules.title')]), admin_rules_path, highlights_on: %r{/admin/rules}, if: -> { current_user.can?(:manage_rules) }
