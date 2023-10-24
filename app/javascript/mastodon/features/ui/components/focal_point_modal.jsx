@@ -16,7 +16,7 @@ import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
 
-import Button from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button';
 import { GIFV } from 'mastodon/components/gifv';
 import { IconButton } from 'mastodon/components/icon_button';
 import Audio from 'mastodon/features/audio';

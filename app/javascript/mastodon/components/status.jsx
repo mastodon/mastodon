@@ -11,7 +11,7 @@ import { HotKeys } from 'react-hotkeys';
 
 import { Icon }  from 'mastodon/components/icon';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
-import { withOptionalRouter, WithRouterPropTypes } from 'mastodon/utils/react_router';
+import { withOptionalRouter, WithOptionalRouterPropTypes } from 'mastodon/utils/react_router';
 
 import Card from '../features/status/components/card';
 // We use the component (and not the container) since we do not want
@@ -113,7 +113,7 @@ class Status extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
-    ...WithRouterPropTypes,
+    ...WithOptionalRouterPropTypes,
   };
 
   // Avoid checking props that are functions (and whose equality will always

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import { requestBrowserPermission } from 'mastodon/actions/notifications';
 import { changeSetting } from 'mastodon/actions/settings';
-import Button from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 

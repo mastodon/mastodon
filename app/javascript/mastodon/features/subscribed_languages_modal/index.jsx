@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { followAccount } from 'mastodon/actions/accounts';
-import Button from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button';
 import { IconButton } from 'mastodon/components/icon_button';
 import Option from 'mastodon/features/report/components/option';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
