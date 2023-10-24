@@ -534,6 +534,7 @@ de:
       total_reported: Beschwerden über sie
       total_storage: Medienanhänge
       totals_time_period_hint_html: Die unten angezeigten Summen enthalten Daten für alle Zeiten.
+      unknown_instance: Auf diesem Server gibt es derzeit keinen Eintrag dieser Domain.
     invites:
       deactivate_all: Alle deaktivieren
       filter:
@@ -1101,6 +1102,7 @@ de:
       functional: Dein Konto ist voll funktionsfähig.
       pending: Die Prüfung deiner Bewerbung steht noch aus. Dies kann einige Zeit in Anspruch nehmen. Sobald deine Bewerbung genehmigt wurde, erhältst du eine E-Mail.
       redirecting_to: Dein Konto ist inaktiv, weil es zu %{acct} umgezogen ist.
+      self_destruct: Da %{domain} den Betrieb einstellen wird, wirst du nur begrenzten Zugriff auf dein Konto haben.
       view_strikes: Vorherige Verstöße deines Kontos ansehen
     too_fast: Formular zu schnell übermittelt. Bitte versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
@@ -1570,6 +1572,9 @@ de:
     over_daily_limit: Du hast das Limit von %{limit} geplanten Beiträgen für heute erreicht
     over_total_limit: Du hast das Limit für geplante Beiträge, das %{limit} beträgt, erreicht
     too_soon: Das geplante Datum muss in der Zukunft liegen
+  self_destruct:
+    lead_html: Bedauerlicherweise wird <strong>%{domain}</strong> den Betrieb für immer einstellen. Wenn du dort ein Konto angelegt hast, wirst du es nicht weiter verwenden können. Du kannst allerdings eine Sicherung deiner Daten anfordern.
+    title: Dieser Server wird den Betrieb einstellen
   sessions:
     activity: Letzte Aktivität
     browser: Browser
@@ -1769,7 +1774,7 @@ de:
       subject: Dein Einspruch vom %{date} wurde abgelehnt
       title: Einspruch abgelehnt
     backup_ready:
-      explanation: Du hast eine vollständige Sicherung deines Mastodon-Kontos angefordert. Das Backup kann jetzt heruntergeladen werden!
+      explanation: Du hast eine vollständige Sicherung deines Mastodon-Kontos angefordert. Die Sicherung kann jetzt heruntergeladen werden!
       subject: Dein persönliches Archiv kann heruntergeladen werden
       title: Archiv-Download
     suspicious_sign_in:

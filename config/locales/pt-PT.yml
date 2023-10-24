@@ -534,6 +534,7 @@ pt-PT:
       total_reported: Denúncias sobre eles
       total_storage: Anexos de media
       totals_time_period_hint_html: Os totais exibidos abaixo incluem dados referentes ao tempo total.
+      unknown_instance: Atualmente não há registo deste domínio neste servidor.
     invites:
       deactivate_all: Desativar todos
       filter:
@@ -1101,6 +1102,7 @@ pt-PT:
       functional: A sua conta está totalmente operacional.
       pending: A sua inscrição está pendente de revisão pela nossa equipa. Isso pode demorar algum tempo. Receberá um e-mail se a sua conta for aprovada.
       redirecting_to: A sua conta está inativa porque está atualmente a ser redirecionada para %{acct}.
+      self_destruct: Como %{domain} vai fechar, só terá acesso limitado à sua conta.
       view_strikes: Veja as reprimendas anteriores sobre a sua conta
     too_fast: Formulário enviado demasiado rapidamente, tente novamente.
     use_security_key: Usar chave de segurança
@@ -1570,6 +1572,9 @@ pt-PT:
     over_daily_limit: Excedeste o limite de %{limit} publicações agendadas para esse dia
     over_total_limit: Tu excedeste o limite de %{limit} publicações agendadas
     too_soon: A data de agendamento tem de ser futura
+  self_destruct:
+    lead_html: Infelizmente, <strong>%{domain}</strong> vai fechar definitivamente. Se lá tinha conta, não pode continuar a usá-la, mas ainda pode pedir uma cópia dos seus dados.
+    title: Este servidor vai fechar
   sessions:
     activity: Última atividade
     browser: Navegador

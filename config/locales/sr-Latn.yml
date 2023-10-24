@@ -545,6 +545,7 @@ sr-Latn:
       total_reported: Prijave vezane za njih
       total_storage: Multimedijalni prilozi
       totals_time_period_hint_html: Ukupne vrednosti prikazane ispod uključuju podatke za sva vremena.
+      unknown_instance: Trenutno ne postoji zapis o ovom domenu na ovom serveru.
     invites:
       deactivate_all: Deaktiviraj sve
       filter:
@@ -1119,6 +1120,7 @@ sr-Latn:
       functional: Vaš nalog je potpuno operativan.
       pending: Vaš zahtev je na čekanju za pregled od strane našeg osoblja. Ovo može potrajati neko vreme. Primićete imejl poruku ukoliko Vam zahtev bude odobren.
       redirecting_to: Vaš nalog je neaktivan jer preusmerava na %{acct}.
+      self_destruct: Pošto se %{domain} zatvara, dobićete samo ograničen pristup svom nalogu.
       view_strikes: Pogledajte prethodne prestupe upisane na Vaše ime
     too_fast: Formular je podnet prebrzo, pokušajte ponovo.
     use_security_key: Koristite sigurnosni ključ
@@ -1596,6 +1598,9 @@ sr-Latn:
     over_daily_limit: Prekoračili ste granicu od %{limit} planiranih objava za danas
     over_total_limit: Prekoračili ste granicu od %{limit} planiranih objava
     too_soon: Planirani datum mora biti u budućnosti
+  self_destruct:
+    lead_html: Nažalost, <strong>%{domain}</strong> se trajno zatvara. Ako ste tamo imali nalog, nećete moći da nastavite da ga koristite, ali i dalje možete da zatražite rezervnu kopiju svojih podataka.
+    title: Ovaj server se zatvara
   sessions:
     activity: Poslednja aktivnost
     browser: Veb čitač
