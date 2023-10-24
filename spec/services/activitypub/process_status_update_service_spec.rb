@@ -462,5 +462,23 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       subject.call(status, json, json)
       expect(status.reload.edited_at.to_s).to eq '2021-09-08 22:39:25 UTC'
     end
+
+    context 'with an editor_id' do
+      let(:editor) { Fabricate(:account) }
+
+      it 'creates edits with the right editor' do
+        allow(DistributionWorker).to receive(:perform_async)
+        subject.call(status, json, json, editor_id: editor.id)
+        expect(status.edits.reload.last.account_id).to eq editor.id
+      end
+    end
+
+    context 'without an editor_id' do
+      it 'creates edits with the right editor' do
+        allow(DistributionWorker).to receive(:perform_async)
+        subject.call(status, json, json)
+        expect(status.edits.reload.last.account_id).to eq status.account.id
+      end
+    end
   end
 end
