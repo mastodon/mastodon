@@ -534,6 +534,7 @@ fr-QC:
       total_reported: Signalements à leur sujet
       total_storage: Attachements de média
       totals_time_period_hint_html: Les totaux affichés ci-dessous incluent des données sans limite de temps.
+      unknown_instance: Il n’y a actuellement aucune trace de ce domaine sur ce serveur.
     invites:
       deactivate_all: Tout désactiver
       filter:
@@ -1101,6 +1102,7 @@ fr-QC:
       functional: Votre compte est entièrement opérationnel.
       pending: Votre demande est en attente d'examen par notre personnel. Cela peut prendre un certain temps. Vous recevrez un courriel si votre demande est approuvée.
       redirecting_to: Votre compte est inactif car il est actuellement redirigé vers %{acct}.
+      self_destruct: Comme %{domain} est en train de fermer, vous n’aurez qu’un accès limité à votre compte.
       view_strikes: Voir les sanctions précédemment appliquées à votre compte
     too_fast: Formulaire envoyé trop rapidement, veuillez réessayer.
     use_security_key: Utiliser la clé de sécurité
@@ -1570,6 +1572,9 @@ fr-QC:
     over_daily_limit: Vous avez dépassé la limite de %{limit} messages planifiés par jour
     over_total_limit: Vous avez dépassé la limite de %{limit} messages planifiés
     too_soon: La date planifiée doit être dans le futur
+  self_destruct:
+    lead_html: Malheureusement, <strong>%{domain}</strong> ferme définitivement. Si vous y aviez un compte, vous ne pourrez pas continuer à l’utiliser, mais vous pouvez toujours demander une sauvegarde de vos données.
+    title: Ce serveur est en cours de fermeture
   sessions:
     activity: Dernière activité
     browser: Navigateur

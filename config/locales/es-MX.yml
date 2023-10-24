@@ -534,6 +534,7 @@ es-MX:
       total_reported: Informes sobre ellas
       total_storage: Archivos multimedia
       totals_time_period_hint_html: Los totales mostrados a continuación incluyen datos para todo el tiempo.
+      unknown_instance: Actualmente no hay registros de este dominio en el servidor.
     invites:
       deactivate_all: Desactivar todos
       filter:
@@ -1101,6 +1102,7 @@ es-MX:
       functional: Tu cuenta está completamente operativa.
       pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
+      self_destruct: Como %{domain} está cerrando, solo tendrás acceso limitado a tu cuenta.
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     use_security_key: Usar la clave de seguridad
@@ -1570,6 +1572,9 @@ es-MX:
     over_daily_limit: Ha superado el límite de %{limit} toots programados para ese día
     over_total_limit: Ha superado el límite de %{limit} toots programados
     too_soon: La fecha programada debe estar en el futuro
+  self_destruct:
+    lead_html: Desafortunadamente, <strong>%{domain}</strong> está cerrando de manera permanente. Si tenías una cuenta ahí, no puedes continuar utilizándolo, pero puedes solicitar un respaldo de tus datos.
+    title: Este servidor está cerrando
   sessions:
     activity: Última actividad
     browser: Navegador
