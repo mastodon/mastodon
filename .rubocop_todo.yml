@@ -478,8 +478,8 @@ Style/GuardClause:
     - 'config/initializers/devise.rb'
     - 'db/migrate/20170901141119_truncate_preview_cards.rb'
     - 'db/post_migrate/20220704024901_migrate_settings_to_user_roles.rb'
-    - 'lib/devise/two_factor_ldap_authenticatable.rb'
-    - 'lib/devise/two_factor_pam_authenticatable.rb'
+    - 'lib/devise/strategies/two_factor_ldap_authenticatable.rb'
+    - 'lib/devise/strategies/two_factor_pam_authenticatable.rb'
     - 'lib/mastodon/cli/accounts.rb'
     - 'lib/mastodon/cli/maintenance.rb'
     - 'lib/mastodon/cli/media.rb'
@@ -614,8 +614,8 @@ Style/SafeNavigation:
 # SupportedStyles: only_raise, only_fail, semantic
 Style/SignalException:
   Exclude:
-    - 'lib/devise/two_factor_ldap_authenticatable.rb'
-    - 'lib/devise/two_factor_pam_authenticatable.rb'
+    - 'lib/devise/strategies/two_factor_ldap_authenticatable.rb'
+    - 'lib/devise/strategies/two_factor_pam_authenticatable.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/SingleArgumentDig:
