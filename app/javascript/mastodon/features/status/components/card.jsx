@@ -10,6 +10,10 @@ import classNames from 'classnames';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { ReactComponent as DescriptionIcon } from '@material-symbols/svg-600/outlined/description.svg';
+import { ReactComponent as OpenInNewIcon } from '@material-symbols/svg-600/outlined/open_in_new.svg';
+import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow.svg';
+
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
@@ -197,8 +201,8 @@ export default class Card extends PureComponent {
             {revealed ? (
               <div className='status-card__actions' onClick={this.handleEmbedClick} role='none'>
                 <div>
-                  <button type='button' onClick={this.handleEmbedClick}><Icon id='play' /></button>
-                  <a href={card.get('url')} target='_blank' rel='noopener noreferrer'><Icon id='external-link' /></a>
+                  <button type='button' onClick={this.handleEmbedClick}><Icon id='play' icon={PlayArrowIcon} /></button>
+                  <a href={card.get('url')} target='_blank' rel='noopener noreferrer'><Icon id='external-link' icon={OpenInNewIcon} /></a>
                 </div>
               </div>
             ) : spoilerButton}
@@ -222,7 +226,7 @@ export default class Card extends PureComponent {
     } else {
       embed = (
         <div className='status-card__image'>
-          <Icon id='file-text' />
+          <Icon id='file-text' icon={DescriptionIcon} />
         </div>
       );
     }
