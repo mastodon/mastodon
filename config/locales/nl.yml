@@ -534,6 +534,7 @@ nl:
       total_reported: Rapportages over hun
       total_storage: Mediabijlagen
       totals_time_period_hint_html: De hieronder getoonde totalen bevatten gegevens sinds het begin.
+      unknown_instance: Er zijn momenteel geen gegevens van dit domein op deze server.
     invites:
       deactivate_all: Alles deactiveren
       filter:
@@ -1101,6 +1102,7 @@ nl:
       functional: Jouw account kan in diens geheel gebruikt worden.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
+      self_destruct: Omdat %{domain} gaat sluiten, krijgt u slechts beperkt toegang tot uw account.
       view_strikes: Bekijk de eerder door moderatoren vastgestelde overtredingen die je hebt gemaakt
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
     use_security_key: Beveiligingssleutel gebruiken
@@ -1570,6 +1572,9 @@ nl:
     over_daily_limit: Je hebt de limiet van %{limit} in te plannen berichten voor vandaag overschreden
     over_total_limit: Je hebt de limiet van %{limit} in te plannen berichten overschreden
     too_soon: De datum voor het ingeplande bericht moet in de toekomst liggen
+  self_destruct:
+    lead_html: Helaas gaat <strong>%{domain}</strong> permanent afsluiten. Als u daar een account had, kunt u deze niet meer gebruiken, maar u kunt nog steeds een back-up van uw gegevens opvragen.
+    title: Deze server gaat afsluiten
   sessions:
     activity: Laatst actief
     browser: Webbrowser

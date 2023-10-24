@@ -534,6 +534,7 @@ fi:
       total_reported: Niitä koskevat raportit
       total_storage: Medialiitteet
       totals_time_period_hint_html: Alla näkyvät yhteenlasketut tiedot sisältävät koko ajan.
+      unknown_instance: Tällä palvelimella ei ole tällä hetkellä tähän verkkotunnukseen liittyviä tietueita.
     invites:
       deactivate_all: Poista kaikki käytöstä
       filter:
@@ -1101,6 +1102,7 @@ fi:
       functional: Tilisi on täysin toiminnassa.
       pending: Hakemuksesi odottaa henkilökuntamme tarkastusta. Tämä voi kestää jonkin aikaa. Saat sähköpostiviestin, jos hakemuksesi hyväksytään.
       redirecting_to: Tilisi ei ole aktiivinen, koska se ohjaa tällä hetkellä tilille %{acct}.
+      self_destruct: Koska %{domain} sulkeutuu, voit käyttää tiliäsi vain rajoitetusti.
       view_strikes: Näytä tiliäsi koskevia aiempia varoituksia
     too_fast: Lomake lähetettiin liian nopeasti, yritä uudelleen.
     use_security_key: Käytä suojausavainta
@@ -1570,6 +1572,9 @@ fi:
     over_daily_limit: Olet ylittänyt %{limit} ajoitetun julkaisun rajan tälle päivälle
     over_total_limit: Olet ylittänyt %{limit} ajoitetun julkaisun rajan
     too_soon: Ajoitetun päiväyksen pitää olla tulevaisuudessa
+  self_destruct:
+    lead_html: Valitettavasti <strong>%{domain}</strong> sulkeutuu pysyvästi. Jos sinulla on siellä tili, et voi jatkaa sen käyttöä mutta voit yhä pyytää varmuuskopiota tiedoistasi.
+    title: Tämä palvelin sulkeutuu
   sessions:
     activity: Viimeisin toiminta
     browser: Selain

@@ -536,6 +536,7 @@ eu:
       total_reported: Heiei buruzko txostenak
       total_storage: Multimedia eranskinak
       totals_time_period_hint_html: Behean bistaratutako guztizkoek datu guztiak hartzen dituzte barne.
+      unknown_instance: Ez dago domeinu honen erregistrorik zerbitzarian orain.
     invites:
       deactivate_all: Desgaitu guztiak
       filter:
@@ -1093,6 +1094,7 @@ eu:
       functional: Zure kontua guztiz erabilgarri dago.
       pending: Zure eskaera gainbegiratzeko dago oraindik. Honek denbora behar lezake. Zure eskaera onartzen bada e-mail bat jasoko duzu.
       redirecting_to: Zure kontua ez dago aktibo orain %{acct} kontura birbideratzen duelako.
+      self_destruct: "%{domain} domeinua itxiko denez, konturako sarbide mugatua soilik izango duzu."
       view_strikes: Ikusi zure kontuaren aurkako neurriak
     too_fast: Formularioa azkarregi bidali duzu, saiatu berriro.
     use_security_key: Erabili segurtasun gakoa
@@ -1564,6 +1566,9 @@ eu:
     over_daily_limit: 'Egun horretarako programatutako bidalketa kopuruaren muga gainditu duzu: %{limit}'
     over_total_limit: 'Programatutako bidalketa kopuruaren muga gainditu duzu: %{limit}'
     too_soon: Programatutako data etorkizunean egon behar du
+  self_destruct:
+    lead_html: Zoritxarrez, <strong>%{domain}</strong> betirako itxiko da. Kontu bat baduzu bertan, ezin izango duzu erabiltzen jarraitu, baina, oraindik zure datuen babeskopia bat eska dezakezu.
+    title: Zerbitzari hau ixtear dago
   sessions:
     activity: Azken jarduera
     browser: Nabigatzailea
@@ -1733,6 +1738,10 @@ eu:
       month: "%Y(e)ko %b"
       time: "%H:%M"
       with_time_zone: "%Y(e)ko %b %d, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Zerbitzari osoko itzulpen-zerbitzuaren erabileraren kuota gainditu da.
+      too_many_requests: Itzulpen-zerbitzurako eskaera gehiegi egon dira berriki.
   two_factor_authentication:
     add: Gehitu
     disable: Desgaitu
