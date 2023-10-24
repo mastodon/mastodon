@@ -34,24 +34,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
+
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
         with:
-          cache: yarn
-          node-version-file: '.nvmrc'
+          onlyProduction: 'true'
 
-      - name: Install native Ruby dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libicu-dev libidn11-dev
-
-      - name: Set up bundler cache
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
-
-      - run: yarn --frozen-lockfile --production
       - name: Precompile assets
         # Previously had set this, but it's not supported
         # export NODE_OPTIONS=--openssl-legacy-provider
@@ -135,20 +125,11 @@ jobs:
           path: './public'
           name: ${{ github.sha }}
 
-      - name: Update package index
-        run: sudo apt-get update
-
-      - name: Install native Ruby dependencies
-        run: sudo apt-get install -y libicu-dev libidn11-dev
-
-      - name: Install additional system dependencies
-        run: sudo apt-get install -y ffmpeg imagemagick libpam-dev
-
-      - name: Set up bundler cache
-        uses: ruby/setup-ruby@v1
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          bundler-cache: true
+          additional-system-dependencies: ffmpeg imagemagick libpam-dev
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
@@ -210,28 +191,14 @@ jobs:
           path: './public'
           name: ${{ github.sha }}
 
-      - name: Update package index
-        run: sudo apt-get update
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          cache: yarn
-          node-version-file: '.nvmrc'
-
-      - name: Install native Ruby dependencies
-        run: sudo apt-get install -y libicu-dev libidn11-dev
-
-      - name: Install additional system dependencies
-        run: sudo apt-get install -y ffmpeg imagemagick
-
-      - name: Set up bundler cache
-        uses: ruby/setup-ruby@v1
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          bundler-cache: true
+          additional-system-dependencies: ffmpeg imagemagick
 
-      - run: yarn --frozen-lockfile
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
@@ -328,28 +295,14 @@ jobs:
           path: './public'
           name: ${{ github.sha }}
 
-      - name: Update package index
-        run: sudo apt-get update
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          cache: yarn
-          node-version-file: '.nvmrc'
-
-      - name: Install native Ruby dependencies
-        run: sudo apt-get install -y libicu-dev libidn11-dev
-
-      - name: Install additional system dependencies
-        run: sudo apt-get install -y ffmpeg imagemagick
-
-      - name: Set up bundler cache
-        uses: ruby/setup-ruby@v1
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          bundler-cache: true
+          additional-system-dependencies: ffmpeg imagemagick
 
-      - run: yarn --frozen-lockfile
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
