@@ -6,6 +6,13 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
+import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
+import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
+import { ReactComponent as PushPinIcon } from '@material-symbols/svg-600/outlined/push_pin.svg';
+import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
+import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star-fill.svg';
+
 import { Icon } from 'flavours/glitch/components/icon';
 import { me } from 'flavours/glitch/initial_state';
 
@@ -107,27 +114,33 @@ export default class StatusPrepend extends PureComponent {
     const { Message } = this;
     const { type } = this.props;
 
-    let iconId;
+    let iconId, iconComponent;
 
     switch(type) {
     case 'favourite':
       iconId = 'star';
+      iconComponent = StarIcon;
       break;
     case 'featured':
       iconId = 'thumb-tack';
+      iconComponent = PushPinIcon;
       break;
     case 'poll':
       iconId = 'tasks';
+      iconComponent = InsertChartIcon;
       break;
     case 'reblog':
     case 'reblogged_by':
       iconId = 'retweet';
+      iconComponent = RepeatIcon;
       break;
     case 'status':
       iconId = 'bell';
+      iconComponent = HomeIcon;
       break;
     case 'update':
       iconId = 'pencil';
+      iconComponent = EditIcon;
       break;
     }
 
@@ -137,6 +150,7 @@ export default class StatusPrepend extends PureComponent {
           <Icon
             className={`status__prepend-icon ${type === 'favourite' ? 'star-icon' : ''}`}
             id={iconId}
+            icon={iconComponent}
           />
         </div>
         <Message />

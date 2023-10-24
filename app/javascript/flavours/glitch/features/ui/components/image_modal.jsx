@@ -5,6 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+
 import { IconButton } from 'flavours/glitch/components/icon_button';
 
 import ImageLoader from './image_loader';
@@ -53,7 +55,7 @@ class ImageModal extends PureComponent {
         </div>
 
         <div className={navigationClassName}>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={40} />
+          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={CloseIcon} onClick={onClose} size={40} />
         </div>
       </div>
     );

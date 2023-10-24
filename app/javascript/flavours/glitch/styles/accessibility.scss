@@ -15,23 +15,6 @@ $emojis-requiring-inversion: 'back' 'copyright' 'curly_loop' 'currency_exchange'
   }
 }
 
-// Display a checkmark on active UI elements otherwise differing only by color
-.status__action-bar-button,
-.detailed-status__button .icon-button {
-  position: relative;
-
-  &.active::after {
-    position: absolute;
-    content: '\F00C';
-    font-size: 50%;
-    inset-inline-end: -0.55em;
-    top: -0.44em;
-
-    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword -- this is an icon font, this can't use a generic font */
-    font-family: FontAwesome;
-  }
-}
-
 .hicolor-privacy-icons {
   .status__visibility-icon.fa-globe,
   .privacy-dropdown__option .fa-globe {

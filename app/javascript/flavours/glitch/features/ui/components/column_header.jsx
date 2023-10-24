@@ -24,7 +24,7 @@ export default class ColumnHeader extends PureComponent {
     let iconElement = '';
 
     if (icon) {
-      iconElement = <Icon id={icon} fixedWidth className='column-header__icon' />;
+      iconElement = <Icon id={icon} className='column-header__icon' />;
     }
 
     return (

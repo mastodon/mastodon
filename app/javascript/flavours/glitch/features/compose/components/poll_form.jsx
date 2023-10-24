@@ -8,6 +8,9 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+
 import AutosuggestInput from 'flavours/glitch/components/autosuggest_input';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
@@ -87,7 +90,7 @@ class OptionIntl extends PureComponent {
         </label>
 
         <div className='poll__cancel'>
-          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' onClick={this.handleOptionRemove} />
+          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' iconComponent={CloseIcon} onClick={this.handleOptionRemove} />
         </div>
       </li>
     );
@@ -143,7 +146,7 @@ class PollForm extends ImmutablePureComponent {
           {options.size < pollLimits.max_options && (
             <label className='poll__text editable'>
               <span className={classNames('poll__input')} style={{ opacity: 0 }} />
-              <button className='button button-secondary' onClick={this.handleAddOption} type='button'><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
+              <button className='button button-secondary' onClick={this.handleAddOption} type='button'><Icon id='plus' icon={AddIcon} /> <FormattedMessage {...messages.add_option} /></button>
             </label>
           )}
         </ul>

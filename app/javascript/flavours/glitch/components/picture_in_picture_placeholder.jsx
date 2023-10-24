@@ -5,6 +5,8 @@ import { FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import { ReactComponent as CancelPresentationIcon } from '@material-symbols/svg-600/outlined/cancel_presentation.svg';
+
 import { removePictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
 import { Icon }  from 'flavours/glitch/components/icon';
 
@@ -22,7 +24,7 @@ class PictureInPicturePlaceholder extends PureComponent {
   render () {
     return (
       <div className='picture-in-picture-placeholder' role='button' tabIndex={0} onClick={this.handleClick}>
-        <Icon id='window-restore' />
+        <Icon id='window-restore' icon={CancelPresentationIcon} />
         <FormattedMessage id='picture_in_picture.restore' defaultMessage='Put it back' />
       </div>
     );

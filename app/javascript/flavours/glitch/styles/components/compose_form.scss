@@ -449,10 +449,11 @@
   padding: 10px;
   color: $darker-text-color;
   overflow: hidden;
+  gap: 10px;
 
-  .fa {
-    font-size: 34px;
-    margin-inline-end: 10px;
+  .icon {
+    width: 24px;
+    height: 24px;
   }
 
   span {
@@ -505,63 +506,22 @@
 .compose-form__buttons {
   display: flex;
   flex: 0 0 auto;
+  gap: 2px;
+
+  .icon-button {
+    height: 100%;
+  }
 
   & .icon-button,
   & .text-icon-button {
-    display: inline-block;
     box-sizing: content-box;
     padding: 0 3px;
-    height: 27px;
-    line-height: 27px;
-    vertical-align: bottom;
-  }
-
-  & > hr {
-    display: inline-block;
-    margin: 0 3px;
-    border-width: 0 0 0 1px;
-    border-style: none none none solid;
-    border-color: transparent transparent transparent
-      darken($simple-background-color, 24%);
-    padding: 0;
-    width: 0;
-    height: 27px;
-    background: transparent;
   }
 }
 
 .character-counter__wrapper {
   align-self: center;
   margin-inline-end: 4px;
-}
-
-.privacy-dropdown.active {
-  .privacy-dropdown__value {
-    background: $simple-background-color;
-    border-radius: 4px 4px 0 0;
-    box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
-
-    .icon-button {
-      transition: none;
-    }
-
-    &.active {
-      background: $ui-highlight-color;
-
-      .icon-button {
-        color: $primary-text-color;
-      }
-    }
-  }
-
-  &.top .privacy-dropdown__value {
-    border-radius: 0 0 4px 4px;
-  }
-
-  .privacy-dropdown__dropdown {
-    display: block;
-    box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
-  }
 }
 
 .privacy-dropdown__dropdown {
@@ -627,10 +587,16 @@
     button {
       padding: 7px 10px;
       text-align: center;
+
+      & > span {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
     }
 
-    & > .side_arm {
-      width: 36px;
+    .side_arm {
+      height: 100%;
     }
   }
 }
@@ -670,6 +636,9 @@
         font-weight: 500;
         padding: 10px;
         border-radius: 4px;
+        display: flex;
+        gap: 6px;
+        align-items: center;
 
         &:focus,
         &:active,

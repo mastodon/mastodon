@@ -17,6 +17,7 @@ export default class ComposerOptionsDropdownContent extends PureComponent {
   static propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
       icon: PropTypes.string,
+      iconComponent: PropTypes.func,
       meta: PropTypes.node,
       name: PropTypes.string.isRequired,
       text: PropTypes.node,
@@ -144,7 +145,7 @@ export default class ComposerOptionsDropdownContent extends PureComponent {
   };
 
   renderItem = (item, i) => {
-    const { name, icon, meta, text } = item;
+    const { name, icon, iconComponent, meta, text } = item;
 
     const active = (name === (this.props.value || this.state.value));
 
@@ -155,7 +156,7 @@ export default class ComposerOptionsDropdownContent extends PureComponent {
     if (!contents) {
       contents = (
         <>
-          {icon && <Icon className='icon' fixedWidth id={icon} />}
+          {icon && <Icon className='icon' id={icon} icon={iconComponent} />}
 
           <div className='privacy-dropdown__option__content'>
             <strong>{text}</strong>

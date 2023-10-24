@@ -3,6 +3,11 @@ import { PureComponent } from 'react';
 
 import { injectIntl, defineMessages } from 'react-intl';
 
+import { ReactComponent as LockIcon } from '@material-symbols/svg-600/outlined/lock.svg';
+import { ReactComponent as LockOpenIcon } from '@material-symbols/svg-600/outlined/lock_open.svg';
+import { ReactComponent as MailIcon } from '@material-symbols/svg-600/outlined/mail.svg';
+import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
+
 import Dropdown from './dropdown';
 
 const messages = defineMessages({
@@ -39,24 +44,28 @@ class PrivacyDropdown extends PureComponent {
     const privacyItems = {
       direct: {
         icon: 'envelope',
+        iconComponent: MailIcon,
         meta: formatMessage(messages.direct_long),
         name: 'direct',
         text: formatMessage(messages.direct_short),
       },
       private: {
         icon: 'lock',
+        iconComponent: LockIcon,
         meta: formatMessage(messages.private_long),
         name: 'private',
         text: formatMessage(messages.private_short),
       },
       public: {
         icon: 'globe',
+        iconComponent: PublicIcon,
         meta: formatMessage(messages.public_long),
         name: 'public',
         text: formatMessage(messages.public_short),
       },
       unlisted: {
         icon: 'unlock',
+        iconComponent: LockOpenIcon,
         meta: formatMessage(messages.unlisted_long),
         name: 'unlisted',
         text: formatMessage(messages.unlisted_short),
@@ -73,6 +82,7 @@ class PrivacyDropdown extends PureComponent {
       <Dropdown
         disabled={disabled}
         icon={(privacyItems[value] || {}).icon}
+        iconComponent={(privacyItems[value] || {}).iconComponent}
         items={items}
         onChange={onChange}
         isUserTouching={isUserTouching}

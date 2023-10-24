@@ -3,6 +3,9 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
+import { ReactComponent as FullscreenExitIcon } from '@material-symbols/svg-600/outlined/fullscreen_exit.svg';
+import { ReactComponent as RectangleIcon } from '@material-symbols/svg-600/outlined/rectangle.svg';
+
 import { IconButton } from 'flavours/glitch/components/icon_button';
 
 const messages = defineMessages({
@@ -418,6 +421,7 @@ class ZoomableImage extends PureComponent {
           className={`media-modal__zoom-button ${zoomButtonShouldHide}`}
           title={zoomButtonTitle}
           icon={this.state.zoomState}
+          iconComponent={this.state.zoomState === 'compress' ? FullscreenExitIcon : RectangleIcon}
           onClick={this.handleZoomClick}
           size={40}
           style={{

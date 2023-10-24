@@ -3,6 +3,13 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
+import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
+import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
+import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
+import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
+import { ReactComponent as ReplyAllIcon } from '@material-symbols/svg-600/outlined/reply_all.svg';
+import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star.svg';
+
 import { Icon }  from 'flavours/glitch/components/icon';
 
 const tooltips = defineMessages({
@@ -66,42 +73,42 @@ class FilterBar extends PureComponent {
           onClick={this.onClick('mention')}
           title={intl.formatMessage(tooltips.mentions)}
         >
-          <Icon id='reply-all' fixedWidth />
+          <Icon id='reply-all' icon={ReplyAllIcon} />
         </button>
         <button
           className={selectedFilter === 'favourite' ? 'active' : ''}
           onClick={this.onClick('favourite')}
           title={intl.formatMessage(tooltips.favourites)}
         >
-          <Icon id='star' fixedWidth />
+          <Icon id='star' icon={StarIcon} />
         </button>
         <button
           className={selectedFilter === 'reblog' ? 'active' : ''}
           onClick={this.onClick('reblog')}
           title={intl.formatMessage(tooltips.boosts)}
         >
-          <Icon id='retweet' fixedWidth />
+          <Icon id='retweet' icon={RepeatIcon} />
         </button>
         <button
           className={selectedFilter === 'poll' ? 'active' : ''}
           onClick={this.onClick('poll')}
           title={intl.formatMessage(tooltips.polls)}
         >
-          <Icon id='tasks' fixedWidth />
+          <Icon id='tasks' icon={InsertChartIcon} />
         </button>
         <button
           className={selectedFilter === 'status' ? 'active' : ''}
           onClick={this.onClick('status')}
           title={intl.formatMessage(tooltips.statuses)}
         >
-          <Icon id='home' fixedWidth />
+          <Icon id='home' icon={HomeIcon} />
         </button>
         <button
           className={selectedFilter === 'follow' ? 'active' : ''}
           onClick={this.onClick('follow')}
           title={intl.formatMessage(tooltips.follows)}
         >
-          <Icon id='user-plus' fixedWidth />
+          <Icon id='user-plus' icon={PersonAddIcon} />
         </button>
       </div>
     );

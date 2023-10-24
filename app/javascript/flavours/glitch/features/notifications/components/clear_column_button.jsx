@@ -3,6 +3,8 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { ReactComponent as DeleteForeverIcon } from '@material-symbols/svg-600/outlined/delete_forever.svg';
+
 import { Icon }  from 'flavours/glitch/components/icon';
 
 export default class ClearColumnButton extends PureComponent {
@@ -13,7 +15,7 @@ export default class ClearColumnButton extends PureComponent {
 
   render () {
     return (
-      <button className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.props.onClick}><Icon id='eraser' /> <FormattedMessage id='notifications.clear' defaultMessage='Clear notifications' /></button>
+      <button className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.props.onClick}><Icon id='eraser' icon={DeleteForeverIcon} /> <FormattedMessage id='notifications.clear' defaultMessage='Clear notifications' /></button>
     );
   }
 

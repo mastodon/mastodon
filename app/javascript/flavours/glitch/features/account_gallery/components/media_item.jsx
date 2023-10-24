@@ -5,6 +5,10 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as AudiotrackIcon } from '@material-symbols/svg-600/outlined/music_note.svg';
+import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow.svg';
+import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
+
 import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
@@ -69,7 +73,7 @@ export default class MediaItem extends ImmutablePureComponent {
     if (!visible) {
       icon = (
         <span className='account-gallery__item__icons'>
-          <Icon id='eye-slash' />
+          <Icon id='eye-slash' icon={VisibilityOffIcon} />
         </span>
       );
     } else {
@@ -84,9 +88,9 @@ export default class MediaItem extends ImmutablePureComponent {
         );
 
         if (attachment.get('type') === 'audio') {
-          label = <Icon id='music' />;
+          label = <Icon id='music' icon={AudiotrackIcon} />;
         } else {
-          label = <Icon id='play' />;
+          label = <Icon id='play' icon={PlayArrowIcon} />;
         }
       } else if (attachment.get('type') === 'image') {
         const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;

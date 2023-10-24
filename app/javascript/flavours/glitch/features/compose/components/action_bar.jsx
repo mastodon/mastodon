@@ -5,6 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { ReactComponent as MenuIcon } from '@material-symbols/svg-600/outlined/menu.svg';
+
 import { preferencesLink, profileLink } from 'flavours/glitch/utils/backend_links';
 
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
@@ -62,7 +64,7 @@ class ActionBar extends PureComponent {
     return (
       <div className='compose__action-bar'>
         <div className='compose__action-bar-dropdown'>
-          <DropdownMenuContainer items={menu} icon='bars' size={18} direction='right' />
+          <DropdownMenuContainer items={menu} icon='bars' iconComponent={MenuIcon} size={24} direction='right' />
         </div>
       </div>
     );

@@ -7,6 +7,10 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
+import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
+import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
+import { ReactComponent as ReplyIcon } from '@material-symbols/svg-600/outlined/reply.svg';
+import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star.svg';
 import { throttle, escapeRegExp } from 'lodash';
 
 import { openModal, closeModal } from 'flavours/glitch/actions/modal';
@@ -354,22 +358,22 @@ class InteractionModal extends React.PureComponent {
 
     switch(type) {
     case 'reply':
-      icon = <Icon id='reply' />;
+      icon = <Icon id='reply' icon={ReplyIcon} />;
       title = <FormattedMessage id='interaction_modal.title.reply' defaultMessage="Reply to {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on Mastodon, you can respond to this post.' />;
       break;
     case 'reblog':
-      icon = <Icon id='retweet' />;
+      icon = <Icon id='retweet' icon={RepeatIcon} />;
       title = <FormattedMessage id='interaction_modal.title.reblog' defaultMessage="Boost {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on Mastodon, you can boost this post to share it with your own followers.' />;
       break;
     case 'favourite':
-      icon = <Icon id='star' />;
+      icon = <Icon id='star' icon={StarIcon} />;
       title = <FormattedMessage id='interaction_modal.title.favourite' defaultMessage="Favorite {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on Mastodon, you can favorite this post to let the author know you appreciate it and save it for later.' />;
       break;
     case 'follow':
-      icon = <Icon id='user-plus' />;
+      icon = <Icon id='user-plus' icon={PersonAddIcon} />;
       title = <FormattedMessage id='interaction_modal.title.follow' defaultMessage='Follow {name}' values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.follow' defaultMessage='With an account on Mastodon, you can follow {name} to receive their posts in your home feed.' values={{ name }} />;
       break;

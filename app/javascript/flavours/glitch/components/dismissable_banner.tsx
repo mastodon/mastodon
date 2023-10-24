@@ -8,6 +8,8 @@ import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+
 import { changeSetting } from 'flavours/glitch/actions/settings';
 import { bannerSettings } from 'flavours/glitch/settings';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
@@ -55,6 +57,7 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
       <div className='dismissable-banner__action'>
         <IconButton
           icon='times'
+          iconComponent={CloseIcon}
           title={intl.formatMessage(messages.dismiss)}
           onClick={handleDismiss}
         />

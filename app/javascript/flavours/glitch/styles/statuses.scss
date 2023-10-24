@@ -175,6 +175,12 @@
 
     .status__visibility-icon {
       padding: 0 4px;
+
+      .icon {
+        width: 1em;
+        height: 1em;
+        margin-bottom: -2px;
+      }
     }
 
     .status__info .status__display-name {
@@ -215,7 +221,8 @@
 
 .status__content__read-more-button,
 .status__content__translate-button {
-  display: block;
+  display: flex;
+  align-items: center;
   font-size: 15px;
   line-height: 20px;
   color: $highlight-text-color;

@@ -6,8 +6,6 @@ import classNames from 'classnames';
 
 import { Icon } from 'flavours/glitch/components/icon';
 
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
 export default class LocalSettingsPage extends PureComponent {
 
   static propTypes = {
@@ -16,6 +14,7 @@ export default class LocalSettingsPage extends PureComponent {
     href: PropTypes.string,
     icon: PropTypes.string,
     textIcon: PropTypes.string,
+    iconComponent: PropTypes.func,
     index: PropTypes.number.isRequired,
     onNavigate: PropTypes.func,
     title: PropTypes.string,
@@ -36,6 +35,7 @@ export default class LocalSettingsPage extends PureComponent {
       className,
       href,
       icon,
+      iconComponent,
       textIcon,
       onNavigate,
       title,
@@ -45,7 +45,7 @@ export default class LocalSettingsPage extends PureComponent {
       active,
     }, className);
 
-    const iconElem = icon ? <Icon fixedWidth id={icon} /> : (textIcon ? <span className='text-icon-button'>{textIcon}</span> : null);
+    const iconElem = icon ? <Icon id={icon} icon={iconComponent} /> : (textIcon ? <span className='text-icon-button'>{textIcon}</span> : null);
 
     if (href) return (
       <a

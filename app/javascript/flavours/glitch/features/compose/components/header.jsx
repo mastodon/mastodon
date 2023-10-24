@@ -7,6 +7,14 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
+import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
+import { ReactComponent as LogoutIcon } from '@material-symbols/svg-600/outlined/logout.svg';
+import { ReactComponent as ManufacturingIcon } from '@material-symbols/svg-600/outlined/manufacturing.svg';
+import { ReactComponent as MenuIcon } from '@material-symbols/svg-600/outlined/menu.svg';
+import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications-fill.svg';
+import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
+
 import { Icon } from 'flavours/glitch/components/icon';
 import { signOutLink } from 'flavours/glitch/utils/backend_links';
 import { conditionalRender } from 'flavours/glitch/utils/react_helpers';
@@ -79,22 +87,25 @@ class Header extends ImmutablePureComponent {
           aria-label={intl.formatMessage(messages.start)}
           title={intl.formatMessage(messages.start)}
           to='/getting-started'
-        ><Icon id='asterisk' /></Link>
+          className='drawer__tab'
+        ><Icon id='bars' icon={MenuIcon} /></Link>
         {renderForColumn('HOME', (
           <Link
             aria-label={intl.formatMessage(messages.home_timeline)}
             title={intl.formatMessage(messages.home_timeline)}
             to='/home'
-          ><Icon id='home' /></Link>
+            className='drawer__tab'
+          ><Icon id='home' icon={HomeIcon} /></Link>
         ))}
         {renderForColumn('NOTIFICATIONS', (
           <Link
             aria-label={intl.formatMessage(messages.notifications)}
             title={intl.formatMessage(messages.notifications)}
             to='/notifications'
+            className='drawer__tab'
           >
             <span className='icon-badge-wrapper'>
-              <Icon id='bell' />
+              <Icon id='bell' icon={NotificationsIcon} />
               { showNotificationsBadge && unreadNotifications > 0 && <div className='icon-badge' />}
             </span>
           </Link>
@@ -104,27 +115,31 @@ class Header extends ImmutablePureComponent {
             aria-label={intl.formatMessage(messages.community)}
             title={intl.formatMessage(messages.community)}
             to='/public/local'
-          ><Icon id='users' /></Link>
+            className='drawer__tab'
+          ><Icon id='users' icon={PeopleIcon} /></Link>
         ))}
         {renderForColumn('PUBLIC', (
           <Link
             aria-label={intl.formatMessage(messages.public)}
             title={intl.formatMessage(messages.public)}
             to='/public'
-          ><Icon id='globe' /></Link>
+            className='drawer__tab'
+          ><Icon id='globe' icon={PublicIcon} /></Link>
         ))}
         <a
           aria-label={intl.formatMessage(messages.settings)}
           onClick={onSettingsClick}
           href='/settings/preferences'
           title={intl.formatMessage(messages.settings)}
-        ><Icon id='cogs' /></a>
+          className='drawer__tab'
+        ><Icon id='cogs' icon={ManufacturingIcon} /></a>
         <a
           aria-label={intl.formatMessage(messages.logout)}
           onClick={this.handleLogoutClick}
           href={signOutLink}
           title={intl.formatMessage(messages.logout)}
-        ><Icon id='sign-out' /></a>
+          className='drawer__tab'
+        ><Icon id='sign-out' icon={LogoutIcon} /></a>
       </nav>
     );
   }

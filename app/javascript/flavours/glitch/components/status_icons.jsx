@@ -6,15 +6,16 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { ReactComponent as ExpandLessIcon } from '@material-symbols/svg-600/outlined/expand_less.svg';
+import { ReactComponent as ForumIcon } from '@material-symbols/svg-600/outlined/forum.svg';
+import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home.svg';
 
-//  Mastodon imports.
 import { Icon } from 'flavours/glitch/components/icon';
 import { languages } from 'flavours/glitch/initial_state';
 
 import { IconButton } from './icon_button';
-import VisibilityIcon from './status_visibility_icon';
+import { VisibilityIcon } from './visibility_icon';
 
-//  Messages for use with internationalization stuff.
 const messages = defineMessages({
   collapse: { id: 'status.collapse', defaultMessage: 'Collapse' },
   uncollapse: { id: 'status.uncollapse', defaultMessage: 'Uncollapse' },
@@ -92,7 +93,6 @@ class StatusIcons extends PureComponent {
     );
   }
 
-  //  Rendering.
   render () {
     const {
       status,
@@ -109,16 +109,16 @@ class StatusIcons extends PureComponent {
         {settings.get('reply') && status.get('in_reply_to_id', null) !== null ? (
           <Icon
             className='status__reply-icon'
-            fixedWidth
             id='comment'
+            icon={ForumIcon}
             aria-hidden='true'
             title={intl.formatMessage(messages.inReplyTo)}
           />
         ) : null}
         {settings.get('local_only') && status.get('local_only') &&
           <Icon
-            fixedWidth
             id='home'
+            icon={HomeIcon}
             aria-hidden='true'
             title={intl.formatMessage(messages.localOnly)}
           />}
@@ -135,6 +135,7 @@ class StatusIcons extends PureComponent {
                 intl.formatMessage(messages.collapse)
             }
             icon='angle-double-up'
+            iconComponent={ExpandLessIcon}
             onClick={this.handleCollapsedClick}
           />
         )}

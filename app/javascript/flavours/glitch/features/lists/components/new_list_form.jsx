@@ -6,7 +6,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { changeListEditorTitle, submitListEditor } from 'flavours/glitch/actions/lists';
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import { Button } from 'flavours/glitch/components/button';
 
 const messages = defineMessages({
   label: { id: 'lists.new.title_placeholder', defaultMessage: 'New list title' },
@@ -66,9 +66,8 @@ class NewListForm extends PureComponent {
           />
         </label>
 
-        <IconButton
+        <Button
           disabled={disabled || !value}
-          icon='plus'
           title={title}
           onClick={this.handleClick}
         />
