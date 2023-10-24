@@ -111,7 +111,7 @@ class ActivityPub::Activity
 
     # If the boosted toot is embedded and it is a self-boost, handle it like a Create
     if !unsupported_object_type? && (object_actor_uri == @account.uri)
-      virtual_object = { 'type' => 'Create', 'actor' => actor_id, 'object' => @object }
+      virtual_object = { 'type' => 'Create', 'actor' => object_actor_uri, 'object' => @object }
       return ActivityPub::Activity.factory(virtual_object, @account, request_id: @options[:request_id]).perform
     end
 
