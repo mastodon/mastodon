@@ -8,7 +8,7 @@ namespace :mastodon do
     prompt = TTY::Prompt.new
     env    = {}
 
-    # When the application code gets loaded, it runs `lib/mastodon/redis_configuration.rb`.
+    # When the application code gets loaded, it requires `config/redis.rb`.
     # This happens before application environment configuration and sets REDIS_URL etc.
     # These variables are then used even when REDIS_HOST etc. are changed, so clear them
     # out so they don't interfere with our new configuration.

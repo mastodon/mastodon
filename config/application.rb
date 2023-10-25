@@ -55,7 +55,7 @@ Dotenv::Railtie.load
 
 Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
 
-require_relative '../lib/mastodon/redis_config'
+require_relative '../config/redis'
 
 module Mastodon
   class Application < Rails::Application

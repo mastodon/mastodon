@@ -97,7 +97,7 @@ Style/FetchEnvVar:
     - 'config/initializers/devise.rb'
     - 'config/initializers/paperclip.rb'
     - 'config/initializers/vapid.rb'
-    - 'lib/mastodon/redis_config.rb'
+    - 'config/redis.rb'
     - 'lib/premailer_webpack_strategy.rb'
     - 'lib/tasks/repo.rake'
     - 'spec/features/profile_spec.rb'
@@ -205,7 +205,7 @@ Style/OptionalBooleanParameter:
     - 'app/services/fetch_resource_service.rb'
     - 'app/workers/domain_block_worker.rb'
     - 'app/workers/unfollow_follow_worker.rb'
-    - 'lib/mastodon/redis_config.rb'
+    - 'config/redis.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: PreferredDelimiters.
