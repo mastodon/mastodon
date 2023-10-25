@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Paperclip
-  module UrlGeneratorExtensions
+  module URLGeneratorExtensions
     def for_as_default(style_name)
       attachment_options[:interpolator].interpolate(default_url, @attachment, style_name)
     end
   end
 end
 
-Paperclip::UrlGenerator.prepend(Paperclip::UrlGeneratorExtensions)
+Paperclip::UrlGenerator.prepend(Paperclip::URLGeneratorExtensions)
