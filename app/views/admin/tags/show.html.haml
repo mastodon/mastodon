@@ -35,7 +35,6 @@
           %span= t('admin.trends.tags.not_trendable')
           = fa_icon 'lock fw'
 
-
       = link_to admin_tag_path(@tag.id), class: ['dashboard__quick-access', @tag.listable? ? 'positive' : 'negative'] do
         - if @tag.listable?
           %span= t('admin.trends.tags.listable')
