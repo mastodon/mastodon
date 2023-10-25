@@ -75,7 +75,7 @@ class AttachmentBatch
             end
           when :fog
             logger.debug { "Deleting #{attachment.path(style)}" }
-            attachment.directory.files.new(key: attachment.path(style)).destroy
+            attachment.send(:directory).files.new(key: attachment.path(style)).destroy
           when :azure
             logger.debug { "Deleting #{attachment.path(style)}" }
             attachment.destroy
