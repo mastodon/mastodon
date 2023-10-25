@@ -10,5 +10,15 @@ module Admin
         ]
       )
     end
+
+    def disable_permissions?(permissions)
+      permissions.filter { |privilege| role_flag_value(privilege).zero? }
+    end
+
+    private
+
+    def role_flag_value(privilege)
+      UserRole::FLAGS[privilege] & current_user.role.computed_permissions
+    end
   end
 end
