@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { fetchSuggestions } from 'mastodon/actions/suggestions';
 import { markAsPartial } from 'mastodon/actions/timelines';
 import Column from 'mastodon/components/column';
-import ColumnBackButton from 'mastodon/components/column_back_button';
+import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import { EmptyAccount } from 'mastodon/components/empty_account';
 import Account from 'mastodon/containers/account_container';
 

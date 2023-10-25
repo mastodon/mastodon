@@ -12,7 +12,7 @@ import { ReactComponent as BlockIcon } from '@material-symbols/svg-600/outlined/
 import { debounce } from 'lodash';
 
 import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import { ColumnBackButtonSlim } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import DomainContainer from '../../containers/domain_container';

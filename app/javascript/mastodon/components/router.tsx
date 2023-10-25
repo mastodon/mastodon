@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import React from 'react';
 
-import { Router as OriginalRouter } from 'react-router';
+import { Router as OriginalRouter, useHistory } from 'react-router';
 
 import type {
   LocationDescriptor,
@@ -23,6 +23,10 @@ const browserHistory = createBrowserHistory<
 >();
 const originalPush = browserHistory.push.bind(browserHistory);
 const originalReplace = browserHistory.replace.bind(browserHistory);
+
+export function useAppHistory() {
+  return useHistory<MastodonLocationState>();
+}
 
 function normalizePath(
   path: HistoryPath,

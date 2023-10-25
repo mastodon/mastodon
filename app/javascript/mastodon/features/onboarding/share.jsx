@@ -14,7 +14,7 @@ import { ReactComponent as ContentCopyIcon } from '@material-symbols/svg-600/out
 import SwipeableViews from 'react-swipeable-views';
 
 import Column from 'mastodon/components/column';
-import ColumnBackButton from 'mastodon/components/column_back_button';
+import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import { Icon }  from 'mastodon/components/icon';
 import { me, domain } from 'mastodon/initial_state';
 
