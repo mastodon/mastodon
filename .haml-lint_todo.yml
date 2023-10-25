@@ -11,26 +11,6 @@ linters:
   LineLength:
     enabled: false
 
-  # Offense count: 22
-  UnnecessaryStringOutput:
-    exclude:
-      - 'app/views/accounts/show.html.haml'
-      - 'app/views/admin/custom_emojis/_custom_emoji.html.haml'
-      - 'app/views/admin/relays/_relay.html.haml'
-      - 'app/views/admin/rules/_rule.html.haml'
-      - 'app/views/admin/statuses/index.html.haml'
-      - 'app/views/auth/registrations/_session.html.haml'
-      - 'app/views/disputes/strikes/show.html.haml'
-      - 'app/views/notification_mailer/_status.html.haml'
-      - 'app/views/settings/two_factor_authentication_methods/index.html.haml'
-      - 'app/views/statuses/_detailed_status.html.haml'
-      - 'app/views/statuses/_poll.html.haml'
-      - 'app/views/statuses/_simple_status.html.haml'
-      - 'app/views/user_mailer/suspicious_sign_in.html.haml'
-      - 'app/views/user_mailer/webauthn_credential_added.html.haml'
-      - 'app/views/user_mailer/webauthn_credential_deleted.html.haml'
-      - 'app/views/user_mailer/welcome.html.haml'
-
   # Offense count: 45
   RuboCop:
     exclude:
