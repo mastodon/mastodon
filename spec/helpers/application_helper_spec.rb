@@ -296,5 +296,12 @@ describe ApplicationHelper do
       expect(helper.title).to eq 'site title'
       expect(Rails.env).to have_received(:production?)
     end
+
+    it 'returns site title with note on non-production environment' do
+      Setting.site_title = 'site title'
+      allow(Rails.env).to receive(:production?).and_return(false)
+      expect(helper.title).to eq 'site title (Dev)'
+      expect(Rails.env).to have_received(:production?)
+    end
   end
 end
