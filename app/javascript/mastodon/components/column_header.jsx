@@ -206,7 +206,9 @@ class ColumnHeader extends PureComponent {
     if (placeholder) {
       return component;
     } else {
-      return <ButtonInTabsBar component={component} />;
+      return (<ButtonInTabsBar>
+        {component}
+      </ButtonInTabsBar>);
     }
   }
 

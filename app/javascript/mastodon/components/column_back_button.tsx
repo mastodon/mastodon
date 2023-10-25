@@ -41,7 +41,7 @@ export const ColumnBackButton: React.FC<{ onClick: OnClickCallback }> = ({
     </button>
   );
 
-  return <ButtonInTabsBar component={component} />;
+  return <ButtonInTabsBar>{component}</ButtonInTabsBar>;
 };
 
 export const ColumnBackButtonSlim: React.FC<{ onClick: OnClickCallback }> = ({

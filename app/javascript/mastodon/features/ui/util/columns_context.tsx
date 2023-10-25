@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import { createContext, useContext, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -15,17 +16,17 @@ export function useColumnsContext() {
   return useContext(ColumnsContext);
 }
 
-export const ButtonInTabsBar: React.FC<{ component: JSX.Element }> = ({
-  component,
-}) => {
+export const ButtonInTabsBar: React.FC<{
+  children: ReactElement | string | undefined;
+}> = ({ children }) => {
   const { multiColumn, tabsBarElement } = useColumnsContext();
 
   if (multiColumn) {
-    return component;
+    return children;
   } else if (!tabsBarElement) {
-    return component;
+    return children;
   } else {
-    return createPortal(component, tabsBarElement);
+    return createPortal(children, tabsBarElement);
   }
 };
 
