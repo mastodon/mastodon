@@ -213,6 +213,10 @@ export function submitCompose(routerHistory) {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
+      console.log('DEBUG: response');
+      console.log(response);
+      return response;
+    }).then(function (response) {
       if (routerHistory && (routerHistory.location.pathname === '/publish' || routerHistory.location.pathname === '/statuses/new') && window.history.state) {
         routerHistory.goBack();
       }
