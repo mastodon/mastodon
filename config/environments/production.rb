@@ -6,7 +6,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
-  config.cache_classes = true
+  config.enable_reloading = false
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -19,8 +19,8 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
   config.action_controller.asset_host      = ENV['CDN_HOST'] if ENV['CDN_HOST'].present?
 
-  # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
-  # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
+  # Ensures that a master key has been made available in ENV["RAILS_MASTER_KEY"], config/master.key, or an environment
+  # key such as config/credentials/production.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
 
   # Compress CSS using a preprocessor.
@@ -48,10 +48,9 @@ Rails.application.configure do
     }
   }
 
-  # Include generic and useful information about system operation, but avoid logging too much
-  # information to avoid inadvertent exposure of personally identifiable information (PII).
-  # Use the lowest log level to ensure availability of diagnostic information
-  # when problems arise.
+  # Info include generic and useful information about system operation, but avoids logging too much
+  # information to avoid inadvertent exposure of personally identifiable information (PII). If you
+  # want to log everything, set the level to "debug".
   config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
 
   # Prepend all log lines with the following tags.
@@ -72,10 +71,13 @@ Rails.application.configure do
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # English when a translation cannot be found).
+  # This setting would typically be `true` to use the `I18n.default_locale`.
+  # Some locales are missing translation entries and would have errors:
+  # https://github.com/mastodon/mastodon/pull/24727
   config.i18n.fallbacks = [:en]
 
-  # Send deprecation notices to registered listeners.
-  config.active_support.deprecation = :notify
+  # Don't log any deprecations.
+  config.active_support.report_deprecations = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
@@ -93,10 +95,10 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
-  ActiveSupport::Logger.new(STDOUT).tap do |logger|
-    logger.formatter = config.log_formatter
-    config.logger = ActiveSupport::TaggedLogging.new(logger)
-  end
+  # Log to STDOUT by default
+  config.logger = ActiveSupport::Logger.new(STDOUT)
+                                       .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
+                                       .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
@@ -157,4 +159,12 @@ Rails.application.configure do
   }
 
   config.x.otp_secret = ENV.fetch('OTP_SECRET')
+
+  # Enable DNS rebinding protection and other `Host` header attacks.
+  # config.hosts = [
+  #   "example.com",     # Allow requests from example.com
+  #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
+  # ]
+  # Skip DNS rebinding protection for the default health check endpoint.
+  # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
