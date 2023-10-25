@@ -523,6 +523,7 @@ vi:
       total_reported: Toàn bộ báo cáo
       total_storage: Media
       totals_time_period_hint_html: Tổng số được hiển thị bên dưới bao gồm dữ liệu cho mọi thời điểm.
+      unknown_instance: Hiện tại không có bản ghi tên miền này trên máy chủ này.
     invites:
       deactivate_all: Vô hiệu hóa tất cả
       filter:
@@ -1083,6 +1084,7 @@ vi:
       functional: Tài khoản của bạn đã được xác minh.
       pending: Đơn đăng ký của bạn đang chờ phê duyệt. Điều này có thể mất một thời gian. Bạn sẽ nhận được email nếu đơn đăng ký của bạn được chấp thuận.
       redirecting_to: Tài khoản của bạn không hoạt động vì hiện đang chuyển hướng đến %{acct}.
+      self_destruct: Vì %{domain} đang đóng cửa, bạn sẽ chỉ có quyền truy cập hạn chế vào tài khoản của mình.
       view_strikes: Xem những lần cảnh cáo cũ
     too_fast: Nghi vấn đăng ký spam, xin thử lại.
     use_security_key: Dùng khóa bảo mật
@@ -1544,6 +1546,9 @@ vi:
     over_daily_limit: Bạn đã vượt qua giới hạn được lên lịch đăng tút %{limit} hôm nay
     over_total_limit: Bạn đã vượt quá giới hạn %{limit} của các tút được lên lịch
     too_soon: Ngày lên lịch phải trong tương lai
+  self_destruct:
+    lead_html: Rất tiếc, <strong>%{domain}</strong>đã đóng cửa vĩnh viễn. Nếu bạn có tài khoản ở đó, bạn sẽ không thể tiếp tục sử dụng tài khoản đó nhưng bạn vẫn có thể yêu cầu bản sao lưu dữ liệu của mình.
+    title: Máy chủ đang đóng cửa
   sessions:
     activity: Gần đây nhất
     browser: Ứng dụng

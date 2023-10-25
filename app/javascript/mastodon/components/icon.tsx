@@ -25,7 +25,9 @@ export const Icon: React.FC<Props> = ({
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!IconComponent) {
     if (process.env.NODE_ENV !== 'production') {
-      throw new Error(`<Icon id="${id}"> is missing an "icon" prop.`);
+      throw new Error(
+        `<Icon id="${id}" className="${className}"> is missing an "icon" prop.`,
+      );
     }
 
     IconComponent = CheckBoxOutlineBlankIcon;

@@ -11,7 +11,7 @@ import { ReactComponent as ArrowBackIcon } from '@material-symbols/svg-600/outli
 import { Icon }  from 'mastodon/components/icon';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
-class ColumnBackButton extends PureComponent {
+export class ColumnBackButton extends PureComponent {
 
   static propTypes = {
     multiColumn: PropTypes.bool,
