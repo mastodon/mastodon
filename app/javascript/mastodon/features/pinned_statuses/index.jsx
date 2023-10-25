@@ -13,7 +13,6 @@ import { ReactComponent as PushPinIcon } from '@material-symbols/svg-600/outline
 import { getStatusList } from 'mastodon/selectors';
 
 import { fetchPinnedStatuses } from '../../actions/pin_statuses';
-import { ColumnBackButtonSlim } from '../../components/column_back_button';
 import StatusList from '../../components/status_list';
 import Column from '../ui/components/column';
 
@@ -53,7 +52,6 @@ class PinnedStatuses extends ImmutablePureComponent {
 
     return (
       <Column bindToDocument={!multiColumn} icon='thumb-tack' iconComponent={PushPinIcon} heading={intl.formatMessage(messages.heading)} ref={this.setRef}>
-        <ColumnBackButtonSlim />
         <StatusList
           statusIds={statusIds}
           scrollKey='pinned_statuses'

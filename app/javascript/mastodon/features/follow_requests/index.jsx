@@ -12,7 +12,6 @@ import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outli
 import { debounce } from 'lodash';
 
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
-import { ColumnBackButtonSlim } from '../../components/column_back_button';
 import ScrollableList from '../../components/scrollable_list';
 import { me } from '../../initial_state';
 import Column from '../ui/components/column';
@@ -69,7 +68,6 @@ class FollowRequests extends ImmutablePureComponent {
 
     return (
       <Column bindToDocument={!multiColumn} icon='user-plus' iconComponent={PersonAddIcon} heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
         <ScrollableList
           scrollKey='follow_requests'
           onLoadMore={this.handleLoadMore}

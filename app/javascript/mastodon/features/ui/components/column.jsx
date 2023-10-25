@@ -3,10 +3,9 @@ import { PureComponent } from 'react';
 
 import { debounce } from 'lodash';
 
+import ColumnHeader from '../../../components/column_header';
 import { isMobile } from '../../../is_mobile';
 import { scrollTop } from '../../../scroll';
-
-import ColumnHeader from './column_header';
 
 export default class Column extends PureComponent {
 
@@ -56,8 +55,9 @@ export default class Column extends PureComponent {
     const showHeading = heading && (!hideHeadingOnMobile || (hideHeadingOnMobile && !isMobile(window.innerWidth)));
 
     const columnHeaderId = showHeading && heading.replace(/ /g, '-');
+
     const header = showHeading && (
-      <ColumnHeader icon={icon} iconComponent={iconComponent} active={active} type={heading} onClick={this.handleHeaderClick} columnHeaderId={columnHeaderId} />
+      <ColumnHeader icon={icon} iconComponent={iconComponent} active={active} title={heading} onClick={this.handleHeaderClick} columnHeaderId={columnHeaderId} />
     );
     return (
       <div

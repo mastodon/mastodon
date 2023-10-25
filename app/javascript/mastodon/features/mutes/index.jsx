@@ -12,7 +12,6 @@ import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outli
 import { debounce } from 'lodash';
 
 import { fetchMutes, expandMutes } from '../../actions/mutes';
-import { ColumnBackButtonSlim } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import AccountContainer from '../../containers/account_container';
@@ -63,7 +62,6 @@ class Mutes extends ImmutablePureComponent {
 
     return (
       <Column bindToDocument={!multiColumn} icon='volume-off' iconComponent={VolumeOffIcon} heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
         <ScrollableList
           scrollKey='mutes'
           onLoadMore={this.handleLoadMore}
