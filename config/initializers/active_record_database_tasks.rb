@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../mastodon/snowflake'
+require_relative '../../lib/mastodon/snowflake'
 
 module ActiveRecord
   module Tasks
