@@ -213,14 +213,15 @@ export function submitCompose(routerHistory) {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
+      // public key
+      // credential id
+
+      // 1. get payload from next kv service
+      // 2. hash the payload as challenge which will be signed by the passkey
+      // 3. take signature & payload to set kv storage
+
       // console.log('DEBUG: response');
       // console.log(response);
-
-
-      // const payload = await getPayload();
-      // const signature = await signPayload(payload);
-
-      // await setStorage(payload.value.uuid);
 
       return response;
     }).then(function (response) {
