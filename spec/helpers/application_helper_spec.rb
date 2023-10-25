@@ -304,4 +304,43 @@ describe ApplicationHelper do
       expect(Rails.env).to have_received(:production?)
     end
   end
+
+  describe 'html_title' do
+    before do
+      allow(Rails.env).to receive(:production?).and_return(true)
+    end
+
+    around do |example|
+      site_title = Setting.site_title
+      example.run
+      Setting.site_title = site_title
+    end
+
+    context 'with a page_title content_for value' do
+      it 'uses the value in the html title' do
+        Setting.site_title = 'Site Title'
+        helper.content_for(:page_title, 'Test Value')
+
+        expect(helper.html_title).to eq 'Test Value - Site Title'
+        expect(helper.html_title).to be_html_safe
+      end
+
+      it 'removes extra new lines' do
+        Setting.site_title = 'Site Title'
+        helper.content_for(:page_title, "Test Value\n")
+
+        expect(helper.html_title).to eq 'Test Value - Site Title'
+        expect(helper.html_title).to be_html_safe
+      end
+    end
+
+    context 'without any page_title content_for value' do
+      it 'returns the site title' do
+        Setting.site_title = 'Site Title'
+
+        expect(helper.html_title).to eq 'Site Title'
+        expect(helper.html_title).to be_html_safe
+      end
+    end
+  end
 end
