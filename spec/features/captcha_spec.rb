@@ -30,6 +30,14 @@ describe 'email confirmation flow when captcha is enabled' do
       click_button I18n.t('challenge.confirm')
       expect(user.reload.confirmed?).to be true
       expect(page).to have_current_path(/\A#{client_app.confirmation_redirect_uri}/, url: true)
+
+      # Browsers will generally reload the original page upon redirection
+      # to external handlers, so test this as well
+      visit "/auth/confirmation?confirmation_token=#{user.confirmation_token}&redirect_to_app=true"
+
+      # It presents a page with a link to the app callback
+      expect(page).to have_content(I18n.t('auth.confirmations.registration_complete', domain: 'cb6e6126.ngrok.io'))
+      expect(page).to have_link(I18n.t('auth.confirmations.clicking_this_link'), href: client_app.confirmation_redirect_uri)
     end
   end
 end
