@@ -6,10 +6,12 @@ import { FormattedMessage } from 'react-intl';
 
 import { withRouter } from 'react-router-dom';
 
+import { ReactComponent as ArrowBackIcon } from '@material-symbols/svg-600/outlined/arrow_back.svg';
+
 import { Icon }  from 'mastodon/components/icon';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
-class ColumnBackButton extends PureComponent {
+export class ColumnBackButton extends PureComponent {
 
   static propTypes = {
     multiColumn: PropTypes.bool,
@@ -34,7 +36,7 @@ class ColumnBackButton extends PureComponent {
 
     const component = (
       <button onClick={this.handleClick} className='column-back-button'>
-        <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
+        <Icon id='chevron-left' icon={ArrowBackIcon} className='column-back-button__icon' />
         <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
       </button>
     );

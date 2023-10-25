@@ -8,6 +8,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+
 import { followAccount } from 'mastodon/actions/accounts';
 import { Button } from 'mastodon/components/button';
 import { IconButton } from 'mastodon/components/icon_button';
@@ -101,7 +103,7 @@ class SubscribedLanguagesModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal report-dialog-modal'>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={20} />
+          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={CloseIcon} onClick={onClose} size={20} />
           <FormattedMessage id='subscribed_languages.target' defaultMessage='Change subscribed languages for {target}' values={{ target: <strong>{acct}</strong> }} />
         </div>
 

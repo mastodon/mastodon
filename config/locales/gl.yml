@@ -534,6 +534,7 @@ gl:
       total_reported: Denuncias sobre eles
       total_storage: Adxuntos multimedia
       totals_time_period_hint_html: Os totais aquí mostrados inclúen todo o historial de datos.
+      unknown_instance: Actualmente non temos constancia deste rexistro no servidor.
     invites:
       deactivate_all: Desactivar todo
       filter:
@@ -1101,6 +1102,7 @@ gl:
       functional: A túa conta está completamente operativa.
       pending: A túa solicitude está pendente de revisión. Poderíanos levar algún tempo. Recibirás un correo se a solicitude está aprobada.
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
+      self_destruct: Como %{domain} vai fechar, tes acceso restrinxido á túa conta.
       view_strikes: Ver avisos anteriores respecto da túa conta
     too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
     use_security_key: Usa chave de seguridade
@@ -1570,6 +1572,9 @@ gl:
     over_daily_limit: Excedeches o límite de %{limit} publicacións programadas para ese día
     over_total_limit: Excedeches o límite de %{limit} publicacións programadas
     too_soon: A data de programación debe estar no futuro
+  self_destruct:
+    lead_html: Desafortunadamente, <strong>%{domain}</strong> vai deixar de dar servizo. Se tes unha conta aquí non poderás seguir usándoa, mais podes solicitar un ficheiro cos teus datos.
+    title: Este servidor vai fechar
   sessions:
     activity: Última actividade
     browser: Navegador
