@@ -146,18 +146,17 @@ class Share extends PureComponent {
   static propTypes = {
     onBack: PropTypes.func,
     account: ImmutablePropTypes.map,
-    multiColumn: PropTypes.bool,
     intl: PropTypes.object,
   };
 
   render () {
-    const { onBack, account, multiColumn, intl } = this.props;
+    const { onBack, account, intl } = this.props;
 
     const url = (new URL(`/@${account.get('username')}`, document.baseURI)).href;
 
     return (
       <Column>
-        <ColumnBackButton multiColumn={multiColumn} onClick={onBack} />
+        <ColumnBackButton onClick={onBack} />
 
         <div className='scrollable privacy-policy'>
           <div className='column-title'>

@@ -25,7 +25,6 @@ class Follows extends PureComponent {
     dispatch: PropTypes.func.isRequired,
     suggestions: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
-    multiColumn: PropTypes.bool,
   };
 
   componentDidMount () {
@@ -39,7 +38,7 @@ class Follows extends PureComponent {
   }
 
   render () {
-    const { onBack, isLoading, suggestions, multiColumn } = this.props;
+    const { onBack, isLoading, suggestions } = this.props;
 
     let loadedContent;
 
@@ -53,7 +52,7 @@ class Follows extends PureComponent {
 
     return (
       <Column>
-        <ColumnBackButton multiColumn={multiColumn} onClick={onBack} />
+        <ColumnBackButton onClick={onBack} />
 
         <div className='scrollable privacy-policy'>
           <div className='column-title'>
