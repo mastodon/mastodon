@@ -28,7 +28,7 @@ RUN apt-get update && \
         libgdbm-dev \
         libgmp-dev \
         libssl-dev \
-        libyaml-0-2 \
+        libyaml-dev \
         ca-certificates \
         libreadline8 \
         python3 \

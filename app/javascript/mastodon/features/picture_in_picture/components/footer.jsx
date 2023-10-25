@@ -9,6 +9,12 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { ReactComponent as OpenInNewIcon } from '@material-symbols/svg-600/outlined/open_in_new.svg';
+import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
+import { ReactComponent as ReplyIcon } from '@material-symbols/svg-600/outlined/reply.svg';
+import { ReactComponent as ReplyAllIcon } from '@material-symbols/svg-600/outlined/reply_all.svg';
+import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star.svg';
+
 import { initBoostModal } from 'mastodon/actions/boosts';
 import { replyCompose } from 'mastodon/actions/compose';
 import { reblog, favourite, unreblog, unfavourite } from 'mastodon/actions/interactions';
@@ -169,13 +175,15 @@ class Footer extends ImmutablePureComponent {
     const publicStatus  = ['public', 'unlisted'].includes(status.get('visibility'));
     const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
 
-    let replyIcon, replyTitle;
+    let replyIcon, replyIconComponent, replyTitle;
 
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
+      replyIconComponent = RepeatIcon;
       replyTitle = intl.formatMessage(messages.reply);
     } else {
       replyIcon = 'reply-all';
+      replyIconComponent = ReplyAllIcon;
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
@@ -193,10 +201,10 @@ class Footer extends ImmutablePureComponent {
 
     return (
       <div className='picture-in-picture__footer'>
-        <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} />
-        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={status.get('reblogs_count')} />
-        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} />
-        {withOpenButton && <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.open)} icon='external-link' onClick={this.handleOpenClick} href={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} />}
+        <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} iconComponent={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? ReplyIcon : replyIconComponent} onClick={this.handleReplyClick} counter={status.get('replies_count')} />
+        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} title={reblogTitle} icon='retweet' iconComponent={RepeatIcon} onClick={this.handleReblogClick} counter={status.get('reblogs_count')} />
+        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={StarIcon} onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} />
+        {withOpenButton && <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.open)} icon='external-link' iconComponent={OpenInNewIcon} onClick={this.handleOpenClick} href={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} />}
       </div>
     );
   }
