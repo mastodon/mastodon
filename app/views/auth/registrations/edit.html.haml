@@ -21,9 +21,9 @@
 
     .fields-row
       .fields-row__column.fields-group.fields-row__column-6
-        = f.input :password, wrapper: :with_label, label: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label': t('simple_form.labels.defaults.new_password'), autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last }, hint: t('simple_form.hints.defaults.password'), disabled: current_account.suspended?
+        = f.input :password, wrapper: :with_label, label: t('simple_form.labels.defaults.new_password'), input_html: registrations_edit_password_input_html, hint: t('simple_form.hints.defaults.password'), disabled: current_account.suspended?
       .fields-row__column.fields-group.fields-row__column-6
-        = f.input :password_confirmation, wrapper: :with_label, label: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label': t('simple_form.labels.defaults.confirm_new_password'), autocomplete: 'new-password' }, disabled: current_account.suspended?
+        = f.input :password_confirmation, wrapper: :with_label, label: t('simple_form.labels.defaults.confirm_new_password'), input_html: registrations_edit_password_confirmation_input_html, disabled: current_account.suspended?
 
     .actions
       = f.button :button, t('generic.save_changes'), type: :submit, class: 'button', disabled: current_account.suspended?
