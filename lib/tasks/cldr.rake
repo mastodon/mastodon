@@ -50,8 +50,9 @@ namespace :cldr do
         next
       end
 
+      locales = LanguagesHelper::SUPPORTED_LOCALES.keys + LanguagesHelper::REGIONAL_LOCALE_NAMES.keys
       cldr_languages = YAML.safe_load_file(cldr_file, symbolize_names: true).dig(cldr_locale.to_sym, :languages)
-      cldr_languages.slice!(*LanguagesHelper::SUPPORTED_LOCALES.keys).stringify_keys
+      cldr_languages.slice!(*locales).stringify_keys
 
       locale_file = Rails.root.join('config', 'locales', "languages.#{locale}.yml")
       data = YAML.safe_load_file(locale_file, symbolize_names: true) if locale_file.exist?

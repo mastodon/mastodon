@@ -234,25 +234,24 @@ module LanguagesHelper
   private_class_method def self.locale_name_for_sorting(locale)
     if locale.blank? || locale == 'und'
       '000'
-    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
-      ASCIIFolding.new.fold(supported_locale).downcase
-    elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
-      ASCIIFolding.new.fold(regional_locale).downcase
     else
-      locale
+      standard_locale_name(locale)
     end
   end
 
-  # Sort locales by native name for dropdown menus
-  def self.sorted_locale_keys(locale_keys)
-    locale_keys.sort_by { |key, _| locale_name_for_sorting(key) }
+  def sorted_locale_keys(locale_keys)
+    locale_keys.sort_by do |key, _|
+      # Sort by translated name but keep variants (e.g. en, en-GB, etc.) together.
+      parts = key.to_s.split(/[_-]/)
+      [standard_locale_name(parts[0]), parts.size > 1 ? standard_locale_name(parts[1]) : '']
+    end
   end
 
   def native_locale_name(locale)
     if locale.blank? || locale == 'und'
       I18n.t('generic.none')
     else
-      SUPPORTED_LOCALES[locale.to_sym] || REGIONAL_LOCALE_NAMES[locale.to_sym] || locale
+      SUPPORTED_LOCALES[locale.to_sym] || REGIONAL_LOCALE_NAMES[locale.to_sym] || locale.to_s
     end
   end
 
@@ -261,6 +260,16 @@ module LanguagesHelper
       I18n.t('generic.none')
     else
       I18n.t(locale, scope: :languages, default: locale.to_s)
+    end
+  end
+
+  def compound_locale_name(locale)
+    if locale.blank?
+      I18n.t('generic.none')
+    elsif locale == I18n.locale
+      native_locale_name(locale)
+    else
+      [native_locale_name(locale), I18n.t(locale, scope: :languages, default: nil)].compact.join(' – ')
     end
   end
 
