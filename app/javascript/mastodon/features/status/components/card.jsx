@@ -10,9 +10,9 @@ import classNames from 'classnames';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as DescriptionIcon } from '@material-symbols/svg-600/outlined/description.svg';
+import { ReactComponent as DescriptionIcon } from '@material-symbols/svg-600/outlined/description-fill.svg';
 import { ReactComponent as OpenInNewIcon } from '@material-symbols/svg-600/outlined/open_in_new.svg';
-import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow.svg';
+import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow-fill.svg';
 
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';

@@ -7434,7 +7434,12 @@ noscript {
         border: 1px solid lighten($ui-base-color, 12%);
         border-radius: 4px;
         box-sizing: content-box;
-        padding: 2px;
+        padding: 5px;
+
+        .icon {
+          width: 24px;
+          height: 24px;
+        }
       }
     }
 
@@ -7517,6 +7522,11 @@ noscript {
         color: lighten($ui-highlight-color, 8%);
       }
 
+      .icon {
+        width: 18px;
+        height: 18px;
+      }
+
       .verified {
         border: 1px solid rgba($valid-value-color, 0.5);
         margin-top: -1px;
@@ -7535,6 +7545,16 @@ noscript {
         dt,
         dd {
           color: $valid-value-color;
+        }
+
+        dd {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          span {
+            display: flex;
+          }
         }
 
         a {
