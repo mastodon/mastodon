@@ -36,7 +36,7 @@ describe LanguagesHelper do
 
     context 'with a non-existent locale' do
       it 'returns the supplied locale value' do
-        expect(helper.native_locale_name(:xxx)).to eq(:xxx)
+        expect(helper.native_locale_name(:xxx)).to eq('xxx')
       end
     end
   end
@@ -61,28 +61,50 @@ describe LanguagesHelper do
     end
   end
 
+  describe 'compound_locale_name' do
+    context 'with a blank locale' do
+      it 'defaults to a generic value' do
+        expect(helper.compound_locale_name(nil)).to eq(I18n.t('generic.none'))
+      end
+    end
+
+    context 'with a non-existent locale' do
+      it 'returns the supplied locale value' do
+        expect(helper.compound_locale_name(:xxx)).to eq('xxx')
+      end
+    end
+
+    context 'with a supported locale' do
+      it 'finds the human readable standard name from a key' do
+        expect(helper.compound_locale_name(:de)).to eq('Deutsch – German')
+      end
+    end
+
+    context 'with the current locale' do
+      it 'finds the human readable standard name from a key' do
+        expect(helper.compound_locale_name(:en)).to eq('English')
+      end
+    end
+  end
+
   describe 'sorted_locales' do
-    context 'when sorting with native name' do
-      it 'returns Suomi after Gàidhlig' do
-        expect(described_class.sorted_locale_keys(%w(fi gd))).to eq(%w(gd fi))
+    context 'when sorting with locale name' do
+      it 'returns German after English' do
+        I18n.with_locale(:en) do
+          expect(helper.sorted_locale_keys(%w(de en))).to eq(%w(en de))
+        end
       end
-    end
 
-    context 'when sorting with diacritics' do
-      it 'returns Íslensk before Suomi' do
-        expect(described_class.sorted_locale_keys(%w(fi is))).to eq(%w(is fi))
-      end
-    end
-
-    context 'when sorting with non-Latin' do
-      it 'returns Suomi before Amharic' do
-        expect(described_class.sorted_locale_keys(%w(am fi))).to eq(%w(fi am))
+      it 'returns Englisch after Deutsch' do
+        I18n.with_locale(:de) do
+          expect(helper.sorted_locale_keys(%w(de en))).to eq(%w(de en))
+        end
       end
     end
 
     context 'when sorting with local variants' do
       it 'returns variant in-line' do
-        expect(described_class.sorted_locale_keys(%w(en eo en-GB))).to eq(%w(en en-GB eo))
+        expect(helper.sorted_locale_keys(%w(en eo en-GB))).to eq(%w(en en-GB eo))
       end
     end
   end
