@@ -13,7 +13,7 @@ import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/s
 import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outlined/volume_off.svg';
 
 import { openModal } from 'flavours/glitch/actions/modal';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
+import { ColumnBackButtonSlim } from 'flavours/glitch/components/column_back_button';
 import Column from 'flavours/glitch/features/ui/components/column';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subheading';
