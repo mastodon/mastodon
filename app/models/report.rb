@@ -142,6 +142,11 @@ class Report < ApplicationRecord
         target_type: 'Status',
         target_id: status_ids
       ).unscope(:order).arel,
+
+      Admin::ActionLog.where(
+        target_type: 'AccountWarning',
+        target_id: AccountWarning.where(report_id: id).select(:id)
+      ).unscope(:order).arel,
     ].reduce { |union, query| Arel::Nodes::UnionAll.new(union, query) }
 
     Admin::ActionLog.from(Arel::Nodes::As.new(subquery, Admin::ActionLog.arel_table))

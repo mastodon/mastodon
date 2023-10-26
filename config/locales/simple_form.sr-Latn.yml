@@ -3,9 +3,13 @@ sr-Latn:
   simple_form:
     hints:
       account:
+        discoverable: Vaše javne objave i profil mogu biti istaknuti ili preporučeni u različitim oblastima Mastodon-a i vaš profil može biti predložen drugim korisnicima.
         display_name: Vaše puno ime ili nadimak.
         fields: Vaša matična stranica, zamenice, godine, sve što želite.
+        indexable: Vaše javne objave se mogu pojaviti u rezultatima pretrage na Mastodon-u. Ljudi koji su stupili u interakciju sa vašim objavama će možda moći da ih pretražuju.
         note: 'Možete da @pomenete druge ljude ili #heš oznake.'
+        show_collections: Ljudi će moći da pregledaju vaše pratioce i pratioce. Ljudi koje pratite videće da ih pratite.
+        unlocked: Ljudi će moći da vas prate bez zahtevanja odobrenja. Opozovite izbor ako želite da pregledate zahteve za praćenje i izaberite da li da prihvatite ili odbijete nove pratioce.
       account_alias:
         acct: Navedite korisničko_ime@domen naloga sa kojeg želite da se preselite
       account_migration:
@@ -30,7 +34,7 @@ sr-Latn:
         ends_at: Opciono. Objava će biti automatski opozvana u ovom trenutku
         scheduled_at: Ostavite prazno da biste odmah objavili obaveštenje
         starts_at: Opciono. U slučaju da je najava vezana za određeni vremenski raspon
-        text: Možete koristiti sintaksu objava. Molimo Vas vodite računa o prostoru koji će objava zauzimati na ekranu korisnika
+        text: Možete koristiti sintaksu objava. Molimo vas vodite računa o prostoru koji će objava zauzimati na ekranu korisnika
       appeal:
         text: Možete podneti samo jednu žalbu na upisan prestup
       defaults:
@@ -76,15 +80,15 @@ sr-Latn:
         backups_retention_period: Čuvaj generisane korisničke arhive navedeni broj dana.
         bootstrap_timeline_accounts: Ovi nalozi će biti zakačeni na vrh preporuka za praćenje novih korisnika.
         closed_registrations_message: Prikazuje se kada su registracije zatvorene
-        content_cache_retention_period: Kada se postavi na pozitivnu vrednost, objave sa drugih servera će biti izbrisane nakon navedenog broja dana. Ovo može biti nepovratno.
-        custom_css: Možete da primenite prilagođene stilove na veb verziji Mastodona.
+        content_cache_retention_period: Sve objave i podržavanja sa drugih servera će biti izbrisani nakon navedenog broja dana. Neke objave se možda neće moći oporaviti. Svi povezani obeleživači, omiljeni i podržavanja će takođe biti izgubljeni i nemoguće je opozvati radnju.
+        custom_css: Možete da primenite prilagođene stilove na veb verziji Mastodon-a.
         mascot: Zamenjuje ilustraciju u naprednom veb okruženju.
         media_cache_retention_period: Kada se postavi na pozitivnu vrednost, preuzete medijske datoteke će biti izbrisane nakon navedenog broja dana, i ponovo preuzete na zahtev.
         peers_api_enabled: Lista domena sa kojima se ovaj server susreo u fediverzumu. Ovde nisu sadržani podaci o tome da li se Vaš server federiše sa drugim serverima, već samo da Vaš server zna za njih. Ove informacije koriste servisi koji prikupljaju podatke i vode statistiku o federaciji u širem smislu.
         profile_directory: Direktorijum profila navodi sve korisnike koji su se opredelili da budu vidljivi.
         require_invite_text: Kada registracije zahtevaju ručno odobrenje, postavite da odgovor na „Zašto želite da se pridružite?“ bude obavezan, a ne opcionalan
         site_contact_email: Kako korisnici mogu da kontaktiraju sa Vama za pravna pitanja ili pitanja u vezi podrške.
-        site_contact_username: Kako korisnici mogu da kontaktiraju sa Vama na Mastodonu.
+        site_contact_username: Kako korisnici mogu da kontaktiraju sa vama na Mastodon-u.
         site_extended_description: Bilo kakve dodatne informacije koje mogu biti korisne posetiocima i Vašim korisnicima. Mogu se strukturirati pomoću Markdown sintakse.
         site_short_description: Kratak opis pomoću koga se na jedinstven način identifikuje Vaš server. Ko ga održava, kome je namenjen?
         site_terms: Koristite sopstvenu politiku privatnosti ili ostavite prazno da bi se koristila podrazumevana. Može se strukturirati pomoću Markdown sintakse.
@@ -99,7 +103,7 @@ sr-Latn:
       form_challenge:
         current_password: Ulazite u bezbedno područje
       imports:
-        data: CSV fajl izvezen sa druge Mastodont instance
+        data: CSV fajl izvezen sa druge Mastodon instance
       invite_request:
         text: Ovo će nam pomoći da pregledamo Vašu prijavu
       ip_block:
@@ -116,6 +120,9 @@ sr-Latn:
       sessions:
         otp: 'Unesite dvofaktorski kod sa Vašeg telefona ili koristite jedan od kodova za oporavak:'
         webauthn: Ako je u pitanju USB ključ, obavezno ga ubacite i, ako je potrebno, pritisnite ga.
+      settings:
+        indexable: Stranica vašeg profila se može pojaviti u rezultatima pretrage na Google-u, Bing-u i ostalima.
+        show_application: Uvek ćete moći da vidite koja je aplikacija objavila vašu objavu.
       tag:
         name: Mogu se samo promeniti mala slova u velika ili obrnuto, na primer, da bi bilo čitljivije
       user:
@@ -129,13 +136,17 @@ sr-Latn:
         position: Viša uloga odlučuje o rešavanju sukoba u određenim situacijama. Određene radnje se mogu izvršiti samo na ulogama sa nižim prioritetom
       webhook:
         events: Izaberite događaje za slanje
-        template: Sastavite sopstveni JSON korisnih podataka koristeći promenljivu interpolaciju. Ostavite prazno za podrazumevani JSON.
+        template: Sastavite sopstveni JSON korisnih podataka koristeći promenljivu interpolaciju. Ostavite prazno za podrazumevani JSON.
         url: Gde će se događaji slati
     labels:
       account:
+        discoverable: Istakni funkcije i objave u algoritmima otkrivanja
         fields:
           name: Etiketa
           value: Sadržaj
+        indexable: Uključi javne objave u rezultatima pretrage
+        show_collections: Prikaži praćenja i pratioce na profilu
+        unlocked: Automatski prihvati nove pratioce
       account_alias:
         acct: Ručica (@) starog naloga
       account_migration:
@@ -165,8 +176,8 @@ sr-Latn:
         text: Objasni zašto ovu odluku treba poništiti
       defaults:
         autofollow: Pozovite da prati vaš nalog
-        avatar: Avatar
-        bot: Ovo je nalog bota
+        avatar: Profilna slika
+        bot: Ovo je automatizovani nalog
         chosen_languages: Filtriraj jezike
         confirm_new_password: Potvrdite novu lozinku
         confirm_password: Potvrdite lozinku
@@ -176,8 +187,8 @@ sr-Latn:
         display_name: Ime za prikaz
         email: Adresa e-pošte
         expires_in: Ističe nakon
-        fields: Metapodaci naloga
-        header: Zaglavlje
+        fields: Dodatna polja
+        header: Slika u zaglavlju
         honeypot: "%{label} (ne popunjavaj)"
         inbox_url: URL od relejnog prijemnog sandučeta
         irreversible: Ispustiti umesto sakriti
@@ -280,9 +291,18 @@ sr-Latn:
         pending_account: Novi nalog treba pregledati
         reblog: Šalji e-poštu kada neko podrži Vaš status
         report: Podneta je nova prijava
+        software_updates:
+          all: Obavesti o svim ažuriranjima
+          critical: Obavesti samo o kritičnim ažuriranjima
+          label: Dostupna je nova verzija Mastodon-a
+          none: Nikada ne obaveštavaj o ažuriranjima (ne preporučuje se)
+          patch: Obavesti o ispravkama grešaka
         trending_tag: Novi trend treba pregledati
       rule:
         text: Pravilo
+      settings:
+        indexable: Uključi stranicu profila u pretraživače
+        show_application: Prikaži iz koje aplikacije ste poslali objavu
       tag:
         listable: Dozvoli da se ova heš oznaka pojavljuje u pretragama i predlozima
         name: Heš oznaka
@@ -299,10 +319,11 @@ sr-Latn:
         position: Prioritet
       webhook:
         events: Omogućeni događaji
-        template: Šablon korisničkih podataka
+        template: Šablon korisnih podataka
         url: URL krajnje tačke
     'no': Ne
     not_recommended: Nije preporučeno
+    overridden: Zamenjeno
     recommended: Preporučeno
     required:
       mark: "*"

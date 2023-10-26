@@ -23,20 +23,11 @@ RSpec.describe 'Apps' do
     end
 
     context 'with valid params' do
-      it 'returns http success' do
+      it 'creates an OAuth app', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'creates an OAuth app' do
-        subject
-
         expect(Doorkeeper::Application.find_by(name: client_name)).to be_present
-      end
-
-      it 'returns client ID and client secret' do
-        subject
 
         body = body_as_json
 
@@ -58,15 +49,10 @@ RSpec.describe 'Apps' do
     context 'with many duplicate scopes' do
       let(:scopes) { (%w(read) * 40).join(' ') }
 
-      it 'returns http success' do
+      it 'only saves the scope once', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'only saves the scope once' do
-        subject
-
         expect(Doorkeeper::Application.find_by(name: client_name).scopes.to_s).to eq 'read'
       end
     end

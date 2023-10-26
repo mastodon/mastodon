@@ -20,7 +20,7 @@ export default class NavigationBar extends ImmutablePureComponent {
   };
 
   render () {
-    const username = this.props.account.get('acct')
+    const username = this.props.account.get('acct');
     return (
       <div className='navigation-bar'>
         <Link to={`/@${username}`}>

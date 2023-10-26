@@ -6,21 +6,10 @@ import { reduceMotion } from '../initial_state';
 
 import { ShortNumber } from './short_number';
 
-const obfuscatedCount = (count: number) => {
-  if (count < 0) {
-    return 0;
-  } else if (count <= 1) {
-    return count;
-  } else {
-    return '1+';
-  }
-};
-
 interface Props {
   value: number;
-  obfuscate?: boolean;
 }
-export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
+export const AnimatedNumber: React.FC<Props> = ({ value }) => {
   const [previousValue, setPreviousValue] = useState(value);
   const [direction, setDirection] = useState<1 | -1>(1);
 
@@ -36,11 +25,7 @@ export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
   );
 
   if (reduceMotion) {
-    return obfuscate ? (
-      <>{obfuscatedCount(value)}</>
-    ) : (
-      <ShortNumber value={value} />
-    );
+    return <ShortNumber value={value} />;
   }
 
   const styles = [
@@ -67,11 +52,7 @@ export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
                 transform: `translateY(${style.y * 100}%)`,
               }}
             >
-              {obfuscate ? (
-                obfuscatedCount(data as number)
-              ) : (
-                <ShortNumber value={data as number} />
-              )}
+              <ShortNumber value={data as number} />
             </span>
           ))}
         </span>
