@@ -13,7 +13,7 @@ import { ReactComponent as PushPinIcon } from '@material-symbols/svg-600/outline
 import { getStatusList } from 'mastodon/selectors';
 
 import { fetchPinnedStatuses } from '../../actions/pin_statuses';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import { ColumnBackButtonSlim } from '../../components/column_back_button';
 import StatusList from '../../components/status_list';
 import Column from '../ui/components/column';
 
