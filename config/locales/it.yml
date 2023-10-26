@@ -534,6 +534,7 @@ it:
       total_reported: Segnalazioni su di loro
       total_storage: Media allegati
       totals_time_period_hint_html: I totali sotto visualizzati includono i dati per tutti i tempi.
+      unknown_instance: Al momento non c'è alcun documento di questo dominio su questo server.
     invites:
       deactivate_all: Disattiva tutto
       filter:
@@ -1103,6 +1104,7 @@ it:
       functional: Il tuo profilo è completamente operativo.
       pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
       redirecting_to: Il tuo account è inattivo perché attualmente reindirizza a %{acct}.
+      self_destruct: Poiché %{domain} sta chiudendo, otterrai solo un accesso limitato al tuo account.
       view_strikes: Visualizza le sanzioni precedenti prese nei confronti del tuo account
     too_fast: Modulo inviato troppo velocemente, riprova.
     use_security_key: Usa la chiave di sicurezza
@@ -1572,6 +1574,9 @@ it:
     over_daily_limit: Hai superato il limite di %{limit} post programmati per questo giorno
     over_total_limit: Hai superato il limite di %{limit} post programmati
     too_soon: La data di pubblicazione deve essere nel futuro
+  self_destruct:
+    lead_html: Sfortunatamente, <strong>%{domain}</strong> sta chiudendo definitivamente. Se hai un account lì, non potrai continuare a usarlo, ma puoi ancora richiedere un backup dei tuoi dati.
+    title: Questo server sta chiudendo
   sessions:
     activity: Ultima attività
     browser: Browser

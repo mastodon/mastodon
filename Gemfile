@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '>= 3.0.0'
 
 gem 'puma', '~> 6.3'
-gem 'rails', '~> 7.0'
+gem 'rails', '~> 7.1.1'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
 gem 'rack', '~> 2.2.7'
@@ -105,6 +105,9 @@ gem 'private_address_check', '~> 0.5'
 group :test do
   # Used to split testing into chunks in CI
   gem 'rspec_chunked', '~> 0.6'
+
+  # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
+  gem 'rspec-github', '~> 2.4', require: false
 
   # RSpec progress bar formatter
   gem 'fuubar', '~> 2.5'

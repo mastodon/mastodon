@@ -534,6 +534,7 @@ tr:
       total_reported: Onlar hakkında şikayetler
       total_storage: Medya ekleri
       totals_time_period_hint_html: Aşağıdaki gösterilen toplamlar, gelmiş geçmiş tüm veriyi içeriyor.
+      unknown_instance: Bu sunucuda bu alan adının şu an bir kaydı yok.
     invites:
       deactivate_all: Tümünü devre dışı bırak
       filter:
@@ -1101,6 +1102,7 @@ tr:
       functional: Hesabınız tamamen kullanıma hazır.
       pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
       redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
+      self_destruct: "%{domain} kapandığı için, hesabınıza sadece kısıtlı erişiminiz olacak."
       view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     use_security_key: Güvenlik anahtarını kullan
@@ -1570,6 +1572,9 @@ tr:
     over_daily_limit: Bugün için %{limit} zamanlanmış gönderi sınırını aştınız
     over_total_limit: "%{limit} zamanlanmış gönderi sınırını aştınız"
     too_soon: Programlanan tarih bugünden ileri bir tarihte olmalıdır
+  self_destruct:
+    lead_html: Maalesef <strong>%{domain}</strong> kalıcı olarak kapanıyor. Eğer orada hesabınız varsa, onu kullanmaya devam edemeyeceksiniz, ancak yine de verinizin bir yedeğini isteyebilirsiniz.
+    title: Bu sunucu kapanıyor
   sessions:
     activity: Son etkinlik
     browser: Tarayıcı

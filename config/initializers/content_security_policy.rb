@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
-# Define an application-wide content security policy
-# For further information see the following documentation
-# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
+# Be sure to restart your server when you modify this file.
+
+# Define an application-wide content security policy.
+# See the Securing Rails Applications Guide for more information:
+# https://guides.rubyonrails.org/security.html#content-security-policy-header
 
 def host_to_url(str)
-  "http#{Rails.configuration.x.use_https ? 's' : ''}://#{str.split('/').first}" if str.present?
+  return if str.blank?
+
+  uri = Addressable::URI.parse("http#{Rails.configuration.x.use_https ? 's' : ''}://#{str}")
+  uri.path += '/' unless uri.path.blank? || uri.path.end_with?('/')
+  uri.to_s
 end
 
 base_host = Rails.configuration.x.web_domain

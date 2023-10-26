@@ -556,6 +556,7 @@ cs:
       total_reported: Hlášení o nich
       total_storage: Mediální přílohy
       totals_time_period_hint_html: Níže zobrazené součty zahrnují data za celou dobu.
+      unknown_instance: Na tomto serveru momentálně neexistuje žádný záznam o této doméně.
     invites:
       deactivate_all: Deaktivovat vše
       filter:
@@ -1134,6 +1135,7 @@ cs:
       functional: Váš účet je plně funkční.
       pending: Vaše žádost čeká na posouzení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
       redirecting_to: Váš účet je neaktivní, protože je právě přesměrován na účet %{acct}.
+      self_destruct: Protože %{domain} končí, budete mít k účtu jen omezený přístup.
       view_strikes: Zobrazit minulé prohřešky vašeho účtu
     too_fast: Formulář byl odeslán příliš rychle, zkuste to znovu.
     use_security_key: Použít bezpečnostní klíč
@@ -1585,6 +1587,9 @@ cs:
     over_daily_limit: Pro dnešek jste překročili limit %{limit} naplánovaných příspěvků
     over_total_limit: Překročili jste limit %{limit} naplánovaných příspěvků
     too_soon: Plánované datum musí být v budoucnosti
+  self_destruct:
+    lead_html: "<strong>%{domain}</strong> bohužel končí nadobro. Pokud jste tam měli účet, nebudete jej moci dále používat, ale stále si můžete vyžádat zálohu vašich dat."
+    title: Tento server končí
   sessions:
     activity: Nejnovější aktivita
     browser: Prohlížeč

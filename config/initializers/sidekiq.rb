@@ -17,6 +17,18 @@ Sidekiq.configure_server do |config|
     chain.add SidekiqUniqueJobs::Middleware::Client
   end
 
+  config.on(:startup) do
+    if SelfDestructHelper.self_destruct?
+      Sidekiq.schedule = {
+        'self_destruct_scheduler' => {
+          'interval' => ['1m'],
+          'class' => 'Scheduler::SelfDestructScheduler',
+          'queue' => 'scheduler',
+        },
+      }
+    end
+  end
+
   SidekiqUniqueJobs::Server.configure(config)
 end
 

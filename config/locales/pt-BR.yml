@@ -1101,6 +1101,7 @@ pt-BR:
       functional: Sua conta está totalmente operacional.
       pending: Sua solicitação está com revisão pendente por parte de nossa equipe. Você receberá um e-mail se ela for aprovada.
       redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
+      self_destruct: Como %{domain} está se encerrando, você só terá acesso limitado à sua conta.
       view_strikes: Veja os avisos anteriores em relação à sua conta
     too_fast: O formulário foi enviado muito rapidamente, tente novamente.
     use_security_key: Usar chave de segurança
@@ -1570,6 +1571,9 @@ pt-BR:
     over_daily_limit: Você excedeu o limite de %{limit} publicações agendadas para esse dia
     over_total_limit: Você excedeu o limite de %{limit} publicações agendadas
     too_soon: A data agendada precisa ser no futuro
+  self_destruct:
+    lead_html: Infelizmente, <strong>%{domain}</strong> está se encerrando de forma permanente. Se você tem uma conta lá, não poderá continuar a usá-la, mas ainda pode solicitar uma cópia dos seus dados.
+    title: Este servidor está sendo fechado
   sessions:
     activity: Última atividade
     browser: Navegador

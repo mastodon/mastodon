@@ -578,6 +578,7 @@ cy:
       total_reported: Adroddiadau amdanyn nhw
       total_storage: Atodiadau cyfryngau
       totals_time_period_hint_html: Mae'r cyfansymiau sy'n cael eu dangos isod yn cynnwys data am y cyfnod cyfan.
+      unknown_instance: Nid oes cofnod o'r parth hwn ar y gweinydd hwn ar hyn o bryd.
     invites:
       deactivate_all: Dadweithredu popeth
       filter:
@@ -1173,6 +1174,7 @@ cy:
       functional: Mae eich cyfrif nawr yn weithredol.
       pending: Mae'ch cais yn aros i gael ei adolygu gan ein staff. Gall hyn gymryd cryn amser. Byddwch yn derbyn e-bost os caiff eich cais ei gymeradwyo.
       redirecting_to: Mae eich cyfrif yn anweithredol oherwydd ei fod ar hyn o bryd yn ailgyfeirio i %{acct}.
+      self_destruct: Gab fod parth %{domain} yn cau, dim ond mynediad cyfyngedig fyddwch yn ei gael i'ch cyfrif.
       view_strikes: Gweld rybuddion y gorffennol yn erbyn eich cyfrif
     too_fast: Cafodd y ffurflen ei chyflwyno'n rhy gyflym, ceisiwch eto.
     use_security_key: Defnyddiwch allwedd diogelwch
@@ -1674,6 +1676,9 @@ cy:
     over_daily_limit: Rydych wedi mynd dros y terfyn o %{limit} postiad a drefnwyd ar gyfer heddiw
     over_total_limit: Rydych wedi mynd dros y terfyn o %{limit} postiad a drefnwyd
     too_soon: Rhaid i'r dyddiad a drefnwyd fod yn y dyfodol
+  self_destruct:
+    lead_html: Yn anffodus mae <strong>%{domain}</strong> yn cau'n barhaol. Os oedd gennych gyfrif yno, ni fydd modd i chi barhau i'w ddefnyddio, ond mae dal modd gofyn i gael copi wrth gefn o'ch data.
+    title: Mae'r gweinydd hwn yn cau
   sessions:
     activity: Gweithgaredd ddiwethaf
     browser: Porwr

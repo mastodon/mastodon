@@ -525,6 +525,7 @@ ko:
       total_reported: 이들에 대한 신고
       total_storage: 미디어 첨부
       totals_time_period_hint_html: 아래에 표시된 총계에는 모든 시간에 대한 데이터가 포함됩니다.
+      unknown_instance: 현재 이 서버에서 해당 도메인에 대한 기록은 없습니다.
     invites:
       deactivate_all: 전부 비활성화
       filter:
@@ -778,7 +779,7 @@ ko:
       types:
         major: 메이저 릴리스
         minor: 마이너 릴리스
-        patch: 패치 릴리스 — 버그픽스 그리고 변경점의 빠른 적용
+        patch: 패치 릴리스 — 버그픽스이며 변경을 적용하기 쉽습니다
       version: 버전
     statuses:
       account: 작성자
@@ -881,9 +882,9 @@ ko:
       only_allowed: 허용된 것만
       pending_review: 심사 대기
       preview_card_providers:
-        allowed: 이 발행처의 링크는 유행록에 실릴 수 있음
+        allowed: 이 발행처의 링크는 유행 목록에 실릴 수 있음
         description_html: 당신의 서버에서 많은 링크가 공유되고 있는 도메인들입니다. 링크의 도메인이 승인되기 전까지는 링크들은 공개적으로 트렌드에 게시되지 않습니다. 당신의 승인(또는 거절)은 서브도메인까지 확장됩니다.
-        rejected: 이 발행처의 링크는 유행록에 실리지 않음
+        rejected: 이 발행처의 링크는 유행 목록에 실리지 않음
         title: 발행처
       rejected: 거부됨
       statuses:
@@ -906,14 +907,14 @@ ko:
           tag_servers_measure: 다른 서버들
           tag_uses_measure: 총 사용
         description_html: 현재 서버에서 볼 수 있는 게시물에서 많이 공유되고 있는 해시태그들입니다. 현재 사람들이 무슨 이야기를 하고 있는지 사용자들이 파악할 수 있도록 도움이 됩니다. 승인하지 않는 한 해시태그는 공개적으로 게시되지 않습니다.
-        listable: 추천될 수 있습니다
+        listable: 추천될 수 있음
         no_tag_selected: 아무 것도 선택 되지 않아 어떤 태그도 바뀌지 않았습니다
-        not_listable: 추천될 수 없습니다
-        not_trendable: 유행 목록에 나타나지 않습니다
-        not_usable: 사용불가
+        not_listable: 추천하지 않음
+        not_trendable: 유행 목록에 나타내지 않음
+        not_usable: 이용할 수 없음
         peaked_on_and_decaying: "%{date}에 고점을 찍고, 떨어지고 있습니다"
         title: 유행하는 해시태그
-        trendable: 유행 목록에 나타날 수 있습니다
+        trendable: 유행 목록에 나타날 수 있음
         trending_rank: "#%{rank}위로 유행 중"
         usable: 사용 가능
         usage_comparison: 오늘은 %{today}회 쓰였고, 어제는 %{yesterday}회 쓰임
@@ -1024,6 +1025,14 @@ ko:
       hint_html: 하나만 더! 당신이 사람인지 확인이 필요합니다 (스팸 계정을 거르기 위해서 필요한 과정입니다). 아래에 있는 CAPTCHA를 풀고 "계속"을 누르세요
       title: 보안 체크
     confirmations:
+      awaiting_review: 이메일 주소를 확인했어요! 이제 %{domain} 스태프가 가입을 검토해요. 계정이 승인되면 이메일을 보내드려요.
+      awaiting_review_title: 가입 검토 중
+      clicking_this_link: 이 링크를 클릭
+      login_link: 로그인
+      proceed_to_login_html: "%{login_link} 할 수 있게 되었어요."
+      redirect_to_app_html: 곧 <strong>%{app_name}</strong>으로 리디렉션 되어요. 안 된다면, %{clicking_this_link}하거나 직접 앱으로 돌아가세요.
+      registration_complete: 지금 막 %{domain} 가입을 마쳤어요!
+      welcome_title: "%{name} 님 반가워요!"
       wrong_email_hint: 만약 이메일 주소가 올바르지 않다면, 계정 설정에서 수정할 수 있습니다.
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
@@ -1085,6 +1094,7 @@ ko:
       functional: 계정이 완벽히 작동합니다.
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기 중입니다. 시간이 조금 걸릴 수 있습니다. 가입 신청이 승인되면 이메일을 받게 됩니다.
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
+      self_destruct: "%{domain} 도메인 폐쇄가 진행중이기 때문에, 계정에는 제한된 접근만 할 수 있습니다."
       view_strikes: 내 계정에 대한 과거 중재 기록 보기
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
     use_security_key: 보안 키 사용
@@ -1546,6 +1556,9 @@ ko:
     over_daily_limit: 그 날짜에 대한 %{limit}개의 예약 게시물 제한을 초과합니다
     over_total_limit: 예약 게시물 제한 %{limit}을 초과합니다
     too_soon: 예약 날짜는 미래여야 합니다
+  self_destruct:
+    lead_html: 안타깝게도,  <strong>%{domain}</strong> 도메인을 영구히 폐쇄합니다. 이곳의 계정을 가졌다면, 이제 이용할 수 없으며, 당분간 백업 데이터를 요청할 수 있습니다.
+    title: 이 서버는 폐쇄중입니다
   sessions:
     activity: 최근 활동
     browser: 브라우저

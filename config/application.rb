@@ -71,15 +71,20 @@ module Mastodon
     # https://github.com/mastodon/mastodon/pull/24241#discussion_r1162890242
     config.active_support.cache_format_version = 6.1
 
-    config.add_autoload_paths_to_load_path = false
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    # config.autoload_lib(ignore: %w(assets tasks templates generators))
+    # TODO: We should enable this eventually, but for now there are many things
+    # in the wrong path from the perspective of zeitwerk.
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
-
-    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
 
     # All translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
@@ -196,7 +201,7 @@ module Mastodon
     config.active_job.queue_adapter = :sidekiq
 
     config.action_mailer.deliver_later_queue_name = 'mailers'
-    config.action_mailer.preview_path = Rails.root.join('spec', 'mailers', 'previews')
+    config.action_mailer.preview_paths << Rails.root.join('spec', 'mailers', 'previews')
 
     # We use our own middleware for this
     config.public_file_server.enabled = false
@@ -204,6 +209,10 @@ module Mastodon
     config.middleware.use PublicFileServerMiddleware if Rails.env.development? || Rails.env.test? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true'
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware
+
+    initializer :deprecator do |app|
+      app.deprecators[:mastodon] = ActiveSupport::Deprecation.new('4.3', 'mastodon/mastodon')
+    end
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
