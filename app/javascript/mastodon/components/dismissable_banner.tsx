@@ -3,6 +3,8 @@ import { useCallback, useState } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+
 import { bannerSettings } from 'mastodon/settings';
 
 import { IconButton } from './icon_button';
@@ -36,6 +38,7 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
       <div className='dismissable-banner__action'>
         <IconButton
           icon='times'
+          iconComponent={CloseIcon}
           title={intl.formatMessage(messages.dismiss)}
           onClick={handleDismiss}
         />

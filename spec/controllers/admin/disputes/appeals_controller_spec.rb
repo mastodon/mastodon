@@ -15,6 +15,20 @@ RSpec.describe Admin::Disputes::AppealsController do
   let(:strike) { Fabricate(:account_warning, target_account: target_account, action: :suspend) }
   let(:appeal) { Fabricate(:appeal, strike: strike, account: target_account) }
 
+  describe 'GET #index' do
+    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+
+    before { appeal }
+
+    it 'returns a page that lists details of appeals' do
+      get :index
+
+      expect(response).to have_http_status(:success)
+      expect(response.body).to include("<span class=\"username\">#{strike.account.username}</span>")
+      expect(response.body).to include("<span class=\"target\">#{appeal.account.username}</span>")
+    end
+  end
+
   describe 'POST #approve' do
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 

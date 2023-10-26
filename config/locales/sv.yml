@@ -533,6 +533,7 @@ sv:
       total_reported: Rapporter om dem
       total_storage: Media-bilagor
       totals_time_period_hint_html: Totalsummorna som visas nedan inkluderar data för all tid.
+      unknown_instance: Det finns för närvarande inga uppgifter om denna domän på denna server.
     invites:
       deactivate_all: Inaktivera alla
       filter:
@@ -1039,6 +1040,10 @@ sv:
       hint_html: En sista sak till! Vi måste bekräfta att du är en människa (för att hålla borta skräpinlägg!). Lös CAPTCHA nedan och klicka på "Fortsätt".
       title: Säkerhetskontroll
     confirmations:
+      awaiting_review_title: Din registrering är under granskning
+      clicking_this_link: klicka på denna länk
+      registration_complete: Din registrering på %{domain} är nu slutförd!
+      welcome_title: Välkommen, %{name}!
       wrong_email_hint: Om e-postadressen inte är rätt, kan du ändra den i kontoinställningarna.
     delete_account: Radera konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
@@ -1100,6 +1105,7 @@ sv:
       functional: Ditt konto fungerar som det ska.
       pending: Din ansökan inväntar granskning. Detta kan ta tid. Du kommer att få ett e-postmeddelande om din ansökan godkänns.
       redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
+      self_destruct: Eftersom %{domain} håller på att stängas ned, kommer du endast att ha begränsad tillgång till ditt konto.
       view_strikes: Visa tidigare prickar på ditt konto
     too_fast: Formuläret har skickats för snabbt, försök igen.
     use_security_key: Använd säkerhetsnyckel
@@ -1569,6 +1575,9 @@ sv:
     over_daily_limit: Du har överskridit dygnsgränsen på %{limit} schemalagda inlägg
     over_total_limit: Du har överskridit gränsen på %{limit} schemalagda inlägg
     too_soon: Schemaläggningsdatumet måste vara i framtiden
+  self_destruct:
+    lead_html: Tyvärr stänger <strong>%{domain}</strong> för gott. Om du hade ett konto där kommer du inte längre kunna använda det, men du kan fortfarande begära en säkerhetskopia av din data.
+    title: Denna server stänger ned
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare

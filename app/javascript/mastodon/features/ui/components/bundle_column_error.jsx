@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
-import Button from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button';
 import Column from 'mastodon/components/column';
 import { autoPlayGif } from 'mastodon/initial_state';
 

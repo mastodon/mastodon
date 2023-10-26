@@ -4,7 +4,7 @@ module HasUserSettings
   extend ActiveSupport::Concern
 
   included do
-    serialize :settings, UserSettingsSerializer
+    serialize :settings, coder: UserSettingsSerializer
   end
 
   def settings_attributes=(attributes)

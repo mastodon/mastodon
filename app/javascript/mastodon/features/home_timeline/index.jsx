@@ -10,6 +10,9 @@ import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { ReactComponent as CampaignIcon } from '@material-symbols/svg-600/outlined/campaign.svg';
+import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
+
 import { fetchAnnouncements, toggleShowAnnouncements } from 'mastodon/actions/announcements';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
@@ -37,10 +40,19 @@ const getHomeFeedSpeed = createSelector([
   state => state.getIn(['timelines', 'home', 'pendingItems'], ImmutableList()),
   state => state.get('statuses'),
 ], (statusIds, pendingStatusIds, statusMap) => {
-  const recentStatusIds = pendingStatusIds.size > 0 ? pendingStatusIds : statusIds;
+  const recentStatusIds = pendingStatusIds.concat(statusIds);
   const statuses = recentStatusIds.filter(id => id !== null).map(id => statusMap.get(id)).filter(status => status?.get('account') !== me).take(20);
-  const oldest = new Date(statuses.getIn([statuses.size - 1, 'created_at'], 0));
-  const newest = new Date(statuses.getIn([0, 'created_at'], 0));
+
+  if (statuses.isEmpty()) {
+    return {
+      gap: 0,
+      newest: new Date(0),
+    };
+  }
+
+  const datetimes = statuses.map(status => status.get('created_at', 0));
+  const oldest = new Date(datetimes.min());
+  const newest = new Date(datetimes.max());
   const averageGap = (newest - oldest) / (1000 * (statuses.size + 1)); // Average gap between posts on first page in seconds
 
   return {
@@ -172,7 +184,7 @@ class HomeTimeline extends PureComponent {
           aria-label={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
           onClick={this.handleToggleAnnouncementsClick}
         >
-          <IconWithBadge id='bullhorn' count={unreadAnnouncements} />
+          <IconWithBadge id='bullhorn' icon={CampaignIcon} count={unreadAnnouncements} />
         </button>
       );
     }
@@ -189,6 +201,7 @@ class HomeTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='home'
+          iconComponent={HomeIcon}
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

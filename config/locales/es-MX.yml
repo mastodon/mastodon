@@ -533,6 +533,7 @@ es-MX:
       total_reported: Informes sobre ellas
       total_storage: Archivos multimedia
       totals_time_period_hint_html: Los totales mostrados a continuación incluyen datos para todo el tiempo.
+      unknown_instance: Actualmente no hay registros de este dominio en el servidor.
     invites:
       deactivate_all: Desactivar todos
       filter:
@@ -1039,6 +1040,14 @@ es-MX:
       hint_html: ¡Una última cosita! Necesitamos confirmar que eres humano (¡así podemos evitar el spam!). Resuelve este CAPTCHA de debajo y pulsa en "Continuar".
       title: Comprobación de seguridad
     confirmations:
+      awaiting_review: "¡Tu dirección de correo electrónico ha sido confirmada! El personal de %{domain} está revisando tu registro. ¡Recibirás un correo electrónico si aprueban tu cuenta!"
+      awaiting_review_title: Su registro está siendo revisado
+      clicking_this_link: presionando este enlace
+      login_link: iniciar sesión
+      proceed_to_login_html: Ahora puedes proceder a %{login_link}.
+      redirect_to_app_html: Deberías haber sido redirigido a la aplicación <strong>%{app_name}</strong>. Si eso no sucedió, prueba %{clicking_this_link} o vuelve a la aplicación manualmente.
+      registration_complete: "¡Tu registro en %{domain} ha sido completado!"
+      welcome_title: "¡Bienvenido, %{name}!"
       wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
@@ -1100,6 +1109,7 @@ es-MX:
       functional: Tu cuenta está completamente operativa.
       pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
+      self_destruct: Como %{domain} está cerrando, solo tendrás acceso limitado a tu cuenta.
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     use_security_key: Usar la clave de seguridad
@@ -1569,6 +1579,9 @@ es-MX:
     over_daily_limit: Ha superado el límite de %{limit} toots programados para ese día
     over_total_limit: Ha superado el límite de %{limit} toots programados
     too_soon: La fecha programada debe estar en el futuro
+  self_destruct:
+    lead_html: Desafortunadamente, <strong>%{domain}</strong> está cerrando de manera permanente. Si tenías una cuenta ahí, no puedes continuar utilizándolo, pero puedes solicitar un respaldo de tus datos.
+    title: Este servidor está cerrando
   sessions:
     activity: Última actividad
     browser: Navegador

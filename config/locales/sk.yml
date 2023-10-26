@@ -124,6 +124,8 @@ sk:
       removed_header_msg: Úspešne odstránený obrázok hlavičky %{username}
       resend_confirmation:
         already_confirmed: Tento užívateľ je už potvrdený
+        send: Odošli potvrdzovací odkaz znovu
+        success: Potvrdzovací email úspešne odoslaný!
       reset: Resetuj
       reset_password: Obnov heslo
       resubscribe: Znovu odoberaj
@@ -227,6 +229,7 @@ sk:
         create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
         create_announcement_html: "%{name} vytvoril/a nové oboznámenie %{target}"
         create_custom_emoji_html: "%{name} nahral/a novú emotikonu %{target}"
+        create_domain_allow_html: "%{name} povolil/a federáciu s doménou %{target}"
         create_domain_block_html: "%{name} zablokoval/a doménu %{target}"
         create_email_domain_block_html: "%{name} zablokoval/a e-mailovú doménu %{target}"
         create_user_role_html: "%{name} vytvoril/a rolu pre %{target}"
@@ -240,6 +243,7 @@ sk:
         destroy_ip_block_html: "%{name} vymazal/a pravidlo pre IP %{target}"
         destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
         destroy_user_role_html: "%{name} vymazal/a rolu pre %{target}"
+        enable_user_html: "%{name} povolil/a prihlásenie pre používateľa %{target}"
         memorialize_account_html: "%{name} zmenil/a účet %{target} na pamätnú stránku"
         reject_appeal_html: "%{name} zamietol/la námietku moderovacieho rozhodnutia od %{target}"
         reopen_report_html: "%{name} znovu otvoril/a nahlásenie %{target}"
@@ -352,6 +356,7 @@ sk:
           silence: Obmedz
           suspend: Vylúč
         title: Nové blokovanie domény
+      not_permitted: Nemáš povolenie na vykonanie tohto kroku
       obfuscate: Zatemniť názov domény
       private_comment: Súkromný komentár
       private_comment_hint: Odôvodni toto doménové obmedzenie, pre vnútorné vyrozumenie moderátorov.
@@ -1036,6 +1041,7 @@ sk:
     confirm_remove_selected_followers: Si si istý/á, že chceš odstrániť vybraných sledovateľov?
     confirm_remove_selected_follows: Si si istý/á, že chceš odstrániť vybraných sledovaných?
     dormant: Spiace
+    follow_failure: Nemožno nasledovať niektoré z vybraných účtov.
     follow_selected_followers: Následuj označených sledovatelov
     followers: Následovatelia
     following: Následovaní

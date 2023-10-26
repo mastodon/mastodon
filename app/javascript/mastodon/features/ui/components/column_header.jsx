@@ -9,6 +9,7 @@ export default class ColumnHeader extends PureComponent {
 
   static propTypes = {
     icon: PropTypes.string,
+    iconComponent: PropTypes.func,
     type: PropTypes.string,
     active: PropTypes.bool,
     onClick: PropTypes.func,
@@ -20,11 +21,11 @@ export default class ColumnHeader extends PureComponent {
   };
 
   render () {
-    const { icon, type, active, columnHeaderId } = this.props;
+    const { icon, iconComponent, type, active, columnHeaderId } = this.props;
     let iconElement = '';
 
     if (icon) {
-      iconElement = <Icon id={icon} fixedWidth className='column-header__icon' />;
+      iconElement = <Icon id={icon} icon={iconComponent} className='column-header__icon' />;
     }
 
     return (

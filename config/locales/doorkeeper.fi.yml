@@ -67,13 +67,13 @@ fi:
         title: Kopioi tämä valtuutuskoodi ja liitä se sovellukseen.
     authorized_applications:
       buttons:
-        revoke: Peru
+        revoke: Hylkää
       confirmations:
         revoke: Oletko varma?
       index:
         authorized_at: Valtuutettu %{date}
-        description_html: Nämä ovat sovelluksia, jotka voivat käyttää tiliäsi käyttäen API. Jos et tunnista sitä tai sovellus toimii väärin, voit peruuttaa sen käyttöoikeuden.
-        last_used_at: Viimeksi käytetty %{date}
+        description_html: Nämä sovellukset voivat käyttää tiliäsi ohjelmointirajapinnan kautta. Jos tässä on sovelluksia, joita et tunnista, tai sovellus toimii väärin, voit peruuttaa sen käyttöoikeuden.
+        last_used_at: Käytetty viimeksi %{date}
         never_used: Ei käytetty
         scopes: Oikeudet
         superapp: Sisäinen
@@ -114,16 +114,16 @@ fi:
           notice: Sovellus poistettu.
     grouped_scopes:
       access:
-        read: Vain luku
+        read: Vain lukuoikeus
         read/write: Luku- ja kirjoitusoikeudet
         write: Vain kirjoitusoikeus
       title:
         accounts: Tilit
-        admin/accounts: Tilien hallinta
+        admin/accounts: Tilien hallinnointi
         admin/all: Kaikki hallinnolliset toiminnot
-        admin/reports: Raporttien hallinta
+        admin/reports: Raporttien hallinnointi
         all: Täysi pääsy Mastodon-tiliisi
-        blocks: Torjutut
+        blocks: Estot
         bookmarks: Kirjanmerkit
         conversations: Keskustelut
         crypto: Päästä päähän -salaus
@@ -182,7 +182,7 @@ fi:
       write: muokkaa kaikkia tilisi tietoja
       write:accounts: muokkaa profiiliasi
       write:blocks: estä tilejä ja verkkotunnuksia
-      write:bookmarks: lisää julkaisuja kirjanmerkkeihisi
+      write:bookmarks: lisää julkaisuja kirjanmerkkeihin
       write:conversations: mykistä ja poista keskusteluja
       write:favourites: suosikkijulkaisut
       write:filters: luo suodattimia

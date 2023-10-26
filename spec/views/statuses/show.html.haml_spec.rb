@@ -13,7 +13,7 @@ describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
   it 'has valid opengraph tags' do
     alice  = Fabricate(:account, username: 'alice', display_name: 'Alice')
     status = Fabricate(:status, account: alice, text: 'Hello World')
-    media  = Fabricate(:media_attachment, account: alice, status: status, type: :video)
+    Fabricate(:media_attachment, account: alice, status: status, type: :video)
 
     assign(:status, status)
     assign(:account, alice)
@@ -32,7 +32,7 @@ describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
   it 'has twitter player tag' do
     alice  = Fabricate(:account, username: 'alice', display_name: 'Alice')
     status = Fabricate(:status, account: alice, text: 'Hello World')
-    media  = Fabricate(:media_attachment, account: alice, status: status, type: :video)
+    Fabricate(:media_attachment, account: alice, status: status, type: :video)
 
     assign(:status, status)
     assign(:account, alice)
