@@ -235,7 +235,7 @@ module LanguagesHelper
     if locale.blank? || locale == 'und'
       '000'
     elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
-      ASCIIFolding.new.fold(supported_locale[1]).downcase
+      ASCIIFolding.new.fold(supported_locale).downcase
     elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
       ASCIIFolding.new.fold(regional_locale).downcase
     else
