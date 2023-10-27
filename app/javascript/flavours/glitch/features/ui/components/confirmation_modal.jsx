@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { injectIntl, FormattedMessage } from 'react-intl';
 
-import Button from 'flavours/glitch/components/button';
+import { Button } from 'flavours/glitch/components/button';
 
 class ConfirmationModal extends PureComponent {
 
@@ -23,10 +23,6 @@ class ConfirmationModal extends PureComponent {
     closeWhenConfirm: true,
   };
 
-  componentDidMount() {
-    this.button.focus();
-  }
-
   handleClick = () => {
     if (this.props.closeWhenConfirm) {
       this.props.onClose();
@@ -44,10 +40,6 @@ class ConfirmationModal extends PureComponent {
 
   handleCancel = () => {
     this.props.onClose();
-  };
-
-  setRef = (c) => {
-    this.button = c;
   };
 
   setDoNotAskRef = (c) => {
@@ -79,7 +71,7 @@ class ConfirmationModal extends PureComponent {
             {secondary !== undefined && (
               <Button text={secondary} onClick={this.handleSecondary} className='confirmation-modal__secondary-button' />
             )}
-            <Button text={confirm} onClick={this.handleClick} ref={this.setRef} />
+            <Button text={confirm} onClick={this.handleClick} autoFocus />
           </div>
         </div>
       </div>

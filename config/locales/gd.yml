@@ -556,6 +556,7 @@ gd:
       total_reported: Gearanan mun dèidhinn
       total_storage: Ceanglachain mheadhanan
       totals_time_period_hint_html: Gabhaidh na h-iomlanan gu h-ìosal a-staigh an dàta o chian nan cian.
+      unknown_instance: Chan eil clàr dhen àrainn seo air an fhrithealaiche seo.
     invites:
       deactivate_all: Cuir na h-uile à gnìomh
       filter:
@@ -1137,6 +1138,7 @@ gd:
       functional: Tha an cunntas agad ag obair gu slàn.
       pending: Feumaidh an sgioba againn lèirmheas a dhèanamh air d’ iarrtas. Dh’fhaoidte gun doir seo greis. Gheibh thu post-d nuair a bhios sinn air aontachadh ri d’ iarrtas.
       redirecting_to: Chan eil an cunntas gad gnìomhach on a tha e ’ga ath-stiùireadh gu %{acct}.
+      self_destruct: On a tha %{domain} gu bhith dùnadh, chan fhaigh thu ach inntrigeadh cuingichte dhan chunntas agad.
       view_strikes: Seall na rabhaidhean a fhuair an cunntas agad roimhe
     too_fast: Chaidh am foirm a chur a-null ro luath, feuch ris a-rithist.
     use_security_key: Cleachd iuchair tèarainteachd
@@ -1622,6 +1624,9 @@ gd:
     over_daily_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte an-diugh
     over_total_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte
     too_soon: Feumaidh ceann-latha an sgeideil a bhith san àm ri teachd
+  self_destruct:
+    lead_html: Gu mì-fhortanach, thèid <strong>%{domain}</strong> a dhùnadh gu buan. Ma tha cunntas agad ann, chan urrainn dhut cumail a’ gol ’ga chleachdadh ach ’s urrainn dhut lethbhreac-glèidhidh dhen dàta agad iarraidh fhathast.
+    title: Tha am frithealaiche seo gu bhith dùnadh
   sessions:
     activity: A’ ghnìomhachd mu dheireadh
     browser: Brabhsair

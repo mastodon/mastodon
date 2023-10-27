@@ -523,6 +523,7 @@ zh-HK:
       total_reported: 關於他們的舉報
       total_storage: 媒體附件
       totals_time_period_hint_html: 下面顯示的總數包括所有時間的數據。
+      unknown_instance: 此伺服器目前沒有這個網域的紀錄。
     invites:
       deactivate_all: 全部停用
       filter:
@@ -1083,6 +1084,7 @@ zh-HK:
       functional: 你的帳號已完全投入使用。
       pending: 管理員正在處理你的申請。可能會需要一點時間處理。我們將會在申請被批準的時候馬上寄電郵給你。
       redirecting_to: 你的帳戶因為正在重新定向到 %{acct}，所以暫時被停用。
+      self_destruct: 由於 %{domain} 即將停止服務，你只能有限存取你的帳號。
       view_strikes: 查看針對你的帳戶的過往警告
     too_fast: 你太快遞交了，請再試一次。
     use_security_key: 使用安全密鑰裝置
@@ -1544,6 +1546,9 @@ zh-HK:
     over_daily_limit: 你已經超越了當天排定發文的限額 (%{limit})
     over_total_limit: 你已經超越了排定發文的限額 (%{limit})
     too_soon: 不可以改變過去哦，嘟文只可以排定在未來
+  self_destruct:
+    lead_html: 很遺憾，<strong>%{domain}</strong> 即將永久停止服務。如果你在該處擁有帳號，你將無法繼續使用它，但你仍然可以要求備份你的數據。
+    title: 這個伺服器即將停止服務
   sessions:
     activity: 最近活動
     browser: 瀏覽器
@@ -1706,6 +1711,7 @@ zh-HK:
       default: "%Y年%-m月%d日 %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
   translation:
     errors:
       quota_exceeded: 已超出伺服器範圍的翻譯服務之使用配額。

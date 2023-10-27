@@ -1,7 +1,7 @@
 //  This file will be loaded on admin pages, regardless of theme.
 
 import 'packs/public-path';
-import { delegate } from '@rails/ujs';
+import Rails from '@rails/ujs';
 
 import ready from '../mastodon/ready';
 
@@ -19,7 +19,7 @@ const setAnnouncementEndsAttributes = (target) => {
   }
 };
 
-delegate(document, 'input[type="datetime-local"]#announcement_starts_at', 'change', ({ target }) => {
+Rails.delegate(document, 'input[type="datetime-local"]#announcement_starts_at', 'change', ({ target }) => {
   setAnnouncementEndsAttributes(target);
 });
 
@@ -42,7 +42,7 @@ const hideSelectAll = () => {
   hiddenField.value = '0';
 };
 
-delegate(document, '#batch_checkbox_all', 'change', ({ target }) => {
+Rails.delegate(document, '#batch_checkbox_all', 'change', ({ target }) => {
   const selectAllMatchingElement = document.querySelector('.batch-table__select-all');
 
   [].forEach.call(document.querySelectorAll(batchCheckboxClassName), (content) => {
@@ -58,7 +58,7 @@ delegate(document, '#batch_checkbox_all', 'change', ({ target }) => {
   }
 });
 
-delegate(document, '.batch-table__select-all button', 'click', () => {
+Rails.delegate(document, '.batch-table__select-all button', 'click', () => {
   const hiddenField = document.querySelector('#select_all_matching');
   const active = hiddenField.value === '1';
   const selectedMsg = document.querySelector('.batch-table__select-all .selected');
@@ -75,7 +75,7 @@ delegate(document, '.batch-table__select-all button', 'click', () => {
   }
 });
 
-delegate(document, batchCheckboxClassName, 'change', () => {
+Rails.delegate(document, batchCheckboxClassName, 'change', () => {
   const checkAllElement = document.querySelector('#batch_checkbox_all');
   const selectAllMatchingElement = document.querySelector('.batch-table__select-all');
 
@@ -93,19 +93,19 @@ delegate(document, batchCheckboxClassName, 'change', () => {
   }
 });
 
-delegate(document, '.media-spoiler-show-button', 'click', () => {
+Rails.delegate(document, '.media-spoiler-show-button', 'click', () => {
   [].forEach.call(document.querySelectorAll('button.media-spoiler'), (element) => {
     element.click();
   });
 });
 
-delegate(document, '.media-spoiler-hide-button', 'click', () => {
+Rails.delegate(document, '.media-spoiler-hide-button', 'click', () => {
   [].forEach.call(document.querySelectorAll('.spoiler-button.spoiler-button--visible button'), (element) => {
     element.click();
   });
 });
 
-delegate(document, '.filter-subset--with-select select', 'change', ({ target }) => {
+Rails.delegate(document, '.filter-subset--with-select select', 'change', ({ target }) => {
   target.form.submit();
 });
 
@@ -122,7 +122,7 @@ const onDomainBlockSeverityChange = (target) => {
   }
 };
 
-delegate(document, '#domain_block_severity', 'change', ({ target }) => onDomainBlockSeverityChange(target));
+Rails.delegate(document, '#domain_block_severity', 'change', ({ target }) => onDomainBlockSeverityChange(target));
 
 const onEnableBootstrapTimelineAccountsChange = (target) => {
   const bootstrapTimelineAccountsField = document.querySelector('#form_admin_settings_bootstrap_timeline_accounts');
@@ -139,7 +139,7 @@ const onEnableBootstrapTimelineAccountsChange = (target) => {
   }
 };
 
-delegate(document, '#form_admin_settings_enable_bootstrap_timeline_accounts', 'change', ({ target }) => onEnableBootstrapTimelineAccountsChange(target));
+Rails.delegate(document, '#form_admin_settings_enable_bootstrap_timeline_accounts', 'change', ({ target }) => onEnableBootstrapTimelineAccountsChange(target));
 
 const onChangeRegistrationMode = (target) => {
   const enabled = target.value === 'approved';
@@ -176,7 +176,7 @@ const convertLocalDatetimeToUTC = (value) => {
   return fullISO8601.slice(0, fullISO8601.indexOf('T') + 6);
 };
 
-delegate(document, '#form_admin_settings_registrations_mode', 'change', ({ target }) => onChangeRegistrationMode(target));
+Rails.delegate(document, '#form_admin_settings_registrations_mode', 'change', ({ target }) => onChangeRegistrationMode(target));
 
 ready(() => {
   const domainBlockSeverityInput = document.getElementById('domain_block_severity');
@@ -213,7 +213,7 @@ ready(() => {
     }
   });
 
-  delegate(document, 'form', 'submit', ({ target }) => {
+  Rails.delegate(document, 'form', 'submit', ({ target }) => {
     [].forEach.call(target.querySelectorAll('input[type="datetime-local"]'), element => {
       if (element.value && element.validity.valid) {
         element.value = convertLocalDatetimeToUTC(element.value);

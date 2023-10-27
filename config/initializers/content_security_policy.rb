@@ -1,8 +1,18 @@
 # frozen_string_literal: true
 
-# Define an application-wide content security policy
-# For further information see the following documentation
-# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
+# Be sure to restart your server when you modify this file.
+
+# Define an application-wide content security policy.
+# See the Securing Rails Applications Guide for more information:
+# https://guides.rubyonrails.org/security.html#content-security-policy-header
+
+def host_to_url(str)
+  return if str.blank?
+
+  uri = Addressable::URI.parse("http#{Rails.configuration.x.use_https ? 's' : ''}://#{str}")
+  uri.path += '/' unless uri.path.blank? || uri.path.end_with?('/')
+  uri.to_s
+end
 
 def sso_host
   return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true'
@@ -27,8 +37,7 @@ unless Rails.env.development?
   data_hosts = [assets_host]
 
   if ENV['S3_ENABLED'] == 'true' || ENV['AZURE_ENABLED'] == 'true'
-    attachments_host = "https://#{ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST'] || ENV['AZURE_ALIAS_HOST'] || ENV['S3_HOSTNAME'] || "s3-#{ENV['S3_REGION'] || 'us-east-1'}.amazonaws.com"}"
-    attachments_host = "https://#{Addressable::URI.parse(attachments_host).host}"
+    attachments_host = host_to_url(ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST'] || ENV['AZURE_ALIAS_HOST'] || ENV['S3_HOSTNAME'] || "s3-#{ENV['S3_REGION'] || 'us-east-1'}.amazonaws.com")
   elsif ENV['SWIFT_ENABLED'] == 'true'
     attachments_host = ENV['SWIFT_OBJECT_URL']
     attachments_host = "https://#{Addressable::URI.parse(attachments_host).host}"

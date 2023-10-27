@@ -1,30 +1,28 @@
-import PropTypes from 'prop-types';
-
 import { FormattedMessage } from 'react-intl';
+
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Icon } from 'flavours/glitch/components/icon';
+import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import AvatarOverlay from '../../../components/avatar_overlay';
 import { DisplayName } from '../../../components/display_name';
 
-export default class MovedNote extends ImmutablePureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object,
-  };
+class MovedNote extends ImmutablePureComponent {
 
   static propTypes = {
     from: ImmutablePropTypes.map.isRequired,
     to: ImmutablePropTypes.map.isRequired,
+    ...WithRouterPropTypes,
   };
 
   handleAccountClick = e => {
     if (e.button === 0) {
       e.preventDefault();
-      this.context.router.history.push(`/@${this.props.to.get('acct')}`);
+      this.props.history.push(`/@${this.props.to.get('acct')}`);
     }
 
     e.stopPropagation();
@@ -50,3 +48,5 @@ export default class MovedNote extends ImmutablePureComponent {
   }
 
 }
+
+export default withRouter(MovedNote);

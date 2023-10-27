@@ -4,6 +4,7 @@ import { PureComponent } from 'react';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -22,6 +23,7 @@ import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import { RadioButton } from 'flavours/glitch/components/radio_button';
 import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
+import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -38,10 +40,6 @@ const mapStateToProps = (state, props) => ({
 
 class ListTimeline extends PureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -50,6 +48,7 @@ class ListTimeline extends PureComponent {
     multiColumn: PropTypes.bool,
     list: PropTypes.oneOfType([ImmutablePropTypes.map, PropTypes.bool]),
     intl: PropTypes.object.isRequired,
+    ...WithRouterPropTypes,
   };
 
   handlePin = () => {
@@ -59,7 +58,7 @@ class ListTimeline extends PureComponent {
       dispatch(removeColumn(columnId));
     } else {
       dispatch(addColumn('LIST', { id: this.props.params.id }));
-      this.context.router.history.push('/');
+      this.props.history.push('/');
     }
   };
 
@@ -137,7 +136,7 @@ class ListTimeline extends PureComponent {
           if (columnId) {
             dispatch(removeColumn(columnId));
           } else {
-            this.context.router.history.push('/lists');
+            this.props.history.push('/lists');
           }
         },
       },
@@ -242,4 +241,4 @@ class ListTimeline extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(ListTimeline));
+export default withRouter(connect(mapStateToProps)(injectIntl(ListTimeline)));

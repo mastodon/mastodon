@@ -534,6 +534,7 @@ sv:
       total_reported: Rapporter om dem
       total_storage: Media-bilagor
       totals_time_period_hint_html: Totalsummorna som visas nedan inkluderar data för all tid.
+      unknown_instance: Det finns för närvarande inga uppgifter om denna domän på denna server.
     invites:
       deactivate_all: Inaktivera alla
       filter:
@@ -1101,6 +1102,7 @@ sv:
       functional: Ditt konto fungerar som det ska.
       pending: Din ansökan inväntar granskning. Detta kan ta tid. Du kommer att få ett e-postmeddelande om din ansökan godkänns.
       redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
+      self_destruct: Eftersom %{domain} håller på att stängas ned, kommer du endast att ha begränsad tillgång till ditt konto.
       view_strikes: Visa tidigare prickar på ditt konto
     too_fast: Formuläret har skickats för snabbt, försök igen.
     use_security_key: Använd säkerhetsnyckel
@@ -1570,6 +1572,9 @@ sv:
     over_daily_limit: Du har överskridit dygnsgränsen på %{limit} schemalagda inlägg
     over_total_limit: Du har överskridit gränsen på %{limit} schemalagda inlägg
     too_soon: Schemaläggningsdatumet måste vara i framtiden
+  self_destruct:
+    lead_html: Tyvärr stänger <strong>%{domain}</strong> för gott. Om du hade ett konto där kommer du inte längre kunna använda det, men du kan fortfarande begära en säkerhetskopia av din data.
+    title: Denna server stänger ned
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare

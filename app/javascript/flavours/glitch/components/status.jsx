@@ -14,6 +14,7 @@ import PollContainer from 'flavours/glitch/containers/poll_container';
 import NotificationOverlayContainer from 'flavours/glitch/features/notifications/containers/overlay_container';
 import { displayMedia } from 'flavours/glitch/initial_state';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
+import { withOptionalRouter, WithOptionalRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import Card from '../features/status/components/card';
 import Bundle from '../features/ui/components/bundle';
@@ -67,10 +68,6 @@ export const defaultMediaVisibility = (status, settings) => {
 
 class Status extends ImmutablePureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     containerId: PropTypes.string,
     id: PropTypes.string,
@@ -117,6 +114,7 @@ class Status extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
+    ...WithOptionalRouterPropTypes,
   };
 
   state = {
@@ -356,10 +354,9 @@ class Status extends ImmutablePureComponent {
   //  Otherwise, we open the url handed to us in `destination`, if
   //  applicable.
   parseClick = (e, destination) => {
-    const { router } = this.context;
-    const { status } = this.props;
+    const { status, history } = this.props;
     const { isCollapsed } = this.state;
-    if (!router) return;
+    if (!history) return;
 
     if (e.button === 0 && !(e.ctrlKey || e.altKey || e.metaKey)) {
       if (isCollapsed) this.setCollapsed(false);
@@ -377,7 +374,7 @@ class Status extends ImmutablePureComponent {
             status.getIn(['reblog', 'id'], status.get('id'))
           }`;
         }
-        router.history.push(destination);
+        history.push(destination);
       }
       e.preventDefault();
     }
@@ -431,7 +428,7 @@ class Status extends ImmutablePureComponent {
 
   handleHotkeyReply = e => {
     e.preventDefault();
-    this.props.onReply(this.props.status, this.context.router.history);
+    this.props.onReply(this.props.status, this.props.history);
   };
 
   handleHotkeyFavourite = (e) => {
@@ -448,16 +445,16 @@ class Status extends ImmutablePureComponent {
 
   handleHotkeyMention = e => {
     e.preventDefault();
-    this.props.onMention(this.props.status.get('account'), this.context.router.history);
+    this.props.onMention(this.props.status.get('account'), this.props.history);
   };
 
   handleHotkeyOpen = () => {
     const status = this.props.status;
-    this.context.router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
+    this.props.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
   };
 
   handleHotkeyOpenProfile = () => {
-    this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
+    this.props.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
   };
 
   handleHotkeyMoveUp = e => {
@@ -514,7 +511,6 @@ class Status extends ImmutablePureComponent {
       parseClick,
       setCollapsed,
     } = this;
-    const { router } = this.context;
     const {
       intl,
       status,
@@ -533,6 +529,7 @@ class Status extends ImmutablePureComponent {
       previousId,
       nextInReplyToId,
       rootId,
+      history,
       ...other
     } = this.props;
     const { isCollapsed } = this.state;
@@ -828,7 +825,7 @@ class Status extends ImmutablePureComponent {
             onExpandedToggle={this.handleExpandedToggle}
             onTranslate={this.handleTranslate}
             parseClick={parseClick}
-            disabled={!router}
+            disabled={!history}
             tagLinks={settings.get('tag_misleading_links')}
             rewriteMentions={settings.get('rewrite_mentions')}
           />
@@ -854,4 +851,4 @@ class Status extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(Status);
+export default withOptionalRouter(injectIntl(Status));

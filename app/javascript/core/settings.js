@@ -1,9 +1,9 @@
 //  This file will be loaded on settings pages, regardless of theme.
 
 import 'packs/public-path';
-import { delegate } from '@rails/ujs';
+import Rails from '@rails/ujs';
 
-delegate(document, '#edit_profile input[type=file]', 'change', ({ target }) => {
+Rails.delegate(document, '#edit_profile input[type=file]', 'change', ({ target }) => {
   const avatar = document.getElementById(target.id + '-preview');
   const [file] = target.files || [];
   const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
@@ -11,13 +11,13 @@ delegate(document, '#edit_profile input[type=file]', 'change', ({ target }) => {
   avatar.src = url;
 });
 
-delegate(document, '.input-copy input', 'click', ({ target }) => {
+Rails.delegate(document, '.input-copy input', 'click', ({ target }) => {
   target.focus();
   target.select();
   target.setSelectionRange(0, target.value.length);
 });
 
-delegate(document, '.input-copy button', 'click', ({ target }) => {
+Rails.delegate(document, '.input-copy button', 'click', ({ target }) => {
   const input = target.parentNode.querySelector('.input-copy__wrapper input');
 
   const oldReadOnly = input.readonly;

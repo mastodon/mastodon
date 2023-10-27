@@ -534,6 +534,7 @@ hu:
       total_reported: Bejelentés róluk
       total_storage: Média csatolmány
       totals_time_period_hint_html: Az alább mutatott összesítések minden eddigi adatot tartalmaznak.
+      unknown_instance: Jelenleg nincs rekord erről a domainről ezen a kiszolgálón.
     invites:
       deactivate_all: Összes deaktiválása
       filter:
@@ -1101,6 +1102,7 @@ hu:
       functional: A fiókod teljesen működőképes.
       pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha a kérelmedet jóváhagyták.
       redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
+      self_destruct: Mivel a %{domain} bezár, csak korlátozott elérésed lesz a fiókodhoz.
       view_strikes: Fiókod ellen felrótt korábbi vétségek megtekintése
     too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
     use_security_key: Biztonsági kulcs használata
@@ -1570,6 +1572,9 @@ hu:
     over_daily_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os napi limitet
     over_total_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os limitet
     too_soon: Az időzített időpontnak a jövőben kell lennie
+  self_destruct:
+    lead_html: Sajnos a <strong>%{domain}</strong> végleg bezár. Ha volt itt fiókod, nem fogod tudni tovább használni, de kérheted majd az adataid biztonsági mentését.
+    title: A kiszolgáló bezár
   sessions:
     activity: Legutóbbi tevékenység
     browser: Böngésző

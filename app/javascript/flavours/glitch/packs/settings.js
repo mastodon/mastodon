@@ -1,5 +1,5 @@
 import 'packs/public-path';
-import { delegate }  from '@rails/ujs';
+import Rails from '@rails/ujs';
 
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
 import { loadPolyfills } from 'flavours/glitch/polyfills';
@@ -22,11 +22,11 @@ function main() {
     sidebar.classList.toggle('visible');
   };
 
-  delegate(document, '.sidebar__toggle__icon', 'click', () => {
+  Rails.delegate(document, '.sidebar__toggle__icon', 'click', () => {
     toggleSidebar();
   });
 
-  delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
+  Rails.delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
       toggleSidebar();

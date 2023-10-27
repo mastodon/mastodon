@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -12,8 +13,9 @@ import { requestBrowserPermission } from 'flavours/glitch/actions/notifications'
 import { changeSetting, saveSettings } from 'flavours/glitch/actions/settings';
 import { fetchSuggestions } from 'flavours/glitch/actions/suggestions';
 import { markAsPartial } from 'flavours/glitch/actions/timelines';
-import Button from 'flavours/glitch/components/button';
+import { Button } from 'flavours/glitch/components/button';
 import Column from 'flavours/glitch/features/ui/components/column';
+import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 import imageGreeting from 'mastodon/../images/elephant_ui_greeting.svg';
 
 import Account from './components/account';
@@ -25,14 +27,11 @@ const mapStateToProps = state => ({
 
 class FollowRecommendations extends ImmutablePureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  };
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     suggestions: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
+    ...WithRouterPropTypes,
   };
 
   componentDidMount () {
@@ -56,8 +55,7 @@ class FollowRecommendations extends ImmutablePureComponent {
   }
 
   handleDone = () => {
-    const { dispatch } = this.props;
-    const { router } = this.context;
+    const { history, dispatch } = this.props;
 
     dispatch(requestBrowserPermission((permission) => {
       if (permission === 'granted') {
@@ -71,7 +69,7 @@ class FollowRecommendations extends ImmutablePureComponent {
       }
     }));
 
-    router.history.push('/home');
+    history.push('/home');
   };
 
   render () {
@@ -118,4 +116,4 @@ class FollowRecommendations extends ImmutablePureComponent {
 
 }
 
-export default connect(mapStateToProps)(FollowRecommendations);
+export default withRouter(connect(mapStateToProps)(FollowRecommendations));

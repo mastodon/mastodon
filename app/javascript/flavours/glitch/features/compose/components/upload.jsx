@@ -13,10 +13,6 @@ import Motion from '../../ui/util/optional_motion';
 
 export default class Upload extends ImmutablePureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     onUndo: PropTypes.func.isRequired,

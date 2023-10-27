@@ -9,6 +9,7 @@ import { length } from 'stringz';
 
 import { maxChars } from 'flavours/glitch/initial_state';
 import { isMobile } from 'flavours/glitch/is_mobile';
+import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/glitch/utils/react_router';
 
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
@@ -38,11 +39,6 @@ const messages = defineMessages({
 });
 
 class ComposeForm extends ImmutablePureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     intl: PropTypes.object.isRequired,
     text: PropTypes.string,
@@ -70,7 +66,6 @@ class ComposeForm extends ImmutablePureComponent {
     isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
-
     advancedOptions: ImmutablePropTypes.map,
     layout: PropTypes.string,
     media: ImmutablePropTypes.list,
@@ -82,6 +77,7 @@ class ComposeForm extends ImmutablePureComponent {
     onChangeSpoilerness: PropTypes.func,
     onChangeVisibility: PropTypes.func,
     onMediaDescriptionConfirm: PropTypes.func,
+    ...WithOptionalRouterPropTypes
   };
 
   static defaultProps = {
@@ -129,12 +125,12 @@ class ComposeForm extends ImmutablePureComponent {
     // Submit unless there are media with missing descriptions
     if (mediaDescriptionConfirmation && onMediaDescriptionConfirm && media && media.some(item => !item.get('description'))) {
       const firstWithoutDescription = media.find(item => !item.get('description'));
-      onMediaDescriptionConfirm(this.context.router ? this.context.router.history : null, firstWithoutDescription.get('id'), overriddenVisibility);
+      onMediaDescriptionConfirm(this.props.history || null, firstWithoutDescription.get('id'), overriddenVisibility);
     } else if (onSubmit) {
       if (onChangeVisibility && overriddenVisibility) {
         onChangeVisibility(overriddenVisibility);
       }
-      onSubmit(this.context.router ? this.context.router.history : null);
+      onSubmit(this.props.history || null);
     }
   };
 
@@ -390,4 +386,4 @@ class ComposeForm extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(ComposeForm);
+export default withOptionalRouter(injectIntl(ComposeForm));

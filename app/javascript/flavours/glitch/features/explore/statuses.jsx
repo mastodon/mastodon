@@ -3,15 +3,19 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { withRouter } from 'react-router-dom';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+
 import { fetchTrendingStatuses, expandTrendingStatuses } from 'flavours/glitch/actions/trends';
 import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
 import StatusList from 'flavours/glitch/components/status_list';
 import { getStatusList } from 'flavours/glitch/selectors';
+import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 const mapStateToProps = state => ({
   statusIds: getStatusList(state, 'trending'),
@@ -27,10 +31,17 @@ class Statuses extends PureComponent {
     hasMore: PropTypes.bool,
     multiColumn: PropTypes.bool,
     dispatch: PropTypes.func.isRequired,
+    ...WithRouterPropTypes,
   };
 
   componentDidMount () {
-    const { dispatch } = this.props;
+    const { dispatch, statusIds, history } = this.props;
+
+    // If we're navigating back to the screen, do not trigger a reload
+    if (history.action === 'POP' && statusIds.size > 0) {
+      return;
+    }
+
     dispatch(fetchTrendingStatuses());
   }
 
@@ -45,27 +56,23 @@ class Statuses extends PureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />;
 
     return (
-      <>
-        <DismissableBanner id='explore/statuses'>
-          <FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These are posts from across the social web that are gaining traction today. Newer posts with more boosts and favorites are ranked higher.' />
-        </DismissableBanner>
-
-        <StatusList
-          trackScroll
-          timelineId='explore'
-          statusIds={statusIds}
-          scrollKey='explore-statuses'
-          hasMore={hasMore}
-          isLoading={isLoading}
-          onLoadMore={this.handleLoadMore}
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-          withCounters
-        />
-      </>
+      <StatusList
+        trackScroll
+        prepend={<DismissableBanner id='explore/statuses'><FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These are posts from across the social web that are gaining traction today. Newer posts with more boosts and favorites are ranked higher.' /></DismissableBanner>}
+        alwaysPrepend
+        timelineId='explore'
+        statusIds={statusIds}
+        scrollKey='explore-statuses'
+        hasMore={hasMore}
+        isLoading={isLoading}
+        onLoadMore={this.handleLoadMore}
+        emptyMessage={emptyMessage}
+        bindToDocument={!multiColumn}
+        withCounters
+      />
     );
   }
 
 }
 
-export default connect(mapStateToProps)(Statuses);
+export default connect(mapStateToProps)(withRouter(Statuses));

@@ -40,7 +40,7 @@ zh-CN:
         current_email: 当前的电子邮箱
         label: 更改电子邮箱
         new_email: 新的电子邮箱
-        submit: 更改电子邮件地址
+        submit: 更改电子邮箱
         title: 更改 %{username} 的电子邮箱
       change_role:
         changed_msg: 已成功更改角色！
@@ -68,8 +68,8 @@ zh-CN:
       enable_sign_in_token_auth: 启用电子邮件令牌认证
       enabled: 已启用
       enabled_msg: 成功解冻 %{username} 的账号
-      followers: 关注者
-      follows: 正在关注
+      followers: 粉丝
+      follows: 关注
       header: 个人资料页横幅图片
       inbox_url: 收件箱（Inbox）URL
       invite_request_text: 加入理由
@@ -523,6 +523,7 @@ zh-CN:
       total_reported: 关于对方的举报
       total_storage: 媒体文件
       totals_time_period_hint_html: 下方显示的总数来自全部历史数据。
+      unknown_instance: 此服务器上目前没有此域名的记录。
     invites:
       deactivate_all: 撤销所有邀请链接
       filter:
@@ -1083,6 +1084,7 @@ zh-CN:
       functional: 你的账号可以正常使用了。
       pending: 工作人员正在审核你的申请。这需要花点时间。在申请被批准后，你将收到一封电子邮件。
       redirecting_to: 你的账户无效，因为它已被设置为跳转到 %{acct}
+      self_destruct: 由于 %{domain} 即将关闭，你只能获得对你本人账号的有限访问权限。
       view_strikes: 查看针对你账号的记录
     too_fast: 表单提交过快，请重试。
     use_security_key: 使用安全密钥
@@ -1544,6 +1546,9 @@ zh-CN:
     over_daily_limit: 你已超出每日定时嘟文的上限（%{limit} 条）
     over_total_limit: 你已超出定时嘟文的上限（%{limit} 条）
     too_soon: 所定的时间必须在未来
+  self_destruct:
+    lead_html: 很遗憾，<strong>%{domain}</strong> 即将永久关闭。 如果你在其中设有账号，那么你将无法再继续使用，但你仍可以请求获得本人数据的备份。
+    title: 此服务器即将关闭
   sessions:
     activity: 最后一次活跃的时间
     browser: 浏览器

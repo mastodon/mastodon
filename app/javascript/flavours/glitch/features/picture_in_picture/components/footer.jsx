@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -15,6 +16,7 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import { me, boostModal } from 'flavours/glitch/initial_state';
 import { makeGetStatus } from 'flavours/glitch/selectors';
+import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 const messages = defineMessages({
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
@@ -44,7 +46,6 @@ const makeMapStateToProps = () => {
 class Footer extends ImmutablePureComponent {
 
   static contextTypes = {
-    router: PropTypes.object,
     identity: PropTypes.object,
   };
 
@@ -57,17 +58,17 @@ class Footer extends ImmutablePureComponent {
     showReplyCount: PropTypes.bool,
     withOpenButton: PropTypes.bool,
     onClose: PropTypes.func,
+    ...WithRouterPropTypes,
   };
 
   _performReply = () => {
-    const { dispatch, status, onClose } = this.props;
-    const { router } = this.context;
+    const { dispatch, status, onClose, history } = this.props;
 
     if (onClose) {
       onClose(true);
     }
 
-    dispatch(replyCompose(status, router.history));
+    dispatch(replyCompose(status, history));
   };
 
   handleReplyClick = () => {
@@ -151,9 +152,7 @@ class Footer extends ImmutablePureComponent {
   };
 
   handleOpenClick = e => {
-    const { router } = this.context;
-
-    if (e.button !== 0 || !router) {
+    if (e.button !== 0 || !history) {
       return;
     }
 
@@ -163,7 +162,7 @@ class Footer extends ImmutablePureComponent {
       onClose();
     }
 
-    router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
+    history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
   };
 
   render () {
@@ -229,4 +228,4 @@ class Footer extends ImmutablePureComponent {
 
 }
 
-export default connect(makeMapStateToProps)(injectIntl(Footer));
+export default  withRouter(connect(makeMapStateToProps)(injectIntl(Footer)));

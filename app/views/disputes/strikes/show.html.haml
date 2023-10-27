@@ -10,13 +10,13 @@
   %p.hint
     %span.positive-hint
       = fa_icon 'check'
-      = ' '
+      &nbsp;
       = t 'disputes.strikes.appeal_approved'
 - elsif @appeal.persisted? && @appeal.rejected?
   %p.hint
     %span.negative-hint
       = fa_icon 'times'
-      = ' '
+      &nbsp;
       = t 'disputes.strikes.appeal_rejected'
 
 .report-header

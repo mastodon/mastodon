@@ -11,7 +11,7 @@ import { createSelector } from 'reselect';
 import Toggle from 'react-toggle';
 
 import { fetchAccount } from 'flavours/glitch/actions/accounts';
-import Button from 'flavours/glitch/components/button';
+import { Button } from 'flavours/glitch/components/button';
 import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
 
 const messages = defineMessages({

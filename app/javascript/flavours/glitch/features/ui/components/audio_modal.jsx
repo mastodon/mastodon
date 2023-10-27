@@ -26,10 +26,6 @@ class AudioModal extends ImmutablePureComponent {
     onChangeBackgroundColor: PropTypes.func.isRequired,
   };
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   render () {
     const { media, status, accountStaticAvatar, onClose } = this.props;
     const options = this.props.options || {};

@@ -525,6 +525,7 @@ ko:
       total_reported: 이들에 대한 신고
       total_storage: 미디어 첨부
       totals_time_period_hint_html: 아래에 표시된 총계에는 모든 시간에 대한 데이터가 포함됩니다.
+      unknown_instance: 현재 이 서버에서 해당 도메인에 대한 기록은 없습니다.
     invites:
       deactivate_all: 전부 비활성화
       filter:
@@ -778,7 +779,7 @@ ko:
       types:
         major: 메이저 릴리스
         minor: 마이너 릴리스
-        patch: 패치 릴리스 — 버그픽스 그리고 변경점의 빠른 적용
+        patch: 패치 릴리스 — 버그픽스이며 변경을 적용하기 쉽습니다
       version: 버전
     statuses:
       account: 작성자
@@ -1085,6 +1086,7 @@ ko:
       functional: 계정이 완벽히 작동합니다.
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기 중입니다. 시간이 조금 걸릴 수 있습니다. 가입 신청이 승인되면 이메일을 받게 됩니다.
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
+      self_destruct: "%{domain} 도메인 폐쇄가 진행중이기 때문에, 계정에는 제한된 접근만 할 수 있습니다."
       view_strikes: 내 계정에 대한 과거 중재 기록 보기
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
     use_security_key: 보안 키 사용
@@ -1546,6 +1548,9 @@ ko:
     over_daily_limit: 그 날짜에 대한 %{limit}개의 예약 게시물 제한을 초과합니다
     over_total_limit: 예약 게시물 제한 %{limit}을 초과합니다
     too_soon: 예약 날짜는 미래여야 합니다
+  self_destruct:
+    lead_html: 안타깝게도,  <strong>%{domain}</strong> 도메인을 영구히 폐쇄합니다. 이곳의 계정을 가졌다면, 이제 이용할 수 없으며, 당분간 백업 데이터를 요청할 수 있습니다.
+    title: 이 서버는 폐쇄중입니다
   sessions:
     activity: 최근 활동
     browser: 브라우저

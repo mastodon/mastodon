@@ -45,14 +45,8 @@ jobs:
         run: sudo chown -R runner:docker .
 
       # This is needed to run the normalize step
-      - name: Install native Ruby dependencies
-        run: sudo apt-get install -y libicu-dev libidn11-dev
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
 
       - name: Run i18n normalize task
         run: bundle exec i18n-tasks normalize

@@ -523,6 +523,7 @@ ja:
       total_reported: 通報合計
       total_storage: 添付されたメディア
       totals_time_period_hint_html: 以下に表示される合計には、すべての時間のデータが含まれています。
+      unknown_instance: 今のところ、このドメインについては何も記録されていません。
     invites:
       deactivate_all: すべて無効化
       filter:
@@ -1083,6 +1084,7 @@ ja:
       functional: アカウントは完全に機能しています。
       pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
       redirecting_to: アカウントは%{acct}に引っ越し設定されているため非アクティブになっています。
+      self_destruct: "%{domain} は閉鎖されるため、今後このアカウントでは限られた操作しかできません。"
       view_strikes: 過去のストライクを表示
     too_fast: フォームの送信が速すぎます。もう一度やり直してください。
     use_security_key: セキュリティキーを使用
@@ -1544,6 +1546,9 @@ ja:
     over_daily_limit: その日予約できる投稿数 %{limit}を超えています
     over_total_limit: 予約できる投稿数 %{limit}を超えています
     too_soon: より先の時間を指定してください
+  self_destruct:
+    lead_html: 残念ながら、<strong>%{domain}</strong> は恒久的に閉鎖されます。ここにお持ちだったアカウントを今後使うことはできませんが、これまでのデータのバックアップを要求することはまだ可能です。
+    title: このサーバーは閉鎖されます
   sessions:
     activity: 最後のアクティビティ
     browser: ブラウザ

@@ -11,7 +11,7 @@ import {
   muteAccount,
   blockAccount,
 } from 'flavours/glitch/actions/accounts';
-import Button from 'flavours/glitch/components/button';
+import { Button } from 'flavours/glitch/components/button';
 
 const mapStateToProps = () => ({});
 

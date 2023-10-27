@@ -41,10 +41,10 @@
                           %tr
                             %td.column-cell.text-center
                               %p
-                                %strong= "#{t('sessions.ip')}:"
+                                %strong #{t('sessions.ip')}:
                                 = @remote_ip
                                 %br/
-                                %strong= "#{t('sessions.browser')}:"
+                                %strong #{t('sessions.browser')}:
                                 %span{ title: @user_agent }= t 'sessions.description', browser: t("sessions.browsers.#{@detection.id}", default: @detection.id.to_s), platform: t("sessions.platforms.#{@detection.platform.id}", default: @detection.platform.id.to_s)
                                 %br/
                                 = l(@timestamp.in_time_zone(@resource.time_zone.presence), format: :with_time_zone)

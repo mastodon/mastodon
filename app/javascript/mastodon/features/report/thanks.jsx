@@ -11,7 +11,7 @@ import {
   muteAccount,
   blockAccount,
 } from 'mastodon/actions/accounts';
-import Button from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button';
 
 const mapStateToProps = () => ({});
 

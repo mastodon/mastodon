@@ -13,6 +13,7 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
   before_action :extend_csp_for_captcha!, only: [:show, :confirm_captcha]
   before_action :require_captcha_if_needed!, only: [:show]
 
+  skip_before_action :check_self_destruct!
   skip_before_action :require_functional!
 
   def show
