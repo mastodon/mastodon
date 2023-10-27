@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 module Auth::RegistrationsHelper
-  def registrations_new_confirm_password_input_html
+  def registrations_new_honeypot_password_input_html
     {
       'aria-label': t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')),
+      autocomplete: 'off',
+    }
+  end
+
+  def registrations_new_honeypot_website_input_html
+    {
+      'aria-label': t('simple_form.labels.defaults.honeypot', label: 'Website'),
       autocomplete: 'off',
     }
   end
