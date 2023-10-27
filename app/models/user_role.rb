@@ -109,7 +109,7 @@ class UserRole < ApplicationRecord
   end
 
   def self.that_can(*any_of_privileges)
-    select { |role| role.can?(*any_of_privileges) }
+    all.select { |role| role.can?(*any_of_privileges) }
   end
 
   def everyone?
