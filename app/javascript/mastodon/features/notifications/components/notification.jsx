@@ -9,13 +9,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
+import { ReactComponent as FavoriteIcon } from '@material-symbols/svg-600/outlined/favorite-fill.svg';
 import { ReactComponent as FlagIcon } from '@material-symbols/svg-600/outlined/flag-fill.svg';
 import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
 import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
 import { ReactComponent as PersonIcon } from '@material-symbols/svg-600/outlined/person-fill.svg';
 import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add-fill.svg';
 import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
-import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star-fill.svg';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon }  from 'mastodon/components/icon';
@@ -194,7 +194,7 @@ class Notification extends ImmutablePureComponent {
       <HotKeys handlers={this.getHandlers()}>
         <div className={classNames('notification notification-favourite focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.favourite, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
-            <Icon id='star' icon={StarIcon} className='star-icon' />
+            <Icon id='star' icon={FavoriteIcon} className='star-icon' />
 
             <span title={notification.get('created_at')}>
               <FormattedMessage id='notification.favourite' defaultMessage='{name} favorited your status' values={{ name: link }} />

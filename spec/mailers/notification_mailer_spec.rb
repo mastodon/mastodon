@@ -73,11 +73,11 @@ RSpec.describe NotificationMailer do
     include_examples 'headers', 'favourite', true
 
     it 'renders the subject' do
-      expect(mail.subject).to eq('bob favorited your post')
+      expect(mail.subject).to eq('bob liked your post')
     end
 
     it 'renders the body' do
-      expect(mail.body.encoded).to match('Your post was favorited by bob')
+      expect(mail.body.encoded).to match('Your post was liked by bob')
       expect(mail.body.encoded).to include 'The body of the own status'
     end
   end

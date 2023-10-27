@@ -1796,7 +1796,7 @@ a.account__display-name {
   }
 
   .icon-star {
-    color: $gold-star;
+    color: $red-bookmark;
   }
 
   > span {
@@ -1807,25 +1807,7 @@ a.account__display-name {
 }
 
 .icon-button.star-icon.active {
-  color: $gold-star;
-}
-
-.icon-button.bookmark-icon.active {
   color: $red-bookmark;
-}
-
-.no-reduce-motion .icon-button.star-icon {
-  &.activate {
-    & > .icon {
-      animation: spring-rotate-in 1s linear;
-    }
-  }
-
-  &.deactivate {
-    & > .icon {
-      animation: spring-rotate-out 1s linear;
-    }
-  }
 }
 
 .notification__display-name {
@@ -4103,50 +4085,6 @@ a.status-card {
   }
 }
 
-@keyframes spring-rotate-in {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  30% {
-    transform: rotate(-484.8deg);
-  }
-
-  60% {
-    transform: rotate(-316.7deg);
-  }
-
-  90% {
-    transform: rotate(-375deg);
-  }
-
-  100% {
-    transform: rotate(-360deg);
-  }
-}
-
-@keyframes spring-rotate-out {
-  0% {
-    transform: rotate(-360deg);
-  }
-
-  30% {
-    transform: rotate(124.8deg);
-  }
-
-  60% {
-    transform: rotate(-43.27deg);
-  }
-
-  90% {
-    transform: rotate(15deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 .video-error-cover {
   align-items: center;
   background: $base-overlay-background;
@@ -5362,16 +5300,16 @@ a.status-card {
       }
 
       &.star-icon.active {
-        color: $gold-star;
+        color: $red-bookmark;
 
         &:hover,
         &:focus,
         &:active {
-          background: rgba($gold-star, 0.15);
+          background: rgba($red-bookmark, 0.15);
         }
 
         &:focus {
-          background: rgba($gold-star, 0.3);
+          background: rgba($red-bookmark, 0.3);
         }
       }
 
@@ -7624,7 +7562,7 @@ noscript {
 .account__details {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 1em;
+  gap: 8px;
 }
 
 .verified-badge {

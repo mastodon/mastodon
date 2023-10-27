@@ -802,7 +802,7 @@ en:
         remove_from_report: Remove from report
         report: Report
       deleted: Deleted
-      favourites: Favorites
+      favourites: Likes
       history: Version history
       in_reply_to: Replying to
       language: Language
@@ -903,14 +903,14 @@ en:
       statuses:
         allow: Allow post
         allow_account: Allow author
-        description_html: These are posts that your server knows about that are currently being shared and favorited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
+        description_html: These are posts that your server knows about that are currently being shared and liked a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
         disallow: Disallow post
         disallow_account: Disallow author
         no_status_selected: No trending posts were changed as none were selected
         not_discoverable: Author has not opted-in to being discoverable
         shared_by:
-          one: Shared or favorited one time
-          other: Shared and favorited %{friendly_count} times
+          one: Shared or liked one time
+          other: Shared and liked %{friendly_count} times
         title: Trending posts
       tags:
         current_score: Current score %{score}
@@ -1399,7 +1399,7 @@ en:
       confirmation_html: Are you sure you want to unsubscribe from receiving %{type} for Mastodon on %{domain} to your e-mail at %{email}? You can always re-subscribe from your <a href="%{settings_path}">e-mail notification settings</a>.
       emails:
         notification_emails:
-          favourite: favorite notification e-mails
+          favourite: like notification e-mails
           follow: follow notification e-mails
           follow_request: follow request e-mails
           mention: mention notification e-mails
@@ -1458,9 +1458,9 @@ en:
       sign_up:
         subject: "%{name} signed up"
     favourite:
-      body: 'Your post was favorited by %{name}:'
-      subject: "%{name} favorited your post"
-      title: New favorite
+      body: 'Your post was liked by %{name}:'
+      subject: "%{name} liked your post"
+      title: New like
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
@@ -1706,10 +1706,10 @@ en:
     enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
     exceptions: Exceptions
     explanation: Because deleting posts is an expensive operation, this is done slowly over time when the server is not otherwise busy. For this reason, your posts may be deleted a while after they reach the age threshold.
-    ignore_favs: Ignore favorites
+    ignore_favs: Ignore likes
     ignore_reblogs: Ignore boosts
     interaction_exceptions: Exceptions based on interactions
-    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favorite or boost threshold after having once gone over them.
+    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the like or boost threshold after having once gone over them.
     keep_direct: Keep direct messages
     keep_direct_hint: Doesn't delete any of your direct messages
     keep_media: Keep posts with media attachments
@@ -1720,8 +1720,8 @@ en:
     keep_polls_hint: Doesn't delete any of your polls
     keep_self_bookmark: Keep posts you bookmarked
     keep_self_bookmark_hint: Doesn't delete your own posts if you have bookmarked them
-    keep_self_fav: Keep posts you favorited
-    keep_self_fav_hint: Doesn't delete your own posts if you have favorited them
+    keep_self_fav: Keep posts you liked
+    keep_self_fav_hint: Doesn't delete your own posts if you have liked them
     min_age:
       '1209600': 2 weeks
       '15778476': 6 months
@@ -1732,8 +1732,8 @@ en:
       '63113904': 2 years
       '7889238': 3 months
     min_age_label: Age threshold
-    min_favs: Keep posts favorited at least
-    min_favs_hint: Doesn't delete any of your posts that has received at least this number of favorites. Leave blank to delete posts regardless of their number of favorites
+    min_favs: Keep posts liked at least
+    min_favs_hint: Doesn't delete any of your posts that has received at least this number of likes. Leave blank to delete posts regardless of their number of likes
     min_reblogs: Keep posts boosted at least
     min_reblogs_hint: Doesn't delete any of your posts that has been boosted at least this number of times. Leave blank to delete posts regardless of their number of boosts
   stream_entries:
