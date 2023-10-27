@@ -25,7 +25,7 @@ class ActivityPub::DeliveryWorker
   def perform(json, source_account_id, inbox_url, options = {})
     @options        = options.with_indifferent_access
 
-    return unless DeliveryFailureTracker.available?(inbox_url) && !@options[:bypass_availability]
+    return unless DeliveryFailureTracker.available?(inbox_url) || @options[:bypass_availability]
 
     @json           = json
     @source_account = Account.find(source_account_id)
