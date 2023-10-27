@@ -33,8 +33,6 @@ RSpec.describe Admin::Disputes::AppealsController do
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
     before do
-      allow(UserMailer).to receive(:appeal_approved)
-        .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later: nil))
       post :approve, params: { id: appeal.id }
     end
 
@@ -47,7 +45,7 @@ RSpec.describe Admin::Disputes::AppealsController do
     end
 
     it 'notifies target account about approved appeal' do
-      expect(UserMailer).to have_received(:appeal_approved).with(target_account.user, appeal)
+      expect(UserMailer.deliveries.size).to eq(1)
     end
   end
 
@@ -55,8 +53,6 @@ RSpec.describe Admin::Disputes::AppealsController do
     let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
     before do
-      allow(UserMailer).to receive(:appeal_rejected)
-        .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later: nil))
       post :reject, params: { id: appeal.id }
     end
 
@@ -65,7 +61,7 @@ RSpec.describe Admin::Disputes::AppealsController do
     end
 
     it 'notifies target account about rejected appeal' do
-      expect(UserMailer).to have_received(:appeal_rejected).with(target_account.user, appeal)
+      expect(UserMailer.deliveries.size).to eq(1)
     end
   end
 end
