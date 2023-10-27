@@ -78,6 +78,18 @@ describe ContentSecurityPolicy do
       end
     end
 
+    context 'when an S3 alias host with a trailing path is configured' do
+      around do |example|
+        ClimateControl.modify S3_ALIAS_HOST: 'asset-host.s3-alias.example/pathname' do
+          example.run
+        end
+      end
+
+      it 'uses the s3 alias host value and preserves the path' do
+        expect(subject.media_host).to eq 'https://asset-host.s3-alias.example/pathname/'
+      end
+    end
+
     context 'when an S3 cloudfront host is configured' do
       around do |example|
         ClimateControl.modify S3_CLOUDFRONT_HOST: 'asset-host.s3-cloudfront.example' do
