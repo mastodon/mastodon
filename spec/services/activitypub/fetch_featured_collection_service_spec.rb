@@ -42,12 +42,22 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
     }
   end
 
+  let(:featured_with_null) do
+    {
+      '@context': 'https://www.w3.org/ns/activitystreams',
+      id: 'https://example.com/account/collections/featured',
+      totalItems: 0,
+      type: 'OrderedCollection',
+    }
+  end
+
   let(:items) do
     [
       'https://example.com/account/pinned/known', # known
       status_json_pinned_unknown_inlined, # unknown inlined
       'https://example.com/account/pinned/unknown-unreachable', # unknown unreachable
       'https://example.com/account/pinned/unknown-reachable', # unknown reachable
+      'https://example.com/account/collections/featured', # featured with null
     ]
   end
 
