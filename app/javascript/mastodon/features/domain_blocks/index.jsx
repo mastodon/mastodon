@@ -60,7 +60,7 @@ class Blocks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.domain_blocks' defaultMessage='There are no blocked domains yet.' />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='ban' iconComponent={BlockIcon} heading={intl.formatMessage(messages.heading)}>
+      <Column bindToDocument={!multiColumn} icon='ban' iconComponent={BlockIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='domain_blocks'
           onLoadMore={this.handleLoadMore}

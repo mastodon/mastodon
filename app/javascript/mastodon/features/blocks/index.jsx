@@ -59,7 +59,7 @@ class Blocks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='ban' iconComponent={BlockIcon} heading={intl.formatMessage(messages.heading)}>
+      <Column bindToDocument={!multiColumn} icon='ban' iconComponent={BlockIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}

@@ -51,7 +51,7 @@ class PinnedStatuses extends ImmutablePureComponent {
     const { intl, statusIds, hasMore, multiColumn } = this.props;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='thumb-tack' iconComponent={PushPinIcon} heading={intl.formatMessage(messages.heading)} ref={this.setRef}>
+      <Column bindToDocument={!multiColumn} icon='thumb-tack' iconComponent={PushPinIcon} heading={intl.formatMessage(messages.heading)} ref={this.setRef} alwaysShowBackButton>
         <StatusList
           statusIds={statusIds}
           scrollKey='pinned_statuses'
