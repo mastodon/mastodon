@@ -37,6 +37,8 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
   end
 
   def process_items(items)
+    return if items.nil?
+
     process_note_items(items) if @options[:note]
     process_hashtag_items(items) if @options[:hashtag]
   end
