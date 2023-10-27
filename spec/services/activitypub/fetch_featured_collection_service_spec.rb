@@ -76,6 +76,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
       stub_request(:get, 'https://example.com/account/pinned/unknown-inlined').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_inlined))
       stub_request(:get, 'https://example.com/account/pinned/unknown-unreachable').to_return(status: 404)
       stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_unreachable))
+      stub_request(:get, 'https://example.com/account/collections/featured').to_return(status: 200, body: Oj.dump(featured_with_null))
 
       subject.call(actor, note: true, hashtag: false)
     end
