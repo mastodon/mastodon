@@ -23,6 +23,7 @@ AllCops:
   NewCops: enable # Opt-in to newly added rules
   Exclude:
     - db/schema.rb
+    - 'db/schema/**/*'
     - 'bin/*'
     - 'node_modules/**/*'
     - 'Vagrantfile'
