@@ -47,6 +47,7 @@ RSpec.describe Admin::Disputes::AppealsController do
     it 'notifies target account about approved appeal' do
       expect(UserMailer.deliveries.size).to eq(1)
       expect(UserMailer.deliveries.first.to.first).to eq(target_account.user.email)
+      expect(UserMailer.deliveries.first.subject).to match(/approved/)
     end
   end
 
@@ -64,6 +65,7 @@ RSpec.describe Admin::Disputes::AppealsController do
     it 'notifies target account about rejected appeal' do
       expect(UserMailer.deliveries.size).to eq(1)
       expect(UserMailer.deliveries.first.to.first).to eq(target_account.user.email)
+      expect(UserMailer.deliveries.first.subject).to match(/rejected/)
     end
   end
 end
