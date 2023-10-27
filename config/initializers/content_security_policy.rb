@@ -6,24 +6,11 @@
 # See the Securing Rails Applications Guide for more information:
 # https://guides.rubyonrails.org/security.html#content-security-policy-header
 
-def host_to_url(str)
-  return if str.blank?
+require_relative '../../app/lib/content_security_policy'
 
-  uri = Addressable::URI.parse("http#{Rails.configuration.x.use_https ? 's' : ''}://#{str}")
-  uri.path += '/' unless uri.path.blank? || uri.path.end_with?('/')
-  uri.to_s
-end
-
-base_host = Rails.configuration.x.web_domain
-
-assets_host   = Rails.configuration.action_controller.asset_host
-assets_host ||= host_to_url(base_host)
-
-media_host   = host_to_url(ENV['S3_ALIAS_HOST'])
-media_host ||= host_to_url(ENV['S3_CLOUDFRONT_HOST'])
-media_host ||= host_to_url(ENV['AZURE_ALIAS_HOST'])
-media_host ||= host_to_url(ENV['S3_HOSTNAME']) if ENV['S3_ENABLED'] == 'true'
-media_host ||= assets_host
+policy = ContentSecurityPolicy.new
+assets_host = policy.assets_host
+media_host = policy.media_host
 
 def sso_host
   return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true'
