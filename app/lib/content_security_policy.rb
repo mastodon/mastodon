@@ -48,16 +48,12 @@ class ContentSecurityPolicy
   end
 
   def uri_from_configuration_and_string(host_string)
-    Addressable::URI.parse("#{host_protocol}://#{host_from_string_with_optional_path(host_string)}").tap do |uri|
+    Addressable::URI.parse("#{host_protocol}://#{host_string}").tap do |uri|
       uri.path += '/' unless uri.path.blank? || uri.path.end_with?('/')
     end.to_s
   end
 
   def host_protocol
     Rails.configuration.x.use_https ? 'https' : 'http'
-  end
-
-  def host_from_string_with_optional_path(host_string)
-    host_string.split('/').first
   end
 end
