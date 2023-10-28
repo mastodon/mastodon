@@ -353,7 +353,7 @@ class Search extends PureComponent {
               <div className='search__popout__heading-container'>
                 <h4><FormattedMessage id='search_popout.recent' defaultMessage='Recent searches' /></h4>
                 {recent.size > 0 &&
-                (<button className='icon-button' onMouseDown={this.handleForgetAllRecentSearchClick}><Icon id='trash' /></button>)
+                (<button className='icon-button' onMouseDown={this.handleForgetAllRecentSearchClick}>Clear</button>)
                 }
               </div>
 
