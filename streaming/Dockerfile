@@ -4,8 +4,8 @@
 # the extended buildx capabilities used in this file.
 # Make sure multiarch TARGETPLATFORM is available for interpolation
 # See: https://docs.docker.com/build/building/multi-platform/
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
+ARG TARGETPLATFORM=${TARGETPLATFORM}
+ARG BUILDPLATFORM=${BUILDPLATFORM}
 
 # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 ARG NODE_MAJOR_VERSION="20"
