@@ -24,6 +24,10 @@ ARG GID="991"
 # Configure the IP to bind Mastodon to when serving traffic
 ENV BIND="0.0.0.0"
 
+ARG TARGETPLATFORM
+
+RUN echo "Target platform is ${TARGETPLATFORM}"
+
 RUN \
 # Sets timezone
   echo "${TZ}" > /etc/localtime; \
@@ -36,8 +40,8 @@ RUN \
 # hadolint ignore=DL3008,DL3005
 RUN \
 # Mount Apt cache and lib directories from Docker buildx caches
---mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
---mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+--mount=type=cache,id="apt-cache-${TARGETPLATFORM}",target=/var/cache/apt,sharing=locked \
+--mount=type=cache,id="apt-lib-${TARGETPLATFORM}",target=/var/lib/apt,sharing=locked \
 # upgrade to check for security updates to Debian image
   apt-get dist-upgrade -yq;
 
@@ -51,8 +55,8 @@ COPY ./streaming /opt/mastodon/streaming
 
 RUN \
 # Mount local Corepack and Yarn caches from Docker buildx caches
---mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
---mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
+--mount=type=cache,id="corepack-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/corepack,sharing=locked \
+--mount=type=cache,id="yarn-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/yarn,sharing=locked \
   rm /usr/local/bin/yarn*; \
   corepack enable; \
   # Configure Corepack
@@ -69,8 +73,8 @@ RUN \
 
 RUN \
 # Mount Corepack and Yarn caches from Docker buildx caches
---mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
---mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
+--mount=type=cache,id="corepack-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/corepack,sharing=locked \
+--mount=type=cache,id="yarn-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/yarn,sharing=locked \
 # Configure Node package manager
   if [ -e .yarnrc.yml ]; then \
     # Yarn 3 detected

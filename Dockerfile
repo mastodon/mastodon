@@ -4,8 +4,8 @@
 # the extended buildx capabilities used in this file.
 # Make sure multiarch TARGETPLATFORM is available for interpolation
 # See: https://docs.docker.com/build/building/multi-platform/
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
+ARG TARGETPLATFORM=${TARGETPLATFORM}
+ARG BUILDPLATFORM=${BUILDPLATFORM}
 
 # Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.2.2"]
 ARG RUBY_VERSION="3.2.2"
@@ -65,6 +65,10 @@ ENV \
 # Set default shell used for running commands
 SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
 
+ARG TARGETPLATFORM
+
+RUN echo "Target platform is $TARGETPLATFORM"
+
 RUN \
 # Sets timezone
   echo "${TZ}" > /etc/localtime; \
@@ -84,8 +88,8 @@ COPY . /opt/mastodon/
 # hadolint ignore=DL3008,DL3005
 RUN \
 # Mount Apt cache and lib directories from Docker buildx caches
---mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
---mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+--mount=type=cache,id="apt-cache-${TARGETPLATFORM}",target=/var/cache/apt,sharing=locked \
+--mount=type=cache,id="apt-lib-${TARGETPLATFORM}",target=/var/lib/apt,sharing=locked \
 # Apt update & upgrade to check for security updates to Debian image
   apt-get update; \
   apt-get dist-upgrade -yq; \
@@ -115,11 +119,13 @@ FROM ruby as build
 COPY --from=node /usr/local/bin /usr/local/bin
 COPY --from=node /usr/local/lib /usr/local/lib
 
+ARG TARGETPLATFORM
+
 # hadolint ignore=DL3008
 RUN \
 # Mount Apt cache and lib directories from Docker buildx caches
---mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
---mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+--mount=type=cache,id="apt-cache-${TARGETPLATFORM}",target=/var/cache/apt,sharing=locked \
+--mount=type=cache,id="apt-lib-${TARGETPLATFORM}",target=/var/lib/apt,sharing=locked \
 # Install build tools and bundler dependencies from APT
   apt-get install -y --no-install-recommends \
     g++ \
@@ -154,9 +160,11 @@ RUN \
 # Create temporary bundler specific build layer from build layer
 FROM build as build-bundler
 
+ARG TARGETPLATFORM
+
 RUN \
 # Mount Ruby Gem caches
---mount=type=cache,id=gem-cache-${TARGETPLATFORM},target=/usr/local/bundle/cache/,sharing=locked \
+--mount=type=cache,id="gem-cache-${TARGETPLATFORM}",target=/usr/local/bundle/cache/,sharing=locked \
 # Configure bundle to prevent changes to Gemfile and Gemfile.lock
   bundle config set --global frozen "true"; \
 # Configure bundle to not cache downloaded Gems
@@ -171,10 +179,12 @@ RUN \
 # Create temporary node specific build layer from build layer
 FROM build as build-node
 
+ARG TARGETPLATFORM
+
 # hadolint ignore=DL3008
 RUN \
---mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
---mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
+--mount=type=cache,id="corepack-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/corepack,sharing=locked \
+--mount=type=cache,id="yarn-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/yarn,sharing=locked \
 # Configure Node package manager
   if [ -e .yarnrc.yml ]; then \
     # Yarn 3 detected
@@ -195,6 +205,8 @@ COPY --from=build-bundler /opt/mastodon /opt/mastodon/
 COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
 COPY --from=build-node /opt/mastodon /opt/mastodon/
 
+ARG TARGETPLATFORM
+
 RUN \
 # Use Ruby on Rails to create Mastodon assets
   OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile; \
@@ -204,14 +216,16 @@ RUN \
 # Prep final Mastodon Ruby layer
 FROM ruby
 
+ARG TARGETPLATFORM
+
 # hadolint ignore=DL3008
 RUN \
 # Mount Apt cache and lib directories from Docker buildx caches
---mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
---mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+--mount=type=cache,id="apt-cache-${TARGETPLATFORM}",target=/var/cache/apt,sharing=locked \
+--mount=type=cache,id="apt-lib-${TARGETPLATFORM}",target=/var/lib/apt,sharing=locked \
 # Mount Corepack and Yarn caches from Docker buildx caches
---mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
---mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
+--mount=type=cache,id="corepack-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/corepack,sharing=locked \
+--mount=type=cache,id="yarn-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/yarn,sharing=locked \
 # Apt update install non-dev versions of necessary components
   apt-get install -y --no-install-recommends \
     libssl3 \
