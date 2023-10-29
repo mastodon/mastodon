@@ -39,7 +39,7 @@ services:
 
   web:
     #build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.0
+    image: ghcr.io/mastodon/mastodon:v4.2.1
     restart: unless-stopped
     env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
