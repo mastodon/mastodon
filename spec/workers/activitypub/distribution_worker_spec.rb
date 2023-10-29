@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe ActivityPub::DistributionWorker do
   subject { described_class.new }
 
   let(:status)   { Fabricate(:status) }
-  let(:follower) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example.com') }
+  let(:follower) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example.com', domain: 'example.com') }
 
   describe '#perform' do
     before do
@@ -34,7 +36,7 @@ describe ActivityPub::DistributionWorker do
     end
 
     context 'with direct status' do
-      let(:mentioned_account) { Fabricate(:account, protocol: :activitypub, inbox_url: 'https://foo.bar/inbox')}
+      let(:mentioned_account) { Fabricate(:account, protocol: :activitypub, inbox_url: 'https://foo.bar/inbox', domain: 'foo.bar') }
 
       before do
         status.update(visibility: :direct)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddSilencedAtSuspendedAtToAccounts < ActiveRecord::Migration[5.2]
   class Account < ApplicationRecord
     # Dummy class, to make migration possible across version changes
@@ -17,7 +19,6 @@ class AddSilencedAtSuspendedAtToAccounts < ActiveRecord::Migration[5.2]
     # Record suspend date of blocks and silences for users whose limitations match
     # a domain block
     DomainBlock.where(severity: [:silence, :suspend]).find_each do |block|
-      scope = block.accounts
       if block.suspend?
         block.accounts.where(suspended: true).in_batches.update_all(suspended_at: block.created_at)
       else

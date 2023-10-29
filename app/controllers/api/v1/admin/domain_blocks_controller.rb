@@ -16,6 +16,16 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
 
   PAGINATION_PARAMS = %i(limit).freeze
 
+  def index
+    authorize :domain_block, :index?
+    render json: @domain_blocks, each_serializer: REST::Admin::DomainBlockSerializer
+  end
+
+  def show
+    authorize @domain_block, :show?
+    render json: @domain_block, serializer: REST::Admin::DomainBlockSerializer
+  end
+
   def create
     authorize :domain_block, :create?
 
@@ -28,22 +38,10 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
     render json: @domain_block, serializer: REST::Admin::DomainBlockSerializer
   end
 
-  def index
-    authorize :domain_block, :index?
-    render json: @domain_blocks, each_serializer: REST::Admin::DomainBlockSerializer
-  end
-
-  def show
-    authorize @domain_block, :show?
-    render json: @domain_block, serializer: REST::Admin::DomainBlockSerializer
-  end
-
   def update
     authorize @domain_block, :update?
-    @domain_block.update(domain_block_params)
-    severity_changed = @domain_block.severity_changed?
-    @domain_block.save!
-    DomainBlockWorker.perform_async(@domain_block.id, severity_changed)
+    @domain_block.update!(domain_block_params)
+    DomainBlockWorker.perform_async(@domain_block.id, @domain_block.severity_previously_changed?)
     log_action :update, @domain_block
     render json: @domain_block, serializer: REST::Admin::DomainBlockSerializer
   end

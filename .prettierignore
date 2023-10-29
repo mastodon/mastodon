@@ -31,9 +31,6 @@
 # Ignore Vagrant files
 .vagrant/
 
-# Ignore Capistrano customizations
-/config/deploy/*
-
 # Ignore IDE files
 .vscode/
 .idea/
@@ -44,9 +41,6 @@
 /redis
 /elasticsearch
 
-# ignore Helm dependency charts
-/chart/charts/*.tgz
-
 # Ignore Apple files
 .DS_Store
 
@@ -54,25 +48,28 @@
 *~
 *.swp
 
-# Ignore npm debug log
-npm-debug.log
-
-# Ignore yarn log files
-yarn-error.log
-yarn-debug.log
-
-# Ignore vagrant log files
-*-cloudimg-console.log
+# Ignore log files
+*.log
 
 # Ignore Docker option files
 docker-compose.override.yml
-
-# Ignore Helm files
-/chart
 
 # Ignore emoji map file
 /app/javascript/mastodon/features/emoji/emoji_map.json
 
 # Ignore locale files
-/app/javascript/mastodon/locales
+/app/javascript/mastodon/locales/*.json
 /config/locales
+
+# Ignore vendored CSS reset
+app/javascript/styles/mastodon/reset.scss
+
+# Ignore Javascript pending https://github.com/mastodon/mastodon/pull/23631
+*.js
+*.jsx
+
+# Ignore HTML till cleaned and included in CI
+*.html
+
+# Ignore the generated AUTHORS.md
+AUTHORS.md

@@ -57,7 +57,7 @@ class GifReader
           end
 
           # Skip lzw min code size
-          raise InvalidValue unless s.read(1).unpack('C')[0] >= 2
+          raise InvalidValue unless s.read(1).unpack1('C') >= 2
 
           # Skip image data sub-blocks
           skip_sub_blocks!(s)
@@ -77,7 +77,7 @@ class GifReader
   private
 
   def skip_extension_block!(file)
-    if EXTENSION_LABELS.include?(file.read(1).unpack('C')[0])
+    if EXTENSION_LABELS.include?(file.read(1).unpack1('C'))
       block_size, = file.read(1).unpack('C')
       file.seek(block_size, IO::SEEK_CUR)
     end
@@ -109,7 +109,7 @@ module Paperclip
       final_file = Paperclip::Transcoder.make(file, options, attachment)
 
       if options[:style] == :original
-        attachment.instance.file_file_name    = File.basename(attachment.instance.file_file_name, '.*') + '.mp4'
+        attachment.instance.file_file_name    = "#{File.basename(attachment.instance.file_file_name, '.*')}.mp4"
         attachment.instance.file_content_type = 'video/mp4'
         attachment.instance.type              = MediaAttachment.types[:gifv]
       end

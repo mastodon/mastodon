@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'devise/strategies/authenticatable'
 
 Warden::Manager.after_set_user except: :fetch do |user, warden|
@@ -159,7 +161,7 @@ Devise.setup do |config|
   # config.request_keys = []
 
   # Configure which authentication keys should be case-insensitive.
-  # These keys will be downcased upon creating or modifying a user and when used
+  # These keys will be lowercased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
   config.case_insensitive_keys = [:email]
 
@@ -392,7 +394,7 @@ Devise.setup do |config|
     config.check_at_sign          = true
     config.pam_default_suffix     = ENV.fetch('PAM_EMAIL_DOMAIN') { ENV['LOCAL_DOMAIN'] }
     config.pam_default_service    = ENV.fetch('PAM_DEFAULT_SERVICE') { 'rpam' }
-    config.pam_controlled_service = ENV.fetch('PAM_CONTROLLED_SERVICE') { nil }
+    config.pam_controlled_service = ENV.fetch('PAM_CONTROLLED_SERVICE', nil).presence
   end
 
   if ENV['LDAP_ENABLED'] == 'true'

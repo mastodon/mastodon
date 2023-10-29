@@ -1,4 +1,7 @@
 - content_for :page_title do
   = t('admin.webhooks.edit')
 
-= render partial: 'form'
+= simple_form_for @webhook, url: admin_webhook_path(@webhook) do |form|
+  = render partial: 'form', object: form
+  .actions
+    = form.button :button, t('generic.save_changes'), type: :submit

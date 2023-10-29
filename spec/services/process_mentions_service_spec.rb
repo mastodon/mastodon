@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ProcessMentionsService, type: :service do
-  let(:account) { Fabricate(:account, username: 'alice') }
+  subject { described_class.new }
 
-  subject { ProcessMentionsService.new }
+  let(:account) { Fabricate(:account, username: 'alice') }
 
   context 'when mentions contain blocked accounts' do
     let(:non_blocked_account)          { Fabricate(:account) }
@@ -31,11 +33,11 @@ RSpec.describe ProcessMentionsService, type: :service do
     end
   end
 
-  context 'resolving a mention to a remote account' do
+  context 'with resolving a mention to a remote account' do
     let(:status) { Fabricate(:status, account: account, text: "Hello @#{remote_user.acct}", visibility: :public) }
 
-    context 'ActivityPub' do
-      context do
+    context 'with ActivityPub' do
+      context 'with a valid remote user' do
         let!(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
         before do
@@ -47,9 +49,22 @@ RSpec.describe ProcessMentionsService, type: :service do
         end
       end
 
+      context 'when mentioning a user several times when not saving records' do
+        let!(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
+        let(:status)       { Fabricate(:status, account: account, text: "Hello @#{remote_user.acct} @#{remote_user.acct} @#{remote_user.acct}", visibility: :public) }
+
+        before do
+          subject.call(status, save_records: false)
+        end
+
+        it 'creates exactly one mention' do
+          expect(status.mentions.size).to eq 1
+        end
+      end
+
       context 'with an IDN domain' do
         let!(:remote_user) { Fabricate(:account, username: 'sneak', protocol: :activitypub, domain: 'xn--hresiar-mxa.ch', inbox_url: 'http://example.com/inbox') }
-        let!(:status) { Fabricate(:status, account: account, text: "Hello @sneak@hæresiar.ch") }
+        let!(:status) { Fabricate(:status, account: account, text: 'Hello @sneak@hæresiar.ch') }
 
         before do
           subject.call(status)
@@ -62,7 +77,7 @@ RSpec.describe ProcessMentionsService, type: :service do
 
       context 'with an IDN TLD' do
         let!(:remote_user) { Fabricate(:account, username: 'foo', protocol: :activitypub, domain: 'xn--y9a3aq.xn--y9a3aq', inbox_url: 'http://example.com/inbox') }
-        let!(:status) { Fabricate(:status, account: account, text: "Hello @foo@հայ.հայ") }
+        let!(:status) { Fabricate(:status, account: account, text: 'Hello @foo@հայ.հայ') }
 
         before do
           subject.call(status)
@@ -74,12 +89,12 @@ RSpec.describe ProcessMentionsService, type: :service do
       end
     end
 
-    context 'Temporarily-unreachable ActivityPub user' do
+    context 'with a Temporarily-unreachable ActivityPub user' do
       let!(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox', last_webfingered_at: nil) }
 
       before do
-        stub_request(:get, "https://example.com/.well-known/host-meta").to_return(status: 404)
-        stub_request(:get, "https://example.com/.well-known/webfinger?resource=acct:remote_user@example.com").to_return(status: 500)
+        stub_request(:get, 'https://example.com/.well-known/host-meta').to_return(status: 404)
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:remote_user@example.com').to_return(status: 500)
         subject.call(status)
       end
 

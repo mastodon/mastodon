@@ -14,7 +14,7 @@
     = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
     = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all', crossorigin: 'anonymous'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
-    = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
+    = preload_pack_asset "locale/#{I18n.locale}-json.js"
     = render_initial_state
     = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
   %body.embed

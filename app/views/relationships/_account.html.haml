@@ -6,7 +6,7 @@
       %tbody
         %tr
           %td.accounts-table__interrelationships
-            = interrelationships_icon(@relationships, account.id)
+            = interrelationships_icon(relationships, account.id)
           %td= account_link_to account
           %td.accounts-table__count.optional
             = friendly_number_to_human account.statuses_count

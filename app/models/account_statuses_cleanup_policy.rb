@@ -57,9 +57,9 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   before_save :update_last_inspected
 
   def statuses_to_delete(limit = 50, max_id = nil, min_id = nil)
-    scope = account.statuses
+    scope = account_statuses
     scope.merge!(old_enough_scope(max_id))
-    scope = scope.where(Status.arel_table[:id].gteq(min_id)) if min_id.present?
+    scope = scope.where(id: min_id..) if min_id.present?
     scope.merge!(without_popular_scope) unless min_favs.nil? && min_reblogs.nil?
     scope.merge!(without_direct_scope) if keep_direct?
     scope.merge!(without_pinned_scope) if keep_pinned?
@@ -80,7 +80,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   def compute_cutoff_id
     min_id = last_inspected || 0
     max_id = Mastodon::Snowflake.id_at(min_status_age.seconds.ago, with_random: false)
-    subquery = account.statuses.where(Status.arel_table[:id].gteq(min_id)).where(Status.arel_table[:id].lteq(max_id))
+    subquery = account_statuses.where(id: min_id..max_id)
     subquery = subquery.select(:id).reorder(id: :asc).limit(EARLY_SEARCH_CUTOFF)
 
     # We're textually interpolating a subquery here as ActiveRecord seem to not provide
@@ -91,11 +91,11 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   # The most important thing about `last_inspected` is that any toot older than it is guaranteed
   # not to be kept by the policy regardless of its age.
   def record_last_inspected(last_id)
-    redis.set("account_cleanup:#{account.id}", last_id, ex: 1.week.seconds)
+    redis.set("account_cleanup:#{account_id}", last_id, ex: 2.weeks.seconds)
   end
 
   def last_inspected
-    redis.get("account_cleanup:#{account.id}")&.to_i
+    redis.get("account_cleanup:#{account_id}")&.to_i
   end
 
   def invalidate_last_inspected(status, action)
@@ -117,14 +117,12 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   private
 
   def update_last_inspected
-    if EXCEPTION_BOOLS.map { |name| attribute_change_to_be_saved(name) }.compact.include?([true, false])
+    if EXCEPTION_BOOLS.filter_map { |name| attribute_change_to_be_saved(name) }.include?([true, false])
       # Policy has been widened in such a way that any previously-inspected status
       # may need to be deleted, so we'll have to start again.
-      redis.del("account_cleanup:#{account.id}")
+      redis.del("account_cleanup:#{account_id}")
     end
-    if EXCEPTION_THRESHOLDS.map { |name| attribute_change_to_be_saved(name) }.compact.any? { |old, new| old.present? && (new.nil? || new > old) }
-      redis.del("account_cleanup:#{account.id}")
-    end
+    redis.del("account_cleanup:#{account_id}") if EXCEPTION_THRESHOLDS.filter_map { |name| attribute_change_to_be_saved(name) }.any? { |old, new| old.present? && (new.nil? || new > old) }
   end
 
   def validate_local_account
@@ -141,27 +139,25 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
     # has switched to snowflake IDs significantly over 2 years ago anyway.
     snowflake_id = Mastodon::Snowflake.id_at(min_status_age.seconds.ago, with_random: false)
 
-    if max_id.nil? || snowflake_id < max_id
-      max_id = snowflake_id
-    end
+    max_id = snowflake_id if max_id.nil? || snowflake_id < max_id
 
-    Status.where(Status.arel_table[:id].lteq(max_id))
+    Status.where(id: ..max_id)
   end
 
   def without_self_fav_scope
-    Status.where('NOT EXISTS (SELECT * FROM favourites fav WHERE fav.account_id = statuses.account_id AND fav.status_id = statuses.id)')
+    Status.where('NOT EXISTS (SELECT 1 FROM favourites fav WHERE fav.account_id = statuses.account_id AND fav.status_id = statuses.id)')
   end
 
   def without_self_bookmark_scope
-    Status.where('NOT EXISTS (SELECT * FROM bookmarks bookmark WHERE bookmark.account_id = statuses.account_id AND bookmark.status_id = statuses.id)')
+    Status.where('NOT EXISTS (SELECT 1 FROM bookmarks bookmark WHERE bookmark.account_id = statuses.account_id AND bookmark.status_id = statuses.id)')
   end
 
   def without_pinned_scope
-    Status.where('NOT EXISTS (SELECT * FROM status_pins pin WHERE pin.account_id = statuses.account_id AND pin.status_id = statuses.id)')
+    Status.where('NOT EXISTS (SELECT 1 FROM status_pins pin WHERE pin.account_id = statuses.account_id AND pin.status_id = statuses.id)')
   end
 
   def without_media_scope
-    Status.where('NOT EXISTS (SELECT * FROM media_attachments media WHERE media.status_id = statuses.id)')
+    Status.where('NOT EXISTS (SELECT 1 FROM media_attachments media WHERE media.status_id = statuses.id)')
   end
 
   def without_poll_scope
@@ -173,5 +169,9 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
     scope = scope.where('COALESCE(status_stats.reblogs_count, 0) < ?', min_reblogs) unless min_reblogs.nil?
     scope = scope.where('COALESCE(status_stats.favourites_count, 0) < ?', min_favs) unless min_favs.nil?
     scope
+  end
+
+  def account_statuses
+    Status.where(account_id: account_id)
   end
 end

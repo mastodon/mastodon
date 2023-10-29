@@ -37,7 +37,7 @@ describe Web::PushNotificationWorker do
       expect(a_request(:post, endpoint).with(headers: {
         'Content-Encoding' => 'aesgcm',
         'Content-Type' => 'application/octet-stream',
-        'Crypto-Key' => 'dh=BAgtUks5d90kFmxGevk9tH7GEmvz9DB0qcEMUsOBgKwMf-TMjsKIIG6LQvGcFAf6jcmAod15VVwmYwGIIxE4VWE;p256ecdsa=' + vapid_public_key.delete('='),
+        'Crypto-Key' => "dh=BAgtUks5d90kFmxGevk9tH7GEmvz9DB0qcEMUsOBgKwMf-TMjsKIIG6LQvGcFAf6jcmAod15VVwmYwGIIxE4VWE;p256ecdsa=#{vapid_public_key.delete('=')}",
         'Encryption' => 'salt=WJeVM-RY-F9351SVxTFx_g',
         'Ttl' => '172800',
         'Urgency' => 'normal',

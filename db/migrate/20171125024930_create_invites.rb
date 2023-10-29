@@ -1,4 +1,6 @@
-class CreateInvites < ActiveRecord::Migration[5.1]
+# frozen_string_literal: true
+
+class CreateInvites < ActiveRecord::Migration[5.2]
   def change
     create_table :invites do |t|
       t.belongs_to :user, foreign_key: { on_delete: :cascade }

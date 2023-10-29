@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateStatusTrends < ActiveRecord::Migration[6.1]
   def change
     create_table :status_trends do |t|

@@ -1,3 +1,8 @@
+import { Map as ImmutableMap, fromJS } from 'immutable';
+
+import {
+  submitAccountNote,
+} from '../actions/account_notes';
 import {
   ACCOUNT_FOLLOW_SUCCESS,
   ACCOUNT_FOLLOW_REQUEST,
@@ -12,15 +17,17 @@ import {
   ACCOUNT_PIN_SUCCESS,
   ACCOUNT_UNPIN_SUCCESS,
   RELATIONSHIPS_FETCH_SUCCESS,
+  FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
+  FOLLOW_REQUEST_REJECT_SUCCESS,
 } from '../actions/accounts';
 import {
   DOMAIN_BLOCK_SUCCESS,
   DOMAIN_UNBLOCK_SUCCESS,
 } from '../actions/domain_blocks';
 import {
-  ACCOUNT_NOTE_SUBMIT_SUCCESS,
-} from '../actions/account_notes';
-import { Map as ImmutableMap, fromJS } from 'immutable';
+  NOTIFICATIONS_UPDATE,
+} from '../actions/notifications';
+
 
 const normalizeRelationship = (state, relationship) => state.set(relationship.id, fromJS(relationship));
 
@@ -44,6 +51,12 @@ const initialState = ImmutableMap();
 
 export default function relationships(state = initialState, action) {
   switch(action.type) {
+  case FOLLOW_REQUEST_AUTHORIZE_SUCCESS:
+    return state.setIn([action.id, 'followed_by'], true).setIn([action.id, 'requested_by'], false);
+  case FOLLOW_REQUEST_REJECT_SUCCESS:
+    return state.setIn([action.id, 'followed_by'], false).setIn([action.id, 'requested_by'], false);
+  case NOTIFICATIONS_UPDATE:
+    return action.notification.type === 'follow_request' ? state.setIn([action.notification.account.id, 'requested_by'], true) : state;
   case ACCOUNT_FOLLOW_REQUEST:
     return state.getIn([action.id, 'following']) ? state : state.setIn([action.id, action.locked ? 'requested' : 'following'], true);
   case ACCOUNT_FOLLOW_FAIL:
@@ -60,10 +73,11 @@ export default function relationships(state = initialState, action) {
   case ACCOUNT_UNMUTE_SUCCESS:
   case ACCOUNT_PIN_SUCCESS:
   case ACCOUNT_UNPIN_SUCCESS:
-  case ACCOUNT_NOTE_SUBMIT_SUCCESS:
     return normalizeRelationship(state, action.relationship);
   case RELATIONSHIPS_FETCH_SUCCESS:
     return normalizeRelationships(state, action.relationships);
+  case submitAccountNote.fulfilled:
+    return normalizeRelationship(state, action.payload.relationship);
   case DOMAIN_BLOCK_SUCCESS:
     return setDomainBlocking(state, action.accounts, true);
   case DOMAIN_UNBLOCK_SUCCESS:
@@ -71,4 +85,4 @@ export default function relationships(state = initialState, action) {
   default:
     return state;
   }
-};
+}

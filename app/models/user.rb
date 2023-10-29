@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -38,10 +39,12 @@
 #  webauthn_id               :string
 #  sign_up_ip                :inet
 #  role_id                   :bigint(8)
+#  settings                  :text
+#  time_zone                 :string
 #
 
 class User < ApplicationRecord
-  self.ignored_columns = %w(
+  self.ignored_columns += %w(
     remember_created_at
     remember_token
     current_sign_in_ip
@@ -50,9 +53,9 @@ class User < ApplicationRecord
     filtered_languages
   )
 
-  include Settings::Extend
   include Redisable
   include LanguagesHelper
+  include HasUserSettings
 
   # The home and list feeds will be stored in Redis for this amount
   # of time, and status fan-out to followers will include only people
@@ -97,6 +100,7 @@ class User < ApplicationRecord
   validates_with BlacklistedEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
+  validates :time_zone, inclusion: { in: ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo.name } }, allow_blank: true
 
   # Honeypot/anti-spam fields
   attr_accessor :registration_form_time, :website, :confirm_password
@@ -130,13 +134,6 @@ class User < ApplicationRecord
   attribute :otp_secret
 
   has_many :session_activations, dependent: :destroy
-
-  delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
-           :reduce_motion, :system_font_ui, :noindex, :theme, :display_media,
-           :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
-           :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
-           :disable_swiping, :always_send_emails,
-           to: :settings, prefix: :setting, allow_nil: false
 
   delegate :can?, to: :role
 
@@ -195,10 +192,16 @@ class User < ApplicationRecord
 
     super
 
-    if new_user && approved?
-      prepare_new_user!
-    elsif new_user
-      notify_staff_about_pending_account!
+    if new_user
+      # Avoid extremely unlikely race condition when approving and confirming
+      # the user at the same time
+      reload unless approved?
+
+      if approved?
+        prepare_new_user!
+      else
+        notify_staff_about_pending_account!
+      end
     end
   end
 
@@ -209,7 +212,13 @@ class User < ApplicationRecord
     skip_confirmation!
     save!
 
-    prepare_new_user! if new_user && approved?
+    if new_user
+      # Avoid extremely unlikely race condition when approving and confirming
+      # the user at the same time
+      reload unless approved?
+
+      prepare_new_user! if approved?
+    end
   end
 
   def update_sign_in!(new_sign_in: false)
@@ -253,14 +262,18 @@ class User < ApplicationRecord
   end
 
   def inactive_message
-    !approved? ? :pending : super
+    approved? ? super : :pending
   end
 
   def approve!
     return if approved?
 
     update!(approved: true)
-    prepare_new_user!
+
+    # Avoid extremely unlikely race condition when approving and confirming
+    # the user at the same time
+    reload unless confirmed?
+    prepare_new_user! if confirmed?
   end
 
   def otp_enabled?
@@ -283,42 +296,6 @@ class User < ApplicationRecord
     webauthn_credentials.destroy_all if webauthn_enabled?
 
     save!
-  end
-
-  def prefers_noindex?
-    setting_noindex
-  end
-
-  def preferred_posting_language
-    valid_locale_cascade(settings.default_language, locale, I18n.locale)
-  end
-
-  def setting_default_privacy
-    settings.default_privacy || (account.locked? ? 'private' : 'public')
-  end
-
-  def allows_report_emails?
-    settings.notification_emails['report']
-  end
-
-  def allows_pending_account_emails?
-    settings.notification_emails['pending_account']
-  end
-
-  def allows_appeal_emails?
-    settings.notification_emails['appeal']
-  end
-
-  def allows_trends_review_emails?
-    settings.notification_emails['trending_tag']
-  end
-
-  def aggregates_reblogs?
-    @aggregates_reblogs ||= settings.aggregate_reblogs
-  end
-
-  def shows_application?
-    @shows_application ||= settings.show_application
   end
 
   def token_for_app(app)
@@ -377,6 +354,15 @@ class User < ApplicationRecord
     super
   end
 
+  def revoke_access!
+    Doorkeeper::AccessGrant.by_resource_owner(self).update_all(revoked_at: Time.now.utc)
+
+    Doorkeeper::AccessToken.by_resource_owner(self).in_batches do |batch|
+      batch.update_all(revoked_at: Time.now.utc)
+      Web::PushSubscription.where(access_token_id: batch).delete_all
+    end
+  end
+
   def reset_password!
     # First, change password to something random and deactivate all sessions
     transaction do
@@ -385,23 +371,10 @@ class User < ApplicationRecord
     end
 
     # Then, remove all authorized applications and connected push subscriptions
-    Doorkeeper::AccessGrant.by_resource_owner(self).in_batches.update_all(revoked_at: Time.now.utc)
-
-    Doorkeeper::AccessToken.by_resource_owner(self).in_batches do |batch|
-      batch.update_all(revoked_at: Time.now.utc)
-      Web::PushSubscription.where(access_token_id: batch).delete_all
-    end
+    revoke_access!
 
     # Finally, send a reset password prompt to the user
     send_reset_password_instructions
-  end
-
-  def show_all_media?
-    setting_display_media == 'show_all'
-  end
-
-  def hide_all_media?
-    setting_display_media == 'hide_all'
   end
 
   protected
@@ -472,22 +445,28 @@ class User < ApplicationRecord
 
   def sanitize_languages
     return if chosen_languages.nil?
-    chosen_languages.reject!(&:blank?)
+
+    chosen_languages.compact_blank!
     self.chosen_languages = nil if chosen_languages.empty?
   end
 
   def sanitize_role
     return if role.nil?
+
     self.role = nil if role.everyone?
   end
 
   def prepare_new_user!
     BootstrapTimelineWorker.perform_async(account_id)
     ActivityTracker.increment('activity:accounts:local')
+    ActivityTracker.record('activity:logins', id)
     UserMailer.welcome(self).deliver_later
+    TriggerWebhookWorker.perform_async('account.approved', 'Account', account_id)
   end
 
   def prepare_returning_user!
+    return unless confirmed?
+
     ActivityTracker.record('activity:logins', id)
     regenerate_feed! if needs_feed_update?
   end
@@ -495,7 +474,8 @@ class User < ApplicationRecord
   def notify_staff_about_pending_account!
     User.those_who_can(:manage_users).includes(:account).find_each do |u|
       next unless u.allows_pending_account_emails?
-      AdminMailer.new_pending_account(u.account, self).deliver_later
+
+      AdminMailer.with(recipient: u.account).new_pending_account(self).deliver_later
     end
   end
 
@@ -508,7 +488,7 @@ class User < ApplicationRecord
   end
 
   def validate_email_dns?
-    email_changed? && !external? && !(Rails.env.test? || Rails.env.development?)
+    email_changed? && !external? && !Rails.env.local? # rubocop:disable Rails/UnknownEnv
   end
 
   def validate_role_elevation
@@ -516,7 +496,7 @@ class User < ApplicationRecord
   end
 
   def invite_text_required?
-    Setting.require_invite_text && !invited? && !external? && !bypass_invite_request_check?
+    Setting.require_invite_text && !open_registrations? && !invited? && !external? && !bypass_invite_request_check?
   end
 
   def trigger_webhooks

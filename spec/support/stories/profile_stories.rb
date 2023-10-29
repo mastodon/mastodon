@@ -9,6 +9,8 @@ module ProfileStories
       email: email, password: password, confirmed_at: confirmed_at,
       account: Fabricate(:account, username: 'bob')
     )
+
+    Web::Setting.where(user: bob).first_or_initialize(user: bob).update!(data: { introductionVersion: 201812160442020 }) if finished_onboarding # rubocop:disable Style/NumericLiterals
   end
 
   def as_a_logged_in_user
@@ -16,12 +18,12 @@ module ProfileStories
     visit new_user_session_path
     fill_in 'user_email', with: email
     fill_in 'user_password', with: password
-    click_on I18n.t('auth.login')
+    click_button I18n.t('auth.login')
   end
 
   def with_alice_as_local_user
-    @alice_bio = '@alice and @bob are fictional characters commonly used as'\
-                 'placeholder names in #cryptology, as well as #science and'\
+    @alice_bio = '@alice and @bob are fictional characters commonly used as' \
+                 'placeholder names in #cryptology, as well as #science and' \
                  'engineering 📖 literature. Not affiliated with @pepe.'
 
     @alice = Fabricate(
@@ -41,5 +43,9 @@ module ProfileStories
 
   def password
     @password ||= 'password'
+  end
+
+  def finished_onboarding
+    @finished_onboarding || false
   end
 end

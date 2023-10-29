@@ -10,12 +10,23 @@ class ActivityPub::DeliveryWorker
 
   sidekiq_options queue: 'push', retry: 16, dead: false
 
+  # Unfortunately, we cannot control Sidekiq's jitter, so add our own
+  sidekiq_retry_in do |count|
+    # This is Sidekiq's default delay
+    delay  = (count**4) + 15
+    # Our custom jitter, that will be added to Sidekiq's built-in one.
+    # Sidekiq's built-in jitter is `rand(10) * (count + 1)`
+    jitter = rand(0.5 * (count**4))
+    delay + jitter
+  end
+
   HEADERS = { 'Content-Type' => 'application/activity+json' }.freeze
 
   def perform(json, source_account_id, inbox_url, options = {})
-    return unless DeliveryFailureTracker.available?(inbox_url)
-
     @options        = options.with_indifferent_access
+
+    return unless @options[:bypass_availability] || DeliveryFailureTracker.available?(inbox_url)
+
     @json           = json
     @source_account = Account.find(source_account_id)
     @inbox_url      = inbox_url

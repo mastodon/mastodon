@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails'
 
 require 'active_record/railtie'
-#require 'active_storage/engine'
+# require 'active_storage/engine'
 require 'action_controller/railtie'
 require 'action_view/railtie'
 require 'action_mailer/railtie'
 require 'active_job/railtie'
-#require 'action_cable/engine'
-#require 'action_mailbox/engine'
-#require 'action_text/engine'
-#require 'rails/test_unit/railtie'
+# require 'action_cable/engine'
+# require 'action_mailbox/engine'
+# require 'action_text/engine'
+# require 'rails/test_unit/railtie'
 require 'sprockets/railtie'
 
 # Used to be implicitly required in action_mailbox/engine
@@ -28,6 +30,7 @@ require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
 require_relative '../lib/paperclip/lazy_thumbnail'
 require_relative '../lib/paperclip/gif_transcoder'
+require_relative '../lib/paperclip/media_type_spoof_detector_extensions'
 require_relative '../lib/paperclip/transcoder'
 require_relative '../lib/paperclip/type_corrector'
 require_relative '../lib/paperclip/response_with_limit_adapter'
@@ -35,15 +38,20 @@ require_relative '../lib/terrapin/multi_pipe_extensions'
 require_relative '../lib/mastodon/snowflake'
 require_relative '../lib/mastodon/version'
 require_relative '../lib/mastodon/rack_middleware'
+require_relative '../lib/public_file_server_middleware'
 require_relative '../lib/devise/two_factor_ldap_authenticatable'
 require_relative '../lib/devise/two_factor_pam_authenticatable'
+require_relative '../lib/chewy/settings_extensions'
+require_relative '../lib/chewy/index_extensions'
 require_relative '../lib/chewy/strategy/mastodon'
+require_relative '../lib/chewy/strategy/bypass_with_warning'
 require_relative '../lib/webpacker/manifest_extensions'
 require_relative '../lib/webpacker/helper_extensions'
 require_relative '../lib/rails/engine_extensions'
 require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
 require_relative '../lib/simple_navigation/item_extensions'
+require_relative '../lib/http_extensions'
 
 Dotenv::Railtie.load
 
@@ -54,26 +62,42 @@ require_relative '../lib/mastodon/redis_config'
 module Mastodon
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
-    config.add_autoload_paths_to_load_path = false
+    config.load_defaults 7.0
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    # TODO: Release a version which uses the 7.0 defaults as specified above,
+    # but preserves the 6.1 cache format as set below. In a subsequent change,
+    # remove this line setting to 6.1 cache format, and then release another version.
+    # https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#new-activesupport-cache-serialization-format
+    # https://github.com/mastodon/mastodon/pull/24241#discussion_r1162890242
+    config.active_support.cache_format_version = 6.1
 
-    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    # config.autoload_lib(ignore: %w(assets tasks templates generators))
+    # TODO: We should enable this eventually, but for now there are many things
+    # in the wrong path from the perspective of zeitwerk.
+
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
 
     # All translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.available_locales = [
       :af,
+      :an,
       :ar,
       :ast,
+      :be,
       :bg,
       :bn,
       :br,
+      :bs,
       :ca,
       :ckb,
       :co,
@@ -83,6 +107,7 @@ module Mastodon
       :de,
       :el,
       :en,
+      :'en-GB',
       :eo,
       :es,
       :'es-AR',
@@ -91,7 +116,10 @@ module Mastodon
       :eu,
       :fa,
       :fi,
+      :fo,
       :fr,
+      :'fr-QC',
+      :fy,
       :ga,
       :gd,
       :gl,
@@ -101,6 +129,7 @@ module Mastodon
       :hu,
       :hy,
       :id,
+      :ig,
       :io,
       :is,
       :it,
@@ -111,16 +140,20 @@ module Mastodon
       :kn,
       :ko,
       :ku,
+      :kw,
+      :la,
       :lt,
       :lv,
       :mk,
       :ml,
       :mr,
       :ms,
+      :my,
       :nl,
       :nn,
       :no,
       :oc,
+      :pa,
       :pl,
       :'pt-BR',
       :'pt-PT',
@@ -128,6 +161,7 @@ module Mastodon
       :ru,
       :sa,
       :sc,
+      :sco,
       :si,
       :sk,
       :sl,
@@ -135,10 +169,13 @@ module Mastodon
       :sr,
       :'sr-Latn',
       :sv,
+      :szl,
       :ta,
       :te,
       :th,
       :tr,
+      :tt,
+      :ug,
       :uk,
       :ur,
       :vi,
@@ -162,18 +199,28 @@ module Mastodon
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
     config.active_job.queue_adapter = :sidekiq
-    config.action_mailer.deliver_later_queue_name = 'mailers'
 
+    config.action_mailer.deliver_later_queue_name = 'mailers'
+    config.action_mailer.preview_paths << Rails.root.join('spec', 'mailers', 'previews')
+
+    # We use our own middleware for this
+    config.public_file_server.enabled = false
+
+    config.middleware.use PublicFileServerMiddleware if Rails.env.local? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true' # rubocop:disable Rails/UnknownEnv
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware
+
+    initializer :deprecator do |app|
+      app.deprecators[:mastodon] = ActiveSupport::Deprecation.new('4.3', 'mastodon/mastodon')
+    end
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
-      Doorkeeper::Application.send :include, ApplicationExtension
-      Doorkeeper::AccessToken.send :include, AccessTokenExtension
-      Devise::FailureApp.send :include, AbstractController::Callbacks
-      Devise::FailureApp.send :include, Localized
+      Doorkeeper::Application.include ApplicationExtension
+      Doorkeeper::AccessToken.include AccessTokenExtension
+      Devise::FailureApp.include AbstractController::Callbacks
+      Devise::FailureApp.include Localized
     end
   end
 end

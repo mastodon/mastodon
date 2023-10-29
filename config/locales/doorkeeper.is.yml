@@ -122,14 +122,14 @@ is:
         admin/accounts: Stjórnun aðganga
         admin/all: Allar stjórnunaraðgerðir
         admin/reports: Stjórnun kæra
-        all: Allt
+        all: Fullur aðgangur að Mastodon-aðgangnum þínum
         blocks: Útilokanir
         bookmarks: Bókamerki
         conversations: Samtöl
         crypto: Enda-í-enda dulritun
         favourites: Eftirlæti
         filters: Síur
-        follow: Vensl
+        follow: Fylgist með, þagganir og útilokanir
         follows: Fylgist með
         lists: Listar
         media: Myndefnisviðhengi
@@ -149,9 +149,19 @@ is:
     scopes:
       admin:read: lesa öll gögn á netþjóninum
       admin:read:accounts: lesa viðkvæmar upplýsingar á öllum notendaaðgöngum
+      admin:read:canonical_email_blocks: lesa viðkvæmar upplýsingar um allar stafréttar útilokanir tölvupósts
+      admin:read:domain_allows: lesa viðkvæmar upplýsingar um öll leyfð lén
+      admin:read:domain_blocks: lesa viðkvæmar upplýsingar um öll útilokuð lén
+      admin:read:email_domain_blocks: lesa viðkvæmar upplýsingar um öll útilokuð tölvupóstlén
+      admin:read:ip_blocks: lesa viðkvæmar upplýsingar um allar útilokanir IP-vistfanga
       admin:read:reports: lesa viðkvæmar upplýsingar í öllum skýrslum og kærðum notendaaðgöngum
       admin:write: breyta öllum gögnum á netþjóninum
       admin:write:accounts: framkvæma umsjónaraðgerðir á notendaaðganga
+      admin:write:canonical_email_blocks: framkvæma umsjónaraðgerðir á stafréttar útilokanir tölvupósts
+      admin:write:domain_allows: framkvæma umsjónaraðgerðir á leyfð lén
+      admin:write:domain_blocks: framkvæma umsjónaraðgerðir á útilokuð lén
+      admin:write:email_domain_blocks: framkvæma umsjónaraðgerðir á útilokuð tölvupóstlén
+      admin:write:ip_blocks: framkvæma umsjónaraðgerðir á útilokuð IP-vistföng
       admin:write:reports: framkvæma umsjónaraðgerðir á kærur
       crypto: nota enda-í-enda dulritun
       follow: breyta venslum aðgangs
