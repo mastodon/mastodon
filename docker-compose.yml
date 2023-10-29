@@ -38,7 +38,7 @@ services:
   #     - '127.0.0.1:9200:9200'
 
   web:
-    build: .
+    #build: .
     image: ghcr.io/mastodon/mastodon:v4.2.0
     restart: always
     env_file: .env.production
@@ -54,7 +54,7 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
+    #build: .
     image: ghcr.io/mastodon/mastodon:v4.2.0
     restart: always
     env_file: .env.production
@@ -68,7 +68,7 @@ services:
       - '4000/tcp'
 
   sidekiq:
-    build: .
+    #build: .
     image: ghcr.io/mastodon/mastodon:v4.2.0
     restart: always
     env_file: .env.production
