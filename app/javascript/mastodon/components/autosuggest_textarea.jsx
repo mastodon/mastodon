@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { flushSync } from 'react-dom';
 
 import classNames from 'classnames';
 
@@ -75,9 +74,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
       this.setState({ lastToken: token, selectedSuggestion: 0, tokenStart });
       this.props.onSuggestionsFetchRequested(token);
     } else if (token === null) {
-      flushSync(() => {
-        this.setState({ lastToken: null });
-      });
+      this.state.lastToken = null;
       this.props.onSuggestionsClearRequested();
     }
 
