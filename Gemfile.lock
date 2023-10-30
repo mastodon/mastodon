@@ -124,6 +124,11 @@ GEM
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
+    appmap (0.102.1)
+      activesupport
+      method_source
+      rack
+      reverse_markdown
     ast (2.4.2)
     attr_encrypted (4.0.0)
       encryptor (~> 3.0.0)
@@ -449,6 +454,7 @@ GEM
       azure-storage-blob (~> 2.0.1)
       hashie (~> 5.0)
     memory_profiler (1.0.1)
+    method_source (1.0.0)
     mime-types (3.5.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.0808)
@@ -616,6 +622,8 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    reverse_markdown (2.1.1)
+      nokogiri
     rexml (3.2.6)
     rotp (6.3.0)
     rouge (4.1.2)
@@ -829,6 +837,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.10)
   addressable (~> 2.8)
   annotate (~> 3.2)
+  appmap
   aws-sdk-s3 (~> 1.123)
   better_errors (~> 2.9)
   binding_of_caller (~> 1.0)
@@ -958,4 +967,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.4.20
+   2.4.10
