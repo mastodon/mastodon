@@ -100,9 +100,10 @@ services:
   
   prom_statsd:
     image: prom/statsd-exporter
-    container_name: prom_statsd
+    container_name: mastodon_statsd
     expose:
-      - 9125/tcp
+      - 9125/udp
+      - 9102/tcp
     restart: unless-stopped
     hostname: mastostats
     networks:
