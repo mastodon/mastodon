@@ -1,0 +1,96 @@
+## Prometheus Statsd Exporter mapping for Mastodon 4.0+
+##
+## Version 1.0, November 2022
+##
+## Documentation: https://ipng.ch/s/articles/2022/11/27/mastodon-3.html
+
+mappings:
+  ## Web collector
+  - match: Mastodon\.production\.web\.(.+)\.(.+)\.(.+)\.status\.(.+)
+    match_type: regex
+    name: "mastodon_controller_status"
+    labels:
+      controller: $1
+      action: $2
+      format: $3
+      status: $4
+      mastodon: "web"
+  - match: Mastodon\.production\.web\.(.+)\.(.+)\.(.+)\.db_time
+    match_type: regex
+    name: "mastodon_controller_db_time"
+    labels:
+      controller: $1
+      action: $2
+      format: $3
+      mastodon: "web"
+  - match: Mastodon\.production\.web\.(.+)\.(.+)\.(.+)\.view_time
+    match_type: regex
+    name: "mastodon_controller_view_time"
+    labels:
+      controller: $1
+      action: $2
+      format: $3
+      mastodon: "web"
+  - match: Mastodon\.production\.web\.(.+)\.(.+)\.(.+)\.total_duration
+    match_type: regex
+    name: "mastodon_controller_duration"
+    labels:
+      controller: $1
+      action: $2
+      format: $3
+      mastodon: "web"
+
+  ## Database collector
+  - match: Mastodon\.production\.db\.tables\.(.+)\.queries\.(.+)\.duration
+    match_type: regex
+    name: "mastodon_db_operation"
+    labels:
+      table: "$1"
+      operation: "$2"
+      mastodon: "db"
+
+  ## Cache collector
+  - match: Mastodon\.production\.cache\.(.+)\.duration
+    match_type: regex
+    name: "mastodon_cache_duration"
+    labels:
+      operation: "$1"
+      mastodon: "cache"
+
+  ## Sidekiq collector
+  - match: Mastodon\.production\.sidekiq\.(.+)\.processing_time
+    match_type: regex
+    name: "mastodon_sidekiq_worker_processing_time"
+    labels:
+      worker: "$1"
+      mastodon: "sidekiq"
+  - match: Mastodon\.production\.sidekiq\.(.+)\.success
+    match_type: regex
+    name: "mastodon_sidekiq_worker_success_total"
+    labels:
+      worker: "$1"
+      mastodon: "sidekiq"
+  - match: Mastodon\.production\.sidekiq\.(.+)\.failure
+    match_type: regex
+    name: "mastodon_sidekiq_worker_failure_total"
+    labels:
+      worker: "$1"
+      mastodon: "sidekiq"
+  - match: Mastodon\.production\.sidekiq\.queues\.(.+)\.enqueued
+    match_type: regex
+    name: "mastodon_sidekiq_queue_enqueued"
+    labels:
+      queue: "$1"
+      mastodon: "sidekiq"
+  - match: Mastodon\.production\.sidekiq\.queues\.(.+)\.latency
+    match_type: regex
+    name: "mastodon_sidekiq_queue_latency"
+    labels:
+      queue: "$1"
+      mastodon: "sidekiq"
+  - match: Mastodon\.production\.sidekiq\.(.+)
+    match_type: regex
+    name: "mastodon_sidekiq_$1"
+    labels:
+      mastodon: "sidekiq"
+

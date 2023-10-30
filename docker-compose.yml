@@ -101,6 +101,7 @@ services:
   prom_statsd:
     image: prom/statsd-exporter
     container_name: mastodon_statsd
+    command: "-statsd.mapping-config=/tmp/statsd_mapping.conf"
     expose:
       - 9125/udp
       - 9102/tcp
@@ -108,3 +109,5 @@ services:
     hostname: mastostats
     networks:
       - backend
+    volumes:
+      - ./statsd/statsd-mappings.yaml:/tmp/statsd_mapping.conf
