@@ -110,4 +110,4 @@ services:
     networks:
       - backend
     volumes:
-      - ./statsd/statsd-mappings.yaml:/tmp/statsd_mapping.conf
+      - ./statsd/statsd-mapping.yaml:/tmp/statsd_mapping.conf
