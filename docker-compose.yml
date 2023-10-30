@@ -97,3 +97,13 @@ services:
       test: ['CMD', 'redis-cli', 'ping']
     volumes:
       - mastodon_redis:/data
+  
+  prom_statsd:
+    image: prom/statsd-exporter
+    container_name: prom_statsd
+    expose:
+      - 9125/tcp
+    restart: unless-stopped
+    hostname: mastostats
+    networks:
+      - backend
