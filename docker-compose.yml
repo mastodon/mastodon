@@ -5,6 +5,11 @@ networks:
     external: true
     name: "backend"
 
+volumes:
+  mastodon_redis:
+    external: false
+    name: mastodon_redis
+
 services:
   es:
     restart: unless-stopped
@@ -82,3 +87,12 @@ services:
     healthcheck:
       test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
     hostname: "sidekiq"
+  redis:
+    restart: unless-stopped
+    image: redis:7-alpine
+    networks:
+      - backend
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+    volumes:
+      - mastodon_redis:/data
