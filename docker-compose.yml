@@ -111,3 +111,14 @@ services:
       - backend
     volumes:
       - ./statsd/statsd-mapping.yaml:/tmp/statsd_mapping.conf
+
+  sidekiq_exporter:
+    image: strech/sidekiq-prometheus-exporter
+    container_name: mastodon_sidekiq_exporter
+    expose:
+      - 9292/tcp
+    restart: unless-stopped
+    hostname: sidekiq-export
+    networks:
+      - backend
+    env_file: .env.production
