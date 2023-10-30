@@ -25,7 +25,7 @@ services:
     healthcheck:
        test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
     volumes:
-       - /tmp/mastodon-data/es:/usr/share/elasticsearch/data
+       - /mnt/dftba-data/es:/usr/share/elasticsearch/data
     ulimits:
       memlock:
         soft: -1
@@ -51,7 +51,7 @@ services:
     expose:
       - '3000/tcp'
     volumes:
-      - /tmp/mastodon-data/storage:/mastodon/public/system
+      - /mnt/dftba-data/mastodon/system:/mastodon/public/system
     hostname: "mastoweb"
 
   streaming:
@@ -78,7 +78,7 @@ services:
     networks:
       - backend
     volumes:
-      - /tmp/mastodon-data/storage:/mastodon/public/system
+      - /mnt/dftba-data/mastodon/system:/mastodon/public/system
     healthcheck:
       test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
     hostname: "sidekiq"
