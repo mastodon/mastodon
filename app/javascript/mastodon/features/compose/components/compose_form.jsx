@@ -102,10 +102,10 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   handleSubmit = (e) => {
-    if (this.props.text !== this.autosuggestTextarea.textarea.value) {
+    if (this.props.text !== this.autosuggestTextarea.value) {
       // Something changed the text inside the textarea (e.g. browser extensions like Grammarly)
       // Update the state to match the current text
-      this.props.onChange(this.autosuggestTextarea.textarea.value);
+      this.props.onChange(this.autosuggestTextarea.value);
     }
 
     if (!this.canSubmit()) {
@@ -184,18 +184,18 @@ class ComposeForm extends ImmutablePureComponent {
       // immediately selectable, we have to wait for observers to run, as
       // described in https://github.com/WICG/inert#performance-and-gotchas
       Promise.resolve().then(() => {
-        this.autosuggestTextarea.textarea.setSelectionRange(selectionStart, selectionEnd);
-        this.autosuggestTextarea.textarea.focus();
+        this.autosuggestTextarea.setSelectionRange(selectionStart, selectionEnd);
+        this.autosuggestTextarea.focus();
         this.setState({ highlighted: true });
         this.timeout = setTimeout(() => this.setState({ highlighted: false }), 700);
       }).catch(console.error);
     } else if(prevProps.isSubmitting && !this.props.isSubmitting) {
-      this.autosuggestTextarea.textarea.focus();
+      this.autosuggestTextarea.focus();
     } else if (this.props.spoiler !== prevProps.spoiler) {
       if (this.props.spoiler) {
         this.spoilerText.input.focus();
       } else if (prevProps.spoiler) {
-        this.autosuggestTextarea.textarea.focus();
+        this.autosuggestTextarea.focus();
       }
     }
   };
@@ -214,7 +214,7 @@ class ComposeForm extends ImmutablePureComponent {
 
   handleEmojiPick = (data) => {
     const { text }     = this.props;
-    const position     = this.autosuggestTextarea.textarea.selectionStart;
+    const position     = this.textarea.selectionStart;
     const needsSpace   = data.custom && position > 0 && !allowedAroundShortCode.includes(text[position - 1]);
 
     this.props.onPickEmoji(position, data, needsSpace);

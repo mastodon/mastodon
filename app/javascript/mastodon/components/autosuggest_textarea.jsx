@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useCallback, useRef, useState, useEffect } from 'react';
+import { useCallback, useRef, useState, useEffect, forwardRef } from 'react';
 
 import classNames from 'classnames';
 
@@ -37,7 +37,7 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
   }
 };
 
-const AutosuggestTextarea = ({
+const AutosuggestTextarea = forwardRef(({
   value,
   suggestions,
   disabled,
@@ -53,7 +53,7 @@ const AutosuggestTextarea = ({
   autoFocus = true,
   lang,
   children,
-}) => {
+}, textareaRef) => {
 
   const [suggestionsHidden, setSuggestionsHidden] = useState(true);
   const [selectedSuggestion, setSelectedSuggestion] = useState(0);
@@ -61,7 +61,6 @@ const AutosuggestTextarea = ({
   const focusedRef = useRef(false);
   const lastTokenRef = useRef(null);
   const tokenStartRef = useRef(0);
-  const textareaRef = useRef(null);
 
   const handleChange = useCallback((e) => {
     const [ tokenStart, token ] = textAtCursorMatchesToken(e.target.value, e.target.selectionStart);
@@ -151,7 +150,7 @@ const AutosuggestTextarea = ({
     e.preventDefault();
     onSuggestionSelected(tokenStartRef.current, lastTokenRef.current, suggestion);
     textareaRef.current?.focus();
-  }, [suggestions, onSuggestionSelected]);
+  }, [suggestions, onSuggestionSelected, textareaRef]);
 
   const handlePaste = useCallback((e) => {
     if (e.clipboardData && e.clipboardData.files.length === 1) {
@@ -223,7 +222,7 @@ const AutosuggestTextarea = ({
       </div>
     </div>,
   ];
-};
+});
 
 AutosuggestTextarea.propTypes = {
   value: PropTypes.string,
@@ -237,6 +236,8 @@ AutosuggestTextarea.propTypes = {
   onKeyUp: PropTypes.func,
   onKeyDown: PropTypes.func,
   onPaste: PropTypes.func.isRequired,
+  onFocus:PropTypes.func,
+  children: PropTypes.node,
   autoFocus: PropTypes.bool,
   lang: PropTypes.string,
 };
