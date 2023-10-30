@@ -56,7 +56,7 @@ services:
 
   streaming:
     #build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.0
+    image: ghcr.io/mastodon/mastodon:v4.2.1
     restart: unless-stopped
     env_file: .env.production
     command: node ./streaming
@@ -71,7 +71,7 @@ services:
 
   sidekiq:
     #build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.0
+    image: ghcr.io/mastodon/mastodon:v4.2.1
     restart: unless-stopped
     env_file: .env.production
     command: bundle exec sidekiq
