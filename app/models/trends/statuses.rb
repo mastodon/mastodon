@@ -75,7 +75,7 @@ class Trends::Statuses < Trends::Base
   private
 
   def eligible?(status)
-    status.public_visibility? && status.account.discoverable? && !status.account.silenced? && status.spoiler_text.blank? && !status.sensitive? && !status.reply?
+    status.public_visibility? && status.account.discoverable? && !status.account.silenced? && !status.account.sensitized? && status.spoiler_text.blank? && !status.sensitive? && !status.reply?
   end
 
   def calculate_scores(statuses, at_time)
