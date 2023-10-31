@@ -102,10 +102,12 @@ Rails.application.routes.draw do
     confirmations: 'auth/confirmations',
   }
 
-  get '/users/:username', to: redirect_with_vary('/@%<username>s'), constraints: lambda { |req| req.format.nil? || req.format.html? }
-  get '/users/:username/following', to: redirect_with_vary('/@%<username>s/following'), constraints: lambda { |req| req.format.nil? || req.format.html? }
-  get '/users/:username/followers', to: redirect_with_vary('/@%<username>s/followers'), constraints: lambda { |req| req.format.nil? || req.format.html? }
-  get '/users/:username/statuses/:id', to: redirect_with_vary('/@%<username>s/%<id>s'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  # rubocop:disable Style/FormatStringToken - those do not go through the usual formatting functions and are not safe to correct
+  get '/users/:username', to: redirect_with_vary('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/users/:username/following', to: redirect_with_vary('/@%{username}/following'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/users/:username/followers', to: redirect_with_vary('/@%{username}/followers'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/users/:username/statuses/:id', to: redirect_with_vary('/@%{username}/%{id}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  # rubocop:enable Style/FormatStringToken
 
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
