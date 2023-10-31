@@ -218,9 +218,19 @@
     "yargs": "^17.7.2"
   },
   "resolutions": {
-    "@types/react": "^18.0.26",
     "kind-of": "^6.0.3",
     "webpack/terser-webpack-plugin": "^4.2.3"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    },
+    "react-router-dom": {
+      "optional": true
+    }
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.7",
