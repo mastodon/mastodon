@@ -12,7 +12,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
   has_one :role, serializer: REST::RoleSerializer
 
-  def max_toot_chars
+  def max_post_chars
     StatusLengthValidator::MAX_CHARS
   end
 
