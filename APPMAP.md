@@ -16,7 +16,7 @@ Run as a local machine devcontainer via Docker.
 
 Run `bundle exec rails server` on devcontainer startup, after installing AppMap. When the server starts up it will run via AppMap and start logging requests.
 
-Run `RAILS_ENV=test ./bin/webpack` to generate assets for the tests.
+Edit `config/webpacker.yml` under the `test` section and *temporarily* change `compile: false` to `compile: true`. Run `RAILS_ENV=test ./bin/webpack` to generate assets for the tests. Once this is complete, change compile back to false in the webpacker.yml file.
 
 Try running `RAILS_ENV=test bundle exec rspec spec/controllers/settings/applications_controller_spec.rb` first to confirm a single test works.
 
