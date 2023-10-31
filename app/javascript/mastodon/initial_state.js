@@ -89,6 +89,7 @@
  * @property {InitialStateLanguage[]} languages
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
+ * @property {number} max_post_chars
  */
 
 const element = document.getElementById('initial-state');
@@ -148,3 +149,4 @@ export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
 
 export default initialState;
+export const maxChars = (initialState && initialState.max_post_chars) || 500;
