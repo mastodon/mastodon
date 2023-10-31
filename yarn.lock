@@ -2397,7 +2397,7 @@ __metadata:
     babel-jest: "npm:^29.5.0"
     babel-loader: "npm:^8.3.0"
     babel-plugin-formatjs: "npm:^10.5.1"
-    babel-plugin-lodash: "npm:^3.3.4"
+    babel-plugin-lodash: "patch:babel-plugin-lodash@npm%3A3.3.4#~/.yarn/patches/babel-plugin-lodash-npm-3.3.4-c7161075b6.patch"
     babel-plugin-preval: "npm:^5.1.0"
     babel-plugin-transform-react-remove-prop-types: "npm:^0.4.24"
     blurhash: "npm:^2.0.5"
@@ -4765,7 +4765,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-lodash@npm:^3.3.4":
+"babel-plugin-lodash@npm:3.3.4":
   version: 3.3.4
   resolution: "babel-plugin-lodash@npm:3.3.4"
   dependencies:
@@ -4775,6 +4775,19 @@ __metadata:
     lodash: "npm:^4.17.10"
     require-package-name: "npm:^2.0.1"
   checksum: 1a1db624f70c1e9badd3ca112bc6819157e75768aab949c424cfabe562765d7f22cf93e5e088e820d5d5b1da7b2bd9d045cb54a5790616b65da1f84eda2ecc08
+  languageName: node
+  linkType: hard
+
+"babel-plugin-lodash@patch:babel-plugin-lodash@npm%3A3.3.4#~/.yarn/patches/babel-plugin-lodash-npm-3.3.4-c7161075b6.patch":
+  version: 3.3.4
+  resolution: "babel-plugin-lodash@patch:babel-plugin-lodash@npm%3A3.3.4#~/.yarn/patches/babel-plugin-lodash-npm-3.3.4-c7161075b6.patch::version=3.3.4&hash=201e99"
+  dependencies:
+    "@babel/helper-module-imports": "npm:^7.0.0-beta.49"
+    "@babel/types": "npm:^7.0.0-beta.49"
+    glob: "npm:^7.1.1"
+    lodash: "npm:^4.17.10"
+    require-package-name: "npm:^2.0.1"
+  checksum: 61fe073dcb381141d5cce766582750f487609bea3ad1c6725d736287f2ccd270e14d14190a7bd2700945a39acf8d58fdbee3ab7f80a7eb2a65980cf77185226c
   languageName: node
   linkType: hard
 
