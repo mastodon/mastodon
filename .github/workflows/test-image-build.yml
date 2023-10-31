@@ -8,17 +8,13 @@ on:
       - .github/workflows/test-image-build.yml
       - Dockerfile
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
-  cancel-in-progress: true
-
 permissions:
   contents: read
 
 jobs:
   build-image:
     concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+      group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
       cancel-in-progress: true
 
     uses: ./.github/workflows/build-container-image.yml
