@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ../..:/workspaces:cached
-      - ../appmap:/workspaces/mastodon/appmap
+      - ../appmap:/workspaces/mastodon/tmp/appmap
     environment:
       RAILS_ENV: development
       NODE_ENV: development

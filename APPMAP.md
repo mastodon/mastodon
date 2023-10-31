@@ -20,6 +20,6 @@ Edit `config/webpacker.yml` under the `test` section and *temporarily* change `c
 
 Try running `RAILS_ENV=test bundle exec rspec spec/controllers/settings/applications_controller_spec.rb` first to confirm a single test works.
 
-Run `RAILS_ENV=test bundle exec rspec` to execute all the tests. This will take as long as an hour to complete.
+Run `RAILS_ENV=test bundle exec rspec` to execute all the tests. This is not a short process.
 
 Run `npx @appland/appmap@latest openapi --output-file openapi.yml --openapi-title Mastodon` to generate openapi.yml docs.
