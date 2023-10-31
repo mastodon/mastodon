@@ -57,8 +57,6 @@ const AutosuggestTextarea = forwardRef(({
 
   const [suggestionsHidden, setSuggestionsHidden] = useState(true);
   const [selectedSuggestion, setSelectedSuggestion] = useState(0);
-  const previousSuggestionsRef = useRef(null);
-  const focusedRef = useRef(false);
   const lastTokenRef = useRef(null);
   const tokenStartRef = useRef(0);
 
@@ -134,12 +132,10 @@ const AutosuggestTextarea = forwardRef(({
   }, [disabled, suggestions, suggestionsHidden, selectedSuggestion, setSelectedSuggestion, setSuggestionsHidden, onSuggestionSelected, onKeyDown]);
 
   const handleBlur = useCallback(() => {
-    focusedRef.current = false;
     setSuggestionsHidden(true);
   }, [setSuggestionsHidden]);
 
   const handleFocus = useCallback((e) => {
-    focusedRef.current = true;
     if (onFocus) {
       onFocus(e);
     }
@@ -159,13 +155,12 @@ const AutosuggestTextarea = forwardRef(({
     }
   }, [onPaste]);
 
-  // TODO: is there a better way?
+  // Show the suggestions again whenever they change and the textarea is focused
   useEffect(() => {
-    if (suggestionsHidden && suggestions.size > 0 && previousSuggestionsRef.current !== suggestions && focusedRef.current) {
+    if (suggestions.size > 0 && textareaRef.current === document.activeElement) {
       setSuggestionsHidden(false);
     }
-    previousSuggestionsRef.current = suggestions;
-  }, [suggestions, suggestionsHidden, setSuggestionsHidden]);
+  }, [suggestions, textareaRef, setSuggestionsHidden]);
 
   const renderSuggestion = (suggestion, i) => {
     let inner, key;
