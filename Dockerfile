@@ -38,6 +38,7 @@ RUN apt-get update && \
     corepack enable
 
 COPY Gemfile* package.json yarn.lock .yarnrc.yml /opt/mastodon/
+COPY .yarn /opt/mastodon/.yarn
 
 RUN bundle install -j"$(nproc)"
 
