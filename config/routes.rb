@@ -3,6 +3,18 @@
 require 'sidekiq_unique_jobs/web'
 require 'sidekiq-scheduler/web'
 
+class RedirectWithVary < ActionDispatch::Routing::PathRedirect
+  def build_response(req)
+    super.tap do |response|
+      response.headers['Vary'] = 'Origin, Accept'
+    end
+  end
+end
+
+def redirect_with_vary(path)
+  RedirectWithVary.new(301, path)
+end
+
 Rails.application.routes.draw do
   # Paths of routes on the web app that to not require to be indexed or
   # have alternative format representations requiring separate controllers
@@ -90,10 +102,11 @@ Rails.application.routes.draw do
     confirmations:      'auth/confirmations',
   }
 
-  get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
-  get '/users/:username/following', to: redirect('/@%{username}/following'), constraints: lambda { |req| req.format.nil? || req.format.html? }
-  get '/users/:username/followers', to: redirect('/@%{username}/followers'), constraints: lambda { |req| req.format.nil? || req.format.html? }
-  get '/users/:username/statuses/:id', to: redirect('/@%{username}/%{id}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/users/:username', to: redirect_with_vary('/@%<username>s'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/users/:username/following', to: redirect_with_vary('/@%<username>s/following'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/users/:username/followers', to: redirect_with_vary('/@%<username>s/followers'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  get '/users/:username/statuses/:id', to: redirect_with_vary('/@%<username>s/%<id>s'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
