@@ -12,13 +12,13 @@ export const STORE_HYDRATE_LAZY = 'STORE_HYDRATE_LAZY';
 const convertState = rawState => {
   return Map(Object.entries(rawState).map(([k, v]) => {
     switch (k) {
-      case "accounts":
-        return [k, Map(Object.entries(v).map(([accountId, account]) => [accountId, createAccountFromServerJSON(account)]))]
-      default:
-        return [k, fromJS(v, (_ik, iv) => Iterable.isIndexed(iv) ? iv.toList() : iv.toMap())]
+    case "accounts":
+      return [k, Map(Object.entries(v).map(([accountId, account]) => [accountId, createAccountFromServerJSON(account)]))];
+    default:
+      return [k, fromJS(v, (_ik, iv) => Iterable.isIndexed(iv) ? iv.toList() : iv.toMap())];
     }
-  }))
-}
+  }));
+};
 
 export function hydrateStore(rawState) {
   return dispatch => {

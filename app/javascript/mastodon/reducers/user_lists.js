@@ -159,8 +159,8 @@ export default function userLists(state = initialState, action) {
   case FAVOURITES_FETCH_FAIL:
   case FAVOURITES_EXPAND_FAIL:
     return state.setIn(['favourited_by', action.id, 'isLoading'], false);
-    case notificationsUpdate.type:
-      return action.payload.notification.type === 'follow_request' ? normalizeFollowRequest(state, action.payload.notification) : state;
+  case notificationsUpdate.type:
+    return action.payload.notification.type === 'follow_request' ? normalizeFollowRequest(state, action.payload.notification) : state;
   case FOLLOW_REQUESTS_FETCH_SUCCESS:
     return normalizeList(state, ['follow_requests'], action.accounts, action.next);
   case FOLLOW_REQUESTS_EXPAND_SUCCESS:
