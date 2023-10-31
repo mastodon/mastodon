@@ -79,10 +79,7 @@ jobs:
 
       - name: Restore DB as of `20160220174730`
         run: |
-          mv db/schema.rb db/schema-latest.rb
-          cp db/schema/snapshots/20160220174730.rb db/schema.rb
-          ./bin/rails db:schema:load
-          mv -f db/schema-latest.rb db/schema.rb
+          SCHEMA=db/schema/snapshots/20160220174730.rb ./bin/rails db:schema:load
 
       - name: Run migrations up to v2.0.0
         run: './bin/rails db:migrate VERSION=20171010025614'
