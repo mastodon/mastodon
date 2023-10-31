@@ -210,4 +210,4 @@ class Footer extends ImmutablePureComponent {
 
 }
 
-export default  withRouter(connect(makeMapStateToProps)(injectIntl(Footer)));
+export default  connect(makeMapStateToProps)(withRouter(injectIntl(Footer)));

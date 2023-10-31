@@ -14,7 +14,7 @@ import { HotKeys } from 'react-hotkeys';
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
 import { INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
-import PictureInPicture from 'mastodon/features/picture_in_picture';
+import { PictureInPicture } from 'mastodon/features/picture_in_picture';
 import { layoutFromWindow } from 'mastodon/is_mobile';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
