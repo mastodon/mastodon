@@ -11,24 +11,7 @@ require_relative '../../app/lib/content_security_policy'
 policy = ContentSecurityPolicy.new
 assets_host = policy.assets_host
 media_hosts = policy.media_hosts
-
-def sso_host
-  return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true'
-  return unless ENV['OMNIAUTH_ONLY'] == 'true'
-  return unless Devise.omniauth_providers.length == 1
-
-  provider = Devise.omniauth_configs[Devise.omniauth_providers[0]]
-  @sso_host ||= begin
-    case provider.provider
-    when :cas
-      provider.cas_url
-    when :saml
-      provider.options[:idp_sso_target_url]
-    when :openid_connect
-      provider.options.dig(:client_options, :authorization_endpoint) || OpenIDConnect::Discovery::Provider::Config.discover!(provider.options[:issuer]).authorization_endpoint
-    end
-  end
-end
+sso_host = policy.sso_host
 
 Rails.application.config.content_security_policy do |p|
   p.base_uri        :none

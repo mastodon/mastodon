@@ -138,4 +138,90 @@ describe ContentSecurityPolicy do
       end
     end
   end
+
+  describe '#sso_host' do
+    context 'when one click sso login is not set' do
+      around do |example|
+        ClimateControl.modify ONE_CLICK_SSO_LOGIN: nil do
+          example.run
+        end
+      end
+
+      it 'returns nil value' do
+        expect(subject.sso_host).to be_nil
+      end
+    end
+
+    context 'when one click sso login is false' do
+      around do |example|
+        ClimateControl.modify ONE_CLICK_SSO_LOGIN: 'false' do
+          example.run
+        end
+      end
+
+      it 'returns nil value' do
+        expect(subject.sso_host).to be_nil
+      end
+    end
+
+    context 'when one click is true' do
+      around do |example|
+        ClimateControl.modify ONE_CLICK_SSO_LOGIN: 'true' do
+          example.run
+        end
+      end
+
+      context 'when omniauth only is not set' do
+        around do |example|
+          ClimateControl.modify ONE_CLICK_SSO_LOGIN: 'true', OMNIAUTH_ONLY: nil do
+            example.run
+          end
+        end
+
+        it 'returns nil value' do
+          expect(subject.sso_host).to be_nil
+        end
+      end
+
+      context 'when omniauth only is false' do
+        around do |example|
+          ClimateControl.modify ONE_CLICK_SSO_LOGIN: 'true', OMNIAUTH_ONLY: 'false' do
+            example.run
+          end
+        end
+
+        it 'returns nil value' do
+          expect(subject.sso_host).to be_nil
+        end
+      end
+    end
+
+    context 'when one click and omniauth are true' do
+      around do |example|
+        ClimateControl.modify ONE_CLICK_SSO_LOGIN: 'true', OMNIAUTH_ONLY: 'true' do
+          example.run
+        end
+      end
+
+      context 'when there are zero devise omniauth providers' do
+        before do
+          allow(Devise).to receive(:omniauth_providers).and_return([])
+        end
+
+        it 'returns nil value' do
+          expect(subject.sso_host).to be_nil
+        end
+      end
+
+      context 'when there are many devise omniauth providers' do
+        before do
+          allow(Devise).to receive(:omniauth_providers).and_return([:provider_one, :provider_two, :provider_three])
+        end
+
+        it 'returns nil value' do
+          expect(subject.sso_host).to be_nil
+        end
+      end
+    end
+  end
 end
