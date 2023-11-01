@@ -125,7 +125,7 @@ services:
 
   es_exporter:
     image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
-    container_name: es_exporter
+    container_name: mastodon_es_exporter
     command:
       - '--es.uri=http://es:9200'
     restart: unless-stopped
