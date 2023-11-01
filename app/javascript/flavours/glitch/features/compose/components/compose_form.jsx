@@ -160,10 +160,10 @@ class ComposeForm extends ImmutablePureComponent {
 
   //  Inserts an emoji at the caret.
   handleEmojiPick = (data) => {
-    const { textarea: { selectionStart } } = this;
-    const { onPickEmoji } = this.props;
-    if (onPickEmoji) {
-      onPickEmoji(selectionStart, data);
+    const position = this.textareaRef.current.selectionStart;
+
+    if (this.props.onPickEmoji) {
+      this.props.onPickEmoji(position, data);
     }
   };
 
