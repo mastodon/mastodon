@@ -122,3 +122,16 @@ services:
     networks:
       - backend
     env_file: .env.production
+
+  es_exporter:
+    image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
+    container_name: es_exporter
+    command:
+      - '--es.uri=http://es:9200'
+    restart: unless-stopped
+    expose:
+      - "9114/tcp"
+    networks:
+      - backend
+    hostname: es-export
+    env_file: .env.production
