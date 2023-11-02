@@ -1,6 +1,9 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/index.js
 
+/* eslint-disable */
+// @ts-nocheck
+
 import * as data from './emoji_mart_data_light';
 
 const buildSearch = (data) => {
@@ -32,52 +35,52 @@ const buildSearch = (data) => {
 
 const _String = String;
 
-const stringFromCodePoint = _String.fromCodePoint || function () {
-  let MAX_SIZE = 0x4000;
-  let codeUnits = [];
-  let highSurrogate;
-  let lowSurrogate;
-  let index = -1;
-  let length = arguments.length;
-  if (!length) {
-    return '';
-  }
-  let result = '';
-  while (++index < length) {
-    let codePoint = Number(arguments[index]);
-    if (
-      !isFinite(codePoint) ||       // `NaN`, `+Infinity`, or `-Infinity`
-      codePoint < 0 ||              // not a valid Unicode code point
-      codePoint > 0x10FFFF ||       // not a valid Unicode code point
-      Math.floor(codePoint) !== codePoint // not an integer
-    ) {
-      throw RangeError('Invalid code point: ' + codePoint);
+const stringFromCodePoint =
+  _String.fromCodePoint ||
+  function () {
+    let MAX_SIZE = 0x4000;
+    let codeUnits = [];
+    let highSurrogate;
+    let lowSurrogate;
+    let index = -1;
+    let length = arguments.length;
+    if (!length) {
+      return '';
     }
-    if (codePoint <= 0xFFFF) { // BMP code point
-      codeUnits.push(codePoint);
-    } else { // Astral code point; split in surrogate halves
-      // http://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
-      codePoint -= 0x10000;
-      highSurrogate = (codePoint >> 10) + 0xD800;
-      lowSurrogate = (codePoint % 0x400) + 0xDC00;
-      codeUnits.push(highSurrogate, lowSurrogate);
+    let result = '';
+    while (++index < length) {
+      let codePoint = Number(arguments[index]);
+      if (
+        !isFinite(codePoint) || // `NaN`, `+Infinity`, or `-Infinity`
+        codePoint < 0 || // not a valid Unicode code point
+        codePoint > 0x10ffff || // not a valid Unicode code point
+        Math.floor(codePoint) !== codePoint // not an integer
+      ) {
+        throw RangeError('Invalid code point: ' + codePoint);
+      }
+      if (codePoint <= 0xffff) {
+        // BMP code point
+        codeUnits.push(codePoint);
+      } else {
+        // Astral code point; split in surrogate halves
+        // http://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
+        codePoint -= 0x10000;
+        highSurrogate = (codePoint >> 10) + 0xd800;
+        lowSurrogate = (codePoint % 0x400) + 0xdc00;
+        codeUnits.push(highSurrogate, lowSurrogate);
+      }
+      if (index + 1 === length || codeUnits.length > MAX_SIZE) {
+        result += String.fromCharCode.apply(null, codeUnits);
+        codeUnits.length = 0;
+      }
     }
-    if (index + 1 === length || codeUnits.length > MAX_SIZE) {
-      result += String.fromCharCode.apply(null, codeUnits);
-      codeUnits.length = 0;
-    }
-  }
-  return result;
-};
-
+    return result;
+  };
 
 const _JSON = JSON;
 
 const COLONS_REGEX = /^(?::([^:]+):)(?::skin-tone-(\d):)?$/;
-const SKINS = [
-  '1F3FA', '1F3FB', '1F3FC',
-  '1F3FD', '1F3FE', '1F3FF',
-];
+const SKINS = ['1F3FA', '1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF'];
 
 function unifiedToNative(unified) {
   let unicodes = unified.split('-'),
@@ -87,7 +90,16 @@ function unifiedToNative(unified) {
 }
 
 function sanitize(emoji) {
-  let { name, short_names, skin_tone, skin_variations, emoticons, unified, custom, imageUrl } = emoji,
+  let {
+      name,
+      short_names,
+      skin_tone,
+      skin_variations,
+      emoticons,
+      unified,
+      custom,
+      imageUrl,
+    } = emoji,
     id = emoji.id || short_names[0],
     colons = `:${id}:`;
 
@@ -206,7 +218,7 @@ function intersect(a, b) {
   const uniqA = uniq(a);
   const uniqB = uniq(b);
 
-  return uniqA.filter(item => uniqB.indexOf(item) >= 0);
+  return uniqA.filter((item) => uniqB.indexOf(item) >= 0);
 }
 
 function deepMerge(a, b) {
