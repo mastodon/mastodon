@@ -1,6 +1,18 @@
 // APIs for normalizing fullscreen operations. Note that Edge uses
 // the WebKit-prefixed APIs currently (as of Edge 16).
 
+function lockLandscape() {
+  if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock('landscape');
+  }
+}
+
+function unlockLandscape() {
+  if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.unlock();
+  }
+}
+
 export const isFullscreen = () => document.fullscreenElement ||
   document.webkitFullscreenElement ||
   document.mozFullScreenElement;
@@ -8,6 +20,7 @@ export const isFullscreen = () => document.fullscreenElement ||
 export const exitFullscreen = () => {
   if (document.exitFullscreen) {
     document.exitFullscreen();
+    unlockLandscape();
   } else if (document.webkitExitFullscreen) {
     document.webkitExitFullscreen();
   } else if (document.mozCancelFullScreen) {
@@ -18,6 +31,7 @@ export const exitFullscreen = () => {
 export const requestFullscreen = el => {
   if (el.requestFullscreen) {
     el.requestFullscreen();
+    lockLandscape();
   } else if (el.webkitRequestFullscreen) {
     el.webkitRequestFullscreen();
   } else if (el.mozRequestFullScreen) {
