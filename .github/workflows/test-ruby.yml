@@ -136,9 +136,11 @@ jobs:
           additional-system-dependencies: ffmpeg imagemagick libpam-dev
 
       - name: Load database schema
-        run: './bin/rails db:create db:schema:load db:seed'
+        run: |
+          bundle exec rake db:setup
+          bin/flatware fan rake db:test:prepare
 
-      - run: bin/rspec
+      - run: bin/flatware rspec -r ./spec/flatware_helper.rb
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
