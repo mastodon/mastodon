@@ -62,6 +62,7 @@ import {
   undoStatusTranslation,
 } from '../../actions/statuses';
 import ColumnHeader from '../../components/column_header';
+import { MissingReplies }  from "../../components/missing_replies";
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import StatusContainer from '../../containers/status_container';
 import { boostModal, deleteModal } from '../../initial_state';
@@ -639,7 +640,7 @@ class Status extends ImmutablePureComponent {
   };
 
   render () {
-    let ancestors, descendants;
+    let ancestors, descendants, missingReplies;
     const { isLoading, status, ancestorsIds, descendantsIds, intl, domain, multiColumn, pictureInPicture } = this.props;
     const { fullscreen } = this.state;
 
@@ -667,6 +668,10 @@ class Status extends ImmutablePureComponent {
 
     const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
     const isIndexable = !status.getIn(['account', 'noindex']);
+
+    if (!isLocal) {
+      missingReplies = <MissingReplies href={status.get('url')} />;
+    }
 
     const handlers = {
       moveUp: this.handleHotkeyMoveUp,
@@ -736,6 +741,7 @@ class Status extends ImmutablePureComponent {
             </HotKeys>
 
             {descendants}
+            {missingReplies}
           </div>
         </ScrollContainer>
 
