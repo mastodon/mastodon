@@ -1,14 +1,17 @@
 // APIs for normalizing fullscreen operations. Note that Edge uses
 // the WebKit-prefixed APIs currently (as of Edge 16).
 
+const isPWA = () =>
+      document.referrer.includes('android-app://') || (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone);
+
 function lockLandscape() {
-  if (screen.orientation && screen.orientation.lock) {
+  if (!isPWA() && screen.orientation && screen.orientation.lock) {
     screen.orientation.lock('landscape');
   }
 }
 
 function unlockLandscape() {
-  if (screen.orientation && screen.orientation.lock) {
+  if (!isPWA() && screen.orientation && screen.orientation.lock) {
     screen.orientation.unlock();
   }
 }
