@@ -19,9 +19,10 @@ export const isFullscreen = () => document.fullscreenElement ||
 
 export const exitFullscreen = () => {
   if (document.exitFullscreen) {
-    document.exitFullscreen();
     unlockLandscape();
+    document.exitFullscreen();
   } else if (document.webkitExitFullscreen) {
+    unlockLandscape();
     document.webkitExitFullscreen();
   } else if (document.mozCancelFullScreen) {
     document.mozCancelFullScreen();
@@ -34,6 +35,7 @@ export const requestFullscreen = el => {
     lockLandscape();
   } else if (el.webkitRequestFullscreen) {
     el.webkitRequestFullscreen();
+    lockLandscape();
   } else if (el.mozRequestFullScreen) {
     el.mozRequestFullScreen();
   }
