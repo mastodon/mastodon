@@ -105,7 +105,6 @@ jobs:
       SAML_ENABLED: true
       CAS_ENABLED: true
       BUNDLE_WITH: 'pam_authentication test'
-      CI_JOBS: ${{ matrix.ci_job }}/4
       GITHUB_RSPEC: ${{ matrix.ruby-version == '.ruby-version' && github.event.pull_request && 'true' }}
 
     strategy:
@@ -115,11 +114,6 @@ jobs:
           - '3.0'
           - '3.1'
           - '.ruby-version'
-        ci_job:
-          - 1
-          - 2
-          - 3
-          - 4
     steps:
       - uses: actions/checkout@v4
 
@@ -141,7 +135,7 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bundle exec rake rspec_chunked
+      - run: bundle exec rake
 
   test-e2e:
     name: End to End testing
