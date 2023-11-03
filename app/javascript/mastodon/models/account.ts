@@ -138,7 +138,7 @@ export function createAccountFromServerJSON(serverJSON: ApiAccountJSON) {
       serverJSON.fields.map((field) => createAccountField(field, emojiMap)),
     ),
     emojis: List(serverJSON.emojis.map((emoji) => CustomEmojiFactory(emoji))),
-    roles: List(serverJSON.roles.map((role) => AccountRoleFactory(role))),
+    roles: List(serverJSON.roles?.map((role) => AccountRoleFactory(role))),
     display_name_html: emojify(
       escapeTextContentForBrowser(displayName),
       emojiMap,
