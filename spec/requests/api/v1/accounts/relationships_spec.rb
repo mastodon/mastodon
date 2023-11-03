@@ -14,6 +14,7 @@ describe 'GET /api/v1/accounts/relationships' do
 
   let(:simon) { Fabricate(:account) }
   let(:lewis) { Fabricate(:account) }
+  let(:bob)   { Fabricate(:account, suspended: true) }
 
   before do
     user.account.follow!(simon)
@@ -36,19 +37,38 @@ describe 'GET /api/v1/accounts/relationships' do
   end
 
   context 'when provided multiple IDs' do
-    let(:params) { { id: [simon.id, lewis.id] } }
+    let(:params) { { id: [simon.id, lewis.id, bob.id] } }
 
     context 'when there is returned JSON data' do
       let(:json) { body_as_json }
 
-      it 'returns an enumerable json with correct elements', :aggregate_failures do
-        subject
+      context 'with default parameters' do
+        it 'returns an enumerable json with correct elements, excluding suspended accounts', :aggregate_failures do
+          subject
 
-        expect(response).to have_http_status(200)
-        expect(json).to be_a Enumerable
+          expect(response).to have_http_status(200)
+          expect(json).to be_a Enumerable
+          expect(json.size).to eq 2
 
-        expect_simon_item_one
-        expect_lewis_item_two
+          expect_simon_item_one
+          expect_lewis_item_two
+        end
+      end
+
+      context 'with `with_suspended` parameter' do
+        let(:params) { { id: [simon.id, lewis.id, bob.id], with_suspended: true } }
+
+        it 'returns an enumerable json with correct elements, including suspended accounts', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(json).to be_a Enumerable
+          expect(json.size).to eq 3
+
+          expect_simon_item_one
+          expect_lewis_item_two
+          expect_bob_item_three
+        end
       end
 
       def expect_simon_item_one
@@ -69,6 +89,16 @@ describe 'GET /api/v1/accounts/relationships' do
         expect(json.second[:muting]).to be false
         expect(json.second[:requested]).to be false
         expect(json.second[:domain_blocking]).to be false
+      end
+
+      def expect_bob_item_three
+        expect(json.third[:id]).to eq bob.id.to_s
+        expect(json.third[:following]).to be false
+        expect(json.third[:showing_reblogs]).to be false
+        expect(json.third[:followed_by]).to be false
+        expect(json.third[:muting]).to be false
+        expect(json.third[:requested]).to be false
+        expect(json.third[:domain_blocking]).to be false
       end
     end
 
