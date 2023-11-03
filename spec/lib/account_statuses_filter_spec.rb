@@ -157,7 +157,7 @@ RSpec.describe AccountStatusesFilter do
         let!(:direct_status) { status_with_mention!(:direct, current_account) }
 
         it 'returns the direct status' do
-          expect(subject.pluck(:id)).to include(direct_status.id)
+          expect(results_ids).to include(direct_status.id)
         end
       end
 
@@ -183,7 +183,7 @@ RSpec.describe AccountStatusesFilter do
         let!(:private_status) { status_with_mention!(:private, current_account) }
 
         it 'returns the private status' do
-          expect(subject.pluck(:id)).to include(private_status.id)
+          expect(results_ids).to include(private_status.id)
         end
       end
 
@@ -195,7 +195,7 @@ RSpec.describe AccountStatusesFilter do
         end
 
         it 'does not return reblog of blocked account' do
-          expect(subject.pluck(:id)).to_not include(reblog.id)
+          expect(results_ids).to_not include(reblog.id)
         end
       end
 
@@ -209,7 +209,7 @@ RSpec.describe AccountStatusesFilter do
         end
 
         it 'does not return reblog of blocked domain' do
-          expect(subject.pluck(:id)).to_not include(reblog.id)
+          expect(results_ids).to_not include(reblog.id)
         end
       end
 
@@ -223,7 +223,7 @@ RSpec.describe AccountStatusesFilter do
         end
 
         it 'returns the reblog from the non-blocked domain' do
-          expect(subject.pluck(:id)).to include(reblog.id)
+          expect(results_ids).to include(reblog.id)
         end
       end
 
@@ -235,7 +235,7 @@ RSpec.describe AccountStatusesFilter do
         end
 
         it 'does not return reblog of muted account' do
-          expect(subject.pluck(:id)).to_not include(reblog.id)
+          expect(results_ids).to_not include(reblog.id)
         end
       end
 
@@ -247,7 +247,7 @@ RSpec.describe AccountStatusesFilter do
         end
 
         it 'does not return reblog of blocked-by account' do
-          expect(subject.pluck(:id)).to_not include(reblog.id)
+          expect(results_ids).to_not include(reblog.id)
         end
       end
 
@@ -266,6 +266,10 @@ RSpec.describe AccountStatusesFilter do
 
     def results_reblog_of_ids
       subject.pluck(:reblog_of_id)
+    end
+
+    def results_ids
+      subject.pluck(:id)
     end
   end
 end
