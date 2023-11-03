@@ -460,7 +460,7 @@ export function fetchRelationships(accountIds) {
 
     dispatch(fetchRelationshipsRequest(newAccountIds));
 
-    api(getState).get(`/api/v1/accounts/relationships?${newAccountIds.map(id => `id[]=${id}`).join('&')}`).then(response => {
+    api(getState).get(`/api/v1/accounts/relationships?with_suspended=true&${newAccountIds.map(id => `id[]=${id}`).join('&')}`).then(response => {
       dispatch(fetchRelationshipsSuccess({ relationships: response.data }));
     }).catch(error => {
       dispatch(fetchRelationshipsFail(error));
