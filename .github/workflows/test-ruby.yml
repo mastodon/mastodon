@@ -48,12 +48,15 @@ jobs:
         run: |-
           ./bin/rails assets:precompile
 
+      - name: Archive asset artifacts
+        run: |
+          tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs*
+
       - uses: actions/upload-artifact@v3
         if: matrix.mode == 'test'
         with:
           path: |-
-            ./public/assets
-            ./public/packs-test
+            ./artifacts.tar.gz
           name: ${{ github.sha }}
           retention-days: 0
 
@@ -122,8 +125,12 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          path: './public'
+          path: './'
           name: ${{ github.sha }}
+
+      - name: Expand archived asset artifacts
+        run: |
+          tar xvzf artifacts.tar.gz
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
