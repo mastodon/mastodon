@@ -15,6 +15,7 @@ class AfterBlockDomainFromAccountService < BaseService
     remove_follows!
     reject_existing_followers!
     reject_pending_follow_requests!
+    notify_of_severed_relationships!
   end
 
   private
@@ -49,6 +50,12 @@ class AfterBlockDomainFromAccountService < BaseService
     return unless follow.account.activitypub?
 
     ActivityPub::DeliveryWorker.perform_async(Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), @account.id, follow.account.inbox_url)
+  end
+
+  def notify_of_severed_relationships!
+    return if @domain_block_event.nil?
+
+    LocalNotificationWorker.perform_async(@account.id, @domain_block_event.id, 'RelationshipSeveranceEvent', 'severed_relationships')
   end
 
   def domain_block_event
