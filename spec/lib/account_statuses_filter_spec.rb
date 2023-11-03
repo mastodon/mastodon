@@ -89,15 +89,11 @@ RSpec.describe AccountStatusesFilter do
       let(:current_account) { nil }
       let(:direct_status) { nil }
 
-      it 'returns only public statuses' do
+      it 'returns only public statuses, public replies, and public reblogs' do
         expect(results_unique_visibilities).to match_array %w(unlisted public)
-      end
 
-      it 'returns public replies' do
         expect(results_in_reply_to_ids).to_not be_empty
-      end
 
-      it 'returns public reblogs' do
         expect(results_reblog_of_ids).to_not be_empty
       end
 
@@ -119,15 +115,11 @@ RSpec.describe AccountStatusesFilter do
     context 'when accessed by self' do
       let(:current_account) { account }
 
-      it 'returns everything' do
+      it 'returns all statuses, replies, and reblogs' do
         expect(results_unique_visibilities).to match_array %w(direct private unlisted public)
-      end
 
-      it 'returns replies' do
         expect(results_in_reply_to_ids).to_not be_empty
-      end
 
-      it 'returns reblogs' do
         expect(results_reblog_of_ids).to_not be_empty
       end
 
@@ -141,15 +133,11 @@ RSpec.describe AccountStatusesFilter do
         current_account.follow!(account)
       end
 
-      it 'returns private statuses' do
+      it 'returns private statuses, replies, and reblogs' do
         expect(results_unique_visibilities).to match_array %w(private unlisted public)
-      end
 
-      it 'returns replies' do
         expect(results_in_reply_to_ids).to_not be_empty
-      end
 
-      it 'returns reblogs' do
         expect(results_reblog_of_ids).to_not be_empty
       end
 
@@ -167,15 +155,11 @@ RSpec.describe AccountStatusesFilter do
     context 'when accessed by a non-follower' do
       let(:current_account) { Fabricate(:account) }
 
-      it 'returns only public statuses' do
+      it 'returns only public statuses, replies, and reblogs' do
         expect(results_unique_visibilities).to match_array %w(unlisted public)
-      end
 
-      it 'returns public replies' do
         expect(results_in_reply_to_ids).to_not be_empty
-      end
 
-      it 'returns public reblogs' do
         expect(results_reblog_of_ids).to_not be_empty
       end
 
