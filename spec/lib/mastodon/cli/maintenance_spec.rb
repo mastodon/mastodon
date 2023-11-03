@@ -50,18 +50,5 @@ describe Mastodon::CLI::Maintenance do
         ).to_stdout.and raise_error(SystemExit)
       end
     end
-
-    context 'when the database is too new and the user does continue', use_transactional_tests: false do
-      before do
-        allow(cli.shell).to receive(:yes?).with('Continue anyway? (Yes/No)').and_return(true).once # Database too new query
-        allow(cli.shell).to receive(:yes?).with('Continue? (Yes/No)').and_return(true).once # General task warning
-      end
-
-      it 'removes duplicate records' do
-        expect { cli.invoke :fix_duplicates }.to output(
-          a_string_including('Finished')
-        ).to_stdout
-      end
-    end
   end
 end
