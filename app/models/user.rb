@@ -488,7 +488,7 @@ class User < ApplicationRecord
   end
 
   def validate_email_dns?
-    email_changed? && !external? && !(Rails.env.test? || Rails.env.development?)
+    email_changed? && !external? && !Rails.env.local? # rubocop:disable Rails/UnknownEnv
   end
 
   def validate_role_elevation

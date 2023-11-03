@@ -1,3 +1,5 @@
+import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
+
 import { Icon } from './icon';
 
 const domParser = new DOMParser();
@@ -21,7 +23,7 @@ interface Props {
 }
 export const VerifiedBadge: React.FC<Props> = ({ link }) => (
   <span className='verified-badge'>
-    <Icon id='check' className='verified-badge__mark' />
+    <Icon id='check' icon={CheckIcon} className='verified-badge__mark' />
     <span dangerouslySetInnerHTML={stripRelMe(link)} />
   </span>
 );

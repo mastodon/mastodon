@@ -55,7 +55,7 @@ class PreviewCard < ApplicationRecord
 
   has_attached_file :image, processors: [:thumbnail, :blurhash_transcoder], styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' }, validate_media_type: false
 
-  validates :url, presence: true, uniqueness: true
+  validates :url, presence: true, uniqueness: true, url: true
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :image, less_than: LIMIT
   remotable_attachment :image, LIMIT

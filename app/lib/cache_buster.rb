@@ -2,7 +2,7 @@
 
 class CacheBuster
   def initialize(options = {})
-    ActiveSupport::Deprecation.warn('Default values for the cache buster secret header name and values will be removed in Mastodon 4.3. Please set them explicitely if you rely on those.') unless options[:http_method] || (options[:secret] && options[:secret_header])
+    Rails.application.deprecators[:mastodon].warn('Default values for the cache buster secret header name and values will be removed in Mastodon 4.3. Please set them explicitely if you rely on those.') unless options[:http_method] || (options[:secret] && options[:secret_header])
 
     @secret_header = options[:secret_header] ||
                      (options[:http_method] ? nil : 'Secret-Header')

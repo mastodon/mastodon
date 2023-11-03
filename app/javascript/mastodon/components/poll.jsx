@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
 import escapeTextContentForBrowser from 'escape-html';
 import spring from 'react-motion/lib/spring';
 
@@ -192,7 +193,7 @@ class Poll extends ImmutablePureComponent {
           />
 
           {!!voted && <span className='poll__voted'>
-            <Icon id='check' className='poll__voted__mark' title={intl.formatMessage(messages.voted)} />
+            <Icon id='check' icon={CheckIcon} className='poll__voted__mark' title={intl.formatMessage(messages.voted)} />
           </span>}
         </label>
 

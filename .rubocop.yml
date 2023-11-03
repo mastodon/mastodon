@@ -27,7 +27,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'Vagrantfile'
     - 'vendor/**/*'
-    - 'lib/json_ld/*' # Generated files
+    - 'config/initializers/json_ld*' # Generated files
     - 'lib/mastodon/migration_helpers.rb' # Vendored from GitLab
     - 'lib/templates/**/*'
 

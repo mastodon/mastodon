@@ -25,13 +25,13 @@
         %td= number_with_delimiter @export.total_followers
         %td
       %tr
-        %th= t('exports.blocks')
-        %td= number_with_delimiter @export.total_blocks
-        %td= table_link_to 'download', t('exports.csv'), settings_exports_blocks_path(format: :csv)
-      %tr
         %th= t('exports.mutes')
         %td= number_with_delimiter @export.total_mutes
         %td= table_link_to 'download', t('exports.csv'), settings_exports_mutes_path(format: :csv)
+      %tr
+        %th= t('exports.blocks')
+        %td= number_with_delimiter @export.total_blocks
+        %td= table_link_to 'download', t('exports.csv'), settings_exports_blocks_path(format: :csv)
       %tr
         %th= t('exports.domain_blocks')
         %td= number_with_delimiter @export.total_domain_blocks

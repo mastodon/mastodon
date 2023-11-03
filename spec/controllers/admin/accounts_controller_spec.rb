@@ -285,7 +285,10 @@ RSpec.describe Admin::AccountsController do
 
     let(:current_user) { Fabricate(:user, role: role) }
     let(:account) { Fabricate(:account, suspended: true) }
-    let!(:email_block) { Fabricate(:canonical_email_block, reference_account: account) }
+
+    before do
+      _email_block = Fabricate(:canonical_email_block, reference_account: account)
+    end
 
     context 'when user is admin' do
       let(:role) { UserRole.find_by(name: 'Admin') }

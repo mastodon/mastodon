@@ -15,7 +15,7 @@ const messages = defineMessages({
 class FeaturedTags extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.record,
     featuredTags: ImmutablePropTypes.list,
     tagged: PropTypes.string,
     intl: PropTypes.object.isRequired,
