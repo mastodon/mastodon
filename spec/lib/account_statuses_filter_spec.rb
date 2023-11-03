@@ -90,7 +90,7 @@ RSpec.describe AccountStatusesFilter do
       let(:direct_status) { nil }
 
       it 'returns only public statuses' do
-        expect(subject.pluck(:visibility).uniq).to match_array %w(unlisted public)
+        expect(results_unique_visibilities).to match_array %w(unlisted public)
       end
 
       it 'returns public replies' do
@@ -120,7 +120,7 @@ RSpec.describe AccountStatusesFilter do
       let(:current_account) { account }
 
       it 'returns everything' do
-        expect(subject.pluck(:visibility).uniq).to match_array %w(direct private unlisted public)
+        expect(results_unique_visibilities).to match_array %w(direct private unlisted public)
       end
 
       it 'returns replies' do
@@ -142,7 +142,7 @@ RSpec.describe AccountStatusesFilter do
       end
 
       it 'returns private statuses' do
-        expect(subject.pluck(:visibility).uniq).to match_array %w(private unlisted public)
+        expect(results_unique_visibilities).to match_array %w(private unlisted public)
       end
 
       it 'returns replies' do
@@ -168,7 +168,7 @@ RSpec.describe AccountStatusesFilter do
       let(:current_account) { Fabricate(:account) }
 
       it 'returns only public statuses' do
-        expect(subject.pluck(:visibility).uniq).to match_array %w(unlisted public)
+        expect(results_unique_visibilities).to match_array %w(unlisted public)
       end
 
       it 'returns public replies' do
@@ -252,6 +252,12 @@ RSpec.describe AccountStatusesFilter do
       end
 
       it_behaves_like 'filter params'
+    end
+
+    private
+
+    def results_unique_visibilities
+      subject.pluck(:visibility).uniq
     end
   end
 end
