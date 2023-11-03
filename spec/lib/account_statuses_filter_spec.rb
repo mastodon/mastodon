@@ -98,7 +98,7 @@ RSpec.describe AccountStatusesFilter do
       end
 
       it 'returns public reblogs' do
-        expect(subject.pluck(:reblog_of_id)).to_not be_empty
+        expect(results_reblog_of_ids).to_not be_empty
       end
 
       it_behaves_like 'filter params'
@@ -128,7 +128,7 @@ RSpec.describe AccountStatusesFilter do
       end
 
       it 'returns reblogs' do
-        expect(subject.pluck(:reblog_of_id)).to_not be_empty
+        expect(results_reblog_of_ids).to_not be_empty
       end
 
       it_behaves_like 'filter params'
@@ -150,7 +150,7 @@ RSpec.describe AccountStatusesFilter do
       end
 
       it 'returns reblogs' do
-        expect(subject.pluck(:reblog_of_id)).to_not be_empty
+        expect(results_reblog_of_ids).to_not be_empty
       end
 
       context 'when there is a direct status mentioning the non-follower' do
@@ -176,7 +176,7 @@ RSpec.describe AccountStatusesFilter do
       end
 
       it 'returns public reblogs' do
-        expect(subject.pluck(:reblog_of_id)).to_not be_empty
+        expect(results_reblog_of_ids).to_not be_empty
       end
 
       context 'when there is a private status mentioning the non-follower' do
@@ -262,6 +262,10 @@ RSpec.describe AccountStatusesFilter do
 
     def results_in_reply_to_ids
       subject.pluck(:in_reply_to_id)
+    end
+
+    def results_reblog_of_ids
+      subject.pluck(:reblog_of_id)
     end
   end
 end
