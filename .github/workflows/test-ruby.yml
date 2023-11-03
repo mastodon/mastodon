@@ -135,7 +135,7 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bundle exec rake
+      - run: bin/rspec
 
   test-e2e:
     name: End to End testing
