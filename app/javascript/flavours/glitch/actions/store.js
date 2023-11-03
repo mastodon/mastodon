@@ -25,6 +25,7 @@ const applyMigrations = (state) => {
   });
 };
 
+
 export function hydrateStore(rawState) {
   return dispatch => {
     const state = applyMigrations(convertState(rawState));

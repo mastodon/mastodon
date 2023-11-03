@@ -1,7 +1,7 @@
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
-import { ACCOUNT_BLOCK_SUCCESS, ACCOUNT_MUTE_SUCCESS } from 'flavours/glitch/actions/accounts';
-import { DOMAIN_BLOCK_SUCCESS } from 'flavours/glitch/actions/domain_blocks';
+import { blockAccountSuccess, muteAccountSuccess } from 'flavours/glitch/actions/accounts';
+import { blockDomainSuccess } from 'flavours/glitch/actions/domain_blocks';
 
 import {
   SUGGESTIONS_FETCH_REQUEST,
@@ -29,11 +29,11 @@ export default function suggestionsReducer(state = initialState, action) {
     return state.set('isLoading', false);
   case SUGGESTIONS_DISMISS:
     return state.update('items', list => list.filterNot(x => x.account === action.id));
-  case ACCOUNT_BLOCK_SUCCESS:
-  case ACCOUNT_MUTE_SUCCESS:
-    return state.update('items', list => list.filterNot(x => x.account === action.relationship.id));
-  case DOMAIN_BLOCK_SUCCESS:
-    return state.update('items', list => list.filterNot(x => action.accounts.includes(x.account)));
+  case blockAccountSuccess.type:
+  case muteAccountSuccess.type:
+    return state.update('items', list => list.filterNot(x => x.account === action.payload.relationship.id));
+  case blockDomainSuccess.type:
+    return state.update('items', list => list.filterNot(x => action.payload.accounts.includes(x.account)));
   default:
     return state;
   }

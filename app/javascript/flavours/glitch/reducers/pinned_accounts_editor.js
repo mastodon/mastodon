@@ -8,8 +8,8 @@ import {
   PINNED_ACCOUNTS_SUGGESTIONS_FETCH_SUCCESS,
   PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CLEAR,
   PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CHANGE,
-  ACCOUNT_PIN_SUCCESS,
-  ACCOUNT_UNPIN_SUCCESS,
+  pinAccountSuccess,
+  unpinAccountSuccess,
 } from '../actions/accounts';
 
 const initialState = ImmutableMap({
@@ -48,10 +48,10 @@ export default function listEditorReducer(state = initialState, action) {
       map.set('items', ImmutableList());
       map.set('value', '');
     }));
-  case ACCOUNT_PIN_SUCCESS:
-    return state.updateIn(['accounts', 'items'], list => list.unshift(action.relationship.id));
-  case ACCOUNT_UNPIN_SUCCESS:
-    return state.updateIn(['accounts', 'items'], list => list.filterNot(item => item === action.relationship.id));
+  case pinAccountSuccess.type:
+    return state.updateIn(['accounts', 'items'], list => list.unshift(action.payload.relationship.id));
+  case unpinAccountSuccess.type:
+    return state.updateIn(['accounts', 'items'], list => list.filterNot(item => item === action.payload.relationship.id));
   default:
     return state;
   }

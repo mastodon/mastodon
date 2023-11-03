@@ -1,43 +1,5 @@
 // @ts-check
 
-/**
- * @typedef Emoji
- * @property {string} shortcode
- * @property {string} static_url
- * @property {string} url
- */
-
-/**
- * @typedef AccountField
- * @property {string} name
- * @property {string} value
- * @property {string} verified_at
- */
-
-/**
- * @typedef Account
- * @property {string} acct
- * @property {string} avatar
- * @property {string} avatar_static
- * @property {boolean} bot
- * @property {string} created_at
- * @property {boolean=} discoverable
- * @property {string} display_name
- * @property {Emoji[]} emojis
- * @property {AccountField[]} fields
- * @property {number} followers_count
- * @property {number} following_count
- * @property {boolean} group
- * @property {string} header
- * @property {string} header_static
- * @property {string} id
- * @property {string=} last_status_at
- * @property {boolean} locked
- * @property {string} note
- * @property {number} statuses_count
- * @property {string} url
- * @property {string} username
- */
 
 /**
  * @typedef {[code: string, name: string, localName: string]} InitialStateLanguage
@@ -99,7 +61,7 @@ export const hasMultiColumnPath = initialPath === '/'
 
 /**
  * @typedef InitialState
- * @property {Record<string, Account>} accounts
+ * @property {Record<string, import("./api_types/accounts").ApiAccountJSON>} accounts
  * @property {InitialStateLanguage[]} languages
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta

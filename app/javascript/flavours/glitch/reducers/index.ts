@@ -3,8 +3,7 @@ import { Record as ImmutableRecord } from 'immutable';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import { combineReducers } from 'redux-immutable';
 
-import accounts from './accounts';
-import accounts_counters from './accounts_counters';
+import { accountsReducer } from './accounts';
 import accounts_map from './accounts_map';
 import alerts from './alerts';
 import announcements from './announcements';
@@ -34,7 +33,7 @@ import picture_in_picture from './picture_in_picture';
 import pinnedAccountsEditor from './pinned_accounts_editor';
 import polls from './polls';
 import push_notifications from './push_notifications';
-import relationships from './relationships';
+import { relationshipsReducer } from './relationships';
 import search from './search';
 import server from './server';
 import settings from './settings';
@@ -57,11 +56,10 @@ const reducers = {
   user_lists,
   domain_lists,
   status_lists,
-  accounts,
-  accounts_counters,
+  accounts: accountsReducer,
   accounts_map,
   statuses,
-  relationships,
+  relationships: relationshipsReducer,
   settings,
   local_settings,
   push_notifications,

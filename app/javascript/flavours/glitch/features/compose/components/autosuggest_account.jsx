@@ -7,7 +7,7 @@ import { DisplayName } from '../../../components/display_name';
 export default class AutosuggestAccount extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
   };
 
   render () {
