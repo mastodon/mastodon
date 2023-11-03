@@ -36,7 +36,7 @@ RSpec.describe AccountStatusesFilter do
   end
 
   describe '#results' do
-    subject { described_class.new(account, current_account, params) }
+    subject { described_class.new(account, current_account, params).results }
 
     let(:tag) { Fabricate(:tag) }
 
@@ -56,7 +56,7 @@ RSpec.describe AccountStatusesFilter do
         let(:params) { { only_media: true } }
 
         it 'returns only statuses with media' do
-          expect(subject.results.all?(&:with_media?)).to be true
+          expect(subject.all?(&:with_media?)).to be true
         end
       end
 
@@ -64,7 +64,7 @@ RSpec.describe AccountStatusesFilter do
         let(:params) { { tagged: tag.name } }
 
         it 'returns only statuses with tag' do
-          expect(subject.results.all? { |s| s.tags.include?(tag) }).to be true
+          expect(subject.all? { |s| s.tags.include?(tag) }).to be true
         end
       end
 
@@ -72,7 +72,7 @@ RSpec.describe AccountStatusesFilter do
         let(:params) { { exclude_replies: true } }
 
         it 'returns only statuses that are not replies' do
-          expect(subject.results.none?(&:reply?)).to be true
+          expect(subject.none?(&:reply?)).to be true
         end
       end
 
@@ -80,7 +80,7 @@ RSpec.describe AccountStatusesFilter do
         let(:params) { { exclude_reblogs: true } }
 
         it 'returns only statuses that are not reblogs' do
-          expect(subject.results.none?(&:reblog?)).to be true
+          expect(subject.none?(&:reblog?)).to be true
         end
       end
     end
@@ -90,15 +90,15 @@ RSpec.describe AccountStatusesFilter do
       let(:direct_status) { nil }
 
       it 'returns only public statuses' do
-        expect(subject.results.pluck(:visibility).uniq).to match_array %w(unlisted public)
+        expect(subject.pluck(:visibility).uniq).to match_array %w(unlisted public)
       end
 
       it 'returns public replies' do
-        expect(subject.results.pluck(:in_reply_to_id)).to_not be_empty
+        expect(subject.pluck(:in_reply_to_id)).to_not be_empty
       end
 
       it 'returns public reblogs' do
-        expect(subject.results.pluck(:reblog_of_id)).to_not be_empty
+        expect(subject.pluck(:reblog_of_id)).to_not be_empty
       end
 
       it_behaves_like 'filter params'
@@ -112,7 +112,7 @@ RSpec.describe AccountStatusesFilter do
       end
 
       it 'returns nothing' do
-        expect(subject.results.to_a).to be_empty
+        expect(subject.to_a).to be_empty
       end
     end
 
@@ -120,15 +120,15 @@ RSpec.describe AccountStatusesFilter do
       let(:current_account) { account }
 
       it 'returns everything' do
-        expect(subject.results.pluck(:visibility).uniq).to match_array %w(direct private unlisted public)
+        expect(subject.pluck(:visibility).uniq).to match_array %w(direct private unlisted public)
       end
 
       it 'returns replies' do
-        expect(subject.results.pluck(:in_reply_to_id)).to_not be_empty
+        expect(subject.pluck(:in_reply_to_id)).to_not be_empty
       end
 
       it 'returns reblogs' do
-        expect(subject.results.pluck(:reblog_of_id)).to_not be_empty
+        expect(subject.pluck(:reblog_of_id)).to_not be_empty
       end
 
       it_behaves_like 'filter params'
@@ -142,22 +142,22 @@ RSpec.describe AccountStatusesFilter do
       end
 
       it 'returns private statuses' do
-        expect(subject.results.pluck(:visibility).uniq).to match_array %w(private unlisted public)
+        expect(subject.pluck(:visibility).uniq).to match_array %w(private unlisted public)
       end
 
       it 'returns replies' do
-        expect(subject.results.pluck(:in_reply_to_id)).to_not be_empty
+        expect(subject.pluck(:in_reply_to_id)).to_not be_empty
       end
 
       it 'returns reblogs' do
-        expect(subject.results.pluck(:reblog_of_id)).to_not be_empty
+        expect(subject.pluck(:reblog_of_id)).to_not be_empty
       end
 
       context 'when there is a direct status mentioning the non-follower' do
         let!(:direct_status) { status_with_mention!(:direct, current_account) }
 
         it 'returns the direct status' do
-          expect(subject.results.pluck(:id)).to include(direct_status.id)
+          expect(subject.pluck(:id)).to include(direct_status.id)
         end
       end
 
@@ -168,22 +168,22 @@ RSpec.describe AccountStatusesFilter do
       let(:current_account) { Fabricate(:account) }
 
       it 'returns only public statuses' do
-        expect(subject.results.pluck(:visibility).uniq).to match_array %w(unlisted public)
+        expect(subject.pluck(:visibility).uniq).to match_array %w(unlisted public)
       end
 
       it 'returns public replies' do
-        expect(subject.results.pluck(:in_reply_to_id)).to_not be_empty
+        expect(subject.pluck(:in_reply_to_id)).to_not be_empty
       end
 
       it 'returns public reblogs' do
-        expect(subject.results.pluck(:reblog_of_id)).to_not be_empty
+        expect(subject.pluck(:reblog_of_id)).to_not be_empty
       end
 
       context 'when there is a private status mentioning the non-follower' do
         let!(:private_status) { status_with_mention!(:private, current_account) }
 
         it 'returns the private status' do
-          expect(subject.results.pluck(:id)).to include(private_status.id)
+          expect(subject.pluck(:id)).to include(private_status.id)
         end
       end
 
@@ -195,7 +195,7 @@ RSpec.describe AccountStatusesFilter do
         end
 
         it 'does not return reblog of blocked account' do
-          expect(subject.results.pluck(:id)).to_not include(reblog.id)
+          expect(subject.pluck(:id)).to_not include(reblog.id)
         end
       end
 
@@ -209,7 +209,7 @@ RSpec.describe AccountStatusesFilter do
         end
 
         it 'does not return reblog of blocked domain' do
-          expect(subject.results.pluck(:id)).to_not include(reblog.id)
+          expect(subject.pluck(:id)).to_not include(reblog.id)
         end
       end
 
@@ -223,7 +223,7 @@ RSpec.describe AccountStatusesFilter do
         end
 
         it 'returns the reblog from the non-blocked domain' do
-          expect(subject.results.pluck(:id)).to include(reblog.id)
+          expect(subject.pluck(:id)).to include(reblog.id)
         end
       end
 
@@ -235,7 +235,7 @@ RSpec.describe AccountStatusesFilter do
         end
 
         it 'does not return reblog of muted account' do
-          expect(subject.results.pluck(:id)).to_not include(reblog.id)
+          expect(subject.pluck(:id)).to_not include(reblog.id)
         end
       end
 
@@ -247,7 +247,7 @@ RSpec.describe AccountStatusesFilter do
         end
 
         it 'does not return reblog of blocked-by account' do
-          expect(subject.results.pluck(:id)).to_not include(reblog.id)
+          expect(subject.pluck(:id)).to_not include(reblog.id)
         end
       end
 
