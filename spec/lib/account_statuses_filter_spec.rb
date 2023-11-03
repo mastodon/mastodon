@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe AccountStatusesFilter do
-  subject { described_class.new(account, current_account, params) }
-
   let(:account) { Fabricate(:account) }
   let(:current_account) { nil }
   let(:params) { {} }
@@ -38,6 +36,8 @@ RSpec.describe AccountStatusesFilter do
   end
 
   describe '#results' do
+    subject { described_class.new(account, current_account, params) }
+
     let(:tag) { Fabricate(:tag) }
 
     before do
