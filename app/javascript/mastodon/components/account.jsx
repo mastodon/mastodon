@@ -36,7 +36,7 @@ class Account extends ImmutablePureComponent {
 
   static propTypes = {
     size: PropTypes.number,
-    account: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.record,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
