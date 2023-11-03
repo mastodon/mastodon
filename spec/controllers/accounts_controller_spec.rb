@@ -205,22 +205,15 @@ RSpec.describe AccountsController do
       context 'with RSS' do
         let(:format) { 'rss' }
 
-        shared_examples 'common RSS response' do
-          it 'returns http success' do
-            expect(response).to have_http_status(200)
-          end
-
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-        end
-
         context 'with a normal account in an RSS request' do
           before do
             get :show, params: { username: account.username, format: format }
           end
 
-          it_behaves_like 'common RSS response'
+          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'responds with correct statuses', :aggregate_failures do
+            expect(response).to have_http_status(200)
             expect(response.body).to include_status_tag(status_media)
             expect(response.body).to include_status_tag(status_self_reply)
             expect(response.body).to include_status_tag(status)
@@ -237,9 +230,10 @@ RSpec.describe AccountsController do
             get :show, params: { username: account.username, format: format }
           end
 
-          it_behaves_like 'common RSS response'
+          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'responds with correct statuses with replies', :aggregate_failures do
+            expect(response).to have_http_status(200)
             expect(response.body).to include_status_tag(status_media)
             expect(response.body).to include_status_tag(status_reply)
             expect(response.body).to include_status_tag(status_self_reply)
@@ -256,9 +250,10 @@ RSpec.describe AccountsController do
             get :show, params: { username: account.username, format: format }
           end
 
-          it_behaves_like 'common RSS response'
+          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'responds with correct statuses with media', :aggregate_failures do
+            expect(response).to have_http_status(200)
             expect(response.body).to include_status_tag(status_media)
             expect(response.body).to_not include_status_tag(status_direct)
             expect(response.body).to_not include_status_tag(status_private)
@@ -280,9 +275,10 @@ RSpec.describe AccountsController do
             get :show, params: { username: account.username, format: format, tag: tag.to_param }
           end
 
-          it_behaves_like 'common RSS response'
+          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'responds with correct statuses with a tag', :aggregate_failures do
+            expect(response).to have_http_status(200)
             expect(response.body).to include_status_tag(status_tag)
             expect(response.body).to_not include_status_tag(status_direct)
             expect(response.body).to_not include_status_tag(status_media)
