@@ -12,8 +12,8 @@
 
   .fields-group
     = f.input :media_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
-    = f.input :content_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }, hint: false, warning_hint: t('simple_form.hints.form_admin_settings.content_cache_retention_period'), recommended: :not_recommended
     = f.input :backups_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
+    = f.input :content_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }, hint: false, warning_hint: t('simple_form.hints.form_admin_settings.content_cache_retention_period'), recommended: :not_recommended
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
