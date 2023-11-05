@@ -1,0 +1,950 @@
+{
+  "configuration": {
+    "checks": [
+      {
+        "rule": "authz-before-authn"
+      },
+      {
+        "rule": "deprecated-crypto-algorithm"
+      },
+      {
+        "rule": "deserialization-of-untrusted-data"
+      },
+      {
+        "rule": "exec-of-untrusted-command"
+      },
+      {
+        "rule": "http-500"
+      },
+      {
+        "rule": "logout-without-session-reset"
+      },
+      {
+        "rule": "missing-content-type"
+      },
+      {
+        "rule": "n-plus-one-query"
+      },
+      {
+        "rule": "secret-in-log"
+      },
+      {
+        "rule": "too-many-joins"
+      },
+      {
+        "rule": "too-many-updates"
+      },
+      {
+        "rule": "unauthenticated-encryption"
+      },
+      {
+        "rule": "update-in-get-request"
+      }
+    ],
+    "timestampMs": 1699224752738.405
+  },
+  "appMapMetadata": {
+    "/workspaces/mastodon/tmp/appmap/rspec/Settings_ApplicationsController_GET_show_returns_http_success.appmap.json": {
+      "name": "Settings::ApplicationsController GET #show returns http success",
+      "source_location": "spec/controllers/settings/applications_controller_spec.rb",
+      "test_status": "succeeded"
+    }
+  },
+  "findings": [
+    {
+      "appMapFile": "/workspaces/mastodon/tmp/appmap/rspec/Settings_ApplicationsController_GET_show_returns_http_success.appmap.json",
+      "checkId": "update-in-get-request",
+      "ruleId": "update-in-get-request",
+      "ruleTitle": "Data update performed in GET or HEAD request",
+      "event": {
+        "id": 178,
+        "event": "call",
+        "thread_id": 9960,
+        "sql_query": {
+          "sql": "INSERT INTO \"oauth_access_tokens\" (\"token\", \"refresh_token\", \"expires_in\", \"revoked_at\", \"created_at\", \"scopes\", \"application_id\", \"resource_owner_id\", \"last_used_at\", \"last_used_ip\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING \"id\"",
+          "database_type": "postgres"
+        }
+      },
+      "hash": "daec8e94d20accda46c3a23bd0ebc3eead0853af55b697d8978395c9b335a5c9",
+      "hash_v2": "6e67f7e405522626dab7efaa546c6c0e130ea9ecfc8494fecd701f675e99ddb3",
+      "stack": [
+        "app/models/user.rb:301",
+        "app/views/settings/applications/show.html.haml",
+        "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_controller/metal/renderers.rb:140",
+        "app/controllers/concerns/localized.rb:10"
+      ],
+      "scope": {
+        "id": 9,
+        "event": "call",
+        "thread_id": 9960,
+        "http_server_request": {
+          "request_method": "GET",
+          "path_info": "/settings/applications/2",
+          "normalized_path_info": "/settings/applications/{id}",
+          "headers": {
+            "Host": "test.host",
+            "User-Agent": "Rails Testing",
+            "Cookie": "_session_id=eyJfcmFpbHMiOnsibWVzc2FnZSI6IklqQTFNVGsxWmpoalpEZzNOMk01T0Rjek9EQTRNR1V5T1RFeFlUVTNaRGhpSWc9PSIsImV4cCI6IjIwMjQtMTEtMDVUMjI6NTk6NDcuOTY4WiIsInB1ciI6ImNvb2tpZS5fc2Vzc2lvbl9pZCJ9fQ%3D%3D--92f9dbc81aebed5396fa5a73cd4f1015e043e187"
+          }
+        },
+        "message": [
+          {
+            "name": "id",
+            "class": "String",
+            "value": "2",
+            "object_id": 200700
+          },
+          {
+            "name": "controller",
+            "class": "String",
+            "value": "settings/applications",
+            "object_id": 181020
+          },
+          {
+            "name": "action",
+            "class": "String",
+            "value": "show",
+            "object_id": 181000
+          }
+        ]
+      },
+      "message": "Data update performed in HTTP request GET /settings/applications/{id}: INSERT INTO \"oauth_access_tokens\" (\"token\", \"refresh_token\", \"expires_in\", \"revoked_at\", \"created_at\", \"scopes\", \"application_id\", \"resource_owner_id\", \"last_used_at\", \"last_used_ip\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING \"id\"",
+      "relatedEvents": [
+        {
+          "id": 178,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "INSERT INTO \"oauth_access_tokens\" (\"token\", \"refresh_token\", \"expires_in\", \"revoked_at\", \"created_at\", \"scopes\", \"application_id\", \"resource_owner_id\", \"last_used_at\", \"last_used_ip\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING \"id\"",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 9,
+          "event": "call",
+          "thread_id": 9960,
+          "http_server_request": {
+            "request_method": "GET",
+            "path_info": "/settings/applications/2",
+            "normalized_path_info": "/settings/applications/{id}",
+            "headers": {
+              "Host": "test.host",
+              "User-Agent": "Rails Testing",
+              "Cookie": "_session_id=eyJfcmFpbHMiOnsibWVzc2FnZSI6IklqQTFNVGsxWmpoalpEZzNOMk01T0Rjek9EQTRNR1V5T1RFeFlUVTNaRGhpSWc9PSIsImV4cCI6IjIwMjQtMTEtMDVUMjI6NTk6NDcuOTY4WiIsInB1ciI6ImNvb2tpZS5fc2Vzc2lvbl9pZCJ9fQ%3D%3D--92f9dbc81aebed5396fa5a73cd4f1015e043e187"
+            }
+          },
+          "message": [
+            {
+              "name": "id",
+              "class": "String",
+              "value": "2",
+              "object_id": 200700
+            },
+            {
+              "name": "controller",
+              "class": "String",
+              "value": "settings/applications",
+              "object_id": 181020
+            },
+            {
+              "name": "action",
+              "class": "String",
+              "value": "show",
+              "object_id": 181000
+            }
+          ]
+        }
+      ],
+      "impactDomain": "Maintainability",
+      "participatingEvents": {
+        "request": {
+          "id": 9,
+          "event": "call",
+          "thread_id": 9960,
+          "http_server_request": {
+            "request_method": "GET",
+            "path_info": "/settings/applications/2",
+            "normalized_path_info": "/settings/applications/{id}",
+            "headers": {
+              "Host": "test.host",
+              "User-Agent": "Rails Testing",
+              "Cookie": "_session_id=eyJfcmFpbHMiOnsibWVzc2FnZSI6IklqQTFNVGsxWmpoalpEZzNOMk01T0Rjek9EQTRNR1V5T1RFeFlUVTNaRGhpSWc9PSIsImV4cCI6IjIwMjQtMTEtMDVUMjI6NTk6NDcuOTY4WiIsInB1ciI6ImNvb2tpZS5fc2Vzc2lvbl9pZCJ9fQ%3D%3D--92f9dbc81aebed5396fa5a73cd4f1015e043e187"
+            }
+          },
+          "message": [
+            {
+              "name": "id",
+              "class": "String",
+              "value": "2",
+              "object_id": 200700
+            },
+            {
+              "name": "controller",
+              "class": "String",
+              "value": "settings/applications",
+              "object_id": 181020
+            },
+            {
+              "name": "action",
+              "class": "String",
+              "value": "show",
+              "object_id": 181000
+            }
+          ]
+        }
+      },
+      "scopeModifiedDate": "2023-10-30T14:04:12.000Z",
+      "eventsModifiedDate": "2023-10-28T00:08:16.934Z"
+    },
+    {
+      "appMapFile": "/workspaces/mastodon/tmp/appmap/rspec/Settings_ApplicationsController_GET_show_returns_http_success.appmap.json",
+      "checkId": "n-plus-one-query",
+      "ruleId": "n-plus-one-query",
+      "ruleTitle": "N plus 1 SQL query",
+      "event": {
+        "id": 528,
+        "event": "call",
+        "thread_id": 9960,
+        "sql_query": {
+          "sql": "SELECT \"settings\".* FROM \"settings\" WHERE (thing_type is NULL and thing_id is NULL) AND \"settings\".\"var\" = $1 ORDER BY \"settings\".\"id\" ASC LIMIT $2",
+          "database_type": "postgres"
+        }
+      },
+      "hash": "acf9e3f4295ddf90d3cc249b3436e4083fd6e212583c68b15a6b955f30b7c9da",
+      "hash_v2": "bbb10aa3316399801c05fbdec15fd9209ddd847c41c6d5fe36512f7b10f1516d",
+      "stack": [
+        "app/models/setting.rb:24",
+        "app/serializers/initial_state_serializer.rb:15",
+        "app/helpers/application_helper.rb:184",
+        "app/views/settings/applications/show.html.haml",
+        "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_controller/metal/renderers.rb:140",
+        "app/controllers/concerns/localized.rb:10"
+      ],
+      "scope": {
+        "id": 9,
+        "event": "call",
+        "thread_id": 9960,
+        "http_server_request": {
+          "request_method": "GET",
+          "path_info": "/settings/applications/2",
+          "normalized_path_info": "/settings/applications/{id}",
+          "headers": {
+            "Host": "test.host",
+            "User-Agent": "Rails Testing",
+            "Cookie": "_session_id=eyJfcmFpbHMiOnsibWVzc2FnZSI6IklqQTFNVGsxWmpoalpEZzNOMk01T0Rjek9EQTRNR1V5T1RFeFlUVTNaRGhpSWc9PSIsImV4cCI6IjIwMjQtMTEtMDVUMjI6NTk6NDcuOTY4WiIsInB1ciI6ImNvb2tpZS5fc2Vzc2lvbl9pZCJ9fQ%3D%3D--92f9dbc81aebed5396fa5a73cd4f1015e043e187"
+          }
+        },
+        "message": [
+          {
+            "name": "id",
+            "class": "String",
+            "value": "2",
+            "object_id": 200700
+          },
+          {
+            "name": "controller",
+            "class": "String",
+            "value": "settings/applications",
+            "object_id": 181020
+          },
+          {
+            "name": "action",
+            "class": "String",
+            "value": "show",
+            "object_id": 181000
+          }
+        ]
+      },
+      "message": "InitialStateSerializer#meta[450] contains 6 occurrences of SQL: SELECT \"settings\".* FROM \"settings\" WHERE (thing_type is ? and thing_id is ?) AND \"settings\".\"var\" = $? ORDER BY \"settings\".\"id\" ASC LIMIT $?",
+      "groupMessage": "SELECT \"settings\".* FROM \"settings\" WHERE (thing_type is ? and thing_id is ?) AND \"settings\".\"var\" = $? ORDER BY \"settings\".\"id\" ASC LIMIT $?",
+      "occurranceCount": 6,
+      "relatedEvents": [
+        {
+          "id": 528,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"settings\".* FROM \"settings\" WHERE (thing_type is NULL and thing_id is NULL) AND \"settings\".\"var\" = $1 ORDER BY \"settings\".\"id\" ASC LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 544,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"settings\".* FROM \"settings\" WHERE (thing_type is NULL and thing_id is NULL) AND \"settings\".\"var\" = $1 ORDER BY \"settings\".\"id\" ASC LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 566,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"settings\".* FROM \"settings\" WHERE (thing_type is NULL and thing_id is NULL) AND \"settings\".\"var\" = $1 ORDER BY \"settings\".\"id\" ASC LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 582,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"settings\".* FROM \"settings\" WHERE (thing_type is NULL and thing_id is NULL) AND \"settings\".\"var\" = $1 ORDER BY \"settings\".\"id\" ASC LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 598,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"settings\".* FROM \"settings\" WHERE (thing_type is NULL and thing_id is NULL) AND \"settings\".\"var\" = $1 ORDER BY \"settings\".\"id\" ASC LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 614,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"settings\".* FROM \"settings\" WHERE (thing_type is NULL and thing_id is NULL) AND \"settings\".\"var\" = $1 ORDER BY \"settings\".\"id\" ASC LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 450,
+          "event": "call",
+          "thread_id": 9960,
+          "defined_class": "InitialStateSerializer",
+          "method_id": "meta",
+          "path": "app/serializers/initial_state_serializer.rb",
+          "lineno": 15,
+          "static": false,
+          "receiver": {
+            "class": "InitialStateSerializer",
+            "object_id": 187220,
+            "value": "#<InitialStateSerializer:0x00007fb4a105ac28>"
+          }
+        }
+      ],
+      "impactDomain": "Performance",
+      "participatingEvents": {
+        "commonAncestor": {
+          "id": 450,
+          "event": "call",
+          "thread_id": 9960,
+          "defined_class": "InitialStateSerializer",
+          "method_id": "meta",
+          "path": "app/serializers/initial_state_serializer.rb",
+          "lineno": 15,
+          "static": false,
+          "receiver": {
+            "class": "InitialStateSerializer",
+            "object_id": 187220,
+            "value": "#<InitialStateSerializer:0x00007fb4a105ac28>"
+          }
+        }
+      },
+      "scopeModifiedDate": "2023-10-30T14:04:12.000Z",
+      "eventsModifiedDate": "2023-10-28T00:08:16.934Z"
+    },
+    {
+      "appMapFile": "/workspaces/mastodon/tmp/appmap/rspec/Settings_ApplicationsController_GET_show_returns_http_success.appmap.json",
+      "checkId": "n-plus-one-query",
+      "ruleId": "n-plus-one-query",
+      "ruleTitle": "N plus 1 SQL query",
+      "event": {
+        "id": 1172,
+        "event": "call",
+        "thread_id": 9960,
+        "sql_query": {
+          "sql": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $1 LIMIT $2",
+          "database_type": "postgres"
+        }
+      },
+      "hash": "a6b221cdde585b3e81cfdd865565d32adac8c9018296777f0f629e317eaa102b",
+      "hash_v2": "4ecc1a763aaf153d6886689267e87f86224d0a22e14766bf49b7528a531211b8",
+      "stack": [
+        "app/models/user_role.rb:105",
+        "app/models/user.rb:153",
+        "app/models/user.rb:138",
+        "app/views/settings/applications/show.html.haml",
+        "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_controller/metal/renderers.rb:140",
+        "app/controllers/concerns/localized.rb:10"
+      ],
+      "scope": {
+        "id": 9,
+        "event": "call",
+        "thread_id": 9960,
+        "http_server_request": {
+          "request_method": "GET",
+          "path_info": "/settings/applications/2",
+          "normalized_path_info": "/settings/applications/{id}",
+          "headers": {
+            "Host": "test.host",
+            "User-Agent": "Rails Testing",
+            "Cookie": "_session_id=eyJfcmFpbHMiOnsibWVzc2FnZSI6IklqQTFNVGsxWmpoalpEZzNOMk01T0Rjek9EQTRNR1V5T1RFeFlUVTNaRGhpSWc9PSIsImV4cCI6IjIwMjQtMTEtMDVUMjI6NTk6NDcuOTY4WiIsInB1ciI6ImNvb2tpZS5fc2Vzc2lvbl9pZCJ9fQ%3D%3D--92f9dbc81aebed5396fa5a73cd4f1015e043e187"
+          }
+        },
+        "message": [
+          {
+            "name": "id",
+            "class": "String",
+            "value": "2",
+            "object_id": 200700
+          },
+          {
+            "name": "controller",
+            "class": "String",
+            "value": "settings/applications",
+            "object_id": 181020
+          },
+          {
+            "name": "action",
+            "class": "String",
+            "value": "show",
+            "object_id": 181000
+          }
+        ]
+      },
+      "message": "app_views_settings_applications_show_html_haml.render[116] contains 7 occurrences of SQL: SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $? LIMIT $?",
+      "groupMessage": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $? LIMIT $?",
+      "occurranceCount": 7,
+      "relatedEvents": [
+        {
+          "id": 1172,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $1 LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 1266,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $1 LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 1302,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $1 LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 1320,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $1 LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 1362,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $1 LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 1404,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $1 LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 1422,
+          "event": "call",
+          "thread_id": 9960,
+          "sql_query": {
+            "sql": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $1 LIMIT $2",
+            "database_type": "postgres"
+          }
+        },
+        {
+          "id": 116,
+          "event": "call",
+          "thread_id": 9960,
+          "defined_class": "app_views_settings_applications_show_html_haml",
+          "method_id": "render",
+          "path": "app/views/settings/applications/show.html.haml",
+          "static": true,
+          "receiver": {
+            "class": "ActionView::TemplateRenderer",
+            "object_id": 200720,
+            "value": "#<ActionView::TemplateRenderer:0x00007fb4a1553090>"
+          }
+        }
+      ],
+      "impactDomain": "Performance",
+      "participatingEvents": {
+        "commonAncestor": {
+          "id": 116,
+          "event": "call",
+          "thread_id": 9960,
+          "defined_class": "app_views_settings_applications_show_html_haml",
+          "method_id": "render",
+          "path": "app/views/settings/applications/show.html.haml",
+          "static": true,
+          "receiver": {
+            "class": "ActionView::TemplateRenderer",
+            "object_id": 200720,
+            "value": "#<ActionView::TemplateRenderer:0x00007fb4a1553090>"
+          }
+        }
+      },
+      "scopeModifiedDate": "2023-10-30T14:04:12.000Z",
+      "eventsModifiedDate": "2023-10-28T00:08:16.934Z"
+    }
+  ],
+  "checks": [
+    {
+      "rule": {
+        "id": "authz-before-authn",
+        "title": "Authorization performed before authentication",
+        "labels": [
+          "security.authorization",
+          "security.authentication"
+        ],
+        "scope": "http_server_request",
+        "impactDomain": "Security",
+        "enumerateScope": false,
+        "references": {
+          "CWE-863": "https://cwe.mitre.org/data/definitions/863.html"
+        },
+        "description": "Determines when authorization logic is applied to a user identity that has not been properly verified. Because the the user's identity has not been verified yet, the outcome of the authorization check cannot be trusted. A malicious user might be able to get themselves authorized as a different user than they really are - or they may not be logged in at all.",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#authz-before-authn"
+      },
+      "id": "authz-before-authn",
+      "options": {},
+      "scope": "http_server_request",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Security"
+    },
+    {
+      "rule": {
+        "id": "deprecated-crypto-algorithm",
+        "title": "Deprecated cryptographic algorithm",
+        "description": "---\nrule: deprecated-crypto-algorithm\nname: Deprecated crypto algorithm\ntitle: Deprecated cryptographic algorithm\nreferences:\n  A02:2021: https://owasp.org/Top10/A02_2021-Cryptographic_Failures/\nimpactDomain: Security\nlabels:\n  - crypto.encrypt\n  - crypto.decrypt\n  - crypto.digest\nscope: root\n---\n\nEnsure that cryptographic operations do not use deprecated algorithms.\n",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#deprecated-crypto-algorithm",
+        "labels": [
+          "crypto.encrypt",
+          "crypto.decrypt",
+          "crypto.digest"
+        ],
+        "scope": "root",
+        "enumerateScope": true,
+        "impactDomain": "Security",
+        "references": {
+          "A02:2021": "https://owasp.org/Top10/A02_2021-Cryptographic_Failures/"
+        }
+      },
+      "id": "deprecated-crypto-algorithm",
+      "options": {},
+      "scope": "root",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Security"
+    },
+    {
+      "rule": {
+        "id": "deserialization-of-untrusted-data",
+        "title": "Deserialization of untrusted data",
+        "labels": [
+          "deserialize.unsafe",
+          "deserialize.safe",
+          "deserialize.sanitize"
+        ],
+        "impactDomain": "Security",
+        "enumerateScope": false,
+        "scope": "http_server_request",
+        "references": {
+          "CWE-502": "https://cwe.mitre.org/data/definitions/502.html",
+          "Ruby Security": "https://docs.ruby-lang.org/en/3.0/doc/security_rdoc.html"
+        },
+        "description": "Finds occurrances of deserialization in which the mechanism employed is known to be unsafe, and the data comes from an untrusted source and hasn't passed through a sanitization mechanism.",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#deserialization-of-untrusted-data"
+      },
+      "id": "deserialization-of-untrusted-data",
+      "options": {},
+      "scope": "http_server_request",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Security"
+    },
+    {
+      "rule": {
+        "id": "exec-of-untrusted-command",
+        "title": "Execution of untrusted system command",
+        "labels": [
+          "system.exec",
+          "system.exec.safe",
+          "system.exec.sanitize"
+        ],
+        "impactDomain": "Security",
+        "enumerateScope": false,
+        "references": {
+          "CWE-78": "https://cwe.mitre.org/data/definitions/78.html"
+        },
+        "description": "Find occurrances of system command execution in which the command string is not guaranteed to be safe.",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#exec-of-untrusted-command"
+      },
+      "id": "exec-of-untrusted-command",
+      "options": {},
+      "scope": "command",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Security"
+    },
+    {
+      "rule": {
+        "id": "http-500",
+        "title": "HTTP 500 status code",
+        "description": "Identifies when an HTTP server request has returned a 500 status code. HTTP 500 status code generally indicate an unanticipated problem in the backend that is not handled in a predictable way. 500 status codes are also hard for client code to handle, because they don't indicate any particular problem or suggest a solution.",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#http-500",
+        "labels": [],
+        "scope": "http_server_request",
+        "enumerateScope": false,
+        "impactDomain": "Stability",
+        "references": {
+          "CWE-392": "https://cwe.mitre.org/data/definitions/392.html"
+        }
+      },
+      "id": "http-500",
+      "options": {},
+      "scope": "http_server_request",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Stability"
+    },
+    {
+      "rule": {
+        "id": "logout-without-session-reset",
+        "title": "Logout without session reset",
+        "scope": "http_server_request",
+        "labels": [
+          "http.session.clear",
+          "security.logout"
+        ],
+        "impactDomain": "Security",
+        "enumerateScope": false,
+        "references": {
+          "CWE-488": "https://cwe.mitre.org/data/definitions/488.html",
+          "OWASP - Session fixation": "https://owasp.org/www-community/attacks/Session_fixation",
+          "Ruby on Rails - Session fixation countermeasures": "https://guides.rubyonrails.org/security.html#session-fixation-countermeasures"
+        },
+        "description": "Determines when a user has been logged out from the application, but the session hasn't been cleared. When the session isn't cleared after logout, the session is vulnerable to a [session fixation attack](https://owasp.org/www-community/attacks/Session_fixation).",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#logout-without-session-reset"
+      },
+      "id": "logout-without-session-reset",
+      "options": {},
+      "scope": "http_server_request",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Security"
+    },
+    {
+      "rule": {
+        "id": "missing-content-type",
+        "title": "HTTP server request without a Content-Type header",
+        "scope": "http_server_request",
+        "impactDomain": "Stability",
+        "enumerateScope": false,
+        "description": "Finds HTTP server requests that don't provide a `Content-Type` header in the response.",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#missing-content-type"
+      },
+      "id": "missing-content-type",
+      "options": {},
+      "scope": "http_server_request",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Stability"
+    },
+    {
+      "rule": {
+        "id": "n-plus-one-query",
+        "title": "N plus 1 SQL query",
+        "scope": "command",
+        "impactDomain": "Performance",
+        "enumerateScope": false,
+        "references": {
+          "CWE-1073": "https://cwe.mitre.org/data/definitions/1073.html"
+        },
+        "description": "Finds occurrences of a query being repeated within a loop.",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#n-plus-one-query"
+      },
+      "id": "n-plus-one-query",
+      "options": {
+        "warningLimit": 5,
+        "errorLimit": 10
+      },
+      "scope": "command",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Performance"
+    },
+    {
+      "rule": {
+        "id": "secret-in-log",
+        "title": "Secret in log",
+        "labels": [
+          "secret",
+          "log"
+        ],
+        "scope": "root",
+        "impactDomain": "Security",
+        "enumerateScope": true,
+        "references": {
+          "CWE-532": "https://cwe.mitre.org/data/definitions/532.html"
+        },
+        "description": "Identifies when a known or assumed secret is written to a log. Logs are often transported into other systems that are treated with lesser security - such as backups. Therefore, secrets written into log files are more likely to be leaked or discovered by cyber-attackers.",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#secret-in-log"
+      },
+      "id": "secret-in-log",
+      "options": {},
+      "scope": "root",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Security"
+    },
+    {
+      "rule": {
+        "id": "too-many-joins",
+        "title": "Too many joins",
+        "description": "Verifies that the number of joins in SQL queries does not exceed a threshold.",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#too-many-joins",
+        "labels": [],
+        "enumerateScope": false,
+        "impactDomain": "Performance",
+        "references": {
+          "CWE-1049": "https://cwe.mitre.org/data/definitions/1049.html"
+        }
+      },
+      "id": "too-many-joins",
+      "options": {
+        "warningLimit": 5,
+        "excludeTables": [
+          {
+            "match": {},
+            "ignoreCase": false
+          },
+          {
+            "equal": "information_schema",
+            "ignoreCase": false
+          }
+        ]
+      },
+      "scope": "command",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Performance"
+    },
+    {
+      "rule": {
+        "id": "too-many-updates",
+        "title": "Too many SQL and RPC updates performed in one command",
+        "scope": "command",
+        "enumerateScope": false,
+        "impactDomain": "Maintainability",
+        "references": {
+          "CWE-1048": "https://cwe.mitre.org/data/definitions/1048.html"
+        },
+        "description": "Verifies that the number of SQL and RPC updates performed by a command does not exceed a threshold.",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#too-many-updates"
+      },
+      "id": "too-many-updates",
+      "options": {
+        "warningLimit": 20
+      },
+      "scope": "command",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Maintainability"
+    },
+    {
+      "rule": {
+        "id": "unauthenticated-encryption",
+        "title": "Unauthenticated encryption",
+        "description": "Ensures that encryption operations use authenticated encryption.",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#unauthenticated-encryption",
+        "labels": [
+          "crypto.encrypt",
+          "crypto.set_auth_data"
+        ],
+        "enumerateScope": true,
+        "impactDomain": "Security",
+        "references": {
+          "A02:2021": "https://owasp.org/Top10/A02_2021-Cryptographic_Failures/"
+        }
+      },
+      "id": "unauthenticated-encryption",
+      "options": {},
+      "scope": "command",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Security"
+    },
+    {
+      "rule": {
+        "id": "update-in-get-request",
+        "title": "Data update performed in GET or HEAD request",
+        "scope": "http_server_request",
+        "enumerateScope": true,
+        "labels": [
+          "audit"
+        ],
+        "impactDomain": "Maintainability",
+        "description": "Finds SQL updates that are performed in an HTTP server `GET` request.",
+        "url": "https://appland.com/docs/analysis/rules-reference.html#update-in-get-request"
+      },
+      "id": "update-in-get-request",
+      "options": {
+        "_queryInclude": [
+          {},
+          {}
+        ],
+        "_queryExclude": []
+      },
+      "scope": "http_server_request",
+      "includeScope": [],
+      "excludeScope": [],
+      "includeEvent": [],
+      "excludeEvent": [],
+      "impactDomain": "Maintainability"
+    }
+  ],
+  "summary": {
+    "numAppMaps": 1,
+    "numChecks": 13,
+    "rules": [
+      "authz-before-authn",
+      "deprecated-crypto-algorithm",
+      "deserialization-of-untrusted-data",
+      "exec-of-untrusted-command",
+      "http-500",
+      "logout-without-session-reset",
+      "missing-content-type",
+      "n-plus-one-query",
+      "secret-in-log",
+      "too-many-joins",
+      "too-many-updates",
+      "unauthenticated-encryption",
+      "update-in-get-request"
+    ],
+    "ruleLabels": [
+      "audit",
+      "crypto.decrypt",
+      "crypto.digest",
+      "crypto.encrypt",
+      "crypto.set_auth_data",
+      "deserialize.safe",
+      "deserialize.sanitize",
+      "deserialize.unsafe",
+      "http.session.clear",
+      "log",
+      "secret",
+      "security.authentication",
+      "security.authorization",
+      "security.logout",
+      "system.exec",
+      "system.exec.safe",
+      "system.exec.sanitize"
+    ],
+    "numFindings": 3,
+    "appMapMetadata": {
+      "labels": [],
+      "apps": [
+        "mastodon"
+      ],
+      "clients": [
+        {
+          "name": "appmap",
+          "url": "https://github.com/applandinc/appmap-ruby",
+          "version": "0.102.1"
+        }
+      ],
+      "frameworks": [
+        {
+          "name": "rails",
+          "version": "7.1.1"
+        },
+        {
+          "name": "rspec",
+          "version": "3.12.2"
+        }
+      ],
+      "git": [
+        {
+          "repository": "https://github.com/sgrigson/mastodon.git",
+          "branch": "appmap-config",
+          "commit": "0b36437555e9cff0bca8d1dda3997ad008f8d669",
+          "status": [
+            "M .devcontainer/Dockerfile",
+            "M .husky/pre-commit",
+            "M APPMAP.md",
+            "?? sql_warning.txt"
+          ],
+          "git_last_annotated_tag": "0.1.2-14596-g0b36437555e9cff0bca8d1dda3997ad008f8d669",
+          "git_last_tag": "v4.2.0",
+          "git_commits_since_last_annotated_tag": 0,
+          "git_commits_since_last_tag": 0
+        }
+      ],
+      "languages": [
+        {
+          "name": "ruby",
+          "engine": "ruby",
+          "version": "3.2.2"
+        }
+      ],
+      "recorders": [
+        {
+          "name": "rspec",
+          "type": "tests"
+        }
+      ],
+      "testStatuses": [],
+      "exceptions": []
+    }
+  }
+}
