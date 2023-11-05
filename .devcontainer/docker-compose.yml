@@ -71,7 +71,7 @@ services:
         hard: -1
 
   libretranslate:
-    image: libretranslate/libretranslate:v1.4.0
+    image: libretranslate/libretranslate:v1.4.1
     restart: unless-stopped
     volumes:
       - lt-data:/home/libretranslate/.local

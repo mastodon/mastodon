@@ -23,7 +23,7 @@ import { ColumnBackButton } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import AccountContainer from '../../containers/account_container';
-import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
+import { LimitedAccountHint } from '../account_timeline/components/limited_account_hint';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import Column from '../ui/components/column';
 

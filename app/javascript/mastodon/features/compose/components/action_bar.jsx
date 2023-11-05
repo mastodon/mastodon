@@ -28,7 +28,7 @@ const messages = defineMessages({
 class ActionBar extends PureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
     onLogout: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
