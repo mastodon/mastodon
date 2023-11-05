@@ -1,0 +1,170 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ConnectionPool::SharedTimedStack",
+      "method_id": "push",
+      "path": "app/lib/connection_pool/shared_timed_stack.rb",
+      "lineno": 14,
+      "static": false,
+      "parameters": [
+        {
+          "name": "connection",
+          "class": "Object",
+          "object_id": 225180,
+          "value": "#<#<Class:0x00007fdc0a7b5140>:0x00007fdc0a153d60>",
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ConnectionPool::SharedTimedStack",
+        "object_id": 225200,
+        "value": "#<ConnectionPool::SharedTimedStack:0x00007fdc0b524d30>"
+      }
+    },
+    {
+      "id": 2,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 1,
+      "elapsed": 0.000011912983609363437,
+      "elapsed_instrumentation": 0.0002004349953494966,
+      "return_value": {
+        "class": "Thread::ConditionVariable",
+        "value": "#<Thread::ConditionVariable:0x00007fdc0a153f18>",
+        "object_id": 225220
+      }
+    },
+    {
+      "id": 3,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ConnectionPool::SharedTimedStack",
+      "method_id": "empty?",
+      "path": "app/lib/connection_pool/shared_timed_stack.rb",
+      "lineno": 41,
+      "static": false,
+      "receiver": {
+        "class": "ConnectionPool::SharedTimedStack",
+        "object_id": 225200,
+        "value": "#<ConnectionPool::SharedTimedStack:0x00007fdc0b524d30>"
+      }
+    },
+    {
+      "id": 4,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ConnectionPool::SharedTimedStack",
+      "method_id": "size",
+      "path": "app/lib/connection_pool/shared_timed_stack.rb",
+      "lineno": 45,
+      "static": false,
+      "receiver": {
+        "class": "ConnectionPool::SharedTimedStack",
+        "object_id": 225200,
+        "value": "#<ConnectionPool::SharedTimedStack:0x00007fdc0b524d30>"
+      }
+    },
+    {
+      "id": 5,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 4,
+      "elapsed": 0.0000031050003599375486,
+      "elapsed_instrumentation": 0.000053052965085953474,
+      "return_value": {
+        "class": "Integer",
+        "value": "1",
+        "object_id": 3
+      }
+    },
+    {
+      "id": 6,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 3,
+      "elapsed": 0.00007309997454285622,
+      "elapsed_instrumentation": 0.0000808269833214581
+    }
+  ],
+  "version": "1.12.0",
+  "metadata": {
+    "app": "mastodon",
+    "language": {
+      "name": "ruby",
+      "engine": "ruby",
+      "version": "3.2.2"
+    },
+    "client": {
+      "name": "appmap",
+      "url": "https://github.com/applandinc/appmap-ruby",
+      "version": "0.102.1"
+    },
+    "frameworks": [
+      {
+        "name": "rails",
+        "version": "7.1.1"
+      },
+      {
+        "name": "rspec",
+        "version": "3.12.2"
+      }
+    ],
+    "git": {
+      "repository": "https://github.com/sgrigson/mastodon.git",
+      "branch": "appmap-config",
+      "commit": "743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_annotated_tag": "0.1.2-14597-g743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_tag": "v4.2.0",
+      "git_commits_since_last_annotated_tag": 0,
+      "git_commits_since_last_tag": 0
+    },
+    "name": "ConnectionPool::SharedTimedStack #empty? returns false when there are connections on the stack",
+    "source_location": "spec/lib/connection_pool/shared_timed_stack_spec.rb",
+    "recorder": {
+      "name": "rspec",
+      "type": "tests"
+    },
+    "test_status": "succeeded"
+  },
+  "classMap": [
+    {
+      "name": "app/lib/connection_pool",
+      "type": "package",
+      "children": [
+        {
+          "name": "ConnectionPool",
+          "type": "class",
+          "children": [
+            {
+              "name": "SharedTimedStack",
+              "type": "class",
+              "children": [
+                {
+                  "name": "push",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/lib/connection_pool/shared_timed_stack.rb:14"
+                },
+                {
+                  "name": "empty?",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/lib/connection_pool/shared_timed_stack.rb:41"
+                },
+                {
+                  "name": "size",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/lib/connection_pool/shared_timed_stack.rb:45"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

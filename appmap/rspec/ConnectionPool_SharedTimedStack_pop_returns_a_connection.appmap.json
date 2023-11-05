@@ -1,0 +1,114 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ConnectionPool::SharedTimedStack",
+      "method_id": "pop",
+      "path": "app/lib/connection_pool/shared_timed_stack.rb",
+      "lineno": 23,
+      "static": false,
+      "parameters": [
+        {
+          "name": "preferred_tag",
+          "class": "String",
+          "object_id": 225320,
+          "value": "foo",
+          "kind": "req"
+        },
+        {
+          "name": "timeout",
+          "class": "NilClass",
+          "object_id": 4,
+          "value": null,
+          "kind": "opt"
+        }
+      ],
+      "receiver": {
+        "class": "ConnectionPool::SharedTimedStack",
+        "object_id": 225340,
+        "value": "#<ConnectionPool::SharedTimedStack:0x00007fdc0b584618>"
+      }
+    },
+    {
+      "id": 2,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 1,
+      "elapsed": 0.000053808995289728045,
+      "elapsed_instrumentation": 0.00043237197678536177,
+      "return_value": {
+        "class": "Object",
+        "value": "#<#<Class:0x00007fdc0a82dde8>:0x00007fdc0a0c4ed0>",
+        "object_id": 225360
+      }
+    }
+  ],
+  "version": "1.12.0",
+  "metadata": {
+    "app": "mastodon",
+    "language": {
+      "name": "ruby",
+      "engine": "ruby",
+      "version": "3.2.2"
+    },
+    "client": {
+      "name": "appmap",
+      "url": "https://github.com/applandinc/appmap-ruby",
+      "version": "0.102.1"
+    },
+    "frameworks": [
+      {
+        "name": "rails",
+        "version": "7.1.1"
+      },
+      {
+        "name": "rspec",
+        "version": "3.12.2"
+      }
+    ],
+    "git": {
+      "repository": "https://github.com/sgrigson/mastodon.git",
+      "branch": "appmap-config",
+      "commit": "743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_annotated_tag": "0.1.2-14597-g743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_tag": "v4.2.0",
+      "git_commits_since_last_annotated_tag": 0,
+      "git_commits_since_last_tag": 0
+    },
+    "name": "ConnectionPool::SharedTimedStack #pop returns a connection",
+    "source_location": "spec/lib/connection_pool/shared_timed_stack_spec.rb",
+    "recorder": {
+      "name": "rspec",
+      "type": "tests"
+    },
+    "test_status": "succeeded"
+  },
+  "classMap": [
+    {
+      "name": "app/lib/connection_pool",
+      "type": "package",
+      "children": [
+        {
+          "name": "ConnectionPool",
+          "type": "class",
+          "children": [
+            {
+              "name": "SharedTimedStack",
+              "type": "class",
+              "children": [
+                {
+                  "name": "pop",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/lib/connection_pool/shared_timed_stack.rb:23"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

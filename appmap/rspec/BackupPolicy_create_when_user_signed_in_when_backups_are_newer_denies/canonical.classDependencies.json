@@ -1,0 +1,190 @@
+[
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "INSERT INTO \"users\" (\"email\", \"created_at\", \"updated_at\", \"encrypted_password\", \"reset_password_token\", \"reset_password_sent_at\", \"sign_in_count\", \"current_sign_in_at\", \"last_sign_in_at\", \"admin\", \"confirmation_token\", \"confirmed_at\", \"confirmation_sent_at\", \"unconfirmed_email\", \"locale\", \"encrypted_otp_secret\", \"encrypted_otp_secret_iv\", \"encrypted_otp_secret_salt\", \"consumed_timestep\", \"otp_required_for_login\", \"last_emailed_at\", \"otp_backup_codes\", \"account_id\", \"disabled\", \"moderator\", \"invite_id\", \"chosen_languages\", \"created_by_application_id\", \"approved\", \"sign_in_token\", \"sign_in_token_sent_at\", \"webauthn_id\", \"sign_up_ip\", \"role_id\", \"settings\", \"time_zone\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36) RETURNING \"id\""
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SELECT 1 AS one FROM \"users\" WHERE \"users\".\"email\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SELECT a.attname\n  FROM (\n         SELECT indrelid, indkey, generate_subscripts(indkey, 1) idx\n           FROM pg_index\n          WHERE indrelid = '\"account_stats\"'::regclass\n            AND indisprimary\n       ) i\n  JOIN pg_attribute a\n    ON a.attrelid = i.indrelid\n   AND a.attnum = i.indkey[i.idx]\n ORDER BY i.idx\n"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SELECT a.attname\n  FROM (\n         SELECT indrelid, indkey, generate_subscripts(indkey, 1) idx\n           FROM pg_index\n          WHERE indrelid = '\"invites\"'::regclass\n            AND indisprimary\n       ) i\n  JOIN pg_attribute a\n    ON a.attrelid = i.indrelid\n   AND a.attnum = i.indkey[i.idx]\n ORDER BY i.idx\n"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/lib"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/models"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/validators"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "lib/paperclip"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "sidekiq/Sidekiq"
+  },
+  {
+    "caller": "app/helpers",
+    "callee": "activesupport/ActiveSupport"
+  },
+  {
+    "caller": "app/helpers",
+    "callee": "app/models"
+  },
+  {
+    "caller": "app/lib",
+    "callee": "app/helpers"
+  },
+  {
+    "caller": "app/lib",
+    "callee": "app/models"
+  },
+  {
+    "caller": "app/models",
+    "callee": "SELECT \"account_stats\".\"id\", \"account_stats\".\"account_id\", \"account_stats\".\"statuses_count\", \"account_stats\".\"following_count\", \"account_stats\".\"followers_count\", \"account_stats\".\"created_at\", \"account_stats\".\"updated_at\", \"account_stats\".\"last_status_at\" FROM \"account_stats\" WHERE \"account_stats\".\"account_id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/models",
+    "callee": "SELECT \"settings\".* FROM \"settings\" WHERE (thing_type is NULL and thing_id is NULL) AND \"settings\".\"var\" = $1 ORDER BY \"settings\".\"id\" ASC LIMIT $2"
+  },
+  {
+    "caller": "app/models",
+    "callee": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/models",
+    "callee": "SELECT \"users\".\"id\", \"users\".\"email\", \"users\".\"created_at\", \"users\".\"updated_at\", \"users\".\"encrypted_password\", \"users\".\"reset_password_token\", \"users\".\"reset_password_sent_at\", \"users\".\"sign_in_count\", \"users\".\"current_sign_in_at\", \"users\".\"last_sign_in_at\", \"users\".\"admin\", \"users\".\"confirmation_token\", \"users\".\"confirmed_at\", \"users\".\"confirmation_sent_at\", \"users\".\"unconfirmed_email\", \"users\".\"locale\", \"users\".\"encrypted_otp_secret\", \"users\".\"encrypted_otp_secret_iv\", \"users\".\"encrypted_otp_secret_salt\", \"users\".\"consumed_timestep\", \"users\".\"otp_required_for_login\", \"users\".\"last_emailed_at\", \"users\".\"otp_backup_codes\", \"users\".\"account_id\", \"users\".\"disabled\", \"users\".\"moderator\", \"users\".\"invite_id\", \"users\".\"chosen_languages\", \"users\".\"created_by_application_id\", \"users\".\"approved\", \"users\".\"sign_in_token\", \"users\".\"sign_in_token_sent_at\", \"users\".\"webauthn_id\", \"users\".\"sign_up_ip\", \"users\".\"role_id\", \"users\".\"settings\", \"users\".\"time_zone\" FROM \"users\" WHERE \"users\".\"account_id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/models",
+    "callee": "SELECT a.attname\n  FROM (\n         SELECT indrelid, indkey, generate_subscripts(indkey, 1) idx\n           FROM pg_index\n          WHERE indrelid = '\"settings\"'::regclass\n            AND indisprimary\n       ) i\n  JOIN pg_attribute a\n    ON a.attrelid = i.indrelid\n   AND a.attnum = i.indkey[i.idx]\n ORDER BY i.idx\n"
+  },
+  {
+    "caller": "app/models",
+    "callee": "app/lib"
+  },
+  {
+    "caller": "app/models",
+    "callee": "lib/chewy"
+  },
+  {
+    "caller": "app/models",
+    "callee": "logger/Logger"
+  },
+  {
+    "caller": "app/models",
+    "callee": "psych/Psych"
+  },
+  {
+    "caller": "app/models",
+    "callee": "ruby/ERB"
+  },
+  {
+    "caller": "app/models",
+    "callee": "ruby/Marshal"
+  },
+  {
+    "caller": "app/policies",
+    "callee": "SELECT COUNT(*) FROM \"backups\" WHERE \"backups\".\"user_id\" = $1 AND (created_at >= '2023-10-30 23:01:31.544361')"
+  },
+  {
+    "caller": "app/serializers/rest",
+    "callee": "SELECT \"user_invite_requests\".* FROM \"user_invite_requests\" WHERE \"user_invite_requests\".\"user_id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/serializers/rest",
+    "callee": "SELECT \"user_ips\".* FROM \"user_ips\" WHERE \"user_ips\".\"user_id\" = $1 ORDER BY \"user_ips\".\"user_id\" ASC LIMIT $2"
+  },
+  {
+    "caller": "app/serializers/rest",
+    "callee": "SELECT a.attname, format_type(a.atttypid, a.atttypmod),\n       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,\n       c.collname, col_description(a.attrelid, a.attnum) AS comment,\n       a.attidentity AS identity,\n       attgenerated as attgenerated\n  FROM pg_attribute a\n  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum\n  LEFT JOIN pg_type t ON a.atttypid = t.oid\n  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation\n WHERE a.attrelid = '\"user_invite_requests\"'::regclass\n   AND a.attnum > 0 AND NOT a.attisdropped\n ORDER BY a.attnum\n"
+  },
+  {
+    "caller": "app/serializers/rest",
+    "callee": "SELECT a.attname, format_type(a.atttypid, a.atttypmod),\n       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,\n       c.collname, col_description(a.attrelid, a.attnum) AS comment,\n       a.attidentity AS identity,\n       attgenerated as attgenerated\n  FROM pg_attribute a\n  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum\n  LEFT JOIN pg_type t ON a.atttypid = t.oid\n  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation\n WHERE a.attrelid = '\"user_ips\"'::regclass\n   AND a.attnum > 0 AND NOT a.attisdropped\n ORDER BY a.attnum\n"
+  },
+  {
+    "caller": "app/serializers/rest",
+    "callee": "SELECT a.attname\n  FROM (\n         SELECT indrelid, indkey, generate_subscripts(indkey, 1) idx\n           FROM pg_index\n          WHERE indrelid = '\"user_invite_requests\"'::regclass\n            AND indisprimary\n       ) i\n  JOIN pg_attribute a\n    ON a.attrelid = i.indrelid\n   AND a.attnum = i.indkey[i.idx]\n ORDER BY i.idx\n"
+  },
+  {
+    "caller": "app/serializers/rest",
+    "callee": "app/helpers"
+  },
+  {
+    "caller": "app/serializers/rest",
+    "callee": "app/lib"
+  },
+  {
+    "caller": "app/serializers/rest",
+    "callee": "app/models"
+  },
+  {
+    "caller": "app/validators",
+    "callee": "SAVEPOINT active_record_1"
+  },
+  {
+    "caller": "app/validators",
+    "callee": "SELECT 1 AS one FROM \"accounts\" WHERE LOWER(\"accounts\".\"username\") = 'dong0' AND LOWER(\"accounts\".\"domain\") IS NULL LIMIT $1"
+  },
+  {
+    "caller": "app/validators",
+    "callee": "app/models"
+  },
+  {
+    "caller": "app/workers",
+    "callee": "SELECT \"accounts\".\"id\", \"accounts\".\"username\", \"accounts\".\"domain\", \"accounts\".\"private_key\", \"accounts\".\"public_key\", \"accounts\".\"created_at\", \"accounts\".\"updated_at\", \"accounts\".\"note\", \"accounts\".\"display_name\", \"accounts\".\"uri\", \"accounts\".\"url\", \"accounts\".\"avatar_file_name\", \"accounts\".\"avatar_content_type\", \"accounts\".\"avatar_file_size\", \"accounts\".\"avatar_updated_at\", \"accounts\".\"header_file_name\", \"accounts\".\"header_content_type\", \"accounts\".\"header_file_size\", \"accounts\".\"header_updated_at\", \"accounts\".\"avatar_remote_url\", \"accounts\".\"locked\", \"accounts\".\"header_remote_url\", \"accounts\".\"last_webfingered_at\", \"accounts\".\"inbox_url\", \"accounts\".\"outbox_url\", \"accounts\".\"shared_inbox_url\", \"accounts\".\"followers_url\", \"accounts\".\"protocol\", \"accounts\".\"memorial\", \"accounts\".\"moved_to_account_id\", \"accounts\".\"featured_collection_url\", \"accounts\".\"fields\", \"accounts\".\"actor_type\", \"accounts\".\"discoverable\", \"accounts\".\"also_known_as\", \"accounts\".\"silenced_at\", \"accounts\".\"suspended_at\", \"accounts\".\"hide_collections\", \"accounts\".\"avatar_storage_schema_version\", \"accounts\".\"header_storage_schema_version\", \"accounts\".\"devices_url\", \"accounts\".\"suspension_origin\", \"accounts\".\"sensitized_at\", \"accounts\".\"trendable\", \"accounts\".\"reviewed_at\", \"accounts\".\"requested_review_at\", \"accounts\".\"indexable\" FROM \"accounts\" WHERE \"accounts\".\"id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/workers",
+    "callee": "SELECT \"user_ips\".* FROM \"user_ips\" WHERE \"user_ips\".\"user_id\" = $1"
+  },
+  {
+    "caller": "app/workers",
+    "callee": "SELECT \"webhooks\".\"id\" FROM \"webhooks\" WHERE \"webhooks\".\"enabled\" = $1 AND ('account.created' = ANY(events))"
+  },
+  {
+    "caller": "app/workers",
+    "callee": "activesupport/ActiveSupport"
+  },
+  {
+    "caller": "app/workers",
+    "callee": "app/models"
+  },
+  {
+    "caller": "app/workers",
+    "callee": "app/serializers/rest"
+  },
+  {
+    "caller": "app/workers",
+    "callee": "json/JSON"
+  },
+  {
+    "caller": "ruby/ERB",
+    "callee": "ruby/Kernel"
+  },
+  {
+    "caller": "sidekiq/Sidekiq",
+    "callee": "app/workers"
+  },
+  {
+    "caller": "sidekiq/Sidekiq",
+    "callee": "json/JSON"
+  },
+  {
+    "caller": "sidekiq/Sidekiq",
+    "callee": "ruby/String"
+  }
+]

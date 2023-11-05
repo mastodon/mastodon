@@ -1,0 +1,338 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ConnectionPool::SharedTimedStack",
+      "method_id": "pop",
+      "path": "app/lib/connection_pool/shared_timed_stack.rb",
+      "lineno": 23,
+      "static": false,
+      "parameters": [
+        {
+          "name": "preferred_tag",
+          "class": "String",
+          "object_id": 225320,
+          "value": "foo",
+          "kind": "req"
+        },
+        {
+          "name": "timeout",
+          "class": "Integer",
+          "object_id": 1,
+          "value": "0",
+          "kind": "opt"
+        }
+      ],
+      "receiver": {
+        "class": "ConnectionPool::SharedTimedStack",
+        "object_id": 225560,
+        "value": "#<ConnectionPool::SharedTimedStack:0x00007fdc0daf1400>"
+      }
+    },
+    {
+      "id": 2,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 1,
+      "elapsed": 0.0000512890110258013,
+      "elapsed_instrumentation": 0.00026449697907082736,
+      "return_value": {
+        "class": "Object",
+        "value": "#<#<Class:0x00007fdc0a871e08>:0x00007fdc0a097b88>",
+        "object_id": 225580
+      }
+    },
+    {
+      "id": 3,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ConnectionPool::SharedTimedStack",
+      "method_id": "pop",
+      "path": "app/lib/connection_pool/shared_timed_stack.rb",
+      "lineno": 23,
+      "static": false,
+      "parameters": [
+        {
+          "name": "preferred_tag",
+          "class": "String",
+          "object_id": 225320,
+          "value": "foo",
+          "kind": "req"
+        },
+        {
+          "name": "timeout",
+          "class": "Integer",
+          "object_id": 1,
+          "value": "0",
+          "kind": "opt"
+        }
+      ],
+      "receiver": {
+        "class": "ConnectionPool::SharedTimedStack",
+        "object_id": 225560,
+        "value": "#<ConnectionPool::SharedTimedStack:0x00007fdc0daf1400>"
+      }
+    },
+    {
+      "id": 4,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 3,
+      "elapsed": 0.000014123012078925967,
+      "elapsed_instrumentation": 0.00013724798918701708,
+      "return_value": {
+        "class": "Object",
+        "value": "#<#<Class:0x00007fdc0a871e08>:0x00007fdc0a096c10>",
+        "object_id": 225600
+      }
+    },
+    {
+      "id": 5,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ConnectionPool::SharedTimedStack",
+      "method_id": "pop",
+      "path": "app/lib/connection_pool/shared_timed_stack.rb",
+      "lineno": 23,
+      "static": false,
+      "parameters": [
+        {
+          "name": "preferred_tag",
+          "class": "String",
+          "object_id": 225320,
+          "value": "foo",
+          "kind": "req"
+        },
+        {
+          "name": "timeout",
+          "class": "Integer",
+          "object_id": 1,
+          "value": "0",
+          "kind": "opt"
+        }
+      ],
+      "receiver": {
+        "class": "ConnectionPool::SharedTimedStack",
+        "object_id": 225560,
+        "value": "#<ConnectionPool::SharedTimedStack:0x00007fdc0daf1400>"
+      }
+    },
+    {
+      "id": 6,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 5,
+      "elapsed": 0.00001719099236652255,
+      "elapsed_instrumentation": 0.000267128023551777,
+      "return_value": {
+        "class": "Object",
+        "value": "#<#<Class:0x00007fdc0a871e08>:0x00007fdc0a095e50>",
+        "object_id": 225620
+      }
+    },
+    {
+      "id": 7,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ConnectionPool::SharedTimedStack",
+      "method_id": "pop",
+      "path": "app/lib/connection_pool/shared_timed_stack.rb",
+      "lineno": 23,
+      "static": false,
+      "parameters": [
+        {
+          "name": "preferred_tag",
+          "class": "String",
+          "object_id": 225320,
+          "value": "foo",
+          "kind": "req"
+        },
+        {
+          "name": "timeout",
+          "class": "Integer",
+          "object_id": 1,
+          "value": "0",
+          "kind": "opt"
+        }
+      ],
+      "receiver": {
+        "class": "ConnectionPool::SharedTimedStack",
+        "object_id": 225560,
+        "value": "#<ConnectionPool::SharedTimedStack:0x00007fdc0daf1400>"
+      }
+    },
+    {
+      "id": 8,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 7,
+      "elapsed": 0.000012147007510066032,
+      "elapsed_instrumentation": 0.00012361299013718963,
+      "return_value": {
+        "class": "Object",
+        "value": "#<#<Class:0x00007fdc0a871e08>:0x00007fdc0a095090>",
+        "object_id": 225640
+      }
+    },
+    {
+      "id": 9,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ConnectionPool::SharedTimedStack",
+      "method_id": "pop",
+      "path": "app/lib/connection_pool/shared_timed_stack.rb",
+      "lineno": 23,
+      "static": false,
+      "parameters": [
+        {
+          "name": "preferred_tag",
+          "class": "String",
+          "object_id": 225320,
+          "value": "foo",
+          "kind": "req"
+        },
+        {
+          "name": "timeout",
+          "class": "Integer",
+          "object_id": 1,
+          "value": "0",
+          "kind": "opt"
+        }
+      ],
+      "receiver": {
+        "class": "ConnectionPool::SharedTimedStack",
+        "object_id": 225560,
+        "value": "#<ConnectionPool::SharedTimedStack:0x00007fdc0daf1400>"
+      }
+    },
+    {
+      "id": 10,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 9,
+      "elapsed": 0.000011171010555699468,
+      "elapsed_instrumentation": 0.00011143699521198869,
+      "return_value": {
+        "class": "Object",
+        "value": "#<#<Class:0x00007fdc0a871e08>:0x00007fdc0a0942a8>",
+        "object_id": 225660
+      }
+    },
+    {
+      "id": 11,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ConnectionPool::SharedTimedStack",
+      "method_id": "pop",
+      "path": "app/lib/connection_pool/shared_timed_stack.rb",
+      "lineno": 23,
+      "static": false,
+      "parameters": [
+        {
+          "name": "preferred_tag",
+          "class": "String",
+          "object_id": 225320,
+          "value": "foo",
+          "kind": "req"
+        },
+        {
+          "name": "timeout",
+          "class": "Integer",
+          "object_id": 1,
+          "value": "0",
+          "kind": "opt"
+        }
+      ],
+      "receiver": {
+        "class": "ConnectionPool::SharedTimedStack",
+        "object_id": 225560,
+        "value": "#<ConnectionPool::SharedTimedStack:0x00007fdc0daf1400>"
+      }
+    },
+    {
+      "id": 12,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 11,
+      "elapsed": 0.0001526620180811733,
+      "elapsed_instrumentation": 0.00016630798927508295,
+      "exceptions": [
+        {
+          "class": "Timeout::Error",
+          "message": "Waited 0 sec",
+          "object_id": 225680,
+          "path": "/workspaces/mastodon/app/lib/connection_pool/shared_timed_stack.rb",
+          "lineno": 34
+        }
+      ]
+    }
+  ],
+  "version": "1.12.0",
+  "metadata": {
+    "app": "mastodon",
+    "language": {
+      "name": "ruby",
+      "engine": "ruby",
+      "version": "3.2.2"
+    },
+    "client": {
+      "name": "appmap",
+      "url": "https://github.com/applandinc/appmap-ruby",
+      "version": "0.102.1"
+    },
+    "frameworks": [
+      {
+        "name": "rails",
+        "version": "7.1.1"
+      },
+      {
+        "name": "rspec",
+        "version": "3.12.2"
+      }
+    ],
+    "git": {
+      "repository": "https://github.com/sgrigson/mastodon.git",
+      "branch": "appmap-config",
+      "commit": "743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_annotated_tag": "0.1.2-14597-g743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_tag": "v4.2.0",
+      "git_commits_since_last_annotated_tag": 0,
+      "git_commits_since_last_tag": 0
+    },
+    "name": "ConnectionPool::SharedTimedStack #pop does not create more than maximum amount of connections",
+    "source_location": "spec/lib/connection_pool/shared_timed_stack_spec.rb",
+    "recorder": {
+      "name": "rspec",
+      "type": "tests"
+    },
+    "test_status": "succeeded"
+  },
+  "classMap": [
+    {
+      "name": "app/lib/connection_pool",
+      "type": "package",
+      "children": [
+        {
+          "name": "ConnectionPool",
+          "type": "class",
+          "children": [
+            {
+              "name": "SharedTimedStack",
+              "type": "class",
+              "children": [
+                {
+                  "name": "pop",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/lib/connection_pool/shared_timed_stack.rb:23"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

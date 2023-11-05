@@ -1,0 +1,47 @@
+{
+  "app": "mastodon",
+  "language": {
+    "name": "ruby",
+    "engine": "ruby",
+    "version": "3.2.2"
+  },
+  "client": {
+    "name": "appmap",
+    "url": "https://github.com/applandinc/appmap-ruby",
+    "version": "0.102.1"
+  },
+  "frameworks": [
+    {
+      "name": "rails",
+      "version": "7.1.1"
+    },
+    {
+      "name": "rspec",
+      "version": "3.12.2"
+    }
+  ],
+  "git": {
+    "repository": "https://github.com/sgrigson/mastodon.git",
+    "branch": "appmap-config",
+    "commit": "743782bd299fd54e12a4a5829872efc505132ab3",
+    "git_last_annotated_tag": "0.1.2-14597-g743782bd299fd54e12a4a5829872efc505132ab3",
+    "git_last_tag": "v4.2.0",
+    "git_commits_since_last_annotated_tag": 0,
+    "git_commits_since_last_tag": 0
+  },
+  "name": "Settings::TwoFactorAuthentication::OtpAuthenticationController POST #create when not signed in redirects to login",
+  "source_location": "spec/controllers/settings/two_factor_authentication/otp_authentication_controller_spec.rb",
+  "recorder": {
+    "name": "rspec",
+    "type": "tests"
+  },
+  "test_status": "failed",
+  "test_failure": {
+    "message": "Exception(s) occurred within instrumentation subscribers: NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError",
+    "location": "spec/controllers/settings/two_factor_authentication/otp_authentication_controller_spec.rb:93"
+  },
+  "exception": {
+    "class": "ActiveSupport::Notifications::InstrumentationSubscriberError",
+    "message": "Exception(s) occurred within instrumentation subscribers: NoMethodError, NoMethodError, NoMethodErro (...646 more characters)"
+  }
+}

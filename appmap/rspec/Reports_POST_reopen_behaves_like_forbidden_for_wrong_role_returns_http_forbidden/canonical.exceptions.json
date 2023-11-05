@@ -1,0 +1,62 @@
+[
+  {
+    "class": "Mastodon::NotPermittedError",
+    "message": "Mastodon::NotPermittedError",
+    "stack": [
+      "/workspaces/mastodon/app/controllers/concerns/authorization.rb:15",
+      "app/controllers/api/v1/admin/reports_controller.rb:55",
+      "app/controllers/concerns/localized.rb:10"
+    ],
+    "location": "/workspaces/mastodon/app/controllers/concerns/authorization.rb:15"
+  },
+  {
+    "class": "Mastodon::NotPermittedError",
+    "message": "Mastodon::NotPermittedError",
+    "stack": [
+      "/workspaces/mastodon/app/controllers/concerns/authorization.rb:15",
+      "app/controllers/concerns/authorization.rb:12",
+      "app/controllers/api/v1/admin/reports_controller.rb:55",
+      "app/controllers/concerns/localized.rb:10"
+    ],
+    "location": "/workspaces/mastodon/app/controllers/concerns/authorization.rb:15"
+  },
+  {
+    "class": "Mastodon::NotPermittedError",
+    "message": "Mastodon::NotPermittedError",
+    "stack": [
+      "/workspaces/mastodon/app/controllers/concerns/authorization.rb:15",
+      "app/controllers/concerns/localized.rb:10"
+    ],
+    "location": "/workspaces/mastodon/app/controllers/concerns/authorization.rb:15"
+  },
+  {
+    "class": "Pundit::NotAuthorizedError",
+    "message": "not allowed to update? this Report",
+    "stack": [
+      "/workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/pundit-2.3.1/lib/pundit.rb:86",
+      "app/controllers/api/v1/admin/reports_controller.rb:55",
+      "app/controllers/concerns/localized.rb:10"
+    ],
+    "location": "/workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/pundit-2.3.1/lib/pundit.rb:86"
+  },
+  {
+    "class": "Pundit::NotAuthorizedError",
+    "message": "not allowed to update? this Report",
+    "stack": [
+      "/workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/pundit-2.3.1/lib/pundit.rb:86",
+      "app/controllers/concerns/authorization.rb:12",
+      "app/controllers/api/v1/admin/reports_controller.rb:55",
+      "app/controllers/concerns/localized.rb:10"
+    ],
+    "location": "/workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/pundit-2.3.1/lib/pundit.rb:86"
+  },
+  {
+    "class": "Pundit::NotAuthorizedError",
+    "message": "not allowed to update? this Report",
+    "stack": [
+      "/workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/pundit-2.3.1/lib/pundit.rb:86",
+      "app/controllers/concerns/localized.rb:10"
+    ],
+    "location": "/workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/pundit-2.3.1/lib/pundit.rb:86"
+  }
+]

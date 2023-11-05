@@ -1,0 +1,987 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActionDispatch::Cookies::CookieJar",
+      "method_id": "update",
+      "path": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb",
+      "lineno": 344,
+      "static": false,
+      "parameters": [
+        {
+          "name": "other_hash",
+          "class": "ActiveSupport::HashWithIndifferentAccess",
+          "object_id": 776640,
+          "value": "{}",
+          "kind": "req",
+          "size": 0
+        }
+      ],
+      "receiver": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "object_id": 776660,
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c89a0>"
+      }
+    },
+    {
+      "id": 2,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 1,
+      "elapsed": 0.000018174992874264717,
+      "elapsed_instrumentation": 0.00018522300524637103,
+      "return_value": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c89a0>",
+        "object_id": 776660
+      }
+    },
+    {
+      "id": 3,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActionDispatch::Cookies::CookieJar",
+      "method_id": "update",
+      "path": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb",
+      "lineno": 344,
+      "static": false,
+      "parameters": [
+        {
+          "name": "other_hash",
+          "class": "ActiveSupport::HashWithIndifferentAccess",
+          "object_id": 776640,
+          "value": "{}",
+          "kind": "req",
+          "size": 0
+        }
+      ],
+      "receiver": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "object_id": 776660,
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c89a0>"
+      }
+    },
+    {
+      "id": 4,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 3,
+      "elapsed": 0.00001497499761171639,
+      "elapsed_instrumentation": 0.00013129302533343434,
+      "return_value": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c89a0>",
+        "object_id": 776660
+      }
+    },
+    {
+      "id": 5,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActionDispatch::Cookies::CookieJar",
+      "method_id": "update",
+      "path": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb",
+      "lineno": 344,
+      "static": false,
+      "parameters": [
+        {
+          "name": "other_hash",
+          "class": "ActiveSupport::HashWithIndifferentAccess",
+          "object_id": 776640,
+          "value": "{}",
+          "kind": "req",
+          "size": 0
+        }
+      ],
+      "receiver": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "object_id": 776680,
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c8770>"
+      }
+    },
+    {
+      "id": 6,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 5,
+      "elapsed": 0.000009947019862011075,
+      "elapsed_instrumentation": 0.0001145519781857729,
+      "return_value": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c8770>",
+        "object_id": 776680
+      }
+    },
+    {
+      "id": 7,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActiveSupport::Callbacks::CallbackSequence",
+      "method_id": "invoke_before",
+      "path": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb",
+      "lineno": 597,
+      "static": false,
+      "parameters": [
+        {
+          "name": "arg",
+          "class": "ActiveSupport::Callbacks::Filters::Environment",
+          "object_id": 776720,
+          "value": null,
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActiveSupport::Callbacks::CallbackSequence",
+        "object_id": 231340,
+        "value": "#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc0b5853d8>"
+      }
+    },
+    {
+      "id": 8,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 7,
+      "elapsed": 0.0001135669881477952,
+      "elapsed_instrumentation": 0.00022279901895672083,
+      "return_value": {
+        "class": "Array",
+        "value": "[#<Proc:0x00007fdc0fb602e0 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc0fb60498 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc0fb60808 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc0fb60fd8 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib]",
+        "object_id": 231360,
+        "size": 4
+      }
+    },
+    {
+      "id": 9,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActiveSupport::Callbacks::CallbackSequence",
+      "method_id": "invoke_after",
+      "path": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb",
+      "lineno": 601,
+      "static": false,
+      "parameters": [
+        {
+          "name": "arg",
+          "class": "ActiveSupport::Callbacks::Filters::Environment",
+          "object_id": 776720,
+          "value": null,
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActiveSupport::Callbacks::CallbackSequence",
+        "object_id": 231340,
+        "value": "#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc0b5853d8>"
+      }
+    },
+    {
+      "id": 10,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 9,
+      "elapsed": 0.000003021996235474944,
+      "elapsed_instrumentation": 0.0001281740260310471,
+      "return_value": {
+        "class": "Array",
+        "value": "[]",
+        "object_id": 231380,
+        "size": 0
+      }
+    },
+    {
+      "id": 11,
+      "event": "call",
+      "thread_id": 9160,
+      "http_server_request": {
+        "request_method": "GET",
+        "path_info": "/settings/otp_authentication",
+        "normalized_path_info": "/settings/otp_authentication",
+        "headers": {
+          "Host": "test.host",
+          "User-Agent": "Rails Testing"
+        }
+      },
+      "message": [
+        {
+          "name": "controller",
+          "class": "String",
+          "value": "settings/two_factor_authentication/otp_authentication",
+          "object_id": 759760
+        },
+        {
+          "name": "action",
+          "class": "String",
+          "value": "show",
+          "object_id": 776900
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Logger::LogDevice",
+      "method_id": "write",
+      "path": "/usr/local/lib/ruby/3.2.0/logger/log_device.rb",
+      "lineno": 31,
+      "static": false,
+      "parameters": [
+        {
+          "name": "message",
+          "class": "String",
+          "object_id": 776740,
+          "value": "Processing by Settings::TwoFactorAuthentication::OtpAuthenticationController#show as HTML\n",
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "Logger::LogDevice",
+        "object_id": 19780,
+        "value": "#<Logger::LogDevice:0x00007fdc1b4b7180>"
+      }
+    },
+    {
+      "id": 13,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 12,
+      "elapsed": 0.0010656069789547473,
+      "elapsed_instrumentation": 0.00036339901271276176,
+      "return_value": {
+        "class": "Integer",
+        "value": "90",
+        "object_id": 181
+      }
+    },
+    {
+      "id": 14,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActiveSupport::Callbacks::CallbackSequence",
+      "method_id": "invoke_before",
+      "path": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb",
+      "lineno": 597,
+      "static": false,
+      "parameters": [
+        {
+          "name": "arg",
+          "class": "ActiveSupport::Callbacks::Filters::Environment",
+          "object_id": 776760,
+          "value": null,
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActiveSupport::Callbacks::CallbackSequence",
+        "object_id": 758680,
+        "value": "#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc09597990>"
+      }
+    },
+    {
+      "id": 15,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 14,
+      "elapsed": 0.00007895499584265053,
+      "elapsed_instrumentation": 0.0001280770229641348,
+      "return_value": {
+        "class": "Array",
+        "value": "[#<Proc:0x00007fdc066c55e0 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib]",
+        "object_id": 758700,
+        "size": 1
+      }
+    },
+    {
+      "id": 16,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Localized",
+      "method_id": "set_locale",
+      "path": "app/controllers/concerns/localized.rb",
+      "lineno": 10,
+      "static": false,
+      "parameters": [
+        {
+          "name": "block",
+          "class": "NilClass",
+          "object_id": 4,
+          "value": null,
+          "kind": "block"
+        }
+      ],
+      "receiver": {
+        "class": "Settings::TwoFactorAuthentication::OtpAuthenticationController",
+        "object_id": 776780,
+        "value": "#<Settings::TwoFactorAuthentication::OtpAuthenticationController:0x00007fdc060c5dc0>"
+      }
+    },
+    {
+      "id": 17,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActionDispatch::Cookies::CookieJar",
+      "method_id": "update",
+      "path": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb",
+      "lineno": 344,
+      "static": false,
+      "parameters": [
+        {
+          "name": "other_hash",
+          "class": "Hash",
+          "object_id": 776800,
+          "value": "{}",
+          "kind": "req",
+          "size": 0
+        }
+      ],
+      "receiver": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "object_id": 776820,
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c6e20>"
+      }
+    },
+    {
+      "id": 18,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 17,
+      "elapsed": 0.000005685986252501607,
+      "elapsed_instrumentation": 0.00012382003478705883,
+      "return_value": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c6e20>",
+        "object_id": 776820
+      }
+    },
+    {
+      "id": 19,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActionDispatch::Cookies::CookieJar",
+      "method_id": "[]",
+      "path": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb",
+      "lineno": 328,
+      "static": false,
+      "parameters": [
+        {
+          "name": "name",
+          "class": "String",
+          "object_id": 326360,
+          "value": "_session_id",
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "object_id": 776820,
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c6e20>"
+      }
+    },
+    {
+      "id": 20,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 19,
+      "elapsed": 0.0000031520030461251736,
+      "elapsed_instrumentation": 0.00006960396422073245
+    },
+    {
+      "id": 21,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActiveSupport::Callbacks::CallbackSequence",
+      "method_id": "invoke_before",
+      "path": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb",
+      "lineno": 597,
+      "static": false,
+      "parameters": [
+        {
+          "name": "arg",
+          "class": "ActiveSupport::Callbacks::Filters::Environment",
+          "object_id": 776760,
+          "value": null,
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActiveSupport::Callbacks::CallbackSequence",
+        "object_id": 759200,
+        "value": "#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc095979e0>"
+      }
+    },
+    {
+      "id": 22,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActionDispatch::Cookies::CookieJar",
+      "method_id": "[]",
+      "path": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb",
+      "lineno": 328,
+      "static": false,
+      "parameters": [
+        {
+          "name": "name",
+          "class": "String",
+          "object_id": 326360,
+          "value": "_session_id",
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "object_id": 776820,
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c6e20>"
+      }
+    },
+    {
+      "id": 23,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 22,
+      "elapsed": 0.0000034199911169707775,
+      "elapsed_instrumentation": 0.00018529899534769356
+    },
+    {
+      "id": 24,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ApplicationController",
+      "method_id": "current_session",
+      "path": "app/controllers/application_controller.rb",
+      "lineno": 153,
+      "static": false,
+      "receiver": {
+        "class": "Settings::TwoFactorAuthentication::OtpAuthenticationController",
+        "object_id": 776780,
+        "value": "#<Settings::TwoFactorAuthentication::OtpAuthenticationController:0x00007fdc060c5dc0>"
+      }
+    },
+    {
+      "id": 25,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActionDispatch::Cookies::CookieJar",
+      "method_id": "[]",
+      "path": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb",
+      "lineno": 328,
+      "static": false,
+      "parameters": [
+        {
+          "name": "name",
+          "class": "String",
+          "object_id": 326360,
+          "value": "_session_id",
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "object_id": 776820,
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c6e20>"
+      }
+    },
+    {
+      "id": 26,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 25,
+      "elapsed": 0.000004011992132291198,
+      "elapsed_instrumentation": 0.00007265698513947427
+    },
+    {
+      "id": 27,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 24,
+      "elapsed": 0.00010950901196338236,
+      "elapsed_instrumentation": 0.00008392398012802005
+    },
+    {
+      "id": 28,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ApplicationController",
+      "method_id": "check_self_destruct!",
+      "path": "app/controllers/application_controller.rb",
+      "lineno": 176,
+      "static": false,
+      "receiver": {
+        "class": "Settings::TwoFactorAuthentication::OtpAuthenticationController",
+        "object_id": 776780,
+        "value": "#<Settings::TwoFactorAuthentication::OtpAuthenticationController:0x00007fdc060c5dc0>"
+      }
+    },
+    {
+      "id": 29,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "SelfDestructHelper",
+      "method_id": "self_destruct?",
+      "path": "app/helpers/self_destruct_helper.rb",
+      "lineno": 11,
+      "static": false,
+      "receiver": {
+        "class": "Settings::TwoFactorAuthentication::OtpAuthenticationController",
+        "object_id": 776780,
+        "value": "#<Settings::TwoFactorAuthentication::OtpAuthenticationController:0x00007fdc060c5dc0>"
+      }
+    },
+    {
+      "id": 30,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 29,
+      "elapsed": 0.000012288015568628907,
+      "elapsed_instrumentation": 0.00010337700950913131
+    },
+    {
+      "id": 31,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 28,
+      "elapsed": 0.00013705500168725848,
+      "elapsed_instrumentation": 0.00005302298814058304
+    },
+    {
+      "id": 32,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ApplicationController",
+      "method_id": "set_cache_control_defaults",
+      "path": "app/controllers/application_controller.rb",
+      "lineno": 185,
+      "static": false,
+      "receiver": {
+        "class": "Settings::TwoFactorAuthentication::OtpAuthenticationController",
+        "object_id": 776780,
+        "value": "#<Settings::TwoFactorAuthentication::OtpAuthenticationController:0x00007fdc060c5dc0>"
+      }
+    },
+    {
+      "id": 33,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 32,
+      "elapsed": 0.000005209993105381727,
+      "elapsed_instrumentation": 0.00011391600128263235,
+      "return_value": {
+        "class": "Hash",
+        "value": "{:private=>true, :no_store=>true}",
+        "object_id": 776840,
+        "size": 2
+      }
+    },
+    {
+      "id": 34,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActionDispatch::Cookies::CookieJar",
+      "method_id": "[]",
+      "path": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb",
+      "lineno": 328,
+      "static": false,
+      "parameters": [
+        {
+          "name": "name",
+          "class": "String",
+          "object_id": 326360,
+          "value": "_session_id",
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "object_id": 776820,
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c6e20>"
+      }
+    },
+    {
+      "id": 35,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 34,
+      "elapsed": 0.000005381996743381023,
+      "elapsed_instrumentation": 0.00009550698450766504
+    },
+    {
+      "id": 36,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 21,
+      "elapsed": 0.0014267189835663885,
+      "elapsed_instrumentation": 0.00009143599891103804
+    },
+    {
+      "id": 37,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 16,
+      "elapsed": 0.002455668000038713,
+      "elapsed_instrumentation": 0.00007261999417096376
+    },
+    {
+      "id": 38,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActiveSupport::Callbacks::CallbackSequence",
+      "method_id": "invoke_before",
+      "path": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb",
+      "lineno": 597,
+      "static": false,
+      "parameters": [
+        {
+          "name": "arg",
+          "class": "ActiveSupport::Callbacks::Filters::Environment",
+          "object_id": 776860,
+          "value": null,
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActiveSupport::Callbacks::CallbackSequence",
+        "object_id": 338480,
+        "value": "#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc0a6c7b20>"
+      }
+    },
+    {
+      "id": 39,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 38,
+      "elapsed": 0.00013176599168218672,
+      "elapsed_instrumentation": 0.00019529100973159075,
+      "return_value": {
+        "class": "Array",
+        "value": "[#<Proc:0x00007fdc0dca3bb8 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc0dca3cf8 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc0dca3f00 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc0dca48b0 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib]",
+        "object_id": 338500,
+        "size": 4
+      }
+    },
+    {
+      "id": 40,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActiveSupport::Callbacks::CallbackSequence",
+      "method_id": "invoke_after",
+      "path": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb",
+      "lineno": 601,
+      "static": false,
+      "parameters": [
+        {
+          "name": "arg",
+          "class": "ActiveSupport::Callbacks::Filters::Environment",
+          "object_id": 776860,
+          "value": null,
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActiveSupport::Callbacks::CallbackSequence",
+        "object_id": 338480,
+        "value": "#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc0a6c7b20>"
+      }
+    },
+    {
+      "id": 41,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 40,
+      "elapsed": 0.000004379980964586139,
+      "elapsed_instrumentation": 0.00011839100625365973,
+      "return_value": {
+        "class": "Array",
+        "value": "[]",
+        "object_id": 338520,
+        "size": 0
+      }
+    },
+    {
+      "id": 42,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActionDispatch::Cookies::CookieJar",
+      "method_id": "update",
+      "path": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb",
+      "lineno": 344,
+      "static": false,
+      "parameters": [
+        {
+          "name": "other_hash",
+          "class": "Hash",
+          "object_id": 776880,
+          "value": "{}",
+          "kind": "req",
+          "size": 0
+        }
+      ],
+      "receiver": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "object_id": 776660,
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c89a0>"
+      }
+    },
+    {
+      "id": 43,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 42,
+      "elapsed": 0.000005363981472328305,
+      "elapsed_instrumentation": 0.0001145470014307648,
+      "return_value": {
+        "class": "ActionDispatch::Cookies::CookieJar",
+        "value": "#<ActionDispatch::Cookies::CookieJar:0x00007fdc077c89a0>",
+        "object_id": 776660
+      }
+    },
+    {
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 11
+    }
+  ],
+  "version": "1.12.0",
+  "metadata": {
+    "app": "mastodon",
+    "language": {
+      "name": "ruby",
+      "engine": "ruby",
+      "version": "3.2.2"
+    },
+    "client": {
+      "name": "appmap",
+      "url": "https://github.com/applandinc/appmap-ruby",
+      "version": "0.102.1"
+    },
+    "frameworks": [
+      {
+        "name": "rails",
+        "version": "7.1.1"
+      },
+      {
+        "name": "rspec",
+        "version": "3.12.2"
+      }
+    ],
+    "git": {
+      "repository": "https://github.com/sgrigson/mastodon.git",
+      "branch": "appmap-config",
+      "commit": "743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_annotated_tag": "0.1.2-14597-g743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_tag": "v4.2.0",
+      "git_commits_since_last_annotated_tag": 0,
+      "git_commits_since_last_tag": 0
+    },
+    "name": "Settings::TwoFactorAuthentication::OtpAuthenticationController POST #create when not signed in redirects to login",
+    "source_location": "spec/controllers/settings/two_factor_authentication/otp_authentication_controller_spec.rb",
+    "recorder": {
+      "name": "rspec",
+      "type": "tests"
+    },
+    "test_status": "failed",
+    "test_failure": {
+      "message": "Exception(s) occurred within instrumentation subscribers: NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError, NoMethodError",
+      "location": "spec/controllers/settings/two_factor_authentication/otp_authentication_controller_spec.rb:93"
+    },
+    "exception": {
+      "class": "ActiveSupport::Notifications::InstrumentationSubscriberError",
+      "message": "Exception(s) occurred within instrumentation subscribers: NoMethodError, NoMethodError, NoMethodErro (...646 more characters)"
+    }
+  },
+  "classMap": [
+    {
+      "name": "actionpack",
+      "type": "package",
+      "children": [
+        {
+          "name": "ActionDispatch",
+          "type": "class",
+          "children": [
+            {
+              "name": "Cookies",
+              "type": "class",
+              "children": [
+                {
+                  "name": "CookieJar",
+                  "type": "class",
+                  "children": [
+                    {
+                      "name": "update",
+                      "type": "function",
+                      "labels": [
+                        "http.session.write"
+                      ],
+                      "static": false,
+                      "location": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb:344"
+                    },
+                    {
+                      "name": "[]",
+                      "type": "function",
+                      "labels": [
+                        "http.session.read"
+                      ],
+                      "static": false,
+                      "location": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb:328"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "activesupport",
+      "type": "package",
+      "children": [
+        {
+          "name": "ActiveSupport",
+          "type": "class",
+          "children": [
+            {
+              "name": "Callbacks",
+              "type": "class",
+              "children": [
+                {
+                  "name": "CallbackSequence",
+                  "type": "class",
+                  "children": [
+                    {
+                      "name": "invoke_before",
+                      "type": "function",
+                      "labels": [
+                        "mvc.before_action"
+                      ],
+                      "static": false,
+                      "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:597"
+                    },
+                    {
+                      "name": "invoke_after",
+                      "type": "function",
+                      "labels": [
+                        "mvc.after_action"
+                      ],
+                      "static": false,
+                      "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:601"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "logger",
+      "type": "package",
+      "children": [
+        {
+          "name": "Logger",
+          "type": "class",
+          "children": [
+            {
+              "name": "LogDevice",
+              "type": "class",
+              "children": [
+                {
+                  "name": "write",
+                  "type": "function",
+                  "labels": [
+                    "log"
+                  ],
+                  "static": false,
+                  "location": "/usr/local/lib/ruby/3.2.0/logger/log_device.rb:31"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "app",
+      "type": "package",
+      "children": [
+        {
+          "name": "controllers",
+          "type": "package",
+          "children": [
+            {
+              "name": "concerns",
+              "type": "package",
+              "children": [
+                {
+                  "name": "Localized",
+                  "type": "class",
+                  "children": [
+                    {
+                      "name": "set_locale",
+                      "type": "function",
+                      "static": false,
+                      "location": "app/controllers/concerns/localized.rb:10"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "ApplicationController",
+              "type": "class",
+              "children": [
+                {
+                  "name": "current_session",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/controllers/application_controller.rb:153"
+                },
+                {
+                  "name": "check_self_destruct!",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/controllers/application_controller.rb:176"
+                },
+                {
+                  "name": "set_cache_control_defaults",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/controllers/application_controller.rb:185"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "helpers",
+          "type": "package",
+          "children": [
+            {
+              "name": "SelfDestructHelper",
+              "type": "class",
+              "children": [
+                {
+                  "name": "self_destruct?",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/helpers/self_destruct_helper.rb:11"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "http",
+      "name": "HTTP server requests",
+      "children": [
+        {
+          "type": "route",
+          "name": "GET /settings/otp_authentication"
+        }
+      ]
+    }
+  ]
+}

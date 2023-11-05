@@ -1,0 +1,267 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Kernel",
+      "method_id": "eval",
+      "path": "Kernel.eval",
+      "static": true,
+      "parameters": [
+        {
+          "name": "string",
+          "class": "String",
+          "object_id": 195080,
+          "value": "            def before_post_process(*args, &blk)\n              set_callback(:post_process, :before,  (...156 more characters)",
+          "kind": "req"
+        },
+        {
+          "name": "arg",
+          "class": "Array",
+          "object_id": 195100,
+          "value": "[]",
+          "kind": "rest",
+          "size": 0
+        }
+      ],
+      "receiver": {
+        "class": "Class",
+        "object_id": 195060,
+        "value": "Backup"
+      }
+    },
+    {
+      "id": 2,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 1,
+      "elapsed": 0.0001213040086440742,
+      "elapsed_instrumentation": 0.0002772650041151792,
+      "return_value": {
+        "class": "Symbol",
+        "value": ":after_post_process",
+        "object_id": 19083868
+      }
+    },
+    {
+      "id": 3,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Kernel",
+      "method_id": "eval",
+      "path": "Kernel.eval",
+      "static": true,
+      "parameters": [
+        {
+          "name": "string",
+          "class": "String",
+          "object_id": 195120,
+          "value": "            def before_dump_post_process(*args, &blk)\n              set_callback(:dump_post_process, (...176 more characters)",
+          "kind": "req"
+        },
+        {
+          "name": "arg",
+          "class": "Array",
+          "object_id": 195140,
+          "value": "[]",
+          "kind": "rest",
+          "size": 0
+        }
+      ],
+      "receiver": {
+        "class": "Class",
+        "object_id": 195060,
+        "value": "Backup"
+      }
+    },
+    {
+      "id": 4,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 3,
+      "elapsed": 0.00007938701310195029,
+      "elapsed_instrumentation": 0.0000840960128698498,
+      "return_value": {
+        "class": "Symbol",
+        "value": ":after_dump_post_process",
+        "object_id": 24125148
+      }
+    },
+    {
+      "id": 5,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Kernel",
+      "method_id": "eval",
+      "path": "Kernel.eval",
+      "static": true,
+      "parameters": [
+        {
+          "name": "string",
+          "class": "String",
+          "object_id": 195160,
+          "value": "            def before_dump_validate(*args, &blk)\n              set_callback(:dump_validate, :before (...160 more characters)",
+          "kind": "req"
+        },
+        {
+          "name": "arg",
+          "class": "Array",
+          "object_id": 195180,
+          "value": "[]",
+          "kind": "rest",
+          "size": 0
+        }
+      ],
+      "receiver": {
+        "class": "Class",
+        "object_id": 195060,
+        "value": "Backup"
+      }
+    },
+    {
+      "id": 6,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 5,
+      "elapsed": 0.00009040700388140976,
+      "elapsed_instrumentation": 0.0000694410118740052,
+      "return_value": {
+        "class": "Symbol",
+        "value": ":after_dump_validate",
+        "object_id": 24125788
+      }
+    },
+    {
+      "id": 7,
+      "event": "call",
+      "thread_id": 9160,
+      "sql_query": {
+        "sql": "SELECT a.attname, format_type(a.atttypid, a.atttypmod),\n       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,\n       c.collname, col_description(a.attrelid, a.attnum) AS comment,\n       a.attidentity AS identity,\n       attgenerated as attgenerated\n  FROM pg_attribute a\n  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum\n  LEFT JOIN pg_type t ON a.atttypid = t.oid\n  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation\n WHERE a.attrelid = '\"backups\"'::regclass\n   AND a.attnum > 0 AND NOT a.attisdropped\n ORDER BY a.attnum\n",
+        "database_type": "postgres"
+      }
+    },
+    {
+      "id": 8,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 7,
+      "elapsed": 0.002191547,
+      "elapsed_instrumentation": 0.0001187679881695658
+    },
+    {
+      "id": 9,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "BackupPolicy",
+      "method_id": "create?",
+      "path": "app/policies/backup_policy.rb",
+      "lineno": 6,
+      "static": false,
+      "receiver": {
+        "class": "BackupPolicy",
+        "object_id": 195220,
+        "value": "#<BackupPolicy:0x00007fdc0b51cae0>"
+      }
+    },
+    {
+      "id": 10,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 9,
+      "elapsed": 0.0000059010053519159555,
+      "elapsed_instrumentation": 0.00012529297964647412
+    }
+  ],
+  "version": "1.12.0",
+  "metadata": {
+    "app": "mastodon",
+    "language": {
+      "name": "ruby",
+      "engine": "ruby",
+      "version": "3.2.2"
+    },
+    "client": {
+      "name": "appmap",
+      "url": "https://github.com/applandinc/appmap-ruby",
+      "version": "0.102.1"
+    },
+    "frameworks": [
+      {
+        "name": "rails",
+        "version": "7.1.1"
+      },
+      {
+        "name": "rspec",
+        "version": "3.12.2"
+      }
+    ],
+    "git": {
+      "repository": "https://github.com/sgrigson/mastodon.git",
+      "branch": "appmap-config",
+      "commit": "743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_annotated_tag": "0.1.2-14597-g743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_tag": "v4.2.0",
+      "git_commits_since_last_annotated_tag": 0,
+      "git_commits_since_last_tag": 0
+    },
+    "name": "BackupPolicy create? when not user_signed_in? denies",
+    "source_location": "spec/policies/backup_policy_spec.rb",
+    "recorder": {
+      "name": "rspec",
+      "type": "tests"
+    },
+    "test_status": "succeeded"
+  },
+  "classMap": [
+    {
+      "name": "ruby",
+      "type": "package",
+      "children": [
+        {
+          "name": "Kernel",
+          "type": "class",
+          "children": [
+            {
+              "name": "eval",
+              "type": "function",
+              "labels": [
+                "lang.eval"
+              ],
+              "static": true,
+              "location": "Kernel.eval"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "app/policies",
+      "type": "package",
+      "children": [
+        {
+          "name": "BackupPolicy",
+          "type": "class",
+          "children": [
+            {
+              "name": "create?",
+              "type": "function",
+              "static": false,
+              "location": "app/policies/backup_policy.rb:6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "database",
+      "name": "Database",
+      "children": [
+        {
+          "type": "query",
+          "name": "SELECT a.attname, format_type(a.atttypid, a.atttypmod),\n       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,\n       c.collname, col_description(a.attrelid, a.attnum) AS comment,\n       a.attidentity AS identity,\n       attgenerated as attgenerated\n  FROM pg_attribute a\n  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum\n  LEFT JOIN pg_type t ON a.atttypid = t.oid\n  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation\n WHERE a.attrelid = '\"backups\"'::regclass\n   AND a.attnum > 0 AND NOT a.attisdropped\n ORDER BY a.attnum\n"
+        }
+      ]
+    }
+  ]
+}

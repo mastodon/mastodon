@@ -1,0 +1,114 @@
+[
+  {
+    "caller": "GET /api/v1/accounts/verify_credentials",
+    "callee": "activesupport/ActiveSupport"
+  },
+  {
+    "caller": "GET /api/v1/accounts/verify_credentials",
+    "callee": "app/controllers"
+  },
+  {
+    "caller": "GET /api/v1/accounts/verify_credentials",
+    "callee": "app/lib"
+  },
+  {
+    "caller": "GET /api/v1/accounts/verify_credentials",
+    "callee": "lib/chewy/strategy"
+  },
+  {
+    "caller": "GET /api/v1/accounts/verify_credentials",
+    "callee": "logger/Logger"
+  },
+  {
+    "caller": "GET /api/v1/accounts/verify_credentials",
+    "callee": "ruby/Array"
+  },
+  {
+    "caller": "GET /api/v1/accounts/verify_credentials",
+    "callee": "ruby/String"
+  },
+  {
+    "caller": "actionpack/ActionController",
+    "callee": "activesupport/ActiveSupport"
+  },
+  {
+    "caller": "actionpack/ActionController",
+    "callee": "app/controllers"
+  },
+  {
+    "caller": "actionpack/ActionController",
+    "callee": "json/JSON"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SAVEPOINT active_record_1"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SELECT 1 AS one FROM \"oauth_access_tokens\" WHERE \"oauth_access_tokens\".\"token\" = $1 AND \"oauth_access_tokens\".\"id\" != $2 LIMIT $3"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "actionpack/ActionController"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/controllers"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/helpers"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/lib"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "logger/Logger"
+  },
+  {
+    "caller": "app/controllers",
+    "callee": "SELECT \"accounts\".\"id\", \"accounts\".\"username\", \"accounts\".\"domain\", \"accounts\".\"private_key\", \"accounts\".\"public_key\", \"accounts\".\"created_at\", \"accounts\".\"updated_at\", \"accounts\".\"note\", \"accounts\".\"display_name\", \"accounts\".\"uri\", \"accounts\".\"url\", \"accounts\".\"avatar_file_name\", \"accounts\".\"avatar_content_type\", \"accounts\".\"avatar_file_size\", \"accounts\".\"avatar_updated_at\", \"accounts\".\"header_file_name\", \"accounts\".\"header_content_type\", \"accounts\".\"header_file_size\", \"accounts\".\"header_updated_at\", \"accounts\".\"avatar_remote_url\", \"accounts\".\"locked\", \"accounts\".\"header_remote_url\", \"accounts\".\"last_webfingered_at\", \"accounts\".\"inbox_url\", \"accounts\".\"outbox_url\", \"accounts\".\"shared_inbox_url\", \"accounts\".\"followers_url\", \"accounts\".\"protocol\", \"accounts\".\"memorial\", \"accounts\".\"moved_to_account_id\", \"accounts\".\"featured_collection_url\", \"accounts\".\"fields\", \"accounts\".\"actor_type\", \"accounts\".\"discoverable\", \"accounts\".\"also_known_as\", \"accounts\".\"silenced_at\", \"accounts\".\"suspended_at\", \"accounts\".\"hide_collections\", \"accounts\".\"avatar_storage_schema_version\", \"accounts\".\"header_storage_schema_version\", \"accounts\".\"devices_url\", \"accounts\".\"suspension_origin\", \"accounts\".\"sensitized_at\", \"accounts\".\"trendable\", \"accounts\".\"reviewed_at\", \"accounts\".\"requested_review_at\", \"accounts\".\"indexable\" FROM \"accounts\" WHERE \"accounts\".\"id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/controllers",
+    "callee": "SELECT \"oauth_access_tokens\".* FROM \"oauth_access_tokens\" WHERE \"oauth_access_tokens\".\"token\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/controllers",
+    "callee": "SELECT \"users\".\"id\", \"users\".\"email\", \"users\".\"created_at\", \"users\".\"updated_at\", \"users\".\"encrypted_password\", \"users\".\"reset_password_token\", \"users\".\"reset_password_sent_at\", \"users\".\"sign_in_count\", \"users\".\"current_sign_in_at\", \"users\".\"last_sign_in_at\", \"users\".\"admin\", \"users\".\"confirmation_token\", \"users\".\"confirmed_at\", \"users\".\"confirmation_sent_at\", \"users\".\"unconfirmed_email\", \"users\".\"locale\", \"users\".\"encrypted_otp_secret\", \"users\".\"encrypted_otp_secret_iv\", \"users\".\"encrypted_otp_secret_salt\", \"users\".\"consumed_timestep\", \"users\".\"otp_required_for_login\", \"users\".\"last_emailed_at\", \"users\".\"otp_backup_codes\", \"users\".\"account_id\", \"users\".\"disabled\", \"users\".\"moderator\", \"users\".\"invite_id\", \"users\".\"chosen_languages\", \"users\".\"created_by_application_id\", \"users\".\"approved\", \"users\".\"sign_in_token\", \"users\".\"sign_in_token_sent_at\", \"users\".\"webauthn_id\", \"users\".\"sign_up_ip\", \"users\".\"role_id\", \"users\".\"settings\", \"users\".\"time_zone\" FROM \"users\" WHERE \"users\".\"id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/controllers",
+    "callee": "actionpack/ActionDispatch"
+  },
+  {
+    "caller": "app/controllers",
+    "callee": "activesupport/ActiveSupport"
+  },
+  {
+    "caller": "app/controllers",
+    "callee": "app/helpers"
+  },
+  {
+    "caller": "app/controllers",
+    "callee": "app/models"
+  },
+  {
+    "caller": "app/lib",
+    "callee": "RELEASE SAVEPOINT active_record_1"
+  },
+  {
+    "caller": "app/lib",
+    "callee": "UPDATE \"oauth_access_tokens\" SET \"last_used_at\" = $1, \"last_used_ip\" = $2 WHERE \"oauth_access_tokens\".\"id\" = $3"
+  },
+  {
+    "caller": "app/lib",
+    "callee": "activesupport/ActiveSupport"
+  },
+  {
+    "caller": "lib/chewy/strategy",
+    "callee": "app/lib"
+  }
+]

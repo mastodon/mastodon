@@ -1,0 +1,38 @@
+[
+  {
+    "caller": "GET /auth/setup",
+    "callee": "actionpack/ActionDispatch"
+  },
+  {
+    "caller": "GET /auth/setup",
+    "callee": "activesupport/ActiveSupport"
+  },
+  {
+    "caller": "GET /auth/setup",
+    "callee": "app/controllers"
+  },
+  {
+    "caller": "GET /auth/setup",
+    "callee": "logger/Logger"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "actionpack/ActionDispatch"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/controllers"
+  },
+  {
+    "caller": "app/controllers",
+    "callee": "actionpack/ActionDispatch"
+  },
+  {
+    "caller": "app/controllers",
+    "callee": "activesupport/ActiveSupport"
+  },
+  {
+    "caller": "app/controllers",
+    "callee": "app/helpers"
+  }
+]

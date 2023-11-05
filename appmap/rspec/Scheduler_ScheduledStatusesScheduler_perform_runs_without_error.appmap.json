@@ -1,0 +1,251 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Scheduler::ScheduledStatusesScheduler",
+      "method_id": "perform",
+      "path": "app/workers/scheduler/scheduled_statuses_scheduler.rb",
+      "lineno": 8,
+      "static": false,
+      "receiver": {
+        "class": "Scheduler::ScheduledStatusesScheduler",
+        "object_id": 400060,
+        "value": "#<Scheduler::ScheduledStatusesScheduler:0x00007fdc06e388e0>"
+      }
+    },
+    {
+      "id": 2,
+      "event": "call",
+      "thread_id": 9160,
+      "sql_query": {
+        "sql": "SELECT a.attname, format_type(a.atttypid, a.atttypmod),\n       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,\n       c.collname, col_description(a.attrelid, a.attnum) AS comment,\n       a.attidentity AS identity,\n       attgenerated as attgenerated\n  FROM pg_attribute a\n  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum\n  LEFT JOIN pg_type t ON a.atttypid = t.oid\n  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation\n WHERE a.attrelid = '\"scheduled_statuses\"'::regclass\n   AND a.attnum > 0 AND NOT a.attisdropped\n ORDER BY a.attnum\n",
+        "database_type": "postgres"
+      }
+    },
+    {
+      "id": 3,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 2,
+      "elapsed": 0.002603183,
+      "elapsed_instrumentation": 0.00008407499990426004
+    },
+    {
+      "id": 4,
+      "event": "call",
+      "thread_id": 9160,
+      "sql_query": {
+        "sql": "SELECT a.attname\n  FROM (\n         SELECT indrelid, indkey, generate_subscripts(indkey, 1) idx\n           FROM pg_index\n          WHERE indrelid = '\"scheduled_statuses\"'::regclass\n            AND indisprimary\n       ) i\n  JOIN pg_attribute a\n    ON a.attrelid = i.indrelid\n   AND a.attnum = i.indkey[i.idx]\n ORDER BY i.idx\n",
+        "database_type": "postgres"
+      }
+    },
+    {
+      "id": 5,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 4,
+      "elapsed": 0.00402736,
+      "elapsed_instrumentation": 0.00010729202767834067
+    },
+    {
+      "id": 6,
+      "event": "call",
+      "thread_id": 9160,
+      "sql_query": {
+        "sql": "SELECT \"scheduled_statuses\".* FROM \"scheduled_statuses\" WHERE (scheduled_at <= '2023-11-05 23:06:52.269950') ORDER BY \"scheduled_statuses\".\"id\" ASC LIMIT $1",
+        "database_type": "postgres"
+      }
+    },
+    {
+      "id": 7,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 6,
+      "elapsed": 0.001346371,
+      "elapsed_instrumentation": 0.00006980300531722605
+    },
+    {
+      "id": 8,
+      "event": "call",
+      "thread_id": 9160,
+      "sql_query": {
+        "sql": "SELECT a.attname, format_type(a.atttypid, a.atttypmod),\n       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,\n       c.collname, col_description(a.attrelid, a.attnum) AS comment,\n       a.attidentity AS identity,\n       attgenerated as attgenerated\n  FROM pg_attribute a\n  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum\n  LEFT JOIN pg_type t ON a.atttypid = t.oid\n  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation\n WHERE a.attrelid = '\"announcements\"'::regclass\n   AND a.attnum > 0 AND NOT a.attisdropped\n ORDER BY a.attnum\n",
+        "database_type": "postgres"
+      }
+    },
+    {
+      "id": 9,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 8,
+      "elapsed": 0.003766546,
+      "elapsed_instrumentation": 0.00009467400377616286
+    },
+    {
+      "id": 10,
+      "event": "call",
+      "thread_id": 9160,
+      "sql_query": {
+        "sql": "SELECT a.attname\n  FROM (\n         SELECT indrelid, indkey, generate_subscripts(indkey, 1) idx\n           FROM pg_index\n          WHERE indrelid = '\"announcements\"'::regclass\n            AND indisprimary\n       ) i\n  JOIN pg_attribute a\n    ON a.attrelid = i.indrelid\n   AND a.attnum = i.indkey[i.idx]\n ORDER BY i.idx\n",
+        "database_type": "postgres"
+      }
+    },
+    {
+      "id": 11,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 10,
+      "elapsed": 0.004187147,
+      "elapsed_instrumentation": 0.00012512400280684233
+    },
+    {
+      "id": 12,
+      "event": "call",
+      "thread_id": 9160,
+      "sql_query": {
+        "sql": "SELECT \"announcements\".* FROM \"announcements\" WHERE \"announcements\".\"published\" = $1 AND (scheduled_at IS NOT NULL AND scheduled_at <= '2023-11-05 23:06:52.354462') ORDER BY \"announcements\".\"id\" ASC LIMIT $2",
+        "database_type": "postgres"
+      }
+    },
+    {
+      "id": 13,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 12,
+      "elapsed": 0.001364704,
+      "elapsed_instrumentation": 0.0001000199990812689
+    },
+    {
+      "id": 14,
+      "event": "call",
+      "thread_id": 9160,
+      "sql_query": {
+        "sql": "SELECT \"announcements\".\"id\" FROM \"announcements\" WHERE \"announcements\".\"published\" = $1 AND (ends_at IS NOT NULL AND ends_at <= '2023-11-05 23:01:52.363692') ORDER BY \"announcements\".\"id\" ASC LIMIT $2",
+        "database_type": "postgres"
+      }
+    },
+    {
+      "id": 15,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 14,
+      "elapsed": 0.000556643,
+      "elapsed_instrumentation": 0.00010415399447083473
+    },
+    {
+      "id": 16,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 1,
+      "elapsed": 0.1428828120115213,
+      "elapsed_instrumentation": 0.000372832000721246,
+      "return_value": {
+        "class": "Integer",
+        "value": "0",
+        "object_id": 1
+      }
+    }
+  ],
+  "version": "1.12.0",
+  "metadata": {
+    "app": "mastodon",
+    "language": {
+      "name": "ruby",
+      "engine": "ruby",
+      "version": "3.2.2"
+    },
+    "client": {
+      "name": "appmap",
+      "url": "https://github.com/applandinc/appmap-ruby",
+      "version": "0.102.1"
+    },
+    "frameworks": [
+      {
+        "name": "rails",
+        "version": "7.1.1"
+      },
+      {
+        "name": "rspec",
+        "version": "3.12.2"
+      }
+    ],
+    "git": {
+      "repository": "https://github.com/sgrigson/mastodon.git",
+      "branch": "appmap-config",
+      "commit": "743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_annotated_tag": "0.1.2-14597-g743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_tag": "v4.2.0",
+      "git_commits_since_last_annotated_tag": 0,
+      "git_commits_since_last_tag": 0
+    },
+    "name": "Scheduler::ScheduledStatusesScheduler perform runs without error",
+    "source_location": "spec/workers/scheduler/scheduled_statuses_scheduler_spec.rb",
+    "recorder": {
+      "name": "rspec",
+      "type": "tests"
+    },
+    "test_status": "succeeded"
+  },
+  "classMap": [
+    {
+      "name": "app/workers/scheduler",
+      "type": "package",
+      "children": [
+        {
+          "name": "Scheduler",
+          "type": "class",
+          "children": [
+            {
+              "name": "ScheduledStatusesScheduler",
+              "type": "class",
+              "children": [
+                {
+                  "name": "perform",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/workers/scheduler/scheduled_statuses_scheduler.rb:8"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "database",
+      "name": "Database",
+      "children": [
+        {
+          "type": "query",
+          "name": "SELECT a.attname, format_type(a.atttypid, a.atttypmod),\n       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,\n       c.collname, col_description(a.attrelid, a.attnum) AS comment,\n       a.attidentity AS identity,\n       attgenerated as attgenerated\n  FROM pg_attribute a\n  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum\n  LEFT JOIN pg_type t ON a.atttypid = t.oid\n  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation\n WHERE a.attrelid = '\"scheduled_statuses\"'::regclass\n   AND a.attnum > 0 AND NOT a.attisdropped\n ORDER BY a.attnum\n"
+        },
+        {
+          "type": "query",
+          "name": "SELECT a.attname\n  FROM (\n         SELECT indrelid, indkey, generate_subscripts(indkey, 1) idx\n           FROM pg_index\n          WHERE indrelid = '\"scheduled_statuses\"'::regclass\n            AND indisprimary\n       ) i\n  JOIN pg_attribute a\n    ON a.attrelid = i.indrelid\n   AND a.attnum = i.indkey[i.idx]\n ORDER BY i.idx\n"
+        },
+        {
+          "type": "query",
+          "name": "SELECT \"scheduled_statuses\".* FROM \"scheduled_statuses\" WHERE (scheduled_at <= '2023-11-05 23:06:52.269950') ORDER BY \"scheduled_statuses\".\"id\" ASC LIMIT $1"
+        },
+        {
+          "type": "query",
+          "name": "SELECT a.attname, format_type(a.atttypid, a.atttypmod),\n       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,\n       c.collname, col_description(a.attrelid, a.attnum) AS comment,\n       a.attidentity AS identity,\n       attgenerated as attgenerated\n  FROM pg_attribute a\n  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum\n  LEFT JOIN pg_type t ON a.atttypid = t.oid\n  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation\n WHERE a.attrelid = '\"announcements\"'::regclass\n   AND a.attnum > 0 AND NOT a.attisdropped\n ORDER BY a.attnum\n"
+        },
+        {
+          "type": "query",
+          "name": "SELECT a.attname\n  FROM (\n         SELECT indrelid, indkey, generate_subscripts(indkey, 1) idx\n           FROM pg_index\n          WHERE indrelid = '\"announcements\"'::regclass\n            AND indisprimary\n       ) i\n  JOIN pg_attribute a\n    ON a.attrelid = i.indrelid\n   AND a.attnum = i.indkey[i.idx]\n ORDER BY i.idx\n"
+        },
+        {
+          "type": "query",
+          "name": "SELECT \"announcements\".* FROM \"announcements\" WHERE \"announcements\".\"published\" = $1 AND (scheduled_at IS NOT NULL AND scheduled_at <= '2023-11-05 23:06:52.354462') ORDER BY \"announcements\".\"id\" ASC LIMIT $2"
+        },
+        {
+          "type": "query",
+          "name": "SELECT \"announcements\".\"id\" FROM \"announcements\" WHERE \"announcements\".\"published\" = $1 AND (ends_at IS NOT NULL AND ends_at <= '2023-11-05 23:01:52.363692') ORDER BY \"announcements\".\"id\" ASC LIMIT $2"
+        }
+      ]
+    }
+  ]
+}

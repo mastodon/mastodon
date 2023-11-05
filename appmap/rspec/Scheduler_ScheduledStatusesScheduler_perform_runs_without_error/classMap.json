@@ -1,0 +1,60 @@
+[
+  {
+    "name": "app/workers/scheduler",
+    "type": "package",
+    "children": [
+      {
+        "name": "Scheduler",
+        "type": "class",
+        "children": [
+          {
+            "name": "ScheduledStatusesScheduler",
+            "type": "class",
+            "children": [
+              {
+                "name": "perform",
+                "type": "function",
+                "static": false,
+                "location": "app/workers/scheduler/scheduled_statuses_scheduler.rb:8"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "database",
+    "name": "Database",
+    "children": [
+      {
+        "type": "query",
+        "name": "SELECT a.attname, format_type(a.atttypid, a.atttypmod),\n       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,\n       c.collname, col_description(a.attrelid, a.attnum) AS comment,\n       a.attidentity AS identity,\n       attgenerated as attgenerated\n  FROM pg_attribute a\n  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum\n  LEFT JOIN pg_type t ON a.atttypid = t.oid\n  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation\n WHERE a.attrelid = '\"scheduled_statuses\"'::regclass\n   AND a.attnum > 0 AND NOT a.attisdropped\n ORDER BY a.attnum\n"
+      },
+      {
+        "type": "query",
+        "name": "SELECT a.attname\n  FROM (\n         SELECT indrelid, indkey, generate_subscripts(indkey, 1) idx\n           FROM pg_index\n          WHERE indrelid = '\"scheduled_statuses\"'::regclass\n            AND indisprimary\n       ) i\n  JOIN pg_attribute a\n    ON a.attrelid = i.indrelid\n   AND a.attnum = i.indkey[i.idx]\n ORDER BY i.idx\n"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"scheduled_statuses\".* FROM \"scheduled_statuses\" WHERE (scheduled_at <= '2023-11-05 23:06:52.269950') ORDER BY \"scheduled_statuses\".\"id\" ASC LIMIT $1"
+      },
+      {
+        "type": "query",
+        "name": "SELECT a.attname, format_type(a.atttypid, a.atttypmod),\n       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,\n       c.collname, col_description(a.attrelid, a.attnum) AS comment,\n       a.attidentity AS identity,\n       attgenerated as attgenerated\n  FROM pg_attribute a\n  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum\n  LEFT JOIN pg_type t ON a.atttypid = t.oid\n  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation\n WHERE a.attrelid = '\"announcements\"'::regclass\n   AND a.attnum > 0 AND NOT a.attisdropped\n ORDER BY a.attnum\n"
+      },
+      {
+        "type": "query",
+        "name": "SELECT a.attname\n  FROM (\n         SELECT indrelid, indkey, generate_subscripts(indkey, 1) idx\n           FROM pg_index\n          WHERE indrelid = '\"announcements\"'::regclass\n            AND indisprimary\n       ) i\n  JOIN pg_attribute a\n    ON a.attrelid = i.indrelid\n   AND a.attnum = i.indkey[i.idx]\n ORDER BY i.idx\n"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"announcements\".* FROM \"announcements\" WHERE \"announcements\".\"published\" = $1 AND (scheduled_at IS NOT NULL AND scheduled_at <= '2023-11-05 23:06:52.354462') ORDER BY \"announcements\".\"id\" ASC LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"announcements\".\"id\" FROM \"announcements\" WHERE \"announcements\".\"published\" = $1 AND (ends_at IS NOT NULL AND ends_at <= '2023-11-05 23:01:52.363692') ORDER BY \"announcements\".\"id\" ASC LIMIT $2"
+      }
+    ]
+  }
+]

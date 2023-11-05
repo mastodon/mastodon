@@ -1,0 +1,39 @@
+{
+  "app": "mastodon",
+  "language": {
+    "name": "ruby",
+    "engine": "ruby",
+    "version": "3.2.2"
+  },
+  "client": {
+    "name": "appmap",
+    "url": "https://github.com/applandinc/appmap-ruby",
+    "version": "0.102.1"
+  },
+  "frameworks": [
+    {
+      "name": "rails",
+      "version": "7.1.1"
+    },
+    {
+      "name": "rspec",
+      "version": "3.12.2"
+    }
+  ],
+  "git": {
+    "repository": "https://github.com/sgrigson/mastodon.git",
+    "branch": "appmap-config",
+    "commit": "743782bd299fd54e12a4a5829872efc505132ab3",
+    "git_last_annotated_tag": "0.1.2-14597-g743782bd299fd54e12a4a5829872efc505132ab3",
+    "git_last_tag": "v4.2.0",
+    "git_commits_since_last_annotated_tag": 0,
+    "git_commits_since_last_tag": 0
+  },
+  "name": "ConnectionPool::SharedTimedStack #empty? returns false when there are connections on the stack",
+  "source_location": "spec/lib/connection_pool/shared_timed_stack_spec.rb",
+  "recorder": {
+    "name": "rspec",
+    "type": "tests"
+  },
+  "test_status": "succeeded"
+}

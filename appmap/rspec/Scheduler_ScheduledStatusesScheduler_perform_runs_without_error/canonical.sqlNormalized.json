@@ -1,0 +1,7 @@
+[
+  "SELECT \"announcements\".* FROM \"announcements\" WHERE \"announcements\".\"published\" = $? AND (scheduled_at IS NOT ? AND scheduled_at <= ?) ORDER BY \"announcements\".\"id\" ASC LIMIT $?",
+  "SELECT \"announcements\".\"id\" FROM \"announcements\" WHERE \"announcements\".\"published\" = $? AND (ends_at IS NOT ? AND ends_at <= ?) ORDER BY \"announcements\".\"id\" ASC LIMIT $?",
+  "SELECT \"scheduled_statuses\".* FROM \"scheduled_statuses\" WHERE (scheduled_at <= ?) ORDER BY \"scheduled_statuses\".\"id\" ASC LIMIT $?",
+  "SELECT a.attname, format_type(a.atttypid, a.atttypmod),\n       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,\n       c.collname, col_description(a.attrelid, a.attnum) AS comment,\n       a.attidentity AS identity,\n       attgenerated as attgenerated\n  FROM pg_attribute a\n  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum\n  LEFT JOIN pg_type t ON a.atttypid = t.oid\n  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation\n WHERE a.attrelid = ?::regclass\n   AND a.attnum > ? AND NOT a.attisdropped\n ORDER BY a.attnum\n",
+  "SELECT a.attname\n  FROM (\n         SELECT indrelid, indkey, generate_subscripts(indkey, ?) idx\n           FROM pg_index\n          WHERE indrelid = ?::regclass\n            AND indisprimary\n       ) i\n  JOIN pg_attribute a\n    ON a.attrelid = i.indrelid\n   AND a.attnum = i.indkey[i.idx]\n ORDER BY i.idx\n"
+]

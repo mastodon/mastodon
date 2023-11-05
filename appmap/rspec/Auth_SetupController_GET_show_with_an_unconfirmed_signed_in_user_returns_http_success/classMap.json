@@ -1,0 +1,895 @@
+[
+  {
+    "name": "actionpack",
+    "type": "package",
+    "children": [
+      {
+        "name": "ActionDispatch",
+        "type": "class",
+        "children": [
+          {
+            "name": "Cookies",
+            "type": "class",
+            "children": [
+              {
+                "name": "CookieJar",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "update",
+                    "type": "function",
+                    "labels": [
+                      "http.session.write"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb:344"
+                  },
+                  {
+                    "name": "[]",
+                    "type": "function",
+                    "labels": [
+                      "http.session.read"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb:328"
+                  },
+                  {
+                    "name": "[]=",
+                    "type": "function",
+                    "labels": [
+                      "http.session.write"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb:362"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ActionController",
+        "type": "class",
+        "children": [
+          {
+            "name": "Renderers",
+            "type": "class",
+            "children": [
+              {
+                "name": "render_to_body",
+                "type": "function",
+                "labels": [
+                  "mvc.render"
+                ],
+                "static": false,
+                "location": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_controller/metal/renderers.rb:140"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "activesupport",
+    "type": "package",
+    "children": [
+      {
+        "name": "ActiveSupport",
+        "type": "class",
+        "children": [
+          {
+            "name": "Callbacks",
+            "type": "class",
+            "children": [
+              {
+                "name": "CallbackSequence",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "invoke_before",
+                    "type": "function",
+                    "labels": [
+                      "mvc.before_action"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:597"
+                  },
+                  {
+                    "name": "invoke_after",
+                    "type": "function",
+                    "labels": [
+                      "mvc.after_action"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:601"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "SecurityUtils",
+            "type": "class",
+            "children": [
+              {
+                "name": "secure_compare",
+                "type": "function",
+                "labels": [
+                  "crypto.secure_compare"
+                ],
+                "static": true,
+                "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/security_utils.rb:33"
+              }
+            ]
+          },
+          {
+            "name": "LazyLoadHooks",
+            "type": "class",
+            "children": [
+              {
+                "name": "run_load_hooks",
+                "type": "function",
+                "labels": [
+                  "deserialize.safe",
+                  "lang.eval.safe"
+                ],
+                "static": true,
+                "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/lazy_load_hooks.rb:75"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "logger",
+    "type": "package",
+    "children": [
+      {
+        "name": "Logger",
+        "type": "class",
+        "children": [
+          {
+            "name": "LogDevice",
+            "type": "class",
+            "children": [
+              {
+                "name": "write",
+                "type": "function",
+                "labels": [
+                  "log"
+                ],
+                "static": false,
+                "location": "/usr/local/lib/ruby/3.2.0/logger/log_device.rb:31"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "app",
+    "type": "package",
+    "children": [
+      {
+        "name": "controllers",
+        "type": "package",
+        "children": [
+          {
+            "name": "concerns",
+            "type": "package",
+            "children": [
+              {
+                "name": "Localized",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "set_locale",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/controllers/concerns/localized.rb:10"
+                  }
+                ]
+              },
+              {
+                "name": "CacheConcern",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "enforce_cache_control!",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/controllers/concerns/cache_concern.rb:165"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ApplicationController",
+            "type": "class",
+            "children": [
+              {
+                "name": "current_session",
+                "type": "function",
+                "static": false,
+                "location": "app/controllers/application_controller.rb:153"
+              },
+              {
+                "name": "check_self_destruct!",
+                "type": "function",
+                "static": false,
+                "location": "app/controllers/application_controller.rb:176"
+              },
+              {
+                "name": "set_cache_control_defaults",
+                "type": "function",
+                "static": false,
+                "location": "app/controllers/application_controller.rb:185"
+              },
+              {
+                "name": "current_theme",
+                "type": "function",
+                "static": false,
+                "location": "app/controllers/application_controller.rb:159"
+              },
+              {
+                "name": "body_class_string",
+                "type": "function",
+                "static": false,
+                "location": "app/controllers/application_controller.rb:165"
+              },
+              {
+                "name": "current_account",
+                "type": "function",
+                "static": false,
+                "location": "app/controllers/application_controller.rb:147"
+              }
+            ]
+          },
+          {
+            "name": "auth",
+            "type": "package",
+            "children": [
+              {
+                "name": "Auth",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "SetupController",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "show",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/controllers/auth/setup_controller.rb:13"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "models",
+        "type": "package",
+        "children": [
+          {
+            "name": "User",
+            "type": "class",
+            "children": [
+              {
+                "name": "active_for_authentication?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user.rb:244"
+              },
+              {
+                "name": "confirmed?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user.rb:161"
+              }
+            ]
+          },
+          {
+            "name": "Setting",
+            "type": "class",
+            "children": [
+              {
+                "name": "[]",
+                "type": "function",
+                "static": true,
+                "location": "app/models/setting.rb:24"
+              },
+              {
+                "name": "default_settings",
+                "type": "function",
+                "static": true,
+                "location": "app/models/setting.rb:55"
+              }
+            ]
+          },
+          {
+            "name": "concerns",
+            "type": "package",
+            "children": [
+              {
+                "name": "HasUserSettings",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "setting_theme",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/has_user_settings.rb:54"
+                  },
+                  {
+                    "name": "setting_system_font_ui",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/has_user_settings.rb:46"
+                  },
+                  {
+                    "name": "setting_reduce_motion",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/has_user_settings.rb:42"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "UserSettings",
+            "type": "class",
+            "children": [
+              {
+                "name": "[]",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user_settings.rb:60"
+              }
+            ]
+          },
+          {
+            "name": "user_settings",
+            "type": "package",
+            "children": [
+              {
+                "name": "UserSettings",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "DSL",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "ClassMethods",
+                        "type": "class",
+                        "children": [
+                          {
+                            "name": "definition_for",
+                            "type": "function",
+                            "static": true,
+                            "location": "app/models/user_settings/dsl.rb:29"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Setting",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "key",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/models/user_settings/setting.rb:63"
+                      },
+                      {
+                        "name": "value_for",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/models/user_settings/setting.rb:18"
+                      },
+                      {
+                        "name": "default_value",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/models/user_settings/setting.rb:34"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "helpers",
+        "type": "package",
+        "children": [
+          {
+            "name": "SelfDestructHelper",
+            "type": "class",
+            "children": [
+              {
+                "name": "self_destruct?",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/self_destruct_helper.rb:11"
+              }
+            ]
+          },
+          {
+            "name": "ApplicationHelper",
+            "type": "class",
+            "children": [
+              {
+                "name": "check_icon",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/application_helper.rb:116"
+              },
+              {
+                "name": "approved_registrations?",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/application_helper.rb:43"
+              },
+              {
+                "name": "cdn_host?",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/application_helper.rb:167"
+              },
+              {
+                "name": "cdn_host",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/application_helper.rb:163"
+              },
+              {
+                "name": "storage_host?",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/application_helper.rb:175"
+              },
+              {
+                "name": "title",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/application_helper.rb:94"
+              },
+              {
+                "name": "body_classes",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/application_helper.rb:154"
+              },
+              {
+                "name": "locale_direction",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/application_helper.rb:86"
+              }
+            ]
+          },
+          {
+            "name": "BrandingHelper",
+            "type": "class",
+            "children": [
+              {
+                "name": "logo_as_symbol",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/branding_helper.rb:4"
+              },
+              {
+                "name": "_logo_as_symbol_wordmark",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/branding_helper.rb:13"
+              },
+              {
+                "name": "render_symbol",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/branding_helper.rb:25"
+              }
+            ]
+          },
+          {
+            "name": "FlashesHelper",
+            "type": "class",
+            "children": [
+              {
+                "name": "user_facing_flashes",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/flashes_helper.rb:4"
+              }
+            ]
+          },
+          {
+            "name": "InstanceHelper",
+            "type": "class",
+            "children": [
+              {
+                "name": "site_title",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/instance_helper.rb:4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "views",
+        "type": "package",
+        "children": [
+          {
+            "name": "app_views_auth_setup_show_html_haml",
+            "type": "class",
+            "children": [
+              {
+                "name": "render",
+                "type": "function",
+                "labels": [
+                  "mvc.template"
+                ],
+                "static": true,
+                "location": "app/views/auth/setup/show.html.haml"
+              }
+            ]
+          },
+          {
+            "name": "app_views_auth_shared__progress_html_haml",
+            "type": "class",
+            "children": [
+              {
+                "name": "render",
+                "type": "function",
+                "labels": [
+                  "mvc.template"
+                ],
+                "static": true,
+                "location": "app/views/auth/shared/_progress.html.haml"
+              }
+            ]
+          },
+          {
+            "name": "app_views_shared__error_messages_html_haml",
+            "type": "class",
+            "children": [
+              {
+                "name": "render",
+                "type": "function",
+                "labels": [
+                  "mvc.template"
+                ],
+                "static": true,
+                "location": "app/views/shared/_error_messages.html.haml"
+              }
+            ]
+          },
+          {
+            "name": "app_views_auth_shared__links_html_haml",
+            "type": "class",
+            "children": [
+              {
+                "name": "render",
+                "type": "function",
+                "labels": [
+                  "mvc.template"
+                ],
+                "static": true,
+                "location": "app/views/auth/shared/_links.html.haml"
+              }
+            ]
+          },
+          {
+            "name": "app_views_application__flashes_html_haml",
+            "type": "class",
+            "children": [
+              {
+                "name": "render",
+                "type": "function",
+                "labels": [
+                  "mvc.template"
+                ],
+                "static": true,
+                "location": "app/views/application/_flashes.html.haml"
+              }
+            ]
+          },
+          {
+            "name": "app_views_layouts_application_html_haml",
+            "type": "class",
+            "children": [
+              {
+                "name": "render",
+                "type": "function",
+                "labels": [
+                  "mvc.template"
+                ],
+                "static": true,
+                "location": "app/views/layouts/application.html.haml"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "lib",
+        "type": "package",
+        "children": [
+          {
+            "name": "Themes",
+            "type": "class",
+            "children": [
+              {
+                "name": "names",
+                "type": "function",
+                "static": false,
+                "location": "app/lib/themes.rb:13"
+              }
+            ]
+          },
+          {
+            "name": "UserSettingsSerializer",
+            "type": "class",
+            "children": [
+              {
+                "name": "load",
+                "type": "function",
+                "static": true,
+                "location": "app/lib/user_settings_serializer.rb:4"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "ruby",
+    "type": "package",
+    "children": [
+      {
+        "name": "String",
+        "type": "class",
+        "children": [
+          {
+            "name": "unpack1",
+            "type": "function",
+            "labels": [
+              "string.unpack"
+            ],
+            "static": false,
+            "location": "<internal:pack>:28"
+          }
+        ]
+      },
+      {
+        "name": "Array",
+        "type": "class",
+        "children": [
+          {
+            "name": "pack",
+            "type": "function",
+            "labels": [
+              "array.pack"
+            ],
+            "static": false,
+            "location": "<internal:pack>:7"
+          }
+        ]
+      },
+      {
+        "name": "Kernel",
+        "type": "class",
+        "children": [
+          {
+            "name": "eval",
+            "type": "function",
+            "labels": [
+              "lang.eval"
+            ],
+            "static": true,
+            "location": "Kernel.eval"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "json",
+    "type": "package",
+    "children": [
+      {
+        "name": "JSON",
+        "type": "class",
+        "children": [
+          {
+            "name": "Ext",
+            "type": "class",
+            "children": [
+              {
+                "name": "Parser",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "parse",
+                    "type": "function",
+                    "labels": [
+                      "format.json.parse",
+                      "deserialize.safe"
+                    ],
+                    "static": false,
+                    "location": "JSON::Ext::Parser#parse"
+                  }
+                ]
+              },
+              {
+                "name": "Generator",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "State",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "generate",
+                        "type": "function",
+                        "labels": [
+                          "format.json.generate",
+                          "serialize"
+                        ],
+                        "static": false,
+                        "location": "JSON::Ext::Generator::State#generate"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "actionview",
+    "type": "package",
+    "children": [
+      {
+        "name": "ActionView",
+        "type": "class",
+        "children": [
+          {
+            "name": "Resolver",
+            "type": "class",
+            "children": [
+              {
+                "name": "find_all",
+                "type": "function",
+                "labels": [
+                  "mvc.template.resolver"
+                ],
+                "static": false,
+                "location": "vendor/bundle/ruby/3.2.0/gems/actionview-7.1.1/lib/action_view/template/resolver.rb:63"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "lib/webpacker",
+    "type": "package",
+    "children": [
+      {
+        "name": "Webpacker",
+        "type": "class",
+        "children": [
+          {
+            "name": "HelperExtensions",
+            "type": "class",
+            "children": [
+              {
+                "name": "javascript_pack_tag",
+                "type": "function",
+                "static": false,
+                "location": "lib/webpacker/helper_extensions.rb:4"
+              },
+              {
+                "name": "stylesheet_pack_tag",
+                "type": "function",
+                "static": false,
+                "location": "lib/webpacker/helper_extensions.rb:9"
+              },
+              {
+                "name": "preload_pack_asset",
+                "type": "function",
+                "static": false,
+                "location": "lib/webpacker/helper_extensions.rb:14"
+              }
+            ]
+          },
+          {
+            "name": "ManifestExtensions",
+            "type": "class",
+            "children": [
+              {
+                "name": "lookup",
+                "type": "function",
+                "static": false,
+                "location": "lib/webpacker/manifest_extensions.rb:4"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "http",
+    "name": "HTTP server requests",
+    "children": [
+      {
+        "type": "route",
+        "name": "GET /auth/setup"
+      }
+    ]
+  },
+  {
+    "type": "database",
+    "name": "Database",
+    "children": [
+      {
+        "type": "query",
+        "name": "SELECT \"users\".\"id\", \"users\".\"email\", \"users\".\"created_at\", \"users\".\"updated_at\", \"users\".\"encrypted_password\", \"users\".\"reset_password_token\", \"users\".\"reset_password_sent_at\", \"users\".\"sign_in_count\", \"users\".\"current_sign_in_at\", \"users\".\"last_sign_in_at\", \"users\".\"admin\", \"users\".\"confirmation_token\", \"users\".\"confirmed_at\", \"users\".\"confirmation_sent_at\", \"users\".\"unconfirmed_email\", \"users\".\"locale\", \"users\".\"encrypted_otp_secret\", \"users\".\"encrypted_otp_secret_iv\", \"users\".\"encrypted_otp_secret_salt\", \"users\".\"consumed_timestep\", \"users\".\"otp_required_for_login\", \"users\".\"last_emailed_at\", \"users\".\"otp_backup_codes\", \"users\".\"account_id\", \"users\".\"disabled\", \"users\".\"moderator\", \"users\".\"invite_id\", \"users\".\"chosen_languages\", \"users\".\"created_by_application_id\", \"users\".\"approved\", \"users\".\"sign_in_token\", \"users\".\"sign_in_token_sent_at\", \"users\".\"webauthn_id\", \"users\".\"sign_up_ip\", \"users\".\"role_id\", \"users\".\"settings\", \"users\".\"time_zone\" FROM \"users\" WHERE \"users\".\"id\" = $1 ORDER BY \"users\".\"id\" ASC LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"accounts\".\"id\", \"accounts\".\"username\", \"accounts\".\"domain\", \"accounts\".\"private_key\", \"accounts\".\"public_key\", \"accounts\".\"created_at\", \"accounts\".\"updated_at\", \"accounts\".\"note\", \"accounts\".\"display_name\", \"accounts\".\"uri\", \"accounts\".\"url\", \"accounts\".\"avatar_file_name\", \"accounts\".\"avatar_content_type\", \"accounts\".\"avatar_file_size\", \"accounts\".\"avatar_updated_at\", \"accounts\".\"header_file_name\", \"accounts\".\"header_content_type\", \"accounts\".\"header_file_size\", \"accounts\".\"header_updated_at\", \"accounts\".\"avatar_remote_url\", \"accounts\".\"locked\", \"accounts\".\"header_remote_url\", \"accounts\".\"last_webfingered_at\", \"accounts\".\"inbox_url\", \"accounts\".\"outbox_url\", \"accounts\".\"shared_inbox_url\", \"accounts\".\"followers_url\", \"accounts\".\"protocol\", \"accounts\".\"memorial\", \"accounts\".\"moved_to_account_id\", \"accounts\".\"featured_collection_url\", \"accounts\".\"fields\", \"accounts\".\"actor_type\", \"accounts\".\"discoverable\", \"accounts\".\"also_known_as\", \"accounts\".\"silenced_at\", \"accounts\".\"suspended_at\", \"accounts\".\"hide_collections\", \"accounts\".\"avatar_storage_schema_version\", \"accounts\".\"header_storage_schema_version\", \"accounts\".\"devices_url\", \"accounts\".\"suspension_origin\", \"accounts\".\"sensitized_at\", \"accounts\".\"trendable\", \"accounts\".\"reviewed_at\", \"accounts\".\"requested_review_at\", \"accounts\".\"indexable\" FROM \"accounts\" WHERE \"accounts\".\"id\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"session_activations\".* FROM \"session_activations\" WHERE \"session_activations\".\"user_id\" = $1 AND \"session_activations\".\"session_id\" = $2 LIMIT $3"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"session_activations\".* FROM \"session_activations\" WHERE \"session_activations\".\"session_id\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"settings\".* FROM \"settings\" WHERE (thing_type is NULL and thing_id is NULL) AND \"settings\".\"var\" = $1 ORDER BY \"settings\".\"id\" ASC LIMIT $2"
+      }
+    ]
+  },
+  {
+    "type": "class",
+    "name": "inline_template",
+    "children": [
+      {
+        "type": "function",
+        "name": "render",
+        "static": true
+      }
+    ]
+  }
+]

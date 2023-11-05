@@ -1,0 +1,51 @@
+[
+  {
+    "name": "ruby",
+    "type": "package",
+    "children": [
+      {
+        "name": "Kernel",
+        "type": "class",
+        "children": [
+          {
+            "name": "eval",
+            "type": "function",
+            "labels": [
+              "lang.eval"
+            ],
+            "static": true,
+            "location": "Kernel.eval"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "app/policies",
+    "type": "package",
+    "children": [
+      {
+        "name": "BackupPolicy",
+        "type": "class",
+        "children": [
+          {
+            "name": "create?",
+            "type": "function",
+            "static": false,
+            "location": "app/policies/backup_policy.rb:6"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "database",
+    "name": "Database",
+    "children": [
+      {
+        "type": "query",
+        "name": "SELECT a.attname, format_type(a.atttypid, a.atttypmod),\n       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,\n       c.collname, col_description(a.attrelid, a.attnum) AS comment,\n       a.attidentity AS identity,\n       attgenerated as attgenerated\n  FROM pg_attribute a\n  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum\n  LEFT JOIN pg_type t ON a.atttypid = t.oid\n  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation\n WHERE a.attrelid = '\"backups\"'::regclass\n   AND a.attnum > 0 AND NOT a.attisdropped\n ORDER BY a.attnum\n"
+      }
+    ]
+  }
+]

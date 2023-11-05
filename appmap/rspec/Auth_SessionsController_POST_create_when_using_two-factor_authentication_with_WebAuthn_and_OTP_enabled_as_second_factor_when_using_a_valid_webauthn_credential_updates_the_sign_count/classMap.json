@@ -1,0 +1,12 @@
+[
+  {
+    "type": "database",
+    "name": "Database",
+    "children": [
+      {
+        "type": "query",
+        "name": "SELECT \"webauthn_credentials\".* FROM \"webauthn_credentials\" WHERE \"webauthn_credentials\".\"id\" = $1 LIMIT $2"
+      }
+    ]
+  }
+]
