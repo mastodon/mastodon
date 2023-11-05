@@ -41,7 +41,7 @@ class ReportModal extends ImmutablePureComponent {
     statusId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
   };
 
   state = {
