@@ -1,0 +1,200 @@
+[
+  {
+    "name": "activesupport",
+    "type": "package",
+    "children": [
+      {
+        "name": "ActiveSupport",
+        "type": "class",
+        "children": [
+          {
+            "name": "Callbacks",
+            "type": "class",
+            "children": [
+              {
+                "name": "CallbackSequence",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "invoke_before",
+                    "type": "function",
+                    "labels": [
+                      "mvc.before_action"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:597"
+                  },
+                  {
+                    "name": "invoke_after",
+                    "type": "function",
+                    "labels": [
+                      "mvc.after_action"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:601"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "app",
+    "type": "package",
+    "children": [
+      {
+        "name": "lib",
+        "type": "package",
+        "children": [
+          {
+            "name": "TagManager",
+            "type": "class",
+            "children": [
+              {
+                "name": "normalize_domain",
+                "type": "function",
+                "static": false,
+                "location": "app/lib/tag_manager.rb:17"
+              }
+            ]
+          },
+          {
+            "name": "RedisConfiguration",
+            "type": "class",
+            "children": [
+              {
+                "name": "with",
+                "type": "function",
+                "static": true,
+                "location": "app/lib/redis_configuration.rb:10"
+              },
+              {
+                "name": "pool",
+                "type": "function",
+                "static": true,
+                "location": "app/lib/redis_configuration.rb:12"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "validators",
+        "type": "package",
+        "children": [
+          {
+            "name": "DomainValidator",
+            "type": "class",
+            "children": [
+              {
+                "name": "validate_each",
+                "type": "function",
+                "static": false,
+                "location": "app/validators/domain_validator.rb:4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "models",
+        "type": "package",
+        "children": [
+          {
+            "name": "concerns",
+            "type": "package",
+            "children": [
+              {
+                "name": "DomainMaterializable",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "refresh_instances_view",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/domain_materializable.rb:12"
+                  },
+                  {
+                    "name": "count_unique_subdomains!",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/domain_materializable.rb:19"
+                  }
+                ]
+              },
+              {
+                "name": "Redisable",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "with_redis",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/redisable.rb:8"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Instance",
+            "type": "class",
+            "children": [
+              {
+                "name": "refresh",
+                "type": "function",
+                "static": true,
+                "location": "app/models/instance.rb:28"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "database",
+    "name": "Database",
+    "children": [
+      {
+        "type": "query",
+        "name": "SELECT a.attname\n  FROM (\n         SELECT indrelid, indkey, generate_subscripts(indkey, 1) idx\n           FROM pg_index\n          WHERE indrelid = '\"domain_allows\"'::regclass\n            AND indisprimary\n       ) i\n  JOIN pg_attribute a\n    ON a.attrelid = i.indrelid\n   AND a.attnum = i.indkey[i.idx]\n ORDER BY i.idx\n"
+      },
+      {
+        "type": "query",
+        "name": "SAVEPOINT active_record_1"
+      },
+      {
+        "type": "query",
+        "name": "SELECT 1 AS one FROM \"domain_allows\" WHERE \"domain_allows\".\"domain\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "INSERT INTO \"domain_allows\" (\"domain\", \"created_at\", \"updated_at\") VALUES ($1, $2, $3) RETURNING \"id\""
+      },
+      {
+        "type": "query",
+        "name": "RELEASE SAVEPOINT active_record_1"
+      },
+      {
+        "type": "query",
+        "name": "SELECT 1 AS one FROM \"instances\" WHERE \"instances\".\"domain\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "REFRESH MATERIALIZED VIEW CONCURRENTLY \"instances\";"
+      },
+      {
+        "type": "query",
+        "name": "SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid,\n                pg_catalog.obj_description(i.oid, 'pg_class') AS comment, d.indisvalid\nFROM pg_class t\nINNER JOIN pg_index d ON t.oid = d.indrelid\nINNER JOIN pg_class i ON d.indexrelid = i.oid\nLEFT JOIN pg_namespace n ON n.oid = t.relnamespace\nWHERE i.relkind IN ('i', 'I')\n  AND d.indisprimary = 'f'\n  AND t.relname = 'domain_allows'\n  AND n.nspname = ANY (current_schemas(false))\nORDER BY i.relname\n"
+      },
+      {
+        "type": "query",
+        "name": "SELECT a.attnum, a.attname\nFROM pg_attribute a\nWHERE a.attrelid = 279090\nAND a.attnum IN (2)\n"
+      }
+    ]
+  }
+]

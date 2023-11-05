@@ -1,0 +1,6 @@
+[
+  {
+    "caller": "app/models/concerns/AccountInteractions",
+    "callee": "SELECT 1 AS one FROM \"mutes\" WHERE \"mutes\".\"account_id\" = $1 AND \"mutes\".\"target_account_id\" = $2 LIMIT $3"
+  }
+]

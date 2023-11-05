@@ -1,0 +1,36 @@
+[
+  {
+    "name": "app/models/concerns",
+    "type": "package",
+    "children": [
+      {
+        "name": "AccountInteractions",
+        "type": "class",
+        "children": [
+          {
+            "name": "followed_by?",
+            "type": "function",
+            "static": false,
+            "location": "app/models/concerns/account_interactions.rb:210"
+          },
+          {
+            "name": "following?",
+            "type": "function",
+            "static": false,
+            "location": "app/models/concerns/account_interactions.rb:198"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "database",
+    "name": "Database",
+    "children": [
+      {
+        "type": "query",
+        "name": "SELECT 1 AS one FROM \"follows\" WHERE \"follows\".\"account_id\" = $1 AND \"follows\".\"target_account_id\" = $2 LIMIT $3"
+      }
+    ]
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "app/models/concerns",
+    "type": "package",
+    "children": [
+      {
+        "name": "AccountInteractions",
+        "type": "class",
+        "children": [
+          {
+            "name": "muting?",
+            "type": "function",
+            "static": false,
+            "location": "app/models/concerns/account_interactions.rb:222"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "database",
+    "name": "Database",
+    "children": [
+      {
+        "type": "query",
+        "name": "SELECT 1 AS one FROM \"mutes\" WHERE \"mutes\".\"account_id\" = $1 AND \"mutes\".\"target_account_id\" = $2 LIMIT $3"
+      }
+    ]
+  }
+]

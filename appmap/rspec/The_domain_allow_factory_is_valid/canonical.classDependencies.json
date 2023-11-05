@@ -1,0 +1,42 @@
+[
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SAVEPOINT active_record_1"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SELECT 1 AS one FROM \"domain_allows\" WHERE \"domain_allows\".\"domain\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SELECT a.attnum, a.attname\nFROM pg_attribute a\nWHERE a.attrelid = 279090\nAND a.attnum IN (2)\n"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid,\n                pg_catalog.obj_description(i.oid, 'pg_class') AS comment, d.indisvalid\nFROM pg_class t\nINNER JOIN pg_index d ON t.oid = d.indrelid\nINNER JOIN pg_class i ON d.indexrelid = i.oid\nLEFT JOIN pg_namespace n ON n.oid = t.relnamespace\nWHERE i.relkind IN ('i', 'I')\n  AND d.indisprimary = 'f'\n  AND t.relname = 'domain_allows'\n  AND n.nspname = ANY (current_schemas(false))\nORDER BY i.relname\n"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/lib"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/models"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/validators"
+  },
+  {
+    "caller": "app/models",
+    "callee": "REFRESH MATERIALIZED VIEW CONCURRENTLY \"instances\";"
+  },
+  {
+    "caller": "app/models",
+    "callee": "SELECT 1 AS one FROM \"instances\" WHERE \"instances\".\"domain\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/models",
+    "callee": "app/lib"
+  }
+]

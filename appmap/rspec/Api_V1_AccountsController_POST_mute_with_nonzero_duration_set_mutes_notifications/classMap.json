@@ -1,0 +1,50 @@
+[
+  {
+    "name": "app/models/concerns",
+    "type": "package",
+    "children": [
+      {
+        "name": "AccountInteractions",
+        "type": "class",
+        "children": [
+          {
+            "name": "following?",
+            "type": "function",
+            "static": false,
+            "location": "app/models/concerns/account_interactions.rb:198"
+          },
+          {
+            "name": "muting?",
+            "type": "function",
+            "static": false,
+            "location": "app/models/concerns/account_interactions.rb:222"
+          },
+          {
+            "name": "muting_notifications?",
+            "type": "function",
+            "static": false,
+            "location": "app/models/concerns/account_interactions.rb:230"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "database",
+    "name": "Database",
+    "children": [
+      {
+        "type": "query",
+        "name": "SELECT 1 AS one FROM \"follows\" WHERE \"follows\".\"account_id\" = $1 AND \"follows\".\"target_account_id\" = $2 LIMIT $3"
+      },
+      {
+        "type": "query",
+        "name": "SELECT 1 AS one FROM \"mutes\" WHERE \"mutes\".\"account_id\" = $1 AND \"mutes\".\"target_account_id\" = $2 LIMIT $3"
+      },
+      {
+        "type": "query",
+        "name": "SELECT 1 AS one FROM \"mutes\" WHERE \"mutes\".\"account_id\" = $1 AND \"mutes\".\"target_account_id\" = $2 AND \"mutes\".\"hide_notifications\" = $3 LIMIT $4"
+      }
+    ]
+  }
+]

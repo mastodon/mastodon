@@ -1,0 +1,64 @@
+[
+  {
+    "name": "json",
+    "type": "package",
+    "children": [
+      {
+        "name": "JSON",
+        "type": "class",
+        "children": [
+          {
+            "name": "Ext",
+            "type": "class",
+            "children": [
+              {
+                "name": "Parser",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "parse",
+                    "type": "function",
+                    "labels": [
+                      "format.json.parse",
+                      "deserialize.safe"
+                    ],
+                    "static": false,
+                    "location": "JSON::Ext::Parser#parse"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "app/models/concerns",
+    "type": "package",
+    "children": [
+      {
+        "name": "AccountInteractions",
+        "type": "class",
+        "children": [
+          {
+            "name": "requested?",
+            "type": "function",
+            "static": false,
+            "location": "app/models/concerns/account_interactions.rb:238"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "database",
+    "name": "Database",
+    "children": [
+      {
+        "type": "query",
+        "name": "SELECT 1 AS one FROM \"follow_requests\" WHERE \"follow_requests\".\"account_id\" = $1 AND \"follow_requests\".\"target_account_id\" = $2 LIMIT $3"
+      }
+    ]
+  }
+]

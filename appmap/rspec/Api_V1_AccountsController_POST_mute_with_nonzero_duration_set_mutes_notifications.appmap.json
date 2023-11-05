@@ -1,1 +1,256 @@
-{"version":"1.12.0","metadata":{"app":"mastodon","language":{"name":"ruby","engine":"ruby","version":"3.2.2"},"client":{"name":"appmap","url":"https://github.com/applandinc/appmap-ruby","version":"0.102.1"},"frameworks":[{"name":"rails","version":"7.1.1"},{"name":"rspec","version":"3.12.2"}],"git":{"repository":"https://github.com/sgrigson/mastodon.git","branch":"appmap-config","commit":"743782bd299fd54e12a4a5829872efc505132ab3","status":["M .husky/pre-commit","?? sql_warning.txt"],"git_last_annotated_tag":"0.1.2-14597-g743782bd299fd54e12a4a5829872efc505132ab3","git_last_tag":"v4.2.0","git_commits_since_last_annotated_tag":0,"git_commits_since_last_tag":0},"name":"Api::V1::AccountsController POST #mute with nonzero duration set mutes notifications","source_location":"spec/controllers/api/v1/accounts_controller_spec.rb","recorder":{"name":"rspec","type":"tests"},"test_status":"succeeded"},"classMap":[{"name":"app/models/concerns","type":"package","children":[{"name":"AccountInteractions","type":"class","children":[{"name":"following?","type":"function","location":"app/models/concerns/account_interactions.rb:198","static":false},{"name":"muting?","type":"function","location":"app/models/concerns/account_interactions.rb:222","static":false},{"name":"muting_notifications?","type":"function","location":"app/models/concerns/account_interactions.rb:230","static":false}]}]}],"events":[{"id":81980,"event":"call","thread_id":9160,"defined_class":"AccountInteractions","method_id":"following?","path":"app/models/concerns/account_interactions.rb","lineno":198,"static":false,"parameters":[{"name":"other_account","class":"Account","object_id":822120,"value":"#<Account:0x00007fdc072e53c0>","kind":"req"}],"receiver":{"class":"Account","object_id":822100,"value":"#<Account:0x00007fdc072eb040>"}},{"id":81981,"event":"call","thread_id":9160,"sql_query":{"sql":"SELECT 1 AS one FROM \"follows\" WHERE \"follows\".\"account_id\" = $1 AND \"follows\".\"target_account_id\" = $2 LIMIT $3","database_type":"postgres"}},{"id":81982,"event":"return","thread_id":9160,"parent_id":81981,"elapsed":0.000562576,"elapsed_instrumentation":7.323699537664652e-05},{"id":81983,"event":"return","thread_id":9160,"parent_id":81980,"elapsed":0.00184520598850213,"elapsed_instrumentation":0.0001619500108063221,"return_value":{"class":"TrueClass","value":"true","object_id":20}},{"id":81984,"event":"call","thread_id":9160,"defined_class":"AccountInteractions","method_id":"muting?","path":"app/models/concerns/account_interactions.rb","lineno":222,"static":false,"parameters":[{"name":"other_account","class":"Account","object_id":822120,"value":"#<Account:0x00007fdc072e53c0>","kind":"req"}],"receiver":{"class":"Account","object_id":822100,"value":"#<Account:0x00007fdc072eb040>"}},{"id":81985,"event":"call","thread_id":9160,"sql_query":{"sql":"SELECT 1 AS one FROM \"mutes\" WHERE \"mutes\".\"account_id\" = $1 AND \"mutes\".\"target_account_id\" = $2 LIMIT $3","database_type":"postgres"}},{"id":81986,"event":"return","thread_id":9160,"parent_id":81985,"elapsed":0.000546012,"elapsed_instrumentation":6.398599362000823e-05},{"id":81987,"event":"return","thread_id":9160,"parent_id":81984,"elapsed":0.001870923995738849,"elapsed_instrumentation":0.00011523297871463001,"return_value":{"class":"TrueClass","value":"true","object_id":20}},{"id":81988,"event":"call","thread_id":9160,"defined_class":"AccountInteractions","method_id":"muting_notifications?","path":"app/models/concerns/account_interactions.rb","lineno":230,"static":false,"parameters":[{"name":"other_account","class":"Account","object_id":822120,"value":"#<Account:0x00007fdc072e53c0>","kind":"req"}],"receiver":{"class":"Account","object_id":822100,"value":"#<Account:0x00007fdc072eb040>"}},{"id":81989,"event":"call","thread_id":9160,"sql_query":{"sql":"SELECT 1 AS one FROM \"mutes\" WHERE \"mutes\".\"account_id\" = $1 AND \"mutes\".\"target_account_id\" = $2 AND \"mutes\".\"hide_notifications\" = $3 LIMIT $4","database_type":"postgres"}},{"id":81990,"event":"return","thread_id":9160,"parent_id":81989,"elapsed":0.000489768,"elapsed_instrumentation":5.8873003581538796e-05},{"id":81991,"event":"return","thread_id":9160,"parent_id":81988,"elapsed":0.0014663490001112223,"elapsed_instrumentation":0.00010280701098963618,"return_value":{"class":"TrueClass","value":"true","object_id":20}}]}
+{
+  "events": [
+    {
+      "id": 1,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "AccountInteractions",
+      "method_id": "following?",
+      "path": "app/models/concerns/account_interactions.rb",
+      "lineno": 198,
+      "static": false,
+      "parameters": [
+        {
+          "name": "other_account",
+          "class": "Account",
+          "object_id": 822120,
+          "value": "#<Account:0x00007fdc072e53c0>",
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "Account",
+        "object_id": 822100,
+        "value": "#<Account:0x00007fdc072eb040>"
+      }
+    },
+    {
+      "id": 2,
+      "event": "call",
+      "thread_id": 9160,
+      "sql_query": {
+        "sql": "SELECT 1 AS one FROM \"follows\" WHERE \"follows\".\"account_id\" = $1 AND \"follows\".\"target_account_id\" = $2 LIMIT $3",
+        "database_type": "postgres"
+      }
+    },
+    {
+      "id": 3,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 2,
+      "elapsed": 0.000562576,
+      "elapsed_instrumentation": 0.00007323699537664652
+    },
+    {
+      "id": 4,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 1,
+      "elapsed": 0.00184520598850213,
+      "elapsed_instrumentation": 0.0001619500108063221,
+      "return_value": {
+        "class": "TrueClass",
+        "value": "true",
+        "object_id": 20
+      }
+    },
+    {
+      "id": 5,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "AccountInteractions",
+      "method_id": "muting?",
+      "path": "app/models/concerns/account_interactions.rb",
+      "lineno": 222,
+      "static": false,
+      "parameters": [
+        {
+          "name": "other_account",
+          "class": "Account",
+          "object_id": 822120,
+          "value": "#<Account:0x00007fdc072e53c0>",
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "Account",
+        "object_id": 822100,
+        "value": "#<Account:0x00007fdc072eb040>"
+      }
+    },
+    {
+      "id": 6,
+      "event": "call",
+      "thread_id": 9160,
+      "sql_query": {
+        "sql": "SELECT 1 AS one FROM \"mutes\" WHERE \"mutes\".\"account_id\" = $1 AND \"mutes\".\"target_account_id\" = $2 LIMIT $3",
+        "database_type": "postgres"
+      }
+    },
+    {
+      "id": 7,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 6,
+      "elapsed": 0.000546012,
+      "elapsed_instrumentation": 0.00006398599362000823
+    },
+    {
+      "id": 8,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 5,
+      "elapsed": 0.001870923995738849,
+      "elapsed_instrumentation": 0.00011523297871463001,
+      "return_value": {
+        "class": "TrueClass",
+        "value": "true",
+        "object_id": 20
+      }
+    },
+    {
+      "id": 9,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "AccountInteractions",
+      "method_id": "muting_notifications?",
+      "path": "app/models/concerns/account_interactions.rb",
+      "lineno": 230,
+      "static": false,
+      "parameters": [
+        {
+          "name": "other_account",
+          "class": "Account",
+          "object_id": 822120,
+          "value": "#<Account:0x00007fdc072e53c0>",
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "Account",
+        "object_id": 822100,
+        "value": "#<Account:0x00007fdc072eb040>"
+      }
+    },
+    {
+      "id": 10,
+      "event": "call",
+      "thread_id": 9160,
+      "sql_query": {
+        "sql": "SELECT 1 AS one FROM \"mutes\" WHERE \"mutes\".\"account_id\" = $1 AND \"mutes\".\"target_account_id\" = $2 AND \"mutes\".\"hide_notifications\" = $3 LIMIT $4",
+        "database_type": "postgres"
+      }
+    },
+    {
+      "id": 11,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 10,
+      "elapsed": 0.000489768,
+      "elapsed_instrumentation": 0.000058873003581538796
+    },
+    {
+      "id": 12,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 9,
+      "elapsed": 0.0014663490001112223,
+      "elapsed_instrumentation": 0.00010280701098963618,
+      "return_value": {
+        "class": "TrueClass",
+        "value": "true",
+        "object_id": 20
+      }
+    }
+  ],
+  "version": "1.12.0",
+  "metadata": {
+    "app": "mastodon",
+    "language": {
+      "name": "ruby",
+      "engine": "ruby",
+      "version": "3.2.2"
+    },
+    "client": {
+      "name": "appmap",
+      "url": "https://github.com/applandinc/appmap-ruby",
+      "version": "0.102.1"
+    },
+    "frameworks": [
+      {
+        "name": "rails",
+        "version": "7.1.1"
+      },
+      {
+        "name": "rspec",
+        "version": "3.12.2"
+      }
+    ],
+    "git": {
+      "repository": "https://github.com/sgrigson/mastodon.git",
+      "branch": "appmap-config",
+      "commit": "743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_annotated_tag": "0.1.2-14597-g743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_tag": "v4.2.0",
+      "git_commits_since_last_annotated_tag": 0,
+      "git_commits_since_last_tag": 0
+    },
+    "name": "Api::V1::AccountsController POST #mute with nonzero duration set mutes notifications",
+    "source_location": "spec/controllers/api/v1/accounts_controller_spec.rb",
+    "recorder": {
+      "name": "rspec",
+      "type": "tests"
+    },
+    "test_status": "succeeded"
+  },
+  "classMap": [
+    {
+      "name": "app/models/concerns",
+      "type": "package",
+      "children": [
+        {
+          "name": "AccountInteractions",
+          "type": "class",
+          "children": [
+            {
+              "name": "following?",
+              "type": "function",
+              "static": false,
+              "location": "app/models/concerns/account_interactions.rb:198"
+            },
+            {
+              "name": "muting?",
+              "type": "function",
+              "static": false,
+              "location": "app/models/concerns/account_interactions.rb:222"
+            },
+            {
+              "name": "muting_notifications?",
+              "type": "function",
+              "static": false,
+              "location": "app/models/concerns/account_interactions.rb:230"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "database",
+      "name": "Database",
+      "children": [
+        {
+          "type": "query",
+          "name": "SELECT 1 AS one FROM \"follows\" WHERE \"follows\".\"account_id\" = $1 AND \"follows\".\"target_account_id\" = $2 LIMIT $3"
+        },
+        {
+          "type": "query",
+          "name": "SELECT 1 AS one FROM \"mutes\" WHERE \"mutes\".\"account_id\" = $1 AND \"mutes\".\"target_account_id\" = $2 LIMIT $3"
+        },
+        {
+          "type": "query",
+          "name": "SELECT 1 AS one FROM \"mutes\" WHERE \"mutes\".\"account_id\" = $1 AND \"mutes\".\"target_account_id\" = $2 AND \"mutes\".\"hide_notifications\" = $3 LIMIT $4"
+        }
+      ]
+    }
+  ]
+}

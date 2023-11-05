@@ -1,0 +1,10 @@
+[
+  {
+    "caller": "app/models/concerns/AccountInteractions",
+    "callee": "SELECT 1 AS one FROM \"blocks\" WHERE \"blocks\".\"account_id\" = $1 AND \"blocks\".\"target_account_id\" = $2 LIMIT $3"
+  },
+  {
+    "caller": "app/models/concerns/AccountInteractions",
+    "callee": "SELECT 1 AS one FROM \"follows\" WHERE \"follows\".\"account_id\" = $1 AND \"follows\".\"target_account_id\" = $2 LIMIT $3"
+  }
+]

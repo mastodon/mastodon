@@ -1,0 +1,5 @@
+[
+  "SELECT ? AS one FROM \"follows\" WHERE \"follows\".\"account_id\" = $? AND \"follows\".\"target_account_id\" = $? LIMIT $?",
+  "SELECT ? AS one FROM \"mutes\" WHERE \"mutes\".\"account_id\" = $? AND \"mutes\".\"target_account_id\" = $? AND \"mutes\".\"hide_notifications\" = $? LIMIT $?",
+  "SELECT ? AS one FROM \"mutes\" WHERE \"mutes\".\"account_id\" = $? AND \"mutes\".\"target_account_id\" = $? LIMIT $?"
+]
