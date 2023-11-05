@@ -1,0 +1,59 @@
+---
+en:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: 期限
+        options: 選項
+      user:
+        agreement: 服務協議
+        email: E-mail 地址
+        locale: 地區設定
+        password: 密碼
+      user/account:
+        username: 用者名
+      user/invite_request:
+        text: 理由
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: Kan-ta用字母、數字kap底線
+              reserved: hō͘ lâng保留ah
+        admin/webhook:
+          attributes:
+            url:
+              invalid: m̄是有效ê URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: m̄是有效ê URL
+        import:
+          attributes:
+            data:
+              malformed: ê形式bô正
+        status:
+          attributes:
+            reblog:
+              taken: hō͘ lâng轉送過ah。
+        user:
+          attributes:
+            email:
+              blocked: 用禁用ê e-mail提供商
+              unreachable: káⁿ-ná bô佇leh.
+            role_id:
+              elevated: bē當koân過汝chit-má ê角色
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: 包含對基本角色bô安全ê權限
+              elevated: bē當包含汝chit-má ê角色bô ê權限
+              own_role: bē當用汝chit-má ê角色改
+            position:
+              elevated: bē當kuân過汝chit-má ê角色。
+              own_role: bē當用汝chit-má ê角色改
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: bē當包含汝bô權利有ê事件
