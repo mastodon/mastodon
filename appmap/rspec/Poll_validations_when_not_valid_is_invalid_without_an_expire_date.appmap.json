@@ -1,1 +1,696 @@
-{"version":"1.12.0","metadata":{"app":"mastodon","language":{"name":"ruby","engine":"ruby","version":"3.2.2"},"client":{"name":"appmap","url":"https://github.com/applandinc/appmap-ruby","version":"0.102.1"},"frameworks":[{"name":"rails","version":"7.1.1"},{"name":"rspec","version":"3.12.2"}],"git":{"repository":"https://github.com/sgrigson/mastodon.git","branch":"appmap-config","commit":"743782bd299fd54e12a4a5829872efc505132ab3","status":["M .husky/pre-commit","?? sql_warning.txt"],"git_last_annotated_tag":"0.1.2-14597-g743782bd299fd54e12a4a5829872efc505132ab3","git_last_tag":"v4.2.0","git_commits_since_last_annotated_tag":0,"git_commits_since_last_tag":0},"name":"Poll validations when not valid is invalid without an expire date","source_location":"spec/models/poll_spec.rb","recorder":{"name":"rspec","type":"tests"},"test_status":"succeeded"},"classMap":[{"name":"openssl","type":"package","children":[{"name":"OpenSSL","type":"class","children":[{"name":"Random","type":"class","children":[{"name":"random_bytes","type":"function","location":"OpenSSL::Random.random_bytes","static":true,"labels":["random.secure"]}]}]}]},{"name":"app","type":"package","children":[{"name":"models","type":"package","children":[{"name":"Account","type":"class","children":[{"name":"local?","type":"function","location":"app/models/account.rb:163","static":false}]},{"name":"Poll","type":"class","children":[{"name":"local?","type":"function","location":"app/models/poll.rb:64","static":false}]}]},{"name":"validators","type":"package","children":[{"name":"PollValidator","type":"class","children":[{"name":"validate","type":"function","location":"app/validators/poll_validator.rb:9","static":false}]}]}]},{"name":"activesupport","type":"package","children":[{"name":"ActiveSupport","type":"class","children":[{"name":"Callbacks","type":"class","children":[{"name":"CallbackSequence","type":"class","children":[{"name":"invoke_before","type":"function","location":"vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:597","static":false,"labels":["mvc.before_action"]},{"name":"invoke_after","type":"function","location":"vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:601","static":false,"labels":["mvc.after_action"]}]}]}]}]}],"events":[{"id":108028,"event":"call","thread_id":9160,"defined_class":"OpenSSL::Random","method_id":"random_bytes","path":"OpenSSL::Random.random_bytes","static":true,"parameters":[{"name":"arg","class":"Integer","object_id":33,"value":"16","kind":"req"}],"receiver":{"class":"Module","object_id":208620,"value":"OpenSSL::Random"}},{"id":108029,"event":"return","thread_id":9160,"parent_id":108028,"elapsed":2.2018997697159648e-05,"elapsed_instrumentation":0.00017299401224590838,"return_value":{"class":"String","value":"_gM_T_v97____b\r\b","object_id":966160}},{"id":108030,"event":"call","thread_id":9160,"defined_class":"OpenSSL::Random","method_id":"random_bytes","path":"OpenSSL::Random.random_bytes","static":true,"parameters":[{"name":"arg","class":"Integer","object_id":33,"value":"16","kind":"req"}],"receiver":{"class":"Module","object_id":208620,"value":"OpenSSL::Random"}},{"id":108031,"event":"return","thread_id":9160,"parent_id":108030,"elapsed":2.2790016373619437e-05,"elapsed_instrumentation":0.0001838499738369137,"return_value":{"class":"String","value":"p___7'Ki(D\u0007___%_","object_id":966180}},{"id":108032,"event":"call","thread_id":9160,"defined_class":"Account","method_id":"local?","path":"app/models/account.rb","lineno":163,"static":false,"parameters":[],"receiver":{"class":"Account","object_id":966200,"value":"#<Account:0x00007fdc06c7d5c8>"}},{"id":108033,"event":"return","thread_id":9160,"parent_id":108032,"elapsed":9.948009392246604e-06,"elapsed_instrumentation":0.00013892800780013204,"return_value":{"class":"TrueClass","value":"true","object_id":20}},{"id":108034,"event":"call","thread_id":9160,"defined_class":"ActiveSupport::Callbacks::CallbackSequence","method_id":"invoke_before","path":"vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb","lineno":597,"static":false,"parameters":[{"name":"arg","class":"ActiveSupport::Callbacks::Filters::Environment","object_id":969280,"value":null,"kind":"req"}],"receiver":{"class":"ActiveSupport::Callbacks::CallbackSequence","object_id":969300,"value":"#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc09a05388>"}},{"id":108035,"event":"call","thread_id":9160,"defined_class":"Poll","method_id":"local?","path":"app/models/poll.rb","lineno":64,"static":false,"parameters":[{"name":"*","class":"Array","object_id":969320,"value":"[]","kind":"rest","size":0},{"name":"**","class":"Hash","object_id":969340,"value":"{}","kind":"keyrest","size":0},{"name":"&","class":"NilClass","object_id":4,"value":null,"kind":"block"}],"receiver":{"class":"Poll","object_id":969360,"value":"#<Poll:0x00007fdc0612c700>"}},{"id":108036,"event":"call","thread_id":9160,"defined_class":"Account","method_id":"local?","path":"app/models/account.rb","lineno":163,"static":false,"parameters":[],"receiver":{"class":"Account","object_id":969380,"value":"#<Account:0x00007fdc06c7d988>"}},{"id":108037,"event":"return","thread_id":9160,"parent_id":108036,"elapsed":1.7879006918519735e-05,"elapsed_instrumentation":9.026299812830985e-05,"return_value":{"class":"TrueClass","value":"true","object_id":20}},{"id":108038,"event":"return","thread_id":9160,"parent_id":108035,"elapsed":0.0002885590074583888,"elapsed_instrumentation":0.00015186500968411565,"return_value":{"class":"TrueClass","value":"true","object_id":20}},{"id":108039,"event":"return","thread_id":9160,"parent_id":108034,"elapsed":0.0005667270161211491,"elapsed_instrumentation":0.00019388299551792443,"return_value":{"class":"Array","value":"[#<Proc:0x00007fdc060b5060 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b51a0 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b5358 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b5498 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib]","object_id":969400,"size":4}},{"id":108040,"event":"call","thread_id":9160,"defined_class":"ActiveSupport::Callbacks::CallbackSequence","method_id":"invoke_before","path":"vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb","lineno":597,"static":false,"parameters":[{"name":"arg","class":"ActiveSupport::Callbacks::Filters::Environment","object_id":969420,"value":null,"kind":"req"}],"receiver":{"class":"ActiveSupport::Callbacks::CallbackSequence","object_id":969440,"value":"#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc09a04f28>"}},{"id":108041,"event":"call","thread_id":9160,"defined_class":"Poll","method_id":"local?","path":"app/models/poll.rb","lineno":64,"static":false,"parameters":[{"name":"*","class":"Array","object_id":969460,"value":"[]","kind":"rest","size":0},{"name":"**","class":"Hash","object_id":969480,"value":"{}","kind":"keyrest","size":0},{"name":"&","class":"NilClass","object_id":4,"value":null,"kind":"block"}],"receiver":{"class":"Poll","object_id":969360,"value":"#<Poll:0x00007fdc0612c700>"}},{"id":108042,"event":"call","thread_id":9160,"defined_class":"Account","method_id":"local?","path":"app/models/account.rb","lineno":163,"static":false,"parameters":[],"receiver":{"class":"Account","object_id":969380,"value":"#<Account:0x00007fdc06c7d988>"}},{"id":108043,"event":"return","thread_id":9160,"parent_id":108042,"elapsed":6.543996278196573e-06,"elapsed_instrumentation":6.428500637412071e-05,"return_value":{"class":"TrueClass","value":"true","object_id":20}},{"id":108044,"event":"return","thread_id":9160,"parent_id":108041,"elapsed":9.70390101429075e-05,"elapsed_instrumentation":0.0001824309874791652,"return_value":{"class":"TrueClass","value":"true","object_id":20}},{"id":108045,"event":"call","thread_id":9160,"defined_class":"Poll","method_id":"local?","path":"app/models/poll.rb","lineno":64,"static":false,"parameters":[{"name":"*","class":"Array","object_id":969500,"value":"[]","kind":"rest","size":0},{"name":"**","class":"Hash","object_id":969520,"value":"{}","kind":"keyrest","size":0},{"name":"&","class":"NilClass","object_id":4,"value":null,"kind":"block"}],"receiver":{"class":"Poll","object_id":969360,"value":"#<Poll:0x00007fdc0612c700>"}},{"id":108046,"event":"call","thread_id":9160,"defined_class":"Account","method_id":"local?","path":"app/models/account.rb","lineno":163,"static":false,"parameters":[],"receiver":{"class":"Account","object_id":969380,"value":"#<Account:0x00007fdc06c7d988>"}},{"id":108047,"event":"return","thread_id":9160,"parent_id":108046,"elapsed":4.509027348831296e-06,"elapsed_instrumentation":5.577999399974942e-05,"return_value":{"class":"TrueClass","value":"true","object_id":20}},{"id":108048,"event":"return","thread_id":9160,"parent_id":108045,"elapsed":8.188700303435326e-05,"elapsed_instrumentation":8.739501936361194e-05,"return_value":{"class":"TrueClass","value":"true","object_id":20}},{"id":108049,"event":"call","thread_id":9160,"defined_class":"PollValidator","method_id":"validate","path":"app/validators/poll_validator.rb","lineno":9,"static":false,"parameters":[{"name":"poll","class":"Poll","object_id":969360,"value":"#<Poll:0x00007fdc0612c700>","kind":"req"}],"receiver":{"class":"PollValidator","object_id":969540,"value":"#<PollValidator:0x00007fdc14077c20>"}},{"id":108050,"event":"return","thread_id":9160,"parent_id":108049,"elapsed":0.00015451799845322967,"elapsed_instrumentation":0.00019058698671869934},{"id":108051,"event":"return","thread_id":9160,"parent_id":108040,"elapsed":0.0012656640028581023,"elapsed_instrumentation":0.00017885398119688034,"return_value":{"class":"Array","value":"[#<Proc:0x00007fdc060b0bf0 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b0df8 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b1000 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b1208 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b1348 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b1488 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b15c8 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b1708 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b18e8 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b1b40 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib]","object_id":969560,"size":10}},{"id":108052,"event":"call","thread_id":9160,"defined_class":"ActiveSupport::Callbacks::CallbackSequence","method_id":"invoke_after","path":"vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb","lineno":601,"static":false,"parameters":[{"name":"arg","class":"ActiveSupport::Callbacks::Filters::Environment","object_id":969420,"value":null,"kind":"req"}],"receiver":{"class":"ActiveSupport::Callbacks::CallbackSequence","object_id":969440,"value":"#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc09a04f28>"}},{"id":108053,"event":"return","thread_id":9160,"parent_id":108052,"elapsed":4.249974153935909e-06,"elapsed_instrumentation":0.00017169301281683147,"return_value":{"class":"Array","value":"[]","object_id":969580,"size":0}},{"id":108054,"event":"call","thread_id":9160,"defined_class":"ActiveSupport::Callbacks::CallbackSequence","method_id":"invoke_after","path":"vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb","lineno":601,"static":false,"parameters":[{"name":"arg","class":"ActiveSupport::Callbacks::Filters::Environment","object_id":969280,"value":null,"kind":"req"}],"receiver":{"class":"ActiveSupport::Callbacks::CallbackSequence","object_id":969300,"value":"#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc09a05388>"}},{"id":108055,"event":"return","thread_id":9160,"parent_id":108054,"elapsed":6.822001887485385e-05,"elapsed_instrumentation":0.00010086197289638221,"return_value":{"class":"Array","value":"[#<Proc:0x00007fdc060b4ea8 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib]","object_id":969600,"size":1}}]}
+{
+  "events": [
+    {
+      "id": 1,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "OpenSSL::Random",
+      "method_id": "random_bytes",
+      "path": "OpenSSL::Random.random_bytes",
+      "static": true,
+      "parameters": [
+        {
+          "name": "arg",
+          "class": "Integer",
+          "object_id": 33,
+          "value": "16",
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "Module",
+        "object_id": 208620,
+        "value": "OpenSSL::Random"
+      }
+    },
+    {
+      "id": 2,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 1,
+      "elapsed": 0.000022018997697159648,
+      "elapsed_instrumentation": 0.00017299401224590838,
+      "return_value": {
+        "class": "String",
+        "value": "_gM_T_v97____b\r\b",
+        "object_id": 966160
+      }
+    },
+    {
+      "id": 3,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "OpenSSL::Random",
+      "method_id": "random_bytes",
+      "path": "OpenSSL::Random.random_bytes",
+      "static": true,
+      "parameters": [
+        {
+          "name": "arg",
+          "class": "Integer",
+          "object_id": 33,
+          "value": "16",
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "Module",
+        "object_id": 208620,
+        "value": "OpenSSL::Random"
+      }
+    },
+    {
+      "id": 4,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 3,
+      "elapsed": 0.000022790016373619437,
+      "elapsed_instrumentation": 0.0001838499738369137,
+      "return_value": {
+        "class": "String",
+        "value": "p___7'Ki(D\u0007___%_",
+        "object_id": 966180
+      }
+    },
+    {
+      "id": 5,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Account",
+      "method_id": "local?",
+      "path": "app/models/account.rb",
+      "lineno": 163,
+      "static": false,
+      "receiver": {
+        "class": "Account",
+        "object_id": 966200,
+        "value": "#<Account:0x00007fdc06c7d5c8>"
+      }
+    },
+    {
+      "id": 6,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 5,
+      "elapsed": 0.000009948009392246604,
+      "elapsed_instrumentation": 0.00013892800780013204,
+      "return_value": {
+        "class": "TrueClass",
+        "value": "true",
+        "object_id": 20
+      }
+    },
+    {
+      "id": 7,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActiveSupport::Callbacks::CallbackSequence",
+      "method_id": "invoke_before",
+      "path": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb",
+      "lineno": 597,
+      "static": false,
+      "parameters": [
+        {
+          "name": "arg",
+          "class": "ActiveSupport::Callbacks::Filters::Environment",
+          "object_id": 969280,
+          "value": null,
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActiveSupport::Callbacks::CallbackSequence",
+        "object_id": 969300,
+        "value": "#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc09a05388>"
+      }
+    },
+    {
+      "id": 8,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Poll",
+      "method_id": "local?",
+      "path": "app/models/poll.rb",
+      "lineno": 64,
+      "static": false,
+      "parameters": [
+        {
+          "name": "*",
+          "class": "Array",
+          "object_id": 969320,
+          "value": "[]",
+          "kind": "rest",
+          "size": 0
+        },
+        {
+          "name": "**",
+          "class": "Hash",
+          "object_id": 969340,
+          "value": "{}",
+          "kind": "keyrest",
+          "size": 0
+        },
+        {
+          "name": "&",
+          "class": "NilClass",
+          "object_id": 4,
+          "value": null,
+          "kind": "block"
+        }
+      ],
+      "receiver": {
+        "class": "Poll",
+        "object_id": 969360,
+        "value": "#<Poll:0x00007fdc0612c700>"
+      }
+    },
+    {
+      "id": 9,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Account",
+      "method_id": "local?",
+      "path": "app/models/account.rb",
+      "lineno": 163,
+      "static": false,
+      "receiver": {
+        "class": "Account",
+        "object_id": 969380,
+        "value": "#<Account:0x00007fdc06c7d988>"
+      }
+    },
+    {
+      "id": 10,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 9,
+      "elapsed": 0.000017879006918519735,
+      "elapsed_instrumentation": 0.00009026299812830985,
+      "return_value": {
+        "class": "TrueClass",
+        "value": "true",
+        "object_id": 20
+      }
+    },
+    {
+      "id": 11,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 8,
+      "elapsed": 0.0002885590074583888,
+      "elapsed_instrumentation": 0.00015186500968411565,
+      "return_value": {
+        "class": "TrueClass",
+        "value": "true",
+        "object_id": 20
+      }
+    },
+    {
+      "id": 12,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 7,
+      "elapsed": 0.0005667270161211491,
+      "elapsed_instrumentation": 0.00019388299551792443,
+      "return_value": {
+        "class": "Array",
+        "value": "[#<Proc:0x00007fdc060b5060 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b51a0 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b5358 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b5498 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib]",
+        "object_id": 969400,
+        "size": 4
+      }
+    },
+    {
+      "id": 13,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActiveSupport::Callbacks::CallbackSequence",
+      "method_id": "invoke_before",
+      "path": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb",
+      "lineno": 597,
+      "static": false,
+      "parameters": [
+        {
+          "name": "arg",
+          "class": "ActiveSupport::Callbacks::Filters::Environment",
+          "object_id": 969420,
+          "value": null,
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActiveSupport::Callbacks::CallbackSequence",
+        "object_id": 969440,
+        "value": "#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc09a04f28>"
+      }
+    },
+    {
+      "id": 14,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Poll",
+      "method_id": "local?",
+      "path": "app/models/poll.rb",
+      "lineno": 64,
+      "static": false,
+      "parameters": [
+        {
+          "name": "*",
+          "class": "Array",
+          "object_id": 969460,
+          "value": "[]",
+          "kind": "rest",
+          "size": 0
+        },
+        {
+          "name": "**",
+          "class": "Hash",
+          "object_id": 969480,
+          "value": "{}",
+          "kind": "keyrest",
+          "size": 0
+        },
+        {
+          "name": "&",
+          "class": "NilClass",
+          "object_id": 4,
+          "value": null,
+          "kind": "block"
+        }
+      ],
+      "receiver": {
+        "class": "Poll",
+        "object_id": 969360,
+        "value": "#<Poll:0x00007fdc0612c700>"
+      }
+    },
+    {
+      "id": 15,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Account",
+      "method_id": "local?",
+      "path": "app/models/account.rb",
+      "lineno": 163,
+      "static": false,
+      "receiver": {
+        "class": "Account",
+        "object_id": 969380,
+        "value": "#<Account:0x00007fdc06c7d988>"
+      }
+    },
+    {
+      "id": 16,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 15,
+      "elapsed": 0.000006543996278196573,
+      "elapsed_instrumentation": 0.00006428500637412071,
+      "return_value": {
+        "class": "TrueClass",
+        "value": "true",
+        "object_id": 20
+      }
+    },
+    {
+      "id": 17,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 14,
+      "elapsed": 0.0000970390101429075,
+      "elapsed_instrumentation": 0.0001824309874791652,
+      "return_value": {
+        "class": "TrueClass",
+        "value": "true",
+        "object_id": 20
+      }
+    },
+    {
+      "id": 18,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Poll",
+      "method_id": "local?",
+      "path": "app/models/poll.rb",
+      "lineno": 64,
+      "static": false,
+      "parameters": [
+        {
+          "name": "*",
+          "class": "Array",
+          "object_id": 969500,
+          "value": "[]",
+          "kind": "rest",
+          "size": 0
+        },
+        {
+          "name": "**",
+          "class": "Hash",
+          "object_id": 969520,
+          "value": "{}",
+          "kind": "keyrest",
+          "size": 0
+        },
+        {
+          "name": "&",
+          "class": "NilClass",
+          "object_id": 4,
+          "value": null,
+          "kind": "block"
+        }
+      ],
+      "receiver": {
+        "class": "Poll",
+        "object_id": 969360,
+        "value": "#<Poll:0x00007fdc0612c700>"
+      }
+    },
+    {
+      "id": 19,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "Account",
+      "method_id": "local?",
+      "path": "app/models/account.rb",
+      "lineno": 163,
+      "static": false,
+      "receiver": {
+        "class": "Account",
+        "object_id": 969380,
+        "value": "#<Account:0x00007fdc06c7d988>"
+      }
+    },
+    {
+      "id": 20,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 19,
+      "elapsed": 0.000004509027348831296,
+      "elapsed_instrumentation": 0.00005577999399974942,
+      "return_value": {
+        "class": "TrueClass",
+        "value": "true",
+        "object_id": 20
+      }
+    },
+    {
+      "id": 21,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 18,
+      "elapsed": 0.00008188700303435326,
+      "elapsed_instrumentation": 0.00008739501936361194,
+      "return_value": {
+        "class": "TrueClass",
+        "value": "true",
+        "object_id": 20
+      }
+    },
+    {
+      "id": 22,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "PollValidator",
+      "method_id": "validate",
+      "path": "app/validators/poll_validator.rb",
+      "lineno": 9,
+      "static": false,
+      "parameters": [
+        {
+          "name": "poll",
+          "class": "Poll",
+          "object_id": 969360,
+          "value": "#<Poll:0x00007fdc0612c700>",
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "PollValidator",
+        "object_id": 969540,
+        "value": "#<PollValidator:0x00007fdc14077c20>"
+      }
+    },
+    {
+      "id": 23,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 22,
+      "elapsed": 0.00015451799845322967,
+      "elapsed_instrumentation": 0.00019058698671869934
+    },
+    {
+      "id": 24,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 13,
+      "elapsed": 0.0012656640028581023,
+      "elapsed_instrumentation": 0.00017885398119688034,
+      "return_value": {
+        "class": "Array",
+        "value": "[#<Proc:0x00007fdc060b0bf0 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b0df8 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b1000 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b1208 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b1348 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b1488 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b15c8 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b1708 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b18e8 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib, #<Proc:0x00007fdc060b1b40 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib]",
+        "object_id": 969560,
+        "size": 10
+      }
+    },
+    {
+      "id": 25,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActiveSupport::Callbacks::CallbackSequence",
+      "method_id": "invoke_after",
+      "path": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb",
+      "lineno": 601,
+      "static": false,
+      "parameters": [
+        {
+          "name": "arg",
+          "class": "ActiveSupport::Callbacks::Filters::Environment",
+          "object_id": 969420,
+          "value": null,
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActiveSupport::Callbacks::CallbackSequence",
+        "object_id": 969440,
+        "value": "#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc09a04f28>"
+      }
+    },
+    {
+      "id": 26,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 25,
+      "elapsed": 0.000004249974153935909,
+      "elapsed_instrumentation": 0.00017169301281683147,
+      "return_value": {
+        "class": "Array",
+        "value": "[]",
+        "object_id": 969580,
+        "size": 0
+      }
+    },
+    {
+      "id": 27,
+      "event": "call",
+      "thread_id": 9160,
+      "defined_class": "ActiveSupport::Callbacks::CallbackSequence",
+      "method_id": "invoke_after",
+      "path": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb",
+      "lineno": 601,
+      "static": false,
+      "parameters": [
+        {
+          "name": "arg",
+          "class": "ActiveSupport::Callbacks::Filters::Environment",
+          "object_id": 969280,
+          "value": null,
+          "kind": "req"
+        }
+      ],
+      "receiver": {
+        "class": "ActiveSupport::Callbacks::CallbackSequence",
+        "object_id": 969300,
+        "value": "#<ActiveSupport::Callbacks::CallbackSequence:0x00007fdc09a05388>"
+      }
+    },
+    {
+      "id": 28,
+      "event": "return",
+      "thread_id": 9160,
+      "parent_id": 27,
+      "elapsed": 0.00006822001887485385,
+      "elapsed_instrumentation": 0.00010086197289638221,
+      "return_value": {
+        "class": "Array",
+        "value": "[#<Proc:0x00007fdc060b4ea8 /workspaces/mastodon/vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib]",
+        "object_id": 969600,
+        "size": 1
+      }
+    }
+  ],
+  "version": "1.12.0",
+  "metadata": {
+    "app": "mastodon",
+    "language": {
+      "name": "ruby",
+      "engine": "ruby",
+      "version": "3.2.2"
+    },
+    "client": {
+      "name": "appmap",
+      "url": "https://github.com/applandinc/appmap-ruby",
+      "version": "0.102.1"
+    },
+    "frameworks": [
+      {
+        "name": "rails",
+        "version": "7.1.1"
+      },
+      {
+        "name": "rspec",
+        "version": "3.12.2"
+      }
+    ],
+    "git": {
+      "repository": "https://github.com/sgrigson/mastodon.git",
+      "branch": "appmap-config",
+      "commit": "743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_annotated_tag": "0.1.2-14597-g743782bd299fd54e12a4a5829872efc505132ab3",
+      "git_last_tag": "v4.2.0",
+      "git_commits_since_last_annotated_tag": 0,
+      "git_commits_since_last_tag": 0
+    },
+    "name": "Poll validations when not valid is invalid without an expire date",
+    "source_location": "spec/models/poll_spec.rb",
+    "recorder": {
+      "name": "rspec",
+      "type": "tests"
+    },
+    "test_status": "succeeded"
+  },
+  "classMap": [
+    {
+      "name": "openssl",
+      "type": "package",
+      "children": [
+        {
+          "name": "OpenSSL",
+          "type": "class",
+          "children": [
+            {
+              "name": "Random",
+              "type": "class",
+              "children": [
+                {
+                  "name": "random_bytes",
+                  "type": "function",
+                  "labels": [
+                    "random.secure"
+                  ],
+                  "static": true,
+                  "location": "OpenSSL::Random.random_bytes"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "app",
+      "type": "package",
+      "children": [
+        {
+          "name": "models",
+          "type": "package",
+          "children": [
+            {
+              "name": "Account",
+              "type": "class",
+              "children": [
+                {
+                  "name": "local?",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/models/account.rb:163"
+                }
+              ]
+            },
+            {
+              "name": "Poll",
+              "type": "class",
+              "children": [
+                {
+                  "name": "local?",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/models/poll.rb:64"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "validators",
+          "type": "package",
+          "children": [
+            {
+              "name": "PollValidator",
+              "type": "class",
+              "children": [
+                {
+                  "name": "validate",
+                  "type": "function",
+                  "static": false,
+                  "location": "app/validators/poll_validator.rb:9"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "activesupport",
+      "type": "package",
+      "children": [
+        {
+          "name": "ActiveSupport",
+          "type": "class",
+          "children": [
+            {
+              "name": "Callbacks",
+              "type": "class",
+              "children": [
+                {
+                  "name": "CallbackSequence",
+                  "type": "class",
+                  "children": [
+                    {
+                      "name": "invoke_before",
+                      "type": "function",
+                      "labels": [
+                        "mvc.before_action"
+                      ],
+                      "static": false,
+                      "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:597"
+                    },
+                    {
+                      "name": "invoke_after",
+                      "type": "function",
+                      "labels": [
+                        "mvc.after_action"
+                      ],
+                      "static": false,
+                      "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:601"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

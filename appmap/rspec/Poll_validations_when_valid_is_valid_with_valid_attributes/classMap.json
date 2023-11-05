@@ -1,0 +1,125 @@
+[
+  {
+    "name": "openssl",
+    "type": "package",
+    "children": [
+      {
+        "name": "OpenSSL",
+        "type": "class",
+        "children": [
+          {
+            "name": "Random",
+            "type": "class",
+            "children": [
+              {
+                "name": "random_bytes",
+                "type": "function",
+                "labels": [
+                  "random.secure"
+                ],
+                "static": true,
+                "location": "OpenSSL::Random.random_bytes"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "app",
+    "type": "package",
+    "children": [
+      {
+        "name": "models",
+        "type": "package",
+        "children": [
+          {
+            "name": "Account",
+            "type": "class",
+            "children": [
+              {
+                "name": "local?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:163"
+              }
+            ]
+          },
+          {
+            "name": "Poll",
+            "type": "class",
+            "children": [
+              {
+                "name": "local?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/poll.rb:64"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "validators",
+        "type": "package",
+        "children": [
+          {
+            "name": "PollValidator",
+            "type": "class",
+            "children": [
+              {
+                "name": "validate",
+                "type": "function",
+                "static": false,
+                "location": "app/validators/poll_validator.rb:9"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "activesupport",
+    "type": "package",
+    "children": [
+      {
+        "name": "ActiveSupport",
+        "type": "class",
+        "children": [
+          {
+            "name": "Callbacks",
+            "type": "class",
+            "children": [
+              {
+                "name": "CallbackSequence",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "invoke_before",
+                    "type": "function",
+                    "labels": [
+                      "mvc.before_action"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:597"
+                  },
+                  {
+                    "name": "invoke_after",
+                    "type": "function",
+                    "labels": [
+                      "mvc.after_action"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:601"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

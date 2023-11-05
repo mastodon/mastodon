@@ -1,0 +1,214 @@
+[
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "INSERT INTO \"accounts\" (\"username\", \"domain\", \"private_key\", \"public_key\", \"created_at\", \"updated_at\", \"note\", \"display_name\", \"uri\", \"url\", \"avatar_file_name\", \"avatar_content_type\", \"avatar_file_size\", \"avatar_updated_at\", \"header_file_name\", \"header_content_type\", \"header_file_size\", \"header_updated_at\", \"avatar_remote_url\", \"locked\", \"header_remote_url\", \"last_webfingered_at\", \"inbox_url\", \"outbox_url\", \"shared_inbox_url\", \"followers_url\", \"protocol\", \"memorial\", \"moved_to_account_id\", \"featured_collection_url\", \"fields\", \"actor_type\", \"discoverable\", \"also_known_as\", \"silenced_at\", \"suspended_at\", \"hide_collections\", \"avatar_storage_schema_version\", \"header_storage_schema_version\", \"devices_url\", \"suspension_origin\", \"sensitized_at\", \"trendable\", \"reviewed_at\", \"requested_review_at\", \"indexable\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44, $45, $46) RETURNING \"id\""
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "INSERT INTO \"conversations\" (\"uri\", \"created_at\", \"updated_at\") VALUES ($1, $2, $3) RETURNING \"id\""
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "INSERT INTO \"users\" (\"email\", \"created_at\", \"updated_at\", \"encrypted_password\", \"reset_password_token\", \"reset_password_sent_at\", \"sign_in_count\", \"current_sign_in_at\", \"last_sign_in_at\", \"admin\", \"confirmation_token\", \"confirmed_at\", \"confirmation_sent_at\", \"unconfirmed_email\", \"locale\", \"encrypted_otp_secret\", \"encrypted_otp_secret_iv\", \"encrypted_otp_secret_salt\", \"consumed_timestep\", \"otp_required_for_login\", \"last_emailed_at\", \"otp_backup_codes\", \"account_id\", \"disabled\", \"moderator\", \"invite_id\", \"chosen_languages\", \"created_by_application_id\", \"approved\", \"sign_in_token\", \"sign_in_token_sent_at\", \"webauthn_id\", \"sign_up_ip\", \"role_id\", \"settings\", \"time_zone\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36) RETURNING \"id\""
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SAVEPOINT active_record_1"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SELECT 1 AS one FROM \"bookmarks\" WHERE \"bookmarks\".\"status_id\" = $1 AND \"bookmarks\".\"account_id\" = $2 LIMIT $3"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SELECT 1 AS one FROM \"users\" WHERE \"users\".\"email\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "SELECT \"polls\".* FROM \"polls\" WHERE \"polls\".\"status_id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/lib"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/models"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "app/validators"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "lib/mastodon"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "lib/paperclip"
+  },
+  {
+    "caller": "activesupport/ActiveSupport",
+    "callee": "sidekiq/Sidekiq"
+  },
+  {
+    "caller": "app/lib",
+    "callee": "SELECT \"accounts\".\"id\", \"accounts\".\"username\", \"accounts\".\"domain\", \"accounts\".\"private_key\", \"accounts\".\"public_key\", \"accounts\".\"created_at\", \"accounts\".\"updated_at\", \"accounts\".\"note\", \"accounts\".\"display_name\", \"accounts\".\"uri\", \"accounts\".\"url\", \"accounts\".\"avatar_file_name\", \"accounts\".\"avatar_content_type\", \"accounts\".\"avatar_file_size\", \"accounts\".\"avatar_updated_at\", \"accounts\".\"header_file_name\", \"accounts\".\"header_content_type\", \"accounts\".\"header_file_size\", \"accounts\".\"header_updated_at\", \"accounts\".\"avatar_remote_url\", \"accounts\".\"locked\", \"accounts\".\"header_remote_url\", \"accounts\".\"last_webfingered_at\", \"accounts\".\"inbox_url\", \"accounts\".\"outbox_url\", \"accounts\".\"shared_inbox_url\", \"accounts\".\"followers_url\", \"accounts\".\"protocol\", \"accounts\".\"memorial\", \"accounts\".\"moved_to_account_id\", \"accounts\".\"featured_collection_url\", \"accounts\".\"fields\", \"accounts\".\"actor_type\", \"accounts\".\"discoverable\", \"accounts\".\"also_known_as\", \"accounts\".\"silenced_at\", \"accounts\".\"suspended_at\", \"accounts\".\"hide_collections\", \"accounts\".\"avatar_storage_schema_version\", \"accounts\".\"header_storage_schema_version\", \"accounts\".\"devices_url\", \"accounts\".\"suspension_origin\", \"accounts\".\"sensitized_at\", \"accounts\".\"trendable\", \"accounts\".\"reviewed_at\", \"accounts\".\"requested_review_at\", \"accounts\".\"indexable\" FROM \"accounts\" WHERE \"accounts\".\"id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/lib",
+    "callee": "SELECT \"statuses\".* FROM \"statuses\" WHERE \"statuses\".\"deleted_at\" IS NULL AND \"statuses\".\"uri\" = $1 ORDER BY \"statuses\".\"id\" DESC LIMIT $2"
+  },
+  {
+    "caller": "app/lib",
+    "callee": "app/helpers"
+  },
+  {
+    "caller": "app/lib",
+    "callee": "app/models"
+  },
+  {
+    "caller": "app/models",
+    "callee": "INSERT INTO account_stats(account_id, statuses_count, created_at, updated_at, last_status_at) VALUES (111360434470582624, 1, now(), now(), now()) ON CONFLICT (account_id) DO UPDATE SET statuses_count = account_stats.statuses_count + 1, last_status_at = now(), updated_at = now() RETURNING id;"
+  },
+  {
+    "caller": "app/models",
+    "callee": "SELECT 1 AS one FROM \"blocks\" WHERE \"blocks\".\"account_id\" = $1 AND \"blocks\".\"target_account_id\" = $2 LIMIT $3"
+  },
+  {
+    "caller": "app/models",
+    "callee": "SELECT \"bulk_imports\".* FROM \"bulk_imports\" WHERE \"bulk_imports\".\"id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/models",
+    "callee": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/models",
+    "callee": "UPDATE \"bulk_imports\" SET \"imported_items\" = COALESCE(\"imported_items\", 0) + $1 WHERE \"bulk_imports\".\"id\" = $2"
+  },
+  {
+    "caller": "app/models",
+    "callee": "UPDATE \"bulk_imports\" SET \"processed_items\" = COALESCE(\"processed_items\", 0) + $1 WHERE \"bulk_imports\".\"id\" = $2"
+  },
+  {
+    "caller": "app/models",
+    "callee": "logger/Logger"
+  },
+  {
+    "caller": "app/models",
+    "callee": "ruby/Marshal"
+  },
+  {
+    "caller": "app/policies",
+    "callee": "SELECT 1 AS one FROM \"mentions\" WHERE \"mentions\".\"status_id\" = $1 AND \"mentions\".\"account_id\" = $2 LIMIT $3"
+  },
+  {
+    "caller": "app/policies",
+    "callee": "SELECT \"accounts\".\"id\", \"accounts\".\"username\", \"accounts\".\"domain\", \"accounts\".\"private_key\", \"accounts\".\"public_key\", \"accounts\".\"created_at\", \"accounts\".\"updated_at\", \"accounts\".\"note\", \"accounts\".\"display_name\", \"accounts\".\"uri\", \"accounts\".\"url\", \"accounts\".\"avatar_file_name\", \"accounts\".\"avatar_content_type\", \"accounts\".\"avatar_file_size\", \"accounts\".\"avatar_updated_at\", \"accounts\".\"header_file_name\", \"accounts\".\"header_content_type\", \"accounts\".\"header_file_size\", \"accounts\".\"header_updated_at\", \"accounts\".\"avatar_remote_url\", \"accounts\".\"locked\", \"accounts\".\"header_remote_url\", \"accounts\".\"last_webfingered_at\", \"accounts\".\"inbox_url\", \"accounts\".\"outbox_url\", \"accounts\".\"shared_inbox_url\", \"accounts\".\"followers_url\", \"accounts\".\"protocol\", \"accounts\".\"memorial\", \"accounts\".\"moved_to_account_id\", \"accounts\".\"featured_collection_url\", \"accounts\".\"fields\", \"accounts\".\"actor_type\", \"accounts\".\"discoverable\", \"accounts\".\"also_known_as\", \"accounts\".\"silenced_at\", \"accounts\".\"suspended_at\", \"accounts\".\"hide_collections\", \"accounts\".\"avatar_storage_schema_version\", \"accounts\".\"header_storage_schema_version\", \"accounts\".\"devices_url\", \"accounts\".\"suspension_origin\", \"accounts\".\"sensitized_at\", \"accounts\".\"trendable\", \"accounts\".\"reviewed_at\", \"accounts\".\"requested_review_at\", \"accounts\".\"indexable\" FROM \"accounts\" WHERE \"accounts\".\"id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/policies",
+    "callee": "app/models"
+  },
+  {
+    "caller": "app/services",
+    "callee": "RELEASE SAVEPOINT active_record_1"
+  },
+  {
+    "caller": "app/services",
+    "callee": "activesupport/ActiveSupport"
+  },
+  {
+    "caller": "app/services",
+    "callee": "app/models"
+  },
+  {
+    "caller": "app/services",
+    "callee": "openssl/OpenSSL"
+  },
+  {
+    "caller": "app/validators",
+    "callee": "SAVEPOINT active_record_1"
+  },
+  {
+    "caller": "app/validators",
+    "callee": "SELECT 1 AS one FROM \"accounts\" WHERE LOWER(\"accounts\".\"username\") = 'emmitt259' AND LOWER(\"accounts\".\"domain\") IS NULL LIMIT $1"
+  },
+  {
+    "caller": "app/validators",
+    "callee": "SELECT 1 AS one FROM \"accounts\" WHERE LOWER(\"accounts\".\"username\") = 'jesse_harber260' AND LOWER(\"accounts\".\"domain\") IS NULL LIMIT $1"
+  },
+  {
+    "caller": "app/validators",
+    "callee": "app/lib"
+  },
+  {
+    "caller": "app/validators",
+    "callee": "app/models"
+  },
+  {
+    "caller": "app/workers/import",
+    "callee": "DELETE FROM \"bulk_import_rows\" WHERE \"bulk_import_rows\".\"id\" = $1"
+  },
+  {
+    "caller": "app/workers/import",
+    "callee": "INSERT INTO \"bookmarks\" (\"account_id\", \"status_id\", \"created_at\", \"updated_at\") VALUES ($1, $2, $3, $4) RETURNING \"id\""
+  },
+  {
+    "caller": "app/workers/import",
+    "callee": "RELEASE SAVEPOINT active_record_1"
+  },
+  {
+    "caller": "app/workers/import",
+    "callee": "SAVEPOINT active_record_1"
+  },
+  {
+    "caller": "app/workers/import",
+    "callee": "SELECT \"bookmarks\".* FROM \"bookmarks\" WHERE \"bookmarks\".\"account_id\" = $1 AND \"bookmarks\".\"status_id\" = $2 LIMIT $3"
+  },
+  {
+    "caller": "app/workers/import",
+    "callee": "SELECT \"bulk_import_rows\".\"id\" AS t0_r0, \"bulk_import_rows\".\"bulk_import_id\" AS t0_r1, \"bulk_import_rows\".\"data\" AS t0_r2, \"bulk_import_rows\".\"created_at\" AS t0_r3, \"bulk_import_rows\".\"updated_at\" AS t0_r4, \"bulk_imports\".\"id\" AS t1_r0, \"bulk_imports\".\"type\" AS t1_r1, \"bulk_imports\".\"state\" AS t1_r2, \"bulk_imports\".\"total_items\" AS t1_r3, \"bulk_imports\".\"imported_items\" AS t1_r4, \"bulk_imports\".\"processed_items\" AS t1_r5, \"bulk_imports\".\"finished_at\" AS t1_r6, \"bulk_imports\".\"overwrite\" AS t1_r7, \"bulk_imports\".\"likely_mismatched\" AS t1_r8, \"bulk_imports\".\"original_filename\" AS t1_r9, \"bulk_imports\".\"account_id\" AS t1_r10, \"bulk_imports\".\"created_at\" AS t1_r11, \"bulk_imports\".\"updated_at\" AS t1_r12, \"accounts\".\"id\" AS t2_r0, \"accounts\".\"username\" AS t2_r1, \"accounts\".\"domain\" AS t2_r2, \"accounts\".\"private_key\" AS t2_r3, \"accounts\".\"public_key\" AS t2_r4, \"accounts\".\"created_at\" AS t2_r5, \"accounts\".\"updated_at\" AS t2_r6, \"accounts\".\"note\" AS t2_r7, \"accounts\".\"display_name\" AS t2_r8, \"accounts\".\"uri\" AS t2_r9, \"accounts\".\"url\" AS t2_r10, \"accounts\".\"avatar_file_name\" AS t2_r11, \"accounts\".\"avatar_content_type\" AS t2_r12, \"accounts\".\"avatar_file_size\" AS t2_r13, \"accounts\".\"avatar_updated_at\" AS t2_r14, \"accounts\".\"header_file_name\" AS t2_r15, \"accounts\".\"header_content_type\" AS t2_r16, \"accounts\".\"header_file_size\" AS t2_r17, \"accounts\".\"header_updated_at\" AS t2_r18, \"accounts\".\"avatar_remote_url\" AS t2_r19, \"accounts\".\"locked\" AS t2_r20, \"accounts\".\"header_remote_url\" AS t2_r21, \"accounts\".\"last_webfingered_at\" AS t2_r22, \"accounts\".\"inbox_url\" AS t2_r23, \"accounts\".\"outbox_url\" AS t2_r24, \"accounts\".\"shared_inbox_url\" AS t2_r25, \"accounts\".\"followers_url\" AS t2_r26, \"accounts\".\"protocol\" AS t2_r27, \"accounts\".\"memorial\" AS t2_r28, \"accounts\".\"moved_to_account_id\" AS t2_r29, \"accounts\".\"featured_collection_url\" AS t2_r30, \"accounts\".\"fields\" AS t2_r31, \"accounts\".\"actor_type\" AS t2_r32, \"accounts\".\"discoverable\" AS t2_r33, \"accounts\".\"also_known_as\" AS t2_r34, \"accounts\".\"silenced_at\" AS t2_r35, \"accounts\".\"suspended_at\" AS t2_r36, \"accounts\".\"hide_collections\" AS t2_r37, \"accounts\".\"avatar_storage_schema_version\" AS t2_r38, \"accounts\".\"header_storage_schema_version\" AS t2_r39, \"accounts\".\"devices_url\" AS t2_r40, \"accounts\".\"suspension_origin\" AS t2_r41, \"accounts\".\"sensitized_at\" AS t2_r42, \"accounts\".\"trendable\" AS t2_r43, \"accounts\".\"reviewed_at\" AS t2_r44, \"accounts\".\"requested_review_at\" AS t2_r45, \"accounts\".\"indexable\" AS t2_r46 FROM \"bulk_import_rows\" LEFT OUTER JOIN \"bulk_imports\" ON \"bulk_imports\".\"id\" = \"bulk_import_rows\".\"bulk_import_id\" LEFT OUTER JOIN \"accounts\" ON \"accounts\".\"id\" = \"bulk_imports\".\"account_id\" WHERE \"bulk_import_rows\".\"id\" = $1 LIMIT $2"
+  },
+  {
+    "caller": "app/workers/import",
+    "callee": "activesupport/ActiveSupport"
+  },
+  {
+    "caller": "app/workers/import",
+    "callee": "app/lib"
+  },
+  {
+    "caller": "app/workers/import",
+    "callee": "app/models"
+  },
+  {
+    "caller": "app/workers/import",
+    "callee": "app/policies"
+  },
+  {
+    "caller": "app/workers/import",
+    "callee": "app/services"
+  },
+  {
+    "caller": "app/workers/import",
+    "callee": "json/JSON"
+  },
+  {
+    "caller": "lib/mastodon",
+    "callee": "INSERT INTO \"statuses\" (\"uri\", \"text\", \"created_at\", \"updated_at\", \"in_reply_to_id\", \"reblog_of_id\", \"url\", \"sensitive\", \"visibility\", \"spoiler_text\", \"reply\", \"language\", \"conversation_id\", \"local\", \"account_id\", \"application_id\", \"in_reply_to_account_id\", \"poll_id\", \"deleted_at\", \"edited_at\", \"trendable\", \"ordered_media_attachment_ids\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22) RETURNING \"id\""
+  },
+  {
+    "caller": "lib/mastodon",
+    "callee": "activesupport/ActiveSupport"
+  },
+  {
+    "caller": "sidekiq/Sidekiq",
+    "callee": "json/JSON"
+  },
+  {
+    "caller": "sidekiq/Sidekiq",
+    "callee": "ruby/String"
+  }
+]
