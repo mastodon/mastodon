@@ -1,0 +1,32 @@
+[
+  {
+    "class": "ActiveRecord::RecordInvalid",
+    "message": "Validation failed: Type is not included in the list",
+    "stack": [
+      "/workspaces/mastodon/app/models/admin/account_action.rb:47",
+      "app/controllers/api/v1/admin/account_actions_controller.rb:11",
+      "app/controllers/concerns/localized.rb:10"
+    ],
+    "location": "/workspaces/mastodon/app/models/admin/account_action.rb:47"
+  },
+  {
+    "class": "ActiveRecord::RecordInvalid",
+    "message": "Validation failed: Type is not included in the list",
+    "stack": [
+      "/workspaces/mastodon/app/models/admin/account_action.rb:47",
+      "app/controllers/concerns/localized.rb:10"
+    ],
+    "location": "/workspaces/mastodon/app/models/admin/account_action.rb:47"
+  },
+  {
+    "class": "ActiveRecord::RecordInvalid",
+    "message": "Validation failed: Type is not included in the list",
+    "stack": [
+      "/workspaces/mastodon/app/models/admin/account_action.rb:47",
+      "app/models/admin/account_action.rb:46",
+      "app/controllers/api/v1/admin/account_actions_controller.rb:11",
+      "app/controllers/concerns/localized.rb:10"
+    ],
+    "location": "/workspaces/mastodon/app/models/admin/account_action.rb:47"
+  }
+]

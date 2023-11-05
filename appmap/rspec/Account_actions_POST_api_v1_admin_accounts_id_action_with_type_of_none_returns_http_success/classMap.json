@@ -1,0 +1,1698 @@
+[
+  {
+    "name": "openssl",
+    "type": "package",
+    "children": [
+      {
+        "name": "OpenSSL",
+        "type": "class",
+        "children": [
+          {
+            "name": "Random",
+            "type": "class",
+            "children": [
+              {
+                "name": "random_bytes",
+                "type": "function",
+                "labels": [
+                  "random.secure"
+                ],
+                "static": true,
+                "location": "OpenSSL::Random.random_bytes"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "activesupport",
+    "type": "package",
+    "children": [
+      {
+        "name": "ActiveSupport",
+        "type": "class",
+        "children": [
+          {
+            "name": "Callbacks",
+            "type": "class",
+            "children": [
+              {
+                "name": "CallbackSequence",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "invoke_before",
+                    "type": "function",
+                    "labels": [
+                      "mvc.before_action"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:597"
+                  },
+                  {
+                    "name": "invoke_after",
+                    "type": "function",
+                    "labels": [
+                      "mvc.after_action"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/activesupport-7.1.1/lib/active_support/callbacks.rb:601"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "app",
+    "type": "package",
+    "children": [
+      {
+        "name": "models",
+        "type": "package",
+        "children": [
+          {
+            "name": "User",
+            "type": "class",
+            "children": [
+              {
+                "name": "role",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user.rb:153"
+              },
+              {
+                "name": "password_required?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user.rb:332"
+              },
+              {
+                "name": "confirmed?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user.rb:161"
+              },
+              {
+                "name": "invited?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user.rb:165"
+              }
+            ]
+          },
+          {
+            "name": "UserRole",
+            "type": "class",
+            "children": [
+              {
+                "name": "everyone?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user_role.rb:115"
+              },
+              {
+                "name": "computed_permissions",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user_role.rb:139"
+              },
+              {
+                "name": "nobody?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user_role.rb:119"
+              },
+              {
+                "name": "everyone",
+                "type": "function",
+                "static": true,
+                "location": "app/models/user_role.rb:105"
+              },
+              {
+                "name": "can?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user_role.rb:131"
+              }
+            ]
+          },
+          {
+            "name": "Account",
+            "type": "class",
+            "children": [
+              {
+                "name": "local?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:163"
+              },
+              {
+                "name": "user_email",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:139"
+              },
+              {
+                "name": "user_confirmed?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:139"
+              },
+              {
+                "name": "suspended?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:237"
+              },
+              {
+                "name": "silenced?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:225"
+              },
+              {
+                "name": "sensitized?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:265"
+              },
+              {
+                "name": "user_disabled?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:139"
+              },
+              {
+                "name": "user_approved?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:139"
+              },
+              {
+                "name": "user_locale",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:139"
+              },
+              {
+                "name": "pretty_acct",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:195"
+              },
+              {
+                "name": "bot",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:171"
+              },
+              {
+                "name": "group",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:185"
+              },
+              {
+                "name": "object_type",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:385"
+              },
+              {
+                "name": "instance_actor?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:175"
+              },
+              {
+                "name": "to_param",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:389"
+              },
+              {
+                "name": "user_prefers_noindex?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:139"
+              },
+              {
+                "name": "moved?",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:167"
+              },
+              {
+                "name": "emojis",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:469"
+              },
+              {
+                "name": "fields",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:319"
+              },
+              {
+                "name": "user_role",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account.rb:139"
+              }
+            ]
+          },
+          {
+            "name": "Setting",
+            "type": "class",
+            "children": [
+              {
+                "name": "[]",
+                "type": "function",
+                "static": true,
+                "location": "app/models/setting.rb:24"
+              }
+            ]
+          },
+          {
+            "name": "UserSettings",
+            "type": "class",
+            "children": [
+              {
+                "name": "as_json",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user_settings.rb:96"
+              },
+              {
+                "name": "[]",
+                "type": "function",
+                "static": false,
+                "location": "app/models/user_settings.rb:60"
+              }
+            ]
+          },
+          {
+            "name": "concerns",
+            "type": "package",
+            "children": [
+              {
+                "name": "AccountAvatar",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "avatar_original_url",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/account_avatar.rb:27"
+                  },
+                  {
+                    "name": "avatar_static_url",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/account_avatar.rb:31"
+                  }
+                ]
+              },
+              {
+                "name": "AccountHeader",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "header_original_url",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/account_header.rb:28"
+                  },
+                  {
+                    "name": "header_static_url",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/account_header.rb:32"
+                  }
+                ]
+              },
+              {
+                "name": "AccountCounters",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "followers_count",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/account_counters.rb:13"
+                  },
+                  {
+                    "name": "account_stat",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/account_counters.rb:76"
+                  },
+                  {
+                    "name": "following_count",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/account_counters.rb:13"
+                  },
+                  {
+                    "name": "statuses_count",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/account_counters.rb:13"
+                  },
+                  {
+                    "name": "last_status_at",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/account_counters.rb:13"
+                  }
+                ]
+              },
+              {
+                "name": "HasUserSettings",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "prefers_noindex?",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/has_user_settings.rb:14"
+                  }
+                ]
+              },
+              {
+                "name": "DomainMaterializable",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "refresh_instances_view",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/models/concerns/domain_materializable.rb:12"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "AccountStat",
+            "type": "class",
+            "children": [
+              {
+                "name": "followers_count",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account_stat.rb:29"
+              },
+              {
+                "name": "following_count",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account_stat.rb:25"
+              },
+              {
+                "name": "statuses_count",
+                "type": "function",
+                "static": false,
+                "location": "app/models/account_stat.rb:33"
+              }
+            ]
+          },
+          {
+            "name": "user_settings",
+            "type": "package",
+            "children": [
+              {
+                "name": "UserSettings",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "DSL",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "ClassMethods",
+                        "type": "class",
+                        "children": [
+                          {
+                            "name": "definition_for",
+                            "type": "function",
+                            "static": true,
+                            "location": "app/models/user_settings/dsl.rb:29"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Setting",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "key",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/models/user_settings/setting.rb:63"
+                      },
+                      {
+                        "name": "value_for",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/models/user_settings/setting.rb:18"
+                      },
+                      {
+                        "name": "default_value",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/models/user_settings/setting.rb:34"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "CustomEmoji",
+            "type": "class",
+            "children": [
+              {
+                "name": "from_text",
+                "type": "function",
+                "static": true,
+                "location": "app/models/custom_emoji.rb:78"
+              }
+            ]
+          },
+          {
+            "name": "admin",
+            "type": "package",
+            "children": [
+              {
+                "name": "Admin",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "AccountAction",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "save!",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/models/admin/account_action.rb:46"
+                      },
+                      {
+                        "name": "report",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/models/admin/account_action.rb:59"
+                      },
+                      {
+                        "name": "with_report?",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/models/admin/account_action.rb:63"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "validators",
+        "type": "package",
+        "children": [
+          {
+            "name": "UniqueUsernameValidator",
+            "type": "class",
+            "children": [
+              {
+                "name": "validate",
+                "type": "function",
+                "static": false,
+                "location": "app/validators/unique_username_validator.rb:6"
+              }
+            ]
+          },
+          {
+            "name": "UnreservedUsernameValidator",
+            "type": "class",
+            "children": [
+              {
+                "name": "validate",
+                "type": "function",
+                "static": false,
+                "location": "app/validators/unreserved_username_validator.rb:4"
+              }
+            ]
+          },
+          {
+            "name": "RegistrationFormTimeValidator",
+            "type": "class",
+            "children": [
+              {
+                "name": "validate",
+                "type": "function",
+                "static": false,
+                "location": "app/validators/registration_form_time_validator.rb:6"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "lib",
+        "type": "package",
+        "children": [
+          {
+            "name": "UserSettingsSerializer",
+            "type": "class",
+            "children": [
+              {
+                "name": "load",
+                "type": "function",
+                "static": true,
+                "location": "app/lib/user_settings_serializer.rb:4"
+              },
+              {
+                "name": "dump",
+                "type": "function",
+                "static": true,
+                "location": "app/lib/user_settings_serializer.rb:16"
+              }
+            ]
+          },
+          {
+            "name": "activitypub",
+            "type": "package",
+            "children": [
+              {
+                "name": "ActivityPub",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "TagManager",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "url_for",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/lib/activitypub/tag_manager.rb:19"
+                      },
+                      {
+                        "name": "uri_for",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/lib/activitypub/tag_manager.rb:36"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "AccessTokenExtension",
+            "type": "class",
+            "children": [
+              {
+                "name": "push_to_streaming_api",
+                "type": "function",
+                "static": false,
+                "location": "app/lib/access_token_extension.rb:20"
+              },
+              {
+                "name": "update_last_used",
+                "type": "function",
+                "static": false,
+                "location": "app/lib/access_token_extension.rb:16"
+              }
+            ]
+          },
+          {
+            "name": "RedisConfiguration",
+            "type": "class",
+            "children": [
+              {
+                "name": "pool",
+                "type": "function",
+                "static": true,
+                "location": "app/lib/redis_configuration.rb:12"
+              },
+              {
+                "name": "with",
+                "type": "function",
+                "static": true,
+                "location": "app/lib/redis_configuration.rb:10"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "workers",
+        "type": "package",
+        "children": [
+          {
+            "name": "TriggerWebhookWorker",
+            "type": "class",
+            "children": [
+              {
+                "name": "perform",
+                "type": "function",
+                "static": false,
+                "location": "app/workers/trigger_webhook_worker.rb:6"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "serializers/rest",
+        "type": "package",
+        "children": [
+          {
+            "name": "admin",
+            "type": "package",
+            "children": [
+              {
+                "name": "REST",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "Admin",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "WebhookEventSerializer",
+                        "type": "class",
+                        "children": [
+                          {
+                            "name": "event",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/webhook_event_serializer.rb:25"
+                          },
+                          {
+                            "name": "virtual_object",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/webhook_event_serializer.rb:21"
+                          },
+                          {
+                            "name": "serializer_for",
+                            "type": "function",
+                            "static": true,
+                            "location": "app/serializers/rest/admin/webhook_event_serializer.rb:4"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "AccountSerializer",
+                        "type": "class",
+                        "children": [
+                          {
+                            "name": "id",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:16"
+                          },
+                          {
+                            "name": "email",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:20"
+                          },
+                          {
+                            "name": "ip",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:84"
+                          },
+                          {
+                            "name": "ips",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:80"
+                          },
+                          {
+                            "name": "confirmed",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:40"
+                          },
+                          {
+                            "name": "suspended",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:28"
+                          },
+                          {
+                            "name": "silenced",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:32"
+                          },
+                          {
+                            "name": "sensitized",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:36"
+                          },
+                          {
+                            "name": "disabled",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:44"
+                          },
+                          {
+                            "name": "approved",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:48"
+                          },
+                          {
+                            "name": "locale",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:56"
+                          },
+                          {
+                            "name": "invite_request",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:64"
+                          },
+                          {
+                            "name": "created_by_application?",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:76"
+                          },
+                          {
+                            "name": "invited?",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:72"
+                          },
+                          {
+                            "name": "account",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:52"
+                          },
+                          {
+                            "name": "role",
+                            "type": "function",
+                            "static": false,
+                            "location": "app/serializers/rest/admin/account_serializer.rb:24"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "REST",
+            "type": "class",
+            "children": [
+              {
+                "name": "AccountSerializer",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "id",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:55"
+                  },
+                  {
+                    "name": "acct",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:59"
+                  },
+                  {
+                    "name": "display_name",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:99"
+                  },
+                  {
+                    "name": "locked",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:103"
+                  },
+                  {
+                    "name": "bot",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:107"
+                  },
+                  {
+                    "name": "discoverable",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:111"
+                  },
+                  {
+                    "name": "created_at",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:91"
+                  },
+                  {
+                    "name": "note",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:63"
+                  },
+                  {
+                    "name": "url",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:67"
+                  },
+                  {
+                    "name": "uri",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:71"
+                  },
+                  {
+                    "name": "avatar",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:75"
+                  },
+                  {
+                    "name": "avatar_static",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:79"
+                  },
+                  {
+                    "name": "header",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:83"
+                  },
+                  {
+                    "name": "header_static",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:87"
+                  },
+                  {
+                    "name": "last_status_at",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:95"
+                  },
+                  {
+                    "name": "suspended?",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:151"
+                  },
+                  {
+                    "name": "silenced?",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:151"
+                  },
+                  {
+                    "name": "local?",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:151"
+                  },
+                  {
+                    "name": "noindex",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:147"
+                  },
+                  {
+                    "name": "memorial?",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:151"
+                  },
+                  {
+                    "name": "moved_and_not_nested?",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:153"
+                  },
+                  {
+                    "name": "emojis",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:119"
+                  },
+                  {
+                    "name": "roles",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:139"
+                  },
+                  {
+                    "name": "RoleSerializer",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "id",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/serializers/rest/account_serializer.rb:36"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "fields",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/account_serializer.rb:123"
+                  }
+                ]
+              },
+              {
+                "name": "RoleSerializer",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "id",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/role_serializer.rb:6"
+                  },
+                  {
+                    "name": "permissions",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/serializers/rest/role_serializer.rb:10"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "helpers",
+        "type": "package",
+        "children": [
+          {
+            "name": "FormattingHelper",
+            "type": "class",
+            "children": [
+              {
+                "name": "account_bio_format",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/formatting_helper.rb:56"
+              },
+              {
+                "name": "html_aware_format",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/formatting_helper.rb:4"
+              }
+            ]
+          },
+          {
+            "name": "ActivityPub",
+            "type": "class",
+            "children": [
+              {
+                "name": "TagManager",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "default_url_options",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/helpers/routing_helper.rb:12"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "RoutingHelper",
+            "type": "class",
+            "children": [
+              {
+                "name": "full_asset_url",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/routing_helper.rb:17"
+              },
+              {
+                "name": "use_storage?",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/routing_helper.rb:31"
+              },
+              {
+                "name": "asset_host",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/routing_helper.rb:23"
+              }
+            ]
+          },
+          {
+            "name": "SelfDestructHelper",
+            "type": "class",
+            "children": [
+              {
+                "name": "self_destruct?",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/self_destruct_helper.rb:11"
+              }
+            ]
+          },
+          {
+            "name": "DomainControlHelper",
+            "type": "class",
+            "children": [
+              {
+                "name": "limited_federation_mode?",
+                "type": "function",
+                "static": false,
+                "location": "app/helpers/domain_control_helper.rb:20"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "controllers",
+        "type": "package",
+        "children": [
+          {
+            "name": "concerns",
+            "type": "package",
+            "children": [
+              {
+                "name": "Localized",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "set_locale",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/controllers/concerns/localized.rb:10"
+                  }
+                ]
+              },
+              {
+                "name": "Authorization",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "authorize",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/controllers/concerns/authorization.rb:12"
+                  },
+                  {
+                    "name": "pundit_user",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/controllers/concerns/authorization.rb:8"
+                  }
+                ]
+              },
+              {
+                "name": "CacheConcern",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "enforce_cache_control!",
+                    "type": "function",
+                    "static": false,
+                    "location": "app/controllers/concerns/cache_concern.rb:165"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "api",
+            "type": "package",
+            "children": [
+              {
+                "name": "Api",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "BaseController",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "current_user",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/controllers/api/base_controller.rb:116"
+                      },
+                      {
+                        "name": "current_resource_owner",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/controllers/api/base_controller.rb:112"
+                      },
+                      {
+                        "name": "disallow_unauthenticated_api_access?",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/controllers/api/base_controller.rb:152"
+                      },
+                      {
+                        "name": "require_not_suspended!",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/controllers/api/base_controller.rb:126"
+                      },
+                      {
+                        "name": "authorize_if_got_token!",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/controllers/api/base_controller.rb:148"
+                      },
+                      {
+                        "name": "render_empty",
+                        "type": "function",
+                        "static": false,
+                        "location": "app/controllers/api/base_controller.rb:144"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "v1/admin",
+                "type": "package",
+                "children": [
+                  {
+                    "name": "Api",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "V1",
+                        "type": "class",
+                        "children": [
+                          {
+                            "name": "Admin",
+                            "type": "class",
+                            "children": [
+                              {
+                                "name": "AccountActionsController",
+                                "type": "class",
+                                "children": [
+                                  {
+                                    "name": "create",
+                                    "type": "function",
+                                    "static": false,
+                                    "location": "app/controllers/api/v1/admin/account_actions_controller.rb:11"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ApplicationController",
+            "type": "class",
+            "children": [
+              {
+                "name": "current_session",
+                "type": "function",
+                "static": false,
+                "location": "app/controllers/application_controller.rb:153"
+              },
+              {
+                "name": "check_self_destruct!",
+                "type": "function",
+                "static": false,
+                "location": "app/controllers/application_controller.rb:176"
+              },
+              {
+                "name": "set_cache_control_defaults",
+                "type": "function",
+                "static": false,
+                "location": "app/controllers/application_controller.rb:185"
+              },
+              {
+                "name": "current_account",
+                "type": "function",
+                "static": false,
+                "location": "app/controllers/application_controller.rb:147"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "policies",
+        "type": "package",
+        "children": [
+          {
+            "name": "AccountPolicy",
+            "type": "class",
+            "children": [
+              {
+                "name": "show?",
+                "type": "function",
+                "static": false,
+                "location": "app/policies/account_policy.rb:8"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "logger",
+    "type": "package",
+    "children": [
+      {
+        "name": "Logger",
+        "type": "class",
+        "children": [
+          {
+            "name": "LogDevice",
+            "type": "class",
+            "children": [
+              {
+                "name": "write",
+                "type": "function",
+                "labels": [
+                  "log"
+                ],
+                "static": false,
+                "location": "/usr/local/lib/ruby/3.2.0/logger/log_device.rb:31"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "ruby",
+    "type": "package",
+    "children": [
+      {
+        "name": "Marshal",
+        "type": "class",
+        "children": [
+          {
+            "name": "load",
+            "type": "function",
+            "labels": [
+              "deserialize.unsafe"
+            ],
+            "static": true,
+            "location": "<internal:marshal>:33"
+          }
+        ]
+      },
+      {
+        "name": "String",
+        "type": "class",
+        "children": [
+          {
+            "name": "unpack1",
+            "type": "function",
+            "labels": [
+              "string.unpack"
+            ],
+            "static": false,
+            "location": "<internal:pack>:28"
+          },
+          {
+            "name": "unpack",
+            "type": "function",
+            "labels": [
+              "string.unpack"
+            ],
+            "static": false,
+            "location": "<internal:pack>:19"
+          }
+        ]
+      },
+      {
+        "name": "Array",
+        "type": "class",
+        "children": [
+          {
+            "name": "pack",
+            "type": "function",
+            "labels": [
+              "array.pack"
+            ],
+            "static": false,
+            "location": "<internal:pack>:7"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "lib",
+    "type": "package",
+    "children": [
+      {
+        "name": "paperclip",
+        "type": "package",
+        "children": [
+          {
+            "name": "Paperclip",
+            "type": "class",
+            "children": [
+              {
+                "name": "AttachmentExtensions",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "save",
+                    "type": "function",
+                    "static": false,
+                    "location": "lib/paperclip/attachment_extensions.rb:83"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "chewy/strategy",
+        "type": "package",
+        "children": [
+          {
+            "name": "Chewy",
+            "type": "class",
+            "children": [
+              {
+                "name": "Strategy",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "Mastodon",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "leave",
+                        "type": "function",
+                        "static": false,
+                        "location": "lib/chewy/strategy/mastodon.rb:16"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "sidekiq",
+    "type": "package",
+    "children": [
+      {
+        "name": "Sidekiq",
+        "type": "class",
+        "children": [
+          {
+            "name": "Client",
+            "type": "class",
+            "children": [
+              {
+                "name": "push",
+                "type": "function",
+                "labels": [
+                  "job.create"
+                ],
+                "static": false,
+                "location": "vendor/bundle/ruby/3.2.0/gems/sidekiq-6.5.12/lib/sidekiq/client.rb:72"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "json",
+    "type": "package",
+    "children": [
+      {
+        "name": "JSON",
+        "type": "class",
+        "children": [
+          {
+            "name": "Ext",
+            "type": "class",
+            "children": [
+              {
+                "name": "Generator",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "State",
+                    "type": "class",
+                    "children": [
+                      {
+                        "name": "generate",
+                        "type": "function",
+                        "labels": [
+                          "format.json.generate",
+                          "serialize"
+                        ],
+                        "static": false,
+                        "location": "JSON::Ext::Generator::State#generate"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Parser",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "parse",
+                    "type": "function",
+                    "labels": [
+                      "format.json.parse",
+                      "deserialize.safe"
+                    ],
+                    "static": false,
+                    "location": "JSON::Ext::Parser#parse"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "actionpack",
+    "type": "package",
+    "children": [
+      {
+        "name": "ActionDispatch",
+        "type": "class",
+        "children": [
+          {
+            "name": "Cookies",
+            "type": "class",
+            "children": [
+              {
+                "name": "CookieJar",
+                "type": "class",
+                "children": [
+                  {
+                    "name": "update",
+                    "type": "function",
+                    "labels": [
+                      "http.session.write"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb:344"
+                  },
+                  {
+                    "name": "[]",
+                    "type": "function",
+                    "labels": [
+                      "http.session.read"
+                    ],
+                    "static": false,
+                    "location": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_dispatch/middleware/cookies.rb:328"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ActionController",
+        "type": "class",
+        "children": [
+          {
+            "name": "Renderers",
+            "type": "class",
+            "children": [
+              {
+                "name": "render_to_body",
+                "type": "function",
+                "labels": [
+                  "mvc.render"
+                ],
+                "static": false,
+                "location": "vendor/bundle/ruby/3.2.0/gems/actionpack-7.1.1/lib/action_controller/metal/renderers.rb:140"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "database",
+    "name": "Database",
+    "children": [
+      {
+        "type": "query",
+        "name": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"name\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SAVEPOINT active_record_1"
+      },
+      {
+        "type": "query",
+        "name": "SELECT 1 AS one FROM \"users\" WHERE \"users\".\"email\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT 1 AS one FROM \"accounts\" WHERE LOWER(\"accounts\".\"username\") = 'leontine223' AND LOWER(\"accounts\".\"domain\") IS NULL LIMIT $1"
+      },
+      {
+        "type": "query",
+        "name": "INSERT INTO \"accounts\" (\"username\", \"domain\", \"private_key\", \"public_key\", \"created_at\", \"updated_at\", \"note\", \"display_name\", \"uri\", \"url\", \"avatar_file_name\", \"avatar_content_type\", \"avatar_file_size\", \"avatar_updated_at\", \"header_file_name\", \"header_content_type\", \"header_file_size\", \"header_updated_at\", \"avatar_remote_url\", \"locked\", \"header_remote_url\", \"last_webfingered_at\", \"inbox_url\", \"outbox_url\", \"shared_inbox_url\", \"followers_url\", \"protocol\", \"memorial\", \"moved_to_account_id\", \"featured_collection_url\", \"fields\", \"actor_type\", \"discoverable\", \"also_known_as\", \"silenced_at\", \"suspended_at\", \"hide_collections\", \"avatar_storage_schema_version\", \"header_storage_schema_version\", \"devices_url\", \"suspension_origin\", \"sensitized_at\", \"trendable\", \"reviewed_at\", \"requested_review_at\", \"indexable\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44, $45, $46) RETURNING \"id\""
+      },
+      {
+        "type": "query",
+        "name": "INSERT INTO \"users\" (\"email\", \"created_at\", \"updated_at\", \"encrypted_password\", \"reset_password_token\", \"reset_password_sent_at\", \"sign_in_count\", \"current_sign_in_at\", \"last_sign_in_at\", \"admin\", \"confirmation_token\", \"confirmed_at\", \"confirmation_sent_at\", \"unconfirmed_email\", \"locale\", \"encrypted_otp_secret\", \"encrypted_otp_secret_iv\", \"encrypted_otp_secret_salt\", \"consumed_timestep\", \"otp_required_for_login\", \"last_emailed_at\", \"otp_backup_codes\", \"account_id\", \"disabled\", \"moderator\", \"invite_id\", \"chosen_languages\", \"created_by_application_id\", \"approved\", \"sign_in_token\", \"sign_in_token_sent_at\", \"webauthn_id\", \"sign_up_ip\", \"role_id\", \"settings\", \"time_zone\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36) RETURNING \"id\""
+      },
+      {
+        "type": "query",
+        "name": "RELEASE SAVEPOINT active_record_1"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"accounts\".\"id\", \"accounts\".\"username\", \"accounts\".\"domain\", \"accounts\".\"private_key\", \"accounts\".\"public_key\", \"accounts\".\"created_at\", \"accounts\".\"updated_at\", \"accounts\".\"note\", \"accounts\".\"display_name\", \"accounts\".\"uri\", \"accounts\".\"url\", \"accounts\".\"avatar_file_name\", \"accounts\".\"avatar_content_type\", \"accounts\".\"avatar_file_size\", \"accounts\".\"avatar_updated_at\", \"accounts\".\"header_file_name\", \"accounts\".\"header_content_type\", \"accounts\".\"header_file_size\", \"accounts\".\"header_updated_at\", \"accounts\".\"avatar_remote_url\", \"accounts\".\"locked\", \"accounts\".\"header_remote_url\", \"accounts\".\"last_webfingered_at\", \"accounts\".\"inbox_url\", \"accounts\".\"outbox_url\", \"accounts\".\"shared_inbox_url\", \"accounts\".\"followers_url\", \"accounts\".\"protocol\", \"accounts\".\"memorial\", \"accounts\".\"moved_to_account_id\", \"accounts\".\"featured_collection_url\", \"accounts\".\"fields\", \"accounts\".\"actor_type\", \"accounts\".\"discoverable\", \"accounts\".\"also_known_as\", \"accounts\".\"silenced_at\", \"accounts\".\"suspended_at\", \"accounts\".\"hide_collections\", \"accounts\".\"avatar_storage_schema_version\", \"accounts\".\"header_storage_schema_version\", \"accounts\".\"devices_url\", \"accounts\".\"suspension_origin\", \"accounts\".\"sensitized_at\", \"accounts\".\"trendable\", \"accounts\".\"reviewed_at\", \"accounts\".\"requested_review_at\", \"accounts\".\"indexable\" FROM \"accounts\" WHERE \"accounts\".\"id\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"users\".\"id\", \"users\".\"email\", \"users\".\"created_at\", \"users\".\"updated_at\", \"users\".\"encrypted_password\", \"users\".\"reset_password_token\", \"users\".\"reset_password_sent_at\", \"users\".\"sign_in_count\", \"users\".\"current_sign_in_at\", \"users\".\"last_sign_in_at\", \"users\".\"admin\", \"users\".\"confirmation_token\", \"users\".\"confirmed_at\", \"users\".\"confirmation_sent_at\", \"users\".\"unconfirmed_email\", \"users\".\"locale\", \"users\".\"encrypted_otp_secret\", \"users\".\"encrypted_otp_secret_iv\", \"users\".\"encrypted_otp_secret_salt\", \"users\".\"consumed_timestep\", \"users\".\"otp_required_for_login\", \"users\".\"last_emailed_at\", \"users\".\"otp_backup_codes\", \"users\".\"account_id\", \"users\".\"disabled\", \"users\".\"moderator\", \"users\".\"invite_id\", \"users\".\"chosen_languages\", \"users\".\"created_by_application_id\", \"users\".\"approved\", \"users\".\"sign_in_token\", \"users\".\"sign_in_token_sent_at\", \"users\".\"webauthn_id\", \"users\".\"sign_up_ip\", \"users\".\"role_id\", \"users\".\"settings\", \"users\".\"time_zone\" FROM \"users\" WHERE \"users\".\"account_id\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"user_ips\".* FROM \"user_ips\" WHERE \"user_ips\".\"user_id\" = $1 ORDER BY \"user_ips\".\"user_id\" ASC LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"user_invite_requests\".* FROM \"user_invite_requests\" WHERE \"user_invite_requests\".\"user_id\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"user_ips\".* FROM \"user_ips\" WHERE \"user_ips\".\"user_id\" = $1"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"account_stats\".\"id\", \"account_stats\".\"account_id\", \"account_stats\".\"statuses_count\", \"account_stats\".\"following_count\", \"account_stats\".\"followers_count\", \"account_stats\".\"created_at\", \"account_stats\".\"updated_at\", \"account_stats\".\"last_status_at\" FROM \"account_stats\" WHERE \"account_stats\".\"account_id\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"user_roles\".* FROM \"user_roles\" WHERE \"user_roles\".\"id\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"webhooks\".\"id\" FROM \"webhooks\" WHERE \"webhooks\".\"enabled\" = $1 AND ('account.created' = ANY(events))"
+      },
+      {
+        "type": "query",
+        "name": "SELECT 1 AS one FROM \"oauth_access_tokens\" WHERE \"oauth_access_tokens\".\"token\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "INSERT INTO \"oauth_access_tokens\" (\"token\", \"refresh_token\", \"expires_in\", \"revoked_at\", \"created_at\", \"scopes\", \"application_id\", \"resource_owner_id\", \"last_used_at\", \"last_used_ip\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING \"id\""
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"oauth_access_tokens\".* FROM \"oauth_access_tokens\" WHERE \"oauth_access_tokens\".\"token\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT \"users\".\"id\", \"users\".\"email\", \"users\".\"created_at\", \"users\".\"updated_at\", \"users\".\"encrypted_password\", \"users\".\"reset_password_token\", \"users\".\"reset_password_sent_at\", \"users\".\"sign_in_count\", \"users\".\"current_sign_in_at\", \"users\".\"last_sign_in_at\", \"users\".\"admin\", \"users\".\"confirmation_token\", \"users\".\"confirmed_at\", \"users\".\"confirmation_sent_at\", \"users\".\"unconfirmed_email\", \"users\".\"locale\", \"users\".\"encrypted_otp_secret\", \"users\".\"encrypted_otp_secret_iv\", \"users\".\"encrypted_otp_secret_salt\", \"users\".\"consumed_timestep\", \"users\".\"otp_required_for_login\", \"users\".\"last_emailed_at\", \"users\".\"otp_backup_codes\", \"users\".\"account_id\", \"users\".\"disabled\", \"users\".\"moderator\", \"users\".\"invite_id\", \"users\".\"chosen_languages\", \"users\".\"created_by_application_id\", \"users\".\"approved\", \"users\".\"sign_in_token\", \"users\".\"sign_in_token_sent_at\", \"users\".\"webauthn_id\", \"users\".\"sign_up_ip\", \"users\".\"role_id\", \"users\".\"settings\", \"users\".\"time_zone\" FROM \"users\" WHERE \"users\".\"id\" = $1 LIMIT $2"
+      },
+      {
+        "type": "query",
+        "name": "SELECT 1 AS one FROM \"oauth_access_tokens\" WHERE \"oauth_access_tokens\".\"token\" = $1 AND \"oauth_access_tokens\".\"id\" != $2 LIMIT $3"
+      },
+      {
+        "type": "query",
+        "name": "UPDATE \"oauth_access_tokens\" SET \"last_used_at\" = $1, \"last_used_ip\" = $2 WHERE \"oauth_access_tokens\".\"id\" = $3"
+      },
+      {
+        "type": "query",
+        "name": "INSERT INTO \"account_warnings\" (\"account_id\", \"target_account_id\", \"action\", \"text\", \"created_at\", \"updated_at\", \"report_id\", \"status_ids\", \"overruled_at\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING \"id\""
+      }
+    ]
+  },
+  {
+    "type": "http",
+    "name": "HTTP server requests",
+    "children": [
+      {
+        "type": "route",
+        "name": "POST /api/v1/admin/accounts/{account_id}/action"
+      }
+    ]
+  }
+]
