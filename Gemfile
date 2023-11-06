@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 ruby '>= 3.0.0'
 
+# this must be the first gem listed
 gem 'appmap', groups: [:development, :test]
 
 gem 'puma', '~> 6.3'

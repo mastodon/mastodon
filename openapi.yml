@@ -75,6 +75,14 @@ paths:
           description: Not Found
     post:
       responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+        '302':
+          content:
+            text/html: {}
+          description: Found
         '404':
           content:
             application/json:
@@ -84,6 +92,114 @@ paths:
                   error:
                     type: string
           description: Not Found
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                domain_block:
+                  type: object
+                  properties:
+                    obfuscate:
+                      type: string
+                    private_comment:
+                      type: string
+                    public_comment:
+                      type: string
+                    reject_media:
+                      type: string
+                    reject_reports:
+                      type: string
+                    severity:
+                      type: string
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: object
+                  properties:
+                    bot:
+                      type: string
+                    display_name:
+                      type: string
+                    fields_attributes:
+                      type: object
+                      properties:
+                        '0':
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            value:
+                              type: string
+                        '1':
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            value:
+                              type: string
+                        '2':
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            value:
+                              type: string
+                        '3':
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            value:
+                              type: string
+                    note:
+                      type: string
+                button:
+                  type: string
+  /.well-known/host-meta:
+    get:
+      responses:
+        '200':
+          content:
+            application/xrd+xml: {}
+          description: OK
+  /.well-known/webfinger:
+    get:
+      responses:
+        '200':
+          content:
+            application/jrd+json:
+              schema:
+                type: object
+                properties:
+                  aliases:
+                    type: array
+                    items:
+                      type: string
+                  links:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                        rel:
+                          type: string
+                        template:
+                          type: string
+                        type:
+                          type: string
+                  subject:
+                    type: string
+          description: OK
+      parameters:
+        - name: resource
+          in: query
+          schema:
+            type: string
   /@:account_username/{id}:
     get:
       responses:
@@ -147,6 +263,116 @@ paths:
                   type: string
                 suspend:
                   type: string
+  /admin/accounts/{account_id}/statuses:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+  /admin/accounts/{account_id}/statuses/batch:
+    post:
+      responses:
+        '302':
+          content:
+            text/html: {}
+          description: Found
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: string
+                report:
+                  type: string
+  /admin/custom_emojis:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+  /admin/custom_emojis/batch:
+    post:
+      responses:
+        '302':
+          content:
+            text/html: {}
+          description: Found
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                enable:
+                  type: string
+                page:
+                  type: string
+  /admin/domain_blocks:
+    post:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+        '302':
+          content:
+            text/html: {}
+          description: Found
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                button:
+                  type: string
+                confirm:
+                  type: string
+                domain_block:
+                  type: object
+                  properties:
+                    domain:
+                      type: string
+                    obfuscate:
+                      type: string
+                    private_comment:
+                      type: string
+                    public_comment:
+                      type: string
+                    reject_media:
+                      type: string
+                    reject_reports:
+                      type: string
+                    severity:
+                      type: string
+  /admin/domain_blocks/new:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+  /admin/domain_blocks/{id}/edit:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
   /admin/email_domain_blocks:
     get:
       responses:
@@ -171,6 +397,18 @@ paths:
                   type: string
                 page:
                   type: string
+  /admin/instances:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+      parameters:
+        - name: limited
+          in: query
+          schema:
+            type: string
   /admin/ip_blocks:
     get:
       responses:
@@ -202,6 +440,35 @@ paths:
           content:
             text/html: {}
           description: OK
+  /admin/trends/links:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+  /admin/trends/links/batch:
+    post:
+      responses:
+        '302':
+          content:
+            text/html: {}
+          description: Found
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                approve:
+                  type: string
+                page:
+                  type: string
   /admin/trends/links/publishers:
     get:
       responses:
@@ -244,6 +511,35 @@ paths:
           schema:
             type: string
   /admin/trends/statuses/batch:
+    post:
+      responses:
+        '302':
+          content:
+            text/html: {}
+          description: Found
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                approve:
+                  type: string
+                page:
+                  type: string
+  /admin/trends/tags:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+  /admin/trends/tags/batch:
     post:
       responses:
         '302':
@@ -488,6 +784,107 @@ paths:
                   error:
                     type: string
           description: Forbidden
+      security:
+        - bearer: []
+  /api/v1/accounts/{account_id}/featured_tags:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    statuses_count:
+                      type: string
+                    url:
+                      type: string
+          description: OK
+      security:
+        - bearer: []
+  /api/v1/accounts/{id}:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  acct:
+                    type: string
+                  avatar:
+                    type: string
+                  avatar_static:
+                    type: string
+                  bot:
+                    type: boolean
+                  created_at:
+                    type: string
+                  discoverable:
+                    type: boolean
+                  display_name:
+                    type: string
+                  emojis:
+                    type: array
+                    items: {}
+                  fields:
+                    type: array
+                    items: {}
+                  followers_count:
+                    type: integer
+                  following_count:
+                    type: integer
+                  group:
+                    type: boolean
+                  header:
+                    type: string
+                  header_static:
+                    type: string
+                  id:
+                    type: string
+                  locked:
+                    type: boolean
+                  noindex:
+                    type: boolean
+                  note:
+                    type: string
+                  roles:
+                    type: array
+                    items: {}
+                  statuses_count:
+                    type: integer
+                  uri:
+                    type: string
+                  url:
+                    type: string
+                  username:
+                    type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Not Found
       security:
         - bearer: []
   /api/v1/admin/accounts:
@@ -1445,6 +1842,195 @@ paths:
           description: Not Found
       security:
         - bearer: []
+  /api/v1/admin/canonical_email_blocks:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    canonical_email_hash:
+                      type: string
+                    id:
+                      type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: max_id
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          schema:
+            type: string
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  canonical_email_hash:
+                    type: string
+                  id:
+                    type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Unprocessable Entity
+      security:
+        - bearer: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                canonical_email_hash:
+                  type: string
+                email:
+                  type: string
+  /api/v1/admin/canonical_email_blocks/test:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    canonical_email_hash:
+                      type: string
+                    id:
+                      type: string
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+  /api/v1/admin/canonical_email_blocks/{id}:
+    delete:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Not Found
+      security:
+        - bearer: []
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  canonical_email_hash:
+                    type: string
+                  id:
+                    type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Not Found
+      security:
+        - bearer: []
   /api/v1/admin/domain_allows:
     get:
       responses:
@@ -1827,6 +2413,181 @@ paths:
                   type: string
                 severity:
                   type: string
+  /api/v1/admin/email_domain_blocks:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    created_at:
+                      type: string
+                    domain:
+                      type: string
+                    history:
+                      type: array
+                      items:
+                        type: object
+                    id:
+                      type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: max_id
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          schema:
+            type: string
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: string
+                  domain:
+                    type: string
+                  history:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        accounts:
+                          type: string
+                        day:
+                          type: string
+                        uses:
+                          type: string
+                  id:
+                    type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Unprocessable Entity
+      security:
+        - bearer: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                domain:
+                  type: string
+  /api/v1/admin/email_domain_blocks/{id}:
+    delete:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Not Found
+      security:
+        - bearer: []
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: string
+                  domain:
+                    type: string
+                  history:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        accounts:
+                          type: string
+                        day:
+                          type: string
+                        uses:
+                          type: string
+                  id:
+                    type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Not Found
+      security:
+        - bearer: []
   /api/v1/admin/ip_blocks:
     get:
       responses:
@@ -2019,6 +2780,1684 @@ paths:
                   type: string
                 severity:
                   type: string
+  /api/v1/admin/reports:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    account:
+                      type: object
+                      properties:
+                        account:
+                          type: object
+                        approved:
+                          type: boolean
+                        confirmed:
+                          type: boolean
+                        created_at:
+                          type: string
+                        disabled:
+                          type: boolean
+                        email:
+                          type: string
+                        id:
+                          type: string
+                        ips:
+                          type: array
+                          items: {}
+                        role:
+                          type: object
+                        sensitized:
+                          type: boolean
+                        silenced:
+                          type: boolean
+                        suspended:
+                          type: boolean
+                        username:
+                          type: string
+                    action_taken:
+                      type: boolean
+                    action_taken_at:
+                      type: string
+                    category:
+                      type: string
+                    comment:
+                      type: string
+                    created_at:
+                      type: string
+                    id:
+                      type: string
+                    rules:
+                      type: array
+                      items: {}
+                    statuses:
+                      type: array
+                      items: {}
+                    target_account:
+                      type: object
+                      properties:
+                        account:
+                          type: object
+                        approved:
+                          type: boolean
+                        confirmed:
+                          type: boolean
+                        created_at:
+                          type: string
+                        disabled:
+                          type: boolean
+                        email:
+                          type: string
+                        id:
+                          type: string
+                        ips:
+                          type: array
+                          items: {}
+                        role:
+                          type: object
+                        sensitized:
+                          type: boolean
+                        silenced:
+                          type: boolean
+                        suspended:
+                          type: boolean
+                        username:
+                          type: string
+                    updated_at:
+                      type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+      parameters:
+        - name: account_id
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: resolved
+          in: query
+          schema:
+            type: string
+        - name: target_account_id
+          in: query
+          schema:
+            type: string
+  /api/v1/admin/reports/{id}:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items: {}
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  action_taken:
+                    type: boolean
+                  category:
+                    type: string
+                  comment:
+                    type: string
+                  created_at:
+                    type: string
+                  id:
+                    type: string
+                  rules:
+                    type: array
+                    items: {}
+                  statuses:
+                    type: array
+                    items: {}
+                  target_account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items: {}
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  updated_at:
+                    type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+    put:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items: {}
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  action_taken:
+                    type: boolean
+                  category:
+                    type: string
+                  comment:
+                    type: string
+                  created_at:
+                    type: string
+                  id:
+                    type: string
+                  rules:
+                    type: array
+                    items: {}
+                  statuses:
+                    type: array
+                    items: {}
+                  target_account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items: {}
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  updated_at:
+                    type: string
+          description: OK
+      security:
+        - bearer: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: string
+  /api/v1/admin/reports/{id}/assign_to_self:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items: {}
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  action_taken:
+                    type: boolean
+                  assigned_account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items:
+                              type: object
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  category:
+                    type: string
+                  comment:
+                    type: string
+                  created_at:
+                    type: string
+                  id:
+                    type: string
+                  rules:
+                    type: array
+                    items: {}
+                  statuses:
+                    type: array
+                    items: {}
+                  target_account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items: {}
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  updated_at:
+                    type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+  /api/v1/admin/reports/{id}/reopen:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items: {}
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  action_taken:
+                    type: boolean
+                  category:
+                    type: string
+                  comment:
+                    type: string
+                  created_at:
+                    type: string
+                  id:
+                    type: string
+                  rules:
+                    type: array
+                    items: {}
+                  statuses:
+                    type: array
+                    items: {}
+                  target_account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items: {}
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  updated_at:
+                    type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+  /api/v1/admin/reports/{id}/resolve:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items: {}
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  action_taken:
+                    type: boolean
+                  action_taken_at:
+                    type: string
+                  action_taken_by_account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items:
+                              type: object
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  category:
+                    type: string
+                  comment:
+                    type: string
+                  created_at:
+                    type: string
+                  id:
+                    type: string
+                  rules:
+                    type: array
+                    items: {}
+                  statuses:
+                    type: array
+                    items: {}
+                  target_account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items: {}
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  updated_at:
+                    type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+  /api/v1/admin/reports/{id}/unassign:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items: {}
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  action_taken:
+                    type: boolean
+                  category:
+                    type: string
+                  comment:
+                    type: string
+                  created_at:
+                    type: string
+                  id:
+                    type: string
+                  rules:
+                    type: array
+                    items: {}
+                  statuses:
+                    type: array
+                    items: {}
+                  target_account:
+                    type: object
+                    properties:
+                      account:
+                        type: object
+                        properties:
+                          acct:
+                            type: string
+                          avatar:
+                            type: string
+                          avatar_static:
+                            type: string
+                          bot:
+                            type: boolean
+                          created_at:
+                            type: string
+                          discoverable:
+                            type: boolean
+                          display_name:
+                            type: string
+                          emojis:
+                            type: array
+                            items: {}
+                          fields:
+                            type: array
+                            items: {}
+                          followers_count:
+                            type: integer
+                          following_count:
+                            type: integer
+                          group:
+                            type: boolean
+                          header:
+                            type: string
+                          header_static:
+                            type: string
+                          id:
+                            type: string
+                          locked:
+                            type: boolean
+                          noindex:
+                            type: boolean
+                          note:
+                            type: string
+                          roles:
+                            type: array
+                            items: {}
+                          statuses_count:
+                            type: integer
+                          uri:
+                            type: string
+                          url:
+                            type: string
+                          username:
+                            type: string
+                      approved:
+                        type: boolean
+                      confirmed:
+                        type: boolean
+                      created_at:
+                        type: string
+                      disabled:
+                        type: boolean
+                      email:
+                        type: string
+                      id:
+                        type: string
+                      ips:
+                        type: array
+                        items: {}
+                      role:
+                        type: object
+                        properties:
+                          color:
+                            type: string
+                          highlighted:
+                            type: boolean
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          permissions:
+                            type: string
+                      sensitized:
+                        type: boolean
+                      silenced:
+                        type: boolean
+                      suspended:
+                        type: boolean
+                      username:
+                        type: string
+                  updated_at:
+                    type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+  /api/v1/admin/tags:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    following:
+                      type: boolean
+                    history:
+                      type: array
+                      items:
+                        type: object
+                    id:
+                      type: string
+                    listable:
+                      type: boolean
+                    name:
+                      type: string
+                    requires_review:
+                      type: boolean
+                    trendable:
+                      type: boolean
+                    url:
+                      type: string
+                    usable:
+                      type: boolean
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: string
   /api/v1/admin/tags/{id}:
     get:
       responses:
@@ -2121,6 +4560,15 @@ paths:
                   error:
                     type: string
           description: Forbidden
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Unprocessable Entity
       security:
         - bearer: []
       requestBody:
@@ -2131,6 +4579,164 @@ paths:
               properties:
                 display_name:
                   type: string
+  /api/v1/admin/trends/links:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: OK
+      security:
+        - bearer: []
+  /api/v1/admin/trends/links/{id}/approve:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  author_name:
+                    type: string
+                  author_url:
+                    type: string
+                  description:
+                    type: string
+                  embed_url:
+                    type: string
+                  height:
+                    type: integer
+                  history:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        accounts:
+                          type: string
+                        day:
+                          type: string
+                        uses:
+                          type: string
+                  html:
+                    type: string
+                  id:
+                    type: integer
+                  image:
+                    type: string
+                  image_description:
+                    type: string
+                  provider_name:
+                    type: string
+                  provider_url:
+                    type: string
+                  requires_review:
+                    type: boolean
+                  title:
+                    type: string
+                  type:
+                    type: string
+                  url:
+                    type: string
+                  width:
+                    type: integer
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Not Found
+      security:
+        - bearer: []
+  /api/v1/admin/trends/links/{id}/reject:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  author_name:
+                    type: string
+                  author_url:
+                    type: string
+                  description:
+                    type: string
+                  embed_url:
+                    type: string
+                  height:
+                    type: integer
+                  history:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        accounts:
+                          type: string
+                        day:
+                          type: string
+                        uses:
+                          type: string
+                  html:
+                    type: string
+                  id:
+                    type: integer
+                  image:
+                    type: string
+                  image_description:
+                    type: string
+                  provider_name:
+                    type: string
+                  provider_url:
+                    type: string
+                  requires_review:
+                    type: boolean
+                  title:
+                    type: string
+                  type:
+                    type: string
+                  url:
+                    type: string
+                  width:
+                    type: integer
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Not Found
+      security:
+        - bearer: []
   /api/v1/apps:
     post:
       responses:
@@ -2294,6 +4900,142 @@ paths:
           in: query
           schema:
             type: string
+  /api/v1/bookmarks:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    account:
+                      type: object
+                      properties:
+                        acct:
+                          type: string
+                        avatar:
+                          type: string
+                        avatar_static:
+                          type: string
+                        bot:
+                          type: boolean
+                        created_at:
+                          type: string
+                        discoverable:
+                          type: boolean
+                        display_name:
+                          type: string
+                        emojis:
+                          type: array
+                          items: {}
+                        fields:
+                          type: array
+                          items: {}
+                        followers_count:
+                          type: integer
+                        following_count:
+                          type: integer
+                        group:
+                          type: boolean
+                        header:
+                          type: string
+                        header_static:
+                          type: string
+                        id:
+                          type: string
+                        last_status_at:
+                          type: string
+                        locked:
+                          type: boolean
+                        noindex:
+                          type: boolean
+                        note:
+                          type: string
+                        roles:
+                          type: array
+                          items: {}
+                        statuses_count:
+                          type: integer
+                        uri:
+                          type: string
+                        url:
+                          type: string
+                        username:
+                          type: string
+                    bookmarked:
+                      type: boolean
+                    content:
+                      type: string
+                    created_at:
+                      type: string
+                    emojis:
+                      type: array
+                      items: {}
+                    favourited:
+                      type: boolean
+                    favourites_count:
+                      type: integer
+                    filtered:
+                      type: array
+                      items: {}
+                    id:
+                      type: string
+                    media_attachments:
+                      type: array
+                      items: {}
+                    mentions:
+                      type: array
+                      items: {}
+                    muted:
+                      type: boolean
+                    reblogged:
+                      type: boolean
+                    reblogs_count:
+                      type: integer
+                    replies_count:
+                      type: integer
+                    sensitive:
+                      type: boolean
+                    spoiler_text:
+                      type: string
+                    tags:
+                      type: array
+                      items: {}
+                    uri:
+                      type: string
+                    url:
+                      type: string
+                    visibility:
+                      type: string
+          description: OK
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: string
   /api/v1/domain_blocks:
     get:
       responses:
@@ -2432,6 +5174,142 @@ paths:
               properties:
                 email:
                   type: string
+  /api/v1/favourites:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    account:
+                      type: object
+                      properties:
+                        acct:
+                          type: string
+                        avatar:
+                          type: string
+                        avatar_static:
+                          type: string
+                        bot:
+                          type: boolean
+                        created_at:
+                          type: string
+                        discoverable:
+                          type: boolean
+                        display_name:
+                          type: string
+                        emojis:
+                          type: array
+                          items: {}
+                        fields:
+                          type: array
+                          items: {}
+                        followers_count:
+                          type: integer
+                        following_count:
+                          type: integer
+                        group:
+                          type: boolean
+                        header:
+                          type: string
+                        header_static:
+                          type: string
+                        id:
+                          type: string
+                        last_status_at:
+                          type: string
+                        locked:
+                          type: boolean
+                        noindex:
+                          type: boolean
+                        note:
+                          type: string
+                        roles:
+                          type: array
+                          items: {}
+                        statuses_count:
+                          type: integer
+                        uri:
+                          type: string
+                        url:
+                          type: string
+                        username:
+                          type: string
+                    bookmarked:
+                      type: boolean
+                    content:
+                      type: string
+                    created_at:
+                      type: string
+                    emojis:
+                      type: array
+                      items: {}
+                    favourited:
+                      type: boolean
+                    favourites_count:
+                      type: integer
+                    filtered:
+                      type: array
+                      items: {}
+                    id:
+                      type: string
+                    media_attachments:
+                      type: array
+                      items: {}
+                    mentions:
+                      type: array
+                      items: {}
+                    muted:
+                      type: boolean
+                    reblogged:
+                      type: boolean
+                    reblogs_count:
+                      type: integer
+                    replies_count:
+                      type: integer
+                    sensitive:
+                      type: boolean
+                    spoiler_text:
+                      type: string
+                    tags:
+                      type: array
+                      items: {}
+                    uri:
+                      type: string
+                    url:
+                      type: string
+                    visibility:
+                      type: string
+          description: OK
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: string
   /api/v1/featured_tags:
     get:
       responses:
@@ -3388,6 +6266,545 @@ paths:
           in: query
           schema:
             type: string
+  /api/v1/notifications:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    account:
+                      type: object
+                      properties:
+                        acct:
+                          type: string
+                        avatar:
+                          type: string
+                        avatar_static:
+                          type: string
+                        bot:
+                          type: boolean
+                        created_at:
+                          type: string
+                        discoverable:
+                          type: boolean
+                        display_name:
+                          type: string
+                        emojis:
+                          type: array
+                          items: {}
+                        fields:
+                          type: array
+                          items: {}
+                        followers_count:
+                          type: integer
+                        following_count:
+                          type: integer
+                        group:
+                          type: boolean
+                        header:
+                          type: string
+                        header_static:
+                          type: string
+                        id:
+                          type: string
+                        last_status_at:
+                          type: string
+                        locked:
+                          type: boolean
+                        noindex:
+                          type: boolean
+                        note:
+                          type: string
+                        roles:
+                          type: array
+                          items: {}
+                        statuses_count:
+                          type: integer
+                        uri:
+                          type: string
+                        url:
+                          type: string
+                        username:
+                          type: string
+                    created_at:
+                      type: string
+                    id:
+                      type: string
+                    status:
+                      type: object
+                      properties:
+                        account:
+                          type: object
+                        bookmarked:
+                          type: boolean
+                        content:
+                          type: string
+                        created_at:
+                          type: string
+                        emojis:
+                          type: array
+                          items: {}
+                        favourited:
+                          type: boolean
+                        favourites_count:
+                          type: integer
+                        filtered:
+                          type: array
+                          items: {}
+                        id:
+                          type: string
+                        language:
+                          type: string
+                        media_attachments:
+                          type: array
+                          items: {}
+                        mentions:
+                          type: array
+                          items:
+                            type: object
+                        muted:
+                          type: boolean
+                        pinned:
+                          type: boolean
+                        reblogged:
+                          type: boolean
+                        reblogs_count:
+                          type: integer
+                        replies_count:
+                          type: integer
+                        sensitive:
+                          type: boolean
+                        spoiler_text:
+                          type: string
+                        tags:
+                          type: array
+                          items: {}
+                        uri:
+                          type: string
+                        url:
+                          type: string
+                        visibility:
+                          type: string
+                    type:
+                      type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+      parameters:
+        - name: account_id
+          in: query
+          schema:
+            type: string
+        - name: exclude_types
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: types
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+  /api/v1/notifications/clear:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+      security:
+        - bearer: []
+  /api/v1/notifications/{id}:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  account:
+                    type: object
+                    properties:
+                      acct:
+                        type: string
+                      avatar:
+                        type: string
+                      avatar_static:
+                        type: string
+                      bot:
+                        type: boolean
+                      created_at:
+                        type: string
+                      discoverable:
+                        type: boolean
+                      display_name:
+                        type: string
+                      emojis:
+                        type: array
+                        items: {}
+                      fields:
+                        type: array
+                        items: {}
+                      followers_count:
+                        type: integer
+                      following_count:
+                        type: integer
+                      group:
+                        type: boolean
+                      header:
+                        type: string
+                      header_static:
+                        type: string
+                      id:
+                        type: string
+                      last_status_at:
+                        type: string
+                      locked:
+                        type: boolean
+                      noindex:
+                        type: boolean
+                      note:
+                        type: string
+                      roles:
+                        type: array
+                        items: {}
+                      statuses_count:
+                        type: integer
+                      uri:
+                        type: string
+                      url:
+                        type: string
+                      username:
+                        type: string
+                  created_at:
+                    type: string
+                  id:
+                    type: string
+                  type:
+                    type: string
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Not Found
+      security:
+        - bearer: []
+  /api/v1/notifications/{id}/dismiss:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Not Found
+      security:
+        - bearer: []
+  /api/v1/polls/{id}:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  emojis:
+                    type: array
+                    items: {}
+                  expired:
+                    type: boolean
+                  expires_at:
+                    type: string
+                  id:
+                    type: string
+                  multiple:
+                    type: boolean
+                  options:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                        votes_count:
+                          type: integer
+                  own_votes:
+                    type: array
+                    items: {}
+                  voted:
+                    type: boolean
+                  votes_count:
+                    type: integer
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Not Found
+      security:
+        - bearer: []
+  /api/v1/profile/avatar:
+    delete:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  acct:
+                    type: string
+                  avatar:
+                    type: string
+                  avatar_static:
+                    type: string
+                  bot:
+                    type: boolean
+                  created_at:
+                    type: string
+                  discoverable:
+                    type: boolean
+                  display_name:
+                    type: string
+                  emojis:
+                    type: array
+                    items: {}
+                  fields:
+                    type: array
+                    items: {}
+                  followers_count:
+                    type: integer
+                  following_count:
+                    type: integer
+                  group:
+                    type: boolean
+                  header:
+                    type: string
+                  header_static:
+                    type: string
+                  id:
+                    type: string
+                  locked:
+                    type: boolean
+                  noindex:
+                    type: boolean
+                  note:
+                    type: string
+                  role:
+                    type: object
+                    properties:
+                      color:
+                        type: string
+                      highlighted:
+                        type: boolean
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      permissions:
+                        type: string
+                  roles:
+                    type: array
+                    items: {}
+                  source:
+                    type: object
+                    properties:
+                      discoverable:
+                        type: boolean
+                      fields:
+                        type: array
+                        items: {}
+                      follow_requests_count:
+                        type: integer
+                      indexable:
+                        type: boolean
+                      note:
+                        type: string
+                      privacy:
+                        type: string
+                      sensitive:
+                        type: boolean
+                  statuses_count:
+                    type: integer
+                  uri:
+                    type: string
+                  url:
+                    type: string
+                  username:
+                    type: string
+          description: OK
+      security:
+        - bearer: []
+  /api/v1/profile/header:
+    delete:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  acct:
+                    type: string
+                  avatar:
+                    type: string
+                  avatar_static:
+                    type: string
+                  bot:
+                    type: boolean
+                  created_at:
+                    type: string
+                  discoverable:
+                    type: boolean
+                  display_name:
+                    type: string
+                  emojis:
+                    type: array
+                    items: {}
+                  fields:
+                    type: array
+                    items: {}
+                  followers_count:
+                    type: integer
+                  following_count:
+                    type: integer
+                  group:
+                    type: boolean
+                  header:
+                    type: string
+                  header_static:
+                    type: string
+                  id:
+                    type: string
+                  locked:
+                    type: boolean
+                  noindex:
+                    type: boolean
+                  note:
+                    type: string
+                  role:
+                    type: object
+                    properties:
+                      color:
+                        type: string
+                      highlighted:
+                        type: boolean
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      permissions:
+                        type: string
+                  roles:
+                    type: array
+                    items: {}
+                  source:
+                    type: object
+                    properties:
+                      discoverable:
+                        type: boolean
+                      fields:
+                        type: array
+                        items: {}
+                      follow_requests_count:
+                        type: integer
+                      indexable:
+                        type: boolean
+                      note:
+                        type: string
+                      privacy:
+                        type: string
+                      sensitive:
+                        type: boolean
+                  statuses_count:
+                    type: integer
+                  uri:
+                    type: string
+                  url:
+                    type: string
+                  username:
+                    type: string
+          description: OK
+      security:
+        - bearer: []
   /api/v1/reports:
     post:
       responses:
@@ -3931,6 +7348,51 @@ paths:
                   error:
                     type: string
           description: Unprocessable Entity
+      security:
+        - bearer: []
+  /api/v1/statuses/{status_id}/source:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  spoiler_text:
+                    type: string
+                  text:
+                    type: string
+          description: OK
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Not Found
       security:
         - bearer: []
   /api/v1/statuses/{status_id}/unbookmark:
@@ -4583,6 +8045,300 @@ paths:
           description: Not Found
       security:
         - bearer: []
+  /api/v1/timelines/home:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    account:
+                      type: object
+                      properties:
+                        acct:
+                          type: string
+                        avatar:
+                          type: string
+                        avatar_static:
+                          type: string
+                        bot:
+                          type: boolean
+                        created_at:
+                          type: string
+                        discoverable:
+                          type: boolean
+                        display_name:
+                          type: string
+                        emojis:
+                          type: array
+                          items: {}
+                        fields:
+                          type: array
+                          items: {}
+                        followers_count:
+                          type: integer
+                        following_count:
+                          type: integer
+                        group:
+                          type: boolean
+                        header:
+                          type: string
+                        header_static:
+                          type: string
+                        id:
+                          type: string
+                        last_status_at:
+                          type: string
+                        locked:
+                          type: boolean
+                        noindex:
+                          type: boolean
+                        note:
+                          type: string
+                        roles:
+                          type: array
+                          items: {}
+                        statuses_count:
+                          type: integer
+                        uri:
+                          type: string
+                        url:
+                          type: string
+                        username:
+                          type: string
+                    bookmarked:
+                      type: boolean
+                    content:
+                      type: string
+                    created_at:
+                      type: string
+                    emojis:
+                      type: array
+                      items: {}
+                    favourited:
+                      type: boolean
+                    favourites_count:
+                      type: integer
+                    filtered:
+                      type: array
+                      items: {}
+                    id:
+                      type: string
+                    language:
+                      type: string
+                    media_attachments:
+                      type: array
+                      items: {}
+                    mentions:
+                      type: array
+                      items: {}
+                    muted:
+                      type: boolean
+                    reblogged:
+                      type: boolean
+                    reblogs_count:
+                      type: integer
+                    replies_count:
+                      type: integer
+                    sensitive:
+                      type: boolean
+                    spoiler_text:
+                      type: string
+                    tags:
+                      type: array
+                      items: {}
+                    uri:
+                      type: string
+                    url:
+                      type: string
+                    visibility:
+                      type: string
+          description: OK
+        '206':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: Partial Content
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Forbidden
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Unprocessable Entity
+      security:
+        - bearer: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: string
+  /api/v1/timelines/public:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    account:
+                      type: object
+                      properties:
+                        acct:
+                          type: string
+                        avatar:
+                          type: string
+                        avatar_static:
+                          type: string
+                        bot:
+                          type: boolean
+                        created_at:
+                          type: string
+                        discoverable:
+                          type: boolean
+                        display_name:
+                          type: string
+                        emojis:
+                          type: array
+                          items: {}
+                        fields:
+                          type: array
+                          items: {}
+                        followers_count:
+                          type: integer
+                        following_count:
+                          type: integer
+                        group:
+                          type: boolean
+                        header:
+                          type: string
+                        header_static:
+                          type: string
+                        id:
+                          type: string
+                        last_status_at:
+                          type: string
+                        locked:
+                          type: boolean
+                        noindex:
+                          type: boolean
+                        note:
+                          type: string
+                        roles:
+                          type: array
+                          items: {}
+                        statuses_count:
+                          type: integer
+                        uri:
+                          type: string
+                        url:
+                          type: string
+                        username:
+                          type: string
+                    bookmarked:
+                      type: boolean
+                    content:
+                      type: string
+                    created_at:
+                      type: string
+                    emojis:
+                      type: array
+                      items: {}
+                    favourited:
+                      type: boolean
+                    favourites_count:
+                      type: integer
+                    filtered:
+                      type: array
+                      items: {}
+                    id:
+                      type: string
+                    media_attachments:
+                      type: array
+                      items:
+                        type: object
+                    mentions:
+                      type: array
+                      items: {}
+                    muted:
+                      type: boolean
+                    reblogged:
+                      type: boolean
+                    reblogs_count:
+                      type: integer
+                    replies_count:
+                      type: integer
+                    sensitive:
+                      type: boolean
+                    spoiler_text:
+                      type: string
+                    tags:
+                      type: array
+                      items: {}
+                    uri:
+                      type: string
+                    url:
+                      type: string
+                    visibility:
+                      type: string
+          description: OK
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Unprocessable Entity
+      security:
+        - bearer: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: local
+          in: query
+          schema:
+            type: string
+        - name: only_media
+          in: query
+          schema:
+            type: string
+        - name: remote
+          in: query
+          schema:
+            type: string
   /api/v1/timelines/tag/{id}:
     get:
       responses:
@@ -5046,6 +8802,100 @@ paths:
                         type: string
                 title:
                   type: string
+  /api/v2/media:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  blurhash:
+                    type: string
+                  id:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      original:
+                        type: object
+                        properties:
+                          aspect:
+                            type: number
+                          height:
+                            type: integer
+                          size:
+                            type: string
+                          width:
+                            type: integer
+                      small:
+                        type: object
+                        properties:
+                          aspect:
+                            type: number
+                          height:
+                            type: integer
+                          size:
+                            type: string
+                          width:
+                            type: integer
+                  preview_url:
+                    type: string
+                  type:
+                    type: string
+                  url:
+                    type: string
+          description: OK
+      security:
+        - bearer: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: object
+  /api/web/embeds/{id}:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  author_name:
+                    type: string
+                  author_url:
+                    type: string
+                  cache_age:
+                    type: integer
+                  html:
+                    type: string
+                  provider_name:
+                    type: string
+                  provider_url:
+                    type: string
+                  type:
+                    type: string
+                  version:
+                    type: string
+                  width:
+                    type: integer
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: Not Found
+      security:
+        - bearer: []
   /auth:
     post:
       responses:
@@ -5057,6 +8907,41 @@ paths:
           content:
             application/json: {}
           description: Too Many Requests
+  /auth/captcha_confirmation:
+    post:
+      responses:
+        '302':
+          content:
+            text/html: {}
+          description: Found
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                button:
+                  type: string
+                confirmation_token:
+                  type: string
+                redirect_to_app:
+                  type: string
+  /auth/confirmation:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+      parameters:
+        - name: confirmation_token
+          in: query
+          schema:
+            type: string
+        - name: redirect_to_app
+          in: query
+          schema:
+            type: string
   /auth/edit:
     get:
       responses:
@@ -5170,6 +9055,13 @@ paths:
           content:
             text/html: {}
           description: OK
+  /users/{username}:
+    get:
+      responses:
+        '301':
+          content:
+            text/html: {}
+          description: Moved Permanently
   /users/{username}/followers:
     get:
       responses:

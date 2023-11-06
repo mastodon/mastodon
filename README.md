@@ -11,6 +11,14 @@
 [releases]: https://github.com/mastodon/mastodon/releases
 [crowdin]: https://crowdin.com/project/mastodon
 
+## Customizations
+
+This installation is customized in order to run AppMap.
+
+For more information, see [APPMAP.md](/APPMAP.md).
+
+---
+
 Mastodon is a **free, open-source social network server** based on ActivityPub where users can follow friends and discover new ones. On Mastodon, users can publish anything they want: links, pictures, text, and video. All Mastodon servers are interoperable as a federated network (users on one server can seamlessly communicate with users from another one, including non-Mastodon software that implements ActivityPub!)
 
 Click below to **learn more** in a video:
