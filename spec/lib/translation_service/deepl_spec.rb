@@ -76,9 +76,7 @@ RSpec.describe TranslationService::DeepL do
   describe '#request' do
     before do
       stub_request(:any, //)
-      # rubocop:disable Lint/EmptyBlock
-      service.send(:request, :get, '/v2/languages') { |res| }
-      # rubocop:enable Lint/EmptyBlock
+      service.send(:request, :get, '/v2/languages') { _1 }
     end
 
     it 'uses paid plan base URL' do
