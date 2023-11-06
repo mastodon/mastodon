@@ -1818,12 +1818,14 @@ a.account__display-name {
   &.activate {
     & > .icon {
       animation: spring-rotate-in 1s linear;
+      transform-origin: 50% 55%;
     }
   }
 
   &.deactivate {
     & > .icon {
       animation: spring-rotate-out 1s linear;
+      transform-origin: 50% 55%;
     }
   }
 }
@@ -3135,20 +3137,6 @@ $ui-header-height: 55px;
 .column-back-button__icon {
   display: inline-block;
   margin-inline-end: 5px;
-}
-
-.column-back-button--slim {
-  position: relative;
-}
-
-.column-back-button--slim-button {
-  cursor: pointer;
-  flex: 0 0 auto;
-  font-size: 16px;
-  padding: 15px;
-  position: absolute;
-  inset-inline-end: 0;
-  top: -50px;
 }
 
 .react-toggle {
@@ -7434,7 +7422,12 @@ noscript {
         border: 1px solid lighten($ui-base-color, 12%);
         border-radius: 4px;
         box-sizing: content-box;
-        padding: 2px;
+        padding: 5px;
+
+        .icon {
+          width: 24px;
+          height: 24px;
+        }
       }
     }
 
@@ -7517,6 +7510,11 @@ noscript {
         color: lighten($ui-highlight-color, 8%);
       }
 
+      .icon {
+        width: 18px;
+        height: 18px;
+      }
+
       .verified {
         border: 1px solid rgba($valid-value-color, 0.5);
         margin-top: -1px;
@@ -7535,6 +7533,16 @@ noscript {
         dt,
         dd {
           color: $valid-value-color;
+        }
+
+        dd {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          span {
+            display: flex;
+          }
         }
 
         a {

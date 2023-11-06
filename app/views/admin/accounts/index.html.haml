@@ -22,9 +22,10 @@
 
   .fields-group
     - %i(username by_domain display_name email ip).each do |key|
-      - unless key == :by_domain && params[:origin] != 'remote'
-        .input.string.optional
-          = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.accounts.#{key}")
+      - next if key == :by_domain && params[:origin] != 'remote'
+
+      .input.string.optional
+        = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.accounts.#{key}")
 
   .actions
     %button.button= t('admin.accounts.search')

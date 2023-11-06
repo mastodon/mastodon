@@ -12,8 +12,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
 import { ReactComponent as LockIcon } from '@material-symbols/svg-600/outlined/lock.svg';
 import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
-import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications-fill.svg';
-import { ReactComponent as NotificationsActiveIcon } from '@material-symbols/svg-600/outlined/notifications_active.svg';
+import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications.svg';
+import { ReactComponent as NotificationsActiveIcon } from '@material-symbols/svg-600/outlined/notifications_active-fill.svg';
 
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';
@@ -91,7 +91,7 @@ const dateFormatOptions = {
 class Header extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.record,
     identity_props: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
@@ -264,7 +264,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
-      bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell' : 'bell-o'} iconComponent={account.getIn(['relationship', 'notifying']) ? NotificationsIcon : NotificationsActiveIcon}  size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
+      bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell' : 'bell-o'} iconComponent={account.getIn(['relationship', 'notifying']) ? NotificationsActiveIcon : NotificationsIcon} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
     }
 
     if (me !== account.get('id')) {

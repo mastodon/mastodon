@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import React from 'react';
 
-import { Router as OriginalRouter } from 'react-router';
+import { Router as OriginalRouter, useHistory } from 'react-router';
 
 import type {
   LocationDescriptor,
@@ -11,23 +11,29 @@ import type {
 import { createBrowserHistory } from 'history';
 
 import { layoutFromWindow } from 'mastodon/is_mobile';
+import { isDevelopment } from 'mastodon/utils/environment';
 
 interface MastodonLocationState {
   fromMastodon?: boolean;
   mastodonModalKey?: string;
 }
-type HistoryPath = Path | LocationDescriptor<MastodonLocationState>;
 
-const browserHistory = createBrowserHistory<
-  MastodonLocationState | undefined
->();
+type LocationState = MastodonLocationState | null | undefined;
+
+type HistoryPath = Path | LocationDescriptor<LocationState>;
+
+const browserHistory = createBrowserHistory<LocationState>();
 const originalPush = browserHistory.push.bind(browserHistory);
 const originalReplace = browserHistory.replace.bind(browserHistory);
 
+export function useAppHistory() {
+  return useHistory<LocationState>();
+}
+
 function normalizePath(
   path: HistoryPath,
-  state?: MastodonLocationState,
-): LocationDescriptorObject<MastodonLocationState> {
+  state?: LocationState,
+): LocationDescriptorObject<LocationState> {
   const location = typeof path === 'string' ? { pathname: path } : { ...path };
 
   if (location.state === undefined && state !== undefined) {
@@ -35,7 +41,7 @@ function normalizePath(
   } else if (
     location.state !== undefined &&
     state !== undefined &&
-    process.env.NODE_ENV === 'development'
+    isDevelopment()
   ) {
     // eslint-disable-next-line no-console
     console.log(

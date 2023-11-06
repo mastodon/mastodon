@@ -523,7 +523,7 @@ zh-CN:
       total_reported: 关于对方的举报
       total_storage: 媒体文件
       totals_time_period_hint_html: 下方显示的总数来自全部历史数据。
-      unknown_instance: 本实例目前没有此域名的记录。
+      unknown_instance: 此服务器上目前没有此域名的记录。
     invites:
       deactivate_all: 撤销所有邀请链接
       filter:
@@ -1023,6 +1023,14 @@ zh-CN:
       hint_html: 只剩最后一件事了！我们需要确认您是一个人类（这样我们才能阻止恶意访问！）。请输入下面的验证码，然后点击“继续”。
       title: 安全检查
     confirmations:
+      awaiting_review: 您的电子邮件地址已确认！%{domain} 的工作人员正在审核您的注册信息。如果他们批准了您的账户，您将收到一封邮件通知！
+      awaiting_review_title: 您的注册申请正在审核中
+      clicking_this_link: 点击此链接
+      login_link: 登录
+      proceed_to_login_html: 现在您可以继续前往 %{login_link} 。
+      redirect_to_app_html: 您应该已被重定向到 <strong>%{app_name}</strong> 应用程序。如果没有，请尝试 %{clicking_this_link} 或手动返回应用程序。
+      registration_complete: 您在 %{domain} 上的注册现已完成！
+      welcome_title: 欢迎您，%{name}！
       wrong_email_hint: 如果该电子邮件地址不正确，您可以在帐户设置中进行更改。
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
@@ -1084,6 +1092,7 @@ zh-CN:
       functional: 你的账号可以正常使用了。
       pending: 工作人员正在审核你的申请。这需要花点时间。在申请被批准后，你将收到一封电子邮件。
       redirecting_to: 你的账户无效，因为它已被设置为跳转到 %{acct}
+      self_destruct: 由于 %{domain} 即将关闭，你只能获得对你本人账号的有限访问权限。
       view_strikes: 查看针对你账号的记录
     too_fast: 表单提交过快，请重试。
     use_security_key: 使用安全密钥
@@ -1545,6 +1554,9 @@ zh-CN:
     over_daily_limit: 你已超出每日定时嘟文的上限（%{limit} 条）
     over_total_limit: 你已超出定时嘟文的上限（%{limit} 条）
     too_soon: 所定的时间必须在未来
+  self_destruct:
+    lead_html: 很遗憾，<strong>%{domain}</strong> 即将永久关闭。 如果你在其中设有账号，那么你将无法再继续使用，但你仍可以请求获得本人数据的备份。
+    title: 此服务器即将关闭
   sessions:
     activity: 最后一次活跃的时间
     browser: 浏览器

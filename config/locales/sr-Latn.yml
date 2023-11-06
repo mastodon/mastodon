@@ -1059,6 +1059,14 @@ sr-Latn:
       hint_html: Samo još jedna stvar! Moramo da potvrdimo da ste ljudsko biće (ovo je da bismo sprečili neželjenu poštu!). Rešite CAPTCHA ispod i kliknite na „Nastavi”.
       title: Bezbedonosna provera
     confirmations:
+      awaiting_review: Vaša adresa e-pošte je potvrđena! Osoblje %{domain} sada pregleda vašu registraciju. Dobićete e-poštu ako odobre vaš nalog!
+      awaiting_review_title: Vaša registracija se pregleda
+      clicking_this_link: klikom na ovu vezu
+      login_link: prijavi se
+      proceed_to_login_html: Sada možete da pređete na %{login_link}.
+      redirect_to_app_html: Trebalo je da budete preusmereni na aplikaciju <strong>%{app_name}</strong>. Ako se to nije desilo, pokušajte sa %{clicking_this_link} ili se ručno vratite u aplikaciju.
+      registration_complete: Vaša registracija na %{domain} je sada kompletirana!
+      welcome_title: Dobro došli, %{name}!
       wrong_email_hint: Ako ta imejl adresa nije ispravna, možete je promeniti u podešavanjima naloga.
     delete_account: Brisanje naloga
     delete_account_html: Ako želite da izbrišete vaš nalog, možete <a href="%{path}">nastaviti ovde</a>. Od vas će se tražiti potvrda.
@@ -1855,8 +1863,8 @@ sr-Latn:
       final_step: 'Počnite da objavljujete! Čak i bez pratilaca, Vaše javne objave su vidljive drugim ljudima, na primer na lokalnoj vremenskoj liniji ili u heš oznakama. Možda želite da se predstavite sa heš oznakom #introductions ili #predstavljanja.'
       full_handle: Vaš pun nadimak
       full_handle_hint: Ovo biste rekli svojim prijateljima kako bi vam oni poslali poruku, ili zapratili sa druge instance.
-      subject: Dobrodošli na Mastodon
-      title: Dobrodošli, %{name}!
+      subject: Dobro došli na Mastodon
+      title: Dobro došli, %{name}!
   users:
     follow_limit_reached: Ne možete pratiti više od %{limit} ljudi
     go_to_sso_account_settings: Idite na podešavanja naloga svog dobavljača identiteta

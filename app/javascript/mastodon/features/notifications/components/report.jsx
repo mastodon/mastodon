@@ -20,7 +20,7 @@ const messages = defineMessages({
 class Report extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
     report: ImmutablePropTypes.map.isRequired,
     hidden: PropTypes.bool,
     intl: PropTypes.object.isRequired,

@@ -42,12 +42,22 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
     }
   end
 
+  let(:featured_with_null) do
+    {
+      '@context': 'https://www.w3.org/ns/activitystreams',
+      id: 'https://example.com/account/collections/featured',
+      totalItems: 0,
+      type: 'OrderedCollection',
+    }
+  end
+
   let(:items) do
     [
       'https://example.com/account/pinned/known', # known
       status_json_pinned_unknown_inlined, # unknown inlined
       'https://example.com/account/pinned/unknown-unreachable', # unknown unreachable
       'https://example.com/account/pinned/unknown-reachable', # unknown reachable
+      'https://example.com/account/collections/featured', # featured with null
     ]
   end
 
@@ -66,6 +76,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
       stub_request(:get, 'https://example.com/account/pinned/unknown-inlined').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_inlined))
       stub_request(:get, 'https://example.com/account/pinned/unknown-unreachable').to_return(status: 404)
       stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_unreachable))
+      stub_request(:get, 'https://example.com/account/collections/featured').to_return(status: 200, body: Oj.dump(featured_with_null))
 
       subject.call(actor, note: true, hashtag: false)
     end

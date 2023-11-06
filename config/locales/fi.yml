@@ -534,7 +534,7 @@ fi:
       total_reported: Niitä koskevat raportit
       total_storage: Medialiitteet
       totals_time_period_hint_html: Alla näkyvät yhteenlasketut tiedot sisältävät koko ajan.
-      unknown_instance: Tällä palvelimella ei ole tällä hetkellä tähän verkkotunnukseen liittyviä tietueita.
+      unknown_instance: Tällä palvelimella ei tällä hetkellä ole tähän verkkotunnukseen liittyviä tietueita.
     invites:
       deactivate_all: Poista kaikki käytöstä
       filter:
@@ -1041,6 +1041,14 @@ fi:
       hint_html: Vielä yksi juttu! Meidän on vahvistettava, että olet ihminen (tämän avulla pidämme roskapostin poissa!). Ratkaise alla oleva CAPTCHA-vahvistus ja paina "Jatka".
       title: Turvatarkastus
     confirmations:
+      awaiting_review: Sähköpostiosoitteesi on vahvistettu! Seuraavaksi palvelimen %{domain} ylläpito tarkistaa rekisteröitymisesi ja saat lopuksi ilmoituksen sähköpostitse, jos tilisi hyväksytään!
+      awaiting_review_title: Rekisteröitymisesi on tarkistettavana
+      clicking_this_link: tästä linkistä
+      login_link: kirjautumalla sisään
+      proceed_to_login_html: Voit nyt jatkaa %{login_link}.
+      redirect_to_app_html: Sinun olisi pitänyt ohjautua sovellukseen <strong>%{app_name}</strong>. Jos näin ei tapahtunut, yritä avata se %{clicking_this_link} tai palaa sovellukseen manuaalisesti.
+      registration_complete: Rekisteröitymisesi palvelimelle %{domain} on suoritettu!
+      welcome_title: Tervetuloa, %{name}!
       wrong_email_hint: Jos sähköpostiosoite ei ole oikein, voit muuttaa sen tilin asetuksista.
     delete_account: Poista tili
     delete_account_html: Jos haluat poistaa tilisi, voit <a href="%{path}">edetä tästä</a>. Sinua pyydetään vahvistamaan poisto.
@@ -1100,7 +1108,7 @@ fi:
       account_status: Tilin tila
       confirming: Odotetaan sähköpostivahvistuksen valmistumista.
       functional: Tilisi on täysin toiminnassa.
-      pending: Hakemuksesi odottaa henkilökuntamme tarkastusta. Tämä voi kestää jonkin aikaa. Saat sähköpostiviestin, jos hakemuksesi hyväksytään.
+      pending: Hakemuksesi odottaa palvelimen ylläpidon tarkastusta. Tämä voi kestää jonkin aikaa. Saat sähköpostiviestin, jos hakemuksesi hyväksytään.
       redirecting_to: Tilisi ei ole aktiivinen, koska se ohjaa tällä hetkellä tilille %{acct}.
       self_destruct: Koska %{domain} sulkeutuu, voit käyttää tiliäsi vain rajoitetusti.
       view_strikes: Näytä tiliäsi koskevia aiempia varoituksia
@@ -1163,7 +1171,7 @@ fi:
       approve_appeal: Hyväksy valitus
       associated_report: Liittyvä raportti
       created_at: Päivätty
-      description_html: Nämä ovat tiliäsi koskevia toimia ja varoituksia, jotka instanssin %{instance} henkilökunta on lähettänyt sinulle.
+      description_html: Nämä ovat tiliäsi koskevia toimia ja varoituksia, jotka instanssin %{instance} ylläpito on lähettänyt sinulle.
       recipient: Osoitettu
       reject_appeal: Hylkää valitus
       status: 'Julkaisu #%{id}'
@@ -1786,7 +1794,7 @@ fi:
       title: Uusi kirjautuminen
     warning:
       appeal: Lähetä valitus
-      appeal_description: Jos uskot, että tämä on virhe, voit hakea muutosta instanssin %{instance} henkilökunnalta.
+      appeal_description: Jos uskot, että tämä on virhe, voit hakea muutosta instanssin %{instance} ylläpidolta.
       categories:
         spam: Roskaposti
         violation: Sisältö rikkoo seuraavia yhteisön sääntöjä

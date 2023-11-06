@@ -10,11 +10,11 @@ import { is } from 'immutable';
 import { ReactComponent as FullscreenIcon } from '@material-symbols/svg-600/outlined/fullscreen.svg';
 import { ReactComponent as FullscreenExitIcon } from '@material-symbols/svg-600/outlined/fullscreen_exit.svg';
 import { ReactComponent as PauseIcon } from '@material-symbols/svg-600/outlined/pause.svg';
-import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow.svg';
+import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow-fill.svg';
 import { ReactComponent as RectangleIcon } from '@material-symbols/svg-600/outlined/rectangle.svg';
 import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
-import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outlined/volume_off.svg';
-import { ReactComponent as VolumeUpIcon } from '@material-symbols/svg-600/outlined/volume_up.svg';
+import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outlined/volume_off-fill.svg';
+import { ReactComponent as VolumeUpIcon } from '@material-symbols/svg-600/outlined/volume_up-fill.svg';
 import { throttle } from 'lodash';
 
 import { Blurhash } from 'mastodon/components/blurhash';
