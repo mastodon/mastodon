@@ -82,7 +82,7 @@ class StreamingServerManager
           'NODE_ENV' => ENV.fetch('STREAMING_NODE_ENV', 'development'),
           'PORT' => port.to_s,
         },
-        'node index.js', # must not call yarn here, otherwise it will fail because yarn does not send signals to its child process
+        'node index.js', # must call node directly here, otherwise it will fail because the package manager may does not send signals to its child process
         chdir: Rails.root.join('streaming')
       ) do |_stdin, stdout_err, process_thread|
         status = :starting

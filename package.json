@@ -7,12 +7,12 @@
   "scripts": {
     "build:development": "cross-env RAILS_ENV=development NODE_ENV=development ./bin/webpack",
     "build:production": "cross-env RAILS_ENV=production NODE_ENV=production ./bin/webpack",
-    "fix:js": "yarn lint:js --fix",
+    "fix:js": "npm run lint:js --fix",
     "fix:json": "prettier --write \"**/*.{json,json5}\"",
     "fix:md": "prettier --write \"**/*.md\"",
     "fix:sass": "stylelint --fix \"**/*.{css,scss}\" && prettier --write \"**/*.{css,scss}\"",
     "fix:yml": "prettier --write \"**/*.{yaml,yml}\"",
-    "fix": "yarn fix:js && yarn fix:json && yarn fix:sass && yarn fix:yml",
+    "fix": "npm run fix:js && npm run fix:json && npm run fix:sass && npm run fix:yml",
     "i18n:extract": "formatjs extract 'app/javascript/**/*.{js,jsx,ts,tsx}' '--ignore=**/*.d.ts' --out-file app/javascript/mastodon/locales/en.json --format config/formatjs-formatter.js",
     "jest": "cross-env NODE_ENV=test jest",
     "lint:js": "eslint . --ext=.js,.jsx,.ts,.tsx --cache --report-unused-disable-directives",
@@ -20,11 +20,11 @@
     "lint:md": "prettier --check \"**/*.md\"",
     "lint:sass": "stylelint \"**/*.{css,scss}\" && prettier --check \"**/*.{css,scss}\"",
     "lint:yml": "prettier --check \"**/*.{yaml,yml}\"",
-    "lint": "yarn lint:js && yarn lint:json && yarn lint:sass && yarn lint:yml",
+    "lint": "npm run lint:js && npm run lint:json && npm run lint:sass && npm run lint:yml",
     "postversion": "git push --tags",
-    "prepare": "husky install",
+    "prepare": "test -d node_modules/husky && husky install || echo \"husky is not installed\"",
     "start": "node ./streaming/index.js",
-    "test": "yarn lint && yarn run typecheck && yarn jest",
+    "test": "npm run lint && npm run run typecheck && npm run jest",
     "typecheck": "tsc --noEmit"
   },
   "repository": {
@@ -32,6 +32,7 @@
     "url": "https://github.com/mastodon/mastodon.git"
   },
   "private": true,
+  "packageManager": "npm@10.2.0",
   "dependencies": {
     "@babel/core": "^7.22.1",
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.22.3",
@@ -132,6 +133,7 @@
     "stringz": "^2.1.0",
     "substring-trie": "^1.0.2",
     "terser-webpack-plugin": "^4.2.3",
+    "tesseract.js-core": "^2.2.0",
     "tesseract.js": "^2.1.5",
     "tiny-queue": "^0.2.1",
     "twitter-text": "3.1.0",
@@ -222,6 +224,28 @@
   "optionalDependencies": {
     "bufferutil": "^4.0.7",
     "utf-8-validate": "^6.0.3"
+  },
+  "overrides": {
+    "emoji-mart": {
+      "react": "$react"
+    },
+    "react-motion": {
+      "react": "$react"
+    },
+    "react-notification": {
+      "react": "$react"
+    },
+    "react-router-scroll-4": {
+      "react": "$react",
+      "react-dom": "$react-dom",
+      "react-router-dom": "$react-router-dom"
+    },
+    "react-swipeable-views": {
+      "react": "$react"
+    },
+    "react-event-listener": {
+      "react": "$react"
+    }
   },
   "lint-staged": {
     "*": "prettier --ignore-unknown --write",

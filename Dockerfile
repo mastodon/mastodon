@@ -13,7 +13,7 @@ ENV DEBIAN_FRONTEND="noninteractive" \
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 WORKDIR /opt/mastodon
-COPY Gemfile* package.json yarn.lock /opt/mastodon/
+COPY Gemfile* package.json package-lock.json /opt/mastodon/
 
 # hadolint ignore=DL3008
 RUN apt-get update && \
@@ -37,8 +37,8 @@ RUN apt-get update && \
     bundle config set --local without 'development test' && \
     bundle config set silence_root_warning true && \
     bundle install -j"$(nproc)" && \
-    yarn install --pure-lockfile --production --network-timeout 600000 && \
-    yarn cache clean
+    corepack enable && corepack prepare --activate && \
+    npm ci --omit=dev
 
 FROM node:${NODE_VERSION}
 

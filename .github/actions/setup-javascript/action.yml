@@ -11,9 +11,9 @@ runs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        cache: yarn
+        cache: npm
         node-version-file: '.nvmrc'
 
-    - name: Install all yarn packages
+    - name: Install all NPM packages
       shell: bash
-      run: yarn --frozen-lockfile ${{ inputs.onlyProduction != 'false' && '--production' || '' }}
+      run: npm ci

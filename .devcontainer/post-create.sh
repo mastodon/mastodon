@@ -2,6 +2,9 @@
 
 set -e # Fail the whole script on first error
 
+# Install the JS package manager
+corepack prepare --activate
+
 # Fetch Ruby gem dependencies
 bundle config path 'vendor/bundle'
 bundle config with 'development test'
@@ -11,7 +14,7 @@ bundle install
 git checkout -- Gemfile.lock
 
 # Fetch Javascript dependencies
-yarn --frozen-lockfile
+npm install
 
 # [re]create, migrate, and seed the test database
 RAILS_ENV=test ./bin/rails db:setup

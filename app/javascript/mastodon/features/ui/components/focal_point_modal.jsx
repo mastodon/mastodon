@@ -14,7 +14,6 @@ import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
 // eslint-disable-next-line import/extensions
 import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
 
 import { Button } from 'mastodon/components/button';
