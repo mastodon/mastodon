@@ -171,12 +171,10 @@ describe 'Caching behavior' do
   let(:user)  { Fabricate(:user, role: UserRole.find_by(name: 'Moderator')) }
 
   before do
-    # rubocop:disable Style/NumericLiterals
-    status = Fabricate(:status, account: alice, id: 110224538612341312)
-    Fabricate(:status, account: alice, id: 110224538643211312, visibility: :private)
+    status = Fabricate(:status, account: alice, id: '110224538612341312')
+    Fabricate(:status, account: alice, id: '110224538643211312', visibility: :private)
     Fabricate(:invite, code: 'abcdef')
-    Fabricate(:poll, status: status, account: alice, id: 12345)
-    # rubocop:enable Style/NumericLiterals
+    Fabricate(:poll, status: status, account: alice, id: '12345')
 
     user.account.follow!(alice)
   end
