@@ -50,7 +50,7 @@ WORKDIR /opt/mastodon
 
 # Copy Node package configuration files from build system to container
 COPY package.json *yarn* *pnpm* /opt/mastodon/
-COPY .yarn /opt/mastodon/.yarn
+# COPY .yarn /opt/mastodon/.yarn
 # Copy Streaming source code from build system to container
 COPY ./streaming /opt/mastodon/streaming
 
