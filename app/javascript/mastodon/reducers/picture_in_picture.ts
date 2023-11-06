@@ -18,11 +18,17 @@ export interface PIPMediaProps {
   accentColor: string;
 }
 
-export interface PIPState extends Partial<PIPMediaProps> {
-  statusId?: string;
-  accountId?: string;
-  type: null | 'audio' | 'video';
+interface PIPStateWithValue extends Partial<PIPMediaProps> {
+  statusId: string;
+  accountId: string;
+  type: 'audio' | 'video';
 }
+
+interface PIPStateEmpty extends Partial<PIPMediaProps> {
+  type: null;
+}
+
+type PIPState = PIPStateWithValue | PIPStateEmpty;
 
 const initialState = {
   type: null,
@@ -44,7 +50,7 @@ export const pictureInPictureReducer: Reducer<PIPState> = (
     };
   else if (removePictureInPicture.match(action)) return initialState;
   else if (action.type === TIMELINE_DELETE)
-    if (state.statusId === action.id) return { ...initialState };
+    if (state.type && state.statusId === action.id) return { ...initialState };
 
   return state;
 };

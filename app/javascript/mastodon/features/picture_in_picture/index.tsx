@@ -6,7 +6,7 @@ import Video from 'mastodon/features/video';
 import { useAppDispatch, useAppSelector } from 'mastodon/store/typed_functions';
 
 import Footer from './components/footer';
-import Header from './components/header';
+import { Header } from './components/header';
 
 export const PictureInPicture: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +14,12 @@ export const PictureInPicture: React.FC = () => {
   const handleClose = useCallback(() => {
     dispatch(removePictureInPicture());
   }, [dispatch]);
+
+  const pipState = useAppSelector((s) => s.picture_in_picture);
+
+  if (pipState.type === null) {
+    return null;
+  }
 
   const {
     type,
@@ -27,40 +33,38 @@ export const PictureInPicture: React.FC = () => {
     backgroundColor,
     foregroundColor,
     accentColor,
-  } = useAppSelector((s) => s.picture_in_picture);
-
-  if (!currentTime || !statusId) {
-    return null;
-  }
+  } = pipState;
 
   let player;
 
-  if (type === 'video') {
-    player = (
-      <Video
-        src={src}
-        currentTime={currentTime}
-        volume={volume}
-        muted={muted}
-        autoPlay
-        inline
-        alwaysVisible
-      />
-    );
-  } else if (type === 'audio') {
-    player = (
-      <Audio
-        src={src}
-        currentTime={currentTime}
-        volume={volume}
-        muted={muted}
-        poster={poster}
-        backgroundColor={backgroundColor}
-        foregroundColor={foregroundColor}
-        accentColor={accentColor}
-        autoPlay
-      />
-    );
+  switch (type) {
+    case 'video':
+      player = (
+        <Video
+          src={src}
+          currentTime={currentTime}
+          volume={volume}
+          muted={muted}
+          autoPlay
+          inline
+          alwaysVisible
+        />
+      );
+      break;
+    case 'audio':
+      player = (
+        <Audio
+          src={src}
+          currentTime={currentTime}
+          volume={volume}
+          muted={muted}
+          poster={poster}
+          backgroundColor={backgroundColor}
+          foregroundColor={foregroundColor}
+          accentColor={accentColor}
+          autoPlay
+        />
+      );
   }
 
   return (
