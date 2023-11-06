@@ -2350,7 +2350,6 @@ __metadata:
     "@material-symbols/svg-600": "npm:^0.13.1"
     "@rails/ujs": "npm:^7.1.1"
     "@reduxjs/toolkit": "npm:^1.9.5"
-    "@renchap/compression-webpack-plugin": "npm:^6.1.4"
     "@svgr/webpack": "npm:^5.5.0"
     "@testing-library/jest-dom": "npm:^6.0.0"
     "@testing-library/react": "npm:^14.0.0"
@@ -2406,6 +2405,7 @@ __metadata:
     classnames: "npm:^2.3.2"
     cocoon-js-vanilla: "npm:^1.3.0"
     color-blend: "npm:^4.0.0"
+    compression-webpack-plugin: "patch:compression-webpack-plugin@npm%3A6.1.1#~/.yarn/patches/compression-webpack-plugin-npm-6.1.1-3a2a65987e.patch"
     core-js: "npm:^3.30.2"
     cross-env: "npm:^7.0.3"
     css-loader: "npm:^5.2.7"
@@ -2672,21 +2672,6 @@ __metadata:
     react-redux:
       optional: true
   checksum: fa0aa4b7c6973ac87ce0ac7e45faa02c73b66c4ee0bc950d178494539a42a1bb908d109297102458b7ea14d5e7dae356e7a7ce9a1b9849b0e8451e6dd70fca9c
-  languageName: node
-  linkType: hard
-
-"@renchap/compression-webpack-plugin@npm:^6.1.4":
-  version: 6.1.4
-  resolution: "@renchap/compression-webpack-plugin@npm:6.1.4"
-  dependencies:
-    cacache: "npm:^15.0.5"
-    find-cache-dir: "npm:^3.3.1"
-    schema-utils: "npm:^3.0.0"
-    serialize-javascript: "npm:^5.0.1"
-    webpack-sources: "npm:^1.4.3"
-  peerDependencies:
-    webpack: ^4.47.0 || ^5.0.0
-  checksum: 2480018811caffb8fff774ca41032b9d116d2cc9aa6c92805bcfd9a74ce8784f2c9c4fee2edd4e7510b41d380cda36def77c71e45cdd8e9828680c4a6aa98ad7
   languageName: node
   linkType: hard
 
@@ -5845,6 +5830,36 @@ __metadata:
   dependencies:
     mime-db: "npm:>= 1.43.0 < 2"
   checksum: 8a03712bc9f5b9fe530cc5a79e164e665550d5171a64575d7dcf3e0395d7b4afa2d79ab176c61b5b596e28228b350dd07c1a2a6ead12fd81d1b6cd632af2fef7
+  languageName: node
+  linkType: hard
+
+"compression-webpack-plugin@npm:6.1.1":
+  version: 6.1.1
+  resolution: "compression-webpack-plugin@npm:6.1.1"
+  dependencies:
+    cacache: "npm:^15.0.5"
+    find-cache-dir: "npm:^3.3.1"
+    schema-utils: "npm:^3.0.0"
+    serialize-javascript: "npm:^5.0.1"
+    webpack-sources: "npm:^1.4.3"
+  peerDependencies:
+    webpack: ^4.0.0 || ^5.0.0
+  checksum: 2f2ac6ba8f3cf48b523efc5d8e50e0172f4676f47bf5d62f2365185a6d37e96c2dc090e74f5f30ddf4be092e2400c5c7e1fb34301f3f939acf4c9944e1356525
+  languageName: node
+  linkType: hard
+
+"compression-webpack-plugin@patch:compression-webpack-plugin@npm%3A6.1.1#~/.yarn/patches/compression-webpack-plugin-npm-6.1.1-3a2a65987e.patch":
+  version: 6.1.1
+  resolution: "compression-webpack-plugin@patch:compression-webpack-plugin@npm%3A6.1.1#~/.yarn/patches/compression-webpack-plugin-npm-6.1.1-3a2a65987e.patch::version=6.1.1&hash=129d4d"
+  dependencies:
+    cacache: "npm:^15.0.5"
+    find-cache-dir: "npm:^3.3.1"
+    schema-utils: "npm:^3.0.0"
+    serialize-javascript: "npm:^5.0.1"
+    webpack-sources: "npm:^1.4.3"
+  peerDependencies:
+    webpack: ^4.0.0 || ^5.0.0
+  checksum: 68d130bcf7dcc3fd13a286dc57426640732593db4a2f326a4b159c7c32e856e2752e4d43e5f44dc42d07a0e477ad08c08d9aba029a958ad57e71f06deb42784f
   languageName: node
   linkType: hard
 
