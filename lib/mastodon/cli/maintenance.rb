@@ -224,7 +224,7 @@ module Mastodon::CLI
         users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse
         ref_user = users.shift
         say "Multiple users registered with e-mail address #{ref_user.email}.", :yellow
-        say "e-mail will be disabled for the following accounts: #{user.map(&:account).map(&:acct).join(', ')}", :yellow
+        say "e-mail will be disabled for the following accounts: #{user.map { _1.account.acct }.join(', ')}", :yellow
         say 'Please reach out to them and set another address with `tootctl account modify` or delete them.', :yellow
 
         users.each_with_index do |user, index|
@@ -253,7 +253,7 @@ module Mastodon::CLI
     def deduplicate_users_process_confirmation_token
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE confirmation_token IS NOT NULL GROUP BY confirmation_token HAVING count(*) > 1").each do |row|
         users = User.where(id: row['ids'].split(',')).sort_by(&:created_at).reverse.drop(1)
-        say "Unsetting confirmation token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}", :yellow
+        say "Unsetting confirmation token for those accounts: #{users.map { _1.account.acct }.join(', ')}", :yellow
 
         users.each do |user|
           user.update!(confirmation_token: nil)
@@ -265,7 +265,7 @@ module Mastodon::CLI
       if ActiveRecord::Migrator.current_version < 2022_01_18_183010
         ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE remember_token IS NOT NULL GROUP BY remember_token HAVING count(*) > 1").each do |row|
           users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
-          say "Unsetting remember token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}", :yellow
+          say "Unsetting remember token for those accounts: #{users.map { _1.account.acct }.join(', ')}", :yellow
 
           users.each do |user|
             user.update!(remember_token: nil)
@@ -277,7 +277,7 @@ module Mastodon::CLI
     def deduplicate_users_process_password_token
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE reset_password_token IS NOT NULL GROUP BY reset_password_token HAVING count(*) > 1").each do |row|
         users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
-        say "Unsetting password reset token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}", :yellow
+        say "Unsetting password reset token for those accounts: #{users.map { _1.account.acct }.join(', ')}", :yellow
 
         users.each do |user|
           user.update!(reset_password_token: nil)
