@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe MediaAttachment, paperclip_processing: true do
+RSpec.describe MediaAttachment, :paperclip_processing do
   describe 'local?' do
     subject { media_attachment.local? }
 
