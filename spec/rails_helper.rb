@@ -142,13 +142,13 @@ RSpec.configure do |config|
     search_data_manager.remove_indexes
   end
 
-  config.before(:each) do |example|
+  config.before do |example|
     unless example.metadata[:paperclip_processing]
       allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true) # rubocop:disable RSpec/AnyInstance
     end
   end
 
-  config.after :each do
+  config.after do
     Rails.cache.clear
     redis.del(redis.keys)
   end

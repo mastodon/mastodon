@@ -94,20 +94,6 @@ RSpec/AnyInstance:
 RSpec/ExampleLength:
   Max: 22
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, each, example
-RSpec/HookArgument:
-  Exclude:
-    - 'spec/controllers/api/v1/streaming_controller_spec.rb'
-    - 'spec/controllers/well_known/webfinger_controller_spec.rb'
-    - 'spec/helpers/instance_helper_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/rails_helper.rb'
-    - 'spec/serializers/activitypub/note_serializer_spec.rb'
-    - 'spec/serializers/activitypub/update_poll_serializer_spec.rb'
-    - 'spec/services/import_service_spec.rb'
-
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:
   Exclude:

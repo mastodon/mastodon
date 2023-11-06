@@ -208,7 +208,7 @@ RSpec.describe ImportService, type: :service do
     let!(:remote_status) { Fabricate(:status, uri: 'https://example.com/statuses/1312') }
     let!(:direct_status) { Fabricate(:status, uri: 'https://example.com/statuses/direct', visibility: :direct) }
 
-    around(:each) do |example|
+    around do |example|
       local_before = Rails.configuration.x.local_domain
       web_before = Rails.configuration.x.web_domain
       Rails.configuration.x.local_domain = 'local.com'
