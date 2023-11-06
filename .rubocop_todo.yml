@@ -20,10 +20,6 @@ Layout/LineLength:
   Exclude:
     - 'app/models/account.rb'
 
-Lint/NonLocalExitFromIterator:
-  Exclude:
-    - 'app/helpers/jsonld_helper.rb'
-
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 125
