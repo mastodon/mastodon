@@ -110,7 +110,7 @@ class SuspendAccountService < BaseService
 
     # TODO: check how efficient that query is, also check `push_bulk`/`perform_bulk`
     @relationship_severance_event.affected_local_accounts.reorder(nil).find_each do |account|
-      LocalNotificationWorker.perform_async(account.id, @relationship_severance_event.id, 'RelationshipSeveranceEvent', 'relationships_severed')
+      LocalNotificationWorker.perform_async(account.id, @relationship_severance_event.id, 'RelationshipSeveranceEvent', 'severed_relationships')
     end
   end
 
