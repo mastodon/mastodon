@@ -41,7 +41,7 @@ const getHomeFeedSpeed = createSelector([
   state => state.get('statuses'),
 ], (statusIds, pendingStatusIds, statusMap) => {
   const recentStatusIds = pendingStatusIds.concat(statusIds);
-  const statuses = recentStatusIds.filter(id => id !== null).map(id => statusMap.get(id)).filter(status => status?.get('account') !== me).take(20);
+  const statuses = recentStatusIds.filter(id => id !== null).map(id => statusMap.get(id)).filter(status => status?.get('account') !== me).sortBy(status => status?.get('created_at', 0)).takeLast(20);
 
   if (statuses.isEmpty()) {
     return {
