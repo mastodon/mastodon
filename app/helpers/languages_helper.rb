@@ -195,6 +195,7 @@ module LanguagesHelper
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,
     lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
+    ovd: ['Elfdalian', 'Övdalsk'].freeze,
     sco: ['Scots', 'Scots'].freeze,
     sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,
     smj: ['Lule Sami', 'Julevsámegiella'].freeze,
