@@ -78,13 +78,15 @@ RSpec.describe Admin::AccountAction do
     end
 
     it 'calls process_email!' do
-      expect(account_action).to receive(:process_email!)
+      allow(account_action).to receive(:process_email!)
       subject
+      expect(account_action).to have_received(:process_email!)
     end
 
     it 'calls process_reports!' do
-      expect(account_action).to receive(:process_reports!)
+      allow(account_action).to receive(:process_reports!)
       subject
+      expect(account_action).to have_received(:process_reports!)
     end
   end
 
