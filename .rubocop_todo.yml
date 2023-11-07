@@ -24,11 +24,6 @@ Lint/NonLocalExitFromIterator:
   Exclude:
     - 'app/helpers/jsonld_helper.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Lint/OrAssignmentToConstant:
-  Exclude:
-    - 'lib/sanitize_ext/sanitize_config.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
 Lint/UnusedBlockArgument:
