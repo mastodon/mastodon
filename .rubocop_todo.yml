@@ -20,16 +20,6 @@ Layout/LineLength:
   Exclude:
     - 'app/models/account.rb'
 
-# Configuration parameters: AllowComments, AllowEmptyLambdas.
-Lint/EmptyBlock:
-  Exclude:
-    - 'spec/controllers/api/v2/search_controller_spec.rb'
-    - 'spec/fabricators/access_token_fabricator.rb'
-    - 'spec/fabricators/conversation_fabricator.rb'
-    - 'spec/fabricators/system_key_fabricator.rb'
-    - 'spec/lib/activitypub/adapter_spec.rb'
-    - 'spec/models/user_role_spec.rb'
-
 Lint/NonLocalExitFromIterator:
   Exclude:
     - 'app/helpers/jsonld_helper.rb'

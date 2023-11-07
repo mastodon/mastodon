@@ -53,7 +53,7 @@ RSpec.describe ActivityPub::Adapter do
   describe '#serializable_hash' do
     subject { ActiveModelSerializers::SerializableResource.new(TestObject.new(foo: 'bar'), serializer: serializer_class, adapter: described_class).as_json }
 
-    let(:serializer_class) {}
+    let(:serializer_class) { nil }
 
     context 'when serializer defines no context' do
       let(:serializer_class) { TestWithBasicContextSerializer }
