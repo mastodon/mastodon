@@ -11,10 +11,6 @@ if RUN_SYSTEM_SPECS
   ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
 end
 
-if RUN_SEARCH_SPECS
-  # Include any configuration or setups specific to search tests here
-end
-
 require File.expand_path('../config/environment', __dir__)
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
