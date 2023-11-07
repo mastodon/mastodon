@@ -12,31 +12,20 @@ RSpec.describe BlockDomainService do
   let!(:already_banned_account) { Fabricate(:account, username: 'badguy', domain: 'evil.org', suspended: true, silenced: true) }
 
   describe 'for a suspension' do
-    before do
+    it 'creates a domain block, suspends remote accounts with appropriate suspension date', :aggregate_failures do
       subject.call(DomainBlock.create!(domain: 'evil.org', severity: :suspend))
-    end
 
-    it 'creates a domain block' do
       expect(DomainBlock.blocked?('evil.org')).to be true
-    end
 
-    it 'removes remote accounts from that domain' do
+      # Suspends account with appropriate suspension date
       expect(bad_account.reload.suspended?).to be true
-    end
-
-    it 'records suspension date appropriately' do
       expect(bad_account.reload.suspended_at).to eq DomainBlock.find_by(domain: 'evil.org').created_at
-    end
 
-    it 'keeps already-banned accounts banned' do
+      # Keep already-suspended account without updating the suspension date
       expect(already_banned_account.reload.suspended?).to be true
-    end
-
-    it 'does not overwrite suspension date of already-banned accounts' do
       expect(already_banned_account.reload.suspended_at).to_not eq DomainBlock.find_by(domain: 'evil.org').created_at
-    end
 
-    it 'removes the remote accounts\'s statuses and media attachments' do
+      # Removes content
       expect { bad_status_plain.reload }.to raise_exception ActiveRecord::RecordNotFound
       expect { bad_status_with_attachment.reload }.to raise_exception ActiveRecord::RecordNotFound
       expect { bad_attachment.reload }.to raise_exception ActiveRecord::RecordNotFound
@@ -44,31 +33,20 @@ RSpec.describe BlockDomainService do
   end
 
   describe 'for a silence with reject media' do
-    before do
+    it 'does not mark the domain as blocked, but silences accounts with an appropriate silencing date, clears media', :aggregate_failures, :sidekiq_inline do
       subject.call(DomainBlock.create!(domain: 'evil.org', severity: :silence, reject_media: true))
-    end
 
-    it 'does not create a domain block' do
       expect(DomainBlock.blocked?('evil.org')).to be false
-    end
 
-    it 'silences remote accounts from that domain' do
+      # Silences account with appropriate silecing date
       expect(bad_account.reload.silenced?).to be true
-    end
-
-    it 'records suspension date appropriately' do
       expect(bad_account.reload.silenced_at).to eq DomainBlock.find_by(domain: 'evil.org').created_at
-    end
 
-    it 'keeps already-banned accounts banned' do
+      # Keeps already-silenced accounts without updating the silecing date
       expect(already_banned_account.reload.silenced?).to be true
-    end
-
-    it 'does not overwrite suspension date of already-banned accounts' do
       expect(already_banned_account.reload.silenced_at).to_not eq DomainBlock.find_by(domain: 'evil.org').created_at
-    end
 
-    it 'leaves the domains status and attachments, but clears media', :sidekiq_inline do
+      # Leaves posts but clears media
       expect { bad_status_plain.reload }.to_not raise_error
       expect { bad_status_with_attachment.reload }.to_not raise_error
       expect { bad_attachment.reload }.to_not raise_error
