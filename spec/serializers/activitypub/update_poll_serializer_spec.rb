@@ -9,7 +9,7 @@ describe ActivityPub::UpdatePollSerializer do
   let(:poll)    { Fabricate(:poll, account: account) }
   let!(:status) { Fabricate(:status, account: account, poll: poll) }
 
-  before(:each) do
+  before do
     @serialization = ActiveModelSerializers::SerializableResource.new(status, serializer: described_class, adapter: ActivityPub::Adapter)
   end
 

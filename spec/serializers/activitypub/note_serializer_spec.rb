@@ -14,7 +14,7 @@ describe ActivityPub::NoteSerializer do
   let!(:reply_by_account_third) { Fabricate(:status, account: account, thread: parent, visibility: :public) }
   let!(:reply_by_account_visibility_direct) { Fabricate(:status, account: account, thread: parent, visibility: :direct) }
 
-  before(:each) do
+  before do
     @serialization = ActiveModelSerializers::SerializableResource.new(parent, serializer: described_class, adapter: ActivityPub::Adapter)
   end
 
