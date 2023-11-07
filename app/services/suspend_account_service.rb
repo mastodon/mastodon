@@ -8,6 +8,7 @@ class SuspendAccountService < BaseService
   def call(account)
     return unless account.suspended?
 
+    @relationship_severance_event = nil
     @account = account
 
     reject_remote_follows!
@@ -15,6 +16,7 @@ class SuspendAccountService < BaseService
     unmerge_from_home_timelines!
     unmerge_from_list_timelines!
     privatize_media_attachments!
+    notify_of_severed_relationships!
   end
 
   private
@@ -35,6 +37,8 @@ class SuspendAccountService < BaseService
       ActivityPub::DeliveryWorker.push_bulk(follows) do |follow|
         [Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), follow.target_account_id, @account.inbox_url]
       end
+
+      relationship_severance_event.import_from_passive_follows!(follows)
 
       follows.each(&:destroy)
     end
@@ -101,7 +105,20 @@ class SuspendAccountService < BaseService
     end
   end
 
+  def notify_of_severed_relationships!
+    return if @relationship_severance_event.nil?
+
+    # TODO: check how efficient that query is, also check `push_bulk`/`perform_bulk`
+    @relationship_severance_event.affected_local_accounts.reorder(nil).find_each do |account|
+      LocalNotificationWorker.perform_async(account.id, @relationship_severance_event.id, 'RelationshipSeveranceEvent', 'relationships_severed')
+    end
+  end
+
   def signed_activity_json
     @signed_activity_json ||= Oj.dump(serialize_payload(@account, ActivityPub::UpdateSerializer, signer: @account))
+  end
+
+  def relationship_severance_event
+    @relationship_severance_event ||= RelationshipSeveranceEvent.create!(type: :account_suspension, target_name: @account.acct)
   end
 end
