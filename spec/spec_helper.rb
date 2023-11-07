@@ -52,6 +52,17 @@ def json_str_to_hash(str)
   JSON.parse(str, symbolize_names: true)
 end
 
+def serialized_record_json(record, serializer, adapter: nil)
+  options = { serializer: serializer }
+  options[:adapter] = adapter if adapter.present?
+  JSON.parse(
+    ActiveModelSerializers::SerializableResource.new(
+      record,
+      options
+    ).to_json
+  )
+end
+
 def expect_push_bulk_to_match(klass, matcher)
   allow(Sidekiq::Client).to receive(:push_bulk)
   yield
