@@ -7,8 +7,8 @@ import { OrderedSet } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import Button from 'mastodon/components/button';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { Button } from 'mastodon/components/button';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import StatusCheckBox from 'mastodon/features/report/containers/status_check_box_container';
 
 const mapStateToProps = (state, { accountId }) => ({

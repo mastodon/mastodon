@@ -8,6 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { ReactComponent as BookmarksIcon } from '@material-symbols/svg-600/outlined/bookmarks-fill.svg';
 import { debounce } from 'lodash';
 
 import { fetchBookmarkedStatuses, expandBookmarkedStatuses } from 'mastodon/actions/bookmarks';
@@ -15,13 +16,14 @@ import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import ColumnHeader from 'mastodon/components/column_header';
 import StatusList from 'mastodon/components/status_list';
 import Column from 'mastodon/features/ui/components/column';
+import { getStatusList } from 'mastodon/selectors';
 
 const messages = defineMessages({
   heading: { id: 'column.bookmarks', defaultMessage: 'Bookmarks' },
 });
 
 const mapStateToProps = state => ({
-  statusIds: state.getIn(['status_lists', 'bookmarks', 'items']),
+  statusIds: getStatusList(state, 'bookmarks'),
   isLoading: state.getIn(['status_lists', 'bookmarks', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'bookmarks', 'next']),
 });
@@ -78,14 +80,14 @@ class Bookmarks extends ImmutablePureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.heading)}>
         <ColumnHeader
-          icon='bookmark'
+          icon='bookmarks'
+          iconComponent={BookmarksIcon}
           title={intl.formatMessage(messages.heading)}
           onPin={this.handlePin}
           onMove={this.handleMove}
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-          showBackButton
         />
 
         <StatusList

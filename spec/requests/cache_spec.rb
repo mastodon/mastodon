@@ -30,6 +30,7 @@ module TestEndpoints
     /directory
     /@alice
     /@alice/110224538612341312
+    /deck/home
   ).freeze
 
   # Endpoints that should be cachable when accessed anonymously but have a Vary
@@ -170,12 +171,10 @@ describe 'Caching behavior' do
   let(:user)  { Fabricate(:user, role: UserRole.find_by(name: 'Moderator')) }
 
   before do
-    # rubocop:disable Style/NumericLiterals
-    status = Fabricate(:status, account: alice, id: 110224538612341312)
-    Fabricate(:status, account: alice, id: 110224538643211312, visibility: :private)
+    status = Fabricate(:status, account: alice, id: '110224538612341312')
+    Fabricate(:status, account: alice, id: '110224538643211312', visibility: :private)
     Fabricate(:invite, code: 'abcdef')
-    Fabricate(:poll, status: status, account: alice, id: 12345)
-    # rubocop:enable Style/NumericLiterals
+    Fabricate(:poll, status: status, account: alice, id: '12345')
 
     user.account.follow!(alice)
   end
@@ -508,12 +507,12 @@ describe 'Caching behavior' do
   context 'when enabling LIMITED_FEDERATION_MODE mode' do
     around do |example|
       ClimateControl.modify LIMITED_FEDERATION_MODE: 'true' do
-        old_whitelist_mode = Rails.configuration.x.whitelist_mode
-        Rails.configuration.x.whitelist_mode = true
+        old_limited_federation_mode = Rails.configuration.x.limited_federation_mode
+        Rails.configuration.x.limited_federation_mode = true
 
         example.run
 
-        Rails.configuration.x.whitelist_mode = old_whitelist_mode
+        Rails.configuration.x.limited_federation_mode = old_limited_federation_mode
       end
     end
 

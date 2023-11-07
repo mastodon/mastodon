@@ -27,7 +27,7 @@ class PreviewCardProvider < ApplicationRecord
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
-  has_attached_file :icon, styles: { static: { format: 'png', convert_options: '-coalesce +profile "!icc,*" +set modify-date +set create-date' } }, validate_media_type: false
+  has_attached_file :icon, styles: { static: { format: 'png', convert_options: '-coalesce +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' } }, validate_media_type: false
   validates_attachment :icon, content_type: { content_type: ICON_MIME_TYPES }, size: { less_than: LIMIT }
   remotable_attachment :icon, LIMIT
 
@@ -54,6 +54,6 @@ class PreviewCardProvider < ApplicationRecord
 
   def self.matching_domain(domain)
     segments = domain.split('.')
-    where(domain: segments.map.with_index { |_, i| segments[i..-1].join('.') }).order(Arel.sql('char_length(domain) desc')).first
+    where(domain: segments.map.with_index { |_, i| segments[i..].join('.') }).order(Arel.sql('char_length(domain) desc')).first
   end
 end

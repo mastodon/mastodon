@@ -25,6 +25,7 @@ services:
     command: sleep infinity
     ports:
       - '127.0.0.1:3000:3000'
+      - '127.0.0.1:3035:3035'
       - '127.0.0.1:4000:4000'
     networks:
       - external_network
@@ -69,7 +70,7 @@ services:
         hard: -1
 
   libretranslate:
-    image: libretranslate/libretranslate:v1.3.10
+    image: libretranslate/libretranslate:v1.4.1
     restart: unless-stopped
     volumes:
       - lt-data:/home/libretranslate/.local

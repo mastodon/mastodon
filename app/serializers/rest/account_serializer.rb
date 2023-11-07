@@ -4,8 +4,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
   include RoutingHelper
   include FormattingHelper
 
+  # Please update `app/javascript/mastodon/api_types/accounts.ts` when making changes to the attributes
+
   attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :group, :created_at,
-             :note, :url, :avatar, :avatar_static, :header, :header_static,
+             :note, :url, :uri, :avatar, :avatar_static, :header, :header_static,
              :followers_count, :following_count, :statuses_count, :last_status_at
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
@@ -64,6 +66,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def url
     ActivityPub::TagManager.instance.url_for(object)
+  end
+
+  def uri
+    ActivityPub::TagManager.instance.uri_for(object)
   end
 
   def avatar

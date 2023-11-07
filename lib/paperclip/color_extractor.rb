@@ -171,7 +171,7 @@ module Paperclip
     end
 
     def palette_from_histogram(result, quantity)
-      frequencies       = result.scan(/([0-9]+)\:/).flatten.map(&:to_f)
+      frequencies       = result.scan(/([0-9]+):/).flatten.map(&:to_f)
       hex_values        = result.scan(/\#([0-9A-Fa-f]{6,8})/).flatten
       total_frequencies = frequencies.sum.to_f
 

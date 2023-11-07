@@ -1,10 +1,11 @@
+import type { Account } from 'mastodon/models/account';
+
 import { useHovering } from '../../hooks/useHovering';
-import type { Account } from '../../types/resources';
 import { autoPlayGif } from '../initial_state';
 
 interface Props {
-  account: Account;
-  friend: Account;
+  account: Account | undefined; // FIXME: remove `undefined` once we know for sure its always there
+  friend: Account | undefined; // FIXME: remove `undefined` once we know for sure its always there
   size?: number;
   baseSize?: number;
   overlaySize?: number;

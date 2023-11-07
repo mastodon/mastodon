@@ -25,6 +25,7 @@ const initialState = ImmutableMap({
   isSubmitting: false,
   isChanged: false,
   title: '',
+  isExclusive: false,
 
   accounts: ImmutableMap({
     items: ImmutableList(),
@@ -46,6 +47,7 @@ export default function listEditorReducer(state = initialState, action) {
     return state.withMutations(map => {
       map.set('listId', action.list.get('id'));
       map.set('title', action.list.get('title'));
+      map.set('isExclusive', action.list.get('is_exclusive'));
       map.set('isSubmitting', false);
     });
   case LIST_EDITOR_TITLE_CHANGE:

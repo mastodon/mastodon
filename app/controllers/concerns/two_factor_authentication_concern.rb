@@ -5,6 +5,7 @@ module TwoFactorAuthenticationConcern
 
   included do
     prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
+    helper_method :webauthn_enabled?
   end
 
   def two_factor_enabled?
@@ -75,7 +76,7 @@ module TwoFactorAuthenticationConcern
   end
 
   def prompt_for_two_factor(user)
-    set_attempt_session(user)
+    register_attempt_in_session(user)
 
     @body_classes     = 'lighter'
     @webauthn_enabled = user.webauthn_enabled?
@@ -86,5 +87,11 @@ module TwoFactorAuthenticationConcern
                         end
 
     set_locale { render :two_factor }
+  end
+
+  protected
+
+  def webauthn_enabled?
+    @webauthn_enabled
   end
 end

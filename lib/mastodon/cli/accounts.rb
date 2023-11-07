@@ -113,12 +113,7 @@ module Mastodon::CLI
         say('OK', :green)
         say("New password: #{password}")
       else
-        user.errors.each do |error|
-          say('Failure/Error: ', :red)
-          say(error.attribute)
-          say("    #{error.type}", :red)
-        end
-
+        report_errors(user.errors)
         exit(1)
       end
     end
@@ -189,12 +184,7 @@ module Mastodon::CLI
         say('OK', :green)
         say("New password: #{password}") if options[:reset_password]
       else
-        user.errors.each do |error|
-          say('Failure/Error: ', :red)
-          say(error.attribute)
-          say("    #{error.type}", :red)
-        end
-
+        report_errors(user.errors)
         exit(1)
       end
     end
@@ -217,7 +207,6 @@ module Mastodon::CLI
         exit(1)
       end
 
-      dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
       account = nil
 
       if username.present?
@@ -234,9 +223,9 @@ module Mastodon::CLI
         end
       end
 
-      say("Deleting user with #{account.statuses_count} statuses, this might take a while...#{dry_run}")
-      DeleteAccountService.new.call(account, reserve_email: false) unless options[:dry_run]
-      say("OK#{dry_run}", :green)
+      say("Deleting user with #{account.statuses_count} statuses, this might take a while...#{dry_run_mode_suffix}")
+      DeleteAccountService.new.call(account, reserve_email: false) unless dry_run?
+      say("OK#{dry_run_mode_suffix}", :green)
     end
 
     option :force, type: :boolean, aliases: [:f], description: 'Override public key check'
@@ -291,7 +280,7 @@ module Mastodon::CLI
       Account.remote.select(:uri, 'count(*)').group(:uri).having('count(*) > 1').pluck(:uri).each do |uri|
         say("Duplicates found for #{uri}")
         begin
-          ActivityPub::FetchRemoteAccountService.new.call(uri) unless options[:dry_run]
+          ActivityPub::FetchRemoteAccountService.new.call(uri) unless dry_run?
         rescue => e
           say("Error processing #{uri}: #{e}", :red)
         end
@@ -332,7 +321,6 @@ module Mastodon::CLI
     LONG_DESC
     def cull(*domains)
       skip_threshold = 7.days.ago
-      dry_run        = options[:dry_run] ? ' (DRY RUN)' : ''
       skip_domains   = Concurrent::Set.new
 
       query = Account.remote.where(protocol: :activitypub)
@@ -350,7 +338,7 @@ module Mastodon::CLI
         end
 
         if [404, 410].include?(code)
-          DeleteAccountService.new.call(account, reserve_username: false) unless options[:dry_run]
+          DeleteAccountService.new.call(account, reserve_username: false) unless dry_run?
           1
         else
           # Touch account even during dry run to avoid getting the account into the window again
@@ -358,7 +346,7 @@ module Mastodon::CLI
         end
       end
 
-      say("Visited #{processed} accounts, removed #{culled}#{dry_run}", :green)
+      say("Visited #{processed} accounts, removed #{culled}#{dry_run_mode_suffix}", :green)
 
       unless skip_domains.empty?
         say('The following domains were not available during the check:', :yellow)
@@ -381,21 +369,19 @@ module Mastodon::CLI
       specified with space-separated USERNAMES.
     LONG_DESC
     def refresh(*usernames)
-      dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
-
       if options[:domain] || options[:all]
         scope  = Account.remote
         scope  = scope.where(domain: options[:domain]) if options[:domain]
 
         processed, = parallelize_with_progress(scope) do |account|
-          next if options[:dry_run]
+          next if dry_run?
 
           account.reset_avatar!
           account.reset_header!
           account.save
         end
 
-        say("Refreshed #{processed} accounts#{dry_run}", :green, true)
+        say("Refreshed #{processed} accounts#{dry_run_mode_suffix}", :green, true)
       elsif !usernames.empty?
         usernames.each do |user|
           user, domain = user.split('@')
@@ -406,7 +392,7 @@ module Mastodon::CLI
             exit(1)
           end
 
-          next if options[:dry_run]
+          next if dry_run?
 
           begin
             account.reset_avatar!
@@ -417,7 +403,7 @@ module Mastodon::CLI
           end
         end
 
-        say("OK#{dry_run}", :green)
+        say("OK#{dry_run_mode_suffix}", :green)
       else
         say('No account(s) given', :red)
         exit(1)
@@ -568,8 +554,6 @@ module Mastodon::CLI
       - not muted/blocked by us
     LONG_DESC
     def prune
-      dry_run = options[:dry_run] ? ' (dry run)' : ''
-
       query = Account.remote.where.not(actor_type: %i(Application Service))
       query = query.where('NOT EXISTS (SELECT 1 FROM mentions WHERE account_id = accounts.id)')
       query = query.where('NOT EXISTS (SELECT 1 FROM favourites WHERE account_id = accounts.id)')
@@ -585,11 +569,11 @@ module Mastodon::CLI
         next if account.suspended?
         next if account.silenced?
 
-        account.destroy unless options[:dry_run]
+        account.destroy unless dry_run?
         1
       end
 
-      say("OK, pruned #{deleted} accounts#{dry_run}", :green)
+      say("OK, pruned #{deleted} accounts#{dry_run_mode_suffix}", :green)
     end
 
     option :force, type: :boolean
@@ -666,6 +650,14 @@ module Mastodon::CLI
     end
 
     private
+
+    def report_errors(errors)
+      errors.each do |error|
+        say('Failure/Error: ', :red)
+        say(error.attribute)
+        say("    #{error.type}", :red)
+      end
+    end
 
     def rotate_keys_for_account(account, delay = 0)
       if account.nil?

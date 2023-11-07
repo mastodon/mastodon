@@ -1,5 +1,8 @@
 import type { Middleware, AnyAction } from 'redux';
 
+import ready from 'mastodon/ready';
+import { assetHost } from 'mastodon/utils/config';
+
 import type { RootState } from '..';
 
 interface AudioSource {
@@ -31,29 +34,28 @@ const play = (audio: HTMLAudioElement) => {
   void audio.play();
 };
 
-export const soundsMiddleware = (): Middleware<
-  Record<string, never>,
-  RootState
-> => {
-  const soundCache: { [key: string]: HTMLAudioElement } = {
-    boop: createAudio([
+export const soundsMiddleware = (): Middleware<unknown, RootState> => {
+  const soundCache: Record<string, HTMLAudioElement> = {};
+
+  void ready(() => {
+    soundCache.boop = createAudio([
       {
-        src: '/sounds/boop.ogg',
+        src: `${assetHost}/sounds/boop.ogg`,
         type: 'audio/ogg',
       },
       {
-        src: '/sounds/boop.mp3',
+        src: `${assetHost}/sounds/boop.mp3`,
         type: 'audio/mpeg',
       },
-    ]),
-  };
+    ]);
+  });
 
   return () =>
     (next) =>
     (action: AnyAction & { meta?: { sound?: string } }) => {
-      const sound = action?.meta?.sound;
+      const sound = action.meta?.sound;
 
-      if (sound && soundCache[sound]) {
+      if (sound && Object.hasOwn(soundCache, sound)) {
         play(soundCache[sound]);
       }
 

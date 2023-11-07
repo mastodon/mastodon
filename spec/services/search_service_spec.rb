@@ -25,7 +25,7 @@ describe SearchService, type: :service do
 
       context 'when it does not find anything' do
         it 'returns the empty results' do
-          service = double(call: nil)
+          service = instance_double(ResolveURLService, call: nil)
           allow(ResolveURLService).to receive(:new).and_return(service)
           results = subject.call(@query, nil, 10, resolve: true)
 
@@ -37,7 +37,7 @@ describe SearchService, type: :service do
       context 'when it finds an account' do
         it 'includes the account in the results' do
           account = Account.new
-          service = double(call: account)
+          service = instance_double(ResolveURLService, call: account)
           allow(ResolveURLService).to receive(:new).and_return(service)
 
           results = subject.call(@query, nil, 10, resolve: true)
@@ -49,7 +49,7 @@ describe SearchService, type: :service do
       context 'when it finds a status' do
         it 'includes the status in the results' do
           status = Status.new
-          service = double(call: status)
+          service = instance_double(ResolveURLService, call: status)
           allow(ResolveURLService).to receive(:new).and_return(service)
 
           results = subject.call(@query, nil, 10, resolve: true)
@@ -64,11 +64,11 @@ describe SearchService, type: :service do
         it 'includes the account in the results' do
           query = 'username'
           account = Account.new
-          service = double(call: [account])
+          service = instance_double(AccountSearchService, call: [account])
           allow(AccountSearchService).to receive(:new).and_return(service)
 
           results = subject.call(query, nil, 10)
-          expect(service).to have_received(:call).with(query, nil, limit: 10, offset: 0, resolve: false)
+          expect(service).to have_received(:call).with(query, nil, limit: 10, offset: 0, resolve: false, start_with_hashtag: false, use_searchable_text: true, following: false)
           expect(results).to eq empty_results.merge(accounts: [account])
         end
       end
@@ -82,24 +82,6 @@ describe SearchService, type: :service do
           results = subject.call(query, nil, 10)
           expect(Tag).to have_received(:search_for).with('tag', 10, 0, exclude_unreviewed: nil)
           expect(results).to eq empty_results.merge(hashtags: [tag])
-        end
-
-        it 'does not include tag when starts with @ character' do
-          query = '@username'
-          allow(Tag).to receive(:search_for)
-
-          results = subject.call(query, nil, 10)
-          expect(Tag).to_not have_received(:search_for)
-          expect(results).to eq empty_results
-        end
-
-        it 'does not include account when starts with # character' do
-          query = '#tag'
-          allow(AccountSearchService).to receive(:new)
-
-          results = subject.call(query, nil, 10)
-          expect(AccountSearchService).to_not have_received(:new)
-          expect(results).to eq empty_results
         end
       end
     end

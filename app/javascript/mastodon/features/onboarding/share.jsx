@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage, FormattedHTMLMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -9,14 +9,14 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-600/outlined/arrow_right_alt.svg';
+import { ReactComponent as ContentCopyIcon } from '@material-symbols/svg-600/outlined/content_copy.svg';
 import SwipeableViews from 'react-swipeable-views';
 
 import Column from 'mastodon/components/column';
-import ColumnBackButton from 'mastodon/components/column_back_button';
+import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import { Icon }  from 'mastodon/components/icon';
 import { me, domain } from 'mastodon/initial_state';
-
-import ArrowSmallRight from './components/arrow_small_right';
 
 const messages = defineMessages({
   shareableMessage: { id: 'onboarding.share.message', defaultMessage: 'I\'m {username} on #Mastodon! Come follow me at {url}' },
@@ -79,7 +79,7 @@ class CopyPasteText extends PureComponent {
         <textarea readOnly value={value} ref={this.setRef} onClick={this.handleInputClick} onFocus={this.handleFocus} onBlur={this.handleBlur} />
 
         <button className='button' onClick={this.handleButtonClick}>
-          <Icon id='copy' /> {copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : <FormattedMessage id='copypaste.copy_to_clipboard' defaultMessage='Copy to clipboard' />}
+          <Icon id='copy' icon={ContentCopyIcon} /> {copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : <FormattedMessage id='copypaste.copy_to_clipboard' defaultMessage='Copy to clipboard' />}
         </button>
       </div>
     );
@@ -145,19 +145,18 @@ class Share extends PureComponent {
 
   static propTypes = {
     onBack: PropTypes.func,
-    account: ImmutablePropTypes.map,
-    multiColumn: PropTypes.bool,
+    account: ImmutablePropTypes.record,
     intl: PropTypes.object,
   };
 
   render () {
-    const { onBack, account, multiColumn, intl } = this.props;
+    const { onBack, account, intl } = this.props;
 
     const url = (new URL(`/@${account.get('username')}`, document.baseURI)).href;
 
     return (
       <Column>
-        <ColumnBackButton multiColumn={multiColumn} onClick={onBack} />
+        <ColumnBackButton onClick={onBack} />
 
         <div className='scrollable privacy-policy'>
           <div className='column-title'>
@@ -168,22 +167,22 @@ class Share extends PureComponent {
           <CopyPasteText value={intl.formatMessage(messages.shareableMessage, { username: `@${account.get('username')}@${domain}`, url })} />
 
           <TipCarousel>
-            <div><p className='onboarding__lead'><FormattedHTMLMessage id='onboarding.tips.verification' defaultMessage='<strong>Did you know?</strong> You can verify your account by putting a link to your Mastodon profile on your own website and adding the website to your profile. No fees or documents necessary!' /></p></div>
-            <div><p className='onboarding__lead'><FormattedHTMLMessage id='onboarding.tips.migration' defaultMessage='<strong>Did you know?</strong> If you feel like {domain} is not a great server choice for you in the future, you can move to another Mastodon server without losing your followers. You can even host your own server!' values={{ domain }} /></p></div>
-            <div><p className='onboarding__lead'><FormattedHTMLMessage id='onboarding.tips.2fa' defaultMessage='<strong>Did you know?</strong> You can secure your account by setting up two-factor authentication in your account settings. It works with any TOTP app of your choice, no phone number necessary!' /></p></div>
+            <div><p className='onboarding__lead'><FormattedMessage id='onboarding.tips.verification' defaultMessage='<strong>Did you know?</strong> You can verify your account by putting a link to your Mastodon profile on your own website and adding the website to your profile. No fees or documents necessary!'  values={{ strong: chunks => <strong>{chunks}</strong> }}  /></p></div>
+            <div><p className='onboarding__lead'><FormattedMessage id='onboarding.tips.migration' defaultMessage='<strong>Did you know?</strong> If you feel like {domain} is not a great server choice for you in the future, you can move to another Mastodon server without losing your followers. You can even host your own server!' values={{ domain, strong: chunks => <strong>{chunks}</strong> }} /></p></div>
+            <div><p className='onboarding__lead'><FormattedMessage id='onboarding.tips.2fa' defaultMessage='<strong>Did you know?</strong> You can secure your account by setting up two-factor authentication in your account settings. It works with any TOTP app of your choice, no phone number necessary!'  values={{ strong: chunks => <strong>{chunks}</strong> }}  /></p></div>
           </TipCarousel>
 
           <p className='onboarding__lead'><FormattedMessage id='onboarding.share.next_steps' defaultMessage='Possible next steps:' /></p>
 
           <div className='onboarding__links'>
             <Link to='/home' className='onboarding__link'>
-              <ArrowSmallRight />
-              <FormattedMessage id='onboarding.actions.go_to_home' defaultMessage='Go to your home feed' />
+              <FormattedMessage id='onboarding.actions.go_to_home' defaultMessage='Take me to my home feed' />
+              <Icon icon={ArrowRightAltIcon} />
             </Link>
 
             <Link to='/explore' className='onboarding__link'>
-              <ArrowSmallRight />
-              <FormattedMessage id='onboarding.actions.go_to_explore' defaultMessage="See what's trending" />
+              <FormattedMessage id='onboarding.actions.go_to_explore' defaultMessage='Take me to trending' />
+              <Icon icon={ArrowRightAltIcon} />
             </Link>
           </div>
 

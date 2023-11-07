@@ -4,9 +4,15 @@ import { PureComponent } from 'react';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
+
+import { ReactComponent as DeleteIcon } from '@material-symbols/svg-600/outlined/delete.svg';
+import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
+import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
+import Toggle from 'react-toggle';
 
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { fetchList, deleteList, updateList } from 'mastodon/actions/lists';
@@ -16,10 +22,11 @@ import { expandListTimeline } from 'mastodon/actions/timelines';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import { Icon }  from 'mastodon/components/icon';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -36,10 +43,6 @@ const mapStateToProps = (state, props) => ({
 
 class ListTimeline extends PureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -48,6 +51,7 @@ class ListTimeline extends PureComponent {
     multiColumn: PropTypes.bool,
     list: PropTypes.oneOfType([ImmutablePropTypes.map, PropTypes.bool]),
     intl: PropTypes.object.isRequired,
+    ...WithRouterPropTypes,
   };
 
   handlePin = () => {
@@ -57,7 +61,7 @@ class ListTimeline extends PureComponent {
       dispatch(removeColumn(columnId));
     } else {
       dispatch(addColumn('LIST', { id: this.props.params.id }));
-      this.context.router.history.push('/');
+      this.props.history.push('/');
     }
   };
 
@@ -135,7 +139,7 @@ class ListTimeline extends PureComponent {
           if (columnId) {
             dispatch(removeColumn(columnId));
           } else {
-            this.context.router.history.push('/lists');
+            this.props.history.push('/lists');
           }
         },
       },
@@ -145,7 +149,13 @@ class ListTimeline extends PureComponent {
   handleRepliesPolicyChange = ({ target }) => {
     const { dispatch } = this.props;
     const { id } = this.props.params;
-    dispatch(updateList(id, undefined, false, target.value));
+    dispatch(updateList(id, undefined, false, undefined, target.value));
+  };
+
+  onExclusiveToggle = ({ target }) => {
+    const { dispatch } = this.props;
+    const { id } = this.props.params;
+    dispatch(updateList(id, undefined, false, target.checked, undefined));
   };
 
   render () {
@@ -154,6 +164,7 @@ class ListTimeline extends PureComponent {
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
     const replies_policy = list ? list.get('replies_policy') : undefined;
+    const isExclusive = list ? list.get('exclusive') : undefined;
 
     if (typeof list === 'undefined') {
       return (
@@ -173,6 +184,7 @@ class ListTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={title}>
         <ColumnHeader
           icon='list-ul'
+          iconComponent={ListAltIcon}
           active={hasUnread}
           title={title}
           onPin={this.handlePin}
@@ -183,12 +195,19 @@ class ListTimeline extends PureComponent {
         >
           <div className='column-settings__row column-header__links'>
             <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleEditClick}>
-              <Icon id='pencil' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
+              <Icon id='pencil' icon={EditIcon} /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
             </button>
 
             <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
-              <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
+              <Icon id='trash' icon={DeleteIcon} /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
+          </div>
+
+          <div className='setting-toggle'>
+            <Toggle id={`list-${id}-exclusive`} defaultChecked={isExclusive} onChange={this.onExclusiveToggle} />
+            <label htmlFor={`list-${id}-exclusive`} className='setting-toggle__label'>
+              <FormattedMessage id='lists.exclusive' defaultMessage='Hide these posts from home' />
+            </label>
           </div>
 
           { replies_policy !== undefined && (
@@ -224,4 +243,4 @@ class ListTimeline extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(ListTimeline));
+export default withRouter(connect(mapStateToProps)(injectIntl(ListTimeline)));

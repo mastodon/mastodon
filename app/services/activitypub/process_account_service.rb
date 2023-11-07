@@ -76,7 +76,10 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.suspended_at      = domain_block.created_at if auto_suspend?
     @account.suspension_origin = :local if auto_suspend?
     @account.silenced_at       = domain_block.created_at if auto_silence?
-    @account.save
+
+    set_immediate_protocol_attributes!
+
+    @account.save!
   end
 
   def update_account
@@ -112,6 +115,8 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.fields                  = property_values || {}
     @account.also_known_as           = as_array(@json['alsoKnownAs'] || []).map { |item| value_or_id(item) }
     @account.discoverable            = @json['discoverable'] || false
+    @account.indexable               = @json['indexable'] || false
+    @account.memorial                = @json['memorial'] || false
   end
 
   def set_fetchable_key!

@@ -4,6 +4,8 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+
 import api from 'mastodon/api';
 import { IconButton } from 'mastodon/components/icon_button';
 
@@ -14,7 +16,7 @@ const messages = defineMessages({
 class EmbedModal extends ImmutablePureComponent {
 
   static propTypes = {
-    url: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     onError: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -26,11 +28,11 @@ class EmbedModal extends ImmutablePureComponent {
   };
 
   componentDidMount () {
-    const { url } = this.props;
+    const { id } = this.props;
 
     this.setState({ loading: true });
 
-    api().post('/api/web/embed', { url }).then(res => {
+    api().get(`/api/web/embeds/${id}`).then(res => {
       this.setState({ loading: false, oembed: res.data });
 
       const iframeDocument = this.iframe.contentWindow.document;
@@ -62,7 +64,7 @@ class EmbedModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal report-modal embed-modal'>
         <div className='report-modal__target'>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
+          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' iconComponent={CloseIcon} onClick={onClose} size={16} />
           <FormattedMessage id='status.embed' defaultMessage='Embed' />
         </div>
 

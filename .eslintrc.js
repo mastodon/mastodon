@@ -9,7 +9,6 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:promise/recommended',
     'plugin:jsdoc/recommended',
-    'plugin:prettier/recommended',
   ],
 
   env: {
@@ -63,7 +62,9 @@ module.exports = {
     'consistent-return': 'error',
     'dot-notation': 'error',
     eqeqeq: ['error', 'always', { 'null': 'ignore' }],
+    'indent': ['error', 2],
     'jsx-quotes': ['error', 'prefer-single'],
+    'semi': ['error', 'always'],
     'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
     'no-console': [
@@ -80,6 +81,15 @@ module.exports = {
       'error',
       { property: 'substring', message: 'Use .slice instead of .substring.' },
       { property: 'substr', message: 'Use .slice instead of .substr.' },
+    ],
+    'no-restricted-syntax': [
+      'error',
+      {
+        // eslint-disable-next-line no-restricted-syntax
+        selector: 'Literal[value=/•/], JSXText[value=/•/]',
+        // eslint-disable-next-line no-restricted-syntax
+        message: "Use '·' (middle dot) instead of '•' (bullet)",
+      },
     ],
     'no-self-assign': 'off',
     'no-unused-expressions': 'error',
@@ -226,7 +236,7 @@ module.exports = {
           },
           // Common React utilities
           {
-            pattern: '{classnames,react-helmet,react-router-dom}',
+            pattern: '{classnames,react-helmet,react-router,react-router-dom}',
             group: 'external',
             position: 'before',
           },
@@ -293,6 +303,7 @@ module.exports = {
         '.*rc.js',
         'ide-helper.js',
         'config/webpack/**/*',
+        'config/formatjs-formatter.js',
       ],
 
       env: {
@@ -315,20 +326,20 @@ module.exports = {
 
       extends: [
         'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:@typescript-eslint/strict-type-checked',
+        'plugin:@typescript-eslint/stylistic-type-checked',
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
         'plugin:jsx-a11y/recommended',
         'plugin:import/recommended',
         'plugin:import/typescript',
         'plugin:promise/recommended',
-        'plugin:jsdoc/recommended',
+        'plugin:jsdoc/recommended-typescript',
         'plugin:prettier/recommended',
       ],
 
       parserOptions: {
-        project: './tsconfig.json',
+        project: true,
         tsconfigRootDir: __dirname,
       },
 
@@ -338,6 +349,7 @@ module.exports = {
         '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
         '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
+        "@typescript-eslint/prefer-nullish-coalescing": ['error', {ignorePrimitives: {boolean: true}}],
 
         'jsdoc/require-jsdoc': 'off',
 

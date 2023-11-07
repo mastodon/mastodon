@@ -77,8 +77,8 @@ class BackupService < BaseService
         path = m.file&.path
         next unless path
 
-        path = path.gsub(/\A.*\/system\//, '')
-        path = path.gsub(/\A\/+/, '')
+        path = path.gsub(%r{\A.*/system/}, '')
+        path = path.gsub(%r{\A/+}, '')
         download_to_zip(zipfile, m.file, path)
       end
 

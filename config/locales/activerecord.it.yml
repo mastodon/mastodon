@@ -53,3 +53,7 @@ it:
             position:
               elevated: non può essere superiore al tuo ruolo corrente
               own_role: non può essere modificato con il tuo ruolo corrente
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: non è possibile includere eventi per i quali non hai i diritti

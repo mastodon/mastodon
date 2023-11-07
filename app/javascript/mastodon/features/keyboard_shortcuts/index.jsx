@@ -6,6 +6,8 @@ import { Helmet } from 'react-helmet';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as InfoIcon } from '@material-symbols/svg-600/outlined/info.svg';
+
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 
@@ -27,7 +29,8 @@ class KeyboardShortcuts extends ImmutablePureComponent {
       <Column>
         <ColumnHeader
           title={intl.formatMessage(messages.heading)}
-          icon='question'
+          icon='info-circle'
+          iconComponent={InfoIcon}
           multiColumn={multiColumn}
         />
 
@@ -54,7 +57,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
               </tr>
               <tr>
                 <td><kbd>f</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.favourite' defaultMessage='to favourite' /></td>
+                <td><FormattedMessage id='keyboard_shortcuts.favourite' defaultMessage='to favorite' /></td>
               </tr>
               <tr>
                 <td><kbd>b</kbd></td>
@@ -138,7 +141,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>f</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.favourites' defaultMessage='to open favourites list' /></td>
+                <td><FormattedMessage id='keyboard_shortcuts.favourites' defaultMessage='to open favorites list' /></td>
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>p</kbd></td>

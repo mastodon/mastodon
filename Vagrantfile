@@ -60,6 +60,38 @@ sudo usermod -a -G rvm $USER
 
 SCRIPT
 
+$provisionElasticsearch = <<SCRIPT
+# Install Elastic Search
+sudo apt install openjdk-17-jre-headless -y
+sudo wget -O /usr/share/keyrings/elasticsearch.asc https://artifacts.elastic.co/GPG-KEY-elasticsearch
+sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/elasticsearch.asc] https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list'
+sudo apt update
+sudo apt install elasticsearch -y
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now elasticsearch
+
+echo 'path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+network.host: 0.0.0.0
+http.port: 9200
+discovery.seed_hosts: ["localhost"]
+cluster.initial_master_nodes: ["node-1"]
+xpack.security.enabled: false' > /etc/elasticsearch/elasticsearch.yml
+
+sudo systemctl restart elasticsearch
+
+# Install Kibana
+sudo apt install kibana -y
+sudo systemctl enable --now kibana
+
+echo 'server.host: "0.0.0.0"
+elasticsearch.hosts: ["http://localhost:9200"]' > /etc/kibana/kibana.yml
+
+sudo systemctl restart kibana
+
+SCRIPT
+
 $provisionB = <<SCRIPT
 
 source "/etc/profile.d/rvm.sh"
@@ -102,10 +134,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider :virtualbox do |vb|
     vb.name = "mastodon"
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
-    # Increase the number of CPUs. Uncomment and adjust to
-    # increase performance
-    # vb.customize ["modifyvm", :id, "--cpus", "3"]
+    vb.customize ["modifyvm", :id, "--memory", "8192"]
+    vb.customize ["modifyvm", :id, "--cpus", "3"]
 
     # Disable VirtualBox DNS proxy to skip long-delay IPv6 resolutions.
     # https://github.com/mitchellh/vagrant/issues/1172
@@ -141,9 +171,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 3000, host: 3000
   config.vm.network :forwarded_port, guest: 4000, host: 4000
   config.vm.network :forwarded_port, guest: 8080, host: 8080
+  config.vm.network :forwarded_port, guest: 9200, host: 9200
+  config.vm.network :forwarded_port, guest: 9300, host: 9300
+  config.vm.network :forwarded_port, guest: 9243, host: 9243
+  config.vm.network :forwarded_port, guest: 5601, host: 5601
 
   # Full provisioning script, only runs on first 'vagrant up' or with 'vagrant provision'
   config.vm.provision :shell, inline: $provisionA, privileged: false, reset: true
+  # Run with elevated privileges for Elasticsearch installation
+  config.vm.provision :shell, inline: $provisionElasticsearch, privileged: true
   config.vm.provision :shell, inline: $provisionB, privileged: false
 
   config.vm.post_up_message = <<MESSAGE

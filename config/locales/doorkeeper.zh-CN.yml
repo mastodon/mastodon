@@ -38,7 +38,7 @@ zh-CN:
         application: 应用
         callback_url: 回调 URL
         delete: 删除
-        empty: 你没有申请。
+        empty: 暂无应用。
         name: 名称
         new: 创建新应用
         scopes: 权限范围
@@ -104,14 +104,14 @@ zh-CN:
     flash:
       applications:
         create:
-          notice: 应用创建成功
+          notice: 应用创建成功。
         destroy:
-          notice: 应用删除成功
+          notice: 应用删除成功。
         update:
-          notice: 应用修改成功
+          notice: 应用已更新。
       authorized_applications:
         destroy:
-          notice: 已成功撤销对此应用的授权
+          notice: 已成功撤销对此应用的授权。
     grouped_scopes:
       access:
         read: 只读权限
@@ -184,7 +184,7 @@ zh-CN:
       write:blocks: 屏蔽账号和域名
       write:bookmarks: 为嘟文添加书签
       write:conversations: 静音并删除会话
-      write:favourites: 喜欢的嘟文
+      write:favourites: 喜欢嘟文
       write:filters: 创建过滤器
       write:follows: 关注其他人
       write:lists: 创建列表

@@ -1,11 +1,8 @@
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 - content_for :page_title do
   = t('statuses.title', name: display_name(@account), quote: truncate(@status.spoiler_text.presence || @status.text, length: 50, omission: '…', escape: false))
 
 - content_for :heading_actions do
-  = link_to t('admin.statuses.open'), ActivityPub::TagManager.instance.url_for(@status), class: 'button', target: '_blank'
+  = link_to t('admin.statuses.open'), ActivityPub::TagManager.instance.url_for(@status), class: 'button', target: '_blank', rel: 'noopener noreferrer'
 
 %h3= t('admin.statuses.metadata')
 
@@ -50,7 +47,7 @@
 %h3= t('admin.statuses.history')
 
 %ol.history
-  - @status.edits.includes(:account, status: [:account]).each.with_index do |status_edit, i|
+  - @status.edits.reorder(nil).includes(:account, status: [:account]).find_each(order: :asc).with_index do |status_edit, i|
     %li
       .history__entry
         %h5

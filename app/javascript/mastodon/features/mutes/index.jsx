@@ -8,11 +8,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outlined/volume_off.svg';
 import { debounce } from 'lodash';
 
 import { fetchMutes, expandMutes } from '../../actions/mutes';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
-import LoadingIndicator from '../../components/loading_indicator';
+import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
@@ -61,8 +61,7 @@ class Mutes extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.mutes' defaultMessage="You haven't muted any users yet." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='volume-off' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
+      <Column bindToDocument={!multiColumn} icon='volume-off' iconComponent={VolumeOffIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='mutes'
           onLoadMore={this.handleLoadMore}

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Rails
   module EngineExtensions
     # Rewrite task loading code to filter digitalocean.rake task

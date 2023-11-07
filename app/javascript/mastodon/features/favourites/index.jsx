@@ -8,10 +8,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { fetchFavourites } from 'mastodon/actions/interactions';
+import { ReactComponent as RefreshIcon } from '@material-symbols/svg-600/outlined/refresh.svg';
+import { debounce } from 'lodash';
+
+import { fetchFavourites, expandFavourites } from 'mastodon/actions/interactions';
 import ColumnHeader from 'mastodon/components/column_header';
 import { Icon }  from 'mastodon/components/icon';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import AccountContainer from 'mastodon/containers/account_container';
 import Column from 'mastodon/features/ui/components/column';
@@ -21,7 +24,9 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'favourited_by', props.params.statusId]),
+  accountIds: state.getIn(['user_lists', 'favourited_by', props.params.statusId, 'items']),
+  hasMore: !!state.getIn(['user_lists', 'favourited_by', props.params.statusId, 'next']),
+  isLoading: state.getIn(['user_lists', 'favourited_by', props.params.statusId, 'isLoading'], true),
 });
 
 class Favourites extends ImmutablePureComponent {
@@ -30,6 +35,8 @@ class Favourites extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     accountIds: ImmutablePropTypes.list,
+    hasMore: PropTypes.bool,
+    isLoading: PropTypes.bool,
     multiColumn: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
@@ -40,18 +47,16 @@ class Favourites extends ImmutablePureComponent {
     }
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
-      this.props.dispatch(fetchFavourites(nextProps.params.statusId));
-    }
-  }
-
   handleRefresh = () => {
     this.props.dispatch(fetchFavourites(this.props.params.statusId));
   };
 
+  handleLoadMore = debounce(() => {
+    this.props.dispatch(expandFavourites(this.props.params.statusId));
+  }, 300, { leading: true });
+
   render () {
-    const { intl, accountIds, multiColumn } = this.props;
+    const { intl, accountIds, hasMore, isLoading, multiColumn } = this.props;
 
     if (!accountIds) {
       return (
@@ -61,7 +66,7 @@ class Favourites extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = <FormattedMessage id='empty_column.favourites' defaultMessage='No one has favourited this post yet. When someone does, they will show up here.' />;
+    const emptyMessage = <FormattedMessage id='empty_column.favourites' defaultMessage='No one has favorited this post yet. When someone does, they will show up here.' />;
 
     return (
       <Column bindToDocument={!multiColumn}>
@@ -69,12 +74,15 @@ class Favourites extends ImmutablePureComponent {
           showBackButton
           multiColumn={multiColumn}
           extraButton={(
-            <button type='button' className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' /></button>
+            <button type='button' className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' icon={RefreshIcon} /></button>
           )}
         />
 
         <ScrollableList
           scrollKey='favourites'
+          onLoadMore={this.handleLoadMore}
+          hasMore={hasMore}
+          isLoading={isLoading}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >

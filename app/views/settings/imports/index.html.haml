@@ -3,7 +3,7 @@
 
 = simple_form_for @import, url: settings_imports_path do |f|
   .field-group
-    = f.input :type, as: :grouped_select, collection: { constructive: %i(following bookmarks), destructive: %i(muting blocking domain_blocking) }, wrapper: :with_block_label, include_blank: false, label_method: ->(type) { I18n.t("imports.types.#{type}") }, group_label_method: ->(group) { I18n.t("imports.type_groups.#{group.first}") }, group_method: :last, hint: t('imports.preface')
+    = f.input :type, as: :grouped_select, collection: { constructive: %i(following bookmarks lists), destructive: %i(muting blocking domain_blocking) }, wrapper: :with_block_label, include_blank: false, label_method: ->(type) { I18n.t("imports.types.#{type}") }, group_label_method: ->(group) { I18n.t("imports.type_groups.#{group.first}") }, group_method: :last, hint: t('imports.preface')
 
   .fields-row
     .fields-group.fields-row__column.fields-row__column-6

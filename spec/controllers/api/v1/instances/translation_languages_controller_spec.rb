@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Api::V1::Instances::TranslationLanguagesController do
   describe 'GET #show' do
     context 'when no translation service is configured' do
-      it 'returns empty language matrix' do
+      it 'returns empty language matrix', :aggregate_failures do
         get :show
 
         expect(response).to have_http_status(200)
@@ -16,11 +16,10 @@ describe Api::V1::Instances::TranslationLanguagesController do
     context 'when a translation service is configured' do
       before do
         service = instance_double(TranslationService::DeepL, languages: { nil => %w(en de), 'en' => ['de'] })
-        allow(TranslationService).to receive(:configured?).and_return(true)
-        allow(TranslationService).to receive(:configured).and_return(service)
+        allow(TranslationService).to receive_messages(configured?: true, configured: service)
       end
 
-      it 'returns language matrix' do
+      it 'returns language matrix', :aggregate_failures do
         get :show
 
         expect(response).to have_http_status(200)

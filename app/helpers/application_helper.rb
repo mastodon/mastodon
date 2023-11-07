@@ -169,11 +169,11 @@ module ApplicationHelper
   end
 
   def storage_host
-    URI::HTTPS.build(host: storage_host_name).to_s
+    "https://#{storage_host_var}"
   end
 
   def storage_host?
-    storage_host_name.present?
+    storage_host_var.present?
   end
 
   def quote_wrap(text, line_width: 80, break_sequence: "\n")
@@ -234,7 +234,7 @@ module ApplicationHelper
 
   private
 
-  def storage_host_name
-    ENV.fetch('S3_ALIAS_HOST', nil) || ENV.fetch('S3_CLOUDFRONT_HOST', nil)
+  def storage_host_var
+    ENV.fetch('S3_ALIAS_HOST', nil) || ENV.fetch('S3_CLOUDFRONT_HOST', nil) || ENV.fetch('AZURE_ALIAS_HOST', nil)
   end
 end

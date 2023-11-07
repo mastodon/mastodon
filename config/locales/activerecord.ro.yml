@@ -53,3 +53,7 @@ ro:
             position:
               elevated: nu poate fi mai mare decât rolul curent
               own_role: nu poate fi schimbat cu rolul curent
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: nu poate include evenimente la care nu aveți drepturi

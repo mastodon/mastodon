@@ -5,7 +5,7 @@ require 'rails_helper'
 describe ActivityPub::FetchRepliesWorker do
   subject { described_class.new }
 
-  let(:account) { Fabricate(:account, uri: 'https://example.com/user/1') }
+  let(:account) { Fabricate(:account, domain: 'example.com') }
   let(:status)  { Fabricate(:status, account: account) }
 
   let(:payload) do

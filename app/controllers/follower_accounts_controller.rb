@@ -3,14 +3,13 @@
 class FollowerAccountsController < ApplicationController
   include AccountControllerConcern
   include SignatureVerification
-  include WebAppControllerConcern
 
   vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
 
   before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
 
   skip_around_action :set_locale, if: -> { request.format == :json }
-  skip_before_action :require_functional!, unless: :whitelist_mode?
+  skip_before_action :require_functional!, unless: :limited_federation_mode?
 
   def index
     respond_to do |format|

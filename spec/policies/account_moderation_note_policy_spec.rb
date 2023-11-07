@@ -4,20 +4,21 @@ require 'rails_helper'
 require 'pundit/rspec'
 
 RSpec.describe AccountModerationNotePolicy do
-  let(:subject) { described_class }
+  subject { described_class }
+
   let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
   let(:john)    { Fabricate(:account) }
 
   permissions :create? do
     context 'when staff' do
       it 'grants to create' do
-        expect(subject).to permit(admin, AccountModerationNotePolicy)
+        expect(subject).to permit(admin, described_class)
       end
     end
 
     context 'when not staff' do
       it 'denies to create' do
-        expect(subject).to_not permit(john, AccountModerationNotePolicy)
+        expect(subject).to_not permit(john, described_class)
       end
     end
   end

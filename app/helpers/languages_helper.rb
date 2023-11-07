@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ModuleLength
-
 module LanguagesHelper
   ISO_639_1 = {
     aa: ['Afar', 'Afaraf'].freeze,
@@ -190,11 +188,11 @@ module LanguagesHelper
 
   ISO_639_3 = {
     ast: ['Asturian', 'Asturianu'].freeze,
+    chr: ['Cherokee', 'ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ'].freeze,
     ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
     cnr: ['Montenegrin', 'crnogorski'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
-    kmr: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,
     lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
     sco: ['Scots', 'Scots'].freeze,
@@ -202,11 +200,22 @@ module LanguagesHelper
     smj: ['Lule Sami', 'Julevsámegiella'].freeze,
     szl: ['Silesian', 'ślůnsko godka'].freeze,
     tok: ['Toki Pona', 'toki pona'].freeze,
+    xal: ['Kalmyk', 'Хальмг келн'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
 
-  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_3).freeze
+  # e.g. For Chinese, which is not a language,
+  # but a language family in spite of sharing the main locale code
+  # We need to be able to filter these
+  ISO_639_1_REGIONAL = {
+    'zh-CN': ['Chinese (China)', '简体中文'].freeze,
+    'zh-HK': ['Chinese (Hong Kong)', '繁體中文（香港）'].freeze,
+    'zh-TW': ['Chinese (Taiwan)', '繁體中文（臺灣）'].freeze,
+    'zh-YUE': ['Cantonese', '廣東話'].freeze,
+  }.freeze
+
+  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_1_REGIONAL).merge(ISO_639_3).freeze
 
   # For ISO-639-1 and ISO-639-3 language codes, we have their official
   # names, but for some translations, we need the names of the
@@ -219,10 +228,25 @@ module LanguagesHelper
     'pt-BR': 'Português (Brasil)',
     'pt-PT': 'Português (Portugal)',
     'sr-Latn': 'Srpski (latinica)',
-    'zh-CN': '简体中文',
-    'zh-HK': '繁體中文（香港）',
-    'zh-TW': '繁體中文（臺灣）',
   }.freeze
+
+  # Helper for self.sorted_locale_keys
+  private_class_method def self.locale_name_for_sorting(locale)
+    if locale.blank? || locale == 'und'
+      '000'
+    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
+      ASCIIFolding.new.fold(supported_locale[1]).downcase
+    elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
+      ASCIIFolding.new.fold(regional_locale).downcase
+    else
+      locale
+    end
+  end
+
+  # Sort locales by native name for dropdown menus
+  def self.sorted_locale_keys(locale_keys)
+    locale_keys.sort_by { |key, _| locale_name_for_sorting(key) }
+  end
 
   def native_locale_name(locale)
     if locale.blank? || locale == 'und'
@@ -248,6 +272,7 @@ module LanguagesHelper
 
   def valid_locale_or_nil(str)
     return if str.blank?
+    return str if valid_locale?(str)
 
     code, = str.to_s.split(/[_-]/) # Strip out the region from e.g. en_US or ja-JP
 

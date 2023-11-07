@@ -53,25 +53,25 @@ describe AccountSearchService, type: :service do
 
     context 'when there is a domain but no exact match' do
       it 'follows the remote account when resolve is true' do
-        service = double(call: nil)
+        service = instance_double(ResolveAccountService, call: nil)
         allow(ResolveAccountService).to receive(:new).and_return(service)
 
-        results = subject.call('newuser@remote.com', nil, limit: 10, resolve: true)
+        subject.call('newuser@remote.com', nil, limit: 10, resolve: true)
         expect(service).to have_received(:call).with('newuser@remote.com')
       end
 
       it 'does not follow the remote account when resolve is false' do
-        service = double(call: nil)
+        service = instance_double(ResolveAccountService, call: nil)
         allow(ResolveAccountService).to receive(:new).and_return(service)
 
-        results = subject.call('newuser@remote.com', nil, limit: 10, resolve: false)
+        subject.call('newuser@remote.com', nil, limit: 10, resolve: false)
         expect(service).to_not have_received(:call)
       end
     end
 
     it 'returns the fuzzy match first, and does not return suspended exacts' do
       partial = Fabricate(:account, username: 'exactness')
-      exact   = Fabricate(:account, username: 'exact', suspended: true)
+      Fabricate(:account, username: 'exact', suspended: true)
       results = subject.call('exact', nil, limit: 10)
 
       expect(results.size).to eq 1
@@ -79,7 +79,7 @@ describe AccountSearchService, type: :service do
     end
 
     it 'does not return suspended remote accounts' do
-      remote  = Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e', suspended: true)
+      Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e', suspended: true)
       results = subject.call('a@example.com', nil, limit: 2)
 
       expect(results.size).to eq 0

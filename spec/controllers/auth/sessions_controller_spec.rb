@@ -127,7 +127,6 @@ RSpec.describe Auth::SessionsController do
 
         before do
           allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return(current_ip)
-          allow(UserMailer).to receive(:suspicious_sign_in).and_return(double('email', deliver_later!: nil))
           user.update(current_sign_in_at: 1.month.ago)
           post :create, params: { user: { email: user.email, password: user.password } }
         end
@@ -141,7 +140,9 @@ RSpec.describe Auth::SessionsController do
         end
 
         it 'sends a suspicious sign-in mail' do
-          expect(UserMailer).to have_received(:suspicious_sign_in).with(user, current_ip, anything, anything)
+          expect(UserMailer.deliveries.size).to eq(1)
+          expect(UserMailer.deliveries.first.to.first).to eq(user.email)
+          expect(UserMailer.deliveries.first.subject).to eq(I18n.t('user_mailer.suspicious_sign_in.subject'))
         end
       end
 

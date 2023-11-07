@@ -37,7 +37,7 @@ RSpec.describe Admin::DomainAllowsController do
 
   describe 'DELETE #destroy' do
     it 'disallows the domain' do
-      service = double(call: true)
+      service = instance_double(UnallowDomainService, call: true)
       allow(UnallowDomainService).to receive(:new).and_return(service)
       domain_allow = Fabricate(:domain_allow)
       delete :destroy, params: { id: domain_allow.id }

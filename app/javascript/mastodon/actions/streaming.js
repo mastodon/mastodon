@@ -24,8 +24,6 @@ import {
   fillListTimelineGaps,
 } from './timelines';
 
-const { messages } = getLocale();
-
 /**
  * @param {number} max
  * @returns {number}
@@ -43,8 +41,10 @@ const randomUpTo = max =>
  * @param {function(object): boolean} [options.accept]
  * @returns {function(): void}
  */
-export const connectTimelineStream = (timelineId, channelName, params = {}, options = {}) =>
-  connectStream(channelName, params, (dispatch, getState) => {
+export const connectTimelineStream = (timelineId, channelName, params = {}, options = {}) => {
+  const { messages } = getLocale();
+
+  return connectStream(channelName, params, (dispatch, getState) => {
     const locale = getState().getIn(['meta', 'locale']);
 
     // @ts-expect-error
@@ -121,6 +121,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
       },
     };
   });
+};
 
 /**
  * @param {Function} dispatch

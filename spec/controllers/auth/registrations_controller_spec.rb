@@ -15,20 +15,22 @@ RSpec.describe Auth::RegistrationsController do
     it 'redirects if it is in single user mode while it is open for registration' do
       Fabricate(:account)
       Setting.registrations_mode = 'open'
-      expect(Rails.configuration.x).to receive(:single_user_mode).and_return(true)
+      allow(Rails.configuration.x).to receive(:single_user_mode).and_return(true)
 
       get path
 
       expect(response).to redirect_to '/'
+      expect(Rails.configuration.x).to have_received(:single_user_mode)
     end
 
     it 'redirects if it is not open for registration while it is not in single user mode' do
       Setting.registrations_mode = 'none'
-      expect(Rails.configuration.x).to receive(:single_user_mode).and_return(false)
+      allow(Rails.configuration.x).to receive(:single_user_mode).and_return(false)
 
       get path
 
       expect(response).to redirect_to '/'
+      expect(Rails.configuration.x).to have_received(:single_user_mode)
     end
   end
 
@@ -79,7 +81,7 @@ RSpec.describe Auth::RegistrationsController do
       request.env['devise.mapping'] = Devise.mappings[:user]
     end
 
-    context do
+    context 'with open registrations' do
       around do |example|
         registrations_mode = Setting.registrations_mode
         example.run
@@ -111,7 +113,7 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    context do
+    context 'when an accept language is present in headers' do
       subject do
         Setting.registrations_mode = 'open'
         request.headers['Accept-Language'] = accept_language
@@ -244,9 +246,26 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    it 'does nothing if user already exists' do
-      Fabricate(:account, username: 'test')
-      subject
+    context 'with an already taken username' do
+      subject do
+        Setting.registrations_mode = 'open'
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
+      end
+
+      before do
+        Fabricate(:account, username: 'test')
+      end
+
+      it 'responds with an error message about the username' do
+        subject
+
+        expect(response).to have_http_status(:success)
+        expect(username_error_text).to eq(I18n.t('errors.messages.taken'))
+      end
+
+      def username_error_text
+        Nokogiri::Slop(response.body).css('.user_account_username .error').text
+      end
     end
 
     include_examples 'checks for enabled registrations', :create

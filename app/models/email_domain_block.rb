@@ -64,7 +64,7 @@ class EmailDomainBlock < ApplicationRecord
 
         segments = uri.normalized_host.split('.')
 
-        segments.map.with_index { |_, i| segments[i..-1].join('.') }
+        segments.map.with_index { |_, i| segments[i..].join('.') }
       end
     end
 

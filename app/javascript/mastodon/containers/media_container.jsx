@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
-
 import { fromJS } from 'immutable';
 
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
@@ -14,18 +12,14 @@ import Audio from 'mastodon/features/audio';
 import Card from 'mastodon/features/status/components/card';
 import MediaModal from 'mastodon/features/ui/components/media_modal';
 import Video from 'mastodon/features/video';
-import { getLocale } from 'mastodon/locales';
+import { IntlProvider } from 'mastodon/locales';
 import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
-
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
 
 const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
 
 export default class MediaContainer extends PureComponent {
 
   static propTypes = {
-    locale: PropTypes.string.isRequired,
     components: PropTypes.object.isRequired,
   };
 
@@ -74,7 +68,7 @@ export default class MediaContainer extends PureComponent {
   };
 
   render () {
-    const { locale, components } = this.props;
+    const { components } = this.props;
 
     let handleOpenVideo;
 
@@ -84,7 +78,7 @@ export default class MediaContainer extends PureComponent {
     }
 
     return (
-      <IntlProvider locale={locale} messages={messages}>
+      <IntlProvider>
         <>
           {[].map.call(components, (component, i) => {
             const componentName = component.getAttribute('data-component');

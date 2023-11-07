@@ -10,8 +10,8 @@ class TranslationService::DeepL < TranslationService
     @api_key = api_key
   end
 
-  def translate(text, source_language, target_language)
-    form = { text: text, source_lang: source_language&.upcase, target_lang: target_language, tag_handling: 'html' }
+  def translate(texts, source_language, target_language)
+    form = { text: texts, source_lang: source_language&.upcase, target_lang: target_language, tag_handling: 'html' }
     request(:post, '/v2/translate', form: form) do |res|
       transform_response(res.body_with_limit)
     end
@@ -67,12 +67,17 @@ class TranslationService::DeepL < TranslationService
     end
   end
 
-  def transform_response(str)
-    json = Oj.load(str, mode: :strict)
+  def transform_response(json)
+    data = Oj.load(json, mode: :strict)
+    raise UnexpectedResponseError unless data.is_a?(Hash)
 
-    raise UnexpectedResponseError unless json.is_a?(Hash)
-
-    Translation.new(text: json.dig('translations', 0, 'text'), detected_source_language: json.dig('translations', 0, 'detected_source_language')&.downcase, provider: 'DeepL.com')
+    data['translations'].map do |translation|
+      Translation.new(
+        text: translation['text'],
+        detected_source_language: translation['detected_source_language']&.downcase,
+        provider: 'DeepL.com'
+      )
+    end
   rescue Oj::ParseError
     raise UnexpectedResponseError
   end

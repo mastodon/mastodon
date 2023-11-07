@@ -3,8 +3,9 @@
 class Scheduler::IndexingScheduler
   include Sidekiq::Worker
   include Redisable
+  include DatabaseHelper
 
-  sidekiq_options retry: 0
+  sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 30.minutes.to_i
 
   IMPORT_BATCH_SIZE = 1000
   SCAN_BATCH_SIZE = 10 * IMPORT_BATCH_SIZE
@@ -16,15 +17,14 @@ class Scheduler::IndexingScheduler
       with_redis do |redis|
         redis.sscan_each("chewy:queue:#{type.name}", count: SCAN_BATCH_SIZE).each_slice(IMPORT_BATCH_SIZE) do |ids|
           type.import!(ids)
-          redis.pipelined do |pipeline|
-            pipeline.srem("chewy:queue:#{type.name}", ids)
-          end
+
+          redis.srem("chewy:queue:#{type.name}", ids)
         end
       end
     end
   end
 
   def indexes
-    [AccountsIndex, TagsIndex, StatusesIndex]
+    [AccountsIndex, TagsIndex, PublicStatusesIndex, StatusesIndex]
   end
 end

@@ -127,7 +127,7 @@ RSpec.describe NotifyService, type: :service do
     end
   end
 
-  context do
+  context 'with muted and blocked users' do
     let(:asshole)  { Fabricate(:account, username: 'asshole') }
     let(:reply_to) { Fabricate(:status, account: asshole) }
     let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, thread: reply_to)) }
@@ -144,7 +144,7 @@ RSpec.describe NotifyService, type: :service do
     end
   end
 
-  context do
+  context 'with sender as recipient' do
     let(:sender) { recipient }
 
     it 'does not notify when recipient is the sender' do

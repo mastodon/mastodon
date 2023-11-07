@@ -46,3 +46,5 @@ export default class Settings {
 export const pushNotificationsSetting = new Settings('mastodon_push_notification_data');
 export const tagHistory = new Settings('mastodon_tag_history');
 export const bannerSettings = new Settings('mastodon_banner_settings');
+export const searchHistory = new Settings('mastodon_search_history');
+export const playerSettings = new Settings('mastodon_player');

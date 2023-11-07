@@ -18,6 +18,14 @@ class Api::V2::Admin::AccountsController < Api::V1::Admin::AccountsController
 
   private
 
+  def next_path
+    api_v2_admin_accounts_url(pagination_params(max_id: pagination_max_id)) if records_continue?
+  end
+
+  def prev_path
+    api_v2_admin_accounts_url(pagination_params(min_id: pagination_since_id)) unless @accounts.empty?
+  end
+
   def filtered_accounts
     AccountFilter.new(translated_filter_params).results
   end

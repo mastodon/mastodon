@@ -5,6 +5,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { ReactComponent as MenuIcon } from '@material-symbols/svg-600/outlined/menu.svg';
+
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 
 const messages = defineMessages({
@@ -12,7 +14,7 @@ const messages = defineMessages({
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   followed_tags: { id: 'navigation_bar.followed_tags', defaultMessage: 'Followed hashtags' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
@@ -26,7 +28,7 @@ const messages = defineMessages({
 class ActionBar extends PureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
     onLogout: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
@@ -60,7 +62,7 @@ class ActionBar extends PureComponent {
     return (
       <div className='compose__action-bar'>
         <div className='compose__action-bar-dropdown'>
-          <DropdownMenuContainer items={menu} icon='ellipsis-v' size={18} direction='right' />
+          <DropdownMenuContainer items={menu} icon='bars' iconComponent={MenuIcon} size={24} direction='right' />
         </div>
       </div>
     );

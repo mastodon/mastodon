@@ -16,7 +16,7 @@ RSpec.describe SessionActivation do
       allow(session_activation).to receive(:detection).and_return(detection)
     end
 
-    let(:detection)          { double(id: 1) }
+    let(:detection)          { instance_double(Browser::Chrome, id: 1) }
     let(:session_activation) { Fabricate(:session_activation) }
 
     it 'returns detection.id' do
@@ -30,7 +30,7 @@ RSpec.describe SessionActivation do
     end
 
     let(:session_activation) { Fabricate(:session_activation) }
-    let(:detection)          { double(platform: double(id: 1)) }
+    let(:detection)          { instance_double(Browser::Chrome, platform: instance_double(Browser::Platform, id: 1)) }
 
     it 'returns detection.platform.id' do
       expect(session_activation.platform).to be 1
@@ -74,13 +74,17 @@ RSpec.describe SessionActivation do
     let(:options) { { user: Fabricate(:user), session_id: '1' } }
 
     it 'calls create! and purge_old' do
-      expect(described_class).to receive(:create!).with(**options)
-      expect(described_class).to receive(:purge_old)
+      allow(described_class).to receive(:create!).with(**options)
+      allow(described_class).to receive(:purge_old)
+
       described_class.activate(**options)
+
+      expect(described_class).to have_received(:create!).with(**options)
+      expect(described_class).to have_received(:purge_old)
     end
 
     it 'returns an instance of SessionActivation' do
-      expect(described_class.activate(**options)).to be_a SessionActivation
+      expect(described_class.activate(**options)).to be_a described_class
     end
   end
 

@@ -40,9 +40,9 @@ class FeedManager
   def filter?(timeline_type, status, receiver)
     case timeline_type
     when :home
-      filter_from_home?(status, receiver.id, build_crutches(receiver.id, [status]))
+      filter_from_home?(status, receiver.id, build_crutches(receiver.id, [status]), :home)
     when :list
-      filter_from_list?(status, receiver) || filter_from_home?(status, receiver.account_id, build_crutches(receiver.account_id, [status]))
+      filter_from_list?(status, receiver) || filter_from_home?(status, receiver.account_id, build_crutches(receiver.account_id, [status]), :list)
     when :mentions
       filter_from_mentions?(status, receiver.id)
     when :tags
@@ -180,6 +180,27 @@ class FeedManager
     end
   end
 
+  # Remove a tag's statuses from a home feed
+  # @param [Tag] from_tag
+  # @param [Account] into_account
+  # @return [void]
+  def unmerge_tag_from_home(from_tag, into_account)
+    timeline_key        = key(:home, into_account.id)
+    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+
+    # This is a bit tricky because we need posts tagged with this hashtag that are not
+    # also tagged with another followed hashtag or from a followed user
+    scope = from_tag.statuses
+                    .where(id: timeline_status_ids)
+                    .where.not(account: into_account)
+                    .where.not(account: into_account.following)
+                    .tagged_with_none(TagFollow.where(account: into_account).pluck(:tag_id))
+
+    scope.select('id, reblog_of_id').reorder(nil).find_each do |status|
+      remove_from_feed(:home, into_account.id, status, aggregate_reblogs: into_account.user&.aggregates_reblogs?)
+    end
+  end
+
   # Clear all statuses from or mentioning target_account from a home feed
   # @param [Account] account
   # @param [Account] target_account
@@ -225,7 +246,7 @@ class FeedManager
   # @param [Account] target_account
   # @return [void]
   def clear_from_lists(account, target_account)
-    List.where(account: account).each do |list|
+    List.where(account: account).find_each do |list|
       clear_from_list(list, target_account)
     end
   end
@@ -242,7 +263,7 @@ class FeedManager
       add_to_feed(:home, account.id, status, aggregate_reblogs: aggregate)
     end
 
-    account.following.includes(:account_stat).find_each do |target_account|
+    account.following.includes(:account_stat).reorder(nil).find_each do |target_account|
       if redis.zcard(timeline_key) >= limit
         oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
         last_status_score = Mastodon::Snowflake.id_at(target_account.last_status_at)
@@ -351,10 +372,11 @@ class FeedManager
   # @param [Integer] receiver_id
   # @param [Hash] crutches
   # @return [Boolean]
-  def filter_from_home?(status, receiver_id, crutches)
+  def filter_from_home?(status, receiver_id, crutches, timeline_type = :home)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
-    return true  if crutches[:languages][status.account_id].present? && status.language.present? && !crutches[:languages][status.account_id].include?(status.language)
+    return true if timeline_type != :list && crutches[:exclusive_list_users][status.account_id].present?
+    return true if crutches[:languages][status.account_id].present? && status.language.present? && !crutches[:languages][status.account_id].include?(status.language)
 
     check_for_blocks = crutches[:active_mentions][status.id] || []
     check_for_blocks.push(status.account_id)
@@ -543,13 +565,16 @@ class FeedManager
       arr
     end
 
-    crutches[:following]       = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
-    crutches[:languages]       = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:account_id)).pluck(:target_account_id, :languages).to_h
-    crutches[:hiding_reblogs]  = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map { |s| s.account_id if s.reblog? }, show_reblogs: false).pluck(:target_account_id).index_with(true)
-    crutches[:blocking]        = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
-    crutches[:muting]          = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
-    crutches[:domain_blocking] = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
-    crutches[:blocked_by]      = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
+    lists = List.where(account_id: receiver_id, exclusive: true)
+
+    crutches[:following]            = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
+    crutches[:languages]            = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:account_id)).pluck(:target_account_id, :languages).to_h
+    crutches[:hiding_reblogs]       = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map { |s| s.account_id if s.reblog? }, show_reblogs: false).pluck(:target_account_id).index_with(true)
+    crutches[:blocking]             = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
+    crutches[:muting]               = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
+    crutches[:domain_blocking]      = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
+    crutches[:blocked_by]           = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
+    crutches[:exclusive_list_users] = ListAccount.where(list: lists, account_id: statuses.map(&:account_id)).pluck(:account_id).index_with(true)
 
     crutches
   end

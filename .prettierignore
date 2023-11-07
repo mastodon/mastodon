@@ -31,9 +31,6 @@
 # Ignore Vagrant files
 .vagrant/
 
-# Ignore Capistrano customizations
-/config/deploy/*
-
 # Ignore IDE files
 .vscode/
 .idea/
@@ -61,7 +58,7 @@ docker-compose.override.yml
 /app/javascript/mastodon/features/emoji/emoji_map.json
 
 # Ignore locale files
-/app/javascript/mastodon/locales
+/app/javascript/mastodon/locales/*.json
 /config/locales
 
 # Ignore vendored CSS reset

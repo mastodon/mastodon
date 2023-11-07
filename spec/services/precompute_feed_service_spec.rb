@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PrecomputeFeedService, type: :service do
-  subject { PrecomputeFeedService.new }
+  subject { described_class.new }
 
   describe 'call' do
     let(:account) { Fabricate(:account) }
@@ -19,7 +19,7 @@ RSpec.describe PrecomputeFeedService, type: :service do
 
     it 'does not raise an error even if it could not find any status' do
       account = Fabricate(:account)
-      subject.call(account)
+      expect { subject.call(account) }.to_not raise_error
     end
 
     it 'filters statuses' do
@@ -27,7 +27,7 @@ RSpec.describe PrecomputeFeedService, type: :service do
       muted_account = Fabricate(:account)
       Fabricate(:mute, account: account, target_account: muted_account)
       reblog = Fabricate(:status, account: muted_account)
-      status = Fabricate(:status, account: account, reblog: reblog)
+      Fabricate(:status, account: account, reblog: reblog)
 
       subject.call(account)
 

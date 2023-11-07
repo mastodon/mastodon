@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
 
-import type { InjectedIntl } from 'react-intl';
-import { injectIntl, defineMessages } from 'react-intl';
+import { useIntl, defineMessages } from 'react-intl';
+
+import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
 
 import { Icon } from 'mastodon/components/icon';
 
@@ -13,10 +14,11 @@ interface Props {
   disabled: boolean;
   maxId: string;
   onClick: (maxId: string) => void;
-  intl: InjectedIntl;
 }
 
-const _LoadGap: React.FC<Props> = ({ disabled, maxId, onClick, intl }) => {
+export const LoadGap: React.FC<Props> = ({ disabled, maxId, onClick }) => {
+  const intl = useIntl();
+
   const handleClick = useCallback(() => {
     onClick(maxId);
   }, [maxId, onClick]);
@@ -28,9 +30,7 @@ const _LoadGap: React.FC<Props> = ({ disabled, maxId, onClick, intl }) => {
       onClick={handleClick}
       aria-label={intl.formatMessage(messages.load_more)}
     >
-      <Icon id='ellipsis-h' />
+      <Icon id='ellipsis-h' icon={MoreHorizIcon} />
     </button>
   );
 };
-
-export const LoadGap = injectIntl(_LoadGap);

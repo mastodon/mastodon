@@ -9,6 +9,10 @@ module FormattingHelper
     TextFormatter.new(text, options).to_s
   end
 
+  def url_for_preview_card(preview_card)
+    preview_card.url
+  end
+
   def extract_status_plain_text(status)
     PlainTextFormatter.new(status.text, status.local?).to_s
   end
@@ -54,6 +58,10 @@ module FormattingHelper
   end
 
   def account_field_value_format(field, with_rel_me: true)
-    html_aware_format(field.value, field.account.local?, with_rel_me: with_rel_me, with_domains: true, multiline: false)
+    if field.verified? && !field.account.local?
+      TextFormatter.shortened_link(field.value_for_verification)
+    else
+      html_aware_format(field.value, field.account.local?, with_rel_me: with_rel_me, with_domains: true, multiline: false)
+    end
   end
 end

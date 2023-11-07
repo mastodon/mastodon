@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Instances::DomainBlocksController < Api::BaseController
-  skip_before_action :require_authenticated_user!, unless: :whitelist_mode?
+  skip_before_action :require_authenticated_user!, unless: :limited_federation_mode?
 
   before_action :require_enabled_api!
   before_action :set_domain_blocks

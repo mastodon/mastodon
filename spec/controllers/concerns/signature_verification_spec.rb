@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ApplicationController do
+describe SignatureVerification do
   let(:wrapped_actor_class) do
     Class.new do
       attr_reader :wrapped_account
@@ -15,7 +15,7 @@ describe ApplicationController do
     end
   end
 
-  controller do
+  controller(ApplicationController) do
     include SignatureVerification
 
     before_action :require_actor_signature!, only: [:signature_required]

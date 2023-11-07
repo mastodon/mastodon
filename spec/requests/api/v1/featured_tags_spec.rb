@@ -8,14 +8,6 @@ RSpec.describe 'FeaturedTags' do
   let(:scopes)  { 'read:accounts write:accounts' }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  shared_examples 'forbidden for wrong scope' do |wrong_scope|
-    let(:scopes) { wrong_scope }
-
-    it 'returns http forbidden' do
-      expect(response).to have_http_status(403)
-    end
-  end
-
   describe 'GET /api/v1/featured_tags' do
     context 'with wrong scope' do
       before do

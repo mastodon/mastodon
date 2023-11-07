@@ -12,7 +12,7 @@ RSpec.describe StatusRelationshipsPresenter do
       allow(Status).to receive(:pins_map).with(anything, current_account_id).and_return(default_map)
     end
 
-    let(:presenter)          { StatusRelationshipsPresenter.new(statuses, current_account_id, **options) }
+    let(:presenter)          { described_class.new(statuses, current_account_id, **options) }
     let(:current_account_id) { Fabricate(:account).id }
     let(:statuses)           { [Fabricate(:status)] }
     let(:status_ids)         { statuses.map(&:id) + statuses.filter_map(&:reblog_of_id) }

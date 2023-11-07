@@ -4,6 +4,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
+import { withRouter } from 'react-router-dom';
 
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -11,12 +12,15 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { ReactComponent as VisibilityIcon } from '@material-symbols/svg-600/outlined/visibility.svg';
+import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon }  from 'mastodon/components/icon';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import {
   unblockAccount,
@@ -68,11 +72,12 @@ import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from
 import ActionBar from './components/action_bar';
 import DetailedStatus from './components/detailed_status';
 
+
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
-  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
+  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned.' },
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
   statusTitleWithAttachments: { id: 'status.title.with_attachments', defaultMessage: '{user} posted {attachmentCount, plural, one {an attachment} other {# attachments}}' },
@@ -166,8 +171,9 @@ const makeMapStateToProps = () => {
 };
 
 const truncate = (str, num) => {
-  if (str.length > num) {
-    return str.slice(0, num) + '…';
+  const arr = Array.from(str);
+  if (arr.length > num) {
+    return arr.slice(0, num).join('') + '…';
   } else {
     return str;
   }
@@ -186,7 +192,6 @@ const titleFromStatus = (intl, status) => {
 class Status extends ImmutablePureComponent {
 
   static contextTypes = {
-    router: PropTypes.object,
     identity: PropTypes.object,
   };
 
@@ -195,8 +200,8 @@ class Status extends ImmutablePureComponent {
     dispatch: PropTypes.func.isRequired,
     status: ImmutablePropTypes.map,
     isLoading: PropTypes.bool,
-    ancestorsIds: ImmutablePropTypes.list,
-    descendantsIds: ImmutablePropTypes.list,
+    ancestorsIds: ImmutablePropTypes.list.isRequired,
+    descendantsIds: ImmutablePropTypes.list.isRequired,
     intl: PropTypes.object.isRequired,
     askReplyConfirmation: PropTypes.bool,
     multiColumn: PropTypes.bool,
@@ -205,6 +210,7 @@ class Status extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
+    ...WithRouterPropTypes
   };
 
   state = {
@@ -219,16 +225,13 @@ class Status extends ImmutablePureComponent {
 
   componentDidMount () {
     attachFullscreenListener(this.onFullScreenChange);
+
+    this._scrollStatusIntoView();
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
-      this._scrolledIntoView = false;
       this.props.dispatch(fetchStatus(nextProps.params.statusId));
-    }
-
-    if (nextProps.params.statusId && nextProps.ancestorsIds.size > this.props.ancestorsIds.size) {
-      this._scrolledIntoView = false;
     }
 
     if (nextProps.status && nextProps.status.get('id') !== this.state.loadedStatusId) {
@@ -256,7 +259,7 @@ class Status extends ImmutablePureComponent {
         modalProps: {
           type: 'favourite',
           accountId: status.getIn(['account', 'id']),
-          url: status.get('url'),
+          url: status.get('uri'),
         },
       }));
     }
@@ -281,11 +284,11 @@ class Status extends ImmutablePureComponent {
           modalProps: {
             message: intl.formatMessage(messages.replyMessage),
             confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: () => dispatch(replyCompose(status, this.context.router.history)),
+            onConfirm: () => dispatch(replyCompose(status, this.props.history)),
           },
         }));
       } else {
-        dispatch(replyCompose(status, this.context.router.history));
+        dispatch(replyCompose(status, this.props.history));
       }
     } else {
       dispatch(openModal({
@@ -293,7 +296,7 @@ class Status extends ImmutablePureComponent {
         modalProps: {
           type: 'reply',
           accountId: status.getIn(['account', 'id']),
-          url: status.get('url'),
+          url: status.get('uri'),
         },
       }));
     }
@@ -323,7 +326,7 @@ class Status extends ImmutablePureComponent {
         modalProps: {
           type: 'reblog',
           accountId: status.getIn(['account', 'id']),
-          url: status.get('url'),
+          url: status.get('uri'),
         },
       }));
     }
@@ -429,7 +432,7 @@ class Status extends ImmutablePureComponent {
     const { dispatch } = this.props;
 
     if (status.get('translation')) {
-      dispatch(undoStatusTranslation(status.get('id')));
+      dispatch(undoStatusTranslation(status.get('id'), status.get('poll')));
     } else {
       dispatch(translateStatus(status.get('id')));
     }
@@ -448,7 +451,7 @@ class Status extends ImmutablePureComponent {
   handleEmbed = (status) => {
     this.props.dispatch(openModal({
       modalType: 'EMBED',
-      modalProps: { url: status.get('url') },
+      modalProps: { id: status.get('id') },
     }));
   };
 
@@ -503,7 +506,7 @@ class Status extends ImmutablePureComponent {
   };
 
   handleHotkeyOpenProfile = () => {
-    this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
+    this.props.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
   };
 
   handleHotkeyToggleHidden = () => {
@@ -572,7 +575,7 @@ class Status extends ImmutablePureComponent {
         onMoveUp={this.handleMoveUp}
         onMoveDown={this.handleMoveDown}
         contextType='thread'
-        previousId={i > 0 && list.get(i - 1)}
+        previousId={i > 0 ? list.get(i - 1) : undefined}
         nextId={list.get(i + 1) || (ancestors && statusId)}
         rootId={statusId}
       />
@@ -583,20 +586,31 @@ class Status extends ImmutablePureComponent {
     this.node = c;
   };
 
-  componentDidUpdate () {
-    if (this._scrolledIntoView) {
-      return;
-    }
+  _scrollStatusIntoView () {
+    const { status, multiColumn } = this.props;
 
+    if (status) {
+      window.requestAnimationFrame(() => {
+        this.node?.querySelector('.detailed-status__wrapper')?.scrollIntoView(true);
+
+        // In the single-column interface, `scrollIntoView` will put the post behind the header,
+        // so compensate for that.
+        if (!multiColumn) {
+          const offset = document.querySelector('.column-header__wrapper')?.getBoundingClientRect()?.bottom;
+          if (offset) {
+            const scrollingElement = document.scrollingElement || document.body;
+            scrollingElement.scrollBy(0, -offset);
+          }
+        }
+      });
+    }
+  }
+
+  componentDidUpdate (prevProps) {
     const { status, ancestorsIds } = this.props;
 
-    if (status && ancestorsIds && ancestorsIds.size > 0) {
-      const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size - 1];
-
-      window.requestAnimationFrame(() => {
-        element.scrollIntoView(true);
-      });
-      this._scrolledIntoView = true;
+    if (status && (ancestorsIds.size > prevProps.ancestorsIds.size || prevProps.status?.get('id') !== status.get('id'))) {
+      this._scrollStatusIntoView();
     }
   }
 
@@ -606,6 +620,22 @@ class Status extends ImmutablePureComponent {
 
   onFullScreenChange = () => {
     this.setState({ fullscreen: isFullscreen() });
+  };
+
+  shouldUpdateScroll = (prevRouterProps, { location }) => {
+    // Do not change scroll when opening a modal
+    if (location.state?.mastodonModalKey !== prevRouterProps?.location?.state?.mastodonModalKey) {
+      return false;
+    }
+
+    // Scroll to focused post if it is loaded
+    const child = this.node?.querySelector('.detailed-status__wrapper');
+    if (child) {
+      return [0, child.offsetTop];
+    }
+
+    // Do not scroll otherwise, `componentDidUpdate` will take care of that
+    return false;
   };
 
   render () {
@@ -657,11 +687,11 @@ class Status extends ImmutablePureComponent {
           showBackButton
           multiColumn={multiColumn}
           extraButton={(
-            <button type='button' className='column-header__button' title={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={status.get('hidden') ? 'eye-slash' : 'eye'} /></button>
+            <button type='button' className='column-header__button' title={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll}><Icon id={status.get('hidden') ? 'eye-slash' : 'eye'} icon={status.get('hidden') ? VisibilityOffIcon : VisibilityIcon} /></button>
           )}
         />
 
-        <ScrollContainer scrollKey='thread'>
+        <ScrollContainer scrollKey='thread' shouldUpdateScroll={this.shouldUpdateScroll}>
           <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
             {ancestors}
 
@@ -712,6 +742,7 @@ class Status extends ImmutablePureComponent {
         <Helmet>
           <title>{titleFromStatus(intl, status)}</title>
           <meta name='robots' content={(isLocal && isIndexable) ? 'all' : 'noindex'} />
+          <link rel='canonical' href={status.get('url')} />
         </Helmet>
       </Column>
     );
@@ -719,4 +750,4 @@ class Status extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(connect(makeMapStateToProps)(Status));
+export default withRouter(injectIntl(connect(makeMapStateToProps)(Status)));

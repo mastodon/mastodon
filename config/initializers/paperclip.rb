@@ -90,23 +90,27 @@ if ENV['S3_ENABLED'] == 'true'
 
   # Some S3-compatible providers might not actually be compatible with some APIs
   # used by kt-paperclip, see https://github.com/mastodon/mastodon/issues/16822
-  if ENV['S3_FORCE_SINGLE_REQUEST'] == 'true'
-    module Paperclip
-      module Storage
-        module S3Extensions
-          def copy_to_local_file(style, local_dest_path)
-            log("copying #{path(style)} to local file #{local_dest_path}")
-            s3_object(style).download_file(local_dest_path, { mode: 'single_request' })
-          rescue Aws::Errors::ServiceError => e
-            warn("#{e} - cannot copy #{path(style)} to local file #{local_dest_path}")
-            false
-          end
+  # and https://github.com/mastodon/mastodon/issues/26394
+  module Paperclip
+    module Storage
+      module S3Extensions
+        def copy_to_local_file(style, local_dest_path)
+          log("copying #{path(style)} to local file #{local_dest_path}")
+
+          options = {}
+          options[:mode] = 'single_request' if ENV['S3_FORCE_SINGLE_REQUEST'] == 'true'
+          options[:checksum_mode] = 'DISABLED' unless ENV['S3_ENABLE_CHECKSUM_MODE'] == 'true'
+
+          s3_object(style).download_file(local_dest_path, options)
+        rescue Aws::Errors::ServiceError => e
+          warn("#{e} - cannot copy #{path(style)} to local file #{local_dest_path}")
+          false
         end
       end
     end
-
-    Paperclip::Storage::S3.prepend(Paperclip::Storage::S3Extensions)
   end
+
+  Paperclip::Storage::S3.prepend(Paperclip::Storage::S3Extensions)
 elsif ENV['SWIFT_ENABLED'] == 'true'
   require 'fog/openstack'
 
@@ -131,6 +135,26 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
     fog_host: ENV['SWIFT_OBJECT_URL'],
     fog_public: true
   )
+elsif ENV['AZURE_ENABLED'] == 'true'
+  require 'paperclip-azure'
+
+  Paperclip::Attachment.default_options.merge!(
+    storage: :azure,
+    azure_options: {
+      protocol: 'https',
+    },
+    azure_credentials: {
+      storage_account_name: ENV['AZURE_STORAGE_ACCOUNT'],
+      storage_access_key: ENV['AZURE_STORAGE_ACCESS_KEY'],
+      container: ENV['AZURE_CONTAINER_NAME'],
+    }
+  )
+  if ENV.has_key?('AZURE_ALIAS_HOST')
+    Paperclip::Attachment.default_options.merge!(
+      url: ':azure_alias_url',
+      azure_host_alias: ENV['AZURE_ALIAS_HOST']
+    )
+  end
 else
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
@@ -152,4 +176,11 @@ unless defined?(Seahorse)
       class NetworkingError < StandardError; end
     end
   end
+end
+
+# Set our ImageMagick security policy, but allow admins to override it
+ENV['MAGICK_CONFIGURE_PATH'] = begin
+  imagemagick_config_paths = ENV.fetch('MAGICK_CONFIGURE_PATH', '').split(File::PATH_SEPARATOR)
+  imagemagick_config_paths << Rails.root.join('config', 'imagemagick').expand_path.to_s
+  imagemagick_config_paths.join(File::PATH_SEPARATOR)
 end

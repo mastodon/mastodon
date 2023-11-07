@@ -9,12 +9,14 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
+
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'mastodon/actions/columns';
 import { fetchDirectory, expandDirectory } from 'mastodon/actions/directory';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
-import LoadMore from 'mastodon/components/load_more';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { LoadMore } from 'mastodon/components/load_more';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 
@@ -35,10 +37,6 @@ const mapStateToProps = state => ({
 });
 
 class Directory extends PureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object,
-  };
 
   static propTypes = {
     isLoading: PropTypes.bool,
@@ -160,6 +158,7 @@ class Directory extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='address-book-o'
+          iconComponent={PeopleIcon}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
           onMove={this.handleMove}

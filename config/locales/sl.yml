@@ -1,7 +1,7 @@
 ---
 sl:
   about:
-    about_mastodon_html: 'Družbeno omrežje prihodnosti: brez oglasov, brez nadzora korporacij, etično oblikovanje in decentralizacija! Ohranite lastništvo nad svojimi podatki z Mastodonom!'
+    about_mastodon_html: 'Družbeno omrežje prihodnosti: brez oglasov, brez nadzora korporacij, etično oblikovano in decentralizirano! Ohranite lastništvo nad svojimi podatki z Mastodonom!'
     contact_missing: Ni nastavljeno
     contact_unavailable: Ni na voljo
     hosted_on: Mastodon gostuje na %{domain}
@@ -315,6 +315,7 @@ sl:
       unpublish: Umakni iz objave
       unpublished_msg: Obvestilo je bilo uspešno umaknjeno!
       updated_msg: Obvestilo je bilo uspešno posodobljeno!
+    critical_update_pending: Nujna posodobitev v teku
     custom_emojis:
       assign_category: Dodeli kategorijo
       by_domain: Domena
@@ -396,6 +397,15 @@ sl:
       undo: Odstrani iz belega seznama
     domain_blocks:
       add_new: Dodaj nov domenski blok
+      confirm_suspension:
+        cancel: Prekliči
+        confirm: Suspendiraj
+        permanent_action: Z razveljavitvijo suzpenza ne boste obnovili nobenih podatkov ali razmerij.
+        preamble_html: Suspendirali boste <strong>%{domain}</strong> in njene poddomene.
+        remove_all_data: S tem boste odstranili celotno vsebino, medijske vsebine ter podatke iz profila za rčune te domene na vašem strežniku.
+        stop_communication: Vaš strežnik bo prenehal komunicirati s temi strežniki.
+        title: Potrdi domenski blok za %{domain}
+        undo_relationships: To bo prekinilo vse odnose sledenja med računi na teh strežnikih in na vašem strežniku.
       created_msg: Domenski blok se sedaj obdeluje
       destroyed_msg: Domenski blok je bil razveljavljen
       domain: Domena
@@ -546,6 +556,7 @@ sl:
       total_reported: Prijave o njih
       total_storage: Predstavnostne priloge
       totals_time_period_hint_html: Spodaj prikazani seštevki vključujejo podatke za celotno obdobje.
+      unknown_instance: Trenutno ne obstaja zapis te domene na tem strežniku.
     invites:
       deactivate_all: Onemogoči vse
       filter:
@@ -759,6 +770,9 @@ sl:
       branding:
         preamble: Blagovna znamka vašega strežnika ga loči od drugih strežnikov v omrežju. Podatki se lahko prikžejo prek številnih okolij, kot so spletni vmesnik Mastodona, domorodni programi, predogledi povezav na drugih spletiščih, aplikacije za sporočanje itn. Zatorej je najbolje, da te podatke ohranite jasne, kratke in pomenljive.
         title: Blagovne znamke
+      captcha_enabled:
+        desc_html: To se zanaša na zunanje skripte hCaptcha in lahko predstavlja tveganje za varnost in zasebnost. Poleg tega <strong>to lahko nekaterim ljudem (posebno invalidom) občutno oteži dostopnost registracijskega postopka</strong>. Zato svetujemo, da razmislite o drugih ukrepih, kot je na primer registracija na podlagi odobritve ali povabila.
+        title: Od novih uporabnikov zahtevaj reševanje CAPTCHA za potrditev računov
       content_retention:
         preamble: Nazdor nad hrambo vsebine uporabnikov v Mastodonu.
         title: Hramba vsebin
@@ -786,10 +800,27 @@ sl:
           approved: Potrebna je odobritev za prijavo
           none: Nihče se ne more prijaviti
           open: Vsakdo se lahko prijavi
+      security:
+        authorized_fetch: Od drugih strežnikov v federaciji zahtevaj overitev pristnosti
+        authorized_fetch_hint: Zahtevanje overitve pristnosti od drugih strežnikov v federaciji omogoči strožje uveljavljanje uporabniških in strežniških blokad. Vendar je cena za to počasnejše delovanje, zmanjšanje dosega vaših odgovorov in morebitne težave z združljivostjo z nekaterimi storitvami v federaciji. Poleg tega to odločenim akterjem ne bo preprečilo pridobivanja vaših javnih objav in računov.
+        authorized_fetch_overridden_hint: Trenutno ne morete spremeniti te nastavitve, ker jo preglasi okoljska spremenljivka.
+        federation_authentication: Izvršba overitve pristnosti v federaciji
       title: Nastavitve strežnika
     site_uploads:
       delete: Izbriši naloženo datoteko
       destroyed_msg: Prenos na strežnik uspešno izbrisan!
+    software_updates:
+      critical_update: Kritično — čim prej posodobite
+      description: Vašo namestitev Mastodona je priporočeno vedno imeti posodobljeno in tako koristiti najnovejše popravke ter zmožnosti. Poleg tega je včasih nujno čim prej posodobiti Mastodon in se s tem izogniti varnostnim težavam. Zato Mastodon vsakih 30 minut preverja razpoložljivost posodobitev in vas o njih obvešča glede na vaše nastavitve obveščanja po e-pošti.
+      documentation_link: Več o tem
+      release_notes: Opombe ob izdaji
+      title: Razpoložljive posodobitve
+      type: Vrsta
+      types:
+        major: Osrednja izdaja
+        minor: Izdaja z manjšimi spremembami
+        patch: Izdaja popravkov - popravki hroščev in enostavne spremembe v kodi
+      version: Različica
     statuses:
       account: Avtor
       application: Program
@@ -830,6 +861,20 @@ sl:
     system_checks:
       database_schema_check:
         message_html: Na čakanju so migracije zbirke podatkov. Prosimo, izvedite jih, da zagotovite, da se program vede pričakovano
+      elasticsearch_health_red:
+        message_html: Z gručo Elasticsearch ni vse v redu (rdeče stanje), zmožnosti iskanja niso na voljo
+      elasticsearch_health_yellow:
+        message_html: Z gručo Elasticsearch ni vse v redu (rumeno stanje), priporočeno je ugotoviti razlog
+      elasticsearch_index_mismatch:
+        message_html: Preslikave kazala Elasticsearch so zastarele. Poženite <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Glejte dokumentacijo
+        message_html: Vaša gruča Elasticsearch vsebuje več kot eno vozlišče, vendar Mastodon ni nastavljen, da bi jih uporabljal.
+      elasticsearch_preset_single_node:
+        action: Glejte dokumentacijo
+        message_html: Vaša gruča Elasticsearch vsebuje samo eno vozlišče, <code>ES_PRESET</code> bi moralo biti nastavljeno na <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Sistemsko kazalo Elasticsearch je zastarelo zaradi spremembe nastavitve. Za posodobitev poženite <code>tootctl search deploy --reset-chewy</code>.
       elasticsearch_running_check:
         message_html: Povezava z Elasticsearch ni uspela. Preverite, da deluje, ali onemogočite iskanje po vsem besedilu
       elasticsearch_version_check:
@@ -840,6 +885,12 @@ sl:
         message_html: Nobenih pravil strežnika niste določili.
       sidekiq_process_check:
         message_html: Noben proces Sidekiq ne poteka za %{value} vrst. Preglejte svojo prilagoditev Sidekiq
+      software_version_critical_check:
+        action: Glejte razpoložljive posodobitve
+        message_html: Na voljo je kritična posodobitev Mastodona. Posodobite čim prej.
+      software_version_patch_check:
+        action: Glejte razpoložljive posodobitve
+        message_html: Na voljo je posodobitev Mastodona s popravki hroščev.
       upload_check_privacy_error:
         action: Preverite tukaj za več informacij
         message_html: "<strong>Vaš spletni strežnik je napačno nastavljen. Zasebnost vaših uporabnikov je izpostavljena tveganjem.</strong>"
@@ -961,6 +1012,9 @@ sl:
       body: "%{target} se pritožuje na moderatorsko odločitev %{action_taken_by} z dne %{date}, ki je bila %{type}. Zapisal/a je:"
       next_steps: Pritožbi lahko ugodite in s tem razveljavite moderatorsko odločitev ali pa jo prezrete.
       subject: "%{username} se je pritožil na moderatorsko odločitev na %{instance}"
+    new_critical_software_updates:
+      body: Izdane so bile nove kritične različice Mastodona. Priporočena je čimprejšnja posodobitev.
+      subject: Za %{instance} so na voljo kritične posodobitve Mastodona!
     new_pending_account:
       body: Podrobnosti o novem računu so navedene spodaj. To aplikacijo lahko odobrite ali zavrnete.
       subject: Nov račun za pregled na %{instance} (%{username})
@@ -968,6 +1022,9 @@ sl:
       body: "%{reporter} je prijavil %{target}"
       body_remote: Nekdo iz %{domain} je prijavil %{target}
       subject: Nove prijave za %{instance} (#%{id})
+    new_software_updates:
+      body: Izdane so bile nove različice Mastodona. Priporočena je posodobitev.
+      subject: Za %{instance} so na voljo nove različice Mastodona.
     new_trends:
       body: 'Naslednji elementi potrebujejo pregled, preden jih je možno javno prikazati:'
       new_trending_links:
@@ -997,11 +1054,11 @@ sl:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Vsakdo lahko prispeva.
     sensitive_content: Občutljiva vsebina
-    toot_layout: Postavitev objave
   application_mailer:
     notification_preferences: Spremenite e-poštne nastavitve
     salutation: "%{name},"
     settings: 'Spremenite e-poštne nastavitve: %{link}'
+    unsubscribe: Odjavi od naročnine
     view: 'Pogled:'
     view_profile: Ogled profila
     view_status: Pokaži objavo
@@ -1015,8 +1072,19 @@ sl:
     your_token: Vaš dostopni žeton
   auth:
     apply_for_account: Zaprosite za račun
-    change_password: Geslo
+    captcha_confirmation:
+      help_html: Če imate težave pri reševanju CAPTCHA, lahko prek %{email} stopite v stik z nami in pomagali vam bomo.
+      hint_html: Samo še nekaj. Moramo se prepričati, da ste človek (to nam pomaga pri preprečevanju neželenih vsebin). Rešite spodnji CAPTCHA in kliknite »Nadaljuj«.
+      title: Varnostno preverjanje
     confirmations:
+      awaiting_review: Vaš e-poštni naslov je potrjen. Skrbniki %{domain} bodo pregledali vašo prijavo. Če odobrijo vaš račun, boste o tem prejeli e-pošto.
+      awaiting_review_title: Vaša prijava se pregleduje
+      clicking_this_link: s klikom na to povezavo
+      login_link: prijavo
+      proceed_to_login_html: Sedaj lahko nadaljujete na %{login_link}.
+      redirect_to_app_html: Morali bi biti preusmerjeni na aplikacijo <strong>%{app_name}</strong>. Če se to ni zgodilo, poskusite %{clicking_this_link} ali pa se ročno vrnite na aplikacijo.
+      registration_complete: Vaša prijava na %{domain} je sedaj zaključena.
+      welcome_title: Pozdravljeni, %{name}!
       wrong_email_hint: Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
     delete_account: Izbriši račun
     delete_account_html: Če želite izbrisati svoj račun, lahko nadaljujete <a href="%{path}">tukaj</a>. Prosili vas bomo za potrditev.
@@ -1052,8 +1120,11 @@ sl:
     rules:
       accept: Sprejmi
       back: Nazaj
+      invited_by: "%{domain} se lahko pridružite zahvaljujoč povabilu, ki ste ga prejeli od:"
       preamble: Slednje določajo in njihovo spoštovanje zagotavljajo moderatorji %{domain}.
+      preamble_invited: Preden nadaljujete, si preberite osnovna pravila, ki so jih postavili moderatorji na %{domain}.
       title: Nekaj osnovnih pravil.
+      title_invited: Ste povabljeni.
     security: Varnost
     set_new_password: Nastavi novo geslo
     setup:
@@ -1075,21 +1146,10 @@ sl:
       functional: Vaš račun je polno opravilen.
       pending: Naše osebje preverja vašo prijavo. To lahko traja nekaj časa. Če bo vaša prijava odobrena, boste prejeli e-pošto.
       redirecting_to: Vaš račun ni dejaven, ker trenutno preusmerja na račun %{acct}.
+      self_destruct: Ker se %{domain} zapira, boste imeli omejen dostop da svojega računa.
       view_strikes: Pokaži pretekle ukrepe proti mojemu računu
     too_fast: Obrazec oddan prehitro, poskusite znova.
     use_security_key: Uporabi varnostni ključ
-  authorize_follow:
-    already_following: Temu računu že sledite
-    already_requested: Temu računu ste že poslali zahtevo po sledenju
-    error: Na žalost je prišlo do napake pri iskanju oddaljenega računa
-    follow: Sledi
-    follow_request: 'Prošnjo za sledenje se poslali:'
-    following: 'Uspeh! Zdaj sledite:'
-    post_follow:
-      close: Lahko pa tudi zaprete to okno.
-      return: Prikaži uporabnikov profil
-      web: Pojdi na splet
-    title: Sledi %{acct}
   challenge:
     confirm: Nadaljuj
     hint_html: "<strong>Namig:</strong> naslednjo uro vas ne bomo več vprašali po vašem geslu."
@@ -1166,6 +1226,10 @@ sl:
       your_appeal_rejected: Vaša pritožba je bila zavržena
   domain_validator:
     invalid_domain: ni veljavno ime domene
+  edit_profile:
+    basic_information: Osnovni podatki
+    hint_html: "<strong>Prilagodite, kaj ljudje vidijo na vašem javnem profilu in poleg vaših objav.</strong> Drugi vam bodo raje sledili nazaj in z vami klepetali, če boste imeli izpolnjen profil in nastavljeno profilno sliko."
+    other: Drugo
   errors:
     '400': Zahteva, ki ste jo oddali, je neveljavna ali nepravilno oblikovana.
     '403': Nimate dovoljenja za ogled te strani.
@@ -1264,7 +1328,9 @@ sl:
       one: Izbran je <strong>%{count}</strong> element, ki ustreza vašemu iskanju.
       other: Izbranih je <strong>%{count}</strong> elementov, ki ustrezajo vašemu iskanju.
       two: Izbrana sta <strong>%{count}</strong> elementa, ki ustrezata vašemu iskanju.
+    cancel: Prekliči
     changes_saved_msg: Spremembe so uspešno shranjene!
+    confirm: Potrdi
     copy: Kopiraj
     delete: Izbriši
     deselect: Prekliči ves izbor
@@ -1284,20 +1350,60 @@ sl:
       two: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napaki
   imports:
     errors:
+      empty: Prazna datoteka CSV
+      incompatible_type: Nezdružljivo z izbrano vrsto uvoza
       invalid_csv_file: 'Neveljavna datoteka CSV. Napaka: %{error}'
       over_rows_processing_limit: vsebuje več kot %{count} vrstic
+      too_large: Datoteka je prevelika
+    failures: Neuspehi
+    imported: Uvoženo
+    mismatched_types_warning: Kaže, da ste izbrali napačno vrsto za ta uvoz; preverite svoj izbor.
     modes:
       merge: Združi
       merge_long: Ohrani obstoječe zapise in dodaj nove
       overwrite: Prepiši
       overwrite_long: Zamenjaj trenutne zapise z novimi
+    overwrite_preambles:
+      blocking_html: Svoj <strong>seznam blokiranih računov boste nadomestili</strong> z največ <strong>%{total_items} računi</strong> iz <strong>%{filename}</strong>.
+      bookmarks_html: Svoje <strong>zaznamke boste nadomestili</strong> z največ <strong>%{total_items} objavami</strong> iz <strong>%{filename}</strong>.
+      domain_blocking_html: Svoj <strong>seznam blokiranih domen boste nadomestili</strong> z največ <strong>%{total_items} domenami</strong> iz <strong>%{filename}</strong>.
+      following_html: "<strong>Začeli boste slediti</strong> največ <strong>%{total_items} računom</strong> iz <strong>%{filename}</strong> in <strong>prenehali slediti vsem ostalim</strong>."
+      lists_html: Svoje <strong>sezname boste nadomestili</strong> z vsebino datoteke <strong>%{filename}</strong>. Največ <strong>%{total_items} računov</strong> bo dodanih na nove sezname.
+      muting_html: Svoj <strong>seznam utišanih računov boste nadomestili</strong> z največ <strong>%{total_items} računi</strong> iz <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: "<strong>Blokirali boste</strong> največ <strong>%{total_items} računov</strong> iz <strong>%{filename}</strong>."
+      bookmarks_html: "<strong>Med zaznamke</strong> boste dodali boste največ <strong>%{total_items} objav</strong> iz <strong>%{filename}</strong>."
+      domain_blocking_html: "<strong>Blokirali boste</strong> največ <strong>%{total_items} domen</strong> iz <strong>%{filename}</strong>."
+      following_html: "<strong>Začeli boste slediti</strong> največ <strong>%{total_items} računom</strong> iz <strong>%{filename}</strong>."
+      lists_html: Dodali boste največ <strong>%{total_items} računov</strong> iz <strong>%{filename}</strong> na svoje <strong>sezname</strong>. Po potrebi bodo ustvarjeni novi seznami.
+      muting_html: "<strong>Utišali boste</strong> največ <strong>%{total_items} računov</strong> iz <strong>%{filename}</strong>."
     preface: Podatke, ki ste jih izvozili iz drugega strežnika, lahko uvozite. Na primer seznam oseb, ki jih spremljate ali blokirate.
+    recent_imports: Nedavni uvozi
+    states:
+      finished: Končano
+      in_progress: V teku
+      scheduled: Načrtovano
+      unconfirmed: Nepotrjeno
+    status: Stanje
     success: Vaši podatki so bili uspešno naloženi in bodo zdaj pravočasno obdelani
+    time_started: Začetek ob
+    titles:
+      blocking: Uvažanje blokiranih računov
+      bookmarks: Uvažanje zaznamkov
+      domain_blocking: Uvažanje blokiranih domen
+      following: Uvažanje sledenih računov
+      lists: Uvažanje seznamov
+      muting: Uvažanje utišanih računov
+    type: Vrsta uvoza
+    type_groups:
+      constructive: Sledenje in zaznamki
+      destructive: Blokiranja in utišanja
     types:
       blocking: Seznam blokiranih
       bookmarks: Zaznamki
       domain_blocking: Seznam blokiranih domen
       following: Seznam uporabnikov, katerim sledite
+      lists: Seznami
       muting: Seznam utišanih
     upload: Pošlji
   invites:
@@ -1338,6 +1444,21 @@ sl:
     failed_sign_in_html: Spodletela prijava z metodo %{method} iz %{ip} (%{browser})
     successful_sign_in_html: Uspešna prijava z metodo %{method} iz %{ip} (%{browser})
     title: Zgodovina overjanja
+  mail_subscriptions:
+    unsubscribe:
+      action: Da, odjavi me
+      complete: Odjavljeni
+      confirmation_html: Ali se res želite odjaviti od prejemanja %{type} za Mastodon na %{domain} na svojo e-pošto %{email}? Kadarkoli se lahko znova prijavite iz svojih <a href="%{settings_path}">nastavitev e-poštnih obvestil</a>.
+      emails:
+        notification_emails:
+          favourite: e-sporočil z obvestili o priljubljenosti
+          follow: e-sporočil z obvestili o sledenju
+          follow_request: e-sporočil o zahtevah za sledenje
+          mention: e-sporočil z obvestili o omembah
+          reblog: e-sporočil z obvestili o izpostavljanju
+      resubscribe_html: Če ste se odjavili po pomoti, se lahko znova prijavite iz svojih <a href="%{settings_path}">nastavitev e-poštnih obvestil</a>.
+      success_html: Nič več ne boste prejemali %{type} za Mastodon na %{domain} na svoj e-naslov %{email}.
+      title: Odjavi od naročnine
   media_attachments:
     validations:
       images_and_video: Videoposnetka ni mogoče priložiti objavi, ki že vsebuje slike
@@ -1417,6 +1538,7 @@ sl:
     update:
       subject: "%{name} je uredil(a) objavo"
   notifications:
+    administration_emails: E-poštna obvestila skrbnika
     email_events: Dogodki za e-obvestila
     email_events_hint: 'Izberite dogodke, za katere želite prejmati obvestila:'
     other_settings: Druge nastavitve obvestil
@@ -1453,12 +1575,22 @@ sl:
       expired: Glasovanje se je že zaključilo
       invalid_choice: Izbrana možnost glasovanja ne obstaja
       over_character_limit: ne more biti daljše od %{max} znakov
+      self_vote: Ne morete glasovati v lastnih anketah
       too_few_options: mora imeti več kot en element
       too_many_options: ne more vsebovati več kot %{max} elementov
   preferences:
     other: Ostalo
     posting_defaults: Privzete nastavitev objavljanja
     public_timelines: Javne časovnice
+  privacy:
+    hint_html: "<strong>Prilagodite, kako lahko drugi najdejo vaš profil in vaše objave.</strong> V Mastodonu obstaja več zmožnosti, ki vam pomagajo doseči širše občinstvo, če so omogočene. Vzemite si čas in preverite, ali te nastavitve ustrezajo vašemu namenu uporabe."
+    privacy: Zasebnost
+    privacy_hint_html: Nadzorujte, koliko informacij želite razkriti drugim. Ljudje lahko zanimive profile in aplikacije odkrijejo z brskanjem po seznamih sledenih in ko vidijo katere programe drugi uporabljajo za objavljanje. Morda pa bi to želeli skriti in varovati zasebnost.
+    reach: Dosegljivost
+    reach_hint_html: Nadzorujte, ali želite, da vas drugi ljudje najdejo in vam pričnejo slediti. Ali želite, da se vaše objave prikažejo na strani Razišči? Ali želite, da vas drugi ljudje vidijo med predlogi za sledenje? Ali želite nove sledilce odobriti samodejno, ali vsakega posebej odobriti ročno?
+    search: Iskanje
+    search_hint_html: Nadzorujte, kako želite, da vas najdejo. Ali želite, da vas ljudje najdejo po javnih objavah? Ali želite, da ljudje, ki niso na Mastodonu, lahko najdejo vaš profil med iskanjem po spletu? Vedite, da javnih objav in podatkov ni mogoče povsem izvzeti iz podatkovnih zbirk vseh spletnih iskalnikov.
+    title: Zasebnost in dosegljivost
   privacy_policy:
     title: Pravilnik o zasebnosti
   reactions:
@@ -1500,6 +1632,9 @@ sl:
     over_daily_limit: Za ta dan ste presegli omejitev %{limit} načrtovanih objav
     over_total_limit: Presegli ste omejitev %{limit} načrtovanih objav
     too_soon: Načrtovani datum mora biti v prihodnosti
+  self_destruct:
+    lead_html: Na žalost se <strong>%{domain}</strong> za vedno zapira. Če ste tu imeli svoj račun, ga v prihodnje ne boste mogli več uporabljati. Zahtevate lahko kopijo svojih podatkov.
+    title: Ta strežnik se zapira
   sessions:
     activity: Zadnja dejavnost
     browser: Brskalnik
@@ -1620,7 +1755,6 @@ sl:
     show_newer: Pokaži novejše
     show_older: Pokaži starejše
     show_thread: Pokaži nit
-    sign_in_to_participate: Prijavite se, če želite sodelovati v pogovoru
     title: "%{name}: »%{quote}«"
     visibilities:
       direct: Neposredno
@@ -1666,8 +1800,6 @@ sl:
     min_reblogs: Obdrži objave izpostavljene vsaj
     min_reblogs_hint: Ne izbriše nobene od vaših objav, ki je bila vsaj tolikokrat podprta. Pustite prazno, če želite izbrisati objave ne glede na število izpostavitev
   stream_entries:
-    pinned: Pripeta objava
-    reblogged: izpostavljeno
     sensitive_content: Občutljiva vsebina
   strikes:
     errors:
@@ -1683,6 +1815,11 @@ sl:
       default: "%b %d %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d.  %b. %Y %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Kvota uporabe prevajalne storitve za ta strežnik je bila presežena.
+      too_many_requests: V zadnjem času je prevajalna storitev prejela preveč zahtevkov.
   two_factor_authentication:
     add: Dodaj
     disable: Onemogoči
@@ -1768,8 +1905,12 @@ sl:
     seamless_external_login: Prijavljeni ste prek zunanje storitve, tako da nastavitve gesla in e-pošte niso na voljo.
     signed_in_as: 'Vpisani kot:'
   verification:
-    explanation_html: '<strong>V metapodatkih svojega profila se lahko potrdite kot lastnik povezav</strong>. Za to mora povezano spletno mesto vsebovati povezavo do vašega profila Mastodon. Po dodajanju povezave se boste morda morali vrniti sem in ponovno shraniti svoj profil, da bo overjanje učinkovalo. Povezava <strong>mora</strong> imeti atribut <code>el="me"</code>. Vsebina besedila povezave ni pomembna. Tukaj je primer:'
+    extra_instructions_html: <strong>Nasvet:</strong> Povezava na vaši spletni strani je lahko nevidna. Pomembni del je atribut <code>rel="me"</code>, ki preprečuje lažno predstavljanje na spletnih straneh z uporabniško ustvarjeno vsebino. Namesto oznake <code>a</code> lahko uporabite tudi oznako <code>link</code> znotraj glave (<code>head</code>) spletne strani, vendar mora biti HTML dosegljiv brez izvajanja skript JavaScript.
+    here_is_how: Kako to poteka
+    hint_html: "<strong>Vsakdo lahko potrdi svojo istovetnost na Mastodonu.</strong> To temelji na odprtih spletnih standardih in je sedaj in za vedno brezplačno. Potrebujete le osebno spletno stran, po kateri vas ljudje prepoznajo. Ko na svoj profil dodate povezavo na to osebno spletno stran, bo Mastodon preveril, ali na njej obstaja povezava nazaj na profil. Če ta obstaja, bo to vidno na profiu."
+    instructions_html: Spodnjo kodo kopirajte in prilepite v HTML svojega spletnega mesta. Nato dodajte naslov svoje spletne strani v eno od dodatnih polj v svojem profilu v zavihku »Uredi profil« in shranite spremembe.
     verification: Potrditev
+    verified_links: Vaše preverjene povezave
   webauthn_credentials:
     add: Dodaj nov varnostni ključ
     create:

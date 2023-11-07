@@ -1,12 +1,23 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
-import { createPortal } from 'react-dom';
+import { PureComponent, useCallback } from 'react';
 
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
+
+import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
+import { ReactComponent as ArrowBackIcon } from '@material-symbols/svg-600/outlined/arrow_back.svg';
+import { ReactComponent as ChevronLeftIcon } from '@material-symbols/svg-600/outlined/chevron_left.svg';
+import { ReactComponent as ChevronRightIcon } from '@material-symbols/svg-600/outlined/chevron_right.svg';
+import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
+import { ReactComponent as TuneIcon } from '@material-symbols/svg-600/outlined/tune.svg';
 
 import { Icon }  from 'mastodon/components/icon';
+import { ButtonInTabsBar, useColumnsContext } from 'mastodon/features/ui/util/columns_context';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
+
+import { useAppHistory } from './router';
 
 const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
@@ -15,10 +26,37 @@ const messages = defineMessages({
   moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
 });
 
+const BackButton = ({ pinned, show }) => {
+  const history = useAppHistory();
+  const { multiColumn } = useColumnsContext();
+
+  const handleBackClick = useCallback(() => {
+    if (history.location?.state?.fromMastodon) {
+      history.goBack();
+    } else {
+      history.push('/');
+    }
+  }, [history]);
+
+  const showButton = history && !pinned && ((multiColumn && history.location?.state?.fromMastodon) || show);
+
+  if(!showButton) return null;
+
+  return (<button onClick={handleBackClick} className='column-header__back-button'>
+    <Icon id='chevron-left' icon={ArrowBackIcon} className='column-back-button__icon' />
+    <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
+  </button>);
+
+};
+
+BackButton.propTypes = {
+  pinned: PropTypes.bool,
+  show: PropTypes.bool,
+};
+
 class ColumnHeader extends PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object,
     identity: PropTypes.object,
   };
 
@@ -26,6 +64,7 @@ class ColumnHeader extends PureComponent {
     intl: PropTypes.object.isRequired,
     title: PropTypes.node,
     icon: PropTypes.string,
+    iconComponent: PropTypes.func,
     active: PropTypes.bool,
     multiColumn: PropTypes.bool,
     extraButton: PropTypes.node,
@@ -38,6 +77,7 @@ class ColumnHeader extends PureComponent {
     onClick: PropTypes.func,
     appendContent: PropTypes.node,
     collapseIssues: PropTypes.bool,
+    ...WithRouterPropTypes,
   };
 
   state = {
@@ -62,28 +102,20 @@ class ColumnHeader extends PureComponent {
     this.props.onMove(1);
   };
 
-  handleBackClick = () => {
-    if (window.history && window.history.state) {
-      this.context.router.history.goBack();
-    } else {
-      this.context.router.history.push('/');
-    }
-  };
-
   handleTransitionEnd = () => {
     this.setState({ animating: false });
   };
 
   handlePin = () => {
     if (!this.props.pinned) {
-      this.context.router.history.replace('/');
+      this.props.history.replace('/');
     }
 
     this.props.onPin();
   };
 
   render () {
-    const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
+    const { title, icon, iconComponent, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -114,26 +146,19 @@ class ColumnHeader extends PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='times' /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
+      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='times' icon={CloseIcon} /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
 
       moveButtons = (
         <div key='move-buttons' className='column-header__setting-arrows'>
-          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><Icon id='chevron-left' /></button>
-          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='icon-button column-header__setting-btn' onClick={this.handleMoveRight}><Icon id='chevron-right' /></button>
+          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><Icon id='chevron-left' icon={ChevronLeftIcon} /></button>
+          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='icon-button column-header__setting-btn' onClick={this.handleMoveRight}><Icon id='chevron-right' icon={ChevronRightIcon} /></button>
         </div>
       );
     } else if (multiColumn && this.props.onPin) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
+      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' icon={AddIcon} /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
-    if (!pinned && (multiColumn || showBackButton)) {
-      backButton = (
-        <button onClick={this.handleBackClick} className='column-header__back-button'>
-          <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
-          <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
-        </button>
-      );
-    }
+    backButton = <BackButton pinned={pinned} show={showBackButton} />;
 
     const collapsedContent = [
       extraContent,
@@ -153,21 +178,21 @@ class ColumnHeader extends PureComponent {
           onClick={this.handleToggleClick}
         >
           <i className='icon-with-badge'>
-            <Icon id='sliders' />
+            <Icon id='sliders' icon={TuneIcon} />
             {collapseIssues && <i className='icon-with-badge__issue-badge' />}
           </i>
         </button>
       );
     }
 
-    const hasTitle = icon && title;
+    const hasTitle = (icon || iconComponent) && title;
 
     const component = (
       <div className={wrapperClassName}>
         <h1 className={buttonClassName}>
           {hasTitle && (
             <button onClick={this.handleTitleClick}>
-              <Icon id={icon} fixedWidth className='column-header__icon' />
+              <Icon id={icon} icon={iconComponent} className='column-header__icon' />
               {title}
             </button>
           )}
@@ -191,25 +216,15 @@ class ColumnHeader extends PureComponent {
       </div>
     );
 
-    if (multiColumn || placeholder) {
+    if (placeholder) {
       return component;
     } else {
-      // The portal container and the component may be rendered to the DOM in
-      // the same React render pass, so the container might not be available at
-      // the time `render()` is called.
-      const container = document.getElementById('tabs-bar__portal');
-      if (container === null) {
-        // The container wasn't available, force a re-render so that the
-        // component can eventually be inserted in the container and not scroll
-        // with the rest of the area.
-        this.forceUpdate();
-        return component;
-      } else {
-        return createPortal(component, container);
-      }
+      return (<ButtonInTabsBar>
+        {component}
+      </ButtonInTabsBar>);
     }
   }
 
 }
 
-export default injectIntl(ColumnHeader);
+export default injectIntl(withRouter(ColumnHeader));

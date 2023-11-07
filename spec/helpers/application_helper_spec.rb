@@ -31,9 +31,7 @@ describe ApplicationHelper do
     context 'with a body class string from a controller' do
       before do
         without_partial_double_verification do
-          allow(helper).to receive(:body_class_string).and_return('modal-layout compose-standalone')
-          allow(helper).to receive(:current_theme).and_return('default')
-          allow(helper).to receive(:current_account).and_return(Fabricate(:account))
+          allow(helper).to receive_messages(body_class_string: 'modal-layout compose-standalone', current_theme: 'default', current_account: Fabricate(:account))
         end
       end
 
@@ -77,23 +75,21 @@ describe ApplicationHelper do
 
   describe 'open_registrations?' do
     it 'returns true when open for registrations' do
-      without_partial_double_verification do
-        expect(Setting).to receive(:registrations_mode).and_return('open')
-      end
+      allow(Setting).to receive(:[]).with('registrations_mode').and_return('open')
 
       expect(helper.open_registrations?).to be true
+      expect(Setting).to have_received(:[]).with('registrations_mode')
     end
 
     it 'returns false when closed for registrations' do
-      without_partial_double_verification do
-        expect(Setting).to receive(:registrations_mode).and_return('none')
-      end
+      allow(Setting).to receive(:[]).with('registrations_mode').and_return('none')
 
       expect(helper.open_registrations?).to be false
+      expect(Setting).to have_received(:[]).with('registrations_mode')
     end
   end
 
-  describe 'show_landing_strip?', without_verify_partial_doubles: true do
+  describe 'show_landing_strip?', :without_verify_partial_doubles do
     describe 'when signed in' do
       before do
         allow(helper).to receive(:user_signed_in?).and_return(true)
@@ -208,6 +204,18 @@ describe ApplicationHelper do
       end
     end
 
+    context 'when S3 alias includes a path component' do
+      around do |example|
+        ClimateControl.modify S3_ALIAS_HOST: 's3.alias/path' do
+          example.run
+        end
+      end
+
+      it 'returns a correct URL' do
+        expect(helper.storage_host).to eq('https://s3.alias/path')
+      end
+    end
+
     context 'when S3 cloudfront is present' do
       around do |example|
         ClimateControl.modify S3_CLOUDFRONT_HOST: 's3.cloudfront' do
@@ -217,12 +225,6 @@ describe ApplicationHelper do
 
       it 'returns true' do
         expect(helper.storage_host).to eq('https://s3.cloudfront')
-      end
-    end
-
-    context 'when neither env value is present' do
-      it 'returns false' do
-        expect(helper.storage_host).to eq('https:')
       end
     end
   end
@@ -290,8 +292,9 @@ describe ApplicationHelper do
 
     it 'returns site title on production environment' do
       Setting.site_title = 'site title'
-      expect(Rails.env).to receive(:production?).and_return(true)
+      allow(Rails.env).to receive(:production?).and_return(true)
       expect(helper.title).to eq 'site title'
+      expect(Rails.env).to have_received(:production?)
     end
   end
 end

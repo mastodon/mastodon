@@ -3,7 +3,7 @@
 namespace :admin do
   get '/dashboard', to: 'dashboard#index'
 
-  resources :domain_allows, only: [:new, :create, :show, :destroy]
+  resources :domain_allows, only: [:new, :create, :destroy]
   resources :domain_blocks, only: [:new, :create, :destroy, :update, :edit] do
     collection do
       post :batch
@@ -31,7 +31,7 @@ namespace :admin do
   end
 
   resources :action_logs, only: [:index]
-  resources :warning_presets, except: [:new]
+  resources :warning_presets, except: [:new, :show]
 
   resources :announcements, except: [:show] do
     member do
@@ -67,7 +67,7 @@ namespace :admin do
     end
   end
 
-  resources :instances, only: [:index, :show, :destroy], constraints: { id: %r{[^/]+} } do
+  resources :instances, only: [:index, :show, :destroy], constraints: { id: %r{[^/]+} }, format: 'html' do
     member do
       post :clear_delivery_errors
       post :restart_delivery
@@ -75,7 +75,7 @@ namespace :admin do
     end
   end
 
-  resources :rules
+  resources :rules, only: [:index, :create, :edit, :update, :destroy]
 
   resources :webhooks do
     member do
@@ -201,4 +201,6 @@ namespace :admin do
       end
     end
   end
+
+  resources :software_updates, only: [:index]
 end

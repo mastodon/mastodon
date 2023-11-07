@@ -55,6 +55,22 @@ RSpec.describe Admin::AccountAction do
       end
     end
 
+    context 'when type is invalid' do
+      let(:type) { 'whatever' }
+
+      it 'raises an invalid record error' do
+        expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+
+    context 'when type is not given' do
+      let(:type) { '' }
+
+      it 'raises an invalid record error' do
+        expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+
     it 'creates Admin::ActionLog' do
       expect do
         subject
@@ -62,13 +78,15 @@ RSpec.describe Admin::AccountAction do
     end
 
     it 'calls process_email!' do
-      expect(account_action).to receive(:process_email!)
+      allow(account_action).to receive(:process_email!)
       subject
+      expect(account_action).to have_received(:process_email!)
     end
 
     it 'calls process_reports!' do
-      expect(account_action).to receive(:process_reports!)
+      allow(account_action).to receive(:process_reports!)
       subject
+      expect(account_action).to have_received(:process_reports!)
     end
   end
 

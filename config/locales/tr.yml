@@ -309,6 +309,7 @@ tr:
       unpublish: Yayından kaldır
       unpublished_msg: Duyuru başarıyla yayından kaldırıldı!
       updated_msg: Duyuru başarıyla güncellendi!
+    critical_update_pending: Kritik güncelleme bekliyor
     custom_emojis:
       assign_category: Kategori ata
       by_domain: Alan adı
@@ -382,6 +383,15 @@ tr:
       undo: Beyaz listeden çıkar
     domain_blocks:
       add_new: Yeni ekle
+      confirm_suspension:
+        cancel: İptal et
+        confirm: Askıya al
+        permanent_action: Askıyı kaldırmak herhangi bir veriyi veya ilişkiyi geri getirmez.
+        preamble_html: "<strong>%{domain}</strong> ve alt alan adlarını askıya almak üzeresiniz."
+        remove_all_data: Bu sunucunuzdaki bu alan adının hesaplarından tüm veriyi, içeriği, ve profil verisini kaldıracaktır.
+        stop_communication: Sunucunuzun bu sunucularla iletişimi durduracaktır.
+        title: "%{domain} için alan adı engelini doğrulayın"
+        undo_relationships: Bu kendi sunucularınız ve diğerlerindeki hesaplar arasındaki herhangi bir takip ilişkisini geri alacaktır.
       created_msg: Domain bloğu şu an işleniyor
       destroyed_msg: Domain bloğu silindi
       domain: Alan adı
@@ -524,6 +534,7 @@ tr:
       total_reported: Onlar hakkında şikayetler
       total_storage: Medya ekleri
       totals_time_period_hint_html: Aşağıdaki gösterilen toplamlar, gelmiş geçmiş tüm veriyi içeriyor.
+      unknown_instance: Bu sunucuda bu alan adının şu an bir kaydı yok.
     invites:
       deactivate_all: Tümünü devre dışı bırak
       filter:
@@ -731,6 +742,9 @@ tr:
       branding:
         preamble: Sunucunuzun markalaşması ağdaki diğer sunuculardan farklıdır. Bu bilgiler Mastodon'un web arayüzü, doğal uygulamalar, diğer sitelerdeki ve ileti uygulamalarındaki bağlantı önizlemeleri, vb. gibi çeşitli ortamlarda görüntülenebilir. Bu nedenle bu bilgiyi açık, kısa ve özlü tutmak en iyisidir.
         title: Marka
+      captcha_enabled:
+        desc_html: Bu, güvenlik ve gizlilikle ilgili bir endişe kaynağı olabilecek hCaptcha'nın harici komut dosyalarına dayanır. Ayrıca <strong>bu, kayıt sürecini bazı (özellikle engelli) kişiler için önemli ölçüde daha az erişilebilir hale getirebilir</strong>. Bu nedenlerle, lütfen onaya dayalı veya davete dayalı kayıt gibi alternatif önlemleri göz önünde bulundurun.
+        title: Yeni kullanıcıların hesaplarını doğrulamaları için bir CAPTCHA çözmelerini gerektir
       content_retention:
         preamble: Kullanıcıların ürettiği içeriğin Mastodon'da nasıl saklanacağını denetleyin.
         title: İçerik saklama
@@ -758,10 +772,27 @@ tr:
           approved: Kayıt için onay gerekli
           none: Hiç kimse kayıt olamaz
           open: Herkes kaydolabilir
-      title: Sunucu Ayarları
+      security:
+        authorized_fetch: Dağıtık sunuculardan kimlik doğrulama gerektir
+        authorized_fetch_hint: Dağıtık sunuculardan kimlik doğrulaması istemek, hem kullanıcı düzeyinde hem de sunucu düzeyinde blokların daha sıkı bir şekilde uygulanmasını sağlar. Ancak bu performans kaybına sebep olur, yanıtlarınızın erişimini azaltır ve bazı dağıtık hizmetlerle uyumluluk sorunları ortaya çıkarabilir. Ayrıca bu, özel aktörlerin herkese açık gönderilerinizi ve hesaplarınızı getirilmesini engellemez.
+        authorized_fetch_overridden_hint: Bir ortam değişkeni tarafından geçersiz kılındığı için şu anda bu ayarı değiştiremezsiniz.
+        federation_authentication: Dağıtık kimlik doğrulama uygulaması
+      title: Sunucu ayarları
     site_uploads:
       delete: Yüklenen dosyayı sil
       destroyed_msg: Site yüklemesi başarıyla silindi!
+    software_updates:
+      critical_update: Kritik — lütfen hemen güncelleyin
+      description: Son düzeltme ve özelliklerden yararlanmak için Mastodon kurulumunu güncel tutmanızı öneriyoruz. Üstelik güvenlik sorunlarından kaçınmak için Mastodon'u zamanında güncellemek kritiktir. Bu nedenlerle Mastodon her 30 dakikada bir güncellemeleri denetler ve e-posta bildirim seçeneğinize göre size haber verir.
+      documentation_link: Daha fazlası
+      release_notes: Sürüm notları
+      title: Mevcut güncellemeler
+      type: Tür
+      types:
+        major: Ana sürüm
+        minor: Alt sürüm
+        patch: Yama sürümü — hata düzeltmeleri ve uygulaması kolay değişiklikler
+      version: Sürüm
     statuses:
       account: Yazar
       application: Uygulama
@@ -802,6 +833,20 @@ tr:
     system_checks:
       database_schema_check:
         message_html: Beklemede olan veritabanı güncellemeleri mevcut. Uygulamanın beklenildiği gibi çalışması için lütfen onları çalıştırın
+      elasticsearch_health_red:
+        message_html: Elasticsearch kümesi sağlıksız (kırmızı durum), arama özellikleri mevcut değil
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch kümesi sağlıksız (sarı durum), nedenini incelemek isteyebilirsiniz
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch indeks eşlemeleri artık güncel değil. Lütfen <code>tootctl search deploy --only=%{value}</code> komutunu çalıştırın
+      elasticsearch_preset:
+        action: Belgelere bakın
+        message_html: Elasticsearch kümenizin birden fazla düğümü var ama Mastodon onları kullanmak üzere yapılandırılmamış.
+      elasticsearch_preset_single_node:
+        action: Belgelere bakın
+        message_html: Elasticsearch kümenizin tek bir düğümü var, <code>ES_PRESET</code> değişkenine <code>single_node_cluster</code> değeri verilmelidir.
+      elasticsearch_reset_chewy:
+        message_html: Elasticsearch sistem indeksi, bir ayar değişikliği nedeniyle güncelliğini yitirmiş. Lütfen <code>tootctl search deploy --reset-chewy</code> komutunu çalıştırın.
       elasticsearch_running_check:
         message_html: Elasticsearch'e bağlanılamıyor. Çalıştığından emin olun veya tüm metin aramayı devre dışı bırakın
       elasticsearch_version_check:
@@ -812,6 +857,12 @@ tr:
         message_html: Herhangi bir sunucu kuralı belirlemediniz.
       sidekiq_process_check:
         message_html: "%{value} kuyruk(lar)ı için herhangi bir Sidekiq süreci çalışmıyor. Lütfen Sidekiq yapılandırmanızı gözden geçirin"
+      software_version_critical_check:
+        action: Mevcut güncellemeleri göster
+        message_html: Kritik bir Mastodon güncellemesi var, lütfen en kısa sürede güncelleyin.
+      software_version_patch_check:
+        action: Mevcut güncellemeleri göster
+        message_html: Mastodon yama güncellemesi mevcut.
       upload_check_privacy_error:
         action: Daha fazla bilgi için buraya tıklayın
         message_html: "<strong>Web sunucunuz hatalı yapılandırılmış. Kullanıcılarınızın gizliliği tehlikede.</strong>"
@@ -852,14 +903,14 @@ tr:
       statuses:
         allow: Gönderiye izin ver
         allow_account: Yazara izin ver
-        description_html: Bunlar, sunucunuzca bilinen, şu an sıklıkla paylaşılan ve beğenilen gönderilerdir. Yeni ve geri dönen kullanıcılarınızın takip etmesi için daha fazla kullanıcı bulmasına yararlar. Siz yazarı onaylamadığınız ve yazar hesabının başkalarına önerilmesine izin vermediği sürece gönderileri herkese açık olarak gösterilmez. Tekil gönderileri de onaylayabilir veya reddedebilirsiniz.
+        description_html: Bunlar, sunucunuzca bilinen, şu an sıklıkla paylaşılan ve favorilere eklenen gönderilerdir. Yeni ve geri dönen kullanıcılarınızın takip etmesi için daha fazla kullanıcı bulmasına yararlar. Siz yazarı onaylamadığınız ve yazar hesabının başkalarına önerilmesine izin vermediği sürece gönderileri herkese açık olarak gösterilmez. Tekil gönderileri de onaylayabilir veya reddedebilirsiniz.
         disallow: Gönderi iznini kaldır
         disallow_account: Yazar iznini kaldır
         no_status_selected: Hiçbiri seçilmediğinden hiçbir öne çıkan gönderi değiştirilmedi
         not_discoverable: Yazar keşfedilebilir olmamayı seçiyor
         shared_by:
           one: Bir defa paylaşıldı veya favorilendi
-          other: "%{friendly_count} defa paylaşıldı veya favorilendi"
+          other: "%{friendly_count} defa paylaşıldı veya beğenildi"
         title: Öne çıkan gönderiler
       tags:
         current_score: Mevcut puan %{score}
@@ -925,6 +976,9 @@ tr:
       body: "%{target}, %{date} tarihinde %{action_taken_by} tarafından alınan %{type} yönetim kararına itiraz etti. Şunu yazdılar:"
       next_steps: Yönetim kararını geri almak için itirazı onaylayabilir veya itirazı görmezden gelebilirsiniz.
       subject: "%{username}, %{instance} hakkındaki bir yönetim kararına itiraz ediyor"
+    new_critical_software_updates:
+      body: Mastodon'un yeni kritik sürümleri yayınlandı, en kısa sürede güncellemek isteyebilirsiniz!
+      subject: "%{instance} için kritik Mastodon güncellemeleri mevcut!"
     new_pending_account:
       body: Yeni hesabın detayları aşağıdadır. Bu başvuruyu onaylayabilir ya da reddedebilirsiniz.
       subject: "%{instance} üzerinde gözden geçirmek için yeni hesap (%{username})"
@@ -932,6 +986,9 @@ tr:
       body: "%{reporter}, %{target} kişisini bildirdi"
       body_remote: "%{domain} alan adından birisi %{target} kişisini bildirdi"
       subject: "%{instance} için yeni şikayet (#%{id})"
+    new_software_updates:
+      body: Yeni Mastodon sürümleri yayınlandı, güncellemek isteyebilirsiniz!
+      subject: "%{instance} için yeni Mastodon sürümleri mevcut!"
     new_trends:
       body: 'Aşağıdaki öğeler herkese açık olarak gösterilmeden önce gözden geçirilmelidir:'
       new_trending_links:
@@ -961,11 +1018,11 @@ tr:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Herkes katkıda bulunabilir.
     sensitive_content: Hassas içerik
-    toot_layout: Gönderi düzeni
   application_mailer:
     notification_preferences: E-posta tercihlerini değiştir
     salutation: "%{name},"
     settings: 'E-posta tercihlerini değiştir: %{link}'
+    unsubscribe: Abonelikten çık
     view: 'Görüntüle:'
     view_profile: Profili görüntüle
     view_status: Durumu görüntüle
@@ -979,8 +1036,19 @@ tr:
     your_token: Erişim belirteciniz
   auth:
     apply_for_account: Bir hesap talep et
-    change_password: Parola
+    captcha_confirmation:
+      help_html: CAPTCHA'yı çözmekte sorun yaşıyorsanız bizimle %{email} üzerinden iletişime geçebilirsiniz, size yardımcı olabiliriz.
+      hint_html: Sadece bir şey daha! Sizin bir insan olduğunuzu doğrulamamız gerekiyor (bu, spam'i dışarıda tutabilmemiz içindir!). Aşağıdaki CAPTCHA'yı çözün ve "Devam Et" düğmesini tıklayın.
+      title: Güvenlik denetimi
     confirmations:
+      awaiting_review: E-posta adresiniz doğrulandı! %{domain} çalışanları şimdi kaydınızı inceliyorlar. Hesabınızı onayladıklarında bir e-posta alacaksınız!
+      awaiting_review_title: Kaydınız inceleniyor
+      clicking_this_link: bu bağlantıyı tıklamayı
+      login_link: oturum aç
+      proceed_to_login_html: Şimdi %{login_link} devam edebilirsiniz.
+      redirect_to_app_html: "<strong>%{app_name}</strong> uygulamasına yönlendirileceksiniz. Eğer yönlendirme olmazsa, %{clicking_this_link} veya uygulamaya geri dönmeyi deneyin."
+      registration_complete: "%{domain} sunucusunda kaydınız şimdi tamamlandı!"
+      welcome_title: Hoşgeldin %{name}!
       wrong_email_hint: Eğer bu e-posta adresi doğru değilse, hesap ayarlarında değiştirebilirsiniz.
     delete_account: Hesabı sil
     delete_account_html: Hesabını silmek istersen, <a href="%{path}">buradan devam edebilirsin</a>. Onay istenir.
@@ -1016,8 +1084,11 @@ tr:
     rules:
       accept: Onayla
       back: Geri
+      invited_by: 'Aşağıdakinden aldığınız davet sayesinde %{domain} sunucusuna katılabilirsiniz:'
       preamble: Bunlar, %{domain} moderatörleri tarafından ayarlanmış ve uygulanmıştır.
+      preamble_invited: Devam etmeden önce, %{domain} yöneticileri tarafından belirlenmiş temel kuralları gözden geçirin.
       title: Bazı temel kurallar.
+      title_invited: Davet edildiniz.
     security: Güvenlik
     set_new_password: Yeni parola belirle
     setup:
@@ -1039,21 +1110,10 @@ tr:
       functional: Hesabınız tamamen kullanıma hazır.
       pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
       redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
+      self_destruct: "%{domain} kapandığı için, hesabınıza sadece kısıtlı erişiminiz olacak."
       view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     use_security_key: Güvenlik anahtarını kullan
-  authorize_follow:
-    already_following: Bu hesabı zaten takip ediyorsunuz
-    already_requested: Bu hesaba zaten takip isteği gönderdiniz
-    error: Uzak hesap aranırken bir hata oluştu
-    follow: Takip et
-    follow_request: 'Şuna takip isteği gönderdiniz:'
-    following: 'Başarılı! Artık şunu takip ediyorsunuz:'
-    post_follow:
-      close: Ya da, sadece bu pencereyi kapatabilirsiniz.
-      return: Kullanıcının profilini göster
-      web: Web'e git
-    title: "%{acct} takip et"
   challenge:
     confirm: Devam et
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
@@ -1130,6 +1190,10 @@ tr:
       your_appeal_rejected: İtirazınız reddedildi
   domain_validator:
     invalid_domain: geçerli bir alan adı değil
+  edit_profile:
+    basic_information: Temel bilgiler
+    hint_html: "<strong>İnsanlara herkese açık profilinizde ve gönderilerinizin yanında ne göstermek istediğinizi düzenleyin.</strong> Dolu bir profile ve bir profil resmine sahip olduğunuzda diğer insanlar daha yüksek ihtimalle sizi takip etmek ve sizinle etkileşime geçmek isteyeceklerdir."
+    other: Diğer
   errors:
     '400': Gönderdiğiniz istek geçersiz veya hatalı biçimlendirilmiş.
     '403': Bu sayfayı görmek için izniniz yok.
@@ -1218,7 +1282,9 @@ tr:
     all_matching_items_selected_html:
       one: Aramanızla eşleşen <strong>%{count}</strong> öğe seçilmiş.
       other: Aramanızla eşleşen tüm <strong>%{count}</strong> öğe seçilmiş.
+    cancel: İptal
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
+    confirm: Onayla
     copy: Kopyala
     delete: Sil
     deselect: Hiçbirini seçme
@@ -1234,20 +1300,60 @@ tr:
       other: Bir şeyler ters gitti! Lütfen aşağıdaki %{count} hatayı gözden geçiriniz
   imports:
     errors:
+      empty: Boş CSV Dosyası
+      incompatible_type: Seçilen içe aktarma türüyle uyumsuz
       invalid_csv_file: 'Geçersiz CSV dosyası. Hata: %{error}'
       over_rows_processing_limit: "%{count} satırdan fazlasını içeriyor"
+      too_large: Dosya çok büyük
+    failures: Başarısızlıklar
+    imported: İçe aktarılan
+    mismatched_types_warning: Bu içe aktarma için hatalı türü seçmiş gibi gözüküyor, lütfen tekrar denetleyin.
     modes:
       merge: Birleştir
       merge_long: Mevcut kayıtları sakla ve yenileri ekle
       overwrite: Üzerine yaz
       overwrite_long: Mevcut kayıtları yenileriyle değiştir
+    overwrite_preambles:
+      blocking_html: "<strong>Engel listenizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} hesapla</strong> değiştirmek üzeresiniz."
+      bookmarks_html: "<strong>Yerimlerinizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} gönderiyle</strong> değiştirmek üzeresiniz."
+      domain_blocking_html: "<strong>Alan adı engel listenizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} alan adıyla</strong> değiştirmek üzeresiniz."
+      following_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>takip etmeye</strong> başlamak ve <strong>diğer herkesi takipten çıkmak</strong> üzeresiniz."
+      lists_html: Listelerinizi <strong>%{filename}</strong> içeriğiyle <strong>değiştirmek</strong> üzeresiniz. Yeni listelere en fazla <strong>%{total_items} hesap</strong> eklenecek.
+      muting_html: "<strong>Sessize alınmış hesaplar listenizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} hesapla</strong> değiştirmek üzeresiniz."
+    preambles:
+      blocking_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>engellemek</strong> üzeresiniz."
+      bookmarks_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} gönderiyi</strong> <strong>yerimlerinize</strong> eklemek üzeresiniz."
+      domain_blocking_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} alan adını</strong> <strong>engellemek</strong> üzeresiniz."
+      following_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>takip etmek</strong> üzeresiniz."
+      lists_html: "<strong>Listelerinize</strong> <strong>%{filename}</strong> dosyasından en fazla <strong>%{total_items} hesap</strong> eklemek üzeresiniz. Eklenecek bir liste olmaması durumunda yeni listeler oluşturulacaktır."
+      muting_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>sessize almak</strong> üzeresiniz."
     preface: Diğer sunucudan alarak oluşturduğunuz dosyalar sayesinde, bu sunucudaki hesabınıza takipçilerinizi aktarabilir veya istemediğiniz kişileri otomatik olarak engelleyebilirsiniz.
+    recent_imports: Son içe aktarmalar
+    states:
+      finished: Bitti
+      in_progress: Sürüyor
+      scheduled: Zamanlanmış
+      unconfirmed: Onaylanmamış
+    status: Durum
     success: Verileriniz başarıyla yüklendi ve zaman içinde işlenecek
+    time_started: Başlangıç
+    titles:
+      blocking: Engellenmiş hesaplar içe aktarılıyor
+      bookmarks: Yer işaretleri içe aktarılıyor
+      domain_blocking: Engellenmiş alan adları içe aktarılıyor
+      following: Takip edilen hesaplar içe aktarılıyor
+      lists: Listeleri içe aktarma
+      muting: Sessize alınmış hesaplar içe aktarılıyor
+    type: İçe aktarma türü
+    type_groups:
+      constructive: Takipler ve Yerimleri
+      destructive: Engellenenler ve sessize alınanlar
     types:
       blocking: Engellenenler listesi
       bookmarks: Yer imleri
       domain_blocking: Alan adı engelleme listesi
       following: Takip edilenler listesi
+      lists: Listeler
       muting: Susturulanlar listesi
     upload: Yükle
   invites:
@@ -1286,6 +1392,21 @@ tr:
     failed_sign_in_html: "%{method} yöntemiyle %{ip} (%{browser}) adresinden başarısız oturum açma girişimi"
     successful_sign_in_html: "%{method} yöntemiyle %{ip} (%{browser}) adresinden başarılı oturum açma"
     title: Kimlik doğrulama geçmişi
+  mail_subscriptions:
+    unsubscribe:
+      action: Evet, abonelikten çık
+      complete: Abonelikten çık
+      confirmation_html: '%{domain} üzerindeki Mastodon için %{type} almayı durdurarak %{email} adresindeki aboneliğinizi iptal etmek istediğinizden emin misiniz? <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> her zaman yeniden abone olabilirsiniz.'
+      emails:
+        notification_emails:
+          favourite: bildirim e-postalarını favorile
+          follow: bildirim e-postalarını takip et
+          follow_request: istek e-postalarını takip et
+          mention: bildirim e-postalarına değin
+          reblog: bildirim e-postalarını yükselt
+      resubscribe_html: Abonelikten yanlışlıkla çıktıysanız, <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> yeniden abone olabilirsiniz.
+      success_html: Artık %{email} adresindeki e-postanıza %{domain} üzerindeki Mastodon için %{type} almayacaksınız.
+      title: Abonelikten çık
   media_attachments:
     validations:
       images_and_video: Zaten resim içeren bir duruma video eklenemez
@@ -1365,6 +1486,7 @@ tr:
     update:
       subject: "%{name} bir gönderiyi düzenledi"
   notifications:
+    administration_emails: Yönetici e-posta bildirimleri
     email_events: E-posta bildirimi gönderilecek etkinlikler
     email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
     other_settings: Diğer bildirim ayarları
@@ -1401,12 +1523,22 @@ tr:
       expired: Anket çoktan sona erdi
       invalid_choice: Seçilen oylama seçeneği mevcut değil
       over_character_limit: her biri %{max} karakterden daha uzun olamaz
+      self_vote: Kendi anketlerinizde oy kullanamazsınız
       too_few_options: birden fazla öğeye sahip olmalı
       too_many_options: "%{max} öğeden fazla öğe içeremez"
   preferences:
     other: Diğer
     posting_defaults: Gönderi varsayılanları
     public_timelines: Genel zaman çizelgeleri
+  privacy:
+    hint_html: "<strong>Profilinizin ve gönderilerinizin nasıl bulunmasını istediğinizi yapılandırın.</strong> Mastodon'daki çeşitli özellik etkinleştirildiklerinde çok daha geniş bir izleyici kitlesine ulaşmanıza yardımcı olabilir. Durumunuza uyup uymadığını anlamak için bu ayarlara bir göz atın."
+    privacy: Gizlilik
+    privacy_hint_html: Başkalarına ne kadar bilgi göstermek istediğinizi denetleyin. İnsanlar ilginç profilleri ve havalı uygulamaları diğer kişilerin takiplerine ve gönderileri paylaştıkları uygulamalara bakarak keşfederler, ama belki de gizli tutmak isteyebilirsiniz.
+    reach: Erişim
+    reach_hint_html: Yeni insanlar tarafından ne kadar keşfedilmek ve takip edilmek istediğinizi denetleyin. Gönderilerinizin Keşfet ekranında görüntülenmesini istiyor musunuz? Başkalarının takip önerileri listesinde görünmek istiyor musunuz? Tüm yeni takipçileri otomatik olarak kabul etmek mi yoksa her bir istek üzerinden ayrıntılı denetim mi istiyorsunuz?
+    search: Ara
+    search_hint_html: Nasıl bulunmak istediğinizi denetleyin. Herkese açık gönderileriniz aracılığıyla daha fazla insanın sizi bulmasını istiyor musunuz? Mastodon dışındaki kişilerin webte arama yaptığında profilinizi bulmasını istiyor musunuz? Tüm arama motorlarından tamamen çıkmanın herkese açık bilgiler için garanti olmadığını lütfen unutmayın.
+    title: Gizlilik ve erişim
   privacy_policy:
     title: Gizlilik Politikası
   reactions:
@@ -1448,6 +1580,9 @@ tr:
     over_daily_limit: Bugün için %{limit} zamanlanmış gönderi sınırını aştınız
     over_total_limit: "%{limit} zamanlanmış gönderi sınırını aştınız"
     too_soon: Programlanan tarih bugünden ileri bir tarihte olmalıdır
+  self_destruct:
+    lead_html: Maalesef <strong>%{domain}</strong> kalıcı olarak kapanıyor. Eğer orada hesabınız varsa, onu kullanmaya devam edemeyeceksiniz, ancak yine de verinizin bir yedeğini isteyebilirsiniz.
+    title: Bu sunucu kapanıyor
   sessions:
     activity: Son etkinlik
     browser: Tarayıcı
@@ -1556,7 +1691,6 @@ tr:
     show_newer: Yenileri göster
     show_older: Eskileri göster
     show_thread: Konuyu göster
-    sign_in_to_participate: Sohbete katılmak için oturum açın
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Doğrudan
@@ -1602,8 +1736,6 @@ tr:
     min_reblogs: Şundan daha fazla teşvik edilen gönderileri sakla
     min_reblogs_hint: Bu belirtilenden daha fazla teşvik edilen gönderilerinizin herhangi birini silmez. Teşvik sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
   stream_entries:
-    pinned: Sabitlenmiş gönderi
-    reblogged: boostladı
     sensitive_content: Hassas içerik
   strikes:
     errors:
@@ -1619,6 +1751,11 @@ tr:
       default: "%d %b %Y %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d.%m.%Y %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Çeviri hizmetinin sunucu kapsamındaki kullanım kotası aşıldı.
+      too_many_requests: Çeviri hizmetine son zamanlarda çok fazla istek yapıldı.
   two_factor_authentication:
     add: Ekle
     disable: 2FA'yı devre dışı bırak
@@ -1704,8 +1841,12 @@ tr:
     seamless_external_login: Harici bir servis aracılığıyla oturum açtınız, bu nedenle parola ve e-posta ayarları mevcut değildir.
     signed_in_as: 'Oturum açtı:'
   verification:
-    explanation_html: '<strong>Profil meta verisindeki bağlantıların sahibi olarak kendinizi doğrulayabilirsiniz</strong>. Bunun için, bağlantısı verilen web sitesi Mastodon profilinize bir bağlantı içermelidir. Doğrulamanın gerçekleşmesi için bağlantıyı ekledikten sonra buraya gelip profilinizi tekrar kaydetmelisiniz. Geri bağlantı bir <code>rel="me"</code> özelliğine sahip <strong>olmalıdır</strong>. Bağlantının metin içeriği önemli değildir. İşte bir örnek:'
+    extra_instructions_html: <strong>İpucu:</strong> Web sitenizdeki bağlantı görünmez olabilir. Önemli olan, kullanıcı tarafından oluşturulan içeriğe sahip web sitelerinde kimliğe bürünmeyi önleyen <code>rel="me"</code>'dir. Sayfa başlığında <code>a</code> yerine bir <code>bağlantı</code> etiketi de kullanabilirsiniz, ancak HTML'ye JavaScript çalıştırılmadan erişilebilir olmalıdır.
+    here_is_how: İşte yapmanın yolu
+    hint_html: "<strong>Mastodon'da kendini doğrulamak herkese açık.</strong> Açık web standartlarına dayanır, şimdi ve her zaman ücretsizdir. Tüm gereken insanların sizi onunla tanımladığı bir kişisel websitesidir. Profilinizde bu websitesinin bağlantısını verdiğinizde, websitesinizin profilinize bağlantı verip vermediğini denetleyip üzerinde görsel bir işaret koyacağız."
+    instructions_html: Aşağıdaki kodu kopyalayın ve websitenizin HTML'sine yapıştırın. Daha sonra "Profil Düzenle" sekmesini kullanarak profilinizdeki ek sahalardan birine websitenizin adresini ekleyin ve değişiklikleri kaydedin.
     verification: Doğrulama
+    verified_links: Doğrulanmış bağlantılarınız
   webauthn_credentials:
     add: Yeni güvenlik anahtarı ekle
     create:

@@ -2,6 +2,7 @@
 
 const { basename, dirname, join, relative, resolve } = require('path');
 
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 const { sync } = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const extname = require('path-complete-extname');
@@ -9,7 +10,6 @@ const webpack = require('webpack');
 const AssetsManifestPlugin = require('webpack-assets-manifest');
 
 const { env, settings, themes, output } = require('./configuration');
-const localePackPaths = require('./generateLocalePacks');
 const rules = require('./rules');
 
 const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
@@ -24,11 +24,6 @@ module.exports = {
       localMap[join(namespace, basename(entry, extname(entry)))] = resolve(entry);
       return localMap;
     }, {}),
-    localePackPaths.reduce((map, entry) => {
-      const localMap = map;
-      localMap[basename(entry, extname(entry, extname(entry)))] = resolve(entry);
-      return localMap;
-    }, {}),
     Object.keys(themes).reduce((themePaths, name) => {
       themePaths[name] = resolve(join(settings.source_path, themes[name]));
       return themePaths;
@@ -40,6 +35,7 @@ module.exports = {
     chunkFilename: 'js/[name]-[chunkhash].chunk.js',
     hotUpdateChunkFilename: 'js/[id]-[hash].hot-update.js',
     hashFunction: 'sha256',
+    crossOriginLoading: 'anonymous',
     path: output.path,
     publicPath: output.publicPath,
   },
@@ -89,6 +85,9 @@ module.exports = {
       writeToDisk: true,
       publicPath: true,
     }),
+    new CircularDependencyPlugin({
+      failOnError: true,
+    })
   ],
 
   resolve: {

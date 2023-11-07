@@ -14,7 +14,7 @@ RSpec.describe ImportService, type: :service do
   end
 
   context 'when importing old-style list of muted users' do
-    subject { ImportService.new }
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('mute-imports.txt') }
 
@@ -52,7 +52,7 @@ RSpec.describe ImportService, type: :service do
   end
 
   context 'when importing new-style list of muted users' do
-    subject { ImportService.new }
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('new-mute-imports.txt') }
 
@@ -93,7 +93,7 @@ RSpec.describe ImportService, type: :service do
   end
 
   context 'when importing old-style list of followed users' do
-    subject { ImportService.new }
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('mute-imports.txt') }
 
@@ -135,7 +135,7 @@ RSpec.describe ImportService, type: :service do
   end
 
   context 'when importing new-style list of followed users' do
-    subject { ImportService.new }
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('new-following-imports.txt') }
 
@@ -182,7 +182,7 @@ RSpec.describe ImportService, type: :service do
   #
   # https://github.com/mastodon/mastodon/issues/20571
   context 'with a utf-8 encoded domains' do
-    subject { ImportService.new }
+    subject { described_class.new }
 
     let!(:nare) { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
     let(:csv) { attachment_fixture('utf8-followers.txt') }
@@ -201,14 +201,14 @@ RSpec.describe ImportService, type: :service do
   end
 
   context 'when importing bookmarks' do
-    subject { ImportService.new }
+    subject { described_class.new }
 
     let(:csv) { attachment_fixture('bookmark-imports.txt') }
     let(:local_account)  { Fabricate(:account, username: 'foo', domain: '') }
     let!(:remote_status) { Fabricate(:status, uri: 'https://example.com/statuses/1312') }
     let!(:direct_status) { Fabricate(:status, uri: 'https://example.com/statuses/direct', visibility: :direct) }
 
-    around(:each) do |example|
+    around do |example|
       local_before = Rails.configuration.x.local_domain
       web_before = Rails.configuration.x.web_domain
       Rails.configuration.x.local_domain = 'local.com'
@@ -219,7 +219,7 @@ RSpec.describe ImportService, type: :service do
     end
 
     before do
-      service = double
+      service = instance_double(ActivityPub::FetchRemoteStatusService)
       allow(ActivityPub::FetchRemoteStatusService).to receive(:new).and_return(service)
       allow(service).to receive(:call).with('https://unknown-remote.com/users/bar/statuses/1') do
         Fabricate(:status, uri: 'https://unknown-remote.com/users/bar/statuses/1')
@@ -232,9 +232,9 @@ RSpec.describe ImportService, type: :service do
       it 'adds the toots the user has access to to bookmarks' do
         local_status = Fabricate(:status, account: local_account, uri: 'https://local.com/users/foo/statuses/42', id: 42, local: true)
         subject.call(import)
-        expect(account.bookmarks.map(&:status).map(&:id)).to include(local_status.id)
-        expect(account.bookmarks.map(&:status).map(&:id)).to include(remote_status.id)
-        expect(account.bookmarks.map(&:status).map(&:id)).to_not include(direct_status.id)
+        expect(account.bookmarks.map { |bookmark| bookmark.status.id }).to include(local_status.id)
+        expect(account.bookmarks.map { |bookmark| bookmark.status.id }).to include(remote_status.id)
+        expect(account.bookmarks.map { |bookmark| bookmark.status.id }).to_not include(direct_status.id)
         expect(account.bookmarks.count).to eq 3
       end
     end

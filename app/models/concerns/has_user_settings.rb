@@ -4,7 +4,7 @@ module HasUserSettings
   extend ActiveSupport::Concern
 
   included do
-    serialize :settings, UserSettingsSerializer
+    serialize :settings, coder: UserSettingsSerializer
   end
 
   def settings_attributes=(attributes)
@@ -89,10 +89,6 @@ module HasUserSettings
 
   def setting_trends
     settings['web.trends']
-  end
-
-  def setting_crop_images
-    settings['web.crop_images']
   end
 
   def setting_disable_swiping
