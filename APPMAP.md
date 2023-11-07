@@ -32,4 +32,4 @@ For more information, review [this](https://dev.to/appmap/the-fastest-way-to-run
 
 ## Generate OpenAPI Docs
 
-Run `npx @appland/appmap@latest openapi --output-file openapi.yml --openapi-title Mastodon` to generate openapi.yml docs.
+Run `npx @appland/appmap@latest openapi --output-file openapi.yml --openapi-title Mastodon --openapi-version v1` to generate openapi.yml docs.
