@@ -136,24 +136,24 @@ module Mastodon::CLI
       Mastodon has to be stopped to run this task, which will take a long time and may be destructive.
     LONG_DESC
     def fix_duplicates
-      if ActiveRecord::Migrator.current_version < MIN_SUPPORTED_VERSION
-        say 'Your version of the database schema is too old and is not supported by this script.', :red
-        say 'Please update to at least Mastodon 3.0.0 before running this script.', :red
-        exit(1)
-      elsif ActiveRecord::Migrator.current_version > MAX_SUPPORTED_VERSION
-        say 'Your version of the database schema is more recent than this script, this may cause unexpected errors.', :yellow
-        exit(1) unless yes?('Continue anyway? (Yes/No)')
-      end
+      verify_system_ready!
 
-      if Sidekiq::ProcessSet.new.any?
-        say 'It seems Sidekiq is running. All Mastodon processes need to be stopped when using this script.', :red
-        exit(1)
-      end
+      process_deduplications
 
-      say 'This task will take a long time to run and is potentially destructive.', :yellow
-      say 'Please make sure to stop Mastodon and have a backup.', :yellow
-      exit(1) unless yes?('Continue? (Yes/No)')
+      deduplication_cleanup_tasks
 
+      say 'Finished!'
+    end
+
+    private
+
+    def verify_system_ready!
+      verify_schema_version!
+      verify_sidekiq_not_active!
+      verify_backup_warning!
+    end
+
+    def process_deduplications
       deduplicate_users!
       deduplicate_account_domain_blocks!
       deduplicate_account_identity_proofs!
@@ -173,14 +173,44 @@ module Mastodon::CLI
       deduplicate_webauthn_credentials!
       deduplicate_webhooks!
       deduplicate_software_updates!
-
-      Scenic.database.refresh_materialized_view('instances', concurrently: true, cascade: false) if ActiveRecord::Migrator.current_version >= 2020_12_06_004238
-      Rails.cache.clear
-
-      say 'Finished!'
     end
 
-    private
+    def deduplication_cleanup_tasks
+      refresh_instances_view if schema_has_instances_view?
+      Rails.cache.clear
+    end
+
+    def refresh_instances_view
+      Scenic.database.refresh_materialized_view('instances', concurrently: true, cascade: false)
+    end
+
+    def schema_has_instances_view?
+      ActiveRecord::Migrator.current_version >= 2020_12_06_004238
+    end
+
+    def verify_schema_version!
+      if ActiveRecord::Migrator.current_version < MIN_SUPPORTED_VERSION
+        say 'Your version of the database schema is too old and is not supported by this script.', :red
+        say 'Please update to at least Mastodon 3.0.0 before running this script.', :red
+        exit(1)
+      elsif ActiveRecord::Migrator.current_version > MAX_SUPPORTED_VERSION
+        say 'Your version of the database schema is more recent than this script, this may cause unexpected errors.', :yellow
+        exit(1) unless yes?('Continue anyway? (Yes/No)')
+      end
+    end
+
+    def verify_sidekiq_not_active!
+      if Sidekiq::ProcessSet.new.any?
+        say 'It seems Sidekiq is running. All Mastodon processes need to be stopped when using this script.', :red
+        exit(1)
+      end
+    end
+
+    def verify_backup_warning!
+      say 'This task will take a long time to run and is potentially destructive.', :yellow
+      say 'Please make sure to stop Mastodon and have a backup.', :yellow
+      exit(1) unless yes?('Continue? (Yes/No)')
+    end
 
     def deduplicate_accounts!
       remove_index_if_exists!(:accounts, 'index_accounts_on_username_and_domain_lower')
