@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FollowLimitValidator, type: :validator do
+RSpec.describe FollowLimitValidator do
   describe '#validate' do
     before do
       allow_any_instance_of(described_class).to receive(:limit_reached?).with(account) do
