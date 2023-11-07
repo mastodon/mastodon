@@ -50,13 +50,6 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Max: 27
 
-Performance/MapMethodChain:
-  Exclude:
-    - 'app/models/feed.rb'
-    - 'lib/mastodon/cli/maintenance.rb'
-    - 'spec/services/bulk_import_service_spec.rb'
-    - 'spec/services/import_service_spec.rb'
-
 RSpec/AnyInstance:
   Exclude:
     - 'spec/controllers/activitypub/inboxes_controller_spec.rb'
