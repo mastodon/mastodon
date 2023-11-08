@@ -534,6 +534,7 @@ nn:
       total_reported: Rapportar om dei
       total_storage: Medievedlegg
       totals_time_period_hint_html: Totalsum vist nedanfor gjeld data for alle tidsperiodar.
+      unknown_instance: Dette domenet er ukjent for denne serveren.
     invites:
       deactivate_all: Slå av alle
       filter:
@@ -1101,6 +1102,7 @@ nn:
       functional: Kontoen din er fullt operativt.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
+      self_destruct: Siden %{domain} stenger, vil du kun ha begrenset tilgang til kontoen din.
       view_strikes: Vis tidligere advarsler mot kontoen din
     too_fast: Skjemaet ble sendt inn for raskt, prøv på nytt.
     use_security_key: Bruk sikkerhetsnøkkel
@@ -1570,6 +1572,9 @@ nn:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
     too_soon: Den planlagte datoen må være i fremtiden
+  self_destruct:
+    lead_html: Dessverre stenger <strong>%{domain}</strong> for alltid. Hvis du hadde en konto der vil du ikke kunne fortsette å bruke den, men du kan fremdeles be om en sikkerhetskopi av dataene dine.
+    title: Denne serveren stenger
   sessions:
     activity: Siste aktivitet
     browser: Nettlesar

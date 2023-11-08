@@ -2,8 +2,11 @@
   "name": "@mastodon/mastodon",
   "license": "AGPL-3.0-or-later",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
+  "workspaces": [
+    "."
+  ],
   "scripts": {
     "build:development": "cross-env RAILS_ENV=development NODE_ENV=development ./bin/webpack",
     "build:production": "cross-env RAILS_ENV=production NODE_ENV=production ./bin/webpack",
@@ -47,7 +50,6 @@
     "@material-symbols/svg-600": "^0.13.1",
     "@rails/ujs": "^7.1.1",
     "@reduxjs/toolkit": "^1.9.5",
-    "@renchap/compression-webpack-plugin": "^6.1.4",
     "@svgr/webpack": "^5.5.0",
     "arrow-key-navigation": "^1.2.0",
     "async-mutex": "^0.4.0",
@@ -55,7 +57,7 @@
     "axios": "^1.4.0",
     "babel-loader": "^8.3.0",
     "babel-plugin-formatjs": "^10.5.1",
-    "babel-plugin-lodash": "^3.3.4",
+    "babel-plugin-lodash": "patch:babel-plugin-lodash@npm%3A3.3.4#~/.yarn/patches/babel-plugin-lodash-npm-3.3.4-c7161075b6.patch",
     "babel-plugin-preval": "^5.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "blurhash": "^2.0.5",
@@ -63,6 +65,7 @@
     "classnames": "^2.3.2",
     "cocoon-js-vanilla": "^1.3.0",
     "color-blend": "^4.0.0",
+    "compression-webpack-plugin": "patch:compression-webpack-plugin@npm%3A6.1.1#~/.yarn/patches/compression-webpack-plugin-npm-6.1.1-3a2a65987e.patch",
     "core-js": "^3.30.2",
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.7",
@@ -215,9 +218,19 @@
     "yargs": "^17.7.2"
   },
   "resolutions": {
-    "@types/react": "^18.0.26",
     "kind-of": "^6.0.3",
     "webpack/terser-webpack-plugin": "^4.2.3"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    },
+    "react-router-dom": {
+      "optional": true
+    }
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.7",
@@ -228,5 +241,6 @@
     "Capfile|Gemfile|*.{rb,ruby,ru,rake}": "bundle exec rubocop --force-exclusion -a",
     "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.{css,scss}": "stylelint --fix"
-  }
+  },
+  "packageManager": "yarn@4.0.1"
 }

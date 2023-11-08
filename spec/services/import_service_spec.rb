@@ -208,7 +208,7 @@ RSpec.describe ImportService, type: :service do
     let!(:remote_status) { Fabricate(:status, uri: 'https://example.com/statuses/1312') }
     let!(:direct_status) { Fabricate(:status, uri: 'https://example.com/statuses/direct', visibility: :direct) }
 
-    around(:each) do |example|
+    around do |example|
       local_before = Rails.configuration.x.local_domain
       web_before = Rails.configuration.x.web_domain
       Rails.configuration.x.local_domain = 'local.com'
@@ -232,9 +232,9 @@ RSpec.describe ImportService, type: :service do
       it 'adds the toots the user has access to to bookmarks' do
         local_status = Fabricate(:status, account: local_account, uri: 'https://local.com/users/foo/statuses/42', id: 42, local: true)
         subject.call(import)
-        expect(account.bookmarks.map(&:status).map(&:id)).to include(local_status.id)
-        expect(account.bookmarks.map(&:status).map(&:id)).to include(remote_status.id)
-        expect(account.bookmarks.map(&:status).map(&:id)).to_not include(direct_status.id)
+        expect(account.bookmarks.map { |bookmark| bookmark.status.id }).to include(local_status.id)
+        expect(account.bookmarks.map { |bookmark| bookmark.status.id }).to include(remote_status.id)
+        expect(account.bookmarks.map { |bookmark| bookmark.status.id }).to_not include(direct_status.id)
         expect(account.bookmarks.count).to eq 3
       end
     end

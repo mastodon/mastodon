@@ -25,9 +25,9 @@ describe ActivityPub::StatusUpdateDistributionWorker do
       end
 
       it 'delivers to followers' do
-        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[kind_of(String), status.account.id, 'http://example.com', anything]])
-
-        subject.perform(status.id)
+        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[kind_of(String), status.account.id, 'http://example.com', anything]]) do
+          subject.perform(status.id)
+        end
       end
     end
 
@@ -37,9 +37,9 @@ describe ActivityPub::StatusUpdateDistributionWorker do
       end
 
       it 'delivers to followers' do
-        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[kind_of(String), status.account.id, 'http://example.com', anything]])
-
-        subject.perform(status.id)
+        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[kind_of(String), status.account.id, 'http://example.com', anything]]) do
+          subject.perform(status.id)
+        end
       end
     end
   end
