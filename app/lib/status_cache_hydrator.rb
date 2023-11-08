@@ -16,6 +16,34 @@ class StatusCacheHydrator
     # We take advantage of the fact that some relationships can only occur with an original status, not
     # the reblog that wraps it, so we can assume that some values are always false
     if payload[:reblog]
+      hydrate_reblog_payload(payload, account_id)
+    else
+      hydrate_non_reblog_payload(payload, account_id)
+    end
+  end
+
+  private
+
+  def hydrate_non_reblog_payload(empty_payload, account_id)
+    empty_payload.tap do |payload|
+      payload[:favourited] = Favourite.where(account_id: account_id, status_id: @status.id).exists?
+      payload[:reblogged]  = Status.where(account_id: account_id, reblog_of_id: @status.id).exists?
+      payload[:muted]      = ConversationMute.where(account_id: account_id, conversation_id: @status.conversation_id).exists?
+      payload[:bookmarked] = Bookmark.where(account_id: account_id, status_id: @status.id).exists?
+      payload[:pinned]     = StatusPin.where(account_id: account_id, status_id: @status.id).exists? if @status.account_id == account_id
+      payload[:filtered]   = CustomFilter
+                             .apply_cached_filters(CustomFilter.cached_filters_for(account_id), @status)
+                             .map { |filter| serialized_filter(filter) }
+
+      if payload[:poll]
+        payload[:poll][:voted] = @status.account_id == account_id
+        payload[:poll][:own_votes] = []
+      end
+    end
+  end
+
+  def hydrate_reblog_payload(empty_payload, account_id)
+    empty_payload.tap do |payload|
       payload[:muted]      = false
       payload[:bookmarked] = false
       payload[:pinned]     = false if @status.account_id == account_id
@@ -47,26 +75,8 @@ class StatusCacheHydrator
 
       payload[:favourited] = payload[:reblog][:favourited]
       payload[:reblogged]  = payload[:reblog][:reblogged]
-    else
-      payload[:favourited] = Favourite.where(account_id: account_id, status_id: @status.id).exists?
-      payload[:reblogged]  = Status.where(account_id: account_id, reblog_of_id: @status.id).exists?
-      payload[:muted]      = ConversationMute.where(account_id: account_id, conversation_id: @status.conversation_id).exists?
-      payload[:bookmarked] = Bookmark.where(account_id: account_id, status_id: @status.id).exists?
-      payload[:pinned]     = StatusPin.where(account_id: account_id, status_id: @status.id).exists? if @status.account_id == account_id
-      payload[:filtered]   = CustomFilter
-                             .apply_cached_filters(CustomFilter.cached_filters_for(account_id), @status)
-                             .map { |filter| serialized_filter(filter) }
-
-      if payload[:poll]
-        payload[:poll][:voted] = @status.account_id == account_id
-        payload[:poll][:own_votes] = []
-      end
     end
-
-    payload
   end
-
-  private
 
   def serialized_filter(filter)
     ActiveModelSerializers::SerializableResource.new(
