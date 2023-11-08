@@ -559,14 +559,6 @@ Style/SingleArgumentDig:
     - 'lib/webpacker/manifest_extensions.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: require_parentheses, require_no_parentheses
-Style/StabbyLambdaParentheses:
-  Exclude:
-    - 'config/environments/production.rb'
-    - 'config/initializers/content_security_policy.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 Style/StderrPuts:
   Exclude:
     - 'config/boot.rb'
