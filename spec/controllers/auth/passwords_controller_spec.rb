@@ -7,7 +7,7 @@ describe Auth::PasswordsController do
 
   describe 'GET #new' do
     it 'returns http success' do
-      @request.env['devise.mapping'] = Devise.mappings[:user]
+      request.env['devise.mapping'] = Devise.mappings[:user]
       get :new
       expect(response).to have_http_status(200)
     end
