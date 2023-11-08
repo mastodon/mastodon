@@ -180,7 +180,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def check_links!
-    VerifyAccountLinksWorker.perform_async(@account.id)
+    VerifyAccountLinksWorker.perform_in(rand(10.minutes.to_i), @account.id)
   end
 
   def process_duplicate_accounts!
