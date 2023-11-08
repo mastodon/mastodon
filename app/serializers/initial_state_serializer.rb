@@ -39,18 +39,18 @@ class InitialStateSerializer < ActiveModel::Serializer
 
     if object.current_account
       store[:me]                = object.current_account.id.to_s
-      store[:unfollow_modal]    = object.current_account.user.setting_unfollow_modal
-      store[:boost_modal]       = object.current_account.user.setting_boost_modal
-      store[:delete_modal]      = object.current_account.user.setting_delete_modal
-      store[:auto_play_gif]     = object.current_account.user.setting_auto_play_gif
-      store[:display_media]     = object.current_account.user.setting_display_media
-      store[:expand_spoilers]   = object.current_account.user.setting_expand_spoilers
-      store[:reduce_motion]     = object.current_account.user.setting_reduce_motion
-      store[:disable_swiping]   = object.current_account.user.setting_disable_swiping
-      store[:advanced_layout]   = object.current_account.user.setting_advanced_layout
-      store[:use_blurhash]      = object.current_account.user.setting_use_blurhash
-      store[:use_pending_items] = object.current_account.user.setting_use_pending_items
-      store[:show_trends]       = Setting.trends && object.current_account.user.setting_trends
+      store[:unfollow_modal]    = object_account_user.setting_unfollow_modal
+      store[:boost_modal]       = object_account_user.setting_boost_modal
+      store[:delete_modal]      = object_account_user.setting_delete_modal
+      store[:auto_play_gif]     = object_account_user.setting_auto_play_gif
+      store[:display_media]     = object_account_user.setting_display_media
+      store[:expand_spoilers]   = object_account_user.setting_expand_spoilers
+      store[:reduce_motion]     = object_account_user.setting_reduce_motion
+      store[:disable_swiping]   = object_account_user.setting_disable_swiping
+      store[:advanced_layout]   = object_account_user.setting_advanced_layout
+      store[:use_blurhash]      = object_account_user.setting_use_blurhash
+      store[:use_pending_items] = object_account_user.setting_use_pending_items
+      store[:show_trends]       = Setting.trends && object_account_user.setting_trends
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media
@@ -71,9 +71,9 @@ class InitialStateSerializer < ActiveModel::Serializer
 
     if object.current_account
       store[:me]                = object.current_account.id.to_s
-      store[:default_privacy]   = object.visibility || object.current_account.user.setting_default_privacy
-      store[:default_sensitive] = object.current_account.user.setting_default_sensitive
-      store[:default_language]  = object.current_account.user.preferred_posting_language
+      store[:default_privacy]   = object.visibility || object_account_user.setting_default_privacy
+      store[:default_sensitive] = object_account_user.setting_default_sensitive
+      store[:default_language]  = object_account_user.preferred_posting_language
     end
 
     store[:text] = object.text if object.text
@@ -107,6 +107,10 @@ class InitialStateSerializer < ActiveModel::Serializer
   end
 
   private
+
+  def object_account_user
+    object.current_account.user
+  end
 
   def serialized_resource(resource)
     ActiveModelSerializers::SerializableResource.new(resource, serializer: REST::AccountSerializer)
