@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PollValidator, type: :validator do
+RSpec.describe PollValidator do
   describe '#validate' do
     before do
       validator.validate(poll)
