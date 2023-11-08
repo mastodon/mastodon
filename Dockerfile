@@ -232,6 +232,10 @@ COPY --from=build-bundler /opt/mastodon/ /opt/mastodon/
 COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
 
 RUN \
+# Precompile bootsnap code for faster Rails startup
+  bundle exec bootsnap precompile --gemfile app/ lib/;
+
+RUN \
 # Test ImageMagick and ffmpeg availablity
   convert -version; \
   ffmpeg -version; \
