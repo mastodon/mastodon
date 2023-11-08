@@ -71,26 +71,6 @@ RSpec/AnyInstance:
 RSpec/ExampleLength:
   Max: 22
 
-# Configuration parameters: AssignmentOnly.
-RSpec/InstanceVariable:
-  Exclude:
-    - 'spec/controllers/api/v1/streaming_controller_spec.rb'
-    - 'spec/controllers/auth/confirmations_controller_spec.rb'
-    - 'spec/controllers/auth/passwords_controller_spec.rb'
-    - 'spec/controllers/auth/sessions_controller_spec.rb'
-    - 'spec/controllers/concerns/export_controller_concern_spec.rb'
-    - 'spec/controllers/home_controller_spec.rb'
-    - 'spec/controllers/settings/two_factor_authentication/webauthn_credentials_controller_spec.rb'
-    - 'spec/controllers/statuses_cleanup_controller_spec.rb'
-    - 'spec/models/concerns/account_finder_concern_spec.rb'
-    - 'spec/models/concerns/account_interactions_spec.rb'
-    - 'spec/models/public_feed_spec.rb'
-    - 'spec/serializers/activitypub/note_serializer_spec.rb'
-    - 'spec/serializers/activitypub/update_poll_serializer_spec.rb'
-    - 'spec/services/remove_status_service_spec.rb'
-    - 'spec/services/search_service_spec.rb'
-    - 'spec/services/unblock_domain_service_spec.rb'
-
 RSpec/LetSetup:
   Exclude:
     - 'spec/controllers/api/v1/accounts/statuses_controller_spec.rb'
