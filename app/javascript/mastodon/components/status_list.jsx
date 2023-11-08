@@ -77,6 +77,14 @@ export default class StatusList extends ImmutablePureComponent {
         return;
       }
       element = article.querySelector(".focusable");
+
+      // This happens when the article contains a LoadGap element. We just want
+      // to stop the navigation there so that the user does not erroneously skip
+      // over it.
+      if (element === null &&
+          article.querySelector(".load-more.load-gap") !== null) {
+        return;
+      }
     }
 
     if (align_top && container.scrollTop > element.offsetTop) {
