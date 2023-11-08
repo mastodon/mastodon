@@ -81,10 +81,6 @@ RUN \
 # Set /opt/mastodon as working directory
 WORKDIR /opt/mastodon
 
-# Copy Ruby and Node package configuration files from build system to container
-# COPY Gemfile* package.json yarn.lock /opt/mastodon/
-COPY . /opt/mastodon/
-
 # hadolint ignore=DL3008,DL3005
 RUN \
 # Mount Apt cache and lib directories from Docker buildx caches
@@ -153,6 +149,9 @@ FROM build as build-bundler
 
 ARG TARGETPLATFORM
 
+# Copy Gemfile config into working directory
+COPY Gemfile* /opt/mastodon/
+
 RUN \
 # Mount Ruby Gem caches
 --mount=type=cache,id="gem-cache-${TARGETPLATFORM}",target=/usr/local/bundle/cache/,sharing=locked \
@@ -172,6 +171,10 @@ FROM build as build-node
 
 ARG TARGETPLATFORM
 
+# Copy Node package configuration files into working directory
+COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
+COPY .yarn /opt/mastodon/.yarn
+
 # hadolint ignore=DL3008
 RUN \
 --mount=type=cache,id="corepack-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/corepack,sharing=locked \
@@ -181,6 +184,9 @@ RUN \
 
 # Create temporary assets build layer from build layer
 FROM build as build-assets
+
+# Copy all sources into working directory
+COPY . /opt/mastodon/
 
 # Copy bundler and node packages from build layer to container
 COPY --from=build-bundler /opt/mastodon /opt/mastodon/
