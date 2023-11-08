@@ -100,47 +100,80 @@ class FetchLinkCardService < BaseService
   end
 
   def attempt_oembed
-    service         = FetchOEmbedService.new
-    url_domain      = Addressable::URI.parse(@url).normalized_host
-    cached_endpoint = Rails.cache.read("oembed_endpoint:#{url_domain}")
-
-    embed   = service.call(@url, cached_endpoint: cached_endpoint) unless cached_endpoint.nil?
-    embed ||= service.call(@url, html: html) unless html.nil?
+    embed = embed_from_oembed_cache_or_html
 
     return false if embed.nil?
-
-    url = Addressable::URI.parse(service.endpoint_url)
 
     @card.type          = embed[:type]
     @card.title         = embed[:title]         || ''
     @card.author_name   = embed[:author_name]   || ''
-    @card.author_url    = embed[:author_url].present? ? (url + embed[:author_url]).to_s : ''
+    @card.author_url    = embed[:author_url].present? ? (parsed_endpoint_url + embed[:author_url]).to_s : ''
     @card.provider_name = embed[:provider_name] || ''
-    @card.provider_url  = embed[:provider_url].present? ? (url + embed[:provider_url]).to_s : ''
+    @card.provider_url  = embed[:provider_url].present? ? (parsed_endpoint_url + embed[:provider_url]).to_s : ''
     @card.width         = 0
     @card.height        = 0
 
     case @card.type
     when 'link'
-      @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
+      assign_card_attributes_for_link(embed)
     when 'photo'
       return false if embed[:url].blank?
 
-      @card.embed_url        = (url + embed[:url]).to_s
-      @card.image_remote_url = (url + embed[:url]).to_s
-      @card.width            = embed[:width].presence  || 0
-      @card.height           = embed[:height].presence || 0
+      assign_card_attributes_for_photo(embed)
     when 'video'
-      @card.width            = embed[:width].presence  || 0
-      @card.height           = embed[:height].presence || 0
-      @card.html             = Sanitize.fragment(embed[:html], Sanitize::Config::MASTODON_OEMBED)
-      @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
+      assign_card_attributes_for_video(embed)
     when 'rich'
       # Most providers rely on <script> tags, which is a no-no
       return false
     end
 
     @card.save_with_optional_image!
+  end
+
+  def assign_card_attributes_for_link(embed)
+    @card.image_remote_url = (parsed_endpoint_url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
+  end
+
+  def assign_card_attributes_for_photo(embed)
+    @card.embed_url = (parsed_endpoint_url + embed[:url]).to_s
+    @card.image_remote_url = (parsed_endpoint_url + embed[:url]).to_s
+    @card.width = embed[:width].presence || 0
+    @card.height = embed[:height].presence || 0
+  end
+
+  def assign_card_attributes_for_video(embed)
+    @card.width = embed[:width].presence || 0
+    @card.height = embed[:height].presence || 0
+    @card.html = Sanitize.fragment(embed[:html], Sanitize::Config::MASTODON_OEMBED)
+    @card.image_remote_url = (parsed_endpoint_url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
+  end
+
+  def embed_from_oembed_cache_or_html
+    embed_from_cached_endpoint || embed_from_html
+  end
+
+  def parsed_endpoint_url
+    @parsed_endpoint_url ||= Addressable::URI.parse(oembed_service.endpoint_url)
+  end
+
+  def embed_from_cached_endpoint
+    oembed_service.call(@url, cached_endpoint: cached_oembed_endpoint) unless cached_oembed_endpoint.nil?
+  end
+
+  def embed_from_html
+    oembed_service.call(@url, html: html) unless html.nil?
+  end
+
+  def cached_oembed_endpoint
+    Rails.cache.read("oembed_endpoint:#{url_domain}")
+  end
+
+  def oembed_service
+    @oembed_service ||= FetchOEmbedService.new
+  end
+
+  def url_domain
+    Addressable::URI.parse(@url).normalized_host
   end
 
   def attempt_opengraph
