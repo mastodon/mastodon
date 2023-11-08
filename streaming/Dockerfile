@@ -49,8 +49,8 @@ RUN \
 WORKDIR /opt/mastodon
 
 # Copy Node package configuration files from build system to container
-COPY package.json *yarn* *pnpm* /opt/mastodon/
-# COPY .yarn /opt/mastodon/.yarn
+COPY package.json *yarn* /opt/mastodon/
+COPY .yarn /opt/mastodon/.yarn
 # Copy Streaming source code from build system to container
 COPY ./streaming /opt/mastodon/streaming
 
@@ -58,35 +58,17 @@ RUN \
 # Mount local Corepack and Yarn caches from Docker buildx caches
 --mount=type=cache,id="corepack-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/corepack,sharing=locked \
 --mount=type=cache,id="yarn-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/yarn,sharing=locked \
+  # Configure Corepack
   rm /usr/local/bin/yarn*; \
   corepack enable; \
-  # Configure Corepack
-  if [ -e .yarnrc.yml ]; then \
-    # Yarn 3 detected
-    corepack prepare --activate; \
-  elif [ -e pnpm-lock.yaml ]; then \
-    # NPM detected
-    corepack prepare --activate; \
-  else \
-    # Yarn 1 detected
-    yarn set version classic; \
-  fi;
+  corepack prepare --activate;
 
 RUN \
 # Mount Corepack and Yarn caches from Docker buildx caches
 --mount=type=cache,id="corepack-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/corepack,sharing=locked \
 --mount=type=cache,id="yarn-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/yarn,sharing=locked \
-# Configure Node package manager
-  if [ -e .yarnrc.yml ]; then \
-    # Yarn 3 detected
-    yarn workspaces focus --all --production; \
-  elif [ -e pnpm-lock.yaml ]; then \
-    # NPM detected
-    pnpm install --frozen-lockfile --prod; \
-  else \
-    # Yarn 1 detected
-    yarn install --pure-lockfile --production --network-timeout 600000; \
-  fi;
+# Install Node packages
+  yarn workspaces focus --all --production;
 
 # Set the running user for resulting container
 USER mastodon
