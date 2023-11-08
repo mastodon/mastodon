@@ -89,11 +89,11 @@ class InitialStateSerializer < ActiveModel::Serializer
       associations: [:account_stat, :user, { moved_to_account: [:account_stat, :user] }]
     )
 
-    store[object.current_account.id.to_s]  = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
-    store[object.admin.id.to_s]            = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin
-    store[object.owner.id.to_s]            = ActiveModelSerializers::SerializableResource.new(object.owner, serializer: REST::AccountSerializer) if object.owner
-    store[object.disabled_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.disabled_account, serializer: REST::AccountSerializer) if object.disabled_account
-    store[object.moved_to_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.moved_to_account, serializer: REST::AccountSerializer) if object.moved_to_account
+    store[object.current_account.id.to_s]  = serialized_resource(object.current_account) if object.current_account
+    store[object.admin.id.to_s]            = serialized_resource(object.admin) if object.admin
+    store[object.owner.id.to_s]            = serialized_resource(object.owner) if object.owner
+    store[object.disabled_account.id.to_s] = serialized_resource(object.disabled_account) if object.disabled_account
+    store[object.moved_to_account.id.to_s] = serialized_resource(object.moved_to_account) if object.moved_to_account
 
     store
   end
@@ -107,6 +107,10 @@ class InitialStateSerializer < ActiveModel::Serializer
   end
 
   private
+
+  def serialized_resource(resource)
+    ActiveModelSerializers::SerializableResource.new(resource, serializer: REST::AccountSerializer)
+  end
 
   def instance_presenter
     @instance_presenter ||= InstancePresenter.new
