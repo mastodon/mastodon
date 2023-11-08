@@ -13,7 +13,6 @@ ENV DEBIAN_FRONTEND="noninteractive" \
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 WORKDIR /opt/mastodon
-COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
 # hadolint ignore=DL3008
 RUN apt-get update && \
@@ -36,8 +35,14 @@ RUN apt-get update && \
     bundle config set --local deployment 'true' && \
     bundle config set --local without 'development test' && \
     bundle config set silence_root_warning true && \
-    bundle install -j"$(nproc)" && \
-    yarn install --pure-lockfile --production --network-timeout 600000 && \
+    corepack enable
+
+COPY Gemfile* package.json yarn.lock .yarnrc.yml /opt/mastodon/
+COPY .yarn /opt/mastodon/.yarn
+
+RUN bundle install -j"$(nproc)"
+
+RUN yarn workspaces focus --all --production && \
     yarn cache clean
 
 FROM node:${NODE_VERSION}
@@ -78,7 +83,8 @@ RUN apt-get update && \
         tzdata \
         libreadline8 \
         tini && \
-    ln -s /opt/mastodon /mastodon
+    ln -s /opt/mastodon /mastodon && \
+    corepack enable
 
 # Note: no, cleaning here since Debian does this automatically
 # See the file /etc/apt/apt.conf.d/docker-clean within the Docker image's filesystem
