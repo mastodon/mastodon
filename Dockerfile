@@ -146,16 +146,7 @@ RUN \
 # Configure Corepack
   rm /usr/local/bin/yarn*; \
   corepack enable; \
-  if [ -e .yarnrc.yml ]; then \
-    # Yarn 3 detected
-    corepack prepare --activate; \
-  elif [ -e pnpm-lock.yaml ]; then \
-    # NPM detected
-    corepack prepare --activate; \
-  else \
-    # Yarn 1 detected
-    yarn set version classic; \
-  fi;
+  corepack prepare --activate;
 
 # Create temporary bundler specific build layer from build layer
 FROM build as build-bundler
@@ -185,17 +176,8 @@ ARG TARGETPLATFORM
 RUN \
 --mount=type=cache,id="corepack-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/corepack,sharing=locked \
 --mount=type=cache,id="yarn-cache-${TARGETPLATFORM}",target=/usr/local/share/.cache/yarn,sharing=locked \
-# Configure Node package manager
-  if [ -e .yarnrc.yml ]; then \
-    # Yarn 3 detected
-    yarn workspaces focus --all --production; \
-  elif [ -e pnpm-lock.yaml ]; then \
-    # NPM detected
-    pnpm install --frozen-lockfile --prod; \
-  else \
-    # Yarn 1 detected
-    yarn install --pure-lockfile --production --network-timeout 600000; \
-  fi;
+# Install Node packages
+  yarn workspaces focus --all --production;
 
 # Create temporary assets build layer from build layer
 FROM build as build-assets
