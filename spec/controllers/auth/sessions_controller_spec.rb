@@ -378,7 +378,7 @@ RSpec.describe Auth::SessionsController do
 
         context 'when using a valid webauthn credential' do
           before do
-            @controller.session[:webauthn_challenge] = challenge
+            controller.session[:webauthn_challenge] = challenge
 
             post :create, params: { user: { credential: fake_credential } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
