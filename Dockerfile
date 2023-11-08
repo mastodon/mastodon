@@ -112,6 +112,10 @@ RUN \
 # Create temporary build layer from base image
 FROM ruby as build
 
+# Copy Node package configuration files into working directory
+COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
+COPY .yarn /opt/mastodon/.yarn
+
 COPY --from=node /usr/local/bin /usr/local/bin
 COPY --from=node /usr/local/lib /usr/local/lib
 
@@ -140,7 +144,7 @@ RUN \
 
 RUN \
 # Configure Corepack
-  rm /usr/local/bin/yarn*; \
+  # rm /usr/local/bin/yarn*; \
   corepack enable; \
   corepack prepare --activate;
 
