@@ -76,3 +76,32 @@ class StreamingServerManager
     @running_thread.join
   end
 end
+
+RSpec.configure do |config|
+  config.before :suite do
+    if streaming_examples_present?
+      # Compile assets
+      Webpacker.compile
+
+      # Start the node streaming server
+      streaming_server_manager.start(port: STREAMING_PORT)
+    end
+  end
+
+  config.after :suite do
+    if streaming_examples_present?
+      # Stop the node streaming server
+      streaming_server_manager.stop
+    end
+  end
+
+  private
+
+  def streaming_server_manager
+    @streaming_server_manager ||= StreamingServerManager.new
+  end
+
+  def streaming_examples_present?
+    RUN_SYSTEM_SPECS
+  end
+end
