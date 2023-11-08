@@ -144,7 +144,7 @@ RUN \
 
 RUN \
 # Configure Corepack
-  # rm /usr/local/bin/yarn*; \
+  rm /usr/local/bin/yarn*; \
   corepack enable; \
   corepack prepare --activate;
 
