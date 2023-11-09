@@ -26,7 +26,7 @@ ENV BIND="0.0.0.0"
 
 ARG TARGETPLATFORM
 
-RUN echo "Target platform is ${TARGETPLATFORM}
+RUN echo "Target platform is ${TARGETPLATFORM}"
 
 RUN \
 # Sets timezone
