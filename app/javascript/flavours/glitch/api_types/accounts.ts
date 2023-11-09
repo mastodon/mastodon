@@ -43,4 +43,5 @@ export interface ApiAccountJSON {
   suspended?: boolean;
   limited?: boolean;
   memorial?: boolean;
+  hide_collections: boolean;
 }
