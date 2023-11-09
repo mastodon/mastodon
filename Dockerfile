@@ -242,7 +242,7 @@ RUN \
   bundle exec bootsnap precompile --gemfile app/ lib/;
 
 RUN \
-# Smoke test ImageMagick and ffmpeg availablity
+# Smoke test availablity
   convert -version; \
   ffmpeg -version; \
   ffprobe -version; \
