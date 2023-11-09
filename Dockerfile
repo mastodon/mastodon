@@ -242,10 +242,6 @@ RUN \
   bundle exec bootsnap precompile --gemfile app/ lib/;
 
 RUN \
-# Smoke test availablity
-  convert -version; \
-  ffmpeg -version; \
-  ffprobe -version; \
 # Pre-create and chown system volume to Mastodon user
   mkdir -p /opt/mastodon/public/system; \
   chown mastodon:mastodon /opt/mastodon/public/system;
