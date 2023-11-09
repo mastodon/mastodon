@@ -16,12 +16,12 @@ import { getAccountHidden } from 'mastodon/selectors';
 import { lookupAccount, fetchAccount } from '../../actions/accounts';
 import { fetchFeaturedTags } from '../../actions/featured_tags';
 import { expandAccountFeaturedTimeline, expandAccountTimeline, connectTimeline, disconnectTimeline } from '../../actions/timelines';
-import ColumnBackButton from '../../components/column_back_button';
+import { ColumnBackButton } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import StatusList from '../../components/status_list';
 import Column from '../ui/components/column';
 
-import LimitedAccountHint from './components/limited_account_hint';
+import { LimitedAccountHint } from './components/limited_account_hint';
 import HeaderContainer from './containers/header_container';
 
 const emptyList = ImmutableList();
@@ -184,7 +184,7 @@ class AccountTimeline extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton multiColumn={multiColumn} />
+        <ColumnBackButton />
 
         <StatusList
           prepend={<HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />}

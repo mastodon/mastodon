@@ -16,8 +16,9 @@ describe ActivityPub::DistributePollUpdateWorker do
     end
 
     it 'delivers to followers' do
-      expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[kind_of(String), account.id, 'http://example.com']])
-      subject.perform(status.id)
+      expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[kind_of(String), account.id, 'http://example.com']]) do
+        subject.perform(status.id)
+      end
     end
   end
 end

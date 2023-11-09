@@ -10,7 +10,7 @@ RSpec.describe FeedManager do
     end
   end
 
-  it 'tracks at least as many statuses as reblogs', skip_stub: true do
+  it 'tracks at least as many statuses as reblogs', :skip_stub do
     expect(FeedManager::REBLOG_FALLOFF).to be <= FeedManager::MAX_ITEMS
   end
 
@@ -522,6 +522,44 @@ RSpec.describe FeedManager do
 
       deletion = Oj.dump(event: :delete, payload: status.id.to_s)
       expect(redis).to have_received(:publish).with("timeline:#{receiver.id}", deletion)
+    end
+  end
+
+  describe '#unmerge_tag_from_home' do
+    let(:receiver) { Fabricate(:account) }
+    let(:tag) { Fabricate(:tag) }
+
+    it 'leaves a tagged status' do
+      status = Fabricate(:status)
+      status.tags << tag
+      described_class.instance.push_to_home(receiver, status)
+
+      described_class.instance.unmerge_tag_from_home(tag, receiver)
+
+      expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to_not include(status.id.to_s)
+    end
+
+    it 'remains a tagged status written by receiver\'s followee' do
+      followee = Fabricate(:account)
+      receiver.follow!(followee)
+
+      status = Fabricate(:status, account: followee)
+      status.tags << tag
+      described_class.instance.push_to_home(receiver, status)
+
+      described_class.instance.unmerge_tag_from_home(tag, receiver)
+
+      expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to include(status.id.to_s)
+    end
+
+    it 'remains a tagged status written by receiver' do
+      status = Fabricate(:status, account: receiver)
+      status.tags << tag
+      described_class.instance.push_to_home(receiver, status)
+
+      described_class.instance.unmerge_tag_from_home(tag, receiver)
+
+      expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to include(status.id.to_s)
     end
   end
 

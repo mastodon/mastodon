@@ -16,6 +16,7 @@ import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodo
 import { INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
 import PictureInPicture from 'mastodon/features/picture_in_picture';
 import { layoutFromWindow } from 'mastodon/is_mobile';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
@@ -63,8 +64,8 @@ import {
   About,
   PrivacyPolicy,
 } from './util/async-components';
+import { ColumnsContextProvider } from './util/columns_context';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
-
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
@@ -178,66 +179,70 @@ class SwitchingColumnsArea extends PureComponent {
     }
 
     return (
-      <ColumnsAreaContainer ref={this.setRef} singleColumn={singleColumn}>
-        <WrappedSwitch>
-          {redirect}
+      <ColumnsContextProvider multiColumn={!singleColumn}>
+        <ColumnsAreaContainer ref={this.setRef} singleColumn={singleColumn}>
+          <WrappedSwitch>
+            {redirect}
 
-          {singleColumn ? <Redirect from='/deck' to='/home' exact /> : null}
-          {singleColumn && pathName.startsWith('/deck/') ? <Redirect from={pathName} to={pathName.slice(5)} /> : null}
-          {!singleColumn && pathName === '/getting-started' ? <Redirect from='/getting-started' to='/deck/getting-started' exact /> : null}
+            {singleColumn ? <Redirect from='/deck' to='/home' exact /> : null}
+            {singleColumn && pathName.startsWith('/deck/') ? <Redirect from={pathName} to={pathName.slice(5)} /> : null}
+            {/* Redirect old bookmarks (without /deck) with home-like routes to the advanced interface */}
+            {!singleColumn && pathName === '/getting-started' ? <Redirect from='/getting-started' to='/deck/getting-started' exact /> : null}
+            {!singleColumn && pathName === '/home' ? <Redirect from='/home' to='/deck/getting-started' exact /> : null}
 
-          <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
-          <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
-          <WrappedRoute path='/about' component={About} content={children} />
-          <WrappedRoute path='/privacy-policy' component={PrivacyPolicy} content={children} />
+            <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
+            <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
+            <WrappedRoute path='/about' component={About} content={children} />
+            <WrappedRoute path='/privacy-policy' component={PrivacyPolicy} content={children} />
 
-          <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
-          <Redirect from='/timelines/public' to='/public' exact />
-          <Redirect from='/timelines/public/local' to='/public/local' exact />
-          <WrappedRoute path='/public' exact component={Firehose} componentParams={{ feedType: 'public' }} content={children} />
-          <WrappedRoute path='/public/local' exact component={Firehose} componentParams={{ feedType: 'community' }} content={children} />
-          <WrappedRoute path='/public/remote' exact component={Firehose} componentParams={{ feedType: 'public:remote' }} content={children} />
-          <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
-          <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
-          <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
-          <WrappedRoute path='/notifications' component={Notifications} content={children} />
-          <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
+            <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
+            <Redirect from='/timelines/public' to='/public' exact />
+            <Redirect from='/timelines/public/local' to='/public/local' exact />
+            <WrappedRoute path='/public' exact component={Firehose} componentParams={{ feedType: 'public' }} content={children} />
+            <WrappedRoute path='/public/local' exact component={Firehose} componentParams={{ feedType: 'community' }} content={children} />
+            <WrappedRoute path='/public/remote' exact component={Firehose} componentParams={{ feedType: 'public:remote' }} content={children} />
+            <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
+            <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
+            <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
+            <WrappedRoute path='/notifications' component={Notifications} content={children} />
+            <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
 
-          <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
-          <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
+            <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
+            <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
-          <WrappedRoute path='/start' exact component={Onboarding} content={children} />
-          <WrappedRoute path='/directory' component={Directory} content={children} />
-          <WrappedRoute path={['/explore', '/search']} component={Explore} content={children} />
-          <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
+            <WrappedRoute path='/start' exact component={Onboarding} content={children} />
+            <WrappedRoute path='/directory' component={Directory} content={children} />
+            <WrappedRoute path={['/explore', '/search']} component={Explore} content={children} />
+            <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
 
-          <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
-          <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
-          <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
-          <WrappedRoute path={['/accounts/:id/followers', '/users/:acct/followers', '/@:acct/followers']} component={Followers} content={children} />
-          <WrappedRoute path={['/accounts/:id/following', '/users/:acct/following', '/@:acct/following']} component={Following} content={children} />
-          <WrappedRoute path={['/@:acct/media', '/accounts/:id/media']} component={AccountGallery} content={children} />
-          <WrappedRoute path='/@:acct/:statusId' exact component={Status} content={children} />
-          <WrappedRoute path='/@:acct/:statusId/reblogs' component={Reblogs} content={children} />
-          <WrappedRoute path='/@:acct/:statusId/favourites' component={Favourites} content={children} />
+            <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
+            <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
+            <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
+            <WrappedRoute path={['/accounts/:id/followers', '/users/:acct/followers', '/@:acct/followers']} component={Followers} content={children} />
+            <WrappedRoute path={['/accounts/:id/following', '/users/:acct/following', '/@:acct/following']} component={Following} content={children} />
+            <WrappedRoute path={['/@:acct/media', '/accounts/:id/media']} component={AccountGallery} content={children} />
+            <WrappedRoute path='/@:acct/:statusId' exact component={Status} content={children} />
+            <WrappedRoute path='/@:acct/:statusId/reblogs' component={Reblogs} content={children} />
+            <WrappedRoute path='/@:acct/:statusId/favourites' component={Favourites} content={children} />
 
-          {/* Legacy routes, cannot be easily factored with other routes because they share a param name */}
-          <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
-          <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
-          <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
-          <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
-          <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
+            {/* Legacy routes, cannot be easily factored with other routes because they share a param name */}
+            <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
+            <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
+            <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
+            <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
+            <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
 
-          <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
-          <WrappedRoute path='/blocks' component={Blocks} content={children} />
-          <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
-          <WrappedRoute path='/followed_tags' component={FollowedTags} content={children} />
-          <WrappedRoute path='/mutes' component={Mutes} content={children} />
-          <WrappedRoute path='/lists' component={Lists} content={children} />
+            <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
+            <WrappedRoute path='/blocks' component={Blocks} content={children} />
+            <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
+            <WrappedRoute path='/followed_tags' component={FollowedTags} content={children} />
+            <WrappedRoute path='/mutes' component={Mutes} content={children} />
+            <WrappedRoute path='/lists' component={Lists} content={children} />
 
-          <Route component={BundleColumnError} />
-        </WrappedSwitch>
-      </ColumnsAreaContainer>
+            <Route component={BundleColumnError} />
+          </WrappedSwitch>
+        </ColumnsAreaContainer>
+      </ColumnsContextProvider>
     );
   }
 
@@ -246,7 +251,6 @@ class SwitchingColumnsArea extends PureComponent {
 class UI extends PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object.isRequired,
     identity: PropTypes.object.isRequired,
   };
 
@@ -257,12 +261,12 @@ class UI extends PureComponent {
     hasComposingText: PropTypes.bool,
     hasMediaAttachments: PropTypes.bool,
     canUploadMore: PropTypes.bool,
-    location: PropTypes.object,
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
     layout: PropTypes.string.isRequired,
     firstLaunch: PropTypes.bool,
     username: PropTypes.string,
+    ...WithRouterPropTypes,
   };
 
   state = {
@@ -359,7 +363,7 @@ class UI extends PureComponent {
 
   handleServiceWorkerPostMessage = ({ data }) => {
     if (data.type === 'navigate') {
-      this.context.router.history.push(data.path);
+      this.props.history.push(data.path);
     } else {
       console.warn('Unknown message type:', data.type);
     }
@@ -480,12 +484,12 @@ class UI extends PureComponent {
   };
 
   handleHotkeyBack = () => {
-    const { router } = this.context;
+    const { history } = this.props;
 
-    if (router.history.location?.state?.fromMastodon) {
-      router.history.goBack();
+    if (history.location?.state?.fromMastodon) {
+      history.goBack();
     } else {
-      router.history.push('/');
+      history.push('/');
     }
   };
 
@@ -495,58 +499,58 @@ class UI extends PureComponent {
 
   handleHotkeyToggleHelp = () => {
     if (this.props.location.pathname === '/keyboard-shortcuts') {
-      this.context.router.history.goBack();
+      this.props.history.goBack();
     } else {
-      this.context.router.history.push('/keyboard-shortcuts');
+      this.props.history.push('/keyboard-shortcuts');
     }
   };
 
   handleHotkeyGoToHome = () => {
-    this.context.router.history.push('/home');
+    this.props.history.push('/home');
   };
 
   handleHotkeyGoToNotifications = () => {
-    this.context.router.history.push('/notifications');
+    this.props.history.push('/notifications');
   };
 
   handleHotkeyGoToLocal = () => {
-    this.context.router.history.push('/public/local');
+    this.props.history.push('/public/local');
   };
 
   handleHotkeyGoToFederated = () => {
-    this.context.router.history.push('/public');
+    this.props.history.push('/public');
   };
 
   handleHotkeyGoToDirect = () => {
-    this.context.router.history.push('/conversations');
+    this.props.history.push('/conversations');
   };
 
   handleHotkeyGoToStart = () => {
-    this.context.router.history.push('/getting-started');
+    this.props.history.push('/getting-started');
   };
 
   handleHotkeyGoToFavourites = () => {
-    this.context.router.history.push('/favourites');
+    this.props.history.push('/favourites');
   };
 
   handleHotkeyGoToPinned = () => {
-    this.context.router.history.push('/pinned');
+    this.props.history.push('/pinned');
   };
 
   handleHotkeyGoToProfile = () => {
-    this.context.router.history.push(`/@${this.props.username}`);
+    this.props.history.push(`/@${this.props.username}`);
   };
 
   handleHotkeyGoToBlocked = () => {
-    this.context.router.history.push('/blocks');
+    this.props.history.push('/blocks');
   };
 
   handleHotkeyGoToMuted = () => {
-    this.context.router.history.push('/mutes');
+    this.props.history.push('/mutes');
   };
 
   handleHotkeyGoToRequests = () => {
-    this.context.router.history.push('/follow_requests');
+    this.props.history.push('/follow_requests');
   };
 
   render () {

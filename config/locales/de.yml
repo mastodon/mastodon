@@ -534,6 +534,7 @@ de:
       total_reported: Beschwerden über sie
       total_storage: Medienanhänge
       totals_time_period_hint_html: Die unten angezeigten Summen enthalten Daten für alle Zeiten.
+      unknown_instance: Auf diesem Server gibt es derzeit keinen Eintrag dieser Domain.
     invites:
       deactivate_all: Alle deaktivieren
       filter:
@@ -746,7 +747,7 @@ de:
         title: Neue Nutzer*innen müssen ein CAPTCHA lösen, um das Konto zu bestätigen
       content_retention:
         preamble: Lege fest, wie lange Inhalte von Nutzer*innen auf deinem Mastodon-Server gespeichert bleiben.
-        title: Aufbewahrung von Inhalten
+        title: Cache & Archive
       default_noindex:
         desc_html: Betrifft alle Profile, die diese Einstellung bei sich nicht geändert haben
         title: Profile standardmäßig von der Suchmaschinen-Indizierung ausnehmen
@@ -1040,6 +1041,14 @@ de:
       hint_html: Fast geschafft! Wir müssen uns vergewissern, dass du ein Mensch bist (damit wir Spam verhindern können!). Bitte löse das CAPTCHA und klicke auf „Weiter“.
       title: Sicherheitsüberprüfung
     confirmations:
+      awaiting_review: Deine E-Mail-Adresse wurde bestätigt und das Team von %{domain} überprüft nun deine Registrierung. Sobald es dein Konto genehmigt, wirst du eine E-Mail erhalten.
+      awaiting_review_title: Deine Registrierung wird überprüft
+      clicking_this_link: Klick auf diesen Link
+      login_link: anmelden
+      proceed_to_login_html: Du kannst dich nun %{login_link}.
+      redirect_to_app_html: Du hättest zur <strong>%{app_name}</strong>-App weitergeleitet werden sollen. Wenn das nicht geschehen ist, versuche es mit einem %{clicking_this_link} oder kehre manuell zur App zurück.
+      registration_complete: Deine Registrierung auf %{domain} ist nun abgeschlossen!
+      welcome_title: Willkommen, %{name}!
       wrong_email_hint: Sollte diese E-Mail-Adresse nicht korrekt sein, kannst du sie in den Kontoeinstellungen ändern.
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto endgültig löschen möchtest, kannst du das <a href="%{path}">hier vornehmen</a>. Du musst dies zusätzlich bestätigen.
@@ -1101,6 +1110,7 @@ de:
       functional: Dein Konto ist voll funktionsfähig.
       pending: Die Prüfung deiner Bewerbung steht noch aus. Dies kann einige Zeit in Anspruch nehmen. Sobald deine Bewerbung genehmigt wurde, erhältst du eine E-Mail.
       redirecting_to: Dein Konto ist inaktiv, weil es zu %{acct} umgezogen ist.
+      self_destruct: Da %{domain} den Betrieb einstellen wird, wirst du nur begrenzten Zugriff auf dein Konto haben.
       view_strikes: Vorherige Verstöße deines Kontos ansehen
     too_fast: Formular zu schnell übermittelt. Bitte versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
@@ -1570,6 +1580,9 @@ de:
     over_daily_limit: Du hast das Limit von %{limit} geplanten Beiträgen für heute erreicht
     over_total_limit: Du hast das Limit für geplante Beiträge, das %{limit} beträgt, erreicht
     too_soon: Das geplante Datum muss in der Zukunft liegen
+  self_destruct:
+    lead_html: Bedauerlicherweise wird <strong>%{domain}</strong> den Betrieb für immer einstellen. Wenn du dort ein Konto angelegt hast, wirst du es nicht weiter verwenden können. Du kannst allerdings eine Sicherung deiner Daten anfordern.
+    title: Dieser Server wird den Betrieb einstellen
   sessions:
     activity: Letzte Aktivität
     browser: Browser
@@ -1769,7 +1782,7 @@ de:
       subject: Dein Einspruch vom %{date} wurde abgelehnt
       title: Einspruch abgelehnt
     backup_ready:
-      explanation: Du hast eine vollständige Sicherung deines Mastodon-Kontos angefordert. Das Backup kann jetzt heruntergeladen werden!
+      explanation: Du hast eine vollständige Sicherung deines Mastodon-Kontos angefordert. Die Sicherung kann jetzt heruntergeladen werden!
       subject: Dein persönliches Archiv kann heruntergeladen werden
       title: Archiv-Download
     suspicious_sign_in:

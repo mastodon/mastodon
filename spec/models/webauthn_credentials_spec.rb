@@ -37,7 +37,7 @@ RSpec.describe WebauthnCredential do
     end
 
     it 'is invalid if already exist a webauthn credential with the same external id' do
-      existing_webauthn_credential = Fabricate(:webauthn_credential, external_id: '_Typ0ygudDnk9YUVWLQayw')
+      Fabricate(:webauthn_credential, external_id: '_Typ0ygudDnk9YUVWLQayw')
       new_webauthn_credential = Fabricate.build(:webauthn_credential, external_id: '_Typ0ygudDnk9YUVWLQayw')
 
       new_webauthn_credential.valid?
@@ -47,7 +47,7 @@ RSpec.describe WebauthnCredential do
 
     it 'is invalid if user already registered a webauthn credential with the same nickname' do
       user = Fabricate(:user)
-      existing_webauthn_credential = Fabricate(:webauthn_credential, user_id: user.id, nickname: 'USB Key')
+      Fabricate(:webauthn_credential, user_id: user.id, nickname: 'USB Key')
       new_webauthn_credential = Fabricate.build(:webauthn_credential, user_id: user.id, nickname: 'USB Key')
 
       new_webauthn_credential.valid?

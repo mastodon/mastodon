@@ -130,7 +130,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
           it 'stores the challenge on the session' do
             get :options
 
-            expect(@controller.session[:webauthn_challenge]).to be_present
+            expect(controller.session[:webauthn_challenge]).to be_present
           end
 
           it 'does not change webauthn_id' do
@@ -155,7 +155,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
           it 'stores the challenge on the session' do
             get :options
 
-            expect(@controller.session[:webauthn_challenge]).to be_present
+            expect(controller.session[:webauthn_challenge]).to be_present
           end
 
           it 'sets user webauthn_id' do
@@ -218,7 +218,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
 
           context 'when creation succeeds' do
             it 'returns http success' do
-              @controller.session[:webauthn_challenge] = challenge
+              controller.session[:webauthn_challenge] = challenge
 
               post :create, params: { credential: new_webauthn_credential, nickname: nickname }
 
@@ -226,7 +226,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
             end
 
             it 'adds a new credential to user credentials' do
-              @controller.session[:webauthn_challenge] = challenge
+              controller.session[:webauthn_challenge] = challenge
 
               expect do
                 post :create, params: { credential: new_webauthn_credential, nickname: nickname }
@@ -234,7 +234,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
             end
 
             it 'does not change webauthn_id' do
-              @controller.session[:webauthn_challenge] = challenge
+              controller.session[:webauthn_challenge] = challenge
 
               expect do
                 post :create, params: { credential: new_webauthn_credential, nickname: nickname }
@@ -244,7 +244,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
 
           context 'when the nickname is already used' do
             it 'fails' do
-              @controller.session[:webauthn_challenge] = challenge
+              controller.session[:webauthn_challenge] = challenge
 
               post :create, params: { credential: new_webauthn_credential, nickname: 'USB Key' }
 
@@ -264,7 +264,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
             end
 
             it 'fails' do
-              @controller.session[:webauthn_challenge] = challenge
+              controller.session[:webauthn_challenge] = challenge
 
               post :create, params: { credential: new_webauthn_credential, nickname: nickname }
 
@@ -277,7 +277,7 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
         context 'when user have not enabled webauthn' do
           context 'when creation succeeds' do
             it 'creates a webauthn credential' do
-              @controller.session[:webauthn_challenge] = challenge
+              controller.session[:webauthn_challenge] = challenge
 
               expect do
                 post :create, params: { credential: new_webauthn_credential, nickname: nickname }

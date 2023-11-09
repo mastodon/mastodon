@@ -534,6 +534,7 @@ pt-BR:
       total_reported: Denúncias sobre eles
       total_storage: Mídias anexadas
       totals_time_period_hint_html: Os totais exibidos abaixo incluem dados para todo o tempo.
+      unknown_instance: Atualmente não há registros deste domínio neste servidor.
     invites:
       deactivate_all: Desativar todos
       filter:
@@ -1040,6 +1041,14 @@ pt-BR:
       hint_html: Só mais uma coisa! Precisamos confirmar que você é um humano (isso é para que possamos evitar o spam!). Resolva o CAPTCHA abaixo e clique em "Continuar".
       title: Verificação de segurança
     confirmations:
+      awaiting_review: Seu endereço de e-mail foi confirmado! A equipe de %{domain} está agora revisando o seu cadastro. Eles lhe enviarão um e-mail se aprovarem a sua conta!
+      awaiting_review_title: Seu cadastro está sendo analisado
+      clicking_this_link: clicar este link
+      login_link: entrar
+      proceed_to_login_html: Agora você pode prosseguir para %{login_link}.
+      redirect_to_app_html: Você deveria ter sido redirecionado para o aplicativo <strong>%{app_name}</strong>. Se isso não aconteceu, tente %{clicking_this_link} ou volte manualmente para o aplicativo.
+      registration_complete: Seu cadastro no %{domain} foi concluído!
+      welcome_title: Boas vindas, %{name}!
       wrong_email_hint: Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir sua conta, você pode <a href="%{path}">fazer isso aqui</a>. Uma confirmação será solicitada.
@@ -1101,6 +1110,7 @@ pt-BR:
       functional: Sua conta está totalmente operacional.
       pending: Sua solicitação está com revisão pendente por parte de nossa equipe. Você receberá um e-mail se ela for aprovada.
       redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
+      self_destruct: Como %{domain} está se encerrando, você só terá acesso limitado à sua conta.
       view_strikes: Veja os avisos anteriores em relação à sua conta
     too_fast: O formulário foi enviado muito rapidamente, tente novamente.
     use_security_key: Usar chave de segurança
@@ -1570,6 +1580,9 @@ pt-BR:
     over_daily_limit: Você excedeu o limite de %{limit} publicações agendadas para esse dia
     over_total_limit: Você excedeu o limite de %{limit} publicações agendadas
     too_soon: A data agendada precisa ser no futuro
+  self_destruct:
+    lead_html: Infelizmente, <strong>%{domain}</strong> está se encerrando de forma permanente. Se você tem uma conta lá, não poderá continuar a usá-la, mas ainda pode solicitar uma cópia dos seus dados.
+    title: Este servidor está sendo fechado
   sessions:
     activity: Última atividade
     browser: Navegador

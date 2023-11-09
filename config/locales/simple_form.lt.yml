@@ -1,1 +1,45 @@
+---
 lt:
+  simple_form:
+    hints:
+      account:
+        discoverable: Tavo vieši įrašai ir profilis gali būti rodomi arba rekomenduojami įvairiose Mastodon vietose, o profilis gali būti siūlomas kitiems naudotojams.
+        display_name: Tavo pilnas vardas arba smagus vardas.
+        fields: Tavo pagrindinis puslapis, įvardžiai, amžius, bet kas, ko tik nori.
+        indexable: Tavo vieši įrašai gali būti rodomi Mastodon paieškos rezultatuose. Žmonės, kurie bendravo su tavo įrašais, gali jų ieškoti nepriklausomai nuo to.
+        note: 'Gali @paminėti kitus žmones arba #saitažodžius.'
+        show_collections: Žmonės galės peržiūrėti tavo sekimus ir sekėjus. Žmonės, kuriuos seki, matys, kad juos seki, nepaisant to.
+        unlocked: Žmonės galės tave sekti nepaprašę patvirtinimo. Panaikink žymėjimą, jei nori peržiūrėti sekimo prašymus ir pasirinkti, ar priimti, ar atmesti naujus sekėjus.
+      account_warning_preset:
+        text: Gali naudoti įrašų sintaksę, pavyzdžiui, URL adresus, saitažodus ir paminėjimus
+      defaults:
+        header: PNG, GIF arba JPG. Ne daugiau kaip %{size}. Bus sumažintas iki %{dimensions}tšk.
+        inbox_url: Nukopijuok URL adresą iš pradinio puslapio perdavėjo, kurį nori naudoti
+        irreversible: Filtruoti įrašai išnyks negrįžtamai, net jei vėliau filtras bus pašalintas
+        locale: Naudotojo sąsajos kalba, el. laiškai ir stumiamieji pranešimai
+        password: Naudok bent 8 simbolius
+        phrase: Bus suderinta, neatsižvelgiant į teksto korpusą arba įrašo turinio įspėjimą
+        setting_display_media_hide_all: Visada slėpti žiniasklaidą
+        setting_display_media_show_all: Visada rodyti žiniasklaidą
+        setting_use_blurhash: Gradientai pagrįsti paslėptų vaizdų spalvomis, tačiau užgožia bet kokias detales
+        setting_use_pending_items: Slėpti laiko skalės naujienas po paspaudimo, vietoj automatinio kanalo slinkimo
+      featured_tag:
+        name: 'Štai keletas pastaruoju metu dažniausiai saitažodžių, kurių tu naudojai:'
+      form_admin_settings:
+        peers_api_enabled: Domenų pavadinimų sąrašas, su kuriais šis serveris susidūrė fediverse. Čia nėra duomenų apie tai, ar tu bendrauji su tam tikru serveriu, tik apie tai, kad tavo serveris apie jį žino. Tai naudojama tarnybose, kurios renka federacijos statistiką bendrąja prasme.
+        site_contact_email: Kaip žmonės gali su tavimi susisiekti teisiniais ar pagalbos užklausimais.
+        site_contact_username: Kaip žmonės gali tave pasiekti Mastodon.
+        site_extended_description: Bet kokia papildoma informacija, kuri gali būti naudinga lankytojams ir naudotojams. Gali būti struktūrizuota naudojant Markdown sintaksę.
+        trends: Trendai rodo, kurios įrašai, saitažodžiai ir naujienų istorijos tavo serveryje sulaukia didžiausio susidomėjimo.
+      sessions:
+        webauthn: Jei tai USB raktas, būtinai jį įkišk ir, jei reikia, paliesk.
+      settings:
+        indexable: Tavo profilio puslapis gali būti rodomas paieškos rezultatuose Google, Bing ir kituose.
+    labels:
+      featured_tag:
+        name: Saitažodis
+      tag:
+        listable: Leisti šį saitažodį rodyti paieškose ir pasiūlymuose
+        name: Saitažodis
+        trendable: Leisti šį saitažodį rodyti pagal trendus
+        usable: Leisti įrašams naudoti šį saitažodį
