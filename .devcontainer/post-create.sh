@@ -11,6 +11,7 @@ bundle install
 git checkout -- Gemfile.lock
 
 # Fetch Javascript dependencies
+corepack enable
 yarn install --immutable
 
 # [re]create, migrate, and seed the test database
