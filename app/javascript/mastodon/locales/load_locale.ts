@@ -5,7 +5,9 @@ import { isLocaleLoaded, setLocale } from './global_locale';
 
 const localeLoadingSemaphore = new Semaphore(1);
 
-const localeFiles = import.meta.glob<LocaleData['messages']>(['./*.json']);
+const localeFiles = import.meta.glob<{ default: LocaleData['messages'] }>([
+  './*.json',
+]);
 
 export async function loadLocale() {
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we want to match empty strings
@@ -24,7 +26,7 @@ export async function loadLocale() {
       ? localeFiles[`./${locale}.json`]
       : localeFiles[`./en.json`];
 
-    const localeData = await localeFile();
+    const { default: localeData } = await localeFile();
 
     setLocale({ messages: localeData, locale });
   });

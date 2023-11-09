@@ -18,4 +18,4 @@ export function unicodeToUnifiedName(str) {
   }
 
   return output;
-};
+}

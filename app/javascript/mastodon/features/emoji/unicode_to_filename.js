@@ -24,4 +24,4 @@ export function unicodeToFilename(str)  {
     }
   }
   return result;
-};
+}

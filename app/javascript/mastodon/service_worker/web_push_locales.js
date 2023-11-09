@@ -1,7 +1,7 @@
 /* @preval */
 
 import fs   from 'fs';
-import path from 'path'
+import path from 'path';
 
 const filtered  = {};
 const filenames = fs.readdirSync(path.resolve(__dirname, '../locales'));

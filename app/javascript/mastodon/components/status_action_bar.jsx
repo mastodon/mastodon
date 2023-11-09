@@ -9,7 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import BookmarkIcon from 'mastodon/../material-icons/400-24px/bookmark-fill.svg';
+import BookmarkIcon from 'mastodon/../material-icons/400-24px/bookmark-fill.svg?react';
 import BookmarkBorderIcon from 'mastodon/../material-icons/400-24px/bookmark.svg?react';
 import MoreHorizIcon from 'mastodon/../material-icons/400-24px/more_horiz.svg?react';
 import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
