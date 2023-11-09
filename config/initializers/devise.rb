@@ -2,6 +2,15 @@
 
 require 'devise/strategies/authenticatable'
 
+# TODO: Remove this patch when this PR or similar is merged into Devise:
+# https://github.com/heartcombo/devise/pull/5645
+# We rely on ENV vars and not secrets/credentials, so the deprecation is just noise.
+class Devise::SecretKeyFinder
+  def find
+    @application.secret_key_base
+  end
+end
+
 Warden::Manager.after_set_user except: :fetch do |user, warden|
   session_id = warden.cookies.signed['_session_id'] || warden.raw_session['auth_id']
   session_id = user.activate_session(warden.request) unless user.session_activations.active?(session_id)

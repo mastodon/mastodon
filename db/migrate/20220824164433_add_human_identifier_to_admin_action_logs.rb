@@ -2,8 +2,12 @@
 
 class AddHumanIdentifierToAdminActionLogs < ActiveRecord::Migration[6.1]
   def change
-    add_column :admin_action_logs, :human_identifier, :string
-    add_column :admin_action_logs, :route_param, :string
-    add_column :admin_action_logs, :permalink, :string
+    safety_assured do
+      change_table(:admin_action_logs, bulk: true) do |t|
+        t.column :human_identifier, :string
+        t.column :route_param, :string
+        t.column :permalink, :string
+      end
+    end
   end
 end

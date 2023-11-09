@@ -53,7 +53,7 @@ RSpec.describe Api::V2::SearchController do
 
   context 'without token' do
     describe 'GET #index' do
-      let(:search_params) {}
+      let(:search_params) { nil }
 
       before do
         get :index, params: search_params

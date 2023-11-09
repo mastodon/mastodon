@@ -23,8 +23,11 @@ RSpec.describe Setting do
       let(:rails_initialized) { false }
 
       it 'calls RailsSettings::Base#[]' do
-        expect(RailsSettings::Base).to receive(:[]).with(key)
+        allow(RailsSettings::Base).to receive(:[]).with(key)
+
         described_class[key]
+
+        expect(RailsSettings::Base).to have_received(:[]).with(key)
       end
     end
 
@@ -38,8 +41,11 @@ RSpec.describe Setting do
       let(:cache_value)       { 'cache-value' }
 
       it 'calls not RailsSettings::Base#[]' do
-        expect(RailsSettings::Base).to_not receive(:[]).with(key)
+        allow(RailsSettings::Base).to receive(:[]).with(key)
+
         described_class[key]
+
+        expect(RailsSettings::Base).to_not have_received(:[]).with(key)
       end
 
       context 'when Rails.cache does not exists' do
@@ -56,8 +62,11 @@ RSpec.describe Setting do
         let(:records)          { [Fabricate(:setting, var: key, value: nil)] }
 
         it 'calls RailsSettings::Settings.object' do
-          expect(RailsSettings::Settings).to receive(:object).with(key)
+          allow(RailsSettings::Settings).to receive(:object).with(key)
+
           described_class[key]
+
+          expect(RailsSettings::Settings).to have_received(:object).with(key)
         end
 
         context 'when RailsSettings::Settings.object returns truthy' do

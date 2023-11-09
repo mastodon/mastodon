@@ -64,7 +64,7 @@ class Sanitize
       current_node.wrap('<p></p>')
     end
 
-    MASTODON_STRICT ||= freeze_config(
+    MASTODON_STRICT = freeze_config(
       elements: %w(p br span a del pre blockquote code b strong u i em ul ol li),
 
       attributes: {
@@ -91,7 +91,7 @@ class Sanitize
       ]
     )
 
-    MASTODON_OEMBED ||= freeze_config(
+    MASTODON_OEMBED = freeze_config(
       elements: %w(audio embed iframe source video),
 
       attributes: {

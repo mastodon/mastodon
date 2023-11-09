@@ -1041,9 +1041,12 @@ sv:
       hint_html: En sista sak till! Vi måste bekräfta att du är en människa (för att hålla borta skräpinlägg!). Lös CAPTCHA nedan och klicka på "Fortsätt".
       title: Säkerhetskontroll
     confirmations:
+      awaiting_review: Din e-postadress är bekräftad! %{domain} personalen granskar nu din registrering. Du kommer att få ett e-postmeddelande om de godkänner ditt konto!
       awaiting_review_title: Din registrering är under granskning
       clicking_this_link: klicka på denna länk
       login_link: logga in
+      proceed_to_login_html: Du kan nu fortsätta med att %{login_link}.
+      redirect_to_app_html: Du borde ha omdirigerats till appen <strong>%{app_name}</strong>. Om det inte hände, försök att %{clicking_this_link} eller återgå manuellt till appen.
       registration_complete: Din registrering på %{domain} är nu slutförd!
       welcome_title: Välkommen %{name}!
       wrong_email_hint: Om e-postadressen inte är rätt, kan du ändra den i kontoinställningarna.

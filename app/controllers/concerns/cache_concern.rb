@@ -92,18 +92,10 @@ module CacheConcern
         arguments
       end
 
-      if Rails.gem_version >= Gem::Version.new('7.0')
-        def attributes_for_database(record)
-          attributes = record.attributes_for_database
-          attributes.transform_values! { |attr| attr.is_a?(::ActiveModel::Type::Binary::Data) ? attr.to_s : attr }
-          attributes
-        end
-      else
-        def attributes_for_database(record)
-          attributes = record.instance_variable_get(:@attributes).send(:attributes).transform_values(&:value_for_database)
-          attributes.transform_values! { |attr| attr.is_a?(::ActiveModel::Type::Binary::Data) ? attr.to_s : attr }
-          attributes
-        end
+      def attributes_for_database(record)
+        attributes = record.attributes_for_database
+        attributes.transform_values! { |attr| attr.is_a?(::ActiveModel::Type::Binary::Data) ? attr.to_s : attr }
+        attributes
       end
 
       def deserialize_record(class_name, attributes_from_database, new_record = false) # rubocop:disable Style/OptionalBooleanParameter

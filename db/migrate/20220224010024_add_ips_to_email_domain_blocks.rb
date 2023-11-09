@@ -2,7 +2,11 @@
 
 class AddIpsToEmailDomainBlocks < ActiveRecord::Migration[6.1]
   def change
-    add_column :email_domain_blocks, :ips, :inet, array: true
-    add_column :email_domain_blocks, :last_refresh_at, :datetime
+    safety_assured do
+      change_table(:email_domain_blocks, bulk: true) do |t|
+        t.column :ips, :inet, array: true
+        t.column :last_refresh_at, :datetime
+      end
+    end
   end
 end
