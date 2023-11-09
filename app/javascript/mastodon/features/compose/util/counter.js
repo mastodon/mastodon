@@ -11,7 +11,7 @@ const validMention = regexSupplant(
     validDomain,
   },
   'ig'
-)
+);
 
 export function countableText(inputText) {
   return inputText
