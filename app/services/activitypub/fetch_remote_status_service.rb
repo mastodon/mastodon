@@ -20,31 +20,15 @@ class ActivityPub::FetchRemoteStatusService < BaseService
 
     return unless supported_context?
 
-    actor_uri     = nil
-    activity_json = nil
-    object_uri    = nil
-
-    if expected_object_type?
-      actor_uri     = value_or_id(first_of_value(@json['attributedTo']))
-      activity_json = { 'type' => 'Create', 'actor' => actor_uri, 'object' => @json }
-      object_uri    = uri_from_bearcap(@json['id'])
-    elsif expected_activity_type?
-      actor_uri     = value_or_id(first_of_value(@json['actor']))
-      activity_json = @json
-      object_uri    = uri_from_bearcap(value_or_id(@json['object']))
-    end
-
     return if activity_json.nil? || object_uri.nil? || !trustworthy_attribution?(@json['id'], actor_uri)
     return if expected_actor_uri.present? && actor_uri != expected_actor_uri
     return ActivityPub::TagManager.instance.uri_to_resource(object_uri, Status) if ActivityPub::TagManager.instance.local_uri?(object_uri)
-
-    actor = account_from_uri(actor_uri)
 
     return if actor.nil? || actor.suspended?
 
     # If we fetched a status that already exists, then we need to treat the
     # activity as an update rather than create
-    activity_json['type'] = 'Update' if equals_or_includes_any?(activity_json['type'], %w(Create)) && Status.exists?(uri: object_uri, account_id: actor.id)
+    activity_json['type'] = 'Update' if create_activity_with_existing_status?
 
     with_redis do |redis|
       discoveries = redis.incr("status_discovery_per_request:#{@request_id}")
@@ -56,6 +40,46 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   end
 
   private
+
+  def actor_uri
+    @actor_uri ||= if expected_object_type?
+                     value_or_id(first_of_value(@json['attributedTo']))
+                   elsif expected_activity_type?
+                     value_or_id(first_of_value(@json['actor']))
+                   end
+  end
+
+  def activity_json
+    @activity_json ||= if expected_object_type?
+                         { 'type' => 'Create', 'actor' => actor_uri, 'object' => @json }
+                       elsif expected_activity_type?
+                         @json
+                       end
+  end
+
+  def object_uri
+    @object_uri ||= if expected_object_type?
+                      uri_from_bearcap(@json['id'])
+                    elsif expected_activity_type?
+                      uri_from_bearcap(value_or_id(@json['object']))
+                    end
+  end
+
+  def actor
+    @actor ||= account_from_uri(actor_uri)
+  end
+
+  def create_activity_with_existing_status?
+    activity_json_type_create? && object_and_actor_status_exists?
+  end
+
+  def activity_json_type_create?
+    equals_or_includes_any?(activity_json['type'], %w(Create))
+  end
+
+  def object_and_actor_status_exists?
+    Status.exists?(uri: object_uri, account_id: actor.id)
+  end
 
   def trustworthy_attribution?(uri, attributed_to)
     return false if uri.nil? || attributed_to.nil?
