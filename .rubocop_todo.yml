@@ -24,15 +24,6 @@ Lint/NonLocalExitFromIterator:
   Exclude:
     - 'app/helpers/jsonld_helper.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
-Lint/UnusedBlockArgument:
-  Exclude:
-    - 'config/initializers/content_security_policy.rb'
-    - 'config/initializers/doorkeeper.rb'
-    - 'config/initializers/paperclip.rb'
-    - 'config/initializers/simple_form.rb'
-
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 144
