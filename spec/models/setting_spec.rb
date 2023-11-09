@@ -83,7 +83,7 @@ RSpec.describe Setting do
               described_class[key]
 
               expect(default_value).to have_received(:with_indifferent_access)
-              expect(indifferent_hash).to have_received(:merge!)
+              expect(indifferent_hash).to have_received(:merge!).with(db_val.value)
             end
           end
 
