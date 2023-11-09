@@ -104,12 +104,6 @@ RSpec/LetSetup:
     - 'spec/services/unsuspend_account_service_spec.rb'
     - 'spec/workers/scheduler/user_cleanup_scheduler_spec.rb'
 
-RSpec/MessageChain:
-  Exclude:
-    - 'spec/models/concerns/remotable_spec.rb'
-    - 'spec/models/session_activation_spec.rb'
-    - 'spec/models/setting_spec.rb'
-
 RSpec/MultipleExpectations:
   Max: 8
 
