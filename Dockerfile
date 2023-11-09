@@ -149,7 +149,7 @@ RUN \
   corepack prepare --activate;
 
 # Create temporary bundler specific build layer from build layer
-FROM build as build-bundler
+FROM build as bundler
 
 ARG TARGETPLATFORM
 
@@ -171,7 +171,7 @@ RUN \
   bundle install -j"$(nproc)";
 
 # Create temporary node specific build layer from build layer
-FROM build as build-node
+FROM build as yarn
 
 ARG TARGETPLATFORM
 
@@ -187,15 +187,15 @@ RUN \
   yarn workspaces focus --all --production;
 
 # Create temporary assets build layer from build layer
-FROM build as build-assets
+FROM build as precompiler
 
-# Copy all sources into working directory
+# Copy Mastodon sources into precompiler layer
 COPY . /opt/mastodon/
 
 # Copy bundler and node packages from build layer to container
-COPY --from=build-bundler /opt/mastodon /opt/mastodon/
-COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
-COPY --from=build-node /opt/mastodon /opt/mastodon/
+COPY --from=yarn /opt/mastodon /opt/mastodon/
+COPY --from=bundler /opt/mastodon /opt/mastodon/
+COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 
 ARG TARGETPLATFORM
 
@@ -206,7 +206,7 @@ RUN \
   rm -fr /opt/mastodon/tmp;
 
 # Prep final Mastodon Ruby layer
-FROM ruby
+FROM ruby as mastodon
 
 ARG TARGETPLATFORM
 
@@ -228,19 +228,21 @@ RUN \
     libyaml-0-2 \
   ;
 
+# Copy Mastodon sources into final layer
+COPY . /opt/mastodon/
+
 # Copy compiled assets to layer
-COPY --from=build-assets /opt/mastodon/public/packs /opt/mastodon/public/packs
-COPY --from=build-assets /opt/mastodon/public/assets /opt/mastodon/public/assets
+COPY --from=precompiler /opt/mastodon/public/packs /opt/mastodon/public/packs
+COPY --from=precompiler /opt/mastodon/public/assets /opt/mastodon/public/assets
 # Copy bundler components to layer
-COPY --from=build-bundler /opt/mastodon/ /opt/mastodon/
-COPY --from=build-bundler /usr/local/bundle/ /usr/local/bundle/
+COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 
 RUN \
 # Precompile bootsnap code for faster Rails startup
   bundle exec bootsnap precompile --gemfile app/ lib/;
 
 RUN \
-# Test ImageMagick and ffmpeg availablity
+# Smoke test ImageMagick and ffmpeg availablity
   convert -version; \
   ffmpeg -version; \
   ffprobe -version; \

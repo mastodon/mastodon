@@ -12,7 +12,7 @@ ARG NODE_MAJOR_VERSION="20"
 # Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
 ARG DEBIAN_VERSION="bookworm"
 # Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
-FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim as node
+FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim as streaming
 
 # Timezone used by the Docker container and runtime, change with [--build-arg TZ=Europe/Berlin]
 ARG TZ="Etc/UTC"
