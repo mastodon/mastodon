@@ -41,12 +41,11 @@ services:
     expose:
       - '9200/tcp'
     hostname: "es"
-    labels:
-      - WATCHTOWER_MONITOR_ONLY=true
 
   web:
     #build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.1
+    #image: ghcr.io/mastodon/mastodon:v4.2.1
+    image: mglennon/mastodon:latest
     restart: unless-stopped
     env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
@@ -60,12 +59,11 @@ services:
     volumes:
       - /mnt/dftba-data/mastodon/system:/mastodon/public/system
     hostname: "mastoweb"
-    labels:
-      - WATCHTOWER_MONITOR_ONLY=true
 
   streaming:
     #build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.1
+    #image: ghcr.io/mastodon/mastodon:v4.2.1
+    image: mglennon/mastodon:latest
     restart: unless-stopped
     env_file: .env.production
     command: node ./streaming
@@ -77,12 +75,11 @@ services:
     expose:
       - '4000/tcp'
     hostname: "mastostreaming"
-    labels:
-      - WATCHTOWER_MONITOR_ONLY=true
 
   sidekiq:
     #build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.1
+    #image: ghcr.io/mastodon/mastodon:v4.2.1
+    image: mglennon/mastodon:latest
     restart: unless-stopped
     env_file: .env.production
     command: bundle exec sidekiq
@@ -103,8 +100,6 @@ services:
       test: ['CMD', 'redis-cli', 'ping']
     volumes:
       - mastodon_redis:/data
-    labels:
-      - WATCHTOWER_MONITOR_ONLY=true
   
   prom_statsd:
     image: prom/statsd-exporter
