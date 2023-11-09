@@ -45,6 +45,7 @@ const mapStateToProps = (state, { params: { acct, id } }) => {
     hasMore: !!state.getIn(['user_lists', 'followers', accountId, 'next']),
     isLoading: state.getIn(['user_lists', 'followers', accountId, 'isLoading'], true),
     suspended: state.getIn(['accounts', accountId, 'suspended'], false),
+    hideCollections: state.getIn(['accounts', accountId, 'hide_collections'], false),
     hidden: getAccountHidden(state, accountId),
     blockedBy: state.getIn(['relationships', accountId, 'blocked_by'], false),
   };
@@ -111,7 +112,7 @@ class Followers extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { accountId, accountIds, hasMore, blockedBy, isAccount, multiColumn, isLoading, suspended, hidden, remote, remoteUrl } = this.props;
+    const { accountId, accountIds, hasMore, blockedBy, isAccount, multiColumn, isLoading, suspended, hidden, remote, remoteUrl, hideCollections } = this.props;
 
     if (!isAccount) {
       return (
@@ -137,6 +138,8 @@ class Followers extends ImmutablePureComponent {
       emptyMessage = <LimitedAccountHint accountId={accountId} />;
     } else if (blockedBy) {
       emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
+    } else if (hideCollections && accountIds.isEmpty()) {
+      emptyMessage = <FormattedMessage id='empty_column.account_hides_collections' defaultMessage='This user has chosen to not make this information available' />;
     } else if (remote && accountIds.isEmpty()) {
       emptyMessage = <RemoteHint url={remoteUrl} />;
     } else {

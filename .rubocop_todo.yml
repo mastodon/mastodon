@@ -24,15 +24,6 @@ Lint/NonLocalExitFromIterator:
   Exclude:
     - 'app/helpers/jsonld_helper.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
-Lint/UnusedBlockArgument:
-  Exclude:
-    - 'config/initializers/content_security_policy.rb'
-    - 'config/initializers/doorkeeper.rb'
-    - 'config/initializers/paperclip.rb'
-    - 'config/initializers/simple_form.rb'
-
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 144
@@ -113,12 +104,6 @@ RSpec/LetSetup:
     - 'spec/services/unsuspend_account_service_spec.rb'
     - 'spec/workers/scheduler/user_cleanup_scheduler_spec.rb'
 
-RSpec/MessageChain:
-  Exclude:
-    - 'spec/models/concerns/remotable_spec.rb'
-    - 'spec/models/session_activation_spec.rb'
-    - 'spec/models/setting_spec.rb'
-
 RSpec/MultipleExpectations:
   Max: 8
 
@@ -157,11 +142,6 @@ Rails/HasManyOrHasOneDependent:
     - 'app/models/status.rb'
     - 'app/models/user.rb'
     - 'app/models/web/push_subscription.rb'
-
-Rails/I18nLocaleTexts:
-  Exclude:
-    - 'lib/tasks/mastodon.rake'
-    - 'spec/helpers/flashes_helper_spec.rb'
 
 # Configuration parameters: Include.
 # Include: app/controllers/**/*.rb, app/mailers/**/*.rb

@@ -11,7 +11,7 @@ Paperclip.interpolates :filename do |attachment, style|
   end
 end
 
-Paperclip.interpolates :prefix_path do |attachment, style|
+Paperclip.interpolates :prefix_path do |attachment, _style|
   if attachment.storage_schema_version >= 1 && attachment.instance.respond_to?(:local?) && !attachment.instance.local?
     'cache' + File::SEPARATOR
   else
@@ -19,7 +19,7 @@ Paperclip.interpolates :prefix_path do |attachment, style|
   end
 end
 
-Paperclip.interpolates :prefix_url do |attachment, style|
+Paperclip.interpolates :prefix_url do |attachment, _style|
   if attachment.storage_schema_version >= 1 && attachment.instance.respond_to?(:local?) && !attachment.instance.local?
     'cache/'
   else
