@@ -192,6 +192,7 @@ class FeedManager
     # also tagged with another followed hashtag or from a followed user
     scope = from_tag.statuses
                     .where(id: timeline_status_ids)
+                    .where.not(account: into_account)
                     .where.not(account: into_account.following)
                     .tagged_with_none(TagFollow.where(account: into_account).pluck(:tag_id))
 
@@ -245,7 +246,7 @@ class FeedManager
   # @param [Account] target_account
   # @return [void]
   def clear_from_lists(account, target_account)
-    List.where(account: account).each do |list|
+    List.where(account: account).find_each do |list|
       clear_from_list(list, target_account)
     end
   end

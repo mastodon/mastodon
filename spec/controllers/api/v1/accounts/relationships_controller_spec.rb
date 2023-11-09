@@ -26,13 +26,10 @@ describe Api::V1::Accounts::RelationshipsController do
         get :index, params: { id: simon.id }
       end
 
-      it 'returns http success' do
-        expect(response).to have_http_status(200)
-      end
-
-      it 'returns JSON with correct data' do
+      it 'returns JSON with correct data', :aggregate_failures do
         json = body_as_json
 
+        expect(response).to have_http_status(200)
         expect(json).to be_a Enumerable
         expect(json.first[:following]).to be true
         expect(json.first[:followed_by]).to be false
@@ -51,11 +48,14 @@ describe Api::V1::Accounts::RelationshipsController do
       context 'when there is returned JSON data' do
         let(:json) { body_as_json }
 
-        it 'returns an enumerable json' do
+        it 'returns an enumerable json with correct elements', :aggregate_failures do
           expect(json).to be_a Enumerable
+
+          expect_simon_item_one
+          expect_lewis_item_two
         end
 
-        it 'returns a correct first element' do
+        def expect_simon_item_one
           expect(json.first[:id]).to eq simon.id.to_s
           expect(json.first[:following]).to be true
           expect(json.first[:showing_reblogs]).to be true
@@ -65,7 +65,7 @@ describe Api::V1::Accounts::RelationshipsController do
           expect(json.first[:domain_blocking]).to be false
         end
 
-        it 'returns a correct second element' do
+        def expect_lewis_item_two
           expect(json.second[:id]).to eq lewis.id.to_s
           expect(json.second[:following]).to be false
           expect(json.second[:showing_reblogs]).to be false

@@ -19,7 +19,8 @@ class Relay < ApplicationRecord
 
   scope :enabled, -> { accepted }
 
-  before_validation :strip_url
+  normalizes :inbox_url, with: ->(inbox_url) { inbox_url.strip }
+
   before_destroy :ensure_disabled
 
   alias enabled? accepted?
@@ -75,9 +76,5 @@ class Relay < ApplicationRecord
 
   def ensure_disabled
     disable! if enabled?
-  end
-
-  def strip_url
-    inbox_url&.strip!
   end
 end

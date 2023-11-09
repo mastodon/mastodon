@@ -534,6 +534,7 @@ nl:
       total_reported: Rapportages over hun
       total_storage: Mediabijlagen
       totals_time_period_hint_html: De hieronder getoonde totalen bevatten gegevens sinds het begin.
+      unknown_instance: Er zijn momenteel geen gegevens van dit domein op deze server.
     invites:
       deactivate_all: Alles deactiveren
       filter:
@@ -1040,6 +1041,14 @@ nl:
       hint_html: Nog maar één ding! Je moet bevestigen dat je een mens bent (dit is om de spam buiten de deur te houden!). Los de onderstaande CAPTCHA op en klik op "Doorgaan".
       title: Veiligheidscontrole
     confirmations:
+      awaiting_review: Je e-mailadres is bevestigd! De medewerkers van %{domain} zijn nu bezig met het beoordelen van jouw registratie. Je ontvangt een e-mailbericht wanneer ze jouw account goedkeuren!
+      awaiting_review_title: Je registratie wordt beoordeeld
+      clicking_this_link: op deze link te klikken
+      login_link: inloggen
+      proceed_to_login_html: Je kunt nu verder gaan naar %{login_link}.
+      redirect_to_app_html: Je zou omgeleid moeten zijn naar de <strong>%{app_name}</strong> app. Als dat niet is gebeurd, probeer dan %{clicking_this_link} of keer handmatig terug naar de app.
+      registration_complete: Je registratie op %{domain} is nu voltooid!
+      welcome_title: Welkom %{name}!
       wrong_email_hint: Als dat e-mailadres niet correct is, kun je het wijzigen in je accountinstellingen.
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kun je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
@@ -1101,6 +1110,7 @@ nl:
       functional: Jouw account kan in diens geheel gebruikt worden.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
+      self_destruct: Omdat %{domain} gaat sluiten, krijgt u slechts beperkt toegang tot uw account.
       view_strikes: Bekijk de eerder door moderatoren vastgestelde overtredingen die je hebt gemaakt
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
     use_security_key: Beveiligingssleutel gebruiken
@@ -1570,6 +1580,9 @@ nl:
     over_daily_limit: Je hebt de limiet van %{limit} in te plannen berichten voor vandaag overschreden
     over_total_limit: Je hebt de limiet van %{limit} in te plannen berichten overschreden
     too_soon: De datum voor het ingeplande bericht moet in de toekomst liggen
+  self_destruct:
+    lead_html: Helaas gaat <strong>%{domain}</strong> permanent sluiten. Als je daar een account had, kun je deze niet meer gebruiken, maar je kunt nog steeds een back-up van je gegevens opvragen.
+    title: Deze server gaat sluiten
   sessions:
     activity: Laatst actief
     browser: Webbrowser

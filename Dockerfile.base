@@ -7,7 +7,7 @@
 ARG RUBY_VERSION="3.2.2"
 
 # Node version to use, change with [--build-arg NODE_VERSION=]
-ARG NODE_VERSION="20.8.0"
+ARG NODE_VERSION="20.9.0"
 
 # FFmpeg version to use, change with [--build-arg FFMPEG_VERSION=]
 ARG FFMPEG_VERSION="6.0"
@@ -62,7 +62,7 @@ ENV COREPACK_HOME /usr/local/corepack
 
 RUN set -eux; \
     corepack enable; \
-    yarn set version classic; \
+    yarn set version stable; \
     # Smoke test for node, yarn
     node --version; \
     yarn --version; \

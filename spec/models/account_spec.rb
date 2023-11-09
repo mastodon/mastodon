@@ -356,7 +356,7 @@ RSpec.describe Account do
     end
 
     it 'does not return suspended users' do
-      match = Fabricate(
+      Fabricate(
         :account,
         display_name: 'Display Name',
         username: 'username',
@@ -483,7 +483,7 @@ RSpec.describe Account do
       end
 
       it 'does not return non-followed accounts' do
-        match = Fabricate(
+        Fabricate(
           :account,
           display_name: 'A & l & i & c & e',
           username: 'username',
@@ -495,7 +495,7 @@ RSpec.describe Account do
       end
 
       it 'does not return suspended users' do
-        match = Fabricate(
+        Fabricate(
           :account,
           display_name: 'Display Name',
           username: 'username',
@@ -535,7 +535,7 @@ RSpec.describe Account do
     end
 
     it 'does not return suspended users' do
-      match = Fabricate(
+      Fabricate(
         :account,
         display_name: 'Display Name',
         username: 'username',
@@ -700,7 +700,7 @@ RSpec.describe Account do
       expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
     end
 
-    xit 'does not match URL query string' do
+    it 'does not match URL query string' do
       expect(subject.match('https://example.com/?x=@alice')).to be_nil
     end
   end
@@ -719,10 +719,10 @@ RSpec.describe Account do
 
     context 'when is local' do
       it 'is invalid if the username is not unique in case-insensitive comparison among local accounts' do
-        account_1 = Fabricate(:account, username: 'the_doctor')
-        account_2 = Fabricate.build(:account, username: 'the_Doctor')
-        account_2.valid?
-        expect(account_2).to model_have_error_on_field(:username)
+        _account = Fabricate(:account, username: 'the_doctor')
+        non_unique_account = Fabricate.build(:account, username: 'the_Doctor')
+        non_unique_account.valid?
+        expect(non_unique_account).to model_have_error_on_field(:username)
       end
 
       it 'is invalid if the username is reserved' do
@@ -743,9 +743,9 @@ RSpec.describe Account do
       end
 
       it 'is valid if we are creating a possibly-conflicting instance actor account' do
-        account_1 = Fabricate(:account, username: 'examplecom')
-        account_2 = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
-        expect(account_2.valid?).to be true
+        _account = Fabricate(:account, username: 'examplecom')
+        instance_account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        expect(instance_account.valid?).to be true
       end
 
       it 'is invalid if the username doesn\'t only contains letters, numbers and underscores' do
@@ -877,17 +877,17 @@ RSpec.describe Account do
 
     describe 'remote' do
       it 'returns an array of accounts who have a domain' do
-        account_1 = Fabricate(:account, domain: nil)
-        account_2 = Fabricate(:account, domain: 'example.com')
-        expect(described_class.remote).to contain_exactly(account_2)
+        _account = Fabricate(:account, domain: nil)
+        account_with_domain = Fabricate(:account, domain: 'example.com')
+        expect(described_class.remote).to contain_exactly(account_with_domain)
       end
     end
 
     describe 'local' do
       it 'returns an array of accounts who do not have a domain' do
-        account_1 = Fabricate(:account, domain: nil)
-        account_2 = Fabricate(:account, domain: 'example.com')
-        expect(described_class.where('id > 0').local).to contain_exactly(account_1)
+        local_account = Fabricate(:account, domain: nil)
+        _account_with_domain = Fabricate(:account, domain: 'example.com')
+        expect(described_class.where('id > 0').local).to contain_exactly(local_account)
       end
     end
 
@@ -911,17 +911,17 @@ RSpec.describe Account do
 
     describe 'silenced' do
       it 'returns an array of accounts who are silenced' do
-        account_1 = Fabricate(:account, silenced: true)
-        account_2 = Fabricate(:account, silenced: false)
-        expect(described_class.silenced).to contain_exactly(account_1)
+        silenced_account = Fabricate(:account, silenced: true)
+        _account = Fabricate(:account, silenced: false)
+        expect(described_class.silenced).to contain_exactly(silenced_account)
       end
     end
 
     describe 'suspended' do
       it 'returns an array of accounts who are suspended' do
-        account_1 = Fabricate(:account, suspended: true)
-        account_2 = Fabricate(:account, suspended: false)
-        expect(described_class.suspended).to contain_exactly(account_1)
+        suspended_account = Fabricate(:account, suspended: true)
+        _account = Fabricate(:account, suspended: false)
+        expect(described_class.suspended).to contain_exactly(suspended_account)
       end
     end
 

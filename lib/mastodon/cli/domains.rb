@@ -125,7 +125,7 @@ module Mastodon::CLI
       failed          = Concurrent::AtomicFixnum.new(0)
       start_at        = Time.now.to_f
       seed            = start ? [start] : Instance.pluck(:domain)
-      blocked_domains = /\.?(#{DomainBlock.where(severity: 1).pluck(:domain).map { |domain| Regexp.escape(domain) }.join('|')})$/
+      blocked_domains = /\.?(#{Regexp.union(domain_block_suspended_domains).source})$/
       progress        = create_progress_bar
 
       pool = Concurrent::ThreadPoolExecutor.new(min_threads: 0, max_threads: options[:concurrency], idletime: 10, auto_terminate: true, max_queue: 0)
@@ -188,6 +188,10 @@ module Mastodon::CLI
     end
 
     private
+
+    def domain_block_suspended_domains
+      DomainBlock.suspend.pluck(:domain)
+    end
 
     def stats_to_summary(stats, processed, failed, start_at)
       stats.compact!

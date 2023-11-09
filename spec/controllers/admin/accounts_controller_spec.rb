@@ -18,21 +18,8 @@ RSpec.describe Admin::AccountsController do
     end
 
     it 'filters with parameters' do
-      new = AccountFilter.method(:new)
-
-      expect(AccountFilter).to receive(:new) do |params|
-        h = params.to_h
-
-        expect(h[:origin]).to eq 'local'
-        expect(h[:by_domain]).to eq 'domain'
-        expect(h[:status]).to eq 'active'
-        expect(h[:username]).to eq 'username'
-        expect(h[:display_name]).to eq 'display name'
-        expect(h[:email]).to eq 'local-part@domain'
-        expect(h[:ip]).to eq '0.0.0.42'
-
-        new.call({})
-      end
+      account_filter = instance_double(AccountFilter, results: Account.all)
+      allow(AccountFilter).to receive(:new).and_return(account_filter)
 
       get :index, params: {
         origin: 'local',
@@ -43,6 +30,18 @@ RSpec.describe Admin::AccountsController do
         email: 'local-part@domain',
         ip: '0.0.0.42',
       }
+
+      expect(AccountFilter).to have_received(:new) do |params|
+        h = params.to_h
+
+        expect(h[:origin]).to eq 'local'
+        expect(h[:by_domain]).to eq 'domain'
+        expect(h[:status]).to eq 'active'
+        expect(h[:username]).to eq 'username'
+        expect(h[:display_name]).to eq 'display name'
+        expect(h[:email]).to eq 'local-part@domain'
+        expect(h[:ip]).to eq '0.0.0.42'
+      end
     end
 
     it 'paginates accounts' do
@@ -285,7 +284,10 @@ RSpec.describe Admin::AccountsController do
 
     let(:current_user) { Fabricate(:user, role: role) }
     let(:account) { Fabricate(:account, suspended: true) }
-    let!(:email_block) { Fabricate(:canonical_email_block, reference_account: account) }
+
+    before do
+      _email_block = Fabricate(:canonical_email_block, reference_account: account)
+    end
 
     context 'when user is admin' do
       let(:role) { UserRole.find_by(name: 'Admin') }

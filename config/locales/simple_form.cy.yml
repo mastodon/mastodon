@@ -292,7 +292,11 @@ cy:
         reblog: Mae rhywun wedi hybu eich postiad
         report: Cyflwynwyd adroddiad newydd
         software_updates:
+          all: Rhoi gwybod am bob ddiweddariad
+          critical: Rhoi gwybod am ddiweddariadau critigol yn unig
           label: Mae fersiwn Mastodon newydd ar gael
+          none: Byth rhoi gwybod am ddiweddariadau (nid argymhellir)
+          patch: Rhoi gwybod am ddiweddariadau trwsio byg
         trending_tag: Mae pwnc llosg newydd angen adolygiad
       rule:
         text: Rheol
@@ -319,6 +323,7 @@ cy:
         url: URL diweddbwynt
     'no': Na
     not_recommended: Heb ei argymell
+    overridden: Wedi'i gwrth-wneud
     recommended: Argymhellwyd
     required:
       mark: "*"

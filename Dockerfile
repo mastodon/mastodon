@@ -145,17 +145,18 @@ RUN set -eux; \
 ########################################################################################################################
 FROM builder-base as yarn-installer
 
-ADD package.json yarn.lock ${MASTODON_HOME}/
+ADD package.json yarn.lock .yarnrc.yml ${MASTODON_HOME}/
+ADD .yarn /opt/mastodon/.yarn
 
 RUN set -eux; \
     # Download and install yarn packages
     case "${NODE_ENV}" in \
-        production) yarn install --frozen-lockfile --network-timeout 600000;; \
-        *) yarn install --network-timeout 600000;; \
+        production) yarn workspaces focus --all --production;; \
+        *) yarn workspaces focus --all;; \
     esac; \
     yarn cache clean --all; \
     # Remove tmp files from node
-    rm -rf .yarn* /tmp/* /usr/local/share/.cache;
+    rm -rf /tmp/* /usr/local/share/.cache;
 
 ########################################################################################################################
 FROM base
@@ -181,7 +182,8 @@ RUN set -eux; \
     mkdir -p ${MASTODON_HOME}/public && chmod 1777 ${MASTODON_HOME}/public; \
     mkdir -p ${MASTODON_HOME}/public/assets && chmod 1777 ${MASTODON_HOME}/public/assets; \
     mkdir -p ${MASTODON_HOME}/public/packs && chmod 1777 ${MASTODON_HOME}/public/packs; \
-    mkdir -p ${MASTODON_HOME}/public/system && chmod 1777 ${MASTODON_HOME}/public/system;
+    mkdir -p ${MASTODON_HOME}/public/system && chmod 1777 ${MASTODON_HOME}/public/system; \
+    chmod 1777 ${MASTODON_HOME}/.yarn;
 
 # Set runtime envs
 ENV PATH="${PATH}:${MASTODON_HOME}/bin" \
