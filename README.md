@@ -19,8 +19,9 @@ Click below to **learn more** in a video:
 
 [youtube_demo]: https://www.youtube.com/watch?v=IPSbNdBmWKE
 
-| :exclamation: Warning! This is a fork specific for the dftba.club instance. If won't work for anyone else out of the box |
-| -------------------------------------------------------------------------------------------------------------------------|
+| :exclamation: Warning! This is a fork specific for the dftba.club instance. |
+| It won't work for anyone else out of the box. |
+| -------------------------------------------------|
 
 ## Navigation
 
