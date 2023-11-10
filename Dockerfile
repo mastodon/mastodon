@@ -250,8 +250,7 @@ RUN \
 
 # Set the running user for resulting container
 USER mastodon
-
-# Set container entry point
-ENTRYPOINT ["/usr/bin/tini", "--"]
 # Expose default Puma ports
 EXPOSE 3000
+# Set container tini as default entry point
+ENTRYPOINT ["/usr/bin/tini", "--"]
