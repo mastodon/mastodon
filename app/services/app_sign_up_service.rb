@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class AppSignUpService < BaseService
+  include RegistrationHelper
+
   def call(app, remote_ip, params)
     @app       = app
     @remote_ip = remote_ip
     @params    = params
 
-    raise Mastodon::NotPermittedError unless allowed_registrations?
+    raise Mastodon::NotPermittedError unless allowed_registration?(remote_ip, nil)
 
     ApplicationRecord.transaction do
       create_user!
@@ -44,25 +46,5 @@ class AppSignUpService < BaseService
 
   def invite_request_params
     { text: @params[:reason] }
-  end
-
-  def allowed_registrations?
-    registrations_open? && !single_user_mode? && !omniauth_only? && !ip_blocked?
-  end
-
-  def registrations_open?
-    Setting.registrations_mode != 'none'
-  end
-
-  def single_user_mode?
-    Rails.configuration.x.single_user_mode
-  end
-
-  def omniauth_only?
-    ENV['OMNIAUTH_ONLY'] == 'true'
-  end
-
-  def ip_blocked?
-    IpBlock.where(severity: :sign_up_block).where('ip >>= ?', @remote_ip.to_s).exists?
   end
 end
