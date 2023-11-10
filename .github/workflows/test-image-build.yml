@@ -7,6 +7,7 @@ on:
       - .github/workflows/build-releases.yml
       - .github/workflows/test-image-build.yml
       - Dockerfile
+      - streaming/Dockerfile
 permissions:
   contents: read
 
