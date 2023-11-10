@@ -21,7 +21,7 @@ jobs:
     with:
       file_to_build: Dockerfile
       platforms: linux/amd64 # Testing only on native platform so it is performant
-      cache: false
+      cache: true
 
   build-image-streaming:
     concurrency:

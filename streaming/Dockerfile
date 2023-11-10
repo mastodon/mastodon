@@ -43,6 +43,7 @@ RUN \
 --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
 --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
 # upgrade to check for security updates to Debian image
+  apt-get update; \
   apt-get dist-upgrade -yq;
 
 # Set /opt/mastodon as working directory
