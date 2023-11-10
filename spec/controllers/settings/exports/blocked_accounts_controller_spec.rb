@@ -6,14 +6,19 @@ describe Settings::Exports::BlockedAccountsController do
   render_views
 
   describe 'GET #index' do
-    it 'returns a csv of the blocking accounts' do
-      user = Fabricate(:user)
+    let(:user) { Fabricate(:user) }
+
+    before do
       user.account.block!(Fabricate(:account, username: 'username', domain: 'domain'))
 
       sign_in user, scope: :user
+    end
+
+    it 'returns a csv of the blocking accounts' do
       get :index, format: :csv
 
-      expect(response.body).to eq "username@domain\n"
+      expect(response.body)
+        .to eq "username@domain\n"
     end
   end
 end

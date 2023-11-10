@@ -13,13 +13,17 @@ describe Settings::AliasesController do
   end
 
   describe 'GET #index' do
-    before do
-      get :index
-    end
-
     it 'returns http success with private cache control headers', :aggregate_failures do
-      expect(response).to have_http_status(200)
-      expect(response.headers['Cache-Control']).to include('private, no-store')
+      get :index
+
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:index)
+        .and have_attributes(
+          headers: hash_including(
+            'Cache-Control' => include('private, no-store')
+          )
+        )
     end
   end
 
@@ -32,7 +36,8 @@ describe Settings::AliasesController do
           post :create, params: { account_alias: { acct: 'new@example.com' } }
         end.to change(AccountAlias, :count).by(1)
 
-        expect(response).to redirect_to(settings_aliases_path)
+        expect(response)
+          .to redirect_to(settings_aliases_path)
       end
     end
 
@@ -42,7 +47,8 @@ describe Settings::AliasesController do
           post :create, params: { account_alias: { acct: 'format-wrong' } }
         end.to_not change(AccountAlias, :count)
 
-        expect(response).to have_http_status(200)
+        expect(response)
+          .to have_http_status(200)
       end
     end
   end
@@ -57,8 +63,11 @@ describe Settings::AliasesController do
     it 'removes an alias' do
       delete :destroy, params: { id: account_alias.id }
 
-      expect(response).to redirect_to(settings_aliases_path)
-      expect { account_alias.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect(response)
+        .to redirect_to(settings_aliases_path)
+
+      expect { account_alias.reload }
+        .to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 

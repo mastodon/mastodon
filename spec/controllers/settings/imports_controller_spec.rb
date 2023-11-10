@@ -15,14 +15,19 @@ RSpec.describe Settings::ImportsController do
     let!(:import)       { Fabricate(:bulk_import, account: user.account) }
     let!(:other_import) { Fabricate(:bulk_import) }
 
-    before do
-      get :index
-    end
-
     it 'assigns the expected imports', :aggregate_failures do
-      expect(response).to have_http_status(200)
+      get :index
+
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:index)
+        .and have_attributes(
+          headers: hash_including(
+            'Cache-Control' => include('private, no-store')
+          )
+        )
+
       expect(assigns(:recent_imports)).to eq [import]
-      expect(response.headers['Cache-Control']).to include('private, no-store')
     end
   end
 
@@ -35,7 +40,8 @@ RSpec.describe Settings::ImportsController do
       let(:bulk_import) { Fabricate(:bulk_import, state: :unconfirmed) }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(404)
+        expect(response)
+          .to have_http_status(404)
       end
     end
 
@@ -43,7 +49,8 @@ RSpec.describe Settings::ImportsController do
       let(:bulk_import) { Fabricate(:bulk_import, account: user.account, state: :in_progress) }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(404)
+        expect(response)
+          .to have_http_status(404)
       end
     end
 
@@ -51,7 +58,8 @@ RSpec.describe Settings::ImportsController do
       let(:bulk_import) { Fabricate(:bulk_import, account: user.account, state: :unconfirmed) }
 
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response)
+          .to have_http_status(200)
       end
     end
   end
@@ -67,10 +75,13 @@ RSpec.describe Settings::ImportsController do
       let(:bulk_import) { Fabricate(:bulk_import, state: :unconfirmed) }
 
       it 'does not change the import\'s state and returns missing', :aggregate_failures do
-        expect { subject }.to_not(change { bulk_import.reload.state })
+        expect { subject }
+          .to_not(change { bulk_import.reload.state })
 
-        expect(BulkImportWorker).to_not have_received(:perform_async)
-        expect(response).to have_http_status(404)
+        expect(BulkImportWorker)
+          .to_not have_received(:perform_async)
+        expect(response)
+          .to have_http_status(404)
       end
     end
 
@@ -78,10 +89,13 @@ RSpec.describe Settings::ImportsController do
       let(:bulk_import) { Fabricate(:bulk_import, account: user.account, state: :in_progress) }
 
       it 'does not change the import\'s state and returns missing', :aggregate_failures do
-        expect { subject }.to_not(change { bulk_import.reload.state })
+        expect { subject }
+          .to_not(change { bulk_import.reload.state })
 
-        expect(BulkImportWorker).to_not have_received(:perform_async)
-        expect(response).to have_http_status(404)
+        expect(BulkImportWorker)
+          .to_not have_received(:perform_async)
+        expect(response)
+          .to have_http_status(404)
       end
     end
 
@@ -89,10 +103,15 @@ RSpec.describe Settings::ImportsController do
       let(:bulk_import) { Fabricate(:bulk_import, account: user.account, state: :unconfirmed) }
 
       it 'changes the import\'s state to scheduled and redirects', :aggregate_failures do
-        expect { subject }.to change { bulk_import.reload.state.to_sym }.from(:unconfirmed).to(:scheduled)
+        expect { subject }
+          .to change { bulk_import.reload.state.to_sym }
+          .from(:unconfirmed)
+          .to(:scheduled)
 
-        expect(BulkImportWorker).to have_received(:perform_async).with(bulk_import.id)
-        expect(response).to redirect_to(settings_imports_path)
+        expect(BulkImportWorker)
+          .to have_received(:perform_async).with(bulk_import.id)
+        expect(response)
+          .to redirect_to(settings_imports_path)
       end
     end
   end
@@ -104,9 +123,11 @@ RSpec.describe Settings::ImportsController do
       let(:bulk_import) { Fabricate(:bulk_import, state: :unconfirmed) }
 
       it 'does not delete the import and returns missing', :aggregate_failures do
-        expect { subject }.to_not(change { BulkImport.exists?(bulk_import.id) })
+        expect { subject }
+          .to_not(change { BulkImport.exists?(bulk_import.id) })
 
-        expect(response).to have_http_status(404)
+        expect(response)
+          .to have_http_status(404)
       end
     end
 
@@ -114,9 +135,11 @@ RSpec.describe Settings::ImportsController do
       let(:bulk_import) { Fabricate(:bulk_import, account: user.account, state: :in_progress) }
 
       it 'does not delete the import and returns missing', :aggregate_failures do
-        expect { subject }.to_not(change { BulkImport.exists?(bulk_import.id) })
+        expect { subject }
+          .to_not(change { BulkImport.exists?(bulk_import.id) })
 
-        expect(response).to have_http_status(404)
+        expect(response)
+          .to have_http_status(404)
       end
     end
 
@@ -124,16 +147,18 @@ RSpec.describe Settings::ImportsController do
       let(:bulk_import) { Fabricate(:bulk_import, account: user.account, state: :unconfirmed) }
 
       it 'deletes the import and redirects', :aggregate_failures do
-        expect { subject }.to change { BulkImport.exists?(bulk_import.id) }.from(true).to(false)
+        expect { subject }
+          .to change { BulkImport.exists?(bulk_import.id) }
+          .from(true)
+          .to(false)
 
-        expect(response).to redirect_to(settings_imports_path)
+        expect(response)
+          .to redirect_to(settings_imports_path)
       end
     end
   end
 
   describe 'GET #failures' do
-    subject { get :failures, params: { id: bulk_import.id }, format: :csv }
-
     shared_examples 'export failed rows' do |expected_contents|
       let(:bulk_import) { Fabricate(:bulk_import, account: user.account, type: import_type, state: :finished) }
 
@@ -142,11 +167,16 @@ RSpec.describe Settings::ImportsController do
       end
 
       it 'returns expected contents', :aggregate_failures do
-        subject
+        get :failures, params: { id: bulk_import.id }, format: :csv
 
-        expect(response).to have_http_status(200)
-        expect(response.body).to eq expected_contents
+        expect(response)
+          .to have_http_status(200)
+          .and have_attributes(body: expected_contents)
       end
+    end
+
+    def create_bulk_import_row(data)
+      Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data)
     end
 
     context 'with follows' do
@@ -156,7 +186,7 @@ RSpec.describe Settings::ImportsController do
         [
           { 'acct' => 'foo@bar' },
           { 'acct' => 'user@bar', 'show_reblogs' => false, 'notify' => true, 'languages' => %w(fr de) },
-        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        ].map { |data| create_bulk_import_row(data) }
       end
 
       include_examples 'export failed rows', "Account address,Show boosts,Notify on new posts,Languages\nfoo@bar,true,false,\nuser@bar,false,true,\"fr, de\"\n"
@@ -169,7 +199,7 @@ RSpec.describe Settings::ImportsController do
         [
           { 'acct' => 'foo@bar' },
           { 'acct' => 'user@bar' },
-        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        ].map { |data| create_bulk_import_row(data) }
       end
 
       include_examples 'export failed rows', "foo@bar\nuser@bar\n"
@@ -182,7 +212,7 @@ RSpec.describe Settings::ImportsController do
         [
           { 'acct' => 'foo@bar' },
           { 'acct' => 'user@bar', 'hide_notifications' => false },
-        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        ].map { |data| create_bulk_import_row(data) }
       end
 
       include_examples 'export failed rows', "Account address,Hide notifications\nfoo@bar,true\nuser@bar,false\n"
@@ -195,7 +225,7 @@ RSpec.describe Settings::ImportsController do
         [
           { 'domain' => 'bad.domain' },
           { 'domain' => 'evil.domain' },
-        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        ].map { |data| create_bulk_import_row(data) }
       end
 
       include_examples 'export failed rows', "bad.domain\nevil.domain\n"
@@ -208,7 +238,7 @@ RSpec.describe Settings::ImportsController do
         [
           { 'uri' => 'https://foo.com/1' },
           { 'uri' => 'https://foo.com/2' },
-        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        ].map { |data| create_bulk_import_row(data) }
       end
 
       include_examples 'export failed rows', "https://foo.com/1\nhttps://foo.com/2\n"
@@ -221,7 +251,7 @@ RSpec.describe Settings::ImportsController do
         [
           { 'list_name' => 'Amigos', 'acct' => 'user@example.com' },
           { 'list_name' => 'Frenemies', 'acct' => 'user@org.org' },
-        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        ].map { |data| create_bulk_import_row(data) }
       end
 
       include_examples 'export failed rows', "Amigos,user@example.com\nFrenemies,user@org.org\n"
@@ -245,9 +275,19 @@ RSpec.describe Settings::ImportsController do
       let(:import_mode) { mode }
 
       it 'creates an unconfirmed bulk_import with expected type and redirects', :aggregate_failures do
-        expect { subject }.to change { user.account.bulk_imports.pluck(:state, :type) }.from([]).to([['unconfirmed', import_type]])
+        expect { subject }
+          .to change_bulk_import_state_and_type
 
-        expect(response).to redirect_to(settings_import_path(user.account.bulk_imports.first))
+        expect(response)
+          .to redirect_to(settings_import_path(user.account.bulk_imports.first))
+      end
+
+      private
+
+      def change_bulk_import_state_and_type
+        change { user.account.bulk_imports.pluck(:state, :type) }
+          .from([])
+          .to([['unconfirmed', import_type]])
       end
     end
 
@@ -257,9 +297,11 @@ RSpec.describe Settings::ImportsController do
       let(:import_mode) { mode }
 
       it 'does not creates an unconfirmed bulk_import', :aggregate_failures do
-        expect { subject }.to_not(change { user.account.bulk_imports.count })
+        expect { subject }
+          .to_not change(user.account.bulk_imports, :count)
 
-        expect(assigns(:import).errors).to_not be_empty
+        expect(assigns(:import).errors)
+          .to_not be_empty
       end
     end
 

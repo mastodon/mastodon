@@ -28,7 +28,9 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
         it 'returns http success' do
           get :new
 
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+            .and render_template(:new)
         end
       end
 
@@ -40,8 +42,11 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
         it 'requires otp enabled first' do
           get :new
 
-          expect(response).to redirect_to settings_two_factor_authentication_methods_path
-          expect(flash[:error]).to be_present
+          expect(response)
+            .to redirect_to settings_two_factor_authentication_methods_path
+
+          expect(flash[:error])
+            .to be_present
         end
       end
     end
@@ -67,7 +72,9 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
           it 'returns http success' do
             get :index
 
-            expect(response).to have_http_status(200)
+            expect(response)
+              .to have_http_status(200)
+              .and render_template(:index)
           end
         end
 
@@ -75,8 +82,10 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
           it 'redirects to 2FA methods list page' do
             get :index
 
-            expect(response).to redirect_to settings_two_factor_authentication_methods_path
-            expect(flash[:error]).to be_present
+            expect(response)
+              .to redirect_to settings_two_factor_authentication_methods_path
+            expect(flash[:error])
+              .to be_present
           end
         end
       end
@@ -89,8 +98,10 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
         it 'requires otp enabled first' do
           get :index
 
-          expect(response).to redirect_to settings_two_factor_authentication_methods_path
-          expect(flash[:error]).to be_present
+          expect(response)
+            .to redirect_to settings_two_factor_authentication_methods_path
+          expect(flash[:error])
+            .to be_present
         end
       end
     end
@@ -99,7 +110,8 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
       it 'redirects to login' do
         delete :index
 
-        expect(response).to redirect_to new_user_session_path
+        expect(response)
+          .to redirect_to new_user_session_path
       end
     end
   end
@@ -124,12 +136,18 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
           it 'includes existing credentials in list of excluded credentials', :aggregate_failures do
             expect { get :options }.to_not change(user, :webauthn_id)
 
-            expect(response).to have_http_status(200)
+            expect(response)
+              .to have_http_status(200)
 
-            expect(controller.session[:webauthn_challenge]).to be_present
+            expect(controller.session[:webauthn_challenge])
+              .to be_present
 
-            excluded_credentials_ids = response.parsed_body['excludeCredentials'].pluck('id')
-            expect(excluded_credentials_ids).to match_array(user.webauthn_credentials.pluck(:external_id))
+            expect(excluded_credentials_ids)
+              .to match_array(user.webauthn_credentials.pluck(:external_id))
+          end
+
+          def excluded_credentials_ids
+            response.parsed_body['excludeCredentials'].pluck('id')
           end
         end
 
@@ -137,9 +155,14 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
           it 'stores the challenge on the session and sets user webauthn_id', :aggregate_failures do
             get :options
 
-            expect(response).to have_http_status(200)
-            expect(controller.session[:webauthn_challenge]).to be_present
-            expect(user.reload.webauthn_id).to be_present
+            expect(response)
+              .to have_http_status(200)
+
+            expect(controller.session[:webauthn_challenge])
+              .to be_present
+
+            expect(user.reload.webauthn_id)
+              .to be_present
           end
         end
       end
@@ -152,8 +175,11 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
         it 'requires otp enabled first' do
           get :options
 
-          expect(response).to redirect_to settings_two_factor_authentication_methods_path
-          expect(flash[:error]).to be_present
+          expect(response)
+            .to redirect_to settings_two_factor_authentication_methods_path
+
+          expect(flash[:error])
+            .to be_present
         end
       end
     end
@@ -162,7 +188,8 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
       it 'redirects to login' do
         get :options
 
-        expect(response).to redirect_to new_user_session_path
+        expect(response)
+          .to redirect_to new_user_session_path
       end
     end
   end
@@ -200,10 +227,12 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
 
               expect do
                 post :create, params: { credential: new_webauthn_credential, nickname: nickname }
-              end.to change { user.webauthn_credentials.count }.by(1)
-                                                               .and not_change(user, :webauthn_id)
+              end.to change { user.webauthn_credentials.count }
+                .by(1)
+                .and not_change(user, :webauthn_id)
 
-              expect(response).to have_http_status(200)
+              expect(response)
+                .to have_http_status(200)
             end
           end
 
@@ -213,8 +242,11 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
 
               post :create, params: { credential: new_webauthn_credential, nickname: 'USB Key' }
 
-              expect(response).to have_http_status(422)
-              expect(flash[:error]).to be_present
+              expect(response)
+                .to have_http_status(422)
+
+              expect(flash[:error])
+                .to be_present
             end
           end
 
@@ -233,8 +265,10 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
 
               post :create, params: { credential: new_webauthn_credential, nickname: nickname }
 
-              expect(response).to have_http_status(422)
-              expect(flash[:error]).to be_present
+              expect(response)
+                .to have_http_status(422)
+              expect(flash[:error])
+                .to be_present
             end
           end
         end
@@ -260,7 +294,8 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
         it 'requires otp enabled first' do
           post :create, params: { credential: new_webauthn_credential, nickname: nickname }
 
-          expect(response).to redirect_to settings_two_factor_authentication_methods_path
+          expect(response)
+            .to redirect_to settings_two_factor_authentication_methods_path
           expect(flash[:error]).to be_present
         end
       end
@@ -270,7 +305,8 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
       it 'redirects to login' do
         post :create, params: { credential: new_webauthn_credential, nickname: nickname }
 
-        expect(response).to redirect_to new_user_session_path
+        expect(response)
+          .to redirect_to new_user_session_path
       end
     end
   end
@@ -298,8 +334,11 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
                 delete :destroy, params: { id: user.webauthn_credentials.take.id }
               end.to change { user.webauthn_credentials.count }.by(-1)
 
-              expect(response).to redirect_to settings_two_factor_authentication_methods_path
-              expect(flash[:success]).to be_present
+              expect(response)
+                .to redirect_to settings_two_factor_authentication_methods_path
+
+              expect(flash[:success])
+                .to be_present
             end
           end
         end
@@ -308,8 +347,10 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
           it 'redirects to 2FA methods list and shows flash error' do
             delete :destroy, params: { id: '1' }
 
-            expect(response).to redirect_to settings_two_factor_authentication_methods_path
-            expect(flash[:error]).to be_present
+            expect(response)
+              .to redirect_to settings_two_factor_authentication_methods_path
+            expect(flash[:error])
+              .to be_present
           end
         end
       end
@@ -318,8 +359,10 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
         it 'requires otp enabled first' do
           delete :destroy, params: { id: '1' }
 
-          expect(response).to redirect_to settings_two_factor_authentication_methods_path
-          expect(flash[:error]).to be_present
+          expect(response)
+            .to redirect_to settings_two_factor_authentication_methods_path
+          expect(flash[:error])
+            .to be_present
         end
       end
     end
@@ -328,7 +371,8 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
       it 'redirects to login' do
         delete :destroy, params: { id: '1' }
 
-        expect(response).to redirect_to new_user_session_path
+        expect(response)
+          .to redirect_to new_user_session_path
       end
     end
   end

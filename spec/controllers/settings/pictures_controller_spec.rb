@@ -15,7 +15,9 @@ describe Settings::PicturesController do
     context 'with invalid picture id' do
       it 'returns http bad request' do
         delete :destroy, params: { id: 'invalid' }
-        expect(response).to have_http_status(400)
+
+        expect(response)
+          .to have_http_status(400)
       end
     end
 
@@ -29,8 +31,11 @@ describe Settings::PicturesController do
 
         it 'updates the account' do
           delete :destroy, params: { id: 'avatar' }
-          expect(response).to redirect_to(settings_profile_path)
-          expect(response).to have_http_status(303)
+
+          expect(response)
+            .to redirect_to(settings_profile_path)
+            .and have_http_status(303)
+
           expect(service).to have_received(:call).with(user.account, { 'avatar' => nil, 'avatar_remote_url' => '' })
         end
       end
@@ -44,7 +49,9 @@ describe Settings::PicturesController do
 
         it 'redirects to profile' do
           delete :destroy, params: { id: 'avatar' }
-          expect(response).to redirect_to(settings_profile_path)
+
+          expect(response)
+            .to redirect_to(settings_profile_path)
         end
       end
     end

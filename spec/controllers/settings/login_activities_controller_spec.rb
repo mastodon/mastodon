@@ -12,13 +12,17 @@ describe Settings::LoginActivitiesController do
   end
 
   describe 'GET #index' do
-    before do
-      get :index
-    end
-
     it 'returns http success with private cache control headers', :aggregate_failures do
-      expect(response).to have_http_status(200)
-      expect(response.headers['Cache-Control']).to include('private, no-store')
+      get :index
+
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:index)
+        .and have_attributes(
+          headers: hash_including(
+            'Cache-Control' => include('private, no-store')
+          )
+        )
     end
   end
 end

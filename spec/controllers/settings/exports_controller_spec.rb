@@ -11,19 +11,28 @@ describe Settings::ExportsController do
 
       before do
         sign_in user, scope: :user
-        get :show
       end
 
       it 'returns http success with private cache control headers', :aggregate_failures do
-        expect(response).to have_http_status(200)
-        expect(response.headers['Cache-Control']).to include('private, no-store')
+        get :show
+
+        expect(response)
+          .to have_http_status(200)
+          .and render_template(:show)
+          .and have_attributes(
+            headers: hash_including(
+              'Cache-Control' => include('private, no-store')
+            )
+          )
       end
     end
 
     context 'when not signed in' do
       it 'redirects' do
         get :show
-        expect(response).to redirect_to '/auth/sign_in'
+
+        expect(response)
+          .to redirect_to '/auth/sign_in'
       end
     end
   end
@@ -33,15 +42,12 @@ describe Settings::ExportsController do
       sign_in Fabricate(:user), scope: :user
     end
 
-    it 'redirects to settings_export_path' do
-      post :create
-      expect(response).to redirect_to(settings_export_path)
-    end
+    it 'queues BackupWorker job and redirects', :sidekiq_fake do
+      expect { post :create }
+        .to change(BackupWorker.jobs, :size).by(1)
 
-    it 'queues BackupWorker job by 1', :sidekiq_fake do
-      expect do
-        post :create
-      end.to change(BackupWorker.jobs, :size).by(1)
+      expect(response)
+        .to redirect_to(settings_export_path)
     end
   end
 end

@@ -12,8 +12,9 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
       expect(assigns(:confirmation)).to be_instance_of Form::TwoFactorConfirmation
       expect(assigns(:provision_url)).to eq 'otpauth://totp/cb6e6126.ngrok.io:local-part%40domain?secret=thisisasecretforthespecofnewview&issuer=cb6e6126.ngrok.io'
       expect(assigns(:qrcode)).to be_instance_of RQRCode::QRCode
-      expect(response).to have_http_status(200)
-      expect(response).to render_template(:new)
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:new)
     end
   end
 
@@ -35,7 +36,8 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
         it 'redirects if a new otp_secret has not been set in the session' do
           get :new, session: { challenge_passed_at: Time.now.utc }
 
-          expect(response).to redirect_to('/settings/otp_authentication')
+          expect(response)
+            .to redirect_to('/settings/otp_authentication')
         end
       end
 
@@ -44,70 +46,79 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
           it 'raises ActionController::ParameterMissing' do
             post :create, params: {}, session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
 
-            expect(response).to have_http_status(400)
+            expect(response)
+              .to have_http_status(400)
           end
         end
+      end
 
-        describe 'when creation succeeds' do
-          let!(:otp_backup_codes) { user.generate_otp_backup_codes! }
+      it 'redirects if a new otp_secret has not been set in the session' do
+        get :new, session: { challenge_passed_at: Time.now.utc }
 
-          before do
-            prepare_user_otp_generation
-            prepare_user_otp_consumption_response(true)
-            allow(controller).to receive(:current_user).and_return(user)
-          end
+        expect(response)
+          .to redirect_to('/settings/otp_authentication')
+      end
 
-          it 'renders page with success' do
-            expect { post_create_with_options }
-              .to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
+      describe 'when creation succeeds' do
+        let!(:otp_backup_codes) { user.generate_otp_backup_codes! }
 
-            expect(assigns(:recovery_codes)).to eq otp_backup_codes
-            expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
-            expect(response).to have_http_status(200)
-            expect(response).to render_template('settings/two_factor_authentication/recovery_codes/index')
-          end
+        before do
+          prepare_user_otp_generation
+          prepare_user_otp_consumption_response(true)
+          allow(controller).to receive(:current_user).and_return(user)
         end
 
-        describe 'when creation fails' do
-          subject do
-            expect { post_create_with_options }
-              .to(not_change { user.reload.otp_secret })
-          end
+        it 'renders page with success' do
+          expect { post_create_with_options }
+            .to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
 
-          before do
-            prepare_user_otp_consumption_response(false)
-            allow(controller).to receive(:current_user).and_return(user)
-          end
+          expect(assigns(:recovery_codes)).to eq otp_backup_codes
+          expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
+          expect(response)
+            .to have_http_status(200)
+            .and render_template('settings/two_factor_authentication/recovery_codes/index')
+        end
+      end
 
-          it 'renders page with error message' do
-            subject
-            expect(response.body).to include 'The entered code was invalid! Are server time and device time correct?'
-          end
-
-          include_examples 'renders :new'
+      describe 'when creation fails' do
+        subject do
+          expect { post_create_with_options }
+            .to(not_change { user.reload.otp_secret })
         end
 
-        private
-
-        def post_create_with_options
-          post :create,
-               params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
-               session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
+        before do
+          prepare_user_otp_consumption_response(false)
+          allow(controller).to receive(:current_user).and_return(user)
         end
 
-        def prepare_user_otp_generation
-          allow(user)
-            .to receive(:generate_otp_backup_codes!)
-            .and_return(otp_backup_codes)
-        end
+        it 'renders page with error message' do
+          subject
 
-        def prepare_user_otp_consumption_response(result)
-          options = { otp_secret: 'thisisasecretforthespecofnewview' }
-          allow(user)
-            .to receive(:validate_and_consume_otp!)
-            .with('123456', options)
-            .and_return(result)
+          expect(response.body)
+            .to include 'The entered code was invalid! Are server time and device time correct?'
         end
+      end
+
+      private
+
+      def post_create_with_options
+        post :create,
+             params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
+             session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
+      end
+
+      def prepare_user_otp_generation
+        allow(user)
+          .to receive(:generate_otp_backup_codes!)
+          .and_return(otp_backup_codes)
+      end
+
+      def prepare_user_otp_consumption_response(result)
+        options = { otp_secret: 'thisisasecretforthespecofnewview' }
+        allow(user)
+          .to receive(:validate_and_consume_otp!)
+          .with('123456', options)
+          .and_return(result)
       end
     end
   end
@@ -116,13 +127,15 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
     it 'redirects on POST to create' do
       post :create, params: { form_two_factor_confirmation: { otp_attempt: '123456' } }
 
-      expect(response).to redirect_to('/auth/sign_in')
+      expect(response)
+        .to redirect_to('/auth/sign_in')
     end
 
     it 'redirects on GET to new' do
       get :new
 
-      expect(response).to redirect_to('/auth/sign_in')
+      expect(response)
+        .to redirect_to('/auth/sign_in')
     end
   end
 end

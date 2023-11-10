@@ -6,14 +6,27 @@ describe Settings::Exports::FollowingAccountsController do
   render_views
 
   describe 'GET #index' do
-    it 'returns a csv of the following accounts' do
-      user = Fabricate(:user)
-      user.account.follow!(Fabricate(:account, username: 'username', domain: 'domain'))
+    let(:user) { Fabricate(:user) }
 
+    before do
+      user.account.follow!(Fabricate(:account, username: 'username', domain: 'domain'))
       sign_in user, scope: :user
+    end
+
+    it 'returns a csv of the following accounts' do
       get :index, format: :csv
 
-      expect(response.body).to eq "Account address,Show boosts,Notify on new posts,Languages\nusername@domain,true,false,\n"
+      expect(response.body)
+        .to eq expected_csv_body
+    end
+
+    private
+
+    def expected_csv_body
+      <<~CSV
+        Account address,Show boosts,Notify on new posts,Languages
+        username@domain,true,false,
+      CSV
     end
   end
 end

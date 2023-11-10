@@ -10,7 +10,8 @@ describe Settings::TwoFactorAuthenticationMethodsController do
       it 'redirects' do
         get :index
 
-        expect(response).to redirect_to '/auth/sign_in'
+        expect(response)
+          .to redirect_to '/auth/sign_in'
       end
     end
   end
@@ -26,23 +27,32 @@ describe Settings::TwoFactorAuthenticationMethodsController do
       describe 'when user has enabled otp' do
         before do
           user.update(otp_required_for_login: true)
-          get :index
         end
 
         it 'returns http success with private cache control headers', :aggregate_failures do
-          expect(response).to have_http_status(200)
-          expect(response.headers['Cache-Control']).to include('private, no-store')
+          get :index
+
+          expect(response)
+            .to have_http_status(200)
+            .and render_template(:index)
+            .and have_attributes(
+              headers: hash_including(
+                'Cache-Control' => include('private, no-store')
+              )
+            )
         end
       end
 
       describe 'when user has not enabled otp' do
         before do
           user.update(otp_required_for_login: false)
-          get :index
         end
 
         it 'redirects to enable otp' do
-          expect(response).to redirect_to(settings_otp_authentication_path)
+          get :index
+
+          expect(response)
+            .to redirect_to(settings_otp_authentication_path)
         end
       end
     end
@@ -56,8 +66,9 @@ describe Settings::TwoFactorAuthenticationMethodsController do
         it 'renders challenge page' do
           post :disable
 
-          expect(response).to have_http_status(200)
-          expect(response).to render_template('auth/challenges/new')
+          expect(response)
+            .to have_http_status(200)
+            .and render_template('auth/challenges/new')
         end
       end
 
@@ -70,8 +81,10 @@ describe Settings::TwoFactorAuthenticationMethodsController do
         it 'redirects to settings page' do
           post :disable, session: { challenge_passed_at: 10.minutes.ago }
 
-          expect(UserMailer).to have_received(:two_factor_disabled).with(user)
-          expect(response).to redirect_to(settings_otp_authentication_path)
+          expect(UserMailer)
+            .to have_received(:two_factor_disabled).with(user)
+          expect(response)
+            .to redirect_to(settings_otp_authentication_path)
         end
       end
     end

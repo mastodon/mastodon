@@ -21,7 +21,8 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
         it 'redirects to two factor authentication methods list page' do
           get :show
 
-          expect(response).to redirect_to settings_two_factor_authentication_methods_path
+          expect(response)
+            .to redirect_to settings_two_factor_authentication_methods_path
         end
       end
 
@@ -33,7 +34,8 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
         it 'returns http success' do
           get :show
 
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
         end
       end
     end
@@ -42,7 +44,8 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
       it 'redirects' do
         get :show
 
-        expect(response).to redirect_to new_user_session_path
+        expect(response)
+          .to redirect_to new_user_session_path
       end
     end
   end
@@ -65,7 +68,8 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
             end.to not_change { user.reload.otp_secret }
                .and(change { session[:new_otp_secret] })
 
-            expect(response).to redirect_to(new_settings_two_factor_authentication_confirmation_path)
+            expect(response)
+              .to redirect_to(new_settings_two_factor_authentication_confirmation_path)
           end
         end
       end
@@ -82,7 +86,8 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
             end.to not_change { user.reload.otp_secret }
                .and(change { session[:new_otp_secret] })
 
-            expect(response).to redirect_to(new_settings_two_factor_authentication_confirmation_path)
+            expect(response)
+              .to redirect_to(new_settings_two_factor_authentication_confirmation_path)
           end
         end
       end
@@ -92,7 +97,8 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
       it 'redirects to login' do
         get :show
 
-        expect(response).to redirect_to new_user_session_path
+        expect(response)
+          .to redirect_to new_user_session_path
       end
     end
   end

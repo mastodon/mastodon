@@ -5,22 +5,16 @@ require 'rails_helper'
 describe Settings::MigrationsController do
   render_views
 
-  shared_examples 'authenticate user' do
-    it 'redirects to sign_in page' do
-      expect(subject).to redirect_to new_user_session_path
-    end
-  end
-
   describe 'GET #show' do
-    context 'when user is not sign in' do
-      subject { get :show }
+    context 'when user is not signed in' do
+      it 'redirects to sign_in page' do
+        get :show
 
-      it_behaves_like 'authenticate user'
+        expect(subject).to redirect_to new_user_session_path
+      end
     end
 
-    context 'when user is sign in' do
-      subject { get :show }
-
+    context 'when user is signed in' do
       let(:user) { Fabricate(:account, moved_to_account: moved_to_account).user }
 
       before { sign_in user, scope: :user }
@@ -29,8 +23,11 @@ describe Settings::MigrationsController do
         let(:moved_to_account) { nil }
 
         it 'renders show page' do
-          expect(subject).to have_http_status 200
-          expect(subject).to render_template :show
+          get :show
+
+          expect(response)
+            .to have_http_status(200)
+            .and render_template(:show)
         end
       end
 
@@ -38,8 +35,11 @@ describe Settings::MigrationsController do
         let(:moved_to_account) { Fabricate(:account) }
 
         it 'renders show page' do
-          expect(subject).to have_http_status 200
-          expect(subject).to render_template :show
+          get :show
+
+          expect(response)
+            .to have_http_status(200)
+            .and render_template(:show)
         end
       end
     end
@@ -47,9 +47,12 @@ describe Settings::MigrationsController do
 
   describe 'POST #create' do
     context 'when user is not sign in' do
-      subject { post :create }
+      it 'redirects to sign_in page' do
+        post :create
 
-      it_behaves_like 'authenticate user'
+        expect(subject)
+          .to redirect_to new_user_session_path
+      end
     end
 
     context 'when user is signed in' do
@@ -63,8 +66,12 @@ describe Settings::MigrationsController do
         let(:acct) { Fabricate(:account, also_known_as: [ActivityPub::TagManager.instance.uri_for(user.account)]) }
 
         it 'updates moved to account' do
-          expect(subject).to redirect_to settings_migration_path
-          expect(user.account.reload.moved_to_account_id).to eq acct.id
+          subject
+
+          expect(response)
+            .to redirect_to settings_migration_path
+          expect(user.account.reload.moved_to_account_id)
+            .to eq acct.id
         end
       end
 
@@ -75,7 +82,8 @@ describe Settings::MigrationsController do
           subject
 
           expect(user.account.reload.moved_to_account_id).to be_nil
-          expect(response).to render_template :show
+          expect(response)
+            .to render_template :show
         end
       end
 
@@ -86,7 +94,8 @@ describe Settings::MigrationsController do
           subject
 
           expect(user.account.reload.moved_to_account_id).to be_nil
-          expect(response).to render_template :show
+          expect(response)
+            .to render_template :show
         end
       end
 
@@ -102,7 +111,8 @@ describe Settings::MigrationsController do
           subject
 
           expect(user.account.reload.moved_to_account_id).to be_nil
-          expect(response).to render_template :show
+          expect(response)
+            .to render_template :show
         end
       end
     end

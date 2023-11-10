@@ -13,36 +13,49 @@ describe Settings::ApplicationsController do
   end
 
   describe 'GET #index' do
-    before do
-      Fabricate(:application)
-      get :index
-    end
+    before { Fabricate(:application) }
 
     it 'returns http success with private cache control headers', :aggregate_failures do
-      expect(response).to have_http_status(200)
-      expect(response.headers['Cache-Control']).to include('private, no-store')
+      get :index
+
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:index)
+        .and have_attributes(
+          headers: hash_including(
+            'Cache-Control' => include('private, no-store')
+          )
+        )
     end
   end
 
   describe 'GET #show' do
     it 'returns http success' do
       get :show, params: { id: app.id }
-      expect(response).to have_http_status(200)
-      expect(assigns[:application]).to eql(app)
+
+      expect(response)
+        .to have_http_status(200)
+
+      expect(assigns[:application])
+        .to eql(app)
     end
 
     it 'returns 404 if you dont own app' do
       app.update!(owner: nil)
 
       get :show, params: { id: app.id }
-      expect(response).to have_http_status 404
+
+      expect(response)
+        .to have_http_status 404
     end
   end
 
   describe 'GET #new' do
     it 'returns http success' do
       get :new
-      expect(response).to have_http_status(200)
+
+      expect(response)
+        .to have_http_status(200)
     end
   end
 
@@ -60,8 +73,11 @@ describe Settings::ApplicationsController do
       end
 
       it 'creates an entry in the database', :aggregate_failures do
-        expect { subject }.to change(Doorkeeper::Application, :count)
-        expect(response).to redirect_to(settings_applications_path)
+        expect { subject }
+          .to change(Doorkeeper::Application, :count)
+
+        expect(response)
+          .to redirect_to(settings_applications_path)
       end
     end
 
@@ -79,7 +95,8 @@ describe Settings::ApplicationsController do
 
       it 'creates an entry in the database', :aggregate_failures do
         expect { subject }.to change(Doorkeeper::Application, :count)
-        expect(response).to redirect_to(settings_applications_path)
+        expect(response)
+          .to redirect_to(settings_applications_path)
       end
     end
 
@@ -96,33 +113,25 @@ describe Settings::ApplicationsController do
       end
 
       it 'returns http success and renders form', :aggregate_failures do
-        expect(response).to have_http_status(200)
-        expect(response).to render_template(:new)
+        expect(response)
+          .to have_http_status(200)
+          .and render_template(:new)
       end
     end
   end
 
   describe 'PATCH #update' do
     context 'when success' do
-      subject do
+      it 'updates existing application' do
         patch :update, params: {
           id: app.id,
-          doorkeeper_application: opts,
+          doorkeeper_application: { website: 'https://foo.bar/' },
         }
-        response
-      end
 
-      let(:opts) do
-        {
-          website: 'https://foo.bar/',
-        }
-      end
-
-      it 'updates existing application' do
-        subject
-
-        expect(app.reload.website).to eql(opts[:website])
-        expect(response).to redirect_to(settings_application_path(app))
+        expect(app.reload.website)
+          .to eql('https://foo.bar/')
+        expect(response)
+          .to redirect_to(settings_application_path(app))
       end
     end
 
@@ -140,20 +149,22 @@ describe Settings::ApplicationsController do
       end
 
       it 'returns http success and renders form', :aggregate_failures do
-        expect(response).to have_http_status(200)
-        expect(response).to render_template(:show)
+        expect(response)
+          .to have_http_status(200)
+          .and render_template(:show)
       end
     end
   end
 
   describe 'destroy' do
-    before do
-      post :destroy, params: { id: app.id }
-    end
-
     it 'redirects back to applications page and removes the app' do
-      expect(response).to redirect_to(settings_applications_path)
-      expect(Doorkeeper::Application.find_by(id: app.id)).to be_nil
+      post :destroy, params: { id: app.id }
+
+      expect(response)
+        .to redirect_to(settings_applications_path)
+
+      expect(Doorkeeper::Application.find_by(id: app.id))
+        .to be_nil
     end
   end
 
@@ -164,7 +175,8 @@ describe Settings::ApplicationsController do
       expect(token).to_not be_nil
       post :regenerate, params: { id: app.id }
 
-      expect(user.token_for_app(app)).to_not eql(token)
+      expect(user.token_for_app(app))
+        .to_not eql(token)
     end
   end
 end

@@ -12,13 +12,14 @@ describe Settings::Exports::BookmarksController do
   describe 'GET #index' do
     before do
       user.account.bookmarks.create!(status: status)
+      sign_in user, scope: :user
     end
 
     it 'returns a csv of the bookmarked toots' do
-      sign_in user, scope: :user
       get :index, format: :csv
 
-      expect(response.body).to eq "https://foo.bar/statuses/1312\n"
+      expect(response.body)
+        .to eq "https://foo.bar/statuses/1312\n"
     end
   end
 end

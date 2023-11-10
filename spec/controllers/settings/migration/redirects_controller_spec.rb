@@ -12,13 +12,16 @@ describe Settings::Migration::RedirectsController do
   end
 
   describe 'GET #new' do
-    before do
-      get :new
-    end
-
     it 'returns http success with private cache control headers', :aggregate_failures do
-      expect(response).to have_http_status(200)
-      expect(response.headers['Cache-Control']).to include('private, no-store')
+      get :new
+
+      expect(response)
+        .to have_http_status(200)
+        .and have_attributes(
+          headers: hash_including(
+            'Cache-Control' => include('private, no-store')
+          )
+        )
     end
   end
 
@@ -29,7 +32,8 @@ describe Settings::Migration::RedirectsController do
       it 'redirects to the settings migration path' do
         post :create, params: { form_redirect: { acct: 'new@host.com', current_password: 'testtest' } }
 
-        expect(response).to redirect_to(settings_migration_path)
+        expect(response)
+          .to redirect_to(settings_migration_path)
       end
     end
 
@@ -37,8 +41,9 @@ describe Settings::Migration::RedirectsController do
       it 'returns success and renders the new page' do
         post :create, params: { form_redirect: { acct: '' } }
 
-        expect(response).to have_http_status(200)
-        expect(response).to render_template(:new)
+        expect(response)
+          .to have_http_status(200)
+          .and render_template(:new)
       end
     end
   end
@@ -53,8 +58,11 @@ describe Settings::Migration::RedirectsController do
     it 'resets the account and sends an update' do
       delete :destroy
 
-      expect(response).to redirect_to(settings_migration_path)
-      expect(user.account.reload.moved_to_account).to be_nil
+      expect(response)
+        .to redirect_to(settings_migration_path)
+
+      expect(user.account.reload.moved_to_account)
+        .to be_nil
     end
   end
 
