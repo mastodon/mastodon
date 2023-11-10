@@ -21,6 +21,8 @@ on:
         type: string
       labels:
         type: string
+      file_to_build:
+        type: string
 
 jobs:
   build-image:
