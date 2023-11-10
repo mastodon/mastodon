@@ -93,4 +93,4 @@ USER mastodon
 EXPOSE 4000
 
 # Run streaming when started
-CMD [ node ./streaming ]
+CMD [ node ./streaming/index.js ]
