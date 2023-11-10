@@ -15,7 +15,7 @@ jobs:
   build-image:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: false
+      cancel-in-progress: true
 
     uses: ./.github/workflows/build-container-image.yml
     with:
@@ -26,7 +26,7 @@ jobs:
   build-image-streaming:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
+      cancel-in-progress: false
 
     uses: ./.github/workflows/build-container-image.yml
     with:
