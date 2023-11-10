@@ -164,9 +164,11 @@ RSpec.describe Admin::AccountsController do
         log_item = Admin::ActionLog.last
 
         expect(log_item).to_not be_nil
-        expect(log_item.action).to eq :approve
-        expect(log_item.account_id).to eq current_user.account_id
-        expect(log_item.target_id).to eq account.user.id
+        expect(log_item).to have_attributes(
+          action: :approve,
+          account_id: current_user.account_id,
+          target_id: account.user.id
+        )
       end
     end
 
@@ -204,9 +206,11 @@ RSpec.describe Admin::AccountsController do
         log_item = Admin::ActionLog.last
 
         expect(log_item).to_not be_nil
-        expect(log_item.action).to eq :reject
-        expect(log_item.account_id).to eq current_user.account_id
-        expect(log_item.target_id).to eq account.user.id
+        expect(log_item).to have_attributes(
+          action: :reject,
+          account_id: current_user.account_id,
+          target_id: account.user.id
+        )
       end
     end
 
