@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const http = require('http');
+const path = require('path');
 const url = require('url');
 
 const dotenv = require('dotenv');
@@ -17,8 +18,13 @@ const WebSocket = require('ws');
 
 const environment = process.env.NODE_ENV || 'development';
 
+// Correctly detect .env/.env.production files based on whether we're running
+// from the streaming/ directory or the root of the mastodon project.
+const dotenvFile = environment === 'production' ? '.env.production' : '.env';
+const dotenvDir = path.basename(process.cwd()) === 'streaming' ? `../` : './';
+
 dotenv.config({
-  path: environment === 'production' ? '.env.production' : '.env',
+  path: path.resolve(dotenvDir, dotenvFile)
 });
 
 log.level = process.env.LOG_LEVEL || 'verbose';
