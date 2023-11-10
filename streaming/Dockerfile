@@ -14,15 +14,24 @@ ARG DEBIAN_VERSION="bookworm"
 # Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
 FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim as streaming
 
-# Timezone used by the Docker container and runtime, change with [--build-arg TZ=Europe/Berlin]
-ARG TZ="Etc/UTC"
-# Linux UID (user id) for the mastodon user, change with [--build-arg UID=1234]
-ARG UID="991"
-# Linux GID (group id) for the mastodon user, change with [--build-arg GID=1234]
-ARG GID="991"
+# Apply Mastodon build options based on options above
+ENV \
+# Apply Mastodon version information
+  MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
+  MASTODON_VERSION_METADATA="${MASTODON_VERSION_METADATA}" \
+# Apply timezone
+  TZ=${TZ}
 
+ENV \
 # Configure the IP to bind Mastodon to when serving traffic
-ENV BIND="0.0.0.0"
+  BIND="0.0.0.0" \
+# Use production settings for Yarn, Node and related nodejs based tools
+  NODE_ENV="production" \
+# Add Ruby and Mastodon installation to the PATH
+  DEBIAN_FRONTEND="noninteractive"
+
+# Set default shell used for running commands
+SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
 
 ARG TARGETPLATFORM
 
@@ -75,3 +84,6 @@ RUN \
 USER mastodon
 # Expose default Streaming ports
 EXPOSE 4000
+
+# Run streaming when started
+CMD [ node ./streaming ]
