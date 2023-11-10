@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-class Api::V1::Instances::ActivityController < Api::BaseController
+class Api::V1::Instances::ActivityController < Api::V1::Instances::BaseController
   before_action :require_enabled_api!
-
-  skip_before_action :require_authenticated_user!, unless: :limited_federation_mode?
-
-  vary_by ''
 
   def show
     cache_even_if_authenticated!
