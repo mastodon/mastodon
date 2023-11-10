@@ -1,1 +1,69 @@
+---
 lt:
+  doorkeeper:
+    authorizations:
+      error:
+        title: Įvyko klaida.
+      new:
+        prompt_html: "%{client_name} norėtų gauti leidimą prieigos prie tavo paskyros. Tai trečiosios šalies programėlė. <strong>Jei ja nepasitiki, neturėtum jai leisti.</strong>"
+    authorized_applications:
+      index:
+        title: Tavo leidžiamos programėlės
+    grouped_scopes:
+      title:
+        blocks: Blokavimai
+        follow: Sekimai, nutildymai ir blokavimai
+        statuses: Įrašai
+    layouts:
+      admin:
+        nav:
+          applications: Programėlės
+          oauth2_provider: OAuth2 teikėjas
+      application:
+        title: Reikalingas OAuth įgaliojimas
+    scopes:
+      admin:read: skaityti visus serveryje esančius duomenis
+      admin:read:accounts: skaityti neskelbtiną visų paskyrų informaciją
+      admin:read:canonical_email_blocks: skaityti neskelbtiną visų kanoninių el. laiško blokavimų informaciją
+      admin:read:domain_allows: skaityti neskelbtiną visų domeno leidimus informaciją
+      admin:read:domain_blocks: skaityti neskelbtiną visų domeno blokavimų informaciją
+      admin:read:email_domain_blocks: skaityti neskelbtiną visų el. laiško domeno blokavimų informaciją
+      admin:read:ip_blocks: skaityti neskelbtiną visų IP blokavimų informaciją
+      admin:read:reports: skaityti neskelbtiną visų ataskaitų ir praneštų paskyrų informaciją
+      admin:write: modifikuoti visus serveryje esančius duomenis
+      admin:write:accounts: atlikti paskyrų prižiūrėjimo veiksmus
+      admin:write:canonical_email_blocks: atlikti kanoninių el. laiško blokavimų prižiūrėjimo veiksmus
+      admin:write:domain_allows: atlikti prižiūrėjimo veiksmus su domeno leidimais
+      admin:write:domain_blocks: atlikti prižiūrėjimo veiksmus su domenų blokavimais
+      admin:write:email_domain_blocks: atlikti prižiūrėjimo veiksmus su el. laiško domenų blokavimais
+      admin:write:ip_blocks: atlikti prižiūrėjimo veiksmus su IP blokavimais
+      crypto: naudoti galo iki galo šifravimą
+      follow: modifikuoti paskyros santykius
+      push: gauti tavo stumiamuosius pranešimus
+      read: skaityti tavo visus paskyros duomenis
+      read:accounts: matyti paskyrų informaciją
+      read:blocks: matyti tavo blokavimus
+      read:bookmarks: matyti tavo žymes
+      read:favourites: matyti tavo mėgstamiausius
+      read:filters: matyti tavo filtrus
+      read:follows: matyti tavo sekimus
+      read:lists: matyti tavo sąrašus
+      read:mutes: matyti tavo nutildymus
+      read:notifications: matyti tavo pranešimus
+      read:reports: matyti tavo ataskaitas
+      read:search: ieškoti tavo vardu
+      read:statuses: matyti visus įrašus
+      write: modifikuoti visus tavo paskyros duomenis
+      write:accounts: modifikuoti tavo profilį
+      write:blocks: blokuoti paskyras ir domenus
+      write:bookmarks: įrašyti įrašus
+      write:conversations: nutildyti ir ištrinti pokalbius
+      write:favourites: mėgti įrašai
+      write:filters: sukurti filtrus
+      write:follows: sekti žmones
+      write:lists: sukurti sąrašus
+      write:media: įkelti medijos failus
+      write:mutes: nutildyti žmones ir pokalbius
+      write:notifications: išvalyti tavo pranešimus
+      write:reports: pranešti kitus asmenus
+      write:statuses: skelbti įrašus
