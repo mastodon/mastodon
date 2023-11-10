@@ -19,5 +19,17 @@ jobs:
 
     uses: ./.github/workflows/build-container-image.yml
     with:
+      file: Dockerfile
       platforms: linux/amd64 # Testing only on native platform so it is performant
       cache: false
+
+  build-image-streaming:
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      file: streaming/Dockerfile
+      platforms: linux/amd64 # Testing only on native platform so it is performant
+      cache: true
