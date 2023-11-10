@@ -37,7 +37,7 @@ class Webhook < ApplicationRecord
   validate :validate_permissions
   validate :validate_template
 
-  normalizes :events, with: ->(events) { events.filter_map(&:strip).filter_map(&:presence) }
+  normalizes :events, with: ->(events) { events.filter_map { |event| event.strip.presence } }
   before_validation :generate_secret
 
   def rotate_secret!
