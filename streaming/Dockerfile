@@ -14,6 +14,13 @@ ARG DEBIAN_VERSION="bookworm"
 # Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
 FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim as streaming
 
+# Timezone used by the Docker container and runtime, change with [--build-arg TZ=Europe/Berlin]
+ARG TZ="Etc/UTC"
+# Linux UID (user id) for the mastodon user, change with [--build-arg UID=1234]
+ARG UID="991"
+# Linux GID (group id) for the mastodon user, change with [--build-arg GID=1234]
+ARG GID="991"
+
 # Apply Mastodon build options based on options above
 ENV \
 # Apply Mastodon version information
