@@ -246,7 +246,7 @@ RUN \
   mkdir -p /opt/mastodon/public/system; \
   chown mastodon:mastodon /opt/mastodon/public/system;
 
-# Set the running user for resulting container
+# Set the running user for resulting container to mastodon
 USER mastodon
 
 # Set container entry point
