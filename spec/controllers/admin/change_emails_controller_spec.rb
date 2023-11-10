@@ -36,9 +36,11 @@ RSpec.describe Admin::ChangeEmailsController do
 
       user.reload
 
-      expect(user.email).to eq previous_email
-      expect(user.unconfirmed_email).to eq 'test@example.com'
-      expect(user.confirmation_token).to_not be_nil
+      expect(user).to have_attributes(
+        email: previous_email,
+        unconfirmed_email: 'test@example.com',
+        confirmation_token: be_present
+      )
 
       expect(UserMailer).to have_received(:confirmation_instructions).with(user, user.confirmation_token, { to: 'test@example.com' })
 
