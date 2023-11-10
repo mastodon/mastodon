@@ -32,6 +32,8 @@ ENV \
 ENV \
 # Configure the IP to bind Mastodon to when serving traffic
   BIND="0.0.0.0" \
+# Explicitly set PORT to match the exposed port
+  PORT=4000 \
 # Use production settings for Yarn, Node and related nodejs based tools
   NODE_ENV="production" \
 # Add Ruby and Mastodon installation to the PATH
