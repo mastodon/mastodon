@@ -14,7 +14,7 @@ class Api::V1::Trends::TagsController < Api::V1::Trends::BaseController
 
   def set_tags
     @tags = if enabled?
-              tags_from_trends.offset(offset_param).limit(limit_param(DEFAULT_RECORDS_LIMIT))
+              tags_from_trends.offset(offset_param).limit(default_records_limit_param)
             else
               []
             end
@@ -29,10 +29,10 @@ class Api::V1::Trends::TagsController < Api::V1::Trends::BaseController
   end
 
   def prev_path
-    api_v1_trends_tags_url prev_path_params if offset_param > limit_param(DEFAULT_RECORDS_LIMIT)
+    api_v1_trends_tags_url prev_path_params if offset_param > default_records_limit_param
   end
 
   def records_continue?
-    @tags.size == limit_param(DEFAULT_RECORDS_LIMIT)
+    @tags.size == default_records_limit_param
   end
 end

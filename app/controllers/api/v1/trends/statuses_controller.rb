@@ -16,7 +16,7 @@ class Api::V1::Trends::StatusesController < Api::V1::Trends::BaseController
 
   def set_statuses
     @statuses = if enabled?
-                  cache_collection(statuses_from_trends.offset(offset_param).limit(limit_param(DEFAULT_RECORDS_LIMIT)), Status)
+                  cache_collection(statuses_from_trends.offset(offset_param).limit(default_records_limit_param), Status)
                 else
                   []
                 end
@@ -33,10 +33,10 @@ class Api::V1::Trends::StatusesController < Api::V1::Trends::BaseController
   end
 
   def prev_path
-    api_v1_trends_statuses_url prev_path_params if offset_param > limit_param(DEFAULT_RECORDS_LIMIT)
+    api_v1_trends_statuses_url prev_path_params if offset_param > default_records_limit_param
   end
 
   def records_continue?
-    @statuses.size == limit_param(DEFAULT_RECORDS_LIMIT)
+    @statuses.size == default_records_limit_param
   end
 end

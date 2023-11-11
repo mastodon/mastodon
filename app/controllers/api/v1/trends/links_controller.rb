@@ -16,7 +16,7 @@ class Api::V1::Trends::LinksController < Api::V1::Trends::BaseController
 
   def set_links
     @links = if enabled?
-               links_from_trends.offset(offset_param).limit(limit_param(DEFAULT_RECORDS_LIMIT))
+               links_from_trends.offset(offset_param).limit(default_records_limit_param)
              else
                []
              end
@@ -33,10 +33,10 @@ class Api::V1::Trends::LinksController < Api::V1::Trends::BaseController
   end
 
   def prev_path
-    api_v1_trends_links_url prev_path_params if offset_param > limit_param(DEFAULT_RECORDS_LIMIT)
+    api_v1_trends_links_url prev_path_params if offset_param > default_records_limit_param
   end
 
   def records_continue?
-    @links.size == limit_param(DEFAULT_RECORDS_LIMIT)
+    @links.size == default_records_limit_param
   end
 end
