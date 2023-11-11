@@ -22,11 +22,13 @@ RSpec.describe StatusRelationshipsPresenter do
       let(:options) { {} }
 
       it 'sets default maps' do
-        expect(presenter.reblogs_map).to    eq default_map
-        expect(presenter.favourites_map).to eq default_map
-        expect(presenter.bookmarks_map).to  eq default_map
-        expect(presenter.mutes_map).to      eq default_map
-        expect(presenter.pins_map).to       eq default_map
+        expect(presenter).to have_attributes(
+          reblogs_map: eq(default_map),
+          favourites_map: eq(default_map),
+          bookmarks_map: eq(default_map),
+          mutes_map: eq(default_map),
+          pins_map: eq(default_map)
+        )
       end
     end
 
