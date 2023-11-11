@@ -5,6 +5,10 @@ class Api::V1::Trends::BaseController < Api::BaseController
 
   private
 
+  def enabled?
+    Setting.trends
+  end
+
   def insert_pagination_headers
     set_pagination_headers(next_path, prev_path)
   end

@@ -14,10 +14,6 @@ class Api::V1::Trends::LinksController < Api::BaseController
 
   private
 
-  def enabled?
-    Setting.trends
-  end
-
   def set_links
     @links = if enabled?
                links_from_trends.offset(offset_param).limit(limit_param(DEFAULT_LINKS_LIMIT))
