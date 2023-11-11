@@ -27,7 +27,11 @@ class Api::V1::Timelines::BaseController < Api::BaseController
 
   def permitted_pagination_params
     params
-      .slice(*self.class::PERMITTED_PARAMS)
-      .permit(*self.class::PERMITTED_PARAMS)
+      .slice(*permitted_params)
+      .permit(*permitted_params)
+  end
+
+  def permitted_params
+    self.class::PERMITTED_PARAMS
   end
 end
