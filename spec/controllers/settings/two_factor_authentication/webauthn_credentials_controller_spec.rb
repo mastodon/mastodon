@@ -121,24 +121,12 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
             add_webauthn_credential(user)
           end
 
-          it 'returns http success' do
-            get :options
+          it 'includes existing credentials in list of excluded credentials', :aggregate_failures do
+            expect { get :options }.to_not change(user, :webauthn_id)
 
             expect(response).to have_http_status(200)
-          end
-
-          it 'stores the challenge on the session' do
-            get :options
 
             expect(controller.session[:webauthn_challenge]).to be_present
-          end
-
-          it 'does not change webauthn_id' do
-            expect { get :options }.to_not change(user, :webauthn_id)
-          end
-
-          it 'includes existing credentials in list of excluded credentials' do
-            get :options
 
             excluded_credentials_ids = response.parsed_body['excludeCredentials'].pluck('id')
             expect(excluded_credentials_ids).to match_array(user.webauthn_credentials.pluck(:external_id))
@@ -146,21 +134,11 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
         end
 
         context 'when user does not have webauthn enabled' do
-          it 'returns http success' do
+          it 'stores the challenge on the session and sets user webauthn_id', :aggregate_failures do
             get :options
 
             expect(response).to have_http_status(200)
-          end
-
-          it 'stores the challenge on the session' do
-            get :options
-
             expect(controller.session[:webauthn_challenge]).to be_present
-          end
-
-          it 'sets user webauthn_id' do
-            get :options
-
             expect(user.reload.webauthn_id).to be_present
           end
         end
@@ -217,28 +195,15 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
           end
 
           context 'when creation succeeds' do
-            it 'returns http success' do
-              controller.session[:webauthn_challenge] = challenge
-
-              post :create, params: { credential: new_webauthn_credential, nickname: nickname }
-
-              expect(response).to have_http_status(200)
-            end
-
-            it 'adds a new credential to user credentials' do
+            it 'adds a new credential to user credentials and does not change webauthn_id', :aggregate_failures do
               controller.session[:webauthn_challenge] = challenge
 
               expect do
                 post :create, params: { credential: new_webauthn_credential, nickname: nickname }
               end.to change { user.webauthn_credentials.count }.by(1)
-            end
+                                                               .and not_change(user, :webauthn_id)
 
-            it 'does not change webauthn_id' do
-              controller.session[:webauthn_challenge] = challenge
-
-              expect do
-                post :create, params: { credential: new_webauthn_credential, nickname: nickname }
-              end.to_not change(user, :webauthn_id)
+              expect(response).to have_http_status(200)
             end
           end
 
@@ -328,17 +293,13 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
           end
 
           context 'when deletion succeeds' do
-            it 'redirects to 2FA methods list and shows flash success' do
-              delete :destroy, params: { id: user.webauthn_credentials.take.id }
-
-              expect(response).to redirect_to settings_two_factor_authentication_methods_path
-              expect(flash[:success]).to be_present
-            end
-
-            it 'deletes the credential' do
+            it 'redirects to 2FA methods list and shows flash success and deletes the credential', :aggregate_failures do
               expect do
                 delete :destroy, params: { id: user.webauthn_credentials.take.id }
               end.to change { user.webauthn_credentials.count }.by(-1)
+
+              expect(response).to redirect_to settings_two_factor_authentication_methods_path
+              expect(flash[:success]).to be_present
             end
           end
         end
