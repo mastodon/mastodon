@@ -16,4 +16,8 @@ class Api::V1::Trends::BaseController < Api::BaseController
   def offset_param
     params[:offset].to_i
   end
+
+  def pagination_params(core_params)
+    params.slice(:limit).permit(:limit).merge(core_params)
+  end
 end
