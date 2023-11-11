@@ -6,8 +6,6 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
   before_action :set_list
   before_action :set_statuses
 
-  after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
-
   def show
     render json: @statuses,
            each_serializer: REST::StatusSerializer,

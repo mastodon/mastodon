@@ -2,7 +2,6 @@
 
 class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
   before_action :require_user!, only: [:show], if: :require_auth?
-  after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
   def show
     cache_if_unauthenticated!

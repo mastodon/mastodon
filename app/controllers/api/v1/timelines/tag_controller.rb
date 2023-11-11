@@ -3,7 +3,6 @@
 class Api::V1::Timelines::TagController < Api::V1::Timelines::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: :show, if: :require_auth?
   before_action :load_tag
-  after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
   def show
     cache_if_unauthenticated!

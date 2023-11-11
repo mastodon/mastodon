@@ -3,7 +3,6 @@
 class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: [:show]
   before_action :require_user!, only: [:show]
-  after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
   def show
     with_read_replica do
