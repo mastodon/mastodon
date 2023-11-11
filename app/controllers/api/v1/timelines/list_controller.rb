@@ -41,10 +41,6 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
     ListFeed.new(@list)
   end
 
-  def pagination_params(core_params)
-    params.slice(PERMITTED_PARAMS).permit(PERMITTED_PARAMS).merge(core_params)
-  end
-
   def next_path
     api_v1_timelines_list_url params[:id], next_path_params
   end

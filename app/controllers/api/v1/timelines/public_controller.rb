@@ -43,10 +43,6 @@ class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
     )
   end
 
-  def pagination_params(core_params)
-    params.slice(*PERMITTED_PARAMS).permit(*PERMITTED_PARAMS).merge(core_params)
-  end
-
   def next_path
     api_v1_timelines_public_url next_path_params
   end

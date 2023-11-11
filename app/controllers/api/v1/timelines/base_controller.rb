@@ -24,4 +24,11 @@ class Api::V1::Timelines::BaseController < Api::BaseController
   def prev_path_params
     pagination_params(min_id: pagination_since_id)
   end
+
+  def pagination_params(core_params)
+    params
+      .slice(*self.class::PERMITTED_PARAMS)
+      .permit(*self.class::PERMITTED_PARAMS)
+      .merge(core_params)
+  end
 end

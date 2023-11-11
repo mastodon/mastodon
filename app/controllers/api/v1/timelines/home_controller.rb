@@ -41,10 +41,6 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
     HomeFeed.new(current_account)
   end
 
-  def pagination_params(core_params)
-    params.slice(*PERMITTED_PARAMS).permit(*PERMITTED_PARAMS).merge(core_params)
-  end
-
   def next_path
     api_v1_timelines_home_url next_path_params
   end
