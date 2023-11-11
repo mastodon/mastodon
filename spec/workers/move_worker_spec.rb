@@ -71,10 +71,19 @@ describe MoveWorker do
       subject.perform(source_account.id, target_account.id)
 
       expect(block_service).to have_received(:call).with(blocking_account, target_account)
-      expect(AccountNote.find_by(account: blocking_account, target_account: target_account).comment).to include(source_account.acct)
-
       expect(muting_account.muting?(target_account)).to be true
-      expect(AccountNote.find_by(account: muting_account, target_account: target_account).comment).to include(source_account.acct)
+
+      expect(
+        [note_account_comment, mute_account_comment]
+      ).to all include(source_account.acct)
+    end
+
+    def note_account_comment
+      AccountNote.find_by(account: blocking_account, target_account: target_account).comment
+    end
+
+    def mute_account_comment
+      AccountNote.find_by(account: muting_account, target_account: target_account).comment
     end
   end
 
