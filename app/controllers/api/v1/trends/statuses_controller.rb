@@ -5,8 +5,6 @@ class Api::V1::Trends::StatusesController < Api::BaseController
 
   before_action :set_statuses
 
-  after_action :insert_pagination_headers
-
   def index
     cache_if_unauthenticated!
     render json: @statuses, each_serializer: REST::StatusSerializer

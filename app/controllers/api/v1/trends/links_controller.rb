@@ -5,8 +5,6 @@ class Api::V1::Trends::LinksController < Api::BaseController
 
   before_action :set_links
 
-  after_action :insert_pagination_headers
-
   DEFAULT_LINKS_LIMIT = 10
 
   def index
