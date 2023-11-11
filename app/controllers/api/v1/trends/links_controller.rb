@@ -29,11 +29,11 @@ class Api::V1::Trends::LinksController < Api::BaseController
   end
 
   def next_path
-    api_v1_trends_links_url pagination_params(offset: offset_param + limit_param(DEFAULT_LINKS_LIMIT)) if records_continue?
+    api_v1_trends_links_url next_path_params if records_continue?
   end
 
   def prev_path
-    api_v1_trends_links_url pagination_params(offset: offset_param - limit_param(DEFAULT_LINKS_LIMIT)) if offset_param > limit_param(DEFAULT_LINKS_LIMIT)
+    api_v1_trends_links_url prev_path_params if offset_param > limit_param(DEFAULT_LINKS_LIMIT)
   end
 
   def records_continue?

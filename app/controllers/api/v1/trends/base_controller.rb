@@ -20,4 +20,12 @@ class Api::V1::Trends::BaseController < Api::BaseController
   def pagination_params(core_params)
     params.slice(:limit).permit(:limit).merge(core_params)
   end
+
+  def next_path_params
+    pagination_params(offset: offset_param + limit_param(DEFAULT_TAGS_LIMIT))
+  end
+
+  def prev_path_params
+    pagination_params(offset: offset_param - limit_param(DEFAULT_LINKS_LIMIT))
+  end
 end

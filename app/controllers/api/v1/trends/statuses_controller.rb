@@ -27,11 +27,11 @@ class Api::V1::Trends::StatusesController < Api::BaseController
   end
 
   def next_path
-    api_v1_trends_statuses_url pagination_params(offset: offset_param + limit_param(DEFAULT_STATUSES_LIMIT)) if records_continue?
+    api_v1_trends_statuses_url next_path_params if records_continue?
   end
 
   def prev_path
-    api_v1_trends_statuses_url pagination_params(offset: offset_param - limit_param(DEFAULT_STATUSES_LIMIT)) if offset_param > limit_param(DEFAULT_STATUSES_LIMIT)
+    api_v1_trends_statuses_url prev_path_params if offset_param > limit_param(DEFAULT_STATUSES_LIMIT)
   end
 
   def records_continue?
