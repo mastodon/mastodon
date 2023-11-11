@@ -42,10 +42,6 @@ class Api::V1::Trends::StatusesController < Api::BaseController
     api_v1_trends_statuses_url pagination_params(offset: offset_param - limit_param(DEFAULT_STATUSES_LIMIT)) if offset_param > limit_param(DEFAULT_STATUSES_LIMIT)
   end
 
-  def offset_param
-    params[:offset].to_i
-  end
-
   def records_continue?
     @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
   end

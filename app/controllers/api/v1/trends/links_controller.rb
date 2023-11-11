@@ -47,8 +47,4 @@ class Api::V1::Trends::LinksController < Api::BaseController
   def records_continue?
     @links.size == limit_param(DEFAULT_LINKS_LIMIT)
   end
-
-  def offset_param
-    params[:offset].to_i
-  end
 end

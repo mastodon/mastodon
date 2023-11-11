@@ -8,4 +8,8 @@ class Api::V1::Trends::BaseController < Api::BaseController
   def insert_pagination_headers
     set_pagination_headers(next_path, prev_path)
   end
+
+  def offset_param
+    params[:offset].to_i
+  end
 end
