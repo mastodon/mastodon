@@ -6,6 +6,8 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
   before_action :set_list
   before_action :set_statuses
 
+  PERMITTED_PARAMS = %i(limit).freeze
+
   def show
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
@@ -40,7 +42,7 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
   end
 
   def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
+    params.slice(PERMITTED_PARAMS).permit(PERMITTED_PARAMS).merge(core_params)
   end
 
   def next_path

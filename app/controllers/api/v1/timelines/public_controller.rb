@@ -3,6 +3,8 @@
 class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
   before_action :require_user!, only: [:show], if: :require_auth?
 
+  PERMITTED_PARAMS = %i(local remote limit only_media).freeze
+
   def show
     cache_if_unauthenticated!
     @statuses = load_statuses
@@ -42,7 +44,7 @@ class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
   end
 
   def pagination_params(core_params)
-    params.slice(:local, :remote, :limit, :only_media).permit(:local, :remote, :limit, :only_media).merge(core_params)
+    params.slice(PERMITTED_PARAMS).permit(PERMITTED_PARAMS).merge(core_params)
   end
 
   def next_path

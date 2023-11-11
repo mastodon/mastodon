@@ -4,6 +4,8 @@ class Api::V1::Timelines::TagController < Api::V1::Timelines::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: :show, if: :require_auth?
   before_action :load_tag
 
+  PERMITTED_PARAMS = %i(local limit only_media).freeze
+
   def show
     cache_if_unauthenticated!
     @statuses = load_statuses
@@ -51,7 +53,7 @@ class Api::V1::Timelines::TagController < Api::V1::Timelines::BaseController
   end
 
   def pagination_params(core_params)
-    params.slice(:local, :limit, :only_media).permit(:local, :limit, :only_media).merge(core_params)
+    params.slice(PERMITTED_PARAMS).permit(PERMITTED_PARAMS).merge(core_params)
   end
 
   def next_path

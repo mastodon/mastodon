@@ -4,6 +4,8 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: [:show]
   before_action :require_user!, only: [:show]
 
+  PERMITTED_PARAMS = %i(local limit).freeze
+
   def show
     with_read_replica do
       @statuses = load_statuses
@@ -40,7 +42,7 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
   end
 
   def pagination_params(core_params)
-    params.slice(:local, :limit).permit(:local, :limit).merge(core_params)
+    params.slice(PERMITTED_PARAMS).permit(PERMITTED_PARAMS).merge(core_params)
   end
 
   def next_path
