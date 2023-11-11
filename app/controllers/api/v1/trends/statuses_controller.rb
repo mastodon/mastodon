@@ -33,7 +33,7 @@ class Api::V1::Trends::StatusesController < Api::V1::Trends::BaseController
   end
 
   def prev_path
-    api_v1_trends_statuses_url prev_path_params if offset_param > default_records_limit_param
+    api_v1_trends_statuses_url prev_path_params if records_precede?
   end
 
   def records_continue?

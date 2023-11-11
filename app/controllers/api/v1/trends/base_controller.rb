@@ -32,4 +32,8 @@ class Api::V1::Trends::BaseController < Api::BaseController
   def default_records_limit_param
     limit_param(self.class::DEFAULT_RECORDS_LIMIT)
   end
+
+  def records_precede?
+    offset_param > default_records_limit_param
+  end
 end
