@@ -1,1 +1,26 @@
+---
 zh-TW:
+  simple_form:
+    glitch_only: glitch-soc
+    hints:
+      defaults:
+        setting_default_content_type_html: 在編寫貼文時，除非特別指定，否則應推定它們是以原始 HTML 編寫的
+        setting_default_content_type_markdown: 在編寫貼文時，除非特別指定，否則應推定它們是以 Markdown 編寫的多文字格式
+        setting_default_content_type_plain: 在編寫貼文時，除非特別指定，否則應推定它們是以純文字編寫的格式（Mastodon 的預設格式）
+        setting_default_language: 可自動檢測您的貼文所使用的語言，但並不是很可靠
+        setting_show_followers_count: 在個人檔案中顯示跟隨者人數。如果您隱藏了跟隨者人數，那麼即使您自己也無法看到，某些應用程序可能會顯示負的跟隨者人數。
+        setting_skin: 重塑所選的Mastodon風格
+    labels:
+      defaults:
+        setting_default_content_type: 貼文的預設格式
+        setting_default_content_type_html: HTML
+        setting_default_content_type_markdown: Markdown
+        setting_default_content_type_plain: 純文字
+        setting_favourite_modal: 把貼文加到最愛時顯示確認對話框（只對Glitch風格有效）
+        setting_show_followers_count: 顯示你的跟隨者數量
+        setting_skin: 外觀
+        setting_system_emoji_font: 使用系統的預設字型來顯示表情符號（只對Glitch 風格有效）
+      notification_emails:
+        trending_link: 新的熱門趨勢連結需要被檢閱
+        trending_status: 新的熱門趨勢貼文需要被檢閱
+        trending_tag: 新的熱門趨勢主題標籤需要被檢閱
