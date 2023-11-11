@@ -39,10 +39,6 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
     ListFeed.new(@list)
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def pagination_params(core_params)
     params.slice(:limit).permit(:limit).merge(core_params)
   end

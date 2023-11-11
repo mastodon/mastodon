@@ -50,10 +50,6 @@ class Api::V1::Timelines::TagController < Api::V1::Timelines::BaseController
     )
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def pagination_params(core_params)
     params.slice(:local, :limit, :only_media).permit(:local, :limit, :only_media).merge(core_params)
   end

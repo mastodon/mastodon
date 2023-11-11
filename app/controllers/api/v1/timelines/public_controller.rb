@@ -41,10 +41,6 @@ class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
     )
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def pagination_params(core_params)
     params.slice(:local, :remote, :limit, :only_media).permit(:local, :remote, :limit, :only_media).merge(core_params)
   end

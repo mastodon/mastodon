@@ -39,10 +39,6 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
     HomeFeed.new(current_account)
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def pagination_params(core_params)
     params.slice(:local, :limit).permit(:local, :limit).merge(core_params)
   end
