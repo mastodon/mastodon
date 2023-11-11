@@ -22,10 +22,10 @@ class Api::V1::Trends::BaseController < Api::BaseController
   end
 
   def next_path_params
-    pagination_params(offset: offset_param + limit_param(DEFAULT_TAGS_LIMIT))
+    pagination_params(offset: offset_param + limit_param(DEFAULT_RECORDS_LIMIT))
   end
 
   def prev_path_params
-    pagination_params(offset: offset_param - limit_param(DEFAULT_LINKS_LIMIT))
+    pagination_params(offset: offset_param - limit_param(DEFAULT_RECORDS_LIMIT))
   end
 end

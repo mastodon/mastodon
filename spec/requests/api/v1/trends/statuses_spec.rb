@@ -19,7 +19,7 @@ RSpec.describe 'API V1 Trends Statuses' do
 
       it 'returns http success' do
         prepare_trends
-        stub_const('Api::BaseController::DEFAULT_STATUSES_LIMIT', 2)
+        stub_const('Api::V1::Trends::StatusesController::DEFAULT_RECORDS_LIMIT', 2)
         get '/api/v1/trends/statuses'
 
         expect(response).to have_http_status(200)

@@ -20,7 +20,7 @@ RSpec.describe 'API V1 Trends Tags' do
 
       it 'returns http success' do
         prepare_trends
-        stub_const('Api::V1::Trends::TagsController::DEFAULT_TAGS_LIMIT', 2)
+        stub_const('Api::V1::Trends::TagsController::DEFAULT_RECORDS_LIMIT', 2)
         get '/api/v1/trends/tags'
 
         expect(response).to have_http_status(200)

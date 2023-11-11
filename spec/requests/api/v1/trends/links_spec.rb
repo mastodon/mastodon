@@ -19,7 +19,7 @@ RSpec.describe 'API V1 Trends Links' do
 
       it 'returns http success' do
         prepare_trends
-        stub_const('Api::V1::Trends::LinksController::DEFAULT_LINKS_LIMIT', 2)
+        stub_const('Api::V1::Trends::LinksController::DEFAULT_RECORDS_LIMIT', 2)
         get '/api/v1/trends/links'
 
         expect(response).to have_http_status(200)

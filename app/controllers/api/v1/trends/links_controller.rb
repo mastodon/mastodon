@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class Api::V1::Trends::LinksController < Api::BaseController
+class Api::V1::Trends::LinksController < Api::V1::Trends::BaseController
   vary_by 'Authorization, Accept-Language'
 
   before_action :set_links
 
-  DEFAULT_LINKS_LIMIT = 10
+  DEFAULT_RECORDS_LIMIT = 10
 
   def index
     cache_if_unauthenticated!
@@ -16,7 +16,7 @@ class Api::V1::Trends::LinksController < Api::BaseController
 
   def set_links
     @links = if enabled?
-               links_from_trends.offset(offset_param).limit(limit_param(DEFAULT_LINKS_LIMIT))
+               links_from_trends.offset(offset_param).limit(limit_param(DEFAULT_RECORDS_LIMIT))
              else
                []
              end
@@ -33,10 +33,10 @@ class Api::V1::Trends::LinksController < Api::BaseController
   end
 
   def prev_path
-    api_v1_trends_links_url prev_path_params if offset_param > limit_param(DEFAULT_LINKS_LIMIT)
+    api_v1_trends_links_url prev_path_params if offset_param > limit_param(DEFAULT_RECORDS_LIMIT)
   end
 
   def records_continue?
-    @links.size == limit_param(DEFAULT_LINKS_LIMIT)
+    @links.size == limit_param(DEFAULT_RECORDS_LIMIT)
   end
 end
