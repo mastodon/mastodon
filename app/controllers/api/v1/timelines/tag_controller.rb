@@ -53,7 +53,7 @@ class Api::V1::Timelines::TagController < Api::V1::Timelines::BaseController
   end
 
   def pagination_params(core_params)
-    params.slice(PERMITTED_PARAMS).permit(PERMITTED_PARAMS).merge(core_params)
+    params.slice(*PERMITTED_PARAMS).permit(*PERMITTED_PARAMS).merge(core_params)
   end
 
   def next_path
