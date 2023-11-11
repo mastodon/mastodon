@@ -50,12 +50,4 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
   def prev_path
     api_v1_timelines_list_url params[:id], pagination_params(min_id: pagination_since_id)
   end
-
-  def pagination_max_id
-    @statuses.last.id
-  end
-
-  def pagination_since_id
-    @statuses.first.id
-  end
 end

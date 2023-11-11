@@ -8,4 +8,12 @@ class Api::V1::Timelines::BaseController < Api::BaseController
   def insert_pagination_headers
     set_pagination_headers(next_path, prev_path)
   end
+
+  def pagination_max_id
+    @statuses.last.id
+  end
+
+  def pagination_since_id
+    @statuses.first.id
+  end
 end
