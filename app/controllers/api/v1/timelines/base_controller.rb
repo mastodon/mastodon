@@ -16,4 +16,12 @@ class Api::V1::Timelines::BaseController < Api::BaseController
   def pagination_since_id
     @statuses.first.id
   end
+
+  def next_path_params
+    pagination_params(max_id: pagination_max_id)
+  end
+
+  def prev_path_params
+    pagination_params(min_id: pagination_since_id)
+  end
 end

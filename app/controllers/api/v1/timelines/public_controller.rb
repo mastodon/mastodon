@@ -46,10 +46,10 @@ class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
   end
 
   def next_path
-    api_v1_timelines_public_url pagination_params(max_id: pagination_max_id)
+    api_v1_timelines_public_url next_path_params
   end
 
   def prev_path
-    api_v1_timelines_public_url pagination_params(min_id: pagination_since_id)
+    api_v1_timelines_public_url prev_path_params
   end
 end
