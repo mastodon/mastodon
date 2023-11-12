@@ -16,6 +16,7 @@ const uuid = require('uuid');
 const WebSocket = require('ws');
 
 const { setupMetrics } = require('./metrics');
+const { isTruthy } = require("./utils");
 
 const environment = process.env.NODE_ENV || 'development';
 
@@ -325,25 +326,6 @@ const startServer = async () => {
       delete subs[channel];
     }
   };
-
-  const FALSE_VALUES = [
-    false,
-    0,
-    '0',
-    'f',
-    'F',
-    'false',
-    'FALSE',
-    'off',
-    'OFF',
-  ];
-
-  /**
-   * @param {any} value
-   * @returns {boolean}
-   */
-  const isTruthy = value =>
-    value && !FALSE_VALUES.includes(value);
 
   /**
    * @param {any} req
