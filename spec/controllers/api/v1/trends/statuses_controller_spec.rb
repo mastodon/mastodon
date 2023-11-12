@@ -23,14 +23,22 @@ RSpec.describe Api::V1::Trends::StatusesController do
     end
 
     context 'when trends are enabled' do
-      before do
-        Setting.trends = true
-      end
+      before { Setting.trends = true }
 
       it 'returns http success' do
+        prepare_trends
+        stub_const('Api::BaseController::DEFAULT_STATUSES_LIMIT', 2)
         get :index
 
         expect(response).to have_http_status(200)
+        expect(response.headers).to include('Link')
+      end
+
+      def prepare_trends
+        Fabricate.times(3, :status, trendable: true, language: 'en').each do |status|
+          2.times { |i| Trends.statuses.add(status, i) }
+        end
+        Trends::Statuses.new(threshold: 1, decay_threshold: -1).refresh
       end
     end
   end
