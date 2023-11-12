@@ -15,11 +15,13 @@ class Api::V1::Trends::LinksController < Api::V1::Trends::BaseController
   private
 
   def set_links
-    @links = if enabled?
-               links_from_trends.offset(offset_param).limit(default_records_limit_param)
-             else
-               []
-             end
+    @links = record_collection_when_trends_enabled
+  end
+
+  def offset_and_limited_collection
+    links_from_trends
+      .offset(offset_param)
+      .limit(default_records_limit_param)
   end
 
   def links_from_trends

@@ -15,11 +15,16 @@ class Api::V1::Trends::StatusesController < Api::V1::Trends::BaseController
   private
 
   def set_statuses
-    @statuses = if enabled?
-                  cache_collection(statuses_from_trends.offset(offset_param).limit(default_records_limit_param), Status)
-                else
-                  []
-                end
+    @statuses = record_collection_when_trends_enabled
+  end
+
+  def offset_and_limited_collection
+    cache_collection(
+      statuses_from_trends
+        .offset(offset_param)
+        .limit(default_records_limit_param),
+      Status
+    )
   end
 
   def statuses_from_trends

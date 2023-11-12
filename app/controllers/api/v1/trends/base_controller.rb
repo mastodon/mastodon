@@ -5,8 +5,12 @@ class Api::V1::Trends::BaseController < Api::BaseController
 
   private
 
-  def enabled?
+  def trends_enabled?
     Setting.trends
+  end
+
+  def record_collection_when_trends_enabled
+    trends_enabled? ? offset_and_limited_collection : []
   end
 
   def insert_pagination_headers

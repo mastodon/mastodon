@@ -13,11 +13,13 @@ class Api::V1::Trends::TagsController < Api::V1::Trends::BaseController
   private
 
   def set_tags
-    @tags = if enabled?
-              tags_from_trends.offset(offset_param).limit(default_records_limit_param)
-            else
-              []
-            end
+    @tags = record_collection_when_trends_enabled
+  end
+
+  def offset_and_limited_collection
+    tags_from_trends
+      .offset(offset_param)
+      .limit(default_records_limit_param)
   end
 
   def tags_from_trends
