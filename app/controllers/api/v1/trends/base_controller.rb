@@ -37,6 +37,10 @@ class Api::V1::Trends::BaseController < Api::BaseController
     limit_param(self.class::DEFAULT_RECORDS_LIMIT)
   end
 
+  def records_continue?
+    record_collection_when_trends_enabled.size == default_records_limit_param
+  end
+
   def records_precede?
     offset_param > default_records_limit_param
   end

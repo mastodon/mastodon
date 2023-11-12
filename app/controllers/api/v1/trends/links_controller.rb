@@ -37,8 +37,4 @@ class Api::V1::Trends::LinksController < Api::V1::Trends::BaseController
   def prev_path
     api_v1_trends_links_url prev_path_params if records_precede?
   end
-
-  def records_continue?
-    @links.size == default_records_limit_param
-  end
 end
