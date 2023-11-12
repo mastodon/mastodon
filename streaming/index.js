@@ -5,6 +5,7 @@ const http = require('http');
 const path = require('path');
 const url = require('url');
 
+const cors = require('cors');
 const dotenv = require('dotenv');
 const express = require('express');
 const Redis = require('ioredis');
@@ -187,6 +188,7 @@ const startServer = async () => {
 
   const pgPool = new pg.Pool(pgConfigFromEnv(process.env));
   const server = http.createServer(app);
+  app.use(cors());
 
   /**
    * @type {Object.<string, Array.<function(Object<string, any>): void>>}
@@ -325,19 +327,6 @@ const startServer = async () => {
       });
       delete subs[channel];
     }
-  };
-
-  /**
-   * @param {any} req
-   * @param {any} res
-   * @param {function(Error=): void} next
-   */
-  const allowCrossDomain = (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, Accept, Cache-Control');
-    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
-
-    next();
   };
 
   /**
@@ -987,7 +976,6 @@ const startServer = async () => {
 
   api.use(setRequestId);
   api.use(setRemoteAddress);
-  api.use(allowCrossDomain);
 
   api.use(authenticationMiddleware);
   api.use(errorMiddleware);

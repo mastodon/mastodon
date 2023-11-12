@@ -2468,12 +2468,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mastodon/streaming@workspace:streaming"
   dependencies:
+    "@types/cors": "npm:^2.8.16"
     "@types/express": "npm:^4.17.17"
     "@types/npmlog": "npm:^7.0.0"
     "@types/pg": "npm:^8.6.6"
     "@types/uuid": "npm:^9.0.0"
     "@types/ws": "npm:^8.5.9"
     bufferutil: "npm:^4.0.7"
+    cors: "npm:^2.8.5"
     dotenv: "npm:^16.0.3"
     eslint-define-config: "npm:^2.0.0"
     express: "npm:^4.18.2"
@@ -3024,6 +3026,15 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 2e1cdba2c410f25649e77856505cd60223250fa12dff7a503e492208dbfdd25f62859918f28aba95315251fd1f5e1ffbfca1e25e73037189ab85dd3f8d0a148c
+  languageName: node
+  linkType: hard
+
+"@types/cors@npm:^2.8.16":
+  version: 2.8.16
+  resolution: "@types/cors@npm:2.8.16"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: ebcfb325b102739249bbaa4845cf1cf4830baf5490a32bcd1a85cd9b8c4d4b9eaaaea94423e454b5b7c9da77e46a64db80d2381d3bc3f940d15d13814e87b70a
   languageName: node
   linkType: hard
 
@@ -5970,6 +5981,16 @@ __metadata:
   version: 1.0.3
   resolution: "core-util-is@npm:1.0.3"
   checksum: 90a0e40abbddfd7618f8ccd63a74d88deea94e77d0e8dbbea059fa7ebebb8fbb4e2909667fe26f3a467073de1a542ebe6ae4c73a73745ac5833786759cd906c9
+  languageName: node
+  linkType: hard
+
+"cors@npm:^2.8.5":
+  version: 2.8.5
+  resolution: "cors@npm:2.8.5"
+  dependencies:
+    object-assign: "npm:^4"
+    vary: "npm:^1"
+  checksum: 373702b7999409922da80de4a61938aabba6929aea5b6fd9096fefb9e8342f626c0ebd7507b0e8b0b311380744cc985f27edebc0a26e0ddb784b54e1085de761
   languageName: node
   linkType: hard
 
@@ -11953,7 +11974,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object-assign@npm:^4.0.1, object-assign@npm:^4.1.1":
+"object-assign@npm:^4, object-assign@npm:^4.0.1, object-assign@npm:^4.1.1":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
   checksum: 1f4df9945120325d041ccf7b86f31e8bcc14e73d29171e37a7903050e96b81323784ec59f93f102ec635bcf6fa8034ba3ea0a8c7e69fa202b87ae3b6cec5a414
@@ -16728,7 +16749,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vary@npm:~1.1.2":
+"vary@npm:^1, vary@npm:~1.1.2":
   version: 1.1.2
   resolution: "vary@npm:1.1.2"
   checksum: f15d588d79f3675135ba783c91a4083dcd290a2a5be9fcb6514220a1634e23df116847b1cc51f66bfb0644cf9353b2abb7815ae499bab06e46dd33c1a6bf1f4f
