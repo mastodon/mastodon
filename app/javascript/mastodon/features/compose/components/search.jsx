@@ -161,6 +161,23 @@ class Search extends PureComponent {
     this.setState({ expanded: false, selectedOption: -1 });
   };
 
+  handleDragOver = (e) => {
+    e.preventDefault();
+  };
+  handleDrop = (e) => {
+    const { onChange } = this.props;
+
+    e.preventDefault();
+
+    this.setState({ expanded: true, selectedOption: -1 });
+
+    let query = e.dataTransfer.getData('text/uri-list') ||
+        e.dataTransfer.getData('text/plain');
+    onChange(query);
+    this._calculateOptions(query);
+    e.target.focus();
+  };
+
   handleHashtagClick = () => {
     const { value, onClickSearchResult, history } = this.props;
 
@@ -332,6 +349,8 @@ class Search extends PureComponent {
           onKeyDown={this.handleKeyDown}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
+          onDragOver={this.handleDragOver}
+          onDrop={this.handleDrop}
         />
 
         <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
