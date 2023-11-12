@@ -2,14 +2,36 @@
 
 require 'rails_helper'
 
-describe Api::V1::Trends::LinksController do
+RSpec.describe Api::V1::Trends::LinksController do
   render_views
 
   describe 'GET #index' do
-    it 'returns http success' do
-      get :index
+    around do |example|
+      previous = Setting.trends
+      example.run
+      Setting.trends = previous
+    end
 
-      expect(response).to have_http_status(200)
+    context 'when trends are disabled' do
+      before { Setting.trends = false }
+
+      it 'returns http success' do
+        get :index
+
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'when trends are enabled' do
+      before do
+        Setting.trends = true
+      end
+
+      it 'returns http success' do
+        get :index
+
+        expect(response).to have_http_status(200)
+      end
     end
   end
 end
