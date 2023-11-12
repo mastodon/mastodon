@@ -67,6 +67,7 @@ export const accountDefaultValues: AccountShape = {
   bot: false,
   created_at: '',
   discoverable: false,
+  indexable: false,
   display_name: '',
   display_name_html: '',
   emojis: List<CustomEmoji>(),
