@@ -1,3 +1,5 @@
+// @ts-check
+/** @type {import('eslint-define-config').ESLintConfig} */
 module.exports = {
   root: true,
 
@@ -372,14 +374,6 @@ module.exports = {
       env: {
         jest: true,
       },
-    },
-    {
-      files: [
-        'streaming/**/*',
-      ],
-      rules: {
-        'import/no-commonjs': 'off',
-      },
-    },
+    }
   ],
 };

@@ -2362,6 +2362,7 @@ __metadata:
     escape-html: "npm:^1.0.3"
     eslint: "npm:^8.41.0"
     eslint-config-prettier: "npm:^9.0.0"
+    eslint-define-config: "npm:^1.24.1"
     eslint-import-resolver-typescript: "npm:^3.5.5"
     eslint-plugin-formatjs: "npm:^4.10.1"
     eslint-plugin-import: "npm:~2.29.0"
@@ -2469,6 +2470,7 @@ __metadata:
     "@types/npmlog": "npm:^7.0.0"
     "@types/pg": "npm:^8.6.6"
     "@types/uuid": "npm:^9.0.0"
+    "@types/ws": "npm:^8.5.9"
     bufferutil: "npm:^4.0.7"
     dotenv: "npm:^16.0.3"
     express: "npm:^4.18.2"
@@ -3641,6 +3643,15 @@ __metadata:
     anymatch: "npm:^3.0.0"
     source-map: "npm:^0.6.0"
   checksum: 9e9021049b8f7482ec7c45e95d7c1da3604ee04481d7550421ed58f201f66edb8eb6c26b85be94ce3f761874cdbb8b570827becdaf5acdb1897aba9b7f226252
+  languageName: node
+  linkType: hard
+
+"@types/ws@npm:^8.5.9":
+  version: 8.5.9
+  resolution: "@types/ws@npm:8.5.9"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 678bdd6461c4653f2975c537fb673cb1918c331558e2d2422b69761c9ced67200bb07c664e2593f3864077a891cb7c13ef2a40d303b4aacb06173d095d8aa3ce
   languageName: node
   linkType: hard
 
@@ -7300,6 +7311,13 @@ __metadata:
   bin:
     eslint-config-prettier: bin/cli.js
   checksum: bc1f661915845c631824178942e5d02f858fe6d0ea796f0050d63e0f681927b92696e81139dd04714c08c3e7de580fd079c66162e40070155ba79eaee78ab5d0
+  languageName: node
+  linkType: hard
+
+"eslint-define-config@npm:^1.24.1":
+  version: 1.24.1
+  resolution: "eslint-define-config@npm:1.24.1"
+  checksum: f02873a388d8030d5300f58efe59ef9762b7d2c4edeba4fae25a020db29791eacd48dd17f52f44be1098a18bd3e09b2475f417e22c581818017563792273e7c6
   languageName: node
   linkType: hard
 
