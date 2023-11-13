@@ -53,9 +53,9 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       },
 
       statuses: {
-        max_characters: StatusLengthValidator::MAX_CHARS,
+        max_characters: Rails.configuration.x.mastodon.statuses[:max_characters],
         max_media_attachments: 4,
-        characters_reserved_per_url: StatusLengthValidator::URL_PLACEHOLDER_CHARS,
+        characters_reserved_per_url: Rails.configuration.x.mastodon.statuses[:url_placeholder_chars],
       },
 
       media_attachments: {
@@ -68,8 +68,8 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       },
 
       polls: {
-        max_options: PollValidator::MAX_OPTIONS,
-        max_characters_per_option: PollValidator::MAX_OPTION_CHARS,
+        max_options: Rails.configuration.x.mastodon.polls[:max_options],
+        max_characters_per_option: Rails.configuration.x.mastodon.polls[:max_option_characters],
         min_expiration: PollValidator::MIN_EXPIRATION,
         max_expiration: PollValidator::MAX_EXPIRATION,
       },
