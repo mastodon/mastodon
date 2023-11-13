@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ExportControllerConcern
+module Settings::ExportControllerConcern
   extend ActiveSupport::Concern
 
   included do
