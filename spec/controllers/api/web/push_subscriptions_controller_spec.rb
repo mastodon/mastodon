@@ -58,6 +58,17 @@ describe Api::Web::PushSubscriptionsController do
       )
     end
 
+    context 'with a user who has a session with a prior subscription' do
+      let!(:prior_subscription) { Fabricate(:web_push_subscription, session_activation: user.session_activations.last) }
+
+      it 'destroys prior subscription when creating new one' do
+        post :create, format: :json, params: create_payload
+
+        expect(response).to have_http_status(200)
+        expect { prior_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
     context 'with initial data' do
       it 'saves alert settings' do
         post :create, format: :json, params: create_payload.merge(alerts_payload)
