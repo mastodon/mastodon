@@ -18,13 +18,11 @@ const WebSocket = require('ws');
 
 const environment = process.env.NODE_ENV || 'development';
 
-// Correctly detect .env/.env.production files based on whether we're running
-// from the streaming/ directory or the root of the mastodon project.
+// Correctly detect and load .env or .env.production file based on environment:
 const dotenvFile = environment === 'production' ? '.env.production' : '.env';
-const dotenvDir = path.basename(process.cwd()) === 'streaming' ? `../` : './';
 
 dotenv.config({
-  path: path.resolve(dotenvDir, dotenvFile)
+  path: path.resolve(__dirname, path.join('..', dotenvFile))
 });
 
 log.level = process.env.LOG_LEVEL || 'verbose';
