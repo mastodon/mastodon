@@ -48,6 +48,26 @@ RSpec.describe Api::V2::SearchController do
           end
         end
       end
+
+      context 'when search raises syntax error' do
+        before { allow(Search).to receive(:new).and_raise(Mastodon::SyntaxError) }
+
+        it 'returns http unprocessable_entity' do
+          get :index, params: params
+
+          expect(response).to have_http_status(422)
+        end
+      end
+
+      context 'when search raises not found error' do
+        before { allow(Search).to receive(:new).and_raise(ActiveRecord::RecordNotFound) }
+
+        it 'returns http not_found' do
+          get :index, params: params
+
+          expect(response).to have_http_status(404)
+        end
+      end
     end
   end
 
