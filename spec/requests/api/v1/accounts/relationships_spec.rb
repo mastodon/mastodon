@@ -104,7 +104,6 @@ describe 'GET /api/v1/accounts/relationships' do
 
     it 'returns JSON with correct data on cached requests too' do
       subject
-      subject
 
       expect(response).to have_http_status(200)
 
