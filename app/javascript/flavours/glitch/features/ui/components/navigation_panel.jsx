@@ -65,7 +65,11 @@ class NavigationPanel extends Component {
 
     return (
       <div className='navigation-panel'>
-        {banner}
+        {banner &&
+          <div class='navigation-panel__banner'>
+            {banner}
+          </div>
+        }
 
         {signedIn && (
           <>
