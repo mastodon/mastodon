@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CaptchaConcern
+module Auth::CaptchaConcern
   extend ActiveSupport::Concern
 
   include Hcaptcha::Adapters::ViewMethods
