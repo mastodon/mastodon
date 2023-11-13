@@ -25,6 +25,15 @@ module WebAppControllerConcern
     return if @redirect_path.blank?
 
     expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.day) unless user_signed_in?
-    render 'redirects/show', layout: 'application'
+
+    respond_to do |format|
+      format.html do
+        render 'redirects/show', layout: 'application'
+      end
+
+      format.json do
+        redirect_to(@redirect_path, allow_other_host: true)
+      end
+    end
   end
 end
