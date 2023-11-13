@@ -367,7 +367,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
     if (status.get('reblogged')) {
       reblogTitle = intl.formatMessage(messages.cancel_reblog_private);
-      reblogIconComponent = RepeatIcon;
+      reblogIconComponent = publicStatus ? RepeatIcon : RepeatPrivateIcon;
     } else if (publicStatus) {
       reblogTitle = intl.formatMessage(messages.reblog);
       reblogIconComponent = RepeatIcon;
