@@ -37,12 +37,14 @@ describe Api::Web::PushSubscriptionsController do
     }
   end
 
+  before do
+    sign_in(user)
+
+    stub_request(:post, create_payload[:subscription][:endpoint]).to_return(status: 200)
+  end
+
   describe 'POST #create' do
     it 'saves push subscriptions' do
-      sign_in(user)
-
-      stub_request(:post, create_payload[:subscription][:endpoint]).to_return(status: 200)
-
       post :create, format: :json, params: create_payload
 
       user.reload
@@ -56,10 +58,6 @@ describe Api::Web::PushSubscriptionsController do
 
     context 'with initial data' do
       it 'saves alert settings' do
-        sign_in(user)
-
-        stub_request(:post, create_payload[:subscription][:endpoint]).to_return(status: 200)
-
         post :create, format: :json, params: create_payload.merge(alerts_payload)
 
         push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
@@ -75,10 +73,6 @@ describe Api::Web::PushSubscriptionsController do
 
   describe 'PUT #update' do
     it 'changes alert settings' do
-      sign_in(user)
-
-      stub_request(:post, create_payload[:subscription][:endpoint]).to_return(status: 200)
-
       post :create, format: :json, params: create_payload
 
       alerts_payload[:id] = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint]).id
