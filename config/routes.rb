@@ -162,10 +162,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :redirect do
-    resources :accounts, only: :show
-    resources :statuses, only: :show
-  end
+  resource :redirect, only: [:show]
 
   resources :media, only: [:show] do
     get :player
