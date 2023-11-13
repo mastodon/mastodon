@@ -21,6 +21,8 @@ import { ReactComponent as VisibilityIcon } from '@material-symbols/svg-600/outl
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/glitch/permissions';
 import { accountAdminLink, statusAdminLink } from 'flavours/glitch/utils/backend_links';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import { ReactComponent as RepeatDisabledIcon } from 'mastodon/../svg-icons/repeat_disabled.svg';
+import { ReactComponent as RepeatPrivateIcon } from 'mastodon/../svg-icons/repeat_private.svg';
 
 import DropdownMenuContainer from '../containers/dropdown_menu_container';
 import { me } from '../initial_state';
@@ -298,15 +300,20 @@ class StatusActionBar extends ImmutablePureComponent {
 
     const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
 
-    let reblogTitle = '';
+    let reblogTitle, reblogIconComponent;
+
     if (status.get('reblogged')) {
       reblogTitle = intl.formatMessage(messages.cancel_reblog_private);
+      reblogIconComponent = publicStatus ? RepeatIcon : RepeatPrivateIcon;
     } else if (publicStatus) {
       reblogTitle = intl.formatMessage(messages.reblog);
+      reblogIconComponent = RepeatIcon;
     } else if (reblogPrivate) {
       reblogTitle = intl.formatMessage(messages.reblog_private);
+      reblogIconComponent = RepeatPrivateIcon;
     } else {
       reblogTitle = intl.formatMessage(messages.cannot_reblog);
+      reblogIconComponent = RepeatDisabledIcon;
     }
 
     const filterButton = this.props.onFilter && (
@@ -324,7 +331,7 @@ class StatusActionBar extends ImmutablePureComponent {
           counter={showReplyCount ? status.get('replies_count') : undefined}
           obfuscateCount
         />
-        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon={reblogIcon} iconComponent={RepeatIcon} onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
+        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon={reblogIcon} iconComponent={reblogIconComponent} onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={status.get('favourited') ? StarIcon : StarBorderIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
         <IconButton className='status__action-bar-button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' iconComponent={status.get('bookmarked') ? BookmarkIcon : BookmarkBorderIcon} onClick={this.handleBookmarkClick} />
 
