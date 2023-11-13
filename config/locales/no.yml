@@ -772,6 +772,11 @@
           approved: Godkjenning kreves for påmelding
           none: Ingen kan melde seg inn
           open: Hvem som helst kan melde seg inn
+      security:
+        authorized_fetch: Krev autentisering fra fødererte servere
+        authorized_fetch_hint: Krav om godkjenning fra fødererte servere muliggjør strengere håndhevelse av blokker på både brukernivå og servernivå. Dette går imidlertid på bekostning av en ytelsesstraff, reduserer rekkevidden til svarene dine og kan introdusere kompatibilitetsproblemer med enkelte fødererte tjenester. I tillegg vil dette ikke hindre dedikerte aktører i å hente dine offentlige innlegg og kontoer.
+        authorized_fetch_overridden_hint: Du kan for øyeblikket ikke endre denne innstillingen fordi den overstyres av en miljøvariabel.
+        federation_authentication: Håndheving av føderasjonsautentisering
       title: Serverinnstillinger
     site_uploads:
       delete: Slett den opplastede filen
@@ -1036,6 +1041,14 @@
       hint_html: Bare en ting til! Vi må bekrefte at du er et menneske (dette er slik at vi kan holde spam ute!). Løs CAPTCHA nedenfor og klikk "Fortsett".
       title: Sikkerhetskontroll
     confirmations:
+      awaiting_review: Din e-post adresse er bekreftet! %{domain} ansatte gjennomgår nå registreringen din. Du vil motta en e-post hvis de godkjenner din konto!
+      awaiting_review_title: Din registrering blir vurdert
+      clicking_this_link: klikke på denne lenken
+      login_link: logg inn
+      proceed_to_login_html: Du kan nå fortsette til %{login_link}.
+      redirect_to_app_html: Du burde bli omdirigert til <strong>%{app_name}</strong> -appen. Hvis det ikke skjedde, kan du prøve %{clicking_this_link} eller manuelt gå tilbake til appen.
+      registration_complete: Registreringen på %{domain} er nå fullført!
+      welcome_title: Velkommen, %{name}!
       wrong_email_hint: Hvis e-postadressen ikke er riktig, kan du endre den i kontoinnstillingene.
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette kontoen din, kan du <a href="%{path}">gå hit</a>. Du vil bli spurt om bekreftelse.
@@ -1739,6 +1752,10 @@
       month: "%b %Y"
       time: "%H:%M"
       with_time_zone: "%-d. %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Den serveromfattende brukskvoten for oversettelsestjenesten er overskredet.
+      too_many_requests: Det har nylig vært for mange forespørsler til oversettelsestjenesten.
   two_factor_authentication:
     add: Legg til
     disable: Skru av
