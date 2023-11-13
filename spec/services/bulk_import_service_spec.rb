@@ -54,7 +54,7 @@ RSpec.describe BulkImportService do
 
         Import::RowWorker.drain
 
-        expect(FollowRequest.includes(:target_account).where(account: account).map(&:target_account).map(&:acct)).to contain_exactly('user@foo.bar', 'unknown@unknown.bar')
+        expect(FollowRequest.includes(:target_account).where(account: account).map { |follow_request| follow_request.target_account.acct }).to contain_exactly('user@foo.bar', 'unknown@unknown.bar')
       end
     end
 
@@ -102,7 +102,7 @@ RSpec.describe BulkImportService do
 
         Import::RowWorker.drain
 
-        expect(FollowRequest.includes(:target_account).where(account: account).map(&:target_account).map(&:acct)).to contain_exactly('user@foo.bar', 'unknown@unknown.bar')
+        expect(FollowRequest.includes(:target_account).where(account: account).map { |follow_request| follow_request.target_account.acct }).to contain_exactly('user@foo.bar', 'unknown@unknown.bar')
       end
     end
 
@@ -367,7 +367,7 @@ RSpec.describe BulkImportService do
 
         Import::RowWorker.drain
 
-        expect(account.bookmarks.map(&:status).map(&:uri)).to contain_exactly(already_bookmarked.uri, status.uri, bookmarked.uri, 'https://domain.unknown/foo')
+        expect(account.bookmarks.map { |bookmark| bookmark.status.uri }).to contain_exactly(already_bookmarked.uri, status.uri, bookmarked.uri, 'https://domain.unknown/foo')
       end
     end
 
@@ -410,7 +410,7 @@ RSpec.describe BulkImportService do
 
         Import::RowWorker.drain
 
-        expect(account.bookmarks.map(&:status).map(&:uri)).to contain_exactly(status.uri, bookmarked.uri, 'https://domain.unknown/foo')
+        expect(account.bookmarks.map { |bookmark| bookmark.status.uri }).to contain_exactly(status.uri, bookmarked.uri, 'https://domain.unknown/foo')
       end
     end
   end

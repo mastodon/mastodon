@@ -3,9 +3,13 @@ fr:
   simple_form:
     hints:
       account:
+        discoverable: Vos messages publics et votre profil peuvent être mis en avant ou recommandés dans diverses parties de Mastodon et votre profil peut être suggéré à d’autres utilisateurs.
         display_name: Votre nom complet ou votre nom rigolo.
         fields: Votre page personnelle, vos pronoms, votre âge, ce que vous voulez.
+        indexable: Vos messages publics peuvent apparaître dans les résultats de recherche sur Mastodon. Les personnes qui ont interagi avec vos messages peuvent les trouver dans une recherche quoi qu’il arrive.
         note: 'Vous pouvez @mentionner d’autres personnes ou des #hashtags.'
+        show_collections: Les gens pourront voir les personnes que vous suivez ou qui vous suivent. Ceux que vous suivez verront que vous les suivez dans tous les cas.
+        unlocked: Les gens pourront vous suivre sans demander d'approbation. Décochez cette option si vous voulez valider les demandes d'abonnement et choisir d'accepter ou de rejeter les nouveaux abonnés.
       account_alias:
         acct: Spécifiez l’identifiant@domaine du compte à partir duquel vous souhaitez migrer
       account_migration:
@@ -116,6 +120,9 @@ fr:
       sessions:
         otp: 'Entrez le code d’authentification à deux facteurs généré par l’application de votre téléphone ou utilisez un de vos codes de récupération :'
         webauthn: Si c'est une clé USB, assurez-vous de l'insérer et, si nécessaire, de la tapoter.
+      settings:
+        indexable: Votre page de profil peut apparaître dans les résultats de recherche sur Google, Bing et autres.
+        show_application: Vous pourrez toujours voir quelle application vous avez utilisé pour publier un message dans tous les cas.
       tag:
         name: Vous ne pouvez modifier que la casse des lettres, par exemple, pour le rendre plus lisible
       user:
@@ -133,9 +140,13 @@ fr:
         url: Là où les événements seront envoyés
     labels:
       account:
+        discoverable: Autoriser des algorithmes de découverte à mettre en avant votre profil et vos messages
         fields:
           name: Étiquette
           value: Contenu
+        indexable: Inclure mes messages publics dans les résultats de recherche
+        show_collections: Afficher les profils abonnés et suivis sur le profil
+        unlocked: Accepter automatiquement les nouveaux abonnés
       account_alias:
         acct: Identifiant de l’ancien compte
       account_migration:
@@ -280,9 +291,18 @@ fr:
         pending_account: Nouveau compte en attente d’approbation
         reblog: Quelqu’un a partagé votre message
         report: Nouveau signalement soumis
+        software_updates:
+          all: Notifier toutes les mises à jour
+          critical: Notifier pour les mises à jour critiques uniquement
+          label: Une nouvelle mise à jour de Mastodon est disponible
+          none: Ne jamais notifier des mises à jour (déconseillé)
+          patch: Notifier pour des mises à jour de corrections de bug
         trending_tag: Nouvelle tendance nécessitant supervision
       rule:
         text: Règle
+      settings:
+        indexable: Inclure la page de profil dans les moteurs de recherches
+        show_application: Afficher quelle application a été utilisée pour envoyer un message
       tag:
         listable: Autoriser ce hashtag à apparaître dans les recherches et dans l’annuaire des profils
         name: Hashtag
@@ -303,6 +323,7 @@ fr:
         url: URL du point de terminaison
     'no': Non
     not_recommended: Non recommandé
+    overridden: Surchargé
     recommended: Recommandé
     required:
       mark: "*"

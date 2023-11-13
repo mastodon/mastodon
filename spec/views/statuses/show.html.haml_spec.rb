@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
+describe 'statuses/show.html.haml', :without_verify_partial_doubles do
   before do
     allow(view).to receive_messages(api_oembed_url: '', show_landing_strip?: true, site_title: 'example site', site_hostname: 'example.com', full_asset_url: '//asset.host/image.svg', current_account: nil, single_user_mode?: false)
     allow(view).to receive(:local_time)
@@ -13,7 +13,7 @@ describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
   it 'has valid opengraph tags' do
     alice  = Fabricate(:account, username: 'alice', display_name: 'Alice')
     status = Fabricate(:status, account: alice, text: 'Hello World')
-    media  = Fabricate(:media_attachment, account: alice, status: status, type: :video)
+    Fabricate(:media_attachment, account: alice, status: status, type: :video)
 
     assign(:status, status)
     assign(:account, alice)
@@ -32,7 +32,7 @@ describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
   it 'has twitter player tag' do
     alice  = Fabricate(:account, username: 'alice', display_name: 'Alice')
     status = Fabricate(:status, account: alice, text: 'Hello World')
-    media  = Fabricate(:media_attachment, account: alice, status: status, type: :video)
+    Fabricate(:media_attachment, account: alice, status: status, type: :video)
 
     assign(:status, status)
     assign(:account, alice)

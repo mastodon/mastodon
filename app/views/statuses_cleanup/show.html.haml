@@ -5,7 +5,6 @@
   = button_tag t('generic.save_changes'), class: 'button', form: 'edit_policy'
 
 = simple_form_for @policy, url: statuses_cleanup_path, method: :put, html: { id: 'edit_policy' } do |f|
-
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :enabled, as: :boolean, wrapper: :with_label, label: t('statuses_cleanup.enabled'), hint: t('statuses_cleanup.enabled_hint')

@@ -28,7 +28,9 @@ class UpdateAccountService < BaseService
   end
 
   def check_links(account)
-    VerifyAccountLinksWorker.perform_async(account.id) if account.fields.any?(&:requires_verification?)
+    return unless account.fields.any?(&:requires_verification?)
+
+    VerifyAccountLinksWorker.perform_async(account.id)
   end
 
   def process_hashtags(account)

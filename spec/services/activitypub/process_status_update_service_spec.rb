@@ -41,12 +41,12 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
 
   describe '#call' do
     it 'updates text' do
-      subject.call(status, json)
+      subject.call(status, json, json)
       expect(status.reload.text).to eq 'Hello universe'
     end
 
     it 'updates content warning' do
-      subject.call(status, json)
+      subject.call(status, json, json)
       expect(status.reload.spoiler_text).to eq 'Show more'
     end
 
@@ -64,7 +64,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       before do
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'does not create any edits' do
@@ -87,7 +87,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       before do
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'does not create any edits' do
@@ -134,7 +134,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       before do
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'does not create any edits' do
@@ -186,7 +186,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       before do
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'does not create any edits' do
@@ -214,11 +214,11 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       it 'does not create any edits' do
-        expect { subject.call(status, json) }.to_not(change { status.reload.edits.pluck(&:id) })
+        expect { subject.call(status, json, json) }.to_not(change { status.reload.edits.pluck(&:id) })
       end
 
       it 'does not update the text, spoiler_text or edited_at' do
-        expect { subject.call(status, json) }.to_not(change { s = status.reload; [s.text, s.spoiler_text, s.edited_at] })
+        expect { subject.call(status, json, json) }.to_not(change { s = status.reload; [s.text, s.spoiler_text, s.edited_at] })
       end
     end
 
@@ -233,7 +233,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       before do
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'does not create any edits' do
@@ -257,7 +257,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
 
       before do
         status.update(ordered_media_attachment_ids: nil)
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'does not create any edits' do
@@ -271,7 +271,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
 
     context 'when originally without tags' do
       before do
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'updates tags' do
@@ -297,7 +297,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       before do
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'updates tags' do
@@ -307,7 +307,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
 
     context 'when originally without mentions' do
       before do
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'updates mentions' do
@@ -319,7 +319,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       let(:mentions) { [alice, bob] }
 
       before do
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'updates mentions' do
@@ -330,7 +330,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
     context 'when originally without media attachments' do
       before do
         stub_request(:get, 'https://example.com/foo.png').to_return(body: attachment_fixture('emojo.png'))
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       let(:payload) do
@@ -380,7 +380,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
 
       before do
         allow(RedownloadMediaWorker).to receive(:perform_async)
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'updates the existing media attachment in-place' do
@@ -408,7 +408,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       before do
         poll = Fabricate(:poll, status: status)
         status.update(preloadable_poll: poll)
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'removes poll' do
@@ -438,7 +438,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       before do
-        subject.call(status, json)
+        subject.call(status, json, json)
       end
 
       it 'creates a poll' do
@@ -454,12 +454,12 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
     end
 
     it 'creates edit history' do
-      subject.call(status, json)
+      subject.call(status, json, json)
       expect(status.edits.reload.map(&:text)).to eq ['Hello world', 'Hello universe']
     end
 
     it 'sets edited timestamp' do
-      subject.call(status, json)
+      subject.call(status, json, json)
       expect(status.reload.edited_at.to_s).to eq '2021-09-08 22:39:25 UTC'
     end
   end

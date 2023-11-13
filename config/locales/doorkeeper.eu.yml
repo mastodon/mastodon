@@ -80,10 +80,10 @@ eu:
         title: Zuk baimendutako aplikazioak
     errors:
       messages:
-        access_denied: Baliabidearen jabeak edo baimenaren zerbitzariak eskaria ukatu du.
+        access_denied: Baliabidearen jabeak edo baimenaren zerbitzariak eskaera ukatu du.
         credential_flow_not_configured: Baliabidearen jabearen pasahitza kredentzialen fluxuak huts egin du Doorkeeper.configure.resource_owner_from_credentials konfiguratu gabe dagoelako.
         invalid_client: Bezeroaren autentifikazioak huts egin du bezero ezezaguna delako, ez delako bezero autentifikazioa txertatu, edo autentifikazio metodoa ez delako onartzen.
-        invalid_grant: Emandako autorizatzea baliogabea da, iraungitu da, indargabetu da. ez dator bat autorizatze eskarian erabilitako URI-arekin, edo beste bezero batek sortu du.
+        invalid_grant: Emandako baimena baliogabea da, iraungi edo indargabetu da, ez dator bat baimen-eskaeran erabilitako birbideratze URI-arekin edo beste bezero batek sortu du.
         invalid_redirect_uri: Sartutako birbideratze URI-a baliogabea da.
         invalid_request:
           missing_param: 'Beharrezko parametroa falta da: %{value}.'
@@ -127,6 +127,7 @@ eu:
         bookmarks: Laster-markak
         conversations: Elkarrizketak
         crypto: Muturretik-muturrerako zifraketa
+        favourites: Gogokoak
         filters: Iragazkiak
         follow: Jarraitzeak, mututzeak eta blokeatzeak
         follows: Jarraipenak
@@ -169,6 +170,7 @@ eu:
       read:accounts: ikusi kontuaren informazioa
       read:blocks: ikusi zure blokeoak
       read:bookmarks: ikusi zure laster-markak
+      read:favourites: ikusi zure gogokoak
       read:filters: ikusi zure iragazkiak
       read:follows: ikusi zuk jarraitutakoak
       read:lists: ikusi zure zerrendak
@@ -182,6 +184,7 @@ eu:
       write:blocks: kontuak eta domeinuak blokeatzea
       write:bookmarks: mezuen laster-marka
       write:conversations: mututu eta ezabatu elkarrizketak
+      write:favourites: gogoko bidalketak
       write:filters: sortu iragazkiak
       write:follows: jarraitu jendea
       write:lists: sortu zerrendak

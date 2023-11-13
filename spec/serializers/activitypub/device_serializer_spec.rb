@@ -3,13 +3,7 @@
 require 'rails_helper'
 
 describe ActivityPub::DeviceSerializer do
-  let(:serialization) do
-    JSON.parse(
-      ActiveModelSerializers::SerializableResource.new(
-        record, serializer: described_class
-      ).to_json
-    )
-  end
+  let(:serialization) { serialized_record_json(record, described_class) }
   let(:record) { Fabricate(:device) }
 
   describe 'type' do

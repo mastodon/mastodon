@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 
-import { withRouter } from 'react-router-dom';
-
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+
+import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
 
 import { fetchLists } from 'mastodon/actions/lists';
 
@@ -47,7 +47,7 @@ class ListPanel extends ImmutablePureComponent {
         <hr />
 
         {lists.map(list => (
-          <ColumnLink icon='list-ul' key={list.get('id')} strict text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
+          <ColumnLink icon='list-ul' iconComponent={ListAltIcon} key={list.get('id')} strict text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
         ))}
       </div>
     );
@@ -55,4 +55,4 @@ class ListPanel extends ImmutablePureComponent {
 
 }
 
-export default withRouter(connect(mapStateToProps)(ListPanel));
+export default connect(mapStateToProps)(ListPanel);

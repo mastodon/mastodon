@@ -19,30 +19,24 @@ describe Api::V1::Accounts::NotesController do
       post :create, params: { account_id: account.id, comment: comment }
     end
 
-    context 'when account note has reasonable length' do
+    context 'when account note has reasonable length', :aggregate_failures do
       let(:comment) { 'foo' }
-
-      it 'returns http success' do
-        subject
-        expect(response).to have_http_status(200)
-      end
 
       it 'updates account note' do
         subject
+
+        expect(response).to have_http_status(200)
         expect(AccountNote.find_by(account_id: user.account.id, target_account_id: account.id).comment).to eq comment
       end
     end
 
-    context 'when account note exceeds allowed length' do
+    context 'when account note exceeds allowed length', :aggregate_failures do
       let(:comment) { 'a' * 2_001 }
-
-      it 'returns 422' do
-        subject
-        expect(response).to have_http_status(422)
-      end
 
       it 'does not create account note' do
         subject
+
+        expect(response).to have_http_status(422)
         expect(AccountNote.where(account_id: user.account.id, target_account_id: account.id)).to_not exist
       end
     end

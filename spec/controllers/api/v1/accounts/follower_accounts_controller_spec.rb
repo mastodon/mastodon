@@ -18,23 +18,19 @@ describe Api::V1::Accounts::FollowerAccountsController do
   end
 
   describe 'GET #index' do
-    it 'returns http success' do
+    it 'returns accounts following the given account', :aggregate_failures do
       get :index, params: { account_id: account.id, limit: 2 }
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns accounts following the given account' do
-      get :index, params: { account_id: account.id, limit: 2 }
-
       expect(body_as_json.size).to eq 2
       expect([body_as_json[0][:id], body_as_json[1][:id]]).to contain_exactly(alice.id.to_s, bob.id.to_s)
     end
 
-    it 'does not return blocked users' do
+    it 'does not return blocked users', :aggregate_failures do
       user.account.block!(bob)
       get :index, params: { account_id: account.id, limit: 2 }
 
+      expect(response).to have_http_status(200)
       expect(body_as_json.size).to eq 1
       expect(body_as_json[0][:id]).to eq alice.id.to_s
     end

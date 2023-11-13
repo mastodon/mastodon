@@ -3,9 +3,13 @@ sl:
   simple_form:
     hints:
       account:
+        discoverable: Vaše javne objave in profil so lahko predstavljeni ali priporočeni v različnih delih Mastodona, vaš profil pa je lahko predlagan drugim uporabnikom.
         display_name: Vaše polno ime ali lažno ime.
         fields: Vaša domača stran, starost, kar koli.
+        indexable: Vaše javne objave se lahko pojavijo v rezultatih iskanja na Mastodonu. Ljudje, ki so bili v interakciji z vašimi objavami, jih bodo lahko iskali ne glede na to.
         note: 'Druge osebe lahko @omenite ali #ključnite.'
+        show_collections: Ljudje bodo lahko brskali po vaših sledilcih in sledenih. Ljudje, ki jim sledite, bodo videli, da jim sledite ne glede na to.
+        unlocked: Ljudje vam bodo lahko sledili, ne da bi zahtevali odobritev. Ne potrdite, če želite pregledati prošnje za sledenje, in izbirajte, ali želite nove sledilce sprejeti ali zavrniti.
       account_alias:
         acct: Določite uporabniškoime@domena računa, od katerega se želite preseliti
       account_migration:
@@ -116,6 +120,9 @@ sl:
       sessions:
         otp: 'Vnesite dvomestno kodo, ki je ustvarjena z aplikacijo na telefonu, ali uporabite eno od vaših obnovitvenih kod:'
         webauthn: Če gre za ključek USB, ga ne pozabite vstaviti in, če je potrebno, tapniti.
+      settings:
+        indexable: Stran vašega profila se lahko pojavi med zadetki iskanja iskalnikov Google, Bing idr.
+        show_application: Ne glede na to boste vedno lahko pogledali, katera aplikacija je objavila vašo objavo.
       tag:
         name: Spremenite lahko le npr. velikost črk (velike/male), da je bolj berljivo
       user:
@@ -133,9 +140,13 @@ sl:
         url: Kam bodo poslani dogodki
     labels:
       account:
+        discoverable: Izpostavljaj profile in objave v algoritmih odkrivanja
         fields:
           name: Oznaka
           value: Vsebina
+        indexable: Med zadetke iskanja vključi javne objave
+        show_collections: Pokaži sledene in sledilce v profilu
+        unlocked: Samodejno sprejmi nove sledilce
       account_alias:
         acct: Ročica starega računa
       account_migration:
@@ -280,9 +291,18 @@ sl:
         pending_account: Pošlji e-pošto, ko je potreben pregled novega računa
         reblog: Pošlji e-sporočilo, ko nekdo izpostavi vašo objavo
         report: Novo poročilo je oddano
+        software_updates:
+          all: Obveščaj o vseh posodobitvah
+          critical: Obveščaj le o kritičnih posodobitvah
+          label: Na voljo je nova različica Mastodona
+          none: Nikoli ne obveščaj o posodobitvah (ni priporočeno)
+          patch: Obveščaj o posodobitvah z odpravljenimi hrošči
         trending_tag: Nov trend zahteva pregled
       rule:
         text: Pravilo
+      settings:
+        indexable: V iskalnike vključi stran profila
+        show_application: Pokaži, iz katerega programa je poslana objava
       tag:
         listable: Dovoli, da se ta ključnik pojavi v iskanjih in predlogih
         name: Ključnik
@@ -303,6 +323,7 @@ sl:
         url: URL končne točke
     'no': Ne
     not_recommended: Ni priporočeno
+    overridden: Preglašeno
     recommended: Priporočeno
     required:
       mark: "*"

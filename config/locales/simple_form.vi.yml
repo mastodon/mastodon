@@ -3,9 +3,13 @@ vi:
   simple_form:
     hints:
       account:
+        discoverable: Các tút và hồ sơ công khai của bạn có thể được giới thiệu hoặc đề xuất ở nhiều khu vực khác nhau của Mastodon và hồ sơ của bạn có thể được đề xuất cho những người dùng khác.
         display_name: Tên đầy đủ hoặc biệt danh đều được.
         fields: Trang blog của bạn, nghề nghiệp, tuổi hoặc bất cứ thứ gì.
+        indexable: Tút công khai của bạn sẽ xuất hiện khi tìm kiếm trên Mastodon. Những người đã tương tác với tút của bạn có thể tìm kiếm chúng.
         note: 'Bạn có thể @nhắnriêng ai đó hoặc #hashtags.'
+        show_collections: Mọi người sẽ biết những bạn theo dõi và người theo dõi bạn. Những người bạn theo dõi sẽ vẫn thấy rằng bạn theo dõi họ.
+        unlocked: Mọi người sẽ theo dõi bạn mà không cần bạn cho phép.
       account_alias:
         acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
       account_migration:
@@ -41,16 +45,16 @@ vi:
         current_password: Vì mục đích bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
         digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
-        email: Bạn sẽ được gửi một email xác nhận
+        email: Bạn sẽ được gửi một email xác minh
         header: PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         inbox_url: Sao chép URL của máy chủ mà bạn muốn dùng
         irreversible: Các tút đã lọc sẽ không thể phục hồi, kể cả sau khi xóa bộ lọc
         locale: Ngôn ngữ của giao diện, email và thông báo đẩy
         password: Dùng ít nhất 8 ký tự
         phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
-        scopes: API nào ứng dụng sẽ được phép truy cập. Nếu bạn chọn quyền hạn cấp cao nhất, bạn không cần chọn từng phạm vi.
+        scopes: Ứng dụng sẽ được phép truy cập những API nào. Nếu bạn chọn quyền cấp cao nhất, không cần chọn quyền nhỏ.
         setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì những lượt đăng lại sau sẽ không hiện trên bảng tin nữa
-        setting_always_send_emails: Bình thường thì email thông báo sẽ không gửi khi bạn đang dùng Mastodon
+        setting_always_send_emails: Bình thường thì sẽ không gửi khi bạn đang dùng Mastodon
         setting_default_sensitive: Bắt buộc nhấn vào mới có thể xem
         setting_display_media_default: Click để xem
         setting_display_media_hide_all: Luôn ẩn
@@ -69,7 +73,7 @@ vi:
       filters:
         action: Chọn hành động sẽ thực hiện khi một tút khớp với bộ lọc
         actions:
-          hide: Ẩn hoàn toàn nội dung đã lọc, hoạt động như thể nó không tồn tại
+          hide: Ẩn hoàn toàn nội dung đã lọc, như thể nó không tồn tại
           warn: Ẩn nội dung đã lọc đằng sau một cảnh báo đề cập đến tiêu đề của bộ lọc
       form_admin_settings:
         activity_api_enabled: Số lượng tút được đăng trong máy chủ, người dùng đang hoạt động và đăng ký mới hàng tuần
@@ -93,9 +97,9 @@ vi:
         theme: Chủ đề mà khách truy cập đăng xuất và người mới nhìn thấy.
         thumbnail: 'Một hình ảnh tỉ lệ 2: 1 được hiển thị cùng với thông tin máy chủ của bạn.'
         timeline_preview: Khách truy cập đã đăng xuất sẽ có thể xem các tút công khai gần đây nhất trên máy chủ.
-        trendable_by_default: Bỏ qua việc duyệt thủ công nội dung thịnh hành. Các mục riêng lẻ vẫn có thể bị xóa khỏi xu hướng sau này.
+        trendable_by_default: Bỏ qua việc duyệt thủ công nội dung xu hướng. Các mục riêng lẻ vẫn có thể bị xóa khỏi xu hướng sau này.
         trends: Hiển thị những tút, hashtag và tin tức đang được thảo luận nhiều trên máy chủ của bạn.
-        trends_as_landing_page: Hiển thị nội dung thịnh hành cho người dùng đã đăng xuất và khách truy cập thay vì mô tả về máy chủ này. Yêu cầu xu hướng được kích hoạt.
+        trends_as_landing_page: Hiển thị nội dung xu hướng cho người dùng chưa đăng nhập thay vì mô tả về máy chủ này. Yêu cầu xu hướng được kích hoạt.
       form_challenge:
         current_password: Biểu mẫu này an toàn
       imports:
@@ -116,6 +120,9 @@ vi:
       sessions:
         otp: 'Nhập mã xác minh 2 bước được tạo bởi ứng dụng điện thoại của bạn hoặc dùng một trong các mã khôi phục của bạn:'
         webauthn: Nếu đây là USB key, hãy cắm vào và thử xoay chiều.
+      settings:
+        indexable: Trang của bạn có thể xuất hiện trong kết quả tìm kiếm trên Google, Bing và các nơi khác.
+        show_application: Bạn sẽ luôn có thể xem ứng dụng nào đã đăng tút của mình.
       tag:
         name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
       user:
@@ -133,9 +140,13 @@ vi:
         url: Nơi những sự kiện được gửi đến
     labels:
       account:
+        discoverable: Cho phép khám phá hồ sơ
         fields:
           name: Nhãn
           value: Nội dung
+        indexable: Cho phép hiện tút công khai trong kết quả tìm kiếm
+        show_collections: Hiện lượt theo dõi và người theo dõi
+        unlocked: Duyệt tự động người theo dõi mới
       account_alias:
         acct: Tài khoản cũ
       account_migration:
@@ -207,7 +218,7 @@ vi:
         setting_reduce_motion: Giảm chuyển động ảnh GIF
         setting_system_font_ui: Dùng phông chữ mặc định hệ thống
         setting_theme: Giao diện
-        setting_trends: Hiển thị thịnh hành hôm nay
+        setting_trends: Hiển thị xu hướng trong ngày
         setting_unfollow_modal: Hỏi trước khi bỏ theo dõi ai đó
         setting_use_blurhash: Phủ màu media nhạy cảm
         setting_use_pending_items: Không tự động cập nhật bảng tin
@@ -251,13 +262,13 @@ vi:
         theme: Chủ đề mặc định
         thumbnail: Hình thu nhỏ của máy chủ
         timeline_preview: Cho phép truy cập vào dòng thời gian công khai
-        trendable_by_default: Cho phép thịnh hành mà không cần duyệt trước
-        trends: Bật thịnh hành
-        trends_as_landing_page: Dùng trang thịnh hành làm trang chào mừng
+        trendable_by_default: Cho phép lên xu hướng mà không cần duyệt trước
+        trends: Bật xu hướng
+        trends_as_landing_page: Dùng trang xu hướng làm trang chào mừng
       interactions:
         must_be_follower: Những người không theo dõi bạn
         must_be_following: Những người bạn không theo dõi
-        must_be_following_dm: những người bạn không theo dõi (nhắn riêng)
+        must_be_following_dm: Những người bạn không theo dõi (nhắn riêng)
       invite:
         comment: Bình luận
       invite_request:
@@ -280,13 +291,22 @@ vi:
         pending_account: Phê duyệt tài khoản mới
         reblog: Ai đó đăng lại tút của bạn
         report: Ai đó gửi báo cáo
+        software_updates:
+          all: Thông báo về mọi bản cập nhật
+          critical: Chỉ thông báo bản cập nhật quan trọng
+          label: Đã có phiên bản Mastodon mới
+          none: Không bao giờ thông báo (không đề xuất)
+          patch: Thông báo bản cập sửa lỗi
         trending_tag: Phê duyệt nội dung nổi bật mới
       rule:
         text: Nội quy
+      settings:
+        indexable: Cho phép hiện hồ sơ trong công cụ tìm kiếm
+        show_application: Cho phép hiện ứng dụng dùng để đăng tút
       tag:
         listable: Cho phép xuất hiện trong tìm kiếm và đề xuất
         name: Hashtag
-        trendable: Cho phép hashtag này thịnh hành
+        trendable: Cho phép hashtag này lên xu hướng
         usable: Cho phép dùng trong tút
       user:
         role: Vai trò
@@ -303,6 +323,7 @@ vi:
         url: URL endpoint
     'no': Tắt
     not_recommended: Không đề xuất
+    overridden: Đã ghi đè
     recommended: Đề xuất
     required:
       mark: "*"

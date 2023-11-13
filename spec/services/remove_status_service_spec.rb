@@ -20,71 +20,70 @@ RSpec.describe RemoveStatusService, type: :service do
   end
 
   context 'when removed status is not a reblog' do
+    let!(:status) { PostStatusService.new.call(alice, text: 'Hello @bob@example.com ThisIsASecret') }
+
     before do
-      @status = PostStatusService.new.call(alice, text: 'Hello @bob@example.com ThisIsASecret')
-      FavouriteService.new.call(jeff, @status)
-      Fabricate(:status, account: bill, reblog: @status, uri: 'hoge')
+      FavouriteService.new.call(jeff, status)
+      Fabricate(:status, account: bill, reblog: status, uri: 'hoge')
     end
 
     it 'removes status from author\'s home feed' do
-      subject.call(@status)
-      expect(HomeFeed.new(alice).get(10).pluck(:id)).to_not include(@status.id)
+      subject.call(status)
+      expect(HomeFeed.new(alice).get(10).pluck(:id)).to_not include(status.id)
     end
 
     it 'removes status from local follower\'s home feed' do
-      subject.call(@status)
-      expect(HomeFeed.new(jeff).get(10).pluck(:id)).to_not include(@status.id)
+      subject.call(status)
+      expect(HomeFeed.new(jeff).get(10).pluck(:id)).to_not include(status.id)
     end
 
     it 'sends Delete activity to followers' do
-      subject.call(@status)
+      subject.call(status)
       expect(a_request(:post, 'http://example.com/inbox').with(
                body: hash_including({
                  'type' => 'Delete',
                  'object' => {
                    'type' => 'Tombstone',
-                   'id' => ActivityPub::TagManager.instance.uri_for(@status),
-                   'atomUri' => OStatus::TagManager.instance.uri_for(@status),
+                   'id' => ActivityPub::TagManager.instance.uri_for(status),
+                   'atomUri' => OStatus::TagManager.instance.uri_for(status),
                  },
                })
              )).to have_been_made.once
     end
 
     it 'sends Delete activity to rebloggers' do
-      subject.call(@status)
+      subject.call(status)
       expect(a_request(:post, 'http://example2.com/inbox').with(
                body: hash_including({
                  'type' => 'Delete',
                  'object' => {
                    'type' => 'Tombstone',
-                   'id' => ActivityPub::TagManager.instance.uri_for(@status),
-                   'atomUri' => OStatus::TagManager.instance.uri_for(@status),
+                   'id' => ActivityPub::TagManager.instance.uri_for(status),
+                   'atomUri' => OStatus::TagManager.instance.uri_for(status),
                  },
                })
              )).to have_been_made.once
     end
 
     it 'remove status from notifications' do
-      expect { subject.call(@status) }.to change {
+      expect { subject.call(status) }.to change {
         Notification.where(activity_type: 'Favourite', from_account: jeff, account: alice).count
       }.from(1).to(0)
     end
   end
 
   context 'when removed status is a private self-reblog' do
-    before do
-      @original_status = Fabricate(:status, account: alice, text: 'Hello ThisIsASecret', visibility: :private)
-      @status = ReblogService.new.call(alice, @original_status)
-    end
+    let!(:original_status) { Fabricate(:status, account: alice, text: 'Hello ThisIsASecret', visibility: :private) }
+    let!(:status) { ReblogService.new.call(alice, original_status) }
 
     it 'sends Undo activity to followers' do
-      subject.call(@status)
+      subject.call(status)
       expect(a_request(:post, 'http://example.com/inbox').with(
                body: hash_including({
                  'type' => 'Undo',
                  'object' => hash_including({
                    'type' => 'Announce',
-                   'object' => ActivityPub::TagManager.instance.uri_for(@original_status),
+                   'object' => ActivityPub::TagManager.instance.uri_for(original_status),
                  }),
                })
              )).to have_been_made.once
@@ -92,19 +91,17 @@ RSpec.describe RemoveStatusService, type: :service do
   end
 
   context 'when removed status is public self-reblog' do
-    before do
-      @original_status = Fabricate(:status, account: alice, text: 'Hello ThisIsASecret', visibility: :public)
-      @status = ReblogService.new.call(alice, @original_status)
-    end
+    let!(:original_status) { Fabricate(:status, account: alice, text: 'Hello ThisIsASecret', visibility: :public) }
+    let!(:status) { ReblogService.new.call(alice, original_status) }
 
     it 'sends Undo activity to followers' do
-      subject.call(@status)
+      subject.call(status)
       expect(a_request(:post, 'http://example.com/inbox').with(
                body: hash_including({
                  'type' => 'Undo',
                  'object' => hash_including({
                    'type' => 'Announce',
-                   'object' => ActivityPub::TagManager.instance.uri_for(@original_status),
+                   'object' => ActivityPub::TagManager.instance.uri_for(original_status),
                  }),
                })
              )).to have_been_made.once

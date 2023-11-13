@@ -30,14 +30,11 @@ RSpec.describe Api::V1::StatusesController do
           user.account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
         end
 
-        it 'returns http success' do
-          get :show, params: { id: status.id }
-          expect(response).to have_http_status(200)
-        end
-
-        it 'returns filter information' do
+        it 'returns filter information', :aggregate_failures do
           get :show, params: { id: status.id }
           json = body_as_json
+
+          expect(response).to have_http_status(200)
           expect(json[:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
@@ -57,14 +54,11 @@ RSpec.describe Api::V1::StatusesController do
           filter.statuses.create!(status_id: status.id)
         end
 
-        it 'returns http success' do
-          get :show, params: { id: status.id }
-          expect(response).to have_http_status(200)
-        end
-
-        it 'returns filter information' do
+        it 'returns filter information', :aggregate_failures do
           get :show, params: { id: status.id }
           json = body_as_json
+
+          expect(response).to have_http_status(200)
           expect(json[:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
@@ -83,14 +77,11 @@ RSpec.describe Api::V1::StatusesController do
           user.account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
         end
 
-        it 'returns http success' do
-          get :show, params: { id: status.id }
-          expect(response).to have_http_status(200)
-        end
-
-        it 'returns filter information' do
+        it 'returns filter information', :aggregate_failures do
           get :show, params: { id: status.id }
           json = body_as_json
+
+          expect(response).to have_http_status(200)
           expect(json[:reblog][:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
@@ -125,11 +116,8 @@ RSpec.describe Api::V1::StatusesController do
           post :create, params: { status: 'Hello world' }
         end
 
-        it 'returns http success' do
+        it 'returns rate limit headers', :aggregate_failures do
           expect(response).to have_http_status(200)
-        end
-
-        it 'returns rate limit headers' do
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
           expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
         end
@@ -143,11 +131,8 @@ RSpec.describe Api::V1::StatusesController do
           post :create, params: { status: '@alice hm, @bob is really annoying lately', allowed_mentions: [alice.id] }
         end
 
-        it 'returns http unprocessable entity' do
+        it 'returns serialized extra accounts in body', :aggregate_failures do
           expect(response).to have_http_status(422)
-        end
-
-        it 'returns serialized extra accounts in body' do
           expect(body_as_json[:unexpected_accounts].map { |a| a.slice(:id, :acct) }).to eq [{ id: bob.id.to_s, acct: bob.acct }]
         end
       end
@@ -157,11 +142,8 @@ RSpec.describe Api::V1::StatusesController do
           post :create, params: {}
         end
 
-        it 'returns http unprocessable entity' do
+        it 'returns rate limit headers', :aggregate_failures do
           expect(response).to have_http_status(422)
-        end
-
-        it 'returns rate limit headers' do
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
         end
       end
@@ -173,11 +155,8 @@ RSpec.describe Api::V1::StatusesController do
           post :create, params: { status: 'Hello world' }
         end
 
-        it 'returns http too many requests' do
+        it 'returns rate limit headers', :aggregate_failures do
           expect(response).to have_http_status(429)
-        end
-
-        it 'returns rate limit headers' do
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
           expect(response.headers['X-RateLimit-Remaining']).to eq '0'
         end
@@ -192,11 +171,8 @@ RSpec.describe Api::V1::StatusesController do
         post :destroy, params: { id: status.id }
       end
 
-      it 'returns http success' do
+      it 'removes the status', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'removes the status' do
         expect(Status.find_by(id: status.id)).to be_nil
       end
     end
@@ -209,11 +185,8 @@ RSpec.describe Api::V1::StatusesController do
         put :update, params: { id: status.id, status: 'I am updated' }
       end
 
-      it 'returns http success' do
+      it 'updates the status', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'updates the status' do
         expect(status.reload.text).to eq 'I am updated'
       end
     end

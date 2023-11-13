@@ -11,7 +11,7 @@
           - percent = total_votes_count.positive? ? 100 * option.votes_count / total_votes_count : 0
           %label.poll__option><
             %span.poll__number><
-              = "#{percent.round}%"
+              #{percent.round}%
             %span.poll__option__text
               = prerender_custom_emojis(h(option.title), status.emojis)
             - if own_votes.include?(index)

@@ -125,27 +125,12 @@ module Mastodon::CLI
         progress.log("Moving #{previous_path} to #{upgraded_path}") if options[:verbose]
 
         begin
-          unless dry_run?
-            FileUtils.mkdir_p(File.dirname(upgraded_path))
-            FileUtils.mv(previous_path, upgraded_path)
-
-            begin
-              FileUtils.rmdir(File.dirname(previous_path), parents: true)
-            rescue Errno::ENOTEMPTY
-              # OK
-            end
-          end
+          move_previous_to_upgraded
         rescue => e
           progress.log(pastel.red("Error processing #{previous_path}: #{e}"))
           success = false
 
-          unless dry_run?
-            begin
-              FileUtils.rmdir(File.dirname(upgraded_path), parents: true)
-            rescue Errno::ENOTEMPTY
-              # OK
-            end
-          end
+          remove_directory
         end
       end
 
@@ -154,6 +139,29 @@ module Mastodon::CLI
       # all styles are updated
       attachment.instance_write(:storage_schema_version, previous_storage_schema_version)
       success
+    end
+
+    def move_previous_to_upgraded(previous_path, upgraded_path)
+      return if dry_run?
+
+      FileUtils.mkdir_p(File.dirname(upgraded_path))
+      FileUtils.mv(previous_path, upgraded_path)
+
+      begin
+        FileUtils.rmdir(File.dirname(previous_path), parents: true)
+      rescue Errno::ENOTEMPTY
+        # OK
+      end
+    end
+
+    def remove_directory(path)
+      return if dry_run?
+
+      begin
+        FileUtils.rmdir(File.dirname(path), parents: true)
+      rescue Errno::ENOTEMPTY
+        # OK
+      end
     end
   end
 end

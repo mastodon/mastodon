@@ -3,7 +3,9 @@ import { Fragment } from 'react';
 
 import classNames from 'classnames';
 
-import { Check } from 'mastodon/components/check';
+import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/done.svg';
+
+import { Icon }  from 'mastodon/components/icon';
 
 const ProgressIndicator = ({ steps, completed }) => (
   <div className='onboarding__progress-indicator'>
@@ -12,7 +14,7 @@ const ProgressIndicator = ({ steps, completed }) => (
         {i > 0 && <div className={classNames('onboarding__progress-indicator__line', { active: completed > i })} />}
 
         <div className={classNames('onboarding__progress-indicator__step', { active: completed > i })}>
-          {completed > i && <Check />}
+          {completed > i && <Icon icon={CheckIcon} />}
         </div>
       </Fragment>
     ))}

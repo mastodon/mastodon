@@ -3,9 +3,13 @@ it:
   simple_form:
     hints:
       account:
+        discoverable: I tuoi post pubblici e il tuo profilo potrebbero essere presenti o consigliati in varie aree di Mastodon e il tuo profilo potrebbe essere suggerito ad altri utenti.
         display_name: Il tuo nome completo o il tuo soprannome.
         fields: La tua homepage, i pronomi, l'età, tutto quello che vuoi.
+        indexable: I tuoi post pubblici potrebbero apparire nei risultati di ricerca su Mastodon. Le persone che hanno interagito con i tuoi post potrebbero essere in grado di cercarli indipendentemente.
         note: 'Puoi @menzionare altre persone o usare gli #hashtags.'
+        show_collections: Le persone saranno in grado di navigare attraverso i tuoi seguaci e seguaci. Le persone che segui vedranno che li seguirai indipendentemente dalle tue impostazioni.
+        unlocked: Le persone saranno in grado di seguirti senza richiedere l'approvazione. Deseleziona se vuoi controllare le richieste di seguirti e scegli se accettare o rifiutare nuovi follower.
       account_alias:
         acct: Indica il nomeutente@dominio dell'account dal quale vuoi trasferirti
       account_migration:
@@ -116,6 +120,9 @@ it:
       sessions:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
         webauthn: Se si tratta di una chiavetta USB assicurati di inserirla e, se necessario, toccarla.
+      settings:
+        indexable: La pagina del tuo profilo potrebbe apparire nei risultati di ricerca su Google, Bing e altri.
+        show_application: Sarai sempre in grado di vedere quale app ha pubblicato il tuo post indipendentemente.
       tag:
         name: Puoi cambiare solo il minuscolo/maiuscolo delle lettere, ad esempio, per renderlo più leggibile
       user:
@@ -133,9 +140,13 @@ it:
         url: Dove gli eventi saranno inviati
     labels:
       account:
+        discoverable: Include il profilo e i post negli algoritmi di scoperta
         fields:
           name: Etichetta
           value: Contenuto
+        indexable: Includi i post pubblici nei risultati di ricerca
+        show_collections: Mostra chi segui e chi ti segue sul profilo
+        unlocked: Accetta automaticamente nuovi follower
       account_alias:
         acct: Handle del vecchio account
       account_migration:
@@ -280,9 +291,18 @@ it:
         pending_account: Invia e-mail quando un nuovo account richiede l'approvazione
         reblog: Qualcuno ha condiviso il tuo post
         report: Una nuova segnalazione è stata inviata
+        software_updates:
+          all: Notifica su tutti gli aggiornamenti
+          critical: Notifica soltanto sugli aggiornamenti critici
+          label: Una nuova versione di Mastodon è disponibile
+          none: Non notificare mai sugli aggiornamenti (sconsigliato)
+          patch: Notifica sulle correzioni di bug
         trending_tag: La nuova tendenza richiede un controllo
       rule:
         text: Regola
+      settings:
+        indexable: Includi la pagina del profilo nei motori di ricerca
+        show_application: Mostra da quale app hai inviato un post
       tag:
         listable: Permetti a questo hashtag di apparire nella directory dei profili
         name: Hashtag
@@ -303,6 +323,7 @@ it:
         url: URL endpoint
     'no': 'No'
     not_recommended: Non consigliato
+    overridden: Sostituito
     recommended: Consigliato
     required:
       mark: "*"

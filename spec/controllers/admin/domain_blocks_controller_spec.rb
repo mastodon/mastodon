@@ -165,6 +165,17 @@ RSpec.describe Admin::DomainBlocksController do
     end
   end
 
+  describe 'GET #edit' do
+    let(:domain_block) { Fabricate(:domain_block) }
+
+    it 'returns http success' do
+      get :edit, params: { id: domain_block.id }
+
+      expect(assigns(:domain_block)).to be_instance_of(DomainBlock)
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'PUT #update' do
     subject do
       post :update, params: { :id => domain_block.id, :domain_block => { domain: 'example.com', severity: new_severity }, 'confirm' => '' }

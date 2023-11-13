@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'rails/generators/testing/behaviour'
+require 'rails/generators/testing/behavior'
 require 'rails/generators/testing/assertions'
 
 require 'generators/post_deployment_migration/post_deployment_migration_generator'
 
 describe PostDeploymentMigrationGenerator, type: :generator do
-  include Rails::Generators::Testing::Behaviour
+  include Rails::Generators::Testing::Behavior
   include Rails::Generators::Testing::Assertions
   include FileUtils
 

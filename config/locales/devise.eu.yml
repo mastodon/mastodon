@@ -2,9 +2,9 @@
 eu:
   devise:
     confirmations:
-      confirmed: Zure e-mail helbidea ongi baieztatu da.
-      send_instructions: E-mail mezu bat jasoko duzu minutu batzuk barru zure e-mail helbidea baieztatzeko argibideekin. Egiaztatu zure spam karpeta ez baduzu e-mail hau jasotzen.
-      send_paranoid_instructions: Zure e-mail helbidea aurretik gure datu-basean bazegoen, e-mail mezu bat jasoko duzu minutu batzuk barru zure e-mail helbidea baieztatzeko argibideekin. Egiaztatu zure spam karpeta ez baduzu e-mail hau jasotzen.
+      confirmed: Zure eposta helbidea ongi baieztatu da.
+      send_instructions: Eposta mezu bat jasoko duzu minutu gutxi barru zure eposta helbidea berresteko argibideekin. Begiratu zure spam karpetan ez baduzu mezua jaso.
+      send_paranoid_instructions: Zure eposta helbidea aurretik gure datu-basean bazegoen, eposta mezu bat jasoko duzu minutu batzuk barru zure eposta helbidea berresteko argibideekin. Begiratu zure spam karpetan ez baduzu mezua jaso.
     failure:
       already_authenticated: Saioa hasi duzu jada.
       inactive: Zure kontua ez dago oraindik aktibo.
@@ -15,35 +15,35 @@ eu:
       pending: Zure kontua oraindik berrikusteke dago.
       timeout: Zure saioa iraungitu da. Hasi saioa berriro jarraitzeko.
       unauthenticated: Saioa hasi edo izena eman behar duzu jarraitu aurretik.
-      unconfirmed: Zure e-mail helbidea baieztatu behar duzu jarraitu aurretik.
+      unconfirmed: Zure eposta helbidea berretsi behar duzu jarraitu aurretik.
     mailer:
       confirmation_instructions:
-        action: Baieztatu e-mail helbidea
+        action: Egiaztatu eposta helbidea
         action_with_app: Berretsi eta itzuli %{app} aplikaziora
-        explanation: Kontu bat sortu duzu %{host} ostalarian e-mail helbide honekin. Aktibatzeko klik bat falta zaizu. Ez baduzu zuk sortu, ez egin ezer e-mail honekin.
-        explanation_when_pending: "%{host} instantziara gonbidatua izatea eskatu duzu e-mail helbide honekin. Behin zure e-mail helbidea berresten duzula, zure eskaera berrikusiko da. Ezin duzu aurretik saioa hasi. Zure eskaera ukatuko balitz, zure datuak ezabatuko lirateke, eta ez zenuke beste ezer egiteko beharrik. Hau ez bazara zu izan, ezikusi e-mail hau."
+        explanation: Kontu bat sortu duzu %{host} ostalarian eposta helbide honekin. Klik bat baino ez zaizu falta kontua aktibatzeko. Ez baduzu zuk sortu, ez egin ezer mezu honekin.
+        explanation_when_pending: "%{host} instantziara gonbidatzeko eskatu duzu eposta helbide honekin. Behin zure eposta helbidea berresten duzula, zure eskaera berrikusiko da. Ezin duzu aurretik saioa hasi. Zure eskaera ukatuko balitz, zure datuak ezabatuko lirateke, eta ez zenuke beste ezer egiteko beharrik. Ez baduzu zuk eskatu gonbidapena, ez egin ezer mezu honekin."
         extra_html: Egiaztatu <a href="%{terms_path}">zerbitzariaren arauak</a> eta <a href="%{policy_path}">zerbitzuaren erabilera baldintzak</a>.
         subject: 'Mastodon: %{instance} instantziaren argibideak baieztapenerako'
-        title: Baieztatu e-mail helbidea
+        title: Egiaztatu eposta helbidea
       email_changed:
-        explanation: 'Zure kontuaren e-mail helbidea honetara aldatuko da:'
-        extra: Ez baduzu e-mail helbidea aldatu, agian baten bat zure kontura sartzea lortu du. Aldatu zure pasahitza berehala edo jarri zerbitzariko administratzailearekin kontaktuan zure kontura sartzerik ez baduzu.
-        subject: 'Mastodon: E-mail helbidea aldatuta'
-        title: E-mail helbide berria
+        explanation: 'Zure kontuaren eposta helbidea hau izango da aurrerantzean:'
+        extra: Ez baduzu eposta helbidea aldatu, agian baten bat zure kontuan sartu da. Aldatu zure pasahitza berehala edo jarri zerbitzariko administratzailearekin harremanetan zure kontura sartzerik ez baduzu.
+        subject: 'Mastodon: Aldatu da eposta helbidea'
+        title: Eposta helbide berria
       password_change:
         explanation: Zure kontuaren pasahitza aldatu da.
         extra: Ez baduzu pasahitza aldatu, agian baten bat zure kontura sartzea lortu du. Aldatu zure pasahitza berehala edo jarri zerbitzariko administratzailearekin kontaktuan zure kontura sartzerik ez baduzu.
         subject: 'Mastodon: Pasahitza aldatuta'
         title: Pasahitza aldatuta
       reconfirmation_instructions:
-        explanation: Baieztatu helbide berria zure e-maila aldatzeko.
-        extra: Aldaketa hau ez baduzu zuk eskatu, ezikusi e-mail hau. Mastodon kontuaren e-mail helbidea ez da aldatuko goiko estekan sartzen ez bazara.
-        subject: 'Mastodon: Baieztatu %{instance} instantziarako e-mail helbidea'
-        title: Baieztatu e-mail helbidea
+        explanation: Berretsi helbide berria zure eposta aldatzeko.
+        extra: Aldaketa hau ez baduzu zuk eskatu, ez egin ezer mezu honekin. Mastodon kontuaren eposta helbidea ez da aldatuko goiko estekan sartzen ez bazara.
+        subject: 'Mastodon: Berretsi %{instance} instantziarako eposta helbidea'
+        title: Egiaztatu eposta helbidea
       reset_password_instructions:
         action: Aldatu pasahitza
         explanation: Pasahitza berria eskatu duzu zure konturako.
-        extra: Ez baduzu hau eskatu, mesedez ezikusi e-mail hau. Zure pasahitza ez da aldatuko goiko estekara sartu eta berri bat sortzen ez baduzu.
+        extra: Hori ez baduzu zuk eskatu, ez egin ezer mezu honekin. Zure pasahitza ez da aldatuko goiko estekara sartu eta berri bat sortzen ez baduzu.
         subject: 'Mastodon: Pasahitza berrezartzeko argibideak'
         title: Pasahitza berrezartzea
       two_factor_disabled:
@@ -81,9 +81,9 @@ eu:
       failure: Ezin izan zaizu %{kind} motatik autentifikatu arrazoia "%{reason}" dela.
       success: Ongi egin da autentifikazioa %{kind}  kontuarekin.
     passwords:
-      no_token: Ezin zara orri honetara sartu ez bazatoz pasahitza aldatzeko e-mail batetik. Pasahitza aldatzeko e-mail batetik bazatoz egiaztatu emandako URL osoa erabiltzen duzula mesedez.
-      send_instructions: Zure e-mail helbidea gure datu-basean badago, pasahitza berreskuratzeko esteka bat duen e-mail bat jasoko duzu minutu gutxi barru. Egiaztatu spam karpeta e-mail hau jasotzen ez baduzu.
-      send_paranoid_instructions: Zure e-mail helbidea gure datu-basean badago, pasahitza berreskuratzeko esteka bat duen e-mail bat jasoko duzu minutu gutxi barru. Egiaztatu spam karpeta e-mail hau jasotzen ez baduzu.
+      no_token: Ezin zara orri honetara sartu ez bazatoz pasahitza aldatzeko eposta mezu batetik. Pasahitza aldatzeko mezu batetik bazatoz, egiaztatu emandako URL osoa erabiltzen duzula.
+      send_instructions: Zure eposta helbidea gure datu-basean badago, pasahitza berreskuratzeko esteka bat duen eposta bat jasoko duzu minutu gutxi barru. Begiratu zure spam karpetan ez baduzu mezua jaso.
+      send_paranoid_instructions: Zure eposta helbidea gure datu-basean badago, pasahitza berreskuratzeko esteka bat duen mezu bat jasoko duzu minutu gutxi barru. Begiratu zure spam karpetan ez baduzu mezua jaso.
       updated: Zure pasahitza ongi aldatu da. Saioa hasi duzu.
       updated_not_active: Zure pasahitza ongi aldatu da.
     registrations:
@@ -91,17 +91,17 @@ eu:
       signed_up: Ongi etorri! Ongi hasi duzu saioa.
       signed_up_but_inactive: Ongi eman duzu izena. Hala ere, ezin duzu saioa hasi zure kontua oraindik ez dagoelako aktibatuta.
       signed_up_but_locked: Ongi eman duzu izena. Hala ere, ezin duzu saioa hasi zure kontua giltzapetuta dagoelako.
-      signed_up_but_pending: Berrespen esteka bat duen mezu bat bidali da zure e-mail helbidera. Behin esteka sakatzen duzula, zure eskaera berrikusiko da. Onartzen bada jakinaraziko zaizu.
-      signed_up_but_unconfirmed: Baieztapen esteka bat duen e-mail bidali zaizu. Jarraitu esteka zure kontua aktibatzeko. Egiaztatu spam karpeta ez baduzu e-mail hau jaso.
-      update_needs_confirmation: Zure kontua ongi eguneratu duzu, baina zure email helbide berria egiaztatu behar dugu. Baieztapen esteka bat duen e-mail bidali zaizu, jarraitu esteka zure e-mal helbide berria baieztatzeko. Egiaztatu spam karpeta ez baduzu e-mail hau jaso.
+      signed_up_but_pending: Berrespen esteka bat duen mezu bat bidali dizugu zure eposta helbidera. Behin esteka sakatzen duzula, zure eskaera berrikusiko da. Onartzen bada, jakinarazpena jasoko duzu.
+      signed_up_but_unconfirmed: Baieztapen esteka bat duen eposta bat bidali dizugu. Jarraitu esteka zure kontua aktibatzeko. Begiratu zure spam karpetan ez baduzu mezua jaso.
+      update_needs_confirmation: Zure kontua ongi eguneratu duzu, baina zure eposta helbide berria egiaztatu behar dugu. Berrespen esteka bat duen mezua bidali dizugu, sartu estekan zure eposta helbide berria berresteko. Begiratu zure spam karpetan ez baduzu mezua jaso.
       updated: Zure kontua ongi eguneratu da.
     sessions:
       already_signed_out: Ongi amaitu duzu saioa.
       signed_in: Ongi hasi duzu saioa.
       signed_out: Ongi amaitu duzu saioa.
     unlocks:
-      send_instructions: Kontua desblokeatzeko argibideak dituen e-mail jasoko duzu minutu gutxi barru. Egiaztatu spam karpeta ez baduzu e-mail hau jaso.
-      send_paranoid_instructions: Zure kontua existitzen bada, hau desblokeatzeko argibideak dituen e-mail bat jasoko duzu minutu gutxi barru. Egiaztatu spam karpeta ez baduzu mezu hau jasotzen.
+      send_instructions: Kontua desblokeatzeko argibideak dituen eposta jasoko duzu minutu gutxi barru. Begiratu zure spam karpetan ez baduzu mezua jaso.
+      send_paranoid_instructions: Zure kontua existitzen bada, hau desblokeatzeko argibideak dituen eposta bat jasoko duzu minutu gutxi barru. Begiratu zure spam karpetan ez baduzu mezua jaso.
       unlocked: Zure kontua ongi desblokeatu da. Hasi saioa jarraitzeko.
   errors:
     messages:

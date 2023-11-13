@@ -1,13 +1,13 @@
 import { Record as ImmutableRecord, Stack } from 'immutable';
 
-import type { PayloadAction } from '@reduxjs/toolkit';
+import type { Reducer } from '@reduxjs/toolkit';
 
 import { COMPOSE_UPLOAD_CHANGE_SUCCESS } from '../actions/compose';
 import type { ModalType } from '../actions/modal';
 import { openModal, closeModal } from '../actions/modal';
 import { TIMELINE_DELETE } from '../actions/timelines';
 
-type ModalProps = Record<string, unknown>;
+export type ModalProps = Record<string, unknown>;
 interface Modal {
   modalType: ModalType;
   modalProps: ModalProps;
@@ -62,33 +62,22 @@ const pushModal = (
   });
 };
 
-export function modalReducer(
-  state: State = initialState,
-  action: PayloadAction<{
-    modalType: ModalType;
-    ignoreFocus: boolean;
-    modalProps: Record<string, unknown>;
-  }>,
-) {
-  switch (action.type) {
-    case openModal.type:
-      return pushModal(
-        state,
-        action.payload.modalType,
-        action.payload.modalProps,
-      );
-    case closeModal.type:
-      return popModal(state, action.payload);
-    case COMPOSE_UPLOAD_CHANGE_SUCCESS:
-      return popModal(state, { modalType: 'FOCAL_POINT', ignoreFocus: false });
-    case TIMELINE_DELETE:
-      return state.update('stack', (stack) =>
-        stack.filterNot(
-          // @ts-expect-error TIMELINE_DELETE action is not typed yet.
-          (modal) => modal.get('modalProps').statusId === action.id,
-        ),
-      );
-    default:
-      return state;
-  }
-}
+export const modalReducer: Reducer<State> = (state = initialState, action) => {
+  if (openModal.match(action))
+    return pushModal(
+      state,
+      action.payload.modalType,
+      action.payload.modalProps,
+    );
+  else if (closeModal.match(action)) return popModal(state, action.payload);
+  // TODO: type those actions
+  else if (action.type === COMPOSE_UPLOAD_CHANGE_SUCCESS)
+    return popModal(state, { modalType: 'FOCAL_POINT', ignoreFocus: false });
+  else if (action.type === TIMELINE_DELETE)
+    return state.update('stack', (stack) =>
+      stack.filterNot(
+        (modal) => modal.get('modalProps').statusId === action.id,
+      ),
+    );
+  else return state;
+};

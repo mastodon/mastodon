@@ -59,12 +59,17 @@ namespace :tests do
         exit(1)
       end
 
+      unless User.find(1).settings['web.trends'] == false
+        puts 'User settings not kept as expected'
+        exit(1)
+      end
+
       unless Account.find_remote('bob', 'ActivityPub.com').domain == 'activitypub.com'
         puts 'Account domains not properly normalized'
         exit(1)
       end
 
-      unless Status.find(12).preview_cards.pluck(:url) == ['https://joinmastodon.org/']
+      unless PreviewCard.where(id: PreviewCardsStatus.where(status_id: 12).select(:preview_card_id)).pluck(:url) == ['https://joinmastodon.org/']
         puts 'Preview cards not deduplicated as expected'
         exit(1)
       end
@@ -131,7 +136,8 @@ namespace :tests do
         INSERT INTO "settings"
           (id, thing_type, thing_id, var, value, created_at, updated_at)
         VALUES
-          (3, 'User', 1, 'notification_emails', E'--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nfollow: false\nreblog: true\nfavourite: true\nmention: false\nfollow_request: true\ndigest: true\nreport: true\npending_account: false\ntrending_tag: true\nappeal: true\n', now(), now());
+          (3, 'User', 1, 'notification_emails', E'--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nfollow: false\nreblog: true\nfavourite: true\nmention: false\nfollow_request: true\ndigest: true\nreport: true\npending_account: false\ntrending_tag: true\nappeal: true\n', now(), now()),
+          (4, 'User', 1, 'trends', E'--- false\n', now(), now());
 
         INSERT INTO "accounts"
           (id, username, domain, private_key, public_key, created_at, updated_at)
@@ -146,7 +152,7 @@ namespace :tests do
         INSERT INTO "settings"
           (id, thing_type, thing_id, var, value, created_at, updated_at)
         VALUES
-          (4, 'User', 4, 'default_language', E'--- kmr\n', now(), now());
+          (5, 'User', 4, 'default_language', E'--- kmr\n', now(), now());
       SQL
     end
 

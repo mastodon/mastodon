@@ -5,12 +5,20 @@ bn:
       poll:
         expires_at: নির্দিষ্ট সময়সীমা
         options: বিকল্প
+      user:
+        locale: ভাষা
+        password: পাসওয়ার্ড
+      user/account:
+        username: ব্যবহারকারীর নাম
+      user/invite_request:
+        text: কারণ
     errors:
       models:
         account:
           attributes:
             username:
               invalid: শুধুমাত্র অক্ষর, সংখ্যা এবং _ বেবহার করা যাবে
+              reserved: সংরক্ষিত
         status:
           attributes:
             reblog:

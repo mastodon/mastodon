@@ -4,8 +4,20 @@ hi:
     confirmations:
       confirmed: आपका ईमेल पता का सफलतापूर्वक पुष्टि कर लिया गया था
     failure:
+      already_authenticated: आप पहले से ही प्रवेशित है|
       inactive: आपका खाता सक्रिय नहीं है!
       locked: आपके अकाउंट को ब्लॉक किया गया है।
+      pending: आपका खाता अभी भीं समीक्षा मे है।
     mailer:
+      confirmation_instructions:
+        action: ईमेल पता सत्यापित करें
       email_changed:
         title: नया ईमेल पता
+      two_factor_enabled:
+        title: 2FA सक्षम हुआ
+      webauthn_credential:
+        added:
+          title: एक नइ सुरक्षा कुंजी जोडी गई
+        deleted:
+          subject: 'मस्टाडोन: सुरक्षा कुंजी निकाली गई'
+          title: आपकी कोई एक सुरक्षा कुंजी निकाली गई

@@ -1,11 +1,13 @@
 import api, { getLinks } from '../api';
 
+import { blockDomainSuccess, unblockDomainSuccess } from "./domain_blocks_typed";
+
+export * from "./domain_blocks_typed";
+
 export const DOMAIN_BLOCK_REQUEST = 'DOMAIN_BLOCK_REQUEST';
-export const DOMAIN_BLOCK_SUCCESS = 'DOMAIN_BLOCK_SUCCESS';
 export const DOMAIN_BLOCK_FAIL    = 'DOMAIN_BLOCK_FAIL';
 
 export const DOMAIN_UNBLOCK_REQUEST = 'DOMAIN_UNBLOCK_REQUEST';
-export const DOMAIN_UNBLOCK_SUCCESS = 'DOMAIN_UNBLOCK_SUCCESS';
 export const DOMAIN_UNBLOCK_FAIL    = 'DOMAIN_UNBLOCK_FAIL';
 
 export const DOMAIN_BLOCKS_FETCH_REQUEST = 'DOMAIN_BLOCKS_FETCH_REQUEST';
@@ -24,7 +26,7 @@ export function blockDomain(domain) {
       const at_domain = '@' + domain;
       const accounts = getState().get('accounts').filter(item => item.get('acct').endsWith(at_domain)).valueSeq().map(item => item.get('id'));
 
-      dispatch(blockDomainSuccess(domain, accounts));
+      dispatch(blockDomainSuccess({ domain, accounts }));
     }).catch(err => {
       dispatch(blockDomainFail(domain, err));
     });
@@ -35,14 +37,6 @@ export function blockDomainRequest(domain) {
   return {
     type: DOMAIN_BLOCK_REQUEST,
     domain,
-  };
-}
-
-export function blockDomainSuccess(domain, accounts) {
-  return {
-    type: DOMAIN_BLOCK_SUCCESS,
-    domain,
-    accounts,
   };
 }
 
@@ -61,7 +55,7 @@ export function unblockDomain(domain) {
     api(getState).delete('/api/v1/domain_blocks', { params: { domain } }).then(() => {
       const at_domain = '@' + domain;
       const accounts = getState().get('accounts').filter(item => item.get('acct').endsWith(at_domain)).valueSeq().map(item => item.get('id'));
-      dispatch(unblockDomainSuccess(domain, accounts));
+      dispatch(unblockDomainSuccess({ domain, accounts }));
     }).catch(err => {
       dispatch(unblockDomainFail(domain, err));
     });
@@ -72,14 +66,6 @@ export function unblockDomainRequest(domain) {
   return {
     type: DOMAIN_UNBLOCK_REQUEST,
     domain,
-  };
-}
-
-export function unblockDomainSuccess(domain, accounts) {
-  return {
-    type: DOMAIN_UNBLOCK_SUCCESS,
-    domain,
-    accounts,
   };
 }
 

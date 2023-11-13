@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-class Api::V1::Statuses::BookmarksController < Api::BaseController
-  include Authorization
-
+class Api::V1::Statuses::BookmarksController < Api::V1::Statuses::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:bookmarks' }
   before_action :require_user!
-  before_action :set_status, only: [:create]
+  skip_before_action :set_status, only: [:destroy]
 
   def create
     current_account.bookmarks.find_or_create_by!(account: current_account, status: @status)
@@ -25,15 +23,6 @@ class Api::V1::Statuses::BookmarksController < Api::BaseController
     bookmark&.destroy!
 
     render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_account.id, bookmarks_map: { @status.id => false })
-  rescue Mastodon::NotPermittedError
-    not_found
-  end
-
-  private
-
-  def set_status
-    @status = Status.find(params[:status_id])
-    authorize @status, :show?
   rescue Mastodon::NotPermittedError
     not_found
   end

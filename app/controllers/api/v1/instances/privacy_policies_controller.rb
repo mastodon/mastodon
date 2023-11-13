@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-class Api::V1::Instances::PrivacyPoliciesController < Api::BaseController
-  skip_before_action :require_authenticated_user!, unless: :limited_federation_mode?
-
+class Api::V1::Instances::PrivacyPoliciesController < Api::V1::Instances::BaseController
   before_action :set_privacy_policy
-
-  vary_by ''
 
   def show
     cache_even_if_authenticated!

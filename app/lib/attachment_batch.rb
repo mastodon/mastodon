@@ -75,7 +75,12 @@ class AttachmentBatch
             end
           when :fog
             logger.debug { "Deleting #{attachment.path(style)}" }
-            attachment.directory.files.new(key: attachment.path(style)).destroy
+
+            begin
+              attachment.send(:directory).files.new(key: attachment.path(style)).destroy
+            rescue Fog::Storage::OpenStack::NotFound
+              # Ignore failure to delete a file that has already been deleted
+            end
           when :azure
             logger.debug { "Deleting #{attachment.path(style)}" }
             attachment.destroy

@@ -5,8 +5,8 @@
   = render 'shared/error_messages', object: @announcement
 
   .fields-group
-    = f.input :starts_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}(:[0-9]{2}){1,2}', placeholder: Time.now.strftime('%FT%R') }
-    = f.input :ends_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}(:[0-9]{2}){1,2}', placeholder: Time.now.strftime('%FT%R') }
+    = f.input :starts_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: datetime_pattern, placeholder: datetime_placeholder }
+    = f.input :ends_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: datetime_pattern, placeholder: datetime_placeholder }
 
   .fields-group
     = f.input :all_day, as: :boolean, wrapper: :with_label
@@ -15,7 +15,7 @@
     = f.input :text, wrapper: :with_block_label
 
   .fields-group
-    = f.input :scheduled_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}(:[0-9]{2}){1,2}', placeholder: Time.now.strftime('%FT%R') }
+    = f.input :scheduled_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: datetime_pattern, placeholder: datetime_placeholder }
 
   .actions
     = f.button :button, t('.create'), type: :submit

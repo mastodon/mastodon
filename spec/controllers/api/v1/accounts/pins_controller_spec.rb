@@ -15,14 +15,11 @@ RSpec.describe Api::V1::Accounts::PinsController do
   describe 'POST #create' do
     subject { post :create, params: { account_id: kevin.account.id } }
 
-    it 'returns 200' do
-      expect(response).to have_http_status(200)
-    end
-
-    it 'creates account_pin' do
+    it 'creates account_pin', :aggregate_failures do
       expect do
         subject
       end.to change { AccountPin.where(account: john.account, target_account: kevin.account).count }.by(1)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -33,14 +30,11 @@ RSpec.describe Api::V1::Accounts::PinsController do
       Fabricate(:account_pin, account: john.account, target_account: kevin.account)
     end
 
-    it 'returns 200' do
-      expect(response).to have_http_status(200)
-    end
-
-    it 'destroys account_pin' do
+    it 'destroys account_pin', :aggregate_failures do
       expect do
         subject
       end.to change { AccountPin.where(account: john.account, target_account: kevin.account).count }.by(-1)
+      expect(response).to have_http_status(200)
     end
   end
 end

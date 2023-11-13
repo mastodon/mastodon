@@ -21,11 +21,8 @@ describe Api::V1::Statuses::MutesController do
         post :create, params: { status_id: status.id }
       end
 
-      it 'returns http success' do
+      it 'creates a conversation mute', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'creates a conversation mute' do
         expect(ConversationMute.find_by(account: user.account, conversation_id: status.conversation_id)).to_not be_nil
       end
     end
@@ -38,11 +35,8 @@ describe Api::V1::Statuses::MutesController do
         post :destroy, params: { status_id: status.id }
       end
 
-      it 'returns http success' do
+      it 'destroys the conversation mute', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'destroys the conversation mute' do
         expect(ConversationMute.find_by(account: user.account, conversation_id: status.conversation_id)).to be_nil
       end
     end

@@ -1,40 +1,36 @@
-= simple_form_for @role, url: @role.new_record? ? admin_roles_path : admin_role_path(@role) do |f|
-  = render 'shared/error_messages', object: @role
+= render 'shared/error_messages', object: form.object
 
-  - if @role.everyone?
-    .flash-message.info
-      = t('admin.roles.everyone_full_description_html')
-  - else
+- if form.object.everyone?
+  .flash-message.info
+    = t('admin.roles.everyone_full_description_html')
+- else
+  .fields-group
+    = form.input :name, wrapper: :with_label
+
+  - unless current_user.role == form.object
     .fields-group
-      = f.input :name, wrapper: :with_label
+      = form.input :position, wrapper: :with_label, input_html: { max: current_user.role.position - 1 }
 
-    - unless current_user.role.id == @role.id
-      .fields-group
-        = f.input :position, wrapper: :with_label, input_html: { max: current_user.role.position - 1 }
+  .fields-group
+    = form.input :color, wrapper: :with_label, input_html: { placeholder: '#000000', type: 'color' }
 
-    .fields-group
-      = f.input :color, wrapper: :with_label, input_html: { placeholder: '#000000', type: 'color' }
+  %hr.spacer/
 
-    %hr.spacer/
+  .fields-group
+    = form.input :highlighted, wrapper: :with_label
 
-    .fields-group
-      = f.input :highlighted, wrapper: :with_label
+  %hr.spacer/
 
-    %hr.spacer/
+- unless current_user.role == form.object
 
-  - unless current_user.role.id == @role.id
+  .field-group
+    .input.with_block_label
+      %label= t('simple_form.labels.user_role.permissions_as_keys')
+      %span.hint= t('simple_form.hints.user_role.permissions_as_keys')
 
-    .field-group
-      .input.with_block_label
-        %label= t('simple_form.labels.user_role.permissions_as_keys')
-        %span.hint= t('simple_form.hints.user_role.permissions_as_keys')
+    - (form.object.everyone? ? UserRole::Flags::CATEGORIES.slice(:invites) : UserRole::Flags::CATEGORIES).each do |category, permissions|
+      %h4= t(category, scope: 'admin.roles.categories')
 
-      - (@role.everyone? ? UserRole::Flags::CATEGORIES.slice(:invites) : UserRole::Flags::CATEGORIES).each do |category, permissions|
-        %h4= t(category, scope: 'admin.roles.categories')
+      = form.input :permissions_as_keys, collection: permissions, wrapper: :with_block_label, include_blank: false, label_method: ->(privilege) { safe_join([t("admin.roles.privileges.#{privilege}"), content_tag(:span, t("admin.roles.privileges.#{privilege}_description"), class: 'hint')]) }, required: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', label: false, hint: false, disabled: permissions.filter { |privilege| UserRole::FLAGS[privilege] & current_user.role.computed_permissions == 0 }
 
-        = f.input :permissions_as_keys, collection: permissions, wrapper: :with_block_label, include_blank: false, label_method: ->(privilege) { safe_join([t("admin.roles.privileges.#{privilege}"), content_tag(:span, t("admin.roles.privileges.#{privilege}_description"), class: 'hint')]) }, required: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', label: false, hint: false, disabled: permissions.filter { |privilege| UserRole::FLAGS[privilege] & current_user.role.computed_permissions == 0 }
-
-    %hr.spacer/
-
-  .actions
-    = f.button :button, @role.new_record? ? t('admin.roles.add_new') : t('generic.save_changes'), type: :submit
+  %hr.spacer/

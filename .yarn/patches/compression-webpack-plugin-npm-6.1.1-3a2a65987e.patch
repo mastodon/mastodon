@@ -1,0 +1,22 @@
+diff --git a/dist/index.js b/dist/index.js
+index 57e375592d984e9a429bcd9f800fa2d15cd662e4..0c47d96df3608e23adfd77d887a8f72abbd501c0 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
+ });
+ exports.default = void 0;
+ 
+-var _crypto = _interopRequireDefault(require("crypto"));
++var _createHash = _interopRequireDefault(require("webpack/lib/util/createHash"));
+ 
+ var _path = _interopRequireDefault(require("path"));
+ 
+@@ -227,7 +227,7 @@ class CompressionPlugin {
+             originalAlgorithm: this.options.algorithm,
+             compressionOptions: this.options.compressionOptions,
+             name,
+-            contentHash: _crypto.default.createHash("md4").update(input).digest("hex")
++            contentHash: _createHash.default("md4").update(input).digest("hex")
+           };
+         } else {
+           cacheData.name = (0, _serializeJavascript.default)({

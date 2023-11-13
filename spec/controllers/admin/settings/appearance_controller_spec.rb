@@ -18,4 +18,12 @@ describe Admin::Settings::AppearanceController do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'PUT #update' do
+    it 'updates the settings' do
+      put :update, params: { form_admin_settings: { custom_css: 'html { display: inline; }' } }
+
+      expect(response).to redirect_to(admin_settings_appearance_path)
+    end
+  end
 end

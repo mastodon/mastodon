@@ -2,7 +2,11 @@
 
 class AddUriToCustomEmojis < ActiveRecord::Migration[5.2]
   def change
-    add_column :custom_emojis, :uri, :string
-    add_column :custom_emojis, :image_remote_url, :string
+    safety_assured do
+      change_table(:custom_emojis, bulk: true) do |t|
+        t.column :uri, :string
+        t.column :image_remote_url, :string
+      end
+    end
   end
 end

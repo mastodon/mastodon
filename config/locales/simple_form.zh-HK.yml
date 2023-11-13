@@ -2,6 +2,14 @@
 zh-HK:
   simple_form:
     hints:
+      account:
+        discoverable: 你的公開帖文和個人檔案可能會在 Mastodon 的各處被推薦或設為精選，並且可能把你的檔案推薦給其他使用者。
+        display_name: 你的全名或暱稱。
+        fields: 你的主頁、代名詞、年齡，任何你想顯示的資訊。
+        indexable: 你的公開帖文可能會出現在 Mastodon 的搜尋結果中。無論如何，與你帖文互動過的人都能搜尋到它。
+        note: '你可以 @提及他人 或使用 #主題標籤。'
+        show_collections: 大家可瀏覽你追蹤的人和你的追蹤者。你追蹤的人無論如何都會看到你追蹤了他們。
+        unlocked: 大家毋須獲得批准即可追蹤你。如果你想審核追蹤請求，來接受或拒絕新追蹤者，請取消勾選。
       account_alias:
         acct: 指定欲移動之帳戶的「使用者名稱@域名」
       account_migration:
@@ -53,6 +61,7 @@ zh-HK:
         setting_display_media_show_all: 總是顯示標為敏感的媒體
         setting_use_blurhash: 漸變圖樣會基於隱藏媒體內容產生，但所有細節會變得模糊
         setting_use_pending_items: 關閉自動滾動更新，時間軸會在點擊後更新
+        username: 你可以使用字母、數字及底線
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
       domain_allow:
         domain: 此網域將能從此站獲取資料，而此站發出的數據也會被處理和存儲。
@@ -111,6 +120,9 @@ zh-HK:
       sessions:
         otp: 輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：
         webauthn: 如果它是 USB 安全鑰匙的話，請先插入電腦。如鑰匙設計有需要，請按鍵啟用。
+      settings:
+        indexable: 你的個人檔案可能會出現在 Google 和 Bing 等搜尋引擎的搜尋結果中。
+        show_application: 你總能看到哪個應用程式發佈你的帖文。
       tag:
         name: 你只能變更大小寫（以使其更易讀）。
       user:
@@ -124,12 +136,17 @@ zh-HK:
         position: 在某些情況下，由較高階的角色決定如何解決衝突。某些動作只能對優先度較低的角色執行
       webhook:
         events: 選取要傳送的事件
+        template: 使用變量插值撰寫你的 JSON payload。若要使用預設的 JSON，請留空。
         url: 事件將被傳送至何處
     labels:
       account:
+        discoverable: 探索演算法推薦的個人檔案和帖文
         fields:
           name: 標籤
           value: 內容
+        indexable: 搜尋結果包含公開帖文
+        show_collections: 於個人檔案顯示追蹤中及追蹤者
+        unlocked: 自動接受新追蹤者
       account_alias:
         acct: 舊帳號名稱
       account_migration:
@@ -274,9 +291,18 @@ zh-HK:
         pending_account: 有新帳號需要審核時
         reblog: 當有人轉推你的文章時
         report: 新檢舉已提交
+        software_updates:
+          all: 通知所有更新
+          critical: 只通知關鍵更新
+          label: 有新的 Mastodon 版本
+          none: 永不通知更新（不推薦）
+          patch: 通知除錯更新
         trending_tag: 新趨勢須經過審核
       rule:
         text: 規則
+      settings:
+        indexable: 在搜尋引擎中顯示個人檔案
+        show_application: 顯示發佈帖文所用的應用程式
       tag:
         listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
         name: 主題標籤
@@ -284,6 +310,7 @@ zh-HK:
         usable: 允許文章使用此主題標籤
       user:
         role: 角色
+        time_zone: 時區
       user_role:
         color: 徽章顏色
         highlighted: 在使用者個人檔案上以徽章顯示角色
@@ -292,9 +319,11 @@ zh-HK:
         position: 優先權
       webhook:
         events: 已啟用事件
+        template: Payload 範本
         url: 端點網址
     'no': 否
     not_recommended: 不推薦
+    overridden: 已覆寫
     recommended: 建議
     required:
       mark: "*"

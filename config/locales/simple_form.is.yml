@@ -3,9 +3,13 @@ is:
   simple_form:
     hints:
       account:
+        discoverable: Opinberar færslur og notandasnið þitt geta birst eða verið mælt með á hinum ýmsu svæðum í Mastodon auk þess sem hægt er að mæla með þér við aðra notendur.
         display_name: Fullt nafn þitt eða eitthvað til gamans.
         fields: Heimasíðan þín, fornöfn, aldur eða eitthvað sem þú vilt koma á framfæri.
+        indexable: Opinberar færslur þínar gætu birst í leitarniðurstöðum á Mastodon. Fólk sem hefur haft afskipti af færslunum mun eftir sem áður geta leitað í þeim.
         note: 'Þú getur @minnst á annað fólk eða #myllumerki.'
+        show_collections: Fólk mun geta skoðað þá sem fylgjast með þér og með hverjum þú fylgist. Fólk sem þú fylgist með mun alltaf sjá að þú sért að gera það.
+        unlocked: Fólk mun geta fylgst með þér án þess að bíða eftir samykki. Taktu merkið úr þessu ef þú vilt yfirfara fylgjendabeiðnir og velja hvort þú samþykkir eða hafnar nýjum fylgjendum.
       account_alias:
         acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast frá
       account_migration:
@@ -116,6 +120,9 @@ is:
       sessions:
         otp: 'Settu inn tveggja-þátta kóðann sem farsímaforritið útbjó eða notaðu einn af endurheimtukóðunum þínum:'
         webauthn: Ef þetta er USB-lykill, gakktu úr skugga um að honum sé stungið í samband og ef þörf þykir að ýta á hann.
+      settings:
+        indexable: Síðan með notandasniðinu þínu gæti birst í leitarniðurstöðum Google, Bing og fleiri.
+        show_application: Þú munt alltaf geta séð hvaða forrit birti færsluna þína.
       tag:
         name: Þú getur aðeins breytt stafstöði mill há-/lágstafa, til gæmis til að gera þetta læsilegra
       user:
@@ -133,9 +140,13 @@ is:
         url: Hvert atburðir verða sendir
     labels:
       account:
+        discoverable: Hafa notandasnið og færslur með í reikniritum leitar
         fields:
           name: Skýring
           value: Efni
+        indexable: Hafa opinberar færslur með í leitarniðurstöðum
+        show_collections: Birta fylgjendur og þá sem fylgst er með í notandasniði
+        unlocked: Samþykkja nýja fylgjendur sjálfkrafa
       account_alias:
         acct: Auðkenni gamla aðgangsins
       account_migration:
@@ -280,9 +291,18 @@ is:
         pending_account: Nýr notandaaðgangur þarfnast yfirferðar
         reblog: Einhver endurbirti færsluna þína
         report: Ný kæra hefur verið send inn
+        software_updates:
+          all: Láta vita við allar uppfærslur
+          critical: Láta einungis vita við áríðandi uppfærslur
+          label: Ný útgáfa á Mastodon er tiltæk
+          none: Aldrei láta vita um uppfærslur (ekki mælt með því)
+          patch: Láta vita við uppfærslur með lagfæringum
         trending_tag: Nýtt vinsælt efni krefst yfirferðar
       rule:
         text: Regla
+      settings:
+        indexable: Hafa notandasnið með í leitarvélum
+        show_application: Birta úr hvaða forriti þú sendir færslu
       tag:
         listable: Leyfa þessu myllumerki að birtast í leitum og í persónusniðamöppunni
         name: Myllumerki
@@ -303,6 +323,7 @@ is:
         url: Slóð á endapunkt
     'no': Nei
     not_recommended: Ekki mælt með þessu
+    overridden: Yfirtekið
     recommended: Mælt með
     required:
       mark: "*"

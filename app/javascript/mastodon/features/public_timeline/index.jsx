@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
+import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
+
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { domain } from 'mastodon/initial_state';
 
@@ -41,7 +43,6 @@ const mapStateToProps = (state, { columnId }) => {
 class PublicTimeline extends PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object,
     identity: PropTypes.object,
   };
 
@@ -132,6 +133,7 @@ class PublicTimeline extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='globe'
+          iconComponent={PublicIcon}
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

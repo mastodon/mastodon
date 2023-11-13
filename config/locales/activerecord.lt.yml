@@ -1,1 +1,14 @@
+---
 lt:
+  activerecord:
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: turi būti tik raidės, skaičiai ir pabraukimai.
+              reserved: užimtas.
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nėra tinkamas URL adresas.

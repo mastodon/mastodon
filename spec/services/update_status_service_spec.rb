@@ -23,11 +23,11 @@ RSpec.describe UpdateStatusService, type: :service do
   end
 
   context 'when text changes' do
-    let!(:status) { Fabricate(:status, text: 'Foo') }
+    let(:status) { Fabricate(:status, text: 'Foo') }
     let(:preview_card) { Fabricate(:preview_card) }
 
     before do
-      status.preview_cards << preview_card
+      PreviewCardsStatus.create(status: status, preview_card: preview_card)
       subject.call(status, status.account_id, text: 'Bar')
     end
 
@@ -45,11 +45,11 @@ RSpec.describe UpdateStatusService, type: :service do
   end
 
   context 'when content warning changes' do
-    let!(:status) { Fabricate(:status, text: 'Foo', spoiler_text: '') }
+    let(:status) { Fabricate(:status, text: 'Foo', spoiler_text: '') }
     let(:preview_card) { Fabricate(:preview_card) }
 
     before do
-      status.preview_cards << preview_card
+      PreviewCardsStatus.create(status: status, preview_card: preview_card)
       subject.call(status, status.account_id, text: 'Foo', spoiler_text: 'Bar')
     end
 

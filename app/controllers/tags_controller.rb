@@ -14,7 +14,6 @@ class TagsController < ApplicationController
   before_action :set_local
   before_action :set_tag
   before_action :set_statuses, if: -> { request.format == :rss }
-  before_action :set_instance_presenter
 
   skip_before_action :require_functional!, unless: :limited_federation_mode?
 
@@ -47,10 +46,6 @@ class TagsController < ApplicationController
 
   def set_statuses
     @statuses = cache_collection(TagFeed.new(@tag, nil, local: @local).get(limit_param), Status)
-  end
-
-  def set_instance_presenter
-    @instance_presenter = InstancePresenter.new
   end
 
   def limit_param

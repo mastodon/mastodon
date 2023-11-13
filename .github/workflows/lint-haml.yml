@@ -30,16 +30,8 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Install native Ruby dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libicu-dev libidn11-dev
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
 
       - name: Run haml-lint
         run: |

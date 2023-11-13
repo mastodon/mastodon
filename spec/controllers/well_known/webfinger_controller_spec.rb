@@ -16,7 +16,7 @@ describe WellKnown::WebfingerController do
     let(:alice) { Fabricate(:account, username: 'alice') }
     let(:resource) { nil }
 
-    around(:each) do |example|
+    around do |example|
       tmp = Rails.configuration.x.alternate_domains
       Rails.configuration.x.alternate_domains = alternate_domains
       example.run

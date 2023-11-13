@@ -5,22 +5,6 @@ require 'rails_helper'
 RSpec.describe ActivityPub::OutboxesController do
   let!(:account) { Fabricate(:account) }
 
-  shared_examples 'cacheable response' do
-    it 'does not set cookies' do
-      expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be_nil
-    end
-
-    it 'does not set sessions' do
-      response
-      expect(session).to be_empty
-    end
-
-    it 'returns public Cache-Control header' do
-      expect(response.headers['Cache-Control']).to include 'public'
-    end
-  end
-
   before do
     Fabricate(:status, account: account, visibility: :public)
     Fabricate(:status, account: account, visibility: :unlisted)

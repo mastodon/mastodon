@@ -49,7 +49,7 @@ class InlineAlert extends PureComponent {
 class AccountNote extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
     value: PropTypes.string,
     onSave: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,

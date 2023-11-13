@@ -19,10 +19,6 @@ RSpec.describe Admin::Settings::BrandingController do
     end
 
     describe 'PUT #update' do
-      before do
-        allow_any_instance_of(Form::AdminSettings).to receive(:valid?).and_return(true)
-      end
-
       around do |example|
         before = Setting.site_short_description
         Setting.site_short_description = nil

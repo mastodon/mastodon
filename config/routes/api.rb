@@ -280,6 +280,8 @@ namespace :api, format: false do
           post :test
         end
       end
+
+      resources :tags, only: [:index, :show, :update]
     end
   end
 
@@ -297,6 +299,10 @@ namespace :api, format: false do
     namespace :filters do
       resources :keywords, only: [:show, :update, :destroy]
       resources :statuses, only: [:show, :destroy]
+    end
+
+    namespace :accounts do
+      resources :relationships, only: :index
     end
 
     namespace :admin do

@@ -2,12 +2,18 @@
 hr:
   simple_form:
     hints:
+      account:
+        display_name: Tvoje puno ime ili tvoj online nadimak.
+      account_warning_preset:
+        title: Proizvoljno. Nije vidljivo primatelju
       defaults:
         avatar: PNG, GIF ili JPG. Najviše %{size}. Bit će smanjeno na %{dimensions}px
         header: PNG, GIF ili JPG. Najviše %{size}. Bit će smanjeno na %{dimensions}px
+        password: Mora biti najmanje 8 znakova
         setting_display_media_default: Sakrij medijski sadržaj označen kao osjetljiv
         setting_display_media_hide_all: Uvijek sakrij medijski sadržaj
         setting_display_media_show_all: Uvijek prikaži medijski sadržaj
+        username: Mora sadržavati samo slova, brojeve i _
       imports:
         data: CSV datoteka izvezena iz drugog Mastodonovog poslužitelja
     labels:

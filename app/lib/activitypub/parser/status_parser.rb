@@ -53,7 +53,8 @@ class ActivityPub::Parser::StatusParser
   end
 
   def created_at
-    @object['published']&.to_datetime
+    datetime = @object['published']&.to_datetime
+    datetime if datetime.present? && (0..9999).cover?(datetime.year)
   rescue ArgumentError
     nil
   end

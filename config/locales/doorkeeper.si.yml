@@ -58,10 +58,10 @@ si:
         authorize: සත්‍යාපනය
         deny: ප්‍රතික්ෂේප කරන්න
       error:
-        title: දෝෂයක් සිදුවී ඇත
+        title: දෝෂයක් සිදු වී ඇත
       new:
         prompt_html: "%{client_name} ඔබගේ ගිණුමට ප්‍රවේශ වීමට අවසර ලබා ගැනීමට කැමති වේ. එය තෙවන පාර්ශවීය යෙදුමකි. <strong>ඔබ එය විශ්වාස නොකරන්නේ නම්, ඔබ එයට අවසර නොදිය යුතුය.</strong>"
-        review_permissions: අවසර සමාලෝචනය කරන්න
+        review_permissions: අවසර සමාලෝචනය
         title: බලය පැවරීමේ අවශ්ය
       show:
         title: මෙම අවසර කේතය පිටපත් කර එය යෙදුමට අලවන්න.
@@ -73,11 +73,11 @@ si:
       index:
         authorized_at: "%{date}මත අවසර දී ඇත"
         description_html: මේවා API භාවිතයෙන් ඔබගේ ගිණුමට ප්‍රවේශ විය හැකි යෙදුම් වේ. ඔබ මෙහි හඳුනා නොගත් යෙදුම් තිබේ නම්, හෝ යෙදුමක් වැරදි ලෙස හැසිරෙන්නේ නම්, ඔබට එහි ප්‍රවේශය අවලංගු කළ හැක.
-        last_used_at: අවසන් වරට භාවිතා කළේ %{date}
-        never_used: කවදාවත් පාවිච්චි කළේ නැහැ
+        last_used_at: අන්තිම භාවිතය %{date}
+        never_used: භාවිතා කර නැත
         scopes: අවසර
-        superapp: අභ්යන්තර
-        title: ඔබගේ බලයලත් අයදුම්පත්
+        superapp: අභ්‍යන්තර
+        title: ඔබගේ බලයලත් යෙදුම්
     errors:
       messages:
         access_denied: සම්පත් හිමිකරු හෝ අවසර සේවාදායකය ඉල්ලීම ප්‍රතික්ෂේප කළේය.
@@ -104,33 +104,34 @@ si:
     flash:
       applications:
         create:
-          notice: යෙදුම නිර්මාණය කරන ලදී.
+          notice: යෙදුම සෑදිණි.
         destroy:
-          notice: යෙදුම මකා ඇත.
+          notice: යෙදුම මැකිණි.
         update:
-          notice: යෙදුම යාවත්කාලීන කරන ලදී.
+          notice: යෙදුම යාවත්කාල විය.
       authorized_applications:
         destroy:
           notice: අයදුම්පත අවලංගු කරන ලදී.
     grouped_scopes:
       access:
-        read: කියවීමට පමණක් ප්‍රවේශය
-        read/write: කියවීමට සහ ලිවීමට ප්‍රවේශය
-        write: ලිවීමට පමණක් ප්‍රවේශය
+        read: ප්‍රවේශය කියවීමට පමණි
+        read/write: කියවීමට හා ලිවීමට ප්‍රවේශය
+        write: ප්‍රවේශය ලිවීමට පමණි
       title:
         accounts: ගිණුම්
-        admin/accounts: ගිණුම් පරිපාලනය
+        admin/accounts: ගිණුම් කළමනාකරණය
         admin/all: සියලුම පරිපාලන කාර්යයන්
         admin/reports: වාර්තා පරිපාලනය
+        all: ඔබගේ මාස්ටඩන් ගිණුමට පූර්ණ ප්‍රවේශය
         blocks: කුට්ටි
-        bookmarks: පිටු සලකුණු
+        bookmarks: පොත්යොමු
         conversations: සංවාද
         crypto: අන්ත සංකේතනය
+        favourites: ප්‍රියතමයන්
         filters: පෙරහන්
         follows: පහත සඳහන්
         lists: ලැයිස්තු
-        media: මාධ්ය ඇමුණුම්
-        mutes: නිහඬ කරයි
+        media: මාධ්‍ය ඇමුණුම්
         notifications: දැනුම්දීම්
         push: තල්ලු දැනුම්දීම්
         reports: වාර්තා
@@ -142,39 +143,40 @@ si:
           applications: යෙදුම්
           oauth2_provider: වි.සත්‍යා.2 (OAuth) සැපයුම්කරු
       application:
-        title: වි.සත්යා. (OAuth) තොරතුරු අවශ්‍යයි
+        title: වි.සත්‍යා. (OAuth) අනුමැතිය අවශ්‍යයයි
     scopes:
-      admin:read: සේවාදායකයේ ඇති සියලුම දත්ත කියවන්න
-      admin:read:accounts: සියලුම ගිණුම් වල සංවේදී තොරතුරු කියවන්න
-      admin:read:reports: සියලුම වාර්තා සහ වාර්තා කළ ගිණුම් වල සංවේදී තොරතුරු කියවන්න
-      admin:write: සේවාදායකයේ සියලුම දත්ත වෙනස් කරන්න
-      admin:write:accounts: ගිණුම් මත මධ්‍යස්ථ ක්‍රියා සිදු කරන්න
-      admin:write:reports: වාර්තා මත මධ්‍යස්ථ ක්‍රියා සිදු කරන්න
-      crypto: end-to-end encryption භාවිතා කරන්න
+      admin:read: සේවාදායකයේ ඇති සියලුම දත්ත කියවයි
+      admin:read:accounts: සියලුම ගිණුම් වල සංවේදී තොරතුරු කියවයි
+      admin:read:reports: සියලුම වාර්තා සහ වාර්තා කළ ගිණුම් වල සංවේදී තොරතුරු කියවයි
+      admin:write: සේවාදායකයේ සියලුම දත්ත සංශෝධනය කරයි
+      admin:write:accounts: ගිණුම් සඳහා මැදිහත්කරණ ක්‍රියාමාර්ග ගනියි
+      admin:write:reports: වාර්තා සඳහා මැදිහත්කරණ ක්‍රියාමාර්ග ගනියි
+      crypto: අන්ත සංකේතනය භාවිතා කරයි
       follow: ගිණුම් සබඳතා වෙනස් කරන්න
-      push: ඔබගේ තල්ලු දැනුම්දීම් ලබා ගන්න
-      read: ඔබගේ ගිණුමේ සියලුම දත්ත කියවන්න
-      read:accounts: ගිණුම් තොරතුරු බලන්න
+      push: ඔබගේ තල්ලු දැනුම්දීම් ලබන්න
+      read: ඔබගේ ගිණුමේ සියලුම දත්ත කියවයි
+      read:accounts: ගිණුම්වල තොරතුරු දකියි
       read:blocks: ඔබගේ වාරණ බලන්න
-      read:bookmarks: ඔබගේ පිටු සලකුණු බලන්න
+      read:bookmarks: ඔබගේ පොත්යොමු දකියි
+      read:favourites: ඔබගේ ප්‍රියතමයන් බලන්න
       read:filters: ඔබගේ පෙරහන් බලන්න
       read:follows: ඔබගේ පහත සඳහන් බලන්න
       read:lists: ඔබගේ ලැයිස්තු බලන්න
       read:mutes: ඔබේ ගොළු බලන්න
-      read:notifications: ඔබගේ දැනුම්දීම් බලන්න
+      read:notifications: ඔබගේ දැනුම්දීම් බලයි
       read:reports: ඔබගේ වාර්තා බලන්න
-      read:search: ඔබ වෙනුවෙන් සොයන්න
-      read:statuses: සියලුම පෝස්ට් බලන්න
+      read:search: ඔබ වෙනුවෙන් සොයයි
+      read:statuses: සියලු ලිපි බලයි
       write: ඔබගේ ගිණුමේ සියලුම දත්ත වෙනස් කරන්න
       write:accounts: ඔබගේ පැතිකඩ වෙනස් කරන්න
-      write:blocks: ගිණුම් සහ වසම් අවහිර කරන්න
-      write:bookmarks: පිටු සලකුණු සටහන්
+      write:blocks: ගිණුම් සහ වසම් අවහිර කරයි
+      write:bookmarks: ලිපි වලට පොත්යොමු තබයි
       write:conversations: සංවාද නිහඬ කිරීම සහ මකා දැමීම
-      write:filters: පෙරහන් කරන්න
+      write:favourites: ප්‍රියතම ලිපි
+      write:filters: පෙරහන් සාදයි
       write:follows: මිනිසුන් අනුගමනය කරන්න
       write:lists: ලැයිස්තු සාදන්න
-      write:media: මාධ්‍ය ගොනු උඩුගත කරන්න
-      write:mutes: මිනිසුන් සහ සංවාද කරන්න
-      write:notifications: ඔබගේ දැනුම්දීම් හිස්කරන්න
-      write:reports: වෙනත් පුද්ගලයින් වාර්තා කරන්න
-      write:statuses: පළ කිරීම් පළ කරන්න
+      write:media: මාධ්‍ය ගොනු උඩුගත කරයි
+      write:mutes: සංවාද හා පුද්ගලයින් නිහඬ කරයි
+      write:notifications: ඔබගේ දැනුම්දීම් හිස් කරයි
+      write:statuses: ලිපි පළ කරයි

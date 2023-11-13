@@ -2,11 +2,15 @@
 
 class AddCounterCaches < ActiveRecord::Migration[5.0]
   def change
-    add_column :statuses, :favourites_count, :integer, null: false, default: 0
-    add_column :statuses, :reblogs_count, :integer, null: false, default: 0
-    add_column :accounts, :statuses_count, :integer, null: false, default: 0
-    add_column :accounts, :followers_count, :integer, null: false, default: 0
-    add_column :accounts, :following_count, :integer, null: false, default: 0
+    change_table(:statuses, bulk: true) do |t|
+      t.column :favourites_count, :integer, null: false, default: 0
+      t.column :reblogs_count, :integer, null: false, default: 0
+    end
+    change_table(:accounts, bulk: true) do |t|
+      t.column :statuses_count, :integer, null: false, default: 0
+      t.column :followers_count, :integer, null: false, default: 0
+      t.column :following_count, :integer, null: false, default: 0
+    end
   end
 end
 

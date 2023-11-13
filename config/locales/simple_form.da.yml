@@ -3,9 +3,13 @@ da:
   simple_form:
     hints:
       account:
+        discoverable: Dine offentlige indlæg og profil kan blive fremhævet eller anbefalet i forskellige områder af Mastodon, og profilen kan blive foreslået til andre brugere.
         display_name: Dit fulde navn eller dit sjove navn.
         fields: Din hjemmeside, dine pronominer, din alder, eller hvad du har lyst til.
+        indexable: Dine offentlige indlæg vil kunne vises i Mastodon-søgeresultater. Folk, som har interageret med dem, vil kunne finde dem uanset.
         note: 'Du kan @omtale andre personer eller #hashtags.'
+        show_collections: Folk vil ikke kunne tjekke dine Følger og Følgere. Folk, du selv følger, vil stadig kunne se dette.
+        unlocked: Folk vil kunne følge dig uden krav om godkendelse. Fjern markeringen, såfremt du ønsker at tjekke Følg-anmodninger og individuelt acceptere eller afvise nye Følgere.
       account_alias:
         acct: Angiv brugernavn@domain for den konto, hvorfra du vil flytte
       account_migration:
@@ -116,6 +120,9 @@ da:
       sessions:
         otp: 'Angiv tofaktorkoden generet af din mobil-app eller brug en af genoprettelseskoderne:'
         webauthn: Er det en USB-nøgle, så sørg for at isætte den og, om nødvendigt, åbne den manuelt.
+      settings:
+        indexable: Din profilside kan fremgå i søgeresultater på Google, Bing mv.
+        show_application: Du vil dog altid kunne se, hvilken app, der offentliggjorde dit indlæg.
       tag:
         name: Kun bogstavtyper (store/små) kan ændres, eksempelvis for at gøre det mere læsbart
       user:
@@ -133,9 +140,13 @@ da:
         url: Hvor begivenheder sendes til
     labels:
       account:
+        discoverable: Fremhæv profil og indlæg i opdagelsesalgoritmer
         fields:
           name: Etiket
           value: Indhold
+        indexable: Medtag offentlige indlæg i søgeresultater
+        show_collections: Vis Følger og Følgere på profil
+        unlocked: Acceptér automatisk nye Følgere
       account_alias:
         acct: Brugernavn på den gamle konto
       account_migration:
@@ -190,7 +201,7 @@ da:
         phrase: Nøgleord/-sætning
         setting_advanced_layout: Aktivér avanceret webgrænseflade
         setting_aggregate_reblogs: Gruppér boosts på tidslinjer
-        setting_always_send_emails: Send altid en e-mailnotifikationer
+        setting_always_send_emails: Send altid e-mailnotifikationer
         setting_auto_play_gif: Autoafspil animerede GIF'er
         setting_boost_modal: Vis bekræftelsesdialog inden boosting
         setting_default_language: Sprog for indlæg
@@ -255,9 +266,9 @@ da:
         trends: Aktivér trends
         trends_as_landing_page: Brug tendenser som destinationssiden
       interactions:
-        must_be_follower: Blokér notifikationer fra ikke-følgere
-        must_be_following: Blokér notifikationer fra folk, som ikke følges
-        must_be_following_dm: Bloker direkte beskeder fra folk, som ikke følges
+        must_be_follower: Blokér notifikationer fra bruger, der ikke følger dig
+        must_be_following: Blokér notifikationer fra brugere, du ikke følger
+        must_be_following_dm: Bloker direkte beskeder fra brugere, du ikke følger
       invite:
         comment: Kommentar
       invite_request:
@@ -280,9 +291,18 @@ da:
         pending_account: Ny konto kræver gennemgang
         reblog: Nogen boostede dit indlæg
         report: Ny anmeldelse indsendt
+        software_updates:
+          all: Notificér ved alle opdateringer
+          critical: Notificér kun ved kritiske opdateringer
+          label: En ny Mastodon-version er tilgængelig
+          none: Notificér ikke om opdateringer (anbefales ikke)
+          patch: Notificér om fejlrettelsesopdateringer
         trending_tag: Ny tendens kræver revidering
       rule:
         text: Regel
+      settings:
+        indexable: Inkludér profilside i søgemaskiner
+        show_application: Vis, fra hvilken app et indlæg er sendt
       tag:
         listable: Tillad visning af dette hashtag i søgninger og forslag
         name: Hashtag
@@ -303,6 +323,7 @@ da:
         url: Endepunkts-URL
     'no': Nej
     not_recommended: Ikke anbefalet
+    overridden: Tilsidesat
     recommended: Anbefalet
     required:
       mark: "*"

@@ -4,4 +4,7 @@
 - content_for :heading_actions do
   = link_to t('admin.roles.delete'), admin_role_path(@role), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:destroy, @role)
 
-= render partial: 'form'
+= simple_form_for @role, url: admin_role_path(@role) do |form|
+  = render partial: 'form', object: form
+  .actions
+    = form.button :button, t('generic.save_changes'), type: :submit

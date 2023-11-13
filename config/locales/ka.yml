@@ -251,10 +251,8 @@ ka:
     proceed: ანგარიშის გაუქმება
     success_msg: თქვენი ანგარიში წარმატებით გაუქმდა
   errors:
-    '400': The request you submitted was invalid or malformed.
     '403': ამ გვერდის ხილვის უფლება არ გაქვთ.
     '404': გვერდი რომელსაც ეძებთ არ არსებობს.
-    '406': This page is not available in the requested format.
     '410': გვერდი რომელსაც ეძებდით აღარ არსებობს.
     '422':
       content: უსაფრთხოების ვერიფიკაცია ვერ მოხერხდა. ბლოკავთ ქუქის?
@@ -263,7 +261,6 @@ ka:
     '500':
       content: ბოდიში, ჩვენ მხარეს რაღაც არია.
       title: გვერდი არაა სწორი
-    '503': The page could not be served due to a temporary server failure.
     noscript_html: მასტოდონ ვებ-აპლიკაციის გამოყენებისთვის, გთხოვთ ჩართოთ ჯავასკრიპტი. სხვა შემთხვევაში, მასტოდონის თქვენი პატფორმისთვის სცადეთ გამოიყენოთ ერთ-ერთი <a href="%{apps_path}">მშობლიური აპლიკაცია</a>.
   exports:
     archive_takeout:

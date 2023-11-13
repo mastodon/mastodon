@@ -5,3 +5,16 @@ hr:
       poll:
         expires_at: Krajnji rok
         options: Opcije
+      user:
+        email: E-mail adresa
+        password: Lozinka
+      user/account:
+        username: Korisničko ime
+      user/invite_request:
+        text: Razlog
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: mora sadržavati samo slova, brojeve i _

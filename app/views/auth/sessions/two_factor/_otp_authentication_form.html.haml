@@ -13,6 +13,6 @@
   - if Setting.site_contact_email.present?
     %p.hint.subtle-hint= t('users.otp_lost_help_html', email: mail_to(Setting.site_contact_email, nil))
 
-  - if @webauthn_enabled
+  - if webauthn_enabled?
     .form-footer
       = link_to(t('auth.link_to_webauth'), '#', id: 'link-to-webauthn')

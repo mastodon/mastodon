@@ -44,14 +44,14 @@ RSpec.describe Api::V2::Admin::AccountsController do
       context "when called with #{params.inspect}" do
         let(:params) { params }
 
-        it 'returns http success' do
+        it "returns the correct accounts (#{expected_results.inspect})" do
           expect(response).to have_http_status(200)
+
+          expect(body_json_ids).to eq(expected_results.map { |symbol| send(symbol).id })
         end
 
-        it "returns the correct accounts (#{expected_results.inspect})" do
-          json = body_as_json
-
-          expect(json.map { |a| a[:id].to_i }).to eq(expected_results.map { |symbol| send(symbol).id })
+        def body_json_ids
+          body_as_json.map { |a| a[:id].to_i }
         end
       end
     end

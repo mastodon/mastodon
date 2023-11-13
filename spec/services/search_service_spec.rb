@@ -19,17 +19,15 @@ describe SearchService, type: :service do
     end
 
     describe 'with an url query' do
-      before do
-        @query = 'http://test.host/query'
-      end
+      let(:query) { 'http://test.host/query' }
 
       context 'when it does not find anything' do
         it 'returns the empty results' do
           service = instance_double(ResolveURLService, call: nil)
           allow(ResolveURLService).to receive(:new).and_return(service)
-          results = subject.call(@query, nil, 10, resolve: true)
+          results = subject.call(query, nil, 10, resolve: true)
 
-          expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
+          expect(service).to have_received(:call).with(query, on_behalf_of: nil)
           expect(results).to eq empty_results
         end
       end
@@ -40,8 +38,8 @@ describe SearchService, type: :service do
           service = instance_double(ResolveURLService, call: account)
           allow(ResolveURLService).to receive(:new).and_return(service)
 
-          results = subject.call(@query, nil, 10, resolve: true)
-          expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
+          results = subject.call(query, nil, 10, resolve: true)
+          expect(service).to have_received(:call).with(query, on_behalf_of: nil)
           expect(results).to eq empty_results.merge(accounts: [account])
         end
       end
@@ -52,8 +50,8 @@ describe SearchService, type: :service do
           service = instance_double(ResolveURLService, call: status)
           allow(ResolveURLService).to receive(:new).and_return(service)
 
-          results = subject.call(@query, nil, 10, resolve: true)
-          expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
+          results = subject.call(query, nil, 10, resolve: true)
+          expect(service).to have_received(:call).with(query, on_behalf_of: nil)
           expect(results).to eq empty_results.merge(statuses: [status])
         end
       end

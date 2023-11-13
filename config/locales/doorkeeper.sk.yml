@@ -129,6 +129,7 @@ sk:
         crypto: Šifrovanie End-to-end
         favourites: Obľúbené
         filters: Filtre
+        follow: Sledovanie, stlmenie a blokovanie
         follows: Sledovania
         lists: Zoznamy
         media: Mediálne prílohy
@@ -148,9 +149,19 @@ sk:
     scopes:
       admin:read: prezeraj všetky dáta na serveri
       admin:read:accounts: prezeraj chúlostivé informácie na všetkých účtoch
+      admin:read:canonical_email_blocks: čítať citlivé informácie všetkých kanonických e-mailových blokov
+      admin:read:domain_allows: čítať citlivé informácie zo všetkých povolených domén
+      admin:read:domain_blocks: čítať citlivé informácie zo všetkých blokov domén
+      admin:read:email_domain_blocks: čítať citlivé informácie zo všetkých blokov emailových domén
+      admin:read:ip_blocks: čítať citlivé informácie zo všetkých blokov IP
       admin:read:reports: čítaj chulostivé informácie o všetkých hláseniach a nahlásených účtoch
       admin:write: uprav všetky dáta na serveri
       admin:write:accounts: urob moderovacie úkony na účtoch
+      admin:write:canonical_email_blocks: vykonať akcie moderácie na kanonických emailových blokoch
+      admin:write:domain_allows: vykonať akcie moderácie na povolených doménach
+      admin:write:domain_blocks: vykonať akcie moderácie na doménových blokoch
+      admin:write:email_domain_blocks: vykonať akcie moderácie na blokoch emailových domén
+      admin:write:ip_blocks: vykonať akcie moderácie na blokoch IP
       admin:write:reports: urob moderovacie úkony voči hláseniam
       crypto: používať end-to-end šifrovanie
       follow: uprav vzťahy svojho účtu
@@ -159,6 +170,7 @@ sk:
       read:accounts: prezri si informácie o účte
       read:blocks: prezri svoje bloky
       read:bookmarks: pozri svoje záložky
+      read:favourites: zobraziť vaše obľúbené
       read:filters: prezri svoje filtrovanie
       read:follows: prezri si svoje sledovania
       read:lists: prezri si svoje zoznamy

@@ -62,13 +62,13 @@ class RelationshipFilter
   def relationship_scope(value)
     case value
     when 'following'
-      account.following.eager_load(:account_stat).reorder(nil)
+      account.following.includes(:account_stat).reorder(nil)
     when 'followed_by'
-      account.followers.eager_load(:account_stat).reorder(nil)
+      account.followers.includes(:account_stat).reorder(nil)
     when 'mutual'
-      account.followers.eager_load(:account_stat).reorder(nil).merge(Account.where(id: account.following))
+      account.followers.includes(:account_stat).reorder(nil).merge(Account.where(id: account.following))
     when 'invited'
-      Account.joins(user: :invite).merge(Invite.where(user: account.user)).eager_load(:account_stat).reorder(nil)
+      Account.joins(user: :invite).merge(Invite.where(user: account.user)).includes(:account_stat).reorder(nil)
     else
       raise Mastodon::InvalidParameterError, "Unknown relationship: #{value}"
     end
@@ -114,7 +114,7 @@ class RelationshipFilter
   def activity_scope(value)
     case value
     when 'dormant'
-      AccountStat.where(last_status_at: nil).or(AccountStat.where(AccountStat.arel_table[:last_status_at].lt(1.month.ago)))
+      Account.joins(:account_stat).where(account_stat: { last_status_at: [nil, ...1.month.ago] })
     else
       raise Mastodon::InvalidParameterError, "Unknown activity: #{value}"
     end

@@ -13,7 +13,7 @@ RSpec.describe Vacuum::ImportsVacuum do
 
   describe '#perform' do
     it 'cleans up the expected imports' do
-      expect { subject.perform }.to change { BulkImport.all.pluck(:id) }.from([old_unconfirmed, new_unconfirmed, recent_ongoing, recent_finished, old_finished].map(&:id)).to([new_unconfirmed, recent_ongoing, recent_finished].map(&:id))
+      expect { subject.perform }.to change { BulkImport.pluck(:id) }.from([old_unconfirmed, new_unconfirmed, recent_ongoing, recent_finished, old_finished].map(&:id)).to([new_unconfirmed, recent_ongoing, recent_finished].map(&:id))
     end
   end
 end
