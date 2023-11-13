@@ -47,6 +47,8 @@ describe Api::Web::PushSubscriptionsController do
     it 'saves push subscriptions' do
       post :create, format: :json, params: create_payload
 
+      expect(response).to have_http_status(200)
+
       user.reload
 
       push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
@@ -59,6 +61,8 @@ describe Api::Web::PushSubscriptionsController do
     context 'with initial data' do
       it 'saves alert settings' do
         post :create, format: :json, params: create_payload.merge(alerts_payload)
+
+        expect(response).to have_http_status(200)
 
         push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
 
@@ -74,6 +78,8 @@ describe Api::Web::PushSubscriptionsController do
   describe 'PUT #update' do
     it 'changes alert settings' do
       post :create, format: :json, params: create_payload
+
+      expect(response).to have_http_status(200)
 
       alerts_payload[:id] = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint]).id
 
