@@ -81,6 +81,8 @@ Rails.application.routes.draw do
     resource :outbox, only: [:show], module: :activitypub
   end
 
+  get '/invite/:invite_code', constraints: ->(req) { req.format == :json }, to: 'api/v1/invites#show'
+
   devise_scope :user do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
 
