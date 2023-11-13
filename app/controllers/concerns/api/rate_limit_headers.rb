@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RateLimitHeaders
+module Api::RateLimitHeaders
   extend ActiveSupport::Concern
 
   class_methods do
