@@ -51,11 +51,11 @@ describe Api::Web::PushSubscriptionsController do
 
       user.reload
 
-      push_subscription = created_push_subscription
-
-      expect(push_subscription['endpoint']).to eq(create_payload[:subscription][:endpoint])
-      expect(push_subscription['key_p256dh']).to eq(create_payload[:subscription][:keys][:p256dh])
-      expect(push_subscription['key_auth']).to eq(create_payload[:subscription][:keys][:auth])
+      expect(created_push_subscription).to have_attributes(
+        endpoint: eq(create_payload[:subscription][:endpoint]),
+        key_p256dh: eq(create_payload[:subscription][:keys][:p256dh]),
+        key_auth: eq(create_payload[:subscription][:keys][:auth])
+      )
     end
 
     context 'with initial data' do
@@ -64,12 +64,10 @@ describe Api::Web::PushSubscriptionsController do
 
         expect(response).to have_http_status(200)
 
-        push_subscription = created_push_subscription
-
-        expect(push_subscription.data['policy']).to eq 'all'
+        expect(created_push_subscription.data['policy']).to eq 'all'
 
         %w(follow follow_request favourite reblog mention poll status).each do |type|
-          expect(push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
+          expect(created_push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
         end
       end
     end
@@ -85,12 +83,10 @@ describe Api::Web::PushSubscriptionsController do
 
       put :update, format: :json, params: alerts_payload
 
-      push_subscription = created_push_subscription
-
-      expect(push_subscription.data['policy']).to eq 'all'
+      expect(created_push_subscription.data['policy']).to eq 'all'
 
       %w(follow follow_request favourite reblog mention poll status).each do |type|
-        expect(push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
+        expect(created_push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
       end
     end
   end
