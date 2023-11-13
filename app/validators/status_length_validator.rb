@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StatusLengthValidator < ActiveModel::Validator
-  URL_PLACEHOLDER = 'x' * Rails.configuration.x.mastodon.statuses[:url_placeholder_chars]
+  URL_PLACEHOLDER = 'x' * Rails.configuration.x.mastodon.statuses[:url_placeholder_characters]
 
   def validate(status)
     return unless status.local? && !status.reblog?
