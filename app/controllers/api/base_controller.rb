@@ -6,7 +6,7 @@ class Api::BaseController < ApplicationController
 
   include RateLimitHeaders
   include AccessTokenTrackingConcern
-  include ApiCachingConcern
+  include Api::CachingConcern
   include Api::ContentSecurityPolicy
 
   skip_before_action :require_functional!, unless: :limited_federation_mode?
