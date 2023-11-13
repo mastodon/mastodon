@@ -8,6 +8,13 @@ class Api::V2::SearchController < Api::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:search' }
   before_action :validate_search_params!
 
+  with_options if: :user_signed_in? do
+    before_action :query_pagination_error,
+                  if: -> { params[:offset].present? }
+    before_action :remote_resolve_error,
+                  if: -> { truthy_param?(:resolve) }
+  end
+
   def index
     @search = Search.new(search_results)
     render json: @search, serializer: REST::SearchSerializer
@@ -21,12 +28,14 @@ class Api::V2::SearchController < Api::BaseController
 
   def validate_search_params!
     params.require(:q)
+  end
 
-    return if user_signed_in?
+  def query_pagination_error
+    render json: { error: 'Search queries pagination is not supported without authentication' }, status: 401
+  end
 
-    return render json: { error: 'Search queries pagination is not supported without authentication' }, status: 401 if params[:offset].present?
-
-    render json: { error: 'Search queries that resolve remote resources are not supported without authentication' }, status: 401 if truthy_param?(:resolve)
+  def remote_resolve_error
+    render json: { error: 'Search queries that resolve remote resources are not supported without authentication' }, status: 401
   end
 
   def search_results
