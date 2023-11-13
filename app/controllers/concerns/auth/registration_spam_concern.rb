@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RegistrationSpamConcern
+module Auth::RegistrationSpamConcern
   extend ActiveSupport::Concern
 
   def set_registration_form_time
