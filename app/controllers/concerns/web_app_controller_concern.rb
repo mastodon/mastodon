@@ -21,18 +21,18 @@ module WebAppControllerConcern
   def redirect_unauthenticated_to_permalinks!
     return if user_signed_in? && current_account.moved_to_account_id.nil?
 
-    @redirect_path = PermalinkRedirector.new(request.path).redirect_path
-    return if @redirect_path.blank?
+    permalink_redirector = PermalinkRedirector.new(request.path)
+    return if permalink_redirector.redirect_path.blank?
 
     expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.day) unless user_signed_in?
 
     respond_to do |format|
       format.html do
-        render 'redirects/show', layout: 'application'
+        redirect_to(permalink_redirector.redirect_confirmation_path, allow_other_host: false)
       end
 
       format.json do
-        redirect_to(@redirect_path, allow_other_host: true)
+        redirect_to(permalink_redirector.redirect_uri, allow_other_host: true)
       end
     end
   end
