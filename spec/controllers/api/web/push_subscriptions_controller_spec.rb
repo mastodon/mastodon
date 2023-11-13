@@ -51,7 +51,7 @@ describe Api::Web::PushSubscriptionsController do
 
       user.reload
 
-      push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
+      push_subscription = created_push_subscription
 
       expect(push_subscription['endpoint']).to eq(create_payload[:subscription][:endpoint])
       expect(push_subscription['key_p256dh']).to eq(create_payload[:subscription][:keys][:p256dh])
@@ -64,7 +64,7 @@ describe Api::Web::PushSubscriptionsController do
 
         expect(response).to have_http_status(200)
 
-        push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
+        push_subscription = created_push_subscription
 
         expect(push_subscription.data['policy']).to eq 'all'
 
@@ -81,11 +81,11 @@ describe Api::Web::PushSubscriptionsController do
 
       expect(response).to have_http_status(200)
 
-      alerts_payload[:id] = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint]).id
+      alerts_payload[:id] = created_push_subscription.id
 
       put :update, format: :json, params: alerts_payload
 
-      push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
+      push_subscription = created_push_subscription
 
       expect(push_subscription.data['policy']).to eq 'all'
 
@@ -93,5 +93,9 @@ describe Api::Web::PushSubscriptionsController do
         expect(push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
       end
     end
+  end
+
+  def created_push_subscription
+    Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
   end
 end
