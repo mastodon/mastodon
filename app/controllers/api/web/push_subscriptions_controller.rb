@@ -5,8 +5,6 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   before_action :set_push_subscription, only: :update
 
   def create
-    active_session = current_session
-
     unless active_session.web_push_subscription.nil?
       active_session.web_push_subscription.destroy!
       active_session.update!(web_push_subscription: nil)
@@ -42,6 +40,10 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   end
 
   private
+
+  def active_session
+    @active_session || current_session
+  end
 
   def set_push_subscription
     @push_subscription = ::Web::PushSubscription.find(params[:id])
