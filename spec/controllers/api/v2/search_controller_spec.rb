@@ -59,6 +59,12 @@ RSpec.describe Api::V2::SearchController do
         get :index, params: search_params
       end
 
+      context 'without a `q` param' do
+        it 'returns http bad_request' do
+          expect(response).to have_http_status(400)
+        end
+      end
+
       context 'with a `q` shorter than 5 characters' do
         let(:search_params) { { q: 'test' } }
 
