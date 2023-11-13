@@ -49,10 +49,12 @@ describe MediaComponentHelper do
   end
 
   describe 'render_card_component' do
-    let(:status) { Fabricate(:status, preview_cards: [Fabricate(:preview_card)]) }
+    let(:status) { Fabricate(:status) }
     let(:result) { helper.render_card_component(status) }
 
     before do
+      PreviewCardsStatus.create(status: status, preview_card: Fabricate(:preview_card))
+
       without_partial_double_verification do
         allow(helper).to receive(:current_account).and_return(status.account)
       end
