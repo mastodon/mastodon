@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
-  include Authorization
-
+class Api::V1::Statuses::FavouritedByAccountsController < Api::V1::Statuses::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:accounts' }
-  before_action :set_status
   after_action :insert_pagination_headers
 
   def index
@@ -59,13 +56,6 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
 
   def records_continue?
     @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-  end
-
-  def set_status
-    @status = Status.find(params[:status_id])
-    authorize @status, :show?
-  rescue Mastodon::NotPermittedError
-    not_found
   end
 
   def pagination_params(core_params)
