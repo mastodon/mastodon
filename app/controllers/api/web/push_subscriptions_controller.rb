@@ -6,15 +6,11 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   before_action :destroy_previous_subscriptions, only: :create, if: :prior_subscriptions?
 
   def create
-    data = default_subscription_data
-
-    data.deep_merge!(data_params) if params[:data]
-
     push_subscription = ::Web::PushSubscription.create!(
       endpoint: subscription_params[:endpoint],
       key_p256dh: subscription_params[:keys][:p256dh],
       key_auth: subscription_params[:keys][:auth],
-      data: data,
+      data: subscription_data,
       user_id: active_session.user_id,
       access_token_id: active_session.access_token_id
     )
@@ -42,6 +38,12 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
 
   def prior_subscriptions?
     active_session.web_push_subscription.present?
+  end
+
+  def subscription_data
+    default_subscription_data.tap do |data|
+      data.deep_merge!(data_params) if params[:data]
+    end
   end
 
   def default_subscription_data
