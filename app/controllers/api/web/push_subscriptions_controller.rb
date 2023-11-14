@@ -6,10 +6,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   before_action :destroy_previous_subscriptions, only: :create, if: :prior_subscriptions?
 
   def create
-    data = {
-      policy: 'all',
-      alerts: Notification::TYPES.index_with { alerts_enabled },
-    }
+    data = default_subscription_data
 
     data.deep_merge!(data_params) if params[:data]
 
@@ -45,6 +42,13 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
 
   def prior_subscriptions?
     active_session.web_push_subscription.present?
+  end
+
+  def default_subscription_data
+    {
+      policy: 'all',
+      alerts: Notification::TYPES.index_with { alerts_enabled },
+    }
   end
 
   def alerts_enabled
