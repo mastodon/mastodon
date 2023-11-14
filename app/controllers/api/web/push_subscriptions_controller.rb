@@ -6,9 +6,6 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   before_action :destroy_previous_subscriptions, only: :create, if: :prior_subscriptions?
 
   def create
-    # Mobile devices do not support regular notifications, so we enable push notifications by default
-    alerts_enabled = active_session.detection.device.mobile? || active_session.detection.device.tablet?
-
     data = {
       policy: 'all',
       alerts: Notification::TYPES.index_with { alerts_enabled },
@@ -48,6 +45,11 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
 
   def prior_subscriptions?
     active_session.web_push_subscription.present?
+  end
+
+  def alerts_enabled
+    # Mobile devices do not support regular notifications, so we enable push notifications by default
+    active_session.detection.device.mobile? || active_session.detection.device.tablet?
   end
 
   def set_push_subscription
