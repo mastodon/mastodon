@@ -87,7 +87,7 @@ RUN \
 --mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
 --mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
 # Install Node packages
-  yarn workspaces focus --all --production;
+  yarn workspaces focus --production @mastodon/streaming;
 
 # Set the running user for resulting container
 USER mastodon
