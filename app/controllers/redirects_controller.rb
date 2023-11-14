@@ -23,4 +23,11 @@ class RedirectsController < ApplicationController
 
     @redirect_path = params[:url]
   end
+
+  def ensure_valid_protocol!(url)
+    raise ActiveRecord::RecordNotFound unless url.start_with?('https://', 'http://')
+
+    url
+  end
+  helper_method :ensure_valid_protocol!
 end
