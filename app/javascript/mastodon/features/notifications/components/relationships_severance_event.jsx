@@ -26,11 +26,18 @@ const RelationshipsSeveranceEvent = ({ event, hidden }) => {
         <div>
           <RelativeTimestamp timestamp={event.get('created_at')} short={false} />
           {' · '}
-          <FormattedMessage
-            id='relationship_severance_notification.relationships'
-            defaultMessage='{count, plural, one {# relationship} other {# relationships}}'
-            values={{ count: event.get('relationships_count', 0) }}
-          />
+          { event.get('purged') ? (
+            <FormattedMessage
+              id='relationship_severance_notification.purged_data'
+              defaultMessage='purged by administrators'
+            />
+          ) : (
+            <FormattedMessage
+              id='relationship_severance_notification.relationships'
+              defaultMessage='{count, plural, one {# relationship} other {# relationships}}'
+              values={{ count: event.get('relationships_count', 0) }}
+            />
+          )}
           <br />
           <strong>{intl.formatMessage(messages[event.get('type')])}</strong>
         </div>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class REST::RelationshipSeveranceEventSerializer < ActiveModel::Serializer
-  attributes :id, :type, :target_name, :created_at
+  attributes :id, :type, :purged, :target_name, :created_at
 
   attribute :relationships_count, if: -> { current_user.present? }
 
