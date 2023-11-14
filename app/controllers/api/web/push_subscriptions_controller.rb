@@ -4,9 +4,10 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   before_action :require_user!
   before_action :set_push_subscription, only: :update
   before_action :destroy_previous_subscriptions, only: :create, if: :prior_subscriptions?
+  after_action :update_session_with_subscription, only: :create
 
   def create
-    push_subscription = ::Web::PushSubscription.create!(
+    @push_subscription = ::Web::PushSubscription.create!(
       endpoint: subscription_params[:endpoint],
       key_p256dh: subscription_params[:keys][:p256dh],
       key_auth: subscription_params[:keys][:auth],
@@ -15,9 +16,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
       access_token_id: active_session.access_token_id
     )
 
-    active_session.update!(web_push_subscription: push_subscription)
-
-    render json: push_subscription, serializer: REST::WebPushSubscriptionSerializer
+    render json: @push_subscription, serializer: REST::WebPushSubscriptionSerializer
   end
 
   def update
@@ -56,6 +55,10 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   def alerts_enabled
     # Mobile devices do not support regular notifications, so we enable push notifications by default
     active_session.detection.device.mobile? || active_session.detection.device.tablet?
+  end
+
+  def update_session_with_subscription
+    active_session.update!(web_push_subscription: @push_subscription)
   end
 
   def set_push_subscription
