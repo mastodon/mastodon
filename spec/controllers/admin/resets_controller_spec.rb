@@ -13,12 +13,20 @@ describe Admin::ResetsController do
 
   describe 'POST #create' do
     it 'redirects to admin accounts page' do
-      expect_any_instance_of(User).to receive(:send_reset_password_instructions) do |value|
-        expect(value.account_id).to eq account.id
-      end
+      expect do
+        post :create, params: { account_id: account.id }
+      end.to change(Devise.mailer.deliveries, :size).by(2)
 
-      post :create, params: { account_id: account.id }
-
+      expect(Devise.mailer.deliveries).to have_attributes(
+        first: have_attributes(
+          to: include(account.user.email),
+          subject: I18n.t('devise.mailer.password_change.subject')
+        ),
+        last: have_attributes(
+          to: include(account.user.email),
+          subject: I18n.t('devise.mailer.reset_password_instructions.subject')
+        )
+      )
       expect(response).to redirect_to(admin_account_path(account.id))
     end
   end

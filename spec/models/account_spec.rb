@@ -209,9 +209,13 @@ RSpec.describe Account do
         expect(account.refresh!).to be_nil
       end
 
-      it 'calls not ResolveAccountService#call' do
-        expect_any_instance_of(ResolveAccountService).to_not receive(:call).with(acct)
+      it 'does not call ResolveAccountService#call' do
+        service = instance_double(ResolveAccountService, call: nil)
+        allow(ResolveAccountService).to receive(:new).and_return(service)
+
         account.refresh!
+
+        expect(service).to_not have_received(:call).with(acct)
       end
     end
 
@@ -219,8 +223,12 @@ RSpec.describe Account do
       let(:domain) { 'example.com' }
 
       it 'calls ResolveAccountService#call' do
-        expect_any_instance_of(ResolveAccountService).to receive(:call).with(acct).once
+        service = instance_double(ResolveAccountService, call: nil)
+        allow(ResolveAccountService).to receive(:new).and_return(service)
+
         account.refresh!
+
+        expect(service).to have_received(:call).with(acct).once
       end
     end
   end

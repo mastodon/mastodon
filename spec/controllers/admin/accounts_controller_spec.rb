@@ -227,7 +227,8 @@ RSpec.describe Admin::AccountsController do
     let(:account) { Fabricate(:account, domain: 'example.com') }
 
     before do
-      allow_any_instance_of(ResolveAccountService).to receive(:call)
+      service = instance_double(ResolveAccountService, call: nil)
+      allow(ResolveAccountService).to receive(:new).and_return(service)
     end
 
     context 'when user is admin' do
