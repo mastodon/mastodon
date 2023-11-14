@@ -18,20 +18,20 @@ class Api::V1::Timelines::BaseController < Api::BaseController
   end
 
   def next_path_params
-    permitted_pagination_params.merge(max_id: pagination_max_id)
+    permitted_params.merge(max_id: pagination_max_id)
   end
 
   def prev_path_params
-    permitted_pagination_params.merge(min_id: pagination_since_id)
-  end
-
-  def permitted_pagination_params
-    params
-      .slice(*permitted_params)
-      .permit(*permitted_params)
+    permitted_params.merge(min_id: pagination_since_id)
   end
 
   def permitted_params
+    params
+      .slice(*default_permitted_params)
+      .permit(*default_permitted_params)
+  end
+
+  def default_permitted_params
     self.class::PERMITTED_PARAMS
   end
 end
