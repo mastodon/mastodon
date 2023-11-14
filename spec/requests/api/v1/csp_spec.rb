@@ -3,13 +3,12 @@
 require 'rails_helper'
 
 describe 'API namespace minimal Content-Security-Policy' do
-  before do
-    # Replaces an already-routed-to API controller
-    stub_const('Api::V1::SuggestionsController', test_controller)
-  end
+  before { stub_tests_controller }
+
+  after { Rails.application.reload_routes! }
 
   it 'returns the correct CSP headers' do
-    get '/api/v1/suggestions'
+    get '/api/v1/tests'
 
     expect(response).to have_http_status(200)
     expect(response.headers['Content-Security-Policy']).to eq(minimal_csp_headers)
@@ -17,11 +16,24 @@ describe 'API namespace minimal Content-Security-Policy' do
 
   private
 
-  def test_controller
+  def stub_tests_controller
+    stub_const('Api::V1::TestsController', api_tests_controller)
+
+    Rails.application.routes.draw do
+      get '/api/v1/tests', to: 'api/v1/tests#index'
+    end
+  end
+
+  def api_tests_controller
     Class.new(Api::BaseController) do
       def index
         head 200
       end
+
+      private
+
+      def user_signed_in? = false
+      def current_user = nil
     end
   end
 
