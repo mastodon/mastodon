@@ -17,8 +17,16 @@ describe Admin::ResetsController do
         post :create, params: { account_id: account.id }
       end.to change(Devise.mailer.deliveries, :size).by(2)
 
-      expect(Devise.mailer.deliveries.first.to).to include(account.user.email)
-      expect(Devise.mailer.deliveries.last.to).to include(account.user.email)
+      expect(Devise.mailer.deliveries).to have_attributes(
+        first: have_attributes(
+          to: include(account.user.email),
+          subject: I18n.t('devise.mailer.password_change.subject')
+        ),
+        last: have_attributes(
+          to: include(account.user.email),
+          subject: I18n.t('devise.mailer.reset_password_instructions.subject')
+        )
+      )
       expect(response).to redirect_to(admin_account_path(account.id))
     end
   end
