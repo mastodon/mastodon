@@ -56,6 +56,7 @@ describe Api::Web::PushSubscriptionsController do
         key_p256dh: eq(create_payload[:subscription][:keys][:p256dh]),
         key_auth: eq(create_payload[:subscription][:keys][:auth])
       )
+      expect(user.session_activations.first.web_push_subscription).to eq(created_push_subscription)
     end
 
     context 'with a user who has a session with a prior subscription' do
