@@ -7,10 +7,12 @@ import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
 
 import { ReactComponent as LockIcon } from '@material-symbols/svg-600/outlined/lock.svg';
 import { length } from 'stringz';
 
+import { fetchServer } from 'mastodon/actions/server';
 import { Icon }  from 'mastodon/components/icon';
 import { WithOptionalRouterPropTypes, withOptionalRouter } from 'mastodon/utils/react_router';
 
@@ -41,8 +43,14 @@ const messages = defineMessages({
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
 });
 
+const mapStateToProps = state => ({
+  server: state.getIn(['server', 'server']),
+});
+
 class ComposeForm extends ImmutablePureComponent {
   static propTypes = {
+    server: ImmutablePropTypes.map,
+    dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     text: PropTypes.string.isRequired,
     suggestions: ImmutablePropTypes.list,
@@ -95,6 +103,10 @@ class ComposeForm extends ImmutablePureComponent {
     }
   };
 
+  getMaxCharacters = () => {
+    return this.props.server.getIn(['configuration', 'statuses', 'max_characters']);
+  };
+
   getFulltextForCharacterCounting = () => {
     return [this.props.spoiler? this.props.spoilerText: '', countableText(this.props.text)].join('');
   };
@@ -104,7 +116,7 @@ class ComposeForm extends ImmutablePureComponent {
     const fulltext = this.getFulltextForCharacterCounting();
     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > this.getMaxCharacters() || (isOnlyWhitespace && !anyMedia));
   };
 
   handleSubmit = (e) => {
@@ -155,6 +167,8 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   componentDidMount () {
+    const { dispatch } = this.props;
+    dispatch(fetchServer());
     this._updateFocusAndSelection({ });
   }
 
@@ -297,7 +311,7 @@ class ComposeForm extends ImmutablePureComponent {
             </div>
 
             <div className='character-counter__wrapper'>
-              <CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} />
+              <CharacterCounter max={this.getMaxCharacters()} text={this.getFulltextForCharacterCounting()} />
             </div>
           </div>
         </div>
@@ -318,4 +332,4 @@ class ComposeForm extends ImmutablePureComponent {
 
 }
 
-export default withOptionalRouter(injectIntl(ComposeForm));
+export default connect(mapStateToProps)(withOptionalRouter(injectIntl(ComposeForm)));
