@@ -3,13 +3,9 @@
 class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   before_action :require_user!
   before_action :set_push_subscription, only: :update
+  before_action :destroy_previous_subscriptions, only: :create, if: :prior_subscriptions?
 
   def create
-    unless active_session.web_push_subscription.nil?
-      active_session.web_push_subscription.destroy!
-      active_session.update!(web_push_subscription: nil)
-    end
-
     # Mobile devices do not support regular notifications, so we enable push notifications by default
     alerts_enabled = active_session.detection.device.mobile? || active_session.detection.device.tablet?
 
@@ -43,6 +39,15 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
 
   def active_session
     @active_session || current_session
+  end
+
+  def destroy_previous_subscriptions
+    active_session.web_push_subscription.destroy!
+    active_session.update!(web_push_subscription: nil)
+  end
+
+  def prior_subscriptions?
+    active_session.web_push_subscription.present?
   end
 
   def set_push_subscription
