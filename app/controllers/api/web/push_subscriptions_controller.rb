@@ -7,14 +7,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   after_action :update_session_with_subscription, only: :create
 
   def create
-    @push_subscription = ::Web::PushSubscription.create!(
-      endpoint: subscription_params[:endpoint],
-      key_p256dh: subscription_params[:keys][:p256dh],
-      key_auth: subscription_params[:keys][:auth],
-      data: subscription_data,
-      user_id: active_session.user_id,
-      access_token_id: active_session.access_token_id
-    )
+    @push_subscription = ::Web::PushSubscription.create!(web_push_subscription_params)
 
     render json: @push_subscription, serializer: REST::WebPushSubscriptionSerializer
   end
@@ -67,6 +60,17 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
 
   def subscription_params
     @subscription_params ||= params.require(:subscription).permit(:endpoint, keys: [:auth, :p256dh])
+  end
+
+  def web_push_subscription_params
+    {
+      access_token_id: active_session.access_token_id,
+      data: subscription_data,
+      endpoint: subscription_params[:endpoint],
+      key_auth: subscription_params[:keys][:auth],
+      key_p256dh: subscription_params[:keys][:p256dh],
+      user_id: active_session.user_id,
+    }
   end
 
   def data_params
