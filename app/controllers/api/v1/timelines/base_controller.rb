@@ -27,11 +27,7 @@ class Api::V1::Timelines::BaseController < Api::BaseController
 
   def permitted_params
     params
-      .slice(*default_permitted_params)
-      .permit(*default_permitted_params)
-  end
-
-  def default_permitted_params
-    self.class::PERMITTED_PARAMS
+      .slice(*self.class::PERMITTED_PARAMS)
+      .permit(*self.class::PERMITTED_PARAMS)
   end
 end
