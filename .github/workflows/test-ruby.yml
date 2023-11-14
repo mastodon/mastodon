@@ -94,7 +94,7 @@ jobs:
       DB_HOST: localhost
       DB_USER: postgres
       DB_PASS: postgres
-      DISABLE_SIMPLECOV: true
+      DISABLE_SIMPLECOV: ${{ matrix.ruby-version != '.ruby-version' }}
       RAILS_ENV: test
       ALLOW_NOPAM: true
       PAM_ENABLED: true
@@ -136,6 +136,12 @@ jobs:
         run: './bin/rails db:create db:schema:load db:seed'
 
       - run: bin/rspec
+
+      - name: Upload coverage reports to Codecov
+        if: matrix.ruby-version == '.ruby-version'
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage/lcov/mastodon.lcov
 
   test-e2e:
     name: End to End testing
