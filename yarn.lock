@@ -6430,6 +6430,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"debounce@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "debounce@npm:1.2.1"
+  checksum: 6c9320aa0973fc42050814621a7a8a78146c1975799b5b3cc1becf1f77ba9a5aa583987884230da0842a03f385def452fad5d60db97c3d1c8b824e38a8edf500
+  languageName: node
+  linkType: hard
+
 "debug@npm:2.6.9, debug@npm:^2.2.0, debug@npm:^2.3.3":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
@@ -8903,7 +8910,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-escaper@npm:^2.0.0":
+"html-escaper@npm:^2.0.0, html-escaper@npm:^2.0.2":
   version: 2.0.2
   resolution: "html-escaper@npm:2.0.2"
   checksum: 208e8a12de1a6569edbb14544f4567e6ce8ecc30b9394fcaa4e7bb1e60c12a7c9a1ed27e31290817157e8626f3a4f29e76c8747030822eb84a6abb15c255f0a0
@@ -11032,20 +11039,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.escape@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "lodash.escape@npm:4.0.1"
-  checksum: 90ade409cec05b6869090476952fdfb84d4d87b1ff4a0e03ebd590f980d9a1248d93ba14579f10d80c6429e4d6af13ba137c28db64cae6dadb71442e54a3ad2b
-  languageName: node
-  linkType: hard
-
-"lodash.flatten@npm:^4.4.0":
-  version: 4.4.0
-  resolution: "lodash.flatten@npm:4.4.0"
-  checksum: 97e8f0d6b61fe4723c02ad0c6e67e51784c4a2c48f56ef283483e556ad01594cf9cec9c773e177bbbdbdb5d19e99b09d2487cb6b6e5dc405c2693e93b125bd3a
-  languageName: node
-  linkType: hard
-
 "lodash.get@npm:^4.0":
   version: 4.4.2
   resolution: "lodash.get@npm:4.4.2"
@@ -11057,13 +11050,6 @@ __metadata:
   version: 4.5.2
   resolution: "lodash.has@npm:4.5.2"
   checksum: 3ffa9e549f321996a5fdf6204494c035ff550b2df703f936a448c553131bbb55492b4e7995bb13500648b50b268ed8afc974a7a0c0a43744d28d61cc95cb1ffe
-  languageName: node
-  linkType: hard
-
-"lodash.invokemap@npm:^4.6.0":
-  version: 4.6.0
-  resolution: "lodash.invokemap@npm:4.6.0"
-  checksum: 2bcc5f4b8782a316d55ff139215eb797f576f0f6d3db2755ebba7b35fd6061f8cbe81702a72a30bc6d70073a5dcc461f7570eaddcc9184c2e42ec3023645c6a1
   languageName: node
   linkType: hard
 
@@ -11109,13 +11095,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.pullall@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "lodash.pullall@npm:4.2.0"
-  checksum: b129e8d879258c7db04a7dc1c23dd9e37c52f63a04e105faa8d2ab55e97b5a170d5e15cffbb732a36e7f48c4345c07b6fbddfe50e1f5ec301492b6f64a92040c
-  languageName: node
-  linkType: hard
-
 "lodash.sortby@npm:^4.7.0":
   version: 4.7.0
   resolution: "lodash.sortby@npm:4.7.0"
@@ -11134,13 +11113,6 @@ __metadata:
   version: 4.5.0
   resolution: "lodash.uniq@npm:4.5.0"
   checksum: 262d400bb0952f112162a320cc4a75dea4f66078b9e7e3075ffbc9c6aa30b3e9df3cf20e7da7d566105e1ccf7804e4fbd7d804eee0b53de05d83f16ffbf41c5e
-  languageName: node
-  linkType: hard
-
-"lodash.uniqby@npm:^4.7.0":
-  version: 4.7.0
-  resolution: "lodash.uniqby@npm:4.7.0"
-  checksum: c505c0de20ca759599a2ba38710e8fb95ff2d2028e24d86c901ef2c74be8056518571b9b754bfb75053b2818d30dd02243e4a4621a6940c206bbb3f7626db656
   languageName: node
   linkType: hard
 
@@ -17035,29 +17007,25 @@ __metadata:
   linkType: hard
 
 "webpack-bundle-analyzer@npm:^4.8.0":
-  version: 4.9.1
-  resolution: "webpack-bundle-analyzer@npm:4.9.1"
+  version: 4.10.0
+  resolution: "webpack-bundle-analyzer@npm:4.10.0"
   dependencies:
     "@discoveryjs/json-ext": "npm:0.5.7"
     acorn: "npm:^8.0.4"
     acorn-walk: "npm:^8.0.0"
     commander: "npm:^7.2.0"
+    debounce: "npm:^1.2.1"
     escape-string-regexp: "npm:^4.0.0"
     gzip-size: "npm:^6.0.0"
+    html-escaper: "npm:^2.0.2"
     is-plain-object: "npm:^5.0.0"
-    lodash.debounce: "npm:^4.0.8"
-    lodash.escape: "npm:^4.0.1"
-    lodash.flatten: "npm:^4.4.0"
-    lodash.invokemap: "npm:^4.6.0"
-    lodash.pullall: "npm:^4.2.0"
-    lodash.uniqby: "npm:^4.7.0"
     opener: "npm:^1.5.2"
     picocolors: "npm:^1.0.0"
     sirv: "npm:^2.0.3"
     ws: "npm:^7.3.1"
   bin:
     webpack-bundle-analyzer: lib/bin/analyzer.js
-  checksum: dd047c306471e6c389d6d4156ff22402e587140310a065a6191ee380f8251063f73a8ec6ac6d977c1cd634dbb717e2522b5d0b6cc9b0e847d4f15737fd9c65c9
+  checksum: f812a8d3c0198ce518baf742bff656526f3eae69fb7a64c7f0c9cff202f6fb3380cabf3baaae965b8d6ffbbb6fb802eacb373fca03a596a38b01b84cfb2e8329
   languageName: node
   linkType: hard
 
