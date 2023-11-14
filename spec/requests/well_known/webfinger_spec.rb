@@ -219,6 +219,34 @@ describe 'The /.well-known/webfinger endpoint' do
     end
   end
 
+  context 'with different headers' do
+    describe 'requested with standard accepts headers' do
+      it 'returns a json response' do
+        get webfinger_url(resource: alice.to_webfinger_s)
+
+        expect(response).to have_http_status(200)
+        expect(response.media_type).to eq 'application/jrd+json'
+      end
+    end
+
+    describe 'asking for json format' do
+      it 'returns a json response for json format' do
+        get webfinger_url(resource: alice.to_webfinger_s, format: :json)
+
+        expect(response).to have_http_status(200)
+        expect(response.media_type).to eq 'application/jrd+json'
+      end
+
+      it 'returns a json response for json accept header' do
+        headers = { 'HTTP_ACCEPT' => 'application/jrd+json' }
+        get webfinger_url(resource: alice.to_webfinger_s), headers: headers
+
+        expect(response).to have_http_status(200)
+        expect(response.media_type).to eq 'application/jrd+json'
+      end
+    end
+  end
+
   private
 
   def get_avatar_link(json)
