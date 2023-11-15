@@ -106,24 +106,24 @@ export default class IntersectionObserverArticle extends Component {
     const { children, id, index, listLength, cachedHeight } = this.props;
     const { isIntersecting, isHidden } = this.state;
 
-    const style = {};
-
     if (!isIntersecting && (isHidden || cachedHeight)) {
-      style.height = `${this.height || cachedHeight || 150}px`;
-      style.opacity = 0;
-      style.overflow = 'hidden';
+      return (
+        <article
+          ref={this.handleRef}
+          aria-posinset={index + 1}
+          aria-setsize={listLength}
+          style={{ height: `${this.height || cachedHeight}px`, opacity: 0, overflow: 'hidden' }}
+          data-id={id}
+          tabIndex={-1}
+        >
+          {children && cloneElement(children, { hidden: true })}
+        </article>
+      );
     }
 
     return (
-      <article
-        ref={this.handleRef}
-        aria-posinset={index + 1}
-        aria-setsize={listLength}
-        data-id={id}
-        tabIndex={0}
-        style={style}
-      >
-        {children && cloneElement(children, { hidden: !isIntersecting && (isHidden || !!cachedHeight) })}
+      <article ref={this.handleRef} aria-posinset={index + 1} aria-setsize={listLength} data-id={id} tabIndex={-1}>
+        {children && cloneElement(children, { hidden: false })}
       </article>
     );
   }
