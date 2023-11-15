@@ -1,4 +1,4 @@
-import type { ValueOf } from 'flavours/glitch/types/util';
+import type { ValueOf } from '../types/util';
 
 export const DECIMAL_UNITS = Object.freeze({
   ONE: 1,
