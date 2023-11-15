@@ -35,17 +35,16 @@ describe MoveWorker do
     context 'when user notes are short enough' do
       it 'copies user note with prelude' do
         subject.perform(source_account.id, target_account.id)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(source_account.acct)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(account_note.comment)
+        expect(relevant_account_note.comment)
+          .to include(source_account.acct, account_note.comment)
       end
 
       it 'merges user notes when needed' do
         new_account_note = AccountNote.create!(account: account_note.account, target_account: target_account, comment: 'new note prior to move')
 
         subject.perform(source_account.id, target_account.id)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(source_account.acct)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(account_note.comment)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(new_account_note.comment)
+        expect(relevant_account_note.comment)
+          .to include(source_account.acct, account_note.comment, new_account_note.comment)
       end
     end
 
@@ -54,15 +53,23 @@ describe MoveWorker do
 
       it 'copies user note without prelude' do
         subject.perform(source_account.id, target_account.id)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(account_note.comment)
+        expect(relevant_account_note.comment)
+          .to include(account_note.comment)
       end
 
       it 'keeps user notes unchanged' do
         new_account_note = AccountNote.create!(account: account_note.account, target_account: target_account, comment: 'new note prior to move')
 
         subject.perform(source_account.id, target_account.id)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(new_account_note.comment)
+        expect(relevant_account_note.comment)
+          .to include(new_account_note.comment)
       end
+    end
+
+    private
+
+    def relevant_account_note
+      AccountNote.find_by(account: account_note.account, target_account: target_account)
     end
   end
 
