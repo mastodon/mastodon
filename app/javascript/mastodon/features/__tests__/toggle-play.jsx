@@ -1,30 +1,18 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import { useCallback, useState } from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
 
-class Media extends Component {
+function Media({ onClick, paused: initialPaused = false, title }) {
+  const [paused, setPaused] = useState(initialPaused);
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      paused: props.paused || false,
-    };
-  }
-
-  handleMediaClick = () => {
-    const { onClick } = this.props;
-
-    this.setState(prevState => ({
-      paused: !prevState.paused,
-    }));
+  const handleMediaClick = useCallback(() => {
+    setPaused(prevState => !prevState);
 
     if (typeof onClick === 'function') {
       onClick();
     }
 
-    const { title } = this.props;
     const mediaElements = document.querySelectorAll(`div[title="${title}"]`);
 
     setTimeout(() => {
@@ -34,19 +22,13 @@ class Media extends Component {
         }
       });
     }, 0);
-  };
+  }, [onClick, title]);
 
-  render() {
-    const { title } = this.props;
-    const { paused } = this.state;
-
-    return (
-      <button title={title} onClick={this.handleMediaClick}>
-        Media Component - {paused ? 'Paused' : 'Playing'}
-      </button>
-    );
-  }
-
+  return (
+    <button title={title} onClick={handleMediaClick}>
+      Media Component - {paused ? 'Paused' : 'Playing'}
+    </button>
+  );
 }
 
 Media.propTypes = {
