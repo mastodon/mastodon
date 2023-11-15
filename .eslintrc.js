@@ -280,7 +280,7 @@ module.exports = {
     'formatjs/no-id': 'off', // IDs are used for translation keys
     'formatjs/no-invalid-icu': 'error',
     'formatjs/no-literal-string-in-jsx': 'off', // Should be looked at, but mainly flagging punctuation outside of strings
-    'formatjs/no-multiple-plurals': 'off', // Only used by hashtag.jsx
+    'formatjs/no-multiple-plurals': 'off', // Only used by hashtag.tsx
     'formatjs/no-multiple-whitespaces': 'error',
     'formatjs/no-offset': 'error',
     'formatjs/no-useless-message': 'error',

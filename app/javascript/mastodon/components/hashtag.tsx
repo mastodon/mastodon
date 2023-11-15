@@ -1,5 +1,5 @@
-// @ts-check
 import PropTypes from 'prop-types';
+import type { JSX } from 'react';
 import { Component } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -7,14 +7,18 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import type Immutable from 'immutable';
 
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 
 import { ShortNumber } from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
 
-class SilentErrorBoundary extends Component {
+interface SilentErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+class SilentErrorBoundary extends Component<SilentErrorBoundaryProps> {
 
   static propTypes = {
     children: PropTypes.node,
@@ -40,9 +44,8 @@ class SilentErrorBoundary extends Component {
 
 /**
  * Used to render counter of how much people are talking about hashtag
- * @type {(displayNumber: JSX.Element, pluralReady: number) => JSX.Element}
  */
-export const accountsCountRenderer = (displayNumber, pluralReady) => (
+export const accountsCountRenderer = (displayNumber: JSX.Element, pluralReady: number) => (
   <FormattedMessage
     id='trends.counter_by_accounts'
     defaultMessage='{count, plural, one {{counter} person} other {{counter} people}} in the past {days, plural, one {day} other {# days}}'
@@ -54,23 +57,32 @@ export const accountsCountRenderer = (displayNumber, pluralReady) => (
   />
 );
 
-// @ts-expect-error
-export const ImmutableHashtag = ({ hashtag }) => (
+interface ImmutableHashtagProps {
+  hashtag: Immutable.Map<string, unknown>;
+}
+
+export const ImmutableHashtag = ({ hashtag }: ImmutableHashtagProps) => (
   <Hashtag
-    name={hashtag.get('name')}
-    to={`/tags/${hashtag.get('name')}`}
-    people={hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1}
-    // @ts-expect-error
-    history={hashtag.get('history').reverse().map((day) => day.get('uses')).toArray()}
+    name={hashtag.get('name') as string}
+    to={`/tags/${hashtag.get('name') as string}`}
+    people={hashtag.getIn(['history', 0, 'accounts']) as number * 1 + (hashtag.getIn(['history', 1, 'accounts']) as number) * 1}
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    history={((hashtag.get('history') as Immutable.Collection.Indexed<Immutable.Map<string, number>>).reverse().map((day) => day.get('uses')!)).toArray()}
   />
 );
 
-ImmutableHashtag.propTypes = {
-  hashtag: ImmutablePropTypes.map.isRequired,
-};
+interface HashtagProps {
+  className?: string;
+  description?: string;
+  history?: number[];
+  name: string;
+  people: number;
+  to: string;
+  uses?: number;
+  withGraph: string;
+}
 
-// @ts-expect-error
-const Hashtag = ({ name, to, people, uses, history, className, description, withGraph }) => (
+const Hashtag = ({ name, to, people, uses, history, className, description, withGraph }: HashtagProps) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
       <Link to={to}>
