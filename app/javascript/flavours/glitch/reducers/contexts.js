@@ -67,7 +67,8 @@ const deleteFromContexts = (immutableState, ids) => immutableState.withMutations
 });
 
 const filterContexts = (state, relationship, statuses) => {
-  const ownedStatusIds = statuses.filter(status => status.get('account') === relationship.id)
+  const ownedStatusIds = statuses
+    .filter(status => status.get('account') === relationship.id)
     .map(status => status.get('id'));
 
   return deleteFromContexts(state, ownedStatusIds);
