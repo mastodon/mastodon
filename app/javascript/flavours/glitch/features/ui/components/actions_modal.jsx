@@ -7,9 +7,10 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { DisplayName } from 'flavours/glitch/components/display_name';
-import { IconButton } from 'flavours/glitch/components/icon_button';
 import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
 import StatusContent from 'flavours/glitch/components/status_content';
+
+import { IconButton } from '../../../components/icon_button';
 
 export default class ActionsModal extends ImmutablePureComponent {
 
