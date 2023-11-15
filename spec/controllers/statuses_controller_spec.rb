@@ -75,13 +75,15 @@ describe StatusesController do
         it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
         it 'renders ActivityPub Note object successfully', :aggregate_failures do
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
           expect(response.headers).to include(
             'Vary' => 'Accept, Accept-Language, Cookie',
             'Content-Type' => include('application/activity+json'),
             'Link' => satisfy { |header| header.to_s.include?('activity+json') }
           )
-          expect(body_as_json[:content]).to include status.text
+          expect(body_as_json)
+            .to include(content: include(status.text))
         end
       end
     end
@@ -177,14 +179,16 @@ describe StatusesController do
           let(:format) { 'json' }
 
           it 'renders ActivityPub Note object successfully', :aggregate_failures do
-            expect(response).to have_http_status(200)
+            expect(response)
+              .to have_http_status(200)
             expect(response.headers).to include(
               'Vary' => 'Accept, Accept-Language, Cookie',
               'Cache-Control' => include('private'),
               'Content-Type' => include('application/activity+json'),
               'Link' => satisfy { |header| header.to_s.include?('activity+json') }
             )
-            expect(body_as_json[:content]).to include status.text
+            expect(body_as_json)
+              .to include(content: include(status.text))
           end
         end
       end
@@ -219,14 +223,16 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'renders ActivityPub Note object successfully', :aggregate_failures do
-              expect(response).to have_http_status(200)
+              expect(response)
+                .to have_http_status(200)
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
                 'Link' => satisfy { |header| header.to_s.include?('activity+json') }
               )
-              expect(body_as_json[:content]).to include status.text
+              expect(body_as_json)
+                .to include(content: include(status.text))
             end
           end
         end
@@ -283,14 +289,16 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'renders ActivityPub Note object successfully' do
-              expect(response).to have_http_status(200)
+              expect(response)
+                .to have_http_status(200)
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
                 'Link' => satisfy { |header| header.to_s.include?('activity+json') }
               )
-              expect(body_as_json[:content]).to include status.text
+              expect(body_as_json)
+                .to include(content: include(status.text))
             end
           end
         end
@@ -375,13 +383,15 @@ describe StatusesController do
           it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'renders ActivityPub Note object successfully', :aggregate_failures do
-            expect(response).to have_http_status(200)
+            expect(response)
+              .to have_http_status(200)
             expect(response.headers).to include(
               'Vary' => 'Accept, Accept-Language, Cookie',
               'Content-Type' => include('application/activity+json'),
               'Link' => satisfy { |header| header.to_s.include?('activity+json') }
             )
-            expect(body_as_json[:content]).to include status.text
+            expect(body_as_json)
+              .to include(content: include(status.text))
           end
         end
       end
@@ -417,16 +427,15 @@ describe StatusesController do
             it 'renders ActivityPub Note object successfully' do
               expect(response)
                 .to have_http_status(200)
-                .and have_attributes(
-                  headers: include(
-                    'Vary' => 'Accept, Accept-Language, Cookie',
-                    'Cache-Control' => include('private'),
-                    'Content-Type' => include('application/activity+json'),
-                    'Link' => satisfy { |header| header.to_s.include?('activity+json') }
-                  )
-                )
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Content-Type' => include('application/activity+json'),
+                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              )
 
-              expect(body_as_json[:content]).to include status.text
+              expect(body_as_json)
+                .to include(content: include(status.text))
             end
           end
         end
@@ -483,14 +492,16 @@ describe StatusesController do
             let(:format) { 'json' }
 
             it 'renders ActivityPub Note object', :aggregate_failures do
-              expect(response).to have_http_status(200)
+              expect(response)
+                .to have_http_status(200)
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
                 'Link' => satisfy { |header| header.to_s.include?('activity+json') }
               )
-              expect(body_as_json[:content]).to include status.text
+              expect(body_as_json)
+                .to include(content: include(status.text))
             end
           end
         end
