@@ -48,7 +48,7 @@ class Mutes extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, accountIds, hasMore, multiColumn, isLoading } = this.props;
+    const { intl, hasMore, accountIds, multiColumn, isLoading } = this.props;
 
     if (!accountIds) {
       return (

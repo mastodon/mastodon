@@ -44,12 +44,12 @@ const mapStateToProps = (state, { columnId }) => {
 
 class PublicTimeline extends PureComponent {
 
-  static defaultProps = {
-    onlyMedia: false,
-  };
-
   static contextTypes = {
     identity: PropTypes.object,
+  };
+
+  static defaultProps = {
+    onlyMedia: false,
   };
 
   static propTypes = {

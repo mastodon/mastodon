@@ -138,7 +138,6 @@ const emojify = (str, customEmojis = {}) => {
 };
 
 export default emojify;
-export { unicodeMapping };
 
 export const buildCustomEmojis = (customEmojis) => {
   const emojis = [];

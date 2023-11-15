@@ -110,8 +110,9 @@ class ModalRoot extends PureComponent {
   }
 
   _handleModalClose () {
-    this.unlistenHistory();
-
+    if (this.unlistenHistory) {
+      this.unlistenHistory();
+    }
     const { state } = this.history.location;
     if (state && state.mastodonModalKey === this._modalHistoryKey) {
       this.history.goBack();
