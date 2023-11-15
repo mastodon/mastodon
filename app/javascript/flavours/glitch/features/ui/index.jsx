@@ -13,17 +13,17 @@ import { debounce } from 'lodash';
 import { HotKeys } from 'react-hotkeys';
 
 import { changeLayout } from 'flavours/glitch/actions/app';
-import { uploadCompose, resetCompose, changeComposeSpoilerness } from 'flavours/glitch/actions/compose';
-import { clearHeight } from 'flavours/glitch/actions/height_cache';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
-import { expandNotifications, notificationsSetVisibility } from 'flavours/glitch/actions/notifications';
-import { fetchServer, fetchServerTranslationLanguages } from 'flavours/glitch/actions/server';
-import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import PermaLink from 'flavours/glitch/components/permalink';
 import PictureInPicture from 'flavours/glitch/features/picture_in_picture';
 import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
+import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
+import { clearHeight } from '../../actions/height_cache';
+import { expandNotifications, notificationsSetVisibility } from '../../actions/notifications';
+import { fetchServer, fetchServerTranslationLanguages } from '../../actions/server';
+import { expandHomeTimeline } from '../../actions/timelines';
 import initialState, { me, owner, singleUserMode, trendsEnabled, trendsAsLanding } from '../../initial_state';
 
 import BundleColumnError from './components/bundle_column_error';

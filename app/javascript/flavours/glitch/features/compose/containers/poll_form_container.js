@@ -8,8 +8,7 @@ import {
   clearComposeSuggestions,
   fetchComposeSuggestions,
   selectComposeSuggestion,
-} from 'flavours/glitch/actions/compose';
-
+} from '../../../actions/compose';
 import PollForm from '../components/poll_form';
 
 const mapStateToProps = state => ({

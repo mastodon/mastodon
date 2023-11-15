@@ -10,7 +10,6 @@ import { HASHTAG_PATTERN_REGEX } from 'flavours/glitch/utils/hashtags';
 
 import Warning from '../components/warning';
 
-
 const mapStateToProps = state => ({
   needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
   hashtagWarning: state.getIn(['compose', 'privacy']) !== 'public' && HASHTAG_PATTERN_REGEX.test(state.getIn(['compose', 'text'])),

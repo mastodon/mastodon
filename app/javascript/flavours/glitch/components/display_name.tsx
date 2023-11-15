@@ -4,9 +4,8 @@ import classNames from 'classnames';
 
 import type { List } from 'immutable';
 
-import type { Account } from 'flavours/glitch/types/resources';
-
 import { autoPlayGif } from '../initial_state';
+import type { Account } from '../types/resources';
 
 import { Skeleton } from './skeleton';
 

@@ -13,8 +13,12 @@ import { createSelector } from 'reselect';
 
 import { debounce } from 'lodash';
 
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { submitMarkers } from 'flavours/glitch/actions/markers';
+import { compareId } from 'flavours/glitch/compare_id';
+import { Icon }  from 'flavours/glitch/components/icon';
+import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
+
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
+import { submitMarkers } from '../../actions/markers';
 import {
   enterNotificationClearingMode,
   expandNotifications,
@@ -23,25 +27,17 @@ import {
   mountNotifications,
   unmountNotifications,
   markNotificationsAsRead,
-} from 'flavours/glitch/actions/notifications';
-import { compareId } from 'flavours/glitch/compare_id';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import { Icon } from 'flavours/glitch/components/icon';
-import { LoadGap } from 'flavours/glitch/components/load_gap';
-import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import NotificationPurgeButtonsContainer from 'flavours/glitch/containers/notification_purge_buttons_container';
+} from '../../actions/notifications';
+import Column from '../../components/column';
+import ColumnHeader from '../../components/column_header';
+import { LoadGap } from '../../components/load_gap';
+import ScrollableList from '../../components/scrollable_list';
+import NotificationPurgeButtonsContainer from '../../containers/notification_purge_buttons_container';
 
 import NotificationsPermissionBanner from './components/notifications_permission_banner';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import FilterBarContainer from './containers/filter_bar_container';
 import NotificationContainer from './containers/notification_container';
-
-
-
-
-
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },

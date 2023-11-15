@@ -1,8 +1,7 @@
 import type { AnyAction, Middleware } from 'redux';
 
-import { showAlertForError } from 'flavours/glitch/actions/alerts';
-
 import type { RootState } from '..';
+import { showAlertForError } from '../../actions/alerts';
 
 const defaultFailSuffix = 'FAIL';
 

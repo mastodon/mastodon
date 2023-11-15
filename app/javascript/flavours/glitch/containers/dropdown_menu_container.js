@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 
-import { openDropdownMenu, closeDropdownMenu } from 'flavours/glitch/actions/dropdown_menu';
-import { openModal, closeModal } from 'flavours/glitch/actions/modal';
-import DropdownMenu from 'flavours/glitch/components/dropdown_menu';
-
+import { openDropdownMenu, closeDropdownMenu } from '../actions/dropdown_menu';
+import { openModal, closeModal } from '../actions/modal';
+import DropdownMenu from '../components/dropdown_menu';
 import { isUserTouching } from '../is_mobile';
 
 /**

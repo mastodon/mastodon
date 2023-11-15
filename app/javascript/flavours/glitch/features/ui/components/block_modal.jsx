@@ -11,7 +11,6 @@ import { initReport } from '../../../actions/reports';
 import { Button } from '../../../components/button';
 import { makeGetAccount } from '../../../selectors';
 
-
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
 

@@ -1,7 +1,6 @@
 // @ts-check
 
-import { getLocale } from 'flavours/glitch/locales';
-
+import { getLocale } from '../locales';
 import { connectStream } from '../stream';
 
 import {

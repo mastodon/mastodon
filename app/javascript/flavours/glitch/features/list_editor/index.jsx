@@ -8,8 +8,7 @@ import { connect } from 'react-redux';
 
 import spring from 'react-motion/lib/spring';
 
-import { setupListEditor, clearListSuggestions, resetListEditor } from 'flavours/glitch/actions/lists';
-
+import { setupListEditor, clearListSuggestions, resetListEditor } from '../../actions/lists';
 import Motion from '../ui/util/optional_motion';
 
 import EditListForm from './components/edit_list_form';

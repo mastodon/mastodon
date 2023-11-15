@@ -10,20 +10,20 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { AnimatedNumber } from 'flavours/glitch/components/animated_number';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { DisplayName } from 'flavours/glitch/components/display_name';
 import EditedTimestamp from 'flavours/glitch/components/edited_timestamp';
 import { Icon } from 'flavours/glitch/components/icon';
-import MediaGallery from 'flavours/glitch/components/media_gallery';
 import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
-import StatusContent from 'flavours/glitch/components/status_content';
 import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
 import PollContainer from 'flavours/glitch/containers/poll_container';
-import Audio from 'flavours/glitch/features/audio';
-import Video from 'flavours/glitch/features/video';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
+import { Avatar } from '../../../components/avatar';
+import { DisplayName } from '../../../components/display_name';
+import MediaGallery from '../../../components/media_gallery';
+import StatusContent from '../../../components/status_content';
+import Audio from '../../audio';
 import scheduleIdleTask from '../../ui/util/schedule_idle_task';
+import Video from '../../video';
 
 import Card from './card';
 

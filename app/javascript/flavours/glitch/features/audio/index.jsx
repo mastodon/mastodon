@@ -9,14 +9,13 @@ import { is } from 'immutable';
 
 import { throttle, debounce } from 'lodash';
 
-import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { Icon } from 'flavours/glitch/components/icon';
 import { formatTime, getPointerPosition, fileNameFromURL } from 'flavours/glitch/features/video';
-import { displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
+
+import { Blurhash } from '../../components/blurhash';
+import { displayMedia, useBlurhash } from '../../initial_state';
 
 import Visualizer from './visualizer';
-
-
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },

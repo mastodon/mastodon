@@ -14,13 +14,20 @@ import { createSelector } from 'reselect';
 
 import { HotKeys } from 'react-hotkeys';
 
-import { initBlockModal } from 'flavours/glitch/actions/blocks';
-import { initBoostModal } from 'flavours/glitch/actions/boosts';
+import { Icon }  from 'flavours/glitch/components/icon';
+import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
+import ScrollContainer from 'flavours/glitch/containers/scroll_container';
+import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
+import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
+import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+
+import { initBlockModal } from '../../actions/blocks';
+import { initBoostModal } from '../../actions/boosts';
 import {
   replyCompose,
   mentionCompose,
   directCompose,
-} from 'flavours/glitch/actions/compose';
+} from '../../actions/compose';
 import {
   favourite,
   unfavourite,
@@ -30,11 +37,11 @@ import {
   unreblog,
   pin,
   unpin,
-} from 'flavours/glitch/actions/interactions';
-import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { initMuteModal } from 'flavours/glitch/actions/mutes';
-import { initReport } from 'flavours/glitch/actions/reports';
+} from '../../actions/interactions';
+import { changeLocalSetting } from '../../actions/local_settings';
+import { openModal } from '../../actions/modal';
+import { initMuteModal } from '../../actions/mutes';
+import { initReport } from '../../actions/reports';
 import {
   fetchStatus,
   muteStatus,
@@ -45,20 +52,13 @@ import {
   revealStatus,
   translateStatus,
   undoStatusTranslation,
-} from 'flavours/glitch/actions/statuses';
-import { Icon } from 'flavours/glitch/components/icon';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import { textForScreenReader, defaultMediaVisibility } from 'flavours/glitch/components/status';
-import ScrollContainer from 'flavours/glitch/containers/scroll_container';
-import StatusContainer from 'flavours/glitch/containers/status_container';
-import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
-import Column from 'flavours/glitch/features/ui/components/column';
-import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
-import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
-import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
-import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
-
+} from '../../actions/statuses';
 import ColumnHeader from '../../components/column_header';
+import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
+import StatusContainer from '../../containers/status_container';
+import { boostModal, favouriteModal, deleteModal } from '../../initial_state';
+import { makeGetStatus, makeGetPictureInPicture } from '../../selectors';
+import Column from '../ui/components/column';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 
 import ActionBar from './components/action_bar';

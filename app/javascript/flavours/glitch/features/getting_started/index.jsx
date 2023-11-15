@@ -14,16 +14,15 @@ import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { fetchLists } from 'flavours/glitch/actions/lists';
 import { openModal } from 'flavours/glitch/actions/modal';
 import Column from 'flavours/glitch/features/ui/components/column';
-import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
-import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subheading';
 import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
-import { me, showTrends } from 'flavours/glitch/initial_state';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 
+import { me, showTrends } from '../../initial_state';
 import NavigationBar from '../compose/components/navigation_bar';
+import ColumnLink from '../ui/components/column_link';
+import ColumnSubheading from '../ui/components/column_subheading';
 
 import TrendsContainer from './containers/trends_container';
-
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },

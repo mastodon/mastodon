@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
-import { expandConversations } from 'flavours/glitch/actions/conversations';
-
+import { expandConversations } from '../../../actions/conversations';
 import ConversationsList from '../components/conversations_list';
 
 const mapStateToProps = state => ({

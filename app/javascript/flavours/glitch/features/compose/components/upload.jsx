@@ -7,7 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import spring from 'react-motion/lib/spring';
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon }  from 'flavours/glitch/components/icon';
 
 import Motion from '../../ui/util/optional_motion';
 

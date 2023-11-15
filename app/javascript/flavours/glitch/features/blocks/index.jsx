@@ -8,13 +8,12 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { fetchBlocks, expandBlocks } from 'flavours/glitch/actions/blocks';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import AccountContainer from 'flavours/glitch/containers/account_container';
-import Column from 'flavours/glitch/features/ui/components/column';
-
+import { fetchBlocks, expandBlocks } from '../../actions/blocks';
+import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
+import AccountContainer from '../../containers/account_container';
+import Column from '../ui/components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.blocks', defaultMessage: 'Blocked users' },

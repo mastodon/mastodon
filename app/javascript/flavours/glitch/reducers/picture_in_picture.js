@@ -1,5 +1,6 @@
 import { PICTURE_IN_PICTURE_DEPLOY, PICTURE_IN_PICTURE_REMOVE } from 'flavours/glitch/actions/picture_in_picture';
-import { TIMELINE_DELETE } from 'flavours/glitch/actions/timelines';
+
+import { TIMELINE_DELETE } from '../actions/timelines';
 
 const initialState = {
   statusId: null,

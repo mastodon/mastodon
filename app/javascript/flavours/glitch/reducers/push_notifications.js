@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 
-import { SET_BROWSER_SUPPORT, SET_SUBSCRIPTION, CLEAR_SUBSCRIPTION, SET_ALERTS } from 'flavours/glitch/actions/push_notifications';
-import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
+import { SET_BROWSER_SUPPORT, SET_SUBSCRIPTION, CLEAR_SUBSCRIPTION, SET_ALERTS } from '../actions/push_notifications';
+import { STORE_HYDRATE } from '../actions/store';
 
 const initialState = Immutable.Map({
   subscription: null,

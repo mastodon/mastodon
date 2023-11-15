@@ -11,7 +11,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { debounce } from 'lodash';
 
 import { Blurhash } from 'flavours/glitch/components/blurhash';
-import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
+
+import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
 
 import { IconButton } from './icon_button';
 

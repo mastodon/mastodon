@@ -9,12 +9,12 @@ import {
   unblockAccount,
   muteAccount,
   unmuteAccount,
-} from 'flavours/glitch/actions/accounts';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { initMuteModal } from 'flavours/glitch/actions/mutes';
-import Account from 'flavours/glitch/components/account';
-import { unfollowModal } from 'flavours/glitch/initial_state';
-import { makeGetAccount } from 'flavours/glitch/selectors';
+} from '../actions/accounts';
+import { openModal } from '../actions/modal';
+import { initMuteModal } from '../actions/mutes';
+import Account from '../components/account';
+import { unfollowModal } from '../initial_state';
+import { makeGetAccount } from '../selectors';
 
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },

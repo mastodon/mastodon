@@ -3,8 +3,8 @@ import { PureComponent } from 'react';
 
 import { debounce } from 'lodash';
 
-import { isMobile } from 'flavours/glitch/is_mobile';
-import { scrollTop } from 'flavours/glitch/scroll';
+import { isMobile } from '../../../is_mobile';
+import { scrollTop } from '../../../scroll';
 
 import ColumnHeader from './column_header';
 

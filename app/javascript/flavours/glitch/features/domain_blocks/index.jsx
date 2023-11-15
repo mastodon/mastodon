@@ -10,17 +10,12 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-
 import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { LoadingIndicator } from '../../components/loading_indicator';
+import ScrollableList from '../../components/scrollable_list';
 import DomainContainer from '../../containers/domain_container';
 import Column from '../ui/components/column';
-
-
-
-
 
 const messages = defineMessages({
   heading: { id: 'column.domain_blocks', defaultMessage: 'Blocked domains' },

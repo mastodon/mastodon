@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { injectIntl, defineMessages } from 'react-intl';
 
 import Dropdown from './dropdown';
 

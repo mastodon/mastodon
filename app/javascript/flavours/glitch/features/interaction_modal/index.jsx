@@ -12,7 +12,7 @@ import { throttle, escapeRegExp } from 'lodash';
 import { openModal, closeModal } from 'flavours/glitch/actions/modal';
 import api from 'flavours/glitch/api';
 import { Button } from 'flavours/glitch/components/button';
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon }  from 'flavours/glitch/components/icon';
 import { registrationsOpen, sso_redirect } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({

@@ -8,24 +8,24 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import { TimelineHint } from 'flavours/glitch/components/timeline_hint';
+import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
+import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
+import { getAccountHidden } from 'flavours/glitch/selectors';
+
 import {
   lookupAccount,
   fetchAccount,
   fetchFollowing,
   expandFollowing,
-} from 'flavours/glitch/actions/accounts';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import { TimelineHint } from 'flavours/glitch/components/timeline_hint';
-import AccountContainer from 'flavours/glitch/containers/account_container';
-import ProfileColumnHeader from 'flavours/glitch/features/account/components/profile_column_header';
-import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
-import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
-import Column from 'flavours/glitch/features/ui/components/column';
-import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
-import { getAccountHidden } from 'flavours/glitch/selectors';
-
+} from '../../actions/accounts';
+import { LoadingIndicator } from '../../components/loading_indicator';
+import ScrollableList from '../../components/scrollable_list';
+import AccountContainer from '../../containers/account_container';
+import ProfileColumnHeader from '../account/components/profile_column_header';
 import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
+import HeaderContainer from '../account_timeline/containers/header_container';
+import Column from '../ui/components/column';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);

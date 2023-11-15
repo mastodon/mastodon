@@ -19,8 +19,6 @@ import Statuses from './statuses';
 import Suggestions from './suggestions';
 import Tags from './tags';
 
-
-
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Explore' },
   searchResults: { id: 'explore.search_results', defaultMessage: 'Search results' },

@@ -5,10 +5,10 @@ import { List as ImmutableList } from 'immutable';
 
 import { compareId } from 'flavours/glitch/compare_id';
 import { usePendingItems as preferPendingItems } from 'flavours/glitch/initial_state';
-import { unescapeHTML } from 'flavours/glitch/utils/html';
-import { requestNotificationPermission } from 'flavours/glitch/utils/notifications';
 
 import api, { getLinks } from '../api';
+import { unescapeHTML } from '../utils/html';
+import { requestNotificationPermission } from '../utils/notifications';
 
 import { fetchFollowRequests, fetchRelationships } from './accounts';
 import {

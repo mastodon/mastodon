@@ -1,6 +1,6 @@
 import Motion from 'react-motion/lib/Motion';
 
-import { reduceMotion } from 'flavours/glitch/initial_state';
+import { reduceMotion } from '../../../initial_state';
 
 import ReducedMotion from './reduced_motion';
 

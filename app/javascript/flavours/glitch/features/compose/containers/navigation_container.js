@@ -3,9 +3,9 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { connect }   from 'react-redux';
 
 import { openModal } from 'flavours/glitch/actions/modal';
-import { me } from 'flavours/glitch/initial_state';
 import { logOut } from 'flavours/glitch/utils/log_out';
 
+import { me } from '../../../initial_state';
 import NavigationBar from '../components/navigation_bar';
 
 const messages = defineMessages({

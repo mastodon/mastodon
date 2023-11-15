@@ -10,18 +10,13 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { fetchFollowRequests, expandFollowRequests } from 'flavours/glitch/actions/accounts';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import Column from 'flavours/glitch/features/ui/components/column';
-import { me } from 'flavours/glitch/initial_state';
+import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
+import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import ScrollableList from '../../components/scrollable_list';
+import { me } from '../../initial_state';
+import Column from '../ui/components/column';
 
 import AccountAuthorizeContainer from './containers/account_authorize_container';
-
-
-
-
-
 
 const messages = defineMessages({
   heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' },

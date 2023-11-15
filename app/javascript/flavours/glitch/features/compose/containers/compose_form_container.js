@@ -2,24 +2,24 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import { privacyPreference } from 'flavours/glitch/utils/privacy_preference';
+
 import {
   changeCompose,
+  submitCompose,
+  clearComposeSuggestions,
+  fetchComposeSuggestions,
+  selectComposeSuggestion,
   changeComposeSpoilerText,
   changeComposeSpoilerness,
   changeComposeVisibility,
-  clearComposeSuggestions,
-  fetchComposeSuggestions,
   insertEmojiCompose,
-  selectComposeSuggestion,
-  submitCompose,
   uploadCompose,
-} from 'flavours/glitch/actions/compose';
-import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
+} from '../../../actions/compose';
+import { changeLocalSetting } from '../../../actions/local_settings';
 import {
   openModal,
-} from 'flavours/glitch/actions/modal';
-import { privacyPreference } from 'flavours/glitch/utils/privacy_preference';
-
+} from '../../../actions/modal';
 import ComposeForm from '../components/compose_form';
 
 const messages = defineMessages({

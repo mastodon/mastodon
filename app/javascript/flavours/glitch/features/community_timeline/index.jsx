@@ -7,14 +7,15 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { connectCommunityStream } from 'flavours/glitch/actions/streaming';
-import { expandCommunityTimeline } from 'flavours/glitch/actions/timelines';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
 import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
-import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
 import { domain } from 'flavours/glitch/initial_state';
+
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
+import { connectCommunityStream } from '../../actions/streaming';
+import { expandCommunityTimeline } from '../../actions/timelines';
+import Column from '../../components/column';
+import ColumnHeader from '../../components/column_header';
+import StatusListContainer from '../ui/containers/status_list_container';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
 

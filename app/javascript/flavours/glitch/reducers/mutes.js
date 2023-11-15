@@ -4,7 +4,7 @@ import {
   MUTES_INIT_MODAL,
   MUTES_TOGGLE_HIDE_NOTIFICATIONS,
   MUTES_CHANGE_DURATION,
-} from 'flavours/glitch/actions/mutes';
+} from '../actions/mutes';
 
 const initialState = Immutable.Map({
   new: Immutable.Map({

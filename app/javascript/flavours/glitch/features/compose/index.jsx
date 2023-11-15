@@ -12,8 +12,8 @@ import spring from 'react-motion/lib/spring';
 
 import { mountCompose, unmountCompose, cycleElefriendCompose } from 'flavours/glitch/actions/compose';
 import Column from 'flavours/glitch/components/column';
-import { mascot } from 'flavours/glitch/initial_state';
 
+import { mascot } from '../../initial_state';
 import Motion from '../ui/util/optional_motion';
 
 import ComposeFormContainer from './containers/compose_form_container';

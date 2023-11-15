@@ -23,11 +23,11 @@ import Audio from 'flavours/glitch/features/audio';
 import CharacterCounter from 'flavours/glitch/features/compose/components/character_counter';
 import UploadProgress from 'flavours/glitch/features/compose/components/upload_progress';
 import { Tesseract as fetchTesseract } from 'flavours/glitch/features/ui/util/async-components';
-import Video, { getPointerPosition } from 'flavours/glitch/features/video';
 import { me } from 'flavours/glitch/initial_state';
 import { assetHost } from 'flavours/glitch/utils/config';
 
 import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from '../../../actions/compose';
+import Video, { getPointerPosition } from '../../video';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

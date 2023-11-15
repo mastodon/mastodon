@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { Icon } from 'flavours/glitch/components/icon';
 
 import { removeFromListAdder, addToListAdder } from '../../../actions/lists';
-import { IconButton } from '../../../components/icon_button';
+import { IconButton }  from '../../../components/icon_button';
 
 const messages = defineMessages({
   remove: { id: 'lists.account.remove', defaultMessage: 'Remove from list' },

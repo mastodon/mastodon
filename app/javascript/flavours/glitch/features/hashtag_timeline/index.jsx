@@ -16,7 +16,8 @@ import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/glitch/ac
 import { expandHashtagTimeline, clearTimeline } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
-import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
+
+import StatusListContainer from '../ui/containers/status_list_container';
 
 import { HashtagHeader } from './components/hashtag_header';
 import ColumnSettingsContainer from './containers/column_settings_container';

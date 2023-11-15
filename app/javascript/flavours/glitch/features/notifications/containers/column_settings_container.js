@@ -2,12 +2,11 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { showAlert } from 'flavours/glitch/actions/alerts';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { setFilter, clearNotifications, requestBrowserPermission } from 'flavours/glitch/actions/notifications';
-import { changeAlerts as changePushNotifications } from 'flavours/glitch/actions/push_notifications';
-import { changeSetting } from 'flavours/glitch/actions/settings';
-
+import { showAlert } from '../../../actions/alerts';
+import { openModal } from '../../../actions/modal';
+import { setFilter, clearNotifications, requestBrowserPermission } from '../../../actions/notifications';
+import { changeAlerts as changePushNotifications } from '../../../actions/push_notifications';
+import { changeSetting } from '../../../actions/settings';
 import ColumnSettings from '../components/column_settings';
 
 const messages = defineMessages({

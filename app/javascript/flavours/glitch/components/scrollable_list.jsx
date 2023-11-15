@@ -10,11 +10,11 @@ import { connect } from 'react-redux';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import { throttle } from 'lodash';
 
-import IntersectionObserverArticleContainer from 'flavours/glitch/containers/intersection_observer_article_container';
 import ScrollContainer from 'flavours/glitch/containers/scroll_container';
-import IntersectionObserverWrapper from 'flavours/glitch/features/ui/util/intersection_observer_wrapper';
 
+import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
+import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
 
 import { LoadMore } from './load_more';
 import { LoadPending } from './load_pending';

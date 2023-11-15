@@ -3,7 +3,7 @@ import { Component } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({
   error: { id: 'bundle_modal_error.message', defaultMessage: 'Something went wrong while loading this component.' },

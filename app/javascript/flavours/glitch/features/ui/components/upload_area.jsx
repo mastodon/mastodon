@@ -7,8 +7,6 @@ import spring from 'react-motion/lib/spring';
 
 import Motion from '../util/optional_motion';
 
-
-
 export default class UploadArea extends PureComponent {
 
   static propTypes = {

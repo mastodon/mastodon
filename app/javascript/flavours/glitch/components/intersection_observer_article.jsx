@@ -3,6 +3,7 @@ import { cloneElement, Component } from 'react';
 
 import getRectFromEntry from '../features/ui/util/get_rect_from_entry';
 import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
+
 // Diff these props in the "unrendered" state
 const updateOnPropsForUnrendered = ['id', 'index', 'listLength', 'cachedHeight'];
 
@@ -37,7 +38,6 @@ export default class IntersectionObserverArticle extends Component {
     // Else, assume the children have changed
     return true;
   }
-
 
   componentDidMount () {
     const { intersectionObserverWrapper, id } = this.props;

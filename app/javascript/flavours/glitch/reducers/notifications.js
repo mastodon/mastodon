@@ -5,11 +5,11 @@ import {
   ACCOUNT_MUTE_SUCCESS,
   FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
   FOLLOW_REQUEST_REJECT_SUCCESS,
-} from 'flavours/glitch/actions/accounts';
-import { DOMAIN_BLOCK_SUCCESS } from 'flavours/glitch/actions/domain_blocks';
+} from '../actions/accounts';
+import { DOMAIN_BLOCK_SUCCESS } from '../actions/domain_blocks';
 import {
   MARKERS_FETCH_SUCCESS,
-} from 'flavours/glitch/actions/markers';
+} from '../actions/markers';
 import {
   NOTIFICATIONS_MOUNT,
   NOTIFICATIONS_UNMOUNT,
@@ -31,9 +31,8 @@ import {
   NOTIFICATIONS_MARK_AS_READ,
   NOTIFICATIONS_SET_BROWSER_SUPPORT,
   NOTIFICATIONS_SET_BROWSER_PERMISSION,
-} from 'flavours/glitch/actions/notifications';
-import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from 'flavours/glitch/actions/timelines';
-
+} from '../actions/notifications';
+import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from '../actions/timelines';
 import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap({

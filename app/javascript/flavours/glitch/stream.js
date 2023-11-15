@@ -1,6 +1,7 @@
 // @ts-check
 
 import WebSocketClient from '@gamestdio/websocket';
+
 /**
  * @type {WebSocketClient | undefined}
  */
@@ -85,12 +86,12 @@ const unsubscribe = ({ channelName, params, onDisconnect }) => {
 };
 
 const sharedCallbacks = {
-  connected () {
+  connected() {
     subscriptions.forEach(subscription => subscribe(subscription));
   },
 
   // @ts-expect-error
-  received (data) {
+  received(data) {
     const { stream } = data;
 
     subscriptions.filter(({ channelName, params }) => {
@@ -114,11 +115,11 @@ const sharedCallbacks = {
     });
   },
 
-  disconnected () {
+  disconnected() {
     subscriptions.forEach(subscription => unsubscribe(subscription));
   },
 
-  reconnected () {
+  reconnected() {
   },
 };
 
@@ -151,19 +152,19 @@ export const connectStream = (channelName, params, callbacks) => (dispatch, getS
   // to using individual connections for each channel
   if (!streamingAPIBaseURL.startsWith('ws')) {
     const connection = createConnection(streamingAPIBaseURL, accessToken, channelNameWithInlineParams(channelName, params), {
-      connected () {
+      connected() {
         onConnect();
       },
 
-      received (data) {
+      received(data) {
         onReceive(data);
       },
 
-      disconnected () {
+      disconnected() {
         onDisconnect();
       },
 
-      reconnected () {
+      reconnected() {
         onConnect();
       },
     });
@@ -239,10 +240,10 @@ const createConnection = (streamingAPIBaseURL, accessToken, channelName, { conne
     const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`, accessToken);
 
     // @ts-expect-error
-    ws.onopen      = connected;
-    ws.onmessage   = e => received(JSON.parse(e.data));
+    ws.onopen = connected;
+    ws.onmessage = e => received(JSON.parse(e.data));
     // @ts-expect-error
-    ws.onclose     = disconnected;
+    ws.onclose = disconnected;
     // @ts-expect-error
     ws.onreconnect = reconnected;
 
@@ -265,7 +266,7 @@ const createConnection = (streamingAPIBaseURL, accessToken, channelName, { conne
   };
 
   KNOWN_EVENT_TYPES.forEach(type => {
-    es.addEventListener(type, e => handleEventSourceMessage(/** @type {MessageEvent} */ (e), received));
+    es.addEventListener(type, e => handleEventSourceMessage(/** @type {MessageEvent} */(e), received));
   });
 
   es.onerror = /** @type {function(): void} */ (disconnected);

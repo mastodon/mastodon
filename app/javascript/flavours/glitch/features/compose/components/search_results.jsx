@@ -5,12 +5,13 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
 import { Icon } from 'flavours/glitch/components/icon';
 import { LoadMore } from 'flavours/glitch/components/load_more';
-import AccountContainer from 'flavours/glitch/containers/account_container';
-import StatusContainer from 'flavours/glitch/containers/status_container';
 import { SearchSection } from 'flavours/glitch/features/explore/components/search_section';
+
+import { ImmutableHashtag as Hashtag } from '../../../components/hashtag';
+import AccountContainer from '../../../containers/account_container';
+import StatusContainer from '../../../containers/status_container';
 
 const INITIAL_PAGE_LIMIT = 10;
 

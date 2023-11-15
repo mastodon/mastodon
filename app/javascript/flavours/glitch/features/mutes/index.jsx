@@ -10,15 +10,12 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { fetchMutes, expandMutes } from 'flavours/glitch/actions/mutes';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import AccountContainer from 'flavours/glitch/containers/account_container';
-import Column from 'flavours/glitch/features/ui/components/column';
-
-
-
+import { fetchMutes, expandMutes } from '../../actions/mutes';
+import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import { LoadingIndicator } from '../../components/loading_indicator';
+import ScrollableList from '../../components/scrollable_list';
+import AccountContainer from '../../containers/account_container';
+import Column from '../ui/components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.mutes', defaultMessage: 'Muted users' },

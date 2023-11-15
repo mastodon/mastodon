@@ -4,7 +4,7 @@ import {
   ALERT_SHOW,
   ALERT_DISMISS,
   ALERT_CLEAR,
-} from 'flavours/glitch/actions/alerts';
+} from '../actions/alerts';
 
 const initialState = ImmutableList([]);
 

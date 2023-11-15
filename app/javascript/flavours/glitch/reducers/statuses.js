@@ -1,5 +1,7 @@
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
+import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
+import { normalizeStatusTranslation } from '../actions/importer/normalizer';
 import {
   REBLOG_REQUEST,
   REBLOG_FAIL,
@@ -13,7 +15,7 @@ import {
   BOOKMARK_FAIL,
   UNBOOKMARK_REQUEST,
   UNBOOKMARK_FAIL,
-} from 'flavours/glitch/actions/interactions';
+} from '../actions/interactions';
 import {
   STATUS_MUTE_SUCCESS,
   STATUS_UNMUTE_SUCCESS,
@@ -24,13 +26,8 @@ import {
   STATUS_TRANSLATE_UNDO,
   STATUS_FETCH_REQUEST,
   STATUS_FETCH_FAIL,
-} from 'flavours/glitch/actions/statuses';
-import {
-  TIMELINE_DELETE,
-} from 'flavours/glitch/actions/timelines';
-
-import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
-import { normalizeStatusTranslation } from '../actions/importer/normalizer';
+} from '../actions/statuses';
+import { TIMELINE_DELETE } from '../actions/timelines';
 
 const importStatus = (state, status) => state.set(status.id, fromJS(status));
 

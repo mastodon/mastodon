@@ -2,7 +2,7 @@ import { Map as ImmutableMap, fromJS } from 'immutable';
 
 import {
   ACCOUNT_NOTE_SUBMIT_SUCCESS,
-} from 'flavours/glitch/actions/account_notes';
+} from '../actions/account_notes';
 import {
   ACCOUNT_FOLLOW_SUCCESS,
   ACCOUNT_FOLLOW_REQUEST,
@@ -19,12 +19,11 @@ import {
   RELATIONSHIPS_FETCH_SUCCESS,
   FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
   FOLLOW_REQUEST_REJECT_SUCCESS,
-} from 'flavours/glitch/actions/accounts';
+} from '../actions/accounts';
 import {
   DOMAIN_BLOCK_SUCCESS,
   DOMAIN_UNBLOCK_SUCCESS,
-} from 'flavours/glitch/actions/domain_blocks';
-
+} from '../actions/domain_blocks';
 import {
   NOTIFICATIONS_UPDATE,
 } from '../actions/notifications';

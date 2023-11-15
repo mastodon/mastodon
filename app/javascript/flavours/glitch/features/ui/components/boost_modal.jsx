@@ -11,15 +11,16 @@ import { connect } from 'react-redux';
 
 import { changeBoostPrivacy } from 'flavours/glitch/actions/boosts';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { Button } from 'flavours/glitch/components/button';
-import { DisplayName } from 'flavours/glitch/components/display_name';
-import { Icon } from 'flavours/glitch/components/icon';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
-import StatusContent from 'flavours/glitch/components/status_content';
+import { Icon }  from 'flavours/glitch/components/icon';
 import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
 import PrivacyDropdown from 'flavours/glitch/features/compose/components/privacy_dropdown';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+
+import { Avatar } from '../../../components/avatar';
+import { Button } from '../../../components/button';
+import { DisplayName } from '../../../components/display_name';
+import { RelativeTimestamp } from '../../../components/relative_timestamp';
+import StatusContent from '../../../components/status_content';
 
 const messages = defineMessages({
   cancel_reblog: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },

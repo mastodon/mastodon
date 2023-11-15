@@ -1,6 +1,6 @@
 import { Map as ImmutableMap } from 'immutable';
 
-import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
+import { STORE_HYDRATE } from '../actions/store';
 
 const initialState = ImmutableMap({
   accept_content_types: [],

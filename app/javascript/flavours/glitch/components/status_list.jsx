@@ -6,7 +6,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { debounce } from 'lodash';
 
 import RegenerationIndicator from 'flavours/glitch/components/regeneration_indicator';
-import StatusContainer from 'flavours/glitch/containers/status_container';
+
+import StatusContainer from '../containers/status_container';
 
 import { LoadGap } from './load_gap';
 import ScrollableList from './scrollable_list';

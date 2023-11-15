@@ -4,7 +4,7 @@ import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
   ACCOUNT_UNFOLLOW_SUCCESS,
-} from 'flavours/glitch/actions/accounts';
+} from '../actions/accounts';
 import {
   TIMELINE_UPDATE,
   TIMELINE_DELETE,
@@ -17,8 +17,7 @@ import {
   TIMELINE_DISCONNECT,
   TIMELINE_LOAD_PENDING,
   TIMELINE_MARK_AS_PARTIAL,
-} from 'flavours/glitch/actions/timelines';
-
+} from '../actions/timelines';
 import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap();

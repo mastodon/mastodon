@@ -51,16 +51,15 @@ import {
   COMPOSE_CHANGE_MEDIA_DESCRIPTION,
   COMPOSE_CHANGE_MEDIA_FOCUS,
   COMPOSE_SET_STATUS,
-} from 'flavours/glitch/actions/compose';
-import { REDRAFT } from 'flavours/glitch/actions/statuses';
-import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
-import { TIMELINE_DELETE } from 'flavours/glitch/actions/timelines';
-import { me, defaultContentType } from 'flavours/glitch/initial_state';
-import { recoverHashtags } from 'flavours/glitch/utils/hashtag';
-import { unescapeHTML } from 'flavours/glitch/utils/html';
-import { overwrite } from 'flavours/glitch/utils/js_helpers';
-import { privacyPreference } from 'flavours/glitch/utils/privacy_preference';
-
+} from '../actions/compose';
+import { REDRAFT } from '../actions/statuses';
+import { STORE_HYDRATE } from '../actions/store';
+import { TIMELINE_DELETE } from '../actions/timelines';
+import { me, defaultContentType } from '../initial_state';
+import { recoverHashtags } from '../utils/hashtag';
+import { unescapeHTML } from '../utils/html';
+import { overwrite } from '../utils/js_helpers';
+import { privacyPreference } from '../utils/privacy_preference';
 import { uuid } from '../uuid';
 
 const totalElefriends = 3;

@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 
-import { changeColumnParams } from 'flavours/glitch/actions/columns';
-import api from 'flavours/glitch/api';
-
+import { changeColumnParams } from '../../../actions/columns';
+import api from '../../../api';
 import ColumnSettings from '../components/column_settings';
 
 const mapStateToProps = (state, { columnId }) => {

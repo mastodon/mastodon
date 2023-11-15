@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { injectIntl, FormattedMessage } from 'react-intl';
 
-import { Button } from 'flavours/glitch/components/button';
+import { Button } from '../../../components/button';
 
 class ConfirmationModal extends PureComponent {
 
