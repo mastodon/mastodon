@@ -1,9 +1,42 @@
 ---
 zh-TW:
+  admin:
+    custom_emojis:
+      batch_copy_error: 複製某些選定的表情符號時出錯：%{message}
+      batch_error: 發生錯誤：%{message}
+    settings:
+      captcha_enabled:
+        desc_html: 這依賴於 hCaptcha 的外部腳本，可能會引起安全和隱私問題。此外，<strong>這會大大降低某些人（尤其是殘障人士）註冊過程的可訪問性</strong>。出於這些原因，請考慮採取其他措施，例如基於批准或邀請的註冊方式。
+        title: 要求新使用者完成 CAPTCHA 挑戰以確認帳號
+      flavour_and_skin:
+        title: 風格與外觀
+      hide_followers_count:
+        desc_html: 不顯示用戶個人資料上的跟隨者數量
+        title: 隱藏跟隨者數量
+      other:
+        preamble: 沒有合適分類的各種glitch-soc設置。
+        title: 其它
+      outgoing_spoilers:
+        desc_html: 在聯合貼文時，將此內容警告添加到沒有內容警告的貼文中。如果您的伺服器器專門處理其他服務器可能希望在「內容警告」下顯示的內容，它將非常有用。媒體也會被標記為敏感。
+        title: 針對向外發送貼文的內容警告
+      show_reblogs_in_public_timelines:
+        desc_html: 在本地與公開時間軸顯示公開貼文的公開轉貼。
+        title: 在公開時間軸顯示轉貼
+      show_replies_in_public_timelines:
+        desc_html: 除了公開的自我回覆（討論串）以外，在本地與公開時間軸顯示公開的回覆。
+        title: 在公開時間軸顯示回覆
+      trending_status_cw:
+        desc_html: 當啟用熱門趨勢貼文時，允許包含內容警告的貼文。改變此設置並不溯及既往。
+        title: 允許包含內容警告的貼文顯示在熱門趨勢。
   appearance:
     localization:
       glitch_guide_link: https://crowdin.com/project/glitch-soc
       glitch_guide_link_text: 對於 glitch-soc 來說也是如此！
   auth:
     captcha_confirmation:
+      hint_html: 還差一步！為確認您的帳號，伺服器器要求您通過CAPTCHA驗證。如果您在確認帳號時有疑問或需要幫助，可以<a href="/about/more">聯繫服務器管理員</a>。
       title: 使用者驗證
+  generic:
+    use_this: 使用這個
+  settings:
+    flavours: 風格
