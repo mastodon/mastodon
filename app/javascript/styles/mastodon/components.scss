@@ -2552,7 +2552,7 @@ $ui-header-height: 55px;
 
 .column-title {
   text-align: center;
-  padding-bottom: 40px;
+  padding-bottom: 32px;
 
   h3 {
     font-size: 24px;
@@ -2743,58 +2743,6 @@ $ui-header-height: 55px;
   }
 }
 
-.onboarding__progress-indicator {
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-  position: sticky;
-  background: $ui-base-color;
-
-  @media screen and (width >= 600) {
-    padding: 0 40px;
-  }
-
-  &__line {
-    height: 4px;
-    flex: 1 1 auto;
-    background: lighten($ui-base-color, 4%);
-  }
-
-  &__step {
-    flex: 0 0 auto;
-    width: 30px;
-    height: 30px;
-    background: lighten($ui-base-color, 4%);
-    border-radius: 50%;
-    color: $primary-text-color;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      width: 15px;
-      height: auto;
-    }
-
-    &.active {
-      background: $valid-value-color;
-    }
-  }
-
-  &__step.active,
-  &__line.active {
-    background: $valid-value-color;
-    background-image: linear-gradient(
-      90deg,
-      $valid-value-color,
-      lighten($valid-value-color, 8%),
-      $valid-value-color
-    );
-    background-size: 200px 100%;
-    animation: skeleton 1.2s ease-in-out infinite;
-  }
-}
-
 .follow-recommendations {
   background: darken($ui-base-color, 4%);
   border-radius: 8px;
@@ -2867,6 +2815,28 @@ $ui-header-height: 55px;
 
     &:focus {
       outline: 0;
+    }
+  }
+}
+
+.onboarding__profile {
+  position: relative;
+  margin-bottom: 40px + 20px;
+
+  .app-form__avatar-input {
+    border: 2px solid $ui-base-color;
+    position: absolute;
+    inset-inline-start: -2px;
+    bottom: -40px;
+    z-index: 2;
+  }
+
+  .app-form__header-input {
+    margin: 0 -20px;
+    border-radius: 0;
+
+    img {
+      border-radius: 0;
     }
   }
 }
@@ -3145,6 +3115,7 @@ $ui-header-height: 55px;
   cursor: pointer;
   background-color: transparent;
   border: 0;
+  border-radius: 10px;
   padding: 0;
   user-select: none;
   -webkit-tap-highlight-color: rgba($base-overlay-background, 0);
@@ -3169,81 +3140,41 @@ $ui-header-height: 55px;
 }
 
 .react-toggle-track {
-  width: 50px;
-  height: 24px;
+  width: 32px;
+  height: 20px;
   padding: 0;
-  border-radius: 30px;
-  background-color: $ui-base-color;
-  transition: background-color 0.2s ease;
+  border-radius: 10px;
+  background-color: #626982;
 }
 
-.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled)
-  .react-toggle-track {
-  background-color: darken($ui-base-color, 10%);
+.react-toggle--focus {
+  outline: $ui-button-focus-outline;
 }
 
 .react-toggle--checked .react-toggle-track {
-  background-color: darken($ui-highlight-color, 2%);
-}
-
-.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled)
-  .react-toggle-track {
   background-color: $ui-highlight-color;
 }
 
-.react-toggle-track-check {
-  position: absolute;
-  width: 14px;
-  height: 10px;
-  top: 0;
-  bottom: 0;
-  margin-top: auto;
-  margin-bottom: auto;
-  line-height: 0;
-  inset-inline-start: 8px;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.react-toggle--checked .react-toggle-track-check {
-  opacity: 1;
-  transition: opacity 0.25s ease;
-}
-
+.react-toggle-track-check,
 .react-toggle-track-x {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  top: 0;
-  bottom: 0;
-  margin-top: auto;
-  margin-bottom: auto;
-  line-height: 0;
-  inset-inline-end: 10px;
-  opacity: 1;
-  transition: opacity 0.25s ease;
-}
-
-.react-toggle--checked .react-toggle-track-x {
-  opacity: 0;
+  display: none;
 }
 
 .react-toggle-thumb {
   position: absolute;
-  top: 1px;
-  inset-inline-start: 1px;
-  width: 22px;
-  height: 22px;
-  border: 1px solid $ui-base-color;
+  top: 2px;
+  inset-inline-start: 2px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background-color: darken($simple-background-color, 2%);
+  background-color: $primary-text-color;
   box-sizing: border-box;
   transition: all 0.25s ease;
   transition-property: border-color, left;
 }
 
 .react-toggle--checked .react-toggle-thumb {
-  inset-inline-start: 27px;
+  inset-inline-start: 32px - 16px - 2px;
   border-color: $ui-highlight-color;
 }
 
@@ -4064,6 +3995,17 @@ a.status-card {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.button .loading-indicator {
+  position: static;
+  transform: none;
+
+  .circular-progress {
+    color: $primary-text-color;
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .circular-progress {
@@ -5799,12 +5741,14 @@ a.status-card {
   &__toggle {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
+    gap: 8px;
 
     & > span {
-      font-size: 17px;
+      display: block;
+      font-size: 14px;
       font-weight: 500;
-      margin-inline-start: 10px;
+      line-height: 20px;
     }
   }
 
