@@ -106,7 +106,6 @@ export function fetchAccount(id) {
 
     api(getState).get(`/api/v1/accounts/${id}`).then(response => {
       dispatch(importFetchedAccount(response.data));
-    }).then(() => {
       dispatch(fetchAccountSuccess());
     }).catch(error => {
       dispatch(fetchAccountFail(id, error));

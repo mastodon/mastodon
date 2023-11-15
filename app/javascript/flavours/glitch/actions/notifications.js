@@ -65,7 +65,7 @@ defineMessages({
 const fetchRelatedRelationships = (dispatch, notifications) => {
   const accountIds = notifications.filter(item => ['follow', 'follow_request', 'admin.sign_up'].indexOf(item.type) !== -1).map(item => item.account.id);
 
-  if (accountIds > 0) {
+  if (accountIds.length > 0) {
     dispatch(fetchRelationships(accountIds));
   }
 };
@@ -131,6 +131,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
       const body  = (notification.status && notification.status.spoiler_text.length > 0) ? notification.status.spoiler_text : unescapeHTML(notification.status ? notification.status.content : '');
 
       const notify = new Notification(title, { body, icon: notification.account.avatar, tag: notification.id });
+
       notify.addEventListener('click', () => {
         window.focus();
         notify.close();
@@ -140,7 +141,6 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 }
 
 const excludeTypesFromSettings = state => state.getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
-
 
 const excludeTypesFromFilter = filter => {
   const allTypes = ImmutableList([

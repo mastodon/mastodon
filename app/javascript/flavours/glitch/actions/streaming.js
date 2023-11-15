@@ -67,8 +67,8 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
 
         // @ts-expect-error
         if (pollingId) {
-          clearTimeout(pollingId);
-          pollingId = null;
+          // @ts-ignore
+          clearTimeout(pollingId); pollingId = null;
         }
 
         if (options.fillGaps) {
@@ -85,8 +85,8 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
         }
       },
 
-      onReceive (data) {
-        switch(data.event) {
+      onReceive(data) {
+        switch (data.event) {
         case 'update':
           // @ts-expect-error
           dispatch(updateTimeline(timelineId, JSON.parse(data.payload), options.accept));
