@@ -20,7 +20,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   private
 
   def active_session
-    @active_session || current_session
+    @active_session ||= current_session
   end
 
   def destroy_previous_subscriptions
