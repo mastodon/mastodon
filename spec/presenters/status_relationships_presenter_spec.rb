@@ -82,18 +82,30 @@ RSpec.describe StatusRelationshipsPresenter do
 
       it 'sets @filters_map to filter top-level status' do
         matched_filters = presenter.filters_map[statuses[0].id]
-        expect(matched_filters.size).to eq 1
 
-        expect(matched_filters[0].filter.title).to eq 'filter1'
-        expect(matched_filters[0].keyword_matches).to eq ['banned']
+        expect(matched_filters)
+          .to be_an(Array)
+          .and have_attributes(size: 1)
+          .and contain_exactly(
+            have_attributes(
+              filter: have_attributes(title: 'filter1'),
+              keyword_matches: include('banned')
+            )
+          )
       end
 
       it 'sets @filters_map to filter reblogged status' do
         matched_filters = presenter.filters_map[statuses[1].reblog_of_id]
-        expect(matched_filters.size).to eq 1
 
-        expect(matched_filters[0].filter.title).to eq 'filter1'
-        expect(matched_filters[0].keyword_matches).to eq ['irrelevant']
+        expect(matched_filters)
+          .to be_an(Array)
+          .and have_attributes(size: 1)
+          .and contain_exactly(
+            have_attributes(
+              filter: have_attributes(title: 'filter1'),
+              keyword_matches: include('irrelevant')
+            )
+          )
       end
     end
 
@@ -109,18 +121,30 @@ RSpec.describe StatusRelationshipsPresenter do
 
       it 'sets @filters_map to filter top-level status' do
         matched_filters = presenter.filters_map[statuses[0].id]
-        expect(matched_filters.size).to eq 1
 
-        expect(matched_filters[0].filter.title).to eq 'filter1'
-        expect(matched_filters[0].status_matches).to eq [statuses[0].id]
+        expect(matched_filters)
+          .to be_an(Array)
+          .and have_attributes(size: 1)
+          .and contain_exactly(
+            have_attributes(
+              filter: have_attributes(title: 'filter1'),
+              status_matches: include(statuses.first.id)
+            )
+          )
       end
 
       it 'sets @filters_map to filter reblogged status' do
         matched_filters = presenter.filters_map[statuses[1].reblog_of_id]
-        expect(matched_filters.size).to eq 1
 
-        expect(matched_filters[0].filter.title).to eq 'filter1'
-        expect(matched_filters[0].status_matches).to eq [statuses[1].reblog_of_id]
+        expect(matched_filters)
+          .to be_an(Array)
+          .and have_attributes(size: 1)
+          .and contain_exactly(
+            have_attributes(
+              filter: have_attributes(title: 'filter1'),
+              status_matches: include(statuses.second.reblog_of_id)
+            )
+          )
       end
     end
   end
