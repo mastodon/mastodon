@@ -28,7 +28,6 @@ class ReplyIndicator extends ImmutablePureComponent {
     }
   };
 
-  //  Rendering.
   render () {
     const { status, intl } = this.props;
 
@@ -40,7 +39,6 @@ class ReplyIndicator extends ImmutablePureComponent {
     const content     = status.get('content');
     const attachments = status.get('media_attachments');
 
-    //  The result.
     return (
       <article className='reply-indicator'>
         <header className='reply-indicator__header'>

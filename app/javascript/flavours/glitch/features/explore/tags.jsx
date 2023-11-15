@@ -14,8 +14,6 @@ import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag'
 import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
-
-
 const mapStateToProps = state => ({
   hashtags: state.getIn(['trends', 'tags', 'items']),
   isLoadingHashtags: state.getIn(['trends', 'tags', 'isLoading']),

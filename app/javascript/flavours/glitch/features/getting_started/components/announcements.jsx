@@ -14,7 +14,7 @@ import spring from 'react-motion/lib/spring';
 import ReactSwipeableViews from 'react-swipeable-views';
 
 import { AnimatedNumber } from 'flavours/glitch/components/animated_number';
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon }  from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import EmojiPickerDropdown from 'flavours/glitch/features/compose/containers/emoji_picker_dropdown_container';
 import { unicodeMapping } from 'flavours/glitch/features/emoji/emoji_unicode_mapping_light';

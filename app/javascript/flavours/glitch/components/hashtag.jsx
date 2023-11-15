@@ -25,11 +25,11 @@ class SilentErrorBoundary extends Component {
     error: false,
   };
 
-  componentDidCatch () {
+  componentDidCatch() {
     this.setState({ error: true });
   }
 
-  render () {
+  render() {
     if (this.state.error) {
       return null;
     }
