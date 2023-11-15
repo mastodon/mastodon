@@ -1,12 +1,13 @@
 import { fromJS, Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
+import { DOMAIN_BLOCK_SUCCESS } from 'flavours/glitch/actions/domain_blocks';
+
 import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
   FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
   FOLLOW_REQUEST_REJECT_SUCCESS,
 } from '../actions/accounts';
-import { DOMAIN_BLOCK_SUCCESS } from '../actions/domain_blocks';
 import {
   MARKERS_FETCH_SUCCESS,
 } from '../actions/markers';
