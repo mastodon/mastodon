@@ -19,7 +19,6 @@ interface SilentErrorBoundaryProps {
 }
 
 class SilentErrorBoundary extends Component<SilentErrorBoundaryProps> {
-
   static propTypes = {
     children: PropTypes.node,
   };
@@ -39,13 +38,18 @@ class SilentErrorBoundary extends Component<SilentErrorBoundaryProps> {
 
     return this.props.children;
   }
-
 }
 
 /**
  * Used to render counter of how much people are talking about hashtag
+ * @param displayNumber Counter number to display
+ * @param pluralReady Whether the count is plural
+ * @returns Formatted counter of how much people are talking about hashtag
  */
-export const accountsCountRenderer = (displayNumber: JSX.Element, pluralReady: number) => (
+export const accountsCountRenderer = (
+  displayNumber: JSX.Element,
+  pluralReady: number,
+) => (
   <FormattedMessage
     id='trends.counter_by_accounts'
     defaultMessage='{count, plural, one {{counter} person} other {{counter} people}} in the past {days, plural, one {day} other {# days}}'
@@ -65,9 +69,19 @@ export const ImmutableHashtag = ({ hashtag }: ImmutableHashtagProps) => (
   <Hashtag
     name={hashtag.get('name') as string}
     to={`/tags/${hashtag.get('name') as string}`}
-    people={hashtag.getIn(['history', 0, 'accounts']) as number * 1 + (hashtag.getIn(['history', 1, 'accounts']) as number) * 1}
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    history={((hashtag.get('history') as Immutable.Collection.Indexed<Immutable.Map<string, number>>).reverse().map((day) => day.get('uses')!)).toArray()}
+    people={
+      (hashtag.getIn(['history', 0, 'accounts']) as number) * 1 +
+      (hashtag.getIn(['history', 1, 'accounts']) as number) * 1
+    }
+    history={(
+      hashtag.get('history') as Immutable.Collection.Indexed<
+        Immutable.Map<string, number>
+      >
+    )
+      .reverse()
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      .map((day) => day.get('uses')!)
+      .toArray()}
   />
 );
 
@@ -82,17 +96,34 @@ interface HashtagProps {
   withGraph: string;
 }
 
-const Hashtag = ({ name, to, people, uses, history, className, description, withGraph }: HashtagProps) => (
+const Hashtag = ({
+  name,
+  to,
+  people,
+  uses,
+  history,
+  className,
+  description,
+  withGraph,
+}: HashtagProps) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
       <Link to={to}>
-        {name ? <>#<span>{name}</span></> : <Skeleton width={50} />}
+        {name ? (
+          <>
+            #<span>{name}</span>
+          </>
+        ) : (
+          <Skeleton width={50} />
+        )}
       </Link>
 
       {description ? (
         <span>{description}</span>
+      ) : typeof people !== 'undefined' ? (
+        <ShortNumber value={people} renderer={accountsCountRenderer} />
       ) : (
-        typeof people !== 'undefined' ? <ShortNumber value={people} renderer={accountsCountRenderer} /> : <Skeleton width={100} />
+        <Skeleton width={100} />
       )}
     </div>
 
@@ -105,7 +136,11 @@ const Hashtag = ({ name, to, people, uses, history, className, description, with
     {withGraph && (
       <div className='trends__item__sparkline'>
         <SilentErrorBoundary>
-          <Sparklines width={50} height={28} data={history ? history : Array.from(Array(7)).map(() => 0)}>
+          <Sparklines
+            width={50}
+            height={28}
+            data={history ? history : Array.from(Array(7)).map(() => 0)}
+          >
             <SparklinesCurve style={{ fill: 'none' }} />
           </Sparklines>
         </SilentErrorBoundary>
