@@ -697,12 +697,14 @@
   &__toggle {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
+    gap: 8px;
 
     & > span {
-      font-size: 17px;
+      display: block;
+      font-size: 14px;
       font-weight: 500;
-      margin-inline-start: 10px;
+      line-height: 20px;
     }
   }
 
