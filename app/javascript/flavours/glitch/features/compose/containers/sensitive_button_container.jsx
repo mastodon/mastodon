@@ -62,8 +62,6 @@ class SensitiveButton extends PureComponent {
             disabled={disabled}
           />
 
-          <span className={classNames('checkbox', { active })} />
-
           <FormattedMessage
             id='compose_form.sensitive.hide'
             defaultMessage='{count, plural, one {Mark media as sensitive} other {Mark media as sensitive}}'
