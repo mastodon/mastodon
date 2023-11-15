@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { PureComponent } from 'react';
 
 import classNames from 'classnames';
 
@@ -33,7 +33,7 @@ interface States {
   activate: boolean;
   deactivate: boolean;
 }
-export class IconButton extends React.PureComponent<Props, States> {
+export class IconButton extends PureComponent<Props, States> {
   static defaultProps = {
     size: 18,
     active: false,

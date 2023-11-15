@@ -1,5 +1,4 @@
-import { useRef, useEffect } from 'react';
-import * as React from 'react';
+import { memo, useRef, useEffect } from 'react';
 
 import { decode } from 'blurhash';
 
@@ -44,6 +43,6 @@ const Blurhash: React.FC<Props> = ({
   );
 };
 
-const MemoizedBlurhash = React.memo(Blurhash);
+const MemoizedBlurhash = memo(Blurhash);
 
 export { MemoizedBlurhash as Blurhash };
