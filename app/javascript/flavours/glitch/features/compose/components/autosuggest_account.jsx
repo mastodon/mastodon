@@ -14,8 +14,8 @@ export default class AutosuggestAccount extends ImmutablePureComponent {
     const { account } = this.props;
 
     return (
-      <div className='account small' title={account.get('acct')}>
-        <div className='account__avatar-wrapper'><Avatar account={account} size={24} /></div>
+      <div className='autosuggest-account' title={account.get('acct')}>
+        <div className='autosuggest-account-icon'><Avatar account={account} size={24} /></div>
         <DisplayName account={account} inline />
       </div>
     );

@@ -28,7 +28,7 @@ export default class AutosuggestEmoji extends PureComponent {
     }
 
     return (
-      <div className='emoji'>
+      <div className='autosuggest-emoji'>
         <img
           className='emojione'
           src={url}

@@ -308,9 +308,9 @@
     background: darken($ui-secondary-color, 10%);
   }
 
-  > .account,
-  > .emoji,
-  > .autosuggest-hashtag {
+  .autosuggest-account,
+  .autosuggest-emoji,
+  .autosuggest-hashtag {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -342,12 +342,13 @@
     }
   }
 
-  & > .account.small {
-    .display-name {
-      & > span {
-        color: $lighter-text-color;
-      }
-    }
+  .autosuggest-account-icon,
+  .autosuggest-emoji img {
+    margin-inline-end: 8px;
+  }
+
+  .autosuggest-account .display-name > span {
+    color: $lighter-text-color;
   }
 }
 
