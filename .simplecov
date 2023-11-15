@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if ENV['CI']
   require 'simplecov-lcov'
   SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
