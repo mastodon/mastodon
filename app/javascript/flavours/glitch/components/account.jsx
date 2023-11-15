@@ -6,14 +6,14 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Skeleton } from 'flavours/glitch/components/skeleton';
-import { me } from 'flavours/glitch/initial_state';
+
+import { me } from '../initial_state';
 
 import { Avatar } from './avatar';
 import { DisplayName } from './display_name';
 import { IconButton } from './icon_button';
 import Permalink from './permalink';
 import { RelativeTimestamp } from './relative_timestamp';
-
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
