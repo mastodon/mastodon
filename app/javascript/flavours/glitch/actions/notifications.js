@@ -21,10 +21,7 @@ import { submitMarkers } from './markers';
 import { register as registerPushNotifications } from './push_notifications';
 import { saveSettings } from './settings';
 
-
-
-
-export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
+export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 
 // tracking the notif cleaning request

@@ -3,7 +3,7 @@ import { Component } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon }  from 'flavours/glitch/components/icon';
 
 export default class ClearColumnButton extends Component {
 

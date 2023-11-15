@@ -11,7 +11,6 @@ import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp
 import { ShortNumber } from 'flavours/glitch/components/short_number';
 import { Skeleton } from 'flavours/glitch/components/skeleton';
 
-
 export default class Story extends PureComponent {
 
   static propTypes = {

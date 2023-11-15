@@ -22,13 +22,13 @@ export default class TextIconButton extends PureComponent {
 
     return (
       <button
+        type='button'
         title={title}
         aria-label={title}
         className={`text-icon-button ${active ? 'active' : ''}`}
         aria-expanded={active}
         onClick={this.props.onClick}
-        aria-controls={ariaControls}
-        style={iconStyle}
+        aria-controls={ariaControls} style={iconStyle}
       >
         {label}
       </button>

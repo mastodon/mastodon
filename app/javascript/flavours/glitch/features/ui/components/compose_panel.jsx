@@ -11,7 +11,6 @@ import SearchContainer from 'flavours/glitch/features/compose/containers/search_
 
 import LinkFooter from './link_footer';
 
-
 class ComposePanel extends PureComponent {
 
   static contextTypes = {
