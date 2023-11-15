@@ -11,6 +11,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { AnimatedNumber } from 'flavours/glitch/components/animated_number';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import EditedTimestamp from 'flavours/glitch/components/edited_timestamp';
+import { getHashtagBarForStatus } from 'flavours/glitch/components/hashtag_bar';
 import { Icon } from 'flavours/glitch/components/icon';
 import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
 import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
@@ -303,6 +304,9 @@ class DetailedStatus extends ImmutablePureComponent {
       );
     }
 
+    const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
+    contentMedia.push(hashtagBar);
+
     return (
       <div style={outerStyle}>
         <div ref={this.setRef} className={classNames('detailed-status', `detailed-status-${status.get('visibility')}`, { compact })} data-status-by={status.getIn(['account', 'acct'])}>
@@ -325,6 +329,7 @@ class DetailedStatus extends ImmutablePureComponent {
             tagLinks={settings.get('tag_misleading_links')}
             rewriteMentions={settings.get('rewrite_mentions')}
             disabled
+            {...statusContentProps}
           />
 
           <div className='detailed-status__meta'>
