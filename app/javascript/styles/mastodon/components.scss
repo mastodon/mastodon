@@ -286,6 +286,17 @@
     font-size: 12px;
     font-weight: 500;
   }
+
+  &.copyable {
+    transition: all 300ms linear;
+  }
+
+  &.copied {
+    border-color: $valid-value-color;
+    color: $valid-value-color;
+    transition: none;
+    background-color: rgba($valid-value-color, 0.15);
+  }
 }
 
 .text-icon-button {
@@ -7372,6 +7383,16 @@ noscript {
         .icon {
           width: 24px;
           height: 24px;
+        }
+
+        &.copied {
+          border-color: $valid-value-color;
+        }
+      }
+
+      @media screen and (width <= 427px) {
+        .optional {
+          display: none;
         }
       }
     }
