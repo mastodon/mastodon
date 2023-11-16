@@ -7289,6 +7289,7 @@ noscript {
 
 .account__header {
   overflow: hidden;
+  container: account-header / inline-size;
 
   &.inactive {
     opacity: 0.5;
@@ -7390,7 +7391,7 @@ noscript {
         }
       }
 
-      @media screen and (width <= 427px) {
+      @container account-header (max-width: 372px) {
         .optional {
           display: none;
         }
