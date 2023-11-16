@@ -23,8 +23,9 @@ describe Admin::AnnouncementsController do
     it 'returns http success and renders new' do
       get :new
 
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:new)
+      expect(response)
+        .to have_http_status(:success)
+        .and render_template(:new)
     end
   end
 
@@ -34,8 +35,9 @@ describe Admin::AnnouncementsController do
     it 'returns http success and renders edit' do
       get :edit, params: { id: announcement.id }
 
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:edit)
+      expect(response)
+        .to have_http_status(:success)
+        .and render_template(:edit)
     end
   end
 
