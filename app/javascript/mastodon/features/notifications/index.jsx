@@ -31,7 +31,7 @@ import {
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import { LoadGap } from '../../components/load_gap';
-import ScrollableList from '../../components/scrollable_list';
+import { ScrollableList } from '../../components/scrollable_list';
 
 import NotificationsPermissionBanner from './components/notifications_permission_banner';
 import ColumnSettingsContainer from './containers/column_settings_container';

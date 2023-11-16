@@ -5,7 +5,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { debounce } from 'lodash';
 
-import ScrollableList from '../../../components/scrollable_list';
+import { ScrollableList } from '../../../components/scrollable_list';
 import ConversationContainer from '../containers/conversation_container';
 
 export default class ConversationsList extends ImmutablePureComponent {

@@ -10,7 +10,7 @@ import RegenerationIndicator from 'mastodon/components/regeneration_indicator';
 import StatusContainer from '../containers/status_container';
 
 import { LoadGap } from './load_gap';
-import ScrollableList from './scrollable_list';
+import { ScrollableList } from './scrollable_list';
 
 export default class StatusList extends ImmutablePureComponent {
 

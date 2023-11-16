@@ -11,7 +11,7 @@ import { debounce } from 'lodash';
 
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
 import { LoadingIndicator } from '../../components/loading_indicator';
-import ScrollableList from '../../components/scrollable_list';
+import { ScrollableList } from '../../components/scrollable_list';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 

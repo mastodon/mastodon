@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 
 import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
 import { LoadingIndicator } from '../../components/loading_indicator';
-import ScrollableList from '../../components/scrollable_list';
+import { ScrollableList } from '../../components/scrollable_list';
 import DomainContainer from '../../containers/domain_container';
 import Column from '../ui/components/column';
 
