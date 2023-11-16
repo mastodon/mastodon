@@ -44,12 +44,14 @@ describe Admin::Users::RolesController do
       let(:permissions) { UserRole::FLAGS[:manage_roles] }
       let(:position) { 1 }
 
-      it 'updates user role' do
-        expect(user.reload.role_id).to eq selected_role&.id
-      end
+      it 'updates user role and redirects back to account page' do
+        expect(user.reload)
+          .to have_attributes(
+            role_id: eq(selected_role&.id)
+          )
 
-      it 'redirects back to account page' do
-        expect(response).to redirect_to(admin_account_path(user.account_id))
+        expect(response)
+          .to redirect_to(admin_account_path(user.account_id))
       end
     end
 
@@ -58,11 +60,14 @@ describe Admin::Users::RolesController do
       let(:position) { 100 }
 
       it 'does not update user role' do
-        expect(user.reload.role_id).to eq previous_role&.id
-      end
+        expect(user.reload)
+          .to have_attributes(
+            role_id: eq(previous_role&.id)
+          )
 
-      it 'renders edit form' do
-        expect(response).to render_template(:show)
+        expect(response)
+          .to have_http_status(200)
+          .and render_template(:show)
       end
     end
 
@@ -71,12 +76,14 @@ describe Admin::Users::RolesController do
       let(:permissions) { UserRole::FLAGS[:manage_roles] }
       let(:position) { 1 }
 
-      it 'does not update user role' do
-        expect(user.reload.role_id).to eq previous_role&.id
-      end
+      it 'does not update user role and return forbidden' do
+        expect(user.reload)
+          .to have_attributes(
+            role_id: eq(previous_role&.id)
+          )
 
-      it 'returns http forbidden' do
-        expect(response).to have_http_status(403)
+        expect(response)
+          .to have_http_status(403)
       end
     end
   end
