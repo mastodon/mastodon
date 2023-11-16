@@ -15,7 +15,9 @@ describe Admin::IpBlocksController do
     it 'returns http success' do
       get :index
 
-      expect(response).to have_http_status(:success)
+      expect(response)
+        .to have_http_status(:success)
+        .and render_template(:index)
     end
   end
 
@@ -23,8 +25,9 @@ describe Admin::IpBlocksController do
     it 'returns http success and renders view' do
       get :new
 
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:new)
+      expect(response)
+        .to have_http_status(:success)
+        .and render_template(:new)
     end
   end
 
@@ -35,7 +38,9 @@ describe Admin::IpBlocksController do
           post :create, params: { ip_block: { ip: '1.1.1.1', severity: 'no_access', expires_in: 1.day.to_i.to_s } }
         end.to change(IpBlock, :count).by(1)
 
-        expect(response).to redirect_to(admin_ip_blocks_path)
+        expect(response)
+          .to redirect_to(admin_ip_blocks_path)
+
         expect(flash.notice).to match(I18n.t('admin.ip_blocks.created_msg'))
       end
     end
@@ -46,8 +51,9 @@ describe Admin::IpBlocksController do
           post :create, params: { ip_block: { ip: '1.1.1.1' } }
         end.to_not change(IpBlock, :count)
 
-        expect(response).to have_http_status(:success)
-        expect(response).to render_template(:new)
+        expect(response)
+          .to have_http_status(:success)
+          .and render_template(:new)
       end
     end
   end
