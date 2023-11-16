@@ -26,11 +26,17 @@ RSpec.describe Admin::InstancesController do
     it 'renders instances' do
       get :index, params: { page: 2 }
 
-      instances = assigns(:instances).to_a
-      expect(instances.size).to eq 1
-      expect(instances[0].domain).to eq 'less.popular'
+      expect(assigns(:instances).to_a)
+        .to have_attributes(
+          size: 1,
+          first: have_attributes(
+            domain: eq('less.popular')
+          )
+        )
 
-      expect(response).to have_http_status(200)
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:index)
     end
   end
 
@@ -38,7 +44,9 @@ RSpec.describe Admin::InstancesController do
     it 'shows an instance page' do
       get :show, params: { id: account_popular_main.domain }
 
-      expect(response).to have_http_status(200)
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:show)
     end
   end
 
@@ -50,8 +58,11 @@ RSpec.describe Admin::InstancesController do
     it 'clears instance delivery errors' do
       post :clear_delivery_errors, params: { id: account_popular_main.domain }
 
-      expect(response).to redirect_to(admin_instance_path(account_popular_main.domain))
-      expect(tracker).to have_received(:clear_failures!)
+      expect(response)
+        .to redirect_to(admin_instance_path(account_popular_main.domain))
+
+      expect(tracker)
+        .to have_received(:clear_failures!)
     end
   end
 
@@ -66,8 +77,11 @@ RSpec.describe Admin::InstancesController do
       it 'tracks success on the instance' do
         post :restart_delivery, params: { id: account_popular_main.domain }
 
-        expect(response).to redirect_to(admin_instance_path(account_popular_main.domain))
-        expect(tracker).to have_received(:track_success!)
+        expect(response)
+          .to redirect_to(admin_instance_path(account_popular_main.domain))
+
+        expect(tracker)
+          .to have_received(:track_success!)
       end
     end
 
@@ -75,8 +89,11 @@ RSpec.describe Admin::InstancesController do
       it 'does not track success on the instance' do
         post :restart_delivery, params: { id: account_popular_main.domain }
 
-        expect(response).to redirect_to(admin_instance_path(account_popular_main.domain))
-        expect(tracker).to_not have_received(:track_success!)
+        expect(response)
+          .to redirect_to(admin_instance_path(account_popular_main.domain))
+
+        expect(tracker)
+          .to_not have_received(:track_success!)
       end
     end
   end
@@ -87,7 +104,8 @@ RSpec.describe Admin::InstancesController do
         post :stop_delivery, params: { id: account_popular_main.domain }
       end.to change(UnavailableDomain, :count).by(1)
 
-      expect(response).to redirect_to(admin_instance_path(account_popular_main.domain))
+      expect(response)
+        .to redirect_to(admin_instance_path(account_popular_main.domain))
     end
   end
 
@@ -101,7 +119,8 @@ RSpec.describe Admin::InstancesController do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
       it 'succeeds in purging instance' do
-        expect(subject).to redirect_to admin_instances_path
+        expect(subject)
+          .to redirect_to admin_instances_path
       end
     end
 
@@ -109,7 +128,8 @@ RSpec.describe Admin::InstancesController do
       let(:role) { nil }
 
       it 'fails to purge instance' do
-        expect(subject).to have_http_status 403
+        expect(subject)
+          .to have_http_status 403
       end
     end
   end
