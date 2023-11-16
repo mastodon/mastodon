@@ -19,8 +19,11 @@ RSpec.describe Admin::AccountModerationNotesController do
       let(:params) { { account_moderation_note: { target_account_id: target_account.id, content: 'test content' } } }
 
       it 'successfully creates a note' do
-        expect { subject }.to change(AccountModerationNote, :count).by(1)
-        expect(response).to redirect_to admin_account_path(target_account.id)
+        expect { subject }
+          .to change(AccountModerationNote, :count).by(1)
+
+        expect(response)
+          .to redirect_to admin_account_path(target_account.id)
       end
     end
 
@@ -28,8 +31,12 @@ RSpec.describe Admin::AccountModerationNotesController do
       let(:params) { { account_moderation_note: { target_account_id: target_account.id, content: '' } } }
 
       it 'falls to create a note' do
-        expect { subject }.to_not change(AccountModerationNote, :count)
-        expect(response).to render_template 'admin/accounts/show'
+        expect { subject }
+          .to_not change(AccountModerationNote, :count)
+
+        expect(response)
+          .to have_http_status(200)
+          .and render_template('admin/accounts/show')
       end
     end
   end
@@ -41,8 +48,11 @@ RSpec.describe Admin::AccountModerationNotesController do
     let(:account) { Fabricate(:account) }
 
     it 'destroys note' do
-      expect { subject }.to change(AccountModerationNote, :count).by(-1)
-      expect(response).to redirect_to admin_account_path(target_account.id)
+      expect { subject }
+        .to change(AccountModerationNote, :count).by(-1)
+
+      expect(response)
+        .to redirect_to admin_account_path(target_account.id)
     end
   end
 end
