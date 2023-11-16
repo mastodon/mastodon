@@ -12,12 +12,12 @@ RSpec.describe Admin::TagsController do
   describe 'GET #show' do
     let!(:tag) { Fabricate(:tag) }
 
-    before do
-      get :show, params: { id: tag.id }
-    end
-
     it 'returns status 200' do
-      expect(response).to have_http_status(200)
+      get :show, params: { id: tag.id }
+
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:show)
     end
   end
 
@@ -28,8 +28,11 @@ RSpec.describe Admin::TagsController do
       it 'updates the tag' do
         put :update, params: { id: tag.id, tag: { listable: '1' } }
 
-        expect(response).to redirect_to(admin_tag_path(tag.id))
-        expect(tag.reload).to be_listable
+        expect(response)
+          .to redirect_to(admin_tag_path(tag.id))
+
+        expect(tag.reload)
+          .to be_listable
       end
     end
 
@@ -37,8 +40,9 @@ RSpec.describe Admin::TagsController do
       it 'does not update the tag' do
         put :update, params: { id: tag.id, tag: { name: 'cant-change-name' } }
 
-        expect(response).to have_http_status(200)
-        expect(response).to render_template(:show)
+        expect(response)
+          .to have_http_status(200)
+          .and render_template(:show)
       end
     end
   end
