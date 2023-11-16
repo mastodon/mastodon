@@ -14,7 +14,7 @@ import { debounce } from 'lodash';
 import { Icon }  from 'mastodon/components/icon';
 
 import { fetchReblogs, expandReblogs } from '../../actions/interactions';
-import ColumnHeader from '../../components/column_header';
+import { ColumnHeader } from '../../components/column_header';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import AccountContainer from '../../containers/account_container';

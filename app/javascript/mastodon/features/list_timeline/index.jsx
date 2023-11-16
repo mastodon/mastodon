@@ -20,7 +20,7 @@ import { openModal } from 'mastodon/actions/modal';
 import { connectListStream } from 'mastodon/actions/streaming';
 import { expandListTimeline } from 'mastodon/actions/timelines';
 import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { ColumnHeader } from 'mastodon/components/column_header';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';

@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { debounce } from 'lodash';
 
-import ColumnHeader from '../../../components/column_header';
+import { ColumnHeader } from '../../../components/column_header';
 import { isMobile } from '../../../is_mobile';
 import { scrollTop } from '../../../scroll';
 

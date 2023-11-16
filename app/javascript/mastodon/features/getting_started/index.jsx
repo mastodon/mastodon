@@ -23,7 +23,7 @@ import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/ta
 
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { ColumnHeader } from 'mastodon/components/column_header';
 import LinkFooter from 'mastodon/features/ui/components/link_footer';
 
 import { me, showTrends } from '../../initial_state';

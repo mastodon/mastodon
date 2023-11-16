@@ -12,7 +12,7 @@ import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/ta
 import { debounce } from 'lodash';
 
 import { expandFollowedHashtags, fetchFollowedHashtags } from 'mastodon/actions/tags';
-import ColumnHeader from 'mastodon/components/column_header';
+import { ColumnHeader } from 'mastodon/components/column_header';
 import Hashtag from 'mastodon/components/hashtag';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import Column from 'mastodon/features/ui/components/column';

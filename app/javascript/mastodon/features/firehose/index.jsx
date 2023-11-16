@@ -17,7 +17,7 @@ import initialState, { domain } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
+import { ColumnHeader } from '../../components/column_header';
 import SettingToggle from '../notifications/components/setting_toggle';
 import StatusListContainer from '../ui/containers/status_list_container';
 

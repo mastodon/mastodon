@@ -22,7 +22,7 @@ import { me, criticalUpdatesPending } from 'mastodon/initial_state';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { expandHomeTimeline } from '../../actions/timelines';
 import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
+import { ColumnHeader } from '../../components/column_header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import { ColumnSettings } from './components/column_settings';

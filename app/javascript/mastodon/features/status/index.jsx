@@ -61,7 +61,7 @@ import {
   translateStatus,
   undoStatusTranslation,
 } from '../../actions/statuses';
-import ColumnHeader from '../../components/column_header';
+import { ColumnHeader } from '../../components/column_header';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import StatusContainer from '../../containers/status_container';
 import { boostModal, deleteModal } from '../../initial_state';

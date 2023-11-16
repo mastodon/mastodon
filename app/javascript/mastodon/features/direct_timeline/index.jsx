@@ -13,7 +13,7 @@ import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { mountConversations, unmountConversations, expandConversations } from 'mastodon/actions/conversations';
 import { connectDirectStream } from 'mastodon/actions/streaming';
 import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { ColumnHeader } from 'mastodon/components/column_header';
 
 import ConversationsListContainer from './containers/conversations_list_container';
 

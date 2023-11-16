@@ -1,5 +1,5 @@
 import Column from '../../../components/column';
-import ColumnHeader from '../../../components/column_header';
+import { ColumnHeader } from '../../../components/column_header';
 
 interface Props {
   multiColumn?: boolean;

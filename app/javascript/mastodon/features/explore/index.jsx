@@ -12,7 +12,7 @@ import { ReactComponent as SearchIcon } from '@material-symbols/svg-600/outlined
 import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
 
 import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { ColumnHeader } from 'mastodon/components/column_header';
 import Search from 'mastodon/features/compose/containers/search_container';
 import { trendsEnabled } from 'mastodon/initial_state';
 

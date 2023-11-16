@@ -29,7 +29,7 @@ import {
   markNotificationsAsRead,
 } from '../../actions/notifications';
 import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
+import { ColumnHeader } from '../../components/column_header';
 import { LoadGap } from '../../components/load_gap';
 import ScrollableList from '../../components/scrollable_list';
 

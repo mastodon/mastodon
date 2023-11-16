@@ -16,7 +16,7 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { connectCommunityStream } from '../../actions/streaming';
 import { expandCommunityTimeline } from '../../actions/timelines';
 import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
+import { ColumnHeader } from '../../components/column_header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import ColumnSettingsContainer from './containers/column_settings_container';

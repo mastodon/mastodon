@@ -9,7 +9,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { ReactComponent as InfoIcon } from '@material-symbols/svg-600/outlined/info.svg';
 
 import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { ColumnHeader } from 'mastodon/components/column_header';
 
 const messages = defineMessages({
   heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },

@@ -12,7 +12,7 @@ import { ReactComponent as RefreshIcon } from '@material-symbols/svg-600/outline
 import { debounce } from 'lodash';
 
 import { fetchFavourites, expandFavourites } from 'mastodon/actions/interactions';
-import ColumnHeader from 'mastodon/components/column_header';
+import { ColumnHeader } from 'mastodon/components/column_header';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollableList from 'mastodon/components/scrollable_list';

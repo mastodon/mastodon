@@ -16,7 +16,7 @@ import { connectHashtagStream } from 'mastodon/actions/streaming';
 import { fetchHashtag, followHashtag, unfollowHashtag } from 'mastodon/actions/tags';
 import { expandHashtagTimeline, clearTimeline } from 'mastodon/actions/timelines';
 import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { ColumnHeader } from 'mastodon/components/column_header';
 
 import StatusListContainer from '../ui/containers/status_list_container';
 

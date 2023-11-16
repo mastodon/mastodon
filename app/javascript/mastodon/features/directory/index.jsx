@@ -14,7 +14,7 @@ import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'mastodon/actions/columns';
 import { fetchDirectory, expandDirectory } from 'mastodon/actions/directory';
 import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { ColumnHeader } from 'mastodon/components/column_header';
 import { LoadMore } from 'mastodon/components/load_more';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';

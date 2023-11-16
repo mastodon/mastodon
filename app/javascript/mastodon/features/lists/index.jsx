@@ -13,7 +13,7 @@ import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outline
 
 import { fetchLists } from 'mastodon/actions/lists';
 import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { ColumnHeader } from 'mastodon/components/column_header';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import ColumnLink from 'mastodon/features/ui/components/column_link';
