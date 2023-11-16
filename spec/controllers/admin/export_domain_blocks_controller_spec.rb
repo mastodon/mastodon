@@ -13,7 +13,9 @@ RSpec.describe Admin::ExportDomainBlocksController do
     it 'returns http success' do
       get :new
 
-      expect(response).to have_http_status(200)
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:new)
     end
   end
 
@@ -25,8 +27,12 @@ RSpec.describe Admin::ExportDomainBlocksController do
       Fabricate(:domain_block, domain: 'no.op', severity: 'noop', public_comment: 'noop')
 
       get :export, params: { format: :csv }
-      expect(response).to have_http_status(200)
-      expect(response.body).to eq(File.read(File.join(file_fixture_path, 'domain_blocks.csv')))
+
+      expect(response)
+        .to have_http_status(200)
+        .and have_attributes(
+          body: eq(File.read(File.join(file_fixture_path, 'domain_blocks.csv')))
+        )
     end
   end
 
@@ -37,11 +43,15 @@ RSpec.describe Admin::ExportDomainBlocksController do
       end
 
       it 'renders page with expected domain blocks' do
-        expect(assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }).to contain_exactly(['bad.domain', :silence], ['worse.domain', :suspend], ['reject.media', :noop])
-      end
+        expect(assigns_domain_blocks_domain_and_severity)
+          .to contain_exactly(
+            ['bad.domain', :silence],
+            ['worse.domain', :suspend],
+            ['reject.media', :noop]
+          )
 
-      it 'returns http success' do
-        expect(response).to have_http_status(200)
+        expect(response)
+          .to have_http_status(200)
       end
     end
 
@@ -51,17 +61,30 @@ RSpec.describe Admin::ExportDomainBlocksController do
       end
 
       it 'renders page with expected domain blocks' do
-        expect(assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }).to contain_exactly(['bad.domain', :suspend], ['worse.domain', :suspend], ['reject.media', :suspend])
-      end
+        expect(assigns_domain_blocks_domain_and_severity)
+          .to contain_exactly(
+            ['bad.domain', :suspend],
+            ['worse.domain', :suspend],
+            ['reject.media', :suspend]
+          )
 
-      it 'returns http success' do
         expect(response).to have_http_status(200)
       end
+    end
+
+    private
+
+    def assigns_domain_blocks_domain_and_severity
+      assigns(:domain_blocks).map { |block| [block.domain, block.severity.to_sym] }
     end
   end
 
   it 'displays error on no file selected' do
     post :import, params: { admin_import: {} }
-    expect(flash[:alert]).to eq(I18n.t('admin.export_domain_blocks.no_file'))
+
+    expect(flash.to_h.symbolize_keys)
+      .to include(
+        alert: eq(I18n.t('admin.export_domain_blocks.no_file'))
+      )
   end
 end
