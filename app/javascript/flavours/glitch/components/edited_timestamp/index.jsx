@@ -6,7 +6,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { openModal } from 'flavours/glitch/actions/modal';
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon }  from 'flavours/glitch/components/icon';
 import InlineAccount from 'flavours/glitch/components/inline_account';
 import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
 

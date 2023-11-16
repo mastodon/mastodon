@@ -33,7 +33,7 @@ class Blocks extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     hasMore: PropTypes.bool,
-    domains: ImmutablePropTypes.list,
+    domains: ImmutablePropTypes.orderedSet,
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
   };
