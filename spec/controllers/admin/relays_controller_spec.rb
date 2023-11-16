@@ -15,7 +15,9 @@ describe Admin::RelaysController do
     it 'returns http success' do
       get :index
 
-      expect(response).to have_http_status(:success)
+      expect(response)
+        .to have_http_status(:success)
+        .and render_template(:index)
     end
   end
 
@@ -23,8 +25,9 @@ describe Admin::RelaysController do
     it 'returns http success and renders view' do
       get :new
 
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:new)
+      expect(response)
+        .to have_http_status(:success)
+        .and render_template(:new)
     end
   end
 
@@ -51,8 +54,9 @@ describe Admin::RelaysController do
           post :create, params: { relay: { inbox_url: 'invalid' } }
         end.to_not change(Relay, :count)
 
-        expect(response).to have_http_status(:success)
-        expect(response).to render_template(:new)
+        expect(response)
+          .to have_http_status(:success)
+          .and render_template(:new)
       end
     end
   end
