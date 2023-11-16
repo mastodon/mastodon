@@ -40,14 +40,19 @@ RSpec.describe Admin::AccountsController do
 
       get :index, params: { page: 2 }
 
-      accounts = assigns(:accounts)
-      expect(accounts.count).to eq 1
-      expect(accounts.klass).to be Account
+      expect(assigns(:accounts))
+        .to have_attributes(
+          count: 1,
+          klass: be(Account)
+        )
     end
 
     it 'returns http success' do
       get :index
-      expect(response).to have_http_status(200)
+
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:index)
     end
   end
 
@@ -57,7 +62,10 @@ RSpec.describe Admin::AccountsController do
 
     it 'returns http success' do
       get :show, params: { id: account.id }
-      expect(response).to have_http_status(200)
+
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:show)
     end
   end
 
@@ -159,16 +167,16 @@ RSpec.describe Admin::AccountsController do
       end
 
       it 'logs action' do
-        expect(subject).to have_http_status 302
+        expect(subject)
+          .to have_http_status(302)
 
-        log_item = Admin::ActionLog.last
-
-        expect(log_item).to_not be_nil
-        expect(log_item).to have_attributes(
-          action: :approve,
-          account_id: current_user.account_id,
-          target_id: account.user.id
-        )
+        expect(Admin::ActionLog.last)
+          .to be_present
+          .and have_attributes(
+            action: :approve,
+            account_id: current_user.account_id,
+            target_id: account.user.id
+          )
       end
     end
 
@@ -201,16 +209,16 @@ RSpec.describe Admin::AccountsController do
       end
 
       it 'logs action' do
-        expect(subject).to have_http_status 302
+        expect(subject)
+          .to have_http_status 302
 
-        log_item = Admin::ActionLog.last
-
-        expect(log_item).to_not be_nil
-        expect(log_item).to have_attributes(
-          action: :reject,
-          account_id: current_user.account_id,
-          target_id: account.user.id
-        )
+        expect(Admin::ActionLog.last)
+          .to be_present
+          .and have_attributes(
+            action: :reject,
+            account_id: current_user.account_id,
+            target_id: account.user.id
+          )
       end
     end
 
@@ -288,13 +296,12 @@ RSpec.describe Admin::AccountsController do
     context 'when user is admin' do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
-      it 'succeeds in removing email blocks' do
-        expect { subject }.to change { CanonicalEmailBlock.where(reference_account: account).count }.from(1).to(0)
-      end
+      it 'succeeds in removing email blocks and redirects to admin account path' do
+        expect { subject }
+          .to change { CanonicalEmailBlock.where(reference_account: account).count }.from(1).to(0)
 
-      it 'redirects to admin account path' do
-        subject
-        expect(response).to redirect_to admin_account_path(account.id)
+        expect(response)
+          .to redirect_to admin_account_path(account.id)
       end
     end
 
