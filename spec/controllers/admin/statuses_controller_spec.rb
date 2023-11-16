@@ -22,56 +22,52 @@ describe Admin::StatusesController do
 
   describe 'GET #index' do
     context 'with a valid account' do
-      before do
-        get :index, params: { account_id: account.id }
-      end
-
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        get :index, params: { account_id: account.id }
+
+        expect(response)
+          .to have_http_status(200)
+          .and render_template(:index)
       end
     end
 
     context 'when filtering by media' do
-      before do
-        get :index, params: { account_id: account.id, media: '1' }
-      end
-
       it 'returns http success' do
-        expect(response).to have_http_status(200)
+        get :index, params: { account_id: account.id, media: '1' }
+
+        expect(response)
+          .to have_http_status(200)
+          .and render_template(:index)
       end
     end
   end
 
   describe 'GET #show' do
-    before do
-      get :show, params: { account_id: account.id, id: status.id }
-    end
-
     it 'returns http success' do
-      expect(response).to have_http_status(200)
+      get :show, params: { account_id: account.id, id: status.id }
+
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:show)
     end
   end
 
   describe 'POST #batch' do
-    subject { post :batch, params: { :account_id => account.id, action => '', :admin_status_batch_action => { status_ids: status_ids } } }
-
     let(:status_ids) { [media_attached_status.id] }
 
     shared_examples 'when action is report' do
       let(:action) { 'report' }
 
-      it 'creates a report' do
-        subject
+      it 'creates a report and redirects to report page' do
+        post :batch, params: { :account_id => account.id, action => '', :admin_status_batch_action => { status_ids: status_ids } }
 
-        report = Report.last
-        expect(report.target_account_id).to eq account.id
-        expect(report.status_ids).to eq status_ids
-      end
+        expect(Report.last).to have_attributes(
+          target_account_id: account.id,
+          status_ids: status_ids
+        )
 
-      it 'redirects to report page' do
-        subject
-
-        expect(response).to redirect_to(admin_report_path(Report.last.id))
+        expect(response)
+          .to redirect_to(admin_report_path(Report.last.id))
       end
     end
 
