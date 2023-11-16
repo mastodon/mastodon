@@ -89,7 +89,7 @@ RSpec.describe StatusRelationshipsPresenter do
           .and contain_exactly(
             have_attributes(
               filter: have_attributes(title: 'filter1'),
-              keyword_matches: include('banned')
+              keyword_matches: contain_exactly('banned')
             )
           )
       end
@@ -103,7 +103,7 @@ RSpec.describe StatusRelationshipsPresenter do
           .and contain_exactly(
             have_attributes(
               filter: have_attributes(title: 'filter1'),
-              keyword_matches: include('irrelevant')
+              keyword_matches: contain_exactly('irrelevant')
             )
           )
       end
@@ -128,7 +128,7 @@ RSpec.describe StatusRelationshipsPresenter do
           .and contain_exactly(
             have_attributes(
               filter: have_attributes(title: 'filter1'),
-              status_matches: include(statuses.first.id)
+              status_matches: contain_exactly(statuses.first.id)
             )
           )
       end
@@ -142,7 +142,7 @@ RSpec.describe StatusRelationshipsPresenter do
           .and contain_exactly(
             have_attributes(
               filter: have_attributes(title: 'filter1'),
-              status_matches: include(statuses.second.reblog_of_id)
+              status_matches: contain_exactly(statuses.second.reblog_of_id)
             )
           )
       end
