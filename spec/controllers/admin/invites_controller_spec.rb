@@ -12,34 +12,45 @@ describe Admin::InvitesController do
   end
 
   describe 'GET #index' do
-    subject { get :index, params: { available: true } }
-
     let!(:invite) { Fabricate(:invite) }
 
     it 'renders index page' do
-      expect(subject).to render_template :index
-      expect(assigns(:invites)).to include invite
+      get :index, params: { available: true }
+
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:index)
+
+      expect(assigns(:invites))
+        .to include invite
     end
   end
 
   describe 'POST #create' do
-    subject { post :create, params: { invite: { max_uses: '10', expires_in: 1800 } } }
-
     it 'succeeds to create a invite' do
-      expect { subject }.to change(Invite, :count).by(1)
-      expect(subject).to redirect_to admin_invites_path
-      expect(Invite.last).to have_attributes(user_id: user.id, max_uses: 10)
+      expect do
+        post :create, params: { invite: { max_uses: '10', expires_in: 1800 } }
+      end.to change(Invite, :count).by(1)
+
+      expect(response)
+        .to redirect_to admin_invites_path
+
+      expect(Invite.last)
+        .to have_attributes(user_id: user.id, max_uses: 10)
     end
   end
 
   describe 'DELETE #destroy' do
-    subject { delete :destroy, params: { id: invite.id } }
-
     let!(:invite) { Fabricate(:invite, expires_at: nil) }
 
     it 'expires invite' do
-      expect(subject).to redirect_to admin_invites_path
-      expect(invite.reload).to be_expired
+      delete :destroy, params: { id: invite.id }
+
+      expect(response)
+        .to redirect_to admin_invites_path
+
+      expect(invite.reload)
+        .to be_expired
     end
   end
 
@@ -49,11 +60,11 @@ describe Admin::InvitesController do
 
       post :deactivate_all
 
-      invites.each do |invite|
-        expect(invite.reload).to be_expired
-      end
+      expect(invites.each(&:reload))
+        .to all(be_expired)
 
-      expect(response).to redirect_to admin_invites_path
+      expect(response)
+        .to redirect_to admin_invites_path
     end
   end
 end
