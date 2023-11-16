@@ -18,10 +18,14 @@ describe Admin::ReportsController do
 
       get :index
 
-      reports = assigns(:reports).to_a
-      expect(reports.size).to eq 1
-      expect(reports[0]).to eq specified
-      expect(response).to have_http_status(200)
+      expect(assigns(:reports).to_a).to have_attributes(
+        size: 1,
+        first: eq(specified)
+      )
+
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:index)
     end
 
     it 'returns http success with resolved filter' do
@@ -30,11 +34,14 @@ describe Admin::ReportsController do
 
       get :index, params: { resolved: '1' }
 
-      reports = assigns(:reports).to_a
-      expect(reports.size).to eq 1
-      expect(reports[0]).to eq specified
+      expect(assigns(:reports).to_a).to have_attributes(
+        size: 1,
+        first: eq(specified)
+      )
 
-      expect(response).to have_http_status(200)
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:index)
     end
   end
 
@@ -45,7 +52,10 @@ describe Admin::ReportsController do
       get :show, params: { id: report }
 
       expect(assigns(:report)).to eq report
-      expect(response).to have_http_status(200)
+
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:show)
     end
   end
 
@@ -54,10 +64,14 @@ describe Admin::ReportsController do
       report = Fabricate(:report)
 
       put :resolve, params: { id: report }
-      expect(response).to redirect_to(admin_reports_path)
-      report.reload
-      expect(report.action_taken_by_account).to eq user.account
-      expect(report.action_taken?).to be true
+
+      expect(response)
+        .to redirect_to(admin_reports_path)
+
+      expect(report.reload).to have_attributes(
+        action_taken_by_account: eq(user.account),
+        action_taken?: be(true)
+      )
     end
   end
 
@@ -66,10 +80,14 @@ describe Admin::ReportsController do
       report = Fabricate(:report)
 
       put :reopen, params: { id: report }
-      expect(response).to redirect_to(admin_report_path(report))
-      report.reload
-      expect(report.action_taken_by_account).to be_nil
-      expect(report.action_taken?).to be false
+
+      expect(response)
+        .to redirect_to(admin_report_path(report))
+
+      expect(report.reload).to have_attributes(
+        action_taken_by_account: be_nil,
+        action_taken?: be(false)
+      )
     end
   end
 
@@ -78,9 +96,10 @@ describe Admin::ReportsController do
       report = Fabricate(:report)
 
       put :assign_to_self, params: { id: report }
-      expect(response).to redirect_to(admin_report_path(report))
-      report.reload
-      expect(report.assigned_account).to eq user.account
+      expect(response)
+        .to redirect_to(admin_report_path(report))
+
+      expect(report.reload.assigned_account).to eq(user.account)
     end
   end
 
@@ -89,9 +108,11 @@ describe Admin::ReportsController do
       report = Fabricate(:report)
 
       put :unassign, params: { id: report }
-      expect(response).to redirect_to(admin_report_path(report))
-      report.reload
-      expect(report.assigned_account).to be_nil
+
+      expect(response)
+        .to redirect_to(admin_report_path(report))
+
+      expect(report.reload.assigned_account).to be_nil
     end
   end
 end
