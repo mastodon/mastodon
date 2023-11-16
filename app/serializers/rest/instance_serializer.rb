@@ -49,7 +49,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       },
 
       accounts: {
-        max_featured_tags: FeaturedTag::LIMIT,
+        max_featured_tags: Rails.configuration.x.mastodon.accounts[:max_featured_tags],
       },
 
       statuses: {
