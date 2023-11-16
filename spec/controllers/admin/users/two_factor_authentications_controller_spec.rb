@@ -21,9 +21,13 @@ describe Admin::Users::TwoFactorAuthenticationsController do
       it 'redirects to admin account page' do
         delete :destroy, params: { user_id: user.id }
 
-        user.reload
-        expect(user.otp_enabled?).to be false
-        expect(response).to redirect_to(admin_account_path(user.account_id))
+        expect(user.reload)
+          .to have_attributes(
+            otp_enabled?: false
+          )
+
+        expect(response)
+          .to redirect_to(admin_account_path(user.account_id))
       end
     end
 
@@ -44,10 +48,14 @@ describe Admin::Users::TwoFactorAuthenticationsController do
       it 'redirects to admin account page' do
         delete :destroy, params: { user_id: user.id }
 
-        user.reload
-        expect(user.otp_enabled?).to be false
-        expect(user.webauthn_enabled?).to be false
-        expect(response).to redirect_to(admin_account_path(user.account_id))
+        expect(user.reload)
+          .to have_attributes(
+            otp_enabled?: false,
+            webauthn_enabled?: false
+          )
+
+        expect(response)
+          .to redirect_to(admin_account_path(user.account_id))
       end
     end
   end
