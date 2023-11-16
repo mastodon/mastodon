@@ -19,8 +19,9 @@ describe Admin::CustomEmojisController do
     it 'renders index page' do
       get :index
 
-      expect(response).to have_http_status 200
-      expect(response).to render_template :index
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:index)
     end
   end
 
@@ -28,8 +29,9 @@ describe Admin::CustomEmojisController do
     it 'renders new page' do
       get :new
 
-      expect(response).to have_http_status 200
-      expect(response).to render_template :new
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:new)
     end
   end
 
@@ -50,7 +52,9 @@ describe Admin::CustomEmojisController do
       let(:params) { { shortcode: 't', image: image } }
 
       it 'renders new' do
-        expect(subject).to render_template :new
+        expect(subject)
+          .to have_http_status(200)
+          .and render_template(:new)
       end
     end
   end
