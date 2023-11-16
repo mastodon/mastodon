@@ -17,7 +17,9 @@ describe Admin::RelationshipsController do
     it 'returns http success' do
       get :index, params: { account_id: account.id }
 
-      expect(response).to have_http_status(:success)
+      expect(response)
+        .to have_http_status(:success)
+        .and render_template(:index)
     end
   end
 end
