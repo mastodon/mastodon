@@ -17,7 +17,9 @@ RSpec.describe Admin::ChangeEmailsController do
 
       get :show, params: { account_id: user.account.id }
 
-      expect(response).to have_http_status(200)
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:show)
     end
   end
 
@@ -34,9 +36,7 @@ RSpec.describe Admin::ChangeEmailsController do
 
       post :update, params: { account_id: user.account.id, user: { unconfirmed_email: 'test@example.com' } }
 
-      user.reload
-
-      expect(user).to have_attributes(
+      expect(user.reload).to have_attributes(
         email: previous_email,
         unconfirmed_email: 'test@example.com',
         confirmation_token: be_present
