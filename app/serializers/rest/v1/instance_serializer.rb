@@ -69,7 +69,7 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
       },
 
       media_attachments: {
-        supported_mime_types: MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES + MediaAttachment::AUDIO_MIME_TYPES,
+        supported_mime_types: MediaAttachment.supported_mime_types,
         image_size_limit: MediaAttachment::IMAGE_LIMIT,
         image_matrix_limit: Attachmentable::MAX_MATRIX_LIMIT,
         video_size_limit: MediaAttachment::VIDEO_LIMIT,
