@@ -18,7 +18,7 @@ describe InstanceHelper do
   end
 
   describe 'site_hostname' do
-    around(:each) do |example|
+    around do |example|
       before = Rails.configuration.x.local_domain
       example.run
       Rails.configuration.x.local_domain = before

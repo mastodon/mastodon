@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Children, cloneElement, PureComponent } from 'react';
 
 import classNames from 'classnames';
+import { useLocation } from 'react-router-dom';
 
 import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
@@ -34,11 +35,32 @@ const mapStateToProps = (state, { scrollKey }) => {
   };
 };
 
-class ScrollableList extends PureComponent {
+// This component only exists to be able to call useLocation()
+const IOArticleContainerWrapper = ({id, index, listLength, intersectionObserverWrapper, trackScroll, scrollKey, children}) => {
+  const location = useLocation();
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
+  return (<IntersectionObserverArticleContainer
+    id={id}
+    index={index}
+    listLength={listLength}
+    intersectionObserverWrapper={intersectionObserverWrapper}
+    saveHeightKey={trackScroll ? `${location.key}:${scrollKey}` : null}
+  >
+    {children}
+  </IntersectionObserverArticleContainer>);
+};
+
+IOArticleContainerWrapper.propTypes =  {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  listLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  scrollKey: PropTypes.string.isRequired,
+  intersectionObserverWrapper: PropTypes.object.isRequired,
+  trackScroll: PropTypes.bool.isRequired,
+  children: PropTypes.node,
+};
+
+class ScrollableList extends PureComponent {
 
   static propTypes = {
     scrollKey: PropTypes.string.isRequired,
@@ -78,7 +100,7 @@ class ScrollableList extends PureComponent {
       const clientHeight = this.getClientHeight();
       const offset = scrollHeight - scrollTop - clientHeight;
 
-      if (400 > offset && this.props.onLoadMore && this.props.hasMore && !this.props.isLoading) {
+      if (scrollTop > 0 && offset < 400 && this.props.onLoadMore && this.props.hasMore && !this.props.isLoading) {
         this.props.onLoadMore();
       }
 
@@ -331,13 +353,14 @@ class ScrollableList extends PureComponent {
             {loadPending}
 
             {Children.map(this.props.children, (child, index) => (
-              <IntersectionObserverArticleContainer
+              <IOArticleContainerWrapper
                 key={child.key}
                 id={child.key}
                 index={index}
                 listLength={childrenCount}
                 intersectionObserverWrapper={this.intersectionObserverWrapper}
-                saveHeightKey={trackScroll ? `${this.context.router.route.location.key}:${scrollKey}` : null}
+                trackScroll={trackScroll}
+                scrollKey={scrollKey}
               >
                 {cloneElement(child, {
                   getScrollPosition: this.getScrollPosition,
@@ -345,7 +368,7 @@ class ScrollableList extends PureComponent {
                   cachedMediaWidth: this.state.cachedMediaWidth,
                   cacheMediaWidth: this.cacheMediaWidth,
                 })}
-              </IntersectionObserverArticleContainer>
+              </IOArticleContainerWrapper>
             ))}
 
             {loadMore}

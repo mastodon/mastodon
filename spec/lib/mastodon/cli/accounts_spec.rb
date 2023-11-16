@@ -6,6 +6,24 @@ require 'mastodon/cli/accounts'
 describe Mastodon::CLI::Accounts do
   let(:cli) { described_class.new }
 
+  # `parallelize_with_progress` cannot run in transactions, so instead,
+  # stub it with an alternative implementation that runs sequentially
+  # and can run in transactions.
+  def stub_parallelize_with_progress!
+    allow(cli).to receive(:parallelize_with_progress) do |scope, &block|
+      aggregate = 0
+      total = 0
+
+      scope.reorder(nil).find_each do |record|
+        value = block.call(record)
+        aggregate += value if value.is_a?(Integer)
+        total += 1
+      end
+
+      [total, aggregate]
+    end
+  end
+
   describe '.exit_on_failure?' do
     it 'returns true' do
       expect(described_class.exit_on_failure?).to be true
@@ -551,20 +569,15 @@ describe Mastodon::CLI::Accounts do
       let!(:follower_rony)    { Fabricate(:account, username: 'rony') }
       let!(:follower_charles) { Fabricate(:account, username: 'charles') }
       let(:follow_service)    { instance_double(FollowService, call: nil) }
-      let(:scope)             { Account.local.without_suspended }
 
       before do
-        allow(cli).to receive(:parallelize_with_progress).and_yield(follower_bob)
-                                                         .and_yield(follower_rony)
-                                                         .and_yield(follower_charles)
-                                                         .and_return([3, nil])
         allow(FollowService).to receive(:new).and_return(follow_service)
+        stub_parallelize_with_progress!
       end
 
       it 'makes all local accounts follow the target account' do
         cli.follow(target_account.username)
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(follow_service).to have_received(:call).with(follower_bob, target_account, any_args).once
         expect(follow_service).to have_received(:call).with(follower_rony, target_account, any_args).once
         expect(follow_service).to have_received(:call).with(follower_charles, target_account, any_args).once
@@ -572,7 +585,7 @@ describe Mastodon::CLI::Accounts do
 
       it 'displays a successful message' do
         expect { cli.follow(target_account.username) }.to output(
-          a_string_including('OK, followed target from 3 accounts')
+          a_string_including("OK, followed target from #{Account.local.count} accounts")
         ).to_stdout
       end
     end
@@ -592,26 +605,21 @@ describe Mastodon::CLI::Accounts do
 
     context 'when the given username is found' do
       let!(:target_account)  { Fabricate(:account) }
-      let!(:follower_chris)  { Fabricate(:account, username: 'chris') }
-      let!(:follower_rambo)  { Fabricate(:account, username: 'rambo') }
-      let!(:follower_ana)    { Fabricate(:account, username: 'ana') }
+      let!(:follower_chris)  { Fabricate(:account, username: 'chris', domain: nil) }
+      let!(:follower_rambo)  { Fabricate(:account, username: 'rambo', domain: nil) }
+      let!(:follower_ana)    { Fabricate(:account, username: 'ana', domain: nil) }
       let(:unfollow_service) { instance_double(UnfollowService, call: nil) }
-      let(:scope)            { target_account.followers.local }
 
       before do
         accounts = [follower_chris, follower_rambo, follower_ana]
-        accounts.each { |account| target_account.follow!(account) }
-        allow(cli).to receive(:parallelize_with_progress).and_yield(follower_chris)
-                                                         .and_yield(follower_rambo)
-                                                         .and_yield(follower_ana)
-                                                         .and_return([3, nil])
+        accounts.each { |account| account.follow!(target_account) }
         allow(UnfollowService).to receive(:new).and_return(unfollow_service)
+        stub_parallelize_with_progress!
       end
 
       it 'makes all local accounts unfollow the target account' do
         cli.unfollow(target_account.username)
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(unfollow_service).to have_received(:call).with(follower_chris, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_rambo, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_ana, target_account).once
@@ -671,6 +679,8 @@ describe Mastodon::CLI::Accounts do
       let(:scope)                       { Account.remote }
 
       before do
+        # TODO: we should be using `stub_parallelize_with_progress!` but
+        # this makes the assertions harder to write
         allow(cli).to receive(:parallelize_with_progress).and_yield(remote_account_example_com)
                                                          .and_yield(account_example_net)
                                                          .and_return([2, nil])
@@ -1112,26 +1122,19 @@ describe Mastodon::CLI::Accounts do
 
   describe '#cull' do
     let(:delete_account_service) { instance_double(DeleteAccountService, call: nil) }
-    let!(:tom)                   { Fabricate(:account, updated_at: 30.days.ago, username: 'tom', uri: 'https://example.com/users/tom', domain: 'example.com') }
-    let!(:bob)                   { Fabricate(:account, updated_at: 30.days.ago, last_webfingered_at: nil, username: 'bob', uri: 'https://example.org/users/bob', domain: 'example.org') }
-    let!(:gon)                   { Fabricate(:account, updated_at: 15.days.ago, last_webfingered_at: 15.days.ago, username: 'gon', uri: 'https://example.net/users/gon', domain: 'example.net') }
-    let!(:ana)                   { Fabricate(:account, username: 'ana', uri: 'https://example.com/users/ana', domain: 'example.com') }
-    let!(:tales)                 { Fabricate(:account, updated_at: 10.days.ago, last_webfingered_at: nil, username: 'tales', uri: 'https://example.net/users/tales', domain: 'example.net') }
+    let!(:tom)   { Fabricate(:account, updated_at: 30.days.ago, username: 'tom', uri: 'https://example.com/users/tom', domain: 'example.com', protocol: :activitypub) }
+    let!(:bob)   { Fabricate(:account, updated_at: 30.days.ago, last_webfingered_at: nil, username: 'bob', uri: 'https://example.org/users/bob', domain: 'example.org', protocol: :activitypub) }
+    let!(:gon)   { Fabricate(:account, updated_at: 15.days.ago, last_webfingered_at: 15.days.ago, username: 'gon', uri: 'https://example.net/users/gon', domain: 'example.net', protocol: :activitypub) }
+    let!(:ana)   { Fabricate(:account, username: 'ana', uri: 'https://example.com/users/ana', domain: 'example.com', protocol: :activitypub) }
+    let!(:tales) { Fabricate(:account, updated_at: 10.days.ago, last_webfingered_at: nil, username: 'tales', uri: 'https://example.net/users/tales', domain: 'example.net', protocol: :activitypub) }
 
     before do
       allow(DeleteAccountService).to receive(:new).and_return(delete_account_service)
     end
 
     context 'when no domain is specified' do
-      let(:scope) { Account.remote.where(protocol: :activitypub).partitioned }
-
       before do
-        allow(cli).to receive(:parallelize_with_progress).and_yield(tom)
-                                                         .and_yield(bob)
-                                                         .and_yield(gon)
-                                                         .and_yield(ana)
-                                                         .and_yield(tales)
-                                                         .and_return([5, 3])
+        stub_parallelize_with_progress!
         stub_request(:head, 'https://example.org/users/bob').to_return(status: 404)
         stub_request(:head, 'https://example.net/users/gon').to_return(status: 410)
         stub_request(:head, 'https://example.net/users/tales').to_return(status: 200)
@@ -1140,7 +1143,6 @@ describe Mastodon::CLI::Accounts do
       it 'deletes all inactive remote accounts that longer exist in the origin server' do
         cli.cull
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(delete_account_service).to have_received(:call).with(bob, reserve_username: false).once
         expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
       end
@@ -1148,35 +1150,27 @@ describe Mastodon::CLI::Accounts do
       it 'does not delete any active remote account that still exists in the origin server' do
         cli.cull
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(delete_account_service).to_not have_received(:call).with(tom, reserve_username: false)
         expect(delete_account_service).to_not have_received(:call).with(ana, reserve_username: false)
         expect(delete_account_service).to_not have_received(:call).with(tales, reserve_username: false)
       end
 
       it 'touches inactive remote accounts that have not been deleted' do
-        allow(tales).to receive(:touch)
-
-        cli.cull
-
-        expect(tales).to have_received(:touch).once
+        expect { cli.cull }.to(change { tales.reload.updated_at })
       end
 
       it 'displays the summary correctly' do
         expect { cli.cull }.to output(
-          a_string_including('Visited 5 accounts, removed 3')
+          a_string_including('Visited 5 accounts, removed 2')
         ).to_stdout
       end
     end
 
     context 'when a domain is specified' do
       let(:domain) { 'example.net' }
-      let(:scope)  { Account.remote.where(protocol: :activitypub, domain: domain).partitioned }
 
       before do
-        allow(cli).to receive(:parallelize_with_progress).and_yield(gon)
-                                                         .and_yield(tales)
-                                                         .and_return([2, 2])
+        stub_parallelize_with_progress!
         stub_request(:head, 'https://example.net/users/gon').to_return(status: 410)
         stub_request(:head, 'https://example.net/users/tales').to_return(status: 404)
       end
@@ -1184,13 +1178,12 @@ describe Mastodon::CLI::Accounts do
       it 'deletes inactive remote accounts that longer exist in the specified domain' do
         cli.cull(domain)
 
-        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
         expect(delete_account_service).to have_received(:call).with(tales, reserve_username: false).once
       end
 
       it 'displays the summary correctly' do
-        expect { cli.cull }.to output(
+        expect { cli.cull(domain) }.to output(
           a_string_including('Visited 2 accounts, removed 2')
         ).to_stdout
       end
@@ -1199,7 +1192,9 @@ describe Mastodon::CLI::Accounts do
     context 'when a domain is unavailable' do
       shared_examples 'an unavailable domain' do
         before do
-          allow(cli).to receive(:parallelize_with_progress).and_yield(tales).and_return([1, 0])
+          stub_parallelize_with_progress!
+          stub_request(:head, 'https://example.org/users/bob').to_return(status: 200)
+          stub_request(:head, 'https://example.net/users/gon').to_return(status: 200)
         end
 
         it 'skips accounts from the unavailable domain' do
@@ -1210,7 +1205,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'displays the summary correctly' do
           expect { cli.cull }.to output(
-            a_string_including("Visited 1 accounts, removed 0\nThe following domains were not available during the check:\n    example.net")
+            a_string_including("Visited 5 accounts, removed 0\nThe following domains were not available during the check:\n    example.net")
           ).to_stdout
         end
       end
@@ -1358,6 +1353,256 @@ describe Mastodon::CLI::Accounts do
             a_string_including("Processed #{total_relationships} relationships")
           ).to_stdout
         end
+      end
+    end
+  end
+
+  describe '#prune' do
+    let!(:local_account)     { Fabricate(:account) }
+    let!(:bot_account)       { Fabricate(:account, bot: true, domain: 'example.com') }
+    let!(:group_account)     { Fabricate(:account, actor_type: 'Group', domain: 'example.com') }
+    let!(:mentioned_account) { Fabricate(:account, domain: 'example.com') }
+    let!(:prunable_accounts) do
+      Fabricate.times(3, :account, domain: 'example.com', bot: false, suspended_at: nil, silenced_at: nil)
+    end
+
+    before do
+      Fabricate(:mention, account: mentioned_account, status: Fabricate(:status, account: Fabricate(:account)))
+      stub_parallelize_with_progress!
+    end
+
+    it 'prunes all remote accounts with no interactions with local users' do
+      cli.prune
+
+      prunable_account_ids = prunable_accounts.pluck(:id)
+
+      expect(Account.where(id: prunable_account_ids).count).to eq(0)
+    end
+
+    it 'displays a successful message' do
+      expect { cli.prune }.to output(
+        a_string_including("OK, pruned #{prunable_accounts.size} accounts")
+      ).to_stdout
+    end
+
+    it 'does not prune local accounts' do
+      cli.prune
+
+      expect(Account.exists?(id: local_account.id)).to be(true)
+    end
+
+    it 'does not prune bot accounts' do
+      cli.prune
+
+      expect(Account.exists?(id: bot_account.id)).to be(true)
+    end
+
+    it 'does not prune group accounts' do
+      cli.prune
+
+      expect(Account.exists?(id: group_account.id)).to be(true)
+    end
+
+    it 'does not prune accounts that have been mentioned' do
+      cli.prune
+
+      expect(Account.exists?(id: mentioned_account.id)).to be true
+    end
+
+    context 'with --dry-run option' do
+      before do
+        cli.options = { dry_run: true }
+      end
+
+      it 'does not prune any account' do
+        cli.prune
+
+        prunable_account_ids = prunable_accounts.pluck(:id)
+
+        expect(Account.where(id: prunable_account_ids).count).to eq(prunable_accounts.size)
+      end
+
+      it 'displays a successful message with (DRY RUN)' do
+        expect { cli.prune }.to output(
+          a_string_including("OK, pruned #{prunable_accounts.size} accounts (DRY RUN)")
+        ).to_stdout
+      end
+    end
+  end
+
+  describe '#migrate' do
+    let!(:source_account)         { Fabricate(:account) }
+    let!(:target_account)         { Fabricate(:account, domain: 'example.com') }
+    let(:arguments)               { [source_account.username] }
+    let(:resolve_account_service) { instance_double(ResolveAccountService, call: nil) }
+    let(:move_service)            { instance_double(MoveService, call: nil) }
+
+    before do
+      allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service)
+      allow(MoveService).to receive(:new).and_return(move_service)
+    end
+
+    shared_examples 'a successful migration' do
+      it 'calls the MoveService for the last migration' do
+        cli.invoke(:migrate, arguments, options)
+
+        last_migration = source_account.migrations.last
+
+        expect(move_service).to have_received(:call).with(last_migration).once
+      end
+
+      it 'displays a successful message' do
+        expect { cli.invoke(:migrate, arguments, options) }.to output(
+          a_string_including("OK, migrated #{source_account.acct} to #{target_account.acct}")
+        ).to_stdout
+      end
+    end
+
+    context 'when both --replay and --target options are given' do
+      let(:options) { { replay: true, target: "#{target_account.username}@example.com" } }
+
+      it 'exits with an error message indicating that using both options is not possible' do
+        expect { cli.invoke(:migrate, arguments, options) }.to output(
+          a_string_including('Use --replay or --target, not both')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when no option is given' do
+      it 'exits with an error message indicating that at least one option must be used' do
+        expect { cli.invoke(:migrate, arguments, {}) }.to output(
+          a_string_including('Use either --replay or --target')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when the given username is not found' do
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'exits with an error message indicating that there is no such account' do
+        expect { cli.invoke(:migrate, arguments, replay: true) }.to output(
+          a_string_including("No such account: #{arguments.first}")
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'with --replay option' do
+      let(:options) { { replay: true } }
+
+      context 'when the specified account has no previous migrations' do
+        it 'exits with an error message indicating that the given account has no previous migrations' do
+          expect { cli.invoke(:migrate, arguments, options) }.to output(
+            a_string_including('The specified account has not performed any migration')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'when the specified account has a previous migration' do
+        before do
+          allow(resolve_account_service).to receive(:call).with(source_account.acct, any_args).and_return(source_account)
+          allow(resolve_account_service).to receive(:call).with(target_account.acct, any_args).and_return(target_account)
+          target_account.aliases.create!(acct: source_account.acct)
+          source_account.migrations.create!(acct: target_account.acct)
+          source_account.update!(moved_to_account: target_account)
+        end
+
+        it_behaves_like 'a successful migration'
+
+        context 'when the specified account is redirecting to a different target account' do
+          before do
+            source_account.update!(moved_to_account: nil)
+          end
+
+          it 'exits with an error message' do
+            expect { cli.invoke(:migrate, arguments, options) }.to output(
+              a_string_including('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway')
+            ).to_stdout
+              .and raise_error(SystemExit)
+          end
+        end
+
+        context 'with --force option' do
+          let(:options) { { replay: true, force: true } }
+
+          it_behaves_like 'a successful migration'
+        end
+      end
+    end
+
+    context 'with --target option' do
+      let(:options) { { target: target_account.acct } }
+
+      before do
+        allow(resolve_account_service).to receive(:call).with(source_account.acct, any_args).and_return(source_account)
+        allow(resolve_account_service).to receive(:call).with(target_account.acct, any_args).and_return(target_account)
+      end
+
+      context 'when the specified target account is not found' do
+        before do
+          allow(resolve_account_service).to receive(:call).with(target_account.acct).and_return(nil)
+        end
+
+        it 'exits with an error message indicating that there is no such account' do
+          expect { cli.invoke(:migrate, arguments, options) }.to output(
+            a_string_including("The specified target account could not be found: #{options[:target]}")
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'when the specified target account exists' do
+        before do
+          target_account.aliases.create!(acct: source_account.acct)
+        end
+
+        it 'creates a migration for the specified account with the target account' do
+          cli.invoke(:migrate, arguments, options)
+
+          last_migration = source_account.migrations.last
+
+          expect(last_migration.acct).to eq(target_account.acct)
+        end
+
+        it_behaves_like 'a successful migration'
+      end
+
+      context 'when the migration record is invalid' do
+        it 'exits with an error indicating that the validation failed' do
+          expect { cli.invoke(:migrate, arguments, options) }.to output(
+            a_string_including('Error: Validation failed')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'when the specified account is redirecting to a different target account' do
+        before do
+          allow(Account).to receive(:find_local).with(source_account.username).and_return(source_account)
+          allow(source_account).to receive(:moved_to_account_id).and_return(-1)
+        end
+
+        it 'exits with an error message' do
+          expect { cli.invoke(:migrate, arguments, options) }.to output(
+            a_string_including('The specified account is redirecting to a different target account. Use --force if you want to change the migration target')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'with --target and --force options' do
+        let(:options) { { target: target_account.acct, force: true } }
+
+        before do
+          target_account.aliases.create!(acct: source_account.acct)
+          allow(Account).to receive(:find_local).with(source_account.username).and_return(source_account)
+          allow(source_account).to receive(:moved_to_account_id).and_return(-1)
+        end
+
+        it_behaves_like 'a successful migration'
       end
     end
   end

@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 
+import type { Account } from 'mastodon/models/account';
+
 import { useHovering } from '../../hooks/useHovering';
-import type { Account } from '../../types/resources';
 import { autoPlayGif } from '../initial_state';
 
 interface Props {
@@ -41,7 +42,7 @@ export const Avatar: React.FC<Props> = ({
       onMouseLeave={handleMouseLeave}
       style={style}
     >
-      {src && <img src={src} alt={account?.get('acct')} />}
+      {src && <img src={src} alt='' />}
     </div>
   );
 };

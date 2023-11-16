@@ -7,6 +7,7 @@ module ExportControllerConcern
     before_action :authenticate_user!
     before_action :load_export
 
+    skip_before_action :check_self_destruct!
     skip_before_action :require_functional!
   end
 

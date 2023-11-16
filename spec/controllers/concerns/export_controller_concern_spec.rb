@@ -11,7 +11,7 @@ describe ExportControllerConcern do
     end
 
     def export_data
-      @export.account.username
+      'body data value'
     end
   end
 
@@ -24,7 +24,7 @@ describe ExportControllerConcern do
       expect(response).to have_http_status(200)
       expect(response.media_type).to eq 'text/csv'
       expect(response.headers['Content-Disposition']).to start_with 'attachment; filename="anonymous.csv"'
-      expect(response.body).to eq user.account.username
+      expect(response.body).to eq 'body data value'
     end
 
     it 'returns unauthorized when not signed in' do

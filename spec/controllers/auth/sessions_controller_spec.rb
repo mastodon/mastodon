@@ -126,9 +126,7 @@ RSpec.describe Auth::SessionsController do
         let!(:previous_login) { Fabricate(:login_activity, user: user, ip: previous_ip) }
 
         before do
-          allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return(current_ip)
-          allow(UserMailer).to receive(:suspicious_sign_in)
-            .and_return(instance_double(ActionMailer::MessageDelivery, deliver_later!: nil))
+          allow(controller.request).to receive(:remote_ip).and_return(current_ip)
           user.update(current_sign_in_at: 1.month.ago)
           post :create, params: { user: { email: user.email, password: user.password } }
         end
@@ -142,7 +140,9 @@ RSpec.describe Auth::SessionsController do
         end
 
         it 'sends a suspicious sign-in mail' do
-          expect(UserMailer).to have_received(:suspicious_sign_in).with(user, current_ip, anything, anything)
+          expect(UserMailer.deliveries.size).to eq(1)
+          expect(UserMailer.deliveries.first.to.first).to eq(user.email)
+          expect(UserMailer.deliveries.first.subject).to eq(I18n.t('user_mailer.suspicious_sign_in.subject'))
         end
       end
 
@@ -279,7 +279,9 @@ RSpec.describe Auth::SessionsController do
 
         context 'when the server has an decryption error' do
           before do
-            allow_any_instance_of(User).to receive(:validate_and_consume_otp!).and_raise(OpenSSL::Cipher::CipherError)
+            allow(user).to receive(:validate_and_consume_otp!).with(user.current_otp).and_raise(OpenSSL::Cipher::CipherError)
+            allow(User).to receive(:find_by).with(id: user.id).and_return(user)
+
             post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
@@ -378,7 +380,7 @@ RSpec.describe Auth::SessionsController do
 
         context 'when using a valid webauthn credential' do
           before do
-            @controller.session[:webauthn_challenge] = challenge
+            controller.session[:webauthn_challenge] = challenge
 
             post :create, params: { user: { credential: fake_credential } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
