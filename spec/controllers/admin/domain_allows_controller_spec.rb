@@ -13,8 +13,12 @@ RSpec.describe Admin::DomainAllowsController do
     it 'assigns a new domain allow' do
       get :new
 
-      expect(assigns(:domain_allow)).to be_instance_of(DomainAllow)
-      expect(response).to have_http_status(200)
+      expect(assigns(:domain_allow))
+        .to be_instance_of(DomainAllow)
+
+      expect(response)
+        .to have_http_status(200)
+        .and render_template(:new)
     end
   end
 
