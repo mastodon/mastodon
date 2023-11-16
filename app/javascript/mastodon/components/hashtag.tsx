@@ -96,7 +96,7 @@ interface HashtagProps {
   withGraph: string;
 }
 
-const Hashtag = ({
+export const Hashtag: React.FC<HashtagProps> = ({
   name,
   to,
   people,
