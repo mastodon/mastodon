@@ -21,6 +21,7 @@ require 'webmock/rspec'
 require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
+require 'email_spec/rspec'
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
