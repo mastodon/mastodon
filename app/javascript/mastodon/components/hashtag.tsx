@@ -163,5 +163,3 @@ Hashtag.propTypes = {
 Hashtag.defaultProps = {
   withGraph: true,
 };
-
-export default Hashtag;
