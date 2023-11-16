@@ -15,7 +15,9 @@ describe Admin::WebhooksController do
     it 'returns http success' do
       get :index
 
-      expect(response).to have_http_status(:success)
+      expect(response)
+        .to have_http_status(:success)
+        .and render_template(:index)
     end
   end
 
@@ -23,8 +25,9 @@ describe Admin::WebhooksController do
     it 'returns http success and renders view' do
       get :new
 
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:new)
+      expect(response)
+        .to have_http_status(:success)
+        .and render_template(:new)
     end
   end
 
@@ -34,7 +37,8 @@ describe Admin::WebhooksController do
         post :create, params: { webhook: { url: 'https://example.com/hook', events: ['account.approved'] } }
       end.to change(Webhook, :count).by(1)
 
-      expect(response).to be_redirect
+      expect(response)
+        .to be_redirect
     end
 
     it 'does not create a new webhook record with invalid data' do
@@ -42,8 +46,9 @@ describe Admin::WebhooksController do
         post :create, params: { webhook: { url: 'https://example.com/hook', events: [] } }
       end.to_not change(Webhook, :count)
 
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:new)
+      expect(response)
+        .to have_http_status(:success)
+        .and render_template(:new)
     end
   end
 
@@ -54,8 +59,9 @@ describe Admin::WebhooksController do
       it 'returns http success and renders view' do
         get :show, params: { id: webhook.id }
 
-        expect(response).to have_http_status(:success)
-        expect(response).to render_template(:show)
+        expect(response)
+          .to have_http_status(:success)
+          .and render_template(:show)
       end
     end
 
@@ -63,8 +69,9 @@ describe Admin::WebhooksController do
       it 'returns http success and renders view' do
         get :edit, params: { id: webhook.id }
 
-        expect(response).to have_http_status(:success)
-        expect(response).to render_template(:edit)
+        expect(response)
+          .to have_http_status(:success)
+          .and render_template(:edit)
       end
     end
 
@@ -72,8 +79,11 @@ describe Admin::WebhooksController do
       it 'updates the record with valid data' do
         put :update, params: { id: webhook.id, webhook: { url: 'https://example.com/new/location' } }
 
-        expect(webhook.reload.url).to match(%r{new/location})
-        expect(response).to redirect_to(admin_webhook_path(webhook))
+        expect(webhook.reload.url)
+          .to match(%r{new/location})
+
+        expect(response)
+          .to redirect_to(admin_webhook_path(webhook))
       end
 
       it 'does not update the record with invalid data' do
@@ -81,8 +91,9 @@ describe Admin::WebhooksController do
           put :update, params: { id: webhook.id, webhook: { url: '' } }
         end.to_not change(webhook, :url)
 
-        expect(response).to have_http_status(:success)
-        expect(response).to render_template(:edit)
+        expect(response)
+          .to have_http_status(:success)
+          .and render_template(:edit)
       end
     end
 
@@ -90,8 +101,11 @@ describe Admin::WebhooksController do
       it 'enables the webhook' do
         post :enable, params: { id: webhook.id }
 
-        expect(webhook.reload).to be_enabled
-        expect(response).to redirect_to(admin_webhook_path(webhook))
+        expect(webhook.reload)
+          .to be_enabled
+
+        expect(response)
+          .to redirect_to(admin_webhook_path(webhook))
       end
     end
 
@@ -99,8 +113,11 @@ describe Admin::WebhooksController do
       it 'disables the webhook' do
         post :disable, params: { id: webhook.id }
 
-        expect(webhook.reload).to_not be_enabled
-        expect(response).to redirect_to(admin_webhook_path(webhook))
+        expect(webhook.reload)
+          .to_not be_enabled
+
+        expect(response)
+          .to redirect_to(admin_webhook_path(webhook))
       end
     end
 
@@ -110,7 +127,8 @@ describe Admin::WebhooksController do
           delete :destroy, params: { id: webhook.id }
         end.to change(Webhook, :count).by(-1)
 
-        expect(response).to redirect_to(admin_webhooks_path)
+        expect(response)
+          .to redirect_to(admin_webhooks_path)
       end
     end
   end
