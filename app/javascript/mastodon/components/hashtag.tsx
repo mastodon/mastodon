@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import type { JSX } from 'react';
 import { Component } from 'react';
 
@@ -19,10 +18,6 @@ interface SilentErrorBoundaryProps {
 }
 
 class SilentErrorBoundary extends Component<SilentErrorBoundaryProps> {
-  static propTypes = {
-    children: PropTypes.node,
-  };
-
   state = {
     error: false,
   };
@@ -85,15 +80,15 @@ export const ImmutableHashtag = ({ hashtag }: ImmutableHashtagProps) => (
   />
 );
 
-interface HashtagProps {
+export interface HashtagProps {
   className?: string;
-  description?: string;
+  description?: React.ReactNode;
   history?: number[];
   name: string;
   people: number;
   to: string;
   uses?: number;
-  withGraph: string;
+  withGraph?: boolean;
 }
 
 export const Hashtag: React.FC<HashtagProps> = ({
@@ -148,18 +143,3 @@ export const Hashtag: React.FC<HashtagProps> = ({
     )}
   </div>
 );
-
-Hashtag.propTypes = {
-  name: PropTypes.string,
-  to: PropTypes.string,
-  people: PropTypes.number,
-  description: PropTypes.node,
-  uses: PropTypes.number,
-  history: PropTypes.arrayOf(PropTypes.number),
-  className: PropTypes.string,
-  withGraph: PropTypes.bool,
-};
-
-Hashtag.defaultProps = {
-  withGraph: true,
-};
