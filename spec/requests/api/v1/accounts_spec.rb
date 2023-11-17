@@ -2,59 +2,100 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::AccountsController do
-  render_views
+describe '/api/v1/accounts' do
+  let(:user)    { Fabricate(:user) }
+  let(:scopes)  { '' }
+  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  let(:user)   { Fabricate(:user) }
-  let(:scopes) { '' }
-  let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  describe 'GET /api/v1/accounts/:id' do
+    context 'when logged out' do
+      let(:account) { Fabricate(:account) }
 
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
+      it 'returns account entity as 200 OK', :aggregate_failures do
+        get "/api/v1/accounts/#{account.id}"
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:id]).to eq(account.id.to_s)
+      end
+    end
+
+    context 'when the account does not exist' do
+      it 'returns http not found' do
+        get '/api/v1/accounts/1'
+
+        expect(response).to have_http_status(404)
+        expect(body_as_json[:error]).to eq('Record not found')
+      end
+    end
+
+    context 'when logged in' do
+      subject do
+        get "/api/v1/accounts/#{account.id}", headers: headers
+      end
+
+      let(:account) { Fabricate(:account) }
+      let(:scopes) { 'read:accounts' }
+
+      it 'returns account entity as 200 OK', :aggregate_failures do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:id]).to eq(account.id.to_s)
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'write:statuses'
+    end
   end
 
-  describe 'POST #create' do
-    let(:app) { Fabricate(:application) }
-    let(:token) { Doorkeeper::AccessToken.find_or_create_for(application: app, resource_owner: nil, scopes: 'read write', use_refresh_token: false) }
-    let(:agreement) { nil }
-
-    before do
-      post :create, params: { username: 'test', password: '12345678', email: 'hello@world.tld', agreement: agreement }
+  describe 'POST /api/v1/accounts' do
+    subject do
+      post '/api/v1/accounts', headers: headers, params: { username: 'test', password: '12345678', email: 'hello@world.tld', agreement: agreement }
     end
+
+    let(:client_app) { Fabricate(:application) }
+    let(:token) { Doorkeeper::AccessToken.find_or_create_for(application: client_app, resource_owner: nil, scopes: 'read write', use_refresh_token: false) }
+    let(:agreement) { nil }
 
     context 'when given truthy agreement' do
       let(:agreement) { 'true' }
 
       it 'creates a user', :aggregate_failures do
+        subject
+
         expect(response).to have_http_status(200)
         expect(body_as_json[:access_token]).to_not be_blank
 
         user = User.find_by(email: 'hello@world.tld')
         expect(user).to_not be_nil
-        expect(user.created_by_application_id).to eq app.id
+        expect(user.created_by_application_id).to eq client_app.id
       end
     end
 
     context 'when given no agreement' do
       it 'returns http unprocessable entity' do
+        subject
+
         expect(response).to have_http_status(422)
       end
     end
   end
 
-  describe 'POST #follow' do
+  describe 'POST /api/v1/accounts/:id/follow' do
     let(:scopes) { 'write:follows' }
     let(:other_account) { Fabricate(:account, username: 'bob', locked: locked) }
 
     context 'when posting to an other account' do
-      before do
-        post :follow, params: { id: other_account.id }
+      subject do
+        post "/api/v1/accounts/#{other_account.id}/follow", headers: headers
       end
 
       context 'with unlocked account' do
         let(:locked) { false }
 
         it 'creates a following relation between user and target user', :aggregate_failures do
+          subject
+
           expect(response).to have_http_status(200)
 
           json = body_as_json
@@ -72,6 +113,8 @@ RSpec.describe Api::V1::AccountsController do
         let(:locked) { true }
 
         it 'creates a follow request relation between user and target user', :aggregate_failures do
+          subject
+
           expect(response).to have_http_status(200)
 
           json = body_as_json
@@ -94,48 +137,53 @@ RSpec.describe Api::V1::AccountsController do
       end
 
       it 'changes reblogs option' do
-        post :follow, params: { id: other_account.id, reblogs: true }
+        post "/api/v1/accounts/#{other_account.id}/follow", headers: headers, params: { reblogs: true }
 
-        json = body_as_json
-
-        expect(json[:following]).to be true
-        expect(json[:showing_reblogs]).to be true
-        expect(json[:notifying]).to be false
+        expect(body_as_json).to include({
+          following: true,
+          showing_reblogs: true,
+          notifying: false,
+        })
       end
 
       it 'changes notify option' do
-        post :follow, params: { id: other_account.id, notify: true }
+        post "/api/v1/accounts/#{other_account.id}/follow", headers: headers, params: { notify: true }
 
-        json = body_as_json
-
-        expect(json[:following]).to be true
-        expect(json[:showing_reblogs]).to be false
-        expect(json[:notifying]).to be true
+        expect(body_as_json).to include({
+          following: true,
+          showing_reblogs: false,
+          notifying: true,
+        })
       end
 
       it 'changes languages option' do
-        post :follow, params: { id: other_account.id, languages: %w(en es) }
+        post "/api/v1/accounts/#{other_account.id}/follow", headers: headers, params: { languages: %w(en es) }
 
-        json = body_as_json
-
-        expect(json[:following]).to be true
-        expect(json[:showing_reblogs]).to be false
-        expect(json[:notifying]).to be false
-        expect(json[:languages]).to match_array %w(en es)
+        expect(body_as_json).to include({
+          following: true,
+          showing_reblogs: false,
+          notifying: false,
+          languages: match_array(%w(en es)),
+        })
       end
     end
   end
 
-  describe 'POST #unfollow' do
+  describe 'POST /api/v1/accounts/:id/unfollow' do
+    subject do
+      post "/api/v1/accounts/#{other_account.id}/unfollow", headers: headers
+    end
+
     let(:scopes) { 'write:follows' }
     let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.follow!(other_account)
-      post :unfollow, params: { id: other_account.id }
     end
 
     it 'removes the following relation between user and target user', :aggregate_failures do
+      subject
+
       expect(response).to have_http_status(200)
       expect(user.account.following?(other_account)).to be false
     end
@@ -143,16 +191,21 @@ RSpec.describe Api::V1::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'read:accounts'
   end
 
-  describe 'POST #remove_from_followers' do
+  describe 'POST /api/v1/accounts/:id/remove_from_followers' do
+    subject do
+      post "/api/v1/accounts/#{other_account.id}/remove_from_followers", headers: headers
+    end
+
     let(:scopes) { 'write:follows' }
     let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       other_account.follow!(user.account)
-      post :remove_from_followers, params: { id: other_account.id }
     end
 
     it 'removes the followed relation between user and target user', :aggregate_failures do
+      subject
+
       expect(response).to have_http_status(200)
       expect(user.account.followed_by?(other_account)).to be false
     end
@@ -160,16 +213,21 @@ RSpec.describe Api::V1::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'read:accounts'
   end
 
-  describe 'POST #block' do
+  describe 'POST /api/v1/accounts/:id/block' do
+    subject do
+      post "/api/v1/accounts/#{other_account.id}/block", headers: headers
+    end
+
     let(:scopes) { 'write:blocks' }
     let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.follow!(other_account)
-      post :block, params: { id: other_account.id }
     end
 
     it 'creates a blocking relation', :aggregate_failures do
+      subject
+
       expect(response).to have_http_status(200)
       expect(user.account.following?(other_account)).to be false
       expect(user.account.blocking?(other_account)).to be true
@@ -178,16 +236,21 @@ RSpec.describe Api::V1::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'read:accounts'
   end
 
-  describe 'POST #unblock' do
+  describe 'POST /api/v1/accounts/:id/unblock' do
+    subject do
+      post "/api/v1/accounts/#{other_account.id}/unblock", headers: headers
+    end
+
     let(:scopes) { 'write:blocks' }
     let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.block!(other_account)
-      post :unblock, params: { id: other_account.id }
     end
 
     it 'removes the blocking relation between user and target user', :aggregate_failures do
+      subject
+
       expect(response).to have_http_status(200)
       expect(user.account.blocking?(other_account)).to be false
     end
@@ -195,16 +258,21 @@ RSpec.describe Api::V1::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'read:accounts'
   end
 
-  describe 'POST #mute' do
+  describe 'POST /api/v1/accounts/:id/mute' do
+    subject do
+      post "/api/v1/accounts/#{other_account.id}/mute", headers: headers
+    end
+
     let(:scopes) { 'write:mutes' }
     let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.follow!(other_account)
-      post :mute, params: { id: other_account.id }
     end
 
     it 'mutes notifications', :aggregate_failures do
+      subject
+
       expect(response).to have_http_status(200)
       expect(user.account.following?(other_account)).to be true
       expect(user.account.muting?(other_account)).to be true
@@ -214,16 +282,21 @@ RSpec.describe Api::V1::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'read:accounts'
   end
 
-  describe 'POST #mute with notifications set to false' do
+  describe 'POST /api/v1/accounts/:id/mute with notifications set to false' do
+    subject do
+      post "/api/v1/accounts/#{other_account.id}/mute", headers: headers, params: { notifications: false }
+    end
+
     let(:scopes) { 'write:mutes' }
     let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.follow!(other_account)
-      post :mute, params: { id: other_account.id, notifications: false }
     end
 
     it 'does not mute notifications', :aggregate_failures do
+      subject
+
       expect(response).to have_http_status(200)
       expect(user.account.following?(other_account)).to be true
       expect(user.account.muting?(other_account)).to be true
@@ -233,16 +306,21 @@ RSpec.describe Api::V1::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'read:accounts'
   end
 
-  describe 'POST #mute with nonzero duration set' do
+  describe 'POST /api/v1/accounts/:id/mute with nonzero duration set' do
+    subject do
+      post "/api/v1/accounts/#{other_account.id}/mute", headers: headers, params: { duration: 300 }
+    end
+
     let(:scopes) { 'write:mutes' }
     let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.follow!(other_account)
-      post :mute, params: { id: other_account.id, duration: 300 }
     end
 
     it 'mutes notifications', :aggregate_failures do
+      subject
+
       expect(response).to have_http_status(200)
       expect(user.account.following?(other_account)).to be true
       expect(user.account.muting?(other_account)).to be true
@@ -252,16 +330,21 @@ RSpec.describe Api::V1::AccountsController do
     it_behaves_like 'forbidden for wrong scope', 'read:accounts'
   end
 
-  describe 'POST #unmute' do
+  describe 'POST /api/v1/accounts/:id/unmute' do
+    subject do
+      post "/api/v1/accounts/#{other_account.id}/unmute", headers: headers
+    end
+
     let(:scopes) { 'write:mutes' }
     let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.mute!(other_account)
-      post :unmute, params: { id: other_account.id }
     end
 
     it 'removes the muting relation between user and target user', :aggregate_failures do
+      subject
+
       expect(response).to have_http_status(200)
       expect(user.account.muting?(other_account)).to be false
     end
