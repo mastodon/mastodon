@@ -37,9 +37,6 @@ class MediaAttachment < ApplicationRecord
   enum type: { image: 0, gifv: 1, video: 2, unknown: 3, audio: 4 }
   enum processing: { queued: 0, in_progress: 1, complete: 2, failed: 3 }, _prefix: true
 
-  IMAGE_LIMIT = 16.megabytes
-  VIDEO_LIMIT = 99.megabytes
-
   MAX_VIDEO_MATRIX_LIMIT = 8_294_400 # 3840x2160px
   MAX_VIDEO_FRAME_RATE   = 120
   MAX_VIDEO_FRAMES       = 36_000 # Approx. 5 minutes at 120 fps
@@ -166,8 +163,20 @@ class MediaAttachment < ApplicationRecord
     all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp -define jpeg:dct-method=float',
   }.freeze
 
+  def self.configs
+    Rails.configuration.x.mastodon.media_attachments
+  end
+
+  def self.image_size_limit
+    configs[:file_size_limit][:image]
+  end
+
+  def self.video_size_limit
+    configs[:file_size_limit][:video]
+  end
+
   def self.mime_type_configs
-    Rails.configuration.x.mastodon.media_attachments[:mime_types]
+    configs[:mime_types]
   end
 
   def self.image_mime_types
@@ -199,8 +208,8 @@ class MediaAttachment < ApplicationRecord
   before_file_validate :check_video_dimensions
 
   validates_attachment_content_type :file, content_type: supported_mime_types
-  validates_attachment_size :file, less_than: ->(m) { m.larger_media_format? ? VIDEO_LIMIT : IMAGE_LIMIT }
-  remotable_attachment :file, VIDEO_LIMIT, suppress_errors: false, download_on_assign: false, attribute_name: :remote_url
+  validates_attachment_size :file, less_than: ->(m) { m.larger_media_format? ? video_size_limit : image_size_limit }
+  remotable_attachment :file, video_size_limit, suppress_errors: false, download_on_assign: false, attribute_name: :remote_url
 
   has_attached_file :thumbnail,
                     styles: THUMBNAIL_STYLES,
@@ -208,8 +217,8 @@ class MediaAttachment < ApplicationRecord
                     convert_options: GLOBAL_CONVERT_OPTIONS
 
   validates_attachment_content_type :thumbnail, content_type: image_mime_types
-  validates_attachment_size :thumbnail, less_than: IMAGE_LIMIT
-  remotable_attachment :thumbnail, IMAGE_LIMIT, suppress_errors: true, download_on_assign: false
+  validates_attachment_size :thumbnail, less_than: image_size_limit
+  remotable_attachment :thumbnail, video_size_limit, suppress_errors: true, download_on_assign: false
 
   validates :account, presence: true
   validates :description, length: { maximum: Rails.configuration.x.mastodon.media_attachments[:max_description_length] }

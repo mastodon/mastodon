@@ -7,6 +7,9 @@ shared:
     url_placeholder_characters: 23
 
   media_attachments:
+    file_size_limit:
+      image: 16777216 # 16 MiB
+      video: 103809024 # 99 MiB
     max_description_length: 1500
     mime_types:
       image:
