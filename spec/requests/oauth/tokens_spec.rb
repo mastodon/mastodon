@@ -53,4 +53,77 @@ RSpec.describe 'OAuth::Tokens' do
       expect(Web::PushSubscription.where(access_token: access_token).count).to eq 0
     end
   end
+
+  describe 'POST /oauth/token' do
+    subject do
+      post '/oauth/token', params: params
+    end
+
+    let(:user) { Fabricate(:user) }
+    let(:application) { Fabricate(:application, scopes: 'read') }
+    let(:token) { Fabricate(:accessible_access_token, application: application, resource_owner_id: user.id) }
+
+    # TODO: Add tests for authorization_code grant flow
+
+    context 'when using the client_credentials grant flow' do
+      let(:params) do
+        {
+          grant_type: 'client_credentials',
+          client_id: application.uid,
+          client_secret: application.secret,
+        }
+      end
+
+      it 'A refresh token is not issued per RFC 6749 section 4.4.3' do
+        subject
+
+        expect(response).to have_http_status(200)
+
+        body = body_as_json
+
+        expect(body[:access_token]).to be_present
+        expect(body[:refresh_token]).to_not be_present
+
+        new_token = Doorkeeper::AccessToken.last
+        expect(new_token.resource_owner_id).to be_nil
+      end
+    end
+
+    context 'when using the refresh_token grant flow' do
+      let(:params) do
+        {
+          grant_type: 'refresh_token',
+          client_id: application.uid,
+          client_secret: application.secret,
+          refresh_token: token.refresh_token,
+        }
+      end
+
+      it 'successfully generates a new access token and revokes the previous one', :aggregate_failures do
+        expect(token.revoked?).to be(false)
+
+        subject
+
+        expect(response).to have_http_status(200)
+
+        # The request changes the token, so reload it before checking it's been
+        # correctly revoked:
+        expect(token.reload.revoked?).to be(true)
+
+        body = body_as_json
+
+        expect(body[:access_token]).to be_present
+        expect(body[:refresh_token]).to be_present
+
+        new_token = Doorkeeper::AccessToken.last
+        expect(body[:access_token]).to eq(new_token.token)
+        expect(body[:refresh_token]).to eq(new_token.refresh_token)
+
+        # Ensure token properties carry across correctly:
+        expect(new_token.scopes).to eq(token.scopes)
+        expect(new_token.application_id).to be(token.application_id)
+        expect(new_token.resource_owner_id).to be(token.resource_owner_id)
+      end
+    end
+  end
 end
