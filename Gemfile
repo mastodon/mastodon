@@ -179,6 +179,11 @@ group :development do
 end
 
 group :development, :test do
+  # Interactive Debugging tools
+  # For why irb is in the Gemfile, see: https://ruby.social/@st0012/111444685161478182
+  gem 'debug', '~> 1.8'
+  gem 'irb', '~> 1.8'
+
   # Profiling tools
   gem 'memory_profiler', require: false
   gem 'ruby-prof', require: false
