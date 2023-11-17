@@ -5,6 +5,9 @@ class FollowService < BaseService
   include Payloadable
   include DomainControlHelper
 
+  class Error < StandardError; end
+  class SelfFollowError < Error; end
+
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
   # @param [Account] target_account Account to follow
@@ -21,6 +24,7 @@ class FollowService < BaseService
     @options        = { bypass_locked: false, bypass_limit: false, with_rate_limit: false }.merge(options)
 
     raise ActiveRecord::RecordNotFound if following_not_possible?
+    raise SelfFollowError if self_follow?
     raise Mastodon::NotPermittedError  if following_not_allowed?
 
     if @source_account.following?(@target_account)
@@ -50,7 +54,11 @@ class FollowService < BaseService
   end
 
   def following_not_possible?
-    @target_account.nil? || @target_account.id == @source_account.id || @target_account.suspended?
+    @target_account.nil? || @target_account.suspended?
+  end
+
+  def self_follow?
+    @target_account.id == @source_account.id
   end
 
   def following_not_allowed?
