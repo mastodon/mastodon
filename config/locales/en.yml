@@ -1012,6 +1012,20 @@ en:
     empty: You have no aliases.
     hint_html: If you want to move from another account to this one, here you can create an alias, which is required before you can proceed with moving followers from the old account to this one. This action by itself is <strong>harmless and reversible</strong>. <strong>The account migration is initiated from the old account</strong>.
     remove: Unlink alias
+  api:
+    errors:
+      authentication_required: This method requires an authenticated user
+      email_not_confirmed: Your login is missing a confirmed e-mail address
+      invalid_date: Invalid date supplied
+      login_disabled: Your login is currently disabled
+      not_permitted: This action is not allowed
+      pending_approval: Your login is currently pending approval
+      record_not_found: Record not found
+      record_not_unique: Duplicate record
+      remote_data_fetch: Remote data could not be fetched
+      scope_not_authorized: This action is outside the authorized scopes
+      ssl_error: Remote SSL certificate could not be verified
+      temporary_problem: There was a temporary problem serving your request, please try again
   appearance:
     advanced_web_interface: Advanced web interface
     advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'

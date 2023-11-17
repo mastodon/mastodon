@@ -25,7 +25,7 @@ describe '/api/v1/accounts' do
         get '/api/v1/accounts/1'
 
         expect(response).to have_http_status(404)
-        expect(body_as_json[:error]).to eq('Record not found')
+        expect(body_as_json[:error]).to eq(I18n.t('api.errors.record_not_found'))
       end
     end
 

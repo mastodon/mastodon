@@ -24,7 +24,7 @@ class Api::BaseController < ApplicationController
   end
 
   def doorkeeper_forbidden_render_options(*)
-    { json: { error: 'This action is outside the authorized scopes' } }
+    { json: { error: error_message(:scope_not_authorized) } }
   end
 
   protected
@@ -65,11 +65,11 @@ class Api::BaseController < ApplicationController
   end
 
   def require_authenticated_user!
-    render json: { error: 'This method requires an authenticated user' }, status: 401 unless current_user
+    render json: { error: error_message(:authentication_required) }, status: 401 unless current_user
   end
 
   def require_not_suspended!
-    render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.unavailable?
+    render json: { error: error_message(:login_disabled) }, status: 403 if current_user&.account&.unavailable?
   end
 
   def require_valid_pagination_options!
@@ -78,13 +78,13 @@ class Api::BaseController < ApplicationController
 
   def require_user!
     if !current_user
-      render json: { error: 'This method requires an authenticated user' }, status: 422
+      render json: { error: error_message(:authentication_required) }, status: 422
     elsif !current_user.confirmed?
-      render json: { error: 'Your login is missing a confirmed e-mail address' }, status: 403
+      render json: { error: error_message(:email_not_confirmed) }, status: 403
     elsif !current_user.approved?
-      render json: { error: 'Your login is currently pending approval' }, status: 403
+      render json: { error: error_message(:pending_approval) }, status: 403
     elsif !current_user.functional?
-      render json: { error: 'Your login is currently disabled' }, status: 403
+      render json: { error: error_message(:login_disabled) }, status: 403
     else
       update_user_sign_in
     end
@@ -110,5 +110,11 @@ class Api::BaseController < ApplicationController
 
   def respond_with_error(code)
     render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code
+  end
+
+  def error_message(key)
+    with_options scope: [:api, :errors] do
+      t(key)
+    end
   end
 end
