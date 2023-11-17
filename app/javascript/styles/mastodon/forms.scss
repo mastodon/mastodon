@@ -1222,10 +1222,6 @@ code {
 }
 
 .app-form {
-  & > * {
-    margin-bottom: 16px;
-  }
-
   &__avatar-input,
   &__header-input {
     display: block;
@@ -1289,5 +1285,50 @@ code {
 
   &__header-input {
     aspect-ratio: 580/193;
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: $darker-text-color;
+    font-size: 14px;
+    line-height: 20px;
+
+    .icon {
+      flex: 0 0 auto;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    &__label {
+      flex: 1 1 auto;
+
+      strong {
+        color: $primary-text-color;
+        font-weight: 600;
+      }
+
+      .recommended {
+        position: absolute;
+        margin: 0 4px;
+        margin-top: -2px;
+      }
+    }
+
+    &__toggle {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    &__toggle > div {
+      display: flex;
+      border-inline-start: 1px solid lighten($ui-base-color, 8%);
+      padding-inline-start: 16px;
+    }
   }
 }
