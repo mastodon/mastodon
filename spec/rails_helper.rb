@@ -4,7 +4,6 @@ ENV['RAILS_ENV'] ||= 'test'
 
 # This needs to be defined before Rails is initialized
 RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
-RUN_SEARCH_SPECS = ENV.fetch('RUN_SEARCH_SPECS', false)
 
 if RUN_SYSTEM_SPECS
   STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
@@ -55,18 +54,26 @@ RSpec.configure do |config|
     case type
     when :system
       !RUN_SYSTEM_SPECS
-    when :search
-      !RUN_SEARCH_SPECS
     end
   }
+
+  # By default, skip the elastic search integration specs
+  config.filter_run_excluding search: true
+
   config.fixture_path = Rails.root.join('spec', 'fixtures')
   config.use_transactional_fixtures = true
   config.order = 'random'
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 
+  # Set type to `cli` for all CLI specs
   config.define_derived_metadata(file_path: Regexp.new('spec/lib/mastodon/cli')) do |metadata|
     metadata[:type] = :cli
+  end
+
+  # Set `search` metadata true for all specs in spec/search/
+  config.define_derived_metadata(file_path: Regexp.new('spec/search/*')) do |metadata|
+    metadata[:search] = true
   end
 
   config.include Devise::Test::ControllerHelpers, type: :controller
