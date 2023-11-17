@@ -37,8 +37,6 @@ class MediaAttachment < ApplicationRecord
   enum type: { image: 0, gifv: 1, video: 2, unknown: 3, audio: 4 }
   enum processing: { queued: 0, in_progress: 1, complete: 2, failed: 3 }, _prefix: true
 
-  MAX_DESCRIPTION_LENGTH = 1_500
-
   IMAGE_LIMIT = 16.megabytes
   VIDEO_LIMIT = 99.megabytes
 
@@ -214,7 +212,7 @@ class MediaAttachment < ApplicationRecord
   remotable_attachment :thumbnail, IMAGE_LIMIT, suppress_errors: true, download_on_assign: false
 
   validates :account, presence: true
-  validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }
+  validates :description, length: { maximum: Rails.configuration.x.mastodon.media_attachments[:max_description_length] }
   validates :file, presence: true, if: :local?
   validates :thumbnail, absence: true, if: -> { local? && !audio_or_video? }
 
