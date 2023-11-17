@@ -465,7 +465,7 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#approve' do
-    let(:total_users) { 10 }
+    let(:total_users) { 4 }
 
     before do
       Form::AdminSettings.new(registrations_mode: 'approved').save
@@ -482,7 +482,7 @@ describe Mastodon::CLI::Accounts do
 
     context 'with --number option' do
       context 'when the number is positive' do
-        let(:options) { { number: 3 } }
+        let(:options) { { number: 2 } }
 
         it 'approves the earliest n pending registrations' do
           cli.invoke(:approve, nil, options)
@@ -978,7 +978,7 @@ describe Mastodon::CLI::Accounts do
     end
 
     context 'when --all option is provided' do
-      let(:accounts) { Fabricate.times(3, :account) }
+      let(:accounts) { Fabricate.times(2, :account) }
       let(:options)  { { all: true } }
 
       before do
@@ -1269,7 +1269,7 @@ describe Mastodon::CLI::Accounts do
     end
 
     context 'when the given username is found' do
-      let(:total_relationships) { 10 }
+      let(:total_relationships) { 3 }
       let!(:accounts)           { Fabricate.times(total_relationships, :account) }
 
       context 'with --follows option' do
@@ -1324,8 +1324,8 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { followers: true, follows: true } }
 
         before do
-          accounts.first(6).each { |account| account.follow!(target_account) }
-          accounts.last(4).each  { |account| target_account.follow!(account) }
+          accounts.first(2).each { |account| account.follow!(target_account) }
+          accounts.last(1).each  { |account| target_account.follow!(account) }
         end
 
         it 'resets all "followers" relationships from the target account' do
@@ -1363,7 +1363,7 @@ describe Mastodon::CLI::Accounts do
     let!(:group_account)     { Fabricate(:account, actor_type: 'Group', domain: 'example.com') }
     let!(:mentioned_account) { Fabricate(:account, domain: 'example.com') }
     let!(:prunable_accounts) do
-      Fabricate.times(3, :account, domain: 'example.com', bot: false, suspended_at: nil, silenced_at: nil)
+      Fabricate.times(2, :account, domain: 'example.com', bot: false, suspended_at: nil, silenced_at: nil)
     end
 
     before do
