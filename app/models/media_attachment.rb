@@ -200,7 +200,7 @@ class MediaAttachment < ApplicationRecord
   before_file_validate :set_type_and_extension
   before_file_validate :check_video_dimensions
 
-  validates_attachment_content_type :file, content_type: self.supported_mime_types
+  validates_attachment_content_type :file, content_type: supported_mime_types
   validates_attachment_size :file, less_than: ->(m) { m.larger_media_format? ? VIDEO_LIMIT : IMAGE_LIMIT }
   remotable_attachment :file, VIDEO_LIMIT, suppress_errors: false, download_on_assign: false, attribute_name: :remote_url
 
@@ -209,7 +209,7 @@ class MediaAttachment < ApplicationRecord
                     processors: [:lazy_thumbnail, :blurhash_transcoder, :color_extractor],
                     convert_options: GLOBAL_CONVERT_OPTIONS
 
-  validates_attachment_content_type :thumbnail, content_type: self.image_mime_types
+  validates_attachment_content_type :thumbnail, content_type: image_mime_types
   validates_attachment_size :thumbnail, less_than: IMAGE_LIMIT
   remotable_attachment :thumbnail, IMAGE_LIMIT, suppress_errors: true, download_on_assign: false
 
