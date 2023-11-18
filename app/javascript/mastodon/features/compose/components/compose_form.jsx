@@ -11,8 +11,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { ReactComponent as LockIcon } from '@material-symbols/svg-600/outlined/lock.svg';
 import { length } from 'stringz';
 
-import { instanceConfiguration } from 'mastodon/initial_state';
 import { Icon }  from 'mastodon/components/icon';
+import { instanceConfiguration } from 'mastodon/initial_state';
 import { WithOptionalRouterPropTypes, withOptionalRouter } from 'mastodon/utils/react_router';
 
 import AutosuggestInput from '../../../components/autosuggest_input';
