@@ -177,7 +177,6 @@ FROM build as yarn
 ARG TARGETPLATFORM
 
 # Copy Node package configuration files into working directory
-COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
 RUN apt-get update && \
     apt-get -yq dist-upgrade && \
     apt-get install -y --no-install-recommends build-essential \
