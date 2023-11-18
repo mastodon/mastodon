@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     /favourites
     /bookmarks
     /pinned
-    /start
+    /start/(*any)
     /directory
     /explore/(*any)
     /search
@@ -80,6 +80,8 @@ Rails.application.routes.draw do
     resource :inbox, only: [:create], module: :activitypub
     resource :outbox, only: [:show], module: :activitypub
   end
+
+  get '/invite/:invite_code', constraints: ->(req) { req.format == :json }, to: 'api/v1/invites#show'
 
   devise_scope :user do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite

@@ -469,6 +469,10 @@ class Video extends PureComponent {
   };
 
   _syncVideoToVolumeState = (volume = null, muted = null) => {
+    if (!this.video) {
+      return;
+    }
+
     this.video.volume = volume ?? this.state.volume;
     this.video.muted = muted ?? this.state.muted;
   };

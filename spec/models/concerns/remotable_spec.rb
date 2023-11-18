@@ -69,7 +69,9 @@ RSpec.describe Remotable do
 
     context 'with an invalid URL' do
       before do
-        allow(Addressable::URI).to receive_message_chain(:parse, :normalize).with(url).with(no_args).and_raise(Addressable::URI::InvalidURIError)
+        parsed = instance_double(Addressable::URI)
+        allow(parsed).to receive(:normalize).with(no_args).and_raise(Addressable::URI::InvalidURIError)
+        allow(Addressable::URI).to receive(:parse).with(url).and_return(parsed)
       end
 
       it 'makes no request' do

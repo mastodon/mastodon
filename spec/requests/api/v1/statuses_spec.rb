@@ -2,24 +2,26 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::StatusesController do
-  render_views
-
-  let(:user)  { Fabricate(:user) }
-  let(:app)   { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, application: app, scopes: scopes) }
-
+describe '/api/v1/statuses' do
   context 'with an oauth token' do
-    before do
-      allow(controller).to receive(:doorkeeper_token) { token }
-    end
+    let(:user)  { Fabricate(:user) }
+    let(:client_app) { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
+    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, application: client_app, scopes: scopes) }
+    let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-    describe 'GET #show' do
+    describe 'GET /api/v1/statuses/:id' do
+      subject do
+        get "/api/v1/statuses/#{status.id}", headers: headers
+      end
+
       let(:scopes) { 'read:statuses' }
       let(:status) { Fabricate(:status, account: user.account) }
 
+      it_behaves_like 'forbidden for wrong scope', 'write write:statuses'
+
       it 'returns http success' do
-        get :show, params: { id: status.id }
+        subject
+
         expect(response).to have_http_status(200)
       end
 
@@ -31,11 +33,10 @@ RSpec.describe Api::V1::StatusesController do
         end
 
         it 'returns filter information', :aggregate_failures do
-          get :show, params: { id: status.id }
-          json = body_as_json
+          subject
 
           expect(response).to have_http_status(200)
-          expect(json[:filtered][0]).to include({
+          expect(body_as_json[:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
               title: 'filter1',
@@ -55,11 +56,10 @@ RSpec.describe Api::V1::StatusesController do
         end
 
         it 'returns filter information', :aggregate_failures do
-          get :show, params: { id: status.id }
-          json = body_as_json
+          subject
 
           expect(response).to have_http_status(200)
-          expect(json[:filtered][0]).to include({
+          expect(body_as_json[:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
               title: 'filter1',
@@ -78,11 +78,10 @@ RSpec.describe Api::V1::StatusesController do
         end
 
         it 'returns filter information', :aggregate_failures do
-          get :show, params: { id: status.id }
-          json = body_as_json
+          subject
 
           expect(response).to have_http_status(200)
-          expect(json[:reblog][:filtered][0]).to include({
+          expect(body_as_json[:reblog][:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
               title: 'filter1',
@@ -94,7 +93,7 @@ RSpec.describe Api::V1::StatusesController do
       end
     end
 
-    describe 'GET #context' do
+    describe 'GET /api/v1/statuses/:id/context' do
       let(:scopes) { 'read:statuses' }
       let(:status) { Fabricate(:status, account: user.account) }
 
@@ -103,20 +102,26 @@ RSpec.describe Api::V1::StatusesController do
       end
 
       it 'returns http success' do
-        get :context, params: { id: status.id }
+        get "/api/v1/statuses/#{status.id}/context", headers: headers
+
         expect(response).to have_http_status(200)
       end
     end
 
-    describe 'POST #create' do
+    describe 'POST /api/v1/statuses' do
+      subject do
+        post '/api/v1/statuses', headers: headers, params: params
+      end
+
       let(:scopes) { 'write:statuses' }
+      let(:params) { { status: 'Hello world' } }
+
+      it_behaves_like 'forbidden for wrong scope', 'read read:statuses'
 
       context 'with a basic status body' do
-        before do
-          post :create, params: { status: 'Hello world' }
-        end
-
         it 'returns rate limit headers', :aggregate_failures do
+          subject
+
           expect(response).to have_http_status(200)
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
           expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
@@ -127,22 +132,22 @@ RSpec.describe Api::V1::StatusesController do
         let!(:alice) { Fabricate(:account, username: 'alice') }
         let!(:bob)   { Fabricate(:account, username: 'bob') }
 
-        before do
-          post :create, params: { status: '@alice hm, @bob is really annoying lately', allowed_mentions: [alice.id] }
-        end
+        let(:params) { { status: '@alice hm, @bob is really annoying lately', allowed_mentions: [alice.id] } }
 
         it 'returns serialized extra accounts in body', :aggregate_failures do
+          subject
+
           expect(response).to have_http_status(422)
           expect(body_as_json[:unexpected_accounts].map { |a| a.slice(:id, :acct) }).to eq [{ id: bob.id.to_s, acct: bob.acct }]
         end
       end
 
       context 'with missing parameters' do
-        before do
-          post :create, params: {}
-        end
+        let(:params) { {} }
 
         it 'returns rate limit headers', :aggregate_failures do
+          subject
+
           expect(response).to have_http_status(422)
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
         end
@@ -152,10 +157,11 @@ RSpec.describe Api::V1::StatusesController do
         before do
           rate_limiter = RateLimiter.new(user.account, family: :statuses)
           300.times { rate_limiter.record! }
-          post :create, params: { status: 'Hello world' }
         end
 
         it 'returns rate limit headers', :aggregate_failures do
+          subject
+
           expect(response).to have_http_status(429)
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
           expect(response.headers['X-RateLimit-Remaining']).to eq '0'
@@ -163,29 +169,37 @@ RSpec.describe Api::V1::StatusesController do
       end
     end
 
-    describe 'DELETE #destroy' do
+    describe 'DELETE /api/v1/statuses/:id' do
+      subject do
+        delete "/api/v1/statuses/#{status.id}", headers: headers
+      end
+
       let(:scopes) { 'write:statuses' }
       let(:status) { Fabricate(:status, account: user.account) }
 
-      before do
-        post :destroy, params: { id: status.id }
-      end
+      it_behaves_like 'forbidden for wrong scope', 'read read:statuses'
 
       it 'removes the status', :aggregate_failures do
+        subject
+
         expect(response).to have_http_status(200)
         expect(Status.find_by(id: status.id)).to be_nil
       end
     end
 
-    describe 'PUT #update' do
+    describe 'PUT /api/v1/statuses/:id' do
+      subject do
+        put "/api/v1/statuses/#{status.id}", headers: headers, params: { status: 'I am updated' }
+      end
+
       let(:scopes) { 'write:statuses' }
       let(:status) { Fabricate(:status, account: user.account) }
 
-      before do
-        put :update, params: { id: status.id, status: 'I am updated' }
-      end
+      it_behaves_like 'forbidden for wrong scope', 'read read:statuses'
 
       it 'updates the status', :aggregate_failures do
+        subject
+
         expect(response).to have_http_status(200)
         expect(status.reload.text).to eq 'I am updated'
       end
@@ -193,49 +207,49 @@ RSpec.describe Api::V1::StatusesController do
   end
 
   context 'without an oauth token' do
-    before do
-      allow(controller).to receive(:doorkeeper_token).and_return(nil)
-    end
-
     context 'with a private status' do
-      let(:status) { Fabricate(:status, account: user.account, visibility: :private) }
+      let(:status) { Fabricate(:status, visibility: :private) }
 
-      describe 'GET #show' do
+      describe 'GET /api/v1/statuses/:id' do
         it 'returns http unauthorized' do
-          get :show, params: { id: status.id }
+          get "/api/v1/statuses/#{status.id}"
+
           expect(response).to have_http_status(404)
         end
       end
 
-      describe 'GET #context' do
+      describe 'GET /api/v1/statuses/:id/context' do
         before do
-          Fabricate(:status, account: user.account, thread: status)
+          Fabricate(:status, thread: status)
         end
 
         it 'returns http unauthorized' do
-          get :context, params: { id: status.id }
+          get "/api/v1/statuses/#{status.id}/context"
+
           expect(response).to have_http_status(404)
         end
       end
     end
 
     context 'with a public status' do
-      let(:status) { Fabricate(:status, account: user.account, visibility: :public) }
+      let(:status) { Fabricate(:status, visibility: :public) }
 
-      describe 'GET #show' do
+      describe 'GET /api/v1/statuses/:id' do
         it 'returns http success' do
-          get :show, params: { id: status.id }
+          get "/api/v1/statuses/#{status.id}"
+
           expect(response).to have_http_status(200)
         end
       end
 
-      describe 'GET #context' do
+      describe 'GET /api/v1/statuses/:id/context' do
         before do
-          Fabricate(:status, account: user.account, thread: status)
+          Fabricate(:status, thread: status)
         end
 
         it 'returns http success' do
-          get :context, params: { id: status.id }
+          get "/api/v1/statuses/#{status.id}/context"
+
           expect(response).to have_http_status(200)
         end
       end

@@ -52,7 +52,8 @@ RSpec.describe Setting do
         before do
           allow(RailsSettings::Settings).to receive(:object).with(key).and_return(object)
           allow(described_class).to receive(:default_settings).and_return(default_settings)
-          allow_any_instance_of(Settings::ScopedSettings).to receive(:thing_scoped).and_return(records)
+          settings_double = instance_double(Settings::ScopedSettings, thing_scoped: records)
+          allow(Settings::ScopedSettings).to receive(:new).and_return(settings_double)
           Rails.cache.delete(cache_key)
         end
 
@@ -77,10 +78,13 @@ RSpec.describe Setting do
             let(:default_value) { { default_value: 'default_value' } }
 
             it 'calls default_value.with_indifferent_access.merge!' do
-              expect(default_value).to receive_message_chain(:with_indifferent_access, :merge!)
-                .with(db_val.value)
+              indifferent_hash = instance_double(Hash, merge!: nil)
+              allow(default_value).to receive(:with_indifferent_access).and_return(indifferent_hash)
 
               described_class[key]
+
+              expect(default_value).to have_received(:with_indifferent_access)
+              expect(indifferent_hash).to have_received(:merge!).with(db_val.value)
             end
           end
 
@@ -125,7 +129,8 @@ RSpec.describe Setting do
 
   describe '.all_as_records' do
     before do
-      allow_any_instance_of(Settings::ScopedSettings).to receive(:thing_scoped).and_return(records)
+      settings_double = instance_double(Settings::ScopedSettings, thing_scoped: records)
+      allow(Settings::ScopedSettings).to receive(:new).and_return(settings_double)
       allow(described_class).to receive(:default_settings).and_return(default_settings)
     end
 

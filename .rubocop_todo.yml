@@ -24,15 +24,6 @@ Lint/NonLocalExitFromIterator:
   Exclude:
     - 'app/helpers/jsonld_helper.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
-Lint/UnusedBlockArgument:
-  Exclude:
-    - 'config/initializers/content_security_policy.rb'
-    - 'config/initializers/doorkeeper.rb'
-    - 'config/initializers/paperclip.rb'
-    - 'config/initializers/simple_form.rb'
-
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 144
@@ -50,46 +41,9 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Max: 27
 
-RSpec/AnyInstance:
-  Exclude:
-    - 'spec/controllers/activitypub/inboxes_controller_spec.rb'
-    - 'spec/controllers/admin/accounts_controller_spec.rb'
-    - 'spec/controllers/admin/resets_controller_spec.rb'
-    - 'spec/controllers/auth/sessions_controller_spec.rb'
-    - 'spec/controllers/settings/two_factor_authentication/confirmations_controller_spec.rb'
-    - 'spec/controllers/settings/two_factor_authentication/recovery_codes_controller_spec.rb'
-    - 'spec/lib/request_spec.rb'
-    - 'spec/lib/status_filter_spec.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/setting_spec.rb'
-    - 'spec/services/activitypub/process_collection_service_spec.rb'
-    - 'spec/validators/follow_limit_validator_spec.rb'
-    - 'spec/workers/activitypub/delivery_worker_spec.rb'
-    - 'spec/workers/web/push_notification_worker_spec.rb'
-
 # Configuration parameters: CountAsOne.
 RSpec/ExampleLength:
   Max: 22
-
-# Configuration parameters: AssignmentOnly.
-RSpec/InstanceVariable:
-  Exclude:
-    - 'spec/controllers/api/v1/streaming_controller_spec.rb'
-    - 'spec/controllers/auth/confirmations_controller_spec.rb'
-    - 'spec/controllers/auth/passwords_controller_spec.rb'
-    - 'spec/controllers/auth/sessions_controller_spec.rb'
-    - 'spec/controllers/concerns/export_controller_concern_spec.rb'
-    - 'spec/controllers/home_controller_spec.rb'
-    - 'spec/controllers/settings/two_factor_authentication/webauthn_credentials_controller_spec.rb'
-    - 'spec/controllers/statuses_cleanup_controller_spec.rb'
-    - 'spec/models/concerns/account_finder_concern_spec.rb'
-    - 'spec/models/concerns/account_interactions_spec.rb'
-    - 'spec/models/public_feed_spec.rb'
-    - 'spec/serializers/activitypub/note_serializer_spec.rb'
-    - 'spec/serializers/activitypub/update_poll_serializer_spec.rb'
-    - 'spec/services/remove_status_service_spec.rb'
-    - 'spec/services/search_service_spec.rb'
-    - 'spec/services/unblock_domain_service_spec.rb'
 
 RSpec/LetSetup:
   Exclude:
@@ -133,12 +87,6 @@ RSpec/LetSetup:
     - 'spec/services/unsuspend_account_service_spec.rb'
     - 'spec/workers/scheduler/user_cleanup_scheduler_spec.rb'
 
-RSpec/MessageChain:
-  Exclude:
-    - 'spec/models/concerns/remotable_spec.rb'
-    - 'spec/models/session_activation_spec.rb'
-    - 'spec/models/setting_spec.rb'
-
 RSpec/MultipleExpectations:
   Max: 8
 
@@ -177,11 +125,6 @@ Rails/HasManyOrHasOneDependent:
     - 'app/models/status.rb'
     - 'app/models/user.rb'
     - 'app/models/web/push_subscription.rb'
-
-Rails/I18nLocaleTexts:
-  Exclude:
-    - 'lib/tasks/mastodon.rake'
-    - 'spec/helpers/flashes_helper_spec.rb'
 
 # Configuration parameters: Include.
 # Include: app/controllers/**/*.rb, app/mailers/**/*.rb

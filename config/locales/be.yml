@@ -635,6 +635,7 @@ be:
       created_at: Створана
       delete_and_resolve: Выдаліць допісы
       forwarded: Пераслана
+      forwarded_replies_explanation: Гэтае паведамленне паступіла ад выдаленага карыстальніка і дакранаецца выдаленага змесціва. Яно было накіраванае вам, бо змесціва паведамлення з'яўляецца адказам аднаму з вашых карыстальнікаў.
       forwarded_to: Пераслана на %{domain}
       mark_as_resolved: Пазначыць як вырашаную
       mark_as_sensitive: Пазначыць як далікатны
@@ -1052,7 +1053,7 @@ be:
     localization:
       body: Mastodon перакладаецца добраахвотнікамі.
       guide_link: https://be.crowdin.com/project/mastodon/be
-      guide_link_text: Кожны можа зрабіць унёсак.
+      guide_link_text: Кожны і кожная можа зрабіць унёсак.
     sensitive_content: Далікатны змест
   application_mailer:
     notification_preferences: Змяніць налады эл. пошты
@@ -1418,6 +1419,7 @@ be:
       '86400': 1 дзень
     expires_in_prompt: Ніколі
     generate: Стварыць запрашальную спасылку
+    invalid: Гэта запрашэнне несапраўднае
     invited_by: 'Вас запрасіў(-ла):'
     max_uses:
       few: "%{count} выкарыстанні"
@@ -1574,7 +1576,7 @@ be:
       duration_too_short: гэта занадта хутка
       expired: Апытанне ўжо скончана
       invalid_choice: Абраны варыянт апытання не існуе
-      over_character_limit: не можа быць даўжэй за %{max} сімвалаў кожны
+      over_character_limit: кожны не можа быць даўжэй за %{max} сімвалаў
       self_vote: Вы не можаце галасаваць ва ўласных апытаннях
       too_few_options: павінна быць болей за адзін варыянт
       too_many_options: колькасць варыянтаў не можа перавышаць %{max}
@@ -1763,7 +1765,7 @@ be:
       public: Публічны
       public_long: Усе могуць бачыць
       unlisted: Не ў спісе
-      unlisted_long: Кожны можа ўбачыць гэты допіс, але ён не паказваецца ў публічных стужках
+      unlisted_long: Усе могуць пабачыць гэты допіс, але ён не паказваецца ў публічных стужках
   statuses_cleanup:
     enabled: Аўтаматычна выдаляць старыя допісы
     enabled_hint: Аўтаматычна выдаляць вашыя допісы, калі яны дасягаюць вызначанага тэрміну, акрамя наступных выпадкаў
