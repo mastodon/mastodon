@@ -106,6 +106,14 @@ class InitialStateSerializer < ActiveModel::Serializer
     LanguagesHelper::SUPPORTED_LOCALES.map { |(key, value)| [key, value[0], value[1]] }
   end
 
+  def instance_configuration
+    {
+      statuses: {
+        max_characters: StatusLengthValidator::MAX_CHARS,
+      },
+    }
+  end
+
   private
 
   def instance_presenter

@@ -19,10 +19,6 @@ export default class CharacterCounter extends PureComponent {
   }
 
   render () {
-    if (this.props.max == null) {
-      return null;
-    }
-
     const diff = this.props.max - length(this.props.text);
     return this.checkRemainingText(diff);
   }
