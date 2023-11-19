@@ -49,4 +49,12 @@ module Api::ErrorHandling
       render json: { error: e.to_s }, status: 400
     end
   end
+
+  private
+
+  def error_message(key)
+    with_options scope: [:api, :errors] do
+      t(key)
+    end
+  end
 end

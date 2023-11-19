@@ -111,10 +111,4 @@ class Api::BaseController < ApplicationController
   def respond_with_error(code)
     render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code
   end
-
-  def error_message(key)
-    with_options scope: [:api, :errors] do
-      t(key)
-    end
-  end
 end
