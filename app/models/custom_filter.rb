@@ -70,8 +70,8 @@ class CustomFilter < ApplicationRecord
       scope.to_a.group_by(&:custom_filter).each do |filter, keywords|
         keywords.map! do |keyword|
           if keyword.whole_word
-            sb = /\A[[:word:]]/.match?(keyword.keyword) ? '\b' : ''
-            eb = /[[:word:]]\z/.match?(keyword.keyword) ? '\b' : ''
+            sb = /\A|^[[:word:]]/.match?(keyword.keyword) ? '\b' : ''
+            eb = /[[:word:]]\z|$/.match?(keyword.keyword) ? '\b' : ''
 
             /(?mix:#{sb}#{Regexp.escape(keyword.keyword)}#{eb})/
           else

@@ -26,16 +26,20 @@ describe '/api/v1/statuses' do
       end
 
       context 'when post includes filtered terms' do
-        let(:status) { Fabricate(:status, text: 'this toot is about that banned word') }
+        let(:status) { Fabricate(:status, text: 'this toot is about that banned word https://example.com/#filter_me') }
 
         before do
           user.account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
+          user.account.custom_filters.create!(phrase: 'should not match', context: %w(home), action: :hide, keywords_attributes: [{ keyword: '#filter_me', whole_word: true }])
         end
 
         it 'returns filter information', :aggregate_failures do
           subject
 
           expect(response).to have_http_status(200)
+          # Only the first filter should match:
+          expect(body_as_json[:filtered].count).to be(1)
+
           expect(body_as_json[:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,

@@ -891,11 +891,11 @@ const startServer = async () => {
                 let expr = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
                 if (whole_word) {
-                  if (/^[\w]/.test(expr)) {
+                  if (/^[\S]/.test(expr)) {
                     expr = `\\b${expr}`;
                   }
 
-                  if (/[\w]$/.test(expr)) {
+                  if (/[\S]$/.test(expr)) {
                     expr = `${expr}\\b`;
                   }
                 }
