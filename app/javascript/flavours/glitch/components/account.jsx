@@ -18,7 +18,7 @@ import { RelativeTimestamp } from './relative_timestamp';
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
+  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   mute_notifications: { id: 'account.mute_notifications', defaultMessage: 'Mute notifications from @{name}' },
@@ -38,7 +38,6 @@ class Account extends ImmutablePureComponent {
     onMuteNotifications: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     hidden: PropTypes.bool,
-    small: PropTypes.bool,
     actionIcon: PropTypes.string,
     actionTitle: PropTypes.string,
     defaultAction: PropTypes.string,
@@ -74,17 +73,7 @@ class Account extends ImmutablePureComponent {
   };
 
   render () {
-    const {
-      account,
-      hidden,
-      intl,
-      small,
-      onActionClick,
-      actionIcon,
-      actionTitle,
-      defaultAction,
-      size,
-    } = this.props;
+    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction, size } = this.props;
 
     if (!account) {
       return (
@@ -114,7 +103,7 @@ class Account extends ImmutablePureComponent {
       if (actionIcon) {
         buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
       }
-    } else if (account.get('id') !== me && !small && account.get('relationship', null) !== null) {
+    } else if (account.get('id') !== me && account.get('relationship', null) !== null) {
       const following = account.getIn(['relationship', 'following']);
       const requested = account.getIn(['relationship', 'requested']);
       const blocking  = account.getIn(['relationship', 'blocking']);
@@ -151,24 +140,7 @@ class Account extends ImmutablePureComponent {
       mute_expires_at =  <div><RelativeTimestamp timestamp={account.get('mute_expires_at')} futureDate /></div>;
     }
 
-    return small ? (
-      <Permalink
-        className='account small'
-        href={account.get('url')}
-        to={`/@${account.get('acct')}`}
-      >
-        <div className='account__avatar-wrapper'>
-          <Avatar
-            account={account}
-            size={24}
-          />
-        </div>
-        <DisplayName
-          account={account}
-          inline
-        />
-      </Permalink>
-    ) : (
+    return (
       <div className='account'>
         <div className='account__wrapper'>
           <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
