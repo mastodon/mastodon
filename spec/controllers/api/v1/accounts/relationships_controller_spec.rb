@@ -2,20 +2,21 @@
 
 require 'rails_helper'
 
-describe Api::V1::Accounts::FamiliarFollowersController do
+describe Api::V1::Accounts::RelationshipsController do
   render_views
 
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:follows') }
-  let(:account) { Fabricate(:account) }
+  let(:user)  { Fabricate(:user) }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:follows') }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
   describe 'GET #index' do
+    let(:account) { Fabricate(:account) }
+
     it 'returns http success' do
-      get :index, params: { account_id: account.id, limit: 2 }
+      get :index, params: { id: account.id }
 
       expect(response).to have_http_status(200)
     end
