@@ -592,6 +592,8 @@ sk:
         title: Ohľadom
       appearance:
         title: Vzhľad
+      content_retention:
+        title: Ponechanie obsahu
       discovery:
         follow_recommendations: Odporúčania pre nasledovanie
         profile_directory: Katalóg profilov
@@ -616,6 +618,7 @@ sk:
       delete: Vymaž nahratý súbor
       destroyed_msg: Nahratie bolo zo stránky úspešne vymazané!
     software_updates:
+      critical_update: Kritické — prosím aktualizuj rýchlo
       documentation_link: Zisti viac
       title: Dostupné aktualizácie
       types:
@@ -646,6 +649,10 @@ sk:
       appeal_approved: Namietnuté
       appeal_rejected: Námietka zamietnutá
     system_checks:
+      elasticsearch_preset:
+        action: Pozri dokumentáciu
+      elasticsearch_preset_single_node:
+        action: Pozri dokumentáciu
       rules_check:
         action: Spravuj serverové pravidlá
         message_html: Neurčil/a si žiadne serverové pravidlá.
@@ -925,6 +932,7 @@ sk:
       '86400': 1 deň
     expires_in_prompt: Nikdy
     generate: Vygeneruj
+    invalid: Táto pozvánka je neplatná
     invited_by: 'Bol/a si pozvaný/á užívateľom:'
     max_uses:
       few: "%{count} využití"

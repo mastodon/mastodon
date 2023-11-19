@@ -109,6 +109,9 @@ group :test do
   # RSpec progress bar formatter
   gem 'fuubar', '~> 2.5'
 
+  # RSpec helpers for email specs
+  gem 'email_spec'
+
   # Extra RSpec extenion methods and helpers for sidekiq
   gem 'rspec-sidekiq', '~> 4.0'
 
@@ -139,6 +142,7 @@ group :test do
 
   # Coverage formatter for RSpec test if DISABLE_SIMPLECOV is false
   gem 'simplecov', '~> 0.22', require: false
+  gem 'simplecov-lcov', '~> 0.8', require: false
 
   # Stub web requests for specs
   gem 'webmock', '~> 3.18'

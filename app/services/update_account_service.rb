@@ -30,11 +30,7 @@ class UpdateAccountService < BaseService
   def check_links(account)
     return unless account.fields.any?(&:requires_verification?)
 
-    if account.local?
-      VerifyAccountLinksWorker.perform_async(account.id)
-    else
-      VerifyAccountLinksWorker.perform_in(rand(10.minutes.to_i), account.id)
-    end
+    VerifyAccountLinksWorker.perform_async(account.id)
   end
 
   def process_hashtags(account)

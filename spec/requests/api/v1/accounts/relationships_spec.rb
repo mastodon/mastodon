@@ -27,12 +27,16 @@ describe 'GET /api/v1/accounts/relationships' do
     it 'returns JSON with correct data', :aggregate_failures do
       subject
 
-      json = body_as_json
-
-      expect(response).to have_http_status(200)
-      expect(json).to be_a Enumerable
-      expect(json.first[:following]).to be true
-      expect(json.first[:followed_by]).to be false
+      expect(response)
+        .to have_http_status(200)
+      expect(body_as_json)
+        .to be_an(Enumerable)
+        .and have_attributes(
+          first: include(
+            following: true,
+            followed_by: false
+          )
+        )
     end
   end
 
@@ -40,18 +44,19 @@ describe 'GET /api/v1/accounts/relationships' do
     let(:params) { { id: [simon.id, lewis.id, bob.id] } }
 
     context 'when there is returned JSON data' do
-      let(:json) { body_as_json }
-
       context 'with default parameters' do
         it 'returns an enumerable json with correct elements, excluding suspended accounts', :aggregate_failures do
           subject
 
-          expect(response).to have_http_status(200)
-          expect(json).to be_a Enumerable
-          expect(json.size).to eq 2
-
-          expect_simon_item_one
-          expect_lewis_item_two
+          expect(response)
+            .to have_http_status(200)
+          expect(body_as_json)
+            .to be_an(Enumerable)
+            .and have_attributes(
+              size: 2,
+              first: include(simon_item),
+              second: include(lewis_item)
+            )
         end
       end
 
@@ -61,58 +66,79 @@ describe 'GET /api/v1/accounts/relationships' do
         it 'returns an enumerable json with correct elements, including suspended accounts', :aggregate_failures do
           subject
 
-          expect(response).to have_http_status(200)
-          expect(json).to be_a Enumerable
-          expect(json.size).to eq 3
-
-          expect_simon_item_one
-          expect_lewis_item_two
-          expect_bob_item_three
+          expect(response)
+            .to have_http_status(200)
+          expect(body_as_json)
+            .to be_an(Enumerable)
+            .and have_attributes(
+              size: 3,
+              first: include(simon_item),
+              second: include(lewis_item),
+              third: include(bob_item)
+            )
         end
       end
 
-      def expect_simon_item_one
-        expect(json.first[:id]).to eq simon.id.to_s
-        expect(json.first[:following]).to be true
-        expect(json.first[:showing_reblogs]).to be true
-        expect(json.first[:followed_by]).to be false
-        expect(json.first[:muting]).to be false
-        expect(json.first[:requested]).to be false
-        expect(json.first[:domain_blocking]).to be false
+      def simon_item
+        {
+          id: simon.id.to_s,
+          following: true,
+          showing_reblogs: true,
+          followed_by: false,
+          muting: false,
+          requested: false,
+          domain_blocking: false,
+        }
       end
 
-      def expect_lewis_item_two
-        expect(json.second[:id]).to eq lewis.id.to_s
-        expect(json.second[:following]).to be false
-        expect(json.second[:showing_reblogs]).to be false
-        expect(json.second[:followed_by]).to be true
-        expect(json.second[:muting]).to be false
-        expect(json.second[:requested]).to be false
-        expect(json.second[:domain_blocking]).to be false
+      def lewis_item
+        {
+          id: lewis.id.to_s,
+          following: false,
+          showing_reblogs: false,
+          followed_by: true,
+          muting: false,
+          requested: false,
+          domain_blocking: false,
+
+        }
       end
 
-      def expect_bob_item_three
-        expect(json.third[:id]).to eq bob.id.to_s
-        expect(json.third[:following]).to be false
-        expect(json.third[:showing_reblogs]).to be false
-        expect(json.third[:followed_by]).to be false
-        expect(json.third[:muting]).to be false
-        expect(json.third[:requested]).to be false
-        expect(json.third[:domain_blocking]).to be false
+      def bob_item
+        {
+          id: bob.id.to_s,
+          following: false,
+          showing_reblogs: false,
+          followed_by: false,
+          muting: false,
+          requested: false,
+          domain_blocking: false,
+
+        }
       end
     end
 
-    it 'returns JSON with correct data on cached requests too' do
-      subject
-      subject
+    it 'returns JSON with correct data on previously cached requests' do
+      # Initial request including multiple accounts in params
+      get '/api/v1/accounts/relationships', headers: headers, params: { id: [simon.id, lewis.id] }
+      expect(body_as_json)
+        .to have_attributes(size: 2)
 
-      expect(response).to have_http_status(200)
+      # Subsequent request with different id, should override cache from first request
+      get '/api/v1/accounts/relationships', headers: headers, params: { id: [simon.id] }
 
-      json = body_as_json
+      expect(response)
+        .to have_http_status(200)
 
-      expect(json).to be_a Enumerable
-      expect(json.first[:following]).to be true
-      expect(json.first[:showing_reblogs]).to be true
+      expect(body_as_json)
+        .to be_an(Enumerable)
+        .and have_attributes(
+          size: 1,
+          first: include(
+            following: true,
+            showing_reblogs: true
+          )
+        )
     end
 
     it 'returns JSON with correct data after change too' do
@@ -121,13 +147,17 @@ describe 'GET /api/v1/accounts/relationships' do
 
       get '/api/v1/accounts/relationships', headers: headers, params: { id: [simon.id] }
 
-      expect(response).to have_http_status(200)
+      expect(response)
+        .to have_http_status(200)
 
-      json = body_as_json
-
-      expect(json).to be_a Enumerable
-      expect(json.first[:following]).to be false
-      expect(json.first[:showing_reblogs]).to be false
+      expect(body_as_json)
+        .to be_an(Enumerable)
+        .and have_attributes(
+          first: include(
+            following: false,
+            showing_reblogs: false
+          )
+        )
     end
   end
 end

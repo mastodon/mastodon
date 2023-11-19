@@ -6,7 +6,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   # Please update `app/javascript/mastodon/api_types/accounts.ts` when making changes to the attributes
 
-  attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :group, :created_at,
+  attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :indexable, :group, :created_at,
              :note, :url, :uri, :avatar, :avatar_static, :header, :header_static,
              :followers_count, :following_count, :statuses_count, :last_status_at, :hide_collections
 
@@ -110,6 +110,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def discoverable
     object.suspended? ? false : object.discoverable
+  end
+
+  def indexable
+    object.suspended? ? false : object.indexable
   end
 
   def moved_to_account
