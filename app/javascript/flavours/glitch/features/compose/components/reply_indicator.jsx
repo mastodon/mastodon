@@ -6,9 +6,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import AttachmentList from 'flavours/glitch/components/attachment_list';
+import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/glitch/utils/react_router';
 
+import { Avatar } from '../../../components/avatar';
+import { DisplayName } from '../../../components/display_name';
 import { IconButton } from '../../../components/icon_button';
-import AccountContainer from '../../../containers/account_container';
 
 const messages = defineMessages({
   cancel: { id: 'reply_indicator.cancel', defaultMessage: 'Cancel' },
@@ -18,14 +20,19 @@ class ReplyIndicator extends ImmutablePureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map,
-    onCancel: PropTypes.func,
+    onCancel: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    ...WithOptionalRouterPropTypes,
   };
 
   handleClick = () => {
-    const { onCancel } = this.props;
-    if (onCancel) {
-      onCancel();
+    this.props.onCancel();
+  };
+
+  handleAccountClick = (e) => {
+    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      this.props.history?.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
     }
   };
 
@@ -38,19 +45,15 @@ class ReplyIndicator extends ImmutablePureComponent {
 
     const content = { __html: status.get('contentHtml') };
 
-    const account     = status.get('account');
-
     return (
       <div className='reply-indicator'>
         <div className='reply-indicator__header'>
           <div className='reply-indicator__cancel'><IconButton title={intl.formatMessage(messages.cancel)} icon='times' onClick={this.handleClick} inverted /></div>
 
-          {account && (
-            <AccountContainer
-              id={account}
-              small
-            />
-          )}
+          <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='reply-indicator__display-name' target='_blank' rel='noopener noreferrer'>
+            <div className='reply-indicator__display-avatar'><Avatar account={status.get('account')} size={24} /></div>
+            <DisplayName account={status.get('account')} inline />
+          </a>
         </div>
 
         <div className='reply-indicator__content translate' dangerouslySetInnerHTML={content} />
@@ -67,4 +70,4 @@ class ReplyIndicator extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(ReplyIndicator);
+export default withOptionalRouter(injectIntl(ReplyIndicator));

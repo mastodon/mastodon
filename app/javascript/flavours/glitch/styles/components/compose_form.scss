@@ -141,15 +141,30 @@
 .reply-indicator__header {
   margin-bottom: 5px;
   overflow: hidden;
-
-  & > .account.small {
-    color: $inverted-text-color;
-  }
 }
 
 .reply-indicator__cancel {
   float: right;
   line-height: 24px;
+}
+
+.reply-indicator__display-name {
+  color: $inverted-text-color;
+  display: block;
+  max-width: 100%;
+  line-height: 24px;
+  overflow: hidden;
+  text-decoration: none;
+
+  & > .display-name {
+    line-height: unset;
+    height: unset;
+  }
+}
+
+.reply-indicator__display-avatar {
+  float: left;
+  margin-inline-end: 5px;
 }
 
 .reply-indicator__content {
