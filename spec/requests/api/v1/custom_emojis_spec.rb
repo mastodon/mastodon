@@ -27,7 +27,7 @@ describe 'Custom Emojis' do
       end
     end
 
-    context 'when authorized' do
+    context 'when logged in' do
       it 'returns http success and json' do
         get api_v1_custom_emojis_path, headers: headers
 
