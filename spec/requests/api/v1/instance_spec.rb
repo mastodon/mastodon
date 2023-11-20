@@ -21,7 +21,7 @@ describe 'Instances' do
       end
     end
 
-    context 'when authorized' do
+    context 'when logged in' do
       it 'returns http success and json' do
         get api_v1_instance_path, headers: headers
 
