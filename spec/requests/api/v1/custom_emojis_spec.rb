@@ -12,7 +12,7 @@ describe 'Custom Emojis' do
       Fabricate(:custom_emoji, domain: nil, disabled: false, visible_in_picker: true)
     end
 
-    context 'when not authorized' do
+    context 'when logged out' do
       it 'returns http success and json' do
         get api_v1_custom_emojis_path
 
