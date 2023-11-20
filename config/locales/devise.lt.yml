@@ -1,1 +1,35 @@
+---
 lt:
+  devise:
+    confirmations:
+      confirmed: Tavo el. pašto adresas buvo sėkmingai patvirtintas.
+      send_instructions: Po kelių minučių gausi el. laišką su instrukcijomis, kaip patvirtinti savo el. pašto adresą. Jei negavai šio el. laiško, patikrink šlamšto laiškų aplanką.
+      send_paranoid_instructions: Jei tavo el. pašto adresas yra mūsų duomenų bazėje, po kelių minučių gausi el. laišką su instrukcijomis, kaip patvirtinti savo el. pašto adresą. Jei negavai šio el. laiško, patikrink šlamšto laiškų aplanką.
+    failure:
+      already_authenticated: Tu jau prisijungęs (-usi).
+      inactive: Tavo paskyra dar nėra aktyvuota.
+      invalid: Netinkami %{authentication_keys} arba slaptažodis.
+      last_attempt: Turi dar vieną bandymą, kol tavo paskyra bus užrakinta.
+      locked: Tavo paskyra užrakinta.
+      not_found_in_database: Netinkami %{authentication_keys} arba slaptažodis.
+      pending: Tavo paskyra vis dar peržiūrima.
+      timeout: Tavo seansas baigėsi. Norėdamas (-a) tęsti, prisijunk dar kartą.
+      unauthenticated: Prieš tęsdamas (-a) turi prisijungti arba užsiregistruoti.
+      unconfirmed: Prieš tęsdamas (-a) turi patvirtinti savo el. pašto adresą.
+    mailer:
+      confirmation_instructions:
+        action: Patvirtinti el. pašto adresą
+        action_with_app: Patvirtinti ir grįžti į %{app}
+        explanation: Šiuo el. pašto adresu sukūrei paskyrą %{host}. Iki jos aktyvavimo liko vienas paspaudimas. Jei tai buvo ne tu, ignoruok šį el. laišką.
+        explanation_when_pending: Šiuo el. pašto adresu pateikei paraišką pakvietimui į %{host}. Kai patvirtinsi savo el. pašto adresą, mes peržiūrėsime tavo paraišką. Gali prisijungti ir pakeisti savo duomenis arba ištrinti paskyrą, tačiau negalėsi naudotis daugeliu funkcijų, kol tavo paskyra nebus patvirtinta. Jei tavo paraiška bus atmesta, duomenys bus pašalinti, todėl jokių papildomų veiksmų iš tavęs nereikės. Jei tai buvo ne tu, ignoruok šį el. laišką.
+      unlock_instructions:
+        subject: 'Mastodon: atrakinimo instrukcijos'
+    passwords:
+      no_token: Į šį puslapį gali patekti tik gavęs (-usi) slaptažodžio atstatymo el. laišką. Jei atėjai iš slaptažodžio atstatymo el. laiško, įsitikink, kad naudojai visą pateiktą URL adresą.
+    registrations:
+      destroyed: Iki pasimatymo! Tavo paskyra sėkmingai atšaukta. Tikimės, kad netrukus vėl pasimatysime.
+  errors:
+    messages:
+      expired: nustojo galioti, prašyk naujos.
+      not_found: nerasta.
+      not_locked: nebuvo užrakintas.
