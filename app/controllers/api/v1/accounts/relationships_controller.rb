@@ -5,6 +5,8 @@ class Api::V1::Accounts::RelationshipsController < Api::BaseController
   before_action :require_user!
 
   def index
+    account_ids = unique_account_ids_from_params
+
     scope = Account.where(id: account_ids).select('id')
     scope.merge!(Account.without_suspended) unless truthy_param?(:with_suspended)
     # .where doesn't guarantee that our results are in the same order
@@ -19,7 +21,7 @@ class Api::V1::Accounts::RelationshipsController < Api::BaseController
     AccountRelationshipsPresenter.new(@accounts, current_user.account_id)
   end
 
-  def account_ids
-    @account_ids ||= Array(params[:id]).map(&:to_i).uniq
+  def unique_account_ids_from_params
+    Array(params[:id]).map(&:to_i).uniq
   end
 end
