@@ -187,6 +187,10 @@ group :development, :test do
 
   # RSpec runner for rails
   gem 'rspec-rails', '~> 6.0'
+
+  # REPL for debugging
+  gem 'pry-byebug'
+  gem 'pry-rails'
 end
 
 group :production do
