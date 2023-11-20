@@ -8,7 +8,7 @@ describe 'Instances' do
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   describe 'GET /api/v1/instance' do
-    context 'when not authorized' do
+    context 'when not logged in' do
       it 'returns http success and json' do
         get api_v1_instance_path
 
