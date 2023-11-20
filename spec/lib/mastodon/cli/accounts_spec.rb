@@ -779,6 +779,8 @@ describe Mastodon::CLI::Accounts do
       let(:arguments)              { [account_example_com_a.acct, account_example_com_b.acct] }
 
       before do
+        # NOTE: `Account.find_remote` is stubbed so that `Account#reset_avatar!`
+        # can be stubbed on the individual accounts.
         allow(Account).to receive(:find_remote).with(account_example_com_a.username, account_example_com_a.domain).and_return(account_example_com_a)
         allow(Account).to receive(:find_remote).with(account_example_com_b.username, account_example_com_b.domain).and_return(account_example_com_b)
         allow(Account).to receive(:find_remote).with(account_example_net.username, account_example_net.domain).and_return(account_example_net)
@@ -978,11 +980,10 @@ describe Mastodon::CLI::Accounts do
     end
 
     context 'when --all option is provided' do
-      let(:accounts) { Fabricate.times(2, :account) }
-      let(:options)  { { all: true } }
+      let!(:accounts) { Fabricate.times(2, :account) }
+      let(:options)   { { all: true } }
 
       before do
-        allow(Account).to receive(:local).and_return(Account.where(id: accounts.map(&:id)))
         cli.options = { all: true }
       end
 
@@ -1581,8 +1582,7 @@ describe Mastodon::CLI::Accounts do
 
       context 'when the specified account is redirecting to a different target account' do
         before do
-          allow(Account).to receive(:find_local).with(source_account.username).and_return(source_account)
-          allow(source_account).to receive(:moved_to_account_id).and_return(-1)
+          source_account.update(moved_to_account: Fabricate(:account))
         end
 
         it 'exits with an error message' do
@@ -1597,9 +1597,8 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { target: target_account.acct, force: true } }
 
         before do
+          source_account.update(moved_to_account: Fabricate(:account))
           target_account.aliases.create!(acct: source_account.acct)
-          allow(Account).to receive(:find_local).with(source_account.username).and_return(source_account)
-          allow(source_account).to receive(:moved_to_account_id).and_return(-1)
         end
 
         it_behaves_like 'a successful migration'
