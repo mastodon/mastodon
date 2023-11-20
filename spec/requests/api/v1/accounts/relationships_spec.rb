@@ -79,6 +79,22 @@ describe 'GET /api/v1/accounts/relationships' do
         end
       end
 
+      context 'when there are duplicate IDs in the params' do
+        let(:params) { { id: [simon.id, lewis.id, lewis.id, lewis.id, simon.id] } }
+
+        it 'removes duplicate account IDs from params' do
+          subject
+
+          expect(body_as_json)
+            .to be_an(Enumerable)
+            .and have_attributes(
+              size: 2,
+              first: include(simon_item),
+              second: include(lewis_item)
+            )
+        end
+      end
+
       def simon_item
         {
           id: simon.id.to_s,
