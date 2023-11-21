@@ -9,6 +9,9 @@ gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
 gem 'rack', '~> 2.2.7'
 
+# For why irb is in the Gemfile, see: https://ruby.social/@st0012/111444685161478182
+gem 'irb', '~> 1.8'
+
 gem 'haml-rails', '~>2.0'
 gem 'pg', '~> 1.5'
 gem 'pghero'
@@ -180,9 +183,7 @@ end
 
 group :development, :test do
   # Interactive Debugging tools
-  # For why irb is in the Gemfile, see: https://ruby.social/@st0012/111444685161478182
   gem 'debug', '~> 1.8'
-  gem 'irb', '~> 1.8'
 
   # Profiling tools
   gem 'memory_profiler', require: false
