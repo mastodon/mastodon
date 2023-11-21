@@ -220,6 +220,9 @@ GEM
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
     date (3.3.4)
+    debug (1.8.0)
+      irb (>= 1.5.0)
+      reline (>= 0.3.1)
     debug_inspector (1.1.0)
     devise (4.9.3)
       bcrypt (~> 3.0)
@@ -851,6 +854,7 @@ DEPENDENCIES
   concurrent-ruby
   connection_pool
   database_cleaner-active_record
+  debug (~> 1.8)
   devise (~> 4.9)
   devise-two-factor (~> 4.1)
   devise_pam_authenticatable2 (~> 9.2)
@@ -876,6 +880,7 @@ DEPENDENCIES
   httplog (~> 1.6.2)
   i18n-tasks (~> 1.0)
   idn-ruby
+  irb (~> 1.8)
   json-ld
   json-ld-preloaded (~> 3.2)
   json-schema (~> 4.0)
