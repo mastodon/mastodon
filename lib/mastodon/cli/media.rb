@@ -40,7 +40,6 @@ module Mastodon::CLI
         say('--include-follows can only be used with --prune-profiles or --remove-headers', :red, true)
         exit(1)
       end
-      time_ago = options[:days].days.ago
 
       if options[:prune_profiles] || options[:remove_headers]
         processed, aggregate = parallelize_with_progress(Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })) do |account|
@@ -262,13 +261,13 @@ module Mastodon::CLI
         scope = MediaAttachment.where(account_id: account.id)
       elsif options[:domain]
         scope = MediaAttachment.joins(:account).merge(Account.by_domain_and_subdomains(options[:domain]))
-      elsif options[:days].present?
+      elsif days_option_present?
         scope = MediaAttachment.remote
       else
         exit(1)
       end
 
-      scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false)) if options[:days].present?
+      scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(time_ago, with_random: false)) if days_option_present?
 
       processed, aggregate = parallelize_with_progress(scope) do |media_attachment|
         next if media_attachment.remote_url.blank? || (!options[:force] && media_attachment.file_file_name.present?)
@@ -350,6 +349,14 @@ module Mastodon::CLI
       PreviewCard
       SiteUpload
     ).freeze
+
+    def time_ago
+      options[:days].days.ago
+    end
+
+    def days_option_present?
+      options[:days].present?
+    end
 
     def preload_records_from_mixed_objects(objects)
       preload_map = Hash.new { |hash, key| hash[key] = [] }

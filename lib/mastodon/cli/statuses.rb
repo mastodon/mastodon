@@ -47,7 +47,7 @@ module Mastodon::CLI
 
       ActiveRecord::Base.connection.add_index(:media_attachments, :remote_url, name: :index_media_attachments_remote_url, where: 'remote_url is not null', algorithm: :concurrently, if_not_exists: true)
 
-      max_id   = Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false)
+      max_id   = Mastodon::Snowflake.id_at(time_ago, with_random: false)
       start_at = Time.now.to_f
 
       unless options[:continue] && ActiveRecord::Base.connection.table_exists?('statuses_to_be_deleted')
@@ -214,6 +214,10 @@ module Mastodon::CLI
         say('Run ANALYZE to conversations...')
         ActiveRecord::Base.connection.execute('ANALYZE conversations')
       end
+    end
+
+    def time_ago
+      options[:days].days.ago
     end
   end
 end

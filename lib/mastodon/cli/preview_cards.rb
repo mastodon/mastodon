@@ -26,7 +26,6 @@ module Mastodon::CLI
       leaving video and photo cards untouched.
     DESC
     def remove
-      time_ago = options[:days].days.ago
       link     = options[:link] ? 'link-type ' : ''
       scope    = PreviewCard.cached
       scope    = scope.where(type: :link) if options[:link]
@@ -46,6 +45,12 @@ module Mastodon::CLI
       end
 
       say("Removed #{processed} #{link}preview cards (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
+    end
+
+    private
+
+    def time_ago
+      options[:days].days.ago
     end
   end
 end
