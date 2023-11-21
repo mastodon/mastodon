@@ -42,7 +42,7 @@ class ReportService < BaseService
   def notify_staff!
     return if @report.unresolved_siblings?
 
-    User.those_who_can(:manage_reports).includes(:account).each do |u|
+    User.those_who_can(:manage_reports).includes(:account).find_each do |u|
       LocalNotificationWorker.perform_async(u.account_id, @report.id, 'Report', 'admin.report')
       AdminMailer.with(recipient: u.account).new_report(@report).deliver_later if u.allows_report_emails?
     end

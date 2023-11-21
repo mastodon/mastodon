@@ -601,6 +601,7 @@ ko:
       created_at: 신고 시각
       delete_and_resolve: 게시물 삭제
       forwarded: 전달됨
+      forwarded_replies_explanation: 이 신고는 리모트 사용자가 리모트 컨텐츠에 대해 신고한 것입니다. 이것은 신고된 내용이 로컬 사용자에 대한 답글이기 때문에 첨부되었습니다.
       forwarded_to: "%{domain}에게 전달됨"
       mark_as_resolved: 해결로 표시
       mark_as_sensitive: 민감함으로 설정
@@ -762,7 +763,7 @@ ko:
           open: 누구나 가입 할 수 있음
       security:
         authorized_fetch: 연합된 서버들에게서 인증 필수
-        authorized_fetch_hint: 연합된 서버들에게서 인증을 요구하는 것은 사용자 레벨과 서버 레벨의 차단은 좀 더 확실하게 해줍니다. 한편으로는 성능적인 페널티, 답글의 전달 범위 감소, 몇몇 연합된 서비스들과의 호환성 문제가 있을 가능성이 있습니다. 추가적으로 이 기능은 전용 액터가 공개돤 게시물이나 계정을 페치하는 것은 막지 않습니다.
+        authorized_fetch_hint: 연합된 서버들에게서 인증을 요구하는 것은 사용자 레벨과 서버 레벨의 차단을 좀 더 확실하게 해줍니다. 한편으로는 성능적인 페널티, 답글의 전달 범위 감소, 몇몇 연합된 서비스들과의 호환성 문제가 있을 가능성이 있습니다. 추가적으로 이 기능은 전용 액터가 공개돤 게시물이나 계정을 페치하는 것은 막지 않습니다.
         authorized_fetch_overridden_hint: 현재 이 값은 환경변수에 의해 설정되어 있기에 설정을 변경할 수 없습니다.
         federation_authentication: 연합 인증 필수
       title: 서버 설정
@@ -1345,6 +1346,7 @@ ko:
       '86400': 1 일
     expires_in_prompt: 영원히
     generate: 초대 링크 생성하기
+    invalid: 이 초대는 올바르지 않습니다
     invited_by: '당신을 초대한 사람:'
     max_uses:
       other: "%{count}회"
@@ -1600,7 +1602,7 @@ ko:
       windows: 윈도우
       windows_mobile: 윈도우 모바일
       windows_phone: 윈도우 폰
-    revoke: 삭제
+    revoke: 취소
     revoke_success: 세션을 성공적으로 취소하였습니다
     title: 세션
     view_authentication_history: 내 계정에 대한 인증 이력 보기
@@ -1689,8 +1691,8 @@ ko:
     keep_polls_hint: 설문을 삭제하지 않았음
     keep_self_bookmark: 북마크한 게시물 유지
     keep_self_bookmark_hint: 북마크한 본인의 게시물을 삭제하지 않습니다
-    keep_self_fav: 마음에 들어한 게시물 유지
-    keep_self_fav_hint: 내 스스로 마음에  들어한 본인의 게시물을 삭제하지 않습니다
+    keep_self_fav: 내가 좋아요한 게시물 유지
+    keep_self_fav_hint: 스스로 좋아요를 누른 본인의 게시물을 삭제하지 않습니다
     min_age:
       '1209600': 2 주
       '15778476': 6 개월

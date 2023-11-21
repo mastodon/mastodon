@@ -47,7 +47,7 @@
 %h3= t('admin.statuses.history')
 
 %ol.history
-  - @status.edits.includes(:account, status: [:account]).each.with_index do |status_edit, i|
+  - batched_ordered_status_edits.with_index do |status_edit, i|
     %li
       .history__entry
         %h5

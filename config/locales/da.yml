@@ -611,6 +611,7 @@ da:
       created_at: Anmeldt
       delete_and_resolve: Slet indlæg
       forwarded: Videresendt
+      forwarded_replies_explanation: Denne anmeldelse er fra en ekstern bruger og om eksternt indhold. Den er videresendt til dig, da det anmeldte indhold er som svar til en af dine brugere.
       forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Markér som løst
       mark_as_sensitive: Markér som sensitiv
@@ -1110,6 +1111,7 @@ da:
       functional: Din konto er fuldt funktionel.
       pending: Din ansøgning afventer gennemgang af vores medarbejdere. Dette kan tage noget tid. Du modtager en e-mail, hvis din ansøgning godkendes.
       redirecting_to: Din konto er inaktiv, da den pt. er omdirigerer til %{acct}.
+      self_destruct: Da %{domain} er under nedlukning, vil kontoadgangen være begrænset.
       view_strikes: Se tidligere anmeldelser af din konto
     too_fast: Formularen indsendt for hurtigt, forsøg igen.
     use_security_key: Brug sikkerhedsnøgle
@@ -1367,6 +1369,7 @@ da:
       '86400': 1 dag
     expires_in_prompt: Aldrig
     generate: Generér invitationslink
+    invalid: Denne invitation er ikke gyldig
     invited_by: 'Du blev inviteret af:'
     max_uses:
       one: 1 benyttelse
@@ -1579,6 +1582,9 @@ da:
     over_daily_limit: Den daglige grænse på %{limit} planlagte indlæg er nået
     over_total_limit: Grænsen på %{limit} planlagte indlæg er nået
     too_soon: Den planlagte dato skal være i fremtiden
+  self_destruct:
+    lead_html: Desværre lukker <strong>%{domain}</strong> permanent. Har man en konto dér, vil fortsat brug heraf ikke være mulig. Man kan dog stadig anmode om en sikkerhedskopi af sine data.
+    title: Denne server er under nedlukning
   sessions:
     activity: Seneste aktivitet
     browser: Browser

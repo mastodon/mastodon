@@ -54,14 +54,14 @@ uk:
         no_role: Немає ролі
         title: Змінити роль для %{username}
       confirm: Зберегти
-      confirmed: Підтвердити ел.адресу
+      confirmed: Підтверджено
       confirming: Зберігається
       custom: Власне
       delete: Видалити дані
       deleted: Видалено
       demote: Усунути
       destroyed_msg: Дані %{username} тепер в черзі на негайне видалення
-      disable: Вимкнути
+      disable: Заморозити
       disable_sign_in_token_auth: Вимкнути автентифікацію за допомогою е-пошти
       disable_two_factor_authentication: Вимкнути двофакторну авторизацію
       disabled: Вимкнено
@@ -70,7 +70,7 @@ uk:
       edit: Змінити
       email: Електронна пошта
       email_status: Стан електронної пошти
-      enable: Увімкнути
+      enable: Розморозити
       enable_sign_in_token_auth: Увімкнути автентифікацію за допомогою е-пошти
       enabled: Увімкнено
       enabled_msg: Обліковий запис %{username} успішно розморожено
@@ -635,6 +635,7 @@ uk:
       created_at: Створено
       delete_and_resolve: Видалити дописи
       forwarded: Переслано
+      forwarded_replies_explanation: Цей звіт належить віддаленому користувачеві і про віддалений вміст. Контент був пересланий вам, тому що він містить повідомлення у відповідь одному з ваших користувачів.
       forwarded_to: Переслано до %{domain}
       mark_as_resolved: Позначити вирішеним
       mark_as_sensitive: Позначити делікатним
@@ -1418,6 +1419,7 @@ uk:
       '86400': 1 день
     expires_in_prompt: Ніколи
     generate: Згенерувати
+    invalid: Це запрошення не дійсне
     invited_by: 'Вас запросив:'
     max_uses:
       few: "%{count} використання"
