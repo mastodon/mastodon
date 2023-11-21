@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_06_183200) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_21_065208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -366,6 +366,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_183200) do
     t.bigint "category_id"
     t.integer "image_storage_schema_version"
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
+  end
+
+  create_table "custom_filter_accounts", force: :cascade do |t|
+    t.bigint "custom_filter_id", null: false
+    t.bigint "target_account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["custom_filter_id", "target_account_id"], name: "idx_on_custom_filter_id_target_account_id_65edbcb20a", unique: true
+    t.index ["target_account_id"], name: "index_custom_filter_accounts_on_target_account_id"
   end
 
   create_table "custom_filter_keywords", force: :cascade do |t|
@@ -1196,6 +1205,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_183200) do
   add_foreign_key "canonical_email_blocks", "accounts", column: "reference_account_id", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
+  add_foreign_key "custom_filter_accounts", "accounts", column: "target_account_id", on_delete: :cascade
+  add_foreign_key "custom_filter_accounts", "custom_filters", on_delete: :cascade
   add_foreign_key "custom_filter_keywords", "custom_filters", on_delete: :cascade
   add_foreign_key "custom_filter_statuses", "custom_filters", on_delete: :cascade
   add_foreign_key "custom_filter_statuses", "statuses", on_delete: :cascade
