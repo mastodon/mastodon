@@ -60,7 +60,9 @@ RSpec.configure do |config|
   # By default, skip the elastic search integration specs
   config.filter_run_excluding search: true
 
-  config.fixture_path = Rails.root.join('spec', 'fixtures')
+  config.fixture_paths = [
+    Rails.root.join('spec', 'fixtures'),
+  ]
   config.use_transactional_fixtures = true
   config.order = 'random'
   config.infer_spec_type_from_file_location!
