@@ -34,8 +34,10 @@ class CustomFilter < ApplicationRecord
   enum action: { warn: 0, hide: 1 }, _suffix: :action
 
   belongs_to :account
+  has_many :accounts, class_name: 'CustomFilterAccount', inverse_of: :custom_filter, dependent: :destroy
   has_many :keywords, class_name: 'CustomFilterKeyword', inverse_of: :custom_filter, dependent: :destroy
   has_many :statuses, class_name: 'CustomFilterStatus', inverse_of: :custom_filter, dependent: :destroy
+  accepts_nested_attributes_for :accounts, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :keywords, reject_if: :all_blank, allow_destroy: true
 
   validates :title, :context, presence: true
@@ -66,8 +68,9 @@ class CustomFilter < ApplicationRecord
     active_filters = Rails.cache.fetch("filters:v3:#{account_id}") do
       filters_hash = {}
 
-      scope = CustomFilterKeyword.includes(:custom_filter).where(custom_filter: { account_id: account_id }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()'))
-      scope.to_a.group_by(&:custom_filter).each do |filter, keywords|
+      custom_filters = CustomFilter.includes(:accounts, :keywords, :statuses).where(account_id: account_id).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()'))
+
+      custom_filters.filter_map { |x| [x, x.keywords.to_a] unless x.keywords.empty? }.to_h.each do |filter, keywords|
         keywords.map! do |keyword|
           if keyword.whole_word
             sb = /\A[[:word:]]/.match?(keyword.keyword) ? '\b' : ''
@@ -80,12 +83,16 @@ class CustomFilter < ApplicationRecord
         end
 
         filters_hash[filter.id] = { keywords: Regexp.union(keywords), filter: filter }
-      end.to_h
+      end
 
-      scope = CustomFilterStatus.includes(:custom_filter).where(custom_filter: { account_id: account_id }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()'))
-      scope.to_a.group_by(&:custom_filter).each do |filter, statuses|
+      custom_filters.filter_map { |x| [x, x.statuses.to_a] unless x.statuses.empty? }.to_h.each do |filter, statuses|
         filters_hash[filter.id] ||= { filter: filter }
         filters_hash[filter.id].merge!(status_ids: statuses.map(&:status_id))
+      end
+
+      custom_filters.filter_map { |x| [x, x.accounts.to_a] unless x.accounts.empty? }.to_h.each do |filter, accounts|
+        filters_hash[filter.id] ||= { filter: filter }
+        filters_hash[filter.id].merge!(target_account_ids: accounts.map(&:target_account_id))
       end
 
       filters_hash.values.map { |cache| [cache.delete(:filter), cache] }
@@ -96,14 +103,16 @@ class CustomFilter < ApplicationRecord
 
   def self.apply_cached_filters(cached_filters, status)
     cached_filters.filter_map do |filter, rules|
-      match = rules[:keywords].match(status.proper.searchable_text) if rules[:keywords].present?
-      keyword_matches = [match.to_s] unless match.nil?
+      account_matches = [status.account_id].compact & rules[:target_account_ids] if rules[:target_account_ids].present?
+
+      keyword_match = rules[:keywords].match(status.proper.searchable_text) if rules[:keywords].present?
+      keyword_matches = [keyword_match.to_s] unless keyword_match.nil?
 
       status_matches = [status.id, status.reblog_of_id].compact & rules[:status_ids] if rules[:status_ids].present?
 
-      next if keyword_matches.blank? && status_matches.blank?
+      next if account_matches.blank? && keyword_matches.blank? && status_matches.blank?
 
-      FilterResultPresenter.new(filter: filter, keyword_matches: keyword_matches, status_matches: status_matches)
+      FilterResultPresenter.new(filter: filter, account_matches: account_matches, keyword_matches: keyword_matches, status_matches: status_matches)
     end
   end
 

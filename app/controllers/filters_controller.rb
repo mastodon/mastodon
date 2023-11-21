@@ -9,7 +9,7 @@ class FiltersController < ApplicationController
   before_action :set_cache_headers
 
   def index
-    @filters = current_account.custom_filters.includes(:keywords, :statuses).order(:phrase)
+    @filters = current_account.custom_filters.includes(:keywords, :statuses, :accounts).order(:phrase)
   end
 
   def new

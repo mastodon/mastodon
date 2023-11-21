@@ -28,11 +28,25 @@ describe StatusCacheHydrator do
         end
       end
 
-      context 'when handling a filtered status' do
+      context 'when handling a filtered status with keyword' do
         let(:status) { Fabricate(:status, text: 'this toot is about that banned word') }
 
         before do
           account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
+        end
+
+        it 'renders the same attributes as a full render' do
+          expect(subject).to eql(compare_to_hash)
+        end
+      end
+
+      context 'when handling a filtered status with account' do
+        let(:alice) { Fabricate(:account, username: 'alice') }
+        let(:bob)   { Fabricate(:account, username: 'bob', domain: 'example.com') }
+        let(:status) { Fabricate(:status, text: 'this is sample status', account: alice) }
+
+        before do
+          account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, accounts_attributes: [{ target_account: alice }, { target_account: bob }])
         end
 
         it 'renders the same attributes as a full render' do
@@ -112,11 +126,25 @@ describe StatusCacheHydrator do
           end
         end
 
-        context 'when it matches account filters' do
+        context 'when it matches account filters with keyword' do
           let(:reblog) { Fabricate(:status, text: 'this toot is about that banned word') }
 
           before do
             account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
+          end
+
+          it 'renders the same attributes as a full render' do
+            expect(subject).to eql(compare_to_hash)
+          end
+        end
+
+        context 'when it matches account filters with account' do
+          let(:alice) { Fabricate(:account, username: 'alice') }
+          let(:bob)   { Fabricate(:account, username: 'bob', domain: 'example.com') }
+          let(:reblog) { Fabricate(:status, text: 'this is sample status', account: alice) }
+
+          before do
+            account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, accounts_attributes: [{ target_account: alice }, { target_account: bob }])
           end
 
           it 'renders the same attributes as a full render' do

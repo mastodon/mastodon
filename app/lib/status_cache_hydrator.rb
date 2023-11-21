@@ -45,7 +45,7 @@ class StatusCacheHydrator
       payload[:muted]      = false
       payload[:bookmarked] = false
       payload[:pinned]     = false if @status.account_id == account_id
-      payload[:filtered]   = mapped_applied_custom_filter(account_id, @status.reblog)
+      payload[:filtered]   = mapped_applied_custom_filter(account_id, @status)
 
       # If the reblogged status is being delivered to the author who disabled the display of the application
       # used to create the status, we need to hydrate it here too
@@ -56,7 +56,7 @@ class StatusCacheHydrator
       payload[:reblog][:muted]      = ConversationMute.where(account_id: account_id, conversation_id: @status.reblog.conversation_id).exists?
       payload[:reblog][:bookmarked] = Bookmark.where(account_id: account_id, status_id: @status.reblog_of_id).exists?
       payload[:reblog][:pinned]     = StatusPin.where(account_id: account_id, status_id: @status.reblog_of_id).exists? if @status.reblog.account_id == account_id
-      payload[:reblog][:filtered]   = payload[:filtered]
+      payload[:reblog][:filtered]   = mapped_applied_custom_filter(account_id, @status.reblog)
 
       if payload[:reblog][:poll]
         if @status.reblog.account_id == account_id

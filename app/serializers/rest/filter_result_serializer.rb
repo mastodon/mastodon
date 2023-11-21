@@ -2,6 +2,7 @@
 
 class REST::FilterResultSerializer < ActiveModel::Serializer
   belongs_to :filter, serializer: REST::FilterSerializer
+  has_many :account_matches
   has_many :keyword_matches
   has_many :status_matches
 

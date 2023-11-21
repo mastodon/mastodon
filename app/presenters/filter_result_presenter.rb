@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 class FilterResultPresenter < ActiveModelSerializers::Model
-  attributes :filter, :keyword_matches, :status_matches
+  attributes :filter, :account_matches, :keyword_matches, :status_matches
 end
