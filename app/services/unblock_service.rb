@@ -8,6 +8,9 @@ class UnblockService < BaseService
 
     unblock = account.unblock!(target_account)
     create_notification(unblock) if !target_account.local? && target_account.activitypub?
+
+    notify_streaming!
+
     unblock
   end
 
@@ -19,5 +22,10 @@ class UnblockService < BaseService
 
   def build_json(unblock)
     Oj.dump(serialize_payload(unblock, ActivityPub::UndoBlockSerializer))
+  end
+
+  def notify_streaming!
+    redis.publish("system:#{@account.id}", Oj.dump(event: :blocks_changed))
+    redis.publish("system:#{@target_account.id}", Oj.dump(event: :blocks_changed)) if @target_account.local?
   end
 end

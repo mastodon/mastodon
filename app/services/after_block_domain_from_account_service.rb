@@ -14,6 +14,7 @@ class AfterBlockDomainFromAccountService < BaseService
     remove_follows!
     reject_existing_followers!
     reject_pending_follow_requests!
+    notify_streaming!
   end
 
   private
@@ -46,5 +47,9 @@ class AfterBlockDomainFromAccountService < BaseService
     return unless follow.account.activitypub?
 
     ActivityPub::DeliveryWorker.perform_async(Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), @account.id, follow.account.inbox_url)
+  end
+
+  def notify_streaming!
+    redis.publish("system:#{@account.id}", Oj.dump(event: :domain_blocks_changed))
   end
 end

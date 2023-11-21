@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AfterBlockService < BaseService
+  include Redisable
+
   def call(account, target_account)
     @account        = account
     @target_account = target_account
@@ -9,6 +11,7 @@ class AfterBlockService < BaseService
     clear_list_feeds!
     clear_notifications!
     clear_conversations!
+    notify_streaming!
   end
 
   private
@@ -27,5 +30,10 @@ class AfterBlockService < BaseService
 
   def clear_notifications!
     Notification.where(account: @account).where(from_account: @target_account).in_batches.delete_all
+  end
+
+  def notify_streaming!
+    redis.publish("system:#{@account.id}", Oj.dump(event: :blocks_changed))
+    redis.publish("system:#{@target_account.id}", Oj.dump(event: :blocks_changed)) if @target_account.local?
   end
 end
