@@ -35,18 +35,15 @@ class Account::Field < ActiveModelSerializers::Model
   def verifiable?
     return false if value_for_verification.blank?
 
-    # This is slower than checking through a regular expression, but we
-    # need to confirm that it's not an IDN domain.
-
-    parsed_url = Addressable::URI.parse(value_for_verification)
+    # Raises on URLs not compliant with RFC 3986, including URLs with non-ASCII
+    # characters in hostname or path.
+    parsed_url = URI(value_for_verification).normalize
 
     ACCEPTED_SCHEMES.include?(parsed_url.scheme) &&
       parsed_url.user.nil? &&
       parsed_url.password.nil? &&
-      parsed_url.host.present? &&
-      parsed_url.normalized_host == parsed_url.host &&
-      (parsed_url.path.empty? || parsed_url.path == parsed_url.normalized_path)
-  rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+      parsed_url.path == Addressable::URI.normalize_path(parsed_url.path)
+  rescue URI::InvalidURIError
     false
   end
 
