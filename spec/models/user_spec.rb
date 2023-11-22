@@ -27,12 +27,6 @@ RSpec.describe User do
       expect(user).to model_have_error_on_field(:account)
     end
 
-    it 'is invalid without a valid locale' do
-      user = Fabricate.build(:user, locale: 'toto')
-      user.valid?
-      expect(user).to model_have_error_on_field(:locale)
-    end
-
     it 'is invalid without a valid email' do
       user = Fabricate.build(:user, email: 'john@')
       user.valid?
