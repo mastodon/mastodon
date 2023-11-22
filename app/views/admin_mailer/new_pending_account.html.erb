@@ -1,0 +1,19 @@
+<p>
+  <%= raw t('application_mailer.salutation', name: display_name(@me)) %>
+</p>
+<p>
+  <%= raw t('admin_mailer.new_pending_account.body') %>
+</p>
+<p>
+  <%= @account.user_email %> (@<%= @account.username %>)
+  <br />
+  <%= @account.user_sign_up_ip %>
+</p>
+<% if @account.user&.invite_request&.text.present? %>
+  <blockquote>
+    <%= quote_wrap(@account.user&.invite_request&.text) %>
+  </blockquote>
+<% end %>
+<p>
+  <%= raw t('application_mailer.view')%> <%= link_to admin_accounts_url(status: 'pending'), admin_accounts_url(status: 'pending') %>
+</p>

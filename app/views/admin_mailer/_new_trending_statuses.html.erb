@@ -1,0 +1,15 @@
+<p>
+  <%= raw t('admin_mailer.new_trends.new_trending_statuses.title') %>
+</p>
+<ul>
+  <% new_trending_statuses.each do |status| %>
+    <li>
+      <%= ActivityPub::TagManager.instance.url_for(status) %>
+      <br />
+      <%= standard_locale_name(status.language) %> · <%= raw t('admin.trends.tags.current_score', score: status.trend.score.round(2)) %>
+    </li>
+  <% end %>
+</ul>
+<p>
+  <%= raw t('application_mailer.view')%> <%= admin_trends_statuses_url %>
+</p>

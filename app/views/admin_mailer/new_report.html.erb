@@ -1,0 +1,9 @@
+<p>
+  <%= raw t('application_mailer.salutation', name: display_name(@me)) %>
+</p>
+<p>
+  <%= raw(@report.account.local? ? t('admin_mailer.new_report.body', target: @report.target_account.pretty_acct, reporter: @report.account.pretty_acct) : t('admin_mailer.new_report.body_remote', target: @report.target_account.acct, domain: @report.account.domain)) %>
+</p>
+<p>
+  <%= raw t('application_mailer.view')%> <%= link_to admin_report_url(@report), admin_report_url(@report) %>
+</p>

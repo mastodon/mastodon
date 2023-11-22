@@ -1,0 +1,9 @@
+<p>
+  <%= raw t('application_mailer.salutation', name: display_name(@me)) %>
+</p>
+<p>
+  <%= raw t('admin_mailer.new_software_updates.body') %>
+</p>
+<p>
+  <%= raw t('application_mailer.view')%> <%= link_to admin_software_updates_url, admin_software_updates_url %>
+</p>
