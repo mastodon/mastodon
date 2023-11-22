@@ -27,12 +27,6 @@ RSpec.describe User do
       expect(user).to model_have_error_on_field(:account)
     end
 
-    it 'is invalid without a valid locale' do
-      user = Fabricate.build(:user, locale: 'toto')
-      user.valid?
-      expect(user).to model_have_error_on_field(:locale)
-    end
-
     it 'is invalid without a valid email' do
       user = Fabricate.build(:user, email: 'john@')
       user.valid?
@@ -43,6 +37,18 @@ RSpec.describe User do
       user = Fabricate.build(:user, email: 'invalid-email')
       user.save(validate: false)
       expect(user.valid?).to be true
+    end
+
+    it 'cleans out invalid locale' do
+      user = Fabricate.build(:user, locale: 'toto')
+      expect(user.valid?).to be true
+      expect(user.locale).to be_nil
+    end
+
+    it 'cleans out invalid timezone' do
+      user = Fabricate.build(:user, time_zone: 'toto')
+      expect(user.valid?).to be true
+      expect(user.time_zone).to be_nil
     end
 
     it 'cleans out empty string from languages' do
