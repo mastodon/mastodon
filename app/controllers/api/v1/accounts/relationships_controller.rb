@@ -5,9 +5,8 @@ class Api::V1::Accounts::RelationshipsController < Api::BaseController
   before_action :require_user!
 
   def index
-    scope = Account.where(id: account_ids).select('id')
-    scope.merge!(Account.without_suspended) unless truthy_param?(:with_suspended)
-    @accounts = scope.compact
+    @accounts = Account.where(id: account_ids).select('id')
+    @accounts.merge!(Account.without_suspended) unless truthy_param?(:with_suspended)
     render json: @accounts, each_serializer: REST::RelationshipSerializer, relationships: relationships
   end
 
@@ -18,6 +17,6 @@ class Api::V1::Accounts::RelationshipsController < Api::BaseController
   end
 
   def account_ids
-    Array(params[:id]).map(&:to_i).uniq
+    Array(params[:id]).map(&:to_i)
   end
 end
