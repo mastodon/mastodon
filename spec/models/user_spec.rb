@@ -39,6 +39,18 @@ RSpec.describe User do
       expect(user.valid?).to be true
     end
 
+    it 'cleans out invalid locale' do
+      user = Fabricate.build(:user, locale: 'toto')
+      expect(user.valid?).to be true
+      expect(user.locale).to be_nil
+    end
+
+    it 'cleans out invalid timezone' do
+      user = Fabricate.build(:user, time_zone: 'toto')
+      expect(user.valid?).to be true
+      expect(user.time_zone).to be_nil
+    end
+
     it 'cleans out empty string from languages' do
       user = Fabricate.build(:user, chosen_languages: [''])
       user.valid?
