@@ -95,6 +95,13 @@ RSpec.configure do |config|
     self.use_transactional_tests = true
   end
 
+  config.around(:each, :sidekiq_fake) do |example|
+    Sidekiq::Testing.fake! do
+      example.run
+      Sidekiq::Worker.clear_all
+    end
+  end
+
   config.before :each, type: :cli do
     stub_stdout
     stub_reset_connection_pools
