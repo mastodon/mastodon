@@ -292,11 +292,13 @@ namespace :api, format: false do
     resources :suggestions, only: [:index]
     resource :instance, only: [:show]
     resources :filters, only: [:index, :create, :show, :update, :destroy] do
+      resources :accounts, only: [:index, :create], controller: 'filters/accounts'
       resources :keywords, only: [:index, :create], controller: 'filters/keywords'
       resources :statuses, only: [:index, :create], controller: 'filters/statuses'
     end
 
     namespace :filters do
+      resources :accounts, only: [:show, :destroy]
       resources :keywords, only: [:show, :update, :destroy]
       resources :statuses, only: [:show, :destroy]
     end
