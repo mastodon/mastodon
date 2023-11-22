@@ -113,14 +113,14 @@ If you are using an IDE with [support for the Development Container specificatio
 
 ### GitHub Codespaces
 
-To get you coding in just a few minutes, GitHub Codespaces provides a web-based version of Visual Studio Code and a cloud-hosted development environment fully configured with the software needed for this project..
+To get you coding in just a few minutes, GitHub Codespaces provides a web-based version of Visual Studio Code and a cloud-hosted development environment fully configured with the software needed for this project.
 
 - Click this button to create a new codespace:<br>
   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=52281283&devcontainer_path=.devcontainer%2Fcodespaces%2Fdevcontainer.json)
 - Wait for the environment to build. This will take a few minutes.
 - When the editor is ready, run `foreman start -f Procfile.dev` in the terminal.
 - After a few seconds, a popup will appear with a button labeled _Open in Browser_. This will open Mastodon.
-- On the _Ports_ tab, right click on the “stream” row and select _Port visibility_ → _Public_.
+- On the _Ports_ tab, right-click on the “stream” row and select _Port visibility_ → _Public_.
 
 ## Contributing
 
