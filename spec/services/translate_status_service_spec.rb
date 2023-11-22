@@ -18,7 +18,7 @@ RSpec.describe TranslateStatusService do
   describe '#call' do
     before do
       translation_service = TranslationService.new
-      allow(translation_service).to receive(:languages).and_return({ 'en' => ['es', 'es-MX'] })
+      allow(translation_service).to receive(:languages).and_return({ 'en' => %w(es es-MX) })
       allow(translation_service).to receive(:translate) do |texts|
         texts.map do |text|
           TranslationService::Translation.new(

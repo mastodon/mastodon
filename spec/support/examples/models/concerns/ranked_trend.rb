@@ -34,7 +34,7 @@ RSpec.shared_examples 'RankedTrend' do
 
     it 'returns unique set of languages' do
       expect(described_class.locales)
-        .to eq(['en', 'es'])
+        .to eq(%w(en es))
     end
   end
 
