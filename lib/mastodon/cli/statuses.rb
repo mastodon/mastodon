@@ -215,9 +215,5 @@ module Mastodon::CLI
         ActiveRecord::Base.connection.execute('ANALYZE conversations')
       end
     end
-
-    def time_ago
-      options[:days].days.ago
-    end
   end
 end

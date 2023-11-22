@@ -46,11 +46,5 @@ module Mastodon::CLI
 
       say("Removed #{processed} #{link}preview cards (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
     end
-
-    private
-
-    def time_ago
-      options[:days].days.ago
-    end
   end
 end

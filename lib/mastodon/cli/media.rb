@@ -350,14 +350,6 @@ module Mastodon::CLI
       SiteUpload
     ).freeze
 
-    def time_ago
-      options[:days].days.ago
-    end
-
-    def days_option_present?
-      options[:days].present?
-    end
-
     def preload_records_from_mixed_objects(objects)
       preload_map = Hash.new { |hash, key| hash[key] = [] }
 

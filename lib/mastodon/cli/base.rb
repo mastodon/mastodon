@@ -29,6 +29,14 @@ module Mastodon
         dry_run? ? ' (DRY RUN)' : ''
       end
 
+      def time_ago
+        options[:days].days.ago
+      end
+
+      def days_option_present?
+        options[:days].present?
+      end
+
       def reset_connection_pools!
         ActiveRecord::Base.establish_connection(
           ActiveRecord::Base.configurations.configs_for(env_name: Rails.env).first.configuration_hash
