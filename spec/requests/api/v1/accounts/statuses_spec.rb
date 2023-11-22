@@ -62,7 +62,7 @@ describe 'API V1 Accounts Statuses' do
           .to contain_exactly(
             have_attributes(
               href: /pinned=true/,
-              attr_pairs: contain_exactly(['rel', 'prev'])
+              attr_pairs: contain_exactly(%w(rel prev))
             )
           )
       end
@@ -84,11 +84,11 @@ describe 'API V1 Accounts Statuses' do
           .to contain_exactly(
             have_attributes(
               href: /pinned=true/,
-              attr_pairs: contain_exactly(['rel', 'next'])
+              attr_pairs: contain_exactly(%w(rel next))
             ),
             have_attributes(
               href: /pinned=true/,
-              attr_pairs: contain_exactly(['rel', 'prev'])
+              attr_pairs: contain_exactly(%w(rel prev))
             )
           )
       end
