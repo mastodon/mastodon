@@ -28,6 +28,8 @@ class Admin::ActionLog < ApplicationRecord
   before_validation :set_route_param
   before_validation :set_permalink
 
+  scope :latest, -> { order(id: :desc) }
+
   def action
     super.to_sym
   end

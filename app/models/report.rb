@@ -149,7 +149,7 @@ class Report < ApplicationRecord
       ).arel,
     ].reduce { |union, query| Arel::Nodes::UnionAll.new(union, query) }
 
-    Admin::ActionLog.from(Arel::Nodes::As.new(subquery, Admin::ActionLog.arel_table))
+    Admin::ActionLog.latest.from(Arel::Nodes::As.new(subquery, Admin::ActionLog.arel_table))
   end
 
   private
