@@ -4,9 +4,8 @@
     "target": "esnext",
     "module": "CommonJS",
     "moduleResolution": "node",
-    "allowUnusedLabels": true,
+    "noUnusedParameters": false,
     "paths": {}
   },
-  "include": ["./*.js", "./.eslintrc.js"],
-  "exclude": []
+  "include": ["./*.js", "./.eslintrc.js"]
 }
