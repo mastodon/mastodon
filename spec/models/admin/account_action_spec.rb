@@ -46,12 +46,10 @@ RSpec.describe Admin::AccountAction do
         expect(target_account).to be_suspended
       end
 
-      it 'queues Admin::SuspensionWorker by 1' do
-        Sidekiq::Testing.fake! do
-          expect do
-            subject
-          end.to change { Admin::SuspensionWorker.jobs.size }.by 1
-        end
+      it 'queues Admin::SuspensionWorker by 1', :sidekiq_fake do
+        expect do
+          subject
+        end.to change { Admin::SuspensionWorker.jobs.size }.by 1
       end
     end
 
