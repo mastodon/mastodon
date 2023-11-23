@@ -53,7 +53,7 @@ describe Settings::DeletesController do
         it 'removes user record and redirects', :aggregate_failures, :sidekiq_inline do
           expect(response).to redirect_to '/auth/sign_in'
           expect(User.find_by(id: user.id)).to be_nil
-          expect(user.account.reload).to be_suspended
+          expect(user.account.reload).to be_deleted
           expect(CanonicalEmailBlock.block?(user.email)).to be false
         end
 

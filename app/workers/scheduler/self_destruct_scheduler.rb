@@ -35,7 +35,7 @@ class Scheduler::SelfDestructScheduler
     # deletion request.
 
     # This targets accounts that have not been deleted nor marked for deletion yet
-    Account.local.without_suspended.reorder(id: :asc).take(MAX_ACCOUNT_DELETIONS_PER_JOB).each do |account|
+    Account.local.without_deleted.reorder(id: :asc).take(MAX_ACCOUNT_DELETIONS_PER_JOB).each do |account|
       delete_account!(account)
     end
 
@@ -43,9 +43,8 @@ class Scheduler::SelfDestructScheduler
 
     # This targets accounts that have been marked for deletion but have not been
     # deleted yet
-    Account.local.suspended.joins(:deletion_request).take(MAX_ACCOUNT_DELETIONS_PER_JOB).each do |account|
+    Account.local.joins(:deletion_request).take(MAX_ACCOUNT_DELETIONS_PER_JOB).each do |account|
       delete_account!(account)
-      account.deletion_request&.destroy
     end
   end
 
@@ -66,7 +65,8 @@ class Scheduler::SelfDestructScheduler
       [json, account.id, inbox_url]
     end
 
-    # Do not call `Account#suspend!` because we don't want to issue a deletion request
-    account.update!(suspended_at: Time.now.utc, suspension_origin: :local)
+    # Do not call `Account#mark_deleted!` because we don't want to issue a deletion request
+    account.update!(deleted_at: Time.now.utc)
+    account.deletion_request&.destroy
   end
 end

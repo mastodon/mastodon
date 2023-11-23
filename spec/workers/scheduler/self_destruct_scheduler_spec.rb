@@ -39,19 +39,19 @@ describe Scheduler::SelfDestructScheduler do
       end
 
       context 'when sidekiq is operational' do
-        it 'suspends local non-suspended accounts' do
+        it 'deletes local non-deleted accounts' do
           worker.perform
 
-          expect(account.reload.suspended_at).to_not be_nil
+          expect(account.reload.deleted_at).to_not be_nil
         end
 
-        it 'suspends local suspended accounts marked for deletion' do
-          account.update(suspended_at: 10.days.ago)
+        it 'deletes local accounts marked for deletion' do
+          account.update(deleted_at: 10.days.ago)
           deletion_request = Fabricate(:account_deletion_request, account: account)
 
           worker.perform
 
-          expect(account.reload.suspended_at).to be > 1.day.ago
+          expect(account.reload.deleted_at).to be > 1.day.ago
           expect { deletion_request.reload }.to raise_error(ActiveRecord::RecordNotFound)
         end
       end
