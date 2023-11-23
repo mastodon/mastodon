@@ -11,10 +11,6 @@ on:
         type: boolean
       push_to_images:
         type: string
-      version_prerelease:
-        type: string
-      version_metadata:
-        type: string
       flavor:
         type: string
       tags:
@@ -27,12 +23,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-qemu-action@v2
         if: contains(inputs.platforms, 'linux/arm64') && !inputs.use_native_arm64_builder
 
-      - uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-buildx-action@v2
         id: buildx
         if: ${{ !(inputs.use_native_arm64_builder && contains(inputs.platforms, 'linux/arm64')) }}
 
@@ -41,28 +37,28 @@ jobs:
         run: |
           docker run --rm -d --name buildkitd -p 1234:1234 --privileged moby/buildkit:latest --addr tcp://0.0.0.0:1234
 
-      - uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-buildx-action@v2
         id: buildx-native
         if: inputs.use_native_arm64_builder && contains(inputs.platforms, 'linux/arm64')
         with:
-          driver: local
-          
+          driver: docker
+
       - name: Log in to Docker Hub
-        if: contains(inputs.push_to_images, 'oricecooker')
-        uses: docker/login-action@v3
+        if: contains(inputs.push_to_images, 'tootsuite')
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Log in to the Github Container registry
         if: contains(inputs.push_to_images, 'ghcr.io')
-        uses: docker/login-action@v3
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: docker/metadata-action@v5
+      - uses: docker/metadata-action@v4
         id: meta
         if: ${{ inputs.push_to_images != '' }}
         with:
@@ -71,13 +67,9 @@ jobs:
           tags: ${{ inputs.tags }}
           labels: ${{ inputs.labels }}
 
-      - uses: docker/build-push-action@v5
+      - uses: docker/build-push-action@v4
         with:
           context: .
-          build-args: |
-            MASTODON_VERSION_PRERELEASE=${{ inputs.version_prerelease }}
-            MASTODON_VERSION_METADATA=${{ inputs.version_metadata }}
-            
           provenance: false
           builder: ${{ steps.buildx.outputs.name || steps.buildx-native.outputs.name }}
           push: ${{ inputs.push_to_images != '' }}
