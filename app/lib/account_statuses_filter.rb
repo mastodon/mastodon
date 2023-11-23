@@ -32,7 +32,7 @@ class AccountStatusesFilter
   private
 
   def initial_scope
-    return Status.none if suspended?
+    return Status.none if account.unavailable?
 
     if anonymous?
       account.statuses.where(visibility: %i(public unlisted))
@@ -93,10 +93,6 @@ class AccountStatusesFilter
     else
       Status.none
     end
-  end
-
-  def suspended?
-    account.suspended?
   end
 
   def anonymous?

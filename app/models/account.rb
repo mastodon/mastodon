@@ -246,6 +246,9 @@ class Account < ApplicationRecord
     suspended? && deletion_request.present?
   end
 
+  alias unavailable? suspended?
+  alias permanently_unavailable? suspended_permanently?
+
   def suspend!(date: Time.now.utc, origin: :local, block_email: true)
     transaction do
       create_deletion_request!
