@@ -1,0 +1,32 @@
+- content_for :page_title do
+  = t('filters.accounts.index.title')
+  \-
+  = @filter.title
+
+.filters
+  .back-link
+    = link_to edit_filter_path(@filter) do
+      = fa_icon 'chevron-left fw'
+      = t('filters.accounts.back_to_filter')
+
+%p.hint= t('filters.accounts.index.hint')
+
+%hr.spacer/
+
+= form_for(@account_filter_batch_action, url: batch_filter_accounts_path(@filter.id)) do |f|
+  = hidden_field_tag :page, params[:page] || 1
+
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        - unless @account_filters.empty?
+          = f.button safe_join([fa_icon('times'), t('filters.accounts.batch.remove')]), name: :remove, class: 'table-action-link', type: :submit
+    .batch-table__body
+      - if @account_filters.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = render partial: 'account_filter', collection: @account_filters, locals: { f: f }
+
+= paginate @account_filters

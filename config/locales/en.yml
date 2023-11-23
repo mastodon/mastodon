@@ -1232,6 +1232,13 @@ en:
       limit: You have already featured the maximum number of hashtags
     hint_html: "<strong>Feature your most important hashtags on your profile.</strong> A great tool for keeping track of your creative works and long-term projects, featured hashtags are displayed prominently on your profile and allow quick access to your own posts."
   filters:
+    accounts:
+      back_to_filter: Back to filter
+      batch:
+        remove: Remove from filter
+      index:
+        hint: This filter applies to select individual accounts regardless of other criteria. You can add more accounts to this filter from the web interface.
+        title: Filtered accounts
     contexts:
       account: Profiles
       home: Home
@@ -1240,6 +1247,8 @@ en:
       public: Public timelines
       thread: Conversations
     edit:
+      accounts: Accounts to filter
+      accounts_hint_html: This filter applies to the accounts regardless of whether they match the keywords below. <a href="%{path}">Review or remove accounts from the filter</a>.
       add_keyword: Add keyword
       keywords: Keywords
       statuses: Individual posts
@@ -1249,6 +1258,9 @@ en:
       deprecated_api_multiple_keywords: These parameters cannot be changed from this application because they apply to more than one filter keyword. Use a more recent application or the web interface.
       invalid_context: None or invalid context supplied
     index:
+      accounts:
+        one: "%{count} account"
+        other: "%{count} accounts"
       contexts: Filters in %{contexts}
       delete: Delete
       empty: You have no filters.

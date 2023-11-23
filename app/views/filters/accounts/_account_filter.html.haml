@@ -1,0 +1,22 @@
+- target_account = account_filter.target_account
+
+.batch-table__row
+  %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+    = f.check_box :account_filter_ids, { multiple: true, include_hidden: false }, account_filter.id
+  .batch-table__row__content.batch-table__row__content--unpadded
+    %table.accounts-table
+      %tbody
+        %target_account_id
+          %td= account_link_to target_account
+          %td.accounts-table__count.optional
+            = friendly_number_to_human target_account.statuses_count
+            %small= t('accounts.posts', count: target_account.statuses_count).downcase
+          %td.accounts-table__count.optional
+            = friendly_number_to_human target_account.followers_count
+            %small= t('accounts.followers', count: target_account.followers_count).downcase
+          %td.accounts-table__count
+            - if target_account.last_status_at.present?
+              %time.time-ago{ datetime: target_account.last_status_at.to_date.iso8601, title: l(target_account.last_status_at.to_date) }= l target_account.last_status_at
+            - else
+              \-
+            %small= t('accounts.last_active')

@@ -21,6 +21,13 @@
 
   %hr.spacer/
 
+- unless f.object.accounts.empty?
+  %h4= t('filters.edit.accounts')
+
+  %p.muted-hint= t('filters.edit.accounts_hint_html', path: filter_accounts_path(f.object))
+
+  %hr.spacer/
+
 %h4= t('filters.edit.keywords')
 
 .table-wrapper
