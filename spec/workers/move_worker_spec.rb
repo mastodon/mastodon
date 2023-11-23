@@ -159,12 +159,9 @@ describe MoveWorker do
 
   describe '#perform' do
     context 'when both accounts are distant' do
-      it 'calls UnfollowFollowWorker' do
-        Sidekiq::Testing.fake! do
-          subject.perform(source_account.id, target_account.id)
-          expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, false)
-          Sidekiq::Worker.drain_all
-        end
+      it 'calls UnfollowFollowWorker', :sidekiq_fake do
+        subject.perform(source_account.id, target_account.id)
+        expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, false)
       end
 
       include_examples 'common tests'
@@ -173,12 +170,9 @@ describe MoveWorker do
     context 'when target account is local' do
       let(:target_account) { Fabricate(:account) }
 
-      it 'calls UnfollowFollowWorker' do
-        Sidekiq::Testing.fake! do
-          subject.perform(source_account.id, target_account.id)
-          expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, true)
-          Sidekiq::Worker.clear_all
-        end
+      it 'calls UnfollowFollowWorker', :sidekiq_fake do
+        subject.perform(source_account.id, target_account.id)
+        expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, true)
       end
 
       include_examples 'common tests'
