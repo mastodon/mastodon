@@ -51,6 +51,7 @@
 #  reviewed_at                   :datetime
 #  requested_review_at           :datetime
 #  indexable                     :boolean          default(FALSE), not null
+#  deleted_at                    :datetime
 #
 
 class Account < ApplicationRecord
@@ -122,7 +123,8 @@ class Account < ApplicationRecord
   scope :silenced, -> { where.not(silenced_at: nil) }
   scope :suspended, -> { where.not(suspended_at: nil) }
   scope :sensitized, -> { where.not(sensitized_at: nil) }
-  scope :without_suspended, -> { where(suspended_at: nil) }
+  scope :without_deleted, -> { where(deleted_at: nil) }
+  scope :without_suspended, -> { without_deleted.where(suspended_at: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
   scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
@@ -247,22 +249,38 @@ class Account < ApplicationRecord
     suspended_at.present? && !instance_actor?
   end
 
-  def suspended_permanently?
-    suspended? && deletion_request.nil?
-  end
-
   def suspended_temporarily?
     suspended? && deletion_request.present?
   end
 
-  alias unavailable? suspended?
-  alias permanently_unavailable? suspended_permanently?
+  def deleted?
+    deleted_at.present? && !instance_actor?
+  end
+
+  def permanently_deleted?
+    deleted? && deletion_request.nil?
+  end
+
+  def unavailable?
+    deleted? || suspended?
+  end
+
+  def permanently_unavailable?
+    unavailable? && deletion_request.nil?
+  end
 
   def suspend!(date: Time.now.utc, origin: :local, block_email: true)
     transaction do
       create_deletion_request!
       update!(suspended_at: date, suspension_origin: origin)
       create_canonical_email_block! if block_email
+    end
+  end
+
+  def mark_deleted!(date: Time.now.utc)
+    transaction do
+      create_deletion_request!
+      update!(deleted_at: date)
     end
   end
 

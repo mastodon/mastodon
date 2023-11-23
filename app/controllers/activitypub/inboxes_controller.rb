@@ -35,6 +35,10 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
     true
   end
 
+  def skip_pending_deletion_response?
+    true
+  end
+
   def body
     return @body if defined?(@body)
 

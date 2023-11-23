@@ -112,14 +112,14 @@ class User < ApplicationRecord
   validates :confirm_password, absence: true, on: :create
   validate :validate_role_elevation
 
-  scope :account_not_suspended, -> { joins(:account).merge(Account.without_suspended) }
+  scope :account_available, -> { joins(:account).merge(Account.without_suspended.without_deleted) }
   scope :recent, -> { order(id: :desc) }
   scope :pending, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
   scope :enabled, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
-  scope :active, -> { confirmed.signed_in_recently.account_not_suspended }
+  scope :active, -> { confirmed.signed_in_recently.account_available }
   scope :signed_in_recently, -> { where(current_sign_in_at: ACTIVE_DURATION.ago..) }
   scope :not_signed_in_recently, -> { where(current_sign_in_at: ...ACTIVE_DURATION.ago) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
