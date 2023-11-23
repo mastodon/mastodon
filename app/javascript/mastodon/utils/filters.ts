@@ -8,7 +8,7 @@ export const toServerSideType = (columnType: string) => {
       return columnType;
     default:
       if (columnType.includes('list:')) {
-        return 'home';
+        return 'list';
       } else {
         return 'public'; // community, account, hashtag
       }
