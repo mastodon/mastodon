@@ -5,7 +5,7 @@ module Account::Suspensions
 
   included do
     scope :suspended, -> { where.not(suspended_at: nil) }
-    scope :without_suspended, -> { where(suspended_at: nil) }
+    scope :without_suspended, -> { without_deleted.where(suspended_at: nil) }
   end
 
   def suspended?
