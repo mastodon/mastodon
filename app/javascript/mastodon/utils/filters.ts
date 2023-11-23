@@ -1,16 +1,30 @@
+export const FilterActionTypes = {
+  Warn: 'warn',
+  Hide: 'hide',
+};
+
+export const FilterContextServerSideTypes = {
+  Home: 'home',
+  Lists: 'lists',
+  Notifications: 'notifications',
+  Public: 'public',
+  Thread: 'thread',
+  Account: 'account',
+};
+
 export const toServerSideType = (columnType: string) => {
   switch (columnType) {
-    case 'home':
-    case 'notifications':
-    case 'public':
-    case 'thread':
-    case 'account':
+    case FilterContextServerSideTypes.Home:
+    case FilterContextServerSideTypes.Notifications:
+    case FilterContextServerSideTypes.Public:
+    case FilterContextServerSideTypes.Thread:
+    case FilterContextServerSideTypes.Account:
       return columnType;
     default:
       if (columnType.includes('list:')) {
-        return 'lists';
+        return FilterContextServerSideTypes.Lists;
       } else {
-        return 'public'; // community, account, hashtag
+        return FilterContextServerSideTypes.Public; // community, account, hashtag
       }
   }
 };

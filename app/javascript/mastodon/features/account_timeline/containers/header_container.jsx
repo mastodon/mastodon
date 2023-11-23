@@ -173,6 +173,15 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }));
   },
 
+  onChangeFilters (account) {
+    dispatch(openModal({
+      modalType: 'CUSTOM_FILTER_ACCOUNT',
+      modalProps: {
+        accountId: account.get('id'),
+      },
+    }));
+  },
+
   onOpenAvatar (account) {
     dispatch(openModal({
       modalType: 'IMAGE',

@@ -15,6 +15,7 @@ import {
   FilterModal,
   InteractionModal,
   SubscribedLanguagesModal,
+  CustomFilterAccountModal,
   ClosedRegistrationsModal,
 } from 'mastodon/features/ui/util/async-components';
 import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
@@ -50,6 +51,7 @@ export const MODAL_COMPONENTS = {
   'COMPARE_HISTORY': CompareHistoryModal,
   'FILTER': FilterModal,
   'SUBSCRIBED_LANGUAGES': SubscribedLanguagesModal,
+  'CUSTOM_FILTER_ACCOUNT': CustomFilterAccountModal,
   'INTERACTION': InteractionModal,
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
 };

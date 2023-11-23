@@ -178,6 +178,10 @@ export function SubscribedLanguagesModal () {
   return import(/*webpackChunkName: "modals/subscribed_languages_modal" */'../../subscribed_languages_modal');
 }
 
+export function CustomFilterAccountModal () {
+  return import(/*webpackChunkName: "modals/custom_filter_account_modal" */'../components/custom_filter_account_modal');
+}
+
 export function ClosedRegistrationsModal () {
   return import(/*webpackChunkName: "modals/closed_registrations_modal" */'../../closed_registrations_modal');
 }

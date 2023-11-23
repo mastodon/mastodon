@@ -30,6 +30,7 @@ class Header extends ImmutablePureComponent {
     onEndorseToggle: PropTypes.func.isRequired,
     onAddToList: PropTypes.func.isRequired,
     onChangeLanguages: PropTypes.func.isRequired,
+    onChangeFilters: PropTypes.func.isRequired,
     onInteractionModal: PropTypes.func.isRequired,
     onOpenAvatar: PropTypes.func.isRequired,
     onOpenURL: PropTypes.func.isRequired,
@@ -103,6 +104,10 @@ class Header extends ImmutablePureComponent {
     this.props.onChangeLanguages(this.props.account);
   };
 
+  handleChangeFilters = () => {
+    this.props.onChangeFilters(this.props.account);
+  };
+
   handleInteractionModal = () => {
     this.props.onInteractionModal(this.props.account);
   };
@@ -139,6 +144,7 @@ class Header extends ImmutablePureComponent {
           onAddToList={this.handleAddToList}
           onEditAccountNote={this.handleEditAccountNote}
           onChangeLanguages={this.handleChangeLanguages}
+          onChangeFilters={this.handleChangeFilters}
           onInteractionModal={this.handleInteractionModal}
           onOpenAvatar={this.handleOpenAvatar}
           onOpenURL={this.props.onOpenURL}

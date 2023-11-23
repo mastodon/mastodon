@@ -6,6 +6,11 @@ export const FILTERS_FETCH_REQUEST = 'FILTERS_FETCH_REQUEST';
 export const FILTERS_FETCH_SUCCESS = 'FILTERS_FETCH_SUCCESS';
 export const FILTERS_FETCH_FAIL    = 'FILTERS_FETCH_FAIL';
 
+
+export const FILTERS_ACCOUNT_CREATE_REQUEST = 'FILTERS_ACCOUNT_CREATE_REQUEST';
+export const FILTERS_ACCOUNT_CREATE_SUCCESS = 'FILTERS_ACCOUNT_CREATE_SUCCESS';
+export const FILTERS_ACCOUNT_CREATE_FAIL    = 'FILTERS_ACCOUNT_CREATE_FAIL';
+
 export const FILTERS_STATUS_CREATE_REQUEST = 'FILTERS_STATUS_CREATE_REQUEST';
 export const FILTERS_STATUS_CREATE_SUCCESS = 'FILTERS_STATUS_CREATE_SUCCESS';
 export const FILTERS_STATUS_CREATE_FAIL    = 'FILTERS_STATUS_CREATE_FAIL';
@@ -43,6 +48,32 @@ export const fetchFilters = () => (dispatch, getState) => {
       skipAlert: true,
     }));
 };
+
+export const createFilterAccount = (params, onSuccess, onFail) => (dispatch, getState) => {
+  dispatch(createFilterAccountRequest());
+
+  api(getState).post(`/api/v2/filters/${params.filter_id}/accounts`, params).then(response => {
+    dispatch(createFilterAccountSuccess(response.data));
+    if (onSuccess) onSuccess();
+  }).catch(error => {
+    dispatch(createFilterAccountFail(error));
+    if (onFail) onFail();
+  });
+};
+
+export const createFilterAccountRequest = () => ({
+  type: FILTERS_ACCOUNT_CREATE_REQUEST,
+});
+
+export const createFilterAccountSuccess = filter_account => ({
+  type: FILTERS_ACCOUNT_CREATE_SUCCESS,
+  filter_account,
+});
+
+export const createFilterAccountFail = error => ({
+  type: FILTERS_ACCOUNT_CREATE_FAIL,
+  error,
+});
 
 export const createFilterStatus = (params, onSuccess, onFail) => (dispatch, getState) => {
   dispatch(createFilterStatusRequest());
