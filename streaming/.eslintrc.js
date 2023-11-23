@@ -1,6 +1,7 @@
 // @ts-check
-/** @type {import('eslint-define-config').ESLintConfig} */
-module.exports = {
+const { defineConfig } = require('eslint-define-config');
+
+module.exports = defineConfig({
   extends: ['../.eslintrc.js'],
   parserOptions: {
     project: true,
@@ -15,7 +16,9 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: false,
+        devDependencies: [
+          'streaming/.eslintrc.js',
+        ],
         optionalDependencies: false,
         peerDependencies: false,
         includeTypes: true,
@@ -23,4 +26,4 @@ module.exports = {
       },
     ],
   },
-};
+});
