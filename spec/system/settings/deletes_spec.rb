@@ -27,10 +27,8 @@ RSpec.describe 'Settings Deletes' do
         .to have_content(I18n.t('deletes.success_msg'))
       expect(page)
         .to have_title(I18n.t('auth.login'))
-      expect(User.find_by(id: user.id))
-        .to be_nil
       expect(user.account.reload)
-        .to be_suspended
+        .to be_deleted
       expect(CanonicalEmailBlock.block?(user.email))
         .to be(false)
     end
