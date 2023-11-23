@@ -11,6 +11,10 @@ on:
         type: boolean
       push_to_images:
         type: string
+      version_prerelease:
+        type: string
+      version_metadata:
+        type: string
       flavor:
         type: string
       tags:
@@ -41,20 +45,8 @@ jobs:
         id: buildx-native
         if: inputs.use_native_arm64_builder && contains(inputs.platforms, 'linux/arm64')
         with:
-          driver: docker
-#          endpoint: tcp://localhost:1234
-#          platforms: linux/amd64
-#          append: |
-#            - endpoint: tcp://${{ vars.DOCKER_BUILDER_HETZNER_ARM64_01_HOST }}:13865
-#              platforms: linux/arm64
-#              name: mastodon-docker-builder-arm64-01
-#              driver-opts:
-#                - servername=mastodon-docker-builder-arm64-01
-#        env:
-#          BUILDER_NODE_1_AUTH_TLS_CACERT: ${{ secrets.DOCKER_BUILDER_HETZNER_ARM64_01_CACERT }}
-#          BUILDER_NODE_1_AUTH_TLS_CERT: ${{ secrets.DOCKER_BUILDER_HETZNER_ARM64_01_CERT }}
-#          BUILDER_NODE_1_AUTH_TLS_KEY: ${{ secrets.DOCKER_BUILDER_HETZNER_ARM64_01_KEY }}
-
+          driver: local
+          
       - name: Log in to Docker Hub
         if: contains(inputs.push_to_images, 'oricecooker')
         uses: docker/login-action@v3
@@ -70,7 +62,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: docker/metadata-action@v4
+      - uses: docker/metadata-action@v5
         id: meta
         if: ${{ inputs.push_to_images != '' }}
         with:
@@ -82,7 +74,10 @@ jobs:
       - uses: docker/build-push-action@v5
         with:
           context: .
-#          platforms: ${{ inputs.platforms }}
+          build-args: |
+            MASTODON_VERSION_PRERELEASE=${{ inputs.version_prerelease }}
+            MASTODON_VERSION_METADATA=${{ inputs.version_metadata }}
+            
           provenance: false
           builder: ${{ steps.buildx.outputs.name || steps.buildx-native.outputs.name }}
           push: ${{ inputs.push_to_images != '' }}
