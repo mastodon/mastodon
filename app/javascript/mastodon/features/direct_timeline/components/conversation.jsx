@@ -10,8 +10,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { HotKeys } from 'react-hotkeys';
 
-import { ReactComponent as MoreHorizIcon } from 'mastodon/../material-icons/400-20px/more_horiz.svg';
-import { ReactComponent as ReplyIcon } from 'mastodon/../material-icons/400-20px/reply.svg';
+import { ReactComponent as MoreHorizIcon } from 'mastodon/../material-icons/400-24px/more_horiz.svg';
+import { ReactComponent as ReplyIcon } from 'mastodon/../material-icons/400-24px/reply.svg';
 import AttachmentList from 'mastodon/components/attachment_list';
 import AvatarComposite from 'mastodon/components/avatar_composite';
 import { IconButton } from 'mastodon/components/icon_button';

@@ -10,8 +10,8 @@ import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { ReactComponent as CampaignIcon } from 'mastodon/../material-icons/400-20px/campaign.svg';
-import { ReactComponent as HomeIcon } from 'mastodon/../material-icons/400-20px/home-fill.svg';
+import { ReactComponent as CampaignIcon } from 'mastodon/../material-icons/400-24px/campaign.svg';
+import { ReactComponent as HomeIcon } from 'mastodon/../material-icons/400-24px/home-fill.svg';
 import { fetchAnnouncements, toggleShowAnnouncements } from 'mastodon/actions/announcements';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';

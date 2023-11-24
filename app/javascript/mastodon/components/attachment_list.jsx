@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as LinkIcon } from 'mastodon/../material-icons/400-20px/link.svg';
+import { ReactComponent as LinkIcon } from 'mastodon/../material-icons/400-24px/link.svg';
 import { Icon }  from 'mastodon/components/icon';
 
 const filename = url => url.split('/').pop().split('#')[0].split('?')[0];

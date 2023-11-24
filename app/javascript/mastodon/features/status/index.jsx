@@ -14,8 +14,8 @@ import { createSelector } from 'reselect';
 
 import { HotKeys } from 'react-hotkeys';
 
-import { ReactComponent as VisibilityIcon } from 'mastodon/../material-icons/400-20px/visibility.svg';
-import { ReactComponent as VisibilityOffIcon } from 'mastodon/../material-icons/400-20px/visibility_off.svg';
+import { ReactComponent as VisibilityIcon } from 'mastodon/../material-icons/400-24px/visibility.svg';
+import { ReactComponent as VisibilityOffIcon } from 'mastodon/../material-icons/400-24px/visibility_off.svg';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollContainer from 'mastodon/containers/scroll_container';

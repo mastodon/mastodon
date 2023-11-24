@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import { ReactComponent as CloseIcon } from 'mastodon/../material-icons/400-20px/close.svg';
+import { ReactComponent as CloseIcon } from 'mastodon/../material-icons/400-24px/close.svg';
 import { bannerSettings } from 'mastodon/settings';
 
 import { IconButton } from './icon_button';

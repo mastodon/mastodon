@@ -10,14 +10,14 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { HotKeys } from 'react-hotkeys';
 
-import { ReactComponent as EditIcon } from 'mastodon/../material-icons/400-20px/edit.svg';
-import { ReactComponent as FlagIcon } from 'mastodon/../material-icons/400-20px/flag-fill.svg';
-import { ReactComponent as HomeIcon } from 'mastodon/../material-icons/400-20px/home-fill.svg';
-import { ReactComponent as InsertChartIcon } from 'mastodon/../material-icons/400-20px/insert_chart.svg';
-import { ReactComponent as PersonIcon } from 'mastodon/../material-icons/400-20px/person-fill.svg';
-import { ReactComponent as PersonAddIcon } from 'mastodon/../material-icons/400-20px/person_add-fill.svg';
-import { ReactComponent as RepeatIcon } from 'mastodon/../material-icons/400-20px/repeat.svg';
-import { ReactComponent as StarIcon } from 'mastodon/../material-icons/400-20px/star-fill.svg';
+import { ReactComponent as EditIcon } from 'mastodon/../material-icons/400-24px/edit.svg';
+import { ReactComponent as FlagIcon } from 'mastodon/../material-icons/400-24px/flag-fill.svg';
+import { ReactComponent as HomeIcon } from 'mastodon/../material-icons/400-24px/home-fill.svg';
+import { ReactComponent as InsertChartIcon } from 'mastodon/../material-icons/400-24px/insert_chart.svg';
+import { ReactComponent as PersonIcon } from 'mastodon/../material-icons/400-24px/person-fill.svg';
+import { ReactComponent as PersonAddIcon } from 'mastodon/../material-icons/400-24px/person_add-fill.svg';
+import { ReactComponent as RepeatIcon } from 'mastodon/../material-icons/400-24px/repeat.svg';
+import { ReactComponent as StarIcon } from 'mastodon/../material-icons/400-24px/star-fill.svg';
 import { Icon }  from 'mastodon/components/icon';
 import AccountContainer from 'mastodon/containers/account_container';
 import StatusContainer from 'mastodon/containers/status_container';

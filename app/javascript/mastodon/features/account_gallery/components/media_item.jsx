@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as AudiotrackIcon } from 'mastodon/../material-icons/400-20px/music_note.svg';
-import { ReactComponent as PlayArrowIcon } from 'mastodon/../material-icons/400-20px/play_arrow.svg';
-import { ReactComponent as VisibilityOffIcon } from 'mastodon/../material-icons/400-20px/visibility_off.svg';
+import { ReactComponent as AudiotrackIcon } from 'mastodon/../material-icons/400-24px/music_note.svg';
+import { ReactComponent as PlayArrowIcon } from 'mastodon/../material-icons/400-24px/play_arrow.svg';
+import { ReactComponent as VisibilityOffIcon } from 'mastodon/../material-icons/400-24px/visibility_off.svg';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';
 import { autoPlayGif, displayMedia, useBlurhash } from 'mastodon/initial_state';

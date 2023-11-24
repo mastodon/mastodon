@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { ReactComponent as TagIcon } from 'mastodon/../material-icons/400-20px/tag.svg';
+import { ReactComponent as TagIcon } from 'mastodon/../material-icons/400-24px/tag.svg';
 import { expandFollowedHashtags, fetchFollowedHashtags } from 'mastodon/actions/tags';
 import ColumnHeader from 'mastodon/components/column_header';
 import Hashtag from 'mastodon/components/hashtag';

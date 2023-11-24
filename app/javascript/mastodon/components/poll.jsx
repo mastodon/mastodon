@@ -10,7 +10,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import escapeTextContentForBrowser from 'escape-html';
 import spring from 'react-motion/lib/spring';
 
-import { ReactComponent as CheckIcon } from 'mastodon/../material-icons/400-20px/check.svg';
+import { ReactComponent as CheckIcon } from 'mastodon/../material-icons/400-24px/check.svg';
 import { Icon }  from 'mastodon/components/icon';
 import emojify from 'mastodon/features/emoji/emoji';
 import Motion from 'mastodon/features/ui/util/optional_motion';

@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { isEqual } from 'lodash';
 
-import { ReactComponent as TagIcon } from 'mastodon/../material-icons/400-20px/tag.svg';
+import { ReactComponent as TagIcon } from 'mastodon/../material-icons/400-24px/tag.svg';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { connectHashtagStream } from 'mastodon/actions/streaming';
 import { fetchHashtag, followHashtag, unfollowHashtag } from 'mastodon/actions/tags';

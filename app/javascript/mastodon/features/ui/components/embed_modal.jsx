@@ -4,7 +4,7 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CloseIcon } from 'mastodon/../material-icons/400-20px/close.svg';
+import { ReactComponent as CloseIcon } from 'mastodon/../material-icons/400-24px/close.svg';
 import api from 'mastodon/api';
 import { IconButton } from 'mastodon/components/icon_button';
 

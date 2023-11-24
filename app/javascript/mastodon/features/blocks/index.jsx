@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { ReactComponent as BlockIcon } from 'mastodon/../material-icons/400-20px/block-fill.svg';
+import { ReactComponent as BlockIcon } from 'mastodon/../material-icons/400-24px/block-fill.svg';
 
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
 import { LoadingIndicator } from '../../components/loading_indicator';

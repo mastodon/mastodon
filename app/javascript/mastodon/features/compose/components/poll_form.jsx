@@ -8,8 +8,8 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as AddIcon } from 'mastodon/../material-icons/400-20px/add.svg';
-import { ReactComponent as CloseIcon } from 'mastodon/../material-icons/400-20px/close.svg';
+import { ReactComponent as AddIcon } from 'mastodon/../material-icons/400-24px/add.svg';
+import { ReactComponent as CloseIcon } from 'mastodon/../material-icons/400-24px/close.svg';
 import AutosuggestInput from 'mastodon/components/autosuggest_input';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';

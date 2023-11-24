@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { ReactComponent as RefreshIcon } from 'mastodon/../material-icons/400-20px/refresh.svg';
+import { ReactComponent as RefreshIcon } from 'mastodon/../material-icons/400-24px/refresh.svg';
 import { Icon }  from 'mastodon/components/icon';
 
 import { fetchReblogs, expandReblogs } from '../../actions/interactions';

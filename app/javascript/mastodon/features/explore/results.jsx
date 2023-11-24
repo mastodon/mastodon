@@ -9,9 +9,9 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as FindInPageIcon } from 'mastodon/../material-icons/400-20px/find_in_page.svg';
-import { ReactComponent as PeopleIcon } from 'mastodon/../material-icons/400-20px/group.svg';
-import { ReactComponent as TagIcon } from 'mastodon/../material-icons/400-20px/tag.svg';
+import { ReactComponent as FindInPageIcon } from 'mastodon/../material-icons/400-24px/find_in_page.svg';
+import { ReactComponent as PeopleIcon } from 'mastodon/../material-icons/400-24px/group.svg';
+import { ReactComponent as TagIcon } from 'mastodon/../material-icons/400-24px/tag.svg';
 import { submitSearch, expandSearch } from 'mastodon/actions/search';
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { Icon } from 'mastodon/components/icon';

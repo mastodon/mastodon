@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import { ReactComponent as MoreHorizIcon } from 'mastodon/../material-icons/400-20px/more_horiz.svg';
+import { ReactComponent as MoreHorizIcon } from 'mastodon/../material-icons/400-24px/more_horiz.svg';
 import { Icon } from 'mastodon/components/icon';
 
 const messages = defineMessages({

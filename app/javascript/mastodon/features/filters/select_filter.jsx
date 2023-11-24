@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import fuzzysort from 'fuzzysort';
 
-import { ReactComponent as AddIcon } from 'mastodon/../material-icons/400-20px/add.svg';
+import { ReactComponent as AddIcon } from 'mastodon/../material-icons/400-24px/add.svg';
 import { Icon }  from 'mastodon/components/icon';
 import { toServerSideType } from 'mastodon/utils/filters';
 import { loupeIcon, deleteIcon } from 'mastodon/utils/icons';

@@ -7,8 +7,8 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as CancelIcon } from 'mastodon/../material-icons/400-20px/cancel.svg';
-import { ReactComponent as SearchIcon } from 'mastodon/../material-icons/400-20px/search.svg';
+import { ReactComponent as CancelIcon } from 'mastodon/../material-icons/400-24px/cancel.svg';
+import { ReactComponent as SearchIcon } from 'mastodon/../material-icons/400-24px/search.svg';
 import { Icon }  from 'mastodon/components/icon';
 
 import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';

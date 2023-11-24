@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { ReactComponent as StarIcon } from 'mastodon/../material-icons/400-20px/star-fill.svg';
+import { ReactComponent as StarIcon } from 'mastodon/../material-icons/400-24px/star-fill.svg';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'mastodon/actions/favourites';
 import ColumnHeader from 'mastodon/components/column_header';

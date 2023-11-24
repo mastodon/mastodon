@@ -12,8 +12,8 @@ import { createSelector } from 'reselect';
 
 import { debounce } from 'lodash';
 
-import { ReactComponent as DoneAllIcon } from 'mastodon/../material-icons/400-20px/done_all.svg';
-import { ReactComponent as NotificationsIcon } from 'mastodon/../material-icons/400-20px/notifications-fill.svg';
+import { ReactComponent as DoneAllIcon } from 'mastodon/../material-icons/400-24px/done_all.svg';
+import { ReactComponent as NotificationsIcon } from 'mastodon/../material-icons/400-24px/notifications-fill.svg';
 import { compareId } from 'mastodon/compare_id';
 import { Icon }  from 'mastodon/components/icon';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';

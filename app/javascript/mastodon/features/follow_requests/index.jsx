@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { ReactComponent as PersonAddIcon } from 'mastodon/../material-icons/400-20px/person_add.svg';
+import { ReactComponent as PersonAddIcon } from 'mastodon/../material-icons/400-24px/person_add.svg';
 
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
 import ScrollableList from '../../components/scrollable_list';

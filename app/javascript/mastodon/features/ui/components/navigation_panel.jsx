@@ -5,16 +5,16 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
-import { ReactComponent as AlternateEmailIcon } from 'mastodon/../material-icons/400-20px/alternate_email.svg';
-import { ReactComponent as BookmarksIcon } from 'mastodon/../material-icons/400-20px/bookmarks-fill.svg';
-import { ReactComponent as HomeIcon } from 'mastodon/../material-icons/400-20px/home-fill.svg';
-import { ReactComponent as ListAltIcon } from 'mastodon/../material-icons/400-20px/list_alt.svg';
-import { ReactComponent as MoreHorizIcon } from 'mastodon/../material-icons/400-20px/more_horiz.svg';
-import { ReactComponent as PublicIcon } from 'mastodon/../material-icons/400-20px/public.svg';
-import { ReactComponent as SearchIcon } from 'mastodon/../material-icons/400-20px/search.svg';
-import { ReactComponent as SettingsIcon } from 'mastodon/../material-icons/400-20px/settings-fill.svg';
-import { ReactComponent as StarIcon } from 'mastodon/../material-icons/400-20px/star-fill.svg';
-import { ReactComponent as TagIcon } from 'mastodon/../material-icons/400-20px/tag.svg';
+import { ReactComponent as AlternateEmailIcon } from 'mastodon/../material-icons/400-24px/alternate_email.svg';
+import { ReactComponent as BookmarksIcon } from 'mastodon/../material-icons/400-24px/bookmarks-fill.svg';
+import { ReactComponent as HomeIcon } from 'mastodon/../material-icons/400-24px/home-fill.svg';
+import { ReactComponent as ListAltIcon } from 'mastodon/../material-icons/400-24px/list_alt.svg';
+import { ReactComponent as MoreHorizIcon } from 'mastodon/../material-icons/400-24px/more_horiz.svg';
+import { ReactComponent as PublicIcon } from 'mastodon/../material-icons/400-24px/public.svg';
+import { ReactComponent as SearchIcon } from 'mastodon/../material-icons/400-24px/search.svg';
+import { ReactComponent as SettingsIcon } from 'mastodon/../material-icons/400-24px/settings-fill.svg';
+import { ReactComponent as StarIcon } from 'mastodon/../material-icons/400-24px/star-fill.svg';
+import { ReactComponent as TagIcon } from 'mastodon/../material-icons/400-24px/tag.svg';
 import { WordmarkLogo } from 'mastodon/components/logo';
 import { NavigationPortal } from 'mastodon/components/navigation_portal';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';

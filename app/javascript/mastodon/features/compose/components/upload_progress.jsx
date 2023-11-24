@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import spring from 'react-motion/lib/spring';
 
-import { ReactComponent as UploadFileIcon } from 'mastodon/../material-icons/400-20px/upload_file.svg';
+import { ReactComponent as UploadFileIcon } from 'mastodon/../material-icons/400-24px/upload_file.svg';
 import { Icon }  from 'mastodon/components/icon';
 
 import Motion from '../../ui/util/optional_motion';

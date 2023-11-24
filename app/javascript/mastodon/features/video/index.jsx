@@ -9,14 +9,14 @@ import { is } from 'immutable';
 
 import { throttle } from 'lodash';
 
-import { ReactComponent as FullscreenIcon } from 'mastodon/../material-icons/400-20px/fullscreen.svg';
-import { ReactComponent as FullscreenExitIcon } from 'mastodon/../material-icons/400-20px/fullscreen_exit.svg';
-import { ReactComponent as PauseIcon } from 'mastodon/../material-icons/400-20px/pause.svg';
-import { ReactComponent as PlayArrowIcon } from 'mastodon/../material-icons/400-20px/play_arrow-fill.svg';
-import { ReactComponent as RectangleIcon } from 'mastodon/../material-icons/400-20px/rectangle.svg';
-import { ReactComponent as VisibilityOffIcon } from 'mastodon/../material-icons/400-20px/visibility_off.svg';
-import { ReactComponent as VolumeOffIcon } from 'mastodon/../material-icons/400-20px/volume_off-fill.svg';
-import { ReactComponent as VolumeUpIcon } from 'mastodon/../material-icons/400-20px/volume_up-fill.svg';
+import { ReactComponent as FullscreenIcon } from 'mastodon/../material-icons/400-24px/fullscreen.svg';
+import { ReactComponent as FullscreenExitIcon } from 'mastodon/../material-icons/400-24px/fullscreen_exit.svg';
+import { ReactComponent as PauseIcon } from 'mastodon/../material-icons/400-24px/pause.svg';
+import { ReactComponent as PlayArrowIcon } from 'mastodon/../material-icons/400-24px/play_arrow-fill.svg';
+import { ReactComponent as RectangleIcon } from 'mastodon/../material-icons/400-24px/rectangle.svg';
+import { ReactComponent as VisibilityOffIcon } from 'mastodon/../material-icons/400-24px/visibility_off.svg';
+import { ReactComponent as VolumeOffIcon } from 'mastodon/../material-icons/400-24px/volume_off-fill.svg';
+import { ReactComponent as VolumeUpIcon } from 'mastodon/../material-icons/400-24px/volume_up-fill.svg';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';
 import { playerSettings } from 'mastodon/settings';

@@ -5,7 +5,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as MenuIcon } from 'mastodon/../material-icons/400-20px/menu.svg';
+import { ReactComponent as MenuIcon } from 'mastodon/../material-icons/400-24px/menu.svg';
 
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 

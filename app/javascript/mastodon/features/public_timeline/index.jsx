@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as PublicIcon } from 'mastodon/../material-icons/400-20px/public.svg';
+import { ReactComponent as PublicIcon } from 'mastodon/../material-icons/400-24px/public.svg';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { domain } from 'mastodon/initial_state';
 

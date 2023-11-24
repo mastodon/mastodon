@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { ReactComponent as ArrowBackIcon } from 'mastodon/../material-icons/400-20px/arrow_back.svg';
+import { ReactComponent as ArrowBackIcon } from 'mastodon/../material-icons/400-24px/arrow_back.svg';
 import { Icon } from 'mastodon/components/icon';
 import { ButtonInTabsBar } from 'mastodon/features/ui/util/columns_context';
 

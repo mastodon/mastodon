@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { ReactComponent as BlockIcon } from 'mastodon/../material-icons/400-20px/block-fill.svg';
+import { ReactComponent as BlockIcon } from 'mastodon/../material-icons/400-24px/block-fill.svg';
 
 import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
 import { LoadingIndicator } from '../../components/loading_indicator';

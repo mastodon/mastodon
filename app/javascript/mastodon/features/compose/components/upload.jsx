@@ -7,9 +7,9 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import spring from 'react-motion/lib/spring';
 
-import { ReactComponent as CloseIcon } from 'mastodon/../material-icons/400-20px/close.svg';
-import { ReactComponent as EditIcon } from 'mastodon/../material-icons/400-20px/edit.svg';
-import { ReactComponent as InfoIcon } from 'mastodon/../material-icons/400-20px/info.svg';
+import { ReactComponent as CloseIcon } from 'mastodon/../material-icons/400-24px/close.svg';
+import { ReactComponent as EditIcon } from 'mastodon/../material-icons/400-24px/edit.svg';
+import { ReactComponent as InfoIcon } from 'mastodon/../material-icons/400-24px/info.svg';
 import { Icon }  from 'mastodon/components/icon';
 
 import Motion from '../../ui/util/optional_motion';
