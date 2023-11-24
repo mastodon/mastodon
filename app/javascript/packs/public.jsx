@@ -5,7 +5,7 @@ import { createRoot }  from 'react-dom/client';
 import { IntlMessageFormat }  from 'intl-messageformat';
 import { defineMessages } from 'react-intl';
 
-import delegate from '@rails/ujs';
+import Rails from '@rails/ujs';
 import axios from 'axios';
 import { throttle } from 'lodash';
 
@@ -129,7 +129,7 @@ function loaded() {
       });
   }
 
-  delegate(document, '#user_account_attributes_username', 'input', throttle(({ target }) => {
+  Rails.delegate(document, '#user_account_attributes_username', 'input', throttle(({ target }) => {
     if (target.value && target.value.length > 0) {
       axios.get('/api/v1/accounts/lookup', { params: { acct: target.value } }).then(() => {
         target.setCustomValidity(formatMessage(messages.usernameTaken));
@@ -141,7 +141,7 @@ function loaded() {
     }
   }, 500, { leading: false, trailing: true }));
 
-  delegate(document, '#user_password,#user_password_confirmation', 'input', () => {
+  Rails.delegate(document, '#user_password,#user_password_confirmation', 'input', () => {
     const password = document.getElementById('user_password');
     const confirmation = document.getElementById('user_password_confirmation');
     if (!confirmation) return;
@@ -155,7 +155,7 @@ function loaded() {
     }
   });
 
-  delegate(document, '.status__content__spoiler-link', 'click', function() {
+  Rails.delegate(document, '.status__content__spoiler-link', 'click', function() {
     const statusEl = this.parentNode.parentNode;
 
     if (statusEl.dataset.spoiler === 'expanded') {
@@ -192,23 +192,23 @@ const toggleSidebar = () => {
   sidebar.classList.toggle('visible');
 };
 
-delegate(document, '.sidebar__toggle__icon', 'click', () => {
+Rails.delegate(document, '.sidebar__toggle__icon', 'click', () => {
   toggleSidebar();
 });
 
-delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
+Rails.delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
   if (e.key === ' ' || e.key === 'Enter') {
     e.preventDefault();
     toggleSidebar();
   }
 });
 
-delegate(document, '.custom-emoji', 'mouseover', ({ target }) => target.src = target.getAttribute('data-original'));
-delegate(document, '.custom-emoji', 'mouseout', ({ target }) => target.src = target.getAttribute('data-static'));
+Rails.delegate(document, '.custom-emoji', 'mouseover', ({ target }) => target.src = target.getAttribute('data-original'));
+Rails.delegate(document, '.custom-emoji', 'mouseout', ({ target }) => target.src = target.getAttribute('data-static'));
 
 // Empty the honeypot fields in JS in case something like an extension
 // automatically filled them.
-delegate(document, '#registration_new_user,#new_user', 'submit', () => {
+Rails.delegate(document, '#registration_new_user,#new_user', 'submit', () => {
   ['user_website', 'user_confirm_password', 'registration_user_website', 'registration_user_confirm_password'].forEach(id => {
     const field = document.getElementById(id);
     if (field) {
