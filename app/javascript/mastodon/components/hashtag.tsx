@@ -100,7 +100,7 @@ export const Hashtag: React.FC<HashtagProps> = ({
   className,
   description,
   withGraph = true,
-}: HashtagProps) => (
+}) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
       <Link to={to}>

@@ -280,7 +280,6 @@ module.exports = {
     'formatjs/no-id': 'off', // IDs are used for translation keys
     'formatjs/no-invalid-icu': 'error',
     'formatjs/no-literal-string-in-jsx': 'off', // Should be looked at, but mainly flagging punctuation outside of strings
-    'formatjs/no-multiple-plurals': 'off', // Only used by hashtag.tsx
     'formatjs/no-multiple-whitespaces': 'error',
     'formatjs/no-offset': 'error',
     'formatjs/no-useless-message': 'error',
@@ -349,7 +348,7 @@ module.exports = {
         '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
         '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
-        "@typescript-eslint/prefer-nullish-coalescing": ['error', {ignorePrimitives: {boolean: true}}],
+        "@typescript-eslint/prefer-nullish-coalescing": ['error', { ignorePrimitives: { boolean: true } }],
 
         'jsdoc/require-jsdoc': 'off',
 
