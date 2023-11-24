@@ -9,13 +9,12 @@ import { NavLink, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
-import { ReactComponent as LockIcon } from '@material-symbols/svg-600/outlined/lock.svg';
-import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
-import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications.svg';
-import { ReactComponent as NotificationsActiveIcon } from '@material-symbols/svg-600/outlined/notifications_active-fill.svg';
-import { ReactComponent as ShareIcon } from '@material-symbols/svg-600/outlined/share.svg';
-
+import { ReactComponent as CheckIcon } from 'mastodon/../material-icons/400-20px/check.svg';
+import { ReactComponent as LockIcon } from 'mastodon/../material-icons/400-20px/lock.svg';
+import { ReactComponent as MoreHorizIcon } from 'mastodon/../material-icons/400-20px/more_horiz.svg';
+import { ReactComponent as NotificationsIcon } from 'mastodon/../material-icons/400-20px/notifications.svg';
+import { ReactComponent as NotificationsActiveIcon } from 'mastodon/../material-icons/400-20px/notifications_active-fill.svg';
+import { ReactComponent as ShareIcon } from 'mastodon/../material-icons/400-20px/share.svg';
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';
 import { Button } from 'mastodon/components/button';

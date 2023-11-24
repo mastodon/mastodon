@@ -5,8 +5,7 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
-
+import { ReactComponent as CloseIcon } from 'mastodon/../material-icons/400-20px/close.svg';
 import { fetchFilters, createFilter, createFilterStatus } from 'mastodon/actions/filters';
 import { fetchStatus } from 'mastodon/actions/statuses';
 import { IconButton } from 'mastodon/components/icon_button';

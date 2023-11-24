@@ -8,8 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as PushPinIcon } from '@material-symbols/svg-600/outlined/push_pin.svg';
-
+import { ReactComponent as PushPinIcon } from 'mastodon/../material-icons/400-20px/push_pin.svg';
 import { getStatusList } from 'mastodon/selectors';
 
 import { fetchPinnedStatuses } from '../../actions/pin_statuses';

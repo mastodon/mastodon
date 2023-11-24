@@ -9,15 +9,15 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as PeopleIcon } from '@material-symbols/svg-600/outlined/group.svg';
-import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
-import { ReactComponent as LogoutIcon } from '@material-symbols/svg-600/outlined/logout.svg';
-import { ReactComponent as MenuIcon } from '@material-symbols/svg-600/outlined/menu.svg';
-import { ReactComponent as NotificationsIcon } from '@material-symbols/svg-600/outlined/notifications-fill.svg';
-import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
-import { ReactComponent as SettingsIcon } from '@material-symbols/svg-600/outlined/settings-fill.svg';
 import spring from 'react-motion/lib/spring';
 
+import { ReactComponent as PeopleIcon } from 'mastodon/../material-icons/400-20px/group.svg';
+import { ReactComponent as HomeIcon } from 'mastodon/../material-icons/400-20px/home-fill.svg';
+import { ReactComponent as LogoutIcon } from 'mastodon/../material-icons/400-20px/logout.svg';
+import { ReactComponent as MenuIcon } from 'mastodon/../material-icons/400-20px/menu.svg';
+import { ReactComponent as NotificationsIcon } from 'mastodon/../material-icons/400-20px/notifications-fill.svg';
+import { ReactComponent as PublicIcon } from 'mastodon/../material-icons/400-20px/public.svg';
+import { ReactComponent as SettingsIcon } from 'mastodon/../material-icons/400-20px/settings-fill.svg';
 import { openModal } from 'mastodon/actions/modal';
 import Column from 'mastodon/components/column';
 import { Icon }  from 'mastodon/components/icon';

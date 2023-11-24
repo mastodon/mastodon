@@ -8,10 +8,10 @@ import { useHistory } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
-import { ReactComponent as AddPhotoAlternateIcon } from '@material-symbols/svg-600/outlined/add_photo_alternate.svg';
-import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
 import Toggle from 'react-toggle';
 
+import { ReactComponent as AddPhotoAlternateIcon } from 'mastodon/../material-icons/400-20px/add_photo_alternate.svg';
+import { ReactComponent as EditIcon } from 'mastodon/../material-icons/400-20px/edit.svg';
 import { updateAccount } from 'mastodon/actions/accounts';
 import { Button } from 'mastodon/components/button';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';

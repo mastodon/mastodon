@@ -9,14 +9,14 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
-import { ReactComponent as ChevronLeftIcon } from '@material-symbols/svg-600/outlined/chevron_left.svg';
-import { ReactComponent as ChevronRightIcon } from '@material-symbols/svg-600/outlined/chevron_right.svg';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 import ReactSwipeableViews from 'react-swipeable-views';
 
 import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
+import { ReactComponent as AddIcon } from 'mastodon/../material-icons/400-20px/add.svg';
+import { ReactComponent as ChevronLeftIcon } from 'mastodon/../material-icons/400-20px/chevron_left.svg';
+import { ReactComponent as ChevronRightIcon } from 'mastodon/../material-icons/400-20px/chevron_right.svg';
 import { AnimatedNumber } from 'mastodon/components/animated_number';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';

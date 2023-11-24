@@ -7,14 +7,14 @@ import classNames from 'classnames';
 
 import { is } from 'immutable';
 
-import { ReactComponent as DownloadIcon } from '@material-symbols/svg-600/outlined/download.svg';
-import { ReactComponent as PauseIcon } from '@material-symbols/svg-600/outlined/pause.svg';
-import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow-fill.svg';
-import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
-import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outlined/volume_off-fill.svg';
-import { ReactComponent as VolumeUpIcon } from '@material-symbols/svg-600/outlined/volume_up-fill.svg';
 import { throttle, debounce } from 'lodash';
 
+import { ReactComponent as DownloadIcon } from 'mastodon/../material-icons/400-20px/download.svg';
+import { ReactComponent as PauseIcon } from 'mastodon/../material-icons/400-20px/pause.svg';
+import { ReactComponent as PlayArrowIcon } from 'mastodon/../material-icons/400-20px/play_arrow-fill.svg';
+import { ReactComponent as VisibilityOffIcon } from 'mastodon/../material-icons/400-20px/visibility_off.svg';
+import { ReactComponent as VolumeOffIcon } from 'mastodon/../material-icons/400-20px/volume_off-fill.svg';
+import { ReactComponent as VolumeUpIcon } from 'mastodon/../material-icons/400-20px/volume_up-fill.svg';
 import { Icon }  from 'mastodon/components/icon';
 import { formatTime, getPointerPosition, fileNameFromURL } from 'mastodon/features/video';
 

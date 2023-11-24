@@ -8,8 +8,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as VolumeOffIcon } from '@material-symbols/svg-600/outlined/volume_off.svg';
 import { debounce } from 'lodash';
+
+import { ReactComponent as VolumeOffIcon } from 'mastodon/../material-icons/400-20px/volume_off.svg';
 
 import { fetchMutes, expandMutes } from '../../actions/mutes';
 import { LoadingIndicator } from '../../components/loading_indicator';

@@ -9,11 +9,11 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { ReactComponent as DeleteIcon } from '@material-symbols/svg-600/outlined/delete.svg';
-import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
-import { ReactComponent as ListAltIcon } from '@material-symbols/svg-600/outlined/list_alt.svg';
 import Toggle from 'react-toggle';
 
+import { ReactComponent as DeleteIcon } from 'mastodon/../material-icons/400-20px/delete.svg';
+import { ReactComponent as EditIcon } from 'mastodon/../material-icons/400-20px/edit.svg';
+import { ReactComponent as ListAltIcon } from 'mastodon/../material-icons/400-20px/list_alt.svg';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { fetchList, deleteList, updateList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';

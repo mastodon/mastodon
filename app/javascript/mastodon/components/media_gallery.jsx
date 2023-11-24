@@ -8,9 +8,9 @@ import classNames from 'classnames';
 import { is } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
 import { debounce } from 'lodash';
 
+import { ReactComponent as VisibilityOffIcon } from 'mastodon/../material-icons/400-20px/visibility_off.svg';
 import { Blurhash } from 'mastodon/components/blurhash';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';

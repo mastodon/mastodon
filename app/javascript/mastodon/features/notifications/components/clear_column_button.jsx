@@ -3,8 +3,7 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { ReactComponent as DeleteForeverIcon } from '@material-symbols/svg-600/outlined/delete_forever.svg';
-
+import { ReactComponent as DeleteForeverIcon } from 'mastodon/../material-icons/400-20px/delete_forever.svg';
 import { Icon }  from 'mastodon/components/icon';
 
 export default class ClearColumnButton extends PureComponent {

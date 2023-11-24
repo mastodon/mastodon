@@ -3,13 +3,12 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
-import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
-import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
-import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
-import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
-import { ReactComponent as ReplyAllIcon } from '@material-symbols/svg-600/outlined/reply_all.svg';
-import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star.svg';
-
+import { ReactComponent as HomeIcon } from 'mastodon/../material-icons/400-20px/home-fill.svg';
+import { ReactComponent as InsertChartIcon } from 'mastodon/../material-icons/400-20px/insert_chart.svg';
+import { ReactComponent as PersonAddIcon } from 'mastodon/../material-icons/400-20px/person_add.svg';
+import { ReactComponent as RepeatIcon } from 'mastodon/../material-icons/400-20px/repeat.svg';
+import { ReactComponent as ReplyAllIcon } from 'mastodon/../material-icons/400-20px/reply_all.svg';
+import { ReactComponent as StarIcon } from 'mastodon/../material-icons/400-20px/star.svg';
 import { Icon }  from 'mastodon/components/icon';
 
 const tooltips = defineMessages({

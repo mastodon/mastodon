@@ -7,8 +7,7 @@ import classNames from 'classnames';
 
 import { useDispatch } from 'react-redux';
 
-import { ReactComponent as ContentCopyIcon } from '@material-symbols/svg-600/outlined/content_copy.svg';
-
+import { ReactComponent as ContentCopyIcon } from 'mastodon/../material-icons/400-20px/content_copy.svg';
 import { showAlert } from 'mastodon/actions/alerts';
 import { IconButton } from 'mastodon/components/icon_button';
 

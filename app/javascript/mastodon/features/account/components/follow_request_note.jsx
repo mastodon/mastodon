@@ -3,9 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/check.svg';
-import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
-
+import { ReactComponent as CheckIcon } from 'mastodon/../material-icons/400-20px/check.svg';
+import { ReactComponent as CloseIcon } from 'mastodon/../material-icons/400-20px/close.svg';
 import { Icon }  from 'mastodon/components/icon';
 
 export default class FollowRequestNote extends ImmutablePureComponent {

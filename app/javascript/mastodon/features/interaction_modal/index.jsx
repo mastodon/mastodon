@@ -7,12 +7,12 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
-import { ReactComponent as PersonAddIcon } from '@material-symbols/svg-600/outlined/person_add.svg';
-import { ReactComponent as RepeatIcon } from '@material-symbols/svg-600/outlined/repeat.svg';
-import { ReactComponent as ReplyIcon } from '@material-symbols/svg-600/outlined/reply.svg';
-import { ReactComponent as StarIcon } from '@material-symbols/svg-600/outlined/star.svg';
 import { throttle, escapeRegExp } from 'lodash';
 
+import { ReactComponent as PersonAddIcon } from 'mastodon/../material-icons/400-20px/person_add.svg';
+import { ReactComponent as RepeatIcon } from 'mastodon/../material-icons/400-20px/repeat.svg';
+import { ReactComponent as ReplyIcon } from 'mastodon/../material-icons/400-20px/reply.svg';
+import { ReactComponent as StarIcon } from 'mastodon/../material-icons/400-20px/star.svg';
 import { openModal, closeModal } from 'mastodon/actions/modal';
 import api from 'mastodon/api';
 import { Button } from 'mastodon/components/button';

@@ -2,9 +2,8 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-600/outlined/arrow_right_alt.svg';
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/done.svg';
-
+import { ReactComponent as ArrowRightAltIcon } from 'mastodon/../material-icons/400-20px/arrow_right_alt.svg';
+import { ReactComponent as CheckIcon } from 'mastodon/../material-icons/400-20px/done.svg';
 import { Icon } from 'mastodon/components/icon';
 
 export const Step = ({ label, description, icon, iconComponent, completed, onClick, href, to }) => {
