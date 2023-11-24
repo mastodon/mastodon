@@ -22,7 +22,7 @@ class CustomFilter < ApplicationRecord
 
   VALID_CONTEXTS = %w(
     home
-    list
+    lists
     notifications
     public
     thread
