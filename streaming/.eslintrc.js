@@ -5,6 +5,9 @@ module.exports = defineConfig({
   extends: ['../.eslintrc.js'],
   parserOptions: {
     project: true,
+    env: {
+      browser: false,
+    },
     tsconfigRootDir: __dirname,
     ecmaFeatures: {
       jsx: false,

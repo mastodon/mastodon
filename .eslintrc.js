@@ -197,7 +197,6 @@ module.exports = defineConfig({
       {
         devDependencies: [
           '.eslintrc.js',
-          'streaming/.eslintrc.js',
           'config/webpack/**',
           'app/javascript/mastodon/performance.js',
           'app/javascript/mastodon/test_setup.js',
@@ -305,7 +304,6 @@ module.exports = defineConfig({
     {
       files: [
         '.eslintrc.js',
-        'streaming/.eslintrc.js',
         '*.config.js',
         '.*rc.js',
         'ide-helper.js',
