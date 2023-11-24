@@ -70,6 +70,7 @@ module.exports = (api) => {
   case 'test':
     // Without this, TypeScript 'declare' transforms are too late in the transform pipeline
     // "TypeScript 'declare' fields must first be transformed by @babel/plugin-transform-typescript.""
+    // When the conversion to hooks is complete, this can likely be removed
     overrides.unshift({
       plugins: [
         ['@babel/plugin-transform-typescript', {
