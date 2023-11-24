@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent, useCallback } from 'react';
+import React, { PureComponent, useCallback } from 'react';
 
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import type { IntlShape } from 'react-intl';
@@ -43,7 +43,7 @@ interface BackButtonProps {
   show?: boolean;
 }
 
-const BackButton = ({ pinned, show }: BackButtonProps) => {
+const BackButton: React.FC<BackButtonProps> = ({ pinned, show }) => {
   const history = useAppHistory();
   const { multiColumn } = useColumnsContext();
 
@@ -116,13 +116,13 @@ class ColumnHeaderInternal extends PureComponent<ColumnHeaderProps> {
   };
 
   handleMoveLeft = () => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    this.props.onMove!(-1);
+    // handleMoveLeft should only be used in situations where this.props.onMove is provided
+    this.props.onMove?.(-1);
   };
 
   handleMoveRight = () => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    this.props.onMove!(1);
+    // handleMoveRight should only be used in situations where this.props.onMove is provided
+    this.props.onMove?.(1);
   };
 
   handleTransitionEnd = () => {
@@ -135,8 +135,7 @@ class ColumnHeaderInternal extends PureComponent<ColumnHeaderProps> {
     }
 
     // handlePin is only used if this.props.onPin is provided
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    this.props.onPin!();
+    this.props.onPin?.();
   };
 
   render() {
