@@ -1038,6 +1038,10 @@ ca:
       hint_html: Una cosa més! Necessitem confirmar que ets una persona humana (és així com mantenim a ratlla l'spam). Resolt el CAPTCHA inferior i clica a "Segueix".
       title: Revisió de seguretat
     confirmations:
+      clicking_this_link: en clicar aquest enllaç
+      login_link: inici de sessió
+      proceed_to_login_html: Ara pots passar a %{login_link}.
+      welcome_title: Hola, %{name}!
       wrong_email_hint: Si aquesta adreça de correu electrònic no és correcte, pots canviar-la en els ajustos del compte.
     delete_account: Elimina el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
@@ -1569,6 +1573,8 @@ ca:
     over_daily_limit: Has superat el límit de %{limit} tuts programats per a avui
     over_total_limit: Has superat el límit de %{limit} tuts programats
     too_soon: La data programada ha de ser futura
+  self_destruct:
+    title: Aquest servidor tancarà
   sessions:
     activity: Última activitat
     browser: Navegador
