@@ -16,6 +16,7 @@ const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
 const entryPath = join(settings.source_path, settings.source_entry_path);
 const packPaths = sync(join(entryPath, extensionGlob));
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
   entry: Object.assign(
     packPaths.reduce((map, entry) => {
