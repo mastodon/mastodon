@@ -4,7 +4,7 @@ class AttachmentBatch
   # Maximum amount of objects you can delete in an S3 API call. It's
   # important to remember that this does not correspond to the number
   # of records in the batch, since records can have multiple attachments
-  LIMIT = 1_000
+  LIMIT = 500
 
   # Attributes generated and maintained by Paperclip (not all of them
   # are always used on every class, however)
