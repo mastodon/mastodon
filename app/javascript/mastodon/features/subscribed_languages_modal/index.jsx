@@ -13,7 +13,7 @@ import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/
 import { followAccount } from 'mastodon/actions/accounts';
 import { Button } from 'mastodon/components/button';
 import { IconButton } from 'mastodon/components/icon_button';
-import Option from 'mastodon/features/report/components/option';
+import Option from 'mastodon/components/option';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
 
 const messages = defineMessages({

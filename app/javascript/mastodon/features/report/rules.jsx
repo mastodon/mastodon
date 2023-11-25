@@ -7,8 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { Button } from 'mastodon/components/button';
-
-import Option from './components/option';
+import Option from 'mastodon/components/option';
 
 const mapStateToProps = state => ({
   rules: state.getIn(['server', 'server', 'rules']),
