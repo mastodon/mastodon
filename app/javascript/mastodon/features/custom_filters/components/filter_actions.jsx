@@ -7,8 +7,8 @@ import Option from 'mastodon/components/option';
 import { FilterActionTypes } from 'mastodon/utils/filters';
 
 const messages = defineMessages({
-  title:            { id: 'custom_filters.filter_contexts.title',           defaultMessage: 'Filter action' },
-  subtitle:         { id: 'custom_filters.filter_contexts.subtitle',        defaultMessage: 'Chose which action to perform when a post matches the filter' },
+  title:            { id: 'custom_filters.filter_actions.title',           defaultMessage: 'Filter action' },
+  subtitle:         { id: 'custom_filters.filter_actions.subtitle',        defaultMessage: 'Chose which action to perform when a post matches the filter' },
   warn:             { id: 'custom_filters.filter_actions.warn',             defaultMessage: 'Hide with a warning' },
   warn_description: { id: 'custom_filters.filter_actions.warn_description', defaultMessage: `Hide the filtered content behind a warning mentioning the filter's title` },
   hide:             { id: 'custom_filters.filter_actions.hide',             defaultMessage: 'Hide completely' },
