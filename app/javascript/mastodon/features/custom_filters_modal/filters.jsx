@@ -12,10 +12,7 @@ import { Icon } from 'mastodon/components/icon';
 import { toServerSideType } from 'mastodon/utils/filters';
 import { loupeIcon, deleteIcon } from 'mastodon/utils/icons';
 
-export const FilterTypes = {
-  Account: 'account',
-  Status: 'status',
-};
+import { CustomFilterTypes } from './custom_filter_types';
 
 const messages = defineMessages({
   title:            { id: 'custom_filters_modal.filters.title',            defaultMessage: 'Filter this {entity}' },
@@ -44,7 +41,7 @@ class Filters extends React.PureComponent {
     onSelectFilter: PropTypes.func.isRequired,
     onNewFilter: PropTypes.func.isRequired,
     filters: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
-    filterType: PropTypes.oneOf(FilterTypes).isRequired,
+    filterType: PropTypes.oneOf(CustomFilterTypes).isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -180,9 +177,9 @@ class Filters extends React.PureComponent {
 
   entityMessage() {
     switch (this.props.filterType) {
-    case FilterTypes.Account:
+    case CustomFilterTypes.Account:
       return this.props.intl.formatMessage(messages.account_entity);
-    case FilterTypes.Status:
+    case CustomFilterTypes.Status:
       return this.props.intl.formatMessage(messages.status_entity);
     default:
       return null;
