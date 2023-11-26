@@ -71,7 +71,7 @@ const messages = defineMessages({
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
-  filters: { id: 'account.custom_filters', defaultMessage: 'Filter @{name}' },
+  filter: { id: 'account.custom_filter', defaultMessage: 'Filter @{name}' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
 });
 
@@ -341,7 +341,7 @@ class Header extends ImmutablePureComponent {
         menu.push(null);
       }
 
-      menu.push({ text: intl.formatMessage(messages.filters, { name: account.get('username') }), action: this.props.onChangeFilters });
+      menu.push({ text: intl.formatMessage(messages.filter, { name: account.get('username') }), action: this.props.onChangeFilters });
       menu.push(null);
 
       if (account.getIn(['relationship', 'muting'])) {

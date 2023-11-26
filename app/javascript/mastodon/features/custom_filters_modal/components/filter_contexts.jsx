@@ -8,14 +8,14 @@ import classNames from 'classnames';
 import { FilterContextServerSideTypes } from 'mastodon/utils/filters';
 
 const messages = defineMessages({
-  title:         { id: 'custom_filters.filter_contexts.title',         defaultMessage: 'Filter contexts' },
-  subtitle:      { id: 'custom_filters.filter_contexts.subtitle',      defaultMessage: 'One or multiple contexts where the filter should apply' },
-  home:          { id: 'custom_filters.filter_contexts.home',          defaultMessage: 'Home' },
-  lists:         { id: 'custom_filters.filter_contexts.lists',         defaultMessage: 'Lists' },
-  notifications: { id: 'custom_filters.filter_contexts.notifications', defaultMessage: 'Notifications' },
-  public:        { id: 'custom_filters.filter_contexts.public',        defaultMessage: 'Public timelines' },
-  thread:        { id: 'custom_filters.filter_contexts.thread',        defaultMessage: 'Conversations' },
-  account:       { id: 'custom_filters.filter_contexts.account',       defaultMessage: 'Profiles' },
+  title:         { id: 'custom_filters_modal.filter_contexts.title',         defaultMessage: 'Filter contexts' },
+  subtitle:      { id: 'custom_filters_modal.filter_contexts.subtitle',      defaultMessage: 'One or multiple contexts where the filter should apply' },
+  home:          { id: 'custom_filters_modal.filter_contexts.home',          defaultMessage: 'Home' },
+  lists:         { id: 'custom_filters_modal.filter_contexts.lists',         defaultMessage: 'Lists' },
+  notifications: { id: 'custom_filters_modal.filter_contexts.notifications', defaultMessage: 'Notifications' },
+  public:        { id: 'custom_filters_modal.filter_contexts.public',        defaultMessage: 'Public timelines' },
+  thread:        { id: 'custom_filters_modal.filter_contexts.thread',        defaultMessage: 'Conversations' },
+  account:       { id: 'custom_filters_modal.filter_contexts.account',       defaultMessage: 'Profiles' },
 });
 
 class FilterContexts extends React.PureComponent {
