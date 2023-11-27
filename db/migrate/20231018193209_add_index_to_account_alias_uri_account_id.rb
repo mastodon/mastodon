@@ -3,7 +3,21 @@
 class AddIndexToAccountAliasUriAccountId < ActiveRecord::Migration[7.0]
   disable_ddl_transaction!
 
-  def change
+  def up
+    safety_assured do
+      execute <<~SQL.squish
+        DELETE FROM account_aliases
+          WHERE id NOT IN (
+          SELECT DISTINCT ON(uri, account_id) id FROM account_aliases
+          ORDER BY uri, account_id, id ASC
+        )
+      SQL
+    end
+
     add_index :account_aliases, [:uri, :account_id], unique: true, algorithm: :concurrently
+  end
+
+  def down
+    remove_index :account_aliases, [:uri, :account_id]
   end
 end
