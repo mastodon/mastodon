@@ -84,7 +84,7 @@ class User < ApplicationRecord
   belongs_to :role, class_name: 'UserRole', optional: true
   accepts_nested_attributes_for :account
 
-  has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
+  has_many :applications, class_name: 'Doorkeeper::Application', as: :owner, dependent: :destroy
   has_many :backups, inverse_of: :user, dependent: :destroy
   has_many :invites, inverse_of: :user, dependent: :destroy
   has_many :markers, inverse_of: :user, dependent: :destroy
