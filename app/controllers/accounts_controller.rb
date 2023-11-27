@@ -96,8 +96,4 @@ class AccountsController < ApplicationController
   def tag_requested?
     request.path.split('.').first.end_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
   end
-
-  def params_slice(*keys)
-    params.slice(*keys).permit(*keys)
-  end
 end
