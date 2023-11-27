@@ -85,8 +85,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
-  has_many :backups, inverse_of: :user
-  has_many :invites, inverse_of: :user
+  has_many :backups, inverse_of: :user, dependent: :destroy
+  has_many :invites, inverse_of: :user, dependent: :destroy
   has_many :markers, inverse_of: :user, dependent: :destroy
   has_many :webauthn_credentials, dependent: :destroy
   has_many :ips, class_name: 'UserIp', inverse_of: :user
