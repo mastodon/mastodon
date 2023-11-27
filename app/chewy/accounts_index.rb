@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AccountsIndex < Chewy::Index
+  include DatetimeClampingConcern
+
   settings index: { refresh_interval: '30s' }, analysis: {
     analyzer: {
       content: {
@@ -38,6 +40,6 @@ class AccountsIndex < Chewy::Index
 
     field :following_count, type: 'long', value: ->(account) { account.following_count }
     field :followers_count, type: 'long', value: ->(account) { account.followers_count }
-    field :last_status_at, type: 'date', value: ->(account) { account.last_status_at || account.created_at }
+    field :last_status_at, type: 'date', value: ->(account) { clamp_date(account.last_status_at || account.created_at) }
   end
 end
