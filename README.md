@@ -67,7 +67,7 @@ Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Stre
 
 ### Requirements
 
-- **PostgreSQL** 9.5+
+- **PostgreSQL** 12+
 - **Redis** 4+
 - **Ruby** 2.7+
 - **Node.js** 16+
@@ -96,7 +96,7 @@ To set up **MacOS** for native development, complete the following steps:
 - Run `brew install imagemagick`
 - Install Foreman or a similar tool (such as [overmind](https://github.com/DarthSim/overmind)) to handle multiple process launching.
 - Navigate to Mastodon's root directory and run `brew install nvm` then `nvm use` to use the version from .nvmrc
-- Run `corepack enable && yarn set version classic`
+- Run `corepack enable && corepack prepare`
 - Run `bundle exec rails db:setup` (optionally prepend `RAILS_ENV=development` to target the dev environment)
 - Finally, run `overmind start -f Procfile.dev`
 

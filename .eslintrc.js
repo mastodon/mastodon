@@ -236,7 +236,7 @@ module.exports = {
           },
           // Common React utilities
           {
-            pattern: '{classnames,react-helmet,react-router-dom}',
+            pattern: '{classnames,react-helmet,react-router,react-router-dom}',
             group: 'external',
             position: 'before',
           },

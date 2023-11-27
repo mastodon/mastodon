@@ -131,7 +131,7 @@ fa:
       reset_password: بازنشانی گذرواژه
       resubscribe: اشتراک دوباره
       role: نقش
-      search: جستجو
+      search: جست‌وجو
       search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
       search_same_ip: دیگر کاربران با IP یکسان
       security: امنیت
@@ -386,6 +386,10 @@ fa:
       confirm_suspension:
         cancel: لغو
         confirm: تعلیق
+        permanent_action: برگرداندن تعلیق هیچ داده یا ارتباطی را برنخواهد گرداند.
+        preamble_html: در حال تعلیق <strong>%{domain}</strong> و همهٔ زیردامنه‌هایش هستید.
+        remove_all_data: این کار همهٔ داده‌های نمایه، محتوا و رسانه‌های حساب‌های این دامنه را از کارسازتان برمی‌دارد.
+        stop_communication: کارسازتان دیگر با این کارسازها ارتباط برقرار نخواهد کرد.
         title: تأیید انسداد دامنه برای %{domain}
       created_msg: مسدودسازی دامنه در حال پردازش است
       destroyed_msg: انسداد دامنه واگردانده شد
@@ -748,6 +752,12 @@ fa:
         message_html: هیچ قانون کارسازی تعریف نکرده‌اید.
       sidekiq_process_check:
         message_html: صف(های) %{value} فاقد هیچونه فرایند Sidekiq هستند. لطفا تنظیمات Sidekiq خود را بازبینی کنید
+      software_version_critical_check:
+        action: مشاهده به‌روزرسانی‌های موجود
+        message_html: یک به‌روزرسانی حیاتی ماستودون موجود است، لطفا در اسرع وقت به‌روزرسانی کنید.
+      software_version_patch_check:
+        action: مشاهده به‌روزرسانی‌های موجود
+        message_html: یک به‌روزرسانی رفع اشکال ماستودون موجود است.
       upload_check_privacy_error:
         action: برای اطّلاعات بیش‌تر این‌جا را بررسی کنید
         message_html: "<strong>کارساز وبتان بد پیکربندی شده. محرمانگی کاربرانتان در خطر است.</strong>"
@@ -838,7 +848,6 @@ fa:
       new_trending_statuses:
         title: فرسته‌های داغ
       new_trending_tags:
-        no_approved_tags: در حال حاضر هیچ برچسب پرطرفداری پذیرفته نشده است.
         title: برچسب‌های داغ
       subject: موضوغ داغ تازه‌ای در %{instance} نیازمند بررسی است
   aliases:
@@ -879,6 +888,9 @@ fa:
     apply_for_account: درخواست یک حساب
     captcha_confirmation:
       title: بررسی های امنیتی
+    confirmations:
+      login_link: ورود
+      welcome_title: خوش آمدید، %{name}!
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     description:
@@ -901,6 +913,8 @@ fa:
     progress:
       confirm: تأیید رایانامه
       details: جزئیات شما
+      review: بررسی ما
+      rules: پذیرش قوانین
     providers:
       cas: CAS
       saml: SAML
@@ -1142,6 +1156,7 @@ fa:
       '86400': ۱ روز
     expires_in_prompt: هیچ وقت
     generate: ساختن
+    invalid: این دعوت‌نامه معتبر نیست
     invited_by: 'دعوت‌کنندهٔ شما:'
     max_uses:
       one: ۱ بار
@@ -1208,7 +1223,7 @@ fa:
       followers: این کار همهٔ پیگیران شما را از حساب فعلی به حساب تازه منتقل خواهد کرد
       only_redirect_html: شما همچنین می‌توانید حساب خود را <a href="%{path}">به یک حساب دیگر اشاره دهید</a>.
       other_data: هیچ دادهٔ دیگری خودبه‌خود منتقل نخواهد شد
-      redirect: نمایهٔ حساب فعلی شما به حساب تازه اشاره خواهد کرد و خودش در نتیجهٔ جستجوها ظاهر نخواهد شد
+      redirect: نمایهٔ حساب کنونیتان به حساب تازه اشاره خواهد کرد و از جست‌وجوها حذف خواهد شد
   moderation:
     title: مدیریت کاربران
   move_handler:

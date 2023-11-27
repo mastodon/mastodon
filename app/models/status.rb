@@ -79,8 +79,8 @@ class Status < ApplicationRecord
   has_many :local_bookmarked, -> { merge(Account.local) }, through: :bookmarks, source: :account
 
   has_and_belongs_to_many :tags
-  has_and_belongs_to_many :preview_cards
 
+  has_one :preview_cards_status, inverse_of: :status # Because of a composite primary key, the dependent option cannot be used
   has_one :notification, as: :activity, dependent: :destroy
   has_one :status_stat, inverse_of: :status
   has_one :poll, inverse_of: :status, dependent: :destroy
@@ -142,24 +142,25 @@ class Status < ApplicationRecord
   # The `prepend: true` option below ensures this runs before
   # the `dependent: destroy` callbacks remove relevant records
   before_destroy :unlink_from_conversations!, prepend: true
+  before_destroy :reset_preview_card!
 
   cache_associated :application,
                    :media_attachments,
                    :conversation,
                    :status_stat,
                    :tags,
-                   :preview_cards,
                    :preloadable_poll,
+                   preview_cards_status: [:preview_card],
                    account: [:account_stat, user: :role],
                    active_mentions: { account: :account_stat },
                    reblog: [
                      :application,
                      :tags,
-                     :preview_cards,
                      :media_attachments,
                      :conversation,
                      :status_stat,
                      :preloadable_poll,
+                     preview_cards_status: [:preview_card],
                      account: [:account_stat, user: :role],
                      active_mentions: { account: :account_stat },
                    ],
@@ -226,7 +227,11 @@ class Status < ApplicationRecord
   end
 
   def preview_card
-    preview_cards.first
+    preview_cards_status&.preview_card&.tap { |x| x.original_url = preview_cards_status.url }
+  end
+
+  def reset_preview_card!
+    PreviewCardsStatus.where(status_id: id).delete_all
   end
 
   def hidden?
@@ -244,7 +249,7 @@ class Status < ApplicationRecord
   end
 
   def with_preview_card?
-    preview_cards.any?
+    preview_cards_status.present?
   end
 
   def with_poll?

@@ -1,1 +1,117 @@
+---
 lt:
+  devise:
+    confirmations:
+      confirmed: Tavo el. pašto adresas buvo sėkmingai patvirtintas.
+      send_instructions: Po kelių minučių gausi el. laišką su instrukcijomis, kaip patvirtinti savo el. pašto adresą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      send_paranoid_instructions: Jei tavo el. pašto adresas yra mūsų duomenų bazėje, po kelių minučių gausi el. laišką su instrukcijomis, kaip patvirtinti savo el. pašto adresą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+    failure:
+      already_authenticated: Tu jau prisijungęs (-usi).
+      inactive: Tavo paskyra dar nėra aktyvuota.
+      invalid: Netinkami %{authentication_keys} arba slaptažodis.
+      last_attempt: Turi dar vieną bandymą, kol tavo paskyra bus užrakinta.
+      locked: Tavo paskyra užrakinta.
+      not_found_in_database: Netinkami %{authentication_keys} arba slaptažodis.
+      pending: Tavo paskyra vis dar peržiūrima.
+      timeout: Tavo seansas baigėsi. Norėdamas (-a) tęsti, prisijunk dar kartą.
+      unauthenticated: Prieš tęsdamas (-a) turi prisijungti arba užsiregistruoti.
+      unconfirmed: Prieš tęsdamas (-a) turi patvirtinti savo el. pašto adresą.
+    mailer:
+      confirmation_instructions:
+        action: Patvirtinti el. pašto adresą
+        action_with_app: Patvirtinti ir grįžti į %{app}
+        explanation: Šiuo el. pašto adresu sukūrei paskyrą %{host}. Iki jos aktyvavimo liko vienas paspaudimas. Jei tai buvo ne tu, ignoruok šį el. laišką.
+        explanation_when_pending: Šiuo el. pašto adresu pateikei paraišką pakvietimui į %{host}. Kai patvirtinsi savo el. pašto adresą, mes peržiūrėsime tavo paraišką. Gali prisijungti ir pakeisti savo duomenis arba ištrinti paskyrą, tačiau negalėsi naudotis daugeliu funkcijų, kol tavo paskyra nebus patvirtinta. Jei tavo paraiška bus atmesta, duomenys bus pašalinti, todėl jokių papildomų veiksmų iš tavęs nereikės. Jei tai buvo ne tu, ignoruok šį el. laišką.
+        extra_html: Taip pat peržiūrėk <a href="%{terms_path}">serverio taisykles</a> ir <a href="%{policy_path}">mūsų paslaugų teikimo sąlygas</a>.
+        subject: 'Mastodon: patvirtinimo instrukcijos %{instance}'
+        title: Patvirtinti el. pašto adresą
+      email_changed:
+        explanation: 'Tavo paskyros el. pašto adresas yra keičiamas į:'
+        extra: Jei el. pašto nepakeitei, tikėtina, kad kažkas įgijo prieigą prie tavo paskyros. Nedelsiant pakeisk slaptažodį arba kreipkis į serverio administratorių (-ę), jei tavo paskyra užrakinta.
+        subject: 'Mastodon: el. paštas pakeistas'
+        title: Naujas el. pašto adresas
+      password_change:
+        explanation: Pakeistas tavo paskyros slaptažodis.
+        extra: Jei slaptažodio nepakeitei, tikėtina, kad kažkas įgijo prieigą prie tavo paskyros. Nedelsiant pakeisk slaptažodį arba kreipkis į serverio administratorių (-ę), jei tavo paskyra užrakinta.
+        subject: 'Mastodon: slaptažodis pakeistas'
+        title: Pakeistas slaptažodis
+      reconfirmation_instructions:
+        explanation: Patvirtink naująjį adresą, kad pakeistum savo el. paštą.
+        extra: Jei šį pakeitimą pradėjai ne tu, ignoruok šį el. laišką. Mastodon paskyros el. pašto adresas nepasikeis, kol nepasinaudosi aukščiau pateikta nuoroda.
+        subject: 'Mastodon: patvirtinti el. paštą %{instance}'
+        title: Patvirtinti el. pašto adresą
+      reset_password_instructions:
+        action: Keisti slaptažodį
+        explanation: Paprašei naujo paskyros slaptažodžio.
+        extra: Jei to neprašei, ignoruok šį el. laišką. Tavo slaptažodis nepasikeis, kol nepasinaudosi aukščiau esančia nuoroda ir nesusikursi naują.
+        subject: 'Mastodon: slaptažodžio keitimo instrukcijos'
+        title: Slaptažodžio keitimas
+      two_factor_disabled:
+        explanation: Dviejų tapatybės patikrinimas tavo paskyrai buvo išjungtas. Prisijungimas dabar galimas naudojant tik el. pašto adresą ir slaptažodį.
+        subject: 'Mastodon: dviejų tapatybės patikrinimas išjungtas'
+        title: 2FA išjungta
+      two_factor_enabled:
+        explanation: Tavo paskyrai įgalintas dvejų tapatybės patikrinimas. Prisijungiant reikės susietos TOTP programėlės sugeneruoto priegos rakto.
+        subject: 'Mastodon: dviejų tapatybės patikrinimas įgalintas'
+        title: 2FA įgalinta
+      two_factor_recovery_codes_changed:
+        explanation: Ankstesnieji atkūrimo kodai yra negaliojantys ir sugeneruojami nauji.
+        subject: 'Mastodon: dviejų tapatybės atkūrimo kodai iš naujo sugeneruoti'
+        title: Pakeisti 2FA atkūrimo kodai
+      unlock_instructions:
+        subject: 'Mastodon: atrakinimo instrukcijos'
+      webauthn_credential:
+        added:
+          explanation: Į tavo paskyrą buvo pridėtas šis saugumo raktas
+          subject: 'Mastodon: naujas saugumo raktas'
+          title: Pridėtas naujas saugumo raktas
+        deleted:
+          explanation: Iš tavo paskyros buvo ištrintas šis saugumo raktas
+          subject: 'Mastodon: saugumo raktas ištrintas'
+          title: Vienas iš tavo saugumo raktų buvo ištrintas
+      webauthn_disabled:
+        explanation: Tavo paskyrai buvo išjungtas tapatybės nustatymas naudojant saugumo raktus. Prisijungimas dabar galimas naudojant tik susietos TOTP programėlės sugeneruotą prieigos raktą.
+        subject: 'Mastodon: tapatybės nustatymas naudojant saugumo raktai išjungta'
+        title: Saugumo raktai išjungti
+      webauthn_enabled:
+        explanation: Saugumo rakto tapatybės nustatymas tavo paskyrai įgalintas. Dabar prisijungimui galima naudoti saugumo raktą.
+        subject: 'Mastodon: saugumo rakto tapatybės nustatymas įgalintas'
+        title: Saugumo raktai įgalinti
+    omniauth_callbacks:
+      failure: Nepavyko nustatyti tapatybės iš %{kind}, nes „%{reason}“.
+      success: Sėkmingai nustatyta tapatybė iš %{kind} paskyros.
+    passwords:
+      no_token: Į šį puslapį gali patekti tik gavęs (-usi) slaptažodžio keitimo el. laišką. Jei atėjai iš slaptažodžio keitimo el. laiško, įsitikink, kad naudojai visą pateiktą URL adresą.
+      send_instructions: Jei tavo el. pašto adresas egzistuoja mūsų duomenų bazėje, po kelių minučių į savo el. pašto adresą gausi slaptažodžio atkūrimo nuorodą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      send_paranoid_instructions: Jei tavo el. pašto adresas egzistuoja mūsų duomenų bazėje, po kelių minučių į savo el. pašto adresą gausi slaptažodžio atkūrimo nuorodą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      updated: Tavo slaptažodis buvo sėkmingai pakeistas. Dabar esi prisijungęs (-usi).
+      updated_not_active: Tavo slaptažodis buvo sėkmingai pakeistas.
+    registrations:
+      destroyed: Iki pasimatymo! Tavo paskyra sėkmingai atšaukta. Tikimės, kad netrukus vėl pamatysime tave.
+      signed_up: Sveiki! Tu sėkmingai užsiregistravai.
+      signed_up_but_inactive: Sėkmingai užsiregistravai. Tačiau negalėjome tavęs prijungti, nes tavo paskyra dar nėra aktyvuota.
+      signed_up_but_locked: Sėkmingai užsiregistravai. Tačiau negalėjome tavęs prijungti, nes tavo paskyra dar užrakinta.
+      signed_up_but_pending: Į tavo el. pašto adresą buvo išsiųstas laiškas su patvirtinimo nuoroda. Paspaudęs (-usi) nuorodą, peržiūrėsime tavo paraišką. Tau bus pranešta, jei ji patvirtinta.
+      signed_up_but_unconfirmed: Į tavo el. pašto adresą buvo išsiųstas laiškas su patvirtinimo nuoroda. Paspausk nuorodą, kad aktyvuotum savo paskyrą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      update_needs_confirmation: Sėkmingai atnaujinai savo paskyrą, bet mums reikia patvirtinti naująjį el. pašto adresą. Patikrink savo el. paštą ir paspausk patvirtinimo nuorodą, kad patvirtintum savo naują el. pašto adresą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      updated: Tavo paskyra buvo sėkmingai atnaujinta.
+    sessions:
+      already_signed_out: Atsijungta sėkmingai.
+      signed_in: Prisijungta sėkmingai.
+      signed_out: Atjungta sėkmingai.
+    unlocks:
+      send_instructions: Po kelių minučių gausi el. laišką su instrukcijomis, kaip atrakinti paskyrą. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      send_paranoid_instructions: Jei paskyra egzistuoja, po kelių minučių gausi el. laišką su instrukcijomis, kaip ją atrakinti. Jei negavai šio el. laiško, patikrink šlamšto aplanką.
+      unlocked: Tavo paskyra sėkmingai atrakinta. Norėdamas (-a) tęsti, prisijunk.
+  errors:
+    messages:
+      already_confirmed: jau buvo patvirtintas, pabandyk prisijungti.
+      confirmation_period_expired: turi būti patvirtintas per %{period}, paprašyk naujo.
+      expired: nustojo galioti, paprašyk naujos.
+      not_found: nerasta.
+      not_locked: nebuvo užrakintas.
+      not_saved:
+        few: "%{count} klaidos neleido išsaugoti šio %{resource}:"
+        many: "%{count} klaido neleido išsaugoti šio %{resource}:"
+        one: '1 klaida neleido išsaugoti šio %{resource}:'
+        other: "%{count} klaidų neleido išsaugoti šio %{resource}:"

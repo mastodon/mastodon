@@ -534,6 +534,7 @@ tr:
       total_reported: Onlar hakkında şikayetler
       total_storage: Medya ekleri
       totals_time_period_hint_html: Aşağıdaki gösterilen toplamlar, gelmiş geçmiş tüm veriyi içeriyor.
+      unknown_instance: Bu sunucuda bu alan adının şu an bir kaydı yok.
     invites:
       deactivate_all: Tümünü devre dışı bırak
       filter:
@@ -610,6 +611,7 @@ tr:
       created_at: Şikayet edildi
       delete_and_resolve: Gönderileri sil
       forwarded: İletildi
+      forwarded_replies_explanation: Bu bildirim başka bir sunucudaki kullanıcı ve içerik ile ilgili. Bildirilen içerik kullanıcılarınızdan birine yanıt şeklinde olduğu için size yönlendirildi.
       forwarded_to: "%{domain}'e iletildi"
       mark_as_resolved: Giderildi olarak işaretle
       mark_as_sensitive: Hassas olarak işaretle
@@ -995,8 +997,6 @@ tr:
       new_trending_statuses:
         title: Öne çıkan gönderiler
       new_trending_tags:
-        no_approved_tags: Şu anda onaylanmış öne çıkan etiket yok.
-        requirements: 'Aşağıdaki adaylardan herhangi biri, şu anda %{lowest_tag_score} skoruna sahip "%{lowest_tag_name}" olan #%{rank} onaylanmış öne çıkan etiketi geçebilir.'
         title: Öne çıkan etiketler
       subject: "%{instance}, inceleme bekleyen yeni öne çıkan öğelere sahip"
   aliases:
@@ -1040,6 +1040,14 @@ tr:
       hint_html: Sadece bir şey daha! Sizin bir insan olduğunuzu doğrulamamız gerekiyor (bu, spam'i dışarıda tutabilmemiz içindir!). Aşağıdaki CAPTCHA'yı çözün ve "Devam Et" düğmesini tıklayın.
       title: Güvenlik denetimi
     confirmations:
+      awaiting_review: E-posta adresiniz doğrulandı! %{domain} çalışanları şimdi kaydınızı inceliyorlar. Hesabınızı onayladıklarında bir e-posta alacaksınız!
+      awaiting_review_title: Kaydınız inceleniyor
+      clicking_this_link: bu bağlantıyı tıklamayı
+      login_link: oturum aç
+      proceed_to_login_html: Şimdi %{login_link} devam edebilirsiniz.
+      redirect_to_app_html: "<strong>%{app_name}</strong> uygulamasına yönlendirileceksiniz. Eğer yönlendirme olmazsa, %{clicking_this_link} veya uygulamaya geri dönmeyi deneyin."
+      registration_complete: "%{domain} sunucusunda kaydınız şimdi tamamlandı!"
+      welcome_title: Hoşgeldin %{name}!
       wrong_email_hint: Eğer bu e-posta adresi doğru değilse, hesap ayarlarında değiştirebilirsiniz.
     delete_account: Hesabı sil
     delete_account_html: Hesabını silmek istersen, <a href="%{path}">buradan devam edebilirsin</a>. Onay istenir.
@@ -1101,6 +1109,7 @@ tr:
       functional: Hesabınız tamamen kullanıma hazır.
       pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
       redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
+      self_destruct: "%{domain} kapandığı için, hesabınıza sadece kısıtlı erişiminiz olacak."
       view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     use_security_key: Güvenlik anahtarını kullan
@@ -1358,6 +1367,7 @@ tr:
       '86400': 1 gün
     expires_in_prompt: Asla
     generate: Davet bağlantısı oluştur
+    invalid: Bu davet geçerli değil
     invited_by: 'Davet edildiniz:'
     max_uses:
       one: 1 kullanım
@@ -1570,6 +1580,9 @@ tr:
     over_daily_limit: Bugün için %{limit} zamanlanmış gönderi sınırını aştınız
     over_total_limit: "%{limit} zamanlanmış gönderi sınırını aştınız"
     too_soon: Programlanan tarih bugünden ileri bir tarihte olmalıdır
+  self_destruct:
+    lead_html: Maalesef <strong>%{domain}</strong> kalıcı olarak kapanıyor. Eğer orada hesabınız varsa, onu kullanmaya devam edemeyeceksiniz, ancak yine de verinizin bir yedeğini isteyebilirsiniz.
+    title: Bu sunucu kapanıyor
   sessions:
     activity: Son etkinlik
     browser: Tarayıcı

@@ -36,7 +36,8 @@ class LinkDetailsExtractor
     end
 
     def language
-      json['inLanguage']
+      lang = json['inLanguage']
+      lang.is_a?(Hash) ? (lang['alternateName'] || lang['name']) : lang
     end
 
     def type

@@ -25,11 +25,8 @@ RSpec.describe Api::V1::Announcements::ReactionsController do
         put :update, params: { announcement_id: announcement.id, id: '😂' }
       end
 
-      it 'returns http success' do
+      it 'creates reaction', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'creates reaction' do
         expect(announcement.announcement_reactions.find_by(name: '😂', account: user.account)).to_not be_nil
       end
     end
@@ -53,11 +50,8 @@ RSpec.describe Api::V1::Announcements::ReactionsController do
         delete :destroy, params: { announcement_id: announcement.id, id: '😂' }
       end
 
-      it 'returns http success' do
+      it 'creates reaction', :aggregate_failures do
         expect(response).to have_http_status(200)
-      end
-
-      it 'creates reaction' do
         expect(announcement.announcement_reactions.find_by(name: '😂', account: user.account)).to be_nil
       end
     end

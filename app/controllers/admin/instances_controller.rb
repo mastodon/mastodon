@@ -49,7 +49,7 @@ module Admin
     private
 
     def set_instance
-      @instance = Instance.find(TagManager.instance.normalize_domain(params[:id]&.strip))
+      @instance = Instance.find_or_initialize_by(domain: TagManager.instance.normalize_domain(params[:id]&.strip))
     end
 
     def set_instances

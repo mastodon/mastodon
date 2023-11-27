@@ -556,6 +556,7 @@ cs:
       total_reported: Hlášení o nich
       total_storage: Mediální přílohy
       totals_time_period_hint_html: Níže zobrazené součty zahrnují data za celou dobu.
+      unknown_instance: Na tomto serveru momentálně neexistuje žádný záznam o této doméně.
     invites:
       deactivate_all: Deaktivovat vše
       filter:
@@ -1028,8 +1029,6 @@ cs:
       new_trending_statuses:
         title: Populární příspěvky
       new_trending_tags:
-        no_approved_tags: Momentálně nejsou žádné schválené populární hashtagy.
-        requirements: 'Kterýkoliv z těchto kandidátů by mohl předehnat schválený populární hashtag #%{rank}, kterým je momentálně #%{lowest_tag_name} se skóre %{lowest_tag_score}.'
         title: Populární hashtagy
       subject: Nové trendy k posouzení na %{instance}
   aliases:
@@ -1073,6 +1072,10 @@ cs:
       hint_html: Ještě jedna věc! Musíme potvrdit, že jste člověk (to proto, abychom drželi stranou spam!). Vyřešte CAPTCHA níže a klikněte na "Pokračovat".
       title: Bezpečnostní kontrola
     confirmations:
+      awaiting_review_title: Vaše registrace se ověřuje
+      clicking_this_link: kliknutím na tento odkaz
+      registration_complete: Vaše registrace na %{domain} je hotová!
+      welcome_title: Vítám uživatele %{name}!
       wrong_email_hint: Pokud není e-mail správný, můžete si ho změnit v nastavení účtu.
     delete_account: Odstranit účet
     delete_account_html: Chcete-li odstranit svůj účet, <a href="%{path}">pokračujte zde</a>. Budete požádáni o potvrzení.
@@ -1134,6 +1137,7 @@ cs:
       functional: Váš účet je plně funkční.
       pending: Vaše žádost čeká na posouzení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
       redirecting_to: Váš účet je neaktivní, protože je právě přesměrován na účet %{acct}.
+      self_destruct: Protože %{domain} končí, budete mít k účtu jen omezený přístup.
       view_strikes: Zobrazit minulé prohřešky vašeho účtu
     too_fast: Formulář byl odeslán příliš rychle, zkuste to znovu.
     use_security_key: Použít bezpečnostní klíč
@@ -1585,6 +1589,9 @@ cs:
     over_daily_limit: Pro dnešek jste překročili limit %{limit} naplánovaných příspěvků
     over_total_limit: Překročili jste limit %{limit} naplánovaných příspěvků
     too_soon: Plánované datum musí být v budoucnosti
+  self_destruct:
+    lead_html: "<strong>%{domain}</strong> bohužel končí nadobro. Pokud jste tam měli účet, nebudete jej moci dále používat, ale stále si můžete vyžádat zálohu vašich dat."
+    title: Tento server končí
   sessions:
     activity: Nejnovější aktivita
     browser: Prohlížeč
@@ -1765,6 +1772,9 @@ cs:
       default: "%d. %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+  translation:
+    errors:
+      too_many_requests: Na překladatelskou službu bylo zasláno v poslední době příliš mnoho požadavků.
   two_factor_authentication:
     add: Přidat
     disable: Vypnout 2FA

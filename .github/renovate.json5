@@ -3,7 +3,6 @@
   extends: [
     'config:recommended',
     ':labels(dependencies)',
-    ':maintainLockFilesMonthly', // update non-direct dependencies monthly
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
     ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
   ],
@@ -13,6 +12,7 @@
   // If we do not want a package to be grouped with others, we need to set its groupName
   // to `null` after any other rule set it to something.
   dependencyDashboardHeader: 'This issue lists Renovate updates and detected dependencies. Read the [Dependency Dashboard](https://docs.renovatebot.com/key-concepts/dashboard/) docs to learn more. Before approving any upgrade: read the description and comments in the [`renovate.json5` file](https://github.com/mastodon/mastodon/blob/main/.github/renovate.json5).',
+  postUpdateOptions: ['yarnDedupeHighest'],
   packageRules: [
     {
       // Require Dependency Dashboard Approval for major version bumps of these node packages
