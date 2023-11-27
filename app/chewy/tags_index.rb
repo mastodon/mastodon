@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TagsIndex < Chewy::Index
+  include DatetimeClampingConcern
+
   settings index: { refresh_interval: '30s' }, analysis: {
     analyzer: {
       content: {
@@ -36,6 +38,6 @@ class TagsIndex < Chewy::Index
 
     field :reviewed, type: 'boolean', value: ->(tag) { tag.reviewed? }
     field :usage, type: 'long', value: ->(tag, crutches) { tag.history.aggregate(crutches.time_period).accounts }
-    field :last_status_at, type: 'date', value: ->(tag) { tag.last_status_at || tag.created_at }
+    field :last_status_at, type: 'date', value: ->(tag) { clamp_date(tag.last_status_at || tag.created_at) }
   end
 end
