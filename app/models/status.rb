@@ -82,7 +82,7 @@ class Status < ApplicationRecord
 
   has_one :preview_cards_status, inverse_of: :status # Because of a composite primary key, the dependent option cannot be used
   has_one :notification, as: :activity, dependent: :destroy
-  has_one :status_stat, inverse_of: :status
+  has_one :status_stat, inverse_of: :status, dependent: :destroy
   has_one :poll, inverse_of: :status, dependent: :destroy
   has_one :trend, class_name: 'StatusTrend', inverse_of: :status, dependent: :destroy
 
