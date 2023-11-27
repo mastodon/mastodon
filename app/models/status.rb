@@ -66,11 +66,13 @@ class Status < ApplicationRecord
   has_many :bookmarks, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
   has_many :reblogged_by_accounts, through: :reblogs, class_name: 'Account', source: :account
-  has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
+  has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread, dependent: nil
   has_many :mentions, dependent: :destroy, inverse_of: :status
   has_many :mentioned_accounts, through: :mentions, source: :account, class_name: 'Account'
-  has_many :active_mentions, -> { active }, class_name: 'Mention', inverse_of: :status
   has_many :media_attachments, dependent: :nullify
+
+  # The `dependent` option is enabled by the initial `mentions` association declaration
+  has_many :active_mentions, -> { active }, class_name: 'Mention', inverse_of: :status # rubocop:disable Rails/HasManyOrHasOneDependent
 
   # Those associations are used for the private search index
   has_many :local_mentioned, -> { merge(Account.local) }, through: :active_mentions, source: :account
@@ -80,11 +82,13 @@ class Status < ApplicationRecord
 
   has_and_belongs_to_many :tags
 
-  has_one :preview_cards_status, inverse_of: :status # Because of a composite primary key, the dependent option cannot be used
+  # Because of a composite primary key, the `dependent` option cannot be used on this association
+  has_one :preview_cards_status, inverse_of: :status # rubocop:disable Rails/HasManyOrHasOneDependent
+
   has_one :notification, as: :activity, dependent: :destroy
-  has_one :status_stat, inverse_of: :status
+  has_one :status_stat, inverse_of: :status, dependent: nil
   has_one :poll, inverse_of: :status, dependent: :destroy
-  has_one :trend, class_name: 'StatusTrend', inverse_of: :status
+  has_one :trend, class_name: 'StatusTrend', inverse_of: :status, dependent: nil
 
   validates :uri, uniqueness: true, presence: true, unless: :local?
   validates :text, presence: true, unless: -> { with_media? || reblog? }
