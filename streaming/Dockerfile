@@ -62,7 +62,7 @@ RUN \
 # Mount Apt cache and lib directories from Docker buildx caches
 --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
 --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
-# upgrade to check for security updates to Debian image
+# Upgrade to check for security updates to Debian image
   apt-get update; \
   apt-get dist-upgrade -yq; \
   apt-get install -y --no-install-recommends \
