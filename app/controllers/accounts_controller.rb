@@ -96,17 +96,4 @@ class AccountsController < ApplicationController
   def tag_requested?
     request.path.split('.').first.end_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
   end
-
-  def cached_filtered_status_page
-    cache_collection_paginated_by_id(
-      filtered_statuses,
-      Status,
-      PAGE_SIZE,
-      params_slice(:max_id, :min_id, :since_id)
-    )
-  end
-
-  def params_slice(*keys)
-    params.slice(*keys).permit(*keys)
-  end
 end
