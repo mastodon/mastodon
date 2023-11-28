@@ -82,31 +82,12 @@ RSpec.describe AccountsController do
           it_behaves_like 'common HTML response'
         end
 
-        context 'with replies' do
-          before do
-            allow(controller).to receive(:replies_requested?).and_return(true)
-            get :show, params: { username: account.username, format: format }
-          end
-
-          it_behaves_like 'common HTML response'
-        end
-
-        context 'with media' do
-          before do
-            allow(controller).to receive(:media_requested?).and_return(true)
-            get :show, params: { username: account.username, format: format }
-          end
-
-          it_behaves_like 'common HTML response'
-        end
-
         context 'with tag' do
           let(:tag) { Fabricate(:tag) }
 
           let!(:status_tag) { Fabricate(:status, account: account) }
 
           before do
-            allow(controller).to receive(:tag_requested?).and_return(true)
             status_tag.tags << tag
             get :show, params: { username: account.username, format: format, tag: tag.to_param }
           end
@@ -224,53 +205,12 @@ RSpec.describe AccountsController do
           end
         end
 
-        context 'with replies' do
-          before do
-            allow(controller).to receive(:replies_requested?).and_return(true)
-            get :show, params: { username: account.username, format: format }
-          end
-
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
-          it 'responds with correct statuses with replies', :aggregate_failures do
-            expect(response).to have_http_status(200)
-            expect(response.body).to include_status_tag(status_media)
-            expect(response.body).to include_status_tag(status_reply)
-            expect(response.body).to include_status_tag(status_self_reply)
-            expect(response.body).to include_status_tag(status)
-            expect(response.body).to_not include_status_tag(status_direct)
-            expect(response.body).to_not include_status_tag(status_private)
-            expect(response.body).to_not include_status_tag(status_reblog.reblog)
-          end
-        end
-
-        context 'with media' do
-          before do
-            allow(controller).to receive(:media_requested?).and_return(true)
-            get :show, params: { username: account.username, format: format }
-          end
-
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
-          it 'responds with correct statuses with media', :aggregate_failures do
-            expect(response).to have_http_status(200)
-            expect(response.body).to include_status_tag(status_media)
-            expect(response.body).to_not include_status_tag(status_direct)
-            expect(response.body).to_not include_status_tag(status_private)
-            expect(response.body).to_not include_status_tag(status_reblog.reblog)
-            expect(response.body).to_not include_status_tag(status_reply)
-            expect(response.body).to_not include_status_tag(status_self_reply)
-            expect(response.body).to_not include_status_tag(status)
-          end
-        end
-
         context 'with tag' do
           let(:tag) { Fabricate(:tag) }
 
           let!(:status_tag) { Fabricate(:status, account: account) }
 
           before do
-            allow(controller).to receive(:tag_requested?).and_return(true)
             status_tag.tags << tag
             get :show, params: { username: account.username, format: format, tag: tag.to_param }
           end
