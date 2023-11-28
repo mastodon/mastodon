@@ -1,4 +1,7 @@
-module.exports = {
+// @ts-check
+const { defineConfig } = require('eslint-define-config');
+
+module.exports = defineConfig({
   root: true,
 
   extends: [
@@ -193,6 +196,7 @@ module.exports = {
       'error',
       {
         devDependencies: [
+          '.eslintrc.js',
           'config/webpack/**',
           'app/javascript/mastodon/performance.js',
           'app/javascript/mastodon/test_setup.js',
@@ -299,6 +303,7 @@ module.exports = {
   overrides: [
     {
       files: [
+        '.eslintrc.js',
         '*.config.js',
         '.*rc.js',
         'ide-helper.js',
@@ -372,14 +377,6 @@ module.exports = {
       env: {
         jest: true,
       },
-    },
-    {
-      files: [
-        'streaming/**/*',
-      ],
-      rules: {
-        'import/no-commonjs': 'off',
-      },
-    },
+    }
   ],
-};
+});
