@@ -4,8 +4,9 @@ class AddIndexToCustomFilterStatusesStatusCustomFilter < ActiveRecord::Migration
   disable_ddl_transaction!
 
   def up
-    deduplicate_records
     add_index_to_table
+  rescue ActiveRecord::RecordNotUnique
+    remove_duplicates_and_reindex
   end
 
   def down
@@ -13,6 +14,18 @@ class AddIndexToCustomFilterStatusesStatusCustomFilter < ActiveRecord::Migration
   end
 
   private
+
+  def remove_duplicates_and_reindex
+    deduplicate_records
+    reindex_records
+  rescue ActiveRecord::RecordNotUnique
+    retry
+  end
+
+  def reindex_records
+    remove_index_from_table
+    add_index_to_table
+  end
 
   def add_index_to_table
     add_index :custom_filter_statuses, [:status_id, :custom_filter_id], unique: true, algorithm: :concurrently
