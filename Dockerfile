@@ -177,29 +177,7 @@ FROM build as yarn
 ARG TARGETPLATFORM
 
 # Copy Node package configuration files into working directory
-RUN apt-get update && \
-    apt-get -yq dist-upgrade && \
-    apt-get install -y --no-install-recommends build-essential \
-        git \
-        libicu-dev \
-        libidn-dev \
-        libpq-dev \
-        libjemalloc-dev \
-        zlib1g-dev \
-        libgdbm-dev \
-        libgmp-dev \
-        libssl-dev \
-        libyaml-dev \
-        ca-certificates \
-        libreadline8 \
-        python3 \
-        shared-mime-info && \
-    bundle config set --local deployment 'true' && \
-    bundle config set --local without 'development test' && \
-    bundle config set silence_root_warning true && \
-    corepack enable
-
-COPY Gemfile* package.json yarn.lock .yarnrc.yml /opt/mastodon/
+COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
 COPY streaming/package.json /opt/mastodon/streaming/
 COPY .yarn /opt/mastodon/.yarn
 
