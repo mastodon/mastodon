@@ -26,7 +26,7 @@ import ColumnHeader from 'mastodon/components/column_header';
 import LinkFooter from 'mastodon/features/ui/components/link_footer';
 
 import { me, showTrends } from '../../initial_state';
-import NavigationContainer from '../compose/containers/navigation_container';
+import { NavigationBar } from '../compose/components/navigation_bar';
 import ColumnLink from '../ui/components/column_link';
 import ColumnSubheading from '../ui/components/column_subheading';
 
@@ -143,7 +143,7 @@ class GettingStarted extends ImmutablePureComponent {
 
     return (
       <Column>
-        {(signedIn && !multiColumn) ? <NavigationContainer /> : <ColumnHeader title={intl.formatMessage(messages.menu)} icon='bars' iconComponent={MenuIcon} multiColumn={multiColumn} />}
+        {(signedIn && !multiColumn) ? <NavigationBar /> : <ColumnHeader title={intl.formatMessage(messages.menu)} icon='bars' iconComponent={MenuIcon} multiColumn={multiColumn} />}
 
         <div className='getting-started scrollable scrollable--flex'>
           <div className='getting-started__wrapper'>
