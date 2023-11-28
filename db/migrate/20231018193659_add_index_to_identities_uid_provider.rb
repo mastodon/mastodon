@@ -4,6 +4,17 @@ class AddIndexToIdentitiesUidProvider < ActiveRecord::Migration[7.0]
   disable_ddl_transaction!
 
   def up
+    deduplicate_records
+    add_index :identities, [:uid, :provider], unique: true, algorithm: :concurrently
+  end
+
+  def down
+    remove_index :identities, [:uid, :provider]
+  end
+
+  private
+
+  def deduplicate_records
     safety_assured do
       execute <<~SQL.squish
         DELETE FROM identities
@@ -13,11 +24,5 @@ class AddIndexToIdentitiesUidProvider < ActiveRecord::Migration[7.0]
         )
       SQL
     end
-
-    add_index :identities, [:uid, :provider], unique: true, algorithm: :concurrently
-  end
-
-  def down
-    remove_index :identities, [:uid, :provider]
   end
 end
