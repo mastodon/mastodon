@@ -5,14 +5,22 @@ class AddIndexToAccountAliasUriAccountId < ActiveRecord::Migration[7.0]
 
   def up
     deduplicate_records
-    add_index :account_aliases, [:uri, :account_id], unique: true, algorithm: :concurrently
+    add_index_to_table
   end
 
   def down
-    remove_index :account_aliases, [:uri, :account_id]
+    remove_index_from_table
   end
 
   private
+
+  def add_index_to_table
+    add_index :account_aliases, [:uri, :account_id], unique: true, algorithm: :concurrently
+  end
+
+  def remove_index_from_table
+    remove_index :account_aliases, [:uri, :account_id]
+  end
 
   def deduplicate_records
     safety_assured do
