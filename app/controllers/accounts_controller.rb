@@ -85,14 +85,18 @@ class AccountsController < ApplicationController
   helper_method :rss_url
 
   def media_requested?
-    request.path.split('.').first.end_with?('/media') && !tag_requested?
+    path_without_format.end_with?('/media') && !tag_requested?
   end
 
   def replies_requested?
-    request.path.split('.').first.end_with?('/with_replies') && !tag_requested?
+    path_without_format.end_with?('/with_replies') && !tag_requested?
   end
 
   def tag_requested?
-    request.path.split('.').first.end_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
+    path_without_format.end_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
+  end
+
+  def path_without_format
+    request.path.split('.').first
   end
 end
