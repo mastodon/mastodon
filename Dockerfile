@@ -177,7 +177,7 @@ FROM build as yarn
 ARG TARGETPLATFORM
 
 # Copy Node package configuration files into working directory
-COPY Gemfile* package.json yarn.lock .yarnrc.yml /opt/mastodon/
+COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
 COPY streaming/package.json /opt/mastodon/streaming/
 COPY .yarn /opt/mastodon/.yarn
 
