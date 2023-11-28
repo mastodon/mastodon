@@ -301,9 +301,11 @@ namespace :api, format: false do
         end
       end
 
-      post :measures, to: 'measures#create'
-      post :dimensions, to: 'dimensions#create'
-      post :retention, to: 'retention#create'
+      with_options only: :create do
+        resource :measures
+        resource :dimensions
+        resource :retention, controller: :retention
+      end
 
       resources :canonical_email_blocks, only: [:index, :create, :show, :destroy] do
         collection do
