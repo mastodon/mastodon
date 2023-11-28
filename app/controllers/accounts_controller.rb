@@ -39,22 +39,12 @@ class AccountsController < ApplicationController
 
   def filtered_statuses
     default_statuses.tap do |statuses|
-      statuses.merge!(hashtag_scope)    if tag_requested?
-      statuses.merge!(only_media_scope) if media_requested?
-      statuses.merge!(no_replies_scope) unless replies_requested?
+      statuses.merge!(hashtag_scope) if tag_requested?
     end
   end
 
   def default_statuses
     @account.statuses.where(visibility: [:public, :unlisted])
-  end
-
-  def only_media_scope
-    Status.joins(:media_attachments).merge(@account.media_attachments).group(:id)
-  end
-
-  def no_replies_scope
-    Status.without_replies
   end
 
   def hashtag_scope
@@ -83,14 +73,6 @@ class AccountsController < ApplicationController
     end
   end
   helper_method :rss_url
-
-  def media_requested?
-    path_without_format.end_with?('/media') && !tag_requested?
-  end
-
-  def replies_requested?
-    path_without_format.end_with?('/with_replies') && !tag_requested?
-  end
 
   def tag_requested?
     path_without_format.end_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)

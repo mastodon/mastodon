@@ -82,22 +82,6 @@ describe 'Accounts show response' do
           it_behaves_like 'common HTML response'
         end
 
-        context 'with replies' do
-          before do
-            get short_account_with_replies_path(username: account.username), as: format
-          end
-
-          it_behaves_like 'common HTML response'
-        end
-
-        context 'with media' do
-          before do
-            get short_account_media_path(username: account.username), as: format
-          end
-
-          it_behaves_like 'common HTML response'
-        end
-
         context 'with tag' do
           let(:tag) { Fabricate(:tag) }
 
@@ -226,44 +210,6 @@ describe 'Accounts show response' do
             expect(response.body).to_not include(status_tag_for(status_private))
             expect(response.body).to_not include(status_tag_for(status_reblog.reblog))
             expect(response.body).to_not include(status_tag_for(status_reply))
-          end
-        end
-
-        context 'with replies' do
-          before do
-            get short_account_with_replies_path(username: account.username, format: format)
-          end
-
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
-          it 'responds with correct statuses with replies', :aggregate_failures do
-            expect(response).to have_http_status(200)
-            expect(response.body).to include(status_tag_for(status_media))
-            expect(response.body).to include(status_tag_for(status_reply))
-            expect(response.body).to include(status_tag_for(status_self_reply))
-            expect(response.body).to include(status_tag_for(status))
-            expect(response.body).to_not include(status_tag_for(status_direct))
-            expect(response.body).to_not include(status_tag_for(status_private))
-            expect(response.body).to_not include(status_tag_for(status_reblog.reblog))
-          end
-        end
-
-        context 'with media' do
-          before do
-            get short_account_media_path(username: account.username, format: format)
-          end
-
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
-          it 'responds with correct statuses with media', :aggregate_failures do
-            expect(response).to have_http_status(200)
-            expect(response.body).to include(status_tag_for(status_media))
-            expect(response.body).to_not include(status_tag_for(status_direct))
-            expect(response.body).to_not include(status_tag_for(status_private))
-            expect(response.body).to_not include(status_tag_for(status_reblog.reblog))
-            expect(response.body).to_not include(status_tag_for(status_reply))
-            expect(response.body).to_not include(status_tag_for(status_self_reply))
-            expect(response.body).to_not include(status_tag_for(status))
           end
         end
 
