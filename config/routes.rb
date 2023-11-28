@@ -77,8 +77,10 @@ Rails.application.routes.draw do
   get 'remote_interaction_helper', to: 'remote_interaction_helper#index'
 
   resource :instance_actor, path: 'actor', only: [:show] do
-    resource :inbox, only: [:create], module: :activitypub
-    resource :outbox, only: [:show], module: :activitypub
+    scope module: :activitypub do
+      resource :inbox, only: [:create]
+      resource :outbox, only: [:show]
+    end
   end
 
   get '/invite/:invite_code', constraints: ->(req) { req.format == :json }, to: 'api/v1/invites#show'
@@ -126,11 +128,17 @@ Rails.application.routes.draw do
     resources :followers, only: [:index], controller: :follower_accounts
     resources :following, only: [:index], controller: :following_accounts
 
-    resource :outbox, only: [:show], module: :activitypub
-    resource :inbox, only: [:create], module: :activitypub
-    resource :claim, only: [:create], module: :activitypub
-    resources :collections, only: [:show], module: :activitypub
-    resource :followers_synchronization, only: [:show], module: :activitypub
+    scope module: :activitypub do
+      with_options only: [:create] do
+        resource :claim
+        resource :inbox
+      end
+      with_options only: [:show] do
+        resource :followers_synchronization
+        resource :outbox
+        resources :collections
+      end
+    end
   end
 
   resource :inbox, only: [:create], module: :activitypub
