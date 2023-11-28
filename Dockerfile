@@ -70,6 +70,8 @@ ARG TARGETPLATFORM
 RUN echo "Target platform is $TARGETPLATFORM"
 
 RUN \
+# Remove automatic apt cache Docker cleanup scripts
+  rm -f /etc/apt/apt.conf.d/docker-clean; \
 # Sets timezone
   echo "${TZ}" > /etc/localtime; \
 # Creates mastodon user/group and sets home directory
@@ -127,7 +129,6 @@ RUN \
 --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
 --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
 # Install build tools and bundler dependencies from APT
-  apt-get update; \
   apt-get install -y --no-install-recommends \
     g++ \
     gcc \
@@ -221,7 +222,6 @@ RUN \
 --mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
 --mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
 # Apt update install non-dev versions of necessary components
-  apt-get update; \
   apt-get install -y --no-install-recommends \
     libssl3 \
     libpq5 \

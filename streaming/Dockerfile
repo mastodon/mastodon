@@ -47,6 +47,8 @@ ARG TARGETPLATFORM
 RUN echo "Target platform is ${TARGETPLATFORM}"
 
 RUN \
+# Remove automatic apt cache Docker cleanup scripts
+  rm -f /etc/apt/apt.conf.d/docker-clean; \
 # Sets timezone
   echo "${TZ}" > /etc/localtime; \
 # Creates mastodon user/group and sets home directory
@@ -60,7 +62,7 @@ RUN \
 # Mount Apt cache and lib directories from Docker buildx caches
 --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
 --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
-# upgrade to check for security updates to Debian image
+# Upgrade to check for security updates to Debian image
   apt-get update; \
   apt-get dist-upgrade -yq; \
   apt-get install -y --no-install-recommends \
