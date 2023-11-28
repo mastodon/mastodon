@@ -18,8 +18,6 @@ class AccountsController < ApplicationController
     respond_to do |format|
       format.html do
         expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.hour) unless user_signed_in?
-
-        @rss_url = rss_url
       end
 
       format.rss do
@@ -84,6 +82,7 @@ class AccountsController < ApplicationController
       short_account_url(@account, format: 'rss')
     end
   end
+  helper_method :rss_url
 
   def media_requested?
     request.path.split('.').first.end_with?('/media') && !tag_requested?
