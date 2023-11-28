@@ -181,12 +181,23 @@ namespace :api, format: false do
     end
 
     resources :accounts, only: [:create, :show] do
-      resources :statuses, only: :index, controller: 'accounts/statuses'
-      resources :followers, only: :index, controller: 'accounts/follower_accounts'
-      resources :following, only: :index, controller: 'accounts/following_accounts'
-      resources :lists, only: :index, controller: 'accounts/lists'
-      resources :identity_proofs, only: :index, controller: 'accounts/identity_proofs'
-      resources :featured_tags, only: :index, controller: 'accounts/featured_tags'
+      scope module: :accounts do
+        with_options only: :index do
+          resources :featured_tags
+          resources :followers, controller: :follower_accounts
+          resources :following, controller: :following_accounts
+          resources :identity_proofs
+          resources :lists
+          resources :statuses
+        end
+
+        with_options only: :create do
+          resource :note
+          resource :pin
+        end
+
+        post :unpin, to: 'pins#destroy'
+      end
 
       member do
         post :follow
@@ -197,10 +208,6 @@ namespace :api, format: false do
         post :mute
         post :unmute
       end
-
-      resource :pin, only: :create, controller: 'accounts/pins'
-      post :unpin, to: 'accounts/pins#destroy'
-      resource :note, only: :create, controller: 'accounts/notes'
     end
 
     resources :tags, only: [:show] do
