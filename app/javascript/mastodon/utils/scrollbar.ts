@@ -12,8 +12,7 @@ const getActualScrollbarWidth = () => {
   outer.appendChild(inner);
 
   const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  outer.parentNode!.removeChild(outer);
+  outer.remove();
 
   return scrollbarWidth;
 };
