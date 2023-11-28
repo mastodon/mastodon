@@ -41,6 +41,13 @@ class NodeInfo::Serializer < ActiveModel::Serializer
     {
       nodeName: Setting.site_title,
       nodeDescription: Setting.site_short_description,
+      nodeAdmins: [
+        {
+          mail: instance_presenter.contact&.email,
+          account: instance_presenter.contact&.account&.username,
+          name: instance_presenter.contact&.account&.acct,
+        },
+      ],
     }
   end
 
