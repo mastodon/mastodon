@@ -60,7 +60,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
 
           it 'renders page with success' do
             prepare_user_otp_generation
-            prepare_user_otp_consumption
+            prepare_user_otp_consumption_response(true)
             allow(controller).to receive(:current_user).and_return(user)
 
             expect do
@@ -74,29 +74,11 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
             expect(response).to have_http_status(200)
             expect(response).to render_template('settings/two_factor_authentication/recovery_codes/index')
           end
-
-          def prepare_user_otp_generation
-            allow(user)
-              .to receive(:generate_otp_backup_codes!)
-              .and_return(otp_backup_codes)
-          end
-
-          def prepare_user_otp_consumption
-            options = { otp_secret: 'thisisasecretforthespecofnewview' }
-            allow(user)
-              .to receive(:validate_and_consume_otp!)
-              .with('123456', options)
-              .and_return(true)
-          end
         end
 
         describe 'when creation fails' do
           subject do
-            options = { otp_secret: 'thisisasecretforthespecofnewview' }
-            allow(user)
-              .to receive(:validate_and_consume_otp!)
-              .with('123456', options)
-              .and_return(false)
+            prepare_user_otp_consumption_response(false)
             allow(controller).to receive(:current_user).and_return(user)
 
             expect do
@@ -112,6 +94,22 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
           end
 
           include_examples 'renders :new'
+        end
+
+        private
+
+        def prepare_user_otp_generation
+          allow(user)
+            .to receive(:generate_otp_backup_codes!)
+            .and_return(otp_backup_codes)
+        end
+
+        def prepare_user_otp_consumption_response(result)
+          options = { otp_secret: 'thisisasecretforthespecofnewview' }
+          allow(user)
+            .to receive(:validate_and_consume_otp!)
+            .with('123456', options)
+            .and_return(result)
         end
       end
 
