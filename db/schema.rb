@@ -20,8 +20,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_161611) do
     t.string "uri", default: "", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.index ["account_id", "uri"], name: "index_account_aliases_on_account_id_and_uri", unique: true
     t.index ["account_id"], name: "index_account_aliases_on_account_id"
-    t.index ["uri", "account_id"], name: "index_account_aliases_on_uri_and_account_id", unique: true
   end
 
   create_table "account_conversations", force: :cascade do |t|
@@ -1238,7 +1238,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_161611) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["external_id"], name: "index_webauthn_credentials_on_external_id", unique: true
-    t.index ["nickname", "user_id"], name: "index_webauthn_credentials_on_nickname_and_user_id", unique: true
+    t.index ["user_id", "nickname"], name: "index_webauthn_credentials_on_user_id_and_nickname", unique: true
     t.index ["user_id"], name: "index_webauthn_credentials_on_user_id"
   end
 
