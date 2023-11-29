@@ -8,7 +8,7 @@ class Api::V2::SearchController < Api::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:search' }
   before_action :validate_search_params!
 
-  with_options if: :user_signed_in? do
+  with_options unless: :user_signed_in? do
     before_action :query_pagination_error,
                   if: -> { params[:offset].present? }
     before_action :remote_resolve_error,
