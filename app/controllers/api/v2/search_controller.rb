@@ -9,10 +9,8 @@ class Api::V2::SearchController < Api::BaseController
   before_action :validate_search_params!
 
   with_options unless: :user_signed_in? do
-    before_action :query_pagination_error,
-                  if: -> { params[:offset].present? }
-    before_action :remote_resolve_error,
-                  if: -> { truthy_param?(:resolve) }
+    before_action :query_pagination_error, if: :pagination_requested?
+    before_action :remote_resolve_error, if: :remote_resolve_requested?
   end
 
   def index
@@ -36,6 +34,14 @@ class Api::V2::SearchController < Api::BaseController
 
   def remote_resolve_error
     render json: { error: 'Search queries that resolve remote resources are not supported without authentication' }, status: 401
+  end
+
+  def remote_resolve_requested?
+    truthy_param?(:resolve)
+  end
+
+  def pagination_requested?
+    params[:offset].present?
   end
 
   def search_results
