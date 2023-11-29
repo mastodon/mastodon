@@ -112,13 +112,13 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
             .and_return(result)
         end
       end
+    end
+  end
 
-      context 'when not signed in' do
-        it 'redirects if not signed in' do
-          post :create, params: { form_two_factor_confirmation: { otp_attempt: '123456' } }
-          expect(response).to redirect_to('/auth/sign_in')
-        end
-      end
+  context 'when not signed in' do
+    it 'redirects if not signed in' do
+      post :create, params: { form_two_factor_confirmation: { otp_attempt: '123456' } }
+      expect(response).to redirect_to('/auth/sign_in')
     end
   end
 end
