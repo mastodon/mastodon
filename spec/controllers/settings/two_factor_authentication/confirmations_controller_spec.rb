@@ -63,11 +63,8 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
             prepare_user_otp_consumption_response(true)
             allow(controller).to receive(:current_user).and_return(user)
 
-            expect do
-              post :create,
-                   params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
-                   session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
-            end.to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
+            expect { post_create_with_options }
+              .to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
 
             expect(assigns(:recovery_codes)).to eq otp_backup_codes
             expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
@@ -81,11 +78,8 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
             prepare_user_otp_consumption_response(false)
             allow(controller).to receive(:current_user).and_return(user)
 
-            expect do
-              post :create,
-                   params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
-                   session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
-            end.to(not_change { user.reload.otp_secret })
+            expect { post_create_with_options }
+              .to(not_change { user.reload.otp_secret })
           end
 
           it 'renders the new view' do
@@ -97,6 +91,12 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
         end
 
         private
+
+        def post_create_with_options
+          post :create,
+               params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
+               session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
+        end
 
         def prepare_user_otp_generation
           allow(user)
