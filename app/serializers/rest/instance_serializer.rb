@@ -48,6 +48,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
         status: object.status_page_url,
       },
 
+      vapid: {
+        public_key: Rails.configuration.x.vapid_public_key,
+      },
+
       accounts: {
         max_featured_tags: FeaturedTag::LIMIT,
       },
