@@ -996,8 +996,6 @@ sv:
       new_trending_statuses:
         title: Trendande inlägg
       new_trending_tags:
-        no_approved_tags: Det finns för närvarande inga godkända trendande hashtaggar.
-        requirements: 'Någon av dessa kandidater skulle kunna överträffa #%{rank} godkända trendande hashtaggar, som för närvarande är #%{lowest_tag_name} med en poäng på %{lowest_tag_score}.'
         title: Trendande hashtaggar
       subject: Nya trender tillgängliga för granskning på %{instance}
   aliases:
@@ -1368,6 +1366,7 @@ sv:
       '86400': 1 dag
     expires_in_prompt: Aldrig
     generate: Skapa
+    invalid: Ogiltig inbjudan
     invited_by: 'Du blev inbjuden av:'
     max_uses:
       one: 1 användning

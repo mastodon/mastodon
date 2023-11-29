@@ -599,6 +599,7 @@ zh-CN:
       created_at: 举报时间
       delete_and_resolve: 删除嘟文
       forwarded: 已转发
+      forwarded_replies_explanation: 该举报来自外站用户，涉及外站内容。之所以转发给您，是因为被举报的内容是对您站点一位用户的回复。
       forwarded_to: 转发举报至 %{domain}
       mark_as_resolved: 标记为已处理
       mark_as_sensitive: 标记为敏感内容
@@ -978,8 +979,6 @@ zh-CN:
       new_trending_statuses:
         title: 热门嘟文
       new_trending_tags:
-        no_approved_tags: 目前没有经批准的热门标签。
-        requirements: '这些候选人都可能会超过#%{rank} 批准的热门标签，目前是 #%{lowest_tag_name} ，分数为 %{lowest_tag_score}。'
         title: 热门标签
       subject: "%{instance} 上有新热门等待审核"
   aliases:
@@ -1343,6 +1342,7 @@ zh-CN:
       '86400': 1 天后
     expires_in_prompt: 永不过期
     generate: 生成邀请链接
+    invalid: 此邀请无效
     invited_by: 你的邀请人是：
     max_uses:
       other: "%{count} 次"

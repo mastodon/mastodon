@@ -41,23 +41,6 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Max: 27
 
-RSpec/AnyInstance:
-  Exclude:
-    - 'spec/controllers/activitypub/inboxes_controller_spec.rb'
-    - 'spec/controllers/admin/accounts_controller_spec.rb'
-    - 'spec/controllers/admin/resets_controller_spec.rb'
-    - 'spec/controllers/auth/sessions_controller_spec.rb'
-    - 'spec/controllers/settings/two_factor_authentication/confirmations_controller_spec.rb'
-    - 'spec/controllers/settings/two_factor_authentication/recovery_codes_controller_spec.rb'
-    - 'spec/lib/request_spec.rb'
-    - 'spec/lib/status_filter_spec.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/setting_spec.rb'
-    - 'spec/services/activitypub/process_collection_service_spec.rb'
-    - 'spec/validators/follow_limit_validator_spec.rb'
-    - 'spec/workers/activitypub/delivery_worker_spec.rb'
-    - 'spec/workers/web/push_notification_worker_spec.rb'
-
 # Configuration parameters: CountAsOne.
 RSpec/ExampleLength:
   Max: 22
@@ -324,7 +307,7 @@ Style/FetchEnvVar:
     - 'config/initializers/devise.rb'
     - 'config/initializers/paperclip.rb'
     - 'config/initializers/vapid.rb'
-    - 'lib/mastodon/premailer_webpack_strategy.rb'
+    - 'lib/premailer_webpack_strategy.rb'
     - 'lib/mastodon/redis_config.rb'
     - 'lib/tasks/repo.rake'
     - 'spec/features/profile_spec.rb'
@@ -374,8 +357,8 @@ Style/GuardClause:
     - 'config/initializers/devise.rb'
     - 'db/migrate/20170901141119_truncate_preview_cards.rb'
     - 'db/post_migrate/20220704024901_migrate_settings_to_user_roles.rb'
-    - 'lib/devise/two_factor_ldap_authenticatable.rb'
-    - 'lib/devise/two_factor_pam_authenticatable.rb'
+    - 'lib/devise/strategies/two_factor_ldap_authenticatable.rb'
+    - 'lib/devise/strategies/two_factor_pam_authenticatable.rb'
     - 'lib/mastodon/cli/accounts.rb'
     - 'lib/mastodon/cli/maintenance.rb'
     - 'lib/mastodon/cli/media.rb'
@@ -510,8 +493,8 @@ Style/SafeNavigation:
 # SupportedStyles: only_raise, only_fail, semantic
 Style/SignalException:
   Exclude:
-    - 'lib/devise/two_factor_ldap_authenticatable.rb'
-    - 'lib/devise/two_factor_pam_authenticatable.rb'
+    - 'lib/devise/strategies/two_factor_ldap_authenticatable.rb'
+    - 'lib/devise/strategies/two_factor_pam_authenticatable.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/SingleArgumentDig:

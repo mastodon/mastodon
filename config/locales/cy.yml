@@ -1068,8 +1068,6 @@ cy:
       new_trending_statuses:
         title: Postiadau sy'n trendio
       new_trending_tags:
-        no_approved_tags: Ar hyn o bryd nid oes unrhyw hashnodau trendio cymeradwy.
-        requirements: 'Gallai unrhyw un o''r ymgeiswyr hyn ragori ar yr hashnod trendio cymeradwy #%{rank}, sef #%{lowest_tag_name} gyda sgôr o %{lowest_tag_score} ar hyn o bryd.'
         title: Hashnodau sy'n trendio
       subject: Trendiau newydd i'w hadolygu ar %{instance}
   aliases:
@@ -1468,6 +1466,7 @@ cy:
       '86400': 1 diwrnod
     expires_in_prompt: Byth
     generate: Cynhyrchu dolen wahoddiad
+    invalid: Nid yw'r gwahoddiad hwn yn ddilys
     invited_by: 'Cawsoch eich gwahodd gan:'
     max_uses:
       few: "%{count} defnydd"

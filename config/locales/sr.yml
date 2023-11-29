@@ -623,6 +623,7 @@ sr:
       created_at: Пријављена
       delete_and_resolve: Обриши објаве
       forwarded: Прослеђено
+      forwarded_replies_explanation: Овај извештај је од удаљеног корисника и о удаљеном садржају. Прослеђен вам је јер је пријављени садржај у одговору једном од ваших корисника.
       forwarded_to: Прослеђено ка %{domain}
       mark_as_resolved: Означи као решену
       mark_as_sensitive: Обележи као осетљиво
@@ -1014,8 +1015,6 @@ sr:
       new_trending_statuses:
         title: Објаве у тренду
       new_trending_tags:
-        no_approved_tags: Тренутно нема одобрених хеш ознака у тренду.
-        requirements: 'Било који од следећих кандидата би могао превазићи #%{rank} одобрену хеш ознаку у тренду, која је тренутно #%{lowest_tag_name} са вредношћу %{lowest_tag_score}.'
         title: Хеш ознаке у тренду
       subject: Нови трендови за преглед на %{instance}
   aliases:
@@ -1393,6 +1392,7 @@ sr:
       '86400': 1 дан
     expires_in_prompt: Никад
     generate: Генериши
+    invalid: Ова позивница није важећа
     invited_by: 'Позвао Вас је:'
     max_uses:
       few: "%{count} коришћења"

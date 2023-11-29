@@ -635,6 +635,7 @@ uk:
       created_at: Створено
       delete_and_resolve: Видалити дописи
       forwarded: Переслано
+      forwarded_replies_explanation: Цей звіт належить віддаленому користувачеві і про віддалений вміст. Контент був пересланий вам, тому що він містить повідомлення у відповідь одному з ваших користувачів.
       forwarded_to: Переслано до %{domain}
       mark_as_resolved: Позначити вирішеним
       mark_as_sensitive: Позначити делікатним
@@ -1032,8 +1033,6 @@ uk:
       new_trending_statuses:
         title: Популярні дописи
       new_trending_tags:
-        no_approved_tags: На цей час немає схвалених популярних хештегів.
-        requirements: 'Кожен з цих кандидатів може перевершити #%{rank} затвердженого популярного хештеґу, який зараз на #%{lowest_tag_name} з рейтингом %{lowest_tag_score}.'
         title: Популярні хештеги
       subject: Нове популярне до розгляду на %{instance}
   aliases:
@@ -1418,6 +1417,7 @@ uk:
       '86400': 1 день
     expires_in_prompt: Ніколи
     generate: Згенерувати
+    invalid: Це запрошення не дійсне
     invited_by: 'Вас запросив:'
     max_uses:
       few: "%{count} використання"

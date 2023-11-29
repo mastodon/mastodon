@@ -19,7 +19,7 @@ const config = {
   // Those packages are ESM, so we need them to be processed by Babel
   transformIgnorePatterns: ['/node_modules/(?!(redent|strip-indent)/)'],
   coverageDirectory: '<rootDir>/coverage',
-  moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/app/javascript'],
+  moduleDirectories: ['node_modules', '<rootDir>/app/javascript'],
   moduleNameMapper: {
     '\\.svg$': '<rootDir>/app/javascript/__mocks__/svg.js',
   },

@@ -12,14 +12,7 @@ RSpec.describe BulkImportService do
     import.update(total_items: import.rows.count)
   end
 
-  describe '#call' do
-    around do |example|
-      Sidekiq::Testing.fake! do
-        example.run
-        Sidekiq::Worker.clear_all
-      end
-    end
-
+  describe '#call', :sidekiq_fake do
     context 'when importing follows' do
       let(:import_type) { 'following' }
       let(:overwrite)   { false }

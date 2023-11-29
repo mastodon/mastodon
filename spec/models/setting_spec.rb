@@ -52,7 +52,8 @@ RSpec.describe Setting do
         before do
           allow(RailsSettings::Settings).to receive(:object).with(key).and_return(object)
           allow(described_class).to receive(:default_settings).and_return(default_settings)
-          allow_any_instance_of(Settings::ScopedSettings).to receive(:thing_scoped).and_return(records)
+          settings_double = instance_double(Settings::ScopedSettings, thing_scoped: records)
+          allow(Settings::ScopedSettings).to receive(:new).and_return(settings_double)
           Rails.cache.delete(cache_key)
         end
 
@@ -128,7 +129,8 @@ RSpec.describe Setting do
 
   describe '.all_as_records' do
     before do
-      allow_any_instance_of(Settings::ScopedSettings).to receive(:thing_scoped).and_return(records)
+      settings_double = instance_double(Settings::ScopedSettings, thing_scoped: records)
+      allow(Settings::ScopedSettings).to receive(:new).and_return(settings_double)
       allow(described_class).to receive(:default_settings).and_return(default_settings)
     end
 

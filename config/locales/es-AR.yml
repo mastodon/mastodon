@@ -611,6 +611,7 @@ es-AR:
       created_at: Denunciado
       delete_and_resolve: Eliminar mensajes
       forwarded: Reenviado
+      forwarded_replies_explanation: Esta denuncia es de un usuario remoto y sobre contenido remoto. Se te reenvió porque el contenido denunciado es en respuesta a uno de tus usuarios.
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelta
       mark_as_sensitive: Marcar como sensible
@@ -996,8 +997,6 @@ es-AR:
       new_trending_statuses:
         title: Mensajes en tendencia
       new_trending_tags:
-        no_approved_tags: Actualmente no hay etiquetas en tendencia aprobadas.
-        requirements: 'Cualquiera de estos candidatos podría superar la etiqueta en tendencia aprobada de #%{rank}, que actualmente es #%{lowest_tag_name} con una puntuación de %{lowest_tag_score}.'
         title: Etiquetas en tendencia
       subject: Nuevas tendencias para revisar en %{instance}
   aliases:
@@ -1368,6 +1367,7 @@ es-AR:
       '86400': 1 día
     expires_in_prompt: Nunca
     generate: Generar enlace de invitación
+    invalid: Esta invitación no es válida
     invited_by: 'Fuiste invitado por:'
     max_uses:
       one: 1 uso

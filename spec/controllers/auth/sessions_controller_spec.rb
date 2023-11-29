@@ -126,7 +126,7 @@ RSpec.describe Auth::SessionsController do
         let!(:previous_login) { Fabricate(:login_activity, user: user, ip: previous_ip) }
 
         before do
-          allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return(current_ip)
+          allow(controller.request).to receive(:remote_ip).and_return(current_ip)
           user.update(current_sign_in_at: 1.month.ago)
           post :create, params: { user: { email: user.email, password: user.password } }
         end
@@ -279,7 +279,9 @@ RSpec.describe Auth::SessionsController do
 
         context 'when the server has an decryption error' do
           before do
-            allow_any_instance_of(User).to receive(:validate_and_consume_otp!).and_raise(OpenSSL::Cipher::CipherError)
+            allow(user).to receive(:validate_and_consume_otp!).with(user.current_otp).and_raise(OpenSSL::Cipher::CipherError)
+            allow(User).to receive(:find_by).with(id: user.id).and_return(user)
+
             post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 

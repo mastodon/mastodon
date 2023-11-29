@@ -623,6 +623,7 @@ sr-Latn:
       created_at: Prijavljena
       delete_and_resolve: Obriši objave
       forwarded: Prosleđeno
+      forwarded_replies_explanation: Ovaj izveštaj je od udaljenog korisnika i o udaljenom sadržaju. Prosleđen vam je jer je prijavljeni sadržaj u odgovoru jednom od vaših korisnika.
       forwarded_to: Prosleđeno ka %{domain}
       mark_as_resolved: Označi kao rešenu
       mark_as_sensitive: Obeleži kao osetljivo
@@ -1014,8 +1015,6 @@ sr-Latn:
       new_trending_statuses:
         title: Objave u trendu
       new_trending_tags:
-        no_approved_tags: Trenutno nema odobrenih heš oznaka u trendu.
-        requirements: 'Bilo koji od sledećih kandidata bi mogao prevazići #%{rank} odobrenu heš oznaku u trendu, koja je trenutno #%{lowest_tag_name} sa vrednošću %{lowest_tag_score}.'
         title: Heš oznake u trendu
       subject: Novi trendovi za pregled na %{instance}
   aliases:
@@ -1393,6 +1392,7 @@ sr-Latn:
       '86400': 1 dan
     expires_in_prompt: Nikad
     generate: Generiši
+    invalid: Ova pozivnica nije važeća
     invited_by: 'Pozvao Vas je:'
     max_uses:
       few: "%{count} korišćenja"

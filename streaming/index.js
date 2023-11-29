@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const http = require('http');
+const path = require('path');
 const url = require('url');
 
 const dotenv = require('dotenv');
@@ -11,14 +12,19 @@ const { JSDOM } = require('jsdom');
 const log = require('npmlog');
 const pg = require('pg');
 const dbUrlToConfig = require('pg-connection-string').parse;
-const metrics = require('prom-client');
 const uuid = require('uuid');
 const WebSocket = require('ws');
 
+const { setupMetrics } = require('./metrics');
+const { isTruthy } = require("./utils");
+
 const environment = process.env.NODE_ENV || 'development';
 
+// Correctly detect and load .env or .env.production file based on environment:
+const dotenvFile = environment === 'production' ? '.env.production' : '.env';
+
 dotenv.config({
-  path: environment === 'production' ? '.env.production' : '.env',
+  path: path.resolve(__dirname, path.join('..', dotenvFile))
 });
 
 log.level = process.env.LOG_LEVEL || 'verbose';
@@ -192,78 +198,15 @@ const startServer = async () => {
   const redisClient = await createRedisClient(redisConfig);
   const { redisPrefix } = redisConfig;
 
-  // Collect metrics from Node.js
-  metrics.collectDefaultMetrics();
-
-  new metrics.Gauge({
-    name: 'pg_pool_total_connections',
-    help: 'The total number of clients existing within the pool',
-    collect() {
-      this.set(pgPool.totalCount);
-    },
-  });
-
-  new metrics.Gauge({
-    name: 'pg_pool_idle_connections',
-    help: 'The number of clients which are not checked out but are currently idle in the pool',
-    collect() {
-      this.set(pgPool.idleCount);
-    },
-  });
-
-  new metrics.Gauge({
-    name: 'pg_pool_waiting_queries',
-    help: 'The number of queued requests waiting on a client when all clients are checked out',
-    collect() {
-      this.set(pgPool.waitingCount);
-    },
-  });
-
-  const connectedClients = new metrics.Gauge({
-    name: 'connected_clients',
-    help: 'The number of clients connected to the streaming server',
-    labelNames: ['type'],
-  });
-
-  const connectedChannels = new metrics.Gauge({
-    name: 'connected_channels',
-    help: 'The number of channels the streaming server is streaming to',
-    labelNames: [ 'type', 'channel' ]
-  });
-
-  const redisSubscriptions = new metrics.Gauge({
-    name: 'redis_subscriptions',
-    help: 'The number of Redis channels the streaming server is subscribed to',
-  });
-
-  const redisMessagesReceived = new metrics.Counter({
-    name: 'redis_messages_received_total',
-    help: 'The total number of messages the streaming server has received from redis subscriptions'
-  });
-
-  const messagesSent = new metrics.Counter({
-    name: 'messages_sent_total',
-    help: 'The total number of messages the streaming server sent to clients per connection type',
-    labelNames: [ 'type' ]
-  });
-
-  // Prime the gauges so we don't loose metrics between restarts:
-  redisSubscriptions.set(0);
-  connectedClients.set({ type: 'websocket' }, 0);
-  connectedClients.set({ type: 'eventsource' }, 0);
-
-  // For each channel, initialize the gauges at zero; There's only a finite set of channels available
-  CHANNEL_NAMES.forEach(( channel ) => {
-    connectedChannels.set({ type: 'websocket', channel }, 0);
-    connectedChannels.set({ type: 'eventsource', channel }, 0);
-  });
-
-  // Prime the counters so that we don't loose metrics between restarts.
-  // Unfortunately counters don't support the set() API, so instead I'm using
-  // inc(0) to achieve the same result.
-  redisMessagesReceived.inc(0);
-  messagesSent.inc({ type: 'websocket' }, 0);
-  messagesSent.inc({ type: 'eventsource' }, 0);
+  const metrics = setupMetrics(CHANNEL_NAMES, pgPool);
+  // TODO: migrate all metrics to metrics.X.method() instead of just X.method()
+  const {
+    connectedClients,
+    connectedChannels,
+    redisSubscriptions,
+    redisMessagesReceived,
+    messagesSent,
+  } = metrics;
 
   // When checking metrics in the browser, the favicon is requested this
   // prevents the request from falling through to the API Router, which would
@@ -383,25 +326,6 @@ const startServer = async () => {
       delete subs[channel];
     }
   };
-
-  const FALSE_VALUES = [
-    false,
-    0,
-    '0',
-    'f',
-    'F',
-    'false',
-    'FALSE',
-    'off',
-    'OFF',
-  ];
-
-  /**
-   * @param {any} value
-   * @returns {boolean}
-   */
-  const isTruthy = value =>
-    value && !FALSE_VALUES.includes(value);
 
   /**
    * @param {any} req
