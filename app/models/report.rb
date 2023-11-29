@@ -131,25 +131,25 @@ class Report < ApplicationRecord
       Admin::ActionLog.where(
         target_type: 'Report',
         target_id: id
-      ).unscope(:order).arel,
+      ).arel,
 
       Admin::ActionLog.where(
         target_type: 'Account',
         target_id: target_account_id
-      ).unscope(:order).arel,
+      ).arel,
 
       Admin::ActionLog.where(
         target_type: 'Status',
         target_id: status_ids
-      ).unscope(:order).arel,
+      ).arel,
 
       Admin::ActionLog.where(
         target_type: 'AccountWarning',
         target_id: AccountWarning.where(report_id: id).select(:id)
-      ).unscope(:order).arel,
+      ).arel,
     ].reduce { |union, query| Arel::Nodes::UnionAll.new(union, query) }
 
-    Admin::ActionLog.from(Arel::Nodes::As.new(subquery, Admin::ActionLog.arel_table))
+    Admin::ActionLog.latest.from(Arel::Nodes::As.new(subquery, Admin::ActionLog.arel_table))
   end
 
   private
