@@ -43,6 +43,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
         describe 'when form_two_factor_confirmation parameter is not provided' do
           it 'raises ActionController::ParameterMissing' do
             post :create, params: {}, session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
+
             expect(response).to have_http_status(400)
           end
         end
@@ -50,11 +51,13 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
         describe 'when creation succeeds' do
           let!(:otp_backup_codes) { user.generate_otp_backup_codes! }
 
-          it 'renders page with success' do
+          before do
             prepare_user_otp_generation
             prepare_user_otp_consumption_response(true)
             allow(controller).to receive(:current_user).and_return(user)
+          end
 
+          it 'renders page with success' do
             expect { post_create_with_options }
               .to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
 
@@ -67,14 +70,16 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
 
         describe 'when creation fails' do
           subject do
-            prepare_user_otp_consumption_response(false)
-            allow(controller).to receive(:current_user).and_return(user)
-
             expect { post_create_with_options }
               .to(not_change { user.reload.otp_secret })
           end
 
-          it 'renders the new view' do
+          before do
+            prepare_user_otp_consumption_response(false)
+            allow(controller).to receive(:current_user).and_return(user)
+          end
+
+          it 'renders page with error message' do
             subject
             expect(response.body).to include 'The entered code was invalid! Are server time and device time correct?'
           end
