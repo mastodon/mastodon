@@ -29,14 +29,20 @@ describe ApplicationHelper do
 
   describe 'body_classes' do
     context 'with a body class string from a controller' do
-      before do
-        without_partial_double_verification do
-          allow(helper).to receive_messages(body_class_string: 'modal-layout compose-standalone', current_theme: 'default', current_account: Fabricate(:account))
-        end
-      end
+      before { helper.extend controller_helpers }
 
       it 'uses the controller body classes in the result' do
         expect(helper.body_classes).to match(/modal-layout compose-standalone/)
+      end
+
+      private
+
+      def controller_helpers
+        Module.new do
+          def body_class_string = 'modal-layout compose-standalone'
+          def current_account = Fabricate(:account)
+          def current_theme = 'default'
+        end
       end
     end
   end
