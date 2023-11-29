@@ -20,34 +20,26 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
   [true, false].each do |with_otp_secret|
     let(:user) { Fabricate(:user, email: 'local-part@domain', otp_secret: with_otp_secret ? 'oldotpsecret' : nil) }
 
-    describe 'GET #new' do
-      context 'when signed in and a new otp secret has been set in the session' do
-        subject do
-          sign_in user, scope: :user
-          get :new, session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
+    context 'when signed in' do
+      before { sign_in user, scope: :user }
+
+      describe 'GET #new' do
+        context 'when a new otp secret has been set in the session' do
+          subject do
+            get :new, session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
+          end
+
+          include_examples 'renders :new'
         end
 
-        include_examples 'renders :new'
-      end
+        it 'redirects if a new otp_secret has not been set in the session' do
+          get :new, session: { challenge_passed_at: Time.now.utc }
 
-      it 'redirects if not signed in' do
-        get :new
-        expect(response).to redirect_to('/auth/sign_in')
-      end
-
-      it 'redirects if a new otp_secret has not been set in the session' do
-        sign_in user, scope: :user
-        get :new, session: { challenge_passed_at: Time.now.utc }
-        expect(response).to redirect_to('/settings/otp_authentication')
-      end
-    end
-
-    describe 'POST #create' do
-      context 'when signed in' do
-        before do
-          sign_in user, scope: :user
+          expect(response).to redirect_to('/settings/otp_authentication')
         end
+      end
 
+      describe 'POST #create' do
         describe 'when form_two_factor_confirmation parameter is not provided' do
           it 'raises ActionController::ParameterMissing' do
             post :create, params: {}, session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
@@ -116,8 +108,15 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
   end
 
   context 'when not signed in' do
-    it 'redirects if not signed in' do
+    it 'redirects on POST to create' do
       post :create, params: { form_two_factor_confirmation: { otp_attempt: '123456' } }
+
+      expect(response).to redirect_to('/auth/sign_in')
+    end
+
+    it 'redirects on GET to new' do
+      get :new
+
       expect(response).to redirect_to('/auth/sign_in')
     end
   end
