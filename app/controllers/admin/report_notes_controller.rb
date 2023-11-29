@@ -26,7 +26,7 @@ module Admin
         @form         = Admin::StatusBatchAction.new
         @statuses     = @report.statuses.with_includes
 
-        render template: 'admin/reports/show'
+        render 'admin/reports/show'
       end
     end
 
