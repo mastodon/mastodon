@@ -28,11 +28,11 @@ class AddIndexToWebauthnCredentialsUserIdNickname < ActiveRecord::Migration[7.0]
   end
 
   def add_index_to_table
-    add_index :webauthn_credentials, [:nickname, :user_id], unique: true, algorithm: :concurrently
+    add_index :webauthn_credentials, [:user_id, :nickname], unique: true, algorithm: :concurrently
   end
 
   def remove_index_from_table
-    remove_index :webauthn_credentials, [:nickname, :user_id]
+    remove_index :webauthn_credentials, [:user_id, :nickname]
   end
 
   def deduplicate_records
@@ -40,8 +40,8 @@ class AddIndexToWebauthnCredentialsUserIdNickname < ActiveRecord::Migration[7.0]
       execute <<~SQL.squish
         DELETE FROM webauthn_credentials
           WHERE id NOT IN (
-          SELECT DISTINCT ON(nickname, user_id) id FROM webauthn_credentials
-          ORDER BY nickname, user_id, id ASC
+          SELECT DISTINCT ON(user_id, nickname) id FROM webauthn_credentials
+          ORDER BY user_id, nickname, id ASC
         )
       SQL
     end

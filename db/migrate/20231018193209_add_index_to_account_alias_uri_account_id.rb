@@ -28,11 +28,11 @@ class AddIndexToAccountAliasUriAccountId < ActiveRecord::Migration[7.0]
   end
 
   def add_index_to_table
-    add_index :account_aliases, [:uri, :account_id], unique: true, algorithm: :concurrently
+    add_index :account_aliases, [:account_id, :uri], unique: true, algorithm: :concurrently
   end
 
   def remove_index_from_table
-    remove_index :account_aliases, [:uri, :account_id]
+    remove_index :account_aliases, [:account_id, :uri]
   end
 
   def deduplicate_records
@@ -40,8 +40,8 @@ class AddIndexToAccountAliasUriAccountId < ActiveRecord::Migration[7.0]
       execute <<~SQL.squish
         DELETE FROM account_aliases
           WHERE id NOT IN (
-          SELECT DISTINCT ON(uri, account_id) id FROM account_aliases
-          ORDER BY uri, account_id, id ASC
+          SELECT DISTINCT ON(account_id, uri) id FROM account_aliases
+          ORDER BY account_id, uri, id ASC
         )
       SQL
     end
