@@ -120,12 +120,11 @@ module Mastodon::CLI
 
       say('Beginning removal of now-orphaned media attachments to free up disk space...')
 
-      scope     = MediaAttachment.reorder(nil).unattached.where('created_at < ?', options[:days].pred.days.ago)
       processed = 0
       removed   = 0
-      progress  = create_progress_bar(scope.count)
+      progress  = create_progress_bar(aged_media_attachments.count)
 
-      scope.find_each do |media_attachment|
+      aged_media_attachments.find_each do |media_attachment|
         media_attachment.destroy!
 
         removed += 1
@@ -139,6 +138,10 @@ module Mastodon::CLI
       progress.stop
 
       say("Done after #{Time.now.to_f - start_at}s, removed #{removed} out of #{processed} media_attachments.", :green)
+    end
+
+    def aged_media_attachments
+      MediaAttachment.reorder(nil).unattached.where('created_at < ?', options[:days].pred.days.ago)
     end
 
     def remove_orphans_conversations
