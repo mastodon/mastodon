@@ -250,7 +250,7 @@ class User < ApplicationRecord
   end
 
   def functional_or_moved?
-    confirmed? && approved? && !disabled? && !account.suspended? && !account.memorial?
+    confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial?
   end
 
   def unconfirmed?

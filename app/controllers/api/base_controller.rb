@@ -105,7 +105,7 @@ class Api::BaseController < ApplicationController
   end
 
   def require_not_suspended!
-    render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.suspended?
+    render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.unavailable?
   end
 
   def require_user!
