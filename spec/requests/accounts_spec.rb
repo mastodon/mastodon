@@ -2,23 +2,22 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountsController do
-  render_views
-
+describe 'Accounts show response' do
   let(:account) { Fabricate(:account) }
 
-  describe 'unapproved account check' do
+  context 'with an unapproved account' do
     before { account.user.update(approved: false) }
 
     it 'returns http not found' do
       %w(html json rss).each do |format|
-        get :show, params: { username: account.username, format: format }
+        get short_account_path(username: account.username), as: format
+
         expect(response).to have_http_status(404)
       end
     end
   end
 
-  describe 'permanently suspended account check' do
+  context 'with a permanently suspended account' do
     before do
       account.suspend!
       account.deletion_request.destroy
@@ -26,25 +25,26 @@ RSpec.describe AccountsController do
 
     it 'returns http gone' do
       %w(html json rss).each do |format|
-        get :show, params: { username: account.username, format: format }
+        get short_account_path(username: account.username), as: format
+
         expect(response).to have_http_status(410)
       end
     end
   end
 
-  describe 'temporarily suspended account check' do
+  context 'with a temporarily suspended account' do
     before { account.suspend! }
 
     it 'returns appropriate http response code' do
       { html: 403, json: 200, rss: 403 }.each do |format, code|
-        get :show, params: { username: account.username, format: format }
+        get short_account_path(username: account.username), as: format
 
         expect(response).to have_http_status(code)
       end
     end
   end
 
-  describe 'GET #show' do
+  describe 'GET to short username paths' do
     context 'with existing statuses' do
       let!(:status) { Fabricate(:status, account: account) }
       let!(:status_reply) { Fabricate(:status, account: account, thread: Fabricate(:status)) }
@@ -66,17 +66,17 @@ RSpec.describe AccountsController do
 
         shared_examples 'common HTML response' do
           it 'returns a standard HTML response', :aggregate_failures do
-            expect(response).to have_http_status(200)
+            expect(response)
+              .to have_http_status(200)
+              .and render_template(:show)
 
             expect(response.headers['Link'].to_s).to include ActivityPub::TagManager.instance.uri_for(account)
-
-            expect(response).to render_template(:show)
           end
         end
 
         context 'with a normal account in an HTML request' do
           before do
-            get :show, params: { username: account.username, format: format }
+            get short_account_path(username: account.username), as: format
           end
 
           it_behaves_like 'common HTML response'
@@ -84,8 +84,7 @@ RSpec.describe AccountsController do
 
         context 'with replies' do
           before do
-            allow(controller).to receive(:replies_requested?).and_return(true)
-            get :show, params: { username: account.username, format: format }
+            get short_account_with_replies_path(username: account.username), as: format
           end
 
           it_behaves_like 'common HTML response'
@@ -93,8 +92,7 @@ RSpec.describe AccountsController do
 
         context 'with media' do
           before do
-            allow(controller).to receive(:media_requested?).and_return(true)
-            get :show, params: { username: account.username, format: format }
+            get short_account_media_path(username: account.username), as: format
           end
 
           it_behaves_like 'common HTML response'
@@ -106,9 +104,8 @@ RSpec.describe AccountsController do
           let!(:status_tag) { Fabricate(:status, account: account) }
 
           before do
-            allow(controller).to receive(:tag_requested?).and_return(true)
             status_tag.tags << tag
-            get :show, params: { username: account.username, format: format, tag: tag.to_param }
+            get short_account_tag_path(username: account.username, tag: tag), as: format
           end
 
           it_behaves_like 'common HTML response'
@@ -117,21 +114,25 @@ RSpec.describe AccountsController do
 
       context 'with JSON' do
         let(:authorized_fetch_mode) { false }
-        let(:format) { 'json' }
+        let(:headers) { { 'ACCEPT' => 'application/json' } }
 
-        before do
-          allow(controller).to receive(:authorized_fetch_mode?).and_return(authorized_fetch_mode)
+        around do |example|
+          ClimateControl.modify AUTHORIZED_FETCH: authorized_fetch_mode.to_s do
+            example.run
+          end
         end
 
         context 'with a normal account in a JSON request' do
           before do
-            get :show, params: { username: account.username, format: format }
+            get short_account_path(username: account.username), headers: headers
           end
 
           it 'returns a JSON version of the account', :aggregate_failures do
-            expect(response).to have_http_status(200)
-
-            expect(response.media_type).to eq 'application/activity+json'
+            expect(response)
+              .to have_http_status(200)
+              .and have_attributes(
+                media_type: eq('application/activity+json')
+              )
 
             expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
@@ -152,13 +153,15 @@ RSpec.describe AccountsController do
 
           before do
             sign_in(user)
-            get :show, params: { username: account.username, format: format }
+            get short_account_path(username: account.username), headers: headers.merge({ 'Cookie' => '123' })
           end
 
           it 'returns a private JSON version of the account', :aggregate_failures do
-            expect(response).to have_http_status(200)
-
-            expect(response.media_type).to eq 'application/activity+json'
+            expect(response)
+              .to have_http_status(200)
+              .and have_attributes(
+                media_type: eq('application/activity+json')
+              )
 
             expect(response.headers['Cache-Control']).to include 'private'
 
@@ -170,14 +173,15 @@ RSpec.describe AccountsController do
           let(:remote_account) { Fabricate(:account, domain: 'example.com') }
 
           before do
-            allow(controller).to receive(:signed_request_actor).and_return(remote_account)
-            get :show, params: { username: account.username, format: format }
+            get short_account_path(username: account.username), headers: headers, sign_with: remote_account
           end
 
           it 'returns a JSON version of the account', :aggregate_failures do
-            expect(response).to have_http_status(200)
-
-            expect(response.media_type).to eq 'application/activity+json'
+            expect(response)
+              .to have_http_status(200)
+              .and have_attributes(
+                media_type: eq('application/activity+json')
+              )
 
             expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
           end
@@ -188,12 +192,13 @@ RSpec.describe AccountsController do
             let(:authorized_fetch_mode) { true }
 
             it 'returns a private signature JSON version of the account', :aggregate_failures do
-              expect(response).to have_http_status(200)
-
-              expect(response.media_type).to eq 'application/activity+json'
+              expect(response)
+                .to have_http_status(200)
+                .and have_attributes(
+                  media_type: eq('application/activity+json')
+                )
 
               expect(response.headers['Cache-Control']).to include 'private'
-
               expect(response.headers['Vary']).to include 'Signature'
 
               expect(body_as_json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary)
@@ -207,60 +212,58 @@ RSpec.describe AccountsController do
 
         context 'with a normal account in an RSS request' do
           before do
-            get :show, params: { username: account.username, format: format }
+            get short_account_path(username: account.username, format: format)
           end
 
           it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'responds with correct statuses', :aggregate_failures do
             expect(response).to have_http_status(200)
-            expect(response.body).to include_status_tag(status_media)
-            expect(response.body).to include_status_tag(status_self_reply)
-            expect(response.body).to include_status_tag(status)
-            expect(response.body).to_not include_status_tag(status_direct)
-            expect(response.body).to_not include_status_tag(status_private)
-            expect(response.body).to_not include_status_tag(status_reblog.reblog)
-            expect(response.body).to_not include_status_tag(status_reply)
+            expect(response.body).to include(status_tag_for(status_media))
+            expect(response.body).to include(status_tag_for(status_self_reply))
+            expect(response.body).to include(status_tag_for(status))
+            expect(response.body).to_not include(status_tag_for(status_direct))
+            expect(response.body).to_not include(status_tag_for(status_private))
+            expect(response.body).to_not include(status_tag_for(status_reblog.reblog))
+            expect(response.body).to_not include(status_tag_for(status_reply))
           end
         end
 
         context 'with replies' do
           before do
-            allow(controller).to receive(:replies_requested?).and_return(true)
-            get :show, params: { username: account.username, format: format }
+            get short_account_with_replies_path(username: account.username, format: format)
           end
 
           it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'responds with correct statuses with replies', :aggregate_failures do
             expect(response).to have_http_status(200)
-            expect(response.body).to include_status_tag(status_media)
-            expect(response.body).to include_status_tag(status_reply)
-            expect(response.body).to include_status_tag(status_self_reply)
-            expect(response.body).to include_status_tag(status)
-            expect(response.body).to_not include_status_tag(status_direct)
-            expect(response.body).to_not include_status_tag(status_private)
-            expect(response.body).to_not include_status_tag(status_reblog.reblog)
+            expect(response.body).to include(status_tag_for(status_media))
+            expect(response.body).to include(status_tag_for(status_reply))
+            expect(response.body).to include(status_tag_for(status_self_reply))
+            expect(response.body).to include(status_tag_for(status))
+            expect(response.body).to_not include(status_tag_for(status_direct))
+            expect(response.body).to_not include(status_tag_for(status_private))
+            expect(response.body).to_not include(status_tag_for(status_reblog.reblog))
           end
         end
 
         context 'with media' do
           before do
-            allow(controller).to receive(:media_requested?).and_return(true)
-            get :show, params: { username: account.username, format: format }
+            get short_account_media_path(username: account.username, format: format)
           end
 
           it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'responds with correct statuses with media', :aggregate_failures do
             expect(response).to have_http_status(200)
-            expect(response.body).to include_status_tag(status_media)
-            expect(response.body).to_not include_status_tag(status_direct)
-            expect(response.body).to_not include_status_tag(status_private)
-            expect(response.body).to_not include_status_tag(status_reblog.reblog)
-            expect(response.body).to_not include_status_tag(status_reply)
-            expect(response.body).to_not include_status_tag(status_self_reply)
-            expect(response.body).to_not include_status_tag(status)
+            expect(response.body).to include(status_tag_for(status_media))
+            expect(response.body).to_not include(status_tag_for(status_direct))
+            expect(response.body).to_not include(status_tag_for(status_private))
+            expect(response.body).to_not include(status_tag_for(status_reblog.reblog))
+            expect(response.body).to_not include(status_tag_for(status_reply))
+            expect(response.body).to_not include(status_tag_for(status_self_reply))
+            expect(response.body).to_not include(status_tag_for(status))
           end
         end
 
@@ -270,30 +273,29 @@ RSpec.describe AccountsController do
           let!(:status_tag) { Fabricate(:status, account: account) }
 
           before do
-            allow(controller).to receive(:tag_requested?).and_return(true)
             status_tag.tags << tag
-            get :show, params: { username: account.username, format: format, tag: tag.to_param }
+            get short_account_tag_path(username: account.username, tag: tag, format: format)
           end
 
           it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'responds with correct statuses with a tag', :aggregate_failures do
             expect(response).to have_http_status(200)
-            expect(response.body).to include_status_tag(status_tag)
-            expect(response.body).to_not include_status_tag(status_direct)
-            expect(response.body).to_not include_status_tag(status_media)
-            expect(response.body).to_not include_status_tag(status_private)
-            expect(response.body).to_not include_status_tag(status_reblog.reblog)
-            expect(response.body).to_not include_status_tag(status_reply)
-            expect(response.body).to_not include_status_tag(status_self_reply)
-            expect(response.body).to_not include_status_tag(status)
+            expect(response.body).to include(status_tag_for(status_tag))
+            expect(response.body).to_not include(status_tag_for(status_direct))
+            expect(response.body).to_not include(status_tag_for(status_media))
+            expect(response.body).to_not include(status_tag_for(status_private))
+            expect(response.body).to_not include(status_tag_for(status_reblog.reblog))
+            expect(response.body).to_not include(status_tag_for(status_reply))
+            expect(response.body).to_not include(status_tag_for(status_self_reply))
+            expect(response.body).to_not include(status_tag_for(status))
           end
         end
       end
     end
   end
 
-  def include_status_tag(status)
-    include ActivityPub::TagManager.instance.url_for(status)
+  def status_tag_for(status)
+    ActivityPub::TagManager.instance.url_for(status)
   end
 end
