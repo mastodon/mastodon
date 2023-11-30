@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module PamAuthenticable
+module User::PamAuthenticable
   extend ActiveSupport::Concern
 
   included do

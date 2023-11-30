@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module LdapAuthenticable
+module User::LdapAuthenticable
   extend ActiveSupport::Concern
 
   class_methods do

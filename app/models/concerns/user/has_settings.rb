@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module HasUserSettings
+module User::HasSettings
   extend ActiveSupport::Concern
 
   included do
