@@ -277,14 +277,14 @@ module Mastodon::CLI
 
     desc 'usage', 'Calculate disk space consumed by Mastodon'
     def usage
-      say("Attachments:\t#{number_to_human_size(media_attachment_storage_size)} (#{number_to_human_size(local_media_attachment_storage_size)} local)")
-      say("Custom emoji:\t#{number_to_human_size(CustomEmoji.sum(:image_file_size))} (#{number_to_human_size(CustomEmoji.local.sum(:image_file_size))} local)")
-      say("Preview cards:\t#{number_to_human_size(PreviewCard.sum(:image_file_size))}")
-      say("Avatars:\t#{number_to_human_size(Account.sum(:avatar_file_size))} (#{number_to_human_size(Account.local.sum(:avatar_file_size))} local)")
-      say("Headers:\t#{number_to_human_size(Account.sum(:header_file_size))} (#{number_to_human_size(Account.local.sum(:header_file_size))} local)")
-      say("Backups:\t#{number_to_human_size(Backup.sum(:dump_file_size))}")
-      say("Imports:\t#{number_to_human_size(Import.sum(:data_file_size))}")
-      say("Settings:\t#{number_to_human_size(SiteUpload.sum(:file_file_size))}")
+      report_storage('Attachments', media_attachment_storage_size, local: local_media_attachment_storage_size)
+      report_storage('Custom emoji', custom_emoji_storage_size, local: local_custom_emoji_storage_size)
+      report_storage('Preview cards', preview_card_storage_size)
+      report_storage('Avatars', avatar_storage_size, local: local_avatar_storage_size)
+      report_storage('Headers', header_storage_size, local: local_header_storage_size)
+      report_storage('Backups', backups_storage_size)
+      report_storage('Imports', imports_storage_size)
+      report_storage('Settings', settings_storage_size)
     end
 
     desc 'lookup URL', 'Lookup where media is displayed by passing a media URL'
@@ -363,6 +363,53 @@ module Mastodon::CLI
       preload_map.each_with_object({}) do |(model_name, record_ids), model_map|
         model_map[model_name] = model_name.constantize.where(id: record_ids).index_by(&:id)
       end
+    end
+
+    def report_storage(label, all_storage, local: nil)
+      string = "#{label}:\t"
+      string += number_to_human_size(all_storage)
+      string += " (#{number_to_human_size(local)} local)" if local.present?
+      say(string)
+    end
+
+    def custom_emoji_storage_size
+      CustomEmoji.sum(:image_file_size)
+    end
+
+    def local_custom_emoji_storage_size
+      CustomEmoji.local.sum(:image_file_size)
+    end
+
+    def preview_card_storage_size
+      PreviewCard.sum(:image_file_size)
+    end
+
+    def avatar_storage_size
+      Account.sum(:avatar_file_size)
+    end
+
+    def local_avatar_storage_size
+      Account.local.sum(:avatar_file_size)
+    end
+
+    def header_storage_size
+      Account.sum(:header_file_size)
+    end
+
+    def local_header_storage_size
+      Account.local.sum(:header_file_size)
+    end
+
+    def backups_storage_size
+      Backup.sum(:dump_file_size)
+    end
+
+    def imports_storage_size
+      Import.sum(:data_file_size)
+    end
+
+    def settings_storage_size
+      SiteUpload.sum(:file_file_size)
     end
   end
 end
