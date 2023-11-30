@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AccountHeader
+module Account::Header
   extend ActiveSupport::Concern
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze

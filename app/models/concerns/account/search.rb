@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AccountSearch
+module Account::Search
   extend ActiveSupport::Concern
 
   DISALLOWED_TSQUERY_CHARACTERS = /['?\\:‘’]/

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AccountMerging
+module Account::Merging
   extend ActiveSupport::Concern
 
   def merge_with!(other_account)
