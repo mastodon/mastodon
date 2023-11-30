@@ -25,13 +25,9 @@ module Mastodon::CLI
       leaving video and photo cards untouched.
     DESC
     def remove
-      time_ago = options[:days].days.ago
-      link     = options[:link] ? 'link-type ' : ''
-      scope    = PreviewCard.cached
-      scope    = scope.where(type: :link) if options[:link]
-      scope    = scope.where('updated_at < ?', time_ago)
+      link = options[:link] ? 'link-type ' : ''
 
-      processed, aggregate = parallelize_with_progress(scope) do |preview_card|
+      processed, aggregate = parallelize_with_progress(preview_card_scope) do |preview_card|
         next if preview_card.image.blank?
 
         size = preview_card.image_file_size
@@ -45,6 +41,22 @@ module Mastodon::CLI
       end
 
       say("Removed #{processed} #{link}preview cards (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
+    end
+
+    private
+
+    def preview_card_scope
+      aged_preview_cards.cached.tap do |scope|
+        scope.merge!(link_preview_cards) if options[:link]
+      end
+    end
+
+    def aged_preview_cards
+      PreviewCard.where('updated_at < ?', options[:days].days.ago)
+    end
+
+    def link_preview_cards
+      PreviewCard.where(type: :link)
     end
   end
 end
