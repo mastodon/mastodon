@@ -141,7 +141,7 @@ module Mastodon::CLI
     end
 
     def aged_media_attachments
-      MediaAttachment.reorder(nil).unattached.where('created_at < ?', options[:days].pred.days.ago)
+      MediaAttachment.unattached.where('created_at < ?', options[:days].pred.days.ago)
     end
 
     def remove_orphans_conversations
