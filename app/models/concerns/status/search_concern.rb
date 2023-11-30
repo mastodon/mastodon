@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module StatusSearchConcern
+module Status::SearchConcern
   extend ActiveSupport::Concern
 
   included do

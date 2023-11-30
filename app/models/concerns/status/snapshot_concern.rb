@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module StatusSnapshotConcern
+module Status::SnapshotConcern
   extend ActiveSupport::Concern
 
   included do

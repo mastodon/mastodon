@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module StatusThreadingConcern
+module Status::ThreadingConcern
   extend ActiveSupport::Concern
 
   def ancestors(limit, account = nil)

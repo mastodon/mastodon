@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module StatusSafeReblogInsert
+module Status::SafeReblogInsert
   extend ActiveSupport::Concern
 
   class_methods do
