@@ -47,7 +47,7 @@ class PreviewCard < ApplicationRecord
 
   self.inheritance_column = false
 
-  enum :type, { link: 0, photo: 1, video: 2, rich: 3 }
+  enum :type, { link: 0, photo: 1, video: 2, rich: 3 }, prefix: true
   enum :link_type, { unknown: 0, article: 1 }
 
   has_many :preview_cards_statuses, dependent: :delete_all, inverse_of: :preview_card
@@ -64,13 +64,13 @@ class PreviewCard < ApplicationRecord
 
   scope :cached, -> { where.not(image_file_name: [nil, '']) }
 
-  before_save :extract_dimensions, if: :link?
+  before_save :extract_dimensions, if: :type_link?
 
   # This can be set by the status when retrieving the preview card using the join model
   attr_accessor :original_url
 
   def appropriate_for_trends?
-    link? && article? && title.present? && description.present? && image.present? && provider_name.present?
+    type_link? && article? && title.present? && description.present? && image.present? && provider_name.present?
   end
 
   def domain

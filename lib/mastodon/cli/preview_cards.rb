@@ -56,7 +56,7 @@ module Mastodon::CLI
     end
 
     def link_preview_cards
-      PreviewCard.where(type: :link)
+      PreviewCard.type_link
     end
   end
 end
