@@ -50,7 +50,7 @@ class AccountsController < ApplicationController
   end
 
   def only_media_scope
-    Status.joins(:media_attachments).merge(@account.media_attachments.reorder(nil)).group(:id)
+    Status.joins(:media_attachments).merge(@account.media_attachments).group(:id)
   end
 
   def no_replies_scope
