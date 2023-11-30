@@ -37,7 +37,7 @@ module Mastodon::CLI
       time_ago = options[:days].days.ago
 
       if options[:prune_profiles] || options[:remove_headers]
-        processed, aggregate = parallelize_with_progress(Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })) do |account|
+        processed, aggregate = parallelize_with_progress(remote_accounts_inactive_since(time_ago)) do |account|
           next if !options[:include_follows] && Follow.where(account: account).or(Follow.where(target_account: account)).exists?
           next if account.avatar.blank? && account.header.blank?
           next if options[:remove_headers] && account.header.blank?
@@ -326,6 +326,12 @@ module Mastodon::CLI
       PreviewCard
       SiteUpload
     ).freeze
+
+    def remote_accounts_inactive_since(time_ago)
+      Account
+        .remote
+        .inactive_since(time_ago)
+    end
 
     def preload_records_from_mixed_objects(objects)
       preload_map = Hash.new { |hash, key| hash[key] = [] }
