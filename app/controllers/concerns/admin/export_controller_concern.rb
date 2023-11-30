@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AdminExportControllerConcern
+module Admin::ExportControllerConcern
   extend ActiveSupport::Concern
 
   private

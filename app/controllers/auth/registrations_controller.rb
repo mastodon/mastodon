@@ -2,7 +2,7 @@
 
 class Auth::RegistrationsController < Devise::RegistrationsController
   include RegistrationHelper
-  include RegistrationSpamConcern
+  include Auth::RegistrationSpamConcern
 
   layout :determine_layout
 

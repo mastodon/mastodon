@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-describe ExportControllerConcern do
+describe Settings::ExportControllerConcern do
   controller(ApplicationController) do
-    include ExportControllerConcern
+    include Settings::ExportControllerConcern
 
     def index
       send_export_file

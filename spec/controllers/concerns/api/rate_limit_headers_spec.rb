@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-describe RateLimitHeaders do
+describe Api::RateLimitHeaders do
   controller(ApplicationController) do
-    include RateLimitHeaders
+    include Api::RateLimitHeaders
 
     def show
       head 200

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ApiCachingConcern
+module Api::CachingConcern
   extend ActiveSupport::Concern
 
   def cache_if_unauthenticated!

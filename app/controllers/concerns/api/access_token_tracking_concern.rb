@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AccessTokenTrackingConcern
+module Api::AccessTokenTrackingConcern
   extend ActiveSupport::Concern
 
   ACCESS_TOKEN_UPDATE_FREQUENCY = 24.hours.freeze

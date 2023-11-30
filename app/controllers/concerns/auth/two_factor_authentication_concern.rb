@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module TwoFactorAuthenticationConcern
+module Auth::TwoFactorAuthenticationConcern
   extend ActiveSupport::Concern
 
   included do
