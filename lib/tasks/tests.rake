@@ -8,6 +8,7 @@ namespace :tests do
         '2' => 2017_10_10_025614,
         '2_4' => 2018_05_14_140000,
         '2_4_3' => 2018_07_07_154237,
+        '3_3_0' => 2020_12_18_054746,
       }.each do |release, version|
         ActiveRecord::Tasks::DatabaseTasks
           .migration_connection
@@ -116,7 +117,34 @@ namespace :tests do
         exit(1)
       end
 
+      unless WebauthnCredential.where(user_id: 1, nickname: 'foo').count == 1
+        puts 'Webauthn credentials not deduplicated as expected'
+        exit(1)
+      end
+
+      unless AccountAlias.where(account_id: 1, uri: 'https://example.com/users/foobar').count == 1
+        puts 'Account aliases not deduplicated as expected'
+        exit(1)
+      end
+
       puts 'No errors found. Database state is consistent with a successful migration process.'
+    end
+
+    desc 'Populate the database with test data for 3.3.0'
+    task populate_v3_3_0: :environment do # rubocop:disable Naming/VariableNumber
+      ActiveRecord::Base.connection.execute(<<~SQL.squish)
+        INSERT INTO "webauthn_credentials"
+          (user_id, nickname, external_id, public_key, created_at, updated_at)
+        VALUES
+          (1, 'foo', 1, 'foo', now(), now()),
+          (1, 'foo', 2, 'bar', now(), now());
+
+        INSERT INTO "account_aliases"
+          (account_id, uri, acct, created_at, updated_at)
+        VALUES
+          (1, 'https://example.com/users/foobar', 'foobar@example.com', now(), now()),
+          (1, 'https://example.com/users/foobar', 'foobar@example.com', now(), now());
+      SQL
     end
 
     desc 'Populate the database with test data for 2.4.3'
