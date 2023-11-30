@@ -1,11 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call,
+                  @typescript-eslint/no-unsafe-return,
+                  @typescript-eslint/no-unsafe-assignment,
+                  @typescript-eslint/no-unsafe-member-access
+                  -- the settings store is not yet typed */
 import type { PropsWithChildren } from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
 import { ReactComponent as CloseIcon } from '@material-symbols/svg-600/outlined/close.svg';
 
+import { changeSetting } from 'mastodon/actions/settings';
 import { bannerSettings } from 'mastodon/settings';
+import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { IconButton } from './icon_button';
 
@@ -21,13 +28,25 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
   id,
   children,
 }) => {
-  const [visible, setVisible] = useState(!bannerSettings.get(id));
+  const dismissed = useAppSelector((state) =>
+    state.settings.getIn(['dismissed_banners', id], false),
+  );
+  const dispatch = useAppDispatch();
+
+  const [visible, setVisible] = useState(!bannerSettings.get(id) && !dismissed);
   const intl = useIntl();
 
   const handleDismiss = useCallback(() => {
     setVisible(false);
     bannerSettings.set(id, true);
-  }, [id]);
+    dispatch(changeSetting(['dismissed_banners', id], true));
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    if (!visible && !dismissed) {
+      dispatch(changeSetting(['dismissed_banners', id], true));
+    }
+  }, [id, dispatch, visible, dismissed]);
 
   if (!visible) {
     return null;
