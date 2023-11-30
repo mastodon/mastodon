@@ -111,6 +111,11 @@ namespace :tests do
         exit(1)
       end
 
+      unless Identity.where(provider: 'foo', uid: 0).count == 1
+        puts 'Identities not deduplicated as expected'
+        exit(1)
+      end
+
       puts 'No errors found. Database state is consistent with a successful migration process.'
     end
 
@@ -189,6 +194,12 @@ namespace :tests do
         VALUES
           (5, 'User', 4, 'default_language', E'--- kmr\n', now(), now()),
           (6, 'User', 1, 'interactions', E'--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nmust_be_follower: false\nmust_be_following: true\nmust_be_following_dm: false\n', now(), now());
+
+        INSERT INTO "identities"
+          (provider, uid, user_id, created_at, updated_at)
+        VALUES
+          ('foo', 0, 1, now(), now()),
+          ('foo', 0, 1, now(), now());
       SQL
     end
 
