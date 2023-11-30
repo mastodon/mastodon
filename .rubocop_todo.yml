@@ -108,7 +108,6 @@ Rails/ApplicationController:
 Rails/HasAndBelongsToMany:
   Exclude:
     - 'app/models/concerns/account_associations.rb'
-    - 'app/models/preview_card.rb'
     - 'app/models/status.rb'
     - 'app/models/tag.rb'
 
@@ -246,7 +245,6 @@ Rails/WhereExists:
   Exclude:
     - 'app/controllers/activitypub/inboxes_controller.rb'
     - 'app/controllers/admin/email_domain_blocks_controller.rb'
-    - 'app/controllers/auth/registrations_controller.rb'
     - 'app/lib/activitypub/activity/create.rb'
     - 'app/lib/delivery_failure_tracker.rb'
     - 'app/lib/feed_manager.rb'
@@ -262,7 +260,6 @@ Rails/WhereExists:
     - 'app/serializers/rest/announcement_serializer.rb'
     - 'app/serializers/rest/tag_serializer.rb'
     - 'app/services/activitypub/fetch_remote_status_service.rb'
-    - 'app/services/app_sign_up_service.rb'
     - 'app/services/vote_service.rb'
     - 'app/validators/reaction_validator.rb'
     - 'app/validators/vote_validator.rb'
@@ -552,10 +549,3 @@ Style/TrailingCommaInHashLiteral:
   Exclude:
     - 'config/environments/production.rb'
     - 'config/environments/test.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, MinSize, WordRegex.
-# SupportedStyles: percent, brackets
-Style/WordArray:
-  Exclude:
-    - 'app/helpers/languages_helper.rb'
