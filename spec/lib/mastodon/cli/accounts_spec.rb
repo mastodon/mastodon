@@ -6,6 +6,8 @@ require 'mastodon/cli/accounts'
 describe Mastodon::CLI::Accounts do
   let(:cli) { described_class.new }
 
+  it_behaves_like 'CLI Command'
+
   # `parallelize_with_progress` cannot run in transactions, so instead,
   # stub it with an alternative implementation that runs sequentially
   # and can run in transactions.
@@ -21,12 +23,6 @@ describe Mastodon::CLI::Accounts do
       end
 
       [total, aggregate]
-    end
-  end
-
-  describe '.exit_on_failure?' do
-    it 'returns true' do
-      expect(described_class.exit_on_failure?).to be true
     end
   end
 
