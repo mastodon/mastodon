@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { FormattedDate, FormattedMessage } from 'react-intl';
+import { injectIntl, FormattedDate, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link, withRouter } from 'react-router-dom';
@@ -33,6 +33,7 @@ import Card from './card';
 class DetailedStatus extends ImmutablePureComponent {
 
   static propTypes = {
+    intl: PropTypes.object.isRequired,
     status: ImmutablePropTypes.map,
     onOpenMedia: PropTypes.func.isRequired,
     onOpenVideo: PropTypes.func.isRequired,
@@ -135,7 +136,7 @@ class DetailedStatus extends ImmutablePureComponent {
   render () {
     const status = this._properStatus();
     const outerStyle = { boxSizing: 'border-box' };
-    const { compact, pictureInPicture } = this.props;
+    const { intl, compact, pictureInPicture } = this.props;
 
     if (!status) {
       return null;
@@ -342,4 +343,4 @@ class DetailedStatus extends ImmutablePureComponent {
 
 }
 
-export default withRouter(DetailedStatus);
+export default withRouter(injectIntl(DetailedStatus));
