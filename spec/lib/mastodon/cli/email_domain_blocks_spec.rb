@@ -22,4 +22,42 @@ describe Mastodon::CLI::EmailDomainBlocks do
       end
     end
   end
+
+  describe '#add' do
+    context 'without any options' do
+      let(:options) { {} }
+
+      it 'warns about usage and exits' do
+        expect { cli.invoke(:add, [], options) }.to output(
+          a_string_including('No domain(s) given')
+        ).to_stdout.and raise_error(SystemExit)
+      end
+    end
+
+    context 'when blocks exist' do
+      let(:options) { {} }
+      let(:domain) { 'host.example' }
+
+      before { Fabricate(:email_domain_block, domain: domain) }
+
+      it 'does not add a new block' do
+        expect { cli.invoke(:add, [domain], options) }.to output(
+          a_string_including('is already blocked')
+        ).to_stdout
+          .and(not_change(EmailDomainBlock, :count))
+      end
+    end
+
+    context 'when no blocks exist' do
+      let(:options) { {} }
+      let(:domain) { 'host.example' }
+
+      it 'adds a new block' do
+        expect { cli.invoke(:add, [domain], options) }.to output(
+          a_string_including('Added 1')
+        ).to_stdout
+          .and(change(EmailDomainBlock, :count).by(1))
+      end
+    end
+  end
 end
