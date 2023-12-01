@@ -184,4 +184,53 @@ describe Mastodon::CLI::Media do
       end
     end
   end
+
+  describe '#remove_orphans' do
+    let(:action) { :remove_orphans }
+
+    context 'without any options' do
+      it 'runs without error' do
+        expect { subject }
+          .to output_results('Removed', 'orphans (approx')
+      end
+    end
+
+    context 'when in azure mode' do
+      before do
+        allow(Paperclip::Attachment).to receive(:default_options).and_return(storage: :azure)
+      end
+
+      it 'warns about usage and exits' do
+        expect { subject }
+          .to output_results('azure storage driver is not supported')
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when in fog mode' do
+      before do
+        allow(Paperclip::Attachment).to receive(:default_options).and_return(storage: :fog)
+      end
+
+      it 'warns about usage and exits' do
+        expect { subject }
+          .to output_results('fog storage driver is not supported')
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when in filesystem mode' do
+      before do
+        media_attachment.delete
+      end
+
+      let(:media_attachment) { Fabricate(:media_attachment) }
+
+      it 'removes the unlinked files' do
+        expect { subject }
+          .to output_results('Removed', 'orphans (approx')
+          .and(change { File.exist?(media_attachment.file.path) }.from(true).to(false))
+      end
+    end
+  end
 end
