@@ -78,4 +78,16 @@ describe Mastodon::CLI::Media do
       end
     end
   end
+
+  describe '#usage' do
+    context 'without options' do
+      let(:options) { {} }
+
+      it 'reports about storage size' do
+        expect { cli.invoke(:usage, [], options) }.to output(
+          a_string_including('0 Bytes')
+        ).to_stdout
+      end
+    end
+  end
 end
