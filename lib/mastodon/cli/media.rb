@@ -265,6 +265,7 @@ module Mastodon::CLI
       elsif options[:days].present?
         scope = MediaAttachment.remote
       else
+        say('Specify the source of media attachments', :red)
         exit(1)
       end
 
