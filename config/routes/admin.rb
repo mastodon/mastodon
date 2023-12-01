@@ -67,7 +67,7 @@ namespace :admin do
     end
   end
 
-  resources :instances, only: [:index, :show, :destroy], constraints: { id: %r{[^/]+} } do
+  resources :instances, only: [:index, :show, :destroy], constraints: { id: %r{[^/]+} }, format: 'html' do
     member do
       post :clear_delivery_errors
       post :restart_delivery
@@ -201,4 +201,6 @@ namespace :admin do
       end
     end
   end
+
+  resources :software_updates, only: [:index]
 end

@@ -6,7 +6,7 @@ const buildHashtagPatternRegex = () => {
   try {
     return new RegExp(
       `(?:^|[^\\/\\)\\w])#(([${WORD}_][${WORD}${HASHTAG_SEPARATORS}]*[${ALPHA}${HASHTAG_SEPARATORS}][${WORD}${HASHTAG_SEPARATORS}]*[${WORD}_])|([${WORD}_]*[${ALPHA}][${WORD}_]*))`,
-      'iu'
+      'iu',
     );
   } catch {
     return /(?:^|[^/)\w])#(\w*[a-zA-Z·]\w*)/i;
@@ -17,7 +17,7 @@ const buildHashtagRegex = () => {
   try {
     return new RegExp(
       `^(([${WORD}_][${WORD}${HASHTAG_SEPARATORS}]*[${ALPHA}${HASHTAG_SEPARATORS}][${WORD}${HASHTAG_SEPARATORS}]*[${WORD}_])|([${WORD}_]*[${ALPHA}][${WORD}_]*))$`,
-      'iu'
+      'iu',
     );
   } catch {
     return /^(\w*[a-zA-Z·]\w*)$/i;

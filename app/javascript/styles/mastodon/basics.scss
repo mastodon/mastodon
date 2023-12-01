@@ -31,9 +31,19 @@ body {
     // Droid Sans => Older Androids (<4.0)
     // Helvetica Neue => Older macOS <10.11
     // $font-sans-serif => web-font (Roboto) fallback and newer Androids (>=4.0)
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      $font-sans-serif, sans-serif;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Fira Sans',
+      'Droid Sans',
+      'Helvetica Neue',
+      $font-sans-serif,
+      sans-serif;
   }
 
   &.app-body {
@@ -151,11 +161,22 @@ body {
   }
 }
 
+a {
+  &:focus {
+    border-radius: 4px;
+    outline: $ui-button-focus-outline;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
 button {
   font-family: inherit;
   cursor: pointer;
 
-  &:focus {
+  &:focus:not(:focus-visible) {
     outline: none;
   }
 }

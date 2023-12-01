@@ -4,18 +4,20 @@ class LanguageValidator < ActiveModel::EachValidator
   include LanguagesHelper
 
   def validate_each(record, attribute, value)
-    record.errors.add(attribute, :invalid) unless valid?(value)
+    @value = value
+
+    record.errors.add(attribute, :invalid) unless valid_locale_value?
   end
 
   private
 
-  def valid?(str)
-    if str.nil?
+  def valid_locale_value?
+    if @value.nil?
       true
-    elsif str.is_a?(Array)
-      str.all? { |x| valid_locale?(x) }
+    elsif @value.is_a?(Array)
+      @value.all? { |x| valid_locale?(x) }
     else
-      valid_locale?(str)
+      valid_locale?(@value)
     end
   end
 end

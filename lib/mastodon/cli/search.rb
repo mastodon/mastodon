@@ -7,16 +7,19 @@ module Mastodon::CLI
     # Indices are sorted by amount of data to be expected in each, so that
     # smaller indices can go online sooner
     INDICES = [
+      InstancesIndex,
       AccountsIndex,
       TagsIndex,
+      PublicStatusesIndex,
       StatusesIndex,
     ].freeze
 
     option :concurrency, type: :numeric, default: 5, aliases: [:c], desc: 'Workload will be split between this number of threads'
     option :batch_size, type: :numeric, default: 100, aliases: [:b], desc: 'Number of records in each batch'
-    option :only, type: :array, enum: %w(accounts tags statuses), desc: 'Only process these indices'
+    option :only, type: :array, enum: %w(instances accounts tags statuses public_statuses), desc: 'Only process these indices'
     option :import, type: :boolean, default: true, desc: 'Import data from the database to the index'
     option :clean, type: :boolean, default: true, desc: 'Remove outdated documents from the index'
+    option :reset_chewy, type: :boolean, default: false, desc: "Reset Chewy's internal index"
     desc 'deploy', 'Create or upgrade Elasticsearch indices and populate them'
     long_desc <<~LONG_DESC
       If Elasticsearch is empty, this command will create the necessary indices
@@ -40,6 +43,8 @@ module Mastodon::CLI
       pool      = Concurrent::FixedThreadPool.new(options[:concurrency], max_queue: options[:concurrency] * 10)
       importers = indices.index_with { |index| "Importer::#{index.name}Importer".constantize.new(batch_size: options[:batch_size], executor: pool) }
       progress  = ProgressBar.create(total: nil, format: '%t%c/%u |%b%i| %e (%r docs/s)', autofinish: false)
+
+      Chewy::Stash::Specification.reset! if options[:reset_chewy]
 
       # First, ensure all indices are created and have the correct
       # structure, so that live data can already be written

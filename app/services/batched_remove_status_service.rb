@@ -8,7 +8,10 @@ class BatchedRemoveStatusService < BaseService
   # @param [Hash] options
   # @option [Boolean] :skip_side_effects Do not modify feeds and send updates to streaming API
   def call(statuses, **options)
-    ActiveRecord::Associations::Preloader.new.preload(statuses, options[:skip_side_effects] ? :reblogs : [:account, :tags, reblogs: :account])
+    ActiveRecord::Associations::Preloader.new(
+      records: statuses,
+      associations: options[:skip_side_effects] ? :reblogs : [:account, :tags, reblogs: :account]
+    )
 
     statuses_and_reblogs = statuses.flat_map { |status| [status] + status.reblogs }
 
@@ -17,7 +20,10 @@ class BatchedRemoveStatusService < BaseService
     # rely on direct visibility statuses being relatively rare.
     statuses_with_account_conversations = statuses.select(&:direct_visibility?)
 
-    ActiveRecord::Associations::Preloader.new.preload(statuses_with_account_conversations, [mentions: :account])
+    ActiveRecord::Associations::Preloader.new(
+      records: statuses_with_account_conversations,
+      associations: [mentions: :account]
+    )
 
     statuses_with_account_conversations.each(&:unlink_from_conversations!)
 
@@ -29,7 +35,10 @@ class BatchedRemoveStatusService < BaseService
 
     # Since we skipped all callbacks, we also need to manually
     # deindex the statuses
-    Chewy.strategy.current.update(StatusesIndex, statuses_and_reblogs) if Chewy.enabled?
+    if Chewy.enabled?
+      Chewy.strategy.current.update(StatusesIndex, statuses_and_reblogs)
+      Chewy.strategy.current.update(PublicStatusesIndex, statuses_and_reblogs)
+    end
 
     return if options[:skip_side_effects]
 

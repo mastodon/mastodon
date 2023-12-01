@@ -19,7 +19,7 @@ bg:
         account:
           attributes:
             username:
-              invalid: трябва да е само букви, цифри и долни черти
+              invalid: трябва да е само буквено-цифрено и долни черти
               reserved: е запазено
         admin/webhook:
           attributes:
@@ -53,3 +53,7 @@ bg:
             position:
               elevated: не може да е по-висока от текущата ви роля
               own_role: не може да се промени с текущата ви роля
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: не може да включва събития, към които нямате права

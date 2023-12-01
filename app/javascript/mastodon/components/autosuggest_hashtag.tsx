@@ -1,16 +1,16 @@
 import { FormattedMessage } from 'react-intl';
 
-import ShortNumber from 'mastodon/components/short_number';
+import { ShortNumber } from 'mastodon/components/short_number';
 
 interface Props {
   tag: {
     name: string;
     url?: string;
-    history?: Array<{
+    history?: {
       uses: number;
       accounts: string;
       day: string;
-    }>;
+    }[];
     following?: boolean;
     type: 'hashtag';
   };

@@ -8,6 +8,7 @@ class NotifyService < BaseService
     admin.sign_up
     update
     poll
+    status
   ).freeze
 
   def call(recipient, type, activity)
@@ -107,7 +108,7 @@ class NotifyService < BaseService
   end
 
   def blocked?
-    blocked   = @recipient.suspended?
+    blocked   = @recipient.unavailable?
     blocked ||= from_self? && @notification.type != :poll
 
     return blocked if message? && from_staff?
@@ -162,7 +163,12 @@ class NotifyService < BaseService
   end
 
   def send_email!
-    NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later(wait: 2.minutes) if NotificationMailer.respond_to?(@notification.type)
+    return unless NotificationMailer.respond_to?(@notification.type)
+
+    NotificationMailer
+      .with(recipient: @recipient, notification: @notification)
+      .public_send(@notification.type)
+      .deliver_later(wait: 2.minutes)
   end
 
   def email_needed?

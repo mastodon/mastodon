@@ -22,8 +22,8 @@ class AppealService < BaseService
   end
 
   def notify_staff!
-    User.those_who_can(:manage_appeals).includes(:account).each do |u|
-      AdminMailer.new_appeal(u.account, @appeal).deliver_later if u.allows_appeal_emails?
+    User.those_who_can(:manage_appeals).includes(:account).find_each do |u|
+      AdminMailer.with(recipient: u.account).new_appeal(@appeal).deliver_later if u.allows_appeal_emails?
     end
   end
 end

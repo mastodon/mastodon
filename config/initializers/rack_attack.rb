@@ -5,9 +5,9 @@ require 'doorkeeper/grape/authorization_decorator'
 class Rack::Attack
   class Request
     def authenticated_token
-      return @token if defined?(@token)
+      return @authenticated_token if defined?(@authenticated_token)
 
-      @token = Doorkeeper::OAuth::Token.authenticate(
+      @authenticated_token = Doorkeeper::OAuth::Token.authenticate(
         Doorkeeper::Grape::AuthorizationDecorator.new(self),
         *Doorkeeper.configuration.access_token_methods
       )
@@ -142,10 +142,10 @@ class Rack::Attack
     match_data = request.env['rack.attack.match_data']
 
     headers = {
-      'Content-Type'          => 'application/json',
-      'X-RateLimit-Limit'     => match_data[:limit].to_s,
+      'Content-Type' => 'application/json',
+      'X-RateLimit-Limit' => match_data[:limit].to_s,
       'X-RateLimit-Remaining' => '0',
-      'X-RateLimit-Reset'     => (now + (match_data[:period] - (now.to_i % match_data[:period]))).iso8601(6),
+      'X-RateLimit-Reset' => (now + (match_data[:period] - (now.to_i % match_data[:period]))).iso8601(6),
     }
 
     [429, headers, [{ error: I18n.t('errors.429') }.to_json]]

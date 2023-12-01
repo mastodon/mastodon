@@ -6,6 +6,7 @@ import { isLocaleLoaded, setLocale } from './global_locale';
 const localeLoadingSemaphore = new Semaphore(1);
 
 export async function loadLocale() {
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we want to match empty strings
   const locale = document.querySelector<HTMLElement>('html')?.lang || 'en';
 
   // We use a Semaphore here so only one thing can try to load the locales at

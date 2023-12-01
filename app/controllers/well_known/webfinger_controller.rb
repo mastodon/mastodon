@@ -19,6 +19,7 @@ module WellKnown
 
     def set_account
       username = username_from_resource
+
       @account = begin
         if username == Rails.configuration.x.local_domain
           Account.representative
@@ -41,7 +42,7 @@ module WellKnown
     end
 
     def check_account_suspension
-      gone if @account.suspended_permanently?
+      gone if @account.permanently_unavailable?
     end
 
     def gone

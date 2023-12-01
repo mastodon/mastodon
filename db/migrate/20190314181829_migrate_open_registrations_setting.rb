@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MigrateOpenRegistrationsSetting < ActiveRecord::Migration[5.2]
   def up
     open_registrations = Setting.find_by(var: 'open_registrations')

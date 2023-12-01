@@ -8,18 +8,12 @@ RSpec.describe 'Account actions' do
   let(:scopes)  { 'admin:write admin:write:accounts' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
-  let(:mailer)  { instance_double(ActionMailer::MessageDelivery, deliver_later!: nil) }
-
-  before do
-    allow(UserMailer).to receive(:warning).with(target_account.user, anything).and_return(mailer)
-  end
 
   shared_examples 'a successful notification delivery' do
     it 'notifies the user about the action taken' do
-      subject
-
-      expect(UserMailer).to have_received(:warning).with(target_account.user, anything).once
-      expect(mailer).to have_received(:deliver_later!).once
+      expect { subject }
+        .to have_enqueued_job(ActionMailer::MailDeliveryJob)
+        .with('UserMailer', 'warning', 'deliver_now!', args: [User, AccountWarning])
     end
   end
 
@@ -51,14 +45,9 @@ RSpec.describe 'Account actions' do
       it_behaves_like 'a successful notification delivery'
       it_behaves_like 'a successful logged action', :disable, :user
 
-      it 'returns http success' do
-        subject
-
-        expect(response).to have_http_status(200)
-      end
-
       it 'disables the target account' do
         expect { subject }.to change { target_account.reload.user_disabled? }.from(false).to(true)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -70,14 +59,9 @@ RSpec.describe 'Account actions' do
       it_behaves_like 'a successful notification delivery'
       it_behaves_like 'a successful logged action', :sensitive, :account
 
-      it 'returns http success' do
-        subject
-
-        expect(response).to have_http_status(200)
-      end
-
       it 'marks the target account as sensitive' do
         expect { subject }.to change { target_account.reload.sensitized? }.from(false).to(true)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -89,14 +73,9 @@ RSpec.describe 'Account actions' do
       it_behaves_like 'a successful notification delivery'
       it_behaves_like 'a successful logged action', :silence, :account
 
-      it 'returns http success' do
-        subject
-
-        expect(response).to have_http_status(200)
-      end
-
       it 'marks the target account as silenced' do
         expect { subject }.to change { target_account.reload.silenced? }.from(false).to(true)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -108,14 +87,9 @@ RSpec.describe 'Account actions' do
       it_behaves_like 'a successful notification delivery'
       it_behaves_like 'a successful logged action', :suspend, :account
 
-      it 'returns http success' do
-        subject
-
-        expect(response).to have_http_status(200)
-      end
-
       it 'marks the target account as suspended' do
         expect { subject }.to change { target_account.reload.suspended? }.from(false).to(true)
+        expect(response).to have_http_status(200)
       end
     end
 

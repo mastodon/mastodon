@@ -46,9 +46,9 @@
                                 %p= t 'about.hosted_on', domain: site_hostname
                                 %p
                                   = link_to t('application_mailer.notification_preferences'), settings_preferences_notifications_url
-                                  - if defined?(@type)
+                                  - if defined?(@unsubscribe_url)
                                     ·
-                                    = link_to t('application_mailer.unsubscribe'), unsubscribe_url(token: @user.to_sgid(for: 'unsubscribe').to_s, type: @type)
+                                    = link_to t('application_mailer.unsubscribe'), @unsubscribe_url
                               %td.column-cell.text-right
                                 = link_to root_url do
                                   = image_tag full_pack_url('media/images/mailer/logo.png'), alt: 'Mastodon', height: 24

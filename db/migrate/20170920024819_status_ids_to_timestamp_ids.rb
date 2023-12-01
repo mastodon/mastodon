@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StatusIdsToTimestampIds < ActiveRecord::Migration[5.1]
   def up
     # Prepare the function we will use to generate IDs.

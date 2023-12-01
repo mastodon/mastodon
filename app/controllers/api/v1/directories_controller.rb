@@ -16,7 +16,9 @@ class Api::V1::DirectoriesController < Api::BaseController
   end
 
   def set_accounts
-    @accounts = accounts_scope.offset(params[:offset]).limit(limit_param(DEFAULT_ACCOUNTS_LIMIT))
+    with_read_replica do
+      @accounts = accounts_scope.offset(params[:offset]).limit(limit_param(DEFAULT_ACCOUNTS_LIMIT))
+    end
   end
 
   def accounts_scope

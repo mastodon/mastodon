@@ -119,6 +119,8 @@ module SignatureVerification
   private
 
   def fail_with!(message, **options)
+    Rails.logger.debug { "Signature verification failed: #{message}" }
+
     @signature_verification_failure_reason = { error: message }.merge(options)
     @signed_request_actor = nil
   end

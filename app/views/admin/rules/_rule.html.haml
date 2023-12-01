@@ -1,6 +1,6 @@
 .announcements-list__item
   = link_to edit_admin_rule_path(rule), class: 'announcements-list__item__title' do
-    = "#{rule_counter + 1}."
+    #{rule_counter + 1}.
     = truncate(rule.text)
 
   .announcements-list__item__action-bar

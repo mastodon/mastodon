@@ -34,11 +34,11 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
   end
 
   it 'removes statuses from author\'s home feed' do
-    expect(HomeFeed.new(alice).get(10)).to_not include([status_alice_hello.id, status_alice_other.id])
+    expect(HomeFeed.new(alice).get(10).pluck(:id)).to_not include(status_alice_hello.id, status_alice_other.id)
   end
 
   it 'removes statuses from local follower\'s home feed' do
-    expect(HomeFeed.new(jeff).get(10)).to_not include([status_alice_hello.id, status_alice_other.id])
+    expect(HomeFeed.new(jeff).get(10).pluck(:id)).to_not include(status_alice_hello.id, status_alice_other.id)
   end
 
   it 'notifies streaming API of followers' do

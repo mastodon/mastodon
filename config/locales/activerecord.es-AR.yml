@@ -53,3 +53,7 @@ es-AR:
             position:
               elevated: no puede ser mayor que tu rol actual
               own_role: no se puede cambiar con tu rol actual
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: no se pueden incluir eventos para los que no tenés derechos

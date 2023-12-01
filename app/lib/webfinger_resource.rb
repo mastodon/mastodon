@@ -11,6 +11,8 @@ class WebfingerResource
 
   def username
     case resource
+    when %r{\A(https?://)?#{instance_actor_regexp}/?\Z}
+      Rails.configuration.x.local_domain
     when /\Ahttps?/i
       username_from_url
     when /@/
@@ -21,6 +23,13 @@ class WebfingerResource
   end
 
   private
+
+  def instance_actor_regexp
+    hosts = [Rails.configuration.x.local_domain, Rails.configuration.x.web_domain]
+    hosts.concat(Rails.configuration.x.alternate_domains) if Rails.configuration.x.alternate_domains.present?
+
+    Regexp.union(hosts)
+  end
 
   def username_from_url
     if account_show_page?

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateFollowRecommendationsToVersion2 < ActiveRecord::Migration[6.1]
   # We're switching from a normal to a materialized view so we need
   # custom `up` and `down` paths.

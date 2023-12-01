@@ -22,15 +22,14 @@ module Attachmentable
 
   included do
     def self.has_attached_file(name, options = {}) # rubocop:disable Naming/PredicateName
-      options = { validate_media_type: false }.merge(options)
       super(name, options)
-      send(:"before_#{name}_post_process") do
+
+      send(:"before_#{name}_validate", prepend: true) do
         attachment = send(name)
         check_image_dimension(attachment)
         set_file_content_type(attachment)
         obfuscate_file_name(attachment)
         set_file_extension(attachment)
-        Paperclip::Validators::MediaTypeSpoofDetectionValidator.new(attributes: [name]).validate(self)
       end
     end
   end
@@ -53,9 +52,13 @@ module Attachmentable
     return if attachment.blank? || !/image.*/.match?(attachment.content_type) || attachment.queued_for_write[:original].blank?
 
     width, height = FastImage.size(attachment.queued_for_write[:original].path)
-    matrix_limit  = attachment.content_type == 'image/gif' ? GIF_MATRIX_LIMIT : MAX_MATRIX_LIMIT
+    return unless width.present? && height.present?
 
-    raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported" if width.present? && height.present? && (width * height > matrix_limit)
+    if attachment.content_type == 'image/gif' && width * height > GIF_MATRIX_LIMIT
+      raise Mastodon::DimensionsValidationError, "#{width}x#{height} GIF files are not supported"
+    elsif width * height > MAX_MATRIX_LIMIT
+      raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported"
+    end
   end
 
   def appropriate_extension(attachment)

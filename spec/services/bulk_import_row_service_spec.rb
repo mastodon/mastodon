@@ -161,6 +161,12 @@ RSpec.describe BulkImportRowService do
         end
 
         include_examples 'common behavior'
+
+        it 'does not create a new list' do
+          account.follow!(target_account)
+
+          expect { subject.call(import_row) }.to_not(change { List.where(title: 'my list').count })
+        end
       end
     end
   end

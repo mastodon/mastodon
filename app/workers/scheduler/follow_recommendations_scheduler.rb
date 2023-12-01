@@ -4,7 +4,7 @@ class Scheduler::FollowRecommendationsScheduler
   include Sidekiq::Worker
   include Redisable
 
-  sidekiq_options retry: 0
+  sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
 
   # The maximum number of accounts that can be requested in one page from the
   # API is 80, and the suggestions API does not allow pagination. This number

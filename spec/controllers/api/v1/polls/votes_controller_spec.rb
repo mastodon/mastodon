@@ -18,18 +18,13 @@ RSpec.describe Api::V1::Polls::VotesController do
       post :create, params: { poll_id: poll.id, choices: %w(1) }
     end
 
-    it 'returns http success' do
+    it 'creates a vote', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
-
-    it 'creates a vote' do
       vote = poll.votes.where(account: user.account).first
 
       expect(vote).to_not be_nil
       expect(vote.choice).to eq 1
-    end
 
-    it 'updates poll tallies' do
       expect(poll.reload.cached_tallies).to eq [0, 1]
     end
   end

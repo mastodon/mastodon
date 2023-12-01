@@ -19,7 +19,7 @@ class FetchLinkCardService < BaseService
     @status       = status
     @original_url = parse_urls
 
-    return if @original_url.nil? || @status.preview_cards.any?
+    return if @original_url.nil? || @status.with_preview_card?
 
     @url = @original_url.to_s
 
@@ -45,27 +45,29 @@ class FetchLinkCardService < BaseService
   def html
     return @html if defined?(@html)
 
-    Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => "#{Mastodon::Version.user_agent} Bot").perform do |res|
+    @html = Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => "#{Mastodon::Version.user_agent} Bot").perform do |res|
+      next unless res.code == 200 && res.mime_type == 'text/html'
+
       # We follow redirects, and ideally we want to save the preview card for
       # the destination URL and not any link shortener in-between, so here
       # we set the URL to the one of the last response in the redirect chain
       @url  = res.request.uri.to_s
       @card = PreviewCard.find_or_initialize_by(url: @url) if @card.url != @url
 
-      if res.code == 200 && res.mime_type == 'text/html'
-        @html_charset = res.charset
-        @html = res.body_with_limit
-      else
-        @html_charset = nil
-        @html = nil
-      end
+      @html_charset = res.charset
+
+      res.body_with_limit
     end
   end
 
   def attach_card
-    @status.preview_cards << @card
-    Rails.cache.delete(@status)
-    Trends.links.register(@status)
+    with_redis_lock("attach_card:#{@status.id}") do
+      return if @status.with_preview_card?
+
+      PreviewCardsStatus.create(status: @status, preview_card: @card, url: @original_url)
+      Rails.cache.delete(@status)
+      Trends.links.register(@status)
+    end
   end
 
   def parse_urls
