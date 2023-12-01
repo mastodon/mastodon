@@ -419,8 +419,8 @@ pl:
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
         severity:
           desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkowników z tej domeny widoczne tylko dla osób, które go obserwują. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika. Użyj <strong>Żadne</strong>, jeżeli chcesz jedynie odrzucać zawartość multimedialną."
-          noop: Nic nie rób
-          silence: Limit
+          noop: Żadne
+          silence: Wycisz
           suspend: Zawieś
         title: Nowa blokada domen
       no_domain_block_selected: Nie zmieniono żadnych bloków domen, gdyż żadna nie została wybrana
@@ -556,6 +556,7 @@ pl:
       total_reported: Zgłoszenia dotyczące ich
       total_storage: Załączniki multimedialne
       totals_time_period_hint_html: Poniższe sumy zawierają dane od początku serwera.
+      unknown_instance: Obecnie ta domena jest nieznana na tym serwerze.
     invites:
       deactivate_all: Unieważnij wszystkie
       filter:
@@ -634,6 +635,7 @@ pl:
       created_at: Zgłoszono
       delete_and_resolve: Usuń posty
       forwarded: Przekazano
+      forwarded_replies_explanation: Ten raport nadszedł od zdalnego użytkownika i dotyczy zdalnej treści. Został ci przekazany, bo raportowana treść jest odpowiedzią na jednego z twoich użytkowników.
       forwarded_to: Przekazano do %{domain}
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_sensitive: Oznacz jako wrażliwe
@@ -1031,8 +1033,6 @@ pl:
       new_trending_statuses:
         title: Popularne teraz
       new_trending_tags:
-        no_approved_tags: Obecnie nie ma żadnych zatwierdzonych popularnych hasztagów.
-        requirements: 'Każdy z tych kandydatów może przekroczyć #%{rank} zatwierdzonych popularnych teraz hasztagów, który wynosi obecnie %{lowest_tag_name} z wynikiem %{lowest_tag_score}.'
         title: Popularne hasztagi
       subject: Nowe popularne do przeglądu na %{instance}
   aliases:
@@ -1076,6 +1076,14 @@ pl:
       hint_html: Jeszcze jedno! Potrzebujemy potwierdzić twoje człowieczeństwo, żeby ograniczyć spam. Rozwiąż poniższą CAPTCHA-ę i naciśnij "Kontynuuj".
       title: Kontrola bezpieczeństwa
     confirmations:
+      awaiting_review: Twój adres e-mail został potwierdzony! Administracja %{domain} sprawdza Twoją rejestrację. Otrzymasz e-mail w momencie, gdy zaakceptują Twoje konto!
+      awaiting_review_title: Twoja rejestracja jest obecnie sprawdzana
+      clicking_this_link: kliknąć ten link
+      login_link: zaloguj się
+      proceed_to_login_html: Teraz możesz przejść do %{login_link}.
+      redirect_to_app_html: Powinieneś zostać przekierowany do aplikacji <strong>%{app_name}</strong>. Jeśli tak się nie stało, spróbuj %{clicking_this_link} lub ręcznie wróć do aplikacji.
+      registration_complete: Twoja rejestracja na %{domain} została zakończona!
+      welcome_title: Witaj, %{name}!
       wrong_email_hint: Jeśli ten adres e-mail nie jest poprawny, możesz go zmienić w ustawieniach konta.
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
@@ -1137,6 +1145,7 @@ pl:
       functional: Twoje konto jest w pełni funkcjonalne.
       pending: Twoje zgłoszenie czeka na zatwierdzenie przez nas. Może to trochę potrwać. Jeżeli zgłoszenie zostanie przyjęte, otrzymasz wiadomość e-mail.
       redirecting_to: Twoje konto jest nieaktywne, ponieważ obecnie przekierowuje je na %{acct}.
+      self_destruct: "%{domain} jest zamykane, dostęp do konta będzie ograniczony."
       view_strikes: Zobacz dawne ostrzeżenia nałożone na twoje konto
     too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
     use_security_key: Użyj klucza bezpieczeństwa
@@ -1408,6 +1417,7 @@ pl:
       '86400': dobie
     expires_in_prompt: Nigdy
     generate: Wygeneruj
+    invalid: Niepoprawne zaproszenie
     invited_by: 'Zostałeś(-aś) zaproszony(-a) przez:'
     max_uses:
       few: "%{count} użycia"
@@ -1622,6 +1632,9 @@ pl:
     over_daily_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów na ten dzień
     over_total_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów
     too_soon: Zaplanowana data musi wypadać w przyszłości
+  self_destruct:
+    lead_html: Niestety, <strong>%{domain}</strong> jest permanentnie zamykane. Konta z tego serwera nie będą dostępne, ale można jeszcze odzyskać kopię zapasową danych.
+    title: Ten serwer jest zamykany
   sessions:
     activity: Ostatnia aktywność
     browser: Przeglądarka

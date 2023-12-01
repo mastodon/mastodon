@@ -3,7 +3,7 @@
 class VerifyAccountLinksWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'default', retry: false, lock: :until_executed
+  sidekiq_options queue: 'default', retry: false, lock: :until_executed, lock_ttl: 1.hour.to_i
 
   def perform(account_id)
     account = Account.find(account_id)

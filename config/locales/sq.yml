@@ -1,18 +1,18 @@
 ---
 sq:
   about:
-    about_mastodon_html: 'Rrjeti shoqëror i së ardhmes: Pa reklama, pa survejim nga korporata, konceptim etik dhe decentralizim! Jini zot i të dhënave tuaja, me Mastodon-in!'
-    contact_missing: I parregulluar
+    about_mastodon_html: 'Rrjeti social i së ardhmes: Pa reklama, pa sy vëzhguese nga korporata, etik dhe i decentralizuar! Merrni sërisht zotësinë e të dhënave tuaja, me Mastodon!'
+    contact_missing: E pacaktuar
     contact_unavailable: N/A
-    hosted_on: Mastodon i strehuar në %{domain}
+    hosted_on: Server Mastodon i strehuar në %{domain}
     title: Mbi
   accounts:
     follow: Ndiqeni
     followers:
       one: Ndjekës
       other: Ndjekës
-    following: Ndjekje
-    instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë shërbyesin dhe jo ndonjë përdorues individual. Përdoret për qëllime federimi dhe s’duhet pezulluar.
+    following: Po ndjek
+    instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë serverin dhe jo ndonjë përdorues. Përdoret për qëllime federimi dhe s’duhet pezulluar.
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
     nothing_here: S’ka gjë këtu!
@@ -533,6 +533,7 @@ sq:
       total_reported: Raportime rreth tyre
       total_storage: Bashkëngjitje media
       totals_time_period_hint_html: Vlerat e shfaqura më poshtë përfshijnë të dhënat për krejt kohën.
+      unknown_instance: Aktualisht në këtë shërbyes s’ka gjurmë të kësaj përkatësie.
     invites:
       deactivate_all: Çaktivizoji krejt
       filter:
@@ -609,6 +610,7 @@ sq:
       created_at: Raportuar më
       delete_and_resolve: Fshiji postimet
       forwarded: U përcoll
+      forwarded_replies_explanation: Ky raportim është nga një përdorues i largët dhe rreth lënde të largët. Ju është përcjellë ngaqë lënda e raportuar gjendet në përgjigje ndaj njërit prej përdoruesve tuaj.
       forwarded_to: U përcoll te %{domain}
       mark_as_resolved: Vëri shenjë si i zgjidhur
       mark_as_sensitive: Vëri shenjë si rezervat
@@ -924,6 +926,7 @@ sq:
         peaked_on_and_decaying: Kulmoi më %{date}, tani në rënie
         title: Hashtag-ë në modë
         trendable: Mund të shfaqet nën të modës
+        trending_rank: 'Trending #%{rank}'
         usable: Mund të përdoret
         usage_comparison: Përdorur %{today} herë sot, krahasuar me %{yesterday} dje
         used_by_over_week:
@@ -990,7 +993,6 @@ sq:
       new_trending_statuses:
         title: Postime në modë
       new_trending_tags:
-        no_approved_tags: Aktualisht s’ka hashtag-ë në modë të miratuar.
         title: Hashtag-ë në modë
       subject: Gjëra të reja në modë për shqyrtim te %{instance}
   aliases:
@@ -1034,6 +1036,14 @@ sq:
       hint_html: Edhe një gjë tjetër! Na duhet të ripohoni se jeni qenie njerëzore (që të mbajmë larg mesazhe të padëshiruar!). Zgjidhni CAPTCHA-n më poshtë dhe klikoni mbi “Vazhdo”.
       title: Kontroll sigurie
     confirmations:
+      awaiting_review: Adresa juaj email u ripohua! Ekipi i %{domain} stani po bën regjistrimin tuaj. Nëse e miratojnë llogarinë tuaj, do të merrni një email!
+      awaiting_review_title: Regjistrimi juaj po merret në shqyrtim
+      clicking_this_link: duke klikuar këtë lidhje
+      login_link: hyni
+      proceed_to_login_html: Tani mund të vazhdoni të %{login_link}.
+      redirect_to_app_html: Duhet të ishit ridrejtuar te aplikacioni <strong>%{app_name}</strong>. Nëse s’ndodhi, provoni %{clicking_this_link}, ose të ktheheni dorazi te aplikacioni.
+      registration_complete: Tanimë është plotësuar regjistrimi juaj në %{domain}!
+      welcome_title: Mirë se vini, %{name}!
       wrong_email_hint: Nëse ajo adresë email s’është e saktë, mund ta ndryshoni te rregullimet e llogarisë.
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
@@ -1095,6 +1105,7 @@ sq:
       functional: Llogaria juaj është tërësisht funksionale.
       pending: Aplikimi juaj është në pritje të shqyrtimit nga stafi ynë. Kjo mund të dojë ca kohë. Nëse aplikimi juaj miratohet, do të merrni një email.
       redirecting_to: Llogaria juaj është joaktive, ngaqë aktualisht ridrejton te %{acct}.
+      self_destruct: Ngaqë %{domain} po mbyllet, do të keni vetëm hyrje të kufizuar te llogaria juaj.
       view_strikes: Shihni paralajmërime të dikurshme kundër llogarisë tuaj
     too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
     use_security_key: Përdor kyç sigurie
@@ -1352,6 +1363,7 @@ sq:
       '86400': 1 ditë
     expires_in_prompt: Kurrë
     generate: Prodho lidhje ftese
+    invalid: Kjo ftesë s’është e vlefshme
     invited_by: 'Qetë ftuar nga:'
     max_uses:
       one: 1 përdorim
@@ -1564,6 +1576,9 @@ sq:
     over_daily_limit: Keni tejkaluar kufirin e %{limit} mesazheve të planifikuara për atë ditë
     over_total_limit: Keni tejkaluar kufirin prej %{limit} mesazhesh të planifikuara
     too_soon: Data e planifikimit duhet të bjerë në të ardhmen
+  self_destruct:
+    lead_html: Mjerisht, <strong>%{domain}</strong> po mbyllet përgjithmonë. Nëse patët një llogari këtu, s’do të jeni në gjendje të vazhdoni ta përdorni, por mundeni ende të kërkoni një kopjeruajtje të të dhënave tuaja.
+    title: Ky shërbyes po mbyllet
   sessions:
     activity: Veprimtaria e fundit
     browser: Shfletues

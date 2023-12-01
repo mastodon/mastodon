@@ -84,15 +84,10 @@ RSpec.describe 'IP Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns http success' do
+    it 'returns the correct ip block', :aggregate_failures do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the correct ip block' do
-      subject
-
       json = body_as_json
 
       expect(json[:ip]).to eq("#{ip_block.ip}/#{ip_block.ip.prefix}")
@@ -119,15 +114,10 @@ RSpec.describe 'IP Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns http success' do
+    it 'returns the correct ip block', :aggregate_failures do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the correct ip block' do
-      subject
-
       json = body_as_json
 
       expect(json[:ip]).to eq("#{params[:ip]}/32")
@@ -186,15 +176,10 @@ RSpec.describe 'IP Blocks' do
     let!(:ip_block) { IpBlock.create(ip: '185.200.13.3', severity: 'no_access', comment: 'Spam', expires_in: 48.hours) }
     let(:params)    { { severity: 'sign_up_requires_approval', comment: 'Decreasing severity' } }
 
-    it 'returns http success' do
+    it 'returns the correct ip block', :aggregate_failures do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the correct ip block' do
-      subject
-
       expect(body_as_json).to match(hash_including({
         ip: "#{ip_block.ip}/#{ip_block.ip.prefix}",
         severity: 'sign_up_requires_approval',
@@ -226,21 +211,11 @@ RSpec.describe 'IP Blocks' do
 
     let!(:ip_block) { IpBlock.create(ip: '185.200.13.3', severity: 'no_access') }
 
-    it 'returns http success' do
+    it 'deletes the ip block', :aggregate_failures do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns an empty body' do
-      subject
-
       expect(body_as_json).to be_empty
-    end
-
-    it 'deletes the ip block' do
-      subject
-
       expect(IpBlock.find_by(id: ip_block.id)).to be_nil
     end
 

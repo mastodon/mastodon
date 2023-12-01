@@ -39,7 +39,7 @@
                               - unless @warning.none_action?
                                 %p= t "user_mailer.warning.explanation.#{@warning.action}", instance: @instance
 
-                              - unless @warning.text.blank?
+                              - if @warning.text.present?
                                 = linkify(@warning.text)
 
                               - if @warning.report && !@warning.report.other?
@@ -68,7 +68,7 @@
           %table.content-section{ cellspacing: 0, cellpadding: 0 }
             %tbody
               %tr
-                %td.content-cell{ class: @statuses.nil? || @statuses.empty? ? '' : 'content-start' }
+                %td.content-cell{ class: @statuses.blank? ? '' : 'content-start' }
                   %table.column{ cellspacing: 0, cellpadding: 0 }
                     %tbody
                       %tr

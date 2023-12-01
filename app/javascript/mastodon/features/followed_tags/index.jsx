@@ -8,11 +8,12 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
 import { debounce } from 'lodash';
 
 import { expandFollowedHashtags, fetchFollowedHashtags } from 'mastodon/actions/tags';
 import ColumnHeader from 'mastodon/components/column_header';
-import Hashtag from 'mastodon/components/hashtag';
+import { Hashtag } from 'mastodon/components/hashtag';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import Column from 'mastodon/features/ui/components/column';
 
@@ -55,6 +56,7 @@ class FollowedTags extends ImmutablePureComponent {
       <Column bindToDocument={!multiColumn}>
         <ColumnHeader
           icon='hashtag'
+          iconComponent={TagIcon}
           title={intl.formatMessage(messages.heading)}
           showBackButton
           multiColumn={multiColumn}

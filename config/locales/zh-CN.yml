@@ -40,7 +40,7 @@ zh-CN:
         current_email: 当前的电子邮箱
         label: 更改电子邮箱
         new_email: 新的电子邮箱
-        submit: 更改电子邮件地址
+        submit: 更改电子邮箱
         title: 更改 %{username} 的电子邮箱
       change_role:
         changed_msg: 已成功更改角色！
@@ -68,8 +68,8 @@ zh-CN:
       enable_sign_in_token_auth: 启用电子邮件令牌认证
       enabled: 已启用
       enabled_msg: 成功解冻 %{username} 的账号
-      followers: 关注者
-      follows: 正在关注
+      followers: 粉丝
+      follows: 关注
       header: 个人资料页横幅图片
       inbox_url: 收件箱（Inbox）URL
       invite_request_text: 加入理由
@@ -523,6 +523,7 @@ zh-CN:
       total_reported: 关于对方的举报
       total_storage: 媒体文件
       totals_time_period_hint_html: 下方显示的总数来自全部历史数据。
+      unknown_instance: 此服务器上目前没有此域名的记录。
     invites:
       deactivate_all: 撤销所有邀请链接
       filter:
@@ -598,6 +599,7 @@ zh-CN:
       created_at: 举报时间
       delete_and_resolve: 删除嘟文
       forwarded: 已转发
+      forwarded_replies_explanation: 该举报来自外站用户，涉及外站内容。之所以转发给您，是因为被举报的内容是对您站点一位用户的回复。
       forwarded_to: 转发举报至 %{domain}
       mark_as_resolved: 标记为已处理
       mark_as_sensitive: 标记为敏感内容
@@ -626,13 +628,13 @@ zh-CN:
       statuses_description_html: 在与该账号的通信中将引用违规内容
       summary:
         action_preambles:
-          delete_html: 您即将<strong>删除</strong> <strong>@%{acct}</strong> 的一些帖子。 这将：
+          delete_html: 您即将<strong>删除</strong> <strong>@%{acct}</strong> 的一些嘟文。 这将：
           mark_as_sensitive_html: 您即将 <strong>标记</strong> <strong>@%{acct}</strong> 的帖一些子为 <strong>敏感</strong>。这将：
           silence_html: 您即将<strong>限制</strong> <strong>@%{acct}</strong> 的帐户。 这将：
           suspend_html: 您即将<strong>暂停</strong> <strong>@%{acct}</strong> 的帐户。 这将：
         actions:
-          delete_html: 删除违规帖子
-          mark_as_sensitive_html: 将违规帖子的媒体标记为敏感
+          delete_html: 删除违规嘟文
+          mark_as_sensitive_html: 将违规嘟文的媒体标记为敏感
           silence_html: 严格限制 <strong>@%{acct}</strong> 的影响力，方法是让他们的个人资料和内容仅对已经关注他们的人可见，或手动查找其个人资料时
           suspend_html: 暂停 <strong>@%{acct}</strong>，使他们的个人资料和内容无法访问，也无法与之互动
         close_report: '将报告 #%{id} 标记为已解决'
@@ -759,7 +761,7 @@ zh-CN:
           open: 开放注册
       security:
         authorized_fetch: 需要跨站认证
-        authorized_fetch_hint: 要求跨站验证可以更严格地执行用户级和服务器级的封锁。然而，这会产生性能上的代价，减少你的回复触达范围，并可能导致与一些联邦服务的兼容问题。此外，这并不能阻止专门的参与者获取你的公共帖子和账户。
+        authorized_fetch_hint: 要求外站请求通过验证能够使用户级别与服务器级别的封锁更为严格。然而，这将带来额外的性能负担、减少回复触达范围、并可能导致与一些联邦宇宙服务的兼容性问题。此外，这并不能阻止他人针对性地获取公开嘟文与账户。
         authorized_fetch_overridden_hint: 由于此设置被环境变量覆盖，目前无法更改。
         federation_authentication: 强制跨站认证
       title: 服务器设置
@@ -977,8 +979,6 @@ zh-CN:
       new_trending_statuses:
         title: 热门嘟文
       new_trending_tags:
-        no_approved_tags: 目前没有经批准的热门标签。
-        requirements: '这些候选人都可能会超过#%{rank} 批准的热门标签，目前是 #%{lowest_tag_name} ，分数为 %{lowest_tag_score}。'
         title: 热门标签
       subject: "%{instance} 上有新热门等待审核"
   aliases:
@@ -1022,6 +1022,14 @@ zh-CN:
       hint_html: 只剩最后一件事了！我们需要确认您是一个人类（这样我们才能阻止恶意访问！）。请输入下面的验证码，然后点击“继续”。
       title: 安全检查
     confirmations:
+      awaiting_review: 您的电子邮件地址已确认！%{domain} 的工作人员正在审核您的注册信息。如果他们批准了您的账户，您将收到一封邮件通知！
+      awaiting_review_title: 您的注册申请正在审核中
+      clicking_this_link: 点击此链接
+      login_link: 登录
+      proceed_to_login_html: 现在您可以继续前往 %{login_link} 。
+      redirect_to_app_html: 您应该已被重定向到 <strong>%{app_name}</strong> 应用程序。如果没有，请尝试 %{clicking_this_link} 或手动返回应用程序。
+      registration_complete: 您在 %{domain} 上的注册现已完成！
+      welcome_title: 欢迎您，%{name}！
       wrong_email_hint: 如果该电子邮件地址不正确，您可以在帐户设置中进行更改。
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
@@ -1083,6 +1091,7 @@ zh-CN:
       functional: 你的账号可以正常使用了。
       pending: 工作人员正在审核你的申请。这需要花点时间。在申请被批准后，你将收到一封电子邮件。
       redirecting_to: 你的账户无效，因为它已被设置为跳转到 %{acct}
+      self_destruct: 由于 %{domain} 即将关闭，你只能获得对你本人账号的有限访问权限。
       view_strikes: 查看针对你账号的记录
     too_fast: 表单提交过快，请重试。
     use_security_key: 使用安全密钥
@@ -1164,7 +1173,7 @@ zh-CN:
     invalid_domain: 不是一个有效的域名
   edit_profile:
     basic_information: 基本信息
-    hint_html: "<strong>自定义公开资料和帖子旁边显示的内容。</strong>当您填写完整的个人资料并设置了头像时，其他人更有可能关注您并与您互动。"
+    hint_html: "<strong>自定义公开资料和嘟文旁边显示的内容。</strong>当您填写完整的个人资料并设置了头像时，其他人更有可能关注您并与您互动。"
     other: 其他
   errors:
     '400': 你提交的请求无效或格式不正确。
@@ -1333,6 +1342,7 @@ zh-CN:
       '86400': 1 天后
     expires_in_prompt: 永不过期
     generate: 生成邀请链接
+    invalid: 此邀请无效
     invited_by: 你的邀请人是：
     max_uses:
       other: "%{count} 次"
@@ -1499,7 +1509,7 @@ zh-CN:
     privacy: 隐私
     privacy_hint_html: 控制你愿意向他人透露多少信息。通过浏览他人的关注列表和查看他们发嘟所用的应用，人们可以发现有趣的用户和酷炫的应用，但你可能更喜欢将其隐藏起来。
     reach: 范围
-    reach_hint_html: 控制您是否希望被新人发现和关注。您是否希望您的帖子出现在“探索”屏幕上？您是否希望其他人在关注推荐中看到您？您是想自动接受所有新粉丝，还是对每个粉丝都进行仔细的筛选？
+    reach_hint_html: 控制您是否希望被新人发现和关注。您是否希望您的嘟文出现在“探索”页面上？您是否希望其他人在关注推荐中看到您？您是想自动接受所有新粉丝，还是对每个粉丝都进行仔细的筛选？
     search: 搜索
     search_hint_html: 控制你希望被找到的方式。你想让人们通过你公开发布的内容来找到你吗？当在网络上搜索时，你是否希望Mastodon之外的人能够找到你的个人资料？请注意，我们无法保证完全排除所有搜索引擎对公开信息的索引。
     title: 隐私与可达性
@@ -1544,6 +1554,9 @@ zh-CN:
     over_daily_limit: 你已超出每日定时嘟文的上限（%{limit} 条）
     over_total_limit: 你已超出定时嘟文的上限（%{limit} 条）
     too_soon: 所定的时间必须在未来
+  self_destruct:
+    lead_html: 很遗憾，<strong>%{domain}</strong> 即将永久关闭。 如果你在其中设有账号，那么你将无法再继续使用，但你仍可以请求获得本人数据的备份。
+    title: 此服务器即将关闭
   sessions:
     activity: 最后一次活跃的时间
     browser: 浏览器

@@ -578,6 +578,7 @@ ar:
       total_reported: تقارير عنهم
       total_storage: الوسائط المُرفَقة
       totals_time_period_hint_html: المجموع المعروض في الأسفل يشمل بيانات منذ البداية.
+      unknown_instance: لا يوجد حاليا أي تسجيل لهذا النطاق على هذا الخادم.
     invites:
       deactivate_all: تعطيلها كافة
       filter:
@@ -1067,8 +1068,6 @@ ar:
       new_trending_statuses:
         title: المنشورات الشائعة
       new_trending_tags:
-        no_approved_tags: لا توجد حاليًا وسوم شائعة موافق عليها.
-        requirements: 'يمكن لأي من هؤلاء المرشحين أن يتجاوز علامة #%{rank} من الوسوم الموافق عليها، وهي حاليا #%{lowest_tag_name} مع نتيجة %{lowest_tag_score}.'
         title: الوسوم المتداولة
       subject: تداولات جديدة في انتظار المراجعة على %{instance}
   aliases:
@@ -1112,6 +1111,11 @@ ar:
       hint_html: شيء واحد آخر! نحن بحاجة إلى التأكّد من أنك إنسان (حتى نتمكن من تتفادي البريد المزعج!). حل رمز CAPTCHA أدناه وانقر فوق "متابعة".
       title: التحقق من الأمان
     confirmations:
+      awaiting_review: تمّ تأكيد عنوان بريدك الإلكتروني! موظفو %{domain} يعاينونَ تسجيلكَ حاليًا. ستتلقى بريدًا إلكترونيًا إن تَمّ قُبولك!
+      awaiting_review_title: التسجيل الخاص بك قيد المُعاينة
+      clicking_this_link: اضغط على هذا الرابط
+      login_link: تسجيل الدخول
+      proceed_to_login_html: يمكنكَ الآن الاستمرار إلى %{login_link}.
       wrong_email_hint: إذا كان عنوان البريد الإلكتروني هذا غير صحيح، يمكنك تغييره في إعدادات الحساب.
     delete_account: احذف الحساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.

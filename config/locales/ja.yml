@@ -378,12 +378,12 @@ ja:
       add_new: ドメインブロックを追加
       confirm_suspension:
         cancel: キャンセル
-        confirm: ブロック
-        permanent_action: 失われたデータやフォロー関係は、ブロックを解除しても元に戻せません。
-        preamble_html: "<strong>%{domain}</strong> と、そのサブドメインをブロックします。"
+        confirm: 停止
+        permanent_action: 失われたデータやフォロー関係は、停止を解除しても元に戻せません。
+        preamble_html: "<strong>%{domain}</strong> と、そのサブドメインに「停止」の処置を行います。"
         remove_all_data: この操作により、対象のドメインにあるアカウントからのコンテンツやメディア、プロフィール情報はすべて削除されます。
-        stop_communication: ブロックしたサーバーとは通信を行わなくなります。
-        title: "%{domain} をブロック"
+        stop_communication: 対象のサーバーとは通信を行わなくなります。
+        title: "「%{domain}」ドメインブロックの確認"
         undo_relationships: この操作により、このサーバーと対象サーバーのアカウント間のフォロー関係はすべて解除されます。
       created_msg: ドメインブロック処理を完了しました
       destroyed_msg: ドメインブロックを外しました
@@ -523,6 +523,7 @@ ja:
       total_reported: 通報合計
       total_storage: 添付されたメディア
       totals_time_period_hint_html: 以下に表示される合計には、すべての時間のデータが含まれています。
+      unknown_instance: 今のところ、このドメインについては何も記録されていません。
     invites:
       deactivate_all: すべて無効化
       filter:
@@ -598,6 +599,7 @@ ja:
       created_at: 通報日時
       delete_and_resolve: 投稿を削除
       forwarded: 転送済み
+      forwarded_replies_explanation: この報告はリモートユーザーからのものであり、またリモートコンテンツに関するものです。報告されたコンテンツがあなたのユーザーの内の一人に対するリプライの中にあるため、あなたに転送されました。
       forwarded_to: "%{domain}に転送されました"
       mark_as_resolved: 解決済みとしてマーク
       mark_as_sensitive: 閲覧注意にする
@@ -770,12 +772,12 @@ ja:
       critical_update: "※緊急 (速やかに適用してください)"
       description: Mastodonサーバーはいつでも最新の状態を保ち、新しい機能や修正を利用できるようにしておくことをおすすめします。またセキュリティの問題が発生した場合は、速やかにMastodonをアップデートすることが大切です。Mastodonは30分おきにアップデートを確認し、通知設定に応じて新しいアップデートをメールで通知します。
       documentation_link: もっと見る
-      release_notes: 更新情報
+      release_notes: リリースノート
       title: 利用可能なアップデート
       type: アップデートの種別
       types:
         major: メジャーリリース
-        minor: リリース
+        minor: マイナーリリース
         patch: パッチ (バグ修正のみ)
       version: バージョン
     statuses:
@@ -977,8 +979,6 @@ ja:
       new_trending_statuses:
         title: トレンド投稿
       new_trending_tags:
-        no_approved_tags: 承認されたトレンドハッシュタグはありません。
-        requirements: 'これらの候補はいずれも %{rank} 位の承認済みトレンドハッシュタグのスコアを上回ります。現在 #%{lowest_tag_name} のスコアは %{lowest_tag_score} です。'
         title: トレンドハッシュタグ
       subject: "%{instance}で新しいトレンドが審査待ちです"
   aliases:
@@ -1022,6 +1022,14 @@ ja:
       hint_html: もう一つだけ！あなたが人間であることを確認する必要があります(スパムを防ぐためです！)。 以下のCAPTCHAを解き、「続ける」をクリックします。
       title: セキュリティチェック
     confirmations:
+      awaiting_review: メールアドレスが確認できました。%{domain} のスタッフが登録審査を行います。承認されたらメールでお知らせします！
+      awaiting_review_title: 登録の審査待ちです
+      clicking_this_link: このリンクを押す
+      login_link: ログイン
+      proceed_to_login_html: それでは%{login_link}しましょう。
+      redirect_to_app_html: 自動的に<strong>%{app_name}</strong>に戻らなかった場合、%{clicking_this_link}か、手動でアプリを切り替えてください。
+      registration_complete: "%{domain} へのアカウント登録が完了しました。"
+      welcome_title: ようこそ、%{name}さん！
       wrong_email_hint: メールアドレスが正しくない場合は、アカウント設定で変更できます。
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除する前に、確認画面があります。
@@ -1083,6 +1091,7 @@ ja:
       functional: アカウントは完全に機能しています。
       pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
       redirecting_to: アカウントは%{acct}に引っ越し設定されているため非アクティブになっています。
+      self_destruct: "%{domain} は閉鎖されるため、今後このアカウントでは限られた操作しかできません。"
       view_strikes: 過去のストライクを表示
     too_fast: フォームの送信が速すぎます。もう一度やり直してください。
     use_security_key: セキュリティキーを使用
@@ -1333,6 +1342,7 @@ ja:
       '86400': 1日
     expires_in_prompt: 無期限
     generate: 招待リンクを作成
+    invalid: この招待は無効です
     invited_by: '次の人に招待されました:'
     max_uses:
       other: "%{count}"
@@ -1544,6 +1554,9 @@ ja:
     over_daily_limit: その日予約できる投稿数 %{limit}を超えています
     over_total_limit: 予約できる投稿数 %{limit}を超えています
     too_soon: より先の時間を指定してください
+  self_destruct:
+    lead_html: 残念ながら、<strong>%{domain}</strong> は恒久的に閉鎖されます。ここにお持ちだったアカウントを今後使うことはできませんが、これまでのデータのバックアップを要求することはまだ可能です。
+    title: このサーバーは閉鎖されます
   sessions:
     activity: 最後のアクティビティ
     browser: ブラウザ
@@ -1653,7 +1666,7 @@ ja:
       private_long: フォロワーにのみ表示されます
       public: 公開
       public_long: 誰でも見ることができ、かつ公開タイムラインに表示されます
-      unlisted: 未収載
+      unlisted: 非収載
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   statuses_cleanup:
     enabled: 古い投稿を自動的に削除する

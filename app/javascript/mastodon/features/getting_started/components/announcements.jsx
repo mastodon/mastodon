@@ -4,10 +4,14 @@ import { PureComponent } from 'react';
 import { defineMessages, injectIntl, FormattedMessage, FormattedDate } from 'react-intl';
 
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
+import { ReactComponent as ChevronLeftIcon } from '@material-symbols/svg-600/outlined/chevron_left.svg';
+import { ReactComponent as ChevronRightIcon } from '@material-symbols/svg-600/outlined/chevron_right.svg';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 import ReactSwipeableViews from 'react-swipeable-views';
@@ -17,9 +21,10 @@ import { AnimatedNumber } from 'mastodon/components/animated_number';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 import EmojiPickerDropdown from 'mastodon/features/compose/containers/emoji_picker_dropdown_container';
-import unicodeMapping from 'mastodon/features/emoji/emoji_unicode_mapping_light';
+import { unicodeMapping } from 'mastodon/features/emoji/emoji_unicode_mapping_light';
 import { autoPlayGif, reduceMotion, disableSwiping, mascot } from 'mastodon/initial_state';
 import { assetHost } from 'mastodon/utils/config';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -27,14 +32,10 @@ const messages = defineMessages({
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
 });
 
-class Content extends ImmutablePureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
+class ContentWithRouter extends ImmutablePureComponent {
   static propTypes = {
     announcement: ImmutablePropTypes.map.isRequired,
+    ...WithRouterPropTypes,
   };
 
   setRef = c => {
@@ -89,25 +90,25 @@ class Content extends ImmutablePureComponent {
   }
 
   onMentionClick = (mention, e) => {
-    if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+    if (this.props.history && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/@${mention.get('acct')}`);
+      this.props.history.push(`/@${mention.get('acct')}`);
     }
   };
 
   onHashtagClick = (hashtag, e) => {
     hashtag = hashtag.replace(/^#/, '');
 
-    if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+    if (this.props.history&& e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/tags/${hashtag}`);
+      this.props.history.push(`/tags/${hashtag}`);
     }
   };
 
   onStatusClick = (status, e) => {
-    if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+    if (this.props.history && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
+      this.props.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
     }
   };
 
@@ -152,6 +153,8 @@ class Content extends ImmutablePureComponent {
   }
 
 }
+
+const Content = withRouter(ContentWithRouter);
 
 class Emoji extends PureComponent {
 
@@ -294,7 +297,7 @@ class ReactionsBar extends ImmutablePureComponent {
               />
             ))}
 
-            {visibleReactions.size < 8 && <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} button={<Icon id='plus' />} />}
+            {visibleReactions.size < 8 && <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} button={<Icon id='plus' icon={AddIcon} />} />}
           </div>
         )}
       </TransitionMotion>
@@ -440,9 +443,9 @@ class Announcements extends ImmutablePureComponent {
 
           {announcements.size > 1 && (
             <div className='announcements__pagination'>
-              <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.previous)} icon='chevron-left' onClick={this.handlePrevClick} size={13} />
+              <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.previous)} icon='chevron-left' iconComponent={ChevronLeftIcon} onClick={this.handlePrevClick} size={13} />
               <span>{index + 1} / {announcements.size}</span>
-              <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.next)} icon='chevron-right' onClick={this.handleNextClick} size={13} />
+              <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.next)} icon='chevron-right' iconComponent={ChevronRightIcon} onClick={this.handleNextClick} size={13} />
             </div>
           )}
         </div>

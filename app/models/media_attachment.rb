@@ -171,7 +171,7 @@ class MediaAttachment < ApplicationRecord
   DEFAULT_STYLES = [:original].freeze
 
   GLOBAL_CONVERT_OPTIONS = {
-    all: '-quality 90 +profile "!icc,*" +set modify-date -define jpeg:dct-method=float +set create-date',
+    all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp -define jpeg:dct-method=float',
   }.freeze
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true
@@ -205,12 +205,11 @@ class MediaAttachment < ApplicationRecord
   validates :thumbnail, absence: true, if: -> { local? && !audio_or_video? }
 
   scope :attached,   -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
-  scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
-  scope :local,      -> { where(remote_url: '') }
-  scope :remote,     -> { where.not(remote_url: '') }
   scope :cached,     -> { remote.where.not(file_file_name: nil) }
-
-  default_scope { order(id: :asc) }
+  scope :local,      -> { where(remote_url: '') }
+  scope :ordered,    -> { order(id: :asc) }
+  scope :remote,     -> { where.not(remote_url: '') }
+  scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
 
   attr_accessor :skip_download
 
