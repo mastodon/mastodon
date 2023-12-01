@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AccountAssociations
+module Account::Associations
   extend ActiveSupport::Concern
 
   included do

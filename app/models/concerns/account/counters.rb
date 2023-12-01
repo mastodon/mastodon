@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AccountCounters
+module Account::Counters
   extend ActiveSupport::Concern
 
   ALLOWED_COUNTER_KEYS = %i(statuses_count following_count followers_count).freeze

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AccountFinderConcern
+module Account::FinderConcern
   extend ActiveSupport::Concern
 
   class_methods do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AccountStatusesSearch do
+describe Account::StatusesSearch do
   describe 'a non-indexable account becoming indexable' do
     let(:account) { Account.find_by(username: 'search_test_account_1') }
 

@@ -30,14 +30,14 @@
 #
 
 class Status < ApplicationRecord
+  include Cacheable
   include Discard::Model
   include Paginable
-  include Cacheable
-  include StatusThreadingConcern
-  include StatusSnapshotConcern
   include RateLimitable
-  include StatusSafeReblogInsert
-  include StatusSearchConcern
+  include Status::SafeReblogInsert
+  include Status::SearchConcern
+  include Status::SnapshotConcern
+  include Status::ThreadingConcern
 
   rate_limit by: :account, family: :statuses
 

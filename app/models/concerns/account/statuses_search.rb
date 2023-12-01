@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AccountStatusesSearch
+module Account::StatusesSearch
   extend ActiveSupport::Concern
 
   included do

@@ -67,8 +67,8 @@ module Mastodon::CLI
         local? ? username : "#{username}@#{domain}"
       end
 
-      # This is a duplicate of the AccountMerging concern because we need it to
-      # be independent from code version.
+      # This is a duplicate of the Account::Merging concern because we need it
+      # to be independent from code version.
       def merge_with!(other_account)
         # Since it's the same remote resource, the remote resource likely
         # already believes we are following/blocking, so it's safe to

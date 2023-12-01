@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Omniauthable
+module User::Omniauthable
   extend ActiveSupport::Concern
 
   TEMP_EMAIL_PREFIX = 'change@me'

@@ -107,7 +107,7 @@ Rails/ApplicationController:
 # Include: app/models/**/*.rb
 Rails/HasAndBelongsToMany:
   Exclude:
-    - 'app/models/concerns/account_associations.rb'
+    - 'app/models/concerns/account/associations.rb'
     - 'app/models/preview_card.rb'
     - 'app/models/status.rb'
     - 'app/models/tag.rb'
@@ -116,7 +116,7 @@ Rails/HasAndBelongsToMany:
 # Include: app/models/**/*.rb
 Rails/HasManyOrHasOneDependent:
   Exclude:
-    - 'app/models/concerns/account_counters.rb'
+    - 'app/models/concerns/account/counters.rb'
     - 'app/models/conversation.rb'
     - 'app/models/custom_emoji.rb'
     - 'app/models/custom_emoji_category.rb'
@@ -172,7 +172,7 @@ Rails/SkipsModelValidations:
   Exclude:
     - 'app/controllers/admin/invites_controller.rb'
     - 'app/controllers/concerns/session_tracking_concern.rb'
-    - 'app/models/concerns/account_merging.rb'
+    - 'app/models/concerns/account/merging.rb'
     - 'app/models/concerns/expireable.rb'
     - 'app/models/status.rb'
     - 'app/models/trends/links.rb'
@@ -252,7 +252,7 @@ Rails/WhereExists:
     - 'app/lib/feed_manager.rb'
     - 'app/lib/status_cache_hydrator.rb'
     - 'app/lib/suspicious_sign_in_detector.rb'
-    - 'app/models/concerns/account_interactions.rb'
+    - 'app/models/concerns/account/interactions.rb'
     - 'app/models/featured_tag.rb'
     - 'app/models/poll.rb'
     - 'app/models/session_activation.rb'
@@ -342,8 +342,8 @@ Style/GuardClause:
     - 'app/lib/request_pool.rb'
     - 'app/lib/webfinger.rb'
     - 'app/lib/webfinger_resource.rb'
-    - 'app/models/concerns/account_counters.rb'
-    - 'app/models/concerns/ldap_authenticable.rb'
+    - 'app/models/concerns/account/counters.rb'
+    - 'app/models/concerns/user/ldap_authenticable.rb'
     - 'app/models/tag.rb'
     - 'app/models/user.rb'
     - 'app/services/fan_out_on_write_service.rb'
@@ -372,8 +372,8 @@ Style/HashAsLastArrayItem:
   Exclude:
     - 'app/controllers/admin/statuses_controller.rb'
     - 'app/controllers/api/v1/statuses_controller.rb'
-    - 'app/models/concerns/account_counters.rb'
-    - 'app/models/concerns/status_threading_concern.rb'
+    - 'app/models/concerns/account/counters.rb'
+    - 'app/models/concerns/status/threading_concern.rb'
     - 'app/models/status.rb'
     - 'app/services/batched_remove_status_service.rb'
     - 'app/services/notify_service.rb'
@@ -486,7 +486,7 @@ Style/RedundantReturn:
 # AllowedMethods: present?, blank?, presence, try, try!
 Style/SafeNavigation:
   Exclude:
-    - 'app/models/concerns/account_finder_concern.rb'
+    - 'app/models/concerns/account/finder_concern.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.

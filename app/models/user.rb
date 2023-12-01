@@ -53,9 +53,12 @@ class User < ApplicationRecord
     filtered_languages
   )
 
-  include Redisable
   include LanguagesHelper
-  include HasUserSettings
+  include Redisable
+  include User::HasSettings
+  include User::LdapAuthenticable
+  include User::Omniauthable
+  include User::PamAuthenticable
 
   # The home and list feeds will be stored in Redis for this amount
   # of time, and status fan-out to followers will include only people
@@ -74,10 +77,6 @@ class User < ApplicationRecord
 
   devise :registerable, :recoverable, :validatable,
          :confirmable
-
-  include Omniauthable
-  include PamAuthenticable
-  include LdapAuthenticable
 
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
