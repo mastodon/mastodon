@@ -89,6 +89,32 @@ describe Mastodon::CLI::Media do
     end
   end
 
+  describe '#lookup' do
+    let(:action) { :lookup }
+    let(:arguments) { [url] }
+
+    context 'with valid url not connected to a record' do
+      let(:url) { 'https://example.host/assets/1' }
+
+      it 'warns about url and exits' do
+        expect { subject }
+          .to output_results('Not a media URL')
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'with a valid media url' do
+      let(:status) { Fabricate(:status) }
+      let(:media_attachment) { Fabricate(:media_attachment, status: status) }
+      let(:url) { media_attachment.file.url(:original) }
+
+      it 'displays the url of a connected status' do
+        expect { subject }
+          .to output_results(status.id.to_s)
+      end
+    end
+  end
+
   describe '#refresh' do
     let(:action) { :refresh }
 
