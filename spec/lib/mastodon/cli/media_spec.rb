@@ -86,4 +86,77 @@ describe Mastodon::CLI::Media do
       end
     end
   end
+
+  describe '#refresh' do
+    context 'without any options' do
+      let(:options) { {} }
+
+      it 'warns about usage and exits' do
+        expect { cli.invoke(:refresh, [], options) }.to output(
+          a_string_including('Specify the source')
+        ).to_stdout.and raise_error(SystemExit)
+      end
+    end
+
+    context 'with --status option' do
+      before do
+        media_attachment.update(file_file_name: nil)
+      end
+
+      let(:media_attachment) { Fabricate(:media_attachment, status: status, remote_url: 'https://host.example/asset.jpg') }
+      let(:options) { { status: status.id } }
+      let(:status) { Fabricate(:status) }
+
+      it 'redownloads the attachment file' do
+        expect { cli.invoke(:refresh, [], options) }.to output(
+          a_string_including('Downloaded 1 media')
+        ).to_stdout
+      end
+    end
+
+    context 'with --account option' do
+      context 'when the account does not exist' do
+        let(:options) { { account: 'not-real-user@example.host' } }
+
+        it 'warns about usage and exits' do
+          expect { cli.invoke(:refresh, [], options) }.to output(
+            a_string_including('No such account')
+          ).to_stdout.and raise_error(SystemExit)
+        end
+      end
+
+      context 'when the account exists' do
+        before do
+          media_attachment.update(file_file_name: nil)
+        end
+
+        let(:media_attachment) { Fabricate(:media_attachment, account: account) }
+        let(:options) { { account: account.acct } }
+        let(:account) { Fabricate(:account) }
+
+        it 'redownloads the attachment file' do
+          expect { cli.invoke(:refresh, [], options) }.to output(
+            a_string_including('Downloaded 1 media')
+          ).to_stdout
+        end
+      end
+    end
+
+    context 'with --domain option' do
+      before do
+        media_attachment.update(file_file_name: nil)
+      end
+
+      let(:domain) { 'example.host' }
+      let(:media_attachment) { Fabricate(:media_attachment, account: account) }
+      let(:options) { { domain: domain } }
+      let(:account) { Fabricate(:account, domain: domain) }
+
+      it 'redownloads the attachment file' do
+        expect { cli.invoke(:refresh, [], options) }.to output(
+          a_string_including('Downloaded 1 media')
+        ).to_stdout
+      end
+    end
+  end
 end
