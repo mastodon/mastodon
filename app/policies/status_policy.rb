@@ -8,7 +8,7 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def show?
-    return false if author.suspended?
+    return false if author.unavailable?
 
     if requires_mention?
       owned? || mention_exists?

@@ -6,11 +6,7 @@ require 'mastodon/cli/media'
 describe Mastodon::CLI::Media do
   let(:cli) { described_class.new }
 
-  describe '.exit_on_failure?' do
-    it 'returns true' do
-      expect(described_class.exit_on_failure?).to be true
-    end
-  end
+  it_behaves_like 'CLI Command'
 
   describe '#remove' do
     context 'with --prune-profiles and --remove-headers' do
@@ -75,6 +71,18 @@ describe Mastodon::CLI::Media do
           expect(media_attachment.reload.file).to be_blank
           expect(media_attachment.reload.thumbnail).to be_blank
         end
+      end
+    end
+  end
+
+  describe '#usage' do
+    context 'without options' do
+      let(:options) { {} }
+
+      it 'reports about storage size' do
+        expect { cli.invoke(:usage, [], options) }.to output(
+          a_string_including('0 Bytes')
+        ).to_stdout
       end
     end
   end

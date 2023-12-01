@@ -52,9 +52,13 @@ module Attachmentable
     return if attachment.blank? || !/image.*/.match?(attachment.content_type) || attachment.queued_for_write[:original].blank?
 
     width, height = FastImage.size(attachment.queued_for_write[:original].path)
-    matrix_limit  = attachment.content_type == 'image/gif' ? GIF_MATRIX_LIMIT : MAX_MATRIX_LIMIT
+    return unless width.present? && height.present?
 
-    raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported" if width.present? && height.present? && (width * height > matrix_limit)
+    if attachment.content_type == 'image/gif' && width * height > GIF_MATRIX_LIMIT
+      raise Mastodon::DimensionsValidationError, "#{width}x#{height} GIF files are not supported"
+    elsif width * height > MAX_MATRIX_LIMIT
+      raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported"
+    end
   end
 
   def appropriate_extension(attachment)

@@ -48,7 +48,7 @@ services:
     image: mglennon/mastodon:${MY_PACKAGE}
     restart: unless-stopped
     env_file: .env.production
-    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
+    command: bundle exec puma -C config/puma.rb
     networks:
       - backend
     healthcheck:

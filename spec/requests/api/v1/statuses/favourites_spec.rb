@@ -70,18 +70,12 @@ RSpec.describe 'Favourites' do
     end
   end
 
-  describe 'POST /api/v1/statuses/:status_id/unfavourite' do
+  describe 'POST /api/v1/statuses/:status_id/unfavourite', :sidekiq_fake do
     subject do
       post "/api/v1/statuses/#{status.id}/unfavourite", headers: headers
     end
 
     let(:status) { Fabricate(:status) }
-
-    around do |example|
-      Sidekiq::Testing.fake! do
-        example.run
-      end
-    end
 
     it_behaves_like 'forbidden for wrong scope', 'read read:favourites'
 

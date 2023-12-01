@@ -165,7 +165,7 @@ class DeleteAccountService < BaseService
   end
 
   def purge_media_attachments!
-    @account.media_attachments.reorder(nil).find_each do |media_attachment|
+    @account.media_attachments.find_each do |media_attachment|
       next if keep_account_record? && reported_status_ids.include?(media_attachment.status_id)
 
       media_attachment.destroy

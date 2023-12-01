@@ -63,12 +63,14 @@ RSpec.describe AdminMailer do
 
   describe '.new_trends' do
     let(:recipient) { Fabricate(:account, username: 'Snurf') }
-    let(:links) { [] }
-    let(:statuses) { [] }
-    let(:tags) { [] }
-    let(:mail) { described_class.with(recipient: recipient).new_trends(links, tags, statuses) }
+    let(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }
+    let(:status) { Fabricate(:status) }
+    let(:tag) { Fabricate(:tag) }
+    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag], [status]) }
 
     before do
+      PreviewCardTrend.create!(preview_card: link)
+      StatusTrend.create!(status: status, account: Fabricate(:account))
       recipient.user.update(locale: :en)
     end
 
@@ -79,6 +81,9 @@ RSpec.describe AdminMailer do
         .and(deliver_from('notifications@localhost'))
         .and(have_subject('New trends up for review on cb6e6126.ngrok.io'))
         .and(have_body_text('The following items need a review before they can be displayed publicly'))
+        .and(have_body_text(ActivityPub::TagManager.instance.url_for(status)))
+        .and(have_body_text(link.title))
+        .and(have_body_text(tag.display_name))
     end
   end
 

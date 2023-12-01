@@ -34,6 +34,26 @@ RSpec.describe Api::V2::SearchController do
           expect(body_as_json[:accounts].pluck(:id)).to contain_exactly(bob.id.to_s, ana.id.to_s, tom.id.to_s)
         end
 
+        context 'with truthy `resolve`' do
+          let(:params) { { q: 'test1', resolve: '1' } }
+
+          it 'returns http unauthorized' do
+            get :index, params: params
+
+            expect(response).to have_http_status(200)
+          end
+        end
+
+        context 'with `offset`' do
+          let(:params) { { q: 'test1', offset: 1 } }
+
+          it 'returns http unauthorized' do
+            get :index, params: params
+
+            expect(response).to have_http_status(200)
+          end
+        end
+
         context 'with following=true' do
           let(:params) { { q: 'test', type: 'accounts', following: 'true' } }
 
@@ -48,6 +68,26 @@ RSpec.describe Api::V2::SearchController do
           end
         end
       end
+
+      context 'when search raises syntax error' do
+        before { allow(Search).to receive(:new).and_raise(Mastodon::SyntaxError) }
+
+        it 'returns http unprocessable_entity' do
+          get :index, params: params
+
+          expect(response).to have_http_status(422)
+        end
+      end
+
+      context 'when search raises not found error' do
+        before { allow(Search).to receive(:new).and_raise(ActiveRecord::RecordNotFound) }
+
+        it 'returns http not_found' do
+          get :index, params: params
+
+          expect(response).to have_http_status(404)
+        end
+      end
     end
   end
 
@@ -57,6 +97,12 @@ RSpec.describe Api::V2::SearchController do
 
       before do
         get :index, params: search_params
+      end
+
+      context 'without a `q` param' do
+        it 'returns http bad_request' do
+          expect(response).to have_http_status(400)
+        end
       end
 
       context 'with a `q` shorter than 5 characters' do
@@ -79,6 +125,7 @@ RSpec.describe Api::V2::SearchController do
 
           it 'returns http unauthorized' do
             expect(response).to have_http_status(401)
+            expect(response.body).to match('resolve remote resources')
           end
         end
 
@@ -87,6 +134,7 @@ RSpec.describe Api::V2::SearchController do
 
           it 'returns http unauthorized' do
             expect(response).to have_http_status(401)
+            expect(response.body).to match('pagination is not supported')
           end
         end
       end

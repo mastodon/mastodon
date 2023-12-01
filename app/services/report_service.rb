@@ -12,7 +12,7 @@ class ReportService < BaseService
     @rule_ids       = options.delete(:rule_ids).presence
     @options        = options
 
-    raise ActiveRecord::RecordNotFound if @target_account.suspended?
+    raise ActiveRecord::RecordNotFound if @target_account.unavailable?
 
     create_report!
     notify_staff!

@@ -38,7 +38,10 @@ class NodeInfo::Serializer < ActiveModel::Serializer
   end
 
   def metadata
-    {}
+    {
+      nodeName: Setting.site_title,
+      nodeDescription: Setting.site_short_description,
+    }
   end
 
   private
