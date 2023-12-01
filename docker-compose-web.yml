@@ -1,0 +1,38 @@
+version: '3'
+services:
+  web:
+    build: .
+    image: tootsuite/mastodon
+    restart: always
+    env_file: .env.production
+    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
+    networks:
+      - external_network
+      - internal_network
+    healthcheck:
+      # prettier-ignore
+      test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:3000/health || exit 1']
+    ports:
+      - '192.168.135.76:3000:3000'
+    volumes:
+      - ./public/system:/mastodon/public/system
+
+  streaming:
+    build: .
+    image: tootsuite/mastodon
+    restart: always
+    env_file: .env.production
+    command: node ./streaming
+    networks:
+      - external_network
+      - internal_network
+    healthcheck:
+      # prettier-ignore
+      test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1']
+    ports:
+      - '192.168.135.76:4000:4000'
+
+networks:
+  external_network:
+  internal_network:
+    internal: true
