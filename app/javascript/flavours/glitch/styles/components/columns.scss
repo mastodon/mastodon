@@ -930,7 +930,7 @@ $ui-header-height: 55px;
     color: $darker-text-color;
   }
 
-  @media screen and (min-width: 600px) {
+  @media screen and (width >= 600px) {
     padding: 40px;
   }
 }
@@ -1043,7 +1043,7 @@ $ui-header-height: 55px;
       color: $highlight-text-color;
       font-size: 1.2rem;
 
-      @media screen and (min-width: 600px) {
+      @media screen and (width >= 600px) {
         display: flex;
       }
     }
@@ -1112,7 +1112,7 @@ $ui-header-height: 55px;
   position: sticky;
   background: $ui-base-color;
 
-  @media screen and (min-width: 600) {
+  @media screen and (width >= 600) {
     padding: 0 40px;
   }
 
