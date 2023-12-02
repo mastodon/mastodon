@@ -30,6 +30,16 @@ export function useAppHistory() {
   return useHistory<LocationState>();
 }
 
+/**
+ * Some components are mounted in the admin panel (e.g in the moderation interface),
+ * which is not wrapped into a <Router> and thus do not have a history.
+ * @see {@link https://github.com/mastodon/mastodon/pull/27893/files#r1408042046}
+ * @returns The same as {@link useAppHistory}, but potentially undefined.
+ */
+export function useOptionalAppHistory() {
+  return useAppHistory() as ReturnType<typeof useAppHistory> | undefined;
+}
+
 function normalizePath(
   path: HistoryPath,
   state?: LocationState,

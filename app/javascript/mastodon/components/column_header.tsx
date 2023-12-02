@@ -21,7 +21,7 @@ import {
   useColumnsContext,
 } from 'mastodon/features/ui/util/columns_context';
 
-import { useAppHistory } from './router';
+import { useAppHistory, useOptionalAppHistory } from './router';
 
 const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
@@ -42,19 +42,20 @@ interface BackButtonProps {
 }
 
 const BackButton: React.FC<BackButtonProps> = ({ pinned, show }) => {
-  const history = useAppHistory();
+  const history = useOptionalAppHistory();
   const { multiColumn } = useColumnsContext();
 
   const handleBackClick = useCallback(() => {
-    if (history.location.state?.fromMastodon) {
-      history.goBack();
-    } else {
-      history.push('/');
+    if (history) {
+      if (history.location.state?.fromMastodon) {
+        history.goBack();
+      } else {
+        history.push('/');
+      }
     }
   }, [history]);
 
   const showButton =
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     history &&
     !pinned &&
     ((multiColumn && history.location.state?.fromMastodon) || show);
