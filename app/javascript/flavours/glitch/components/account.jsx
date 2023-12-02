@@ -53,7 +53,7 @@ class Account extends ImmutablePureComponent {
   };
 
   static defaultProps = {
-    size: 36,
+    size: 46,
   };
 
   handleFollow = () => {
@@ -157,7 +157,7 @@ class Account extends ImmutablePureComponent {
             </div>
 
             <div className='account__contents'>
-              <DisplayName account={account} />
+              <DisplayName account={account} inline />
               {!minimal && (
                 <div className='account__details'>
                   <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} /> {verification} {muteTimeRemaining}
