@@ -6,7 +6,9 @@
 
   .account__display-name {
     flex: 1 1 auto;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: $darker-text-color;
     overflow: hidden;
     text-decoration: none;
@@ -55,13 +57,12 @@
 
 .account__wrapper {
   display: flex;
+  gap: 10px;
   align-items: center;
 }
 
 .account__avatar-wrapper {
   float: left;
-  margin-inline-start: 12px;
-  margin-inline-end: 12px;
 }
 
 .account__avatar {
