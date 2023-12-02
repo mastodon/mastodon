@@ -46,11 +46,17 @@
  */
 
 /**
+ * @typedef InitialStateRole
+ * @property {number} permissions
+ */
+
+/**
  * @typedef InitialState
  * @property {Record<string, import("./api_types/accounts").ApiAccountJSON>} accounts
  * @property {InitialStateLanguage[]} languages
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
+ * @property {InitialStateRole?} role
  */
 
 const element = document.getElementById('initial-state');

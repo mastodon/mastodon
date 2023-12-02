@@ -18,15 +18,6 @@ module.exports = (api) => {
     ],
   };
 
-  const overrides = [
-    {
-      test: /tesseract\.js/,
-      presets: [
-        ['@babel/env', { ...envOptions, modules: 'commonjs' }],
-      ],
-    },
-  ];
-
   const plugins = [
     ['formatjs'],
     'preval',
@@ -66,21 +57,6 @@ module.exports = (api) => {
     envOptions.useBuiltIns = false;
     envOptions.corejs = undefined;
     break;
-
-  case 'test':
-    // Without this, TypeScript 'declare' transforms are too late in the transform pipeline
-    // "TypeScript 'declare' fields must first be transformed by @babel/plugin-transform-typescript.""
-    // When the conversion to hooks is complete, this can likely be removed
-    overrides.unshift({
-      plugins: [
-        ['@babel/plugin-transform-typescript', {
-          allowDeclareFields: true,
-          isTSX: true
-        }]
-      ],
-      test: /app\/javascript.+tsx$/i
-    });
-    break;
   }
 
   const config = {
@@ -90,7 +66,14 @@ module.exports = (api) => {
       ['@babel/env', envOptions],
     ],
     plugins,
-    overrides,
+    overrides: [
+      {
+        test: /tesseract\.js/,
+        presets: [
+          ['@babel/env', { ...envOptions, modules: 'commonjs' }],
+        ],
+      },
+    ],
   };
 
   return config;

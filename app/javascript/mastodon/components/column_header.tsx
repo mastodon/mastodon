@@ -1,12 +1,10 @@
-import PropTypes from 'prop-types';
-import React, { PureComponent, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+import { FormattedMessage, defineMessages, useIntl } from 'react-intl';
 import type { IntlShape } from 'react-intl';
 
 import classNames from 'classnames';
 import type { RouteComponentProps } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
 
 import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
 import { ReactComponent as ArrowBackIcon } from '@material-symbols/svg-600/outlined/arrow_back.svg';
@@ -17,11 +15,11 @@ import { ReactComponent as TuneIcon } from '@material-symbols/svg-600/outlined/t
 
 import type { IconProp } from 'mastodon/components/icon';
 import { Icon } from 'mastodon/components/icon';
+import { useIdentityContext } from 'mastodon/containers/identity_context';
 import {
   ButtonInTabsBar,
   useColumnsContext,
 } from 'mastodon/features/ui/util/columns_context';
-import type { ContextWithIdentity } from 'mastodon/utils/identity';
 
 import { useAppHistory } from './router';
 
@@ -94,215 +92,204 @@ interface ColumnHeaderProps extends RouteComponentProps {
   title?: React.ReactNode;
 }
 
-class ColumnHeaderInternal extends PureComponent<ColumnHeaderProps> {
-  declare context: ContextWithIdentity;
+export const ColumnHeader = ({
+  active,
+  appendContent,
+  children,
+  collapseIssues,
+  extraButton,
+  icon,
+  iconComponent,
+  multiColumn,
+  onClick,
+  onMove,
+  onPin,
+  pinned,
+  placeholder,
+  showBackButton,
+  title,
+}: ColumnHeaderProps) => {
+  const identity = useIdentityContext();
+  const [animating, setAnimating] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
+  const intl = useIntl();
+  const history = useAppHistory();
 
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
+  const handleToggleClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setCollapsed(!collapsed);
+      setAnimating(true);
+    },
+    [collapsed],
+  );
 
-  state = {
-    collapsed: true,
-    animating: false,
-  };
+  const handleMoveLeft = useCallback(() => {
+    // handleMoveLeft should only be used in situations where onMove is provided
+    onMove?.(-1);
+  }, [onMove]);
 
-  handleToggleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    this.setState({ collapsed: !this.state.collapsed, animating: true });
-  };
+  const handleMoveRight = useCallback(() => {
+    // handleMoveRight should only be used in situations where onMove is provided
+    onMove?.(1);
+  }, [onMove]);
 
-  handleTitleClick = () => {
-    this.props.onClick?.();
-  };
+  const handleTransitionEnd = useCallback(() => {
+    setAnimating(false);
+  }, []);
 
-  handleMoveLeft = () => {
-    // handleMoveLeft should only be used in situations where this.props.onMove is provided
-    this.props.onMove?.(-1);
-  };
-
-  handleMoveRight = () => {
-    // handleMoveRight should only be used in situations where this.props.onMove is provided
-    this.props.onMove?.(1);
-  };
-
-  handleTransitionEnd = () => {
-    this.setState({ animating: false });
-  };
-
-  handlePin = () => {
-    if (!this.props.pinned) {
-      this.props.history.replace('/');
+  const handlePin = useCallback(() => {
+    if (!pinned) {
+      history.replace('/');
     }
 
-    // handlePin is only used if this.props.onPin is provided
-    this.props.onPin?.();
-  };
+    // handlePin is only used if onPin is provided
+    onPin?.();
+  }, [history, onPin, pinned]);
 
-  render() {
-    const {
-      title,
-      icon,
-      iconComponent,
-      active,
-      children,
-      pinned,
-      multiColumn,
-      extraButton,
-      showBackButton,
-      intl: { formatMessage },
-      placeholder,
-      appendContent,
-      collapseIssues,
-    } = this.props;
-    const { collapsed, animating } = this.state;
+  const wrapperClassName = classNames('column-header__wrapper', {
+    active: active,
+  });
 
-    const wrapperClassName = classNames('column-header__wrapper', {
-      active: active,
-    });
+  const buttonClassName = classNames('column-header', {
+    active: active,
+  });
 
-    const buttonClassName = classNames('column-header', {
-      active: active,
-    });
+  const collapsibleClassName = classNames('column-header__collapsible', {
+    collapsed: collapsed,
+    animating: animating,
+  });
 
-    const collapsibleClassName = classNames('column-header__collapsible', {
-      collapsed: collapsed,
-      animating: animating,
-    });
+  const collapsibleButtonClassName = classNames('column-header__button', {
+    active: !collapsed,
+  });
 
-    const collapsibleButtonClassName = classNames('column-header__button', {
-      active: !collapsed,
-    });
+  let extraContent, pinButton, moveButtons, collapseButton;
 
-    let extraContent, pinButton, moveButtons, collapseButton;
-
-    if (children) {
-      extraContent = (
-        <div key='extra-content' className='column-header__collapsible__extra'>
-          {children}
-        </div>
-      );
-    }
-
-    if (multiColumn && pinned) {
-      pinButton = (
-        <button
-          key='pin-button'
-          className='text-btn column-header__setting-btn'
-          onClick={this.handlePin}
-        >
-          <Icon id='times' icon={CloseIcon} />{' '}
-          <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' />
-        </button>
-      );
-
-      moveButtons = (
-        <div key='move-buttons' className='column-header__setting-arrows'>
-          <button
-            title={formatMessage(messages.moveLeft)}
-            aria-label={formatMessage(messages.moveLeft)}
-            className='icon-button column-header__setting-btn'
-            onClick={this.handleMoveLeft}
-          >
-            <Icon id='chevron-left' icon={ChevronLeftIcon} />
-          </button>
-          <button
-            title={formatMessage(messages.moveRight)}
-            aria-label={formatMessage(messages.moveRight)}
-            className='icon-button column-header__setting-btn'
-            onClick={this.handleMoveRight}
-          >
-            <Icon id='chevron-right' icon={ChevronRightIcon} />
-          </button>
-        </div>
-      );
-    } else if (multiColumn && this.props.onPin) {
-      pinButton = (
-        <button
-          key='pin-button'
-          className='text-btn column-header__setting-btn'
-          onClick={this.handlePin}
-        >
-          <Icon id='plus' icon={AddIcon} />{' '}
-          <FormattedMessage id='column_header.pin' defaultMessage='Pin' />
-        </button>
-      );
-    }
-
-    const backButton = <BackButton pinned={pinned} show={showBackButton} />;
-
-    const collapsedContent = [extraContent];
-
-    if (multiColumn) {
-      collapsedContent.push(pinButton);
-      collapsedContent.push(moveButtons);
-    }
-
-    if (
-      this.context.identity.signedIn &&
-      (children || (multiColumn && this.props.onPin))
-    ) {
-      collapseButton = (
-        <button
-          className={collapsibleButtonClassName}
-          title={formatMessage(collapsed ? messages.show : messages.hide)}
-          aria-label={formatMessage(collapsed ? messages.show : messages.hide)}
-          onClick={this.handleToggleClick}
-        >
-          <i className='icon-with-badge'>
-            <Icon id='sliders' icon={TuneIcon} />
-            {collapseIssues && <i className='icon-with-badge__issue-badge' />}
-          </i>
-        </button>
-      );
-    }
-
-    const hasTitle = (icon ?? iconComponent) && title;
-
-    const component = (
-      <div className={wrapperClassName}>
-        <h1 className={buttonClassName}>
-          {hasTitle && (
-            <button onClick={this.handleTitleClick}>
-              <Icon
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                id={icon!}
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                icon={iconComponent!}
-                className='column-header__icon'
-              />
-              {title}
-            </button>
-          )}
-
-          {!hasTitle && backButton}
-
-          <div className='column-header__buttons'>
-            {hasTitle && backButton}
-            {extraButton}
-            {collapseButton}
-          </div>
-        </h1>
-
-        <div
-          className={collapsibleClassName}
-          tabIndex={collapsed ? -1 : undefined}
-          onTransitionEnd={this.handleTransitionEnd}
-        >
-          <div className='column-header__collapsible-inner'>
-            {(!collapsed || animating) && collapsedContent}
-          </div>
-        </div>
-
-        {appendContent}
+  if (children) {
+    extraContent = (
+      <div key='extra-content' className='column-header__collapsible__extra'>
+        {children}
       </div>
     );
-
-    if (placeholder) {
-      return component;
-    } else {
-      return <ButtonInTabsBar>{component}</ButtonInTabsBar>;
-    }
   }
-}
 
-export const ColumnHeader = injectIntl(withRouter(ColumnHeaderInternal));
+  if (multiColumn && pinned) {
+    pinButton = (
+      <button
+        key='pin-button'
+        className='text-btn column-header__setting-btn'
+        onClick={handlePin}
+      >
+        <Icon id='times' icon={CloseIcon} />{' '}
+        <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' />
+      </button>
+    );
+
+    moveButtons = (
+      <div key='move-buttons' className='column-header__setting-arrows'>
+        <button
+          title={intl.formatMessage(messages.moveLeft)}
+          aria-label={intl.formatMessage(messages.moveLeft)}
+          className='icon-button column-header__setting-btn'
+          onClick={handleMoveLeft}
+        >
+          <Icon id='chevron-left' icon={ChevronLeftIcon} />
+        </button>
+        <button
+          title={intl.formatMessage(messages.moveRight)}
+          aria-label={intl.formatMessage(messages.moveRight)}
+          className='icon-button column-header__setting-btn'
+          onClick={handleMoveRight}
+        >
+          <Icon id='chevron-right' icon={ChevronRightIcon} />
+        </button>
+      </div>
+    );
+  } else if (multiColumn && onPin) {
+    pinButton = (
+      <button
+        key='pin-button'
+        className='text-btn column-header__setting-btn'
+        onClick={handlePin}
+      >
+        <Icon id='plus' icon={AddIcon} />{' '}
+        <FormattedMessage id='column_header.pin' defaultMessage='Pin' />
+      </button>
+    );
+  }
+
+  const backButton = <BackButton pinned={pinned} show={showBackButton} />;
+
+  const collapsedContent = [extraContent];
+
+  if (multiColumn) {
+    collapsedContent.push(pinButton);
+    collapsedContent.push(moveButtons);
+  }
+
+  if (identity.signedIn && (children || (multiColumn && onPin))) {
+    collapseButton = (
+      <button
+        className={collapsibleButtonClassName}
+        title={intl.formatMessage(collapsed ? messages.show : messages.hide)}
+        aria-label={intl.formatMessage(
+          collapsed ? messages.show : messages.hide,
+        )}
+        onClick={handleToggleClick}
+      >
+        <i className='icon-with-badge'>
+          <Icon id='sliders' icon={TuneIcon} />
+          {collapseIssues && <i className='icon-with-badge__issue-badge' />}
+        </i>
+      </button>
+    );
+  }
+
+  const hasTitle = (icon ?? iconComponent) && title;
+
+  const component = (
+    <div className={wrapperClassName}>
+      <h1 className={buttonClassName}>
+        {hasTitle && (
+          <button onClick={onClick}>
+            <Icon
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              id={icon!}
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              icon={iconComponent!}
+              className='column-header__icon'
+            />
+            {title}
+          </button>
+        )}
+
+        {!hasTitle && backButton}
+
+        <div className='column-header__buttons'>
+          {hasTitle && backButton}
+          {extraButton}
+          {collapseButton}
+        </div>
+      </h1>
+
+      <div
+        className={collapsibleClassName}
+        tabIndex={collapsed ? -1 : undefined}
+        onTransitionEnd={handleTransitionEnd}
+      >
+        <div className='column-header__collapsible-inner'>
+          {(!collapsed || animating) && collapsedContent}
+        </div>
+      </div>
+
+      {appendContent}
+    </div>
+  );
+
+  if (placeholder) {
+    return component;
+  } else {
+    return <ButtonInTabsBar>{component}</ButtonInTabsBar>;
+  }
+};

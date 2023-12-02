@@ -19,6 +19,8 @@ import { IntlProvider } from 'mastodon/locales';
 import { store } from 'mastodon/store';
 import { isProduction } from 'mastodon/utils/environment';
 
+import { createIdentityContextValue } from './identity_context';
+
 const title = isProduction() ? siteTitle : `${siteTitle} (Dev)`;
 
 const hydrateAction = hydrateStore(initialState);
@@ -27,14 +29,6 @@ store.dispatch(hydrateAction);
 if (initialState.meta.me) {
   store.dispatch(fetchCustomEmojis());
 }
-
-const createIdentityContext = state => ({
-  signedIn: !!state.meta.me,
-  accountId: state.meta.me,
-  disabledAccountId: state.meta.disabled_account_id,
-  accessToken: state.meta.access_token,
-  permissions: state.role ? state.role.permissions : 0,
-});
 
 export default class Mastodon extends PureComponent {
 
@@ -47,7 +41,7 @@ export default class Mastodon extends PureComponent {
     }).isRequired,
   };
 
-  identity = createIdentityContext(initialState);
+  identity = createIdentityContextValue(initialState);
 
   getChildContext() {
     return {
