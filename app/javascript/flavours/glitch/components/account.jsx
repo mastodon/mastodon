@@ -160,7 +160,9 @@ class Account extends ImmutablePureComponent {
               <DisplayName account={account} inline />
               {!minimal && (
                 <div className='account__details'>
-                  <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} /> {verification} {muteTimeRemaining}
+                  {account.get('followers_count') !== -1 && (
+                    <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} />
+                  )} {verification} {muteTimeRemaining}
                 </div>
               )}
             </div>
