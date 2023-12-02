@@ -2,14 +2,16 @@ import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { counterRenderer } from 'flavours/glitch/components/common_counter';
-import ShortNumber from 'flavours/glitch/components/short_number';
-import classNames from 'classnames';
-import { VerifiedBadge } from 'flavours/glitch/components/verified_badge';
+
 import { EmptyAccount } from 'flavours/glitch/components/empty_account';
+import ShortNumber from 'flavours/glitch/components/short_number';
+import { VerifiedBadge } from 'flavours/glitch/components/verified_badge';
 
 import { me } from '../initial_state';
 
