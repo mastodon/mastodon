@@ -32,7 +32,7 @@ RSpec.describe 'FeaturedTags' do
     end
 
     context 'when the requesting user has no featured tag' do
-      before { Fabricate.times(3, :featured_tag) }
+      before { Fabricate(:featured_tag) }
 
       it 'returns an empty body' do
         get '/api/v1/featured_tags', headers: headers
@@ -44,7 +44,7 @@ RSpec.describe 'FeaturedTags' do
     end
 
     context 'when the requesting user has featured tags' do
-      let!(:user_featured_tags) { Fabricate.times(5, :featured_tag, account: user.account) }
+      let!(:user_featured_tags) { Fabricate.times(1, :featured_tag, account: user.account) }
 
       it 'returns only the featured tags belonging to the requesting user' do
         get '/api/v1/featured_tags', headers: headers

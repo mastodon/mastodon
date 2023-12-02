@@ -76,7 +76,7 @@ he:
       enabled_msg: ביטול השעית החשבון של %{username} בוצע בהצלחה
       followers: עוקבים
       follows: נעקבים
-      header: כותרת
+      header: תמונת נושא
       inbox_url: כתובת תיבת דואר נכנס
       invite_request_text: סיבות להצטרפות
       invited_by: הוזמן על ידי
@@ -128,7 +128,7 @@ he:
       remove_avatar: הסרת תמונת פרופיל
       remove_header: הסרת כותרת
       removed_avatar_msg: תמונת הפרופיל של %{username} הוסרה בהצלחה
-      removed_header_msg: תמונת הראשה של %{username} הוסרה בהצלחה
+      removed_header_msg: תמונת הנושא של %{username} הוסרה בהצלחה
       resend_confirmation:
         already_confirmed: משתמש זה כבר אושר
         send: שלח מחדש קישור לאימות
@@ -1033,8 +1033,6 @@ he:
       new_trending_statuses:
         title: הודעות חמות
       new_trending_tags:
-        no_approved_tags: אין כרגע שום תגיות חמות מאושרות.
-        requirements: כל אחת מהמועמדות האלו עשויה לעבור את התגית החמה המאושרת מדרגה %{rank}, שהיא כרגע %{lowest_tag_name} עם ציון של %{lowest_tag_score}.
         title: תגיות חמות
       subject: נושאים חמים חדשים מוכנים לסקירה ב-%{instance}
   aliases:
@@ -1281,7 +1279,7 @@ he:
       keywords: מילות מפתח
       statuses: הודעות מסויימות
       statuses_hint_html: הסנן פועל על בחירה ידנית של הודעות בין אם הן מתאימות למילות המפתח להלן ואם לאו. posts regardless of whether they match the keywords below. <a href="%{path}">בחינה או הסרה של ההודעות מהסנן</a>.
-      title: ערוך מסנן
+      title: לערוך מסנן
     errors:
       deprecated_api_multiple_keywords: לא ניתן לשנות פרמטרים אלו מהיישומון הזה בגלל שהם חלים על יותר ממילת מפתח אחת. ניתן להשתמש ביישומון מעודכן יותר או בממשק הוובי.
       invalid_context: לא סופק הקשר או הקשר לא תקין
@@ -1478,7 +1476,7 @@ he:
       not_found: לא נמצאו
       on_cooldown: את/ה בתקופת צינון
     followers_count: עוקבים בזמן המעבר
-    incoming_migrations: מעבר לחשבון אחר
+    incoming_migrations: מעבר מחשבון אחר
     incoming_migrations_html: כדי לעבור מחשבון אחר לחשבון זה, עליך ראשית <a href="%{path}">ליצור שם נרדף לחשבון</a>.
     moved_msg: חשבונך מופנה עתה ל-%{acct} וכל עוקביך מועברים לשם.
     not_redirecting: חשבונכם לא מפנה לשום חשבון אחר כעת.
@@ -1516,8 +1514,8 @@ he:
       subject: הודעתך חובבה על ידי %{name}
       title: חיבוב חדש
     follow:
-      body: "%{name} עכשיו במעקב אחריך!"
-      subject: "%{name} עכשיו במעקב אחריך"
+      body: "%{name} עכשיו עוקב.ת אחריך!"
+      subject: "%{name} עכשיו עוקב.ת אחריך"
       title: עוקב/ת חדש/ה
     follow_request:
       action: ניהול בקשות מעקב

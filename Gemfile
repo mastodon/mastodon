@@ -9,6 +9,9 @@ gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
 gem 'rack', '~> 2.2.7'
 
+# For why irb is in the Gemfile, see: https://ruby.social/@st0012/111444685161478182
+gem 'irb', '~> 1.8'
+
 gem 'haml-rails', '~>2.0'
 gem 'pg', '~> 1.5'
 gem 'pghero'
@@ -109,6 +112,9 @@ group :test do
   # RSpec progress bar formatter
   gem 'fuubar', '~> 2.5'
 
+  # RSpec helpers for email specs
+  gem 'email_spec'
+
   # Extra RSpec extenion methods and helpers for sidekiq
   gem 'rspec-sidekiq', '~> 4.0'
 
@@ -176,6 +182,9 @@ group :development do
 end
 
 group :development, :test do
+  # Interactive Debugging tools
+  gem 'debug', '~> 1.8'
+
   # Profiling tools
   gem 'memory_profiler', require: false
   gem 'ruby-prof', require: false

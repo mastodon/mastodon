@@ -1,4 +1,7 @@
-module.exports = {
+// @ts-check
+const { defineConfig } = require('eslint-define-config');
+
+module.exports = defineConfig({
   root: true,
 
   extends: [
@@ -193,6 +196,7 @@ module.exports = {
       'error',
       {
         devDependencies: [
+          '.eslintrc.js',
           'config/webpack/**',
           'app/javascript/mastodon/performance.js',
           'app/javascript/mastodon/test_setup.js',
@@ -280,7 +284,6 @@ module.exports = {
     'formatjs/no-id': 'off', // IDs are used for translation keys
     'formatjs/no-invalid-icu': 'error',
     'formatjs/no-literal-string-in-jsx': 'off', // Should be looked at, but mainly flagging punctuation outside of strings
-    'formatjs/no-multiple-plurals': 'off', // Only used by hashtag.jsx
     'formatjs/no-multiple-whitespaces': 'error',
     'formatjs/no-offset': 'error',
     'formatjs/no-useless-message': 'error',
@@ -299,6 +302,7 @@ module.exports = {
   overrides: [
     {
       files: [
+        '.eslintrc.js',
         '*.config.js',
         '.*rc.js',
         'ide-helper.js',
@@ -349,7 +353,7 @@ module.exports = {
         '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
         '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
-        "@typescript-eslint/prefer-nullish-coalescing": ['error', {ignorePrimitives: {boolean: true}}],
+        "@typescript-eslint/prefer-nullish-coalescing": ['error', { ignorePrimitives: { boolean: true } }],
 
         'jsdoc/require-jsdoc': 'off',
 
@@ -372,14 +376,6 @@ module.exports = {
       env: {
         jest: true,
       },
-    },
-    {
-      files: [
-        'streaming/**/*',
-      ],
-      rules: {
-        'import/no-commonjs': 'off',
-      },
-    },
+    }
   ],
-};
+});

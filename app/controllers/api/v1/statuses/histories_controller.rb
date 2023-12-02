@@ -11,6 +11,6 @@ class Api::V1::Statuses::HistoriesController < Api::V1::Statuses::BaseController
   private
 
   def status_edits
-    @status.edits.includes(:account, status: [:account]).to_a.presence || [@status.build_snapshot(at_time: @status.edited_at || @status.created_at)]
+    @status.edits.ordered.includes(:account, status: [:account]).to_a.presence || [@status.build_snapshot(at_time: @status.edited_at || @status.created_at)]
   end
 end
