@@ -32,7 +32,7 @@ module Admin
     private
 
     def batched_ordered_status_edits
-      @status.edits.reorder(nil).includes(:account, status: [:account]).find_each(order: :asc)
+      @status.edits.includes(:account, status: [:account]).find_each(order: :asc)
     end
     helper_method :batched_ordered_status_edits
 

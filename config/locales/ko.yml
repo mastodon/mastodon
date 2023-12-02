@@ -32,7 +32,7 @@ ko:
       add_email_domain_block: 이 이메일 도메인을 차단하기
       approve: 허가
       approved_msg: 성공적으로 %{username}의 가입 신청서를 승인했습니다
-      are_you_sure: 정말로 실행하시겠습니까?
+      are_you_sure: 확실합니까?
       avatar: 아바타
       by_domain: 도메인
       change_email:
@@ -55,16 +55,16 @@ ko:
       deleted: 삭제됨
       demote: 강등
       destroyed_msg: "%{username}의 데이터는 곧 삭제되도록 대기열에 들어갔습니다"
-      disable: 비활성화
+      disable: 동결
       disable_sign_in_token_auth: 이메일 토큰 인증 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
-      disabled: 비활성화됨
+      disabled: 동결됨
       display_name: 표시되는 이름
       domain: 도메인
       edit: 수정
       email: 이메일
       email_status: 이메일 상태
-      enable: 활성화
+      enable: 동결 해제
       enable_sign_in_token_auth: 이메일 토큰 인증 활성화
       enabled: 활성
       enabled_msg: "%{username}의 계정을 성공적으로 얼리기 해제하였습니다"
@@ -292,7 +292,7 @@ ko:
     announcements:
       destroyed_msg: 공지가 성공적으로 삭제되었습니다!
       edit:
-        title: 공지사항 수정
+        title: 공지사항 편집
       empty: 공지를 찾을 수 없습니다.
       live: 진행 중
       new:
@@ -586,7 +586,7 @@ ko:
       actions_description_html: 이 신고를 해결하기 위해 취해야 할 조치를 지정해주세요. 신고된 계정에 대해 처벌 조치를 취하면, <strong>스팸</strong> 카테고리가 선택된 경우를 제외하고 해당 계정으로 이메일 알림이 전송됩니다.
       actions_description_remote_html: 이 신고를 해결하기 위해 실행할 행동을 결정하세요. 이 결정은 이 원격 계정과 그 콘텐츠를 다루는 방식에 대해 <strong>이 서버</strong>에서만 영향을 끼칩니다
       add_to_report: 신고에 더 추가하기
-      are_you_sure: 정말로 실행하시겠습니까?
+      are_you_sure: 확실합니까?
       assign_to_self: 나에게 할당하기
       assigned: 할당된 중재자
       by_target_domain: 신고된 계정의 도메인
@@ -763,7 +763,7 @@ ko:
           open: 누구나 가입 할 수 있음
       security:
         authorized_fetch: 연합된 서버들에게서 인증 필수
-        authorized_fetch_hint: 연합된 서버들에게서 인증을 요구하는 것은 사용자 레벨과 서버 레벨의 차단은 좀 더 확실하게 해줍니다. 한편으로는 성능적인 페널티, 답글의 전달 범위 감소, 몇몇 연합된 서비스들과의 호환성 문제가 있을 가능성이 있습니다. 추가적으로 이 기능은 전용 액터가 공개돤 게시물이나 계정을 페치하는 것은 막지 않습니다.
+        authorized_fetch_hint: 연합된 서버들에게서 인증을 요구하는 것은 사용자 레벨과 서버 레벨의 차단을 좀 더 확실하게 해줍니다. 한편으로는 성능적인 페널티, 답글의 전달 범위 감소, 몇몇 연합된 서비스들과의 호환성 문제가 있을 가능성이 있습니다. 추가적으로 이 기능은 전용 액터가 공개된 게시물이나 계정을 페치하는 것은 막지 않습니다.
         authorized_fetch_overridden_hint: 현재 이 값은 환경변수에 의해 설정되어 있기에 설정을 변경할 수 없습니다.
         federation_authentication: 연합 인증 필수
       title: 서버 설정
@@ -926,7 +926,7 @@ ko:
     warning_presets:
       add_new: 새로 추가
       delete: 삭제
-      edit_preset: 경고 틀 수정
+      edit_preset: 경고 프리셋 편집
       empty: 아직 어떤 경고 틀도 정의되지 않았습니다.
       title: 경고 틀 관리
     webhooks:
@@ -981,8 +981,6 @@ ko:
       new_trending_statuses:
         title: 유행하는 게시물
       new_trending_tags:
-        no_approved_tags: 현재 승인된 유행 중인 해시태그가 없습니다.
-        requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 해시태그를 앞지를 수 있으며, 이것은 현재 #%{lowest_tag_name}이고 %{lowest_tag_score}점을 기록하고 있습니다.'
         title: 유행하는 해시태그
       subject: 새 트렌드가 %{instance}에서 심사 대기 중입니다
   aliases:
@@ -1177,7 +1175,7 @@ ko:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   edit_profile:
     basic_information: 기본 정보
-    hint_html: "<strong>내 공개 프로필과 게시물 옆에 보이는 부분을 꾸미세요.</strong> 다른 사람들은 프로필 내용과 사진이 채워진 계정과 더 상호작용하고 팔로우를 하고 싶어합니다."
+    hint_html: "<strong>사람들이 공개 프로필을 보고서 게시물을 볼 때를 위한 프로필을 꾸밉니다.</strong> 프로필과 프로필 사진을 채우면 다른 사람들이 나를 팔로우하고 나와 교류할 기회가 더 많아집니다."
     other: 기타
   errors:
     '400': 제출한 요청이 올바르지 않습니다.
@@ -1229,7 +1227,7 @@ ko:
       keywords: 키워드
       statuses: 개별 게시물
       statuses_hint_html: 이 필터는 아래의 키워드에 매칭되는지 여부와 관계 없이 몇몇개의 게시물들에 별개로 적용되었습니다. <a href="%{path}">검토하거나 필터에서 삭제하세요</a>
-      title: 필터 수정
+      title: 필터 편집
     errors:
       deprecated_api_multiple_keywords: 이 파라미터들은 하나를 초과하는 필터 키워드에 적용되기 때문에 이 응용프로그램에서 수정될 수 없습니다. 더 최신의 응용프로그램이나 웹 인터페이스를 사용하세요.
       invalid_context: 컨텍스트가 없거나 올바르지 않습니다
@@ -1615,7 +1613,7 @@ ko:
     back: 마스토돈으로 돌아가기
     delete: 계정 삭제
     development: 개발
-    edit_profile: 프로필 수정
+    edit_profile: 프로필 편집
     export: 데이터 내보내기
     featured_tags: 추천 해시태그
     import: 데이터 가져오기
@@ -1781,7 +1779,7 @@ ko:
       statuses: '인용된 게시물:'
       subject:
         delete_statuses: 당신의 계정 %{acct}에서 작성한 게시물이 삭제되었습니다
-        disable: 당신의 계정 %{acct}가 동결 되었습니다
+        disable: "%{acct} 계정은 동결되었습니다."
         mark_statuses_as_sensitive: "%{acct}로 작성한 당신의 게시물은 민감한 것으로 표시되었습니다"
         none: "%{acct}에게의 경고"
         sensitive: "%{acct}로 작성되는 당신의 게시물은 이제부터 민감한 것으로 표시됩니다"
@@ -1789,7 +1787,7 @@ ko:
         suspend: 당신의 계정 %{acct}가 정지 되었습니다
       title:
         delete_statuses: 게시물 삭제됨
-        disable: 계정 동결 됨
+        disable: 계정 동결됨
         mark_statuses_as_sensitive: 게시물이 민감함으로 표시됨
         none: 경고
         sensitive: 계정이 민감함으로 표시됨

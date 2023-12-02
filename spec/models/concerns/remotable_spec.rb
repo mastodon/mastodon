@@ -31,7 +31,7 @@ RSpec.describe Remotable do
     end
   end
 
-  let(:attribute_name) { "#{hoge}_remote_url".to_sym }
+  let(:attribute_name) { :"#{hoge}_remote_url" }
   let(:code)           { 200 }
   let(:file)           { 'filename="foo.txt"' }
   let(:foo)            { foo_class.new }

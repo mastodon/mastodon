@@ -4,7 +4,6 @@ ENV['RAILS_ENV'] ||= 'test'
 
 # This needs to be defined before Rails is initialized
 RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
-RUN_SEARCH_SPECS = ENV.fetch('RUN_SEARCH_SPECS', false)
 
 if RUN_SYSTEM_SPECS
   STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
@@ -21,6 +20,7 @@ require 'webmock/rspec'
 require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
+require 'email_spec/rspec'
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
@@ -54,18 +54,28 @@ RSpec.configure do |config|
     case type
     when :system
       !RUN_SYSTEM_SPECS
-    when :search
-      !RUN_SEARCH_SPECS
     end
   }
-  config.fixture_path = Rails.root.join('spec', 'fixtures')
+
+  # By default, skip the elastic search integration specs
+  config.filter_run_excluding search: true
+
+  config.fixture_paths = [
+    Rails.root.join('spec', 'fixtures'),
+  ]
   config.use_transactional_fixtures = true
   config.order = 'random'
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 
+  # Set type to `cli` for all CLI specs
   config.define_derived_metadata(file_path: Regexp.new('spec/lib/mastodon/cli')) do |metadata|
     metadata[:type] = :cli
+  end
+
+  # Set `search` metadata true for all specs in spec/search/
+  config.define_derived_metadata(file_path: Regexp.new('spec/search/*')) do |metadata|
+    metadata[:search] = true
   end
 
   config.include Devise::Test::ControllerHelpers, type: :controller
@@ -83,6 +93,13 @@ RSpec.configure do |config|
     self.use_transactional_tests = false
     example.run
     self.use_transactional_tests = true
+  end
+
+  config.around(:each, :sidekiq_fake) do |example|
+    Sidekiq::Testing.fake! do
+      example.run
+      Sidekiq::Worker.clear_all
+    end
   end
 
   config.before :each, type: :cli do
