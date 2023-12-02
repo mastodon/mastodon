@@ -1,10 +1,8 @@
 import React, { useCallback, useState } from 'react';
 
 import { FormattedMessage, defineMessages, useIntl } from 'react-intl';
-import type { IntlShape } from 'react-intl';
 
 import classNames from 'classnames';
-import type { RouteComponentProps } from 'react-router-dom';
 
 import { ReactComponent as AddIcon } from '@material-symbols/svg-600/outlined/add.svg';
 import { ReactComponent as ArrowBackIcon } from '@material-symbols/svg-600/outlined/arrow_back.svg';
@@ -74,7 +72,7 @@ const BackButton: React.FC<BackButtonProps> = ({ pinned, show }) => {
   );
 };
 
-interface ColumnHeaderProps extends RouteComponentProps {
+interface ColumnHeaderProps {
   active?: boolean;
   appendContent?: React.ReactNode;
   children?: React.ReactNode;
@@ -82,7 +80,6 @@ interface ColumnHeaderProps extends RouteComponentProps {
   extraButton?: React.ReactNode;
   icon?: string;
   iconComponent?: IconProp;
-  intl: IntlShape;
   multiColumn?: boolean;
   onClick?: () => void;
   onMove?: (direction: number) => void;
