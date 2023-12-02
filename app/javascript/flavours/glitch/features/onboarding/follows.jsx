@@ -1,16 +1,20 @@
-import { PureComponent } from 'react';
-import Column from 'flavours/glitch/components/column';
-import ColumnBackButton from 'flavours/glitch/components/column_back_button';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
+
 import { fetchSuggestions } from 'flavours/glitch/actions/suggestions';
 import { markAsPartial } from 'flavours/glitch/actions/timelines';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import Account from 'flavours/glitch/containers/account_container';
+import Column from 'flavours/glitch/components/column';
+import ColumnBackButton from 'flavours/glitch/components/column_back_button';
 import { EmptyAccount } from 'flavours/glitch/components/empty_account';
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
-import { makeGetAccount } from 'flavours/glitch/selectors';
+import Account from 'flavours/glitch/containers/account_container';
 import { me } from 'flavours/glitch/initial_state';
+import { makeGetAccount } from 'flavours/glitch/selectors';
+
 import ProgressIndicator from './components/progress_indicator';
 
 const mapStateToProps = () => {

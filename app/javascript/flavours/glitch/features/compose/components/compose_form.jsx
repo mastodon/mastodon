@@ -2,11 +2,12 @@ import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
-import classNames from 'classnames';
 
 import { maxChars } from 'flavours/glitch/initial_state';
 import { isMobile } from 'flavours/glitch/is_mobile';

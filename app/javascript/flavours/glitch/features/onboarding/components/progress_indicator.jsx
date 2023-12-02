@@ -1,7 +1,10 @@
-import { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Check } from 'flavours/glitch/components/check';
+import { Fragment } from 'react';
+
 import classNames from 'classnames';
+
+import { Check } from 'flavours/glitch/components/check';
+
 
 const ProgressIndicator = ({ steps, completed }) => (
   <div className='onboarding__progress-indicator'>
