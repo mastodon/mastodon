@@ -19,7 +19,7 @@ import { IntlProvider } from 'mastodon/locales';
 import { store } from 'mastodon/store';
 import { isProduction } from 'mastodon/utils/environment';
 
-import { createIdentityContextValue } from './identity_context';
+import { IdentityContext, createIdentityContextValue } from './identity_context';
 
 const title = isProduction() ? siteTitle : `${siteTitle} (Dev)`;
 
@@ -73,7 +73,9 @@ export default class Mastodon extends PureComponent {
           <ErrorBoundary>
             <Router>
               <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
-                <Route path='/' component={UI} />
+                <IdentityContext value={this.identity}>
+                  <Route path='/' component={UI} />
+                </IdentityContext>
               </ScrollContext>
             </Router>
 
