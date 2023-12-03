@@ -6,15 +6,31 @@
 
   .account__display-name {
     flex: 1 1 auto;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: $darker-text-color;
     overflow: hidden;
     text-decoration: none;
     font-size: 14px;
 
-    &--with-note {
-      strong {
-        display: inline;
+    .display-name {
+      margin-bottom: 4px;
+    }
+
+    .display-name strong {
+      display: inline;
+    }
+  }
+
+  &--minimal {
+    .account__display-name {
+      .display-name {
+        margin-bottom: 0;
+      }
+
+      .display-name strong {
+        display: block;
       }
     }
   }
@@ -41,12 +57,12 @@
 
 .account__wrapper {
   display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .account__avatar-wrapper {
   float: left;
-  margin-inline-start: 12px;
-  margin-inline-end: 12px;
 }
 
 .account__avatar {
@@ -129,9 +145,10 @@
 }
 
 .account__relationship {
-  height: 18px;
-  padding: 10px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .account__header__wrapper {
@@ -746,6 +763,36 @@
         opacity: 1;
       }
     }
+  }
+}
+
+.account__contents {
+  overflow: hidden;
+}
+
+.account__details {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1em;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  color: $valid-value-color;
+  gap: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: none;
   }
 }
 
