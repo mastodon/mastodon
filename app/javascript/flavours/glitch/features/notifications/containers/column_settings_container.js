@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
           if (permission === 'granted') {
             dispatch(changePushNotifications(path.slice(1), checked));
           } else {
-            dispatch(showAlert(undefined, messages.permissionDenied));
+            dispatch(showAlert({ message: messages.permissionDenied }));
           }
         }));
       } else {
@@ -47,7 +47,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
           if (permission === 'granted') {
             dispatch(changeSetting(['notifications', ...path], checked));
           } else {
-            dispatch(showAlert(undefined, messages.permissionDenied));
+            dispatch(showAlert({ message: messages.permissionDenied }));
           }
         }));
       } else {
