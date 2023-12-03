@@ -11,6 +11,15 @@
   position: relative;
 }
 
+.inline-alert {
+  color: $valid-value-color;
+  font-weight: 400;
+
+  .no-reduce-motion & {
+    transition: opacity 200ms ease;
+  }
+}
+
 .link-button {
   display: block;
   font-size: 15px;

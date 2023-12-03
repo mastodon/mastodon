@@ -689,52 +689,18 @@
     border-top: 1px solid lighten($ui-base-color, 12%);
     border-bottom: 1px solid lighten($ui-base-color, 12%);
 
-    &__header {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-bottom: 5px;
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
       color: $darker-text-color;
+      text-transform: uppercase;
+      margin-bottom: 5px;
     }
 
     &__content {
       white-space: pre-wrap;
       padding: 10px 0;
-    }
-
-    &__buttons {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      flex: 1 0;
-
-      .icon-button {
-        font-size: 14px;
-        padding: 2px 6px;
-        color: $darker-text-color;
-
-        &:hover,
-        &:active,
-        &:focus {
-          color: lighten($darker-text-color, 7%);
-          background-color: rgba($darker-text-color, 0.15);
-        }
-
-        &:focus {
-          background-color: rgba($darker-text-color, 0.3);
-        }
-
-        &[disabled] {
-          color: darken($darker-text-color, 13%);
-          background-color: transparent;
-          cursor: default;
-        }
-      }
-
-      .flex-spacer {
-        flex: 0 0 5px;
-        background: transparent;
-      }
     }
 
     strong {

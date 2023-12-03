@@ -3,7 +3,6 @@ import { Record as ImmutableRecord } from 'immutable';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import { combineReducers } from 'redux-immutable';
 
-import account_notes from './account_notes';
 import accounts from './accounts';
 import accounts_counters from './accounts_counters';
 import accounts_map from './accounts_map';
@@ -87,7 +86,6 @@ const reducers = {
   polls,
   trends,
   markers,
-  account_notes,
   picture_in_picture,
   history,
   tags,
