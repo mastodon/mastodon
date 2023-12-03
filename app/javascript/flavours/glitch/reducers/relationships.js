@@ -1,7 +1,7 @@
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
 import {
-  ACCOUNT_NOTE_SUBMIT_SUCCESS,
+  submitAccountNote,
 } from '../actions/account_notes';
 import {
   ACCOUNT_FOLLOW_SUCCESS,
@@ -73,10 +73,11 @@ export default function relationships(state = initialState, action) {
   case ACCOUNT_UNMUTE_SUCCESS:
   case ACCOUNT_PIN_SUCCESS:
   case ACCOUNT_UNPIN_SUCCESS:
-  case ACCOUNT_NOTE_SUBMIT_SUCCESS:
     return normalizeRelationship(state, action.relationship);
   case RELATIONSHIPS_FETCH_SUCCESS:
     return normalizeRelationships(state, action.relationships);
+  case submitAccountNote.fulfilled:
+    return normalizeRelationship(state, action.payload.relationship);
   case DOMAIN_BLOCK_SUCCESS:
     return setDomainBlocking(state, action.accounts, true);
   case DOMAIN_UNBLOCK_SUCCESS:
