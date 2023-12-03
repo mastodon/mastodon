@@ -118,10 +118,6 @@ export function Mutes () {
   return import(/* webpackChunkName: "flavours/glitch/async/mutes" */'flavours/glitch/features/mutes');
 }
 
-export function OnboardingModal () {
-  return import(/* webpackChunkName: "flavours/glitch/async/onboarding_modal" */'flavours/glitch/features/ui/components/onboarding_modal');
-}
-
 export function MuteModal () {
   return import(/* webpackChunkName: "flavours/glitch/async/mute_modal" */'flavours/glitch/features/ui/components/mute_modal');
 }
@@ -170,8 +166,8 @@ export function Directory () {
   return import(/* webpackChunkName: "features/glitch/async/directory" */'flavours/glitch/features/directory');
 }
 
-export function FollowRecommendations () {
-  return import(/* webpackChunkName: "features/glitch/async/follow_recommendations" */'flavours/glitch/features/follow_recommendations');
+export function Onboarding () {
+  return import(/* webpackChunkName: "features/glitch/async/onboarding" */'flavours/glitch/features/onboarding');
 }
 
 export function CompareHistoryModal () {

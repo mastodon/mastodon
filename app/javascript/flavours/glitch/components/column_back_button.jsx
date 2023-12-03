@@ -13,13 +13,16 @@ export class ColumnBackButton extends PureComponent {
 
   static propTypes = {
     multiColumn: PropTypes.bool,
+    onClick: PropTypes.func,
     ...WithRouterPropTypes,
   };
 
   handleClick = () => {
-    const { history } = this.props;
+    const { onClick, history } = this.props;
 
-    if (history.location?.state?.fromMastodon) {
+    if (onClick) {
+      onClick();
+    } else if (history.location?.state?.fromMastodon) {
       history.goBack();
     } else {
       history.push('/');

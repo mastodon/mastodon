@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import classNames from 'classnames';
 
-import Check from 'flavours/glitch/components/check';
+import { Check } from 'flavours/glitch/components/check';
 
 export default class Option extends PureComponent {
 

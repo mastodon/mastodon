@@ -1,5 +1,7 @@
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
+import { me } from 'flavours/glitch/initial_state';
+
 import {
   ACCOUNT_FOLLOW_SUCCESS,
   ACCOUNT_UNFOLLOW_SUCCESS,
@@ -20,6 +22,14 @@ const normalizeAccounts = (state, accounts) => {
   return state;
 };
 
+const incrementFollowers = (state, accountId) =>
+  state.updateIn([accountId, 'followers_count'], num => num + 1)
+    .updateIn([me, 'following_count'], num => num + 1);
+
+const decrementFollowers = (state, accountId) =>
+  state.updateIn([accountId, 'followers_count'], num => Math.max(0, num - 1))
+    .updateIn([me, 'following_count'], num => Math.max(0, num - 1));
+
 const initialState = ImmutableMap();
 
 export default function accountsCounters(state = initialState, action) {
@@ -30,9 +40,9 @@ export default function accountsCounters(state = initialState, action) {
     return normalizeAccounts(state, action.accounts);
   case ACCOUNT_FOLLOW_SUCCESS:
     return action.alreadyFollowing ? state :
-      state.updateIn([action.relationship.id, 'followers_count'], num => num + 1);
+      incrementFollowers(state, action.relationship.id);
   case ACCOUNT_UNFOLLOW_SUCCESS:
-    return state.updateIn([action.relationship.id, 'followers_count'], num => Math.max(0, num - 1));
+    return decrementFollowers(state, action.relationship.id);
   default:
     return state;
   }
