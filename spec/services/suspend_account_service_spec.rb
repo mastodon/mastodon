@@ -19,13 +19,14 @@ RSpec.describe SuspendAccountService, type: :service do
     end
 
     it "unmerges from local followers' feeds" do
-      subject
+      expect { subject }
+        .to_not change_suspended_flag
       expect(FeedManager.instance).to have_received(:unmerge_from_home).with(account, local_follower)
       expect(FeedManager.instance).to have_received(:unmerge_from_list).with(account, list)
     end
 
-    it 'does not change the “suspended” flag' do
-      expect { subject }.to_not change(account, :suspended?)
+    def change_suspended_flag
+      change(account, :suspended?)
     end
   end
 
