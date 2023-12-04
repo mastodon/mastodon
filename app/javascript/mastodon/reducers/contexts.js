@@ -6,65 +6,20 @@ import {
 } from '../actions/accounts';
 import { CONTEXT_FETCH_SUCCESS } from '../actions/statuses';
 import { TIMELINE_DELETE, TIMELINE_UPDATE } from '../actions/timelines';
-import { compareId } from '../compare_id';
 
-const initialState = ImmutableMap({
-  inReplyTos: ImmutableMap(),
-  replies: ImmutableMap(),
-});
+const initialState = ImmutableMap();
 
-const normalizeContext = (immutableState, id, ancestors, descendants) => immutableState.withMutations(state => {
-  state.update('inReplyTos', immutableAncestors => immutableAncestors.withMutations(inReplyTos => {
-    state.update('replies', immutableDescendants => immutableDescendants.withMutations(replies => {
-      function addReply({ id, in_reply_to_id }) {
-        if (in_reply_to_id && !inReplyTos.has(id)) {
+const normalizeContext = (state, id, ancestors, descendants) => state.set(id, ImmutableMap({
+  ancestors: ImmutableList(ancestors.map(x => x.id)),
+  descendants: ImmutableList(descendants.map(x => x.id)),
+}));
 
-          replies.update(in_reply_to_id, ImmutableList(), siblings => {
-            const index = siblings.findLastIndex(sibling => compareId(sibling, id) < 0);
-            return siblings.insert(index + 1, id);
-          });
-
-          inReplyTos.set(id, in_reply_to_id);
-        }
-      }
-
-      // We know in_reply_to_id of statuses but `id` itself.
-      // So we assume that the status of the id replies to last ancestors.
-
-      ancestors.forEach(addReply);
-
-      if (ancestors[0]) {
-        addReply({ id, in_reply_to_id: ancestors[ancestors.length - 1].id });
-      }
-
-      descendants.forEach(addReply);
-    }));
-  }));
-});
-
-const deleteFromContexts = (immutableState, ids) => immutableState.withMutations(state => {
-  state.update('inReplyTos', immutableAncestors => immutableAncestors.withMutations(inReplyTos => {
-    state.update('replies', immutableDescendants => immutableDescendants.withMutations(replies => {
-      ids.forEach(id => {
-        const inReplyToIdOfId = inReplyTos.get(id);
-        const repliesOfId = replies.get(id);
-        const siblings = replies.get(inReplyToIdOfId);
-
-        if (siblings) {
-          replies.set(inReplyToIdOfId, siblings.filterNot(sibling => sibling === id));
-        }
-
-
-        if (repliesOfId) {
-          repliesOfId.forEach(reply => inReplyTos.delete(reply));
-        }
-
-        inReplyTos.delete(id);
-        replies.delete(id);
-      });
-    }));
-  }));
-});
+const deleteFromContexts = (state, deletedIds) => state.update(contexts =>
+  contexts.map(context =>
+    context.update(map => ImmutableMap({
+      ancestors: map.get('ancestors').filterNot(id => deletedIds.includes(id)),
+      descendants: map.get('descendants').filterNot(id => deletedIds.includes(id)),
+    }))));
 
 const filterContexts = (state, relationship, statuses) => {
   const ownedStatusIds = statuses
@@ -75,16 +30,26 @@ const filterContexts = (state, relationship, statuses) => {
 };
 
 const updateContext = (state, status) => {
-  if (status.in_reply_to_id) {
-    return state.withMutations(mutable => {
-      const replies = mutable.getIn(['replies', status.in_reply_to_id], ImmutableList());
+  const inReplyToId = status.in_reply_to_id;
 
-      mutable.setIn(['inReplyTos', status.id], status.in_reply_to_id);
-
-      if (!replies.includes(status.id)) {
-        mutable.setIn(['replies', status.in_reply_to_id], replies.push(status.id));
+  if (inReplyToId) {
+    return state.update(contexts => contexts.map((context, rootStatusId) => {
+      if (context.get('descendants').includes(status.id)) {
+        return context;
       }
-    });
+
+      if (rootStatusId === inReplyToId) {
+        return context.update('descendants', list => list.push(status.id));
+      }
+
+      const ancestorIndex = context.get('descendants').indexOf(inReplyToId);
+
+      if (ancestorIndex !== -1) {
+        return context.update('descendants', list => list.insert(ancestorIndex + 1, status.id));
+      }
+
+      return context;
+    }));
   }
 
   return state;

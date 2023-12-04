@@ -6,11 +6,10 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { withRouter } from 'react-router-dom';
 
-import Immutable from 'immutable';
+import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { ReactComponent as VisibilityIcon } from '@material-symbols/svg-600/outlined/visibility.svg';
 import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
@@ -72,7 +71,6 @@ import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from
 import ActionBar from './components/action_bar';
 import DetailedStatus from './components/detailed_status';
 
-
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
@@ -91,83 +89,19 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
   const getPictureInPicture = makeGetPictureInPicture();
 
-  const getAncestorsIds = createSelector([
-    (_, { id }) => id,
-    state => state.getIn(['contexts', 'inReplyTos']),
-  ], (statusId, inReplyTos) => {
-    let ancestorsIds = Immutable.List();
-    ancestorsIds = ancestorsIds.withMutations(mutable => {
-      let id = statusId;
-
-      while (id && !mutable.includes(id)) {
-        mutable.unshift(id);
-        id = inReplyTos.get(id);
-      }
-    });
-
-    return ancestorsIds;
-  });
-
-  const getDescendantsIds = createSelector([
-    (_, { id }) => id,
-    state => state.getIn(['contexts', 'replies']),
-    state => state.get('statuses'),
-  ], (statusId, contextReplies, statuses) => {
-    let descendantsIds = [];
-    const ids = [statusId];
-
-    while (ids.length > 0) {
-      let id        = ids.pop();
-      const replies = contextReplies.get(id);
-
-      if (statusId !== id) {
-        descendantsIds.push(id);
-      }
-
-      if (replies) {
-        replies.reverse().forEach(reply => {
-          if (!ids.includes(reply) && !descendantsIds.includes(reply) && statusId !== reply) ids.push(reply);
-        });
-      }
-    }
-
-    let insertAt = descendantsIds.findIndex((id) => statuses.get(id).get('in_reply_to_account_id') !== statuses.get(id).get('account'));
-    if (insertAt !== -1) {
-      descendantsIds.forEach((id, idx) => {
-        if (idx > insertAt && statuses.get(id).get('in_reply_to_account_id') === statuses.get(id).get('account')) {
-          descendantsIds.splice(idx, 1);
-          descendantsIds.splice(insertAt, 0, id);
-          insertAt += 1;
-        }
-      });
-    }
-
-    return Immutable.List(descendantsIds);
-  });
-
-  const mapStateToProps = (state, props) => {
+  return (state, props) => {
     const status = getStatus(state, { id: props.params.statusId });
-
-    let ancestorsIds   = Immutable.List();
-    let descendantsIds = Immutable.List();
-
-    if (status) {
-      ancestorsIds   = getAncestorsIds(state, { id: status.get('in_reply_to_id') });
-      descendantsIds = getDescendantsIds(state, { id: status.get('id') });
-    }
 
     return {
       isLoading: state.getIn(['statuses', props.params.statusId, 'isLoading']),
       status,
-      ancestorsIds,
-      descendantsIds,
+      ancestorsIds: state.getIn(['contexts', props.params.statusId, 'ancestors'], ImmutableList()),
+      descendantsIds: state.getIn(['contexts', props.params.statusId, 'descendants'], ImmutableList()),
       askReplyConfirmation: state.getIn(['compose', 'text']).trim().length !== 0,
       domain: state.getIn(['meta', 'domain']),
       pictureInPicture: getPictureInPicture(state, { id: props.params.statusId }),
     };
   };
-
-  return mapStateToProps;
 };
 
 const truncate = (str, num) => {
