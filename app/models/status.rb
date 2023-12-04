@@ -232,6 +232,10 @@ class Status < ApplicationRecord
     preview_cards_status&.preview_card&.tap { |x| x.original_url = preview_cards_status.url }
   end
 
+  def reset_preview_card!
+    PreviewCardsStatus.where(status_id: id).delete_all
+  end
+
   def hidden?
     !distributable?
   end
