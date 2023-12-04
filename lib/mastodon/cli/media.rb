@@ -328,7 +328,7 @@ module Mastodon::CLI
     def verify_remove_options!
       fail_with_message '--prune-profiles and --remove-headers should not be specified simultaneously' if options[:prune_profiles] && options[:remove_headers]
 
-      fail_with_message '--include-follows can only be used with --prune-profiles or --remove-headers' if options[:include_follows] && !(options[:prune_profiles] || options[:remove_headers])
+      fail_with_message '--include-follows can only be used with --prune-profiles or --remove-headers' if options[:include_follows] && !prune_profiles_or_remove_headers?
     end
 
     def prune_profiles_or_remove_headers?
