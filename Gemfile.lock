@@ -558,7 +558,7 @@ GEM
       rack
     rack-proxy (0.7.6)
       rack
-    rack-session (1.0.1)
+    rack-session (1.0.2)
       rack (< 3)
     rack-test (2.1.0)
       rack (>= 1.3)
@@ -736,9 +736,9 @@ GEM
     simplecov-lcov (0.8.0)
     simplecov_json_formatter (0.1.4)
     smart_properties (1.17.0)
-    sprockets (3.7.2)
+    sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
-      rack (> 1, < 3)
+      rack (>= 2.2.4, < 4)
     sprockets-rails (3.4.2)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
@@ -949,8 +949,8 @@ DEPENDENCIES
   simple_form (~> 5.2)
   simplecov (~> 0.22)
   simplecov-lcov (~> 0.8)
-  sprockets (~> 3.7.2)
-  sprockets-rails (~> 3.4)
+  sprockets
+  sprockets-rails
   stackprof
   stoplight (~> 3.0.1)
   strong_migrations (= 1.6.4)
