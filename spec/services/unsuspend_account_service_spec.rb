@@ -45,7 +45,7 @@ RSpec.describe UnsuspendAccountService, type: :service do
         remote_follower.follow!(account)
       end
 
-      it 'merges feeds and sends update' do
+      it 'merges back into feeds of local followers and sends update' do
         subject
 
         expect_feeds_merged
