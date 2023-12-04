@@ -45,7 +45,7 @@ describe Mastodon::CLI::Emoji do
       after { File.delete(export_path) }
 
       let(:export_path) { Rails.root.join('tmp', 'export.tar.gz') }
-      let(:args) { ['tmp'] }
+      let(:args) { [Rails.root.join('tmp')] }
       let(:action) { :export }
 
       it 'reports about exported emoji' do
