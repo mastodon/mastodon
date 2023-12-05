@@ -16,6 +16,13 @@ services:
       - '192.168.135.76:3000:3000'
     volumes:
       - ./public/system:/mastodon/public/system
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
 
   streaming:
     build: .
@@ -31,6 +38,13 @@ services:
       test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1']
     ports:
       - '192.168.135.76:4000:4000'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
 
 networks:
   external_network:
