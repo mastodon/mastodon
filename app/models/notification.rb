@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notifications
@@ -19,12 +20,12 @@ class Notification < ApplicationRecord
   include Paginable
 
   LEGACY_TYPE_CLASS_MAP = {
-    'Mention'       => :mention,
-    'Status'        => :reblog,
-    'Follow'        => :follow,
+    'Mention' => :mention,
+    'Status' => :reblog,
+    'Follow' => :follow,
     'FollowRequest' => :follow_request,
-    'Favourite'     => :favourite,
-    'Poll'          => :poll,
+    'Favourite' => :favourite,
+    'Poll' => :poll,
   }.freeze
 
   TYPES = %i(
@@ -54,13 +55,15 @@ class Notification < ApplicationRecord
   belongs_to :from_account, class_name: 'Account', optional: true
   belongs_to :activity, polymorphic: true, optional: true
 
-  belongs_to :mention,        foreign_key: 'activity_id', optional: true
-  belongs_to :status,         foreign_key: 'activity_id', optional: true
-  belongs_to :follow,         foreign_key: 'activity_id', optional: true
-  belongs_to :follow_request, foreign_key: 'activity_id', optional: true
-  belongs_to :favourite,      foreign_key: 'activity_id', optional: true
-  belongs_to :poll,           foreign_key: 'activity_id', optional: true
-  belongs_to :report,         foreign_key: 'activity_id', optional: true
+  with_options foreign_key: 'activity_id', optional: true do
+    belongs_to :mention, inverse_of: :notification
+    belongs_to :status, inverse_of: :notification
+    belongs_to :follow, inverse_of: :notification
+    belongs_to :follow_request, inverse_of: :notification
+    belongs_to :favourite, inverse_of: :notification
+    belongs_to :poll, inverse_of: false
+    belongs_to :report, inverse_of: false
+  end
 
   validates :type, inclusion: { in: TYPES }
 
@@ -87,13 +90,11 @@ class Notification < ApplicationRecord
 
   class << self
     def browserable(types: [], exclude_types: [], from_account_id: nil)
-      requested_types = begin
-        if types.empty?
-          TYPES
-        else
-          types.map(&:to_sym) & TYPES
-        end
-      end
+      requested_types = if types.empty?
+                          TYPES
+                        else
+                          types.map(&:to_sym) & TYPES
+                        end
 
       requested_types -= exclude_types.map(&:to_sym)
 
@@ -110,10 +111,10 @@ class Notification < ApplicationRecord
 
         # Instead of using the usual `includes`, manually preload each type.
         # If polymorphic associations are loaded with the usual `includes`, other types of associations will be loaded more.
-        ActiveRecord::Associations::Preloader.new.preload(grouped_notifications, associations)
+        ActiveRecord::Associations::Preloader.new(records: grouped_notifications, associations: associations)
       end
 
-      unique_target_statuses = notifications.map(&:target_status).compact.uniq
+      unique_target_statuses = notifications.filter_map(&:target_status).uniq
       # Call cache_collection in block
       cached_statuses_by_id = yield(unique_target_statuses).index_by(&:id)
 

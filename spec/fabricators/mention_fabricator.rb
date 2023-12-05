@@ -1,4 +1,6 @@
+# frozen_string_literal: true
+
 Fabricator(:mention) do
-  account
-  status
+  account { Fabricate.build(:account) }
+  status { Fabricate.build(:status) }
 end

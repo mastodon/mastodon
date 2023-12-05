@@ -1,0 +1,42 @@
+name: JavaScript Testing
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+      - 'renovate/**'
+    paths:
+      - 'package.json'
+      - 'yarn.lock'
+      - '.nvmrc'
+      - '**/*.js'
+      - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '**/*.snap'
+      - '.github/workflows/test-js.yml'
+
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'yarn.lock'
+      - '.nvmrc'
+      - '**/*.js'
+      - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '**/*.snap'
+      - '.github/workflows/test-js.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
+
+      - name: Jest testing
+        run: yarn jest --reporters github-actions summary

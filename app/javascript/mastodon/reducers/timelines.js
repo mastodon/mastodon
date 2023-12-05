@@ -1,3 +1,10 @@
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
+
+import {
+  blockAccountSuccess,
+  muteAccountSuccess,
+  unfollowAccountSuccess
+} from '../actions/accounts';
 import {
   TIMELINE_UPDATE,
   TIMELINE_DELETE,
@@ -11,13 +18,7 @@ import {
   TIMELINE_LOAD_PENDING,
   TIMELINE_MARK_AS_PARTIAL,
 } from '../actions/timelines';
-import {
-  ACCOUNT_BLOCK_SUCCESS,
-  ACCOUNT_MUTE_SUCCESS,
-  ACCOUNT_UNFOLLOW_SUCCESS,
-} from '../actions/accounts';
-import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
-import compareId from '../compare_id';
+import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap();
 
@@ -199,11 +200,11 @@ export default function timelines(state = initialState, action) {
     return deleteStatus(state, action.id, action.references, action.reblogOf);
   case TIMELINE_CLEAR:
     return clearTimeline(state, action.timeline);
-  case ACCOUNT_BLOCK_SUCCESS:
-  case ACCOUNT_MUTE_SUCCESS:
-    return filterTimelines(state, action.relationship, action.statuses);
-  case ACCOUNT_UNFOLLOW_SUCCESS:
-    return filterTimeline('home', state, action.relationship, action.statuses);
+  case blockAccountSuccess.type:
+  case muteAccountSuccess.type:
+    return filterTimelines(state, action.payload.relationship, action.payload.statuses);
+  case unfollowAccountSuccess.type:
+    return filterTimeline('home', state, action.payload.relationship, action.payload.statuses);
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
   case TIMELINE_CONNECT:

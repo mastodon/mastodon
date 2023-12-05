@@ -11,11 +11,11 @@ module BrandingHelper
   end
 
   def _logo_as_symbol_wordmark
-    content_tag(:svg, tag(:use, href: '#logo-symbol-wordmark'), viewBox: '0 0 261 66', class: 'logo logo--wordmark')
+    content_tag(:svg, tag.use(href: '#logo-symbol-wordmark'), viewBox: '0 0 261 66', class: 'logo logo--wordmark')
   end
 
   def _logo_as_symbol_icon
-    content_tag(:svg, tag(:use, href: '#logo-symbol-icon'), viewBox: '0 0 79 79', class: 'logo logo--icon')
+    content_tag(:svg, tag.use(href: '#logo-symbol-icon'), viewBox: '0 0 79 79', class: 'logo logo--icon')
   end
 
   def render_logo
@@ -23,14 +23,12 @@ module BrandingHelper
   end
 
   def render_symbol(version = :icon)
-    path = begin
-      case version
-      when :icon
-        'logo-symbol-icon.svg'
-      when :wordmark
-        'logo-symbol-wordmark.svg'
-      end
-    end
+    path = case version
+           when :icon
+             'logo-symbol-icon.svg'
+           when :wordmark
+             'logo-symbol-wordmark.svg'
+           end
 
     render(file: Rails.root.join('app', 'javascript', 'images', path)).html_safe # rubocop:disable Rails/OutputSafety
   end

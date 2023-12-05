@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateMutes < ActiveRecord::Migration[5.0]
   def change
     create_table :mutes do |t|

@@ -1,3 +1,3 @@
-Fabricator(:system_key) do
+# frozen_string_literal: true
 
-end
+Fabricator(:system_key)

@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe SuspendAccountService, type: :service do
   shared_examples 'common behavior' do
+    subject { described_class.new.call(account) }
+
     let!(:local_follower) { Fabricate(:user, current_sign_in_at: 1.hour.ago).account }
     let!(:list)           { Fabricate(:list, account: local_follower) }
 
-    subject { described_class.new.call(account) }
-
     before do
-      allow(FeedManager.instance).to receive(:unmerge_from_home).and_return(nil)
-      allow(FeedManager.instance).to receive(:unmerge_from_list).and_return(nil)
+      allow(FeedManager.instance).to receive_messages(unmerge_from_home: nil, unmerge_from_list: nil)
 
       local_follower.follow!(account)
       list.accounts << account
@@ -24,7 +25,7 @@ RSpec.describe SuspendAccountService, type: :service do
     end
 
     it 'does not change the “suspended” flag' do
-      expect { subject }.to_not change { account.suspended? }
+      expect { subject }.to_not change(account, :suspended?)
     end
   end
 
@@ -42,8 +43,8 @@ RSpec.describe SuspendAccountService, type: :service do
 
     include_examples 'common behavior' do
       let!(:account)         { Fabricate(:account) }
-      let!(:remote_follower) { Fabricate(:account, uri: 'https://alice.com', inbox_url: 'https://alice.com/inbox', protocol: :activitypub) }
-      let!(:remote_reporter) { Fabricate(:account, uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
+      let!(:remote_follower) { Fabricate(:account, uri: 'https://alice.com', inbox_url: 'https://alice.com/inbox', protocol: :activitypub, domain: 'alice.com') }
+      let!(:remote_reporter) { Fabricate(:account, uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
       let!(:report)          { Fabricate(:report, account: remote_reporter, target_account: account) }
 
       before do

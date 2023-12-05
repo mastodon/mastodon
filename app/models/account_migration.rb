@@ -25,6 +25,8 @@ class AccountMigration < ApplicationRecord
   before_validation :set_target_account
   before_validation :set_followers_count
 
+  normalizes :acct, with: ->(acct) { acct.strip.delete_prefix('@') }
+
   validates :acct, presence: true, domain: { acct: true }
   validate :validate_migration_cooldown
   validate :validate_target_account
@@ -42,17 +44,13 @@ class AccountMigration < ApplicationRecord
 
     return false unless errors.empty?
 
-    with_lock("account_migration:#{account.id}") do
+    with_redis_lock("account_migration:#{account.id}") do
       save
     end
   end
 
   def cooldown_at
     created_at + COOLDOWN_PERIOD
-  end
-
-  def acct=(val)
-    super(val.to_s.strip.gsub(/\A@/, ''))
   end
 
   private

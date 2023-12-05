@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-class Api::V1::Instances::PrivacyPoliciesController < Api::BaseController
-  skip_before_action :require_authenticated_user!, unless: :whitelist_mode?
-
+class Api::V1::Instances::PrivacyPoliciesController < Api::V1::Instances::BaseController
   before_action :set_privacy_policy
 
   def show
-    expires_in 1.day, public: true
+    cache_even_if_authenticated!
     render json: @privacy_policy, serializer: REST::PrivacyPolicySerializer
   end
 

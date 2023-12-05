@@ -1,3 +1,6 @@
+/* eslint-disable import/no-commonjs --
+   We need to use CommonJS here as its imported into a preval file (`emoji_compressed.js`) */
+
 function padLeft(str, num) {
   while (str.length < num) {
     str = '0' + str;

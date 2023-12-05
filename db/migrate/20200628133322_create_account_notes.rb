@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAccountNotes < ActiveRecord::Migration[5.2]
   def change
     create_table :account_notes do |t|
@@ -10,4 +12,3 @@ class CreateAccountNotes < ActiveRecord::Migration[5.2]
     end
   end
 end
-

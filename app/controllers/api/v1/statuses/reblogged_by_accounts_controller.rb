@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
-class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
-  include Authorization
-
+class Api::V1::Statuses::RebloggedByAccountsController < Api::V1::Statuses::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:accounts' }
-  before_action :set_status
   after_action :insert_pagination_headers
 
   def index
+    cache_if_unauthenticated!
     @accounts = load_accounts
     render json: @accounts, each_serializer: REST::AccountSerializer
   end
@@ -37,15 +35,11 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
   end
 
   def next_path
-    if records_continue?
-      api_v1_status_reblogged_by_index_url pagination_params(max_id: pagination_max_id)
-    end
+    api_v1_status_reblogged_by_index_url pagination_params(max_id: pagination_max_id) if records_continue?
   end
 
   def prev_path
-    unless @accounts.empty?
-      api_v1_status_reblogged_by_index_url pagination_params(since_id: pagination_since_id)
-    end
+    api_v1_status_reblogged_by_index_url pagination_params(since_id: pagination_since_id) unless @accounts.empty?
   end
 
   def pagination_max_id
@@ -58,13 +52,6 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
 
   def records_continue?
     @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-  end
-
-  def set_status
-    @status = Status.find(params[:status_id])
-    authorize @status, :show?
-  rescue Mastodon::NotPermittedError
-    not_found
   end
 
   def pagination_params(core_params)

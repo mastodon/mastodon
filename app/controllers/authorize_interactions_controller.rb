@@ -3,30 +3,17 @@
 class AuthorizeInteractionsController < ApplicationController
   include Authorization
 
-  layout 'modal'
-
   before_action :authenticate_user!
-  before_action :set_body_classes
   before_action :set_resource
 
   def show
     if @resource.is_a?(Account)
-      render :show
+      redirect_to web_url("@#{@resource.pretty_acct}")
     elsif @resource.is_a?(Status)
       redirect_to web_url("@#{@resource.account.pretty_acct}/#{@resource.id}")
     else
-      render :error
+      not_found
     end
-  end
-
-  def create
-    if @resource.is_a?(Account) && FollowService.new.call(current_account, @resource, with_rate_limit: true)
-      render :success
-    else
-      render :error
-    end
-  rescue ActiveRecord::RecordNotFound
-    render :error
   end
 
   private
@@ -59,10 +46,6 @@ class AuthorizeInteractionsController < ApplicationController
   end
 
   def uri_param
-    params[:uri] || params.fetch(:acct, '').gsub(/\Aacct:/, '')
-  end
-
-  def set_body_classes
-    @body_classes = 'modal-layout'
+    params[:uri] || params.fetch(:acct, '').delete_prefix('acct:')
   end
 end

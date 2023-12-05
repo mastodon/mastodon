@@ -35,7 +35,7 @@ class DomainAllow < ApplicationRecord
     def rule_for(domain)
       return if domain.blank?
 
-      uri = Addressable::URI.new.tap { |u| u.host = domain.gsub(/[\/]/, '') }
+      uri = Addressable::URI.new.tap { |u| u.host = domain.delete('/') }
 
       find_by(domain: uri.normalized_host)
     end

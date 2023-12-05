@@ -14,10 +14,10 @@ class Settings::BaseController < ApplicationController
   end
 
   def set_cache_headers
-    response.headers['Cache-Control'] = 'private, no-store'
+    response.cache_control.replace(private: true, no_store: true)
   end
 
   def require_not_suspended!
-    forbidden if current_account.suspended?
+    forbidden if current_account.unavailable?
   end
 end

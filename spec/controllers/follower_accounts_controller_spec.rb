@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe FollowerAccountsController do
   render_views
 
-  let(:alice) { Fabricate(:account) }
-  let(:follower0) { Fabricate(:account) }
-  let(:follower1) { Fabricate(:account) }
+  let(:alice) { Fabricate(:account, username: 'alice') }
+  let(:follower_bob) { Fabricate(:account, username: 'bob') }
+  let(:follower_chris) { Fabricate(:account, username: 'curt') }
 
   describe 'GET #index' do
-    let!(:follow0) { follower0.follow!(alice) }
-    let!(:follow1) { follower1.follow!(alice) }
+    let!(:follow_from_bob) { follower_bob.follow!(alice) }
+    let!(:follow_from_chris) { follower_chris.follow!(alice) }
 
     context 'when format is html' do
       subject(:response) { get :index, params: { account_username: alice.username, format: :html } }
@@ -37,8 +39,9 @@ describe FollowerAccountsController do
     end
 
     context 'when format is json' do
-      subject(:response) { get :index, params: { account_username: alice.username, page: page, format: :json } }
-      subject(:body) { JSON.parse(response.body) }
+      subject(:body) { response.parsed_body }
+
+      let(:response) { get :index, params: { account_username: alice.username, page: page, format: :json } }
 
       context 'with page' do
         let(:page) { 1 }

@@ -2,29 +2,60 @@
 tt:
   simple_form:
     labels:
+      account:
+        fields:
+          name: Билге
+          value: Эчтәлек
       account_warning_preset:
         title: Исем
       admin_account_action:
-        type: Ğämäl
+        type: Гамәл
         types:
+          disable: Туңдыру
+          none: Кисәтү җибәрү
           sensitive: Sizmäle
+          silence: Яшерү
           suspend: Искә алмау
+      announcement:
+        starts_at: Чараның башы
       defaults:
         avatar: Аватар
         data: Мәгълүмат
         email: Почта адресы
         header: Башлам
-        password: Парол
+        note: Шәхси мәгълүмат
+        otp_attempt: Ике-факторлы код
+        password: Серсүз
         setting_display_media_default: Töpcay
+        setting_use_pending_items: Әкрен режим
+        title: Башлам
         username: Кулланучы исеме
       featured_tag:
         name: Хэштег
+      form_admin_settings:
+        custom_css: Махсус CSS
+        site_contact_email: Элемтә эл. почтасы
+        site_terms: Хосусыйлык Сәясәте
       invite:
         comment: Аңлатма
       ip_block:
         comment: Аңлатма
         ip: ІР
+        severities:
+          sign_up_block: Теркәлүләрне блоклау
+        severity: Кагыйдә
+      rule:
+        text: Кагыйдә
+      tag:
+        name: Хэштег
+      user:
+        role: Роль
+      user_role:
+        color: Бейдж төсе
+        name: Исем
+        permissions_as_keys: Рөхсәтләр
     'no': Юк
+    recommended: Тәкъдим ителгән
     required:
       mark: "*"
     'yes': Әйе

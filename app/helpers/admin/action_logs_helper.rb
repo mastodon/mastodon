@@ -20,7 +20,7 @@ module Admin::ActionLogsHelper
     when 'Status'
       link_to log.human_identifier, log.permalink
     when 'AccountWarning'
-      link_to log.human_identifier, admin_account_path(log.target_id)
+      link_to log.human_identifier, disputes_strike_path(log.target_id)
     when 'Announcement'
       link_to truncate(log.human_identifier), edit_admin_announcement_path(log.target_id)
     when 'IpBlock', 'Instance', 'CustomEmoji'

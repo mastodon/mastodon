@@ -4,12 +4,12 @@ class MigrateNotificationsType < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   TYPES_TO_MIGRATE = {
-    'Mention'       => :mention,
-    'Status'        => :reblog,
-    'Follow'        => :follow,
+    'Mention' => :mention,
+    'Status' => :reblog,
+    'Follow' => :follow,
     'FollowRequest' => :follow_request,
-    'Favourite'     => :favourite,
-    'Poll'          => :poll,
+    'Favourite' => :favourite,
+    'Poll' => :poll,
   }.freeze
 
   def up

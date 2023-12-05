@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Admin::DomainAllowsController, type: :controller do
+RSpec.describe Admin::DomainAllowsController do
   render_views
 
   before do
@@ -35,7 +37,7 @@ RSpec.describe Admin::DomainAllowsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'disallows the domain' do
-      service = double(call: true)
+      service = instance_double(UnallowDomainService, call: true)
       allow(UnallowDomainService).to receive(:new).and_return(service)
       domain_allow = Fabricate(:domain_allow)
       delete :destroy, params: { id: domain_allow.id }

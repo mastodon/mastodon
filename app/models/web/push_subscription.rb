@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: web_push_subscriptions
@@ -18,7 +19,7 @@ class Web::PushSubscription < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :access_token, class_name: 'Doorkeeper::AccessToken', optional: true
 
-  has_one :session_activation, foreign_key: 'web_push_subscription_id', inverse_of: :web_push_subscription
+  has_one :session_activation, foreign_key: 'web_push_subscription_id', inverse_of: :web_push_subscription, dependent: nil
 
   validates :endpoint, presence: true
   validates :key_p256dh, presence: true
@@ -53,25 +54,21 @@ class Web::PushSubscription < ApplicationRecord
   def associated_user
     return @associated_user if defined?(@associated_user)
 
-    @associated_user = begin
-      if user_id.nil?
-        session_activation.user
-      else
-        user
-      end
-    end
+    @associated_user = if user_id.nil?
+                         session_activation.user
+                       else
+                         user
+                       end
   end
 
   def associated_access_token
     return @associated_access_token if defined?(@associated_access_token)
 
-    @associated_access_token = begin
-      if access_token_id.nil?
-        find_or_create_access_token.token
-      else
-        access_token.token
-      end
-    end
+    @associated_access_token = if access_token_id.nil?
+                                 find_or_create_access_token.token
+                               else
+                                 access_token.token
+                               end
   end
 
   class << self

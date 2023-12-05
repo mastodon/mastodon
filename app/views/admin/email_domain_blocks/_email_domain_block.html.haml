@@ -9,6 +9,6 @@
 
       - if email_domain_block.parent.present?
         = t('admin.email_domain_blocks.resolved_through_html', domain: content_tag(:samp, email_domain_block.parent.domain))
-        •
+        ·
 
       = t('admin.email_domain_blocks.attempts_over_week', count: email_domain_block.history.reduce(0) { |sum, day| sum + day.accounts })

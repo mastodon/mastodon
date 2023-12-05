@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class PlainTextFormatter
-  include ActionView::Helpers::TextHelper
-
-  NEWLINE_TAGS_RE = /(<br \/>|<br>|<\/p>)+/.freeze
+  NEWLINE_TAGS_RE = %r{(<br />|<br>|</p>)+}
 
   attr_reader :text, :local
 
@@ -18,7 +16,10 @@ class PlainTextFormatter
     if local?
       text
     else
-      strip_tags(insert_newlines).chomp
+      node = Nokogiri::HTML.fragment(insert_newlines)
+      # Elements that are entirely removed with our Sanitize config
+      node.xpath('.//iframe|.//math|.//noembed|.//noframes|.//noscript|.//plaintext|.//script|.//style|.//svg|.//xmp').remove
+      node.text.chomp
     end
   end
 

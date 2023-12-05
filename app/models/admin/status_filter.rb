@@ -6,6 +6,8 @@ class Admin::StatusFilter
     report_id
   ).freeze
 
+  IGNORED_PARAMS = %w(page report_id).freeze
+
   attr_reader :params
 
   def initialize(account, params)
@@ -17,7 +19,7 @@ class Admin::StatusFilter
     scope = @account.statuses.where(visibility: [:public, :unlisted])
 
     params.each do |key, value|
-      next if %w(page report_id).include?(key.to_s)
+      next if IGNORED_PARAMS.include?(key.to_s)
 
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
     end
@@ -30,7 +32,7 @@ class Admin::StatusFilter
   def scope_for(key, _value)
     case key.to_s
     when 'media'
-      Status.joins(:media_attachments).merge(@account.media_attachments.reorder(nil)).group(:id).reorder('statuses.id desc')
+      Status.joins(:media_attachments).merge(@account.media_attachments).group(:id).reorder('statuses.id desc')
     else
       raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end

@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe StatusPin, type: :model do
+RSpec.describe StatusPin do
   describe 'validations' do
     it 'allows pins of own statuses' do
       account = Fabricate(:account)
       status  = Fabricate(:status, account: account)
 
-      expect(StatusPin.new(account: account, status: status).save).to be true
+      expect(described_class.new(account: account, status: status).save).to be true
     end
 
     it 'does not allow pins of statuses by someone else' do
       account = Fabricate(:account)
       status  = Fabricate(:status)
 
-      expect(StatusPin.new(account: account, status: status).save).to be false
+      expect(described_class.new(account: account, status: status).save).to be false
     end
 
     it 'does not allow pins of reblogs' do
@@ -21,52 +23,51 @@ RSpec.describe StatusPin, type: :model do
       status  = Fabricate(:status, account: account)
       reblog  = Fabricate(:status, reblog: status)
 
-      expect(StatusPin.new(account: account, status: reblog).save).to be false
+      expect(described_class.new(account: account, status: reblog).save).to be false
     end
 
     it 'does allow pins of direct statuses' do
       account = Fabricate(:account)
       status  = Fabricate(:status, account: account, visibility: :private)
 
-      expect(StatusPin.new(account: account, status: status).save).to be true
+      expect(described_class.new(account: account, status: status).save).to be true
     end
 
     it 'does not allow pins of direct statuses' do
       account = Fabricate(:account)
       status  = Fabricate(:status, account: account, visibility: :direct)
 
-      expect(StatusPin.new(account: account, status: status).save).to be false
+      expect(described_class.new(account: account, status: status).save).to be false
     end
 
-    max_pins = 5
-    it 'does not allow pins above the max' do
-      account = Fabricate(:account)
-      status = []
+    context 'with a pin limit' do
+      before { stub_const('StatusPinValidator::PIN_LIMIT', 2) }
 
-      (max_pins + 1).times do |i|
-        status[i] = Fabricate(:status, account: account)
+      it 'does not allow pins above the max' do
+        account = Fabricate(:account)
+
+        Fabricate.times(StatusPinValidator::PIN_LIMIT, :status_pin, account: account)
+
+        pin = described_class.new(account: account, status: Fabricate(:status, account: account))
+        expect(pin.save)
+          .to be(false)
+
+        expect(pin.errors[:base])
+          .to contain_exactly(I18n.t('statuses.pin_errors.limit'))
       end
 
-      max_pins.times do |i|
-        expect(StatusPin.new(account: account, status: status[i]).save).to be true
+      it 'allows pins above the max for remote accounts' do
+        account = Fabricate(:account, domain: 'remote.test', username: 'bob', url: 'https://remote.test/')
+
+        Fabricate.times(StatusPinValidator::PIN_LIMIT, :status_pin, account: account)
+
+        pin = described_class.new(account: account, status: Fabricate(:status, account: account))
+        expect(pin.save)
+          .to be(true)
+
+        expect(pin.errors[:base])
+          .to be_empty
       end
-
-      expect(StatusPin.new(account: account, status: status[max_pins]).save).to be false
-    end
-
-    it 'allows pins above the max for remote accounts' do
-      account = Fabricate(:account, domain: 'remote.test', username: 'bob', url: 'https://remote.test/')
-      status = []
-
-      (max_pins + 1).times do |i|
-        status[i] = Fabricate(:status, account: account)
-      end
-
-      max_pins.times do |i|
-        expect(StatusPin.new(account: account, status: status[i]).save).to be true
-      end
-
-      expect(StatusPin.new(account: account, status: status[max_pins]).save).to be true
     end
   end
 end

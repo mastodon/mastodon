@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAccountIdentityProofs < ActiveRecord::Migration[5.2]
   def change
     create_table :account_identity_proofs do |t|

@@ -1,9 +1,6 @@
 - content_for :page_title do
   = t('admin.trends.preview_card_providers.title')
 
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 %p= t('admin.trends.preview_card_providers.description_html')
 
 %hr.spacer/
@@ -29,7 +26,7 @@
   - Trends::PreviewCardProviderFilter::KEYS.each do |key|
     = hidden_field_tag key, params[key] if params[key].present?
 
-  .batch-table.optional
+  .batch-table
     .batch-table__toolbar
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false

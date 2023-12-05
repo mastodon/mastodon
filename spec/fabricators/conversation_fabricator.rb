@@ -1,2 +1,3 @@
-Fabricator(:conversation) do
-end
+# frozen_string_literal: true
+
+Fabricator(:conversation)

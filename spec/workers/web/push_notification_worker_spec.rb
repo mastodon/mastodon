@@ -23,8 +23,8 @@ describe Web::PushNotificationWorker do
 
   describe 'perform' do
     before do
-      allow_any_instance_of(subscription.class).to receive(:contact_email).and_return(contact_email)
-      allow_any_instance_of(subscription.class).to receive(:vapid_key).and_return(vapid_key)
+      allow(subscription).to receive_messages(contact_email: contact_email, vapid_key: vapid_key)
+      allow(Web::PushSubscription).to receive(:find).with(subscription.id).and_return(subscription)
       allow(Webpush::Encryption).to receive(:encrypt).and_return(payload)
       allow(JWT).to receive(:encode).and_return('jwt.encoded.payload')
 
@@ -37,7 +37,7 @@ describe Web::PushNotificationWorker do
       expect(a_request(:post, endpoint).with(headers: {
         'Content-Encoding' => 'aesgcm',
         'Content-Type' => 'application/octet-stream',
-        'Crypto-Key' => 'dh=BAgtUks5d90kFmxGevk9tH7GEmvz9DB0qcEMUsOBgKwMf-TMjsKIIG6LQvGcFAf6jcmAod15VVwmYwGIIxE4VWE;p256ecdsa=' + vapid_public_key.delete('='),
+        'Crypto-Key' => "dh=BAgtUks5d90kFmxGevk9tH7GEmvz9DB0qcEMUsOBgKwMf-TMjsKIIG6LQvGcFAf6jcmAod15VVwmYwGIIxE4VWE;p256ecdsa=#{vapid_public_key.delete('=')}",
         'Encryption' => 'salt=WJeVM-RY-F9351SVxTFx_g',
         'Ttl' => '172800',
         'Urgency' => 'normal',
