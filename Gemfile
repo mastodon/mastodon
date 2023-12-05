@@ -5,6 +5,7 @@ ruby '>= 3.0.0'
 
 gem 'puma', '~> 6.3'
 gem 'rails', '~> 7.1.1'
+gem 'propshaft'
 gem 'thor', '~> 1.2'
 gem 'rack', '~> 2.2.7'
 
@@ -206,5 +207,3 @@ gem 'net-http', '~> 0.4.0'
 gem 'rubyzip', '~> 2.3'
 
 gem 'hcaptcha', '~> 7.1'
-
-gem 'propshaft', '~> 0.8.0'
