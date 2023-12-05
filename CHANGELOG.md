@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.3] - 2023-12-05
+
+### Fixed
+
+- Fix dependency on `json-canonicalization` version that has been made unavailable since last release
+
 ## [4.2.2] - 2023-12-04
 
 ### Changed
