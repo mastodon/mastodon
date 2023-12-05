@@ -72,7 +72,8 @@ if ENV['S3_ENABLED'] == 'true'
     }
   )
 
-  Paperclip::Attachment.default_options[:s3_permissions] = ->(*) {} if ENV['S3_PERMISSION'] == ''
+  Paperclip::Attachment.default_options[:s3_permissions] = ->(*) { nil } if ENV['S3_PERMISSION'] == ''
+  Paperclip::Attachment.default_options[:s3_acl_enabled] = ->(*) { false } if ENV['S3_PERMISSION'] == 'no-acl'
 
   if ENV.has_key?('S3_ENDPOINT')
     Paperclip::Attachment.default_options[:s3_options].merge!(
