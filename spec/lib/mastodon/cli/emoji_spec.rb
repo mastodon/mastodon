@@ -41,11 +41,17 @@ describe Mastodon::CLI::Emoji do
 
   describe '#export' do
     context 'with existing custom emoji' do
-      before { Fabricate(:custom_emoji) }
-      after { File.delete(export_path) }
+      before do
+        FileUtils.rm_rf(export_path.dirname)
+        FileUtils.mkdir_p(export_path.dirname)
 
-      let(:export_path) { Rails.root.join('tmp', 'export.tar.gz') }
-      let(:args) { [Rails.root.join('tmp')] }
+        Fabricate(:custom_emoji)
+      end
+
+      after { FileUtils.rm_rf(export_path.dirname) }
+
+      let(:export_path) { Rails.root.join('tmp', 'cli-tests', 'export.tar.gz') }
+      let(:args) { [export_path.dirname.to_s] }
       let(:action) { :export }
 
       it 'reports about exported emoji' do
