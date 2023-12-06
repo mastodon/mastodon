@@ -61,8 +61,4 @@ describe Mastodon::CLI::Emoji do
       end
     end
   end
-
-  def output_results(string)
-    output(a_string_including(string)).to_stdout
-  end
 end
