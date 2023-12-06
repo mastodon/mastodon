@@ -79,6 +79,7 @@ describe Api::BaseController do
     end
 
     {
+      ActiveRecord::StatementInvalid => 422,
       ActiveRecord::RecordInvalid => 422,
       Mastodon::ValidationError => 422,
       ActiveRecord::RecordNotFound => 404,
