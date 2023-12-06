@@ -534,6 +534,11 @@ GEM
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
     private_address_check (0.5.0)
+    propshaft (0.8.0)
+      actionpack (>= 7.0.0)
+      activesupport (>= 7.0.0)
+      rack
+      railties (>= 7.0.0)
     psych (5.1.1.1)
       stringio
     public_suffix (5.0.4)
@@ -736,13 +741,6 @@ GEM
     simplecov-lcov (0.8.0)
     simplecov_json_formatter (0.1.4)
     smart_properties (1.17.0)
-    sprockets (3.7.2)
-      concurrent-ruby (~> 1.0)
-      rack (> 1, < 3)
-    sprockets-rails (3.4.2)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
-      sprockets (>= 3.0.0)
     stackprof (0.2.25)
     statsd-ruby (1.5.0)
     stoplight (3.0.2)
@@ -911,6 +909,7 @@ DEPENDENCIES
   posix-spawn
   premailer-rails
   private_address_check (~> 0.5)
+  propshaft
   public_suffix (~> 5.0)
   puma (~> 6.3)
   pundit (~> 2.3)
@@ -949,8 +948,6 @@ DEPENDENCIES
   simple_form (~> 5.2)
   simplecov (~> 0.22)
   simplecov-lcov (~> 0.8)
-  sprockets (~> 3.7.2)
-  sprockets-rails (~> 3.4)
   stackprof
   stoplight (~> 3.0.1)
   strong_migrations (= 1.6.4)
