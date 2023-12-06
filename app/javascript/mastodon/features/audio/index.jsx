@@ -239,6 +239,15 @@ class Audio extends PureComponent {
     });
   };
 
+  _syncAudioToVolumeState = (volume = null, muted = null) => {
+    if (!this.audio) {
+      return;
+    }
+
+    this.audio.volume = volume ?? this.state.volume;
+    this.audio.muted = muted ?? this.state.muted;
+  };
+
   toggleReveal = () => {
     if (this.props.onToggleVisibility) {
       this.props.onToggleVisibility();
@@ -316,6 +325,7 @@ class Audio extends PureComponent {
         if (this.gainNode) {
           this.gainNode.gain.value = this.state.muted ? 0 : x;
         }
+        this._syncAudioToVolumeState(x);
       });
     }
   }, 15);
