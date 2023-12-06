@@ -469,6 +469,8 @@ describe Mastodon::CLI::Accounts do
     end
 
     context 'with --all option' do
+      let(:options) { { all: true } }
+
       it 'approves all pending registrations' do
         subject
 
@@ -566,6 +568,7 @@ describe Mastodon::CLI::Accounts do
       let!(:follower_rony)    { Fabricate(:account, username: 'rony') }
       let!(:follower_charles) { Fabricate(:account, username: 'charles') }
       let(:follow_service)    { instance_double(FollowService, call: nil) }
+      let(:arguments) { [target_account.username] }
 
       before do
         allow(FollowService).to receive(:new).and_return(follow_service)
@@ -573,7 +576,7 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'makes all local accounts follow the target account' do
-        cli.follow(target_account.username)
+        subject
 
         expect(follow_service).to have_received(:call).with(follower_bob, target_account, any_args).once
         expect(follow_service).to have_received(:call).with(follower_rony, target_account, any_args).once
@@ -581,7 +584,7 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'displays a successful message' do
-        expect { cli.follow(target_account.username) }
+        expect { subject }
           .to output_results("OK, followed target from #{Account.local.count} accounts")
       end
     end
@@ -606,6 +609,7 @@ describe Mastodon::CLI::Accounts do
       let!(:follower_rambo)  { Fabricate(:account, username: 'rambo', domain: nil) }
       let!(:follower_ana)    { Fabricate(:account, username: 'ana', domain: nil) }
       let(:unfollow_service) { instance_double(UnfollowService, call: nil) }
+      let(:arguments) { [target_account.username] }
 
       before do
         accounts = [follower_chris, follower_rambo, follower_ana]
@@ -615,7 +619,7 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'makes all local accounts unfollow the target account' do
-        cli.unfollow(target_account.username)
+        subject
 
         expect(unfollow_service).to have_received(:call).with(follower_chris, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_rambo, target_account).once
@@ -623,7 +627,7 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'displays a successful message' do
-        expect { cli.unfollow(target_account.username) }
+        expect { subject }
           .to output_results('OK, unfollowed target from 3 accounts')
       end
     end
@@ -873,7 +877,6 @@ describe Mastodon::CLI::Accounts do
         allow(cli).to receive(:parallelize_with_progress).and_yield(account_example_com_a)
                                                          .and_yield(account_example_com_b)
                                                          .and_return([2, nil])
-
         cli.options = { domain: domain }
       end
 
@@ -928,9 +931,11 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#rotate' do
+    let(:action) { :rotate }
+
     context 'when neither username nor --all option are given' do
       it 'exits with an error message' do
-        expect { cli.rotate }
+        expect { subject }
           .to output_results('No account(s) given')
           .and raise_error(SystemExit)
       end
@@ -938,12 +943,13 @@ describe Mastodon::CLI::Accounts do
 
     context 'when a username is given' do
       let(:account) { Fabricate(:account) }
+      let(:arguments) { [account.username] }
 
       it 'correctly rotates keys for the specified account' do
         old_private_key = account.private_key
         old_public_key = account.public_key
 
-        cli.rotate(account.username)
+        subject
         account.reload
 
         expect(account.private_key).to_not eq(old_private_key)
@@ -953,14 +959,16 @@ describe Mastodon::CLI::Accounts do
       it 'broadcasts the new keys for the specified account' do
         allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
 
-        cli.rotate(account.username)
+        subject
 
         expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id, anything).once
       end
 
       context 'when the given username is not found' do
+        let(:arguments) { ['non_existent_username'] }
+
         it 'exits with an error message when the specified username is not found' do
-          expect { cli.rotate('non_existent_username') }
+          expect { subject }
             .to output_results('No such account')
             .and raise_error(SystemExit)
         end
@@ -969,17 +977,13 @@ describe Mastodon::CLI::Accounts do
 
     context 'when --all option is provided' do
       let!(:accounts) { Fabricate.times(2, :account) }
-      let(:options)   { { all: true } }
-
-      before do
-        cli.options = { all: true }
-      end
+      let(:options) { { all: true } }
 
       it 'correctly rotates keys for all local accounts' do
         old_private_keys = accounts.map(&:private_key)
         old_public_keys = accounts.map(&:public_key)
 
-        cli.rotate
+        subject
         accounts.each(&:reload)
 
         expect(accounts.map(&:private_key)).to_not eq(old_private_keys)
@@ -989,7 +993,7 @@ describe Mastodon::CLI::Accounts do
       it 'broadcasts the new keys for each account' do
         allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
 
-        cli.rotate
+        subject
 
         accounts.each do |account|
           expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id, anything).once
@@ -1342,6 +1346,7 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#prune' do
+    let(:action) { :prune }
     let!(:local_account)     { Fabricate(:account) }
     let!(:bot_account)       { Fabricate(:account, bot: true, domain: 'example.com') }
     let!(:group_account)     { Fabricate(:account, actor_type: 'Group', domain: 'example.com') }
@@ -1356,7 +1361,7 @@ describe Mastodon::CLI::Accounts do
     end
 
     it 'prunes all remote accounts with no interactions with local users' do
-      cli.prune
+      subject
 
       prunable_account_ids = prunable_accounts.pluck(:id)
 
@@ -1364,41 +1369,39 @@ describe Mastodon::CLI::Accounts do
     end
 
     it 'displays a successful message' do
-      expect { cli.prune }
+      expect { subject }
         .to output_results("OK, pruned #{prunable_accounts.size} accounts")
     end
 
     it 'does not prune local accounts' do
-      cli.prune
+      subject
 
       expect(Account.exists?(id: local_account.id)).to be(true)
     end
 
     it 'does not prune bot accounts' do
-      cli.prune
+      subject
 
       expect(Account.exists?(id: bot_account.id)).to be(true)
     end
 
     it 'does not prune group accounts' do
-      cli.prune
+      subject
 
       expect(Account.exists?(id: group_account.id)).to be(true)
     end
 
     it 'does not prune accounts that have been mentioned' do
-      cli.prune
+      subject
 
       expect(Account.exists?(id: mentioned_account.id)).to be true
     end
 
     context 'with --dry-run option' do
-      before do
-        cli.options = { dry_run: true }
-      end
+      let(:options) { { dry_run: true } }
 
       it 'does not prune any account' do
-        cli.prune
+        subject
 
         prunable_account_ids = prunable_accounts.pluck(:id)
 
@@ -1406,7 +1409,7 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'displays a successful message with (DRY RUN)' do
-        expect { cli.prune }
+        expect { subject }
           .to output_results("OK, pruned #{prunable_accounts.size} accounts (DRY RUN)")
       end
     end

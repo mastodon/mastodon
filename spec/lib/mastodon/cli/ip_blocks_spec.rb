@@ -287,7 +287,7 @@ describe Mastodon::CLI::IpBlocks do
 
     context 'when --format option is not provided' do
       it 'exports blocked IPs in plain format by default' do
-        expect { cli.export }
+        expect { subject }
           .to output_results("#{first_ip_range_block.ip}/#{first_ip_range_block.ip.prefix}\n#{second_ip_range_block.ip}/#{second_ip_range_block.ip.prefix}")
       end
     end
