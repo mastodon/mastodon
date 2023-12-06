@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module CommandLineHelpers
-  def output_results(string)
+  def output_results(*args)
     output(
-      a_string_including(string)
+      include(*args)
     ).to_stdout
   end
 end
