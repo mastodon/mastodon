@@ -16,9 +16,8 @@ describe Mastodon::CLI::Main do
     let(:action) { :version }
 
     it 'returns the Mastodon version' do
-      expect { subject }.to output(
-        a_string_including(Mastodon::Version.to_s)
-      ).to_stdout
+      expect { subject }
+        .to output_results(Mastodon::Version.to_s)
     end
   end
 end

@@ -22,9 +22,8 @@ describe Mastodon::CLI::Upgrade do
       end
 
       it 'does not upgrade storage for the attachments' do
-        expect { subject }.to output(
-          a_string_including('Upgraded storage schema of 0 records')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Upgraded storage schema of 0 records')
       end
     end
   end

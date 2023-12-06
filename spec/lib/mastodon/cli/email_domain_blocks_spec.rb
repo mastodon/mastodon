@@ -20,10 +20,11 @@ describe Mastodon::CLI::EmailDomainBlocks do
       let!(:child_block) { Fabricate(:email_domain_block, parent: parent_block) }
 
       it 'lists the blocks' do
-        expect { subject }.to output(
-          a_string_including(parent_block.domain)
-          .and(a_string_including(child_block.domain))
-        ).to_stdout
+        expect { subject }
+          .to output_results(
+            parent_block.domain,
+            child_block.domain
+          )
       end
     end
   end
@@ -33,9 +34,9 @@ describe Mastodon::CLI::EmailDomainBlocks do
 
     context 'without any options' do
       it 'warns about usage and exits' do
-        expect { subject }.to output(
-          a_string_including('No domain(s) given')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('No domain(s) given')
+          .and raise_error(SystemExit)
       end
     end
 
@@ -47,9 +48,8 @@ describe Mastodon::CLI::EmailDomainBlocks do
       before { Fabricate(:email_domain_block, domain: domain) }
 
       it 'does not add a new block' do
-        expect { subject }.to output(
-          a_string_including('is already blocked')
-        ).to_stdout
+        expect { subject }
+          .to output_results('is already blocked')
           .and(not_change(EmailDomainBlock, :count))
       end
     end
@@ -59,9 +59,8 @@ describe Mastodon::CLI::EmailDomainBlocks do
       let(:arguments) { [domain] }
 
       it 'adds a new block' do
-        expect { subject }.to output(
-          a_string_including('Added 1')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Added 1')
           .and(change(EmailDomainBlock, :count).by(1))
       end
     end
@@ -72,9 +71,9 @@ describe Mastodon::CLI::EmailDomainBlocks do
 
     context 'without any options' do
       it 'warns about usage and exits' do
-        expect { subject }.to output(
-          a_string_including('No domain(s) given')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('No domain(s) given')
+          .and raise_error(SystemExit)
       end
     end
 
@@ -85,9 +84,8 @@ describe Mastodon::CLI::EmailDomainBlocks do
       before { Fabricate(:email_domain_block, domain: domain) }
 
       it 'removes the block' do
-        expect { subject }.to output(
-          a_string_including('Removed 1')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Removed 1')
           .and(change(EmailDomainBlock, :count).by(-1))
       end
     end
@@ -97,9 +95,8 @@ describe Mastodon::CLI::EmailDomainBlocks do
       let(:arguments) { [domain] }
 
       it 'does not remove a block' do
-        expect { subject }.to output(
-          a_string_including('is not yet blocked')
-        ).to_stdout
+        expect { subject }
+          .to output_results('is not yet blocked')
           .and(not_change(EmailDomainBlock, :count))
       end
     end

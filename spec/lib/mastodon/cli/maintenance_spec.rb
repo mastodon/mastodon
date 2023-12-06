@@ -21,9 +21,9 @@ describe Mastodon::CLI::Maintenance do
       end
 
       it 'Exits with error message' do
-        expect { subject }.to output(
-          a_string_including('is too old')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('is too old')
+          .and raise_error(SystemExit)
       end
     end
 
@@ -34,9 +34,9 @@ describe Mastodon::CLI::Maintenance do
       end
 
       it 'Exits with error message' do
-        expect { subject }.to output(
-          a_string_including('more recent')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('more recent')
+          .and raise_error(SystemExit)
       end
     end
 
@@ -47,9 +47,9 @@ describe Mastodon::CLI::Maintenance do
       end
 
       it 'Exits with error message' do
-        expect { subject }.to output(
-          a_string_including('Sidekiq is running')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('Sidekiq is running')
+          .and raise_error(SystemExit)
       end
     end
   end

@@ -25,9 +25,8 @@ describe Mastodon::CLI::Settings do
       end
 
       it 'displays success message' do
-        expect { subject }.to output(
-          a_string_including('OK')
-        ).to_stdout
+        expect { subject }
+          .to output_results('OK')
       end
     end
 
@@ -39,9 +38,8 @@ describe Mastodon::CLI::Settings do
       end
 
       it 'displays success message' do
-        expect { subject }.to output(
-          a_string_including('OK')
-        ).to_stdout
+        expect { subject }
+          .to output_results('OK')
       end
 
       context 'with --require-reason' do
@@ -65,9 +63,8 @@ describe Mastodon::CLI::Settings do
       end
 
       it 'displays success message' do
-        expect { subject }.to output(
-          a_string_including('OK')
-        ).to_stdout
+        expect { subject }
+          .to output_results('OK')
       end
     end
   end

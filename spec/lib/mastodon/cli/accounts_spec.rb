@@ -49,9 +49,8 @@ describe Mastodon::CLI::Accounts do
       it 'returns "OK" and newly generated password' do
         allow(SecureRandom).to receive(:hex).and_return('test_password')
 
-        expect { subject }.to output(
-          a_string_including("OK\nNew password: test_password")
-        ).to_stdout
+        expect { subject }
+          .to output_results("OK\nNew password: test_password")
       end
     end
 
@@ -67,9 +66,8 @@ describe Mastodon::CLI::Accounts do
           let(:options) { { email: 'invalid' } }
 
           it 'exits with an error message' do
-            expect { subject }.to output(
-              a_string_including('Failure/Error: email')
-            ).to_stdout
+            expect { subject }
+              .to output_results('Failure/Error: email')
               .and raise_error(SystemExit)
           end
         end
@@ -127,9 +125,8 @@ describe Mastodon::CLI::Accounts do
           let(:options) { { email: 'tootctl@example.com', role: '404' } }
 
           it 'exits with an error message indicating the role name was not found' do
-            expect { subject }.to output(
-              a_string_including('Cannot find user role with that name')
-            ).to_stdout
+            expect { subject }
+              .to output_results('Cannot find user role with that name')
               .and raise_error(SystemExit)
           end
         end
@@ -145,9 +142,8 @@ describe Mastodon::CLI::Accounts do
           end
 
           it 'returns an error message indicating the username is already taken' do
-            expect { subject }.to output(
-              a_string_including("The chosen username is currently in use\nUse --force to reattach it anyway and delete the other user")
-            ).to_stdout
+            expect { subject }
+              .to output_results("The chosen username is currently in use\nUse --force to reattach it anyway and delete the other user")
           end
 
           context 'with --force option' do
@@ -192,9 +188,8 @@ describe Mastodon::CLI::Accounts do
       let(:arguments) { ['non_existent_username'] }
 
       it 'exits with an error message indicating the user was not found' do
-        expect { subject }.to output(
-          a_string_including('No user with such username')
-        ).to_stdout
+        expect { subject }
+          .to output_results('No user with such username')
           .and raise_error(SystemExit)
       end
     end
@@ -205,9 +200,8 @@ describe Mastodon::CLI::Accounts do
 
       context 'when no option is provided' do
         it 'returns a successful message' do
-          expect { subject }.to output(
-            a_string_including('OK')
-          ).to_stdout
+          expect { subject }
+            .to output_results('OK')
         end
 
         it 'does not modify the user' do
@@ -222,9 +216,8 @@ describe Mastodon::CLI::Accounts do
           let(:options) { { role: '404' } }
 
           it 'exits with an error message indicating the role was not found' do
-            expect { subject }.to output(
-              a_string_including('Cannot find user role with that name')
-            ).to_stdout
+            expect { subject }
+              .to output_results('Cannot find user role with that name')
               .and raise_error(SystemExit)
           end
         end
@@ -339,9 +332,8 @@ describe Mastodon::CLI::Accounts do
         it 'returns a new password for the user' do
           allow(SecureRandom).to receive(:hex).and_return('new_password')
 
-          expect { subject }.to output(
-            a_string_including('new_password')
-          ).to_stdout
+          expect { subject }
+            .to output_results('new_password')
         end
       end
 
@@ -359,9 +351,8 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { email: 'invalid' } }
 
         it 'exits with an error message' do
-          expect { subject }.to output(
-            a_string_including('Failure/Error: email')
-          ).to_stdout
+          expect { subject }
+            .to output_results('Failure/Error: email')
             .and raise_error(SystemExit)
         end
       end
@@ -371,8 +362,6 @@ describe Mastodon::CLI::Accounts do
   describe '#delete' do
     let(:action) { :delete }
     let(:account) { Fabricate(:account) }
-    let(:arguments) { [account.username] }
-    let(:options) { { email: account.user.email } }
     let(:delete_account_service) { instance_double(DeleteAccountService) }
 
     before do
@@ -381,24 +370,27 @@ describe Mastodon::CLI::Accounts do
     end
 
     context 'when both username and --email are provided' do
+      let(:arguments) { [account.username] }
+      let(:options) { { email: account.user.email } }
+
       it 'exits with an error message indicating that only one should be used' do
-        expect { subject }.to output(
-          a_string_including('Use username or --email, not both')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Use username or --email, not both')
           .and raise_error(SystemExit)
       end
     end
 
     context 'when neither username nor --email are provided' do
       it 'exits with an error message indicating that no username was provided' do
-        expect { subject }.to output(
-          a_string_including('No username provided')
-        ).to_stdout
+        expect { subject }
+          .to output_results('No username provided')
           .and raise_error(SystemExit)
       end
     end
 
     context 'when username is provided' do
+      let(:arguments) { [account.username] }
+
       it 'deletes the specified user successfully' do
         subject
 
@@ -415,9 +407,8 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'outputs a successful message in dry run mode' do
-          expect { subject }.to output(
-            a_string_including('OK (DRY RUN)')
-          ).to_stdout
+          expect { subject }
+            .to output_results('OK (DRY RUN)')
         end
       end
 
@@ -425,15 +416,16 @@ describe Mastodon::CLI::Accounts do
         let(:arguments) { ['non_existent_username'] }
 
         it 'exits with an error message indicating that no user was found' do
-          expect { subject }.to output(
-            a_string_including('No user with such username')
-          ).to_stdout
+          expect { subject }
+            .to output_results('No user with such username')
             .and raise_error(SystemExit)
         end
       end
     end
 
     context 'when --email is provided' do
+      let(:options) { { email: account.user.email } }
+
       it 'deletes the specified user successfully' do
         subject
 
@@ -450,9 +442,8 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'outputs a successful message in dry run mode' do
-          expect { subject }.to output(
-            a_string_including('OK (DRY RUN)')
-          ).to_stdout
+          expect { subject }
+            .to output_results('OK (DRY RUN)')
         end
       end
 
@@ -460,9 +451,8 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { email: '404@example.com' } }
 
         it 'exits with an error message indicating that no user was found' do
-          expect { subject }.to output(
-            a_string_including('No user with such email')
-          ).to_stdout
+          expect { subject }
+            .to output_results('No user with such email')
             .and raise_error(SystemExit)
         end
       end
@@ -511,9 +501,8 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { number: -1 } }
 
         it 'exits with an error message indicating that the number must be positive' do
-          expect { subject }.to output(
-            a_string_including('Number must be positive')
-          ).to_stdout
+          expect { subject }
+            .to output_results('Number must be positive')
             .and raise_error(SystemExit)
         end
       end
@@ -550,9 +539,8 @@ describe Mastodon::CLI::Accounts do
         let(:arguments) { ['non_existent_username'] }
 
         it 'exits with an error message indicating that no such account was found' do
-          expect { subject }.to output(
-            a_string_including('No such account')
-          ).to_stdout
+          expect { subject }
+            .to output_results('No such account')
             .and raise_error(SystemExit)
         end
       end
@@ -566,9 +554,8 @@ describe Mastodon::CLI::Accounts do
       let(:arguments) { ['non_existent_username'] }
 
       it 'exits with an error message indicating that no account with the given username was found' do
-        expect { subject }.to output(
-          a_string_including('No such account')
-        ).to_stdout
+        expect { subject }
+          .to output_results('No such account')
           .and raise_error(SystemExit)
       end
     end
@@ -594,9 +581,8 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'displays a successful message' do
-        expect { cli.follow(target_account.username) }.to output(
-          a_string_including("OK, followed target from #{Account.local.count} accounts")
-        ).to_stdout
+        expect { cli.follow(target_account.username) }
+          .to output_results("OK, followed target from #{Account.local.count} accounts")
       end
     end
   end
@@ -608,9 +594,8 @@ describe Mastodon::CLI::Accounts do
       let(:arguments) { ['non_existent_username'] }
 
       it 'exits with an error message indicating that no account with the given username was found' do
-        expect { subject }.to output(
-          a_string_including('No such account')
-        ).to_stdout
+        expect { subject }
+          .to output_results('No such account')
           .and raise_error(SystemExit)
       end
     end
@@ -638,9 +623,8 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'displays a successful message' do
-        expect { cli.unfollow(target_account.username) }.to output(
-          a_string_including('OK, unfollowed target from 3 accounts')
-        ).to_stdout
+        expect { cli.unfollow(target_account.username) }
+          .to output_results('OK, unfollowed target from 3 accounts')
       end
     end
   end
@@ -652,9 +636,8 @@ describe Mastodon::CLI::Accounts do
       let(:arguments) { ['non_existent_username'] }
 
       it 'exits with an error message indicating that there is no such account' do
-        expect { subject }.to output(
-          a_string_including('No user with such username')
-        ).to_stdout
+        expect { subject }
+          .to output_results('No user with such username')
           .and raise_error(SystemExit)
       end
     end
@@ -678,9 +661,8 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'displays a successful message' do
-        expect { subject }.to output(
-          a_string_including('OK')
-        ).to_stdout
+        expect { subject }
+          .to output_results('OK')
       end
     end
   end
@@ -742,9 +724,8 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'displays a successful message' do
-        expect { cli.refresh }.to output(
-          a_string_including('Refreshed 2 accounts')
-        ).to_stdout
+        expect { cli.refresh }
+          .to output_results('Refreshed 2 accounts')
       end
 
       context 'with --dry-run option' do
@@ -779,9 +760,8 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'displays a successful message with (DRY RUN)' do
-          expect { cli.refresh }.to output(
-            a_string_including('Refreshed 2 accounts (DRY RUN)')
-          ).to_stdout
+          expect { cli.refresh }
+            .to output_results('Refreshed 2 accounts (DRY RUN)')
         end
       end
     end
@@ -841,9 +821,7 @@ describe Mastodon::CLI::Accounts do
           allow(account_example_com_a).to receive(:reset_avatar!).and_raise(Mastodon::UnexpectedResponseError)
 
           expect { cli.refresh(*arguments) }
-            .to output(
-              a_string_including("Account failed: #{account_example_com_a.username}@#{account_example_com_a.domain}")
-            ).to_stdout
+            .to output_results("Account failed: #{account_example_com_a.username}@#{account_example_com_a.domain}")
         end
       end
 
@@ -851,9 +829,8 @@ describe Mastodon::CLI::Accounts do
         it 'exits with an error message' do
           allow(Account).to receive(:find_remote).with(account_example_com_b.username, account_example_com_b.domain).and_return(nil)
 
-          expect { cli.refresh(*arguments) }.to output(
-            a_string_including('No such account')
-          ).to_stdout
+          expect { cli.refresh(*arguments) }
+            .to output_results('No such account')
             .and raise_error(SystemExit)
         end
       end
@@ -943,9 +920,8 @@ describe Mastodon::CLI::Accounts do
 
     context 'when neither a list of accts nor options are provided' do
       it 'exits with an error message' do
-        expect { cli.refresh }.to output(
-          a_string_including('No account(s) given')
-        ).to_stdout
+        expect { cli.refresh }
+          .to output_results('No account(s) given')
           .and raise_error(SystemExit)
       end
     end
@@ -954,9 +930,8 @@ describe Mastodon::CLI::Accounts do
   describe '#rotate' do
     context 'when neither username nor --all option are given' do
       it 'exits with an error message' do
-        expect { cli.rotate }.to output(
-          a_string_including('No account(s) given')
-        ).to_stdout
+        expect { cli.rotate }
+          .to output_results('No account(s) given')
           .and raise_error(SystemExit)
       end
     end
@@ -985,9 +960,8 @@ describe Mastodon::CLI::Accounts do
 
       context 'when the given username is not found' do
         it 'exits with an error message when the specified username is not found' do
-          expect { cli.rotate('non_existent_username') }.to output(
-            a_string_including('No such account')
-          ).to_stdout
+          expect { cli.rotate('non_existent_username') }
+            .to output_results('No such account')
             .and raise_error(SystemExit)
         end
       end
@@ -1029,9 +1003,8 @@ describe Mastodon::CLI::Accounts do
 
     shared_examples 'an account not found' do |acct|
       it 'exits with an error message indicating that there is no such account' do
-        expect { subject }.to output(
-          a_string_including("No such account (#{acct})")
-        ).to_stdout
+        expect { subject }
+          .to output_results("No such account (#{acct})")
           .and raise_error(SystemExit)
       end
     end
@@ -1081,9 +1054,8 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'exits with an error message indicating that the accounts do not have the same pub key' do
-        expect { subject }.to output(
-          a_string_including("Accounts don't have the same public key, might not be duplicates!\nOverride with --force")
-        ).to_stdout
+        expect { subject }
+          .to output_results("Accounts don't have the same public key, might not be duplicates!\nOverride with --force")
           .and raise_error(SystemExit)
       end
 
@@ -1178,14 +1150,13 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'displays the summary correctly' do
-        expect { subject }.to output(
-          a_string_including('Visited 5 accounts, removed 2')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Visited 5 accounts, removed 2')
       end
     end
 
     context 'when a domain is specified' do
-      let(:arguments) { 'example.net' }
+      let(:arguments) { ['example.net'] }
 
       before do
         stub_parallelize_with_progress!
@@ -1201,9 +1172,8 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'displays the summary correctly' do
-        expect { subject }.to output(
-          a_string_including('Visited 2 accounts, removed 2')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Visited 2 accounts, removed 2')
       end
     end
 
@@ -1222,9 +1192,8 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'displays the summary correctly' do
-          expect { subject }.to output(
-            a_string_including("Visited 5 accounts, removed 0\nThe following domains were not available during the check:\n    example.net")
-          ).to_stdout
+          expect { subject }
+            .to output_results("Visited 5 accounts, removed 0\nThe following domains were not available during the check:\n    example.net")
         end
       end
 
@@ -1269,9 +1238,8 @@ describe Mastodon::CLI::Accounts do
 
     context 'when no option is given' do
       it 'exits with an error message indicating that at least one option is required' do
-        expect { subject }.to output(
-          a_string_including('Please specify either --follows or --followers, or both')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Please specify either --follows or --followers, or both')
           .and raise_error(SystemExit)
       end
     end
@@ -1281,9 +1249,8 @@ describe Mastodon::CLI::Accounts do
       let(:options) { { follows: true } }
 
       it 'exits with an error message indicating that there is no such account' do
-        expect { subject }.to output(
-          a_string_including('No such account')
-        ).to_stdout
+        expect { subject }
+          .to output_results('No such account')
           .and raise_error(SystemExit)
       end
     end
@@ -1314,9 +1281,8 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'displays a successful message' do
-          expect { subject }.to output(
-            a_string_including("Processed #{total_relationships} relationships")
-          ).to_stdout
+          expect { subject }
+            .to output_results("Processed #{total_relationships} relationships")
         end
       end
 
@@ -1334,9 +1300,8 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'displays a successful message' do
-          expect { subject }.to output(
-            a_string_including("Processed #{total_relationships} relationships")
-          ).to_stdout
+          expect { subject }
+            .to output_results("Processed #{total_relationships} relationships")
         end
       end
 
@@ -1369,9 +1334,8 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'displays a successful message' do
-          expect { subject }.to output(
-            a_string_including("Processed #{total_relationships} relationships")
-          ).to_stdout
+          expect { subject }
+            .to output_results("Processed #{total_relationships} relationships")
         end
       end
     end
@@ -1400,9 +1364,8 @@ describe Mastodon::CLI::Accounts do
     end
 
     it 'displays a successful message' do
-      expect { cli.prune }.to output(
-        a_string_including("OK, pruned #{prunable_accounts.size} accounts")
-      ).to_stdout
+      expect { cli.prune }
+        .to output_results("OK, pruned #{prunable_accounts.size} accounts")
     end
 
     it 'does not prune local accounts' do
@@ -1443,9 +1406,8 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'displays a successful message with (DRY RUN)' do
-        expect { cli.prune }.to output(
-          a_string_including("OK, pruned #{prunable_accounts.size} accounts (DRY RUN)")
-        ).to_stdout
+        expect { cli.prune }
+          .to output_results("OK, pruned #{prunable_accounts.size} accounts (DRY RUN)")
       end
     end
   end
@@ -1473,9 +1435,8 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'displays a successful message' do
-        expect { subject }.to output(
-          a_string_including("OK, migrated #{source_account.acct} to #{target_account.acct}")
-        ).to_stdout
+        expect { subject }
+          .to output_results("OK, migrated #{source_account.acct} to #{target_account.acct}")
       end
     end
 
@@ -1483,18 +1444,16 @@ describe Mastodon::CLI::Accounts do
       let(:options) { { replay: true, target: "#{target_account.username}@example.com" } }
 
       it 'exits with an error message indicating that using both options is not possible' do
-        expect { subject }.to output(
-          a_string_including('Use --replay or --target, not both')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Use --replay or --target, not both')
           .and raise_error(SystemExit)
       end
     end
 
     context 'when no option is given' do
       it 'exits with an error message indicating that at least one option must be used' do
-        expect { subject }.to output(
-          a_string_including('Use either --replay or --target')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Use either --replay or --target')
           .and raise_error(SystemExit)
       end
     end
@@ -1504,9 +1463,8 @@ describe Mastodon::CLI::Accounts do
       let(:options) { { replay: true } }
 
       it 'exits with an error message indicating that there is no such account' do
-        expect { subject }.to output(
-          a_string_including("No such account: #{arguments.first}")
-        ).to_stdout
+        expect { subject }
+          .to output_results("No such account: #{arguments.first}")
           .and raise_error(SystemExit)
       end
     end
@@ -1516,9 +1474,8 @@ describe Mastodon::CLI::Accounts do
 
       context 'when the specified account has no previous migrations' do
         it 'exits with an error message indicating that the given account has no previous migrations' do
-          expect { subject }.to output(
-            a_string_including('The specified account has not performed any migration')
-          ).to_stdout
+          expect { subject }
+            .to output_results('The specified account has not performed any migration')
             .and raise_error(SystemExit)
         end
       end
@@ -1540,9 +1497,8 @@ describe Mastodon::CLI::Accounts do
           end
 
           it 'exits with an error message' do
-            expect { subject }.to output(
-              a_string_including('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway')
-            ).to_stdout
+            expect { subject }
+              .to output_results('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway')
               .and raise_error(SystemExit)
           end
         end
@@ -1569,9 +1525,8 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'exits with an error message indicating that there is no such account' do
-          expect { subject }.to output(
-            a_string_including("The specified target account could not be found: #{options[:target]}")
-          ).to_stdout
+          expect { subject }
+            .to output_results("The specified target account could not be found: #{options[:target]}")
             .and raise_error(SystemExit)
         end
       end
@@ -1594,9 +1549,8 @@ describe Mastodon::CLI::Accounts do
 
       context 'when the migration record is invalid' do
         it 'exits with an error indicating that the validation failed' do
-          expect { subject }.to output(
-            a_string_including('Error: Validation failed')
-          ).to_stdout
+          expect { subject }
+            .to output_results('Error: Validation failed')
             .and raise_error(SystemExit)
         end
       end
@@ -1607,9 +1561,8 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'exits with an error message' do
-          expect { subject }.to output(
-            a_string_including('The specified account is redirecting to a different target account. Use --force if you want to change the migration target')
-          ).to_stdout
+          expect { subject }
+            .to output_results('The specified account is redirecting to a different target account. Use --force if you want to change the migration target')
             .and raise_error(SystemExit)
         end
       end

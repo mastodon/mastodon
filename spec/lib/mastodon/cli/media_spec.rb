@@ -19,9 +19,9 @@ describe Mastodon::CLI::Media do
       let(:options) { { prune_profiles: true, remove_headers: true } }
 
       it 'warns about usage and exits' do
-        expect { subject }.to output(
-          a_string_including('--prune-profiles and --remove-headers should not be specified simultaneously')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('--prune-profiles and --remove-headers should not be specified simultaneously')
+          .and raise_error(SystemExit)
       end
     end
 
@@ -29,9 +29,9 @@ describe Mastodon::CLI::Media do
       let(:options) { { include_follows: true } }
 
       it 'warns about usage and exits' do
-        expect { subject }.to output(
-          a_string_including('--include-follows can only be used with --prune-profiles or --remove-headers')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('--include-follows can only be used with --prune-profiles or --remove-headers')
+          .and raise_error(SystemExit)
       end
     end
 
@@ -44,9 +44,8 @@ describe Mastodon::CLI::Media do
         let(:options) { { prune_profiles: true } }
 
         it 'removes account avatars' do
-          expect { subject }.to output(
-            a_string_including('Visited 1')
-          ).to_stdout
+          expect { subject }
+            .to output_results('Visited 1')
 
           expect(account.reload.avatar).to be_blank
         end
@@ -56,9 +55,8 @@ describe Mastodon::CLI::Media do
         let(:options) { { remove_headers: true } }
 
         it 'removes account header' do
-          expect { subject }.to output(
-            a_string_including('Visited 1')
-          ).to_stdout
+          expect { subject }
+            .to output_results('Visited 1')
 
           expect(account.reload.header).to be_blank
         end
@@ -70,9 +68,8 @@ describe Mastodon::CLI::Media do
 
       context 'without options' do
         it 'removes account avatars' do
-          expect { subject }.to output(
-            a_string_including('Removed 1')
-          ).to_stdout
+          expect { subject }
+            .to output_results('Removed 1')
 
           expect(media_attachment.reload.file).to be_blank
           expect(media_attachment.reload.thumbnail).to be_blank
@@ -86,9 +83,8 @@ describe Mastodon::CLI::Media do
 
     context 'without options' do
       it 'reports about storage size' do
-        expect { subject }.to output(
-          a_string_including('0 Bytes')
-        ).to_stdout
+        expect { subject }
+          .to output_results('0 Bytes')
       end
     end
   end
@@ -98,9 +94,9 @@ describe Mastodon::CLI::Media do
 
     context 'without any options' do
       it 'warns about usage and exits' do
-        expect { subject }.to output(
-          a_string_including('Specify the source')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('Specify the source')
+          .and raise_error(SystemExit)
       end
     end
 
@@ -114,9 +110,8 @@ describe Mastodon::CLI::Media do
       let(:status) { Fabricate(:status) }
 
       it 'redownloads the attachment file' do
-        expect { subject }.to output(
-          a_string_including('Downloaded 1 media')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Downloaded 1 media')
       end
     end
 
@@ -125,9 +120,9 @@ describe Mastodon::CLI::Media do
         let(:options) { { account: 'not-real-user@example.host' } }
 
         it 'warns about usage and exits' do
-          expect { subject }.to output(
-            a_string_including('No such account')
-          ).to_stdout.and raise_error(SystemExit)
+          expect { subject }
+            .to output_results('No such account')
+            .and raise_error(SystemExit)
         end
       end
 
@@ -141,9 +136,8 @@ describe Mastodon::CLI::Media do
         let(:account) { Fabricate(:account) }
 
         it 'redownloads the attachment file' do
-          expect { subject }.to output(
-            a_string_including('Downloaded 1 media')
-          ).to_stdout
+          expect { subject }
+            .to output_results('Downloaded 1 media')
         end
       end
     end
@@ -159,9 +153,8 @@ describe Mastodon::CLI::Media do
       let(:account) { Fabricate(:account, domain: domain) }
 
       it 'redownloads the attachment file' do
-        expect { subject }.to output(
-          a_string_including('Downloaded 1 media')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Downloaded 1 media')
       end
     end
   end

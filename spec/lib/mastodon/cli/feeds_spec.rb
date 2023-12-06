@@ -21,9 +21,8 @@ describe Mastodon::CLI::Feeds do
       let(:options) { { all: true } }
 
       it 'regenerates feeds for all accounts' do
-        expect { subject }.to output(
-          a_string_including('Regenerated feeds')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Regenerated feeds')
       end
     end
 
@@ -33,9 +32,8 @@ describe Mastodon::CLI::Feeds do
       let(:arguments) { ['alice'] }
 
       it 'regenerates feeds for the account' do
-        expect { subject }.to output(
-          a_string_including('OK')
-        ).to_stdout
+        expect { subject }
+          .to output_results('OK')
       end
     end
 
@@ -43,9 +41,9 @@ describe Mastodon::CLI::Feeds do
       let(:arguments) { ['invalid-username'] }
 
       it 'displays an error and exits' do
-        expect { subject }.to output(
-          a_string_including('No such account')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('No such account')
+          .and raise_error(SystemExit)
       end
     end
   end
@@ -58,9 +56,8 @@ describe Mastodon::CLI::Feeds do
     end
 
     it 'clears the redis `feed:*` namespace' do
-      expect { subject }.to output(
-        a_string_including('OK')
-      ).to_stdout
+      expect { subject }
+        .to output_results('OK')
 
       expect(redis).to have_received(:del).with(key_namespace).once
     end

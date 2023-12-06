@@ -19,17 +19,16 @@ describe Mastodon::CLI::Statuses do
       let(:options) { { batch_size: 0 } }
 
       it 'exits with error message' do
-        expect { subject }.to output(
-          a_string_including('Cannot run')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('Cannot run')
+          .and raise_error(SystemExit)
       end
     end
 
     context 'with default batch size' do
       it 'removes unreferenced statuses' do
-        expect { subject }.to output(
-          a_string_including('Done after')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Done after')
       end
     end
   end

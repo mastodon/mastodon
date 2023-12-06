@@ -21,9 +21,9 @@ describe Mastodon::CLI::Domains do
       let(:arguments) { [domain] }
 
       it 'removes the account' do
-        expect { subject }.to output(
-          a_string_including('Removed 1 accounts')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Removed 1 accounts')
+
         expect { account.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end

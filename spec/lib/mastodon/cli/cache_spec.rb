@@ -18,9 +18,8 @@ describe Mastodon::CLI::Cache do
     before { allow(Rails.cache).to receive(:clear) }
 
     it 'clears the Rails cache' do
-      expect { subject }.to output(
-        a_string_including('OK')
-      ).to_stdout
+      expect { subject }
+        .to output_results('OK')
       expect(Rails.cache).to have_received(:clear)
     end
   end
@@ -37,9 +36,8 @@ describe Mastodon::CLI::Cache do
       end
 
       it 're-calculates account records in the cache' do
-        expect { subject }.to output(
-          a_string_including('OK')
-        ).to_stdout
+        expect { subject }
+          .to output_results('OK')
 
         expect(account_stat.reload.statuses_count).to be_zero
       end
@@ -54,9 +52,8 @@ describe Mastodon::CLI::Cache do
       end
 
       it 're-calculates account records in the cache' do
-        expect { subject }.to output(
-          a_string_including('OK')
-        ).to_stdout
+        expect { subject }
+          .to output_results('OK')
 
         expect(status_stat.reload.replies_count).to be_zero
       end
@@ -66,9 +63,9 @@ describe Mastodon::CLI::Cache do
       let(:arguments) { ['other-type'] }
 
       it 'Exits with an error message' do
-        expect { subject }.to output(
-          a_string_including('Unknown')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('Unknown')
+          .and raise_error(SystemExit)
       end
     end
   end

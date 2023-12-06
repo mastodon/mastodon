@@ -20,17 +20,15 @@ describe Mastodon::CLI::CanonicalEmailBlocks do
       before { Fabricate(:canonical_email_block, email: 'user@example.com') }
 
       it 'announces the presence of the block' do
-        expect { subject }.to output(
-          a_string_including('user@example.com is blocked')
-        ).to_stdout
+        expect { subject }
+          .to output_results('user@example.com is blocked')
       end
     end
 
     context 'when a block is not present' do
       it 'announces the absence of the block' do
-        expect { subject }.to output(
-          a_string_including('user@example.com is not blocked')
-        ).to_stdout
+        expect { subject }
+          .to output_results('user@example.com is not blocked')
       end
     end
   end
@@ -43,9 +41,8 @@ describe Mastodon::CLI::CanonicalEmailBlocks do
       before { Fabricate(:canonical_email_block, email: 'user@example.com') }
 
       it 'removes the block' do
-        expect { subject }.to output(
-          a_string_including('Unblocked user@example.com')
-        ).to_stdout
+        expect { subject }
+          .to output_results('Unblocked user@example.com')
 
         expect(CanonicalEmailBlock.matching_email('user@example.com')).to be_empty
       end
@@ -53,9 +50,8 @@ describe Mastodon::CLI::CanonicalEmailBlocks do
 
     context 'when a block is not present' do
       it 'announces the absence of the block' do
-        expect { subject }.to output(
-          a_string_including('user@example.com is not blocked')
-        ).to_stdout
+        expect { subject }
+          .to output_results('user@example.com is not blocked')
       end
     end
   end
