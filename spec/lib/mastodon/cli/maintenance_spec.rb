@@ -6,11 +6,7 @@ require 'mastodon/cli/maintenance'
 describe Mastodon::CLI::Maintenance do
   let(:cli) { described_class.new }
 
-  describe '.exit_on_failure?' do
-    it 'returns true' do
-      expect(described_class.exit_on_failure?).to be true
-    end
-  end
+  it_behaves_like 'CLI Command'
 
   describe '#fix_duplicates' do
     context 'when the database version is too old' do

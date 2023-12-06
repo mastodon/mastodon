@@ -27,14 +27,33 @@ lt:
           none: Naudok šią parinktį norėdamas (-a) išsiųsti įspėjimą naudotojui, nesukeldamas (-a) jokio kito veiksmo.
           sensitive: Priversk visus šio naudotojo medijos priedus pažymėti kaip jautrius.
           silence: Neleisk naudotojui skelbti viešai matomų įrašų, paslėpk jų įrašus ir pranešimus nuo žmonių, kurie neseka jo. Uždaro visus su šia paskyra susijusius ataskaitas.
+          suspend: Neleisk jokios sąveikos iš šios paskyros arba į ją ir ištrink jos turinį. Sugrąžinama per 30 dienų. Uždaro visas su šia paskyra susijusias ataskaitas.
+        warning_preset_id: Pasirinktinai. Gali pridėti pasirinktinį tekstą iš anksto nustatyto rinkinio pabaigoje
+      announcement:
+        all_day: Jei pažymėta, bus rodomos tik laikotarpio datos
+        ends_at: Pasirinktinai. Skelbimas šiuo laiku bus automatiškai panaikintas
+        scheduled_at: Palik tuščią, kad skelbimas būtų paskelbtas iš karto
+        starts_at: Pasirinktinai. Jei skelbimas susietas su tam tikru laiko tarpu
+        text: Gali naudoti įrašo sintaksę. Būk dėmesingas (-a), kiek vietos naudotojo ekrane užims skelbimas
+      appeal:
+        text: Gali pateikti apeliaciją dėl streiko tik vieną kartą
       defaults:
+        autofollow: Žmonės, kurie užsiregistruos per kvietimą, automatiškai seks tave
         avatar: PNG, GIF arba JPG. Ne daugiau kaip %{size}. Bus sumažintas iki %{dimensions} tšk.
-        header: PNG, GIF arba JPG. Ne daugiau kaip %{size}. Bus sumažintas iki %{dimensions}tšk.
+        bot: Signalizuoti kitiems, kad paskyroje daugiausia atliekami automatiniai veiksmai ir kad ji gali būti nestebima
+        context: Vienas arba keli kontekstai, kuriems turėtų būti taikomas filtras
+        current_password: Saugumo sumetimais įvesk dabartinės paskyros slaptažodį
+        current_username: Kad patvirtintum, įvesk dabartinės paskyros naudotojo vardą
+        digest: Siunčiama tik po ilgo neaktyvumo laikotarpio ir tik tuo atveju, jei negavai jokių asmeninių žinučių
+        email: Tau bus išsiųstas patvirtinimo el. laiškas
+        header: PNG, GIF arba JPG. Ne daugiau kaip %{size}. Bus sumažintas iki %{dimensions} tšk.
         inbox_url: Nukopijuok URL adresą iš pradinio puslapio perdavėjo, kurį nori naudoti
         irreversible: Filtruoti įrašai išnyks negrįžtamai, net jei vėliau filtras bus pašalintas
         locale: Naudotojo sąsajos kalba, el. laiškai ir stumiamieji pranešimai
         password: Naudok bent 8 simbolius
-        phrase: Bus suderinta, neatsižvelgiant į teksto korpusą arba įrašo turinio įspėjimą
+        phrase: Bus suderinta, neatsižvelgiant į teksto lygį arba įrašo turinio įspėjimą
+        scopes: Prie kurių API programai bus leidžiama pasiekti. Pasirinkus aukščiausio lygio sritį, atskirų sričių pasirinkti nereikia.
+        setting_aggregate_reblogs: Nerodyti naujų pakėlimų įrašams, kurie neseniai buvo pakelti (taikoma tik naujai gautiems pakėlimams)
         setting_always_send_emails: Paprastai pranešimai el. paštu nebus siunčiami, kai aktyviai naudoji Mastodon
         setting_default_sensitive: Jautrioji medija pagal numatytuosius nustatymus yra paslėpta ir gali būti atskleista paspaudus
         setting_display_media_default: Slėpti mediją, pažymėtą kaip jautrią
@@ -42,16 +61,26 @@ lt:
         setting_display_media_show_all: Visada rodyti mediją
         setting_use_blurhash: Gradientai pagrįsti paslėptų vaizdų spalvomis, tačiau užgožia bet kokias detales
         setting_use_pending_items: Slėpti laiko skalės naujienas po paspaudimo, vietoj automatinio kanalo slinkimo
+        username: Gali naudoti raides, skaičius ir pabraukimus
+        whole_word: Kai raktažodis ar frazė yra tik raidinis ir skaitmeninis, jis bus taikomas tik tada, jei atitiks visą žodį
       featured_tag:
         name: 'Štai keletas pastaruoju metu dažniausiai saitažodžių, kurių tu naudojai:'
+      filters:
+        action: Pasirink, kokį veiksmą atlikti, kai įrašas atitinka filtrą
+        actions:
+          hide: Visiškai paslėpti filtruotą turinį ir elgtis taip, tarsi jo neegzistuotų
+          warn: Slėpti filtruojamą turinį po įspėjimu, paminint filtro pavadinimą
       form_admin_settings:
+        activity_api_enabled: Vietinių paskelbtų įrašų, aktyvių naudotojų ir naujų registracijų skaičiai kas savaitę
+        backups_retention_period: Laikyti sukurtus naudotojų archyvus nurodytą dienų skaičių.
         peers_api_enabled: Domenų pavadinimų sąrašas, su kuriais šis serveris susidūrė fediverse. Čia nėra duomenų apie tai, ar tu bendrauji su tam tikru serveriu, tik apie tai, kad tavo serveris apie jį žino. Tai naudojama tarnybose, kurios renka federacijos statistiką bendrąja prasme.
         site_contact_email: Kaip žmonės gali su tavimi susisiekti teisiniais ar pagalbos užklausimais.
         site_contact_username: Kaip žmonės gali tave pasiekti Mastodon.
         site_extended_description: Bet kokia papildoma informacija, kuri gali būti naudinga lankytojams ir naudotojams. Gali būti struktūrizuota naudojant Markdown sintaksę.
         trends: Trendai rodo, kurios įrašai, saitažodžiai ir naujienų istorijos tavo serveryje sulaukia didžiausio susidomėjimo.
       sessions:
-        webauthn: Jei tai USB raktas, būtinai jį įkišk ir, jei reikia, paliesk.
+        otp: 'Įvesk telefono programėlėje sugeneruotą dviejų tapatybės kodą arba naudok vieną iš atkūrimo kodų:'
+        webauthn: Jei tai USB raktas, būtinai jį įkišk ir, jei reikia, paspausk.
       settings:
         indexable: Tavo profilio puslapis gali būti rodomas paieškos rezultatuose Google, Bing ir kituose.
     labels:

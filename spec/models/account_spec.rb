@@ -451,7 +451,7 @@ RSpec.describe Account do
     end
 
     it 'limits via constant by default' do
-      stub_const('AccountSearch::DEFAULT_LIMIT', 1)
+      stub_const('Account::Search::DEFAULT_LIMIT', 1)
       2.times.each { Fabricate(:account, display_name: 'Display Name') }
       results = described_class.search_for('display')
       expect(results.size).to eq 1
@@ -595,7 +595,7 @@ RSpec.describe Account do
     end
 
     it 'limits by 10 by default' do
-      stub_const('AccountSearch::DEFAULT_LIMIT', 1)
+      stub_const('Account::Search::DEFAULT_LIMIT', 1)
       2.times { Fabricate(:account, display_name: 'Display Name') }
       results = described_class.advanced_search_for('display', account)
       expect(results.size).to eq 1

@@ -2,7 +2,10 @@
 
 class REST::ApplicationSerializer < ActiveModel::Serializer
   attributes :id, :name, :website, :scopes, :redirect_uri,
-             :client_id, :client_secret, :vapid_key
+             :client_id, :client_secret
+
+  # NOTE: Deprecated in 4.3.0, needs to be removed in 5.0.0
+  attribute :vapid_key
 
   def id
     object.id.to_s
