@@ -4,11 +4,17 @@ require 'rails_helper'
 require 'mastodon/cli/preview_cards'
 
 describe Mastodon::CLI::PreviewCards do
+  subject { cli.invoke(action, arguments, options) }
+
   let(:cli) { described_class.new }
+  let(:arguments) { [] }
+  let(:options) { {} }
 
   it_behaves_like 'CLI Command'
 
   describe '#remove' do
+    let(:action) { :remove }
+
     context 'with relevant preview cards' do
       before do
         Fabricate(:preview_card, updated_at: 10.years.ago, type: :link)
@@ -18,7 +24,7 @@ describe Mastodon::CLI::PreviewCards do
 
       context 'with no arguments' do
         it 'deletes thumbnails for local preview cards' do
-          expect { cli.invoke(:remove) }.to output(
+          expect { subject }.to output(
             a_string_including('Removed 2 preview cards')
               .and(a_string_including('approx. 119 KB'))
           ).to_stdout
@@ -29,7 +35,7 @@ describe Mastodon::CLI::PreviewCards do
         let(:options) { { link: true } }
 
         it 'deletes thumbnails for local preview cards' do
-          expect { cli.invoke(:remove, [], options) }.to output(
+          expect { subject }.to output(
             a_string_including('Removed 1 link-type preview cards')
               .and(a_string_including('approx. 59.6 KB'))
           ).to_stdout
@@ -40,7 +46,7 @@ describe Mastodon::CLI::PreviewCards do
         let(:options) { { days: 365 } }
 
         it 'deletes thumbnails for local preview cards' do
-          expect { cli.invoke(:remove, [], options) }.to output(
+          expect { subject }.to output(
             a_string_including('Removed 1 preview cards')
               .and(a_string_including('approx. 59.6 KB'))
           ).to_stdout

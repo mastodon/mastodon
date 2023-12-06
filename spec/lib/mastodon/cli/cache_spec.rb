@@ -4,15 +4,21 @@ require 'rails_helper'
 require 'mastodon/cli/cache'
 
 describe Mastodon::CLI::Cache do
+  subject { cli.invoke(action, arguments, options) }
+
   let(:cli) { described_class.new }
+  let(:arguments) { [] }
+  let(:options) { {} }
 
   it_behaves_like 'CLI Command'
 
   describe '#clear' do
+    let(:action) { :clear }
+
     before { allow(Rails.cache).to receive(:clear) }
 
     it 'clears the Rails cache' do
-      expect { cli.invoke(:clear) }.to output(
+      expect { subject }.to output(
         a_string_including('OK')
       ).to_stdout
       expect(Rails.cache).to have_received(:clear)
@@ -20,6 +26,8 @@ describe Mastodon::CLI::Cache do
   end
 
   describe '#recount' do
+    let(:action) { :recount }
+
     context 'with the `accounts` argument' do
       let(:arguments) { ['accounts'] }
       let(:account_stat) { Fabricate(:account_stat) }
@@ -29,7 +37,7 @@ describe Mastodon::CLI::Cache do
       end
 
       it 're-calculates account records in the cache' do
-        expect { cli.invoke(:recount, arguments) }.to output(
+        expect { subject }.to output(
           a_string_including('OK')
         ).to_stdout
 
@@ -46,7 +54,7 @@ describe Mastodon::CLI::Cache do
       end
 
       it 're-calculates account records in the cache' do
-        expect { cli.invoke(:recount, arguments) }.to output(
+        expect { subject }.to output(
           a_string_including('OK')
         ).to_stdout
 
@@ -58,7 +66,7 @@ describe Mastodon::CLI::Cache do
       let(:arguments) { ['other-type'] }
 
       it 'Exits with an error message' do
-        expect { cli.invoke(:recount, arguments) }.to output(
+        expect { subject }.to output(
           a_string_including('Unknown')
         ).to_stdout.and raise_error(SystemExit)
       end

@@ -4,16 +4,22 @@ require 'rails_helper'
 require 'mastodon/cli/statuses'
 
 describe Mastodon::CLI::Statuses do
+  subject { cli.invoke(action, arguments, options) }
+
   let(:cli) { described_class.new }
+  let(:arguments) { [] }
+  let(:options) { {} }
 
   it_behaves_like 'CLI Command'
 
   describe '#remove', use_transactional_tests: false do
+    let(:action) { :remove }
+
     context 'with small batch size' do
       let(:options) { { batch_size: 0 } }
 
       it 'exits with error message' do
-        expect { cli.invoke :remove, [], options }.to output(
+        expect { subject }.to output(
           a_string_including('Cannot run')
         ).to_stdout.and raise_error(SystemExit)
       end
@@ -21,7 +27,7 @@ describe Mastodon::CLI::Statuses do
 
     context 'with default batch size' do
       it 'removes unreferenced statuses' do
-        expect { cli.invoke :remove }.to output(
+        expect { subject }.to output(
           a_string_including('Done after')
         ).to_stdout
       end

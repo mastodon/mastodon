@@ -4,7 +4,11 @@ require 'rails_helper'
 require 'mastodon/cli/accounts'
 
 describe Mastodon::CLI::Accounts do
+  subject { cli.invoke(action, arguments, options) }
+
   let(:cli) { described_class.new }
+  let(:arguments) { [] }
+  let(:options) { {} }
 
   it_behaves_like 'CLI Command'
 
@@ -27,15 +31,17 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#create' do
+    let(:action) { :create }
+
     shared_examples 'a new user with given email address and username' do
       it 'creates a new user with the specified email address' do
-        cli.invoke(:create, arguments, options)
+        subject
 
         expect(User.find_by(email: options[:email])).to be_present
       end
 
       it 'creates a new local account with the specified username' do
-        cli.invoke(:create, arguments, options)
+        subject
 
         expect(Account.find_local('tootctl_username')).to be_present
       end
@@ -43,7 +49,7 @@ describe Mastodon::CLI::Accounts do
       it 'returns "OK" and newly generated password' do
         allow(SecureRandom).to receive(:hex).and_return('test_password')
 
-        expect { cli.invoke(:create, arguments, options) }.to output(
+        expect { subject }.to output(
           a_string_including("OK\nNew password: test_password")
         ).to_stdout
       end
@@ -61,7 +67,7 @@ describe Mastodon::CLI::Accounts do
           let(:options) { { email: 'invalid' } }
 
           it 'exits with an error message' do
-            expect { cli.invoke(:create, arguments, options) }.to output(
+            expect { subject }.to output(
               a_string_including('Failure/Error: email')
             ).to_stdout
               .and raise_error(SystemExit)
@@ -75,7 +81,7 @@ describe Mastodon::CLI::Accounts do
         it_behaves_like 'a new user with given email address and username'
 
         it 'creates a new user with confirmed status' do
-          cli.invoke(:create, arguments, options)
+          subject
 
           user = User.find_by(email: options[:email])
 
@@ -93,7 +99,7 @@ describe Mastodon::CLI::Accounts do
         it_behaves_like 'a new user with given email address and username'
 
         it 'creates a new user with approved status' do
-          cli.invoke(:create, arguments, options)
+          subject
 
           user = User.find_by(email: options[:email])
 
@@ -109,7 +115,7 @@ describe Mastodon::CLI::Accounts do
           it_behaves_like 'a new user with given email address and username'
 
           it 'creates a new user and assigns the specified role' do
-            cli.invoke(:create, arguments, options)
+            subject
 
             role = User.find_by(email: options[:email])&.role
 
@@ -121,7 +127,7 @@ describe Mastodon::CLI::Accounts do
           let(:options) { { email: 'tootctl@example.com', role: '404' } }
 
           it 'exits with an error message indicating the role name was not found' do
-            expect { cli.invoke(:create, arguments, options) }.to output(
+            expect { subject }.to output(
               a_string_including('Cannot find user role with that name')
             ).to_stdout
               .and raise_error(SystemExit)
@@ -139,7 +145,7 @@ describe Mastodon::CLI::Accounts do
           end
 
           it 'returns an error message indicating the username is already taken' do
-            expect { cli.invoke(:create, arguments, options) }.to output(
+            expect { subject }.to output(
               a_string_including("The chosen username is currently in use\nUse --force to reattach it anyway and delete the other user")
             ).to_stdout
           end
@@ -148,7 +154,7 @@ describe Mastodon::CLI::Accounts do
             let(:options) { { email: 'tootctl_new@example.com', reattach: true, force: true } }
 
             it 'reattaches the account to the new user and deletes the previous user' do
-              cli.invoke(:create, arguments, options)
+              subject
 
               user = Account.find_local('tootctl_username')&.user
 
@@ -173,18 +179,20 @@ describe Mastodon::CLI::Accounts do
       let(:arguments) { ['tootctl_username'] }
 
       it 'raises a required argument missing error (Thor::RequiredArgumentMissingError)' do
-        expect { cli.invoke(:create, arguments) }
+        expect { subject }
           .to raise_error(Thor::RequiredArgumentMissingError)
       end
     end
   end
 
   describe '#modify' do
+    let(:action) { :modify }
+
     context 'when the given username is not found' do
       let(:arguments) { ['non_existent_username'] }
 
       it 'exits with an error message indicating the user was not found' do
-        expect { cli.invoke(:modify, arguments) }.to output(
+        expect { subject }.to output(
           a_string_including('No user with such username')
         ).to_stdout
           .and raise_error(SystemExit)
@@ -197,13 +205,13 @@ describe Mastodon::CLI::Accounts do
 
       context 'when no option is provided' do
         it 'returns a successful message' do
-          expect { cli.invoke(:modify, arguments) }.to output(
+          expect { subject }.to output(
             a_string_including('OK')
           ).to_stdout
         end
 
         it 'does not modify the user' do
-          cli.invoke(:modify, arguments)
+          subject
 
           expect(user).to eq(user.reload)
         end
@@ -214,7 +222,7 @@ describe Mastodon::CLI::Accounts do
           let(:options) { { role: '404' } }
 
           it 'exits with an error message indicating the role was not found' do
-            expect { cli.invoke(:modify, arguments, options) }.to output(
+            expect { subject }.to output(
               a_string_including('Cannot find user role with that name')
             ).to_stdout
               .and raise_error(SystemExit)
@@ -226,7 +234,7 @@ describe Mastodon::CLI::Accounts do
           let(:options) { { role: default_role.name } }
 
           it "updates the user's role to the specified role" do
-            cli.invoke(:modify, arguments, options)
+            subject
 
             role = user.reload.role
 
@@ -241,7 +249,7 @@ describe Mastodon::CLI::Accounts do
         let(:user) { Fabricate(:user, role: role) }
 
         it "removes the user's role successfully" do
-          cli.invoke(:modify, arguments, options)
+          subject
 
           role = user.reload.role
 
@@ -254,13 +262,13 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { email: 'new_email@email.com' } }
 
         it "sets the user's unconfirmed email to the provided email address" do
-          cli.invoke(:modify, arguments, options)
+          subject
 
           expect(user.reload.unconfirmed_email).to eq(options[:email])
         end
 
         it "does not update the user's original email address" do
-          cli.invoke(:modify, arguments, options)
+          subject
 
           expect(user.reload.email).to eq('old_email@email.com')
         end
@@ -270,13 +278,13 @@ describe Mastodon::CLI::Accounts do
           let(:options) { { email: 'new_email@email.com', confirm: true } }
 
           it "updates the user's email address to the provided email" do
-            cli.invoke(:modify, arguments, options)
+            subject
 
             expect(user.reload.email).to eq(options[:email])
           end
 
           it "sets the user's email address as confirmed" do
-            cli.invoke(:modify, arguments, options)
+            subject
 
             expect(user.reload.confirmed?).to be(true)
           end
@@ -288,7 +296,7 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { confirm: true } }
 
         it "confirms the user's email address" do
-          cli.invoke(:modify, arguments, options)
+          subject
 
           expect(user.reload.confirmed?).to be(true)
         end
@@ -303,7 +311,7 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'approves the user' do
-          expect { cli.invoke(:modify, arguments, options) }.to change { user.reload.approved }.from(false).to(true)
+          expect { subject }.to change { user.reload.approved }.from(false).to(true)
         end
       end
 
@@ -312,7 +320,7 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { disable: true } }
 
         it 'disables the user' do
-          expect { cli.invoke(:modify, arguments, options) }.to change { user.reload.disabled }.from(false).to(true)
+          expect { subject }.to change { user.reload.disabled }.from(false).to(true)
         end
       end
 
@@ -321,7 +329,7 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { enable: true } }
 
         it 'enables the user' do
-          expect { cli.invoke(:modify, arguments, options) }.to change { user.reload.disabled }.from(true).to(false)
+          expect { subject }.to change { user.reload.disabled }.from(true).to(false)
         end
       end
 
@@ -331,7 +339,7 @@ describe Mastodon::CLI::Accounts do
         it 'returns a new password for the user' do
           allow(SecureRandom).to receive(:hex).and_return('new_password')
 
-          expect { cli.invoke(:modify, arguments, options) }.to output(
+          expect { subject }.to output(
             a_string_including('new_password')
           ).to_stdout
         end
@@ -342,7 +350,7 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { disable_2fa: true } }
 
         it 'disables the two-factor authentication for the user' do
-          expect { cli.invoke(:modify, arguments, options) }.to change { user.reload.otp_required_for_login }.from(true).to(false)
+          expect { subject }.to change { user.reload.otp_required_for_login }.from(true).to(false)
         end
       end
 
@@ -351,7 +359,7 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { email: 'invalid' } }
 
         it 'exits with an error message' do
-          expect { cli.invoke(:modify, arguments, options) }.to output(
+          expect { subject }.to output(
             a_string_including('Failure/Error: email')
           ).to_stdout
             .and raise_error(SystemExit)
@@ -361,6 +369,7 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#delete' do
+    let(:action) { :delete }
     let(:account) { Fabricate(:account) }
     let(:arguments) { [account.username] }
     let(:options) { { email: account.user.email } }
@@ -373,7 +382,7 @@ describe Mastodon::CLI::Accounts do
 
     context 'when both username and --email are provided' do
       it 'exits with an error message indicating that only one should be used' do
-        expect { cli.invoke(:delete, arguments, options) }.to output(
+        expect { subject }.to output(
           a_string_including('Use username or --email, not both')
         ).to_stdout
           .and raise_error(SystemExit)
@@ -382,7 +391,7 @@ describe Mastodon::CLI::Accounts do
 
     context 'when neither username nor --email are provided' do
       it 'exits with an error message indicating that no username was provided' do
-        expect { cli.invoke(:delete) }.to output(
+        expect { subject }.to output(
           a_string_including('No username provided')
         ).to_stdout
           .and raise_error(SystemExit)
@@ -391,7 +400,7 @@ describe Mastodon::CLI::Accounts do
 
     context 'when username is provided' do
       it 'deletes the specified user successfully' do
-        cli.invoke(:delete, arguments)
+        subject
 
         expect(delete_account_service).to have_received(:call).with(account, reserve_email: false).once
       end
@@ -400,13 +409,13 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { dry_run: true } }
 
         it 'does not delete the specified user' do
-          cli.invoke(:delete, arguments, options)
+          subject
 
           expect(delete_account_service).to_not have_received(:call).with(account, reserve_email: false)
         end
 
         it 'outputs a successful message in dry run mode' do
-          expect { cli.invoke(:delete, arguments, options) }.to output(
+          expect { subject }.to output(
             a_string_including('OK (DRY RUN)')
           ).to_stdout
         end
@@ -416,7 +425,7 @@ describe Mastodon::CLI::Accounts do
         let(:arguments) { ['non_existent_username'] }
 
         it 'exits with an error message indicating that no user was found' do
-          expect { cli.invoke(:delete, arguments) }.to output(
+          expect { subject }.to output(
             a_string_including('No user with such username')
           ).to_stdout
             .and raise_error(SystemExit)
@@ -426,7 +435,7 @@ describe Mastodon::CLI::Accounts do
 
     context 'when --email is provided' do
       it 'deletes the specified user successfully' do
-        cli.invoke(:delete, nil, options)
+        subject
 
         expect(delete_account_service).to have_received(:call).with(account, reserve_email: false).once
       end
@@ -435,13 +444,13 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { email: account.user.email, dry_run: true } }
 
         it 'does not delete the user' do
-          cli.invoke(:delete, nil, options)
+          subject
 
           expect(delete_account_service).to_not have_received(:call).with(account, reserve_email: false)
         end
 
         it 'outputs a successful message in dry run mode' do
-          expect { cli.invoke(:delete, nil, options) }.to output(
+          expect { subject }.to output(
             a_string_including('OK (DRY RUN)')
           ).to_stdout
         end
@@ -451,7 +460,7 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { email: '404@example.com' } }
 
         it 'exits with an error message indicating that no user was found' do
-          expect { cli.invoke(:delete, nil, options) }.to output(
+          expect { subject }.to output(
             a_string_including('No user with such email')
           ).to_stdout
             .and raise_error(SystemExit)
@@ -461,6 +470,7 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#approve' do
+    let(:action) { :approve }
     let(:total_users) { 4 }
 
     before do
@@ -470,7 +480,7 @@ describe Mastodon::CLI::Accounts do
 
     context 'with --all option' do
       it 'approves all pending registrations' do
-        cli.invoke(:approve, nil, all: true)
+        subject
 
         expect(User.pluck(:approved).all?(true)).to be(true)
       end
@@ -481,7 +491,7 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { number: 2 } }
 
         it 'approves the earliest n pending registrations' do
-          cli.invoke(:approve, nil, options)
+          subject
 
           n_earliest_pending_registrations = User.order(created_at: :asc).first(options[:number])
 
@@ -489,7 +499,7 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'does not approve the remaining pending registrations' do
-          cli.invoke(:approve, nil, options)
+          subject
 
           pending_registrations = User.order(created_at: :asc).last(total_users - options[:number])
 
@@ -498,8 +508,10 @@ describe Mastodon::CLI::Accounts do
       end
 
       context 'when the number is negative' do
+        let(:options) { { number: -1 } }
+
         it 'exits with an error message indicating that the number must be positive' do
-          expect { cli.invoke(:approve, nil, number: -1) }.to output(
+          expect { subject }.to output(
             a_string_including('Number must be positive')
           ).to_stdout
             .and raise_error(SystemExit)
@@ -510,13 +522,13 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { number: total_users * 2 } }
 
         it 'approves all users' do
-          cli.invoke(:approve, nil, options)
+          subject
 
           expect(User.pluck(:approved).all?(true)).to be(true)
         end
 
         it 'does not raise any error' do
-          expect { cli.invoke(:approve, nil, options) }
+          expect { subject }
             .to_not raise_error
         end
       end
@@ -528,7 +540,7 @@ describe Mastodon::CLI::Accounts do
         let(:arguments) { [user.account.username] }
 
         it 'approves the specified user successfully' do
-          cli.invoke(:approve, arguments)
+          subject
 
           expect(user.reload.approved?).to be(true)
         end
@@ -538,7 +550,7 @@ describe Mastodon::CLI::Accounts do
         let(:arguments) { ['non_existent_username'] }
 
         it 'exits with an error message indicating that no such account was found' do
-          expect { cli.invoke(:approve, arguments) }.to output(
+          expect { subject }.to output(
             a_string_including('No such account')
           ).to_stdout
             .and raise_error(SystemExit)
@@ -548,11 +560,13 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#follow' do
+    let(:action) { :follow }
+
     context 'when the given username is not found' do
       let(:arguments) { ['non_existent_username'] }
 
       it 'exits with an error message indicating that no account with the given username was found' do
-        expect { cli.invoke(:follow, arguments) }.to output(
+        expect { subject }.to output(
           a_string_including('No such account')
         ).to_stdout
           .and raise_error(SystemExit)
@@ -588,11 +602,13 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#unfollow' do
+    let(:action) { :unfollow }
+
     context 'when the given username is not found' do
       let(:arguments) { ['non_existent_username'] }
 
       it 'exits with an error message indicating that no account with the given username was found' do
-        expect { cli.invoke(:unfollow, arguments) }.to output(
+        expect { subject }.to output(
           a_string_including('No such account')
         ).to_stdout
           .and raise_error(SystemExit)
@@ -630,11 +646,13 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#backup' do
+    let(:action) { :backup }
+
     context 'when the given username is not found' do
       let(:arguments) { ['non_existent_username'] }
 
       it 'exits with an error message indicating that there is no such account' do
-        expect { cli.invoke(:backup, arguments) }.to output(
+        expect { subject }.to output(
           a_string_including('No user with such username')
         ).to_stdout
           .and raise_error(SystemExit)
@@ -647,20 +665,20 @@ describe Mastodon::CLI::Accounts do
       let(:arguments) { [account.username] }
 
       it 'creates a new backup for the specified user' do
-        expect { cli.invoke(:backup, arguments) }.to change { user.backups.count }.by(1)
+        expect { subject }.to change { user.backups.count }.by(1)
       end
 
       it 'creates a backup job' do
         allow(BackupWorker).to receive(:perform_async)
 
-        cli.invoke(:backup, arguments)
+        subject
         latest_backup = user.backups.last
 
         expect(BackupWorker).to have_received(:perform_async).with(latest_backup.id).once
       end
 
       it 'displays a successful message' do
-        expect { cli.invoke(:backup, arguments) }.to output(
+        expect { subject }.to output(
           a_string_including('OK')
         ).to_stdout
       end
@@ -1007,9 +1025,11 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#merge' do
+    let(:action) { :merge }
+
     shared_examples 'an account not found' do |acct|
       it 'exits with an error message indicating that there is no such account' do
-        expect { cli.invoke(:merge, arguments) }.to output(
+        expect { subject }.to output(
           a_string_including("No such account (#{acct})")
         ).to_stdout
           .and raise_error(SystemExit)
@@ -1061,7 +1081,7 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'exits with an error message indicating that the accounts do not have the same pub key' do
-        expect { cli.invoke(:merge, arguments) }.to output(
+        expect { subject }.to output(
           a_string_including("Accounts don't have the same public key, might not be duplicates!\nOverride with --force")
         ).to_stdout
           .and raise_error(SystemExit)
@@ -1076,13 +1096,13 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'merges "from_account" into "to_account"' do
-          cli.invoke(:merge, arguments, options)
+          subject
 
           expect(to_account).to have_received(:merge_with!).with(from_account).once
         end
 
         it 'deletes "from_account"' do
-          cli.invoke(:merge, arguments, options)
+          subject
 
           expect(from_account).to have_received(:destroy).once
         end
@@ -1104,13 +1124,13 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'merges "from_account" into "to_account"' do
-        cli.invoke(:merge, arguments)
+        subject
 
         expect(to_account).to have_received(:merge_with!).with(from_account).once
       end
 
       it 'deletes "from_account"' do
-        cli.invoke(:merge, arguments)
+        subject
 
         expect(from_account).to have_received(:destroy)
       end
@@ -1118,6 +1138,7 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#cull' do
+    let(:action) { :cull }
     let(:delete_account_service) { instance_double(DeleteAccountService, call: nil) }
     let!(:tom)   { Fabricate(:account, updated_at: 30.days.ago, username: 'tom', uri: 'https://example.com/users/tom', domain: 'example.com', protocol: :activitypub) }
     let!(:bob)   { Fabricate(:account, updated_at: 30.days.ago, last_webfingered_at: nil, username: 'bob', uri: 'https://example.org/users/bob', domain: 'example.org', protocol: :activitypub) }
@@ -1138,14 +1159,14 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'deletes all inactive remote accounts that longer exist in the origin server' do
-        cli.cull
+        subject
 
         expect(delete_account_service).to have_received(:call).with(bob, reserve_username: false).once
         expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
       end
 
       it 'does not delete any active remote account that still exists in the origin server' do
-        cli.cull
+        subject
 
         expect(delete_account_service).to_not have_received(:call).with(tom, reserve_username: false)
         expect(delete_account_service).to_not have_received(:call).with(ana, reserve_username: false)
@@ -1153,18 +1174,18 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'touches inactive remote accounts that have not been deleted' do
-        expect { cli.cull }.to(change { tales.reload.updated_at })
+        expect { subject }.to(change { tales.reload.updated_at })
       end
 
       it 'displays the summary correctly' do
-        expect { cli.cull }.to output(
+        expect { subject }.to output(
           a_string_including('Visited 5 accounts, removed 2')
         ).to_stdout
       end
     end
 
     context 'when a domain is specified' do
-      let(:domain) { 'example.net' }
+      let(:arguments) { 'example.net' }
 
       before do
         stub_parallelize_with_progress!
@@ -1173,14 +1194,14 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'deletes inactive remote accounts that longer exist in the specified domain' do
-        cli.cull(domain)
+        subject
 
         expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
         expect(delete_account_service).to have_received(:call).with(tales, reserve_username: false).once
       end
 
       it 'displays the summary correctly' do
-        expect { cli.cull(domain) }.to output(
+        expect { subject }.to output(
           a_string_including('Visited 2 accounts, removed 2')
         ).to_stdout
       end
@@ -1195,13 +1216,13 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'skips accounts from the unavailable domain' do
-          cli.cull
+          subject
 
           expect(delete_account_service).to_not have_received(:call).with(tales, reserve_username: false)
         end
 
         it 'displays the summary correctly' do
-          expect { cli.cull }.to output(
+          expect { subject }.to output(
             a_string_including("Visited 5 accounts, removed 0\nThe following domains were not available during the check:\n    example.net")
           ).to_stdout
         end
@@ -1242,12 +1263,13 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#reset_relationships' do
+    let(:action) { :reset_relationships }
     let(:target_account) { Fabricate(:account) }
     let(:arguments)      { [target_account.username] }
 
     context 'when no option is given' do
       it 'exits with an error message indicating that at least one option is required' do
-        expect { cli.invoke(:reset_relationships, arguments) }.to output(
+        expect { subject }.to output(
           a_string_including('Please specify either --follows or --followers, or both')
         ).to_stdout
           .and raise_error(SystemExit)
@@ -1256,9 +1278,10 @@ describe Mastodon::CLI::Accounts do
 
     context 'when the given username is not found' do
       let(:arguments) { ['non_existent_username'] }
+      let(:options) { { follows: true } }
 
       it 'exits with an error message indicating that there is no such account' do
-        expect { cli.invoke(:reset_relationships, arguments, follows: true) }.to output(
+        expect { subject }.to output(
           a_string_including('No such account')
         ).to_stdout
           .and raise_error(SystemExit)
@@ -1277,7 +1300,7 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'resets all "following" relationships from the target account' do
-          cli.invoke(:reset_relationships, arguments, options)
+          subject
 
           expect(target_account.reload.following).to be_empty
         end
@@ -1285,13 +1308,13 @@ describe Mastodon::CLI::Accounts do
         it 'calls BootstrapTimelineWorker once to rebuild the timeline' do
           allow(BootstrapTimelineWorker).to receive(:perform_async)
 
-          cli.invoke(:reset_relationships, arguments, options)
+          subject
 
           expect(BootstrapTimelineWorker).to have_received(:perform_async).with(target_account.id).once
         end
 
         it 'displays a successful message' do
-          expect { cli.invoke(:reset_relationships, arguments, options) }.to output(
+          expect { subject }.to output(
             a_string_including("Processed #{total_relationships} relationships")
           ).to_stdout
         end
@@ -1305,13 +1328,13 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'resets all "followers" relationships from the target account' do
-          cli.invoke(:reset_relationships, arguments, options)
+          subject
 
           expect(target_account.reload.followers).to be_empty
         end
 
         it 'displays a successful message' do
-          expect { cli.invoke(:reset_relationships, arguments, options) }.to output(
+          expect { subject }.to output(
             a_string_including("Processed #{total_relationships} relationships")
           ).to_stdout
         end
@@ -1326,13 +1349,13 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'resets all "followers" relationships from the target account' do
-          cli.invoke(:reset_relationships, arguments, options)
+          subject
 
           expect(target_account.reload.followers).to be_empty
         end
 
         it 'resets all "following" relationships from the target account' do
-          cli.invoke(:reset_relationships, arguments, options)
+          subject
 
           expect(target_account.reload.following).to be_empty
         end
@@ -1340,13 +1363,13 @@ describe Mastodon::CLI::Accounts do
         it 'calls BootstrapTimelineWorker once to rebuild the timeline' do
           allow(BootstrapTimelineWorker).to receive(:perform_async)
 
-          cli.invoke(:reset_relationships, arguments, options)
+          subject
 
           expect(BootstrapTimelineWorker).to have_received(:perform_async).with(target_account.id).once
         end
 
         it 'displays a successful message' do
-          expect { cli.invoke(:reset_relationships, arguments, options) }.to output(
+          expect { subject }.to output(
             a_string_including("Processed #{total_relationships} relationships")
           ).to_stdout
         end
@@ -1428,6 +1451,7 @@ describe Mastodon::CLI::Accounts do
   end
 
   describe '#migrate' do
+    let(:action) { :migrate }
     let!(:source_account)         { Fabricate(:account) }
     let!(:target_account)         { Fabricate(:account, domain: 'example.com') }
     let(:arguments)               { [source_account.username] }
@@ -1441,7 +1465,7 @@ describe Mastodon::CLI::Accounts do
 
     shared_examples 'a successful migration' do
       it 'calls the MoveService for the last migration' do
-        cli.invoke(:migrate, arguments, options)
+        subject
 
         last_migration = source_account.migrations.last
 
@@ -1449,7 +1473,7 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'displays a successful message' do
-        expect { cli.invoke(:migrate, arguments, options) }.to output(
+        expect { subject }.to output(
           a_string_including("OK, migrated #{source_account.acct} to #{target_account.acct}")
         ).to_stdout
       end
@@ -1459,7 +1483,7 @@ describe Mastodon::CLI::Accounts do
       let(:options) { { replay: true, target: "#{target_account.username}@example.com" } }
 
       it 'exits with an error message indicating that using both options is not possible' do
-        expect { cli.invoke(:migrate, arguments, options) }.to output(
+        expect { subject }.to output(
           a_string_including('Use --replay or --target, not both')
         ).to_stdout
           .and raise_error(SystemExit)
@@ -1468,7 +1492,7 @@ describe Mastodon::CLI::Accounts do
 
     context 'when no option is given' do
       it 'exits with an error message indicating that at least one option must be used' do
-        expect { cli.invoke(:migrate, arguments, {}) }.to output(
+        expect { subject }.to output(
           a_string_including('Use either --replay or --target')
         ).to_stdout
           .and raise_error(SystemExit)
@@ -1477,9 +1501,10 @@ describe Mastodon::CLI::Accounts do
 
     context 'when the given username is not found' do
       let(:arguments) { ['non_existent_username'] }
+      let(:options) { { replay: true } }
 
       it 'exits with an error message indicating that there is no such account' do
-        expect { cli.invoke(:migrate, arguments, replay: true) }.to output(
+        expect { subject }.to output(
           a_string_including("No such account: #{arguments.first}")
         ).to_stdout
           .and raise_error(SystemExit)
@@ -1491,7 +1516,7 @@ describe Mastodon::CLI::Accounts do
 
       context 'when the specified account has no previous migrations' do
         it 'exits with an error message indicating that the given account has no previous migrations' do
-          expect { cli.invoke(:migrate, arguments, options) }.to output(
+          expect { subject }.to output(
             a_string_including('The specified account has not performed any migration')
           ).to_stdout
             .and raise_error(SystemExit)
@@ -1515,7 +1540,7 @@ describe Mastodon::CLI::Accounts do
           end
 
           it 'exits with an error message' do
-            expect { cli.invoke(:migrate, arguments, options) }.to output(
+            expect { subject }.to output(
               a_string_including('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway')
             ).to_stdout
               .and raise_error(SystemExit)
@@ -1544,7 +1569,7 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'exits with an error message indicating that there is no such account' do
-          expect { cli.invoke(:migrate, arguments, options) }.to output(
+          expect { subject }.to output(
             a_string_including("The specified target account could not be found: #{options[:target]}")
           ).to_stdout
             .and raise_error(SystemExit)
@@ -1557,7 +1582,7 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'creates a migration for the specified account with the target account' do
-          cli.invoke(:migrate, arguments, options)
+          subject
 
           last_migration = source_account.migrations.last
 
@@ -1569,7 +1594,7 @@ describe Mastodon::CLI::Accounts do
 
       context 'when the migration record is invalid' do
         it 'exits with an error indicating that the validation failed' do
-          expect { cli.invoke(:migrate, arguments, options) }.to output(
+          expect { subject }.to output(
             a_string_including('Error: Validation failed')
           ).to_stdout
             .and raise_error(SystemExit)
@@ -1582,7 +1607,7 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'exits with an error message' do
-          expect { cli.invoke(:migrate, arguments, options) }.to output(
+          expect { subject }.to output(
             a_string_including('The specified account is redirecting to a different target account. Use --force if you want to change the migration target')
           ).to_stdout
             .and raise_error(SystemExit)
