@@ -66,7 +66,7 @@ class NavigationPanel extends Component {
     return (
       <div className='navigation-panel'>
         {banner &&
-          <div class='navigation-panel__banner'>
+          <div className='navigation-panel__banner'>
             {banner}
           </div>
         }
