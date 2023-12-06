@@ -472,13 +472,13 @@ module Mastodon::CLI
       end
 
       total     = 0
-      total    += unordered_follows_for(account).count if options[:follows]
-      total    += unordered_followers_for(account).count if options[:followers]
+      total    += account.following.reorder(nil).count if options[:follows]
+      total    += account.followers.reorder(nil).count if options[:followers]
       progress  = create_progress_bar(total)
       processed = 0
 
       if options[:follows]
-        unordered_follows_for(account).find_each do |target_account|
+        account.following.reorder(nil).find_each do |target_account|
           UnfollowService.new.call(account, target_account)
         rescue => e
           progress.log pastel.red("Error processing #{target_account.id}: #{e}")
@@ -491,7 +491,7 @@ module Mastodon::CLI
       end
 
       if options[:followers]
-        unordered_followers_for(account).find_each do |target_account|
+        account.followers.reorder(nil).find_each do |target_account|
           UnfollowService.new.call(target_account, account)
         rescue => e
           progress.log pastel.red("Error processing #{target_account.id}: #{e}")
@@ -646,14 +646,6 @@ module Mastodon::CLI
     end
 
     private
-
-    def unordered_follows_for(account)
-      account.following.reorder(nil)
-    end
-
-    def unordered_followers_for(account)
-      account.followers.reorder(nil)
-    end
 
     def report_errors(errors)
       errors.each do |error|
