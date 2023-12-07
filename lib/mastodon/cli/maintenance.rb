@@ -72,6 +72,10 @@ module Mastodon::CLI
         local? ? username : "#{username}@#{domain}"
       end
 
+      def db_table_exists?(table)
+        ActiveRecord::Base.connection.table_exists?(table)
+      end
+
       # This is a duplicate of the Account::Merging concern because we need it
       # to be independent from code version.
       def merge_with!(other_account)
@@ -88,12 +92,12 @@ module Mastodon::CLI
           AccountModerationNote, AccountPin, AccountStat, ListAccount,
           PollVote, Mention
         ]
-        owned_classes << AccountDeletionRequest if database_connection.table_exists?(:account_deletion_requests)
-        owned_classes << AccountNote if database_connection.table_exists?(:account_notes)
-        owned_classes << FollowRecommendationSuppression if database_connection.table_exists?(:follow_recommendation_suppressions)
-        owned_classes << AccountIdentityProof if database_connection.table_exists?(:account_identity_proofs)
-        owned_classes << Appeal if database_connection.table_exists?(:appeals)
-        owned_classes << BulkImport if database_connection.table_exists?(:bulk_imports)
+        owned_classes << AccountDeletionRequest if db_table_exists?(:account_deletion_requests)
+        owned_classes << AccountNote if db_table_exists?(:account_notes)
+        owned_classes << FollowRecommendationSuppression if db_table_exists?(:follow_recommendation_suppressions)
+        owned_classes << AccountIdentityProof if db_table_exists?(:account_identity_proofs)
+        owned_classes << Appeal if db_table_exists?(:appeals)
+        owned_classes << BulkImport if db_table_exists?(:bulk_imports)
 
         owned_classes.each do |klass|
           klass.where(account_id: other_account.id).find_each do |record|
@@ -104,7 +108,7 @@ module Mastodon::CLI
         end
 
         target_classes = [Follow, FollowRequest, Block, Mute, AccountModerationNote, AccountPin]
-        target_classes << AccountNote if database_connection.table_exists?(:account_notes)
+        target_classes << AccountNote if db_table_exists?(:account_notes)
 
         target_classes.each do |klass|
           klass.where(target_account_id: other_account.id).find_each do |record|
@@ -114,13 +118,13 @@ module Mastodon::CLI
           end
         end
 
-        if database_connection.table_exists?(:canonical_email_blocks)
+        if db_table_exists?(:canonical_email_blocks)
           CanonicalEmailBlock.where(reference_account_id: other_account.id).find_each do |record|
             record.update_attribute(:reference_account_id, id)
           end
         end
 
-        if database_connection.table_exists?(:appeals)
+        if db_table_exists?(:appeals)
           Appeal.where(account_warning_id: other_account.id).find_each do |record|
             record.update_attribute(:account_warning_id, id)
           end
@@ -335,7 +339,7 @@ module Mastodon::CLI
     end
 
     def deduplicate_account_identity_proofs!
-      return unless database_connection.table_exists?(:account_identity_proofs)
+      return unless db_table_exists?(:account_identity_proofs)
 
       remove_index_if_exists!(:account_identity_proofs, 'index_account_proofs_on_account_and_provider_and_username')
 
@@ -349,7 +353,7 @@ module Mastodon::CLI
     end
 
     def deduplicate_announcement_reactions!
-      return unless database_connection.table_exists?(:announcement_reactions)
+      return unless db_table_exists?(:announcement_reactions)
 
       remove_index_if_exists!(:announcement_reactions, 'index_announcement_reactions_on_account_id_and_announcement_id')
 
@@ -460,7 +464,7 @@ module Mastodon::CLI
     end
 
     def deduplicate_unavailable_domains!
-      return unless database_connection.table_exists?(:unavailable_domains)
+      return unless db_table_exists?(:unavailable_domains)
 
       remove_index_if_exists!(:unavailable_domains, 'index_unavailable_domains_on_domain')
 
@@ -558,7 +562,7 @@ module Mastodon::CLI
     end
 
     def deduplicate_webauthn_credentials!
-      return unless database_connection.table_exists?(:webauthn_credentials)
+      return unless db_table_exists?(:webauthn_credentials)
 
       remove_index_if_exists!(:webauthn_credentials, 'index_webauthn_credentials_on_external_id')
 
@@ -572,7 +576,7 @@ module Mastodon::CLI
     end
 
     def deduplicate_webhooks!
-      return unless database_connection.table_exists?(:webhooks)
+      return unless db_table_exists?(:webhooks)
 
       remove_index_if_exists!(:webhooks, 'index_webhooks_on_url')
 
@@ -672,7 +676,7 @@ module Mastodon::CLI
 
     def merge_statuses!(main_status, duplicate_status)
       owned_classes = [Favourite, Mention, Poll]
-      owned_classes << Bookmark if database_connection.table_exists?(:bookmarks)
+      owned_classes << Bookmark if db_table_exists?(:bookmarks)
       owned_classes.each do |klass|
         klass.where(status_id: duplicate_status.id).find_each do |record|
           record.update_attribute(:status_id, main_status.id)
@@ -719,13 +723,17 @@ module Mastodon::CLI
     end
 
     def remove_index_if_exists!(table, name)
-      database_connection.remove_index(table, name: name)
+      database_connection.remove_index(table, name: name) if database_connection.index_name_exists?(table, name)
     rescue ArgumentError, ActiveRecord::StatementInvalid
       nil
     end
 
     def database_connection
       ActiveRecord::Base.connection
+    end
+
+    def db_table_exists?(table)
+      database_connection.table_exists?(table)
     end
   end
 end
