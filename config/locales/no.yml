@@ -534,6 +534,7 @@
       total_reported: Rapporter om dem
       total_storage: Mediavedlegg
       totals_time_period_hint_html: Summen som vises nedenfor inkluderer data for alle tider.
+      unknown_instance: Dette domenet er ukjent for denne serveren.
     invites:
       deactivate_all: Deaktiver alle
       filter:
@@ -610,6 +611,7 @@
       created_at: Rapportert
       delete_and_resolve: Slettede innlegg
       forwarded: Videresendt
+      forwarded_replies_explanation: Denne rapporten er fra en ekstern bruker og handler om eksternt innhold. Den er videresendt til deg fordi det rapporterte innholdet svarer til en av brukerne dine.
       forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Merk som løst
       mark_as_sensitive: Merk som følsomt
@@ -771,6 +773,11 @@
           approved: Godkjenning kreves for påmelding
           none: Ingen kan melde seg inn
           open: Hvem som helst kan melde seg inn
+      security:
+        authorized_fetch: Krev autentisering fra fødererte servere
+        authorized_fetch_hint: Krav om godkjenning fra fødererte servere muliggjør strengere håndhevelse av blokker på både brukernivå og servernivå. Dette går imidlertid på bekostning av en ytelsesstraff, reduserer rekkevidden til svarene dine og kan introdusere kompatibilitetsproblemer med enkelte fødererte tjenester. I tillegg vil dette ikke hindre dedikerte aktører i å hente dine offentlige innlegg og kontoer.
+        authorized_fetch_overridden_hint: Du kan for øyeblikket ikke endre denne innstillingen fordi den overstyres av en miljøvariabel.
+        federation_authentication: Håndheving av føderasjonsautentisering
       title: Serverinnstillinger
     site_uploads:
       delete: Slett den opplastede filen
@@ -990,8 +997,6 @@
       new_trending_statuses:
         title: Populære innlegg
       new_trending_tags:
-        no_approved_tags: Det er for øyeblikket ingen godkjente populære emneknagger.
-        requirements: 'Enhver av disse kandidatene kan overgå #%{rank} godkjent populære emneknagger, som for øyeblikket er #%{lowest_tag_name} med en poengsum på %{lowest_tag_score}.'
         title: Populære emneknagger
       subject: Ny trender for gjennomsyn av %{instance}
   aliases:
@@ -1035,6 +1040,14 @@
       hint_html: Bare en ting til! Vi må bekrefte at du er et menneske (dette er slik at vi kan holde spam ute!). Løs CAPTCHA nedenfor og klikk "Fortsett".
       title: Sikkerhetskontroll
     confirmations:
+      awaiting_review: Din e-post adresse er bekreftet! %{domain} ansatte gjennomgår nå registreringen din. Du vil motta en e-post hvis de godkjenner din konto!
+      awaiting_review_title: Din registrering blir vurdert
+      clicking_this_link: klikke på denne lenken
+      login_link: logg inn
+      proceed_to_login_html: Du kan nå fortsette til %{login_link}.
+      redirect_to_app_html: Du burde bli omdirigert til <strong>%{app_name}</strong> -appen. Hvis det ikke skjedde, kan du prøve %{clicking_this_link} eller manuelt gå tilbake til appen.
+      registration_complete: Registreringen på %{domain} er nå fullført!
+      welcome_title: Velkommen, %{name}!
       wrong_email_hint: Hvis e-postadressen ikke er riktig, kan du endre den i kontoinnstillingene.
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette kontoen din, kan du <a href="%{path}">gå hit</a>. Du vil bli spurt om bekreftelse.
@@ -1096,6 +1109,7 @@
       functional: Kontoen din er fullt operativt.
       pending: Søknaden din avventer gjennomgang av våre medarbeidere. Dette kan ta litt tid. Du vil motta en e-post dersom søknaden din blir godkjent.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
+      self_destruct: Siden %{domain} stenger, vil du kun ha begrenset tilgang til kontoen din.
       view_strikes: Vis tidligere advarsler mot kontoen din
     too_fast: Skjemaet ble sendt inn for raskt, prøv på nytt.
     use_security_key: Bruk sikkerhetsnøkkel
@@ -1353,6 +1367,7 @@
       '86400': 1 dag
     expires_in_prompt: Aldri
     generate: Generer
+    invalid: Denne invitasjonen er ikke gyldig
     invited_by: 'Du ble invitert av:'
     max_uses:
       one: 1 bruk
@@ -1516,7 +1531,7 @@
     posting_defaults: Innleggsstandarder
     public_timelines: Offentlige tidslinjer
   privacy:
-    hint_html: "<strong>Tilpass hvordan du vil at din profil og dine innlegg skal bli funnet.</strong> En rekke funksjoner i Mastodon kan hjelpe deg med å nå et bredere publikum når de aktiverte. Ta deg et øyeblikk til å vurdere disse innstillingene for å forsikre deg om at de passer deg og ditt bruk."
+    hint_html: "<strong>Tilpass hvordan du vil at din profil og dine innlegg skal bli funnet.</strong> En rekke funksjoner i Mastodon kan hjelpe deg med å nå et bredere publikum når det er aktivert. Ta deg et øyeblikk til å vurdere disse innstillingene for å forsikre deg om at de passer deg og ditt bruk."
     privacy: Personvern
     privacy_hint_html: Kontrollér hvor mye du ønsker å dele til fordel for andre. Folk oppdager interessante profiler og kule app'er ved å bla gjennom andres følgere og ved å se hvilke app'er de bruker, men du kan velge å holde det skjult.
     reach: Rekkevidde
@@ -1565,6 +1580,9 @@
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte innlegg for i dag
     over_total_limit: Du har overskredet grensen på %{limit} planlagte innlegg
     too_soon: Den planlagte datoen må være i fremtiden
+  self_destruct:
+    lead_html: Dessverre stenger <strong>%{domain}</strong> for alltid. Hvis du hadde en konto der vil du ikke kunne fortsette å bruke den, men du kan fremdeles be om en sikkerhetskopi av dataene dine.
+    title: Denne serveren stenger
   sessions:
     activity: Siste aktivitet
     browser: Nettleser
@@ -1734,6 +1752,10 @@
       month: "%b %Y"
       time: "%H:%M"
       with_time_zone: "%-d. %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Den serveromfattende brukskvoten for oversettelsestjenesten er overskredet.
+      too_many_requests: Det har nylig vært for mange forespørsler til oversettelsestjenesten.
   two_factor_authentication:
     add: Legg til
     disable: Skru av

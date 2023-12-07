@@ -53,9 +53,12 @@ class User < ApplicationRecord
     filtered_languages
   )
 
-  include Redisable
   include LanguagesHelper
-  include HasUserSettings
+  include Redisable
+  include User::HasSettings
+  include User::LdapAuthenticable
+  include User::Omniauthable
+  include User::PamAuthenticable
 
   # The home and list feeds will be stored in Redis for this amount
   # of time, and status fan-out to followers will include only people
@@ -75,32 +78,26 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :validatable,
          :confirmable
 
-  include Omniauthable
-  include PamAuthenticable
-  include LdapAuthenticable
-
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
   belongs_to :created_by_application, class_name: 'Doorkeeper::Application', optional: true
   belongs_to :role, class_name: 'UserRole', optional: true
   accepts_nested_attributes_for :account
 
-  has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
-  has_many :backups, inverse_of: :user
-  has_many :invites, inverse_of: :user
+  has_many :applications, class_name: 'Doorkeeper::Application', as: :owner, dependent: nil
+  has_many :backups, inverse_of: :user, dependent: nil
+  has_many :invites, inverse_of: :user, dependent: nil
   has_many :markers, inverse_of: :user, dependent: :destroy
   has_many :webauthn_credentials, dependent: :destroy
-  has_many :ips, class_name: 'UserIp', inverse_of: :user
+  has_many :ips, class_name: 'UserIp', inverse_of: :user, dependent: nil
 
   has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
   validates :invite_request, presence: true, on: :create, if: :invite_text_required?
 
-  validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
-  validates :time_zone, inclusion: { in: ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo.name } }, allow_blank: true
 
   # Honeypot/anti-spam fields
   attr_accessor :registration_form_time, :website, :confirm_password
@@ -124,6 +121,8 @@ class User < ApplicationRecord
 
   before_validation :sanitize_languages
   before_validation :sanitize_role
+  before_validation :sanitize_time_zone
+  before_validation :sanitize_locale
   before_create :set_approved
   after_commit :send_pending_devise_notifications
   after_create_commit :trigger_webhooks
@@ -250,7 +249,7 @@ class User < ApplicationRecord
   end
 
   def functional_or_moved?
-    confirmed? && approved? && !disabled? && !account.suspended? && !account.memorial?
+    confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial?
   end
 
   def unconfirmed?
@@ -451,9 +450,15 @@ class User < ApplicationRecord
   end
 
   def sanitize_role
-    return if role.nil?
+    self.role = nil if role.present? && role.everyone?
+  end
 
-    self.role = nil if role.everyone?
+  def sanitize_time_zone
+    self.time_zone = nil if time_zone.present? && ActiveSupport::TimeZone[time_zone].nil?
+  end
+
+  def sanitize_locale
+    self.locale = nil if locale.present? && I18n.available_locales.exclude?(locale.to_sym)
   end
 
   def prepare_new_user!
@@ -488,7 +493,7 @@ class User < ApplicationRecord
   end
 
   def validate_email_dns?
-    email_changed? && !external? && !(Rails.env.test? || Rails.env.development?)
+    email_changed? && !external? && !Rails.env.local?
   end
 
   def validate_role_elevation

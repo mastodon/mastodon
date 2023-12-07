@@ -7,6 +7,7 @@ class Auth::ChallengesController < ApplicationController
 
   before_action :authenticate_user!
 
+  skip_before_action :check_self_destruct!
   skip_before_action :require_functional!
 
   def create

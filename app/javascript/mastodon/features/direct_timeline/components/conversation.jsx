@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { Link, withRouter } from 'react-router-dom';
 import Permalink from 'mastodon/components/permalink';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
+import { ReactComponent as ReplyIcon } from '@material-symbols/svg-600/outlined/reply.svg';
 import { HotKeys } from 'react-hotkeys';
 
 import AttachmentList from 'mastodon/components/attachment_list';
@@ -16,6 +20,7 @@ import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import StatusContent from 'mastodon/components/status_content';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif } from 'mastodon/initial_state';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -29,10 +34,6 @@ const messages = defineMessages({
 
 class Conversation extends ImmutablePureComponent {
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   static propTypes = {
     conversationId: PropTypes.string.isRequired,
     accounts: ImmutablePropTypes.list.isRequired,
@@ -44,6 +45,7 @@ class Conversation extends ImmutablePureComponent {
     markRead: PropTypes.func.isRequired,
     delete: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    ...WithRouterPropTypes,
   };
 
   handleMouseEnter = ({ currentTarget }) => {
@@ -73,7 +75,7 @@ class Conversation extends ImmutablePureComponent {
   };
 
   handleClick = () => {
-    if (!this.context.router) {
+    if (!this.props.history) {
       return;
     }
 
@@ -83,7 +85,7 @@ class Conversation extends ImmutablePureComponent {
       markRead();
     }
 
-    this.context.router.history.push(`/@${lastStatus.getIn(['account', 'acct'])}/${lastStatus.get('id')}`);
+    this.props.history.push(`/@${lastStatus.getIn(['account', 'acct'])}/${lastStatus.get('id')}`);
   };
 
   handleMarkAsRead = () => {
@@ -91,7 +93,7 @@ class Conversation extends ImmutablePureComponent {
   };
 
   handleReply = () => {
-    this.props.reply(this.props.lastStatus, this.context.router.history);
+    this.props.reply(this.props.lastStatus, this.props.history);
   };
 
   handleDelete = () => {
@@ -179,7 +181,7 @@ class Conversation extends ImmutablePureComponent {
             )}
 
             <div className='status__action-bar'>
-              <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReply} />
+              <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' iconComponent={ReplyIcon} onClick={this.handleReply} />
 
               <div className='status__action-bar-dropdown'>
                 <DropdownMenuContainer
@@ -187,6 +189,7 @@ class Conversation extends ImmutablePureComponent {
                   status={lastStatus}
                   items={menu}
                   icon='ellipsis-h'
+                  iconComponent={MoreHorizIcon}
                   size={18}
                   direction='right'
                   title={intl.formatMessage(messages.more)}
@@ -201,4 +204,4 @@ class Conversation extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(Conversation);
+export default withRouter(injectIntl(Conversation));

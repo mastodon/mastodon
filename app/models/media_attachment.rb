@@ -205,12 +205,11 @@ class MediaAttachment < ApplicationRecord
   validates :thumbnail, absence: true, if: -> { local? && !audio_or_video? }
 
   scope :attached,   -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
-  scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
-  scope :local,      -> { where(remote_url: '') }
-  scope :remote,     -> { where.not(remote_url: '') }
   scope :cached,     -> { remote.where.not(file_file_name: nil) }
-
-  default_scope { order(id: :asc) }
+  scope :local,      -> { where(remote_url: '') }
+  scope :ordered,    -> { order(id: :asc) }
+  scope :remote,     -> { where.not(remote_url: '') }
+  scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
 
   attr_accessor :skip_download
 

@@ -1,0 +1,43 @@
+.dashboard__counters.admin-account-counters
+  %div
+    = link_to admin_account_statuses_path(account.id) do
+      .dashboard__counters__num= number_with_delimiter account.statuses_count
+      .dashboard__counters__label= t 'admin.accounts.statuses'
+  %div
+    = link_to admin_account_statuses_path(account.id, { media: true }) do
+      .dashboard__counters__num= number_to_human_size account.media_attachments.sum('file_file_size')
+      .dashboard__counters__label= t 'admin.accounts.media_attachments'
+  %div
+    = link_to admin_account_relationships_path(account.id, location: account.local? ? nil : 'local', relationship: 'followed_by') do
+      .dashboard__counters__num= number_with_delimiter account.local_followers_count
+      .dashboard__counters__label= t 'admin.accounts.followers'
+  %div
+    = link_to admin_reports_path(account_id: account.id) do
+      .dashboard__counters__num= number_with_delimiter account.reports.count
+      .dashboard__counters__label= t 'admin.accounts.show.created_reports'
+  %div
+    = link_to admin_reports_path(target_account_id: account.id) do
+      .dashboard__counters__num= number_with_delimiter account.targeted_reports.count
+      .dashboard__counters__label= t 'admin.accounts.show.targeted_reports'
+  %div
+    = link_to admin_action_logs_path(target_account_id: account.id) do
+      .dashboard__counters__text
+        - if account.local? && account.user.nil?
+          = t('admin.accounts.deleted')
+        - elsif account.memorial?
+          = t('admin.accounts.memorialized')
+        - elsif account.suspended?
+          = t('admin.accounts.suspended')
+        - elsif account.silenced?
+          = t('admin.accounts.silenced')
+        - elsif account.local? && account.user&.disabled?
+          = t('admin.accounts.disabled')
+        - elsif account.local? && !account.user&.confirmed?
+          = t('admin.accounts.confirming')
+        - elsif account.local? && !account.user_approved?
+          = t('admin.accounts.pending')
+        - elsif account.sensitized?
+          = t('admin.accounts.sensitive')
+        - else
+          = t('admin.accounts.no_limits_imposed')
+      .dashboard__counters__label= t 'admin.accounts.login_status'

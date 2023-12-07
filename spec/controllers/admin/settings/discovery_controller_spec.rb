@@ -18,4 +18,12 @@ describe Admin::Settings::DiscoveryController do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'PUT #update' do
+    it 'updates the settings' do
+      put :update, params: { form_admin_settings: { trends: '1' } }
+
+      expect(response).to redirect_to(admin_settings_discovery_path)
+    end
+  end
 end

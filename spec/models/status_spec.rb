@@ -166,7 +166,7 @@ RSpec.describe Status do
 
   describe '#replies_count' do
     it 'is the number of replies' do
-      reply = Fabricate(:status, account: bob, thread: subject)
+      Fabricate(:status, account: bob, thread: subject)
       expect(subject.replies_count).to eq 1
     end
 

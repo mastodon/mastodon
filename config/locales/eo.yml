@@ -773,6 +773,8 @@ eo:
     site_uploads:
       delete: Forigi elŝutitan dosieron
       destroyed_msg: Reteja alŝuto sukcese forigita!
+    software_updates:
+      documentation_link: Lerni pli
     statuses:
       account: Skribanto
       application: Aplikaĵo
@@ -950,8 +952,6 @@ eo:
       new_trending_statuses:
         title: Popularaĝaj mesaĝoj
       new_trending_tags:
-        no_approved_tags: Nun ne havas aprobitajn popularajn kradvortojn.
-        requirements: Ajn ĉi tiu eroj povas superi la %{rank}an kradvorton kiu estas %{lowest_tag_name} kun %{lowest_tag_score} puentoj.
         title: Tendencantaj kradvortoj
       subject: Novaj popularaĵoj bezonas kontrolitis ĉe %{instance}
   aliases:
@@ -994,6 +994,8 @@ eo:
       help_html: Se vi havas problemojn solvi la CAPTCHA, vi povas kontakti nin per %{email} kaj ni povas helpi vin.
       title: Sekureckontrolo
     confirmations:
+      login_link: ensaluti
+      welcome_title: Bonvenon, %{name}!
       wrong_email_hint: Se tiu retpoŝtadreso ne estas ĝusta, vi povas ŝanĝi ĝin en la agordoj pri la konto.
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
@@ -1720,6 +1722,10 @@ eo:
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
     signed_in_as: 'Salutinta kiel:'
   verification:
+    extra_instructions_html: <strong>Konsilo:</strong> La ligilo en via retejo povas esti nevidebla. La grava parto estas <code>rel="me"</code>, kiu evitas identoŝtelon en retejoj kun enhavo generita de uzantoj. Vi povas eĉ uzi <code>link</code>-etikedon en la <code>header</code> de la paĝo anstataŭ <code>a</code>, sed la HTML devas esti atingebla sen plenumado de JavaScript.
+    here_is_how: Jen gvidilo
+    hint_html: "<strong>Ĉiu ajn povas aŭtentigi sian identecon en Mastodon.</strong> Bazinte sur malfermitaj interretaj normoj, nun kaj ĉiame senkoste. Vi nur bezonas personan retejon, per kiu homoj rekonas vin. Kiam vi ligos tiun retejon de via profilo, ni kontrolos, ĉu la retejo responde ligiĝas kun via profilo, kaj montros videblan indikilon tie."
+    instructions_html: Kopiu kaj algluu la jenan kodon en la HTML de via retejo. Poste aldonu la adreson de via retejo en unu el la kromaj kampoj de via profilo en la langeto "Redakti profilon" kaj konservu la ŝanĝojn.
     verification: Kontrolo
     verified_links: Via kontrolitaj ligiloj
   webauthn_credentials:

@@ -306,6 +306,7 @@ ms:
       unpublish: Nyahterbit
       unpublished_msg: Pengumuman berjaya dinyahterbitkan!
       updated_msg: Pengumuman berjaya dikemaskini!
+    critical_update_pending: Kemas kini kritikal belum selesai
     custom_emojis:
       assign_category: Menugaskan kategori
       by_domain: Domain
@@ -522,6 +523,7 @@ ms:
       total_reported: Laporan tentang mereka
       total_storage: Lampiran media
       totals_time_period_hint_html: Jumlah yang dipaparkan di bawah termasuk data untuk sepanjang masa.
+      unknown_instance: Pada masa ini tiada rekod domain ini pada pelayan ini.
     invites:
       deactivate_all: Nyahaktifkan semua
       filter:
@@ -756,10 +758,26 @@ ms:
           approved: Kelulusan diperlukan untuk pendaftaran
           none: Tiada siapa boleh mendaftar
           open: Sesiapapun boleh mendaftar
+      security:
+        authorized_fetch: Memerlukan pengesahan daripada pelayan bersekutu
+        authorized_fetch_overridden_hint: Pada masa ini anda tidak dapat menukar tetapan ini kerana ia ditindih oleh pemboleh ubah persekitaran.
+        federation_authentication: Penguatkuasaan pengesahan persekutuan
       title: Tetapan server
     site_uploads:
       delete: Hapuskan fail yang dimuat naik
       destroyed_msg: Muat naik tapak berjaya dihapuskan!
+    software_updates:
+      critical_update: Penting — sila kemas kini dengan segera
+      description: Disarankan untuk memastikan pemasangan Mastodon anda dikemas kini bagi mendapat manfaat daripada pembaikan dan ciri terkini. Selain itu, kadangkala penting untuk mengemas kini Mastodon tepat pada masanya untuk mengelakkan isu keselamatan. Atas sebab ini, Mastodon menyemak kemas kini setiap 30 minit dan akan memberitahu anda mengikut keutamaan pemberitahuan e-mel anda.
+      documentation_link: Ketahui lebih lanjut
+      release_notes: Catatan keluaran
+      title: Kemas kini tersedia
+      type: Jenis
+      types:
+        major: Keluaran utama
+        minor: Keluaran kecil
+        patch: Keluaran tampung — pembetulan pepijat dan perubahan yang mudah diterapkan
+      version: Versi
     statuses:
       account: Penulis
       application: Aplikasi
@@ -807,10 +825,10 @@ ms:
       elasticsearch_index_mismatch:
         message_html: Pemetaan indeks Elasticsearch sudah lapuk. Sila jalankan <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_preset:
-        action: Lihat dokumentasi
-        message_html: Kelompok Elasticsearch anda mempunyai lebih daripada satu nod, tetapi Mastodon tidak dikonfigurasikan untuk menggunakannya.
+        action: Lihat pendokumenan
+        message_html: Kelompok Elasticsearch anda mempunyai lebih daripada satu nod, tetapi Mastodon tidak ditatarajah untuk menggunakannya.
       elasticsearch_preset_single_node:
-        action: Lihat dokumentasi
+        action: Lihat pendokumenan
         message_html: Kelompok Elasticsearch anda hanya mempunyai satu nod, <code>ES_PRESET</code> hendaklah ditetapkan kepada <code>single_node_cluster</code>.
       elasticsearch_reset_chewy:
         message_html: Indeks sistem Elasticsearch anda sudah lapuk kerana perubahan tetapan. Sila jalankan <code>tootctl search deploy --reset-chewy</code> untuk mengemas kininya.
@@ -824,6 +842,12 @@ ms:
         message_html: Anda belum menentukan sebarang peraturan server.
       sidekiq_process_check:
         message_html: Tiada proses Sidekiq berjalan untuk baris gilir %{value}. Sila semak konfigurasi Sidekiq anda
+      software_version_critical_check:
+        action: Lihat kemas kini yang tersedia
+        message_html: Kemas kini kritikal Mastodon telah tersedia, sila kemas kini secepat yang mungkin.
+      software_version_patch_check:
+        action: Lihat kemas kini yang tersedia
+        message_html: Kemas kini pembetulan pepijat Mastodon telah tersedia.
       upload_check_privacy_error:
         action: Semak di sini untuk maklumat lanjut
         message_html: "<strong>Server web anda salah konfigurasi. Privasi pengguna anda berisiko</strong>"
@@ -933,6 +957,9 @@ ms:
       body: "%{target} sedang merayu keputusan penyederhanaan sebanyak %{action_taken_by} dari %{date}, iaitu %{type}. Mereka tulis:"
       next_steps: Anda boleh meluluskan rayuan untuk membuat asal keputusan penyederhanaan atau mengabaikannya.
       subject: "%{username} sedang merayu keputusan penyederhanaan pada %{instance}"
+    new_critical_software_updates:
+      body: Versi kritikal baharu Mastodon telah dikeluarkan, anda mungkin ingin mengemas kini secepat yang mungkin!
+      subject: Kemas kini kritikal Mastodon telah tersedia untuk %{instance}!
     new_pending_account:
       body: Butiran akaun baharu ada di bawah. Anda boleh meluluskan atau menolak aplikasi ini.
       subject: Akaun baharu disediakan untuk semakan pada %{instance} (%{username})
@@ -940,6 +967,9 @@ ms:
       body: "%{reporter} telah melaporkan %{target}"
       body_remote: Seseorang daripada %{domain} telah melaporkan %{target}
       subject: Laporan baharu untuk %{instance} (#%{id})
+    new_software_updates:
+      body: Versi baharu Mastodon telah dikeluarkan, anda mungkin mahu mengemas kini!
+      subject: Versi baharu Mastodon telah tersedia untuk %{instance}!
     new_trends:
       body: 'Item berikut memerlukan semakan sebelum boleh dipaparkan secara terbuka:'
       new_trending_links:
@@ -947,8 +977,6 @@ ms:
       new_trending_statuses:
         title: Pos sohor kini
       new_trending_tags:
-        no_approved_tags: Pada masa ini tiada hashtag sohor kini yang diluluskan.
-        requirements: 'Mana-mana calon ini boleh melepasi hashtag arah aliran #%{rank} yang diluluskan, yang pada masa ini ialah #%{lowest_tag_name} dengan markah %{lowest_tag_score}.'
         title: Hashtag sohor kini
       subject: Trend baharu untuk kesemakan pada %{instance}
   aliases:
@@ -1053,6 +1081,7 @@ ms:
       functional: Akaun anda beroperasi sepenuhnya.
       pending: Permohonan anda sedang menunggu semakan oleh kakitangan kami. Ini mungkin mengambil sedikit masa. Anda akan menerima e-mel sekiranya permohonan anda diluluskan.
       redirecting_to: Akaun anda tidak aktif kerana ia sedang mengubah hala ke %{acct}.
+      self_destruct: Memandangkan %{domain} akan ditutup, anda hanya akan mendapat capaian terhad kepada akaun anda.
       view_strikes: Lihat pelanggaran yang lepas terhadap akaun anda
     too_fast: Borang diserahkan terlalu cepat, cuba lagi.
     use_security_key: Gunakan kunci keselamatan
@@ -1504,6 +1533,9 @@ ms:
     over_daily_limit: Anda telah melebihi had %{limit} pos berjadual untuk hari ini
     over_total_limit: Anda telah melebihi had %{limit} pos berjadual
     too_soon: Tarikh yang dijadualkan mestilah pada masa hadapan
+  self_destruct:
+    lead_html: Malangnya, <strong>%{domain}</strong> akan ditutup secara kekal. Jika anda mempunyai akaun di situ, anda tidak akan dapat terus menggunakannya, tetapi anda masih boleh meminta sandaran data anda.
+    title: Pelayan ini akan ditutup
   sessions:
     activity: Aktiviti terakhir
     browser: Pelayar
@@ -1666,9 +1698,10 @@ ms:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b %Y, %H:%M %Z"
   translation:
     errors:
-      quota_exceeded: Kuota penggunaan seluruh server untuk perkhidmatan terjemahan telah melebihi.
+      quota_exceeded: Kuota penggunaan seluruh pelayan untuk perkhidmatan terjemahan telah berlebihan.
       too_many_requests: Terdapat terlalu banyak permintaan kepada perkhidmatan terjemahan baru-baru ini.
   two_factor_authentication:
     add: Tambah

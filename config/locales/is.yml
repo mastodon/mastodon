@@ -534,6 +534,7 @@ is:
       total_reported: Kærur um þá
       total_storage: Myndaviðhengi
       totals_time_period_hint_html: Samtölurnar sem birtar eru hér fyrir neðan innihalda gögn frá upphafi.
+      unknown_instance: Í augnablikinu er engin færsla um þetta lén á þessum netþjóni.
     invites:
       deactivate_all: Gera allt óvirkt
       filter:
@@ -610,6 +611,7 @@ is:
       created_at: Tilkynnt
       delete_and_resolve: Eyða færslum
       forwarded: Áframsent
+      forwarded_replies_explanation: Þessi kæra er frá fjartengdum notanda og er um fjartengt efni. Hún hefur verið framsend til þín þar sem kærða efnið er í svari til eins af notendunum þínum.
       forwarded_to: Áframsent á %{domain}
       mark_as_resolved: Merkja sem leyst
       mark_as_sensitive: Merkja sem viðkvæmt
@@ -997,8 +999,6 @@ is:
       new_trending_statuses:
         title: Vinsælar færslur
       new_trending_tags:
-        no_approved_tags: Það eru í augnablikinu engin samþykkt vinsæl myllumerki.
-        requirements: 'Hver af þessum tillögum gætu farið yfir samþykkta vinsæla myllumerkið númer #%{rank}, sem í augnablikinu er %{lowest_tag_name} með %{lowest_tag_score} stig'
         title: Vinsæl myllumerki
       subject: Nýtt vinsælt til yfirferðar á %{instance}
   aliases:
@@ -1044,6 +1044,14 @@ is:
         Leystu Turing skynprófið og smelltu á "Áfram".
       title: Öryggisathugun
     confirmations:
+      awaiting_review: Tölvupóstfangið þitt er staðfest. Umsjónarfólk %{domain} er núna að yfirfara skráninguna þína. Þú munt fá tölvupóst ef þau samþykkja skráninguna þína!
+      awaiting_review_title: Verið er að yfirfara skráninguna þína
+      clicking_this_link: smella á þennan tengil
+      login_link: skrá þig inn
+      proceed_to_login_html: Þú getur núna farið í að %{login_link}.
+      redirect_to_app_html: Þér ætti að hafa verið endurbeint í <strong>%{app_name}</strong> forritið. Ef það gerðist ekki, skaltu prófa að %{clicking_this_link} eða fara aftur í forritið.
+      registration_complete: Skráning þín á %{domain} er núna tilbúin!
+      welcome_title: Velkomin/n %{name}!
       wrong_email_hint: Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
     delete_account: Eyða notandaaðgangi
     delete_account_html: Ef þú vilt eyða notandaaðgangnum þínum, þá geturðu <a href="%{path}">farið í það hér</a>. Þú verður beðin/n um staðfestingu.
@@ -1105,6 +1113,7 @@ is:
       functional: Notandaaðgangurinn þinn er með fulla virkni.
       pending: Umsóknin þín bíður eftir að starfsfólkið okkar fari yfir hana. Það gæti tekið nokkurn tíma. Þú munt fá tölvupóst ef umsóknin er samþykkt.
       redirecting_to: Notandaaðgangurinn þinn er óvirkur vegna þess að hann endurbeinist á %{acct}.
+      self_destruct: Þar sem %{domain} er að hætta starfsemi, muntu aðeins halda takmörkuðum aðgangi að aðgangnum þínum.
       view_strikes: Skoða fyrri bönn notandaaðgangsins þíns
     too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
     use_security_key: Nota öryggislykil
@@ -1362,6 +1371,7 @@ is:
       '86400': 1 dagur
     expires_in_prompt: Aldrei
     generate: Útbúa boðstengil
+    invalid: Þetta boð er ekki gilt
     invited_by: 'Þér var boðið af:'
     max_uses:
       one: 1 afnot
@@ -1574,6 +1584,9 @@ is:
     over_daily_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur fyrir þennan dag
     over_total_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur
     too_soon: Áætluð dagsetning verður að vera í framtíðinni
+  self_destruct:
+    lead_html: Því miður, <strong>%{domain}</strong> er að hætta starfsemi endanlega. Ef þú varst með aðgang þar, muntu ekki geta haldið áfram að nota hann, en þú getur áfram beðið um afrit af gögnunum þínum.
+    title: Þessi netþjónn er að hætta starfsemi
   sessions:
     activity: Síðasta virkni
     browser: Vafri

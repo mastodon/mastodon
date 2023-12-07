@@ -1,39 +1,48 @@
 ---
 lt:
   about:
-    about_mastodon_html: Mastodon, tai socialinis tinklas pagrįstas atviro kodo programavimu, ir atvirais web protokolais. Visiškai nemokamas. Ši sistema decantrilizuota kaip jūsų elektroninis paštas.
+    about_mastodon_html: 'Ateities socialinis tinklas: jokių reklamų, jokių įmonių sekimo, etiškas dizainas ir decentralizacija. Turėk savo duomenis su Mastodon!'
     contact_missing: Nenustatyta
-    contact_unavailable: Nėra duomenų
-    hosted_on: Mastodon palaikomas naudojantis %{domain} talpinimu
+    contact_unavailable: Nėra
+    hosted_on: Mastodon talpinamas %{domain}
     title: Apie
   accounts:
     follow: Sekti
     followers:
       few: Sekėjai
-      many: Sekėjai
+      many: Sekėjo
       one: Sekėjas
-      other: Sekėjai
-    following: Sekami
-    last_active: paskutinį kartą aktyvus
-    link_verified_on: Nuorodos nuosavybė paskutinį kartą tikrinta %{date}
-    nothing_here: Čia nieko nėra!
+      other: Sekėjų
+    following: Seka
+    instance_actor_flash: Ši paskyra yra virtualus veikėjas (-a), naudojamas atstovauti pačiam serveriui, o ne atskiram naudotojui. Tai naudojama federacijos tikslais ir neturėtų būti pristabdyta.
+    last_active: paskutinis aktyumas
+    link_verified_on: Šios nuorodos nuosavybė buvo patikrinta %{date}
+    nothing_here: Nieko čia nėra!
     pin_errors:
-      following: Privalai sekti žmogų kurį nori pagerbti
-    posts_tab_heading: Tootai
+      following: Privalai sekti asmenį, kurį nori patvirtinti.
+    posts:
+      few: Įrašai
+      many: Įrašo
+      one: Įrašas
+      other: Įrašų
+    posts_tab_heading: Įrašai
   admin:
     account_actions:
-      action: Veiksmas
-      title: Moderuoti %{acct}
+      action: Atlikti veiksmą
+      title: Atlikti prižiūrėjimo veiksmą %{acct}
     account_moderation_notes:
-      create: Palikti žinutę
-      created_msg: Moderavimo žinutė sėkimngai sukurta!
-      destroyed_msg: Moderacijos žinutė sėkmingai ištrinta!
+      create: Palikti pastabą
+      created_msg: Prižiūrėjimo pastaba sėkmingai sukurta!
+      destroyed_msg: Prižiūrėjimo pastaba sėkmingai sunaikinta!
     accounts:
+      add_email_domain_block: Blokuoti el. pašto domeną
       approve: Patvirtinti
-      are_you_sure: Ar esate įsitikinęs?
-      avatar: Profilio nuotrauka
+      approved_msg: Sėkmingai patvirtinta %{username} registracijos paraiška
+      are_you_sure: Ar esi įsitikinęs (-usi)?
+      avatar: Avataras
       by_domain: Domenas
       change_email:
+        changed_msg: El. paštas sėkmingai pakeistas!
         current_email: Dabartinis el paštas
         label: Pakeisti el pašto adresą
         new_email: Naujas el pašto adresas
@@ -58,6 +67,7 @@ lt:
       follows: Seka
       header: Antraštė
       inbox_url: Gautųjų URL
+      invite_request_text: Priežastys prisijungiant
       invited_by: Pakvietė
       ip: IP
       joined: Prisijungė
@@ -183,10 +193,10 @@ lt:
       deactivate_all: Deaktyvuoti visus
       filter:
         all: Visi
-        available: Prieinamas
+        available: Pasiekiamas
         expired: Pasibaigęs
         title: Filtras
-      title: Pakvietimai
+      title: Kvietimai
     relays:
       add_new: Pridėti naują pamainą
       delete: Ištrinti
@@ -207,12 +217,13 @@ lt:
       destroyed_msg: Skundo žinutė sekmingai ištrinta!
     reports:
       action_taken_by: Veiksmo ėmėsi
-      are_you_sure: Ar tu įsitikinęs?
+      are_you_sure: Ar esi įsitikinęs (-usi)?
       assign_to_self: Paskirti man
       assigned: Paskirtas moderatorius
       comment:
         none: Nėra
       created_at: Reportuotas
+      forwarded_replies_explanation: Šis ataskaita yra iš nuotolinio naudotojo ir susijusi su nuotoliniu turiniu. Jis buvo persiųstas tau, nes turinys, apie kurį pranešta, yra atsakymas vienam iš tavo naudotojų.
       mark_as_resolved: Pažymėti kaip išsprestą
       mark_as_unresolved: Pažymėti kaip neišsprestą
       notes:
@@ -221,6 +232,7 @@ lt:
         create_and_unresolve: Atidaryti su rašteliu
         delete: Ištrinti
         placeholder: Apibūdink, kokių veiksmų imtasi arba kitokie atnaujinimai..
+      notes_description_html: Peržiūrėk ir palik pastabas kitiems prižiūrėtojams ir savo būsimam aš
       reopen: Atidaryti skundą
       report: 'Skundas #%{id}'
       reported_account: Reportuota paskyra
@@ -232,6 +244,16 @@ lt:
       unassign: Nepriskirti
       unresolved: Neišspręsti
       updated_at: Atnaujinti
+    roles:
+      everyone: Numatytieji leidimai
+      everyone_full_description_html: Tai – <strong>bazinis vaidmuo</strong>, turintis įtakos <strong>visiems naudotojams</strong>, net ir tiems, kurie neturi priskirto vaidmens. Visi kiti vaidmenys iš jo paveldi teises.
+    settings:
+      captcha_enabled:
+        desc_html: Tai priklauso nuo hCaptcha išorinių skriptų, kurie gali kelti susirūpinimą dėl saugumo ir privatumo. Be to, <strong>dėl to registracijos procesas kai kuriems žmonėms (ypač neįgaliesiems) gali būti gerokai sunkiau prieinami</strong>. Dėl šių priežasčių apsvarstyk alternatyvias priemones, pavyzdžiui, patvirtinimu arba kvietimu grindžiamą registraciją.
+      domain_blocks:
+        all: Visiems
+    software_updates:
+      description: Rekomenduojama nuolat atnaujinti Mastodon diegyklę, kad galėtum naudotis naujausiais pataisymais ir funkcijomis. Be to, kartais labai svarbu laiku naujinti Mastodon, kad būtų išvengta saugumo problemų. Dėl šių priežasčių Mastodon kas 30 minučių tikrina, ar yra atnaujinimų, ir praneša tau apie tai pagal tavo el. pašto pranešimų parinktis.
     statuses:
       back_to_account: Atgal į paskyros puslapį
       media:
@@ -239,6 +261,13 @@ lt:
       no_status_selected: Jokie statusai nebuvo pakeisti, nes niekas nepasirinkta
       title: Paskyros statusai
       with_media: Su medija
+    system_checks:
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch klasteris yra nesveikas (geltona būsena), galbūt norėsi išsiaiškinti priežastį
+      elasticsearch_preset:
+        message_html: Tavo Elasticsearch klasteris turi daugiau nei vieną mazgą, bet Mastodon nėra sukonfigūruotas juos naudoti.
+      elasticsearch_preset_single_node:
+        message_html: Tavo Elasticsearch klasteris turi tik vieną mazgą, <code>ES_PRESET</code> turėtų būti nustatyta į <code>single_node_cluster</code>.
     title: Administracija
     warning_presets:
       add_new: Pridėti naują
@@ -250,6 +279,10 @@ lt:
       body: "%{reporter} parašė skundą apie %{target}"
       body_remote: Kažkas iš %{domain} parašė skundą apie %{target}
       subject: Naujas skundas %{instance} (#%{id})
+  appearance:
+    localization:
+      body: Mastodon verčia savanoriai.
+      guide_link_text: Visi gali prisidėti.
   application_mailer:
     notification_preferences: Keisti el pašto parinktis
     settings: 'Keisti el pašto parinktis: %{link}'
@@ -262,10 +295,11 @@ lt:
     regenerate_token: Regeneruoti prieigos žetoną
     token_regenerated: Prieigos žetonas sėkmingai sugeneruotas
     warning: Būkite atsargūs su šia informacija. Niekada jos nesidalinkite!
-    your_token: Jūsų prieigos žetonas
+    your_token: Tavo prieigos raktas
   auth:
     delete_account: Ištrinti paskyrą
     delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>. Jūsų prašys patvirtinti pasirinkimą.
+    dont_have_your_security_key: Neturi saugumo rakto?
     forgot_password: Pamiršote slaptažodį?
     invalid_reset_password_token: Slaptažodžio atkūrimo žetonas netinkamas arba jo galiojimo laikas pasibaigęs. Prašykite naujo žetono.
     login: Prisijungti
@@ -275,8 +309,17 @@ lt:
     or_log_in_with: Arba prisijungti su
     register: Užsiregistruoti
     reset_password: Atstatyti slaptažodį
+    rules:
+      invited_by: 'Gali prisijungti prie %{domain} pagal kvietimą, kurį gavai iš:'
+      preamble_invited: Prieš tęsiant, atsižvelk į pagrindines taisykles, kurias nustatė %{domain} prižiūrėtojai.
     security: Apsauga
     set_new_password: Nustatyti naują slaptažodį
+    status:
+      redirecting_to: Tavo paskyra yra neaktyvi, nes šiuo metu ji nukreipiama į %{acct}.
+      self_destruct: Kadangi %{domain} uždaromas, turėsi tik ribotą prieigą prie savo paskyros.
+      view_strikes: Peržiūrėti ankstesnius savo paskyros pažeidimus
+  challenge:
+    hint_html: "<strong>Patarimas:</strong> artimiausią valandą daugiau neprašysime tavo slaptažodžio."
   datetime:
     distance_in_words:
       about_x_hours: "%{count} val"
@@ -292,9 +335,16 @@ lt:
       x_months: "%{count}mėn"
       x_seconds: "%{count}sek"
   deletes:
-    confirm_password: Kad patvirtintumėte savo tapatybę, įveskite dabartini slaptažodį
+    challenge_not_passed: Įvesta informacija buvo neteisinga
+    confirm_password: Įvesk dabartinį slaptažodį, kad patvirtintum savo tapatybę
+    confirm_username: Procedūros patvirtinimui įvesk savo naudotojo vardą
     proceed: Ištrinti paskyrą
-    success_msg: Jūsų paskyra sėkmingai ištrinta
+    success_msg: Tavo paskyra buvo sėkmingai ištrinta
+  disputes:
+    strikes:
+      your_appeal_approved: Tavo apeliacija buvo patvirtinta
+      your_appeal_pending: Pateikei apeliaciją
+      your_appeal_rejected: Tavo apeliacija buvo atmesta
   errors:
     '403': Jūs neturie prieigos matyti šiam puslapiui.
     '404': Puslapis nerastas.
@@ -357,7 +407,7 @@ lt:
     upload: Įkelti
   invites:
     delete: Deaktyvuoti
-    expired: Pasibaigęs
+    expired: Pasibaigė
     expires_in:
       '1800': 30 minučių
       '21600': 6 valandų
@@ -367,11 +417,17 @@ lt:
       '86400': 1 dienos
     expires_in_prompt: Niekada
     generate: Generuoti
+    invalid: Šis kvietimas negalioja.
     invited_by: 'Jus pakvietė:'
-    max_uses_prompt: Be limito
-    prompt: Generuoti ir dalintis įrašais su kitais, kad sukurti prieigą prie serverio
+    max_uses:
+      few: "%{count} panaudojimai"
+      many: "%{count} panaudojimo"
+      one: 1 panaudojimas
+      other: "%{count} panaudojimų"
+    max_uses_prompt: Nėra limito
+    prompt: Generuok ir bendrink nuorodas su kitais, kad suteiktum prieigą prie šio serverio
     table:
-      expires_at: Pasibaigia
+      expires_at: Baigsis
       uses: Naudojimai
     title: Pakviesti žmones
   media_attachments:
@@ -389,21 +445,21 @@ lt:
       title: Naujas mėgstamas
     follow:
       body: "%{name} pradėjo jus sekti!"
-      subject: "%{name} pradėjo jus sekti"
+      subject: "%{name} dabar seka tave"
       title: Naujas sekėjas
     follow_request:
       action: Tvarkyti prašymus sekti
-      body: "%{name} nori tapti Jūsų sekėju"
+      body: "%{name} paprašė tave sekti"
       subject: 'Laukiantis sprendimo sekėjas:  %{name}'
       title: Naujas prašymas sekti
     mention:
       action: Atsakyti
-      body: 'Jus paminėjo %{name} pranešime:'
-      subject: Jus paminėjo %{name}
+      body: 'Tave %{name} paminėjo:'
+      subject: Tave paminėjo %{name}
       title: Naujas paminėjimas
     reblog:
-      body: 'Jūsų statusą pakėlė %{name}:'
-      subject: "%{name} pakėlė Jūsų statusą"
+      body: 'Tavo įrašą pakėlė %{name}:'
+      subject: "%{name} pakėlė tavo įrašą"
       title: Naujas pakėlimas
   pagination:
     newer: Naujesnis
@@ -412,6 +468,8 @@ lt:
     prev: Ankstesnis
   preferences:
     other: Kita
+  privacy:
+    hint_html: "<strong>Tikrink, kaip nori, kad tavo profilis ir įrašai būtų randami.</strong> Įjungus įvairias Mastodon funkcijas, jos gali padėti pasiekti platesnę auditoriją. Akimirką peržiūrėk šiuos nustatymus, kad įsitikintum, jog jie atitinka tavo naudojimo būdą."
   remote_follow:
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
   scheduled_statuses:
@@ -458,9 +516,14 @@ lt:
       private: Tik sekėjams
       private_long: Rodyti tik sekėjams
       public: Viešas
-      public_long: Matyti gali visi
+      public_long: Visi gali matyti
       unlisted: Neįtrauktas į sąrašus
-      unlisted_long: Matyti gali visi, tačiau nėra įtraukta į viešas laiko juostas
+      unlisted_long: Matyti gali visi, tačiau nėra įtraukti į viešąsias laiko skales
+  statuses_cleanup:
+    enabled_hint: Automatiškai ištrina įrašus, kai jie pasiekia nustatytą amžiaus ribą, nebent jie atitinka vieną iš toliau nurodytų išimčių
+    keep_polls_hint: Neištrina jokių tavo apklausų
+    keep_self_bookmark: Laikyti įrašus, kuriuos pažymėjai
+    keep_self_bookmark_hint: Neištrina tavo pačių įrašų, jei esi juos pažymėjęs (-usi)
   stream_entries:
     sensitive_content: Jautrus turinys
   themes:
@@ -494,17 +557,34 @@ lt:
         suspend: Paskyra užrakinta
     welcome:
       edit_profile_action: Nustatyti profilį
-      explanation: Štai keletas patarimų Jums
+      explanation: Štai keletas patarimų, kaip pradėti
       final_action: Pradėti kelti įrašus
-      full_handle: Jūsų pilnas slapyvardis
-      full_handle_hint: Štai ką jūs sakytumėte savo draugams, kad jie galėtų jums siųsti žinutes arba just sekti iš kitų serverių.
+      final_step: 'Pradėk skelbti! Net jei ir neturi sekėjų, tavo viešus įrašus gali matyti kiti, pavyzdžiui, vietinėje laiko skalėje arba saitažodžiuose. Galbūt norėsi prisistatyti saitažodyje #introductions.'
+      full_handle: Tavo pilnas slapyvardis
+      full_handle_hint: Štai ką pasakytum savo draugams, kad jie galėtų parašyti arba sekti tave iš kito serverio.
       subject: Sveiki atvykę į Mastodon
       title: Sveiki atvykę, %{name}!
   users:
-    follow_limit_reached: Negalite sekti daugiau nei %{limit} žmonių
+    follow_limit_reached: Negali sekti daugiau nei %{limit} žmonių
+    go_to_sso_account_settings: Eik į savo tapatybės teikėjo paskyros nustatymus
     invalid_otp_token: Netinkamas dviejų veiksnių kodas
-    otp_lost_help_html: Jeigu praradote prieiga prie abiejų, susisiekite su mumis per %{email}
-    seamless_external_login: Jūs esate prisijungę per išorini įrenginį, todėl slaptąžodis ir el pašto nustatymai neprieinami.
+    otp_lost_help_html: Jei praradai prieigą prie abiejų, gali susisiek su %{email}
+    seamless_external_login: Esi prisijungęs (-usi) per išorinę paslaugą, todėl slaptažodžio ir el. pašto nustatymai nepasiekiami.
     signed_in_as: 'Prisijungta kaip:'
   verification:
+    extra_instructions_html: <strong>Patarimas:</strong> nuoroda tavo svetainėje gali būti nematoma. Svarbi dalis – tai, kas <code>rel="me"</code> neleidžia apsimesti interneto svetainėse, kuriose yra naudotojų sukurto turinio. Vietoj to gali naudoti net <code>nuorodą</code> puslapio antraštėje esančią žymę <code>a</code>, tačiau HTML turi būti pasiekiamas nevykdant JavaScript.
+    hint_html: "<strong>Savo tapatybės patvirtinimas Mastodon skirtas visiems.</strong> Remiantis atviraisiais žiniatinklio standartais, dabar ir visam laikui nemokamas. Viskas, ko tau reikia, yra asmeninė svetainė, pagal kurią žmonės tave atpažįsta. Kai iš savo profilio pateiksi nuorodą į šią svetainę, patikrinsime, ar svetainėje yra nuoroda į tavo profilį, ir parodysime vizualinį indikatorių."
+    instructions_html: Nukopijuok ir įklijuok toliau pateiktą kodą į savo svetainės HTML. Tada į vieną iš papildomų profilio laukų skirtuke „Redaguoti profilį“ įrašyk savo svetainės adresą ir išsaugok pakeitimus.
     verification: Patvirtinimas
+    verified_links: Tavo patikrintos nuorodos
+  webauthn_credentials:
+    create:
+      error: Kilo problema pridedant saugumo raktą. Bandyk dar kartą.
+      success: Tavo saugumo raktas buvo sėkmingai pridėtas.
+    delete_confirmation: Ar tikrai nori ištrinti šį saugumo raktą?
+    description_html: Jei įjungsi <strong>saugumo rakto tapatybės nustatymą</strong>, prisijungiant reikės naudoti vieną iš savo saugumo raktų.
+    destroy:
+      error: Kilo problema ištrinant saugumo raktą. Bandyk dar kartą.
+      success: Tavo saugumo raktas buvo sėkmingai ištrintas.
+    nickname_hint: Įvesk naujojo saugumo rakto slapyvardį
+    not_enabled: Dar neįjungei WebAuthn

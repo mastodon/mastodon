@@ -48,8 +48,8 @@ module Mastodon::CLI
           next if account.avatar.blank? && account.header.blank?
           next if options[:remove_headers] && account.header.blank?
 
-          size = (account.header_file_size || 0)
-          size += (account.avatar_file_size || 0) if options[:prune_profiles]
+          size = account.header_file_size || 0
+          size += account.avatar_file_size || 0 if options[:prune_profiles]
 
           unless dry_run?
             account.header.destroy
@@ -265,6 +265,7 @@ module Mastodon::CLI
       elsif options[:days].present?
         scope = MediaAttachment.remote
       else
+        say('Specify the source of media attachments', :red)
         exit(1)
       end
 

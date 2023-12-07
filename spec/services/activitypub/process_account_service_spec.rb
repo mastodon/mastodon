@@ -129,12 +129,10 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
       stub_const 'ActivityPub::ProcessAccountService::SUBDOMAINS_RATELIMIT', 5
     end
 
-    it 'creates at least some accounts' do
-      expect { subject }.to change { Account.remote.count }.by_at_least(2)
-    end
-
-    it 'creates no more account than the limit allows' do
-      expect { subject }.to change { Account.remote.count }.by_at_most(5)
+    it 'creates accounts without exceeding rate limit' do
+      expect { subject }
+        .to create_some_remote_accounts
+        .and create_fewer_than_rate_limit_accounts
     end
   end
 
@@ -195,12 +193,20 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
       end
     end
 
-    it 'creates at least some accounts' do
-      expect { subject.call('user1', 'foo.test', payload) }.to change { Account.remote.count }.by_at_least(2)
+    it 'creates accounts without exceeding rate limit' do
+      expect { subject.call('user1', 'foo.test', payload) }
+        .to create_some_remote_accounts
+        .and create_fewer_than_rate_limit_accounts
     end
+  end
 
-    it 'creates no more account than the limit allows' do
-      expect { subject.call('user1', 'foo.test', payload) }.to change { Account.remote.count }.by_at_most(5)
-    end
+  private
+
+  def create_some_remote_accounts
+    change(Account.remote, :count).by_at_least(2)
+  end
+
+  def create_fewer_than_rate_limit_accounts
+    change(Account.remote, :count).by_at_most(5)
   end
 end

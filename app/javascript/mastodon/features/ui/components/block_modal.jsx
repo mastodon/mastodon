@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { blockAccount } from '../../../actions/accounts';
 import { closeModal } from '../../../actions/modal';
 import { initReport } from '../../../actions/reports';
-import Button from '../../../components/button';
+import { Button } from '../../../components/button';
 import { makeGetAccount } from '../../../selectors';
 
 const makeMapStateToProps = () => {
@@ -51,10 +51,6 @@ class BlockModal extends PureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  componentDidMount() {
-    this.button.focus();
-  }
-
   handleClick = () => {
     this.props.onClose();
     this.props.onConfirm(this.props.account);
@@ -67,10 +63,6 @@ class BlockModal extends PureComponent {
 
   handleCancel = () => {
     this.props.onClose();
-  };
-
-  setRef = (c) => {
-    this.button = c;
   };
 
   render () {
@@ -95,7 +87,7 @@ class BlockModal extends PureComponent {
           <Button onClick={this.handleSecondary} className='confirmation-modal__secondary-button'>
             <FormattedMessage id='confirmations.block.block_and_report' defaultMessage='Block & Report' />
           </Button>
-          <Button onClick={this.handleClick} ref={this.setRef}>
+          <Button onClick={this.handleClick} autoFocus>
             <FormattedMessage id='confirmations.block.confirm' defaultMessage='Block' />
           </Button>
         </div>

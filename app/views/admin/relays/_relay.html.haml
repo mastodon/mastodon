@@ -5,16 +5,16 @@
     - if relay.accepted?
       %span.positive-hint
         = fa_icon('check')
-        = ' '
+        &nbsp;
         = t 'admin.relays.enabled'
     - elsif relay.pending?
       = fa_icon('hourglass')
-      = ' '
+      &nbsp;
       = t 'admin.relays.pending'
     - else
       %span.negative-hint
         = fa_icon('times')
-        = ' '
+        &nbsp;
         = t 'admin.relays.disabled'
   %td
     - if relay.accepted?
