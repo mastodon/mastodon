@@ -52,5 +52,29 @@ describe Mastodon::CLI::Maintenance do
           .and raise_error(SystemExit)
       end
     end
+
+    context 'when requirements are met', use_transactional_tests: false do
+      before do
+        allow(ActiveRecord::Migrator).to receive(:current_version).and_return(2023_08_22_081029) # The latest migration before the cutoff
+        allow(Sidekiq::ProcessSet).to receive(:new).and_return []
+        agree_to_backup_warning
+      end
+
+      it 'runs the deduplication process' do
+        expect { subject }
+          .to output_results(
+            'will take a long time',
+            'Finished!'
+          )
+      end
+
+      def agree_to_backup_warning
+        allow(cli.shell)
+          .to receive(:yes?)
+          .with('Continue? (Yes/No)')
+          .and_return(true)
+          .once
+      end
+    end
   end
 end
