@@ -40,7 +40,11 @@ describe ApplicationHelper do
       def controller_helpers
         Module.new do
           def body_class_string = 'modal-layout compose-standalone'
-          def current_account = Fabricate(:account)
+
+          def current_account
+            @current_account ||= Fabricate(:account)
+          end
+
           def current_theme = 'default'
         end
       end
