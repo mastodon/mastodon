@@ -189,16 +189,12 @@ module Mastodon::CLI
     end
 
     def deduplication_cleanup_tasks
-      refresh_instances_view if schema_has_instances_view?
+      refresh_instances_view if migrator_version_after?(:adds_instance_view)
       Rails.cache.clear
     end
 
     def refresh_instances_view
       Scenic.database.refresh_materialized_view('instances', concurrently: true, cascade: false)
-    end
-
-    def schema_has_instances_view?
-      migrator_version_after?(:adds_instance_view)
     end
 
     def verify_schema_version!
