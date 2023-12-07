@@ -106,7 +106,7 @@ class AttachmentBatch
       })
     rescue => e
       retries += 1
- 
+
       if retries < MAX_RETRY
         logger.debug "Retry #{retries}/#{MAX_RETRY} after #{e.message}"
         sleep 2**retries
