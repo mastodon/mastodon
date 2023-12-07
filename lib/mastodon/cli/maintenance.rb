@@ -4,9 +4,6 @@ require_relative 'base'
 
 module Mastodon::CLI
   class Maintenance < Base
-    MIN_SUPPORTED_VERSION = 2019_10_01_213028
-    MAX_SUPPORTED_VERSION = 2023_09_07_150100
-
     MIGRATION_CHANGES = {
       adds_case_insensitive_btree_index_tags: 2021_04_21_121431,
       adds_fixed_lowercase_index_accounts: 2020_06_20_164023,
@@ -18,6 +15,8 @@ module Mastodon::CLI
       optimizes_null_index_statuses_uri: 2022_03_10_060706,
       optimizes_null_index_users_reset_password_token: 2022_03_10_060641,
       removes_index_users_remember_token: 2022_01_18_183010,
+      version_support_maximum: 2023_09_07_150100,
+      version_support_minimum: 2019_10_01_213028,
     }.freeze
 
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
@@ -198,11 +197,11 @@ module Mastodon::CLI
     end
 
     def verify_schema_version!
-      if migrator_version < MIN_SUPPORTED_VERSION
+      if migrator_version_before?(:version_support_minimum)
         say 'Your version of the database schema is too old and is not supported by this script.', :red
         say 'Please update to at least Mastodon 3.0.0 before running this script.', :red
         exit(1)
-      elsif migrator_version > MAX_SUPPORTED_VERSION
+      elsif migrator_version_after?(:version_support_maximum)
         say 'Your version of the database schema is more recent than this script, this may cause unexpected errors.', :yellow
         exit(1) unless yes?('Continue anyway? (Yes/No)')
       end
