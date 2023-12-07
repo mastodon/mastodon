@@ -7,6 +7,19 @@ module Mastodon::CLI
     MIN_SUPPORTED_VERSION = 2019_10_01_213028
     MAX_SUPPORTED_VERSION = 2023_09_07_150100
 
+    MIGRATION_CHANGES = {
+      adds_case_insensitive_btree_index_tags: 2021_04_21_121431,
+      adds_fixed_lowercase_index_accounts: 2020_06_20_164023,
+      adds_index_accounts_domain_id: 2023_05_24_190515,
+      adds_index_users_unconfirmed_email: 2023_07_02_151753,
+      adds_instance_view: 2020_12_06_004238,
+      optimizes_null_index_conversations_uri: 2022_03_07_083603,
+      optimizes_null_index_media_attachments_shortcode: 2022_03_10_060626,
+      optimizes_null_index_statuses_uri: 2022_03_10_060706,
+      optimizes_null_index_users_reset_password_token: 2022_03_10_060641,
+      removes_index_users_remember_token: 2022_01_18_183010,
+    }.freeze
+
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
     # version of the code/database
 
@@ -185,7 +198,7 @@ module Mastodon::CLI
     end
 
     def schema_has_instances_view?
-      ActiveRecord::Migrator.current_version >= 2020_12_06_004238
+      ActiveRecord::Migrator.current_version >= MIGRATION_CHANGES[:adds_instance_view]
     end
 
     def verify_schema_version!
@@ -228,7 +241,7 @@ module Mastodon::CLI
       end
 
       say 'Restoring index_accounts_on_username_and_domain_lower…'
-      if ActiveRecord::Migrator.current_version < 2020_06_20_164023
+      if ActiveRecord::Migrator.current_version < MIGRATION_CHANGES[:adds_fixed_lowercase_index_accounts]
         ActiveRecord::Base.connection.add_index :accounts, 'lower (username), lower(domain)', name: 'index_accounts_on_username_and_domain_lower', unique: true
       else
         ActiveRecord::Base.connection.add_index :accounts, "lower (username), COALESCE(lower(domain), '')", name: 'index_accounts_on_username_and_domain_lower', unique: true
@@ -238,7 +251,7 @@ module Mastodon::CLI
       ActiveRecord::Base.connection.execute('REINDEX INDEX search_index;')
       ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_uri;')
       ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_url;')
-      ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_domain_and_id;') if ActiveRecord::Migrator.current_version >= 2023_05_24_190515
+      ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_domain_and_id;') if ActiveRecord::Migrator.current_version >= MIGRATION_CHANGES[:adds_index_accounts_domain_id]
     end
 
     def deduplicate_users!
@@ -269,15 +282,15 @@ module Mastodon::CLI
       say 'Restoring users indexes…'
       ActiveRecord::Base.connection.add_index :users, ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true
       ActiveRecord::Base.connection.add_index :users, ['email'], name: 'index_users_on_email', unique: true
-      ActiveRecord::Base.connection.add_index :users, ['remember_token'], name: 'index_users_on_remember_token', unique: true if ActiveRecord::Migrator.current_version < 2022_01_18_183010
+      ActiveRecord::Base.connection.add_index :users, ['remember_token'], name: 'index_users_on_remember_token', unique: true if ActiveRecord::Migrator.current_version < MIGRATION_CHANGES[:remove_index_users_remember_token]
 
-      if ActiveRecord::Migrator.current_version < 2022_03_10_060641
+      if ActiveRecord::Migrator.current_version < MIGRATION_CHANGES[:optimizes_null_index_users_reset_password_token]
         ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
       else
         ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, where: 'reset_password_token IS NOT NULL', opclass: :text_pattern_ops
       end
 
-      ActiveRecord::Base.connection.execute('REINDEX INDEX index_users_on_unconfirmed_email;') if ActiveRecord::Migrator.current_version >= 2023_07_02_151753
+      ActiveRecord::Base.connection.execute('REINDEX INDEX index_users_on_unconfirmed_email;') if ActiveRecord::Migrator.current_version >= MIGRATION_CHANGES[:adds_index_users_unconfirmed_email]
     end
 
     def deduplicate_users_process_confirmation_token
@@ -292,7 +305,7 @@ module Mastodon::CLI
     end
 
     def deduplicate_users_process_remember_token
-      if ActiveRecord::Migrator.current_version < 2022_01_18_183010
+      if ActiveRecord::Migrator.current_version < MIGRATION_CHANGES[:removes_index_users_remember_token]
         ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE remember_token IS NOT NULL GROUP BY remember_token HAVING count(*) > 1").each do |row|
           users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
           say "Unsetting remember token for those accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
@@ -371,7 +384,7 @@ module Mastodon::CLI
       end
 
       say 'Restoring conversations indexes…'
-      if ActiveRecord::Migrator.current_version < 2022_03_07_083603
+      if ActiveRecord::Migrator.current_version < MIGRATION_CHANGES[:optimizes_null_index_conversations_uri]
         ActiveRecord::Base.connection.add_index :conversations, ['uri'], name: 'index_conversations_on_uri', unique: true
       else
         ActiveRecord::Base.connection.add_index :conversations, ['uri'], name: 'index_conversations_on_uri', unique: true, where: 'uri IS NOT NULL', opclass: :text_pattern_ops
@@ -488,7 +501,7 @@ module Mastodon::CLI
       end
 
       say 'Restoring media_attachments indexes…'
-      if ActiveRecord::Migrator.current_version < 2022_03_10_060626
+      if ActiveRecord::Migrator.current_version < MIGRATION_CHANGES[:optimizes_null_index_media_attachments_shortcode]
         ActiveRecord::Base.connection.add_index :media_attachments, ['shortcode'], name: 'index_media_attachments_on_shortcode', unique: true
       else
         ActiveRecord::Base.connection.add_index :media_attachments, ['shortcode'], name: 'index_media_attachments_on_shortcode', unique: true, where: 'shortcode IS NOT NULL', opclass: :text_pattern_ops
@@ -521,7 +534,7 @@ module Mastodon::CLI
       end
 
       say 'Restoring statuses indexes…'
-      if ActiveRecord::Migrator.current_version < 2022_03_10_060706
+      if ActiveRecord::Migrator.current_version < MIGRATION_CHANGES[:optimizes_null_index_statuses_uri]
         ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true
       else
         ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true, where: 'uri IS NOT NULL', opclass: :text_pattern_ops
@@ -543,7 +556,7 @@ module Mastodon::CLI
       end
 
       say 'Restoring tags indexes…'
-      if ActiveRecord::Migrator.current_version < 2021_04_21_121431
+      if ActiveRecord::Migrator.current_version < MIGRATION_CHANGES[:adds_case_insensitive_btree_index_tags]
         ActiveRecord::Base.connection.add_index :tags, 'lower((name)::text)', name: 'index_tags_on_name_lower', unique: true
       else
         ActiveRecord::Base.connection.execute 'CREATE UNIQUE INDEX CONCURRENTLY index_tags_on_name_lower_btree ON tags (lower(name) text_pattern_ops)'
