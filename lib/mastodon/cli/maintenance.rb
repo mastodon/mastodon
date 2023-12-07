@@ -267,7 +267,7 @@ module Mastodon::CLI
       deduplicate_users_process_password_token
 
       say 'Restoring users indexes…'
-      ActiveRecord::Base.connection.add_index :users, ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true
+      ActiveRecord::Base.connection.add_index :users, ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true unless ActiveRecord::Base.connection.index_name_exists?(:users, :index_users_on_confirmation_token)
       ActiveRecord::Base.connection.add_index :users, ['email'], name: 'index_users_on_email', unique: true
       ActiveRecord::Base.connection.add_index :users, ['remember_token'], name: 'index_users_on_remember_token', unique: true if migrator_version < 2022_01_18_183010
 
@@ -546,7 +546,7 @@ module Mastodon::CLI
       if migrator_version < 2021_04_21_121431
         ActiveRecord::Base.connection.add_index :tags, 'lower((name)::text)', name: 'index_tags_on_name_lower', unique: true
       else
-        ActiveRecord::Base.connection.execute 'CREATE UNIQUE INDEX CONCURRENTLY index_tags_on_name_lower_btree ON tags (lower(name) text_pattern_ops)'
+        ActiveRecord::Base.connection.execute 'CREATE UNIQUE INDEX index_tags_on_name_lower_btree ON tags (lower(name) text_pattern_ops)'
       end
     end
 

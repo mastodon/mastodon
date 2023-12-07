@@ -53,7 +53,7 @@ describe Mastodon::CLI::Maintenance do
       end
     end
 
-    context 'when requirements are met', use_transactional_tests: false do
+    context 'when requirements are met' do
       before do
         allow(ActiveRecord::Migrator).to receive(:current_version).and_return(2023_08_22_081029) # The latest migration before the cutoff
         allow(Sidekiq::ProcessSet).to receive(:new).and_return []
