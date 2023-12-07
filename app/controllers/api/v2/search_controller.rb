@@ -12,6 +12,7 @@ class Api::V2::SearchController < Api::BaseController
     before_action :query_pagination_error, if: :pagination_requested?
     before_action :remote_resolve_error, if: :remote_resolve_requested?
   end
+  before_action :query_offset_error, if: [:pagination_requested?, :invalid_offset_value?]
 
   def index
     @search = Search.new(search_results)
@@ -36,8 +37,16 @@ class Api::V2::SearchController < Api::BaseController
     render json: { error: 'Search queries that resolve remote resources are not supported without authentication' }, status: 401
   end
 
+  def query_offset_error
+    render json: { error: 'Offset values for query pagination must be positive' }, status: 400
+  end
+
   def remote_resolve_requested?
     truthy_param?(:resolve)
+  end
+
+  def invalid_offset_value?
+    params[:offset].to_i.negative?
   end
 
   def pagination_requested?
