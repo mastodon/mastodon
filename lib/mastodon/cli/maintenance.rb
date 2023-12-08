@@ -188,7 +188,7 @@ module Mastodon::CLI
     end
 
     def deduplication_cleanup_tasks
-      refresh_instances_view if migrator_version_after?(:adds_instance_view)
+      refresh_instances_view if migrator_version_at_least?(:adds_instance_view)
       Rails.cache.clear
     end
 
@@ -285,7 +285,7 @@ module Mastodon::CLI
         ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, where: 'reset_password_token IS NOT NULL', opclass: :text_pattern_ops
       end
 
-      ActiveRecord::Base.connection.execute('REINDEX INDEX index_users_on_unconfirmed_email;') if migrator_version_after?(:adds_index_users_unconfirmed_email)
+      ActiveRecord::Base.connection.execute('REINDEX INDEX index_users_on_unconfirmed_email;') if migrator_version_at_least?(:adds_index_users_unconfirmed_email)
     end
 
     def deduplicate_users_process_confirmation_token
