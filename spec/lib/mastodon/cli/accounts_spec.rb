@@ -1117,16 +1117,15 @@ describe Mastodon::CLI::Accounts do
         stub_request(:head, 'https://example.net/users/tales').to_return(status: 404)
       end
 
-      it 'deletes inactive remote accounts that longer exist in the specified domain' do
-        subject
-
+      def expect_delete_inactive_remote_accounts
         expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
         expect(delete_account_service).to have_received(:call).with(tales, reserve_username: false).once
       end
 
-      it 'displays the summary correctly' do
+      it 'displays the summary correctly and deletes inactive remote accounts' do
         expect { subject }
           .to output_results('Visited 2 accounts, removed 2')
+        expect_delete_inactive_remote_accounts
       end
     end
 
