@@ -110,7 +110,7 @@ class Form::Import
       when 'Languages'
         field&.split(',')&.map(&:strip)&.presence
       when 'Account address'
-        field.strip.gsub(/\A@/, '')
+        field.strip.delete_prefix('@')
       when '#domain', '#uri', 'List name'
         field.strip
       else
@@ -151,14 +151,29 @@ class Form::Import
     errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if csv_row_count > ROWS_PROCESSING_LIMIT
 
     if type.to_sym == :following
-      base_limit = FollowLimitValidator.limit_for_account(current_account)
-      limit = base_limit
-      limit -= current_account.following_count unless overwrite
-      errors.add(:data, I18n.t('users.follow_limit_reached', limit: base_limit)) if csv_row_count > limit
+      follows_limit = FollowLimitValidator.limit_for_account(current_account)
+      errors.add(:data, I18n.t('users.follow_limit_reached', limit: follows_limit)) if follows_count_after_import > follows_limit
     end
   rescue CSV::MalformedCSVError => e
     errors.add(:data, I18n.t('imports.errors.invalid_csv_file', error: e.message))
   rescue EmptyFileError
     errors.add(:data, I18n.t('imports.errors.empty'))
+  end
+
+  def follows_count_after_import
+    return csv_row_count if overwrite
+
+    accts = parsed_rows.pluck('acct').compact.map(&:downcase).uniq.map do |acct|
+      username, domain = acct.split('@')
+      if domain.nil? || TagManager.instance.local_domain?(domain)
+        username.downcase
+      else
+        "#{username.downcase}@#{TagManager.instance.normalize_domain(domain)}"
+      end
+    end
+
+    current_follows = current_account.following.select(:username, :domain).map { |account| account.acct.downcase }
+
+    (current_follows + accts).uniq.size
   end
 end
