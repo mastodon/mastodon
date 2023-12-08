@@ -423,15 +423,12 @@ describe Mastodon::CLI::Accounts do
       context 'with --dry-run option' do
         let(:options) { { email: account.user.email, dry_run: true } }
 
-        it 'does not delete the user' do
-          subject
-
-          expect(delete_account_service).to_not have_received(:call).with(account, reserve_email: false)
-        end
-
-        it 'outputs a successful message in dry run mode' do
+        it 'outputs a successful message in dry run mode and does not delete the user' do
           expect { subject }
             .to output_results('OK (DRY RUN)')
+          expect(delete_account_service)
+            .to_not have_received(:call)
+            .with(account, reserve_email: false)
         end
       end
 
