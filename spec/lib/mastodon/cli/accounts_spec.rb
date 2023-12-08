@@ -34,23 +34,21 @@ describe Mastodon::CLI::Accounts do
     let(:action) { :create }
 
     shared_examples 'a new user with given email address and username' do
-      it 'creates a new user with the specified email address' do
-        subject
-
-        expect(User.find_by(email: options[:email])).to be_present
-      end
-
-      it 'creates a new local account with the specified username' do
-        subject
-
-        expect(Account.find_local('tootctl_username')).to be_present
-      end
-
-      it 'returns "OK" and newly generated password' do
+      it 'creates user and accounts from options and displays success message' do
         allow(SecureRandom).to receive(:hex).and_return('test_password')
 
         expect { subject }
-          .to output_results("OK\nNew password: test_password")
+          .to output_results('OK', 'New password: test_password')
+        expect(user_from_options).to be_present
+        expect(account_from_options).to be_present
+      end
+
+      def user_from_options
+        User.find_by(email: options[:email])
+      end
+
+      def account_from_options
+        Account.find_local('tootctl_username')
       end
     end
 
