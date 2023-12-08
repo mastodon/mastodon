@@ -467,20 +467,19 @@ describe Mastodon::CLI::Accounts do
       context 'when the number is positive' do
         let(:options) { { number: 2 } }
 
-        it 'approves the earliest n pending registrations' do
+        it 'approves the earliest n pending registrations but not the remaining ones' do
           subject
-
-          n_earliest_pending_registrations = User.order(created_at: :asc).first(options[:number])
 
           expect(n_earliest_pending_registrations.all?(&:approved?)).to be(true)
+          expect(pending_registrations.all?(&:approved?)).to be(false)
         end
 
-        it 'does not approve the remaining pending registrations' do
-          subject
+        def n_earliest_pending_registrations
+          User.order(created_at: :asc).first(options[:number])
+        end
 
-          pending_registrations = User.order(created_at: :asc).last(total_users - options[:number])
-
-          expect(pending_registrations.all?(&:approved?)).to be(false)
+        def pending_registrations
+          User.order(created_at: :asc).last(total_users - options[:number])
         end
       end
 
