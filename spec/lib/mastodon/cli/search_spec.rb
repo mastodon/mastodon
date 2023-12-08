@@ -58,15 +58,15 @@ describe Mastodon::CLI::Search do
             purge: nil
           )
 
-        index_double = index_double_for(index)
-        allow(index_double).to receive(:on_progress).and_yield([indexed_count, deleted_count])
+        importer_double = importer_double_for(index)
+        allow(importer_double).to receive(:on_progress).and_yield([indexed_count, deleted_count])
         allow("Importer::#{index}Importer".constantize)
           .to receive(:new)
-          .and_return(index_double)
+          .and_return(importer_double)
       end
     end
 
-    def index_double_for(index)
+    def importer_double_for(index)
       instance_double(
         "Importer::#{index}Importer".constantize,
         clean_up!: nil,
