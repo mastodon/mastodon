@@ -496,15 +496,10 @@ describe Mastodon::CLI::Accounts do
       context 'when the given number is greater than the number of users' do
         let(:options) { { number: total_users * 2 } }
 
-        it 'approves all users' do
-          subject
-
-          expect(User.pluck(:approved).all?(true)).to be(true)
-        end
-
-        it 'does not raise any error' do
+        it 'approves all users and does not raise any error' do
           expect { subject }
             .to_not raise_error
+          expect(User.pluck(:approved).all?(true)).to be(true)
         end
       end
     end
