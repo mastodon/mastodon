@@ -620,22 +620,17 @@ describe Mastodon::CLI::Accounts do
       let(:user) { account.user }
       let(:arguments) { [account.username] }
 
-      it 'creates a new backup for the specified user' do
-        expect { subject }.to change { user.backups.count }.by(1)
-      end
+      before { allow(BackupWorker).to receive(:perform_async) }
 
-      it 'creates a backup job' do
-        allow(BackupWorker).to receive(:perform_async)
-
-        subject
-        latest_backup = user.backups.last
-
+      it 'creates a new backup and backup job for the specified user and outputs success message' do
+        expect { subject }
+          .to change { user.backups.count }.by(1)
+          .and output_results('OK')
         expect(BackupWorker).to have_received(:perform_async).with(latest_backup.id).once
       end
 
-      it 'displays a successful message' do
-        expect { subject }
-          .to output_results('OK')
+      def latest_backup
+        user.backups.last
       end
     end
   end
