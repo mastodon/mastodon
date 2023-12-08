@@ -554,17 +554,12 @@ describe Mastodon::CLI::Accounts do
         stub_parallelize_with_progress!
       end
 
-      it 'makes all local accounts follow the target account' do
-        subject
-
+      it 'displays a successful message and makes all local accounts follow the target account' do
+        expect { subject }
+          .to output_results("OK, followed target from #{Account.local.count} accounts")
         expect(follow_service).to have_received(:call).with(follower_bob, target_account, any_args).once
         expect(follow_service).to have_received(:call).with(follower_rony, target_account, any_args).once
         expect(follow_service).to have_received(:call).with(follower_charles, target_account, any_args).once
-      end
-
-      it 'displays a successful message' do
-        expect { subject }
-          .to output_results("OK, followed target from #{Account.local.count} accounts")
       end
     end
   end
