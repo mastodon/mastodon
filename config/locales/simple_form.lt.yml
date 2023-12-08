@@ -63,6 +63,8 @@ lt:
         setting_use_pending_items: Slėpti laiko skalės naujienas po paspaudimo, vietoj automatinio kanalo slinkimo
         username: Gali naudoti raides, skaičius ir pabraukimus
         whole_word: Kai raktažodis ar frazė yra tik raidinis ir skaitmeninis, jis bus taikomas tik tada, jei atitiks visą žodį
+      email_domain_block:
+        with_dns_records: Bus bandoma išspręsti nurodyto domeno DNS įrašus, o rezultatai taip pat bus blokuojami
       featured_tag:
         name: 'Štai keletas pastaruoju metu dažniausiai saitažodžių, kurių tu naudojai:'
       filters:
@@ -77,15 +79,98 @@ lt:
         site_contact_email: Kaip žmonės gali su tavimi susisiekti teisiniais ar pagalbos užklausimais.
         site_contact_username: Kaip žmonės gali tave pasiekti Mastodon.
         site_extended_description: Bet kokia papildoma informacija, kuri gali būti naudinga lankytojams ir naudotojams. Gali būti struktūrizuota naudojant Markdown sintaksę.
+        thumbnail: Maždaug 2:1 dydžio vaizdas, rodomas šalia tavo serverio informacijos.
+        timeline_preview: Atsijungę lankytojai galės naršyti naujausius viešus įrašus, esančius serveryje.
         trends: Trendai rodo, kurios įrašai, saitažodžiai ir naujienų istorijos tavo serveryje sulaukia didžiausio susidomėjimo.
       sessions:
         otp: 'Įvesk telefono programėlėje sugeneruotą dviejų tapatybės kodą arba naudok vieną iš atkūrimo kodų:'
         webauthn: Jei tai USB raktas, būtinai jį įkišk ir, jei reikia, paspausk.
       settings:
         indexable: Tavo profilio puslapis gali būti rodomas paieškos rezultatuose Google, Bing ir kituose.
+      user:
+        chosen_languages: Kai pažymėta, viešose laiko skalėse bus rodomi tik įrašai pasirinktomis kalbomis
+        role: Vaidmuo valdo, kokius leidimus naudotojas (-a) turi
     labels:
+      account:
+        indexable: Įtraukti viešus įrašus į paieškos rezultatus
+        show_collections: Rodyti sekimus ir sekėjus profilyje
+        unlocked: Automatiškai priimti naujus sekėjus
+      account_warning_preset:
+        title: Pavadinimas
+      admin_account_action:
+        include_statuses: Įtraukti praneštus įrašus į el. laišką
+      defaults:
+        avatar: Profilio nuotrauka
+        bot: Tai automatinė paskyra
+        chosen_languages: Filtruoti kalbas
+        display_name: Rodomas vardas
+        email: El. pašto adresas
+        expires_in: Nustoja galioti po
+        fields: Papildomi laukai
+        irreversible: Mesti vietoj slėpti
+        locale: Sąsajos kalba
+        max_uses: Maksimalus naudojimo skaičius
+        new_password: Naujas slaptažodis
+        note: Biografija
+        password: Slaptažodis
+        phrase: Raktažodis arba frazė
+        setting_auto_play_gif: Automatiškai leisti animuotų GIF
+        setting_boost_modal: Rodyti patvirtinimo dialogą prieš pakėliant įrašą
+        setting_default_language: Skelbimo kalba
+        setting_default_privacy: Skelbimo privatumas
+        setting_default_sensitive: Visada žymėti mediją kaip jautrią
+        setting_delete_modal: Rodyti patvirtinimo dialogą prieš ištrinant įrašą
+        setting_display_media: Medijos rodymas
+        setting_display_media_hide_all: Slėpti viską
+        setting_display_media_show_all: Rodyti viską
+        setting_expand_spoilers: Visada išplėsti įrašus, pažymėtus turinio įspėjimais
+        setting_hide_network: Slėpti savo socialinę diagramą
+        setting_system_font_ui: Naudoti numatytąjį sistemos šriftą
+        setting_theme: Svetainės tema
+        setting_use_pending_items: Lėtas režimas
+        title: Pavadinimas
+        type: Importo tipas
+        username: Naudotojo vardas
+        username_or_email: Naudotojo vardas arba el. paštas
+        whole_word: Visas žodis
+      email_domain_block:
+        with_dns_records: Įtraukti MX įrašus ir domeno IP adresus
       featured_tag:
         name: Saitažodis
+      filters:
+        actions:
+          hide: Slėpti visiškai
+          warn: Slėpti su įspėjimu
+      form_admin_settings:
+        activity_api_enabled: Skelbti suvestinį statistiką apie naudotojų veiklą per API
+        bootstrap_timeline_accounts: Visada rekomenduoti šias paskyras naujiems naudotojams
+        content_cache_retention_period: Turinio talpyklos išlaikymo laikotarpis
+        custom_css: Pasirinktinis CSS
+        mascot: Pasirinktinis talismanas (pasenęs)
+        registrations_mode: Kas gali užsiregistruoti
+        show_domain_blocks_rationale: Rodyti, kodėl domenai buvo užblokuoti
+        site_extended_description: Išplėstas aprašymas
+        site_short_description: Serverio aprašymas
+        site_terms: Privatumo politika
+        site_title: Serverio pavadinimas
+        theme: Numatytoji tema
+        thumbnail: Serverio miniatūra
+      invite_request:
+        text: Kodėl nori prisijungti?
+      notification_emails:
+        favourite: Kažkas pamėgo tavo įrašą
+        follow: Kažkas seka tave
+        follow_request: Kažkas paprašė sekti tave
+        mention: Kažkas paminėjo tave
+        pending_account: Reikia peržiūros naujam paskyrui
+        reblog: Kažkas pakėlė tavo įrašą
+        software_updates:
+          label: Yra nauja Mastodon versija
+          patch: Pranešti apie klaidų ištaisymo atnaujinimus
+      rule:
+        text: Taisyklė
+      settings:
+        show_application: Rodyti, iš kurios programėles išsiuntei įrašą
       tag:
         listable: Leisti šį saitažodį rodyti paieškose ir pasiūlymuose
         name: Saitažodis
@@ -93,11 +178,15 @@ lt:
         usable: Leisti įrašams naudoti šį saitažodį
       user:
         role: Vaidmuo
+        time_zone: Laiko juosta
       user_role:
+        color: Ženklelio spalva
+        highlighted: Rodyti vaidmenį kaip ženklelį naudotojo profiliuose
+        name: Pavadinimas
         permissions_as_keys: Leidimai
         position: Prioritetas
       webhook:
-        events: Įgalinti įvykiai
+        events: Įjungti įvykiai
         template: Naudingosios apkrovos šablonas
         url: Galutinio taško URL
     'no': Ne

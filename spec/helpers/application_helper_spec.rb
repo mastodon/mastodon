@@ -29,14 +29,24 @@ describe ApplicationHelper do
 
   describe 'body_classes' do
     context 'with a body class string from a controller' do
-      before do
-        without_partial_double_verification do
-          allow(helper).to receive_messages(body_class_string: 'modal-layout compose-standalone', current_theme: 'default', current_account: Fabricate(:account))
-        end
-      end
+      before { helper.extend controller_helpers }
 
       it 'uses the controller body classes in the result' do
         expect(helper.body_classes).to match(/modal-layout compose-standalone/)
+      end
+
+      private
+
+      def controller_helpers
+        Module.new do
+          def body_class_string = 'modal-layout compose-standalone'
+
+          def current_account
+            @current_account ||= Fabricate(:account)
+          end
+
+          def current_theme = 'default'
+        end
       end
     end
   end
@@ -122,9 +132,7 @@ describe ApplicationHelper do
   describe 'available_sign_up_path' do
     context 'when registrations are closed' do
       before do
-        without_partial_double_verification do
-          allow(Setting).to receive(:registrations_mode).and_return('none')
-        end
+        allow(Setting).to receive(:[]).with('registrations_mode').and_return 'none'
       end
 
       it 'redirects to joinmastodon site' do
