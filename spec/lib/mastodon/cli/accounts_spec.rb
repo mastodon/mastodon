@@ -927,15 +927,15 @@ describe Mastodon::CLI::Accounts do
 
         expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id, anything).once
       end
+    end
 
-      context 'when the given username is not found' do
-        let(:arguments) { ['non_existent_username'] }
+    context 'when the given username is not found' do
+      let(:arguments) { ['non_existent_username'] }
 
-        it 'exits with an error message when the specified username is not found' do
-          expect { subject }
-            .to output_results('No such account')
-            .and raise_error(SystemExit)
-        end
+      it 'exits with an error message when the specified username is not found' do
+        expect { subject }
+          .to output_results('No such account')
+          .and raise_error(SystemExit)
       end
     end
 
