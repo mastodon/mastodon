@@ -1137,15 +1137,14 @@ describe Mastodon::CLI::Accounts do
           stub_request(:head, 'https://example.net/users/gon').to_return(status: 200)
         end
 
-        it 'skips accounts from the unavailable domain' do
-          subject
-
+        def expect_skip_accounts_from_unavailable_domain
           expect(delete_account_service).to_not have_received(:call).with(tales, reserve_username: false)
         end
 
-        it 'displays the summary correctly' do
+        it 'displays the summary correctly and skip accounts from unavailable domains' do
           expect { subject }
             .to output_results("Visited 5 accounts, removed 0\nThe following domains were not available during the check:\n    example.net")
+          expect_skip_accounts_from_unavailable_domain
         end
       end
 
