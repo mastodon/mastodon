@@ -346,7 +346,7 @@ module Mastodon::CLI
 
       remove_index_if_exists!(:announcement_reactions, 'index_announcement_reactions_on_account_id_and_announcement_id')
 
-      say 'Removing duplicate account identity proofs…'
+      say 'Removing duplicate announcement reactions…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM announcement_reactions GROUP BY account_id, announcement_id, name HAVING count(*) > 1").each do |row|
         AnnouncementReaction.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
       end
@@ -431,7 +431,7 @@ module Mastodon::CLI
     def deduplicate_domain_blocks!
       remove_index_if_exists!(:domain_blocks, 'index_domain_blocks_on_domain')
 
-      say 'Deduplicating domain_allows…'
+      say 'Deduplicating domain_blocks…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM domain_blocks GROUP BY domain HAVING count(*) > 1").each do |row|
         domain_blocks = DomainBlock.where(id: row['ids'].split(',')).by_severity.reverse.to_a
 
@@ -462,7 +462,7 @@ module Mastodon::CLI
         UnavailableDomain.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
       end
 
-      say 'Restoring domain_allows indexes…'
+      say 'Restoring unavailable_domains indexes…'
       ActiveRecord::Base.connection.add_index :unavailable_domains, ['domain'], name: 'index_unavailable_domains_on_domain', unique: true
     end
 
