@@ -1275,57 +1275,51 @@ describe Mastodon::CLI::Accounts do
       stub_parallelize_with_progress!
     end
 
-    it 'prunes all remote accounts with no interactions with local users' do
-      subject
-
+    def expect_prune_remote_accounts_without_interaction
       prunable_account_ids = prunable_accounts.pluck(:id)
 
       expect(Account.where(id: prunable_account_ids).count).to eq(0)
     end
 
-    it 'displays a successful message' do
+    it 'displays a successful message and handles accounts correctly' do
       expect { subject }
         .to output_results("OK, pruned #{prunable_accounts.size} accounts")
+      expect_prune_remote_accounts_without_interaction
+      expect_not_prune_local_accounts
+      expect_not_prune_bot_accounts
+      expect_not_prune_group_accounts
+      expect_not_prune_mentioned_accounts
     end
 
-    it 'does not prune local accounts' do
-      subject
-
+    def expect_not_prune_local_accounts
       expect(Account.exists?(id: local_account.id)).to be(true)
     end
 
-    it 'does not prune bot accounts' do
-      subject
-
+    def expect_not_prune_bot_accounts
       expect(Account.exists?(id: bot_account.id)).to be(true)
     end
 
-    it 'does not prune group accounts' do
-      subject
-
+    def expect_not_prune_group_accounts
       expect(Account.exists?(id: group_account.id)).to be(true)
     end
 
-    it 'does not prune accounts that have been mentioned' do
-      subject
-
+    def expect_not_prune_mentioned_accounts
       expect(Account.exists?(id: mentioned_account.id)).to be true
     end
 
     context 'with --dry-run option' do
       let(:options) { { dry_run: true } }
 
-      it 'does not prune any account' do
-        subject
-
+      def expect_no_account_prunes
         prunable_account_ids = prunable_accounts.pluck(:id)
 
         expect(Account.where(id: prunable_account_ids).count).to eq(prunable_accounts.size)
       end
 
-      it 'displays a successful message with (DRY RUN)' do
+      it 'displays a successful message with (DRY RUN) and doesnt prune anything' do
         expect { subject }
           .to output_results("OK, pruned #{prunable_accounts.size} accounts (DRY RUN)")
+        expect_no_account_prunes
       end
     end
   end
