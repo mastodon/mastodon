@@ -1088,16 +1088,12 @@ describe Mastodon::CLI::Accounts do
         stub_request(:head, 'https://example.net/users/tales').to_return(status: 200)
       end
 
-      it 'deletes all inactive remote accounts that longer exist in the origin server' do
-        subject
-
+      def expect_delete_inactive_remote_accounts
         expect(delete_account_service).to have_received(:call).with(bob, reserve_username: false).once
         expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
       end
 
-      it 'does not delete any active remote account that still exists in the origin server' do
-        subject
-
+      def expect_not_delete_active_accounts
         expect(delete_account_service).to_not have_received(:call).with(tom, reserve_username: false)
         expect(delete_account_service).to_not have_received(:call).with(ana, reserve_username: false)
         expect(delete_account_service).to_not have_received(:call).with(tales, reserve_username: false)
@@ -1107,6 +1103,8 @@ describe Mastodon::CLI::Accounts do
         expect { subject }
           .to change { tales.reload.updated_at }
           .and output_results('Visited 5 accounts, removed 2')
+        expect_delete_inactive_remote_accounts
+        expect_not_delete_active_accounts
       end
     end
 
