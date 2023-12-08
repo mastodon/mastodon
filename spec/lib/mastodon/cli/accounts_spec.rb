@@ -1215,25 +1215,14 @@ describe Mastodon::CLI::Accounts do
 
         before do
           accounts.each { |account| target_account.follow!(account) }
-        end
-
-        it 'resets all "following" relationships from the target account' do
-          subject
-
-          expect(target_account.reload.following).to be_empty
-        end
-
-        it 'calls BootstrapTimelineWorker once to rebuild the timeline' do
           allow(BootstrapTimelineWorker).to receive(:perform_async)
-
-          subject
-
-          expect(BootstrapTimelineWorker).to have_received(:perform_async).with(target_account.id).once
         end
 
-        it 'displays a successful message' do
+        it 'resets following relationships and displays a successful message and rebuilds timeline' do
           expect { subject }
             .to output_results("Processed #{total_relationships} relationships")
+          expect(target_account.reload.following).to be_empty
+          expect(BootstrapTimelineWorker).to have_received(:perform_async).with(target_account.id).once
         end
       end
 
@@ -1244,15 +1233,10 @@ describe Mastodon::CLI::Accounts do
           accounts.each { |account| account.follow!(target_account) }
         end
 
-        it 'resets all "followers" relationships from the target account' do
-          subject
-
-          expect(target_account.reload.followers).to be_empty
-        end
-
-        it 'displays a successful message' do
+        it 'resets followers relationships and displays a successful message' do
           expect { subject }
             .to output_results("Processed #{total_relationships} relationships")
+          expect(target_account.reload.followers).to be_empty
         end
       end
 
@@ -1262,31 +1246,15 @@ describe Mastodon::CLI::Accounts do
         before do
           accounts.first(2).each { |account| account.follow!(target_account) }
           accounts.last(1).each  { |account| target_account.follow!(account) }
-        end
-
-        it 'resets all "followers" relationships from the target account' do
-          subject
-
-          expect(target_account.reload.followers).to be_empty
-        end
-
-        it 'resets all "following" relationships from the target account' do
-          subject
-
-          expect(target_account.reload.following).to be_empty
-        end
-
-        it 'calls BootstrapTimelineWorker once to rebuild the timeline' do
           allow(BootstrapTimelineWorker).to receive(:perform_async)
-
-          subject
-
-          expect(BootstrapTimelineWorker).to have_received(:perform_async).with(target_account.id).once
         end
 
-        it 'displays a successful message' do
+        it 'resets followers and following and displays a successful message and rebuilds timeline' do
           expect { subject }
             .to output_results("Processed #{total_relationships} relationships")
+          expect(target_account.reload.followers).to be_empty
+          expect(target_account.reload.following).to be_empty
+          expect(BootstrapTimelineWorker).to have_received(:perform_async).with(target_account.id).once
         end
       end
     end
