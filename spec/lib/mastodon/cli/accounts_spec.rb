@@ -1035,15 +1035,10 @@ describe Mastodon::CLI::Accounts do
           allow(from_account).to receive(:destroy)
         end
 
-        it 'merges "from_account" into "to_account"' do
+        it 'merges `from_account` into `to_account` and deletes `from_account`' do
           subject
 
           expect(to_account).to have_received(:merge_with!).with(from_account).once
-        end
-
-        it 'deletes "from_account"' do
-          subject
-
           expect(from_account).to have_received(:destroy).once
         end
       end
