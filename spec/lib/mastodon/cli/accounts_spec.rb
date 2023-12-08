@@ -592,17 +592,12 @@ describe Mastodon::CLI::Accounts do
         stub_parallelize_with_progress!
       end
 
-      it 'makes all local accounts unfollow the target account' do
-        subject
-
+      it 'displays a successful message and makes all local accounts unfollow the target account' do
+        expect { subject }
+          .to output_results('OK, unfollowed target from 3 accounts')
         expect(unfollow_service).to have_received(:call).with(follower_chris, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_rambo, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_ana, target_account).once
-      end
-
-      it 'displays a successful message' do
-        expect { subject }
-          .to output_results('OK, unfollowed target from 3 accounts')
       end
     end
   end
