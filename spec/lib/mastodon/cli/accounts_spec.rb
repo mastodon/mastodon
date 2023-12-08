@@ -1103,13 +1103,10 @@ describe Mastodon::CLI::Accounts do
         expect(delete_account_service).to_not have_received(:call).with(tales, reserve_username: false)
       end
 
-      it 'touches inactive remote accounts that have not been deleted' do
-        expect { subject }.to(change { tales.reload.updated_at })
-      end
-
-      it 'displays the summary correctly' do
+      it 'touches inactive remote accounts that have not been deleted and summarizes activity' do
         expect { subject }
-          .to output_results('Visited 5 accounts, removed 2')
+          .to change { tales.reload.updated_at }
+          .and output_results('Visited 5 accounts, removed 2')
       end
     end
 
