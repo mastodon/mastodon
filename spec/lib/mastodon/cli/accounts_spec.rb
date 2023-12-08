@@ -197,14 +197,9 @@ describe Mastodon::CLI::Accounts do
       let(:arguments) { [user.account.username] }
 
       context 'when no option is provided' do
-        it 'returns a successful message' do
+        it 'returns a successful message and preserves user' do
           expect { subject }
             .to output_results('OK')
-        end
-
-        it 'does not modify the user' do
-          subject
-
           expect(user).to eq(user.reload)
         end
       end
