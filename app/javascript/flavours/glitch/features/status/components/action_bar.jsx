@@ -58,13 +58,13 @@ class ActionBar extends PureComponent {
     onReblog: PropTypes.func.isRequired,
     onFavourite: PropTypes.func.isRequired,
     onBookmark: PropTypes.func.isRequired,
-    onMute: PropTypes.func,
-    onMuteConversation: PropTypes.func,
-    onBlock: PropTypes.func,
     onDelete: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,
     onDirect: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
+    onMute: PropTypes.func,
+    onBlock: PropTypes.func,
+    onMuteConversation: PropTypes.func,
     onReport: PropTypes.func,
     onPin: PropTypes.func,
     onEmbed: PropTypes.func,
@@ -112,12 +112,12 @@ class ActionBar extends PureComponent {
     this.props.onMute(this.props.status.get('account'));
   };
 
-  handleConversationMuteClick = () => {
-    this.props.onMuteConversation(this.props.status);
-  };
-
   handleBlockClick = () => {
     this.props.onBlock(this.props.status);
+  };
+
+  handleConversationMuteClick = () => {
+    this.props.onMuteConversation(this.props.status);
   };
 
   handleReport = () => {

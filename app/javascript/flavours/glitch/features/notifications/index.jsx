@@ -333,7 +333,6 @@ class Notifications extends PureComponent {
       <Column
         bindToDocument={!multiColumn}
         ref={this.setColumnRef}
-        name='notifications'
         extraClasses={this.props.notifCleaningActive ? 'notif-cleaning' : null}
         label={intl.formatMessage(messages.title)}
       >

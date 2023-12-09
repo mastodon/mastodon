@@ -77,7 +77,7 @@ class Bookmarks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.bookmarked_statuses' defaultMessage="You don't have any bookmarked posts yet. When you bookmark one, it will show up here." />;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} name='bookmarks'>
+      <Column bindToDocument={!multiColumn} ref={this.setRef}>
         <ColumnHeader
           icon='bookmark'
           title={intl.formatMessage(messages.heading)}

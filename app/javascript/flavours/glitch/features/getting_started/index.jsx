@@ -173,7 +173,7 @@ class GettingStarted extends ImmutablePureComponent {
     }
 
     return (
-      <Column bindToDocument={!multiColumn} name='getting-started' icon='asterisk' heading={intl.formatMessage(messages.heading)} label={intl.formatMessage(messages.menu)} hideHeadingOnMobile>
+      <Column bindToDocument={!multiColumn} icon='asterisk' heading={intl.formatMessage(messages.heading)} label={intl.formatMessage(messages.menu)} hideHeadingOnMobile>
         <div className='scrollable optionally-scrollable'>
           <div className='getting-started__wrapper'>
             {!multiColumn && signedIn && <NavigationBar account={myAccount} />}

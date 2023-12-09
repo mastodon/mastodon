@@ -40,12 +40,12 @@ const mapStateToProps = (state, { columnId }) => {
 
 class CommunityTimeline extends PureComponent {
 
-  static defaultProps = {
-    onlyMedia: false,
-  };
-
   static contextTypes = {
     identity: PropTypes.object,
+  };
+
+  static defaultProps = {
+    onlyMedia: false,
   };
 
   static propTypes = {
@@ -128,7 +128,7 @@ class CommunityTimeline extends PureComponent {
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef} name='local' bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='users'
           active={hasUnread}
