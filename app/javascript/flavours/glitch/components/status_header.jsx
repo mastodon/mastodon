@@ -6,7 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 //  Mastodon imports.
 import { Avatar } from './avatar';
-import AvatarOverlay from './avatar_overlay';
+import { AvatarOverlay } from './avatar_overlay';
 import { DisplayName } from './display_name';
 
 export default class StatusHeader extends PureComponent {
@@ -39,7 +39,7 @@ export default class StatusHeader extends PureComponent {
 
     let statusAvatar;
     if (friend === undefined || friend === null) {
-      statusAvatar = <Avatar account={account} size={48} />;
+      statusAvatar = <Avatar account={account} size={46} />;
     } else {
       statusAvatar = <AvatarOverlay account={account} friend={friend} />;
     }

@@ -5,49 +5,44 @@ import { autoPlayGif } from '../initial_state';
 import type { Account } from '../types/resources';
 
 interface Props {
-  account: Account | undefined;
-  className?: string;
+  account: Account | undefined; // FIXME: remove `undefined` once we know for sure its always there
   size: number;
   style?: React.CSSProperties;
   inline?: boolean;
+  animate?: boolean;
 }
 
 export const Avatar: React.FC<Props> = ({
   account,
-  className,
+  animate = autoPlayGif,
   size = 20,
   inline = false,
   style: styleFromParent,
 }) => {
-  const { hovering, handleMouseEnter, handleMouseLeave } =
-    useHovering(autoPlayGif);
+  const { hovering, handleMouseEnter, handleMouseLeave } = useHovering(animate);
 
   const style = {
     ...styleFromParent,
     width: `${size}px`,
     height: `${size}px`,
-    backgroundSize: `${size}px ${size}px`,
   };
 
-  if (account) {
-    style.backgroundImage = `url(${account.get(
-      hovering ? 'avatar' : 'avatar_static',
-    )})`;
-  }
+  const src =
+    hovering || animate
+      ? account?.get('avatar')
+      : account?.get('avatar_static');
 
   return (
     <div
-      className={classNames(
-        'account__avatar',
-        { 'account__avatar-inline': inline },
-        className,
-      )}
+      className={classNames('account__avatar', {
+        'account__avatar-inline': inline,
+      })}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={style}
       data-avatar-of={account && `@${account.get('acct')}`}
-      role='img'
-      aria-label={account?.get('acct')}
-    />
+    >
+      {src && <img src={src} alt={account?.get('acct')} />}
+    </div>
   );
 };

@@ -8,7 +8,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { Icon } from 'flavours/glitch/components/icon';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
-import AvatarOverlay from '../../../components/avatar_overlay';
+import { AvatarOverlay } from '../../../components/avatar_overlay';
 import { DisplayName } from '../../../components/display_name';
 
 class MovedNote extends ImmutablePureComponent {

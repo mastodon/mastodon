@@ -85,10 +85,14 @@
 
   display: block;
   position: relative;
-  cursor: pointer;
-  width: 36px;
-  height: 36px;
-  background-size: 36px 36px;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   &-inline {
     display: inline-block;
@@ -102,12 +106,17 @@
     overflow: hidden;
     position: relative;
 
-    & div {
+    & > div {
       @include avatar-radius;
 
       float: left;
       position: relative;
       box-sizing: border-box;
+    }
+
+    .account__avatar {
+      width: 100% !important;
+      height: 100% !important;
     }
 
     &__label {
@@ -125,37 +134,13 @@
 }
 
 .account__avatar-overlay {
-  @include avatar-size(48px);
-
   position: relative;
 
-  &-base {
-    @include avatar-radius;
-    @include avatar-size(36px);
-
-    img {
-      @include avatar-radius;
-
-      width: 100%;
-      height: 100%;
-    }
-  }
-
   &-overlay {
-    @include avatar-radius;
-    @include avatar-size(24px);
-
     position: absolute;
     bottom: 0;
     inset-inline-end: 0;
     z-index: 1;
-
-    img {
-      @include avatar-radius;
-
-      width: 100%;
-      height: 100%;
-    }
   }
 }
 
