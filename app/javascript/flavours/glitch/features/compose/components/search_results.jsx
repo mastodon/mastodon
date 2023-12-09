@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon }  from 'flavours/glitch/components/icon';
 import { LoadMore } from 'flavours/glitch/components/load_more';
 import { SearchSection } from 'flavours/glitch/features/explore/components/search_section';
 
@@ -68,6 +68,7 @@ class SearchResults extends ImmutablePureComponent {
         </SearchSection>
       );
     }
+
 
     return (
       <div className='drawer--results'>

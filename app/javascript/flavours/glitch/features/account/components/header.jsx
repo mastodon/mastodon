@@ -11,7 +11,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { Button } from 'flavours/glitch/components/button';
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon }  from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'flavours/glitch/initial_state';
