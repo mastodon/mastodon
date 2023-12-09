@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent, Component } from 'react';
+import { PureComponent } from 'react';
 
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
@@ -68,9 +68,10 @@ import {
   PrivacyPolicy,
 } from './util/async-components';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
+
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
-import "../../components/status";
+import '../../components/status';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -119,7 +120,7 @@ const keyMap = {
   goToBlocked: 'g b',
   goToMuted: 'g m',
   goToRequests: 'g r',
-  toggleSpoiler: 'x',
+  toggleHidden: 'x',
   bookmark: 'd',
   toggleCollapse: 'shift+x',
   toggleSensitive: 'h',
@@ -255,7 +256,7 @@ class SwitchingColumnsArea extends PureComponent {
 
 }
 
-class UI extends Component {
+class UI extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object.isRequired,
@@ -270,7 +271,6 @@ class UI extends Component {
     hasComposingText: PropTypes.bool,
     hasMediaAttachments: PropTypes.bool,
     canUploadMore: PropTypes.bool,
-    match: PropTypes.object.isRequired,
     intl: PropTypes.object.isRequired,
     dropdownMenuIsOpen: PropTypes.bool,
     unreadNotifications: PropTypes.number,
@@ -287,7 +287,7 @@ class UI extends Component {
     draggingOver: false,
   };
 
-  handleBeforeUnload = (e) => {
+  handleBeforeUnload = e => {
     const { intl, dispatch, hasComposingText, hasMediaAttachments } = this.props;
 
     dispatch(synchronouslySubmitMarkers());
@@ -297,6 +297,14 @@ class UI extends Component {
       // Many browsers no longer display this text to users,
       // but we set user-friendly message for other browsers, e.g. Edge.
       e.returnValue = intl.formatMessage(messages.beforeUnload);
+    }
+  };
+
+  handleVisibilityChange = () => {
+    const visibility = !document[this.visibilityHiddenProp];
+    this.props.dispatch(notificationsSetVisibility(visibility));
+    if (visibility) {
+      this.props.dispatch(submitMarkers({ immediate: true }));
     }
   };
 
@@ -311,13 +319,14 @@ class UI extends Component {
       this.dragTargets.push(e.target);
     }
 
-    if (e.dataTransfer && e.dataTransfer.types.includes('Files') && this.props.canUploadMore && this.context.identity.signedIn) {
+    if (e.dataTransfer && Array.from(e.dataTransfer.types).includes('Files') && this.props.canUploadMore && this.context.identity.signedIn) {
       this.setState({ draggingOver: true });
     }
   };
 
   handleDragOver = (e) => {
     if (this.dataTransferIsText(e.dataTransfer)) return false;
+
     e.preventDefault();
     e.stopPropagation();
 
@@ -369,14 +378,6 @@ class UI extends Component {
       this.props.history.push(data.path);
     } else {
       console.warn('Unknown message type:', data.type);
-    }
-  };
-
-  handleVisibilityChange = () => {
-    const visibility = !document[this.visibilityHiddenProp];
-    this.props.dispatch(notificationsSetVisibility(visibility));
-    if (visibility) {
-      this.props.dispatch(submitMarkers({ immediate: true }));
     }
   };
 

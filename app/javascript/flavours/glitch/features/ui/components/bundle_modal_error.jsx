@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
@@ -11,7 +11,7 @@ const messages = defineMessages({
   close: { id: 'bundle_modal_error.close', defaultMessage: 'Close' },
 });
 
-class BundleModalError extends Component {
+class BundleModalError extends PureComponent {
 
   static propTypes = {
     onRetry: PropTypes.func.isRequired,

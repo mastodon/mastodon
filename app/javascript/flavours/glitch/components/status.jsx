@@ -569,7 +569,7 @@ class Status extends ImmutablePureComponent {
       openProfile: this.handleHotkeyOpenProfile,
       moveUp: this.handleHotkeyMoveUp,
       moveDown: this.handleHotkeyMoveDown,
-      toggleSpoiler: this.handleExpandedToggle,
+      toggleHidden: this.handleExpandedToggle,
       bookmark: this.handleHotkeyBookmark,
       toggleCollapse: this.handleHotkeyCollapse,
       toggleSensitive: this.handleHotkeyToggleSensitive,

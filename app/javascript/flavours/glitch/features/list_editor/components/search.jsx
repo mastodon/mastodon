@@ -1,17 +1,31 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { connect } from 'react-redux';
+
 import { Icon }  from 'flavours/glitch/components/icon';
+
+import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
 
 const messages = defineMessages({
   search: { id: 'lists.search', defaultMessage: 'Search among people you follow' },
 });
 
-export default class Search extends PureComponent {
+const mapStateToProps = state => ({
+  value: state.getIn(['listEditor', 'suggestions', 'value']),
+});
+
+const mapDispatchToProps = dispatch => ({
+  onSubmit: value => dispatch(fetchListSuggestions(value)),
+  onClear: () => dispatch(clearListSuggestions()),
+  onChange: value => dispatch(changeListSuggestions(value)),
+});
+
+class Search extends PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -63,3 +77,5 @@ export default class Search extends PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Search));

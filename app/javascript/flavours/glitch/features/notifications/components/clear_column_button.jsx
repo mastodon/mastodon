@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
 import { Icon }  from 'flavours/glitch/components/icon';
 
-export default class ClearColumnButton extends Component {
+export default class ClearColumnButton extends PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func.isRequired,
