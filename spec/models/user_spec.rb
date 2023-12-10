@@ -9,14 +9,25 @@ RSpec.describe User do
 
   it_behaves_like 'two_factor_backupable'
 
-  describe 'otp_secret' do
+  describe 'legacy_otp_secret' do
     it 'is encrypted with OTP_SECRET environment variable' do
       user = Fabricate(:user,
                        encrypted_otp_secret: "Fttsy7QAa0edaDfdfSz094rRLAxc8cJweDQ4BsWH/zozcdVA8o9GLqcKhn2b\nGi/V\n",
                        encrypted_otp_secret_iv: 'rys3THICkr60BoWC',
                        encrypted_otp_secret_salt: '_LMkAGvdg7a+sDIKjI3mR2Q==')
 
-      expect(user.otp_secret).to eq 'anotpsecretthatshouldbeencrypted'
+      expect(user.send(:legacy_otp_secret)).to eq 'anotpsecretthatshouldbeencrypted'
+    end
+  end
+
+  describe 'otp_secret' do
+    it 'encrypts the saved value' do
+      user = Fabricate(:user, otp_secret: '123123123')
+
+      user.reload
+
+      expect(user.otp_secret).to eq '123123123'
+      expect(user.attributes_before_type_cast[:otp_secret]).to_not eq '123123123'
     end
   end
 

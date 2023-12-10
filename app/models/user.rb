@@ -54,7 +54,6 @@ class User < ApplicationRecord
   )
 
   include LanguagesHelper
-  include LegacyOtpSecret
   include Redisable
   include User::HasSettings
   include User::LdapAuthenticable
@@ -72,6 +71,8 @@ class User < ApplicationRecord
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret
+
+  include LegacyOtpSecret # Must be after the above `devise` line in order to override the legacy method
 
   devise :two_factor_backupable,
          otp_number_of_backup_codes: 10
@@ -131,11 +132,6 @@ class User < ApplicationRecord
   normalizes :locale, with: ->(locale) { I18n.available_locales.exclude?(locale.to_sym) ? nil : locale }
   normalizes :time_zone, with: ->(time_zone) { ActiveSupport::TimeZone[time_zone].nil? ? nil : time_zone }
   normalizes :chosen_languages, with: ->(chosen_languages) { chosen_languages.compact_blank.presence }
-
-  # This avoids a deprecation warning from Rails 5.1
-  # It seems possible that a future release of devise-two-factor will
-  # handle this itself, and this can be removed from our User class.
-  attribute :otp_secret
 
   has_many :session_activations, dependent: :destroy
 
