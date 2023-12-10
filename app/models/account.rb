@@ -85,6 +85,7 @@ class Account < ApplicationRecord
   include Account::Interactions
   include Account::Merging
   include Account::Search
+  include Account::Silences
   include Account::StatusesSearch
   include DomainMaterializable
   include DomainNormalizable
@@ -119,11 +120,9 @@ class Account < ApplicationRecord
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
-  scope :silenced, -> { where.not(silenced_at: nil) }
   scope :suspended, -> { where.not(suspended_at: nil) }
   scope :sensitized, -> { where.not(sensitized_at: nil) }
   scope :without_suspended, -> { where(suspended_at: nil) }
-  scope :without_silenced, -> { where(silenced_at: nil) }
   scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
   scope :bots, -> { where(actor_type: %w(Application Service)) }
@@ -231,18 +230,6 @@ class Account < ApplicationRecord
 
   def refresh!
     ResolveAccountService.new.call(acct) unless local?
-  end
-
-  def silenced?
-    silenced_at.present?
-  end
-
-  def silence!(date = Time.now.utc)
-    update!(silenced_at: date)
-  end
-
-  def unsilence!
-    update!(silenced_at: nil)
   end
 
   def suspended?
