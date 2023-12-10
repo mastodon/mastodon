@@ -3,13 +3,13 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { Blurhash } from 'flavours/glitch/components/blurhash';
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon }  from 'flavours/glitch/components/icon';
 import { useBlurhash } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
 
@@ -148,7 +148,7 @@ export default class Card extends PureComponent {
     const provider    = card.get('provider_name').length === 0 ? decodeIDNA(getHostname(card.get('url'))) : card.get('provider_name');
     const horizontal  = (!compact && card.get('width') > card.get('height')) || card.get('type') !== 'link' || embedded;
     const interactive = card.get('type') !== 'link';
-    const className   = classnames('status-card', { horizontal, compact, interactive });
+    const className   = classNames('status-card', { horizontal, compact, interactive });
     const title       = interactive ? <a className='status-card__title' href={card.get('url')} title={card.get('title')} rel='noopener noreferrer' target='_blank'><strong>{card.get('title')}</strong></a> : <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>;
     const language    = card.get('language') || '';
 
@@ -171,15 +171,17 @@ export default class Card extends PureComponent {
     let embed     = '';
     let canvas = (
       <Blurhash
-        className={classnames('status-card__image-preview', {
+        className={classNames('status-card__image-preview', {
           'status-card__image-preview--hidden': revealed && this.state.previewLoaded,
         })}
         hash={card.get('blurhash')}
         dummy={!useBlurhash}
       />
     );
+
     const thumbnailDescription = card.get('image_description');
     const thumbnail = <img src={card.get('image')} alt={thumbnailDescription} title={thumbnailDescription} lang={language} style={thumbnailStyle} onLoad={this.handleImageLoad} className='status-card__image-image' />;
+
     let spoilerButton = (
       <button type='button' onClick={this.handleReveal} className='spoiler-button__overlay'>
         <span className='spoiler-button__overlay__label'>
@@ -188,8 +190,9 @@ export default class Card extends PureComponent {
         </span>
       </button>
     );
+
     spoilerButton = (
-      <div className={classnames('spoiler-button', { 'spoiler-button--minified': revealed })}>
+      <div className={classNames('spoiler-button', { 'spoiler-button--minified': revealed })}>
         {spoilerButton}
       </div>
     );
@@ -209,15 +212,14 @@ export default class Card extends PureComponent {
             {canvas}
             {thumbnail}
 
-            {revealed && (
+            {revealed ? (
               <div className='status-card__actions'>
                 <div>
-                  <button onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
+                  <button type='button' onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
                   {horizontal && <a href={card.get('url')} target='_blank' rel='noopener noreferrer'><Icon id='external-link' /></a>}
                 </div>
               </div>
-            )}
-            {!revealed && spoilerButton}
+            ) : spoilerButton}
           </div>
         );
       }

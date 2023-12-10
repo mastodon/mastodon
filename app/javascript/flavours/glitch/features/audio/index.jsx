@@ -9,7 +9,7 @@ import { is } from 'immutable';
 
 import { throttle, debounce } from 'lodash';
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon }  from 'flavours/glitch/components/icon';
 import { formatTime, getPointerPosition, fileNameFromURL } from 'flavours/glitch/features/video';
 
 import { Blurhash } from '../../components/blurhash';

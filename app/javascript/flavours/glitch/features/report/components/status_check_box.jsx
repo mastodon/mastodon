@@ -12,7 +12,7 @@ import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
 
 import Option from './option';
 
-export default class StatusCheckBox extends PureComponent {
+class StatusCheckBox extends PureComponent {
 
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -40,7 +40,9 @@ export default class StatusCheckBox extends PureComponent {
             <Avatar account={status.get('account')} size={46} />
           </div>
 
-          <div><DisplayName account={status.get('account')} /> · <VisibilityIcon visibility={status.get('visibility')} /><RelativeTimestamp timestamp={status.get('created_at')} /></div>
+          <div>
+            <DisplayName account={status.get('account')} /> · <VisibilityIcon visibility={status.get('visibility')} /><RelativeTimestamp timestamp={status.get('created_at')} />
+          </div>
         </div>
 
         <StatusContent status={status} media={<MediaAttachments status={status} revealed={false} />} />
@@ -61,3 +63,5 @@ export default class StatusCheckBox extends PureComponent {
   }
 
 }
+
+export default StatusCheckBox;

@@ -13,7 +13,7 @@ import SwipeableViews from 'react-swipeable-views';
 
 import Column from 'flavours/glitch/components/column';
 import ColumnBackButton from 'flavours/glitch/components/column_back_button';
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon }  from 'flavours/glitch/components/icon';
 import { me, domain } from 'flavours/glitch/initial_state';
 
 import ArrowSmallRight from './components/arrow_small_right';

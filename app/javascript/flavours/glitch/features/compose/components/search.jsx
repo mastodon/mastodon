@@ -92,25 +92,6 @@ class Search extends PureComponent {
     }
   };
 
-  handleBlur = () => {
-    this.setState({ expanded: false, selectedOption: -1 });
-  };
-
-  handleFocus = () => {
-    const { onShow, singleColumn } = this.props;
-
-    this.setState({ expanded: true, selectedOption: -1 });
-    onShow();
-
-    if (this.searchForm && !singleColumn) {
-      const { left, right } = this.searchForm.getBoundingClientRect();
-
-      if (left < 0 || right > (window.innerWidth || document.documentElement.clientWidth)) {
-        this.searchForm.scrollIntoView();
-      }
-    }
-  };
-
   handleKeyDown = (e) => {
     const { selectedOption } = this.state;
     const options = searchEnabled ? this._getOptions().concat(this.defaultOptions) : this._getOptions();
@@ -161,8 +142,23 @@ class Search extends PureComponent {
     }
   };
 
-  findTarget = () => {
-    return this.searchForm;
+  handleFocus = () => {
+    const { onShow, singleColumn } = this.props;
+
+    this.setState({ expanded: true, selectedOption: -1 });
+    onShow();
+
+    if (this.searchForm && !singleColumn) {
+      const { left, right } = this.searchForm.getBoundingClientRect();
+
+      if (left < 0 || right > (window.innerWidth || document.documentElement.clientWidth)) {
+        this.searchForm.scrollIntoView();
+      }
+    }
+  };
+
+  handleBlur = () => {
+    this.setState({ expanded: false, selectedOption: -1 });
   };
 
   handleHashtagClick = () => {

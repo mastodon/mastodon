@@ -96,6 +96,7 @@ class MediaModal extends ImmutablePureComponent {
 
   componentDidMount () {
     window.addEventListener('keydown', this.handleKeyDown, false);
+
     this._sendBackgroundColor();
   }
 
