@@ -44,7 +44,13 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  # TODO: Remove once devise-two-factor data migration complete
   config.x.otp_secret = '100c7faeef00caa29242f6b04156742bf76065771fd4117990c4282b8748ff3d99f8fdae97c982ab5bd2e6756a159121377cce4421f4a8ecd2d67bd7749a3fb4'
+
+  # Hard coded default values for test env, must change in production
+  config.active_record.encryption.primary_key = ENV.fetch('ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY', 'PhdFyyfy5xJ7WVd2lWBpcPScRQHzRTNr')
+  config.active_record.encryption.deterministic_key = ENV.fetch('ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY', 'fkSxKD2bF396kdQbrP1EJ7WbU7ZgNokR')
+  config.active_record.encryption.key_derivation_salt = ENV.fetch('ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT', 'r0hvVmzBVsjxC7AMlwhOzmtc36ZCOS1E')
 
   # Generate random VAPID keys
   vapid_key = Webpush.generate_key
