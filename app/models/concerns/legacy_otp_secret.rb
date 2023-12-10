@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 # TODO: This file is here for legacy support during devise-two-factor upgrade.
-# It should be removed after all records have been migrated to the new approach.
+# It should be removed after all records have been migrated.
 
-class User
-  # ...
+module LegacyOtpSecret
+  extend ActiveSupport::Concern
 
   private
 
-  ##
   # Decrypt and return the `encrypted_otp_secret` attribute which was used in
   # prior versions of devise-two-factor
   # @return [String] The decrypted OTP secret
