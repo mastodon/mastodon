@@ -54,6 +54,7 @@ class User < ApplicationRecord
   )
 
   include LanguagesHelper
+  include LegacyOtpSecret
   include Redisable
   include User::HasSettings
   include User::LdapAuthenticable
