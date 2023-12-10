@@ -1023,6 +1023,14 @@ ja:
       hint_html: もう一つだけ！あなたが人間であることを確認する必要があります(スパムを防ぐためです！)。 以下のCAPTCHAを解き、「続ける」をクリックします。
       title: セキュリティチェック
     confirmations:
+      awaiting_review: メールアドレスは確認済みです。%{domain} のモデレーターによりアカウント登録の審査が完了すると、メールでお知らせします。
+      awaiting_review_title: 登録の審査待ちです
+      clicking_this_link: こちらのリンク
+      login_link: こちらのリンク
+      proceed_to_login_html: "%{login_link}から早速ログインしてみましょう。"
+      redirect_to_app_html: "<strong>%{app_name}</strong>に戻ります。自動で移動しない場合は%{clicking_this_link}を押すか、手動でアプリを切り替えてください。"
+      registration_complete: "%{domain} へのアカウント登録が完了しました。"
+      welcome_title: Mastodonへようこそ、%{name}さん
       wrong_email_hint: メールアドレスが正しくない場合は、アカウント設定で変更できます。
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除する前に、確認画面があります。

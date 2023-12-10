@@ -19,7 +19,7 @@ import {
   fetchFollowers,
   expandFollowers,
 } from '../../actions/accounts';
-import ColumnBackButton from '../../components/column_back_button';
+import { ColumnBackButton } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import AccountContainer from '../../containers/account_container';
@@ -147,7 +147,7 @@ class Followers extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton multiColumn={multiColumn} />
+        <ColumnBackButton />
 
         <ScrollableList
           scrollKey='followers'
