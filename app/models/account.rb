@@ -85,6 +85,7 @@ class Account < ApplicationRecord
   include Account::Interactions
   include Account::Merging
   include Account::Search
+  include Account::Sensitizes
   include Account::StatusesSearch
   include DomainMaterializable
   include DomainNormalizable
@@ -121,7 +122,6 @@ class Account < ApplicationRecord
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where.not(silenced_at: nil) }
   scope :suspended, -> { where.not(suspended_at: nil) }
-  scope :sensitized, -> { where.not(sensitized_at: nil) }
   scope :without_suspended, -> { where(suspended_at: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
   scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
@@ -274,18 +274,6 @@ class Account < ApplicationRecord
       update!(suspended_at: nil, suspension_origin: nil)
       destroy_canonical_email_block!
     end
-  end
-
-  def sensitized?
-    sensitized_at.present?
-  end
-
-  def sensitize!(date = Time.now.utc)
-    update!(sensitized_at: date)
-  end
-
-  def unsensitize!
-    update!(sensitized_at: nil)
   end
 
   def memorialize!
