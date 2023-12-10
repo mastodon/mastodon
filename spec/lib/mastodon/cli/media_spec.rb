@@ -20,8 +20,7 @@ describe Mastodon::CLI::Media do
 
       it 'warns about usage and exits' do
         expect { subject }
-          .to output_results('--prune-profiles and --remove-headers should not be specified simultaneously')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, '--prune-profiles and --remove-headers should not be specified simultaneously')
       end
     end
 
@@ -30,8 +29,7 @@ describe Mastodon::CLI::Media do
 
       it 'warns about usage and exits' do
         expect { subject }
-          .to output_results('--include-follows can only be used with --prune-profiles or --remove-headers')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, '--include-follows can only be used with --prune-profiles or --remove-headers')
       end
     end
 
@@ -98,8 +96,7 @@ describe Mastodon::CLI::Media do
 
       it 'warns about url and exits' do
         expect { subject }
-          .to output_results('Not a media URL')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, 'Not a media URL')
       end
     end
 
@@ -121,8 +118,7 @@ describe Mastodon::CLI::Media do
     context 'without any options' do
       it 'warns about usage and exits' do
         expect { subject }
-          .to output_results('Specify the source')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, /Specify the source/)
       end
     end
 
@@ -147,8 +143,7 @@ describe Mastodon::CLI::Media do
 
         it 'warns about usage and exits' do
           expect { subject }
-            .to output_results('No such account')
-            .and raise_error(SystemExit)
+            .to raise_error(Thor::Error, 'No such account')
         end
       end
 

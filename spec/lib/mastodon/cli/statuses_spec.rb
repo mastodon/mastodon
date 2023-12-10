@@ -20,8 +20,7 @@ describe Mastodon::CLI::Statuses do
 
       it 'exits with error message' do
         expect { subject }
-          .to output_results('Cannot run')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, /Cannot run/)
       end
     end
 

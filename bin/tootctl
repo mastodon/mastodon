@@ -5,9 +5,17 @@ require_relative '../config/boot'
 require_relative '../lib/mastodon/cli/main'
 
 begin
+  ENV['THOR_DEBUG'] = '1' # Enables the script to rescue `Thor::Error`
   Chewy.strategy(:mastodon) do
     Mastodon::CLI::Main.start(ARGV)
   end
+rescue Thor::Error => e
+  Thor::Shell::Color
+    .new
+    .say_error(e.message, :red)
+  exit(1)
+rescue TTY::Reader::InputInterrupt
+  exit(1)
 rescue Interrupt
   exit(130)
 end
