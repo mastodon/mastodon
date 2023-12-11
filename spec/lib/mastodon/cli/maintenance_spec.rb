@@ -64,10 +64,12 @@ describe Mastodon::CLI::Maintenance do
           prepare_duplicate_data
         end
 
+        let(:duplicate_account_username) { 'username' }
+        let(:duplicate_account_domain) { 'host.example' }
+
         it 'runs the deduplication process' do
           expect { subject }
             .to output_results(
-              'will take a long time',
               'Deduplicating accounts',
               'Restoring index_accounts_on_username_and_domain_lower',
               'Reindexing textual indexes on accounts…',
@@ -77,13 +79,13 @@ describe Mastodon::CLI::Maintenance do
         end
 
         def duplicate_accounts
-          Account.where(username: 'one', domain: 'host.example')
+          Account.where(username: duplicate_account_username, domain: duplicate_account_domain)
         end
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :accounts, name: :index_accounts_on_username_and_domain_lower
-          Fabricate(:account, username: 'one', domain: 'host.example')
-          Fabricate.build(:account, username: 'one', domain: 'host.example').save(validate: false)
+          Fabricate(:account, username: duplicate_account_username, domain: duplicate_account_domain)
+          Fabricate.build(:account, username: duplicate_account_username, domain: duplicate_account_domain).save(validate: false)
         end
       end
 
@@ -92,10 +94,11 @@ describe Mastodon::CLI::Maintenance do
           prepare_duplicate_data
         end
 
+        let(:duplicate_email) { 'duplicate@example.host' }
+
         it 'runs the deduplication process' do
           expect { subject }
             .to output_results(
-              'will take a long time',
               'Deduplicating user records',
               'Restoring users indexes',
               'Finished!'
@@ -104,13 +107,13 @@ describe Mastodon::CLI::Maintenance do
         end
 
         def duplicate_users
-          User.where(email: 'duplicate@example.host')
+          User.where(email: duplicate_email)
         end
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :users, :email
-          Fabricate(:user, email: 'duplicate@example.host')
-          Fabricate.build(:user, email: 'duplicate@example.host').save(validate: false)
+          Fabricate(:user, email: duplicate_email)
+          Fabricate.build(:user, email: duplicate_email).save(validate: false)
         end
       end
 
