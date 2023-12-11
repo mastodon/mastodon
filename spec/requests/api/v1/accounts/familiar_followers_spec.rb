@@ -2,20 +2,16 @@
 
 require 'rails_helper'
 
-describe Api::V1::Accounts::FamiliarFollowersController do
-  render_views
-
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:follows') }
+describe 'Accounts Familiar Followers API' do
+  let(:user)     { Fabricate(:user) }
+  let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:scopes)   { 'read:follows' }
+  let(:headers)  { { 'Authorization' => "Bearer #{token.token}" } }
   let(:account) { Fabricate(:account) }
 
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
-
-  describe 'GET #index' do
+  describe 'GET /api/v1/accounts/familiar_followers' do
     it 'returns http success' do
-      get :index, params: { account_id: account.id, limit: 2 }
+      get '/api/v1/accounts/familiar_followers', params: { account_id: account.id, limit: 2 }, headers: headers
 
       expect(response).to have_http_status(200)
     end
@@ -26,7 +22,7 @@ describe Api::V1::Accounts::FamiliarFollowersController do
 
       it 'removes duplicate account IDs from params' do
         account_ids = [account_a, account_b, account_b, account_a, account_a].map { |a| a.id.to_s }
-        get :index, params: { id: account_ids }
+        get '/api/v1/accounts/familiar_followers', params: { id: account_ids }, headers: headers
 
         expect(body_as_json.pluck(:id)).to contain_exactly(account_a.id.to_s, account_b.id.to_s)
       end
