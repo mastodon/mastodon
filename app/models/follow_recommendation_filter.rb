@@ -19,10 +19,7 @@ class FollowRecommendationFilter
     if params['status'] == 'suppressed'
       Account.joins(:follow_recommendation_suppression).order(FollowRecommendationSuppression.arel_table[:id].desc).to_a
     else
-      account_ids = redis.zrevrange("follow_recommendations:#{@language}", 0, -1).map(&:to_i)
-      accounts    = Account.where(id: account_ids).index_by(&:id)
-
-      account_ids.filter_map { |id| accounts[id] }
+      FollowRecommendation.includes(:account).localized(@language).order(rank: :desc).map(&:account)
     end
   end
 end
