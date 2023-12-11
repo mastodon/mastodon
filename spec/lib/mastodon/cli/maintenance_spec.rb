@@ -55,6 +55,7 @@ describe Mastodon::CLI::Maintenance do
 
     context 'when requirements are met' do
       before do
+        prepare_duplicate_data
         allow(ActiveRecord::Migrator).to receive(:current_version).and_return(2023_08_22_081029) # The latest migration before the cutoff
         allow(Sidekiq::ProcessSet).to receive(:new).and_return []
         agree_to_backup_warning
@@ -64,8 +65,22 @@ describe Mastodon::CLI::Maintenance do
         expect { subject }
           .to output_results(
             'will take a long time',
+            'Deduplicating accounts',
+            'Restoring index_accounts_on_username_and_domain_lower',
+            'Reindexing textual indexes on accounts…',
             'Finished!'
           )
+          .and change(duplicate_accounts, :count).from(2).to(1)
+      end
+
+      def duplicate_accounts
+        Account.where(username: 'one', domain: 'host.example')
+      end
+
+      def prepare_duplicate_data
+        ActiveRecord::Base.connection.remove_index :accounts, name: :index_accounts_on_username_and_domain_lower
+        Fabricate(:account, username: 'one', domain: 'host.example')
+        Fabricate.build(:account, username: 'one', domain: 'host.example').save(validate: false)
       end
 
       def agree_to_backup_warning
