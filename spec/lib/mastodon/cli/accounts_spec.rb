@@ -34,23 +34,21 @@ describe Mastodon::CLI::Accounts do
     let(:action) { :create }
 
     shared_examples 'a new user with given email address and username' do
-      it 'creates a new user with the specified email address' do
-        subject
-
-        expect(User.find_by(email: options[:email])).to be_present
-      end
-
-      it 'creates a new local account with the specified username' do
-        subject
-
-        expect(Account.find_local('tootctl_username')).to be_present
-      end
-
-      it 'returns "OK" and newly generated password' do
+      it 'creates user and accounts from options and displays success message' do
         allow(SecureRandom).to receive(:hex).and_return('test_password')
 
         expect { subject }
-          .to output_results("OK\nNew password: test_password")
+          .to output_results('OK', 'New password: test_password')
+        expect(user_from_options).to be_present
+        expect(account_from_options).to be_present
+      end
+
+      def user_from_options
+        User.find_by(email: options[:email])
+      end
+
+      def account_from_options
+        Account.find_local('tootctl_username')
       end
     end
 
@@ -199,14 +197,9 @@ describe Mastodon::CLI::Accounts do
       let(:arguments) { [user.account.username] }
 
       context 'when no option is provided' do
-        it 'returns a successful message' do
+        it 'returns a successful message and preserves user' do
           expect { subject }
             .to output_results('OK')
-        end
-
-        it 'does not modify the user' do
-          subject
-
           expect(user).to eq(user.reload)
         end
       end
@@ -400,15 +393,10 @@ describe Mastodon::CLI::Accounts do
       context 'with --dry-run option' do
         let(:options) { { dry_run: true } }
 
-        it 'does not delete the specified user' do
-          subject
-
-          expect(delete_account_service).to_not have_received(:call).with(account, reserve_email: false)
-        end
-
-        it 'outputs a successful message in dry run mode' do
+        it 'outputs a successful message in dry run mode and does not delete the user' do
           expect { subject }
             .to output_results('OK (DRY RUN)')
+          expect(delete_account_service).to_not have_received(:call).with(account, reserve_email: false)
         end
       end
 
@@ -435,15 +423,12 @@ describe Mastodon::CLI::Accounts do
       context 'with --dry-run option' do
         let(:options) { { email: account.user.email, dry_run: true } }
 
-        it 'does not delete the user' do
-          subject
-
-          expect(delete_account_service).to_not have_received(:call).with(account, reserve_email: false)
-        end
-
-        it 'outputs a successful message in dry run mode' do
+        it 'outputs a successful message in dry run mode and does not delete the user' do
           expect { subject }
             .to output_results('OK (DRY RUN)')
+          expect(delete_account_service)
+            .to_not have_received(:call)
+            .with(account, reserve_email: false)
         end
       end
 
@@ -482,20 +467,19 @@ describe Mastodon::CLI::Accounts do
       context 'when the number is positive' do
         let(:options) { { number: 2 } }
 
-        it 'approves the earliest n pending registrations' do
+        it 'approves the earliest n pending registrations but not the remaining ones' do
           subject
-
-          n_earliest_pending_registrations = User.order(created_at: :asc).first(options[:number])
 
           expect(n_earliest_pending_registrations.all?(&:approved?)).to be(true)
+          expect(pending_registrations.all?(&:approved?)).to be(false)
         end
 
-        it 'does not approve the remaining pending registrations' do
-          subject
+        def n_earliest_pending_registrations
+          User.order(created_at: :asc).first(options[:number])
+        end
 
-          pending_registrations = User.order(created_at: :asc).last(total_users - options[:number])
-
-          expect(pending_registrations.all?(&:approved?)).to be(false)
+        def pending_registrations
+          User.order(created_at: :asc).last(total_users - options[:number])
         end
       end
 
@@ -512,15 +496,10 @@ describe Mastodon::CLI::Accounts do
       context 'when the given number is greater than the number of users' do
         let(:options) { { number: total_users * 2 } }
 
-        it 'approves all users' do
-          subject
-
-          expect(User.pluck(:approved).all?(true)).to be(true)
-        end
-
-        it 'does not raise any error' do
+        it 'approves all users and does not raise any error' do
           expect { subject }
             .to_not raise_error
+          expect(User.pluck(:approved).all?(true)).to be(true)
         end
       end
     end
@@ -575,17 +554,12 @@ describe Mastodon::CLI::Accounts do
         stub_parallelize_with_progress!
       end
 
-      it 'makes all local accounts follow the target account' do
-        subject
-
+      it 'displays a successful message and makes all local accounts follow the target account' do
+        expect { subject }
+          .to output_results("OK, followed target from #{Account.local.count} accounts")
         expect(follow_service).to have_received(:call).with(follower_bob, target_account, any_args).once
         expect(follow_service).to have_received(:call).with(follower_rony, target_account, any_args).once
         expect(follow_service).to have_received(:call).with(follower_charles, target_account, any_args).once
-      end
-
-      it 'displays a successful message' do
-        expect { subject }
-          .to output_results("OK, followed target from #{Account.local.count} accounts")
       end
     end
   end
@@ -618,17 +592,12 @@ describe Mastodon::CLI::Accounts do
         stub_parallelize_with_progress!
       end
 
-      it 'makes all local accounts unfollow the target account' do
-        subject
-
+      it 'displays a successful message and makes all local accounts unfollow the target account' do
+        expect { subject }
+          .to output_results('OK, unfollowed target from 3 accounts')
         expect(unfollow_service).to have_received(:call).with(follower_chris, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_rambo, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_ana, target_account).once
-      end
-
-      it 'displays a successful message' do
-        expect { subject }
-          .to output_results('OK, unfollowed target from 3 accounts')
       end
     end
   end
@@ -651,22 +620,17 @@ describe Mastodon::CLI::Accounts do
       let(:user) { account.user }
       let(:arguments) { [account.username] }
 
-      it 'creates a new backup for the specified user' do
-        expect { subject }.to change { user.backups.count }.by(1)
-      end
+      before { allow(BackupWorker).to receive(:perform_async) }
 
-      it 'creates a backup job' do
-        allow(BackupWorker).to receive(:perform_async)
-
-        subject
-        latest_backup = user.backups.last
-
+      it 'creates a new backup and backup job for the specified user and outputs success message' do
+        expect { subject }
+          .to change { user.backups.count }.by(1)
+          .and output_results('OK')
         expect(BackupWorker).to have_received(:perform_async).with(latest_backup.id).once
       end
 
-      it 'displays a successful message' do
-        expect { subject }
-          .to output_results('OK')
+      def latest_backup
+        user.backups.last
       end
     end
   end
@@ -963,15 +927,15 @@ describe Mastodon::CLI::Accounts do
 
         expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id, anything).once
       end
+    end
 
-      context 'when the given username is not found' do
-        let(:arguments) { ['non_existent_username'] }
+    context 'when the given username is not found' do
+      let(:arguments) { ['non_existent_username'] }
 
-        it 'exits with an error message when the specified username is not found' do
-          expect { subject }
-            .to output_results('No such account')
-            .and raise_error(SystemExit)
-        end
+      it 'exits with an error message when the specified username is not found' do
+        expect { subject }
+          .to output_results('No such account')
+          .and raise_error(SystemExit)
       end
     end
 
@@ -1071,15 +1035,10 @@ describe Mastodon::CLI::Accounts do
           allow(from_account).to receive(:destroy)
         end
 
-        it 'merges "from_account" into "to_account"' do
+        it 'merges `from_account` into `to_account` and deletes `from_account`' do
           subject
 
           expect(to_account).to have_received(:merge_with!).with(from_account).once
-        end
-
-        it 'deletes "from_account"' do
-          subject
-
           expect(from_account).to have_received(:destroy).once
         end
       end
@@ -1099,15 +1058,10 @@ describe Mastodon::CLI::Accounts do
         allow(from_account).to receive(:destroy)
       end
 
-      it 'merges "from_account" into "to_account"' do
+      it 'merges "from_account" into "to_account" and deletes from_account' do
         subject
 
         expect(to_account).to have_received(:merge_with!).with(from_account).once
-      end
-
-      it 'deletes "from_account"' do
-        subject
-
         expect(from_account).to have_received(:destroy)
       end
     end
@@ -1134,28 +1088,23 @@ describe Mastodon::CLI::Accounts do
         stub_request(:head, 'https://example.net/users/tales').to_return(status: 200)
       end
 
-      it 'deletes all inactive remote accounts that longer exist in the origin server' do
-        subject
-
+      def expect_delete_inactive_remote_accounts
         expect(delete_account_service).to have_received(:call).with(bob, reserve_username: false).once
         expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
       end
 
-      it 'does not delete any active remote account that still exists in the origin server' do
-        subject
-
+      def expect_not_delete_active_accounts
         expect(delete_account_service).to_not have_received(:call).with(tom, reserve_username: false)
         expect(delete_account_service).to_not have_received(:call).with(ana, reserve_username: false)
         expect(delete_account_service).to_not have_received(:call).with(tales, reserve_username: false)
       end
 
-      it 'touches inactive remote accounts that have not been deleted' do
-        expect { subject }.to(change { tales.reload.updated_at })
-      end
-
-      it 'displays the summary correctly' do
+      it 'touches inactive remote accounts that have not been deleted and summarizes activity' do
         expect { subject }
-          .to output_results('Visited 5 accounts, removed 2')
+          .to change { tales.reload.updated_at }
+          .and output_results('Visited 5 accounts, removed 2')
+        expect_delete_inactive_remote_accounts
+        expect_not_delete_active_accounts
       end
     end
 
@@ -1168,16 +1117,15 @@ describe Mastodon::CLI::Accounts do
         stub_request(:head, 'https://example.net/users/tales').to_return(status: 404)
       end
 
-      it 'deletes inactive remote accounts that longer exist in the specified domain' do
-        subject
-
+      def expect_delete_inactive_remote_accounts
         expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
         expect(delete_account_service).to have_received(:call).with(tales, reserve_username: false).once
       end
 
-      it 'displays the summary correctly' do
+      it 'displays the summary correctly and deletes inactive remote accounts' do
         expect { subject }
           .to output_results('Visited 2 accounts, removed 2')
+        expect_delete_inactive_remote_accounts
       end
     end
 
@@ -1189,15 +1137,14 @@ describe Mastodon::CLI::Accounts do
           stub_request(:head, 'https://example.net/users/gon').to_return(status: 200)
         end
 
-        it 'skips accounts from the unavailable domain' do
-          subject
-
+        def expect_skip_accounts_from_unavailable_domain
           expect(delete_account_service).to_not have_received(:call).with(tales, reserve_username: false)
         end
 
-        it 'displays the summary correctly' do
+        it 'displays the summary correctly and skip accounts from unavailable domains' do
           expect { subject }
             .to output_results("Visited 5 accounts, removed 0\nThe following domains were not available during the check:\n    example.net")
+          expect_skip_accounts_from_unavailable_domain
         end
       end
 
@@ -1268,25 +1215,14 @@ describe Mastodon::CLI::Accounts do
 
         before do
           accounts.each { |account| target_account.follow!(account) }
-        end
-
-        it 'resets all "following" relationships from the target account' do
-          subject
-
-          expect(target_account.reload.following).to be_empty
-        end
-
-        it 'calls BootstrapTimelineWorker once to rebuild the timeline' do
           allow(BootstrapTimelineWorker).to receive(:perform_async)
-
-          subject
-
-          expect(BootstrapTimelineWorker).to have_received(:perform_async).with(target_account.id).once
         end
 
-        it 'displays a successful message' do
+        it 'resets following relationships and displays a successful message and rebuilds timeline' do
           expect { subject }
             .to output_results("Processed #{total_relationships} relationships")
+          expect(target_account.reload.following).to be_empty
+          expect(BootstrapTimelineWorker).to have_received(:perform_async).with(target_account.id).once
         end
       end
 
@@ -1297,15 +1233,10 @@ describe Mastodon::CLI::Accounts do
           accounts.each { |account| account.follow!(target_account) }
         end
 
-        it 'resets all "followers" relationships from the target account' do
-          subject
-
-          expect(target_account.reload.followers).to be_empty
-        end
-
-        it 'displays a successful message' do
+        it 'resets followers relationships and displays a successful message' do
           expect { subject }
             .to output_results("Processed #{total_relationships} relationships")
+          expect(target_account.reload.followers).to be_empty
         end
       end
 
@@ -1315,31 +1246,15 @@ describe Mastodon::CLI::Accounts do
         before do
           accounts.first(2).each { |account| account.follow!(target_account) }
           accounts.last(1).each  { |account| target_account.follow!(account) }
-        end
-
-        it 'resets all "followers" relationships from the target account' do
-          subject
-
-          expect(target_account.reload.followers).to be_empty
-        end
-
-        it 'resets all "following" relationships from the target account' do
-          subject
-
-          expect(target_account.reload.following).to be_empty
-        end
-
-        it 'calls BootstrapTimelineWorker once to rebuild the timeline' do
           allow(BootstrapTimelineWorker).to receive(:perform_async)
-
-          subject
-
-          expect(BootstrapTimelineWorker).to have_received(:perform_async).with(target_account.id).once
         end
 
-        it 'displays a successful message' do
+        it 'resets followers and following and displays a successful message and rebuilds timeline' do
           expect { subject }
             .to output_results("Processed #{total_relationships} relationships")
+          expect(target_account.reload.followers).to be_empty
+          expect(target_account.reload.following).to be_empty
+          expect(BootstrapTimelineWorker).to have_received(:perform_async).with(target_account.id).once
         end
       end
     end
@@ -1360,57 +1275,51 @@ describe Mastodon::CLI::Accounts do
       stub_parallelize_with_progress!
     end
 
-    it 'prunes all remote accounts with no interactions with local users' do
-      subject
-
+    def expect_prune_remote_accounts_without_interaction
       prunable_account_ids = prunable_accounts.pluck(:id)
 
       expect(Account.where(id: prunable_account_ids).count).to eq(0)
     end
 
-    it 'displays a successful message' do
+    it 'displays a successful message and handles accounts correctly' do
       expect { subject }
         .to output_results("OK, pruned #{prunable_accounts.size} accounts")
+      expect_prune_remote_accounts_without_interaction
+      expect_not_prune_local_accounts
+      expect_not_prune_bot_accounts
+      expect_not_prune_group_accounts
+      expect_not_prune_mentioned_accounts
     end
 
-    it 'does not prune local accounts' do
-      subject
-
+    def expect_not_prune_local_accounts
       expect(Account.exists?(id: local_account.id)).to be(true)
     end
 
-    it 'does not prune bot accounts' do
-      subject
-
+    def expect_not_prune_bot_accounts
       expect(Account.exists?(id: bot_account.id)).to be(true)
     end
 
-    it 'does not prune group accounts' do
-      subject
-
+    def expect_not_prune_group_accounts
       expect(Account.exists?(id: group_account.id)).to be(true)
     end
 
-    it 'does not prune accounts that have been mentioned' do
-      subject
-
+    def expect_not_prune_mentioned_accounts
       expect(Account.exists?(id: mentioned_account.id)).to be true
     end
 
     context 'with --dry-run option' do
       let(:options) { { dry_run: true } }
 
-      it 'does not prune any account' do
-        subject
-
+      def expect_no_account_prunes
         prunable_account_ids = prunable_accounts.pluck(:id)
 
         expect(Account.where(id: prunable_account_ids).count).to eq(prunable_accounts.size)
       end
 
-      it 'displays a successful message with (DRY RUN)' do
+      it 'displays a successful message with (DRY RUN) and doesnt prune anything' do
         expect { subject }
           .to output_results("OK, pruned #{prunable_accounts.size} accounts (DRY RUN)")
+        expect_no_account_prunes
       end
     end
   end
