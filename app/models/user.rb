@@ -39,6 +39,7 @@
 #  role_id                   :bigint(8)
 #  settings                  :text
 #  time_zone                 :string
+#  otp_secret                :string
 #
 
 class User < ApplicationRecord
