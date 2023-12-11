@@ -109,7 +109,7 @@ class Api::BaseController < ApplicationController
   end
 
   def require_valid_pagination_options!
-    render json: { error: 'Pagination values for `offset` and `limit` must be positive' }, status: 400 if pagination_options.values.map(&:to_i).any?(&:negative?)
+    render json: { error: 'Pagination values for `offset` and `limit` must be positive' }, status: 400 if pagination_options_invalid?
   end
 
   def require_user!
@@ -140,8 +140,8 @@ class Api::BaseController < ApplicationController
 
   private
 
-  def pagination_options
-    params.slice(:limit, :offset)
+  def pagination_options_invalid?
+    params.slice(:limit, :offset).values.map(&:to_i).any?(&:negative?)
   end
 
   def respond_with_error(code)
