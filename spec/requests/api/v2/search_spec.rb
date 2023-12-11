@@ -60,6 +60,16 @@ describe 'Search API' do
           end
         end
 
+        context 'with negative `limit` value' do
+          let(:params) { { q: 'test1', limit: '-100', type: 'accounts' } }
+
+          it 'returns http bad_request' do
+            get '/api/v2/search', headers: headers, params: params
+
+            expect(response).to have_http_status(400)
+          end
+        end
+
         context 'with following=true' do
           let(:params) { { q: 'test', type: 'accounts', following: 'true' } }
 
