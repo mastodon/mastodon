@@ -57,7 +57,6 @@ describe Mastodon::CLI::Maintenance do
       before do
         prepare_duplicate_data
         allow(ActiveRecord::Migrator).to receive(:current_version).and_return(2023_08_22_081029) # The latest migration before the cutoff
-        allow(Sidekiq::ProcessSet).to receive(:new).and_return []
         agree_to_backup_warning
       end
 
