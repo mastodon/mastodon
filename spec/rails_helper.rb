@@ -88,6 +88,7 @@ RSpec.configure do |config|
   config.include Chewy::Rspec::Helpers
   config.include Redisable
   config.include SignedRequestHelpers, type: :request
+  config.include CommandLineHelpers, type: :cli
 
   config.around(:each, use_transactional_tests: false) do |example|
     self.use_transactional_tests = false

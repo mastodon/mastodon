@@ -33,7 +33,7 @@
   .fields-row
     .fields-row__column.fields-row__column-6
       .fields-group
-        = f.input :avatar, wrapper: :with_block_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT))
+        = f.input :avatar, wrapper: :with_block_label, input_html: { accept: Account::Avatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(Account::Avatar::LIMIT))
 
     .fields-row__column.fields-row__column-6
       .fields-group
@@ -46,7 +46,7 @@
   .fields-row
     .fields-row__column.fields-row__column-6
       .fields-group
-        = f.input :header, wrapper: :with_block_label, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT))
+        = f.input :header, wrapper: :with_block_label, input_html: { accept: Account::Header::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(Account::Header::LIMIT))
 
     .fields-row__column.fields-row__column-6
       .fields-group

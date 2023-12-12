@@ -467,7 +467,7 @@ zh-TW:
           other: 錯誤嘗試於 %{count} 天。
         no_failures_recorded: 報告中沒有錯誤。
         title: 可用狀態
-        warning: 上一次嘗試連線至本伺服器失敗
+        warning: 上一次嘗試連線至此伺服器失敗
       back_to_all: 所有
       back_to_limited: 受限制的
       back_to_warning: 警告
@@ -876,7 +876,7 @@ zh-TW:
         publishers:
           no_publisher_selected: 因未選取任何發行者，所以什麼事都沒發生
         shared_by_over_week:
-          other: 上週被 %{count} 名使用者分享
+          other: 上週被 %{count} 位使用者分享
         title: 熱門連結
         usage_comparison: 於今日被 %{today} 人分享，相較於昨日 %{yesterday} 人
       not_allowed_to_trend: 不允許登上熱門
@@ -1273,7 +1273,7 @@ zh-TW:
       other: 選取 %{count} 個符合您搜尋的項目。
     today: 今天
     validation_errors:
-      other: 恩...似乎不太對勁耶？請檢查以下 %{count} 項錯誤
+      other: 恩...似乎發生了點錯誤？請檢查以下 %{count} 項錯誤
   imports:
     errors:
       empty: 空的 CSV 檔案
@@ -1796,7 +1796,7 @@ zh-TW:
     welcome:
       edit_profile_action: 設定個人檔案
       edit_profile_step: 您可以設定您的個人檔案，包括上傳大頭貼、變更顯示名稱等等。您也可以選擇於新的跟隨者跟隨前，先對他們進行審核。
-      explanation: 下面是幾個小幫助，希望它們能幫到您
+      explanation: 以下是幾個小技巧，希望它們能幫到您
       final_action: 開始嘟嘟
       final_step: '開始嘟嘟吧！即使您現在沒有跟隨者，其他人仍然能於本站時間軸、主題標籤等地方，看到您的公開嘟文。試著用 #introductions 這個主題標籤介紹一下自己吧。'
       full_handle: 您的完整帳號名稱
@@ -1805,7 +1805,7 @@ zh-TW:
       title: "%{name} 誠摯歡迎您的加入！"
   users:
     follow_limit_reached: 您無法跟隨多於 %{limit} 個人
-    go_to_sso_account_settings: 前往您的身分提供商 (identity provider) 之帳號設定
+    go_to_sso_account_settings: 前往您的身分識別提供者（IdP）之帳號設定
     invalid_otp_token: 兩階段認證碼不正確
     otp_lost_help_html: 如果您無法存取這兩者，您可以透過 %{email} 與我們聯繫
     seamless_external_login: 由於您是由外部系統登入，所以不能設定密碼與電子郵件。

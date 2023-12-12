@@ -37,10 +37,12 @@ lt:
     accounts:
       add_email_domain_block: Blokuoti el. pašto domeną
       approve: Patvirtinti
+      approved_msg: Sėkmingai patvirtinta %{username} registracijos paraiška
       are_you_sure: Ar esi įsitikinęs (-usi)?
       avatar: Avataras
       by_domain: Domenas
       change_email:
+        changed_msg: El. paštas sėkmingai pakeistas!
         current_email: Dabartinis el paštas
         label: Pakeisti el pašto adresą
         new_email: Naujas el pašto adresas
@@ -466,6 +468,8 @@ lt:
     prev: Ankstesnis
   preferences:
     other: Kita
+  privacy:
+    hint_html: "<strong>Tikrink, kaip nori, kad tavo profilis ir įrašai būtų randami.</strong> Įjungus įvairias Mastodon funkcijas, jos gali padėti pasiekti platesnę auditoriją. Akimirką peržiūrėk šiuos nustatymus, kad įsitikintum, jog jie atitinka tavo naudojimo būdą."
   remote_follow:
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
   scheduled_statuses:
@@ -515,6 +519,11 @@ lt:
       public_long: Visi gali matyti
       unlisted: Neįtrauktas į sąrašus
       unlisted_long: Matyti gali visi, tačiau nėra įtraukti į viešąsias laiko skales
+  statuses_cleanup:
+    enabled_hint: Automatiškai ištrina įrašus, kai jie pasiekia nustatytą amžiaus ribą, nebent jie atitinka vieną iš toliau nurodytų išimčių
+    keep_polls_hint: Neištrina jokių tavo apklausų
+    keep_self_bookmark: Laikyti įrašus, kuriuos pažymėjai
+    keep_self_bookmark_hint: Neištrina tavo pačių įrašų, jei esi juos pažymėjęs (-usi)
   stream_entries:
     sensitive_content: Jautrus turinys
   themes:
@@ -551,22 +560,31 @@ lt:
       explanation: Štai keletas patarimų, kaip pradėti
       final_action: Pradėti kelti įrašus
       final_step: 'Pradėk skelbti! Net jei ir neturi sekėjų, tavo viešus įrašus gali matyti kiti, pavyzdžiui, vietinėje laiko skalėje arba saitažodžiuose. Galbūt norėsi prisistatyti saitažodyje #introductions.'
-      full_handle: Jūsų pilnas slapyvardis
-      full_handle_hint: Štai ką jūs sakytumėte savo draugams, kad jie galėtų jums siųsti žinutes arba just sekti iš kitų serverių.
+      full_handle: Tavo pilnas slapyvardis
+      full_handle_hint: Štai ką pasakytum savo draugams, kad jie galėtų parašyti arba sekti tave iš kito serverio.
       subject: Sveiki atvykę į Mastodon
       title: Sveiki atvykę, %{name}!
   users:
-    follow_limit_reached: Negalite sekti daugiau nei %{limit} žmonių
+    follow_limit_reached: Negali sekti daugiau nei %{limit} žmonių
+    go_to_sso_account_settings: Eik į savo tapatybės teikėjo paskyros nustatymus
     invalid_otp_token: Netinkamas dviejų veiksnių kodas
     otp_lost_help_html: Jei praradai prieigą prie abiejų, gali susisiek su %{email}
-    seamless_external_login: Jūs esate prisijungę per išorini įrenginį, todėl slaptąžodis ir el pašto nustatymai neprieinami.
+    seamless_external_login: Esi prisijungęs (-usi) per išorinę paslaugą, todėl slaptažodžio ir el. pašto nustatymai nepasiekiami.
     signed_in_as: 'Prisijungta kaip:'
   verification:
+    extra_instructions_html: <strong>Patarimas:</strong> nuoroda tavo svetainėje gali būti nematoma. Svarbi dalis – tai, kas <code>rel="me"</code> neleidžia apsimesti interneto svetainėse, kuriose yra naudotojų sukurto turinio. Vietoj to gali naudoti net <code>nuorodą</code> puslapio antraštėje esančią žymę <code>a</code>, tačiau HTML turi būti pasiekiamas nevykdant JavaScript.
     hint_html: "<strong>Savo tapatybės patvirtinimas Mastodon skirtas visiems.</strong> Remiantis atviraisiais žiniatinklio standartais, dabar ir visam laikui nemokamas. Viskas, ko tau reikia, yra asmeninė svetainė, pagal kurią žmonės tave atpažįsta. Kai iš savo profilio pateiksi nuorodą į šią svetainę, patikrinsime, ar svetainėje yra nuoroda į tavo profilį, ir parodysime vizualinį indikatorių."
+    instructions_html: Nukopijuok ir įklijuok toliau pateiktą kodą į savo svetainės HTML. Tada į vieną iš papildomų profilio laukų skirtuke „Redaguoti profilį“ įrašyk savo svetainės adresą ir išsaugok pakeitimus.
     verification: Patvirtinimas
     verified_links: Tavo patikrintos nuorodos
   webauthn_credentials:
     create:
       error: Kilo problema pridedant saugumo raktą. Bandyk dar kartą.
+      success: Tavo saugumo raktas buvo sėkmingai pridėtas.
+    delete_confirmation: Ar tikrai nori ištrinti šį saugumo raktą?
+    description_html: Jei įjungsi <strong>saugumo rakto tapatybės nustatymą</strong>, prisijungiant reikės naudoti vieną iš savo saugumo raktų.
+    destroy:
+      error: Kilo problema ištrinant saugumo raktą. Bandyk dar kartą.
+      success: Tavo saugumo raktas buvo sėkmingai ištrintas.
     nickname_hint: Įvesk naujojo saugumo rakto slapyvardį
     not_enabled: Dar neįjungei WebAuthn

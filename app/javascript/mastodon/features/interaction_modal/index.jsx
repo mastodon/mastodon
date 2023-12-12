@@ -298,9 +298,9 @@ class LoginForm extends React.PureComponent {
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyDown}
-            autocomplete='off'
-            autocapitalize='off'
-            spellcheck='false'
+            autoComplete='off'
+            autoCapitalize='off'
+            spellCheck='false'
           />
 
           <Button onClick={this.handleSubmit} disabled={isSubmitting || error}><FormattedMessage id='interaction_modal.login.action' defaultMessage='Take me home' /></Button>

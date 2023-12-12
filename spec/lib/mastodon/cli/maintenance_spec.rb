@@ -4,24 +4,26 @@ require 'rails_helper'
 require 'mastodon/cli/maintenance'
 
 describe Mastodon::CLI::Maintenance do
-  let(:cli) { described_class.new }
+  subject { cli.invoke(action, arguments, options) }
 
-  describe '.exit_on_failure?' do
-    it 'returns true' do
-      expect(described_class.exit_on_failure?).to be true
-    end
-  end
+  let(:cli) { described_class.new }
+  let(:arguments) { [] }
+  let(:options) { {} }
+
+  it_behaves_like 'CLI Command'
 
   describe '#fix_duplicates' do
+    let(:action) { :fix_duplicates }
+
     context 'when the database version is too old' do
       before do
         allow(ActiveRecord::Migrator).to receive(:current_version).and_return(2000_01_01_000000) # Earlier than minimum
       end
 
       it 'Exits with error message' do
-        expect { cli.invoke :fix_duplicates }.to output(
-          a_string_including('is too old')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('is too old')
+          .and raise_error(SystemExit)
       end
     end
 
@@ -32,9 +34,9 @@ describe Mastodon::CLI::Maintenance do
       end
 
       it 'Exits with error message' do
-        expect { cli.invoke :fix_duplicates }.to output(
-          a_string_including('more recent')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('more recent')
+          .and raise_error(SystemExit)
       end
     end
 
@@ -45,9 +47,9 @@ describe Mastodon::CLI::Maintenance do
       end
 
       it 'Exits with error message' do
-        expect { cli.invoke :fix_duplicates }.to output(
-          a_string_including('Sidekiq is running')
-        ).to_stdout.and raise_error(SystemExit)
+        expect { subject }
+          .to output_results('Sidekiq is running')
+          .and raise_error(SystemExit)
       end
     end
   end

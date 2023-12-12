@@ -70,19 +70,20 @@ class Account < ApplicationRecord
   URL_PREFIX_RE = %r{\Ahttp(s?)://[^/]+}
   USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
 
-  include Attachmentable
-  include AccountAssociations
-  include AccountAvatar
-  include AccountFinderConcern
-  include AccountHeader
-  include AccountInteractions
-  include Paginable
-  include AccountCounters
-  include DomainNormalizable
+  include Attachmentable # Load prior to Avatar & Header concerns
+
+  include Account::Associations
+  include Account::Avatar
+  include Account::Counters
+  include Account::FinderConcern
+  include Account::Header
+  include Account::Interactions
+  include Account::Merging
+  include Account::Search
+  include Account::StatusesSearch
   include DomainMaterializable
-  include AccountMerging
-  include AccountSearch
-  include AccountStatusesSearch
+  include DomainNormalizable
+  include Paginable
 
   enum protocol: { ostatus: 0, activitypub: 1 }
   enum suspension_origin: { local: 0, remote: 1 }, _prefix: true

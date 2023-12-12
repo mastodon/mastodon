@@ -53,9 +53,12 @@ class User < ApplicationRecord
     filtered_languages
   )
 
-  include Redisable
   include LanguagesHelper
-  include HasUserSettings
+  include Redisable
+  include User::HasSettings
+  include User::LdapAuthenticable
+  include User::Omniauthable
+  include User::PamAuthenticable
 
   # The home and list feeds will be stored in Redis for this amount
   # of time, and status fan-out to followers will include only people
@@ -75,22 +78,18 @@ class User < ApplicationRecord
   devise :registerable, :recoverable, :validatable,
          :confirmable
 
-  include Omniauthable
-  include PamAuthenticable
-  include LdapAuthenticable
-
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
   belongs_to :created_by_application, class_name: 'Doorkeeper::Application', optional: true
   belongs_to :role, class_name: 'UserRole', optional: true
   accepts_nested_attributes_for :account
 
-  has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
-  has_many :backups, inverse_of: :user
-  has_many :invites, inverse_of: :user
+  has_many :applications, class_name: 'Doorkeeper::Application', as: :owner, dependent: nil
+  has_many :backups, inverse_of: :user, dependent: nil
+  has_many :invites, inverse_of: :user, dependent: nil
   has_many :markers, inverse_of: :user, dependent: :destroy
   has_many :webauthn_credentials, dependent: :destroy
-  has_many :ips, class_name: 'UserIp', inverse_of: :user
+  has_many :ips, class_name: 'UserIp', inverse_of: :user, dependent: nil
 
   has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
