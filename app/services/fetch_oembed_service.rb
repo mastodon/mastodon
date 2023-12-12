@@ -100,7 +100,7 @@ class FetchOEmbedService
   end
 
   def validate(oembed)
-    oembed if oembed[:version].to_s == '1.0' && oembed[:type].present?
+    oembed if oembed.present? && oembed[:version].to_s == '1.0' && oembed[:type].present?
   end
 
   def html
