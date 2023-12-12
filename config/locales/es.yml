@@ -1041,6 +1041,10 @@ es:
       hint_html: ¡Una última cosita! Necesitamos confirmar que eres humano (¡así podemos evitar el spam!). Resuelve este CAPTCHA de debajo y pulsa en "Continuar".
       title: Comprobación de seguridad
     confirmations:
+      awaiting_review: "¡Tu dirección de correo electrónico ha sido confirmada! El personal de %{domain} está revisando tu registro. ¡Recibirás un correo electrónico cuando aprueben tu cuenta!"
+      awaiting_review_title: Estamos revisando tu registro
+      clicking_this_link: haciendo clic en este enlace
+      registration_complete: "¡Has completado tu registro en %{domain}!"
       wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
@@ -1100,7 +1104,7 @@ es:
       account_status: Estado de la cuenta
       confirming: Esperando confirmación de correo electrónico.
       functional: Tu cuenta está completamente operativa.
-      pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
+      pending: Tu solicitud está pendiente de revisión por nuestro personal. Eso puede tardar un tiempo. Recibirás un correo electrónico cuando tu solicitud sea aprobada.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
       self_destruct: Como %{domain} está en proceso de cierre, solo tendrás acceso limitado a tu cuenta.
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
@@ -1786,7 +1790,7 @@ es:
       title: Un nuevo inicio de sesión
     warning:
       appeal: Enviar una apelación
-      appeal_description: Si crees que esto es un error, puedes enviar una apelación al equipo de %{instance}.
+      appeal_description: Si crees que esto es un error, puedes enviar una apelación al personal de %{instance}.
       categories:
         spam: Spam
         violation: El contenido viola las siguientes directrices de la comunidad

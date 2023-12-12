@@ -10,7 +10,6 @@ import { ReactComponent as BlockIcon } from '@material-symbols/svg-600/outlined/
 import { debounce } from 'lodash';
 
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import AccountContainer from '../../containers/account_container';
@@ -60,8 +59,7 @@ class Blocks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='ban' iconComponent={BlockIcon} heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
+      <Column bindToDocument={!multiColumn} icon='ban' iconComponent={BlockIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
         <ScrollableList
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}

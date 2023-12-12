@@ -10,9 +10,9 @@ import classNames from 'classnames';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as DescriptionIcon } from '@material-symbols/svg-600/outlined/description.svg';
+import { ReactComponent as DescriptionIcon } from '@material-symbols/svg-600/outlined/description-fill.svg';
 import { ReactComponent as OpenInNewIcon } from '@material-symbols/svg-600/outlined/open_in_new.svg';
-import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow.svg';
+import { ReactComponent as PlayArrowIcon } from '@material-symbols/svg-600/outlined/play_arrow-fill.svg';
 
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';
@@ -143,7 +143,7 @@ export default class Card extends PureComponent {
 
         <strong className='status-card__title' title={card.get('title')} lang={language}>{card.get('title')}</strong>
 
-        {card.get('author_name').length > 0 ? <span className='status-card__author'><FormattedMessage id='link_preview.author' defaultMessage='By {name}' values={{ name: <strong>{card.get('author_name')}</strong> }} /></span> : <span className='status-card__description'>{card.get('description')}</span>}
+        {card.get('author_name').length > 0 ? <span className='status-card__author'><FormattedMessage id='link_preview.author' defaultMessage='By {name}' values={{ name: <strong>{card.get('author_name')}</strong> }} /></span> : <span className='status-card__description' lang={language}>{card.get('description')}</span>}
       </div>
     );
 
