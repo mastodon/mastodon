@@ -63,7 +63,7 @@ module Account::Counters
             SQL
           end
 
-    sql = AccountStat.sanitize_sql([sql, account_id: id, default_value: default_value, value: value])
+    sql = AccountStat.sanitize_sql([sql, { account_id: id, default_value: default_value, value: value }])
     account_stat_id = AccountStat.connection.exec_query(sql)[0]['id']
 
     # Reload account_stat if it was loaded, taking into account newly-created unsaved records

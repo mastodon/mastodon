@@ -64,7 +64,7 @@ class NotifyService < BaseService
     return false if @notification.target_status.in_reply_to_id.nil?
 
     # Using an SQL CTE to avoid unneeded back-and-forth with SQL server in case of long threads
-    !Status.count_by_sql([<<-SQL.squish, id: @notification.target_status.in_reply_to_id, recipient_id: @recipient.id, sender_id: @notification.from_account.id, depth_limit: 100]).zero?
+    !Status.count_by_sql([<<-SQL.squish, { id: @notification.target_status.in_reply_to_id, recipient_id: @recipient.id, sender_id: @notification.from_account.id, depth_limit: 100 }]).zero?
       WITH RECURSIVE ancestors(id, in_reply_to_id, mention_id, path, depth) AS (
           SELECT s.id, s.in_reply_to_id, m.id, ARRAY[s.id], 0
           FROM statuses s

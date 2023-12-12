@@ -153,7 +153,7 @@ class Status < ApplicationRecord
                    :tags,
                    :preloadable_poll,
                    preview_cards_status: [:preview_card],
-                   account: [:account_stat, user: :role],
+                   account: [:account_stat, { user: :role }],
                    active_mentions: { account: :account_stat },
                    reblog: [
                      :application,
@@ -162,9 +162,9 @@ class Status < ApplicationRecord
                      :conversation,
                      :status_stat,
                      :preloadable_poll,
-                     preview_cards_status: [:preview_card],
-                     account: [:account_stat, user: :role],
-                     active_mentions: { account: :account_stat },
+                     { preview_cards_status: [:preview_card],
+                       account: [:account_stat, { user: :role }],
+                       active_mentions: { account: :account_stat } },
                    ],
                    thread: { account: :account_stat }
 
