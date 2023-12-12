@@ -78,7 +78,8 @@ describe Mastodon::CLI::IpBlocks do
 
         it 'overwrites the existing IP block record' do
           expect { subject }
-            .to change { blocked_ip.reload.severity }
+            .to output_results('Added 11')
+            .and change { blocked_ip.reload.severity }
             .from('no_access')
             .to('sign_up_requires_approval')
         end
@@ -189,7 +190,8 @@ describe Mastodon::CLI::IpBlocks do
       let(:options) { { force: true } }
 
       it 'removes blocks for IP ranges that cover given IP(s) and keeps other ranges' do
-        subject
+        expect { subject }
+          .to output_results('Removed 2')
 
         expect(covered_ranges).to_not exist
         expect(other_ranges).to exist

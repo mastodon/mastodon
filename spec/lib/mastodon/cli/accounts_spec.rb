@@ -77,7 +77,8 @@ describe Mastodon::CLI::Accounts do
         it_behaves_like 'a new user with given email address and username'
 
         it 'creates a new user with confirmed status' do
-          subject
+          expect { subject }
+            .to output_results('New password')
 
           user = User.find_by(email: options[:email])
 
@@ -95,7 +96,8 @@ describe Mastodon::CLI::Accounts do
         it_behaves_like 'a new user with given email address and username'
 
         it 'creates a new user with approved status' do
-          subject
+          expect { subject }
+            .to output_results('New password')
 
           user = User.find_by(email: options[:email])
 
@@ -111,7 +113,8 @@ describe Mastodon::CLI::Accounts do
           it_behaves_like 'a new user with given email address and username'
 
           it 'creates a new user and assigns the specified role' do
-            subject
+            expect { subject }
+              .to output_results('New password')
 
             role = User.find_by(email: options[:email])&.role
 
@@ -148,7 +151,8 @@ describe Mastodon::CLI::Accounts do
             let(:options) { { email: 'tootctl_new@example.com', reattach: true, force: true } }
 
             it 'reattaches the account to the new user and deletes the previous user' do
-              subject
+              expect { subject }
+                .to output_results('New password')
 
               user = Account.find_local('tootctl_username')&.user
 
@@ -220,7 +224,8 @@ describe Mastodon::CLI::Accounts do
           let(:options) { { role: default_role.name } }
 
           it "updates the user's role to the specified role" do
-            subject
+            expect { subject }
+              .to output_results('OK')
 
             role = user.reload.role
 
@@ -235,7 +240,8 @@ describe Mastodon::CLI::Accounts do
         let(:user) { Fabricate(:user, role: role) }
 
         it "removes the user's role successfully" do
-          subject
+          expect { subject }
+            .to output_results('OK')
 
           role = user.reload.role
 
@@ -248,13 +254,15 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { email: 'new_email@email.com' } }
 
         it "sets the user's unconfirmed email to the provided email address" do
-          subject
+          expect { subject }
+            .to output_results('OK')
 
           expect(user.reload.unconfirmed_email).to eq(options[:email])
         end
 
         it "does not update the user's original email address" do
-          subject
+          expect { subject }
+            .to output_results('OK')
 
           expect(user.reload.email).to eq('old_email@email.com')
         end
@@ -264,13 +272,15 @@ describe Mastodon::CLI::Accounts do
           let(:options) { { email: 'new_email@email.com', confirm: true } }
 
           it "updates the user's email address to the provided email" do
-            subject
+            expect { subject }
+              .to output_results('OK')
 
             expect(user.reload.email).to eq(options[:email])
           end
 
           it "sets the user's email address as confirmed" do
-            subject
+            expect { subject }
+              .to output_results('OK')
 
             expect(user.reload.confirmed?).to be(true)
           end
@@ -282,7 +292,8 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { confirm: true } }
 
         it "confirms the user's email address" do
-          subject
+          expect { subject }
+            .to output_results('OK')
 
           expect(user.reload.confirmed?).to be(true)
         end
@@ -297,7 +308,9 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'approves the user' do
-          expect { subject }.to change { user.reload.approved }.from(false).to(true)
+          expect { subject }
+            .to output_results('OK')
+            .and change { user.reload.approved }.from(false).to(true)
         end
       end
 
@@ -306,7 +319,9 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { disable: true } }
 
         it 'disables the user' do
-          expect { subject }.to change { user.reload.disabled }.from(false).to(true)
+          expect { subject }
+            .to output_results('OK')
+            .and change { user.reload.disabled }.from(false).to(true)
         end
       end
 
@@ -315,7 +330,9 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { enable: true } }
 
         it 'enables the user' do
-          expect { subject }.to change { user.reload.disabled }.from(true).to(false)
+          expect { subject }
+            .to output_results('OK')
+            .and change { user.reload.disabled }.from(true).to(false)
         end
       end
 
@@ -335,7 +352,9 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { disable_2fa: true } }
 
         it 'disables the two-factor authentication for the user' do
-          expect { subject }.to change { user.reload.otp_required_for_login }.from(true).to(false)
+          expect { subject }
+            .to output_results('OK')
+            .and change { user.reload.otp_required_for_login }.from(true).to(false)
         end
       end
 
@@ -385,7 +404,8 @@ describe Mastodon::CLI::Accounts do
       let(:arguments) { [account.username] }
 
       it 'deletes the specified user successfully' do
-        subject
+        expect { subject }
+          .to output_results('Deleting')
 
         expect(delete_account_service).to have_received(:call).with(account, reserve_email: false).once
       end
@@ -415,7 +435,8 @@ describe Mastodon::CLI::Accounts do
       let(:options) { { email: account.user.email } }
 
       it 'deletes the specified user successfully' do
-        subject
+        expect { subject }
+          .to output_results('Deleting')
 
         expect(delete_account_service).to have_received(:call).with(account, reserve_email: false).once
       end
@@ -457,7 +478,8 @@ describe Mastodon::CLI::Accounts do
       let(:options) { { all: true } }
 
       it 'approves all pending registrations' do
-        subject
+        expect { subject }
+          .to output_results('OK')
 
         expect(User.pluck(:approved).all?(true)).to be(true)
       end
@@ -468,7 +490,8 @@ describe Mastodon::CLI::Accounts do
         let(:options) { { number: 2 } }
 
         it 'approves the earliest n pending registrations but not the remaining ones' do
-          subject
+          expect { subject }
+            .to output_results('OK')
 
           expect(n_earliest_pending_registrations.all?(&:approved?)).to be(true)
           expect(pending_registrations.all?(&:approved?)).to be(false)
@@ -498,7 +521,7 @@ describe Mastodon::CLI::Accounts do
 
         it 'approves all users and does not raise any error' do
           expect { subject }
-            .to_not raise_error
+            .to output_results('OK')
           expect(User.pluck(:approved).all?(true)).to be(true)
         end
       end
@@ -510,7 +533,8 @@ describe Mastodon::CLI::Accounts do
         let(:arguments) { [user.account.username] }
 
         it 'approves the specified user successfully' do
-          subject
+          expect { subject }
+            .to output_results('OK')
 
           expect(user.reload.approved?).to be(true)
         end
@@ -655,7 +679,8 @@ describe Mastodon::CLI::Accounts do
         allow(remote_account_example_com).to receive(:reset_avatar!)
         allow(account_example_net).to receive(:reset_avatar!)
 
-        cli.refresh
+        expect { cli.refresh }
+          .to output_results('Refreshed 2 accounts')
 
         expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(remote_account_example_com).to have_received(:reset_avatar!).once
@@ -665,7 +690,8 @@ describe Mastodon::CLI::Accounts do
       it 'does not refresh avatar for local accounts' do
         allow(local_account).to receive(:reset_avatar!)
 
-        cli.refresh
+        expect { cli.refresh }
+          .to output_results('Refreshed 2 accounts')
 
         expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(local_account).to_not have_received(:reset_avatar!)
@@ -675,7 +701,8 @@ describe Mastodon::CLI::Accounts do
         allow(remote_account_example_com).to receive(:reset_header!)
         allow(account_example_net).to receive(:reset_header!)
 
-        cli.refresh
+        expect { cli.refresh }
+          .to output_results('Refreshed 2 accounts')
 
         expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(remote_account_example_com).to have_received(:reset_header!).once
@@ -685,7 +712,8 @@ describe Mastodon::CLI::Accounts do
       it 'does not refresh the header for local accounts' do
         allow(local_account).to receive(:reset_header!)
 
-        cli.refresh
+        expect { cli.refresh }
+          .to output_results('Refreshed 2 accounts')
 
         expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(local_account).to_not have_received(:reset_header!)
@@ -706,7 +734,8 @@ describe Mastodon::CLI::Accounts do
           allow(remote_account_example_com).to receive(:reset_avatar!)
           allow(account_example_net).to receive(:reset_avatar!)
 
-          cli.refresh
+          expect { cli.refresh }
+            .to output_results('Refreshed 2 accounts')
 
           expect(cli).to have_received(:parallelize_with_progress).with(scope).once
           expect(local_account).to_not have_received(:reset_avatar!)
@@ -719,7 +748,8 @@ describe Mastodon::CLI::Accounts do
           allow(remote_account_example_com).to receive(:reset_header!)
           allow(account_example_net).to receive(:reset_header!)
 
-          cli.refresh
+          expect { cli.refresh }
+            .to output_results('Refreshed 2 accounts')
 
           expect(cli).to have_received(:parallelize_with_progress).with(scope).once
           expect(local_account).to_not have_received(:reset_header!)
@@ -752,7 +782,8 @@ describe Mastodon::CLI::Accounts do
         allow(account_example_com_a).to receive(:reset_avatar!)
         allow(account_example_com_b).to receive(:reset_avatar!)
 
-        cli.refresh(*arguments)
+        expect { cli.refresh(*arguments) }
+          .to output_results('OK')
 
         expect(account_example_com_a).to have_received(:reset_avatar!).once
         expect(account_example_com_b).to have_received(:reset_avatar!).once
@@ -761,7 +792,8 @@ describe Mastodon::CLI::Accounts do
       it 'does not reset the avatar for unspecified accounts' do
         allow(account_example_net).to receive(:reset_avatar!)
 
-        cli.refresh(*arguments)
+        expect { cli.refresh(*arguments) }
+          .to output_results('OK')
 
         expect(account_example_net).to_not have_received(:reset_avatar!)
       end
@@ -770,7 +802,8 @@ describe Mastodon::CLI::Accounts do
         allow(account_example_com_a).to receive(:reset_header!)
         allow(account_example_com_b).to receive(:reset_header!)
 
-        cli.refresh(*arguments)
+        expect { cli.refresh(*arguments) }
+          .to output_results('OK')
 
         expect(account_example_com_a).to have_received(:reset_header!).once
         expect(account_example_com_b).to have_received(:reset_header!).once
@@ -779,7 +812,8 @@ describe Mastodon::CLI::Accounts do
       it 'does not reset the header for unspecified accounts' do
         allow(account_example_net).to receive(:reset_header!)
 
-        cli.refresh(*arguments)
+        expect { cli.refresh(*arguments) }
+          .to output_results('OK')
 
         expect(account_example_net).to_not have_received(:reset_header!)
       end
@@ -812,7 +846,8 @@ describe Mastodon::CLI::Accounts do
           allow(account_example_com_a).to receive(:reset_avatar!)
           allow(account_example_com_b).to receive(:reset_avatar!)
 
-          cli.refresh(*arguments)
+          expect { cli.refresh(*arguments) }
+            .to output_results('OK (DRY RUN)')
 
           expect(account_example_com_a).to_not have_received(:reset_avatar!)
           expect(account_example_com_b).to_not have_received(:reset_avatar!)
@@ -822,7 +857,8 @@ describe Mastodon::CLI::Accounts do
           allow(account_example_com_a).to receive(:reset_header!)
           allow(account_example_com_b).to receive(:reset_header!)
 
-          cli.refresh(*arguments)
+          expect { cli.refresh(*arguments) }
+            .to output_results('OK (DRY RUN)')
 
           expect(account_example_com_a).to_not have_received(:reset_header!)
           expect(account_example_com_b).to_not have_received(:reset_header!)
@@ -848,7 +884,8 @@ describe Mastodon::CLI::Accounts do
         allow(account_example_com_a).to receive(:reset_avatar!)
         allow(account_example_com_b).to receive(:reset_avatar!)
 
-        cli.refresh
+        expect { cli.refresh }
+          .to output_results('Refreshed 2 accounts')
 
         expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(account_example_com_a).to have_received(:reset_avatar!).once
@@ -858,7 +895,8 @@ describe Mastodon::CLI::Accounts do
       it 'does not refresh the avatar for accounts outside specified domain' do
         allow(account_example_net).to receive(:reset_avatar!)
 
-        cli.refresh
+        expect { cli.refresh }
+          .to output_results('Refreshed 2 accounts')
 
         expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(account_example_net).to_not have_received(:reset_avatar!)
@@ -868,7 +906,8 @@ describe Mastodon::CLI::Accounts do
         allow(account_example_com_a).to receive(:reset_header!)
         allow(account_example_com_b).to receive(:reset_header!)
 
-        cli.refresh
+        expect { cli.refresh }
+          .to output_results('Refreshed 2 accounts')
 
         expect(cli).to have_received(:parallelize_with_progress).with(scope)
         expect(account_example_com_a).to have_received(:reset_header!).once
@@ -878,7 +917,8 @@ describe Mastodon::CLI::Accounts do
       it 'does not refresh the header for accounts outside specified domain' do
         allow(account_example_net).to receive(:reset_header!)
 
-        cli.refresh
+        expect { cli.refresh }
+          .to output_results('Refreshed 2 accounts')
 
         expect(cli).to have_received(:parallelize_with_progress).with(scope).once
         expect(account_example_net).to_not have_received(:reset_header!)
@@ -913,7 +953,8 @@ describe Mastodon::CLI::Accounts do
         old_private_key = account.private_key
         old_public_key = account.public_key
 
-        subject
+        expect { subject }
+          .to output_results('OK')
         account.reload
 
         expect(account.private_key).to_not eq(old_private_key)
@@ -923,7 +964,8 @@ describe Mastodon::CLI::Accounts do
       it 'broadcasts the new keys for the specified account' do
         allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
 
-        subject
+        expect { subject }
+          .to output_results('OK')
 
         expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id, anything).once
       end
@@ -947,7 +989,8 @@ describe Mastodon::CLI::Accounts do
         old_private_keys = accounts.map(&:private_key)
         old_public_keys = accounts.map(&:public_key)
 
-        subject
+        expect { subject }
+          .to output_results('rotated')
         accounts.each(&:reload)
 
         expect(accounts.map(&:private_key)).to_not eq(old_private_keys)
@@ -957,7 +1000,8 @@ describe Mastodon::CLI::Accounts do
       it 'broadcasts the new keys for each account' do
         allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
 
-        subject
+        expect { subject }
+          .to output_results('rotated')
 
         accounts.each do |account|
           expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id, anything).once
@@ -1036,7 +1080,8 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'merges `from_account` into `to_account` and deletes `from_account`' do
-          subject
+          expect { subject }
+            .to output_results('OK')
 
           expect(to_account).to have_received(:merge_with!).with(from_account).once
           expect(from_account).to have_received(:destroy).once
@@ -1059,7 +1104,8 @@ describe Mastodon::CLI::Accounts do
       end
 
       it 'merges "from_account" into "to_account" and deletes from_account' do
-        subject
+        expect { subject }
+          .to output_results('OK')
 
         expect(to_account).to have_received(:merge_with!).with(from_account).once
         expect(from_account).to have_received(:destroy)
@@ -1339,7 +1385,8 @@ describe Mastodon::CLI::Accounts do
 
     shared_examples 'a successful migration' do
       it 'calls the MoveService for the last migration' do
-        subject
+        expect { subject }
+          .to output_results('OK')
 
         last_migration = source_account.migrations.last
 
@@ -1449,7 +1496,8 @@ describe Mastodon::CLI::Accounts do
         end
 
         it 'creates a migration for the specified account with the target account' do
-          subject
+          expect { subject }
+            .to output_results('migrated')
 
           last_migration = source_account.migrations.last
 
