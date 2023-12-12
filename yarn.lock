@@ -2433,7 +2433,7 @@ __metadata:
     stacktrace-js: "npm:^2.0.2"
     stringz: "npm:^2.1.0"
     stylelint: "npm:^15.10.1"
-    stylelint-config-standard-scss: "npm:^11.0.0"
+    stylelint-config-standard-scss: "npm:^12.0.0"
     substring-trie: "npm:^1.0.2"
     terser-webpack-plugin: "npm:^4.2.3"
     tesseract.js: "npm:^2.1.5"
@@ -15758,62 +15758,62 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-config-recommended-scss@npm:^13.1.0":
-  version: 13.1.0
-  resolution: "stylelint-config-recommended-scss@npm:13.1.0"
+"stylelint-config-recommended-scss@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "stylelint-config-recommended-scss@npm:14.0.0"
   dependencies:
     postcss-scss: "npm:^4.0.9"
-    stylelint-config-recommended: "npm:^13.0.0"
-    stylelint-scss: "npm:^5.3.0"
+    stylelint-config-recommended: "npm:^14.0.0"
+    stylelint-scss: "npm:^6.0.0"
   peerDependencies:
     postcss: ^8.3.3
-    stylelint: ^15.10.0
+    stylelint: ^16.0.2
   peerDependenciesMeta:
     postcss:
       optional: true
-  checksum: e07d0172c7936b4f644138e4129df2f187d297f1f96ce5865ab21ccd1c22caf94220f7caf9d6985e93e515de4c0356f6cb9c924d00df2eee5b3bc237f7e5bb48
+  checksum: 9ddc92e7a5fa131b41cee1ab1f69251934ca35c0e2803dc613329cdead7b8b27d8457048a63db29f61a1442e7cdef14207f88a3abce00ec53fdefe0d604f7de3
   languageName: node
   linkType: hard
 
-"stylelint-config-recommended@npm:^13.0.0":
-  version: 13.0.0
-  resolution: "stylelint-config-recommended@npm:13.0.0"
+"stylelint-config-recommended@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "stylelint-config-recommended@npm:14.0.0"
   peerDependencies:
-    stylelint: ^15.10.0
-  checksum: 80420a1ab616e8637b66223f88c597388990d9991cd6a28b8372049b83329d893412f83029bb253a82b52387e497b62e042bc898064a2f22574b0d8921f01dd2
+    stylelint: ^16.0.0
+  checksum: 4ad15c36e8c03291aa7bbe4b672ebfb0f46ab698e7580a0da8d29644046d102d7f31dbf00a2a6eab94b565c390c6fb0d5d528737b83ac3acf6dc2ef085a90b11
   languageName: node
   linkType: hard
 
-"stylelint-config-standard-scss@npm:^11.0.0":
-  version: 11.1.0
-  resolution: "stylelint-config-standard-scss@npm:11.1.0"
+"stylelint-config-standard-scss@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "stylelint-config-standard-scss@npm:12.0.0"
   dependencies:
-    stylelint-config-recommended-scss: "npm:^13.1.0"
-    stylelint-config-standard: "npm:^34.0.0"
+    stylelint-config-recommended-scss: "npm:^14.0.0"
+    stylelint-config-standard: "npm:^35.0.0"
   peerDependencies:
     postcss: ^8.3.3
-    stylelint: ^15.10.0
+    stylelint: ^16.0.2
   peerDependenciesMeta:
     postcss:
       optional: true
-  checksum: 22d00e75c1eacce9883fd48c3d67b1107b0e39d7d86e9f73deaa332b11c39a9678c947ae2c34cd5159a452ec9a857694ed58b5a851087480d3c9a66dab629415
+  checksum: 7f3ccfb4175f9c50b69d30ca35a97887008c5ba493dbe7d5bce0b57b1eafd21b268177b82404368e7780600077cba784f98e1046671724be3b29a00c6a7913a4
   languageName: node
   linkType: hard
 
-"stylelint-config-standard@npm:^34.0.0":
-  version: 34.0.0
-  resolution: "stylelint-config-standard@npm:34.0.0"
+"stylelint-config-standard@npm:^35.0.0":
+  version: 35.0.0
+  resolution: "stylelint-config-standard@npm:35.0.0"
   dependencies:
-    stylelint-config-recommended: "npm:^13.0.0"
+    stylelint-config-recommended: "npm:^14.0.0"
   peerDependencies:
-    stylelint: ^15.10.0
-  checksum: 2494468af2359490b6ebb9723d9653f9e31db3a0772b8d9f0e081018b0079ef84ae6f90dcf94c879a3c374f299e334941e3dcff1afb603c2284d3103085b71fb
+    stylelint: ^16.0.0
+  checksum: 791fbc26cc3029ce3c2423a643e903545b5e4cd605251b18f0ce790bac6fbaaf380469845c1ff45f4e320126af9f8a9dc1ca85d0df9274277ae60da91e81895b
   languageName: node
   linkType: hard
 
-"stylelint-scss@npm:^5.3.0":
-  version: 5.3.1
-  resolution: "stylelint-scss@npm:5.3.1"
+"stylelint-scss@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "stylelint-scss@npm:6.0.0"
   dependencies:
     known-css-properties: "npm:^0.29.0"
     postcss-media-query-parser: "npm:^0.2.3"
@@ -15821,8 +15821,8 @@ __metadata:
     postcss-selector-parser: "npm:^6.0.13"
     postcss-value-parser: "npm:^4.2.0"
   peerDependencies:
-    stylelint: ^14.5.1 || ^15.0.0
-  checksum: 5dfed5f9ac9812cd2ac6ef0272c720dee0326aaaee2998315a23bdcd71b8f04427f29cad634793eea2b45984182e20f03e90d43501e8e4d55bc956f80e2de477
+    stylelint: ^16.0.2
+  checksum: f5e971d19ef6879ae5c18cb8fba8033fe7928f241178e6afd80357cc080d2feddfd6f7fe564aaa696008aa10345df5885d9a4471c926b3e266088e015927782e
   languageName: node
   linkType: hard
 
