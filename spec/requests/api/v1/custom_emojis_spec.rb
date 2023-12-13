@@ -9,7 +9,7 @@ describe 'Custom Emojis' do
 
   describe 'GET /api/v1/custom_emojis' do
     before do
-      Fabricate(:custom_emoji, domain: nil, disabled: false, visible_in_picker: true)
+      Fabricate(:custom_emoji, domain: nil, disabled: false, visible_in_picker: true, shortcode: 'coolcat')
     end
 
     context 'when logged out' do
