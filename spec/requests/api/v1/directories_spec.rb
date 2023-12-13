@@ -2,17 +2,13 @@
 
 require 'rails_helper'
 
-describe Api::V1::DirectoriesController do
-  render_views
-
+describe 'Directories API' do
   let(:user)    { Fabricate(:user, confirmed_at: nil) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:follows') }
+  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:scopes)  { 'read:follows' }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
-
-  describe 'GET #show' do
+  describe 'GET /api/v1/directories' do
     context 'with no params' do
       before do
         local_unconfirmed_account = Fabricate(
@@ -78,7 +74,7 @@ describe Api::V1::DirectoriesController do
         )
         eligible_remote_account.create_account_stat!
 
-        get :show
+        get '/api/v1/directory', headers: headers
 
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq(2)
@@ -94,7 +90,7 @@ describe Api::V1::DirectoriesController do
         local_account.create_account_stat!
         remote_account.create_account_stat!
 
-        get :show, params: { local: '1' }
+        get '/api/v1/directory', headers: headers, params: { local: '1' }
 
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq(1)
@@ -108,7 +104,7 @@ describe Api::V1::DirectoriesController do
         old_stat = Fabricate(:account_stat, last_status_at: 1.day.ago)
         new_stat = Fabricate(:account_stat, last_status_at: 1.minute.ago)
 
-        get :show, params: { order: 'active' }
+        get '/api/v1/directory', headers: headers, params: { order: 'active' }
 
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq(2)
@@ -123,7 +119,7 @@ describe Api::V1::DirectoriesController do
         travel_to 10.seconds.from_now
         account_new = Fabricate(:account_stat).account
 
-        get :show, params: { order: 'new' }
+        get '/api/v1/directory', headers: headers, params: { order: 'new' }
 
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq(2)
