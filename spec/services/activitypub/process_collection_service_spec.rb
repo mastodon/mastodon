@@ -239,33 +239,41 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
           }
         end
 
-        it 'does not process forged payload' do
-          allow(ActivityPub::Activity).to receive(:factory)
+        before { allow(ActivityPub::Activity).to receive(:factory) }
 
+        it 'does not process forged payload' do
           expect { subject.call(json, forwarder) }
             .to_not change(actor.reload.statuses, :count)
 
           expect(ActivityPub::Activity).to_not have_received(:factory).with(
-            hash_including(
-              'object' => hash_including(
-                'id' => 'https://example.com/users/bob/fake-status'
-              )
-            ),
+            forged_payload_bob_fake_status,
             anything,
             anything
           )
 
           expect(ActivityPub::Activity).to_not have_received(:factory).with(
-            hash_including(
-              'object' => hash_including(
-                'content' => '<p>puck was here</p>'
-              )
-            ),
+            forged_payload_puck_was_here,
             anything,
             anything
           )
 
           expect(Status.exists?(uri: 'https://example.com/users/bob/fake-status')).to be false
+        end
+
+        def forged_payload_bob_fake_status
+          hash_including(
+            'object' => hash_including(
+              'id' => 'https://example.com/users/bob/fake-status'
+            )
+          )
+        end
+
+        def forged_payload_puck_was_here
+          hash_including(
+            'object' => hash_including(
+              'content' => '<p>puck was here</p>'
+            )
+          )
         end
       end
     end
