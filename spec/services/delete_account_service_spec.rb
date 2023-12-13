@@ -100,28 +100,34 @@ RSpec.describe DeleteAccountService, type: :service do
       it 'sends expected activities to followed and follower inboxes' do
         subject
 
-        expect(a_request(:post, account.inbox_url).with(
-                 body:
-                   hash_including({
-                     'type' => 'Reject',
-                     'object' => hash_including({
-                       'type' => 'Follow',
-                       'actor' => account.uri,
-                       'object' => ActivityPub::TagManager.instance.uri_for(local_follower),
-                     }),
-                   })
-               )).to have_been_made.once
+        expect(post_to_inbox_with_reject).to have_been_made.once
+        expect(post_to_inbox_with_undo).to have_been_made.once
+      end
 
-        expect(a_request(:post, account.inbox_url).with(
-                 body: hash_including({
-                   'type' => 'Undo',
-                   'object' => hash_including({
-                     'type' => 'Follow',
-                     'actor' => ActivityPub::TagManager.instance.uri_for(local_follower),
-                     'object' => account.uri,
-                   }),
-                 })
-               )).to have_been_made.once
+      def post_to_inbox_with_undo
+        a_request(:post, account.inbox_url).with(
+          body: hash_including({
+            'type' => 'Undo',
+            'object' => hash_including({
+              'type' => 'Follow',
+              'actor' => ActivityPub::TagManager.instance.uri_for(local_follower),
+              'object' => account.uri,
+            }),
+          })
+        )
+      end
+
+      def post_to_inbox_with_reject
+        a_request(:post, account.inbox_url).with(
+          body: hash_including({
+            'type' => 'Reject',
+            'object' => hash_including({
+              'type' => 'Follow',
+              'actor' => account.uri,
+              'object' => ActivityPub::TagManager.instance.uri_for(local_follower),
+            }),
+          })
+        )
       end
     end
   end
