@@ -50,11 +50,11 @@ RSpec.describe DeleteAccountService, type: :service do
     end
 
     def delete_associated_target_records
-      change do
-        [
-          AccountPin.where(target_account: account),
-        ].map(&:count)
-      end.from([1]).to([0])
+      change(account_pins_for_account, :count).from(1).to(0)
+    end
+
+    def account_pins_for_account
+      AccountPin.where(target_account: account)
     end
 
     def delete_associated_target_notifications
