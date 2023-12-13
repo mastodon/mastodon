@@ -8,7 +8,7 @@ describe Announcement do
       let!(:published) { Fabricate(:announcement, published: true) }
       let!(:unpublished) { Fabricate(:announcement, published: false, scheduled_at: 10.days.from_now) }
 
-      describe 'unpublished' do
+      describe '#unpublished' do
         it 'returns records with published false' do
           results = described_class.unpublished
 
@@ -16,12 +16,28 @@ describe Announcement do
         end
       end
 
-      describe 'published' do
+      describe '#published' do
         it 'returns records with published true' do
           results = described_class.published
 
           expect(results).to eq([published])
         end
+      end
+    end
+
+    describe '#without_muted' do
+      let!(:announcement) { Fabricate(:announcement) }
+      let(:account) { Fabricate(:account) }
+      let(:muted_announcement) { Fabricate(:announcement) }
+
+      before do
+        Fabricate(:announcement_mute, account: account, announcement: muted_announcement)
+      end
+
+      it 'returns the announcements not muted by the account' do
+        results = described_class.without_muted(account)
+        expect(results).to include(announcement)
+        expect(results).to_not include(muted_announcement)
       end
     end
 
@@ -31,7 +47,7 @@ describe Announcement do
       let!(:clara_announcement) { Fabricate(:announcement, starts_at: 10.days.ago, scheduled_at: 10.days.ago, published_at: 100.days.ago, ends_at: 5.days.from_now) }
       let!(:darnelle_announcement) { Fabricate(:announcement, starts_at: 10.days.ago, scheduled_at: 10.days.ago, published_at: 10.days.ago, ends_at: 5.days.from_now, created_at: 100.days.ago) }
 
-      describe 'chronological' do
+      describe '#chronological' do
         it 'orders the records correctly' do
           results = described_class.chronological
 
@@ -46,7 +62,7 @@ describe Announcement do
         end
       end
 
-      describe 'reverse_chronological' do
+      describe '#reverse_chronological' do
         it 'orders the records correctly' do
           results = described_class.reverse_chronological
 
@@ -161,6 +177,33 @@ describe Announcement do
         results = announcement.reactions(account)
 
         expect(results.first.name).to eq(announcement_reaction.name)
+      end
+    end
+  end
+
+  describe '#statuses' do
+    let(:announcement) { Fabricate(:announcement, status_ids: status_ids) }
+
+    context 'with empty status_ids' do
+      let(:status_ids) { nil }
+
+      it 'returns empty array' do
+        results = announcement.statuses
+
+        expect(results).to eq([])
+      end
+    end
+
+    context 'with relevant status_ids' do
+      let(:status) { Fabricate(:status, visibility: :public) }
+      let(:direct_status) { Fabricate(:status, visibility: :direct) }
+      let(:status_ids) { [status.id, direct_status.id] }
+
+      it 'returns public and unlisted statuses' do
+        results = announcement.statuses
+
+        expect(results).to include(status)
+        expect(results).to_not include(direct_status)
       end
     end
   end
