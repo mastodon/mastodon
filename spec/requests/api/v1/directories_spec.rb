@@ -54,26 +54,31 @@ describe 'Directories API' do
         )
         domain_blocked_account.create_account_stat!
         Fabricate(:account_domain_block, account: user.account, domain: 'test.example')
+
+        local_discoverable_account.create_account_stat!
+        eligible_remote_account.create_account_stat!
       end
 
-      it 'returns the local discoverable account and the remote discoverable account' do
-        local_discoverable_account = Fabricate(
+      let(:local_discoverable_account) do
+        Fabricate(
           :account,
           domain: nil,
           user: Fabricate(:user, confirmed_at: 10.days.ago, approved: true),
           discoverable: true,
           username: 'local_discoverable'
         )
-        local_discoverable_account.create_account_stat!
+      end
 
-        eligible_remote_account = Fabricate(
+      let(:eligible_remote_account) do
+        Fabricate(
           :account,
           domain: 'host.example',
           discoverable: true,
           username: 'eligible_remote'
         )
-        eligible_remote_account.create_account_stat!
+      end
 
+      it 'returns the local discoverable account and the remote discoverable account' do
         get '/api/v1/directory', headers: headers
 
         expect(response).to have_http_status(200)
@@ -83,13 +88,16 @@ describe 'Directories API' do
     end
 
     context 'when asking for local accounts only' do
-      it 'returns only the local accounts' do
-        user = Fabricate(:user, confirmed_at: 10.days.ago, approved: true)
-        local_account = Fabricate(:account, domain: nil, user: user)
-        remote_account = Fabricate(:account, domain: 'host.example')
+      let(:user) { Fabricate(:user, confirmed_at: 10.days.ago, approved: true) }
+      let(:local_account) { Fabricate(:account, domain: nil, user: user) }
+      let(:remote_account) { Fabricate(:account, domain: 'host.example') }
+
+      before do
         local_account.create_account_stat!
         remote_account.create_account_stat!
+      end
 
+      it 'returns only the local accounts' do
         get '/api/v1/directory', headers: headers, params: { local: '1' }
 
         expect(response).to have_http_status(200)
