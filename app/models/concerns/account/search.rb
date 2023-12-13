@@ -124,7 +124,7 @@ module Account::Search
       tsquery = generate_query_for_search(terms)
 
       find_by_sql([BASIC_SEARCH_SQL, { limit: limit, offset: offset, tsquery: tsquery }]).tap do |records|
-        ActiveRecord::Associations::Preloader.new(records: records, associations: :account_stat)
+        ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
       end
     end
 
@@ -133,7 +133,7 @@ module Account::Search
       sql_template = following ? ADVANCED_SEARCH_WITH_FOLLOWING : ADVANCED_SEARCH_WITHOUT_FOLLOWING
 
       find_by_sql([sql_template, { id: account.id, limit: limit, offset: offset, tsquery: tsquery }]).tap do |records|
-        ActiveRecord::Associations::Preloader.new(records: records, associations: :account_stat)
+        ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
       end
     end
 

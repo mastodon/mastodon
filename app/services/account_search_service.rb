@@ -218,7 +218,7 @@ class AccountSearchService < BaseService
 
     records = query_builder.build.limit(limit_for_non_exact_results).offset(offset).objects.compact
 
-    ActiveRecord::Associations::Preloader.new(records: records, associations: :account_stat)
+    ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
 
     records
   rescue Faraday::ConnectionFailed, Parslet::ParseFailed
