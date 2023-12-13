@@ -24,6 +24,43 @@ describe Announcement do
         end
       end
     end
+
+    context 'with timestamped announcements' do
+      let!(:adam_announcement) { Fabricate(:announcement, starts_at: 100.days.ago, scheduled_at: 10.days.ago, published_at: 10.days.ago, ends_at: 5.days.from_now) }
+      let!(:brenda_announcement) { Fabricate(:announcement, starts_at: 10.days.ago, scheduled_at: 100.days.ago, published_at: 10.days.ago, ends_at: 5.days.from_now) }
+      let!(:clara_announcement) { Fabricate(:announcement, starts_at: 10.days.ago, scheduled_at: 10.days.ago, published_at: 100.days.ago, ends_at: 5.days.from_now) }
+      let!(:darnelle_announcement) { Fabricate(:announcement, starts_at: 10.days.ago, scheduled_at: 10.days.ago, published_at: 10.days.ago, ends_at: 5.days.from_now, created_at: 100.days.ago) }
+
+      describe 'chronological' do
+        it 'orders the records correctly' do
+          results = described_class.chronological
+
+          expect(results).to eq(
+            [
+              adam_announcement,
+              brenda_announcement,
+              clara_announcement,
+              darnelle_announcement,
+            ]
+          )
+        end
+      end
+
+      describe 'reverse_chronological' do
+        it 'orders the records correctly' do
+          results = described_class.reverse_chronological
+
+          expect(results).to eq(
+            [
+              darnelle_announcement,
+              clara_announcement,
+              brenda_announcement,
+              adam_announcement,
+            ]
+          )
+        end
+      end
+    end
   end
 
   describe 'Validations' do
