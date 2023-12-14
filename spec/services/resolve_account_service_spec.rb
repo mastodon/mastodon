@@ -20,7 +20,7 @@ RSpec.describe ResolveAccountService, type: :service do
       let!(:remote_account) { Fabricate(:account, username: 'foo', domain: 'ap.example.com', protocol: 'activitypub') }
 
       context 'when domain is banned' do
-        let!(:domain_block) { Fabricate(:domain_block, domain: 'ap.example.com', severity: :suspend) }
+        before { Fabricate(:domain_block, domain: 'ap.example.com', severity: :suspend) }
 
         it 'does not return an account' do
           expect(subject.call('foo@ap.example.com', skip_webfinger: true)).to be_nil
@@ -205,7 +205,8 @@ RSpec.describe ResolveAccountService, type: :service do
 
   context 'with an already-known acct: URI changing ActivityPub id' do
     let!(:old_account) { Fabricate(:account, username: 'foo', domain: 'ap.example.com', uri: 'https://old.example.com/users/foo', last_webfingered_at: nil) }
-    let!(:status) { Fabricate(:status, account: old_account, text: 'foo') }
+
+    before { Fabricate(:status, account: old_account, text: 'foo') }
 
     it 'returns new remote account' do
       account = subject.call('foo@ap.example.com')
