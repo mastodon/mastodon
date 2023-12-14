@@ -234,7 +234,7 @@ module Mastodon
         users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse
         ref_user = users.shift
         @prompt.warn "Multiple users registered with e-mail address #{ref_user.email}."
-        @prompt.warn "e-mail will be disabled for the following accounts: #{user.map(&:account).map(&:acct).join(', ')}"
+        @prompt.warn "e-mail will be disabled for the following accounts: #{users.map(&:account).map(&:acct).join(', ')}"
         @prompt.warn 'Please reach out to them and set another address with `tootctl account modify` or delete them.'
 
         i = 0
