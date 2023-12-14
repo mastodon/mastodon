@@ -19,15 +19,10 @@ class AccountDomainBlock < ApplicationRecord
   validates :domain, presence: true, uniqueness: { scope: :account_id }, domain: true
 
   after_commit :remove_blocking_cache
-  after_commit :remove_relationship_cache
 
   private
 
   def remove_blocking_cache
     Rails.cache.delete("exclude_domains_for:#{account_id}")
-  end
-
-  def remove_relationship_cache
-    Rails.cache.delete_matched("relationship:#{account_id}:*")
   end
 end
