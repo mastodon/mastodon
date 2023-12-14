@@ -9,7 +9,8 @@ RSpec.describe BlockDomainService, type: :service do
   let!(:bad_status_plain) { Fabricate(:status, account: bad_account, text: 'You suck') }
   let!(:bad_status_with_attachment) { Fabricate(:status, account: bad_account, text: 'Hahaha') }
   let!(:bad_attachment) { Fabricate(:media_attachment, account: bad_account, status: bad_status_with_attachment, file: attachment_fixture('attachment.jpg')) }
-  let!(:already_banned_account) { Fabricate(:account, username: 'badguy', domain: 'evil.org', suspended: true, silenced: true) }
+
+  before { Fabricate(:account, username: 'badguy', domain: 'evil.org', suspended: true, silenced: true) }
 
   describe 'for a suspension' do
     before do
