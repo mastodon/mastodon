@@ -224,7 +224,7 @@ module Mastodon::CLI
         users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse
         ref_user = users.shift
         say "Multiple users registered with e-mail address #{ref_user.email}.", :yellow
-        say "e-mail will be disabled for the following accounts: #{user.map(&:account).map(&:acct).join(', ')}", :yellow
+        say "e-mail will be disabled for the following accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
         say 'Please reach out to them and set another address with `tootctl account modify` or delete them.', :yellow
 
         users.each_with_index do |user, index|
