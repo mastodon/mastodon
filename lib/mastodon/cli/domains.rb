@@ -39,12 +39,7 @@ module Mastodon::CLI
       domain_block_scope = DomainBlock.none
       emoji_scope        = CustomEmoji.none
 
-      # Sanity check on command arguments
-      if options[:limited_federation_mode] && !domains.empty?
-        fail_with_message 'DOMAIN parameter not supported with --limited-federation-mode'
-      elsif domains.empty? && !options[:limited_federation_mode]
-        fail_with_message 'No domain(s) given'
-      end
+      verify_command_arguments!(domains)
 
       # Build scopes from command arguments
       if options[:limited_federation_mode]
@@ -188,6 +183,15 @@ module Mastodon::CLI
     end
 
     private
+
+    def verify_command_arguments!(domains)
+      # Sanity check on command arguments
+      if options[:limited_federation_mode] && !domains.empty?
+        fail_with_message 'DOMAIN parameter not supported with --limited-federation-mode'
+      elsif domains.empty? && !options[:limited_federation_mode]
+        fail_with_message 'No domain(s) given'
+      end
+    end
 
     def domain_block_suspended_domains
       DomainBlock.suspend.pluck(:domain)
