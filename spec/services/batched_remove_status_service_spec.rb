@@ -6,7 +6,6 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
   subject { described_class.new }
 
   let!(:alice)  { Fabricate(:account) }
-  let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
   let!(:jeff)   { Fabricate(:account) }
   let!(:hank)   { Fabricate(:account, username: 'hank', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
@@ -14,6 +13,7 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
   let(:status_alice_other) { PostStatusService.new.call(alice, text: 'Another status') }
 
   before do
+    Fabricate(:account, username: 'bob', domain: 'example.com')
     allow(redis).to receive_messages(publish: nil)
 
     stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
@@ -24,7 +24,6 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
 
     status_alice_hello
     status_alice_other
-
     subject.call([status_alice_hello, status_alice_other])
   end
 
