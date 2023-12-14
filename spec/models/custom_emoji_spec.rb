@@ -59,7 +59,7 @@ RSpec.describe CustomEmoji do
   describe '.from_text' do
     subject { described_class.from_text(text, nil) }
 
-    let!(:emojo) { Fabricate(:custom_emoji) }
+    let!(:emojo) { Fabricate(:custom_emoji, shortcode: 'coolcat') }
 
     context 'with plain text' do
       let(:text) { 'Hello :coolcat:' }
