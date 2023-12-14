@@ -8,24 +8,24 @@ RSpec.describe DeleteAccountService, type: :service do
 
     let!(:status) { Fabricate(:status, account: account) }
     let!(:mention) { Fabricate(:mention, account: local_follower) }
-    let!(:status_with_mention) { Fabricate(:status, account: account, mentions: [mention]) }
-    let!(:media_attachment) { Fabricate(:media_attachment, account: account) }
-    let!(:notification) { Fabricate(:notification, account: account) }
     let!(:favourite) { Fabricate(:favourite, account: account, status: Fabricate(:status, account: local_follower)) }
     let!(:poll) { Fabricate(:poll, account: account) }
-    let!(:poll_vote) { Fabricate(:poll_vote, account: local_follower, poll: poll) }
-
     let!(:active_relationship) { Fabricate(:follow, account: account, target_account: local_follower) }
-    let!(:passive_relationship) { Fabricate(:follow, account: local_follower, target_account: account) }
-    let!(:endorsement) { Fabricate(:account_pin, account: local_follower, target_account: account) }
 
-    let!(:mention_notification) { Fabricate(:notification, account: local_follower, activity: mention, type: :mention) }
-    let!(:status_notification) { Fabricate(:notification, account: local_follower, activity: status, type: :status) }
-    let!(:poll_notification) { Fabricate(:notification, account: local_follower, activity: poll, type: :poll) }
-    let!(:favourite_notification) { Fabricate(:notification, account: local_follower, activity: favourite, type: :favourite) }
-    let!(:follow_notification) { Fabricate(:notification, account: local_follower, activity: active_relationship, type: :follow) }
-
-    let!(:account_note) { Fabricate(:account_note, account: account) }
+    before do
+      Fabricate(:status, account: account, mentions: [mention])
+      Fabricate(:media_attachment, account: account)
+      Fabricate(:notification, account: account)
+      Fabricate(:poll_vote, account: local_follower, poll: poll)
+      Fabricate(:follow, account: local_follower, target_account: account)
+      Fabricate(:account_pin, account: local_follower, target_account: account)
+      Fabricate(:notification, account: local_follower, activity: mention, type: :mention)
+      Fabricate(:notification, account: local_follower, activity: status, type: :status)
+      Fabricate(:notification, account: local_follower, activity: poll, type: :poll)
+      Fabricate(:notification, account: local_follower, activity: favourite, type: :favourite)
+      Fabricate(:notification, account: local_follower, activity: active_relationship, type: :follow)
+      Fabricate(:account_note, account: account)
+    end
 
     it 'deletes associated owned and target records and target notifications' do
       expect { subject }
@@ -68,16 +68,17 @@ RSpec.describe DeleteAccountService, type: :service do
 
   describe '#call on local account' do
     before do
+      Fabricate(:account, inbox_url: 'https://alice.com/inbox', domain: 'alice.com', protocol: :activitypub)
+      Fabricate(:account, inbox_url: 'https://bob.com/inbox', domain: 'bob.com', protocol: :activitypub)
       stub_request(:post, 'https://alice.com/inbox').to_return(status: 201)
       stub_request(:post, 'https://bob.com/inbox').to_return(status: 201)
     end
 
-    let!(:remote_alice) { Fabricate(:account, inbox_url: 'https://alice.com/inbox', domain: 'alice.com', protocol: :activitypub) }
-    let!(:remote_bob) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', domain: 'bob.com', protocol: :activitypub) }
-
     include_examples 'common behavior' do
+      # rubocop:disable RSpec/LetSetup
       let!(:account) { Fabricate(:account) }
       let!(:local_follower) { Fabricate(:account) }
+      # rubocop:enable RSpec/LetSetup
 
       it 'sends a delete actor activity to all known inboxes' do
         subject
