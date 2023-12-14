@@ -5,7 +5,8 @@ require 'rails_helper'
 describe AccountStatusesCleanupService, type: :service do
   let(:account)           { Fabricate(:account, username: 'alice', domain: nil) }
   let(:account_policy)    { Fabricate(:account_statuses_cleanup_policy, account: account) }
-  let!(:unrelated_status) { Fabricate(:status, created_at: 3.years.ago) }
+
+  before { Fabricate(:status, created_at: 3.years.ago) }
 
   describe '#call' do
     context 'when the account has not posted anything' do
@@ -18,7 +19,8 @@ describe AccountStatusesCleanupService, type: :service do
       let!(:very_old_status)    { Fabricate(:status, created_at: 3.years.ago, account: account) }
       let!(:old_status)         { Fabricate(:status, created_at: 1.year.ago, account: account) }
       let!(:another_old_status) { Fabricate(:status, created_at: 1.year.ago, account: account) }
-      let!(:recent_status)      { Fabricate(:status, created_at: 1.day.ago, account: account) }
+
+      before { Fabricate(:status, created_at: 1.day.ago, account: account) }
 
       context 'when given a budget of 1' do
         it 'reports 1 deleted toot' do
