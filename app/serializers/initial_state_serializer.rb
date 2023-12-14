@@ -13,29 +13,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   has_one :role, serializer: REST::RoleSerializer
 
   def meta
-    store = {
-      streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
-      access_token: object.token,
-      locale: I18n.locale,
-      domain: Addressable::IDNA.to_unicode(instance_presenter.domain),
-      title: instance_presenter.title,
-      admin: object.admin&.id&.to_s,
-      search_enabled: Chewy.enabled?,
-      repository: Mastodon::Version.repository,
-      source_url: instance_presenter.source_url,
-      version: instance_presenter.version,
-      limited_federation_mode: Rails.configuration.x.limited_federation_mode,
-      mascot: instance_presenter.mascot&.file&.url,
-      profile_directory: Setting.profile_directory,
-      trends_enabled: Setting.trends,
-      registrations_open: Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode,
-      timeline_preview: Setting.timeline_preview,
-      activity_api_enabled: Setting.activity_api_enabled,
-      single_user_mode: Rails.configuration.x.single_user_mode,
-      trends_as_landing_page: Setting.trends_as_landing_page,
-      status_page_url: Setting.status_page_url,
-      sso_redirect: sso_redirect,
-    }
+    store = default_meta_store
 
     if object.current_account
       store[:me]                = object.current_account.id.to_s
@@ -107,6 +85,32 @@ class InitialStateSerializer < ActiveModel::Serializer
   end
 
   private
+
+  def default_meta_store
+    {
+      access_token: object.token,
+      activity_api_enabled: Setting.activity_api_enabled,
+      admin: object.admin&.id&.to_s,
+      domain: Addressable::IDNA.to_unicode(instance_presenter.domain),
+      limited_federation_mode: Rails.configuration.x.limited_federation_mode,
+      locale: I18n.locale,
+      mascot: instance_presenter.mascot&.file&.url,
+      profile_directory: Setting.profile_directory,
+      registrations_open: Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode,
+      repository: Mastodon::Version.repository,
+      search_enabled: Chewy.enabled?,
+      single_user_mode: Rails.configuration.x.single_user_mode,
+      source_url: instance_presenter.source_url,
+      sso_redirect: sso_redirect,
+      status_page_url: Setting.status_page_url,
+      streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
+      timeline_preview: Setting.timeline_preview,
+      title: instance_presenter.title,
+      trends_as_landing_page: Setting.trends_as_landing_page,
+      trends_enabled: Setting.trends,
+      version: instance_presenter.version,
+    }
+  end
 
   def object_account_user
     object.current_account.user
