@@ -6,11 +6,12 @@ RSpec.describe UnallowDomainService, type: :service do
   subject { described_class.new }
 
   let!(:bad_account) { Fabricate(:account, username: 'badguy666', domain: 'evil.org') }
+  let!(:domain_allow) { Fabricate(:domain_allow, domain: 'evil.org') }
   let!(:bad_status_harassment) { Fabricate(:status, account: bad_account, text: 'You suck') }
   let!(:bad_status_mean) { Fabricate(:status, account: bad_account, text: 'Hahaha') }
   let!(:bad_attachment) { Fabricate(:media_attachment, account: bad_account, status: bad_status_mean, file: attachment_fixture('attachment.jpg')) }
-  let!(:already_banned_account) { Fabricate(:account, username: 'badguy', domain: 'evil.org', suspended: true, silenced: true) }
-  let!(:domain_allow) { Fabricate(:domain_allow, domain: 'evil.org') }
+
+  before { Fabricate(:account, username: 'badguy', domain: 'evil.org', suspended: true, silenced: true) }
 
   context 'with limited federation mode' do
     before do
