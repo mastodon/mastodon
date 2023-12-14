@@ -19,16 +19,9 @@ class AccountSuggestions
   def get(limit, offset = 0)
     with_read_replica do
       account_ids_with_sources = Rails.cache.fetch("follow_recommendations/#{@account.id}", expires_in: 15.minutes) do
-        SOURCES.flat_map { |klass| klass.new.get(@account, limit: BATCH_SIZE) }.each_with_object([]) do |(account_id, source), arr|
-          idx = arr.find_index { |(other_account_id, _)| other_account_id == account_id }
-          sources = Array(source).map(&:to_sym)
-
-          if idx.present?
-            arr[idx][1].concat(sources)
-          else
-            arr << [account_id, sources]
-          end
-        end.shuffle
+        SOURCES.flat_map { |klass| klass.new.get(@account, limit: BATCH_SIZE) }.each_with_object({}) do |(account_id, source), h|
+          (h[account_id] ||= []).concat(Array(source).map(&:to_sym))
+        end.to_a.shuffle
       end
 
       # The sources deliver accounts that haven't yet been followed, are not blocked,
