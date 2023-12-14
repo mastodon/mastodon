@@ -119,23 +119,6 @@ Rails/LexicallyScopedActionFilter:
     - 'app/controllers/auth/passwords_controller.rb'
     - 'app/controllers/auth/registrations_controller.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/NegateInclude:
-  Exclude:
-    - 'app/controllers/concerns/signature_verification.rb'
-    - 'app/helpers/jsonld_helper.rb'
-    - 'app/lib/activitypub/activity/create.rb'
-    - 'app/lib/activitypub/activity/move.rb'
-    - 'app/lib/feed_manager.rb'
-    - 'app/lib/link_details_extractor.rb'
-    - 'app/models/concerns/attachmentable.rb'
-    - 'app/models/concerns/remotable.rb'
-    - 'app/models/custom_filter.rb'
-    - 'app/services/activitypub/process_status_update_service.rb'
-    - 'app/services/fetch_link_card_service.rb'
-    - 'app/workers/web/push_notification_worker.rb'
-    - 'lib/paperclip/color_extractor.rb'
-
 Rails/OutputSafety:
   Exclude:
     - 'config/initializers/simple_form.rb'

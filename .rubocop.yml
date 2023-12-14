@@ -115,6 +115,11 @@ Rails/SkipsModelValidations:
 Rails/UnusedIgnoredColumns:
   Enabled: false
 
+# Reason: Prevailing style choice
+# https://docs.rubocop.org/rubocop-rails/cops_rails.html#railsnegateinclude
+Rails/NegateInclude:
+  Enabled: false
+
 # Reason: Some single letter camel case files shouldn't be split
 # https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecfilepath
 RSpec/FilePath:
