@@ -936,21 +936,21 @@ RSpec.describe Account do
     end
 
     describe 'searchable' do
-      let!(:suspended_local)        { Fabricate(:account, suspended: true, username: 'suspended_local') }
-      let!(:suspended_remote)       { Fabricate(:account, suspended: true, domain: 'example.org', username: 'suspended_remote') }
+      before do
+        Fabricate(:account, suspended: true, username: 'suspended_local')
+        Fabricate(:account, suspended: true, domain: 'example.org', username: 'suspended_remote')
+        Fabricate(:user, confirmed_at: nil).account
+
+        unapproved.user.update(approved: false)
+        unconfirmed_unapproved.user.update(approved: false)
+      end
+
       let!(:silenced_local)         { Fabricate(:account, silenced: true, username: 'silenced_local') }
-      let!(:silenced_remote)        { Fabricate(:account, silenced: true, domain: 'example.org', username: 'silenced_remote') }
-      let!(:unconfirmed)            { Fabricate(:user, confirmed_at: nil).account }
       let!(:unapproved)             { Fabricate(:user, approved: false).account }
       let!(:unconfirmed_unapproved) { Fabricate(:user, confirmed_at: nil, approved: false).account }
       let!(:local_account)          { Fabricate(:account, username: 'local_account') }
       let!(:remote_account)         { Fabricate(:account, domain: 'example.org', username: 'remote_account') }
-
-      before do
-        # Accounts get automatically-approved depending on settings, so ensure they aren't approved
-        unapproved.user.update(approved: false)
-        unconfirmed_unapproved.user.update(approved: false)
-      end
+      let!(:silenced_remote)        { Fabricate(:account, silenced: true, domain: 'example.org', username: 'silenced_remote') }
 
       it 'returns every usable non-suspended account' do
         expect(described_class.searchable).to contain_exactly(silenced_local, silenced_remote, local_account, remote_account)
