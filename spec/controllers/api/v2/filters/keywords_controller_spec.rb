@@ -17,7 +17,8 @@ RSpec.describe Api::V2::Filters::KeywordsController do
 
   describe 'GET #index' do
     let(:scopes) { 'read:filters' }
-    let!(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
+
+    before { Fabricate(:custom_filter_keyword, custom_filter: filter) }
 
     it 'returns http success' do
       get :index, params: { filter_id: filter.id }
