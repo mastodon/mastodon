@@ -43,6 +43,7 @@ describe Auth::ConfirmationsController do
 
       it 'redirects to login' do
         expect(response).to redirect_to(new_user_session_path)
+        expect(BootstrapTimelineWorker).to have_received(:perform_async).with(user.account_id)
       end
     end
 
@@ -92,7 +93,7 @@ describe Auth::ConfirmationsController do
       end
 
       it 'does not queue up bootstrapping of home timeline' do
-        expect(BootstrapTimelineWorker).to_not have_received(:perform_async)
+        expect(BootstrapTimelineWorker).to_not have_received(:perform_async).with(user.account_id)
       end
     end
   end
