@@ -255,13 +255,14 @@ RSpec.describe Status do
 
   describe '.tagged_with' do
     let(:tag_cats) { Fabricate(:tag, name: 'cats') }
+    let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs, tag_zebras]) }
     let(:tag_dogs) { Fabricate(:tag, name: 'dogs') }
     let(:tag_zebras) { Fabricate(:tag, name: 'zebras') }
     let!(:status_with_tag_cats) { Fabricate(:status, tags: [tag_cats]) }
     let!(:status_with_tag_dogs) { Fabricate(:status, tags: [tag_dogs]) }
     let!(:status_tagged_with_zebras) { Fabricate(:status, tags: [tag_zebras]) }
-    let!(:status_without_tags) { Fabricate(:status, tags: []) }
-    let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs, tag_zebras]) }
+
+    before { Fabricate(:status, tags: []) }
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
@@ -282,13 +283,14 @@ RSpec.describe Status do
 
   describe '.tagged_with_all' do
     let(:tag_cats) { Fabricate(:tag, name: 'cats') }
+    let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs]) }
     let(:tag_dogs) { Fabricate(:tag, name: 'dogs') }
     let(:tag_zebras) { Fabricate(:tag, name: 'zebras') }
     let!(:status_with_tag_cats) { Fabricate(:status, tags: [tag_cats]) }
     let!(:status_with_tag_dogs) { Fabricate(:status, tags: [tag_dogs]) }
     let!(:status_tagged_with_zebras) { Fabricate(:status, tags: [tag_zebras]) }
-    let!(:status_without_tags) { Fabricate(:status, tags: []) }
-    let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs]) }
+
+    before { Fabricate(:status, tags: []) }
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
@@ -315,7 +317,8 @@ RSpec.describe Status do
     let!(:status_with_tag_dogs) { Fabricate(:status, tags: [tag_dogs]) }
     let!(:status_tagged_with_zebras) { Fabricate(:status, tags: [tag_zebras]) }
     let!(:status_without_tags) { Fabricate(:status, tags: []) }
-    let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs, tag_zebras]) }
+
+    before { Fabricate(:status, tags: [tag_cats, tag_dogs, tag_zebras]) }
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
