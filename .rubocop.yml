@@ -105,6 +105,10 @@ Rails/Exit:
     - 'config/boot.rb'
     - 'lib/mastodon/cli/*.rb'
 
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'db/*migrate/**/*'
+
 # Reason: Some single letter camel case files shouldn't be split
 # https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecfilepath
 RSpec/FilePath:
