@@ -110,7 +110,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
       end
 
       context 'when receiving a fabricated status' do
-        let!(:actor) do
+        before do
           Fabricate(:account,
                     username: 'bob',
                     domain: 'example.com',

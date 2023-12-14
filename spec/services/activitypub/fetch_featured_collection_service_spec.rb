@@ -7,8 +7,6 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
 
   let(:actor) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/account', featured_collection_url: 'https://example.com/account/pinned') }
 
-  let!(:known_status) { Fabricate(:status, account: actor, uri: 'https://example.com/account/pinned/1') }
-
   let(:status_json_pinned_known) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
@@ -69,6 +67,8 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
       items: items,
     }.with_indifferent_access
   end
+
+  before { Fabricate(:status, account: actor, uri: 'https://example.com/account/pinned/1') }
 
   shared_examples 'sets pinned posts' do
     before do
