@@ -15,6 +15,7 @@ import ScrollableList from './scrollable_list';
 export default class StatusList extends ImmutablePureComponent {
 
   static propTypes = {
+    forUser: ImmutablePropTypes.map,
     scrollKey: PropTypes.string.isRequired,
     statusIds: ImmutablePropTypes.list.isRequired,
     featuredStatusIds: ImmutablePropTypes.list,
@@ -100,6 +101,7 @@ export default class StatusList extends ImmutablePureComponent {
         />
       ) : (
         <StatusContainer
+          forUser={this.props.forUser}
           key={statusId}
           id={statusId}
           onMoveUp={this.handleMoveUp}
@@ -115,6 +117,7 @@ export default class StatusList extends ImmutablePureComponent {
     if (scrollableContent && featuredStatusIds) {
       scrollableContent = featuredStatusIds.map(statusId => (
         <StatusContainer
+          forUser={this.props.forUser}
           key={`f-${statusId}`}
           id={statusId}
           featured

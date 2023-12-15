@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet';
 
 import { createSelector } from '@reduxjs/toolkit';
 import { List as ImmutableList } from 'immutable';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import CampaignIcon from 'mastodon/../material-icons/400-24px/campaign.svg?react';
@@ -73,6 +74,7 @@ const homeTooSlow = createSelector([
 );
 
 const mapStateToProps = state => ({
+  forUser: state.getIn(['accounts', me]),
   hasUnread: state.getIn(['timelines', 'home', 'unread']) > 0,
   isPartial: state.getIn(['timelines', 'home', 'isPartial']),
   hasAnnouncements: !state.getIn(['announcements', 'items']).isEmpty(),
@@ -88,6 +90,7 @@ class HomeTimeline extends PureComponent {
   };
 
   static propTypes = {
+    forUser: ImmutablePropTypes.map,
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     hasUnread: PropTypes.bool,
@@ -167,7 +170,7 @@ class HomeTimeline extends PureComponent {
   };
 
   render () {
-    const { intl, hasUnread, columnId, multiColumn, tooSlow, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
+    const { intl, hasUnread, columnId, forUser, multiColumn, tooSlow, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
     const pinned = !!columnId;
     const { signedIn } = this.context.identity;
     const banners = [];
@@ -216,6 +219,7 @@ class HomeTimeline extends PureComponent {
 
         {signedIn ? (
           <StatusListContainer
+            forUser={forUser}
             prepend={banners}
             alwaysPrepend
             trackScroll={!pinned}

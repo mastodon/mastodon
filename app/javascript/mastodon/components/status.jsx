@@ -79,6 +79,7 @@ const messages = defineMessages({
 class Status extends ImmutablePureComponent {
 
   static propTypes = {
+    forUser: ImmutablePropTypes.map,
     status: ImmutablePropTypes.map,
     account: ImmutablePropTypes.record,
     previousId: PropTypes.string,
@@ -388,7 +389,11 @@ class Status extends ImmutablePureComponent {
     const connectReply = nextInReplyToId && nextInReplyToId === status.get('id');
     const matchedFilters = status.get('matched_filters');
 
-    if (this.state.forceFilter === undefined ? matchedFilters : this.state.forceFilter) {
+    const forUser = this.props.forUser && this.props.forUser.get('acct');
+    const postAcct = status.get('account').get('acct');
+    if (this.state.forceFilter === undefined ?
+        (matchedFilters || postAcct === forUser) :
+        this.state.forceFilter) {
       const minHandlers = this.props.muted ? {} : {
         moveUp: this.handleHotkeyMoveUp,
         moveDown: this.handleHotkeyMoveDown,
@@ -397,7 +402,7 @@ class Status extends ImmutablePureComponent {
       return (
         <HotKeys handlers={minHandlers}>
           <div className='status__wrapper status__wrapper--filtered focusable' tabIndex={0} ref={this.handleRef}>
-            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.
+            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {postAcct === forUser ? "Self" : matchedFilters.join(', ')}.
             {' '}
             <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
               <FormattedMessage id='status.show_filter_reason' defaultMessage='Show anyway' />
@@ -406,6 +411,7 @@ class Status extends ImmutablePureComponent {
         </HotKeys>
       );
     }
+
 
     if (featured) {
       prepend = (

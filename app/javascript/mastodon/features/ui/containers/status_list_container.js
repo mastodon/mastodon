@@ -37,7 +37,8 @@ const makeMapStateToProps = () => {
   const getStatusIds = makeGetStatusIds();
   const getPendingStatusIds = makeGetStatusIds(true);
 
-  const mapStateToProps = (state, { timelineId }) => ({
+  const mapStateToProps = (state, { timelineId, forUser }) => ({
+    forUser: forUser,
     statusIds: getStatusIds(state, { type: timelineId }),
     lastId:    state.getIn(['timelines', timelineId, 'items'])?.last(),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], true),
