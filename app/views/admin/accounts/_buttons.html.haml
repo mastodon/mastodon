@@ -15,8 +15,8 @@
         = link_to t('admin.accounts.warn'), new_admin_account_action_path(account.id, type: 'none'), class: 'button' if can?(:warn, account)
         - if account.user_disabled?
           = link_to t('admin.accounts.enable'), enable_admin_account_path(account.id), method: :post, class: 'button' if can?(:enable, account.user)
-        - else
-          = link_to t('admin.accounts.disable'), new_admin_account_action_path(account.id, type: 'disable'), class: 'button' if can?(:disable, account.user)
+        - elsif can?(:disable, account.user)
+          = link_to t('admin.accounts.disable'), new_admin_account_action_path(account.id, type: 'disable'), class: 'button'
       - if account.sensitized?
         = link_to t('admin.accounts.undo_sensitized'), unsensitive_admin_account_path(account.id), method: :post, class: 'button' if can?(:unsensitive, account)
       - elsif !account.local? || account.user_approved?
@@ -37,5 +37,5 @@
       - if account.local?
         - if !account.memorial? && account.user_approved? && can?(:memorialize, account)
           = link_to t('admin.accounts.memorialize'), memorialize_admin_account_path(account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive'
-      - else
-        = link_to t('admin.accounts.redownload'), redownload_admin_account_path(account.id), method: :post, class: 'button' if can?(:redownload, account)
+      - elsif can?(:redownload, account)
+        = link_to t('admin.accounts.redownload'), redownload_admin_account_path(account.id), method: :post, class: 'button'
