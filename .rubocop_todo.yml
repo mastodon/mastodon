@@ -363,14 +363,6 @@ Style/IfUnlessModifier:
     - 'config/initializers/ffmpeg.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: InverseMethods, InverseBlocks.
-Style/InverseMethods:
-  Exclude:
-    - 'app/models/custom_filter.rb'
-    - 'app/services/update_account_service.rb'
-    - 'spec/controllers/activitypub/replies_controller_spec.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
 Style/MapToHash:
   Exclude:
     - 'app/models/status.rb'
