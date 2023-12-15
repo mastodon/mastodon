@@ -11,7 +11,6 @@ RSpec.describe AccountRelationshipsPresenter do
       allow(Account).to receive(:muting_map).with(accounts.pluck(:id), current_account_id).and_return(default_map)
       allow(Account).to receive(:requested_map).with(accounts.pluck(:id), current_account_id).and_return(default_map)
       allow(Account).to receive(:requested_by_map).with(accounts.pluck(:id), current_account_id).and_return(default_map)
-      allow(Account).to receive(:domain_blocking_map).with(accounts, current_account_id).and_return(default_map)
     end
 
     let(:presenter)          { described_class.new(accounts, current_account_id, **options) }
@@ -23,12 +22,14 @@ RSpec.describe AccountRelationshipsPresenter do
       let(:options) { {} }
 
       it 'sets default maps' do
-        expect(presenter.following).to       eq default_map
-        expect(presenter.followed_by).to     eq default_map
-        expect(presenter.blocking).to        eq default_map
-        expect(presenter.muting).to          eq default_map
-        expect(presenter.requested).to       eq default_map
-        expect(presenter.domain_blocking).to eq default_map
+        expect(presenter).to have_attributes(
+          following: default_map,
+          followed_by: default_map,
+          blocking: default_map,
+          muting: default_map,
+          requested: default_map,
+          domain_blocking: { accounts[0].id => nil }
+        )
       end
     end
 
@@ -84,7 +85,7 @@ RSpec.describe AccountRelationshipsPresenter do
       let(:options) { { domain_blocking_map: { 7 => true } } }
 
       it 'sets @domain_blocking merged with default_map and options[:domain_blocking_map]' do
-        expect(presenter.domain_blocking).to eq default_map.merge(options[:domain_blocking_map])
+        expect(presenter.domain_blocking).to eq({ accounts[0].id => nil }.merge(options[:domain_blocking_map]))
       end
     end
   end

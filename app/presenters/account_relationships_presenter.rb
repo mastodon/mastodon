@@ -20,7 +20,7 @@ class AccountRelationshipsPresenter
     @endorsed        = cached[:endorsed].merge(Account.endorsed_map(@uncached_account_ids, @current_account_id))
     @account_note    = cached[:account_note].merge(Account.account_note_map(@uncached_account_ids, @current_account_id))
 
-    @domain_blocking = Account.domain_blocking_map(@accounts, @current_account_id)
+    @domain_blocking = domain_blocking_map
 
     cache_uncached!
 
@@ -37,6 +37,37 @@ class AccountRelationshipsPresenter
   end
 
   private
+
+  def domain_blocking_map
+    target_domains = @accounts.pluck(:domain).compact.uniq
+    uncached_domains = []
+    blocks_by_domain = target_domains.index_with(false)
+
+    # Fetch from cache
+    unless target_domains.empty?
+      cache_keys = target_domains.map { |domain| "exclude_domains:#{@current_account_id}:#{domain}" }
+      target_domains.zip(Rails.cache.read_multi(cache_keys)).each do |domain, blocking|
+        if blocking.nil?
+          uncached_domains << domain
+        else
+          blocks_by_domain[domain] = blocking
+        end
+      end
+    end
+
+    # Read uncached values from database
+    AccountDomainBlock.where(account_id: @current_account_id, domain: uncached_domains).pluck(:domain).each do |domain|
+      blocks_by_domain[domain] = true
+    end
+
+    # Write database reads to cache
+    uncached_domains.each do |domain|
+      Rails.cache.write("exclude_domains:#{@current_account_id}:#{domain}", blocks_by_domain[domain], expires_in: 1.day)
+    end
+
+    # Return formatted value
+    @accounts.each_with_object({}) { |account, h| h[account.id] = blocks_by_domain[account.domain] }
+  end
 
   def cached
     return @cached if defined?(@cached)
