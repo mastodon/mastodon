@@ -55,9 +55,10 @@ class AccountRelationshipsPresenter
 
     @uncached_account_ids = []
 
-    @account_ids.each do |account_id|
-      maps_for_account = Rails.cache.read("relationship:#{@current_account_id}:#{account_id}")
+    return @cached if @account_ids.empty?
 
+    cache_ids = @account_ids.map { |account_id| "relationship:#{@current_account_id}:#{account_id}" }
+    @account_ids.zip(Rails.cache.read_multi(cache_ids)).each do |account_id, maps_for_account|
       if maps_for_account.is_a?(Hash)
         @cached.deep_merge!(maps_for_account)
       else
