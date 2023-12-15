@@ -958,16 +958,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_073317) do
     t.index ["status_id"], name: "index_status_stats_on_status_id", unique: true
   end
 
-  create_table "status_trend_highlights", force: :cascade do |t|
-    t.datetime "period", precision: nil, null: false
-    t.bigint "status_id", null: false
-    t.bigint "account_id", null: false
-    t.float "score", default: 0.0, null: false
-    t.string "language"
-    t.index ["account_id"], name: "index_status_trend_highlights_on_account_id"
-    t.index ["status_id"], name: "index_status_trend_highlights_on_status_id", unique: true
-  end
-
   create_table "status_trends", force: :cascade do |t|
     t.bigint "status_id", null: false
     t.bigint "account_id", null: false
