@@ -5,18 +5,18 @@ require 'rails_helper'
 RSpec.describe AccountRelationshipsPresenter do
   describe '.initialize' do
     before do
-      allow(Account).to receive(:following_map).with(account_ids, current_account_id).and_return(default_map)
-      allow(Account).to receive(:followed_by_map).with(account_ids, current_account_id).and_return(default_map)
-      allow(Account).to receive(:blocking_map).with(account_ids, current_account_id).and_return(default_map)
-      allow(Account).to receive(:muting_map).with(account_ids, current_account_id).and_return(default_map)
-      allow(Account).to receive(:requested_map).with(account_ids, current_account_id).and_return(default_map)
-      allow(Account).to receive(:requested_by_map).with(account_ids, current_account_id).and_return(default_map)
-      allow(Account).to receive(:domain_blocking_map).with(account_ids, current_account_id).and_return(default_map)
+      allow(Account).to receive(:following_map).with(accounts.pluck(:id), current_account_id).and_return(default_map)
+      allow(Account).to receive(:followed_by_map).with(accounts.pluck(:id), current_account_id).and_return(default_map)
+      allow(Account).to receive(:blocking_map).with(accounts.pluck(:id), current_account_id).and_return(default_map)
+      allow(Account).to receive(:muting_map).with(accounts.pluck(:id), current_account_id).and_return(default_map)
+      allow(Account).to receive(:requested_map).with(accounts.pluck(:id), current_account_id).and_return(default_map)
+      allow(Account).to receive(:requested_by_map).with(accounts.pluck(:id), current_account_id).and_return(default_map)
+      allow(Account).to receive(:domain_blocking_map).with(accounts, current_account_id).and_return(default_map)
     end
 
-    let(:presenter)          { described_class.new(account_ids, current_account_id, **options) }
+    let(:presenter)          { described_class.new(accounts, current_account_id, **options) }
     let(:current_account_id) { Fabricate(:account).id }
-    let(:account_ids)        { [Fabricate(:account).id] }
+    let(:accounts)           { [Fabricate(:account)] }
     let(:default_map)        { { 1 => true } }
 
     context 'when options are not set' do
