@@ -63,7 +63,7 @@ module AccountInteractions
     def domain_blocking_map(target_accounts, account_id)
       accounts_map    = target_accounts.each_with_object({}) { |a, h| h[a.id] = a.domain }
       blocked_domains = domain_blocking_map_by_domain(accounts_map.values.compact, account_id)
-      accounts_map.reduce({}) { |h, (id, domain)| h.merge(id => blocked_domains[domain]) }
+      accounts_map.transform_values { |domain| blocked_domains[domain] }
     end
 
     def domain_blocking_map_by_domain(target_domains, account_id)
