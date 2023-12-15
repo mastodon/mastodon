@@ -74,7 +74,7 @@ class UserMailer < Devise::Mailer
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
-      mail subject: default_devise_subject
+      mail_with_new_layout subject: default_devise_subject
     end
   end
 
@@ -203,5 +203,12 @@ class UserMailer < Devise::Mailer
 
   def locale
     @resource.locale.presence || I18n.locale || I18n.default_locale
+  end
+
+  def mail_with_new_layout(*, **)
+    mail(*, **) do |format|
+      format.text
+      format.html { render layout: 'mailer_new' }
+    end
   end
 end
