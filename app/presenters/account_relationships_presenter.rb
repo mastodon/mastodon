@@ -5,8 +5,9 @@ class AccountRelationshipsPresenter
               :muting, :requested, :requested_by, :domain_blocking,
               :endorsed, :account_note
 
-  def initialize(account_ids, current_account_id, **options)
-    @account_ids        = account_ids.map { |a| a.is_a?(Account) ? a.id : a.to_i }
+  def initialize(accounts, current_account_id, **options)
+    @accounts = accounts.to_a
+    @account_ids        = @accounts.pluck(:id)
     @current_account_id = current_account_id
 
     @following       = cached[:following].merge(Account.following_map(@uncached_account_ids, @current_account_id))
@@ -16,9 +17,10 @@ class AccountRelationshipsPresenter
     @muting          = cached[:muting].merge(Account.muting_map(@uncached_account_ids, @current_account_id))
     @requested       = cached[:requested].merge(Account.requested_map(@uncached_account_ids, @current_account_id))
     @requested_by    = cached[:requested_by].merge(Account.requested_by_map(@uncached_account_ids, @current_account_id))
-    @domain_blocking = cached[:domain_blocking].merge(Account.domain_blocking_map(@uncached_account_ids, @current_account_id))
     @endorsed        = cached[:endorsed].merge(Account.endorsed_map(@uncached_account_ids, @current_account_id))
     @account_note    = cached[:account_note].merge(Account.account_note_map(@uncached_account_ids, @current_account_id))
+
+    @domain_blocking = Account.domain_blocking_map(@accounts, @current_account_id)
 
     cache_uncached!
 
@@ -47,7 +49,6 @@ class AccountRelationshipsPresenter
       muting: {},
       requested: {},
       requested_by: {},
-      domain_blocking: {},
       endorsed: {},
       account_note: {},
     }
@@ -77,7 +78,6 @@ class AccountRelationshipsPresenter
         muting: { account_id => muting[account_id] },
         requested: { account_id => requested[account_id] },
         requested_by: { account_id => requested_by[account_id] },
-        domain_blocking: { account_id => domain_blocking[account_id] },
         endorsed: { account_id => endorsed[account_id] },
         account_note: { account_id => account_note[account_id] },
       }
