@@ -7,7 +7,7 @@ class AccountSuggestions::SimilarProfilesSource < AccountSuggestions::Source
         {
           more_like_this: {
             fields: %w(text text.stemmed),
-            like: @account.active_relationships.recent.limit(5).pluck(:target_account_id).map { |id| { _index: 'accounts', _id: id } },
+            like: @query.map { |id| { _index: 'accounts', _id: id } },
           },
         },
 
@@ -48,8 +48,10 @@ class AccountSuggestions::SimilarProfilesSource < AccountSuggestions::Source
   end
 
   def get(account, limit: 10)
-    if Chewy.enabled?
-      QueryBuilder.new(nil, account).build.limit(limit).hits.pluck('_id').map(&:to_i).zip([key].cycle)
+    recently_followed_account_ids = account.active_relationships.recent.limit(5).pluck(:target_account_id)
+
+    if Chewy.enabled? && !recently_followed_account_ids.empty?
+      QueryBuilder.new(recently_followed_account_ids, account).build.limit(limit).hits.pluck('_id').map(&:to_i).zip([key].cycle)
     else
       []
     end
