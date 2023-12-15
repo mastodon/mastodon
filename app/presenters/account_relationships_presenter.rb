@@ -45,7 +45,7 @@ class AccountRelationshipsPresenter
 
     # Fetch from cache
     unless target_domains.empty?
-      cache_keys = target_domains.map { |domain| "exclude_domains:#{@current_account_id}:#{domain}" }
+      cache_keys = target_domains.map { |domain| domain_cache_key(domain) }
       target_domains.zip(Rails.cache.read_multi(cache_keys)).each do |domain, blocking|
         if blocking.nil?
           uncached_domains << domain
@@ -62,7 +62,7 @@ class AccountRelationshipsPresenter
 
     # Write database reads to cache
     uncached_domains.each do |domain|
-      Rails.cache.write("exclude_domains:#{@current_account_id}:#{domain}", blocks_by_domain[domain], expires_in: 1.day)
+      Rails.cache.write(domain_cache_key(domain), blocks_by_domain[domain], expires_in: 1.day)
     end
 
     # Return formatted value
@@ -88,7 +88,7 @@ class AccountRelationshipsPresenter
 
     return @cached if @account_ids.empty?
 
-    cache_ids = @account_ids.map { |account_id| "relationship:#{@current_account_id}:#{account_id}" }
+    cache_ids = @account_ids.map { |account_id| relationship_cache_key(account_id) }
     @account_ids.zip(Rails.cache.read_multi(cache_ids)).each do |account_id, maps_for_account|
       if maps_for_account.is_a?(Hash)
         @cached.deep_merge!(maps_for_account)
@@ -114,7 +114,15 @@ class AccountRelationshipsPresenter
         account_note: { account_id => account_note[account_id] },
       }
 
-      Rails.cache.write("relationship:#{@current_account_id}:#{account_id}", maps_for_account, expires_in: 1.day)
+      Rails.cache.write(relationship_cache_key(account_id), maps_for_account, expires_in: 1.day)
     end
+  end
+
+  def domain_cache_key(domain)
+    "exclude_domains:#{@current_account_id}:#{domain}"
+  end
+
+  def relationship_cache_key(account_id)
+    "relationship:#{@current_account_id}:#{account_id}"
   end
 end
