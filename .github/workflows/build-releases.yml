@@ -1,0 +1,27 @@
+name: Build container release images
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-image:
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      platforms: linux/amd64,linux/arm64
+      use_native_arm64_builder: true
+      push_to_images: |
+        tootsuite/mastodon
+        ghcr.io/mastodon/mastodon
+      # Do not use cache when building releases, so apt update is always ran and the release always contain the latest packages
+      cache: false
+      flavor: |
+        latest=false
+      tags: |
+        type=pep440,pattern={{raw}}
+        type=pep440,pattern=v{{major}}.{{minor}}
+    secrets: inherit

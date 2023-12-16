@@ -65,23 +65,23 @@ class MuteModal extends React.PureComponent {
   handleClick = () => {
     this.props.onClose();
     this.props.onConfirm(this.props.account, this.props.notifications, this.props.muteDuration);
-  }
+  };
 
   handleCancel = () => {
     this.props.onClose();
-  }
+  };
 
   setRef = (c) => {
     this.button = c;
-  }
+  };
 
   toggleNotifications = () => {
     this.props.onToggleNotifications();
-  }
+  };
 
   changeMuteDuration = (e) => {
     this.props.onChangeMuteDuration(e);
-  }
+  };
 
   render () {
     const { account, notifications, muteDuration, intl } = this.props;

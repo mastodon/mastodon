@@ -22,7 +22,7 @@ export default class UploadArea extends React.PureComponent {
         break;
       }
     }
-  }
+  };
 
   componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);

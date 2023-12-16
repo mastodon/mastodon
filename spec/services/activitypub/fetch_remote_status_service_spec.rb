@@ -223,4 +223,98 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       end
     end
   end
+
+  context 'statuses referencing other statuses' do
+    before do
+      stub_const 'ActivityPub::FetchRemoteStatusService::DISCOVERIES_PER_REQUEST', 5
+    end
+
+    context 'using inReplyTo' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: "https://foo.bar/@foo/1",
+          type: 'Note',
+          content: 'Lorem ipsum',
+          inReplyTo: 'https://foo.bar/@foo/2',
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+        }
+      end
+
+      before do
+        8.times do |i|
+          status_json = {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            id: "https://foo.bar/@foo/#{i}",
+            type: 'Note',
+            content: 'Lorem ipsum',
+            inReplyTo: "https://foo.bar/@foo/#{i + 1}",
+            attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+            to: 'as:Public',
+          }.with_indifferent_access
+          stub_request(:get, "https://foo.bar/@foo/#{i}").to_return(status: 200, body: status_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
+        end
+      end
+
+      it 'creates at least some statuses' do
+        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }.to change { sender.statuses.count }.by_at_least(2)
+      end
+
+      it 'creates no more account than the limit allows' do
+        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }.to change { sender.statuses.count }.by_at_most(5)
+      end
+    end
+
+    context 'using replies' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: "https://foo.bar/@foo/1",
+          type: 'Note',
+          content: 'Lorem ipsum',
+          replies: {
+            type: 'Collection',
+            id: 'https://foo.bar/@foo/1/replies',
+            first: {
+              type: 'CollectionPage',
+              partOf: 'https://foo.bar/@foo/1/replies',
+              items: ['https://foo.bar/@foo/2'],
+            },
+          },
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+        }
+      end
+
+      before do
+        8.times do |i|
+          status_json = {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            id: "https://foo.bar/@foo/#{i}",
+            type: 'Note',
+            content: 'Lorem ipsum',
+            replies: {
+              type: 'Collection',
+              id: "https://foo.bar/@foo/#{i}/replies",
+              first: {
+                type: 'CollectionPage',
+                partOf: "https://foo.bar/@foo/#{i}/replies",
+                items: ["https://foo.bar/@foo/#{i+1}"],
+              },
+            },
+            attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+            to: 'as:Public',
+          }.with_indifferent_access
+          stub_request(:get, "https://foo.bar/@foo/#{i}").to_return(status: 200, body: status_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
+        end
+      end
+
+      it 'creates at least some statuses' do
+        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }.to change { sender.statuses.count }.by_at_least(2)
+      end
+
+      it 'creates no more account than the limit allows' do
+        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }.to change { sender.statuses.count }.by_at_most(5)
+      end
+    end
+  end
 end

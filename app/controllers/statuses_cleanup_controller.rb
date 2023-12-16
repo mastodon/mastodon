@@ -19,6 +19,10 @@ class StatusesCleanupController < ApplicationController
     # Do nothing
   end
 
+  def require_functional!
+    redirect_to edit_user_registration_path unless current_user.functional_or_moved?
+  end
+
   private
 
   def set_policy

@@ -34,17 +34,17 @@ class Search extends React.PureComponent {
 
   handleChange = e => {
     this.props.onChange(e.target.value);
-  }
+  };
 
   handleKeyUp = e => {
     if (e.keyCode === 13) {
       this.props.onSubmit(this.props.value);
     }
-  }
+  };
 
   handleClear = () => {
     this.props.onClear();
-  }
+  };
 
   render () {
     const { value, intl } = this.props;

@@ -41,4 +41,4 @@ export default function filters(state = ImmutableMap(), action) {
   default:
     return state;
   }
-};
+}

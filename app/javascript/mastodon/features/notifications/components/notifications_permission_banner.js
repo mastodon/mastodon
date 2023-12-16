@@ -23,11 +23,11 @@ class NotificationsPermissionBanner extends React.PureComponent {
 
   handleClick = () => {
     this.props.dispatch(requestBrowserPermission());
-  }
+  };
 
   handleClose = () => {
     this.props.dispatch(changeSetting(['notifications', 'dismissPermissionBanner'], true));
-  }
+  };
 
   render () {
     const { intl } = this.props;

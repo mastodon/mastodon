@@ -34,16 +34,16 @@ class DirectTimeline extends React.PureComponent {
     } else {
       dispatch(addColumn('DIRECT', {}));
     }
-  }
+  };
 
   handleMove = (dir) => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   componentDidMount () {
     const { dispatch } = this.props;
@@ -64,11 +64,11 @@ class DirectTimeline extends React.PureComponent {
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleLoadMore = maxId => {
     this.props.dispatch(expandConversations({ maxId }));
-  }
+  };
 
   render () {
     const { intl, hasUnread, columnId, multiColumn } = this.props;

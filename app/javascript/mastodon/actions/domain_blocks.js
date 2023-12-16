@@ -29,14 +29,14 @@ export function blockDomain(domain) {
       dispatch(blockDomainFail(domain, err));
     });
   };
-};
+}
 
 export function blockDomainRequest(domain) {
   return {
     type: DOMAIN_BLOCK_REQUEST,
     domain,
   };
-};
+}
 
 export function blockDomainSuccess(domain, accounts) {
   return {
@@ -44,7 +44,7 @@ export function blockDomainSuccess(domain, accounts) {
     domain,
     accounts,
   };
-};
+}
 
 export function blockDomainFail(domain, error) {
   return {
@@ -52,7 +52,7 @@ export function blockDomainFail(domain, error) {
     domain,
     error,
   };
-};
+}
 
 export function unblockDomain(domain) {
   return (dispatch, getState) => {
@@ -66,14 +66,14 @@ export function unblockDomain(domain) {
       dispatch(unblockDomainFail(domain, err));
     });
   };
-};
+}
 
 export function unblockDomainRequest(domain) {
   return {
     type: DOMAIN_UNBLOCK_REQUEST,
     domain,
   };
-};
+}
 
 export function unblockDomainSuccess(domain, accounts) {
   return {
@@ -81,7 +81,7 @@ export function unblockDomainSuccess(domain, accounts) {
     domain,
     accounts,
   };
-};
+}
 
 export function unblockDomainFail(domain, error) {
   return {
@@ -89,7 +89,7 @@ export function unblockDomainFail(domain, error) {
     domain,
     error,
   };
-};
+}
 
 export function fetchDomainBlocks() {
   return (dispatch, getState) => {
@@ -102,13 +102,13 @@ export function fetchDomainBlocks() {
       dispatch(fetchDomainBlocksFail(err));
     });
   };
-};
+}
 
 export function fetchDomainBlocksRequest() {
   return {
     type: DOMAIN_BLOCKS_FETCH_REQUEST,
   };
-};
+}
 
 export function fetchDomainBlocksSuccess(domains, next) {
   return {
@@ -116,14 +116,14 @@ export function fetchDomainBlocksSuccess(domains, next) {
     domains,
     next,
   };
-};
+}
 
 export function fetchDomainBlocksFail(error) {
   return {
     type: DOMAIN_BLOCKS_FETCH_FAIL,
     error,
   };
-};
+}
 
 export function expandDomainBlocks() {
   return (dispatch, getState) => {
@@ -142,13 +142,13 @@ export function expandDomainBlocks() {
       dispatch(expandDomainBlocksFail(err));
     });
   };
-};
+}
 
 export function expandDomainBlocksRequest() {
   return {
     type: DOMAIN_BLOCKS_EXPAND_REQUEST,
   };
-};
+}
 
 export function expandDomainBlocksSuccess(domains, next) {
   return {
@@ -156,11 +156,11 @@ export function expandDomainBlocksSuccess(domains, next) {
     domains,
     next,
   };
-};
+}
 
 export function expandDomainBlocksFail(error) {
   return {
     type: DOMAIN_BLOCKS_EXPAND_FAIL,
     error,
   };
-};
+}

@@ -17,13 +17,13 @@ export function dismissAlert(alert) {
     type: ALERT_DISMISS,
     alert,
   };
-};
+}
 
 export function clearAlert() {
   return {
     type: ALERT_CLEAR,
   };
-};
+}
 
 export function showAlert(title = messages.unexpectedTitle, message = messages.unexpectedMessage, message_values = undefined) {
   return {
@@ -32,7 +32,7 @@ export function showAlert(title = messages.unexpectedTitle, message = messages.u
     message,
     message_values,
   };
-};
+}
 
 export function showAlertForError(error, skipNotFound = false) {
   if (error.response) {

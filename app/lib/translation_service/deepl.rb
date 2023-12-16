@@ -46,7 +46,7 @@ class TranslationService::DeepL < TranslationService
 
     raise UnexpectedResponseError unless json.is_a?(Hash)
 
-    Translation.new(text: json.dig('translations', 0, 'text'), detected_source_language: json.dig('translations', 0, 'detected_source_language')&.downcase, provider: 'DeepL.com')
+    Translation.new(text: Sanitize.fragment(json.dig('translations', 0, 'text'), Sanitize::Config::MASTODON_STRICT), detected_source_language: json.dig('translations', 0, 'detected_source_language')&.downcase, provider: 'DeepL.com')
   rescue Oj::ParseError
     raise UnexpectedResponseError
   end

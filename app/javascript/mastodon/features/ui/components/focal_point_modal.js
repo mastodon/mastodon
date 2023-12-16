@@ -39,6 +39,7 @@ const mapStateToProps = (state, { id }) => ({
   account: state.getIn(['accounts', me]),
   isUploadingThumbnail: state.getIn(['compose', 'isUploadingThumbnail']),
   description: state.getIn(['compose', 'media_modal', 'description']),
+  lang: state.getIn(['compose', 'language']),
   focusX: state.getIn(['compose', 'media_modal', 'focusX']),
   focusY: state.getIn(['compose', 'media_modal', 'focusY']),
   dirty: state.getIn(['compose', 'media_modal', 'dirty']),
@@ -134,7 +135,7 @@ class FocalPointModal extends ImmutablePureComponent {
 
     this.updatePosition(e);
     this.setState({ dragging: true });
-  }
+  };
 
   handleTouchStart = e => {
     document.addEventListener('touchmove', this.handleMouseMove);
@@ -142,25 +143,25 @@ class FocalPointModal extends ImmutablePureComponent {
 
     this.updatePosition(e);
     this.setState({ dragging: true });
-  }
+  };
 
   handleMouseMove = e => {
     this.updatePosition(e);
-  }
+  };
 
   handleMouseUp = () => {
     document.removeEventListener('mousemove', this.handleMouseMove);
     document.removeEventListener('mouseup', this.handleMouseUp);
 
     this.setState({ dragging: false });
-  }
+  };
 
   handleTouchEnd = () => {
     document.removeEventListener('touchmove', this.handleMouseMove);
     document.removeEventListener('touchend', this.handleTouchEnd);
 
     this.setState({ dragging: false });
-  }
+  };
 
   updatePosition = e => {
     const { x, y } = getPointerPosition(this.node, e);
@@ -168,24 +169,24 @@ class FocalPointModal extends ImmutablePureComponent {
     const focusY   = (y - .5) * -2;
 
     this.props.onChangeFocus(focusX, focusY);
-  }
+  };
 
   handleChange = e => {
     this.props.onChangeDescription(e.target.value);
-  }
+  };
 
   handleKeyDown = (e) => {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.props.onChangeDescription(e.target.value);
       this.handleSubmit(e);
     }
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
     this.props.onSave(this.props.description, this.props.focusX, this.props.focusY);
-  }
+  };
 
   getCloseConfirmationMessage = () => {
     const { intl, dirty } = this.props;
@@ -198,15 +199,15 @@ class FocalPointModal extends ImmutablePureComponent {
     } else {
       return null;
     }
-  }
+  };
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   handleTextDetection = () => {
     this._detectText();
-  }
+  };
 
   _detectText = (refreshCache = false) => {
     const { media } = this.props;
@@ -257,24 +258,24 @@ class FocalPointModal extends ImmutablePureComponent {
       console.error(e);
       this.setState({ detecting: false });
     });
-  }
+  };
 
   handleThumbnailChange = e => {
     if (e.target.files.length > 0) {
       this.props.onSelectThumbnail(e.target.files);
     }
-  }
+  };
 
   setFileInputRef = c => {
     this.fileInput = c;
-  }
+  };
 
   handleFileInputClick = () => {
     this.fileInput.click();
-  }
+  };
 
   render () {
-    const { media, intl, account, onClose, isUploadingThumbnail, description, focusX, focusY, dirty, is_changing_upload } = this.props;
+    const { media, intl, account, onClose, isUploadingThumbnail, description, lang, focusX, focusY, dirty, is_changing_upload } = this.props;
     const { dragging, detecting, progress, ocrStatus } = this.state;
     const x = (focusX /  2) + .5;
     const y = (focusY / -2) + .5;
@@ -291,11 +292,11 @@ class FocalPointModal extends ImmutablePureComponent {
     let descriptionLabel = null;
 
     if (media.get('type') === 'audio') {
-      descriptionLabel = <FormattedMessage id='upload_form.audio_description' defaultMessage='Describe for people with hearing loss' />;
+      descriptionLabel = <FormattedMessage id='upload_form.audio_description' defaultMessage='Describe for people who are hard of hearing' />;
     } else if (media.get('type') === 'video') {
-      descriptionLabel = <FormattedMessage id='upload_form.video_description' defaultMessage='Describe for people with hearing loss or visual impairment' />;
+      descriptionLabel = <FormattedMessage id='upload_form.video_description' defaultMessage='Describe for people who are deaf, hard of hearing, blind or have low vision' />;
     } else {
-      descriptionLabel = <FormattedMessage id='upload_form.description' defaultMessage='Describe for the visually impaired' />;
+      descriptionLabel = <FormattedMessage id='upload_form.description' defaultMessage='Describe for people who are blind or have low vision' />;
     }
 
     let ocrMessage = '';
@@ -320,7 +321,7 @@ class FocalPointModal extends ImmutablePureComponent {
               <React.Fragment>
                 <label className='setting-text-label' htmlFor='upload-modal__thumbnail'><FormattedMessage id='upload_form.thumbnail' defaultMessage='Change thumbnail' /></label>
 
-                <Button disabled={isUploadingThumbnail} text={intl.formatMessage(messages.chooseImage)} onClick={this.handleFileInputClick} />
+                <Button disabled={isUploadingThumbnail || !media.get('unattached')} text={intl.formatMessage(messages.chooseImage)} onClick={this.handleFileInputClick} />
 
                 <label>
                   <span style={{ display: 'none' }}>{intl.formatMessage(messages.chooseImage)}</span>
@@ -349,6 +350,7 @@ class FocalPointModal extends ImmutablePureComponent {
                 id='upload-modal__description'
                 className='setting-text light'
                 value={detecting ? '…' : description}
+                lang={lang}
                 onChange={this.handleChange}
                 onKeyDown={this.handleKeyDown}
                 disabled={detecting || is_changing_upload}

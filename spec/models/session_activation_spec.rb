@@ -118,8 +118,8 @@ RSpec.describe SessionActivation, type: :model do
     let(:id) { '1' }
 
     it 'calls where.destroy_all' do
-      expect(described_class).to receive_message_chain(:where, :destroy_all)
-        .with('session_id != ?', id).with(no_args)
+      expect(described_class).to receive_message_chain(:where, :not, :destroy_all)
+        .with(session_id: id).with(no_args)
 
       described_class.exclusive(id)
     end

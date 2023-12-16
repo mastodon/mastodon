@@ -23,7 +23,7 @@ export default class Column extends React.PureComponent {
     }
 
     this._interruptScrollAnimation = scrollTop(scrollable);
-  }
+  };
 
   scrollTop () {
     const scrollable = this.node.querySelector('.scrollable');
@@ -40,11 +40,11 @@ export default class Column extends React.PureComponent {
     if (typeof this._interruptScrollAnimation !== 'undefined') {
       this._interruptScrollAnimation();
     }
-  }, 200)
+  }, 200);
 
   setRef = (c) => {
     this.node = c;
-  }
+  };
 
   render () {
     const { heading, icon, children, active, hideHeadingOnMobile } = this.props;

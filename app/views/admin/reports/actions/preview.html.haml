@@ -1,0 +1,78 @@
+- target_acct = @report.target_account.acct
+- warning_action = { 'delete' => 'delete_statuses', 'mark_as_sensitive' => 'mark_statuses_as_sensitive' }.fetch(@moderation_action, @moderation_action)
+
+- content_for :page_title do
+  = t('admin.reports.confirm_action', acct: target_acct)
+
+= form_tag admin_report_actions_path(@report), class: 'simple_form', method: :post do
+  = hidden_field_tag :moderation_action, @moderation_action
+
+  %p.hint= t("admin.reports.summary.action_preambles.#{@moderation_action}_html", acct: target_acct)
+  %ul.hint
+    %li.warning-hint= t("admin.reports.summary.actions.#{@moderation_action}_html", acct: target_acct)
+    - if @moderation_action == 'suspend'
+      %li.warning-hint= t('admin.reports.summary.delete_data_html', acct: target_acct)
+    - if %w(silence suspend).include?(@moderation_action)
+      %li.warning-hint= t('admin.reports.summary.close_reports_html', acct: target_acct)
+    - else
+      %li= t('admin.reports.summary.close_report', id: @report.id)
+    %li= t('admin.reports.summary.record_strike_html', acct: target_acct)
+    - if @report.target_account.local? && !@report.spam?
+      %li= t('admin.reports.summary.send_email_html', acct: target_acct)
+
+  %hr.spacer/
+
+  - if @report.target_account.local?
+    %p.hint= t('admin.reports.summary.preview_preamble_html', acct: target_acct)
+
+    .strike-card
+      - unless warning_action == 'none'
+        %p= t "user_mailer.warning.explanation.#{warning_action}", instance: Rails.configuration.x.local_domain
+
+      .fields-group
+        = text_area_tag :text, nil, placeholder: t('admin.reports.summary.warning_placeholder')
+
+      - if !@report.other?
+        %p
+          %strong= t('user_mailer.warning.reason')
+          = t("user_mailer.warning.categories.#{@report.category}")
+
+        - if @report.violation? && @report.rule_ids.present?
+          %ul.strike-card__rules
+            - @report.rules.each do |rule|
+              %li
+                %span.strike-card__rules__text= rule.text
+
+      - if @report.status_ids.present? && !@report.status_ids.empty?
+        %p
+          %strong= t('user_mailer.warning.statuses')
+
+        .strike-card__statuses-list
+          - status_map = @report.statuses.includes(:application, :media_attachments).index_by(&:id)
+
+          - @report.status_ids.each do |status_id|
+            .strike-card__statuses-list__item
+              - if (status = status_map[status_id.to_i])
+                .one-liner
+                  .emojify= one_line_preview(status)
+
+                  - status.ordered_media_attachments.each do |media_attachment|
+                    %abbr{ title: media_attachment.description }
+                      = fa_icon 'link'
+                      = media_attachment.file_file_name
+                .strike-card__statuses-list__item__meta
+                  = link_to ActivityPub::TagManager.instance.url_for(status), target: '_blank' do
+                    %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
+                  - unless status.application.nil?
+                    ·
+                    = status.application.name
+              - else
+                .one-liner= t('disputes.strikes.status', id: status_id)
+                .strike-card__statuses-list__item__meta
+                  = t('disputes.strikes.status_removed')
+
+    %hr.spacer/
+
+  .actions
+    = link_to t('admin.reports.cancel'), admin_report_path(@report), class: 'button button-tertiary'
+    = button_tag t('admin.reports.confirm'), name: :confirm, class: 'button', type: :submit

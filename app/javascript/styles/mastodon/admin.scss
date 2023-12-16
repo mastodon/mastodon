@@ -254,10 +254,8 @@ $content-width: 840px;
 
       &__actions {
         display: inline-flex;
-
-        & > :not(:first-child) {
-          margin-left: 5px;
-        }
+        flex-flow: wrap;
+        gap: 5px;
       }
 
       h2 small {
@@ -1202,7 +1200,7 @@ a.name-tag,
 
     path:first-child {
       fill: rgba($highlight-text-color, 0.25) !important;
-      fill-opacity: 100% !important;
+      fill-opacity: 1 !important;
     }
 
     path:last-child {
@@ -1574,6 +1572,15 @@ a.sparkline {
           margin-bottom: 0;
         }
       }
+
+      a {
+        color: $highlight-text-color;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     &__actions {
@@ -1664,6 +1671,15 @@ a.sparkline {
   color: $primary-text-color;
   box-sizing: border-box;
   min-height: 100%;
+
+  a {
+    color: $highlight-text-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   p {
     margin-bottom: 20px;

@@ -41,13 +41,13 @@ class Explore extends React.PureComponent {
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
-  render () {
+  render() {
     const { intl, multiColumn, isSearching } = this.props;
     const { signedIn } = this.context.identity;
 
@@ -68,12 +68,22 @@ class Explore extends React.PureComponent {
           {isSearching ? (
             <SearchResults />
           ) : (
-            <React.Fragment>
+            <>
               <div className='account__section-headline'>
-                <NavLink exact to='/explore'><FormattedMessage id='explore.trending_statuses' defaultMessage='Posts' /></NavLink>
-                <NavLink exact to='/explore/tags'><FormattedMessage id='explore.trending_tags' defaultMessage='Hashtags' /></NavLink>
-                <NavLink exact to='/explore/links'><FormattedMessage id='explore.trending_links' defaultMessage='News' /></NavLink>
-                {signedIn && <NavLink exact to='/explore/suggestions'><FormattedMessage id='explore.suggested_follows' defaultMessage='For you' /></NavLink>}
+                <NavLink exact to='/explore'>
+                  <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Posts' />
+                </NavLink>
+                <NavLink exact to='/explore/tags'>
+                  <FormattedMessage tagName='div' id='explore.trending_tags' defaultMessage='Hashtags' />
+                </NavLink>
+                <NavLink exact to='/explore/links'>
+                  <FormattedMessage tagName='div' id='explore.trending_links' defaultMessage='News' />
+                </NavLink>
+                {signedIn && (
+                  <NavLink exact to='/explore/suggestions'>
+                    <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='For you' />
+                  </NavLink>
+                )}
               </div>
 
               <Switch>
@@ -87,7 +97,7 @@ class Explore extends React.PureComponent {
                 <title>{intl.formatMessage(messages.title)}</title>
                 <meta name='robots' content={isSearching ? 'noindex' : 'all'} />
               </Helmet>
-            </React.Fragment>
+            </>
           )}
         </div>
       </Column>

@@ -16,7 +16,7 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
         @account,
         target_account,
         status_ids: target_statuses.nil? ? [] : target_statuses.map(&:id),
-        comment: @json['content'] || '',
+        comment: report_comment,
         uri: report_uri
       )
     end
@@ -34,5 +34,9 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
 
   def report_uri
     @json['id'] unless @json['id'].nil? || invalid_origin?(@json['id'])
+  end
+
+  def report_comment
+    (@json['content'] || '')[0...5000]
   end
 end

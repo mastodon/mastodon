@@ -16,11 +16,11 @@ class BundleModalError extends React.PureComponent {
     onRetry: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-  }
+  };
 
   handleRetry = () => {
     this.props.onRetry();
-  }
+  };
 
   render () {
     const { onClose, intl: { formatMessage } } = this.props;

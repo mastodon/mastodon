@@ -122,14 +122,14 @@ hu:
         admin/accounts: Fiókok adminisztrációja
         admin/all: Minden adminisztratív funkció
         admin/reports: Bejelentések adminisztrációja
-        all: Minden
+        all: Teljes hozzáférés a Mastodon fiókodhoz
         blocks: Letiltások
         bookmarks: Könyvjelzők
         conversations: Beszélgetések
         crypto: Végpontok közti titkosítás
         favourites: Kedvencek
         filters: Szűrők
-        follow: Kapcsolatok
+        follow: Követések, Némítások és Letiltások
         follows: Követések
         lists: Listák
         media: Médiamellékletek
@@ -149,9 +149,19 @@ hu:
     scopes:
       admin:read: a kiszolgáló összes adatának olvasása
       admin:read:accounts: minden kényes fiókadat olvasása
+      admin:read:canonical_email_blocks: kanonikus emailblokkok érzékeny információinak olvasása
+      admin:read:domain_allows: minden domainengedély érzékeny információinak olvasása
+      admin:read:domain_blocks: minden domaintiltás érzékeny információinak olvasása
+      admin:read:email_domain_blocks: minden email-domainblokk érzékeny információinak olvasása
+      admin:read:ip_blocks: minden IP-blokk érzékeny információinak olvasása
       admin:read:reports: minden bejelentés és bejelentett fiók kényes adatainak olvasása
       admin:write: a kiszolgáló összes adatának módosítása
       admin:write:accounts: moderációs műveletek végzése fiókokon
+      admin:write:canonical_email_blocks: moderáció végrehajtása kanonikus emailblokkokon
+      admin:write:domain_allows: moderáció végrehajtása domainengedélyeken
+      admin:write:domain_blocks: moderáció végrehajtása domaintiltásokon
+      admin:write:email_domain_blocks: moderáció végrehajtása email-domainblokkokon
+      admin:write:ip_blocks: moderáció végrehajtása IP-blokkokon
       admin:write:reports: moderációs műveletek végzése bejelentéseken
       crypto: végpontok közti titkosítás használata
       follow: fiókok követése, letiltása, tiltás feloldása és követés abbahagyása

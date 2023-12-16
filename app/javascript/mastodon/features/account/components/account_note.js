@@ -90,7 +90,7 @@ class AccountNote extends ImmutablePureComponent {
 
   setTextareaRef = c => {
     this.textarea = c;
-  }
+  };
 
   handleChange = e => {
     this.setState({ value: e.target.value, saving: false });
@@ -114,13 +114,13 @@ class AccountNote extends ImmutablePureComponent {
         }
       });
     }
-  }
+  };
 
   handleBlur = () => {
     if (this._isDirty()) {
       this._save();
     }
-  }
+  };
 
   _save (showMessage = true) {
     this.setState({ saving: true }, () => this.props.onSave(this.state.value));

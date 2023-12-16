@@ -136,30 +136,30 @@ class Notifications extends React.PureComponent {
     } else {
       dispatch(addColumn('NOTIFICATIONS', {}));
     }
-  }
+  };
 
   handleMove = (dir) => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   setColumnRef = c => {
     this.column = c;
-  }
+  };
 
   handleMoveUp = id => {
     const elementIndex = this.props.notifications.findIndex(item => item !== null && item.get('id') === id) - 1;
     this._selectChild(elementIndex, true);
-  }
+  };
 
   handleMoveDown = id => {
     const elementIndex = this.props.notifications.findIndex(item => item !== null && item.get('id') === id) + 1;
     this._selectChild(elementIndex, false);
-  }
+  };
 
   _selectChild (index, align_top) {
     const container = this.column.node;

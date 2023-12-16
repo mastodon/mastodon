@@ -47,27 +47,27 @@ class Account extends ImmutablePureComponent {
 
   handleFollow = () => {
     this.props.onFollow(this.props.account);
-  }
+  };
 
   handleBlock = () => {
     this.props.onBlock(this.props.account);
-  }
+  };
 
   handleMute = () => {
     this.props.onMute(this.props.account);
-  }
+  };
 
   handleMuteNotifications = () => {
     this.props.onMuteNotifications(this.props.account, true);
-  }
+  };
 
   handleUnmuteNotifications = () => {
     this.props.onMuteNotifications(this.props.account, false);
-  }
+  };
 
   handleAction = () => {
     this.props.onActionClick(this.props.account);
-  }
+  };
 
   render () {
     const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction, size } = this.props;

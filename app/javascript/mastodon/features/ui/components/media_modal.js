@@ -43,27 +43,27 @@ class MediaModal extends ImmutablePureComponent {
 
   handleSwipe = (index) => {
     this.setState({ index: index % this.props.media.size });
-  }
+  };
 
   handleTransitionEnd = () => {
     this.setState({
       zoomButtonHidden: false,
     });
-  }
+  };
 
   handleNextClick = () => {
     this.setState({
       index: (this.getIndex() + 1) % this.props.media.size,
       zoomButtonHidden: true,
     });
-  }
+  };
 
   handlePrevClick = () => {
     this.setState({
       index: (this.props.media.size + this.getIndex() - 1) % this.props.media.size,
       zoomButtonHidden: true,
     });
-  }
+  };
 
   handleChangeIndex = (e) => {
     const index = Number(e.currentTarget.getAttribute('data-index'));
@@ -72,7 +72,7 @@ class MediaModal extends ImmutablePureComponent {
       index: index % this.props.media.size,
       zoomButtonHidden: true,
     });
-  }
+  };
 
   handleKeyDown = (e) => {
     switch(e.key) {
@@ -87,7 +87,7 @@ class MediaModal extends ImmutablePureComponent {
       e.stopPropagation();
       break;
     }
-  }
+  };
 
   componentDidMount () {
     window.addEventListener('keydown', this.handleKeyDown, false);

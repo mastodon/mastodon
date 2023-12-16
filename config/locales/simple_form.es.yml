@@ -3,23 +3,23 @@ es:
   simple_form:
     hints:
       account_alias:
-        acct: Especifique el nombre de usuario@dominio de la cuenta desde la cual se desea migrar
+        acct: Especifique su nombre de usuario@dominio de la cuenta de donde se desea migrar
       account_migration:
-        acct: Especifique el nombre de usuario@dominio de la cuenta a la cual se desea migrar
+        acct: Especifique el nombre de usuario@dominio de la cuenta de la cual se desea migrar
       account_warning_preset:
         text: Puede usar sintaxis de publicaciones, como URLs, hashtags y menciones
-        title: Opcional. No visible para el destinatario
+        title: Opcional. No es visible para el destinatario
       admin_account_action:
         include_statuses: El usuario verá qué publicaciones han causado la acción de moderación o advertencia
-        send_email_notification: El usuario recibirá una explicación de lo que sucedió con respecto a su cuenta
+        send_email_notification: El usuario recibirá una explicación de lo que ha sucedido con su cuenta
         text_html: Opcional. Puede usar sintaxis de publicaciones. Puede añadir <a href="%{path}">configuraciones predefinidas de advertencia</a> para ahorrar tiempo
-        type_html: Elige qué hacer con <strong>%{acct}</strong>
+        type_html: Elige lo qué vas a hacer con <strong>%{acct}</strong>
         types:
-          disable: Evitar que el usuario utilice su cuenta, pero no eliminar ni ocultar sus contenidos.
+          disable: Evita que el usuario utilice su cuenta, pero no elimina ni oculta sus contenidos.
           none: Utilizar esto para enviar una advertencia al usuario, sin poner en marcha ninguna otra acción.
           sensitive: Forzar que todos los archivos multimedia de este usuario sean marcados como sensibles.
-          silence: Evitar que el usuario pueda publicar con visibilidad pública, oculta sus mensajes y notificaciones a personas que no lo siguen.
-          suspend: Evitar cualquier interacción desde o hacia esta cuenta y eliminar su contenido. Reversible en un plazo de 30 días.
+          silence: Evita que el usuario pueda publicar con visibilidad pública, y oculta sus mensajes y notificaciones a personas que no lo siguen. Cierra todos los informes contra esta cuenta.
+          suspend: Evita cualquier interacción desde o hacia esta cuenta y elimina su contenido. Reversible en 30 días. Cierra todos los informes contra esta cuenta.
         warning_preset_id: Opcional. Aún puede añadir texto personalizado al final de la configuración predefinida
       announcement:
         all_day: Cuando está seleccionado solo se mostrarán las fechas del rango de tiempo
@@ -74,6 +74,7 @@ es:
           hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
           warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
       form_admin_settings:
+        activity_api_enabled: Conteo de publicaciones publicadas localmente, usuarios activos y registros nuevos cada semana
         backups_retention_period: Mantener los archivos de usuario generados durante el número de días especificado.
         bootstrap_timeline_accounts: Estas cuentas aparecerán en la parte superior de las recomendaciones de los nuevos usuarios.
         closed_registrations_message: Mostrado cuando los registros están cerrados
@@ -81,6 +82,7 @@ es:
         custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
         media_cache_retention_period: Los archivos multimedia descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se redescargarán bajo demanda.
+        peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Aquí no se incluye ningún dato sobre si federas con un servidor determinado, solo que tu servidor lo conoce. Esto es utilizado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado por que su cuenta pueda ser descubierta.
         require_invite_text: Cuando los registros requieren aprobación manual, hace obligatoria la entrada de texto "¿Por qué quieres unirte?" en lugar de opcional
         site_contact_email: Cómo la gente puede ponerse en contacto contigo para consultas legales o de ayuda.
@@ -89,6 +91,7 @@ es:
         site_short_description: Una breve descripción para ayudar a identificar su servidor de forma única. ¿Quién lo administra, a quién va dirigido?
         site_terms: Utiliza tu propia política de privacidad o déjala en blanco para usar la predeterminada Puede estructurarse con formato Markdown.
         site_title: Cómo puede referirse la gente a tu servidor además de por el nombre de dominio.
+        status_page_url: URL de la página donde la gente pueda ver el estado de este servidor durante la exclusión
         theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
         timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
@@ -229,6 +232,7 @@ es:
           hide: Ocultar completamente
           warn: Ocultar con una advertencia
       form_admin_settings:
+        activity_api_enabled: Publicar estadísticas agregadas sobre la actividad del usuario con la API
         backups_retention_period: Período de retención del archivo de usuario
         bootstrap_timeline_accounts: Recomendar siempre estas cuentas a nuevos usuarios
         closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
@@ -236,6 +240,7 @@ es:
         custom_css: CSS personalizado
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de caché multimedia
+        peers_api_enabled: Publicar lista de servidores descubiertos en la API
         profile_directory: Habilitar directorio de perfiles
         registrations_mode: Quién puede registrarse
         require_invite_text: Requerir una razón para unirse

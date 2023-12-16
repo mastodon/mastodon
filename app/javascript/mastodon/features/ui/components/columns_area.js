@@ -57,7 +57,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   state = {
     renderComposePanel: !(this.mediaQuery && this.mediaQuery.matches),
-  }
+  };
 
   componentDidMount() {
     if (!this.props.singleColumn) {
@@ -97,7 +97,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
       if (this.mediaQuery.removeEventListener) {
         this.mediaQuery.removeEventListener('change', this.handleLayoutChange);
       } else {
-        this.mediaQuery.removeListener(this.handleLayouteChange);
+        this.mediaQuery.removeListener(this.handleLayoutChange);
       }
     }
   }
@@ -111,7 +111,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   handleLayoutChange = (e) => {
     this.setState({ renderComposePanel: !e.matches });
-  }
+  };
 
   handleWheel = () => {
     if (typeof this._interruptScrollAnimation !== 'function') {
@@ -119,19 +119,19 @@ export default class ColumnsArea extends ImmutablePureComponent {
     }
 
     this._interruptScrollAnimation();
-  }
+  };
 
   setRef = (node) => {
     this.node = node;
-  }
+  };
 
   renderLoading = columnId => () => {
     return columnId === 'COMPOSE' ? <DrawerLoading /> : <ColumnLoading multiColumn />;
-  }
+  };
 
   renderError = (props) => {
     return <BundleColumnError multiColumn errorType='network' {...props} />;
-  }
+  };
 
   render () {
     const { columns, children, singleColumn, isModalOpen } = this.props;

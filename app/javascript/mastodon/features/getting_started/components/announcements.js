@@ -35,7 +35,7 @@ class Content extends ImmutablePureComponent {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   componentDidMount () {
     this._updateLinks();
@@ -89,7 +89,7 @@ class Content extends ImmutablePureComponent {
       e.preventDefault();
       this.context.router.history.push(`/@${mention.get('acct')}`);
     }
-  }
+  };
 
   onHashtagClick = (hashtag, e) => {
     hashtag = hashtag.replace(/^#/, '');
@@ -98,14 +98,14 @@ class Content extends ImmutablePureComponent {
       e.preventDefault();
       this.context.router.history.push(`/tags/${hashtag}`);
     }
-  }
+  };
 
   onStatusClick = (status, e) => {
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.context.router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
     }
-  }
+  };
 
   handleMouseEnter = ({ currentTarget }) => {
     if (autoPlayGif) {
@@ -118,7 +118,7 @@ class Content extends ImmutablePureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-original');
     }
-  }
+  };
 
   handleMouseLeave = ({ currentTarget }) => {
     if (autoPlayGif) {
@@ -131,7 +131,7 @@ class Content extends ImmutablePureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-static');
     }
-  }
+  };
 
   render () {
     const { announcement } = this.props;
@@ -216,11 +216,11 @@ class Reaction extends ImmutablePureComponent {
     } else {
       addReaction(announcementId, reaction.get('name'));
     }
-  }
+  };
 
-  handleMouseEnter = () => this.setState({ hovered: true })
+  handleMouseEnter = () => this.setState({ hovered: true });
 
-  handleMouseLeave = () => this.setState({ hovered: false })
+  handleMouseLeave = () => this.setState({ hovered: false });
 
   render () {
     const { reaction } = this.props;
@@ -254,7 +254,7 @@ class ReactionsBar extends ImmutablePureComponent {
   handleEmojiPick = data => {
     const { addReaction, announcementId } = this.props;
     addReaction(announcementId, data.native.replace(/:/g, ''));
-  }
+  };
 
   willEnter () {
     return { scale: reduceMotion ? 1 : 0 };
@@ -397,15 +397,15 @@ class Announcements extends ImmutablePureComponent {
 
   handleChangeIndex = index => {
     this.setState({ index: index % this.props.announcements.size });
-  }
+  };
 
   handleNextClick = () => {
     this.setState({ index: (this.state.index + 1) % this.props.announcements.size });
-  }
+  };
 
   handlePrevClick = () => {
     this.setState({ index: (this.props.announcements.size + this.state.index - 1) % this.props.announcements.size });
-  }
+  };
 
   render () {
     const { announcements, intl } = this.props;

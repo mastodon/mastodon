@@ -2,7 +2,10 @@
 ast:
   activerecord:
     attributes:
+      poll:
+        options: Opciones
       user:
+        agreement: Acuerdu del serviciu
         email: Direición de corréu electrónicu
         locale: Locale
         password: Contraseña
@@ -15,7 +18,7 @@ ast:
         account:
           attributes:
             username:
-              invalid: ha contener namás lletres, númberos y guiones baxos
+              invalid: ha contener namás lletres, númberos ya guiones baxos
               reserved: ta acutáu
         admin/webhook:
           attributes:
@@ -25,11 +28,18 @@ ast:
           attributes:
             website:
               invalid: nun ye una URL válida
-        status:
-          attributes:
-            reblog:
-              taken: d'artículos xá esisten
         user:
           attributes:
             email:
+              blocked: usa un fornidor de corréu electrónicu que nun ta permitíu
               unreachable: nun paez qu'esista
+            role_id:
+              elevated: nun pue ser mayor que'l to rol actual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              elevated: nun se puen incluyir los permisos que'l to rol nun poseye
+              own_role: nun se pue camudar col to rol actual
+            position:
+              elevated: nun pue ser mayor que'l to rol actual
+              own_role: nun se pue camudar col to rol actual

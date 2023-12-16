@@ -27,6 +27,7 @@ export default class IconButton extends React.PureComponent {
     counter: PropTypes.number,
     obfuscateCount: PropTypes.bool,
     href: PropTypes.string,
+    ariaHidden: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -36,12 +37,13 @@ export default class IconButton extends React.PureComponent {
     animate: false,
     overlay: false,
     tabIndex: '0',
+    ariaHidden: false,
   };
 
   state = {
     activate: false,
     deactivate: false,
-  }
+  };
 
   componentWillReceiveProps (nextProps) {
     if (!nextProps.animate) return;
@@ -59,25 +61,25 @@ export default class IconButton extends React.PureComponent {
     if (!this.props.disabled) {
       this.props.onClick(e);
     }
-  }
+  };
 
   handleKeyPress = (e) => {
     if (this.props.onKeyPress && !this.props.disabled) {
       this.props.onKeyPress(e);
     }
-  }
+  };
 
   handleMouseDown = (e) => {
     if (!this.props.disabled && this.props.onMouseDown) {
       this.props.onMouseDown(e);
     }
-  }
+  };
 
   handleKeyDown = (e) => {
     if (!this.props.disabled && this.props.onKeyDown) {
       this.props.onKeyDown(e);
     }
-  }
+  };
 
   render () {
     const style = {
@@ -102,6 +104,7 @@ export default class IconButton extends React.PureComponent {
       counter,
       obfuscateCount,
       href,
+      ariaHidden,
     } = this.props;
 
     const {
@@ -142,6 +145,7 @@ export default class IconButton extends React.PureComponent {
         type='button'
         aria-label={title}
         aria-expanded={expanded}
+        aria-hidden={ariaHidden}
         title={title}
         className={classes}
         onClick={this.handleClick}

@@ -1,0 +1,48 @@
+name: CSS Linting
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+    paths:
+      - 'package.json'
+      - 'yarn.lock'
+      - '.prettier*'
+      - 'stylelint.config.js'
+      - '**/*.css'
+      - '**/*.scss'
+      - '.github/workflows/lint-css.yml'
+      - '.github/stylelint-matcher.json'
+
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'yarn.lock'
+      - '.prettier*'
+      - 'stylelint.config.js'
+      - '**/*.css'
+      - '**/*.scss'
+      - '.github/workflows/lint-css.yml'
+      - '.github/stylelint-matcher.json'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+
+      - name: Install all yarn packages
+        run: yarn --frozen-lockfile
+
+      - uses: xt0rted/stylelint-problem-matcher@v1
+
+      - run: echo "::add-matcher::.github/stylelint-matcher.json"
+
+      - name: Stylelint
+        run: yarn test:lint:sass

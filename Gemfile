@@ -1,32 +1,32 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.6.0', '< 3.1.0'
+ruby '>= 2.7.0', '< 3.1.0'
 
-gem 'pkg-config', '~> 1.4'
+gem 'pkg-config', '~> 1.5'
 gem 'rexml', '~> 3.2'
 
 gem 'puma', '~> 5.6'
 gem 'rails', '~> 6.1.7'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
-gem 'rack', '~> 2.2.4'
+gem 'rack', '~> 2.2.6'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.4'
 gem 'makara', '~> 0.5'
-gem 'pghero', '~> 2.8'
+gem 'pghero'
 gem 'dotenv-rails', '~> 2.8'
 
-gem 'aws-sdk-s3', '~> 1.114', require: false
-gem 'fog-core', '<= 2.1.0'
+gem 'aws-sdk-s3', '~> 1.119', require: false
+gem 'fog-core', '<= 2.4.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.1'
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.13.0', require: false
+gem 'bootsnap', '~> 1.16.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.2'
@@ -40,7 +40,7 @@ end
 gem 'net-ldap', '~> 0.17'
 gem 'omniauth-cas', '~> 2.0'
 gem 'omniauth-saml', '~> 1.10'
-gem 'gitlab-omniauth-openid-connect', '~>0.10.0', require: 'omniauth_openid_connect'
+gem 'gitlab-omniauth-openid-connect', '~>0.10.1', require: 'omniauth_openid_connect'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
@@ -51,42 +51,43 @@ gem 'ed25519', '~> 1.3'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'hiredis', '~> 0.6'
-gem 'redis-namespace', '~> 1.9'
+gem 'redis-namespace', '~> 1.10'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.1'
 gem 'http_accept_language', '~> 2.1'
-gem 'httplog', '~> 1.6.0'
+gem 'httplog', '~> 1.6.2'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.4.1', require: 'mime/types/columnar'
-gem 'nokogiri', '~> 1.13'
+gem 'nokogiri', '~> 1.14'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.13'
 gem 'ox', '~> 2.14'
 gem 'parslet'
 gem 'posix-spawn'
-gem 'pundit', '~> 2.2'
+gem 'public_suffix', '~> 5.0'
+gem 'pundit', '~> 2.3'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
 gem 'rails-settings-cached', '~> 0.6'
-gem 'redcarpet', '~> 3.5'
+gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 2.1'
 gem 'ruby-progressbar', '~> 1.11'
 gem 'sanitize', '~> 6.0'
-gem 'scenic', '~> 1.6'
+gem 'scenic', '~> 1.7'
 gem 'sidekiq', '~> 6.5'
 gem 'sidekiq-scheduler', '~> 4.0'
 gem 'sidekiq-unique-jobs', '~> 7.1'
 gem 'sidekiq-bulk', '~> 0.2.0'
 gem 'simple-navigation', '~> 4.4'
-gem 'simple_form', '~> 5.1'
+gem 'simple_form', '~> 5.2'
 gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'
-gem 'stoplight', '~> 3.0.0'
+gem 'stoplight', '~> 3.0.1'
 gem 'strong_migrations', '~> 0.7'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
@@ -106,6 +107,10 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.10'
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 5.1'
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop', require: false
 end
 
 group :production, :test do
@@ -113,16 +118,16 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.37'
+  gem 'capybara', '~> 3.38'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.23'
-  gem 'microformats', '~> 4.4'
+  gem 'faker', '~> 3.1'
+  gem 'json-schema', '~> 3.0'
+  gem 'rack-test', '~> 2.0'  
   gem 'rails-controller-testing', '~> 1.0'
-  gem 'rspec-sidekiq', '~> 3.1'
-  gem 'simplecov', '~> 0.21', require: false
-  gem 'webmock', '~> 3.18'
   gem 'rspec_junit_formatter', '~> 0.6'
-  gem 'rack-test', '~> 2.0'
+  gem 'rspec-sidekiq', '~> 3.1'
+  gem 'simplecov', '~> 0.22', require: false
+  gem 'webmock', '~> 3.18'
 end
 
 group :development do
@@ -134,9 +139,7 @@ group :development do
   gem 'letter_opener', '~> 1.8'
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.30', require: false
-  gem 'rubocop-rails', '~> 2.15', require: false
-  gem 'brakeman', '~> 5.3', require: false
+  gem 'brakeman', '~> 5.4', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
   gem 'capistrano', '~> 3.17'

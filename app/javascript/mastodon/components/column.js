@@ -27,11 +27,11 @@ export default class Column extends React.PureComponent {
     }
 
     this._interruptScrollAnimation();
-  }
+  };
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   componentDidMount () {
     if (this.props.bindToDocument) {

@@ -6,7 +6,7 @@ es-MX:
         name: Nombre de aplicación
         redirect_uri: URI para redirección
         scopes: Ámbitos
-        website: Sitio web
+        website: Sitio web de la aplicación
     errors:
       models:
         doorkeeper/application:
@@ -60,7 +60,7 @@ es-MX:
       error:
         title: Ha ocurrido un error
       new:
-        prompt_html: "%{client_name} Requiere permisos para acceder a tu cuenta. Es una aplicación de terceros. <strong>Si no confías en ella, no deberías darle autorización.</strong>"
+        prompt_html: "%{client_name} requiere permiso para acceder a tu cuenta. Es una aplicación de terceros. <strong>Si no confías en esta, no deberías autorizarla.</strong>"
         review_permissions: Revisar permisos
         title: Se requiere autorización
       show:
@@ -77,18 +77,18 @@ es-MX:
         never_used: Nunca usado
         scopes: Permisos
         superapp: Interno
-        title: Sus aplicaciones autorizadas
+        title: Tus aplicaciones autorizadas
     errors:
       messages:
         access_denied: El propietario del recurso o servidor de autorización denegó la petición.
         credential_flow_not_configured: Las credenciales de contraseña del propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_from_credentials está sin configurar.
-        invalid_client: La autentificación del cliente falló debido o a que es un cliente desconocido o no está incluída la autentificación del cliente o el método de autentificación no está confirmado.
+        invalid_client: La autentificación del cliente falló ya que es un cliente desconocido, no está incluída la autentificación del cliente o el método de autentificación no es compatible.
         invalid_grant: La concesión de autorización ofrecida es inválida, venció, se revocó, no coincide con la URI de redirección utilizada en la petición de autorización, o fue emitida para otro cliente.
         invalid_redirect_uri: La URI de redirección incluida no es válida.
         invalid_request:
           missing_param: 'Falta el parámetro requerido: %{value}.'
-          request_not_authorized: La solicitud debe ser autorizada. Parámetro requerido para la autorización de la solicitud falta o no es válido.
-          unknown: En la petición falta un parámetro necesario o incluye un valor de parámetro no soportado o tiene otro tipo de formato incorrecto.
+          request_not_authorized: La solicitud necesita ser autorizada. El parámetro requerido para la autorización de la solicitud está ausente o es inválido.
+          unknown: En la solicitud falta un parámetro necesario, incluye un valor de parámetro no soportado o tiene otro tipo de formato incorrecto.
         invalid_resource_owner: Las credenciales proporcionadas del propietario del recurso no son válidas, o el propietario del recurso no puede ser encontrado
         invalid_scope: El ámbito pedido es inválido, desconocido o erróneo.
         invalid_token:
@@ -122,14 +122,14 @@ es-MX:
         admin/accounts: Administración de cuentas
         admin/all: Todas las funciones administrativas
         admin/reports: Administración de reportes
-        all: Todo
+        all: Acceso completo a tu cuenta de Mastodon
         blocks: Bloques
         bookmarks: Marcadores
         conversations: Conversaciones
         crypto: Cifrado de extremo a extremo
         favourites: Favoritos
         filters: Filtros
-        follow: Relaciones
+        follow: Seguimientos, silenciados y bloqueos
         follows: Seguidos
         lists: Listas
         media: Archivos adjuntos
@@ -149,9 +149,19 @@ es-MX:
     scopes:
       admin:read: leer todos los datos en el servidor
       admin:read:accounts: leer información sensible de todas las cuentas
+      admin:read:canonical_email_blocks: leer información sensible de todos los bloques de correo canónico
+      admin:read:domain_allows: leer información sensible de todos los dominios permitidos
+      admin:read:domain_blocks: leer información sensible de todos los bloques de dominio
+      admin:read:email_domain_blocks: leer información sensible de todos los bloques de dominio de correo electrónico
+      admin:read:ip_blocks: leer información sensible de todos los bloques de IP
       admin:read:reports: leer información sensible de todos los informes y cuentas reportadas
       admin:write: modificar todos los datos en el servidor
       admin:write:accounts: realizar acciones de moderación en cuentas
+      admin:write:canonical_email_blocks: realizar acciones de moderación en bloques de correo canónico
+      admin:write:domain_allows: realizar acciones de moderación en el dominio permitido
+      admin:write:domain_blocks: realizar acciones de moderación en bloques de dominio
+      admin:write:email_domain_blocks: realizar acciones de moderación en bloques de dominio de correo electrónico
+      admin:write:ip_blocks: realizar acciones de moderación en bloques de IP
       admin:write:reports: realizar acciones de moderación en informes
       crypto: usar cifrado de extremo a extremo
       follow: seguir, bloquear, desbloquear y dejar de seguir cuentas

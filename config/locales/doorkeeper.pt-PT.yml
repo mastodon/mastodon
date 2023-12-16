@@ -3,10 +3,10 @@ pt-PT:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nome da Aplicação
-        redirect_uri: URL de redirecionamento
-        scopes: Autorizações
-        website: Site da Aplicação
+        name: Nome da aplicação
+        redirect_uri: URI de redireccionamento
+        scopes: Âmbitos
+        website: Página na teia da aplicação
     errors:
       models:
         doorkeeper/application:
@@ -15,7 +15,7 @@ pt-PT:
               fragment_present: não pode conter um fragmento.
               invalid_uri: tem de ser um URI válido.
               relative_uri: tem de ser um URI absoluto.
-              secured_uri: tem de ser um HTTPS/SSL URI.
+              secured_uri: tem de ser um URI HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
@@ -23,27 +23,27 @@ pt-PT:
         cancel: Cancelar
         destroy: Destruir
         edit: Editar
-        submit: Submeter
+        submit: Enviar
       confirmations:
-        destroy: Tens a certeza?
+        destroy: De certeza?
       edit:
         title: Editar aplicação
       form:
-        error: Oops! Verifica que o formulário não tem erros
+        error: Ups! Verifique que o formulário não tem erros
       help:
         native_redirect_uri: Usa %{native_redirect_uri} para testes locais
         redirect_uri: Utiliza uma linha por URI
-        scopes: Separa autorizações com espaços. Deixa em branco para usar autorizações predefinidas.
+        scopes: Separe as esferas de acção com espaços. Deixe em branco para usar autorizações predefinidas.
       index:
         application: Aplicações
         callback_url: URL de retorno
         delete: Eliminar
         empty: Não tem aplicações.
         name: Nome
-        new: Nova Aplicação
-        scopes: Autorizações
+        new: Nova aplicação
+        scopes: Âmbitos
         show: Mostrar
-        title: As tuas aplicações
+        title: As suas aplicações
       new:
         title: Nova aplicação
       show:
@@ -122,14 +122,14 @@ pt-PT:
         admin/accounts: Administração de contas
         admin/all: Todas as funções administrativas
         admin/reports: Administração de denúncias
-        all: Tudo
+        all: Acesso total à sua conta Mastodon
         blocks: Bloqueios
         bookmarks: Itens Salvos
         conversations: Conversas
         crypto: Encriptação ponta-a-ponta
         favourites: Favoritos
         filters: Filtros
-        follow: Relações
+        follow: A seguir, a silenciar, e a bloquear
         follows: Seguidores
         lists: Listas
         media: Anexos de media
@@ -149,9 +149,19 @@ pt-PT:
     scopes:
       admin:read: ler todos os dados no servidor
       admin:read:accounts: ler informações sensíveis de todas as contas
+      admin:read:canonical_email_blocks: ler informações sensíveis de todos os bloqueios de endereços de e-mail canônicos
+      admin:read:domain_allows: ler informações sensíveis de todos os domínios permitios
+      admin:read:domain_blocks: ler informações sensíveis de todos os bloqueios de domínio
+      admin:read:email_domain_blocks: ler informações sensíveis de todos os bloqueios de domínio de e-mail
+      admin:read:ip_blocks: ler informações sensíveis de todos os bloqueios de IPs
       admin:read:reports: ler informações sensíveis de todas as denúnicas e contas denunciadas
       admin:write: modificar todos os dados no servidor
       admin:write:accounts: executar ações de moderação em contas
+      admin:write:canonical_email_blocks: executar ações de moderação no bloqueio de endereços de e-mail canônicos
+      admin:write:domain_allows: executar ações de moderação na permissão de domínios
+      admin:write:domain_blocks: executar ações de moderação no bloqueio de domínios
+      admin:write:email_domain_blocks: executar ações de moderação no bloqueio de domínios de e-mail
+      admin:write:ip_blocks: executar ações de moderação no bloqueio de IPs
       admin:write:reports: executar ações de moderação em denúncias
       crypto: usa encriptação ponta-a-ponta
       follow: siga, bloqueie, desbloqueie, e deixa de seguir contas

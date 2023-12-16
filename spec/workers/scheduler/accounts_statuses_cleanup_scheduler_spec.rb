@@ -7,11 +7,13 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
   let!(:account2)  { Fabricate(:account, domain: nil) }
   let!(:account3)  { Fabricate(:account, domain: nil) }
   let!(:account4)  { Fabricate(:account, domain: nil) }
+  let!(:account5)  { Fabricate(:account, domain: nil) }
   let!(:remote)    { Fabricate(:account) }
 
   let!(:policy1)   { Fabricate(:account_statuses_cleanup_policy, account: account1) }
   let!(:policy2)   { Fabricate(:account_statuses_cleanup_policy, account: account3) }
   let!(:policy3)   { Fabricate(:account_statuses_cleanup_policy, account: account4, enabled: false) }
+  let!(:policy4)   { Fabricate(:account_statuses_cleanup_policy, account: account5) }
 
   let(:queue_size)       { 0 }
   let(:queue_latency)    { 0 }
@@ -23,7 +25,6 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       },
     ]
   end
-  let(:retry_size) { 0 }
 
   before do
     queue_stub = double
@@ -33,7 +34,6 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
     allow(Sidekiq::ProcessSet).to receive(:new).and_return(process_set_stub)
 
     sidekiq_stats_stub = double
-    allow(sidekiq_stats_stub).to receive(:retry_size).and_return(retry_size)
     allow(Sidekiq::Stats).to receive(:new).and_return(sidekiq_stats_stub)
 
     # Create a bunch of old statuses
@@ -42,6 +42,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       Fabricate(:status, account: account2, created_at: 3.years.ago)
       Fabricate(:status, account: account3, created_at: 3.years.ago)
       Fabricate(:status, account: account4, created_at: 3.years.ago)
+      Fabricate(:status, account: account5, created_at: 3.years.ago)
       Fabricate(:status, account: remote, created_at: 3.years.ago)
     end
 
@@ -70,17 +71,9 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
         expect(subject.under_load?).to be true
       end
     end
-
-    context 'when there is a huge amount of jobs to retry' do
-      let(:retry_size) { 1_000_000 }
-
-      it 'returns true' do
-        expect(subject.under_load?).to be true
-      end
-    end
   end
 
-  describe '#get_budget' do
+  describe '#compute_budget' do
     context 'on a single thread' do
       let(:process_set_stub) { [ { 'concurrency' => 1, 'queues' => ['push', 'default'] } ] }
 
@@ -119,8 +112,48 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
         expect { subject.perform }.to_not change { account4.statuses.count }
       end
 
-      it 'eventually deletes every deletable toot' do
-        expect { subject.perform; subject.perform; subject.perform; subject.perform }.to change { Status.count }.by(-20)
+      it 'eventually deletes every deletable toot given enough runs' do
+        stub_const 'Scheduler::AccountsStatusesCleanupScheduler::MAX_BUDGET', 4
+
+        expect { 10.times { subject.perform } }.to change { Status.count }.by(-30)
+      end
+
+      it 'correctly round-trips between users across several runs' do
+        stub_const 'Scheduler::AccountsStatusesCleanupScheduler::MAX_BUDGET', 3
+        stub_const 'Scheduler::AccountsStatusesCleanupScheduler::PER_ACCOUNT_BUDGET', 2
+
+        expect { 3.times { subject.perform } }
+          .to change { Status.count }.by(-3 * 3)
+          .and change { account1.statuses.count }
+          .and change { account3.statuses.count }
+          .and change { account5.statuses.count }
+      end
+
+      context 'when given a big budget' do
+        let(:process_set_stub) { [{ 'concurrency' => 400, 'queues' => %w(push default) }] }
+
+        before do
+          stub_const 'Scheduler::AccountsStatusesCleanupScheduler::MAX_BUDGET', 400
+        end
+
+        it 'correctly handles looping in a single run' do
+          expect(subject.compute_budget).to eq(400)
+          expect { subject.perform }.to change { Status.count }.by(-30)
+        end
+      end
+
+      context 'when there is no work to be done' do
+        let(:process_set_stub) { [{ 'concurrency' => 400, 'queues' => %w(push default) }] }
+
+        before do
+          stub_const 'Scheduler::AccountsStatusesCleanupScheduler::MAX_BUDGET', 400
+          subject.perform
+        end
+
+        it 'does not get stuck' do
+          expect(subject.compute_budget).to eq(400)
+          expect { subject.perform }.to_not change { Status.count }
+        end
       end
     end
   end

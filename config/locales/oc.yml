@@ -36,14 +36,17 @@ oc:
       avatar: Avatar
       by_domain: Domeni
       change_email:
+        changed_msg: Adreça corrèctament cambiada !
         current_email: Adreça actuala
         label: Cambiar d’adreça
         new_email: Novèla adreça
         submit: Cambiar l’adreça
         title: Cambiar l’adreça a %{username}
       change_role:
+        changed_msg: Ròtle corrèctament cambiat !
         label: Cambiar lo ròtle
         no_role: Cap de ròtle
+        title: Cambiar lo ròtle de %{username}
       confirm: Confirmar
       confirmed: Confirmat
       confirming: Confirmacion
@@ -88,6 +91,7 @@ oc:
       most_recent_ip: IP mai recenta
       no_account_selected: Cap de compte pas cambiat estant que cap èra pas seleccionat
       no_limits_imposed: Cap de limit impausat
+      no_role_assigned: Cap de ròtle pas assignat
       not_subscribed: Pas seguidor
       pending: Revision en espèra
       perform_full_suspension: Suspendre
@@ -144,11 +148,13 @@ oc:
         create_announcement: Crear una anóncia
         create_custom_emoji: Crear un emoji personalizat
         create_ip_block: Crear una règla IP
+        create_user_role: Crear un ròtle
         demote_user: Retrogradar l’utilizaire
         destroy_announcement: Suprimir l’anóncia
         destroy_custom_emoji: Suprimir l’emoji personalizat
         destroy_domain_block: Suprimir lo blocatge de domeni
         destroy_status: Suprimir l’estatut
+        destroy_user_role: Destruire ròtle
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar l’emoji personalizat
         disable_user: Desactivar l’utilizaire
@@ -165,7 +171,9 @@ oc:
         unsilence_account: Levar lo silenci del compte
         update_announcement: Actualizar l’anóncia
         update_custom_emoji: Actualizar l’emoji personalizat
+        update_ip_block: Actualizar règla IP
         update_status: Actualizar l’estatut
+        update_user_role: Actualizar ròtle
       empty: Cap de jornal pas trobat.
       filter_by_action: Filtrar per accion
       filter_by_user: Filtrar per utilizaire
@@ -248,9 +256,7 @@ oc:
         create: Crear blocatge
         hint: Lo blocatge empacharà pas la creacion de compte dins la basa de donadas, mai aplicarà la moderacion sus aquestes comptes.
         severity:
-          desc_html: "<strong>Silenci</strong> farà venir invisibles los estatuts del compte al monde que son pas de seguidors. <strong>Suspendre</strong> levarà tot lo contengut del compte, los mèdias e las donadas de perfil. Utilizatz <strong>Cap</strong> se volètz regetar totes los mèdias."
           noop: Cap
-          silence: Silenci
           suspend: Suspendre
         title: Nòu blocatge domeni
       private_comment: Comentari privat
@@ -495,6 +501,8 @@ oc:
     registration_closed: "%{instance} accepta pas de nòus membres"
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
+    rules:
+      title: Unas règlas de basa.
     security: Seguretat
     set_new_password: Picar un nòu senhal
     setup:

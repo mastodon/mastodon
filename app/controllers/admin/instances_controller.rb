@@ -58,7 +58,7 @@ module Admin
     private
 
     def set_instance
-      @instance = Instance.find(params[:id])
+      @instance = Instance.find(TagManager.instance.normalize_domain(params[:id]&.strip))
     end
 
     def set_instances
@@ -66,7 +66,7 @@ module Admin
     end
 
     def preload_delivery_failures!
-      warning_domains_map = DeliveryFailureTracker.warning_domains_map
+      warning_domains_map = DeliveryFailureTracker.warning_domains_map(@instances.map(&:domain))
 
       @instances.each do |instance|
         instance.failure_days = warning_domains_map[instance.domain]

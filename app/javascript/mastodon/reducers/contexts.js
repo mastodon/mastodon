@@ -103,4 +103,4 @@ export default function replies(state = initialState, action) {
   default:
     return state;
   }
-};
+}

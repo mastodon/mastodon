@@ -47,7 +47,7 @@ class Reblogs extends ImmutablePureComponent {
 
   handleRefresh = () => {
     this.props.dispatch(fetchReblogs(this.props.params.statusId));
-  }
+  };
 
   render () {
     const { intl, accountIds, multiColumn } = this.props;

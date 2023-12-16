@@ -17,7 +17,7 @@ export default class GIFV extends React.PureComponent {
 
   handleLoadedData = () => {
     this.setState({ loading: false });
-  }
+  };
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.src !== this.props.src) {
@@ -32,7 +32,7 @@ export default class GIFV extends React.PureComponent {
       e.stopPropagation();
       onClick();
     }
-  }
+  };
 
   render () {
     const { src, width, height, alt } = this.props;

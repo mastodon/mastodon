@@ -1,0 +1,115 @@
+---
+an:
+  devise:
+    confirmations:
+      confirmed: La suya adreza de correu electronico ha estau confirmada correctament.
+      send_instructions: Recibirás un correu electronico con instruccions pa confirmar la tuya adreza de correu electronico en uns menutos. Per favor, compreba la tuya carpeta de spam si no recibiés este correu electronico.
+      send_paranoid_instructions: Si la suya adreza de correu electronico existe en a nuestra base de datos, recibirá un correu electronico con instruccions sobre cómo confirmar la suya adreza de correu en pocos menutos.
+    failure:
+      already_authenticated: Vusté ya ye rechistrau.
+      inactive: La suya cuenta no ha estau activada encara.
+      invalid: "%{authentication_keys} u clau invalida."
+      last_attempt: Tiene un intento mas antes que la tuya cuenta sía blocada.
+      locked: La tuya cuenta ye blocada.
+      not_found_in_database: Incorrecto %{authentication_keys} u clau.
+      pending: La suya cuenta encara se troba baixo revisión.
+      timeout: La suya sesión ha expirau. Per favor inicie sesión de nuevo pa continar.
+      unauthenticated: Ameneste iniciar sesión u rechistrar-se antes de continar.
+      unconfirmed: Ha de confirmar la suya adreza de correu electronico antes de continar.
+    mailer:
+      confirmation_instructions:
+        action: Verifica la tuya adreza de correu electronico
+        action_with_app: Confirmar y tornar ta %{app}
+        explanation: Has creyau una cuenta en %{host} con esta adreza de correu electronico. Yes a un solo clic d'activar-lo. Si no estiés tu, per favor ignora este correu electronico.
+        explanation_when_pending: Has solicitau una invitación a %{host} con esta adreza de correu electronico. Una vegada que confirmes la tuya adreza de correu electronico, revisaremos la tuya solicitut. Puetz iniciar sesión pa cambiar los tuyos datos u eliminar la tuya cuenta, pero no puetz acceder ta la mayoría d'as funcions dica que la tuya cuenta sía aprebada. Si la suya solicitut ye refusada, los suyos datos serán eliminaus, per lo que no será necesaria garra acción adicional per la suya parte. Si no estiés tu, per favor ignora este correu electronico.
+        extra_html: Per favor, revisa <a href="%{terms_path}">las reglas d'o servidor</a> y <a href="%{policy_path}">los nuestros termins de servicio</a>.
+        subject: 'Mastodon: Instruccions de confirmación pa %{instance}'
+        title: Verificar adreza de correu electronico
+      email_changed:
+        explanation: 'Lo correu electronico pa la suya cuenta esta estando cambiada a:'
+        extra: Si vusté no ha cambiau lo suyo correu electronico, ye probable que belún haiga aconseguiu acceso a la suya cuenta. Per favor cambie la suya clau immediatament u contacte a l'administrador d'a instancia si vusté no puede iniciar sesión.
+        subject: 'Mastodon: Correu electronico cambiau'
+        title: Nueva adreza de correu electronico
+      password_change:
+        explanation: La clau d'a suya cuenta a estau cambiada.
+        extra: Si vusté no a cambiau la suya clau. ye probable que belún a aconseguiu acceso a la suya cuenta. Per favor cambie la suya clau immediatament u contacte a l'administrador d'a instancia si vusté esta blocau d'a suya cuenta.
+        subject: 'Mastodon: Clau cambiada'
+        title: Clau cambiada
+      reconfirmation_instructions:
+        explanation: Confirme la nueva adreza pa cambiar la suya coreo electronico.
+        extra: Si no iniciés este cambio, per favor ignora este correu. Esta adreza de correu pa la cuenta de Mastodon no cambiará dica que accedas a lo vinculo alto.
+        subject: 'Mastodon: Confirme correu electronico pa %{instance}'
+        title: Verifique adreza de correu electronico
+      reset_password_instructions:
+        action: Cambiar clau
+        explanation: Solicités una nueva clau pa la tuya cuenta.
+        extra: Si no solicités esto, per favor ignora este correu. La tuya clau no cambiará dica que la tuya accedas a lo vinculo alto y creyes una nueva.
+        subject: 'Mastodon: Instruccions pa reiniciar clau'
+        title: Reiniciar clau
+      two_factor_disabled:
+        explanation: L'autenticación de dos factors pa la tuya cuenta ha estau deshabilitada. Agora puetz connectar-te nomás usando l'adreza de correu electronico y la clau.
+        subject: 'Mastodon: L''autenticación de dos factors ye deshabilitada'
+        title: 2FA desactivada
+      two_factor_enabled:
+        explanation: L'autenticación de dos factors pa la tuya cuenta ha estau habilitada. Se requiere un token chenerau per l'aplicación TOTP emparellada pa ingresar.
+        subject: 'Mastodon: L''autenticación de dos factors ye habilitada'
+        title: 2FA activada
+      two_factor_recovery_codes_changed:
+        explanation: Los codigos de recuperación previos han estau invalidaus y se cheneroron codigos nuevos.
+        subject: 'Mastodon: Los codigos de recuperación de dos factors estioron regenerados'
+        title: Codigos de recuperación 2FA cambiaus
+      unlock_instructions:
+        subject: 'Mastodon: Instruccions pa desblocar'
+      webauthn_credential:
+        added:
+          explanation: La siguient clau de seguranza ha estau anyadida a la suya cuenta
+          subject: 'Mastodon: Nueva clau de seguranza'
+          title: S'ha anyadiu una nueva clau de seguranza
+        deleted:
+          explanation: La siguient clau de seguranza ha estau eliminada d'a tuya cuenta
+          subject: 'Mastodon: Clau de seguranza eliminada'
+          title: Una d'as tuyas claus de seguranza ha estau eliminada
+      webauthn_disabled:
+        explanation: L'autenticación con claus de seguranza ha estau deshabilitada pa la tuya cuenta. Agora l'inicio de sesión nomás ye posible utilizando lo token chenerau per l'aplicación TOTP emparellada.
+        subject: 'Mastodon: Autenticación con claus de seguranza deshabilitada'
+        title: Claus de seguranza deshabilitadas
+      webauthn_enabled:
+        explanation: L'autenticación con clau de seguranza ha estau habilitada pa la tuya cuenta. Agora la tuya clau de seguranza puede estar utilizada pa iniciar sesión.
+        subject: 'Mastodon: Autenticación de clau de seguranza habilitada'
+        title: Claus de seguranza habilitadas
+    omniauth_callbacks:
+      failure: No se te podió autenticar dende %{kind} perque “%{reason}”.
+      success: Autenticau correctament dende la cuenta de %{kind}.
+    passwords:
+      no_token: No puetz acceder ta esta pachina si no viens dende un correu electronico de restablimiento de clau. Si viens dende un correu electronico de restablimiento de clau, per favor asegura-te d'utilizar la URL completa proporcionada.
+      send_instructions: Si la tuya adreza de correu electronico existe en a nuestra base de datos, recibirás un vinclo de recuperación de clau en a tuya adreza de correu electronico en pocos menutos. Per favor, compreba la tuya carpeta de correu no deseyau si no recibes dito correu electronico.
+      send_paranoid_instructions: Si la tuya adreza de correu electronico existe en a nuestra base de datos, recibirás un vinclo de recuperación de clau en a tuya adreza de correu electronico en pocos menutos. Per favor, compreba la tuya carpeta de correu no deseyau si no recibes dito correu electronico.
+      updated: La tuya clau ha estau cambiada con exito. Has iniciau sesión.
+      updated_not_active: La tuya clau s'ha cambiau con exito.
+    registrations:
+      destroyed: Dica unatra! La tuya cuenta ha estau cancelada con exito. Asperamos veyer-te de nuevo luego.
+      signed_up: Bienveniu! T'has rechistrau correctament.
+      signed_up_but_inactive: T'has rechistrau con exito. Manimenos, no s'ha puesto iniciar sesión perque la tuya cuenta encara no ye activada.
+      signed_up_but_locked: T'has rechistrau con exito. Manimenos, no s'ha puesto iniciar sesión perque la tuya cuenta ye blocada.
+      signed_up_but_pending: Un mensache con un vinclo de confirmación ha estau ninviau a la tuya adreza de correu electronico. Dimpués de fer clic en o vinclo, revisaremos la tuya solicitut. Serás notificau si s'apreba.
+      signed_up_but_unconfirmed: Un mensache con un vinclo de confirmación ha estau ninviau a la tuya adreza de correu electronico. Per favor, sigue lo vinclo pa activar la tuya cuenta. Per favor, compreba la tuya carpeta de correu no deseyau si no recibes dito correu electronico.
+      update_needs_confirmation: Has actualizau la tuya cuenta con exito, pero amenestemos verificar la tuya nueva adreza de correu electronico. Per favor, compreba lo tuyo correu electronico y sigue lo vinclo de confirmación pa confirmar la tuya nueva adreza de correu electronico. Per favor, compreba la tuya carpeta de correu no deseyau si no recibes dito correu electronico.
+      updated: La tuya cuenta s'ha actualizau con exito.
+    sessions:
+      already_signed_out: Sesión zarrada con exito.
+      signed_in: Sesión iniciada con exito.
+      signed_out: Sesión zarrada con exito.
+    unlocks:
+      send_instructions: En uns menutos recibirás un correu electronico con instruccions pa desblocar la tuya cuenta. Per favor, compreba la tuya carpeta de correu no deseyau si no recibes dito correu electronico.
+      send_paranoid_instructions: Si la tuya cuenta existe, en uns menutos recibirás un correu electronico con instruccions pa desblocar-la. Per favor, revisa la tuya carpeta de correu no deseyau si no recibes dito correu electronico.
+      unlocked: La tuya cuenta ha estau desblocada con exito. Per favor, inicia sesión pa continar.
+  errors:
+    messages:
+      already_confirmed: ya yera confirmada, per favor intenta iniciar sesión
+      confirmation_period_expired: ameneste confirmar-se dentro de %{period}, per favor, solicita una nueva
+      expired: ha caducau, per favor solicita una nueva
+      not_found: no trobau
+      not_locked: no yera blocada
+      not_saved:
+        one: '1 error impidió que este %{resource} s''alzase:'
+        other: "%{count} errors impidioron que este %{resource} s'alzase:"

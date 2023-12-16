@@ -14,7 +14,7 @@ export default class ImageLoader extends PureComponent {
     height: PropTypes.number,
     onClick: PropTypes.func,
     zoomButtonHidden: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     alt: '',
@@ -26,7 +26,7 @@ export default class ImageLoader extends PureComponent {
     loading: true,
     error: false,
     width: null,
-  }
+  };
 
   removers = [];
   canvas = null;
@@ -86,7 +86,7 @@ export default class ImageLoader extends PureComponent {
     image.addEventListener('load', handleLoad);
     image.src = previewSrc;
     this.removers.push(removeEventListeners);
-  })
+  });
 
   clearPreviewCanvas () {
     const { width, height } = this.canvas;
@@ -126,7 +126,7 @@ export default class ImageLoader extends PureComponent {
   setCanvasRef = c => {
     this.canvas = c;
     if (c) this.setState({ width: c.offsetWidth });
-  }
+  };
 
   render () {
     const { alt, src, width, height, onClick } = this.props;

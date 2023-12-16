@@ -4,13 +4,13 @@ da:
     about_mastodon_html: 'Fremtidens sociale netværk: Ingen annoncer, ingen virksomhedsovervågning, etisk design og decentralisering! Vær ejer af egne data med Mastodon!'
     contact_missing: Ikke angivet
     contact_unavailable: Utilgængelig
-    hosted_on: Mostodon hostet på %{domain}
+    hosted_on: Mastodon hostet på %{domain}
     title: Om
   accounts:
     follow: Følg
     followers:
       one: Følger
-      other: Følgere
+      other: tilhængere
     following: Følger
     instance_actor_flash: Denne konto er en virtuel aktør repræsenterende selve serveren og ikke en individuel bruger. Den anvendes til fællesformål og bør ikke suspenderes.
     last_active: senest aktiv
@@ -116,6 +116,8 @@ da:
       redownloaded_msg: "%{username}s profil opfrisket fra oprindelsesserver"
       reject: Afvis
       rejected_msg: "%{username}s tilmeldingsansøgning afvist"
+      remote_suspension_irreversible: Denne kontos data er slettet permanent.
+      remote_suspension_reversible_hint_html: Kontoen er suspenderet på den pågældende server, og kontodata fjernes fuldstændig pr. %{date}. Indtil da vil fjernserveren kunne foretage en komplet reetablering af kontoen. Ønskes alle kontodata fjernet straks, kan dette gøres nedenfor.
       remove_avatar: Fjern profilbillede
       remove_header: Fjern overskrift
       removed_avatar_msg: "%{username}s profilbillede fjernet"
@@ -140,7 +142,7 @@ da:
       show:
         created_reports: Indsendte anmeldelser
         targeted_reports: Anmeldt af andre
-      silence: Brgræns
+      silence: Begræns
       silenced: Begrænset
       statuses: Indlæg
       strikes: Tidligere anmeldelser
@@ -207,7 +209,7 @@ da:
         reject_user: Afvis bruger
         remove_avatar_user: Fjern profilbillede
         reopen_report: Genåbn anmeldelse
-        resend_user: Gensend bekræftelsese-mail
+        resend_user: Gensend bekræftelses-e-mail
         reset_password_user: Nulstil adgangskode
         resolve_report: Løs anmeldelse
         sensitive_account: Gennemtving sensitiv konto
@@ -373,6 +375,8 @@ da:
       add_new: Tillade federering med domæne
       created_msg: Domæne er blevet tilladt for federering
       destroyed_msg: Domæne er blevet forbudt for federering
+      export: Eksportér
+      import: Importér
       undo: Forbyd federering med domæne
     domain_blocks:
       add_new: Tilføj ny domæneblokering
@@ -382,15 +386,19 @@ da:
       edit: Redigér domæneblokering
       existing_domain_block: "%{name} er allerede pålagt strengere restriktioner."
       existing_domain_block_html: Der har allerede pålagt %{name} strengere begrænsninger, så dette kræver først en <a href="%{unblock_url}">afblokering</a>.
+      export: Eksportér
+      import: Importér
       new:
         create: Opret blokering
         hint: Domæneblokeringen vil ikke forhindre oprettelse af kontoposter i databasen, men vil retroaktivt og automatisk føje særlige moderationsmetoder til disse konti.
         severity:
-          desc_html: "<strong>Tavsgørelse</strong> gør kontoens indlæg usynlige for alle, som ikke følger dem. <strong>Suspendering</strong> fjerner alt kontoindhold, medier og profildata. Brug <strong>Ingen</strong>, hvis mediefiler blot ønskes afvist."
+          desc_html: "<strong>Begræns</strong> gør indlæg fra konti på dette domæne usynlige for alle ikke-følger. <strong>Suspendér</strong> fjerner alt indhold, medier og profildata for dette domænes konti fra serveren. Brug <strong>Ingen</strong>, hvis man blot vil afvise mediefiler."
           noop: Ingen
-          silence: Tavsgøre
+          silence: Begræns
           suspend: Suspendere
         title: Ny domæneblokering
+      no_domain_block_selected: Ingen domæneblokeringer ændret (ingen var valgt)
+      not_permitted: Ingen tilladelse til at udføre denne handling
       obfuscate: Slør domænenavn
       obfuscate_hint: Slør delvist domænenavnet på listen, hvis annoncering af listen over domænebegrænsninger er aktiveret
       private_comment: Privat kommentar
@@ -422,6 +430,21 @@ da:
       resolved_dns_records_hint_html: Domænenavnet opløses til flg. MX-domæner, som i sidste ende er ansvarlige for e-mailmodtagelse. Blokering af et MX-domæne blokerer også tilmeldinger fra enhver e-mailadresse på det pågældende MX-domæne, selv hvis det synlige domænenavn er et andet. <strong>Pas på ikke ikke at blokere større e-mailudbydere.</strong>
       resolved_through_html: Opløst via %{domain}
       title: Blokerede e-maildomæner
+    export_domain_allows:
+      new:
+        title: Importeret domæne tillader
+      no_file: Ingen fil valgt
+    export_domain_blocks:
+      import:
+        description_html: En liste over domæneblokeringer er ved at blive importeret. Gennemgå listen meget nøje, især hvis man ikke selv har oprettet den.
+        existing_relationships_warning: Eksisterende følge-relationer
+        private_comment_description_html: 'For at man lettere kan holde styr på, hvorfra importerede blokeringer kommer, oprettes disse med flg. private kommentar: <q>%{comment}</q>'
+        private_comment_template: Importeret fra %{source} d. %{date}
+        title: Import af domæneblokeringer
+      invalid_domain_block: 'En eller flere domæneblokke blev oversprunget grundet flg. fejl: %{error}'
+      new:
+        title: Import af domæneblokeringer
+      no_file: Ingen fill udvalgt
     follow_recommendations:
       description_html: "<strong>Følg-anbefalinger hjælpe nye brugere til hurtigt at finde interessant indhold</strong>. Når en bruger ikke har interageret nok med andre til at generere personlige følg-anbefalinger, anbefales disse konti i stedet. De revurderes dagligt baseret på en blanding af konti med de flest nylige engagementer og fleste lokale følger-antal for et givet sprog."
       language: For sprog
@@ -535,13 +558,12 @@ da:
       pending: Afventer videreformidlers godkendelse
       save_and_enable: Gem og aktivér
       setup: Opsæt en videreformidlerforbindelse
-      signatures_not_enabled: Videreformidlere fungerer ikke korrekt, mens sikker tilstand eller begrænset federeringstilstand er aktiveret
+      signatures_not_enabled: I sikker tilstand eller begrænset federeringstilstand fungerer videreformidlere muligvis ikke korrekt
       status: Status
       title: Videreformidlere
     report_notes:
       created_msg: Anmeldelsesnotat er oprettet!
       destroyed_msg: Anmeldelsesnotat er slettet!
-      today_at: I dag %{time}
     reports:
       account:
         notes:
@@ -554,8 +576,6 @@ da:
         mark_as_sensitive_description_html: Medierne i det anmeldte indlæg markeres som sensitive, og en advarsel (strike) registreres mhp. eskalering ved evt. fremtidige overtrædelser fra samme konto.
         other_description_html: Se flere muligheder relateret til at adfærdshåndtering for, samt tilpasning af kommunikation til, den anmeldte konto.
         resolve_description_html: Ingen foranstaltninger træffes mod den anmeldte konto, ingen advarsel (strike) registreres og anmeldelsen lukkes.
-        silence_description_html: Profilen vil kun være synlig for dem, som allerede følger den eller manuelt slå den op, hvilket markant begrænser dens rækkevidde. Kan altid omgøres.
-        suspend_description_html: Profilen (inkl. alt indhold) gøres utilgængelig, indtil den til sidst slettes. Interaktion med kontoen vil være umulig. Kan fortrydes inden for 30 dage.
       actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Træffes en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
       add_to_report: Føj mere til anmeldelse
       are_you_sure: Sikker?
@@ -567,6 +587,7 @@ da:
       comment:
         none: Ingen
       comment_description_html: 'For at give mere information, skrev %{name}:'
+      confirm_action: Bekræft moderatorhandling for %{acct}
       created_at: Anmeldt
       delete_and_resolve: Slet indlæg
       forwarded: Videresendt
@@ -582,7 +603,8 @@ da:
         delete: Slet
         placeholder: Beskriv udførte foranstaltninger eller andre relevante opdateringer...
         title: Notater
-      notes_description_html: Se og skriv notater til andre moderatorer og dit fremtid selv
+      notes_description_html: Se og skriv notater til andre moderatorer og dit fremtidige jeg
+      processed_msg: 'Anmeldelse #%{id} er blev behandlet'
       quick_actions_description_html: 'Træf en hurtig foranstaltning eller rul ned for at se anmeldt indhold:'
       remote_user_placeholder: fjernbrugeren fra %{instance}
       reopen: Genåbn anmeldelse
@@ -595,9 +617,28 @@ da:
       status: Status
       statuses: Anmeld indhold
       statuses_description_html: Krænkende indhold citeres i kommunikationen med den anmeldte konto
+      summary:
+        action_preambles:
+          delete_html: 'Du er ved at <strong>fjerne</strong> nogle indlæg fra <strong>@%{acct}</strong>. Dette vil:'
+          mark_as_sensitive_html: 'Du er ved at <strong>markere</strong> nogle indlæg fra <strong>@%{acct}</strong> som <strong>sensitive</strong>. Dette vil:'
+          silence_html: 'Du er ved at <strong>begrænse</strong> nogle indlæg fra kontoen <strong>@%{acct}</strong>. Dette vil:'
+          suspend_html: 'Du er ved at <strong>suspendere</strong> kontoen <strong>@%{acct}</strong>. Dette vil:'
+        actions:
+          delete_html: Fjern de overtrædende indlæg
+          mark_as_sensitive_html: Markér medier i overtrædende indlæg som sensitive
+          silence_html: Begræns kraftigt rækkeviden for <strong>@%{acct}</strong> ved at gøre vedkommendes profil og indhold synligt alene for personer, som allerede er følgere eller manuelt slår profilen op
+          suspend_html: Suspendér <strong>@%{acct}</strong>, hvilket gør vedkommendes profil og indhold utilgængeligt og umuligt at interagere med
+        close_report: 'Markér anmeldelsen #%{id} som løst'
+        close_reports_html: Markér <strong>alle</strong> anmeldelser af <strong>@%{acct}</strong> som løst
+        delete_data_html: Slet profil og indhold for <strong>@%{acct}</strong> 30 dage fra nu medmindre suspenderingen af vedkommende i mellemtiden fjernes
+        preview_preamble_html: "<strong>@%{acct}</strong> vil modtage en advarsel med flg. indhold:"
+        record_strike_html: Registrér en advarsel for <strong>@%{acct}</strong> som hjælpe til eskalering af fremtidige overtrædelser fra samme konto
+        send_email_html: Send en advarselsmail til <strong>@%{acct}</strong>
+        warning_placeholder: Valgfri yderligere begrundelse for modereringshandlingen.
       target_origin: Anmeldte kontos oprindelse
       title: Anmeldelser
       unassign: Fjern tildeling
+      unknown_action_msg: 'Ukendt handling: %{action}'
       unresolved: Uløst
       updated_at: Opdateret
       view_profile: Vis profil
@@ -608,6 +649,7 @@ da:
         other: "%{count} brugere"
       categories:
         administration: Håndtering
+        devops: DevOps
         invites: Invitationer
         moderation: Moderering
         special: Speciel
@@ -658,6 +700,7 @@ da:
         view_audit_log_description: Tillader brugere at se en historik over administrative handlinger på serveren
         view_dashboard: Vis Dashboard
         view_dashboard_description: Tillader brugere at tilgå Dashboard'et og forskellige målinger
+        view_devops: DevOps
         view_devops_description: Tillader brugere at tilgå Sidekiq- og pgHero-dashboards
       title: Roller
     rules:
@@ -682,11 +725,15 @@ da:
       content_retention:
         preamble: Styr, hvordan Mastodon gemmer brugergenereret indhold.
         title: Indholdsopbevaring
+      default_noindex:
+        desc_html: Påvirker alle brugere, som ikke selv har ændret denne indstilling
+        title: Fravælg som standard søgemaskineindeksering for brugere
       discovery:
         follow_recommendations: Følg-anbefalinger
         preamble: At vise interessant indhold er vitalt ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
         profile_directory: Profiloversigt
         public_timelines: Offentlige tidslinjer
+        publish_statistics: Udgiv statistik
         title: Opdagelse
         trends: Trends
       domain_blocks:
@@ -912,8 +959,10 @@ da:
     warning: Vær meget påpasselig med disse data. Del dem aldrig med nogen!
     your_token: Dit adgangstoken
   auth:
-    apply_for_account: Kom på ventelisten
+    apply_for_account: Anmod om en konto
     change_password: Adgangskode
+    confirmations:
+      wrong_email_hint: Er denne e-mail-adresse ikke korrekt, kan den ændres i kontoindstillinger.
     delete_account: Slet konto
     delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
     description:
@@ -947,8 +996,11 @@ da:
     set_new_password: Opsæt ny adgangskode
     setup:
       email_below_hint_html: Er nedenstående e-mailadresse forkert, kan du rette den hér og modtage en ny bekræftelses-e-mail.
-      email_settings_hint_html: Bekræftelsese-mailen er sendt til %{email}. Er denne e-mailadresse forkert, kan du rette den via kontoindstillingerne.
+      email_settings_hint_html: Bekræftelses-e-mailen er sendt til %{email}. Er denne e-mailadresse forkert, kan du rette den via kontoindstillingerne.
       title: Opsætning
+    sign_in:
+      preamble_html: Log ind med dine <strong>%{domain}</strong>-legitimationsoplysninger. Hostes kontoen på en anden server, vil der ikke kunne logges ind her.
+      title: Log ind på %{domain}
     sign_up:
       preamble: Med en konto på denne Mastodon-server vil man kunne følge enhver anden person på netværket, uanset hvor vedkommendes konto hostes.
       title: Lad os få dig sat op på %{domain}.
@@ -1012,7 +1064,7 @@ da:
       data_removal: Dine indlæg og andre data fjernes permanent
       email_change_html: Du kan <a href="%{path}">skifte e-mailadresse</a> uden at slette din konto
       email_contact_html: Hvis det stadig ikke ankommer, kan du sende en e-mail til <a href="mailto:%{email}">%{email}</a> for hjælp
-      email_reconfirmation_html: Modtager du ikke bekræftelsese-mailen, kan du <a href="%{path}">anmode om en ny</a>
+      email_reconfirmation_html: Modtager du ikke bekræftelses-e-mailen, kan du <a href="%{path}">anmode om en ny</a>
       irreversible: Du vil ikke kunne gendanne/genaktivere din konto
       more_details_html: For yderligere oplysningerer, tjek <a href="%{terms_path}">fortrolighedspolitikken</a>.
       username_available: Dit brugernavn vil blive tilgængeligt igen
@@ -1157,6 +1209,7 @@ da:
     invalid_markup: 'indeholder ugyldig HTML-markup: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Ugyldig CSV-fil. Fejl: %{error}'
       over_rows_processing_limit: indeholder mere end %{count} rækker
     modes:
       merge: Sammenflet
@@ -1245,7 +1298,7 @@ da:
       other_data: Ingen øvrige data flyttes automatisk
       redirect: Din nuværende kontoprofil opdateres med en omdirigeringsnotits og ekskluderes fra søgninger
   moderation:
-    title: Moderatering
+    title: Moderation
   move_handler:
     carry_blocks_over_text: Denne bruger er flyttet fra %{acct}, som du har haft blokeret.
     carry_mutes_over_text: Denne bruger er flyttet fra %{acct}, som du har haft tavsgjort.
@@ -1337,6 +1390,8 @@ da:
       unrecognized_emoji: er ikke en genkendt emoji
   relationships:
     activity: Kontoaktivitet
+    confirm_follow_selected_followers: Sikker på, at de valgte følgere skal følges?
+    confirm_remove_selected_followers: Sikker på, at de valgte følgere skal fjernes?
     dormant: I dvale
     follow_selected_followers: Følg valgte følgere
     followers: Følgere
@@ -1371,6 +1426,7 @@ da:
     browser: Browser
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1384,6 +1440,7 @@ da:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Aktuelle session
     description: "%{browser} på %{platform}"
@@ -1392,6 +1449,8 @@ da:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1604,7 +1663,7 @@ da:
       final_action: Begynd at poste
       final_step: 'Begynd at poste! Selv uden følgere vil offentlige indlæg kunne ses af andre f.eks. på den lokale tidslinje og i hashtags. Man kan introducere sig selv via hastagget #introductions.'
       full_handle: Dit fulde brugernavn
-      full_handle_hint: Dette er, hvad du oplyser til dine venner, så de kan sende dig beskeder eller følge dig fra andre server.
+      full_handle_hint: Dette er, hvad du oplyser til dine venner, så de kan sende dig beskeder eller følge dig fra andre servere.
       subject: Velkommen til Mastodon
       title: Velkommen ombord, %{name}!
   users:
@@ -1614,7 +1673,7 @@ da:
     seamless_external_login: Du er logget ind via en ekstern tjeneste, så adgangskode- og e-mailindstillinger er utilgængelige.
     signed_in_as: 'Logget ind som:'
   verification:
-    explanation_html: 'Du kan <strong>bekræfte dig selv som ejer af linkene i din profilmetadata</strong>. For at gøre det, skal det linkede websted indeholde et link pegende tilbage til din Mastodon-profil. Returlinket <strong>skal</strong> have en <code>rel="mig"</code>-attribut. Linkets tekstindhold betyder ikke noget. Her er et eksempel:'
+    explanation_html: 'Du kan <strong>bekræfte dig selv som ejer af linkene i din profilmetadata</strong>. For at gøre det, skal det linkede websted indeholde et link pegende tilbage til din Mastodon-profil. Returlinket <strong>skal</strong> have en <code>rel="me"</code>-attribut. Linkets tekstindhold betyder ikke noget. Her er et eksempel:'
     verification: Bekræftelse
   webauthn_credentials:
     add: Tilføj ny sikkerhedsnøgle

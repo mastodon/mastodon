@@ -28,6 +28,33 @@ describe EmailMxValidator do
       end
     end
 
+    it 'adds no error if there are DNS records for the e-mail domain' do
+      resolver = double
+
+      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::MX).and_return([])
+      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::A).and_return([Resolv::DNS::Resource::IN::A.new('192.0.2.42')])
+      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
+      allow(resolver).to receive(:timeouts=).and_return(nil)
+      allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+
+      subject.validate(user)
+      expect(user.errors).not_to have_received(:add)
+    end
+
+    it 'adds an error if the email domain name contains empty labels' do
+      resolver = double
+
+      allow(resolver).to receive(:getresources).with('example..com', Resolv::DNS::Resource::IN::MX).and_return([])
+      allow(resolver).to receive(:getresources).with('example..com', Resolv::DNS::Resource::IN::A).and_return([Resolv::DNS::Resource::IN::A.new('192.0.2.42')])
+      allow(resolver).to receive(:getresources).with('example..com', Resolv::DNS::Resource::IN::AAAA).and_return([])
+      allow(resolver).to receive(:timeouts=).and_return(nil)
+      allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+
+      user = double(email: 'foo@example..com', sign_up_ip: '1.2.3.4', errors: double(add: nil))
+      subject.validate(user)
+      expect(user.errors).to have_received(:add)
+    end
+
     it 'adds an error if there are no DNS records for the e-mail domain' do
       resolver = double
 

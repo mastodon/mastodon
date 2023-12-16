@@ -1,1 +1,27 @@
+---
 my:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: နောက်ဆုံးတင်သွင်းချိန်
+        options: ရွေးချယ်မှူများ
+      user:
+        agreement: ဝန်ဆောင်မှု သဘောတူညီချက်
+        email: အီးမေးလ်လိပ်စာ
+        locale: ဒေသဆိုင်ရာ
+        password: စကားဝှက်
+      user/account:
+        username: အသုံးပြုသူအမည်
+      user/invite_request:
+        text: အကြောင်းပြချက်
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: အက္ခရာစာလုံး၊ ဂဏန်းနံပါတ်နှင့်underscores သာပါရမည်
+              reserved: အသုံးပြုပြီးဖြစ်သည်
+        user:
+          attributes:
+            email:
+              unreachable: တည်ရှိပုံ မပေါ်ပါ

@@ -3,19 +3,19 @@ af:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Toepassing naam
+        name: Toepassingnaam
         redirect_uri: Herlei URI
         scopes: Bestekke
-        website: Toepassing webtuiste
+        website: Toepassingwebtuiste
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: kan nie 'n vragment bevat nie.
-              invalid_uri: moet 'n geldige URI wees.
-              relative_uri: moet 'n absolute URI wees.
-              secured_uri: moet 'n HTTPS/SSL URI wees.
+              fragment_present: kan nie ’n fragment bevat nie.
+              invalid_uri: moet ’n geldige URI wees.
+              relative_uri: moet ’n absolute URI wees.
+              secured_uri: moet ’n HTTPS/SSL URI wees.
   doorkeeper:
     applications:
       buttons:
@@ -32,11 +32,11 @@ af:
         error: Oeps! Hersien jou vorm vir moontlike foute
       help:
         native_redirect_uri: Gebruik %{native_redirect_uri} vir plaaslike toetse
-        redirect_uri: Gebruik een lyn per URI
-        scopes: Verdeel omvang-grense met spasies. Los dit leeg om verstek omvange te gebruik.
+        redirect_uri: Gebruik een reël per URI
+        scopes: Verdeel omvanggrense met spasies. Laat dit leeg om verstekomvange te gebruik.
       index:
         application: Toepassing
-        callback_url: Terugroep URL
+        callback_url: Terugroep-URL
         delete: Wis uit
         empty: Jy het geen toepassings nie.
         name: Naam
@@ -47,24 +47,24 @@ af:
       new:
         title: Nuwe toepassing
       show:
-        actions: Aksies
-        application_id: Kliënt sleutel
-        callback_urls: Terugroep URL'e
+        actions: Handelinge
+        application_id: Kliëntsleutel
+        callback_urls: Terugroep-URL'e
         scopes: Omvange
-        secret: Kliënt geheim
+        secret: Kliëntgeheim
         title: 'Toepassing: %{name}'
     authorizations:
       buttons:
         authorize: Magtig
         deny: Weier
       error:
-        title: "'n Fout het plaasgevind"
+        title: "’n Fout het ingesluip"
       new:
-        prompt_html: "%{client_name} wil toegang hê tot jou rekening. Dit is a derde party toepassing. <strong>Indien jy dit nie vertrou nie, moet dit nie bemagtig word nie.</strong>"
-        review_permissions: Hersien toestemming
+        prompt_html: "%{client_name} wil toegang hê tot jou rekening. Dit is ’n derdepartytoepassing. <strong>Moet dit nie toelaat as jy dit nie vertrou nie.</strong>"
+        review_permissions: Hersien toestemmings
         title: Benodig magtiging
       show:
-        title: Kopieër hierdie magtigings kode en plaas dit in die toepassing.
+        title: Kopieer hierdie magtigingskode en plak dit in die toepassing.
     authorized_applications:
       buttons:
         revoke: Herroep
@@ -72,16 +72,16 @@ af:
         revoke: Is jy seker?
       index:
         authorized_at: Bemagtig op %{date}
-        description_html: Hierdie is toepassings wat deur middel van die API toegang tot jou rekening kan verkry. As daar enige toepassings is wat jy nie herken nie, of 'n toepassing is wat wangedra, kan die bemagtiging herroep word.
+        description_html: Hierdie toepassings kan deur middel van die API tot jou rekening toegang verkry. As jy van hierdie toepassings nie herken nie, of by ’n toepassing wangedrag bespeur, kan jy dit verdere toegang tot jou rekening weier.
         last_used_at: Laas gebruik op %{date}
-        never_used: Noot gebruik nie
-        scopes: Magtiging
+        never_used: Nooit gebruik nie
+        scopes: Magtigings
         superapp: Intern
         title: Jou gemagtigde toepassings
     errors:
       messages:
-        access_denied: Die hulpbron eienaar of magtigingsbediener het die aansoek afgekeur.
-        credential_flow_not_configured: Hulpbron Eienaar Wagwoord Geloofsbrewe vloei het gefaal omdat Doorkeeper.configure.resource_owner_from_credentials nie opgestel is nie.
+        access_denied: Die hulpbroneienaar of magtigingsbediener het die aansoek afgekeur.
+        credential_flow_not_configured: Magtigingsbewysvloei van die hulpbroneienaar het gefaal omdat Doorkeeper.configure.resource_owner_from_credentials nie opgestel is nie.
     flash:
       applications:
         create:
@@ -89,33 +89,31 @@ af:
         destroy:
           notice: Toepassing uitgewis.
         update:
-          notice: Toepassing opdateer.
+          notice: Toepassing bygewerk.
       authorized_applications:
         destroy:
           notice: Toepassing herroep.
     grouped_scopes:
       access:
-        read: Slegs-lees toegang
-        read/write: Lees en skryf toegang
-        write: Slegs-skryf toegang
+        read: Slegs leestoegang
+        read/write: Lees-en-skryf-toegang
+        write: Slegs skryftoegang
       title:
         accounts: Rekeninge
         admin/accounts: Administrasie van rekeninge
         admin/all: Alle administratiewe funksies
         admin/reports: Administrasie van rapporteringe
-        all: Alles
-        blocks: Blokkeringe
+        blocks: Blokkerings
         bookmarks: Boekmerke
         conversations: Gesprekke
-        crypto: End-tot-end enkripsie
+        crypto: End-tot-end-enkripsie
         favourites: Gunstelinge
         filters: Filters
-        follow: Verhoudinge
         lists: Lyste
-        media: Media aanhegsels
-        mutes: Dempinge
+        media: Media-aanhegsels
+        mutes: Uitdowings
         notifications: Kennisgewings
-        push: Stoot kennisgewings
+        push: Stootkennisgewings
         reports: Rapporteringe
         search: Soek
         statuses: Plasings
@@ -123,42 +121,42 @@ af:
       admin:
         nav:
           applications: Toepassings
-          oauth2_provider: OAuth2 Verskaffer
+          oauth2_provider: OAuth2-verskaffer
       application:
-        title: Benodig OAuth bemagtiging
+        title: Benodig OAuth-bemagtiging
     scopes:
       admin:read: lees alle data op die bediener
-      admin:read:accounts: lees sensitiewe inligting vanaf alle rekeninge
+      admin:read:accounts: lees sensitiewe inligting van alle rekeninge
       admin:read:reports: lees sensitiewe inligting van alle verslae end aangeklaagde rekeninge
       admin:write: verander alle data op die bediener
-      admin:write:accounts: voer modereer aksies uit op rekeninge
-      admin:write:reports: voer modereer aksies uit op verslae
-      crypto: gebruik end-tot-end enkripsie
-      follow: verander rekening verhoudinge
+      admin:write:accounts: modereer rekeninge
+      admin:write:reports: modereer verslae
+      crypto: gebruik end-tot-end-enkripsie
+      follow: verander rekeningverhoudings
       push: ontvang jou stootkennisgewings
-      read: lees die data van al jou rekeninge
-      read:accounts: sien rekening inligting
-      read:blocks: sien blokeringe
+      read: lees al jou rekeningdata
+      read:accounts: sien rekeninginligting
+      read:blocks: sien jou blokkerings
       read:bookmarks: sien jou boekmerke
       read:favourites: sien jou gunstelinge
       read:filters: sien jou filters
       read:lists: sien jou lyste
-      read:mutes: sien jou stilmake
+      read:mutes: sien jou uitdowings
       read:notifications: sien jou kennisgewinge
-      read:reports: sien jou rapporteringe
+      read:reports: sien jou rapporterings
       read:search: soek namens jou
       read:statuses: sien alle plasings
-      write: verander alle data van jou rekening
-      write:accounts: verander jou profiel
-      write:blocks: blokeer rekeninge en domeine
-      write:bookmarks: boekmerk plasings
-      write:conversations: demp en wis gesprekke uit
-      write:favourites: merk gunsteling plasings
+      write: pas al jou rekeningdata aan
+      write:accounts: pas jou profiel aan
+      write:blocks: blokkeer rekeninge en domeine
+      write:bookmarks: laat ’n boekmerk by plasings
+      write:conversations: doof en wis gesprekke uit
+      write:favourites: merk gunstelingplasings
       write:filters: skep filters
       write:follows: volg mense
       write:lists: skep lyste
-      write:media: laai meda lêers op
-      write:mutes: demp mense en gesprekke
-      write:notifications: maak jou kennisgewings skoon
+      write:media: laai medalêers op
+      write:mutes: doof mense en gesprekke uit
+      write:notifications: verwyder jou kennisgewings
       write:reports: rapporteer ander mense
       write:statuses: publiseer plasings

@@ -1,1 +1,52 @@
+---
 ms:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nama aplikasi
+  doorkeeper:
+    applications:
+      buttons:
+        cancel: Batal
+        edit: Sunting
+        submit: Hantar
+      confirmations:
+        destroy: Anda pasti?
+      index:
+        delete: Padam
+        name: Nama
+        show: Paparkan
+    authorized_applications:
+      index:
+        superapp: Dalaman
+    flash:
+      applications:
+        create:
+          notice: Aplikasi dicipta.
+        destroy:
+          notice: Aplikasi dipadamkan.
+        update:
+          notice: Aplikasi dikemaskini.
+    grouped_scopes:
+      title:
+        accounts: Akaun
+        admin/accounts: Pengurusan akaun
+        admin/all: Semua fungsi pengurusan
+        admin/reports: Pengurusan laporan
+        conversations: Perbualan
+        follows: Ikutan
+        media: Lampiran media
+        notifications: Pemberitahuan
+        push: Pemberitahuan segera
+        reports: Laporan
+        search: Cari
+        statuses: Hantaran
+    scopes:
+      admin:read: baca semua data pada pelayan
+      admin:read:accounts: baca maklumat sensitif untuk semua akaun
+      admin:read:reports: baca maklumat sensitif untuk semua laporan dan akaun-akaun yang dilaporkan
+      admin:write: mengubah semua data pada pelayan
+      read:statuses: lihat semua hantaran
+      write:bookmarks: menandabuku hantaran
+      write:favourites: hantaran kegemaran
+      write:statuses: terbitkan hantaran

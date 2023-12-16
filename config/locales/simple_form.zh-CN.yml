@@ -10,7 +10,7 @@ zh-CN:
         text: 你可以使用嘟文格式，例如加入 URL、话题标签和“@”
         title: 可选。对接收者不可见
       admin_account_action:
-        include_statuses: 用户将会看到哪些嘟文导致了审核行为或警告
+        include_statuses: 用户将会看到哪些嘟文导致了管理操作或警告
         send_email_notification: 用户将收到关于其账号异动的解释
         text_html: 可选。你可以使用嘟文格式。你可以<a href="%{path}">预置警告</a>以节省时间
         type_html: 用<strong>%{acct}</strong>选择做什么
@@ -18,8 +18,8 @@ zh-CN:
           disable: 禁止用户使用账户，但不会删除或隐藏账户内容。
           none: 用它来向用户发送警告，不会触发其他操作。
           sensitive: 强制将此用户的所有媒体文件标记为敏感内容。
-          silence: 阻止用户发送公开嘟文，除了关注者以外，其他人都无法看到他的嘟文和通知。
-          suspend: 阻止此账户的任何交互并删除其内容。30天内可以撤销操作。
+          silence: 阻止用户发送公开嘟文，除了关注者以外，其他人都无法看到他的嘟文和通知。关闭针对此账户的所有举报。
+          suspend: 阻止此账户的任何交互并删除其内容。30天内可以撤销操作。关闭针对此账户的所有举报。
         warning_preset_id: 可选。你可以在预置文本末尾添加自定义文本
       announcement:
         all_day: 如果选中，只有该时间段内的日期会显示。
@@ -32,7 +32,7 @@ zh-CN:
       defaults:
         autofollow: 通过邀请链接注册的用户将会自动关注你
         avatar: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
-        bot: 来自这个帐户的绝大多数操作都是自动进行的，并且可能无人监控
+        bot: 来自这个账户的绝大多数操作都是自动进行的，并且可能无人监控
         context: 过滤器的应用环境
         current_password: 为了安全起见，请输入当前账号的密码
         current_username: 请输入当前账号的用户名以确认
@@ -74,6 +74,7 @@ zh-CN:
           hide: 彻底屏蔽过滤内容，犹如它不曾存在过一般
           warn: 在警告中提及过滤器标题后，隐藏过滤内容
       form_admin_settings:
+        activity_api_enabled: 本地发布的帖子、 活跃用户和每周的注册数
         backups_retention_period: 将在指定天数内保留生成的用户存档。
         bootstrap_timeline_accounts: 这些账号将在新用户关注推荐中置顶。
         closed_registrations_message: 在关闭注册时显示
@@ -81,6 +82,7 @@ zh-CN:
         custom_css: 你可以为网页版 Mastodon 应用自定义样式。
         mascot: 覆盖高级网页界面中的绘图形象。
         media_cache_retention_period: 设为正数值时，来自其他服务器的媒体文件将在指定天数后被删除，并在需要时再次下载。
+        peers_api_enabled: 此服务器在联邦宇宙中遇到的域名列表。 这里不包含关于您是否与给定服务器联合的数据，只是您的服务器知道它。 这由收集一般意义上的联邦统计信息的服务使用。
         profile_directory: 个人资料目录会列出所有选择可被发现的用户。
         require_invite_text: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
         site_contact_email: 他人需要询恰法务或支持信息时的联络方式
@@ -89,11 +91,13 @@ zh-CN:
         site_short_description: 有助于区分你的服务器独特性的简短描述。谁在管理？供谁使用？
         site_terms: 使用你自己的隐私政策或留空以使用默认版。可以使用 Markdown 语法。
         site_title: 除了域名，人们还可以如何指代你的服务器。
+        status_page_url: 配置一个网址，当服务中断时，人们可以通过该网址查看服务器的状态。
         theme: 给未登录访客和新用户使用的主题。
         thumbnail: 与服务器信息一并展示的约 2:1 比例的图像。
         timeline_preview: 未登录访客将能够浏览服务器上最新的公共嘟文。
         trendable_by_default: 跳过对热门内容的手工审核。个别项目仍可在之后从趋势中删除。
         trends: 趋势中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
+        trends_as_landing_page: 向注销的用户和访问者显示趋势内容，而不是对该服务器的描述，需要启用趋势。
       form_challenge:
         current_password: 你正在进入安全区域
       imports:
@@ -118,16 +122,16 @@ zh-CN:
         name: 你只能改变字母的大小写，让它更易读
       user:
         chosen_languages: 仅选中语言的嘟文会出现在公共时间轴上（全不选则显示所有语言的嘟文）
-        role: 角色决定该用户拥有的权限
+        role: 角色用于控制用户拥有的权限
       user_role:
-        color: 整个用户界面中，该角色使用的颜色，以RGB 十六进制格式
-        highlighted: 这使角色公开可见
-        name: 角色的公开名称，如果角色设置为展示的徽章
+        color: 在界面各处用于标记该角色的颜色，以十六进制 RGB 格式表示
+        highlighted: 使角色公开可见
+        name: 角色的公开名称，将在设为展示徽章时使用
         permissions_as_keys: 具有此角色的用户将有权访问...
-        position: 较高的角色决定在某些情况下解决冲突。某些行动只能对优先级较低的角色执行
+        position: 用于在特定情况下处理决策冲突。一些特定操作只能对优先级更低的角色执行
       webhook:
         events: 选择要发送的事件
-        url: 事件将发送到哪个地点
+        url: 事件将被发往的目的地
     labels:
       account:
         fields:
@@ -161,9 +165,9 @@ zh-CN:
       appeal:
         text: 说明此结果应当被推翻的理由
       defaults:
-        autofollow: 让被邀请人关注你的帐户
+        autofollow: 让被邀请人关注你的账户
         avatar: 头像
-        bot: 这是一个机器人帐户
+        bot: 这是一个机器人账户
         chosen_languages: 语言过滤
         confirm_new_password: 确认新密码
         confirm_password: 确认密码
@@ -180,7 +184,7 @@ zh-CN:
         inbox_url: 中继站收件箱的 URL
         irreversible: 丢弃而非隐藏
         locale: 界面语言
-        locked: 保护你的帐户（锁嘟）
+        locked: 保护你的账户（锁嘟）
         max_uses: 最大使用次数
         new_password: 新密码
         note: 简介
@@ -229,6 +233,7 @@ zh-CN:
           hide: 完全隐藏
           warn: 隐藏时显示警告信息
       form_admin_settings:
+        activity_api_enabled: 在 API 中发布有关用户活动的汇总统计数据
         backups_retention_period: 用户存档保留期
         bootstrap_timeline_accounts: 推荐新用户关注以下账号
         closed_registrations_message: 在关闭注册时显示的自定义消息
@@ -236,6 +241,7 @@ zh-CN:
         custom_css: 自定义 CSS
         mascot: 自定义吉祥物（旧）
         media_cache_retention_period: 媒体缓存保留期
+        peers_api_enabled: 在API中公开的已知实例的服务器的列表
         profile_directory: 启用用户目录
         registrations_mode: 谁可以注册
         require_invite_text: 注册前需要提供理由
@@ -247,11 +253,13 @@ zh-CN:
         site_short_description: 本站简介
         site_terms: 隐私政策
         site_title: 本站名称
+        status_page_url: 静态页面地址
         theme: 默认主题
         thumbnail: 本站缩略图
         timeline_preview: 时间轴预览
         trendable_by_default: 允许在未审核的情况下将话题置为热门
         trends: 启用趋势
+        trends_as_landing_page: 使用趋势作为登陆页面
       interactions:
         must_be_follower: 屏蔽来自未关注我的用户的通知
         must_be_following: 屏蔽来自我未关注的用户的通知
@@ -290,13 +298,13 @@ zh-CN:
         role: 角色
       user_role:
         color: 徽章颜色
-        highlighted: 用户配置中以徽章显示角色
+        highlighted: 在用户资料中显示角色徽章
         name: 名称
         permissions_as_keys: 权限设置
-        position: 优先权
+        position: 优先级
       webhook:
         events: 已启用事件
-        url: 端点网址
+        url: 对端 URL
     'no': 否
     not_recommended: 不推荐
     recommended: 推荐

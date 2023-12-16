@@ -18,16 +18,19 @@ import { getLocale } from 'mastodon/locales';
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
-const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
+const title =
+  process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
 
 export const store = configureStore();
 const hydrateAction = hydrateStore(initialState);
 
 store.dispatch(hydrateAction);
-store.dispatch(fetchCustomEmojis());
-store.dispatch(fetchCircles());
+if (initialState.meta.me) {
+  store.dispatch(fetchCustomEmojis());
+  store.dispatch(fetchCircles());
+}
 
-const createIdentityContext = state => ({
+const createIdentityContext = (state) => ({
   signedIn: !!state.meta.me,
   accountId: state.meta.me,
   disabledAccountId: state.meta.disabled_account_id,
@@ -36,7 +39,6 @@ const createIdentityContext = state => ({
 });
 
 export default class Mastodon extends React.PureComponent {
-
   static propTypes = {
     locale: PropTypes.string.isRequired,
   };
@@ -64,18 +66,22 @@ export default class Mastodon extends React.PureComponent {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.disconnect) {
       this.disconnect();
       this.disconnect = null;
     }
   }
 
-  shouldUpdateScroll (prevRouterProps, { location }) {
-    return !(location.state?.mastodonModalKey && location.state?.mastodonModalKey !== prevRouterProps?.location?.state?.mastodonModalKey);
+  shouldUpdateScroll(prevRouterProps, { location }) {
+    return !(
+      location.state?.mastodonModalKey &&
+      location.state?.mastodonModalKey !==
+        prevRouterProps?.location?.state?.mastodonModalKey
+    );
   }
 
-  render () {
+  render() {
     const { locale } = this.props;
 
     return (
@@ -84,7 +90,7 @@ export default class Mastodon extends React.PureComponent {
           <ErrorBoundary>
             <BrowserRouter>
               <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
-                <Route path='/' component={UI} />
+                <Route path="/" component={UI} />
               </ScrollContext>
             </BrowserRouter>
 
@@ -94,5 +100,4 @@ export default class Mastodon extends React.PureComponent {
       </IntlProvider>
     );
   }
-
 }

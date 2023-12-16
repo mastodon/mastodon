@@ -36,4 +36,4 @@ export default function modal(state = initialState, action) {
   default:
     return state;
   }
-};
+}

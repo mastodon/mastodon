@@ -122,14 +122,14 @@ fi:
         admin/accounts: Tilien hallinta
         admin/all: Kaikki hallinnolliset toiminnot
         admin/reports: Raporttien hallinta
-        all: Kaikki
+        all: Täysi pääsy Mastodon-tiliisi
         blocks: Torjutut
         bookmarks: Kirjanmerkit
         conversations: Keskustelut
         crypto: Päästä päähän -salaus
         favourites: Suosikit
         filters: Suodattimet
-        follow: Liitokset
+        follow: Seuraamiset, mykistykset ja estot
         follows: Seuraa
         lists: Listat
         media: Medialiitteet
@@ -149,9 +149,19 @@ fi:
     scopes:
       admin:read: lukea kaikkia tietoja palvelimelta
       admin:read:accounts: lue arkaluontoinen sisältö kaikilta tileiltä
+      admin:read:canonical_email_blocks: lue arkaluonteisia tietoja kaikista kanonisesti sallituista sähköpostiosoitteista
+      admin:read:domain_allows: lue arkaluonteisia tietoja kaikista sallituista verkkotunnuksista
+      admin:read:domain_blocks: lue arkaluonteisia tietoja kaikista estetyistä verkkotunnuksista
+      admin:read:email_domain_blocks: lue arkaluonteisia tietoja kaikista estetyistä sähköpostiverkkotunnuksista
+      admin:read:ip_blocks: lue arkaluonteisia tietoja kaikista estetyistä IP-osoitteista
       admin:read:reports: lue arkaluonteiset tiedot kaikista raporteista ja raportoiduista tileistä
       admin:write: muokata kaikkia tietoja palvelimella
       admin:write:accounts: suorita moderointitoiminnot tileillä
+      admin:write:canonical_email_blocks: toteuta moderointitoimenpiteitä kanonisille sähköpostiosoite-estoille
+      admin:write:domain_allows: toteuta moderointitoimenpiteitä sallituille verkkotunnuksille
+      admin:write:domain_blocks: toteuta moderointitoimenpiteitä estetyille verkkotunnuksille
+      admin:write:email_domain_blocks: toteuta moderointitoimenpiteitä estetyille sähköpostiverkkotunnuksille
+      admin:write:ip_blocks: toteuta moderointitoimenpiteitä estetyille IP-osoitteille
       admin:write:reports: suorita moderointitoiminnot raporteissa
       crypto: käytä päästä päähän salausta
       follow: seurata, estää, perua eston ja lopettaa tilien seuraaminen

@@ -19,9 +19,7 @@ class BatchedRemoveStatusService < BaseService
 
     ActiveRecord::Associations::Preloader.new.preload(statuses_with_account_conversations, [mentions: :account])
 
-    statuses_with_account_conversations.each do |status|
-      status.send(:unlink_from_conversations)
-    end
+    statuses_with_account_conversations.each(&:unlink_from_conversations!)
 
     status_ids_with_capability_tokens = statuses.local.joins(:capability_tokens).where.not(capability_tokens: { id: nil }).pluck(:id)
     status_ids_with_capability_tokens += Status.where(reblog_of_id: statuses).local.joins(:capability_tokens).where.not(capability_tokens: { id: nil }).pluck(:id)

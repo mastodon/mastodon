@@ -54,7 +54,7 @@ class ResolveAccountService < BaseService
 
     fetch_account!
   rescue Webfinger::Error => e
-    Rails.logger.debug "Webfinger query for #{@uri} failed: #{e}"
+    Rails.logger.debug { "Webfinger query for #{@uri} failed: #{e}" }
     raise unless @options[:suppress_errors]
   end
 

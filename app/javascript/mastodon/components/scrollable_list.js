@@ -97,7 +97,7 @@ class ScrollableList extends PureComponent {
     } else {
       return this.node;
     }
-  }
+  };
 
   setScrollTop = newScrollTop => {
     if (this.getScrollTop() !== newScrollTop) {
@@ -143,7 +143,7 @@ class ScrollableList extends PureComponent {
 
     this.mouseMovedRecently = false;
     this.scrollToTopOnMouseIdle = false;
-  }
+  };
 
   componentDidMount () {
     this.attachScrollListener();
@@ -161,25 +161,25 @@ class ScrollableList extends PureComponent {
     } else {
       return null;
     }
-  }
+  };
 
   getScrollTop = () => {
     return this._getScrollingElement().scrollTop;
-  }
+  };
 
   getScrollHeight = () => {
     return this._getScrollingElement().scrollHeight;
-  }
+  };
 
   getClientHeight = () => {
     return this._getScrollingElement().clientHeight;
-  }
+  };
 
   updateScrollBottom = (snapshot) => {
     const newScrollTop = this.getScrollHeight() - snapshot;
 
     this.setScrollTop(newScrollTop);
-  }
+  };
 
   getSnapshotBeforeUpdate (prevProps) {
     const someItemInserted = React.Children.count(prevProps.children) > 0 &&
@@ -206,7 +206,7 @@ class ScrollableList extends PureComponent {
     if (width && this.state.cachedMediaWidth !== width) {
       this.setState({ cachedMediaWidth: width });
     }
-  }
+  };
 
   componentWillUnmount () {
     this.clearMouseIdleTimer();
@@ -218,7 +218,7 @@ class ScrollableList extends PureComponent {
 
   onFullScreenChange = () => {
     this.setState({ fullscreen: isFullscreen() });
-  }
+  };
 
   attachIntersectionObserver () {
     let nodeOptions = {
@@ -269,12 +269,12 @@ class ScrollableList extends PureComponent {
 
   setRef = (c) => {
     this.node = c;
-  }
+  };
 
   handleLoadMore = e => {
     e.preventDefault();
     this.props.onLoadMore();
-  }
+  };
 
   handleLoadPending = e => {
     e.preventDefault();
@@ -286,7 +286,7 @@ class ScrollableList extends PureComponent {
     this.clearMouseIdleTimer();
     this.mouseIdleTimer = setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
     this.mouseMovedRecently = true;
-  }
+  };
 
   render () {
     const { children, scrollKey, trackScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, append, emptyMessage, onLoadMore } = this.props;

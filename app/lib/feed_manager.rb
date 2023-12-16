@@ -7,7 +7,7 @@ class FeedManager
   include Redisable
 
   # Maximum number of items stored in a single feed
-  MAX_ITEMS = 400
+  MAX_ITEMS = 800
 
   # Number of items in the feed since last reblog of status
   # before the new reblog will be inserted. Must be <= MAX_ITEMS
@@ -361,6 +361,7 @@ class FeedManager
     end
 
     return true if check_for_blocks.any? { |target_account_id| crutches[:blocking][target_account_id] || crutches[:muting][target_account_id] }
+    return true if crutches[:blocked_by][status.account_id]
 
     if status.reblog?                                                                                                         # Filter out a reblog
       should_filter   = crutches[:hiding_reblogs][status.account_id]                                                             # if the reblogger's reblogs are suppressed
@@ -538,7 +539,7 @@ class FeedManager
     crutches[:blocking]        = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
     crutches[:muting]          = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
     crutches[:domain_blocking] = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
-    crutches[:blocked_by]      = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| s.reblog&.account_id }.compact).pluck(:account_id).index_with(true)
+    crutches[:blocked_by]      = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
 
     crutches
   end

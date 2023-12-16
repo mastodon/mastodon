@@ -21,7 +21,7 @@ export default class IntersectionObserverArticle extends React.Component {
 
   state = {
     isHidden: false, // set to true in requestIdleCallback to trigger un-render
-  }
+  };
 
   shouldComponentUpdate (nextProps, nextState) {
     const isUnrendered = !this.state.isIntersecting && (this.state.isHidden || this.props.cachedHeight);
@@ -62,7 +62,7 @@ export default class IntersectionObserverArticle extends React.Component {
 
     scheduleIdleTask(this.calculateHeight);
     this.setState(this.updateStateAfterIntersection);
-  }
+  };
 
   updateStateAfterIntersection = (prevState) => {
     if (prevState.isIntersecting !== false && !this.entry.isIntersecting) {
@@ -72,7 +72,7 @@ export default class IntersectionObserverArticle extends React.Component {
       isIntersecting: this.entry.isIntersecting,
       isHidden: false,
     };
-  }
+  };
 
   calculateHeight = () => {
     const { onHeightChange, saveHeightKey, id } = this.props;
@@ -83,7 +83,7 @@ export default class IntersectionObserverArticle extends React.Component {
     if (onHeightChange && saveHeightKey) {
       onHeightChange(saveHeightKey, id, this.height);
     }
-  }
+  };
 
   hideIfNotIntersecting = () => {
     if (!this.componentMounted) {
@@ -95,11 +95,11 @@ export default class IntersectionObserverArticle extends React.Component {
     // this is to save DOM nodes and avoid using up too much memory.
     // See: https://github.com/mastodon/mastodon/issues/2900
     this.setState((prevState) => ({ isHidden: !prevState.isIntersecting }));
-  }
+  };
 
   handleRef = (node) => {
     this.node = node;
-  }
+  };
 
   render () {
     const { children, id, index, listLength, cachedHeight } = this.props;

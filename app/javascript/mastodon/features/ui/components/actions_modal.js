@@ -31,7 +31,7 @@ export default class ActionsModal extends ImmutablePureComponent {
         </a>
       </li>
     );
-  }
+  };
 
   render () {
     return (

@@ -22,4 +22,4 @@ export default function domainLists(state = initialState, action) {
   default:
     return state;
   }
-};
+}

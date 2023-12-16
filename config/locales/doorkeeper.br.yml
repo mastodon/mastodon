@@ -5,6 +5,7 @@ br:
       doorkeeper/application:
         name: Anv an arload
         redirect_uri: Dazkas URI
+        scopes: Dougoù
         website: Lec'hienn an arload
     errors:
       models:
@@ -19,7 +20,7 @@ br:
         authorize: Aotren
         cancel: Nullañ
         destroy: Distrujañ
-        edit: Aozañ
+        edit: Kemmañ
         submit: Kas
       confirmations:
         destroy: Ha sur oc'h ?
@@ -37,6 +38,7 @@ br:
         empty: Arloadoù ebet ganeoc'h.
         name: Anv
         new: Arload nevez
+        scopes: Dougoù
         show: Diskouez
         title: Hoc'h arloadoù
       new:
@@ -45,6 +47,7 @@ br:
         actions: Obererezhioù
         application_id: Alc'hwez an arval
         callback_urls: URLoù adc'halv
+        scopes: Dougoù
         title: 'Arload : %{name}'
     authorizations:
       buttons:
@@ -93,6 +96,15 @@ br:
       authorized_applications:
         destroy:
           notice: Skarzhet eo bet an arload.
+    grouped_scopes:
+      title:
+        blocks: Re stanket
+        bookmarks: Sinedoù
+        filters: Siloù
+        lists: Listennoù
+        mutes: Kuzhet
+        search: Klask
+        statuses: Toudoù
     layouts:
       admin:
         nav:

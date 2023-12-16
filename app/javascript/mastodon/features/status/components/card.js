@@ -146,7 +146,7 @@ export default class Card extends React.PureComponent {
     } else {
       this.setState({ embedded: true });
     }
-  }
+  };
 
   setRef = c => {
     this.node = c;
@@ -154,17 +154,17 @@ export default class Card extends React.PureComponent {
     if (this.node) {
       this._setDimensions();
     }
-  }
+  };
 
   handleImageLoad = () => {
     this.setState({ previewLoaded: true });
-  }
+  };
 
   handleReveal = e => {
     e.preventDefault();
     e.stopPropagation();
     this.setState({ revealed: true });
-  }
+  };
 
   renderVideo () {
     const { card }  = this.props;

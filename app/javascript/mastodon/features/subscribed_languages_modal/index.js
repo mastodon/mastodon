@@ -72,7 +72,7 @@ class SubscribedLanguagesModal extends ImmutablePureComponent {
   handleSubmit = () => {
     this.props.onSubmit(this.state.selectedLanguages.toArray());
     this.props.onClose();
-  }
+  };
 
   renderItem (value) {
     const language = this.props.languages.find(language => language[0] === value);

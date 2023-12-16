@@ -24,7 +24,7 @@ class DismissableBanner extends React.PureComponent {
   handleDismiss = () => {
     const { id } = this.props;
     this.setState({ visible: false }, () => bannerSettings.set(id, true));
-  }
+  };
 
   render () {
     const { visible } = this.state;

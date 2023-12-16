@@ -22,4 +22,4 @@ export default function pictureInPicture(state = initialState, action) {
   default:
     return state;
   }
-};
+}

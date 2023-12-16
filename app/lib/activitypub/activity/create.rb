@@ -225,7 +225,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if tag['href'].blank?
 
     account = account_from_uri(tag['href'])
-    account = ActivityPub::FetchRemoteAccountService.new.call(tag['href']) if account.nil?
+    account = ActivityPub::FetchRemoteAccountService.new.call(tag['href'], request_id: @options[:request_id]) if account.nil?
 
     return if account.nil?
 
@@ -288,7 +288,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     media_attachments
   rescue Addressable::URI::InvalidURIError => e
-    Rails.logger.debug "Invalid URL in attachment: #{e}"
+    Rails.logger.debug { "Invalid URL in attachment: #{e}" }
     media_attachments
   end
 
@@ -330,18 +330,18 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def resolve_thread(status)
     return unless status.reply? && status.thread.nil? && Request.valid_url?(in_reply_to_uri)
 
-    ThreadResolveWorker.perform_async(status.id, in_reply_to_uri)
+    ThreadResolveWorker.perform_async(status.id, in_reply_to_uri, { 'request_id' => @options[:request_id]})
   end
 
   def fetch_replies(status)
     collection = @object['replies']
     return if collection.nil?
 
-    replies = ActivityPub::FetchRepliesService.new.call(status, collection, false)
+    replies = ActivityPub::FetchRepliesService.new.call(status, collection, allow_synchronous_requests: false, request_id: @options[:request_id])
     return unless replies.nil?
 
     uri = value_or_id(collection)
-    ActivityPub::FetchRepliesWorker.perform_async(status.id, uri) unless uri.nil?
+    ActivityPub::FetchRepliesWorker.perform_async(status.id, uri, { 'request_id' => @options[:request_id]}) unless uri.nil?
   end
 
   def conversation_from_context

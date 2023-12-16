@@ -54,12 +54,14 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   def approve
     authorize @account.user, :approve?
     @account.user.approve!
+    log_action :approve, @account.user
     render json: @account, serializer: REST::Admin::AccountSerializer
   end
 
   def reject
     authorize @account.user, :reject?
     DeleteAccountService.new.call(@account, reserve_email: false, reserve_username: false)
+    log_action :reject, @account.user
     render_empty
   end
 

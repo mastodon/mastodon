@@ -10,6 +10,7 @@ class UpdateStatusService < BaseService
   # @param [Integer] account_id
   # @param [Hash] options
   # @option options [Array<Integer>] :media_ids
+  # @option options [Array<Hash>] :media_attributes
   # @option options [Hash] :poll
   # @option options [String] :text
   # @option options [String] :spoiler_text
@@ -50,10 +51,18 @@ class UpdateStatusService < BaseService
     next_media_attachments     = validate_media!
     added_media_attachments    = next_media_attachments - previous_media_attachments
 
+    (@options[:media_attributes] || []).each do |attributes|
+      media = next_media_attachments.find { |attachment| attachment.id == attributes[:id].to_i }
+      next if media.nil?
+
+      media.update!(attributes.slice(:thumbnail, :description, :focus))
+      @media_attachments_changed ||= media.significantly_changed?
+    end
+
     MediaAttachment.where(id: added_media_attachments.map(&:id)).update_all(status_id: @status.id)
 
     @status.ordered_media_attachment_ids = (@options[:media_ids] || []).map(&:to_i) & next_media_attachments.map(&:id)
-    @media_attachments_changed = previous_media_attachments.map(&:id) != @status.ordered_media_attachment_ids
+    @media_attachments_changed ||= previous_media_attachments.map(&:id) != @status.ordered_media_attachment_ids
     @status.media_attachments.reload
   end
 

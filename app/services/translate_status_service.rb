@@ -12,7 +12,9 @@ class TranslateStatusService < BaseService
     @content = status_content_format(@status)
     @target_language = target_language
 
-    Rails.cache.fetch("translations/#{@status.language}/#{@target_language}/#{content_hash}", expires_in: CACHE_TTL) { translation_backend.translate(@content, @status.language, @target_language) }
+    Rails.cache.fetch("translations:v2/#{@status.language}/#{@target_language}/#{content_hash}", expires_in: CACHE_TTL) do
+      translation_backend.translate(@content, @status.language, @target_language)
+    end
   end
 
   private

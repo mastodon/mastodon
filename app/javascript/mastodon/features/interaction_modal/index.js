@@ -30,14 +30,14 @@ class Copypaste extends React.PureComponent {
 
   setRef = c => {
     this.input = c;
-  }
+  };
 
   handleInputClick = () => {
     this.setState({ copied: false });
     this.input.focus();
     this.input.select();
     this.input.setSelectionRange(0, this.input.value.length);
-  }
+  };
 
   handleButtonClick = () => {
     const { value } = this.props;
@@ -45,7 +45,7 @@ class Copypaste extends React.PureComponent {
     this.input.blur();
     this.setState({ copied: true });
     this.timeout = setTimeout(() => this.setState({ copied: false }), 700);
-  }
+  };
 
   componentWillUnmount () {
     if (this.timeout) clearTimeout(this.timeout);
@@ -86,7 +86,7 @@ class InteractionModal extends React.PureComponent {
 
   handleSignupClick = () => {
     this.props.onSignupClick();
-  }
+  };
 
   render () {
     const { url, type, displayNameHtml } = this.props;

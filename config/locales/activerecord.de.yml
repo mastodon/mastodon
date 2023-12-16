@@ -4,7 +4,7 @@ de:
     attributes:
       poll:
         expires_at: Abstimmungsende
-        options: Wahlmöglichkeiten
+        options: Auswahlmöglichkeiten
       user:
         agreement: Service-Vereinbarung
         email: E-Mail-Adresse
@@ -13,7 +13,7 @@ de:
       user/account:
         username: Benutzername
       user/invite_request:
-        text: Grund
+        text: Begründung
     errors:
       models:
         account:
@@ -28,7 +28,7 @@ de:
         doorkeeper/application:
           attributes:
             website:
-              invalid: ist keine gültige URL
+              invalid: ist keine gültige Adresse
         import:
           attributes:
             data:
@@ -36,19 +36,19 @@ de:
         status:
           attributes:
             reblog:
-              taken: des Beitrags existiert schon
+              taken: des Beitrags existiert bereits
         user:
           attributes:
             email:
-              blocked: verwendet einen nicht erlaubten E-Mail-Anbieter
+              blocked: verwendet einen unerlaubten E-Mail-Anbieter
               unreachable: scheint nicht zu existieren
             role_id:
-              elevated: Kann nicht höher als Ihre aktuelle Rolle sein
+              elevated: kann nicht höher als Ihre aktuelle Rolle sein
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: enthalte Berechtigungen, die für die Basisrolle nicht sicher sind
-              elevated: kann keine Berechtigungen enthalten, die deine aktuelle Rolle nicht besitzt
+              dangerous: enthält Berechtigungen, welche nicht sicher sind für die Basisrolle
+              elevated: kann nicht Berechtigungen beinhalten, die deine aktuelle Rolle nicht besitzt
               own_role: kann nicht mit deiner aktuellen Rolle geändert werden
             position:
               elevated: kann nicht höher sein als deine aktuelle Rolle

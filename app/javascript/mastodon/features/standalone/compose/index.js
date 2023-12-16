@@ -9,7 +9,7 @@ export default class Compose extends React.PureComponent {
   render () {
     return (
       <div>
-        <ComposeFormContainer />
+        <ComposeFormContainer autoFocus />
         <NotificationsContainer />
         <ModalContainer />
         <LoadingBarContainer className='loading-bar' />

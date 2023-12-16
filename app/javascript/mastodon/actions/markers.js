@@ -101,7 +101,7 @@ export function submitMarkersSuccess({ home, notifications }) {
     home: (home || {}).last_read_id,
     notifications: (notifications || {}).last_read_id,
   };
-};
+}
 
 export function submitMarkers(params = {}) {
   const result = (dispatch, getState) => debouncedSubmitMarkers(dispatch, getState);
@@ -111,7 +111,7 @@ export function submitMarkers(params = {}) {
   }
 
   return result;
-};
+}
 
 export const fetchMarkers = () => (dispatch, getState) => {
   const params = { timeline: ['notifications'] };
@@ -130,7 +130,7 @@ export function fetchMarkersRequest() {
     type: MARKERS_FETCH_REQUEST,
     skipLoading: true,
   };
-};
+}
 
 export function fetchMarkersSuccess(markers) {
   return {
@@ -138,7 +138,7 @@ export function fetchMarkersSuccess(markers) {
     markers,
     skipLoading: true,
   };
-};
+}
 
 export function fetchMarkersFail(error) {
   return {
@@ -147,4 +147,4 @@ export function fetchMarkersFail(error) {
     skipLoading: true,
     skipAlert: true,
   };
-};
+}

@@ -132,7 +132,7 @@ describe Settings::ApplicationsController do
       end
 
       it 'redirects back to applications page' do
-        expect(call_update).to redirect_to(settings_applications_path)
+        expect(call_update).to redirect_to(settings_application_path(app))
       end
     end
 

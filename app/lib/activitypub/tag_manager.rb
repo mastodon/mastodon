@@ -25,11 +25,10 @@ class ActivityPub::TagManager
     when :person
       target.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(target)
     when :note, :comment, :activity
-      if target.reblog?
-        activity_account_status_url(target.account, target)
-      else
-        short_account_status_url(target.account, target)
-      end
+      return activity_account_status_url(target.account, target) if target.reblog?
+      short_account_status_url(target.account, target)
+    when :flag
+      target.uri
     end
   end
 
@@ -49,6 +48,8 @@ class ActivityPub::TagManager
       emoji_url(target)
     when :conversation
       context_url(target)
+    when :flag
+      target.uri
     end
   end
 

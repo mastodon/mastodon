@@ -44,4 +44,4 @@ export default function listAdderReducer(state = initialState, action) {
   default:
     return state;
   }
-};
+}

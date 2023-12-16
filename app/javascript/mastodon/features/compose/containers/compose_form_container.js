@@ -11,7 +11,7 @@ import {
   uploadCompose,
 } from '../../../actions/compose';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   text: state.getIn(['compose', 'text']),
   suggestions: state.getIn(['compose', 'suggestions']),
   spoiler: state.getIn(['compose', 'spoiler']),
@@ -24,46 +24,47 @@ const mapStateToProps = state => ({
   isEditing: state.getIn(['compose', 'id']) !== null,
   isChangingUpload: state.getIn(['compose', 'is_changing_upload']),
   isUploading: state.getIn(['compose', 'is_uploading']),
-  isCircleUnselected: state.getIn(['compose', 'privacy']) === 'limited' && state.getIn(['compose', 'reply_status', 'visibility']) !== 'limited' && !state.getIn(['compose', 'circle_id']),
-  showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
+  isCircleUnselected:
+    state.getIn(['compose', 'privacy']) === 'limited' &&
+    state.getIn(['compose', 'reply_status', 'visibility']) !== 'limited' &&
+    !state.getIn(['compose', 'circle_id']),
   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
+  lang: state.getIn(['compose', 'language']),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
-  onChange (text) {
+  onChange(text) {
     dispatch(changeCompose(text));
   },
 
-  onSubmit (router) {
+  onSubmit(router) {
     dispatch(submitCompose(router));
   },
 
-  onClearSuggestions () {
+  onClearSuggestions() {
     dispatch(clearComposeSuggestions());
   },
 
-  onFetchSuggestions (token) {
+  onFetchSuggestions(token) {
     dispatch(fetchComposeSuggestions(token));
   },
 
-  onSuggestionSelected (position, token, suggestion, path) {
+  onSuggestionSelected(position, token, suggestion, path) {
     dispatch(selectComposeSuggestion(position, token, suggestion, path));
   },
 
-  onChangeSpoilerText (checked) {
+  onChangeSpoilerText(checked) {
     dispatch(changeComposeSpoilerText(checked));
   },
 
-  onPaste (files) {
+  onPaste(files) {
     dispatch(uploadCompose(files));
   },
 
-  onPickEmoji (position, data, needsSpace) {
+  onPickEmoji(position, data, needsSpace) {
     dispatch(insertEmojiCompose(position, data, needsSpace));
   },
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ComposeForm);

@@ -3,7 +3,7 @@
 class AccountDeletionWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pull', lock: :until_executed
+  sidekiq_options queue: 'pull', lock: :until_executed, lock_ttl: 1.week.to_i
 
   def perform(account_id, options = {})
     reserve_username = options.with_indifferent_access.fetch(:reserve_username, true)

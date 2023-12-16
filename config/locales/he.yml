@@ -49,35 +49,35 @@ he:
         submit: שלחי בקשה לשינוי דוא"ל
         title: שינוי כתובת דוא"ל עבור המשתמש.ת %{username}
       change_role:
-        changed_msg: תפקיד שונה בהצלחה !
-        label: שנה תפקיד
+        changed_msg: התפקיד שונה בהצלחה!
+        label: שינוי תפקיד
         no_role: ללא תפקיד
-        title: שינוי תפקיד  עבור המשתמש.ת %{username}
+        title: שינוי תפקיד עבור %{username}
       confirm: אישור
       confirmed: אושר
-      confirming: המאשר
+      confirming: בתהליך אישור
       custom: התאמה אישית
-      delete: מחיקת חשבון
+      delete: מחיקת נתונים
       deleted: מחוקים
       demote: הורדה בדרגה
       destroyed_msg: הנתונים של %{username} נכנסו לתור המחיקה וצפויים להימחק באופן מיידי
-      disable: לחסום
-      disable_sign_in_token_auth: השעיית הזדהות באמצעות אסימון בדוא"ל של משתמש
-      disable_two_factor_authentication: ביטול הזדהות דו-שלבית
-      disabled: נחסם
-      display_name: שם לתצוגה
+      disable: הקפאה
+      disable_sign_in_token_auth: ביטול הזדהות באמצעות אסימון דוא״ל
+      disable_two_factor_authentication: ביטול הזדהות דו־שלבית
+      disabled: מוקפא
+      display_name: שם תצוגה
       domain: תחום
       edit: עריכה
-      email: דוא"ל
-      email_status: סטטוס דוא"ל
-      enable: לאפשר
-      enable_sign_in_token_auth: הפעלת אסימון הזדהות בדוא"ל של משתמש
-      enabled: מאופשר
+      email: דוא״ל
+      email_status: מצב דוא״ל
+      enable: ביטול הקפאה
+      enable_sign_in_token_auth: הפעלת אסימון הזדהות בדוא״ל
+      enabled: מופעל
       enabled_msg: ביטול השעית החשבון של %{username} בוצע בהצלחה
       followers: עוקבים
       follows: נעקבים
       header: כותרת
-      inbox_url: כתובת תיבה נכנסת
+      inbox_url: כתובת תיבת דואר נכנס
       invite_request_text: סיבות להצטרפות
       invited_by: הוזמן על ידי
       ip: כתובת IP
@@ -122,6 +122,8 @@ he:
       redownloaded_msg: הפרופיל של %{username} רוענן בהצלחה מהמקור
       reject: דחויים
       rejected_msg: בקשת ההרשמה של %{username} נדחתה בהצלחה
+      remote_suspension_irreversible: נתוני חשבון זה נמחקו באופן בלתי הפיך.
+      remote_suspension_reversible_hint_html: חשבון זה הושעה ע"י השרת שלו ונתוניו יוסרו במלואם בתאריך %{date}. עד אז יוכל השרת המרוחק לשחזר את החשבון ללא תופעות לוואי שליליות. אם ברצונך להסיר את כל נתוני החשבון באופן מיידי, ניתן לעשות זאת להלן.
       remove_avatar: הסרת תמונת פרופיל
       remove_header: הסרת כותרת
       removed_avatar_msg: תמונת הפרופיל של %{username} הוסרה בהצלחה
@@ -148,7 +150,7 @@ he:
         targeted_reports: דיווחים נגד חשבון זה
       silence: השתקה
       silenced: מוגבלים
-      statuses: הודעות
+      statuses: חצרוצים
       strikes: עבירות קודמות
       subscribe: הרשמה
       suspend: השעייה
@@ -338,7 +340,7 @@ he:
       overwrite: לדרוס
       shortcode: קוד קצר
       shortcode_hint: לפחות 2 תוים, אלפאנומריים או קו תחתי
-      title: יצגנים מותאמים אישית
+      title: אמוג'י שהעלינו
       uncategorized: לא מסווגים
       unlist: בטל רישום
       unlisted: לא רשומים
@@ -387,6 +389,8 @@ he:
       add_new: אפשר מַאֲחָד (פדרציה) עם שם המתחם
       created_msg: הדומיין אופשר לפדרציה בהצלחה
       destroyed_msg: הדומיין לא אופשר לפדרציה
+      export: ייצוא
+      import: ייבוא
       undo: אסור מַאֲחָד (פדרציה) עם שם המתחם
     domain_blocks:
       add_new: הוספת חדש
@@ -396,15 +400,19 @@ he:
       edit: עריכת חסימת שם מתחם
       existing_domain_block: כבר החלת הגבלות מחמירות יותר על %{name}
       existing_domain_block_html: כבר הפעלת הגבלות חמורות יותר על %{name}, עליך ראשית <a href="%{unblock_url}">להסיר מעליו/ה את החסימה</a>.
+      export: ייצוא
+      import: ייבוא
       new:
         create: יצירת חסימה
         hint: חסימת השרת לא תמנע יצירת רישומי חשבון במסד הנתונים, אבל תבצע פעולות ניהול קהילה מסוימות על חשבונות אלו אוטומטית ורטרואקטיבית.
         severity:
-          desc_html: "<strong>השתקה</strong> תחביא הודעות מחשבון זה לכל מי שלא עוקב אחריו. <strong>השעייה</strong> תסיר מהשרת את כל התוכן, מדיה ותכונות הפרופיל שמקושרות לחשבון זה. <strong>כלום</strong> כדי לחסום קבצי מדיה בלבד."
+          desc_html: "<strong>הגבלה</strong> תחביא חצרוצים מחשבון זה לכל מי שלא עוקב אחריו. <strong>השעייה</strong> תסיר מהשרת את כל התוכן, מדיה ותכונות הפרופיל שמקושרות לחשבון זה. <strong>כלום</strong> כדי לחסום קבצי מדיה בלבד."
           noop: ללא
-          silence: השתקה
+          silence: הגבלה
           suspend: השעייה
         title: חסימת שרת חדשה
+      no_domain_block_selected: לא השתנה כלום ברשימת חסימות השרתים מכיוון שאף אחד מהם לא נבחר
+      not_permitted: איך לך הרשאה כדי לבצע פעולה זו
       obfuscate: לערפל את שם הדומיין
       obfuscate_hint: לערפל באופן חלקי את שם הדומיין ברשימה אם פרסום רשימת ההגבלות על דומיינים מאופשר
       private_comment: הערה פרטית
@@ -438,6 +446,21 @@ he:
       resolved_dns_records_hint_html: שם הדומיין מוביל לדומייניי ה-MX הבאים, שהם בסופו של דבר אחראיים לקבלת דוא"ל. חסימת דומיין MX תוביל לחסימת הרשמות מכל כתובת דוא"ל שעושה שימוש בדומיין MX זה, אפילו אם הדומיין הגלוי שונה. <strong>יש להמנע מלחסום ספקי דוא"ל מובילים.</strong>
       resolved_through_html: נמצא דרך %{domain}
       title: דומייניי דוא"ל חסומים
+    export_domain_allows:
+      new:
+        title: יבוא רשימת שרתים מאושרים
+      no_file: אף קובץ לא נבחר
+    export_domain_blocks:
+      import:
+        description_html: הנכם עומדים ליבא רשימת חסימות. אנא וודאו היטב שאתם יודעים מה הרשימה כוללת, במיוחד אם לא יצרתם אותה בעצמכם.
+        existing_relationships_warning: קשרי עקיבה קיימים
+        private_comment_description_html: 'כדי לסייע במעקב מאיכן הגיעו חסימות, חסימות מיובאות ילוו בהערה פרטית זו: <q>%{comment}</q>'
+        private_comment_template: יובא מתוך %{source} בתאריך %{date}
+        title: יבוא רשימת שרתים חסומים
+      invalid_domain_block: 'חסימה של שרת אחד או יותר דולגו בשל השגיאה הבאה: %{error}'
+      new:
+        title: יבוא רשימת שרתים חסומים
+      no_file: לא נבחר קובץ
     follow_recommendations:
       description_html: "<strong>עקבו אחר ההמלצות על מנת לעזור למשתמשים חדשים למצוא תוכן מעניין</strong>. במידה ומשתמש לא תקשר מספיק עם משתמשים אחרים כדי ליצור המלצות מעקב, חשבונות אלה יומלצו במקום. הם מחושבים מחדש על בסיסי יומיומי מתערובת של החשבונות הפעילים ביותר עם החשבונות הנעקבים ביותר עבור שפה נתונה."
       language: עבור שפה
@@ -563,7 +586,6 @@ he:
     report_notes:
       created_msg: הערה על דו"ח נוצרה בהצלחה!
       destroyed_msg: הערה על דו"ח נמחקה בהצלחה!
-      today_at: היום, ב%{time}
     reports:
       account:
         notes:
@@ -578,9 +600,10 @@ he:
         mark_as_sensitive_description_html: המדיה בהודעות מדווחות תסומן כרגישה ועבירה תרשם כדי לעזור לך להסלים באינטראקציות עתידיות עם אותו החשבון.
         other_description_html: ראו אפשרויות נוספות לשליטה בהתנהגות החשבון וכדי לבצע התאמות בתקשורת עם החשבון המדווח.
         resolve_description_html: אף פעולה לא תבוצע נגד החשבון עליו דווח, לא תירשם עבירה, והדיווח ייסגר.
-        silence_description_html: הפרופיל יהיה גלוי אך ורק לאלה שכבר עוקבים אחריו או לאלה שיחפשו אותו ידנית, מה שיגביל מאד את תפוצתו. ניתן תמיד להחזיר את המצב לקדמותו.
-        suspend_description_html: הפרופיל וכל תכולתו יחסמו לכל גישה עד שבסופו של דבר ימחקו. כל תקשורת עם החשבון תהיה בלתי אפשרית. ניתן לביטול תוך 30 יום.
+        silence_description_html: הפרופיל יהיה גלוי אך ורק לאלה שכבר עוקבים אחריו או לאלה שיחפשו אותו ידנית, מה שיגביל מאד את תפוצתו. ניתן תמיד להחזיר את המצב לקדמותו. פעולה זו תסגור את כל הדיווחים נגד הפרופיל.
+        suspend_description_html: חשבון זה על כל תכניו יחסמו וברבות הימים ימחקו, כל פעילות מולו לא תתאפשר. הפעולה ניתנת לביטול תוך 30 ימים, והיא תסגור כל דיווח התלוי ועומד נגד החשבון.
       actions_description_html: בחר/י איזו פעולה לבצע על מנת לפתור את הדו"ח. אם תופעל פעולת ענישה כנגד החשבון המדווח, הודעת דוא"ל תשלח אליהם, אלא אם נבחרה קטגוריית ה<strong>ספאם</strong>.
+      actions_description_remote_html: בחרו איזו פעולה לבצע כדי לפתור את הדיווח שהוגש. פעולה זו תשפיע רק על התקשורת מול השרת <strong>שלך</strong> עם החשבון המרוחק ותוכנו.
       add_to_report: הוספת פרטים לדיווח
       are_you_sure: 100% על בטוח?
       assign_to_self: הקצה אלי
@@ -591,6 +614,7 @@ he:
       comment:
         none: ללא
       comment_description_html: 'על מנת לספק עוד מידע, %{name} כתב\ה:'
+      confirm_action: נא לאשר פעולת משמעת לגבי חשבון %{acct}
       created_at: מדווח
       delete_and_resolve: מחיקת הודעות
       forwarded: קודם
@@ -607,6 +631,7 @@ he:
         placeholder: תאר/י אילו פעולות ננקטו, או עדכונים קשורים אחרים...
         title: הערות
       notes_description_html: צפייה והשארת הערות למנחים אחרים או לעצמך העתידי
+      processed_msg: דיווח %{id} עוּבָּד בהצלחה
       quick_actions_description_html: 'נקוט/י פעולה מהירה או גלול/י למטה לצפייה בתוכן המדווח:'
       remote_user_placeholder: המשתמש המרוחק מ-%{instance}
       reopen: פתיחת דו"ח מחדש
@@ -616,12 +641,31 @@ he:
       resolved: פתור
       resolved_msg: הדו"ח נפתר בהצלחה!
       skip_to_actions: דלג/י לפעולות
-      status: הודעה
+      status: מצב
       statuses: התוכן עליו דווח
       statuses_description_html: התוכן הפוגע יצוטט בתקשורת עם החשבון המדווח
+      summary:
+        action_preambles:
+          delete_html: 'הפעולה <strong>תמחק</strong> כמה הודעות של חשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
+          mark_as_sensitive_html: 'הפעולה הבאה <strong>תסמן</strong> כמה הודעות של חשבון <strong>@%{acct}</strong> כ<strong>רגישות</strong>. תוצאות הפעולה יהיו:'
+          silence_html: 'הפעולה הבאה <strong>תגביל</strong> את החשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
+          suspend_html: 'הפעולה הבאה <strong>תקפיא</strong> את החשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
+        actions:
+          delete_html: הסרת ההודעות החורגות
+          mark_as_sensitive_html: סימון המדיה בהודעות החורגות כרגיש לצפיה
+          silence_html: הגבלה חמורה של תפוצת <strong>@%{acct}</strong> על ידי הפיכת החשבון ותכניו לזמינים רק למי שכבר עוקב אחריו או מי שיחפשו את עמוד הפרופיל שלו ישירות
+          suspend_html: הקפאת החשבון <strong>@%{acct}</strong>, הפיכת הפרופיל והתוכן לנסתרים ולא ניתנים לתקשורת
+        close_report: 'סימון דיווח #%{id} בתור פתור'
+        close_reports_html: סימון <strong>כל</strong> הדיווחים נגד <strong>@%{acct}</strong> בתור פתורים
+        delete_data_html: למחוק את הפרופיל והתוכן של <strong>@%{acct}</strong> בעוד 30 יום אלא אם תוסר ההגבלה עליהם לפני כן
+        preview_preamble_html: 'שליחת אזהרה אל <strong>@%{acct}</strong> בזו הלשון:'
+        record_strike_html: ציין נקודה שחורה נגד <strong>@%{acct}</strong> כדי לסייע בשיפוטו בדיווחים עתידיים על חריגות
+        send_email_html: שליחת דואל אזהרה אל <strong>@%{acct}</strong>
+        warning_placeholder: צידוקים אפשריים נוספים לפעולה המשמעתית.
       target_origin: מקור החשבון המדווח
       title: דיווחים
       unassign: ביטול הקצאה
+      unknown_action_msg: 'פעולה לא מוכרת: %{action}'
       unresolved: לא פתור
       updated_at: עודכן
       view_profile: צפה בפרופיל
@@ -707,17 +751,22 @@ he:
         preamble: התאמה מיוחדת של מנשק המשתמש של מסטודון.
         title: מראה
       branding:
-        preamble: המיתוג של השרת שלך מבדל אותו משרתים אחרים ברשת. המידע יכול להיות מוצג בסביבות שונות כגון מנשק הווב של מסטודון, יישומים מרומיים, בצפיה מקדימה של קישור או בתוך יישומוני הודעות וכולי. מסיבה זו מומלץ לשמור על המידע ברור, קצר וממצה.
+        preamble: המיתוג של השרת שלך מבדל אותו משרתים אחרים ברשת. המידע יכול להיות מוצג בסביבות שונות כגון מנשק הווב של מסטודון, יישומים מקומיים, בצפיה מקדימה של קישור או בתוך יישומוני הודעות וכולי. מסיבה זו מומלץ לשמור על המידע ברור, קצר וממצה.
         title: מיתוג
       content_retention:
         preamble: שליטה על דרך אחסון תוכן המשתמשים במסטודון.
         title: תקופת השמירה של תכנים
+      default_noindex:
+        desc_html: משפיע על כל המשתמשים/ות שלא שינו את ההגדרה הזו בעצמם
+        title: הסתרת משתמשיםות ממנוע החיפוש כברירת המחדל
       discovery:
         follow_recommendations: המלצות מעקב
         preamble: הצפה של תוכן מעניין בקבלת פני משתמשות חדשות שאולי אינן מכירות עדיין א.נשים במסטודון. ניתן לשלוט איך אפשרויות גילוי שונות עובדות על השרת שלך.
         profile_directory: מדריך פרופילים
         public_timelines: פידים פומביים
-        title: איתור
+        publish_discovered_servers: פרסום שרתים שנתגלו
+        publish_statistics: פרסום הסטטיסטיקות בפומבי
+        title: גילוי
         trends: נושאים חמים
       domain_blocks:
         all: לכולם
@@ -950,14 +999,16 @@ he:
     warning: זהירות רבה נדרשת עם מידע זה. אין לחלוק אותו אף פעם עם אף אחד!
     your_token: אסימון הגישה שלך
   auth:
-    apply_for_account: להכנס לרשימת המתנה
+    apply_for_account: הגשת בקשה לחשבון
     change_password: סיסמה
+    confirmations:
+      wrong_email_hint: אם כתובת הדואל הזו איננה נכונה, ניתן לשנות אותה בעמוד ההגדרות.
     delete_account: מחיקת חשבון
     delete_account_html: אם ברצונך למחוק את החשבון, ניתן <a href="%{path}">להמשיך כאן</a>. תתבקש/י לספק אישור נוסף.
     description:
       prefix_invited_by_user: "@%{name} רוצה שתצטרף לשרת זה במסטודון!"
       prefix_sign_up: הרשם/י למסטודון היום!
-      suffix: כבעל/ת חשבון, תוכל/י לעקוב אחרי אנשים, לפרסם עדכונים ולהחליף מסרים עם משתמשים מכל שרת מסטודון ועוד!
+      suffix: כבעל/ת חשבון, תוכל/י לעקוב אחרי אנשים, לפרסם עדכונים ולהחליף חצרוצים עם משתמשים מכל שרת מסטודון ועוד!
     didnt_get_confirmation: לא התקבלו הוראות אימות?
     dont_have_your_security_key: אין לך מפתח אבטחה?
     forgot_password: הנשתכחה סיסמתך?
@@ -970,7 +1021,7 @@ he:
     migrate_account: מעבר לחשבון אחר
     migrate_account_html: אם ברצונך להכווין את החשבון לעבר חשבון אחר, ניתן <a href="%{path}">להגדיר זאת כאן</a>.
     or_log_in_with: או התחבר באמצעות
-    privacy_policy_agreement_html: קארתי והסכמתי ל<a href="%{privacy_policy_path}" target="_blank">מדיניות הפרטיות</a>
+    privacy_policy_agreement_html: קראתי והסכמתי ל<a href="%{privacy_policy_path}" target="_blank">מדיניות הפרטיות</a>
     providers:
       cas: CAS
       saml: SAML
@@ -987,9 +1038,12 @@ he:
       email_below_hint_html: אם כתובת הדוא"ל להלן לא נכונה, ניתן לשנותה כאן ולקבל דוא"ל אישור חדש.
       email_settings_hint_html: דוא"ל האישור נשלח ל-%{email}. אם כתובת הדוא"ל הזו לא נכונה, ניתן לשנותה בהגדרות החשבון.
       title: הגדרות
+    sign_in:
+      preamble_html: הכנס.י עם שם וסיסמא מאתר <strong>%{domain}</strong>. אם חשבונך מתארח בשרת אחר, לא ניתן להתחבר איתו פה.
+      title: התחבר אל %{domain}
     sign_up:
       preamble: כיוון שמסטודון מבוזרת, תוכל/י להשתמש בחשבון שלך משרתי מסטודון או רשתות תואמות אחרות אם אין לך חשבון על שרת זה.
-      title: הבא נקים לך את השרת בכתובת %{domain}.
+      title: הבה ניצור לך חשבון בשרת %{domain}.
     status:
       account_status: מצב חשבון
       confirming: ממתין שדוא"ל האישור יושלם.
@@ -1177,6 +1231,16 @@ he:
     trending_now: נושאים חמים
   generic:
     all: הכל
+    all_items_on_page_selected_html:
+      many: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
+      one: פריט <strong>%{count}</strong> נבחר בעמוד זה.
+      other: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
+      two: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
+    all_matching_items_selected_html:
+      many: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
+      one: נבחר פריט <strong>%{count}</strong> שתאם לחיפוש בעמוד זה.
+      other: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
+      two: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
     changes_saved_msg: השינויים נשמרו בהצלחה!
     copy: להעתיק
     delete: למחוק
@@ -1184,6 +1248,11 @@ he:
     none: כלום
     order_by: מיין לפי
     save_changes: שמור שינויים
+    select_all_matching_items:
+      many: בחר.י %{count} פריטים שתאמו לחיפוש שלך.
+      one: בחר.י פריט %{count} שתאם לחיפוש שלך.
+      other: בחר.י %{count} פריטים שתאמו לחיפוש שלך.
+      two: בחר. י %{count} פריטים שתאמו לחיפוש שלך.
     today: היום
     validation_errors:
       many: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
@@ -1194,6 +1263,7 @@ he:
     invalid_markup: 'מכיל קוד HTML לא תקין: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'קובץ CSV שבור. שגיאה: %{error}'
       over_rows_processing_limit: מכיל יותר מ-%{count} עמודות
     modes:
       merge: מיזוג
@@ -1376,6 +1446,9 @@ he:
       unrecognized_emoji: הוא לא אמוג'י מוכר
   relationships:
     activity: רמת פעילות
+    confirm_follow_selected_followers: האם את/ה בטוח/ה שברצונך לעקוב אחרי החשבונות שסומנו?
+    confirm_remove_selected_followers: האם את/ה בטוח/ה שברצונך להסיר את העוקבים שסומנו?
+    confirm_remove_selected_follows: האם את/ה בטוח/ה שברצונך להסיר את הנעקבים שסומנו?
     dormant: רדומים
     follow_selected_followers: עקוב אחר הנעקבים שנבחרו
     followers: עוקבים
@@ -1540,7 +1613,7 @@ he:
     ignore_favs: התעלם ממחובבים
     ignore_reblogs: התעלם מהדהודים
     interaction_exceptions: החרגות מבוססות אינטראקציות
-    interaction_exceptions_explanation: שים.י לב שאין עֲרֻבָּה למחיקת הודעות אם הן יורדות מתחת לסף החיבובים או ההדהודים לאחר הסריקה הראשונית.
+    interaction_exceptions_explanation: כדאי לשים לב שאין ערובה למחיקת הודעות אם הן יורדות מתחת לסף החיבובים או ההדהודים לאחר הסריקה הראשונית.
     keep_direct: שמירת הודעות ישירות
     keep_direct_hint: לא מוחק אך אחת מההודעות הישירות שלך
     keep_media: שמור הודעות עם מדיה
@@ -1656,8 +1729,8 @@ he:
       edit_profile_action: הגדרת פרופיל
       edit_profile_step: תוכל.י להתאים אישית את הפרופיל באמצעות העלאת יצגן (אוואטר), כותרת, שינוי כינוי ועוד. אם תרצה.י לסקור את עוקביך/ייך החדשים לפני שתרשה.י להם לעקוב אחריך/ייך.
       explanation: הנה כמה טיפים לעזור לך להתחיל
-      final_action: התחל/ילי לפרסם הודעות
-      final_step: 'התחל/ילי לפרסם הודעות! אפילו ללא עוקבים ייתכן שההודעות הפומביות שלך יראו ע"י אחרים, למשל בציר הזמן המקומי או בתגיות הקבצה (האשתגים). כדאי להציג את עצמך תחת התגית #introductions או #היכרות.'
+      final_action: התחל/ילי לחצרץ
+      final_step: 'התחל/ילי לחצצר! אפילו ללא עוקבים ייתכן שהחצרוצים הפומביים שלך יראו ע"י אחרים, למשל בציר הזמן המקומי או בתגיות הקבצה (האשתגים). כדאי להציג את עצמך תחת התגית #introductions או #היכרות'
       full_handle: שם המשתמש המלא שלך
       full_handle_hint: זה מה שתאמר.י לחברייך כדי שיוכלו לשלוח לך הודעה או לעקוב אחרייך ממופע אחר.
       subject: ברוכים הבאים למסטודון
@@ -1669,7 +1742,7 @@ he:
     seamless_external_login: את.ה מחובר דרך שירות חיצוני, לכן אפשרויות הסיסמא והדוא"ל לא מאופשרות.
     signed_in_as: 'מחובר בתור:'
   verification:
-    explanation_html: 'ניתן <strong>לאמת את עצמך כבעלים של הקישורית במטא-נתונים של פרופילך</strong>. כדי לעשות זאת, האתר המקושם חייב להכיל קישורית חוזרת לפרופיל המסטודון שלך. הקישורית החוזרת <strong>חייבת</strong> להכיל תכונת <code>rel="me"</code>. התוכן הטקסטואלי של הקישורית לא משנה. הנה דוגמא:'
+    explanation_html: 'ניתן <strong>לאמת את עצמך כבעלים של הקישורית במטא-נתונים של פרופילך</strong>. כדי לעשות זאת, האתר המקושר חייב להכיל קישורית חוזרת לפרופיל המסטודון שלך. הקישורית החוזרת <strong>חייבת</strong> להכיל תכונת <code>rel="me"</code>. התוכן הטקסטואלי של הקישורית לא משנה. הנה דוגמא:'
     verification: אימות
   webauthn_credentials:
     add: הוספת מפתח אבטחה חדש

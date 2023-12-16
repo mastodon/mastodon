@@ -23,7 +23,7 @@ class Setting < RailsSettings::Base
     def [](key)
       return super(key) unless rails_initialized?
 
-      val = Rails.cache.fetch(cache_key(key, nil)) do
+      Rails.cache.fetch(cache_key(key, nil)) do
         db_val = object(key)
 
         if db_val
@@ -35,7 +35,6 @@ class Setting < RailsSettings::Base
           default_settings[key]
         end
       end
-      val
     end
 
     def all_as_records

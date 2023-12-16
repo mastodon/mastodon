@@ -31,7 +31,7 @@ class GIF extends React.PureComponent {
     if (!animate) {
       this.setState({ hovering: true });
     }
-  }
+  };
 
   handleMouseLeave = () => {
     const { animate } = this.props;
@@ -39,7 +39,7 @@ class GIF extends React.PureComponent {
     if (!animate) {
       this.setState({ hovering: false });
     }
-  }
+  };
 
   render () {
     const { src, staticSrc, className, animate } = this.props;
@@ -75,7 +75,7 @@ class CopyButton extends React.PureComponent {
     navigator.clipboard.writeText(value);
     this.setState({ copied: true });
     this.timeout = setTimeout(() => this.setState({ copied: false }), 700);
-  }
+  };
 
   componentWillUnmount () {
     if (this.timeout) clearTimeout(this.timeout);
@@ -113,7 +113,7 @@ class BundleColumnError extends React.PureComponent {
     if (onRetry) {
       onRetry();
     }
-  }
+  };
 
   render () {
     const { errorType, multiColumn, stacktrace } = this.props;

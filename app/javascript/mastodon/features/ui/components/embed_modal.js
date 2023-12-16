@@ -17,7 +17,7 @@ class EmbedModal extends ImmutablePureComponent {
     onClose: PropTypes.func.isRequired,
     onError: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-  }
+  };
 
   state = {
     loading: false,
@@ -48,11 +48,11 @@ class EmbedModal extends ImmutablePureComponent {
 
   setIframeRef = c =>  {
     this.iframe = c;
-  }
+  };
 
   handleTextareaClick = (e) => {
     e.target.select();
-  }
+  };
 
   render () {
     const { intl, onClose } = this.props;

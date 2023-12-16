@@ -18,7 +18,7 @@ vi:
           disable: Tạm khóa đăng nhập tài khoản, nhưng không xóa hoặc ẩn tút.
           none: Cảnh cáo tài khoản này, không áp đặt trừng phạt.
           sensitive: Mọi tập tin của tài khoản này tải lên đều sẽ bị gắn nhãn nhạy cảm.
-          silence: Cấm tài khoản này đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
+          silence: Cấm người này đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
           suspend: Vô hiệu hóa và xóa sạch dữ liệu của tài khoản này. Có thể khôi phục trước 30 ngày.
         warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm chú thích riêng
       announcement:
@@ -74,6 +74,7 @@ vi:
           hide: Ẩn hoàn toàn nội dung đã lọc, hoạt động như thể nó không tồn tại
           warn: Ẩn nội dung đã lọc đằng sau một cảnh báo đề cập đến tiêu đề của bộ lọc
       form_admin_settings:
+        activity_api_enabled: Số lượng tút được đăng trong máy chủ, người dùng đang hoạt động và đăng ký mới hàng tuần
         backups_retention_period: Lưu trữ dữ liệu người dùng đã tạo trong số ngày được chỉ định.
         bootstrap_timeline_accounts: Những người này sẽ được ghim vào đầu các gợi ý theo dõi của người mới.
         closed_registrations_message: Được hiển thị khi đóng đăng ký
@@ -81,6 +82,7 @@ vi:
         custom_css: Bạn có thể tùy chỉnh phong cách trên bản web của Mastodon.
         mascot: Ghi đè hình minh họa trong giao diện web nâng cao.
         media_cache_retention_period: Media đã tải xuống sẽ bị xóa sau số ngày được chỉ định và sẽ tải xuống lại theo yêu cầu.
+        peers_api_enabled: Danh sách các máy chủ khác mà máy chủ này đã liên hợp. Không có dữ liệu nào được đưa vào đây về việc bạn có liên kết với một máy chủ nhất định hay không, chỉ là máy chủ của bạn biết về nó. Điều này được sử dụng bởi các dịch vụ thu thập số liệu thống kê về liên kết theo nghĩa chung.
         profile_directory: Liệt kê tất cả người đã chọn tham gia để có thể khám phá.
         require_invite_text: Khi đăng ký yêu cầu phê duyệt thủ công, hãy đặt câu hỏi "Tại sao bạn muốn tham gia?" nhập văn bản bắt buộc thay vì tùy chọn
         site_contact_email: Cách mọi người có thể liên hệ với bạn khi có thắc mắc về pháp lý hoặc hỗ trợ.
@@ -89,11 +91,13 @@ vi:
         site_short_description: Mô tả ngắn gọn để giúp nhận định máy chủ của bạn. Ai đang điều hành nó, nó là cho ai?
         site_terms: Sử dụng chính sách bảo mật của riêng bạn hoặc để trống để sử dụng mặc định. Có thể soạn bằng cú pháp Markdown.
         site_title: Cách mọi người có thể tham chiếu đến máy chủ của bạn ngoài tên miền của nó.
+        status_page_url: URL của trang nơi mọi người có thể xem trạng thái của máy chủ này khi ngừng hoạt động
         theme: Chủ đề mà khách truy cập đăng xuất và người mới nhìn thấy.
         thumbnail: 'Một hình ảnh tỉ lệ 2: 1 được hiển thị cùng với thông tin máy chủ của bạn.'
         timeline_preview: Khách truy cập đã đăng xuất sẽ có thể xem các tút công khai gần đây nhất trên máy chủ.
         trendable_by_default: Bỏ qua việc duyệt thủ công nội dung thịnh hành. Các mục riêng lẻ vẫn có thể bị xóa khỏi xu hướng sau này.
         trends: Hiển thị những tút, hashtag và tin tức đang được thảo luận nhiều trên máy chủ của bạn.
+        trends_as_landing_page: Hiển thị nội dung thịnh hành cho người dùng đã đăng xuất và khách truy cập thay vì mô tả về máy chủ này. Yêu cầu xu hướng được kích hoạt.
       form_challenge:
         current_password: Biểu mẫu này an toàn
       imports:
@@ -110,7 +114,7 @@ vi:
           sign_up_requires_approval: Bạn sẽ phê duyệt những đăng ký mới từ IP này
         severity: Chọn hành động nếu nhận được yêu cầu từ IP này
       rule:
-        text: Mô tả một quy tắc bắt buộc trên máy chủ này. Nên để ngắn và đơn giản.
+        text: Mô tả một nội quy bắt buộc trên máy chủ này. Nên để ngắn và đơn giản
       sessions:
         otp: 'Nhập mã xác minh 2 bước được tạo bởi ứng dụng điện thoại của bạn hoặc dùng một trong các mã khôi phục của bạn:'
         webauthn: Nếu đây là USB key, hãy cắm vào và thử xoay chiều.
@@ -229,6 +233,7 @@ vi:
           hide: Ẩn toàn bộ
           warn: Ẩn kèm theo cảnh báo
       form_admin_settings:
+        activity_api_enabled: Công khai số liệu thống kê tổng hợp về hoạt động của người dùng trong API
         backups_retention_period: Thời hạn lưu trữ nội dung người dùng sao lưu
         bootstrap_timeline_accounts: Luôn đề xuất những người này đến người mới
         closed_registrations_message: Thông báo tùy chỉnh khi tắt đăng ký
@@ -236,6 +241,7 @@ vi:
         custom_css: Tùy chỉnh CSS
         mascot: Tùy chỉnh linh vật (kế thừa)
         media_cache_retention_period: Thời hạn lưu trữ cache media
+        peers_api_enabled: Công khai danh sách các máy chủ được phát hiện trong API
         profile_directory: Cho phép hiện danh sách thành viên
         registrations_mode: Ai có thể đăng ký
         require_invite_text: Yêu cầu lí do đăng ký
@@ -247,11 +253,13 @@ vi:
         site_short_description: Mô tả máy chủ
         site_terms: Chính sách bảo mật
         site_title: Tên máy chủ
+        status_page_url: URL trang trạng thái
         theme: Chủ đề mặc định
         thumbnail: Hình thu nhỏ của máy chủ
         timeline_preview: Cho phép truy cập vào dòng thời gian công khai
         trendable_by_default: Cho phép thịnh hành mà không cần duyệt trước
         trends: Bật thịnh hành
+        trends_as_landing_page: Dùng trang thịnh hành làm trang chào mừng
       interactions:
         must_be_follower: Chặn thông báo từ những người không theo dõi bạn
         must_be_following: Chặn thông báo từ những người bạn không theo dõi
@@ -280,7 +288,7 @@ vi:
         report: Ai đó gửi báo cáo
         trending_tag: Phê duyệt nội dung nổi bật mới
       rule:
-        text: Quy tắc
+        text: Nội quy
       tag:
         listable: Cho phép xuất hiện trong tìm kiếm và đề xuất
         name: Hashtag

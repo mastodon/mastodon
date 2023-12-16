@@ -48,24 +48,24 @@ class Bookmarks extends ImmutablePureComponent {
     } else {
       dispatch(addColumn('BOOKMARKS', {}));
     }
-  }
+  };
 
   handleMove = (dir) => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleLoadMore = debounce(() => {
     this.props.dispatch(expandBookmarkedStatuses());
-  }, 300, { leading: true })
+  }, 300, { leading: true });
 
   render () {
     const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;

@@ -8,11 +8,11 @@ export default class LoadMore extends React.PureComponent {
     onClick: PropTypes.func,
     disabled: PropTypes.bool,
     visible: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     visible: true,
-  }
+  };
 
   render() {
     const { disabled, visible } = this.props;

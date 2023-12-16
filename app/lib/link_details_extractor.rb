@@ -248,7 +248,7 @@ class LinkDetailsExtractor
 
         structured_data
       rescue Oj::ParseError, EncodingError
-        Rails.logger.debug("Invalid JSON-LD in #{@original_url}")
+        Rails.logger.debug { "Invalid JSON-LD in #{@original_url}" }
         next
       end.first
     end

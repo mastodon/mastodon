@@ -54,7 +54,7 @@ class CustomFilter < ApplicationRecord
   end
 
   def irreversible=(value)
-    self.action = value ? :hide : :warn
+    self.action = ActiveModel::Type::Boolean.new.cast(value) ? :hide : :warn
   end
 
   def irreversible?

@@ -10,5 +10,7 @@ class URLValidator < ActiveModel::EachValidator
   def compliant?(url)
     parsed_url = Addressable::URI.parse(url)
     parsed_url && %w(http https).include?(parsed_url.scheme) && parsed_url.host
+  rescue Addressable::URI::InvalidURIError
+    false
   end
 end

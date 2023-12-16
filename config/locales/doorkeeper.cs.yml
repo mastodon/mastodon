@@ -122,14 +122,14 @@ cs:
         admin/accounts: Správa účtů
         admin/all: Všechny správcovské funkce
         admin/reports: Správa hlášení
-        all: Všechno
+        all: Plný přístup k vašemu Mastodon účtu
         blocks: Blokace
         bookmarks: Záložky
         conversations: Konverzace
         crypto: End-to-end šifrování
         favourites: Oblíbení
         filters: Filtry
-        follow: Vztahy
+        follow: Sledování, ztlumení a blokování
         follows: Sledovaní
         lists: Seznamy
         media: Mediální přílohy
@@ -149,9 +149,19 @@ cs:
     scopes:
       admin:read: číst všechna data na serveru
       admin:read:accounts: číst citlivé informace všech účtů
+      admin:read:canonical_email_blocks: číst citlivé informace všech kanonických e-mailových bloků
+      admin:read:domain_allows: číst citlivé informace ze všech povolených domén
+      admin:read:domain_blocks: číst citlivé informace ze všech bloků domén
+      admin:read:email_domain_blocks: číst citlivé informace ze všech bloků emailových domén
+      admin:read:ip_blocks: číst citlivé informace ze všech bloků IP
       admin:read:reports: číst citlivé informace všech nahlášení a nahlášených účtů
       admin:write: měnit všechna data na serveru
       admin:write:accounts: provádět moderátorské akce s účty
+      admin:write:canonical_email_blocks: provést akce moderace na kanonických emailových blocích
+      admin:write:domain_allows: provést akce moderace na povolených doménách
+      admin:write:domain_blocks: provést akce moderace na doménových blocích
+      admin:write:email_domain_blocks: provést akce moderace na blocích emailových domén
+      admin:write:ip_blocks: provést akce moderace na blocích IP
       admin:write:reports: provádět moderátorské akce s hlášeními
       crypto: používat end-to-end šifrování
       follow: upravovat vztahy mezi profily

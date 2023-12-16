@@ -122,14 +122,14 @@ nn:
         admin/accounts: Kontoadministrasjon
         admin/all: Alle administrative funksjonar
         admin/reports: Rapportadministrasjon
-        all: Alt
+        all: Full tilgang til Mastodon-kontoen din
         blocks: Blokkeringar
         bookmarks: Bokmerke
         conversations: Samtalar
         crypto: Ende-til-ende-kryptering
         favourites: Favorittar
         filters: Filter
-        follow: Forhold
+        follow: Dei du fylgjer, målbind og blokkerer
         follows: Fylgjer
         lists: Lister
         media: Mediavedlegg
@@ -149,9 +149,19 @@ nn:
     scopes:
       admin:read: lese alle data på tjeneren
       admin:read:accounts: lese sensitiv informasjon om alle kontoar
+      admin:read:canonical_email_blocks: les ømtolig informasjon om alle kanoniske e-postblokkeringar
+      admin:read:domain_allows: les ømtolig informasjon om alle domeneløyve
+      admin:read:domain_blocks: les ømtolig informasjon om alle domeneblokkeringar
+      admin:read:email_domain_blocks: les ømtolig informasjon om alle e-postdomeneblokkeringar
+      admin:read:ip_blocks: les ømtolig informasjon om alle IP-blokkeringar
       admin:read:reports: lese sensitiv informasjon om alle rapportar og rapporterte kontoar
       admin:write: endre alle data på tenaren
       admin:write:accounts: utføre moderatorhandlingar på kontoar
+      admin:write:canonical_email_blocks: utføre modereringshandlingar på kanoniske e-postblokkeringar
+      admin:write:domain_allows: utføre modereringshandlingar på domeneløyve
+      admin:write:domain_blocks: utføre modereringshandlingar på domeneblokkeringar
+      admin:write:email_domain_blocks: utføre modereringshandlingar på e-postdomeneblokkeringar
+      admin:write:ip_blocks: utføre modereringshandlingar på IP-blokkeringar
       admin:write:reports: utføre moderatorhandlingar på rapportar
       crypto: bruk ende-til-ende-kryptering
       follow: fylg, blokkér, avblokkér, avfylg brukarar

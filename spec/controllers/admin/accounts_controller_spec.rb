@@ -147,6 +147,87 @@ RSpec.describe Admin::AccountsController, type: :controller do
     end
   end
 
+  describe 'POST #approve' do
+    subject { post :approve, params: { id: account.id } }
+
+    let(:current_user) { Fabricate(:user, role: role) }
+    let(:account) { user.account }
+    let(:user) { Fabricate(:user) }
+
+    before do
+      account.user.update(approved: false)
+    end
+
+    context 'when user is admin' do
+      let(:role) { UserRole.find_by(name: 'Admin') }
+
+      it 'succeeds in approving account' do
+        is_expected.to redirect_to admin_accounts_path(status: 'pending')
+        expect(user.reload).to be_approved
+      end
+
+      it 'logs action' do
+        is_expected.to have_http_status :found
+
+        log_item = Admin::ActionLog.last
+
+        expect(log_item).to_not be_nil
+        expect(log_item.action).to eq :approve
+        expect(log_item.account_id).to eq current_user.account_id
+        expect(log_item.target_id).to eq account.user.id
+      end
+    end
+
+    context 'when user is not admin' do
+      let(:role) { UserRole.everyone }
+
+      it 'fails to approve account' do
+        is_expected.to have_http_status :forbidden
+        expect(user.reload).not_to be_approved
+      end
+    end
+  end
+
+  describe 'POST #reject' do
+    subject { post :reject, params: { id: account.id } }
+
+    let(:current_user) { Fabricate(:user, role: role) }
+    let(:account) { user.account }
+    let(:user) { Fabricate(:user) }
+
+    before do
+      account.user.update(approved: false)
+    end
+
+    context 'when user is admin' do
+      let(:role) { UserRole.find_by(name: 'Admin') }
+
+      it 'succeeds in rejecting account' do
+        is_expected.to redirect_to admin_accounts_path(status: 'pending')
+      end
+
+      it 'logs action' do
+        is_expected.to have_http_status :found
+
+        log_item = Admin::ActionLog.last
+
+        expect(log_item).to_not be_nil
+        expect(log_item.action).to eq :reject
+        expect(log_item.account_id).to eq current_user.account_id
+        expect(log_item.target_id).to eq account.user.id
+      end
+    end
+
+    context 'when user is not admin' do
+      let(:role) { UserRole.everyone }
+
+      it 'fails to reject account' do
+        is_expected.to have_http_status :forbidden
+        expect(user.reload).not_to be_approved
+      end
+    end
+  end
+
   describe 'POST #redownload' do
     subject { post :redownload, params: { id: account.id } }
 

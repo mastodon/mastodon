@@ -50,7 +50,7 @@ class Account extends ImmutablePureComponent {
     } else {
       dispatch(followAccount(account.get('id')));
     }
-  }
+  };
 
   render () {
     const { account, intl } = this.props;

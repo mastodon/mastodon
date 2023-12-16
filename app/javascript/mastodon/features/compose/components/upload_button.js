@@ -41,15 +41,15 @@ class UploadButton extends ImmutablePureComponent {
     if (e.target.files.length > 0) {
       this.props.onSelectFile(e.target.files);
     }
-  }
+  };
 
   handleClick = () => {
     this.fileElement.click();
-  }
+  };
 
   setRef = (c) => {
     this.fileElement = c;
-  }
+  };
 
   render () {
     const { intl, resetFileKey, unavailable, disabled, acceptContentTypes } = this.props;

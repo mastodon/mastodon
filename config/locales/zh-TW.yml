@@ -23,7 +23,7 @@ zh-TW:
   admin:
     account_actions:
       action: 執行動作
-      title: 在 %{acct} 執行管理員動作
+      title: 對 %{acct} 執行站務動作
     account_moderation_notes:
       create: 記錄
       created_msg: 已新增管理備忘!
@@ -75,7 +75,7 @@ zh-TW:
       invite_request_text: 加入原因
       invited_by: 邀請者
       ip: IP 位址
-      joined: 已加入
+      joined: 加入時間
       location:
         all: 全部
         local: 本站
@@ -85,7 +85,7 @@ zh-TW:
       media_attachments: 多媒體附件
       memorialize: 設定為追悼帳號
       memorialized: 被悼念的
-      memorialized_msg: 成功將%{username} 的帳號變為紀念帳號
+      memorialized_msg: 成功將%{username} 的帳號變為追悼帳號
       moderation:
         active: 活躍
         all: 全部
@@ -113,6 +113,8 @@ zh-TW:
       redownloaded_msg: 成功重新載入%{username} 的個人檔案頁面
       reject: 拒絕
       rejected_msg: 成功拒絕了%{username} 的新帳號申請
+      remote_suspension_irreversible: 此帳號之資料已被不可逆地刪除。
+      remote_suspension_reversible_hint_html: 這個帳號已於此伺服器被停權，所有資料將會於 %{date} 被刪除。在此之前，遠端伺服器可以完全回復此的帳號。如果您想即時刪除這個帳號的資料，您可以在下面進行操作。
       remove_avatar: 取消大頭貼
       remove_header: 移除開頭
       removed_avatar_msg: 成功刪除了 %{username} 的大頭貼
@@ -198,7 +200,7 @@ zh-TW:
         enable_custom_emoji: 啓用自訂顏文字
         enable_sign_in_token_auth_user: 啟用使用者電子郵件 token 驗證
         enable_user: 啓用帳號
-        memorialize_account: 設定成紀念帳號
+        memorialize_account: 設定成追悼帳號
         promote_user: 把用戶升級
         reject_appeal: 駁回申訴
         reject_user: 回絕使用者
@@ -294,12 +296,12 @@ zh-TW:
       new:
         create: 建立公告
         title: 新增公告
-      publish: 發佈
+      publish: 發布
       published_msg: 成功發布公告！
       scheduled_for: 排定 %{time}
       scheduled_msg: 公告已排定公開！
       title: 公告
-      unpublish: 取消發佈
+      unpublish: 取消發布
       unpublished_msg: 成功取消發布公告！
       updated_msg: 成功更新公告！
     custom_emojis:
@@ -366,15 +368,19 @@ zh-TW:
       add_new: 將網域加入聯邦宇宙白名單
       created_msg: 網域已成功加入聯邦宇宙白名單
       destroyed_msg: 網域已成功從聯邦宇宙白名單移除
+      export: 匯出
+      import: 匯入
       undo: 從聯邦宇宙白名單移除
     domain_blocks:
       add_new: 新增欲封鎖域名
-      created_msg: 正在進行站點封鎖
-      destroyed_msg: 已撤銷站點封鎖
+      created_msg: 正在進行網域封鎖
+      destroyed_msg: 已撤銷網域封鎖
       domain: 站點
       edit: 更改封鎖的站台
       existing_domain_block: 您已對 %{name} 施加了更嚴格的限制。
       existing_domain_block_html: 您已經對 %{name} 施加了更嚴格的限制，您需要先把他<a href="%{unblock_url}">取消封鎖</a>。
+      export: 匯出
+      import: 匯入
       new:
         create: 新增封鎖
         hint: 站點封鎖動作並不會阻止帳號紀錄被新增至資料庫，但會自動回溯性地對那些帳號套用特定管理設定。
@@ -384,6 +390,8 @@ zh-TW:
           silence: 靜音
           suspend: 停權
         title: 新增封鎖站點
+      no_domain_block_selected: 因未選取項目，而未更改網域黑名單
+      not_permitted: 您無權執行此操作
       obfuscate: 混淆網域名稱
       obfuscate_hint: 若啟用網域廣告列表限制，於列表部份混淆網域名稱
       private_comment: 私人留言
@@ -393,7 +401,7 @@ zh-TW:
       reject_media: 拒絕媒體檔案
       reject_media_hint: 刪除本地快取的媒體檔案，並且不再接收來自該站點的任何媒體檔案。與停權無關
       reject_reports: 拒絕檢舉
-      reject_reports_hint: 忽略所有來自此站點的檢舉。與停權無關
+      reject_reports_hint: 忽略所有來自此網域的檢舉。與停權無關
       undo: 復原欲封鎖域名
       view: 顯示阻擋的網域
     email_domain_blocks:
@@ -405,15 +413,30 @@ zh-TW:
       dns:
         types:
           mx: MX 記錄
-      domain: 站點
+      domain: 網域
       new:
-        create: 新增站點
+        create: 新增網域
         resolve: 解析網域
         title: 新增電子郵件黑名單項目
       no_email_domain_block_selected: 因未選取項目，而未更改電子郵件網域黑名單
       resolved_dns_records_hint_html: 網域名稱解析為以下 MX 網域，這些網域最終負責接收電子郵件。封鎖 MX 網域將會封鎖任何來自使用相同 MX 網域的電子郵件註冊，即便可見的域名是不同的也一樣。<strong>請注意，不要封鎖主要的電子郵件服務提供商。</strong>
       resolved_through_html: 透過 %{domain} 解析
       title: 電子郵件黑名單
+    export_domain_allows:
+      new:
+        title: 匯入網域白名單
+      no_file: 尚未選擇檔案
+    export_domain_blocks:
+      import:
+        description_html: 您將匯入網域黑名單列表。若您非自行編纂此列表，請審慎檢查。
+        existing_relationships_warning: 既存之跟隨關係
+        private_comment_description_html: 為了幫助您追蹤匯入黑名單之來源，匯入黑名單建立時將隨附以下私密備註：<q>%{comment}</q>
+        private_comment_template: 於 %{date} 由 %{source} 匯入
+        title: 匯入網域黑名單
+      invalid_domain_block: 由於此錯誤，以致一個或多個網域封鎖被略過：%{error}
+      new:
+        title: 匯入網域黑名單
+      no_file: 尚未選擇檔案
     follow_recommendations:
       description_html: |-
         <strong>跟隨建議幫助新使用者們快速找到有趣的內容</strong>. 當使用者沒有與其他帳號有足夠多的互動以建立個人化跟隨建議時，這些帳號將會被推荐。這些帳號將基於某選定語言之高互動和高本地跟隨者數量帳號而
@@ -532,7 +555,6 @@ zh-TW:
     report_notes:
       created_msg: 檢舉記錄建立成功!
       destroyed_msg: 檢舉記錄刪除成功!
-      today_at: 今日為 %{time}
     reports:
       account:
         notes:
@@ -544,9 +566,10 @@ zh-TW:
         mark_as_sensitive_description_html: 被檢舉的嘟文中的媒體將會被標記為敏感內容，並將會記錄一次警告，以協助您升級同一帳號未來的違規行為。
         other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
         resolve_description_html: 被檢舉的帳號將不被採取任何行動，不會加以刪除線標記，並且此份報告將被關閉。
-        silence_description_html: 個人頁面僅會對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。
-        suspend_description_html: 個人頁面及其內容將無法被存取，直到其最終被刪除。將無法與此帳號互動。此設定 30 日內可被還原。
+        silence_description_html: 此帳號僅會對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。關閉所有對此帳號之檢舉報告。
+        suspend_description_html: 此帳號及其所有內容將不可被存取並且最終被移除，並且無法與之進行互動。三十天內可以撤銷此動作。關閉所有對此帳號之檢舉報告。
       actions_description_html: 決定應對此報告採取何種行動。若您對檢舉之帳號採取懲罰措施，則將對他們發送 e-mail 通知，如非選擇了 <strong>垃圾郵件</strong> 類別。
+      actions_description_remote_html: 決定將對此檢舉報告採取何種動作。這將僅作用於<strong>您的伺服器</strong>與此遠端帳號及其內容之通訊行為。
       add_to_report: 加入更多至報告
       are_you_sure: 您確定嗎?
       assign_to_self: 指派給自己
@@ -557,6 +580,7 @@ zh-TW:
       comment:
         none: 無
       comment_description_html: 提供更多資訊，%{name} 寫道：
+      confirm_action: 確認對 @%{acct} 執行站務動作
       created_at: 日期
       delete_and_resolve: 刪除嘟文
       forwarded: 已轉寄
@@ -573,6 +597,7 @@ zh-TW:
         placeholder: 記錄已執行的動作，或其他相關的更新...
         title: 註記
       notes_description_html: 檢視及留下些給其他管理員和未來的自己的註記
+      processed_msg: '檢舉報告 #%{id} 已被成功處理'
       quick_actions_description_html: 採取一個快速行動，或者下捲以檢視檢舉內容：
       remote_user_placeholder: 來自 %{instance} 之遠端使用者
       reopen: 重開檢舉
@@ -585,9 +610,28 @@ zh-TW:
       status: 嘟文
       statuses: 被檢舉的內容
       statuses_description_html: 侵犯性違規內容會被引用在檢舉帳號通知中
+      summary:
+        action_preambles:
+          delete_html: 您將要 <strong>移除</strong> 某些 <strong>@%{acct}</strong> 之嘟文。此將會：
+          mark_as_sensitive_html: 您將要 <strong>標記</strong> 某些 <strong>@%{acct}</strong> 之嘟文為 <strong>敏感內容 </strong>。此將會：
+          silence_html: 您將要 <strong>限制</strong> <strong>@%{acct}</strong> 之帳號。此將會：
+          suspend_html: 您將要 <strong>暫停</strong> <strong>@%{acct}</strong> 之帳號。此將會：
+        actions:
+          delete_html: 移除違反規則之嘟文
+          mark_as_sensitive_html: 將違反規則之嘟文多媒體標記為敏感內容
+          silence_html: 藉由標記他們的個人檔案與內容為僅可見於已跟隨帳號或手動查詢此個人檔案，此將嚴格地限制 <strong>@%{acct}</strong> 之觸及率
+          suspend_html: 暫停 <strong>@%{acct}</strong>，將他們的個人檔案與內容標記為無法存取及無法與之互動
+        close_report: '將檢舉報告 #%{id} 標記為已處理'
+        close_reports_html: 將 <strong>所有</strong> 對於 <strong>@%{acct}</strong> 之檢舉報告標記為已處理
+        delete_data_html: 於即日起 30 天後刪除 <strong>@%{acct}</strong>之個人檔案與內容，除非他們於期限前被解除暫停
+        preview_preamble_html: "<strong>@%{acct}</strong> 將收到關於以下內容之警告："
+        record_strike_html: 紀錄關於 <strong>@%{acct}</strong>之警示有助於您升級對此帳號未來違規處理
+        send_email_html: 寄一封警告 e-mail 給 <strong>@%{acct}</strong>
+        warning_placeholder: 選填之其他站務動作理由。
       target_origin: 檢舉帳號之來源
       title: 檢舉
       unassign: 取消指派
+      unknown_action_msg: 未知的動作：%{action}
       unresolved: 未解決
       updated_at: 更新
       view_profile: 檢視個人檔案頁面
@@ -672,11 +716,16 @@ zh-TW:
       content_retention:
         preamble: 控制使用者產生內容如何儲存於 Mastodon 上。
         title: 內容保留期間
+      default_noindex:
+        desc_html: 影響所有沒有變更此設定的使用者
+        title: 預設將使用者排除於搜尋引擎索引
       discovery:
         follow_recommendations: 跟隨建議
         preamble: 呈現有趣的內容有助於 Mastodon 上一人不識的新手上路。控制各種不同的分類在您伺服器上如何被探索到。
         profile_directory: 個人檔案目錄
         public_timelines: 公開時間軸
+        publish_discovered_servers: 公開已知伺服器列表
+        publish_statistics: 公開統計資料
         title: 探索
         trends: 熱門趨勢
       domain_blocks:
@@ -869,7 +918,7 @@ zh-TW:
     created_msg: 成功建立別名。您可以自舊帳號開始轉移。
     deleted_msg: 成功移除別名。您將無法再由舊帳號轉移到目前的帳號。
     empty: 您目前沒有任何別名。
-    hint_html: 如果想由其他帳號轉移到此帳號，您可以在此處新增別名，稍後系統將容許您把跟隨者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
+    hint_html: 如果想由其他帳號轉移至此帳號，您可以在此處新增別名，稍後系統將容許您將跟隨者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
     remove: 取消連結別名
   appearance:
     advanced_web_interface: 進階網頁介面
@@ -898,8 +947,10 @@ zh-TW:
     warning: 警告，不要把它分享給任何人!
     your_token: 您的 access token
   auth:
-    apply_for_account: 登記排隊名單
+    apply_for_account: 申請帳號
     change_password: 密碼
+    confirmations:
+      wrong_email_hint: 若電子郵件地址不正確，您可以於帳號設定中更改。
     delete_account: 刪除帳號
     delete_account_html: 如果您欲刪除您的帳號，請<a href="%{path}">點擊這裡繼續</a>。您需要再三確認您的操作。
     description:
@@ -935,6 +986,9 @@ zh-TW:
       email_below_hint_html: 如果此電子郵件地址不正確，您可於此修改並接收郵件進行認證。
       email_settings_hint_html: 請確認 e-mail 是否傳送到 %{email} 。如果不對的話，可以從帳號設定修改。
       title: 設定
+    sign_in:
+      preamble_html: 請登入您於 <strong>%{domain}</strong> 之帳號密碼。若您的帳號託管於其他伺服器，您將無法於此登入。
+      title: 登入 %{domain}
     sign_up:
       preamble: 於此 Mastodon 伺服器擁有帳號的話，您將能跟隨聯邦宇宙網路中任何一份子，無論他們的帳號託管於何處。
       title: 讓我們一起設定 %{domain} 吧！
@@ -1069,7 +1123,7 @@ zh-TW:
     mutes: 您靜音的使用者
     storage: 儲存空間大小
   featured_tags:
-    add_new: 追加
+    add_new: 新增
     errors:
       limit: 您所推薦的標籤數量已經達到上限
     hint_html: "<strong>推薦主題標籤是什麼？</strong> 這些主題標籤將顯示於您的公開個人檔案頁，訪客可以藉此閱覽您標示了這些標籤的嘟文，拿來展示創意作品或者長期更新的專案很好用唷！"
@@ -1136,6 +1190,7 @@ zh-TW:
     invalid_markup: 含有無效的 HTML 語法：%{error}
   imports:
     errors:
+      invalid_csv_file: 無效的 CSV 檔案。錯誤訊息：%{error}
       over_rows_processing_limit: 含有超過 %{count} 行
     modes:
       merge: 合併
@@ -1315,6 +1370,9 @@ zh-TW:
       unrecognized_emoji: 並非一個可識別的 emoji
   relationships:
     activity: 帳號動態
+    confirm_follow_selected_followers: 您確定要跟隨這些選取的跟隨者嗎？
+    confirm_remove_selected_followers: 您確定要移除這些選取的跟隨者嗎？
+    confirm_remove_selected_follows: 您確定要移除這些選取的正在跟隨您的帳號嗎？
     dormant: 潛水中
     follow_selected_followers: 跟隨所選的跟隨者
     followers: 跟隨者
@@ -1349,6 +1407,7 @@ zh-TW:
     browser: 瀏覽器
     browsers:
       alipay: 支付寶
+      blackberry: 黑莓機（BlackBerry）
       chrome: Chrome 瀏覽器
       edge: Microsoft Edge 瀏覽器
       electron: Electron 瀏覽器
@@ -1371,6 +1430,7 @@ zh-TW:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: 黑莓機（BlackBerry）
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
@@ -1455,7 +1515,7 @@ zh-TW:
     enabled: 自動刪除舊嘟文
     enabled_hint: 一旦達到指定的保存期限，就會自動刪除您的嘟文，除非該嘟文符合下列例外
     exceptions: 例外
-    explanation: 因為刪除嘟文是昂貴的操作，當伺服器不那麼忙碌時才會慢慢完成。因此，您的嘟文會在到達保存期限後一段時間才會被刪除。
+    explanation: 因為刪除嘟文是耗費資源的操作，當伺服器不那麼忙碌時才會慢慢完成。因此，您的嘟文會在到達保存期限後一段時間才會被刪除。
     ignore_favs: 忽略最愛
     ignore_reblogs: 忽略轉嘟
     interaction_exceptions: 基於互動的例外規則
@@ -1463,7 +1523,7 @@ zh-TW:
     keep_direct: 保留私訊
     keep_direct_hint: 不會刪除任何您的私訊
     keep_media: 保留包含媒體內容的嘟文
-    keep_media_hint: 不會刪除您包含媒體內容的嘟文
+    keep_media_hint: 不會刪除您包含媒體內容之嘟文
     keep_pinned: 保留釘選嘟文
     keep_pinned_hint: 不會刪除您的釘選嘟文
     keep_polls: 保留投票
@@ -1478,7 +1538,7 @@ zh-TW:
       '2629746': 1 個月
       '31556952': 1 年
       '5259492': 2 個月
-      '604800': 一週
+      '604800': 1 週
       '63113904': 2 年
       '7889238': 3 個月
     min_age_label: 保存期限

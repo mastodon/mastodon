@@ -50,6 +50,8 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     id: PropTypes.string,
     searchTokens: PropTypes.arrayOf(PropTypes.string),
     maxLength: PropTypes.number,
+    lang: PropTypes.string,
+    spellCheck: PropTypes.string,
   };
 
   static defaultProps = {
@@ -77,7 +79,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     }
 
     this.props.onChange(e);
-  }
+  };
 
   onKeyDown = (e) => {
     const { suggestions, disabled } = this.props;
@@ -135,22 +137,22 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     }
 
     this.props.onKeyDown(e);
-  }
+  };
 
   onBlur = () => {
     this.setState({ suggestionsHidden: true, focused: false });
-  }
+  };
 
   onFocus = () => {
     this.setState({ focused: true });
-  }
+  };
 
   onSuggestionClick = (e) => {
     const suggestion = this.props.suggestions.get(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
     this.input.focus();
-  }
+  };
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.suggestions !== this.props.suggestions && nextProps.suggestions.size > 0 && this.state.suggestionsHidden && this.state.focused) {
@@ -160,7 +162,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
 
   setInput = (c) => {
     this.input = c;
-  }
+  };
 
   renderSuggestion = (suggestion, i) => {
     const { selectedSuggestion } = this.state;
@@ -182,10 +184,10 @@ export default class AutosuggestInput extends ImmutablePureComponent {
         {inner}
       </div>
     );
-  }
+  };
 
   render () {
-    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus, className, id, maxLength } = this.props;
+    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus, className, id, maxLength, lang, spellCheck } = this.props;
     const { suggestionsHidden } = this.state;
 
     return (
@@ -210,6 +212,8 @@ export default class AutosuggestInput extends ImmutablePureComponent {
             id={id}
             className={className}
             maxLength={maxLength}
+            lang={lang}
+            spellCheck={spellCheck}
           />
         </label>
 

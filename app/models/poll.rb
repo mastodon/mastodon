@@ -85,6 +85,7 @@ class Poll < ApplicationRecord
   def reset_votes!
     self.cached_tallies = options.map { 0 }
     self.votes_count = 0
+    self.voters_count = 0
     votes.delete_all unless new_record?
   end
 

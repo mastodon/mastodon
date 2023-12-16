@@ -71,7 +71,7 @@ nl:
       confirmations:
         revoke: Weet je het zeker?
       index:
-        authorized_at: Toestemming verleent op %{date}
+        authorized_at: Toestemming verleend op %{date}
         description_html: Dit zijn toepassingen die toegang hebben tot jouw account via de API. Als er toepassingen tussen staan die je niet herkent of een toepassing zich misdraagt, kun je de toegangsrechten van de toepassing intrekken.
         last_used_at: Voor het laatst gebruikt op %{date}
         never_used: Nooit gebruikt
@@ -122,14 +122,14 @@ nl:
         admin/accounts: Accountbeheer
         admin/all: Alle beheerfuncties
         admin/reports: Rapportagebeheer
-        all: Alles
+        all: Volledige toegang tot je Mastodon-account
         blocks: Blokkeren
         bookmarks: Bladwijzers
         conversations: Gesprekken
         crypto: End-to-end-encryptie
         favourites: Favorieten
         filters: Filters
-        follow: Relaties
+        follow: Volgers, genegeerde en geblokkeerde gebruikers
         follows: Volgend
         lists: Lijsten
         media: Mediabijlagen
@@ -149,10 +149,20 @@ nl:
     scopes:
       admin:read: alle gegevens op de server lezen
       admin:read:accounts: gevoelige informatie van alle accounts lezen
+      admin:read:canonical_email_blocks: gevoelige informatie van alle canoniek geblokkeerde e-mailadressen lezen
+      admin:read:domain_allows: gevoelige informatie van alle toegestane domeinen lezen
+      admin:read:domain_blocks: gevoelige informatie van alle geblokkeerde domeinen lezen
+      admin:read:email_domain_blocks: gevoelige informatie van alle geblokkeerde e-maildomeinen lezen
+      admin:read:ip_blocks: gevoelige informatie van alle geblokkeerde IP-adressen lezen
       admin:read:reports: gevoelige informatie van alle rapportages en gerapporteerde accounts lezen
       admin:write: wijzig alle gegevens op de server
-      admin:write:accounts: moderatiemaatregelen tegen accounts nemen
-      admin:write:reports: moderatiemaatregelen nemen in rapportages
+      admin:write:accounts: moderatieacties op accounts uitvoeren
+      admin:write:canonical_email_blocks: moderatieacties op canoniek geblokkeerde e-mailadressen uitvoeren
+      admin:write:domain_allows: moderatieacties op toegestane domeinen uitvoeren
+      admin:write:domain_blocks: moderatieacties op geblokkeerde domeinen uitvoeren
+      admin:write:email_domain_blocks: moderatieacties op geblokkeerde e-maildomeinen uitvoeren
+      admin:write:ip_blocks: moderatieacties op geblokkeerde IP-adressen uitvoeren
+      admin:write:reports: moderatieacties op rapportages uitvoeren
       crypto: end-to-end-encryptie gebruiken
       follow: relaties tussen accounts bewerken
       push: jouw pushmeldingen ontvangen

@@ -120,6 +120,11 @@ describe Request do
       expect { subject.perform { |response| response.body_with_limit } }.to raise_error Mastodon::LengthValidationError
     end
 
+    it 'truncates large monolithic body' do
+      stub_request(:any, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.megabytes), headers: { 'Content-Length' => 2.megabytes })
+      expect(subject.perform { |response| response.truncated_body.bytesize }).to be < 2.megabytes
+    end
+
     it 'uses binary encoding if Content-Type does not tell encoding' do
       stub_request(:any, 'http://example.com').to_return(body: '', headers: { 'Content-Type' => 'text/html' })
       expect(subject.perform { |response| response.body_with_limit.encoding }).to eq Encoding::BINARY

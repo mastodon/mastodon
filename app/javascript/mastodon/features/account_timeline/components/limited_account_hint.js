@@ -20,7 +20,7 @@ class LimitedAccountHint extends React.PureComponent {
   static propTypes = {
     accountId: PropTypes.string.isRequired,
     reveal: PropTypes.func,
-  }
+  };
 
   render () {
     const { reveal } = this.props;

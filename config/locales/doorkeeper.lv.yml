@@ -122,17 +122,17 @@ lv:
         admin/accounts: Kontu administrēšana
         admin/all: Visas administrēšanas funkcijas
         admin/reports: Ziņojumu administrēšana
-        all: Visi
+        all: Pilna piekļuve tavam Mastodon kontam
         blocks: Bloķētie
         bookmarks: Grāmatzīmes
         conversations: Sarunas
         crypto: Pilnīga šifrēšana
         favourites: Izlases
         filters: Filtri
-        follow: Attiecības
+        follow: Seko, Izslēdz un Bloķē
         follows: Seko
         lists: Saraksti
-        media: Mediju pielikumi
+        media: Multividesu pielikumi
         mutes: Apklusinātie
         notifications: Paziņojumi
         push: Uznirstošie paziņojumi
@@ -149,9 +149,19 @@ lv:
     scopes:
       admin:read: lasīt visus datus uz servera
       admin:read:accounts: lasīt sensitīvu informāciju no visiem kontiem
+      admin:read:canonical_email_blocks: lasīt sensitīvu informāciju par visiem kanoniskajiem e-pasta blokiem
+      admin:read:domain_allows: lasīt visu domēnu sensitīvo informāciju, ko atļauj
+      admin:read:domain_blocks: lasīt sensitīvu informāciju par visiem domēna blokiem
+      admin:read:email_domain_blocks: lasīt sensitīvu informāciju par visiem e-pasta domēna blokiem
+      admin:read:ip_blocks: lasīt sensitīvu informāciju par visiem IP blokiem
       admin:read:reports: lasīt sensitīvu informāciju no visiem pārskatiem un kontiem, par kuriem ziņots
       admin:write: modificēt visus datus uz servera
       admin:write:accounts: veikt moderācijas darbības kontos
+      admin:write:canonical_email_blocks: veikt regulēšanas darbības kanoniskajos e-pasta blokos
+      admin:write:domain_allows: veikt moderēšanas darbības domēna atļaujā
+      admin:write:domain_blocks: veikt moderēšanas darbības domēna blokos
+      admin:write:email_domain_blocks: veikt moderēšanas darbības e-pasta domēna blokos
+      admin:write:ip_blocks: veikt moderēšanas darbības IP blokos
       admin:write:reports: veikt moderācijas darbības pārskatos
       crypto: lieto pilnīgu šifrēšanu
       follow: mainīt konta attiecības
@@ -178,7 +188,7 @@ lv:
       write:filters: izveidot filtrus
       write:follows: seko cilvēkiem
       write:lists: izveido sarakstus
-      write:media: pievieno mediju datnes
+      write:media: pievieno multivides datnes
       write:mutes: apklusini cilvēkus un sarunas
       write:notifications: notīri savus paziņojumus
       write:reports: ziņo par citiem cilvēkiem

@@ -19,8 +19,8 @@ cy:
         account:
           attributes:
             username:
-              invalid: gall gynnwys dim ond llythrennau, rhifau a tanlinellau
-              reserved: yn neilltuedig
+              invalid: rhaid iddo gynnwys dim ond llythrennau, rhifau a thanlinellau
+              reserved: wedi ei neilltuo
         admin/webhook:
           attributes:
             url:
@@ -40,7 +40,7 @@ cy:
         user:
           attributes:
             email:
-              blocked: yn defnyddio darparwr e-bost nd yw'n cael ei ganiatáu
+              blocked: yn defnyddio darparwr e-bost nad yw'n cael ei ganiatáu
               unreachable: nid yw i weld yn bodoli
             role_id:
               elevated: nid yw'n gallu bod yn uwch na'ch rôl presennol

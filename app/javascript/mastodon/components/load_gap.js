@@ -19,7 +19,7 @@ class LoadGap extends React.PureComponent {
 
   handleClick = () => {
     this.props.onClick(this.props.maxId);
-  }
+  };
 
   render () {
     const { disabled, intl } = this.props;

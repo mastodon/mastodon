@@ -26,7 +26,13 @@ const emptyList = ImmutableList();
 const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = false }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
 
-  if (!accountId) {
+  if (accountId === null) {
+    return {
+      isLoading: false,
+      isAccount: false,
+      statusIds: emptyList,
+    };
+  } else if (!accountId) {
     return {
       isLoading: true,
       statusIds: emptyList,
@@ -139,7 +145,7 @@ class AccountTimeline extends ImmutablePureComponent {
 
   handleLoadMore = maxId => {
     this.props.dispatch(expandAccountTimeline(this.props.accountId, { maxId, withReplies: this.props.withReplies, tagged: this.props.params.tagged }));
-  }
+  };
 
   render () {
     const { accountId, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, suspended, isAccount, hidden, multiColumn, remote, remoteUrl } = this.props;

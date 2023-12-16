@@ -21,7 +21,7 @@ module StatusesHelper
   def media_summary(status)
     attachments = { image: 0, video: 0, audio: 0 }
 
-    status.media_attachments.each do |media|
+    status.ordered_media_attachments.each do |media|
       if media.video?
         attachments[:video] += 1
       elsif media.audio?

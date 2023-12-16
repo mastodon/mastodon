@@ -60,6 +60,7 @@ eo:
       error:
         title: Eraro okazis
       new:
+        prompt_html: "%{client_name} volas permeso por aliri vian konton. <strong>Se vi ne konfidu ĝin, ne rajtigu ĝin.</strong>"
         review_permissions: Revizu permesojn
         title: Rajtigo bezonata
       show:
@@ -70,6 +71,9 @@ eo:
       confirmations:
         revoke: Ĉu vi certas?
       index:
+        authorized_at: Rajtigitas je %{date}
+        description_html: Ĉi tioj estas programaroj kiu povas aliri vian konton per API.
+        last_used_at: Laste uzita je %{date}
         never_used: Neniam uzata
         scopes: Permesoj
         superapp: Interna
@@ -109,18 +113,29 @@ eo:
         destroy:
           notice: Aplikaĵo malrajtigita.
     grouped_scopes:
+      access:
+        read: Legnura aliro
+        read/write: Lega kaj skriba aliro
+        write: Skribnura aliro
       title:
         accounts: Kontoj
-        all: Ĉio
+        admin/accounts: Administro de kontoj
+        admin/all: Ĉiuj administraj funkcioj
+        admin/reports: Administro de raportoj
+        all: Plena aliro al via Mastodon-konto
         blocks: Blokita
         bookmarks: Legosignoj
         conversations: Konversacioj
+        crypto: Fin-al-fina ĉifrado
         favourites: Preferaĵoj
         filters: Filtriloj
+        follow: Abonadoj, silentigitaj kontoj kaj blokitaj kontoj
         follows: Sekvas
         lists: Listoj
+        media: Plurmediaj aldonaĵoj
         mutes: Silentigitaj
         notifications: Sciigoj
+        push: Puŝsciigoj
         reports: Raportoj
         search: Serĉi
         statuses: Afiŝoj
@@ -134,10 +149,21 @@ eo:
     scopes:
       admin:read: legu ĉiujn datumojn en la servilo
       admin:read:accounts: legi konfidencajn informojn de ĉiuj kontoj
+      admin:read:canonical_email_blocks: legi sentemajn informojn de ĉiuj kanonikaj retpoŝtaj blokoj
+      admin:read:domain_allows: legi sentemajn informojn de ĉiuj domajno permesas
+      admin:read:domain_blocks: legi sentemajn informojn de ĉiuj domajnaj blokoj
+      admin:read:email_domain_blocks: legi sentemajn informojn pri ĉiuj retpoŝtaj domajnaj blokoj
+      admin:read:ip_blocks: legi sentivajn informojn de ĉiuj IP-blokoj
       admin:read:reports: legi konfidencajn informojn de ĉiuj signaloj kaj signalitaj kontoj
       admin:write: modifi ĉiujn datumojn en la servilo
       admin:write:accounts: plenumi agojn de kontrolo sur kontoj
+      admin:write:canonical_email_blocks: fari moderigajn agojn sur kanonikaj retpoŝtaj blokoj
+      admin:write:domain_allows: fari moderigajn agojn sur domajno permesas
+      admin:write:domain_blocks: fari moderigajn agojn sur domajnaj blokoj
+      admin:write:email_domain_blocks: fari moderigajn agojn pri retpoŝtaj domajnaj blokoj
+      admin:write:ip_blocks: fari moderigajn agojn pri IP-blokoj
       admin:write:reports: plenumi agojn de kontrolo sur signaloj
+      crypto: uzi fin-al-finan ĉifradon
       follow: ŝanĝi rilatojn al aliaj kontoj
       push: ricevi viajn puŝ-sciigojn
       read: legi ĉiujn datumojn de via konto
@@ -157,11 +183,12 @@ eo:
       write:accounts: ŝanĝi vian profilon
       write:blocks: bloki kontojn kaj domajnojn
       write:bookmarks: aldoni mesaĝojn al la legosignoj
+      write:conversations: mallautigi kaj forigi babiladojn
       write:favourites: stelumi mesaĝojn
       write:filters: krei filtrilojn
       write:follows: sekvi homojn
       write:lists: krei listojn
-      write:media: alŝuti aŭdovidaĵojn
+      write:media: alŝuti plurmediojn
       write:mutes: silentigi homojn kaj konversaciojn
       write:notifications: forigi viajn sciigojn
       write:reports: signali aliajn homojn

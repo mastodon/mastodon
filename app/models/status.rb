@@ -29,7 +29,7 @@
 #
 
 class Status < ApplicationRecord
-  before_destroy :unlink_from_conversations
+  before_destroy :unlink_from_conversations!
 
   include Discard::Model
   include Paginable
@@ -71,6 +71,7 @@ class Status < ApplicationRecord
   has_many :reblogged_by_accounts, through: :reblogs, class_name: 'Account', source: :account
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy, inverse_of: :status
+  has_many :mentioned_accounts, through: :mentions, source: :account, class_name: 'Account'
   has_many :active_mentions, -> { active }, class_name: 'Mention', inverse_of: :status
   has_many :media_attachments, dependent: :nullify
   has_many :capability_tokens, class_name: 'StatusCapabilityToken', inverse_of: :status, dependent: :destroy
@@ -123,7 +124,7 @@ class Status < ApplicationRecord
                    :tags,
                    :preview_cards,
                    :preloadable_poll,
-                   account: [:account_stat, :user],
+                   account: [:account_stat, user: :role],
                    active_mentions: { account: :account_stat },
                    reblog: [
                      :application,
@@ -133,7 +134,7 @@ class Status < ApplicationRecord
                      :conversation,
                      :status_stat,
                      :preloadable_poll,
-                     account: [:account_stat, :user],
+                     account: [:account_stat, user: :role],
                      active_mentions: { account: :account_stat },
                    ],
                    thread: { account: :account_stat }
@@ -148,11 +149,11 @@ class Status < ApplicationRecord
     ids << account_id if local?
 
     if preloaded.nil?
-      ids += mentions.where(account: Account.local, silent: false).pluck(:account_id)
-      ids += favourites.where(account: Account.local).pluck(:account_id)
-      ids += reblogs.where(account: Account.local).pluck(:account_id)
-      ids += bookmarks.where(account: Account.local).pluck(:account_id)
-      ids += poll.votes.where(account: Account.local).pluck(:account_id) if poll.present?
+      ids += mentions.joins(:account).merge(Account.local).active.pluck(:account_id)
+      ids += favourites.joins(:account).merge(Account.local).pluck(:account_id)
+      ids += reblogs.joins(:account).merge(Account.local).pluck(:account_id)
+      ids += bookmarks.joins(:account).merge(Account.local).pluck(:account_id)
+      ids += poll.votes.joins(:account).merge(Account.local).pluck(:account_id) if poll.present?
     else
       ids += preloaded.mentions[id] || []
       ids += preloaded.favourites[id] || []
@@ -317,13 +318,13 @@ class Status < ApplicationRecord
   after_create_commit :store_uri, if: :local?
   after_create_commit :update_statistics, if: :local?
 
-  around_create Mastodon::Snowflake::Callbacks
-
   before_validation :prepare_contents, on: :create, if: :local?
   before_validation :set_reblog, on: :create
   before_validation :set_visibility, on: :create
   before_validation :set_conversation, on: :create
   before_validation :set_local, on: :create
+
+  around_create Mastodon::Snowflake::Callbacks
 
   after_create :set_poll_id
   after_create :set_circle
@@ -363,13 +364,25 @@ class Status < ApplicationRecord
 
       account_ids.uniq!
 
+      status_ids = cached_items.map { |item| item.reblog? ? item.reblog_of_id : item.id }.uniq
+
       return if account_ids.empty?
 
       accounts = Account.where(id: account_ids).includes(:account_stat, :user).index_by(&:id)
 
+      status_stats = StatusStat.where(status_id: status_ids).index_by(&:status_id)
+
       cached_items.each do |item|
         item.account = accounts[item.account_id]
         item.reblog.account = accounts[item.reblog.account_id] if item.reblog?
+
+        if item.reblog?
+          status_stat = status_stats[item.reblog.id]
+          item.reblog.status_stat = status_stat if status_stat.present?
+        else
+          status_stat = status_stats[item.id]
+          item.status_stat = status_stat if status_stat.present?
+        end
       end
     end
 
@@ -454,6 +467,17 @@ class Status < ApplicationRecord
     discard_time = Time.current
     Status.unscoped.where(reblog_of_id: id, deleted_at: [nil, deleted_at]).in_batches.update_all(deleted_at: discard_time) unless reblog?
     update_attribute(:deleted_at, discard_time)
+  end
+
+  def unlink_from_conversations!
+    return unless direct_visibility?
+
+    inbox_owners = mentioned_accounts.local
+    inbox_owners += [account] if account.local?
+
+    inbox_owners.each do |inbox_owner|
+      AccountConversation.remove_status(inbox_owner, self)
+    end
   end
 
   private
@@ -545,16 +569,5 @@ class Status < ApplicationRecord
     account&.decrement_count!(:statuses_count)
     reblog&.decrement_count!(:reblogs_count) if reblog?
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && distributable?
-  end
-
-  def unlink_from_conversations
-    return unless direct_visibility?
-
-    mentioned_accounts = (association(:mentions).loaded? ? mentions : mentions.includes(:account)).map(&:account)
-    inbox_owners       = mentioned_accounts.select(&:local?) + (account.local? ? [account] : [])
-
-    inbox_owners.each do |inbox_owner|
-      AccountConversation.remove_status(inbox_owner, self)
-    end
   end
 end

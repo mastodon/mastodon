@@ -21,9 +21,9 @@
   %hr.spacer/
 
   - if current_user.encrypted_password.present?
-    = f.input :password, wrapper: :with_block_label, input_html: { :autocomplete => 'current-password' }, hint: t('deletes.confirm_password')
+    = f.input :password, wrapper: :with_block_label, input_html: { autocomplete: 'current-password' }, hint: t('deletes.confirm_password')
   - else
-    = f.input :username, wrapper: :with_block_label, input_html: { :autocomplete => 'off' }, hint: t('deletes.confirm_username')
+    = f.input :username, wrapper: :with_block_label, input_html: { autocomplete: 'off' }, hint: t('deletes.confirm_username')
 
   .actions
     = f.button :button, t('deletes.proceed'), type: :submit, class: 'negative'

@@ -122,14 +122,14 @@ ja:
         admin/accounts: アカウント管理
         admin/all: すべての管理機能
         admin/reports: 通報の管理
-        all: すべて
+        all: Mastodonアカウントへのフルアクセス
         blocks: ブロック
         bookmarks: ブックマーク
         conversations: 会話
         crypto: エンドツーエンド暗号化
         favourites: お気に入り
         filters: フィルター
-        follow: フォロー・フォロワー
+        follow: フォロー、ミュート、ブロック
         follows: フォロー
         lists: リスト
         media: メディアの添付
@@ -149,9 +149,19 @@ ja:
     scopes:
       admin:read: サーバーのすべてのデータの読み取り
       admin:read:accounts: すべてのアカウントの機密情報の読み取り
+      admin:read:canonical_email_blocks: すべてのブロックしたメールアドレスの読み取り
+      admin:read:domain_allows: すべての許可したドメインの読み取り
+      admin:read:domain_blocks: すべてのブロックしたドメインの読み取り
+      admin:read:email_domain_blocks: すべてのブロックしたメールドメインの読み取り
+      admin:read:ip_blocks: すべてのブロックしたIPアドレスの読み取り
       admin:read:reports: すべての通報と通報されたアカウントの機密情報の読み取り
       admin:write: サーバーのすべてのデータの変更
       admin:write:accounts: アカウントに対するアクションの実行
+      admin:write:canonical_email_blocks: メールアドレスのブロックに関するアクションの実行
+      admin:write:domain_allows: ドメイン許可に関するアクションの実行
+      admin:write:domain_blocks: ドメインのブロックに関するアクションの実行
+      admin:write:email_domain_blocks: メールドメインのブロックに関するアクションの実行
+      admin:write:ip_blocks: IPアドレスのブロックに関するアクションの実行
       admin:write:reports: 通報に対するアクションの実行
       crypto: エンドツーエンド暗号化の使用
       follow: アカウントのつながりを変更

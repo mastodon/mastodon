@@ -109,7 +109,7 @@
     box-sizing: border-box;
     width: 18px;
     height: 18px;
-    margin-right: 10px;
+    margin-inline-end: 10px;
     top: -1px;
     border-radius: 50%;
     vertical-align: middle;
@@ -204,7 +204,7 @@
   .button {
     height: 36px;
     padding: 0 16px;
-    margin-right: 10px;
+    margin-inline-end: 10px;
     font-size: 14px;
   }
 }
@@ -240,7 +240,7 @@
     line-height: inherit;
     color: $action-button-color;
     border-color: $action-button-color;
-    margin-right: 5px;
+    margin-inline-end: 5px;
   }
 
   li {
@@ -250,7 +250,7 @@
     .poll__option {
       flex: 0 0 auto;
       width: calc(100% - (23px + 6px));
-      margin-right: 6px;
+      margin-inline-end: 6px;
     }
   }
 
@@ -279,10 +279,10 @@
   color: $dark-text-color;
 
   &__chart {
-    background: rgba(darken($ui-primary-color, 14%), 0.2);
+    background: rgba(darken($ui-primary-color, 14%), 0.7);
 
     &.leading {
-      background: rgba($ui-highlight-color, 0.2);
+      background: rgba($ui-highlight-color, 0.5);
     }
   }
 }

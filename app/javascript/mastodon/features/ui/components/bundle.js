@@ -15,7 +15,7 @@ class Bundle extends React.PureComponent {
     onFetch: PropTypes.func,
     onFetchSuccess: PropTypes.func,
     onFetchFail: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
     loading: emptyComponent,
@@ -24,14 +24,14 @@ class Bundle extends React.PureComponent {
     onFetch: noop,
     onFetchSuccess: noop,
     onFetchFail: noop,
-  }
+  };
 
-  static cache = new Map
+  static cache = new Map;
 
   state = {
     mod: undefined,
     forceRender: false,
-  }
+  };
 
   componentWillMount() {
     this.load(this.props);
@@ -83,7 +83,7 @@ class Bundle extends React.PureComponent {
         this.setState({ mod: null });
         onFetchFail(error);
       });
-  }
+  };
 
   render() {
     const { loading: Loading, error: Error, children, renderDelay } = this.props;

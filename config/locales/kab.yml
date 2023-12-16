@@ -251,15 +251,17 @@ kab:
       add_new: Timerna n taɣult ɣer tabdert tamellalt
       created_msg: Taγult-a tettwarna γer wumuγ amellal mebla ugur
       destroyed_msg: Taγult-a tettwakkes seg umuγ amellal
+      import: Kter
       undo: Kkes seg tebdart tamellalt
     domain_blocks:
       add_new: Rni iḥder amaynut n taɣult
       domain: Taγult
+      export: Sifeḍ
+      import: Kter
       new:
         create: Rnu-d iḥder
         severity:
           noop: Ula yiwen
-          silence: Sgugem
           suspend: Ḥbes di leεḍil
         title: Iḥder amaynut n taɣult
       private_comment: Awennit uslig
@@ -284,6 +286,8 @@ kab:
       back_to_all: Akk
       back_to_limited: Ɣur-s talast
       by_domain: Taγult
+      content_policies:
+        policy: Tasertit
       delivery:
         all: Akk
         clear: Sfeḍ tuccḍiwin n usiweḍ
@@ -341,8 +345,6 @@ kab:
       save_and_enable: Sekles rnu rmed-it
       status: Addad
       title: Imnegliyen
-    report_notes:
-      today_at: Ass-a ɣef %{time}
     reports:
       account:
         notes:
@@ -373,6 +375,8 @@ kab:
     roles:
       categories:
         administration: Tadbelt
+        moderation: Aseɣyed
+      delete: Kkes
       privileges:
         administrator: Anedbal
     rules:
@@ -382,19 +386,31 @@ kab:
       empty: Mazal ur ttwasbadun ara yilugan n uqeddac.
       title: Ilugan n uqeddac
     settings:
+      about:
+        title: Γef
+      appearance:
+        title: Udem
+      discovery:
+        profile_directory: Akaram n imaγnuten
+        trends: Ayen mucaɛen
       domain_blocks:
         all: I medden akk
         disabled: Γef ula yiwen
         users: Γef yimseqdacen idiganen i yeqqnen
+      registrations:
+        title: Ajerred
       registrations_mode:
         modes:
           none: Yiwen·t ur yzmir ad izeddi
           open: Zemren akk ad jerden
+      title: Iɣewwaṛen n uqeddac
     site_uploads:
       delete: Kkes afaylu yulin
     statuses:
+      application: Asnas
       back_to_account: Tuγalin γer usebter n umiḍan
       deleted: Yettwakkes
+      language: Tutlayt
       media:
         title: Taγwalt
       title: Tisuffiγin n umiḍan
@@ -405,6 +421,9 @@ kab:
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
+    webhooks:
+      delete: Kkes
+      enable: Rmed
   admin_mailer:
     new_report:
       body: "%{reporter} yettwazen ɣef %{target}"
@@ -489,7 +508,6 @@ kab:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
     '429': Too many requests
     '500':
       title: Asebter-ayi d arameγtu
@@ -499,6 +517,7 @@ kab:
   exports:
     archive_takeout:
       date: Azemz
+      download: Sider-d aḥraz-ik·im
       size: Teγzi
     bookmarks: Ticraḍ
     csv: CSV
@@ -518,7 +537,12 @@ kab:
       empty: Ur tesɛid ara imzizdigen.
       title: Imzizdigen
     new:
+      save: Sekles amsizdeg amaynut
       title: Rnu yiwen umzizdig amaynut
+    statuses:
+      back_to_filter: Tuɣalin ɣer umsizdeg
+      batch:
+        remove: Kkes seg umsizdeg
   footer:
     trending_now: Ayen mucaɛen tura
   generic:
@@ -567,6 +591,8 @@ kab:
     acct: Ibeddel γer
     incoming_migrations: Tusiḍ-d seg umiḍan nniḍen
     proceed_with_move: Awid imeḍfaṛen-ik
+  moderation:
+    title: Aseɣyed
   notification_mailer:
     favourite:
       subject: "%{name} yesmenyaf addad-ik·im"
@@ -603,6 +629,8 @@ kab:
     prev: Win iɛeddan
   preferences:
     other: Wiyaḍ
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
   privacy_policy:
     title: Tasertit tabaḍnit
   relationships:
@@ -744,8 +772,9 @@ kab:
         disable: Amiḍan i igersen
         none: Γur-wat
         silence: Amiḍan yesɛa talast
-        suspend: Amiḍan yettwaḥebsen
+        suspend: Amiḍan yettwaḥbas
     welcome:
+      final_action: Bdu asuffeɣ
       full_handle: Tansa umiḍan-ik takemmalit
       subject: Ansuf γer Maṣṭudun
       title: Ansuf yessek·em, %{name}!
