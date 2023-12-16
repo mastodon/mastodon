@@ -2,6 +2,7 @@ version: '3'
 
 services:
   app:
+    working_dir: /workspaces/mastodon/
     build:
       context: .
       dockerfile: Dockerfile
