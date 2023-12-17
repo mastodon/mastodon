@@ -8,10 +8,10 @@ RSpec.describe Admin::InstancesController do
   let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
   let!(:account_popular_main) { Fabricate(:account, domain: 'popular') }
-  let!(:account_popular_other) { Fabricate(:account, domain: 'popular') }
-  let!(:account_less_popular) { Fabricate(:account, domain: 'less.popular') }
 
   before do
+    _account_less_popular = Fabricate(:account, domain: 'less.popular')
+    _account_popular_other = Fabricate(:account, domain: 'popular')
     sign_in current_user, scope: :user
   end
 
