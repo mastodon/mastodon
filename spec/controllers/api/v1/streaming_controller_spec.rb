@@ -3,14 +3,14 @@
 require 'rails_helper'
 
 describe Api::V1::StreamingController do
-  around(:each) do |example|
+  around do |example|
     before = Rails.configuration.x.streaming_api_base_url
     Rails.configuration.x.streaming_api_base_url = Rails.configuration.x.web_domain
     example.run
     Rails.configuration.x.streaming_api_base_url = before
   end
 
-  before(:each) do
+  before do
     request.headers.merge! Host: Rails.configuration.x.web_domain
   end
 
@@ -24,7 +24,7 @@ describe Api::V1::StreamingController do
   end
 
   context 'with streaming api on different host' do
-    before(:each) do
+    before do
       Rails.configuration.x.streaming_api_base_url = "wss://streaming-#{Rails.configuration.x.web_domain}"
       @streaming_host = URI.parse(Rails.configuration.x.streaming_api_base_url).host
     end

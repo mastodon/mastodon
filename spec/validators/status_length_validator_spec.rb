@@ -6,14 +6,20 @@ describe StatusLengthValidator do
   describe '#validate' do
     it 'does not add errors onto remote statuses' do
       status = instance_double(Status, local?: false)
+      allow(status).to receive(:errors)
+
       subject.validate(status)
-      expect(status).to_not receive(:errors)
+
+      expect(status).to_not have_received(:errors)
     end
 
     it 'does not add errors onto local reblogs' do
       status = instance_double(Status, local?: false, reblog?: true)
+      allow(status).to receive(:errors)
+
       subject.validate(status)
-      expect(status).to_not receive(:errors)
+
+      expect(status).to_not have_received(:errors)
     end
 
     it 'adds an error when content warning is over MAX_CHARS characters' do

@@ -89,7 +89,7 @@ describe ApplicationHelper do
     end
   end
 
-  describe 'show_landing_strip?', without_verify_partial_doubles: true do
+  describe 'show_landing_strip?', :without_verify_partial_doubles do
     describe 'when signed in' do
       before do
         allow(helper).to receive(:user_signed_in?).and_return(true)

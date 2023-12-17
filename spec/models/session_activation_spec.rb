@@ -74,9 +74,13 @@ RSpec.describe SessionActivation do
     let(:options) { { user: Fabricate(:user), session_id: '1' } }
 
     it 'calls create! and purge_old' do
-      expect(described_class).to receive(:create!).with(**options)
-      expect(described_class).to receive(:purge_old)
+      allow(described_class).to receive(:create!).with(**options)
+      allow(described_class).to receive(:purge_old)
+
       described_class.activate(**options)
+
+      expect(described_class).to have_received(:create!).with(**options)
+      expect(described_class).to have_received(:purge_old)
     end
 
     it 'returns an instance of SessionActivation' do
