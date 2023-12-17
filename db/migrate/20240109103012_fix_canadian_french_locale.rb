@@ -8,18 +8,14 @@ class FixCanadianFrenchLocale < ActiveRecord::Migration[7.0]
   disable_ddl_transaction!
 
   def up
-    User.where(locale: 'fr-QC').find_in_batches do |users|
-      users.each do |user|
-        user.update(locale: 'fr-CA')
-      end
+    User.where(locale: 'fr-QC').in_batches do |users|
+      users.update_all(locale: 'fr-CA')
     end
   end
 
   def down
-    User.where(locale: 'fr-CA').find_in_batches do |users|
-      users.each do |user|
-        user.update(locale: 'fr-QC')
-      end
+    User.where(locale: 'fr-CA').in_batches do |users|
+      users.update_all(locale: 'fr-QC')
     end
   end
 end
