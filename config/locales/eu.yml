@@ -613,6 +613,7 @@ eu:
       created_at: Salatua
       delete_and_resolve: Ezabatu bidalketak
       forwarded: Birbidalia
+      forwarded_replies_explanation: Salaketa hau beste instantzia bateko erabiltzaile baten edukiari buruzkoa da, eta zure instantziako erabiltzaile bati egidako erantzuna delako bidali dizugu mezu hau.
       forwarded_to: 'Hona birbidalia: %{domain}'
       mark_as_resolved: Markatu konpondutako gisa
       mark_as_sensitive: Markatu hunkigarri gisa
@@ -776,6 +777,7 @@ eu:
           open: Edonork eman dezake izena
       security:
         authorized_fetch: Eskatu autentifikazioa federatutako zerbitzarietatik
+        federation_authentication: Federazio autentifikazioaren betearaztea
       title: Zerbitzariko ezarpenak
     site_uploads:
       delete: Ezabatu igotako fitxategia
@@ -859,6 +861,7 @@ eu:
         message_html: Mastodon eguneraketa kritikoa eskuragarri, mesedez eguneratu ahal bezain azkar.
       software_version_patch_check:
         action: Ikusi eguneraketa eskuragarriak
+        message_html: Mastodon akats konponketa eguneratze bat eskuragarri dago.
       upload_check_privacy_error:
         action: Ikus hemen informazio gehiagorako
         message_html: "<strong>Zure zerbitzaria ez dago ongi konfiguratua. Zure erabiltzaileen pribatutasuna arriskuan dago.</strong>"
@@ -981,6 +984,9 @@ eu:
       body: "%{reporter}(e)k %{target} salatu du"
       body_remote: "%{domain} domeinuko norbaitek %{target} salatu du"
       subject: Salaketa berria %{instance} instantzian (#%{id})
+    new_software_updates:
+      body: Mastodon bertsio berria atera da, eguneratu nahiko duzu, ezta!
+      subject: Mastodon bertsio berriak %{instance} rentzat eskuragarri daude!
     new_trends:
       body: 'Ondorengo elementuak berrikusi behar dira publikoki bistaratu aurretik:'
       new_trending_links:
@@ -988,8 +994,6 @@ eu:
       new_trending_statuses:
         title: Bidalketen joerak
       new_trending_tags:
-        no_approved_tags: Ez dago onartutako traolen joerarik une honetan.
-        requirements: 'Hautagai hauek joeretan onartutako %{rank}. traola gainditu dezakete: une honetan #%{lowest_tag_name} da, %{lowest_tag_score} puntuazioarekin.'
         title: Traolak joeran
       subject: Joera berriak daude berrikusteko %{instance} instantzian
   aliases:
@@ -1033,6 +1037,12 @@ eu:
       hint_html: Azken kontu bat! Gizakia zarela berretsi behar dugu (zabor-kontuak kanpoan mantentzeko baino ez da!) Ebatzi azpiko CAPTCHA eta sakatu "Jarraitu".
       title: Segurtasun txekeoa
     confirmations:
+      awaiting_review_title: Zure izen-ematea berrikusten ari da
+      clicking_this_link: lotura hau klikatzen
+      login_link: hasi saioa
+      proceed_to_login_html: Orain jarraitu dezakezu %{login_link} -era.
+      registration_complete: Osatuta dago orain zure izen-ematea %{domain} -en!
+      welcome_title: Ongi etorri, %{name}!
       wrong_email_hint: Helbide-elektroniko hori zuzena ez bada, kontuaren ezarpenetan alda dezakezu.
     delete_account: Ezabatu kontua
     delete_account_html: Kontua ezabatu nahi baduzu, <a href="%{path}">jarraitu hemen</a>. Berrestea eskatuko zaizu.
@@ -1352,6 +1362,7 @@ eu:
       '86400': Egun 1
     expires_in_prompt: Inoiz ez
     generate: Sortu
+    invalid: Gonbidapen hau ez da baliozkoa
     invited_by: 'Honek gonbidatu zaitu:'
     max_uses:
       one: Erabilera 1

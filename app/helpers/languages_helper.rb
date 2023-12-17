@@ -298,5 +298,3 @@ module LanguagesHelper
     locale_name.to_sym if locale_name.present? && I18n.available_locales.include?(locale_name.to_sym)
   end
 end
-
-# rubocop:enable Metrics/ModuleLength

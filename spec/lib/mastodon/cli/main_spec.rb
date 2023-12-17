@@ -4,17 +4,20 @@ require 'rails_helper'
 require 'mastodon/cli/main'
 
 describe Mastodon::CLI::Main do
-  describe '.exit_on_failure?' do
-    it 'returns true' do
-      expect(described_class.exit_on_failure?).to be true
-    end
-  end
+  subject { cli.invoke(action, arguments, options) }
 
-  describe 'version' do
+  let(:cli) { described_class.new }
+  let(:arguments) { [] }
+  let(:options) { {} }
+
+  it_behaves_like 'CLI Command'
+
+  describe '#version' do
+    let(:action) { :version }
+
     it 'returns the Mastodon version' do
-      expect { described_class.new.invoke(:version) }.to output(
-        a_string_including(Mastodon::Version.to_s)
-      ).to_stdout
+      expect { subject }
+        .to output_results(Mastodon::Version.to_s)
     end
   end
 end

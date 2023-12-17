@@ -144,6 +144,19 @@ RSpec.describe ResolveAccountService, type: :service do
     end
   end
 
+  context 'with webfinger response subject missing a host value' do
+    let(:body) { Oj.dump({ subject: 'user@' }) }
+    let(:url) { 'https://host.example/.well-known/webfinger?resource=acct:user@host.example' }
+
+    before do
+      stub_request(:get, url).to_return(status: 200, body: body)
+    end
+
+    it 'returns nil with incomplete subject in response' do
+      expect(subject.call('user@host.example')).to be_nil
+    end
+  end
+
   context 'with an ActivityPub account' do
     it 'returns new remote account' do
       account = subject.call('foo@ap.example.com')

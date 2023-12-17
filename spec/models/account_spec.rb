@@ -209,9 +209,13 @@ RSpec.describe Account do
         expect(account.refresh!).to be_nil
       end
 
-      it 'calls not ResolveAccountService#call' do
-        expect_any_instance_of(ResolveAccountService).to_not receive(:call).with(acct)
+      it 'does not call ResolveAccountService#call' do
+        service = instance_double(ResolveAccountService, call: nil)
+        allow(ResolveAccountService).to receive(:new).and_return(service)
+
         account.refresh!
+
+        expect(service).to_not have_received(:call).with(acct)
       end
     end
 
@@ -219,8 +223,12 @@ RSpec.describe Account do
       let(:domain) { 'example.com' }
 
       it 'calls ResolveAccountService#call' do
-        expect_any_instance_of(ResolveAccountService).to receive(:call).with(acct).once
+        service = instance_double(ResolveAccountService, call: nil)
+        allow(ResolveAccountService).to receive(:new).and_return(service)
+
         account.refresh!
+
+        expect(service).to have_received(:call).with(acct).once
       end
     end
   end
@@ -442,10 +450,11 @@ RSpec.describe Account do
       expect(results).to eq [match]
     end
 
-    it 'limits by 10 by default' do
-      11.times.each { Fabricate(:account, display_name: 'Display Name') }
+    it 'limits via constant by default' do
+      stub_const('Account::Search::DEFAULT_LIMIT', 1)
+      2.times.each { Fabricate(:account, display_name: 'Display Name') }
       results = described_class.search_for('display')
-      expect(results.size).to eq 10
+      expect(results.size).to eq 1
     end
 
     it 'accepts arbitrary limits' do
@@ -586,9 +595,10 @@ RSpec.describe Account do
     end
 
     it 'limits by 10 by default' do
-      11.times { Fabricate(:account, display_name: 'Display Name') }
+      stub_const('Account::Search::DEFAULT_LIMIT', 1)
+      2.times { Fabricate(:account, display_name: 'Display Name') }
       results = described_class.advanced_search_for('display', account)
-      expect(results.size).to eq 10
+      expect(results.size).to eq 1
     end
 
     it 'accepts arbitrary limits' do

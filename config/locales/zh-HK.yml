@@ -599,6 +599,7 @@ zh-HK:
       created_at: 日期
       delete_and_resolve: 刪除帖文
       forwarded: 已轉寄
+      forwarded_replies_explanation: 這份檢舉來自一位遠端使用者，並涉及遠端內容。之所以轉交給你，是因為被檢舉的內容是回覆你其中一位使用者。
       forwarded_to: 已轉寄到 %{domain}
       mark_as_resolved: 標示為「已處理」
       mark_as_sensitive: 標記為敏感內容
@@ -978,8 +979,6 @@ zh-HK:
       new_trending_statuses:
         title: 熱門帖文
       new_trending_tags:
-        no_approved_tags: 目前沒有經核准的熱門標籤。
-        requirements: '任何一個候選都可能超過 #%{rank} 被核准的標籤。目前是 %{lowest_tag_name} 標籤，得分為 %{lowest_tag_score}。'
         title: 熱門標籤
       subject: "%{instance} 上有待審核的新熱門"
   aliases:
@@ -1023,6 +1022,14 @@ zh-HK:
       hint_html: 還有最後一步！我們需要確認你是人類（這樣我們才能杜絕垃圾郵件！）。解答下方的 CAPTCHA，然後點擊「繼續」。
       title: 安全檢查
     confirmations:
+      awaiting_review: 已確認你的電郵地址！%{domain} 的工作人員正在審核你的註冊資料。如果他們批准你的帳號，你將會收到電郵通知。
+      awaiting_review_title: 正在審核你的註冊
+      clicking_this_link: 點擊此連結
+      login_link: 登入
+      proceed_to_login_html: 你現在可前往 %{login_link}
+      redirect_to_app_html: 你應該已被重新導向<strong>%{app_name}</strong>應用程式。如果尚未被導向，請嘗試%{clicking_this_link}或自行回到應用程式。
+      registration_complete: 你在%{domain}已完成註冊！
+      welcome_title: 歡迎，%{name}！
       wrong_email_hint: 如果該電郵地址不正確，你可以在帳號設定中修改。
     delete_account: 刪除帳號
     delete_account_html: 如果你想刪除你的帳號，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
@@ -1335,6 +1342,7 @@ zh-HK:
       '86400': 1 天後
     expires_in_prompt: 永不過期
     generate: 生成邀請連結
+    invalid: 此邀請無效
     invited_by: 你的邀請人是：
     max_uses:
       other: "%{count} 次"

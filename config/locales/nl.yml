@@ -611,6 +611,7 @@ nl:
       created_at: Gerapporteerd op
       delete_and_resolve: Bericht verwijderen
       forwarded: Doorgestuurd
+      forwarded_replies_explanation: Dit rapport komt van een externe gebruiker en gaat over externe inhoud. Het is naar je doorgestuurd omdat de gerapporteerde inhoud een reactie is op een van jouw gebruikers.
       forwarded_to: Doorgestuurd naar %{domain}
       mark_as_resolved: Markeer als opgelost
       mark_as_sensitive: Als gevoelig markeren
@@ -996,8 +997,6 @@ nl:
       new_trending_statuses:
         title: Trending berichten
       new_trending_tags:
-        no_approved_tags: Op dit moment zijn er geen goedgekeurde hashtags.
-        requirements: 'Elk van deze kandidaten kan de #%{rank} goedgekeurde trending hashtag overtreffen, die momenteel #%{lowest_tag_name} is met een score van %{lowest_tag_score}.'
         title: Trending hashtags
       subject: Nieuwe trends te beoordelen op %{instance}
   aliases:
@@ -1368,6 +1367,7 @@ nl:
       '86400': 1 dag
     expires_in_prompt: Nooit
     generate: Uitnodigingslink genereren
+    invalid: Deze uitnodiging is niet geldig
     invited_by: 'Jij bent uitgenodigd door:'
     max_uses:
       one: 1 keer

@@ -27,8 +27,15 @@ RSpec.describe DeleteAccountService, type: :service do
 
     let!(:account_note) { Fabricate(:account_note, account: account) }
 
-    it 'deletes associated owned records' do
-      expect { subject }.to change {
+    it 'deletes associated owned and target records and target notifications' do
+      expect { subject }
+        .to delete_associated_owned_records
+        .and delete_associated_target_records
+        .and delete_associated_target_notifications
+    end
+
+    def delete_associated_owned_records
+      change do
         [
           account.statuses,
           account.media_attachments,
@@ -39,23 +46,23 @@ RSpec.describe DeleteAccountService, type: :service do
           account.polls,
           account.account_notes,
         ].map(&:count)
-      }.from([2, 1, 1, 1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0, 0, 0, 0])
+      end.from([2, 1, 1, 1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0, 0, 0, 0])
     end
 
-    it 'deletes associated target records' do
-      expect { subject }.to change {
-        [
-          AccountPin.where(target_account: account),
-        ].map(&:count)
-      }.from([1]).to([0])
+    def delete_associated_target_records
+      change(account_pins_for_account, :count).from(1).to(0)
     end
 
-    it 'deletes associated target notifications' do
-      expect { subject }.to change {
+    def account_pins_for_account
+      AccountPin.where(target_account: account)
+    end
+
+    def delete_associated_target_notifications
+      change do
         %w(
           poll favourite status mention follow
         ).map { |type| Notification.where(type: type).count }
-      }.from([1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0])
+      end.from([1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0])
     end
   end
 
@@ -93,28 +100,34 @@ RSpec.describe DeleteAccountService, type: :service do
       it 'sends expected activities to followed and follower inboxes' do
         subject
 
-        expect(a_request(:post, account.inbox_url).with(
-                 body:
-                   hash_including({
-                     'type' => 'Reject',
-                     'object' => hash_including({
-                       'type' => 'Follow',
-                       'actor' => account.uri,
-                       'object' => ActivityPub::TagManager.instance.uri_for(local_follower),
-                     }),
-                   })
-               )).to have_been_made.once
+        expect(post_to_inbox_with_reject).to have_been_made.once
+        expect(post_to_inbox_with_undo).to have_been_made.once
+      end
 
-        expect(a_request(:post, account.inbox_url).with(
-                 body: hash_including({
-                   'type' => 'Undo',
-                   'object' => hash_including({
-                     'type' => 'Follow',
-                     'actor' => ActivityPub::TagManager.instance.uri_for(local_follower),
-                     'object' => account.uri,
-                   }),
-                 })
-               )).to have_been_made.once
+      def post_to_inbox_with_undo
+        a_request(:post, account.inbox_url).with(
+          body: hash_including({
+            'type' => 'Undo',
+            'object' => hash_including({
+              'type' => 'Follow',
+              'actor' => ActivityPub::TagManager.instance.uri_for(local_follower),
+              'object' => account.uri,
+            }),
+          })
+        )
+      end
+
+      def post_to_inbox_with_reject
+        a_request(:post, account.inbox_url).with(
+          body: hash_including({
+            'type' => 'Reject',
+            'object' => hash_including({
+              'type' => 'Follow',
+              'actor' => account.uri,
+              'object' => ActivityPub::TagManager.instance.uri_for(local_follower),
+            }),
+          })
+        )
       end
     end
   end

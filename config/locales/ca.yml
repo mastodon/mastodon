@@ -534,6 +534,7 @@ ca:
       total_reported: Informes sobre ells
       total_storage: Adjunts multimèdia
       totals_time_period_hint_html: Els totals mostrats a sota incloeixen dades de tots els temps.
+      unknown_instance: A hores d'ara no hi ha cap registre d'aquest domini al servidor.
     invites:
       deactivate_all: Desactiva-ho tot
       filter:
@@ -610,6 +611,7 @@ ca:
       created_at: Denunciat
       delete_and_resolve: Elimina les publicacions
       forwarded: Reenviat
+      forwarded_replies_explanation: Aquesta denúncia és d'un usuari extern i sobre contingut extern. Se t'han reenviat perquè el contingut denunciat és en resposta a un dels teus usuaris.
       forwarded_to: Reenviat a %{domain}
       mark_as_resolved: Marca com a resolt
       mark_as_sensitive: Marca com a sensible
@@ -995,8 +997,6 @@ ca:
       new_trending_statuses:
         title: Tuts en tendència
       new_trending_tags:
-        no_approved_tags: Actualment no hi ha etiquetes en tendència aprovades.
-        requirements: 'Qualsevol d''aquests candidats podria superar el #%{rank} de la etiqueta en tendència aprovada, que actualment és "%{lowest_tag_name}" amb una puntuació de %{lowest_tag_score}.'
         title: Etiquetes en tendència
       subject: Noves tendències pendents de revisar a %{instance}
   aliases:
@@ -1040,6 +1040,13 @@ ca:
       hint_html: Una cosa més! Necessitem confirmar que ets una persona humana (és així com mantenim a ratlla l'spam). Resolt el CAPTCHA inferior i clica a "Segueix".
       title: Revisió de seguretat
     confirmations:
+      awaiting_review: S'ha confirmat la teva adreça-e. El personal de %{domain} revisa ara el registre. Rebràs un correu si t'aproven el compte.
+      awaiting_review_title: S'està revisant la teva inscripció
+      clicking_this_link: en clicar aquest enllaç
+      login_link: inici de sessió
+      proceed_to_login_html: Ara pots passar a %{login_link}.
+      registration_complete: La teva inscripció a %{domain} ja és completa.
+      welcome_title: Hola, %{name}!
       wrong_email_hint: Si aquesta adreça de correu electrònic no és correcte, pots canviar-la en els ajustos del compte.
     delete_account: Elimina el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
@@ -1358,6 +1365,7 @@ ca:
       '86400': 1 dia
     expires_in_prompt: Mai
     generate: Genera
+    invalid: Aquesta invitació no és vàlida
     invited_by: 'Has estat invitat per:'
     max_uses:
       one: 1 ús
@@ -1570,6 +1578,8 @@ ca:
     over_daily_limit: Has superat el límit de %{limit} tuts programats per a avui
     over_total_limit: Has superat el límit de %{limit} tuts programats
     too_soon: La data programada ha de ser futura
+  self_destruct:
+    title: Aquest servidor tancarà
   sessions:
     activity: Última activitat
     browser: Navegador

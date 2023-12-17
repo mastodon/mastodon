@@ -611,6 +611,7 @@ es-MX:
       created_at: Denunciado
       delete_and_resolve: Eliminar publicaciones
       forwarded: Reenviado
+      forwarded_replies_explanation: Este reporte es de un usuario remoto y sobre contenido remoto. Se le ha enviado porque el contenido reportado es en respuesta a uno de sus usuarios.
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelto
       mark_as_sensitive: Marcar como sensible
@@ -996,8 +997,6 @@ es-MX:
       new_trending_statuses:
         title: Publicaciones en tendencia
       new_trending_tags:
-        no_approved_tags: Actualmente no hay ninguna etiqueta en tendencia aprobada.
-        requirements: 'Cualquiera de estos candidatos podría superar el hashtag en tendencia aprobado por #%{rank}, que actualmente es #%{lowest_tag_name} con una puntuación de %{lowest_tag_score}.'
         title: Etiquetas en tendencia
       subject: Nuevas tendencias esperando ser revisadas en %{instance}
   aliases:
@@ -1368,6 +1367,7 @@ es-MX:
       '86400': 1 día
     expires_in_prompt: Nunca
     generate: Generar
+    invalid: Esta invitación no es válida
     invited_by: 'Fuiste invitado por:'
     max_uses:
       one: 1 uso

@@ -280,10 +280,10 @@ RSpec.describe AccountStatusesCleanupPolicy do
     let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
 
     before do
-      4.times { faved_primary.increment_count!(:favourites_count) }
-      5.times { faved_secondary.increment_count!(:favourites_count) }
-      4.times { reblogged_primary.increment_count!(:reblogs_count) }
-      5.times { reblogged_secondary.increment_count!(:reblogs_count) }
+      faved_primary.status_stat.update(favourites_count: 4)
+      faved_secondary.status_stat.update(favourites_count: 5)
+      reblogged_primary.status_stat.update(reblogs_count: 4)
+      reblogged_secondary.status_stat.update(reblogs_count: 5)
     end
 
     context 'when passed a max_id' do

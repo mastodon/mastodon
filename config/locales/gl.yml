@@ -384,7 +384,7 @@ gl:
     domain_blocks:
       add_new: Engadir novo bloqueo de dominio
       confirm_suspension:
-        cancel: Cancelar
+        cancel: Desbotar
         confirm: Suspender
         permanent_action: Ao retirar a suspensión non restableces os datos ou a relación.
         preamble_html: Vas suspender a <strong>%{domain}</strong> e os seus subdominios.
@@ -611,6 +611,7 @@ gl:
       created_at: Denunciado
       delete_and_resolve: Eliminar publicacións
       forwarded: Reenviado
+      forwarded_replies_explanation: Esta denuncia procede dunha usuaria remota e acerca de contido remoto. Enviouseche unha copia porque o contido denunciado é unha resposta a unha das túas usuarias.
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resolto
       mark_as_sensitive: Marcar como sensible
@@ -750,7 +751,7 @@ gl:
         title: Retención do contido
       default_noindex:
         desc_html: Aféctalle a tódalas usuarias que non cambiaron este axuste elas mesmas
-        title: Por omisión exclúe as usuarias do indexado por servidores de busca
+        title: Omitir por defecto ás usuarias do indexado por servidores de busca
       discovery:
         follow_recommendations: Recomendacións de seguimento
         preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en Mastodon. Xestiona os diferentes xeitos de promocionar contidos.
@@ -783,7 +784,7 @@ gl:
       destroyed_msg: Eliminado correctamente o subido!
     software_updates:
       critical_update: Crítica - actualiza axiña
-      description: Recomendamos manter actualizado o teu servidor Mastodon para beneficiarte dos últimos arranxos e características. A maiores, de cando en vez hai actualizacións para evitar problemas importantes de seguridade. Debido a isto, Mastodon comproba cada 30 minutos se hai actualizacións e avisarate seguindo as túas preferencias de notificación por correo electrónico.
+      description: Aconsellamos manter actualizado o teu servidor Mastodon para beneficiarte dos últimos arranxos e características. A maiores, de cando en vez hai actualizacións para evitar problemas importantes de seguridade. Debido a isto, Mastodon comproba cada 30 minutos se hai actualizacións e avisarate seguindo as túas preferencias de notificación por correo electrónico.
       documentation_link: Saber máis
       release_notes: Notas da versión
       title: Actualizacións dispoñibles
@@ -996,8 +997,6 @@ gl:
       new_trending_statuses:
         title: Publicacións en voga
       new_trending_tags:
-        no_approved_tags: Non hai etiquetas en voga aprobadas.
-        requirements: 'Calquera destos candidatos podería superar o #%{rank} dos cancelos en voga aprobados, que actualmente é #%{lowest_tag_name} cunha puntuación de %{lowest_tag_score}.'
         title: Cancelos en voga
       subject: Novas tendencias para revisar en %{instance}
   aliases:
@@ -1368,6 +1367,7 @@ gl:
       '86400': 1 día
     expires_in_prompt: Nunca
     generate: Xerar
+    invalid: Este convite non é válido
     invited_by: 'Convidoute:'
     max_uses:
       one: 1 uso
@@ -1528,7 +1528,7 @@ gl:
       too_many_options: non pode haber máis de %{max} opcións
   preferences:
     other: Outro
-    posting_defaults: Valores por omisión
+    posting_defaults: Valores por defecto
     public_timelines: Cronoloxías públicas
   privacy:
     hint_html: "<strong>Personaliza o xeito no que queres que se atope o teu perfil e publicacións.</strong> Mastodon ten variedade de ferramentas para axudarche a acadar unha audiencia maior. Dedica un minuto a revisalas e confirma que se axustan ao teu caso persoal."
@@ -1698,7 +1698,7 @@ gl:
       private_long: Mostrar só as seguidoras
       public: Público
       public_long: Visible para calquera
-      unlisted: Non listado
+      unlisted: Sen listar
       unlisted_long: Visible para calquera, pero non en cronoloxías públicas
   statuses_cleanup:
     enabled: Borrar automáticamente publicacións antigas
@@ -1789,7 +1789,7 @@ gl:
       change_password: cambia o teu contrasinal
       details: 'Estos son os detalles do acceso:'
       explanation: Detectamos que accedeches á conta desde un novo enderezo IP.
-      further_actions_html: Se non foches ti, recomendámosche %{action} inmediatamente e activa o segundo factor de autenticación para manter conta segura.
+      further_actions_html: Se non foches ti, aconsellámosche %{action} inmediatamente e activar o segundo factor de autenticación para manter conta segura.
       subject: Accedeuse á túa conta desde novos enderezos IP
       title: Novo acceso
     warning:

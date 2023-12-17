@@ -192,16 +192,11 @@ RSpec.describe Admin::DomainBlocksController do
       let(:original_severity) { 'suspend' }
       let(:new_severity)      { 'silence' }
 
-      it 'changes the block severity' do
-        expect { subject }.to change { domain_block.reload.severity }.from('suspend').to('silence')
-      end
-
-      it 'undoes individual suspensions' do
-        expect { subject }.to change { remote_account.reload.suspended? }.from(true).to(false)
-      end
-
-      it 'performs individual silences' do
-        expect { subject }.to change { remote_account.reload.silenced? }.from(false).to(true)
+      it 'changes the block severity, suspensions, and silences' do
+        expect { subject }
+          .to change_severity('suspend', 'silence')
+          .and change_suspended(true, false)
+          .and change_silenced(false, true)
       end
     end
 
@@ -209,17 +204,26 @@ RSpec.describe Admin::DomainBlocksController do
       let(:original_severity) { 'silence' }
       let(:new_severity)      { 'suspend' }
 
-      it 'changes the block severity' do
-        expect { subject }.to change { domain_block.reload.severity }.from('silence').to('suspend')
+      it 'changes the block severity, silences, and suspensions' do
+        expect { subject }
+          .to change_severity('silence', 'suspend')
+          .and change_silenced(true, false)
+          .and change_suspended(false, true)
       end
+    end
 
-      it 'undoes individual silences' do
-        expect { subject }.to change { remote_account.reload.silenced? }.from(true).to(false)
-      end
+    private
 
-      it 'performs individual suspends' do
-        expect { subject }.to change { remote_account.reload.suspended? }.from(false).to(true)
-      end
+    def change_severity(from, to)
+      change { domain_block.reload.severity }.from(from).to(to)
+    end
+
+    def change_silenced(from, to)
+      change { remote_account.reload.silenced? }.from(from).to(to)
+    end
+
+    def change_suspended(from, to)
+      change { remote_account.reload.suspended? }.from(from).to(to)
     end
   end
 

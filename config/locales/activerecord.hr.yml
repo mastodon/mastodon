@@ -6,7 +6,9 @@ hr:
         expires_at: Krajnji rok
         options: Opcije
       user:
+        agreement: Ugovor o uslugama
         email: E-mail adresa
+        locale: Lokalitet
         password: Lozinka
       user/account:
         username: Korisničko ime
@@ -18,3 +20,16 @@ hr:
           attributes:
             username:
               invalid: mora sadržavati samo slova, brojeve i _
+              reserved: je rezervisano
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nije validan URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nije validan URL
+        import:
+          attributes:
+            data:
+              malformed: je neispravan

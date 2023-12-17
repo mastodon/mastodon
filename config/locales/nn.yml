@@ -534,6 +534,7 @@ nn:
       total_reported: Rapportar om dei
       total_storage: Medievedlegg
       totals_time_period_hint_html: Totalsum vist nedanfor gjeld data for alle tidsperiodar.
+      unknown_instance: Domenet er ukjent for denne tenaren.
     invites:
       deactivate_all: Slå av alle
       filter:
@@ -610,6 +611,7 @@ nn:
       created_at: Rapportert
       delete_and_resolve: Slett innlegg
       forwarded: Videresendt
+      forwarded_replies_explanation: Denne rapporten gjeld innhald på ein annan nettstad. Rapporten er vidaresend til deg fordi det rapporterte innhaldet er eit svar på noko ein av brukarane på nettstaden din har skrive.
       forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Merk som løyst
       mark_as_sensitive: Marker som ømtolig
@@ -995,8 +997,6 @@ nn:
       new_trending_statuses:
         title: Populære innlegg
       new_trending_tags:
-        no_approved_tags: Det er ingen godkjende populære emneknaggar no.
-        requirements: 'Alle desse kandidatane kan stiga høgare enn den godkjende populære emneknaggen #%{rank}, som er #%{lowest_tag_name} med ei plassering på %{lowest_tag_score}.'
         title: Populære emneknaggar
       subject: Nye trendar å sjå gjennom på %{instance}
   aliases:
@@ -1040,6 +1040,14 @@ nn:
       hint_html: Berre ein ting til! Vi må bekrefte at du er et menneske (så vi kan halde spam ute!). Løys CAPTCHA-en nedanfor og klikk "Fortsett".
       title: Sikkerheitssjekk
     confirmations:
+      awaiting_review: Epostadressa di er stadfesta! Styrarane på %{domain} ser gjennom registreringa di. Du får ein epost frå dei om dei godkjenner brukarkontoen din.
+      awaiting_review_title: Me går gjennom registreringa di
+      clicking_this_link: klikka på denne lenka
+      login_link: logga inn
+      proceed_to_login_html: No kan du %{login_link}.
+      redirect_to_app_html: Du skulle vorte vidaresend til <strong>%{app_name}</strong>-appen. Viss det ikkje skjedde, kan du prøva å %{clicking_this_link} eller manuelt gå tilbake til appen.
+      registration_complete: Du har registrert deg som brukar på %{domain}.
+      welcome_title: Velkomen, %{name}!
       wrong_email_hint: Viss epostadressa er feil, kan du endra ho i kontoinnstillingane.
     delete_account: Slett konto
     delete_account_html: Om du vil sletta kontoen din, kan du <a href="%{path}">gå hit</a>. Du vert spurd etter stadfesting.
@@ -1101,6 +1109,7 @@ nn:
       functional: Kontoen din er fullt operativt.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
+      self_destruct: Av di %{domain} er i ferd med å stenga, vil du berre få avgrensa tilgang til brukarkontoen din.
       view_strikes: Vis tidligere advarsler mot kontoen din
     too_fast: Skjemaet ble sendt inn for raskt, prøv på nytt.
     use_security_key: Bruk sikkerhetsnøkkel
@@ -1358,6 +1367,7 @@ nn:
       '86400': 1 dag
     expires_in_prompt: Aldri
     generate: Lag innbydingslenkje
+    invalid: Denne invitasjonen er ikkje gyldig
     invited_by: 'Du vart innboden av:'
     max_uses:
       one: 1 bruk
@@ -1570,6 +1580,9 @@ nn:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
     too_soon: Den planlagte datoen må være i fremtiden
+  self_destruct:
+    lead_html: Diverre stengjer <strong>%{domain}</strong> dørene for godt. Viss du hadde ein brukarkonto der, vil du ikkje kunna halda fram å bruka han, men du kan få ut ein tryggingskopi av dataa dine.
+    title: Denne tenaren stengjer
   sessions:
     activity: Siste aktivitet
     browser: Nettlesar

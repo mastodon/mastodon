@@ -611,6 +611,7 @@ fy:
       created_at: Rapportearre op
       delete_and_resolve: Berjocht fuortsmite
       forwarded: Trochstjoerd
+      forwarded_replies_explanation: Dit rapport komt fan in eksterne brûker en giet oer eksterne ynhâld. It is nei jo trochstjoerd, omdat de rapportearre ynhâld in reaksje is op ien fan jo brûkers.
       forwarded_to: Trochstjoerd nei %{domain}
       mark_as_resolved: As oplost markearje
       mark_as_sensitive: As gefoelich markearje
@@ -996,8 +997,6 @@ fy:
       new_trending_statuses:
         title: Trending berjochten
       new_trending_tags:
-        no_approved_tags: Op dit stuit binne der gjin goedkarre hashtags.
-        requirements: 'Elk fan dizze kandidaten kin de #%{rank} goedkarre trending hashtag oertreffe, dy’t op dit stuit #%{lowest_tag_name} is mei in skoare fan %{lowest_tag_score}.'
         title: Trending hashtags
       subject: Nije trends te beoardielen op %{instance}
   aliases:
@@ -1368,6 +1367,7 @@ fy:
       '86400': 1 dei
     expires_in_prompt: Nea
     generate: Utnûgingskeppeling generearje
+    invalid: Dizze útnûging is net jildich
     invited_by: 'Jo binne útnûge troch:'
     max_uses:
       one: 1 kear

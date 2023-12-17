@@ -8,12 +8,10 @@ describe Admin::ActionLogsController do
   # Action logs typically cause issues when their targets are not in the database
   let!(:account) { Fabricate(:account) }
 
-  let!(:orphaned_logs) do
-    %w(
-      Account User UserRole Report DomainBlock DomainAllow
-      EmailDomainBlock UnavailableDomain Status AccountWarning
-      Announcement IpBlock Instance CustomEmoji CanonicalEmailBlock Appeal
-    ).map { |type| Admin::ActionLog.new(account: account, action: 'destroy', target_type: type, target_id: 1312).save! }
+  before do
+    orphaned_log_types.map do |type|
+      Fabricate(:action_log, account: account, action: 'destroy', target_type: type, target_id: 1312)
+    end
   end
 
   describe 'GET #index' do
@@ -23,5 +21,28 @@ describe Admin::ActionLogsController do
 
       expect(response).to have_http_status(200)
     end
+  end
+
+  private
+
+  def orphaned_log_types
+    %w(
+      Account
+      AccountWarning
+      Announcement
+      Appeal
+      CanonicalEmailBlock
+      CustomEmoji
+      DomainAllow
+      DomainBlock
+      EmailDomainBlock
+      Instance
+      IpBlock
+      Report
+      Status
+      UnavailableDomain
+      User
+      UserRole
+    )
   end
 end

@@ -534,6 +534,7 @@ et:
       total_reported: Nende kohta teateid
       total_storage: Lisatud meedia
       totals_time_period_hint_html: Allpool kuvatud summad sisaldavad andmed kogu aja kohta.
+      unknown_instance: Hetkel pole selle domeeni jaoks siin serveris kirjet.
     invites:
       deactivate_all: Peata kõik
       filter:
@@ -610,6 +611,7 @@ et:
       created_at: Teavitatud
       delete_and_resolve: Kustuta postitused
       forwarded: Edastatud
+      forwarded_replies_explanation: See aruanne pärineb kaugkasutajalt ja käsitleb kaugsisu. See on edastatud sulle, sest raporteeritud sisu on vastus ühele sinu kasutajale.
       forwarded_to: Edastatud %{domain} domeeni
       mark_as_resolved: Märgi lahendatuks
       mark_as_sensitive: Märgi kui tundlik sisu
@@ -832,6 +834,20 @@ et:
     system_checks:
       database_schema_check:
         message_html: On ootel andmebaasi migreerimisi. Rakenduse ootuspäraseks toimimiseks palun käivita need
+      elasticsearch_health_red:
+        message_html: Elasticsearch klaster on ebaterve (punane staatus), otsingufunktsioonid ei ole saadaval
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch klaster on ebaterve (kollane staatus), võiksid uurida põhjust
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearchi indeksite kaardistused on vananenud. Palun käivita <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Vaata dokumentatsiooni
+        message_html: Elasticsearchi klastris on rohkem kui üks sõlme, kuid Mastodon ei ole nende kasutamiseks konfigureeritud.
+      elasticsearch_preset_single_node:
+        action: Vaata dokumentatsiooni
+        message_html: Elasticsearchi klastris on ainult üks sõlm <code>ES_PRESET</code> peaks olema seatud väärtusele <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Elasticsearchi süsteemiindeks on seadistuse muutumise tõttu vananenud. Palun käivita <code>tootctl search deploy --reset-chewy</code> selle uuendamiseks.
       elasticsearch_running_check:
         message_html: Elasticsearch ei vasta. Kontrolli, kas see töötab või keela täistekstiotsing
       elasticsearch_version_check:
@@ -981,8 +997,6 @@ et:
       new_trending_statuses:
         title: Trendikad postitused
       new_trending_tags:
-        no_approved_tags: Hetkel ei ole ühtegi heaks kiidetud populaarset silti.
-        requirements: 'Need on siltide kandidaadid mille hulgast ükskõik milline võib järjekorras mööda jõuda #%{rank} kohal olevast heaks kiidetud sildist. See on hetkel #%{lowest_tag_name} mille seis on %{lowest_tag_score}.'
         title: Trendikad sildid
       subject: Uued %{instance} trendid ülevaatuseks
   aliases:
@@ -1026,6 +1040,14 @@ et:
       hint_html: Üks asi veel! Me peame veenduma, et oled inimene (et me saaksime spämmi väljaspoole jätta!). Lahenda allpool olev CAPTCHA ja klõpsa "Jätka".
       title: Turvalisuse kontroll
     confirmations:
+      awaiting_review: E-posti aadress on kinnitatud! %{domain} töötajad vaatavad praegu registreeringut läbi. Saad e-kirja, kui nad kiidavad konto heaks!
+      awaiting_review_title: Su registreeringut vaadatakse läbi
+      clicking_this_link: klõpsates seda linki
+      login_link: logi sisse
+      proceed_to_login_html: Saad nüüd jätkata valikuga %{login_link}.
+      redirect_to_app_html: Sind oleks pidanud suunatama rakendusse <strong>%{app_name}</strong>. Kui seda ei juhtunud, proovi %{clicking_this_link} või naase käsitsi rakendusse.
+      registration_complete: Sinu registreering domeenil %{domain} on nüüd valmis!
+      welcome_title: Tere tulemast, %{name}!
       wrong_email_hint: Kui see e-postiaadress pole korrektne, saad seda kontosätetes muuta.
     delete_account: Konto kustutamine
     delete_account_html: Kui soovid oma konto kustutada, siis <a href="%{path}">jätka siit</a>. Pead kustutamise eraldi kinnitama.
@@ -1087,6 +1109,7 @@ et:
       functional: Konto on täies mahus kasutatav.
       pending: Taotlus ootab ülevaatamist meie personali poolt. See võib võtta mõne aja. Kui taotlus on vastu võetud, saadetakse sulle e-kiri.
       redirecting_to: See konto pole aktiivne, sest on suunatud aadressile %{acct}.
+      self_destruct: Kuna %{domain} on sulgemisel, saad oma kontole vaid piiratud ligipääsu.
       view_strikes: Vaata enda eelnevaid juhtumeid
     too_fast: Vorm esitatud liiga kiirelt, proovi uuesti.
     use_security_key: Kasuta turvavõtit
@@ -1344,6 +1367,7 @@ et:
       '86400': 1 päev
     expires_in_prompt: Mitte kunagi
     generate: Loo
+    invalid: See kutse pole kehtiv
     invited_by: 'Sind kutsus:'
     max_uses:
       one: 1 kasutus
@@ -1556,6 +1580,9 @@ et:
     over_daily_limit: Lubatud ajastatud postituste arv %{limit} päevas on tänaseks ületatud
     over_total_limit: Oled jõudnud ajastatud postituste lubatud maksimumarvuni %{limit}
     too_soon: Ajastatud kuupäev peab olema tukevikus
+  self_destruct:
+    lead_html: Kahjuks suletakse <strong>%{domain}</strong> lõplikult. Kui sul oli seal konto, ei saa sa seda enam kasutada, kuid siiski võid taotleda oma andmete varukoopiat.
+    title: See server suletakse
   sessions:
     activity: Viimane aktiivsus
     browser: Veebilehitseja
@@ -1806,7 +1833,7 @@ et:
         Kui mõni asi arusaamatuks jääb, siis võib vaadata juhendvideot: https://youtu.be/J4ItbTOAw7Q
       explanation: Siin on mõned nõuanded, mis aitavad alustada
       final_action: Alusta postitamist
-      final_step: 'Nüüd tee oma esimene postitus. Hea tava on uues kohas ennast tutvustada ning kindlasti kasuta selles postituses ka teemaviidet #tutvustus. Isegi kui sul ei ole veel jälgijaid, siis su postitusi näevad kohalikul ajajoonel ka kõik teised serveri kasutajad.'
+      final_step: 'Nüüd tee oma esimene postitus. Hea tava on uues kohas ennast tutvustada ning kindlasti kasuta selles postituses ka silti #tutvustus. Isegi kui sul ei ole veel jälgijaid, siis su postitusi näevad kohalikul ajajoonel ka kõik teised serveri kasutajad.'
       full_handle: Kasutajanimi Mastodon võrgustikus
       full_handle_hint: Kui jagad kasutajanime väljaspool serverit, siis kasuta kindlasti pikka nime. Erinevates serverites võib olla sama kasutajanimega liikmeid.
       subject: Tere tulemast Mastodoni

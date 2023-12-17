@@ -36,7 +36,7 @@ class Account extends ImmutablePureComponent {
 
   static propTypes = {
     size: PropTypes.number,
-    account: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.record,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
@@ -119,7 +119,7 @@ class Account extends ImmutablePureComponent {
         buttons = <Button title={intl.formatMessage(messages.mute)} onClick={this.handleMute} />;
       } else if (defaultAction === 'block') {
         buttons = <Button text={intl.formatMessage(messages.block)} onClick={this.handleBlock} />;
-      } else if (!account.get('moved') || following) {
+      } else if (!account.get('suspended') && !account.get('moved') || following) {
         buttons = <Button text={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} />;
       }
     }

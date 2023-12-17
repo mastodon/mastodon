@@ -635,6 +635,7 @@ sl:
       created_at: Prijavljeno
       delete_and_resolve: Izbriši objave
       forwarded: Posredovano
+      forwarded_replies_explanation: To poročilo je od oddaljenega uporabnika in se nanaša na oddaljeno vsebino. Posredovano vam je bilo, ker je vsebina, o kateri poroča, odgovor enemu od vaših uporabnikov.
       forwarded_to: Posredovano na %{domain}
       mark_as_resolved: Označi kot rešeno
       mark_as_sensitive: Označi, kot občutljivo
@@ -1032,8 +1033,6 @@ sl:
       new_trending_statuses:
         title: Trendne objave
       new_trending_tags:
-        no_approved_tags: Trenutno ni odobrenih ključnikov v trendu.
-        requirements: Vsak od teh kandidatov bi lahko presegel odobreni ključnik v trendu št. %{rank}, ki je trenutno %{lowest_tag_name} z rezultatom %{lowest_tag_score}.
         title: Ključniki v trendu
       subject: Novi trendi za pregled na %{instance}
   aliases:
@@ -1418,6 +1417,7 @@ sl:
       '86400': 1 dan
     expires_in_prompt: Nikoli
     generate: Ustvari
+    invalid: To povabilo ni veljavno
     invited_by: 'Povabil/a vas je:'
     max_uses:
       few: "%{count} uporabe"

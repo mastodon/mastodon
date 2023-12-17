@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_07_150100) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_06_183200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -811,6 +811,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_150100) do
   create_table "preview_cards_statuses", primary_key: ["status_id", "preview_card_id"], force: :cascade do |t|
     t.bigint "preview_card_id", null: false
     t.bigint "status_id", null: false
+    t.string "url"
   end
 
   create_table "relays", force: :cascade do |t|

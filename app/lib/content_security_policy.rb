@@ -9,8 +9,8 @@ class ContentSecurityPolicy
     url_from_configured_asset_host || url_from_base_host
   end
 
-  def media_host
-    cdn_host_value || assets_host
+  def media_hosts
+    [assets_host, cdn_host_value].compact
   end
 
   private

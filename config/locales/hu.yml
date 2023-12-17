@@ -4,7 +4,7 @@ hu:
     about_mastodon_html: 'A jövő közösségi hálózata: Hirdetések és céges megfigyelés nélkül, etikus dizájnnal és decentralizációval! Legyél a saját adataid ura a Mastodonnal!'
     contact_missing: Nincs megadva
     contact_unavailable: N/A
-    hosted_on: "%{domain} Mastodon szerver"
+    hosted_on: "%{domain} Mastodon-kiszolgáló"
     title: Névjegy
   accounts:
     follow: Követés
@@ -611,6 +611,7 @@ hu:
       created_at: Jelentve
       delete_and_resolve: Bejegyzések törlése
       forwarded: Továbbítva
+      forwarded_replies_explanation: Ez a jelentés egy távoli flehasználótól származik, és távoli tartalomról szól. Azért lett neked továbbítva, mert a jelentett tartalom az egyik felhasználódnak küldött válasz.
       forwarded_to: 'Továbbítva ide: %{domain}'
       mark_as_resolved: Megjelölés megoldottként
       mark_as_sensitive: Érzékenynek jelölés
@@ -746,7 +747,7 @@ hu:
         desc_html: Ez hCaptcha-ból származó külső scripteket használ, mely biztonsági vagy adatvédelmi résnek bizonyulhat. Ezen kívül ez <strong>a regisztrációs folyamatot jelentősen megnehezítheti bizonyos (kifejezetten különleges szükségletű) emberek számára</strong>. Emiatt fontold meg más módszerek, mint pl. jóváhagyás-alapú vagy meghívásalapú regisztráció használatát.
         title: Az új felhasználóknak egy CAPTCHA-t kell megoldaniuk, hogy megerősítsék a fiókjuk regisztrációját
       content_retention:
-        preamble: Felhasználók által generált tartalom Mastodonon való tárolásának szabályozása.
+        preamble: A felhasználók által előállított tartalom Mastodonon való tárolásának szabályozása.
         title: Tartalom megtartása
       default_noindex:
         desc_html: Azokat a felhasználókat érinti, akik nem módosították ezt a beállítást
@@ -996,8 +997,6 @@ hu:
       new_trending_statuses:
         title: Felkapott bejegyzések
       new_trending_tags:
-        no_approved_tags: Jelenleg nincsenek jóváhagyott felkapott hashtagek.
-        requirements: 'Ezek közül bármelyik jelölt lehagyná a %{rank}. jóváhagyott felkapott hashtaget, amely jelenleg a(z) #%{lowest_tag_name} ezzel a pontszámmal: %{lowest_tag_score}.'
         title: Felkapott hashtagek
       subject: 'Új jóváhagyandó trendek ezen: %{instance}'
   aliases:
@@ -1008,8 +1007,8 @@ hu:
     hint_html: Ha másik fiókról kívánsz átlépni erre a fiókra, itt létrehozhatsz egy aliast, amelyre szükség van, mielőtt folytathatod a követők áthelyezését a régi fiókból erre. Ez az áthelyezés önmagában <strong>ártalmatlan és visszafordítható</strong> folyamat. <strong>A fiók áttelepítése a régi fiókból indul el. </strong>
     remove: Alias szétkapcsolása
   appearance:
-    advanced_web_interface: Haladó webes felület
-    advanced_web_interface_hint: 'Ha szeretnéd, a teljes képernyőszélességet felhasználhatod. A haladó webes felülettel különböző oszlopokat állíthatsz be, hogy egyszerre annyi infót láthass, amennyit csak akarsz: Saját idővonal, értesítések, föderációs idővonal, bármennyi lista vagy hashtag.'
+    advanced_web_interface: Speciális webes felület
+    advanced_web_interface_hint: 'Ha szeretnéd, a képernyő teljes szélességét kihasználhatod. A speciális webes felülettel különböző oszlopokat állíthatsz be, hogy egyszerre annyi információt láthass, amennyit csak akarsz: Kezdőoldal, értesítések, föderációs idővonal, bármennyi lista vagy hashtag.'
     animations_and_accessibility: Animáció és akadálymentesítés
     confirmation_dialogs: Megerősítő párbeszédablakok
     discovery: Felfedezés
@@ -1053,7 +1052,7 @@ hu:
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
     description:
-      prefix_invited_by_user: "@%{name} meghív téged, hogy csatlakozz ehhez a Mastodon kiszolgálóhoz."
+      prefix_invited_by_user: "@%{name} meghív téged, hogy csatlakozz ehhez a Mastodon-kiszolgálóhoz."
       prefix_sign_up: Regisztrláj még ma a Mastodonra!
       suffix: Egy fiókkal követhetsz másokat, bejegyzéseket tehetsz közzé, eszmét cserélhetsz más Mastodon szerverek felhasználóival!
     didnt_get_confirmation: Nem kaptál visszaigazoló hivatkozást?
@@ -1102,7 +1101,7 @@ hu:
       title: 'Bejelentkezés ide: %{domain}'
     sign_up:
       manual_review: A(z) %{domain} regisztrációi a moderátorok kézi felülvizsgálatán mennek át. Hogy segítsd a regisztráció feldolgozását, írj röviden magadról, és hogy miért szeretnél fiókot a(z) %{domain} oldalon.
-      preamble: Egy fiókkal ezen a Mastodon kiszolgálón követhetsz bárkit a hálózaton, függetlenül attól, hogy az illető fiókja melyik kiszolgálón található.
+      preamble: Egy fiókkal ezen a Mastodon-kiszolgálón követhetsz bárkit a hálózaton, függetlenül attól, hogy az illető fiókja melyik kiszolgálón található.
       title: Állítsuk be a fiókod a %{domain} kiszolgálón.
     status:
       account_status: Fiók állapota
@@ -1235,7 +1234,7 @@ hu:
   filters:
     contexts:
       account: Profil
-      home: Saját idővonal
+      home: Kezdőlap és listák
       notifications: Értesítések
       public: Nyilvános idővonalak
       thread: Beszélgetések
@@ -1246,7 +1245,7 @@ hu:
       statuses_hint_html: Ez a szűrő egyedi bejegyzések kiválasztására vonatkozik, függetlenül attól, hogy megfelelnek-e a lenti kulcsszavaknak. <a href="%{path}">Engedélyezze vagy távolítsa el a bejegyzéseket a szűrőből</a>.
       title: Szűrő szerkesztése
     errors:
-      deprecated_api_multiple_keywords: Ezek a paraméterek nem módosíthatóak az alkalmazásból, mert több mint egy szűrőkulcsszóra is hatással vannak. Használd az alkalmazás vagy a webes felület újabb verzióját.
+      deprecated_api_multiple_keywords: Ezek a paraméterek nem módosíthatók az alkalmazásból, mert egynél több szűrőkulcsszóra is hatással vannak. Használd az alkalmazás vagy a webes felület újabb verzióját.
       invalid_context: A megadott kontextus hamis vagy hiányzik
     index:
       contexts: 'Szűrés helye: %{contexts}'
@@ -1368,6 +1367,7 @@ hu:
       '86400': 1 nap
     expires_in_prompt: Soha
     generate: Generálás
+    invalid: Ez a meghívó nem érvényes
     invited_by: 'Téged meghívott:'
     max_uses:
       one: 1 használat
@@ -1396,7 +1396,7 @@ hu:
     unsubscribe:
       action: Igen, leiratkozás
       complete: Leiratkozva
-      confirmation_html: Biztos vagy benne, hogy le szeretnél iratkozni arról, hogy %{type} típusú üzeneteket kapj a %{domain} Mastodon kiszolgálón a %{email} címedre? Bármikor újra feliratkozhatsz az <a href="%{settings_path}">email értesítések beállításainál</a>.
+      confirmation_html: 'Biztos, hogy leiratkozol arról, hogy %{type} típusú üzeneteket kapj a %{domain} Mastodon-kiszolgálótól erre a címedre: %{email}? Bármikor újra feliratkozhatsz az <a href="%{settings_path}">e-mail-értesítések beállításánál</a>.'
       emails:
         notification_emails:
           favourite: kedvencnek jelölésről email értesítő
@@ -1405,7 +1405,7 @@ hu:
           mention: megemlítésről email értesítő
           reblog: megtolásról email értesítő
       resubscribe_html: Ha tévedésből iratkoztál le, újra feliratkozhatsz az <a href="%{settings_path}">email értesítések beállításainál</a>.
-      success_html: Mostantól nem kapsz %{type} típusú üzeneket a %{domain} Mastodon kiszolgálón a %{email} címedre.
+      success_html: 'Mostantól nem kapsz %{type} típusú üzeneket a(z) %{domain} Mastodon-kiszolgálón erre a címedre: %{email}.'
       title: Leiratkozás
   media_attachments:
     validations:
@@ -1743,9 +1743,9 @@ hu:
   tags:
     does_not_match_previous_name: nem illeszkedik az előző névvel
   themes:
-    contrast: Mastodon (Nagy kontrasztú)
-    default: Mastodon (Sötét)
-    mastodon-light: Mastodon (Világos)
+    contrast: Mastodon (nagy kontrasztú)
+    default: Mastodon (sötét)
+    mastodon-light: Mastodon (világos)
   time:
     formats:
       default: "%Y. %b %d., %H:%M"
@@ -1782,7 +1782,7 @@ hu:
       subject: A %{date}-i fellebbezésedet visszautasították
       title: Fellebbezés visszautasítva
     backup_ready:
-      explanation: A Mastodon fiókod teljes mentését kérted. A mentés kész ás letölthető!
+      explanation: A Mastodon-fiókod teljes mentését kérted. A mentés elkészült, és letölthető.
       subject: Az adataidról készült archív letöltésre kész
       title: Archiválás
     suspicious_sign_in:

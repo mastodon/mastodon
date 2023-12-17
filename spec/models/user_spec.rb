@@ -27,12 +27,6 @@ RSpec.describe User do
       expect(user).to model_have_error_on_field(:account)
     end
 
-    it 'is invalid without a valid locale' do
-      user = Fabricate.build(:user, locale: 'toto')
-      user.valid?
-      expect(user).to model_have_error_on_field(:locale)
-    end
-
     it 'is invalid without a valid email' do
       user = Fabricate.build(:user, email: 'john@')
       user.valid?
@@ -43,6 +37,18 @@ RSpec.describe User do
       user = Fabricate.build(:user, email: 'invalid-email')
       user.save(validate: false)
       expect(user.valid?).to be true
+    end
+
+    it 'cleans out invalid locale' do
+      user = Fabricate.build(:user, locale: 'toto')
+      expect(user.valid?).to be true
+      expect(user.locale).to be_nil
+    end
+
+    it 'cleans out invalid timezone' do
+      user = Fabricate.build(:user, time_zone: 'toto')
+      expect(user.valid?).to be true
+      expect(user.time_zone).to be_nil
     end
 
     it 'cleans out empty string from languages' do
@@ -102,7 +108,7 @@ RSpec.describe User do
   end
 
   describe 'blacklist' do
-    around(:each) do |example|
+    around do |example|
       old_blacklist = Rails.configuration.x.email_blacklist
 
       Rails.configuration.x.email_domains_blacklist = 'mvrht.com'
@@ -169,7 +175,7 @@ RSpec.describe User do
       let(:user) { Fabricate(:user, confirmed_at: nil, unconfirmed_email: new_email) }
 
       context 'when the user is already approved' do
-        around(:example) do |example|
+        around do |example|
           registrations_mode = Setting.registrations_mode
           Setting.registrations_mode = 'approved'
 
@@ -193,7 +199,7 @@ RSpec.describe User do
       end
 
       context 'when the user does not require explicit approval' do
-        around(:example) do |example|
+        around do |example|
           registrations_mode = Setting.registrations_mode
           Setting.registrations_mode = 'open'
 
@@ -213,7 +219,7 @@ RSpec.describe User do
       end
 
       context 'when the user requires explicit approval but is not approved' do
-        around(:example) do |example|
+        around do |example|
           registrations_mode = Setting.registrations_mode
           Setting.registrations_mode = 'approved'
 
@@ -237,7 +243,7 @@ RSpec.describe User do
   describe '#approve!' do
     subject { user.approve! }
 
-    around(:example) do |example|
+    around do |example|
       registrations_mode = Setting.registrations_mode
       Setting.registrations_mode = 'approved'
 
@@ -338,7 +344,7 @@ RSpec.describe User do
   end
 
   describe 'whitelist' do
-    around(:each) do |example|
+    around do |example|
       old_whitelist = Rails.configuration.x.email_domains_whitelist
 
       Rails.configuration.x.email_domains_whitelist = 'mastodon.space'

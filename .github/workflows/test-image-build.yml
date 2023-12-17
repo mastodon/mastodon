@@ -7,6 +7,7 @@ on:
       - .github/workflows/build-releases.yml
       - .github/workflows/test-image-build.yml
       - Dockerfile
+      - streaming/Dockerfile
 permissions:
   contents: read
 
@@ -18,4 +19,17 @@ jobs:
 
     uses: ./.github/workflows/build-container-image.yml
     with:
+      file_to_build: Dockerfile
       platforms: linux/amd64 # Testing only on native platform so it is performant
+      cache: true
+
+  build-image-streaming:
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-streaming
+      cancel-in-progress: true
+
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      file_to_build: streaming/Dockerfile
+      platforms: linux/amd64 # Testing only on native platform so it is performant
+      cache: true

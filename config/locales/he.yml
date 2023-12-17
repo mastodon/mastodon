@@ -76,7 +76,7 @@ he:
       enabled_msg: ביטול השעית החשבון של %{username} בוצע בהצלחה
       followers: עוקבים
       follows: נעקבים
-      header: כותרת
+      header: תמונת נושא
       inbox_url: כתובת תיבת דואר נכנס
       invite_request_text: סיבות להצטרפות
       invited_by: הוזמן על ידי
@@ -113,8 +113,8 @@ he:
       previous_strikes_description_html:
         many: לחשבון הזה יש <strong>%{count}</strong> פסילות.
         one: לחשבון הזה פסילה <strong>אחת</strong>.
-        other: לחשבון הזה <strong>%{count}</strong> פסילות.
-        two: לחשבון הזה <strong>%{count}</strong> פסילות.
+        other: לחשבון הזה יש <strong>%{count}</strong> פסילות.
+        two: לחשבון הזה יש <strong>שתי</strong> פסילות.
       promote: להעלות בדרגה
       protocol: פרטיכל
       public: פומבי
@@ -128,7 +128,7 @@ he:
       remove_avatar: הסרת תמונת פרופיל
       remove_header: הסרת כותרת
       removed_avatar_msg: תמונת הפרופיל של %{username} הוסרה בהצלחה
-      removed_header_msg: תמונת הראשה של %{username} הוסרה בהצלחה
+      removed_header_msg: תמונת הנושא של %{username} הוסרה בהצלחה
       resend_confirmation:
         already_confirmed: משתמש זה כבר אושר
         send: שלח מחדש קישור לאימות
@@ -635,6 +635,7 @@ he:
       created_at: מדווח
       delete_and_resolve: מחיקת הודעות
       forwarded: קודם
+      forwarded_replies_explanation: דווח זה הגיע מחשבון משתמש חיצוני על תוכן חיצוני. הוא הועבר אליך כיוון שהתוכן שדווח הוא בתשובה למשתמש.ת שלך.
       forwarded_to: קודם ל-%{domain}
       mark_as_resolved: סימון כפתור
       mark_as_sensitive: סימון כרגיש
@@ -782,11 +783,11 @@ he:
       discovery:
         follow_recommendations: המלצות מעקב
         preamble: הצפה של תוכן מעניין בקבלת פני משתמשות חדשות שאולי אינן מכירות עדיין א.נשים במסטודון. ניתן לשלוט איך אפשרויות גילוי שונות עובדות על השרת שלך.
-        profile_directory: מדריך פרופילים
+        profile_directory: ספריית פרופילים
         public_timelines: פידים פומביים
         publish_discovered_servers: פרסום שרתים שנתגלו
         publish_statistics: פרסום הסטטיסטיקות בפומבי
-        title: גילוי
+        title: תגליות
         trends: נושאים חמים
       domain_blocks:
         all: לכולם
@@ -1032,8 +1033,6 @@ he:
       new_trending_statuses:
         title: הודעות חמות
       new_trending_tags:
-        no_approved_tags: אין כרגע שום תגיות חמות מאושרות.
-        requirements: כל אחת מהמועמדות האלו עשויה לעבור את התגית החמה המאושרת מדרגה %{rank}, שהיא כרגע %{lowest_tag_name} עם ציון של %{lowest_tag_score}.
         title: תגיות חמות
       subject: נושאים חמים חדשים מוכנים לסקירה ב-%{instance}
   aliases:
@@ -1048,7 +1047,7 @@ he:
     advanced_web_interface_hint: 'אם ברצונך לעשות שימוש במלוא רוחב המסך, ממשק הווב המתקדם מאפשר לך להגדיר עמודות רבות ושונות כדי לראות בו זמנית כמה מידע שתרצה/י: פיד הבית, התראות, פרהסיה ומספר כלשהו של רשימות ותגיות.'
     animations_and_accessibility: הנפשות ונגישות
     confirmation_dialogs: חלונות אישור
-    discovery: גילוי
+    discovery: תגליות
     localization:
       body: מסטודון מתורגם על ידי מתנדבים.
       guide_link: https://crowdin.com/project/mastodon
@@ -1280,7 +1279,7 @@ he:
       keywords: מילות מפתח
       statuses: הודעות מסויימות
       statuses_hint_html: הסנן פועל על בחירה ידנית של הודעות בין אם הן מתאימות למילות המפתח להלן ואם לאו. posts regardless of whether they match the keywords below. <a href="%{path}">בחינה או הסרה של ההודעות מהסנן</a>.
-      title: ערוך מסנן
+      title: לערוך מסנן
     errors:
       deprecated_api_multiple_keywords: לא ניתן לשנות פרמטרים אלו מהיישומון הזה בגלל שהם חלים על יותר ממילת מפתח אחת. ניתן להשתמש ביישומון מעודכן יותר או בממשק הוובי.
       invalid_context: לא סופק הקשר או הקשר לא תקין
@@ -1336,7 +1335,7 @@ he:
     deselect: בטל בחירה של הכל
     none: כלום
     order_by: מיין לפי
-    save_changes: שמור שינויים
+    save_changes: לשמור שינויים
     select_all_matching_items:
       many: בחר.י %{count} פריטים שתאמו לחיפוש שלך.
       one: בחר.י פריט %{count} שתאם לחיפוש שלך.
@@ -1417,7 +1416,8 @@ he:
       '604800': שבוע
       '86400': יום אחד
     expires_in_prompt: לעולם לא
-    generate: צור קישור להזמנה
+    generate: יצירת קישור להזמנה
+    invalid: הזמנה זו אינה תקפה
     invited_by: הוזמנת ע"י
     max_uses:
       many: "%{count} שימושים"
@@ -1425,9 +1425,9 @@ he:
       other: "%{count} שימושים"
       two: "%{count} שימושים"
     max_uses_prompt: ללא הגבלה
-    prompt: צור ושתף קישורים לאחרים על מנת להעניק גישה לשרת זה
+    prompt: צרו ושתפו קישורים לאחרים על מנת להעניק גישה לשרת זה
     table:
-      expires_at: פוקעת ב
+      expires_at: פג תוקף ב-
       uses: שימושים
     title: הזמנת אנשים
   lists:
@@ -1476,7 +1476,7 @@ he:
       not_found: לא נמצאו
       on_cooldown: את/ה בתקופת צינון
     followers_count: עוקבים בזמן המעבר
-    incoming_migrations: מעבר לחשבון אחר
+    incoming_migrations: מעבר מחשבון אחר
     incoming_migrations_html: כדי לעבור מחשבון אחר לחשבון זה, עליך ראשית <a href="%{path}">ליצור שם נרדף לחשבון</a>.
     moved_msg: חשבונך מופנה עתה ל-%{acct} וכל עוקביך מועברים לשם.
     not_redirecting: חשבונכם לא מפנה לשום חשבון אחר כעת.
@@ -1514,8 +1514,8 @@ he:
       subject: הודעתך חובבה על ידי %{name}
       title: חיבוב חדש
     follow:
-      body: "%{name} עכשיו במעקב אחריך!"
-      subject: "%{name} עכשיו במעקב אחריך"
+      body: "%{name} עכשיו עוקב.ת אחריך!"
+      subject: "%{name} עכשיו עוקב.ת אחריך"
       title: עוקב/ת חדש/ה
     follow_request:
       action: ניהול בקשות מעקב
@@ -1779,7 +1779,7 @@ he:
     keep_media_hint: לא מוחק את הודעותיך שמצורפים אליהן קבצי מדיה
     keep_pinned: שמור הודעות מוצמדות
     keep_pinned_hint: לא מוחק אף אחד מההודעות המוצמדות שלך
-    keep_polls: שמור סקרים
+    keep_polls: לשמור סקרים
     keep_polls_hint: לא מוחר אף אחד מהסקרים שלך
     keep_self_bookmark: שמור הודעות שסימנת
     keep_self_bookmark_hint: לא מוחק הודעות שסימנת
@@ -1867,7 +1867,7 @@ he:
         disable: אינך יכול/ה יותר להשתמש בחשבונך, אבל הפרופיל ושאר המידע נשארו על עומדם. ניתן לבקש גיבוי של המידע, לשנות את הגדרות החשבון או למחוק אותו.
         mark_statuses_as_sensitive: כמה מהודעותיך סומנו כרגישות על ידי מנחי הקהילה של %{instance}. זה אומר שאנשים יצטרכו להקיש על המדיה בהודעות לפני שתופיע תצוגה מקדימה. ניתן לסמן את המידע כרגיש בעצמך בהודעותיך העתידיות.
         sensitive: מעתה ואילך כל קבצי המדיה שיועלו על ידך יסומנו כרגישים ויוסתרו מאחורי אזהרה.
-        silence: ניתן עדיין להשתמש בחשבונך אבל רק אנשים שכבר עוקבים אחריך יראו את הודעותיך בשרת זה, וייתכן שתוחרג/י מאמצעי גילוי משתמשים. עם זאת, אחרים יוכלו עדיין לעקוב אחריך.
+        silence: ניתן עדיין להשתמש בחשבונך אבל רק אנשים שכבר עוקבים אחריך יראו את הודעותיך בשרת זה, וייתכן שתוחרג/י ממסכי התגליות. עם זאת, אחרים יוכלו עדיין לעקוב אחריך.
         suspend: לא ניתן יותר להשתמש בחשבונך, ופרופילך וכל מידע אחר לא נגישים יותר. ניתן עדיין להתחבר על מנת לבקש גיבוי של המידע שלך עד שיוסר סופית בעוד כ-30 יום, אבל מידע מסויים ישמר על מנת לוודא שלא תחמוק/י מההשעיה.
       reason: 'סיבה:'
       statuses: 'הודעות מצוטטות:'
@@ -1917,7 +1917,7 @@ he:
       error: היתה בעיה בהוספת מפתח האבטחה. נסה שנית.
       success: מפתח האבטחה הוסף בהצלחה.
     delete: למחוק
-    delete_confirmation: האם אתה בטוח שברצונך למחוק מפתח אבטחה זה?
+    delete_confirmation: האם את.ה בטוח.ה שברצונך למחוק מפתח אבטחה זה?
     description_html: אם יאופשר <strong>אימות במפתח אבטחה</strong>, כניסה לאתר תדרוש שימוש באחד ממפתחות האבטחה שלך.
     destroy:
       error: היתה בעיה במחיקת מפתח האבטחה. נסה בשנית.

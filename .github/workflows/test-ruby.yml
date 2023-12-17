@@ -48,12 +48,15 @@ jobs:
         run: |-
           ./bin/rails assets:precompile
 
+      - name: Archive asset artifacts
+        run: |
+          tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs*
+
       - uses: actions/upload-artifact@v3
         if: matrix.mode == 'test'
         with:
           path: |-
-            ./public/assets
-            ./public/packs-test
+            ./artifacts.tar.gz
           name: ${{ github.sha }}
           retention-days: 0
 
@@ -91,7 +94,7 @@ jobs:
       DB_HOST: localhost
       DB_USER: postgres
       DB_PASS: postgres
-      DISABLE_SIMPLECOV: true
+      DISABLE_SIMPLECOV: ${{ matrix.ruby-version != '.ruby-version' }}
       RAILS_ENV: test
       ALLOW_NOPAM: true
       PAM_ENABLED: true
@@ -102,7 +105,6 @@ jobs:
       SAML_ENABLED: true
       CAS_ENABLED: true
       BUNDLE_WITH: 'pam_authentication test'
-      CI_JOBS: ${{ matrix.ci_job }}/4
       GITHUB_RSPEC: ${{ matrix.ruby-version == '.ruby-version' && github.event.pull_request && 'true' }}
 
     strategy:
@@ -112,18 +114,17 @@ jobs:
           - '3.0'
           - '3.1'
           - '.ruby-version'
-        ci_job:
-          - 1
-          - 2
-          - 3
-          - 4
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/download-artifact@v3
         with:
-          path: './public'
+          path: './'
           name: ${{ github.sha }}
+
+      - name: Expand archived asset artifacts
+        run: |
+          tar xvzf artifacts.tar.gz
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -134,7 +135,13 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bundle exec rake rspec_chunked
+      - run: bin/rspec
+
+      - name: Upload coverage reports to Codecov
+        if: matrix.ruby-version == '.ruby-version'
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage/lcov/mastodon.lcov
 
   test-e2e:
     name: End to End testing
@@ -220,7 +227,7 @@ jobs:
           path: tmp/screenshots/
 
   test-search:
-    name: Testing search
+    name: Elastic Search integration testing
     runs-on: ubuntu-latest
 
     needs:
@@ -307,7 +314,7 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bundle exec rake spec:search
+      - run: bin/rspec --tag search
 
       - name: Archive logs
         uses: actions/upload-artifact@v3
