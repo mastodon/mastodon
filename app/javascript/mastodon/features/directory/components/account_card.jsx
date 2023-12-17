@@ -102,7 +102,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 class AccountCard extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
     intl: PropTypes.object.isRequired,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,

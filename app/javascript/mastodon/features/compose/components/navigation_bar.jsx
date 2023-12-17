@@ -14,7 +14,7 @@ import ActionBar from './action_bar';
 export default class NavigationBar extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
     onLogout: PropTypes.func.isRequired,
     onClose: PropTypes.func,
   };

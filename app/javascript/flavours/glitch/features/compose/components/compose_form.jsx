@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { createRef } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
@@ -90,6 +91,11 @@ class ComposeForm extends ImmutablePureComponent {
     highlighted: false,
   };
 
+  constructor(props) {
+    super(props);
+    this.textareaRef = createRef(null);
+  }
+
   handleChange = (e) => {
     this.props.onChange(e.target.value);
   };
@@ -118,10 +124,10 @@ class ComposeForm extends ImmutablePureComponent {
       onChangeVisibility,
     } = this.props;
 
-    if (this.props.text !== this.textarea.value) {
+    if (this.props.text !== this.textareaRef.current.value) {
       // Something changed the text inside the textarea (e.g. browser extensions like Grammarly)
       // Update the state to match the current text
-      this.props.onChange(this.textarea.value);
+      this.props.onChange(this.textareaRef.current.value);
     }
 
     if (!this.canSubmit()) {
@@ -154,10 +160,10 @@ class ComposeForm extends ImmutablePureComponent {
 
   //  Inserts an emoji at the caret.
   handleEmojiPick = (data) => {
-    const { textarea: { selectionStart } } = this;
-    const { onPickEmoji } = this.props;
-    if (onPickEmoji) {
-      onPickEmoji(selectionStart, data);
+    const position = this.textareaRef.current.selectionStart;
+
+    if (this.props.onPickEmoji) {
+      this.props.onPickEmoji(position, data);
     }
   };
 
@@ -185,13 +191,6 @@ class ComposeForm extends ImmutablePureComponent {
 
     if (e.keyCode === 13 && e.altKey) {
       this.handleSecondarySubmit();
-    }
-  };
-
-  //  Sets a reference to the textarea.
-  setAutosuggestTextarea = (textareaComponent) => {
-    if (textareaComponent) {
-      this.textarea = textareaComponent.textarea;
     }
   };
 
@@ -232,7 +231,6 @@ class ComposeForm extends ImmutablePureComponent {
   //        everyone else from the conversation.
   _updateFocusAndSelection = (prevProps) => {
     const {
-      textarea,
       spoilerText,
     } = this;
     const {
@@ -259,30 +257,30 @@ class ComposeForm extends ImmutablePureComponent {
       default:
         selectionStart = selectionEnd = text.length;
       }
-      if (textarea) {
+      if (this.textareaRef.current) {
         // Because of the wicg-inert polyfill, the activeElement may not be
         // immediately selectable, we have to wait for observers to run, as
         // described in https://github.com/WICG/inert#performance-and-gotchas
         Promise.resolve().then(() => {
-          textarea.setSelectionRange(selectionStart, selectionEnd);
-          textarea.focus();
-          if (!singleColumn) textarea.scrollIntoView();
+          this.textareaRef.current.setSelectionRange(selectionStart, selectionEnd);
+          this.textareaRef.current.focus();
+          if (!singleColumn) this.textareaRef.current.scrollIntoView();
           this.setState({ highlighted: true });
           this.timeout = setTimeout(() => this.setState({ highlighted: false }), 700);
         }).catch(console.error);
       }
 
     //  Refocuses the textarea after submitting.
-    } else if (textarea && prevProps.isSubmitting && !isSubmitting) {
-      textarea.focus();
+    } else if (this.textareaRef.current && prevProps.isSubmitting && !isSubmitting) {
+      this.textareaRef.current.focus();
     } else if (this.props.spoiler !== prevProps.spoiler) {
       if (this.props.spoiler) {
         if (spoilerText) {
           spoilerText.focus();
         }
       } else {
-        if (textarea) {
-          textarea.focus();
+        if (this.textareaRef.current) {
+          this.textareaRef.current.focus();
         }
       }
     }
@@ -347,7 +345,7 @@ class ComposeForm extends ImmutablePureComponent {
 
         <div className={classNames('compose-form__highlightable', { active: highlighted })}>
           <AutosuggestTextarea
-            ref={this.setAutosuggestTextarea}
+            ref={this.textareaRef}
             placeholder={intl.formatMessage(messages.placeholder)}
             disabled={isSubmitting}
             value={this.props.text}

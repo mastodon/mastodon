@@ -88,7 +88,7 @@ gem 'simple-navigation', '~> 4.4'
 gem 'simple_form', '~> 5.2'
 gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'
 gem 'stoplight', '~> 3.0.1'
-gem 'strong_migrations', '~> 0.8'
+gem 'strong_migrations', '1.3.0'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2023'
@@ -103,9 +103,6 @@ gem 'rdf-normalize', '~> 0.5'
 gem 'private_address_check', '~> 0.5'
 
 group :test do
-  # Used to split testing into chunks in CI
-  gem 'rspec_chunked', '~> 0.6'
-
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 2.4', require: false
 

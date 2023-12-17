@@ -11,7 +11,7 @@ import { Icon }  from 'mastodon/components/icon';
 export default class FollowRequestNote extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
   };
 
   render () {

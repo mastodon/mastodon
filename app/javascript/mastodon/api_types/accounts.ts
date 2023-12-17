@@ -31,9 +31,9 @@ export interface ApiAccountJSON {
   id: string;
   last_status_at: string;
   locked: boolean;
-  noindex: boolean;
+  noindex?: boolean;
   note: string;
-  roles: ApiAccountJSON[];
+  roles?: ApiAccountJSON[];
   statuses_count: number;
   uri: string;
   url: string;

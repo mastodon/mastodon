@@ -27,7 +27,7 @@ class Header extends ImmutablePureComponent {
   static propTypes = {
     accountId: PropTypes.string.isRequired,
     statusId: PropTypes.string.isRequired,
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.record.isRequired,
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
