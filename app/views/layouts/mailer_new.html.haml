@@ -17,14 +17,14 @@
       <o:OfficeDocumentSettings xmlns:o="urn:schemas-microsoft-com:office:office">
       <o:PixelsPerInch>96</o:PixelsPerInch>
       </o:OfficeDocumentSettings>
-      </xml>  
+      </xml>
     = stylesheet_pack_tag 'mailer_new'
   %body
-    %div.email{ dir: locale_direction }
+    .email{ dir: locale_direction }
       %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
           %td.email-desktop-p-8
-            %div.email-container
+            .email-container
               /[if mso]
                 <table border="0" cellpadding="0" cellspacing="0" align="center" style="width:740px;" role="presentation"><tr><td>
               %table.email-w-full.email-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
@@ -42,7 +42,7 @@
                               %td.email-header-logo-td
                                 /[if mso]
                                   <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="false" stroke="false" style="position:absolute; left:40px; top:26px; width:636px;"><v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0">
-                                %div.email-header-logo-div
+                                .email-header-logo-div
                                   %p.email-header-logo-p
                                     %span.email-header-logo-span
                                       = '/ '
@@ -55,6 +55,9 @@
                           -# Heading
                           = yield :heading
 
+                    .email-header-after-div
+                      .email-header-after-inside-div
+
                     -# Content
                     = yield
 
@@ -62,7 +65,7 @@
                 </td></tr></table>
 
             -# Footer
-            %div.email-container
+            .email-container
               /[if mso]
                 <table border="0" cellpadding="0" cellspacing="0" align="center" style="width:740px;" role="presentation"><tr><td>
               %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
