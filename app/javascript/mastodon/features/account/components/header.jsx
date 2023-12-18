@@ -289,7 +289,7 @@ class Header extends ImmutablePureComponent {
       lockedIcon = <Icon id='lock' icon={LockIcon} title={intl.formatMessage(messages.account_locked)} />;
     }
 
-    if (signedIn && account.get('id') !== me) {
+    if (signedIn && account.get('id') !== me && !account.get('suspended')) {
       menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
       menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.props.onDirect });
       menu.push(null);
@@ -299,7 +299,7 @@ class Header extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: account.get('url') });
     }
 
-    if ('share' in navigator) {
+    if ('share' in navigator && !account.get('suspended')) {
       menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
       menu.push(null);
     }
@@ -347,7 +347,9 @@ class Header extends ImmutablePureComponent {
         menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.props.onBlock, dangerous: true });
       }
 
-      menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport, dangerous: true });
+      if (!account.get('suspended')) {
+        menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport, dangerous: true });
+      }
     }
 
     if (signedIn && isRemote) {
@@ -395,7 +397,7 @@ class Header extends ImmutablePureComponent {
 
         <div className='account__header__image'>
           <div className='account__header__info'>
-            {!suspended && info}
+            {info}
           </div>
 
           {!(suspended || hidden) && <img src={autoPlayGif ? account.get('header') : account.get('header_static')} alt='' className='parallax' />}
@@ -407,18 +409,16 @@ class Header extends ImmutablePureComponent {
               <Avatar account={suspended || hidden ? undefined : account} size={90} />
             </a>
 
-            {!suspended && (
-              <div className='account__header__tabs__buttons'>
-                {!hidden && (
-                  <>
-                    {actionBtn}
-                    {bellBtn}
-                  </>
-                )}
+            <div className='account__header__tabs__buttons'>
+              {!hidden && (
+                <>
+                  {actionBtn}
+                  {bellBtn}
+                </>
+              )}
 
-                <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' iconComponent={MoreHorizIcon} size={24} direction='right' />
-              </div>
-            )}
+              <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' iconComponent={MoreHorizIcon} size={24} direction='right' />
+            </div>
           </div>
 
           <div className='account__header__tabs__name'>
