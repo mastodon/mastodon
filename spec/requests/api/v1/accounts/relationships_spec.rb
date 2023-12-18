@@ -102,17 +102,25 @@ describe 'GET /api/v1/accounts/relationships' do
       end
     end
 
-    it 'returns JSON with correct data on cached requests too' do
-      subject
-      subject
+    it 'returns JSON with correct data on previously cached requests' do
+      # Initial request including multiple accounts in params
+      get '/api/v1/accounts/relationships', headers: headers, params: { id: [simon.id, lewis.id] }
+      expect(body_as_json.size).to eq(2)
+
+      # Subsequent request with different id, should override cache from first request
+      get '/api/v1/accounts/relationships', headers: headers, params: { id: [simon.id] }
 
       expect(response).to have_http_status(200)
 
-      json = body_as_json
-
-      expect(json).to be_a Enumerable
-      expect(json.first[:following]).to be true
-      expect(json.first[:showing_reblogs]).to be true
+      expect(body_as_json)
+        .to be_an(Enumerable)
+        .and have_attributes(
+          size: 1,
+          first: hash_including(
+            following: true,
+            showing_reblogs: true
+          )
+        )
     end
 
     it 'returns JSON with correct data after change too' do
