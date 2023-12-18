@@ -33,13 +33,13 @@ def sso_host
 end
 
 unless Rails.env.development?
-  assets_host = Rails.configuration.action_controller.asset_host || "https://#{ENV['WEB_DOMAIN'] || ENV['LOCAL_DOMAIN']}"
+  assets_host = Rails.configuration.action_controller.asset_host || "https://#{ENV['WEB_DOMAIN'] || Rails.configuration.x.local_domain}"
   data_hosts = [assets_host]
 
   if ENV['S3_ENABLED'] == 'true' || ENV['AZURE_ENABLED'] == 'true'
     attachments_host = host_to_url(ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST'] || ENV['AZURE_ALIAS_HOST'] || ENV['S3_HOSTNAME'] || "s3-#{ENV['S3_REGION'] || 'us-east-1'}.amazonaws.com")
   elsif ENV['SWIFT_ENABLED'] == 'true'
-    attachments_host = ENV['SWIFT_OBJECT_URL']
+    attachments_host = ENV.fetch('SWIFT_OBJECT_URL')
     attachments_host = "https://#{Addressable::URI.parse(attachments_host).host}"
   else
     attachments_host = nil

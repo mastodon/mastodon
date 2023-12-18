@@ -74,7 +74,7 @@ class Sanitize
       current_node.replace(Nokogiri::XML::Text.new(current_node.text, current_node.document)) unless LINK_PROTOCOLS.include?(scheme)
     end
 
-    MASTODON_STRICT ||= freeze_config(
+    MASTODON_STRICT = freeze_config(
       elements: %w(p br span a abbr del pre blockquote code b strong u sub sup i em h1 h2 h3 h4 h5 ul ol li),
 
       attributes: {
@@ -106,7 +106,7 @@ class Sanitize
       ]
     )
 
-    MASTODON_OEMBED ||= freeze_config(
+    MASTODON_OEMBED = freeze_config(
       elements: %w(audio embed iframe source video),
 
       attributes: {
@@ -154,7 +154,7 @@ class Sanitize
       end
     end
 
-    MASTODON_OUTGOING ||= freeze_config MASTODON_STRICT.merge(
+    MASTODON_OUTGOING = freeze_config MASTODON_STRICT.merge(
       attributes: merge(
         MASTODON_STRICT[:attributes],
         'a' => %w(href rel class title target translate)

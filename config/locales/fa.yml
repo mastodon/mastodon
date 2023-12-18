@@ -748,6 +748,12 @@ fa:
         message_html: هیچ قانون کارسازی تعریف نکرده‌اید.
       sidekiq_process_check:
         message_html: صف(های) %{value} فاقد هیچونه فرایند Sidekiq هستند. لطفا تنظیمات Sidekiq خود را بازبینی کنید
+      software_version_critical_check:
+        action: مشاهده به‌روزرسانی‌های موجود
+        message_html: یک به‌روزرسانی حیاتی ماستودون موجود است، لطفا در اسرع وقت به‌روزرسانی کنید.
+      software_version_patch_check:
+        action: مشاهده به‌روزرسانی‌های موجود
+        message_html: یک به‌روزرسانی رفع اشکال ماستودون موجود است.
       upload_check_privacy_error:
         action: برای اطّلاعات بیش‌تر این‌جا را بررسی کنید
         message_html: "<strong>کارساز وبتان بد پیکربندی شده. محرمانگی کاربرانتان در خطر است.</strong>"
@@ -879,6 +885,9 @@ fa:
     apply_for_account: درخواست یک حساب
     captcha_confirmation:
       title: بررسی های امنیتی
+    confirmations:
+      login_link: ورود
+      welcome_title: خوش آمدید، %{name}!
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     description:
@@ -901,6 +910,8 @@ fa:
     progress:
       confirm: تأیید رایانامه
       details: جزئیات شما
+      review: بررسی ما
+      rules: پذیرش قوانین
     providers:
       cas: CAS
       saml: SAML
