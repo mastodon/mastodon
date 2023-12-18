@@ -26,7 +26,7 @@
 
     %title= html_title
 
-    = javascript_pack_tag "common", crossorigin: 'anonymous'
+    = javascript_pack_tag 'common', crossorigin: 'anonymous'
     - if @theme
       - if @theme[:supported_locales].include? I18n.locale.to_s
         = preload_pack_asset "locales/#{@theme[:flavour]}/#{I18n.locale}-json.js"
