@@ -17,9 +17,9 @@ class FollowRecommendationFilter
 
   def results
     if params['status'] == 'suppressed'
-      Account.eager_load(:account_stat).joins(:follow_recommendation_suppression).order(FollowRecommendationSuppression.arel_table[:id].desc).to_a
+      Account.includes(:account_stat).joins(:follow_recommendation_suppression).order(FollowRecommendationSuppression.arel_table[:id].desc)
     else
-      FollowRecommendation.eager_load(account: :account_stat).localized(@language).order(rank: :desc).map(&:account)
+      Account.includes(:account_stat).joins(:follow_recommendation).merge(FollowRecommendation.localized(@language).order(rank: :desc))
     end
   end
 end
