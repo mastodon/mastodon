@@ -31,6 +31,29 @@
                 %tr
                   %td.email-card-td.email-desktop-rounded-16px
 
+                    -# Header
+                    %table.email-header-table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                      %tr
+                        %td.email-header-td
+
+                          -# Logo
+                          %table.email-header-logo-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                            %tr
+                              %td.email-header-logo-td
+                                /[if mso]
+                                  <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="false" stroke="false" style="position:absolute; left:40px; top:26px; width:636px;"><v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0">
+                                %div.email-header-logo-div
+                                  %p.email-header-logo-p
+                                    %span.email-header-logo-span
+                                      = '/ '
+                                      = site_hostname
+                                /[if mso]
+                                  </v:textbox></v:rect>
+                                = link_to root_url, class: 'email-header-logo-a' do
+                                  = image_tag full_pack_url('media/images/mailer-new/common/logo-header.png'), alt: 'Mastodon', width: 157, height: 40
+
+                          -# Heading
+                          = yield :heading
 
                     -# Content
                     = yield
@@ -46,7 +69,7 @@
                 %tr
                   %td.email-footer-td
                     %p.email-footer-p
-                      = link_to root_url do
+                      = link_to root_url, class: 'email-footer-logo-a' do
                         = image_tag full_pack_url('media/images/mailer-new/common/logo-footer.png'), alt: 'Mastodon', width: 44, height: 44
                     %p.email-footer-p
                       = t 'about.hosted_on', domain: site_hostname

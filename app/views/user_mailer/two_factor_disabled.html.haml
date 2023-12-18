@@ -1,33 +1,5 @@
--# Header
-%table.email-header-table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-  %tr
-    %td.email-header-td
-      -# Logo
-      %table.email-header-logo-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-        %tr
-          %td.email-header-logo-td
-            /[if mso]
-              <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="false" stroke="false" style="position:absolute; left:40px; top:26px; width:636px;"><v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0">
-            %div.email-header-logo-div
-              %p.email-header-logo-p
-                %span.email-header-logo-span
-                  = '/ '
-                  = site_hostname
-            /[if mso]
-              </v:textbox></v:rect>
-            = link_to root_url do
-              = image_tag full_pack_url('media/images/mailer-new/common/logo-header.png'), alt: 'Mastodon', width: 157, height: 40
-      -# Heading
-      %table.email-w-full.email-header-heading-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-        %tr
-          %td.email-header-heading-td
-            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-              %tr
-                %td.email-header-heading-img-td
-                  = image_tag full_pack_url('media/images/mailer-new/heading/2fa-disabled.png'), alt: '', width: 56, height: 56
-                %td.email-header-heading-txt-td
-                  %h1= t 'devise.mailer.two_factor_disabled.title'
-                  %p= t 'devise.mailer.two_factor_disabled.subtitle'
+=content_for :heading do
+  = render 'layouts/mailer_new_heading', title: t('devise.mailer.two_factor_disabled.title'), subtitle: t('devise.mailer.two_factor_disabled.subtitle'), image_url: full_pack_url('media/images/mailer-new/heading/2fa-disabled.png')
 %div.email-header-after-div
   %div.email-header-after-inside-div
 %table.email-body-table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
@@ -40,7 +12,4 @@
               %tr
                 %td.email-inner-card-td.email-prose
                   %p= t 'devise.mailer.two_factor_disabled.explanation'
-                  %table.email-btn-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-                    %tr
-                      %td.email-btn-td
-                        = link_to t('settings.account_settings') + ' ➜', edit_user_registration_url, class: 'email-btn-a email-btn-hover'
+                  = render 'layouts/mailer_new_btn', text: t('settings.account_settings'), url: edit_user_registration_url

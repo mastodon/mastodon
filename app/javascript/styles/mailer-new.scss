@@ -115,12 +115,19 @@ table {
 
   img {
     color: #fff;
+    font-size: 16px;
+    font-weight: bold;
     max-height: 40px;
   }
 }
 
 .email-header-logo-a {
   display: inline-block;
+
+  img {
+    display: inline-block;
+    color: #fff;
+  }
 }
 
 .email-header-logo-div {
@@ -147,11 +154,14 @@ table {
 }
 
 .email-header-heading-img-td {
-  width: 56px;
+  width: 72px;
   text-align: left;
   vertical-align: top;
 
   img {
+    margin-right: 16px;
+    width: 56px;
+    height: 56px;
     border-radius: 12px;
   }
 }
@@ -159,7 +169,6 @@ table {
 .email-header-heading-txt-td {
   text-align: left;
   vertical-align: top;
-  padding-left: 16px;
 
   h1 {
     margin-bottom: 5px;
@@ -200,6 +209,7 @@ table {
 
 .email-body-padding-td {
   padding: 0 32px 32px;
+  mso-padding-alt: 32px;
 }
 
 //
@@ -274,5 +284,9 @@ table {
 
   .email-desktop-rounded-16px {
     border-radius: 16px !important;
+  }
+
+  .email-header-td {
+    border-radius: 16px 16px 0 0 !important;
   }
 }
