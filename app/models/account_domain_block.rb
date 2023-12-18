@@ -24,6 +24,6 @@ class AccountDomainBlock < ApplicationRecord
 
   def invalidate_domain_blocking_cache
     Rails.cache.delete("exclude_domains_for:#{account_id}")
-    Rails.cache.delete("exclude_domains:#{account_id}:#{domain}")
+    Rails.cache.delete(['exclude_domains', account_id, domain])
   end
 end

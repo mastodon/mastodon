@@ -40,20 +40,15 @@ class AccountRelationshipsPresenter
 
   def domain_blocking_map
     target_domains = @accounts.pluck(:domain).compact.uniq
-    uncached_domains = []
-    blocks_by_domain = target_domains.index_with(false)
+    blocks_by_domain = {}
 
     # Fetch from cache
-    unless target_domains.empty?
-      cache_keys = target_domains.map { |domain| domain_cache_key(domain) }
-      target_domains.zip(Rails.cache.read_multi(cache_keys)).each do |domain, blocking|
-        if blocking.nil?
-          uncached_domains << domain
-        else
-          blocks_by_domain[domain] = blocking
-        end
-      end
+    cache_keys = target_domains.map { |domain| domain_cache_key(domain) }
+    Rails.cache.read_multi(*cache_keys).each do |key, blocking|
+      blocks_by_domain[key.last] = blocking
     end
+
+    uncached_domains = target_domains - blocks_by_domain.keys
 
     # Read uncached values from database
     AccountDomainBlock.where(account_id: @current_account_id, domain: uncached_domains).pluck(:domain).each do |domain|
@@ -84,17 +79,12 @@ class AccountRelationshipsPresenter
       account_note: {},
     }
 
-    @uncached_account_ids = []
-
-    return @cached if @account_ids.empty?
+    @uncached_account_ids = @account_ids.uniq
 
     cache_ids = @account_ids.map { |account_id| relationship_cache_key(account_id) }
-    @account_ids.zip(Rails.cache.read_multi(cache_ids)).each do |account_id, maps_for_account|
-      if maps_for_account.is_a?(Hash)
-        @cached.deep_merge!(maps_for_account)
-      else
-        @uncached_account_ids << account_id
-      end
+    Rails.cache.read_multi(*cache_ids).each do |key, maps_for_account|
+      @cached.deep_merge!(maps_for_account)
+      @uncached_account_ids.delete(key.last)
     end
 
     @cached
@@ -119,10 +109,10 @@ class AccountRelationshipsPresenter
   end
 
   def domain_cache_key(domain)
-    "exclude_domains:#{@current_account_id}:#{domain}"
+    ['exclude_domains', @current_account_id, domain]
   end
 
   def relationship_cache_key(account_id)
-    "relationship:#{@current_account_id}:#{account_id}"
+    ['relationship', @current_account_id, account_id]
   end
 end
