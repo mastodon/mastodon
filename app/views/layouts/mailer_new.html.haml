@@ -6,6 +6,9 @@
     %meta{ name: 'x-apple-disable-message-reformatting' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
     %meta{ name: 'format-detection', content: 'telephone=no, date=no, address=no, email=no, url=no' }
+    %meta{ name: 'supported-color-schemes', content: 'light' }
+    %style
+      \table { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
     %style{ 'data-premailer': 'ignore' }
       \.email a { color: inherit; text-decoration: none; }
       \.email-btn-hover:hover { background-color: #563acc !important; }
@@ -18,22 +21,28 @@
     = stylesheet_pack_tag 'mailer_new'
   %body
     %div.email{ dir: locale_direction }
-      %table.email-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+      %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
           %td.email-desktop-p-8
-            -# Header
-            %div.email-wrapper
-              %p
-                = link_to root_url do
-                  = image_tag full_pack_url('media/images/mailer-new/common/logo-header.png'), alt: 'Mastodon', width: 157, height: 40
+            %div.email-container
+              /[if mso]
+                <table border="0" cellpadding="0" cellspacing="0" align="center" style="width:740px;" role="presentation"><tr><td>
+              %table.email-w-full.email-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                %tr
+                  %td.email-card-td.email-desktop-rounded-16px
 
-            -# Content
-            %div.email-wrapper
-              = yield
+
+                    -# Content
+                    = yield
+
+              /[if mso]
+                </td></tr></table>
 
             -# Footer
-            %div.email-wrapper
-              %table.email-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+            %div.email-container
+              /[if mso]
+                <table border="0" cellpadding="0" cellspacing="0" align="center" style="width:740px;" role="presentation"><tr><td>
+              %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
                 %tr
                   %td.email-footer-td
                     %p.email-footer-p
@@ -46,3 +55,5 @@
                       - if defined?(@unsubscribe_url)
                         ·
                         = link_to t('application_mailer.unsubscribe'), @unsubscribe_url
+              /[if mso]
+                </td></tr></table>
