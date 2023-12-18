@@ -16,12 +16,38 @@ RSpec.describe AccountRelationshipsPresenter do
     let(:presenter)          { described_class.new(accounts, current_account_id, **options) }
     let(:current_account_id) { Fabricate(:account).id }
     let(:accounts)           { [Fabricate(:account)] }
-    let(:default_map)        { { 1 => true } }
+    let(:default_map)        { { accounts[0].id => true } }
 
     context 'when options are not set' do
       let(:options) { {} }
 
       it 'sets default maps' do
+        expect(presenter).to have_attributes(
+          following: default_map,
+          followed_by: default_map,
+          blocking: default_map,
+          muting: default_map,
+          requested: default_map,
+          domain_blocking: { accounts[0].id => nil }
+        )
+      end
+    end
+
+    context 'with a warm cache' do
+      let(:options) { {} }
+
+      before do
+        described_class.new(accounts, current_account_id, **options)
+
+        allow(Account).to receive(:following_map).with([], current_account_id).and_return({})
+        allow(Account).to receive(:followed_by_map).with([], current_account_id).and_return({})
+        allow(Account).to receive(:blocking_map).with([], current_account_id).and_return({})
+        allow(Account).to receive(:muting_map).with([], current_account_id).and_return({})
+        allow(Account).to receive(:requested_map).with([], current_account_id).and_return({})
+        allow(Account).to receive(:requested_by_map).with([], current_account_id).and_return({})
+      end
+
+      it 'sets returns expected values' do
         expect(presenter).to have_attributes(
           following: default_map,
           followed_by: default_map,
