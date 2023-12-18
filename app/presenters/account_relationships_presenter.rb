@@ -56,9 +56,8 @@ class AccountRelationshipsPresenter
     end
 
     # Write database reads to cache
-    uncached_domains.each do |domain|
-      Rails.cache.write(domain_cache_key(domain), blocks_by_domain[domain], expires_in: 1.day)
-    end
+    to_cache = uncached_domains.to_h { |domain| [domain_cache_key(domain), blocks_by_domain[domain]] }
+    Rails.cache.write_multi(to_cache, expires_in: 1.day)
 
     # Return formatted value
     @accounts.each_with_object({}) { |account, h| h[account.id] = blocks_by_domain[account.domain] }
@@ -91,7 +90,7 @@ class AccountRelationshipsPresenter
   end
 
   def cache_uncached!
-    @uncached_account_ids.each do |account_id|
+    to_cache = @uncached_account_ids.to_h do |account_id|
       maps_for_account = {
         following: { account_id => following[account_id] },
         followed_by: { account_id => followed_by[account_id] },
@@ -104,8 +103,10 @@ class AccountRelationshipsPresenter
         account_note: { account_id => account_note[account_id] },
       }
 
-      Rails.cache.write(relationship_cache_key(account_id), maps_for_account, expires_in: 1.day)
+      [relationship_cache_key(account_id), maps_for_account]
     end
+
+    Rails.cache.write_multi(to_cache, expires_in: 1.day)
   end
 
   def domain_cache_key(domain)
