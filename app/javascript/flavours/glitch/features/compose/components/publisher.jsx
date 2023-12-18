@@ -2,15 +2,10 @@ import PropTypes from 'prop-types';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import classNames from 'classnames';
-
 import ImmutablePureComponent from 'react-immutable-pure-component';
-
-import { length } from 'stringz';
 
 import { Button } from 'flavours/glitch/components/button';
 import { Icon } from 'flavours/glitch/components/icon';
-import { maxChars } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   publish: {
@@ -31,7 +26,6 @@ const messages = defineMessages({
 class Publisher extends ImmutablePureComponent {
 
   static propTypes = {
-    countText: PropTypes.string,
     disabled: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     onSecondarySubmit: PropTypes.func,
@@ -46,13 +40,7 @@ class Publisher extends ImmutablePureComponent {
   };
 
   render () {
-    const { countText, disabled, intl, onSecondarySubmit, privacy, sideArm, isEditing } = this.props;
-
-    const diff = maxChars - length(countText || '');
-    const computedClass = classNames('compose-form__publish', {
-      disabled: disabled,
-      over: diff < 0,
-    });
+    const { disabled, intl, onSecondarySubmit, privacy, sideArm, isEditing } = this.props;
 
     const privacyIcons = { direct: 'envelope', private: 'lock', public: 'globe', unlisted: 'unlock' };
 
@@ -78,8 +66,8 @@ class Publisher extends ImmutablePureComponent {
     };
 
     return (
-      <div className={computedClass}>
-        {sideArm && !isEditing && sideArm !== 'none' ? (
+      <div className='compose-form__publish'>
+        {sideArm && !isEditing && sideArm !== 'none' && (
           <div className='compose-form__publish-button-wrapper'>
             <Button
               className='side_arm'
@@ -90,7 +78,7 @@ class Publisher extends ImmutablePureComponent {
               title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[sideArm])}`}
             />
           </div>
-        ) : null}
+        )}
         <div className='compose-form__publish-button-wrapper'>
           <Button
             className='primary'

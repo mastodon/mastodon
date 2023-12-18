@@ -37,9 +37,7 @@ const messages = defineMessages({
   },
 });
 
-//  State mapping.
-function mapStateToProps (state) {
-  const spoilersAlwaysOn = state.getIn(['local_settings', 'always_show_spoilers_field']);
+const sideArmPrivacy = state => {
   const inReplyTo = state.getIn(['compose', 'in_reply_to']);
   const replyPrivacy = inReplyTo ? state.getIn(['statuses', inReplyTo, 'visibility']) : null;
   const sideArmBasePrivacy = state.getIn(['local_settings', 'side_arm']);
@@ -53,67 +51,67 @@ function mapStateToProps (state) {
     sideArmPrivacy = sideArmRestrictedPrivacy;
     break;
   }
-  sideArmPrivacy = sideArmPrivacy || sideArmBasePrivacy;
-  return {
-    advancedOptions: state.getIn(['compose', 'advanced_options']),
-    focusDate: state.getIn(['compose', 'focusDate']),
-    caretPosition: state.getIn(['compose', 'caretPosition']),
-    isSubmitting: state.getIn(['compose', 'is_submitting']),
-    isEditing: state.getIn(['compose', 'id']) !== null,
-    isChangingUpload: state.getIn(['compose', 'is_changing_upload']),
-    isUploading: state.getIn(['compose', 'is_uploading']),
-    layout: state.getIn(['local_settings', 'layout']),
-    media: state.getIn(['compose', 'media_attachments']),
-    preselectDate: state.getIn(['compose', 'preselectDate']),
-    privacy: state.getIn(['compose', 'privacy']),
-    sideArm: sideArmPrivacy,
-    sensitive: state.getIn(['compose', 'sensitive']),
-    showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
-    spoiler: spoilersAlwaysOn || state.getIn(['compose', 'spoiler']),
-    spoilerText: state.getIn(['compose', 'spoiler_text']),
-    suggestions: state.getIn(['compose', 'suggestions']),
-    text: state.getIn(['compose', 'text']),
-    anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
-    spoilersAlwaysOn: spoilersAlwaysOn,
-    mediaDescriptionConfirmation: state.getIn(['local_settings', 'confirm_missing_media_description']),
-    preselectOnReply: state.getIn(['local_settings', 'preselect_on_reply']),
-    isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
-    lang: state.getIn(['compose', 'language']),
-  };
-}
+  return sideArmPrivacy || sideArmBasePrivacy;
+};
 
-//  Dispatch mapping.
+const mapStateToProps = state => ({
+  text: state.getIn(['compose', 'text']),
+  suggestions: state.getIn(['compose', 'suggestions']),
+  spoiler: state.getIn(['local_settings', 'always_show_spoilers_field']) || state.getIn(['compose', 'spoiler']),
+  spoilerText: state.getIn(['compose', 'spoiler_text']),
+  privacy: state.getIn(['compose', 'privacy']),
+  focusDate: state.getIn(['compose', 'focusDate']),
+  caretPosition: state.getIn(['compose', 'caretPosition']),
+  preselectDate: state.getIn(['compose', 'preselectDate']),
+  isSubmitting: state.getIn(['compose', 'is_submitting']),
+  isEditing: state.getIn(['compose', 'id']) !== null,
+  isChangingUpload: state.getIn(['compose', 'is_changing_upload']),
+  isUploading: state.getIn(['compose', 'is_uploading']),
+  anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
+  isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
+  lang: state.getIn(['compose', 'language']),
+  advancedOptions: state.getIn(['compose', 'advanced_options']),
+  layout: state.getIn(['local_settings', 'layout']),
+  media: state.getIn(['compose', 'media_attachments']),
+  sideArm: sideArmPrivacy(state),
+  sensitive: state.getIn(['compose', 'sensitive']),
+  showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
+  spoilersAlwaysOn: state.getIn(['local_settings', 'always_show_spoilers_field']),
+  mediaDescriptionConfirmation: state.getIn(['local_settings', 'confirm_missing_media_description']),
+  preselectOnReply: state.getIn(['local_settings', 'preselect_on_reply']),
+});
+
 const mapDispatchToProps = (dispatch, { intl }) => ({
 
-  onChange(text) {
+  onChange (text) {
     dispatch(changeCompose(text));
   },
 
-  onSubmit(routerHistory) {
-    dispatch(submitCompose(routerHistory));
+  onSubmit (router) {
+    dispatch(submitCompose(router));
   },
 
-  onClearSuggestions() {
+  onClearSuggestions () {
     dispatch(clearComposeSuggestions());
   },
 
-  onFetchSuggestions(token) {
+  onFetchSuggestions (token) {
     dispatch(fetchComposeSuggestions(token));
   },
 
-  onSuggestionSelected(position, token, suggestion, path) {
+  onSuggestionSelected (position, token, suggestion, path) {
     dispatch(selectComposeSuggestion(position, token, suggestion, path));
   },
 
-  onChangeSpoilerText(text) {
+  onChangeSpoilerText (text) {
     dispatch(changeComposeSpoilerText(text));
   },
 
-  onPaste(files) {
+  onPaste (files) {
     dispatch(uploadCompose(files));
   },
 
-  onPickEmoji(position, emoji) {
+  onPickEmoji (position, emoji) {
     dispatch(insertEmojiCompose(position, emoji));
   },
 

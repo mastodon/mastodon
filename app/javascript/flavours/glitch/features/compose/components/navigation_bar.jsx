@@ -30,9 +30,11 @@ export default class NavigationBar extends ImmutablePureComponent {
         </Permalink>
 
         <div className='navigation-bar__profile'>
-          <Permalink className='acct' href={this.props.account.get('url')} to={`/@${this.props.account.get('acct')}`}>
-            <strong className='navigation-bar__profile-account'>@{username}</strong>
-          </Permalink>
+          <span>
+            <Permalink className='acct' href={this.props.account.get('url')} to={`/@${username}`}>
+              <strong className='navigation-bar__profile-account'>@{username}</strong>
+            </Permalink>
+          </span>
 
           { profileLink !== undefined && (
             <a
