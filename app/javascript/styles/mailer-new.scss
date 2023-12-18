@@ -15,7 +15,7 @@ p, h1 {
   background-color: transparent;
   padding: 0;
   border: none;
-  font-family: Inter, Lucida Grande, sans-serif;
+  font-family: Inter, 'Lucida Grande', sans-serif;
 }
 
 img {
@@ -34,7 +34,7 @@ table {
 
 .email {
   min-width: 280px;
-  font-family: Inter, Lucida Grande, sans-serif;
+  font-family: Inter, 'Lucida Grande', sans-serif;
   word-break: break-word;
   color: #17063B;
   background-color: #f3f2f5;
@@ -54,7 +54,7 @@ table {
 
 .email-card-td {
   overflow: hidden;
-  box-shadow: 0px 4px 16px 0px rgba(23, 6, 59, 0.04);
+  box-shadow: 0 4px 16px 0 rgba(23, 6, 59, 4%);
   background-color: #fff;
 }
 
@@ -69,14 +69,12 @@ table {
   border-radius: 12px;
   padding: 24px;
   overflow: hidden;
-  box-shadow: 0px 4px 16px 0px rgba(23, 6, 59, 0.08);
+  box-shadow: 0 4px 16px 0 rgba(23, 6, 59, 8%);
   background-color: #fff;
   border: 1px solid #DFDEE3;
 }
 
-//
 // Utility classes
-//
 .email-w-full {
   width: 100%;
 }
@@ -93,13 +91,11 @@ table {
   }
 }
 
-//
 // Header
-//
 .email-header-td {
   padding: 16px 32px;
   background-color: #1b001f;
-  background-image: url(../images/mailer-new/common/header-bg-start.png);
+  background-image: url('../images/mailer-new/common/header-bg-start.png');
   background-position: left top;
   background-repeat: repeat;
 }
@@ -198,18 +194,16 @@ table {
   background-color: #1b001f;
 }
 
-//
 // Body content
-//
 .email-body-td {
-  background-image: url(../images/mailer-new/common/header-bg-end.png);
+  background-image: url('../images/mailer-new/common/header-bg-end.png');
   background-position: left top;
   background-repeat: no-repeat;
 }
 
 .email-body-padding-td {
   padding: 0 32px 32px;
-  mso-padding-alt: 32px;
+  mso-padding-alt: 32px; /* stylelint-disable-line property-no-unknown */
 }
 
 //
@@ -240,9 +234,7 @@ table {
   }
 }
 
-//
 // Button
-//
 .email-btn-table {
   margin: 0;
   max-width: 100%;
@@ -254,7 +246,7 @@ table {
 .email-btn-td {
   height: 40px;
   text-align: center;
-  mso-padding-alt: 0 35px;
+  mso-padding-alt: 0 35px; /* stylelint-disable-line property-no-unknown */
 }
 
 .email-btn-a {
@@ -265,7 +257,7 @@ table {
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
-  font-family: Inter, Lucida Grande, sans-serif;
+  font-family: Inter, 'Lucida Grande', sans-serif;
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -274,9 +266,8 @@ table {
   transition: background-color 0.3s ease-in-out;
 }
 
-//
 // Responsive
-//
+/* stylelint-disable-next-line media-feature-range-notation */
 @media only screen and (min-width: 740px) {
   .email-desktop-p-8 {
     padding: 32px !important;
