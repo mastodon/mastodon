@@ -1,0 +1,51 @@
+---
+lad:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Limito temporal
+        options: Opsyones
+      user:
+        agreement: Akodro de servisyo
+        email: Adreso de posta elektronika
+        locale: Lingua
+        password: Kod
+      user/account:
+        username: Nombre de uzador
+      user/invite_request:
+        text: Razon
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: solo puede kontener letras, shifras i sulinyados
+              reserved: esta rezervado
+        admin/webhook:
+          attributes:
+            url:
+              invalid: no es adreso URL valido
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: no es adreso URL valido
+        import:
+          attributes:
+            data:
+              malformed: tiene formato yerrado
+        user:
+          attributes:
+            email:
+              blocked: uza un prokurador de posta no autorizado
+              unreachable: no parese existir
+            role_id:
+              elevated: no puede ser mas alto ke tu rolo aktual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inkluir permisos ke no son siguros para el rolo de baza
+              elevated: no se puede inkluir permisos kualos no tiene tu rolo aktual
+              own_role: no se puede trokar kon tu rolo aktual
+            position:
+              elevated: no puede ser mas alto ke tu rolo aktual
+              own_role: no se puede trokar kon tu rolo aktual

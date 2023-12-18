@@ -777,6 +777,8 @@ eu:
           open: Edonork eman dezake izena
       security:
         authorized_fetch: Eskatu autentifikazioa federatutako zerbitzarietatik
+        authorized_fetch_hint: Zerbitzari federatuen autentifikazioa eskatzeak erabiltzaile-mailako zein zerbitzari-mailako blokeak zorrotzago betearaztea ahalbidetzen du. Hala ere, horrek errendimendu galera dakar, zure erantzunen irismena murrizten du eta baliteke federatutako zerbitzu batzuekin bateragarritasun-arazoak sortu ahal izatea. Horrez gain, horrek ez du eragotziko aktore dedikatuek zure mezu eta kontu publikoak eskuratzea.
+        authorized_fetch_overridden_hint: Une honetan ezin duzu ezarpen hau aldatu ingurune-aldagai batek gainidazten duelako.
         federation_authentication: Federazio autentifikazioaren betearaztea
       title: Zerbitzariko ezarpenak
     site_uploads:
@@ -784,6 +786,7 @@ eu:
       destroyed_msg: Guneko igoera ongi ezabatu da!
     software_updates:
       critical_update: Kritikoa — mesedez, eguneratu azkar
+      description: Zure Mastodon instalazioa eguneratuta mantentzea gomendatzen da azken konponketa eta hobekuntzak edukitzeko. Gainera, batzuetan funtsezkoa da Mastodon garaiz eguneratzea segurtasun-arazoak saihesteko. Arrazoi horiengatik, Mastodonek eguneratzeak egiaztatzen ditu 30 minuturo, eta zure posta elektronikoko jakinarazpen-hobespenen arabera jakinaraziko dizu.
       documentation_link: Informazio gehiago
       release_notes: Bertsio oharrak
       title: Eguneraketak eskuragarri
@@ -791,6 +794,7 @@ eu:
       types:
         major: Argitalpen handia
         minor: Argitalpen txikia
+        patch: Partxe eguneraketa — akatsen konponketa eta aplikatzeko aldaketa errazak
       version: Bertsioa
     statuses:
       account: Egilea
@@ -976,6 +980,7 @@ eu:
       next_steps: Apelazioa onartu dezakezu moderazio erabakia desegiteko, edo ez ikusia egin.
       subject: "%{username} erabiltzailea %{instance} instantziako moderazio erabaki bat apelatzen ari da"
     new_critical_software_updates:
+      body: Mastodon-en bertsio kritiko berriak kaleratu dira, agian lehenbailehen eguneratu nahi duzu!
       subject: "%{instance} ek eguneraketa kritikoak eskuragarri ditu!"
     new_pending_account:
       body: Kontu berriaren xehetasunak azpian daude. Eskaera hau onartu edo ukatu dezakezu.
@@ -1037,10 +1042,12 @@ eu:
       hint_html: Azken kontu bat! Gizakia zarela berretsi behar dugu (zabor-kontuak kanpoan mantentzeko baino ez da!) Ebatzi azpiko CAPTCHA eta sakatu "Jarraitu".
       title: Segurtasun txekeoa
     confirmations:
+      awaiting_review: Zure helbide elektronikoa baieztatu da! %{domain} lan taldea zure erregistroa berrikusten ari da. Mezu elektroniko bat jasoko duzu zure kontua onartzen badute!
       awaiting_review_title: Zure izen-ematea berrikusten ari da
       clicking_this_link: lotura hau klikatzen
       login_link: hasi saioa
       proceed_to_login_html: Orain jarraitu dezakezu %{login_link} -era.
+      redirect_to_app_html: "<strong>%{app_name}</strong> aplikaziora berbideratua izan beharko zenuke. Hori gertatu ez bada, saiatu %{clicking_this_link} edo eskuz itzuli."
       registration_complete: Osatuta dago orain zure izen-ematea %{domain} -en!
       welcome_title: Ongi etorri, %{name}!
       wrong_email_hint: Helbide-elektroniko hori zuzena ez bada, kontuaren ezarpenetan alda dezakezu.

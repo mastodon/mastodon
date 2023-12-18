@@ -1,0 +1,68 @@
+---
+ie:
+  accounts:
+    pin_errors:
+      following: Tu deve ja sequer li person quem tu vole indossar
+  admin:
+    action_logs:
+      action_types:
+        create_announcement: Crear un proclamation
+        destroy_announcement: Deleter un proclamation
+        update_announcement: Actualisar un proclamation
+      actions:
+        create_announcement_html: "%{name} creat li nov proclamation %{target}"
+        destroy_announcement_html: "%{name} deletet li proclamation %{target}"
+        update_announcement_html: "%{name} actualisat li proclamation %{target}"
+    announcements:
+      destroyed_msg: Proclamation deletet successosimen!
+      edit:
+        title: Redacter proclamation
+      empty: Null proclamationes trovat.
+      live: Activ
+      new:
+        create: Crear un proclamation
+        title: Nov proclamation
+      publish: Publicar
+      published_msg: Proclamation publicat successosimen!
+      scheduled_for: Planat por %{time}
+      scheduled_msg: Proclamation planat por publication!
+      title: Proclamationes
+      unpublish: Despublicar
+      unpublished_msg: Proclamation despublicat successosimen!
+      updated_msg: Proclamation actualisat successosimen!
+    roles:
+      privileges:
+        manage_announcements: Tractar proclamationes
+        manage_announcements_description: Permisse usatores tractar proclamationes sur li servitor
+  exports:
+    mutes: Tu silentia
+  featured_tags:
+    hint_html: "<strong>Pinglar tui max important hashtags sur tui profil.</strong> Un bonissim maniere de mantener un registre de tui ovres e projectes, pinglat hashtags es monstrat prominentmen sur tui profil e permisse rapid accesse a tui propri postas."
+  imports:
+    overwrite_preambles:
+      muting_html: Tu va <strong>remplazzar tui liste de silentiat contos</strong> per til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
+    preambles:
+      muting_html: Tu va <strong>silentiar</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
+    titles:
+      muting: Importation de silentiat contos
+    type_groups:
+      destructive: Bloccas & silentias
+  move_handler:
+    carry_mutes_over_text: Ti-ci usator movet se de %{acct}, quel tu hat silentiat.
+  notification_mailer:
+    follow_request:
+      action: Tractar petitiones de sequer
+      body: "%{name} ha petit sequer te"
+      subject: 'Pendent sequitor: %{name}'
+      title: Nov petition de sequer
+    mention:
+      action: Responder
+  statuses:
+    pin_errors:
+      direct: On ne posse pinglar postas queles es visibil solmen a mentionat usatores
+      limit: Tu ja ha pinglat li maxim númere de postas
+      ownership: On ne posse pinglar li posta de un altri person
+      reblog: On ne posse pinglar un boost
+  statuses_cleanup:
+    keep_pinned: Conservar pinglat postas
+    keep_pinned_hint: Delete null de tui pinglat postas

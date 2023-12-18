@@ -2,6 +2,14 @@
 io:
   simple_form:
     hints:
+      account:
+        discoverable: Vua publika posti e profilo povas remarkesar o rekomendesar en diferanta parti di Mastodon e vua profilo povas sugestesar ad altra uzanti.
+        display_name: Vua tota nomo o vua gaya nomo.
+        fields: Vua retsituo, pronomi, evo, irgo quan vu volas.
+        indexable: Vua posta publika povos aparar en rezultaji di serchi che Mastodon. Personi qui interagis kun vua posti povos serchar oli irgakaze.
+        note: 'Vu povas @mencionar altra personi o #hashtagi.'
+        show_collections: Personi povos navigar tra vua sequati e sequanti. Personi quin vu sequas, vidos ke vu sequas li irgakaze.
+        unlocked: Personi povos sequar vu sen demandar aprobo. Deselektez se vu volas revuar sequadodemandi e selektez aceptar o refuzar nova sequati.
       account_alias:
         acct: Partikulare pozez uzantonomo@domeno di konto quon vua volas ektransferesar
       account_migration:
@@ -18,6 +26,8 @@ io:
           disable: Preventez uzanto de uzar olia konto ma ne efacez o celez olia kontenaji.
           none: Uzez co por sendar averto a la uzanto sen eventigar irga altra ago.
           sensitive: Koaktez omna mediiatachaji da ca uzanto markizesar quale sentoza.
+          silence: Preventez la uzanto de povar postar per publika videbleso, celez lua posti e avizi de personi qui ne sequas lu. Co klozas omna raporto kontra ca konto.
+          suspend: Preventez irga interago de o a ca konto e efacez lua kontenaji. Inversebla til 30 dii. Co klozas omna raporti kontra ca konto.
         warning_preset_id: Neobligata. Vu povas ankore insertar kustume texto a extremajo di fixito
       announcement:
         all_day: Kande kontrolesas, nur tempoporteodato montresos
@@ -43,7 +53,7 @@ io:
         password: Uzes minime 8 litri
         phrase: Parigesos ne ye textosituaciono o konteneyoaverto di posto
         scopes: Quala API quon softwaro permisesas acesar. Se vu selektas alta skopo, vu ne mustas selektar individui.
-        setting_aggregate_reblogs: Ne montrez nova busti di posti quo recente bustesas (nova busti)
+        setting_aggregate_reblogs: Ne montrez nova repeti di posti qui ja repetesis recente (nur efektigas repeti recevata nove)
         setting_always_send_emails: Normale retpostoavizi ne sendesas kande vu aktiva uzas Mastodon
         setting_default_sensitive: Sentoza medii originala celesas e povas revelesar per klikto
         setting_display_media_default: Celez medii quo markizesis quale sentoza
@@ -51,25 +61,30 @@ io:
         setting_display_media_show_all: Sempre montrez medii
         setting_use_blurhash: Inklini esas segun kolori di celesis vidaji ma kovras irga detali
         setting_use_pending_items: Celez tempolineonovi dop kliktar e ne automatike movigar niuzeto
+        username: Vu darfas uzar literi, nombri, e sublinei
         whole_word: Kande klefvorto o fraz esas nur litera e nombra, ol nur aplikesos se ol parigesas la tota vorto
       domain_allow:
         domain: Ca domeno povas ganar informi de ca servilo e venanta informo de ol procedagesos e sparesos
       email_domain_block:
         domain: Co povas esas domennomo quo montresas che retposto o registrajo MX quon ol uzas. Oli kontrolesos kande registro.
         with_dns_records: Probo di rezolvar registri DNS di la domeno agesos e rezulti anke preventesos
+      featured_tag:
+        name: 'Yen kelka hashtagi quin vu uzis maxim recente:'
       filters:
         action: Selektez ago kande posto parigas filtrilo
         actions:
           hide: Komplete celez filtrita kontenajo quale ol ne existas
           warn: Celez filtrita kontenajo dop avert quo montras titulo di filtrilo
       form_admin_settings:
+        activity_api_enabled: Quanto de lokale publikigita posti, aktiva uzanti e nova registri, donita semanope
         backups_retention_period: Retenez igita uzantoarkivi por la diiquanto.
         bootstrap_timeline_accounts: Ca konti pinglagesos a super sequorekomendi di nova uzanti.
         closed_registrations_message: Montresas kande registradi klozesas
-        content_cache_retention_period: Posti de altra servili efacesos pos la diiquanto kande fixesas a positiva nombro. Co darfas desagesar.
+        content_cache_retention_period: Omna posti e repeti de altra servili efacesos pos la specigita nombro de dii. Kelka posti forsan ne esos restaurebla. Omna relata libromarki, favoriziti e repeti anke esos perdita e neposible restaurota.
         custom_css: Vu povas pozar kustumizita staili en retverso di Mastodon.
         mascot: Remplas montreso en avanca retintervizajo.
         media_cache_retention_period: Deschargita mediifaili efacesos pos la diiquanto kande fixesas a positiva nombro, e rideschargesas irgatempe.
+        peers_api_enabled: Listo di domeni quin ca servilo trovis en la fediverso. Nula informo inkluzesas hike pri ka vu federas kun partikulara servilo, nur ke vua servilo savas pri lo. Co es uzata da enti qui kolektas statistiki pri federeso generale.
         profile_directory: La profilcheflisto montras omna uzanti quo voluntale volas esar deskovrebla.
         require_invite_text: Kande registradi bezonas manuala aprobo, ol kauzigas "Por quo vu volas juntas?" textoenpozo esar obliganta
         site_contact_email: Quale personi povas kontaktar vu por legala o suportquestioni.
@@ -78,11 +93,13 @@ io:
         site_short_description: Kurta deskripto por helpar unala identifikar ca servilo. Qua funcionigar lu e por qua?
         site_terms: Uzez vua sua privatesguidilo o ignorez por uzar la originalo. Povas strukturigesar per sintaxo di Markdown.
         site_title: Quale personi vokas ca servilo se ne uzas domennomo.
+        status_page_url: URL di pagino ube personi povas vidar la stando di ca servilo kande la servilo ne funcionas
         theme: Temo quo videsas da ekirita vizitanti e nova uzanti.
         thumbnail: Cirkum 2:1 imajo montresar kun informo di ca servilo.
         timeline_preview: Ekirita vizitanti videsos maxim recenta publika posti quo esas displonebla en la servilo.
         trendable_by_default: Ignorez manuala kontrolar di tendencoza kontenajo. Singla kozi povas ankore efacesar de tendenci pose.
         trends: Tendenci montras quala posti, hashtagi e niuzrakonti famozeskas en ca servilo.
+        trends_as_landing_page: Montrez populara posti a uzanti neeniriti e vizitanti vice deskriptajo pri ca servilo. Bezonas ke populari es aktivita.
       form_challenge:
         current_password: Vu eniras sekura areo
       imports:
@@ -103,6 +120,9 @@ io:
       sessions:
         otp: Enter the Two-factor code from your phone or use one of your recovery codes.
         webauthn: Se ol esas klefo di USB, certigar ke vu insertas e se bezonesas, tushetez.
+      settings:
+        indexable: Vua profilpagino povas aparar en serchorezultaji che Google, Bing, e altri.
+        show_application: Vu sempre povos vidar qua apliko publikigis vua posto irgakaze.
       tag:
         name: Vu povas nur chanjar literkaso, por exemplo, por kauzigar lu divenar plu lektebla
       user:
@@ -119,9 +139,13 @@ io:
         url: Ibe eventi sendesos
     labels:
       account:
+        discoverable: Inkluzar profilo e posti en trovado-algoritmi
         fields:
           name: Etiketo
           value: Kontenajo
+        indexable: Inkluzar publika posti en serchorezultaji
+        show_collections: Montrar sequati e sequanti en la profilo
+        unlocked: Automate aceptar nova sequanti
       account_alias:
         acct: Nomo di olda konto
       account_migration:
@@ -175,10 +199,10 @@ io:
         password: Pasvorto
         phrase: Klefvorto o frazo
         setting_advanced_layout: Aktivigez avancata retintervizajo
-        setting_aggregate_reblogs: Grupbusti en tempolinei
+        setting_aggregate_reblogs: Grupigar repeti en tempolinei
         setting_always_send_emails: Sempre sendez retpostoavizi
         setting_auto_play_gif: Automate pleez animigita GIFi
-        setting_boost_modal: Montrez konfirmdialogo ante bustar
+        setting_boost_modal: Montrez konfirmdialogo ante repetar
         setting_default_language: Postolinguo
         setting_default_privacy: Videbleso di la mesaji
         setting_default_sensitive: Sempre markizez medii quale sentoza
@@ -213,6 +237,7 @@ io:
           hide: Tote celez
           warn: Celez kun averto
       form_admin_settings:
+        activity_api_enabled: Publikigez rezumstatistiko pri uzantoaktiveso en API
         backups_retention_period: Uzantoarkivretendurtempo
         bootstrap_timeline_accounts: Sempre rekomendez ca konti a nova uzanti
         closed_registrations_message: Kustumizita mesajo kande registradi ne esas disponebla
@@ -220,6 +245,7 @@ io:
         custom_css: Kustumizita CSS
         mascot: Kustumizita reprezentimajo (oldo)
         media_cache_retention_period: Mediimemorajretendurtempo
+        peers_api_enabled: Publikigez listo di deskovrita servili en API
         profile_directory: Aktivigez profilcheflisto
         registrations_mode: Qua povas registragar
         require_invite_text: Mustez pozar motivo por juntar
@@ -231,11 +257,13 @@ io:
         site_short_description: Servildeskripto
         site_terms: Privatesguidilo
         site_title: Servilnomo
+        status_page_url: URL dil stando-pagino
         theme: Originala temo
         thumbnail: Servilimajeto
         timeline_preview: Permisez neyurizita aceso a publika tempolineo
         trendable_by_default: Permisez tendenci sen bezonar kontrolo
         trends: Aktivigez tendenci
+        trends_as_landing_page: Uzar populari quale la iniciala pagino
       interactions:
         must_be_follower: Celar la savigi da homi, qui ne sequas tu
         must_be_following: Celar la savigi da homi, quin tu ne sequas
@@ -260,11 +288,20 @@ io:
         follow_request: Sendar retpost-mesajo, kande ulu diskonocigas mesajo da tu
         mention: Sendar retpost-mesajo, kande ulu mencionas tu
         pending_account: Nova konto bezonas kontrolo
-        reblog: Sendar retpost-mesajo, kande ulu diskonocigas mesajo da tu
+        reblog: Ulu repetis vua posto
         report: Nova raport sendesas
+        software_updates:
+          all: Notifikar pri omna aktualigi
+          critical: Notifikar pri nur urjanta aktualigi
+          label: Nova Mastodon-versiono es disponebla
+          none: Nultempe notifikar pri aktualigi (ne rekomendata)
+          patch: Notifikar pri problemosolvanta aktualigi
         trending_tag: Nova tendenco bezonas kontrolo
       rule:
         text: Regulo
+      settings:
+        indexable: Inkluzar profilopagino en serchili
+        show_application: Montrar la apliko de qua vu sendis posto
       tag:
         listable: Permisez ca hashtago aparar en trovaji e sugestaji
         name: Hashtago
@@ -272,6 +309,7 @@ io:
         usable: Permisez posti uzar ca hashtago
       user:
         role: Rolo
+        time_zone: Klokozono
       user_role:
         color: Insignokoloro
         highlighted: Montrez rolo quale insigno en uzantoprofili
