@@ -125,7 +125,7 @@ class UpdateStatusService < BaseService
   def reset_preview_card!
     return unless @status.text_previously_changed?
 
-    @status.preview_cards.clear
+    @status.reset_preview_card!
     LinkCrawlWorker.perform_async(@status.id)
   end
 
