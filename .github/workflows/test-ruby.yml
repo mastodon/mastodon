@@ -117,7 +117,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           path: './'
           name: ${{ github.sha }}
@@ -193,7 +193,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           path: './public'
           name: ${{ github.sha }}
@@ -297,7 +297,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           path: './public'
           name: ${{ github.sha }}
