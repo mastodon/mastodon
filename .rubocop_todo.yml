@@ -478,13 +478,6 @@ Style/StringLiterals:
     - 'config/initializers/webauthn.rb'
     - 'config/routes.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowMethodsWithArguments, AllowedMethods, AllowedPatterns, AllowComments.
-# AllowedMethods: define_method, mail, respond_to
-Style/SymbolProc:
-  Exclude:
-    - 'config/initializers/3_omniauth.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, AllowSafeAssignment.
 # SupportedStyles: require_parentheses, require_no_parentheses, require_parentheses_when_complex
