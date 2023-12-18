@@ -77,10 +77,13 @@ RSpec.describe Setting do
             let(:default_value) { { default_value: 'default_value' } }
 
             it 'calls default_value.with_indifferent_access.merge!' do
-              expect(default_value).to receive_message_chain(:with_indifferent_access, :merge!)
-                .with(db_val.value)
+              indifferent_hash = instance_double(Hash, merge!: nil)
+              allow(default_value).to receive(:with_indifferent_access).and_return(indifferent_hash)
 
               described_class[key]
+
+              expect(default_value).to have_received(:with_indifferent_access)
+              expect(indifferent_hash).to have_received(:merge!).with(db_val.value)
             end
           end
 

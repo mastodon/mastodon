@@ -41,3 +41,38 @@ class SearchDataManager
     Tag.destroy_all
   end
 end
+
+RSpec.configure do |config|
+  config.before :suite do
+    if search_examples_present?
+      # Configure chewy to use `urgent` strategy to index documents
+      Chewy.strategy(:urgent)
+
+      # Create search data
+      search_data_manager.prepare_test_data
+    end
+  end
+
+  config.after :suite do
+    if search_examples_present?
+      # Clean up after search data
+      search_data_manager.cleanup_test_data
+    end
+  end
+
+  config.around :each, type: :search do |example|
+    search_data_manager.populate_indexes
+    example.run
+    search_data_manager.remove_indexes
+  end
+
+  private
+
+  def search_data_manager
+    @search_data_manager ||= SearchDataManager.new
+  end
+
+  def search_examples_present?
+    RUN_SEARCH_SPECS
+  end
+end

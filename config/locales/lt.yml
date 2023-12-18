@@ -232,6 +232,12 @@ lt:
       unassign: Nepriskirti
       unresolved: Neišspręsti
       updated_at: Atnaujinti
+    roles:
+      everyone: Numatytieji leidimai
+      everyone_full_description_html: Tai – <strong>bazinis vaidmuo</strong>, turintis įtakos <strong>visiems naudotojams</strong>, net ir tiems, kurie neturi priskirto vaidmens. Visi kiti vaidmenys iš jo paveldi teises.
+    settings:
+      domain_blocks:
+        all: Visiems
     statuses:
       back_to_account: Atgal į paskyros puslapį
       media:
@@ -250,6 +256,10 @@ lt:
       body: "%{reporter} parašė skundą apie %{target}"
       body_remote: Kažkas iš %{domain} parašė skundą apie %{target}
       subject: Naujas skundas %{instance} (#%{id})
+  appearance:
+    localization:
+      body: Mastodon verčia savanoriai.
+      guide_link_text: Visi gali prisidėti.
   application_mailer:
     notification_preferences: Keisti el pašto parinktis
     settings: 'Keisti el pašto parinktis: %{link}'
@@ -458,9 +468,9 @@ lt:
       private: Tik sekėjams
       private_long: Rodyti tik sekėjams
       public: Viešas
-      public_long: Matyti gali visi
+      public_long: Visi gali matyti
       unlisted: Neįtrauktas į sąrašus
-      unlisted_long: Matyti gali visi, tačiau nėra įtraukta į viešas laiko juostas
+      unlisted_long: Matyti gali visi, tačiau nėra įtraukti į viešąsias laiko skales
   stream_entries:
     sensitive_content: Jautrus turinys
   themes:
@@ -507,4 +517,5 @@ lt:
     seamless_external_login: Jūs esate prisijungę per išorini įrenginį, todėl slaptąžodis ir el pašto nustatymai neprieinami.
     signed_in_as: 'Prisijungta kaip:'
   verification:
+    hint_html: "<strong>Savo tapatybės patvirtinimas Mastodon skirtas visiems.</strong> Remiantis atviraisiais žiniatinklio standartais, dabar ir visam laikui nemokamas. Viskas, ko tau reikia, yra asmeninė svetainė, pagal kurią žmonės tave atpažįsta. Kai iš savo profilio pateiksi nuorodą į šią svetainę, patikrinsime, ar svetainėje yra nuoroda į tavo profilį, ir parodysime vizualinį indikatorių."
     verification: Patvirtinimas

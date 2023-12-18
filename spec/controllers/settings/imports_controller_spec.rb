@@ -194,7 +194,7 @@ RSpec.describe Settings::ImportsController do
       let!(:rows) do
         [
           { 'acct' => 'foo@bar' },
-          { 'acct' => 'user@bar', 'show_reblogs' => false, 'notify' => true, 'languages' => ['fr', 'de'] },
+          { 'acct' => 'user@bar', 'show_reblogs' => false, 'notify' => true, 'languages' => %w(fr de) },
         ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
       end
 
