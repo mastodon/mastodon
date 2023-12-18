@@ -124,7 +124,7 @@ describe 'Caching behavior' do
       expect(response.cookies).to be_empty
     end
 
-    it 'sets public cache control' do
+    it 'sets public cache control', :aggregate_failures do
       # expect(response.cache_control[:max_age]&.to_i).to be_positive
       expect(response.cache_control[:public]).to be_truthy
       expect(response.cache_control[:private]).to be_falsy
@@ -141,11 +141,8 @@ describe 'Caching behavior' do
   end
 
   shared_examples 'non-cacheable error' do
-    it 'does not return HTTP success' do
+    it 'does not return HTTP success and does not have cache headers', :aggregate_failures do
       expect(response).to_not have_http_status(200)
-    end
-
-    it 'does not have cache headers' do
       expect(response.cache_control[:public]).to be_falsy
     end
   end
@@ -171,17 +168,24 @@ describe 'Caching behavior' do
   let(:user)  { Fabricate(:user, role: UserRole.find_by(name: 'Moderator')) }
 
   before do
-    # rubocop:disable Style/NumericLiterals
-    status = Fabricate(:status, account: alice, id: 110224538612341312)
-    Fabricate(:status, account: alice, id: 110224538643211312, visibility: :private)
+    status = Fabricate(:status, account: alice, id: '110224538612341312')
+    Fabricate(:status, account: alice, id: '110224538643211312', visibility: :private)
     Fabricate(:invite, code: 'abcdef')
-    Fabricate(:poll, status: status, account: alice, id: 12345)
-    # rubocop:enable Style/NumericLiterals
+    Fabricate(:poll, status: status, account: alice, id: '12345')
 
     user.account.follow!(alice)
   end
 
   context 'when anonymously accessed' do
+    describe '/users/alice' do
+      it 'redirects with proper cache header', :aggregate_failures do
+        get '/users/alice'
+
+        expect(response).to redirect_to('/@alice')
+        expect(response.headers['Vary']&.split(',')&.map { |x| x.strip.downcase }).to include('accept')
+      end
+    end
+
     TestEndpoints::ALWAYS_CACHED.each do |endpoint|
       describe endpoint do
         before { get endpoint }
