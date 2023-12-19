@@ -175,16 +175,8 @@ RSpec.describe User do
       let(:user) { Fabricate(:user, confirmed_at: nil, unconfirmed_email: new_email) }
 
       context 'when the user is already approved' do
-        around do |example|
-          registrations_mode = Setting.registrations_mode
-          Setting.registrations_mode = 'approved'
-
-          example.run
-
-          Setting.registrations_mode = registrations_mode
-        end
-
         before do
+          Setting.registrations_mode = 'approved'
           user.approve!
         end
 
@@ -199,13 +191,8 @@ RSpec.describe User do
       end
 
       context 'when the user does not require explicit approval' do
-        around do |example|
-          registrations_mode = Setting.registrations_mode
+        before do
           Setting.registrations_mode = 'open'
-
-          example.run
-
-          Setting.registrations_mode = registrations_mode
         end
 
         it 'sets email to unconfirmed_email' do
@@ -219,13 +206,8 @@ RSpec.describe User do
       end
 
       context 'when the user requires explicit approval but is not approved' do
-        around do |example|
-          registrations_mode = Setting.registrations_mode
+        before do
           Setting.registrations_mode = 'approved'
-
-          example.run
-
-          Setting.registrations_mode = registrations_mode
         end
 
         it 'sets email to unconfirmed_email' do
@@ -243,16 +225,8 @@ RSpec.describe User do
   describe '#approve!' do
     subject { user.approve! }
 
-    around do |example|
-      registrations_mode = Setting.registrations_mode
-      Setting.registrations_mode = 'approved'
-
-      example.run
-
-      Setting.registrations_mode = registrations_mode
-    end
-
     before do
+      Setting.registrations_mode = 'approved'
       allow(TriggerWebhookWorker).to receive(:perform_async)
     end
 
