@@ -1,5 +1,3 @@
-<%= raw t('application_mailer.salutation', name: display_name(@me)) %>
-
 <%= raw t('admin_mailer.new_trends.body') %>
 
 <%= render partial: 'new_trending_links', object: @links unless @links.empty? %>
