@@ -2,7 +2,7 @@
 
 class Api::V1::CustomEmojisController < Api::BaseController
   vary_by '', unless: :disallow_unauthenticated_api_access?
-  skip_before_action :set_cache_headers
+  # skip_before_action :set_cache_headers
   before_action -> { authorize_if_got_token! :write, :'write:custom_emoji' }, only: :create
   before_action -> { doorkeeper_authorize! :write, :'write:custom_emoji' }, only: :create
 
@@ -12,9 +12,6 @@ class Api::V1::CustomEmojisController < Api::BaseController
   end
 
   def create
-    # authorize :custom_emoji, :create?
-
-    p resource_params
     @custom_emoji = CustomEmoji.new(resource_params)
 
     if @custom_emoji.save
@@ -22,7 +19,8 @@ class Api::V1::CustomEmojisController < Api::BaseController
       # redirect_to admin_custom_emojis_path, notice: I18n.t('admin.custom_emojis.created_msg')
       render json: @custom_emoji, serializer: REST::CustomEmojiSerializer
     else
-      render json: { error: I18n.t('statuses.errors.failed_saving_custom_emoji') }, status: 500    end
+      render json: { error: I18n.t('statuses.errors.failed_saving_custom_emoji') }, status: 500
+    end
   end
 
   private
@@ -30,5 +28,4 @@ class Api::V1::CustomEmojisController < Api::BaseController
   def resource_params
     params.permit(:shortcode, :image, :visible_in_picker)
   end
-
 end
