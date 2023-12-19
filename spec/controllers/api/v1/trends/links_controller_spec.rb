@@ -6,12 +6,6 @@ RSpec.describe Api::V1::Trends::LinksController do
   render_views
 
   describe 'GET #index' do
-    around do |example|
-      previous = Setting.trends
-      example.run
-      Setting.trends = previous
-    end
-
     context 'when trends are disabled' do
       before { Setting.trends = false }
 
