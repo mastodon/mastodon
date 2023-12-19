@@ -4,8 +4,8 @@
 #
 # Table name: preview_cards_statuses
 #
-#  preview_card_id :bigint(8)        not null
-#  status_id       :bigint(8)        not null
+#  preview_card_id :bigint(8)        not null, primary key
+#  status_id       :bigint(8)        not null, primary key
 #  url             :string
 #
 class PreviewCardsStatus < ApplicationRecord
