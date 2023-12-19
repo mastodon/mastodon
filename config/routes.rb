@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     /favourites
     /bookmarks
     /pinned
-    /start
+    /start/(*any)
     /directory
     /explore/(*any)
     /search
