@@ -57,9 +57,11 @@
 
                     .email-header-after-div
                       .email-header-after-inside-div
-
-                    -# Content
-                    = yield
+                    %table.email-body-table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                      %tr
+                        %td.email-body-td
+                          -# Content
+                          = yield
 
               /[if mso]
                 </td></tr></table>
