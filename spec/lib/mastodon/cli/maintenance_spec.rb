@@ -89,7 +89,7 @@ describe Mastodon::CLI::Maintenance do
         end
       end
 
-      context 'with duplicate users' do
+      context 'with duplicate users on email' do
         before do
           prepare_duplicate_data
         end
@@ -114,6 +114,64 @@ describe Mastodon::CLI::Maintenance do
           ActiveRecord::Base.connection.remove_index :users, :email
           Fabricate(:user, email: duplicate_email)
           Fabricate.build(:user, email: duplicate_email).save(validate: false)
+        end
+      end
+
+      context 'with duplicate users on confirmation_token' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:duplicate_confirmation_token) { '123ABC' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating user records',
+              'Unsetting confirmation token',
+              'Restoring users indexes',
+              'Finished!'
+            )
+            .and change(duplicate_users, :count).from(2).to(1)
+        end
+
+        def duplicate_users
+          User.where(confirmation_token: duplicate_confirmation_token)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :users, :confirmation_token
+          Fabricate(:user, confirmation_token: duplicate_confirmation_token)
+          Fabricate.build(:user, confirmation_token: duplicate_confirmation_token).save(validate: false)
+        end
+      end
+
+      context 'with duplicate users on reset_password_token' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:duplicate_reset_password_token) { '123ABC' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating user records',
+              'Unsetting password reset token',
+              'Restoring users indexes',
+              'Finished!'
+            )
+            .and change(duplicate_users, :count).from(2).to(1)
+        end
+
+        def duplicate_users
+          User.where(reset_password_token: duplicate_reset_password_token)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :users, :reset_password_token
+          Fabricate(:user, reset_password_token: duplicate_reset_password_token)
+          Fabricate.build(:user, reset_password_token: duplicate_reset_password_token).save(validate: false)
         end
       end
 
