@@ -18,6 +18,7 @@ class Api::V1::AccountsController < Api::BaseController
   override_rate_limit_headers :follow, family: :follows
 
   def show
+    cache_if_unauthenticated!
     render json: @account, serializer: REST::AccountSerializer
   end
 
@@ -30,7 +31,7 @@ class Api::V1::AccountsController < Api::BaseController
     self.response_body = Oj.dump(response.body)
     self.status        = response.status
   rescue ActiveRecord::RecordInvalid => e
-    render json: ValidationErrorFormatter.new(e, 'account.username': :username, 'invite_request.text': :reason).as_json, status: :unprocessable_entity
+    render json: ValidationErrorFormatter.new(e, 'account.username': :username, 'invite_request.text': :reason).as_json, status: 422
   end
 
   def follow
@@ -89,7 +90,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def account_params
-    params.permit(:username, :email, :password, :agreement, :locale, :reason)
+    params.permit(:username, :email, :password, :agreement, :locale, :reason, :time_zone)
   end
 
   def check_enabled_registrations

@@ -1,6 +1,7 @@
 import api from '../api';
-import { importFetchedAccounts } from './importer';
+
 import { fetchRelationships } from './accounts';
+import { importFetchedAccounts } from './importer';
 
 export const DIRECTORY_FETCH_REQUEST = 'DIRECTORY_FETCH_REQUEST';
 export const DIRECTORY_FETCH_SUCCESS = 'DIRECTORY_FETCH_SUCCESS';

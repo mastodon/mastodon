@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::EmailDomainBlocksController, type: :controller do
+RSpec.describe Admin::EmailDomainBlocksController do
   render_views
 
   before do

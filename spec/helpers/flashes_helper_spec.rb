@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe FlashesHelper, type: :helper do
+describe FlashesHelper do
   describe 'user_facing_flashes' do
     it 'returns user facing flashes' do
       flash[:alert] = 'an alert'

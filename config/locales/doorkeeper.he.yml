@@ -122,14 +122,14 @@ he:
         admin/accounts: חשבונות ניהול
         admin/all: כל פעולות האדמין
         admin/reports: ניהול דיווחים
-        all: הכל
+        all: גישה מלאה לחשבון המסטודון שלך
         blocks: חסימות
         bookmarks: סימניות
         conversations: שיחות
         crypto: הצפנה מקצה לקצה
         favourites: חיבובים
         filters: מסננים
-        follow: יחסים
+        follow: נעקבים, מושתקים וחסומים
         follows: נעקבים
         lists: רשימות
         media: קבצי מדיה מצורפים
@@ -149,9 +149,19 @@ he:
     scopes:
       admin:read: לקרוא את כל המידע על השרת
       admin:read:accounts: לקרוא מידע רגיש בכל החשבונות
+      admin:read:canonical_email_blocks: קריאת התכנים הרגישים של רשומות חסימות הדואל
+      admin:read:domain_allows: קריאת התכנים הרגישים של שמות המתחמים (דומיינים) הבלתי חסומים
+      admin:read:domain_blocks: קריאת התכנים הרגישים של שמות המתחמים (דומיינים) החסומים
+      admin:read:email_domain_blocks: קריאת התכנים הרגישים של שמות המתחמים (דומיינים) החסומים לדואל
+      admin:read:ip_blocks: קריאת התכנים הרגישים של חסימות כתובות IP
       admin:read:reports: לקרוא מידע רגיש בכל הדוחות וכל החשבונות המדווחים
       admin:write: לשנות את כל המידע על השרת
       admin:write:accounts: ביצוע פעולות הנהלה על חשבונות
+      admin:write:canonical_email_blocks: ביצוע פעולות מנחה על חסימות דואל
+      admin:write:domain_allows: ביצוע פעולות מנחה על שמות מתחם מורשים
+      admin:write:domain_blocks: ביצוע פעולות מנחה על שמות מתחם חסומים
+      admin:write:email_domain_blocks: ביצוע פעולות מנחה על חסימות שמות מתחם דואל
+      admin:write:ip_blocks: ביצוע פעולות מנחה על חסימות כתובות IP
       admin:write:reports: ביצוע פעולות הנהלה על חשבונות
       crypto: שימוש בהצפנה מקצה לקצה
       follow: לעקוב, לחסום, להסיר חסימה ולהפסיק לעקוב אחרי חשבונות

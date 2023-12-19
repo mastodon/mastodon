@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: instances
@@ -12,13 +13,17 @@ class Instance < ApplicationRecord
 
   attr_accessor :failure_days
 
-  has_many :accounts, foreign_key: :domain, primary_key: :domain
+  has_many :accounts, foreign_key: :domain, primary_key: :domain, inverse_of: false
 
-  belongs_to :domain_block, foreign_key: :domain, primary_key: :domain
-  belongs_to :domain_allow, foreign_key: :domain, primary_key: :domain
-  belongs_to :unavailable_domain, foreign_key: :domain, primary_key: :domain # skipcq: RB-RL1031
+  with_options foreign_key: :domain, primary_key: :domain, inverse_of: false do
+    belongs_to :domain_block
+    belongs_to :domain_allow
+    belongs_to :unavailable_domain # skipcq: RB-RL1031
+  end
 
+  scope :searchable, -> { where.not(domain: DomainBlock.select(:domain)) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
+  scope :by_domain_and_subdomains, ->(domain) { where("reverse('.' || domain) LIKE reverse(?)", "%.#{domain}") }
 
   def self.refresh
     Scenic.database.refresh_materialized_view(table_name, concurrently: true, cascade: false)

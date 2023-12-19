@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import UploadProgress from '../components/upload_progress';
 
 const mapStateToProps = state => ({

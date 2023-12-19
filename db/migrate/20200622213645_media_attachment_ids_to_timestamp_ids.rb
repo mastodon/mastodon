@@ -1,4 +1,6 @@
-class MediaAttachmentIdsToTimestampIds < ActiveRecord::Migration[5.1]
+# frozen_string_literal: true
+
+class MediaAttachmentIdsToTimestampIds < ActiveRecord::Migration[5.2]
   def up
     # Set up the media_attachments.id column to use our timestamp-based IDs.
     safety_assured do
@@ -10,7 +12,7 @@ class MediaAttachmentIdsToTimestampIds < ActiveRecord::Migration[5.1]
   end
 
   def down
-    execute("LOCK media_attachments")
+    execute('LOCK media_attachments')
     execute("SELECT setval('media_attachments_id_seq', (SELECT MAX(id) FROM media_attachments))")
     execute("ALTER TABLE media_attachments ALTER COLUMN id SET DEFAULT nextval('media_attachments_id_seq')")
   end

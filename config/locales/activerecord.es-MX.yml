@@ -3,7 +3,7 @@ es-MX:
   activerecord:
     attributes:
       poll:
-        expires_at: Vencimiento
+        expires_at: Fecha límite
         options: Opciones
       user:
         agreement: Contrato de servicio
@@ -28,7 +28,7 @@ es-MX:
         doorkeeper/application:
           attributes:
             website:
-              invalid: no es una URL válida
+              invalid: no es un URL válido
         import:
           attributes:
             data:
@@ -53,3 +53,7 @@ es-MX:
             position:
               elevated: no puede ser mayor que tu rol actual
               own_role: no se puede cambiar con tu rol actual
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: no se pueden incluir eventos para los que no tienes permisos

@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Announce do
-  let(:sender)    { Fabricate(:account, followers_url: 'http://example.com/followers', uri: 'https://example.com/actor') }
+  subject { described_class.new(json, sender) }
+
+  let(:sender)    { Fabricate(:account, followers_url: 'http://example.com/followers', uri: 'https://example.com/actor', domain: 'example.com') }
   let(:recipient) { Fabricate(:account) }
   let(:status)    { Fabricate(:status, account: recipient) }
 
@@ -27,8 +31,6 @@ RSpec.describe ActivityPub::Activity::Announce do
     }
   end
 
-  subject { described_class.new(json, sender) }
-
   describe '#perform' do
     context 'when sender is followed by a local account' do
       before do
@@ -37,7 +39,7 @@ RSpec.describe ActivityPub::Activity::Announce do
         subject.perform
       end
 
-      context 'a known status' do
+      context 'with known status' do
         let(:object_json) do
           ActivityPub::TagManager.instance.uri_for(status)
         end
@@ -47,7 +49,7 @@ RSpec.describe ActivityPub::Activity::Announce do
         end
       end
 
-      context 'an unknown status' do
+      context 'with unknown status' do
         let(:object_json) { 'https://example.com/actor/hello-world' }
 
         it 'creates a reblog by sender of status' do
@@ -58,7 +60,7 @@ RSpec.describe ActivityPub::Activity::Announce do
         end
       end
 
-      context 'self-boost of a previously unknown status with correct attributedTo' do
+      context 'when self-boost of a previously unknown status with correct attributedTo' do
         let(:object_json) do
           {
             id: 'https://example.com/actor#bar',
@@ -74,7 +76,7 @@ RSpec.describe ActivityPub::Activity::Announce do
         end
       end
 
-      context 'self-boost of a previously unknown status with correct attributedTo, inlined Collection in audience' do
+      context 'when self-boost of a previously unknown status with correct attributedTo, inlined Collection in audience' do
         let(:object_json) do
           {
             id: 'https://example.com/actor#bar',
@@ -82,10 +84,10 @@ RSpec.describe ActivityPub::Activity::Announce do
             content: 'Lorem ipsum',
             attributedTo: 'https://example.com/actor',
             to: {
-              'type': 'OrderedCollection',
-              'id': 'http://example.com/followers',
-              'first': 'http://example.com/followers?page=true',
-            }
+              type: 'OrderedCollection',
+              id: 'http://example.com/followers',
+              first: 'http://example.com/followers?page=true',
+            },
           }
         end
 
@@ -110,18 +112,18 @@ RSpec.describe ActivityPub::Activity::Announce do
     end
 
     context 'when the sender is relayed' do
-      let!(:relay_account) { Fabricate(:account, inbox_url: 'https://relay.example.com/inbox') }
+      subject { described_class.new(json, sender, relayed_through_actor: relay_account) }
+
+      let!(:relay_account) { Fabricate(:account, inbox_url: 'https://relay.example.com/inbox', domain: 'relay.example.com') }
       let!(:relay) { Fabricate(:relay, inbox_url: 'https://relay.example.com/inbox') }
 
       let(:object_json) { 'https://example.com/actor/hello-world' }
-
-      subject { described_class.new(json, sender, relayed_through_actor: relay_account) }
 
       before do
         stub_request(:get, 'https://example.com/actor/hello-world').to_return(body: Oj.dump(unknown_object_json))
       end
 
-      context 'and the relay is enabled' do
+      context 'when the relay is enabled' do
         before do
           relay.update(state: :accepted)
           subject.perform
@@ -133,13 +135,13 @@ RSpec.describe ActivityPub::Activity::Announce do
         end
       end
 
-      context 'and the relay is disabled' do
+      context 'when the relay is disabled' do
         before do
           subject.perform
         end
 
         it 'does not fetch the remote status' do
-          expect(a_request(:get, 'https://example.com/actor/hello-world')).not_to have_been_made
+          expect(a_request(:get, 'https://example.com/actor/hello-world')).to_not have_been_made
           expect(Status.find_by(uri: 'https://example.com/actor/hello-world')).to be_nil
         end
 

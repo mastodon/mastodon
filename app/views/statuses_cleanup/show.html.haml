@@ -10,7 +10,7 @@
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :enabled, as: :boolean, wrapper: :with_label, label: t('statuses_cleanup.enabled'), hint: t('statuses_cleanup.enabled_hint')
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :min_status_age, wrapper: :with_label, label: t('statuses_cleanup.min_age_label'), collection: AccountStatusesCleanupPolicy::ALLOWED_MIN_STATUS_AGE.map(&:to_i), label_method: lambda { |i| t("statuses_cleanup.min_age.#{i}") }, include_blank: false, hint: false
+      = f.input :min_status_age, wrapper: :with_label, label: t('statuses_cleanup.min_age_label'), collection: AccountStatusesCleanupPolicy::ALLOWED_MIN_STATUS_AGE.map(&:to_i), label_method: ->(i) { t("statuses_cleanup.min_age.#{i}") }, include_blank: false, hint: false
 
   .flash-message= t('statuses_cleanup.explanation')
 

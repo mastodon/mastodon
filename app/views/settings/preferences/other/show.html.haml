@@ -7,31 +7,26 @@
 = simple_form_for current_user, url: settings_preferences_other_path, html: { method: :put, id: 'edit_preferences' } do |f|
   = render 'shared/error_messages', object: current_user
 
-  .fields-group
-    = f.input :setting_noindex, as: :boolean, wrapper: :with_label
+  = f.simple_fields_for :settings, current_user.settings do |ff|
+    .fields-group
+      = ff.input :aggregate_reblogs, wrapper: :with_label, recommended: true, label: I18n.t('simple_form.labels.defaults.setting_aggregate_reblogs'), hint: I18n.t('simple_form.hints.defaults.setting_aggregate_reblogs')
 
-  .fields-group
-    = f.input :setting_aggregate_reblogs, as: :boolean, wrapper: :with_label, recommended: true
+    %h4= t 'preferences.posting_defaults'
 
-  %h4= t 'preferences.posting_defaults'
+    .fields-row
+      .fields-group.fields-row__column.fields-row__column-6
+        = ff.input :default_privacy, collection: Status.selectable_visibilities, wrapper: :with_label, include_blank: false, label_method: ->(visibility) { safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') }, required: false, hint: false, label: I18n.t('simple_form.labels.defaults.setting_default_privacy')
 
-  .fields-row
-    .fields-group.fields-row__column.fields-row__column-6
-      = f.input :setting_default_privacy, collection: Status.selectable_visibilities, wrapper: :with_label, include_blank: false, label_method: lambda { |visibility| safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') }, required: false, hint: false
+      .fields-group.fields-row__column.fields-row__column-6
+        = ff.input :default_language, collection: [nil] + filterable_languages, wrapper: :with_label, label_method: ->(locale) { locale.nil? ? I18n.t('statuses.default_language') : native_locale_name(locale) }, required: false, include_blank: false, hint: false, label: I18n.t('simple_form.labels.defaults.setting_default_language')
 
-    .fields-group.fields-row__column.fields-row__column-6
-      = f.input :setting_default_language, collection: [nil] + filterable_languages, wrapper: :with_label, label_method: lambda { |locale| locale.nil? ? I18n.t('statuses.default_language') : native_locale_name(locale) }, required: false, include_blank: false, hint: false
-
-  .fields-group
-    = f.input :setting_default_sensitive, as: :boolean, wrapper: :with_label
-
-  .fields-group
-    = f.input :setting_show_application, as: :boolean, wrapper: :with_label, recommended: true
+    .fields-group
+      = ff.input :default_sensitive, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_default_sensitive'), hint: I18n.t('simple_form.hints.defaults.setting_default_sensitive')
 
   %h4= t 'preferences.public_timelines'
 
   .fields-group
-    = f.input :chosen_languages, collection: filterable_languages, wrapper: :with_block_label, include_blank: false, label_method: lambda { |locale| native_locale_name(locale) }, required: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+    = f.input :chosen_languages, collection: filterable_languages, wrapper: :with_block_label, include_blank: false, label_method: ->(locale) { native_locale_name(locale) }, required: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

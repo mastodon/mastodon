@@ -7,13 +7,14 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   context :security
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
-                     :moved_to, :property_value, :discoverable, :olm, :suspended
+                     :moved_to, :property_value, :discoverable, :olm, :suspended,
+                     :memorial, :indexable
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :featured, :featured_tags,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers,
-             :discoverable, :published
+             :discoverable, :indexable, :published, :memorial
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
@@ -98,8 +99,12 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     object.suspended? ? false : (object.discoverable || false)
   end
 
+  def indexable
+    object.suspended? ? false : (object.indexable || false)
+  end
+
   def name
-    object.suspended? ? '' : object.display_name
+    object.suspended? ? object.username : (object.display_name.presence || object.username)
   end
 
   def summary

@@ -8,7 +8,7 @@
   %p.hint= t('webauthn_credentials.description_html')
 
   .fields_group
-    = f.input :nickname, wrapper: :with_block_label, hint: t('webauthn_credentials.nickname_hint'), input_html: { :autocomplete => 'off' }, required: true
+    = f.input :nickname, wrapper: :with_block_label, hint: t('webauthn_credentials.nickname_hint'), input_html: { autocomplete: 'off' }, required: true
 
   .actions
     = f.button :button, t('webauthn_credentials.add'), class: 'js-webauthn', type: :submit

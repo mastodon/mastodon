@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Admin::CustomEmojisController do
@@ -40,7 +42,7 @@ describe Admin::CustomEmojisController do
       let(:params) { { shortcode: 'test', image: image } }
 
       it 'creates custom emoji' do
-        expect { subject }.to change { CustomEmoji.count }.by(1)
+        expect { subject }.to change(CustomEmoji, :count).by(1)
       end
     end
 

@@ -1,0 +1,124 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
+    ':labels(dependencies)',
+    ':maintainLockFilesMonthly', // update non-direct dependencies monthly
+    ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
+    ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
+  ],
+  minimumReleaseAge: '3', // Wait 3 days after the package has been published before upgrading it
+  // packageRules order is important, they are applied from top to bottom and are merged,
+  // meaning the most important ones must be at the bottom, for example grouping rules
+  // If we do not want a package to be grouped with others, we need to set its groupName
+  // to `null` after any other rule set it to something.
+  dependencyDashboardHeader: 'This issue lists Renovate updates and detected dependencies. Read the [Dependency Dashboard](https://docs.renovatebot.com/key-concepts/dashboard/) docs to learn more. Before approving any upgrade: read the description and comments in the [`renovate.json5` file](https://github.com/mastodon/mastodon/blob/main/.github/renovate.json5).',
+  packageRules: [
+    {
+      // Require Dependency Dashboard Approval for major version bumps of these node packages
+      matchManagers: ['npm'],
+      matchPackageNames: [
+        'tesseract.js', // Requires code changes
+        'react-hotkeys', // Requires code changes
+
+        // Requires Webpacker upgrade or replacement
+        '@types/webpack',
+        'babel-loader',
+        'compression-webpack-plugin',
+        'css-loader',
+        'imports-loader',
+        'mini-css-extract-plugin',
+        'postcss-loader',
+        'sass-loader',
+        'terser-webpack-plugin',
+        'webpack',
+        'webpack-assets-manifest',
+        'webpack-bundle-analyzer',
+        'webpack-dev-server',
+        'webpack-cli',
+
+        // react-router: Requires manual upgrade
+        'history',
+        'react-router-dom',
+      ],
+      matchUpdateTypes: ['major'],
+      dependencyDashboardApproval: true,
+    },
+    {
+      // Require Dependency Dashboard Approval for major version bumps of these Ruby packages
+      matchManagers: ['bundler'],
+      matchPackageNames: [
+        'rack', // Needs to be synced with Rails version
+        'sprockets', // Requires manual upgrade https://github.com/rails/sprockets/blob/master/UPGRADING.md#guide-to-upgrading-from-sprockets-3x-to-4x
+        'strong_migrations', // Requires manual upgrade
+        'sidekiq', // Requires manual upgrade
+        'sidekiq-unique-jobs', // Requires manual upgrades and sync with Sidekiq version
+        'redis', // Requires manual upgrade and sync with Sidekiq version
+      ],
+      matchUpdateTypes: ['major'],
+      dependencyDashboardApproval: true,
+    },
+    {
+      // Update Github Actions and Docker images weekly
+      matchManagers: ['github-actions', 'dockerfile', 'docker-compose'],
+      extends: ['schedule:weekly'],
+    },
+    {
+      // Require Dependency Dashboard Approval for major & minor bumps for the ruby image, this needs to be synced with .ruby-version
+      matchManagers: ['dockerfile'],
+      matchPackageNames: ['moritzheiber/ruby-jemalloc'],
+      matchUpdateTypes: ['minor', 'major'],
+      dependencyDashboardApproval: true,
+    },
+    {
+      // Require Dependency Dashboard Approval for major bumps for the node image, this needs to be synced with .nvmrc
+      matchManagers: ['dockerfile'],
+      matchPackageNames: ['node'],
+      matchUpdateTypes: ['major'],
+      dependencyDashboardApproval: true,
+    },
+    {
+      // Require Dependency Dashboard Approval for major postgres bumps in the docker-compose file, as those break dev environments
+      matchManagers: ['docker-compose'],
+      matchPackageNames: ['postgres'],
+      matchUpdateTypes: ['major'],
+      dependencyDashboardApproval: true,
+    },
+    {
+      // Update devDependencies every week, with one grouped PR
+      matchDepTypes: 'devDependencies',
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'devDependencies (non-major)',
+      extends: ['schedule:weekly'],
+    },
+    {
+      // Group all eslint-related packages with `eslint` in the same PR
+      matchManagers: ['npm'],
+      matchPackageNames: ['eslint'],
+      matchPackagePrefixes: ['eslint-', '@typescript-eslint/'],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'eslint (non-major)',
+    },
+    {
+      // Update @types/* packages every week, with one grouped PR
+      matchPackagePrefixes: '@types/',
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'DefinitelyTyped types (non-major)',
+      extends: ['schedule:weekly'],
+      addLabels: ['typescript'],
+    },
+    {
+      // We want those packages to always have their own PR
+      matchManagers: ['npm'],
+      matchPackageNames: [
+        'typescript', // Typescript has code-impacting changes in minor versions
+      ],
+      groupName: null, // We dont want them to belong to any group
+    },
+    // Add labels depending on package manager
+    { matchManagers: ['npm', 'nvm'], addLabels: ['javascript'] },
+    { matchManagers: ['bundler', 'ruby-version'], addLabels: ['ruby'] },
+    { matchManagers: ['docker-compose', 'dockerfile'], addLabels: ['docker'] },
+    { matchManagers: ['github-actions'], addLabels: ['github_actions'] },
+  ],
+}

@@ -7,9 +7,21 @@ tt:
       reset_password_instructions:
         action: Серсүзне үзгәртү
         title: Серсүзне алыштыру
+      two_factor_enabled:
+        title: 2FA кабызылды
       webauthn_credential:
         deleted:
           subject: 'Mastodon: Иминлек ачкычы бетерелгән'
+    passwords:
+      updated: Серсүзегез уңышлы үзгәртелде. Сез хәзер кердегез.
+      updated_not_active: Серсүзегез уңышлы үзгәртелде.
+    registrations:
+      signed_up: Рәхим итегез! Сез уңышлы теркәлдегез.
+      updated: Хисабыгыз уңышлы яңартылды.
+    sessions:
+      already_signed_out: Уңышлы чыккансыз.
+      signed_in: Уңышлы кердегез.
+      signed_out: Уңышлы чыккансыз.
   errors:
     messages:
       not_found: табылмады

@@ -55,5 +55,5 @@
                             %tbody
                               %tr
                                 %td.button-primary
-                                  = link_to full_asset_url(@backup.dump.url) do
+                                  = link_to download_backup_url(@backup) do
                                     %span= t 'exports.archive_takeout.download'

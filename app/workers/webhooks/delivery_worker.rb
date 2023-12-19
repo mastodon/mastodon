@@ -8,7 +8,7 @@ class Webhooks::DeliveryWorker
 
   def perform(webhook_id, body)
     @webhook   = Webhook.find(webhook_id)
-    @body      = body
+    @body      = @webhook.template.blank? ? body : Webhooks::PayloadRenderer.new(body).render(@webhook.template)
     @response  = nil
 
     perform_request
@@ -19,7 +19,7 @@ class Webhooks::DeliveryWorker
   private
 
   def perform_request
-    request = Request.new(:post, @webhook.url, body: @body)
+    request = Request.new(:post, @webhook.url, body: @body, allow_local: true)
 
     request.add_headers(
       'Content-Type' => 'application/json',

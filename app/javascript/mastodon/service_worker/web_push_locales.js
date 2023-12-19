@@ -1,3 +1,6 @@
+/* eslint-disable import/no-commonjs --
+   We need to use CommonJS here as its imported into a preval file (`emoji_compressed.js`) */
+
 /* @preval */
 
 const fs   = require('fs');
@@ -7,7 +10,7 @@ const filtered  = {};
 const filenames = fs.readdirSync(path.resolve(__dirname, '../locales'));
 
 filenames.forEach(filename => {
-  if (!filename.match(/\.json$/) || filename.match(/defaultMessages|whitelist/)) return;
+  if (!filename.match(/\.json$/)) return;
 
   const content = fs.readFileSync(path.resolve(__dirname, `../locales/${filename}`), 'utf-8');
   const full    = JSON.parse(content);

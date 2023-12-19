@@ -1,5 +1,6 @@
-import { STORE_HYDRATE } from '../actions/store';
 import { Map as ImmutableMap } from 'immutable';
+
+import { STORE_HYDRATE } from '../actions/store';
 
 const initialState = ImmutableMap({
   accept_content_types: [],
@@ -12,4 +13,4 @@ export default function meta(state = initialState, action) {
   default:
     return state;
   }
-};
+}

@@ -5,4 +5,3 @@
   = link_to t('admin.roles.delete'), admin_role_path(@role), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:destroy, @role)
 
 = render partial: 'form'
-

@@ -20,67 +20,67 @@ describe ScopeTransformer do
       end
     end
 
-    context 'for scope "read"' do
+    context 'with scope "read"' do
       let(:input) { 'read' }
 
       it_behaves_like 'a scope', nil, 'all', 'read'
     end
 
-    context 'for scope "write"' do
+    context 'with scope "write"' do
       let(:input) { 'write' }
 
       it_behaves_like 'a scope', nil, 'all', 'write'
     end
 
-    context 'for scope "follow"' do
+    context 'with scope "follow"' do
       let(:input) { 'follow' }
 
       it_behaves_like 'a scope', nil, 'follow', 'read/write'
     end
 
-    context 'for scope "crypto"' do
+    context 'with scope "crypto"' do
       let(:input) { 'crypto' }
 
       it_behaves_like 'a scope', nil, 'crypto', 'read/write'
     end
 
-    context 'for scope "push"' do
+    context 'with scope "push"' do
       let(:input) { 'push' }
 
       it_behaves_like 'a scope', nil, 'push', 'read/write'
     end
 
-    context 'for scope "admin:read"' do
+    context 'with scope "admin:read"' do
       let(:input) { 'admin:read' }
 
       it_behaves_like 'a scope', 'admin', 'all', 'read'
     end
 
-    context 'for scope "admin:write"' do
+    context 'with scope "admin:write"' do
       let(:input) { 'admin:write' }
 
       it_behaves_like 'a scope', 'admin', 'all', 'write'
     end
 
-    context 'for scope "admin:read:accounts"' do
+    context 'with scope "admin:read:accounts"' do
       let(:input) { 'admin:read:accounts' }
 
       it_behaves_like 'a scope', 'admin', 'accounts', 'read'
     end
 
-    context 'for scope "admin:write:accounts"' do
+    context 'with scope "admin:write:accounts"' do
       let(:input) { 'admin:write:accounts' }
 
       it_behaves_like 'a scope', 'admin', 'accounts', 'write'
     end
 
-    context 'for scope "read:accounts"' do
+    context 'with scope "read:accounts"' do
       let(:input) { 'read:accounts' }
 
       it_behaves_like 'a scope', nil, 'accounts', 'read'
     end
 
-    context 'for scope "write:accounts"' do
+    context 'with scope "write:accounts"' do
       let(:input) { 'write:accounts' }
 
       it_behaves_like 'a scope', nil, 'accounts', 'write'

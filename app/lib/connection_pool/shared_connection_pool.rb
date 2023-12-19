@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'connection_pool'
-require_relative './shared_timed_stack'
+require_relative 'shared_timed_stack'
 
 class ConnectionPool::SharedConnectionPool < ConnectionPool
   def initialize(options = {}, &block)
@@ -37,7 +37,17 @@ class ConnectionPool::SharedConnectionPool < ConnectionPool
   end
 
   def checkin(preferred_tag)
-    if ::Thread.current[key(preferred_tag)]
+    if preferred_tag.is_a?(Hash) && preferred_tag[:force]
+      # ConnectionPool 2.4+ calls `checkin(force: true)` after fork.
+      # When this happens, we should remove all connections from Thread.current
+
+      ::Thread.current.keys.each do |name| # rubocop:disable Style/HashEachMethods
+        next unless name.to_s.start_with?("#{@key}-")
+
+        @available.push(::Thread.current[name])
+        ::Thread.current[name] = nil
+      end
+    elsif ::Thread.current[key(preferred_tag)]
       if ::Thread.current[key_count(preferred_tag)] == 1
         @available.push(::Thread.current[key(preferred_tag)])
         ::Thread.current[key(preferred_tag)] = nil

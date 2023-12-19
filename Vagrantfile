@@ -3,16 +3,14 @@
 
 ENV["PORT"] ||= "3000"
 
-$provision = <<SCRIPT
-
-cd /vagrant # This is where the host folder/repo is mounted
+$provisionA = <<SCRIPT
 
 # Add the yarn repo + yarn repo keys
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 sudo apt-add-repository 'deb https://dl.yarnpkg.com/debian/ stable main'
 
 # Add repo for NodeJS
-curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
 
 # Add firewall rule to redirect 80 to PORT and save
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port #{ENV["PORT"]}
@@ -33,32 +31,88 @@ sudo apt-get install \
   redis-tools \
   postgresql \
   postgresql-contrib \
-  yarn \
   libicu-dev \
   libidn11-dev \
-  libreadline-dev \
-  libpam0g-dev \
+  libreadline6-dev \
+  autoconf \
+  bison \
+  build-essential \
+  ffmpeg \
+  file \
+  gcc \
+  libffi-dev \
+  libgdbm-dev \
+  libjemalloc-dev \
+  libncurses5-dev \
+  libprotobuf-dev \
+  libssl-dev \
+  libyaml-dev \
+  pkg-config \
+  protobuf-compiler \
+  zlib1g-dev \
   -y
 
 # Install rvm
-read RUBY_VERSION < .ruby-version
+sudo apt-add-repository -y ppa:rael-gc/rvm
+sudo apt-get install rvm -y
 
-curl -sSL https://rvm.io/mpapis.asc | gpg --import
-curl -sSL https://rvm.io/pkuczynski.asc | gpg --import
+sudo usermod -a -G rvm $USER
 
-curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer | bash -s stable --ruby=$RUBY_VERSION
-source /home/vagrant/.rvm/scripts/rvm
+SCRIPT
+
+$provisionElasticsearch = <<SCRIPT
+# Install Elastic Search
+sudo apt install openjdk-17-jre-headless -y
+sudo wget -O /usr/share/keyrings/elasticsearch.asc https://artifacts.elastic.co/GPG-KEY-elasticsearch
+sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/elasticsearch.asc] https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list'
+sudo apt update
+sudo apt install elasticsearch -y
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now elasticsearch
+
+echo 'path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+network.host: 0.0.0.0
+http.port: 9200
+discovery.seed_hosts: ["localhost"]
+cluster.initial_master_nodes: ["node-1"]
+xpack.security.enabled: false' > /etc/elasticsearch/elasticsearch.yml
+
+sudo systemctl restart elasticsearch
+
+# Install Kibana
+sudo apt install kibana -y
+sudo systemctl enable --now kibana
+
+echo 'server.host: "0.0.0.0"
+elasticsearch.hosts: ["http://localhost:9200"]' > /etc/kibana/kibana.yml
+
+sudo systemctl restart kibana
+
+SCRIPT
+
+$provisionB = <<SCRIPT
+
+source "/etc/profile.d/rvm.sh"
 
 # Install Ruby
-rvm reinstall ruby-$RUBY_VERSION --disable-binary
+read RUBY_VERSION < /vagrant/.ruby-version
+rvm install ruby-$RUBY_VERSION --disable-binary
 
 # Configure database
 sudo -u postgres createuser -U postgres vagrant -s
 sudo -u postgres createdb -U postgres mastodon_development
 
-# Install gems and node modules
+cd /vagrant # This is where the host folder/repo is mounted
+
+# Install gems
 gem install bundler foreman
 bundle install
+
+# Install node modules
+sudo corepack enable
+yarn set version classic
 yarn install
 
 # Build Mastodon
@@ -72,25 +126,16 @@ echo 'export $(cat "/vagrant/.env.vagrant" | xargs)' >> ~/.bash_profile
 
 SCRIPT
 
-$start = <<SCRIPT
-
-echo 'To start server'
-echo '  $ vagrant ssh -c "cd /vagrant && foreman start"'
-
-SCRIPT
-
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "ubuntu/focal64"
 
   config.vm.provider :virtualbox do |vb|
     vb.name = "mastodon"
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
-    # Increase the number of CPUs. Uncomment and adjust to
-    # increase performance
-    # vb.customize ["modifyvm", :id, "--cpus", "3"]
+    vb.customize ["modifyvm", :id, "--memory", "8192"]
+    vb.customize ["modifyvm", :id, "--cpus", "3"]
 
     # Disable VirtualBox DNS proxy to skip long-delay IPv6 resolutions.
     # https://github.com/mitchellh/vagrant/issues/1172
@@ -100,7 +145,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Use "virtio" network interfaces for better performance.
     vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
     vb.customize ["modifyvm", :id, "--nictype2", "virtio"]
-
   end
 
   # This uses the vagrant-hostsupdater plugin, and lets you
@@ -118,7 +162,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   if config.vm.networks.any? { |type, options| type == :private_network }
-    config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp', 'actimeo=1']
+    config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['rw', 'actimeo=1']
   else
     config.vm.synced_folder ".", "/vagrant"
   end
@@ -127,11 +171,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 3000, host: 3000
   config.vm.network :forwarded_port, guest: 4000, host: 4000
   config.vm.network :forwarded_port, guest: 8080, host: 8080
+  config.vm.network :forwarded_port, guest: 9200, host: 9200
+  config.vm.network :forwarded_port, guest: 9300, host: 9300
+  config.vm.network :forwarded_port, guest: 9243, host: 9243
+  config.vm.network :forwarded_port, guest: 5601, host: 5601
 
   # Full provisioning script, only runs on first 'vagrant up' or with 'vagrant provision'
-  config.vm.provision :shell, inline: $provision, privileged: false
+  config.vm.provision :shell, inline: $provisionA, privileged: false, reset: true
+  # Run with elevated privileges for Elasticsearch installation
+  config.vm.provision :shell, inline: $provisionElasticsearch, privileged: true
+  config.vm.provision :shell, inline: $provisionB, privileged: false
 
-  # Start up script, runs on every 'vagrant up'
-  config.vm.provision :shell, inline: $start, run: 'always', privileged: false
+  config.vm.post_up_message = <<MESSAGE
+To start server
+  $ vagrant ssh -c "cd /vagrant && foreman start"
+MESSAGE
 
 end

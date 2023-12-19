@@ -8,7 +8,15 @@ class Api::V1::Statuses::TranslationsController < Api::BaseController
   before_action :set_translation
 
   rescue_from TranslationService::NotConfiguredError, with: :not_found
-  rescue_from TranslationService::UnexpectedResponseError, TranslationService::QuotaExceededError, TranslationService::TooManyRequestsError, with: :service_unavailable
+  rescue_from TranslationService::UnexpectedResponseError, with: :service_unavailable
+
+  rescue_from TranslationService::QuotaExceededError do
+    render json: { error: I18n.t('translation.errors.quota_exceeded') }, status: 503
+  end
+
+  rescue_from TranslationService::TooManyRequestsError do
+    render json: { error: I18n.t('translation.errors.too_many_requests') }, status: 503
+  end
 
   def create
     render json: @translation, serializer: REST::TranslationSerializer

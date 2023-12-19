@@ -22,14 +22,14 @@ describe JsonLdHelper do
   end
 
   describe '#first_of_value' do
-    context 'value.is_a?(Array)' do
+    context 'when value.is_a?(Array)' do
       it 'returns value.first' do
         value = ['a']
         expect(helper.first_of_value(value)).to be 'a'
       end
     end
 
-    context '!value.is_a?(Array)' do
+    context 'with !value.is_a?(Array)' do
       it 'returns value' do
         value = 'a'
         expect(helper.first_of_value(value)).to be 'a'
@@ -38,14 +38,14 @@ describe JsonLdHelper do
   end
 
   describe '#supported_context?' do
-    context "!json.nil? && equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT)" do
+    context 'when json is present and in an activitypub tagmanager context' do
       it 'returns true' do
         json = { '@context' => ActivityPub::TagManager::CONTEXT }.as_json
         expect(helper.supported_context?(json)).to be true
       end
     end
 
-    context 'else' do
+    context 'when not in activitypub tagmanager context' do
       it 'returns false' do
         json = nil
         expect(helper.supported_context?(json)).to be false
@@ -66,14 +66,14 @@ describe JsonLdHelper do
         stub_request(:get, 'https://mallory.test/').to_return body: '{"id": "https://marvin.test/"}'
         stub_request(:get, 'https://marvin.test/').to_return body: '{"id": "https://alice.test/"}'
 
-        expect(fetch_resource('https://mallory.test/', false)).to eq nil
+        expect(fetch_resource('https://mallory.test/', false)).to be_nil
       end
     end
 
     context 'when the second argument is true' do
       it 'returns nil if the retrieved ID and the given URI does not match' do
         stub_request(:get, 'https://mallory.test/').to_return body: '{"id": "https://alice.test/"}'
-        expect(fetch_resource('https://mallory.test/', true)).to eq nil
+        expect(fetch_resource('https://mallory.test/', true)).to be_nil
       end
     end
   end
@@ -81,7 +81,7 @@ describe JsonLdHelper do
   describe '#fetch_resource_without_id_validation' do
     it 'returns nil if the status code is not 200' do
       stub_request(:get, 'https://host.test/').to_return status: 400, body: '{}'
-      expect(fetch_resource_without_id_validation('https://host.test/')).to eq nil
+      expect(fetch_resource_without_id_validation('https://host.test/')).to be_nil
     end
 
     it 'returns hash' do
@@ -90,7 +90,7 @@ describe JsonLdHelper do
     end
   end
 
-  context 'compaction and forwarding' do
+  context 'with compaction and forwarding' do
     let(:json) do
       {
         '@context' => [
@@ -113,7 +113,7 @@ describe JsonLdHelper do
             {
               'type' => 'Mention',
               'href' => ['foo'],
-            }
+            },
           ],
         },
         'signature' => {
@@ -150,7 +150,7 @@ describe JsonLdHelper do
         patch_for_forwarding!(json, compacted)
         expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
         expect(compacted.dig('object', 'tag', 0, 'href')).to eq ['foo']
-        expect(safe_for_forwarding?(json, compacted)).to eq true
+        expect(safe_for_forwarding?(json, compacted)).to be true
       end
     end
 
@@ -160,14 +160,14 @@ describe JsonLdHelper do
         compacted = compact(json)
         deemed_compatible = patch_for_forwarding!(json, compacted)
         expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
-        expect(safe_for_forwarding?(json, compacted)).to eq true
+        expect(safe_for_forwarding?(json, compacted)).to be true
       end
 
       it 'deems an unsafe compacting as such' do
         compacted = compact(json)
         deemed_compatible = patch_for_forwarding!(json, compacted)
         expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
-        expect(safe_for_forwarding?(json, compacted)).to eq false
+        expect(safe_for_forwarding?(json, compacted)).to be false
       end
     end
   end

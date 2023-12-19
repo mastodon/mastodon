@@ -5,7 +5,6 @@ require 'rails_helper'
 describe Settings::TwoFactorAuthentication::ConfirmationsController do
   render_views
 
-
   shared_examples 'renders :new' do
     it 'renders the new view' do
       subject
@@ -57,18 +56,11 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
         end
 
         describe 'when creation succeeds' do
+          let!(:otp_backup_codes) { user.generate_otp_backup_codes! }
+
           it 'renders page with success' do
-            otp_backup_codes = user.generate_otp_backup_codes!
-            expect_any_instance_of(User).to receive(:generate_otp_backup_codes!) do |value|
-              expect(value).to eq user
-              otp_backup_codes
-            end
-            expect_any_instance_of(User).to receive(:validate_and_consume_otp!) do |value, code, options|
-              expect(value).to eq user
-              expect(code).to eq '123456'
-              expect(options).to eq({ otp_secret: 'thisisasecretforthespecofnewview' })
-              true
-            end
+            prepare_user_otp_generation
+            prepare_user_otp_consumption
 
             expect do
               post :create,
@@ -80,6 +72,22 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
             expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
             expect(response).to have_http_status(200)
             expect(response).to render_template('settings/two_factor_authentication/recovery_codes/index')
+          end
+
+          def prepare_user_otp_generation
+            expect_any_instance_of(User).to receive(:generate_otp_backup_codes!) do |value|
+              expect(value).to eq user
+              otp_backup_codes
+            end
+          end
+
+          def prepare_user_otp_consumption
+            expect_any_instance_of(User).to receive(:validate_and_consume_otp!) do |value, code, options|
+              expect(value).to eq user
+              expect(code).to eq '123456'
+              expect(options).to eq({ otp_secret: 'thisisasecretforthespecofnewview' })
+              true
+            end
           end
         end
 
@@ -96,7 +104,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
               post :create,
                    params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
                    session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
-            end.to not_change { user.reload.otp_secret }
+            end.to(not_change { user.reload.otp_secret })
           end
 
           it 'renders the new view' do
