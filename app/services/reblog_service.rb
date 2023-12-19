@@ -33,7 +33,7 @@ class ReblogService < BaseService
     ActivityPub::DistributionWorker.perform_async(reblog.id)
 
     create_notification(reblog)
-    increment_statistics(account, reblog)
+    increment_statistics
 
     reblog
   end
@@ -50,7 +50,7 @@ class ReblogService < BaseService
     end
   end
 
-  def increment_statistics(_account, _reblog)
+  def increment_statistics
     ActivityTracker.increment('activity:interactions')
   end
 
