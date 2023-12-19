@@ -60,12 +60,6 @@ module AccountInteractions
       end
     end
 
-    def domain_blocking_map(target_account_ids, account_id)
-      accounts_map    = Account.where(id: target_account_ids).select('id, domain').each_with_object({}) { |a, h| h[a.id] = a.domain }
-      blocked_domains = domain_blocking_map_by_domain(accounts_map.values.compact, account_id)
-      accounts_map.reduce({}) { |h, (id, domain)| h.merge(id => blocked_domains[domain]) }
-    end
-
     def domain_blocking_map_by_domain(target_domains, account_id)
       follow_mapping(AccountDomainBlock.where(account_id: account_id, domain: target_domains), :domain)
     end
