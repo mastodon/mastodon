@@ -60,7 +60,7 @@ RSpec.configure do |config|
     end
   end
 
-  config.around :each, type: :search do |example|
+  config.around :each, :search do |example|
     search_data_manager.populate_indexes
     example.run
     search_data_manager.remove_indexes
@@ -73,6 +73,6 @@ RSpec.configure do |config|
   end
 
   def search_examples_present?
-    RUN_SEARCH_SPECS
+    RSpec.world.filtered_examples.values.flatten.any? { |example| example.metadata[:search] == true }
   end
 end

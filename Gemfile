@@ -109,6 +109,9 @@ group :test do
   # RSpec progress bar formatter
   gem 'fuubar', '~> 2.5'
 
+  # RSpec helpers for email specs
+  gem 'email_spec'
+
   # Extra RSpec extenion methods and helpers for sidekiq
   gem 'rspec-sidekiq', '~> 4.0'
 

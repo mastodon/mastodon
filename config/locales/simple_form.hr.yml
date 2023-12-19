@@ -7,6 +7,7 @@ hr:
       account_warning_preset:
         title: Proizvoljno. Nije vidljivo primatelju
       defaults:
+        autofollow: Ljudi koji se registriraju kroz pozivnicu će te automatski slijediti
         avatar: PNG, GIF ili JPG. Najviše %{size}. Bit će smanjeno na %{dimensions}px
         header: PNG, GIF ili JPG. Najviše %{size}. Bit će smanjeno na %{dimensions}px
         password: Mora biti najmanje 8 znakova
@@ -22,6 +23,7 @@ hr:
       admin_account_action:
         type: Radnja
       defaults:
+        avatar: Profilna slika
         confirm_new_password: Potvrdi novu lozinku
         confirm_password: Potvrdi lozinku
         current_password: Trenutna lozinka
@@ -38,8 +40,10 @@ hr:
         setting_display_media_default: Zadano
         setting_display_media_hide_all: Sakrij sve
         setting_display_media_show_all: Prikaži sve
+        setting_reduce_motion: Smanji kretanje u animacijama
         setting_system_font_ui: Koristi zadani font sustava
         setting_theme: Tema stranice
+        setting_trends: Prikaži današnje trendove
         type: Tip uvoza
         username: Korisničko ime
       interactions:
@@ -53,6 +57,8 @@ hr:
         mention: Netko Vas spomene
         reblog: Netko boosta Vaš status
     'no': Ne
+    not_recommended: Nije preporučeno
+    recommended: Preporučeno
     required:
       text: obavezno
     'yes': Da
