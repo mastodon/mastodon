@@ -203,12 +203,10 @@ table {
 
 .email-body-padding-td {
   padding: 0 32px 32px;
-  mso-padding-alt: 32px; /* stylelint-disable-line property-no-unknown */
+  mso-padding-alt: 32px; /* stylelint-disable-line property-no-unknown -- Proprietary property for Outlook on Windows. */
 }
 
-//
 // Footer
-//
 .email-footer-td {
   padding: 28px 32px 32px;
   text-align: center;
@@ -246,7 +244,7 @@ table {
 .email-btn-td {
   height: 40px;
   text-align: center;
-  mso-padding-alt: 0 35px; /* stylelint-disable-line property-no-unknown */
+  mso-padding-alt: 0 35px; /* stylelint-disable-line property-no-unknown -- Proprietary property for Outlook on Windows. */
 }
 
 .email-btn-a {
@@ -267,7 +265,7 @@ table {
 }
 
 // Responsive
-/* stylelint-disable-next-line media-feature-range-notation */
+/* stylelint-disable-next-line media-feature-range-notation -- Basic media queries have better support across email clients. */
 @media only screen and (min-width: 740px) {
   .email-desktop-p-8 {
     padding: 32px !important;
