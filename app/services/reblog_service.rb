@@ -33,7 +33,7 @@ class ReblogService < BaseService
     ActivityPub::DistributionWorker.perform_async(reblog.id)
 
     create_notification(reblog)
-    bump_potential_friendship(account, reblog)
+    increment_statistics(account, reblog)
 
     reblog
   end
@@ -50,7 +50,7 @@ class ReblogService < BaseService
     end
   end
 
-  def bump_potential_friendship(_account, _reblog)
+  def increment_statistics(_account, _reblog)
     ActivityTracker.increment('activity:interactions')
   end
 

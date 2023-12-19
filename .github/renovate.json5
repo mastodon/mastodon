@@ -102,9 +102,12 @@
     {
       // Group actions/*-artifact in the same PR
       matchManagers: ['github-actions'],
-      matchPackageNames: ['actions/download-artifact', 'actions/upload-artifact'],
+      matchPackageNames: [
+        'actions/download-artifact',
+        'actions/upload-artifact',
+      ],
       matchUpdateTypes: ['major'],
-      groupName: 'artifact actions (major)'
+      groupName: 'artifact actions (major)',
     },
     {
       // Update @types/* packages every week, with one grouped PR

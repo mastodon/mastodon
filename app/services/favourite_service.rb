@@ -20,7 +20,7 @@ class FavouriteService < BaseService
     Trends.statuses.register(status)
 
     create_notification(favourite)
-    bump_potential_friendship(account, status)
+    increment_statistics(account, status)
 
     favourite
   end
@@ -37,7 +37,7 @@ class FavouriteService < BaseService
     end
   end
 
-  def bump_potential_friendship(_account, _status)
+  def increment_statistics(_account, _status)
     ActivityTracker.increment('activity:interactions')
   end
 
