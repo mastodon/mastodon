@@ -546,7 +546,7 @@ module Mastodon::CLI
       if migrator_version < 2021_04_21_121431
         ActiveRecord::Base.connection.add_index :tags, 'lower((name)::text)', name: 'index_tags_on_name_lower', unique: true
       else
-        ActiveRecord::Base.connection.execute 'CREATE UNIQUE INDEX CONCURRENTLY index_tags_on_name_lower_btree ON tags (lower(name) text_pattern_ops)'
+        ActiveRecord::Base.connection.execute 'CREATE UNIQUE INDEX index_tags_on_name_lower_btree ON tags (lower(name) text_pattern_ops)'
       end
     end
 
