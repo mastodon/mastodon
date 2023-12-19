@@ -38,12 +38,10 @@ describe Settings::ExportsController do
       expect(response).to redirect_to(settings_export_path)
     end
 
-    it 'queues BackupWorker job by 1' do
-      Sidekiq::Testing.fake! do
-        expect do
-          post :create
-        end.to change(BackupWorker.jobs, :size).by(1)
-      end
+    it 'queues BackupWorker job by 1', :sidekiq_fake do
+      expect do
+        post :create
+      end.to change(BackupWorker.jobs, :size).by(1)
     end
   end
 end

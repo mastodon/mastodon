@@ -23,7 +23,7 @@ RSpec.describe 'Filters' do
       get '/api/v2/filters', headers: headers
     end
 
-    let!(:filters) { Fabricate.times(3, :custom_filter, account: user.account) }
+    let!(:filters) { Fabricate.times(2, :custom_filter, account: user.account) }
 
     it_behaves_like 'forbidden for wrong scope', 'write write:filters'
     it_behaves_like 'unauthorized for invalid token'

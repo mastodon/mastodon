@@ -13,7 +13,7 @@ RSpec.describe 'Mutes' do
       get '/api/v1/mutes', headers: headers, params: params
     end
 
-    let!(:mutes) { Fabricate.times(3, :mute, account: user.account) }
+    let!(:mutes) { Fabricate.times(2, :mute, account: user.account) }
     let(:params) { {} }
 
     it_behaves_like 'forbidden for wrong scope', 'write write:mutes'
@@ -33,7 +33,7 @@ RSpec.describe 'Mutes' do
     end
 
     context 'with limit param' do
-      let(:params) { { limit: 2 } }
+      let(:params) { { limit: 1 } }
 
       it 'returns only the requested number of muted accounts' do
         subject
@@ -46,8 +46,8 @@ RSpec.describe 'Mutes' do
 
         headers = response.headers['Link']
 
-        expect(headers.find_link(%w(rel prev)).href).to eq(api_v1_mutes_url(limit: params[:limit], since_id: mutes[2].id.to_s))
-        expect(headers.find_link(%w(rel next)).href).to eq(api_v1_mutes_url(limit: params[:limit], max_id: mutes[1].id.to_s))
+        expect(headers.find_link(%w(rel prev)).href).to eq(api_v1_mutes_url(limit: params[:limit], since_id: mutes.last.id.to_s))
+        expect(headers.find_link(%w(rel next)).href).to eq(api_v1_mutes_url(limit: params[:limit], max_id: mutes.last.id.to_s))
       end
     end
 
@@ -72,8 +72,8 @@ RSpec.describe 'Mutes' do
 
         body = body_as_json
 
-        expect(body.size).to eq 2
-        expect(body[0][:id]).to eq mutes[2].target_account_id.to_s
+        expect(body.size).to eq 1
+        expect(body[0][:id]).to eq mutes[1].target_account_id.to_s
       end
     end
 

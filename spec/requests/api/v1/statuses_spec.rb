@@ -156,7 +156,7 @@ describe '/api/v1/statuses' do
       context 'when exceeding rate limit' do
         before do
           rate_limiter = RateLimiter.new(user.account, family: :statuses)
-          300.times { rate_limiter.record! }
+          RateLimiter::FAMILIES[:statuses][:limit].times { rate_limiter.record! }
         end
 
         it 'returns rate limit headers', :aggregate_failures do
