@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StatusPinValidator, type: :validator do
+RSpec.describe StatusPinValidator do
   describe '#validate' do
     before do
       subject.validate(pin)

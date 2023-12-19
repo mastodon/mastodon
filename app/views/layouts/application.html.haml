@@ -24,9 +24,9 @@
     %meta{ name: 'theme-color', content: '#191b22' }/
     %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
 
-    %title= content_for?(:page_title) ? safe_join([yield(:page_title).chomp.html_safe, title], ' - ') : title
+    %title= html_title
 
-    = javascript_pack_tag "common", crossorigin: 'anonymous'
+    = javascript_pack_tag 'common', crossorigin: 'anonymous'
     - if @theme
       - if @theme[:supported_locales].include? I18n.locale.to_s
         = preload_pack_asset "locales/#{@theme[:flavour]}/#{I18n.locale}-json.js"

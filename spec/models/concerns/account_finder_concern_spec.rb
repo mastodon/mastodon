@@ -4,17 +4,15 @@ require 'rails_helper'
 
 describe AccountFinderConcern do
   describe 'local finders' do
-    before do
-      @account = Fabricate(:account, username: 'Alice')
-    end
+    let!(:account) { Fabricate(:account, username: 'Alice') }
 
     describe '.find_local' do
       it 'returns case-insensitive result' do
-        expect(Account.find_local('alice')).to eq(@account)
+        expect(Account.find_local('alice')).to eq(account)
       end
 
       it 'returns correctly cased result' do
-        expect(Account.find_local('Alice')).to eq(@account)
+        expect(Account.find_local('Alice')).to eq(account)
       end
 
       it 'returns nil without a match' do
@@ -36,7 +34,7 @@ describe AccountFinderConcern do
 
     describe '.find_local!' do
       it 'returns matching result' do
-        expect(Account.find_local!('alice')).to eq(@account)
+        expect(Account.find_local!('alice')).to eq(account)
       end
 
       it 'raises on non-matching result' do
@@ -54,17 +52,15 @@ describe AccountFinderConcern do
   end
 
   describe 'remote finders' do
-    before do
-      @account = Fabricate(:account, username: 'Alice', domain: 'mastodon.social')
-    end
+    let!(:account) { Fabricate(:account, username: 'Alice', domain: 'mastodon.social') }
 
     describe '.find_remote' do
       it 'returns exact match result' do
-        expect(Account.find_remote('alice', 'mastodon.social')).to eq(@account)
+        expect(Account.find_remote('alice', 'mastodon.social')).to eq(account)
       end
 
       it 'returns case-insensitive result' do
-        expect(Account.find_remote('ALICE', 'MASTODON.SOCIAL')).to eq(@account)
+        expect(Account.find_remote('ALICE', 'MASTODON.SOCIAL')).to eq(account)
       end
 
       it 'returns nil when username does not match' do
@@ -90,7 +86,7 @@ describe AccountFinderConcern do
 
     describe '.find_remote!' do
       it 'returns matching result' do
-        expect(Account.find_remote!('alice', 'mastodon.social')).to eq(@account)
+        expect(Account.find_remote!('alice', 'mastodon.social')).to eq(account)
       end
 
       it 'raises on non-matching result' do

@@ -7,66 +7,44 @@ RSpec.describe AccountsController do
 
   let(:account) { Fabricate(:account) }
 
-  shared_examples 'unapproved account check' do
+  describe 'unapproved account check' do
     before { account.user.update(approved: false) }
 
     it 'returns http not found' do
-      get :show, params: { username: account.username, format: format }
-
-      expect(response).to have_http_status(404)
+      %w(html json rss).each do |format|
+        get :show, params: { username: account.username, format: format }
+        expect(response).to have_http_status(404)
+      end
     end
   end
 
-  shared_examples 'permanently suspended account check' do
+  describe 'permanently suspended account check' do
     before do
       account.suspend!
       account.deletion_request.destroy
     end
 
     it 'returns http gone' do
-      get :show, params: { username: account.username, format: format }
-
-      expect(response).to have_http_status(410)
+      %w(html json rss).each do |format|
+        get :show, params: { username: account.username, format: format }
+        expect(response).to have_http_status(410)
+      end
     end
   end
 
-  shared_examples 'temporarily suspended account check' do |code: 403|
+  describe 'temporarily suspended account check' do
     before { account.suspend! }
 
     it 'returns appropriate http response code' do
-      get :show, params: { username: account.username, format: format }
+      { html: 403, json: 200, rss: 403 }.each do |format, code|
+        get :show, params: { username: account.username, format: format }
 
-      expect(response).to have_http_status(code)
+        expect(response).to have_http_status(code)
+      end
     end
   end
 
   describe 'GET #show' do
-    context 'with basic account status checks' do
-      context 'with HTML' do
-        let(:format) { 'html' }
-
-        it_behaves_like 'unapproved account check'
-        it_behaves_like 'permanently suspended account check'
-        it_behaves_like 'temporarily suspended account check'
-      end
-
-      context 'with JSON' do
-        let(:format) { 'json' }
-
-        it_behaves_like 'unapproved account check'
-        it_behaves_like 'permanently suspended account check'
-        it_behaves_like 'temporarily suspended account check', code: 200
-      end
-
-      context 'with RSS' do
-        let(:format) { 'rss' }
-
-        it_behaves_like 'unapproved account check'
-        it_behaves_like 'permanently suspended account check'
-        it_behaves_like 'temporarily suspended account check'
-      end
-    end
-
     context 'with existing statuses' do
       let!(:status) { Fabricate(:status, account: account) }
       let!(:status_reply) { Fabricate(:status, account: account, thread: Fabricate(:status)) }
@@ -227,22 +205,15 @@ RSpec.describe AccountsController do
       context 'with RSS' do
         let(:format) { 'rss' }
 
-        shared_examples 'common RSS response' do
-          it 'returns http success' do
-            expect(response).to have_http_status(200)
-          end
-
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-        end
-
         context 'with a normal account in an RSS request' do
           before do
             get :show, params: { username: account.username, format: format }
           end
 
-          it_behaves_like 'common RSS response'
+          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'responds with correct statuses', :aggregate_failures do
+            expect(response).to have_http_status(200)
             expect(response.body).to include_status_tag(status_media)
             expect(response.body).to include_status_tag(status_self_reply)
             expect(response.body).to include_status_tag(status)
@@ -259,9 +230,10 @@ RSpec.describe AccountsController do
             get :show, params: { username: account.username, format: format }
           end
 
-          it_behaves_like 'common RSS response'
+          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'responds with correct statuses with replies', :aggregate_failures do
+            expect(response).to have_http_status(200)
             expect(response.body).to include_status_tag(status_media)
             expect(response.body).to include_status_tag(status_reply)
             expect(response.body).to include_status_tag(status_self_reply)
@@ -278,9 +250,10 @@ RSpec.describe AccountsController do
             get :show, params: { username: account.username, format: format }
           end
 
-          it_behaves_like 'common RSS response'
+          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'responds with correct statuses with media', :aggregate_failures do
+            expect(response).to have_http_status(200)
             expect(response.body).to include_status_tag(status_media)
             expect(response.body).to_not include_status_tag(status_direct)
             expect(response.body).to_not include_status_tag(status_private)
@@ -302,9 +275,10 @@ RSpec.describe AccountsController do
             get :show, params: { username: account.username, format: format, tag: tag.to_param }
           end
 
-          it_behaves_like 'common RSS response'
+          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
 
           it 'responds with correct statuses with a tag', :aggregate_failures do
+            expect(response).to have_http_status(200)
             expect(response.body).to include_status_tag(status_tag)
             expect(response.body).to_not include_status_tag(status_direct)
             expect(response.body).to_not include_status_tag(status_media)

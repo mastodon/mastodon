@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BlacklistedEmailValidator, type: :validator do
+RSpec.describe BlacklistedEmailValidator do
   describe '#validate' do
     subject { described_class.new.validate(user); errors }
 

@@ -98,7 +98,7 @@ sk:
         disabled: Blokovaný
         pending: Čakajúci
         silenced: Obmedzený
-        suspended: Vylúčený/á
+        suspended: Pozastavený/á
         title: Moderácia
       moderation_notes: Moderátorské poznámky
       most_recent_activity: Posledná aktivita
@@ -149,8 +149,8 @@ sk:
       statuses: Príspevkov
       strikes: Predchádzajúce údery
       subscribe: Odoberaj
-      suspend: Vylúč
-      suspended: Vylúčený/á
+      suspend: Pozastav
+      suspended: Pozastavený/á
       suspension_irreversible: Údaje tohto účtu boli nenávratne vymazané. Účet môžete zrušiť, aby sa dal používať, ale neobnovia sa žiadne údaje, ktoré predtým mal.
       suspension_reversible_hint_html: Účet bol pozastavený a údaje budú úplne odstránené dňa %{date}. Dovtedy je možné účet obnoviť bez akýchkoľvek nepriaznivých účinkov. Ak chcete okamžite odstrániť všetky údaje účtu, môžete tak urobiť nižšie.
       title: Účty
@@ -162,6 +162,7 @@ sk:
       undo_suspension: Zruš blokovanie
       unsilenced_msg: Úspešne zrušené obmedzenie účtu %{username}
       unsubscribe: Prestaň odoberať
+      unsuspended_msg: "%{username} ov/in účet úspešne spojazdnený"
       username: Prezývka
       view_domain: Ukáž súhrn pre doménu
       warn: Varuj
@@ -209,7 +210,7 @@ sk:
         resolve_report: Vyrieš nahlásený problém
         sensitive_account: Vynúť všetky médiá na účte ako chúlostivé
         silence_account: Utíš účet
-        suspend_account: Vylúč účet
+        suspend_account: Pozastav účet
         unassigned_report: Odober priradenie nahlásenia
         unblock_email_account: Odblokuj emailovú adresu
         unsilence_account: Zvráť obmedzenie účtu
@@ -255,6 +256,7 @@ sk:
         silence_account_html: "%{name} obmedzil/a účet %{target}"
         suspend_account_html: "%{name} zablokoval/a účet používateľa %{target}"
         unassigned_report_html: "%{name} odobral/a report od %{target}"
+        unsuspend_account_html: "%{name} spojazdnil/a účet %{target}"
         update_user_role_html: "%{name} zmenil/a rolu pre %{target}"
       deleted_account: zmazaný účet
       empty: Žiadne záznamy nenájdené.
@@ -341,6 +343,7 @@ sk:
       confirm_suspension:
         cancel: Zruš
         confirm: Vylúč
+        preamble_html: Chystáš sa vylúčiť <strong>%{domain}</strong> a jej poddomény.
         title: Potvrď blokovanie domény %{domain}
       created_msg: Doména je v štádiu blokovania
       destroyed_msg: Blokovanie domény bolo zrušené
@@ -355,7 +358,7 @@ sk:
         severity:
           noop: Nič
           silence: Obmedz
-          suspend: Vylúč
+          suspend: Pozastav
         title: Nové blokovanie domény
       not_permitted: Nemáš povolenie na vykonanie tohto kroku
       obfuscate: Zatemniť názov domény
@@ -416,7 +419,7 @@ sk:
           reject_media: Zamietni médiá
           reject_reports: Zamietni hlásenia
           silence: Obmedzená
-          suspend: Vylúč
+          suspend: Pozastav
         policy: Zásady
         reason: Verejné odôvodnenie
         title: Zásady o obsahu
@@ -537,7 +540,7 @@ sk:
       statuses: Nahlásený obsah
       summary:
         action_preambles:
-          suspend_html: 'Chystáš sa <strong>vylúčiť</strong> účet <strong>@%{acct}</strong>. To urobí:'
+          suspend_html: 'Chystáš sa <strong>pozastaviť</strong> účet <strong>@%{acct}</strong>. To urobí:'
         actions:
           delete_html: Vymaž pohoršujúce príspevky
           mark_as_sensitive_html: Označ médiá pohoršujúcich príspevkov za chúlostivé
@@ -589,6 +592,8 @@ sk:
         title: Ohľadom
       appearance:
         title: Vzhľad
+      content_retention:
+        title: Ponechanie obsahu
       discovery:
         follow_recommendations: Odporúčania pre nasledovanie
         profile_directory: Katalóg profilov
@@ -613,6 +618,7 @@ sk:
       delete: Vymaž nahratý súbor
       destroyed_msg: Nahratie bolo zo stránky úspešne vymazané!
     software_updates:
+      critical_update: Kritické — prosím aktualizuj rýchlo
       documentation_link: Zisti viac
       title: Dostupné aktualizácie
       types:
@@ -643,6 +649,10 @@ sk:
       appeal_approved: Namietnuté
       appeal_rejected: Námietka zamietnutá
     system_checks:
+      elasticsearch_preset:
+        action: Pozri dokumentáciu
+      elasticsearch_preset_single_node:
+        action: Pozri dokumentáciu
       rules_check:
         action: Spravuj serverové pravidlá
         message_html: Neurčil/a si žiadne serverové pravidlá.
@@ -922,6 +932,7 @@ sk:
       '86400': 1 deň
     expires_in_prompt: Nikdy
     generate: Vygeneruj
+    invalid: Táto pozvánka je neplatná
     invited_by: 'Bol/a si pozvaný/á užívateľom:'
     max_uses:
       few: "%{count} využití"
