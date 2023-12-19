@@ -1,13 +1,10 @@
 = content_for :heading do
   = render 'layouts/mailer_new_heading', title: t('devise.mailer.two_factor_disabled.title'), subtitle: t('devise.mailer.two_factor_disabled.subtitle'), image_url: full_pack_url('media/images/mailer-new/heading/2fa-disabled.png')
-%table.email-body-table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
-    %td.email-body-td
-      %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
-          %td.email-body-padding-td
-            %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-              %tr
-                %td.email-inner-card-td.email-prose
-                  %p= t 'devise.mailer.two_factor_disabled.explanation'
-                  = render 'layouts/mailer_new_btn', text: t('settings.account_settings'), url: edit_user_registration_url
+          %td.email-inner-card-td.email-prose
+            %p= t 'devise.mailer.two_factor_disabled.explanation'
+            = render 'layouts/mailer_new_btn', text: t('settings.account_settings'), url: edit_user_registration_url
