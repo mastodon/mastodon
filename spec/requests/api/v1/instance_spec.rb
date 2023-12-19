@@ -17,7 +17,7 @@ describe 'Instances' do
 
         expect(body_as_json)
           .to be_present
-          .and include(title: 'Mastodon')
+          .and include(title: 'Mastodon Glitch Edition')
       end
     end
 
@@ -30,7 +30,7 @@ describe 'Instances' do
 
         expect(body_as_json)
           .to be_present
-          .and include(title: 'Mastodon')
+          .and include(title: 'Mastodon Glitch Edition')
       end
     end
   end
