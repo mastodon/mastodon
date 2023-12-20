@@ -40,6 +40,10 @@ module Mastodon::CLI
     class BulkImport < ApplicationRecord; end
     class SoftwareUpdate < ApplicationRecord; end
 
+    class DomainBlock < ApplicationRecord
+      scope :by_severity, -> { order(Arel.sql('(CASE severity WHEN 0 THEN 1 WHEN 1 THEN 2 WHEN 2 THEN 0 END), domain')) }
+    end
+
     class PreviewCard < ApplicationRecord
       self.inheritance_column = false
     end
