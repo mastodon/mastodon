@@ -431,6 +431,34 @@ describe Mastodon::CLI::Maintenance do
         end
       end
 
+      context 'with duplicate preview_cards' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:url) { 'https://example.host/path' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating preview_cards',
+              'Restoring preview_cards indexes',
+              'Finished!'
+            )
+            .and change(duplicate_preview_cards, :count).from(2).to(1)
+        end
+
+        def duplicate_preview_cards
+          PreviewCard.where(url: url)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :preview_cards, :url
+          Fabricate(:preview_card, url: url)
+          Fabricate.build(:preview_card, url: url).save(validate: false)
+        end
+      end
+
       def agree_to_backup_warning
         allow(cli.shell)
           .to receive(:yes?)
