@@ -2732,22 +2732,16 @@ $ui-header-height: 55px;
     &__description {
       flex: 1 1 auto;
       line-height: 20px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
 
       h6 {
         color: $highlight-text-color;
         font-weight: 500;
         font-size: 14px;
-        overflow: hidden;
-        text-overflow: ellipsis;
       }
 
       p {
         color: $darker-text-color;
         overflow: hidden;
-        text-overflow: ellipsis;
       }
     }
   }
