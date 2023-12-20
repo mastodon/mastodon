@@ -10,7 +10,7 @@ body {
   text-size-adjust: none;
 }
 
-p, h1 {
+p, h1, h2, h3, h4, h5, h6 {
   margin: 0;
   background-color: transparent;
   padding: 0;
@@ -262,6 +262,96 @@ table {
   color: #fff;
   text-decoration: none;
   transition: background-color 0.3s ease-in-out;
+}
+
+// Status
+.email-status-header-img {
+  vertical-align: top;
+  width: 48px;
+
+  img {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+}
+
+.email-status-header-text {
+  padding-left: 16px;
+  vertical-align: middle;
+}
+
+.email-status-header-name {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #17063B;
+}
+
+.email-status-header-handle {
+  font-size: 14px;
+  line-height: 20px;
+  color: #746a89;
+}
+
+.email-status-content {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.email-status-spoiler {
+  color: #746a89;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.email-status-prose {
+  p {
+    font-size: 14px;
+    line-height: 20px;
+    color: #17063B;
+  }
+
+  a {
+    color: #6364FF;
+    text-decoration: none;
+
+    &:hover {
+      color: #563acc !important;
+    }
+  }
+}
+
+.email-status-media {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #17063B;
+
+  img {
+    border-radius: 8px;
+  }
+
+  a {
+    color: #6364FF;
+    text-decoration: none;
+
+    &:hover {
+      color: #563acc !important;
+    }
+  }
+}
+
+.email-status-footer {
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #746a89;
+
+  a {
+    color: #746a89;
+  }
 }
 
 // Responsive

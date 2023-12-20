@@ -1,0 +1,34 @@
+- i ||= 0
+- highlighted ||= false
+
+%table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-status-header-img
+      = image_tag full_asset_url(status.account.avatar.url), alt: '', width: 48, height: 48
+    %td.email-status-header-text
+      %h2.email-status-header-name
+        = display_name(status.account)
+      %p.email-status-header-handle
+        @#{status.account.pretty_acct}
+
+%table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-status-content
+      .auto-dir
+        - if status.spoiler_text?
+          %p.email-status-spoiler
+            = status.spoiler_text
+
+        .email-status-prose
+          = status_content_format(status)
+
+        - if status.ordered_media_attachments.size.positive?
+          %p.email-status-media
+            - status.ordered_media_attachments.each do |a|
+              - if status.local?
+                = link_to full_asset_url(a.file.url(:original)), full_asset_url(a.file.url(:original))
+              - else
+                = link_to a.remote_url, a.remote_url
+
+      %p.email-status-footer
+        = link_to l(status.created_at.in_time_zone(time_zone.presence), format: :with_time_zone), web_url("@#{status.account.pretty_acct}/#{status.id}")
