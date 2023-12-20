@@ -4,15 +4,47 @@ ie:
     hints:
       account:
         unlocked: Persones va posser sequer te sin petir aprobation. Desselecte si tu vole manualmen tractar petitiones de sequer e decider ca acceptar o rejecter nov sequitores.
+      admin_account_action:
+        send_email_notification: Li usator va reciver un explication de ti quel evenit con su conto
+        text_html: Ínobligatori. Tu posse usar posta-sintaxe. Tu posse <a href="%{path}">adjunter preconfigurationes de avises</a> por sparar témpor
+        type_html: Selecte quo far con <strong>%{acct}</strong>
+        types:
+          disable: Prevente li usator de usar su conto, ma ne delete o cela su contenete.
+          none: Usa ti por inviar un admoniment al usator, sin initiante quelcunc altri action.
+          sensitive: Fortiar que omni medie-atachamentes de ti usator essaye marcat quam sensitiv.
+          silence: Preventer li usator de posser postar con public visibilitá, e celar tui postas e notificationes de gente qui ne seque ti. Ti clude omni raportes contra ti conto.
+          suspend: Preventer omni interaction de o a ti-ci conto e deleter su contenete. Reversibil ante 30 dies ha passat. Ti clude omni raportes contra ti conto.
+        warning_preset_id: Ínobligatori. Tu ancor posse adjunter customisat textu al fine del preconfiguration
       announcement:
         all_day: Si ti-ci es marcat, solmen li dates del periode de témpor va esser monstrat
         ends_at: Ínobligatori. Li proclamation va esser despublicat automaticmen ye ti-ci témpor
         scheduled_at: Lassar vacui por publicar li proclamation strax
         starts_at: Ínobligatori. In li casu que tui proclamation es ligat a un specific periode de témpor
         text: Tu posse usar posta-sintaxe. Ples considerar li spacie quel li proclamation va plenar sur li ecran del usator
+      appeal:
+        text: Tu posse apellar un admoniment solmen un vez
       defaults:
+        autofollow: Persones qui adherer per li invitation va sequer te automaticmen
+        avatar: PNG, GIF o JPEG. Admaxim %{size}. Li grandore va esser contraet a %{dimensions}px
+        bot: Dir a altres que li conto primarimen far automatic actiones e que fórsan null homan vigila it
+        context: Un o multiplic contextus u li filtre deve aplicar
         current_password: Por securital rasones, ples introducter li passa-parol del actual conto
+        current_username: Por confirmar, ples inmetter li usator-nómine del actual conto
+        digest: Misset solmen pos un long periode de ínactivitá e solmen si tu ha recivet quelcunc missages personal in tui inbuxe
+        email: On va misser te un email de confirmation
+        header: PNG, GIF o JPEG. Admaxim %{size}. Li grandore va esser contraet a %{dimensions}px
+        inbox_url: Copiar li URL del initial págine del relé quel tu vole usar
+        irreversible: Filtrat postas va desaparir ínreversibilmen, mem si li filtre es removet plu tard
+        locale: Li lingue del usator-interfacie, emails e notificationes push
         password: Usa adminim 8 carácteres
+        phrase: Va aplicar sin egarda a ca li lítteres in li posta o su contenete-avise es majuscules o minuscules
+        scopes: Queles API li aplication va esser permisset accesser. Si tu selecte un capabilitá del max alt nivelle, tu ne deve selecter li individualis.
+        setting_aggregate_reblogs: Ne monstrar nov boosts por postas queles ha esset recentmen boostat (afecta solmen boostas recivet futurimen)
+        setting_always_send_emails: Generalmen notificationes per email ne va esser misset quande tu activmen usa Mastodon
+        setting_default_sensitive: Sensitiv medie es customarimen celat e posse esser revelat con un clicca
+        setting_display_media_default: Celar medie marcat quam sensitiv
+        setting_display_media_hide_all: Sempre celar medie
+        setting_display_media_show_all: Sempre monstrar medie
       form_admin_settings:
         bootstrap_timeline_accounts: Ti-ci contos va esser pinglat al parte superiori del recomandationes por nov usatores.
         theme: Li dessine quel ínregistrat visitantes e nov usatores vide.
@@ -43,5 +75,7 @@ ie:
         new_password: Nov passa-parol
         note: Biografie
         password: Passa-parol
+      form_admin_settings:
+        registrations_mode: Qui posse registrar se
       notification_emails:
         follow_request: Alqui petit sequer te
