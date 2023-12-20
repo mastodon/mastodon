@@ -204,6 +204,36 @@ describe Mastodon::CLI::Maintenance do
         end
       end
 
+      context 'with duplicate announcement_reactions' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:account) { Fabricate(:account) }
+        let(:announcement) { Fabricate(:announcement) }
+        let(:name) { Fabricate(:custom_emoji).shortcode }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Removing duplicate announcement reactions',
+              'Restoring announcement_reactions indexes',
+              'Finished!'
+            )
+            .and change(duplicate_announcement_reactions, :count).from(2).to(1)
+        end
+
+        def duplicate_announcement_reactions
+          AnnouncementReaction.where(account: account, announcement: announcement, name: name)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :announcement_reactions, [:account_id, :announcement_id, :name]
+          Fabricate(:announcement_reaction, account: account, announcement: announcement, name: name)
+          Fabricate.build(:announcement_reaction, account: account, announcement: announcement, name: name).save(validate: false)
+        end
+      end
+
       def agree_to_backup_warning
         allow(cli.shell)
           .to receive(:yes?)
