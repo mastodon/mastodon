@@ -611,6 +611,7 @@ tr:
       created_at: Şikayet edildi
       delete_and_resolve: Gönderileri sil
       forwarded: İletildi
+      forwarded_replies_explanation: Bu bildirim başka bir sunucudaki kullanıcı ve içerik ile ilgili. Bildirilen içerik kullanıcılarınızdan birine yanıt şeklinde olduğu için size yönlendirildi.
       forwarded_to: "%{domain}'e iletildi"
       mark_as_resolved: Giderildi olarak işaretle
       mark_as_sensitive: Hassas olarak işaretle
@@ -996,8 +997,6 @@ tr:
       new_trending_statuses:
         title: Öne çıkan gönderiler
       new_trending_tags:
-        no_approved_tags: Şu anda onaylanmış öne çıkan etiket yok.
-        requirements: 'Aşağıdaki adaylardan herhangi biri, şu anda %{lowest_tag_score} skoruna sahip "%{lowest_tag_name}" olan #%{rank} onaylanmış öne çıkan etiketi geçebilir.'
         title: Öne çıkan etiketler
       subject: "%{instance}, inceleme bekleyen yeni öne çıkan öğelere sahip"
   aliases:

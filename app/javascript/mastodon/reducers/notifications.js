@@ -281,7 +281,7 @@ export default function notifications(state = initialState, action) {
   case blockAccountSuccess.type:
     return filterNotifications(state, [action.payload.relationship.id]);
   case muteAccountSuccess.type:
-    return action.relationship.muting_notifications ? filterNotifications(state, [action.payload.relationship.id]) : state;
+    return action.payload.relationship.muting_notifications ? filterNotifications(state, [action.payload.relationship.id]) : state;
   case blockDomainSuccess.type:
     return filterNotifications(state, action.payload.accounts);
   case authorizeFollowRequestSuccess.type:

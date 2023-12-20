@@ -1029,8 +1029,6 @@ cs:
       new_trending_statuses:
         title: Populární příspěvky
       new_trending_tags:
-        no_approved_tags: Momentálně nejsou žádné schválené populární hashtagy.
-        requirements: 'Kterýkoliv z těchto kandidátů by mohl předehnat schválený populární hashtag #%{rank}, kterým je momentálně #%{lowest_tag_name} se skóre %{lowest_tag_score}.'
         title: Populární hashtagy
       subject: Nové trendy k posouzení na %{instance}
   aliases:
@@ -1074,6 +1072,10 @@ cs:
       hint_html: Ještě jedna věc! Musíme potvrdit, že jste člověk (to proto, abychom drželi stranou spam!). Vyřešte CAPTCHA níže a klikněte na "Pokračovat".
       title: Bezpečnostní kontrola
     confirmations:
+      awaiting_review_title: Vaše registrace se ověřuje
+      clicking_this_link: kliknutím na tento odkaz
+      registration_complete: Vaše registrace na %{domain} je hotová!
+      welcome_title: Vítám uživatele %{name}!
       wrong_email_hint: Pokud není e-mail správný, můžete si ho změnit v nastavení účtu.
     delete_account: Odstranit účet
     delete_account_html: Chcete-li odstranit svůj účet, <a href="%{path}">pokračujte zde</a>. Budete požádáni o potvrzení.
@@ -1770,6 +1772,9 @@ cs:
       default: "%d. %b %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+  translation:
+    errors:
+      too_many_requests: Na překladatelskou službu bylo zasláno v poslední době příliš mnoho požadavků.
   two_factor_authentication:
     add: Přidat
     disable: Vypnout 2FA

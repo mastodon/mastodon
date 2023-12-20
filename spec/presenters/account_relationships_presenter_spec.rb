@@ -23,12 +23,14 @@ RSpec.describe AccountRelationshipsPresenter do
       let(:options) { {} }
 
       it 'sets default maps' do
-        expect(presenter.following).to       eq default_map
-        expect(presenter.followed_by).to     eq default_map
-        expect(presenter.blocking).to        eq default_map
-        expect(presenter.muting).to          eq default_map
-        expect(presenter.requested).to       eq default_map
-        expect(presenter.domain_blocking).to eq default_map
+        expect(presenter).to have_attributes(
+          following: default_map,
+          followed_by: default_map,
+          blocking: default_map,
+          muting: default_map,
+          requested: default_map,
+          domain_blocking: default_map
+        )
       end
     end
 

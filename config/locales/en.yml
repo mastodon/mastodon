@@ -611,6 +611,7 @@ en:
       created_at: Reported
       delete_and_resolve: Delete posts
       forwarded: Forwarded
+      forwarded_replies_explanation: This report is from a remote user and about remote content. It has been forwarded to you because the reported content is in reply to one of your users.
       forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
       mark_as_sensitive: Mark as sensitive
@@ -996,8 +997,6 @@ en:
       new_trending_statuses:
         title: Trending posts
       new_trending_tags:
-        no_approved_tags: There are currently no approved trending hashtags.
-        requirements: 'Any of these candidates could surpass the #%{rank} approved trending hashtag, which is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
         title: Trending hashtags
       subject: New trends up for review on %{instance}
   aliases:
