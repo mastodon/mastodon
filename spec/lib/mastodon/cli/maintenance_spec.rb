@@ -465,6 +465,7 @@ describe Mastodon::CLI::Maintenance do
         end
 
         let(:uri) { 'https://example.host/path' }
+        let(:account) { Fabricate(:account) }
 
         it 'runs the deduplication process' do
           expect { subject }
@@ -482,8 +483,8 @@ describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :statuses, :uri
-          Fabricate(:status, uri: uri)
-          Fabricate.build(:status, uri: uri).save(validate: false)
+          Fabricate(:status, account: account, uri: uri)
+          Fabricate.build(:status, account: account, uri: uri).save(validate: false)
         end
       end
 
