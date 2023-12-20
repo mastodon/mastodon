@@ -487,6 +487,34 @@ describe Mastodon::CLI::Maintenance do
         end
       end
 
+      context 'with duplicate tags' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:name) { 'tagname' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating tags',
+              'Restoring tags indexes',
+              'Finished!'
+            )
+            .and change(duplicate_tags, :count).from(2).to(1)
+        end
+
+        def duplicate_tags
+          Tag.where(name: name)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :tags, name: 'index_tags_on_name_lower_btree'
+          Fabricate(:tag, name: name)
+          Fabricate.build(:tag, name: name).save(validate: false)
+        end
+      end
+
       def agree_to_backup_warning
         allow(cli.shell)
           .to receive(:yes?)
