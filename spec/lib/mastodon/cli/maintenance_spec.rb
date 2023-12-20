@@ -484,7 +484,11 @@ describe Mastodon::CLI::Maintenance do
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :statuses, :uri
           Fabricate(:status, account: account, uri: uri)
-          Fabricate.build(:status, account: account, uri: uri).save(validate: false)
+          duplicate = Fabricate.build(:status, account: account, uri: uri)
+          duplicate.save(validate: false)
+          Fabricate(:status_pin, account: account, status: duplicate)
+          Fabricate(:status, in_reply_to_id: duplicate.id)
+          Fabricate(:status, reblog_of_id: duplicate.id)
         end
       end
 
