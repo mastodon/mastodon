@@ -33,6 +33,10 @@ lad:
           attributes:
             data:
               malformed: tiene formato yerrado
+        status:
+          attributes:
+            reblog:
+              taken: de publikasyon ya existe
         user:
           attributes:
             email:
@@ -49,3 +53,7 @@ lad:
             position:
               elevated: no puede ser mas alto ke tu rolo aktual
               own_role: no se puede trokar kon tu rolo aktual
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: no puedes inkluir evenimientos a los kualos no estas autorizado

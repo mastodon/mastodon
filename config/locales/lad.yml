@@ -226,6 +226,56 @@ lad:
         update_status: Aktualiza publikasyon
         update_user_role: Aktualiza rolo
       actions:
+        approve_appeal_html: "%{name} acheto la solisitasyon de moderasyon de %{target}"
+        approve_user_html: "%{name} acheto el enrejistramiento de %{target}"
+        assigned_to_self_report_html: "%{name} asinyo el raporto %{target} a si mezmo"
+        change_email_user_html: "%{name} troko el adreso de posta elektronika del utilizador %{target}"
+        change_role_user_html: "%{name} troko el rolo de %{target}"
+        confirm_user_html: "%{name} konfirmo el adreso de posta elektronika del utilizador %{target}"
+        create_account_warning_html: "%{name} embio una avertensya a %{target}"
+        create_announcement_html: "%{name} kriyo un muevo pregon %{target}"
+        create_canonical_email_block_html: "%{name} bloko la posta elektronika kon el hash %{target}"
+        create_custom_emoji_html: "%{name} kargo el muevo emoji %{target}"
+        create_domain_allow_html: "%{name} perimitio la federasyon kon el domeno %{target}"
+        create_domain_block_html: "%{name} bloko el domeno %{target}"
+        create_email_domain_block_html: "%{name} bloko el domeno de posta elektronika %{target}"
+        create_ip_block_html: "%{name} kriyo una regla para IP %{target}"
+        create_unavailable_domain_html: "%{name} detuvo las entregas al domeno %{target}"
+        create_user_role_html: "%{name} kriyo el rolo %{target}"
+        demote_user_html: "%{name} degrado a %{target}"
+        destroy_announcement_html: "%{name} supremio el pregon %{target}"
+        destroy_canonical_email_block_html: "%{name} dezbloko la posta elektronika kon el hash %{target}"
+        destroy_custom_emoji_html: "%{name} supremio el emoji %{target}"
+        destroy_domain_allow_html: "%{name} bloko la federasyon kon el domeno %{target}"
+        destroy_domain_block_html: "%{name} dezbloko el domeno %{target}"
+        destroy_email_domain_block_html: "%{name} dezbloko el domeno de posta elektronika %{target}"
+        destroy_instance_html: "\"%{name} purgo el domeno %{target}"
+        destroy_ip_block_html: "%{name} supremio una regla para la IP %{target}"
+        destroy_status_html: "%{name} supremio una publikasyon de %{target}"
+        destroy_unavailable_domain_html: "%{name} reinisyo las entregas al domeno %{target}"
+        destroy_user_role_html: "%{name} supremio el rolo %{target}"
+        disable_2fa_user_html: "%{name} dezaktivo el rekerimiento en dos pasos para el utilizador %{target}"
+        disable_custom_emoji_html: "%{name} dezaktivo el emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} inkapasito la autentifikasyon por token de posta elektronika para %{target}"
+        disable_user_html: "%{name} inkapasito la koneksion kon el kuento para el utilizador %{target}"
+        enable_custom_emoji_html: "%{name} aktivo el emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} tiene kapasitado la autentifikasyon por token de posta elektronika para %{target}"
+        enable_user_html: "%{name} kapasito koneksion kon kuento para el utilizador %{target}"
+        memorialize_account_html: "%{name} konvirtio el kuento de %{target} en una pajina de bendicha memoria"
+        promote_user_html: "%{name} promosyon al utilizador %{target}"
+        reject_appeal_html: "%{name} refuzo la solisitasyon de moderasyon de %{target}"
+        reject_user_html: "%{name} refuzo el enrejistramiento de %{target}"
+        remove_avatar_user_html: "%{name} supremio la imaje de profil de %{target}"
+        reopen_report_html: "%{name} reavrio el raporto %{target}"
+        resend_user_html: "%{name} tiene reembiado la posta de konfirmasyon para %{target}"
+        reset_password_user_html: "%{name} reinisyo el kod del utilizador %{target}"
+        resolve_report_html: "%{name} rezolvio el raporto %{target}"
+        sensitive_account_html: "%{name} marko la multimedia de %{target} komo sensivle"
+        silence_account_html: "%{name} silensyo el kuento de %{target}"
+        suspend_account_html: "%{name} suspendio el kuento de %{target}"
+        unassigned_report_html: "%{name} dezasinyo el raporto %{target}"
+        unblock_email_account_html: "%{name} tiene dezblokado el adreso de posta de %{target}"
+        unsensitive_account_html: "%{name} dezmarko la multimedia de %{target} komo sensivle"
         unsilence_account_html: "%{name} kito el limite del kuento de %{target}"
         unsuspend_account_html: "%{name} reaktivo el kuento de %{target}"
         update_announcement_html: "%{name} aktualizo el pregon %{target}"
@@ -280,7 +330,61 @@ lad:
         title: Adjustar muevo emoji personalizado
       no_emoji_selected: No se troko dingun emoji porke no eskojites dinguno
       not_permitted: No tienes permiso para realizar esta aksyon
+      overwrite: Sobreskrive
+      title: Emojis personalizados
+      uncategorized: No kategorizado
+      unlist: No lista
+      unlisted: No listado
+      update_failed_msg: No se pudo aktualizar akel emoji
+      updated_msg: Emoji aktualizado kon sukseso!
+      upload: Karga
+    dashboard:
+      active_users: utilizadores aktivos
+      interactions: enteraksyones
+      media_storage: Magazinaje de multimedia
+      new_users: muevos utilizadores
+      opened_reports: raportos aviertos
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> apelasyon esta asperando"
+        other: "<strong>%{count}</strong> apelasiones estan asperando"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> raporto esta asperando"
+        other: "<strong>%{count}</strong> raportos estan asperando"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> etiketa esta asperando"
+        other: "<strong>%{count}</strong> etiketas estan asperando"
+      pending_users_html:
+        one: "<strong>%{count}</strong> utilizador esta asperando"
+        other: "<strong>%{count}</strong> utilizadores estan asperando"
+      resolved_reports: raportos rezolvidos
+      software: Programario
+      sources: Manaderos de rejistro
+      space: Uzo de magazinaje
+      title: Pano
+      top_languages: Linguas mas aktivas
+      top_servers: Sirvidores mas aktivos
+      website: Sitio internetiko
+    disputes:
+      appeals:
+        empty: No se toparon apelasiones.
+        title: Apelasiones
+    domain_allows:
+      add_new: Perimite federasyon kon el domeno
+      created_msg: Federasyon kon el domeno permitida kon sukseso
+      destroyed_msg: Federasyon kon el domeno proibida kon sukseso
+      export: Eksporto
+      import: Importo
+      undo: Proibe federasyon kon el domeno
     domain_blocks:
+      add_new: Adjusta muevo bloko de domeno
+      confirm_suspension:
+        cancel: Anula
+        confirm: Suspende
+      created_msg: El bloko de domeno esta siendo prosesado
+      destroyed_msg: El bloko de domeno se dezizo
+      domain: Domeno
+      edit: Edita muevo bloko de domeno
+      existing_domain_block: Ya impusites limitos mas estriktos a %{name}.
       existing_domain_block_html: Ya tienes forsado limitos mas estriktos a %{name}, kale <a href="%{unblock_url}">dezblokarlo primero</a>.
       export: Eksporto
       import: Importo
@@ -345,7 +449,69 @@ lad:
     follow_recommendations:
       description_html: "<strong>Las rekomendasyones de kuentos ayudan a los muevos utilizadores a topar presto kontenido enteresante</strong>. Kuando un utilizador no tiene enteraktuado kon otros lo sufisiente komo para djenerar rekomendasyones personalizadas de kuentos a las ke segir, en sus lugar se le rekomiendan estes kuentos. Se rekalkulan diariamente a partir de una mikstura de kuentos kon el mayor numero de enteraksyones rezientes i kon el mayor numero de suivantes lokales kon una lingua determinada."
       language: Para la lingua
+      status: Estado
+      suppress: Inkapasita rekomendasyon de kuentos
+      suppressed: Inkapasitada
+      title: Rekomendasyones de kuentos
+      unsuppress: Restora rekomendasyones de kuentos
     instances:
+      availability:
+        description_html:
+          one: Si el embio al domeno no reushe <strong>%{count} diya</strong>, no se aran mas provas de entrega a manko ke se risiva un embio <em>dizde</em> el domeno.
+          other: Si el embio al domeno no reushe <strong>%{count} diyas desferentes</strong>, no se aprovaran a entregar a manko ke se risiva un embio <em>dizde</em> el domeno.
+        failure_threshold_reached: Limito de provas no reushidas alkansado el %{date}.
+        failures_recorded:
+          one: Prova no reushida en %{count} diya.
+          other: Provas no reushidas en %{count} diyas desferentes.
+        no_failures_recorded: No ay provas no reushidas en el defter.
+        title: Disponivilita
+        warning: La ultima prova de koneksyon a este sirvidor no tuvo sukseso
+      back_to_all: Todos
+      back_to_limited: Limitados
+      back_to_warning: Avertensya
+      by_domain: Domeno
+      confirm_purge: Siguro ke keres supremir permanentemente los datos de este domeno?
+      content_policies:
+        comment: Nota interna
+        description_html: Puedes definir politikas de kontenido ke se aplikaran a todos los kuentos de este domeno i a kualkiera de sus subdomenos.
+        limited_federation_mode_description_html: Puedes eskojer si keres permitir federasyon kon este domeno.
+        policies:
+          reject_media: Refuza multimedia
+          reject_reports: Refuza raportos
+          silence: Limita
+          suspend: Suspende
+        policy: Politika
+        reason: Razon publika
+        title: Politikas de kontenido
+      dashboard:
+        instance_accounts_dimension: Kuentos mas segidos
+        instance_accounts_measure: kuentos magazinados
+        instance_followers_measure: muestros suivantes ayi
+        instance_follows_measure: sus suivantes aki
+        instance_languages_dimension: Linguas popularas
+        instance_media_attachments_measure: dosyas adjuntas guadradas
+        instance_reports_measure: raportos sovre eyos
+        instance_statuses_measure: mesajes magazinados
+      delivery:
+        all: Todos
+        clear: Alimpiar yerros de entrega
+        failing: Fayando
+        restart: Reinisyar entrega
+        stop: Detener entrega
+        unavailable: No desponivle
+      delivery_available: Entrega desponivle
+      delivery_error_days: Diyas de yerro de entrega
+      delivery_error_hint: Si la entrega no es posivle a lo longo de %{count} diyas, se markara otomatikamente komo no entregable.
+      destroyed_msg: Los datos de %{domain} estan agora en kola para sus iminente efasasyon.
+      empty: No se toparon domenos.
+      known_accounts:
+        one: "%{count} kuento konesido"
+        other: "%{count} kuentos konesidos"
+      moderation:
+        all: Todos
+        limited: Limitado
+        title: Moderasyon
+      private_comment: Komento privado
       public_comment: Komento publiko
       purge: Purga
       purge_description_html: Si kreyes ke este domeno esta deskonektado, puedes efasar todos los rejistros de kuentos i los datos asosyados de este domeno de tu magazinaje. Esto puede levar un tiempo.
@@ -528,8 +694,38 @@ lad:
         manage_rules: Administra reglas
         manage_rules_description: Permete a los utilizadores trokar las reglas del sirvidor
         manage_settings: Administra konfigurasyon
+        manage_settings_description: Permete a los utilizadores trokar la konfigurasyon del sitio
+        manage_taxonomies: Administra etiketas
+        manage_taxonomies_description: Permete a los utilizadores revizar el kontenido en trend i aktualizar la konfigurasyon de las etiketas
+        manage_user_access: Administra akseso de utilizadores
+        manage_user_access_description: Permete a los utilizadores dezaktivar la autentifikasyon en dos pasos de otros utilizadores, trokar sus adreso de posta elektronika i restableser sus kod
+        manage_users: Administra utilizadores
+        manage_users_description: Permete a los utilizadores ver los peratim de otros utilizadores i realizar aksyones de moderasyon kontra eyos
+        manage_webhooks: Administrar webhooks
+        view_devops: DevOps
+      title: Rolos
+    rules:
+      add_new: Adjusta regla
+      delete: Efasa
+      edit: Edita regla
+      title: Reglas del sirvidor
     settings:
+      about:
+        manage_rules: Administra reglas del sirvidor
+        title: Sovre esto
+      appearance:
+        title: Aparensya
+      discovery:
+        follow_recommendations: Rekomendasyones de kuentos
+        profile_directory: Katalogo de profiles
+        public_timelines: Linyas de tiempo publikas
+        trends: Trendes
+      domain_blocks:
+        all: A todos
+        disabled: A dinguno
+        users: Para los utilizadores lokales ke entrado en su kuento
       registrations:
+        preamble: Kontrola ken puede kriyar un kuento en tu sirvidor.
         title: Enrejistramientos
       registrations_mode:
         modes:
@@ -542,6 +738,7 @@ lad:
       destroyed_msg: Dosya supremida kon sukseso!
     software_updates:
       documentation_link: Ambezate mas
+      title: Aktualizasyones desponivles
       type: Tipo
       version: Versyon
     statuses:
@@ -579,7 +776,7 @@ lad:
         silence: "%{name} limito el kuento de %{target}"
         suspend: "%{name} suspendio el kuento de %{target}"
       appeal_approved: Apelado
-      appeal_pending: Apelasyon pendiente
+      appeal_pending: Apelasyon asperando
       appeal_rejected: Apelasyon refuzada
     system_checks:
       database_schema_check:
@@ -620,3 +817,654 @@ lad:
         no_link_selected: No se troko dingun atadijo porke no eskojites dinguno
         publishers:
           no_publisher_selected: No se troko dingun publikador porke no eskojites dinguno
+        title: Atadijos en trend
+        usage_comparison: Partajado %{today} vezes oy, komparado kon %{yesterday} ayer
+      not_allowed_to_trend: Sin permiso para estar en trendes
+      only_allowed: Solo las permetidas
+      pending_review: Revizion esta asperando
+      preview_card_providers:
+        allowed: Los atadijos de este medio pueden ser trend
+        description_html: Estos son domenos dizde los ke los atadijos akoruto se partajan en sus sirvidor. Los atadijos no seran trend publikamente a menos ke se achete el domeno del atadijo. Sus achetasion (o refuzo) se ekstende a los subdomenos.
+        rejected: Los atadijos de este medio no pueden ser trend
+        title: Medios
+      rejected: Refuzadas
+      statuses:
+        allow: Permete publikasyon
+        allow_account: Permete al autor
+        description_html: Estas son publikasyones ke tu sirvidor konese ke estan siendo partajadas muncho i plazen a munchas personas en este momento. Puedes ayudar a tus utilizadores muevos i retornantes a topar mas djente a la ke segir. No ay mesajes ke se amostren publikamente asta ke aproves el autor i el autor permeta ke su kuento sea sugjerado a otros. Tamyen puedes permeter o refuzar mesajes individuales.
+        disallow: No permete publikasyon
+        disallow_account: No permete al autor
+        no_status_selected: No se troko dinguna publikasyon en trend porke no seleksionates dingunas
+        not_discoverable: El autor no tiene optado por ser detektable
+        shared_by:
+          one: Repartajado por o plaze a alguno una vez
+          other: Repartajado por o plaze a alguno %{friendly_count} vezes
+        title: Publikasyones en trend
+      tags:
+        current_score: Puntuasion aktuala %{score}
+        dashboard:
+          tag_accounts_measure: uzos unikos
+          tag_languages_dimension: Linguas popularas
+          tag_servers_dimension: Sirvidores prinsipales
+          tag_servers_measure: desferentes sirvidores
+          tag_uses_measure: uzos totales
+        description_html: Estas son etiketas ke estan aparesiendo en munchas publikasyones ke tu sirvidor ve. Pueden ayudar a tus utilizadores a averiguar de ke avla mas djente en estos momentos. No ay etiketas ke se amostren publikamente asta ke las achetes.
+        listable: Pueden ser rekomendadas
+        no_tag_selected: No se troko dinguna etiketa al no eskojer dinguna
+        not_listable: No seran rekomendadas
+        not_usable: No se pueden uzar
+        trendable: Pueden apareser en trendes
+        trending_rank: Trend n.º %{rank}
+        usable: Pueden uzarse
+        usage_comparison: Uzada %{today} vezes oy, komparado kon %{yesterday} ayer
+        used_by_over_week:
+          one: Uzada por una persona durante la ultima semana
+          other: Uzada por %{count} personas durante la ultima semana
+      title: Trendes
+      trending: En trend
+    warning_presets:
+      add_new: Adjusta muevo
+      delete: Efasa
+      edit_preset: Edita avizo predeterminado
+      empty: Ainda no tienes definido ningun avizo predeterminado.
+      title: Edita konfigurasyon predeterminada de avizos
+    webhooks:
+      add_new: Adjusta endpoint
+      delete: Efasa
+      description_html: Un <strong>webhook</strong> permete a Mastodon embiar <strong>avizos en tiempo real</strong> sovre los evenimientos eskojidos a tu propia aplikasyon, para ke tu aplikasyon pueda <strong>lanzar reaksyones otomatikamente</strong>.
+      disable: Inkapasita
+      disabled: Inkapasitado
+      edit: Edita endpoint
+      empty: Ainda no tienes ningun endpoint de webhook konfigurado.
+      enable: Kapasita
+      enabled: Aktivo
+      enabled_events:
+        one: 1 evenimiento kapasitado
+        other: "%{count} evenimientos kapasitados"
+      events: Evenimientos
+      new: Muevo webhook
+      rotate_secret: Rotar sekreto
+      secret: Firmando sekreto
+      status: Estado
+      title: Webhooks
+      webhook: Webhook
+  admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: para supremir sus mesajes
+        disable: para konjelar su kuento
+        mark_statuses_as_sensitive: para markar sus mesajes komo sensivles
+        none: una avertensya
+        sensitive: para markar su kuento komo sensivle
+        silence: para limitar su kuento
+        suspend: para suspender su kuento
+      body: "%{target} esta apelando a una solisitasyon de moderasyon de %{action_taken_by} el %{date}, del tipo %{type}. Eyos eskrivieron:"
+      next_steps: Puedes achetar la apelasyon para dezazer la dechizyon de moderasyon, o ignorarla.
+      subject: "%{username} esta apelando a una dechizyon de moderasyon en %{instance}"
+    new_pending_account:
+      body: Los peratim del muevo kuento estan abashos. Puedes achetar o refuzar esta aplikasyon.
+      subject: Muevo kuento para revizion en %{instance} (%{username})
+    new_report:
+      body: "%{reporter} tiene raportado a %{target}"
+      body_remote: Alguno de %{domain} a raportado a %{target}
+      subject: Muevo raporto para la %{instance} (#%{id})
+    new_trends:
+      body: 'Los sigientes elementos nesesitan una revizion antes de ke se puedan amostrar publikamente:'
+      new_trending_links:
+        title: Atadijos en trend
+      new_trending_statuses:
+        title: Publikasyones en trend
+      new_trending_tags:
+        title: Etiketas en trend
+  appearance:
+    advanced_web_interface: Enterfaz web avanzada
+    sensitive_content: Kontenido sensivle
+  application_mailer:
+    salutation: "%{name},"
+    settings: 'Troka preferensyas de posta: %{link}'
+    unsubscribe: Dezabona
+    view: 'Mira:'
+    view_profile: Ve profil
+    view_status: Ve publikasyon
+  applications:
+    created: Aplikasyon kriyada kon sukseso
+    destroyed: Aplikasyon supremida kon sukseso
+    logout: Sal
+    regenerate_token: Redjenera token de akseso
+    token_regenerated: Token de akseso redjenerado kon sukseso
+    warning: Ten muncho kudiado kon estos datos. No los partajes kon dinguno!
+    your_token: Tu token de akseso
+  auth:
+    apply_for_account: Solisita un kuento
+    confirmations:
+      login_link: konektate kon kuento
+      welcome_title: Bienvenido, %{name}!
+      wrong_email_hint: Si este adreso de posta es inkorekto, puedes trokarlo en las preferensyas del kuento.
+    delete_account: Efasa kuento
+    delete_account_html: Si keres supremir tu kuento, puedes <a href="%{path}">ir aki</a>. Seras pedido de una konfirmasyon.
+    description:
+      prefix_invited_by_user: "@%{name} te envita a unirte a este sirvidor de Mastodon!"
+      prefix_sign_up: Adjuntate a Mastodon oy!
+      suffix: Kon un kuento podras segir a djente, publikar haberes e enterkambiar mesajes kon utilizadores de kualkier sirvidor de Mastodon i mas!
+    didnt_get_confirmation: No risivites el atadijo de konfirmasyon?
+    dont_have_your_security_key: No tienes tu yave de sigurita?
+    forgot_password: Neglijates tu kod?
+    invalid_reset_password_token: El token de reinisyo de kod es malato o ekspiro. Por favor pide uno muevo.
+    link_to_otp: Introduse un kodiche de autorizasyon en dos pasos dizde tu telefon o un kodiche de rekuperasyon
+    link_to_webauth: Utiliza tu aparato de yave de sigurita
+    log_in_with: Konektate kon kuento kon
+    login: Konektate kon kuento
+    logout: Sal
+    migrate_account: Transferate a otro kuento
+    migrate_account_html: Si keres readresar este kuento a otra distinta, puedes <a href="%{path}">konfigurarlo aki</a>.
+    or_log_in_with: O konektate kon tu kuento kon
+    privacy_policy_agreement_html: Tengo meldado i acheto la <a href="%{privacy_policy_path}" target="_blank">politika de privasita</a>
+    progress:
+      confirm: Konfirma posta
+      details: Tus detalyos
+      rules: Acheta reglas
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Enrejistrate
+    registration_closed: "%{instance} no esta achetando a muevos miembros"
+    resend_confirmation: Reembia posta de konfirmasyon
+    reset_password: Reinisya kod
+    rules:
+      accept: Acheta
+      back: Atras
+      preamble: Estas son establesidas i aplikadas por los moderadores de %{domain}.
+      title: Algunas reglas bazikas.
+    security: Sigurita
+    set_new_password: Establese muevo kod
+    setup:
+      email_below_hint_html: Mira en tu kuti de spam o solisita de muevo. Si el adreso de posta elektronika ke aparese aki es yerrado, puedes trokarlo aki.
+    sign_in:
+      preamble_html: Konektate kon tus kredensiales de <strong>%{domain}</strong>. Si tu kuento esta balabayado en otruno servidor, no puedras konektarte aki.
+      title: Konektate kon %{domain}
+    sign_up:
+      preamble: Kon un kuento en este sirvidor de Mastodon, podras segir a kualkier otra persona en la red, endependientemente del sirvidor en el ke se tope.
+      title: Kriya kuento de Mastodon en %{domain}.
+    status:
+      account_status: Estado del kuento
+      confirming: Bekleando konfirmasyon de posta elektronika.
+      functional: Tu kuento esta kompletamente funksyonal.
+      pending: Tu solisitasyon esta asperando la revizion por muestros administradores. Esto puede tadrar algun tiempo. Arisiviras una posta elektronika si la solisitasyon sea achetada.
+      redirecting_to: Tu kuento se topa inaktivo porke esta siendo readresado a %{acct}.
+      view_strikes: Ve amonestamientos pasados kontra tu kuento
+    too_fast: Formulario enviado demaziado rapido, aprovalo de muevo.
+    use_security_key: Uza la yave de sigurita
+  challenge:
+    confirm: Kontinua
+    hint_html: "<strong>Tip:</strong> No retornaremos a demandarte por el kod durante la sigiente ora."
+    invalid_password: Kod inkorekto
+    prompt: Konfirma kod para segir
+  crypto:
+    errors:
+      invalid_key: no es una yave Ed25519 o Curve25519 valida
+      invalid_signature: no es una firma Ed25519 valida
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count} o"
+      about_x_months: "%{count} me"
+      about_x_years: "%{count} a"
+      almost_x_years: "%{count} a"
+      half_a_minute: Agora
+      less_than_x_minutes: "%{count} m"
+      less_than_x_seconds: Agora
+      over_x_years: "%{count} a"
+      x_days: "%{count} d"
+      x_minutes: "%{count} m"
+      x_months: "%{count} me"
+      x_seconds: "%{count} s"
+  deletes:
+    proceed: Efasa kuento
+  disputes:
+    strikes:
+      action_taken: Aksyon tomada
+      appeal: Apela
+      appeal_submitted_at: Apelasyon embiada
+      appealed_msg: Tu apelasyon fue embiada. Si la achetamos, se te avizara.
+      appeals:
+        submit: Embia apelasyon
+      approve_appeal: Acheta apelasyon
+      associated_report: Raporto asosiado
+      created_at: Kon data
+      description_html: Estas son las aksyones emprendidas kontra tu kuento i las avertensyas ke te an sido enviadas por la taifa de %{instance}.
+      recipient: Dirijda a
+      reject_appeal: Refuza apelasyon
+      status: 'Publikasyon #%{id}'
+      status_removed: Publikasyon ya supremida del sistem
+      title: "%{action} del %{date}"
+      title_actions:
+        delete_statuses: Efasasyon de publikasyon
+        disable: Konjelasyon del kuento
+        mark_statuses_as_sensitive: Markamiento de los mesajes komo sensivles
+        none: Avertensya
+        sensitive: Markamiento del kuento komo sensivle
+        silence: Limitasyon de kuento
+        suspend: Suspensyon de kuento
+      your_appeal_approved: Tu apelasyon fue achetada
+      your_appeal_pending: Tienes enviado una apelasyon
+      your_appeal_rejected: Tu apelasyon fue refuzada
+  domain_validator:
+    invalid_domain: no es un nombre de domeno valido
+  edit_profile:
+    other: Otros
+  errors:
+    '400': La solisitasyon ke enviates no fue valida o fue malformada.
+    '403': No tienes permiso para ver esta pajina.
+    '404': La pajina ke bushkas no egziste.
+    '406': Esta pajina no esta desponivle en el formato solisitado.
+    '410': La pajina ke estavas bushkando no egziste mas.
+    '422':
+      content: Verifikasyon de sigurita no reushida. Estas blokando algunas cookies?
+      title: Verifikasyon de sigurita no reushida
+    '429': Demaziadas solisitasyones
+    '500':
+      content: Pardon, algo tiene fonksionado mal por muestra parte.
+      title: Esta pajina no es djusta
+    '503': La pajina no se tiene podido desbarkar por un yerro temporal del sirvidor.
+    noscript_html: Para uzar la aplikasyon web de Mastodon, por favor aktiva Javascript. Alternativamente, aprova alguna de las <a href="%{apps_path}">aplikasyones nativas</a> para Mastodon para tu platforma.
+  existing_username_validator:
+    not_found: no se pudo topar un utilizador lokal kon akel nombre de utilizador
+    not_found_multiple: no se pudo topar %{usernames}
+  exports:
+    archive_takeout:
+      date: Data
+      download: Abasha tu dosya
+      hint_html: Puedes solisitar una dosya de tus <strong>publikasyones i dosyas multimedia kargadas</strong>. Los datos eksportados estaran en formato ActivityPub, meldavles por kualkier programario kompativle. Puedes solisitar una dosya kada 7 diyas.
+      in_progress: Rekopilando tu dosya...
+      request: Solisita tu dosya
+      size: Boy
+    blocks: Personas a las kualas tienes blokado
+    bookmarks: Markadores
+    csv: CSV
+    domain_blocks: Blokos de domenos
+    lists: Listas
+    mutes: Silensias
+    storage: Magazinaje de multimedia
+  featured_tags:
+    add_new: Adjusta muevo
+  filters:
+    contexts:
+      account: Profiles
+      notifications: Avizos
+      public: Linyas de tiempo publikas
+    edit:
+      add_keyword: Adjusta biervo yave
+      keywords: Biervos yaves
+      statuses: Publikasyones individualas
+    index:
+      delete: Efasa
+      title: Filtros
+    new:
+      save: Guadra muevo filtro
+      title: Adjusta muevo filtro
+    statuses:
+      back_to_filter: Retorna al filtro
+      batch:
+        remove: Kita del filtro
+  generic:
+    all: Todos
+    cancel: Anula
+    confirm: Konfirma
+    copy: Kopia
+    delete: Efasa
+    none: Dinguno
+    save_changes: Guadra trokamientos
+    today: oy
+  imports:
+    errors:
+      invalid_csv_file: 'Dosya CSV no valida. Yerro: %{error}'
+      over_rows_processing_limit: kontiene mas de %{count} filas
+      too_large: Dosya es mas grande
+    imported: Importado
+    modes:
+      merge: Une
+      merge_long: Manten rejistros egzistentes i adjusta muevos
+      overwrite: Sobreskrive
+      overwrite_long: Mete muevos rejistros en vez de los aktuales
+    preface: Puedes importar siertos datos, komo todas las personas a las kualas estas sigiendo o blokando en tu kuento en esta instansya, dizde dosyas eksportadas de otra instansya.
+    states:
+      finished: Finalizado
+      scheduled: Programado
+      unconfirmed: Sin konfirmasyon
+    status: Estado
+    success: Tus datos se tienen kargado djustamente i seran prosesados pishin
+    types:
+      blocking: Lista de blokos
+      bookmarks: Markadores
+      lists: Listas
+    upload: Karga
+  invites:
+    delete: Dezaktiva
+    expires_in:
+      '1800': 30 minutos
+      '21600': 6 oras
+      '3600': 1 ora
+      '43200': 12 oras
+      '604800': 1 semana
+      '86400': 1 diya
+    expires_in_prompt: Nunkua
+    max_uses:
+      one: 1 uzo
+      other: "%{count} uzos"
+    max_uses_prompt: Sin limito
+    table:
+      expires_at: Kaduka
+      uses: Uzos
+    title: Envita a djente
+  lists:
+    errors:
+      limit: Tienes alkansado el karar maksimo de listas
+  login_activities:
+    authentication_methods:
+      otp: aplikasyon de autentifikasyon en dos pasos
+      password: kod
+      sign_in_token: kodiche de sigurita por posta elektronika
+      webauthn: yaves de sigurita
+    description_html: Si ves una aktivita ke no rekoneses, konsidera trokar tu kod i kapasitar la autentifikasyon en dos pasos.
+    empty: No ay estoria de autentifikasyon desponivle
+    failed_sign_in_html: Prova de inisiasyon de sesion no reushida kon %{method} de %{ip} (%{browser})
+    successful_sign_in_html: Prova de sesion reushida kon %{method} dizde %{ip} (%{browser})
+    title: Estoria de autentifikasyon
+  mail_subscriptions:
+    unsubscribe:
+      complete: Dezabonado
+      title: Dezabona
+  media_attachments:
+    validations:
+      images_and_video: No se puede adjuntar un video a un estado ke ya kontenga imajes
+      not_ready: No se pueden adjuntar dosyas ke no se tienen eskapado de prosesar. Aprovalo de muevo en un momento!
+      too_many: No se pueden adjuntar mas de 4 dosyas
+  migrations:
+    acct: Migrado a
+    cancel: Anula readreso
+    cancel_explanation: Al anular el readreso se reaktivara tu kuento aktual, ama no rekuperaras los suivantes ke ayan sido trasladados al otro kuento.
+    cancelled_msg: Tienes anulado el readreso djustamente.
+    errors:
+      already_moved: es el mezmo kuento al ke ya tienes migrado
+      missing_also_known_as: no es un alias de este kuento
+      move_to_self: no puede ser el kuento aktual
+      not_found: no se pudo topar
+      on_cooldown: Estas en tiempo de reutilizasyon
+    followers_count: Suivantes al momento de migrar
+    incoming_migrations: Migra de un kuento desferente
+    incoming_migrations_html: Para migrar de otro kuento a este, primero kale <a href="%{path}">kriyar un alias del kuento</a>.
+    moved_msg: Tu kuento agora se esta redirigiendo a %{acct} i tus suivantes se estan migrando.
+    not_redirecting: Tu kuento no se esta readresando a dinguna otro kuento aktualmente.
+    on_cooldown: Tienes migrado tu kuento rezientemente. Esta fonksyon estara desponivle de muevo en %{count} diyas.
+    past_migrations: Migrasyones pasadas
+    proceed_with_move: Migra suivantes
+    redirected_msg: Tu kuento agora readresa a %{acct}.
+    redirecting_to: Tu kuento se esta readresando a %{acct}.
+    set_redirect: Establese readreso
+    warning:
+      backreference_required: El muevo kuento deve ser konfigurado primero para fazer referensya a este
+      before: 'Antes de kontinuar, por favor melda kon atensyon las sigientes notas:'
+      cooldown: Dempues de migrar ay un periodo de aspera durante el kual no podras retornar a migrar
+      disabled_account: Tu kuento aktual no sera kompletamente utilizable dempues. Portanto, tendras akseso a la eksportasyon de datos ansi komo a la reaktivasyon.
+      followers: Esta aksion migrara a todos los suivantes del kuento aktual al muevo kuento
+      only_redirect_html: Alternativamente, solo puedes <a href="%{path}">poner un readreso en tu profil</a>.
+  moderation:
+    title: Moderasyon
+  notification_mailer:
+    follow:
+      title: Muevo suivante
+    follow_request:
+      title: Mueva solisitud de segimiento
+    mention:
+      action: Arisponde
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: MM
+          million: M
+          thousand: K
+  otp_authentication:
+    enable: Kapasita
+    instructions_html: "<strong>Eskanea este kodiche QR dizde Google Authenticator o una aplikasyon similar en tu telefon</strong>. A partir de agora, esta aplikasyon djenerara kodiches ke tendras ke ingresar kuando keras konektarte kon tu kuento."
+    manual_instructions: 'Si no puedes eskanear el kodiche QR i nesesitas introdusirlo manualmente, este es el sekreto en teksto plano:'
+    setup: Konfigura
+    wrong_code: El kodiche ingresado es malato! Es djusta la ora del aparato i el sirvidor?
+  pagination:
+    newer: Mas muevo
+    next: Sigiente
+    older: Mas viejo
+    prev: Anterior
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Ya tienes votado en esta anketa
+      duplicate_options: kontiene elementos duplikados
+      duration_too_long: esta demaziado leshos en el avenir
+      duration_too_short: es demaziado pronto
+      expired: La anketa ya tiene eskapado
+      invalid_choice: La opsyon de voto eskojida no egziste
+      over_character_limit: no puede trespasar %{max} karakteres kada uno
+      too_few_options: deve tener mas de un elemento
+      too_many_options: no puede kontener mas de %{max} elementos
+  preferences:
+    other: Otros
+    posting_defaults: Konfigurasyon predeterminada de publikasyones
+    public_timelines: Linyas de tiempo publikas
+  privacy:
+    privacy: Privasita
+    search: Bushkeda
+  privacy_policy:
+    title: Politika de privasita
+  reactions:
+    errors:
+      limit_reached: Limito de reaksyones desferentes alkansado
+      unrecognized_emoji: no es un emoji konesido
+  relationships:
+    activity: Aktivita del kuento
+    confirm_follow_selected_followers: Estas siguro ke keres segir a los suivantes eskojidos?
+    confirm_remove_selected_followers: Estas siguro ke keres kitar a los suivantes eskojidos?
+    confirm_remove_selected_follows: Estas siguro ke keres kitar los kuentos segidos a los kualos tienes eskojido?
+    dormant: Inaktivo
+    follow_failure: No se pudo segir algunos de los kuentos eskojidos.
+    follow_selected_followers: Sige a los suivantes eskojidos
+    followers: Suivantes
+    following: Segidos
+    invited: Envitados
+    last_active: Ultima aktivita
+    most_recent: Mas reziente
+    moved: Migrados
+    mutual: Mutual
+    primary: Prinsipal
+    relationship: Relasyon
+    status: Estado del kuento
+  rss:
+    content_warning: 'Avertensya de kontenido:'
+  sessions:
+    activity: Ultima aktivita
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      huawei_browser: Huawei Browser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      weibo: Weibo
+    current_session: Sesyon aktuala
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      kai_os: KaiOS
+      linux: Linux
+      mac: macOS
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Revoka
+    revoke_success: Sesion revokada kon sukseso
+    title: Sesiones
+    view_authentication_history: Ve estoria de autentifikasyon de tu kuento
+  settings:
+    account: Kuento
+    account_settings: Preferensyas de kuento
+    aliases: Aliases del kuento
+    appearance: Aparensya
+    authorized_apps: Aplikasyones autorizadas
+    back: Retorna a Mastodon
+    delete: Efasa kuento
+    development: Dezvelopamiento
+    edit_profile: Edita profil
+    export: Eksporta enformasyon
+    featured_tags: Etiketas avaliadas
+    import: Importo
+    import_and_export: Importo i eksporto
+    migrate: Migrasyon de kuento
+    notifications: Avizos
+    preferences: Preferensyas
+    profile: Profil publiko
+    relationships: Segidos i suivantes
+    statuses_cleanup: Efasasyon otomatika de publikasyones
+    strikes: Amonestamientos de moderasyon
+    two_factor_authentication: Autentifikasyon en dos pasos
+    webauthn_authentication: Yaves de sigurita
+  statuses:
+    attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audios"
+      description: 'Atamiento: %{attached}'
+      image:
+        one: "%{count} imaje"
+        other: "%{count} imajes"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
+    boosted_from_html: Repartajado dizde %{acct_link}
+    content_warning: 'Avertensya de kontenido: %{warning}'
+    default_language: La mezma ke la lingua de la enterfaz
+    disallowed_hashtags:
+      one: 'kontenia una etiketa no permetida: %{tags}'
+      other: 'kontenia las etiketas no permetidas: %{tags}'
+    edited_at_html: Editado %{date}
+    errors:
+      in_reply_not_found: La publikasion a la ke aprovas arispondir no egziste.
+    open_in_web: Avre en web
+    over_character_limit: limito de karakteres de %{max} superado
+    pin_errors:
+      direct: Las publikasyones ke son vizivles solo para los utilizadores enmentados no pueden fiksarse
+      limit: Ya tienes fiksado el numero maksimo de publikasyones
+      ownership: La publikasyon de otra persona no puede fiksarse
+    poll:
+      vote: Vota
+    show_more: Amostra mas
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 semanas
+      '15778476': 6 mezes
+      '2629746': 1 mez
+      '31556952': 1 anyo
+      '5259492': 2 mezes
+      '604800': 1 semana
+      '63113904': 2 anyos
+      '7889238': 3 mezes
+  stream_entries:
+    sensitive_content: Kontenido sensivle
+  strikes:
+    errors:
+      too_late: Es demaziado tadre para apelar este amonestamiento
+  tags:
+    does_not_match_previous_name: no koensida kon el nombre anterior
+  themes:
+    contrast: Mastodon (alto kontraste)
+    default: Mastodon (eskuro)
+    mastodon-light: Mastodon (klaro)
+  time:
+    formats:
+      default: "%d de %b del %Y, %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+      with_time_zone: "%d de %b del %Y, %H:%M %Z"
+  two_factor_authentication:
+    add: Adjusta
+    disable: Inkapasita autentifikasyon en dos pasos
+    disabled_success: Autentifikasyon de dos pasos inkapasitada djustamente
+    edit: Edita
+    enabled: Autentifikasyon de dos pasos esta kapasitada
+    enabled_success: Autentifikasyon de dos pasos kapasitada djustamente
+    generate_recovery_codes: Jenera kodiches de rekuperasyon
+    lost_recovery_codes: Los kodiches de rekuperasyon te permeten obtener akseso a tu kuento si piedres tu telefon. Si tienes pedrido tus kodiches de rekuperasyon, puedes redjenerarlos aki. Tus viejos kodiches de rekuperasyon se aran malatos.
+    methods: Metodos de autentifikasyon de dos pasos
+    otp: Aplikasyon de autentifikasyon
+    recovery_codes: Fazer kopias de sigurita de tus kodiches de rekuperasyon
+    recovery_codes_regenerated: Kodiches de rekupersayon redjenerados kon sukseso
+    recovery_instructions_html: Si piedres akseso a tu telefon, puedes uzar uno de los sigientes kodiches de rekuperasyon para obtener akseso a tu kuento. <strong>Mantenlos a salvo</strong>. Por enshemplo, puedes imprimirlos i guadrarlos kon otros dokumentos emportantes.
+    webauthn: Yaves de sigurita
+  user_mailer:
+    appeal_approved:
+      action: Va a tu kuento
+      explanation: La apelasyon del amonestamiento kontra tu kuento del %{strike_date} ke mandates el %{appeal_date} fue achetada. Tu kuento se topa de muevo en dobro estado.
+      subject: Tu apelasyon del %{date} fue achetada
+      title: Apelasyon achetada
+    appeal_rejected:
+      explanation: La apelasyon del amonestamiento kontra tu kuento del %{strike_date} ke mandates el %{appeal_date} fue refuzada.
+      subject: Tu apelasyon del %{date} fue refuzada
+      title: Apelasyon refuzada
+    backup_ready:
+      explanation: Tienes solisitado una kopia kompleta de tu kuento de Mastodon. Ya esta pronta para abashar!
+      subject: Tu dosya esta pronta para abashar
+      title: Abasha dosya
+    suspicious_sign_in:
+      change_password: troka tu kod
+      details: 'Aki estan los peratim de la koneksyon kon tu kuento:'
+      explanation: Topimos una koneksyon kon tu kuento dizde un muevo adreso IP.
+      further_actions_html: Si no fuites tu, te rekomendamos ke %{action} pishin i kapasites la autentifikasyon en dos pasos para mantener tu kuento siguro.
+      subject: Tu kuento fue aksedido dizde un muevo adreso IP
+      title: Una mueva koneksyon kon tu kuento
+    warning:
+      appeal: Embia una apelasyon
+      appeal_description: Si kreyes ke esto es un yerro, puedes embiar una apelasyon a la taifa de %{instance}.
+      categories:
+        spam: Spam
+        violation: El kontenido viola las sigientes reglas de la komunita
+      explanation:
+        delete_statuses: Se tiene determinado ke algunos de tus mesajes violan una o mas reglas de la komunita i por tanto fueron supremidos por los moderadores de %{instance}.
+        disable: Ya no puedes uzar tu kuento, ama tu profil i el resto de datos permanesen intactos. Puedes solisitar una kopia de sigurita de tus datos, trokar la konfigurasyon de tu kuento o supremirlo.
+        mark_statuses_as_sensitive: Algunas de tus publikasyones an sido markados komo sensivles por los moderadores de %{instance}. Esto sinyifika ke la djente tendra ke pulsar los dosyas multimedia en las publikasyones antes de ke se amostre una vista previa. Puedes markar los dosyas multimedia komo sensivles tu mezmo kuando publikes en el avenir.
+        sensitive: A partir de agora todas los dosyas multimedia ke subas seran markados komo sensivles i eskondidos tras una avertensya.
+      reason: 'Razon:'
+      title:
+        none: Avertensya
+        silence: Kuento limitado
+        suspend: Kuento suspendido
+  users:
+    signed_in_as: 'Konektado komo:'
+  verification:
+    verification: Verifikasyon
+  webauthn_credentials:
+    add: Adjusta mueva yave de sigurita
+    delete: Efasa
+    invalid_credential: Yave de sigurita no valida
+    nickname_hint: Introduska el sovrenombre de tu mueva yave de sigurita
+    not_enabled: Ainda no tienes aktivado WebAuthn
+    not_supported: Este navigador no soporta yaves de sigurita
+    otp_required: Para uzar yaves de sigurita, por favor kapasite primero la autentifikasyon de dos pasos.
+    registered_on: Enrejistrado el %{date}

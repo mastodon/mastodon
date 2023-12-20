@@ -119,6 +119,7 @@ ie:
       remote_suspension_reversible_hint_html: Li conto ha esset suspendet che su servitor, e li data va esser completmen removet ye %{date}. Til tande, li lontan servitor posse restaurar ti conto sin quelcunc mal efectes. Si tu vole remover omni data del conto ínmediatmen, tu posse far it in infra.
       remove_avatar: Remover li avatar
       removed_avatar_msg: Successosimen removet li avatar-image de %{username}
+      removed_header_msg: Successosimen removet li cap-image de %{username}
       resend_confirmation:
         already_confirmed: Ti usator ja esset confirmat
         send: Inviar li confirmation denov
@@ -280,6 +281,7 @@ ie:
         update_announcement_html: "%{name} actualisat li proclamation %{target}"
         update_custom_emoji_html: "%{name} actualisat emoji %{target}"
         update_domain_block_html: "%{name} actualisat li dominia-blocca de %{target}"
+        update_ip_block_html: "%{name} changeat regul por IP %{target}"
         update_status_html: "%{name} actualisat posta de %{target}"
         update_user_role_html: "%{name} changeat li rol %{target}"
       deleted_account: deletet conto
@@ -448,6 +450,7 @@ ie:
         title: Importar dominia-bloccas
       no_file: Null file selectet
     follow_recommendations:
+      description_html: "<strong>Seque-recomandationes auxilia nov usatores trovar interessant contenete</strong>. Quande un usator ne ha interactet con altres suficentmen por generar personalisat seque-recomandationes, ti contos es recomandat vicemen. Ili es recalculat dialmen de un mixtura de contos con li max mult recent interactiones e li max alt númeres de local sequitores por un specificat lingue."
       language: Por li lingue
       status: Statu
       suppress: Supresser seque-recomandation
@@ -465,9 +468,20 @@ ie:
       confirm_purge: Vole tu vermen permanentmen deleter data de ti dominia?
       content_policies:
         comment: Internal nota
+        policies:
+          reject_media: Rejecter medie
+          reject_reports: Rejecter raportes
+          silence: Limitar
+          suspend: Suspender
         policy: Politica
         reason: Visibil rason
         title: Politicas pri contenete
+      dashboard:
+        instance_accounts_dimension: Max sequet contos
+        instance_accounts_measure: inmagasinat contos
+        instance_followers_measure: nor sequitores ta
+        instance_follows_measure: lor sequitores ci
+        instance_languages_dimension: Max grand lingues
       delivery:
         unavailable: Índisponibil
       delivery_error_hint: Si liveration ne es possibil durant %{count} dies, it va esser marcat automaticmen quam ínliverabil.
@@ -586,37 +600,85 @@ ie:
       skip_to_actions: Ear rect al actiones
       status: Statu
       statuses: Contenete raportat
+      summary:
+        close_report: 'Marcar raporte #%{id} quam resoluet'
       title: Raportes
     roles:
       categories:
+        devops: DevOps
+        invites: Invitationes
         moderation: Moderation
+        special: Special
+      delete: Deleter
       privileges:
         administrator: Administrator
+        delete_user_data: Deleter Data de Usator
+        delete_user_data_description: Possibilisa que usatores mey deleter li data de altri usatores strax
+        invite_users: Invitar Usatores
         manage_announcements: Tractar proclamationes
         manage_announcements_description: Permisse usatores tractar proclamationes sur li servitor
+        manage_appeals: Gerer Apelles
+        manage_federation: Gerer Federation
+        manage_invites: Gerer Invitationes
+        manage_reports: Gerer Raportes
+        manage_roles: Gerer Roles
+        manage_taxonomies: Gerer Taxonomies
         manage_user_access_description: Permisse usatores desactivisar li 2-factor autentication de altri usatores, changear lor email-adresses, e reiniciar lor passa-paroles
         manage_users: Gerer usatores
       title: Roles
     rules:
       add_new: Adjunter un regule
+      title: Regules del servitor
     settings:
       about:
         title: Pri
       appearance:
         title: Aspecte
+      discovery:
+        profile_directory: Profilarium
+        public_timelines: Public témpor-lineas
       domain_blocks:
         users: A local usatores qui ha initiat session
+      registrations:
+        title: Registrationes
+      registrations_mode:
+        modes:
+          none: Nequi posse registrar se
+          open: Quicunc posse registrar se
     site_uploads:
       delete: Deleter cargat file
       destroyed_msg: Cargat file successosimen deletet!
     software_updates:
-      type: Tip
+      type: Specie
       version: Version
     statuses:
       account: Autor
+      batch:
+        remove_from_report: Remover de raporte
+        report: Raportar
+      deleted: Deletet
+      favourites: Favorites
+      in_reply_to: Respondent a
       language: Lingue
       metadata: Metadata
+      open: Aperter posta
+      original_status: Original posta
       visibility: Visibilitá
+    strikes:
+      actions:
+        sensitive: "%{name} marcat li conto de %{target} quam sensitiv"
+        silence: "%{name} limitat li conto de %{target}"
+        suspend: "%{name} suspendet li conto de %{target}"
+      appeal_approved: Apellat
+      appeal_pending: Apelle pendent
+      appeal_rejected: Apelle rejectet
+    system_checks:
+      database_schema_check:
+        message_html: Hay pendent migrationes de database. Ples far les por far cert que li aplication functiona quam expectat
+      elasticsearch_preset:
+        action: Vider li documentation
+      elasticsearch_preset_single_node:
+        action: Vider li documentation
     title: Administration
     trends:
       approved: Aprobat
@@ -633,25 +695,137 @@ ie:
     webhooks:
       events: Evenimentes
       status: Statu
+  admin_mailer:
+    new_trends:
+      new_trending_links:
+        title: Populari ligamentes
+      new_trending_statuses:
+        title: Populari postas
+      new_trending_tags:
+        title: Populari hashtags
+  aliases:
+    add_new: Crear alias
+    created_msg: Successosimen creat un nov alias. Tu nu posse initiar li movement del antiqui conto.
+    deleted_msg: Successosimen removet li alias. Mover de ti-ta conto a ti-ci ne plu va esser possibil.
+    empty: Tu have null aliases.
+    hint_html: Si tu vole mover de un altri conto a ti-ci, ci tu posse crear un alias, quel es besonat ante que tu posse proceder a mover sequitores del antiqui conto a ti-ci. Ti-ci action, sol, es <strong>ínnociv e reversibil</strong>. <strong>Li conto-migration es initiat del antiqui conto</strong>.
+    remove: Desconexer alias
+  appearance:
+    advanced_web_interface: Avansat web-interfacie
+    advanced_web_interface_hint: 'Si tu vole usar li tot largore de tui ecran, li avansat web-interfacie permisse que tu mey configurar mult columnes diferent por vider tam mult information simultanmen quam tu vole: Hem, federat témpor-linea, quelcunc númere de listes e hashtags.'
+    animations_and_accessibility: Animationes e accessibilitá
+    confirmation_dialogs: Dialogs de confirmation
+    discovery: Decovriment
+    localization:
+      body: Mastodon es traductet de voluntarios.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Omnes posse contribuer.
+    sensitive_content: Sensitiv contenete
   application_mailer:
+    notification_preferences: Changear parametres pri email
     salutation: "%{name},"
+    settings: 'Changear parametres pri email: %{link}'
+    unsubscribe: Desabonnar
+    view: 'Vider:'
+    view_profile: Vider profil
+    view_status: Vider posta
+  applications:
+    created: Aplication successosimen creat
+    destroyed: Aplication successosimen deletet
+    logout: Exear
+    regenerate_token: Regenerar accesse-clave
+    token_regenerated: Accesse-clave successosimen regenerat
+    warning: Esse tre cuidosi pri ti-ci data. Nequande parti it a quicunc!
+    your_token: Tui accesse-clave
   auth:
+    apply_for_account: Solicitar un conto
+    captcha_confirmation:
+      help_html: Si tu have desfacilitá solver li CAPTCHA, tu posse contacter nos a %{email} e noi posse auxiliar te.
+      hint_html: Just un cose plu! Noi deve confirmar que tu es homan (por que noi posse impedir li spam!). Solue li CAPTCHA in-infra e clicca "Avansar".
+      title: Control de securitá
     confirmations:
+      awaiting_review: Tui email-adresse es confirmat! Li personale de %{domain} nu va tractar tui registration. Tu va reciver un email si ili aproba tui conto!
+      awaiting_review_title: On tracta tui registration
+      clicking_this_link: cliccar ti-ci ligament
+      login_link: intrar
+      proceed_to_login_html: Tu nu posse proceder a %{login_link}.
+      redirect_to_app_html: Tu deve har esset redirectet al aplication <strong>%{app_name}</strong>. Si to ne evenit, prova %{clicking_this_link} o retornar manualmen al aplication.
+      registration_complete: Tu ha completat tui registration che %{domain}!
       welcome_title: Benevenit, %{name}!
+      wrong_email_hint: Si ti email-adresse ne es corect, tu posse changear it in li parametres de conto.
     delete_account: Deleter li conto
+    delete_account_html: Si tu vole deleter tui conto, tu posse <a href="%{path}">proceder ci</a>. On va petir confirmation de te.
+    description:
+      prefix_invited_by_user: "@%{name} invita te adherer ti-ci servitor de Mastodon!"
+      prefix_sign_up: Adherer Mastodon hodie!
+      suffix: Med un conto, tu va posser sequer persones, postar actualisationes e exchangear missages con usatores de quelcunc Mastodon-servitor e plu!
+    didnt_get_confirmation: Ne recivet un confirmation-ligament?
+    dont_have_your_security_key: Ne have tui clave de securitá?
     forgot_password: Obliviat tu tui passa-parol?
     invalid_reset_password_token: Li clave por reiniciar li passa-parol es ínvalid o expirat. Ples demandar un nov.
+    link_to_otp: Introducte un 2-factor code de tui telefon o un code de recuperation
+    link_to_webauth: Usa tui aparate de clave de securitá
+    log_in_with: Intrar med
+    login: Intrar
+    logout: Exear
+    migrate_account: Mover te a un conto diferent
+    migrate_account_html: Si tu vole redirecter ti-ci conto a un altri, tu posse <a href="%{path}">configurar it ci</a>.
+    or_log_in_with: O intrar med
+    privacy_policy_agreement_html: Yo leet e consenti li <a href="%{privacy_policy_path}" target="_blank">politica pri privatie</a>
+    progress:
+      confirm: Confirmar email
+      details: Tui detallies
+      review: Nor revise
+      rules: Acceptar regules
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Adherer
+    registration_closed: "%{instance} ne accepta nov membres"
+    resend_confirmation: Reinviar ligament de confirmation
     reset_password: Reiniciar passa-parol
     rules:
       accept: Acceptar
       back: Retro
+      invited_by: 'Tu posse adherer %{domain} mersí al invitation quel tu recivet de:'
+      preamble: Tis es etablisset e infortiat del moderatores de %{domain}.
+      preamble_invited: Ante que tu procede, ples considerar li regules establisset del moderatores de %{domain}.
+      title: Quelc regules basic.
+      title_invited: Tu ha esset invitat.
     security: Securitá
     set_new_password: Establisser nov passa-parol
+    setup:
+      email_below_hint_html: Vider tui spam-emails, o petir un altre. Tu posse corectar tui email-adresse si it es íncorect.
+      email_settings_hint_html: Clicca li ligament quel noi inviat a te por verificar %{email}. Noi va atender ci.
+      link_not_received: Recivet null ligament?
+      new_confirmation_instructions_sent: Tu va reciver un nov email con li ligament de confirmation in quelc minutes!
+      title: Vider tui inbuxe
+    sign_in:
+      preamble_html: Aperter session med tui <strong>%{domain}</strong> detallies. Si tui conto logia che un diferent servitor, tu ne va posser intrar ci.
+      title: Aperter session che %{domain}
+    sign_up:
+      manual_review: Adhesiones a %{domain} es tractat manualmen de nor moderatores. Por auxiliar nos tractar tui aplication, scri un poc pri te e pro quo tu vole un conto che %{domain}.
+      preamble: Med un conto che ti-ci Mastodon-servitor, tu va posser sequer quelcunc altri person in li retage, sin egarda a u logia su conto.
+      title: Crear un conto che %{domain}.
+    status:
+      account_status: Statu del conto
+      confirming: Atendent li confirmation del email-adresse.
+      functional: Tui conto es completmen functional.
+      pending: Tu conto atende tractation de nor personale. Ti fórsan va durar quelc témpor. Tu va reciver un email si tui aplication es aprobat.
+      redirecting_to: Tui conto es ínactiv pro que it actualmen redirecte a %{acct}.
+      self_destruct: Pro que %{domain} va cluder bentost, tu have solmen limitat accesse a tui conto.
+      view_strikes: Vide anteyan admonimentes contra tui conto
+    too_fast: Formul inviat tro rapid, prova denov.
+    use_security_key: Usar clave de securitá
   challenge:
-    confirm: Continuar
+    confirm: Avansar
     hint_html: "<strong>Nota</strong>: On ne va petir tui passa-parol denov por li venient hor."
     invalid_password: Ínvalid passa-parol
     prompt: Confirmar passa-parol por avansar
+  crypto:
+    errors:
+      invalid_key: ne es un valid clave Ed25519 o Curve25519
+      invalid_signature: ne es un valid signatura Ed25519
   date:
     formats:
       default: "%d.%m.%Y"
@@ -659,73 +833,234 @@ ie:
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
+      about_x_months: "%{count}me"
       about_x_years: "%{count}a"
       almost_x_years: "%{count}a"
+      half_a_minute: Just nu
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Just nu
+      over_x_years: "%{count}a"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}me"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: Li information quel tu dat ne esset corect
     confirm_password: Introducte tui actual passa-parol por verificar tui identitá
+    confirm_username: Scri tu usator-nómine por confirmar li procedura
     proceed: Deleter li conto
+    success_msg: Tui conto esset successosimen deletet
+    warning:
+      before: 'Ante proceder, ples leer ti notas cuidosimen:'
+      caches: Contenete quel ha esset inmagasinat de altri servitores fórsan va persister
+      data_removal: Tui postas e altri data va esser permanentmen removet
+      email_change_html: Tui posse <a href="%{path}">changear tui email-adresse</a> sin deleter tui conto
+      email_contact_html: Si ancor it ne ariva, tu posse inviar un email a <a href="mailto:%{email}">%{email}</a> por auxilie
+      email_reconfirmation_html: Si tu ne recive li confirmation-email, tu posse <a href="%{path}">solicita it denov</a>
+      irreversible: Tu ne va posser restaurar o reactivisar tui conto
+      more_details_html: Por plu mult detallies, vide li <a href="%{terms_path}">politica pri privatie</a>.
+      username_available: Tui usator-nómine va retornar a esser disponibil
+      username_unavailable: Tui usator-nómine va restar índisponibil
   disputes:
     strikes:
+      action_taken: Action fat
       appeal: Apellar
+      appeal_approved: Ti admoniment ha esset apellat successosimen e nu es ínvalid
+      appeal_rejected: Li apelle ha esset rejectet
+      appeal_submitted_at: Apelle inviat
+      appealed_msg: Tui apelle ha esset inviat. Si it es aprobat, tu va esser notificat.
+      appeals:
+        submit: Inviar apelle
+      approve_appeal: Aprobar apelle
+      associated_report: Associat raporte
+      created_at: Date
+      description_html: Tis es li actiones fat contra tui conto e admonimentes misset a te del personale de %{instance}.
+      recipient: Adressat a
+      reject_appeal: Rejecter apelle
+      status: 'Posta #%{id}'
+      status_removed: Posta ja removet del sistema
+      title: "%{action} de %{date}"
+      title_actions:
+        delete_statuses: Removement de posta
+        disable: Gelation de conto
+        mark_statuses_as_sensitive: Marcation de postas quam sensitiv
+        none: Admoniment
+        sensitive: Marcation de conto quam sensitiv
+        silence: Limitation de conto
+        suspend: Suspension de conto
+      your_appeal_approved: Tui apelle ha esset aprobat
+      your_appeal_pending: Tu ha fat un apelle
+      your_appeal_rejected: Tui apelle ha esset rejectet
+  domain_validator:
+    invalid_domain: ne es un valid dominia-nómine
+  edit_profile:
+    basic_information: Basic information
+    hint_html: "<strong>Customisa ti quel gente vide sur tui public profil e apu tui postas.</strong> Altri persones es plu probabil sequer te e interacter con te si tu have un detalliat profil e un profil-image."
+    other: Altri
+  errors:
+    '400': Li demande quel tu inviat esset ínvalid o misformat.
+    '403': Tu ne have permission vider ti-ci págine.
+    '404': Li págine quel tu sercha ne es ci.
+    '406': Ti-ci págine ne es disponibil in li formate petit.
+    '410': Li págine quel tu serchat ne plu existe ci.
+    '422':
+      content: Verification de securitá fallit. Esque tu blocca cookies?
+      title: Verification de securitá fallit
+    '429': Tro mult demandes
+    '500':
+      content: Pardona nos, alquo errat in nor servitor.
+      title: Ti-ci págine ne es corect
+    '503': On ne posset servir li págine pro un falliment temporari del servitor.
+    noscript_html: Por usar li web-aplication de Mastodon, ples activisar JavaScript. Alternativmen, prova un del <a href="%{apps_path}">nativ aplicationes</a> por Mastodon por tui platform.
+  existing_username_validator:
+    not_found: ne posset trovar un local usator con ti usator-nómine
+    not_found_multiple: ne posset trovar %{usernames}
   exports:
     archive_takeout:
       date: Date
+      download: Descargar tui archive
+      hint_html: Tu posse petir un archive de tui <strong>postas e cargat medie</strong>. Li exportat data va esser in li formate ActivityPub, leibil de quelcunc programmatura concordant. Tu posse petir un archive chascun 7 dies.
+      in_progress: Compilant tui archive...
+      request: Petir tui archive
       size: Grandore
     blocks: Tu ha bloccat
     bookmarks: Marcatores
     csv: CSV
+    domain_blocks: Dominia-bloccas
     lists: Listes
     mutes: Tu silentia
+    storage: Inmagasination de medie
   featured_tags:
     add_new: Adjunter un nov
+    errors:
+      limit: Tu ja ha pinglat li maxim númere de hashtags
     hint_html: "<strong>Pinglar tui max important hashtags sur tui profil.</strong> Un bonissim maniere de mantener un registre de tui ovres e projectes, pinglat hashtags es monstrat prominentmen sur tui profil e permisse rapid accesse a tui propri postas."
   filters:
     contexts:
       account: Profiles
+      home: Hem e listes
+      notifications: Notificationes
+      public: Public témpor-lineas
       thread: Conversationes
+    edit:
+      add_keyword: Adjunter término
+      keywords: Términos
+      statuses: Individual postas
+      statuses_hint_html: Ti filtre aplica a selectet postas individual sin egarda a ca ili contene li términos in-infra. <a href="%{path}">Reviser o remover postas del filtre</a>.
+      title: Modificar filtre
+    errors:
+      deprecated_api_multiple_keywords: On ne posse changear ti parametres per ti-ci aplication pro que ili aplica a plu quam un filtrat término. Usa un aplication plu recent o li web-interfacie.
+      invalid_context: Null o ínvalid contextu dat
     index:
+      contexts: Filtres in %{contexts}
+      delete: Deleter
+      empty: Tu have null filtres.
+      expires_in: Expira in %{distance}
+      expires_on: Expira ye %{date}
+      keywords:
+        one: "%{count} término"
+        other: "%{count} términos"
+      statuses:
+        one: "%{count} posta"
+        other: "%{count} postas"
+      statuses_long:
+        one: "%{count} individual posta celat"
+        other: "%{count} individual postas celat"
       title: Filtres
     new:
       save: Conservar nov filtre
+      title: Adjunter nov filtre
+    statuses:
+      back_to_filter: Retornar al filtre
+      batch:
+        remove: Remover de filtre
+      index:
+        hint: Ti filtre aplica a selectet postas individual sin egarda a altri criteries. Tu posse adjunter plu postas a ti-ci filtre del web-interfacie.
+        title: Filtrat postas
   generic:
     all: Omni
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> element in ti-ci págine es selectet."
+      other: Omni <strong>%{count}</strong> elementes in ti-ci págine es selectet.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> element concordant tui sercha es selectet."
+      other: Omni <strong>%{count}</strong> elementes concordant tui sercha es selectet.
     cancel: Anullar
     changes_saved_msg: Modificationes conservat successosimen!
     confirm: Confirmar
     copy: Copiar
+    delete: Deleter
+    deselect: Desselecter omnis
     none: 'Null'
+    order_by: Ordinar per
     save_changes: Conservar changes
+    select_all_matching_items:
+      one: Selecter %{count} element concordant tui sercha.
+      other: Selecter omni %{count} elementes concordant tui sercha.
     today: hodie
+    validation_errors:
+      one: Alquo ancor ne es bon! Ples controlar li errore in-infra
+      other: Alquo ancor ne es bon! Ples controlar li %{count} errores in-infra
   imports:
     errors:
       empty: li file es vacui
+      incompatible_type: Íncompatibil con li selectet specie de importation
       invalid_csv_file: 'Ínvalid file CSV. Errore: %{error}'
       over_rows_processing_limit: contene plu quam %{count} lineas
       too_large: li file es tro grand
+    failures: Fallites
     imported: Importat
+    mismatched_types_warning: It apari que tu fórsan selectet li íncorect specie por ti importation, ples controlar denov.
     modes:
       merge: Coalescer
+      merge_long: Conservar existent registres e adjunter li novis
+      overwrite: Remplazzar
+      overwrite_long: Remplazzar existent registres per li novis
     overwrite_preambles:
+      blocking_html: Tu va <strong>remplazzar tui liste de bloccat contos</strong> per til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
+      bookmarks_html: Tu va <strong>remplazzar tui marcatores</strong> per til <strong>%{total_items} postas</strong> de <strong>%{filename}</strong>.
+      domain_blocking_html: Tu va <strong>remplazzar tui liste de bloccat dominias</strong> per til <strong>%{total_items} dominias</strong> de <strong>%{filename}</strong>.
+      following_html: Tu va <strong>sequer</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong> e <strong>dessequer omni altri contos</strong>.
+      lists_html: Tu va <strong>remplazzar tui listes</strong> per li contenete de <strong>%{filename}</strong>. Til <strong>%{total_items} contos</strong> va esser adjuntet a nov listes.
       muting_html: Tu va <strong>remplazzar tui liste de silentiat contos</strong> per til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
     preambles:
+      blocking_html: Tu va <strong>bloccar</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
+      bookmarks_html: Tu va adjunter til <strong>%{total_items} postas</strong> de <strong>%{filename}</strong> a tui <strong>marcatores</strong>.
+      domain_blocking_html: Tu va <strong>bloccar</strong> til <strong>%{total_items} dominias</strong> de <strong>%{filename}</strong>.
+      following_html: Tu va <strong>sequer</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
+      lists_html: Tu va adjunter til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong> a tui <strong>listes</strong>. Nov listes va esser creat si ne hay un liste a quel adjunter.
       muting_html: Tu va <strong>silentiar</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
+    preface: Tu posse importar data quel tu ha exportat de un altri servitor, quam un liste del gente quem tu seque o blocca.
+    recent_imports: Recent importationes
     states:
       finished: Finit
+      in_progress: Progressent
+      scheduled: Planat
+      unconfirmed: Ínconfirmat
+    status: Statu
+    success: Tui data esset cargat successosimen e va esser tractat tam tost quam es possibil
+    time_started: Comensat ye
     titles:
-      lists: Importar listes
-      muting: Importation de silentiat contos
-    type: Tip de importation
+      blocking: Important bloccat contos
+      bookmarks: Important marcatores
+      domain_blocking: Important bloccat dominias
+      following: Important sequet contos
+      lists: Important listes
+      muting: Important silentiat contos
+    type: Specie de importation
     type_groups:
       constructive: Seques e marcatores
       destructive: Bloccas & silentias
     types:
       blocking: Liste de bloccas
       bookmarks: Marcatores
+      domain_blocking: Liste de dominia-bloccas
       following: Liste de sequetes
       lists: Listes
+      muting: Liste de silentiationes
     upload: Cargar
   invites:
+    delete: Desactivisar
     expired: Expirat
     expires_in:
       '1800': 30 minutes
@@ -735,13 +1070,50 @@ ie:
       '604800': 1 semane
       '86400': 1 die
     expires_in_prompt: Nequande
+    generate: Generar ligament de invitation
+    invalid: Ti-ci invitation ne es valid
+    invited_by: 'Tu esset invitat de:'
+    max_uses:
+      one: 1 use
+      other: "%{count} uses"
+    max_uses_prompt: Null límite
+    prompt: Generar e distribuer ligamentes a altres por dar accesse a ti-ci servitor
+    table:
+      expires_at: Expira
+      uses: Uses
+    title: Invitar gente
+  lists:
+    errors:
+      limit: Tu ha atinget li maxim númere de listes
   login_activities:
     authentication_methods:
+      otp: aplication de 2-factor autentication
       password: passa-parol
+      sign_in_token: code de securitá per email
+      webauthn: claves de securitá
     description_html: Si tu vide activitá quel tu ne conosse, considera changear tui passa-parol e activisar 2-factor autentication.
+    empty: Null historie de autentication disponibil
+    failed_sign_in_html: Fallit prova de apertion de session per %{method} de %{ip} (%{browser})
+    successful_sign_in_html: Successosi apertion de session per %{method} de %{ip} (%{browser})
+    title: Historie de autentication
   mail_subscriptions:
     unsubscribe:
+      action: Yes, desabonnar
+      complete: Desabonnat
+      confirmation_html: Esque tu vermen vole desabonnar de reciver %{type} por Mastodon che %{domain} a tui email-adresse %{email}? Tu sempre posse reabonnar per tui <a href="%{settings_path}">parametres pri email-notificationes</a>.
+      emails:
+        notification_emails:
+          favourite: email-notificationes pri favoritisationes
+          follow: email-notificationes pri seques
+          follow_request: email-notificationes pri seque-petitiones
+          mention: email-notificationes pri mentiones
+          reblog: email-notificationes pri boosts
+      resubscribe_html: Si tu ha desabonnat errarimen, tu posse reabonnar per tui <a href="%{settings_path}">parametres pri email-notificationes</a>.
+      success_html: Tu ne plu va reciver %{type} por Mastodon che %{domain} a tui email-adresse %{email}.
       title: Desabonnar
+  media_attachments:
+    validations:
+      images_and_video: On ne posse atachar un video a un posta quel ja contene images
   migrations:
     set_redirect: Configurar un redirection
   move_handler:
@@ -754,13 +1126,34 @@ ie:
       title: Nov petition de sequer
     mention:
       action: Responder
+      title: Nov mention
     poll:
       subject: Un balotation de %{name} ha finit
+    reblog:
+      body: 'Tui posta esset boostat de %{name}:'
+      subject: "%{name} boostat tui posta"
+      title: Nov boost
+    status:
+      subject: "%{name} just postat"
+    update:
+      subject: "%{name} modificat un posta"
+  notifications:
+    administration_emails: Email-notificationes pri administration
+    email_events: Evenimentes por email-notificationes
+    email_events_hint: 'Selecte li evenimentes pri queles tu vole reciver notificationes:'
+    other_settings: Parametres pri altri notificationes
   otp_authentication:
+    code_hint: Inmetter li code generat de tui aplication de autentication por confirmar
+    description_html: Si tu activisa <strong>2-factor autentication</strong> per un aplication de autentication, aperter un session va postular que tu have possession de tui telefon, quel va generar codes por que tu mey inmetter les.
     enable: Activar
+    instructions_html: "<strong>Scande ti-ci code QR ad-in Google Authenticator o un simil aplication TOTP in tu telefon</strong>. Pos nu, ti aplication va generar codes queles tu va dever inmetter quande tu aperte un session."
+    manual_instructions: 'Si tu ne posse scander li code QR e besona inmetter it manualmen, vi li crud-text secrete:'
     setup: Configurar
+    wrong_code: Li inmettet code esset ínvalid! Esque li témpor del servitor e del aparate corect?
   pagination:
+    newer: Plu nov
     next: Seq
+    older: Plu old
     prev: Prec
     truncate: "&hellip;"
   polls:
@@ -777,33 +1170,128 @@ ie:
       too_many_options: ne posse contener plu quam %{max} optiones
   preferences:
     other: Altri
+    public_timelines: Public témpor-lineas
   privacy:
+    hint_html: "<strong>Customisa qualmen tu vole que tui profil e tui postas posse esser trovat.</strong> Mastodon have un varietá de manieres por auxiliar te atinger un auditorie plu grand quande activisat. Prende un moment por reviser ti parametres por far cert que ili concorda tui casu de usation."
+    privacy: Privatie
+    privacy_hint_html: Decide quant mult tu vole revelar por li beneficie de altres. Gente decovri interessant profiles e frisc aplicationes per vider li seques de altres e vider de quel aplicationes ili posta, ma tu fórsan prefere celar ti.
+    reach: Atingement
+    reach_hint_html: Decide ca tu vole esser decovrit e sequet de nov persones. Vole tu que tui postas mey aparir sur li págine "Explorar"? Vole tu que altri gente posse vider te in lor seque-recomandationes? Vole tu acceptar omni nov sequitores automaticmen, o manualmen tractar chascun?
     search: Sercha
+    search_hint_html: Decide qualmen tu vole esser trovat. Vole tu que gente trova te per ti pri quel tu ha postat publicmen? Vole tu que gente éxter Mastodon trova tui profil quande ili sercha li web? Ples memorar que complet exclusion de omni serchatores ne posse esser garantit por public information.
+    title: Privatie e atingement
+  privacy_policy:
+    title: Politica pri Privatie
+  reactions:
+    errors:
+      limit_reached: Límite de diferent reactiones atinget
+      unrecognized_emoji: ne es un reconosset emoji
   relationships:
     activity: Activitá de conto
+    confirm_follow_selected_followers: Esque tu vermen vole sequer selectet sequitores?
+    confirm_remove_selected_followers: Esque tu vermen vole remover selectet sequitores?
+    confirm_remove_selected_follows: Esque tu vermen vole remover selectet sequetes?
     dormant: Dormient
+    follow_failure: Ne posset sequer quelc del contos selectet.
+    follow_selected_followers: Sequer selectet sequitores
+    followers: Sequitores
+    following: Sequetes
+    invited: Invitat
+    last_active: Ultimmen activ
+    most_recent: Max recent
+    moved: Movet
     mutual: Reciproc
+    primary: Primari
+    relationship: Relation
+    remove_selected_domains: Remover omni sequitores del selectet dominias
+    remove_selected_followers: Remover selectet sequitores
+    remove_selected_follows: Dessequer selectet usatores
     status: Statu del conto
+  rss:
+    content_warning: 'Avise pri li contenete:'
+    descriptions:
+      account: Public postas de @%{acct}
+      tag: 'Public postas con li hashtag #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Tu ha atinget li límite de %{limit} planat postas por hodie
+    over_total_limit: Tu ha atinget li límite de %{limit} planat postas
+    too_soon: Li planat date deve esser in li future
+  self_destruct:
+    lead_html: Ínfortunatmen, <strong>%{domain}</strong> va bentost permanentmen cluder. Si tu havet un conto ta, tu ne va posser continuar usar it, ma tu ancor posse demandar un archive de tui data.
+    title: Ti-ci servitor va cluder bentost
   sessions:
     activity: Ultim activitá
     browser: Navigator
     browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
+      edge: Microsoft Edge
       electron: Electron
+      firefox: Firefox
       generic: Ínconosset navigator
+      huawei_browser: Huawei Browser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
       unknown_browser: Ínconosset navigator
+      weibo: Weibo
+    current_session: Actual session
     description: "%{browser} in %{platform}"
     explanation: Tis-ci es li navigatores queles actualmen ha initiat sessiones a tui Mastodon-conto.
     ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      kai_os: KaiOS
+      linux: Linux
+      mac: macOS
       unknown_platform: Ínconosset platform
       windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revocar
+    revoke_success: Session successosimen revocat
+    title: Sessiones
+    view_authentication_history: Vider li historie de autentication por tui conto
   settings:
     account: Conto
+    account_settings: Parametres del conto
+    aliases: Aliases del conto
     appearance: Aspecte
+    authorized_apps: Autorisat aplicationes
+    back: Retornar a Mastodon
+    delete: Deletion de conto
+    development: Developation
+    edit_profile: Modificar profil
+    export: Exportation de data
+    featured_tags: Recomandat hashtags
+    import: Importar
+    import_and_export: Importation e exportation
+    migrate: Migration de conto
+    notifications: Notificationes
+    preferences: Preferenties
+    profile: Public profil
+    relationships: Sequetes e sequitores
+    statuses_cleanup: Automatisat deletion de postas
+    strikes: Admonimentes moderatori
+    two_factor_authentication: 2-factor autentication
+    webauthn_authentication: Claves de securitá
   statuses:
     attached:
+      audio:
+        one: "%{count} audio-file"
+        other: "%{count} audio-files"
       description: 'Atachat: %{attached}'
       image:
         one: "%{count} image"
@@ -811,6 +1299,7 @@ ie:
       video:
         one: "%{count} video"
         other: "%{count} videos"
+    boosted_from_html: Boostat de %{acct_link}
     default_language: Sam quam li lingue del interfacie
     edited_at_html: Modificat ye %{date}
     pin_errors:
@@ -839,25 +1328,87 @@ ie:
     min_age:
       '1209600': 2 semanes
       '31556952': 1 annu
+  strikes:
+    errors:
+      too_late: It es tro tard por apellar ti admoniment
+  tags:
+    does_not_match_previous_name: ne concorda li anteyan nómine
+  themes:
+    contrast: Mastodon (Alt contraste)
+    default: Mastodon (Obscur)
+    mastodon-light: Mastodon (Luminosi)
   time:
     formats:
       default: "%d.%m.%Y ye %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d.%m.%Y ye %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Li servitor ha exhaustet nor quote por li servicie de traduction.
+      too_many_requests: Hay tro mult recent demandes al servicie de traduction.
   two_factor_authentication:
     add: Adjunter
+    disable: Desactivisar 2FA
+    disabled_success: 2-factor autentication successosimen desactivisat
+    edit: Modificar
+    enabled: 2-factor autentication es activisat
+    enabled_success: 2-factor autentication successosimen activisat
+    generate_recovery_codes: Generar codes de recuperation
+    lost_recovery_codes: Codes de recuperation lassa te recuperar accesse a tui conto si tu perdi tui telefon. Si tu ha perdit tui codes de recuperation, tu posse regenerar les ci. Tui antiqui codes de recuperation va esser ínvalidat.
+    methods: Metodes de 2-factor autentication
+    otp: Aplication de autentication
+    recovery_codes: Copiar tui codes de recuperation
+    recovery_codes_regenerated: Codes de recuperation successosimen regenerat
+    recovery_instructions_html: Si tu perdi accesse a tui telefon, tu posse usar un del codes de recuperation in-infra por reganiar accesse a tui conto. <strong>Mantener li securitá del codes de recuperation</strong>. Per exemple, tu fórsan va printar les e inmagasinar les con altri important documentes.
+    webauthn: Claves de securitá
   user_mailer:
+    appeal_approved:
+      action: Ear a tui conto
+      explanation: Li apelle del admoniment contra tui conto ye %{strike_date} quel tu fat ye %{appeal_date} ha esset aprobat. Tui conto retorna a esser in bon statu.
+      subject: Tui apelle de %{date} ha esset aprobat
+      title: Apelle aprobat
+    appeal_rejected:
+      explanation: Li apelle del admoniment contra tui conto ye %{strike_date} quel tu fat ye %{appeal_date} ha esset rejectet.
+      subject: Tui apelle de %{date} ha esset rejectet
+      title: Apelle rejectet
+    backup_ready:
+      explanation: Tu solicitat un complet archive de tui Mastodon-conto. Nu it es pret por descargar!
+      subject: Tui archive es pret por descargar
+      title: Descargar archive
     suspicious_sign_in:
       change_password: changear tui passa-parol
+      details: 'Vi li detallies del apertion de session:'
+      explanation: On detectet un intration a tui conto de un nov IP-adresse.
+      further_actions_html: Si to ne esset tu, on recomanda que tu %{action} strax e activisar 2-factor autentication por mantener tui conto secur.
+      subject: Tui conto ha esset accesset de un nov IP-adresse
+      title: Un nov intration
     warning:
+      appeal: Inviar un apelle
+      appeal_description: Si tu crede que ti es un error, tu posse inviar un apelle al personale de %{instance}.
       categories:
         spam: Spam
+        violation: Contenete viola li sequent regules del comunité
+      explanation:
+        delete_statuses: On judicat que quelc de tui postas viola un o plu del regules del comunité e pro to ha esset removet del moderatores del %{instance}.
+        disable: Tu ne plu posse usar tui conto, ma tui profil e altri data resta integri. Tu posse solicitar un archive de tui data, changear parametres del conto, o deleter tui conto.
+        mark_statuses_as_sensitive: Quelc de tui postas ha esset marcat quam sensitiv del moderatores de %{instance}. Ti significa que gente va dever cliccar li medie in li postas ante que un previse es monstrat. Tu self posse marcar medie quam sensitiv quande tu posta futurimen.
+        sensitive: Pos nu, omni tui cargat medie-files va esser marcat quam sensitiv e celat detra un avise que on deve cliccar por transpassar.
+        silence: Tu ancor posse usar tui conto, ma solmen gente qui ja seque te va posser vider tui postas in ti-ci servitor, e tu va esser excludet de utensiles de decovrition. Támen, altres ancor posse sequer te manualmen.
+        suspend: Tu ne plu posse usar tui conto, e tui profil e altri data nu es ínaccessibil. Tu ancor posse intrar por solicitar un archive de tui data til que li data es removet in circa 30 dies, ma noi va retener quelc basic data pri te por preventer te evitar li suspension.
       reason: 'Rason:'
+      statuses: 'Postas citat:'
       subject:
+        delete_statuses: Tui postas che %{acct} ha esset removet
+        disable: Tui conto %{acct} ha esset gelat
+        mark_statuses_as_sensitive: Tui postas che %{acct} ha esset marcat quam sensitiv
         none: Admoniment por %{acct}
+        sensitive: Tui postas che %{acct} ve esser marcat quam sensitiv pos nu
     welcome:
+      explanation: Vi quelc suggestiones por que tu mey comensar
       subject: Benevenit a Mastodon
   users:
     seamless_external_login: Tu ha intrat per un servicie external, dunc parametres pri tui passa-parol e email-adresse ne es disponibil.
   verification:
+    extra_instructions_html: '<strong>Nota</strong>: Li ligament in tui websitu posse esser ínvisibil. Li important parte es <code>rel="me"</code> quel prevente fals self-identification in websitus con contenete generat de usatores. Tu posse mem usar un <code>link</code> element in li cap-section del págine vice <code>a</code>, ma li HTML code deve esser accessibil sin executer JavaScript.'
     verification: Verification
