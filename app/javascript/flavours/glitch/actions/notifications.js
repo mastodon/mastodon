@@ -18,10 +18,12 @@ import {
   importFetchedStatuses,
 } from './importer';
 import { submitMarkers } from './markers';
+import { notificationsUpdate } from "./notifications_typed";
 import { register as registerPushNotifications } from './push_notifications';
 import { saveSettings } from './settings';
 
-export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
+export * from "./notifications_typed";
+
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 
 // tracking the notif cleaning request
@@ -107,12 +109,8 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
         dispatch(importFetchedAccount(notification.report.target_account));
       }
 
-      dispatch({
-        type: NOTIFICATIONS_UPDATE,
-        notification,
-        usePendingItems: preferPendingItems,
-        meta: (playSound && !filtered) ? { sound: 'boop' } : undefined,
-      });
+
+      dispatch(notificationsUpdate({ notification, preferPendingItems, playSound: playSound && !filtered}));
 
       fetchRelatedRelationships(dispatch, [notification]);
     } else if (playSound && !filtered) {

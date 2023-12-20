@@ -1,6 +1,7 @@
+import type { Account } from 'flavours/glitch/models/account';
+
 import { useHovering } from '../hooks/useHovering';
 import { autoPlayGif } from '../initial_state';
-import type { Account } from '../types/resources';
 
 interface Props {
   account: Account | undefined; // FIXME: remove `undefined` once we know for sure its always there

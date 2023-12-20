@@ -1,7 +1,7 @@
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
-import { ACCOUNT_BLOCK_SUCCESS, ACCOUNT_MUTE_SUCCESS } from 'flavours/glitch/actions/accounts';
-import { DOMAIN_BLOCK_SUCCESS } from 'flavours/glitch/actions/domain_blocks';
+import { blockAccountSuccess, muteAccountSuccess } from 'flavours/glitch/actions/accounts';
+import { blockDomainSuccess } from 'flavours/glitch/actions/domain_blocks';
 
 import {
   CONVERSATIONS_MOUNT,
@@ -105,11 +105,11 @@ export default function conversations(state = initialState, action) {
 
       return item;
     }));
-  case ACCOUNT_BLOCK_SUCCESS:
-  case ACCOUNT_MUTE_SUCCESS:
-    return filterConversations(state, [action.relationship.id]);
-  case DOMAIN_BLOCK_SUCCESS:
-    return filterConversations(state, action.accounts);
+  case blockAccountSuccess.type:
+  case muteAccountSuccess.type:
+    return filterConversations(state, [action.payload.relationship.id]);
+  case blockDomainSuccess.type:
+    return filterConversations(state, action.payload.accounts);
   case CONVERSATIONS_DELETE_SUCCESS:
     return state.update('items', list => list.filterNot(item => item.get('id') === action.id));
   default:
