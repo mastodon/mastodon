@@ -577,7 +577,7 @@ module Mastodon::CLI
 
       say 'Deduplicating webhooks…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM webhooks GROUP BY url HAVING count(*) > 1").each do |row|
-        Webhooks.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
+        Webhook.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
       end
 
       say 'Restoring webhooks indexes…'
