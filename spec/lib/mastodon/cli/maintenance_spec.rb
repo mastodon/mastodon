@@ -515,6 +515,34 @@ describe Mastodon::CLI::Maintenance do
         end
       end
 
+      context 'with duplicate webauthn_credentials' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:external_id) { '123_123_123' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating webauthn_credentials',
+              'Restoring webauthn_credentials indexes',
+              'Finished!'
+            )
+            .and change(duplicate_webauthn_credentials, :count).from(2).to(1)
+        end
+
+        def duplicate_webauthn_credentials
+          WebauthnCredential.where(external_id: external_id)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :webauthn_credentials, :external_id
+          Fabricate(:webauthn_credential, external_id: external_id)
+          Fabricate.build(:webauthn_credential, external_id: external_id).save(validate: false)
+        end
+      end
+
       def agree_to_backup_warning
         allow(cli.shell)
           .to receive(:yes?)
