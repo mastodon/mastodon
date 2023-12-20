@@ -262,6 +262,63 @@ describe Mastodon::CLI::Maintenance do
         end
       end
 
+      context 'with duplicate custom_emojis' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:duplicate_shortcode) { 'wowzers' }
+        let(:duplicate_domain) { 'example.host' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating custom_emojis',
+              'Restoring custom_emojis indexes',
+              'Finished!'
+            )
+            .and change(duplicate_custom_emojis, :count).from(2).to(1)
+        end
+
+        def duplicate_custom_emojis
+          CustomEmoji.where(shortcode: duplicate_shortcode, domain: duplicate_domain)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :custom_emojis, [:shortcode, :domain]
+          Fabricate(:custom_emoji, shortcode: duplicate_shortcode, domain: duplicate_domain)
+          Fabricate.build(:custom_emoji, shortcode: duplicate_shortcode, domain: duplicate_domain).save(validate: false)
+        end
+      end
+
+      context 'with duplicate custom_emoji_categories' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:duplicate_name) { 'name_value' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating custom_emoji_categories',
+              'Restoring custom_emoji_categories indexes',
+              'Finished!'
+            )
+            .and change(duplicate_custom_emoji_categories, :count).from(2).to(1)
+        end
+
+        def duplicate_custom_emoji_categories
+          CustomEmojiCategory.where(name: duplicate_name)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :custom_emoji_categories, :name
+          Fabricate(:custom_emoji_category, name: duplicate_name)
+          Fabricate.build(:custom_emoji_category, name: duplicate_name).save(validate: false)
+        end
+      end
+
       def agree_to_backup_warning
         allow(cli.shell)
           .to receive(:yes?)
