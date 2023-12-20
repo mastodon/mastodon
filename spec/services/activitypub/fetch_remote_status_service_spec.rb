@@ -8,7 +8,6 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
   subject { described_class.new }
 
   let!(:sender) { Fabricate(:account, domain: 'foo.bar', uri: 'https://foo.bar') }
-  let!(:recipient) { Fabricate(:account) }
 
   let(:existing_status) { nil }
 
