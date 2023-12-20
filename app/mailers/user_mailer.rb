@@ -205,8 +205,8 @@ class UserMailer < Devise::Mailer
     @resource.locale.presence || I18n.locale || I18n.default_locale
   end
 
-  def mail_with_new_layout(*, **)
-    mail(*, **) do |format|
+  def mail_with_new_layout(*args, **kwargs)
+    mail(*args, **kwargs) do |format|
       format.text
       format.html { render layout: 'mailer_new' }
     end
