@@ -459,6 +459,34 @@ describe Mastodon::CLI::Maintenance do
         end
       end
 
+      context 'with duplicate statuses' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:uri) { 'https://example.host/path' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating statuses',
+              'Restoring statuses indexes',
+              'Finished!'
+            )
+            .and change(duplicate_statuses, :count).from(2).to(1)
+        end
+
+        def duplicate_statuses
+          Status.where(uri: uri)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :statuses, :uri
+          Fabricate(:status, uri: uri)
+          Fabricate.build(:status, uri: uri).save(validate: false)
+        end
+      end
+
       def agree_to_backup_warning
         allow(cli.shell)
           .to receive(:yes?)
