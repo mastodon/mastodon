@@ -375,6 +375,34 @@ describe Mastodon::CLI::Maintenance do
         end
       end
 
+      context 'with duplicate email_domain_blocks' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:domain) { 'example.host' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating email_domain_blocks',
+              'Restoring email_domain_blocks indexes',
+              'Finished!'
+            )
+            .and change(duplicate_email_domain_blocks, :count).from(2).to(1)
+        end
+
+        def duplicate_email_domain_blocks
+          EmailDomainBlock.where(domain: domain)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :email_domain_blocks, :domain
+          Fabricate(:email_domain_block, domain: domain)
+          Fabricate.build(:email_domain_block, domain: domain).save(validate: false)
+        end
+      end
+
       def agree_to_backup_warning
         allow(cli.shell)
           .to receive(:yes?)
