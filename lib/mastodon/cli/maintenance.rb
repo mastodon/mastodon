@@ -249,19 +249,7 @@ module Mastodon::CLI
 
       say 'Deduplicating user records…'
 
-      # Deduplicating email
-      ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users GROUP BY email HAVING count(*) > 1").each do |row|
-        users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse
-        ref_user = users.shift
-        say "Multiple users registered with e-mail address #{ref_user.email}.", :yellow
-        say "e-mail will be disabled for the following accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
-        say 'Please reach out to them and set another address with `tootctl account modify` or delete them.', :yellow
-
-        users.each_with_index do |user, index|
-          user.update!(email: "#{index} " + user.email)
-        end
-      end
-
+      deduplicate_users_process_email
       deduplicate_users_process_confirmation_token
       deduplicate_users_process_remember_token
       deduplicate_users_process_password_token
@@ -278,6 +266,20 @@ module Mastodon::CLI
       end
 
       ActiveRecord::Base.connection.execute('REINDEX INDEX index_users_on_unconfirmed_email;') if migrator_version >= 2023_07_02_151753
+    end
+
+    def deduplicate_users_process_email
+      ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users GROUP BY email HAVING count(*) > 1").each do |row|
+        users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse
+        ref_user = users.shift
+        say "Multiple users registered with e-mail address #{ref_user.email}.", :yellow
+        say "e-mail will be disabled for the following accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
+        say 'Please reach out to them and set another address with `tootctl account modify` or delete them.', :yellow
+
+        users.each_with_index do |user, index|
+          user.update!(email: "#{index} " + user.email)
+        end
+      end
     end
 
     def deduplicate_users_process_confirmation_token
