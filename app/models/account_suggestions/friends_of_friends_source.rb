@@ -16,7 +16,7 @@ class AccountSuggestions::FriendsOfFriendsSource < AccountSuggestions::Source
       JOIN account_stats ON account_stats.account_id = accounts.id
       LEFT OUTER JOIN follow_recommendation_mutes ON follow_recommendation_mutes.target_account_id = accounts.id AND follow_recommendation_mutes.account_id = :id
       WHERE follows.account_id IN (SELECT * FROM first_degree)
-        AND follows.target_account_id NOT IN (SELECT * FROM first_degree)
+        AND NOT EXISTS (SELECT 1 FROM follows f WHERE f.target_account_id = follows.target_account_id AND f.account_id = :id)
         AND follows.target_account_id <> :id
         AND accounts.discoverable
         AND accounts.suspended_at IS NULL
