@@ -234,6 +234,34 @@ describe Mastodon::CLI::Maintenance do
         end
       end
 
+      context 'with duplicate conversations' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:uri) { 'https://example.host/path' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating conversations',
+              'Restoring conversations indexes',
+              'Finished!'
+            )
+            .and change(duplicate_conversations, :count).from(2).to(1)
+        end
+
+        def duplicate_conversations
+          Conversation.where(uri: uri)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :conversations, :uri
+          Fabricate(:conversation, uri: uri)
+          Fabricate.build(:conversation, uri: uri).save(validate: false)
+        end
+      end
+
       def agree_to_backup_warning
         allow(cli.shell)
           .to receive(:yes?)
