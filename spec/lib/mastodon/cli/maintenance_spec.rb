@@ -319,6 +319,62 @@ describe Mastodon::CLI::Maintenance do
         end
       end
 
+      context 'with duplicate domain_allows' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:domain) { 'example.host' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating domain_allows',
+              'Restoring domain_allows indexes',
+              'Finished!'
+            )
+            .and change(duplicate_domain_allows, :count).from(2).to(1)
+        end
+
+        def duplicate_domain_allows
+          DomainAllow.where(domain: domain)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :domain_allows, :domain
+          Fabricate(:domain_allow, domain: domain)
+          Fabricate.build(:domain_allow, domain: domain).save(validate: false)
+        end
+      end
+
+      context 'with duplicate domain_blocks' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:domain) { 'example.host' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating domain_blocks',
+              'Restoring domain_blocks indexes',
+              'Finished!'
+            )
+            .and change(duplicate_domain_blocks, :count).from(2).to(1)
+        end
+
+        def duplicate_domain_blocks
+          DomainBlock.where(domain: domain)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :domain_blocks, :domain
+          Fabricate(:domain_block, domain: domain)
+          Fabricate.build(:domain_block, domain: domain).save(validate: false)
+        end
+      end
+
       def agree_to_backup_warning
         allow(cli.shell)
           .to receive(:yes?)
