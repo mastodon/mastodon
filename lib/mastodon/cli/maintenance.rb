@@ -610,11 +610,7 @@ module Mastodon::CLI
 
       say 'Please chose the one to keep unchanged, other ones will be automatically renamed.'
 
-      ref_id = ask('Account to keep unchanged:') do |q|
-        q.required true
-        q.default 0
-        q.convert :int
-      end
+      ref_id = ask('Account to keep unchanged:', required: true, default: 0).to_i
 
       accounts.delete_at(ref_id)
 

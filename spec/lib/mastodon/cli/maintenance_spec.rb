@@ -62,6 +62,7 @@ describe Mastodon::CLI::Maintenance do
       context 'with duplicate accounts' do
         before do
           prepare_duplicate_data
+          choose_local_account_to_keep
         end
 
         let(:duplicate_account_username) { 'username' }
@@ -71,21 +72,37 @@ describe Mastodon::CLI::Maintenance do
           expect { subject }
             .to output_results(
               'Deduplicating accounts',
+              'Multiple local accounts were found for',
               'Restoring index_accounts_on_username_and_domain_lower',
               'Reindexing textual indexes on accounts…',
               'Finished!'
             )
-            .and change(duplicate_accounts, :count).from(2).to(1)
+            .and change(duplicate_remote_accounts, :count).from(2).to(1)
+            .and change(duplicate_local_accounts, :count).from(2).to(1)
         end
 
-        def duplicate_accounts
+        def duplicate_remote_accounts
           Account.where(username: duplicate_account_username, domain: duplicate_account_domain)
+        end
+
+        def duplicate_local_accounts
+          Account.where(username: duplicate_account_username, domain: nil)
         end
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :accounts, name: :index_accounts_on_username_and_domain_lower
-          Fabricate(:account, username: duplicate_account_username, domain: duplicate_account_domain)
-          Fabricate.build(:account, username: duplicate_account_username, domain: duplicate_account_domain).save(validate: false)
+          _remote_account = Fabricate(:account, username: duplicate_account_username, domain: duplicate_account_domain)
+          _remote_account_dupe = Fabricate.build(:account, username: duplicate_account_username, domain: duplicate_account_domain).save(validate: false)
+          _local_account = Fabricate(:account, username: duplicate_account_username, domain: nil)
+          _local_account_dupe = Fabricate.build(:account, username: duplicate_account_username, domain: nil).save(validate: false)
+        end
+
+        def choose_local_account_to_keep
+          allow(cli.shell)
+            .to receive(:ask)
+            .with(/Account to keep unchanged/, anything)
+            .and_return('0')
+            .once
         end
       end
 
