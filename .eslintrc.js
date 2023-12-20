@@ -120,7 +120,6 @@ module.exports = defineConfig({
     'react/jsx-uses-react': 'off', // not needed with new JSX transform
     'react/jsx-wrap-multilines': 'error',
     'react/no-deprecated': 'off',
-    'react/no-unknown-property': 'off',
     'react/react-in-jsx-scope': 'off', // not needed with new JSX transform
     'react/self-closing-comp': 'error',
 

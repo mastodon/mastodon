@@ -21,12 +21,19 @@ RSpec.describe 'Account actions' do
     it 'logs action' do
       subject
 
-      log_item = Admin::ActionLog.last
+      expect(latest_admin_action_log)
+        .to be_present
+        .and have_attributes(
+          action: eq(action_type),
+          account_id: eq(user.account_id),
+          target_id: eq(target_type == :user ? target_account.user.id : target_account.id)
+        )
+    end
 
-      expect(log_item).to be_present
-      expect(log_item.action).to eq(action_type)
-      expect(log_item.account_id).to eq(user.account_id)
-      expect(log_item.target_id).to eq(target_type == :user ? target_account.user.id : target_account.id)
+    private
+
+    def latest_admin_action_log
+      Admin::ActionLog.last
     end
   end
 

@@ -53,6 +53,8 @@ sc:
         domain: Custu domìniu at a pòdere recuperare datos dae custu serbidore e is datos in intrada dae cue ant a èssere protzessados e archiviados
       email_domain_block:
         with_dns_records: S'at a fàghere unu tentativu de risòlvere is registros DNS de su domìniu e fintzas is risultados ant a èssere blocados
+      form_admin_settings:
+        activity_api_enabled: Nùmeru de tuts publicados in locale, utentes ativos e registros noos in perìodos chidajolos
       form_challenge:
         current_password: Ses intrende in un'àrea segura
       imports:
@@ -155,6 +157,7 @@ sc:
         setting_use_pending_items: Modalidade lenta
         severity: Severidade
         sign_in_token_attempt: Còdighe de seguresa
+        title: Tìtulu
         type: Casta de importatzione
         username: Nòmine utente
         username_or_email: Nòmine utente o indiritzu de posta eletrònica
@@ -163,6 +166,16 @@ sc:
         with_dns_records: Include registros MX e indiritzos IP de su domìniu
       featured_tag:
         name: Eticheta
+      form_admin_settings:
+        activity_api_enabled: Pùblica istatìsticas agregadas subra s'atividade de s'utente
+        custom_css: CSS personalizadu
+        peers_api_enabled: Pùblica sa lista de serbidores iscobertos in s'API
+        profile_directory: Ativa diretòriu de profilos
+        show_domain_blocks: Ammustra blocos de domìniu
+        site_contact_username: Nòmine de utente de su cuntatu
+        site_short_description: Descritzione de su serbidore
+        site_title: Nòmine de su serbidore
+        thumbnail: Miniadura de su serbidore
       interactions:
         must_be_follower: Bloca is notìficas dae chie non ti sighit
         must_be_following: Bloca is notìficas dae gente chi non sighis
@@ -186,6 +199,7 @@ sc:
         mention: Una persone t'at mentovadu
         pending_account: Unu contu nou tenet bisòngiu de una revisione
         reblog: Una persone at cumpartzidu s'istadu tuo
+        report: Imbiu de un'informe nou
       rule:
         text: Règula
       tag:
@@ -193,6 +207,9 @@ sc:
         name: Eticheta
         trendable: Permite a custa eticheta de apàrrere in is tendèntzias
         usable: Permite a is tuts de impreare custa eticheta
+      user_role:
+        name: Nòmine
+        permissions_as_keys: Permissos
     'no': Nono
     recommended: Cussigiadu
     required:

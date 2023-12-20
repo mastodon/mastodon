@@ -6,11 +6,7 @@ require 'mastodon/cli/preview_cards'
 describe Mastodon::CLI::PreviewCards do
   let(:cli) { described_class.new }
 
-  describe '.exit_on_failure?' do
-    it 'returns true' do
-      expect(described_class.exit_on_failure?).to be true
-    end
-  end
+  it_behaves_like 'CLI Command'
 
   describe '#remove' do
     context 'with relevant preview cards' do

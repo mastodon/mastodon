@@ -113,20 +113,6 @@ Rails/HasAndBelongsToMany:
     - 'app/models/tag.rb'
 
 # Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/HasManyOrHasOneDependent:
-  Exclude:
-    - 'app/models/concerns/account/counters.rb'
-    - 'app/models/conversation.rb'
-    - 'app/models/custom_emoji.rb'
-    - 'app/models/custom_emoji_category.rb'
-    - 'app/models/domain_block.rb'
-    - 'app/models/invite.rb'
-    - 'app/models/status.rb'
-    - 'app/models/user.rb'
-    - 'app/models/web/push_subscription.rb'
-
-# Configuration parameters: Include.
 # Include: app/controllers/**/*.rb, app/mailers/**/*.rb
 Rails/LexicallyScopedActionFilter:
   Exclude:

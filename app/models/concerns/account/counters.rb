@@ -6,7 +6,7 @@ module Account::Counters
   ALLOWED_COUNTER_KEYS = %i(statuses_count following_count followers_count).freeze
 
   included do
-    has_one :account_stat, inverse_of: :account
+    has_one :account_stat, inverse_of: :account, dependent: nil
     after_save :save_account_stat
   end
 
