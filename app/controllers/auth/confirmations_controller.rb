@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Auth::ConfirmationsController < Devise::ConfirmationsController
-  include CaptchaConcern
+  include Auth::CaptchaConcern
 
   layout 'auth'
 

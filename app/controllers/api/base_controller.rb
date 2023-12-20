@@ -4,9 +4,9 @@ class Api::BaseController < ApplicationController
   DEFAULT_STATUSES_LIMIT = 20
   DEFAULT_ACCOUNTS_LIMIT = 40
 
-  include RateLimitHeaders
-  include AccessTokenTrackingConcern
-  include ApiCachingConcern
+  include Api::RateLimitHeaders
+  include Api::AccessTokenTrackingConcern
+  include Api::CachingConcern
   include Api::ContentSecurityPolicy
 
   skip_before_action :require_functional!, unless: :limited_federation_mode?
@@ -105,7 +105,7 @@ class Api::BaseController < ApplicationController
   end
 
   def require_not_suspended!
-    render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.suspended?
+    render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.unavailable?
   end
 
   def require_user!

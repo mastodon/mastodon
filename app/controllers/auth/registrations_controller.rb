@@ -2,7 +2,7 @@
 
 class Auth::RegistrationsController < Devise::RegistrationsController
   include RegistrationHelper
-  include RegistrationSpamConcern
+  include Auth::RegistrationSpamConcern
 
   layout :determine_layout
 
@@ -125,7 +125,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def require_not_suspended!
-    forbidden if current_account.suspended?
+    forbidden if current_account.unavailable?
   end
 
   def set_rules
