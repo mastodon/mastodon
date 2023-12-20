@@ -403,6 +403,34 @@ describe Mastodon::CLI::Maintenance do
         end
       end
 
+      context 'with duplicate media_attachments' do
+        before do
+          prepare_duplicate_data
+        end
+
+        let(:shortcode) { 'codenam' }
+
+        it 'runs the deduplication process' do
+          expect { subject }
+            .to output_results(
+              'Deduplicating media_attachments',
+              'Restoring media_attachments indexes',
+              'Finished!'
+            )
+            .and change(duplicate_media_attachments, :count).from(2).to(1)
+        end
+
+        def duplicate_media_attachments
+          MediaAttachment.where(shortcode: shortcode)
+        end
+
+        def prepare_duplicate_data
+          ActiveRecord::Base.connection.remove_index :media_attachments, :shortcode
+          Fabricate(:media_attachment, shortcode: shortcode)
+          Fabricate.build(:media_attachment, shortcode: shortcode).save(validate: false)
+        end
+      end
+
       def agree_to_backup_warning
         allow(cli.shell)
           .to receive(:yes?)
