@@ -26,6 +26,8 @@ const messages = defineMessages({
   uploadAvatar: { id: 'onboarding.profile.upload_avatar', defaultMessage: 'Upload profile picture' },
 });
 
+const nullIfMissing = path => path.endsWith('missing.png') ? null : path;
+
 export const Profile = () => {
   const account = useAppSelector(state => state.getIn(['accounts', me]));
   const [displayName, setDisplayName] = useState(account.get('display_name'));
@@ -61,8 +63,8 @@ export const Profile = () => {
     setHeader(e.target?.files?.[0]);
   }, [setHeader]);
 
-  const avatarPreview = useMemo(() => avatar ? URL.createObjectURL(avatar) : account.get('avatar'), [avatar, account]);
-  const headerPreview = useMemo(() => header ? URL.createObjectURL(header) : account.get('header'), [header, account]);
+  const avatarPreview = useMemo(() => avatar ? URL.createObjectURL(avatar) : nullIfMissing(account.get('avatar')), [avatar, account]);
+  const headerPreview = useMemo(() => header ? URL.createObjectURL(header) : nullIfMissing(account.get('header')), [header, account]);
 
   const handleSubmit = useCallback(() => {
     setIsSaving(true);
