@@ -73,11 +73,17 @@ describe 'signature verification concern' do
     let!(:actor) { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, public_key: actor_keypair.public_key.to_pem) }
 
     context 'with a valid signature on a GET request' do
+      let(:signature_header) do
+        'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="Z8ilar3J7bOwqZkMp7sL8sRs4B1FT+UorbmvWoE+A5UeoOJ3KBcUmbsh+k3wQwbP5gMNUrra9rEWabpasZGphLsbDxfbsWL3Cf0PllAc7c1c7AFEwnewtExI83/qqgEkfWc2z7UDutXc2NfgAx89Ox8DXU/fA2GG0jILjB6UpFyNugkY9rg6oI31UnvfVi3R7sr3/x8Ea3I9thPvqI2byF6cojknSpDAwYzeKdngX3TAQEGzFHz3SDWwyp3jeMWfwvVVbM38FxhvAnSumw7YwWW4L7M7h4M68isLimoT3yfCn2ucBVL5Dz8koBpYf/40w7QidClAwCafZQFC29yDOg=="' # rubocop:disable Layout/LineLength
+      end
+
       it 'successfuly verifies signature', :aggregate_failures do
+        expect(signature_header).to eq build_signature_string(actor_keypair, 'https://remote.domain/users/bob#main-key', 'get /activitypub/success', { 'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT', 'Host' => 'www.example.com' })
+
         get '/activitypub/success', headers: {
           'Host' => 'www.example.com',
           'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT',
-          'Signature' => 'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="Z8ilar3J7bOwqZkMp7sL8sRs4B1FT+UorbmvWoE+A5UeoOJ3KBcUmbsh+k3wQwbP5gMNUrra9rEWabpasZGphLsbDxfbsWL3Cf0PllAc7c1c7AFEwnewtExI83/qqgEkfWc2z7UDutXc2NfgAx89Ox8DXU/fA2GG0jILjB6UpFyNugkY9rg6oI31UnvfVi3R7sr3/x8Ea3I9thPvqI2byF6cojknSpDAwYzeKdngX3TAQEGzFHz3SDWwyp3jeMWfwvVVbM38FxhvAnSumw7YwWW4L7M7h4M68isLimoT3yfCn2ucBVL5Dz8koBpYf/40w7QidClAwCafZQFC29yDOg=="', # rubocop:disable Layout/LineLength
+          'Signature' => signature_header,
         }
 
         expect(response).to have_http_status(200)
@@ -121,11 +127,17 @@ describe 'signature verification concern' do
     end
 
     context 'with an unparsable date' do
+      let(:signature_header) do
+        'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="d4B7nfx8RJcfdJDu1J//5WzPzK/hgtPkdzZx49lu5QhnE7qdV3lgyVimmhCFrO16bwvzIp9iRMyRLkNFxLiEeVaa1gqeKbldGSnU0B0OMjx7rFBa65vLuzWQOATDitVGiBEYqoK4v0DMuFCz2DtFaA/DIUZ3sty8bZ/Ea3U1nByLOO6MacARA3zhMSI0GNxGqsSmZmG0hPLavB3jIXoE3IDoQabMnC39jrlcO/a8h1iaxBm2WD8TejrImJullgqlJIFpKhIHI3ipQkvTGPlm9dx0y+beM06qBvWaWQcmT09eRIUefVsOAzIhUtS/7FVb/URhZvircIJDa7vtiFcmZQ=="' # rubocop:disable Layout/LineLength
+      end
+
       it 'fails to verify signature', :aggregate_failures do
+        expect(signature_header).to eq build_signature_string(actor_keypair, 'https://remote.domain/users/bob#main-key', 'get /activitypub/success', { 'Date' => 'wrong date', 'Host' => 'www.example.com' })
+
         get '/activitypub/success', headers: {
           'Host' => 'www.example.com',
           'Date' => 'wrong date',
-          'Signature' => 'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="d4B7nfx8RJcfdJDu1J//5WzPzK/hgtPkdzZx49lu5QhnE7qdV3lgyVimmhCFrO16bwvzIp9iRMyRLkNFxLiEeVaa1gqeKbldGSnU0B0OMjx7rFBa65vLuzWQOATDitVGiBEYqoK4v0DMuFCz2DtFaA/DIUZ3sty8bZ/Ea3U1nByLOO6MacARA3zhMSI0GNxGqsSmZmG0hPLavB3jIXoE3IDoQabMnC39jrlcO/a8h1iaxBm2WD8TejrImJullgqlJIFpKhIHI3ipQkvTGPlm9dx0y+beM06qBvWaWQcmT09eRIUefVsOAzIhUtS/7FVb/URhZvircIJDa7vtiFcmZQ=="', # rubocop:disable Layout/LineLength
+          'Signature' => signature_header,
         }
 
         expect(body_as_json).to match(
@@ -137,11 +149,17 @@ describe 'signature verification concern' do
     end
 
     context 'with a request older than a day' do
+      let(:signature_header) do
+        'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="G1NuJv4zgoZ3B/ZIjzDWZHK4RC+5pYee74q8/LJEMCWXhcnAomcb9YHaqk1QYfQvcBUIXw3UZ3Q9xO8F9y0i8G5mzJHfQ+OgHqCoJk8EmGwsUXJMh5s1S5YFCRt8TT12TmJZz0VMqLq85ubueSYBM7QtUE/FzFIVLvz4RysgXxaXQKzdnM6+gbUEEKdCURpXdQt2NXQhp4MAmZH3+0lQoR6VxdsK0hx0Ji2PNp1nuqFTlYqNWZazVdLBN+9rETLRmvGXknvg9jOxTTppBVWnkAIl26HtLS3wwFVvz4pJzi9OQDOvLziehVyLNbU61hky+oJ215e2HuKSe2hxHNl1MA=="' # rubocop:disable Layout/LineLength
+      end
+
       it 'fails to verify signature', :aggregate_failures do
+        expect(signature_header).to eq build_signature_string(actor_keypair, 'https://remote.domain/users/bob#main-key', 'get /activitypub/success', { 'Date' => 'Wed, 18 Dec 2023 10:00:00 GMT', 'Host' => 'www.example.com' })
+
         get '/activitypub/success', headers: {
           'Host' => 'www.example.com',
           'Date' => 'Wed, 18 Dec 2023 10:00:00 GMT',
-          'Signature' => 'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="G1NuJv4zgoZ3B/ZIjzDWZHK4RC+5pYee74q8/LJEMCWXhcnAomcb9YHaqk1QYfQvcBUIXw3UZ3Q9xO8F9y0i8G5mzJHfQ+OgHqCoJk8EmGwsUXJMh5s1S5YFCRt8TT12TmJZz0VMqLq85ubueSYBM7QtUE/FzFIVLvz4RysgXxaXQKzdnM6+gbUEEKdCURpXdQt2NXQhp4MAmZH3+0lQoR6VxdsK0hx0Ji2PNp1nuqFTlYqNWZazVdLBN+9rETLRmvGXknvg9jOxTTppBVWnkAIl26HtLS3wwFVvz4pJzi9OQDOvLziehVyLNbU61hky+oJ215e2HuKSe2hxHNl1MA=="', # rubocop:disable Layout/LineLength
+          'Signature' => signature_header,
         }
 
         expect(body_as_json).to match(
@@ -153,12 +171,20 @@ describe 'signature verification concern' do
     end
 
     context 'with a valid signature on a POST request' do
+      let(:digest_header) { 'SHA-256=ZOyIygCyaOW6GjVnihtTFtIS9PNmskdyMlNKiuyjfzw=' }
+      let(:signature_header) do
+        'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="host date digest (request-target)",signature="gmhMjgMROGElJU3fpehV2acD5kMHeELi8EFP2UPHOdQ54H0r55AxIpji+J3lPe+N2qSb/4H1KXIh6f0lRu8TGSsu12OQmg5hiO8VA9flcA/mh9Lpk+qwlQZIPRqKP9xUEfqD+Z7ti5wPzDKrWAUK/7FIqWgcT/mlqB1R1MGkpMFc/q4CIs2OSNiWgA4K+Kp21oQxzC2kUuYob04gAZ7cyE/FTia5t08uv6lVYFdRsn4XNPn1MsHgFBwBMRG79ng3SyhoG4PrqBEi5q2IdLq3zfre/M6He3wlCpyO2VJNdGVoTIzeZ0Zz8jUscPV3XtWUchpGclLGSaKaq/JyNZeiYQ=="' # rubocop:disable Layout/LineLength
+      end
+
       it 'successfuly verifies signature', :aggregate_failures do
+        expect(digest_header).to eq digest_value('Hello world')
+        expect(signature_header).to eq build_signature_string(actor_keypair, 'https://remote.domain/users/bob#main-key', 'post /activitypub/success', { 'Host' => 'www.example.com', 'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT', 'Digest' => digest_header })
+
         post '/activitypub/success', params: 'Hello world', headers: {
           'Host' => 'www.example.com',
           'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT',
-          'Digest' => 'SHA-256=ZOyIygCyaOW6GjVnihtTFtIS9PNmskdyMlNKiuyjfzw=',
-          'Signature' => 'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="host date digest (request-target)",signature="gmhMjgMROGElJU3fpehV2acD5kMHeELi8EFP2UPHOdQ54H0r55AxIpji+J3lPe+N2qSb/4H1KXIh6f0lRu8TGSsu12OQmg5hiO8VA9flcA/mh9Lpk+qwlQZIPRqKP9xUEfqD+Z7ti5wPzDKrWAUK/7FIqWgcT/mlqB1R1MGkpMFc/q4CIs2OSNiWgA4K+Kp21oQxzC2kUuYob04gAZ7cyE/FTia5t08uv6lVYFdRsn4XNPn1MsHgFBwBMRG79ng3SyhoG4PrqBEi5q2IdLq3zfre/M6He3wlCpyO2VJNdGVoTIzeZ0Zz8jUscPV3XtWUchpGclLGSaKaq/JyNZeiYQ=="', # rubocop:disable Layout/LineLength
+          'Digest' => digest_header,
+          'Signature' => signature_header,
         }
 
         expect(response).to have_http_status(200)
@@ -170,12 +196,20 @@ describe 'signature verification concern' do
     end
 
     context 'when the Digest of a POST request is not signed' do
+      let(:digest_header) { 'SHA-256=ZOyIygCyaOW6GjVnihtTFtIS9PNmskdyMlNKiuyjfzw=' }
+      let(:signature_header) do
+        'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="host date (request-target)",signature="CPD704CG8aCm8X8qIP8kkkiGp1qwFLk/wMVQHOGP0Txxan8c2DZtg/KK7eN8RG8tHx8br/yS2hJs51x4kXImYukGzNJd7ihE3T8lp+9RI1tCcdobTzr/VcVJHDFySdQkg266GCMijRQRZfNvqlJLiisr817PI+gNVBI5qV+vnVd1XhWCEZ+YSmMe8UqYARXAYNqMykTheojqGpTeTFGPUpTQA2Fmt2BipwIjcFDm2Hpihl2kB0MUS0x3zPmHDuadvzoBbN6m3usPDLgYrpALlh+wDs1dYMntcwdwawRKY1oE1XNtgOSum12wntDq3uYL4gya2iPdcw3c929b4koUzw=="' # rubocop:disable Layout/LineLength
+      end
+
       it 'fails to verify signature', :aggregate_failures do
+        expect(digest_header).to eq digest_value('Hello world')
+        expect(signature_header).to eq build_signature_string(actor_keypair, 'https://remote.domain/users/bob#main-key', 'post /activitypub/success', { 'Host' => 'www.example.com', 'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT' })
+
         post '/activitypub/success', params: 'Hello world', headers: {
           'Host' => 'www.example.com',
           'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT',
-          'Digest' => 'SHA-256=ZOyIygCyaOW6GjVnihtTFtIS9PNmskdyMlNKiuyjfzw=',
-          'Signature' => 'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="host date (request-target)",signature="CPD704CG8aCm8X8qIP8kkkiGp1qwFLk/wMVQHOGP0Txxan8c2DZtg/KK7eN8RG8tHx8br/yS2hJs51x4kXImYukGzNJd7ihE3T8lp+9RI1tCcdobTzr/VcVJHDFySdQkg266GCMijRQRZfNvqlJLiisr817PI+gNVBI5qV+vnVd1XhWCEZ+YSmMe8UqYARXAYNqMykTheojqGpTeTFGPUpTQA2Fmt2BipwIjcFDm2Hpihl2kB0MUS0x3zPmHDuadvzoBbN6m3usPDLgYrpALlh+wDs1dYMntcwdwawRKY1oE1XNtgOSum12wntDq3uYL4gya2iPdcw3c929b4koUzw=="', # rubocop:disable Layout/LineLength
+          'Digest' => digest_header,
+          'Signature' => signature_header,
         }
 
         expect(body_as_json).to match(
@@ -187,12 +221,20 @@ describe 'signature verification concern' do
     end
 
     context 'with a tampered body on a POST request' do
+      let(:digest_header) { 'SHA-256=ZOyIygCyaOW6GjVnihtTFtIS9PNmskdyMlNKiuyjfzw=' }
+      let(:signature_header) do
+        'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="host date digest (request-target)",signature="gmhMjgMROGElJU3fpehV2acD5kMHeELi8EFP2UPHOdQ54H0r55AxIpji+J3lPe+N2qSb/4H1KXIh6f0lRu8TGSsu12OQmg5hiO8VA9flcA/mh9Lpk+qwlQZIPRqKP9xUEfqD+Z7ti5wPzDKrWAUK/7FIqWgcT/mlqB1R1MGkpMFc/q4CIs2OSNiWgA4K+Kp21oQxzC2kUuYob04gAZ7cyE/FTia5t08uv6lVYFdRsn4XNPn1MsHgFBwBMRG79ng3SyhoG4PrqBEi5q2IdLq3zfre/M6He3wlCpyO2VJNdGVoTIzeZ0Zz8jUscPV3XtWUchpGclLGSaKaq/JyNZeiYQ=="' # rubocop:disable Layout/LineLength
+      end
+
       it 'fails to verify signature', :aggregate_failures do
+        expect(digest_header).to_not eq digest_value('Hello world!')
+        expect(signature_header).to eq build_signature_string(actor_keypair, 'https://remote.domain/users/bob#main-key', 'post /activitypub/success', { 'Host' => 'www.example.com', 'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT', 'Digest' => digest_header })
+
         post '/activitypub/success', params: 'Hello world!', headers: {
           'Host' => 'www.example.com',
           'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT',
           'Digest' => 'SHA-256=ZOyIygCyaOW6GjVnihtTFtIS9PNmskdyMlNKiuyjfzw=',
-          'Signature' => 'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="host date digest (request-target)",signature="gmhMjgMROGElJU3fpehV2acD5kMHeELi8EFP2UPHOdQ54H0r55AxIpji+J3lPe+N2qSb/4H1KXIh6f0lRu8TGSsu12OQmg5hiO8VA9flcA/mh9Lpk+qwlQZIPRqKP9xUEfqD+Z7ti5wPzDKrWAUK/7FIqWgcT/mlqB1R1MGkpMFc/q4CIs2OSNiWgA4K+Kp21oQxzC2kUuYob04gAZ7cyE/FTia5t08uv6lVYFdRsn4XNPn1MsHgFBwBMRG79ng3SyhoG4PrqBEi5q2IdLq3zfre/M6He3wlCpyO2VJNdGVoTIzeZ0Zz8jUscPV3XtWUchpGclLGSaKaq/JyNZeiYQ=="', # rubocop:disable Layout/LineLength
+          'Signature' => signature_header,
         }
 
         expect(body_as_json).to match(
@@ -273,5 +315,18 @@ describe 'signature verification concern' do
       alias_method :alternative_success, :success
       alias_method :signature_required, :success
     end
+  end
+
+  def digest_value(body)
+    "SHA-256=#{Digest::SHA256.base64digest(body)}"
+  end
+
+  def build_signature_string(keypair, key_id, request_target, headers)
+    algorithm = 'rsa-sha256'
+    signed_headers = headers.merge({ '(request-target)' => request_target })
+    signed_string = signed_headers.map { |key, value| "#{key.downcase}: #{value}" }.join("\n")
+    signature = Base64.strict_encode64(keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
+
+    "keyId=\"#{key_id}\",algorithm=\"#{algorithm}\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
   end
 end
