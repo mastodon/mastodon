@@ -2,25 +2,21 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V2::SearchController do
-  render_views
-
+describe 'Search API' do
   context 'with token' do
-    let(:user)  { Fabricate(:user) }
-    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:search') }
+    let(:user)    { Fabricate(:user) }
+    let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+    let(:scopes)  { 'read:search' }
+    let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-    before do
-      allow(controller).to receive(:doorkeeper_token) { token }
-    end
-
-    describe 'GET #index' do
+    describe 'GET /api/v2/search' do
       let!(:bob)   { Fabricate(:account, username: 'bob_test') }
       let!(:ana)   { Fabricate(:account, username: 'ana_test') }
       let!(:tom)   { Fabricate(:account, username: 'tom_test') }
       let(:params) { { q: 'test' } }
 
       it 'returns http success' do
-        get :index, params: params
+        get '/api/v2/search', headers: headers, params: params
 
         expect(response).to have_http_status(200)
       end
@@ -29,7 +25,7 @@ RSpec.describe Api::V2::SearchController do
         let(:params) { { q: 'test', type: 'accounts' } }
 
         it 'returns all matching accounts' do
-          get :index, params: params
+          get '/api/v2/search', headers: headers, params: params
 
           expect(body_as_json[:accounts].pluck(:id)).to contain_exactly(bob.id.to_s, ana.id.to_s, tom.id.to_s)
         end
@@ -38,7 +34,7 @@ RSpec.describe Api::V2::SearchController do
           let(:params) { { q: 'test1', resolve: '1' } }
 
           it 'returns http unauthorized' do
-            get :index, params: params
+            get '/api/v2/search', headers: headers, params: params
 
             expect(response).to have_http_status(200)
           end
@@ -48,7 +44,7 @@ RSpec.describe Api::V2::SearchController do
           let(:params) { { q: 'test1', offset: 1 } }
 
           it 'returns http unauthorized' do
-            get :index, params: params
+            get '/api/v2/search', headers: headers, params: params
 
             expect(response).to have_http_status(200)
           end
@@ -62,7 +58,7 @@ RSpec.describe Api::V2::SearchController do
           end
 
           it 'returns only the followed accounts' do
-            get :index, params: params
+            get '/api/v2/search', headers: headers, params: params
 
             expect(body_as_json[:accounts].pluck(:id)).to contain_exactly(ana.id.to_s)
           end
@@ -73,7 +69,7 @@ RSpec.describe Api::V2::SearchController do
         before { allow(Search).to receive(:new).and_raise(Mastodon::SyntaxError) }
 
         it 'returns http unprocessable_entity' do
-          get :index, params: params
+          get '/api/v2/search', headers: headers, params: params
 
           expect(response).to have_http_status(422)
         end
@@ -83,7 +79,7 @@ RSpec.describe Api::V2::SearchController do
         before { allow(Search).to receive(:new).and_raise(ActiveRecord::RecordNotFound) }
 
         it 'returns http not_found' do
-          get :index, params: params
+          get '/api/v2/search', headers: headers, params: params
 
           expect(response).to have_http_status(404)
         end
@@ -92,11 +88,11 @@ RSpec.describe Api::V2::SearchController do
   end
 
   context 'without token' do
-    describe 'GET #index' do
+    describe 'GET /api/v2/search' do
       let(:search_params) { nil }
 
       before do
-        get :index, params: search_params
+        get '/api/v2/search', params: search_params
       end
 
       context 'without a `q` param' do
