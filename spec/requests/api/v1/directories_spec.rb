@@ -2,17 +2,13 @@
 
 require 'rails_helper'
 
-describe Api::V1::DirectoriesController do
-  render_views
-
+describe 'Directories API' do
   let(:user)    { Fabricate(:user, confirmed_at: nil) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:follows') }
+  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:scopes)  { 'read:follows' }
+  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
-
-  describe 'GET #show' do
+  describe 'GET /api/v1/directories' do
     context 'with no params' do
       before do
         local_unconfirmed_account = Fabricate(
@@ -58,27 +54,32 @@ describe Api::V1::DirectoriesController do
         )
         domain_blocked_account.create_account_stat!
         Fabricate(:account_domain_block, account: user.account, domain: 'test.example')
+
+        local_discoverable_account.create_account_stat!
+        eligible_remote_account.create_account_stat!
       end
 
-      it 'returns the local discoverable account and the remote discoverable account' do
-        local_discoverable_account = Fabricate(
+      let(:local_discoverable_account) do
+        Fabricate(
           :account,
           domain: nil,
           user: Fabricate(:user, confirmed_at: 10.days.ago, approved: true),
           discoverable: true,
           username: 'local_discoverable'
         )
-        local_discoverable_account.create_account_stat!
+      end
 
-        eligible_remote_account = Fabricate(
+      let(:eligible_remote_account) do
+        Fabricate(
           :account,
           domain: 'host.example',
           discoverable: true,
           username: 'eligible_remote'
         )
-        eligible_remote_account.create_account_stat!
+      end
 
-        get :show
+      it 'returns the local discoverable account and the remote discoverable account' do
+        get '/api/v1/directory', headers: headers
 
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq(2)
@@ -87,14 +88,17 @@ describe Api::V1::DirectoriesController do
     end
 
     context 'when asking for local accounts only' do
-      it 'returns only the local accounts' do
-        user = Fabricate(:user, confirmed_at: 10.days.ago, approved: true)
-        local_account = Fabricate(:account, domain: nil, user: user)
-        remote_account = Fabricate(:account, domain: 'host.example')
+      let(:user) { Fabricate(:user, confirmed_at: 10.days.ago, approved: true) }
+      let(:local_account) { Fabricate(:account, domain: nil, user: user) }
+      let(:remote_account) { Fabricate(:account, domain: 'host.example') }
+
+      before do
         local_account.create_account_stat!
         remote_account.create_account_stat!
+      end
 
-        get :show, params: { local: '1' }
+      it 'returns only the local accounts' do
+        get '/api/v1/directory', headers: headers, params: { local: '1' }
 
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq(1)
@@ -108,7 +112,7 @@ describe Api::V1::DirectoriesController do
         old_stat = Fabricate(:account_stat, last_status_at: 1.day.ago)
         new_stat = Fabricate(:account_stat, last_status_at: 1.minute.ago)
 
-        get :show, params: { order: 'active' }
+        get '/api/v1/directory', headers: headers, params: { order: 'active' }
 
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq(2)
@@ -123,7 +127,7 @@ describe Api::V1::DirectoriesController do
         travel_to 10.seconds.from_now
         account_new = Fabricate(:account_stat).account
 
-        get :show, params: { order: 'new' }
+        get '/api/v1/directory', headers: headers, params: { order: 'new' }
 
         expect(response).to have_http_status(200)
         expect(body_as_json.size).to eq(2)

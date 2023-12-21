@@ -41,7 +41,8 @@ describe Mastodon::CLI::Settings do
 
         it 'changes registrations_mode and require_invite_text' do
           expect { subject }
-            .to change(Setting, :registrations_mode).from(nil).to('approved')
+            .to output_results('OK')
+            .and change(Setting, :registrations_mode).from(nil).to('approved')
             .and change(Setting, :require_invite_text).from(false).to(true)
         end
       end

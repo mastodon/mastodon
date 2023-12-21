@@ -91,7 +91,7 @@ class CustomFilter < ApplicationRecord
       filters_hash.values.map { |cache| [cache.delete(:filter), cache] }
     end.to_a
 
-    active_filters.select { |custom_filter, _| !custom_filter.expired? }
+    active_filters.reject { |custom_filter, _| custom_filter.expired? }
   end
 
   def self.apply_cached_filters(cached_filters, status)
