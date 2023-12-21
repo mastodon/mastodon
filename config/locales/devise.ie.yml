@@ -2,8 +2,16 @@
 ie:
   devise:
     failure:
+      already_authenticated: Tu ha ja intrat.
+      inactive: Tui conto ancor ne ha esset activat.
       invalid: Ínvalid %{authentication_keys} o passa-parol.
+      last_attempt: Hay solmen un prova ante que tui conto deveni serrat.
+      locked: Tui conto es serrat.
       not_found_in_database: Ínvalid %{authentication_keys} o passa-parol.
+      pending: Tui conto es ancor sub revision.
+      timeout: Tui session ha expirat. Ples reintrar denov por continuar.
+      unauthenticated: Tu deve intrar o registrar te ante continuar.
+      unconfirmed: Tu deve confirmar tui e-posta ante continuar.
     mailer:
       email_changed:
         extra: Si tu ne changeat tui email-adresse, it es probabil que alqui ha ganiat accesse a tui conto. Ples changear tui passa-parol strax o contacter li administrator del servitor si tu ne posse intrar tui conto.
@@ -20,6 +28,8 @@ ie:
         title: Reiniciar passa-parol
       two_factor_disabled:
         explanation: 2-factor autentication por tui conto ha esset desactivisat. Aperter session nu es possibil solmen per email-adresse e passa-parol.
+    omniauth_callbacks:
+      failure: Ne posset autenticar te de %{kind} pro "%{reason}".
     passwords:
       no_token: Tu ne posse accessar ti-ci págine sin venir de un email pri reiniciar li passa-parol. Si tu ha venit de un email pri reiniciar li passa-parol, ples far cert que tu usat li complet URL providet.
       send_instructions: Si tui email-adresse existe in nor database, tu va reciver un ligament por recuperar li passa-parol a tui email-adresse in quelc minutes. Ples vider tui spam-emails si tu ne recivet ti email.

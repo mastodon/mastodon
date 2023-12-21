@@ -329,6 +329,7 @@ ie:
         title: Adjunter nov customisat emoji
       no_emoji_selected: Null emoji esset changeat pro que null esset selectet
       not_permitted: Tu ne es permisset far ti action
+      overwrite: Remplazzar
       shortcode_hint: Adminim 2 carácteres, solmen lítteres, ciffres e sublineas
       title: Customisat emoji
       uncategorized: Íncategorisat
@@ -433,6 +434,7 @@ ie:
         title: Bloccar nov email-dominia
       no_email_domain_block_selected: Null email-dominia-bloccas esset changeat pro que null esset selectet
       not_permitted: Ne permisset
+      resolved_through_html: Resoluet per %{domain}
       title: Bloccat email-dominias
     export_domain_allows:
       new:
@@ -459,6 +461,7 @@ ie:
       unsuppress: Restaurar seque-recomandation
     instances:
       availability:
+        no_failures_recorded: Null fallimentes registrat.
         title: Disponibilitá
         warning: Li ultim prova conexer a ti servitor ha esset ínsuccessosi
       back_to_all: Omni
@@ -601,15 +604,36 @@ ie:
       status: Statu
       statuses: Contenete raportat
       summary:
+        action_preambles:
+          delete_html: 'Tu va <strong>remover</strong> alcun postas de <strong>@%{acct}</strong>''. To va:'
+          mark_as_sensitive_html: 'Tu va <strong>marcar</strong> alcun postas de <strong>@%{acct}</strong> quam <strong>sensitiv</strong>. To va:'
+          silence_html: 'Tu va <strong>limitar</strong> li conto de <strong>@%{acct}</strong>. To va:'
+          suspend_html: 'Tu va <strong>suspender</strong> li conto de <strong>@%{acct}</strong>. To va:'
         close_report: 'Marcar raporte #%{id} quam resoluet'
       title: Raportes
+      unassign: Ínassignar
+      unknown_action_msg: 'Ínconosset action: %{action}'
+      unresolved: Ínresoluet
+      updated_at: Actualisat
+      view_profile: Vider profil
     roles:
+      add_new: Adjunter un rol
+      assigned_users:
+        one: "%{count} usator"
+        other: "%{count} usatores"
       categories:
+        administration: Administration
         devops: DevOps
         invites: Invitationes
         moderation: Moderation
         special: Special
       delete: Deleter
+      description_html: Con <strong>roles por usatores</strong>, tu posse customisar li functiones e locs de Mastodon in queles tui usatores posse accesser.
+      edit: Modificar rol '%{name}'
+      everyone: Permissiones predefinit
+      permissions_count:
+        one: "%{count} permission"
+        other: "%{count} permissiones"
       privileges:
         administrator: Administrator
         delete_user_data: Deleter Data de Usator
@@ -618,26 +642,39 @@ ie:
         manage_announcements: Tractar proclamationes
         manage_announcements_description: Permisse usatores tractar proclamationes sur li servitor
         manage_appeals: Gerer Apelles
+        manage_blocks: Gerer Bloccas
+        manage_custom_emojis: Gerer Customisat Emojis
         manage_federation: Gerer Federation
         manage_invites: Gerer Invitationes
         manage_reports: Gerer Raportes
         manage_roles: Gerer Roles
+        manage_rules: Gerer Regules
+        manage_settings: Gerer Parametres
         manage_taxonomies: Gerer Taxonomies
         manage_user_access_description: Permisse usatores desactivisar li 2-factor autentication de altri usatores, changear lor email-adresses, e reiniciar lor passa-paroles
         manage_users: Gerer usatores
+        manage_webhooks: Gerer Web-crocs
+        view_devops: DevOps
       title: Roles
     rules:
       add_new: Adjunter un regule
+      delete: Deleter
+      edit: Redacter regul
+      empty: Ancor null regules de servitor ha esset definit.
       title: Regules del servitor
     settings:
       about:
+        manage_rules: Gerer regules de servitor
         title: Pri
       appearance:
         title: Aspecte
       discovery:
         profile_directory: Profilarium
         public_timelines: Public témpor-lineas
+        title: Decovriment
       domain_blocks:
+        all: Ad omnes
+        disabled: A necun
         users: A local usatores qui ha initiat session
       registrations:
         title: Registrationes
@@ -645,6 +682,7 @@ ie:
         modes:
           none: Nequi posse registrar se
           open: Quicunc posse registrar se
+      title: Parametres del servitor
     site_uploads:
       delete: Deleter cargat file
       destroyed_msg: Cargat file successosimen deletet!
