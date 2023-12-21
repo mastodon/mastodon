@@ -267,10 +267,13 @@ RSpec.describe Status do
       it 'returns the expected statuses' do
         expect(described_class.tagged_with([tag_cats.id]))
           .to include(status_with_tag_cats, status_with_all_tags)
+          .and not_include(status_without_tags)
         expect(described_class.tagged_with([tag_dogs.id]))
           .to include(status_with_tag_dogs, status_with_all_tags)
+          .and not_include(status_without_tags)
         expect(described_class.tagged_with([tag_zebras.id]))
           .to include(status_tagged_with_zebras, status_with_all_tags)
+          .and not_include(status_without_tags)
       end
     end
 
@@ -278,10 +281,13 @@ RSpec.describe Status do
       it 'returns the expected statuses' do
         expect(described_class.tagged_with([tag_cats.id, tag_dogs.id]))
           .to include(status_with_tag_cats, status_with_tag_dogs, status_with_all_tags)
+          .and not_include(status_without_tags)
         expect(described_class.tagged_with([tag_cats.id, tag_zebras.id]))
           .to include(status_with_tag_cats, status_tagged_with_zebras, status_with_all_tags)
+          .and not_include(status_without_tags)
         expect(described_class.tagged_with([tag_dogs.id, tag_zebras.id]))
           .to include(status_with_tag_dogs, status_tagged_with_zebras, status_with_all_tags)
+          .and not_include(status_without_tags)
       end
     end
   end
@@ -300,10 +306,13 @@ RSpec.describe Status do
       it 'returns the expected statuses' do
         expect(described_class.tagged_with_all([tag_cats.id]))
           .to include(status_with_tag_cats, status_with_all_tags)
+          .and not_include(status_without_tags)
         expect(described_class.tagged_with_all([tag_dogs.id]))
           .to include(status_with_tag_dogs, status_with_all_tags)
+          .and not_include(status_without_tags)
         expect(described_class.tagged_with_all([tag_zebras.id]))
           .to include(status_tagged_with_zebras)
+          .and not_include(status_without_tags)
       end
     end
 
@@ -333,10 +342,13 @@ RSpec.describe Status do
       it 'returns the expected statuses' do
         expect(described_class.tagged_with_none([tag_cats.id]))
           .to include(status_with_tag_dogs, status_tagged_with_zebras, status_without_tags)
+          .and not_include(status_with_all_tags)
         expect(described_class.tagged_with_none([tag_dogs.id]))
           .to include(status_with_tag_cats, status_tagged_with_zebras, status_without_tags)
+          .and not_include(status_with_all_tags)
         expect(described_class.tagged_with_none([tag_zebras.id]))
           .to include(status_with_tag_cats, status_with_tag_dogs, status_without_tags)
+          .and not_include(status_with_all_tags)
       end
     end
 
@@ -344,10 +356,13 @@ RSpec.describe Status do
       it 'returns the expected statuses' do
         expect(described_class.tagged_with_none([tag_cats.id, tag_dogs.id]))
           .to include(status_tagged_with_zebras, status_without_tags)
+          .and not_include(status_with_all_tags)
         expect(described_class.tagged_with_none([tag_cats.id, tag_zebras.id]))
           .to include(status_with_tag_dogs, status_without_tags)
+          .and not_include(status_with_all_tags)
         expect(described_class.tagged_with_none([tag_dogs.id, tag_zebras.id]))
           .to include(status_with_tag_cats, status_without_tags)
+          .and not_include(status_with_all_tags)
       end
     end
   end
