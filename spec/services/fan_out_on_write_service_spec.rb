@@ -6,11 +6,12 @@ RSpec.describe FanOutOnWriteService, type: :service do
   subject { described_class.new }
 
   let(:last_active_at) { Time.now.utc }
-  let(:status) { Fabricate(:status, account: alice, visibility: visibility, text: 'Hello @bob #hoge') }
+  let(:status) { Fabricate(:status, account: alice, visibility: visibility, text: 'Hello @bob @eve #hoge') }
 
   let!(:alice) { Fabricate(:user, current_sign_in_at: last_active_at).account }
   let!(:bob)   { Fabricate(:user, current_sign_in_at: last_active_at, account_attributes: { username: 'bob' }).account }
   let!(:tom)   { Fabricate(:user, current_sign_in_at: last_active_at).account }
+  let!(:eve)   { Fabricate(:user, current_sign_in_at: last_active_at, account_attributes: { username: 'eve' }).account }
 
   before do
     bob.follow!(alice)
@@ -108,6 +109,25 @@ RSpec.describe FanOutOnWriteService, type: :service do
     it 'is not broadcast publicly' do
       expect(redis).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
       expect(redis).to_not have_received(:publish).with('timeline:public', anything)
+    end
+
+    context 'when handling status updates', :sidekiq_fake do
+      before do
+        subject.call(status)
+
+        status.snapshot!(at_time: status.created_at, rate_limit: false)
+        status.update!(text: 'Hello @bob @eve #hoge (edited)')
+        status.snapshot!(account_id: status.account_id)
+
+        redis.set("subscribed:timeline:#{eve.id}:notifications", '1')
+
+        Sidekiq::Worker.clear_all
+      end
+
+      it 'pushes the update to mentioned users through the notifications streaming channel' do
+        subject.call(status, update: true)
+        expect(PushUpdateWorker).to have_enqueued_sidekiq_job(anything, status.id, "timeline:#{eve.id}:notifications", { 'update' => true })
+      end
     end
   end
 end

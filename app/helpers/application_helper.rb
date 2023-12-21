@@ -114,7 +114,7 @@ module ApplicationHelper
   end
 
   def fa_icon(icon, attributes = {})
-    class_names = attributes[:class]&.split(' ') || []
+    class_names = attributes[:class]&.split || []
     class_names << 'fa'
     class_names += icon.split.map { |cl| "fa-#{cl}" }
 

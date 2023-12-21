@@ -4,10 +4,10 @@ require 'rails_helper'
 require 'mastodon/cli/emoji'
 
 describe Mastodon::CLI::Emoji do
-  subject { cli.invoke(action, args, options) }
+  subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }
-  let(:args) { [] }
+  let(:arguments) { [] }
   let(:options) { {} }
 
   it_behaves_like 'CLI Command'
@@ -29,7 +29,7 @@ describe Mastodon::CLI::Emoji do
     context 'with existing custom emoji' do
       let(:import_path) { Rails.root.join('spec', 'fixtures', 'files', 'elite-assets.tar.gz') }
       let(:action) { :import }
-      let(:args) { [import_path] }
+      let(:arguments) { [import_path] }
 
       it 'reports about imported emoji' do
         expect { subject }
@@ -51,7 +51,7 @@ describe Mastodon::CLI::Emoji do
       after { FileUtils.rm_rf(export_path.dirname) }
 
       let(:export_path) { Rails.root.join('tmp', 'cli-tests', 'export.tar.gz') }
-      let(:args) { [export_path.dirname.to_s] }
+      let(:arguments) { [export_path.dirname.to_s] }
       let(:action) { :export }
 
       it 'reports about exported emoji' do
@@ -60,9 +60,5 @@ describe Mastodon::CLI::Emoji do
           .and change { File.exist?(export_path) }.from(false).to(true)
       end
     end
-  end
-
-  def output_results(string)
-    output(a_string_including(string)).to_stdout
   end
 end
