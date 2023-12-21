@@ -156,9 +156,8 @@ RSpec.describe ReportService, type: :service do
       -> {  described_class.new.call(source_account, target_account) }
     end
 
-    let!(:other_report) { Fabricate(:report, target_account: target_account) }
-
     before do
+      Fabricate(:report, target_account: target_account)
       ActionMailer::Base.deliveries.clear
       source_account.user.settings['notification_emails.report'] = true
       source_account.user.save
