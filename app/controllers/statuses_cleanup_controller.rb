@@ -15,7 +15,7 @@ class StatusesCleanupController < ApplicationController
     if @policy.update(resource_params)
       redirect_to statuses_cleanup_path, notice: I18n.t('generic.changes_saved_msg')
     else
-      render action: :show
+      render :show
     end
   rescue ActionController::ParameterMissing
     # Do nothing

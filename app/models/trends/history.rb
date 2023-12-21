@@ -37,7 +37,7 @@ class Trends::History
     end
 
     def uses
-      with_redis { |redis| redis.get(key_for(:uses))&.to_i || 0 }
+      with_redis { |redis| redis.get(key_for(:uses)).to_i }
     end
 
     def add(account_id)

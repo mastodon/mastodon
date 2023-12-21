@@ -11,7 +11,7 @@ class Auth::SessionsController < Devise::SessionsController
   prepend_before_action :set_pack
   prepend_before_action :check_suspicious!, only: [:create]
 
-  include TwoFactorAuthenticationConcern
+  include Auth::TwoFactorAuthenticationConcern
 
   before_action :set_body_classes
 

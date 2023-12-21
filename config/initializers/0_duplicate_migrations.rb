@@ -21,7 +21,7 @@ module ActiveRecord
     def self.new(direction, migrations, schema_migration, internal_metadata, target_version = nil)
       migrated = Set.new(Base.connection.migration_context.get_all_versions)
 
-      migrations.group_by(&:name).each do |_name, duplicates|
+      migrations.group_by(&:name).each_value do |duplicates|
         next unless duplicates.length > 1 && duplicates.all? { |m| ALLOWED_DUPLICATES.include?(m.version) }
 
         # We have a set of allowed duplicates. Keep the migrated one, if any.
@@ -47,7 +47,7 @@ module ActiveRecord
       # A set of duplicated migrations is considered migrated if at least one of
       # them is migrated.
       migrated = get_all_versions
-      migrations.group_by(&:name).each do |_name, duplicates|
+      migrations.group_by(&:name).each_value do |duplicates|
         return true unless duplicates.any? { |m| migrated.include?(m.version.to_i) }
       end
       false

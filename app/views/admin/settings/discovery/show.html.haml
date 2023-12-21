@@ -45,7 +45,7 @@
   %h4= t('admin.settings.security.federation_authentication')
 
   .fields-group
-    = f.input :authorized_fetch, as: :boolean, wrapper: :with_label, label: t('admin.settings.security.authorized_fetch'), warning_hint: authorized_fetch_overridden? ? t('admin.settings.security.authorized_fetch_overridden_hint') : nil, hint: t('admin.settings.security.authorized_fetch_hint'), disabled: authorized_fetch_overridden?, recommended: authorized_fetch_overridden? ? :overridden : nil
+    = f.input :authorized_fetch, as: :boolean, wrapper: :with_label, label: t('admin.settings.security.authorized_fetch'), warning_hint: discovery_warning_hint_text, hint: discovery_hint_text, disabled: authorized_fetch_overridden?, recommended: discovery_recommended_value
 
   %h4= t('admin.settings.discovery.follow_recommendations')
 

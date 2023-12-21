@@ -61,7 +61,7 @@ class UnsuspendAccountService < BaseService
   def publish_media_attachments!
     attachment_names = MediaAttachment.attachment_definitions.keys
 
-    @account.media_attachments.reorder(nil).find_each do |media_attachment|
+    @account.media_attachments.find_each do |media_attachment|
       attachment_names.each do |attachment_name|
         attachment = media_attachment.public_send(attachment_name)
         styles     = MediaAttachment::DEFAULT_STYLES | attachment.styles.keys

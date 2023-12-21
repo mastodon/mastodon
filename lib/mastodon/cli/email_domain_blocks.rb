@@ -7,10 +7,10 @@ module Mastodon::CLI
   class EmailDomainBlocks < Base
     desc 'list', 'List blocked e-mail domains'
     def list
-      EmailDomainBlock.where(parent_id: nil).order(id: 'DESC').find_each do |entry|
+      EmailDomainBlock.where(parent_id: nil).find_each do |entry|
         say(entry.domain.to_s, :white)
 
-        EmailDomainBlock.where(parent_id: entry.id).order(id: 'DESC').find_each do |child|
+        EmailDomainBlock.where(parent_id: entry.id).find_each do |child|
           say("  #{child.domain}", :cyan)
         end
       end

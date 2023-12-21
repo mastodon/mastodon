@@ -72,7 +72,7 @@ class Admin::ActionLogFilter
   end
 
   def results
-    scope = Admin::ActionLog.includes(:target)
+    scope = latest_action_logs.includes(:target)
 
     params.each do |key, value|
       next if key.to_s == 'page'
@@ -88,14 +88,18 @@ class Admin::ActionLogFilter
   def scope_for(key, value)
     case key
     when 'action_type'
-      Admin::ActionLog.where(ACTION_TYPE_MAP[value.to_sym])
+      latest_action_logs.where(ACTION_TYPE_MAP[value.to_sym])
     when 'account_id'
-      Admin::ActionLog.where(account_id: value)
+      latest_action_logs.where(account_id: value)
     when 'target_account_id'
       account = Account.find_or_initialize_by(id: value)
-      Admin::ActionLog.where(target: [account, account.user].compact)
+      latest_action_logs.where(target: [account, account.user].compact)
     else
       raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
+  end
+
+  def latest_action_logs
+    Admin::ActionLog.latest
   end
 end

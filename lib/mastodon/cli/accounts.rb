@@ -472,15 +472,13 @@ module Mastodon::CLI
       end
 
       total     = 0
-      total    += Account.where(id: ::Follow.where(account: account).select(:target_account_id)).count if options[:follows]
-      total    += Account.where(id: ::Follow.where(target_account: account).select(:account_id)).count if options[:followers]
+      total    += account.following.reorder(nil).count if options[:follows]
+      total    += account.followers.reorder(nil).count if options[:followers]
       progress  = create_progress_bar(total)
       processed = 0
 
       if options[:follows]
-        scope = Account.where(id: ::Follow.where(account: account).select(:target_account_id))
-
-        scope.find_each do |target_account|
+        account.following.reorder(nil).find_each do |target_account|
           UnfollowService.new.call(account, target_account)
         rescue => e
           progress.log pastel.red("Error processing #{target_account.id}: #{e}")
@@ -493,9 +491,7 @@ module Mastodon::CLI
       end
 
       if options[:followers]
-        scope = Account.where(id: ::Follow.where(target_account: account).select(:account_id))
-
-        scope.find_each do |target_account|
+        account.followers.reorder(nil).find_each do |target_account|
           UnfollowService.new.call(target_account, account)
         rescue => e
           progress.log pastel.red("Error processing #{target_account.id}: #{e}")
