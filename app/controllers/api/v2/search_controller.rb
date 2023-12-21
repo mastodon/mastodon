@@ -12,6 +12,7 @@ class Api::V2::SearchController < Api::BaseController
     before_action :query_pagination_error, if: :pagination_requested?
     before_action :remote_resolve_error, if: :remote_resolve_requested?
   end
+  before_action :require_valid_pagination_options!
 
   def index
     @search = Search.new(search_results)
