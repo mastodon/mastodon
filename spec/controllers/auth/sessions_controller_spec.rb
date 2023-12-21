@@ -123,9 +123,8 @@ RSpec.describe Auth::SessionsController do
         let(:previous_ip) { '1.2.3.4' }
         let(:current_ip)  { '4.3.2.1' }
 
-        let!(:previous_login) { Fabricate(:login_activity, user: user, ip: previous_ip) }
-
         before do
+          Fabricate(:login_activity, user: user, ip: previous_ip)
           allow(controller.request).to receive(:remote_ip).and_return(current_ip)
           user.update(current_sign_in_at: 1.month.ago)
           post :create, params: { user: { email: user.email, password: user.password } }
@@ -328,12 +327,6 @@ RSpec.describe Auth::SessionsController do
           Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
         end
 
-        let!(:recovery_codes) do
-          codes = user.generate_otp_backup_codes!
-          user.save
-          return codes
-        end
-
         let!(:webauthn_credential) do
           user.update(webauthn_id: WebAuthn.generate_user_id)
           public_key_credential = WebAuthn::Credential.from_create(fake_client.create)
@@ -355,6 +348,11 @@ RSpec.describe Auth::SessionsController do
         let(:sign_count) { 1234 }
 
         let(:fake_credential) { fake_client.get(challenge: challenge, sign_count: sign_count) }
+
+        before do
+          user.generate_otp_backup_codes!
+          user.save
+        end
 
         context 'when using email and password' do
           before do
