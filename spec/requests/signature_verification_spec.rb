@@ -94,6 +94,72 @@ describe 'signature verification concern' do
       end
     end
 
+    context 'with a valid signature on a GET request that has a query string' do
+      let(:signature_header) do
+        'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="SDMa4r/DQYMXYxVgYO2yEqGWWUXugKjVuz0I8dniQAk+aunzBaF2aPu+4grBfawAshlx1Xytl8lhb0H2MllEz16/tKY7rUrb70MK0w8ohXgpb0qs3YvQgdj4X24L1x2MnkFfKHR/J+7TBlnivq0HZqXm8EIkPWLv+eQxu8fbowLwHIVvRd/3t6FzvcfsE0UZKkoMEX02542MhwSif6cu7Ec/clsY9qgKahb9JVGOGS1op9Lvg/9y1mc8KCgD83U5IxVygYeYXaVQ6gixA9NgZiTCwEWzHM5ELm7w5hpdLFYxYOHg/3G3fiqJzpzNQAcCD4S4JxfE7hMI0IzVlNLT6A=="' # rubocop:disable Layout/LineLength
+      end
+
+      it 'successfuly verifies signature', :aggregate_failures do
+        expect(signature_header).to eq build_signature_string(actor_keypair, 'https://remote.domain/users/bob#main-key', 'get /activitypub/success?foo=42', { 'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT', 'Host' => 'www.example.com' })
+
+        get '/activitypub/success?foo=42', headers: {
+          'Host' => 'www.example.com',
+          'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT',
+          'Signature' => signature_header,
+        }
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json).to match(
+          signed_request: true,
+          signature_actor_id: actor.id.to_s
+        )
+      end
+    end
+
+    context 'when the query string is missing from the signature verification (compatibility quirk)' do
+      let(:signature_header) do
+        'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="Z8ilar3J7bOwqZkMp7sL8sRs4B1FT+UorbmvWoE+A5UeoOJ3KBcUmbsh+k3wQwbP5gMNUrra9rEWabpasZGphLsbDxfbsWL3Cf0PllAc7c1c7AFEwnewtExI83/qqgEkfWc2z7UDutXc2NfgAx89Ox8DXU/fA2GG0jILjB6UpFyNugkY9rg6oI31UnvfVi3R7sr3/x8Ea3I9thPvqI2byF6cojknSpDAwYzeKdngX3TAQEGzFHz3SDWwyp3jeMWfwvVVbM38FxhvAnSumw7YwWW4L7M7h4M68isLimoT3yfCn2ucBVL5Dz8koBpYf/40w7QidClAwCafZQFC29yDOg=="' # rubocop:disable Layout/LineLength
+      end
+
+      it 'successfuly verifies signature', :aggregate_failures do
+        expect(signature_header).to eq build_signature_string(actor_keypair, 'https://remote.domain/users/bob#main-key', 'get /activitypub/success', { 'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT', 'Host' => 'www.example.com' })
+
+        get '/activitypub/success?foo=42', headers: {
+          'Host' => 'www.example.com',
+          'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT',
+          'Signature' => signature_header,
+        }
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json).to match(
+          signed_request: true,
+          signature_actor_id: actor.id.to_s
+        )
+      end
+    end
+
+    context 'with mismatching query string' do
+      let(:signature_header) do
+        'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="SDMa4r/DQYMXYxVgYO2yEqGWWUXugKjVuz0I8dniQAk+aunzBaF2aPu+4grBfawAshlx1Xytl8lhb0H2MllEz16/tKY7rUrb70MK0w8ohXgpb0qs3YvQgdj4X24L1x2MnkFfKHR/J+7TBlnivq0HZqXm8EIkPWLv+eQxu8fbowLwHIVvRd/3t6FzvcfsE0UZKkoMEX02542MhwSif6cu7Ec/clsY9qgKahb9JVGOGS1op9Lvg/9y1mc8KCgD83U5IxVygYeYXaVQ6gixA9NgZiTCwEWzHM5ELm7w5hpdLFYxYOHg/3G3fiqJzpzNQAcCD4S4JxfE7hMI0IzVlNLT6A=="' # rubocop:disable Layout/LineLength
+      end
+
+      it 'fails to verify signature', :aggregate_failures do
+        expect(signature_header).to eq build_signature_string(actor_keypair, 'https://remote.domain/users/bob#main-key', 'get /activitypub/success?foo=42', { 'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT', 'Host' => 'www.example.com' })
+
+        get '/activitypub/success?foo=43', headers: {
+          'Host' => 'www.example.com',
+          'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT',
+          'Signature' => signature_header,
+        }
+
+        expect(body_as_json).to match(
+          signed_request: true,
+          signature_actor_id: nil,
+          error: anything
+        )
+      end
+    end
+
     context 'with a mismatching path' do
       it 'fails to verify signature', :aggregate_failures do
         get '/activitypub/alternative-path', headers: {
