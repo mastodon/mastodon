@@ -7,7 +7,7 @@ describe Admin::DashboardController do
 
   describe 'GET #index' do
     before do
-      allow(Admin::SystemCheck).to receive(:perform).and_return(system_check_messages)
+      allow(Admin::SystemCheck).to receive(:perform).and_return(system_check_messages_for_test_env)
       sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin'))
     end
 
@@ -19,7 +19,7 @@ describe Admin::DashboardController do
 
     private
 
-    def system_check_messages
+    def system_check_messages_for_test_env
       [
         Admin::SystemCheck::Message.new(:database_schema_check),
         Admin::SystemCheck::Message.new(:rules_check, nil, admin_rules_path),
