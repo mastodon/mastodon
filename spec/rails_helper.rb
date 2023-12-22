@@ -104,7 +104,6 @@ RSpec.configure do |config|
   end
 
   config.before :each, type: :cli do
-    stub_stdout
     stub_reset_connection_pools
   end
 
@@ -161,14 +160,6 @@ end
 
 def attachment_fixture(name)
   Rails.root.join('spec', 'fixtures', 'files', name).open
-end
-
-def stub_stdout
-  # TODO: Is there a bettery way to:
-  # - Avoid CLI command output being printed out
-  # - Allow rspec to assert things against STDOUT
-  # - Avoid disabling stdout for other desirable output (deprecation warnings, for example)
-  allow($stdout).to receive(:write)
 end
 
 def stub_reset_connection_pools

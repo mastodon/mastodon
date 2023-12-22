@@ -1,0 +1,28 @@
+---
+ie:
+  devise:
+    failure:
+      invalid: Ínvalid %{authentication_keys} o passa-parol.
+      not_found_in_database: Ínvalid %{authentication_keys} o passa-parol.
+    mailer:
+      email_changed:
+        extra: Si tu ne changeat tui email-adresse, it es probabil que alqui ha ganiat accesse a tui conto. Ples changear tui passa-parol strax o contacter li administrator del servitor si tu ne posse intrar tui conto.
+      password_change:
+        explanation: Li passa-parol de tui conto ha esset changeat.
+        extra: Si tu ne changeat tui passa-parol, it es probabil que alqui ha ganiat accesse a tui conto. Ples changear tui passa-parol strax o contacter li administrator del servitor si tu ne posse intrar tui conto.
+        subject: 'Mastodon: Passa-parol changeat'
+        title: Passa-parol changeat
+      reset_password_instructions:
+        action: Changear passa-parol
+        explanation: Tu demandat un nov passa-parol por tui conto.
+        extra: Si tu ne demandat to-ci, ples ignorar ti-ci email. Tui passa-parol ne va changear til que tu accessaye li ligament supra e crear un nov.
+        subject: 'Mastodon: Instructiones por reiniciar li passa-parol'
+        title: Reiniciar passa-parol
+      two_factor_disabled:
+        explanation: 2-factor autentication por tui conto ha esset desactivisat. Aperter session nu es possibil solmen per email-adresse e passa-parol.
+    passwords:
+      no_token: Tu ne posse accessar ti-ci págine sin venir de un email pri reiniciar li passa-parol. Si tu ha venit de un email pri reiniciar li passa-parol, ples far cert que tu usat li complet URL providet.
+      send_instructions: Si tui email-adresse existe in nor database, tu va reciver un ligament por recuperar li passa-parol a tui email-adresse in quelc minutes. Ples vider tui spam-emails si tu ne recivet ti email.
+      send_paranoid_instructions: Si tui email-adresse existe in nor database, tu va reciver un ligament por recuperar li passa-parol a tui email-adresse in quelc minutes. Ples vider tui spam-emails si tu ne recivet ti email.
+      updated: Tui passa-parol ha esset changeat successosimen. Tu nu ha apertet session.
+      updated_not_active: Tui passa-parol ha esset changeat successosimen.

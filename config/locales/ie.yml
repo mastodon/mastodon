@@ -1,0 +1,863 @@
+---
+ie:
+  about:
+    about_mastodon_html: 'Li social rete del futur: sin reclams, sin supervision de corporationes, con un dessine etical e decentralisation! Repossede vor data med Mastodon!'
+    contact_missing: Ne assignat
+    contact_unavailable: Ne disponibil
+    hosted_on: Mastodon logiat che %{domain}
+    title: Pri
+  accounts:
+    follow: Sequer
+    followers:
+      one: Sequitor
+      other: Sequitores
+    following: Sequent
+    instance_actor_flash: Ti-ci conto es un virtual actor usat por representer li servitor self e null individual usator. It es usat por federational rasones e deve ne esser suspendet.
+    last_active: ultim activitá
+    link_verified_on: Proprietá de ti-ci ligament esset verificat ye %{date}
+    nothing_here: Hay nullcos ci!
+    pin_errors:
+      following: Tu deve ja sequer li person quem tu vole indossar
+    posts:
+      one: Posta
+      other: Postas
+    posts_tab_heading: Postas
+  admin:
+    account_actions:
+      action: Acter
+      title: Far un moderatori action a %{acct}
+    account_moderation_notes:
+      create: Scrir un note
+      created_msg: Moderatori nota creat successosimen!
+      destroyed_msg: Moderatori nota destructet successosimen!
+    accounts:
+      add_email_domain_block: Bloccar email-dominia {domain}
+      approve: Aprobar
+      approved_msg: Successosimen aprobat li aplication de registration de %{username}
+      are_you_sure: Es tu cert?
+      avatar: Avatar
+      by_domain: Dominia
+      change_email:
+        changed_msg: Email-adresse changeat successosimen!
+        current_email: Actual e-post
+        label: Cambiar li e-post
+        new_email: Nov e-post
+        submit: Cambiar li e-post
+        title: Changear li email-adresse de %{username}
+      change_role:
+        changed_msg: Rol changeat successosimen!
+        label: Cambiar li rol
+        no_role: Sin rol
+        title: Changear li rol de %{username}
+      confirm: Confirmar
+      confirmed: Confirmat
+      confirming: Atende confirmation
+      custom: Personalisat
+      delete: Deleter data
+      deleted: Deletet
+      demote: Demoer
+      destroyed_msg: Li data de %{username} es nu in li linea por esser deletet iminentmen
+      disable: Gelar
+      disable_sign_in_token_auth: Desactivisar autentication per email-claves
+      disable_two_factor_authentication: Desactivisar 2FA
+      disabled: Gelat
+      display_name: Visibil nómine
+      domain: Dominia
+      edit: Modificar
+      email: E-post
+      email_status: Statu del e-post
+      enable: Desgelar
+      enable_sign_in_token_auth: Activisar autentication per email-claves
+      enabled: Activ
+      enabled_msg: Successosimen desgelat li conto de %{username}
+      followers: Sequitores
+      follows: Seque
+      inbox_url: Inbuxe URL
+      invite_request_text: Rason por adhesion
+      invited_by: Invitat de
+      ip: IP
+      joined: Adheret
+      location:
+        all: Omni
+        local: Local
+        remote: Lontan
+        title: Localisation
+      login_status: Statu de intration
+      media_attachments: Medie-atachamentes
+      memorialize: Converter al memoriale
+      memorialized: Memorialisat
+      memorialized_msg: Successosimen convertet %{username} a un conto de memoriale
+      moderation:
+        active: Activ
+        all: Omni
+        disabled: Desactivat
+        pending: Atendent
+        silenced: Limitat
+        suspended: Suspendet
+        title: Moderation
+      moderation_notes: Notes de moderator
+      most_recent_activity: Ultim activitá
+      most_recent_ip: Ultim IP
+      no_account_selected: Null contos esset changeat pro que null contos esset selectet
+      no_limits_imposed: Null límites imposit
+      no_role_assigned: Null rol assignat
+      not_subscribed: Ne abonnat
+      pending: Atende li revision
+      perform_full_suspension: Suspender
+      previous_strikes: Precedent violationes
+      previous_strikes_description_html:
+        one: Ti conto have <strong>un</strong> violation.
+        other: Ti conto have <strong>%{count}</strong> violationes.
+      promote: Promoer
+      protocol: Protocol
+      public: Public
+      redownload: Recargar li profil
+      redownloaded_msg: Successosimen recargat li profil de %{username} del original fonte
+      reject: Rejecter
+      rejected_msg: Successosimen rejectet li aplication de registration de %{username}
+      remote_suspension_irreversible: Li data de ti-ci conto ha esset deletet ínreversibilmen.
+      remote_suspension_reversible_hint_html: Li conto ha esset suspendet che su servitor, e li data va esser completmen removet ye %{date}. Til tande, li lontan servitor posse restaurar ti conto sin quelcunc mal efectes. Si tu vole remover omni data del conto ínmediatmen, tu posse far it in infra.
+      remove_avatar: Remover li avatar
+      removed_avatar_msg: Successosimen removet li avatar-image de %{username}
+      resend_confirmation:
+        already_confirmed: Ti usator ja esset confirmat
+        send: Inviar li confirmation denov
+        success: Ligament de confirmation successosimen misset!
+      reset: Reiniciar
+      reset_password: Reiniciar passa-parol
+      resubscribe: Reabonnar
+      role: Rol
+      search: Serchar
+      search_same_email_domain: Altri usatores con li sam email-dominia
+      search_same_ip: Altri usatores con li sam IP
+      security: Securitá
+      security_measures:
+        only_password: Solmen un passa-parol
+        password_and_2fa: Passa-parol e 2FA
+      sensitive: Marcar sensitiv
+      sensitized: Marcat quam sensitiv
+      shared_inbox_url: Partit URL de inbuxe
+      show:
+        created_reports: Raportes fat
+        targeted_reports: Raportat de altres
+      silence: Limitar
+      silenced: Limitat
+      statuses: Postas
+      strikes: Precedent violationes
+      subscribe: Abonnar
+      suspend: Suspender
+      suspended: Suspendet
+      suspension_irreversible: Li data de ti-ci conto ha esset deletet ínreversibilmen. Tu posse dessuspender li conto por far it usabil ma it ne va reganiar quelcunc data quel it anteriorimen havet.
+      suspension_reversible_hint_html: Li conto ha esset suspendet, e li data va esser completmen removet ye %{date}. Til tande, li conto posse esser restaurat sin quelcunc mal efectes. Si tu vole remover omni data del conto ínmediatmen, tu posse far it in infra.
+      title: Contos
+      unblock_email: Desbloccar email-adresse
+      unblocked_email_msg: Successosimen desbloccat li email-adresse de %{username}
+      unconfirmed_email: Ínconfirmat email-adresse
+      undo_sensitized: Desmarcar quam sensitiv
+      undo_silenced: Deslimitar
+      undo_suspension: Desfar li suspension
+      unsilenced_msg: Successosimen deslimitat li conto de %{username}
+      unsubscribe: Desabonnar
+      unsuspended_msg: Successosimen dessuspendet li conto de %{username}
+      username: Nómine de usator
+      view_domain: Vider summarium pri li dominia
+      warn: Admonir
+      web: Web
+      whitelisted: Permisset por federation
+    action_logs:
+      action_types:
+        approve_appeal: Aprobar Apelle
+        approve_user: Aprobar usator
+        assigned_to_self_report: Assignar Raporte
+        change_email_user: Changear li email-adresse del usator
+        change_role_user: Changear li rol del usator
+        confirm_user: Confirmar usator
+        create_account_warning: Crear admonimentes
+        create_announcement: Crear un proclamation
+        create_canonical_email_block: Crear Email-Blocca
+        create_custom_emoji: Crear Customisat Emoji
+        create_domain_allow: Crear Dominia-Permisse
+        create_domain_block: Crear Dominia-Blocca
+        create_email_domain_block: Crear Email-Dominia-Blocca
+        create_ip_block: Crear regules por IP
+        create_unavailable_domain: Crear Dominia Índisponibil
+        create_user_role: Crear roles
+        demote_user: Demoer Usator
+        destroy_announcement: Deleter proclamation
+        destroy_canonical_email_block: Deleter Email-Blocca
+        destroy_custom_emoji: Deleter Customisat Emoji
+        destroy_domain_allow: Deleter Dominia-Permisse
+        destroy_domain_block: Deleter Dominia-Blocca
+        destroy_email_domain_block: Deleter Email-Dominia-Blocca
+        destroy_instance: Purgar Dominia
+        destroy_ip_block: Deleter regul por IP
+        destroy_status: Deleter Posta
+        destroy_unavailable_domain: Deleter Dominia Índisponibil
+        destroy_user_role: Destructer Rol
+        disable_2fa_user: Desactivisar 2FA
+        disable_custom_emoji: Desactivisar Customisat Emoji
+        disable_sign_in_token_auth_user: Desactivisar autentication per email-claves por usator
+        disable_user: Desactivisar Usator
+        enable_custom_emoji: Activisar Customisat Emoji
+        enable_sign_in_token_auth_user: Activisar autentication per email-claves por usator
+        enable_user: Activisar Usator
+        memorialize_account: Memorialisar Conto
+        promote_user: Promoer Usator
+        reject_appeal: Rejecter Apelle
+        reject_user: Rejecter Usator
+        remove_avatar_user: Remover Avatar
+        reopen_report: Reaperter Raporte
+        resend_user: Reinviar Confirmation
+        reset_password_user: Reiniciar Passa-parol
+        resolve_report: Resoluer Raporte
+        sensitive_account: Fortiar que medie de ti conto es marcat quam sensitiv
+        silence_account: Limitar Conto
+        suspend_account: Suspender Conto
+        unassigned_report: Deassignar Raporte
+        unblock_email_account: Desbloccar email-adresse
+        unsensitive_account: Desfar li fortiation que medie de ti conto es marcat quam sensitiv
+        unsilence_account: Deslimitar Conto
+        unsuspend_account: Dessuspender Conto
+        update_announcement: Actualisar un proclamation
+        update_custom_emoji: Actualisar Customisat Emoji
+        update_domain_block: Actualisar Dominia-Blocca
+        update_ip_block: Actualisar regul por IP
+        update_status: Actualisar Posta
+        update_user_role: Actualisar Rol
+      actions:
+        approve_appeal_html: "%{name} aprobat li apelle de %{target} contra un decision de moderation"
+        approve_user_html: "%{name} aprobat li registration de %{target}"
+        assigned_to_self_report_html: "%{name} assignat raporte %{target} a su self"
+        change_email_user_html: "%{name} changeat li email-adresse de usator %{target}"
+        change_role_user_html: "%{name} changeat li rol de %{target}"
+        confirm_user_html: "%{name} confirmat li email-adresse de usator %{target}"
+        create_account_warning_html: "%{name} dat un admoniment a %{target}"
+        create_announcement_html: "%{name} creat li nov proclamation %{target}"
+        create_canonical_email_block_html: "%{name} bloccat email con li hash %{target}"
+        create_custom_emoji_html: "%{name} cargat nov emoji %{target}"
+        create_domain_allow_html: "%{name} permisset federation con dominia %{target}"
+        create_domain_block_html: "%{name} bloccat dominia %{target}"
+        create_email_domain_block_html: "%{name} bloccat email-dominia %{target}"
+        create_ip_block_html: "%{name} creat regul por IP %{target}"
+        create_unavailable_domain_html: "%{name} haltat liveration a dominia %{target}"
+        create_user_role_html: "%{name} creat li rol %{target}"
+        demote_user_html: "%{name} demoet li usator %{target}"
+        destroy_announcement_html: "%{name} deletet li proclamation %{target}"
+        destroy_canonical_email_block_html: "%{name} desbloccat email con li hash %{target}"
+        destroy_custom_emoji_html: "%{name} deletet emoji %{target}"
+        destroy_domain_allow_html: "%{name} interdictet federation con dominia %{target}"
+        destroy_domain_block_html: "%{name} desbloccat dominia %{target}"
+        destroy_email_domain_block_html: "%{name} desbloccat email-dominia %{target}"
+        destroy_instance_html: "%{name} purgat dominia %{target}"
+        destroy_ip_block_html: "%{name} deletet regul por IP %{target}"
+        destroy_status_html: "%{name} removet posta de %{target}"
+        destroy_unavailable_domain_html: "%{name} recomensat liveration a dominia %{target}"
+        destroy_user_role_html: "%{name} deletet li rol %{target}"
+        disable_2fa_user_html: "%{name} desactivisat 2-factor postulation por li usator %{target}"
+        disable_custom_emoji_html: "%{name} desactivisat emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} desactivisat autentication per email-clave por %{target}"
+        disable_user_html: "%{name} desactivisat li abilitá de %{target} a intrar"
+        enable_custom_emoji_html: "%{name} activisat emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} activisat autentication per email-clave por %{target}"
+        enable_user_html: "%{name} activisat li abilitá de %{target} a intrar"
+        memorialize_account_html: "%{name} fat li conto de %{target} un págine de memorial"
+        promote_user_html: "%{name} promoet li usator %{target}"
+        reject_appeal_html: "%{name} rejectet li apelle de %{target} contra un decision de moderation"
+        reject_user_html: "%{name} rejectet li registration de %{target}"
+        remove_avatar_user_html: "%{name} removet li avatar de %{target}"
+        reopen_report_html: "%{name} reapertet raporte %{target}"
+        resend_user_html: "%{name} remisset un confirmation-email a %{target}"
+        reset_password_user_html: "%{name} reiniciat li passa-parol del usator %{target}"
+        resolve_report_html: "%{name} soluet raporte %{target}"
+        sensitive_account_html: "%{name} marcat li medie de %{target} quam sensitiv"
+        silence_account_html: "%{name} limitat li conto de %{target}"
+        suspend_account_html: "%{name} suspendet li conto de %{target}"
+        unassigned_report_html: "%{name} deassignat raporte %{target}"
+        unblock_email_account_html: "%{name} desbloccat li email-adresse de %{target}"
+        unsensitive_account_html: "%{name} desmarcat li medie de %{target} quam sensitiv"
+        unsilence_account_html: "%{name} deslimitat li conto de %{target}"
+        unsuspend_account_html: "%{name} dessuspendet li conto de %{target}"
+        update_announcement_html: "%{name} actualisat li proclamation %{target}"
+        update_custom_emoji_html: "%{name} actualisat emoji %{target}"
+        update_domain_block_html: "%{name} actualisat li dominia-blocca de %{target}"
+        update_status_html: "%{name} actualisat posta de %{target}"
+        update_user_role_html: "%{name} changeat li rol %{target}"
+      deleted_account: deletet conto
+      filter_by_action: Filtrar per action
+      filter_by_user: Filtrar per usator
+    announcements:
+      destroyed_msg: Proclamation deletet successosimen!
+      edit:
+        title: Redacter proclamation
+      empty: Null proclamationes trovat.
+      live: Activ
+      new:
+        create: Crear un proclamation
+        title: Nov proclamation
+      publish: Publicar
+      published_msg: Proclamation publicat successosimen!
+      scheduled_for: Planat por %{time}
+      scheduled_msg: Proclamation planat por publication!
+      title: Proclamationes
+      unpublish: Despublicar
+      unpublished_msg: Proclamation despublicat successosimen!
+      updated_msg: Proclamation actualisat successosimen!
+    critical_update_pending: Urgente actualisation atendent
+    custom_emojis:
+      assign_category: Assignar categorie
+      by_domain: Dominia
+      copied_msg: Successosimen creat un local copie del emoji
+      copy: Copiar
+      copy_failed_msg: Ne posset crear un local copie de ti-ta emoji
+      create_new_category: Crear nov categorie
+      created_msg: Emoji successosimen creat!
+      delete: Deleter
+      destroyed_msg: Emoji successosimen deletet!
+      disable: Desactivisar
+      disabled: Desactivisat
+      disabled_msg: Successosimen desactivisat ti emoji
+      emoji: Emoji
+      enable: Activar
+      enabled: Activ
+      enabled_msg: Successosimen activisat ti emoji
+      image_hint: PNG o GIF minu quam %{size}
+      list: Inlistar
+      listed: Inlistat
+      new:
+        title: Adjunter nov customisat emoji
+      no_emoji_selected: Null emoji esset changeat pro que null esset selectet
+      not_permitted: Tu ne es permisset far ti action
+      shortcode_hint: Adminim 2 carácteres, solmen lítteres, ciffres e sublineas
+      title: Customisat emoji
+      uncategorized: Íncategorisat
+      unlist: Delistar
+      unlisted: Delistat
+      update_failed_msg: Ne posset actualisar ti emoji
+      updated_msg: Emoji successosimen actualisat!
+      upload: Cargar
+    dashboard:
+      active_users: activ usatores
+      interactions: interactiones
+      media_storage: Inmagasination de medie
+      new_users: nov usatores
+      opened_reports: raportes apertet
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> pendent apelle"
+        other: "<strong>%{count}</strong> pendent apelles"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> pendent raporte"
+        other: "<strong>%{count}</strong> pendent raportes"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> pendent hashtag"
+        other: "<strong>%{count}</strong> pendent hashtags"
+      pending_users_html:
+        one: "<strong>%{count}</strong> pendent usator"
+        other: "<strong>%{count}</strong> pendent usatores"
+      resolved_reports: raportes soluet
+      software: Programmas
+      sources: Fontes de adhesiones
+      space: Usation de spacie
+      title: Panel de control
+      top_languages: Max activ lingues
+      top_servers: Max activ servitores
+      website: Websitu
+    disputes:
+      appeals:
+        empty: Null apelles trovat.
+        title: Apelles
+    domain_allows:
+      add_new: Permisse federation con dominia
+      created_msg: Dominia ha esset successosimen permisset por federation
+      destroyed_msg: Dominia ha esset interdictet por federation
+      export: Exportar
+      import: Importar
+      undo: Interdicter federation con dominia
+    domain_blocks:
+      add_new: Adjunte nov dominia-blocca
+      confirm_suspension:
+        cancel: Anullar
+        confirm: Suspender
+        permanent_action: Desfar li suspension ne va restaurar quelcunc data o relation.
+        preamble_html: Tu va suspender <strong>%{domain}</strong> e su subdominias.
+        remove_all_data: Ti va remover omni contenete, medie e profil-data por li contos de ti-ci dominia de tui servitor.
+        stop_communication: Tui servitor va haltar comunication con ti servitores.
+        title: Confirmar dominia-blocca por %{domain}
+        undo_relationships: Ti va desfar quelcunc seque-relation inter contos de ti servitores e tis de tui.
+      created_msg: On tracta li dominia-blocca nu
+      destroyed_msg: Dominia-blocca ha esset desfat
+      domain: Dominia
+      edit: Modificar dominia-blocca
+      existing_domain_block: Tu ja ha imposit plu strict límites sur %{name}.
+      existing_domain_block_html: Tu ja ha imposit plu strict límites sur %{name}, tu besona <a href="%{unblock_url}">desbloccar it</a> erst.
+      export: Exportar
+      import: Importar
+      new:
+        create: Crear blocca
+        hint: Li dominia-blocca ne va prevenir li creation de intradas por contos in li database, ma it va retroactivmen e automaticmen aplica specific metodes de moderation a ti contos.
+        severity:
+          desc_html: "<strong>Limitar</strong> va far que postas de contos che ti dominia es ínvisibil a quicunc ne ja seque les. <strong>Suspender</strong> va remover omni contenete, medie e profil-data por li contos de ti dominia de tui servitor. Usa <strong>Null</strong> si tu vole simplicmen rejecter medie-files."
+          noop: 'Null'
+          silence: Limitar
+          suspend: Suspender
+        title: Nov dominia-blocca
+      no_domain_block_selected: Null dominia-bloccas esset changeat pro que null esset selectet
+      not_permitted: Tu ne es permisset far ti action
+      obfuscate: Obscurar dominia-nómine
+      obfuscate_hint: Partialmen obscurar li dominia-nómine in li liste si li publication de dominia-limitationes es activisat
+      private_comment: Privat comenta
+      private_comment_hint: Comenta pri ti dominia-limitation por usation internal del moderatores.
+      public_comment: Public comenta
+      public_comment_hint: Comenta pri ti dominia-limitation por li general public, si li publication del liste de dominia-limitationes es activisat.
+      reject_media: Rejecter medie-files
+      reject_media_hint: Remove medie-files inmagasinat localmen e refusa descargar quelcunc plu in li futur. Ínpertinent por suspensiones
+      reject_reports: Rejecter raportes
+      reject_reports_hint: Ignorar omni raportes venient de ti dominia. Ínpertinent por suspensiones
+      undo: Desfar dominia-blocca
+      view: Vider dominia-blocca
+    email_domain_blocks:
+      add_new: Adjunter un nov
+      attempts_over_week:
+        one: "%{count} registration-prova durant li ultim semane"
+        other: "%{count} registration-prova durant li ultim semane"
+      created_msg: Successosimen bloccat email-dominia
+      delete: Deleter
+      dns:
+        types:
+          mx: Registre MX
+      domain: Dominia
+      new:
+        create: Adjunter dominia
+        resolve: Resolver un dominia
+        title: Bloccar nov email-dominia
+      no_email_domain_block_selected: Null email-dominia-bloccas esset changeat pro que null esset selectet
+      not_permitted: Ne permisset
+      title: Bloccat email-dominias
+    export_domain_allows:
+      new:
+        title: Importar permisset dominias
+      no_file: Null file selectet
+    export_domain_blocks:
+      import:
+        description_html: Tu va importar un liste de dominia-bloccas. Ples controlar ti liste tre cuidosimen, precipue si tu ne creat li liste personalmen.
+        existing_relationships_warning: Existent seque-relationes
+        private_comment_description_html: 'Por auxiliar te saver de u veni importat bloccas, importat bloccas va esser creat con li sequent privat comenta: <q>%{comment}</q>'
+        private_comment_template: Importat de %{source} ye %{date}
+        title: Importar dominia-bloccas
+      invalid_domain_block: 'Un o plu dominia-bloccas esset omisset pro li sequent errore(s): %{error}'
+      new:
+        title: Importar dominia-bloccas
+      no_file: Null file selectet
+    follow_recommendations:
+      language: Por li lingue
+      status: Statu
+      suppress: Supresser seque-recomandation
+      suppressed: Supresset
+      title: Seque-recomandationes
+      unsuppress: Restaurar seque-recomandation
+    instances:
+      availability:
+        title: Disponibilitá
+        warning: Li ultim prova conexer a ti servitor ha esset ínsuccessosi
+      back_to_all: Omni
+      back_to_limited: Limitat
+      back_to_warning: Admonit
+      by_domain: Dominia
+      confirm_purge: Vole tu vermen permanentmen deleter data de ti dominia?
+      content_policies:
+        comment: Internal nota
+        policy: Politica
+        reason: Visibil rason
+        title: Politicas pri contenete
+      delivery:
+        unavailable: Índisponibil
+      delivery_error_hint: Si liveration ne es possibil durant %{count} dies, it va esser marcat automaticmen quam ínliverabil.
+      destroyed_msg: Data de %{domain} es nu in li linea por iminent deletion.
+      empty: Null dominias trovat.
+      known_accounts:
+        one: "%{count} conosset conto"
+        other: "%{count} conosset contos"
+      moderation:
+        all: Omni
+        limited: Limitat
+        title: Moderation
+      private_comment: Privat comenta
+      public_comment: Public comenta
+      purge: Purgar
+      title: Federation
+      total_blocked_by_us: Bloccat de nos
+      total_followed_by_them: Sequet de les
+      total_followed_by_us: Sequet de nos
+      total_reported: Raportes pri les
+      total_storage: Medie-atachamentes
+      totals_time_period_hint_html: Li totales monstrat in infra include data por omni témpor.
+      unknown_instance: Actualmen hay null registre de ti dominia che ti-ci servitor.
+    invites:
+      deactivate_all: Desactivisar omni
+      filter:
+        all: Omni
+        available: Disponibil
+        expired: Expirat
+        title: Filtre
+      title: Invitationes
+    ip_blocks:
+      add_new: Crear regul
+      created_msg: Successosimen adjuntet nov IP-regul
+      delete: Deleter
+      expires_in:
+        '1209600': 2 semanes
+        '15778476': 6 mensus
+        '2629746': 1 mensu
+        '31556952': 1 annu
+        '86400': 1 die
+        '94670856': 3 annus
+      new:
+        title: Crear nov IP-regul
+      no_ip_block_selected: Null IP-regules esset changeat pro que null esset selectet
+      title: Regules por IPs
+    relationships:
+      title: Li relationes de %{acct}
+    relays:
+      add_new: Adjunter un nov relé
+      delete: Deleter
+      description_html: Un <strong>federational relé</strong> es un intermediari servitor quel exchangea grandissim quantitás de public postas inter li servitores queles abonna e publicar a it. <strong>It posse auxiliar micri e medial servitores decovrir contenete del fediverse</strong>, quel altrimen vell besonar que local usatores seque altri persones che lontan servitores manualmen.
+      disable: Desactivisar
+      disabled: Desactivisat
+      enable: Activisar
+      enable_hint: Pos activisation, tui servitor va abonnar al omni public postas de ti relé, e va comensar misser li public postas de ti-ci servitor a it.
+      enabled: Activisat
+      inbox_url: URL del relé
+      pending: Atendent li aprobation del relé
+      save_and_enable: Conservar e activisar
+      setup: Etablisser un conexion a un relé
+      signatures_not_enabled: Relés fórsan ne va functionar corectmen si secur mode o mode de limitat federation es activisat
+      status: Statu
+      title: Relés
+    report_notes:
+      created_msg: Raportal nota creat successosimen!
+      destroyed_msg: Raportal nota deletet successosimen!
+    reports:
+      account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} notas"
+      action_taken_by: Action fat de
+      actions:
+        delete_description_html: Li raportat postas va esser deletet e un admoniment va esser registrat por auxiliar te escalar si hay futuri infractiones del sam conto.
+        mark_as_sensitive_description_html: Li medie in li raportat postas va esser marcat quam sensitiv e un admoniment va esser registrat por auxiliar te escalar si hay futuri infractiones del sam conto.
+        other_description_html: Vider plu optiones por controlar li conduida del conto e customisar comunication al raportat conto.
+        resolve_description_html: Null action va esser fat contra li raportat conto, null admoniment registrat, e li raporte va esser cludet.
+        silence_description_html: Li conto va esser visibil nur a tis qui ja seque it o qui sercha it manualmen, limitante severimen su atingement. Ti sempre posse esser revertet. Ti clude omni raportes contra ti conto.
+      add_to_report: Adjunter plu al raporte
+      are_you_sure: Es tu cert?
+      assign_to_self: Assignar it a me
+      assigned: Assignat moderator
+      by_target_domain: Dominia del conto raportat
+      cancel: Anullar
+      category: Categorie
+      category_description_html: Li rason pro quel ti conto e/o contenete esset raportat va esser citat in comunication con li conto raportat
+      comment:
+        none: 'Null'
+      comment_description_html: 'Por provider plu mult information, %{name} scrit:'
+      confirm: Confirmar
+      confirm_action: Confirmar moderatori action contra @%{acct}
+      created_at: Raportat
+      delete_and_resolve: Deleter postas
+      mark_as_resolved: Marcar quam soluet
+      mark_as_sensitive: Marcar quam sensitiv
+      mark_as_unresolved: Marcar quam ínsoluet
+      no_one_assigned: Nequi
+      notes:
+        create: Adjunter nota
+        create_and_resolve: Soluer med nota
+        create_and_unresolve: Reaperter med nota
+        delete: Deleter
+        placeholder: Descrir li actiones queles ha esset fat, o quelcunc altri relatent actualisationes...
+        title: Notas
+      notes_description_html: Vider e lassar notas a altri moderatores e a tui futuri self
+      processed_msg: 'Raporte #%{id} successosimen tractat'
+      quick_actions_description_html: 'Fa un rapid action o ear ad-infra por vider li contenete raportat:'
+      remote_user_placeholder: li lontan usator de %{instance}
+      reopen: Reaperter raporte
+      report: 'Raporte #%{id}'
+      reported_account: Raportat conto
+      reported_by: Raportat de
+      resolved: Soluet
+      resolved_msg: Raporte successosimen soluet!
+      skip_to_actions: Ear rect al actiones
+      status: Statu
+      statuses: Contenete raportat
+      title: Raportes
+    roles:
+      categories:
+        moderation: Moderation
+      privileges:
+        administrator: Administrator
+        manage_announcements: Tractar proclamationes
+        manage_announcements_description: Permisse usatores tractar proclamationes sur li servitor
+        manage_user_access_description: Permisse usatores desactivisar li 2-factor autentication de altri usatores, changear lor email-adresses, e reiniciar lor passa-paroles
+        manage_users: Gerer usatores
+      title: Roles
+    rules:
+      add_new: Adjunter un regule
+    settings:
+      about:
+        title: Pri
+      appearance:
+        title: Aspecte
+      domain_blocks:
+        users: A local usatores qui ha initiat session
+    site_uploads:
+      delete: Deleter cargat file
+      destroyed_msg: Cargat file successosimen deletet!
+    software_updates:
+      type: Tip
+      version: Version
+    statuses:
+      account: Autor
+      language: Lingue
+      metadata: Metadata
+      visibility: Visibilitá
+    title: Administration
+    trends:
+      approved: Aprobat
+      statuses:
+        shared_by:
+          one: Partit o favoritisat un vez
+          other: Partit e favoritisat %{friendly_count} vezes
+      tags:
+        listable: Suggestibil
+        not_listable: Ne suggestibil
+        not_usable: Prohibit
+        usable: Permisset
+        usage_comparison: 'Usat hodie: %{today} vez(es), yer: %{yesterday}'
+    webhooks:
+      events: Evenimentes
+      status: Statu
+  application_mailer:
+    salutation: "%{name},"
+  auth:
+    confirmations:
+      welcome_title: Benevenit, %{name}!
+    delete_account: Deleter li conto
+    forgot_password: Obliviat tu tui passa-parol?
+    invalid_reset_password_token: Li clave por reiniciar li passa-parol es ínvalid o expirat. Ples demandar un nov.
+    reset_password: Reiniciar passa-parol
+    rules:
+      accept: Acceptar
+      back: Retro
+    security: Securitá
+    set_new_password: Establisser nov passa-parol
+  challenge:
+    confirm: Continuar
+    hint_html: "<strong>Nota</strong>: On ne va petir tui passa-parol denov por li venient hor."
+    invalid_password: Ínvalid passa-parol
+    prompt: Confirmar passa-parol por avansar
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      with_month_name: "%d. %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_years: "%{count}a"
+      almost_x_years: "%{count}a"
+      x_seconds: "%{count}s"
+  deletes:
+    confirm_password: Introducte tui actual passa-parol por verificar tui identitá
+    proceed: Deleter li conto
+  disputes:
+    strikes:
+      appeal: Apellar
+  exports:
+    archive_takeout:
+      date: Date
+      size: Grandore
+    blocks: Tu ha bloccat
+    bookmarks: Marcatores
+    csv: CSV
+    lists: Listes
+    mutes: Tu silentia
+  featured_tags:
+    add_new: Adjunter un nov
+    hint_html: "<strong>Pinglar tui max important hashtags sur tui profil.</strong> Un bonissim maniere de mantener un registre de tui ovres e projectes, pinglat hashtags es monstrat prominentmen sur tui profil e permisse rapid accesse a tui propri postas."
+  filters:
+    contexts:
+      account: Profiles
+      thread: Conversationes
+    index:
+      title: Filtres
+    new:
+      save: Conservar nov filtre
+  generic:
+    all: Omni
+    cancel: Anullar
+    changes_saved_msg: Modificationes conservat successosimen!
+    confirm: Confirmar
+    copy: Copiar
+    none: 'Null'
+    save_changes: Conservar changes
+    today: hodie
+  imports:
+    errors:
+      empty: li file es vacui
+      invalid_csv_file: 'Ínvalid file CSV. Errore: %{error}'
+      over_rows_processing_limit: contene plu quam %{count} lineas
+      too_large: li file es tro grand
+    imported: Importat
+    modes:
+      merge: Coalescer
+    overwrite_preambles:
+      muting_html: Tu va <strong>remplazzar tui liste de silentiat contos</strong> per til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
+    preambles:
+      muting_html: Tu va <strong>silentiar</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
+    states:
+      finished: Finit
+    titles:
+      lists: Importar listes
+      muting: Importation de silentiat contos
+    type: Tip de importation
+    type_groups:
+      constructive: Seques e marcatores
+      destructive: Bloccas & silentias
+    types:
+      blocking: Liste de bloccas
+      bookmarks: Marcatores
+      following: Liste de sequetes
+      lists: Listes
+    upload: Cargar
+  invites:
+    expired: Expirat
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hores
+      '3600': 1 hor
+      '43200': 12 hores
+      '604800': 1 semane
+      '86400': 1 die
+    expires_in_prompt: Nequande
+  login_activities:
+    authentication_methods:
+      password: passa-parol
+    description_html: Si tu vide activitá quel tu ne conosse, considera changear tui passa-parol e activisar 2-factor autentication.
+  mail_subscriptions:
+    unsubscribe:
+      title: Desabonnar
+  migrations:
+    set_redirect: Configurar un redirection
+  move_handler:
+    carry_mutes_over_text: Ti-ci usator movet se de %{acct}, quel tu hat silentiat.
+  notification_mailer:
+    follow_request:
+      action: Tractar petitiones de sequer
+      body: "%{name} ha petit sequer te"
+      subject: 'Pendent sequitor: %{name}'
+      title: Nov petition de sequer
+    mention:
+      action: Responder
+    poll:
+      subject: Un balotation de %{name} ha finit
+  otp_authentication:
+    enable: Activar
+    setup: Configurar
+  pagination:
+    next: Seq
+    prev: Prec
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Tu ja votat in ti-ci balotation
+      duplicate_options: contene duplicat elementes
+      duration_too_long: es tro distant in li futur
+      duration_too_short: es tro tost
+      expired: Li balotation ja finit
+      invalid_choice: Li option por quel tu votat ne existe
+      over_character_limit: ne posse esser plu long quam %{max} carácteres chascun
+      self_vote: On ne posse votar en su propri balotationes
+      too_few_options: deve haver plu quam un option
+      too_many_options: ne posse contener plu quam %{max} optiones
+  preferences:
+    other: Altri
+  privacy:
+    search: Sercha
+  relationships:
+    activity: Activitá de conto
+    dormant: Dormient
+    mutual: Reciproc
+    status: Statu del conto
+  sessions:
+    activity: Ultim activitá
+    browser: Navigator
+    browsers:
+      chrome: Chrome
+      electron: Electron
+      generic: Ínconosset navigator
+      unknown_browser: Ínconosset navigator
+    description: "%{browser} in %{platform}"
+    explanation: Tis-ci es li navigatores queles actualmen ha initiat sessiones a tui Mastodon-conto.
+    ip: IP
+    platforms:
+      unknown_platform: Ínconosset platform
+      windows: Windows
+    revoke: Revocar
+  settings:
+    account: Conto
+    appearance: Aspecte
+  statuses:
+    attached:
+      description: 'Atachat: %{attached}'
+      image:
+        one: "%{count} image"
+        other: "%{count} images"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
+    default_language: Sam quam li lingue del interfacie
+    edited_at_html: Modificat ye %{date}
+    pin_errors:
+      direct: On ne posse pinglar postas queles es visibil solmen a mentionat usatores
+      limit: Tu ja ha pinglat li maxim númere de postas
+      ownership: On ne posse pinglar li posta de un altri person
+      reblog: On ne posse pinglar un boost
+    poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} persones"
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Votar
+    title: "%{name}: «%{quote}»"
+    visibilities:
+      public: Public
+      unlisted: Delistat
+  statuses_cleanup:
+    exceptions: Exceptiones
+    keep_pinned: Conservar pinglat postas
+    keep_pinned_hint: Delete null de tui pinglat postas
+    keep_polls: Conservar balotationes
+    keep_polls_hint: Delete null de tui balotationes
+    min_age:
+      '1209600': 2 semanes
+      '31556952': 1 annu
+  time:
+    formats:
+      default: "%d.%m.%Y ye %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+  two_factor_authentication:
+    add: Adjunter
+  user_mailer:
+    suspicious_sign_in:
+      change_password: changear tui passa-parol
+    warning:
+      categories:
+        spam: Spam
+      reason: 'Rason:'
+      subject:
+        none: Admoniment por %{acct}
+    welcome:
+      subject: Benevenit a Mastodon
+  users:
+    seamless_external_login: Tu ha intrat per un servicie external, dunc parametres pri tui passa-parol e email-adresse ne es disponibil.
+  verification:
+    verification: Verification

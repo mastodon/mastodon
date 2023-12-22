@@ -100,7 +100,7 @@ class Form::AdminSettings
 
   KEYS.each do |key|
     define_method(key) do
-      return instance_variable_get("@#{key}") if instance_variable_defined?("@#{key}")
+      return instance_variable_get(:"@#{key}") if instance_variable_defined?(:"@#{key}")
 
       stored_value = if UPLOAD_KEYS.include?(key)
                        SiteUpload.where(var: key).first_or_initialize(var: key)
@@ -110,12 +110,12 @@ class Form::AdminSettings
                        Setting.public_send(key)
                      end
 
-      instance_variable_set("@#{key}", stored_value)
+      instance_variable_set(:"@#{key}", stored_value)
     end
   end
 
   UPLOAD_KEYS.each do |key|
-    define_method("#{key}=") do |file|
+    define_method(:"#{key}=") do |file|
       value = public_send(key)
       value.file = file
     rescue Mastodon::DimensionsValidationError => e
@@ -130,13 +130,13 @@ class Form::AdminSettings
     return false unless errors.empty? && valid?
 
     KEYS.each do |key|
-      next if PSEUDO_KEYS.include?(key) || !instance_variable_defined?("@#{key}")
+      next if PSEUDO_KEYS.include?(key) || !instance_variable_defined?(:"@#{key}")
 
       if UPLOAD_KEYS.include?(key)
         public_send(key).save
       else
         setting = Setting.where(var: key).first_or_initialize(var: key)
-        setting.update(value: typecast_value(key, instance_variable_get("@#{key}")))
+        setting.update(value: typecast_value(key, instance_variable_get(:"@#{key}")))
       end
     end
   end
@@ -163,9 +163,9 @@ class Form::AdminSettings
 
   def validate_site_uploads
     UPLOAD_KEYS.each do |key|
-      next unless instance_variable_defined?("@#{key}")
+      next unless instance_variable_defined?(:"@#{key}")
 
-      upload = instance_variable_get("@#{key}")
+      upload = instance_variable_get(:"@#{key}")
       next if upload.valid?
 
       upload.errors.each do |error|

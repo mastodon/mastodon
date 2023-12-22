@@ -1,0 +1,230 @@
+---
+lad:
+  simple_form:
+    hints:
+      account:
+        display_name: Tu nombre para amostrar.
+      account_alias:
+        acct: Espesifika tu nombre de utilizador@domeno del kuento de ande keres migrar
+      account_migration:
+        acct: Espesifika el nombre de utilizador@domeno del kuento de kualo keres migrar
+      account_warning_preset:
+        text: Puedes kulanear sintaksa de publikasyones, komo adresos URL, etiketas i enmentaduras
+        title: Opsyonal. No es vizivle para el destinatario
+      admin_account_action:
+        include_statuses: El utilizador vera kualas publikasyones tienen kauzado la aksyon de moderasyon o avertensya
+        send_email_notification: El utilizador risivira una esplikasyon de lo kualo afito kon su kuento
+        text_html: Puedes kulanear sintaksa de publikasyones. Puede adjustar <a href="%{path}">konfigurasyones predefinidas de avertensya</a> para no pedrer tiempo
+        type_html: Eskoje lo ke vas fazer kon <strong>%{acct}</strong>
+        types:
+          disable: Evita ke el utilizador utilize su kuento, pero no supreme ni eskonde sus kontenidos.
+          none: Utiliza esto para embiar una avertensya al utilizador, sin ampesar ninguna otra aksyon.
+          sensitive: Forza ke todas las dosyas multimedia de este utilizador sean markados komo sensivles.
+          silence: Evita ke el utilizador pueda publikar kon vizivilita publika, i eskonde sus mesajes i avizos a personas ke no lo sigen. Serra todos los raportos kontra este kuento.
+          suspend: Evita kualseker interaksyon dizde o verso este kuento i supreme su kontenido. Reversivle en 30 diyas. Sierra todos los raportos kontra este kuento.
+        warning_preset_id: Opsyonal. Ainda puedes adjustar teksto personalizado al final de la konfigurasyon predefinida
+      announcement:
+        all_day: Kuando esta eskojido solo se amostraran las datas del rango de tiempo
+        ends_at: Opsyonal. El pregon dezaparesera otomatikamente en este momento
+        scheduled_at: Deshar en blanko para publikar el pregon pishin
+        starts_at: Opsyonal. En caso de ke tu pregon este atado a un intervalo de tiempo espesifiko
+        text: Puedes kulanear la sintaksa de publikasyones. Por favor nota el espasyo ke okupara el pregon en el ekran del utilizador
+      appeal:
+        text: Solo puedes apelar un amonestamiento una vez
+      defaults:
+        autofollow: Los utilizadores ke se enrejistren por la envitasyon te segiran otomatikamente
+        avatar: PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
+        bot: Indika ke este kuento egzekuta prinsipalmente aksyones otomatizadas i podria no ser monitorizada
+        context: Uno o multiples kontekstos en los ke deve aplikarse el filtro
+        current_password: Por razones de sigurita por favor ingresa el kod del kuento aktual
+        current_username: Para konfirmar, por favor ingresa el nombre de utilizador del kuento aktual
+        digest: Solo embiado dempues de un eluengo periodo de inaktivita i solo si tienes recibido mesajes personales durante tu ausensya
+        email: Se te embiara konfirmasyon por posta elektronika
+        header: PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
+        inbox_url: Kopia el URL de la pajina prinsipala del relevo ke keres utilizar
+        irreversible: Las publikasyones filtradas dezapareseran irreversivlemente, inkluzo si este filtro es supremido mas adelante
+        locale: La lingua de la enterfaz de utilizador, posta i avizos arrepushados
+        password: Utiliza al manko 8 karakteres
+        phrase: Se aplikara sin importar las mayuskulas o los avizos de kontenido de una publikasyon
+        scopes: A los kualos APIs la aplikasyon tendra akseso. Si eskojes el alkanse de nivel mas alto, no kale eskojer las individualas.
+        setting_aggregate_reblogs: No amostra muevas repartajasyones para las publikasyones ke an sido resientemente repartajadas (solo afekta a las repartajasyones risividas resientemente)
+        setting_always_send_emails: Normalmente los avizos por posta elektronika no se embiaran kuando estes uzando Mastodon aktivamente
+        setting_default_sensitive: Tu muevo kontenido multimedia esta eskondido i puede ser amostrado kon un klik
+        setting_display_media_default: Eskonde kontenido multimedia markado komo sensivle
+        setting_display_media_hide_all: Siempre eskonde todo el kontenido multimedia
+        setting_display_media_show_all: Amostra siempre el kontenido de multimedia
+        setting_use_blurhash: Los gradientes se bazan en los kolores de las imajes eskondidas pero faziendo velados los peratim
+        setting_use_pending_items: Eskonde muevas publikasyones detras de un klik en lugar de desplazar otomatikamente la linya
+        whole_word: Kuando el biervo yave o fraza es solo alfanumerika, solo sera aplikado si konkorda kon todo el biervo
+      domain_allow:
+        domain: Este domeno podra obtener datos de este sirvidor i los datos entrantes seran prosesados i archivados
+      email_domain_block:
+        domain: Este puede ser el nombre de domeno ke aparese en el adreso de posta elektronika o el rejistro MX ke utiliza. Se komprovaran al registrarse.
+        with_dns_records: Se ara un intento de rezolver los rejistros DNS del domeno dado i los rizultados seran tamyen puestos en lista preta
+      featured_tag:
+        name: 'Aki estan algunas de las etiketas ke mas tienes utilizado resientemente:'
+      filters:
+        action: Eskoje kuala aksyon realizar kuando una publikasyon koensida kon el filtro
+        actions:
+          hide: Eskonde kompletamente el kontenido filtrado komo si no existiera
+          warn: Eskonde el kontenido filtrado detras de una avertensya enmentando el titolo del filtro
+      form_admin_settings:
+        activity_api_enabled: Numero de publikasyones publikadas lokalmente, utilizadores activos i enrejistrasyones muevas kada semana
+        backups_retention_period: Manten las dosyas de utilizador djeneradas durante el numero de diyas espesifikado.
+        bootstrap_timeline_accounts: Estos kuentos apareseran en la parte superior de las rekomendasiones de los muevos utilizadores.
+        closed_registrations_message: Amostrado kuando las enrejistrasyones estan serrados
+        content_cache_retention_period: Las publikasyones de otros sirvidores se supremiran dempues del numero espesifikado de diyas kuando se establezka una valuta pozitiva. Esto puede ser irreversivle.
+        custom_css: Puedes aplikar estilos personalizados a la version web de Mastodon.
+        mascot: Reemplaza la ilustrasyon en la enterfaz web avanzada.
+        media_cache_retention_period: Las dosyas de multimedia abashadas se supremiran dempues del numero espesifikado de diyas kuando se establezka una valuta pozitiva, i se reabasharan basho demanda.
+        peers_api_enabled: Una lista de nombres de domeno ke este sirvidor tiene topado en el Fediverso. Aki no se inkluye dingun dato sovre si federas kon un sirvidor determinado, solo ke tu sirvidor lo konese. Esto es utilizado por los servisyos ke rekopilan estatistikas sovre la federasyon en un senso djeneral.
+        profile_directory: El katalogo de profiles lista a todos los utilizadores ke tienen optado por ke sus kuento pueda ser deskuvierto.
+        require_invite_text: Kuando las enrejistrasyones rekieren achetasyon manuala, faze obligatoria la entrada de teksto "Por ke keres unirte?" en lugar de ser opsyonal
+        site_contact_email: Komo la djente puede ponerse en kontakto kontigo para konsultas legales o de ayuda.
+        site_contact_username: Komo puede kontaktarte la djente en Mastodon.
+        site_extended_description: Kualseker enformasyon adisyonala ke pueda ser util para los vizitantes i tus utilizadores. Se puede estrukturar kon formato Markdown.
+        site_short_description: Una breve deskripsyon para ayudar a identifikar tu sirvidor de forma unika. Ken lo administra?
+        site_terms: Utiliza tu propia politika de privasita o deshala en blanko para kulanear la predeterminada Puede estrukturarse kon formato Markdown.
+        site_title: Komo puede referirse la djente a tu sirvidor ademas de por el nombre de domeno.
+        status_page_url: Adreso URL de la pajina ande la djente puede ver el estado de este sirvidor durante una insidensya
+        theme: El tema ke los vizitantes no enrejistrados i los muevos utilizadores ven.
+        thumbnail: Una imaje de aproksimadamente 2:1 se amostra djunto a la enformasyon de tu sirvidor.
+        timeline_preview: Los vizitantes no konektados podran navigar por los mesajes publikos mas resientes desponivles en el sirvidor.
+        trendable_by_default: Omite la revizyon manuala del kontenido en trend. Los elementos individuales ainda podran supremirse de los trendes.
+        trends: Los trendes amostran ke mesajes, etiketas i haberes estan ganando traksyon en tu sirvidor.
+        trends_as_landing_page: Amostra kontenido en trend para utilizadores i vizitantes en lugar de una deskripsyon de este sirvidor. Rekiere ke los trendes esten kapasitados.
+      form_challenge:
+        current_password: Estas entrando en un area siguro
+      imports:
+        data: Archivo CSV eksportado dizde otra instansya de Mastodon
+      invite_request:
+        text: Esto nos ayudara a revizar tu aplikasyon
+      ip_block:
+        comment: Opsyonal. Akodrate por ke tienes adjustado esta regla.
+        expires_in: Los adresos IP son un rekurso finito, a vezes se partajan i trokan. Por esta razon, no se rekomiendan blokos de IP indefinidos.
+        ip: Introduze un adreso IPv4 o IPv6. Puede blokar rangos kompletos uzando la sintaksa CIDR. Ten kuidado de no kedarte afuera!
+        severities:
+          no_access: Bloka akseso a todos los rekursos
+          sign_up_block: Las muevas enrejistrasyones se inkapasitaran
+          sign_up_requires_approval: Muevas enrejistrasyones rekeriran tu achetasyon
+        severity: Eskoje lo ke pasara kon las petisyones dizde este IP
+      rule:
+        text: Deskrive una norma o rekerensya para los utilizadores de este sirvidor. Aprova fazerla kurta i kolay
+      sessions:
+        otp: 'Introduse el kodiche de autentifikasyon de dos pasos djenerado por tu aplikasyon de telefon o uza uno de tus kodiches de recuperasyon:'
+        webauthn: Si es una yave USB, asigurete de insertarla y, si es necesario, pulsala.
+      tag:
+        name: Solo se puede trokar la kapitalizasyon de las letras, por enshemplo, para ke sea mas meldable
+      user:
+        chosen_languages: Kuando se marka, solo se amostraran las publikasyones en las linguas eskojidas en las linyas de tiempo publikas
+        role: El rolo kontrola kualos permisos tiene el utilizador
+      user_role:
+        color: Color ke se utilizara para el rolo a lo largo de la enterfaz de utilizador, komo RGB en formato heksadesimal
+        highlighted: Esto faze ke el rolo sea publikamente visible
+        name: Nombre publiko del rolo, si el rolo se establese para ke se amostre komo una insinya
+        permissions_as_keys: Los utilizadores kon este rolo tendran akseso a...
+        position: Un rolo mas alto deside la rezolusyon de konfliktos en algunas situasyones. Algunas aksyones solo pueden levarse por rolos kon menor priorita
+      webhook:
+        events: Eskoje evenimientos para embiar
+        url: Ande los evenimientos seran embiados
+    labels:
+      account:
+        fields:
+          name: Etiketa
+          value: Kontenido
+      account_alias:
+        acct: Alias del kuento viejo
+      account_migration:
+        acct: Alias del muevo kuento
+      account_warning_preset:
+        text: Teksto predefinido
+        title: Titolo
+      admin_account_action:
+        include_statuses: Inkluye en la posta elektronika las publikasyones raportadas
+        send_email_notification: Aviza al utilizador por posta elektronika
+        text: Avizo personalizado
+        type: Aksyon
+        types:
+          disable: Inkapasitar
+          none: Embia uma avertensya
+          sensitive: Sensivle
+          silence: Limita
+          suspend: Suspende
+        warning_preset_id: Kulanea un avizo predeterminado
+      announcement:
+        all_day: Evenimiento de todo el diya
+        ends_at: Fin del evenimiento
+        scheduled_at: Programar publikasyon
+        starts_at: Ampesijo del evenimiento
+        text: Pregon
+      appeal:
+        text: Esplika porke esta dechizyon deve ser revertida
+      defaults:
+        autofollow: Envita a segir tu kuento
+        avatar: Imaje de profil
+        bot: Este es un kuento otomatizado
+        chosen_languages: Filtra linguas
+        confirm_new_password: Konfirma muevo kod
+        confirm_password: Konfirma kod
+        context: Filtra kontekstos
+        current_password: Kod aktual
+        setting_use_blurhash: Amostra gradientes koloridos para kontenido multimedia eskondido
+        setting_use_pending_items: Modo lento
+        severity: Severita
+        sign_in_token_attempt: Kodiche de sigurita
+        title: Titolo
+        type: Tipo de importasyon
+        username: Nombre de uzador
+        username_or_email: Utilizador o posta
+        whole_word: Todo el biervo
+      email_domain_block:
+        with_dns_records: Inkluye los rejistros MX i los adresos IP del domeno
+      featured_tag:
+        name: Etiketa
+      filters:
+        actions:
+          hide: Eskonde kompletamente
+          warn: Eskonde kon una avertensya
+      form_admin_settings:
+        activity_api_enabled: Publika estatistikas adjustadas sovre la aktivita del utilizador kon la API
+        backups_retention_period: Periodo de retensyon de la dosya de utilizador
+        bootstrap_timeline_accounts: Rekomenda siempre estos kuentos a muevos utilizadores
+        closed_registrations_message: Mesaj personalizado kuando las enrejistrasyones no estan desponivles
+        content_cache_retention_period: Periodo de retensyon de kashe de kontenido
+        custom_css: CSS personalizado
+        mascot: Maskota personalizada (legado)
+        media_cache_retention_period: Periodo de retensyon de kashe multimedia
+        peers_api_enabled: Publika lista de sirvidores diskuviertos en la API
+        profile_directory: Kapasita katalogo de profiles
+        registrations_mode: Ken puede enrejistrarse
+        require_invite_text: Rekere una razon para unirse
+        show_domain_blocks: Amostra domenos blokados
+        show_domain_blocks_rationale: Amostra deke se blokaron los domenos
+        site_contact_email: Posta elektronika de kontakto
+        site_contact_username: Nombre de utilizador de kontakto
+        site_extended_description: Deskripsyon ekstendida
+        site_short_description: Deskripsyon del sirvidor
+        site_terms: Politika de privasita
+        site_title: Nombre del sirvidor
+        status_page_url: URL de pajina de estado
+        theme: Tema predeterminado
+        thumbnail: Minyatura del sirvidor
+        timeline_preview: Permite el akseso no autentifikado a las linyas de tiempo publikas
+        trendable_by_default: Permite trendes sin revizyon previa
+        trends: Kapasita trendes
+        trends_as_landing_page: Kulanea trendes komo la pajina prinsipala
+      interactions:
+        must_be_follower: Bloka avizos de personas ke no te sigen
+        must_be_following: Bloka avizos de personas a las kualas no siges
+        must_be_following_dm: Bloka mesajes direktos de personas a las kualas no siges
+      invite:
+        comment: Komento
+      invite_request:
+        text: Deke keres adjuntarte?
+      ip_block:
+        comment: Komento
+        ip: IP
+        severities:
+          no_access: Bloka akseso
+          sign_up_block: Bloka enrejistrasyones
+          sign_up_requires_approval: Limita enrejistrasyones

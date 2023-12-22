@@ -26,7 +26,7 @@ Lint/NonLocalExitFromIterator:
 
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
-  Max: 130
+  Max: 100
 
 # Configuration parameters: CountBlocks, Max.
 Metrics/BlockNesting:
@@ -119,23 +119,6 @@ Rails/LexicallyScopedActionFilter:
     - 'app/controllers/auth/passwords_controller.rb'
     - 'app/controllers/auth/registrations_controller.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/NegateInclude:
-  Exclude:
-    - 'app/controllers/concerns/signature_verification.rb'
-    - 'app/helpers/jsonld_helper.rb'
-    - 'app/lib/activitypub/activity/create.rb'
-    - 'app/lib/activitypub/activity/move.rb'
-    - 'app/lib/feed_manager.rb'
-    - 'app/lib/link_details_extractor.rb'
-    - 'app/models/concerns/attachmentable.rb'
-    - 'app/models/concerns/remotable.rb'
-    - 'app/models/custom_filter.rb'
-    - 'app/services/activitypub/process_status_update_service.rb'
-    - 'app/services/fetch_link_card_service.rb'
-    - 'app/workers/web/push_notification_worker.rb'
-    - 'lib/paperclip/color_extractor.rb'
-
 Rails/OutputSafety:
   Exclude:
     - 'config/initializers/simple_form.rb'
@@ -181,22 +164,6 @@ Rails/SkipsModelValidations:
     - 'app/workers/move_worker.rb'
     - 'app/workers/scheduler/ip_cleanup_scheduler.rb'
     - 'app/workers/scheduler/scheduled_statuses_scheduler.rb'
-    - 'db/migrate/20161203164520_add_from_account_id_to_notifications.rb'
-    - 'db/migrate/20170105224407_add_shortcode_to_media_attachments.rb'
-    - 'db/migrate/20170209184350_add_reply_to_statuses.rb'
-    - 'db/migrate/20170304202101_add_type_to_media_attachments.rb'
-    - 'db/migrate/20180528141303_fix_accounts_unique_index.rb'
-    - 'db/migrate/20180609104432_migrate_web_push_subscriptions2.rb'
-    - 'db/migrate/20181207011115_downcase_custom_emoji_domains.rb'
-    - 'db/migrate/20190511134027_add_silenced_at_suspended_at_to_accounts.rb'
-    - 'db/migrate/20191007013357_update_pt_locales.rb'
-    - 'db/migrate/20220316233212_update_kurdish_locales.rb'
-    - 'db/post_migrate/20190511152737_remove_suspended_silenced_account_fields.rb'
-    - 'db/post_migrate/20200917193528_migrate_notifications_type.rb'
-    - 'db/post_migrate/20201017234926_fill_account_suspension_origin.rb'
-    - 'db/post_migrate/20220617202502_migrate_roles.rb'
-    - 'db/post_migrate/20221101190723_backfill_admin_action_logs.rb'
-    - 'db/post_migrate/20221206114142_backfill_admin_action_logs_again.rb'
     - 'lib/mastodon/cli/accounts.rb'
     - 'lib/mastodon/cli/maintenance.rb'
     - 'spec/lib/activitypub/activity/follow_spec.rb'
@@ -211,19 +178,6 @@ Rails/UniqueValidationWithoutIndex:
     - 'app/models/custom_filter_status.rb'
     - 'app/models/identity.rb'
     - 'app/models/webauthn_credential.rb'
-
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/UnusedIgnoredColumns:
-  Exclude:
-    - 'app/models/account.rb'
-    - 'app/models/account_stat.rb'
-    - 'app/models/admin/action_log.rb'
-    - 'app/models/custom_filter.rb'
-    - 'app/models/email_domain_block.rb'
-    - 'app/models/report.rb'
-    - 'app/models/status_edit.rb'
-    - 'app/models/user.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
@@ -379,22 +333,6 @@ Style/IfUnlessModifier:
     - 'config/initializers/ffmpeg.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: InverseMethods, InverseBlocks.
-Style/InverseMethods:
-  Exclude:
-    - 'app/models/custom_filter.rb'
-    - 'app/services/update_account_service.rb'
-    - 'spec/controllers/activitypub/replies_controller_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: line_count_dependent, lambda, literal
-Style/Lambda:
-  Exclude:
-    - 'config/initializers/simple_form.rb'
-    - 'config/routes.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
 Style/MapToHash:
   Exclude:
     - 'app/models/status.rb'
@@ -458,15 +396,6 @@ Style/RedundantFetchBlock:
     - 'config/initializers/paperclip.rb'
     - 'config/puma.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowMultipleReturnValues.
-Style/RedundantReturn:
-  Exclude:
-    - 'app/controllers/api/v1/directories_controller.rb'
-    - 'app/controllers/auth/confirmations_controller.rb'
-    - 'app/lib/ostatus/tag_manager.rb'
-    - 'app/models/form/import.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.
 # AllowedMethods: present?, blank?, presence, try, try!
@@ -487,11 +416,6 @@ Style/SingleArgumentDig:
   Exclude:
     - 'lib/webpacker/manifest_extensions.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-Style/StderrPuts:
-  Exclude:
-    - 'config/boot.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Mode.
 Style/StringConcatenation:
@@ -509,13 +433,6 @@ Style/StringLiterals:
     - 'config/initializers/rack_attack.rb'
     - 'config/initializers/webauthn.rb'
     - 'config/routes.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowMethodsWithArguments, AllowedMethods, AllowedPatterns, AllowComments.
-# AllowedMethods: define_method, mail, respond_to
-Style/SymbolProc:
-  Exclude:
-    - 'config/initializers/3_omniauth.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, AllowSafeAssignment.
