@@ -44,7 +44,10 @@ class AccountsController < ApplicationController
   end
 
   def default_statuses
-    @account.statuses.where(visibility: [:public, :unlisted])
+    @account
+      .statuses
+      .without_replies
+      .where(visibility: [:public, :unlisted])
   end
 
   def hashtag_scope
