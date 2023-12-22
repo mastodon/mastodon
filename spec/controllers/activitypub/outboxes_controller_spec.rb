@@ -229,6 +229,8 @@ RSpec.describe ActivityPub::OutboxesController do
   end
 
   def targets_followers_collection?(item, account)
-    item[:to].include?(account_followers_url(account, ActionMailer::Base.default_url_options))
+    item[:to].include?(
+      account_followers_url(account, ActionMailer::Base.default_url_options)
+    )
   end
 end
