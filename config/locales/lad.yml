@@ -718,6 +718,7 @@ lad:
         manage_rules: Administra reglas del sirvidor
         title: Sovre esto
       appearance:
+        preamble: Personaliza la enterfaz web de Mastodon.
         title: Aparensya
       branding:
         title: Marka
@@ -753,6 +754,8 @@ lad:
       release_notes: Notas sovre la versyon
       title: Aktualizasyones desponivles
       type: Tipo
+      types:
+        major: Versyon prinsipala
       version: Versyon
     statuses:
       account: Autor
@@ -976,6 +979,7 @@ lad:
       awaiting_review_title: Estamos revizando tu enrejistramiento
       clicking_this_link: klikando en este atadijo
       login_link: konektate kon kuento
+      proceed_to_login_html: Agora puedes ir a %{login_link}.
       welcome_title: Bienvenido, %{name}!
       wrong_email_hint: Si este adreso de posta es inkorekto, puedes trokarlo en las preferensyas del kuento.
     delete_account: Efasa kuento
@@ -1064,12 +1068,15 @@ lad:
       x_seconds: "%{count} s"
   deletes:
     proceed: Efasa kuento
+    success_msg: Tu kuento fue efasado kon reusho
     warning:
+      before: 'Antes de kontinuar, por favor melda kon atensyon las sigientes notas:'
       username_unavailable: Tu nombre de utilizador no estara desponivle
   disputes:
     strikes:
       action_taken: Aksyon tomada
       appeal: Apela
+      appeal_rejected: La apelasyon fue refuzada
       appeal_submitted_at: Apelasyon embiada
       appealed_msg: Tu apelasyon fue embiada. Si la achetamos, se te avizara.
       appeals:
@@ -1134,6 +1141,8 @@ lad:
     storage: Magazinaje de multimedia
   featured_tags:
     add_new: Adjusta muevo
+    errors:
+      limit: Tienes alkansado el karar maksimo de etiketas
   filters:
     contexts:
       account: Profiles
@@ -1147,8 +1156,11 @@ lad:
       statuses: Publikasyones individualas
       title: Edita filtro
     index:
+      contexts: Filtros en %{contexts}
       delete: Efasa
       empty: No tyenes filtros.
+      expires_in: Kaduka en %{distance}
+      expires_on: Kaduka en %{date}
       keywords:
         one: "%{count} biervo yave"
         other: "%{count} biervos yave"
@@ -1177,6 +1189,7 @@ lad:
     delete: Efasa
     deselect: Deseleksyonar todo
     none: Dinguno
+    order_by: Ordena por
     save_changes: Guadra trokamientos
     today: oy
   imports:
@@ -1201,6 +1214,7 @@ lad:
     success: Tus datos se tienen kargado djustamente i seran prosesados pishin
     time_started: Ampesado el
     titles:
+      blocking: Importando kuentos blokados
       bookmarks: Importando markadores
       domain_blocking: Importando domenos blokados
       following: Importando kuentos segidos
@@ -1229,6 +1243,7 @@ lad:
       '604800': 1 semana
       '86400': 1 diya
     expires_in_prompt: Nunkua
+    generate: Djenera un atadijo de envitasyon
     invalid: Esta envitasyon no es valida
     invited_by: 'Fuites envitado por:'
     max_uses:
@@ -1255,7 +1270,15 @@ lad:
     title: Estoria de autentifikasyon
   mail_subscriptions:
     unsubscribe:
+      action: Si, dezabona
       complete: Dezabonado
+      emails:
+        notification_emails:
+          favourite: avizos de favoritos por posta
+          follow: avizos de segidores por posta
+          follow_request: avizos de solisitasyones de segimyento por posta
+          mention: avizos de enmentaduras por posta
+          reblog: avizos de repartajasyones por posta
       title: Dezabona
   media_attachments:
     validations:
@@ -1295,15 +1318,21 @@ lad:
     title: Moderasyon
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} embio un raporto"
       sign_up:
         subject: "%{name} se enrejistro"
     favourite:
+      body: 'Tu publikasyon fue favoritada por %{name}:'
+      subject: A %{name} le plaze tu publikasyon
       title: Muevo favorito
     follow:
       body: "%{name} te esta sigiendo!"
       subject: "%{name} te esta sigiendo"
       title: Muevo suivante
     follow_request:
+      action: Administra solisitudes de segimiento
+      body: "%{name} tiene solisitado segirte"
       subject: 'Segidor esta asperando: %{name}'
       title: Mueva solisitud de segimiento
     mention:
@@ -1311,13 +1340,19 @@ lad:
       body: 'Fuites enmentado por %{name} en:'
       subject: Fuites enmentado por %{name}
       title: Mueva enmentadura
+    poll:
+      subject: Una anketa de %{name} eskapo
     reblog:
+      body: 'Tu publikasyon fue repartajada por %{name}:'
+      subject: "%{name} repartajo tu publikasyon"
       title: Mueva repartajasyon
     status:
       subject: "%{name} publiko algo"
     update:
       subject: "%{name} edito una publikasyon"
   notifications:
+    administration_emails: Avizos de administrasyon por posta
+    email_events: Evenimyentos para avizos por posta
     other_settings: Otras preferensyas de avizos
   number:
     human:
@@ -1383,9 +1418,16 @@ lad:
     mutual: Mutual
     primary: Prinsipal
     relationship: Relasyon
+    remove_selected_followers: Kita a los suivantes eskojidos
+    remove_selected_follows: Desige a los utilizadores eskojidos
     status: Estado del kuento
   rss:
     content_warning: 'Avertensya de kontenido:'
+    descriptions:
+      account: Publikasyones publikas de @%{acct}
+      tag: 'Publikasyones publikas etiketadas kon #%{hashtag}'
+  self_destruct:
+    title: Este sirvidor esta serrando
   sessions:
     activity: Ultima aktivita
     browser: Navigador
@@ -1410,6 +1452,7 @@ lad:
       unknown_browser: Navigador deskonosido
       weibo: Weibo
     current_session: Sesyon aktuala
+    description: "%{browser} en %{platform}"
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1421,6 +1464,7 @@ lad:
       kai_os: KaiOS
       linux: Linux
       mac: macOS
+      unknown_platform: Platforma deskonesida
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1478,6 +1522,7 @@ lad:
       direct: Las publikasyones ke son vizivles solo para los utilizadores enmentados no pueden fiksarse
       limit: Ya tienes fiksado el numero maksimo de publikasyones
       ownership: La publikasyon de otra persona no puede fiksarse
+      reblog: No se puede fixar una repartajasyon
     poll:
       total_people:
         one: "%{count} persona"
@@ -1503,6 +1548,18 @@ lad:
     exceptions: Eksepsiones
     ignore_favs: Ignora favoritos
     ignore_reblogs: Ignora repartajasyones
+    keep_direct: Manten enmentaduras privadas
+    keep_direct_hint: No efasa dingunos mesajes privados
+    keep_media: Manten publikasyones kon atamientos
+    keep_media_hint: No efasa tus publikasyones kon atamientos de multimedia
+    keep_pinned: Manten publikasyones fiksadas
+    keep_pinned_hint: No efasa tus publikasyones fiksadas
+    keep_polls: Manten anketas
+    keep_polls_hint: No efasa tus anketas
+    keep_self_bookmark: Manten publikasyones kon markadores
+    keep_self_bookmark_hint: No efasa tus publikasyones kon tus markadores
+    keep_self_fav: Manten publikasyones ke te plazen
+    keep_self_fav_hint: No efasa las tus publikasyones kualas markates komo favoritas
     min_age:
       '1209600': 2 semanas
       '15778476': 6 mezes
@@ -1512,6 +1569,8 @@ lad:
       '604800': 1 semana
       '63113904': 2 anyos
       '7889238': 3 mezes
+    min_favs: Manten publikasyones favoritadas a lo manko
+    min_reblogs: Manten publikasyones repartajadas a lo manko
   stream_entries:
     sensitive_content: Kontenido sensivle
   strikes:
@@ -1577,18 +1636,30 @@ lad:
         mark_statuses_as_sensitive: Algunas de tus publikasyones an sido markados komo sensivles por los moderadores de %{instance}. Esto sinyifika ke la djente tendra ke pulsar los dosyas multimedia en las publikasyones antes de ke se amostre una vista previa. Puedes markar los dosyas multimedia komo sensivles tu mezmo kuando publikes en el avenir.
         sensitive: A partir de agora todas los dosyas multimedia ke subas seran markados komo sensivles i eskondidos tras una avertensya.
       reason: 'Razon:'
+      statuses: 'Publikasyones relevantes:'
       subject:
+        delete_statuses: Tus publikasyones en %{acct} tienen sido efasadas
+        disable: Tu kuento %{acct} tiene sido konjelado
+        mark_statuses_as_sensitive: Tus publikasyones en %{acct} tienen sido markadas komo sensivles
         none: Avertensya para %{acct}
+        sensitive: Tus publikasyones en %{acct} seran markadas komo sensivles dizde agora
+        silence: Tu kuento %{acct} tiene sido limitado
+        suspend: Tu kuento %{acct} tiene sido suspendido
       title:
         delete_statuses: Publikasyones efasadas
+        disable: Kuento konjelado
         mark_statuses_as_sensitive: Publikasyones markadas komo sensivles
         none: Avertensya
+        sensitive: Kuento markado komo sensivle
         silence: Kuento limitado
         suspend: Kuento suspendido
     welcome:
+      edit_profile_action: Konfigurasyon de profil
       final_action: Ampesa a publikar
       subject: Bienvenido a Mastodon
+      title: Bienvenido, %{name}!
   users:
+    follow_limit_reached: No puedes segir a mas de %{limit} personas
     invalid_otp_token: Kodiche de dos pasos no valido
     signed_in_as: 'Konektado komo:'
   verification:
@@ -1596,7 +1667,12 @@ lad:
     verified_links: Tus atadijos verifikados
   webauthn_credentials:
     add: Adjusta mueva yave de sigurita
+    create:
+      success: Tu yave de sigurita fue adjustada kon sukseso.
     delete: Efasa
+    delete_confirmation: Estas siguro ke keres efasar esta yave de sigurita?
+    destroy:
+      success: Tu yave de sigurita fue efasada kon sukseso.
     invalid_credential: Yave de sigurita no valida
     nickname_hint: Introduska el sovrenombre de tu mueva yave de sigurita
     not_enabled: Ainda no tienes aktivado WebAuthn
