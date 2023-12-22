@@ -418,7 +418,7 @@ class User < ApplicationRecord
 
   def set_approved
     self.approved = begin
-      if sign_up_from_ip_requires_approval?
+      if sign_up_from_ip_requires_approval? || sign_up_email_requires_approval?
         false
       else
         open_registrations? || valid_invitation? || external?
@@ -428,6 +428,12 @@ class User < ApplicationRecord
 
   def sign_up_from_ip_requires_approval?
     !sign_up_ip.nil? && IpBlock.where(severity: :sign_up_requires_approval).where('ip >>= ?', sign_up_ip.to_s).exists?
+  end
+
+  def sign_up_email_requires_approval?
+    return false unless email.present? || unconfirmed_email.present?
+
+    EmailDomainBlock.requires_approval?(email.presence || unconfirmed_email, attempt_ip: sign_up_ip)
   end
 
   def open_registrations?
