@@ -84,7 +84,8 @@ RSpec.describe ActivityPub::RepliesController do
           expect(page_json).to be_a Hash
           expect(page_json[:items]).to be_an Array
           expect(page_json[:items].size).to eq 1
-          expect(page_json[:items].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
+          public_collection = ActivityPub::TagManager::COLLECTIONS[:public]
+          expect(page_json[:items].all? { |item| item[:to].include?(public_collection) || item[:cc].include?(public_collection) }).to be true
         end
 
         context 'when there are few self-replies' do

@@ -79,7 +79,8 @@ RSpec.describe ActivityPub::OutboxesController do
         it 'returns orderedItems with public or unlisted statuses' do
           expect(body[:orderedItems]).to be_an Array
           expect(body[:orderedItems].size).to eq 2
-          expect(body[:orderedItems].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
+          public_collection = ActivityPub::TagManager::COLLECTIONS[:public]
+          expect(body[:orderedItems].all? { |item| item[:to].include?(public_collection) || item[:cc].include?(public_collection) }).to be true
         end
 
         it_behaves_like 'cacheable response'
@@ -132,7 +133,9 @@ RSpec.describe ActivityPub::OutboxesController do
           json = body_as_json
           expect(json[:orderedItems]).to be_an Array
           expect(json[:orderedItems].size).to eq 2
-          expect(json[:orderedItems].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
+          public_collection = ActivityPub::TagManager::COLLECTIONS[:public]
+
+          expect(json[:orderedItems].all? { |item| item[:to].include?(public_collection) || item[:cc].include?(public_collection) }).to be true
         end
 
         it 'returns private Cache-Control header' do
@@ -158,7 +161,8 @@ RSpec.describe ActivityPub::OutboxesController do
           json = body_as_json
           expect(json[:orderedItems]).to be_an Array
           expect(json[:orderedItems].size).to eq 3
-          expect(json[:orderedItems].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:to].include?(account_followers_url(account, ActionMailer::Base.default_url_options)) }).to be true
+          public_collection = ActivityPub::TagManager::COLLECTIONS[:public]
+          expect(json[:orderedItems].all? { |item| item[:to].include?(public_collection) || item[:cc].include?(public_collection) || item[:to].include?(account_followers_url(account, ActionMailer::Base.default_url_options)) }).to be true
         end
 
         it 'returns private Cache-Control header' do
