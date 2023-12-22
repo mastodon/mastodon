@@ -36,7 +36,6 @@ jobs:
       platforms: linux/amd64,linux/arm64
       use_native_arm64_builder: false
       push_to_images: |
-        tootsuite/mastodon-streaming
         ghcr.io/mastodon/mastodon-streaming
       # Do not use cache when building releases, so apt update is always ran and the release always contain the latest packages
       cache: false

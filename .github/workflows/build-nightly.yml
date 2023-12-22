@@ -51,7 +51,6 @@ jobs:
       use_native_arm64_builder: false
       cache: false
       push_to_images: |
-        tootsuite/mastodon-streaming
         ghcr.io/mastodon/mastodon-streaming
       version_prerelease: ${{ needs.compute-suffix.outputs.prerelease }}
       labels: |
