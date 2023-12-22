@@ -4,6 +4,9 @@ lad:
     hints:
       account:
         display_name: Tu nombre para amostrar.
+        fields: Tu deskripsyon, pronombres, edad, todo lo ke keras.
+        note: 'Puedes @enmentar a otra djente o #etiketas.'
+        show_collections: Otra djente podra ver tus segidos i suivantes. Personas a las kualas siges siempre podran ver que las estas sigiendo.
       account_alias:
         acct: Espesifika tu nombre de utilizador@domeno del kuento de ande keres migrar
       account_migration:
@@ -55,6 +58,7 @@ lad:
         setting_display_media_show_all: Amostra siempre el kontenido de multimedia
         setting_use_blurhash: Los gradientes se bazan en los kolores de las imajes eskondidas pero faziendo velados los peratim
         setting_use_pending_items: Eskonde muevas publikasyones detras de un klik en lugar de desplazar otomatikamente la linya
+        username: Solo puedes uzar letras, shifras i sulinyados
         whole_word: Kuando el biervo yave o fraza es solo alfanumerika, solo sera aplikado si konkorda kon todo el biervo
       domain_allow:
         domain: Este domeno podra obtener datos de este sirvidor i los datos entrantes seran prosesados i archivados
@@ -113,6 +117,8 @@ lad:
       sessions:
         otp: 'Introduse el kodiche de autentifikasyon de dos pasos djenerado por tu aplikasyon de telefon o uza uno de tus kodiches de recuperasyon:'
         webauthn: Si es una yave USB, asigurete de insertarla y, si es necesario, pulsala.
+      settings:
+        show_application: Tu siempre podras ver dizde kuala aplikasyon publikates tu publikasyon.
       tag:
         name: Solo se puede trokar la kapitalizasyon de las letras, por enshemplo, para ke sea mas meldable
       user:
@@ -132,6 +138,9 @@ lad:
         fields:
           name: Etiketa
           value: Kontenido
+        indexable: Inkluye publikasyones publikas en los rezultados de bushkeda
+        show_collections: Amostra tus segidos i suivantes en el profil
+        unlocked: Otomatikamente acheta muevos suivantes
       account_alias:
         acct: Alias del kuento viejo
       account_migration:
@@ -175,16 +184,23 @@ lad:
         fields: Datos adisyonales
         header: Imaje de kavesera
         locale: Lingua de enterfaz
+        max_uses: Maksimo numero de uzos
         new_password: Muevo kod
         note: Deskripsyon
         otp_attempt: Kodiche de dos pasos
         password: Kod
         phrase: Biervo yave o fraza
+        setting_aggregate_reblogs: Agrupa repartajasyones en linyas
+        setting_always_send_emails: Siempre embia avizos por posta
+        setting_auto_play_gif: Siempre reproduse los GIFs animados
         setting_default_language: Lingua de publikasyones
         setting_default_privacy: Privasita de publikasyones
         setting_display_media_default: Predeterminado
         setting_display_media_hide_all: Eskonde todo
         setting_display_media_show_all: Amostra todo
+        setting_reduce_motion: Reduse el movimyento en animasyones
+        setting_system_font_ui: Uza el font predeterminado del sistem
+        setting_trends: Amostra los trendes de oy
         setting_use_blurhash: Amostra gradientes koloridos para kontenido multimedia eskondido
         setting_use_pending_items: Modo lento
         severity: Severita
@@ -247,14 +263,23 @@ lad:
           sign_up_requires_approval: Limita enrejistrasyones
         severity: Regla
       notification_emails:
+        favourite: A alguno le plaze tu publikasyon
         follow: Alguno te ampeso a segir
         follow_request: Alguno tiene solisitado segirte
         mention: Alguno te enmento
+        pending_account: Muevo kuento nesesita revizyon
         reblog: Alguno repartajo tu publikasyon
+        report: Muevo raporto fue embiado
         software_updates:
+          all: Avizame de kada aktualizasyon
+          critical: Avizame solo de aktualizasyones kritikas
           label: Mueva version de Mastodon esta desponivle
+          none: Nunkua avizame de aktualizasyones (no rekomendado)
+          patch: Avizame de aktualizasyones de yerros
       rule:
         text: Regla
+      settings:
+        indexable: Inkluye la pajina de profil en los bushkadores
       tag:
         name: Etiketa
       user:
