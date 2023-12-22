@@ -7,11 +7,7 @@ describe Admin::DashboardController do
 
   describe 'GET #index' do
     before do
-      allow(Admin::SystemCheck).to receive(:perform).and_return([
-                                                                  Admin::SystemCheck::Message.new(:database_schema_check),
-                                                                  Admin::SystemCheck::Message.new(:rules_check, nil, admin_rules_path),
-                                                                  Admin::SystemCheck::Message.new(:sidekiq_process_check, 'foo, bar'),
-                                                                ])
+      allow(Admin::SystemCheck).to receive(:perform).and_return(system_check_messages)
       sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin'))
     end
 
@@ -19,6 +15,16 @@ describe Admin::DashboardController do
       get :index
 
       expect(response).to have_http_status(200)
+    end
+
+    private
+
+    def system_check_messages
+      [
+        Admin::SystemCheck::Message.new(:database_schema_check),
+        Admin::SystemCheck::Message.new(:rules_check, nil, admin_rules_path),
+        Admin::SystemCheck::Message.new(:sidekiq_process_check, 'foo, bar'),
+      ]
     end
   end
 end
