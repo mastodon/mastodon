@@ -4,6 +4,9 @@ ie:
     hints:
       account:
         unlocked: Persones va posser sequer te sin petir aprobation. Desselecte si tu vole manualmen tractar petitiones de sequer e decider ca acceptar o rejecter nov sequitores.
+      account_warning_preset:
+        text: Tu posse usar posta-sintaxe, quam URLs, hashtags e mentiones
+        title: Ínobligatori. Ne visibil al recipiente
       admin_account_action:
         send_email_notification: Li usator va reciver un explication de ti quel evenit con su conto
         text_html: Ínobligatori. Tu posse usar posta-sintaxe. Tu posse <a href="%{path}">adjunter preconfigurationes de avises</a> por sparar témpor
@@ -53,14 +56,25 @@ ie:
         trends_as_landing_page: Monstrar populari contenete a ínregistrat visitantes vice un description del servitor. Besona que tendenties es activisat.
       form_challenge:
         current_password: Tu nu intra un area secur
+      ip_block:
+        severities:
+          sign_up_block: Nov registrationes ne va esser possibil
+          sign_up_requires_approval: Nov registrationes va besonar tui aprobation
+      webhook:
+        events: Selecter evenimentes a misser
+        url: Ad u misser evenimentes
     labels:
       account:
         fields:
           value: Contenete
+        indexable: Includer public postas in resultates de sercha
       account_warning_preset:
+        text: Textu prefigurat
         title: Titul
       admin_account_action:
+        send_email_notification: Notificar li usator per e-posta
         type: Action
+        warning_preset_id: Usar un prefiguration de avise
       announcement:
         all_day: Eveniment del tot die
         ends_at: Fine del eveniment
@@ -95,5 +109,10 @@ ie:
       form_admin_settings:
         registrations_mode: Qui posse registrar se
         theme: Predefenit tema
+        trends: Possibilisar tendenties
+        trends_as_landing_page: Usar tendenties quam frontispicie
       notification_emails:
         follow_request: Alqui petit sequer te
+        trending_tag: Nov tendentie besonant inspection
+      tag:
+        trendable: Permisse que ti-ci hashtag apari sub tendenties
