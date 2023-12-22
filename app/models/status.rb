@@ -284,7 +284,9 @@ class Status < ApplicationRecord
 
   def ordered_media_attachments
     if ordered_media_attachment_ids.nil?
-      media_attachments
+      # NOTE: sort Ruby-side to avoid hitting the database when the status is
+      # not persisted to database yet
+      media_attachments.sort_by(&:id)
     else
       map = media_attachments.index_by(&:id)
       ordered_media_attachment_ids.filter_map { |media_attachment_id| map[media_attachment_id] }

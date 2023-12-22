@@ -578,15 +578,21 @@ RSpec.describe ActivityPub::Activity::Create do
                 mediaType: 'image/png',
                 url: 'http://example.com/attachment.png',
               },
+              {
+                type: 'Document',
+                mediaType: 'image/png',
+                url: 'http://example.com/emoji.png',
+              },
             ],
           }
         end
 
-        it 'creates status' do
+        it 'creates status with correctly-ordered media attachments' do
           status = sender.statuses.first
 
           expect(status).to_not be_nil
-          expect(status.media_attachments.map(&:remote_url)).to include('http://example.com/attachment.png')
+          expect(status.ordered_media_attachments.map(&:remote_url)).to eq ['http://example.com/attachment.png', 'http://example.com/emoji.png']
+          expect(status.ordered_media_attachment_ids).to be_present
         end
       end
 
