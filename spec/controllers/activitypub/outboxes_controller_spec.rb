@@ -79,7 +79,7 @@ RSpec.describe ActivityPub::OutboxesController do
         it 'returns orderedItems with public or unlisted statuses' do
           expect(body[:orderedItems]).to be_an Array
           expect(body[:orderedItems].size).to eq 2
-          expect(body[:orderedItems].all? { |item| item[:to].include?(ap_public_collection) || item[:cc].include?(ap_public_collection) }).to be true
+          expect(body[:orderedItems].all? { |item| targets_public_collection?(item) }).to be true
         end
 
         it_behaves_like 'cacheable response'
@@ -132,7 +132,7 @@ RSpec.describe ActivityPub::OutboxesController do
           json = body_as_json
           expect(json[:orderedItems]).to be_an Array
           expect(json[:orderedItems].size).to eq 2
-          expect(json[:orderedItems].all? { |item| item[:to].include?(ap_public_collection) || item[:cc].include?(ap_public_collection) }).to be true
+          expect(json[:orderedItems].all? { |item| targets_public_collection?(item) }).to be true
         end
 
         it 'returns private Cache-Control header' do
@@ -158,7 +158,7 @@ RSpec.describe ActivityPub::OutboxesController do
           json = body_as_json
           expect(json[:orderedItems]).to be_an Array
           expect(json[:orderedItems].size).to eq 3
-          expect(json[:orderedItems].all? { |item| item[:to].include?(ap_public_collection) || item[:cc].include?(ap_public_collection) || item[:to].include?(account_followers_url(account, ActionMailer::Base.default_url_options)) }).to be true
+          expect(json[:orderedItems].all? { |item| targets_public_collection?(item) || item[:to].include?(account_followers_url(account, ActionMailer::Base.default_url_options)) }).to be true
         end
 
         it 'returns private Cache-Control header' do
@@ -222,5 +222,9 @@ RSpec.describe ActivityPub::OutboxesController do
 
   def ap_public_collection
     ActivityPub::TagManager::COLLECTIONS[:public]
+  end
+
+  def targets_public_collection?(item)
+    item[:to].include?(ap_public_collection) || item[:cc].include?(ap_public_collection)
   end
 end
