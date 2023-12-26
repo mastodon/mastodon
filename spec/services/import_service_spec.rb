@@ -190,7 +190,7 @@ RSpec.describe ImportService, type: :service do
 
     # Make sure to not actually go to the remote server
     before do
-      stub_request(:post, 'https://թութ.հայ/inbox').to_return(status: 200)
+      stub_request(:post, nare.inbox_url).to_return(status: 200)
     end
 
     it 'follows the listed account' do

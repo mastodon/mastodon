@@ -60,12 +60,6 @@ module Account::Interactions
       end
     end
 
-    def domain_blocking_map(target_account_ids, account_id)
-      accounts_map    = Account.where(id: target_account_ids).select('id, domain').each_with_object({}) { |a, h| h[a.id] = a.domain }
-      blocked_domains = domain_blocking_map_by_domain(accounts_map.values.compact, account_id)
-      accounts_map.reduce({}) { |h, (id, domain)| h.merge(id => blocked_domains[domain]) }
-    end
-
     def domain_blocking_map_by_domain(target_domains, account_id)
       follow_mapping(AccountDomainBlock.where(account_id: account_id, domain: target_domains), :domain)
     end
@@ -122,8 +116,6 @@ module Account::Interactions
 
     rel.save! if rel.changed?
 
-    remove_potential_friendship(other_account)
-
     rel
   end
 
@@ -137,13 +129,10 @@ module Account::Interactions
 
     rel.save! if rel.changed?
 
-    remove_potential_friendship(other_account)
-
     rel
   end
 
   def block!(other_account, uri: nil)
-    remove_potential_friendship(other_account)
     block_relationships.create_with(uri: uri)
                        .find_or_create_by!(target_account: other_account)
   end
@@ -153,8 +142,6 @@ module Account::Interactions
     mute = mute_relationships.create_with(hide_notifications: notifications).find_or_initialize_by(target_account: other_account)
     mute.expires_in = duration.zero? ? nil : duration
     mute.save!
-
-    remove_potential_friendship(other_account)
 
     # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
     mute.update!(hide_notifications: notifications) if mute.hide_notifications? != notifications
@@ -312,11 +299,5 @@ module Account::Interactions
       muting: Account.muting_map(account_ids, id),
       domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, id),
     })
-  end
-
-  private
-
-  def remove_potential_friendship(other_account)
-    PotentialFriendshipTracker.remove(id, other_account.id)
   end
 end

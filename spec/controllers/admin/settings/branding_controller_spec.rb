@@ -19,14 +19,6 @@ RSpec.describe Admin::Settings::BrandingController do
     end
 
     describe 'PUT #update' do
-      around do |example|
-        before = Setting.site_short_description
-        Setting.site_short_description = nil
-        example.run
-        Setting.site_short_description = before
-        Setting.new_setting_key = nil
-      end
-
       it 'cannot create a setting value for a non-admin key' do
         expect(Setting.new_setting_key).to be_blank
 

@@ -10,7 +10,7 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
   let!(:jeff)   { Fabricate(:account) }
   let!(:hank)   { Fabricate(:account, username: 'hank', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
-  let(:status_alice_hello) { PostStatusService.new.call(alice, text: 'Hello @bob@example.com') }
+  let(:status_alice_hello) { PostStatusService.new.call(alice, text: "Hello @#{bob.pretty_acct}") }
   let(:status_alice_other) { PostStatusService.new.call(alice, text: 'Another status') }
 
   before do

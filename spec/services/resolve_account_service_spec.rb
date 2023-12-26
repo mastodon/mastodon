@@ -20,7 +20,7 @@ RSpec.describe ResolveAccountService, type: :service do
       let!(:remote_account) { Fabricate(:account, username: 'foo', domain: 'ap.example.com', protocol: 'activitypub') }
 
       context 'when domain is banned' do
-        let!(:domain_block) { Fabricate(:domain_block, domain: 'ap.example.com', severity: :suspend) }
+        before { Fabricate(:domain_block, domain: 'ap.example.com', severity: :suspend) }
 
         it 'does not return an account' do
           expect(subject.call('foo@ap.example.com', skip_webfinger: true)).to be_nil
@@ -214,6 +214,7 @@ RSpec.describe ResolveAccountService, type: :service do
       expect(account.domain).to eq 'ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
       expect(account.uri).to eq 'https://ap.example.com/users/foo'
+      expect(status.reload.account).to eq(account)
     end
   end
 

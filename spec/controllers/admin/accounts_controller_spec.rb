@@ -161,12 +161,13 @@ RSpec.describe Admin::AccountsController do
       it 'logs action' do
         expect(subject).to have_http_status 302
 
-        log_item = Admin::ActionLog.last
-
-        expect(log_item).to_not be_nil
-        expect(log_item.action).to eq :approve
-        expect(log_item.account_id).to eq current_user.account_id
-        expect(log_item.target_id).to eq account.user.id
+        expect(latest_admin_action_log)
+          .to be_present
+          .and have_attributes(
+            action: eq(:approve),
+            account_id: eq(current_user.account_id),
+            target_id: eq(account.user.id)
+          )
       end
     end
 
@@ -201,12 +202,13 @@ RSpec.describe Admin::AccountsController do
       it 'logs action' do
         expect(subject).to have_http_status 302
 
-        log_item = Admin::ActionLog.last
-
-        expect(log_item).to_not be_nil
-        expect(log_item.action).to eq :reject
-        expect(log_item.account_id).to eq current_user.account_id
-        expect(log_item.target_id).to eq account.user.id
+        expect(latest_admin_action_log)
+          .to be_present
+          .and have_attributes(
+            action: eq(:reject),
+            account_id: eq(current_user.account_id),
+            target_id: eq(account.user.id)
+          )
       end
     end
 
@@ -426,5 +428,11 @@ RSpec.describe Admin::AccountsController do
         expect(response).to have_http_status 403
       end
     end
+  end
+
+  private
+
+  def latest_admin_action_log
+    Admin::ActionLog.last
   end
 end
