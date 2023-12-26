@@ -56,7 +56,7 @@ jobs:
       labels: |
         org.opencontainers.image.description=Nightly build image used for testing purposes
       flavor: |
-        latest=auto
+        latest=true
       tags: |
         type=raw,value=edge
         type=raw,value=nightly
