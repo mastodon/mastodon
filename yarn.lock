@@ -2354,7 +2354,7 @@ __metadata:
     classnames: "npm:^2.3.2"
     cocoon-js-vanilla: "npm:^1.3.0"
     color-blend: "npm:^4.0.0"
-    compression-webpack-plugin: "patch:compression-webpack-plugin@npm%3A6.1.1#~/.yarn/patches/compression-webpack-plugin-npm-6.1.1-3a2a65987e.patch"
+    compression-webpack-plugin: "npm:^6.1.2"
     core-js: "npm:^3.30.2"
     cross-env: "npm:^7.0.3"
     css-loader: "npm:^5.2.7"
@@ -5780,9 +5780,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"compression-webpack-plugin@npm:6.1.1":
-  version: 6.1.1
-  resolution: "compression-webpack-plugin@npm:6.1.1"
+"compression-webpack-plugin@npm:^6.1.2":
+  version: 6.1.2
+  resolution: "compression-webpack-plugin@npm:6.1.2"
   dependencies:
     cacache: "npm:^15.0.5"
     find-cache-dir: "npm:^3.3.1"
@@ -5791,22 +5791,7 @@ __metadata:
     webpack-sources: "npm:^1.4.3"
   peerDependencies:
     webpack: ^4.0.0 || ^5.0.0
-  checksum: 2f2ac6ba8f3cf48b523efc5d8e50e0172f4676f47bf5d62f2365185a6d37e96c2dc090e74f5f30ddf4be092e2400c5c7e1fb34301f3f939acf4c9944e1356525
-  languageName: node
-  linkType: hard
-
-"compression-webpack-plugin@patch:compression-webpack-plugin@npm%3A6.1.1#~/.yarn/patches/compression-webpack-plugin-npm-6.1.1-3a2a65987e.patch":
-  version: 6.1.1
-  resolution: "compression-webpack-plugin@patch:compression-webpack-plugin@npm%3A6.1.1#~/.yarn/patches/compression-webpack-plugin-npm-6.1.1-3a2a65987e.patch::version=6.1.1&hash=129d4d"
-  dependencies:
-    cacache: "npm:^15.0.5"
-    find-cache-dir: "npm:^3.3.1"
-    schema-utils: "npm:^3.0.0"
-    serialize-javascript: "npm:^5.0.1"
-    webpack-sources: "npm:^1.4.3"
-  peerDependencies:
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: 68d130bcf7dcc3fd13a286dc57426640732593db4a2f326a4b159c7c32e856e2752e4d43e5f44dc42d07a0e477ad08c08d9aba029a958ad57e71f06deb42784f
+  checksum: 966b1417bbeaa55af8d4b7911cf4435a187adbaaff34d3e9f2ef2b7ff747877469ff965d5b653a2211eaecfd0ce8b3c834d3a8f5519aa15dd79e68bbfea0b69e
   languageName: node
   linkType: hard
 
