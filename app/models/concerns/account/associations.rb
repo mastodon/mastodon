@@ -64,6 +64,7 @@ module Account::Associations
     has_one :deletion_request, class_name: 'AccountDeletionRequest', inverse_of: :account, dependent: :destroy
 
     # Follow recommendations
+    has_one :follow_recommendation, inverse_of: :account, dependent: nil
     has_one :follow_recommendation_suppression, inverse_of: :account, dependent: :destroy
 
     # Account statuses cleanup policy

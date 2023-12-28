@@ -40,6 +40,10 @@ module Mastodon::CLI
     class BulkImport < ApplicationRecord; end
     class SoftwareUpdate < ApplicationRecord; end
 
+    class DomainBlock < ApplicationRecord
+      scope :by_severity, -> { order(Arel.sql('(CASE severity WHEN 0 THEN 1 WHEN 1 THEN 2 WHEN 2 THEN 0 END), domain')) }
+    end
+
     class PreviewCard < ApplicationRecord
       self.inheritance_column = false
     end
@@ -249,19 +253,7 @@ module Mastodon::CLI
 
       say 'Deduplicating user records…'
 
-      # Deduplicating email
-      ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users GROUP BY email HAVING count(*) > 1").each do |row|
-        users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse
-        ref_user = users.shift
-        say "Multiple users registered with e-mail address #{ref_user.email}.", :yellow
-        say "e-mail will be disabled for the following accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
-        say 'Please reach out to them and set another address with `tootctl account modify` or delete them.', :yellow
-
-        users.each_with_index do |user, index|
-          user.update!(email: "#{index} " + user.email)
-        end
-      end
-
+      deduplicate_users_process_email
       deduplicate_users_process_confirmation_token
       deduplicate_users_process_remember_token
       deduplicate_users_process_password_token
@@ -278,6 +270,20 @@ module Mastodon::CLI
       end
 
       ActiveRecord::Base.connection.execute('REINDEX INDEX index_users_on_unconfirmed_email;') if migrator_version >= 2023_07_02_151753
+    end
+
+    def deduplicate_users_process_email
+      ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users GROUP BY email HAVING count(*) > 1").each do |row|
+        users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse
+        ref_user = users.shift
+        say "Multiple users registered with e-mail address #{ref_user.email}.", :yellow
+        say "e-mail will be disabled for the following accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
+        say 'Please reach out to them and set another address with `tootctl account modify` or delete them.', :yellow
+
+        users.each_with_index do |user, index|
+          user.update!(email: "#{index} " + user.email)
+        end
+      end
     end
 
     def deduplicate_users_process_confirmation_token
@@ -546,7 +552,7 @@ module Mastodon::CLI
       if migrator_version < 2021_04_21_121431
         ActiveRecord::Base.connection.add_index :tags, 'lower((name)::text)', name: 'index_tags_on_name_lower', unique: true
       else
-        ActiveRecord::Base.connection.execute 'CREATE UNIQUE INDEX CONCURRENTLY index_tags_on_name_lower_btree ON tags (lower(name) text_pattern_ops)'
+        ActiveRecord::Base.connection.execute 'CREATE UNIQUE INDEX index_tags_on_name_lower_btree ON tags (lower(name) text_pattern_ops)'
       end
     end
 
@@ -571,7 +577,7 @@ module Mastodon::CLI
 
       say 'Deduplicating webhooks…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM webhooks GROUP BY url HAVING count(*) > 1").each do |row|
-        Webhooks.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
+        Webhook.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
       end
 
       say 'Restoring webhooks indexes…'
@@ -604,11 +610,7 @@ module Mastodon::CLI
 
       say 'Please chose the one to keep unchanged, other ones will be automatically renamed.'
 
-      ref_id = ask('Account to keep unchanged:') do |q|
-        q.required true
-        q.default 0
-        q.convert :int
-      end
+      ref_id = ask('Account to keep unchanged:', required: true, default: 0).to_i
 
       accounts.delete_at(ref_id)
 

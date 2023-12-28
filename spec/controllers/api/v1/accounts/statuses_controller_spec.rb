@@ -10,11 +10,11 @@ describe Api::V1::Accounts::StatusesController do
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
-    Fabricate(:status, account: user.account)
   end
 
   describe 'GET #index' do
     it 'returns expected headers', :aggregate_failures do
+      Fabricate(:status, account: user.account)
       get :index, params: { account_id: user.account.id, limit: 1 }
 
       expect(response).to have_http_status(200)
@@ -30,7 +30,6 @@ describe Api::V1::Accounts::StatusesController do
     end
 
     context 'with exclude replies' do
-      let!(:older_statuses) { user.account.statuses.destroy_all }
       let!(:status) { Fabricate(:status, account: user.account) }
       let!(:status_self_reply) { Fabricate(:status, account: user.account, thread: status) }
 

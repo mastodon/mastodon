@@ -33,7 +33,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
   end
 
   context 'when account is not suspended' do
-    subject { described_class.new.call('alice', 'example.com', payload) }
+    subject { described_class.new.call(account.username, account.domain, payload) }
 
     let!(:account) { Fabricate(:account, username: 'alice', domain: 'example.com') }
 

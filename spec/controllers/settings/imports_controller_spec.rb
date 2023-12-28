@@ -22,6 +22,7 @@ RSpec.describe Settings::ImportsController do
     it 'assigns the expected imports', :aggregate_failures do
       expect(response).to have_http_status(200)
       expect(assigns(:recent_imports)).to eq [import]
+      expect(assigns(:recent_imports)).to_not include(other_import)
       expect(response.headers['Cache-Control']).to include('private, no-store')
     end
   end
@@ -138,6 +139,7 @@ RSpec.describe Settings::ImportsController do
       let(:bulk_import) { Fabricate(:bulk_import, account: user.account, type: import_type, state: :finished) }
 
       before do
+        rows.each { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
         bulk_import.update(total_items: bulk_import.rows.count, processed_items: bulk_import.rows.count, imported_items: 0)
       end
 
@@ -152,11 +154,11 @@ RSpec.describe Settings::ImportsController do
     context 'with follows' do
       let(:import_type) { 'following' }
 
-      let!(:rows) do
+      let(:rows) do
         [
           { 'acct' => 'foo@bar' },
           { 'acct' => 'user@bar', 'show_reblogs' => false, 'notify' => true, 'languages' => %w(fr de) },
-        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        ]
       end
 
       include_examples 'export failed rows', "Account address,Show boosts,Notify on new posts,Languages\nfoo@bar,true,false,\nuser@bar,false,true,\"fr, de\"\n"
@@ -165,11 +167,11 @@ RSpec.describe Settings::ImportsController do
     context 'with blocks' do
       let(:import_type) { 'blocking' }
 
-      let!(:rows) do
+      let(:rows) do
         [
           { 'acct' => 'foo@bar' },
           { 'acct' => 'user@bar' },
-        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        ]
       end
 
       include_examples 'export failed rows', "foo@bar\nuser@bar\n"
@@ -178,11 +180,11 @@ RSpec.describe Settings::ImportsController do
     context 'with mutes' do
       let(:import_type) { 'muting' }
 
-      let!(:rows) do
+      let(:rows) do
         [
           { 'acct' => 'foo@bar' },
           { 'acct' => 'user@bar', 'hide_notifications' => false },
-        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        ]
       end
 
       include_examples 'export failed rows', "Account address,Hide notifications\nfoo@bar,true\nuser@bar,false\n"
@@ -191,11 +193,11 @@ RSpec.describe Settings::ImportsController do
     context 'with domain blocks' do
       let(:import_type) { 'domain_blocking' }
 
-      let!(:rows) do
+      let(:rows) do
         [
           { 'domain' => 'bad.domain' },
           { 'domain' => 'evil.domain' },
-        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        ]
       end
 
       include_examples 'export failed rows', "bad.domain\nevil.domain\n"
@@ -204,11 +206,11 @@ RSpec.describe Settings::ImportsController do
     context 'with bookmarks' do
       let(:import_type) { 'bookmarks' }
 
-      let!(:rows) do
+      let(:rows) do
         [
           { 'uri' => 'https://foo.com/1' },
           { 'uri' => 'https://foo.com/2' },
-        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        ]
       end
 
       include_examples 'export failed rows', "https://foo.com/1\nhttps://foo.com/2\n"
@@ -217,11 +219,11 @@ RSpec.describe Settings::ImportsController do
     context 'with lists' do
       let(:import_type) { 'lists' }
 
-      let!(:rows) do
+      let(:rows) do
         [
           { 'list_name' => 'Amigos', 'acct' => 'user@example.com' },
           { 'list_name' => 'Frenemies', 'acct' => 'user@org.org' },
-        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        ]
       end
 
       include_examples 'export failed rows', "Amigos,user@example.com\nFrenemies,user@org.org\n"

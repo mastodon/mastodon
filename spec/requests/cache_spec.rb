@@ -242,16 +242,10 @@ describe 'Caching behavior' do
     end
 
     describe '/api/v1/instance/domain_blocks' do
-      around do |example|
-        old_setting = Setting.show_domain_blocks
+      before do
         Setting.show_domain_blocks = show_domain_blocks
-
-        example.run
-
-        Setting.show_domain_blocks = old_setting
+        get '/api/v1/instance/domain_blocks'
       end
-
-      before { get '/api/v1/instance/domain_blocks' }
 
       context 'when set to be publicly-available' do
         let(:show_domain_blocks) { 'all' }
@@ -365,16 +359,8 @@ describe 'Caching behavior' do
     end
 
     describe '/api/v1/instance/domain_blocks' do
-      around do |example|
-        old_setting = Setting.show_domain_blocks
-        Setting.show_domain_blocks = show_domain_blocks
-
-        example.run
-
-        Setting.show_domain_blocks = old_setting
-      end
-
       before do
+        Setting.show_domain_blocks = show_domain_blocks
         get '/api/v1/instance/domain_blocks', headers: { 'Authorization' => "Bearer #{token.token}" }
       end
 
