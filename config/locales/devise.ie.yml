@@ -1,6 +1,8 @@
 ---
 ie:
   devise:
+    confirmations:
+      confirmed: Tui e-mail adresse ha esset confirmat successosimen.
     failure:
       already_authenticated: Tu ha ja intrat.
       inactive: Tui conto ancor ne ha esset activat.
@@ -13,13 +15,24 @@ ie:
       unauthenticated: Tu deve intrar o registrar te ante continuar.
       unconfirmed: Tu deve confirmar tui e-posta ante continuar.
     mailer:
+      confirmation_instructions:
+        action: Verificar e-posta
+        action_with_app: Confirma e retorna a%{app}
+        title: Verificar e-posta
       email_changed:
+        explanation: 'Li e-mail adresse de tui es changeat a:'
         extra: Si tu ne changeat tui email-adresse, it es probabil que alqui ha ganiat accesse a tui conto. Ples changear tui passa-parol strax o contacter li administrator del servitor si tu ne posse intrar tui conto.
+        subject: 'Mastodon: E-posta changeat'
+        title: Nov adresse de e-posta
       password_change:
         explanation: Li passa-parol de tui conto ha esset changeat.
         extra: Si tu ne changeat tui passa-parol, it es probabil que alqui ha ganiat accesse a tui conto. Ples changear tui passa-parol strax o contacter li administrator del servitor si tu ne posse intrar tui conto.
         subject: 'Mastodon: Passa-parol changeat'
         title: Passa-parol changeat
+      reconfirmation_instructions:
+        explanation: Confirmar li nov adresse por changeat tui e-posta.
+        subject: 'Mastodon: E-posta de confirmation por %{instance}'
+        title: Verificar e-posta
       reset_password_instructions:
         action: Changear passa-parol
         explanation: Tu demandat un nov passa-parol por tui conto.
@@ -28,6 +41,18 @@ ie:
         title: Reiniciar passa-parol
       two_factor_disabled:
         explanation: 2-factor autentication por tui conto ha esset desactivisat. Aperter session nu es possibil solmen per email-adresse e passa-parol.
+        title: 2FA desvalidat
+      two_factor_enabled:
+        title: 2FA permisset
+      unlock_instructions:
+        subject: 'Mastodon: Desserral instructiones'
+      webauthn_credential:
+        added:
+          subject: 'Mastodon: Nov clave de securitá'
+          title: Un nov clave de securitá ha esset adjuntet
+      webauthn_disabled:
+        subject: 'Mastodon: Autentication con claves de securitá desactivisat'
+        title: Claves de securitá desactivisat
     omniauth_callbacks:
       failure: Ne posset autenticar te de %{kind} pro "%{reason}".
     passwords:
@@ -38,3 +63,15 @@ ie:
       updated_not_active: Tui passa-parol ha esset changeat successosimen.
     registrations:
       signed_up: Benevenit! Tu ha successat registrar te.
+      updated: Tui conto ha esset actualisat successosimen.
+    sessions:
+      already_signed_out: Exeat successosimen.
+      signed_in: Intrat successosimen.
+      signed_out: Exeat successosimen.
+  errors:
+    messages:
+      already_confirmed: esset ja confirmat, ples prova intrar
+      confirmation_period_expired: besona esser confirmat intra %{period}, ples demanda un nov
+      expired: ha expirat, ples demandar un nov
+      not_found: ne trovat
+      not_locked: ne esset serrat

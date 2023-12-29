@@ -3,10 +3,13 @@ lad:
   simple_form:
     hints:
       account:
+        discoverable: Tus publikasyones publikas i profil pueden ser avaliadas o rekomendadas en varias partes de Mastodon i tu profil puede ser sujerido a otros utilizadores.
         display_name: Tu nombre para amostrar.
         fields: Tu deskripsyon, pronombres, edad, todo lo ke keras.
+        indexable: Tus publikasyones publikas pueden apareser en rezultados de bushkeda en Mastodon. Personas ke enteraktuaron kon tus publikasyones syempre pueden bushkarlas inkluzo si trokes esta preferensya.
         note: 'Puedes @enmentar a otra djente o #etiketas.'
         show_collections: Otra djente podra ver tus segidos i suivantes. Personas a las kualas siges siempre podran ver que las estas sigiendo.
+        unlocked: Djente va poder segirte sin solisitar tu achetasyon. Deseleksyona si keres revizar solisitasyones de segimyento i dechidir si keres achetar o refuzar a muevos suivantes.
       account_alias:
         acct: Espesifika tu nombre de utilizador@domeno del kuento de ande keres migrar
       account_migration:
@@ -118,6 +121,7 @@ lad:
         otp: 'Introduse el kodiche de autentifikasyon de dos pasos djenerado por tu aplikasyon de telefon o uza uno de tus kodiches de recuperasyon:'
         webauthn: Si es una yave USB, asigurete de insertarla y, si es necesario, pulsala.
       settings:
+        indexable: Tu pajina de profil puede apareser en rezultados de bushkeda en Google, Bing i otros.
         show_application: Tu siempre podras ver dizde kuala aplikasyon publikates tu publikasyon.
       tag:
         name: Solo se puede trokar la kapitalizasyon de las letras, por enshemplo, para ke sea mas meldable
@@ -132,9 +136,11 @@ lad:
         position: Un rolo mas alto deside la rezolusyon de konfliktos en algunas situasyones. Algunas aksyones solo pueden levarse por rolos kon menor priorita
       webhook:
         events: Eskoje evenimientos para embiar
+        template: Kriya tu propio JSON uzando interpolasyon de las variavlas. Deshalo en blanko para el JSON predeterminado.
         url: Ande los evenimientos seran embiados
     labels:
       account:
+        discoverable: Avalia profil i publikasyones en algoritmos de deskuvrimyento
         fields:
           name: Etiketa
           value: Kontenido
@@ -183,6 +189,9 @@ lad:
         expires_in: Kaduka dempues de
         fields: Datos adisyonales
         header: Imaje de kavesera
+        honeypot: "%{label} (no inche)"
+        inbox_url: URL del kuti de relevo
+        irreversible: Refuza en lugar de eskonder
         locale: Lingua de enterfaz
         max_uses: Maksimo numero de uzos
         new_password: Muevo kod
@@ -190,17 +199,27 @@ lad:
         otp_attempt: Kodiche de dos pasos
         password: Kod
         phrase: Biervo yave o fraza
+        setting_advanced_layout: Kapasita la enterfaz web avanzada
         setting_aggregate_reblogs: Agrupa repartajasyones en linyas
         setting_always_send_emails: Siempre embia avizos por posta
         setting_auto_play_gif: Siempre reproduse los GIFs animados
+        setting_boost_modal: Amostra ventana de konfirmasyon antes de repartajar
         setting_default_language: Lingua de publikasyones
         setting_default_privacy: Privasita de publikasyones
+        setting_default_sensitive: Syempre marka multimedia komo sensivles
+        setting_delete_modal: Mostra dialogo de konfirmasyon antes de efasar una publikasyon
+        setting_disable_swiping: Inkapasita movimyentos de arresvalamiento
+        setting_display_media: Vizualizasyon de multimedia
         setting_display_media_default: Predeterminado
         setting_display_media_hide_all: Eskonde todo
         setting_display_media_show_all: Amostra todo
+        setting_expand_spoilers: Siempre espande las publikasyones markadas kon avertensyas de kontenido
+        setting_hide_network: Eskonde tu red sosyala
         setting_reduce_motion: Reduse el movimyento en animasyones
         setting_system_font_ui: Uza el font predeterminado del sistem
+        setting_theme: Tema del sitio
         setting_trends: Amostra los trendes de oy
+        setting_unfollow_modal: Mostra dialogo de konfirmasyon antes de desegir a alguno
         setting_use_blurhash: Amostra gradientes koloridos para kontenido multimedia eskondido
         setting_use_pending_items: Modo lento
         severity: Severita
@@ -263,6 +282,8 @@ lad:
           sign_up_requires_approval: Limita enrejistrasyones
         severity: Regla
       notification_emails:
+        appeal: Alguno tiene apelado una dechizyon de moderasyon
+        digest: Embia rezumen de posta elektronika
         favourite: A alguno le plaze tu publikasyon
         follow: Alguno te ampeso a segir
         follow_request: Alguno tiene solisitado segirte
@@ -276,25 +297,38 @@ lad:
           label: Mueva version de Mastodon esta desponivle
           none: Nunkua avizame de aktualizasyones (no rekomendado)
           patch: Avizame de aktualizasyones de yerros
+        trending_tag: Un muevo trend nesesita revizyon
       rule:
         text: Regla
       settings:
         indexable: Inkluye la pajina de profil en los bushkadores
+        show_application: Amostra aplikasyon uzada para adjustar publikasyones
       tag:
+        listable: Permite ke esta etiketa apareska en bushkedas i sujestyones
         name: Etiketa
+        trendable: Permite ke esta etiketa apareska en trendes
+        usable: Permite ke publikasyones uzen esta etiketa
       user:
         role: Rolo
+        time_zone: Zona de tiempo
       user_role:
+        color: Kolor de insinya
+        highlighted: Mostra rolo komo insinya en profiles de utilizadores
         name: Nombre
         permissions_as_keys: Permisos
         position: Priorita
       webhook:
         events: Evenimientos kapasitados
+        template: Modelo de kontenido
         url: URL de Endpoint
     'no': 'No'
     not_recommended: No rekomendado
+    overridden: Sovreskrive
     recommended: Rekomendado
     required:
       mark: "*"
       text: rekerido
+    title:
+      sessions:
+        webauthn: Uza una de tus yaves de sigurita para konektarte
     'yes': Si
