@@ -46,7 +46,7 @@ module Remotable
         public_send(:"download_#{attachment_name}!", url) if download_on_assign
       end
 
-      alias_method(:"reset_#{attachment_name}!", "download_#{attachment_name}!")
+      alias_method(:"reset_#{attachment_name}!", :"download_#{attachment_name}!")
     end
   end
 end
