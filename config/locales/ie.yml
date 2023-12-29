@@ -72,6 +72,7 @@ ie:
       enabled_msg: Successosimen desgelat li conto de %{username}
       followers: Sequitores
       follows: Seque
+      header: Cap-image
       inbox_url: Inbuxe URL
       invite_request_text: Rason por adhesion
       invited_by: Invitat de
@@ -118,6 +119,7 @@ ie:
       remote_suspension_irreversible: Li data de ti-ci conto ha esset deletet ínreversibilmen.
       remote_suspension_reversible_hint_html: Li conto ha esset suspendet che su servitor, e li data va esser completmen removet ye %{date}. Til tande, li lontan servitor posse restaurar ti conto sin quelcunc mal efectes. Si tu vole remover omni data del conto ínmediatmen, tu posse far it in infra.
       remove_avatar: Remover li avatar
+      remove_header: Remover cap-image
       removed_avatar_msg: Successosimen removet li avatar-image de %{username}
       removed_header_msg: Successosimen removet li cap-image de %{username}
       resend_confirmation:
@@ -287,6 +289,7 @@ ie:
       deleted_account: deletet conto
       filter_by_action: Filtrar per action
       filter_by_user: Filtrar per usator
+      title: Jurnale de audit
     announcements:
       destroyed_msg: Proclamation deletet successosimen!
       edit:
@@ -330,6 +333,7 @@ ie:
       no_emoji_selected: Null emoji esset changeat pro que null esset selectet
       not_permitted: Tu ne es permisset far ti action
       overwrite: Remplazzar
+      shortcode: Curt-code
       shortcode_hint: Adminim 2 carácteres, solmen lítteres, ciffres e sublineas
       title: Customisat emoji
       uncategorized: Íncategorisat
@@ -461,6 +465,9 @@ ie:
       unsuppress: Restaurar seque-recomandation
     instances:
       availability:
+        failures_recorded:
+          one: Fallit prova por %{count} die.
+          other: Fallit provas por %{count} dies.
         no_failures_recorded: Null fallimentes registrat.
         title: Disponibilitá
         warning: Li ultim prova conexer a ti servitor ha esset ínsuccessosi
@@ -485,6 +492,8 @@ ie:
         instance_followers_measure: nor sequitores ta
         instance_follows_measure: lor sequitores ci
         instance_languages_dimension: Max grand lingues
+        instance_media_attachments_measure: salvat medie-atachamentes
+        instance_reports_measure: raportes pri les
         instance_statuses_measure: salvat postas
       delivery:
         all: Omni
@@ -565,6 +574,7 @@ ie:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
+      action_log: Jurnale de audit
       action_taken_by: Action fat de
       actions:
         delete_description_html: Li raportat postas va esser deletet e un admoniment va esser registrat por auxiliar te escalar si hay futuri infractiones del sam conto.
@@ -670,26 +680,36 @@ ie:
         manage_announcements: Tractar proclamationes
         manage_announcements_description: Permisse usatores tractar proclamationes sur li servitor
         manage_appeals: Gerer Apelles
+        manage_appeals_description: Permisse que usatores inspecte apelles contra actiones de moderatores
         manage_blocks: Gerer Bloccas
         manage_blocks_description: Permisse que usatores blocca provisores de e-posta e IP-adresses
         manage_custom_emojis: Gerer Customisat Emojis
         manage_custom_emojis_description: Permisse que usatores gere customisat emojis sur li servitor
         manage_federation: Gerer Federation
-        manage_federation_description: Permisse que usatores sive blocca sive permisse federation con altri domenes, e controla liverabilitá
+        manage_federation_description: Permisse que usatores sive blocca sive permisse federation con altri dominias, e controla liverabilitá
         manage_invites: Gerer Invitationes
+        manage_invites_description: Permisse que usatores naviga e deactiva ligamentes de invitation
         manage_reports: Gerer Raportes
+        manage_reports_description: Permisse que usatores inspecte raportes e fa actiones de moderation contra les
         manage_roles: Gerer Roles
+        manage_roles_description: Permisse que usatores gere e assigna roles sub li lores
         manage_rules: Gerer Regules
         manage_rules_description: Permisse que usatores changea regules del servitor
         manage_settings: Gerer Parametres
         manage_settings_description: Permisse que usatores changea parametres del situ
         manage_taxonomies: Gerer Taxonomies
+        manage_taxonomies_description: Permisse que usatores inspecte contenete de tendentie e actualisar parametres de hashtags
         manage_user_access: Gerer Usator-Accesse
         manage_user_access_description: Permisse usatores desactivisar li 2-factor autentication de altri usatores, changear lor email-adresses, e reiniciar lor passa-paroles
         manage_users: Gerer usatores
-        manage_webhooks: Gerer Web-crocs
+        manage_users_description: Permisse que usatores vide detallies de altri usatores e fa actiones de moderation contra les
+        manage_webhooks: Gerer Webcrocs
+        view_audit_log: Vider li Jurnale de Audit
         view_audit_log_description: Permisse que usatores vide li historie de administrativ actiones sur li servitor
+        view_dashboard: Vider Panel de Control
+        view_dashboard_description: Permisse que usatores usa li panel de control e varie metricas
         view_devops: DevOps
+        view_devops_description: Permise que usatores usa paneles de control de Sidekiq e pgHero
       title: Roles
     rules:
       add_new: Adjunter un regule
@@ -704,6 +724,8 @@ ie:
       appearance:
         preamble: Customisar li interfacie web de Mastodon.
         title: Aspecte
+      content_retention:
+        title: Retention de contenete
       discovery:
         follow_recommendations: Seque-recomandationes
         preamble: Exposir interessant contenete es importantissim por incorporar nov usatores qui fórsan conosse nequi che Mastodon. Decider qualmen diferent utensiles de decovrition functiona che vor servitor.
@@ -740,6 +762,9 @@ ie:
       documentation_link: Aprender plu
       title: Actualisationes disponibil
       type: Specie
+      types:
+        major: Majori lansament
+        minor: Minori lansament
       version: Version
     statuses:
       account: Autor
@@ -781,16 +806,39 @@ ie:
     system_checks:
       database_schema_check:
         message_html: Hay pendent migrationes de database. Ples far les por far cert que li aplication functiona quam expectat
+      elasticsearch_health_red:
+        message_html: Li cluster Elasticsearch es ínsalubri (statu rubi), functiones por serchar ne disponibil
+      elasticsearch_health_yellow:
+        message_html: Li cluster Elasticsearch es ínsalubri (statu yelb); investigar li rason vell esser un bon idé
       elasticsearch_preset:
         action: Vider li documentation
+        message_html: Tui cluster Elasticsearch have plu quam un node, ma Mastodon ne es configurat por usar les.
       elasticsearch_preset_single_node:
         action: Vider li documentation
+        message_html: Tui cluster Elasticsearch have solmen un node, ples configurar <code>ES_PRESET</code> quam <code>single_node_cluster</code>.
+      elasticsearch_running_check:
+        message_html: Ne posset conexer a Elasticsearch. Ples confirmar que it ha esset executet, o desactivar serchada de plen textu
+      elasticsearch_version_check:
+        message_html: 'Version de Elasticsearch íncompatibil: %{value}'
+        version_comparison: Elasticsearch %{running_version} executet ma %{required_version} postulat
       rules_check:
         action: Gerer regules de servitor
+        message_html: Tu ancor ne ha definit quelcunc regules de servitor.
       software_version_critical_check:
+        action: Vider actualisationes disponibil
         message_html: Un critical actualisation por Mastodon es disposibil, ples actualisar tam rapidmen possibil.
       software_version_patch_check:
         action: Vider actualisationes disponibil
+        message_html: Un actualisation por Mastodon quel fixa problemas es disponibil.
+      upload_check_privacy_error:
+        action: Vider ci por plu information
+        message_html: "<strong>Vor web-servitor es misconfigurat. Li privatie de vor usatores es in risca.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Cliccar ci por plu information
+        message_html: "<strong>Vor inmagasinage de objectes es misconfigurat. Li privatie de vor usatores es in risca.</strong>"
+    tags:
+      review: Statu de revision
+      updated_msg: Parametres pri hashtags actualisat successosimen
     title: Administration
     trends:
       allow: Permisser
@@ -805,9 +853,13 @@ ie:
         no_link_selected: Null ligamentes esset changeat pro que null esset selectet
         publishers:
           no_publisher_selected: Null editores esset changeat pro que necun esset selectet
+        shared_by_over_week:
+          one: Partit de un person durant li ultim semane
+          other: Partit de %{count} persones durant li ultim semane
         title: Ligamentes in tendentie
         usage_comparison: Partit %{today} vezes hodie, in comparation a %{yesterday} yer
       not_allowed_to_trend: Ne permisset esser in tendentie
+      only_allowed: Solmen li permissetes
       pending_review: Sub inspection
       preview_card_providers:
         allowed: Ligamentes de ti-ci editor posse esser in tendentie
@@ -859,10 +911,50 @@ ie:
       empty: Vu ancor ha definit null prefigurationes de avise.
       title: Modificar prefigurationes de avise
     webhooks:
+      add_new: Adjunter punctu terminal
+      delete: Deleter
+      disable: Desactivisar
+      disabled: Desactivisat
+      edit: Redacter punctu terminal
+      empty: Tu ancor ne have quelcunc configurat punctus terminal por webcrocs.
+      enable: Activisar
       enabled: Activ
+      enabled_events:
+        one: 1 eveniment activisat
+        other: "%{count} evenimentes activisat"
       events: Evenimentes
+      new: Nov webcroc
+      rotate_secret: Rotar secrete
+      secret: Secrete de signation
       status: Statu
+      title: Webcrocs
+      webhook: Webcroc
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: deleter su postas
+        disable: gelar su conto
+        mark_statuses_as_sensitive: marcar su postas quam sensitiv
+        none: un admoniment
+        sensitive: marcar su conto quam sensitiv
+        silence: limitar su conto
+        suspend: suspender su conto
+      body: "%{target} apella un moderatori decision fat de %{action_taken_by} ye %{date}, quel esset %{type}. Ilu scrit:"
+      next_steps: Tu posse aprobar li apelle por desfar li decision moderatori, o ignorar it.
+      subject: "%{username} apella un moderatori decision che %{instance}"
+    new_critical_software_updates:
+      body: Nov critic versiones de Mastodon ha esset lansat, vu fórsan vole actualisar tam tost quam es possibil!
+      subject: Critic actualisationes por Mastodon es disponibil por %{instance}!
+    new_pending_account:
+      body: Li detallies del nov conto es in-infra. Vu posse aprobar o rejecter ti aplication.
+      subject: Nov conto por tractation che %{instance} (%{username})
+    new_report:
+      body: "%{reporter} ha raportet %{target}"
+      body_remote: Alqui de %{domain} ha raportet %{target}
+      subject: Nov raporte por %{instance} (#%{id})
+    new_software_updates:
+      body: Nov versiones de Mastodon ha esset lansat, vu fórsan vole actualisar!
+      subject: Nov versiones Mastodon es disponibil por %{instance}!
     new_trends:
       new_trending_links:
         title: Populari ligamentes
@@ -1284,10 +1376,45 @@ ie:
       images_and_video: On ne posse atachar un video a un posta quel ja contene images
   migrations:
     acct: Translocat a
+    cancel: Anullar redirection
+    cancelled_msg: Anullat redirection con successe.
+    errors:
+      already_moved: es li sam conto a equel tu ha ja translocat
+      missing_also_known_as: ne es un alias de ti-ci conto
+      move_to_self: ne posse esser li conto actual
+      not_found: ne posset esser trovat
+    followers_count: Sequitores al témpor de translocation
+    incoming_migrations: Translocant de un conto diferent
+    on_cooldown: Tu ha recentmen migrat tui conto. Ti function va esser disponibil denov pos %{count} dies.
+    past_migrations: Passat migrationes
+    proceed_with_move: Translocar sequitores
+    redirected_msg: Tui conto nu have un redirection a %{acct}.
+    redirecting_to: Tui conto redirecte a %{acct}.
     set_redirect: Configurar un redirection
+    warning:
+      backreference_required: Li nov conto deve in prim esser configurat por retroreferentiar ti-ci conto
+      before: 'Ante proceder, ples leer ti notas cuidosimen:'
+      other_data: Necun altri data va esser translocat automaticmen
+  moderation:
+    title: Moderation
   move_handler:
+    carry_blocks_over_text: Ti usator translocat se de %{acct}, quel tu hat bloccat.
     carry_mutes_over_text: Ti-ci usator movet se de %{acct}, quel tu hat silentiat.
+    copy_account_note_text: 'Vi tui notas pri ti usator qui translocat se de %{acct}:'
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} inviat un raporte"
+      sign_up:
+        subject: "%{name} adheret"
+    favourite:
+      body: 'Tui posta esset favoritisat de %{name}:'
+      subject: "%{name} favoritisat tui posta"
+      title: Nov favoritisation
+    follow:
+      body: "%{name} nu seque te!"
+      subject: "%{name} nu seque te"
+      title: Nov sequitor
     follow_request:
       action: Tractar petitiones de sequer
       body: "%{name} ha petit sequer te"
@@ -1295,6 +1422,8 @@ ie:
       title: Nov petition de sequer
     mention:
       action: Responder
+      body: 'Tu esset mentionat de %{name} in:'
+      subject: Tu esset mentionat de %{name}
       title: Nov mention
     poll:
       subject: Un balotation de %{name} ha finit
@@ -1346,6 +1475,7 @@ ie:
       too_many_options: ne posse contener plu quam %{max} optiones
   preferences:
     other: Altri
+    posting_defaults: Predefinitiones por postar
     public_timelines: Public témpor-lineas
   privacy:
     hint_html: "<strong>Customisa qualmen tu vole que tui profil e tui postas posse esser trovat.</strong> Mastodon have un varietá de manieres por auxiliar te atinger un auditorie plu grand quande activisat. Prende un moment por reviser ti parametres por far cert que ili concorda tui casu de usation."
@@ -1383,6 +1513,11 @@ ie:
     remove_selected_followers: Remover selectet sequitores
     remove_selected_follows: Dessequer selectet usatores
     status: Statu del conto
+  remote_follow:
+    missing_resource: Ne posset trovar li besonat URL de redirection por tui conto
+  reports:
+    errors:
+      invalid_rules: ne refere valid regules
   rss:
     content_warning: 'Avise pri li contenete:'
     descriptions:
@@ -1476,9 +1611,16 @@ ie:
         one: "%{count} video"
         other: "%{count} videos"
     boosted_from_html: Boostat de %{acct_link}
+    content_warning: 'Avise de contenete: %{warning}'
     default_language: Sam quam li lingue del interfacie
+    disallowed_hashtags:
+      one: 'contenet un ínpermisset hashtag: %{tags}'
+      other: 'contenet li ínpermisset hashtags: %{tags}'
     edited_at_html: Modificat ye %{date}
+    errors:
+      in_reply_not_found: Li posta a quel tu prova responder ne sembla exister.
     open_in_web: Aperter in web
+    over_character_limit: límite de carácteres de %{max} transpassat
     pin_errors:
       direct: On ne posse pinglar postas queles es visibil solmen a mentionat usatores
       limit: Tu ja ha pinglat li maxim númere de postas
@@ -1495,8 +1637,11 @@ ie:
     show_more: Monstrar plu
     show_newer: Monstrar plu nov
     show_older: Monstrar plu old
+    show_thread: Monstrar fil
     title: "%{name}: «%{quote}»"
     visibilities:
+      direct: Direct
+      private: Solmen por sequitores
       private_long: Monstrar solmen a sequitores
       public: Public
       public_long: Omnes posse vider
@@ -1508,17 +1653,37 @@ ie:
     exceptions: Exceptiones
     explanation: Deletion de postas es un operation expensiv, e pro to es efectuat lentmen quande li servitor ne es ocupat. Pro to, on posse deleter tui postas un cert témpor pos atinger un cert etá.
     ignore_favs: Ignorar favorites
+    ignore_reblogs: Ignorar boosts
     interaction_exceptions: Exceptiones basat sur interactiones
+    interaction_exceptions_explanation: Nota que it ne es garantit que un posta va esser deletet si su númere de favoritisationes o boosts descresce sub li sill pos que it ha esset súper it.
     keep_direct: Retener missages direct
     keep_direct_hint: Ne delete quelcunc de tui direct missages
+    keep_media: Conservar postas con medie-atachamentes
+    keep_media_hint: Ne delete quelcunc de tui postas quel have medie-atachamentes
     keep_pinned: Conservar pinglat postas
     keep_pinned_hint: Delete null de tui pinglat postas
     keep_polls: Conservar balotationes
     keep_polls_hint: Delete null de tui balotationes
+    keep_self_bookmark: Conservar postas queles tu ha marcat
+    keep_self_bookmark_hint: Ne delete tui propri postas si tu ha marcat les
     keep_self_fav: Retener postas favorit de te
+    keep_self_fav_hint: Ne delete tui propri postas si tu ha favoritisat les
     min_age:
       '1209600': 2 semanes
+      '15778476': 6 mensus
+      '2629746': 1 mensu
       '31556952': 1 annu
+      '5259492': 2 mensus
+      '604800': 1 semane
+      '63113904': 2 annus
+      '7889238': 3 mensus
+    min_age_label: Sill de etá
+    min_favs: Conservar postas favoritisat adminim
+    min_favs_hint: Ne delete quelcunc de tui postas quel ha recivet adminim ti-ci númere de favoritisationes. Lassar vacui por deleter postas sin egard a su númere de favoritisationes
+    min_reblogs: Conservar postas boostat adminim
+    min_reblogs_hint: Ne delete quelcunc de tui postas quel ha recivet adminim ti-ci númere de boosts. Lassar vacui por deleter postas sin egard a su númere de boosts
+  stream_entries:
+    sensitive_content: Sensitiv contenete
   strikes:
     errors:
       too_late: It es tro tard por apellar ti admoniment
@@ -1595,22 +1760,37 @@ ie:
         mark_statuses_as_sensitive: Tui postas che %{acct} ha esset marcat quam sensitiv
         none: Admoniment por %{acct}
         sensitive: Tui postas che %{acct} ve esser marcat quam sensitiv pos nu
+        silence: Tui conto %{acct} ha esset limitat
+        suspend: Tui conto %{acct} ha esset suspendet
       title:
         delete_statuses: Postas efaciat
+        disable: Conto gelat
+        mark_statuses_as_sensitive: Postas marcat quam sensitiv
+        none: Admoniment
         sensitive: Conto marcat quam sensitiv
         silence: Conto limitat
         suspend: Conto suspendet
     welcome:
       edit_profile_action: Configuration de profil
+      edit_profile_step: Tu posse personalisar tui profil por cargar un profil-image, changear tui monstrat nómine e plu. Tu posse optar tractar nov sequitores ante que ili es permisset sequer te.
       explanation: Vi quelc suggestiones por que tu mey comensar
       final_action: Comensar postar
+      final_step: 'Comensa a postar! Mem sin sequitores, tui public postas posse esser videt de altres, per exemple in li local témpor-linea o in hashtags. Tu fórsan vole introducter te per li hashtag #introductions.'
+      full_handle: Tui plen usator-nómine
+      full_handle_hint: Ti-ci es ti quel tu vell dir a tui amics por que ili mey inviar missages a te o sequer te de un altri servitor.
       subject: Benevenit a Mastodon
       title: Benevenit, %{name}!
   users:
+    follow_limit_reached: Tu ne posse sequer plu quam %{limit} persones
+    go_to_sso_account_settings: Ear al parametres de conto de tui provisor de identification
+    invalid_otp_token: Ínvalid 2-factor code
+    otp_lost_help_html: Si tu perdit accesse a ambis, tu posse contacter %{email}
     seamless_external_login: Tu ha intrat per un servicie external, dunc parametres pri tui passa-parol e email-adresse ne es disponibil.
+    signed_in_as: 'Session apertet quam:'
   verification:
     extra_instructions_html: '<strong>Nota</strong>: Li ligament in tui websitu posse esser ínvisibil. Li important parte es <code>rel="me"</code> quel prevente fals self-identification in websitus con contenete generat de usatores. Tu posse mem usar un <code>link</code> element in li cap-section del págine vice <code>a</code>, ma li HTML code deve esser accessibil sin executer JavaScript.'
     here_is_how: Vide qualmen
+    instructions_html: Copiar e collar li code ci infra in li HTML de tui web-situ. Poy adjunter li adresse de tui web-situ ad-in un del aditional campes sur tui profil ex li section "Modificar profil" e salvar li changes.
     verification: Verification
     verified_links: Tui verificat ligamentes
   webauthn_credentials:
@@ -1620,3 +1800,7 @@ ie:
       success: Tui clave de securitá esset adjuntet con successe.
     delete: Deleter
     delete_confirmation: Vole tu vermen deleter ti-ci clave de securitá?
+    invalid_credential: Ínvalid clave de securitá
+    not_enabled: Tu ancor ne ha possibilisat WebAuthn
+    not_supported: Ti-ci navigator ne subtene claves de securitá
+    registered_on: Adheret ye %{date}
