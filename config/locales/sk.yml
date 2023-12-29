@@ -435,6 +435,7 @@ sk:
       delivery:
         all: Všetko
         failing: Zlyhávajúce
+        stop: Zastav doručenie
         unavailable: Nedostupné
       delivery_available: Je v dosahu doručovania
       empty: Nenájdené žiadne domény.
@@ -579,6 +580,7 @@ sk:
         manage_roles: Spravuj postavenia
         manage_rules: Spravuj pravidlá
         manage_settings: Spravuj nastavenia
+        manage_user_access: Spravuj užívateľský prístup
         manage_users: Spravuj užívateľov
       title: Postavenia
     rules:
@@ -621,9 +623,11 @@ sk:
     software_updates:
       critical_update: Kritické — prosím aktualizuj rýchlo
       documentation_link: Zisti viac
+      release_notes: Poznámky k vydaniu
       title: Dostupné aktualizácie
       types:
         major: Hlavné vydanie
+        patch: Opravné vydanie - opravy a jednoducho uplatniteľné zmeny
       version: Verzia
     statuses:
       account: Autor
@@ -692,7 +696,9 @@ sk:
         title: Populárne príspevky
       tags:
         dashboard:
+          tag_servers_measure: iné servery
           tag_uses_measure: užívateľov celkovo
+        not_usable: Nemôže byť použitý
         title: Populárne štítky
         trending_rank: 'Populárne #%{rank}'
         usable: Môže byť použitý
@@ -708,7 +714,11 @@ sk:
       disable: Vypni
       disabled: Vypnuté
       enable: Povoľ
+      status: Stav
   admin_mailer:
+    new_appeal:
+      actions:
+        none: varovanie
     new_pending_account:
       body: Podrobnosti o novom účte sú uvedené nižšie. Môžeš túto registračnú požiadavku buď prijať, alebo zamietnúť.
       subject: Nový účet očakáva preverenie na %{instance} (%{username})
@@ -757,6 +767,9 @@ sk:
     apply_for_account: Vyžiadaj si účet
     captcha_confirmation:
       title: Bezpečnostná kontrola
+    confirmations:
+      login_link: prihlás sa
+      welcome_title: Vitaj, %{name}!
     delete_account: Vymaž účet
     delete_account_html: Pokiaľ chceš svoj účet odtiaľto vymazať, môžeš tak <a href="%{path}">urobiť tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
     description:
@@ -786,6 +799,9 @@ sk:
     setup:
       link_not_received: Nedostal/a si odkaz?
       title: Skontroluj svoju schránku
+    sign_in:
+      preamble_html: Prihlás sa so svojimi údajmi pre <strong>%{domain}</strong>. Pokiaľ je tvoj účet hostovaný na inom serveri, nebudeš sa môcť prihlásiť tu.
+      title: Prihlás sa na %{domain}
     status:
       account_status: Stav účtu
       confirming: Čaká sa na dokončenie potvrdenia emailom.
@@ -841,6 +857,9 @@ sk:
         silence: Obmedzenie účtu
   domain_validator:
     invalid_domain: nieje správny tvar domény
+  edit_profile:
+    basic_information: Základné informácie
+    other: Ostatné
   errors:
     '400': Požiadavka, ktorú si odoslal/a, bola buď nesprávna, alebo znehodnotená.
     '403': Nemáš povolenie pre zobrazenie tejto stránky.
@@ -885,22 +904,28 @@ sk:
       public: Verejné osi
       thread: Konverzácie
     edit:
+      add_keyword: Pridaj kľúčové slovo
+      keywords: Kľúčové slová
       title: Uprav triedenie
     errors:
       invalid_context: Nebola poskytnutá žiadna, alebo ide o neplatnú súvislosť
     index:
       delete: Vymaž
       empty: Nemáš žiadné filtrovanie.
+      expires_on: Expiruje dňa %{date}
       title: Triedenia
     new:
       title: Pridaj nové triedenie
   generic:
     all: Všetko
+    cancel: Zruš
     changes_saved_msg: Zmeny boli úspešne uložené!
+    confirm: Potvrď
     copy: Kopíruj
     delete: Vymaž
     order_by: Zoraď podľa
     save_changes: Ulož zmeny
+    today: dnes
     validation_errors:
       few: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
       many: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
@@ -923,6 +948,7 @@ sk:
       bookmarks: Záložky
       domain_blocking: Zoznam blokovaných domén
       following: Zoznam sledovaných
+      lists: Zoznamy
       muting: Zoznam ignorovaných
     upload: Nahraj
   invites:
@@ -1182,6 +1208,7 @@ sk:
     keep_pinned: Ponechaj pripnuté príspevky
     keep_pinned_hint: Nevymaže žiadne s tvojich pripnutých príspevkov
     keep_self_bookmark: Ponechaj príspevky, ktoré sú záložkami
+    keep_self_fav: Ponechať príspevky, ktoré si si obľúbil/a
   stream_entries:
     sensitive_content: Senzitívny obsah
   tags:
