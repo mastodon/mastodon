@@ -294,12 +294,6 @@ describe ApplicationHelper do
   end
 
   describe 'title' do
-    around do |example|
-      site_title = Setting.site_title
-      example.run
-      Setting.site_title = site_title
-    end
-
     it 'returns site title on production environment' do
       Setting.site_title = 'site title'
       allow(Rails.env).to receive(:production?).and_return(true)
@@ -318,12 +312,6 @@ describe ApplicationHelper do
   describe 'html_title' do
     before do
       allow(Rails.env).to receive(:production?).and_return(true)
-    end
-
-    around do |example|
-      site_title = Setting.site_title
-      example.run
-      Setting.site_title = site_title
     end
 
     context 'with a page_title content_for value' do

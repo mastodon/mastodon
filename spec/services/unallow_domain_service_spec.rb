@@ -27,6 +27,7 @@ RSpec.describe UnallowDomainService, type: :service do
       end
 
       it 'removes remote accounts from that domain' do
+        expect { already_banned_account.reload }.to raise_error(ActiveRecord::RecordNotFound)
         expect(Account.where(domain: 'evil.org').exists?).to be false
       end
 

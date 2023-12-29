@@ -28,13 +28,8 @@ RSpec.describe AppSignUpService, type: :service do
     end
 
     context 'when registrations are closed' do
-      around do |example|
-        tmp = Setting.registrations_mode
+      before do
         Setting.registrations_mode = 'none'
-
-        example.run
-
-        Setting.registrations_mode = tmp
       end
 
       it 'raises an error', :aggregate_failures do

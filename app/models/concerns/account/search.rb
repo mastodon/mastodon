@@ -116,6 +116,7 @@ module Account::Search
     [].tap do |properties|
       properties << 'bot' if bot?
       properties << 'verified' if fields.any?(&:verified?)
+      properties << 'discoverable' if discoverable?
     end
   end
 

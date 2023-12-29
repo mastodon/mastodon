@@ -242,7 +242,8 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
         it 'does not process forged payload' do
           allow(ActivityPub::Activity).to receive(:factory)
 
-          subject.call(json, forwarder)
+          expect { subject.call(json, forwarder) }
+            .to_not change(actor.reload.statuses, :count)
 
           expect(ActivityPub::Activity).to_not have_received(:factory).with(
             hash_including(

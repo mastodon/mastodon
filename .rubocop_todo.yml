@@ -45,48 +45,6 @@ Metrics/PerceivedComplexity:
 RSpec/ExampleLength:
   Max: 22
 
-RSpec/LetSetup:
-  Exclude:
-    - 'spec/controllers/api/v1/accounts/statuses_controller_spec.rb'
-    - 'spec/controllers/api/v1/filters_controller_spec.rb'
-    - 'spec/controllers/api/v2/admin/accounts_controller_spec.rb'
-    - 'spec/controllers/api/v2/filters/keywords_controller_spec.rb'
-    - 'spec/controllers/api/v2/filters/statuses_controller_spec.rb'
-    - 'spec/controllers/auth/confirmations_controller_spec.rb'
-    - 'spec/controllers/auth/passwords_controller_spec.rb'
-    - 'spec/controllers/auth/sessions_controller_spec.rb'
-    - 'spec/controllers/follower_accounts_controller_spec.rb'
-    - 'spec/controllers/following_accounts_controller_spec.rb'
-    - 'spec/controllers/oauth/authorized_applications_controller_spec.rb'
-    - 'spec/controllers/oauth/tokens_controller_spec.rb'
-    - 'spec/controllers/settings/imports_controller_spec.rb'
-    - 'spec/lib/activitypub/activity/delete_spec.rb'
-    - 'spec/lib/vacuum/applications_vacuum_spec.rb'
-    - 'spec/lib/vacuum/preview_cards_vacuum_spec.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/account_statuses_cleanup_policy_spec.rb'
-    - 'spec/models/canonical_email_block_spec.rb'
-    - 'spec/models/status_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/services/account_statuses_cleanup_service_spec.rb'
-    - 'spec/services/activitypub/fetch_featured_collection_service_spec.rb'
-    - 'spec/services/activitypub/fetch_remote_status_service_spec.rb'
-    - 'spec/services/activitypub/process_account_service_spec.rb'
-    - 'spec/services/activitypub/process_collection_service_spec.rb'
-    - 'spec/services/batched_remove_status_service_spec.rb'
-    - 'spec/services/block_domain_service_spec.rb'
-    - 'spec/services/bulk_import_service_spec.rb'
-    - 'spec/services/delete_account_service_spec.rb'
-    - 'spec/services/import_service_spec.rb'
-    - 'spec/services/notify_service_spec.rb'
-    - 'spec/services/remove_status_service_spec.rb'
-    - 'spec/services/report_service_spec.rb'
-    - 'spec/services/resolve_account_service_spec.rb'
-    - 'spec/services/suspend_account_service_spec.rb'
-    - 'spec/services/unallow_domain_service_spec.rb'
-    - 'spec/services/unsuspend_account_service_spec.rb'
-    - 'spec/workers/scheduler/user_cleanup_scheduler_spec.rb'
-
 RSpec/MultipleExpectations:
   Max: 8
 
