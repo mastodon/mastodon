@@ -33,26 +33,25 @@ describe Mastodon::CLI::IpBlocks do
     let(:arguments) { ip_list }
 
     shared_examples 'ip address blocking' do
-      it 'blocks all specified IP addresses' do
-        subject
-
-        blocked_ip_addresses = IpBlock.where(ip: ip_list).pluck(:ip)
-        expected_ip_addresses = ip_list.map { |ip| IPAddr.new(ip) }
-
-        expect(blocked_ip_addresses).to match_array(expected_ip_addresses)
+      def blocked_ip_addresses
+        IpBlock.where(ip: ip_list).pluck(:ip)
       end
 
-      it 'sets the severity for all blocked IP addresses' do
-        subject
-
-        blocked_ips_severity = IpBlock.where(ip: ip_list).pluck(:severity).all?(options[:severity])
-
-        expect(blocked_ips_severity).to be(true)
+      def expected_ip_addresses
+        ip_list.map { |ip| IPAddr.new(ip) }
       end
 
-      it 'displays a success message with a summary' do
+      def blocked_ips_severity
+        IpBlock.where(ip: ip_list).pluck(:severity).all?(options[:severity])
+      end
+
+      it 'blocks and sets severity for ip address and displays summary' do
         expect { subject }
           .to output_results("Added #{ip_list.size}, skipped 0, failed 0")
+        expect(blocked_ip_addresses)
+          .to match_array(expected_ip_addresses)
+        expect(blocked_ips_severity)
+          .to be(true)
       end
     end
 
@@ -64,17 +63,13 @@ describe Mastodon::CLI::IpBlocks do
       let!(:blocked_ip) { IpBlock.create(ip: ip_list.last, severity: options[:severity]) }
       let(:arguments) { ip_list }
 
-      it 'skips the already blocked IP address' do
-        allow(IpBlock).to receive(:new).and_call_original
+      before { allow(IpBlock).to receive(:new).and_call_original }
 
-        subject
-
-        expect(IpBlock).to_not have_received(:new).with(ip: ip_list.last)
-      end
-
-      it 'displays the correct summary' do
+      it 'skips already block ip and displays the correct summary' do
         expect { subject }
           .to output_results("#{ip_list.last} is already blocked\nAdded #{ip_list.size - 1}, skipped 1, failed 0")
+
+        expect(IpBlock).to_not have_received(:new).with(ip: ip_list.last)
       end
 
       context 'with --force option' do
@@ -83,7 +78,8 @@ describe Mastodon::CLI::IpBlocks do
 
         it 'overwrites the existing IP block record' do
           expect { subject }
-            .to change { blocked_ip.reload.severity }
+            .to output_results('Added 11')
+            .and change { blocked_ip.reload.severity }
             .from('no_access')
             .to('sign_up_requires_approval')
         end
@@ -179,15 +175,10 @@ describe Mastodon::CLI::IpBlocks do
         ip_list.each { |ip| IpBlock.create(ip: ip, severity: :no_access) }
       end
 
-      it 'removes exact IP blocks' do
-        subject
-
-        expect(IpBlock.where(ip: ip_list)).to_not exist
-      end
-
-      it 'displays success message with a summary' do
+      it 'removes exact ip blocks and displays success message with a summary' do
         expect { subject }
           .to output_results("Removed #{ip_list.size}, skipped 0")
+        expect(IpBlock.where(ip: ip_list)).to_not exist
       end
     end
 
@@ -198,16 +189,20 @@ describe Mastodon::CLI::IpBlocks do
       let(:arguments) { ['192.168.0.5', '10.0.1.50'] }
       let(:options) { { force: true } }
 
-      it 'removes blocks for IP ranges that cover given IP(s)' do
-        subject
+      it 'removes blocks for IP ranges that cover given IP(s) and keeps other ranges' do
+        expect { subject }
+          .to output_results('Removed 2')
 
-        expect(IpBlock.where(id: [first_ip_range_block.id, second_ip_range_block.id])).to_not exist
+        expect(covered_ranges).to_not exist
+        expect(other_ranges).to exist
       end
 
-      it 'does not remove other IP ranges' do
-        subject
+      def covered_ranges
+        IpBlock.where(id: [first_ip_range_block.id, second_ip_range_block.id])
+      end
 
-        expect(IpBlock.where(id: third_ip_range_block.id)).to exist
+      def other_ranges
+        IpBlock.where(id: third_ip_range_block.id)
       end
     end
 
@@ -215,14 +210,12 @@ describe Mastodon::CLI::IpBlocks do
       let(:unblocked_ip) { '192.0.2.1' }
       let(:arguments) { [unblocked_ip] }
 
-      it 'skips the IP address' do
+      it 'skips the IP address and displays summary' do
         expect { subject }
-          .to output_results("#{unblocked_ip} is not yet blocked")
-      end
-
-      it 'displays the summary correctly' do
-        expect { subject }
-          .to output_results('Removed 0, skipped 1')
+          .to output_results(
+            "#{unblocked_ip} is not yet blocked",
+            'Removed 0, skipped 1'
+          )
       end
     end
 
@@ -230,14 +223,12 @@ describe Mastodon::CLI::IpBlocks do
       let(:invalid_ip) { '320.15.175.0' }
       let(:arguments) { [invalid_ip] }
 
-      it 'skips the invalid IP address' do
+      it 'skips the invalid IP address and displays summary' do
         expect { subject }
-          .to output_results("#{invalid_ip} is invalid")
-      end
-
-      it 'displays the summary correctly' do
-        expect { subject }
-          .to output_results('Removed 0, skipped 1')
+          .to output_results(
+            "#{invalid_ip} is invalid",
+            'Removed 0, skipped 1'
+          )
       end
     end
 
@@ -265,7 +256,7 @@ describe Mastodon::CLI::IpBlocks do
           .to output_results("#{first_ip_range_block.ip}/#{first_ip_range_block.ip.prefix}\n#{second_ip_range_block.ip}/#{second_ip_range_block.ip.prefix}")
       end
 
-      it 'does not export bloked IPs with different severities' do
+      it 'does not export blocked IPs with different severities' do
         expect { subject }
           .to_not output_results("#{third_ip_range_block.ip}/#{first_ip_range_block.ip.prefix}")
       end
@@ -279,7 +270,7 @@ describe Mastodon::CLI::IpBlocks do
           .to output_results("deny #{first_ip_range_block.ip}/#{first_ip_range_block.ip.prefix};\ndeny #{second_ip_range_block.ip}/#{second_ip_range_block.ip.prefix};")
       end
 
-      it 'does not export bloked IPs with different severities' do
+      it 'does not export blocked IPs with different severities' do
         expect { subject }
           .to_not output_results("deny #{third_ip_range_block.ip}/#{first_ip_range_block.ip.prefix};")
       end

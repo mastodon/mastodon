@@ -134,7 +134,7 @@ describe JsonLdHelper do
         expect(compact(json).dig('object', 'tag', 'href')).to eq 'foo'
       end
 
-      it 'compacts the activistreams Public collection' do
+      it 'compacts the activitystreams Public collection' do
         expect(compact(json)['to']).to eq 'as:Public'
       end
 

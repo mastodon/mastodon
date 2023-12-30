@@ -17,8 +17,23 @@
 class CustomFilter < ApplicationRecord
   self.ignored_columns += %w(whole_word irreversible)
 
-  alias_attribute :title, :phrase
-  alias_attribute :filter_action, :action
+  # NOTE: We previously used `alias_attribute` but this does not play nicely
+  # with cache
+  def title
+    phrase
+  end
+
+  def title=(value)
+    self.phrase = value
+  end
+
+  def filter_action
+    action
+  end
+
+  def filter_action=(value)
+    self.action = value
+  end
 
   VALID_CONTEXTS = %w(
     home
@@ -91,7 +106,7 @@ class CustomFilter < ApplicationRecord
       filters_hash.values.map { |cache| [cache.delete(:filter), cache] }
     end.to_a
 
-    active_filters.select { |custom_filter, _| !custom_filter.expired? }
+    active_filters.reject { |custom_filter, _| custom_filter.expired? }
   end
 
   def self.apply_cached_filters(cached_filters, status)

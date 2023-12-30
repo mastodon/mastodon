@@ -12,7 +12,7 @@ class Api::V1::DirectoriesController < Api::BaseController
   private
 
   def require_enabled!
-    return not_found unless Setting.profile_directory
+    not_found unless Setting.profile_directory
   end
 
   def set_accounts

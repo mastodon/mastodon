@@ -2,21 +2,17 @@
 
 require 'rails_helper'
 
-describe Api::V1::Accounts::NotesController do
-  render_views
-
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'write:accounts') }
+describe 'Accounts Notes API' do
+  let(:user)     { Fabricate(:user) }
+  let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:scopes)   { 'write:accounts' }
+  let(:headers)  { { 'Authorization' => "Bearer #{token.token}" } }
   let(:account) { Fabricate(:account) }
   let(:comment) { 'foo' }
 
-  before do
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
-
-  describe 'POST #create' do
+  describe 'POST /api/v1/accounts/:account_id/note' do
     subject do
-      post :create, params: { account_id: account.id, comment: comment }
+      post "/api/v1/accounts/#{account.id}/note", params: { comment: comment }, headers: headers
     end
 
     context 'when account note has reasonable length', :aggregate_failures do

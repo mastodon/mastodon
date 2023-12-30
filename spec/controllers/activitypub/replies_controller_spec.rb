@@ -123,7 +123,7 @@ RSpec.describe ActivityPub::RepliesController do
         end
 
         it 'uses ids for remote toots' do
-          remote_replies = page_json[:items].select { |x| !x.is_a?(Hash) }
+          remote_replies = page_json[:items].reject { |x| x.is_a?(Hash) }
           expect(remote_replies.all? { |item| item.is_a?(String) && !ActivityPub::TagManager.instance.local_uri?(item) }).to be true
         end
 
