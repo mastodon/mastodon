@@ -2,14 +2,14 @@ version: '3'
 services:
   db:
     restart: always
-    image: postgres:15-alpine
+    image: postgres:16-alpine
     shm_size: 256mb
     networks:
       - internal_network
     healthcheck:
       test: ['CMD', 'pg_isready', '-U', 'postgres']
     volumes:
-      - ./postgres15:/var/lib/postgresql/data
+      - ./postgres16:/var/lib/postgresql/data
     environment:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
 
