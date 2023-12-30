@@ -1,11 +1,157 @@
 ---
 ie:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nómine de aplication
+        redirect_uri: URI de redirection
+        website: Situ web de aplication
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ne posse contener un fragment.
+              invalid_uri: deve esser un URI valid.
+              relative_uri: deve esser un URI absolut.
+              secured_uri: deve esser un URI de HTTPS/SSL.
   doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorisar
+        cancel: Anullar
+        destroy: Destructer
+        edit: Redacter
+        submit: Submisser
+      confirmations:
+        destroy: Es tu cert?
+      edit:
+        title: Modificar aplication
+      help:
+        redirect_uri: Usar un linea per URI
+      index:
+        application: Aplication
+        delete: Deleter
+        empty: Tu have null aplicationes.
+        name: Nómine
+        new: Nov aplication
+        show: Monstrar
+        title: Tui aplicationes
+      new:
+        title: Nov aplication
+      show:
+        actions: Actiones
+        application_id: Clave de client
+        secret: Secrete de client
+        title: 'Aplication: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorisar
+        deny: Negar
+      error:
+        title: Alquo ha errat
+      new:
+        title: Autorisation besonat
+    authorized_applications:
+      buttons:
+        revoke: Revocar
+      confirmations:
+        revoke: Es tu cert?
+      index:
+        authorized_at: Autorisat ye %{date}
+        last_used_at: Ultimmen usat ye %{date}
+        never_used: Nequande usat
+        scopes: Permissiones
+        superapp: Intern
+        title: Tui autorisat aplicationes
+    errors:
+      messages:
+        invalid_client: Fallit autentification pro ínconosset client, manca de client-autentification, o ne subtenet metode de autentification.
+        invalid_redirect_uri: Li uri de redirection includet ne es valid.
+        invalid_request:
+          unknown: Li petition manca un postulat parametre, include un ne apoyat parametre-valore, o es altrimen mal format.
+        unsupported_grant_type: Li tip de autorisation concedet ne es subtenet per li autorisant servitor.
+        unsupported_response_type: Li autorisant servitor ne subtene ti-ci tip de response.
+    flash:
+      applications:
+        create:
+          notice: Aplication creat.
+        destroy:
+          notice: Aplication deletet.
+        update:
+          notice: Aplication actualisat.
+      authorized_applications:
+        destroy:
+          notice: Aplication revocat.
     grouped_scopes:
+      access:
+        read: Accesse solmen por leer
+        read/write: Accesse por leer e scrir
+        write: Accesse solmen por scrir
       title:
+        accounts: Contos
+        admin/accounts: Administration de contos
+        admin/all: Omni functiones administrativ
+        admin/reports: Administration de raportes
+        all: Plen accesse a tui conto Mastodon
+        blocks: Bloccas
+        bookmarks: Marcatores
+        conversations: Conversationes
+        favourites: Favorites
+        filters: Filtres
         follow: Seques, silentias e bloccas
+        follows: Seque
+        lists: Listes
+        media: Medie-atachamentes
         mutes: Silentias
+        notifications: Notificationes
+        push: Notificationes push
+        reports: Raportes
+        search: Serchar
+        statuses: Postas
+    layouts:
+      admin:
+        nav:
+          applications: Aplicationes
     scopes:
+      admin:read: leer li tot data sur li servitor
+      admin:read:accounts: leer sensitiv information de omni contos
+      admin:read:domain_allows: leer sensitiv information pri omni permisses de dominia
+      admin:read:domain_blocks: leer sensitiv information pri omni bloccas de dominia
+      admin:read:email_domain_blocks: leer sensitiv information pri omni bloccas de dominia basat sur e-posta
+      admin:read:ip_blocks: leer sensitiv information pri omni bloccas de IP
+      admin:read:reports: leer sensitiv information pri omni raportes e raportat contos
+      admin:write: modificar li tot data sur li servitor
+      admin:write:accounts: far moderatori actiones sur contos
+      admin:write:canonical_email_blocks: far moderatori actiones sur canonic bloccas de e-posta
+      admin:write:domain_allows: far actiones de moderation sur permisses de dominia
+      admin:write:domain_blocks: far actiones de moderation sur bloccas de dominia
+      admin:write:email_domain_blocks: far actiones de moderation sur bloccas de dominia basat sur e-posta
+      admin:write:ip_blocks: fa moderatori actiones sur bloccas de IP
+      admin:write:reports: far moderatori actiones sur raportes
+      follow: modifica li relationes del conto
+      read: lee omni datas de tui conto
+      read:accounts: vide li informationes pri li conto
+      read:blocks: vider tui bloccas
+      read:bookmarks: vider tui marcatores
+      read:favourites: vider tui favorites
+      read:filters: vider tui filtres
+      read:follows: vider tui sequitores
+      read:lists: vider tui listes
       read:mutes: vider tui silentias
+      read:notifications: vider tui notificationes
+      read:reports: vider tui raportes
+      read:search: serchar in tui nómine
+      read:statuses: vider omni postas
+      write: modificar li tot data de tui conto
+      write:accounts: modifica tui profile
+      write:blocks: bloccar contos e dominias
       write:conversations: silentiar e deleter conversationes
+      write:favourites: favorit postas
+      write:filters: crea filtres
+      write:follows: sequer homes
+      write:lists: crear listes
       write:mutes: silentiar persones e conversationes
+      write:notifications: aclarar tui notificationes
+      write:reports: raportar altri persones
+      write:statuses: publicar postas
