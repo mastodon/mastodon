@@ -390,20 +390,24 @@ class Status extends ImmutablePureComponent {
     const matchedFilters = status.get('matched_filters');
 
     const forUser = this.props.forUser && this.props.forUser.get('acct');
-    const postAcct = status.get('account').get('acct');
+    const postAcct = status.getIn(['account', 'acct']);
+    const interacted = status.get("reblogged") || status.get("favourited") ||
+          status.get("bookmarked");
     if (this.state.forceFilter === undefined ?
-        (matchedFilters || postAcct === forUser) :
-        this.state.forceFilter) {
+      (interacted || matchedFilters || postAcct === forUser) :
+      this.state.forceFilter) {
       const minHandlers = this.props.muted ? {} : {
         moveUp: this.handleHotkeyMoveUp,
         moveDown: this.handleHotkeyMoveDown,
       };
 
+      const message = interacted ? "Interacted" :
+        (postAcct === forUser ? "Self" : matchedFilters.join(', '));
+
       return (
         <HotKeys handlers={minHandlers}>
           <div className='status__wrapper status__wrapper--filtered focusable' tabIndex={0} ref={this.handleRef}>
-            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {postAcct === forUser ? "Self" : matchedFilters.join(', ')}.
-            {' '}
+            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {message}.{' '}
             <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
               <FormattedMessage id='status.show_filter_reason' defaultMessage='Show anyway' />
             </button>
