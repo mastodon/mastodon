@@ -394,7 +394,7 @@ class Status extends ImmutablePureComponent {
     const interacted = status.get("reblogged") || status.get("favourited") ||
           status.get("bookmarked");
     if (this.state.forceFilter === undefined ?
-      (interacted || matchedFilters || postAcct === forUser) :
+      ((forUser && interacted) || matchedFilters || postAcct === forUser) :
       this.state.forceFilter) {
       const minHandlers = this.props.muted ? {} : {
         moveUp: this.handleHotkeyMoveUp,
