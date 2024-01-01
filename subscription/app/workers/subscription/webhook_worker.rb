@@ -14,15 +14,21 @@ module Subscription
         subscription = ::Stripe::Subscription.retrieve(session[:subscription])
 
         max_uses = subscription[:quantity]
-        max_uses = max_uses + 1 if (subscription[:metadata][:supporter])
+        if (max_uses.nil?)
+          max_uses = 0
+          subscription[:items][:data].each do |item|
+            max_uses += item[:quantity]
+          end
+        end
 
         invite = if (session[:client_reference_id].present?)
-          max_uses = max_uses - 1
-          Invite.create!(user_id: session[:client_reference_id], max_uses: max_uses, autofollow: true)
+          max_uses -= 1
+          Invite.new(user_id: session[:client_reference_id], max_uses: max_uses, autofollow: true)
         else
           instance_user = InstancePresenter.new.contact.account&.user
-          Invite.create!(user_id: instance_user&.id, max_uses: max_uses, autofollow: true)
+          Invite.new(user_id: instance_user&.id, max_uses: max_uses, autofollow: true)
         end
+        invite.save!
 
         Subscription::StripeSubscription.create(
           user_id: session[:client_reference_id],
