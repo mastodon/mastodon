@@ -13,8 +13,10 @@
                         %tbody
                           %tr
                             %td.column-cell.text-center.padded
-                              %h1= "Redeem your invite"
-                              %p.lead= "Use this invite link to create your new account" 
+                              %h1= "Your invite code"
+                              %p.lead= @invite.code
+                              - if (@invite.max_uses > 1)
+                                %p= "Valid for " + @invite.max_uses + " uses"
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
@@ -33,9 +35,8 @@
                             %tbody
                               %tr
                                 %td.button-primary
-                                  - invite_url = main_app.public_invite_url(invite_code: @invite.code)
-                                  = link_to invite_url do
-                                    %span= invite_url
+                                  = link_to @app_link do
+                                    %span= "Redeem in the iOS App"
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
@@ -52,4 +53,7 @@
                         %tbody
                           %tr
                             %td.column-cell.text-center.padded
-                              %p= 'If you have a family plan, share this invite link with your family members so they can create their accounts'
+                              - invite_url = main_app.public_invite_url(invite_code: @invite.code)
+                              %p= "Need to redeem on the web instead?"
+                              = link_to invite_url do
+                                %span= invite_url

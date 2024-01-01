@@ -11,6 +11,7 @@ module Subscription
 
     def send_invite(email, invite)
       @invite = invite
+      @app_link = ENV['APP_LINK']
       mail to: email,
           subject: "Here are your invites",
           template_name: 'invite'
