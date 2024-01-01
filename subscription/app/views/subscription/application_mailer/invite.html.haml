@@ -16,7 +16,7 @@
                               %h1= "Your invite code"
                               %p.lead= @invite.code
                               - if (@invite.max_uses > 1)
-                                %p= "Valid for " + @invite.max_uses + " uses"
+                                %p= "Valid for #{@invite.max_uses} uses"
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
