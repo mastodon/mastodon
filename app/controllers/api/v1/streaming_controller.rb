@@ -13,7 +13,9 @@ class Api::V1::StreamingController < Api::BaseController
 
   def streaming_api_url
     Addressable::URI.parse(request.url).tap do |uri|
-      uri.host = Addressable::URI.parse(Rails.configuration.x.streaming_api_base_url).host
+      base_url = Addressable::URI.parse(Rails.configuration.x.streaming_api_base_url)
+      uri.host = base_url.host
+      uri.port = base_url.port
     end.to_s
   end
 end
