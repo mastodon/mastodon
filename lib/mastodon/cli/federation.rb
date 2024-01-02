@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'tty-prompt'
-
 module Mastodon::CLI
   module Federation
     extend ActiveSupport::Concern
@@ -30,44 +28,38 @@ module Mastodon::CLI
       LONG_DESC
       def self_destruct
         if SelfDestructHelper.self_destruct?
-          prompt.ok('Self-destruct mode is already enabled for this Mastodon server')
+          say('Self-destruct mode is already enabled for this Mastodon server', :green)
 
           pending_accounts = Account.local.without_suspended.count + Account.local.suspended.joins(:deletion_request).count
           sidekiq_stats = Sidekiq::Stats.new
 
           if pending_accounts.positive?
-            prompt.warn("#{pending_accounts} accounts are still pending deletion.")
+            say("#{pending_accounts} accounts are still pending deletion.", :yellow)
           elsif sidekiq_stats.enqueued.positive?
-            prompt.warn('Deletion notices are still being processed')
+            say('Deletion notices are still being processed', :yellow)
           elsif sidekiq_stats.retry_size.positive?
-            prompt.warn('At least one delivery attempt for each deletion notice has been made, but some have failed and are scheduled for retry')
+            say('At least one delivery attempt for each deletion notice has been made, but some have failed and are scheduled for retry', :yellow)
           else
-            prompt.ok('Every deletion notice has been sent! You can safely delete all data and decomission your servers!')
+            say('Every deletion notice has been sent! You can safely delete all data and decomission your servers!', :green)
           end
 
           exit(0)
         end
 
-        exit(1) unless prompt.ask('Type in the domain of the server to confirm:', required: true) == Rails.configuration.x.local_domain
+        exit(1) unless ask('Type in the domain of the server to confirm:') == Rails.configuration.x.local_domain
 
-        prompt.warn('This operation WILL NOT be reversible.')
-        prompt.warn('While the data won\'t be erased locally, the server will be in a BROKEN STATE afterwards.')
-        prompt.warn('The deletion process itself may take a long time, and will be handled by Sidekiq, so do not shut it down until it has finished (you will be able to re-run this command to see the state of the self-destruct process).')
+        say('This operation WILL NOT be reversible.', :yellow)
+        say('While the data won\'t be erased locally, the server will be in a BROKEN STATE afterwards.', :yellow)
+        say('The deletion process itself may take a long time, and will be handled by Sidekiq, so do not shut it down until it has finished (you will be able to re-run this command to see the state of the self-destruct process).', :yellow)
 
-        exit(1) if prompt.no?('Are you sure you want to proceed?')
+        exit(1) if no?('Are you sure you want to proceed?')
 
         self_destruct_value = Rails.application.message_verifier('self-destruct').generate(Rails.configuration.x.local_domain)
-        prompt.ok('To switch Mastodon to self-destruct mode, add the following variable to your evironment (e.g. by adding a line to your `.env.production`) and restart all Mastodon processes:')
-        prompt.ok("  SELF_DESTRUCT=#{self_destruct_value}")
-        prompt.ok("\nYou can re-run this command to see the state of the self-destruct process.")
-      rescue TTY::Reader::InputInterrupt
+        say('To switch Mastodon to self-destruct mode, add the following variable to your evironment (e.g. by adding a line to your `.env.production`) and restart all Mastodon processes:', :green)
+        say("  SELF_DESTRUCT=#{self_destruct_value}", :green)
+        say("\nYou can re-run this command to see the state of the self-destruct process.", :green)
+      rescue Interrupt
         exit(1)
-      end
-
-      private
-
-      def prompt
-        @prompt ||= TTY::Prompt.new
       end
     end
   end
