@@ -112,6 +112,7 @@ ie:
       promote: Promoer
       protocol: Protocol
       public: Public
+      push_subscription_expires: Subscrition a PuSH expira
       redownload: Recargar li profil
       redownloaded_msg: Successosimen recargat li profil de %{username} del original fonte
       reject: Rejecter
@@ -465,6 +466,7 @@ ie:
       unsuppress: Restaurar seque-recomandation
     instances:
       availability:
+        failure_threshold_reached: Límite de falliment atinget ye %{date}.
         failures_recorded:
           one: Fallit prova por %{count} die.
           other: Fallit provas por %{count} dies.
@@ -478,6 +480,8 @@ ie:
       confirm_purge: Vole tu vermen permanentmen deleter data de ti dominia?
       content_policies:
         comment: Internal nota
+        description_html: Tu posse definar planes de contenete a aplicar sur omni contos de ti-ci dominia e omni su subdominias.
+        limited_federation_mode_description_html: Tu posse selecter ca permisser federation a ti-ci dominia.
         policies:
           reject_media: Rejecter medie
           reject_reports: Rejecter raportes
@@ -704,6 +708,7 @@ ie:
         manage_users: Gerer usatores
         manage_users_description: Permisse que usatores vide detallies de altri usatores e fa actiones de moderation contra les
         manage_webhooks: Gerer Webcrocs
+        manage_webhooks_description: Permisse que usatores configura webcrocs por evenimentes administrativ
         view_audit_log: Vider li Jurnale de Audit
         view_audit_log_description: Permisse que usatores vide li historie de administrativ actiones sur li servitor
         view_dashboard: Vider Panel de Control
@@ -714,6 +719,7 @@ ie:
     rules:
       add_new: Adjunter un regule
       delete: Deleter
+      description_html: Benque li pluparte di que ili ha leet e acorda con li termines de servicie, presc nequi perlee les til quande un problema eveni. <strong>Tu posse facilitar li perletura del regules de tui servitor per dar les sur un liste de plat balle-punctus.</strong> Li índividual regules posse esser curt e simplic, ma mem un liste de micri punctus posse esser tro exigent por li letor si it es tro grand.
       edit: Redacter regul
       empty: Ancor null regules de servitor ha esset definit.
       title: Regules del servitor
@@ -724,6 +730,11 @@ ie:
       appearance:
         preamble: Customisar li interfacie web de Mastodon.
         title: Aspecte
+      branding:
+        title: Marca
+      captcha_enabled:
+        desc_html: To ci usa extern scrites de hCaptcha, quel posse esser ínquietant pro rasones de securitá e privatie. In plu, <strong>it posse far li processu de registration mult plu desfacil (particularimen por tis con deshabilitás)</strong>. Pro ti rasones, ples considerar alternativ mesuras, tales quam registration per aprobation o invitation.
+        title: Exige que nov usatores solue un CAPTCHA por confirmar lor conto
       content_retention:
         title: Retention de contenete
       discovery:
@@ -1374,6 +1385,7 @@ ie:
   media_attachments:
     validations:
       images_and_video: On ne posse atachar un video a un posta quel ja contene images
+      too_many: Ne posse atachar plu quam 4 files
   migrations:
     acct: Translocat a
     cancel: Anullar redirection
@@ -1401,6 +1413,8 @@ ie:
     carry_blocks_over_text: Ti usator translocat se de %{acct}, quel tu hat bloccat.
     carry_mutes_over_text: Ti-ci usator movet se de %{acct}, quel tu hat silentiat.
     copy_account_note_text: 'Vi tui notas pri ti usator qui translocat se de %{acct}:'
+  navigation:
+    toggle_menu: Changear menú
   notification_mailer:
     admin:
       report:
@@ -1443,6 +1457,7 @@ ie:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -1800,6 +1815,8 @@ ie:
       success: Tui clave de securitá esset adjuntet con successe.
     delete: Deleter
     delete_confirmation: Vole tu vermen deleter ti-ci clave de securitá?
+    destroy:
+      success: Tui clave de securitá esset successosimen deletet.
     invalid_credential: Ínvalid clave de securitá
     not_enabled: Tu ancor ne ha possibilisat WebAuthn
     not_supported: Ti-ci navigator ne subtene claves de securitá
