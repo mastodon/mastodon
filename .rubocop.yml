@@ -74,14 +74,12 @@ Metrics/ModuleLength:
 Metrics/AbcSize:
   Exclude:
     - 'lib/mastodon/cli/*.rb'
-    - db/*migrate/**/*
 
 # Reason: Currently disabled in .rubocop_todo.yml
 # https://docs.rubocop.org/rubocop/cops_metrics.html#metricscyclomaticcomplexity
 Metrics/CyclomaticComplexity:
   Exclude:
     - lib/mastodon/cli/*.rb
-    - db/*migrate/**/*
 
 # Reason:
 # https://docs.rubocop.org/rubocop/cops_metrics.html#metricsparameterlists
