@@ -100,32 +100,76 @@ describe Mastodon::CLI::Main do
       end
 
       context 'with an incorrect response to hostname' do
-        let(:prompt_double) { instance_double(TTY::Prompt, ask: 'wrong') }
-
         before do
-          allow(TTY::Prompt).to receive(:new).and_return(prompt_double)
+          answer_hostname_incorrectly
         end
 
-        it 'reports failed answer' do
+        it 'exits silently' do
           expect { subject }
             .to raise_error(SystemExit)
         end
       end
 
-      context 'with a correct response to hostname' do
-        # TODO: Update after tty-prompt replace with Thor methods
-        let(:prompt_double) { instance_double(TTY::Prompt, ask: Rails.configuration.x.local_domain, warn: nil, no?: false, ok: nil) }
-
+      context 'with a correct response to hostname but no to proceed' do
         before do
-          allow(TTY::Prompt).to receive(:new).and_return(prompt_double)
+          answer_hostname_correctly
+          decline_proceed
+        end
+
+        it 'passes first step but stops before instructions' do
+          expect { subject }
+            .to output_results('operation WILL NOT')
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'with a correct response to hostname and yes to proceed' do
+        before do
+          answer_hostname_correctly
+          accept_proceed
         end
 
         it 'instructs to set the appropriate environment variable' do
           expect { subject }
-            .to_not raise_error
-          # TODO: Update after tty-prompt replace with Thor methods
-          expect(prompt_double).to have_received(:ok).with(/add the following variable/)
+            .to output_results(
+              'operation WILL NOT',
+              'the following variable'
+            )
         end
+      end
+
+      private
+
+      def answer_hostname_incorrectly
+        allow(cli.shell)
+          .to receive(:ask)
+          .with('Type in the domain of the server to confirm:')
+          .and_return('wrong.host')
+          .once
+      end
+
+      def answer_hostname_correctly
+        allow(cli.shell)
+          .to receive(:ask)
+          .with('Type in the domain of the server to confirm:')
+          .and_return(Rails.configuration.x.local_domain)
+          .once
+      end
+
+      def decline_proceed
+        allow(cli.shell)
+          .to receive(:no?)
+          .with('Are you sure you want to proceed?')
+          .and_return(true)
+          .once
+      end
+
+      def accept_proceed
+        allow(cli.shell)
+          .to receive(:no?)
+          .with('Are you sure you want to proceed?')
+          .and_return(false)
+          .once
       end
     end
   end
