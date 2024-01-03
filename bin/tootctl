@@ -14,8 +14,6 @@ rescue Thor::Error => e
     .new
     .say_error(e.message, :red)
   exit(1)
-rescue TTY::Reader::InputInterrupt
-  exit(1)
 rescue Interrupt
   exit(130)
 end
