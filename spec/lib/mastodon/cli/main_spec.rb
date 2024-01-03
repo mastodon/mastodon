@@ -120,7 +120,7 @@ describe Mastodon::CLI::Main do
           allow(TTY::Prompt).to receive(:new).and_return(prompt_double)
         end
 
-        it 'reports failed answer' do
+        it 'instructs to set the appropriate environment variable' do
           expect { subject }
             .to_not raise_error
           # TODO: Update after tty-prompt replace with Thor methods
