@@ -216,8 +216,7 @@ describe Mastodon::CLI::Media do
 
       it 'warns about usage and exits' do
         expect { subject }
-          .to output_results('azure storage driver is not supported')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, /azure storage driver is not supported/)
       end
     end
 
@@ -228,8 +227,7 @@ describe Mastodon::CLI::Media do
 
       it 'warns about usage and exits' do
         expect { subject }
-          .to output_results('fog storage driver is not supported')
-          .and raise_error(SystemExit)
+          .to raise_error(Thor::Error, /fog storage driver is not supported/)
       end
     end
 
