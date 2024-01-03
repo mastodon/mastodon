@@ -8,7 +8,7 @@ ARG TARGETPLATFORM=${TARGETPLATFORM}
 ARG BUILDPLATFORM=${BUILDPLATFORM}
 
 # Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.2.2"]
-ARG RUBY_VERSION="3.2.2"
+ARG RUBY_VERSION="3.3.0"
 # # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 ARG NODE_MAJOR_VERSION="20"
 # Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
