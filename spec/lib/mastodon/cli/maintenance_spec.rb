@@ -34,7 +34,8 @@ describe Mastodon::CLI::Maintenance do
 
       it 'Exits with error message' do
         expect { subject }
-          .to raise_error(Thor::Error, /more recent/)
+          .to output_results('more recent')
+          .and raise_error(Thor::Error, /more recent/)
       end
     end
 
