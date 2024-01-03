@@ -116,8 +116,7 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_report
-    AdminActionLog.where(target_type: 'Report', human_identifier: nil)
-    logs_targeting_report.in_batches.update_all('human_identifier = target_id::text')
+    AdminActionLog.where(target_type: 'Report', human_identifier: nil).in_batches.update_all('human_identifier = target_id::text')
   end
 
   def process_logs_for_domain_block
