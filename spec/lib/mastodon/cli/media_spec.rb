@@ -225,6 +225,7 @@ describe Mastodon::CLI::Media do
 
     context 'when in filesystem mode' do
       before do
+        allow(File).to receive(:delete).and_return(true)
         media_attachment.delete
       end
 
@@ -233,7 +234,7 @@ describe Mastodon::CLI::Media do
       it 'removes the unlinked files' do
         expect { subject }
           .to output_results('Removed', 'orphans (approx')
-          .and(change { File.exist?(media_attachment.file.path) }.from(true).to(false))
+        expect(File).to have_received(:delete).with(media_attachment.file.path)
       end
     end
   end
