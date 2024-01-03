@@ -99,7 +99,7 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   private
 
   def process_logs_for_account
-    logs_targeting_account.find_each do |log|
+    AdminActionLog.includes(:account).where(target_type: 'Account', human_identifier: nil).find_each do |log|
       next if log.account.nil?
 
       log.update_attribute('human_identifier', log.account.acct)
@@ -107,7 +107,7 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_user
-    logs_targeting_user.find_each do |log|
+    AdminActionLog.includes(user: :account).where(target_type: 'User', human_identifier: nil).find_each do |log|
       next if log.user.nil?
 
       log.update_attribute('human_identifier', log.user.account.acct)
@@ -116,11 +116,12 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_report
+    AdminActionLog.where(target_type: 'Report', human_identifier: nil)
     logs_targeting_report.in_batches.update_all('human_identifier = target_id::text')
   end
 
   def process_logs_for_domain_block
-    logs_targeting_domain_block.find_each do |log|
+    AdminActionLog.includes(:domain_block).where(target_type: 'DomainBlock').find_each do |log|
       next if log.domain_block.nil?
 
       log.update_attribute('human_identifier', log.domain_block.domain)
@@ -128,7 +129,7 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_domain_allow
-    logs_targeting_domain_allow.find_each do |log|
+    AdminActionLog.includes(:domain_allow).where(target_type: 'DomainAllow').find_each do |log|
       next if log.domain_allow.nil?
 
       log.update_attribute('human_identifier', log.domain_allow.domain)
@@ -136,7 +137,7 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_email_domain_block
-    logs_targeting_email_domain_block.find_each do |log|
+    AdminActionLog.includes(:email_domain_block).where(target_type: 'EmailDomainBlock').find_each do |log|
       next if log.email_domain_block.nil?
 
       log.update_attribute('human_identifier', log.email_domain_block.domain)
@@ -144,7 +145,7 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_unavailable_domain
-    logs_targeting_unavailable_domain.find_each do |log|
+    AdminActionLog.includes(:unavailable_domain).where(target_type: 'UnavailableDomain').find_each do |log|
       next if log.unavailable_domain.nil?
 
       log.update_attribute('human_identifier', log.unavailable_domain.domain)
@@ -152,7 +153,7 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_status
-    logs_targeting_status.find_each do |log|
+    AdminActionLog.includes(status: :account).where(target_type: 'Status', human_identifier: nil).find_each do |log|
       next if log.status.nil?
 
       log.update_attribute('human_identifier', log.status.account.acct)
@@ -161,7 +162,7 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_account_warning
-    logs_targeting_account_warning.find_each do |log|
+    AdminActionLog.includes(account_warning: :account).where(target_type: 'AccountWarning', human_identifier: nil).find_each do |log|
       next if log.account_warning.nil?
 
       log.update_attribute('human_identifier', log.account_warning.account.acct)
@@ -169,7 +170,7 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_announcement
-    logs_targeting_announcement.find_each do |log|
+    AdminActionLog.includes(:announcement).where(target_type: 'Announcement', human_identifier: nil).find_each do |log|
       next if log.announcement.nil?
 
       log.update_attribute('human_identifier', log.announcement.text)
@@ -177,7 +178,7 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_ip_block
-    logs_targeting_ip_block.find_each do |log|
+    AdminActionLog.includes(:ip_block).where(target_type: 'IpBlock', human_identifier: nil).find_each do |log|
       next if log.ip_block.nil?
 
       log.update_attribute('human_identifier', "#{log.ip_block.ip}/#{log.ip_block.ip.prefix}")
@@ -185,7 +186,7 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_custom_emoji
-    logs_targeting_custom_emoji.find_each do |log|
+    AdminActionLog.includes(:custom_emoji).where(target_type: 'CustomEmoji', human_identifier: nil).find_each do |log|
       next if log.custom_emoji.nil?
 
       log.update_attribute('human_identifier', log.custom_emoji.shortcode)
@@ -193,7 +194,7 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_canonical_email_block
-    logs_targeting_canonical_email_block.find_each do |log|
+    AdminActionLog.includes(:canonical_email_block).where(target_type: 'CanonicalEmailBlock', human_identifier: nil).find_each do |log|
       next if log.canonical_email_block.nil?
 
       log.update_attribute('human_identifier', log.canonical_email_block.canonical_email_hash)
@@ -201,67 +202,11 @@ class BackfillAdminActionLogs < ActiveRecord::Migration[6.1]
   end
 
   def process_logs_for_appeal
-    logs_targeting_appeal.find_each do |log|
+    AdminActionLog.includes(appeal: :account).where(target_type: 'Appeal', human_identifier: nil).find_each do |log|
       next if log.appeal.nil?
 
       log.update_attribute('human_identifier', log.appeal.account.acct)
       log.update_attribute('route_param', log.appeal.account_warning_id)
     end
-  end
-
-  def logs_targeting_account
-    AdminActionLog.includes(:account).where(target_type: 'Account', human_identifier: nil)
-  end
-
-  def logs_targeting_user
-    AdminActionLog.includes(user: :account).where(target_type: 'User', human_identifier: nil)
-  end
-
-  def logs_targeting_report
-    AdminActionLog.where(target_type: 'Report', human_identifier: nil)
-  end
-
-  def logs_targeting_domain_block
-    AdminActionLog.includes(:domain_block).where(target_type: 'DomainBlock')
-  end
-
-  def logs_targeting_domain_allow
-    AdminActionLog.includes(:domain_allow).where(target_type: 'DomainAllow')
-  end
-
-  def logs_targeting_email_domain_block
-    AdminActionLog.includes(:email_domain_block).where(target_type: 'EmailDomainBlock')
-  end
-
-  def logs_targeting_unavailable_domain
-    AdminActionLog.includes(:unavailable_domain).where(target_type: 'UnavailableDomain')
-  end
-
-  def logs_targeting_status
-    AdminActionLog.includes(status: :account).where(target_type: 'Status', human_identifier: nil)
-  end
-
-  def logs_targeting_account_warning
-    AdminActionLog.includes(account_warning: :account).where(target_type: 'AccountWarning', human_identifier: nil)
-  end
-
-  def logs_targeting_announcement
-    AdminActionLog.includes(:announcement).where(target_type: 'Announcement', human_identifier: nil)
-  end
-
-  def logs_targeting_ip_block
-    AdminActionLog.includes(:ip_block).where(target_type: 'IpBlock', human_identifier: nil)
-  end
-
-  def logs_targeting_custom_emoji
-    AdminActionLog.includes(:custom_emoji).where(target_type: 'CustomEmoji', human_identifier: nil)
-  end
-
-  def logs_targeting_canonical_email_block
-    AdminActionLog.includes(:canonical_email_block).where(target_type: 'CanonicalEmailBlock', human_identifier: nil)
-  end
-
-  def logs_targeting_appeal
-    AdminActionLog.includes(appeal: :account).where(target_type: 'Appeal', human_identifier: nil)
   end
 end
