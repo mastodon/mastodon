@@ -16,11 +16,11 @@ module Account::Suspensions
   def suspended_permanently?
     suspended? && deletion_request.nil?
   end
+  alias permanently_unavailable? suspended_permanently?
 
   def suspended_temporarily?
     suspended? && deletion_request.present?
   end
-  alias permanently_unavailable? suspended_permanently?
 
   def suspend!(date: Time.now.utc, origin: :local, block_email: true)
     transaction do
