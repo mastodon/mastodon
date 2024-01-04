@@ -86,6 +86,7 @@ ie:
       ip_block:
         comment: Facultativ. Ne obliviar pro quo tu adjuntet ti-ci regul.
         expires_in: IP-adresses es un ressurse finit, quelcvez partit e transferet de manu a manu. Pro to, un índefinit bloccada de IP ne es recomandat.
+        ip: Intrar un adresse IPv4 o IPv6. Tu posse bloccar un tot intervalle de ili con li sintaxe CIDR. Atention a ne bloccar te self!
         severities:
           no_access: Bloccar accesse a omni ressurses
           sign_up_block: Nov registrationes ne va esser possibil
@@ -93,6 +94,10 @@ ie:
         severity: Selecter quo va evenir con demandes ex ti-ci IP
       rule:
         text: Descrir un regul o postulation por usatores sur ti-ci servitor. Prova scrir un descrition curt e simplic
+      sessions:
+        otp: 'Intrar li 2-factor code generat del app sur tui portabile o usar un de tui codes de recuperation:'
+      settings:
+        show_application: Totvez, tu va sempre posser vider quel app ha publicat tui posta.
       user:
         role: Permissiones de usator decidet per su rol
       user_role:
@@ -111,6 +116,7 @@ ie:
           name: Etiquette
           value: Contenete
         indexable: Includer public postas in resultates de sercha
+        unlocked: Automaticmen acceptar nov sequitores
       account_alias:
         acct: Usator-nómine del anteyan conto
       account_migration:
@@ -158,6 +164,7 @@ ie:
         max_uses: Max grand númere de usas
         new_password: Nov passa-parol
         note: Biografie
+        otp_attempt: 2-factor code
         password: Passa-parol
         phrase: Clave-parol o frase
         setting_advanced_layout: Possibilisar web-interfacie avansat
@@ -165,10 +172,12 @@ ie:
         setting_default_language: Lingue in quel postar
         setting_default_privacy: Privatie de postada
         setting_default_sensitive: Sempre marcar medie quam sensitiv
+        setting_display_media: Exposition de medie
         setting_display_media_default: Predefinitiones
         setting_display_media_hide_all: Celar omno
         setting_display_media_show_all: Monstrar omno
         setting_expand_spoilers: Sempre expander postas marcat con admonitiones de contenete
+        setting_hide_network: Celar tui grafica social
         setting_system_font_ui: Usar predefinit fonte de sistema
         setting_theme: Tema de situ
         setting_trends: Monstrar li hodial tendenties
@@ -179,6 +188,7 @@ ie:
         title: Titul
         type: Specie de importation
         username: Nómine de usator
+        username_or_email: Usator-nómine o E-posta
         whole_word: Plen parol
       featured_tag:
         name: Hashtag
@@ -193,11 +203,13 @@ ie:
         custom_css: Custom CSS
         profile_directory: Possibilisar profilarium
         registrations_mode: Qui posse registrar se
+        require_invite_text: Exiger un rason por adherer se
         show_domain_blocks: Vider bloccas de dominia
         show_domain_blocks_rationale: Monstrar pro quo cert dominias esset bloccat
         site_contact_email: Contact e-mail adresse
         site_contact_username: Usator-nómine de contact
         site_extended_description: Extendet descrition
+        site_short_description: Descrition del servitor
         site_title: Nómine de servitor
         theme: Predefenit tema
         trendable_by_default: Possibilisar tendenties sin priori inspection
