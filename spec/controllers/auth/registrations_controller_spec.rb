@@ -135,6 +135,25 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
+    context 'when user has an email address requiring approval' do
+      subject do
+        Setting.registrations_mode = 'open'
+        Fabricate(:email_domain_block, allow_with_approval: true, domain: 'example.com')
+        request.headers['Accept-Language'] = accept_language
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
+      end
+
+      it 'creates unapproved user and redirects to setup' do
+        subject
+        expect(response).to redirect_to auth_setup_path
+
+        user = User.find_by(email: 'test@example.com')
+        expect(user).to_not be_nil
+        expect(user.locale).to eq(accept_language)
+        expect(user.approved).to be(false)
+      end
+    end
+
     context 'with Approval-based registrations without invite' do
       subject do
         Setting.registrations_mode = 'approved'
