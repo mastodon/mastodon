@@ -235,13 +235,17 @@ RSpec.describe AccountStatusesCleanupPolicy do
   describe '#compute_cutoff_id' do
     subject { account_statuses_cleanup_policy.compute_cutoff_id }
 
-    let!(:unrelated_status) { Fabricate(:status, created_at: 3.years.ago) }
     let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
 
+    before { Fabricate(:status, created_at: 3.years.ago) }
+
     context 'when the account has posted multiple toots' do
-      let!(:very_old_status)   { Fabricate(:status, created_at: 3.years.ago, account: account) }
-      let!(:old_status)        { Fabricate(:status, created_at: 3.weeks.ago, account: account) }
-      let!(:recent_status)     { Fabricate(:status, created_at: 2.days.ago, account: account) }
+      let!(:old_status) { Fabricate(:status, created_at: 3.weeks.ago, account: account) }
+
+      before do
+        Fabricate(:status, created_at: 3.years.ago, account: account)
+        Fabricate(:status, created_at: 2.days.ago, account: account)
+      end
 
       it 'returns the most recent id that is still below policy age' do
         expect(subject).to eq old_status.id
@@ -270,16 +274,16 @@ RSpec.describe AccountStatusesCleanupPolicy do
     let!(:faved_secondary) { Fabricate(:status, created_at: 1.year.ago, account: account) }
     let!(:reblogged_primary) { Fabricate(:status, created_at: 1.year.ago, account: account) }
     let!(:reblogged_secondary) { Fabricate(:status, created_at: 1.year.ago, account: account) }
-    let!(:recent_status)     { Fabricate(:status, created_at: 2.days.ago, account: account) }
-
-    let!(:media_attachment)  { Fabricate(:media_attachment, account: account, status: status_with_media) }
-    let!(:status_pin)        { Fabricate(:status_pin, account: account, status: pinned_status) }
-    let!(:favourite)         { Fabricate(:favourite, account: account, status: self_faved) }
-    let!(:bookmark)          { Fabricate(:bookmark, account: account, status: self_bookmarked) }
+    let!(:recent_status) { Fabricate(:status, created_at: 2.days.ago, account: account) }
 
     let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
 
     before do
+      Fabricate(:media_attachment, account: account, status: status_with_media)
+      Fabricate(:status_pin, account: account, status: pinned_status)
+      Fabricate(:favourite, account: account, status: self_faved)
+      Fabricate(:bookmark, account: account, status: self_bookmarked)
+
       faved_primary.status_stat.update(favourites_count: 4)
       faved_secondary.status_stat.update(favourites_count: 5)
       reblogged_primary.status_stat.update(reblogs_count: 4)

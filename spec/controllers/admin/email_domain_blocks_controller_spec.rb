@@ -12,13 +12,14 @@ RSpec.describe Admin::EmailDomainBlocksController do
   describe 'GET #index' do
     around do |example|
       default_per_page = EmailDomainBlock.default_per_page
-      EmailDomainBlock.paginates_per 1
+      EmailDomainBlock.paginates_per 2
       example.run
       EmailDomainBlock.paginates_per default_per_page
     end
 
     it 'returns http success' do
       2.times { Fabricate(:email_domain_block) }
+      Fabricate(:email_domain_block, allow_with_approval: true)
       get :index, params: { page: 2 }
       expect(response).to have_http_status(200)
     end

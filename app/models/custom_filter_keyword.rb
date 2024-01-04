@@ -17,7 +17,15 @@ class CustomFilterKeyword < ApplicationRecord
 
   validates :keyword, presence: true
 
-  alias_attribute :phrase, :keyword
+  # NOTE: We previously used `alias_attribute` but this does not play nicely
+  # with cache
+  def phrase
+    keyword
+  end
+
+  def phrase=(value)
+    self.keyword = value
+  end
 
   before_save :prepare_cache_invalidation!
   before_destroy :prepare_cache_invalidation!

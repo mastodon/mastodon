@@ -45,48 +45,6 @@ Metrics/PerceivedComplexity:
 RSpec/ExampleLength:
   Max: 22
 
-RSpec/LetSetup:
-  Exclude:
-    - 'spec/controllers/api/v1/accounts/statuses_controller_spec.rb'
-    - 'spec/controllers/api/v1/filters_controller_spec.rb'
-    - 'spec/controllers/api/v2/admin/accounts_controller_spec.rb'
-    - 'spec/controllers/api/v2/filters/keywords_controller_spec.rb'
-    - 'spec/controllers/api/v2/filters/statuses_controller_spec.rb'
-    - 'spec/controllers/auth/confirmations_controller_spec.rb'
-    - 'spec/controllers/auth/passwords_controller_spec.rb'
-    - 'spec/controllers/auth/sessions_controller_spec.rb'
-    - 'spec/controllers/follower_accounts_controller_spec.rb'
-    - 'spec/controllers/following_accounts_controller_spec.rb'
-    - 'spec/controllers/oauth/authorized_applications_controller_spec.rb'
-    - 'spec/controllers/oauth/tokens_controller_spec.rb'
-    - 'spec/controllers/settings/imports_controller_spec.rb'
-    - 'spec/lib/activitypub/activity/delete_spec.rb'
-    - 'spec/lib/vacuum/applications_vacuum_spec.rb'
-    - 'spec/lib/vacuum/preview_cards_vacuum_spec.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/account_statuses_cleanup_policy_spec.rb'
-    - 'spec/models/canonical_email_block_spec.rb'
-    - 'spec/models/status_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/services/account_statuses_cleanup_service_spec.rb'
-    - 'spec/services/activitypub/fetch_featured_collection_service_spec.rb'
-    - 'spec/services/activitypub/fetch_remote_status_service_spec.rb'
-    - 'spec/services/activitypub/process_account_service_spec.rb'
-    - 'spec/services/activitypub/process_collection_service_spec.rb'
-    - 'spec/services/batched_remove_status_service_spec.rb'
-    - 'spec/services/block_domain_service_spec.rb'
-    - 'spec/services/bulk_import_service_spec.rb'
-    - 'spec/services/delete_account_service_spec.rb'
-    - 'spec/services/import_service_spec.rb'
-    - 'spec/services/notify_service_spec.rb'
-    - 'spec/services/remove_status_service_spec.rb'
-    - 'spec/services/report_service_spec.rb'
-    - 'spec/services/resolve_account_service_spec.rb'
-    - 'spec/services/suspend_account_service_spec.rb'
-    - 'spec/services/unallow_domain_service_spec.rb'
-    - 'spec/services/unsuspend_account_service_spec.rb'
-    - 'spec/workers/scheduler/user_cleanup_scheduler_spec.rb'
-
 RSpec/MultipleExpectations:
   Max: 8
 
@@ -118,23 +76,6 @@ Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/auth/passwords_controller.rb'
     - 'app/controllers/auth/registrations_controller.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/NegateInclude:
-  Exclude:
-    - 'app/controllers/concerns/signature_verification.rb'
-    - 'app/helpers/jsonld_helper.rb'
-    - 'app/lib/activitypub/activity/create.rb'
-    - 'app/lib/activitypub/activity/move.rb'
-    - 'app/lib/feed_manager.rb'
-    - 'app/lib/link_details_extractor.rb'
-    - 'app/models/concerns/attachmentable.rb'
-    - 'app/models/concerns/remotable.rb'
-    - 'app/models/custom_filter.rb'
-    - 'app/services/activitypub/process_status_update_service.rb'
-    - 'app/services/fetch_link_card_service.rb'
-    - 'app/workers/web/push_notification_worker.rb'
-    - 'lib/paperclip/color_extractor.rb'
 
 Rails/OutputSafety:
   Exclude:
@@ -195,19 +136,6 @@ Rails/UniqueValidationWithoutIndex:
     - 'app/models/custom_filter_status.rb'
     - 'app/models/identity.rb'
     - 'app/models/webauthn_credential.rb'
-
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/UnusedIgnoredColumns:
-  Exclude:
-    - 'app/models/account.rb'
-    - 'app/models/account_stat.rb'
-    - 'app/models/admin/action_log.rb'
-    - 'app/models/custom_filter.rb'
-    - 'app/models/email_domain_block.rb'
-    - 'app/models/report.rb'
-    - 'app/models/status_edit.rb'
-    - 'app/models/user.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
@@ -426,15 +354,6 @@ Style/RedundantFetchBlock:
     - 'config/initializers/paperclip.rb'
     - 'config/puma.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowMultipleReturnValues.
-Style/RedundantReturn:
-  Exclude:
-    - 'app/controllers/api/v1/directories_controller.rb'
-    - 'app/controllers/auth/confirmations_controller.rb'
-    - 'app/lib/ostatus/tag_manager.rb'
-    - 'app/models/form/import.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.
 # AllowedMethods: present?, blank?, presence, try, try!
@@ -455,11 +374,6 @@ Style/SingleArgumentDig:
   Exclude:
     - 'lib/webpacker/manifest_extensions.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-Style/StderrPuts:
-  Exclude:
-    - 'config/boot.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Mode.
 Style/StringConcatenation:
@@ -477,13 +391,6 @@ Style/StringLiterals:
     - 'config/initializers/rack_attack.rb'
     - 'config/initializers/webauthn.rb'
     - 'config/routes.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowMethodsWithArguments, AllowedMethods, AllowedPatterns, AllowComments.
-# AllowedMethods: define_method, mail, respond_to
-Style/SymbolProc:
-  Exclude:
-    - 'config/initializers/3_omniauth.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, AllowSafeAssignment.

@@ -28,74 +28,69 @@ RSpec.describe DeleteAccountService, type: :service do
     let!(:account_note) { Fabricate(:account_note, account: account) }
 
     it 'deletes associated owned and target records and target notifications' do
-      expect { subject }
-        .to delete_associated_owned_records
-        .and delete_associated_target_records
-        .and delete_associated_target_notifications
+      subject
+
+      expect_deletion_of_associated_owned_records
+      expect_deletion_of_associated_target_records
+      expect_deletion_of_associated_target_notifications
     end
 
-    def delete_associated_owned_records
-      change do
-        [
-          account.statuses,
-          account.media_attachments,
-          account.notifications,
-          account.favourites,
-          account.active_relationships,
-          account.passive_relationships,
-          account.polls,
-          account.account_notes,
-        ].map(&:count)
-      end.from([2, 1, 1, 1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0, 0, 0, 0])
+    def expect_deletion_of_associated_owned_records
+      expect { status.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { status_with_mention.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { mention.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { media_attachment.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { favourite.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { active_relationship.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { passive_relationship.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { poll.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { poll_vote.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { account_note.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
-    def delete_associated_target_records
-      change(account_pins_for_account, :count).from(1).to(0)
+    def expect_deletion_of_associated_target_records
+      expect { endorsement.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
-    def account_pins_for_account
-      AccountPin.where(target_account: account)
-    end
-
-    def delete_associated_target_notifications
-      change do
-        %w(
-          poll favourite status mention follow
-        ).map { |type| Notification.where(type: type).count }
-      end.from([1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0])
+    def expect_deletion_of_associated_target_notifications
+      expect { favourite_notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { follow_notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { mention_notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { poll_notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { status_notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
   describe '#call on local account' do
     before do
-      stub_request(:post, 'https://alice.com/inbox').to_return(status: 201)
-      stub_request(:post, 'https://bob.com/inbox').to_return(status: 201)
+      stub_request(:post, remote_alice.inbox_url).to_return(status: 201)
+      stub_request(:post, remote_bob.inbox_url).to_return(status: 201)
     end
 
     let!(:remote_alice) { Fabricate(:account, inbox_url: 'https://alice.com/inbox', domain: 'alice.com', protocol: :activitypub) }
     let!(:remote_bob) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', domain: 'bob.com', protocol: :activitypub) }
 
     include_examples 'common behavior' do
-      let!(:account) { Fabricate(:account) }
-      let!(:local_follower) { Fabricate(:account) }
+      let(:account) { Fabricate(:account) }
+      let(:local_follower) { Fabricate(:account) }
 
       it 'sends a delete actor activity to all known inboxes' do
         subject
-        expect(a_request(:post, 'https://alice.com/inbox')).to have_been_made.once
-        expect(a_request(:post, 'https://bob.com/inbox')).to have_been_made.once
+        expect(a_request(:post, remote_alice.inbox_url)).to have_been_made.once
+        expect(a_request(:post, remote_bob.inbox_url)).to have_been_made.once
       end
     end
   end
 
   describe '#call on remote account' do
     before do
-      stub_request(:post, 'https://alice.com/inbox').to_return(status: 201)
-      stub_request(:post, 'https://bob.com/inbox').to_return(status: 201)
+      stub_request(:post, account.inbox_url).to_return(status: 201)
     end
 
     include_examples 'common behavior' do
-      let!(:account) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
-      let!(:local_follower) { Fabricate(:account) }
+      let(:account) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
+      let(:local_follower) { Fabricate(:account) }
 
       it 'sends expected activities to followed and follower inboxes' do
         subject
