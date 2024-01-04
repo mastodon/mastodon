@@ -46,6 +46,10 @@ ie:
         title: 2FA desvalidat
       two_factor_enabled:
         title: 2FA permisset
+      two_factor_recovery_codes_changed:
+        explanation: Li anteyan codes de recuperation ha esset ínvalidat, e novis generat.
+        subject: 'Mastodon: 2-factor codes de recuperation regenerat'
+        title: 2FA codes de recuperation changeat
       unlock_instructions:
         subject: 'Mastodon: Desserral instructiones'
       webauthn_credential:
@@ -55,8 +59,11 @@ ie:
       webauthn_disabled:
         subject: 'Mastodon: Autentication con claves de securitá desactivisat'
         title: Claves de securitá desactivisat
+      webauthn_enabled:
+        title: Claves de securitá activisat
     omniauth_callbacks:
       failure: Ne posset autenticar te de %{kind} pro "%{reason}".
+      success: Successosimen autenticat de conto %{kind}.
     passwords:
       no_token: Tu ne posse accessar ti-ci págine sin venir de un email pri reiniciar li passa-parol. Si tu ha venit de un email pri reiniciar li passa-parol, ples far cert que tu usat li complet URL providet.
       send_instructions: Si tui email-adresse existe in nor database, tu va reciver un ligament por recuperar li passa-parol a tui email-adresse in quelc minutes. Ples vider tui spam-emails si tu ne recivet ti email.

@@ -31,6 +31,7 @@ ie:
         redirect_uri: Usar un linea per URI
       index:
         application: Aplication
+        callback_url: URL de retrovocada
         delete: Deleter
         empty: Tu have null aplicationes.
         name: Nómine
@@ -42,6 +43,7 @@ ie:
       show:
         actions: Actiones
         application_id: Clave de client
+        callback_urls: URLs de retrovocada
         secret: Secrete de client
         title: 'Aplication: %{name}'
     authorizations:
@@ -51,6 +53,7 @@ ie:
       error:
         title: Alquo ha errat
       new:
+        review_permissions: Inspecter permissiones
         title: Autorisation besonat
     authorized_applications:
       buttons:
