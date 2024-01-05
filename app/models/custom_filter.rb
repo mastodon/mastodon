@@ -17,23 +17,8 @@
 class CustomFilter < ApplicationRecord
   self.ignored_columns += %w(whole_word irreversible)
 
-  # NOTE: We previously used `alias_attribute` but this does not play nicely
-  # with cache
-  def title
-    phrase
-  end
-
-  def title=(value)
-    self.phrase = value
-  end
-
-  def filter_action
-    action
-  end
-
-  def filter_action=(value)
-    self.action = value
-  end
+  alias_attribute :title, :phrase
+  alias_attribute :filter_action, :action
 
   VALID_CONTEXTS = %w(
     home
