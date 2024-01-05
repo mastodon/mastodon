@@ -143,6 +143,10 @@ class CustomFilter < ApplicationRecord
   end
 
   def context_must_be_valid
-    errors.add(:context, I18n.t('filters.errors.invalid_context')) if context.empty? || context.any? { |c| !VALID_CONTEXTS.include?(c) }
+    errors.add(:context, I18n.t('filters.errors.invalid_context')) if invalid_context_value?
+  end
+
+  def invalid_context_value?
+    context.blank? || context.difference(VALID_CONTEXTS).any?
   end
 end
