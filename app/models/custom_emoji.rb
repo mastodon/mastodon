@@ -86,7 +86,7 @@ class CustomEmoji < ApplicationRecord
     end
 
     def search(shortcode)
-      where(arel_table[:shortcode].matches("%#{shortcode}%"))
+      where(arel_table[:shortcode].matches("%#{sanitize_sql_like(shortcode)}%"))
     end
   end
 
