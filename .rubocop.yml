@@ -118,15 +118,10 @@ Rails/UnusedIgnoredColumns:
 Rails/NegateInclude:
   Enabled: false
 
-# Reason: Some single letter camel case files shouldn't be split
+# Reason: Deprecated cop, will be removed in 3.0, replaced by SpecFilePathFormat
 # https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecfilepath
 RSpec/FilePath:
-  CustomTransform:
-    ActivityPub: activitypub
-    DeepL: deepl
-    FetchOEmbedService: fetch_oembed_service
-    OEmbedController: oembed_controller
-    OStatus: ostatus
+  Enabled: false
 
 # Reason:
 # https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecnamedsubject
