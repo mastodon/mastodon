@@ -35,6 +35,16 @@ RSpec.describe Admin::EmailDomainBlocksController do
   describe 'POST #create' do
     context 'when resolve button is pressed' do
       before do
+        resolver = instance_double(Resolv::DNS)
+
+        allow(resolver).to receive(:getresources)
+          .with('example.com', Resolv::DNS::Resource::IN::MX)
+          .and_return([])
+        allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::A).and_return([])
+        allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
+        allow(resolver).to receive(:timeouts=).and_return(nil)
+        allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+
         post :create, params: { email_domain_block: { domain: 'example.com' } }
       end
 
