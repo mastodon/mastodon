@@ -130,15 +130,8 @@ class Setting < ActiveRecord::Base
       @cache_prefix_by_startup = Digest::MD5.hexdigest(Default.instance.to_s)
     end
 
-    def cache_prefix(&block)
-      @cache_prefix = block
-    end
-
     def cache_key(var_name)
-      scope = ['rails_settings_cached', cache_prefix_by_startup]
-      scope << @cache_prefix.call if @cache_prefix
-      scope << var_name.to_s
-      scope.join('/')
+      "rails_settings_cached/#{cache_prefix_by_startup}/#{var_name}"
     end
 
     def [](key)
@@ -180,7 +173,6 @@ class Setting < ActiveRecord::Base
       record.value = value
       record.save!
 
-      Rails.cache.write(cache_key(var_name), value)
       value
     end
 
