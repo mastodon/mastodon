@@ -1,5 +1,5 @@
-import { isAction } from 'redux';
-import type { Middleware, UnknownAction } from 'redux';
+import { isAction } from '@reduxjs/toolkit';
+import type { Middleware, UnknownAction } from '@reduxjs/toolkit';
 
 import ready from 'mastodon/ready';
 import { assetHost } from 'mastodon/utils/config';

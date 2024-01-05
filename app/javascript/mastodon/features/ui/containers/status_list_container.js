@@ -1,6 +1,6 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { debounce } from 'lodash';
 

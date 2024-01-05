@@ -6,6 +6,7 @@ import {
   isAction,
 } from '@reduxjs/toolkit';
 import type { Middleware, UnknownAction } from '@reduxjs/toolkit';
+
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 import type { RootState } from '..';

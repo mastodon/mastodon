@@ -245,7 +245,7 @@ module.exports = defineConfig({
           },
           // Immutable / Redux / data store
           {
-            pattern: '{immutable,react-redux,react-immutable-proptypes,react-immutable-pure-component,reselect}',
+            pattern: '{immutable,@reduxjs/toolkit,react-redux,react-immutable-proptypes,react-immutable-pure-component}',
             group: 'external',
             position: 'before',
           },
