@@ -56,6 +56,8 @@ ie:
         added:
           subject: 'Mastodon: Nov clave de securitá'
           title: Un nov clave de securitá ha esset adjuntet
+        deleted:
+          subject: 'Mastodon: Clave de securitá deletet'
       webauthn_disabled:
         subject: 'Mastodon: Autentication con claves de securitá desactivisat'
         title: Claves de securitá desactivisat
@@ -84,3 +86,6 @@ ie:
       expired: ha expirat, ples demandar un nov
       not_found: ne trovat
       not_locked: ne esset serrat
+      not_saved:
+        one: '1 error prohibit ti %{resource} de esser conservat:'
+        other: "%{count} errores prohibit ti %{resource} de esser conservat:"

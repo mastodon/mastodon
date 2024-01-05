@@ -19,6 +19,7 @@ ie:
         account:
           attributes:
             username:
+              invalid: deve contener solmen lítteres, númeres e sublineas
               reserved: es reservat
         admin/webhook:
           attributes:
@@ -39,6 +40,7 @@ ie:
         user:
           attributes:
             email:
+              blocked: usa un ne-permisset provisor de e-posta
               unreachable: sembla ne exister
             role_id:
               elevated: ne posse esser plu alt quam tui actual rol
