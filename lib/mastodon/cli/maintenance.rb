@@ -41,7 +41,8 @@ module Mastodon::CLI
     class SoftwareUpdate < ApplicationRecord; end
 
     class DomainBlock < ApplicationRecord
-      scope :by_severity, -> { order(Arel.sql('(CASE severity WHEN 0 THEN 1 WHEN 1 THEN 2 WHEN 2 THEN 0 END), domain')) }
+      enum severity: { silence: 0, suspend: 1, noop: 2 }
+      scope :by_severity, -> { in_order_of(:severity, %w(noop silence suspend)).order(:domain) }
     end
 
     class PreviewCard < ApplicationRecord
