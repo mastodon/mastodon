@@ -19,14 +19,6 @@ GIT
       statsd-ruby (~> 1.4, >= 1.4.0)
 
 GIT
-  remote: https://github.com/mastodon/rails-settings-cached.git
-  revision: 86328ef0bd04ce21cc0504ff5e334591e8c2ccab
-  branch: v0.6.6-aliases-true
-  specs:
-    rails-settings-cached (0.6.6)
-      rails (>= 4.2.0)
-
-GIT
   remote: https://github.com/stanhu/omniauth-cas.git
   revision: 4211e6d05941b4a981f9a36b49ec166cecd0e271
   ref: 4211e6d05941b4a981f9a36b49ec166cecd0e271
@@ -922,7 +914,6 @@ DEPENDENCIES
   rails (~> 7.1.1)
   rails-controller-testing (~> 1.0)
   rails-i18n (~> 7.0)
-  rails-settings-cached (~> 0.6)!
   rdf-normalize (~> 0.5)
   redcarpet (~> 3.6)
   redis (~> 4.5)
