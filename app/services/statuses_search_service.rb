@@ -39,12 +39,12 @@ class StatusesSearchService < BaseService
     end
 
     if @options[:min_id]
-      timestamp = Mastodon::Snowflake.to_time(@options[:min_id])
+      timestamp = Mastodon::Snowflake.to_time(@options[:min_id].to_i)
       syntax_options << "after:\"#{timestamp.iso8601}\""
     end
 
     if @options[:max_id]
-      timestamp = Mastodon::Snowflake.to_time(@options[:max_id])
+      timestamp = Mastodon::Snowflake.to_time(@options[:max_id].to_i)
       syntax_options << "before:\"#{timestamp.iso8601}\""
     end
 

@@ -18,6 +18,9 @@ const config = {
   ],
   coverageDirectory: '<rootDir>/coverage',
   moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/app/javascript'],
+  moduleNameMapper: {
+    '\\.svg$': '<rootDir>/app/javascript/__mocks__/svg.js',
+  },
 };
 
 module.exports = config;

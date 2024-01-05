@@ -3,6 +3,7 @@
 class Auth::SessionsController < Devise::SessionsController
   layout 'auth'
 
+  skip_before_action :check_self_destruct!
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :require_functional!
   skip_before_action :update_user_sign_in
@@ -11,7 +12,6 @@ class Auth::SessionsController < Devise::SessionsController
 
   include TwoFactorAuthenticationConcern
 
-  before_action :set_instance_presenter, only: [:new]
   before_action :set_body_classes
 
   content_security_policy only: :new do |p|
@@ -98,10 +98,6 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   private
-
-  def set_instance_presenter
-    @instance_presenter = InstancePresenter.new
-  end
 
   def set_body_classes
     @body_classes = 'lighter'

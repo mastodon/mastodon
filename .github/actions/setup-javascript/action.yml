@@ -1,0 +1,19 @@
+name: 'Setup Javascript'
+description: 'Setup a Javascript environment ready to run the Mastodon code'
+inputs:
+  onlyProduction:
+    description: Only install production dependencies
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        cache: yarn
+        node-version-file: '.nvmrc'
+
+    - name: Install all yarn packages
+      shell: bash
+      run: yarn --frozen-lockfile ${{ inputs.onlyProduction != 'false' && '--production' || '' }}

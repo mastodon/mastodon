@@ -3,7 +3,6 @@
   extends: [
     'config:recommended',
     ':labels(dependencies)',
-    ':maintainLockFilesMonthly', // update non-direct dependencies monthly
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
     ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
   ],

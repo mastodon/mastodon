@@ -2,7 +2,7 @@
   = t('statuses.title', name: display_name(@account), quote: truncate(@status.spoiler_text.presence || @status.text, length: 50, omission: '…', escape: false))
 
 - content_for :heading_actions do
-  = link_to t('admin.statuses.open'), ActivityPub::TagManager.instance.url_for(@status), class: 'button', target: '_blank'
+  = link_to t('admin.statuses.open'), ActivityPub::TagManager.instance.url_for(@status), class: 'button', target: '_blank', rel: 'noopener noreferrer'
 
 %h3= t('admin.statuses.metadata')
 

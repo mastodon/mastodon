@@ -55,17 +55,17 @@ RSpec.describe User do
   describe 'scopes' do
     describe 'recent' do
       it 'returns an array of recent users ordered by id' do
-        user_1 = Fabricate(:user)
-        user_2 = Fabricate(:user)
-        expect(described_class.recent).to eq [user_2, user_1]
+        first_user = Fabricate(:user)
+        second_user = Fabricate(:user)
+        expect(described_class.recent).to eq [second_user, first_user]
       end
     end
 
     describe 'confirmed' do
       it 'returns an array of users who are confirmed' do
-        user_1 = Fabricate(:user, confirmed_at: nil)
-        user_2 = Fabricate(:user, confirmed_at: Time.zone.now)
-        expect(described_class.confirmed).to contain_exactly(user_2)
+        Fabricate(:user, confirmed_at: nil)
+        confirmed_user = Fabricate(:user, confirmed_at: Time.zone.now)
+        expect(described_class.confirmed).to contain_exactly(confirmed_user)
       end
     end
 

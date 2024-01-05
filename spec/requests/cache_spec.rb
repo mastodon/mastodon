@@ -30,6 +30,7 @@ module TestEndpoints
     /directory
     /@alice
     /@alice/110224538612341312
+    /deck/home
   ).freeze
 
   # Endpoints that should be cachable when accessed anonymously but have a Vary

@@ -9,6 +9,14 @@ RSpec.describe Admin::ExportDomainAllowsController do
     sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
   end
 
+  describe 'GET #new' do
+    it 'returns http success' do
+      get :new
+
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'GET #export' do
     it 'renders instances' do
       Fabricate(:domain_allow, domain: 'good.domain')

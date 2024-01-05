@@ -45,16 +45,16 @@ vi:
         current_password: Vì mục đích bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
         digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
-        email: Bạn sẽ được gửi một email xác nhận
+        email: Bạn sẽ được gửi một email xác minh
         header: PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         inbox_url: Sao chép URL của máy chủ mà bạn muốn dùng
         irreversible: Các tút đã lọc sẽ không thể phục hồi, kể cả sau khi xóa bộ lọc
         locale: Ngôn ngữ của giao diện, email và thông báo đẩy
         password: Dùng ít nhất 8 ký tự
         phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
-        scopes: API nào ứng dụng sẽ được phép truy cập. Nếu bạn chọn quyền hạn cấp cao nhất, bạn không cần chọn từng phạm vi.
+        scopes: Ứng dụng sẽ được phép truy cập những API nào. Nếu bạn chọn quyền cấp cao nhất, không cần chọn quyền nhỏ.
         setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì những lượt đăng lại sau sẽ không hiện trên bảng tin nữa
-        setting_always_send_emails: Bình thường thì email thông báo sẽ không gửi khi bạn đang dùng Mastodon
+        setting_always_send_emails: Bình thường thì sẽ không gửi khi bạn đang dùng Mastodon
         setting_default_sensitive: Bắt buộc nhấn vào mới có thể xem
         setting_display_media_default: Click để xem
         setting_display_media_hide_all: Luôn ẩn
@@ -73,7 +73,7 @@ vi:
       filters:
         action: Chọn hành động sẽ thực hiện khi một tút khớp với bộ lọc
         actions:
-          hide: Ẩn hoàn toàn nội dung đã lọc, hoạt động như thể nó không tồn tại
+          hide: Ẩn hoàn toàn nội dung đã lọc, như thể nó không tồn tại
           warn: Ẩn nội dung đã lọc đằng sau một cảnh báo đề cập đến tiêu đề của bộ lọc
       form_admin_settings:
         activity_api_enabled: Số lượng tút được đăng trong máy chủ, người dùng đang hoạt động và đăng ký mới hàng tuần
@@ -97,9 +97,9 @@ vi:
         theme: Chủ đề mà khách truy cập đăng xuất và người mới nhìn thấy.
         thumbnail: 'Một hình ảnh tỉ lệ 2: 1 được hiển thị cùng với thông tin máy chủ của bạn.'
         timeline_preview: Khách truy cập đã đăng xuất sẽ có thể xem các tút công khai gần đây nhất trên máy chủ.
-        trendable_by_default: Bỏ qua việc duyệt thủ công nội dung thịnh hành. Các mục riêng lẻ vẫn có thể bị xóa khỏi xu hướng sau này.
+        trendable_by_default: Bỏ qua việc duyệt thủ công nội dung xu hướng. Các mục riêng lẻ vẫn có thể bị xóa khỏi xu hướng sau này.
         trends: Hiển thị những tút, hashtag và tin tức đang được thảo luận nhiều trên máy chủ của bạn.
-        trends_as_landing_page: Hiển thị nội dung thịnh hành cho người dùng đã đăng xuất và khách truy cập thay vì mô tả về máy chủ này. Yêu cầu xu hướng được kích hoạt.
+        trends_as_landing_page: Hiển thị nội dung xu hướng cho người dùng chưa đăng nhập thay vì mô tả về máy chủ này. Yêu cầu xu hướng được kích hoạt.
       form_challenge:
         current_password: Biểu mẫu này an toàn
       imports:
@@ -140,7 +140,7 @@ vi:
         url: Nơi những sự kiện được gửi đến
     labels:
       account:
-        discoverable: Cho phép hiện hồ sơ và tút trong thuật toán khám phá
+        discoverable: Cho phép khám phá hồ sơ
         fields:
           name: Nhãn
           value: Nội dung
@@ -218,7 +218,7 @@ vi:
         setting_reduce_motion: Giảm chuyển động ảnh GIF
         setting_system_font_ui: Dùng phông chữ mặc định hệ thống
         setting_theme: Giao diện
-        setting_trends: Hiển thị thịnh hành hôm nay
+        setting_trends: Hiển thị xu hướng trong ngày
         setting_unfollow_modal: Hỏi trước khi bỏ theo dõi ai đó
         setting_use_blurhash: Phủ màu media nhạy cảm
         setting_use_pending_items: Không tự động cập nhật bảng tin
@@ -262,9 +262,9 @@ vi:
         theme: Chủ đề mặc định
         thumbnail: Hình thu nhỏ của máy chủ
         timeline_preview: Cho phép truy cập vào dòng thời gian công khai
-        trendable_by_default: Cho phép thịnh hành mà không cần duyệt trước
-        trends: Bật thịnh hành
-        trends_as_landing_page: Dùng trang thịnh hành làm trang chào mừng
+        trendable_by_default: Cho phép lên xu hướng mà không cần duyệt trước
+        trends: Bật xu hướng
+        trends_as_landing_page: Dùng trang xu hướng làm trang chào mừng
       interactions:
         must_be_follower: Những người không theo dõi bạn
         must_be_following: Những người bạn không theo dõi
@@ -306,7 +306,7 @@ vi:
       tag:
         listable: Cho phép xuất hiện trong tìm kiếm và đề xuất
         name: Hashtag
-        trendable: Cho phép hashtag này thịnh hành
+        trendable: Cho phép hashtag này lên xu hướng
         usable: Cho phép dùng trong tút
       user:
         role: Vai trò

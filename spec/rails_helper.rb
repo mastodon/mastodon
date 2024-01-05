@@ -54,26 +54,6 @@ Devise::Test::ControllerHelpers.module_eval do
   end
 end
 
-module SignedRequestHelpers
-  def get(path, headers: nil, sign_with: nil, **args)
-    return super path, headers: headers, **args if sign_with.nil?
-
-    headers ||= {}
-    headers['Date'] = Time.now.utc.httpdate
-    headers['Host'] = ENV.fetch('LOCAL_DOMAIN')
-    signed_headers = headers.merge('(request-target)' => "get #{path}").slice('(request-target)', 'Host', 'Date')
-
-    key_id = ActivityPub::TagManager.instance.key_uri_for(sign_with)
-    keypair = sign_with.keypair
-    signed_string = signed_headers.map { |key, value| "#{key.downcase}: #{value}" }.join("\n")
-    signature = Base64.strict_encode64(keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
-
-    headers['Signature'] = "keyId=\"#{key_id}\",algorithm=\"rsa-sha256\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
-
-    super path, headers: headers, **args
-  end
-end
-
 RSpec.configure do |config|
   # This is set before running spec:system, see lib/tasks/tests.rake
   config.filter_run_excluding type: lambda { |type|
@@ -105,6 +85,12 @@ RSpec.configure do |config|
   config.include Redisable
   config.include SignedRequestHelpers, type: :request
 
+  config.around(:each, use_transactional_tests: false) do |example|
+    self.use_transactional_tests = false
+    example.run
+    self.use_transactional_tests = true
+  end
+
   config.before :each, type: :cli do
     stub_stdout
     stub_reset_connection_pools
@@ -112,14 +98,6 @@ RSpec.configure do |config|
 
   config.before :each, type: :feature do
     Capybara.current_driver = :rack_test
-  end
-
-  config.before :each, type: :controller do
-    stub_jsonld_contexts!
-  end
-
-  config.before :each, type: :service do
-    stub_jsonld_contexts!
   end
 
   config.before :suite do
@@ -211,10 +189,4 @@ def stub_reset_connection_pools
   # (Avoids reset_connection_pools! in test env)
   allow(ActiveRecord::Base).to receive(:establish_connection)
   allow(RedisConfiguration).to receive(:establish_pool)
-end
-
-def stub_jsonld_contexts!
-  stub_request(:get, 'https://www.w3.org/ns/activitystreams').to_return(request_fixture('json-ld.activitystreams.txt'))
-  stub_request(:get, 'https://w3id.org/identity/v1').to_return(request_fixture('json-ld.identity.txt'))
-  stub_request(:get, 'https://w3id.org/security/v1').to_return(request_fixture('json-ld.security.txt'))
 end

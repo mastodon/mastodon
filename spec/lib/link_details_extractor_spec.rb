@@ -82,6 +82,10 @@ RSpec.describe LinkDetailsExtractor do
           'name' => 'Pet News',
           'url' => 'https://example.com',
         },
+        'inLanguage' => {
+          name: 'English',
+          alternateName: 'en',
+        },
       }.to_json
     end
 
@@ -113,6 +117,12 @@ RSpec.describe LinkDetailsExtractor do
       describe '#provider_name' do
         it 'returns the provider name from structured data' do
           expect(subject.provider_name).to eq 'Pet News'
+        end
+      end
+
+      describe '#language' do
+        it 'returns the language from structured data' do
+          expect(subject.language).to eq 'en'
         end
       end
     end

@@ -252,6 +252,19 @@ RSpec.describe Settings::ImportsController do
 
       include_examples 'export failed rows', "https://foo.com/1\nhttps://foo.com/2\n"
     end
+
+    context 'with lists' do
+      let(:import_type) { 'lists' }
+
+      let!(:rows) do
+        [
+          { 'list_name' => 'Amigos', 'acct' => 'user@example.com' },
+          { 'list_name' => 'Frenemies', 'acct' => 'user@org.org' },
+        ].map { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+      end
+
+      include_examples 'export failed rows', "Amigos,user@example.com\nFrenemies,user@org.org\n"
+    end
   end
 
   describe 'POST #create' do

@@ -158,14 +158,14 @@ describe JsonLdHelper do
       it 'deems a safe compacting as such' do
         json['object'].delete('convo')
         compacted = compact(json)
-        deemed_compatible = patch_for_forwarding!(json, compacted)
+        patch_for_forwarding!(json, compacted)
         expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
         expect(safe_for_forwarding?(json, compacted)).to be true
       end
 
       it 'deems an unsafe compacting as such' do
         compacted = compact(json)
-        deemed_compatible = patch_for_forwarding!(json, compacted)
+        patch_for_forwarding!(json, compacted)
         expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
         expect(safe_for_forwarding?(json, compacted)).to be false
       end

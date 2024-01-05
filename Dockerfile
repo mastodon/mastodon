@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4
 # This needs to be bookworm-slim because the Ruby image is built on bookworm-slim
-ARG NODE_VERSION="20.6-bookworm-slim"
+ARG NODE_VERSION="20.8-bookworm-slim"
 
 FROM ghcr.io/moritzheiber/ruby-jemalloc:3.2.2-slim as ruby
 FROM node:${NODE_VERSION} as build
@@ -17,6 +17,7 @@ COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
 # hadolint ignore=DL3008
 RUN apt-get update && \
+    apt-get -yq dist-upgrade && \
     apt-get install -y --no-install-recommends build-essential \
         git \
         libicu-dev \
@@ -27,7 +28,7 @@ RUN apt-get update && \
         libgdbm-dev \
         libgmp-dev \
         libssl-dev \
-        libyaml-0-2 \
+        libyaml-dev \
         ca-certificates \
         libreadline8 \
         python3 \

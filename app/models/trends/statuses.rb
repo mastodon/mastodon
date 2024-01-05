@@ -8,7 +8,7 @@ class Trends::Statuses < Trends::Base
   self.default_options = {
     threshold: 5,
     review_threshold: 3,
-    score_halflife: 2.hours.freeze,
+    score_halflife: 1.hour.freeze,
     decay_threshold: 0.3,
   }
 
@@ -106,7 +106,7 @@ class Trends::Statuses < Trends::Base
   private
 
   def eligible?(status)
-    status.public_visibility? && status.account.discoverable? && !status.account.silenced? && status.spoiler_text.blank? && !status.sensitive? && !status.reply? && valid_locale?(status.language)
+    status.public_visibility? && status.account.discoverable? && !status.account.silenced? && !status.account.sensitized? && status.spoiler_text.blank? && !status.sensitive? && !status.reply? && valid_locale?(status.language)
   end
 
   def calculate_scores(statuses, at_time)

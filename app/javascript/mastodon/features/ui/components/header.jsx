@@ -7,6 +7,8 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
+import { ReactComponent as SearchIcon } from '@material-symbols/svg-600/outlined/search.svg';
+
 import { openModal } from 'mastodon/actions/modal';
 import { fetchServer } from 'mastodon/actions/server';
 import { Avatar } from 'mastodon/components/avatar';
@@ -67,7 +69,7 @@ class Header extends PureComponent {
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/search' && <Link to='/search' className='button button-secondary' aria-label={intl.formatMessage(messages.search)}><Icon id='search' /></Link>}
+          {location.pathname !== '/search' && <Link to='/search' className='button button-secondary' aria-label={intl.formatMessage(messages.search)}><Icon id='search' icon={SearchIcon} /></Link>}
           {location.pathname !== '/publish' && <Link to='/publish' className='button button-secondary'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
           <Account />
         </>
@@ -76,8 +78,8 @@ class Header extends PureComponent {
 
       if (sso_redirect) {
         content = (
-            <a href={sso_redirect} data-method='post' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sso_redirect' defaultMessage='Login or Register' /></a>
-        )
+          <a href={sso_redirect} data-method='post' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sso_redirect' defaultMessage='Login or Register' /></a>
+        );
       } else {
         let signupButton;
 

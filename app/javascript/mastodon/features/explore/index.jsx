@@ -8,6 +8,9 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
+import { ReactComponent as SearchIcon } from '@material-symbols/svg-600/outlined/search.svg';
+import { ReactComponent as TagIcon } from '@material-symbols/svg-600/outlined/tag.svg';
+
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import Search from 'mastodon/features/compose/containers/search_container';
@@ -32,7 +35,6 @@ const mapStateToProps = state => ({
 class Explore extends PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object,
     identity: PropTypes.object,
   };
 
@@ -58,6 +60,7 @@ class Explore extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon={isSearching ? 'search' : 'hashtag'}
+          iconComponent={isSearching ? SearchIcon : TagIcon}
           title={intl.formatMessage(isSearching ? messages.searchResults : messages.title)}
           onClick={this.handleHeaderClick}
           multiColumn={multiColumn}
@@ -67,47 +70,45 @@ class Explore extends PureComponent {
           <Search />
         </div>
 
-        <div className='scrollable scrollable--flex' data-nosnippet>
-          {isSearching ? (
-            <SearchResults />
-          ) : (
-            <>
-              <div className='account__section-headline'>
-                <NavLink exact to='/explore'>
-                  <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Posts' />
+        {isSearching ? (
+          <SearchResults />
+        ) : (
+          <>
+            <div className='account__section-headline'>
+              <NavLink exact to='/explore'>
+                <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Posts' />
+              </NavLink>
+
+              <NavLink exact to='/explore/tags'>
+                <FormattedMessage tagName='div' id='explore.trending_tags' defaultMessage='Hashtags' />
+              </NavLink>
+
+              {signedIn && (
+                <NavLink exact to='/explore/suggestions'>
+                  <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='People' />
                 </NavLink>
+              )}
 
-                <NavLink exact to='/explore/tags'>
-                  <FormattedMessage tagName='div' id='explore.trending_tags' defaultMessage='Hashtags' />
-                </NavLink>
+              <NavLink exact to='/explore/links'>
+                <FormattedMessage tagName='div' id='explore.trending_links' defaultMessage='News' />
+              </NavLink>
+            </div>
 
-                {signedIn && (
-                  <NavLink exact to='/explore/suggestions'>
-                    <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='People' />
-                  </NavLink>
-                )}
+            <Switch>
+              <Route path='/explore/tags' component={Tags} />
+              <Route path='/explore/links' component={Links} />
+              <Route path='/explore/suggestions' component={Suggestions} />
+              <Route exact path={['/explore', '/explore/posts', '/search']}>
+                <Statuses multiColumn={multiColumn} />
+              </Route>
+            </Switch>
 
-                <NavLink exact to='/explore/links'>
-                  <FormattedMessage tagName='div' id='explore.trending_links' defaultMessage='News' />
-                </NavLink>
-              </div>
-
-              <Switch>
-                <Route path='/explore/tags' component={Tags} />
-                <Route path='/explore/links' component={Links} />
-                <Route path='/explore/suggestions' component={Suggestions} />
-                <Route exact path={['/explore', '/explore/posts', '/search']}>
-                  <Statuses multiColumn={multiColumn} />
-                </Route>
-              </Switch>
-
-              <Helmet>
-                <title>{intl.formatMessage(messages.title)}</title>
-                <meta name='robots' content={isSearching ? 'noindex' : 'all'} />
-              </Helmet>
-            </>
-          )}
-        </div>
+            <Helmet>
+              <title>{intl.formatMessage(messages.title)}</title>
+              <meta name='robots' content={isSearching ? 'noindex' : 'all'} />
+            </Helmet>
+          </>
+        )}
       </Column>
     );
   }

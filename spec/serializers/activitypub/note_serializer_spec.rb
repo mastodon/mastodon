@@ -7,7 +7,7 @@ describe ActivityPub::NoteSerializer do
 
   let!(:account) { Fabricate(:account) }
   let!(:other) { Fabricate(:account) }
-  let!(:parent) { Fabricate(:status, account: account, visibility: :public) }
+  let!(:parent) { Fabricate(:status, account: account, visibility: :public, language: 'zh-TW') }
   let!(:reply_by_account_first) { Fabricate(:status, account: account, thread: parent, visibility: :public) }
   let!(:reply_by_account_next) { Fabricate(:status, account: account, thread: parent, visibility: :public) }
   let!(:reply_by_other_first) { Fabricate(:status, account: other, thread: parent, visibility: :public) }
@@ -18,8 +18,15 @@ describe ActivityPub::NoteSerializer do
     @serialization = ActiveModelSerializers::SerializableResource.new(parent, serializer: described_class, adapter: ActivityPub::Adapter)
   end
 
-  it 'has a Note type' do
-    expect(subject['type']).to eql('Note')
+  it 'has the expected shape' do
+    expect(subject).to include({
+      '@context' => include('https://www.w3.org/ns/activitystreams'),
+      'type' => 'Note',
+      'attributedTo' => ActivityPub::TagManager.instance.uri_for(account),
+      'contentMap' => include({
+        'zh-TW' => a_kind_of(String),
+      }),
+    })
   end
 
   it 'has a replies collection' do

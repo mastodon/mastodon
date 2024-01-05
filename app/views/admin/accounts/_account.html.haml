@@ -30,6 +30,6 @@
                 \-
               %br/
               %samp.ellipsized-ip= relevant_account_ip(account, params[:ip])
-    - if !account.suspended? && account.user_pending? && account.user&.invite_request&.text&.present?
+    - if !account.suspended? && account.user_pending? && account.user&.invite_request&.text.present?
       .batch-table__row__content__quote
         %p= account.user&.invite_request&.text
