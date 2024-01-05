@@ -13,9 +13,7 @@
 #  thing_id   :bigint(8)
 #
 
-# Vendored from a fork of the `rails-settings-cached` gem that has diverged
-# significantly. To refactored inside the `Setting` class.
-module RailsSettings
+class Setting < ActiveRecord::Base
   class Default < ::Hash
     class MissingKey < StandardError; end
 
@@ -59,161 +57,92 @@ module RailsSettings
     end
   end
 
-  class Base < ActiveRecord::Base
-    class SettingNotFound < RuntimeError; end
+  class SettingNotFound < RuntimeError; end
 
-    self.table_name = table_name_prefix + 'settings'
+  self.table_name = table_name_prefix + 'settings'
 
-    after_commit :rewrite_cache, on: %i(create update)
-    after_commit :expire_cache, on: %i(destroy)
-
-    # get the value field, YAML decoded
-    def value
-      YAML.unsafe_load(self[:value]) if self[:value].present?
-    end
-
-    # set the value field, YAML encoded
-    def value=(new_value)
-      self[:value] = new_value.to_yaml
-    end
-
-    def rewrite_cache
-      Rails.cache.write(cache_key, value)
-    end
-
-    def expire_cache
-      Rails.cache.delete(cache_key)
-    end
-
-    def cache_key
-      self.class.cache_key(var)
-    end
-
-    class << self
-      # get or set a variable with the variable as the called method
-      # rubocop:disable Style/MethodMissing
-      def method_missing(method, *args)
-        # set a value for a variable
-        if method_name.end_with?('=')
-          var_name = method_name.sub('=', '')
-          value = args.first
-          self[var_name] = value
-        else
-          # retrieve a value
-          self[method_name]
-        end
-      end
-
-      # destroy the specified settings record
-      def destroy(var_name)
-        var_name = var_name.to_s
-        obj = object(var_name)
-        raise SettingNotFound, "Setting variable \"#{var_name}\" not found" if obj.nil?
-
-        obj.destroy
-        true
-      end
-
-      def where(sql = nil)
-        vars = thing_scoped.where(sql) if sql
-        vars
-      end
-
-      def merge!(var_name, hash_value)
-        raise ArgumentError unless hash_value.is_a?(Hash)
-
-        old_value = self[var_name] || {}
-        raise TypeError, "Existing value is not a hash, can't merge!" unless old_value.is_a?(Hash)
-
-        new_value = old_value.merge(hash_value)
-        self[var_name] = new_value if new_value != old_value
-
-        new_value
-      end
-
-      def object(var_name)
-        return nil unless rails_initialized?
-        return nil unless table_exists?
-        thing_scoped.where(var: var_name.to_s).first
-      end
-
-      def thing_scoped
-        unscoped.where('thing_type is NULL and thing_id is NULL')
-      end
-
-      def source(filename)
-        Default.source(filename)
-      end
-
-      def rails_initialized?
-        Rails.application && Rails.application.initialized?
-      end
-
-      def cache_prefix_by_startup
-        return @cache_prefix_by_startup if defined? @cache_prefix_by_startup
-        return '' unless Default.enabled?
-        @cache_prefix_by_startup = Digest::MD5.hexdigest(Default.instance.to_s)
-      end
-
-      def cache_prefix(&block)
-        @cache_prefix = block
-      end
-
-      def cache_key(var_name)
-        scope = ['rails_settings_cached', cache_prefix_by_startup]
-        scope << @cache_prefix.call if @cache_prefix
-        scope << var_name.to_s
-        scope.join('/')
-      end
-
-      def [](key)
-        return get(key) unless rails_initialized?
-        val = Rails.cache.fetch(cache_key(key)) do
-          get(key)
-        end
-        val
-      end
-
-      # set a setting value by [] notation
-      def []=(var_name, value)
-        var_name = var_name.to_s
-
-        record = object(var_name) || thing_scoped.new(var: var_name)
-        record.value = value
-        record.save!
-
-        Rails.cache.write(cache_key(var_name), value)
-        value
-      end
-
-      private
-
-      def default_settings(starting_with = nil)
-        return {} unless Default.enabled?
-        return Default.instance if starting_with.nil?
-        Default.instance.select { |key, _| key.to_s.start_with?(starting_with) }
-      end
-
-      # get a setting value by [] notation
-      def get(var_name)
-        val = object(var_name)
-        return val.value if val
-        return Default[var_name] if Default.enabled?
-      end
-    end
-  end
-end
-
-class Setting < RailsSettings::Base
-  source Rails.root.join('config', 'settings.yml')
-
-  def to_param
-    var
-  end
+  after_commit :rewrite_cache, on: %i(create update)
+  after_commit :expire_cache, on: %i(destroy)
 
   class << self
+    # get or set a variable with the variable as the called method
+    # rubocop:disable Style/MethodMissing
+    def method_missing(method, *args)
+      # set a value for a variable
+      if method.end_with?('=')
+        var_name = method.to_s.chomp("=")
+        value = args.first
+        self[var_name] = value
+      else
+        # retrieve a value
+        self[method.to_s]
+      end
+    end
+
+    # destroy the specified settings record
+    def destroy(var_name)
+      var_name = var_name.to_s
+      obj = object(var_name)
+      raise SettingNotFound, "Setting variable \"#{var_name}\" not found" if obj.nil?
+
+      obj.destroy
+      true
+    end
+
+    def where(sql = nil)
+      vars = thing_scoped.where(sql) if sql
+      vars
+    end
+
+    def merge!(var_name, hash_value)
+      raise ArgumentError unless hash_value.is_a?(Hash)
+
+      old_value = self[var_name] || {}
+      raise TypeError, "Existing value is not a hash, can't merge!" unless old_value.is_a?(Hash)
+
+      new_value = old_value.merge(hash_value)
+      self[var_name] = new_value if new_value != old_value
+
+      new_value
+    end
+
+    def object(var_name)
+      return nil unless rails_initialized?
+      return nil unless table_exists?
+      thing_scoped.where(var: var_name.to_s).first
+    end
+
+    def thing_scoped
+      unscoped.where('thing_type is NULL and thing_id is NULL')
+    end
+
+    def source(filename)
+      Default.source(filename)
+    end
+
+    def rails_initialized?
+      Rails.application && Rails.application.initialized?
+    end
+
+    def cache_prefix_by_startup
+      return @cache_prefix_by_startup if defined? @cache_prefix_by_startup
+      return '' unless Default.enabled?
+      @cache_prefix_by_startup = Digest::MD5.hexdigest(Default.instance.to_s)
+    end
+
+    def cache_prefix(&block)
+      @cache_prefix = block
+    end
+
+    def cache_key(var_name)
+      scope = ['rails_settings_cached', cache_prefix_by_startup]
+      scope << @cache_prefix.call if @cache_prefix
+      scope << var_name.to_s
+      scope.join('/')
+    end
+
     def [](key)
-      return super(key) unless rails_initialized?
+      return get(key) unless rails_initialized?
 
       Rails.cache.fetch(cache_key(key)) do
         db_val = object(key)
@@ -243,10 +172,59 @@ class Setting < RailsSettings::Base
       records
     end
 
-    def default_settings
-      return {} unless RailsSettings::Default.enabled?
+    # set a setting value by [] notation
+    def []=(var_name, value)
+      var_name = var_name.to_s
 
-      RailsSettings::Default.instance
+      record = object(var_name) || thing_scoped.new(var: var_name)
+      record.value = value
+      record.save!
+
+      Rails.cache.write(cache_key(var_name), value)
+      value
     end
+
+    def default_settings
+      return {} unless Default.enabled?
+
+      Default.instance
+    end
+
+    private
+
+    # get a setting value by [] notation
+    def get(var_name)
+      val = object(var_name)
+      return val.value if val
+      return Default[var_name] if Default.enabled?
+    end
+  end
+
+  source Rails.root.join('config', 'settings.yml')
+
+  # get the value field, YAML decoded
+  def value
+    YAML.unsafe_load(self[:value]) if self[:value].present?
+  end
+
+  # set the value field, YAML encoded
+  def value=(new_value)
+    self[:value] = new_value.to_yaml
+  end
+
+  def rewrite_cache
+    Rails.cache.write(cache_key, value)
+  end
+
+  def expire_cache
+    Rails.cache.delete(cache_key)
+  end
+
+  def cache_key
+    self.class.cache_key(var)
+  end
+
+  def to_param
+    var
   end
 end
