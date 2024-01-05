@@ -129,7 +129,7 @@ class Account < ApplicationRecord
   scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).joins(:account_stat) }
   scope :followable_by, ->(account) { joins(arel_table.join(Follow.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(Follow.arel_table[:target_account_id]).and(Follow.arel_table[:account_id].eq(account.id))).join_sources).where(Follow.arel_table[:id].eq(nil)).joins(arel_table.join(FollowRequest.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(FollowRequest.arel_table[:target_account_id]).and(FollowRequest.arel_table[:account_id].eq(account.id))).join_sources).where(FollowRequest.arel_table[:id].eq(nil)) }
   scope :by_recent_status, -> { includes(:account_stat).merge(AccountStat.order('last_status_at DESC NULLS LAST')).references(:account_stat) }
-  scope :by_recent_sign_in, -> { order(Arel.sql('users.current_sign_in_at DESC NULLS LAST')) }
+  scope :by_recent_activity, -> { left_joins(:user, :account_stat).order(coalesced_activity_timestamps.desc).order(id: :desc) }
   scope :popular, -> { order('account_stats.followers_count desc') }
   scope :by_domain_and_subdomains, ->(domain) { where(domain: Instance.by_domain_and_subdomains(domain).select(:domain)) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
@@ -440,6 +440,14 @@ class Account < ApplicationRecord
     def inboxes
       urls = reorder(nil).where(protocol: :activitypub).group(:preferred_inbox_url).pluck(Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url"))
       DeliveryFailureTracker.without_unavailable(urls)
+    end
+
+    def coalesced_activity_timestamps
+      Arel.sql(
+        <<~SQL.squish
+          COALESCE(users.current_sign_in_at, account_stats.last_status_at, to_timestamp(0))
+        SQL
+      )
     end
 
     def from_text(text)
