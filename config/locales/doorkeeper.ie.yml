@@ -5,6 +5,7 @@ ie:
       doorkeeper/application:
         name: Nómine de aplication
         redirect_uri: URI de redirection
+        scopes: Scopes
         website: Situ web de aplication
     errors:
       models:
@@ -29,6 +30,7 @@ ie:
         title: Modificar aplication
       help:
         redirect_uri: Usar un linea per URI
+        scopes: Separar scopes con intersticies. Lassar blanc por usar li scopes predefinit.
       index:
         application: Aplication
         callback_url: URL de retrovocada
@@ -36,6 +38,7 @@ ie:
         empty: Tu have null aplicationes.
         name: Nómine
         new: Nov aplication
+        scopes: Scopes
         show: Monstrar
         title: Tui aplicationes
       new:
@@ -44,6 +47,7 @@ ie:
         actions: Actiones
         application_id: Clave de client
         callback_urls: URLs de retrovocada
+        scopes: Scopes
         secret: Secrete de client
         title: 'Aplication: %{name}'
     authorizations:
@@ -120,9 +124,13 @@ ie:
       admin:
         nav:
           applications: Aplicationes
+          oauth2_provider: Provisor OAuth2
+      application:
+        title: Autorisation OAuth besonat
     scopes:
       admin:read: leer li tot data sur li servitor
       admin:read:accounts: leer sensitiv information de omni contos
+      admin:read:canonical_email_blocks: leer sensitiv information pri omni canonic bloccas de e-posta
       admin:read:domain_allows: leer sensitiv information pri omni permisses de dominia
       admin:read:domain_blocks: leer sensitiv information pri omni bloccas de dominia
       admin:read:email_domain_blocks: leer sensitiv information pri omni bloccas de dominia basat sur e-posta
@@ -137,6 +145,7 @@ ie:
       admin:write:ip_blocks: fa moderatori actiones sur bloccas de IP
       admin:write:reports: far moderatori actiones sur raportes
       follow: modifica li relationes del conto
+      push: reciver tui pussa-notificationes
       read: lee omni datas de tui conto
       read:accounts: vide li informationes pri li conto
       read:blocks: vider tui bloccas
