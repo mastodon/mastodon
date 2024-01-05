@@ -165,7 +165,7 @@ Rails.application.config.add_autoload_paths_to_load_path = false
 # not yet been upgraded must be able to read caches from upgraded servers,
 # leave this optimization off on the first deploy, then enable it on a
 # subsequent deploy.
-Rails.application.config.active_record.marshalling_format_version = 7.1
+# Rails.application.config.active_record.marshalling_format_version = 7.1
 
 # Run `after_commit` and `after_*_commit` callbacks in the order they are defined in a model.
 # This matches the behaviour of all other callbacks.
