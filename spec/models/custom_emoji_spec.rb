@@ -78,12 +78,23 @@ RSpec.describe CustomEmoji do
     end
   end
 
-  describe 'pre_validation' do
-    let(:custom_emoji) { Fabricate(:custom_emoji, domain: 'wWw.MaStOdOn.CoM') }
+  describe 'Normalizations' do
+    describe 'downcase domain value' do
+      context 'with a mixed case domain value' do
+        it 'normalizes the value to downcased' do
+          custom_emoji = Fabricate.build(:custom_emoji, domain: 'wWw.MaStOdOn.CoM')
 
-    it 'downcases' do
-      custom_emoji.valid?
-      expect(custom_emoji.domain).to eq('www.mastodon.com')
+          expect(custom_emoji.domain).to eq('www.mastodon.com')
+        end
+      end
+
+      context 'with a nil domain value' do
+        it 'leaves the value as nil' do
+          custom_emoji = Fabricate.build(:custom_emoji, domain: nil)
+
+          expect(custom_emoji.domain).to be_nil
+        end
+      end
     end
   end
 end
