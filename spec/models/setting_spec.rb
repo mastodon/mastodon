@@ -33,7 +33,7 @@ RSpec.describe Setting do
 
     context 'when rails_initialized? is truthy' do
       before do
-        allow(RailsSettings::Base).to receive(:cache_key).with(key, nil).and_return(cache_key)
+        allow(RailsSettings::Base).to receive(:cache_key).with(key).and_return(cache_key)
       end
 
       let(:rails_initialized) { true }
@@ -50,7 +50,7 @@ RSpec.describe Setting do
 
       context 'when Rails.cache does not exists' do
         before do
-          allow(RailsSettings::Settings).to receive(:object).with(key).and_return(object)
+          allow(RailsSettings::Base).to receive(:object).with(key).and_return(object)
           allow(described_class).to receive(:default_settings).and_return(default_settings)
           settings_double = instance_double(Settings::ScopedSettings, thing_scoped: records)
           allow(Settings::ScopedSettings).to receive(:new).and_return(settings_double)
@@ -62,15 +62,15 @@ RSpec.describe Setting do
         let(:default_settings) { { key => default_value } }
         let(:records)          { [Fabricate(:setting, var: key, value: nil)] }
 
-        it 'calls RailsSettings::Settings.object' do
-          allow(RailsSettings::Settings).to receive(:object).with(key)
+        it 'calls RailsSettings::Base.object' do
+          allow(RailsSettings::Base).to receive(:object).with(key)
 
           described_class[key]
 
-          expect(RailsSettings::Settings).to have_received(:object).with(key)
+          expect(RailsSettings::Base).to have_received(:object).with(key)
         end
 
-        context 'when RailsSettings::Settings.object returns truthy' do
+        context 'when RailsSettings::Base.object returns truthy' do
           let(:object) { db_val }
           let(:db_val) { instance_double(described_class, value: 'db_val') }
 
@@ -97,7 +97,7 @@ RSpec.describe Setting do
           end
         end
 
-        context 'when RailsSettings::Settings.object returns falsey' do
+        context 'when RailsSettings::Base.object returns falsey' do
           let(:object) { nil }
 
           it 'returns default_settings[key]' do
@@ -191,7 +191,7 @@ RSpec.describe Setting do
       end
     end
 
-    context 'when RailsSettings::Settings.enabled? is true' do
+    context 'when RailsSettings::Base.enabled? is true' do
       let(:enabled) { true }
 
       it 'returns instance of RailsSettings::Default' do

@@ -19,14 +19,7 @@ module RailsSettings
   class Default < ::Hash
     class MissingKey < StandardError; end
 
-    if Psych::VERSION.split('.').first >= '4'
-      YAML_load_opts = { aliases: true }
-    else
-      YAML_load_opts = {}
-    end
-
     class << self
-
       def enabled?
         source_path && File.exist?(source_path)
       end
@@ -60,24 +53,19 @@ module RailsSettings
 
     def initialize
       content = open(self.class.source_path).read
-      hash = content.empty? ? {} : YAML.load(ERB.new(content).result, **YAML_load_opts).to_hash
+      hash = content.empty? ? {} : YAML.load(ERB.new(content).result, aliases: true).to_hash
       hash = hash[Rails.env] || {}
       replace hash
     end
   end
 
-  class Settings < ActiveRecord::Base
-    unless YAML.respond_to?(:unsafe_load)
-      class << YAML
-        alias :unsafe_load :load
-      end
-    end
+  class Base < ActiveRecord::Base
+    class SettingNotFound < RuntimeError; end
 
     self.table_name = table_name_prefix + 'settings'
 
-    class SettingNotFound < RuntimeError; end
-
-    belongs_to :thing, polymorphic: true, required: false
+    after_commit :rewrite_cache, on: %i(create update)
+    after_commit :expire_cache, on: %i(destroy)
 
     # get the value field, YAML decoded
     def value
@@ -89,15 +77,24 @@ module RailsSettings
       self[:value] = new_value.to_yaml
     end
 
+    def rewrite_cache
+      Rails.cache.write(cache_key, value)
+    end
+
+    def expire_cache
+      Rails.cache.delete(cache_key)
+    end
+
+    def cache_key
+      self.class.cache_key(var)
+    end
+
     class << self
       # get or set a variable with the variable as the called method
       # rubocop:disable Style/MethodMissing
       def method_missing(method, *args)
-        method_name = method.to_s
-        super(method, *args)
-      rescue NoMethodError
         # set a value for a variable
-        if method_name[-1] == '='
+        if method_name.end_with?('=')
           var_name = method_name.sub('=', '')
           value = args.first
           self[var_name] = value
@@ -117,37 +114,9 @@ module RailsSettings
         true
       end
 
-      # retrieve all settings as a hash (optionally starting with a given namespace)
-      def get_all(starting_with = nil)
-        vars = thing_scoped.select('var, value')
-        vars = vars.where("var LIKE '#{starting_with}%'") if starting_with
-        result = {}
-        vars.each { |record| result[record.var] = record.value }
-        result.reverse_merge!(default_settings(starting_with))
-        result.with_indifferent_access
-      end
-
       def where(sql = nil)
         vars = thing_scoped.where(sql) if sql
         vars
-      end
-
-      # get a setting value by [] notation
-      def [](var_name)
-        val = object(var_name)
-        return val.value if val
-        return Default[var_name] if Default.enabled?
-      end
-
-      # set a setting value by [] notation
-      def []=(var_name, value)
-        var_name = var_name.to_s
-
-        record = object(var_name) || thing_scoped.new(var: var_name)
-        record.value = value
-        record.save!
-
-        value
       end
 
       def merge!(var_name, hash_value)
@@ -180,33 +149,6 @@ module RailsSettings
         Rails.application && Rails.application.initialized?
       end
 
-      private
-
-      def default_settings(starting_with = nil)
-        return {} unless Default.enabled?
-        return Default.instance if starting_with.nil?
-        Default.instance.select { |key, _| key.to_s.start_with?(starting_with) }
-      end
-    end
-  end
-
-  class Base < Settings
-    after_commit :rewrite_cache, on: %i(create update)
-    after_commit :expire_cache, on: %i(destroy)
-
-    def rewrite_cache
-      Rails.cache.write(cache_key, value)
-    end
-
-    def expire_cache
-      Rails.cache.delete(cache_key)
-    end
-
-    def cache_key
-      self.class.cache_key(var, thing)
-    end
-
-    class << self
       def cache_prefix_by_startup
         return @cache_prefix_by_startup if defined? @cache_prefix_by_startup
         return '' unless Default.enabled?
@@ -217,35 +159,46 @@ module RailsSettings
         @cache_prefix = block
       end
 
-      def cache_key(var_name, scope_object)
+      def cache_key(var_name)
         scope = ['rails_settings_cached', cache_prefix_by_startup]
         scope << @cache_prefix.call if @cache_prefix
-        scope << "#{scope_object.class.name}-#{scope_object.id}" if scope_object
         scope << var_name.to_s
         scope.join('/')
       end
 
       def [](key)
-        return super(key) unless rails_initialized?
-        val = Rails.cache.fetch(cache_key(key, @object)) do
-          super(key)
+        return get(key) unless rails_initialized?
+        val = Rails.cache.fetch(cache_key(key)) do
+          get(key)
         end
         val
       end
 
       # set a setting value by [] notation
       def []=(var_name, value)
-        super
-        Rails.cache.write(cache_key(var_name, @object), value)
+        var_name = var_name.to_s
+
+        record = object(var_name) || thing_scoped.new(var: var_name)
+        record.value = value
+        record.save!
+
+        Rails.cache.write(cache_key(var_name), value)
         value
       end
 
-      def save_default(key, value)
-        Kernel.warn 'DEPRECATION WARNING: RailsSettings save_default is deprecated ' \
-                    'and it will removed in 0.7.0. ' \
-                    'Please use YAML file for default setting.'
-        return false unless self[key].nil?
-        self[key] = value
+      private
+
+      def default_settings(starting_with = nil)
+        return {} unless Default.enabled?
+        return Default.instance if starting_with.nil?
+        Default.instance.select { |key, _| key.to_s.start_with?(starting_with) }
+      end
+
+      # get a setting value by [] notation
+      def get(var_name)
+        val = object(var_name)
+        return val.value if val
+        return Default[var_name] if Default.enabled?
       end
     end
   end
@@ -262,7 +215,7 @@ class Setting < RailsSettings::Base
     def [](key)
       return super(key) unless rails_initialized?
 
-      Rails.cache.fetch(cache_key(key, nil)) do
+      Rails.cache.fetch(cache_key(key)) do
         db_val = object(key)
 
         if db_val
