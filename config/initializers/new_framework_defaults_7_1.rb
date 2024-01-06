@@ -188,7 +188,7 @@ Rails.application.config.active_record.generate_secure_token_on = :initialize
 #
 # In previous versions of Rails, Action View always used `Rails::HTML4::Sanitizer` as its vendor.
 #
-# Rails.application.config.action_view.sanitizer_vendor = Rails::HTML::Sanitizer.best_supported_vendor
+Rails.application.config.action_view.sanitizer_vendor = Rails::HTML::Sanitizer.best_supported_vendor
 
 # Configure Action Text to use an HTML5 standards-compliant sanitizer when it is supported on your
 # platform.
@@ -198,7 +198,7 @@ Rails.application.config.active_record.generate_secure_token_on = :initialize
 #
 # In previous versions of Rails, Action Text always used `Rails::HTML4::Sanitizer` as its vendor.
 #
-# Rails.application.config.action_text.sanitizer_vendor = Rails::HTML::Sanitizer.best_supported_vendor
+Rails.application.config.action_text.sanitizer_vendor = Rails::HTML::Sanitizer.best_supported_vendor
 
 # Configure the log level used by the DebugExceptions middleware when logging
 # uncaught exceptions during requests
