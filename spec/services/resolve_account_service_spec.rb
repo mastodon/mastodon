@@ -20,7 +20,7 @@ RSpec.describe ResolveAccountService, type: :service do
       let!(:remote_account) { Fabricate(:account, username: 'foo', domain: 'ap.example.com', protocol: 'activitypub') }
 
       context 'when domain is banned' do
-        let!(:domain_block) { Fabricate(:domain_block, domain: 'ap.example.com', severity: :suspend) }
+        before { Fabricate(:domain_block, domain: 'ap.example.com', severity: :suspend) }
 
         it 'does not return an account' do
           expect(subject.call('foo@ap.example.com', skip_webfinger: true)).to be_nil
@@ -144,6 +144,19 @@ RSpec.describe ResolveAccountService, type: :service do
     end
   end
 
+  context 'with webfinger response subject missing a host value' do
+    let(:body) { Oj.dump({ subject: 'user@' }) }
+    let(:url) { 'https://host.example/.well-known/webfinger?resource=acct:user@host.example' }
+
+    before do
+      stub_request(:get, url).to_return(status: 200, body: body)
+    end
+
+    it 'returns nil with incomplete subject in response' do
+      expect(subject.call('user@host.example')).to be_nil
+    end
+  end
+
   context 'with an ActivityPub account' do
     it 'returns new remote account' do
       account = subject.call('foo@ap.example.com')
@@ -201,6 +214,7 @@ RSpec.describe ResolveAccountService, type: :service do
       expect(account.domain).to eq 'ap.example.com'
       expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
       expect(account.uri).to eq 'https://ap.example.com/users/foo'
+      expect(status.reload.account).to eq(account)
     end
   end
 

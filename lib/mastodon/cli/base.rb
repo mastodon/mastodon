@@ -4,6 +4,7 @@ require_relative '../../../config/boot'
 require_relative '../../../config/environment'
 
 require 'thor'
+require 'pastel'
 require_relative 'progress_helper'
 
 module Mastodon

@@ -11,12 +11,6 @@ describe AccountControllerConcern do
     end
   end
 
-  around do |example|
-    registrations_mode = Setting.registrations_mode
-    example.run
-    Setting.registrations_mode = registrations_mode
-  end
-
   before do
     routes.draw { get 'success' => 'anonymous#success' }
   end

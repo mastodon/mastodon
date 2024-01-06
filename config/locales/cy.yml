@@ -453,6 +453,7 @@ cy:
       view: Gweld bloc parth
     email_domain_blocks:
       add_new: Ychwanegu
+      allow_registrations_with_approval: Caniatáu cofrestriadau wedi'u cymeradwyo
       attempts_over_week:
         few: "%{count} ymgais i gofrestru dros yr wythnos ddiwethaf"
         many: "%{count} ymgais i gofrestru dros yr wythnos ddiwethaf"
@@ -659,6 +660,7 @@ cy:
       created_at: Adroddwyd
       delete_and_resolve: Dileu postiadau
       forwarded: Wedi'i anfon ymlaen
+      forwarded_replies_explanation: Mae'r adroddiad hwn gan ddefnyddiwr o weinydd arall ac am gynnwys pell. Mae wedi ei anfon ymlaen atoch chi oherwydd bod y cynnwys sy'n cael ei adrodd yn ateb i un o'ch defnyddwyr.
       forwarded_to: Wedi'i anfon ymlaen i %{domain}
       mark_as_resolved: Nodi fel wedi'i ddatrys
       mark_as_sensitive: Marcio fel sensitif
@@ -1068,8 +1070,6 @@ cy:
       new_trending_statuses:
         title: Postiadau sy'n trendio
       new_trending_tags:
-        no_approved_tags: Ar hyn o bryd nid oes unrhyw hashnodau trendio cymeradwy.
-        requirements: 'Gallai unrhyw un o''r ymgeiswyr hyn ragori ar yr hashnod trendio cymeradwy #%{rank}, sef #%{lowest_tag_name} gyda sgôr o %{lowest_tag_score} ar hyn o bryd.'
         title: Hashnodau sy'n trendio
       subject: Trendiau newydd i'w hadolygu ar %{instance}
   aliases:
@@ -1468,6 +1468,7 @@ cy:
       '86400': 1 diwrnod
     expires_in_prompt: Byth
     generate: Cynhyrchu dolen wahoddiad
+    invalid: Nid yw'r gwahoddiad hwn yn ddilys
     invited_by: 'Cawsoch eich gwahodd gan:'
     max_uses:
       few: "%{count} defnydd"

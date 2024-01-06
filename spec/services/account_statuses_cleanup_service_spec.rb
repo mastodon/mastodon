@@ -39,6 +39,13 @@ describe AccountStatusesCleanupService, type: :service do
         it 'actually deletes the statuses' do
           subject.call(account_policy, 10)
           expect(Status.find_by(id: [very_old_status.id, old_status.id, another_old_status.id])).to be_nil
+          expect { recent_status.reload }.to_not raise_error
+        end
+
+        it 'preserves recent and unrelated statuses' do
+          subject.call(account_policy, 10)
+          expect { unrelated_status.reload }.to_not raise_error
+          expect { recent_status.reload }.to_not raise_error
         end
       end
 

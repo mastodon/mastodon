@@ -23,7 +23,7 @@ RSpec.describe ActivityPub::Activity::Create do
     stub_request(:get, 'http://example.com/emojib.png').to_return(body: attachment_fixture('emojo.png'), headers: { 'Content-Type' => 'application/octet-stream' })
   end
 
-  describe 'processing posts received out of order' do
+  describe 'processing posts received out of order', :sidekiq_fake do
     let(:follower) { Fabricate(:account, username: 'bob') }
 
     let(:object_json) do
@@ -77,13 +77,6 @@ RSpec.describe ActivityPub::Activity::Create do
       follower.follow!(sender)
     end
 
-    around do |example|
-      Sidekiq::Testing.fake! do
-        example.run
-        Sidekiq::Worker.clear_all
-      end
-    end
-
     it 'correctly processes posts and inserts them in timelines', :aggregate_failures do
       # Simulate a temporary failure preventing from fetching the parent post
       stub_request(:get, object_json[:id]).to_return(status: 500)
@@ -134,6 +127,46 @@ RSpec.describe ActivityPub::Activity::Create do
         subject.perform
       end
 
+      context 'when object publication date is below ISO8601 range' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            published: '-0977-11-03T08:31:22Z',
+          }
+        end
+
+        it 'creates status with a valid creation date', :aggregate_failures do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.text).to eq 'Lorem ipsum'
+
+          expect(status.created_at).to be_within(30).of(Time.now.utc)
+        end
+      end
+
+      context 'when object publication date is above ISO8601 range' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            published: '10000-11-03T08:31:22Z',
+          }
+        end
+
+        it 'creates status with a valid creation date', :aggregate_failures do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.text).to eq 'Lorem ipsum'
+
+          expect(status.created_at).to be_within(30).of(Time.now.utc)
+        end
+      end
+
       context 'when object has been edited' do
         let(:object_json) do
           {
@@ -145,18 +178,16 @@ RSpec.describe ActivityPub::Activity::Create do
           }
         end
 
-        it 'creates status' do
+        it 'creates status with appropriate creation and edition dates', :aggregate_failures do
           status = sender.statuses.first
 
           expect(status).to_not be_nil
           expect(status.text).to eq 'Lorem ipsum'
-        end
 
-        it 'marks status as edited' do
-          status = sender.statuses.first
+          expect(status.created_at).to eq '2022-01-22T15:00:00Z'.to_datetime
 
-          expect(status).to_not be_nil
           expect(status.edited?).to be true
+          expect(status.edited_at).to eq '2022-01-22T16:00:00Z'.to_datetime
         end
       end
 
@@ -501,15 +532,21 @@ RSpec.describe ActivityPub::Activity::Create do
                 mediaType: 'image/png',
                 url: 'http://example.com/attachment.png',
               },
+              {
+                type: 'Document',
+                mediaType: 'image/png',
+                url: 'http://example.com/emoji.png',
+              },
             ],
           }
         end
 
-        it 'creates status' do
+        it 'creates status with correctly-ordered media attachments' do
           status = sender.statuses.first
 
           expect(status).to_not be_nil
-          expect(status.media_attachments.map(&:remote_url)).to include('http://example.com/attachment.png')
+          expect(status.ordered_media_attachments.map(&:remote_url)).to eq ['http://example.com/attachment.png', 'http://example.com/emoji.png']
+          expect(status.ordered_media_attachment_ids).to be_present
         end
       end
 

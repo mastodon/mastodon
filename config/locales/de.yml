@@ -611,6 +611,7 @@ de:
       created_at: Gemeldet
       delete_and_resolve: Beiträge löschen
       forwarded: Weitergeleitet
+      forwarded_replies_explanation: Diese Meldung stammt von einem externen Profil und betrifft einen externen Inhalt. Der Inhalt wurde an Dich weitergeleitet, weil er eine Antwort auf ein bei Dir registriertes Profil ist.
       forwarded_to: Weitergeleitet an %{domain}
       mark_as_resolved: Als geklärt markieren
       mark_as_sensitive: Mit einer Inhaltswarnung versehen
@@ -747,7 +748,7 @@ de:
         title: Neue Nutzer*innen müssen ein CAPTCHA lösen, um das Konto zu bestätigen
       content_retention:
         preamble: Lege fest, wie lange Inhalte von Nutzer*innen auf deinem Mastodon-Server gespeichert bleiben.
-        title: Aufbewahrung von Inhalten
+        title: Cache & Archive
       default_noindex:
         desc_html: Betrifft alle Profile, die diese Einstellung bei sich nicht geändert haben
         title: Profile standardmäßig von der Suchmaschinen-Indizierung ausnehmen
@@ -996,8 +997,6 @@ de:
       new_trending_statuses:
         title: Angesagte Beiträge
       new_trending_tags:
-        no_approved_tags: Es gibt keine genehmigten Hashtags, die gerade im Trend liegen.
-        requirements: 'Jeder dieser Kandidaten könnte den #%{rank} genehmigten angesagten Hashtag übertreffen, der derzeit #%{lowest_tag_name} mit einer Punktzahl von %{lowest_tag_score} ist.'
         title: Angesagte Hashtags
       subject: Neue Trends zur Überprüfung auf %{instance}
   aliases:
@@ -1238,7 +1237,7 @@ de:
       home: Startseite und Listen
       notifications: Benachrichtigungen
       public: Öffentliche Timelines
-      thread: Unterhaltungen
+      thread: Private Erwähnungen
     edit:
       add_keyword: Schlagwort hinzufügen
       keywords: Schlagwörter
@@ -1368,6 +1367,7 @@ de:
       '86400': 1 Tag
     expires_in_prompt: Nie
     generate: Einladungslink erstellen
+    invalid: Diese Einladung ist ungültig
     invited_by: 'Du wurdest eingeladen von:'
     max_uses:
       one: Eine Verwendung

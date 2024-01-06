@@ -50,7 +50,9 @@ class PreviewCard < ApplicationRecord
   enum type: { link: 0, photo: 1, video: 2, rich: 3 }
   enum link_type: { unknown: 0, article: 1 }
 
-  has_and_belongs_to_many :statuses
+  has_many :preview_cards_statuses, dependent: :delete_all, inverse_of: :preview_card
+  has_many :statuses, through: :preview_cards_statuses
+
   has_one :trend, class_name: 'PreviewCardTrend', inverse_of: :preview_card, dependent: :destroy
 
   has_attached_file :image, processors: [:thumbnail, :blurhash_transcoder], styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' }, validate_media_type: false
@@ -63,6 +65,9 @@ class PreviewCard < ApplicationRecord
   scope :cached, -> { where.not(image_file_name: [nil, '']) }
 
   before_save :extract_dimensions, if: :link?
+
+  # This can be set by the status when retrieving the preview card using the join model
+  attr_accessor :original_url
 
   def appropriate_for_trends?
     link? && article? && title.present? && description.present? && image.present? && provider_name.present?

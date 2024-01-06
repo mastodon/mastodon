@@ -4,9 +4,10 @@ class Api::BaseController < ApplicationController
   DEFAULT_STATUSES_LIMIT = 20
   DEFAULT_ACCOUNTS_LIMIT = 40
 
-  include RateLimitHeaders
-  include AccessTokenTrackingConcern
-  include ApiCachingConcern
+  include Api::RateLimitHeaders
+  include Api::AccessTokenTrackingConcern
+  include Api::CachingConcern
+  include Api::ContentSecurityPolicy
 
   skip_before_action :require_functional!, unless: :limited_federation_mode?
 
@@ -16,26 +17,6 @@ class Api::BaseController < ApplicationController
   vary_by 'Authorization'
 
   protect_from_forgery with: :null_session
-
-  content_security_policy do |p|
-    # Set every directive that does not have a fallback
-    p.default_src :none
-    p.frame_ancestors :none
-    p.form_action :none
-
-    # Disable every directive with a fallback to cut on response size
-    p.base_uri false
-    p.font_src false
-    p.img_src false
-    p.style_src false
-    p.media_src false
-    p.frame_src false
-    p.manifest_src false
-    p.connect_src false
-    p.script_src false
-    p.child_src false
-    p.worker_src false
-  end
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: e.to_s }, status: 422
@@ -83,7 +64,7 @@ class Api::BaseController < ApplicationController
   end
 
   def doorkeeper_unauthorized_render_options(error: nil)
-    { json: { error: (error.try(:description) || 'Not authorized') } }
+    { json: { error: error.try(:description) || 'Not authorized' } }
   end
 
   def doorkeeper_forbidden_render_options(*)
@@ -124,7 +105,11 @@ class Api::BaseController < ApplicationController
   end
 
   def require_not_suspended!
-    render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.suspended?
+    render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.unavailable?
+  end
+
+  def require_valid_pagination_options!
+    render json: { error: 'Pagination values for `offset` and `limit` must be positive' }, status: 400 if pagination_options_invalid?
   end
 
   def require_user!
@@ -154,6 +139,10 @@ class Api::BaseController < ApplicationController
   end
 
   private
+
+  def pagination_options_invalid?
+    params.slice(:limit, :offset).values.map(&:to_i).any?(&:negative?)
+  end
 
   def respond_with_error(code)
     render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code

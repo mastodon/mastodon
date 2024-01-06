@@ -59,10 +59,10 @@ describe ContentSecurityPolicy do
     end
   end
 
-  describe '#media_host' do
+  describe '#media_hosts' do
     context 'when there is no configured CDN' do
       it 'defaults to using the assets_host value' do
-        expect(subject.media_host).to eq(subject.assets_host)
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host)
       end
     end
 
@@ -74,7 +74,7 @@ describe ContentSecurityPolicy do
       end
 
       it 'uses the s3 alias host value' do
-        expect(subject.media_host).to eq 'https://asset-host.s3-alias.example'
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://asset-host.s3-alias.example')
       end
     end
 
@@ -86,7 +86,7 @@ describe ContentSecurityPolicy do
       end
 
       it 'uses the s3 alias host value and preserves the path' do
-        expect(subject.media_host).to eq 'https://asset-host.s3-alias.example/pathname/'
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://asset-host.s3-alias.example/pathname/')
       end
     end
 
@@ -98,7 +98,7 @@ describe ContentSecurityPolicy do
       end
 
       it 'uses the s3 cloudfront host value' do
-        expect(subject.media_host).to eq 'https://asset-host.s3-cloudfront.example'
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://asset-host.s3-cloudfront.example')
       end
     end
 
@@ -110,7 +110,7 @@ describe ContentSecurityPolicy do
       end
 
       it 'uses the azure alias host value' do
-        expect(subject.media_host).to eq 'https://asset-host.azure-alias.example'
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://asset-host.azure-alias.example')
       end
     end
 
@@ -122,7 +122,19 @@ describe ContentSecurityPolicy do
       end
 
       it 'uses the s3 hostname host value' do
-        expect(subject.media_host).to eq 'https://asset-host.s3.example'
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://asset-host.s3.example')
+      end
+    end
+
+    context 'when PAPERCLIP_ROOT_URL is configured' do
+      around do |example|
+        ClimateControl.modify PAPERCLIP_ROOT_URL: 'https://paperclip-host.example' do
+          example.run
+        end
+      end
+
+      it 'uses the provided URL in the content security policy' do
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://paperclip-host.example')
       end
     end
   end

@@ -15,7 +15,7 @@ RSpec.describe 'Accounts' do
 
     let(:params)   { { limit: 0 } }
     let(:list)     { Fabricate(:list, account: user.account) }
-    let(:accounts) { Fabricate.times(3, :account) }
+    let(:accounts) { Fabricate.times(2, :account) }
 
     let(:expected_response) do
       accounts.map do |account|

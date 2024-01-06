@@ -534,6 +534,7 @@ en-GB:
       total_reported: Reports about them
       total_storage: Media attachments
       totals_time_period_hint_html: The totals displayed below include data for all time.
+      unknown_instance: There is currently no record of this domain on this server.
     invites:
       deactivate_all: Deactivate all
       filter:
@@ -610,6 +611,7 @@ en-GB:
       created_at: Reported
       delete_and_resolve: Delete posts
       forwarded: Forwarded
+      forwarded_replies_explanation: This report is from a remote user and about remote content. It has been forwarded to you because the reported content is in reply to one of your users.
       forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
       mark_as_sensitive: Mark as sensitive
@@ -995,8 +997,6 @@ en-GB:
       new_trending_statuses:
         title: Trending posts
       new_trending_tags:
-        no_approved_tags: There are currently no approved trending hashtags.
-        requirements: 'Any of these candidates could surpass the #%{rank} approved trending hashtag, which is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
         title: Trending hashtags
       subject: New trends up for review on %{instance}
   aliases:
@@ -1040,6 +1040,14 @@ en-GB:
       hint_html: Just one more thing! We need to confirm you're a human (this is so we can keep the spam out!). Solve the CAPTCHA below and click "Continue".
       title: Security check
     confirmations:
+      awaiting_review: Your e-mail address is confirmed! The %{domain} staff is now reviewing your registration. You will receive an e-mail if they approve your account!
+      awaiting_review_title: Your registration is being reviewed
+      clicking_this_link: clicking this link
+      login_link: log in
+      proceed_to_login_html: You can now proceed to %{login_link}.
+      redirect_to_app_html: You should have been redirected to the <strong>%{app_name}</strong> app. If that did not happen, try %{clicking_this_link} or manually return to the app.
+      registration_complete: Your registration on %{domain} is now complete!
+      welcome_title: Welcome, %{name}!
       wrong_email_hint: If that e-mail address is not correct, you can change it in account settings.
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
@@ -1101,6 +1109,7 @@ en-GB:
       functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
       redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
+      self_destruct: As %{domain} is closing down, you will only get limited access to your account.
       view_strikes: View past strikes against your account
     too_fast: Form submitted too fast, try again.
     use_security_key: Use security key
@@ -1358,6 +1367,7 @@ en-GB:
       '86400': 1 day
     expires_in_prompt: Never
     generate: Generate invite link
+    invalid: This invite is not valid
     invited_by: 'You were invited by:'
     max_uses:
       one: 1 use
@@ -1570,6 +1580,9 @@ en-GB:
     over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
     over_total_limit: You have exceeded the limit of %{limit} scheduled posts
     too_soon: The scheduled date must be in the future
+  self_destruct:
+    lead_html: Unfortunately, <strong>%{domain}</strong> is permanently closing down. If you had an account there, you will not be able to continue using it, but you can still request a backup of your data.
+    title: This server is closing down
   sessions:
     activity: Last activity
     browser: Browser
@@ -1738,6 +1751,7 @@ en-GB:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
   translation:
     errors:
       quota_exceeded: The server-wide usage quota for the translation service has been exceeded.

@@ -22,9 +22,12 @@ RSpec.describe FamiliarFollowersPresenter do
     it 'returns followers you follow' do
       result = subject.accounts.first
 
-      expect(result).to_not be_nil
-      expect(result.id).to eq requested_accounts.first.id
-      expect(result.accounts).to contain_exactly(familiar_follower)
+      expect(result)
+        .to be_present
+        .and have_attributes(
+          id: requested_accounts.first.id,
+          accounts: contain_exactly(familiar_follower)
+        )
     end
 
     context 'when requested account hides followers' do
@@ -35,9 +38,12 @@ RSpec.describe FamiliarFollowersPresenter do
       it 'does not return followers you follow' do
         result = subject.accounts.first
 
-        expect(result).to_not be_nil
-        expect(result.id).to eq requested_accounts.first.id
-        expect(result.accounts).to be_empty
+        expect(result)
+          .to be_present
+          .and have_attributes(
+            id: requested_accounts.first.id,
+            accounts: be_empty
+          )
       end
     end
 
@@ -49,9 +55,12 @@ RSpec.describe FamiliarFollowersPresenter do
       it 'does not return followers you follow' do
         result = subject.accounts.first
 
-        expect(result).to_not be_nil
-        expect(result.id).to eq requested_accounts.first.id
-        expect(result.accounts).to be_empty
+        expect(result)
+          .to be_present
+          .and have_attributes(
+            id: requested_accounts.first.id,
+            accounts: be_empty
+          )
       end
     end
   end

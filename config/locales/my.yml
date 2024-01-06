@@ -962,8 +962,6 @@ my:
       new_trending_statuses:
         title: လက်ရှိခေတ်စားနေသော ပို့စ်များ
       new_trending_tags:
-        no_approved_tags: လက်ရှိတွင် အတည်ပြုထားသော ခေတ်စားနေသည့် hashtag များမရှိပါ။
-        requirements: 'ဤလူများမှာ %{lowest_tag_score} ရမှတ်ဖြင့် လက်ရှိ #%{lowest_tag_name} ဖြစ်သည့် ခေတ်စားနေသော hashtag #%{rank} ကို ကျော်သွားနိုင်သည်။'
         title: လက်ရှိခေတ်စားနေသော hashtag များ
       subject: "%{instance} တွင် ပြန်လည်သုံးသပ်ရမည့် ခေတ်စားနေသောပို့စ်အသစ်များ"
   aliases:
@@ -1326,6 +1324,7 @@ my:
       '86400': ၁ ရက်
     expires_in_prompt: ဘယ်တော့မှ
     generate: ဖိတ်ကြားချက်လင့်ခ် ဖန်တီးပါ
+    invalid: ဤဖိတ်ကြားချက်မှာ မမှန်ကန်ပါ
     invited_by: သင့်ကို ဖိတ်ခေါ်ထားသည် -
     max_uses:
       other: "%{count} အသုံးပြုမှုများ"

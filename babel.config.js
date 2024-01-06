@@ -52,6 +52,10 @@ module.exports = (api) => {
   case 'development':
     reactOptions.development = true;
     envOptions.debug = true;
+
+    // We need Babel to not inject polyfills in dev, as this breaks `preval` files
+    envOptions.useBuiltIns = false;
+    envOptions.corejs = undefined;
     break;
   }
 

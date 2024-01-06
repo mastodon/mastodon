@@ -300,10 +300,15 @@ html {
   }
 
   &__item {
+    color: $darker-text-color;
+
+    &--dangerous {
+      color: $error-value-color;
+    }
+
     a,
     button {
       background: $white;
-      color: $darker-text-color;
     }
   }
 }
@@ -315,9 +320,9 @@ html {
 .privacy-dropdown__option.active .privacy-dropdown__option__content strong,
 .privacy-dropdown__option:hover .privacy-dropdown__option__content,
 .privacy-dropdown__option:hover .privacy-dropdown__option__content strong,
-.dropdown-menu__item a:active,
-.dropdown-menu__item a:focus,
-.dropdown-menu__item a:hover,
+.dropdown-menu__item:not(.dropdown-menu__item--dangerous) a:active,
+.dropdown-menu__item:not(.dropdown-menu__item--dangerous) a:focus,
+.dropdown-menu__item:not(.dropdown-menu__item--dangerous) a:hover,
 .actions-modal ul li:not(:empty) a.active,
 .actions-modal ul li:not(:empty) a.active button,
 .actions-modal ul li:not(:empty) a:active,

@@ -110,6 +110,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def process_status_params
     @status_parser = ActivityPub::Parser::StatusParser.new(@json, followers_collection: @account.followers_url)
 
+    attachment_ids = process_attachments.take(4).map(&:id)
+
     @params = {
       uri: @status_parser.uri,
       url: @status_parser.url || @status_parser.uri,
@@ -125,7 +127,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       visibility: @status_parser.visibility,
       thread: replied_to_status,
       conversation: conversation_from_uri(@object['conversation']),
-      media_attachment_ids: process_attachments.take(4).map(&:id),
+      media_attachment_ids: attachment_ids,
+      ordered_media_attachment_ids: attachment_ids,
       poll: process_poll,
     }
   end

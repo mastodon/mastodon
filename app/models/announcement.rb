@@ -28,8 +28,8 @@ class Announcement < ApplicationRecord
   has_many :announcement_reactions, dependent: :destroy
 
   validates :text, presence: true
-  validates :starts_at, presence: true, if: -> { ends_at.present? }
-  validates :ends_at, presence: true, if: -> { starts_at.present? }
+  validates :starts_at, presence: true, if: :ends_at?
+  validates :ends_at, presence: true, if: :starts_at?
 
   before_validation :set_published, on: :create
 
@@ -46,7 +46,7 @@ class Announcement < ApplicationRecord
   end
 
   def time_range?
-    starts_at.present? && ends_at.present?
+    starts_at? && ends_at?
   end
 
   def mentions
@@ -78,9 +78,9 @@ class Announcement < ApplicationRecord
       else
         scope.select("name, custom_emoji_id, count(*) as count, exists(select 1 from announcement_reactions r where r.account_id = #{account.id} and r.announcement_id = announcement_reactions.announcement_id and r.name = announcement_reactions.name) as me")
       end
-    end
+    end.to_a
 
-    ActiveRecord::Associations::Preloader.new(records: records, associations: :custom_emoji)
+    ActiveRecord::Associations::Preloader.new(records: records, associations: :custom_emoji).call
     records
   end
 

@@ -343,7 +343,7 @@ lv:
       title: Pielāgotās emocijzīmes
       uncategorized: Nekategorizētās
       unlist: Izslēgt
-      unlisted: Nerindota
+      unlisted: Neminētie
       update_failed_msg: Nevarēja atjaunināt šo emocijzīmi
       updated_msg: Emocijzīme veiksmīgi atjaunināta!
       upload: Augšupielādēt
@@ -545,6 +545,7 @@ lv:
       total_reported: Ziņojumi par viņiem
       total_storage: Multividesu pielikumi
       totals_time_period_hint_html: Tālāk redzamajās summās ir iekļauti dati par visu laiku.
+      unknown_instance: Pašlaik šajā serverī nav ierakstu par šo domēnu.
     invites:
       deactivate_all: Deaktivēt visu
       filter:
@@ -1013,8 +1014,6 @@ lv:
       new_trending_statuses:
         title: Populārākās ziņas
       new_trending_tags:
-        no_approved_tags: Pašlaik nav apstiprinātu tendenču tēmturu.
-        requirements: 'Jebkurš no šiem kandidātiem varētu pārspēt #%{rank} apstiprināto populāro tēmturi, kas pašlaik ir #%{lowest_tag_name} ar rezultātu %{lowest_tag_score}.'
         title: Populārākie tēmturi
       subject: Tiek pārskatītas jaunas tendences %{instance}
   aliases:
@@ -1058,6 +1057,14 @@ lv:
       hint_html: Vēl tikai viena lieta! Mums ir jāapstiprina, ka tu esi cilvēks (tas ir tāpēc, lai mēs varētu nepieļaut surogātpasta izsūtīšanu!). Atrisini tālāk norādīto CAPTCHA un noklikšķini uz "Turpināt".
       title: Drošības pārbaude
     confirmations:
+      awaiting_review: Tava e-pasta adrese ir apstiprināta! %{domain} darbinieki tagad pārskata tavu reģistrāciju. Tu saņemsi e-pastu, ja viņi apstiprinās tavu kontu!
+      awaiting_review_title: Tava reģistrācija tiek izskatīta
+      clicking_this_link: klikšķinot šo saiti
+      login_link: pieteikties
+      proceed_to_login_html: Tagad vari doties uz %{login_link}.
+      redirect_to_app_html: Tev vajadzētu būt novirzītam uz lietotni <strong>%{app_name}</strong>. Ja tas nenotika, mēģini %{clicking_this_link} vai manuāli atgriezieties lietotnē.
+      registration_complete: Tava reģistrācija domēnā %{domain} tagad ir pabeigta!
+      welcome_title: Laipni lūdzam, %{name}!
       wrong_email_hint: Ja šī e-pasta adrese nav pareiza, varat to mainīt konta iestatījumos.
     delete_account: Dzēst kontu
     delete_account_html: Ja vēlies dzēst savu kontu, tu vari <a href="%{path}">turpināt šeit</a>. Tev tiks lūgts apstiprinājums.
@@ -1119,6 +1126,7 @@ lv:
       functional: Tavs konts ir pilnībā darboties spējīgs.
       pending: Tavu pieteikumu gaida mūsu darbinieku izskatīšana. Tas var aizņemt kādu laiku. Ja tavs pieteikums tiks apstiprināts, tu saņemsi e-pastu.
       redirecting_to: Tavs konts ir neaktīvs, jo pašlaik tas tiek novirzīts uz %{acct}.
+      self_destruct: Tā kā %{domain} tiek slēgts, tu iegūsi tikai ierobežotu piekļuvi savam kontam.
       view_strikes: Skati iepriekšējos brīdinājumus par savu kontu
     too_fast: Veidlapa ir iesniegta pārāk ātri, mēģini vēlreiz.
     use_security_key: Lietot drošības atslēgu
@@ -1596,6 +1604,9 @@ lv:
     over_daily_limit: Tu esi pārsniedzis šodien ieplānoto %{limit} ziņu ierobežojumu
     over_total_limit: Tu esi pārsniedzis ieplānoto %{limit} ziņu ierobežojumu
     too_soon: Ieplānotajam datumam ir jābūt nākotnē
+  self_destruct:
+    lead_html: Diemžēl domēns <strong>%{domain}</strong> tiek neatgriezeniski slēgts. Ja tev tur bija konts, tu nevarēsi turpināt to lietot, taču joprojām vari pieprasīt savu datu kopiju.
+    title: Šis serveris tiek slēgts
   sessions:
     activity: Pēdējā aktivitāte
     browser: Pārlūks

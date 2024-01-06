@@ -35,17 +35,16 @@ describe MoveWorker do
     context 'when user notes are short enough' do
       it 'copies user note with prelude' do
         subject.perform(source_account.id, target_account.id)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(source_account.acct)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(account_note.comment)
+        expect(relevant_account_note.comment)
+          .to include(source_account.acct, account_note.comment)
       end
 
       it 'merges user notes when needed' do
         new_account_note = AccountNote.create!(account: account_note.account, target_account: target_account, comment: 'new note prior to move')
 
         subject.perform(source_account.id, target_account.id)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(source_account.acct)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(account_note.comment)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(new_account_note.comment)
+        expect(relevant_account_note.comment)
+          .to include(source_account.acct, account_note.comment, new_account_note.comment)
       end
     end
 
@@ -54,15 +53,23 @@ describe MoveWorker do
 
       it 'copies user note without prelude' do
         subject.perform(source_account.id, target_account.id)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(account_note.comment)
+        expect(relevant_account_note.comment)
+          .to include(account_note.comment)
       end
 
       it 'keeps user notes unchanged' do
         new_account_note = AccountNote.create!(account: account_note.account, target_account: target_account, comment: 'new note prior to move')
 
         subject.perform(source_account.id, target_account.id)
-        expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(new_account_note.comment)
+        expect(relevant_account_note.comment)
+          .to include(new_account_note.comment)
       end
+    end
+
+    private
+
+    def relevant_account_note
+      AccountNote.find_by(account: account_note.account, target_account: target_account)
     end
   end
 
@@ -71,10 +78,19 @@ describe MoveWorker do
       subject.perform(source_account.id, target_account.id)
 
       expect(block_service).to have_received(:call).with(blocking_account, target_account)
-      expect(AccountNote.find_by(account: blocking_account, target_account: target_account).comment).to include(source_account.acct)
-
       expect(muting_account.muting?(target_account)).to be true
-      expect(AccountNote.find_by(account: muting_account, target_account: target_account).comment).to include(source_account.acct)
+
+      expect(
+        [note_account_comment, mute_account_comment]
+      ).to all include(source_account.acct)
+    end
+
+    def note_account_comment
+      AccountNote.find_by(account: blocking_account, target_account: target_account).comment
+    end
+
+    def mute_account_comment
+      AccountNote.find_by(account: muting_account, target_account: target_account).comment
     end
   end
 
@@ -143,12 +159,9 @@ describe MoveWorker do
 
   describe '#perform' do
     context 'when both accounts are distant' do
-      it 'calls UnfollowFollowWorker' do
-        Sidekiq::Testing.fake! do
-          subject.perform(source_account.id, target_account.id)
-          expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, false)
-          Sidekiq::Worker.drain_all
-        end
+      it 'calls UnfollowFollowWorker', :sidekiq_fake do
+        subject.perform(source_account.id, target_account.id)
+        expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, false)
       end
 
       include_examples 'common tests'
@@ -157,12 +170,9 @@ describe MoveWorker do
     context 'when target account is local' do
       let(:target_account) { Fabricate(:account) }
 
-      it 'calls UnfollowFollowWorker' do
-        Sidekiq::Testing.fake! do
-          subject.perform(source_account.id, target_account.id)
-          expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, true)
-          Sidekiq::Worker.clear_all
-        end
+      it 'calls UnfollowFollowWorker', :sidekiq_fake do
+        subject.perform(source_account.id, target_account.id)
+        expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, true)
       end
 
       include_examples 'common tests'

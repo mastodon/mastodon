@@ -1,28 +1,48 @@
 # frozen_string_literal: true
 
 class AccountSuggestions
+  include DatabaseHelper
+
   SOURCES = [
     AccountSuggestions::SettingSource,
-    AccountSuggestions::PastInteractionsSource,
+    AccountSuggestions::FriendsOfFriendsSource,
+    AccountSuggestions::SimilarProfilesSource,
     AccountSuggestions::GlobalSource,
   ].freeze
 
-  def self.get(account, limit)
-    SOURCES.each_with_object([]) do |source_class, suggestions|
-      source_suggestions = source_class.new.get(
-        account,
-        skip_account_ids: suggestions.map(&:account_id),
-        limit: limit - suggestions.size
-      )
+  BATCH_SIZE = 40
 
-      suggestions.concat(source_suggestions)
+  def initialize(account)
+    @account = account
+  end
+
+  def get(limit, offset = 0)
+    with_read_replica do
+      account_ids_with_sources = Rails.cache.fetch("follow_recommendations/#{@account.id}", expires_in: 15.minutes) do
+        SOURCES.flat_map { |klass| klass.new.get(@account, limit: BATCH_SIZE) }.each_with_object({}) do |(account_id, source), h|
+          (h[account_id] ||= []).concat(Array(source).map(&:to_sym))
+        end.to_a.shuffle
+      end
+
+      # The sources deliver accounts that haven't yet been followed, are not blocked,
+      # and so on. Since we reset the cache on follows, blocks, and so on, we don't need
+      # a complicated query on this end.
+
+      account_ids  = account_ids_with_sources[offset, limit]
+      accounts_map = Account.where(id: account_ids.map(&:first)).includes(:account_stat).index_by(&:id)
+
+      account_ids.filter_map do |(account_id, source)|
+        next unless accounts_map.key?(account_id)
+
+        AccountSuggestions::Suggestion.new(
+          account: accounts_map[account_id],
+          source: source
+        )
+      end
     end
   end
 
-  def self.remove(account, target_account_id)
-    SOURCES.each do |source_class|
-      source = source_class.new
-      source.remove(account, target_account_id)
-    end
+  def remove(target_account_id)
+    FollowRecommendationMute.create(account_id: @account.id, target_account_id: target_account_id)
   end
 end

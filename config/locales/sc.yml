@@ -5,6 +5,7 @@ sc:
     contact_missing: No cunfiguradu
     contact_unavailable: No a disponimentu
     hosted_on: Mastodon allogiadu in %{domain}
+    title: Informatziones
   accounts:
     follow: Sighi
     followers:
@@ -45,6 +46,7 @@ sc:
       confirm: Cunfirma
       confirmed: Cunfirmadu
       confirming: Cunfirmende
+      custom: Personalizadu
       delete: Cantzella datos
       deleted: Cantzelladu
       demote: Degrada
@@ -81,7 +83,9 @@ sc:
       moderation:
         active: Ativu
         all: Totus
+        disabled: Disativadu
         pending: De imbiare
+        silenced: Limitadu
         suspended: Suspèndidu
         title: Moderatzione
       moderation_notes: Notas de moderatzione
@@ -112,6 +116,7 @@ sc:
       search: Chirca
       search_same_email_domain: Àteras persones cun su pròpiu domìniu de posta
       search_same_ip: Àteras persones cun sa pròpiu IP
+      security: Seguresa
       sensitive: Sensìbile
       sensitized: marcadu comente a sensìbile
       shared_inbox_url: URL de intrada cumpartzida
@@ -122,6 +127,7 @@ sc:
       silenced: Limitadas
       statuses: Tuts
       subscribe: Sutascrie·ti
+      suspend: Suspensione
       suspended: Suspèndidu
       suspension_irreversible: Is datos de custu contu sunt istados cantzellados in manera irreversìbile. Podes bogare sa suspensione a su contu pro chi si potzat impreare, ma no at a recuperare datu perunu de is chi teniat in antis.
       suspension_reversible_hint_html: Su contu est istadu suspèndidu, e is datos ant a èssere cantzelladu de su totu su %{date}. Finas a tando, su contu si podet ripristinare sena efetu malu perunu. Si boles cantzellare totu is datos de su contu immediatamente ddu podes fàghere inoghe in bassu.
@@ -274,6 +280,7 @@ sc:
       updated_msg: Emoji atualizadu
       upload: Càrriga
     dashboard:
+      media_storage: Immagasinamentu
       software: Programmas
       space: Impreu de ispàtziu
       title: Pannellu
@@ -281,21 +288,28 @@ sc:
       add_new: Permite sa federatzione cun domìniu
       created_msg: Sa federatzione cun su domìniu est istada permìtida
       destroyed_msg: Sa federatzione cun su domìniu no est istada permìtida
+      import: Importatzione
       undo: Non permitas sa federatzione cun su domìniu
     domain_blocks:
       add_new: Agiunghe blocu de domìniu nou
+      confirm_suspension:
+        cancel: Annulla
+        confirm: Suspensione
       created_msg: Protzessende su blocu de domìniu
       destroyed_msg: Su blocu de domìniu est istadu iscontzadu
       domain: Domìniu
       edit: Modìfica su blocu de su domìniu
       existing_domain_block_html: As giai impostu lìmites prus astrintos a %{name}, ddu dias dèpere <a href="%{unblock_url}">isblocare</a> prima.
+      import: Importatzione
       new:
         create: Crea unu blocu
         hint: Su blocu de domìniu no at a impedire sa creatzione de contos noos in sa base de datos, ma ant a èssere aplicados in manera retroativa mètodos de moderatzione ispetzìficos subra custos contos.
         severity:
           noop: Perunu
+          silence: A sa muda
           suspend: Suspensione
         title: Blocu de domìniu nou
+      not_permitted: Non tenes su permissu de fàghere custa atzione
       obfuscate: Cua su nòmine de domìniu
       obfuscate_hint: Cua una parte de su nòmine de domìniu in sa lista si sa visualizatzione de sa lista de domìnios limitados est ativa
       private_comment: Cummentu privadu
@@ -326,9 +340,24 @@ sc:
       title: Cussìgios de sighidura
       unsuppress: Recùpera su cussìgiu de sighidura
     instances:
+      back_to_all: Totus
+      back_to_limited: Limitadu
+      back_to_warning: Atentzione
       by_domain: Domìniu
+      content_policies:
+        policies:
+          reject_reports: Refuda informes
+          silence: A sa muda
+          suspend: Suspensione
+      dashboard:
+        instance_reports_measure: informes a subra de àtere
+      delivery:
+        all: Totus
       delivery_available: Sa cunsigna est a disponimentu
       empty: Perunu domìniu agatadu.
+      known_accounts:
+        one: "%{count} contu connòschidu"
+        other: "%{count} contos connòschidos"
       moderation:
         all: Totus
         limited: Limitadas
@@ -390,18 +419,23 @@ sc:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
+      action_log: Registru de controllu
       action_taken_by: Mesuras adotadas dae
       are_you_sure: Seguru?
       assign_to_self: Assigna a mie
       assigned: Moderatzione assignada
       by_target_domain: Domìniu de su contu signaladu
+      cancel: Annulla
       comment:
         none: Perunu
+      confirm: Cunfirma
       created_at: Sinnaladu
       forwarded: Torradu a imbiare
       forwarded_to: Torradu a imbiare a %{domain}
       mark_as_resolved: Marca comente a isòrvidu
+      mark_as_sensitive: Signala comente a sensìbile
       mark_as_unresolved: Marcare comente a non isòrvidu
+      no_one_assigned: Nemos
       notes:
         create: Agiunghe una nota
         create_and_resolve: Isorve cun una nota
@@ -419,6 +453,15 @@ sc:
       unassign: Boga s'assignatzione
       unresolved: No isòrvidu
       updated_at: Atualizadu
+      view_profile: Visualiza profilu
+    roles:
+      categories:
+        administration: Amministratzione
+        invites: Invitos
+        moderation: Moderatzione
+      delete: Cantzella
+      privileges:
+        administrator: Amministratzione
     rules:
       add_new: Agiunghe règula
       delete: Cantzella
@@ -427,10 +470,26 @@ sc:
       empty: Peruna règula de serbidore definida ancora.
       title: Règulas de su serbidore
     settings:
+      about:
+        manage_rules: Gesti is règulas de su serbidore
+        title: Informatziones
+      appearance:
+        title: Aspetu
+      default_noindex:
+        desc_html: Ìmplicat a totu is utentes chi no apant modificadu custa cunfiguratzione
+        title: Esclude in manera predefinida is utentes dae s'inditzamentu de is motores de chirca
+      discovery:
+        follow_recommendations: Cussìgios de sighidura
+        profile_directory: Diretòriu de profilos
+        public_timelines: Lìnias de tempos pùblicas
+        title: Iscoberta
+        trends: Tendèntzias
       domain_blocks:
         all: Pro totus
         disabled: Pro nemos
         users: Pro utentes locales in lìnia
+      registrations:
+        title: Registros
       registrations_mode:
         modes:
           approved: Aprovatzione rechesta pro si registrare
@@ -439,7 +498,10 @@ sc:
     site_uploads:
       delete: Cantzella s'archìviu carrigadu
       destroyed_msg: Càrriga de su situ cantzellada.
+    software_updates:
+      documentation_link: Àteras informatziones
     statuses:
+      application: Aplicatzione
       back_to_account: Torra a sa pàgina de su contu
       deleted: Cantzelladu
       media:
@@ -447,6 +509,10 @@ sc:
       no_status_selected: Perunu istadu est istadu mudadu dae chi non nd'as seletzionadu
       title: Istados de su contu
       with_media: Cun elementos multimediales
+    strikes:
+      actions:
+        none: "%{name} at imbiadu un'avisu a %{target}"
+        suspend: "%{name} at suspèndidu su contu de %{target}"
     system_checks:
       database_schema_check:
         message_html: Ddoe at tràmudas de base de datos in suspesu. Pone·ddas in esecutzione pro ti assegurare chi s'aplicatzione funtzionet comente si tocat
@@ -459,12 +525,24 @@ sc:
       review: Revisiona s'istadu
       updated_msg: Cunfiguratzione de etichetas atualizada
     title: Amministratzione
+    trends:
+      pending_review: De revisionare
+      tags:
+        title: Etichetas de tendèntzia
+      title: Tendèntzias
     warning_presets:
       add_new: Agiunghe noa
       delete: Cantzella
       edit_preset: Modìfica s'avisu predefinidu
       empty: No as cunfiguradu ancora perunu avisu predefinidu.
       title: Gesti is cunfiguratziones predefinidas de is avisos
+    webhooks:
+      delete: Cantzella
+      disable: Disativa
+      disabled: Disativadu
+      enable: Ativa
+      enabled: Ativu
+      status: Istadu
   admin_mailer:
     new_pending_account:
       body: Is detàllios de su contu nou sunt a suta. Podes aprovare o refudare custa rechesta.
@@ -473,6 +551,9 @@ sc:
       body: "%{reporter} at sinnaladu %{target}"
       body_remote: Una persone de su domìniu %{domain} at sinnaladu %{target}
       subject: Informe nou pro %{instance} (#%{id})
+    new_trends:
+      new_trending_tags:
+        title: Etichetas de tendèntzia
   aliases:
     add_new: Crea unu nomìngiu
     created_msg: Nomìngiu creadu. Immoe podes cumintzare a tramudare dae su contu betzu.
@@ -495,17 +576,21 @@ sc:
     notification_preferences: Muda is preferèntzias de posta
     salutation: "%{name},"
     settings: 'Muda is preferèntzias de posta: %{link}'
+    unsubscribe: Annulla sa sutiscritzione
     view: 'Visualizatzione:'
     view_profile: Visualiza profilu
     view_status: Ammustra s'istadu
   applications:
     created: Aplicatzione creada
     destroyed: Aplicatzione cantzellada
+    logout: Essi
     regenerate_token: Torra a generare s'identificadore de atzessu
     token_regenerated: Identificadore de atzessu generadu
     warning: Dae cara a custos datos. Non ddos cumpartzas mai cun nemos!
     your_token: S'identificadore tuo de atzessu
   auth:
+    confirmations:
+      login_link: intra
     delete_account: Cantzella su contu
     delete_account_html: Si boles cantzellare su contu, ddu podes <a href="%{path}">fàghere inoghe</a>. T'amus a dimandare una cunfirmatzione.
     description:
@@ -528,11 +613,14 @@ sc:
     register: Registru
     registration_closed: "%{instance} no atzetat àteras persones"
     reset_password: Reseta sa crae
+    rules:
+      back: A coa
     security: Seguresa
     set_new_password: Cunfigura una crae noa
     status:
       account_status: Istadu de su contu
       confirming: Isetende chi sa posta eletrònica siat cumpletada.
+      functional: Su contu tuo est operativu.
       pending: Sa dimanda tua est in protzessu de revisione dae su personale nostru. Podet serbire unu pagu de tempus. As a retzire unu messàgiu eletrònicu si sa dimanda est aprovada.
       redirecting_to: Su contu tuo est inativu pro ite in die de oe est torrende a indiritzare a %{acct}.
     too_fast: Formulàriu imbiadu tropu a lestru, torra a proare.
@@ -581,8 +669,14 @@ sc:
       more_details_html: Pro àteros detàllios, bide sa <a href="%{terms_path}">normativa de riservadesa</a>.
       username_available: Su nòmine de utente tuo at a torrare a èssere a disponimentu
       username_unavailable: Su nòmine de utente tuo no at a abarrare a disponimentu
+  disputes:
+    strikes:
+      title_actions:
+        none: Atentzione
   domain_validator:
     invalid_domain: no est unu nòmine de domìniu vàlidu
+  edit_profile:
+    other: Àteru
   errors:
     '400': Sa dimanda chi as imbiadu non fiat vàlida o non fiat curreta.
     '403': Non tenes permissu pro bìdere custa pàgina.
@@ -638,11 +732,15 @@ sc:
       title: Agiunghe unu filtru nou
   generic:
     all: Totus
+    cancel: Annulla
     changes_saved_msg: Modìficas sarvadas.
+    confirm: Cunfirma
     copy: Còpia
     delete: Cantzella
+    none: Perunu
     order_by: Òrdina pro
     save_changes: Sarva is modìficas
+    today: oe
     validation_errors:
       one: Calicuna cosa ancora no est andende. Bide sa faddina in bàsciu
       other: Calicuna cosa ancora no est andende. Bide is %{count} faddinas in bàsciu
@@ -655,12 +753,15 @@ sc:
       overwrite: Subrascrie
       overwrite_long: Sostitui is registros atuales cun cussos noos
     preface: Podes importare datos chi as esportadu dae unu àteru serbidore, che a sa lista de sa gente chi ses sighende o blochende.
+    status: Istadu
     success: Datos carrigados; ant a èssere protzessados luego
+    type: Casta de importatzione
     types:
       blocking: Lista de blocos
       bookmarks: Sinnalibros
       domain_blocking: Lista domìnios blocados
       following: Lista de sighiduras
+      lists: Listas
       muting: Lista gente a sa muda
     upload: Càrriga
   invites:
@@ -685,6 +786,13 @@ sc:
       expires_at: Iscadit
       uses: Impreos
     title: Invita gente
+  login_activities:
+    authentication_methods:
+      password: crae
+      webauthn: craes de seguresa
+  mail_subscriptions:
+    unsubscribe:
+      title: Annulla sa sutiscritzione
   media_attachments:
     validations:
       images_and_video: Non si podet allegare unu vìdeu in una publicatzione chi cuntenet giai immàgines
@@ -797,6 +905,8 @@ sc:
     other: Àteru
     posting_defaults: Valores predefinidos de publicatzione
     public_timelines: Lìnias de tempos pùblicas
+  privacy:
+    search: Chirca
   reactions:
     errors:
       limit_reached: Lìmite de reatziones diferentes cròmpidu
@@ -850,6 +960,7 @@ sc:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -934,6 +1045,7 @@ sc:
       '2629746': 1 mese
       '31556952': 1 annu
       '5259492': 2 meses
+      '604800': 1 chida
       '63113904': 2 annos
       '7889238': 3 meses
   stream_entries:
@@ -969,6 +1081,7 @@ sc:
       subject: S'archìviu tuo est prontu pro èssere iscarrigadu
       title: Collida dae s'archìviu
     warning:
+      reason: 'Resone:'
       subject:
         disable: Su contu tuo %{acct} est istadu cungeladu
         none: Avisu pro %{acct}

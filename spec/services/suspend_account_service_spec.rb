@@ -18,14 +18,15 @@ RSpec.describe SuspendAccountService, type: :service do
       account.suspend!
     end
 
-    it "unmerges from local followers' feeds" do
-      subject
+    it 'unmerges from feeds of local followers and preserves suspended flag' do
+      expect { subject }
+        .to_not change_suspended_flag
       expect(FeedManager.instance).to have_received(:unmerge_from_home).with(account, local_follower)
       expect(FeedManager.instance).to have_received(:unmerge_from_list).with(account, list)
     end
 
-    it 'does not change the “suspended” flag' do
-      expect { subject }.to_not change(account, :suspended?)
+    def change_suspended_flag
+      change(account, :suspended?)
     end
   end
 
@@ -45,9 +46,9 @@ RSpec.describe SuspendAccountService, type: :service do
       let!(:account)         { Fabricate(:account) }
       let!(:remote_follower) { Fabricate(:account, uri: 'https://alice.com', inbox_url: 'https://alice.com/inbox', protocol: :activitypub, domain: 'alice.com') }
       let!(:remote_reporter) { Fabricate(:account, uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
-      let!(:report)          { Fabricate(:report, account: remote_reporter, target_account: account) }
 
       before do
+        Fabricate(:report, account: remote_reporter, target_account: account)
         remote_follower.follow!(account)
       end
 

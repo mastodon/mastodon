@@ -12,6 +12,7 @@
   // If we do not want a package to be grouped with others, we need to set its groupName
   // to `null` after any other rule set it to something.
   dependencyDashboardHeader: 'This issue lists Renovate updates and detected dependencies. Read the [Dependency Dashboard](https://docs.renovatebot.com/key-concepts/dashboard/) docs to learn more. Before approving any upgrade: read the description and comments in the [`renovate.json5` file](https://github.com/mastodon/mastodon/blob/main/.github/renovate.json5).',
+  postUpdateOptions: ['yarnDedupeHighest'],
   packageRules: [
     {
       // Require Dependency Dashboard Approval for major version bumps of these node packages
@@ -21,6 +22,7 @@
         'react-hotkeys', // Requires code changes
 
         // Requires Webpacker upgrade or replacement
+        '@svgr/webpack',
         '@types/webpack',
         'babel-loader',
         'compression-webpack-plugin',
@@ -48,7 +50,6 @@
       matchManagers: ['bundler'],
       matchPackageNames: [
         'rack', // Needs to be synced with Rails version
-        'sprockets', // Requires manual upgrade https://github.com/rails/sprockets/blob/master/UPGRADING.md#guide-to-upgrading-from-sprockets-3x-to-4x
         'strong_migrations', // Requires manual upgrade
         'sidekiq', // Requires manual upgrade
         'sidekiq-unique-jobs', // Requires manual upgrades and sync with Sidekiq version
@@ -97,6 +98,16 @@
       matchPackagePrefixes: ['eslint-', '@typescript-eslint/'],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'eslint (non-major)',
+    },
+    {
+      // Group actions/*-artifact in the same PR
+      matchManagers: ['github-actions'],
+      matchPackageNames: [
+        'actions/download-artifact',
+        'actions/upload-artifact',
+      ],
+      matchUpdateTypes: ['major'],
+      groupName: 'artifact actions (major)',
     },
     {
       // Update @types/* packages every week, with one grouped PR
