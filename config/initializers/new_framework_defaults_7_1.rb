@@ -154,7 +154,7 @@ Rails.application.config.precompile_filter_parameters = true
 # To keep the historic behavior, you can set it to `YAML`, however it is
 # recommended to explicitly define the serialization method for each column
 # rather than to rely on a global default.
-# Rails.application.config.active_record.default_column_serializer = nil
+Rails.application.config.active_record.default_column_serializer = nil
 
 # Run `after_commit` and `after_*_commit` callbacks in the order they are defined in a model.
 # This matches the behaviour of all other callbacks.
