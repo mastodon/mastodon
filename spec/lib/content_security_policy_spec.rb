@@ -125,5 +125,17 @@ describe ContentSecurityPolicy do
         expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://asset-host.s3.example')
       end
     end
+
+    context 'when PAPERCLIP_ROOT_URL is configured' do
+      around do |example|
+        ClimateControl.modify PAPERCLIP_ROOT_URL: 'https://paperclip-host.example' do
+          example.run
+        end
+      end
+
+      it 'uses the provided URL in the content security policy' do
+        expect(subject.media_hosts).to contain_exactly(subject.assets_host, 'https://paperclip-host.example')
+      end
+    end
   end
 end

@@ -1,1 +1,46 @@
+---
 ia:
+  simple_form:
+    labels:
+      account:
+        fields:
+          name: Etiquetta
+          value: Contento
+      admin_account_action:
+        type: Action
+      defaults:
+        avatar: Pictura de profilo
+        confirm_new_password: Confirmar nove contrasigno
+        confirm_password: Confirmar contrasigno
+        current_password: Contrasigno actual
+        new_password: Nove contrasigno
+        password: Contrasigno
+        setting_display_media_default: Predefinite
+        setting_display_media_hide_all: Celar toto
+        setting_display_media_show_all: Monstrar toto
+        setting_system_font_ui: Usar typo de litteras predefinite del systema
+        setting_theme: Thema de sito
+        setting_trends: Monstrar le tendentias de hodie
+        sign_in_token_attempt: Codice de securitate
+        title: Titulo
+        username: Nomine de usator
+        username_or_email: Nomine de usator o e-mail
+      form_admin_settings:
+        custom_css: CSS personalisate
+        profile_directory: Activar directorio de profilos
+        site_contact_email: Adresse de e-mail de contacto
+        site_contact_username: Nomine de usator de contacto
+        site_terms: Politica de confidentialitate
+        site_title: Nomine de servitor
+        theme: Thema predefinite
+        trends: Activar tendentias
+      notification_emails:
+        software_updates:
+          label: Un nove version de Mastodon es disponibile
+      user:
+        time_zone: Fuso horari
+      user_role:
+        name: Nomine
+        permissions_as_keys: Permissiones
+        position: Prioritate
+    'yes': Si

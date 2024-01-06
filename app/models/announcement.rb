@@ -28,8 +28,8 @@ class Announcement < ApplicationRecord
   has_many :announcement_reactions, dependent: :destroy
 
   validates :text, presence: true
-  validates :starts_at, presence: true, if: -> { ends_at.present? }
-  validates :ends_at, presence: true, if: -> { starts_at.present? }
+  validates :starts_at, presence: true, if: :ends_at?
+  validates :ends_at, presence: true, if: :starts_at?
 
   before_validation :set_published, on: :create
 
@@ -46,7 +46,7 @@ class Announcement < ApplicationRecord
   end
 
   def time_range?
-    starts_at.present? && ends_at.present?
+    starts_at? && ends_at?
   end
 
   def mentions

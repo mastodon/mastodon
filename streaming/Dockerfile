@@ -69,6 +69,7 @@ RUN \
     ca-certificates \
     curl \
     tzdata \
+    wget \
   ;
 
 # Set /opt/mastodon as working directory
