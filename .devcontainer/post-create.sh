@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -e # Fail the whole script on first error
+# Fail the whole script on first error
+set -ev
 
 # Fetch Ruby gem dependencies
 bundle config path 'vendor/bundle'
