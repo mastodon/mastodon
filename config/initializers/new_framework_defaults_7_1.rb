@@ -78,7 +78,7 @@ Rails.application.config.active_job.use_big_decimal_serializer = true
 # `write` are given an invalid `expires_at` or `expires_in` time.
 # Options are `true`, and `false`. If `false`, the exception will be reported
 # as `handled` and logged instead.
-# Rails.application.config.active_support.raise_on_invalid_cache_expiration_time = true
+Rails.application.config.active_support.raise_on_invalid_cache_expiration_time = true
 
 # Specify whether Query Logs will format tags using the SQLCommenter format
 # (https://open-telemetry.github.io/opentelemetry-sqlcommenter/), or using the legacy format.
