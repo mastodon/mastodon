@@ -62,7 +62,7 @@ Rails.application.config.active_record.run_commit_callbacks_on_first_saved_insta
 Rails.application.config.active_record.sqlite3_adapter_strict_strings_by_default = true
 
 # Disable deprecated singular associations names
-# Rails.application.config.active_record.allow_deprecated_singular_associations_name = false
+Rails.application.config.active_record.allow_deprecated_singular_associations_name = false
 
 # Enable the Active Job `BigDecimal` argument serializer, which guarantees
 # roundtripping. Without this serializer, some queue adapters may serialize
