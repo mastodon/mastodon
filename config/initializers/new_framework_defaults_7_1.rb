@@ -72,7 +72,7 @@ Rails.application.config.active_record.sqlite3_adapter_strict_strings_by_default
 # replicas will not be able to deserialize `BigDecimal` arguments from this
 # serializer. Therefore, this setting should only be enabled after all replicas
 # have been successfully upgraded to Rails 7.1.
-# Rails.application.config.active_job.use_big_decimal_serializer = true
+Rails.application.config.active_job.use_big_decimal_serializer = true
 
 # Specify if an `ArgumentError` should be raised if `Rails.cache` `fetch` or
 # `write` are given an invalid `expires_at` or `expires_in` time.
