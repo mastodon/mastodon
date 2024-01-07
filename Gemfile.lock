@@ -445,6 +445,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.1205)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.5)
     minitest (5.20.0)
     msgpack (1.7.2)
     multi_json (1.15.0)
@@ -465,7 +466,8 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.16.0-arm64-darwin)
+    nokogiri (1.16.0)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     oj (3.16.3)
       bigdecimal (>= 3.0)
@@ -818,7 +820,7 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
-  arm64-darwin-22
+  ruby
 
 DEPENDENCIES
   active_model_serializers (~> 0.10)
