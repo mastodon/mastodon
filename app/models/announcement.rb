@@ -45,10 +45,6 @@ class Announcement < ApplicationRecord
     update!(published: false, scheduled_at: nil)
   end
 
-  def time_range?
-    starts_at? && ends_at?
-  end
-
   def mentions
     @mentions ||= Account.from_text(text)
   end
