@@ -11,6 +11,7 @@ import CompressionPlugin from 'vite-plugin-compression';
 import RubyPlugin from 'vite-plugin-ruby';
 import svgr from 'vite-plugin-svgr';
 import { configDefaults } from 'vitest/config';
+import GithubActionsReporter from 'vitest-github-actions-reporter';
 
 const sourceCodeDir = 'app/javascript';
 const items = fs.readdirSync(sourceCodeDir);
@@ -102,6 +103,9 @@ export default defineConfig({
       'public/**',
       'tmp/**',
     ],
+    reporters: process.env.GITHUB_ACTIONS
+      ? ['default', new GithubActionsReporter()]
+      : 'default',
     globals: true,
   },
 });
