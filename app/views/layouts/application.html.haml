@@ -28,7 +28,7 @@
 
     = vite_client_tag
     = vite_react_refresh_tag
-    = vite_stylesheet_tag "styles/application.scss", extname: false
+    = vite_stylesheet_tag 'styles/application.scss', extname: false
     - if current_theme != 'default'
       = vite_stylesheet_tag "styles/#{current_theme}.scss", media: 'all', crossorigin: 'anonymous'
 
