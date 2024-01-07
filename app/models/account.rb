@@ -108,6 +108,8 @@ class Account < ApplicationRecord
   validates :shared_inbox_url, absence: true, if: :local?, on: :create
   validates :followers_url, absence: true, if: :local?, on: :create
 
+  normalizes :username, with: ->(username) { username.squish }
+
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
@@ -475,7 +477,6 @@ class Account < ApplicationRecord
   end
 
   before_validation :prepare_contents, if: :local?
-  before_validation :prepare_username, on: :create
   before_create :generate_keys
   before_destroy :clean_feed_manager
 
@@ -491,10 +492,6 @@ class Account < ApplicationRecord
   def prepare_contents
     display_name&.strip!
     note&.strip!
-  end
-
-  def prepare_username
-    username&.squish!
   end
 
   def generate_keys
