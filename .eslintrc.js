@@ -196,12 +196,9 @@ module.exports = defineConfig({
       {
         devDependencies: [
           '.eslintrc.js',
-          'config/webpack/**',
-          'config/vite.config.ts',
           'app/javascript/mastodon/performance.js',
-          'app/javascript/mastodon/test_setup.js',
           'app/javascript/**/__tests__/**',
-          'vite.config.ts',
+          '**/vite.config.mts',
         ],
       },
     ],
@@ -327,6 +324,7 @@ module.exports = defineConfig({
       files: [
         '**/*.ts',
         '**/*.tsx',
+        '**/*.mts',
       ],
 
       extends: [
