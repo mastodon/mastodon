@@ -31,9 +31,25 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        // Use a custom name for chunks, to avoid having too many of them called "index"
         chunkFileNames: (chunkInfo) => {
-          if (chunkInfo.name === 'index' && chunkInfo.facadeModuleId) {
+          if (
+            chunkInfo.facadeModuleId?.match(
+              /mastodon\/locales\/[a-zA-Z]+\.json/,
+            )
+          ) {
+            // put all locale files in `intl/`
+            return `intl/[name]-[hash].js`;
+          } else if (
+            chunkInfo.facadeModuleId?.match(/node_modules\/@formatjs\//)
+          ) {
+            // use a custom name for formatjs polyfill files
+            const name = chunkInfo.facadeModuleId.match(
+              /node_modules\/@formatjs\/([^/]+)\//,
+            );
+
+            if (name?.[1]) return `intl/[name]-${name[1]}-[hash].js`;
+          } else if (chunkInfo.name === 'index' && chunkInfo.facadeModuleId) {
+            // Use a custom name for chunks, to avoid having too many of them called "index"
             const parts = chunkInfo.facadeModuleId.split('/');
 
             const parent = parts.at(-2);
