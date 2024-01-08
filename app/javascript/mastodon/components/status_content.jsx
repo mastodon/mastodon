@@ -103,10 +103,8 @@ class StatusContent extends PureComponent {
     const { status, onCollapsedToggle } = this.props;
     const links = node.querySelectorAll('a');
 
-    let link, mention;
-
-    for (var i = 0; i < links.length; ++i) {
-      link = links[i];
+    for (let i = 0; i < links.length; ++i) {
+      const link = links[i];
 
       if (link.classList.contains('status-link')) {
         continue;
@@ -114,7 +112,7 @@ class StatusContent extends PureComponent {
 
       link.classList.add('status-link');
 
-      mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
+      const mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
@@ -125,7 +123,7 @@ class StatusContent extends PureComponent {
         link.setAttribute('href', `/tags/${link.text.replace(/^#/, '')}`);
       } else {
         link.setAttribute('title', link.href);
-        link.classList.add('unhandled-link');
+        link.addEventListener('click', this.onLinkClick.bind(this, link), false);
       }
     }
 
@@ -190,6 +188,48 @@ class StatusContent extends PureComponent {
       e.preventDefault();
       this.props.history.push(`/tags/${hashtag}`);
     }
+  };
+
+  onLinkClick = (anchor, e) => {
+    if (anchor.getAttribute('search-not-found')) {
+      return;
+    }
+    const url = anchor?.href;
+    if (!url || !(this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey))) {
+      return;
+    }
+    e.preventDefault();
+    if (url.startsWith("/")) {
+      this.context.router.history.push(url);
+      return;
+    }
+    if (url.startsWith(window.location.origin)) {
+      this.context.router.history.push(url.slice(window.location.origin.length));
+      return;
+    }
+    const query = new URLSearchParams();
+    query.set("q", url);
+    fetch(`/api/v2/search?resolve=true&limit=11&${query}`).then(async (fetchResult) => {
+      let newUrl = undefined;
+      if (fetchResult.ok) {
+        const { accounts, statuses } = await fetchResult.json();
+        if (statuses.length === 1) {
+          const status = statuses[0];
+          newUrl = `/@${status.account.acct}/${status.id}`;
+        } else if (accounts.length === 1) {
+          newUrl = `/@${accounts[0].acct}`;
+        }
+      }
+
+      if (newUrl) {
+        anchor.href = newUrl;
+        anchor.setAttribute('title', newUrl);
+        this.context.router.history.push(newUrl);
+      } else {
+        anchor.setAttribute('search-not-found', 'true');
+        window.open(url);
+      }
+    });
   };
 
   handleMouseDown = (e) => {
