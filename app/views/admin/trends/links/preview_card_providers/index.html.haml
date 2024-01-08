@@ -31,8 +31,16 @@
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
-        = f.button safe_join([fa_icon('check'), t('admin.trends.allow')]), name: :approve, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-        = f.button safe_join([fa_icon('times'), t('admin.trends.disallow')]), name: :reject, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('check'), t('admin.trends.allow')]),
+                   class: 'table-action-link',
+                   data: { confirm: t('admin.reports.are_you_sure') },
+                   name: :approve,
+                   type: :submit
+        = f.button safe_join([fa_icon('times'), t('admin.trends.disallow')]),
+                   class: 'table-action-link',
+                   data: { confirm: t('admin.reports.are_you_sure') },
+                   name: :reject,
+                   type: :submit
 
     .batch-table__body
       - if @preview_card_providers.empty?
