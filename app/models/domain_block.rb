@@ -85,11 +85,6 @@ class DomainBlock < ApplicationRecord
     (reject_media || !other_block.reject_media) && (reject_reports || !other_block.reject_reports)
   end
 
-  def affected_accounts_count
-    scope = suspend? ? accounts.where(suspended_at: created_at) : accounts.where(silenced_at: created_at)
-    scope.count
-  end
-
   def public_domain
     return domain unless obfuscate?
 
