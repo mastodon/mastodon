@@ -62,6 +62,7 @@ ie:
         setting_use_blurhash: Gradientes es basat sur li colores del celat visuales ma obscura omni detallies
         setting_use_pending_items: Celar nov postas detra un clicc vice rular li témpor-linea automaticmen
         username: Tu posse usar lítteres, númeres e sublineas
+        whole_word: Quande li clave-parol o frase es solmen alfanumeric, it va esser aplicat solmen si it egala al tot parol
       domain_allow:
         domain: Ti dominia va posser obtener data de ti-ci servitor, e data venient de it va esser tractat e inmagasinat
       email_domain_block:
@@ -82,20 +83,29 @@ ie:
         content_cache_retention_period: Omni postas e boosts de altri servitores va esser deletet pos li specificat quantitá de dies. Quelc postas fórsan va esser ínrestaurabil. Omni pertinent marcatores, favorites e boosts anc va esser perdit e ínpossibil a restaurar.
         custom_css: On posse aplicar customisat stiles al web-version de Mastodon.
         mascot: Substitue li ilustration in li avansat interfacie web.
+        media_cache_retention_period: Descargat files de media va esser deletet pos li specificat quantitá de dies quande li valore es positiv, e re-descargat sur demanda.
         peers_api_enabled: Un liste de nómines de dominia queles ti-ci servitor ha incontrat in li fediverse. Ci null data es includet pri ca tu confedera con un cert servitor o ne; it indica solmen que tui servitor conosse it. Usat per servicies colectent general statisticas pri federation.
         profile_directory: Li profilarium monstra omni usatores volent esser decovribil.
+        require_invite_text: Quande registrationes besona manual aprobation, fa que li textu "Pro quo tu vole registrar te?" es obligatori vice facultativ
         site_contact_email: Qualmen on posse contacter te por inquestes legal o de apoy.
         site_contact_username: Qualmen li gente posse atinger te sur Mastodon.
+        site_extended_description: Quelcunc information in plu quel posse esser util a visitores e a tui usatores. On posse structurar it con li sintaxe Markdown.
         site_short_description: Un curt descrition por auxiliar identificar tui servitor. Qui gere it, por qual persones it es?
+        site_terms: Usar tui propri politica de privatie, o lassar blanc por usar li predefinitiones. Posse esser structurat con li sintaxe Markdown.
         site_title: Quant persones posse aluder a tui servitor ultra su nómine de dominia.
         status_page_url: URL de un págine monstrant li statu de ti-ci servitor durant un ruptura de servicie
         theme: Li dessine quel ínregistrat visitantes e nov usatores vide.
         thumbnail: Un image de dimensiones circa 2:1 monstrat along tui servitor-information.
         timeline_preview: Ínregistrat visitantes va posser vider li max recent public postas disponibil che li servitor.
+        trendable_by_default: Pretersaltar un manual revision de contenete in tendentie. Mem pos to on posse remover índividual pezzes de tendentie.
         trends: Tendenties monstra quel postas, hashtags e novas es ganiant atention sur tui servitor.
         trends_as_landing_page: Monstrar populari contenete a ínregistrat visitantes vice un description del servitor. Besona que tendenties es activisat.
       form_challenge:
         current_password: Tu nu intra un area secur
+      imports:
+        data: File CSV exportat de un altri servitor Mastodon
+      invite_request:
+        text: To va auxiliar nos a reviser tui aplication
       ip_block:
         comment: Facultativ. Ne obliviar pro quo tu adjuntet ti-ci regul.
         expires_in: IP-adresses es un ressurse finit, quelcvez partit e transferet de manu a manu. Pro to, un índefinit bloccada de IP ne es recomandat.
@@ -109,15 +119,21 @@ ie:
         text: Descrir un regul o postulation por usatores sur ti-ci servitor. Prova scrir un descrition curt e simplic
       sessions:
         otp: 'Intrar li 2-factor code generat del app sur tui portabile o usar un de tui codes de recuperation:'
+        webauthn: Si it es un clave USB, inserter it con certitá e, si necessi, tappa it.
       settings:
+        indexable: Tui págine de profil va posser aparir in sercha-resultates sur Google, Bing, e altres.
         show_application: Totvez, tu va sempre posser vider quel app ha publicat tui posta.
+      tag:
+        name: Tu posse changear solmen li minu/majusculitá del lítteres, por exemple, por far it plu leibil
       user:
+        chosen_languages: Quande selectet, solmen postas in ti lingues va esser monstrat in public témpor-lineas
         role: Permissiones de usator decidet per su rol
       user_role:
         color: Color a usar por li rol tra li UI, quam RGB (rubi-verdi-blu) in formate hex
         highlighted: Va far li rol publicmen visibil
         name: Public nómine del rol, si li rol va esser monstrat quam signe
         permissions_as_keys: Usatores con ti-ci rol va haver accesse a...
+        position: Plu alt roles decide un resolution de conflict in cert situationes. Cert actiones posse esser efectuat solmen a roles con plu bass prioritá
       webhook:
         events: Selecter evenimentes a misser
         template: Composir tui propri carga JSON usant interpolation de variabiles. Lassa blanc por JSON predefinit.
@@ -129,6 +145,7 @@ ie:
           name: Etiquette
           value: Contenete
         indexable: Includer public postas in resultates de sercha
+        show_collections: Monstrar persones queles on seque e sequitores sur profil
         unlocked: Automaticmen acceptar nov sequitores
       account_alias:
         acct: Usator-nómine del anteyan conto
@@ -138,6 +155,7 @@ ie:
         text: Textu prefigurat
         title: Titul
       admin_account_action:
+        include_statuses: Includer raportat postas in li e-posta
         send_email_notification: Notificar li usator per e-posta
         text: Admonition customisat
         type: Action
@@ -172,6 +190,7 @@ ie:
         fields: Campes aditional
         header: Cap-image
         honeypot: "%{label} (ne plenar)"
+        inbox_url: URL del inbuxe de relé
         irreversible: Lassar cader vice celar
         locale: Lingue del interfacie
         max_uses: Max grand númere de usas
@@ -181,10 +200,15 @@ ie:
         password: Passa-parol
         phrase: Clave-parol o frase
         setting_advanced_layout: Possibilisar web-interfacie avansat
+        setting_aggregate_reblogs: Gruppar boosts in témpor-lineas
         setting_always_send_emails: Sempre misser notificationes de e-posta
+        setting_auto_play_gif: Reproducter automaticmen animat GIFs
+        setting_boost_modal: Monstrar dialog de confirmation ante boostar
         setting_default_language: Lingue in quel postar
         setting_default_privacy: Privatie de postada
         setting_default_sensitive: Sempre marcar medie quam sensitiv
+        setting_delete_modal: Monstrar dialog de confirmation ante deleter un posta
+        setting_disable_swiping: Desactivar motiones de glissar
         setting_display_media: Exposition de medie
         setting_display_media_default: Predefinitiones
         setting_display_media_hide_all: Celar omno
@@ -196,6 +220,7 @@ ie:
         setting_theme: Tema de situ
         setting_trends: Monstrar li hodial tendenties
         setting_unfollow_modal: Monstrar dialog de confirmation ante dessequer alquem
+        setting_use_blurhash: Monstrar colorosi gradientes por celat medie
         setting_use_pending_items: Mode lent
         severity: Severitá
         sign_in_token_attempt: Code de securitá
@@ -219,6 +244,7 @@ ie:
         closed_registrations_message: Customisat missage quande registration ne disponibil
         content_cache_retention_period: Periode de retention por cachat contenete
         custom_css: Custom CSS
+        mascot: Customisat mascot (hereditat)
         media_cache_retention_period: Periode de retention por cachat medie
         peers_api_enabled: Publicar liste de conosset servitores per li API
         profile_directory: Possibilisar profilarium
@@ -293,6 +319,7 @@ ie:
         position: Prioritá
       webhook:
         events: Evenimentes activisat
+        template: Modelle de carga
         url: URL de punctu terminal
     'no': 'No'
     not_recommended: Ne recomandat
