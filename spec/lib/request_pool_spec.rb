@@ -33,14 +33,12 @@ describe RequestPool do
 
       subject
 
-      threads = Array.new(3) do
+      threads = Array.new(5) do
         Thread.new do
-          2.times do
-            subject.with('http://example.com') do |http_client|
-              http_client.get('/').flush
-              # Nudge scheduler to yield and exercise the full pool
-              sleep(0)
-            end
+          subject.with('http://example.com') do |http_client|
+            http_client.get('/').flush
+            # Nudge scheduler to yield and exercise the full pool
+            sleep(0.01)
           end
         end
       end
