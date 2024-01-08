@@ -23,34 +23,34 @@ RSpec.describe Setting do
       let(:rails_initialized) { false }
 
       it 'calls Setting.[]' do
-        allow(Setting).to receive(:[]).with(key)
+        allow(described_class).to receive(:[]).with(key)
 
         described_class[key]
 
-        expect(Setting).to have_received(:[]).with(key)
+        expect(described_class).to have_received(:[]).with(key)
       end
     end
 
     context 'when rails_initialized? is truthy' do
       before do
-        allow(Setting).to receive(:cache_key).with(key).and_return(cache_key)
+        allow(described_class).to receive(:cache_key).with(key).and_return(cache_key)
       end
 
       let(:rails_initialized) { true }
       let(:cache_key)         { 'cache-key' }
       let(:cache_value)       { 'cache-value' }
 
-      it 'calls not Setting.get' do
-        allow(Setting).to receive(:get).with(key)
+      it 'does not call Setting.get' do
+        allow(described_class).to receive(:get).with(key)
 
         described_class[key]
 
-        expect(Setting).to_not have_received(:get).with(key)
+        expect(described_class).to_not have_received(:get).with(key)
       end
 
       context 'when Rails.cache does not exists' do
         before do
-          allow(Setting).to receive(:object).with(key).and_return(object)
+          allow(described_class).to receive(:object).with(key).and_return(object)
           allow(described_class).to receive(:default_settings).and_return(default_settings)
           settings_double = instance_double(Settings::ScopedSettings, thing_scoped: records)
           allow(Settings::ScopedSettings).to receive(:new).and_return(settings_double)
@@ -63,11 +63,11 @@ RSpec.describe Setting do
         let(:records)          { [Fabricate(:setting, var: key, value: nil)] }
 
         it 'calls Setting.object' do
-          allow(Setting).to receive(:object).with(key)
+          allow(described_class).to receive(:object).with(key)
 
           described_class[key]
 
-          expect(Setting).to have_received(:object).with(key)
+          expect(described_class).to have_received(:object).with(key)
         end
 
         context 'when Setting.object returns truthy' do

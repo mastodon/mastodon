@@ -42,7 +42,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-class Setting < ActiveRecord::Base
+class Setting < ApplicationRecord
   class Default < ::Hash
     class MissingKey < StandardError; end
 
@@ -56,12 +56,13 @@ class Setting < ActiveRecord::Base
       end
 
       def source_path
-        @source || Rails.root.join('config/app.yml')
+        @source || Rails.root.join('config', 'app.yml')
       end
 
       def [](key)
         # foo.bar.dar Nested fetch value
         return instance[key] if instance.key?(key)
+
         keys = key.to_s.split('.')
         val = instance
         keys.each do |k|
@@ -73,33 +74,36 @@ class Setting < ActiveRecord::Base
 
       def instance
         return @instance if defined? @instance
+
         @instance = new
         @instance
       end
     end
 
+    # rubocop:disable Lint/MissingSuper
     def initialize
-      content = open(self.class.source_path).read
-      hash = content.empty? ? {} : YAML.load(ERB.new(content).result, aliases: true).to_hash
+      content = File.read(self.class.source_path)
+      hash = content.empty? ? {} : YAML.safe_load(ERB.new(content).result, aliases: true).to_hash
       hash = hash[Rails.env] || {}
       replace hash
     end
+    # rubocop:enable Lint/MissingSuper
   end
 
   class SettingNotFound < RuntimeError; end
 
-  self.table_name = table_name_prefix + 'settings'
+  self.table_name = "#{table_name_prefix}settings"
 
   after_commit :rewrite_cache, on: %i(create update)
   after_commit :expire_cache, on: %i(destroy)
 
   class << self
     # get or set a variable with the variable as the called method
-    # rubocop:disable Style/MethodMissing
+    # rubocop:disable Style/MissingRespondToMissing
     def method_missing(method, *args)
       # set a value for a variable
       if method.end_with?('=')
-        var_name = method.to_s.chomp("=")
+        var_name = method.to_s.chomp('=')
         value = args.first
         self[var_name] = value
       else
@@ -107,6 +111,7 @@ class Setting < ActiveRecord::Base
         self[method.to_s]
       end
     end
+    # rubocop:enable Style/MissingRespondToMissing
 
     # destroy the specified settings record
     def destroy(var_name)
@@ -138,6 +143,7 @@ class Setting < ActiveRecord::Base
     def object(var_name)
       return nil unless rails_initialized?
       return nil unless table_exists?
+
       thing_scoped.where(var: var_name.to_s).first
     end
 
@@ -150,12 +156,13 @@ class Setting < ActiveRecord::Base
     end
 
     def rails_initialized?
-      Rails.application && Rails.application.initialized?
+      Rails.application&.initialized?
     end
 
     def cache_prefix_by_startup
       return @cache_prefix_by_startup if defined? @cache_prefix_by_startup
       return '' unless Default.enabled?
+
       @cache_prefix_by_startup = Digest::MD5.hexdigest(Default.instance.to_s)
     end
 
@@ -201,8 +208,6 @@ class Setting < ActiveRecord::Base
       record = object(var_name) || thing_scoped.new(var: var_name)
       record.value = value
       record.save!
-
-      value
     end
 
     def default_settings
@@ -217,7 +222,8 @@ class Setting < ActiveRecord::Base
     def get(var_name)
       val = object(var_name)
       return val.value if val
-      return Default[var_name] if Default.enabled?
+
+      Default[var_name] if Default.enabled?
     end
   end
 
@@ -225,7 +231,7 @@ class Setting < ActiveRecord::Base
 
   # get the value field, YAML decoded
   def value
-    YAML.unsafe_load(self[:value]) if self[:value].present?
+    YAML.safe_load(self[:value], permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Symbol]) if self[:value].present?
   end
 
   # set the value field, YAML encoded
