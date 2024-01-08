@@ -6,9 +6,9 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
+import { createSelector } from '@reduxjs/toolkit';
 import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/glitch/actions/announcements';
 import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';

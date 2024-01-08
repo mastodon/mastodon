@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
+import { createSelector } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { fetchLists } from 'flavours/glitch/actions/lists';
 

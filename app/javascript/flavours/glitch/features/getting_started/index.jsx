@@ -4,11 +4,11 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
+import { createSelector } from '@reduxjs/toolkit';
 import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { fetchLists } from 'flavours/glitch/actions/lists';
