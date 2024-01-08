@@ -31,7 +31,7 @@ class DomainBlock < ApplicationRecord
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
   scope :with_user_facing_limitations, -> { where(severity: [:silence, :suspend]) }
   scope :with_limitations, -> { where(severity: [:silence, :suspend]).or(where(reject_media: true)) }
-  scope :by_severity, -> { order(Arel.sql('(CASE severity WHEN 0 THEN 1 WHEN 1 THEN 2 WHEN 2 THEN 0 END), domain')) }
+  scope :by_severity, -> { in_order_of(:severity, %w(noop silence suspend)).order(:domain) }
 
   def to_log_human_identifier
     domain
