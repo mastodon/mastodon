@@ -117,7 +117,6 @@ class User < ApplicationRecord
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended_at: nil }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
   scope :matches_ip, ->(value) { left_joins(:ips).where('user_ips.ip <<= ?', value).group('users.id') }
-  scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
   before_validation :sanitize_role
