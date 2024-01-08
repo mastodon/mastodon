@@ -43,56 +43,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 class Setting < ApplicationRecord
-  class Default < ::Hash
-    class MissingKey < StandardError; end
-
-    class << self
-      def enabled?
-        source_path && File.exist?(source_path)
-      end
-
-      def source(value = nil)
-        @source ||= value
-      end
-
-      def source_path
-        @source || Rails.root.join('config', 'app.yml')
-      end
-
-      def [](key)
-        # foo.bar.dar Nested fetch value
-        return instance[key] if instance.key?(key)
-
-        keys = key.to_s.split('.')
-        val = instance
-        keys.each do |k|
-          val = val.fetch(k.to_s, nil)
-          break if val.nil?
-        end
-        val
-      end
-
-      def instance
-        return @instance if defined? @instance
-
-        @instance = new
-        @instance
-      end
-    end
-
-    # rubocop:disable Lint/MissingSuper
-    def initialize
-      content = File.read(self.class.source_path)
-      hash = content.empty? ? {} : YAML.safe_load(ERB.new(content).result, aliases: true).to_hash
-      hash = hash[Rails.env] || {}
-      replace hash
-    end
-    # rubocop:enable Lint/MissingSuper
-  end
-
   class SettingNotFound < RuntimeError; end
-
-  self.table_name = "#{table_name_prefix}settings"
 
   after_commit :rewrite_cache, on: %i(create update)
   after_commit :expire_cache, on: %i(destroy)
@@ -151,19 +102,14 @@ class Setting < ApplicationRecord
       unscoped.where('thing_type is NULL and thing_id is NULL')
     end
 
-    def source(filename)
-      Default.source(filename)
-    end
-
     def rails_initialized?
       Rails.application&.initialized?
     end
 
     def cache_prefix_by_startup
       return @cache_prefix_by_startup if defined? @cache_prefix_by_startup
-      return '' unless Default.enabled?
 
-      @cache_prefix_by_startup = Digest::MD5.hexdigest(Default.instance.to_s)
+      @cache_prefix_by_startup = Digest::MD5.hexdigest(default_settings.to_s)
     end
 
     def cache_key(var_name)
@@ -175,15 +121,14 @@ class Setting < ApplicationRecord
 
       Rails.cache.fetch(cache_key(key)) do
         db_val = object(key)
+        default_value = default_settings[key]
 
         if db_val
-          default_value = default_settings[key]
-
           return default_value.with_indifferent_access.merge!(db_val.value) if default_value.is_a?(Hash)
 
           db_val.value
         else
-          default_settings[key]
+          default_value
         end
       end
     end
@@ -211,9 +156,11 @@ class Setting < ApplicationRecord
     end
 
     def default_settings
-      return {} unless Default.enabled?
+      return @default_settings if defined?(@default_settings)
 
-      Default.instance
+      content = Rails.root.join('config', 'settings.yml').read
+      hash = content.empty? ? {} : YAML.safe_load(ERB.new(content).result, aliases: true).to_hash
+      @default_settings = hash[Rails.env] || {}
     end
 
     private
@@ -223,11 +170,9 @@ class Setting < ApplicationRecord
       val = object(var_name)
       return val.value if val
 
-      Default[var_name] if Default.enabled?
+      default_settings[var_name]
     end
   end
-
-  source Rails.root.join('config', 'settings.yml')
 
   # get the value field, YAML decoded
   def value

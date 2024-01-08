@@ -175,28 +175,4 @@ RSpec.describe Setting do
       end
     end
   end
-
-  describe '.default_settings' do
-    subject { described_class.default_settings }
-
-    before do
-      allow(Setting::Default).to receive(:enabled?).and_return(enabled)
-    end
-
-    context 'when Setting::Default.enabled? is false' do
-      let(:enabled) { false }
-
-      it 'returns {}' do
-        expect(subject).to eq({})
-      end
-    end
-
-    context 'when Setting::Default.enabled? is true' do
-      let(:enabled) { true }
-
-      it 'returns instance of Setting::Default' do
-        expect(subject).to be_a Setting::Default
-      end
-    end
-  end
 end
