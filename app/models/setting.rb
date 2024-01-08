@@ -13,6 +13,35 @@
 #  thing_id   :bigint(8)
 #
 
+# This file is derived from a fork of the `rails-settings-cached` gem available at
+# https://github.com/mastodon/rails-settings-cached/tree/v0.6.6-aliases-true, with
+# the original available at:
+# https://github.com/huacnlee/rails-settings-cached/tree/0.x
+
+# It is licensed as follows:
+
+# Copyright (c) 2006 Alex Wayne
+# Some additional features added 2009 by Georg Ledermann
+
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOa AND
+# NONINFRINGEMENT. IN NO EVENT SaALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 class Setting < ActiveRecord::Base
   class Default < ::Hash
     class MissingKey < StandardError; end
