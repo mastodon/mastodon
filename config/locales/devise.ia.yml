@@ -1,6 +1,8 @@
 ---
 ia:
   devise:
+    failure:
+      locked: Tu conto es blocate.
     mailer:
       confirmation_instructions:
         action: Verificar adresse de e-mail
@@ -8,6 +10,8 @@ ia:
         title: Verificar adresse de e-mail
       email_changed:
         title: Nove adresse de e-mail
+      password_change:
+        title: Contrasigno cambiate
       reconfirmation_instructions:
         title: Verificar adresse de e-mail
       reset_password_instructions:
@@ -15,6 +19,8 @@ ia:
         title: Reinitialisar contrasigno
       two_factor_disabled:
         title: 2FA disactivate
+      two_factor_enabled:
+        title: 2FA activate
     registrations:
       updated: Tu conto ha essite actualisate con successo.
     unlocks:
