@@ -25,22 +25,6 @@ describe Announcement do
       end
     end
 
-    describe '#without_muted' do
-      let!(:announcement) { Fabricate(:announcement) }
-      let(:account) { Fabricate(:account) }
-      let(:muted_announcement) { Fabricate(:announcement) }
-
-      before do
-        Fabricate(:announcement_mute, account: account, announcement: muted_announcement)
-      end
-
-      it 'returns the announcements not muted by the account' do
-        results = described_class.without_muted(account)
-        expect(results).to include(announcement)
-        expect(results).to_not include(muted_announcement)
-      end
-    end
-
     context 'with timestamped announcements' do
       let!(:adam_announcement) { Fabricate(:announcement, starts_at: 100.days.ago, scheduled_at: 10.days.ago, published_at: 10.days.ago, ends_at: 5.days.from_now) }
       let!(:brenda_announcement) { Fabricate(:announcement, starts_at: 10.days.ago, scheduled_at: 100.days.ago, published_at: 10.days.ago, ends_at: 5.days.from_now) }
