@@ -63,5 +63,9 @@ describe Oauth::AuthorizedApplicationsController do
     it 'removes subscriptions for the application\'s access tokens' do
       expect(Web::PushSubscription.where(user: user).count).to eq 0
     end
+
+    it 'removes the web_push_subscription' do
+      expect { web_push_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 end

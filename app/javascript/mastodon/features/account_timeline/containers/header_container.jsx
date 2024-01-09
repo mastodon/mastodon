@@ -83,7 +83,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       modalProps: {
         type: 'follow',
         accountId: account.get('id'),
-        url: account.get('url'),
+        url: account.get('uri'),
       },
     }));
   },
@@ -178,7 +178,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       modalType: 'IMAGE',
       modalProps: {
         src: account.get('avatar'),
-        alt: account.get('acct'),
+        alt: '',
       },
     }));
   },

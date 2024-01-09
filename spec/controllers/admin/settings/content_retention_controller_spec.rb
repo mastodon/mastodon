@@ -18,4 +18,12 @@ describe Admin::Settings::ContentRetentionController do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'PUT #update' do
+    it 'updates the settings' do
+      put :update, params: { form_admin_settings: { media_cache_retention_period: '2' } }
+
+      expect(response).to redirect_to(admin_settings_content_retention_path)
+    end
+  end
 end

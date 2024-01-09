@@ -13,7 +13,14 @@ module Webpacker::HelperExtensions
 
   def preload_pack_asset(name, **options)
     src, integrity = current_webpacker_instance.manifest.lookup!(name, with_integrity: true)
-    preload_link_tag(src, options.merge(integrity: integrity))
+
+    # This attribute will only work if the assets are on a different domain.
+    # And Webpack will (correctly) only add it in this case, so we need to conditionally set it here
+    # otherwise the preloaded request and the real request will have different crossorigin values
+    # and the preloaded file wont be loaded
+    crossorigin = 'anonymous' if Rails.configuration.action_controller.asset_host.present?
+
+    preload_link_tag(src, options.merge(integrity: integrity, crossorigin: crossorigin))
   end
 end
 

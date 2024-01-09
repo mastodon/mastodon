@@ -3,15 +3,15 @@
 class Auth::SessionsController < Devise::SessionsController
   layout 'auth'
 
+  skip_before_action :check_self_destruct!
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :require_functional!
   skip_before_action :update_user_sign_in
 
   prepend_before_action :check_suspicious!, only: [:create]
 
-  include TwoFactorAuthenticationConcern
+  include Auth::TwoFactorAuthenticationConcern
 
-  before_action :set_instance_presenter, only: [:new]
   before_action :set_body_classes
 
   content_security_policy only: :new do |p|
@@ -99,16 +99,12 @@ class Auth::SessionsController < Devise::SessionsController
 
   private
 
-  def set_instance_presenter
-    @instance_presenter = InstancePresenter.new
-  end
-
   def set_body_classes
     @body_classes = 'lighter'
   end
 
   def home_paths(resource)
-    paths = [about_path]
+    paths = [about_path, '/explore']
 
     paths << short_account_path(username: resource.account) if single_user_mode? && resource.is_a?(User)
 

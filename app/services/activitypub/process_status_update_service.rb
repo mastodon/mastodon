@@ -5,10 +5,11 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   include Redisable
   include Lockable
 
-  def call(status, json, request_id: nil)
+  def call(status, activity_json, object_json, request_id: nil)
     raise ArgumentError, 'Status has unsaved changes' if status.changed?
 
-    @json                      = json
+    @activity_json             = activity_json
+    @json                      = object_json
     @status_parser             = ActivityPub::Parser::StatusParser.new(@json)
     @uri                       = @status_parser.uri
     @status                    = status
@@ -96,8 +97,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       end
     end
 
-    added_media_attachments = @next_media_attachments - previous_media_attachments
-
     @status.ordered_media_attachment_ids = @next_media_attachments.map(&:id)
 
     @media_attachments_changed = true if @status.ordered_media_attachment_ids != previous_media_attachments_ids
@@ -171,9 +170,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     as_array(@json['tag']).each do |tag|
       if equals_or_includes?(tag['type'], 'Hashtag')
-        @raw_tags << tag['name']
+        @raw_tags << tag['name'] if tag['name'].present?
       elsif equals_or_includes?(tag['type'], 'Mention')
-        @raw_mentions << tag['href']
+        @raw_mentions << tag['href'] if tag['href'].present?
       elsif equals_or_includes?(tag['type'], 'Emoji')
         @raw_emojis << tag
       end
@@ -281,7 +280,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def reset_preview_card!
-    @status.preview_cards.clear
+    @status.reset_preview_card!
     LinkCrawlWorker.perform_in(rand(1..59).seconds, @status.id)
   end
 
@@ -306,6 +305,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def forwarder
-    @forwarder ||= ActivityPub::Forwarder.new(@account, @json, @status)
+    @forwarder ||= ActivityPub::Forwarder.new(@account, @activity_json, @status)
   end
 end

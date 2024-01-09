@@ -43,14 +43,19 @@ class Form::Import
   validate :validate_data
 
   def guessed_type
-    return :muting if csv_data.headers.include?('Hide notifications')
-    return :following if csv_data.headers.include?('Show boosts') || csv_data.headers.include?('Notify on new posts') || csv_data.headers.include?('Languages')
-    return :following if data.original_filename&.start_with?('follows') || data.original_filename&.start_with?('following_accounts')
-    return :blocking if data.original_filename&.start_with?('blocks') || data.original_filename&.start_with?('blocked_accounts')
-    return :muting if data.original_filename&.start_with?('mutes') || data.original_filename&.start_with?('muted_accounts')
-    return :domain_blocking if data.original_filename&.start_with?('domain_blocks') || data.original_filename&.start_with?('blocked_domains')
-    return :bookmarks if data.original_filename&.start_with?('bookmarks')
-    return :lists if data.original_filename&.start_with?('lists')
+    if csv_headers_match?('Hide notifications') || file_name_matches?('mutes') || file_name_matches?('muted_accounts')
+      :muting
+    elsif csv_headers_match?('Show boosts') || csv_headers_match?('Notify on new posts') || csv_headers_match?('Languages') || file_name_matches?('follows') || file_name_matches?('following_accounts')
+      :following
+    elsif file_name_matches?('blocks') || file_name_matches?('blocked_accounts')
+      :blocking
+    elsif file_name_matches?('domain_blocks') || file_name_matches?('blocked_domains')
+      :domain_blocking
+    elsif file_name_matches?('bookmarks')
+      :bookmarks
+    elsif file_name_matches?('lists')
+      :lists
+    end
   end
 
   # Whether the uploaded CSV file seems to correspond to a different import type than the one selected
@@ -78,6 +83,14 @@ class Form::Import
   end
 
   private
+
+  def file_name_matches?(string)
+    data.original_filename&.start_with?(string)
+  end
+
+  def csv_headers_match?(string)
+    csv_data.headers.include?(string)
+  end
 
   def default_csv_headers
     case type.to_sym

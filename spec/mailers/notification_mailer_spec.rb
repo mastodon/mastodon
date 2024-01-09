@@ -3,21 +3,32 @@
 require 'rails_helper'
 
 RSpec.describe NotificationMailer do
-  let(:receiver)       { Fabricate(:user) }
+  let(:receiver)       { Fabricate(:user, account_attributes: { username: 'alice' }) }
   let(:sender)         { Fabricate(:account, username: 'bob') }
   let(:foreign_status) { Fabricate(:status, account: sender, text: 'The body of the foreign status') }
   let(:own_status)     { Fabricate(:status, account: receiver.account, text: 'The body of the own status') }
 
-  shared_examples 'localized subject' do |*args, **kwrest|
-    it 'renders subject localized for the locale of the receiver' do
-      locale = :de
-      receiver.update!(locale: locale)
-      expect(mail.subject).to eq I18n.t(*args, **kwrest.merge(locale: locale))
+  shared_examples 'standard headers' do |type|
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(have_header('To', "#{receiver.account.username} <#{receiver.email}>"))
+        .and(have_header('List-ID', "<#{type}.alice.cb6e6126.ngrok.io>"))
+        .and(have_header('List-Unsubscribe', %r{<https://cb6e6126.ngrok.io/unsubscribe\?token=.+>}))
+        .and(have_header('List-Unsubscribe', /&type=#{type}/))
+        .and(have_header('List-Unsubscribe-Post', 'List-Unsubscribe=One-Click'))
+        .and(deliver_to("#{receiver.account.username} <#{receiver.email}>"))
+        .and(deliver_from('notifications@localhost'))
     end
+  end
 
-    it 'renders subject localized for the default locale if the locale of the receiver is unavailable' do
-      receiver.update!(locale: nil)
-      expect(mail.subject).to eq I18n.t(*args, **kwrest.merge(locale: I18n.default_locale))
+  shared_examples 'thread headers' do
+    it 'renders the email with conversation thread headers' do
+      conversation_header_regex = /<conversation-\d+.\d\d\d\d-\d\d-\d\d@cb6e6126.ngrok.io>/
+      expect(mail)
+        .to be_present
+        .and(have_header('In-Reply-To', conversation_header_regex))
+        .and(have_header('References', conversation_header_regex))
     end
   end
 
@@ -27,15 +38,15 @@ RSpec.describe NotificationMailer do
     let(:mail) { prepared_mailer_for(receiver.account).mention }
 
     include_examples 'localized subject', 'notification_mailer.mention.subject', name: 'bob'
+    include_examples 'standard headers', 'mention'
+    include_examples 'thread headers'
 
-    it 'renders the headers' do
-      expect(mail.subject).to eq('You were mentioned by bob')
-      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
-    end
-
-    it 'renders the body' do
-      expect(mail.body.encoded).to match('You were mentioned by bob')
-      expect(mail.body.encoded).to include 'The body of the foreign status'
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(have_subject('You were mentioned by bob'))
+        .and(have_body_text('You were mentioned by bob'))
+        .and(have_body_text('The body of the foreign status'))
     end
   end
 
@@ -45,14 +56,13 @@ RSpec.describe NotificationMailer do
     let(:mail) { prepared_mailer_for(receiver.account).follow }
 
     include_examples 'localized subject', 'notification_mailer.follow.subject', name: 'bob'
+    include_examples 'standard headers', 'follow'
 
-    it 'renders the headers' do
-      expect(mail.subject).to eq('bob is now following you')
-      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
-    end
-
-    it 'renders the body' do
-      expect(mail.body.encoded).to match('bob is now following you')
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(have_subject('bob is now following you'))
+        .and(have_body_text('bob is now following you'))
     end
   end
 
@@ -62,15 +72,15 @@ RSpec.describe NotificationMailer do
     let(:mail) { prepared_mailer_for(own_status.account).favourite }
 
     include_examples 'localized subject', 'notification_mailer.favourite.subject', name: 'bob'
+    include_examples 'standard headers', 'favourite'
+    include_examples 'thread headers'
 
-    it 'renders the headers' do
-      expect(mail.subject).to eq('bob favorited your post')
-      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
-    end
-
-    it 'renders the body' do
-      expect(mail.body.encoded).to match('Your post was favorited by bob')
-      expect(mail.body.encoded).to include 'The body of the own status'
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(have_subject('bob favorited your post'))
+        .and(have_body_text('Your post was favorited by bob'))
+        .and(have_body_text('The body of the own status'))
     end
   end
 
@@ -80,15 +90,15 @@ RSpec.describe NotificationMailer do
     let(:mail) { prepared_mailer_for(own_status.account).reblog }
 
     include_examples 'localized subject', 'notification_mailer.reblog.subject', name: 'bob'
+    include_examples 'standard headers', 'reblog'
+    include_examples 'thread headers'
 
-    it 'renders the headers' do
-      expect(mail.subject).to eq('bob boosted your post')
-      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
-    end
-
-    it 'renders the body' do
-      expect(mail.body.encoded).to match('Your post was boosted by bob')
-      expect(mail.body.encoded).to include 'The body of the own status'
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(have_subject('bob boosted your post'))
+        .and(have_body_text('Your post was boosted by bob'))
+        .and(have_body_text('The body of the own status'))
     end
   end
 
@@ -98,14 +108,13 @@ RSpec.describe NotificationMailer do
     let(:mail) { prepared_mailer_for(receiver.account).follow_request }
 
     include_examples 'localized subject', 'notification_mailer.follow_request.subject', name: 'bob'
+    include_examples 'standard headers', 'follow_request'
 
-    it 'renders the headers' do
-      expect(mail.subject).to eq('Pending follower: bob')
-      expect(mail[:to].value).to eq("#{receiver.account.username} <#{receiver.email}>")
-    end
-
-    it 'renders the body' do
-      expect(mail.body.encoded).to match('bob has requested to follow you')
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(have_subject('Pending follower: bob'))
+        .and(have_body_text('bob has requested to follow you'))
     end
   end
 

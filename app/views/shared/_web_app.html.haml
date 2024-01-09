@@ -1,8 +1,8 @@
 - content_for :header_tags do
   - if user_signed_in?
-    = preload_pack_asset 'features/compose.js', crossorigin: 'anonymous'
-    = preload_pack_asset 'features/home_timeline.js', crossorigin: 'anonymous'
-    = preload_pack_asset 'features/notifications.js', crossorigin: 'anonymous'
+    = preload_pack_asset 'features/compose.js'
+    = preload_pack_asset 'features/home_timeline.js'
+    = preload_pack_asset 'features/notifications.js'
     %meta{ name: 'initialPath', content: request.path }
 
   %meta{ name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key }

@@ -8,22 +8,6 @@ RSpec.describe ActivityPub::RepliesController do
   let(:remote_reply_id) { 'https://foobar.com/statuses/1234' }
   let(:remote_querier) { nil }
 
-  shared_examples 'cacheable response' do
-    it 'does not set cookies' do
-      expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be_nil
-    end
-
-    it 'does not set sessions' do
-      response
-      expect(session).to be_empty
-    end
-
-    it 'returns public Cache-Control header' do
-      expect(response.headers['Cache-Control']).to include 'public'
-    end
-  end
-
   shared_examples 'common behavior' do
     context 'when status is private' do
       let(:parent_visibility) { :private }
@@ -139,7 +123,7 @@ RSpec.describe ActivityPub::RepliesController do
         end
 
         it 'uses ids for remote toots' do
-          remote_replies = page_json[:items].select { |x| !x.is_a?(Hash) }
+          remote_replies = page_json[:items].reject { |x| x.is_a?(Hash) }
           expect(remote_replies.all? { |item| item.is_a?(String) && !ActivityPub::TagManager.instance.local_uri?(item) }).to be true
         end
 

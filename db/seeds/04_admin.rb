@@ -2,6 +2,7 @@
 
 if Rails.env.development?
   domain = ENV['LOCAL_DOMAIN'] || Rails.configuration.x.local_domain
+  domain = domain.gsub(/:\d+$/, '')
 
   admin = Account.where(username: 'admin').first_or_initialize(username: 'admin')
   admin.save(validate: false)

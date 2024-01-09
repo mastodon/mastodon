@@ -17,6 +17,8 @@ namespace :mastodon do
     ENV.delete('SIDEKIQ_REDIS_URL')
 
     begin
+      errors = false
+
       prompt.say('Your instance is identified by its domain name. Changing it afterward will break things.')
       env['LOCAL_DOMAIN'] = prompt.ask('Domain name:') do |q|
         q.required true
@@ -95,7 +97,12 @@ namespace :mastodon do
         rescue => e
           prompt.error 'Database connection could not be established with this configuration, try again.'
           prompt.error e.message
-          break unless prompt.yes?('Try again?')
+          unless prompt.yes?('Try again?')
+            return prompt.warn 'Nothing saved. Bye!' unless prompt.yes?('Continue anyway?')
+
+            errors = true
+            break
+          end
         end
       end
 
@@ -135,7 +142,13 @@ namespace :mastodon do
         rescue => e
           prompt.error 'Redis connection could not be established with this configuration, try again.'
           prompt.error e.message
-          break unless prompt.yes?('Try again?')
+
+          unless prompt.yes?('Try again?')
+            return prompt.warn 'Nothing saved. Bye!' unless prompt.yes?('Continue anyway?')
+
+            errors = true
+            break
+          end
         end
       end
 
@@ -414,15 +427,29 @@ namespace :mastodon do
             from: env['SMTP_FROM_ADDRESS'],
           }
 
-          mail = ActionMailer::Base.new.mail to: send_to, subject: 'Test', body: 'Mastodon SMTP configuration works!'
+          mail = ActionMailer::Base.new.mail(
+            to: send_to,
+            subject: 'Test', # rubocop:disable Rails/I18nLocaleTexts
+            body: 'Mastodon SMTP configuration works!'
+          )
           mail.deliver
           break
         rescue => e
           prompt.error 'E-mail could not be sent with this configuration, try again.'
           prompt.error e.message
-          break unless prompt.yes?('Try again?')
+
+          unless prompt.yes?('Try again?')
+            return prompt.warn 'Nothing saved. Bye!' unless prompt.yes?('Continue anyway?')
+
+            errors = true
+            break
+          end
         end
       end
+
+      prompt.say "\n"
+
+      env['UPDATE_CHECK_URL'] = '' unless prompt.yes?('Do you want Mastodon to periodically check for important updates and notify you? (Recommended)', default: true)
 
       prompt.say "\n"
       prompt.say 'This configuration will be written to .env.production'
@@ -438,12 +465,7 @@ namespace :mastodon do
           "#{key}=#{escaped}"
         end.join("\n")
 
-        generated_header = "# Generated with mastodon:setup on #{Time.now.utc}\n\n".dup
-
-        if incompatible_syntax
-          generated_header << "# Some variables in this file will be interpreted differently whether you are\n"
-          generated_header << "# using docker-compose or not.\n\n"
-        end
+        generated_header = generate_header(incompatible_syntax)
 
         Rails.root.join('.env.production').write("#{generated_header}#{env_contents}\n")
 
@@ -467,6 +489,7 @@ namespace :mastodon do
             prompt.ok 'Done!'
           else
             prompt.error 'That failed! Perhaps your configuration is not right'
+            errors = true
           end
         end
 
@@ -483,12 +506,17 @@ namespace :mastodon do
               prompt.say 'Done!'
             else
               prompt.error 'That failed! Maybe you need swap space?'
+              errors = true
             end
           end
         end
 
         prompt.say "\n"
-        prompt.ok 'All done! You can now power on the Mastodon server 🐘'
+        if errors
+          prompt.warn 'Your Mastodon server is set up, but there were some errors along the way, you may have to fix them.'
+        else
+          prompt.ok 'All done! You can now power on the Mastodon server 🐘'
+        end
         prompt.say "\n"
 
         if db_connection_works && prompt.yes?('Do you want to create an admin user straight away?')
@@ -536,6 +564,19 @@ namespace :mastodon do
       vapid_key = Webpush.generate_key
       puts "VAPID_PRIVATE_KEY=#{vapid_key.private_key}"
       puts "VAPID_PUBLIC_KEY=#{vapid_key.public_key}"
+    end
+  end
+
+  private
+
+  def generate_header(include_warning)
+    default_message = "# Generated with mastodon:setup on #{Time.now.utc}\n\n"
+
+    default_message.tap do |string|
+      if include_warning
+        string << "# Some variables in this file will be interpreted differently whether you are\n"
+        string << "# using docker-compose or not.\n\n"
+      end
     end
   end
 end

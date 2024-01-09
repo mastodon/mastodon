@@ -1,4 +1,7 @@
-module.exports = {
+// @ts-check
+const { defineConfig } = require('eslint-define-config');
+
+module.exports = defineConfig({
   root: true,
 
   extends: [
@@ -9,7 +12,6 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:promise/recommended',
     'plugin:jsdoc/recommended',
-    'plugin:prettier/recommended',
   ],
 
   env: {
@@ -63,7 +65,9 @@ module.exports = {
     'consistent-return': 'error',
     'dot-notation': 'error',
     eqeqeq: ['error', 'always', { 'null': 'ignore' }],
+    'indent': ['error', 2],
     'jsx-quotes': ['error', 'prefer-single'],
+    'semi': ['error', 'always'],
     'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
     'no-console': [
@@ -116,7 +120,6 @@ module.exports = {
     'react/jsx-uses-react': 'off', // not needed with new JSX transform
     'react/jsx-wrap-multilines': 'error',
     'react/no-deprecated': 'off',
-    'react/no-unknown-property': 'off',
     'react/react-in-jsx-scope': 'off', // not needed with new JSX transform
     'react/self-closing-comp': 'error',
 
@@ -192,6 +195,7 @@ module.exports = {
       'error',
       {
         devDependencies: [
+          '.eslintrc.js',
           'config/webpack/**',
           'app/javascript/mastodon/performance.js',
           'app/javascript/mastodon/test_setup.js',
@@ -235,13 +239,13 @@ module.exports = {
           },
           // Common React utilities
           {
-            pattern: '{classnames,react-helmet,react-router-dom}',
+            pattern: '{classnames,react-helmet,react-router,react-router-dom}',
             group: 'external',
             position: 'before',
           },
           // Immutable / Redux / data store
           {
-            pattern: '{immutable,react-redux,react-immutable-proptypes,react-immutable-pure-component,reselect}',
+            pattern: '{immutable,@reduxjs/toolkit,react-redux,react-immutable-proptypes,react-immutable-pure-component}',
             group: 'external',
             position: 'before',
           },
@@ -279,7 +283,6 @@ module.exports = {
     'formatjs/no-id': 'off', // IDs are used for translation keys
     'formatjs/no-invalid-icu': 'error',
     'formatjs/no-literal-string-in-jsx': 'off', // Should be looked at, but mainly flagging punctuation outside of strings
-    'formatjs/no-multiple-plurals': 'off', // Only used by hashtag.jsx
     'formatjs/no-multiple-whitespaces': 'error',
     'formatjs/no-offset': 'error',
     'formatjs/no-useless-message': 'error',
@@ -298,6 +301,7 @@ module.exports = {
   overrides: [
     {
       files: [
+        '.eslintrc.js',
         '*.config.js',
         '.*rc.js',
         'ide-helper.js',
@@ -348,8 +352,15 @@ module.exports = {
         '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
         '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
-        "@typescript-eslint/prefer-nullish-coalescing": ['error', {ignorePrimitives: {boolean: true}}],
-
+        "@typescript-eslint/prefer-nullish-coalescing": ['error', { ignorePrimitives: { boolean: true } }],
+        "@typescript-eslint/no-restricted-imports": [
+          "warn",
+          {
+            "name": "react-redux",
+            "importNames": ["useSelector", "useDispatch"],
+            "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
+          }
+        ],
         'jsdoc/require-jsdoc': 'off',
 
         // Those rules set stricter rules for TS files
@@ -371,14 +382,6 @@ module.exports = {
       env: {
         jest: true,
       },
-    },
-    {
-      files: [
-        'streaming/**/*',
-      ],
-      rules: {
-        'import/no-commonjs': 'off',
-      },
-    },
+    }
   ],
-};
+});

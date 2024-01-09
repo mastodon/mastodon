@@ -65,33 +65,6 @@ module StatusesHelper
     embedded_view? ? '_blank' : nil
   end
 
-  def style_classes(status, is_predecessor, is_successor, include_threads)
-    classes = ['entry']
-    classes << 'entry-predecessor' if is_predecessor
-    classes << 'entry-reblog' if status.reblog?
-    classes << 'entry-successor' if is_successor
-    classes << 'entry-center' if include_threads
-    classes.join(' ')
-  end
-
-  def microformats_classes(status, is_direct_parent, is_direct_child)
-    classes = []
-    classes << 'p-in-reply-to' if is_direct_parent
-    classes << 'p-repost-of' if status.reblog? && is_direct_parent
-    classes << 'p-comment' if is_direct_child
-    classes.join(' ')
-  end
-
-  def microformats_h_class(status, is_predecessor, is_successor, include_threads)
-    if is_predecessor || status.reblog? || is_successor
-      'h-cite'
-    elsif include_threads
-      ''
-    else
-      'h-entry'
-    end
-  end
-
   def fa_visibility_icon(status)
     case status.visibility
     when 'public'

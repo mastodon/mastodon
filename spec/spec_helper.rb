@@ -1,15 +1,7 @@
 # frozen_string_literal: true
 
-if ENV['DISABLE_SIMPLECOV'] != 'true'
-  require 'simplecov'
-  SimpleCov.start 'rails' do
-    add_filter 'lib/linter'
-    add_group 'Policies', 'app/policies'
-    add_group 'Presenters', 'app/presenters'
-    add_group 'Serializers', 'app/serializers'
-    add_group 'Services', 'app/services'
-    add_group 'Validators', 'app/validators'
-  end
+unless ENV['DISABLE_SIMPLECOV'] == 'true'
+  require 'simplecov' # Configuration details loaded from .simplecov
 end
 
 RSpec.configure do |config|
@@ -36,6 +28,12 @@ RSpec.configure do |config|
   config.after :suite do
     FileUtils.rm_rf(Dir[Rails.root.join('spec', 'test_files')])
   end
+
+  # Use the GitHub Annotations formatter for CI
+  if ENV['GITHUB_ACTIONS'] == 'true' && ENV['GITHUB_RSPEC'] == 'true'
+    require 'rspec/github'
+    config.add_formatter RSpec::Github::Formatter
+  end
 end
 
 def body_as_json
@@ -46,8 +44,21 @@ def json_str_to_hash(str)
   JSON.parse(str, symbolize_names: true)
 end
 
+def serialized_record_json(record, serializer, adapter: nil)
+  options = { serializer: serializer }
+  options[:adapter] = adapter if adapter.present?
+  JSON.parse(
+    ActiveModelSerializers::SerializableResource.new(
+      record,
+      options
+    ).to_json
+  )
+end
+
 def expect_push_bulk_to_match(klass, matcher)
-  expect(Sidekiq::Client).to receive(:push_bulk).with(hash_including({
+  allow(Sidekiq::Client).to receive(:push_bulk)
+  yield
+  expect(Sidekiq::Client).to have_received(:push_bulk).with(hash_including({
     'class' => klass,
     'args' => matcher,
   }))

@@ -22,6 +22,10 @@ RSpec.describe Api::V2::Filters::KeywordsController do
     it 'returns http success' do
       get :index, params: { filter_id: filter.id }
       expect(response).to have_http_status(200)
+      expect(body_as_json)
+        .to contain_exactly(
+          include(id: keyword.id.to_s)
+        )
     end
 
     context "when trying to access another's user filters" do
@@ -40,17 +44,13 @@ RSpec.describe Api::V2::Filters::KeywordsController do
       post :create, params: { filter_id: filter_id, keyword: 'magic', whole_word: false }
     end
 
-    it 'returns http success' do
+    it 'creates a filter', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
 
-    it 'returns a keyword' do
       json = body_as_json
       expect(json[:keyword]).to eq 'magic'
       expect(json[:whole_word]).to be false
-    end
 
-    it 'creates a keyword' do
       filter = user.account.custom_filters.first
       expect(filter).to_not be_nil
       expect(filter.keywords.pluck(:keyword)).to eq ['magic']
@@ -73,11 +73,9 @@ RSpec.describe Api::V2::Filters::KeywordsController do
       get :show, params: { id: keyword.id }
     end
 
-    it 'returns http success' do
+    it 'responds with the keyword', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
 
-    it 'returns expected data' do
       json = body_as_json
       expect(json[:keyword]).to eq 'foo'
       expect(json[:whole_word]).to be false
@@ -100,11 +98,9 @@ RSpec.describe Api::V2::Filters::KeywordsController do
       get :update, params: { id: keyword.id, keyword: 'updated' }
     end
 
-    it 'returns http success' do
+    it 'updates the keyword', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
 
-    it 'updates the keyword' do
       expect(keyword.reload.keyword).to eq 'updated'
     end
 
@@ -125,11 +121,9 @@ RSpec.describe Api::V2::Filters::KeywordsController do
       delete :destroy, params: { id: keyword.id }
     end
 
-    it 'returns http success' do
+    it 'destroys the keyword', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
 
-    it 'removes the filter' do
       expect { keyword.reload }.to raise_error ActiveRecord::RecordNotFound
     end
 

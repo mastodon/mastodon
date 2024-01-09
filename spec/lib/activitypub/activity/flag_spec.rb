@@ -139,6 +139,35 @@ RSpec.describe ActivityPub::Activity::Flag do
         expect(report.status_ids).to eq []
       end
     end
+
+    context 'when an account is passed but no status' do
+      let(:mentioned) { Fabricate(:account) }
+
+      let(:json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: flag_id,
+          type: 'Flag',
+          content: 'Boo!!',
+          actor: ActivityPub::TagManager.instance.uri_for(sender),
+          object: [
+            ActivityPub::TagManager.instance.uri_for(flagged),
+          ],
+        }.with_indifferent_access
+      end
+
+      before do
+        subject.perform
+      end
+
+      it 'creates a report with no attached status' do
+        report = Report.find_by(account: sender, target_account: flagged)
+
+        expect(report).to_not be_nil
+        expect(report.comment).to eq 'Boo!!'
+        expect(report.status_ids).to eq []
+      end
+    end
   end
 
   describe '#perform with a defined uri' do

@@ -14,7 +14,7 @@ RSpec.describe UnallowDomainService, type: :service do
 
   context 'with limited federation mode' do
     before do
-      allow(Rails.configuration.x).to receive(:whitelist_mode).and_return(true)
+      allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(true)
     end
 
     describe '#call' do
@@ -27,6 +27,7 @@ RSpec.describe UnallowDomainService, type: :service do
       end
 
       it 'removes remote accounts from that domain' do
+        expect { already_banned_account.reload }.to raise_error(ActiveRecord::RecordNotFound)
         expect(Account.where(domain: 'evil.org').exists?).to be false
       end
 
@@ -40,7 +41,7 @@ RSpec.describe UnallowDomainService, type: :service do
 
   context 'without limited federation mode' do
     before do
-      allow(Rails.configuration.x).to receive(:whitelist_mode).and_return(false)
+      allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(false)
     end
 
     describe '#call' do

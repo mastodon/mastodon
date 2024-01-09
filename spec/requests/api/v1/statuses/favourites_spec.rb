@@ -70,7 +70,7 @@ RSpec.describe 'Favourites' do
     end
   end
 
-  describe 'POST /api/v1/statuses/:status_id/unfavourite' do
+  describe 'POST /api/v1/statuses/:status_id/unfavourite', :sidekiq_fake do
     subject do
       post "/api/v1/statuses/#{status.id}/unfavourite", headers: headers
     end
@@ -88,6 +88,9 @@ RSpec.describe 'Favourites' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(user.account.favourited?(status)).to be true
+
+        UnfavouriteWorker.drain
         expect(user.account.favourited?(status)).to be false
       end
 
@@ -110,6 +113,9 @@ RSpec.describe 'Favourites' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(user.account.favourited?(status)).to be true
+
+        UnfavouriteWorker.drain
         expect(user.account.favourited?(status)).to be false
       end
 

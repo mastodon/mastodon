@@ -18,4 +18,12 @@ describe Admin::Settings::AboutController do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'PUT #update' do
+    it 'updates the settings' do
+      put :update, params: { form_admin_settings: { site_extended_description: 'new site description' } }
+
+      expect(response).to redirect_to(admin_settings_about_path)
+    end
+  end
 end

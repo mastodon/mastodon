@@ -91,7 +91,7 @@ class CustomFilter < ApplicationRecord
       filters_hash.values.map { |cache| [cache.delete(:filter), cache] }
     end.to_a
 
-    active_filters.select { |custom_filter, _| !custom_filter.expired? }
+    active_filters.reject { |custom_filter, _| custom_filter.expired? }
   end
 
   def self.apply_cached_filters(cached_filters, status)
@@ -128,6 +128,10 @@ class CustomFilter < ApplicationRecord
   end
 
   def context_must_be_valid
-    errors.add(:context, I18n.t('filters.errors.invalid_context')) if context.empty? || context.any? { |c| !VALID_CONTEXTS.include?(c) }
+    errors.add(:context, I18n.t('filters.errors.invalid_context')) if invalid_context_value?
+  end
+
+  def invalid_context_value?
+    context.blank? || context.difference(VALID_CONTEXTS).any?
   end
 end

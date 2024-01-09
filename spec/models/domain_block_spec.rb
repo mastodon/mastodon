@@ -11,10 +11,10 @@ RSpec.describe DomainBlock do
     end
 
     it 'is invalid if the same normalized domain already exists' do
-      domain_block_1 = Fabricate(:domain_block, domain: 'にゃん')
-      domain_block_2 = Fabricate.build(:domain_block, domain: 'xn--r9j5b5b')
-      domain_block_2.valid?
-      expect(domain_block_2).to model_have_error_on_field(:domain)
+      _domain_block = Fabricate(:domain_block, domain: 'にゃん')
+      domain_block_with_normalized_value = Fabricate.build(:domain_block, domain: 'xn--r9j5b5b')
+      domain_block_with_normalized_value.valid?
+      expect(domain_block_with_normalized_value).to model_have_error_on_field(:domain)
     end
   end
 

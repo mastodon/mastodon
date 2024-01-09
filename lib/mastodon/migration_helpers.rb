@@ -37,7 +37,6 @@
 
 # This is bad form, but there are enough differences that it's impractical to do
 # otherwise:
-# rubocop:disable all
 
 module Mastodon
   module MigrationHelpers
@@ -159,10 +158,8 @@ module Mastodon
           'in the body of your migration class'
       end
 
-      if supports_drop_index_concurrently?
-        options = options.merge({ algorithm: :concurrently })
-        disable_statement_timeout
-      end
+      options = options.merge({ algorithm: :concurrently })
+      disable_statement_timeout
 
       remove_index(table_name, **options.merge({ column: column_name }))
     end
@@ -183,19 +180,10 @@ module Mastodon
           'in the body of your migration class'
       end
 
-      if supports_drop_index_concurrently?
-        options = options.merge({ algorithm: :concurrently })
-        disable_statement_timeout
-      end
+      options = options.merge({ algorithm: :concurrently })
+      disable_statement_timeout
 
       remove_index(table_name, **options.merge({ name: index_name }))
-    end
-
-    # Only available on Postgresql >= 9.2
-    def supports_drop_index_concurrently?
-      version = select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
-
-      version >= 90200
     end
 
     # Adds a foreign key with only minimal locking on the tables involved.
@@ -414,37 +402,7 @@ module Mastodon
     # This method can also take a block which is passed directly to the
     # `update_column_in_batches` method.
     def add_column_with_default(table, column, type, default:, limit: nil, allow_null: false, &block)
-      if transaction_open?
-        raise 'add_column_with_default can not be run inside a transaction, ' \
-          'you can disable transactions by calling disable_ddl_transaction! ' \
-          'in the body of your migration class'
-      end
-
-      disable_statement_timeout
-
-      transaction do
-        if limit
-          add_column(table, column, type, default: nil, limit: limit)
-        else
-          add_column(table, column, type, default: nil)
-        end
-
-        # Changing the default before the update ensures any newly inserted
-        # rows already use the proper default value.
-        change_column_default(table, column, default)
-      end
-
-      begin
-        update_column_in_batches(table, column, default, &block)
-
-        change_column_null(table, column, false) unless allow_null
-      # We want to rescue _all_ exceptions here, even those that don't inherit
-      # from StandardError.
-      rescue Exception => error # rubocop: disable all
-        remove_column(table, column)
-
-        raise error
-      end
+      add_column(table, column, type, default: default, limit: limit, null: allow_null)
     end
 
     # Renames a column without requiring downtime.
@@ -977,5 +935,3 @@ into similar problems in the future (e.g. when new tables are created).
     end
   end
 end
-
-# rubocop:enable all

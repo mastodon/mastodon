@@ -22,7 +22,7 @@ export const ExplorePrompt = () => (
     <p>
       <FormattedMessage
         id='home.explore_prompt.body'
-        defaultMessage="Your home feed will have a mix of posts from the hashtags you've chosen to follow, the people you've chosen to follow, and the posts they boost. It's looking pretty quiet right now, so how about:"
+        defaultMessage="Your home feed will have a mix of posts from the hashtags you've chosen to follow, the people you've chosen to follow, and the posts they boost. If that feels too quiet, you may want to:"
       />
     </p>
 

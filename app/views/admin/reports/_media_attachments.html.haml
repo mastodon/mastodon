@@ -1,6 +1,5 @@
 - if status.ordered_media_attachments.first.video?
-  - video = status.ordered_media_attachments.first
-  = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), frameRate: video.file.meta.dig('original', 'frame_rate'), blurhash: video.blurhash, sensitive: status.sensitive?, visible: false, width: 610, height: 343, inline: true, alt: video.description, lang: status.language, media: [ActiveModelSerializers::SerializableResource.new(video, serializer: REST::MediaAttachmentSerializer)].as_json
+  = render_video_component(status, visible: false)
 - elsif status.ordered_media_attachments.first.audio?
   - audio = status.ordered_media_attachments.first
   = react_component :audio, src: audio.file.url(:original), height: 110, alt: audio.description, lang: status.language, duration: audio.file.meta.dig(:original, :duration)

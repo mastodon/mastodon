@@ -72,7 +72,7 @@ class MoveWorker
   def queue_follow_unfollows!
     bypass_locked = @target_account.local?
 
-    @source_account.followers.local.select(:id).find_in_batches do |accounts|
+    @source_account.followers.local.select(:id).reorder(nil).find_in_batches do |accounts|
       UnfollowFollowWorker.push_bulk(accounts.map(&:id)) { |follower_id| [follower_id, @source_account.id, @target_account.id, bypass_locked] }
     rescue => e
       @deferred_error = e

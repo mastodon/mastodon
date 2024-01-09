@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# TODO: remove this file some time after 4.3.0
+
 Rails.application.config.after_initialize do
   Rails.application.config.action_dispatch.cookies_rotations.tap do |cookies|
     authenticated_encrypted_cookie_salt = Rails.application.config.action_dispatch.authenticated_encrypted_cookie_salt

@@ -53,3 +53,7 @@ fa:
             position:
               elevated: نمی‌تواند بالاتر از نقش کنونیتان باشد
               own_role: نمی‌تواند با نقش کنونیتان تغییر کند
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: نمی‌تواند شامل رویدادهایی باشد که حقوقش را ندارید

@@ -7,6 +7,7 @@
   - [mailers, 2]
   - [pull]
   - [scheduler]
+
 :scheduler:
   :listened_queues_only: true
   :schedule:
@@ -23,7 +24,7 @@
       class: Scheduler::Trends::ReviewNotificationsScheduler
       queue: scheduler
     indexing_scheduler:
-      every: '5m'
+      interval: 1 minute
       class: Scheduler::IndexingScheduler
       queue: scheduler
     vacuum_scheduler:
@@ -57,4 +58,8 @@
     suspended_user_cleanup_scheduler:
       interval: 1 minute
       class: Scheduler::SuspendedUserCleanupScheduler
+      queue: scheduler
+    software_update_check_scheduler:
+      interval: 30 minutes
+      class: Scheduler::SoftwareUpdateCheckScheduler
       queue: scheduler

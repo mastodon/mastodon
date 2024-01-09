@@ -4,7 +4,7 @@ class StatusRelationshipsPresenter
   PINNABLE_VISIBILITIES = %w(public unlisted private).freeze
 
   attr_reader :reblogs_map, :favourites_map, :mutes_map, :pins_map,
-              :bookmarks_map, :filters_map
+              :bookmarks_map, :filters_map, :attributes_map
 
   def initialize(statuses, current_account_id = nil, **options)
     if current_account_id.nil?
@@ -26,6 +26,7 @@ class StatusRelationshipsPresenter
       @bookmarks_map   = Status.bookmarks_map(status_ids, current_account_id).merge(options[:bookmarks_map] || {})
       @mutes_map       = Status.mutes_map(conversation_ids, current_account_id).merge(options[:mutes_map] || {})
       @pins_map        = Status.pins_map(pinnable_status_ids, current_account_id).merge(options[:pins_map] || {})
+      @attributes_map  = options[:attributes_map] || {}
     end
   end
 
