@@ -94,7 +94,7 @@ class Setting < ApplicationRecord
 
       content = Rails.root.join('config', 'settings.yml').read
       hash = content.empty? ? {} : YAML.safe_load(ERB.new(content).result, aliases: true).to_hash
-      @default_settings = hash[Rails.env] || {}
+      @default_settings = (hash[Rails.env] || {}).freeze
     end
   end
 
