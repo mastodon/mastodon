@@ -1,5 +1,5 @@
 = content_for :heading do
-  = render 'layouts/mailer_new_heading', title: t('notification_mailer.reblog.title'), subtitle: t('notification_mailer.reblog.body', name: @account.pretty_acct), image_url: full_pack_url('media/images/mailer-new/heading/boost.png')
+  = render 'application/mailer/heading', title: t('notification_mailer.reblog.title'), subtitle: t('notification_mailer.reblog.body', name: @account.pretty_acct), image_url: full_pack_url('media/images/mailer-new/heading/boost.png')
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-body-padding-td
