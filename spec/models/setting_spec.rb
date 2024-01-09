@@ -23,38 +23,32 @@ RSpec.describe Setting do
 
     context 'when Rails.cache does not exists' do
       before do
-        allow(described_class).to receive(:object).with(key).and_return(object)
         allow(described_class).to receive(:default_settings).and_return(default_settings)
 
-        Fabricate(:setting, var: key, value: nil)
+        Fabricate(:setting, var: key, value: 42) if save_setting
 
         Rails.cache.delete(cache_key)
       end
 
-      let(:object)           { nil }
       let(:default_value)    { 'default_value' }
       let(:default_settings) { { key => default_value } }
+      let(:save_setting)     { true }
 
-      it 'calls Setting.object' do
-        allow(described_class).to receive(:object).with(key)
+      context 'when the setting has been saved to database' do
+        it 'returns the value from database' do
+          callback = double
+          allow(callback).to receive(:call)
 
-        described_class[key]
+          ActiveSupport::Notifications.subscribed callback, 'sql.active_record' do
+            expect(described_class[key]).to eq 42
+          end
 
-        expect(described_class).to have_received(:object).with(key)
-      end
-
-      context 'when Setting.object returns truthy' do
-        let(:object) { db_val }
-        let(:db_val) { instance_double(described_class, value: 'db_val') }
-        let(:default_value) { 'default_value' }
-
-        it 'returns db_val.value' do
-          expect(described_class[key]).to be db_val.value
+          expect(callback).to have_received(:call)
         end
       end
 
-      context 'when Setting.object returns falsey' do
-        let(:object) { nil }
+      context 'when the setting has not been saved to database' do
+        let(:save_setting) { false }
 
         it 'returns default_settings[key]' do
           expect(described_class[key]).to be default_settings[key]
