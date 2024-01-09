@@ -183,6 +183,21 @@ describe Mastodon::CLI::Media do
           .to output_results('Downloaded 1 media')
       end
     end
+
+    context 'with --days option' do
+      before do
+        Fabricate(:media_attachment, remote_url: 'https://example.com/image.jpg', id: Mastodon::Snowflake.id_at(50.days.ago))
+        Fabricate(:media_attachment, remote_url: 'https://example.com/image.jpg', id: Mastodon::Snowflake.id_at(5.days.ago))
+        Fabricate(:media_attachment, remote_url: '', id: Mastodon::Snowflake.id_at(5.days.ago))
+      end
+
+      let(:options) { { days: 10 } }
+
+      it 'redownloads the attachment file for the remote records more recent than the option' do
+        expect { subject }
+          .to output_results('Downloaded 1 media')
+      end
+    end
   end
 
   describe '#remove_orphans' do
