@@ -67,10 +67,6 @@ class Setting < ApplicationRecord
     end
     # rubocop:enable Style/MissingRespondToMissing
 
-    def object(var_name)
-      find_by(var: var_name.to_s)
-    end
-
     def cache_prefix_by_startup
       @cache_prefix_by_startup ||= Digest::MD5.hexdigest(default_settings.to_s)
     end
@@ -81,16 +77,14 @@ class Setting < ApplicationRecord
 
     def [](key)
       Rails.cache.fetch(cache_key(key)) do
-        db_val = object(key)
+        db_val = find_by(var: key)
         db_val ? db_val.value : default_settings[key]
       end
     end
 
     # set a setting value by [] notation
     def []=(var_name, value)
-      var_name = var_name.to_s
-
-      record = object(var_name) || new(var: var_name)
+      record = find_or_initialize_by(var: var_name.to_s)
       record.value = value
       record.save!
     end
