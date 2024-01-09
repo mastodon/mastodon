@@ -46,6 +46,11 @@ class Setting < ApplicationRecord
   after_commit :rewrite_cache, on: %i(create update)
   after_commit :expire_cache, on: %i(destroy)
 
+  # Settings are server-wide settings only, but they were previously
+  # used for users too. This can be dropped later with a database
+  # migration dropping any scoped setting.
+  default_scope { where(thing_type: nil, thing_id: nil) }
+
   class << self
     # get or set a variable with the variable as the called method
     # rubocop:disable Style/MissingRespondToMissing
@@ -62,30 +67,12 @@ class Setting < ApplicationRecord
     end
     # rubocop:enable Style/MissingRespondToMissing
 
-    def where(sql = nil)
-      vars = thing_scoped.where(sql) if sql
-      vars
-    end
-
     def object(var_name)
-      return nil unless rails_initialized?
-      return nil unless table_exists?
-
-      thing_scoped.where(var: var_name.to_s).first
-    end
-
-    def thing_scoped
-      unscoped.where('thing_type is NULL and thing_id is NULL')
-    end
-
-    def rails_initialized?
-      Rails.application&.initialized?
+      find_by(var: var_name.to_s)
     end
 
     def cache_prefix_by_startup
-      return @cache_prefix_by_startup if defined? @cache_prefix_by_startup
-
-      @cache_prefix_by_startup = Digest::MD5.hexdigest(default_settings.to_s)
+      @cache_prefix_by_startup ||= Digest::MD5.hexdigest(default_settings.to_s)
     end
 
     def cache_key(var_name)
@@ -93,8 +80,6 @@ class Setting < ApplicationRecord
     end
 
     def [](key)
-      return get(key) unless rails_initialized?
-
       Rails.cache.fetch(cache_key(key)) do
         db_val = object(key)
         db_val ? db_val.value : default_settings[key]
@@ -105,7 +90,7 @@ class Setting < ApplicationRecord
     def []=(var_name, value)
       var_name = var_name.to_s
 
-      record = object(var_name) || thing_scoped.new(var: var_name)
+      record = object(var_name) || new(var: var_name)
       record.value = value
       record.save!
     end
@@ -116,16 +101,6 @@ class Setting < ApplicationRecord
       content = Rails.root.join('config', 'settings.yml').read
       hash = content.empty? ? {} : YAML.safe_load(ERB.new(content).result, aliases: true).to_hash
       @default_settings = hash[Rails.env] || {}
-    end
-
-    private
-
-    # get a setting value by [] notation
-    def get(var_name)
-      val = object(var_name)
-      return val.value if val
-
-      default_settings[var_name]
     end
   end
 
