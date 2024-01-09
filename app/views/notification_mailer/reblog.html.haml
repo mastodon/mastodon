@@ -7,4 +7,4 @@
         %tr
           %td.email-inner-card-td
             = render 'status_new', status: @status, time_zone: @me.user_time_zone
-            = render 'layouts/mailer_new_btn', text: t('application_mailer.view_status'), url: web_url("@#{@status.account.pretty_acct}/#{@status.id}")
+            = render 'application/mailer/button', text: t('application_mailer.view_status'), url: web_url("@#{@status.account.pretty_acct}/#{@status.id}")

@@ -7,4 +7,4 @@
         %tr
           %td.email-inner-card-td.email-prose
             %p= t 'devise.mailer.two_factor_disabled.explanation'
-            = render 'layouts/mailer_new_btn', text: t('settings.account_settings'), url: edit_user_registration_url
+            = render 'application/mailer/button', text: t('settings.account_settings'), url: edit_user_registration_url
