@@ -39,7 +39,9 @@ class FollowService < BaseService
     if (@target_account.locked? && !@options[:bypass_locked]) || @source_account.silenced? || @target_account.activitypub?
       request_follow!
     elsif @target_account.local?
-      direct_follow!
+      follow = direct_follow!
+      trigger_webhooks follow.id
+      follow
     end
   end
 
@@ -92,5 +94,9 @@ class FollowService < BaseService
 
   def follow_options
     @options.slice(:reblogs, :notify, :languages)
+  end
+
+  def trigger_webhooks(follow_id)
+    TriggerWebhookWorker.perform_async('follow.created', 'Follow', follow_id)
   end
 end
