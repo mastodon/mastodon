@@ -23,7 +23,7 @@
   .fields-group
     = f.simple_fields_for :settings, current_user.settings do |ff|
       = ff.input :theme,
-                 collection: [*Themes.instance.names, "system"],
+                 collection: [*Themes.instance.names, 'system'],
                  hint: false,
                  include_blank: false,
                  label_method: ->(theme) { I18n.t("themes.#{theme}", default: theme) },
