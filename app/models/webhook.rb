@@ -23,6 +23,12 @@ class Webhook < ApplicationRecord
     report.updated
     status.created
     status.updated
+    block.created
+    block.removed
+    follow.created
+    follow.removed
+    mute.created
+    mute.removed
   ).freeze
 
   attr_writer :current_account
@@ -62,7 +68,7 @@ class Webhook < ApplicationRecord
       :manage_users
     when 'report.created', 'report.updated'
       :manage_reports
-    when 'status.created', 'status.updated'
+    when 'status.created', 'status.updated', 'block.created', 'block.removed', 'follow.created', 'follow.removed', 'mute.created', 'mute.removed' # TODO: find the correct permission
       :view_devops
     end
   end
