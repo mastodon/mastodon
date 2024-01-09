@@ -12,6 +12,10 @@ class NotificationMailer < ApplicationMailer
 
   default to: -> { email_address_with_name(@user.email, @me.username) }
 
+  CONVERTED = %w(reblog).freeze
+
+  layout -> { CONVERTED.include?(action_name) ? 'mailer_new' : 'mailer' }
+
   def mention
     return unless @user.functional? && @status.present?
 
@@ -43,7 +47,7 @@ class NotificationMailer < ApplicationMailer
 
     locale_for_account(@me) do
       thread_by_conversation(@status.conversation)
-      mail_with_new_layout subject: default_i18n_subject(name: @account.acct)
+      mail subject: default_i18n_subject(name: @account.acct)
     end
   end
 
@@ -86,12 +90,5 @@ class NotificationMailer < ApplicationMailer
 
     headers['In-Reply-To'] = msg_id
     headers['References']  = msg_id
-  end
-
-  def mail_with_new_layout(*args, **kwargs)
-    mail(*args, **kwargs) do |format|
-      format.text
-      format.html { render layout: 'mailer_new' }
-    end
   end
 end
