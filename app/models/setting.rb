@@ -43,8 +43,6 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 class Setting < ApplicationRecord
-  class SettingNotFound < RuntimeError; end
-
   after_commit :rewrite_cache, on: %i(create update)
   after_commit :expire_cache, on: %i(destroy)
 
@@ -64,31 +62,9 @@ class Setting < ApplicationRecord
     end
     # rubocop:enable Style/MissingRespondToMissing
 
-    # destroy the specified settings record
-    def destroy(var_name)
-      var_name = var_name.to_s
-      obj = object(var_name)
-      raise SettingNotFound, "Setting variable \"#{var_name}\" not found" if obj.nil?
-
-      obj.destroy
-      true
-    end
-
     def where(sql = nil)
       vars = thing_scoped.where(sql) if sql
       vars
-    end
-
-    def merge!(var_name, hash_value)
-      raise ArgumentError unless hash_value.is_a?(Hash)
-
-      old_value = self[var_name] || {}
-      raise TypeError, "Existing value is not a hash, can't merge!" unless old_value.is_a?(Hash)
-
-      new_value = old_value.merge(hash_value)
-      self[var_name] = new_value if new_value != old_value
-
-      new_value
     end
 
     def object(var_name)
@@ -121,29 +97,8 @@ class Setting < ApplicationRecord
 
       Rails.cache.fetch(cache_key(key)) do
         db_val = object(key)
-        default_value = default_settings[key]
-
-        if db_val
-          return default_value.with_indifferent_access.merge!(db_val.value) if default_value.is_a?(Hash)
-
-          db_val.value
-        else
-          default_value
-        end
+        db_val ? db_val.value : default_settings[key]
       end
-    end
-
-    def all_as_records
-      vars    = thing_scoped
-      records = vars.index_by(&:var)
-
-      default_settings.each do |key, default_value|
-        next if records.key?(key) || default_value.is_a?(Hash)
-
-        records[key] = Setting.new(var: key, value: default_value)
-      end
-
-      records
     end
 
     # set a setting value by [] notation

@@ -73,27 +73,10 @@ RSpec.describe Setting do
         context 'when Setting.object returns truthy' do
           let(:object) { db_val }
           let(:db_val) { instance_double(described_class, value: 'db_val') }
+          let(:default_value) { 'default_value' }
 
-          context 'when default_value is a Hash' do
-            let(:default_value) { { default_value: 'default_value' } }
-
-            it 'calls default_value.with_indifferent_access.merge!' do
-              indifferent_hash = instance_double(Hash, merge!: nil)
-              allow(default_value).to receive(:with_indifferent_access).and_return(indifferent_hash)
-
-              described_class[key]
-
-              expect(default_value).to have_received(:with_indifferent_access)
-              expect(indifferent_hash).to have_received(:merge!).with(db_val.value)
-            end
-          end
-
-          context 'when default_value is not a Hash' do
-            let(:default_value) { 'default_value' }
-
-            it 'returns db_val.value' do
-              expect(described_class[key]).to be db_val.value
-            end
+          it 'returns db_val.value' do
+            expect(described_class[key]).to be db_val.value
           end
         end
 
@@ -122,55 +105,6 @@ RSpec.describe Setting do
 
         it 'returns the cached value' do
           expect(described_class[key]).to eq cache_value
-        end
-      end
-    end
-  end
-
-  describe '.all_as_records' do
-    before do
-      settings_double = instance_double(Settings::ScopedSettings, thing_scoped: records)
-      allow(Settings::ScopedSettings).to receive(:new).and_return(settings_double)
-      allow(described_class).to receive(:default_settings).and_return(default_settings)
-    end
-
-    let(:key)              { 'key' }
-    let(:default_value)    { 'default_value' }
-    let(:default_settings) { { key => default_value } }
-    let(:original_setting) { Fabricate(:setting, var: key, value: nil) }
-    let(:records)          { [original_setting] }
-
-    it 'returns a Hash' do
-      expect(described_class.all_as_records).to be_a Hash
-    end
-
-    context 'when records includes Setting with var as the key' do
-      let(:records) { [original_setting] }
-
-      it 'includes the original Setting' do
-        setting = described_class.all_as_records[key]
-        expect(setting).to eq original_setting
-      end
-    end
-
-    context 'when records includes nothing' do
-      let(:records) { [] }
-
-      context 'when default_value is not a Hash' do
-        it 'includes Setting with value of default_value' do
-          setting = described_class.all_as_records[key]
-
-          expect(setting).to be_a described_class
-          expect(setting).to have_attributes(var: key)
-          expect(setting).to have_attributes(value: 'default_value')
-        end
-      end
-
-      context 'when default_value is a Hash' do
-        let(:default_value) { { 'foo' => 'fuga' } }
-
-        it 'returns {}' do
-          expect(described_class.all_as_records).to eq({})
         end
       end
     end
