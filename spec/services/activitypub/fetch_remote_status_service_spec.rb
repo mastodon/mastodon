@@ -129,6 +129,33 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       end
     end
 
+    context 'with Event object that contains' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'https://foo.bar/@foo/1234',
+          type: 'Event',
+          name: "Let's change the world",
+          startTime: '2024-01-31T20:00:00.000+01:00',
+          location: {
+            type:'Place',
+            name: 'FooBar',
+          },
+          content: "Some description of the event object that does not get converted.",
+          summary: "We meet on January 31st at 8pm in the FooBaar!",
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.url).to eq 'https://foo.bar/@foo/1234'
+        expect(strip_tags(status.text)).to eq 'Let\'s change the world\n\nWe meet on January 31st at 8pm in the FooBaar!\n\nhttps://foo.bar/@foo/1234'
+      end
+    end
+
     context 'with wrong id' do
       let(:note) do
         {
