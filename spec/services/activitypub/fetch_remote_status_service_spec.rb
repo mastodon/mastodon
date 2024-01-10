@@ -129,7 +129,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       end
     end
 
-    context 'with Event object that contains' do
+    context 'with Event object that contains a summary' do
       let(:object) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
@@ -139,9 +139,9 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
           startTime: '2024-01-31T20:00:00.000+01:00',
           location: {
             type: 'Place',
-            name: 'FooBar',
+            name: 'FooBar – The not converted location',
           },
-          content: 'Some description of the event object that does not get converted.',
+          content: 'The not converted description of the event object.',
           summary: 'We meet on January 31st at 8pm in the FooBaar!',
           attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
         }
