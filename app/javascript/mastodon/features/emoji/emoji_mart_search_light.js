@@ -113,7 +113,11 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
         length++;
 
         aIndex[char] = aIndex[char] || {};
-        aIndex = aIndex[char];
+        if (Object.prototype.hasOwnProperty.call(aIndex, char)) {
+            aIndex = aIndex[char];
+        } else {
+            throw new Error('Invalid attribute modification attempt detected');
+        }
 
         if (!aIndex.results) {
           let scores = {};
