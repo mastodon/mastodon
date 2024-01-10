@@ -20,9 +20,8 @@
 class Announcement < ApplicationRecord
   scope :unpublished, -> { where(published: false) }
   scope :published, -> { where(published: true) }
-  scope :without_muted, ->(account) { joins("LEFT OUTER JOIN announcement_mutes ON announcement_mutes.announcement_id = announcements.id AND announcement_mutes.account_id = #{account.id}").where(announcement_mutes: { id: nil }) }
-  scope :chronological, -> { order(Arel.sql('COALESCE(announcements.starts_at, announcements.scheduled_at, announcements.published_at, announcements.created_at) ASC')) }
-  scope :reverse_chronological, -> { order(Arel.sql('COALESCE(announcements.starts_at, announcements.scheduled_at, announcements.published_at, announcements.created_at) DESC')) }
+  scope :chronological, -> { order(coalesced_chronology_timestamps.asc) }
+  scope :reverse_chronological, -> { order(coalesced_chronology_timestamps.desc) }
 
   has_many :announcement_mutes, dependent: :destroy
   has_many :announcement_reactions, dependent: :destroy
@@ -32,6 +31,16 @@ class Announcement < ApplicationRecord
   validates :ends_at, presence: true, if: :starts_at?
 
   before_validation :set_published, on: :create
+
+  class << self
+    def coalesced_chronology_timestamps
+      Arel.sql(
+        <<~SQL.squish
+          COALESCE(announcements.starts_at, announcements.scheduled_at, announcements.published_at, announcements.created_at)
+        SQL
+      )
+    end
+  end
 
   def to_log_human_identifier
     text
@@ -43,10 +52,6 @@ class Announcement < ApplicationRecord
 
   def unpublish!
     update!(published: false, scheduled_at: nil)
-  end
-
-  def time_range?
-    starts_at? && ends_at?
   end
 
   def mentions

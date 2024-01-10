@@ -10,6 +10,8 @@ ia:
       buttons:
         cancel: Cancellar
         edit: Modificar
+      confirmations:
+        destroy: Es tu secur?
       edit:
         title: Modificar application
       index:
@@ -45,11 +47,22 @@ ia:
       title:
         accounts: Contos
         admin/accounts: Gestion de contos
+        bookmarks: Marcapaginas
+        conversations: Conversationes
         favourites: Favoritos
         lists: Listas
         notifications: Notificationes
         push: Notificationes push
+        search: Cercar
+        statuses: Messages
     layouts:
       admin:
         nav:
           applications: Applicationes
+          oauth2_provider: Fornitor OAuth2
+    scopes:
+      write:accounts: modificar tu profilo
+      write:favourites: messages favorite
+      write:lists: crear listas
+      write:notifications: rader tu notificationes
+      write:statuses: publicar messages

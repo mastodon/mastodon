@@ -288,6 +288,7 @@ ie:
         update_status_html: "%{name} actualisat posta de %{target}"
         update_user_role_html: "%{name} changeat li rol %{target}"
       deleted_account: deletet conto
+      empty: Null registres trovat.
       filter_by_action: Filtrar per action
       filter_by_user: Filtrar per usator
       title: Jurnale de audit
@@ -468,6 +469,9 @@ ie:
       unsuppress: Restaurar seque-recomandation
     instances:
       availability:
+        description_html:
+          one: Si liveration al dominia falli por <strong>%{count} die</strong> sin successe, null provas in plu va esser efectuat til quande un liveration <em>del</em> dominia es recivet.
+          other: Si liveration al dominia falli por <strong>%{count} dies</strong> sin successe, null provas in plu va esser efectuat til quande un liveration <em>del</em> dominia es recivet.
         failure_threshold_reached: Límite de falliment atinget ye %{date}.
         failures_recorded:
           one: Fallit prova por %{count} die.
@@ -523,6 +527,7 @@ ie:
       private_comment: Privat comenta
       public_comment: Public comenta
       purge: Purgar
+      purge_description_html: Si tu crede que ti-ci dominia es for linea por sempre, tu posse deleter omni archives de conto e associat data de ti-ci dominia de tui magasinage. Alquant témpor va esser possibilmen besonat.
       title: Federation
       total_blocked_by_us: Bloccat de nos
       total_followed_by_them: Sequet de les
@@ -737,6 +742,7 @@ ie:
         preamble: Customisar li interfacie web de Mastodon.
         title: Aspecte
       branding:
+        preamble: Li reclamage de tui servitor diferentia it de altri servitores in li retage. Ti-ci information posse esser monstrat tra mult ambientes, tales quam li interfacie web de Mastodon, nativ aplicationes, previsiones de ligamentes sur altri web-situs, altri missage-aplicationes, etc. Pro to it es recomendat a mantener li information clar, curt, e concis.
         title: Marca
       captcha_enabled:
         desc_html: To ci usa extern scrites de hCaptcha, quel posse esser ínquietant pro rasones de securitá e privatie. In plu, <strong>it posse far li processu de registration mult plu desfacil (particularimen por tis con deshabilitás)</strong>. Pro ti rasones, ples considerar alternativ mesuras, tales quam registration per aprobation o invitation.
@@ -746,6 +752,7 @@ ie:
         title: Retention de contenete
       default_noindex:
         desc_html: Afecta omni usatores qui ne ha changeat ti parametre personalmen
+        title: Predefinir que usatores ne apari in índexes de serchatores
       discovery:
         follow_recommendations: Seque-recomandationes
         preamble: Exposir interessant contenete es importantissim por incorporar nov usatores qui fórsan conosse nequi che Mastodon. Decider qualmen diferent utensiles de decovrition functiona che vor servitor.
@@ -832,12 +839,16 @@ ie:
         message_html: Li cluster Elasticsearch es ínsalubri (statu rubi), functiones por serchar ne disponibil
       elasticsearch_health_yellow:
         message_html: Li cluster Elasticsearch es ínsalubri (statu yelb); investigar li rason vell esser un bon idé
+      elasticsearch_index_mismatch:
+        message_html: Índex-mappamentes de Elasticsearch es oldijat. Ples executer <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_preset:
         action: Vider li documentation
         message_html: Tui cluster Elasticsearch have plu quam un node, ma Mastodon ne es configurat por usar les.
       elasticsearch_preset_single_node:
         action: Vider li documentation
         message_html: Tui cluster Elasticsearch have solmen un node, ples configurar <code>ES_PRESET</code> quam <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Tui sistema-índex por Elasticsearch ha oldijat pro un change de parametres. Ples executer <code>tootctl search deploy --reset-chewy</code> por actualisar it.
       elasticsearch_running_check:
         message_html: Ne posset conexer a Elasticsearch. Ples confirmar que it ha esset executet, o desactivar serchada de plen textu
       elasticsearch_version_check:
@@ -846,6 +857,8 @@ ie:
       rules_check:
         action: Gerer regules de servitor
         message_html: Tu ancor ne ha definit quelcunc regules de servitor.
+      sidekiq_process_check:
+        message_html: Null processe Sidekiq executet por li caude %{value}(s). Ples reviser tui configuration Sidekiq
       software_version_critical_check:
         action: Vider actualisationes disponibil
         message_html: Un critical actualisation por Mastodon es disposibil, ples actualisar tam rapidmen possibil.
@@ -935,6 +948,7 @@ ie:
     webhooks:
       add_new: Adjunter punctu terminal
       delete: Deleter
+      description_html: Un <strong>webhook</strong> possibilisa que Mastodon pussa <strong>actual notificationes</strong> pri selectet evenimentes a tui propri aplication, por que it mey <strong>automaticmen activar reactiones</strong>.
       disable: Desactivisar
       disabled: Desactivisat
       edit: Redacter punctu terminal
@@ -1409,6 +1423,7 @@ ie:
       missing_also_known_as: ne es un alias de ti-ci conto
       move_to_self: ne posse esser li conto actual
       not_found: ne posset esser trovat
+      on_cooldown: Tu es in un periode de refrigidation
     followers_count: Sequitores al témpor de translocation
     incoming_migrations: Translocant de un conto diferent
     incoming_migrations_html: Por mover de un altri conto a ti-ci, erstmen tu deve <a href="%{path}">crear un alias de conto</a>.
@@ -1483,7 +1498,9 @@ ie:
         units:
           billion: B
           million: M
+          quadrillion: Q
           thousand: m
+          trillion: T
   otp_authentication:
     code_hint: Inmetter li code generat de tui aplication de autentication por confirmar
     description_html: Si tu activisa <strong>2-factor autentication</strong> per un aplication de autentication, aperter un session va postular que tu have possession de tui telefon, quel va generar codes por que tu mey inmetter les.
@@ -1843,6 +1860,7 @@ ie:
       error: Un problema evenit durant li deletion de tui clave de securitá. Ples provar denov.
       success: Tui clave de securitá esset successosimen deletet.
     invalid_credential: Ínvalid clave de securitá
+    nickname_hint: Scrir li moc-nómine de tui nov clave de securitá
     not_enabled: Tu ancor ne ha possibilisat WebAuthn
     not_supported: Ti-ci navigator ne subtene claves de securitá
     otp_required: Por usar claves de securitá, ples activisar 2-factor autentication.
