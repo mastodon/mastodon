@@ -10,9 +10,10 @@
         = fa_icon login_activity.success? ? 'check' : 'times'
     .log-entry__content
       .log-entry__title
-        - if login_activity.success?
-          = t('login_activities.successful_sign_in_html', method: method_str, ip: ip_str, browser: browser_str)
-        - else
-          = t('login_activities.failed_sign_in_html', method: method_str, ip: ip_str, browser: browser_str)
+        = t (login_activity.success? ? 'successful_sign_in_html' : 'failed_sign_in_html'),
+            scope: :login_activities,
+            method: method_str,
+            ip: ip_str,
+            browser: browser_str
       .log-entry__timestamp
         %time.formatted{ datetime: login_activity.created_at.iso8601 }= l(login_activity.created_at)
