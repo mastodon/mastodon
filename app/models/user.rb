@@ -123,9 +123,9 @@ class User < ApplicationRecord
   after_commit :send_pending_devise_notifications
   after_create_commit :trigger_webhooks
 
-  normalizes :locale, with: ->(locale) { (I18n.available_locales.map(&:to_s) & [locale]).first }
-  normalizes :time_zone, with: ->(time_zone) { (ActiveSupport::TimeZone.all.map(&:name) & [time_zone]).first }
-  normalizes :chosen_languages, with: ->(chosen_languages) { chosen_languages.compact_blank!.presence }
+  normalizes :locale, with: ->(locale) { I18n.available_locales.exclude?(locale.to_sym) ? nil : locale }
+  normalizes :time_zone, with: ->(time_zone) { ActiveSupport::TimeZone[time_zone].nil? ? nil : time_zone }
+  normalizes :chosen_languages, with: ->(chosen_languages) { chosen_languages.compact_blank.presence }
 
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
