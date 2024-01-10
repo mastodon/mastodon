@@ -5,20 +5,60 @@ module Admin::SettingsHelper
     ENV['HCAPTCHA_SECRET_KEY'].present? && ENV['HCAPTCHA_SITE_KEY'].present?
   end
 
-  def login_activity_title(login_activity)
-    t (login_activity.success? ? 'successful_sign_in_html' : 'failed_sign_in_html'),
+  def login_activity_title(activity)
+    t(
+      login_activity_key(activity),
       scope: :login_activities,
-      method: content_tag(:span,
-                          login_activity.omniauth? ? t(login_activity.provider, scope: 'auth.providers') : t(login_activity.authentication_method, scope: 'login_activities.authentication_methods'),
-                          class: 'target'),
-      ip: content_tag(:span,
-                      login_activity.ip,
-                      class: 'target'),
-      browser: content_tag(:span,
-                           t('sessions.description',
-                             browser: t("sessions.browsers.#{login_activity.browser}", default: login_activity.browser.to_s),
-                             platform: t("sessions.platforms.#{login_activity.platform}", default: login_activity.platform.to_s)),
-                           class: 'target',
-                           title: login_activity.user_agent)
+      method: login_activity_method(activity),
+      ip: login_activity_ip(activity),
+      browser: login_activity_browser(activity)
+    )
+  end
+
+  private
+
+  def login_activity_key(activity)
+    activity.success? ? 'successful_sign_in_html' : 'failed_sign_in_html'
+  end
+
+  def login_activity_method(activity)
+    content_tag(
+      :span,
+      login_activity_method_string(activity),
+      class: 'target'
+    )
+  end
+
+  def login_activity_ip(activity)
+    content_tag(
+      :span,
+      activity.ip,
+      class: 'target'
+    )
+  end
+
+  def login_activity_browser(activity)
+    content_tag(
+      :span,
+      login_activity_browser_description(activity),
+      class: 'target',
+      title: activity.user_agent
+    )
+  end
+
+  def login_activity_method_string(activity)
+    if activity.omniauth?
+      t(activity.provider, scope: 'auth.providers')
+    else
+      t(activity.authentication_method, scope: 'login_activities.authentication_methods')
+    end
+  end
+
+  def login_activity_browser_description(activity)
+    t(
+      'sessions.description',
+      browser: t(activity.browser, scope: 'sessions.browsers', default: activity.browser.to_s),
+      platform: t(activity.platform, scope: 'sessions.platforms', default: activity.platform.to_s)
+    )
   end
 end
