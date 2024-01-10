@@ -127,7 +127,7 @@ const emojifyNode = (node, customEmojis) => {
 
 const emojify = (str, customEmojis = {}) => {
   const wrapper = document.createElement('div');
-  wrapper.innerHTML = str;
+  wrapper.textContent = str;
 
   if (!Object.keys(customEmojis).length)
     customEmojis = null;
