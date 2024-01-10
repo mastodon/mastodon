@@ -7,8 +7,14 @@ module.exports = {
   include: [
     settings.source_path,
     ...settings.resolved_paths,
+    'node_modules/@reduxjs'
   ].map(p => resolve(p)),
-  exclude: /node_modules/,
+  exclude: function(modulePath) {
+    return (
+      /node_modules/.test(modulePath) &&
+      !/@reduxjs/.test(modulePath)
+    );
+  },
   use: [
     {
       loader: 'babel-loader',
