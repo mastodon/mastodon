@@ -110,10 +110,6 @@ RSpec.configure do |config|
     Capybara.current_driver = :rack_test
   end
 
-  config.before :each, type: :system do
-    driven_by :selenium, using: :headless_chrome, screen_size: [1600, 1200]
-  end
-
   config.before do |example|
     allow(Resolv::DNS).to receive(:open).and_raise('Real DNS queries are disabled, stub Resolv::DNS as needed') unless example.metadata[:type] == :system
   end
