@@ -7,12 +7,19 @@ const fs   = require('fs');
 const path = require('path');
 
 const filtered  = {};
-const filenames = fs.readdirSync(path.resolve(__dirname, '../locales'));
+
+const dirPath = path.resolve(__dirname, '../locales');
+const filenames = fs.readdirSync(dirPath);
 
 filenames.forEach(filename => {
   if (!filename.match(/\.json$/)) return;
 
-  const content = fs.readFileSync(path.resolve(__dirname, `../locales/${filename}`), 'utf-8');
+  const filePath = path.resolve(dirPath, filename);
+  if (filePath.indexOf(dirPath) !== 0) {
+    throw new Error('Invalid path');
+  }
+
+  const content = fs.readFileSync(filePath, 'utf-8');
   const full    = JSON.parse(content);
   const locale  = filename.split('.')[0];
 
