@@ -118,13 +118,14 @@ class User < ApplicationRecord
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
   scope :matches_ip, ->(value) { left_joins(:ips).where('user_ips.ip <<= ?', value).group('users.id') }
 
-  before_validation :sanitize_languages
   before_validation :sanitize_role
-  before_validation :sanitize_time_zone
-  before_validation :sanitize_locale
   before_create :set_approved
   after_commit :send_pending_devise_notifications
   after_create_commit :trigger_webhooks
+
+  normalizes :locale, with: ->(locale) { I18n.available_locales.exclude?(locale.to_sym) ? nil : locale }
+  normalizes :time_zone, with: ->(time_zone) { ActiveSupport::TimeZone[time_zone].nil? ? nil : time_zone }
+  normalizes :chosen_languages, with: ->(chosen_languages) { chosen_languages.compact_blank.presence }
 
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
@@ -447,23 +448,8 @@ class User < ApplicationRecord
     @bypass_invite_request_check
   end
 
-  def sanitize_languages
-    return if chosen_languages.nil?
-
-    chosen_languages.compact_blank!
-    self.chosen_languages = nil if chosen_languages.empty?
-  end
-
   def sanitize_role
     self.role = nil if role.present? && role.everyone?
-  end
-
-  def sanitize_time_zone
-    self.time_zone = nil if time_zone.present? && ActiveSupport::TimeZone[time_zone].nil?
-  end
-
-  def sanitize_locale
-    self.locale = nil if locale.present? && I18n.available_locales.exclude?(locale.to_sym)
   end
 
   def prepare_new_user!
