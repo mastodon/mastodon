@@ -19,7 +19,7 @@ module.exports = {
     {
       loader: 'babel-loader',
       options: {
-        cacheDirectory: join(settings.cache_path, 'babel-loader'),
+        cacheDirectory: join(resolve(settings.cache_path), 'babel-loader'),
         cacheCompression: env.NODE_ENV === 'production',
         compact: env.NODE_ENV === 'production',
       },
