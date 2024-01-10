@@ -962,6 +962,7 @@ el:
     notification_preferences: Αλλαγή προτιμήσεων email
     salutation: "%{name},"
     settings: 'Άλλαξε τις προτιμήσεις email: %{link}'
+    unsubscribe: Κατάργηση εγγραφής
     view: 'Προβολή:'
     view_profile: Προβολή προφίλ
     view_status: Προβολή ανάρτησης
@@ -975,6 +976,8 @@ el:
     your_token: Το διακριτικό πρόσβασής σου
   auth:
     apply_for_account: Ζήτα έναν λογαριασμό
+    captcha_confirmation:
+      title: Ελεγχος ασφαλείας
     confirmations:
       wrong_email_hint: Εάν αυτή η διεύθυνση email δεν είναι σωστή, μπορείς να την αλλάξεις στις ρυθμίσεις λογαριασμού.
     delete_account: Διαγραφή λογαριασμού
@@ -1238,6 +1241,8 @@ el:
     status: Κατάσταση
     success: Τα δεδομένα σου μεταφορτώθηκαν επιτυχώς και θα επεξεργαστούν σύντομα
     time_started: Ξεκίνησε στις
+    titles:
+      following: Εισαγωγή λογαριασμών που ακολουθείτε
     type: Τύπος εισαγωγής
     type_groups:
       destructive: Μπλοκ & σίγαση
@@ -1245,7 +1250,7 @@ el:
       blocking: Λίστα αποκλεισμού
       bookmarks: Σελιδοδείκτες
       domain_blocking: Λίστα αποκλεισμένων τομέων
-      following: Λίστα ακολούθων
+      following: Λίστα ατόμων που ακολουθείτε
       muting: Λίστα αποσιωπήσεων
     upload: Μεταμόρφωση
   invites:
@@ -1420,7 +1425,7 @@ el:
     follow_failure: Δεν ήταν δυνατή η παρακολούθηση ορισμένων από τους επιλεγμένους λογαριασμούς.
     follow_selected_followers: Ακολούθησε τους επιλεγμένους ακόλουθους
     followers: Ακόλουθοι
-    following: Ακολουθείς
+    following: Ακολουθείτε
     invited: Προσκεκλημένοι
     last_active: Τελευταία ενεργός
     most_recent: Πιο πρόσφατος

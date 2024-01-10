@@ -424,6 +424,7 @@ ie:
       view: Vider dominia-blocca
     email_domain_blocks:
       add_new: Adjunter un nov
+      allow_registrations_with_approval: Permisser registrationes con aprobation
       attempts_over_week:
         one: "%{count} registration-prova durant li ultim semane"
         other: "%{count} registration-prova durant li ultim semane"
@@ -439,6 +440,7 @@ ie:
         title: Bloccar nov email-dominia
       no_email_domain_block_selected: Null email-dominia-bloccas esset changeat pro que null esset selectet
       not_permitted: Ne permisset
+      resolved_dns_records_hint_html: Li dominia-nómine resolue se al seque dominias MX, queles es in fine responsabil por acceptar e-posta. Bloccar un dominia MX va bloccar inscriptiones de quelcunc e-posta quel usa li sam dominia MX, mem si li visibil dominia-nómine es diferent. <strong>Esse caut e ne blocca majori provisores de e-posta.</strong>
       resolved_through_html: Resoluet per %{domain}
       title: Bloccat email-dominias
     export_domain_allows:
@@ -672,11 +674,13 @@ ie:
       description_html: Con <strong>roles por usatores</strong>, tu posse customisar li functiones e locs de Mastodon in queles tui usatores posse accesser.
       edit: Modificar rol '%{name}'
       everyone: Permissiones predefinit
+      everyone_full_description_html: Ti es li <strong>fundamental rol</strong> quel afecta <strong>omni usatores</strong>, mem tis sin un assignat rol. Omni altri roles hereda permissiones de it.
       permissions_count:
         one: "%{count} permission"
         other: "%{count} permissiones"
       privileges:
         administrator: Administrator
+        administrator_description: Usatores con ti permission va trapassar omni permission
         delete_user_data: Deleter Data de Usator
         delete_user_data_description: Possibilisa que usatores mey deleter li data de altri usatores strax
         invite_users: Invitar Usatores
@@ -726,6 +730,8 @@ ie:
     settings:
       about:
         manage_rules: Gerer regules de servitor
+        preamble: Provider detalliat information pri qualmen li servitor es operat, moderat, payat.
+        rules_hint: Hay un dedicat area por regules queles vor usatores es expectat obedir.
         title: Pri
       appearance:
         preamble: Customisar li interfacie web de Mastodon.
@@ -736,7 +742,10 @@ ie:
         desc_html: To ci usa extern scrites de hCaptcha, quel posse esser ínquietant pro rasones de securitá e privatie. In plu, <strong>it posse far li processu de registration mult plu desfacil (particularimen por tis con deshabilitás)</strong>. Pro ti rasones, ples considerar alternativ mesuras, tales quam registration per aprobation o invitation.
         title: Exige que nov usatores solue un CAPTCHA por confirmar lor conto
       content_retention:
+        preamble: Decider qualmen usator-generat contenete es inmagasinat in Mastodon.
         title: Retention de contenete
+      default_noindex:
+        desc_html: Afecta omni usatores qui ne ha changeat ti parametre personalmen
       discovery:
         follow_recommendations: Seque-recomandationes
         preamble: Exposir interessant contenete es importantissim por incorporar nov usatores qui fórsan conosse nequi che Mastodon. Decider qualmen diferent utensiles de decovrition functiona che vor servitor.
@@ -771,11 +780,13 @@ ie:
       critical_update: Critic — ples actualisar rapidmen
       description: On recomanda que vu actualisa vor Mastodon-servitor regularimen por profiter del max recent fixes e facultates. In plu, quelcvez it es critic actualisar Mastodon promptmen por evitar problemas de securitá. Pro ti rasones, Mastodon questiona chascun 30 minutes ca hay actualisationes, e va notificar vos secun vor parametres pri email-notificationes.
       documentation_link: Aprender plu
+      release_notes: Version-notas
       title: Actualisationes disponibil
       type: Specie
       types:
         major: Majori lansament
         minor: Minori lansament
+        patch: Lapp-version — bug-corectiones e changes facil a aplicar
       version: Version
     statuses:
       account: Autor
@@ -967,6 +978,7 @@ ie:
       body: Nov versiones de Mastodon ha esset lansat, vu fórsan vole actualisar!
       subject: Nov versiones Mastodon es disponibil por %{instance}!
     new_trends:
+      body: 'Li sequent elementes besona un revision ante que on posse monstrar les publicmen:'
       new_trending_links:
         title: Populari ligamentes
       new_trending_statuses:
@@ -1385,10 +1397,12 @@ ie:
   media_attachments:
     validations:
       images_and_video: On ne posse atachar un video a un posta quel ja contene images
+      not_ready: Ne posse atachar files ancor sub tractament. Prova denov pos ne long!
       too_many: Ne posse atachar plu quam 4 files
   migrations:
     acct: Translocat a
     cancel: Anullar redirection
+    cancel_explanation: Anullar li redirection va reactivisar tui actual conto, ma ne va restaurar sequitores queles ha esset movet a ti-ta conto.
     cancelled_msg: Anullat redirection con successe.
     errors:
       already_moved: es li sam conto a equel tu ha ja translocat
@@ -1397,6 +1411,9 @@ ie:
       not_found: ne posset esser trovat
     followers_count: Sequitores al témpor de translocation
     incoming_migrations: Translocant de un conto diferent
+    incoming_migrations_html: Por mover de un altri conto a ti-ci, erstmen tu deve <a href="%{path}">crear un alias de conto</a>.
+    moved_msg: Tui conto nu redirecte a %{acct} e tui sequitores es in li processu de esser movet.
+    not_redirecting: Tui conto redirecte a null altri conto actualmen.
     on_cooldown: Tu ha recentmen migrat tui conto. Ti function va esser disponibil denov pos %{count} dies.
     past_migrations: Passat migrationes
     proceed_with_move: Translocar sequitores
@@ -1406,7 +1423,12 @@ ie:
     warning:
       backreference_required: Li nov conto deve in prim esser configurat por retroreferentiar ti-ci conto
       before: 'Ante proceder, ples leer ti notas cuidosimen:'
+      cooldown: Pos mover se, hay un periode de atendida durant quel tu ne va posser mover te denov
+      disabled_account: Tui actual conto ne va esser completmen usabil pos to. Támen, tu va posser accesser li exportation de data, e anc reactivisation.
+      followers: Ti-ci action va mover omni sequitores del actual conto al nov conto
+      only_redirect_html: Alternativmen, tu posse <a href="%{path}">solmen meter un redirection sur tui profil</a>.
       other_data: Necun altri data va esser translocat automaticmen
+      redirect: Li profil de tui actual conto va esser actualisat con un anuncie de redirection e va esser excludet de serchas
   moderation:
     title: Moderation
   move_handler:
@@ -1805,6 +1827,7 @@ ie:
   verification:
     extra_instructions_html: '<strong>Nota</strong>: Li ligament in tui websitu posse esser ínvisibil. Li important parte es <code>rel="me"</code> quel prevente fals self-identification in websitus con contenete generat de usatores. Tu posse mem usar un <code>link</code> element in li cap-section del págine vice <code>a</code>, ma li HTML code deve esser accessibil sin executer JavaScript.'
     here_is_how: Vide qualmen
+    hint_html: "<strong>Verificar tui identitá che Mastodon es por omnes.</strong> Basat sur apert web-criteries, líber nu e sempre. Omno quel tu besona es un websitu personal per quel gente reconosse te. Quande tu fa un ligament a tui websitu de tui profil, on va controlar que li websitu have un ligament reciproc a tui profil e monstrar un visual indicator sur it."
     instructions_html: Copiar e collar li code ci infra in li HTML de tui web-situ. Poy adjunter li adresse de tui web-situ ad-in un del aditional campes sur tui profil ex li section "Modificar profil" e salvar li changes.
     verification: Verification
     verified_links: Tui verificat ligamentes
@@ -1815,9 +1838,12 @@ ie:
       success: Tui clave de securitá esset adjuntet con successe.
     delete: Deleter
     delete_confirmation: Vole tu vermen deleter ti-ci clave de securitá?
+    description_html: Si tu activisa <strong>autentication per clave de securitá</strong>, aperter session va postular que tu usa un de tui claves de securitá.
     destroy:
+      error: Un problema evenit durant li deletion de tui clave de securitá. Ples provar denov.
       success: Tui clave de securitá esset successosimen deletet.
     invalid_credential: Ínvalid clave de securitá
     not_enabled: Tu ancor ne ha possibilisat WebAuthn
     not_supported: Ti-ci navigator ne subtene claves de securitá
+    otp_required: Por usar claves de securitá, ples activisar 2-factor autentication.
     registered_on: Adheret ye %{date}

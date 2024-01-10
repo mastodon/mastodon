@@ -23,7 +23,7 @@ describe 'email confirmation flow when captcha is enabled' do
       expect(user.reload.confirmed?).to be false
 
       # It redirects to app and confirms user
-      click_button I18n.t('challenge.confirm')
+      click_on I18n.t('challenge.confirm')
       expect(user.reload.confirmed?).to be true
       expect(page).to have_current_path(/\A#{client_app.confirmation_redirect_uri}/, url: true)
 

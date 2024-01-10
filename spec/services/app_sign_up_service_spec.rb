@@ -27,6 +27,27 @@ RSpec.describe AppSignUpService, type: :service do
       end
     end
 
+    context 'when the email address requires approval' do
+      before do
+        Setting.registrations_mode = 'open'
+        Fabricate(:email_domain_block, allow_with_approval: true, domain: 'email.com')
+      end
+
+      it 'creates an unapproved user', :aggregate_failures do
+        access_token = subject.call(app, remote_ip, params)
+        expect(access_token).to_not be_nil
+        expect(access_token.scopes.to_s).to eq 'read write'
+
+        user = User.find_by(id: access_token.resource_owner_id)
+        expect(user).to_not be_nil
+        expect(user.confirmed?).to be false
+        expect(user.approved?).to be false
+
+        expect(user.account).to_not be_nil
+        expect(user.invite_request).to be_nil
+      end
+    end
+
     context 'when registrations are closed' do
       before do
         Setting.registrations_mode = 'none'

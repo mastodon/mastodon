@@ -48,18 +48,30 @@ module Mastodon::CLI
 
         exit(1) unless ask('Type in the domain of the server to confirm:') == Rails.configuration.x.local_domain
 
-        say('This operation WILL NOT be reversible.', :yellow)
-        say('While the data won\'t be erased locally, the server will be in a BROKEN STATE afterwards.', :yellow)
-        say('The deletion process itself may take a long time, and will be handled by Sidekiq, so do not shut it down until it has finished (you will be able to re-run this command to see the state of the self-destruct process).', :yellow)
+        say(<<~WARNING, :yellow)
+          This operation WILL NOT be reversible.
+          While the data won't be erased locally, the server will be in a BROKEN STATE afterwards.
+          The deletion process itself may take a long time, and will be handled by Sidekiq, so do not shut it down until it has finished (you will be able to re-run this command to see the state of the self-destruct process).
+        WARNING
 
         exit(1) if no?('Are you sure you want to proceed?')
 
-        self_destruct_value = Rails.application.message_verifier('self-destruct').generate(Rails.configuration.x.local_domain)
-        say('To switch Mastodon to self-destruct mode, add the following variable to your evironment (e.g. by adding a line to your `.env.production`) and restart all Mastodon processes:', :green)
-        say("  SELF_DESTRUCT=#{self_destruct_value}", :green)
-        say("\nYou can re-run this command to see the state of the self-destruct process.", :green)
+        say(<<~INSTRUCTIONS, :green)
+          To switch Mastodon to self-destruct mode, add the following variable to your evironment (e.g. by adding a line to your `.env.production`) and restart all Mastodon processes:
+            SELF_DESTRUCT=#{self_destruct_value}
+          You can re-run this command to see the state of the self-destruct process.
+        INSTRUCTIONS
       rescue Interrupt
         exit(1)
+      end
+
+      private
+
+      def self_destruct_value
+        Rails
+          .application
+          .message_verifier('self-destruct')
+          .generate(Rails.configuration.x.local_domain)
       end
     end
   end
