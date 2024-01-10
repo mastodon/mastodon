@@ -14,7 +14,7 @@ describe BackupWorker do
     let(:backup) { Fabricate(:backup) }
     let!(:other_backup) { Fabricate(:backup, user: backup.user) }
 
-    it 'sends the backup to the service and removes other backups' do
+    it 'sends the backup to the service and removes other backups', :sidekiq_inline do
       expect do
         worker.perform(backup.id)
       end.to change(UserMailer.deliveries, :size).by(1)

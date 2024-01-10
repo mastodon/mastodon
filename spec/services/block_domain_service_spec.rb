@@ -68,7 +68,7 @@ RSpec.describe BlockDomainService, type: :service do
       expect(already_banned_account.reload.silenced_at).to_not eq DomainBlock.find_by(domain: 'evil.org').created_at
     end
 
-    it 'leaves the domains status and attachments, but clears media' do
+    it 'leaves the domains status and attachments, but clears media', :sidekiq_inline do
       expect { bad_status_plain.reload }.to_not raise_error
       expect { bad_status_with_attachment.reload }.to_not raise_error
       expect { bad_attachment.reload }.to_not raise_error

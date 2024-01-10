@@ -58,7 +58,7 @@ RSpec.describe User do
     end
   end
 
-  describe 'scopes' do
+  describe 'scopes', :sidekiq_inline do
     describe 'recent' do
       it 'returns an array of recent users ordered by id' do
         first_user = Fabricate(:user)
@@ -452,7 +452,7 @@ RSpec.describe User do
         expect(user.confirmed_at).to be_present
       end
 
-      it 'delivers mails' do
+      it 'delivers mails', :sidekiq_inline do
         expect(ActionMailer::Base.deliveries.count).to eq 2
       end
     end

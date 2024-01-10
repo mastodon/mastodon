@@ -26,7 +26,6 @@ Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: RUN_SYSTEM_SPECS)
-Sidekiq::Testing.inline!
 Sidekiq.logger = nil
 
 # System tests config
@@ -96,11 +95,8 @@ RSpec.configure do |config|
     self.use_transactional_tests = true
   end
 
-  config.around(:each, :sidekiq_fake) do |example|
-    Sidekiq::Testing.fake! do
-      example.run
-      Sidekiq::Worker.clear_all
-    end
+  config.around(:each, :sidekiq_inline) do |example|
+    Sidekiq::Testing.inline!(&example)
   end
 
   config.before :each, type: :cli do

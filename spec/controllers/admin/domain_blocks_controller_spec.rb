@@ -176,7 +176,7 @@ RSpec.describe Admin::DomainBlocksController do
     end
   end
 
-  describe 'PUT #update' do
+  describe 'PUT #update', :sidekiq_inline do
     subject do
       post :update, params: { :id => domain_block.id, :domain_block => { domain: 'example.com', severity: new_severity }, 'confirm' => '' }
     end
