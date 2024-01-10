@@ -95,6 +95,19 @@ RSpec.configure do |config|
     end
   end
 
+  config.around :each, type: :system do |example|
+    # Streaming server needs DB access but `use_transactional_tests` rolls back
+    # every transaction. Disable this feature for streaming tests, and use
+    # DatabaseCleaner to clean the database tables between each test.
+    self.use_transactional_tests = false
+
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+
+    self.use_transactional_tests = true
+  end
+
   private
 
   def streaming_server_manager
