@@ -10,7 +10,16 @@ module SettingsHelper
   end
 
   def featured_tags_hint(recently_used_tags)
-    safe_join([t('simple_form.hints.featured_tag.name'), safe_join(recently_used_tags.map { |tag| link_to("##{tag.display_name}", settings_featured_tags_path(featured_tag: { name: tag.name }), method: :post) }, ', ')], ' ')
+    safe_join(
+      [
+        t('simple_form.hints.featured_tag.name'),
+        safe_join(
+          recently_used_tags.map { |tag| link_to("##{tag.display_name}", settings_featured_tags_path(featured_tag: { name: tag.name }), method: :post) },
+          ', '
+        ),
+      ],
+      ' '
+    )
   end
 
   def session_device_icon(session)
