@@ -7,8 +7,7 @@ module Admin::SettingsHelper
 
   def login_activity_title(activity)
     t(
-      login_activity_key(activity),
-      scope: :login_activities,
+      "login_activities.#{login_activity_key(activity)}",
       method: login_activity_method(activity),
       ip: login_activity_ip(activity),
       browser: login_activity_browser(activity)
@@ -48,9 +47,9 @@ module Admin::SettingsHelper
 
   def login_activity_method_string(activity)
     if activity.omniauth?
-      t(activity.provider, scope: 'auth.providers')
+      t("auth.providers.#{activity.provider}")
     else
-      t(activity.authentication_method, scope: 'login_activities.authentication_methods')
+      t("login_activities.authentication_methods.#{activity.authentication_method}")
     end
   end
 
