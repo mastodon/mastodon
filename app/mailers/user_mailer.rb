@@ -202,6 +202,6 @@ class UserMailer < Devise::Mailer
   end
 
   def locale
-    @resource.locale.presence || I18n.default_locale
+    @resource.locale.presence || I18n.locale || I18n.default_locale
   end
 end

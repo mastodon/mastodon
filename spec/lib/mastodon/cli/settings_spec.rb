@@ -20,37 +20,30 @@ describe Mastodon::CLI::Settings do
     describe '#open' do
       let(:action) { :open }
 
-      it 'changes "registrations_mode" to "open"' do
-        expect { subject }.to change(Setting, :registrations_mode).from(nil).to('open')
-      end
-
-      it 'displays success message' do
+      it 'changes "registrations_mode" to "open" and displays success' do
         expect { subject }
-          .to output_results('OK')
+          .to change(Setting, :registrations_mode).from(nil).to('open')
+          .and output_results('OK')
       end
     end
 
     describe '#approved' do
       let(:action) { :approved }
 
-      it 'changes "registrations_mode" to "approved"' do
-        expect { subject }.to change(Setting, :registrations_mode).from(nil).to('approved')
-      end
-
-      it 'displays success message' do
+      it 'changes "registrations_mode" to "approved" and displays success' do
         expect { subject }
-          .to output_results('OK')
+          .to change(Setting, :registrations_mode).from(nil).to('approved')
+          .and output_results('OK')
       end
 
       context 'with --require-reason' do
         let(:options) { { require_reason: true } }
 
-        it 'changes "registrations_mode" to "approved"' do
-          expect { subject }.to change(Setting, :registrations_mode).from(nil).to('approved')
-        end
-
-        it 'sets "require_invite_text" to "true"' do
-          expect { subject }.to change(Setting, :require_invite_text).from(false).to(true)
+        it 'changes registrations_mode and require_invite_text' do
+          expect { subject }
+            .to output_results('OK')
+            .and change(Setting, :registrations_mode).from(nil).to('approved')
+            .and change(Setting, :require_invite_text).from(false).to(true)
         end
       end
     end
@@ -58,13 +51,10 @@ describe Mastodon::CLI::Settings do
     describe '#close' do
       let(:action) { :close }
 
-      it 'changes "registrations_mode" to "none"' do
-        expect { subject }.to change(Setting, :registrations_mode).from(nil).to('none')
-      end
-
-      it 'displays success message' do
+      it 'changes "registrations_mode" to "none" and displays success' do
         expect { subject }
-          .to output_results('OK')
+          .to change(Setting, :registrations_mode).from(nil).to('none')
+          .and output_results('OK')
       end
     end
   end

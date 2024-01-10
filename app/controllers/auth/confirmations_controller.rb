@@ -62,7 +62,7 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
   end
 
   def captcha_user_bypass?
-    return true if @confirmation_user.nil? || @confirmation_user.confirmed?
+    @confirmation_user.nil? || @confirmation_user.confirmed?
   end
 
   def require_unconfirmed!

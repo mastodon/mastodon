@@ -1260,11 +1260,20 @@ eo:
       overwrite_long: Anstataŭigi la nunajn registrojn per la novaj
     preface: Vi povas importi datumojn, kiujn vi eksportis el alia servilo, kiel liston de homoj, kiujn vi sekvas aŭ blokas.
     success: Viaj datumoj estis sukcese alŝutitaj kaj estos traktitaj kiel planite
+    titles:
+      following: Importado de sekvaj kontoj
+      lists: Importi listojn
+      muting: Importado de silentigitaj kontoj
+    type: Importi tipon
+    type_groups:
+      constructive: Sekvoj & Legosignoj
+      destructive: Blokas kaj silentigas
     types:
       blocking: Listo de blokitoj
       bookmarks: Legosignoj
       domain_blocking: Listo de blokitaj domajnoj
       following: Listo de sekvatoj
+      lists: Listoj
       muting: Listo de silentigitoj
     upload: Alŝuti
   invites:
@@ -1279,6 +1288,7 @@ eo:
       '86400': 1 tago
     expires_in_prompt: Neniam
     generate: Krei
+    invalid: Ĉi tiu invito ne validas
     invited_by: 'Vi estis invitita de:'
     max_uses:
       one: 1 uzo
@@ -1305,6 +1315,18 @@ eo:
     title: Aŭtentiga historio
   mail_subscriptions:
     unsubscribe:
+      action: Jes, malabonu
+      complete: Malabonita
+      confirmation_html: Ĉu vi certas, ke vi volas malaboni por ricevi %{type} por Mastodon ĉe %{domain} al via retpoŝto ĉe %{email}? Vi ĉiam povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
+      emails:
+        notification_emails:
+          favourite: plej ŝatataj sciigaj retpoŝtoj
+          follow: sekvu sciigajn retmesaĝojn
+          follow_request: sekvu petajn retpoŝtojn
+          mention: menciu sciigajn retmesaĝojn
+          reblog: plifortigi sciigajn retpoŝtojn
+      resubscribe_html: Se vi malabonis erare, vi povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
+      success_html: Vi ne plu ricevos %{type} por Mastodon sur %{domain} al via retpoŝto ĉe %{email}.
       title: Malaboni
   media_attachments:
     validations:
@@ -1385,6 +1407,7 @@ eo:
     update:
       subject: "%{name} redaktis afiŝon"
   notifications:
+    administration_emails: Admin retpoŝtaj sciigoj
     email_events: Eventoj por retpoŝtaj sciigoj
     email_events_hint: 'Elekti la eventojn pri kioj vi volas ricevi sciigojn:'
     other_settings: Aliaj agordoj de sciigoj
@@ -1421,6 +1444,7 @@ eo:
       expired: La enketo jam finiĝis
       invalid_choice: La elektita voĉdono ne ekzistas
       over_character_limit: ne povas esti po pli longa ol %{max} signoj
+      self_vote: Vi ne povas voĉdoni en viaj propraj balotenketoj
       too_few_options: devas enhavi pli da unu propono
       too_many_options: ne povas enhavi pli da %{max} proponoj
   preferences:
@@ -1428,7 +1452,14 @@ eo:
     posting_defaults: Afiŝaj defaŭltoj
     public_timelines: Publikaj templinioj
   privacy:
+    hint_html: "<strong>Agordu kiel vi volas ke via profilo kaj viaj afiŝoj estu trovitaj.</strong> Diversaj funkcioj en Mastodon povas helpi vin atingi pli larĝan publikon kiam ĝi estas ebligita. Prenu momenton por revizii ĉi tiujn agordojn por certigi, ke ili taŭgas por via uzokazo."
     privacy: Privateco
+    privacy_hint_html: Kontrolu kiom vi volas malkaŝi por la avantaĝo de aliaj. Homoj malkovras interesajn profilojn kaj bonegajn apojn foliumante la sekvaĵojn de aliaj homoj kaj vidante de kiuj aplikaĵoj ili afiŝas, sed vi eble preferas konservi ĝin kaŝita.
+    reach: Atingo
+    reach_hint_html: Kontrolu ĉu vi volas esti malkovrita kaj sekvita de novaj homoj. Ĉu vi volas ke viaj afiŝoj aperu sur la ekrano Esplori? Ĉu vi volas ke aliaj homoj vidu vin en siaj sekvaj rekomendoj? Ĉu vi volas akcepti ĉiujn novajn sekvantojn aŭtomate, aŭ havi granulan kontrolon pri ĉiu?
+    search: Serĉu
+    search_hint_html: Kontrolu kiel vi volas esti trovita. Ĉu vi volas, ke homoj trovu vin laŭ tio, pri kio vi publike afiŝis? Ĉu vi volas, ke homoj ekster Mastodonto trovu vian profilon dum serĉado en la reto? Bonvolu memori, ke totala ekskludo de ĉiuj serĉiloj ne povas esti garantiita por publika informo.
+    title: Privateco kaj atingo
   privacy_policy:
     title: Privateca politiko
   reactions:
@@ -1470,6 +1501,9 @@ eo:
     over_daily_limit: Vi transpasis la limigon al %{limit} samtage planitaj mesaĝoj
     over_total_limit: Vi transpasis la limigon al %{limit} planitaj mesaĝoj
     too_soon: La planita dato devas esti en la estonteco
+  self_destruct:
+    lead_html: Bedaŭrinde, <strong>%{domain}</strong> konstante fermiĝas. Se vi havis konton tie, vi ne povos daŭrigi uzi ĝin, sed vi ankoraŭ povas peti sekurkopion de viaj datumoj.
+    title: Ĉi tiu servilo fermiĝas
   sessions:
     activity: Lasta ago
     browser: Retumilo
@@ -1638,6 +1672,10 @@ eo:
       default: "%Y.%b.%d, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+  translation:
+    errors:
+      quota_exceeded: La tutservila uzkvoto por la tradukservo estas superita.
+      too_many_requests: Lastatempe estis tro multaj petoj al la tradukservo.
   two_factor_authentication:
     add: Aldoni
     disable: Malebligi 2FA-n
@@ -1717,6 +1755,7 @@ eo:
       title: Bonvenon, %{name}!
   users:
     follow_limit_reached: Vi ne povas sekvi pli ol %{limit} homo(j)
+    go_to_sso_account_settings: Iru al la agordoj de la konto de via identeca provizanto
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
     otp_lost_help_html: Se vi perdas aliron al ambaŭ, vi povas kontakti %{email}
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.

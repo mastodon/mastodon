@@ -222,7 +222,7 @@ class FocalPointModal extends ImmutablePureComponent {
       const worker = createWorker({
         workerPath: tesseractWorkerPath,
         corePath: tesseractCorePath,
-        langPath: `${assetHost}/ocr/lang-data/`,
+        langPath: `${assetHost}/ocr/lang-data`,
         logger: ({ status, progress }) => {
           if (status === 'recognizing text') {
             this.setState({ ocrStatus: 'detecting', progress });

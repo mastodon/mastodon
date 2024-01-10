@@ -178,11 +178,11 @@ RSpec.describe Remotable do
 
             allow(foo).to receive(:public_send)
             foo.hoge_remote_url = url
-            expect(foo).to have_received(:public_send).with("download_#{hoge}!", url)
+            expect(foo).to have_received(:public_send).with(:"download_#{hoge}!", url)
 
             allow(foo).to receive(:public_send)
             foo.download_hoge!(url)
-            expect(foo).to have_received(:public_send).with("#{hoge}=", response_with_limit)
+            expect(foo).to have_received(:public_send).with(:"#{hoge}=", response_with_limit)
           end
         end
       end

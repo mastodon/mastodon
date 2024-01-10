@@ -4,12 +4,6 @@ require 'rails_helper'
 
 RSpec.describe 'Activity' do
   describe 'GET /api/v1/instance/activity' do
-    around do |example|
-      original = Setting.activity_api_enabled
-      example.run
-      Setting.activity_api_enabled = original
-    end
-
     context 'with activity api enabled' do
       before { Setting.activity_api_enabled = true }
 

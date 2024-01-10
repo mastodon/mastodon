@@ -10,7 +10,7 @@ describe PollExpirationNotifyWorker do
   let(:remote?) { false }
   let(:poll_vote) { Fabricate(:poll_vote, poll: poll) }
 
-  describe '#perform', :sidekiq_fake do
+  describe '#perform' do
     it 'runs without error for missing record' do
       expect { worker.perform(nil) }.to_not raise_error
     end

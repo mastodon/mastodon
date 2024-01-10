@@ -4,12 +4,6 @@ require 'rails_helper'
 
 RSpec.describe 'Domain Blocks' do
   describe 'GET /api/v1/instance/domain_blocks' do
-    around do |example|
-      original = Setting.show_domain_blocks
-      example.run
-      Setting.show_domain_blocks = original
-    end
-
     before do
       Fabricate(:domain_block)
     end

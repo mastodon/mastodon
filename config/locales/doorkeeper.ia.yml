@@ -1,0 +1,68 @@
+---
+ia:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nomine de application
+        website: Sito web de application
+  doorkeeper:
+    applications:
+      buttons:
+        cancel: Cancellar
+        edit: Modificar
+      confirmations:
+        destroy: Es tu secur?
+      edit:
+        title: Modificar application
+      index:
+        application: Application
+        delete: Deler
+        name: Nomine
+        new: Nove application
+        show: Monstrar
+        title: Tu applicationes
+      new:
+        title: Nove application
+      show:
+        actions: Actiones
+        title: 'Application: %{name}'
+    authorizations:
+      error:
+        title: Ocurreva un error
+    authorized_applications:
+      confirmations:
+        revoke: Es tu secur?
+      index:
+        scopes: Permissiones
+        title: Tu applicationes autorisate
+    flash:
+      applications:
+        create:
+          notice: Application create.
+        destroy:
+          notice: Application delite.
+        update:
+          notice: Application actualisate.
+    grouped_scopes:
+      title:
+        accounts: Contos
+        admin/accounts: Gestion de contos
+        bookmarks: Marcapaginas
+        conversations: Conversationes
+        favourites: Favoritos
+        lists: Listas
+        notifications: Notificationes
+        push: Notificationes push
+        search: Cercar
+        statuses: Messages
+    layouts:
+      admin:
+        nav:
+          applications: Applicationes
+          oauth2_provider: Fornitor OAuth2
+    scopes:
+      write:accounts: modificar tu profilo
+      write:favourites: messages favorite
+      write:lists: crear listas
+      write:notifications: rader tu notificationes
+      write:statuses: publicar messages

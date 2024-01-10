@@ -43,14 +43,19 @@ class Form::Import
   validate :validate_data
 
   def guessed_type
-    return :muting if csv_headers_match?('Hide notifications')
-    return :following if csv_headers_match?('Show boosts') || csv_headers_match?('Notify on new posts') || csv_headers_match?('Languages')
-    return :following if file_name_matches?('follows') || file_name_matches?('following_accounts')
-    return :blocking if file_name_matches?('blocks') || file_name_matches?('blocked_accounts')
-    return :muting if file_name_matches?('mutes') || file_name_matches?('muted_accounts')
-    return :domain_blocking if file_name_matches?('domain_blocks') || file_name_matches?('blocked_domains')
-    return :bookmarks if file_name_matches?('bookmarks')
-    return :lists if file_name_matches?('lists')
+    if csv_headers_match?('Hide notifications') || file_name_matches?('mutes') || file_name_matches?('muted_accounts')
+      :muting
+    elsif csv_headers_match?('Show boosts') || csv_headers_match?('Notify on new posts') || csv_headers_match?('Languages') || file_name_matches?('follows') || file_name_matches?('following_accounts')
+      :following
+    elsif file_name_matches?('blocks') || file_name_matches?('blocked_accounts')
+      :blocking
+    elsif file_name_matches?('domain_blocks') || file_name_matches?('blocked_domains')
+      :domain_blocking
+    elsif file_name_matches?('bookmarks')
+      :bookmarks
+    elsif file_name_matches?('lists')
+      :lists
+    end
   end
 
   # Whether the uploaded CSV file seems to correspond to a different import type than the one selected

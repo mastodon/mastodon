@@ -70,6 +70,7 @@ describe Auth::PasswordsController do
 
       it 'deactivates all sessions' do
         expect(user.session_activations.count).to eq 0
+        expect { session_activation.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
       it 'revokes all access tokens' do
@@ -78,6 +79,7 @@ describe Auth::PasswordsController do
 
       it 'removes push subscriptions' do
         expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
+        expect { web_push_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
