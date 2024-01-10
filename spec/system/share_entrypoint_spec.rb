@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'ShareEntrypoint' do
+describe 'ShareEntrypoint', :streaming do
   include ProfileStories
 
   subject { page }
