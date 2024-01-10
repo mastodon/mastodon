@@ -114,9 +114,9 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
 
         aIndex[char] = aIndex[char] || {};
         if (Object.prototype.hasOwnProperty.call(aIndex, char)) {
-            aIndex = aIndex[char];
+          aIndex = aIndex[char];
         } else {
-            throw new Error('Invalid attribute modification attempt detected');
+          throw new Error('Invalid attribute modification attempt detected');
         }
 
         if (!aIndex.results) {
