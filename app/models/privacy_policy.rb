@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 class PrivacyPolicy < ActiveModelSerializers::Model
-  DEFAULT_PRIVACY_POLICY = <<~TXT.freeze
-    #{Rails.root.join('config', 'templates', 'privacy-policy.md').read}
-  TXT
-
+  DEFAULT_PRIVACY_POLICY = Rails.root.join('config', 'templates', 'privacy-policy.md').read
   DEFAULT_UPDATED_AT = DateTime.new(2022, 10, 7).freeze
 
   attributes :updated_at, :text
