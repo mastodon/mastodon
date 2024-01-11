@@ -208,6 +208,7 @@ GEM
     crass (1.0.6)
     css_parser (1.14.0)
       addressable
+    csv (3.2.8)
     database_cleaner-active_record (2.1.0)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
@@ -716,7 +717,7 @@ GEM
       rufus-scheduler (~> 3.2)
       sidekiq (>= 6, < 8)
       tilt (>= 1.4.0)
-    sidekiq-unique-jobs (7.1.30)
+    sidekiq-unique-jobs (7.1.31)
       brpoplpush-redis_script (> 0.1.1, <= 2.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       redis (< 5.0)
@@ -845,6 +846,7 @@ DEPENDENCIES
   color_diff (~> 0.1)
   concurrent-ruby
   connection_pool
+  csv (~> 3.2)
   database_cleaner-active_record
   debug (~> 1.8)
   devise (~> 4.9)
