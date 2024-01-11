@@ -38,6 +38,10 @@ table {
   border: none;
 }
 
+table + p {
+  margin-top: 16px;
+}
+
 .email {
   min-width: 280px;
   font-family: Inter, 'Lucida Grande', sans-serif;
@@ -93,6 +97,15 @@ table {
 
     &:not(:last-child) {
       margin-bottom: 16px;
+    }
+
+    a:not([class]) {
+      color: #6364ff;
+      text-decoration: none;
+
+      &:hover {
+        color: #563acc !important;
+      }
     }
   }
 }
@@ -168,7 +181,7 @@ table {
 }
 
 .email-header-heading-txt-td {
-  vertical-align: top;
+  vertical-align: middle;
   padding-left: 16px;
   padding-right: 16px;
 
@@ -210,6 +223,23 @@ table {
 .email-body-padding-td {
   padding: 0 32px 32px;
   mso-padding-alt: 32px; /* stylelint-disable-line property-no-unknown -- Proprietary property for Outlook on Windows. */
+}
+
+.email-body-padding-td {
+  & > p {
+    font-size: 14px;
+    line-height: 20px;
+    color: #17063b;
+
+    a {
+      color: #6364ff;
+      text-decoration: none;
+
+      &:hover {
+        color: #563acc !important;
+      }
+    }
+  }
 }
 
 // Footer
@@ -358,6 +388,26 @@ table {
   a {
     color: #746a89;
   }
+}
+
+// Purple frame for emphasis
+.email-frame-table {
+  background-color: #efefff;
+  border-radius: 8px;
+}
+
+.email-frame-td {
+  padding: 16px;
+}
+
+.email-frame-wrapper-td {
+  padding-bottom: 16px;
+}
+
+.email-frame-td > p {
+  text-align: center;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 // Responsive

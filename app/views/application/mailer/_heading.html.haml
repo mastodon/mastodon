@@ -7,5 +7,7 @@
             %td.email-header-heading-img-td
               = image_tag image_url, alt: '', width: 56, height: 56
           %td.email-header-heading-txt-td
-            %h1= title
-            %p= subtitle
+            - if defined?(title)
+              %h1= title
+            - if defined?(subtitle)
+              %p= subtitle
