@@ -9,7 +9,7 @@ class AddApplyToMentionsFlagToKeywordMutes < ActiveRecord::Migration[5.2]
 
   def up
     safety_assured do
-      add_column_with_default :glitch_keyword_mutes, :apply_to_mentions, :boolean, allow_null: false, default: true
+      add_column :glitch_keyword_mutes, :apply_to_mentions, :boolean, null: false, default: true
     end
   end
 
