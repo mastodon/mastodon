@@ -8,6 +8,16 @@ GIT
       jwt (~> 2.0)
 
 GIT
+  remote: https://github.com/dlindahl/omniauth-cas.git
+  revision: 9d9d3a91b316c55d49ab6e621977f2067010c5bf
+  ref: 9d9d3a91b316c55d49ab6e621977f2067010c5bf
+  specs:
+    omniauth-cas (3.0.0)
+      addressable (~> 2.8)
+      nokogiri (~> 1.12)
+      omniauth (~> 2.1)
+
+GIT
   remote: https://github.com/jhawthorn/nsa.git
   revision: e020fcc3a54d993ab45b7194d89ab720296c111b
   ref: e020fcc3a54d993ab45b7194d89ab720296c111b
@@ -17,16 +27,6 @@ GIT
       concurrent-ruby (~> 1.0, >= 1.0.2)
       sidekiq (>= 3.5)
       statsd-ruby (~> 1.4, >= 1.4.0)
-
-GIT
-  remote: https://github.com/stanhu/omniauth-cas.git
-  revision: 4211e6d05941b4a981f9a36b49ec166cecd0e271
-  ref: 4211e6d05941b4a981f9a36b49ec166cecd0e271
-  specs:
-    omniauth-cas (2.0.0)
-      addressable (~> 2.3)
-      nokogiri (~> 1.5)
-      omniauth (>= 1.2, < 3)
 
 GEM
   remote: https://rubygems.org/
