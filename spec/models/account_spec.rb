@@ -1009,4 +1009,27 @@ RSpec.describe Account do
       expect(subject.reload.followers_count).to eq 15
     end
   end
+
+  describe '.followable_by' do
+    context 'with follows and follow requests' do
+      let!(:account) { Fabricate(:account) }
+      let!(:eligible_account) { Fabricate(:account) }
+      let!(:following_account) { Fabricate(:account) }
+      let!(:follow_requested_account) { Fabricate(:account) }
+
+      before do
+        Fabricate :follow, account: account, target_account: following_account
+        Fabricate :follow_request, account: account, target_account: follow_requested_account
+      end
+
+      it 'returns accounts not already following or requested to follow' do
+        results = described_class.followable_by(account)
+
+        expect(results)
+          .to include(eligible_account)
+          .and not_include(following_account)
+          .and not_include(follow_requested_account)
+      end
+    end
+  end
 end
