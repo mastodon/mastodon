@@ -18,6 +18,7 @@ RSpec.describe AccountSuggestions::Source do
       let!(:follow_recommendation_muted_account) { Fabricate(:account) }
       let!(:follow_requested_account) { Fabricate(:account) }
       let!(:following_account) { Fabricate(:account) }
+      let!(:moved_account) { Fabricate(:account, moved_to_account: Fabricate(:account)) }
 
       before do
         Fabricate :account_domain_block, account: account, domain: account_domain_blocked_account.domain
@@ -38,6 +39,7 @@ RSpec.describe AccountSuggestions::Source do
           .and not_include(follow_recommendation_muted_account)
           .and not_include(follow_requested_account)
           .and not_include(following_account)
+          .and not_include(moved_account)
       end
     end
   end
