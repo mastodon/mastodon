@@ -2,7 +2,7 @@
 <%= raw Setting.custom_css %>
 
 <%- end %>
-<%- user_roles.each do |role| %>
+<%- @user_roles.each do |role| %>
 .user-role-<%= role.id %> {
   --user-role-accent: <%= role.color %>;
 }
