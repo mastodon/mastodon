@@ -104,18 +104,7 @@ module Mastodon
             'in the body of your migration class'
         end
 
-        # If default value is presented, use `add_column_with_default` method instead.
-        if options[:default]
-          add_column_with_default(
-            table_name,
-            column_name,
-            :datetime_with_timezone,
-            default: options[:default],
-            allow_null: options[:null]
-          )
-        else
-          add_column(table_name, column_name, :datetime_with_timezone, **options)
-        end
+        add_column(table_name, column_name, :datetime_with_timezone, **options)
       end
     end
 
@@ -375,34 +364,6 @@ module Mastodon
         # There are no more rows left to update.
         break unless stop_row
       end
-    end
-
-    # Adds a column with a default value without locking an entire table.
-    #
-    # This method runs the following steps:
-    #
-    # 1. Add the column with a default value of NULL.
-    # 2. Change the default value of the column to the specified value.
-    # 3. Update all existing rows in batches.
-    # 4. Set a `NOT NULL` constraint on the column if desired (the default).
-    #
-    # These steps ensure a column can be added to a large and commonly used
-    # table without locking the entire table for the duration of the table
-    # modification.
-    #
-    # table - The name of the table to update.
-    # column - The name of the column to add.
-    # type - The column type (e.g. `:integer`).
-    # default - The default value for the column.
-    # limit - Sets a column limit. For example, for :integer, the default is
-    #         4-bytes. Set `limit: 8` to allow 8-byte integers.
-    # allow_null - When set to `true` the column will allow NULL values, the
-    #              default is to not allow NULL values.
-    #
-    # This method can also take a block which is passed directly to the
-    # `update_column_in_batches` method.
-    def add_column_with_default(table, column, type, default:, limit: nil, allow_null: false, &block)
-      add_column(table, column, type, default: default, limit: limit, null: allow_null)
     end
 
     # Renames a column without requiring downtime.
