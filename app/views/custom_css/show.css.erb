@@ -1,5 +1,5 @@
-<%- if Setting.custom_css.present? %>
-<%= raw Setting.custom_css %>
+<%- if custom_css_styles.present? %>
+<%= raw custom_css_styles %>
 
 <%- end %>
 <%- @user_roles.each do |role| %>
