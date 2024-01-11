@@ -158,15 +158,6 @@ Rails.application.config.add_autoload_paths_to_load_path = false
 # rather than to rely on a global default.
 # Rails.application.config.active_record.default_column_serializer = nil
 
-# Enable a performance optimization that serializes Active Record models
-# in a faster and more compact way.
-#
-# To perform a rolling deploy of a Rails 7.1 upgrade, wherein servers that have
-# not yet been upgraded must be able to read caches from upgraded servers,
-# leave this optimization off on the first deploy, then enable it on a
-# subsequent deploy.
-# Rails.application.config.active_record.marshalling_format_version = 7.1
-
 # Run `after_commit` and `after_*_commit` callbacks in the order they are defined in a model.
 # This matches the behaviour of all other callbacks.
 # In previous versions of Rails, they ran in the inverse order.

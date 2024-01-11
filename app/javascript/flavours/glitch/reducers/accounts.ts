@@ -1,6 +1,5 @@
+import type { Reducer } from '@reduxjs/toolkit';
 import { Map as ImmutableMap } from 'immutable';
-
-import type { Reducer } from 'redux';
 
 import {
   followAccountSuccess,

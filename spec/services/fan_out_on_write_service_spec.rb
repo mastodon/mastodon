@@ -20,6 +20,8 @@ RSpec.describe FanOutOnWriteService, type: :service do
     ProcessMentionsService.new.call(status)
     ProcessHashtagsService.new.call(status)
 
+    Fabricate(:media_attachment, status: status, account: alice)
+
     allow(redis).to receive(:publish)
 
     subject.call(status)
@@ -49,6 +51,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
     it 'is broadcast to the public stream' do
       expect(redis).to have_received(:publish).with('timeline:public', anything)
       expect(redis).to have_received(:publish).with('timeline:public:local', anything)
+      expect(redis).to have_received(:publish).with('timeline:public:media', anything)
     end
   end
 

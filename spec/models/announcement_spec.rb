@@ -25,22 +25,6 @@ describe Announcement do
       end
     end
 
-    describe '#without_muted' do
-      let!(:announcement) { Fabricate(:announcement) }
-      let(:account) { Fabricate(:account) }
-      let(:muted_announcement) { Fabricate(:announcement) }
-
-      before do
-        Fabricate(:announcement_mute, account: account, announcement: muted_announcement)
-      end
-
-      it 'returns the announcements not muted by the account' do
-        results = described_class.without_muted(account)
-        expect(results).to include(announcement)
-        expect(results).to_not include(muted_announcement)
-      end
-    end
-
     context 'with timestamped announcements' do
       let!(:adam_announcement) { Fabricate(:announcement, starts_at: 100.days.ago, scheduled_at: 10.days.ago, published_at: 10.days.ago, ends_at: 5.days.from_now) }
       let!(:brenda_announcement) { Fabricate(:announcement, starts_at: 10.days.ago, scheduled_at: 100.days.ago, published_at: 10.days.ago, ends_at: 5.days.from_now) }
@@ -126,32 +110,6 @@ describe Announcement do
 
       expect(announcement).to_not be_published
       expect(announcement.scheduled_at).to be_nil
-    end
-  end
-
-  describe '#time_range?' do
-    it 'returns false when starts_at and ends_at are missing' do
-      record = Fabricate.build(:announcement, starts_at: nil, ends_at: nil)
-
-      expect(record.time_range?).to be(false)
-    end
-
-    it 'returns false when starts_at is present and ends_at is missing' do
-      record = Fabricate.build(:announcement, starts_at: 5.days.from_now, ends_at: nil)
-
-      expect(record.time_range?).to be(false)
-    end
-
-    it 'returns false when starts_at is missing and ends_at is present' do
-      record = Fabricate.build(:announcement, starts_at: nil, ends_at: 5.days.from_now)
-
-      expect(record.time_range?).to be(false)
-    end
-
-    it 'returns true when starts_at and ends_at are present' do
-      record = Fabricate.build(:announcement, starts_at: 5.days.from_now, ends_at: 10.days.from_now)
-
-      expect(record.time_range?).to be(true)
     end
   end
 

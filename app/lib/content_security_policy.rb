@@ -10,7 +10,7 @@ class ContentSecurityPolicy
   end
 
   def media_hosts
-    [assets_host, cdn_host_value].concat(extra_data_hosts).compact
+    [assets_host, cdn_host_value, paperclip_root_url].concat(extra_data_hosts).compact
   end
 
   private
@@ -25,6 +25,15 @@ class ContentSecurityPolicy
 
   def cdn_host_value
     s3_alias_host || s3_cloudfront_host || azure_alias_host || s3_hostname_host
+  end
+
+  def paperclip_root_url
+    root_url = ENV.fetch('PAPERCLIP_ROOT_URL', nil)
+    return if root_url.blank?
+
+    (Addressable::URI.parse(assets_host) + root_url).tap do |uri|
+      uri.path += '/' unless uri.path.blank? || uri.path.end_with?('/')
+    end.to_s
   end
 
   def url_from_base_host

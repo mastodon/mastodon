@@ -6,10 +6,10 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
+import { createSelector } from '@reduxjs/toolkit';
 import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { debounce } from 'lodash';
 

@@ -17,23 +17,8 @@
 class CustomFilter < ApplicationRecord
   self.ignored_columns += %w(whole_word irreversible)
 
-  # NOTE: We previously used `alias_attribute` but this does not play nicely
-  # with cache
-  def title
-    phrase
-  end
-
-  def title=(value)
-    self.phrase = value
-  end
-
-  def filter_action
-    action
-  end
-
-  def filter_action=(value)
-    self.action = value
-  end
+  alias_attribute :title, :phrase
+  alias_attribute :filter_action, :action
 
   VALID_CONTEXTS = %w(
     home
@@ -143,6 +128,10 @@ class CustomFilter < ApplicationRecord
   end
 
   def context_must_be_valid
-    errors.add(:context, I18n.t('filters.errors.invalid_context')) if context.empty? || context.any? { |c| !VALID_CONTEXTS.include?(c) }
+    errors.add(:context, I18n.t('filters.errors.invalid_context')) if invalid_context_value?
+  end
+
+  def invalid_context_value?
+    context.blank? || context.difference(VALID_CONTEXTS).any?
   end
 end

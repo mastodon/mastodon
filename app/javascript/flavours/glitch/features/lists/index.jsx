@@ -4,10 +4,10 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
+import { createSelector } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import { fetchLists } from 'flavours/glitch/actions/lists';
 import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';

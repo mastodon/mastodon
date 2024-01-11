@@ -245,7 +245,7 @@ module.exports = defineConfig({
           },
           // Immutable / Redux / data store
           {
-            pattern: '{immutable,react-redux,react-immutable-proptypes,react-immutable-pure-component,reselect}',
+            pattern: '{immutable,@reduxjs/toolkit,react-redux,react-immutable-proptypes,react-immutable-pure-component}',
             group: 'external',
             position: 'before',
           },
@@ -370,7 +370,14 @@ module.exports = defineConfig({
         '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
         "@typescript-eslint/prefer-nullish-coalescing": ['error', { ignorePrimitives: { boolean: true } }],
-
+        "@typescript-eslint/no-restricted-imports": [
+          "warn",
+          {
+            "name": "react-redux",
+            "importNames": ["useSelector", "useDispatch"],
+            "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
+          }
+        ],
         'jsdoc/require-jsdoc': 'off',
 
         // Those rules set stricter rules for TS files

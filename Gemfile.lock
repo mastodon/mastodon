@@ -336,8 +336,8 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
-    haml_lint (0.52.0)
-      haml (>= 4.0)
+    haml_lint (0.53.0)
+      haml (>= 5.0)
       parallel (~> 1.10)
       rainbow
       rubocop (>= 1.0)
@@ -467,14 +467,14 @@ GEM
     multi_json (1.15.0)
     multipart-post (2.3.0)
     mutex_m (0.2.0)
-    net-http (0.4.0)
+    net-http (0.4.1)
       uri
     net-http-persistent (4.0.2)
       connection_pool (~> 2.2)
     net-imap (0.4.4)
       date
       net-protocol
-    net-ldap (0.18.0)
+    net-ldap (0.19.0)
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
@@ -544,7 +544,7 @@ GEM
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
-    puma (6.4.1)
+    puma (6.4.2)
       nio4r (~> 2.0)
     pundit (2.3.1)
       activesupport (>= 3.0.0)
@@ -676,11 +676,11 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.30.0)
       parser (>= 3.2.1.0)
-    rubocop-capybara (2.19.0)
+    rubocop-capybara (2.20.0)
       rubocop (~> 1.41)
-    rubocop-factory_bot (2.24.0)
+    rubocop-factory_bot (2.25.0)
       rubocop (~> 1.33)
-    rubocop-performance (1.20.1)
+    rubocop-performance (1.20.2)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.30.0, < 2.0)
     rubocop-rails (2.23.1)
@@ -688,7 +688,7 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
       rubocop-ast (>= 1.30.0, < 2.0)
-    rubocop-rspec (2.25.0)
+    rubocop-rspec (2.26.1)
       rubocop (~> 1.40)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
@@ -748,7 +748,7 @@ GEM
     stoplight (3.0.2)
       redlock (~> 1.0)
     stringio (3.1.0)
-    strong_migrations (1.6.4)
+    strong_migrations (1.7.0)
       activerecord (>= 5.2)
     swd (1.3.0)
       activesupport (>= 3)
@@ -952,7 +952,7 @@ DEPENDENCIES
   simplecov-lcov (~> 0.8)
   stackprof
   stoplight (~> 3.0.1)
-  strong_migrations (= 1.6.4)
+  strong_migrations (= 1.7.0)
   test-prof
   thor (~> 1.2)
   tty-prompt (~> 0.23)

@@ -8,6 +8,7 @@ ie:
         fields: Tui websitu, pronómines, etá, quocunc quel tu vole.
         indexable: Tui public postas posse aparir in sercha-resultates sur Mastodon. E in omni casu, tis qui ha interactet con tui postas va posser serchar e trovar les.
         note: 'Tu posse @mentionar altri persones o #hashtags.'
+        show_collections: Gente va posser navigar tra tui sequentes e sequitores. Gente quem tu seque va vider que tu seque les sin egarda.
         unlocked: Persones va posser sequer te sin petir aprobation. Desselecte si tu vole manualmen tractar petitiones de sequer e decider ca acceptar o rejecter nov sequitores.
       account_alias:
         acct: Specificar li usatornomine@dominia del conto ex quel tu vole translocar
@@ -58,6 +59,15 @@ ie:
         setting_display_media_default: Celar medie marcat quam sensitiv
         setting_display_media_hide_all: Sempre celar medie
         setting_display_media_show_all: Sempre monstrar medie
+        setting_use_blurhash: Gradientes es basat sur li colores del celat visuales ma obscura omni detallies
+        setting_use_pending_items: Celar nov postas detra un clicc vice rular li témpor-linea automaticmen
+        username: Tu posse usar lítteres, númeres e sublineas
+        whole_word: Quande li clave-parol o frase es solmen alfanumeric, it va esser aplicat solmen si it egala al tot parol
+      domain_allow:
+        domain: Ti dominia va posser obtener data de ti-ci servitor, e data venient de it va esser tractat e inmagasinat
+      email_domain_block:
+        domain: Ti posse esser li dominia-nómine quel apari in li email-adresse o li MX-registre quel it usa. Ili va esser controlat durant adhesion.
+        with_dns_records: On va far un prova resoluer li DNS-registres del specificat dominia, e li resultates anc va esser bloccat
       featured_tag:
         name: 'Vi quelc hashtags usat max recentmen de te:'
       filters:
@@ -66,26 +76,40 @@ ie:
           hide: Celar completmen li contenete filtrat, quam si it ne existe
           warn: Celar li contenete filtrat detra un avise mentionant li titul del filtre
       form_admin_settings:
+        activity_api_enabled: Númeres de postas publicat localmen, activ usatores, e nov adhesiones in periodes semanal
         backups_retention_period: Mantener usator-generat archives por li specificat quantitá de dies.
         bootstrap_timeline_accounts: Ti-ci contos va esser pinglat al parte superiori del recomandationes por nov usatores.
+        closed_registrations_message: Monstrat quande adhesiones es cludet
+        content_cache_retention_period: Omni postas e boosts de altri servitores va esser deletet pos li specificat quantitá de dies. Quelc postas fórsan va esser ínrestaurabil. Omni pertinent marcatores, favorites e boosts anc va esser perdit e ínpossibil a restaurar.
+        custom_css: On posse aplicar customisat stiles al web-version de Mastodon.
         mascot: Substitue li ilustration in li avansat interfacie web.
+        media_cache_retention_period: Descargat files de media va esser deletet pos li specificat quantitá de dies quande li valore es positiv, e re-descargat sur demanda.
         peers_api_enabled: Un liste de nómines de dominia queles ti-ci servitor ha incontrat in li fediverse. Ci null data es includet pri ca tu confedera con un cert servitor o ne; it indica solmen que tui servitor conosse it. Usat per servicies colectent general statisticas pri federation.
         profile_directory: Li profilarium monstra omni usatores volent esser decovribil.
+        require_invite_text: Quande registrationes besona manual aprobation, fa que li textu "Pro quo tu vole registrar te?" es obligatori vice facultativ
         site_contact_email: Qualmen on posse contacter te por inquestes legal o de apoy.
         site_contact_username: Qualmen li gente posse atinger te sur Mastodon.
+        site_extended_description: Quelcunc information in plu quel posse esser util a visitores e a tui usatores. On posse structurar it con li sintaxe Markdown.
         site_short_description: Un curt descrition por auxiliar identificar tui servitor. Qui gere it, por qual persones it es?
+        site_terms: Usar tui propri politica de privatie, o lassar blanc por usar li predefinitiones. Posse esser structurat con li sintaxe Markdown.
         site_title: Quant persones posse aluder a tui servitor ultra su nómine de dominia.
         status_page_url: URL de un págine monstrant li statu de ti-ci servitor durant un ruptura de servicie
         theme: Li dessine quel ínregistrat visitantes e nov usatores vide.
         thumbnail: Un image de dimensiones circa 2:1 monstrat along tui servitor-information.
         timeline_preview: Ínregistrat visitantes va posser vider li max recent public postas disponibil che li servitor.
+        trendable_by_default: Pretersaltar un manual revision de contenete in tendentie. Mem pos to on posse remover índividual pezzes de tendentie.
         trends: Tendenties monstra quel postas, hashtags e novas es ganiant atention sur tui servitor.
         trends_as_landing_page: Monstrar populari contenete a ínregistrat visitantes vice un description del servitor. Besona que tendenties es activisat.
       form_challenge:
         current_password: Tu nu intra un area secur
+      imports:
+        data: File CSV exportat de un altri servitor Mastodon
+      invite_request:
+        text: To va auxiliar nos a reviser tui aplication
       ip_block:
         comment: Facultativ. Ne obliviar pro quo tu adjuntet ti-ci regul.
         expires_in: IP-adresses es un ressurse finit, quelcvez partit e transferet de manu a manu. Pro to, un índefinit bloccada de IP ne es recomandat.
+        ip: Intrar un adresse IPv4 o IPv6. Tu posse bloccar un tot intervalle de ili con li sintaxe CIDR. Atention a ne bloccar te self!
         severities:
           no_access: Bloccar accesse a omni ressurses
           sign_up_block: Nov registrationes ne va esser possibil
@@ -93,13 +117,23 @@ ie:
         severity: Selecter quo va evenir con demandes ex ti-ci IP
       rule:
         text: Descrir un regul o postulation por usatores sur ti-ci servitor. Prova scrir un descrition curt e simplic
+      sessions:
+        otp: 'Intrar li 2-factor code generat del app sur tui portabile o usar un de tui codes de recuperation:'
+        webauthn: Si it es un clave USB, inserter it con certitá e, si necessi, tappa it.
+      settings:
+        indexable: Tui págine de profil va posser aparir in sercha-resultates sur Google, Bing, e altres.
+        show_application: Totvez, tu va sempre posser vider quel app ha publicat tui posta.
+      tag:
+        name: Tu posse changear solmen li minu/majusculitá del lítteres, por exemple, por far it plu leibil
       user:
+        chosen_languages: Quande selectet, solmen postas in ti lingues va esser monstrat in public témpor-lineas
         role: Permissiones de usator decidet per su rol
       user_role:
         color: Color a usar por li rol tra li UI, quam RGB (rubi-verdi-blu) in formate hex
         highlighted: Va far li rol publicmen visibil
         name: Public nómine del rol, si li rol va esser monstrat quam signe
         permissions_as_keys: Usatores con ti-ci rol va haver accesse a...
+        position: Plu alt roles decide un resolution de conflict in cert situationes. Cert actiones posse esser efectuat solmen a roles con plu bass prioritá
       webhook:
         events: Selecter evenimentes a misser
         template: Composir tui propri carga JSON usant interpolation de variabiles. Lassa blanc por JSON predefinit.
@@ -111,6 +145,8 @@ ie:
           name: Etiquette
           value: Contenete
         indexable: Includer public postas in resultates de sercha
+        show_collections: Monstrar persones queles on seque e sequitores sur profil
+        unlocked: Automaticmen acceptar nov sequitores
       account_alias:
         acct: Usator-nómine del anteyan conto
       account_migration:
@@ -119,6 +155,7 @@ ie:
         text: Textu prefigurat
         title: Titul
       admin_account_action:
+        include_statuses: Includer raportat postas in li e-posta
         send_email_notification: Notificar li usator per e-posta
         text: Admonition customisat
         type: Action
@@ -153,33 +190,47 @@ ie:
         fields: Campes aditional
         header: Cap-image
         honeypot: "%{label} (ne plenar)"
+        inbox_url: URL del inbuxe de relé
         irreversible: Lassar cader vice celar
         locale: Lingue del interfacie
         max_uses: Max grand númere de usas
         new_password: Nov passa-parol
         note: Biografie
+        otp_attempt: 2-factor code
         password: Passa-parol
         phrase: Clave-parol o frase
         setting_advanced_layout: Possibilisar web-interfacie avansat
+        setting_aggregate_reblogs: Gruppar boosts in témpor-lineas
         setting_always_send_emails: Sempre misser notificationes de e-posta
+        setting_auto_play_gif: Reproducter automaticmen animat GIFs
+        setting_boost_modal: Monstrar dialog de confirmation ante boostar
         setting_default_language: Lingue in quel postar
         setting_default_privacy: Privatie de postada
         setting_default_sensitive: Sempre marcar medie quam sensitiv
+        setting_delete_modal: Monstrar dialog de confirmation ante deleter un posta
+        setting_disable_swiping: Desactivar motiones de glissar
+        setting_display_media: Exposition de medie
         setting_display_media_default: Predefinitiones
         setting_display_media_hide_all: Celar omno
         setting_display_media_show_all: Monstrar omno
         setting_expand_spoilers: Sempre expander postas marcat con admonitiones de contenete
+        setting_hide_network: Celar tui grafica social
+        setting_reduce_motion: Reducter motion in animationes
         setting_system_font_ui: Usar predefinit fonte de sistema
         setting_theme: Tema de situ
         setting_trends: Monstrar li hodial tendenties
         setting_unfollow_modal: Monstrar dialog de confirmation ante dessequer alquem
+        setting_use_blurhash: Monstrar colorosi gradientes por celat medie
         setting_use_pending_items: Mode lent
         severity: Severitá
         sign_in_token_attempt: Code de securitá
         title: Titul
         type: Specie de importation
         username: Nómine de usator
+        username_or_email: Usator-nómine o E-posta
         whole_word: Plen parol
+      email_domain_block:
+        with_dns_records: Includer archives MX e IPs del dominia
       featured_tag:
         name: Hashtag
       filters:
@@ -187,22 +238,37 @@ ie:
           hide: Celar completmen
           warn: Celar con un admonition
       form_admin_settings:
+        activity_api_enabled: Publicar agregat statisticas pri usator-activitá in li API
         backups_retention_period: Periode de retener archives de usator
         bootstrap_timeline_accounts: Sempre recomandar ti-ci contos a nov usatores
         closed_registrations_message: Customisat missage quande registration ne disponibil
+        content_cache_retention_period: Periode de retention por cachat contenete
         custom_css: Custom CSS
+        mascot: Customisat mascot (hereditat)
+        media_cache_retention_period: Periode de retention por cachat medie
+        peers_api_enabled: Publicar liste de conosset servitores per li API
         profile_directory: Possibilisar profilarium
         registrations_mode: Qui posse registrar se
+        require_invite_text: Exiger un rason por adherer se
         show_domain_blocks: Vider bloccas de dominia
         show_domain_blocks_rationale: Monstrar pro quo cert dominias esset bloccat
         site_contact_email: Contact e-mail adresse
         site_contact_username: Usator-nómine de contact
         site_extended_description: Extendet descrition
+        site_short_description: Descrition del servitor
+        site_terms: Politica pri Privatie
         site_title: Nómine de servitor
+        status_page_url: URL de statu-págine
         theme: Predefenit tema
+        thumbnail: Miniatura del servitor
+        timeline_preview: Permisser accesse ínautenticat al public témpor-lineas
         trendable_by_default: Possibilisar tendenties sin priori inspection
         trends: Possibilisar tendenties
         trends_as_landing_page: Usar tendenties quam frontispicie
+      interactions:
+        must_be_follower: Bloccar notificationes de tis qui ne seque te
+        must_be_following: Bloccar notificationes de tis quem tu ne seque
+        must_be_following_dm: Bloccar direct missages de tis quem tu ne seque
       invite:
         comment: Comentar
       invite_request:
@@ -216,32 +282,44 @@ ie:
           sign_up_requires_approval: Limitar usator-registrationes
         severity: Regul
       notification_emails:
+        appeal: Alqui apella un decision moderatori
+        digest: Inviar compendies per email
         favourite: Alqui favoritisat tui posta
         follow: Alqui sequet te
         follow_request: Alqui petit sequer te
         mention: Alqui mentionat te
         pending_account: Nov conto besonant inspection
+        reblog: Alqui boostat tui posta
         report: Nov raporte es submisset
         software_updates:
           all: Notificar pri omni nov actualisationes
           critical: Notificar solmen pri critical actualisationes
           label: Un nov version de Mastodon es disponibil
+          none: Nequande notificar pri actualisationes (ne recomandat)
+          patch: Notificar pri problema-fixant actualisationes
         trending_tag: Nov tendentie besonant inspection
       rule:
         text: Regul
+      settings:
+        indexable: Includer profil-pagine in serchatores
+        show_application: Monstrar de quel aplication tu fat un posta
       tag:
+        listable: Permisser que ti hashtag apari in serchas e suggestiones
         name: Hashtag
         trendable: Permisse que ti-ci hashtag apari sub tendenties
+        usable: Permisser que postas usa ti hashtag
       user:
         role: Rol
         time_zone: Zone temporal
       user_role:
         color: Color del insignie
+        highlighted: Monstrar rol quam insigne sur usator-profiles
         name: Nómine
         permissions_as_keys: Permissiones
         position: Prioritá
       webhook:
         events: Evenimentes activisat
+        template: Modelle de carga
         url: URL de punctu terminal
     'no': 'No'
     not_recommended: Ne recomandat
