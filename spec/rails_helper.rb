@@ -107,21 +107,6 @@ RSpec.configure do |config|
     Capybara.current_driver = :rack_test
   end
 
-  config.around :each, type: :system do |example|
-    # The streaming server needs access to the database
-    # but with use_transactional_tests every transaction
-    # is rolled-back, so the streaming server never sees the data
-    # So we disable this feature for system tests, and use DatabaseCleaner to clean
-    # the database tables between each test
-    self.use_transactional_tests = false
-
-    DatabaseCleaner.cleaning do
-      example.run
-    end
-
-    self.use_transactional_tests = true
-  end
-
   config.before do |example|
     allow(Resolv::DNS).to receive(:open).and_raise('Real DNS queries are disabled, stub Resolv::DNS as needed') unless example.metadata[:type] == :system
   end
