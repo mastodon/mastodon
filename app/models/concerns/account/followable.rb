@@ -4,22 +4,12 @@ module Account::Followable
   extend ActiveSupport::Concern
 
   included do
+    scope :without_follows, ->(account) { joins(follows_join(account)).where(follows_id_nil) }
+    scope :without_follow_requests, ->(account) { joins(follow_requests_join(account)).where(follow_requests_id_nil) }
     scope :followable_by, ->(account) { without_follows(account).without_follow_requests(account) }
   end
 
   class_methods do
-    def without_follows(account)
-      joins(follows_join(account))
-        .where(follows_id_nil)
-    end
-
-    def without_follow_requests(account)
-      joins(follow_requests_join(account))
-        .where(follow_requests_id_nil)
-    end
-
-    private
-
     def follows_join(account)
       arel_table
         .join(Follow.arel_table, Arel::Nodes::OuterJoin)
