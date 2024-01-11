@@ -3,6 +3,8 @@ import ready from '../mastodon/ready';
 ready(() => {
   const image = document.querySelector('img');
 
+  if (!image) return;
+
   image.addEventListener('mouseenter', () => {
     image.src = '/oops.gif';
   });
@@ -10,4 +12,6 @@ ready(() => {
   image.addEventListener('mouseleave', () => {
     image.src = '/oops.png';
   });
+}).catch((e) => {
+  console.error(e);
 });

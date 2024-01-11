@@ -4,7 +4,8 @@
     %meta{ 'http-equiv' => 'Content-Type', 'content' => 'text/html; charset=utf-8' }/
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0, shrink-to-fit=no' }
 
-    = stylesheet_pack_tag 'mailer'
+    = vite_stylesheet_tag 'styles/mailer.scss'
+
   %body{ dir: locale_direction }
     %table.email-table{ cellspacing: 0, cellpadding: 0 }
       %tbody
