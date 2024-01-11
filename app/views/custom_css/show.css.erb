@@ -2,7 +2,7 @@
 <%= raw Setting.custom_css %>
 
 <%- end %>
-<%- UserRole.where(highlighted: true).select { |role| role.color.present? }.each do |role| %>
+<%- UserRole.where(highlighted: true).where.not(color: [nil,'']).each do |role| %>
 .user-role-<%= role.id %> {
   --user-role-accent: <%= role.color %>;
 }
