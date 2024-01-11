@@ -17,7 +17,7 @@ RSpec.describe Disputes::AppealsController do
       post :create, params: { strike_id: strike.id, appeal: { text: 'Foo' } }
     end
 
-    it 'notifies staff about new appeal' do
+    it 'notifies staff about new appeal', :sidekiq_inline do
       expect(ActionMailer::Base.deliveries.first.to).to eq([admin.email])
     end
 

@@ -166,7 +166,7 @@ RSpec.describe NotifyService, type: :service do
     context 'when email notification is enabled' do
       let(:enabled) { true }
 
-      it 'sends email' do
+      it 'sends email', :sidekiq_inline do
         expect { subject }.to change(ActionMailer::Base.deliveries, :count).by(1)
       end
     end

@@ -23,7 +23,7 @@ RSpec.describe ActivityPub::Activity::Create do
     stub_request(:get, 'http://example.com/emojib.png').to_return(body: attachment_fixture('emojo.png'), headers: { 'Content-Type' => 'application/octet-stream' })
   end
 
-  describe 'processing posts received out of order', :sidekiq_fake do
+  describe 'processing posts received out of order' do
     let(:follower) { Fabricate(:account, username: 'bob') }
 
     let(:object_json) do

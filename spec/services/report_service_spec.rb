@@ -23,7 +23,7 @@ RSpec.describe ReportService, type: :service do
       stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
     end
 
-    context 'when forward is true' do
+    context 'when forward is true', :sidekiq_inline do
       let(:forward) { true }
 
       it 'sends ActivityPub payload when forward is true' do

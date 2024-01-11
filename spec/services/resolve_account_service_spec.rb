@@ -195,7 +195,7 @@ RSpec.describe ResolveAccountService, type: :service do
       expect(account.uri).to eq 'https://ap.example.com/users/foo'
     end
 
-    it 'merges accounts' do
+    it 'merges accounts', :sidekiq_inline do
       account = subject.call('foo@ap.example.com')
 
       expect(status.reload.account_id).to eq account.id
