@@ -724,39 +724,6 @@ module Mastodon
       rename_index table_name, "#{index_name}_new", index_name
     end
 
-    # This will replace the first occurrence of a string in a column with
-    # the replacement
-    # On postgresql we can use `regexp_replace` for that.
-    # On mysql we find the location of the pattern, and overwrite it
-    # with the replacement
-    def replace_sql(column, pattern, replacement)
-      quoted_pattern = Arel::Nodes::Quoted.new(pattern.to_s)
-      quoted_replacement = Arel::Nodes::Quoted.new(replacement.to_s)
-
-      replace = Arel::Nodes::NamedFunction
-        .new("regexp_replace", [column, quoted_pattern, quoted_replacement])
-      Arel::Nodes::SqlLiteral.new(replace.to_sql)
-    end
-
-    def remove_foreign_key_without_error(*args)
-      remove_foreign_key(*args)
-    rescue ArgumentError
-    end
-
-    def sidekiq_queue_migrate(queue_from, to:)
-      while sidekiq_queue_length(queue_from) > 0
-        Sidekiq.redis do |conn|
-          conn.rpoplpush "queue:#{queue_from}", "queue:#{to}"
-        end
-      end
-    end
-
-    def sidekiq_queue_length(queue_name)
-      Sidekiq.redis do |conn|
-        conn.llen("queue:#{queue_name}")
-      end
-    end
-
     def check_trigger_permissions!(table)
       unless Grant.create_and_execute_trigger?(table)
         dbname = ActiveRecord::Base.configurations[Rails.env]['database']
@@ -774,91 +741,6 @@ database (#{dbname}) using a super user and running:
 The query will grant the user super user permissions, ensuring you don't run
 into similar problems in the future (e.g. when new tables are created).
         EOF
-      end
-    end
-
-    # Bulk queues background migration jobs for an entire table, batched by ID range.
-    # "Bulk" meaning many jobs will be pushed at a time for efficiency.
-    # If you need a delay interval per job, then use `queue_background_migration_jobs_by_range_at_intervals`.
-    #
-    # model_class - The table being iterated over
-    # job_class_name - The background migration job class as a string
-    # batch_size - The maximum number of rows per job
-    #
-    # Example:
-    #
-    #     class Route < ActiveRecord::Base
-    #       include EachBatch
-    #       self.table_name = 'routes'
-    #     end
-    #
-    #     bulk_queue_background_migration_jobs_by_range(Route, 'ProcessRoutes')
-    #
-    # Where the model_class includes EachBatch, and the background migration exists:
-    #
-    #     class Gitlab::BackgroundMigration::ProcessRoutes
-    #       def perform(start_id, end_id)
-    #         # do something
-    #       end
-    #     end
-    def bulk_queue_background_migration_jobs_by_range(model_class, job_class_name, batch_size: BACKGROUND_MIGRATION_BATCH_SIZE)
-      raise "#{model_class} does not have an ID to use for batch ranges" unless model_class.column_names.include?('id')
-
-      jobs = []
-
-      model_class.each_batch(of: batch_size) do |relation|
-        start_id, end_id = relation.pluck('MIN(id), MAX(id)').first
-
-        if jobs.length >= BACKGROUND_MIGRATION_JOB_BUFFER_SIZE
-          # Note: This code path generally only helps with many millions of rows
-          # We push multiple jobs at a time to reduce the time spent in
-          # Sidekiq/Redis operations. We're using this buffer based approach so we
-          # don't need to run additional queries for every range.
-          BackgroundMigrationWorker.perform_bulk(jobs)
-          jobs.clear
-        end
-
-        jobs << [job_class_name, [start_id, end_id]]
-      end
-
-      BackgroundMigrationWorker.perform_bulk(jobs) unless jobs.empty?
-    end
-
-    # Queues background migration jobs for an entire table, batched by ID range.
-    # Each job is scheduled with a `delay_interval` in between.
-    # If you use a small interval, then some jobs may run at the same time.
-    #
-    # model_class - The table being iterated over
-    # job_class_name - The background migration job class as a string
-    # delay_interval - The duration between each job's scheduled time (must respond to `to_f`)
-    # batch_size - The maximum number of rows per job
-    #
-    # Example:
-    #
-    #     class Route < ActiveRecord::Base
-    #       include EachBatch
-    #       self.table_name = 'routes'
-    #     end
-    #
-    #     queue_background_migration_jobs_by_range_at_intervals(Route, 'ProcessRoutes', 1.minute)
-    #
-    # Where the model_class includes EachBatch, and the background migration exists:
-    #
-    #     class Gitlab::BackgroundMigration::ProcessRoutes
-    #       def perform(start_id, end_id)
-    #         # do something
-    #       end
-    #     end
-    def queue_background_migration_jobs_by_range_at_intervals(model_class, job_class_name, delay_interval, batch_size: BACKGROUND_MIGRATION_BATCH_SIZE)
-      raise "#{model_class} does not have an ID to use for batch ranges" unless model_class.column_names.include?('id')
-
-      model_class.each_batch(of: batch_size) do |relation, index|
-        start_id, end_id = relation.pluck('MIN(id), MAX(id)').first
-
-        # `BackgroundMigrationWorker.bulk_perform_in` schedules all jobs for
-        # the same time, which is not helpful in most cases where we wish to
-        # spread the work over time.
-        BackgroundMigrationWorker.perform_in(delay_interval * index, job_class_name, [start_id, end_id])
       end
     end
 
