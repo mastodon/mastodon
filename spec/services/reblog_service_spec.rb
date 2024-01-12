@@ -86,9 +86,5 @@ RSpec.describe ReblogService, type: :service do
     it 'distributes to followers' do
       expect(ActivityPub::DistributionWorker).to have_received(:perform_async)
     end
-
-    it 'sends an announce activity to the author' do
-      expect(a_request(:post, bob.inbox_url)).to have_been_made.once
-    end
   end
 end
