@@ -8,7 +8,7 @@
 # shorten temporary column names.
 
 # Documentation on using these functions (and why one might do so):
-# https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/development/what_requires_downtime.md
+# https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/doc/development/database/avoiding_downtime_in_migrations.md
 
 # The original file (since updated):
 # https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/database/migration_helpers.rb
