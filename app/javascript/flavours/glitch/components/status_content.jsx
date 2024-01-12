@@ -9,15 +9,15 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import ImageIcon from '@material-symbols/svg-600/outlined/image.svg?react';
-import InsertChartIcon from '@material-symbols/svg-600/outlined/insert_chart.svg?react';
-import LinkIcon from '@material-symbols/svg-600/outlined/link.svg?react';
-import MovieIcon from '@material-symbols/svg-600/outlined/movie.svg?react';
-import MusicNoteIcon from '@material-symbols/svg-600/outlined/music_note.svg?react';
-
 import { Icon } from 'flavours/glitch/components/icon';
 import { autoPlayGif, languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
+import ImageIcon from 'mastodon/../material-icons/400-24px/image.svg?react';
+import InsertChartIcon from 'mastodon/../material-icons/400-24px/insert_chart.svg?react';
+import LinkIcon from 'mastodon/../material-icons/400-24px/link.svg?react';
+import MovieIcon from 'mastodon/../material-icons/400-24px/movie.svg?react';
+import MusicNoteIcon from 'mastodon/../material-icons/400-24px/music_note.svg?react';
+
 
 import { Permalink } from './permalink';
 

@@ -12,9 +12,9 @@ import classNames from 'classnames';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import DeleteIcon from '@material-symbols/svg-600/outlined/delete.svg?react';
-
 import { Icon } from 'flavours/glitch/components/icon';
+import DeleteIcon from 'mastodon/../material-icons/400-24px/delete.svg?react';
+
 
 const messages = defineMessages({
   btnAll : { id: 'notification_purge.btn_all', defaultMessage: 'Select\nall' },

@@ -8,13 +8,13 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import PersonAddIcon from '@material-symbols/svg-600/outlined/person_add-fill.svg?react';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon } from 'flavours/glitch/components/icon';
 import { Permalink } from 'flavours/glitch/components/permalink';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import PersonAddIcon from 'mastodon/../material-icons/400-24px/person_add-fill.svg?react';
 
 import NotificationOverlayContainer from '../containers/overlay_container';
 

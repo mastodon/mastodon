@@ -7,7 +7,6 @@ import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
-import MailIcon from '@material-symbols/svg-600/outlined/mail.svg?react';
 
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import { mountConversations, unmountConversations, expandConversations } from 'flavours/glitch/actions/conversations';
@@ -16,6 +15,7 @@ import { expandDirectTimeline } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
+import MailIcon from 'mastodon/../material-icons/400-24px/mail.svg?react';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
 import ConversationsListContainer from './containers/conversations_list_container';

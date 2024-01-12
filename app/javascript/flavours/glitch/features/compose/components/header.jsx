@@ -7,17 +7,17 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import PeopleIcon from '@material-symbols/svg-600/outlined/group.svg?react';
-import HomeIcon from '@material-symbols/svg-600/outlined/home-fill.svg?react';
-import LogoutIcon from '@material-symbols/svg-600/outlined/logout.svg?react';
-import ManufacturingIcon from '@material-symbols/svg-600/outlined/manufacturing.svg?react';
-import MenuIcon from '@material-symbols/svg-600/outlined/menu.svg?react';
-import NotificationsIcon from '@material-symbols/svg-600/outlined/notifications-fill.svg?react';
-import PublicIcon from '@material-symbols/svg-600/outlined/public.svg?react';
-
 import { Icon } from 'flavours/glitch/components/icon';
 import { signOutLink } from 'flavours/glitch/utils/backend_links';
 import { conditionalRender } from 'flavours/glitch/utils/react_helpers';
+import PeopleIcon from 'mastodon/../material-icons/400-24px/group.svg?react';
+import HomeIcon from 'mastodon/../material-icons/400-24px/home-fill.svg?react';
+import LogoutIcon from 'mastodon/../material-icons/400-24px/logout.svg?react';
+import ManufacturingIcon from 'mastodon/../material-icons/400-24px/manufacturing.svg?react';
+import MenuIcon from 'mastodon/../material-icons/400-24px/menu.svg?react';
+import NotificationsIcon from 'mastodon/../material-icons/400-24px/notifications-fill.svg?react';
+import PublicIcon from 'mastodon/../material-icons/400-24px/public.svg?react';
+
 
 const messages = defineMessages({
   community: {

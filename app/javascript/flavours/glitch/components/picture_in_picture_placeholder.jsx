@@ -5,10 +5,10 @@ import { FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import CancelPresentationIcon from '@material-symbols/svg-600/outlined/cancel_presentation.svg?react';
 
 import { removePictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
 import { Icon }  from 'flavours/glitch/components/icon';
+import CancelPresentationIcon from 'mastodon/../material-icons/400-24px/cancel_presentation.svg?react';
 
 class PictureInPicturePlaceholder extends PureComponent {
 

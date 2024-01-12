@@ -8,7 +8,6 @@ import { Helmet } from 'react-helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import TagIcon from '@material-symbols/svg-600/outlined/tag.svg?react';
 import { isEqual } from 'lodash';
 
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
@@ -17,6 +16,7 @@ import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/glitch/ac
 import { expandHashtagTimeline, clearTimeline } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
+import TagIcon from 'mastodon/../material-icons/400-24px/tag.svg?react';
 
 import StatusListContainer from '../ui/containers/status_list_container';
 

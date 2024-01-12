@@ -5,12 +5,12 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import AddIcon from '@material-symbols/svg-600/outlined/add.svg?react';
 import fuzzysort from 'fuzzysort';
 
 import { Icon }  from 'flavours/glitch/components/icon';
 import { toServerSideType } from 'flavours/glitch/utils/filters';
 import { loupeIcon, deleteIcon } from 'flavours/glitch/utils/icons';
+import AddIcon from 'mastodon/../material-icons/400-24px/add.svg?react';
 
 const messages = defineMessages({
   search: { id: 'filter_modal.select_filter.search', defaultMessage: 'Search or create' },

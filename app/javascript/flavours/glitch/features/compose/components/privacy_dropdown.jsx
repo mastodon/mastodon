@@ -3,10 +3,10 @@ import { PureComponent } from 'react';
 
 import { injectIntl, defineMessages } from 'react-intl';
 
-import LockIcon from '@material-symbols/svg-600/outlined/lock.svg?react';
-import LockOpenIcon from '@material-symbols/svg-600/outlined/lock_open.svg?react';
-import MailIcon from '@material-symbols/svg-600/outlined/mail.svg?react';
-import PublicIcon from '@material-symbols/svg-600/outlined/public.svg?react';
+import LockIcon from 'mastodon/../material-icons/400-24px/lock.svg?react';
+import LockOpenIcon from 'mastodon/../material-icons/400-24px/lock_open.svg?react';
+import MailIcon from 'mastodon/../material-icons/400-24px/mail.svg?react';
+import PublicIcon from 'mastodon/../material-icons/400-24px/public.svg?react';
 
 import Dropdown from './dropdown';
 

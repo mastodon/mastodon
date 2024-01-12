@@ -8,8 +8,6 @@ import { useHistory } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
-import AddPhotoAlternateIcon from '@material-symbols/svg-600/outlined/add_photo_alternate.svg?react';
-import EditIcon from '@material-symbols/svg-600/outlined/edit.svg?react';
 import Toggle from 'react-toggle';
 
 import { updateAccount } from 'flavours/glitch/actions/accounts';
@@ -20,6 +18,8 @@ import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import { me } from 'flavours/glitch/initial_state';
 import { useAppSelector } from 'flavours/glitch/store';
 import { unescapeHTML } from 'flavours/glitch/utils/html';
+import AddPhotoAlternateIcon from 'mastodon/../material-icons/400-24px/add_photo_alternate.svg?react';
+import EditIcon from 'mastodon/../material-icons/400-24px/edit.svg?react';
 
 const messages = defineMessages({
   uploadHeader: { id: 'onboarding.profile.upload_header', defaultMessage: 'Upload profile header' },

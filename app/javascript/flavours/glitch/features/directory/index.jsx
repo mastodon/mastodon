@@ -9,7 +9,6 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import PeopleIcon from '@material-symbols/svg-600/outlined/group.svg?react';
 
 import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavours/glitch/actions/columns';
 import { fetchDirectory, expandDirectory } from 'flavours/glitch/actions/directory';
@@ -19,6 +18,7 @@ import { LoadMore } from 'flavours/glitch/components/load_more';
 import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import { RadioButton } from 'flavours/glitch/components/radio_button';
 import ScrollContainer from 'flavours/glitch/containers/scroll_container';
+import PeopleIcon from 'mastodon/../material-icons/400-24px/group.svg?react';
 
 import AccountCard from './components/account_card';
 

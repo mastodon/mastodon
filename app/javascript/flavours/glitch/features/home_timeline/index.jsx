@@ -10,14 +10,14 @@ import { createSelector } from '@reduxjs/toolkit';
 import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 
-import CampaignIcon from '@material-symbols/svg-600/outlined/campaign.svg?react';
-import HomeIcon from '@material-symbols/svg-600/outlined/home-fill.svg?react';
 
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/glitch/actions/announcements';
 import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
 import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
 import AnnouncementsContainer from 'flavours/glitch/features/getting_started/containers/announcements_container';
 import { me, criticalUpdatesPending } from 'flavours/glitch/initial_state';
+import CampaignIcon from 'mastodon/../material-icons/400-24px/campaign.svg?react';
+import HomeIcon from 'mastodon/../material-icons/400-24px/home-fill.svg?react';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { expandHomeTimeline } from '../../actions/timelines';

@@ -8,7 +8,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import StarIcon from '@material-symbols/svg-600/outlined/star-fill.svg?react';
 import { debounce } from 'lodash';
 
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
@@ -17,6 +16,7 @@ import ColumnHeader from 'flavours/glitch/components/column_header';
 import StatusList from 'flavours/glitch/components/status_list';
 import Column from 'flavours/glitch/features/ui/components/column';
 import { getStatusList } from 'flavours/glitch/selectors';
+import StarIcon from 'mastodon/../material-icons/400-24px/star-fill.svg?react';
 
 const messages = defineMessages({
   heading: { id: 'column.favourites', defaultMessage: 'Favorites' },

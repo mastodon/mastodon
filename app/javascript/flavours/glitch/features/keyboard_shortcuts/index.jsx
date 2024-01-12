@@ -7,10 +7,10 @@ import { Helmet } from 'react-helmet';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import InfoIcon from '@material-symbols/svg-600/outlined/info.svg?react';
 
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
+import InfoIcon from 'mastodon/../material-icons/400-24px/info.svg?react';
 
 const messages = defineMessages({
   heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },

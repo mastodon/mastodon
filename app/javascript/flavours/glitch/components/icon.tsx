@@ -1,8 +1,7 @@
 import classNames from 'classnames';
 
-import CheckBoxOutlineBlankIcon from '@material-symbols/svg-600/outlined/check_box_outline_blank.svg?react';
-
 import { isProduction } from 'flavours/glitch/utils/environment';
+import CheckBoxOutlineBlankIcon from 'mastodon/../material-icons/400-24px/check_box_outline_blank.svg?react';
 
 interface SVGPropsWithTitle extends React.SVGProps<SVGSVGElement> {
   title?: string;

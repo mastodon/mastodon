@@ -9,7 +9,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
 import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
 // eslint-disable-next-line import/extensions
@@ -26,6 +25,7 @@ import UploadProgress from 'flavours/glitch/features/compose/components/upload_p
 import { Tesseract as fetchTesseract } from 'flavours/glitch/features/ui/util/async-components';
 import { me } from 'flavours/glitch/initial_state';
 import { assetHost } from 'flavours/glitch/utils/config';
+import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
 
 import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from '../../../actions/compose';
 import Video, { getPointerPosition } from '../../video';

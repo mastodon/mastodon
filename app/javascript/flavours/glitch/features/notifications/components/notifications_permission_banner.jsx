@@ -5,14 +5,14 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
-import TuneIcon from '@material-symbols/svg-600/outlined/tune.svg?react';
 
 import { requestBrowserPermission } from 'flavours/glitch/actions/notifications';
 import { changeSetting } from 'flavours/glitch/actions/settings';
 import { Button } from 'flavours/glitch/components/button';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
+import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
+import TuneIcon from 'mastodon/../material-icons/400-24px/tune.svg?react';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

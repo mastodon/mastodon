@@ -6,9 +6,9 @@ import { NavLink } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import InfoIcon from '@material-symbols/svg-600/outlined/info.svg?react';
-
 import { Icon } from 'flavours/glitch/components/icon';
+import InfoIcon from 'mastodon/../material-icons/400-24px/info.svg?react';
+
 
 class ActionBar extends PureComponent {
 

@@ -5,10 +5,10 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import ForumIcon from '@material-symbols/svg-600/outlined/forum.svg?react';
-import HomeIcon from '@material-symbols/svg-600/outlined/home-fill.svg?react';
-
 import { Icon } from 'flavours/glitch/components/icon';
+import ForumIcon from 'mastodon/../material-icons/400-24px/forum.svg?react';
+import HomeIcon from 'mastodon/../material-icons/400-24px/home-fill.svg?react';
+
 
 const messages = defineMessages({
   localOnly: {

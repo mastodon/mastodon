@@ -9,9 +9,6 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import AddIcon from '@material-symbols/svg-600/outlined/add.svg?react';
-import ChevronLeftIcon from '@material-symbols/svg-600/outlined/chevron_left.svg?react';
-import ChevronRightIcon from '@material-symbols/svg-600/outlined/chevron_right.svg?react';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 import ReactSwipeableViews from 'react-swipeable-views';
@@ -25,6 +22,9 @@ import { autoPlayGif, reduceMotion, disableSwiping, mascot } from 'flavours/glit
 import { assetHost } from 'flavours/glitch/utils/config';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
+import AddIcon from 'mastodon/../material-icons/400-24px/add.svg?react';
+import ChevronLeftIcon from 'mastodon/../material-icons/400-24px/chevron_left.svg?react';
+import ChevronRightIcon from 'mastodon/../material-icons/400-24px/chevron_right.svg?react';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

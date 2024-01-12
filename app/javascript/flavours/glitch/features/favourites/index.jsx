@@ -8,8 +8,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import RefreshIcon from '@material-symbols/svg-600/outlined/refresh.svg?react';
-import StarIcon from '@material-symbols/svg-600/outlined/star-fill.svg?react';
 import { debounce } from 'lodash';
 
 import { fetchFavourites, expandFavourites } from 'flavours/glitch/actions/interactions';
@@ -19,6 +17,8 @@ import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import Column from 'flavours/glitch/features/ui/components/column';
+import RefreshIcon from 'mastodon/../material-icons/400-24px/refresh.svg?react';
+import StarIcon from 'mastodon/../material-icons/400-24px/star-fill.svg?react';
 
 const messages = defineMessages({
   heading: { id: 'column.favourited_by', defaultMessage: 'Favourited by' },

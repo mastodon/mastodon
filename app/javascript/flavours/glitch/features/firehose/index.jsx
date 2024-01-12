@@ -6,7 +6,6 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
-import PublicIcon from '@material-symbols/svg-600/outlined/public.svg?react';
 
 import { addColumn } from 'flavours/glitch/actions/columns';
 import { changeSetting } from 'flavours/glitch/actions/settings';
@@ -16,6 +15,7 @@ import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner
 import SettingText from 'flavours/glitch/components/setting_text';
 import initialState, { domain } from 'flavours/glitch/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
+import PublicIcon from 'mastodon/../material-icons/400-24px/public.svg?react';
 
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';

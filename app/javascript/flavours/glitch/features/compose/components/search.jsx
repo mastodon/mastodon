@@ -8,14 +8,14 @@ import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import CancelIcon from '@material-symbols/svg-600/outlined/cancel-fill.svg?react';
-import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
-import SearchIcon from '@material-symbols/svg-600/outlined/search.svg?react';
 
 import { Icon }  from 'flavours/glitch/components/icon';
 import { domain, searchEnabled } from 'flavours/glitch/initial_state';
 import { HASHTAG_REGEX } from 'flavours/glitch/utils/hashtags';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import CancelIcon from 'mastodon/../material-icons/400-24px/cancel-fill.svg?react';
+import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
+import SearchIcon from 'mastodon/../material-icons/400-24px/search.svg?react';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },

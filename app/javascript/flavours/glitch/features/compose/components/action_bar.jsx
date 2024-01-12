@@ -5,9 +5,9 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import MenuIcon from '@material-symbols/svg-600/outlined/menu.svg?react';
-
 import { preferencesLink, profileLink } from 'flavours/glitch/utils/backend_links';
+import MenuIcon from 'mastodon/../material-icons/400-24px/menu.svg?react';
+
 
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 

@@ -8,8 +8,6 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import RepeatIcon from '@material-symbols/svg-600/outlined/repeat.svg?react';
-import StarIcon from '@material-symbols/svg-600/outlined/star-fill.svg?react';
 
 import { AnimatedNumber } from 'flavours/glitch/components/animated_number';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
@@ -20,6 +18,8 @@ import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_p
 import { VisibilityIcon } from 'flavours/glitch/components/visibility_icon';
 import PollContainer from 'flavours/glitch/containers/poll_container';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
+import StarIcon from 'mastodon/../material-icons/400-24px/star-fill.svg?react';
 
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';

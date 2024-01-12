@@ -3,10 +3,10 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import UploadFileIcon from '@material-symbols/svg-600/outlined/upload_file.svg?react';
 import spring from 'react-motion/lib/spring';
 
 import { Icon }  from 'flavours/glitch/components/icon';
+import UploadFileIcon from 'mastodon/../material-icons/400-24px/upload_file.svg?react';
 
 import Motion from '../../ui/util/optional_motion';
 

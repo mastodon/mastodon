@@ -9,9 +9,6 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import FindInPageIcon from '@material-symbols/svg-600/outlined/find_in_page.svg?react';
-import PeopleIcon from '@material-symbols/svg-600/outlined/group.svg?react';
-import TagIcon from '@material-symbols/svg-600/outlined/tag.svg?react';
 
 import { submitSearch, expandSearch } from 'flavours/glitch/actions/search';
 import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
@@ -19,6 +16,9 @@ import { Icon } from 'flavours/glitch/components/icon';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import Account from 'flavours/glitch/containers/account_container';
 import Status from 'flavours/glitch/containers/status_container';
+import FindInPageIcon from 'mastodon/../material-icons/400-24px/find_in_page.svg?react';
+import PeopleIcon from 'mastodon/../material-icons/400-24px/group.svg?react';
+import TagIcon from 'mastodon/../material-icons/400-24px/tag.svg?react';
 
 import { SearchSection } from './components/search_section';
 

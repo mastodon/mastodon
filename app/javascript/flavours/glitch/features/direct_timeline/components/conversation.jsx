@@ -8,8 +8,6 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import MoreHorizIcon from '@material-symbols/svg-600/outlined/more_horiz.svg?react';
-import ReplyIcon from '@material-symbols/svg-600/outlined/reply.svg?react';
 import { HotKeys } from 'react-hotkeys';
 
 import AttachmentList from 'flavours/glitch/components/attachment_list';
@@ -21,6 +19,8 @@ import StatusContent from 'flavours/glitch/components/status_content';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import { autoPlayGif } from 'flavours/glitch/initial_state';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import MoreHorizIcon from 'mastodon/../material-icons/400-24px/more_horiz.svg?react';
+import ReplyIcon from 'mastodon/../material-icons/400-24px/reply.svg?react';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },

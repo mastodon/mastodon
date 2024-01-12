@@ -9,9 +9,6 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import DeleteIcon from '@material-symbols/svg-600/outlined/delete.svg?react';
-import EditIcon from '@material-symbols/svg-600/outlined/edit.svg?react';
-import ListAltIcon from '@material-symbols/svg-600/outlined/list_alt.svg?react';
 import Toggle from 'react-toggle';
 
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
@@ -27,6 +24,9 @@ import { RadioButton } from 'flavours/glitch/components/radio_button';
 import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import DeleteIcon from 'mastodon/../material-icons/400-24px/delete.svg?react';
+import EditIcon from 'mastodon/../material-icons/400-24px/edit.svg?react';
+import ListAltIcon from 'mastodon/../material-icons/400-24px/list_alt.svg?react';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },

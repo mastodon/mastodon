@@ -12,9 +12,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import ChatIcon from '@material-symbols/svg-600/outlined/chat.svg?react';
-import VisibilityIcon from '@material-symbols/svg-600/outlined/visibility.svg?react';
-import VisibilityOffIcon from '@material-symbols/svg-600/outlined/visibility_off.svg?react';
 import { HotKeys } from 'react-hotkeys';
 
 import { Icon }  from 'flavours/glitch/components/icon';
@@ -23,6 +20,9 @@ import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import ChatIcon from 'mastodon/../material-icons/400-24px/chat.svg?react';
+import VisibilityIcon from 'mastodon/../material-icons/400-24px/visibility.svg?react';
+import VisibilityOffIcon from 'mastodon/../material-icons/400-24px/visibility_off.svg?react';
 
 import { initBlockModal } from '../../actions/blocks';
 import { initBoostModal } from '../../actions/boosts';

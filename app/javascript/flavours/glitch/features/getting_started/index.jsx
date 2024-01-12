@@ -10,26 +10,26 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import BookmarksIcon from '@material-symbols/svg-600/outlined/bookmarks-fill.svg?react';
-import PeopleIcon from '@material-symbols/svg-600/outlined/group.svg?react';
-import HomeIcon from '@material-symbols/svg-600/outlined/home-fill.svg?react';
-import ListAltIcon from '@material-symbols/svg-600/outlined/list_alt.svg?react';
-import MailIcon from '@material-symbols/svg-600/outlined/mail.svg?react';
-import ManufacturingIcon from '@material-symbols/svg-600/outlined/manufacturing.svg?react';
-import MenuIcon from '@material-symbols/svg-600/outlined/menu.svg?react';
-import MoreHorizIcon from '@material-symbols/svg-600/outlined/more_horiz.svg?react';
-import NotificationsIcon from '@material-symbols/svg-600/outlined/notifications.svg?react';
-import PersonAddIcon from '@material-symbols/svg-600/outlined/person_add.svg?react';
-import PublicIcon from '@material-symbols/svg-600/outlined/public.svg?react';
-import SettingsIcon from '@material-symbols/svg-600/outlined/settings-fill.svg?react';
-import TagIcon from '@material-symbols/svg-600/outlined/tag.svg?react';
-
 import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { fetchLists } from 'flavours/glitch/actions/lists';
 import { openModal } from 'flavours/glitch/actions/modal';
 import Column from 'flavours/glitch/features/ui/components/column';
 import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
+import BookmarksIcon from 'mastodon/../material-icons/400-24px/bookmarks-fill.svg?react';
+import PeopleIcon from 'mastodon/../material-icons/400-24px/group.svg?react';
+import HomeIcon from 'mastodon/../material-icons/400-24px/home-fill.svg?react';
+import ListAltIcon from 'mastodon/../material-icons/400-24px/list_alt.svg?react';
+import MailIcon from 'mastodon/../material-icons/400-24px/mail.svg?react';
+import ManufacturingIcon from 'mastodon/../material-icons/400-24px/manufacturing.svg?react';
+import MenuIcon from 'mastodon/../material-icons/400-24px/menu.svg?react';
+import MoreHorizIcon from 'mastodon/../material-icons/400-24px/more_horiz.svg?react';
+import NotificationsIcon from 'mastodon/../material-icons/400-24px/notifications.svg?react';
+import PersonAddIcon from 'mastodon/../material-icons/400-24px/person_add.svg?react';
+import PublicIcon from 'mastodon/../material-icons/400-24px/public.svg?react';
+import SettingsIcon from 'mastodon/../material-icons/400-24px/settings-fill.svg?react';
+import TagIcon from 'mastodon/../material-icons/400-24px/tag.svg?react';
+
 
 import { me, showTrends } from '../../initial_state';
 import NavigationBar from '../compose/components/navigation_bar';

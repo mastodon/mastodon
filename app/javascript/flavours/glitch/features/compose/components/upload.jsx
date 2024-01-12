@@ -5,12 +5,13 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
-import EditIcon from '@material-symbols/svg-600/outlined/edit.svg?react';
-import InfoIcon from '@material-symbols/svg-600/outlined/info.svg?react';
 import spring from 'react-motion/lib/spring';
 
 import { Icon }  from 'flavours/glitch/components/icon';
+import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
+import EditIcon from 'mastodon/../material-icons/400-24px/edit.svg?react';
+import InfoIcon from 'mastodon/../material-icons/400-24px/info.svg?react';
+
 
 import Motion from '../../ui/util/optional_motion';
 

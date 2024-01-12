@@ -9,11 +9,6 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import CheckIcon from '@material-symbols/svg-600/outlined/check.svg?react';
-import LockIcon from '@material-symbols/svg-600/outlined/lock.svg?react';
-import MoreHorizIcon from '@material-symbols/svg-600/outlined/more_horiz.svg?react';
-import NotificationsIcon from '@material-symbols/svg-600/outlined/notifications.svg?react';
-import NotificationsActiveIcon from '@material-symbols/svg-600/outlined/notifications_active-fill.svg?react';
 
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'flavours/glitch/components/badge';
@@ -25,6 +20,11 @@ import { autoPlayGif, me, domain } from 'flavours/glitch/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/glitch/permissions';
 import { preferencesLink, profileLink, accountAdminLink } from 'flavours/glitch/utils/backend_links';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import CheckIcon from 'mastodon/../material-icons/400-24px/check.svg?react';
+import LockIcon from 'mastodon/../material-icons/400-24px/lock.svg?react';
+import MoreHorizIcon from 'mastodon/../material-icons/400-24px/more_horiz.svg?react';
+import NotificationsIcon from 'mastodon/../material-icons/400-24px/notifications.svg?react';
+import NotificationsActiveIcon from 'mastodon/../material-icons/400-24px/notifications_active-fill.svg?react';
 
 import AccountNoteContainer from '../containers/account_note_container';
 import FollowRequestNoteContainer from '../containers/follow_request_note_container';

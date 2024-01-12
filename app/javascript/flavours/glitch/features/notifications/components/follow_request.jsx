@@ -8,9 +8,6 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import CheckIcon from '@material-symbols/svg-600/outlined/check.svg?react';
-import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
-import PersonIcon from '@material-symbols/svg-600/outlined/person-fill.svg?react';
 import { HotKeys } from 'react-hotkeys';
 
 import { Avatar } from 'flavours/glitch/components/avatar';
@@ -19,6 +16,9 @@ import { Icon } from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import { Permalink } from 'flavours/glitch/components/permalink';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import CheckIcon from 'mastodon/../material-icons/400-24px/check.svg?react';
+import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
+import PersonIcon from 'mastodon/../material-icons/400-24px/person-fill.svg?react';
 
 import NotificationOverlayContainer from '../containers/overlay_container';
 

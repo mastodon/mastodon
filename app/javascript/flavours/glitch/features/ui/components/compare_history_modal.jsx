@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
 import escapeTextContentForBrowser from 'escape-html';
 
 import { closeModal } from 'flavours/glitch/actions/modal';
@@ -15,6 +14,7 @@ import InlineAccount from 'flavours/glitch/components/inline_account';
 import MediaAttachments from 'flavours/glitch/components/media_attachments';
 import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
 import emojify from 'flavours/glitch/features/emoji/emoji';
+import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
 
 const mapStateToProps = (state, { statusId }) => ({
   language: state.getIn(['statuses', statusId, 'language']),

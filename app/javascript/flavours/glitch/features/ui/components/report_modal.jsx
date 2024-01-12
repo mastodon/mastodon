@@ -7,8 +7,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
-
 import { fetchRelationships } from 'flavours/glitch/actions/accounts';
 import { submitReport } from 'flavours/glitch/actions/reports';
 import { fetchServer } from 'flavours/glitch/actions/server';
@@ -20,6 +18,7 @@ import Rules from 'flavours/glitch/features/report/rules';
 import Statuses from 'flavours/glitch/features/report/statuses';
 import Thanks from 'flavours/glitch/features/report/thanks';
 import { makeGetAccount } from 'flavours/glitch/selectors';
+import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

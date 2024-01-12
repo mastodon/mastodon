@@ -8,7 +8,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import TagIcon from '@material-symbols/svg-600/outlined/tag.svg?react';
 import { debounce } from 'lodash';
 
 import { expandFollowedHashtags, fetchFollowedHashtags } from 'flavours/glitch/actions/tags';
@@ -16,6 +15,7 @@ import ColumnHeader from 'flavours/glitch/components/column_header';
 import { Hashtag } from 'flavours/glitch/components/hashtag';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import Column from 'flavours/glitch/features/ui/components/column';
+import TagIcon from 'mastodon/../material-icons/400-24px/tag.svg?react';
 
 const messages = defineMessages({
   heading: { id: 'followed_tags', defaultMessage: 'Followed hashtags' },

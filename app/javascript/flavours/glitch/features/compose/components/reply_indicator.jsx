@@ -5,10 +5,10 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
 
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import { WithOptionalRouterPropTypes, withOptionalRouter } from 'flavours/glitch/utils/react_router';
+import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
 
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';

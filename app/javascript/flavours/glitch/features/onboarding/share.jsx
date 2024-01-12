@@ -7,14 +7,14 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 
-import ArrowRightAltIcon from '@material-symbols/svg-600/outlined/arrow_right_alt.svg?react';
-import ContentCopyIcon from '@material-symbols/svg-600/outlined/content_copy.svg?react';
 import SwipeableViews from 'react-swipeable-views';
 
 import { ColumnBackButton } from 'flavours/glitch/components/column_back_button';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { me, domain } from 'flavours/glitch/initial_state';
 import { useAppSelector } from 'flavours/glitch/store';
+import ArrowRightAltIcon from 'mastodon/../material-icons/400-24px/arrow_right_alt.svg?react';
+import ContentCopyIcon from 'mastodon/../material-icons/400-24px/content_copy.svg?react';
 
 const messages = defineMessages({
   shareableMessage: { id: 'onboarding.share.message', defaultMessage: 'I\'m {username} on #Mastodon! Come follow me at {url}' },

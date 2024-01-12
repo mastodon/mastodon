@@ -8,11 +8,10 @@ import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
-
 import { changeSetting } from 'flavours/glitch/actions/settings';
 import { bannerSettings } from 'flavours/glitch/settings';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
+import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
 
 import { IconButton } from './icon_button';
 

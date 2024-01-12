@@ -7,10 +7,6 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
-import PersonAddIcon from '@material-symbols/svg-600/outlined/person_add.svg?react';
-import RepeatIcon from '@material-symbols/svg-600/outlined/repeat.svg?react';
-import ReplyIcon from '@material-symbols/svg-600/outlined/reply.svg?react';
-import StarIcon from '@material-symbols/svg-600/outlined/star.svg?react';
 import { throttle, escapeRegExp } from 'lodash';
 
 import { openModal, closeModal } from 'flavours/glitch/actions/modal';
@@ -18,6 +14,10 @@ import api from 'flavours/glitch/api';
 import { Button } from 'flavours/glitch/components/button';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { registrationsOpen, sso_redirect } from 'flavours/glitch/initial_state';
+import PersonAddIcon from 'mastodon/../material-icons/400-24px/person_add.svg?react';
+import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
+import ReplyIcon from 'mastodon/../material-icons/400-24px/reply.svg?react';
+import StarIcon from 'mastodon/../material-icons/400-24px/star.svg?react';
 
 const messages = defineMessages({
   loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server, e.g. mastodon.social' },

@@ -9,11 +9,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import OpenInNewIcon from '@material-symbols/svg-600/outlined/open_in_new.svg?react';
-import RepeatIcon from '@material-symbols/svg-600/outlined/repeat.svg?react';
-import ReplyIcon from '@material-symbols/svg-600/outlined/reply.svg?react';
-import ReplyAllIcon from '@material-symbols/svg-600/outlined/reply_all.svg?react';
-import StarIcon from '@material-symbols/svg-600/outlined/star.svg?react';
 
 import { initBoostModal } from 'flavours/glitch/actions/boosts';
 import { replyCompose } from 'flavours/glitch/actions/compose';
@@ -23,6 +18,11 @@ import { IconButton } from 'flavours/glitch/components/icon_button';
 import { me, boostModal } from 'flavours/glitch/initial_state';
 import { makeGetStatus } from 'flavours/glitch/selectors';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
+import OpenInNewIcon from 'mastodon/../material-icons/400-24px/open_in_new.svg?react';
+import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
+import ReplyIcon from 'mastodon/../material-icons/400-24px/reply.svg?react';
+import ReplyAllIcon from 'mastodon/../material-icons/400-24px/reply_all.svg?react';
+import StarIcon from 'mastodon/../material-icons/400-24px/star.svg?react';
 
 const messages = defineMessages({
   reply: { id: 'status.reply', defaultMessage: 'Reply' },

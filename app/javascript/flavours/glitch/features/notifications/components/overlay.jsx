@@ -9,9 +9,9 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import CheckIcon from '@material-symbols/svg-600/outlined/check.svg?react';
-
 import { Icon } from 'flavours/glitch/components/icon';
+import CheckIcon from 'mastodon/../material-icons/400-24px/check.svg?react';
+
 
 const messages = defineMessages({
   markForDeletion: { id: 'notification.markForDeletion', defaultMessage: 'Mark for deletion' },

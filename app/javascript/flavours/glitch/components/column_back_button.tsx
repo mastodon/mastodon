@@ -2,10 +2,9 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import ArrowBackIcon from '@material-symbols/svg-600/outlined/arrow_back.svg?react';
-
 import { Icon } from 'flavours/glitch/components/icon';
 import { ButtonInTabsBar } from 'flavours/glitch/features/ui/util/columns_context';
+import ArrowBackIcon from 'mastodon/../material-icons/400-24px/arrow_back.svg?react';
 
 import { useAppHistory } from './router';
 
