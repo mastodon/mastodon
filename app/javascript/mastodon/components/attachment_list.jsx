@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { ReactComponent as LinkIcon } from '@material-symbols/svg-600/outlined/link.svg';
+import LinkIcon from '@material-symbols/svg-600/outlined/link.svg?react';
 
 import { Icon }  from 'mastodon/components/icon';
 

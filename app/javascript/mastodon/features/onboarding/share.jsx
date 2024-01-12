@@ -7,8 +7,8 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 
-import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-600/outlined/arrow_right_alt.svg';
-import { ReactComponent as ContentCopyIcon } from '@material-symbols/svg-600/outlined/content_copy.svg';
+import ArrowRightAltIcon from '@material-symbols/svg-600/outlined/arrow_right_alt.svg?react';
+import ContentCopyIcon from '@material-symbols/svg-600/outlined/content_copy.svg?react';
 import SwipeableViews from 'react-swipeable-views';
 
 import { ColumnBackButton } from 'mastodon/components/column_back_button';

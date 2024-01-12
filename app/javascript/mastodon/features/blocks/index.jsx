@@ -6,7 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { ReactComponent as BlockIcon } from '@material-symbols/svg-600/outlined/block-fill.svg';
+import BlockIcon from '@material-symbols/svg-600/outlined/block-fill.svg?react';
 import { debounce } from 'lodash';
 
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
