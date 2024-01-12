@@ -1195,8 +1195,6 @@ __metadata:
     marky: "npm:^1.2.5"
     mkdirp: "npm:^3.0.1"
     path-complete-extname: "npm:^1.0.0"
-    postcss: "npm:^8.4.24"
-    postcss-loader: "npm:^4.3.0"
     prettier: "npm:^3.0.0"
     prop-types: "npm:^15.8.1"
     punycode: "npm:^2.3.0"
@@ -1917,7 +1915,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.12, @types/json-schema@npm:^7.0.8":
+"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.12":
   version: 7.0.14
   resolution: "@types/json-schema@npm:7.0.14"
   checksum: da68689ccd44cb93ca4c9a4af3b25c6091ecf45fb370d1ed0d0ac5b780e235bf0b9bdc1f7e28f19e6713b22567c3db11fefcbcc6d48ac6b356d035a8f9f4ea30
@@ -2674,16 +2672,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv-keywords@npm:^3.5.2":
-  version: 3.5.2
-  resolution: "ajv-keywords@npm:3.5.2"
-  peerDependencies:
-    ajv: ^6.9.1
-  checksum: 0c57a47cbd656e8cdfd99d7c2264de5868918ffa207c8d7a72a7f63379d4333254b2ba03d69e3c035e996a3fd3eb6d5725d7a1597cca10694296e32510546360
-  languageName: node
-  linkType: hard
-
-"ajv@npm:^6.12.4, ajv@npm:^6.12.5":
+"ajv@npm:^6.12.4":
   version: 6.12.6
   resolution: "ajv@npm:6.12.6"
   dependencies:
@@ -3093,13 +3082,6 @@ __metadata:
   version: 1.6.51
   resolution: "big-integer@npm:1.6.51"
   checksum: c8139662d57f8833a44802f4b65be911679c569535ea73c5cfd3c1c8994eaead1b84b6f63e1db63833e4d4cacb6b6a9e5522178113dfdc8e4c81ed8436f1e8cc
-  languageName: node
-  linkType: hard
-
-"big.js@npm:^5.2.2":
-  version: 5.2.2
-  resolution: "big.js@npm:5.2.2"
-  checksum: 230520f1ff920b2d2ce3e372d77a33faa4fa60d802fe01ca4ffbc321ee06023fe9a741ac02793ee778040a16b7e497f7d60c504d1c402b8fdab6f03bb785a25f
   languageName: node
   linkType: hard
 
@@ -4097,13 +4079,6 @@ __metadata:
   version: 9.2.2
   resolution: "emoji-regex@npm:9.2.2"
   checksum: af014e759a72064cf66e6e694a7fc6b0ed3d8db680427b021a89727689671cefe9d04151b2cad51dbaf85d5ba790d061cd167f1cf32eb7b281f6368b3c181639
-  languageName: node
-  linkType: hard
-
-"emojis-list@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "emojis-list@npm:3.0.0"
-  checksum: 7dc4394b7b910444910ad64b812392159a21e1a7ecc637c775a440227dcb4f80eff7fe61f4453a7d7603fa23d23d30cc93fe9e4b5ed985b88d6441cd4a35117b
   languageName: node
   linkType: hard
 
@@ -6333,7 +6308,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json5@npm:^2.1.2, json5@npm:^2.2.3":
+"json5@npm:^2.2.3":
   version: 2.2.3
   resolution: "json5@npm:2.2.3"
   bin:
@@ -6401,13 +6376,6 @@ __metadata:
   version: 6.0.3
   resolution: "kind-of@npm:6.0.3"
   checksum: 61cdff9623dabf3568b6445e93e31376bee1cdb93f8ba7033d86022c2a9b1791a1d9510e026e6465ebd701a6dd2f7b0808483ad8838341ac52f003f512e0b4c4
-  languageName: node
-  linkType: hard
-
-"klona@npm:^2.0.4":
-  version: 2.0.6
-  resolution: "klona@npm:2.0.6"
-  checksum: 94eed2c6c2ce99f409df9186a96340558897b3e62a85afdc1ee39103954d2ebe1c1c4e9fe2b0952771771fa96d70055ede8b27962a7021406374fdb695fd4d01
   languageName: node
   linkType: hard
 
@@ -6489,17 +6457,6 @@ __metadata:
     rfdc: "npm:^1.3.0"
     wrap-ansi: "npm:^9.0.0"
   checksum: 6e356df9127c68b69186c927c993645223557e941a76b0bb210e35786aedc53f577df437251db804606ff37ac509c5d945289a84b3daee7fadf2e3dcb889ecc9
-  languageName: node
-  linkType: hard
-
-"loader-utils@npm:^2.0.0":
-  version: 2.0.4
-  resolution: "loader-utils@npm:2.0.4"
-  dependencies:
-    big.js: "npm:^5.2.2"
-    emojis-list: "npm:^3.0.0"
-    json5: "npm:^2.1.2"
-  checksum: d5654a77f9d339ec2a03d88221a5a695f337bf71eb8dea031b3223420bb818964ba8ed0069145c19b095f6c8b8fd386e602a3fc7ca987042bd8bb1dcc90d7100
   languageName: node
   linkType: hard
 
@@ -7617,22 +7574,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-loader@npm:^4.3.0":
-  version: 4.3.0
-  resolution: "postcss-loader@npm:4.3.0"
-  dependencies:
-    cosmiconfig: "npm:^7.0.0"
-    klona: "npm:^2.0.4"
-    loader-utils: "npm:^2.0.0"
-    schema-utils: "npm:^3.0.0"
-    semver: "npm:^7.3.4"
-  peerDependencies:
-    postcss: ^7.0.0 || ^8.0.1
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: 3405584e571ec4d66d7c2b665a2a4823eaa7208433fd40eb6b669ac441f23398bc81fc18fe631c7d7805a303ad31f284a5066c4097dd082c1faba7edf13db8aa
-  languageName: node
-  linkType: hard
-
 "postcss-media-query-parser@npm:^0.2.3":
   version: 0.2.3
   resolution: "postcss-media-query-parser@npm:0.2.3"
@@ -7682,7 +7623,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.24, postcss@npm:^8.4.32":
+"postcss@npm:^8.4.32":
   version: 8.4.33
   resolution: "postcss@npm:8.4.33"
   dependencies:
@@ -8824,17 +8765,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"schema-utils@npm:^3.0.0":
-  version: 3.3.0
-  resolution: "schema-utils@npm:3.3.0"
-  dependencies:
-    "@types/json-schema": "npm:^7.0.8"
-    ajv: "npm:^6.12.5"
-    ajv-keywords: "npm:^3.5.2"
-  checksum: fafdbde91ad8aa1316bc543d4b61e65ea86970aebbfb750bfb6d8a6c287a23e415e0e926c2498696b242f63af1aab8e585252637fabe811fd37b604351da6500
-  languageName: node
-  linkType: hard
-
 "scroll-behavior@npm:^0.9.1":
   version: 0.9.12
   resolution: "scroll-behavior@npm:0.9.12"
@@ -8854,7 +8784,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.5.4":
+"semver@npm:^7.3.5, semver@npm:^7.5.4":
   version: 7.5.4
   resolution: "semver@npm:7.5.4"
   dependencies:
