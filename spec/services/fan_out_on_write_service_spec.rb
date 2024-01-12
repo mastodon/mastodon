@@ -38,7 +38,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
       expect(home_feed_of(alice)).to include status.id
     end
 
-    it 'is added to the home feed of a follower' do
+    it 'is added to the home feed of a follower', :sidekiq_inline do
       expect(home_feed_of(bob)).to include status.id
       expect(home_feed_of(tom)).to include status.id
     end
@@ -62,7 +62,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
       expect(home_feed_of(alice)).to include status.id
     end
 
-    it 'is added to the home feed of the mentioned follower' do
+    it 'is added to the home feed of the mentioned follower', :sidekiq_inline do
       expect(home_feed_of(bob)).to include status.id
     end
 
@@ -83,7 +83,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
       expect(home_feed_of(alice)).to include status.id
     end
 
-    it 'is added to the home feed of a follower' do
+    it 'is added to the home feed of a follower', :sidekiq_inline do
       expect(home_feed_of(bob)).to include status.id
       expect(home_feed_of(tom)).to include status.id
     end
@@ -101,7 +101,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
       expect(home_feed_of(alice)).to include status.id
     end
 
-    it 'is added to the home feed of the mentioned follower' do
+    it 'is added to the home feed of the mentioned follower', :sidekiq_inline do
       expect(home_feed_of(bob)).to include status.id
     end
 
@@ -114,7 +114,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
       expect(redis).to_not have_received(:publish).with('timeline:public', anything)
     end
 
-    context 'when handling status updates', :sidekiq_fake do
+    context 'when handling status updates' do
       before do
         subject.call(status)
 
@@ -123,8 +123,6 @@ RSpec.describe FanOutOnWriteService, type: :service do
         status.snapshot!(account_id: status.account_id)
 
         redis.set("subscribed:timeline:#{eve.id}:notifications", '1')
-
-        Sidekiq::Worker.clear_all
       end
 
       it 'pushes the update to mentioned users through the notifications streaming channel' do

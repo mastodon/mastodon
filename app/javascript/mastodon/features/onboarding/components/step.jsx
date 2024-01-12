@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-import { ReactComponent as ArrowRightAltIcon } from '@material-symbols/svg-600/outlined/arrow_right_alt.svg';
-import { ReactComponent as CheckIcon } from '@material-symbols/svg-600/outlined/done.svg';
+import ArrowRightAltIcon from '@material-symbols/svg-600/outlined/arrow_right_alt.svg?react';
+import CheckIcon from '@material-symbols/svg-600/outlined/done.svg?react';
 
 import { Icon } from 'mastodon/components/icon';
 

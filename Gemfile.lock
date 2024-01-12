@@ -8,6 +8,16 @@ GIT
       jwt (~> 2.0)
 
 GIT
+  remote: https://github.com/dlindahl/omniauth-cas.git
+  revision: 9d9d3a91b316c55d49ab6e621977f2067010c5bf
+  ref: 9d9d3a91b316c55d49ab6e621977f2067010c5bf
+  specs:
+    omniauth-cas (3.0.0)
+      addressable (~> 2.8)
+      nokogiri (~> 1.12)
+      omniauth (~> 2.1)
+
+GIT
   remote: https://github.com/jhawthorn/nsa.git
   revision: e020fcc3a54d993ab45b7194d89ab720296c111b
   ref: e020fcc3a54d993ab45b7194d89ab720296c111b
@@ -17,16 +27,6 @@ GIT
       concurrent-ruby (~> 1.0, >= 1.0.2)
       sidekiq (>= 3.5)
       statsd-ruby (~> 1.4, >= 1.4.0)
-
-GIT
-  remote: https://github.com/stanhu/omniauth-cas.git
-  revision: 4211e6d05941b4a981f9a36b49ec166cecd0e271
-  ref: 4211e6d05941b4a981f9a36b49ec166cecd0e271
-  specs:
-    omniauth-cas (2.0.0)
-      addressable (~> 2.3)
-      nokogiri (~> 1.5)
-      omniauth (>= 1.2, < 3)
 
 GEM
   remote: https://rubygems.org/
@@ -208,6 +208,7 @@ GEM
     crass (1.0.6)
     css_parser (1.14.0)
       addressable
+    csv (3.2.8)
     database_cleaner-active_record (2.1.0)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
@@ -716,7 +717,7 @@ GEM
       rufus-scheduler (~> 3.2)
       sidekiq (>= 6, < 8)
       tilt (>= 1.4.0)
-    sidekiq-unique-jobs (7.1.30)
+    sidekiq-unique-jobs (7.1.31)
       brpoplpush-redis_script (> 0.1.1, <= 2.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       redis (< 5.0)
@@ -845,6 +846,7 @@ DEPENDENCIES
   color_diff (~> 0.1)
   concurrent-ruby
   connection_pool
+  csv (~> 3.2)
   database_cleaner-active_record
   debug (~> 1.8)
   devise (~> 4.9)

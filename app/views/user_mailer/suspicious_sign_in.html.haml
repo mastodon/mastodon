@@ -45,7 +45,10 @@
                                 = @remote_ip
                                 %br/
                                 %strong #{t('sessions.browser')}:
-                                %span{ title: @user_agent }= t 'sessions.description', browser: t("sessions.browsers.#{@detection.id}", default: @detection.id.to_s), platform: t("sessions.platforms.#{@detection.platform.id}", default: @detection.platform.id.to_s)
+                                %span{ title: @user_agent }
+                                  = t 'sessions.description',
+                                      browser: t("sessions.browsers.#{@detection.id}", default: @detection.id.to_s),
+                                      platform: t("sessions.platforms.#{@detection.platform.id}", default: @detection.platform.id.to_s)
                                 %br/
                                 = l(@timestamp.in_time_zone(@resource.time_zone.presence), format: :with_time_zone)
 
@@ -64,4 +67,5 @@
                         %tbody
                           %tr
                             %td.column-cell.text-center
-                              %p= t 'user_mailer.suspicious_sign_in.further_actions_html', action: link_to(t('user_mailer.suspicious_sign_in.change_password'), edit_user_registration_url)
+                              %p= t 'user_mailer.suspicious_sign_in.further_actions_html',
+                                    action: link_to(t('user_mailer.suspicious_sign_in.change_password'), edit_user_registration_url)

@@ -11,7 +11,7 @@ describe Admin::ResetsController do
     sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
   end
 
-  describe 'POST #create' do
+  describe 'POST #create', :sidekiq_inline do
     it 'redirects to admin accounts page' do
       expect do
         post :create, params: { account_id: account.id }

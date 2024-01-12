@@ -138,7 +138,7 @@ RSpec.describe Auth::SessionsController do
           expect(controller.current_user).to eq user
         end
 
-        it 'sends a suspicious sign-in mail' do
+        it 'sends a suspicious sign-in mail', :sidekiq_inline do
           expect(UserMailer.deliveries.size).to eq(1)
           expect(UserMailer.deliveries.first.to.first).to eq(user.email)
           expect(UserMailer.deliveries.first.subject).to eq(I18n.t('user_mailer.suspicious_sign_in.subject'))
