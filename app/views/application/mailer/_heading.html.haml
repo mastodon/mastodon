@@ -3,11 +3,11 @@
     %td.email-header-heading-td
       %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
-          - if defined?(image_url)
+          - if defined?(heading_image_url)
             %td.email-header-heading-img-td
-              = image_tag image_url, alt: '', width: 56, height: 56
+              = image_tag heading_image_url, alt: '', width: 56, height: 56
           %td.email-header-heading-txt-td
-            - if defined?(title)
-              %h1= title
+            - if defined?(heading_title)
+              %h1= heading_title
             - if defined?(subtitle)
               %p= subtitle

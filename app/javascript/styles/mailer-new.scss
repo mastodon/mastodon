@@ -199,6 +199,11 @@ table + p {
     line-height: 21.6px;
     font-weight: 500;
   }
+
+  &:only-child {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 // To make the design work with images off
@@ -410,6 +415,79 @@ table + p {
   line-height: 24px;
 }
 
+// Checklist item
+.email-checklist-wrapper-td {
+  padding: 4px 0;
+}
+
+.email-checklist-table {
+  border-radius: 12px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #efefff;
+  background-color: #fff;
+}
+
+.email-checklist-td {
+  padding: 16px;
+}
+
+.email-checklist-icons-td {
+  width: 84px;
+  vertical-align: top;
+}
+
+.email-checklist-icons-checkbox-td {
+  width: 20px;
+  vertical-align: middle;
+
+  img {
+    max-width: 100%;
+    width: 20px;
+  }
+}
+
+.email-checklist-icons-step-td {
+  width: 64px;
+  text-align: center;
+  vertical-align: middle;
+
+  img {
+    max-width: 100%;
+    width: 40px;
+  }
+}
+
+.email-checklist-text-td {
+  h3 {
+    margin: 0 0 4px;
+    color: #17063B;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16.8px;
+  }
+
+  p {
+    margin: 0 0 2px;
+    color: #746a89;
+    font-size: 14px;
+    line-height: 16.8px;
+  }
+
+  .email-btn-table {
+    width: 100px;
+  }
+
+  .email-btn-td {
+    mso-padding-alt: 10px; /* stylelint-disable-line property-no-unknown -- Proprietary property for Outlook on Windows. */
+  }
+
+  .email-btn-a {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
 // Responsive
 /* stylelint-disable-next-line media-feature-range-notation -- Basic media queries have better support across email clients. */
 @media only screen and (min-width: 740px) {
@@ -423,5 +501,9 @@ table + p {
 
   .email-header-td {
     border-radius: 16px 16px 0 0 !important;
+  }
+
+  .email-desktop-flex {
+    display: flex;
   }
 }
