@@ -5,9 +5,8 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import CloseIcon from '@material-symbols/svg-600/outlined/close.svg?react';
-import TuneIcon from '@material-symbols/svg-600/outlined/tune.svg?react';
-
+import CloseIcon from 'mastodon/../material-icons/400-24px/close.svg?react';
+import TuneIcon from 'mastodon/../material-icons/400-24px/tune.svg?react';
 import { requestBrowserPermission } from 'mastodon/actions/notifications';
 import { changeSetting } from 'mastodon/actions/settings';
 import { Button } from 'mastodon/components/button';

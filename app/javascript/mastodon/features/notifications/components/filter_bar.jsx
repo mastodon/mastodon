@@ -3,13 +3,12 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
-import HomeIcon from '@material-symbols/svg-600/outlined/home-fill.svg?react';
-import InsertChartIcon from '@material-symbols/svg-600/outlined/insert_chart.svg?react';
-import PersonAddIcon from '@material-symbols/svg-600/outlined/person_add.svg?react';
-import RepeatIcon from '@material-symbols/svg-600/outlined/repeat.svg?react';
-import ReplyAllIcon from '@material-symbols/svg-600/outlined/reply_all.svg?react';
-import StarIcon from '@material-symbols/svg-600/outlined/star.svg?react';
-
+import HomeIcon from 'mastodon/../material-icons/400-24px/home-fill.svg?react';
+import InsertChartIcon from 'mastodon/../material-icons/400-24px/insert_chart.svg?react';
+import PersonAddIcon from 'mastodon/../material-icons/400-24px/person_add.svg?react';
+import RepeatIcon from 'mastodon/../material-icons/400-24px/repeat.svg?react';
+import ReplyAllIcon from 'mastodon/../material-icons/400-24px/reply_all.svg?react';
+import StarIcon from 'mastodon/../material-icons/400-24px/star.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 
 const tooltips = defineMessages({

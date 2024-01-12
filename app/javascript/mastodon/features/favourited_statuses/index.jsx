@@ -8,9 +8,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import StarIcon from '@material-symbols/svg-600/outlined/star-fill.svg?react';
 import { debounce } from 'lodash';
 
+import StarIcon from 'mastodon/../material-icons/400-24px/star-fill.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'mastodon/actions/favourites';
 import ColumnHeader from 'mastodon/components/column_header';
