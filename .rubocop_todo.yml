@@ -64,13 +64,6 @@ Rails/HasAndBelongsToMany:
     - 'app/models/status.rb'
     - 'app/models/tag.rb'
 
-# Configuration parameters: Include.
-# Include: app/controllers/**/*.rb, app/mailers/**/*.rb
-Rails/LexicallyScopedActionFilter:
-  Exclude:
-    - 'app/controllers/auth/passwords_controller.rb'
-    - 'app/controllers/auth/registrations_controller.rb'
-
 Rails/OutputSafety:
   Exclude:
     - 'config/initializers/simple_form.rb'
