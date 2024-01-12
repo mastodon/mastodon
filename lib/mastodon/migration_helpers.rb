@@ -77,9 +77,6 @@ module Mastodon
       end
     end
 
-    BACKGROUND_MIGRATION_BATCH_SIZE = 1000 # Number of rows to process per job
-    BACKGROUND_MIGRATION_JOB_BUFFER_SIZE = 1000 # Number of jobs to bulk queue at a time
-
     # Gets an estimated number of rows for a table
     def estimate_rows_in_table(table_name)
       exec_query('SELECT reltuples FROM pg_class WHERE relname = ' +
