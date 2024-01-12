@@ -15,11 +15,13 @@ class Api::V1::MarkersController < Api::BaseController
   end
 
   def create
-    @markers = {}
+    Marker.transaction do
+      @markers = {}
 
-    resource_params.each_pair do |timeline, timeline_params|
-      @markers[timeline] = current_user.markers.find_or_create_by(timeline: timeline)
-      @markers[timeline].update!(timeline_params)
+      resource_params.each_pair do |timeline, timeline_params|
+        @markers[timeline] = current_user.markers.find_or_create_by(timeline: timeline)
+        @markers[timeline].update!(timeline_params)
+      end
     end
 
     render json: serialize_map(@markers)
